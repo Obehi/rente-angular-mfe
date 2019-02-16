@@ -1,12 +1,12 @@
 const express = require('express');
 const path = require('path');
 const app = express();
-const favicon = require('serve-favicon');
+//const favicon = require('serve-favicon');
 
-const clientPath = path.resolve(__dirname, '../dist');
-const port = process.env.PORT || 8080;
+const clientPath = path.resolve(__dirname, '../dist/rente-front-end');
+const port = process.env.PORT || 4300;
 
-app.use(favicon(clientPath + '/favicon.ico'));
+//app.use(favicon(clientPath + '/favicon.ico'));
 app.use(express.static(clientPath));
 
 app.get('/*', function(req, res) {
