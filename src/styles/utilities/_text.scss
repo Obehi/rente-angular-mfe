@@ -1,0 +1,76 @@
+@import '../theme/variables';
+
+// Alignment
+
+.text-justify  { text-align: justify !important; }
+.text-nowrap   { white-space: nowrap !important; }
+
+// Responsive alignment
+
+@each $breakpoint in map-keys($grid-breakpoints) {
+  @include media-breakpoint-up($breakpoint) {
+    $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+
+    .text#{$infix}-left   { text-align: left !important; }
+    .text#{$infix}-right  { text-align: right !important; }
+    .text#{$infix}-center { text-align: center !important; }
+  }
+}
+
+
+// Transformation
+
+.text-lowercase  { text-transform: lowercase !important; }
+.text-uppercase  { text-transform: uppercase !important; }
+.text-capitalize { text-transform: capitalize !important; }
+
+// Weight and italics
+
+.font-weight-light   { font-weight: $font-weight-light !important; }
+.font-weight-lighter { font-weight: $font-weight-lighter !important; }
+.font-weight-normal  { font-weight: $font-weight-normal !important; }
+.font-weight-bold    { font-weight: $font-weight-bold !important; }
+.font-weight-bolder  { font-weight: $font-weight-bolder !important; }
+.font-italic         { font-style: italic !important; }
+
+.text-decoration-none { text-decoration: none !important; }
+
+// TODO: add tokens
+p,
+.paragraph,
+small,
+ul li,
+ol li {
+  color: $color-white-100;
+  font-size: $size-font-paragraph;
+  margin: 0 0 8px 0;
+  line-height: 1.4;
+}
+
+p.inverted,
+.paragraph.inverted,
+small.inverted,
+ul li.inverted,
+ol li.inverted {
+  color: $color-dark-100;
+}
+
+small {
+  font-size: $size-font-paragraph-small;
+  margin: 0;
+
+  &.secondary {
+    color: #86838A;
+  }
+}
+
+.link {
+  color: $color-text-link;
+  font-size: $size-font-link;
+  text-decoration: underline;
+  line-height: 16px;
+
+  &:hover {
+    cursor: pointer;
+  }
+}

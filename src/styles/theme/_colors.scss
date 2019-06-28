@@ -1,0 +1,27 @@
+$white:    #fff !default;
+$black:    #212529 !default;
+$blue:    #2B3E50 !default;
+$green:   #18BC9C !default;
+$grey: #CDCDCD !default;
+$light: #F4F4F4 !default;
+
+$primary:       $green !default;
+$secondary:     $blue !default;
+$grey:          $grey !default;
+$light:         $light !default;
+$dark:          $black !default;
+
+// $theme-colors: () !default;
+// $theme-colors: map-merge(
+//   (
+//     "primary":    $primary,
+//     "secondary":  $secondary,
+//     "success":    $success,
+//     "info":       $info,
+//     "warning":    $warning,
+//     "danger":     $danger,
+//     "light":      $light,
+//     "dark":       $dark
+//   ),
+//   $theme-colors
+// );

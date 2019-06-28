@@ -1,0 +1,7 @@
+@mixin design-token($property, $default, $token) {
+  @if ($token) {
+    #{$property}: $token;
+  } @else {
+    #{$property}: $default;
+  }
+}
