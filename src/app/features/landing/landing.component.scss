@@ -1,0 +1,88 @@
+@mixin text-style($size, $line-height) {
+  font-size: $size;
+  // use variables
+  color: #212529;
+  font-family: Lato;
+  line-height: $line-height;
+}
+// remove after add grid
+.row {
+    display: flex;
+    height: 512px;
+    justify-content: space-around;
+}
+
+.title {
+  @include text-style(30px, 36px);
+  letter-spacing: 0.5px;
+  text-align: center;
+  margin: 60px 0;
+}
+
+.card {
+    //remove
+  width: 368px;
+  border-radius: 12px;
+  background-color: rgba(33, 37, 41, 0.05);
+  text-align: center;
+  height: 100%;
+
+  &-icon {
+    padding-top: 20px;
+  }
+
+  &-number-wrapper {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    margin: 20px 44px;
+
+    &:after {
+      content: '';
+      width: 100%;
+      position: absolute;
+      height: 2px;
+      background: #212529;
+      top: 50%;
+      opacity: 0.2;
+    }
+
+    p {
+      box-sizing: border-box;
+      height: 53px;
+      width: 54px;
+      border: 2px solid #18BC9C;
+      background-color: #FFFFFF;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      @include text-style(24px, 29px);
+      z-index: 1;
+      font-weight: bold;
+      margin: 0;
+    }
+  }
+
+  &-title {
+    @include text-style(24px, 29px);
+    margin-bottom: 42px;
+  }
+
+  &-text {
+    @include text-style(16px, 24px);
+    margin-bottom: 64px;
+  }
+}
+// remove after add theme
+.btn {
+    height: 40px;	
+    width: 368px;	
+    border-radius: 4px;	
+    background-color: #18BC9C;
+    @include text-style(16px, 19px);
+    color: #FFFFFF;
+    text-align: center;
+    border: none;
+    margin: 40px 0;
+}
