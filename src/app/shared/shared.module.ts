@@ -5,6 +5,7 @@ import { LocalStorageService } from '@services/local-storage.service';
 import { GenericHttpService } from '@services/generic-http.service';
 import { HeaderComponent } from './components/header/header.component';
 import { RouterModule } from '@angular/router';
+import { FooterComponent } from './components/footer/footer.component';
 // import { GenericHttpService } from '@services/generic-http.service';
 // import { LocalStorageService } from '@services/local-storage.service';
 
@@ -14,8 +15,8 @@ import { RouterModule } from '@angular/router';
     CommonModule,
     RouterModule
   ],
-  declarations: [HeaderComponent],
-  exports: [HeaderComponent],
+  declarations: [HeaderComponent, FooterComponent],
+  exports: [HeaderComponent, FooterComponent],
   providers: [
     AuthGuard,
     GenericHttpService,
