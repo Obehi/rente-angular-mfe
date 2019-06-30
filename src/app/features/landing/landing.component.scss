@@ -5,12 +5,6 @@
   font-family: Lato;
   line-height: $line-height;
 }
-// remove after add grid
-.row {
-    display: flex;
-    height: 512px;
-    justify-content: space-around;
-}
 
 .title {
   @include text-style(30px, 36px);
@@ -20,12 +14,14 @@
 }
 
 .card {
-    //remove
-  width: 368px;
   border-radius: 12px;
   background-color: rgba(33, 37, 41, 0.05);
   text-align: center;
-  height: 100%;
+  margin-right: 32px;
+
+  &:last-child {
+      margin-right: 0;
+  }
 
   &-icon {
     padding-top: 20px;
@@ -74,6 +70,7 @@
     margin-bottom: 64px;
   }
 }
+
 // remove after add theme
 .btn {
     height: 40px;	
