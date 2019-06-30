@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { AboutUsComponent } from '@features/about-us/about-us.component';
 import { PageNotFoundComponent } from '@features/page-not-found/page-not-found.component';
 import { LandingComponent } from '@features/landing/landing.component';
-
+import { SharedModule } from '@shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -17,7 +17,8 @@ import { LandingComponent } from '@features/landing/landing.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]
