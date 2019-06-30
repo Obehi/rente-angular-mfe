@@ -2,13 +2,14 @@
   "extends": "../tsconfig.json",
   "compilerOptions": {
     "outDir": "../out-tsc/app",
+    "baseUrl": "./",
     "paths": {
-      "@services/*": ["app/shared/services/*"],
-      "@features/*": ["app/features/*"],
-      "@shared/*": ["app/shared/*"],
-      "@environments/*": ["environments/*"],
-      "@assets/*": ["assets/*"],
-      "@config/*": ["app/config/*"]
+      "@services/*": ["./app/shared/services/*"],
+      "@features/*": ["./app/features/*"],
+      "@shared/*": ["./app/shared/*"],
+      "@environments/*": ["./environments/*"],
+      "@assets/*": ["./assets/*"],
+      "@config/*": ["./app/config/*"]
     }
   },
   "exclude": [
