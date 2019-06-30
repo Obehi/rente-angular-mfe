@@ -1,3 +1,7 @@
 export const ROUTES_MAP: any = {
-  aboutUs: 'omoss'
+  aboutUs: 'omoss',
+  faq: 'ofte-stilte-sporsmaal',
+  privacy: 'personvern',
+  privacyPolicy: 'personvernerklaering',
+  termsConditions: 'brukervilkar'
 };

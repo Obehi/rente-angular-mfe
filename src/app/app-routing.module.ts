@@ -10,13 +10,13 @@ import { TermsConditionsComponent } from '@features/terms-conditions/terms-condi
 import { PrivacyPolicyComponent } from '@features/privacy-policy/privacy-policy.component';
 
 const routes: Routes = [
-  { path: ROUTES_MAP.aboutUs, component: AboutUsComponent},
-  { path: '*', component: PageNotFoundComponent},
   { path: '', component: LandingComponent},
-  { path: 'faq', component: FaqComponent},
-  { path: 'privacy', component: PrivacyComponent},
-  { path: 'terms-conditions', component: TermsConditionsComponent},
-  { path: 'privacy-policy', component: PrivacyPolicyComponent},
+  { path: ROUTES_MAP.aboutUs, component: AboutUsComponent},
+  { path: ROUTES_MAP.faq, component: FaqComponent},
+  { path: ROUTES_MAP.privacy, component: PrivacyComponent},
+  { path: ROUTES_MAP.termsConditions, component: TermsConditionsComponent},
+  { path: ROUTES_MAP.privacyPolicy, component: PrivacyPolicyComponent},
+  { path: '*', component: PageNotFoundComponent},
 ];
 
 @NgModule({
