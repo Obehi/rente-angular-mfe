@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AboutUsComponent } from '@features/about-us/about-us.component';
 import { PageNotFoundComponent } from '@features/page-not-found/page-not-found.component';
+import { SharedModule } from '@shared/shared.module';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { PageNotFoundComponent } from '@features/page-not-found/page-not-found.c
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]
