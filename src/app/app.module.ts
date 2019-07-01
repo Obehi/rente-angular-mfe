@@ -11,6 +11,7 @@ import { FaqComponent } from '@features/faq/faq.component';
 import { PrivacyComponent } from '@features/privacy/privacy.component';
 import { TermsConditionsComponent } from '@features/terms-conditions/terms-conditions.component';
 import { PrivacyPolicyComponent } from '@features/privacy-policy/privacy-policy.component';
+import { BankSelectComponent } from './features/bank-select/bank-select.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { PrivacyPolicyComponent } from '@features/privacy-policy/privacy-policy.
     FaqComponent,
     PrivacyComponent,
     TermsConditionsComponent,
-    PrivacyPolicyComponent
+    PrivacyPolicyComponent,
+    BankSelectComponent
   ],
   imports: [
     BrowserModule,

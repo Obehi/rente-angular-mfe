@@ -1,3 +1,4 @@
+import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AuthGuard } from './guards/auth.guard';
@@ -14,8 +15,6 @@ import { RadioComponent } from './components/ui-components/radio/radio.component
 import { TabsComponent } from './components/ui-components/tabs/tabs.component';
 import { TabComponent } from './components/ui-components/tabs/tab.component';
 import { FormMessageComponent } from './components/ui-components/form-message/form-message.component';
-// import { GenericHttpService } from '@services/generic-http.service';
-// import { LocalStorageService } from '@services/local-storage.service';
 
 const components = [
   HeaderComponent,
@@ -33,7 +32,8 @@ const components = [
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    FormsModule
   ],
   declarations: [...components],
   exports: [...components],

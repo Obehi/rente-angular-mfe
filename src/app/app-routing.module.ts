@@ -8,6 +8,7 @@ import { FaqComponent } from '@features/faq/faq.component';
 import { PrivacyComponent } from '@features/privacy/privacy.component';
 import { TermsConditionsComponent } from '@features/terms-conditions/terms-conditions.component';
 import { PrivacyPolicyComponent } from '@features/privacy-policy/privacy-policy.component';
+import { BankSelectComponent } from '@features/bank-select/bank-select.component';
 
 const routes: Routes = [
   { path: '', component: LandingComponent},
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: ROUTES_MAP.privacy, component: PrivacyComponent},
   { path: ROUTES_MAP.termsConditions, component: TermsConditionsComponent},
   { path: ROUTES_MAP.privacyPolicy, component: PrivacyPolicyComponent},
+  { path: ROUTES_MAP.bankSelect, component: BankSelectComponent},
   { path: '*', component: PageNotFoundComponent},
 ];
 

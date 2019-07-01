@@ -3,5 +3,6 @@ export const ROUTES_MAP: any = {
   faq: 'ofte-stilte-sporsmaal',
   privacy: 'personvern',
   privacyPolicy: 'personvernerklaering',
-  termsConditions: 'brukervilkar'
+  termsConditions: 'brukervilkar',
+  bankSelect: 'velgbank'
 };
