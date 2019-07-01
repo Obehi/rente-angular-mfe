@@ -69,17 +69,9 @@
     @include text-style(16px, 24px);
     margin-bottom: 64px;
   }
-}
 
-// remove after add theme
-.btn {
-    height: 40px;	
+  &-btn {
     width: 368px;	
-    border-radius: 4px;	
-    background-color: #18BC9C;
-    @include text-style(16px, 19px);
-    color: #FFFFFF;
-    text-align: center;
-    border: none;
     margin: 40px 0;
+  }
 }

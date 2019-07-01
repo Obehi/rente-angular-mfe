@@ -1,15 +1,6 @@
-<button class="btn"
-  [ngClass]="{
-    'btn-primary': color === 'primary',
-    'btn-secondary': color === 'secondary',
-    'btn-success': color === 'success',
-    'btn-filled': type === 'filled',
-    'btn-ghost': type === 'ghost',
-    'btn-small': size === 'small',
-    'btn-block': size === 'block',
-    'btn-disabled': disabled,
-    'btn-no-hover': noHover
-  }"
-  (click)="clickEvent()">
+<button mat-raised-button 
+        [color]="color" 
+        [disabled]="disabled" 
+        (click)="clickEvent()">
   <ng-content></ng-content>
 </button>

@@ -14,9 +14,9 @@ import { RadioComponent } from './components/ui-components/radio/radio.component
 import { TabsComponent } from './components/ui-components/tabs/tabs.component';
 import { TabComponent } from './components/ui-components/tabs/tab.component';
 import { FormMessageComponent } from './components/ui-components/form-message/form-message.component';
-// import { GenericHttpService } from '@services/generic-http.service';
-// import { LocalStorageService } from '@services/local-storage.service';
-
+import { FormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
 const components = [
   HeaderComponent,
   FooterComponent,
@@ -33,7 +33,10 @@ const components = [
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    FormsModule,
+    MatButtonModule,
+    MatInputModule
   ],
   declarations: [...components],
   exports: [...components],

@@ -1,12 +1,5 @@
 <div class="input-block">
-  <label
-    class="input-block-placeholder"
-    [ngClass]="{'input-block-placeholder--active': inputValue && placeholder}">
-    {{placeholder}}
-  </label>
-  <input
-    [type]="type"
-    [value]="inputValue"
-    [ngClass]="{'input-block--full': inputValue && placeholder}"
-    (input)="valueChange($event)" />
+  <mat-form-field class="example-full-width">
+    <input matInput [placeholder]="placeholder" [value]="inputValue" (input)="valueInput($event)">
+  </mat-form-field>
 </div>
