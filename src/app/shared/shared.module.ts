@@ -1,3 +1,4 @@
+import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AuthGuard } from './guards/auth.guard';
@@ -14,9 +15,9 @@ import { RadioComponent } from './components/ui-components/radio/radio.component
 import { TabsComponent } from './components/ui-components/tabs/tabs.component';
 import { TabComponent } from './components/ui-components/tabs/tab.component';
 import { FormMessageComponent } from './components/ui-components/form-message/form-message.component';
-import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
+
 const components = [
   HeaderComponent,
   FooterComponent,
