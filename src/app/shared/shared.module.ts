@@ -6,17 +6,37 @@ import { GenericHttpService } from '@services/generic-http.service';
 import { HeaderComponent } from './components/header/header.component';
 import { RouterModule } from '@angular/router';
 import { FooterComponent } from './components/footer/footer.component';
+import { ButtonComponent } from './components/ui-components/button/button.component';
+import { InputComponent } from './components/ui-components/input/input.component';
+import { SelectComponent } from './components/ui-components/select/select.component';
+import { CheckboxComponent } from './components/ui-components/checkbox/checkbox.component';
+import { RadioComponent } from './components/ui-components/radio/radio.component';
+import { TabsComponent } from './components/ui-components/tabs/tabs.component';
+import { TabComponent } from './components/ui-components/tabs/tab.component';
+import { FormMessageComponent } from './components/ui-components/form-message/form-message.component';
 // import { GenericHttpService } from '@services/generic-http.service';
 // import { LocalStorageService } from '@services/local-storage.service';
 
+const components = [
+  HeaderComponent,
+  FooterComponent,
+  ButtonComponent,
+  InputComponent,
+  SelectComponent,
+  CheckboxComponent,
+  RadioComponent,
+  TabsComponent,
+  TabComponent,
+  FormMessageComponent
+];
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule
   ],
-  declarations: [HeaderComponent, FooterComponent],
-  exports: [HeaderComponent, FooterComponent],
+  declarations: [...components],
+  exports: [...components],
   providers: [
     AuthGuard,
     GenericHttpService,

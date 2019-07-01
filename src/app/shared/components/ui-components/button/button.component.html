@@ -1,0 +1,15 @@
+<button class="btn"
+  [ngClass]="{
+    'btn-primary': color === 'primary',
+    'btn-secondary': color === 'secondary',
+    'btn-success': color === 'success',
+    'btn-filled': type === 'filled',
+    'btn-ghost': type === 'ghost',
+    'btn-small': size === 'small',
+    'btn-block': size === 'block',
+    'btn-disabled': disabled,
+    'btn-no-hover': noHover
+  }"
+  (click)="clickEvent()">
+  <ng-content></ng-content>
+</button>
