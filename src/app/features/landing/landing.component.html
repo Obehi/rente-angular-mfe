@@ -1,7 +1,7 @@
 <h1 class="title text-center text-uppercase font-weight-bold">Vi overvåker boliglånsrenten din</h1>
 <div class="container">
   <div class="row">
-    <div class="col-sm card-wrapper mr-4 text-center">
+    <div class="col-sm card-wrapper mr-4 text-center" [routerLink]="['/velgbank']">
       <img class="pt-4" src="assets/icons/ic_bank_id.svg" alt="">
       <div class="card-number-wrapper d-flex justify-content-center mt-2 mb-4 mx-4 position-relative">
         <p class="d-flex align-items-center justify-content-center font-weight-bold m-0">1</p>
@@ -11,7 +11,7 @@
         <p class="card-text ">Tjenesten er gratis og du oppretter enkelt og raskt profil med BankId på mobil. Vi henter renten din og annen nødvendig informasjon automatisk.</p>
       </div>
     </div>
-    <div class="col-sm card-wrapper mr-4 text-center">
+    <div class="col-sm card-wrapper mr-4 text-center" [routerLink]="['/velgbank']">
       <img class="pt-4" src="assets/icons/ic_stats.svg" alt="">
       <div class="card-number-wrapper d-flex justify-content-center mt-2 mb-4 mx-4 position-relative">
         <p class="d-flex align-items-center justify-content-center font-weight-bold m-0">2</p>
@@ -21,7 +21,7 @@
         <p class="card-text">Vi gir deg oversikten over renten du kan få i andre banker, og hvor mye du kan spare både i året og over lånets løpetid.</p>
       </div>
     </div>
-    <div class="col-sm card-wrapper text-center">
+    <div class="col-sm card-wrapper text-center" [routerLink]="['/velgbank']">
       <img class="pt-4" src="assets/icons/ic_compare.svg" alt="">
       <div class="card-number-wrapper d-flex justify-content-center mt-2 mb-4 mx-4 position-relative">
         <p class="d-flex align-items-center justify-content-center font-weight-bold m-0">3</p>
@@ -34,10 +34,9 @@
   </div>
   <div class="container">
     <div class="row justify-content-center">
-      <rente-button class="card-btn" mat-button color="primary">
+      <rente-button class="card-btn" mat-button color="primary" [routerLink]="['/velgbank']">
         Kom i gang!
       </rente-button>
     </div>
   </div>
 </div>
-<rente-input placeholder="Favorite food" value="Sushi" ></rente-input>
