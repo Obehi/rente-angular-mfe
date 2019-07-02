@@ -1,7 +1,15 @@
-<button mat-raised-button 
-        [color]="color"
+<button *ngIf="type === 'raised'"
+         mat-raised-button 
+         [color]="color"
         [disabled]="disabled" 
         (click)="clickEvent()"
         [routerLink]="routerLink">
+  <ng-content></ng-content>
+</button>
+<button *ngIf="type === 'stroked'"
+         mat-stroked-button  
+        [disabled]="disabled" 
+        [color]="color"
+        (click)="clickEvent()">  
   <ng-content></ng-content>
 </button>
