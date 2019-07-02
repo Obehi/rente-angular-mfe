@@ -1,7 +1,8 @@
+@import '../../../styles/theme/_colors.scss';
+
 @mixin text-style($size, $line-height) {
   font-size: $size;
-  // use variables
-  color: #212529;
+  color: $black;
   font-family: Lato;
   line-height: $line-height;
 }
@@ -9,36 +10,22 @@
 .title {
   @include text-style(30px, 36px);
   letter-spacing: 0.5px;
-  text-align: center;
   margin: 60px 0;
 }
 
-.card {
+.card-wrapper {
   border-radius: 12px;
   background-color: rgba(33, 37, 41, 0.05);
-  text-align: center;
-  margin-right: 32px;
-
-  &:last-child {
-      margin-right: 0;
-  }
-
-  &-icon {
-    padding-top: 20px;
-  }
+}
+.card {
 
   &-number-wrapper {
-    display: flex;
-    justify-content: center;
-    position: relative;
-    margin: 20px 44px;
-
     &:after {
       content: '';
       width: 100%;
       position: absolute;
       height: 2px;
-      background: #212529;
+      background: $black;
       top: 50%;
       opacity: 0.2;
     }
@@ -47,22 +34,16 @@
       box-sizing: border-box;
       height: 53px;
       width: 54px;
-      border: 2px solid #18BC9C;
-      background-color: #FFFFFF;
+      border: 2px solid $primary;
+      background-color: $white;
       border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
       @include text-style(24px, 29px);
       z-index: 1;
-      font-weight: bold;
-      margin: 0;
     }
   }
 
   &-title {
     @include text-style(24px, 29px);
-    margin-bottom: 42px;
   }
 
   &-text {

@@ -1,12 +1,18 @@
 @import '../../../../../styles/theme/_colors.scss';
-
-.mat-raised-button.mat-primary {
-    background-color: $primary;
-    height: 40px;
+button{
     border-radius: 4px;
     font-family: Lato;	
-    font-size: 16px;	
+    font-size: 16px;
     font-weight: bold;	
     line-height: 19px;
-    width: 100%;
+    width: 100%;	
+    height: 40px;
+}
+.mat-raised-button.mat-primary {
+    background-color: $primary;
+}
+
+.mat-stroked-button.mat-primary {
+    border-color: $primary;
+    color: $primary;
 }
