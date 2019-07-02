@@ -25,12 +25,6 @@ export class ButtonComponent {
   ) {}
 
   clickEvent(): void {
-    if (this.routerLink) {
-      this.router.navigate([this.routerLink]);
-    } else if (this.href) {
-      location.href = this.href;
-    } else {
-      this.action.emit();
-    }
+    this.action.emit();
   }
 }

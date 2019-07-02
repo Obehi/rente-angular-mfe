@@ -4,11 +4,16 @@
   "scripts": {
     "ng": "ng",
     "start": "cd server && node app.js",
-    "build": "ng build",
+    "build": "npm run lint && npm run version && npm run i18n && npm run build-i18n",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "postinstall": "ng build --prod"
+    "postinstall": "npm run build",
+    "i18n": "ng xi18n --i18n-format=xmb --out-file rente-i18n.xmb --i18n-locale en",
+    "build-i18n:no": "ng build --output-path=dist --aot --prod --sourceMap --i18n-file=src/locale/messages.no.xtb --i18n-format=xtb --i18n-locale=nn",
+    "build-i18n:en": "ng build --output-path=dist/en --aot --prod --sourceMap --base-href /en/ --i18n-file=src/locale/messages.en.xtb --i18n-format=xtb --i18n-locale=en",
+    "build-i18n": "npm run build-i18n:en && npm run build-i18n:no",
+    "version": "node app-version.js"
   },
   "private": true,
   "dependencies": {
