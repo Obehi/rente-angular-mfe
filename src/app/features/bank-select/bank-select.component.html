@@ -8,18 +8,18 @@
   </div>
   <div class="d-block d-md-flex justify-content-center text-center align-items-center mt-4 mb-4">
     <div>
-      <a href="/login?bank=DNB"><img style="max-width: 100px" src="../../../assets/img/banks-logo/dnb.png" alt="DNB"
+      <a [routerLink]="['/auth']" ><img style="max-width: 100px" src="../../../assets/img/banks-logo/dnb.png" alt="DNB"
           title="DNB"></a>
     </div>
     <div class="mx-5 my-4 my-md-0">
-      <a href="/login?bank=NORDEA"><img style="max-width: 100px" src="../../../assets/img/banks-logo/nordea.png"
+      <a [routerLink]="['/auth']"><img style="max-width: 100px" src="../../../assets/img/banks-logo/nordea.png"
           alt="NORDEA" title="NORDEA"></a>
     </div>
     <div class="link d-flex align-items-center justify-content-center">
        <a class="font-weight-bold" href="">Flere banker kommer!</a>
     </div>
   </div>
-  <div class="row justify-content-center mt-3">
+  <div class="row justify-content-center mt-3 mb-5">
     <div class="col text-center">
       <p class="text-center">
           Klikk på din bank for å logge deg inn med BankID på mobil - og gi oss fullmakt til å hente dine rente og lånedata

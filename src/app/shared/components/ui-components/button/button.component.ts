@@ -11,7 +11,7 @@ import { ViewEncapsulation } from '@angular/core';
 
 export class ButtonComponent {
   @Input() color: string;
-  @Input() type: string = 'raised';
+  @Input() type = 'raised';
   @Input() size: string;
   @Input() disabled: boolean;
   @Input() noHover: boolean;

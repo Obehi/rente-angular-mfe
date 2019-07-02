@@ -4,12 +4,13 @@
         [disabled]="disabled" 
         (click)="clickEvent()"
         [routerLink]="routerLink">
-  <ng-content></ng-content>
+        <ng-container *ngTemplateOutlet="content"></ng-container>
 </button>
 <button *ngIf="type === 'stroked'"
          mat-stroked-button  
         [disabled]="disabled" 
         [color]="color"
         (click)="clickEvent()">  
-  <ng-content></ng-content>
+        <ng-container *ngTemplateOutlet="content"></ng-container>
 </button>
+<ng-template #content><ng-content></ng-content></ng-template>
