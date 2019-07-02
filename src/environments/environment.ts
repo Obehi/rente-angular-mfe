@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  baseUrl: ''
+  baseUrl: '',
+  crawlerUrl: 'https://rente-backend-dev.herokuapp.com/ws/'
 };
 
 /*

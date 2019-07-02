@@ -4,5 +4,6 @@ export const ROUTES_MAP: any = {
   privacy: 'personvern',
   privacyPolicy: 'personvernerklaering',
   termsConditions: 'brukervilkar',
-  bankSelect: 'velgbank'
+  bankSelect: 'velgbank',
+  auth: 'auth'
 };

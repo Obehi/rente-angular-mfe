@@ -18,6 +18,11 @@ const routes: Routes = [
   { path: ROUTES_MAP.termsConditions, component: TermsConditionsComponent},
   { path: ROUTES_MAP.privacyPolicy, component: PrivacyPolicyComponent},
   { path: ROUTES_MAP.bankSelect, component: BankSelectComponent},
+  {
+    path: ROUTES_MAP.auth,
+    // loadChildren: 'app/features/auth/auth.module#AuthModule',
+    loadChildren: () => import('./features/auth/auth.module').then(m => m.AuthModule)
+  },
   { path: '*', component: PageNotFoundComponent},
 ];
 
