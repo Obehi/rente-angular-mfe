@@ -1,18 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'rente-form-message',
-  templateUrl: './form-message.component.html'
+  templateUrl: './form-message.component.html',
+  styleUrls: ['./form-message.component.scss']
 })
-export class FormMessageComponent implements OnInit {
-  @Input() show = false;
-
+export class FormMessageComponent {
   // info, warning, error
   @Input() type: string;
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
 }

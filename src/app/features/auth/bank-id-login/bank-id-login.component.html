@@ -1,65 +1,71 @@
 <section>
-  <div class="row justify-content-center text-center my-5">
+  <div class="row justify-content-center text-center my-md-5 my-2">
     <div class="col">
-      <h2>Logg inn med BankID på mobil</h2>
+      <h2 class="title font-weight-bold text-uppercase">Logg inn med BankID på mobil</h2>
     </div>
   </div>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-6">
+        <p class="text-center mb-5 text">
+          Legg inn fødselsnummer og mobilnummer. Bekreft referansen på mobilen, så hentes dine lånedata automatisk. Vi
+          bruker
+          SSL verifisering, så all informasjon sendes kryptert.
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-5">
+        <div class="text-center">
+          <form [formGroup]="bankIdForm" (ngSubmit)="startLogin(bankIdForm.value)" novalidate>
 
-  <p class="text-center mb-5">
-    Legg inn fødselsnummer og mobilnummer. Bekreft referansen på mobilen, så hentes dine lånedata automatisk. Vi bruker SSL verifisering, så all informasjon sendes kryptert.
-  </p>
+            <div class="mb-4 bg-wrap">
+              <div *ngIf="isSsnBankLogin; else birthdateInput">
+                <rente-input [placeholder]="'Fødselsnummer:'" formControlName="ssn"></rente-input>
 
-  <div class="text-center">
-    <form
-      [formGroup]="bankIdForm"
-      (ngSubmit)="startLogin(bankIdForm.value)"
-      novalidate>
+                <rente-form-message class="text-left d-block" [type]="'info'">Vi vil ikke dele fødselsnummeret ditt med noen</rente-form-message>
 
-      <div class="mb-4">
-        <div *ngIf="isSsnBankLogin; else birthdateInput">
-          <rente-input [placeholder]="'Fødselsnummer:'" formControlName="ssn"></rente-input>
+                <div class="error-message" *ngIf="bankIdForm.controls['ssn'].touched">
+                  <rente-form-message class="text-left d-block" *ngIf="bankIdForm.controls['ssn'].hasError('required')" [type]="'error'">This
+                    field is required</rente-form-message>
+                </div>
+              </div>
 
-          <div class="error-message" *ngIf="bankIdForm.controls['ssn'].touched">
-            <div *ngIf="bankIdForm.controls['ssn'].hasError('required')">
-              This field is required
-            </div>
-          </div>
-        </div>
+              <ng-template #birthdateInput>
+                <div>
+                  <rente-input [placeholder]="'Fødselsdato:'" formControlName="birthdate"></rente-input>
+                  <rente-form-message class="text-left d-block" [type]="'info'">8 siffer</rente-form-message>
+                  <div class="error-message" *ngIf="bankIdForm.controls['birthdate'].touched">
+                    <rente-form-message class="text-left d-block" *ngIf="bankIdForm.controls['birthdate'].hasError('required')" [type]="'error'">
+                      This field is required</rente-form-message>
+                  </div>
+                </div>
+              </ng-template>
 
-        <ng-template #birthdateInput>
-          <div>
-            <rente-input [placeholder]="'Fødselsdato:'" formControlName="birthdate"></rente-input>
-    
-            <div class="error-message" *ngIf="bankIdForm.controls['birthdate'].touched">
-              <div *ngIf="bankIdForm.controls['birthdate'].hasError('required')">
-                This field is required
+              <div>
+                <rente-input [placeholder]="'Mobil:'" formControlName="phone"></rente-input>
+                <rente-form-message class="text-left d-block pb-0" [type]="'info'">8 siffer</rente-form-message>
+                <div class="error-message" *ngIf="bankIdForm.controls['phone'].touched">
+                  <rente-form-message class="text-left d-block" *ngIf="bankIdForm.controls['phone'].hasError('required')" [type]="'error'">
+                    This field is required</rente-form-message>
+                </div>
               </div>
             </div>
-          </div>
-        </ng-template>
 
-        <div>
-          <rente-input [placeholder]="'Mobil:'" formControlName="phone"></rente-input>
-
-          <div class="error-message" *ngIf="bankIdForm.controls['phone'].touched">
-            <div *ngIf="bankIdForm.controls['phone'].hasError('required')">
-              This field is required
+            <p class="small my-5">
+              Ved registrering samtykker du til våre 
+              <a  href="/brukervilkar" target="_blank">Generelle vilkår</a>, <a
+                data-toggle="modal" data-target=".bd-example-modal-lg" href="#">Vilkår for bruk av tjenesten</a> og <a
+                href="/personvernerklaering" target="_blank">Personvernerklæring</a>
+            </p>
+            <div class="register-btn">
+              <rente-button color="primary">Registrer meg med BankID</rente-button>
             </div>
-          </div>
+          </form>
         </div>
       </div>
-
-      <p class="small mb-4">
-          Ved registrering samtykker du til våre <a href="/brukervilkar" target="_blank">Generelle vilkår</a>, <a data-toggle="modal" data-target=".bd-example-modal-lg" href="#">Vilkår for bruk av tjenesten</a> og <a href="/personvernerklaering" target="_blank">Personvernerklæring</a>
-      </p>
-
-      <div>
-        <rente-button color="primary">Registrer meg med BankID</rente-button>
-      </div>
-
-
-    </form>
+    </div>
   </div>
-
-
 </section>

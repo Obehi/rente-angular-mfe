@@ -38,8 +38,11 @@ h6, .h6 { font-size: $h6-font-size; }
 }
 
 .title {
-  font-size: $size-font-title;
-  line-height: 24px;
-  color: $color-text-title;
+  color: $dark;
+  font-family: Lato;	
+  font-size: 30px;	
+  font-weight: bold;	
+  letter-spacing: 0.5px;	
+  line-height: 36px;
 }
 
