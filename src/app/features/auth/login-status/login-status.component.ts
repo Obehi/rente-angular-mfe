@@ -1,7 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import * as Stomp from 'stompjs';
 import * as SockJS from 'sockjs-client';
 import { environment } from '@environments/environment';
+import { ViewStatus } from './login-view-status';
+import { API_URL_MAP } from '@config/api-url-config';
+import { IDENTIFICATION_TIMEOUT_TIME, PING_TIME, RECONNECTION_TRIES, RECONNECTION_TIME } from './login-status.config';
+import { Subscription, interval, Observable, timer } from 'rxjs';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'rente-login-status',
@@ -9,64 +14,99 @@ import { environment } from '@environments/environment';
   styleUrls: ['./login-status.component.scss']
 })
 export class LoginStatusComponent implements OnInit {
-  private stompClient;
+  @Input() userData: any = {};
+  public viewStatus: ViewStatus = new ViewStatus();
+  public reconnectIterator = 0;
+  public passPhrase = '';
+  public ticks: number;
+  private stompClient: any;
+  private timerSubscription: Subscription;
+  private timer: Observable<number>;
 
   constructor() { }
 
-  ngOnInit() {}
+  // ngOnInit() {}
 
-  // ngOnInit() {
-  //   this.initializeWebSocketConnection();
-  // }
+  ngOnInit() {
+    this.initializeWebSocketConnection();
+  }
 
-  // private initializeWebSocketConnection() {
-  //   this.connectAndReconnectSocket(this.successSocketCallback);
-  // }
+  sendUserData(resendData = false) {
+    const data = JSON.stringify(this.userData);
+    this.viewStatus.isLoginShown = false;
+    this.viewStatus.isError = false;
+    this.passPhrase = '';
+    this.viewStatus.isBankIdApproved = false;
+    this.viewStatus.isParsingFinished = false;
+    this.viewStatus.isOfferCreated = false;
+    this.viewStatus.isUserDataInvalid = false;
+    this.viewStatus.isSubmitingConfirmationStep = false;
+    this.viewStatus.isSpinnerShown = true;
+    this.stompClient.send(API_URL_MAP.crawlerSendMessageUrl , {}, data);
+    if (!resendData) {
+      this.initTimer(IDENTIFICATION_TIMEOUT_TIME);
+    }
+  }
 
-  // private resendDataAfterReconnect() {
-  //   const notConnectionLost = !this.viewStatuses.isSocketConnectionLost && !this.viewStatuses.isRecconectFail;
-  //   const isUserDataEntered = this.userData.phone && this.userData.dob;
-  //   if (this.reconnectIterator > 0 && notConnectionLost && isUserDataEntered && !this.viewStatuses.isOfferCreated) {
-  //     this.sendUserData(true);
-  //   }
-  // }
+  private initializeWebSocketConnection() {
+    // this.connectAndReconnectSocket(this.successSocketCallback);
+  }
 
-  // private connectAndReconnectSocket(successCallback) {
-  //   const socket = new SockJS(environment.crawlerUrl);
-  //   this.stompClient = Stomp.over(socket);
-  //   // Disable websocket logs for production
-  //   if (environment.production) {
-  //     this.stompClient.debug = null;
-  //   }
-  //   this.stompClient.connect({}, (frame) => {
-  //     this.viewStatuses.isSocketConnectionLost = false;
-  //     // Resend user data after reconnection
-  //     this.resendDataAfterReconnect();
-  //     this.successSocketCallback();
-  //     // Send ping to prevent socket closing
-  //     interval(PING_TIME)
-  //       .subscribe(() => {
-  //         this.stompClient.send(this.config.crawlerComunicationUrl , {}, JSON.stringify({message: 'ping'}));
-  //       });
+  private resendDataAfterReconnect() {
+    const notConnectionLost = !this.viewStatus.isSocketConnectionLost && !this.viewStatus.isRecconectFail;
+    const isUserDataEntered = this.userData.phone && this.userData.dob;
+    if (this.reconnectIterator > 0 && notConnectionLost && isUserDataEntered && !this.viewStatus.isOfferCreated) {
+      this.sendUserData(true);
+    }
+  }
 
-  //   }, () => {
-  //     this.viewStatuses.isSocketConnectionLost = true;
-  //     this.setErrorMessage(this.errorMessages.RECONNECTION, messageTypes.info);
-  //     if (this.reconnectIterator <= RECONNECTION_TRIES) {
-  //       setTimeout(() => {
-  //         this.reconnectIterator++;
-  //         this.connectAndReconnectSocket(successCallback);
-  //       }, RECONNECTION_TIME);
-  //     } else {
-  //       this.viewStatuses.isRecconectFail = true;
-  //       this.setErrorMessage(this.errorMessages.RECONNECT_FAILED);
-  //     }
-  //   });
-  // }
+  private connectAndReconnectSocket(successCallback) {
+    const socket = new SockJS(environment.crawlerUrl);
+    this.stompClient = Stomp.over(socket);
+    // Disable websocket logs for production
+    if (environment.production) {
+      this.stompClient.debug = null;
+    }
+    this.stompClient.connect({}, (frame) => {
+      this.viewStatus.isSocketConnectionLost = false;
+      // Resend user data after reconnection
+      this.resendDataAfterReconnect();
+      // this.successSocketCallback();
+      // Send ping to prevent socket closing
+      interval(PING_TIME)
+        .subscribe(() => {
+          this.stompClient.send(API_URL_MAP.crawlerComunicationUrl , {}, JSON.stringify({message: 'ping'}));
+        });
+
+    }, () => {
+      this.viewStatus.isSocketConnectionLost = true;
+      // this.setErrorMessage(this.errorMessages.RECONNECTION, messageTypes.info);
+      if (this.reconnectIterator <= RECONNECTION_TRIES) {
+        setTimeout(() => {
+          this.reconnectIterator++;
+          this.connectAndReconnectSocket(successCallback);
+        }, RECONNECTION_TIME);
+      } else {
+        this.viewStatus.isRecconectFail = true;
+        // this.setErrorMessage(this.errorMessages.RECONNECT_FAILED);
+      }
+    });
+  }
+
+  private initTimer(timeoutTime: number) {
+    if (this.timerSubscription) {
+      this.timerSubscription.unsubscribe();
+    }
+    this.ticks = timeoutTime;
+    this.timer = timer(1000, 1000).pipe(take(timeoutTime + 1));
+    this.timerSubscription = this.timer.subscribe(
+      time => this.ticks = this.ticks > 0 ? timeoutTime - time : 0
+    );
+  }
 
   // private successSocketCallback() {
   //   const repliesUrl = `${this.config.crawlerRepliesUrl}`;
-  //   this.viewStatuses.isSocketConnectionLost = false;
+  //   this.viewStatus.isSocketConnectionLost = false;
   //   this.stompClient.subscribe(repliesUrl, (message) => {
   //     if (message.body) {
   //       const response = JSON.parse(message.body);
@@ -121,21 +161,21 @@ export class LoginStatusComponent implements OnInit {
 
   //         // Success bankID login
   //         case BANKID_STATUS.BANKID_APPROVED:
-  //           this.viewStatuses.isBankIdApproved = true;
-  //           this.viewStatuses.isSpinnerShown = false;
-  //           this.viewStatuses.isConfirmationStep = false;
+  //           this.viewStatus.isBankIdApproved = true;
+  //           this.viewStatus.isSpinnerShown = false;
+  //           this.viewStatus.isConfirmationStep = false;
   //           break;
 
   //         case BANKID_STATUS.DOCUMENTS_DOWNLOADED:
-  //           this.viewStatuses.isConfirmationStep = false;
-  //           this.viewStatuses.isSubmitingConfirmationStep = false;
-  //           this.viewStatuses.isSpinnerShown = false;
-  //           this.viewStatuses.isParsingFinished = true;
+  //           this.viewStatus.isConfirmationStep = false;
+  //           this.viewStatus.isSubmitingConfirmationStep = false;
+  //           this.viewStatus.isSpinnerShown = false;
+  //           this.viewStatus.isParsingFinished = true;
   //           break;
 
   //         case BANKID_STATUS.OFFER_DETAILS:
-  //           this.viewStatuses.isOfferCreated = true;
-  //           this.viewStatuses.isBankIdApproved = false;
+  //           this.viewStatus.isOfferCreated = true;
+  //           this.viewStatus.isBankIdApproved = false;
 
   //           if (response.data.documents.length) {
   //             this.formDocumentsFromRes(this.offerDocumentsService.handleSpecificDocumentsData(response.data));
@@ -161,7 +201,7 @@ export class LoginStatusComponent implements OnInit {
   //         case BANKID_STATUS.NO_ACTIVE_INSURANCES_FOUND:
   //           this.setErrorView();
   //           this.setErrorMessage(this.errorMessages.NO_ACTIVE_INSURANCES_FOUND);
-  //           this.viewStatuses.isNoActiveInsurances = true;
+  //           this.viewStatus.isNoActiveInsurances = true;
   //           break;
 
   //         // Phone, date of birth or both are not valid
@@ -173,22 +213,22 @@ export class LoginStatusComponent implements OnInit {
   //         // Confirm info inputs are invalid
   //         case BANKID_STATUS.CONFIRM_INFO_INVALID:
   //           this.showInvalidDataView();
-  //           this.viewStatuses.isError = false;
-  //           this.viewStatuses.isConfirmationStep = false;
+  //           this.viewStatus.isError = false;
+  //           this.viewStatus.isConfirmationStep = false;
   //           this.setErrorMessage(this.errorMessages.PROVIDED_DATA_NOT_VALID);
   //           break;
 
   //         // No documents available for customer
   //         case BANKID_STATUS.NO_DOCUMENTS_AVAILABLE:
   //           this.setErrorView();
-  //           this.viewStatuses.isConfirmationStep = false;
+  //           this.viewStatus.isConfirmationStep = false;
   //           this.setErrorMessage(this.errorMessages.NO_DOCUMENTS_AVAILABLE);
   //           break;
 
   //         // BankId login was not approved by user
   //         case BANKID_STATUS.BANK_ID_WASNT_APPROVED:
   //           this.setErrorView();
-  //           this.viewStatuses.isCommonError = true;
+  //           this.viewStatus.isCommonError = true;
   //           this.setErrorMessage(this.errorMessages.COMMON_ERROR);
   //           break;
 
@@ -201,7 +241,7 @@ export class LoginStatusComponent implements OnInit {
   //         // User haven't upproved bankId login in time
   //         case BANKID_STATUS.BANKID_TIMEOUT:
   //           this.setErrorView();
-  //           this.viewStatuses.isConfirmationStep = false;
+  //           this.viewStatus.isConfirmationStep = false;
   //           this.setErrorMessage(this.errorMessages.BANKID_TIMEOUT);
   //           break;
 
@@ -218,7 +258,7 @@ export class LoginStatusComponent implements OnInit {
   //         // Document parse error
   //         case BANKID_STATUS.CAN_NOT_PARSE_PROVIDED_DOCUMENTS:
   //           this.setErrorView();
-  //           this.viewStatuses.isConfirmationStep = false;
+  //           this.viewStatus.isConfirmationStep = false;
   //           this.setErrorMessage(this.errorMessages.CAN_NOT_PARSE_PROVIDED_DOCUMENTS);
   //           break;
 

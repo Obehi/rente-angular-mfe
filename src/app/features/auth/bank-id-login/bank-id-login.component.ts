@@ -9,6 +9,8 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 export class BankIdLoginComponent implements OnInit {
   public bankIdForm: FormGroup;
   public isSsnBankLogin = true;
+  public isLoginStarted = false;
+  public userData: any = {};
   constructor( private fb: FormBuilder) { }
 
   ngOnInit() {
@@ -21,6 +23,8 @@ export class BankIdLoginComponent implements OnInit {
 
   public startLogin(formData) {
     console.log(formData);
+    this.userData = formData;
+    this.isLoginStarted = true;
   }
 
   private initForm() {

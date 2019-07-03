@@ -1,4 +1,4 @@
-<section>
+<section *ngIf="!isLoginStarted; else loginStatusView">
   <div class="row justify-content-center text-center my-5">
     <div class="col">
       <h2>Logg inn med BankID på mobil</h2>
@@ -61,5 +61,8 @@
     </form>
   </div>
 
-
 </section>
+
+<ng-template #loginStatusView>
+  <rente-login-status [userData]="userData"></rente-login-status>
+</ng-template>
