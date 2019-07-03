@@ -3,12 +3,13 @@
 .input-block {
   .mat-form-field-infix {
     height: 56px;
-    width: 368px;
     border-radius: 4px 4px 0 0;
     background-color: #DEDFDF;
   }
 
   .mat-form-field {
+    width: 100%;
+
     &.mat-focused {
       .mat-form-field-ripple {
         background-color: $primary;
@@ -23,10 +24,14 @@
       }
     }
 
-    .mat-form-field-underline{
+    .mat-form-field-underline {
         background-color: $dark;
+        bottom: 0px;
     }
 
+    .mat-form-field-wrapper {
+      padding-bottom: 0px;
+    }
   }
 
   label {
@@ -45,8 +50,11 @@
     font-size: 16px;
     letter-spacing: 0.15px;
     line-height: 24px;
-    padding-left: 16px
+    padding:0 16px;
+    width: 100%;
+    background-color: #DEDFDF !important;
+    &:-internal-autofill-selected {
+      background-color: #DEDFDF !important;
+    }
   }
 }
-
-// background-color: #18BC9C;

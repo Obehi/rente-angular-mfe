@@ -1,0 +1,19 @@
+@import '../../../../../styles/theme/_colors.scss';
+
+.form-message {
+  font-size: 12px;
+  letter-spacing: 0.4px;
+  line-height: 16px;
+
+  &-info {
+    color: $text-color;
+  }
+
+  &-erro {
+    color: red;
+  }
+
+  &-success {
+    color: $primary;
+  }
+}

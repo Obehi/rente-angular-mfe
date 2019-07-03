@@ -1,0 +1,22 @@
+@import '../../../../styles/theme/_colors.scss';
+
+.text{
+    letter-spacing: 0.27px;
+    line-height: 24px;
+}
+
+rente-form-message {
+    padding: 3px 0px 24px 15px;
+}
+
+a {
+    color: $primary;
+    text-decoration: none;
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+.register-btn{
+    margin-bottom: 90px;
+}

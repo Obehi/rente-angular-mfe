@@ -1,14 +1,6 @@
-<div class="form-messge-wrapper">
-  <div
-    class="form-message"
-    [ngClass]="{
+<div class="form-message" [ngClass]="{
       'form-message-info': type === 'info',
       'form-message-error': type === 'error',
-      'form-message-success': type === 'success',
-      'form-message-visible': show
-    }"
-    (click)="show = !show">
-    <ng-content></ng-content>
-    <span class="form-message__icon-close centum-icons-delete"></span>
-  </div>
+      'form-message-success': type === 'success'}">
+  <ng-content></ng-content>
 </div>
