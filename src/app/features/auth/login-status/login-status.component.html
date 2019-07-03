@@ -1,1 +1,29 @@
-<p>login-status works!</p>
+<div class="container login-status">
+  <div class="row justify-content-center">
+    <div class="col-6 text-center">
+      <img style="max-width: 100px" 
+            src="../../../assets/img/banks-logo/dnb.png"
+            alt="DNB" 
+            title="DNB">
+      <h3>Din referanse:
+        <span class="font-weight-bold">Passphrase</span>
+      </h3>
+      <div class="row  justify-content-center">
+      <div class="col-8 d-flex flex-column align-items-start">
+      <status-message [status]="'success'">
+        Forbereder identifisering
+      </status-message>
+      <status-message [status]="'success'">
+          Det oppstod en feil under henting av dine lånedetaljer, vennligst prøv igjen senere
+      </status-message>
+      <status-message [status]="'loading'">
+        Vi henter din rente og låneinformasjon
+      </status-message>
+    </div>
+  </div>
+      <rente-button class="login-status-btn" color="primary" [type]="'stroked'">
+            Prøv igjen
+      </rente-button>
+    </div>
+  </div>
+</div>

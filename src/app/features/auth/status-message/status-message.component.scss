@@ -1,0 +1,24 @@
+// .mat-progress-spinner circle, .mat-spinner circle
+@import '../../../../styles/theme/_colors.scss';
+
+.status-message {
+    .mat-spinner{
+        flex-shrink: 0;
+    }
+    .mat-spinner circle {
+        stroke: $primary;
+    }
+
+    img {
+        height: 48px;
+    }
+
+    p {
+        color: $dark;	
+        font-size: 16px;	
+        letter-spacing: 0.27px;	
+        line-height: 24px;
+        text-align: left;
+        word-break: break-word;
+    }
+}

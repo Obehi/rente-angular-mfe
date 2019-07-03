@@ -1,0 +1,23 @@
+@import '../../../../styles/theme/_colors.scss';
+
+.login-status {
+
+    img {
+        margin-top: 124px;
+        margin-bottom: 50px;
+    }
+
+    h3 {
+       color: $dark;
+       font-size: 24px;	
+       letter-spacing: 0.4px;	
+       line-height: 24px;
+       margin-bottom: 69px;
+    }
+
+    &-btn {
+        width: 116px;
+        display: inline-block;
+        margin-bottom: 52px;
+    }
+}
