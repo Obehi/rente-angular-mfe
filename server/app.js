@@ -9,9 +9,16 @@ const port = process.env.PORT || 4300;
 //app.use(favicon(clientPath + '/favicon.ico'));
 app.use(express.static(clientPath));
 
-app.get('/*', function(req, res) {
+var renderIndex = (req, res) => {
   res.sendFile(path.resolve(__dirname, clientPath + '/index.html'));
-});
+}
+
+var renderEnIndex = (req, res) => {
+  res.sendFile(path.resolve(__dirname, clientPath + '/en' + '/index.html'))
+}
+
+app.get('/en*', renderEnIndex);
+app.get('/*', renderIndex);
 
 // Start the app by listening on the default Heroku port
 const server = app.listen(port, function () {
