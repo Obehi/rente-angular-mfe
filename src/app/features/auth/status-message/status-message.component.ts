@@ -1,7 +1,7 @@
 import { Component, Input, ViewEncapsulation } from '@angular/core';
 
 @Component({
-  selector: 'status-message',
+  selector: 'rente-status-message',
   templateUrl: './status-message.component.html',
   styleUrls: ['./status-message.component.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -9,5 +9,5 @@ import { Component, Input, ViewEncapsulation } from '@angular/core';
 export class StatusMessageComponent {
 
   @Input() status: string;
- 
+
 }

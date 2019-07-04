@@ -10,15 +10,15 @@
       </h3>
       <div class="row  justify-content-center">
       <div class="col-8 d-flex flex-column align-items-start">
-      <status-message [status]="'success'">
+      <rente-status-message [status]="'success'">
         Forbereder identifisering
-      </status-message>
-      <status-message [status]="'success'">
+      </rente-status-message>
+      <rente-status-message [status]="'success'">
           Det oppstod en feil under henting av dine lånedetaljer, vennligst prøv igjen senere
-      </status-message>
-      <status-message [status]="'loading'">
+      </rente-status-message>
+      <rente-status-message [status]="'loading'">
         Vi henter din rente og låneinformasjon
-      </status-message>
+      </rente-status-message>
     </div>
   </div>
       <rente-button class="login-status-btn" color="primary" [type]="'stroked'">
