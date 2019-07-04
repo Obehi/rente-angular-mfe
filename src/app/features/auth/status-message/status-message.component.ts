@@ -1,5 +1,5 @@
 import { Component, Input, ViewEncapsulation } from '@angular/core';
-
+import { MESSAGE_STATUS } from '../login-status/login-status.config';
 @Component({
   selector: 'rente-status-message',
   templateUrl: './status-message.component.html',
@@ -8,6 +8,9 @@ import { Component, Input, ViewEncapsulation } from '@angular/core';
 })
 export class StatusMessageComponent {
 
+  public MESSAGE_STATUS = MESSAGE_STATUS;
+
   @Input() status: string;
+  @Input() step: number;
 
 }

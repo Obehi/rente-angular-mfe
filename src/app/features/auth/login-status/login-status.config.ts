@@ -40,3 +40,11 @@ export const RECONNECTION_TIME = 3000;
 export const RECONNECTION_TRIES = 10;
 
 export const PING_TIME = 15000;
+
+export const MESSAGE_STATUS = {
+  SUCCESS: 'success',
+  LOADING: 'loading',
+  INFO: 'info',
+  ERROR: 'error'
+}
+

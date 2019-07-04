@@ -13,6 +13,7 @@ import { TermsConditionsComponent } from '@features/terms-conditions/terms-condi
 import { PrivacyPolicyComponent } from '@features/privacy-policy/privacy-policy.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { BankSelectComponent } from './features/bank-select/bank-select.component';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { BankSelectComponent } from './features/bank-select/bank-select.componen
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    SharedModule
+    SharedModule,
+    MatExpansionModule
   ],
   providers: [],
   bootstrap: [AppComponent]
