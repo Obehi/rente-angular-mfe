@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  baseUrl: '',
-  crawlerUrl: 'https://rente-backend-dev.herokuapp.com/ws/',
+  baseUrl: 'https://rente-backend-dev.herokuapp.com',
+  crawlerUrl: 'https://rente-backend-dev.herokuapp.com/ws',
 };

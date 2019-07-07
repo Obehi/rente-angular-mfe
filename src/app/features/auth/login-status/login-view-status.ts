@@ -13,6 +13,13 @@ export interface ViewStatus {
   isSocketConnectionLost: boolean;
   isRecconectFail: boolean;
   isNoActiveInsurances: boolean;
+
+  isProcessStarted: boolean;
+  isPassphraseConfirmSuccess: boolean;
+  isPassphraseConfirmFail: boolean;
+  isCrawlerError: boolean;
+  isCrawlerResult: boolean;
+  isLoansPersisted: boolean;
 }
 
 export class ViewStatus {
@@ -31,5 +38,12 @@ export class ViewStatus {
     this.isSocketConnectionLost = false;
     this.isRecconectFail = false;
     this.isNoActiveInsurances = false;
+
+    this.isProcessStarted = false;
+    this.isPassphraseConfirmSuccess = false;
+    this.isPassphraseConfirmFail = false;
+    this.isCrawlerError = false;
+    this.isCrawlerResult = false;
+    this.isLoansPersisted = false;
   }
 }

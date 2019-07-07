@@ -4,7 +4,7 @@ import * as SockJS from 'sockjs-client';
 import { environment } from '@environments/environment';
 import { ViewStatus } from './login-view-status';
 import { API_URL_MAP } from '@config/api-url-config';
-import { IDENTIFICATION_TIMEOUT_TIME, PING_TIME, RECONNECTION_TRIES, RECONNECTION_TIME } from './login-status.config';
+import { IDENTIFICATION_TIMEOUT_TIME, PING_TIME, RECONNECTION_TRIES, RECONNECTION_TIME, BANKID_STATUS, BANKID_TIMEOUT_TIME } from './login-status.config';
 import { Subscription, interval, Observable, timer } from 'rxjs';
 import { take } from 'rxjs/operators';
 
@@ -32,6 +32,11 @@ export class LoginStatusComponent implements OnInit {
   }
 
   sendUserData(resendData = false) {
+    this.userData = {
+      birthdateOrSsn: 13018939554,
+      mobile: 93253768
+    };
+
     const data = JSON.stringify(this.userData);
     this.viewStatus.isLoginShown = false;
     this.viewStatus.isError = false;
@@ -42,14 +47,15 @@ export class LoginStatusComponent implements OnInit {
     this.viewStatus.isUserDataInvalid = false;
     this.viewStatus.isSubmitingConfirmationStep = false;
     this.viewStatus.isSpinnerShown = true;
-    this.stompClient.send(API_URL_MAP.crawlerSendMessageUrl , {}, data);
+    // TODO: Add bank name
+    this.stompClient.send(API_URL_MAP.crawlerSendMessageUrl + 'DNB', {}, data);
     if (!resendData) {
       this.initTimer(IDENTIFICATION_TIMEOUT_TIME);
     }
   }
 
   private initializeWebSocketConnection() {
-    // this.connectAndReconnectSocket(this.successSocketCallback);
+    this.connectAndReconnectSocket(this.successSocketCallback);
   }
 
   private resendDataAfterReconnect() {
@@ -68,10 +74,12 @@ export class LoginStatusComponent implements OnInit {
       this.stompClient.debug = null;
     }
     this.stompClient.connect({}, (frame) => {
+      console.log('success connection', frame);
       this.viewStatus.isSocketConnectionLost = false;
       // Resend user data after reconnection
+      this.sendUserData();
       this.resendDataAfterReconnect();
-      // this.successSocketCallback();
+      this.successSocketCallback();
       // Send ping to prevent socket closing
       interval(PING_TIME)
         .subscribe(() => {
@@ -104,6 +112,42 @@ export class LoginStatusComponent implements OnInit {
     );
   }
 
+  private successSocketCallback() {
+    const repliesUrl = `${API_URL_MAP.crawlerRepliesUrl}`;
+    this.viewStatus.isSocketConnectionLost = false;
+    this.stompClient.subscribe(repliesUrl, (message) => {
+      if (message.body) {
+        const response = JSON.parse(message.body);
+
+        console.log(response);
+
+        switch (response.eventType) {
+          case BANKID_STATUS.PROCESS_STARTED:
+            this.initTimer(BANKID_TIMEOUT_TIME);
+            this.viewStatus.isProcessStarted = true;
+            break;
+          case BANKID_STATUS.PASSPHRASE_CONFIRM:
+            this.passPhrase = response.content;
+            break;
+          case BANKID_STATUS.PASSPHRASE_CONFIRM_SUCCESS:
+            this.viewStatus.isPassphraseConfirmSuccess = true;
+            break;
+          case BANKID_STATUS.PASSPHRASE_CONFIRM_FAIL:
+            this.viewStatus.isPassphraseConfirmFail = true;
+            break;
+          case BANKID_STATUS.CRAWLER_ERROR:
+            this.viewStatus.isCrawlerError = true;
+            break;
+          case BANKID_STATUS.CRAWLER_RESULT:
+            this.viewStatus.isCrawlerResult = true;
+            break;
+          case BANKID_STATUS.LOANS_PERSISTED:
+            this.viewStatus.isLoansPersisted = true;
+            break;
+        }
+      }
+    });
+  }
   // private successSocketCallback() {
   //   const repliesUrl = `${this.config.crawlerRepliesUrl}`;
   //   this.viewStatus.isSocketConnectionLost = false;
@@ -118,46 +162,6 @@ export class LoginStatusComponent implements OnInit {
   //           this.passPhrase = response.content;
   //           break;
 
-  //         // TRYG confirmation step
-  //         case BANKID_STATUS.TRYG_CONFIRM_INFO:
-  //           this.showConfirmationStep();
-  //           if (response.data) {
-  //             this.trygUserData = JSON.parse(response.data);
-  //           }
-  //           break;
-
-  //         // GJENSIDIGE confirmation step
-  //         case BANKID_STATUS.GJENSIDIGE_CONFIRM_INFO:
-  //           this.showConfirmationStep();
-  //           if (response.data) {
-  //             this.gjensidigeUserData = JSON.parse(response.data);
-  //           }
-  //           break;
-
-  //         // FRENDE confirmation step (confirm data use)
-  //         case BANKID_STATUS.FRENDE_CONFIRM_INFO:
-  //           this.showConfirmationStep();
-  //           if (response.data) {
-  //             this.frendeUserData = JSON.parse(response.data);
-  //           }
-  //           break;
-
-  //         // FRENDE configuration step (set feed email)
-  //         case BANKID_STATUS.FRENDE_FEED_CONFIRM_INFO:
-  //           this.showConfirmationStep();
-  //           if (response.data) {
-  //             this.frendeUserData = null;
-  //             this.frendeFeedUserData = JSON.parse(response.data);
-  //           }
-  //           break;
-
-  //         // IF confirmation step
-  //         case BANKID_STATUS.IF_CONFIRM_INFO:
-  //           this.showConfirmationStep();
-  //           if (response.data) {
-  //             this.ifUserData = JSON.parse(response.data);
-  //           }
-  //           break;
 
   //         // Success bankID login
   //         case BANKID_STATUS.BANKID_APPROVED:
