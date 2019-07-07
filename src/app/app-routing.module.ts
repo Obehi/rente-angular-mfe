@@ -22,8 +22,11 @@ const routes: Routes = [
   { path: ROUTES_MAP.bankSelect, component: BankSelectComponent},
   {
     path: ROUTES_MAP.auth,
-    // loadChildren: 'app/features/auth/auth.module#AuthModule',
     loadChildren: () => import('./features/auth/auth.module').then(m => m.AuthModule)
+  },
+  {
+    path: ROUTES_MAP.dashboard,
+    loadChildren: () => import('./features/dashboard/dashboard.module').then(m => m.DashboardModule)
   },
   { path: '*', component: PageNotFoundComponent},
 ];

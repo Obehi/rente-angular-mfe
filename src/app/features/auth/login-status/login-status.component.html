@@ -2,9 +2,9 @@
   <div class="row justify-content-center">
     <div class="col-6 text-center bg-wrap">
       <img style="max-width: 100px" 
-            src="{{bankSettings.bankIcon}}"
-            alt="DNB" 
-            title="DNB">
+            src="{{userBank?.bankIcon}}"
+            alt="{{userBank?.label}}"
+            title="{{userBank?.label}}">
       <h3 class="mt-0" *ngIf="passPhrase">Din referanse:
         <span class="font-weight-bold">{{passPhrase}}</span>
       </h3>

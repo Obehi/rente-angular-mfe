@@ -24,3 +24,15 @@ export const MESSAGE_STATUS = {
   INFO: 'info',
   ERROR: 'error'
 };
+
+export const BANK_MAP = {
+  dnb: {
+    label: 'DNB',
+    bankIcon: '../../../assets/img/banks-logo/dnb.png',
+    isSSN: true
+  },
+  nordea: {
+    label: 'NORDEA',
+    bankIcon: '../../../assets/img/banks-logo/nordea.png'
+  }
+};

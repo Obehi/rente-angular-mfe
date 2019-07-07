@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import * as Stomp from 'stompjs';
 import * as SockJS from 'sockjs-client';
 import { environment } from '@environments/environment';
@@ -15,53 +15,62 @@ import {
 } from './login-status.config';
 import { Subscription, interval, Observable, timer } from 'rxjs';
 import { take } from 'rxjs/operators';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'rente-login-status',
   templateUrl: './login-status.component.html',
   styleUrls: ['./login-status.component.scss']
 })
-export class LoginStatusComponent implements OnInit {
+export class LoginStatusComponent implements OnInit, OnDestroy {
   @Input() userData: any = {};
-  @Input() bankSettings: any = {};
+  @Input() userBank: any = {};
   public viewStatus: ViewStatus = new ViewStatus();
   public reconnectIterator = 0;
   public passPhrase = '';
   public ticks: number;
   public MESSAGE_STATUS = MESSAGE_STATUS;
-  public loginStep1Status = MESSAGE_STATUS.LOADING;
-  public loginStep2Status = MESSAGE_STATUS.INFO;
-  public loginStep3Status = MESSAGE_STATUS.INFO;
+  public loginStep1Status: string;
+  public loginStep2Status: string;
+  public loginStep3Status: string;
   private stompClient: any;
   private timerSubscription: Subscription;
   private timer: Observable<number>;
 
-  constructor() { }
-
-  // ngOnInit() {}
+  constructor(private router: Router) { }
 
   ngOnInit() {
+    this.setDefaultSteps();
     this.initializeWebSocketConnection();
   }
 
+  ngOnDestroy() {
+    this.stompClient.unsubscribe();
+    if (this.timerSubscription) {
+      this.timerSubscription.unsubscribe();
+    }
+  }
+
   sendUserData(resendData = false) {
-    this.userData = {
-      birthdateOrSsn: 13018939554,
-      mobile: 93253768
+    // this.userData = {
+    //   birthdateOrSsn: 13018939554,
+    //   mobile: 93253768
+    // };
+
+    const dataObj = {
+      birthdateOrSsn: this.userData.ssn || this.userData.birthdate,
+      mobile: this.userData.phone
     };
 
-    const data = JSON.stringify(this.userData);
-    this.viewStatus.isLoginShown = false;
-    this.viewStatus.isError = false;
+    console.log(dataObj);
+
+    this.setDefaultSteps();
+
+    const data = JSON.stringify(dataObj);
     this.passPhrase = '';
-    this.viewStatus.isBankIdApproved = false;
-    this.viewStatus.isParsingFinished = false;
-    this.viewStatus.isOfferCreated = false;
-    this.viewStatus.isUserDataInvalid = false;
-    this.viewStatus.isSubmitingConfirmationStep = false;
-    this.viewStatus.isSpinnerShown = true;
+
     // TODO: Add bank name
-    this.stompClient.send(API_URL_MAP.crawlerSendMessageUrl + 'DNB', {}, data);
+    this.stompClient.send(API_URL_MAP.crawlerSendMessageUrl + this.userBank.label, {}, data);
     if (!resendData) {
       this.initTimer(IDENTIFICATION_TIMEOUT_TIME);
     }
@@ -163,11 +172,22 @@ export class LoginStatusComponent implements OnInit {
           case BANKID_STATUS.LOANS_PERSISTED:
             this.viewStatus.isLoansPersisted = true;
             this.loginStep3Status = MESSAGE_STATUS.SUCCESS;
+
+            localStorage.setItem('loans', JSON.stringify(response.data));
+
+            this.router.navigate(['/dashboard/tilbud/']);
             break;
         }
       }
     });
   }
+
+  private setDefaultSteps() {
+    this.loginStep1Status = MESSAGE_STATUS.LOADING;
+    this.loginStep2Status = MESSAGE_STATUS.INFO;
+    this.loginStep3Status = MESSAGE_STATUS.INFO;
+  }
+
   // private successSocketCallback() {
   //   const repliesUrl = `${this.config.crawlerRepliesUrl}`;
   //   this.viewStatus.isSocketConnectionLost = false;

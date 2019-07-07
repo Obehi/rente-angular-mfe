@@ -6,5 +6,6 @@ export const ROUTES_MAP: any = {
   privacyPolicy: 'personvernerklaering',
   termsConditions: 'brukervilkar',
   bankSelect: 'velgbank',
-  auth: 'auth'
+  auth: 'auth',
+  dashboard: 'dashboard'
 };

@@ -1,14 +1,13 @@
+import { OffersComponent } from './offers/offers.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { BankIdLoginComponent } from './bank-id-login/bank-id-login.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'bank' },
-  { path: 'bank/:bankName', component: BankIdLoginComponent}
+  { path: 'tilbud', component: OffersComponent }
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class AuthRoutingModule { }
+export class DashboardRoutingModule { }
