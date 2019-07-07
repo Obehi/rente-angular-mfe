@@ -9,11 +9,13 @@ import { PrivacyComponent } from '@features/privacy/privacy.component';
 import { TermsConditionsComponent } from '@features/terms-conditions/terms-conditions.component';
 import { PrivacyPolicyComponent } from '@features/privacy-policy/privacy-policy.component';
 import { BankSelectComponent } from '@features/bank-select/bank-select.component';
+import { ContactUsComponent } from '@features/contact-us/contact-us.component';
 
 const routes: Routes = [
   { path: '', component: LandingComponent},
   { path: ROUTES_MAP.aboutUs, component: AboutUsComponent},
   { path: ROUTES_MAP.faq, component: FaqComponent},
+  { path: ROUTES_MAP.contactUs, component: ContactUsComponent},
   { path: ROUTES_MAP.privacy, component: PrivacyComponent},
   { path: ROUTES_MAP.termsConditions, component: TermsConditionsComponent},
   { path: ROUTES_MAP.privacyPolicy, component: PrivacyPolicyComponent},
