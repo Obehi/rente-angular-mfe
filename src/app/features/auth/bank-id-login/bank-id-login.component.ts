@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { VALIDATION_PATTERN } from '@config/validation-patterns.config';
 
 @Component({
   selector: 'rente-bank-id-login',
@@ -16,13 +17,17 @@ export class BankIdLoginComponent implements OnInit {
   ngOnInit() {
     this.bankIdForm = this.initForm();
     if (!this.isSsnBankLogin) {
-      this.bankIdForm.addControl('birthdate', new FormControl('', Validators.required));
+      this.bankIdForm.addControl('birthdate', new FormControl('', Validators.compose([
+          Validators.required,
+          Validators.pattern(VALIDATION_PATTERN.dob)
+        ])
+      ));
       this.bankIdForm.removeControl('ssn');
     }
   }
 
   public startLogin(formData) {
-    console.log(formData);
+    console.log(this.bankIdForm.value);
     this.userData = formData;
     this.isLoginStarted = true;
   }
@@ -30,8 +35,14 @@ export class BankIdLoginComponent implements OnInit {
   private initForm() {
 
     return this.fb.group({
-      ssn: ['', Validators.required],
-      phone: ['', Validators.required]
+      ssn: ['', Validators.compose([
+        Validators.required,
+        Validators.pattern(VALIDATION_PATTERN.ssn)
+      ])],
+      phone: ['', Validators.compose([
+        Validators.required,
+        Validators.pattern(VALIDATION_PATTERN.phoneShort)
+      ])],
     });
   }
 

@@ -5,27 +5,44 @@
             src="{{bankSettings.bankIcon}}"
             alt="DNB" 
             title="DNB">
-      <h3 class="mt-0">Din referanse:
-        <span class="font-weight-bold">Passphrase</span>
+      <h3 class="mt-0" *ngIf="passPhrase">Din referanse:
+        <span class="font-weight-bold">{{passPhrase}}</span>
       </h3>
       <div class="row  justify-content-center">
-      <div class="col-8 d-flex flex-column align-items-start">
-      <rente-status-message [status]="MESSAGE_STATUS.SUCCESS">
-        Forbereder identifisering
-      </rente-status-message>
-      <rente-status-message [status]="MESSAGE_STATUS.ERROR">
-          Det oppstod en feil under henting av dine lånedetaljer, vennligst prøv igjen senere
-      </rente-status-message>
-      <rente-status-message [status]="MESSAGE_STATUS.INFO" [step]="3">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime, corporis.
-      </rente-status-message>
-      <rente-status-message [status]="MESSAGE_STATUS.LOADING">
-        Vi henter din rente og låneinformasjon
-      </rente-status-message>
-    </div>
-  </div>
-      <rente-button class="login-status-btn" color="primary" [type]="'stroked'">
-            Prøv igjen
+        <div class="col-8 d-flex flex-column align-items-start">
+          <rente-status-message
+            [status]="loginStep1Status">
+            <span>
+              Forbereder identifisering <br>
+              <span *ngIf="!viewStatus.isProcessStarted">
+                (tar cirka 15 sekunder)
+              </span>
+            </span>
+          </rente-status-message>
+
+          <rente-status-message [status]="loginStep2Status" [step]="2">
+            <span *ngIf="!passPhrase">Bekreft BankID på mobil</span>
+            <span *ngIf="passPhrase">Vennligst følg instruksjonen på mobilen</span>
+            <span *ngIf="viewStatus.isPassphraseConfirmSuccess">BankID bekreftet</span>
+            <span *ngIf="viewStatus.isPassphraseConfirmFail">Det oppstod en feil, det kan virke som du ikke bekreftet BankID på mobil. Vennligst prøv igjen</span>
+          </rente-status-message>
+
+          <rente-status-message [status]="loginStep3Status" [step]="3">
+            <span *ngIf="!viewStatus.isPassphraseConfirmSuccess">Hent rente- og lånedata</span>
+            <span *ngIf="viewStatus.isPassphraseConfirmSuccess">Vi henter din rente og låneinformasjon</span>
+            <span *ngIf="viewStatus.isCrawlerError">Det oppstod en feil under henting av dine lånedetaljer, vennligst prøv igjen senere</span>
+          </rente-status-message>
+
+        </div>
+      </div>
+
+      <rente-button
+        class="login-status-btn"
+        color="primary"
+        [type]="'stroked'"
+        *ngIf="viewStatus.isCrawlerError"
+        (click)="sendUserData(true)">
+        Prøv igjen
       </rente-button>
     </div>
   </div>

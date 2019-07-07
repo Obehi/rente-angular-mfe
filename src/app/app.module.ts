@@ -11,7 +11,7 @@ import { FaqComponent } from '@features/faq/faq.component';
 import { PrivacyComponent } from '@features/privacy/privacy.component';
 import { TermsConditionsComponent } from '@features/terms-conditions/terms-conditions.component';
 import { PrivacyPolicyComponent } from '@features/privacy-policy/privacy-policy.component';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BankSelectComponent } from './features/bank-select/bank-select.component';
 import { MatExpansionModule } from '@angular/material/expansion';
 

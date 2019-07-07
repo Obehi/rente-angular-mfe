@@ -29,6 +29,9 @@ export class LoginStatusComponent implements OnInit {
   public passPhrase = '';
   public ticks: number;
   public MESSAGE_STATUS = MESSAGE_STATUS;
+  public loginStep1Status = MESSAGE_STATUS.LOADING;
+  public loginStep2Status = MESSAGE_STATUS.INFO;
+  public loginStep3Status = MESSAGE_STATUS.INFO;
   private stompClient: any;
   private timerSubscription: Subscription;
   private timer: Observable<number>;
@@ -134,16 +137,22 @@ export class LoginStatusComponent implements OnInit {
         switch (response.eventType) {
           case BANKID_STATUS.PROCESS_STARTED:
             this.initTimer(BANKID_TIMEOUT_TIME);
+            this.loginStep1Status = MESSAGE_STATUS.SUCCESS;
             this.viewStatus.isProcessStarted = true;
             break;
           case BANKID_STATUS.PASSPHRASE_CONFIRM:
             this.passPhrase = response.content;
+            this.loginStep1Status = MESSAGE_STATUS.SUCCESS;
+            this.loginStep2Status = MESSAGE_STATUS.LOADING;
             break;
           case BANKID_STATUS.PASSPHRASE_CONFIRM_SUCCESS:
             this.viewStatus.isPassphraseConfirmSuccess = true;
+            this.loginStep2Status = MESSAGE_STATUS.SUCCESS;
+            this.loginStep3Status = MESSAGE_STATUS.LOADING;
             break;
           case BANKID_STATUS.PASSPHRASE_CONFIRM_FAIL:
             this.viewStatus.isPassphraseConfirmFail = true;
+            this.loginStep2Status = MESSAGE_STATUS.ERROR;
             break;
           case BANKID_STATUS.CRAWLER_ERROR:
             this.viewStatus.isCrawlerError = true;
@@ -153,6 +162,7 @@ export class LoginStatusComponent implements OnInit {
             break;
           case BANKID_STATUS.LOANS_PERSISTED:
             this.viewStatus.isLoansPersisted = true;
+            this.loginStep3Status = MESSAGE_STATUS.SUCCESS;
             break;
         }
       }

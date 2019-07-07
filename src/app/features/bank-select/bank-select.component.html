@@ -7,11 +7,11 @@
   </div>
   <div class="d-block d-md-flex justify-content-center text-center align-items-center mt-4 mb-4">
     <div>
-      <a [routerLink]="['/auth']" ><img style="max-width: 100px" src="../../../assets/img/banks-logo/dnb.png" alt="DNB"
+      <a [routerLink]="['/auth']" [queryParams]="{ bank: 'dnb' }"><img style="max-width: 100px" src="../../../assets/img/banks-logo/dnb.png" alt="DNB"
           title="DNB"></a>
     </div>
     <div class="mx-5 my-4 my-md-0">
-      <a [routerLink]="['/auth']"><img style="max-width: 100px" src="../../../assets/img/banks-logo/nordea.png"
+      <a [routerLink]="['/auth']" [queryParams]="{ bank: 'nordea' }"><img style="max-width: 100px" src="../../../assets/img/banks-logo/nordea.png"
           alt="NORDEA" title="NORDEA"></a>
     </div>
     <div class="link">

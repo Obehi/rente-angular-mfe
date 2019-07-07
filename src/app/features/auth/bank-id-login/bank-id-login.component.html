@@ -29,18 +29,26 @@
                 <rente-form-message class="text-left d-block" [type]="'info'">Vi vil ikke dele fødselsnummeret ditt med noen</rente-form-message>
 
                 <div class="error-message" *ngIf="bankIdForm.controls['ssn'].touched">
-                  <rente-form-message class="text-left d-block" *ngIf="bankIdForm.controls['ssn'].hasError('required')" [type]="'error'">This
-                    field is required</rente-form-message>
+                  <rente-form-message class="text-left d-block" *ngIf="bankIdForm.controls['ssn'].hasError('required')" [type]="'error'">
+                    This field is required
+                  </rente-form-message>
+                  <rente-form-message class="text-left d-block" *ngIf="bankIdForm.controls['ssn'].hasError('pattern')" [type]="'error'">
+                    SSN is not valid
+                  </rente-form-message>
                 </div>
               </div>
 
               <ng-template #birthdateInput>
                 <div>
                   <rente-input [placeholder]="'Fødselsdato:'" formControlName="birthdate"></rente-input>
-                  <rente-form-message class="text-left d-block" [type]="'info'">8 siffer</rente-form-message>
+                  <rente-form-message class="text-left d-block" [type]="'info'">6 siffer</rente-form-message>
                   <div class="error-message" *ngIf="bankIdForm.controls['birthdate'].touched">
                     <rente-form-message class="text-left d-block" *ngIf="bankIdForm.controls['birthdate'].hasError('required')" [type]="'error'">
-                      This field is required</rente-form-message>
+                      This field is required
+                    </rente-form-message>
+                    <rente-form-message class="text-left d-block" *ngIf="bankIdForm.controls['birthdate'].hasError('pattern')" [type]="'error'">
+                      Date of birth is not valid
+                    </rente-form-message>
                   </div>
                 </div>
               </ng-template>
@@ -50,10 +58,17 @@
                 <rente-form-message class="text-left d-block pb-0" [type]="'info'">8 siffer</rente-form-message>
                 <div class="error-message" *ngIf="bankIdForm.controls['phone'].touched">
                   <rente-form-message class="text-left d-block" *ngIf="bankIdForm.controls['phone'].hasError('required')" [type]="'error'">
-                    This field is required</rente-form-message>
+                    This field is required
+                  </rente-form-message>
+                  <rente-form-message class="text-left d-block" *ngIf="bankIdForm.controls['phone'].hasError('pattern')" [type]="'error'">
+                    Phone number is not valid
+                  </rente-form-message>
                 </div>
               </div>
             </div>
+
+            {{bankIdForm.controls['birthdate'] | json}}
+            {{bankIdForm.value | json}}
 
             <p class="small my-5">
               Ved registrering samtykker du til våre 

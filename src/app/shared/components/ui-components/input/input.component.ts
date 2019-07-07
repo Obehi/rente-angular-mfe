@@ -33,30 +33,40 @@ export class InputComponent implements ControlValueAccessor {
   @Input() name: string;
   @Input() type: string;
   @Input() placeholder: string;
-
-  @Output() public value = new EventEmitter();
+  // tslint:disable-next-line:no-input-rename
+  @Input('value')
+  inputValue: any = '';
 
   @HostBinding('class.input-component') true;
 
-  inputValue: any = '';
-
   propagateChange: any = () => {};
+
+  onChange: any = () => {};
+  onTouch: any = () => {};
+
+  get value() {
+    return this.inputValue;
+  }
+
+  set value(val) {
+    this.inputValue = val;
+    this.onChange(val);
+    this.onTouch();
+  }
+
 
   writeValue(value) {
     if (value) {
-      this.inputValue = value;
+      this.value = value;
     }
   }
 
-  registerOnChange(fn) {
-    this.propagateChange = fn;
+  registerOnChange(fn: any) {
+    this.onChange = fn;
   }
 
-  registerOnTouched() {}
-
-  valueInput(event: any): void {
-    this.inputValue = event.target.value;
-    this.propagateChange(this.inputValue);
+  registerOnTouched(fn: any) {
+    this.onTouch = fn;
   }
 
 }
