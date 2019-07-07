@@ -15,7 +15,7 @@ import {
 } from './login-status.config';
 import { Subscription, interval, Observable, timer } from 'rxjs';
 import { take } from 'rxjs/operators';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'rente-login-status',
