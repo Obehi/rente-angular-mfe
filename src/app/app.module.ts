@@ -14,6 +14,8 @@ import { PrivacyPolicyComponent } from '@features/privacy-policy/privacy-policy.
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { BankSelectComponent } from './features/bank-select/bank-select.component';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { ContactUsComponent } from './features/contact-us/contact-us.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -25,14 +27,16 @@ import { MatExpansionModule } from '@angular/material/expansion';
     PrivacyComponent,
     TermsConditionsComponent,
     PrivacyPolicyComponent,
-    BankSelectComponent
+    BankSelectComponent,
+    ContactUsComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     SharedModule,
-    MatExpansionModule
+    MatExpansionModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

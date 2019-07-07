@@ -17,6 +17,7 @@ import { TabComponent } from './components/ui-components/tabs/tab.component';
 import { FormMessageComponent } from './components/ui-components/form-message/form-message.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
+import { TextAreaComponent } from './components/ui-components/text-area/text-area.component';
 
 const components = [
   HeaderComponent,
@@ -28,7 +29,8 @@ const components = [
   RadioComponent,
   TabsComponent,
   TabComponent,
-  FormMessageComponent
+  FormMessageComponent,
+  TextAreaComponent
 ];
 
 @NgModule({
