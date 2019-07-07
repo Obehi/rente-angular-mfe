@@ -150,7 +150,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
             this.viewStatus.isProcessStarted = true;
             break;
           case BANKID_STATUS.PASSPHRASE_CONFIRM:
-            this.passPhrase = response.content;
+            this.passPhrase = response.passphrase;
             this.loginStep1Status = MESSAGE_STATUS.SUCCESS;
             this.loginStep2Status = MESSAGE_STATUS.LOADING;
             break;
