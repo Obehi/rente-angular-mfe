@@ -1,7 +1,24 @@
 <div class="status-message d-flex justify-content-center align-items-center mb-4 ">
-  <mat-spinner  *ngIf="status === 'loading'" [diameter]="48" [strokeWidth]="4"></mat-spinner>
-  <img *ngIf="status === 'success'" src="../../../assets/img/banks-logo/dnb.png" alt="">
-  <p class="m-0 ml-4">
+  <mat-spinner *ngIf="status === MESSAGE_STATUS.LOADING" 
+                [diameter]="48" 
+                [strokeWidth]="4"></mat-spinner>
+  <p *ngIf="status === MESSAGE_STATUS.INFO"
+      class="icon-wrap status-message-step d-flex justify-content-center align-items-center font-weight-bold">
+        {{step}}
+  </p>
+
+  <div *ngIf="status === MESSAGE_STATUS.SUCCESS"
+        class="icon-wrap status-message-success d-flex justify-content-center align-items-center">
+    <img src="../../../assets/icons/ic_done.svg" alt="success-icon">
+  </div>
+
+  <div *ngIf="status === MESSAGE_STATUS.ERROR"
+        class="icon-wrap status-message-error d-flex justify-content-center align-items-center">
+    <img src="../../../assets/icons/ic_error.svg" alt="success-error">
+  </div>
+
+  <p class="status-message-info m-0 ml-4" 
+    [ngClass]="{'step': status === MESSAGE_STATUS.SUCCESS}">
     <ng-content></ng-content>
   </p>
 </div>

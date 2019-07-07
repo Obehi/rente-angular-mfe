@@ -1,22 +1,25 @@
-<div class="container login-status">
+<div class="container login-status ">
   <div class="row justify-content-center">
-    <div class="col-6 text-center">
+    <div class="col-6 text-center bg-wrap">
       <img style="max-width: 100px" 
-            src="../../../assets/img/banks-logo/dnb.png"
+            src="{{bankSettings.bankIcon}}"
             alt="DNB" 
             title="DNB">
-      <h3>Din referanse:
+      <h3 class="mt-0">Din referanse:
         <span class="font-weight-bold">Passphrase</span>
       </h3>
       <div class="row  justify-content-center">
       <div class="col-8 d-flex flex-column align-items-start">
-      <rente-status-message [status]="'success'">
+      <rente-status-message [status]="MESSAGE_STATUS.SUCCESS">
         Forbereder identifisering
       </rente-status-message>
-      <rente-status-message [status]="'success'">
+      <rente-status-message [status]="MESSAGE_STATUS.ERROR">
           Det oppstod en feil under henting av dine lånedetaljer, vennligst prøv igjen senere
       </rente-status-message>
-      <rente-status-message [status]="'loading'">
+      <rente-status-message [status]="MESSAGE_STATUS.INFO" [step]="3">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime, corporis.
+      </rente-status-message>
+      <rente-status-message [status]="MESSAGE_STATUS.LOADING">
         Vi henter din rente og låneinformasjon
       </rente-status-message>
     </div>

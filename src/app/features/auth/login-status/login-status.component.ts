@@ -4,7 +4,15 @@ import * as SockJS from 'sockjs-client';
 import { environment } from '@environments/environment';
 import { ViewStatus } from './login-view-status';
 import { API_URL_MAP } from '@config/api-url-config';
-import { IDENTIFICATION_TIMEOUT_TIME, PING_TIME, RECONNECTION_TRIES, RECONNECTION_TIME, BANKID_STATUS, BANKID_TIMEOUT_TIME } from './login-status.config';
+import {
+  IDENTIFICATION_TIMEOUT_TIME,
+  PING_TIME,
+  RECONNECTION_TRIES,
+  RECONNECTION_TIME,
+  BANKID_STATUS,
+  BANKID_TIMEOUT_TIME,
+  MESSAGE_STATUS
+} from './login-status.config';
 import { Subscription, interval, Observable, timer } from 'rxjs';
 import { take } from 'rxjs/operators';
 
@@ -15,10 +23,12 @@ import { take } from 'rxjs/operators';
 })
 export class LoginStatusComponent implements OnInit {
   @Input() userData: any = {};
+  @Input() bankSettings: any = {};
   public viewStatus: ViewStatus = new ViewStatus();
   public reconnectIterator = 0;
   public passPhrase = '';
   public ticks: number;
+  public MESSAGE_STATUS = MESSAGE_STATUS;
   private stompClient: any;
   private timerSubscription: Subscription;
   private timer: Observable<number>;

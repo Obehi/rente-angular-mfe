@@ -2,22 +2,26 @@
 
 .login-status {
 
-    img {
-        margin-top: 124px;
-        margin-bottom: 50px;
-    }
+  .bg-wrap {
+    margin-top: 68px;
+    margin-bottom: 52px;
+  }
 
-    h3 {
-       color: $dark;
-       font-size: 24px;	
-       letter-spacing: 0.4px;	
-       line-height: 24px;
-       margin-bottom: 69px;
-    }
+  img {
+    margin-bottom: 50px;
+    padding-top: 32px;
+  }
 
-    &-btn {
-        width: 116px;
-        display: inline-block;
-        margin-bottom: 52px;
-    }
+  h3 {
+    color: $dark;
+    font-size: 24px;
+    letter-spacing: 0.4px;
+    line-height: 24px;
+    margin-bottom: 69px;
+  }
+
+  &-btn {
+    width: 116px;
+    display: inline-block;
+  }
 }
