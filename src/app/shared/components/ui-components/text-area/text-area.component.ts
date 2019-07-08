@@ -4,16 +4,28 @@ import {
   Output,
   EventEmitter,
   forwardRef,
-  HostBinding
+  HostBinding,
+  SimpleChanges,
+  OnChanges
 } from '@angular/core';
 import {
   FormControl,
   ControlValueAccessor,
-  NG_VALUE_ACCESSOR
+  NG_VALUE_ACCESSOR,
+  FormGroupDirective,
+  NgForm
 } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { ViewEncapsulation } from '@angular/core';
+import { ErrorStateMatcher } from '@angular/material/core';
 
+export class MyErrorStateMatcher implements ErrorStateMatcher {
+  constructor(public state: boolean) {}
+
+  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+    return this.state;
+  }
+}
 @Component({
   selector: 'rente-text-area',
   templateUrl: './text-area.component.html',
@@ -28,35 +40,45 @@ import { ViewEncapsulation } from '@angular/core';
   encapsulation: ViewEncapsulation.None,
 })
 
-export class TextAreaComponent implements ControlValueAccessor {
-  @Input() label: string;
-  @Input() name: string;
-  @Input() type: string;
+export class TextAreaComponent implements ControlValueAccessor, OnChanges {
   @Input() placeholder: string;
-
-  @Output() public value = new EventEmitter();
-
+  @Input() errorStateMatcher: boolean;
+  // tslint:disable-next-line:no-input-rename
+  @Input('value') inputValue: any = '';
+  public matcher: MyErrorStateMatcher;
   @HostBinding('class.text-area-component') true;
 
-  textAreaValue: any = '';
-
   propagateChange: any = () => {};
+  onChange: any = () => {};
+  onTouch: any = () => {};
+
+  get value() {
+    return this.inputValue;
+  }
+
+  set value(val) {
+    this.inputValue = val;
+    this.onChange(val);
+    this.onTouch();
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.errorStateMatcher) {
+      this.matcher = new MyErrorStateMatcher(this.errorStateMatcher);
+    }
+  }
 
   writeValue(value) {
     if (value) {
-      this.textAreaValue = value;
+      this.value = value;
     }
   }
 
   registerOnChange(fn) {
-    this.propagateChange = fn;
+    this.onChange = fn;
   }
 
-  registerOnTouched() {}
-
-  valueInput(event: any): void {
-    this.textAreaValue = event.target.value;
-    this.propagateChange(this.textAreaValue);
+  registerOnTouched(fn: any) {
+    this.onTouch = fn;
   }
-
 }
