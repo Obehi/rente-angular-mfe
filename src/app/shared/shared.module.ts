@@ -18,6 +18,12 @@ import { FormMessageComponent } from './components/ui-components/form-message/fo
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { TextAreaComponent } from './components/ui-components/text-area/text-area.component';
+import { AuthService } from '@services/remote-api/auth.service';
+import { ContactService } from '@services/remote-api/contact.service';
+import { HouseService } from '@services/remote-api/house.service';
+import { LoansService } from '@services/remote-api/loans.service';
+import { PreferancesService } from '@services/remote-api/preferances.service';
+import { ProfileService } from '@services/remote-api/profile.service';
 
 const components = [
   HeaderComponent,
@@ -33,6 +39,18 @@ const components = [
   TextAreaComponent
 ];
 
+const services = [
+  AuthGuard,
+  GenericHttpService,
+  LocalStorageService,
+  AuthService,
+  ContactService,
+  HouseService,
+  LoansService,
+  PreferancesService,
+  ProfileService
+];
+
 @NgModule({
   imports: [
     CommonModule,
@@ -43,10 +61,6 @@ const components = [
   ],
   declarations: [...components],
   exports: [...components],
-  providers: [
-    AuthGuard,
-    GenericHttpService,
-    LocalStorageService
-  ]
+  providers: [...services]
 })
 export class SharedModule { }
