@@ -1,0 +1,29 @@
+<div class="container dashboard">
+  <div class="row">
+    <div class="col-12">
+      <nav mat-tab-nav-bar mat-stretch-tabs>
+        <a mat-tab-link [active]="activeLinkIndex == 0" [routerLink]="'./tilbud'">
+          Tilbud
+        </a>
+
+        <a mat-tab-link [active]="activeLinkIndex == 1" [routerLink]="'./mine-lan'">
+          Mine lån
+        </a>
+
+        <a mat-tab-link [active]="activeLinkIndex == 2" [routerLink]="'./bolig'">
+          Bolig
+        </a>
+
+        <a mat-tab-link [active]="activeLinkIndex == 3" [routerLink]="'./preferanser'">
+          Preferanser
+        </a>
+
+        <a mat-tab-link class="last" [active]="activeLinkIndex == 4"
+          [routerLink]="'./profil'">
+          Profil
+        </a>
+      </nav>
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

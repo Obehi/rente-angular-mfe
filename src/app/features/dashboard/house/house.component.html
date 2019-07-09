@@ -1,0 +1,66 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-5 ">
+      <h2 class="title">Bruk Renteradars estimerte boligverdi</h2>
+      <div class="bg-wrap mt-5">
+        <h2 class="title"> 3,965 millioner</h2>
+        <form [formGroup]="contactUsForm" (ngSubmit)="startLogin(contactUsForm.value)" novalidate>
+          <div class="mb-4">
+            <rente-input [placeholder]="'Adresse:'" formControlName="adress"
+              [errorStateMatcher]="isErrorState(contactUsForm.controls['adress'], contactUsForm)">
+            </rente-input>
+
+            <rente-form-message class="text-left d-block" [type]="'info'">Adressen til boligen det er lån på
+            </rente-form-message>
+
+            <div *ngIf="contactUsForm.controls['adress'].touched" class="error-message">
+              <rente-form-message class="text-left d-block" [type]="'error'"
+                *ngIf="contactUsForm.controls['adress'].hasError('required')">
+                Kan ikke være tom Feil størrelse
+              </rente-form-message>
+            </div>
+          </div>
+
+          <div class="mb-4">
+            <rente-input [placeholder]="'Postnummer:'" formControlName="postnummer"
+              [errorStateMatcher]="isErrorState(contactUsForm.controls['postnummer'], contactUsForm)">
+            </rente-input>
+            <div *ngIf="contactUsForm.controls['postnummer'].touched" class="error-message">
+              <rente-form-message class="text-left d-block" [type]="'error'"
+                *ngIf="contactUsForm.controls['postnummer'].hasError('required')">
+                Vi trenger e-posten din
+              </rente-form-message>
+            </div>
+          </div>
+
+          <div class="mb-4">
+            <rente-input [placeholder]="'Størrelse på bolig (kvm):'" formControlName="kvm">
+            </rente-input>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="col-5">
+      <h2 class="title">Bruk mitt eget estimat</h2>
+      <div class="bg-wrap mt-5 disabled">
+        <h3>Min estimerte boligverdi:</h3>
+        <form [formGroup]="contactUsForm2" novalidate>
+          <div class="mb-4">
+            <rente-input [placeholder]="'Boligen min er verdt:'" formControlName="adress"
+              [errorStateMatcher]="isErrorState(contactUsForm2.controls['adress'], contactUsForm2)">
+            </rente-input>
+
+            <rente-form-message class="text-left d-block" [type]="'info'">Vi benytter boligverdien når vi overvåker
+              renten din, pass derfor på at denne ikke er helt urealistisk
+            </rente-form-message>
+
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="button-wrap">
+    <rente-button color="primary">Lagre</rente-button>
+    <p>Husk å lagre etter bytte mellom estimattype</p>
+  </div>
+</div>
