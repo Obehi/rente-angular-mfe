@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormControl, FormGroupDirective, NgForm } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl, FormGroupDirective, NgForm, AbstractControl } from '@angular/forms';
 
 @Component({
   selector: 'rente-contact-us',
@@ -20,9 +20,8 @@ export class ContactUsComponent implements OnInit {
     });
   }
 
-  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-    const isSubmitted = form && form.submitted;
-    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
+  isErrorState(control: AbstractControl | null, form: FormGroup | NgForm | null): boolean {
+    return !!(control && control.invalid && (control.dirty || control.touched));
   }
 
   public startLogin(formData) {
