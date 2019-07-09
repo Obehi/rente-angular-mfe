@@ -45,13 +45,14 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
   }
 
   private initForm() {
-
+    // 13018939554
+    // 93253768
     return this.fb.group({
-      ssn: ['13018939554', Validators.compose([
+      ssn: ['', Validators.compose([
         Validators.required,
         Validators.pattern(VALIDATION_PATTERN.ssn)
       ])],
-      phone: ['93253768', Validators.compose([
+      phone: ['', Validators.compose([
         Validators.required,
         Validators.pattern(VALIDATION_PATTERN.phoneShort)
       ])],
