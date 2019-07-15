@@ -11,7 +11,8 @@ import { PreferencesComponent } from './preferences/preferences.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '@shared/shared.module';
-
+import { MatDialogModule } from '@angular/material/dialog';
+import { DialogInfoComponent } from './offers/dialog-info/dialog-info.component';
 @NgModule({
   declarations: [
     OffersComponent,
@@ -20,13 +21,16 @@ import { SharedModule } from '@shared/shared.module';
     HouseComponent,
     PreferencesComponent,
     ProfileComponent,
+    DialogInfoComponent,
   ],
   imports: [
     CommonModule,
     DashboardRoutingModule,
     MatTabsModule,
     ReactiveFormsModule,
-    SharedModule
-  ]
+    SharedModule,
+    MatDialogModule
+  ],
+  entryComponents: [DialogInfoComponent]
 })
 export class DashboardModule { }
