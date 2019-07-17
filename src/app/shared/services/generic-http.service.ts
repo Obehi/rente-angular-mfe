@@ -46,6 +46,8 @@ export class GenericHttpService {
       // params: {...params}
     };
 
+    console.log(this.shapeHeaders());
+
     return this.http
       .get(fullPath, httpOptions)
       .pipe(
@@ -96,7 +98,9 @@ export class GenericHttpService {
   }
 
   private shapeHeaders(): HttpHeaders {
-    const userInfo = this.localStorageService.getItem(storageName.user);
+    const userInfo = this.localStorageService.getObject(storageName.user);
+
+    console.log(userInfo);
     const accessToken = userInfo ? userInfo.token : null;
     let headers: HttpHeaders = new HttpHeaders()
       .set(this.deafultContentType.name, this.deafultContentType.value)

@@ -1,5 +1,5 @@
 export const storageName = {
-  appPrefix: 'besafe',
+  appPrefix: 'rente',
   user: 'user',
   userRole: 'userRole'
 };

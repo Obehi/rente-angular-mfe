@@ -20,6 +20,10 @@ export class LocalStorageService {
     return localStorage.getItem(`${this.appPrefix}-${param}`);
   }
 
+  getObject(param: string): any {
+    return JSON.parse(localStorage.getItem(`${this.appPrefix}-${param}`));
+  }
+
   removeItem(param: string): any {
     localStorage.removeItem(`${this.appPrefix}-${param}`);
   }
