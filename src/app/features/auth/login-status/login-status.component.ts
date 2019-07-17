@@ -178,11 +178,10 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
 
             this.authService.loginWithToken(user.phone, user.oneTimeToken).subscribe(res => {
               console.log('login', res);
+              localStorage.setItem('loans', JSON.stringify(response.data));
+              this.router.navigate(['/dashboard/tilbud/']);
             });
 
-            localStorage.setItem('loans', JSON.stringify(response.data));
-
-            this.router.navigate(['/dashboard/tilbud/']);
             break;
         }
       }
