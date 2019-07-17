@@ -24,6 +24,7 @@ import { HouseService } from '@services/remote-api/house.service';
 import { LoansService } from '@services/remote-api/loans.service';
 import { PreferancesService } from '@services/remote-api/preferances.service';
 import { ProfileService } from '@services/remote-api/profile.service';
+import { HttpClientModule } from '@angular/common/http';
 
 const components = [
   HeaderComponent,
@@ -54,6 +55,7 @@ const services = [
 @NgModule({
   imports: [
     CommonModule,
+    HttpClientModule,
     RouterModule,
     FormsModule,
     MatButtonModule,

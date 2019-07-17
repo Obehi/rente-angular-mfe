@@ -1,3 +1,4 @@
+import { AuthService } from '@services/remote-api/auth.service';
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import * as Stomp from 'stompjs';
 import * as SockJS from 'sockjs-client';
@@ -37,7 +38,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
   private timerSubscription: Subscription;
   private timer: Observable<number>;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private authService: AuthService) { }
 
   ngOnInit() {
     this.setDefaultSteps();
@@ -172,6 +173,12 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
           case BANKID_STATUS.LOANS_PERSISTED:
             this.viewStatus.isLoansPersisted = true;
             this.loginStep3Status = MESSAGE_STATUS.SUCCESS;
+
+            const user = response.data.user;
+
+            this.authService.loginWithToken(user.phone, user.oneTimeToken).subscribe(res => {
+              console.log('login', res);
+            });
 
             localStorage.setItem('loans', JSON.stringify(response.data));
 
