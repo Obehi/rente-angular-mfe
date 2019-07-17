@@ -1,6 +1,7 @@
 export const storageName = {
   appPrefix: 'besafe',
-  user: 'user'
+  user: 'user',
+  userRole: 'userRole'
 };
 
 export const apiUrls = {};
