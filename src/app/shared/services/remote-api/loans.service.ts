@@ -13,4 +13,9 @@ export class LoansService {
     const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.loans}`;
     return this.http.get(url);
   }
+
+  public getOffers() {
+    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.offers}`;
+    return this.http.get(url);
+  }
 }

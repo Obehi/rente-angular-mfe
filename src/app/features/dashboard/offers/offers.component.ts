@@ -22,6 +22,10 @@ export class OffersComponent implements OnInit {
       console.log('loans', res);
       this.loans = res;
     });
+
+    this.loansService.getOffers().subscribe(res => {
+      console.log('offers', res);
+    });
   }
 
   public openDialog(): void {

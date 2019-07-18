@@ -19,7 +19,8 @@ export const API_URL_MAP = {
   },
   loan: {
     base: '/loan',
-    loans: '/loans'
+    loans: '/loans',
+    offers: '/offers'
   },
   profile: '/profil',
   preferances: '/preferanser',
