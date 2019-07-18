@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogInfoComponent } from './dialog-info/dialog-info.component';
 import { LoansService } from '@services/remote-api/loans.service';
+import { Loans } from '@shared/models/loans';
 
 @Component({
   selector: 'rente-offers',
@@ -10,14 +11,16 @@ import { LoansService } from '@services/remote-api/loans.service';
 })
 export class OffersComponent implements OnInit {
   public offersInfo: any;
+  public loans: Loans;
   constructor(public dialog: MatDialog, private loansService: LoansService) { }
 
   public ngOnInit(): void {
     this.offersInfo =  JSON.parse(localStorage.getItem('loans'));
     console.log(this.offersInfo);
 
-    this.loansService.getLoans().subscribe(res => {
+    this.loansService.getLoans().subscribe((res: Loans) => {
       console.log('loans', res);
+      this.loans = res;
     });
   }
 

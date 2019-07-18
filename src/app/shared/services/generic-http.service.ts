@@ -19,7 +19,7 @@ export class GenericHttpService {
   private apiUrl: string;
   private deafultContentType: any = {
     name: 'Content-Type',
-    value: 'application/json;charset=utf-8'
+    value: 'application/json;charset=UTF-8'
   };
   private deafultAcceptType: any = {
     name: 'Accept',
@@ -106,6 +106,7 @@ export class GenericHttpService {
       .set(this.deafultContentType.name, this.deafultContentType.value)
       .set(this.deafultAcceptType.name, this.deafultAcceptType.value);
 
+    console.log(headers);
     if (Boolean(accessToken)) {
       headers = headers.append('X-Auth-Token', accessToken);
     }

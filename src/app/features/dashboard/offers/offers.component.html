@@ -20,7 +20,7 @@
         <div class="col-12 col-sm-5">
           <div class="bg-wrap">
             <p>Gjenværende lån:</p>
-            <h3>5,788 millioner</h3>
+            <h3>5,788 millioner {{loans.totalOutstandingDebt / 1000000 | number: '1.1-3'}}</h3>
           </div>
         </div>
       </div>
@@ -31,7 +31,7 @@
             <div class="col-12 col-sm-6">
               <div class="bg-wrap">
                 <p>Din rente:</p>
-                <h3>1,98%</h3>
+                <h3>{{loans.totalEffectiveRate | number: '1.1-2' }}</h3>
               </div>
             </div>
             <div class="col-12 col-sm-6">
