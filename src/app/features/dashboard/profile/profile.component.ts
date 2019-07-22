@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, AbstractControl, NgForm } from '@angular/forms';
 
 @Component({
   selector: 'rente-profile',
@@ -12,7 +12,14 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     this.profileForm = this.fb.group({
+      membership: '',
+      income: '',
+      email: ''
     });
+  }
+
+  public isErrorState(control: AbstractControl | null, form: FormGroup | NgForm | null): boolean {
+    return !!(control && control.invalid && (control.dirty || control.touched));
   }
 
 }
