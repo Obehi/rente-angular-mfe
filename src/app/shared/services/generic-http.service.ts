@@ -11,6 +11,7 @@ import { catchError } from 'rxjs/operators';
 import { environment } from '@environments/environment';
 import { storageName } from '@config/index';
 import { LocalStorageService } from '@services/local-storage.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root'
@@ -29,7 +30,8 @@ export class GenericHttpService {
   constructor(
     private http: HttpClient,
     private localStorageService: LocalStorageService,
-    private router: Router
+    private router: Router,
+    private snackBar: MatSnackBar
     ) {
       this.apiUrl = environment.baseUrl;
     }
@@ -99,14 +101,12 @@ export class GenericHttpService {
 
   private shapeHeaders(): HttpHeaders {
     const userInfo = this.localStorageService.getObject(storageName.user);
-
-    console.log(userInfo);
     const accessToken = userInfo ? userInfo.token : null;
+
     let headers: HttpHeaders = new HttpHeaders()
       .set(this.deafultContentType.name, this.deafultContentType.value)
       .set(this.deafultAcceptType.name, this.deafultAcceptType.value);
 
-    console.log(headers);
     if (Boolean(accessToken)) {
       headers = headers.append('X-Auth-Token', accessToken);
     }
@@ -116,10 +116,29 @@ export class GenericHttpService {
 
   private handleError(responseError: HttpResponse<any> | any): Observable<any> {
     console.log(responseError);
+
+    this.snackBar.open(responseError.error.detail, 'Close', {
+      duration: 10 * 1000,
+    });
+
     if (responseError.status === 401) {
       // TODO: Show unauthorized error
       console.log('Not logged in!');
       this.clearSession();
+    }
+
+    if (responseError.status === 500) {
+      this.snackBar.open(responseError.error.error, 'Close', {
+        duration: 10 * 1000,
+        panelClass: ['bg-error'],
+        horizontalPosition: 'right'
+      });
+    } else {
+      this.snackBar.open(responseError.error.detail, 'Close', {
+        duration: 10 * 1000,
+        panelClass: ['bg-primary'],
+        horizontalPosition: 'right'
+      });
     }
 
     return throwError(responseError.error);

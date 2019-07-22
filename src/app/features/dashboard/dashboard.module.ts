@@ -9,10 +9,14 @@ import { LoansComponent } from './loans/loans.component';
 import { HouseComponent } from './house/house.component';
 import { PreferencesComponent } from './preferences/preferences.component';
 import { ProfileComponent } from './profile/profile.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { SharedModule } from '@shared/shared.module';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatRadioModule } from '@angular/material/radio';
 import { DialogInfoComponent } from './offers/dialog-info/dialog-info.component';
+import { RatingComponent } from './offers/rating/rating.component';
+
+// TODO: ADD separate module for material import
 @NgModule({
   declarations: [
     OffersComponent,
@@ -22,14 +26,17 @@ import { DialogInfoComponent } from './offers/dialog-info/dialog-info.component'
     PreferencesComponent,
     ProfileComponent,
     DialogInfoComponent,
+    RatingComponent,
   ],
   imports: [
     CommonModule,
     DashboardRoutingModule,
     MatTabsModule,
+    FormsModule,
     ReactiveFormsModule,
     SharedModule,
-    MatDialogModule
+    MatDialogModule,
+    MatRadioModule
   ],
   entryComponents: [DialogInfoComponent]
 })

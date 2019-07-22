@@ -22,17 +22,20 @@
 
           <rente-status-message [status]="loginStep2Status" [step]="2">
             <span *ngIf="!passPhrase">Bekreft BankID på mobil</span>
-            <span *ngIf="passPhrase">Vennligst følg instruksjonen på mobilen</span>
+            <span *ngIf="passPhrase && !viewStatus.isPassphraseConfirmFail && !viewStatus.isPassphraseConfirmSuccess">Vennligst følg instruksjonen på mobilen</span>
             <span *ngIf="viewStatus.isPassphraseConfirmSuccess">BankID bekreftet</span>
             <span *ngIf="viewStatus.isPassphraseConfirmFail">Det oppstod en feil, det kan virke som du ikke bekreftet BankID på mobil. Vennligst prøv igjen</span>
           </rente-status-message>
 
           <rente-status-message [status]="loginStep3Status" [step]="3">
-            <span *ngIf="!viewStatus.isPassphraseConfirmSuccess">Hent rente- og lånedata</span>
-            <span *ngIf="viewStatus.isPassphraseConfirmSuccess">Vi henter din rente og låneinformasjon</span>
+            <span *ngIf="!viewStatus.isPassphraseConfirmSuccess && !viewStatus.isCrawlerError">Hent rente- og lånedata</span>
+            <span *ngIf="viewStatus.isPassphraseConfirmSuccess && !viewStatus.isCrawlerError">Vi henter din rente og låneinformasjon</span>
             <span *ngIf="viewStatus.isCrawlerError">Det oppstod en feil under henting av dine lånedetaljer, vennligst prøv igjen senere</span>
           </rente-status-message>
 
+          <rente-form-message class="text-left d-block mb-4" *ngIf="viewStatus.isTimedOut" [type]="'error'">
+            Response is taking too long. Please try again
+          </rente-form-message>
         </div>
       </div>
 
@@ -40,7 +43,7 @@
         class="login-status-btn"
         color="primary"
         [type]="'stroked'"
-        *ngIf="viewStatus.isCrawlerError"
+        *ngIf="viewStatus.isCrawlerError || viewStatus.isPassphraseConfirmFail || viewStatus.isTimedOut"
         (click)="sendUserData(true)">
         Prøv igjen
       </rente-button>

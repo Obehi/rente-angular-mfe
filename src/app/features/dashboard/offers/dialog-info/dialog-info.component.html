@@ -1,21 +1,20 @@
-<h1 mat-dialog-title>Akademikerne (Danske Bank)</h1>
+<h1 mat-dialog-title *ngIf="data.bank">{{data.bank.name}}</h1>
 <div mat-dialog-content>
   <div class="modal-body text-left">
-    <div><b>Leverandør: </b><span>Akademikerne (Danske Bank)</span></div>
-    <div><b>Produktnavn: </b><span>Boligkreditt 45%</span></div>
-    <div><b>Nominell rente: </b><span>2,07%</span></div>
-    <div><b>Markedsområde: </b><span>Landsdekkende</span></div>
-    <div><b>Krav om annet produkt: </b><span>Ja</span></div>
-    <div><b>Produktpakke: </b><span>Dagligbank</span></div>
-    <div><b>Forutsetter medlemskap: </b><span>Ja</span></div>
-    <div><b>Medlemskap: </b><span>Akademikeravtalen</span></div>
-    <div><b>Maksimal belåningsgrad: </b><span>45%</span></div>
-    <div><b>Maksimalt antall år løpetid: </b><span>30</span></div>
-    <div><b>Maksimalt antall år avdragsfrihet: </b><span>0</span></div>
-    <div><b>Etableringsgebyr: </b><span>0,-</span></div>
-    <div><b>Depotgebyr: </b><span>0,-</span></div>
-    <div><b>Forbehold: </b><span>Det er kun primærbolig som kan benyttes som sikkerhet, maksimalt innenfor 45 % av
-        boligens verdi.</span></div>
+    <div *ngIf="data.bank"><b>Leverandør: </b><span>{{data.bank.name}}</span></div>
+    <div><b>Produktnavn: </b><span>{{data.productName}}</span></div>
+    <div><b>Nominell rente: </b><span>{{data.effectiveRate}}</span></div>
+    <div><b>Markedsområde: </b><span>{{data.marketArea}}</span></div>
+    <div><b>Krav om annet produkt: </b><span>{{data.requiredProductPackage == null ? 'Nei' : 'Ja'}}</span></div>
+    <div *ngIf="data.requiredProductPackage != null"><b>Produktpakke: </b><span>{{data.requiredProductPackage}}</span></div>
+    <div><b>Forutsetter medlemskap: </b><span>{{data.requiredMembership == null ? 'Nei' : 'Ja'}}</span></div>
+    <div  *ngIf="data.requiredMembership != null"><b>Medlemskap: </b><span>{{data.requiredMembership}}</span></div>
+    <div><b>Maksimal belåningsgrad: </b><span>{{data.maxLTV}}%</span></div>
+    <div><b>Maksimalt antall år løpetid: </b><span>{{data.maxLoanPeriod}}</span></div>
+    <div><b>Maksimalt antall år avdragsfrihet: </b><span>{{data.maxInstallmentFreePeriod}}</span></div>
+    <div><b>Etableringsgebyr: </b><span>{{data.establishmentFee}},-</span></div>
+    <div><b>Depotgebyr: </b><span>{{data.depotFee}},-</span></div>
+    <div><b>Forbehold: </b><span>{{data.otherConditions}}</span></div>
   </div>
 </div>
 <div mat-dialog-actions>

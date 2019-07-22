@@ -1,1 +1,57 @@
-<p>preferences works!</p>
+<div class="container contact-us my-5">
+  <div class="row">
+    <div class="col-6">
+      <h2>Hvor ofte skal vi sjekke renten du har?</h2>
+      <p>Renteradar.no overvåker kontinuerlig markedet for bedre rente enn det du har på lånet ditt. Renten du har på
+        lånet ditt sjekkes og oppdateres ved at du identifiserer deg med BankID. Det er viktig at dette gjøres fra tid
+        til annen for at eventuelle renteendringer på lånet ditt skal fanges opp</p>
+
+      <form [formGroup]="preferencesForm" novalidate>
+        <div class="mb-4">
+          <mat-radio-group formGroupName="checkRateReminderType" class="d-flex flex-column">
+            <mat-radio-button>Hver måned</mat-radio-button>
+            <mat-radio-button>Hver 2. måned</mat-radio-button>
+            <mat-radio-button>Hver 3. måned</mat-radio-button>
+            <mat-radio-button>Hver 4. måned</mat-radio-button>
+          </mat-radio-group>
+        </div>
+
+        <div class="mb-4">
+          <h3>Kun rammelån/boligkreditt:</h3>
+
+          <mat-radio-group formGroupName="radioBlock2" class="d-flex flex-column">
+            <mat-radio-button>Jeg er ikke avhengig av rammelån/boligkreditt</mat-radio-button>
+            <mat-radio-button>Jeg er avhengig av å ha et rammelån/boligkreditt og vil kun ha overvåkning denne type lån
+            </mat-radio-button>
+          </mat-radio-group>
+        </div>
+
+        <div class="mb-4">
+          <h3>Krav om andre produkter (e.g. lønnskonto):</h3>
+
+          <mat-radio-group formGroupName="radioBlock3" class="d-flex flex-column">
+            <mat-radio-button>Jeg vil sammenligne mine betingelser med andre tilbud uavhengig om de krever andre produkter</mat-radio-button>
+            <mat-radio-button>Jeg vil kun sammenligne mine betingelser med tilbud som ikke krever andre produkter
+            </mat-radio-button>
+          </mat-radio-group>
+        </div>
+
+        <div class="mb-4">
+          <h3>Grønne-/miljøboliglån:</h3>
+
+          <mat-radio-group formGroupName="radioBlock3" class="d-flex flex-column">
+            <mat-radio-button>Jeg er ikke avhengig av rammelån/boligkredittJeg er ikke interessert i lån som forutsetter nullhus, tiltak for energimerking, etc..</mat-radio-button>
+            <mat-radio-button>Jeg er interessert i lån som forutsetter nullhus, tiltak for energimerking, etc..
+            </mat-radio-button>
+          </mat-radio-group>
+        </div>
+      
+        <rente-button color="primary">Lagre</rente-button>
+        <p>Husk å lagre ved endringer</p>
+      </form>
+
+
+    </div>
+  </div>
+
+</div>

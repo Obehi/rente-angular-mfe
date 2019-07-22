@@ -25,7 +25,8 @@ $theme-colors: map-merge(
     "light":      $light,
     "dark":       $dark,
     "white":      $white,
-    "black":      $black
+    "black":      $black,
+    "error":      $error
   ),
   $theme-colors
 );

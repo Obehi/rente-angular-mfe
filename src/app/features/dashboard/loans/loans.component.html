@@ -1,1 +1,43 @@
-<p>loans works!</p>
+<div *ngIf="loansData && loansData.loans && loansData.loans.length > 0">
+
+  <h4 class="font-weight-bold">Sammendrag</h4>
+
+  <div class="bg-wrap bg-light mb-4">
+    <div class="mb-0 list-unstyled">
+      <p class="font-weight-bold">Totalt</p>
+      <p>Utestående lån: <strong>{{loansData.totalOutstandingDebt}},-</strong>
+      </p>
+      <p>Effektiv rente: <strong>{{loansData.totalOutstandingDebt | number: '1.1-2'}}%</strong>
+      </p>
+      <p>Totale renteutgifter: <strong>
+          {{loansData.aggregatedTotalInterest == null ? 'N/A' : loansData.aggregatedTotalInterest + ',-'}}</strong>
+      </p>
+      <p>Renter per år (gj.snitt): <strong>
+          {{loansData.aggregatedTotalInterestByRemainingYears == null ? 'N/A' : loansData.aggregatedTotalInterestByRemainingYears + ',-'}}</strong>
+      </p>
+    </div>
+  </div>
+
+  <h4 class="font-weight-bold">Detaljert</h4>
+
+  <div class="bg-wrap  mb-4" *ngFor="let loan of loansData.loans">
+
+    <div class="mb-0 list-unstyled">
+      <p class="font-weight-bold">{{loan.loanType}}</p>
+      <p>Utestående lån: <strong>{{loan.outstandingDebt}},-</strong></p>
+      <p>Løpetid: <strong>{{loan.remainingYears | number: '1.1-2'}} år</strong>
+      </p>
+      <p>Effektiv rente: <strong>{{loan.effectiveRate | number: '1.1-2'}}%</strong>
+      </p>
+      <p>Nom.rente: <strong>{{loan.nominalRate | number: '1.1-2'}}%</strong>
+      </p>
+      <p>Totale renteutgifter: <strong>
+          {{loan.totalInterest == null ? 'N/A' : loan.totalInterest + ',-'}}</strong>
+      </p>
+      <p>Renter per år (gj.snitt): <strong
+          th:text="${loan.getTotalInterestByRemainingYears() == null ? 'N/A' : T(no.rente.util.FormatUtils).formatBigNumber(loan.getTotalInterestByRemainingYears(), false) + ',-'}">??</strong>
+      </p>
+    </div>
+  </div>
+
+</div>

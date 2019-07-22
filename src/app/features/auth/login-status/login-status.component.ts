@@ -34,11 +34,16 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
   public loginStep1Status: string;
   public loginStep2Status: string;
   public loginStep3Status: string;
+  private maxConnectionTime = 15;
   private stompClient: any;
   private timerSubscription: Subscription;
   private timer: Observable<number>;
+  private connectionTimer: Observable<number>;
+  private connectionTimerSubscription: Subscription;
 
-  constructor(private router: Router, private authService: AuthService) { }
+  constructor(
+    private router: Router,
+    private authService: AuthService) { }
 
   ngOnInit() {
     this.setDefaultSteps();
@@ -49,6 +54,10 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
     this.stompClient.unsubscribe();
     if (this.timerSubscription) {
       this.timerSubscription.unsubscribe();
+    }
+
+    if (this.connectionTimerSubscription) {
+      this.connectionTimerSubscription.unsubscribe();
     }
   }
 
@@ -74,6 +83,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
     this.stompClient.send(API_URL_MAP.crawlerSendMessageUrl + this.userBank.label, {}, data);
     if (!resendData) {
       this.initTimer(IDENTIFICATION_TIMEOUT_TIME);
+      this.initConnectionTimer();
     }
   }
 
@@ -84,7 +94,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
   private resendDataAfterReconnect() {
     const notConnectionLost = !this.viewStatus.isSocketConnectionLost && !this.viewStatus.isRecconectFail;
     const isUserDataEntered = this.userData.phone && this.userData.dob;
-    if (this.reconnectIterator > 0 && notConnectionLost && isUserDataEntered && !this.viewStatus.isOfferCreated) {
+    if (this.reconnectIterator > 0 && notConnectionLost && isUserDataEntered && !this.viewStatus.isLoansPersisted) {
       this.sendUserData(true);
     }
   }
@@ -135,6 +145,18 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
     );
   }
 
+  private initConnectionTimer() {
+    if (this.connectionTimerSubscription) {
+      this.connectionTimerSubscription.unsubscribe();
+    }
+    this.connectionTimer = timer(1000, 1000);
+    this.connectionTimerSubscription = this.connectionTimer.subscribe(time => {
+      if ((time > this.maxConnectionTime) && (this.loginStep2Status === MESSAGE_STATUS.LOADING)) {
+        this.viewStatus.isTimedOut = true;
+      }
+    });
+  }
+
   private successSocketCallback() {
     const repliesUrl = `${API_URL_MAP.crawlerRepliesUrl}`;
     this.viewStatus.isSocketConnectionLost = false;
@@ -147,6 +169,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
         switch (response.eventType) {
           case BANKID_STATUS.PROCESS_STARTED:
             this.initTimer(BANKID_TIMEOUT_TIME);
+            this.initConnectionTimer();
             this.loginStep1Status = MESSAGE_STATUS.SUCCESS;
             this.viewStatus.isProcessStarted = true;
             break;
@@ -166,6 +189,8 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
             break;
           case BANKID_STATUS.CRAWLER_ERROR:
             this.viewStatus.isCrawlerError = true;
+            this.loginStep2Status = MESSAGE_STATUS.ERROR;
+            this.loginStep3Status = MESSAGE_STATUS.ERROR;
             break;
           case BANKID_STATUS.CRAWLER_RESULT:
             this.viewStatus.isCrawlerResult = true;
@@ -183,6 +208,19 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
             });
 
             break;
+
+          // case BANKID_STATUS.USER_PERSISTED:
+          //     this.viewStatus.isLoansPersisted = true;
+          //     this.loginStep3Status = MESSAGE_STATUS.SUCCESS;
+
+          //     const userData = response.data.user;
+          //     this.authService.loginWithToken(userData.phone, userData.oneTimeToken).subscribe(res => {
+          //       console.log('login', res);
+          //       localStorage.setItem('loans', JSON.stringify(response.data));
+          //       this.router.navigate(['/dashboard/tilbud/']);
+          //     });
+
+          //     break;
         }
       }
     });

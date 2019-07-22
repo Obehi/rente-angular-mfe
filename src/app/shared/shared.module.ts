@@ -17,6 +17,8 @@ import { TabComponent } from './components/ui-components/tabs/tab.component';
 import { FormMessageComponent } from './components/ui-components/form-message/form-message.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatRadioModule } from '@angular/material/radio';
 import { TextAreaComponent } from './components/ui-components/text-area/text-area.component';
 import { AuthService } from '@services/remote-api/auth.service';
 import { ContactService } from '@services/remote-api/contact.service';
@@ -25,6 +27,7 @@ import { LoansService } from '@services/remote-api/loans.service';
 import { PreferancesService } from '@services/remote-api/preferances.service';
 import { ProfileService } from '@services/remote-api/profile.service';
 import { HttpClientModule } from '@angular/common/http';
+import { BigNumberPipe } from './pipes/big-number.pipe';
 
 const components = [
   HeaderComponent,
@@ -59,9 +62,11 @@ const services = [
     RouterModule,
     FormsModule,
     MatButtonModule,
-    MatInputModule
+    MatInputModule,
+    MatSnackBarModule,
+    MatRadioModule
   ],
-  declarations: [...components],
+  declarations: [...components, BigNumberPipe],
   exports: [...components],
   providers: [...services]
 })
