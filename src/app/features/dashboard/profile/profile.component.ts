@@ -22,4 +22,8 @@ export class ProfileComponent implements OnInit {
     return !!(control && control.invalid && (control.dirty || control.touched));
   }
 
+  public updateProfile() {
+
+  }
+
 }
