@@ -1,41 +1,61 @@
 @import '../../../styles/theme/_colors.scss';
 
-
 .dashboard {
-    margin-top: 63px;
+  margin-top: 63px;
 
+  .mat-tab-links {
+    border: 2px solid $primary;
+    border-radius: 8px;
+    height: 57px;
+
+    .mat-tab-link {
+      border-right: 2px solid $primary;
+      opacity: 1;
+      color: $primary;
+      font-family: Lato;
+      font-size: 16px;
+      font-weight: bold;
+      letter-spacing: 0.27px;
+      line-height: 20px;
+      height: 57px;
+
+      &.mat-tab-label-active {
+        color: $white;
+      }
+
+      &.last {
+        border-right: 0px;
+      }
+    }
+
+    img {
+      display: none;
+    }
+  }
+
+  mat-ink-bar {
+    height: 100%;
+    background-color: $primary !important;
+    z-index: -1;
+  }
+
+  .mobile {
     .mat-tab-links {
-        border: 2px solid $primary;	
-        border-radius: 8px;
-        height: 57px;
-
-        .mat-tab-link {
-            border-right: 2px solid $primary;	
-            opacity: 1;
-            color: $primary;	
-            font-family: Lato;	
-            font-size: 16px;	
-            font-weight: bold;	
-            letter-spacing: 0.27px;	
-            line-height: 20px;
-            height: 57px;
-
-            &.mat-tab-label-active {
-                color: $white;
-            }
-
-            &.last {
-                border-right: 0px;
-            }
+      .mat-tab-link {
+        flex-direction: column;
+        min-width: auto;
+        img {
+          display: block;
         }
-
-       
+      }
     }
+  }
 
-    mat-ink-bar{
-        height: 100%;
-        background-color: $primary !important;
-        z-index: -1;
-    }
-    
+}
+
+@media (max-width:750px) {
+    .dashboard .mat-tab-links .mat-tab-link{
+        font-size: 11px;	
+        letter-spacing: 0.18px;	
+    } 
 }

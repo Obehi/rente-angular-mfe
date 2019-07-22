@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormGroupDirective, FormControl, NgForm, AbstractControl } from '@angular/forms';
 
 @Component({
   selector: 'rente-house',
   templateUrl: './house.component.html',
-  styleUrls: ['./house.component.scss']
+  styleUrls: ['./house.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class HouseComponent implements OnInit {
 
@@ -30,7 +31,7 @@ export class HouseComponent implements OnInit {
     this.setPropertyMode();
   }
 
-  isErrorState(control: AbstractControl | null, form: FormGroup | NgForm | null): boolean {
+  public isErrorState(control: AbstractControl | null, form: FormGroup | NgForm | null): boolean {
     return !!(control && control.invalid && (control.dirty || control.touched));
   }
 

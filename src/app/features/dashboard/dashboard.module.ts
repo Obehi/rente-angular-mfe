@@ -15,6 +15,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatRadioModule } from '@angular/material/radio';
 import { DialogInfoComponent } from './offers/dialog-info/dialog-info.component';
 import { RatingComponent } from './offers/rating/rating.component';
+import { LayoutModule } from '@angular/cdk/layout';
 
 // TODO: ADD separate module for material import
 @NgModule({
@@ -36,7 +37,8 @@ import { RatingComponent } from './offers/rating/rating.component';
     ReactiveFormsModule,
     SharedModule,
     MatDialogModule,
-    MatRadioModule
+    MatRadioModule,
+    LayoutModule
   ],
   entryComponents: [DialogInfoComponent]
 })

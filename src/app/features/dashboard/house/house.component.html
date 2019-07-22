@@ -1,66 +1,78 @@
-<div class="container">
+<div class="house">
   <div class="">
-    <mat-radio-group
-      [(ngModel)]="isAutoMode"
-      (change)="setPropertyMode()"
-      class="row justify-content-center">
-      <div class="col-5">
-        <mat-radio-button [value]="true"><h2 class="title">Bruk Renteradars estimerte boligverdi</h2></mat-radio-button>
-
-        <div class="bg-wrap mt-5" [ngClass]="{disabled: autoPropertyForm.disabled}">
-          <h2 class="title"> 3,965 millioner</h2>
-          <form [formGroup]="autoPropertyForm" novalidate>
-            <div class="mb-4">
-              <rente-input [placeholder]="'Adresse:'" formControlName="adress"
-                [errorStateMatcher]="isErrorState(autoPropertyForm.controls['adress'], autoPropertyForm)">
-              </rente-input>
-
-              <rente-form-message class="text-left d-block" [type]="'info'">Adressen til boligen det er lån på
-              </rente-form-message>
-
-              <div *ngIf="autoPropertyForm.controls['adress'].touched" class="error-message">
-                <rente-form-message class="text-left d-block" [type]="'error'"
-                  *ngIf="autoPropertyForm.controls['adress'].hasError('required')">
-                  Kan ikke være tom Feil størrelse
-                </rente-form-message>
-              </div>
-            </div>
-
-            <div class="mb-4">
-              <rente-input [placeholder]="'Postnummer:'" formControlName="postnummer"
-                [errorStateMatcher]="isErrorState(autoPropertyForm.controls['postnummer'], autoPropertyForm)">
-              </rente-input>
-              <div *ngIf="autoPropertyForm.controls['postnummer'].touched" class="error-message">
-                <rente-form-message class="text-left d-block" [type]="'error'"
-                  *ngIf="autoPropertyForm.controls['postnummer'].hasError('required')">
-                  Vi trenger e-posten din
-                </rente-form-message>
-              </div>
-            </div>
-
-            <div class="mb-4">
-              <rente-input [placeholder]="'Størrelse på bolig (kvm):'" formControlName="kvm">
-              </rente-input>
-            </div>
-          </form>
+    <mat-radio-group [(ngModel)]="isAutoMode" (change)="setPropertyMode()" class="">
+      <div class="row justify-content-center mt-5">
+        <div class="col-lg-5 col-12">
+          <mat-radio-button [value]="true">
+            <h2 class="title m-0">Bruk Renteradars estimerte boligverdi</h2>
+          </mat-radio-button>
+        </div>
+        <div class="col-lg-5 col-12">
+          <mat-radio-button [value]="false">
+            <h2 class="title m-0">Bruk mitt eget estimat</h2>
+          </mat-radio-button>
         </div>
       </div>
-      <div class="col-5">
-        <mat-radio-button [value]="false"><h2 class="title">Bruk mitt eget estimat</h2></mat-radio-button>
-        <div class="bg-wrap mt-5" [ngClass]="{disabled: manualPropertyForm.disabled}">
-          <h3>Min estimerte boligverdi:</h3>
-          <form [formGroup]="manualPropertyForm" novalidate>
-            <div class="mb-4">
-              <rente-input [placeholder]="'Boligen min er verdt:'" formControlName="adress"
-                [errorStateMatcher]="isErrorState(manualPropertyForm.controls['adress'], manualPropertyForm)">
-              </rente-input>
+      <div class="row justify-content-center">
+        <div class="col-lg-5 col-12">
 
-              <rente-form-message class="text-left d-block" [type]="'info'">Vi benytter boligverdien når vi overvåker
-                renten din, pass derfor på at denne ikke er helt urealistisk
-              </rente-form-message>
 
-            </div>
-          </form>
+          <div class="bg-wrap mt-0 mt-lg-5" [ngClass]="{disabled: autoPropertyForm.disabled}">
+            <p>Renteradars estimerte boligverdi:</p>
+            <h2 class="title"> 3,965 millioner</h2>
+            <form [formGroup]="autoPropertyForm" novalidate>
+              <div class="mb-4">
+                <rente-input [placeholder]="'Adresse:'" formControlName="adress"
+                  [errorStateMatcher]="isErrorState(autoPropertyForm.controls['adress'], autoPropertyForm)">
+                </rente-input>
+
+                <rente-form-message class="text-left d-block" [type]="'info'">Adressen til boligen det er lån på
+                </rente-form-message>
+
+                <div *ngIf="autoPropertyForm.controls['adress'].touched" class="error-message">
+                  <rente-form-message class="text-left d-block" [type]="'error'"
+                    *ngIf="autoPropertyForm.controls['adress'].hasError('required')">
+                    Kan ikke være tom Feil størrelse
+                  </rente-form-message>
+                </div>
+              </div>
+
+              <div class="mb-4">
+                <rente-input [placeholder]="'Postnummer:'" formControlName="postnummer"
+                  [errorStateMatcher]="isErrorState(autoPropertyForm.controls['postnummer'], autoPropertyForm)">
+                </rente-input>
+                <div *ngIf="autoPropertyForm.controls['postnummer'].touched" class="error-message">
+                  <rente-form-message class="text-left d-block" [type]="'error'"
+                    *ngIf="autoPropertyForm.controls['postnummer'].hasError('required')">
+                    Vi trenger e-posten din
+                  </rente-form-message>
+                </div>
+              </div>
+
+              <div class="mb-4">
+                <rente-input [placeholder]="'Størrelse på bolig (kvm):'" formControlName="kvm">
+                </rente-input>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="col-lg-5 col-12">
+
+          <div class="bg-wrap mt-0 mt-lg-5" [ngClass]="{disabled: manualPropertyForm.disabled}">
+            <p>Min estimerte boligverdi:</p>
+            <form [formGroup]="manualPropertyForm" novalidate>
+              <div class="mb-4">
+                <rente-input [placeholder]="'Boligen min er verdt:'" formControlName="adress"
+                  [errorStateMatcher]="isErrorState(manualPropertyForm.controls['adress'], manualPropertyForm)">
+                </rente-input>
+
+                <rente-form-message class="text-left d-block" [type]="'info'">Vi benytter boligverdien når vi overvåker
+                  renten din, pass derfor på at denne ikke er helt urealistisk
+                </rente-form-message>
+
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </mat-radio-group>

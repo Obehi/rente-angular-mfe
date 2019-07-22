@@ -9,12 +9,36 @@ body {
   font-family: $font-family-base;
 }
 
-*, ::after, ::before {
+*,
+::after,
+::before {
   box-sizing: border-box;
 }
 
 hr {
   border: 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.5) ;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
   width: 100%;
+}
+
+mat-radio-button.mat-accent {
+  &.mat-radio-checked .mat-radio-container {
+    .mat-radio-outer-circle {
+      border-color: $primary;
+    }
+
+    .mat-radio-persistent-ripple {
+      background-color: $primary !important;
+    }
+  }
+
+  .mat-radio-container {
+    .mat-radio-outer-circle {
+      border-color: $primary;
+    }
+
+    .mat-radio-inner-circle {
+      background-color: $primary;
+    }
+  }
 }

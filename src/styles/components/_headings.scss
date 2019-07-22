@@ -47,3 +47,9 @@ h6, .h6 { font-size: $h6-font-size; }
   white-space: normal;
 }
 
+
+@media (max-width: 960px) {
+  .title{
+      font-size: 24px;
+  }
+}
