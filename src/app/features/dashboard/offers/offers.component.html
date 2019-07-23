@@ -1,7 +1,7 @@
 <div class="offers" *ngIf="offersInfo; else noOffers">
   <h3>Rentebarometer</h3>
   <div class="row">
-    <div class="col-12 col-sm-5">
+    <div class="col-12 col-md-5">
       <rente-rating [rating]="offersService.getRatingNumberFromLoanState(offersInfo.currentLoanState)"></rente-rating>
       <p class="text-border mb-5">Tips: Boligverdi/belåningsgrad er viktig mtp hva bankene tilbyr. Du kan endre i Bolig
         fanen</p>
@@ -10,7 +10,7 @@
         mulighet til å bli medlem prøv gjerne å endre ditt medlemskap ved å klikke her for å se om det påvirker
         resultatet av din rentesjekk. (Medlemskap pleier å koste ca 4000 i året)</p>
     </div>
-    <div class="col-12 col-sm-7 text-center">
+    <div class="col-12 col-md-7 text-center">
       <div class="row mb-4">
         <div class="col-12 col-sm-7">
           <div class="bg-wrap" [ngSwitch]="offersInfo.currentLoanState">
