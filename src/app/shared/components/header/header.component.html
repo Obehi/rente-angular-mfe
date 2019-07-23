@@ -9,15 +9,16 @@
             alt="Renteradar">
     </a>
 
-    <button class="navbar-toggler navbar-toggler-right text-uppercase bg-primary text-white rounded" 
-            type="button"
-            data-toggle="collapse" 
-            data-target="#navbarResponsive" 
-            aria-controls="navbarResponsive" 
-            aria-expanded="false"
-            aria-label="Toggle navigation">
-              Menu
-              <i class="fas fa-bars"></i>
+    <button
+      class="navbar-toggler navbar-toggler-right text-uppercase bg-primary text-white rounded" 
+      type="button"
+      data-toggle="collapse" 
+      data-target="#navbarResponsive" 
+      aria-controls="navbarResponsive" 
+      aria-expanded="false"
+      aria-label="Toggle navigation">
+      Menu
+      <i class="fas fa-bars"></i>
     </button>
     <div class="collapse navbar-collapse" 
           id="navbarResponsive">
@@ -38,11 +39,27 @@
           </a>
         </li>
 
-        <li class="nav-item mx-0 mx-lg-1">
+        <li class="nav-item mx-0 mx-lg-1" *ngIf="!auth.isLoggedIn">
           <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger text-white" 
             [routerLink]="['/velgbank']" 
             routerLinkActive="router-link-active">
             Logg inn
+          </a>
+        </li>
+
+        <li class="nav-item mx-0 mx-lg-1" *ngIf="auth.isLoggedIn">
+          <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger text-white" 
+            [routerLink]="['/dashboard/tilbud']" 
+            routerLinkActive="router-link-active">
+            Din side
+          </a>
+        </li>
+
+        <li class="nav-item mx-0 mx-lg-1" *ngIf="auth.isLoggedIn">
+          <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger text-white" 
+            (click)="auth.logout()"
+            routerLinkActive="router-link-active">
+            Logg out
           </a>
         </li>
       </ul>

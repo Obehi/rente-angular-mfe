@@ -12,11 +12,13 @@ export class PreferencesComponent implements OnInit {
 
   ngOnInit() {
     this.preferencesForm = this.fb.group({
-      checkRateReminderType: [''],
-      radioBlock2: [''],
-      radioBlock3: [''],
-      radioBlock4: [''],
+      checkRateReminderType: [1],
+      radioBlock2: [true],
+      radioBlock3: [true],
+      radioBlock4: [true],
     });
   }
+
+  public updatePreferances() {}
 
 }

@@ -10,6 +10,7 @@ import { TermsConditionsComponent } from '@features/terms-conditions/terms-condi
 import { PrivacyPolicyComponent } from '@features/privacy-policy/privacy-policy.component';
 import { BankSelectComponent } from '@features/bank-select/bank-select.component';
 import { ContactUsComponent } from '@features/contact-us/contact-us.component';
+import { AuthGuard } from '@shared/guards/auth.guard';
 
 const routes: Routes = [
   { path: '', component: LandingComponent},
@@ -26,9 +27,10 @@ const routes: Routes = [
   },
   {
     path: ROUTES_MAP.dashboard,
-    loadChildren: () => import('./features/dashboard/dashboard.module').then(m => m.DashboardModule)
+    loadChildren: () => import('./features/dashboard/dashboard.module').then(m => m.DashboardModule),
+    canActivate: [AuthGuard]
   },
-  { path: '*', component: PageNotFoundComponent},
+  { path: '**', component: PageNotFoundComponent},
 ];
 
 @NgModule({

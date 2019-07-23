@@ -17,7 +17,7 @@ import { DialogInfoComponent } from './offers/dialog-info/dialog-info.component'
 import { RatingComponent } from './offers/rating/rating.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import {MatSelectModule} from '@angular/material/select';
-import {MatInputModule} from '@angular/material';
+import {MatInputModule, MatChipsModule, MatIconModule, MatAutocompleteModule} from '@angular/material';
 // TODO: ADD separate module for material import
 @NgModule({
   declarations: [
@@ -41,7 +41,10 @@ import {MatInputModule} from '@angular/material';
     MatRadioModule,
     LayoutModule,
     MatSelectModule,
-    MatInputModule
+    MatInputModule,
+    MatChipsModule,
+    MatIconModule,
+    MatAutocompleteModule
   ],
   entryComponents: [DialogInfoComponent]
 })
