@@ -15,7 +15,8 @@ export const API_URL_MAP = {
     user: '/user'
   },
   user: {
-    base: '/user'
+    base: '/user',
+    me: '/me'
   },
   loan: {
     base: '/loan',

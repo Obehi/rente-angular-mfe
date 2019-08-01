@@ -48,6 +48,7 @@ export class InputComponent implements ControlValueAccessor, OnChanges {
   @Input() errorStateMatcher: boolean;
   // tslint:disable-next-line:no-input-rename
   @Input('value') inputValue: any = '';
+  @Input() textMask: any;
   public matcher: MyErrorStateMatcher;
   @HostBinding('class.input-component') true;
 

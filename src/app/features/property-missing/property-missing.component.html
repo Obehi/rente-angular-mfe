@@ -1,0 +1,97 @@
+<div class="container contact-us my-5">
+  <div class="row justify-content-center">
+    <div class="col-6 bg-wrap">
+      <h2 class="title">Hei, Ola Nordmann</h2>
+      <h4>Vi begynner straks å overvåke renten for deg, men vi trenger litt informasjon først:</h4>
+
+      <form [formGroup]="propertyForm" novalidate>
+        <div class="mb-4">
+          <mat-label>Medlemskap:</mat-label>
+
+          <rente-form-message class="text-left d-block" 
+                              [type]="'info'">
+                              Bankene gir ofte bedre betingelser hvis du er medlem i en organisasjon
+          </rente-form-message>
+        </div>
+
+        <div class="mb-4">
+          <mat-label>Størrelse på bolig (kvm):</mat-label>
+          <rente-input [placeholder]="'Antall kvadratmeter'" 
+                        formControlName="apartmentSize" 
+                        [errorStateMatcher]="isErrorState(propertyForm.controls['apartmentSize'], propertyForm)">
+          </rente-input>
+
+          <rente-form-message class="text-left d-block" 
+                              [type]="'info'">
+                              For å finne estimert verdi på bolig
+          </rente-form-message>
+
+          <div *ngIf="propertyForm.controls['apartmentSize'].touched" 
+                class="error-message">
+            <rente-form-message class="text-left d-block" 
+                                [type]="'error'" 
+                                *ngIf="propertyForm.controls['apartmentSize'].hasError('required')">
+                                  Kan ikke være tom Feil størrelse
+            </rente-form-message>
+          </div>
+        </div>
+
+        <div class="mb-4">
+          <mat-label>E-post</mat-label>
+          <rente-input [placeholder]="'E-post'"
+                        formControlName="email" 
+                        [errorStateMatcher]="isErrorState(propertyForm.controls['email'], propertyForm)">
+          </rente-input>
+
+          <rente-form-message class="text-left d-block" 
+                              [type]="'info'">
+                              Vi bruker e-post for å minne deg på ... 
+          </rente-form-message>
+
+          <div *ngIf="propertyForm.controls['email'].touched" 
+                class="error-message">
+            <rente-form-message class="text-left d-block" 
+                                [type]="'error'" 
+                                *ngIf="propertyForm.controls['email'].hasError('required')">
+                                  Kan ikke være tom Feil størrelse
+            </rente-form-message>
+          </div>
+        </div>
+
+        <div class="mb-4">
+          <mat-label> Din/Husstandens brutto årsinntekt:</mat-label>
+           
+          <rente-input [placeholder]="'Bruttoårsinntekt'"
+                       formControlName="income" 
+                       [errorStateMatcher]="isErrorState(propertyForm.controls['income'], propertyForm)">
+          </rente-input>
+
+          <rente-form-message class="text-left d-block" 
+                              [type]="'info'">
+                              Din/Husstandens inntekt er en viktig parameter for renten bankene tilbyr
+          </rente-form-message>
+
+          <div *ngIf="propertyForm.controls['income'].touched"
+                 class="error-message">
+            <rente-form-message class="text-left d-block" 
+                                [type]="'error'" 
+                                *ngIf="propertyForm.controls['income'].hasError('required')">
+                                Kan ikke være tom Feil størrelse
+            </rente-form-message>
+          </div>
+        </div>
+
+        <div class="row mt-3 justify-content-center">
+            <div class="col-12 col-sm-6 ">
+              <rente-button
+                color="primary"
+                [disabled]="!propertyForm.valid"
+                (click)="updateProperty(propertyForm.value)">
+                Lagre
+              </rente-button>
+            </div>
+          </div>
+      </form>
+    </div>
+  </div>
+</div>

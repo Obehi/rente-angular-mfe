@@ -17,6 +17,7 @@ import {
 import { Subscription, interval, Observable, timer } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { UserService } from '@services/remote-api/user.service';
 
 @Component({
   selector: 'rente-login-status',
@@ -43,7 +44,8 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
 
   constructor(
     private router: Router,
-    private authService: AuthService) { }
+    private authService: AuthService,
+    private userService: UserService) { }
 
   ngOnInit() {
     this.setDefaultSteps();
@@ -197,14 +199,22 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
             break;
           case BANKID_STATUS.LOANS_PERSISTED:
             this.viewStatus.isLoansPersisted = true;
-            this.loginStep3Status = MESSAGE_STATUS.SUCCESS;
-
             const user = response.data.user;
 
             this.authService.loginWithToken(user.phone, user.oneTimeToken).subscribe(res => {
               console.log('login', res);
-              localStorage.setItem('loans', JSON.stringify(response.data));
+
               this.router.navigate(['/dashboard/tilbud/']);
+
+              // TODO: Change mo mergemap
+              this.userService.getUserInfo().subscribe(userInfo => {
+                this.loginStep3Status = MESSAGE_STATUS.SUCCESS;
+                if (userInfo.income === null) {
+                  this.router.navigate(['/property-missing']);
+                } else {
+                  this.router.navigate(['/dashboard/tilbud/']);
+                }
+              });
             });
 
             break;
@@ -231,5 +241,6 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
     this.loginStep2Status = MESSAGE_STATUS.INFO;
     this.loginStep3Status = MESSAGE_STATUS.INFO;
   }
+
 
 }

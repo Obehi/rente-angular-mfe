@@ -16,6 +16,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
   public isLoginStarted = false;
   public userData: any = {};
   public userBank: any;
+  mask = [/\d/, /\d/, /\d/, /\d/, /\d/, /\d/, ' ', /\d/, /\d/, /\d/, /\d/, /\d/];
   private routeParamsSub: Subscription;
 
   constructor(
@@ -26,10 +27,8 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.routeParamsSub = this.route.params.subscribe((params: any) => {
       if (params && params.bankName) {
-        console.log(params.bankName);
         this.userBank = BANK_MAP[params.bankName];
         this.isSsnBankLogin = BANK_MAP[params.bankName].isSSN;
-          // console.log(this.userBank);
         this.setBankIdForm();
       }
     });
@@ -47,6 +46,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
   private initForm() {
     // 13018939554
     // 93253768
+    // VALIDATION_PATTERN.ssn
     return this.fb.group({
       ssn: ['', Validators.compose([
         Validators.required,

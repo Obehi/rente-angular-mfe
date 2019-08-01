@@ -19,6 +19,7 @@ export class OffersComponent implements OnInit {
   public loans: Loans;
   public banksMap = BANKS_DATA;
   public loanStateMap = LOAN_STATE_MAP;
+  public isLoading = true;
 
   public offersMock = {
     bank: 'DNB',
@@ -140,12 +141,13 @@ export class OffersComponent implements OnInit {
   ) { }
 
   public ngOnInit(): void {
-    this.offersInfo = this.offersMock;
-
-    // this.loansService.getOffers().subscribe((res: Offers) => {
-    //   console.log('offers', res);
-    //   this.offersInfo = res;
-    // });
+    // this.offersInfo = this.offersMock;
+ 
+    this.loansService.getOffers().subscribe((res: Offers) => {
+      console.log('offers', res);
+      this.offersInfo = res;
+      this.isLoading = false;
+    });
   }
 
   public openOfferDialog(offer: OfferInfo): void {

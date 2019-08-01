@@ -28,6 +28,13 @@ import { PreferancesService } from '@services/remote-api/preferances.service';
 import { ProfileService } from '@services/remote-api/profile.service';
 import { HttpClientModule } from '@angular/common/http';
 import { BigNumberPipe } from './pipes/big-number.pipe';
+import { ChipsAutocompleteComponent } from './components/ui-components/chips-autocomplete/chips-autocomplete.component';
+import { NgxMaskModule, IConfig } from 'ngx-mask';
+import { TextMaskModule } from 'angular2-text-mask';
+import { UserService } from '@services/remote-api/user.service';
+import { AbsPipe } from './pipes/abs.pipe';
+
+// export const options: Partial<IConfig> | (() => Partial<IConfig>);
 
 const components = [
   HeaderComponent,
@@ -52,7 +59,8 @@ const services = [
   HouseService,
   LoansService,
   PreferancesService,
-  ProfileService
+  ProfileService,
+  UserService
 ];
 
 @NgModule({
@@ -64,10 +72,11 @@ const services = [
     MatButtonModule,
     MatInputModule,
     MatSnackBarModule,
-    MatRadioModule
+    MatRadioModule,
+    TextMaskModule
   ],
-  declarations: [...components, BigNumberPipe],
-  exports: [...components],
+  declarations: [...components, BigNumberPipe, ChipsAutocompleteComponent, AbsPipe],
+  exports: [...components, AbsPipe],
   providers: [...services]
 })
 export class SharedModule { }

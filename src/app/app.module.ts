@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,6 +16,12 @@ import { BankSelectComponent } from './features/bank-select/bank-select.componen
 import { MatExpansionModule } from '@angular/material/expansion';
 import { ContactUsComponent } from './features/contact-us/contact-us.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { PropertyMissingComponent } from '@features/property-missing/property-missing.component';
+import { MatFormFieldModule } from '@angular/material';
+import { registerLocaleData } from '@angular/common';
+import localeNo from '@angular/common/locales/nb';
+
+registerLocaleData(localeNo);
 
 @NgModule({
   declarations: [
@@ -28,7 +34,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     TermsConditionsComponent,
     PrivacyPolicyComponent,
     BankSelectComponent,
-    ContactUsComponent
+    ContactUsComponent,
+    PropertyMissingComponent
   ],
   imports: [
     BrowserModule,
@@ -36,9 +43,10 @@ import { ReactiveFormsModule } from '@angular/forms';
     AppRoutingModule,
     SharedModule,
     MatExpansionModule,
+    MatFormFieldModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [{ provide: LOCALE_ID, useValue: 'nb-NO' }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

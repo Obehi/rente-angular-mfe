@@ -79,7 +79,7 @@ export const BANKS_DATA = {
   BIRKENES_SB: {
     name: 'BIRKENES_SB',
     img: '../../assets/img/banks-logo/square/birkenes.png',
-    imgCircle: '',
+    imgCircle: '../../assets/img/banks-logo/round/birkenes.png',
     url: 'https://birkenes-sparebank.no/lane/boliglan',
     label: 'Birkenes Sparebank'
   },
@@ -100,7 +100,7 @@ export const BANKS_DATA = {
   BOLIGKREDITT: {
     name: 'BOLIGKREDITT',
     img: '../../assets/img/banks-logo/square/boligkreditt.png',
-    imgCircle: '',
+    imgCircle: '../../assets/img/banks-logo/round/boligkreditt.png',
     url: 'https://www.boligkreditt.no/boliglan/',
     label: 'Boligkreditt.no (Sparebanken Øst Boligkreditt AS)'
   },
@@ -114,21 +114,21 @@ export const BANKS_DATA = {
   DANSKE_BANK: {
     name: 'DANSKE_BANK',
     img: '../../assets/img/banks-logo/square/danske.png',
-    imgCircle: '',
+    imgCircle: '../../assets/img/banks-logo/round/danske.png',
     url: '"https://danskebank.no/privat/produkter/laan/boliglaan',
     label: 'Danske Bank'
   },
   DIN_BANK: {
     name: 'DIN_BANK',
     img: '../../assets/img/banks-logo/square/dinbank.png',
-    imgCircle: '',
+    imgCircle: '../../assets/img/banks-logo/round/dinbank.png',
     url: 'https://www.dinbank.no/lane',
     label: 'Din Bank (Sparebanken Øst)'
   },
   DNB: {
     name: 'DNB',
     img: '../../assets/img/banks-logo/square/dnb.png',
-    imgCircle: '',
+    imgCircle: '../../assets/img/banks-logo/round/dnb.png',
     url: 'https://www.dnb.no/privat/laan/boliglaan.html?WT.ac=Seksjon-pm_Laan_boliglaan_hover_nk',
     label: 'DNB Bank ASA'
   },
@@ -170,7 +170,7 @@ export const BANKS_DATA = {
   FANA_SB: {
     name: 'FANA_SB',
     img: '../../assets/img/banks-logo/square/fana.png',
-    imgCircle: '',
+    imgCircle: '../../assets/img/banks-logo/round/fana.png',
     url: 'https://www.fanasparebank.no/privat/lan/lan-til-bolig/boliglan/',
     label: 'Fana Sparebank'
   },
@@ -198,7 +198,7 @@ export const BANKS_DATA = {
   GJENSIDIGE_BANK: {
     name: 'GJENSIDIGE_BANK',
     img: '../../assets/img/banks-logo/square/gjensidige.png',
-    imgCircle: '',
+    imgCircle: '../../assets/img/banks-logo/round/gjensidige.png',
     url: 'https://www.gjensidige.no/privat/bank/boliglan/vare-boliglan',
     label: 'Gjensidige Bank'
   },
@@ -226,7 +226,7 @@ export const BANKS_DATA = {
   HANDELSBANKEN: {
     name: 'HANDELSBANKEN',
     img: '../../assets/img/banks-logo/square/handelsbanken.png',
-    imgCircle: '',
+    imgCircle: '../../assets/img/banks-logo/round/handelsbanken.png',
     url: 'https://www.handelsbanken.no/no/privat/lane/boliglan',
     label: 'Handelsbanken NUF'
   },
@@ -247,7 +247,7 @@ export const BANKS_DATA = {
   HEGRA_SB: {
     name: 'HEGRA_SB',
     img: '../../assets/img/banks-logo/square/hegra.png',
-    imgCircle: '',
+    imgCircle: '../../assets/img/banks-logo/round/hegra.png',
     url: 'https://hegrasparebank.no/lane/boliglan',
     label: 'Hegra Sparebank'
   },
@@ -317,7 +317,7 @@ export const BANKS_DATA = {
   KLP: {
     name: 'KLP',
     img: '../../assets/img/banks-logo/square/klp.png',
-    imgCircle: '',
+    imgCircle: '../../assets/img/banks-logo/round/klp.png',
     url: 'https://www.klp.no/bank-og-lan/vare-boliglan/boliglan',
     label: 'KLP Banken AS'
   },
@@ -331,14 +331,14 @@ export const BANKS_DATA = {
   KVINESDAL_SB: {
     name: 'KVINESDAL_SB',
     img: '../../assets/img/banks-logo/square/kvinesdal.png',
-    imgCircle: '',
+    imgCircle: '../../assets/img/banks-logo/round/kvinesdal.png',
     url: 'https://kvinesdalsparebank.no/lane/boliglan',
     label: 'Kvinesdal Sparebank'
   },
   LANDKREDITT: {
     name: 'LANDKREDITT',
     img: '../../assets/img/banks-logo/square/landkreditt.png',
-    imgCircle: '',
+    imgCircle: '../../assets/img/banks-logo/round/landkreditt.png',
     url: 'https://www.landkredittbank.no/lan/privat/boliglan',
     label: 'Landkreditt Bank AS'
   },
@@ -359,7 +359,7 @@ export const BANKS_DATA = {
   LILLESTROMBANKEN: {
     name: 'LILLESTROMBANKEN',
     img: '../../assets/img/banks-logo/square/lillestrom.png',
-    imgCircle: '',
+    imgCircle: './../assets/img/banks-logo/round/lillestrom.png',
     url: 'https://lillestrombanken.no/lane/boliglan',
     label: 'LillestrømBanken'
   },
@@ -387,14 +387,14 @@ export const BANKS_DATA = {
   NORDEA: {
     name: 'NORDEA',
     img: '../../assets/img/banks-logo/square/nordea.png',
-    imgCircle: '',
+    imgCircle: '../../assets/img/banks-logo/round/nordea.png',
     url: 'https://www.nordea.no/privat/vare-produkter/lan-og-kreditt/boliglan/',
     label: 'NORDEA BANK ABP, FILIAL I NORGE'
   },
   NORDIREKTEBANK: {
     name: 'NORDIREKTEBANK',
     img: '../../assets/img/banks-logo/square/nordirektebank.png',
-    imgCircle: '',
+    imgCircle: '../../assets/img/banks-logo/round/nordirektebank.png',
     url: 'https://nordirektebank.no/lane/boliglan',
     label: 'NORDirektebank (Skagerrak Sparebank)'
   },
@@ -415,14 +415,14 @@ export const BANKS_DATA = {
   NYBYGGER: {
     name: 'NYBYGGER',
     img: '../../assets/img/banks-logo/square/nybygger.png',
-    imgCircle: '',
+    imgCircle: '../../assets/img/banks-logo/round/nybygger.png',
     url: 'https://www.nybygger.no/boliglan/',
     label: 'Nybygger.no (Sparebanken Øst)'
   },
   OBOS_BANKEN: {
     name: 'OBOS_BANKEN',
     img: '../../assets/img/banks-logo/square/obos.png',
-    imgCircle: '',
+    imgCircle: '../../assets/img/banks-logo/round/obos.png',
     url: 'https://bank.obos.no/privat/laan/',
     label: 'OBOS-banken AS'
   },
@@ -450,7 +450,7 @@ export const BANKS_DATA = {
   OSLO_PENSJON: {
     name: 'OSLO_PENSJON',
     img: '../../assets/img/banks-logo/square/oslopensjon.png',
-    imgCircle: '',
+    imgCircle: '../../assets/img/banks-logo/round/oslopensjon.png',
     url: 'https://www.opf.no/personkunde/lan/lan/',
     label: 'Oslo Pensjonsforsikring AS'
   },
@@ -471,14 +471,14 @@ export const BANKS_DATA = {
   SANDNES_SB: {
     name: 'SANDNES_SB',
     img: '../../assets/img/banks-logo/square/sandnes.png',
-    imgCircle: '',
+    imgCircle: '../../assets/img/banks-logo/round/sandnes.png',
     url: 'https://sandnes-sparebank.no/lane/boliglan',
     label: 'Sandnes Sparebank'
   },
   SBANKEN: {
     name: 'SBANKEN',
     img: '../../assets/img/banks-logo/square/sbanken.png',
-    imgCircle: '',
+    imgCircle: '../../assets/img/banks-logo/round/sbanken.png',
     url: 'https://sbanken.no/lan/boliglan/',
     label: 'Sbanken ASA'
   },
@@ -492,7 +492,7 @@ export const BANKS_DATA = {
   SKAGERRAK_SB: {
     name: 'SKAGERRAK_SB',
     img: '../../assets/img/banks-logo/square/skagerak.png',
-    imgCircle: '',
+    imgCircle: '../../assets/img/banks-logo/round/skagerak.png',
     url: 'https://skagerraksparebank.no/lane/boliglan',
     label: 'Skagerrak Sparebank'
   },
@@ -513,7 +513,7 @@ export const BANKS_DATA = {
   SOGN: {
     name: 'SOGN',
     img: '../../assets/img/banks-logo/square/sogn.png',
-    imgCircle: '',
+    imgCircle: '../../assets/img/banks-logo/round/sogn.png',
     url: 'https://sognbank.no/lane/boliglan',
     label: 'Sogn Sparebank'
   },
@@ -527,105 +527,105 @@ export const BANKS_DATA = {
   SPAREBANKEN_OST: {
     name: 'SPAREBANKEN_OST',
     img: '../../assets/img/banks-logo/square/sparebankenOst.png',
-    imgCircle: '',
+    imgCircle: '../../assets/img/banks-logo/round/sparebankenOst.png',
     url: 'https://www.oest.no/lan/boliglan/',
     label: 'Sparebanken Øst'
   },
   SPAREBANK_1_BV: {
     name: 'SPAREBANK_1_BV',
     img: '../../assets/img/banks-logo/square/sparebank1.png',
-    imgCircle: '',
+    imgCircle: '../../assets/img/banks-logo/round/sparebanken1.png',
     url: 'https://www.sparebank1.no/nb/bv/privat/lan/boliglan.html',
     label: 'SpareBank 1 BV'
   },
   SPAREBANK_1_GUDBRANDSDAL: {
     name: 'SPAREBANK_1_GUDBRANDSDAL',
     img: '../../assets/img/banks-logo/square/sparebank1.png',
-    imgCircle: '',
+    imgCircle: '../../assets/img/banks-logo/round/sparebanken1.png',
     url: 'https://www.sparebank1.no/nb/gudbrandsdal/privat/lan/boliglan.html',
     label: 'SPAREBANK 1 GUDBRANDSDAL'
   },
   SPAREBANK_1_HALLINGDAL_VALDRES: {
     name: 'SPAREBANK_1_HALLINGDAL_VALDRES',
     img: '../../assets/img/banks-logo/square/sparebank1.png',
-    imgCircle: '',
+    imgCircle: '../../assets/img/banks-logo/round/sparebanken1.png',
     url: 'https://www.sparebank1.no/nb/hallingdal/privat/lan/boliglan.html',
     label: 'SpareBank 1 Hallingdal Valdres'
   },
   SPAREBANK_1_LOM_OG_SKJAK: {
     name: 'SPAREBANK_1_LOM_OG_SKJAK',
     img: '../../assets/img/banks-logo/square/sparebank1.png',
-    imgCircle: '',
+    imgCircle: '../../assets/img/banks-logo/round/sparebanken1.png',
     url: 'https://www.sparebank1.no/nb/lom-skjaak/privat/lan/boliglan.html',
     label: 'SpareBank 1 Lom og Skjåk'
   },
   SPAREBANK_1_MODUM: {
     name: 'SPAREBANK_1_MODUM',
     img: '../../assets/img/banks-logo/square/sparebank1.png',
-    imgCircle: '',
+    imgCircle: '../../assets/img/banks-logo/round/sparebanken1.png',
     url: 'https://www.sparebank1.no/nb/modum/privat/lan/boliglan.html',
     label: 'SpareBank 1 Modum'
   },
   SPAREBANK_1_NORD_NORGE: {
     name: 'SPAREBANK_1_NORD_NORGE',
     img: '../../assets/img/banks-logo/square/sparebank1.png',
-    imgCircle: '',
+    imgCircle: '../../assets/img/banks-logo/round/sparebanken1.png',
     url: 'https://www.sparebank1.no/nb/nord-norge/privat/lan/boliglan.html',
     label: 'SpareBank 1 Nord-Norge'
   },
   SPAREBANK_1_NORDVEST: {
     name: 'SPAREBANK_1_NORDVEST',
     img: '../../assets/img/banks-logo/square/sparebank1.png',
-    imgCircle: '',
+    imgCircle: '../../assets/img/banks-logo/round/sparebanken1.png',
     url: 'https://www.sparebank1.no/nb/nordvest/privat/lan/boliglan.html',
     label: 'SpareBank 1 Nordvest'
   },
   SPAREBANK_1_RINGERIKE_HADELAND: {
     name: 'SPAREBANK_1_RINGERIKE_HADELAND',
     img: '../../assets/img/banks-logo/square/sparebank1.png',
-    imgCircle: '',
+    imgCircle: '../../assets/img/banks-logo/round/sparebanken1.png',
     url: 'https://www.sparebank1.no/nb/ringerike-hadeland/privat/lan/boliglan.html',
     label: 'SpareBank 1 Ringerike Hadeland'
   },
   SPAREBANK_1_SMN: {
     name: 'SPAREBANK_1_SMN',
     img: '../../assets/img/banks-logo/square/sparebank1.png',
-    imgCircle: '',
+    imgCircle: '../../assets/img/banks-logo/round/sparebanken1.png',
     url: 'https://www.sparebank1.no/nb/smn/privat/lan/boliglan.html',
     label: 'SpareBank 1 SMN'
   },
   SPAREBANK_1_SR_BANK: {
     name: 'SPAREBANK_1_SR_BANK',
     img: '../../assets/img/banks-logo/square/sparebank1.png',
-    imgCircle: '',
+    imgCircle: '../../assets/img/banks-logo/round/sparebanken1.png',
     url: 'https://www.sparebank1.no/nb/sr-bank/privat/lan/boliglan.html',
     label: 'SpareBank 1 SR-Bank'
   },
   SPAREBANK_1_SORE_SUNNMORE: {
     name: 'SPAREBANK_1_SORE_SUNNMORE',
     img: '../../assets/img/banks-logo/square/sparebank1.png',
-    imgCircle: '',
+    imgCircle: '../../assets/img/banks-logo/round/sparebanken1.png',
     url: 'https://www.sparebank1.no/nb/sore-sunnmore/privat/lan/boliglan.html',
     label: 'SpareBank 1 Søre Sunnmøre'
   },
   SPAREBANK_1_TELEMARK: {
     name: 'SPAREBANK_1_TELEMARK',
     img: '../../assets/img/banks-logo/square/sparebank1.png',
-    imgCircle: '',
+    imgCircle: '../../assets/img/banks-logo/round/sparebanken1.png',
     url: 'https://www.sparebank1.no/nb/telemark/privat/lan/boliglan.html',
     label: 'SpareBank 1 Telemark'
   },
   SPAREBANK_1_OSTFOLD_AKERSHUS: {
     name: 'SPAREBANK_1_OSTFOLD_AKERSHUS',
     img: '../../assets/img/banks-logo/square/sparebank1.png',
-    imgCircle: '',
+    imgCircle: '../../assets/img/banks-logo/round/sparebanken1.png',
     url: 'https://www.sparebank1.no/nb/ostfold-akershus/privat/lan/boliglan.html',
     label: 'SpareBank 1 Østfold Akershus'
   },
   SPAREBANK_1_OSTLANDET: {
     name: 'SPAREBANK_1_OSTLANDET',
     img: '../../assets/img/banks-logo/square/sparebank1.png',
-    imgCircle: '',
+    imgCircle: '../../assets/img/banks-logo/round/sparebanken1.png',
     url: 'https://www.sparebank1.no/nb/ostlandet/privat/lan/boliglan.html',
     label: 'SpareBank 1 Østlandet'
   },
@@ -674,7 +674,7 @@ export const BANKS_DATA = {
   STATENS_PENSJONSKASSE: {
     name: 'STATENS_PENSJONSKASSE',
     img: '../../assets/img/banks-logo/square/statenspensjonskasse.png',
-    imgCircle: '',
+    imgCircle: './../assets/img/banks-logo/round/statenspensjonskasse.png',
     url: 'https://www.spk.no/Boliglan/',
     label: 'Statens pensjonskasse'
   },
@@ -688,7 +688,7 @@ export const BANKS_DATA = {
   SUNNDAL_SB: {
     name: 'SUNNDAL_SB',
     img: '../../assets/img/banks-logo/square/sunndalsparebank.png',
-    imgCircle: '',
+    imgCircle: '../../assets/img/banks-logo/round/sunndal.png',
     url: 'https://sunndal-sparebank.no/lane/boliglan',
     label: 'Sunndal Sparebank'
   },
@@ -702,7 +702,7 @@ export const BANKS_DATA = {
   STOREBRAND: {
     name: 'STOREBRAND',
     img: '../../assets/img/banks-logo/square/storebrand.png',
-    imgCircle: '',
+    imgCircle: '../../assets/img/banks-logo/round/storebrand.png',
     url: 'https://www.storebrand.no/privat/bank-og-lan',
     label: 'Storebrand Bank ASA'
   },
@@ -716,7 +716,7 @@ export const BANKS_DATA = {
   TOLGA_SB: {
     name: 'TOLGA_SB',
     img: '../../assets/img/banks-logo/square/tolga.png',
-    imgCircle: '',
+    imgCircle: '../../assets/img/banks-logo/round/tolga.png',
     url: 'https://tos.no/lane/boliglan',
     label: 'Tolga-Os Sparebank'
   },
@@ -744,7 +744,7 @@ export const BANKS_DATA = {
   VALDRES_SB: {
     name: 'VALDRES_SB',
     img: '../../assets/img/banks-logo/square/valdres.png',
-    imgCircle: '',
+    imgCircle: '../../assets/img/banks-logo/round/valdres.png',
     url: 'https://valdressparebank.no/lane/boliglan',
     label: 'Valdres Sparebank'
   },
@@ -779,7 +779,7 @@ export const BANKS_DATA = {
   YS_GJENSIDIGE: {
     name: 'YS_GJENSIDIGE',
     img: '../../assets/img/banks-logo/square/gjensidige.png',
-    imgCircle: '',
+    imgCircle: '../../assets/img/banks-logo/round/gjensidige.png',
     url: 'https://www.gjensidige.no/privat/kundefordeler/ys/ys-bank',
     label: 'YS (Gjensidige Bank)'
   },
