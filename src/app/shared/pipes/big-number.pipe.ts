@@ -5,7 +5,11 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class BigNumberPipe implements PipeTransform {
 
-  transform(value: any, ...args: any[]): any {
+  transform(value: number): any {
+    if (!value) {
+      return '';
+    }
+
     return null;
   }
 
