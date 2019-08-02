@@ -7,6 +7,7 @@ import { DialogInfoComponent } from './dialog-info/dialog-info.component';
 import { Loans } from '@shared/models/loans';
 import { BANKS_DATA } from '@config/banks-config';
 import { LOAN_STATE_MAP } from '@config/loan-state';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'rente-offers',
@@ -20,6 +21,7 @@ export class OffersComponent implements OnInit {
   public banksMap = BANKS_DATA;
   public loanStateMap = LOAN_STATE_MAP;
   public isLoading = true;
+  public errorMessage: string;
 
   public offersMock = {
     bank: 'DNB',
@@ -137,7 +139,8 @@ export class OffersComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
     public offersService: OffersService,
-    public loansService: LoansService
+    public loansService: LoansService,
+    private router: Router
   ) { }
 
   public ngOnInit(): void {
@@ -147,6 +150,12 @@ export class OffersComponent implements OnInit {
       console.log('offers', res);
       this.offersInfo = res;
       this.isLoading = false;
+    }, err => {
+      if (err.errorType === 'PROPERTY_VALUE_MISSING') {
+        this.errorMessage = err.title;
+        this.router.navigate(['/property-missing']);
+      }
+      console.log(err);
     });
   }
 

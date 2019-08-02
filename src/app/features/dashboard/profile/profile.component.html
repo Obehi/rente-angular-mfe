@@ -1,4 +1,4 @@
-<div class="row justify-content-center">
+<div class="row justify-content-center" *ngIf="profileForm">
   <form [formGroup]="profileForm" class="col-lg-6 col-12 my-5" novalidate>
     <div class="bg-wrap">
       <div class="row">
@@ -31,63 +31,6 @@
                 {{membership.label}}
               </mat-option>
             </mat-autocomplete>
-
-          <!-- <mat-select matNativeControl multiple required>
-            <mat-option value=""> -- </mat-option>
-            <mat-option value="INGEN_MEDLEMSKAP_INGEN_HOYERE_UTDANNING">Ingen medlemskap/Ingen høyere utdanning
-            </mat-option>
-            <mat-option value="INGEN_MEDLEMSKAP_HOYERE_UTDANNING_TILSVARENDE_BACHELOR">Ingen medlemskap/Høyere utdanning
-              tilsvarende Bachelor</mat-option>
-            <mat-option value="INGEN_MEDLEMSKAP_HOYERE_UTDANNING_TILSVARENDE_MASTER">Ingen medlemskap/Høyere utdanning
-              tilsvarende Master</mat-option>
-            <mat-option value="AKADEMIKERNE_ARKITEKTENES_FAGFORBUND">Akademikerne/Arkitektenes fagforbund</mat-option>
-            <mat-option value="AKADEMIKERNE_DEN_NORSKE_LEGEFORENING">Akademikerne/Den norske legeforening</mat-option>
-            <mat-option value="AKADEMIKERNE_DEN_NORSKE_TANNLEGEFORENING">Akademikerne/Den norske tannlegeforening
-            </mat-option>
-            <mat-option value="AKADEMIKERNE_DEN_NORSKE_VETERINAERFORENING">Akademikerne/Den norske veterinærforening
-            </mat-option>
-            <mat-option value="AKADEMIKERNE_ECONA">Akademikerne/Econa</mat-option>
-            <mat-option value="AKADEMIKERNE_JURISTFORBUNDET">Akademikerne/Juristforbundet</mat-option>
-            <mat-option value="AKADEMIKERNE_KRIGSSKOLEUTDANNEDE_OFFISERERS_LANDSFORENING">
-              Akademikerne/Krigsskoleutdannede
-              offiserers landsforening</mat-option>
-            <mat-option value="AKADEMIKERNE_NATURVITERNE">Akademikerne/Naturviterne</mat-option>
-            <mat-option value="AKADEMIKERNE_NORSK_LEKTORLAG">Akademikerne/Norsk Lektorlag</mat-option>
-            <mat-option value="AKADEMIKERNE_NORSK_PSYKOLOGFORENING">Akademikerne/Norsk psykologforening</mat-option>
-            <mat-option value="AKADEMIKERNE_SAMFUNNSVITERNE">Akademikerne/Samfunnsviterne</mat-option>
-            <mat-option value="AKADEMIKERNE_SAMFUNNSOKONOMENE">Akademikerne/Samfunnsøkonomene</mat-option>
-            <mat-option value="AKADEMIKERNE_TEKNA">Akademikerne/Tekna</mat-option>
-            <mat-option value="KLP">KLP</mat-option>
-            <mat-option value="LO_LOFAVOR">LO/LOfavør</mat-option>
-            <mat-option value="OBOS">OBOS</mat-option>
-            <mat-option value="NITO">NITO</mat-option>
-            <mat-option value="UNIO_AKADEMIKERFORBUNDET">UNIO/Akademikerforbundet</mat-option>
-            <mat-option value="UNIO_BIBLOTEKARFORBUNDET">UNIO/Biblotekarforbundet</mat-option>
-            <mat-option value="UNIO_DET_NORSKE_DIAKONFORBUND">UNIO/Det Norske Diakonforbund</mat-option>
-            <mat-option value="UNIO_DET_NORSKE_MASKINISTFORBUND">UNIO/Det Norske Maskinistforbund</mat-option>
-            <mat-option value="UNIO_FORSKERFORBUNDET">UNIO/Forskerforbundet</mat-option>
-            <mat-option value="UNIO_NORSK_ERGOTERAPEUTFORBUND">UNIO/Norsk Ergoterapeutforbund</mat-option>
-            <mat-option value="UNIO_NORSK_FYSIOTERAPEUTFORBUND">UNIO/Norsk Fysioterapeutforbund</mat-option>
-            <mat-option value="UNIO_NORSK_RADIOGRAFFORBUND">UNIO/Norsk Radiografforbund</mat-option>
-            <mat-option value="UNIO_NORSK_SYKEPLEIERFORBUND">UNIO/Norsk Sykepleierforbund</mat-option>
-            <mat-option value="UNIO_POLITIETS_FELLESFORBUND">UNIO/Politiets fellesforbund</mat-option>
-            <mat-option value="UNIO_PRESTEFORENINGEN">UNIO/Presteforeningen</mat-option>
-            <mat-option value="UNIO_SKATTEREVISORENES_FORENING">UNIO/Skatterevisorenes Forening</mat-option>
-            <mat-option value="UNIO_UTDANNINGSFORBUNDET">UNIO/Utdanningsforbundet</mat-option>
-            <mat-option value="YS_AVYO">YS/AVYO</mat-option>
-            <mat-option value="YS_BEFALETS_FELLESORGANISASJON">YS/Befalets Fellesorganisasjon</mat-option>
-            <mat-option value="YS_DELTA">YS/Delta</mat-option>
-            <mat-option value="YS_FINANSFORBUNDET">YS/Finansforbundet</mat-option>
-            <mat-option value="YS_KRIMINALOMSORGENS_YRKESFORBUND">YS/Kriminalomsorgens Yrkesforbund</mat-option>
-            <mat-option value="YS_NEGOTIA">YS/Negotia</mat-option>
-            <mat-option value="YS_NORSK_TOLLERFORBUND">YS/Norsk Tollerforbund</mat-option>
-            <mat-option value="YS_PARAT">YS/Parat</mat-option>
-            <mat-option value="YS_SAFE">YS/SAFE</mat-option>
-            <mat-option value="YS_SKATTEETATENS_LANDSFORBUND">YS/Skatteetatens Landsforbund</mat-option>
-            <mat-option value="YS_SKOLELEDERFORBUNDET">YS/Skolelederforbundet</mat-option>
-            <mat-option value="YS_STAFO">YS/STAFO</mat-option>
-            <mat-option value="YS_YRKESTRAFIKKFORBUNDET">YS/Yrkestrafikkforbundet</mat-option>
-          </mat-select> -->
         </mat-form-field>
       </div>
 
@@ -123,4 +66,8 @@
     </div>
 
   </form>
+</div>
+
+<div class="d-flex justify-content-center align-items-center mt-4" *ngIf="!profileForm">
+  <mat-spinner [diameter]="48" [strokeWidth]="4"></mat-spinner>
 </div>

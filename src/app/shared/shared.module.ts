@@ -33,6 +33,7 @@ import { NgxMaskModule, IConfig } from 'ngx-mask';
 import { TextMaskModule } from 'angular2-text-mask';
 import { UserService } from '@services/remote-api/user.service';
 import { AbsPipe } from './pipes/abs.pipe';
+import { MatChipsModule, MatIconModule } from '@angular/material';
 
 // export const options: Partial<IConfig> | (() => Partial<IConfig>);
 
@@ -73,7 +74,9 @@ const services = [
     MatInputModule,
     MatSnackBarModule,
     MatRadioModule,
-    TextMaskModule
+    TextMaskModule,
+    MatChipsModule,
+    MatIconModule
   ],
   declarations: [...components, BigNumberPipe, ChipsAutocompleteComponent, AbsPipe],
   exports: [...components, AbsPipe],

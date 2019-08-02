@@ -41,3 +41,12 @@
   </div>
 
 </div>
+
+<div class="d-flex justify-content-center align-items-center mt-4" *ngIf="!loansData && !errorMessage">
+  <mat-spinner [diameter]="48" [strokeWidth]="4"></mat-spinner>
+</div>
+
+<div *ngIf="errorMessage">
+  <h1 class="text-center mt-4">{{errorMessage}}</h1>
+</div>
+

@@ -110,10 +110,14 @@
 </div>
 
 
-<div class="d-flex justify-content-center align-items-center mt-4" *ngIf="isLoading">
-    <mat-spinner [diameter]="48" [strokeWidth]="4"></mat-spinner>
+<div class="d-flex justify-content-center align-items-center mt-4" *ngIf="isLoading && !errorMessage">
+  <mat-spinner [diameter]="48" [strokeWidth]="4"></mat-spinner>
 </div>
 
-<div *ngIf="!offersInfo && !isLoading">
+<div *ngIf="!offersInfo && !isLoading && !errorMessage">
   <h1 class="text-center mt-4">No offers yet...</h1>
+</div>
+
+<div *ngIf="errorMessage">
+  <h1 class="text-center mt-4">{{errorMessage}}</h1>
 </div>

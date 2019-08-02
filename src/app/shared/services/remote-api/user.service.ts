@@ -13,4 +13,9 @@ export class UserService {
     const url = `${API_URL_MAP.user.base}${API_URL_MAP.user.me}`;
     return this.http.get(url);
   }
+
+  public updateUserInfo(userData) {
+    const url = `${API_URL_MAP.user.base}${API_URL_MAP.user.me}`;
+    return this.http.post(url, userData);
+  }
 }

@@ -18,4 +18,24 @@ export class LoansService {
     const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.offers}`;
     return this.http.get(url);
   }
+
+  public getUsersMemberships() {
+    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.membership}`;
+    return this.http.get(url);
+  }
+
+  public setUsersMemberships(membershipsArray) {
+    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.membership}`;
+    return this.http.post(url, membershipsArray);
+  }
+
+  public getMembershipTypes() {
+    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.membershipTypes}`;
+    return this.http.get(url);
+  }
+
+  public getAddresses() {
+    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.address}`;
+    return this.http.get(url);
+  }
 }
