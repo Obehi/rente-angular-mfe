@@ -38,4 +38,14 @@ export class LoansService {
     const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.address}`;
     return this.http.get(url);
   }
+
+  public updateAddress(addressData) {
+    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.address}`;
+    return this.http.put(url, addressData);
+  }
+
+  public updateApartmentSize(appartmentData) {
+    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.address}${API_URL_MAP.loan.size}`;
+    return this.http.put(url, appartmentData);
+  }
 }

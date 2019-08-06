@@ -24,7 +24,8 @@ export const API_URL_MAP = {
     offers: '/offers',
     membership: '/membership',
     membershipTypes: '/membership-types',
-    address: '/address'
+    address: '/address',
+    size: '/size'
   },
   profile: '/profil',
   preferances: '/preferanser',

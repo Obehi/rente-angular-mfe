@@ -1,3 +1,4 @@
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormBuilder, AbstractControl, NgForm, FormControl } from '@angular/forms';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
@@ -24,6 +25,7 @@ export class ProfileComponent implements OnInit {
   filteredMemberships: Observable<string[]>;
   memberships: any = [];
   public allMemberships: any[];
+  public isLoading: boolean;
 
   @ViewChild('membershipInput', {static: false}) membershipInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto', {static: false}) matAutocomplete: MatAutocomplete;
@@ -31,7 +33,8 @@ export class ProfileComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private loansService: LoansService,
-    private userService: UserService
+    private userService: UserService,
+    private snackBar: MatSnackBar
     ) {
     this.filteredMemberships = this.membershipCtrl.valueChanges.pipe(
       startWith(null),
@@ -56,10 +59,11 @@ export class ProfileComponent implements OnInit {
         console.log(data[0]);
         const userData = data[0];
         const addressData = data[1];
+        // TODO: Add validators and validation messages for form
         this.profileForm = this.fb.group({
-          membership: userMemberships.memberships,
-          income: userData.income,
-          email: userData.email
+          membership: [userMemberships.memberships],
+          income: [userData.income],
+          email: [userData.email]
         });
       });
 
@@ -71,12 +75,32 @@ export class ProfileComponent implements OnInit {
   }
 
   public updateProfile() {
+    this.isLoading = true;
+    console.log(this.memberships.map(membership => membership.name));
     const userData = {
       email:  this.profileForm.value.email,
-      income: null
+      income: this.profileForm.value.income,
     };
-    this.userService.updateUserInfo(userData).subscribe(res => {
-      console.log(res);
+
+    const memebershipsData = {
+      memberships: this.memberships.map(membership => membership.name)
+    };
+
+    // TODO: Add error state
+    forkJoin(this.userService.updateUserInfo(userData), this.loansService.setUsersMemberships(memebershipsData)).subscribe(data => {
+      this.isLoading = false;
+      this.snackBar.open('Your data was updated', 'Close', {
+        duration: 10 * 1000,
+        panelClass: ['bg-primary'],
+        horizontalPosition: 'right'
+      });
+    }, err => {
+      this.isLoading = false;
+      this.snackBar.open(err.detail, 'Close', {
+        duration: 10 * 1000,
+        panelClass: ['bg-error'],
+        horizontalPosition: 'right'
+      });
     });
   }
 

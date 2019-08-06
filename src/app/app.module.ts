@@ -20,6 +20,7 @@ import { PropertyMissingComponent } from '@features/property-missing/property-mi
 import { MatFormFieldModule } from '@angular/material';
 import { registerLocaleData } from '@angular/common';
 import localeNo from '@angular/common/locales/nb';
+import { MaterialModule } from '@shared/material/material.module';
 
 registerLocaleData(localeNo);
 
@@ -42,8 +43,9 @@ registerLocaleData(localeNo);
     BrowserAnimationsModule,
     AppRoutingModule,
     SharedModule,
-    MatExpansionModule,
-    MatFormFieldModule,
+    MaterialModule,
+    // MatExpansionModule,
+    // MatFormFieldModule,
     ReactiveFormsModule
   ],
   providers: [{ provide: LOCALE_ID, useValue: 'nb-NO' }],

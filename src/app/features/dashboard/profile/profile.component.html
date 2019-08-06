@@ -2,6 +2,7 @@
   <form [formGroup]="profileForm" class="col-lg-6 col-12 my-5" novalidate>
     <div class="bg-wrap">
       <div class="row">
+        <p class="col-12">Medlemskap</p>
         <mat-form-field class="col-12">
           <mat-label>Medlemskap:</mat-label>
           <mat-chip-list #membershipList aria-label="Membership selection">
@@ -60,7 +61,10 @@
     </div>
     <div class="row mt-3 justify-content-center">
       <div class="col-12 col-sm-6 ">
-        <rente-button color="primary" (click)="updateProfile()">Lagre</rente-button>
+        <rente-button color="primary" (click)="updateProfile()" [disabled]="isLoading" isIconButton="true">
+          Lagre
+          <mat-icon *ngIf="isLoading">sync</mat-icon>
+        </rente-button>
         <small class="form-text text-muted">Husk å lagre ved endringer</small>
       </div>
     </div>
