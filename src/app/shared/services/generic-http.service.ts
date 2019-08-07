@@ -48,8 +48,6 @@ export class GenericHttpService {
       // params: {...params}
     };
 
-    console.log(this.shapeHeaders());
-
     return this.http
       .get(fullPath, httpOptions)
       .pipe(

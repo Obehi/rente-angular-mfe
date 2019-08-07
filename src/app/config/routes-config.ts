@@ -7,5 +7,6 @@ export const ROUTES_MAP: any = {
   termsConditions: 'brukervilkar',
   bankSelect: 'velgbank',
   auth: 'auth',
-  dashboard: 'dashboard'
+  dashboard: 'dashboard',
+  initConfirmation: 'init-confirmation'
 };

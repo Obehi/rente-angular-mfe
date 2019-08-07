@@ -153,7 +153,7 @@ export class OffersComponent implements OnInit {
     }, err => {
       if (err.errorType === 'PROPERTY_VALUE_MISSING') {
         this.errorMessage = err.title;
-        this.router.navigate(['/property-missing']);
+        this.router.navigate(['/init-confirmation']);
       }
       console.log(err);
     });

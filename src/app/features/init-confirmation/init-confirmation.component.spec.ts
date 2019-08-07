@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PropertyMissingComponent } from './property-missing.component';
+import { InitConfirmationComponent } from './init-confirmation.component';
 
-describe('PropertyMissingComponent', () => {
-  let component: PropertyMissingComponent;
-  let fixture: ComponentFixture<PropertyMissingComponent>;
+describe('InitConfirmationComponent', () => {
+  let component: InitConfirmationComponent;
+  let fixture: ComponentFixture<InitConfirmationComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PropertyMissingComponent ]
+      declarations: [ InitConfirmationComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PropertyMissingComponent);
+    fixture = TestBed.createComponent(InitConfirmationComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

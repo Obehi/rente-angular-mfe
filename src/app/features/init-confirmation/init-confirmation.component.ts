@@ -9,11 +9,11 @@ import { ENTER, COMMA } from '@angular/cdk/keycodes';
 import { MatAutocomplete, MatAutocompleteSelectedEvent, MatChipInputEvent } from '@angular/material';
 
 @Component({
-  selector: 'rente-property-missing',
-  templateUrl: './property-missing.component.html',
-  styleUrls: ['./property-missing.component.scss']
+  selector: 'rente-init-confirmation',
+  templateUrl: './init-confirmation.component.html',
+  styleUrls: ['./init-confirmation.component.scss']
 })
-export class PropertyMissingComponent implements OnInit {
+export class InitConfirmationComponent implements OnInit {
 
   public propertyForm: FormGroup;
   public isLoading: boolean;

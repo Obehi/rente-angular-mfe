@@ -210,7 +210,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
               this.userService.getUserInfo().subscribe(userInfo => {
                 this.loginStep3Status = MESSAGE_STATUS.SUCCESS;
                 if (userInfo.income === null) {
-                  this.router.navigate(['/property-missing']);
+                  this.router.navigate(['/init-confirmation']);
                 } else {
                   this.router.navigate(['/dashboard/tilbud/']);
                 }

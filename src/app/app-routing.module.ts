@@ -1,4 +1,4 @@
-import { PropertyMissingComponent } from './features/property-missing/property-missing.component';
+import { InitConfirmationComponent } from './features/init-confirmation/init-confirmation.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { PageNotFoundComponent } from '@features/page-not-found/page-not-found.component';
@@ -22,7 +22,7 @@ const routes: Routes = [
   { path: ROUTES_MAP.termsConditions, component: TermsConditionsComponent},
   { path: ROUTES_MAP.privacyPolicy, component: PrivacyPolicyComponent},
   { path: ROUTES_MAP.bankSelect, component: BankSelectComponent},
-  { path: 'property-missing', component: PropertyMissingComponent},
+  { path: ROUTES_MAP.initConfirmation, component: InitConfirmationComponent},
   {
     path: ROUTES_MAP.auth,
     loadChildren: () => import('./features/auth/auth.module').then(m => m.AuthModule)

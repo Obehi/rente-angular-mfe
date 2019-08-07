@@ -16,7 +16,7 @@ import { BankSelectComponent } from './features/bank-select/bank-select.componen
 import { MatExpansionModule } from '@angular/material/expansion';
 import { ContactUsComponent } from './features/contact-us/contact-us.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { PropertyMissingComponent } from '@features/property-missing/property-missing.component';
+import { InitConfirmationComponent } from '@features/init-confirmation/init-confirmation.component';
 import { MatFormFieldModule } from '@angular/material';
 import { registerLocaleData } from '@angular/common';
 import localeNo from '@angular/common/locales/nb';
@@ -36,7 +36,7 @@ registerLocaleData(localeNo);
     PrivacyPolicyComponent,
     BankSelectComponent,
     ContactUsComponent,
-    PropertyMissingComponent
+    InitConfirmationComponent
   ],
   imports: [
     BrowserModule,
