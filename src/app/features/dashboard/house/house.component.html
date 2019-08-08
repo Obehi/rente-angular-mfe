@@ -112,3 +112,8 @@
     <p>Husk å lagre etter bytte mellom estimattype</p>
   </div>
 </div>
+
+<div class="d-flex justify-content-center align-items-center mt-4" *ngIf="!autoPropertyForm || !manualPropertyForm">
+  <mat-spinner [diameter]="48" [strokeWidth]="4"></mat-spinner>
+</div>
+

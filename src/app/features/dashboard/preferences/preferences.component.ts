@@ -1,5 +1,7 @@
+import { MatSnackBar } from '@angular/material';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import { UserService } from '@services/remote-api/user.service';
 
 @Component({
   selector: 'rente-preferences',
@@ -8,17 +10,40 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PreferencesComponent implements OnInit {
   public preferencesForm: FormGroup;
-  constructor(private fb: FormBuilder) { }
+  public isLoading: boolean;
+  constructor(
+    private fb: FormBuilder,
+    private useService: UserService,
+    private snackBar: MatSnackBar
+    ) { }
 
   ngOnInit() {
-    this.preferencesForm = this.fb.group({
-      checkRateReminderType: [1],
-      radioBlock2: [true],
-      radioBlock3: [true],
-      radioBlock4: [true],
+    this.useService.getUserPreferences().subscribe(preferances => {
+      this.preferencesForm = this.fb.group({
+        checkRateReminderType: [preferances.checkRateReminderType],
+        fetchCreditlinesOnly: [preferances.fetchCreditlinesOnly],
+        noAdditionalProductsRequired: [preferances.noAdditionalProductsRequired],
+        interestedInEnvironmentMortgages: [preferances.interestedInEnvironmentMortgages]
+      });
     });
   }
 
-  public updatePreferances() {}
+  public updatePreferances() {
+    this.useService.updateUserPreferences(this.preferencesForm.value).subscribe(res => {
+      this.isLoading = true;
+      this.snackBar.open('Your data was updated', 'Close', {
+        duration: 10 * 1000,
+        panelClass: ['bg-primary'],
+        horizontalPosition: 'right'
+      });
+    }, err => {
+      this.isLoading = false;
+      this.snackBar.open(err.detail, 'Close', {
+        duration: 10 * 1000,
+        panelClass: ['bg-error'],
+        horizontalPosition: 'right'
+    });
+  });
+  }
 
 }
