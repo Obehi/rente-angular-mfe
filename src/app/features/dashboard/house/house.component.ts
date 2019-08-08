@@ -17,6 +17,7 @@ export class HouseComponent implements OnInit {
  public isAutoMode = true;
  public addressData: any;
  public isLoading: boolean;
+ public propertyValue: number;
 
   constructor(
     private fb: FormBuilder,
@@ -25,6 +26,7 @@ export class HouseComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.getPropertyValue();
     this.loansService.getAddresses().subscribe(res => {
       this.addressData = res.addresses[0];
       this.autoPropertyForm = this.fb.group({
@@ -75,20 +77,12 @@ export class HouseComponent implements OnInit {
     if (this.isAutoMode) {
       addressData = this.autoPropertyForm.value;
       addressData.manualPropertyValue = null;
-      // form.reset() doesn't work - see https://github.com/angular/angular/issues/15741
-      this.manualPropertyForm.patchValue({
-        manualPropertyValue: null
-      });
     } else {
-      addressData = this.manualPropertyForm.value;
-      this.autoPropertyForm.patchValue({
-        street: null,
-        zip: null,
-        apartmentSize: null
-      });
+      addressData = Object.assign(this.autoPropertyForm.value, this.manualPropertyForm.value);
     }
     this.loansService.updateAddress(addressData).subscribe(res => {
       this.isLoading = false;
+      this.getPropertyValue();
       this.snackBar.open('Your data was updated', 'Close', {
         duration: 10 * 1000,
         panelClass: ['bg-primary'],
@@ -101,6 +95,13 @@ export class HouseComponent implements OnInit {
         panelClass: ['bg-error'],
         horizontalPosition: 'right'
       });
+    });
+  }
+
+  private getPropertyValue() {
+    this.loansService.getPropertValue().subscribe(res => {
+      this.propertyValue = res.propertyValue;
+      console.log(res);
     });
   }
 

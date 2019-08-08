@@ -10,7 +10,7 @@
       <p>Effektiv rente: <strong>{{loansData.totalEffectiveRate | number: '1.1-2'}}%</strong>
       </p>
       <p>Totale renteutgifter: <strong>
-          {{loansData.aggregatedTotalInterest == null ? 'N/A' : loansData.aggregatedTotalInterest + ',-'}}</strong>
+          {{loansData.aggregatedTotalInterest == null ? 'N/A' : (loansData.aggregatedTotalInterest | number: '1.1-2') + ',-'}}</strong>
       </p>
       <p>Renter per år (gj.snitt): <strong>
           {{loansData.aggregatedTotalInterestByRemainingYears == null ? 'N/A' : (loansData.aggregatedTotalInterestByRemainingYears | number: '1.1-2') + ',-'}}</strong>
@@ -24,7 +24,7 @@
 
     <div class="mb-0 list-unstyled">
       <p class="font-weight-bold">{{loan.loanType}}</p>
-      <p>Utestående lån: <strong>{{loan.outstandingDebt}},-</strong></p>
+      <p>Utestående lån: <strong>{{loan.outstandingDebt | number: '1.1-2'}},-</strong></p>
       <p>Løpetid: <strong>{{loan.remainingYears | number: '1.1-2'}} år</strong>
       </p>
       <p>Effektiv rente: <strong>{{loan.effectiveRate | number: '1.1-2'}}%</strong>
@@ -32,10 +32,11 @@
       <p>Nom.rente: <strong>{{loan.nominalRate | number: '1.1-2'}}%</strong>
       </p>
       <p>Totale renteutgifter: <strong>
-          {{loan.totalInterest == null ? 'N/A' : loan.totalInterest + ',-'}}</strong>
+        {{loan.totalInterest == null ? 'N/A' : (loan.totalInterest | number: '1.1-2') + ',-'}}</strong>
       </p>
-      <p>Renter per år (gj.snitt): <strong
-          th:text="${loan.getTotalInterestByRemainingYears() == null ? 'N/A' : T(no.rente.util.FormatUtils).formatBigNumber(loan.getTotalInterestByRemainingYears(), false) + ',-'}">??</strong>
+      <p>Renter per år (gj.snitt): <strong>
+        {{loan.totalInterestByRemainingYears == null ? 'N/A' : (loan.totalInterestByRemainingYears | number: '1.1-2') + ',-'}}
+      </strong>
       </p>
     </div>
   </div>

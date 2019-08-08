@@ -48,4 +48,9 @@ export class LoansService {
     const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.address}${API_URL_MAP.loan.size}`;
     return this.http.put(url, appartmentData);
   }
+
+  public getPropertValue() {
+    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.property}${API_URL_MAP.loan.value}`;
+    return this.http.get(url);
+  }
 }
