@@ -8,15 +8,19 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '@shared/shared.module';
 import { StatusMessageComponent } from './status-message/status-message.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { DialogInfoServiceComponent } from './bank-id-login/dialog-info-service/dialog-info-service.component';
+import { MatDialogModule } from '@angular/material';
 
 @NgModule({
-  declarations: [BankIdLoginComponent, LoginStatusComponent, StatusMessageComponent],
+  declarations: [BankIdLoginComponent, LoginStatusComponent, StatusMessageComponent, DialogInfoServiceComponent],
   imports: [
     CommonModule,
     AuthRoutingModule,
     ReactiveFormsModule,
     SharedModule,
-    MatProgressSpinnerModule
-  ]
+    MatProgressSpinnerModule,
+    MatDialogModule,
+  ],
+  entryComponents: [DialogInfoServiceComponent]
 })
 export class AuthModule { }
