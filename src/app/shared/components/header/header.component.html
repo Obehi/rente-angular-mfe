@@ -1,63 +1,86 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-secondary" 
-    id="mainNav">
+<nav class="navbar navbar-expand-lg navbar-dark bg-secondary" id="mainNav">
   <div class="container py-2">
-    <a class="navbar-brand js-scroll-trigger" 
-      [routerLink]="['/']">
-      <img class="img-fluid" 
-            style="width:200px" 
-            src="../../../../assets/img/renteradar_white_logo.svg" 
-            alt="Renteradar">
+    <a class="navbar-brand js-scroll-trigger" [routerLink]="['/']">
+      <img class="img-fluid" style="width:200px" src="../../../../assets/img/renteradar_white_logo.svg"
+        alt="Renteradar">
     </a>
 
-    <button
-      class="navbar-toggler navbar-toggler-right text-uppercase bg-primary text-white rounded" 
-      type="button"
-      data-toggle="collapse" 
-      data-target="#navbarResponsive" 
-      aria-controls="navbarResponsive" 
-      aria-expanded="false"
-      aria-label="Toggle navigation">
+    <button class="navbar-toggler navbar-toggler-right text-uppercase bg-primary text-white rounded" type="button"
+      data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+      aria-label="Toggle navigation" (click)="toggleNav()">
       Menu
       <i class="fas fa-bars"></i>
     </button>
-    <div class="collapse navbar-collapse" 
-          id="navbarResponsive">
+    <div class="collapse navbar-collapse" id="navbarResponsive" *ngIf="!smallScreen">
       <ul class="navbar-nav m-0 ml-auto">
         <li class="nav-item mx-0 mx-lg-1">
-          <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger text-white" 
-              [routerLink]="['/velgbank']" 
-              routerLinkActive="router-link-active">
-                Register deg
+          <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger text-white" [routerLink]="['/velgbank']"
+            routerLinkActive="router-link-active">
+            Register deg
           </a>
         </li>
 
         <li class="nav-item mx-0 mx-lg-1">
-          <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger text-white" 
-              [routerLink]="['/omoss']" 
-              routerLinkActive="router-link-active">
-                Om oss
+          <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger text-white" [routerLink]="['/omoss']"
+            routerLinkActive="router-link-active">
+            Om oss
           </a>
         </li>
 
         <li class="nav-item mx-0 mx-lg-1" *ngIf="!auth.isLoggedIn">
-          <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger text-white" 
-            [routerLink]="['/velgbank']" 
+          <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger text-white" [routerLink]="['/velgbank']"
             routerLinkActive="router-link-active">
             Logg inn
           </a>
         </li>
 
         <li class="nav-item mx-0 mx-lg-1" *ngIf="auth.isLoggedIn">
-          <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger text-white" 
-            [routerLink]="['/dashboard/tilbud']" 
-            routerLinkActive="router-link-active">
+          <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger text-white"
+            [routerLink]="['/dashboard/tilbud']" routerLinkActive="router-link-active">
             Min side
           </a>
         </li>
 
         <li class="nav-item mx-0 mx-lg-1" *ngIf="auth.isLoggedIn">
-          <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger text-white" 
-            (click)="auth.logout()"
+          <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger text-white" (click)="auth.logout()"
+            routerLinkActive="router-link-active">
+            Logg out
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="collapse navbar-collapse" id="navbarResponsive" [@inOutAnimation] *ngIf="toggleNavbar && smallScreen">
+      <ul class="navbar-nav m-0 ml-auto">
+        <li class="nav-item mx-0 mx-lg-1">
+          <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger text-white" [routerLink]="['/velgbank']"
+            routerLinkActive="router-link-active">
+            Register deg
+          </a>
+        </li>
+
+        <li class="nav-item mx-0 mx-lg-1">
+          <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger text-white" [routerLink]="['/omoss']"
+            routerLinkActive="router-link-active">
+            Om oss
+          </a>
+        </li>
+
+        <li class="nav-item mx-0 mx-lg-1" *ngIf="!auth.isLoggedIn">
+          <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger text-white" [routerLink]="['/velgbank']"
+            routerLinkActive="router-link-active">
+            Logg inn
+          </a>
+        </li>
+
+        <li class="nav-item mx-0 mx-lg-1" *ngIf="auth.isLoggedIn">
+          <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger text-white"
+            [routerLink]="['/dashboard/tilbud']" routerLinkActive="router-link-active">
+            Min side
+          </a>
+        </li>
+
+        <li class="nav-item mx-0 mx-lg-1" *ngIf="auth.isLoggedIn">
+          <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger text-white" (click)="auth.logout()"
             routerLinkActive="router-link-active">
             Logg out
           </a>

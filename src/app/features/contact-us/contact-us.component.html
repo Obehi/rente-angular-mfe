@@ -1,6 +1,6 @@
 <div class="container contact-us my-5">
   <div class="row justify-content-center">
-    <div class="col-6 text-center bg-wrap">
+    <div class="col-12 col-lg-6 text-center bg-wrap">
       <h2 class="title">Kontakt oss</h2>
       <p>Kontakt oss gjerne ved å fylle ut skjemaet nedenfor hvis du har spørsmål</p>
 
@@ -21,7 +21,7 @@
             <rente-form-message class="text-left d-block" 
                                 [type]="'error'" 
                                 *ngIf="contactUsForm.controls['name'].hasError('required')">
-                                  Kan ikke være tom Feil størrelse
+                                Vennligst fyll inn navn
             </rente-form-message>
           </div>
         </div>
