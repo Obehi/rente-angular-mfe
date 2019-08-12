@@ -7,6 +7,7 @@ import { forkJoin, Observable } from 'rxjs';
 import { mergeMap, startWith, map } from 'rxjs/operators';
 import { ENTER, COMMA } from '@angular/cdk/keycodes';
 import { MatAutocomplete, MatAutocompleteSelectedEvent, MatChipInputEvent } from '@angular/material';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'rente-init-confirmation',
@@ -35,7 +36,8 @@ export class InitConfirmationComponent implements OnInit {
     private fb: FormBuilder,
     private userService: UserService,
     private loansService: LoansService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private router: Router
     ) {
       this.filteredMemberships = this.membershipCtrl.valueChanges.pipe(
         startWith(null),
@@ -103,6 +105,7 @@ export class InitConfirmationComponent implements OnInit {
       this.loansService.updateApartmentSize(apartmentsData)
       ).subscribe(data => {
         this.isLoading = false;
+        this.router.navigate(['/dashboard/tilbud']);
         this.snackBar.open('Your data was updated', 'Close', {
           duration: 10 * 1000,
           panelClass: ['bg-primary'],

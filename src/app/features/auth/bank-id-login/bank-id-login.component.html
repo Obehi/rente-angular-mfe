@@ -24,7 +24,7 @@
 
             <div class="mb-4 bg-wrap">
               <div *ngIf="isSsnBankLogin; else birthdateInput" class="form-group">
-                <rente-input [placeholder]="'Fødselsnummer:'" formControlName="ssn"></rente-input>
+                <rente-input [placeholder]="'Ditt fødselsnummer (11 siffer)'" formControlName="ssn" type="phone"></rente-input>
 
                 <rente-form-message class="text-left d-block" [type]="'info'">Vi vil ikke dele fødselsnummeret ditt med noen</rente-form-message>
 
@@ -40,8 +40,7 @@
 
               <ng-template #birthdateInput>
                 <div class="form-group">
-                  <rente-input [placeholder]="'Fødselsdato:'" formControlName="birthdate"></rente-input>
-                  <rente-form-message class="text-left d-block" [type]="'info'">6 siffer</rente-form-message>
+                  <rente-input [placeholder]="'Din fødselsdato (ddmmåå)'" formControlName="birthdate" type="phone"></rente-input>
                   <div class="error-message" *ngIf="bankIdForm.controls['birthdate'].touched">
                     <rente-form-message class="text-left d-block" *ngIf="bankIdForm.controls['birthdate'].hasError('required')" [type]="'error'">
                       This field is required
@@ -54,8 +53,7 @@
               </ng-template>
 
               <div class="form-group">
-                <rente-input [placeholder]="'Mobil:'" formControlName="phone"></rente-input>
-                <rente-form-message class="text-left d-block pb-0" [type]="'info'">8 siffer</rente-form-message>
+                <rente-input [placeholder]="'Ditt mobilnummer (8 siffer)'" formControlName="phone" type="phone"></rente-input>
                 <div class="error-message" *ngIf="bankIdForm.controls['phone'].touched">
                   <rente-form-message class="text-left d-block" *ngIf="bankIdForm.controls['phone'].hasError('required')" [type]="'error'">
                     This field is required

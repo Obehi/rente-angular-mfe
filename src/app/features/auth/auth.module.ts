@@ -8,9 +8,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '@shared/shared.module';
 import { StatusMessageComponent } from './status-message/status-message.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { Sparebank1SubComponent } from './sparebank1-sub/sparebank1-sub.component';
 
 @NgModule({
-  declarations: [BankIdLoginComponent, LoginStatusComponent, StatusMessageComponent],
+  declarations: [BankIdLoginComponent, LoginStatusComponent, StatusMessageComponent, Sparebank1SubComponent],
   imports: [
     CommonModule,
     AuthRoutingModule,

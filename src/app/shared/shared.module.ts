@@ -81,7 +81,7 @@ const services = [
     // MatIconModule
   ],
   declarations: [...components, BigNumberPipe, ChipsAutocompleteComponent, AbsPipe],
-  exports: [...components, AbsPipe],
+  exports: [...components, AbsPipe, TextMaskModule],
   providers: [...services]
 })
 export class SharedModule { }
