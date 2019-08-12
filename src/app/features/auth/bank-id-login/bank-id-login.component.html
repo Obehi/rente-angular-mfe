@@ -27,7 +27,7 @@
                 title="{{this.userBank.label}}"></div>
               <div *ngIf="isSsnBankLogin; else birthdateInput" class="form-group">
                 <!-- <input type="text" mask='separator'> -->
-                <rente-input [placeholder]="'Fødselsnummer:'" formControlName="ssn" [textMask]="ssnMask"></rente-input>
+                <rente-input [placeholder]="'Fødselsnummer:'" formControlName="ssn" [textMask]="ssnMask" [type]="'tel'"></rente-input>
 
                 <rente-form-message class="text-left d-block" [type]="'info'">11 siffer</rente-form-message>
 
@@ -43,7 +43,7 @@
 
               <ng-template #birthdateInput>
                 <div class="form-group">
-                  <rente-input [placeholder]="'Fødselsdato:'" formControlName="birthdate" [textMask]="birthdateMask"></rente-input>
+                  <rente-input [placeholder]="'Fødselsdato:'" formControlName="birthdate" [textMask]="birthdateMask" [type]="'tel'"></rente-input>
                   <rente-form-message class="text-left d-block" [type]="'info'">6 siffer</rente-form-message>
                   <div class="error-message" *ngIf="bankIdForm.controls['birthdate'].touched">
                     <rente-form-message class="text-left d-block" *ngIf="bankIdForm.controls['birthdate'].hasError('required')" [type]="'error'">
@@ -57,7 +57,7 @@
               </ng-template>
 
               <div class="form-group">
-                <rente-input [placeholder]="'Mobil:'" formControlName="phone" [textMask]="phoneMask"></rente-input>
+                <rente-input [placeholder]="'Mobil:'" formControlName="phone" [textMask]="phoneMask" [type]="'tel'"></rente-input>
                 <rente-form-message class="text-left d-block pb-0" [type]="'info'">8 siffer</rente-form-message>
                 <div class="error-message" *ngIf="bankIdForm.controls['phone'].touched">
                   <rente-form-message class="text-left d-block" *ngIf="bankIdForm.controls['phone'].hasError('required')" [type]="'error'">
