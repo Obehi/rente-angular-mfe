@@ -24,18 +24,21 @@
 
             <div class="mb-4 bg-wrap">
               <div class="mb-4"><img style="max-width: 100px" src="{{bankLogo}}" alt="{{this.userBank.label}}"
-                title="{{this.userBank.label}}"></div>
+                  title="{{this.userBank.label}}"></div>
               <div *ngIf="isSsnBankLogin; else birthdateInput" class="form-group">
                 <!-- <input type="text" mask='separator'> -->
-                <rente-input [placeholder]="'Fødselsnummer:'" formControlName="ssn" [textMask]="ssnMask" [type]="'tel'"></rente-input>
+                <rente-input [placeholder]="'Fødselsnummer:'" formControlName="ssn" [textMask]="ssnMask" [type]="'tel'">
+                </rente-input>
 
                 <rente-form-message class="text-left d-block" [type]="'info'">11 siffer</rente-form-message>
 
                 <div class="error-message" *ngIf="bankIdForm.controls['ssn'].touched">
-                  <rente-form-message class="text-left d-block" *ngIf="bankIdForm.controls['ssn'].hasError('required')" [type]="'error'">
+                  <rente-form-message class="text-left d-block" *ngIf="bankIdForm.controls['ssn'].hasError('required')"
+                    [type]="'error'">
                     This field is required
                   </rente-form-message>
-                  <rente-form-message class="text-left d-block" *ngIf="bankIdForm.controls['ssn'].hasError('pattern')" [type]="'error'">
+                  <rente-form-message class="text-left d-block" *ngIf="bankIdForm.controls['ssn'].hasError('pattern')"
+                    [type]="'error'">
                     Fødselsnummer ikke gyldig
                   </rente-form-message>
                 </div>
@@ -43,13 +46,16 @@
 
               <ng-template #birthdateInput>
                 <div class="form-group">
-                  <rente-input [placeholder]="'Fødselsdato:'" formControlName="birthdate" [textMask]="birthdateMask" [type]="'tel'"></rente-input>
+                  <rente-input [placeholder]="'Fødselsdato:'" formControlName="birthdate" [textMask]="birthdateMask"
+                    [type]="'tel'"></rente-input>
                   <rente-form-message class="text-left d-block" [type]="'info'">6 siffer</rente-form-message>
                   <div class="error-message" *ngIf="bankIdForm.controls['birthdate'].touched">
-                    <rente-form-message class="text-left d-block" *ngIf="bankIdForm.controls['birthdate'].hasError('required')" [type]="'error'">
+                    <rente-form-message class="text-left d-block"
+                      *ngIf="bankIdForm.controls['birthdate'].hasError('required')" [type]="'error'">
                       This field is required
                     </rente-form-message>
-                    <rente-form-message class="text-left d-block" *ngIf="bankIdForm.controls['birthdate'].hasError('pattern')" [type]="'error'">
+                    <rente-form-message class="text-left d-block"
+                      *ngIf="bankIdForm.controls['birthdate'].hasError('pattern')" [type]="'error'">
                       Fødselsdato ikke gyldig
                     </rente-form-message>
                   </div>
@@ -57,22 +63,24 @@
               </ng-template>
 
               <div class="form-group">
-                <rente-input [placeholder]="'Mobil:'" formControlName="phone" [textMask]="phoneMask" [type]="'tel'"></rente-input>
+                <rente-input [placeholder]="'Mobil:'" formControlName="phone" [textMask]="phoneMask" [type]="'tel'">
+                </rente-input>
                 <rente-form-message class="text-left d-block pb-0" [type]="'info'">8 siffer</rente-form-message>
                 <div class="error-message" *ngIf="bankIdForm.controls['phone'].touched">
-                  <rente-form-message class="text-left d-block" *ngIf="bankIdForm.controls['phone'].hasError('required')" [type]="'error'">
+                  <rente-form-message class="text-left d-block"
+                    *ngIf="bankIdForm.controls['phone'].hasError('required')" [type]="'error'">
                     This field is required
                   </rente-form-message>
-                  <rente-form-message class="text-left d-block" *ngIf="bankIdForm.controls['phone'].hasError('pattern')" [type]="'error'">
+                  <rente-form-message class="text-left d-block" *ngIf="bankIdForm.controls['phone'].hasError('pattern')"
+                    [type]="'error'">
                     Telefonnummer ikke gyldig
                   </rente-form-message>
                 </div>
               </div>
             </div>
 
-            <p class="small my-4 text-center">
-                Les mer om tjenesten i
-              <a (click)="openServiceDialog()">vilkår</a>
+            <p class="small my-4 text-center text-left-small-screen">
+              Ved registrering bekrefter du <a (click)="openServiceDialog()">vilkårene</a> våre
             </p>
             <div class="register-btn">
               <rente-button color="primary" (click)="startLogin(bankIdForm.value)">Logg inn</rente-button>

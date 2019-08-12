@@ -16,3 +16,9 @@ a {
 .register-btn{
     margin-bottom: 90px;
 }
+
+.text-left-small-screen {
+    @media (max-width:450px) {
+        text-align: left !important;
+    }
+}
