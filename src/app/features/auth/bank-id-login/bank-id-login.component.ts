@@ -44,6 +44,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
   }
 
   public startLogin(formData) {
+    console.log(formData);
     this.userData = formData;
     this.isLoginStarted = true;
   }
@@ -55,7 +56,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     return this.fb.group({
       ssn: ['', Validators.compose([
         Validators.required,
-        Validators.pattern(VALIDATION_PATTERN.ssn)
+        Validators.pattern(VALIDATION_PATTERN.ssnMasked)
       ])],
       phone: ['', Validators.compose([
         Validators.required,

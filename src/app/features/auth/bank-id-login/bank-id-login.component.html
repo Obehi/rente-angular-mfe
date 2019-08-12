@@ -26,7 +26,8 @@
               <div class="mb-4"><img style="max-width: 100px" src="{{bankLogo}}" alt="{{this.userBank.label}}"
                 title="{{this.userBank.label}}"></div>
               <div *ngIf="isSsnBankLogin; else birthdateInput" class="form-group">
-                <rente-input [placeholder]="'Fødselsnummer:'" formControlName="ssn"></rente-input>
+                <!-- <input type="text" mask='separator'> -->
+                <rente-input [placeholder]="'Fødselsnummer:'" formControlName="ssn" [textMask]="mask"></rente-input>
 
                 <rente-form-message class="text-left d-block" [type]="'info'">11 siffer</rente-form-message>
 
