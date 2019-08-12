@@ -19,7 +19,9 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
   public userData: any = {};
   public userBank: any;
   public bankLogo: string;
-  mask = [/\d/, /\d/, /\d/, /\d/, /\d/, /\d/, ' ', /\d/, /\d/, /\d/, /\d/, /\d/];
+  ssnMask = [/\d/, /\d/, /\d/, /\d/, /\d/, /\d/, ' ', /\d/, /\d/, /\d/, /\d/, /\d/];
+  phoneMask = [/\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/];
+  birthdateMask = [/\d/, /\d/, /\d/, /\d/, /\d/, /\d/];
   private routeParamsSub: Subscription;
 
   constructor(
@@ -44,8 +46,11 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
   }
 
   public startLogin(formData) {
-    console.log(formData);
     this.userData = formData;
+    for (const key in this.userData) {
+      //remove everything except numbers
+      this.userData[key] = this.userData[key].replace(/\D[^\.]/g, '');
+    }
     this.isLoginStarted = true;
   }
 
