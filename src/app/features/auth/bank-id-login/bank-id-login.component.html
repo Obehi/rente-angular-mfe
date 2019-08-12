@@ -26,10 +26,7 @@
               <div class="mb-4"><img style="max-width: 100px" src="{{bankLogo}}" alt="{{this.userBank.label}}"
                   title="{{this.userBank.label}}"></div>
               <div *ngIf="isSsnBankLogin; else birthdateInput" class="form-group">
-                <!-- <input type="text" mask='separator'> -->
-                <rente-input [placeholder]="'Fødselsnummer:'" formControlName="ssn" [textMask]="ssnMask" [type]="'tel'">
-                </rente-input>
-
+                <rente-input [placeholder]="'Ditt fødselsnummer (11 siffer)'" formControlName="ssn" [textMask]="ssnMask" [type]="'tel'"></rente-input>
                 <rente-form-message class="text-left d-block" [type]="'info'">11 siffer</rente-form-message>
 
                 <div class="error-message" *ngIf="bankIdForm.controls['ssn'].touched">
@@ -46,9 +43,8 @@
 
               <ng-template #birthdateInput>
                 <div class="form-group">
-                  <rente-input [placeholder]="'Fødselsdato:'" formControlName="birthdate" [textMask]="birthdateMask"
+                  <rente-input [placeholder]="'Din fødselsdato (ddmmåå)'" formControlName="birthdate" [textMask]="birthdateMask"
                     [type]="'tel'"></rente-input>
-                  <rente-form-message class="text-left d-block" [type]="'info'">6 siffer</rente-form-message>
                   <div class="error-message" *ngIf="bankIdForm.controls['birthdate'].touched">
                     <rente-form-message class="text-left d-block"
                       *ngIf="bankIdForm.controls['birthdate'].hasError('required')" [type]="'error'">
@@ -63,9 +59,8 @@
               </ng-template>
 
               <div class="form-group">
-                <rente-input [placeholder]="'Mobil:'" formControlName="phone" [textMask]="phoneMask" [type]="'tel'">
+                <rente-input [placeholder]="'Ditt mobilnummer (8 siffer)'" formControlName="phone" [textMask]="phoneMask" [type]="'tel'">
                 </rente-input>
-                <rente-form-message class="text-left d-block pb-0" [type]="'info'">8 siffer</rente-form-message>
                 <div class="error-message" *ngIf="bankIdForm.controls['phone'].touched">
                   <rente-form-message class="text-left d-block"
                     *ngIf="bankIdForm.controls['phone'].hasError('required')" [type]="'error'">

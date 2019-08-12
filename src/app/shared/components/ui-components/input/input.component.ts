@@ -77,7 +77,6 @@ export class InputComponent implements ControlValueAccessor, OnChanges {
     }
   }
 
-
   writeValue(value) {
     if (value) {
       this.value = value;

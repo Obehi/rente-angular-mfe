@@ -10,9 +10,10 @@ import { StatusMessageComponent } from './status-message/status-message.componen
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { DialogInfoServiceComponent } from './bank-id-login/dialog-info-service/dialog-info-service.component';
 import { MatDialogModule } from '@angular/material';
+import { Sparebank1SubComponent } from './sparebank1-sub/sparebank1-sub.component';
 
 @NgModule({
-  declarations: [BankIdLoginComponent, LoginStatusComponent, StatusMessageComponent, DialogInfoServiceComponent],
+  declarations: [BankIdLoginComponent, LoginStatusComponent, StatusMessageComponent, DialogInfoServiceComponent, Sparebank1SubComponent],
   imports: [
     CommonModule,
     AuthRoutingModule,
