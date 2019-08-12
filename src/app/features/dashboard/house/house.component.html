@@ -19,7 +19,7 @@
 
           <div class="bg-wrap mt-0 mt-lg-5" [ngClass]="{disabled: autoPropertyForm.disabled}">
             <p>Renteradars estimerte boligverdi:</p>
-            <h2 class="title"> 3,965 millioner</h2>
+            <h2 class="title"> {{propertyValue / 1000000 | number: '1.1-3'}} millioner</h2>
             <form [formGroup]="autoPropertyForm" novalidate>
               <div class="mb-4">
                 <rente-input [placeholder]="'Adresse:'" formControlName="street"
@@ -112,3 +112,8 @@
     <p>Husk å lagre etter bytte mellom estimattype</p>
   </div>
 </div>
+
+<div class="d-flex justify-content-center align-items-center mt-4" *ngIf="!autoPropertyForm || !manualPropertyForm">
+  <mat-spinner [diameter]="48" [strokeWidth]="4"></mat-spinner>
+</div>
+

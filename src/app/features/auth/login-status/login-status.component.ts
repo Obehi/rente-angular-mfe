@@ -153,7 +153,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
     }
     this.connectionTimer = timer(1000, 1000);
     this.connectionTimerSubscription = this.connectionTimer.subscribe(time => {
-      if ((time > this.maxConnectionTime) && (this.loginStep2Status === MESSAGE_STATUS.LOADING)) {
+      if (time > this.maxConnectionTime) {
         this.viewStatus.isTimedOut = true;
       }
     });

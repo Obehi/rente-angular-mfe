@@ -16,7 +16,8 @@ export const API_URL_MAP = {
   },
   user: {
     base: '/user',
-    me: '/me'
+    me: '/me',
+    preferences: '/preferences'
   },
   loan: {
     base: '/loan',
@@ -25,7 +26,9 @@ export const API_URL_MAP = {
     membership: '/membership',
     membershipTypes: '/membership-types',
     address: '/address',
-    size: '/size'
+    size: '/size',
+    property: '/property',
+    value: '/value'
   },
   profile: '/profil',
   preferances: '/preferanser',

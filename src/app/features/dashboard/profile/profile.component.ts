@@ -69,7 +69,7 @@ export class ProfileComponent implements OnInit {
 
     });
   }
-
+  // TODO: Move to service
   public isErrorState(control: AbstractControl | null, form: FormGroup | NgForm | null): boolean {
     return !!(control && control.invalid && (control.dirty || control.touched));
   }
