@@ -7,10 +7,9 @@ import { LoginStatusComponent } from './login-status/login-status.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '@shared/shared.module';
 import { StatusMessageComponent } from './status-message/status-message.component';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { DialogInfoServiceComponent } from './bank-id-login/dialog-info-service/dialog-info-service.component';
-import { MatDialogModule } from '@angular/material';
 import { Sparebank1SubComponent } from './sparebank1-sub/sparebank1-sub.component';
+import { MaterialModule } from '@shared/material/material.module';
 
 @NgModule({
   declarations: [BankIdLoginComponent, LoginStatusComponent, StatusMessageComponent, DialogInfoServiceComponent, Sparebank1SubComponent],
@@ -19,8 +18,7 @@ import { Sparebank1SubComponent } from './sparebank1-sub/sparebank1-sub.componen
     AuthRoutingModule,
     ReactiveFormsModule,
     SharedModule,
-    MatProgressSpinnerModule,
-    MatDialogModule,
+    MaterialModule
   ],
   entryComponents: [DialogInfoServiceComponent]
 })

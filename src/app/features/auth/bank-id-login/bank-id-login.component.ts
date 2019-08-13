@@ -19,9 +19,9 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
   public userData: any = {};
   public userBank: any;
   public bankLogo: string;
-  ssnMask = [/\d/, /\d/, /\d/, /\d/, /\d/, /\d/, ' ', /\d/, /\d/, /\d/, /\d/, /\d/];
-  phoneMask = [/\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/];
-  birthdateMask = [/\d/, /\d/, /\d/, /\d/, /\d/, /\d/];
+  public ssnMask = { mask: [/\d/, /\d/, /\d/, /\d/, /\d/, /\d/, ' ', /\d/, /\d/, /\d/, /\d/, /\d/], guide: false };
+  public phoneMask = { mask: [/\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/], guide: false };
+  public birthdateMask = { mask: [/\d/, /\d/, /\d/, /\d/, /\d/, /\d/], guide: false };
   private routeParamsSub: Subscription;
 
   constructor(

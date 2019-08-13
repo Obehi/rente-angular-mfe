@@ -32,16 +32,12 @@ import { trigger, transition, style, animate } from '@angular/animations';
 })
 export class HeaderComponent implements OnInit {
   toggleNavbar: boolean = false;
-  smallScreen: boolean;
+  isSmallScreen: boolean;
 
   constructor(
     public auth: AuthService
   ) {
-    if (window.innerWidth <= 1000) {
-      this.smallScreen = true;
-    } else {
-      this.smallScreen = false;
-    }
+    this.isSmallScreen = window.innerWidth <= 1000;
   }
 
   ngOnInit() {
@@ -53,11 +49,7 @@ export class HeaderComponent implements OnInit {
 
   @HostListener('window:resize', ['$event'])
   onResize(event?) {
-    if (window.innerWidth <= 1000) {
-      this.smallScreen = true;
-    } else {
-      this.smallScreen = false;
-    }
+    this.isSmallScreen = window.innerWidth <= 1000;
   }
 
 }
