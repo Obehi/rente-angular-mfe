@@ -99,8 +99,13 @@
               </div>
             </div>
             <div class="col-12 col-sm-5">
-              <rente-button class="mb-4" color="primary" type="stroked" (click)="openOfferDialog(offer)">Mer info</rente-button>
+              <rente-button class="mb-2" color="primary" type="stroked" (click)="openOfferDialog(offer)">Mer info</rente-button>
               <rente-button class="mt-2" color="primary" type="stroked" [href]="banksMap[offer.bank].url">Bankens hjemmeside</rente-button>
+              <rente-button class="mt-2" [disabled]="true" color="primary" type="stroked">Start bytte*</rente-button>
+              <rente-button class="mt-2" [disabled]="true" color="primary" type="stroked">Be min bank om å  matche dette tilbudet*</rente-button>
+              <p class="text-right">
+                *Kommer snart
+              </p>
             </div>
           </div>
         </div>
