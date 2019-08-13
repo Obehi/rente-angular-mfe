@@ -29,11 +29,9 @@ import { ProfileService } from '@services/remote-api/profile.service';
 import { HttpClientModule } from '@angular/common/http';
 import { BigNumberPipe } from './pipes/big-number.pipe';
 import { ChipsAutocompleteComponent } from './components/ui-components/chips-autocomplete/chips-autocomplete.component';
-import { NgxMaskModule, IConfig } from 'ngx-mask';
 import { TextMaskModule } from 'angular2-text-mask';
 import { UserService } from '@services/remote-api/user.service';
 import { AbsPipe } from './pipes/abs.pipe';
-import { MatChipsModule, MatIconModule } from '@angular/material';
 import { MaterialModule } from './material/material.module';
 
 // export declare const options: Partial<IConfig> | (() => Partial<IConfig>);
