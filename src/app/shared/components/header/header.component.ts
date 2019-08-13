@@ -31,8 +31,8 @@ import { trigger, transition, style, animate } from '@angular/animations';
   ]
 })
 export class HeaderComponent implements OnInit {
-  toggleNavbar: boolean = false;
-  isSmallScreen: boolean;
+  public toggleNavbar: boolean;
+  public isSmallScreen: boolean;
 
   constructor(
     public auth: AuthService
