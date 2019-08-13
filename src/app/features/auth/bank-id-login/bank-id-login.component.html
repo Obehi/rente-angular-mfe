@@ -23,7 +23,7 @@
           <form [formGroup]="bankIdForm" novalidate>
 
             <div class="mb-4 bg-wrap">
-              <div class="mb-4"><img style="max-width: 100px" src="{{bankLogo}}" alt="{{this.userBank.label}}"
+              <div class="mb-4"><img class="mw-100" src="{{bankLogo}}" alt="{{this.userBank.label}}"
                   title="{{this.userBank.label}}"></div>
               <div *ngIf="isSsnBankLogin; else birthdateInput" class="form-group">
                 <rente-input [placeholder]="'Ditt fødselsnummer (11 siffer)'" formControlName="ssn" [mask]="ssnMask" [type]="'tel'"></rente-input>
