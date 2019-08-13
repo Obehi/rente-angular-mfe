@@ -1,7 +1,7 @@
-<div class="container login-status ">
+<div class="container login-status">
   <div class="row justify-content-center">
-    <div class="col-6 text-center bg-wrap">
-      <img style="max-width: 100px" 
+    <div class="col-12 col-md-6 text-center bg-wrap">
+      <img class="mw-100" 
             src="{{userBank?.bankIcon}}"
             alt="{{userBank?.label}}"
             title="{{userBank?.label}}">
@@ -9,7 +9,7 @@
         <span class="font-weight-bold">{{passPhrase}}</span>
       </h3>
       <div class="row  justify-content-center">
-        <div class="col-8 d-flex flex-column align-items-start">
+        <div class="col-10 col-md-8 d-flex flex-column align-items-start">
           <rente-status-message
             [status]="loginStep1Status">
             <span>

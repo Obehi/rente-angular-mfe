@@ -1,5 +1,10 @@
 <div class="input-block" [ngClass]="{'error': errorStateMatcher}">
   <mat-form-field class="example-full-width">
-    <input matInput [type]="type" [placeholder]="placeholder" [errorStateMatcher]="matcher" [(ngModel)]="value">
+    <div *ngIf="mask; else noMask">
+        <input matInput type="{{type}}" [placeholder]="placeholder" [errorStateMatcher]="matcher" [(ngModel)]="value" [textMask]="mask">
+    </div>
+    <ng-template #noMask>
+        <input matInput type="{{type}}" [placeholder]="placeholder" [errorStateMatcher]="matcher" [(ngModel)]="value">
+    </ng-template>
   </mat-form-field>
 </div>

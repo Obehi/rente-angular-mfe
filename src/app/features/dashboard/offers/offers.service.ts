@@ -9,20 +9,20 @@ export class OffersService {
 
   getRatingNumberFromLoanState(loanState: string) {
     switch (loanState) {
-      case LOAN_STATE_MAP.NO_LOANS:
-        return 0;
+      // case LOAN_STATE_MAP.NO_LOANS:
+      //   return 0;
 
-      case LOAN_STATE_MAP.NO_OFFERS:
-        return 1;
+      // case LOAN_STATE_MAP.NO_OFFERS:
+      //   return 1;
 
       case LOAN_STATE_MAP.SAVINGS_FIRST_YEAR_BELOW_0:
-        return 3;
+        return 5;
 
       case LOAN_STATE_MAP.SAVINGS_FIRST_YEAR_BETWEEN_3000_AND_0:
         return 4;
 
       case LOAN_STATE_MAP.SAVINGS_FIRST_YEAR_GREATER_3000:
-        return 5;
+        return 3;
 
       default:
         return 0;

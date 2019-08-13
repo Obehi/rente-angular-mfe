@@ -4,6 +4,8 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 import { VALIDATION_PATTERN } from '@config/validation-patterns.config';
 import { ActivatedRoute } from '@angular/router';
 import { BANK_MAP } from '../login-status/login-status.config';
+import { MatDialog } from '@angular/material';
+import { DialogInfoServiceComponent } from './dialog-info-service/dialog-info-service.component';
 
 @Component({
   selector: 'rente-bank-id-login',
@@ -16,18 +18,23 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
   public isLoginStarted = false;
   public userData: any = {};
   public userBank: any;
-  mask = [/\d/, /\d/, /\d/, /\d/, /\d/, /\d/, ' ', /\d/, /\d/, /\d/, /\d/, /\d/];
+  public bankLogo: string;
+  public ssnMask = { mask: [/\d/, /\d/, /\d/, /\d/, /\d/, /\d/, ' ', /\d/, /\d/, /\d/, /\d/, /\d/], guide: false };
+  public phoneMask = { mask: [/\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/], guide: false };
+  public birthdateMask = { mask: [/\d/, /\d/, /\d/, /\d/, /\d/, /\d/], guide: false };
   private routeParamsSub: Subscription;
 
   constructor(
     private fb: FormBuilder,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit() {
     this.routeParamsSub = this.route.params.subscribe((params: any) => {
       if (params && params.bankName) {
         this.userBank = BANK_MAP[params.bankName];
+        this.bankLogo = this.userBank.bankIcon;
         this.isSsnBankLogin = BANK_MAP[params.bankName].isSSN;
         this.setBankIdForm();
       }
@@ -40,6 +47,10 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
 
   public startLogin(formData) {
     this.userData = formData;
+    for (const key in this.userData) {
+      //remove everything except numbers
+      this.userData[key] = this.userData[key].replace(/\s/g, '');
+    }
     this.isLoginStarted = true;
   }
 
@@ -50,7 +61,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     return this.fb.group({
       ssn: ['', Validators.compose([
         Validators.required,
-        Validators.pattern(VALIDATION_PATTERN.ssn)
+        Validators.pattern(VALIDATION_PATTERN.ssnMasked)
       ])],
       phone: ['', Validators.compose([
         Validators.required,
@@ -58,6 +69,13 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
       ])],
     }, {
       updateOn: 'blur'
+    });
+  }
+
+  public openServiceDialog(): void {
+    console.log(this.dialog)
+    this.dialog.open(DialogInfoServiceComponent, {
+      width: '800px'
     });
   }
 

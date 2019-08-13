@@ -2,13 +2,13 @@
   <div class="row justify-content-center text-center my-md-5 my-2">
 
     <div class="col">
-      <h2 class="title font-weight-bold text-uppercase">Logg inn med BankID på mobil</h2>
+      <h2 class="title font-weight-bold">Logg inn med BankID på mobil</h2>
     </div>
   </div>
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-12 col-md-6">
-        <p class="text-center mb-5 text">
+        <p class="mb-5 text text-left">
           Legg inn fødselsnummer og mobilnummer. Bekreft referansen på mobilen, så hentes dine lånedata automatisk. Vi
           bruker
           SSL verifisering, så all informasjon sendes kryptert.
@@ -23,56 +23,62 @@
           <form [formGroup]="bankIdForm" novalidate>
 
             <div class="mb-4 bg-wrap">
+              <div class="mb-4"><img class="mw-100" src="{{bankLogo}}" alt="{{this.userBank.label}}"
+                  title="{{this.userBank.label}}"></div>
               <div *ngIf="isSsnBankLogin; else birthdateInput" class="form-group">
-                <rente-input [placeholder]="'Ditt fødselsnummer (11 siffer)'" formControlName="ssn" type="phone"></rente-input>
-
-                <rente-form-message class="text-left d-block" [type]="'info'">Vi vil ikke dele fødselsnummeret ditt med noen</rente-form-message>
+                <rente-input [placeholder]="'Ditt fødselsnummer (11 siffer)'" formControlName="ssn" [mask]="ssnMask" [type]="'tel'"></rente-input>
+                <rente-form-message class="text-left d-block" [type]="'info'">11 siffer</rente-form-message>
 
                 <div class="error-message" *ngIf="bankIdForm.controls['ssn'].touched">
-                  <rente-form-message class="text-left d-block" *ngIf="bankIdForm.controls['ssn'].hasError('required')" [type]="'error'">
+                  <rente-form-message class="text-left d-block" *ngIf="bankIdForm.controls['ssn'].hasError('required')"
+                    [type]="'error'">
                     This field is required
                   </rente-form-message>
-                  <rente-form-message class="text-left d-block" *ngIf="bankIdForm.controls['ssn'].hasError('pattern')" [type]="'error'">
-                    SSN is not valid
+                  <rente-form-message class="text-left d-block" *ngIf="bankIdForm.controls['ssn'].hasError('pattern')"
+                    [type]="'error'">
+                    Fødselsnummer ikke gyldig
                   </rente-form-message>
                 </div>
               </div>
 
               <ng-template #birthdateInput>
                 <div class="form-group">
-                  <rente-input [placeholder]="'Din fødselsdato (ddmmåå)'" formControlName="birthdate" type="phone"></rente-input>
+                  <rente-input [placeholder]="'Din fødselsdato (ddmmåå)'" formControlName="birthdate" [mask]="birthdateMask"
+                    [type]="'tel'"></rente-input>
                   <div class="error-message" *ngIf="bankIdForm.controls['birthdate'].touched">
-                    <rente-form-message class="text-left d-block" *ngIf="bankIdForm.controls['birthdate'].hasError('required')" [type]="'error'">
+                    <rente-form-message class="text-left d-block"
+                      *ngIf="bankIdForm.controls['birthdate'].hasError('required')" [type]="'error'">
                       This field is required
                     </rente-form-message>
-                    <rente-form-message class="text-left d-block" *ngIf="bankIdForm.controls['birthdate'].hasError('pattern')" [type]="'error'">
-                      Date of birth is not valid
+                    <rente-form-message class="text-left d-block"
+                      *ngIf="bankIdForm.controls['birthdate'].hasError('pattern')" [type]="'error'">
+                      Fødselsdato ikke gyldig
                     </rente-form-message>
                   </div>
                 </div>
               </ng-template>
 
               <div class="form-group">
-                <rente-input [placeholder]="'Ditt mobilnummer (8 siffer)'" formControlName="phone" type="phone"></rente-input>
+                <rente-input [placeholder]="'Ditt mobilnummer (8 siffer)'" formControlName="phone" [mask]="phoneMask" [type]="'tel'">
+                </rente-input>
                 <div class="error-message" *ngIf="bankIdForm.controls['phone'].touched">
-                  <rente-form-message class="text-left d-block" *ngIf="bankIdForm.controls['phone'].hasError('required')" [type]="'error'">
+                  <rente-form-message class="text-left d-block"
+                    *ngIf="bankIdForm.controls['phone'].hasError('required')" [type]="'error'">
                     This field is required
                   </rente-form-message>
-                  <rente-form-message class="text-left d-block" *ngIf="bankIdForm.controls['phone'].hasError('pattern')" [type]="'error'">
-                    Phone number is not valid
+                  <rente-form-message class="text-left d-block" *ngIf="bankIdForm.controls['phone'].hasError('pattern')"
+                    [type]="'error'">
+                    Telefonnummer ikke gyldig
                   </rente-form-message>
                 </div>
               </div>
             </div>
 
-            <p class="small my-5">
-              Ved registrering samtykker du til våre 
-              <a  href="/brukervilkar" target="_blank">Generelle vilkår</a>, <a
-                data-toggle="modal" data-target=".bd-example-modal-lg" href="#">Vilkår for bruk av tjenesten</a> og <a
-                href="/personvernerklaering" target="_blank">Personvernerklæring</a>
+            <p class="small my-4 text-center text-left-small-screen">
+              Ved registrering bekrefter du <a (click)="openServiceDialog()">vilkårene</a> våre
             </p>
             <div class="register-btn">
-              <rente-button color="primary" (click)="startLogin(bankIdForm.value)">Registrer meg med BankID</rente-button>
+              <rente-button color="primary" (click)="startLogin(bankIdForm.value)">Logg inn</rente-button>
             </div>
           </form>
         </div>
