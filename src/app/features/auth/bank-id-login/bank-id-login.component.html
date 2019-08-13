@@ -26,7 +26,7 @@
               <div class="mb-4"><img style="max-width: 100px" src="{{bankLogo}}" alt="{{this.userBank.label}}"
                   title="{{this.userBank.label}}"></div>
               <div *ngIf="isSsnBankLogin; else birthdateInput" class="form-group">
-                <rente-input [placeholder]="'Ditt fødselsnummer (11 siffer)'" formControlName="ssn" [textMask]="ssnMask" [type]="'tel'"></rente-input>
+                <rente-input [placeholder]="'Ditt fødselsnummer (11 siffer)'" formControlName="ssn" [mask]="ssnMask" [type]="'tel'"></rente-input>
                 <rente-form-message class="text-left d-block" [type]="'info'">11 siffer</rente-form-message>
 
                 <div class="error-message" *ngIf="bankIdForm.controls['ssn'].touched">
@@ -43,7 +43,7 @@
 
               <ng-template #birthdateInput>
                 <div class="form-group">
-                  <rente-input [placeholder]="'Din fødselsdato (ddmmåå)'" formControlName="birthdate" [textMask]="birthdateMask"
+                  <rente-input [placeholder]="'Din fødselsdato (ddmmåå)'" formControlName="birthdate" [mask]="birthdateMask"
                     [type]="'tel'"></rente-input>
                   <div class="error-message" *ngIf="bankIdForm.controls['birthdate'].touched">
                     <rente-form-message class="text-left d-block"
@@ -59,7 +59,7 @@
               </ng-template>
 
               <div class="form-group">
-                <rente-input [placeholder]="'Ditt mobilnummer (8 siffer)'" formControlName="phone" [textMask]="phoneMask" [type]="'tel'">
+                <rente-input [placeholder]="'Ditt mobilnummer (8 siffer)'" formControlName="phone" [mask]="phoneMask" [type]="'tel'">
                 </rente-input>
                 <div class="error-message" *ngIf="bankIdForm.controls['phone'].touched">
                   <rente-form-message class="text-left d-block"

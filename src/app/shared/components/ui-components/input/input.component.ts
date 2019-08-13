@@ -48,9 +48,8 @@ export class InputComponent implements ControlValueAccessor, OnChanges {
   @Input() errorStateMatcher: boolean;
   // tslint:disable-next-line:no-input-rename
   @Input('value') inputValue: any = '';
-  @Input() textMask?: any[];
+  @Input() mask?: any[];
   public matcher: MyErrorStateMatcher;
-  public mask = { mask: this.textMask, guide: false };
   @HostBinding('class.input-component') true;
 
   propagateChange: any = () => {};
@@ -68,10 +67,6 @@ export class InputComponent implements ControlValueAccessor, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes.textMask) {
-      this.textMask = changes.textMask.currentValue;
-      this.mask = { mask: this.textMask, guide: false };
-    }
     if (changes.errorStateMatcher) {
       this.matcher = new MyErrorStateMatcher(this.errorStateMatcher);
     }
