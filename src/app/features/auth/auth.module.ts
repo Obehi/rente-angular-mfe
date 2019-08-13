@@ -8,10 +8,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '@shared/shared.module';
 import { StatusMessageComponent } from './status-message/status-message.component';
 import { DialogInfoServiceComponent } from './bank-id-login/dialog-info-service/dialog-info-service.component';
-import { MaterialModule } from '../../shared/material/material.module';
+import { Sparebank1SubComponent } from './sparebank1-sub/sparebank1-sub.component';
+import { MaterialModule } from '@shared/material/material.module';
 
 @NgModule({
-  declarations: [BankIdLoginComponent, LoginStatusComponent, StatusMessageComponent, DialogInfoServiceComponent],
+  declarations: [BankIdLoginComponent, LoginStatusComponent, StatusMessageComponent, DialogInfoServiceComponent, Sparebank1SubComponent],
   imports: [
     CommonModule,
     AuthRoutingModule,

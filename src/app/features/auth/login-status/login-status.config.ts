@@ -35,5 +35,61 @@ export const BANK_MAP = {
   nordea: {
     label: 'NORDEA',
     bankIcon: '../../../assets/img/banks-logo/nordea.png'
-  }
+  },
+  SPAREBANK_1_BV: {
+    label: 'SPAREBANK',
+    bankIcon: '../../../../assets/img/banks-logo/square/sparebank1.png'
+  },
+  SPAREBANK_1_GUDBRANDSDAL: {
+    label: 'SPAREBANK',
+    bankIcon: '../../../../assets/img/banks-logo/square/sparebank1.png'
+  },
+  SPAREBANK_1_HALLINGDAL_VALDRES: {
+    label: 'SPAREBANK',
+    bankIcon: '../../../../assets/img/banks-logo/square/sparebank1.png'
+  },
+  SPAREBANK_1_LOM_OG_SKJAK: {
+    label: 'SPAREBANK',
+    bankIcon: '../../../../assets/img/banks-logo/square/sparebank1.png'
+  },
+  SPAREBANK_1_MODUM: {
+    label: 'SPAREBANK',
+    bankIcon: '../../../../assets/img/banks-logo/square/sparebank1.png'
+  },
+  SPAREBANK_1_NORD_NORGE: {
+    label: 'SPAREBANK',
+    bankIcon: '../../../../assets/img/banks-logo/square/sparebank1.png'
+  },
+  SPAREBANK_1_NORDVEST: {
+    label: 'SPAREBANK',
+    bankIcon: '../../../../assets/img/banks-logo/square/sparebank1.png'
+  },
+  SPAREBANK_1_RINGERIKE_HADELAND: {
+    label: 'SPAREBANK',
+    bankIcon: '../../../../assets/img/banks-logo/square/sparebank1.png'
+  },
+  SPAREBANK_1_SMN: {
+    label: 'SPAREBANK',
+    bankIcon: '../../../../assets/img/banks-logo/square/sparebank1.png'
+  },
+  SPAREBANK_1_SORE_SUNNMORE: {
+    label: 'SPAREBANK',
+    bankIcon: '../../../../assets/img/banks-logo/square/sparebank1.png'
+  },
+  SPAREBANK_1_SR_BANK: {
+    label: 'SPAREBANK',
+    bankIcon: '../../../../assets/img/banks-logo/square/sparebank1.png'
+  },
+  SPAREBANK_1_TELEMARK: {
+    label: 'SPAREBANK',
+    bankIcon: '../../../../assets/img/banks-logo/square/sparebank1.png'
+  },
+  SPAREBANK_1_OSTFOLD_AKERSHUS: {
+    label: 'SPAREBANK',
+    bankIcon: '../../../../assets/img/banks-logo/square/sparebank1.png'
+  },
+  SPAREBANK_1_OSTLANDET: {
+    label: 'SPAREBANK',
+    bankIcon: '../../../../assets/img/banks-logo/square/sparebank1.png'
+  },
 };
