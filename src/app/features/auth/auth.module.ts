@@ -7,9 +7,8 @@ import { LoginStatusComponent } from './login-status/login-status.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '@shared/shared.module';
 import { StatusMessageComponent } from './status-message/status-message.component';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { DialogInfoServiceComponent } from './bank-id-login/dialog-info-service/dialog-info-service.component';
-import { MatDialogModule } from '@angular/material';
+import { MaterialModule } from '../../shared/material/material.module';
 
 @NgModule({
   declarations: [BankIdLoginComponent, LoginStatusComponent, StatusMessageComponent, DialogInfoServiceComponent],
@@ -18,8 +17,7 @@ import { MatDialogModule } from '@angular/material';
     AuthRoutingModule,
     ReactiveFormsModule,
     SharedModule,
-    MatProgressSpinnerModule,
-    MatDialogModule,
+    MaterialModule
   ],
   entryComponents: [DialogInfoServiceComponent]
 })
