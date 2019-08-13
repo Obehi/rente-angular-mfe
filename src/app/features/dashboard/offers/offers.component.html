@@ -3,6 +3,15 @@
   <div class="row">
     <div class="col-12 col-md-5">
       <rente-rating [rating]="offersService.getRatingNumberFromLoanState(offersInfo.currentLoanState)"></rente-rating>
+          <div [ngSwitch]="offersInfo.currentLoanState">
+            <h4 class="my-0" *ngSwitchCase="loanStateMap.NO_LOANS">Vi fant ingen lån, er du sikker på at du har lån i {{offersInfo.bank}} ?</h4>
+            <h4 class="my-0" *ngSwitchCase="loanStateMap.NO_OFFERS">Lånet ditt delt på antatt boligverdi er for høyt. Sjekk og endre din boligverdi <a [routerLink]="['/dashboard/bolig']">her</a></h4>
+            <h4 class="my-0" *ngSwitchCase="loanStateMap.SAVINGS_FIRST_YEAR_BELOW_0">Du har veldig god rente!</h4>
+            <h4 class="my-0" *ngSwitchCase="loanStateMap.SAVINGS_FIRST_YEAR_BETWEEN_3000_AND_0">Renten din er ok, men du kan få bedre</h4>
+            <h4 class="my-0" *ngSwitchCase="loanStateMap.SAVINGS_FIRST_YEAR_GREATER_3000">Du kan spare mye på å bytte!</h4>
+            <div *ngSwitchDefault>-</div>
+          </div>
+            <!-- <h3>Du har ikke noe å spare på å bytte bank</h3> -->
       <p class="text-border mb-5">Tips: Boligverdi/belåningsgrad er viktig mtp hva bankene tilbyr. Du kan endre i Bolig
         fanen</p>
       <p class="text-border">Enkelte banker tilbyr bedre betingelser gitt at du har et medlemskap i en
@@ -12,17 +21,17 @@
     </div>
     <div class="col-12 col-md-7 text-center">
       <div class="row mb-4">
-        <div class="col-12 col-sm-7 mb-3">
-          <div class="bg-wrap" [ngSwitch]="offersInfo.currentLoanState">
-            <h3 *ngSwitchCase="loanStateMap.NO_LOANS">Vi fant ingen lån, er du sikker på at du har lån i {{offersInfo.bank}} ?</h3>
-            <h3 *ngSwitchCase="loanStateMap.NO_OFFERS">Lånet ditt delt på antatt boligverdi er for høyt. Sjekk og endre din boligverdi <a [routerLink]="['/dashboard/bolig']">her</a></h3>
-            <h3 *ngSwitchCase="loanStateMap.SAVINGS_FIRST_YEAR_BELOW_0">Du har veldig god rente!</h3>
-            <h3 *ngSwitchCase="loanStateMap.SAVINGS_FIRST_YEAR_BETWEEN_3000_AND_0">Renten din er ok, men du kan få bedre</h3>
-            <h3 *ngSwitchCase="loanStateMap.SAVINGS_FIRST_YEAR_GREATER_3000">Du kan spare mye på å bytte!</h3>
-            <div *ngSwitchDefault>-</div>
-          </div>
-            <!-- <h3>Du har ikke noe å spare på å bytte bank</h3> -->
-        </div>
+          <div class="col-12 col-sm-7 mb-3">
+              <div class="bg-wrap" [ngSwitch]="offersInfo.currentLoanState">
+                <p>Du kan spare:</p>
+                <h3 class="mb-2" *ngIf="offersInfo.bestOfferTotalSaving > 0; else noBestOffer">{{offersInfo.bestOfferTotalSaving | abs | number}},-</h3>
+                <ng-template #noBestOffer>
+                  <h3 class="mb-2">0,-</h3>
+                </ng-template>
+                <p class="mb-0">over lånets løpetid</p>
+              </div>
+                <!-- <h3>Du har ikke noe å spare på å bytte bank</h3> -->
+            </div>
         <div class="col-12 col-sm-5">
           <div class="bg-wrap">
             <p>Gjenværende lån:</p>
@@ -115,13 +124,14 @@
 </div>
 
 <div class="my-5 row justify-content-center" *ngIf="noOffers">
-    <div class="my-5 row justify-content-center">
-        <div class="col-lg-6 col-md-8 col-12">
-          <div class="bg-wrap">
-            <h3>Størrelsen på lånet ditt er for stor i forhold til vår estimerte boligverdi (>85%).
-              Kontroller og endre boligverdien din <a [routerLink]="['/dashboard/bolig']" >her i boligfanen</a></h3>
-          </div>
-
+  <div class="my-5 row justify-content-center">
+    <div class="col-lg-6 col-md-8 col-12">
+      <div class="bg-wrap">
+        <h3>Størrelsen på lånet ditt er for stor i forhold til vår estimerte boligverdi (>85%).
+          Kontroller og endre boligverdien din <a [routerLink]="['/dashboard/bolig']">her i boligfanen</a></h3>
+      </div>
+    </div>
+  </div>
 </div>
 
 

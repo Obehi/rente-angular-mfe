@@ -1,7 +1,7 @@
 <div class="my-5 row justify-content-center" *ngIf="preferencesForm">
   <div class="col-lg-6 col-md-8 col-12">
     <div class="bg-wrap">
-      <h2>Hvor ofte skal vi sjekke renten du har?</h2>
+      <h5>Hvor ofte skal vi sjekke renten du har?</h5>
       <p>Renteradar.no overvåker kontinuerlig markedet for bedre rente enn det du har på lånet ditt. Renten du har på
         lånet ditt sjekkes og oppdateres ved at du identifiserer deg med BankID. Det er viktig at dette gjøres fra tid
         til annen for at eventuelle renteendringer på lånet ditt skal fanges opp</p>
@@ -17,7 +17,7 @@
         </div>
 
         <div class="mb-4">
-          <h3>Kun rammelån/boligkreditt:</h3>
+          <h5>Kun rammelån/boligkreditt:</h5>
 
           <mat-radio-group formControlName="fetchCreditlinesOnly" class="d-flex flex-column">
             <mat-radio-button [value]="false" class="mb-2"><span class="text-wrap">Jeg er ikke avhengig av rammelån/boligkreditt</span></mat-radio-button>
@@ -26,7 +26,7 @@
         </div>
 
         <div class="mb-4">
-          <h3>Krav om andre produkter (e.g. lønnskonto):</h3>
+          <h5>Krav om andre produkter (e.g. lønnskonto):</h5>
 
           <mat-radio-group formControlName="noAdditionalProductsRequired" class="d-flex flex-column">
             <mat-radio-button [value]="false" class="mb-2"><span class="text-wrap">Jeg vil sammenligne mine betingelser med andre tilbud uavhengig om de krever andre produkter</span></mat-radio-button>
@@ -35,7 +35,7 @@
         </div>
 
         <div class="mb-4">
-          <h3>Grønne-/miljøboliglån:</h3>
+          <h5>Grønne-/miljøboliglån:</h5>
 
           <mat-radio-group formControlName="interestedInEnvironmentMortgages" class="d-flex flex-column">
             <mat-radio-button [value]="false" class="mb-2"><span class="text-wrap"> Jeg er ikke avhengig av rammelån/boligkredittJeg er ikke interessert i lån som forutsetter nullhus, tiltak for energimerking, etc..</span></mat-radio-button>
