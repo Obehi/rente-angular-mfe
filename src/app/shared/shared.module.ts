@@ -36,7 +36,7 @@ import { AbsPipe } from './pipes/abs.pipe';
 import { MatChipsModule, MatIconModule } from '@angular/material';
 import { MaterialModule } from './material/material.module';
 
-// export const options: Partial<IConfig> | (() => Partial<IConfig>);
+// export declare const options: Partial<IConfig> | (() => Partial<IConfig>);
 
 const components = [
   HeaderComponent,
@@ -71,12 +71,12 @@ const services = [
     HttpClientModule,
     RouterModule,
     FormsModule,
-    MaterialModule
+    MaterialModule,
     // MatButtonModule,
     // MatInputModule,
     // MatSnackBarModule,
     // MatRadioModule,
-    // TextMaskModule,
+    TextMaskModule,
     // MatChipsModule,
     // MatIconModule
   ],
