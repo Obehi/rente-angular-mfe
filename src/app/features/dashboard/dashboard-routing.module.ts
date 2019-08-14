@@ -6,6 +6,8 @@ import { LoansComponent } from './loans/loans.component';
 import { HouseComponent } from './house/house.component';
 import { PreferencesComponent } from './preferences/preferences.component';
 import { ProfileComponent } from './profile/profile.component';
+import { RateTypeFixedComponent } from './rate-type-fixed/rate-type-fixed.component';
+import { NoLoansComponent } from './no-loans/no-loans.component';
 
 const routes: Routes = [
   { path: '', component: DashboardComponent, children: [
@@ -15,7 +17,9 @@ const routes: Routes = [
     { path: 'preferanser', component: PreferencesComponent },
     { path: 'profil', component: ProfileComponent },
     ]
-  }
+  },
+  { path: 'fastrente', component: RateTypeFixedComponent },
+  { path: 'ingenlaan', component: NoLoansComponent }
 ];
 
 @NgModule({
