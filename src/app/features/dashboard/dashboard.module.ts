@@ -18,6 +18,8 @@ import { RatingComponent } from './offers/rating/rating.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule, MatChipsModule, MatIconModule, MatAutocompleteModule, MatProgressSpinnerModule } from '@angular/material';
+import { RateTypeFixedComponent } from './rate-type-fixed/rate-type-fixed.component';
+import { NoLoansComponent } from './no-loans/no-loans.component';
 // TODO: ADD separate module for material import
 @NgModule({
   declarations: [
@@ -29,6 +31,8 @@ import { MatInputModule, MatChipsModule, MatIconModule, MatAutocompleteModule, M
     ProfileComponent,
     DialogInfoComponent,
     RatingComponent,
+    RateTypeFixedComponent,
+    NoLoansComponent,
   ],
   imports: [
     CommonModule,

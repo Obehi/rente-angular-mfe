@@ -3,6 +3,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, NgForm, AbstractControl } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
 import { VALIDATION_PATTERN } from '@config/validation-patterns.config';
+import createNumberMask from 'text-mask-addons/dist/createNumberMask';
 
 @Component({
   selector: 'rente-house',
@@ -12,12 +13,22 @@ import { VALIDATION_PATTERN } from '@config/validation-patterns.config';
 })
 export class HouseComponent implements OnInit {
 
- public autoPropertyForm: FormGroup;
- public manualPropertyForm: FormGroup;
- public isAutoMode = true;
- public addressData: any;
- public isLoading: boolean;
- public propertyValue: number;
+  public autoPropertyForm: FormGroup;
+  public manualPropertyForm: FormGroup;
+  public isAutoMode = true;
+  public addressData: any;
+  public isLoading: boolean;
+  public propertyValue: number;
+  public threeDigitsMask = { mask: [/\d/, /\d/, /\d/], guide: false };
+  public fourDigitsMask = { mask: [/\d/, /\d/, /\d/, /\d/], guide: false };
+  public thousandSeparatorMask = {
+    mask: createNumberMask({
+      prefix: '',
+      suffix: '',
+      thousandsSeparatorSymbol: ' '
+    }), 
+    guide: false
+  };
 
   constructor(
     private fb: FormBuilder,
@@ -44,8 +55,7 @@ export class HouseComponent implements OnInit {
 
       this.manualPropertyForm = this.fb.group({
         manualPropertyValue: [this.addressData.manualPropertyValue, Validators.compose([
-          Validators.required,
-          Validators.pattern(VALIDATION_PATTERN.number)
+          Validators.required
         ])]
       });
 
@@ -78,6 +88,7 @@ export class HouseComponent implements OnInit {
       addressData = this.autoPropertyForm.value;
       addressData.manualPropertyValue = null;
     } else {
+      this.manualPropertyForm.value.manualPropertyValue = this.manualPropertyForm.value.manualPropertyValue.replace(/\s/g, '')
       addressData = Object.assign(this.autoPropertyForm.value, this.manualPropertyForm.value);
     }
     this.loansService.updateAddress(addressData).subscribe(res => {

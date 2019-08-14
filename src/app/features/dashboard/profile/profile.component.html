@@ -6,46 +6,45 @@
         <mat-form-field class="col-12">
           <mat-label>Medlemskap:</mat-label>
           <mat-chip-list #membershipList aria-label="Membership selection">
-            <mat-chip
-              *ngFor="let membership of memberships; let i = index;"
-              [selectable]="selectable"
-              [removable]="removable"
-              (removed)="remove(membership, i)">
+            <mat-chip *ngFor="let membership of memberships; let i = index;" [selectable]="selectable"
+              [removable]="removable" (removed)="remove(membership, i)">
               {{membership.label}}
               <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
             </mat-chip>
-            <input
-              placeholder="Medlemskap"
-              #membershipInput
-              [formControl]="membershipCtrl"
-              [matAutocomplete]="auto"
-              [matChipInputFor]="membershipList"
-              [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-              [matChipInputAddOnBlur]="addOnBlur"
-              (matChipInputTokenEnd)="add($event)">
+            <input placeholder="Medlemskap" #membershipInput [formControl]="membershipCtrl" [matAutocomplete]="auto"
+              [matChipInputFor]="membershipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+              [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event)">
           </mat-chip-list>
 
-          <mat-autocomplete
-            #auto="matAutocomplete"
-            (optionSelected)="selected($event)">
-              <mat-option *ngFor="let membership of filteredMemberships | async" [value]="membership">
-                {{membership.label}}
-              </mat-option>
-            </mat-autocomplete>
+          <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+            <mat-option *ngFor="let membership of filteredMemberships | async" [value]="membership">
+              {{membership.label}}
+            </mat-option>
+          </mat-autocomplete>
         </mat-form-field>
+        <rente-form-message class="text-left d-block" [type]="'info'">
+          Bankene gir ofte bedre betingelser hvis du er medlem i en organisasjon
+        </rente-form-message>
       </div>
 
       <div class="row">
         <div class="col-12">
           <p>Din/Husstandens brutto årsinntekt:</p>
           <rente-input [placeholder]="'Bruttoårsinntekt'" formControlName="income"
-            [errorStateMatcher]="isErrorState(profileForm.controls['income'], profileForm)">
+            [errorStateMatcher]="isErrorState(profileForm.controls['income'], profileForm)" [type]="'tel'"
+            [mask]="thousandSeparatorMask">
           </rente-input>
 
           <rente-form-message class="text-left d-block" [type]="'info'">Din/Husstandens inntekt er en viktig parameter
             for
             renten bankene tilbyr
           </rente-form-message>
+          <div *ngIf="profileForm.controls['income'].touched" class="error-message">
+            <rente-form-message class="text-left d-block" [type]="'error'"
+              *ngIf="profileForm.controls['income'].hasError('required')">
+              Kan ikke være tom
+            </rente-form-message>
+          </div>
 
         </div>
       </div>
@@ -56,12 +55,18 @@
           <rente-input [placeholder]="'E-post'" formControlName="email"
             [errorStateMatcher]="isErrorState(profileForm.controls['email'], profileForm)">
           </rente-input>
+          <div *ngIf="profileForm.controls['email'].touched" class="error-message">
+            <rente-form-message class="text-left d-block" [type]="'error'"
+              *ngIf="profileForm.controls['email'].hasError('required')">
+              Ikke gyldig email
+            </rente-form-message>
+          </div>
         </div>
       </div>
     </div>
     <div class="row mt-3 justify-content-center">
       <div class="col-12 col-sm-6 ">
-        <rente-button color="primary" (click)="updateProfile()" [disabled]="isLoading" isIconButton="true">
+        <rente-button color="primary" (click)="updateProfile()" [disabled]="isLoading || profileForm.invalid" isIconButton="true">
           Lagre
           <mat-icon *ngIf="isLoading">sync</mat-icon>
         </rente-button>

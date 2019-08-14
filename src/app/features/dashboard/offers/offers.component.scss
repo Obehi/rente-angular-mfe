@@ -14,17 +14,23 @@
     @include text-style(24px, 34px, 0.4px);
   }
 
+  .coming-soon-text {
+    color: $gray-700 !important;
+    font-size: 14px !important;
+  }
+
   .bg-wrap {
-      p {
-    opacity: 0.7;
-    font-weight: bold;
-    @include text-style(16px, 20px, 0.27px);
-    margin-top: 0;
-     }
-     h3{
-         margin: 0;
-     }
+    p {
+      opacity: 0.7;
+      font-weight: bold;
+      @include text-style(16px, 20px, 0.27px);
+      margin-top: 0;
     }
+
+    h3 {
+      margin: 0;
+    }
+  }
 
   .text-border {
     @include text-style(16px, 24px, 0.27px);
@@ -44,8 +50,8 @@
   }
 
   &-bank {
-    rente-button{
-        display: block;
+    rente-button {
+      display: block;
     }
   }
 }

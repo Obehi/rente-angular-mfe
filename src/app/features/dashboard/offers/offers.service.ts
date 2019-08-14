@@ -1,5 +1,5 @@
-import { LOAN_STATE_MAP } from './../../../config/loan-state';
 import { Injectable } from '@angular/core';
+import { OFFER_SAVINGS_TYPE } from '../../../config/loan-state';
 
 @Injectable({
   providedIn: 'root'
@@ -9,20 +9,19 @@ export class OffersService {
 
   getRatingNumberFromLoanState(loanState: string) {
     switch (loanState) {
-      // case LOAN_STATE_MAP.NO_LOANS:
-      //   return 0;
+      case OFFER_SAVINGS_TYPE.SAVINGS_FIRST_YEAR_GREATER_10000:
+        return 1;
 
-      // case LOAN_STATE_MAP.NO_OFFERS:
-      //   return 1;
+      case OFFER_SAVINGS_TYPE.SAVINGS_FIRST_YEAR_BETWEEN_6000_AND_10000:
+        return 2;
 
-      case LOAN_STATE_MAP.SAVINGS_FIRST_YEAR_BELOW_0:
-        return 5;
-
-      case LOAN_STATE_MAP.SAVINGS_FIRST_YEAR_BETWEEN_3000_AND_0:
-        return 4;
-
-      case LOAN_STATE_MAP.SAVINGS_FIRST_YEAR_GREATER_3000:
+      case OFFER_SAVINGS_TYPE.SAVINGS_FIRST_YEAR_BETWEEN_2000_AND_6000:
         return 3;
+
+      case OFFER_SAVINGS_TYPE.SAVINGS_FIRST_YEAR_BETWEEN_0_AND_2000:
+        return 4;
+      case OFFER_SAVINGS_TYPE.NO_SAVINGS:
+        return 5;
 
       default:
         return 0;

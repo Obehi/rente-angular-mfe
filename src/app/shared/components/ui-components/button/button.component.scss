@@ -7,11 +7,22 @@ button.mat-primary {
     font-weight: bold;	
     line-height: 19px;
     width: 100%;	
-    height: 40px;
+    min-height: 40px;
 }
 
 .mat-raised-button.mat-primary {
-    background-color: $primary;
+  background-color: $primary;
+  white-space: pre-wrap;
+  font-size: 15px !important;
+}
+
+.disabled-button {
+  border-radius: 4px;
+  background-color: $green !important;
+
+  .mat-button-wrapper {
+    color: $white !important;
+  }
 }
 
 .mat-stroked-button.mat-primary {
