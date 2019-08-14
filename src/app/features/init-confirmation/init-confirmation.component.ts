@@ -9,6 +9,7 @@ import { ENTER, COMMA } from '@angular/cdk/keycodes';
 import { MatAutocomplete, MatAutocompleteSelectedEvent, MatChipInputEvent } from '@angular/material';
 import { Router } from '@angular/router';
 import createNumberMask from 'text-mask-addons/dist/createNumberMask';
+import { VALIDATION_PATTERN } from '@config/validation-patterns.config';
 
 @Component({
   selector: 'rente-init-confirmation',
@@ -29,18 +30,18 @@ export class InitConfirmationComponent implements OnInit {
   memberships: any = [];
   public allMemberships: any[];
   public userData: any;
-  public threeDigitsMask = { mask: [/\d/,/\d/,/\d/], guide: false };
+  public threeDigitsMask = { mask: [/\d/, /\d/, /\d/], guide: false };
   public thousandSeparatorMask = {
     mask: createNumberMask({
       prefix: '',
       suffix: '',
       thousandsSeparatorSymbol: ' '
-    }), 
+    }),
     guide: false
   };
 
-  @ViewChild('membershipInput', {static: false}) membershipInput: ElementRef<HTMLInputElement>;
-  @ViewChild('auto', {static: false}) matAutocomplete: MatAutocomplete;
+  @ViewChild('membershipInput', { static: false }) membershipInput: ElementRef<HTMLInputElement>;
+  @ViewChild('auto', { static: false }) matAutocomplete: MatAutocomplete;
 
   constructor(
     private fb: FormBuilder,
@@ -48,11 +49,11 @@ export class InitConfirmationComponent implements OnInit {
     private loansService: LoansService,
     private snackBar: MatSnackBar,
     private router: Router
-    ) {
-      this.filteredMemberships = this.membershipCtrl.valueChanges.pipe(
-        startWith(null),
-        map((membership: string | null) => membership ? this.filter(membership) : this.allMemberships.slice()));
-    }
+  ) {
+    this.filteredMemberships = this.membershipCtrl.valueChanges.pipe(
+      startWith(null),
+      map((membership: string | null) => membership ? this.filter(membership) : this.allMemberships.slice()));
+  }
 
   ngOnInit() {
     this.loansService.getMembershipTypes().pipe(
@@ -76,7 +77,10 @@ export class InitConfirmationComponent implements OnInit {
           apartmentSize: [addressData.apartmentSize, Validators.required],
           membership: [],
           income: [this.userData.income, Validators.required],
-          email: [this.userData.email, Validators.required]
+          email: [this.userData.email, Validators.compose([
+            Validators.required,
+            Validators.pattern(VALIDATION_PATTERN.email)
+          ])]
         });
         this.propertyForm.markAllAsTouched();
         this.propertyForm.updateValueAndValidity();
@@ -96,7 +100,7 @@ export class InitConfirmationComponent implements OnInit {
     this.isLoading = true;
 
     const userData = {
-      email:  formData.email,
+      email: formData.email,
       income: formData.income.replace(/\s/g, '')
     };
 
@@ -113,21 +117,21 @@ export class InitConfirmationComponent implements OnInit {
       this.userService.updateUserInfo(userData),
       this.loansService.setUsersMemberships(memebershipsData),
       this.loansService.updateApartmentSize(apartmentsData)
-      ).subscribe(data => {
-        this.isLoading = false;
-        this.router.navigate(['/dashboard/tilbud']);
-        this.snackBar.open('Your data was updated', 'Close', {
-          duration: 10 * 1000,
-          panelClass: ['bg-primary'],
-          horizontalPosition: 'right'
-        });
-      }, err => {
-        this.isLoading = false;
-        this.snackBar.open(err.detail, 'Close', {
-          duration: 10 * 1000,
-          panelClass: ['bg-error'],
-          horizontalPosition: 'right'
-        });
+    ).subscribe(data => {
+      this.isLoading = false;
+      this.router.navigate(['/dashboard/tilbud']);
+      this.snackBar.open('Your data was updated', 'Close', {
+        duration: 10 * 1000,
+        panelClass: ['bg-primary'],
+        horizontalPosition: 'right'
+      });
+    }, err => {
+      this.isLoading = false;
+      this.snackBar.open(err.detail, 'Close', {
+        duration: 10 * 1000,
+        panelClass: ['bg-error'],
+        horizontalPosition: 'right'
+      });
     });
   }
 

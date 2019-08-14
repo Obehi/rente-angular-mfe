@@ -9,6 +9,7 @@ import { MatChipInputEvent } from '@angular/material';
 import { LoansService } from '@services/remote-api/loans.service';
 import { UserService } from '@services/remote-api/user.service';
 import createNumberMask from 'text-mask-addons/dist/createNumberMask'
+import { VALIDATION_PATTERN } from '../../../config/validation-patterns.config';
 
 
 @Component({
@@ -23,9 +24,9 @@ export class ProfileComponent implements OnInit {
   public removable = true;
   public addOnBlur = true;
   public separatorKeysCodes: number[] = [ENTER, COMMA];
-  membershipCtrl = new FormControl();
-  filteredMemberships: Observable<string[]>;
-  memberships: any = [];
+  public membershipCtrl = new FormControl();
+  public filteredMemberships: Observable<string[]>;
+  public memberships: any = [];
   public allMemberships: any[];
   public isLoading: boolean;
   public thousandSeparatorMask = {
@@ -73,7 +74,10 @@ export class ProfileComponent implements OnInit {
         this.profileForm = this.fb.group({
           membership: [userMemberships.memberships],
           income: [userData.income,Validators.required],
-          email: [userData.email,Validators.required]
+          email: [userData.email,Validators.compose([
+            Validators.required,
+            Validators.pattern(VALIDATION_PATTERN.email)
+          ])]
         });
       });
 
