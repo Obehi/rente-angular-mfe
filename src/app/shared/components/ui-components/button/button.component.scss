@@ -11,7 +11,23 @@ button.mat-primary {
 }
 
 .mat-raised-button.mat-primary {
-    background-color: $primary;
+  background-color: $primary;
+  white-space: pre-wrap;
+  font-size: 15px !important;
+}
+
+.disabled {
+  border-radius: 4px;
+  background-color: $green !important;
+
+  .mat-button-wrapper {
+    color: $white !important;
+  }
+}
+
+.coming-soon-text {
+    color: $gray-700 !important;
+    font-size: 14px !important;
 }
 
 .mat-stroked-button.mat-primary {
