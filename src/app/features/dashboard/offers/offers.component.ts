@@ -51,7 +51,6 @@ export class OffersComponent implements OnInit {
       if (!this.offersInfo.offersPresent) {
         this.noOffers = true;
       }
-      // if(this.offersInfo.offerSavingsType === this.offerSavingsType.)
    
     }, err => {
       if (err.errorType === 'PROPERTY_VALUE_MISSING') {
