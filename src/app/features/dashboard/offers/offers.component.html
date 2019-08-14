@@ -2,15 +2,13 @@
   <h3>Rentebarometer</h3>
   <div class="row">
     <div class="col-12 col-md-5">
-      <rente-rating [rating]="offersService.getRatingNumberFromLoanState(offersInfo.currentLoanState)"></rente-rating>
-          <div [ngSwitch]="offersInfo.currentLoanState">
-            <h4 class="my-0" *ngSwitchCase="loanStateMap.NO_LOANS">Vi fant ingen lån, er du sikker på at du har lån i {{offersInfo.bank}} ?</h4>
-            <h4 class="my-0" *ngSwitchCase="loanStateMap.NO_OFFERS">Lånet ditt delt på antatt boligverdi er for høyt. Sjekk og endre din boligverdi<a [routerLink]="['/dashboard/bolig']">her</a></h4>
-            <h4 class="my-0" *ngSwitchCase="loanStateMap.NO_SAVINGS">Renten din er svært god</h4>
-            <h4 class="my-0" *ngSwitchCase="loanStateMap.SAVINGS_FIRST_YEAR_BETWEEN_0_AND_2000">Renten din er god, men ikke best</h4>
-            <h4 class="my-0" *ngSwitchCase="loanStateMap.SAVINGS_FIRST_YEAR_BETWEEN_2000_AND_6000">Renten din er OK, med du kan få bedre</h4>
-            <h4 class="my-0" *ngSwitchCase="loanStateMap.SAVINGS_FIRST_YEAR_BETWEEN_6000_AND_10000">Renten din er høy og du kan spare en del</h4>
-            <h4 class="my-0" *ngSwitchCase="loanStateMap.SAVINGS_FIRST_YEAR_GREATER_10000">Renten din er svært høy -du har mye å spare</h4>
+      <rente-rating [rating]="offersService.getRatingNumberFromLoanState(offersInfo.offerSavingsType)"></rente-rating>
+          <div [ngSwitch]="offersInfo.offerSavingsType">
+            <h4 class="my-0" *ngSwitchCase="offerSavingsType.NO_SAVINGS">Renten din er svært god</h4>
+            <h4 class="my-0" *ngSwitchCase="offerSavingsType.SAVINGS_FIRST_YEAR_BETWEEN_0_AND_2000">Renten din er god, men ikke best</h4>
+            <h4 class="my-0" *ngSwitchCase="offerSavingsType.SAVINGS_FIRST_YEAR_BETWEEN_2000_AND_6000">Renten din er OK, med du kan få bedre</h4>
+            <h4 class="my-0" *ngSwitchCase="offerSavingsType.SAVINGS_FIRST_YEAR_BETWEEN_6000_AND_10000">Renten din er høy og du kan spare en del</h4>
+            <h4 class="my-0" *ngSwitchCase="offerSavingsType.SAVINGS_FIRST_YEAR_GREATER_10000">Renten din er svært høy -du har mye å spare</h4>
             <div *ngSwitchDefault>-</div>
           </div>
             <!-- <h3>Du har ikke noe å spare på å bytte bank</h3> -->
@@ -42,7 +40,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-12 col-sm-7" *ngIf="offersInfo.currentLoanState !== loanStateMap.NO_LOANS && offersInfo.currentLoanState !== loanStateMap.NO_OFFERS">
+        <div class="col-12 col-sm-7" *ngIf="offersInfo.loansPresent  && offersInfo.offersPresent">
           <div class="row">
             <div class="col-12 col-sm-6 mb-3">
               <div class="bg-wrap">
@@ -87,7 +85,7 @@
                   <p>Rentebesparelse over lånets løpetid:</p>
                   <h3 *ngIf="offer.totalSavings > 0; else noTotalSavings" >{{offer.totalSavings | abs | number}},-</h3>
                   <ng-template #noTotalSavings>
-                      <h3>{{0| abs | number}},-</h3>
+                      <h3>0,-</h3>
                   </ng-template>
                   
                 </div>
@@ -95,7 +93,7 @@
                   <p>Rentebesparelse første år:</p>
                   <h3 *ngIf="offer.savingsFirstYear > 0; else noTotalSavings">{{offer.savingsFirstYear | abs | number}},-</h3>
                   <ng-template #noSavingsFirstYear>
-                    <h3>{{0| abs | number}},-</h3>
+                    <h3>0,-</h3>
                   </ng-template>
                 </div>
               </div>

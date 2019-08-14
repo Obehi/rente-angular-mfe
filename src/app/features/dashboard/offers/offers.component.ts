@@ -6,8 +6,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { DialogInfoComponent } from './dialog-info/dialog-info.component';
 import { Loans } from '@shared/models/loans';
 import { BANKS_DATA } from '@config/banks-config';
-import { LOAN_STATE_MAP } from '@config/loan-state';
 import { Router } from '@angular/router';
+import { OFFER_SAVINGS_TYPE, AGGREGATED_RATE_TYPE } from '../../../config/loan-state';
 
 @Component({
   selector: 'rente-offers',
@@ -15,15 +15,15 @@ import { Router } from '@angular/router';
   styleUrls: ['./offers.component.scss']
 })
 export class OffersComponent implements OnInit {
-  public offersInfo: any;
+  public offersInfo: Offers;
   public loansInfo: any;
   public loans: Loans;
   public banksMap = BANKS_DATA;
-  public loanStateMap = LOAN_STATE_MAP;
+  public offerSavingsType = OFFER_SAVINGS_TYPE;
+  public aggregatedRateType = AGGREGATED_RATE_TYPE;
   public isLoading = true;
   public errorMessage: string;
   public noOffers: boolean;
-  public fixedAggRateType: boolean;
 
 
   constructor(
@@ -40,13 +40,19 @@ export class OffersComponent implements OnInit {
       this.offersInfo = res;
       this.isLoading = false;
 
-      if (res.currentLoanState === this.loanStateMap.NO_OFFERS) {
-        this.noOffers = true;
-      }
-      if (res.currentLoanState === this.loanStateMap.FIXED_AGG_RATE_TYPE) {
-        this.fixedAggRateType = true;
+      if (!this.offersInfo.loansPresent) {
+        this.router.navigate(['/dashboard/ingenlaan'], { queryParams: { bank: this.offersInfo.bank } });
       }
 
+      if (this.offersInfo.aggregatedRateType === this.aggregatedRateType.FIXED) {
+        this.router.navigate(['/dashboard/fastrente']);
+      }
+
+      if (!this.offersInfo.offersPresent) {
+        this.noOffers = true;
+      }
+      // if(this.offersInfo.offerSavingsType === this.offerSavingsType.)
+   
     }, err => {
       if (err.errorType === 'PROPERTY_VALUE_MISSING') {
         this.errorMessage = err.title;

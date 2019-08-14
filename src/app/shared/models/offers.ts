@@ -1,12 +1,15 @@
 export interface Offers {
+  aggregatedRateType: string;
   bank: string;
   bestOfferEffectiveRate: number | null;
   bestOfferTotalSaving: number | null;
   bestSavingsFirstYear: number | null;
   bestTotalSavings: number | null;
-  currentLoanState: string;
+  loansPresent:boolean |null;
+  currentLoaofferSavingsTypenState: string;
   membership: string | null;
   offers: OfferInfo[];
+  offersPresent: boolean | null;
   propertyValue: number | null;
   totalEffectiveRate: number | null;
   totalOutstandingDebt: number | null;
