@@ -48,8 +48,10 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
   public startLogin(formData) {
     this.userData = formData;
     for (const key in this.userData) {
-      //remove everything except numbers
-      this.userData[key] = this.userData[key].replace(/\s/g, '');
+      // remove everything except numbers
+      if (this.userData[key]) {
+        this.userData[key] = this.userData[key].replace(/\s/g, '');
+      }
     }
     this.isLoginStarted = true;
   }
@@ -73,7 +75,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
   }
 
   public openServiceDialog(): void {
-    console.log(this.dialog)
+    console.log(this.dialog);
     this.dialog.open(DialogInfoServiceComponent, {
       width: '800px'
     });
