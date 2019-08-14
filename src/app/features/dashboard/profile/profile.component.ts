@@ -8,7 +8,7 @@ import { MatAutocomplete, MatAutocompleteSelectedEvent } from '@angular/material
 import { MatChipInputEvent } from '@angular/material';
 import { LoansService } from '@services/remote-api/loans.service';
 import { UserService } from '@services/remote-api/user.service';
-import createNumberMask from 'text-mask-addons/dist/createNumberMask'
+import createNumberMask from 'text-mask-addons/dist/createNumberMask';
 import { VALIDATION_PATTERN } from '../../../config/validation-patterns.config';
 
 
@@ -34,19 +34,19 @@ export class ProfileComponent implements OnInit {
       prefix: '',
       suffix: '',
       thousandsSeparatorSymbol: ' '
-    }), 
-    guide: false
+    }),
+      guide: false
   };
 
-  @ViewChild('membershipInput', {static: false}) membershipInput: ElementRef<HTMLInputElement>;
-  @ViewChild('auto', {static: false}) matAutocomplete: MatAutocomplete;
+  @ViewChild('membershipInput', { static: false }) membershipInput: ElementRef<HTMLInputElement>;
+  @ViewChild('auto', { static: false }) matAutocomplete: MatAutocomplete;
 
   constructor(
     private fb: FormBuilder,
     private loansService: LoansService,
     private userService: UserService,
     private snackBar: MatSnackBar
-    ) {
+  ) {
     this.filteredMemberships = this.membershipCtrl.valueChanges.pipe(
       startWith(null),
       map((membership: string | null) => membership ? this.filter(membership) : this.allMemberships.slice()));
@@ -73,8 +73,8 @@ export class ProfileComponent implements OnInit {
         // TODO: Add validators and validation messages for form
         this.profileForm = this.fb.group({
           membership: [userMemberships.memberships],
-          income: [userData.income,Validators.required],
-          email: [userData.email,Validators.compose([
+          income: [userData.income, Validators.required],
+          email: [userData.email, Validators.compose([
             Validators.required,
             Validators.pattern(VALIDATION_PATTERN.email)
           ])]
@@ -92,7 +92,7 @@ export class ProfileComponent implements OnInit {
     this.isLoading = true;
     console.log(this.memberships.map(membership => membership.name));
     const userData = {
-      email:  this.profileForm.value.email,
+      email: this.profileForm.value.email,
       income: this.profileForm.value.income.replace(/\s/g, ''),
     };
 

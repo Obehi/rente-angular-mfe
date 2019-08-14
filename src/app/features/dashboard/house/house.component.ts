@@ -26,7 +26,7 @@ export class HouseComponent implements OnInit {
       prefix: '',
       suffix: '',
       thousandsSeparatorSymbol: ' '
-    }), 
+    }),
     guide: false
   };
 
@@ -88,7 +88,7 @@ export class HouseComponent implements OnInit {
       addressData = this.autoPropertyForm.value;
       addressData.manualPropertyValue = null;
     } else {
-      this.manualPropertyForm.value.manualPropertyValue = this.manualPropertyForm.value.manualPropertyValue.replace(/\s/g, '')
+      this.manualPropertyForm.value.manualPropertyValue = this.manualPropertyForm.value.manualPropertyValue.replace(/\s/g, '');
       addressData = Object.assign(this.autoPropertyForm.value, this.manualPropertyForm.value);
     }
     this.loansService.updateAddress(addressData).subscribe(res => {

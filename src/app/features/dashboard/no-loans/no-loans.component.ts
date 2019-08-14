@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 
@@ -7,7 +7,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './no-loans.component.html',
   styleUrls: ['./no-loans.component.scss']
 })
-export class NoLoansComponent implements OnInit {
+export class NoLoansComponent implements OnInit, OnDestroy {
   public bankName: string;
   private routeQueryParamsSub: Subscription;
 
@@ -18,7 +18,7 @@ export class NoLoansComponent implements OnInit {
       if (queryParams.bank) {
         this.bankName = queryParams.bank;
       }
-    })
+    });
   }
 
   ngOnDestroy() {
