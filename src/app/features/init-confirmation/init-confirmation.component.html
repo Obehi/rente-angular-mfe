@@ -50,12 +50,14 @@
           <mat-label>Størrelse på bolig (kvm):</mat-label>
           <rente-input [placeholder]="'Antall kvadratmeter'" 
                         formControlName="apartmentSize" 
-                        [errorStateMatcher]="isErrorState(propertyForm.controls['apartmentSize'], propertyForm)">
+                        [errorStateMatcher]="isErrorState(propertyForm.controls['apartmentSize'], propertyForm)"
+                        [type]="'tel'"
+                        [mask]="threeDigitsMask">
           </rente-input>
 
           <rente-form-message class="text-left d-block" 
                               [type]="'info'">
-                              For å finne estimert verdi på bolig
+                              Brukes til å estimere din boligverdi
           </rente-form-message>
 
           <div *ngIf="propertyForm.controls['apartmentSize'].touched" 
@@ -63,7 +65,7 @@
             <rente-form-message class="text-left d-block" 
                                 [type]="'error'" 
                                 *ngIf="propertyForm.controls['apartmentSize'].hasError('required')">
-                                  Kan ikke være tom Feil størrelse
+                                  Kan ikke være tom
             </rente-form-message>
           </div>
         </div>
@@ -74,18 +76,12 @@
                         formControlName="email" 
                         [errorStateMatcher]="isErrorState(propertyForm.controls['email'], propertyForm)">
           </rente-input>
-
-          <rente-form-message class="text-left d-block" 
-                              [type]="'info'">
-                              Vi bruker e-post for å minne deg på ... 
-          </rente-form-message>
-
           <div *ngIf="propertyForm.controls['email'].touched" 
                 class="error-message">
             <rente-form-message class="text-left d-block" 
                                 [type]="'error'" 
                                 *ngIf="propertyForm.controls['email'].hasError('required')">
-                                  Kan ikke være tom Feil størrelse
+                                  Kan ikke være tom
             </rente-form-message>
           </div>
         </div>
@@ -95,7 +91,9 @@
            
           <rente-input [placeholder]="'Bruttoårsinntekt'"
                        formControlName="income" 
-                       [errorStateMatcher]="isErrorState(propertyForm.controls['income'], propertyForm)">
+                       [errorStateMatcher]="isErrorState(propertyForm.controls['income'], propertyForm)"
+                       [type]="'tel'"
+                       [mask]="thousandSeparatorMask">
           </rente-input>
 
           <rente-form-message class="text-left d-block" 
@@ -108,7 +106,7 @@
             <rente-form-message class="text-left d-block" 
                                 [type]="'error'" 
                                 *ngIf="propertyForm.controls['income'].hasError('required')">
-                                Kan ikke være tom Feil størrelse
+                                Kan ikke være tom
             </rente-form-message>
           </div>
         </div>

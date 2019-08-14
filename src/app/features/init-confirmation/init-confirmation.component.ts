@@ -8,6 +8,7 @@ import { mergeMap, startWith, map } from 'rxjs/operators';
 import { ENTER, COMMA } from '@angular/cdk/keycodes';
 import { MatAutocomplete, MatAutocompleteSelectedEvent, MatChipInputEvent } from '@angular/material';
 import { Router } from '@angular/router';
+import createNumberMask from 'text-mask-addons/dist/createNumberMask';
 
 @Component({
   selector: 'rente-init-confirmation',
@@ -28,6 +29,15 @@ export class InitConfirmationComponent implements OnInit {
   memberships: any = [];
   public allMemberships: any[];
   public userData: any;
+  public threeDigitsMask = { mask: [/\d/,/\d/,/\d/], guide: false };
+  public thousandSeparatorMask = {
+    mask: createNumberMask({
+      prefix: '',
+      suffix: '',
+      thousandsSeparatorSymbol: ' '
+    }), 
+    guide: false
+  };
 
   @ViewChild('membershipInput', {static: false}) membershipInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto', {static: false}) matAutocomplete: MatAutocomplete;
@@ -87,7 +97,7 @@ export class InitConfirmationComponent implements OnInit {
 
     const userData = {
       email:  formData.email,
-      income: formData.income,
+      income: formData.income.replace(/\s/g, '')
     };
 
     const memebershipsData = {

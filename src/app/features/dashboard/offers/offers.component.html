@@ -3,35 +3,45 @@
   <div class="row">
     <div class="col-12 col-md-5">
       <rente-rating [rating]="offersService.getRatingNumberFromLoanState(offersInfo.offerSavingsType)"></rente-rating>
-          <div [ngSwitch]="offersInfo.offerSavingsType">
-            <h4 class="my-0" *ngSwitchCase="offerSavingsType.NO_SAVINGS">Renten din er svært god</h4>
-            <h4 class="my-0" *ngSwitchCase="offerSavingsType.SAVINGS_FIRST_YEAR_BETWEEN_0_AND_2000">Renten din er god, men ikke best</h4>
-            <h4 class="my-0" *ngSwitchCase="offerSavingsType.SAVINGS_FIRST_YEAR_BETWEEN_2000_AND_6000">Renten din er OK, med du kan få bedre</h4>
-            <h4 class="my-0" *ngSwitchCase="offerSavingsType.SAVINGS_FIRST_YEAR_BETWEEN_6000_AND_10000">Renten din er høy og du kan spare en del</h4>
-            <h4 class="my-0" *ngSwitchCase="offerSavingsType.SAVINGS_FIRST_YEAR_GREATER_10000">Renten din er svært høy -du har mye å spare</h4>
-            <div *ngSwitchDefault>-</div>
-          </div>
-            <!-- <h3>Du har ikke noe å spare på å bytte bank</h3> -->
+      <div [ngSwitch]="offersInfo.offerSavingsType">
+        <h4 class="my-0" *ngSwitchCase="offerSavingsType.NO_SAVINGS">Renten din er svært god</h4>
+        <h4 class="my-0" *ngSwitchCase="offerSavingsType.SAVINGS_FIRST_YEAR_BETWEEN_0_AND_2000">Renten din er god, men
+          ikke best</h4>
+        <h4 class="my-0" *ngSwitchCase="offerSavingsType.SAVINGS_FIRST_YEAR_BETWEEN_2000_AND_6000">Renten din er OK, med
+          du kan få bedre</h4>
+        <h4 class="my-0" *ngSwitchCase="offerSavingsType.SAVINGS_FIRST_YEAR_BETWEEN_6000_AND_10000">Renten din er høy og
+          du kan spare en del</h4>
+        <h4 class="my-0" *ngSwitchCase="offerSavingsType.SAVINGS_FIRST_YEAR_GREATER_10000">Renten din er svært høy -du
+          har mye å spare</h4>
+        <div *ngSwitchDefault>-</div>
+      </div>
+      <!-- <h3>Du har ikke noe å spare på å bytte bank</h3> -->
       <p class="text-border mb-5">Tips: Boligverdi/belåningsgrad er viktig mtp hva bankene tilbyr. Du kan endre i Bolig
         fanen</p>
-      <p class="text-border" *ngIf="!offersInfo.memberships.length" >Enkelte banker tilbyr bedre betingelser gitt at du har et medlemskap i en
+      <p class="text-border" *ngIf="!offersInfo.memberships.length">Enkelte banker tilbyr bedre betingelser gitt at du
+        har et medlemskap i en
         interesseorganisasjon. Hvis du har
         mulighet til å bli medlem prøv gjerne å endre ditt medlemskap ved å klikke her for å se om det påvirker
         resultatet av din rentesjekk. (Medlemskap pleier å koste ca 4000 i året)</p>
+      <p class="text-border" *ngIf="offersInfo.aggregatedRateType === aggregatedRateType.MIX_FIXED_FLOATING">Vi ser du
+        har ett eller flere fastrentelån. Renteradar viser besparelsespotensialet kun for lånet/lånene med flytende
+        rente. Beste rente viser også kun beste rente for lånet/lånene med flytende rente.
+      </p>
     </div>
     <div class="col-12 col-md-7 text-center">
       <div class="row mb-4">
-          <div class="col-12 col-sm-7 mb-3">
-              <div class="bg-wrap" [ngSwitch]="offersInfo.currentLoanState">
-                <p>Du kan spare:</p>
-                <h3 class="mb-2" *ngIf="offersInfo.bestOfferTotalSaving > 0; else noBestOffer">{{offersInfo.bestOfferTotalSaving | abs | number}},-</h3>
-                <ng-template #noBestOffer>
-                  <h3 class="mb-2">0,-</h3>
-                </ng-template>
-                <p class="mb-0">over lånets løpetid</p>
-              </div>
-                <!-- <h3>Du har ikke noe å spare på å bytte bank</h3> -->
-            </div>
+        <div class="col-12 col-sm-7 mb-3">
+          <div class="bg-wrap" [ngSwitch]="offersInfo.currentLoanState">
+            <p>Du kan spare:</p>
+            <h3 class="mb-2" *ngIf="offersInfo.bestOfferTotalSaving > 0; else noBestOffer">
+              {{offersInfo.bestOfferTotalSaving | abs | number}},-</h3>
+            <ng-template #noBestOffer>
+              <h3 class="mb-2">0,-</h3>
+            </ng-template>
+            <p class="mb-0">over lånets løpetid</p>
+          </div>
+          <!-- <h3>Du har ikke noe å spare på å bytte bank</h3> -->
+        </div>
         <div class="col-12 col-sm-5">
           <div class="bg-wrap">
             <p>Gjenværende lån:</p>
@@ -73,7 +83,8 @@
         <div class="col-12 col-sm-6 pt-2">
           <div class="row">
             <div class="col-12 col-sm-4 ">
-              <img class="mw-120" *ngIf="banksMap[offer.bank].imgCircle" [src]="banksMap[offer.bank].imgCircle" alt="" title="banksMap[offer.bank].label">
+              <img class="mw-120" *ngIf="banksMap[offer.bank].imgCircle" [src]="banksMap[offer.bank].imgCircle" alt=""
+                title="banksMap[offer.bank].label">
             </div>
             <div class="col-12 col-sm-8">
               <div class="mb-4">
@@ -83,15 +94,16 @@
               <div class="row">
                 <div class="col-12 col-sm-6">
                   <p>Rentebesparelse over lånets løpetid:</p>
-                  <h3 *ngIf="offer.totalSavings > 0; else noTotalSavings" >{{offer.totalSavings | abs | number}},-</h3>
+                  <h3 *ngIf="offer.totalSavings > 0; else noTotalSavings">{{offer.totalSavings | abs | number}},-</h3>
                   <ng-template #noTotalSavings>
-                      <h3>0,-</h3>
+                    <h3>0,-</h3>
                   </ng-template>
-                  
+
                 </div>
                 <div class="col-12 col-sm-6">
                   <p>Rentebesparelse første år:</p>
-                  <h3 *ngIf="offer.savingsFirstYear > 0; else noTotalSavings">{{offer.savingsFirstYear | abs | number}},-</h3>
+                  <h3 *ngIf="offer.savingsFirstYear > 0; else noTotalSavings">
+                    {{offer.savingsFirstYear | abs | number}},-</h3>
                   <ng-template #noSavingsFirstYear>
                     <h3>0,-</h3>
                   </ng-template>
@@ -115,10 +127,14 @@
               </div>
             </div>
             <div class="col-12 col-sm-5">
-              <rente-button class="mb-2" color="primary" type="stroked" (click)="openOfferDialog(offer)">Mer info</rente-button>
-              <rente-button class="mt-2" color="primary" type="stroked" [href]="banksMap[offer.bank].url">Bankens hjemmeside</rente-button>
-              <rente-button class="mt-2 disabled" [disabled]="true" color="primary" type="raised">Start bytte*</rente-button>
-              <rente-button class="mt-2 disabled" [disabled]="true" color="primary" type="raised">Be min bank om å  matche dette tilbudet*</rente-button>
+              <rente-button class="mb-2" color="primary" type="stroked" (click)="openOfferDialog(offer)">Mer info
+              </rente-button>
+              <rente-button class="mt-2" color="primary" type="stroked" [href]="banksMap[offer.bank].url">Bankens
+                hjemmeside</rente-button>
+              <rente-button class="mt-2 disabled-button" [disabled]="true" color="primary" type="raised">Start bytte*
+              </rente-button>
+              <rente-button class="mt-2 disabled-button" [disabled]="true" color="primary" type="raised">Be min bank om å
+                matche dette tilbudet*</rente-button>
               <p class="text-right coming-soon-text">
                 *Kommer snart
               </p>

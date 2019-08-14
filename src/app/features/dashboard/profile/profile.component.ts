@@ -1,6 +1,6 @@
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { FormGroup, FormBuilder, AbstractControl, NgForm, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, AbstractControl, NgForm, FormControl, Validators } from '@angular/forms';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { Observable, forkJoin } from 'rxjs';
 import { map, startWith, mergeMap } from 'rxjs/operators';
@@ -8,6 +8,8 @@ import { MatAutocomplete, MatAutocompleteSelectedEvent } from '@angular/material
 import { MatChipInputEvent } from '@angular/material';
 import { LoansService } from '@services/remote-api/loans.service';
 import { UserService } from '@services/remote-api/user.service';
+import createNumberMask from 'text-mask-addons/dist/createNumberMask'
+
 
 @Component({
   selector: 'rente-profile',
@@ -26,6 +28,14 @@ export class ProfileComponent implements OnInit {
   memberships: any = [];
   public allMemberships: any[];
   public isLoading: boolean;
+  public thousandSeparatorMask = {
+    mask: createNumberMask({
+      prefix: '',
+      suffix: '',
+      thousandsSeparatorSymbol: ' '
+    }), 
+    guide: false
+  };
 
   @ViewChild('membershipInput', {static: false}) membershipInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto', {static: false}) matAutocomplete: MatAutocomplete;
@@ -62,8 +72,8 @@ export class ProfileComponent implements OnInit {
         // TODO: Add validators and validation messages for form
         this.profileForm = this.fb.group({
           membership: [userMemberships.memberships],
-          income: [userData.income],
-          email: [userData.email]
+          income: [userData.income,Validators.required],
+          email: [userData.email,Validators.required]
         });
       });
 
@@ -79,7 +89,7 @@ export class ProfileComponent implements OnInit {
     console.log(this.memberships.map(membership => membership.name));
     const userData = {
       email:  this.profileForm.value.email,
-      income: this.profileForm.value.income,
+      income: this.profileForm.value.income.replace(/\s/g, ''),
     };
 
     const memebershipsData = {

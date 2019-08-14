@@ -33,41 +33,43 @@
                 <div *ngIf="autoPropertyForm.controls['street'].touched" class="error-message">
                   <rente-form-message class="text-left d-block" [type]="'error'"
                     *ngIf="autoPropertyForm.controls['street'].hasError('required')">
-                    Kan ikke være tom Feil størrelse
+                    Kan ikke være tom
                   </rente-form-message>
                 </div>
               </div>
 
               <div class="mb-4">
                 <rente-input type="number" [placeholder]="'Postnummer:'" formControlName="zip"
-                  [errorStateMatcher]="isErrorState(autoPropertyForm.controls['zip'], autoPropertyForm)">
+                  [errorStateMatcher]="isErrorState(autoPropertyForm.controls['zip'], autoPropertyForm)"
+                  [type]="'tel'"
+                  [mask]="fourDigitsMask">
                 </rente-input>
                 <div *ngIf="autoPropertyForm.controls['zip'].touched" class="error-message">
                   <rente-form-message class="text-left d-block" [type]="'error'"
                     *ngIf="autoPropertyForm.controls['zip'].hasError('required')">
-                    Vi trenger e-posten din
+                    Kan ikke være tom
                   </rente-form-message>
 
                   <rente-form-message class="text-left d-block" [type]="'error'"
                     *ngIf="autoPropertyForm.controls['zip'].hasError('pattern')">
-                    Invalid value
+                    Postnummer 4 siffer
                   </rente-form-message>
                 </div>
               </div>
 
               <div class="mb-4">
-                <rente-input type="number" [placeholder]="'Størrelse på bolig (kvm):'" formControlName="apartmentSize">
+                <rente-input type="number" [placeholder]="'Størrelse på bolig (kvm):'" formControlName="apartmentSize" [type]="'tel'" [mask]="threeDigitsMask">
                 </rente-input>
 
                 <div *ngIf="autoPropertyForm.controls['apartmentSize'].touched" class="error-message">
                   <rente-form-message class="text-left d-block" [type]="'error'"
                     *ngIf="autoPropertyForm.controls['apartmentSize'].hasError('required')">
-                    Vi trenger e-posten din
+                    Kan ikke være tom
                   </rente-form-message>
 
                   <rente-form-message class="text-left d-block" [type]="'error'"
                     *ngIf="autoPropertyForm.controls['apartmentSize'].hasError('pattern')">
-                    Invalid value
+                    Ugyldig størrelse
                   </rente-form-message>
                 </div>
               </div>
@@ -81,22 +83,24 @@
             <form [formGroup]="manualPropertyForm" novalidate>
               <div class="mb-4">
                 <rente-input type="number" [placeholder]="'Boligen min er verdt:'" formControlName="manualPropertyValue"
-                  [errorStateMatcher]="isErrorState(manualPropertyForm.controls['manualPropertyValue'], manualPropertyForm)">
+                  [errorStateMatcher]="isErrorState(manualPropertyForm.controls['manualPropertyValue'], manualPropertyForm)"
+                  [type]="'tel'"
+                  [mask]="thousandSeparatorMask">
                 </rente-input>
 
                 <rente-form-message class="text-left d-block" [type]="'info'">Vi benytter boligverdien når vi overvåker
                   renten din, pass derfor på at denne ikke er helt urealistisk
                 </rente-form-message>
 
-                <div *ngIf="autoPropertyForm.controls['manualPropertyValue'].touched" class="error-message">
+                <div *ngIf="manualPropertyForm.controls['manualPropertyValue'].touched" class="error-message">
                   <rente-form-message class="text-left d-block" [type]="'error'"
-                    *ngIf="autoPropertyForm.controls['manualPropertyValue'].hasError('required')">
-                    Vi trenger e-posten din
+                    *ngIf="manualPropertyForm.controls['manualPropertyValue'].hasError('required')">
+                    Fyll inn boligverdi eller velg å bruke estimat
                   </rente-form-message>
 
                   <rente-form-message class="text-left d-block" [type]="'error'"
-                    *ngIf="autoPropertyForm.controls['manualPropertyValue'].hasError('pattern')">
-                    Invalid value
+                    *ngIf="manualPropertyForm.controls['manualPropertyValue'].hasError('pattern')">
+                    Fyll inn boligverdi eller velg å bruke estimat
                   </rente-form-message>
                 </div>
 
