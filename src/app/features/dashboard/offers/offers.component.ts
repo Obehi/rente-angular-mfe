@@ -23,7 +23,7 @@ export class OffersComponent implements OnInit {
   public isLoading = true;
   public errorMessage: string;
   public noOffers: boolean;
-  fixedAggRateType: boolean;
+  public fixedAggRateType: boolean;
 
 
   constructor(
@@ -46,7 +46,7 @@ export class OffersComponent implements OnInit {
       if (res.currentLoanState === this.loanStateMap.FIXED_AGG_RATE_TYPE) {
         this.fixedAggRateType = true;
       }
-      
+
     }, err => {
       if (err.errorType === 'PROPERTY_VALUE_MISSING') {
         this.errorMessage = err.title;
