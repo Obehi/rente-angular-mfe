@@ -1,6 +1,6 @@
 @import '../theme/variables';
 
-.dialogs-container{
+.dialogs-container {
   position: fixed;
   z-index: 10;
 
@@ -9,11 +9,28 @@
   }
 }
 
+.cdk-overlay-pane {
+  @media (max-width:500px) {
+
+    max-width: 100vw !important;
+
+    .mat-dialog-container {
+      max-height: 95vh !important;
+      width: 100vw !important;
+
+      .mat-dialog-content {
+        max-height: 100% !important;
+      }
+    }
+  }
+}
+
+
 .button-200 {
   min-width: 200px !important;
 }
 
-.info-dialog{
+.info-dialog {
   padding: 16px;
   background-color: rgba(14, 7, 21, .75);
   border-radius: 4px;
