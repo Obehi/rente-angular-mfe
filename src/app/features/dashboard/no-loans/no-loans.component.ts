@@ -1,28 +1,15 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'rente-no-loans',
   templateUrl: './no-loans.component.html',
   styleUrls: ['./no-loans.component.scss']
 })
-export class NoLoansComponent implements OnInit, OnDestroy {
-  public bankName: string;
-  private routeQueryParamsSub: Subscription;
+export class NoLoansComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute) { }
+  constructor() { }
 
   ngOnInit() {
-    this.routeQueryParamsSub = this.route.queryParams.subscribe(queryParams => {
-      if (queryParams.bank) {
-        this.bankName = queryParams.bank;
-      }
-    });
-  }
-
-  ngOnDestroy() {
-    this.routeQueryParamsSub.unsubscribe();
   }
 
 }

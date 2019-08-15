@@ -21,7 +21,7 @@
       <p class="text-border" *ngIf="!offersInfo.memberships.length">Enkelte banker tilbyr bedre betingelser gitt at du
         har et medlemskap i en
         interesseorganisasjon. Hvis du har
-        mulighet til å bli medlem prøv gjerne å endre ditt medlemskap ved å klikke her for å se om det påvirker
+        mulighet til å bli medlem prøv gjerne å endre ditt medlemskap ved å <a [routerLink]="'/dashboard/profil'">klikke her</a> for å se om det påvirker
         resultatet av din rentesjekk. (Medlemskap pleier å koste ca 4000 i året)</p>
       <p class="text-border" *ngIf="offersInfo.aggregatedRateType === aggregatedRateType.MIX_FIXED_FLOATING">Vi ser du
         har ett eller flere fastrentelån. Renteradar viser besparelsespotensialet kun for lånet/lånene med flytende
