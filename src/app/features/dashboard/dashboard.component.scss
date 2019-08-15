@@ -44,6 +44,7 @@
       .mat-tab-link {
         flex-direction: column;
         min-width: auto;
+
         img {
           display: block;
         }
@@ -54,8 +55,13 @@
 }
 
 @media (max-width:750px) {
-    .dashboard .mat-tab-links .mat-tab-link{
-        font-size: 11px;	
-        letter-spacing: 0.18px;	
-    } 
+  
+  .dashboard {
+    margin-top: 20px;
+  }
+
+  .dashboard .mat-tab-links .mat-tab-link {
+    font-size: 11px;
+    letter-spacing: 0.18px;
+  }
 }
