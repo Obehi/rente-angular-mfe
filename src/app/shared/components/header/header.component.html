@@ -1,8 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-secondary" id="mainNav">
   <div class="container py-2">
     <a class="navbar-brand js-scroll-trigger" [routerLink]="['/']">
-      <img class="img-fluid img-200" src="../../../../assets/img/renteradar_white_logo.svg"
-        alt="Renteradar">
+      <img class="img-fluid img-200" src="../../../../assets/img/renteradar_white_logo.svg" alt="Renteradar">
     </a>
 
     <button class="navbar-toggler navbar-toggler-right text-uppercase bg-primary text-white rounded" type="button"
@@ -13,7 +12,7 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarResponsive" *ngIf="!isSmallScreen">
       <ul class="navbar-nav m-0 ml-auto">
-        <li class="nav-item mx-0 mx-lg-1">
+        <li class="nav-item mx-0 mx-lg-1" *ngIf="!auth.isLoggedIn">
           <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger text-white" [routerLink]="['/velgbank']"
             routerLinkActive="router-link-active">
             Register deg
@@ -44,14 +43,14 @@
         <li class="nav-item mx-0 mx-lg-1" *ngIf="auth.isLoggedIn">
           <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger text-white" (click)="auth.logout()"
             routerLinkActive="router-link-active">
-            Logg out
+            Logg ut
           </a>
         </li>
       </ul>
     </div>
     <div class="collapse navbar-collapse" id="navbarResponsive" [@inOutAnimation] *ngIf="toggleNavbar && isSmallScreen">
       <ul class="navbar-nav m-0 ml-auto">
-        <li class="nav-item mx-0 mx-lg-1">
+        <li class="nav-item mx-0 mx-lg-1" *ngIf="!auth.isLoggedIn">
           <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger text-white" [routerLink]="['/velgbank']"
             routerLinkActive="router-link-active">
             Register deg
@@ -82,7 +81,7 @@
         <li class="nav-item mx-0 mx-lg-1" *ngIf="auth.isLoggedIn">
           <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger text-white" (click)="auth.logout()"
             routerLinkActive="router-link-active">
-            Logg out
+            Logg ut
           </a>
         </li>
       </ul>
