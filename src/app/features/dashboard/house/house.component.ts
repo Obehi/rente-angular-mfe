@@ -42,35 +42,33 @@ export class HouseComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    forkJoin([this.loansService.getPropertValue(), this.loansService.getEstimatedPropertValue()])
-      .subscribe(([propValue, estimatedPropValue]) => {
+    forkJoin([this.loansService.getPropertValue(), this.loansService.getEstimatedPropertValue(), this.loansService.getAddresses()])
+      .subscribe(([propValue, estimatedPropValue, res]) => {
         this.propertyValue = propValue.propertyValue;
         this.estimatedPropertyValue = estimatedPropValue.propertyValue;
-      });
-    this.loansService.getAddresses().subscribe(res => {
-      this.addressData = res.addresses[0];
-      this.autoPropertyForm = this.fb.group({
-        street: [this.addressData.street, Validators.required],
-        zip: [this.addressData.zip, Validators.compose([
-          Validators.required,
-          Validators.pattern(VALIDATION_PATTERN.zip)
-        ])],
-        apartmentSize: [this.addressData.apartmentSize, Validators.compose([
-          Validators.required,
-          Validators.pattern(VALIDATION_PATTERN.number)
-        ])],
-        manualPropertyValue: [this.addressData.manualPropertyValue]
-      });
+        this.addressData = res.addresses[0];
+        this.autoPropertyForm = this.fb.group({
+          street: [this.addressData.street, Validators.required],
+          zip: [this.addressData.zip, Validators.compose([
+            Validators.required,
+            Validators.pattern(VALIDATION_PATTERN.zip)
+          ])],
+          apartmentSize: [this.addressData.apartmentSize, Validators.compose([
+            Validators.required,
+            Validators.pattern(VALIDATION_PATTERN.number)
+          ])],
+          manualPropertyValue: [this.addressData.manualPropertyValue]
+        });
 
-      this.manualPropertyForm = this.fb.group({
-        manualPropertyValue: [this.addressData.manualPropertyValue, Validators.compose([
-          Validators.required
-        ])]
-      });
+        this.manualPropertyForm = this.fb.group({
+          manualPropertyValue: [this.addressData.manualPropertyValue, Validators.compose([
+            Validators.required
+          ])]
+        });
 
-      this.isAutoMode = !Boolean(this.addressData.manualPropertyValue);
-      this.setPropertyMode();
-    });
+        this.isAutoMode = !Boolean(this.addressData.manualPropertyValue);
+        this.setPropertyMode();
+      });
 
   }
 
