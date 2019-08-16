@@ -53,4 +53,8 @@ export class LoansService {
     const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.property}${API_URL_MAP.loan.value}`;
     return this.http.get(url);
   }
+  public getEstimatedPropertValue() {
+    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.property}${API_URL_MAP.loan.estimatedValue}`;
+    return this.http.get(url);
+  }
 }

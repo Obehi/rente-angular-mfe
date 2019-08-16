@@ -10,10 +10,10 @@
       <p>Effektiv rente: <strong>{{loansData.totalEffectiveRate | number: '1.2-2'}}%</strong>
       </p>
       <p>Totale renteutgifter: <strong>
-          {{loansData.aggregatedTotalInterest == null ? 'N/A' : (loansData.aggregatedTotalInterest | number: '1.0-0') + ',-'}}</strong>
+          {{loansData.aggregatedTotalInterest == null || unableToCalculate ? 'N/A' : (loansData.aggregatedTotalInterest | number: '1.0-0') + ',-'}}</strong>
       </p>
       <p>Renter per år (gj.snitt): <strong>
-          {{loansData.aggregatedTotalInterestByRemainingYears == null ? 'N/A' : (loansData.aggregatedTotalInterestByRemainingYears | number: '1.0-0') + ',-'}}</strong>
+          {{loansData.aggregatedTotalInterestByRemainingYears == null || unableToCalculate ? 'N/A' : (loansData.aggregatedTotalInterestByRemainingYears | number: '1.0-0') + ',-'}}</strong>
       </p>
     </div>
   </div>
@@ -32,11 +32,11 @@
       <p>Nom.rente: <strong>{{loan.nominalRate | number: '1.2-2'}}%</strong>
       </p>
       <p>Totale renteutgifter: <strong>
-        {{loan.totalInterest == null ? 'N/A' : (loan.totalInterest | number: '1.0-0') + ',-'}}</strong>
+          {{loan.totalInterest == null || unableToCalculate ? 'N/A' : (loan.totalInterest | number: '1.0-0') + ',-'}}</strong>
       </p>
       <p>Renter per år (gj.snitt): <strong>
-        {{loan.totalInterestByRemainingYears == null ? 'N/A' : (loan.totalInterestByRemainingYears | number: '1.0-0') + ',-'}}
-      </strong>
+          {{loan.totalInterestByRemainingYears == null || unableToCalculate ? 'N/A' : (loan.totalInterestByRemainingYears | number: '1.0-0') + ',-'}}
+        </strong>
       </p>
     </div>
   </div>
@@ -50,4 +50,3 @@
 <div *ngIf="errorMessage">
   <h1 class="text-center mt-4">{{errorMessage}}</h1>
 </div>
-

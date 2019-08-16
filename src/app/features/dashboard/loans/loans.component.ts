@@ -9,8 +9,8 @@ import { Loans } from '@shared/models/loans';
 })
 export class LoansComponent implements OnInit {
   public loansData: Loans;
-  public loans: Loans;
   public errorMessage: string;
+  public unableToCalculate: boolean;
 
   constructor(private loansService: LoansService) { }
 
@@ -19,8 +19,16 @@ export class LoansComponent implements OnInit {
     this.loansService.getLoans().subscribe((res: Loans) => {
       console.log('loans', res);
       this.loansData = res;
+      this.checkLoans(this.loansData);
     }, err => {
       this.errorMessage = err.title;
+    });
+  }
+  checkLoans(loansData: Loans) {
+    loansData.loans.forEach(loan => {
+      if (!loan.totalInterest) {
+        this.unableToCalculate = true;
+      }
     });
   }
 

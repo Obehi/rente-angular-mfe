@@ -29,6 +29,7 @@ export class HouseComponent implements OnInit {
     }),
     guide: false
   };
+  estimatedPropertyValue: any;
 
   constructor(
     private fb: FormBuilder,
@@ -38,6 +39,7 @@ export class HouseComponent implements OnInit {
 
   ngOnInit() {
     this.getPropertyValue();
+    this.getEstimatedPropertyValue();
     this.loansService.getAddresses().subscribe(res => {
       this.addressData = res.addresses[0];
       this.autoPropertyForm = this.fb.group({
@@ -112,6 +114,13 @@ export class HouseComponent implements OnInit {
   private getPropertyValue() {
     this.loansService.getPropertValue().subscribe(res => {
       this.propertyValue = res.propertyValue;
+      console.log(res);
+    });
+  }
+
+  private getEstimatedPropertyValue() {
+    this.loansService.getEstimatedPropertValue().subscribe(res => {
+      this.estimatedPropertyValue = res.propertyValue;
       console.log(res);
     });
   }
