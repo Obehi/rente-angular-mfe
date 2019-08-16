@@ -1,7 +1,7 @@
-<h1 mat-dialog-title *ngIf="data.bank">{{data.bank.name}}</h1>
+<h1 mat-dialog-title *ngIf="data.bank">{{data.bank}}</h1>
 <div mat-dialog-content>
   <div class="modal-body text-left">
-    <div *ngIf="data.bank"><b>Leverandør: </b><span>{{data.bank.name}}</span></div>
+    <div *ngIf="data.bank"><b>Leverandør: </b><span>{{data.bank}}</span></div>
     <div><b>Produktnavn: </b><span>{{data.productName}}</span></div>
     <div><b>Nominell rente: </b><span>{{data.effectiveRate}}</span></div>
     <div><b>Markedsområde: </b><span>{{data.marketArea}}</span></div>

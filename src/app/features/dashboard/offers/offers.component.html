@@ -1,5 +1,5 @@
 <div class="offers" *ngIf="offersInfo && !noOffers">
-  <h3>Rentebarometer</h3>
+  <h3>Rentebarometer:</h3>
   <div class="row">
     <div class="col-12 col-md-5">
       <rente-rating [rating]="offersService.getRatingNumberFromLoanState(offersInfo.offerSavingsType)"></rente-rating>
@@ -33,10 +33,10 @@
         <div class="col-12 col-sm-7 mb-3">
           <div class="bg-wrap" [ngSwitch]="offersInfo.currentLoanState">
             <p>Du kan spare:</p>
-            <h3 class="mb-2" *ngIf="offersInfo.bestOfferTotalSaving > 0; else noBestOffer">
+            <h3 class="mb-0 mb-md-2" *ngIf="offersInfo.bestOfferTotalSaving > 0; else noBestOffer">
               {{offersInfo.bestOfferTotalSaving | abs | number}},-</h3>
             <ng-template #noBestOffer>
-              <h3 class="mb-2">0,-</h3>
+              <h3 class="mb-0 mb-mb-2">0,-</h3>
             </ng-template>
             <p class="mb-0">over lånets løpetid</p>
           </div>
@@ -80,20 +80,20 @@
   <ng-container *ngIf="offersInfo">
     <div class="bg-wrap offers-bank mb-5" *ngFor="let offer of offersInfo.offers">
       <div class="row">
-        <div class="col-12 col-sm-6 pt-2">
+        <div class="col-12 col-sm-6 pt-0 pt-md-2">
           <div class="row">
-            <div class="col-12 col-sm-4 ">
+            <div class="col-12 col-sm-4">
               <img class="mw-120" *ngIf="banksMap[offer.bank].imgCircle" [src]="banksMap[offer.bank].imgCircle" alt=""
                 title="banksMap[offer.bank].label">
             </div>
             <div class="col-12 col-sm-8">
-              <div class="mb-4">
-                <p class="mb-2">{{banksMap[offer.bank].label}}</p>
+              <div class="mb-0 mb-md-4">
+                <p class="mb-0 mb-md-2">{{banksMap[offer.bank].label}}</p>
                 <h3>{{offer.productName}}</h3>
               </div>
               <div class="row">
                 <div class="col-12 col-sm-6">
-                  <p>Rentebesparelse over lånets løpetid:</p>
+                  <p class="mb-0 mb-md-2">Rentebesparelse over lånets løpetid:</p>
                   <h3 *ngIf="offer.totalSavings > 0; else noTotalSavings">{{offer.totalSavings | abs | number}},-</h3>
                   <ng-template #noTotalSavings>
                     <h3>0,-</h3>
@@ -101,7 +101,7 @@
 
                 </div>
                 <div class="col-12 col-sm-6">
-                  <p>Rentebesparelse første år:</p>
+                  <p class="mb-0 mb-md-2">Rentebesparelse første år:</p>
                   <h3 *ngIf="offer.savingsFirstYear > 0; else noTotalSavings">
                     {{offer.savingsFirstYear | abs | number}},-</h3>
                   <ng-template #noSavingsFirstYear>
@@ -112,16 +112,16 @@
             </div>
           </div>
         </div>
-        <div class="col-12 col-sm-6 pt-2">
+        <div class="col-12 col-sm-6 pt-0 pt-md-2">
           <div class="row">
             <div class="col-12 col-sm-7">
               <div class="row">
-                <div class="col-12 col-sm-12 mb-4">
-                  <p class="mb-2">Effektiv rente: </p>
+                <div class="col-12 col-sm-12 mb-0 mb-md-4">
+                  <p class="mb-0 mb-md-2">Effektiv rente: </p>
                   <h3>{{offer.effectiveRate | number: '1.1-2' }}%</h3>
                 </div>
                 <div class="col-12 col-sm-12">
-                  <p>Krever annet produkt (e.g. lønnskonto):</p>
+                  <p class="mb-0 mb-md-2">Krever annet produkt (e.g. lønnskonto):</p>
                   <h3> Ja</h3>
                 </div>
               </div>

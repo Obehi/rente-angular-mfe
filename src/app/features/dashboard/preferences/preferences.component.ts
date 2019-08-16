@@ -21,7 +21,7 @@ export class PreferencesComponent implements OnInit {
     this.useService.getUserPreferences().subscribe(preferances => {
       this.preferencesForm = this.fb.group({
         checkRateReminderType: [preferances.checkRateReminderType],
-        fetchCreditlinesOnly: [preferances.fetchCreditlinesOnly],
+        fetchCreditLinesOnly: [preferances.fetchCreditLinesOnly],
         noAdditionalProductsRequired: [preferances.noAdditionalProductsRequired],
         interestedInEnvironmentMortgages: [preferances.interestedInEnvironmentMortgages]
       });
