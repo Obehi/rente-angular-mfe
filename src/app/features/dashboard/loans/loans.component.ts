@@ -10,7 +10,8 @@ import { Loans } from '@shared/models/loans';
 export class LoansComponent implements OnInit {
   public loansData: Loans;
   public errorMessage: string;
-  public unableToCalculate: boolean;
+  public unableToCalculateTotalInterest: boolean;
+  public unableToCalculateTotalInterestByRemainingYears: boolean;
 
   constructor(private loansService: LoansService) { }
 
@@ -27,8 +28,12 @@ export class LoansComponent implements OnInit {
   checkLoans(loansData: Loans) {
     loansData.loans.forEach(loan => {
       if (!loan.totalInterest) {
-        this.unableToCalculate = true;
+        this.unableToCalculateTotalInterest = true;
       }
+      if(!loan.totalInterestByRemainingYears){
+        this.unableToCalculateTotalInterestByRemainingYears = true;
+      }
+
     });
   }
 
