@@ -35,7 +35,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
   public loginStep1Status: string;
   public loginStep2Status: string;
   public loginStep3Status: string;
-  private maxConnectionTime = 15;
+  private maxConnectionTime = 30;
   private stompClient: any;
   private timerSubscription: Subscription;
   private timer: Observable<number>;
@@ -187,10 +187,12 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
             break;
           case BANKID_STATUS.PASSPHRASE_CONFIRM_FAIL:
             this.viewStatus.isPassphraseConfirmFail = true;
+            this.connectionTimerSubscription.unsubscribe();
             this.loginStep2Status = MESSAGE_STATUS.ERROR;
             break;
           case BANKID_STATUS.CRAWLER_ERROR:
             this.viewStatus.isCrawlerError = true;
+            this.connectionTimerSubscription.unsubscribe();
             this.loginStep2Status = MESSAGE_STATUS.ERROR;
             this.loginStep3Status = MESSAGE_STATUS.ERROR;
             break;
