@@ -1,11 +1,11 @@
 import { LoansService } from '@services/remote-api/loans.service';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, NgForm, AbstractControl } from '@angular/forms';
-import { MatSnackBar } from '@angular/material';
 import { VALIDATION_PATTERN } from '@config/validation-patterns.config';
 import createNumberMask from 'text-mask-addons/dist/createNumberMask';
 import { forkJoin } from 'rxjs';
 import { Router } from '@angular/router';
+import { SnackBarService } from '@services/snackbar.service';
 
 @Component({
   selector: 'rente-house',
@@ -37,7 +37,7 @@ export class HouseComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private loansService: LoansService,
-    private snackBar: MatSnackBar,
+    private snackBar: SnackBarService,
     private router: Router,
   ) { }
 
@@ -101,18 +101,10 @@ export class HouseComponent implements OnInit {
     this.loansService.updateAddress(addressData).subscribe(res => {
       this.isLoading = false;
       this.router.navigate(['/dashboard/tilbud/']);
-      this.snackBar.open('Your data was updated', 'Close', {
-        duration: 2 * 1000,
-        panelClass: ['bg-primary'],
-        horizontalPosition: 'right'
-      });
+      this.snackBar.openSuccessSnackBar('Your data was updated');
     }, err => {
       this.isLoading = false;
-      this.snackBar.open(err.detail, 'Close', {
-        duration: 2 * 1000,
-        panelClass: ['bg-error'],
-        horizontalPosition: 'right'
-      });
+      this.snackBar.openFailSnackBar(err.detail);
     });
   }
 

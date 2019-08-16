@@ -1,4 +1,3 @@
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { LoansService } from '@services/remote-api/loans.service';
 import { UserService } from '@services/remote-api/user.service';
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
@@ -10,6 +9,7 @@ import { MatAutocomplete, MatAutocompleteSelectedEvent, MatChipInputEvent } from
 import { Router } from '@angular/router';
 import createNumberMask from 'text-mask-addons/dist/createNumberMask';
 import { VALIDATION_PATTERN } from '@config/validation-patterns.config';
+import { SnackBarService } from '../../shared/services/snackbar.service';
 
 @Component({
   selector: 'rente-init-confirmation',
@@ -47,7 +47,7 @@ export class InitConfirmationComponent implements OnInit {
     private fb: FormBuilder,
     private userService: UserService,
     private loansService: LoansService,
-    private snackBar: MatSnackBar,
+    private snackBar: SnackBarService,
     private router: Router
   ) {
     this.filteredMemberships = this.membershipCtrl.valueChanges.pipe(
@@ -120,18 +120,10 @@ export class InitConfirmationComponent implements OnInit {
     ).subscribe(([data]) => {
       this.isLoading = false;
       this.router.navigate(['/dashboard/tilbud']);
-      this.snackBar.open('Your data was updated', 'Close', {
-        duration: 10 * 1000,
-        panelClass: ['bg-primary'],
-        horizontalPosition: 'right'
-      });
+      this.snackBar.openSuccessSnackBar('Your data was updated');
     }, err => {
       this.isLoading = false;
-      this.snackBar.open(err.detail, 'Close', {
-        duration: 10 * 1000,
-        panelClass: ['bg-error'],
-        horizontalPosition: 'right'
-      });
+      this.snackBar.openFailSnackBar(err.detail);
     });
   }
 

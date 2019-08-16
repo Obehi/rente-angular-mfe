@@ -1,4 +1,3 @@
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormBuilder, AbstractControl, NgForm, FormControl, Validators } from '@angular/forms';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
@@ -10,6 +9,7 @@ import { LoansService } from '@services/remote-api/loans.service';
 import { UserService } from '@services/remote-api/user.service';
 import createNumberMask from 'text-mask-addons/dist/createNumberMask';
 import { VALIDATION_PATTERN } from '../../../config/validation-patterns.config';
+import { SnackBarService } from '../../../shared/services/snackbar.service';
 
 
 @Component({
@@ -45,7 +45,7 @@ export class ProfileComponent implements OnInit {
     private fb: FormBuilder,
     private loansService: LoansService,
     private userService: UserService,
-    private snackBar: MatSnackBar
+    private snackBar: SnackBarService
   ) {
     this.filteredMemberships = this.membershipCtrl.valueChanges.pipe(
       startWith(null),
@@ -104,18 +104,10 @@ export class ProfileComponent implements OnInit {
     forkJoin([this.userService.updateUserInfo(userData), this.loansService.setUsersMemberships(memebershipsData)])
       .subscribe(([data]) => {
         this.isLoading = false;
-        this.snackBar.open('Your data was updated', 'Close', {
-          duration: 10 * 1000,
-          panelClass: ['bg-primary'],
-          horizontalPosition: 'right'
-        });
+        this.snackBar.openSuccessSnackBar('Your data was updated');
       }, err => {
         this.isLoading = false;
-        this.snackBar.open(err.detail, 'Close', {
-          duration: 10 * 1000,
-          panelClass: ['bg-error'],
-          horizontalPosition: 'right'
-        });
+        this.snackBar.openFailSnackBar(err.detail);
       });
   }
 
