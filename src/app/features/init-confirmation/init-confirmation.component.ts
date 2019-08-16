@@ -69,22 +69,22 @@ export class InitConfirmationComponent implements OnInit {
         }
       });
 
-      forkJoin(this.userService.getUserInfo(), this.loansService.getAddresses()).subscribe(data => {
-        console.log(data);
-        this.userData = data[0];
-        const addressData = data[1].addresses[0];
-        this.propertyForm = this.fb.group({
-          apartmentSize: [addressData.apartmentSize, Validators.required],
-          membership: [],
-          income: [this.userData.income, Validators.required],
-          email: [this.userData.email, Validators.compose([
-            Validators.required,
-            Validators.pattern(VALIDATION_PATTERN.email)
-          ])]
+      forkJoin([this.userService.getUserInfo(), this.loansService.getAddresses()])
+        .subscribe(([user, loan]) => {
+          this.userData = user;
+          const addressData = loan.addresses[0];
+          this.propertyForm = this.fb.group({
+            apartmentSize: [addressData.apartmentSize, Validators.required],
+            membership: [],
+            income: [this.userData.income, Validators.required],
+            email: [this.userData.email, Validators.compose([
+              Validators.required,
+              Validators.pattern(VALIDATION_PATTERN.email)
+            ])]
+          });
+          this.propertyForm.markAllAsTouched();
+          this.propertyForm.updateValueAndValidity();
         });
-        this.propertyForm.markAllAsTouched();
-        this.propertyForm.updateValueAndValidity();
-      });
     });
   }
 
@@ -114,10 +114,10 @@ export class InitConfirmationComponent implements OnInit {
 
     // TODO: Add error state
     forkJoin(
-      this.userService.updateUserInfo(userData),
+      [this.userService.updateUserInfo(userData),
       this.loansService.setUsersMemberships(memebershipsData),
-      this.loansService.updateApartmentSize(apartmentsData)
-    ).subscribe(data => {
+      this.loansService.updateApartmentSize(apartmentsData)]
+    ).subscribe(([data]) => {
       this.isLoading = false;
       this.router.navigate(['/dashboard/tilbud']);
       this.snackBar.open('Your data was updated', 'Close', {

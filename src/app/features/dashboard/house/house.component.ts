@@ -4,6 +4,8 @@ import { FormGroup, FormBuilder, Validators, NgForm, AbstractControl } from '@an
 import { MatSnackBar } from '@angular/material';
 import { VALIDATION_PATTERN } from '@config/validation-patterns.config';
 import createNumberMask from 'text-mask-addons/dist/createNumberMask';
+import { forkJoin } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'rente-house',
@@ -19,6 +21,8 @@ export class HouseComponent implements OnInit {
   public addressData: any;
   public isLoading: boolean;
   public propertyValue: number;
+  public estimatedPropertyValue: number;
+
   public threeDigitsMask = { mask: [/\d/, /\d/, /\d/], guide: false };
   public fourDigitsMask = { mask: [/\d/, /\d/, /\d/, /\d/], guide: false };
   public thousandSeparatorMask = {
@@ -29,17 +33,20 @@ export class HouseComponent implements OnInit {
     }),
     guide: false
   };
-  estimatedPropertyValue: any;
 
   constructor(
     private fb: FormBuilder,
     private loansService: LoansService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private router: Router,
   ) { }
 
   ngOnInit() {
-    this.getPropertyValue();
-    this.getEstimatedPropertyValue();
+    forkJoin([this.loansService.getPropertValue(), this.loansService.getEstimatedPropertValue()])
+      .subscribe(([propValue, estimatedPropValue]) => {
+        this.propertyValue = propValue.propertyValue;
+        this.estimatedPropertyValue = estimatedPropValue.propertyValue;
+      });
     this.loansService.getAddresses().subscribe(res => {
       this.addressData = res.addresses[0];
       this.autoPropertyForm = this.fb.group({
@@ -95,33 +102,19 @@ export class HouseComponent implements OnInit {
     }
     this.loansService.updateAddress(addressData).subscribe(res => {
       this.isLoading = false;
-      this.getPropertyValue();
+      this.router.navigate(['/dashboard/tilbud/']);
       this.snackBar.open('Your data was updated', 'Close', {
-        duration: 10 * 1000,
+        duration: 2 * 1000,
         panelClass: ['bg-primary'],
         horizontalPosition: 'right'
       });
     }, err => {
       this.isLoading = false;
       this.snackBar.open(err.detail, 'Close', {
-        duration: 10 * 1000,
+        duration: 2 * 1000,
         panelClass: ['bg-error'],
         horizontalPosition: 'right'
       });
-    });
-  }
-
-  private getPropertyValue() {
-    this.loansService.getPropertValue().subscribe(res => {
-      this.propertyValue = res.propertyValue;
-      console.log(res);
-    });
-  }
-
-  private getEstimatedPropertyValue() {
-    this.loansService.getEstimatedPropertValue().subscribe(res => {
-      this.estimatedPropertyValue = res.propertyValue;
-      console.log(res);
     });
   }
 

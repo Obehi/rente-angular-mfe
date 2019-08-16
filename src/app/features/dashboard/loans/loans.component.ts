@@ -30,7 +30,7 @@ export class LoansComponent implements OnInit {
       if (!loan.totalInterest) {
         this.unableToCalculateTotalInterest = true;
       }
-      if(!loan.totalInterestByRemainingYears){
+      if (!loan.totalInterestByRemainingYears) {
         this.unableToCalculateTotalInterestByRemainingYears = true;
       }
 
