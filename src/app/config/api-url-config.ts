@@ -28,7 +28,8 @@ export const API_URL_MAP = {
     address: '/address',
     size: '/size',
     property: '/property',
-    value: '/value'
+    value: '/current-value',
+    estimatedValue: '/estimated-value'
   },
   profile: '/profil',
   preferances: '/preferanser',

@@ -35,7 +35,7 @@ export class ProfileComponent implements OnInit {
       suffix: '',
       thousandsSeparatorSymbol: ' '
     }),
-      guide: false
+    guide: false
   };
 
   @ViewChild('membershipInput', { static: false }) membershipInput: ElementRef<HTMLInputElement>;
@@ -66,20 +66,20 @@ export class ProfileComponent implements OnInit {
         }
       });
 
-      forkJoin(this.userService.getUserInfo(), this.loansService.getAddresses()).subscribe(data => {
-        console.log(data[0]);
-        const userData = data[0];
-        const addressData = data[1];
-        // TODO: Add validators and validation messages for form
-        this.profileForm = this.fb.group({
-          membership: [userMemberships.memberships],
-          income: [userData.income, Validators.required],
-          email: [userData.email, Validators.compose([
-            Validators.required,
-            Validators.pattern(VALIDATION_PATTERN.email)
-          ])]
+      forkJoin([this.userService.getUserInfo(), this.loansService.getAddresses()])
+        .subscribe(([user, loan]) => {
+          const userData = user;
+          const addressData = loan;
+          // TODO: Add validators and validation messages for form
+          this.profileForm = this.fb.group({
+            membership: [userMemberships.memberships],
+            income: [userData.income, Validators.required],
+            email: [userData.email, Validators.compose([
+              Validators.required,
+              Validators.pattern(VALIDATION_PATTERN.email)
+            ])]
+          });
         });
-      });
 
     });
   }
@@ -101,21 +101,22 @@ export class ProfileComponent implements OnInit {
     };
 
     // TODO: Add error state
-    forkJoin(this.userService.updateUserInfo(userData), this.loansService.setUsersMemberships(memebershipsData)).subscribe(data => {
-      this.isLoading = false;
-      this.snackBar.open('Your data was updated', 'Close', {
-        duration: 10 * 1000,
-        panelClass: ['bg-primary'],
-        horizontalPosition: 'right'
+    forkJoin([this.userService.updateUserInfo(userData), this.loansService.setUsersMemberships(memebershipsData)])
+      .subscribe(([data]) => {
+        this.isLoading = false;
+        this.snackBar.open('Your data was updated', 'Close', {
+          duration: 10 * 1000,
+          panelClass: ['bg-primary'],
+          horizontalPosition: 'right'
+        });
+      }, err => {
+        this.isLoading = false;
+        this.snackBar.open(err.detail, 'Close', {
+          duration: 10 * 1000,
+          panelClass: ['bg-error'],
+          horizontalPosition: 'right'
+        });
       });
-    }, err => {
-      this.isLoading = false;
-      this.snackBar.open(err.detail, 'Close', {
-        duration: 10 * 1000,
-        panelClass: ['bg-error'],
-        horizontalPosition: 'right'
-      });
-    });
   }
 
   add(event: MatChipInputEvent): void {
