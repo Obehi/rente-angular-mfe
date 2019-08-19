@@ -115,7 +115,7 @@ export class GenericHttpService {
   private handleError(responseError: HttpResponse<any> | any): Observable<any> {
     console.log(responseError);
 
-    this.snackBar.openFailSnackBar(responseError.error.detail);
+    // this.snackBar.openFailSnackBar(responseError.error.detail);
 
     if (responseError.status === 401) {
       // TODO: Show unauthorized error
@@ -123,11 +123,11 @@ export class GenericHttpService {
       this.clearSession();
     }
 
-    if (responseError.status === 500) {
-      this.snackBar.openFailSnackBar(responseError.error.error);
-    } else {
-      this.snackBar.openFailSnackBar(responseError.error.detail);
-    }
+    // if (responseError.status === 500) {
+    //   this.snackBar.openFailSnackBar(responseError.error.error);
+    // } else {
+    //   this.snackBar.openFailSnackBar(responseError.error.detail);
+    // }
 
     return throwError(responseError.error);
   }

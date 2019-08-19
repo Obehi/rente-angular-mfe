@@ -31,17 +31,10 @@ export class OffersComponent implements OnInit {
     public dialog: MatDialog,
     public offersService: OffersService,
     public loansService: LoansService,
-    private router: Router,
-    private localStorageService: LocalStorageService
+    private router: Router
   ) { }
 
   public ngOnInit(): void {
-    if (this.localStorageService.getItem('noLoansPresent')) {
-      this.router.navigate(['/dashboard/ingenlaan']);
-    }
-    if (this.localStorageService.getItem('isAggregatedRateTypeFixed')) {
-      this.router.navigate(['/dashboard/fastrente']);
-    }
     this.loansService.getOffers().subscribe((res: Offers) => {
       console.log('offers', res);
       this.offersInfo = res;

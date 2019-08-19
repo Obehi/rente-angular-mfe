@@ -56,19 +56,8 @@ export class InitConfirmationComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.loansService.getMembershipTypes().pipe(
-      mergeMap((memberships: any) => {
-        this.allMemberships = memberships;
-        return this.loansService.getUsersMemberships();
-      })
-    ).subscribe((userMemberships: any) => {
-
-      this.memberships = this.allMemberships.filter(membership => {
-        if (userMemberships.memberships.includes(membership.name)) {
-          return membership;
-        }
-      });
-
+    this.loansService.getMembershipTypes().subscribe((memberships: any) => {
+      this.allMemberships = memberships;
       forkJoin([this.userService.getUserInfo(), this.loansService.getAddresses()])
         .subscribe(([user, loan]) => {
           this.userData = user;
