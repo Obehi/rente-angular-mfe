@@ -36,7 +36,12 @@ export class OffersComponent implements OnInit {
   ) { }
 
   public ngOnInit(): void {
-
+    if (this.localStorageService.getItem('noLoansPresent')) {
+      this.router.navigate(['/dashboard/ingenlaan']);
+    }
+    if (this.localStorageService.getItem('isAggregatedRateTypeFixed')) {
+      this.router.navigate(['/dashboard/fastrente']);
+    }
     this.loansService.getOffers().subscribe((res: Offers) => {
       console.log('offers', res);
       this.offersInfo = res;
@@ -47,10 +52,7 @@ export class OffersComponent implements OnInit {
       }
 
     }, err => {
-      console.log();
-      if (this.localStorageService.getItem('isAggregatedRateTypeFixed')) {
-        this.router.navigate(['/dashboard/fastrente']);
-      } else if (err.errorType === 'PROPERTY_VALUE_MISSING') {
+      if (err.errorType === 'PROPERTY_VALUE_MISSING') {
         this.errorMessage = err.title;
         this.router.navigate(['/dashboard/bolig']);
       }

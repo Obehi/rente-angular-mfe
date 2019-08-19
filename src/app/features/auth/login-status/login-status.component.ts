@@ -215,7 +215,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
                 .subscribe(([rateAndLoans, userInfo]) => {
                   this.loginStep3Status = MESSAGE_STATUS.SUCCESS;
                   if (!rateAndLoans.loansPresent) {
-                    this.localStorageService.setItem('loansPresent', false);
+                    this.localStorageService.setItem('noLoansPresent', true);
                     this.router.navigate(['/dashboard/ingenlaan']);
                   } else if (rateAndLoans.isAggregatedRateTypeFixed) {
                     this.localStorageService.setItem('isAggregatedRateTypeFixed', true);
