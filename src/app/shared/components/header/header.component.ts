@@ -1,6 +1,7 @@
 import { AuthService } from '@services/remote-api/auth.service';
 import { Component, OnInit, HostListener } from '@angular/core';
 import { trigger, transition, style, animate } from '@angular/animations';
+import { LocalStorageService } from '@services/local-storage.service';
 
 @Component({
   selector: 'rente-header',

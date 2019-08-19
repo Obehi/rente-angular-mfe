@@ -29,8 +29,9 @@ export class PreferencesComponent implements OnInit {
   }
 
   public updatePreferances() {
+    this.isLoading = true;
     this.useService.updateUserPreferences(this.preferencesForm.value).subscribe(res => {
-      this.isLoading = true;
+      this.isLoading = false;
       this.snackBar.openSuccessSnackBar('Your data was updated');
     }, err => {
       this.isLoading = false;

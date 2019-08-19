@@ -89,11 +89,15 @@ export class ProfileComponent implements OnInit {
   }
 
   public updateProfile() {
+    // looks like bug button is disabled but when we click on text click event still work
+    if (this.profileForm.invalid) {
+      return;
+    }
     this.isLoading = true;
     console.log(this.memberships.map(membership => membership.name));
     const userData = {
       email: this.profileForm.value.email,
-      income: this.profileForm.value.income.replace(/\s/g, ''),
+      income: this.profileForm.value.income ? this.profileForm.value.income.replace(/\s/g, '') : this.profileForm.value.income,
     };
 
     const memebershipsData = {

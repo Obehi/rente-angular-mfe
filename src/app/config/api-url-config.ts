@@ -21,7 +21,10 @@ export const API_URL_MAP = {
   },
   loan: {
     base: '/loan',
-    loans: '/loans',
+    loans: {
+      base: '/loans',
+      state: '/state'
+    },
     offers: '/offers',
     membership: '/membership',
     membershipTypes: '/membership-types',

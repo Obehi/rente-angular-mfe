@@ -10,7 +10,7 @@ export class LoansService {
   constructor(private http: GenericHttpService) { }
 
   public getLoans() {
-    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.loans}`;
+    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.loans.base}`;
     return this.http.get(url);
   }
 
@@ -55,6 +55,11 @@ export class LoansService {
   }
   public getEstimatedPropertValue() {
     const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.property}${API_URL_MAP.loan.estimatedValue}`;
+    return this.http.get(url);
+  }
+
+  public getLoansAndRateType() {
+    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.loans.base}${API_URL_MAP.loan.loans.state}`;
     return this.http.get(url);
   }
 }

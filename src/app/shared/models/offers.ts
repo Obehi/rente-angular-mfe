@@ -17,6 +17,8 @@ export interface Offers {
 
 export interface OfferInfo {
   bank: string;
+  bankName: string;
+  bankUrl: string;
   depotFee: number;
   effectiveRate: number;
   establishmentFee: number;
