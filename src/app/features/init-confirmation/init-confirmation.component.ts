@@ -101,7 +101,6 @@ export class InitConfirmationComponent implements OnInit {
     this.propertyForm.updateValueAndValidity();
 
     this.isLoading = true;
-    console.log( formData.income)
     formData.income = formData.income.replace(/\s/g, '');
     const userData = {
       email: formData.email,

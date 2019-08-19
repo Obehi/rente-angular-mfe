@@ -49,7 +49,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
     private authService: AuthService,
     private userService: UserService,
     private loansService: LoansService,
-    private localStorageService:LocalStorageService) { }
+    private localStorageService: LocalStorageService) { }
 
   ngOnInit() {
     this.setDefaultSteps();
@@ -215,11 +215,11 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
                 .subscribe(([rateAndLoans, userInfo]) => {
                   this.loginStep3Status = MESSAGE_STATUS.SUCCESS;
                   if (!rateAndLoans.loansPresent) {
-                    this.router.navigate(['/dashboard/ingenlaan']);
                     this.localStorageService.setItem('loansPresent', false);
+                    this.router.navigate(['/dashboard/ingenlaan']);
                   } else if (rateAndLoans.isAggregatedRateTypeFixed) {
-                    this.router.navigate(['/dashboard/fastrente']);
                     this.localStorageService.setItem('isAggregatedRateTypeFixed', true);
+                    this.router.navigate(['/dashboard/fastrente']);
                   } else {
                     if (userInfo.income === null) {
                       this.router.navigate(['/init-confirmation']);
@@ -227,7 +227,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
                       this.router.navigate(['/dashboard/tilbud/']);
                     }
                   }
-                })
+                });
             });
 
             break;
