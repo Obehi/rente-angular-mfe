@@ -3,16 +3,16 @@
         (ngSubmit)="request(missingBankForm.value)">
         <div class="bg-wrap">
             <div class="row">
-                <p class="col-12">Medlemskap:</p>
+                <p class="col-12">Bank:</p>
                 <mat-form-field class="col-12">
-                    <mat-label>Medlemskap:</mat-label>
+                    <mat-label>Bank:</mat-label>
                     <mat-chip-list #bankList aria-label="bank selection">
                         <mat-chip *ngFor="let bank of banks; let i = index;" [selectable]="selectable"
                             [removable]="removable" (removed)="remove(bank, i)">
                             {{bank.name}}
                             <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
                         </mat-chip>
-                        <input placeholder="Medlemskap" #bankInput [formControl]="bankCtrl" [matAutocomplete]="auto"
+                        <input placeholder="Bank" #bankInput [formControl]="bankCtrl" [matAutocomplete]="auto"
                             [matChipInputFor]="bankList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
                             [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event)">
                     </mat-chip-list>
@@ -41,7 +41,7 @@
                 </div>
             </div>
             <div class="register-btn">
-                <rente-button color="primary" [disabled]="!missingBankForm.valid">Send</rente-button>
+                <rente-button color="primary" [disabled]="!missingBankForm.valid">Gi meg lyd når på plass!</rente-button>
             </div>
         </div>
 

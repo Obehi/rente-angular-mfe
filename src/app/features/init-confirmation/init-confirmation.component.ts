@@ -90,10 +90,9 @@ export class InitConfirmationComponent implements OnInit {
     this.propertyForm.updateValueAndValidity();
 
     this.isLoading = true;
-    formData.income = formData.income.replace(/\s/g, '');
     const userData = {
       email: formData.email,
-      income: formData.income
+      income: typeof formData.income === 'string' ? formData.income.replace(/\s/g, '') : formData.income
     };
 
     const memebershipsData = {
@@ -112,10 +111,10 @@ export class InitConfirmationComponent implements OnInit {
     ).subscribe(([data]) => {
       this.isLoading = false;
       this.router.navigate(['/dashboard/tilbud']);
-      this.snackBar.openSuccessSnackBar('Your data was updated');
+      this.snackBar.openSuccessSnackBar('Endringene dine er lagret');
     }, err => {
       this.isLoading = false;
-      this.snackBar.openFailSnackBar(err.detail);
+      this.snackBar.openFailSnackBar('Oops, noe gikk galt');
     });
   }
 

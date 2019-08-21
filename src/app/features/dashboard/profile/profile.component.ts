@@ -94,10 +94,9 @@ export class ProfileComponent implements OnInit {
       return;
     }
     this.isLoading = true;
-    console.log(this.memberships.map(membership => membership.name));
     const userData = {
       email: this.profileForm.value.email,
-      income: this.profileForm.value.income ? this.profileForm.value.income.replace(/\s/g, '') : this.profileForm.value.income,
+      income: typeof this.profileForm.value.income === 'string' ? this.profileForm.value.income.replace(/\s/g, '') : this.profileForm.value.income
     };
 
     const memebershipsData = {
@@ -108,10 +107,10 @@ export class ProfileComponent implements OnInit {
     forkJoin([this.userService.updateUserInfo(userData), this.loansService.setUsersMemberships(memebershipsData)])
       .subscribe(([data]) => {
         this.isLoading = false;
-        this.snackBar.openSuccessSnackBar('Your data was updated');
+        this.snackBar.openSuccessSnackBar('Endringene dine er lagret');
       }, err => {
         this.isLoading = false;
-        this.snackBar.openFailSnackBar(err.detail);
+        this.snackBar.openFailSnackBar('Oops, noe gikk galt');
       });
   }
 

@@ -32,10 +32,10 @@ export class PreferencesComponent implements OnInit {
     this.isLoading = true;
     this.useService.updateUserPreferences(this.preferencesForm.value).subscribe(res => {
       this.isLoading = false;
-      this.snackBar.openSuccessSnackBar('Your data was updated');
+      this.snackBar.openSuccessSnackBar('Endringene dine er lagret');
     }, err => {
       this.isLoading = false;
-      this.snackBar.openFailSnackBar(err.detail);
+      this.snackBar.openFailSnackBar('Oops, noe gikk galt');
     });
   }
 
