@@ -12,6 +12,7 @@ import { PrivacyPolicyComponent } from '@features/privacy-policy/privacy-policy.
 import { BankSelectComponent } from '@features/bank-select/bank-select.component';
 import { ContactUsComponent } from '@features/contact-us/contact-us.component';
 import { AuthGuard } from '@shared/guards/auth.guard';
+import { GetNotifiedComponent } from '@features/get-notified/get-notified.component';
 
 const routes: Routes = [
   { path: '', component: LandingComponent},
@@ -23,6 +24,7 @@ const routes: Routes = [
   { path: ROUTES_MAP.privacyPolicy, component: PrivacyPolicyComponent},
   { path: ROUTES_MAP.bankSelect, component: BankSelectComponent},
   { path: ROUTES_MAP.initConfirmation, component: InitConfirmationComponent},
+  { path: ROUTES_MAP.getNotified, component: GetNotifiedComponent},
   {
     path: ROUTES_MAP.auth,
     loadChildren: () => import('./features/auth/auth.module').then(m => m.AuthModule)

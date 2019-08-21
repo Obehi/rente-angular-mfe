@@ -17,11 +17,19 @@ export const API_URL_MAP = {
   user: {
     base: '/user',
     me: '/me',
-    preferences: '/preferences'
+    preferences: '/preferences',
+    communication: {
+      base: '/communication',
+      contactUs: '/contact-us',
+      missingBanks: '/missing-banks'
+    }
   },
   loan: {
     base: '/loan',
-    loans: '/loans',
+    loans: {
+      base: '/loans',
+      state: '/state'
+    },
     offers: '/offers',
     membership: '/membership',
     membershipTypes: '/membership-types',

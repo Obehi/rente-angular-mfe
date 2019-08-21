@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewEncapsulation, OnDestroy } from '@angular/core';
 import { Routes, RouterModule, Router } from '@angular/router';
 import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
+import { LocalStorageService } from '@services/local-storage.service';
 
 @Component({
   selector: 'rente-dashboard',
@@ -10,7 +11,11 @@ import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
 })
 export class DashboardComponent implements OnInit, OnDestroy {
 
-  constructor(private router: Router, public breakpointObserver: BreakpointObserver) { }
+  constructor(
+    private router: Router,
+    public breakpointObserver: BreakpointObserver,
+    private localStorageService: LocalStorageService
+  ) { }
 
   public navLinks = ['tilbud', 'mine-lan', 'bolig', 'preferanser', 'profil'];
   public activeLinkIndex = -1;
@@ -26,17 +31,26 @@ export class DashboardComponent implements OnInit, OnDestroy {
   private subscription: any;
 
   ngOnInit(): void {
-    this.activeLinkIndex = this.getActiveIndex();
-    this.setActiveIcon(this.activeLinkIndex);
-    this.subscription = this.router.events.subscribe((res) => {
+    if (this.localStorageService.getItem('noLoansPresent')) {
+      this.router.navigate(['/dashboard/ingenlaan']);
+    } else if (this.localStorageService.getItem('isAggregatedRateTypeFixed')) {
+      this.router.navigate(['/dashboard/fastrente']);
+    } else {
       this.activeLinkIndex = this.getActiveIndex();
       this.setActiveIcon(this.activeLinkIndex);
-    });
-    this.checkmobileVersion();
+      this.subscription = this.router.events.subscribe((res) => {
+        this.activeLinkIndex = this.getActiveIndex();
+        this.setActiveIcon(this.activeLinkIndex);
+      });
+      this.checkmobileVersion();
+    }
+
   }
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 
   public getActiveIndex(): number {
@@ -57,15 +71,15 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   private checkmobileVersion() {
     this.breakpointObserver
-    .observe(['(min-width: 992px)'])
-    .subscribe((state: BreakpointState) => {
-      if (state.matches) {
-        console.log('Viewport is 500px or over!');
-        this.isMobile = false;
-      } else {
-        console.log('Viewport is getting smaller!');
-        this.isMobile = true;
-      }
-    });
+      .observe(['(min-width: 992px)'])
+      .subscribe((state: BreakpointState) => {
+        if (state.matches) {
+          console.log('Viewport is 500px or over!');
+          this.isMobile = false;
+        } else {
+          console.log('Viewport is getting smaller!');
+          this.isMobile = true;
+        }
+      });
   }
 }

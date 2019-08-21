@@ -34,6 +34,7 @@ $nav-divider-margin-y:              $spacer / 2 !default;
 .nav-link {
   display: block;
   padding: $nav-link-padding-y $nav-link-padding-x;
+  cursor: pointer;
 
   &:hover,
   &:focus {

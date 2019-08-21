@@ -8,6 +8,7 @@ import { Loans } from '@shared/models/loans';
 import { BANKS_DATA } from '@config/banks-config';
 import { Router } from '@angular/router';
 import { OFFER_SAVINGS_TYPE, AGGREGATED_RATE_TYPE } from '../../../config/loan-state';
+import { LocalStorageService } from '@services/local-storage.service';
 
 @Component({
   selector: 'rente-offers',
@@ -34,19 +35,10 @@ export class OffersComponent implements OnInit {
   ) { }
 
   public ngOnInit(): void {
-
     this.loansService.getOffers().subscribe((res: Offers) => {
       console.log('offers', res);
       this.offersInfo = res;
       this.isLoading = false;
-
-      if (!this.offersInfo.loansPresent) {
-        this.router.navigate(['/dashboard/ingenlaan'], { queryParams: { bank: this.offersInfo.bank } });
-      }
-
-      if (this.offersInfo.aggregatedRateType === this.aggregatedRateType.FIXED) {
-        this.router.navigate(['/dashboard/fastrente']);
-      }
 
       if (!this.offersInfo.offersPresent) {
         this.noOffers = true;
@@ -55,7 +47,7 @@ export class OffersComponent implements OnInit {
     }, err => {
       if (err.errorType === 'PROPERTY_VALUE_MISSING') {
         this.errorMessage = err.title;
-        this.router.navigate(['/init-confirmation']);
+        this.router.navigate(['/dashboard/bolig']);
       }
       console.log(err);
     });

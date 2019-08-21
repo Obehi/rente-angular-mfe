@@ -15,10 +15,6 @@ import { RadioComponent } from './components/ui-components/radio/radio.component
 import { TabsComponent } from './components/ui-components/tabs/tabs.component';
 import { TabComponent } from './components/ui-components/tabs/tab.component';
 import { FormMessageComponent } from './components/ui-components/form-message/form-message.component';
-import { MatButtonModule } from '@angular/material/button';
-import { MatInputModule } from '@angular/material/input';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { MatRadioModule } from '@angular/material/radio';
 import { TextAreaComponent } from './components/ui-components/text-area/text-area.component';
 import { AuthService } from '@services/remote-api/auth.service';
 import { ContactService } from '@services/remote-api/contact.service';
@@ -33,6 +29,7 @@ import { TextMaskModule } from 'angular2-text-mask';
 import { UserService } from '@services/remote-api/user.service';
 import { AbsPipe } from './pipes/abs.pipe';
 import { MaterialModule } from './material/material.module';
+import { SnackBarService } from './services/snackbar.service';
 
 // export declare const options: Partial<IConfig> | (() => Partial<IConfig>);
 
@@ -53,6 +50,7 @@ const components = [
 const services = [
   AuthGuard,
   GenericHttpService,
+  SnackBarService,
   LocalStorageService,
   AuthService,
   ContactService,

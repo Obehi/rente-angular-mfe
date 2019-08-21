@@ -26,17 +26,23 @@
           </a>
         </li>
 
+        <li class="nav-item mx-0 mx-lg-1"
+          *ngIf="!localStorageService.isFixedRateType && !localStorageService.isNoLoansPresent && auth.isLoggedIn">
+          <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger text-white"
+            [routerLink]="['/dashboard/tilbud']" routerLinkActive="router-link-active">
+            Min side
+          </a>
+        </li>
+
+        <li class="nav-item mx-0 mx-lg-1">
+          <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger text-white" [routerLink]="['/kontakt']"
+            routerLinkActive="router-link-active">Kontakt oss</a>
+        </li>
+
         <li class="nav-item mx-0 mx-lg-1" *ngIf="!auth.isLoggedIn">
           <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger text-white" [routerLink]="['/velgbank']"
             routerLinkActive="router-link-active">
             Logg inn
-          </a>
-        </li>
-
-        <li class="nav-item mx-0 mx-lg-1" *ngIf="auth.isLoggedIn">
-          <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger text-white"
-            [routerLink]="['/dashboard/tilbud']" routerLinkActive="router-link-active">
-            Min side
           </a>
         </li>
 
@@ -64,17 +70,23 @@
           </a>
         </li>
 
+        <li class="nav-item mx-0 mx-lg-1"
+          *ngIf="!localStorageService.isFixedRateType && !localStorageService.isNoLoansPresent && auth.isLoggedIn">
+          <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger text-white"
+            [routerLink]="['/dashboard/tilbud']" routerLinkActive="router-link-active">
+            Min side
+          </a>
+        </li>
+
+        <li class="nav-item mx-0 mx-lg-1">
+          <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger text-white" [routerLink]="['/kontakt']"
+            routerLinkActive="router-link-active">Kontakt oss</a>
+        </li>
+
         <li class="nav-item mx-0 mx-lg-1" *ngIf="!auth.isLoggedIn">
           <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger text-white" [routerLink]="['/velgbank']"
             routerLinkActive="router-link-active">
             Logg inn
-          </a>
-        </li>
-
-        <li class="nav-item mx-0 mx-lg-1" *ngIf="auth.isLoggedIn">
-          <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger text-white"
-            [routerLink]="['/dashboard/tilbud']" routerLinkActive="router-link-active">
-            Min side
           </a>
         </li>
 

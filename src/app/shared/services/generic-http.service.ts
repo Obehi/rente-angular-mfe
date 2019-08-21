@@ -11,7 +11,7 @@ import { catchError } from 'rxjs/operators';
 import { environment } from '@environments/environment';
 import { storageName } from '@config/index';
 import { LocalStorageService } from '@services/local-storage.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { SnackBarService } from './snackbar.service';
 
 @Injectable({
   providedIn: 'root'
@@ -31,10 +31,10 @@ export class GenericHttpService {
     private http: HttpClient,
     private localStorageService: LocalStorageService,
     private router: Router,
-    private snackBar: MatSnackBar
-    ) {
-      this.apiUrl = environment.baseUrl;
-    }
+    private snackBar: SnackBarService
+  ) {
+    this.apiUrl = environment.baseUrl;
+  }
 
   public get(path: string, searchParams: any = {}): Observable<any> {
     const fullPath = `${this.apiUrl}${path}`;
@@ -115,9 +115,7 @@ export class GenericHttpService {
   private handleError(responseError: HttpResponse<any> | any): Observable<any> {
     console.log(responseError);
 
-    this.snackBar.open(responseError.error.detail, 'Close', {
-      duration: 10 * 1000,
-    });
+    // this.snackBar.openFailSnackBar(responseError.error.detail);
 
     if (responseError.status === 401) {
       // TODO: Show unauthorized error
@@ -125,19 +123,11 @@ export class GenericHttpService {
       this.clearSession();
     }
 
-    if (responseError.status === 500) {
-      this.snackBar.open(responseError.error.error, 'Close', {
-        duration: 10 * 1000,
-        panelClass: ['bg-error'],
-        horizontalPosition: 'right'
-      });
-    } else {
-      this.snackBar.open(responseError.error.detail, 'Close', {
-        duration: 10 * 1000,
-        panelClass: ['bg-primary'],
-        horizontalPosition: 'right'
-      });
-    }
+    // if (responseError.status === 500) {
+    //   this.snackBar.openFailSnackBar(responseError.error.error);
+    // } else {
+    //   this.snackBar.openFailSnackBar(responseError.error.detail);
+    // }
 
     return throwError(responseError.error);
   }

@@ -14,10 +14,12 @@ import {
   BANKID_TIMEOUT_TIME,
   MESSAGE_STATUS
 } from './login-status.config';
-import { Subscription, interval, Observable, timer } from 'rxjs';
+import { Subscription, interval, Observable, timer, forkJoin } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { UserService } from '@services/remote-api/user.service';
+import { LoansService } from '@services/remote-api/loans.service';
+import { LocalStorageService } from '@services/local-storage.service';
 
 @Component({
   selector: 'rente-login-status',
@@ -45,7 +47,9 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
   constructor(
     private router: Router,
     private authService: AuthService,
-    private userService: UserService) { }
+    private userService: UserService,
+    private loansService: LoansService,
+    private localStorageService: LocalStorageService) { }
 
   ngOnInit() {
     this.setDefaultSteps();
@@ -118,7 +122,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
       // Send ping to prevent socket closing
       interval(PING_TIME)
         .subscribe(() => {
-          this.stompClient.send(API_URL_MAP.crawlerComunicationUrl , {}, JSON.stringify({message: 'ping'}));
+          this.stompClient.send(API_URL_MAP.crawlerComunicationUrl, {}, JSON.stringify({ message: 'ping' }));
         });
 
     }, () => {
@@ -206,17 +210,24 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
             this.authService.loginWithToken(user.phone, user.oneTimeToken).subscribe(res => {
               console.log('login', res);
 
-              this.router.navigate(['/dashboard/tilbud/']);
-
-              // TODO: Change mo mergemap
-              this.userService.getUserInfo().subscribe(userInfo => {
-                this.loginStep3Status = MESSAGE_STATUS.SUCCESS;
-                if (userInfo.income === null) {
-                  this.router.navigate(['/init-confirmation']);
-                } else {
-                  this.router.navigate(['/dashboard/tilbud/']);
-                }
-              });
+              // this.router.navigate(['/dashboard/tilbud/']);
+              forkJoin([this.loansService.getLoansAndRateType(), this.userService.getUserInfo()])
+                .subscribe(([rateAndLoans, userInfo]) => {
+                  this.loginStep3Status = MESSAGE_STATUS.SUCCESS;
+                  if (!rateAndLoans.loansPresent) {
+                    this.localStorageService.setItem('noLoansPresent', true);
+                    this.router.navigate(['/dashboard/ingenlaan']);
+                  } else if (rateAndLoans.isAggregatedRateTypeFixed) {
+                    this.localStorageService.setItem('isAggregatedRateTypeFixed', true);
+                    this.router.navigate(['/dashboard/fastrente']);
+                  } else {
+                    if (userInfo.income === null) {
+                      this.router.navigate(['/init-confirmation']);
+                    } else {
+                      this.router.navigate(['/dashboard/tilbud/']);
+                    }
+                  }
+                });
             });
 
             break;

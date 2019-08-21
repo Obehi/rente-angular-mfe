@@ -5,7 +5,6 @@ export interface Offers {
   bestOfferTotalSaving: number | null;
   bestSavingsFirstYear: number | null;
   bestTotalSavings: number | null;
-  loansPresent: boolean | null;
   currentLoaofferSavingsTypenState: string;
   membership: string | null;
   offers: OfferInfo[];
@@ -17,6 +16,8 @@ export interface Offers {
 
 export interface OfferInfo {
   bank: string;
+  bankName: string;
+  bankUrl: string;
   depotFee: number;
   effectiveRate: number;
   establishmentFee: number;

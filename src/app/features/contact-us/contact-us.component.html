@@ -5,7 +5,7 @@
       <p>Kontakt oss gjerne ved å fylle ut skjemaet nedenfor hvis du har spørsmål</p>
 
       <form [formGroup]="contactUsForm" 
-            (ngSubmit)="startLogin(contactUsForm.value)" novalidate>
+            (ngSubmit)="sendContactUsForm(contactUsForm.value)" novalidate>
         <div class="mb-4">
           <rente-input [placeholder]="'Navn'" 
                         formControlName="name" 
@@ -31,19 +31,18 @@
                        formControlName="email" 
                        [errorStateMatcher]="isErrorState(contactUsForm.controls['email'], contactUsForm)">
           </rente-input>
-          <div *ngIf="contactUsForm.controls['email'].touched"
-                 class="error-message">
-            <rente-form-message class="text-left d-block" 
-                                [type]="'error'" 
-                                *ngIf="contactUsForm.controls['name'].hasError('required')">
-              Vi trenger e-posten din
-            </rente-form-message>
-          </div>
+          <div *ngIf="contactUsForm.controls['email'].touched" class="error-message">
+              <rente-form-message class="text-left d-block" [type]="'error'"
+                *ngIf="contactUsForm.controls['email'].hasError('required')">
+                Ikke gyldig email
+              </rente-form-message>
+            </div>
         </div>
 
         <div class="mb-4">
           <rente-input [placeholder]="'Telefonnr'" 
-                        formControlName="phone">
+                        formControlName="phone"
+                        [type]="'tel'">
           </rente-input>
           <rente-form-message class="text-left d-block pb-0" 
                               [type]="'info'">
