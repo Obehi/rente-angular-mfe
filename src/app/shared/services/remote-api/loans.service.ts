@@ -49,15 +49,14 @@ export class LoansService {
     return this.http.put(url, appartmentData);
   }
 
-
   public getLoanPreferences() {
-    const url = `${API_URL_MAP.user.base}${API_URL_MAP.loan.preferences}`;
+    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.preferences}`;
     return this.http.get(url);
   }
 
-  public updateLoanPreferences(userData) {
-    const url = `${API_URL_MAP.user.base}${API_URL_MAP.loan.preferences}`;
-    return this.http.put(url, userData);
+  public updateLoanPreferences(loanData) {
+    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.preferences}`;
+    return this.http.put(url, loanData);
   }
 
   public getPropertValue() {
