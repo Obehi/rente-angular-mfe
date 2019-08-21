@@ -26,8 +26,8 @@ export const BANKS_DATA = {
   },
   AURLAND_SB: {
     name: 'AURLAND_SB',
-    img: '',
-    imgCircle: ''
+    img: '../../assets/img/banks-logo/square/sogn.png',
+    imgCircle: '../../assets/img/banks-logo/round/sogn.png'
   },
   AURSKOG_SB: {
     name: 'AURSKOG_SB',
@@ -211,8 +211,8 @@ export const BANKS_DATA = {
   },
   INDRE_SOGN_SB: {
     name: 'INDRE_SOGN_SB',
-    img: '',
-    imgCircle: ''
+    img: '../../assets/img/banks-logo/square/sogn.png',
+    imgCircle: '../../assets/img/banks-logo/round/sogn.png'
   },
   JERNBANEPERSONALETS: {
     name: 'JERNBANEPERSONALETS',
@@ -291,8 +291,8 @@ export const BANKS_DATA = {
   },
   SYKEPLEIERFORBUND_DNB: {
     name: 'SYKEPLEIERFORBUND_DNB',
-    img: '',
-    imgCircle: ''
+    img: '../../assets/img/banks-logo/square/dnb.png',
+    imgCircle: '../../assets/img/banks-logo/round/dnb.png'
   },
   NYBYGGER: {
     name: 'NYBYGGER',
@@ -551,8 +551,8 @@ export const BANKS_DATA = {
   },
   VIK_SB: {
     name: 'VIK_SB',
-    img: '',
-    imgCircle: ''
+    img: '../../assets/img/banks-logo/square/sogn.png',
+    imgCircle: '../../assets/img/banks-logo/round/sogn.png'
   },
   VOSS_SB: {
     name: 'VOSS_SB',

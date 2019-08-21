@@ -36,7 +36,8 @@ export class HeaderComponent implements OnInit {
   public isSmallScreen: boolean;
 
   constructor(
-    public auth: AuthService
+    public auth: AuthService,
+    public localStorageService: LocalStorageService
   ) {
     this.isSmallScreen = window.innerWidth <= 1000;
   }

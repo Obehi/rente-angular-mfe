@@ -21,6 +21,7 @@ import { MatFormFieldModule } from '@angular/material';
 import { registerLocaleData } from '@angular/common';
 import localeNo from '@angular/common/locales/nb';
 import { MaterialModule } from '@shared/material/material.module';
+import { GetNotifiedComponent } from '@features/get-notified/get-notified.component';
 
 registerLocaleData(localeNo);
 
@@ -36,7 +37,8 @@ registerLocaleData(localeNo);
     PrivacyPolicyComponent,
     BankSelectComponent,
     ContactUsComponent,
-    InitConfirmationComponent
+    InitConfirmationComponent,
+    GetNotifiedComponent
   ],
   imports: [
     BrowserModule,

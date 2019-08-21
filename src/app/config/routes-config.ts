@@ -8,5 +8,6 @@ export const ROUTES_MAP: any = {
   bankSelect: 'velgbank',
   auth: 'auth',
   dashboard: 'dashboard',
-  initConfirmation: 'init-confirmation'
+  initConfirmation: 'init-confirmation',
+  getNotified: 'faabeskjed'
 };
