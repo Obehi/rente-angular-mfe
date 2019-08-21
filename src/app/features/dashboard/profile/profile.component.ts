@@ -94,9 +94,10 @@ export class ProfileComponent implements OnInit {
       return;
     }
     this.isLoading = true;
+    const income = this.profileForm.value.income;
     const userData = {
       email: this.profileForm.value.email,
-      income: typeof this.profileForm.value.income === 'string' ? this.profileForm.value.income.replace(/\s/g, '') : this.profileForm.value.income
+      income: typeof income === 'string' ? income.replace(/\s/g, '') : income
     };
 
     const memebershipsData = {
