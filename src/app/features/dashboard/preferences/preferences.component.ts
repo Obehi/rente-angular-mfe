@@ -2,6 +2,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '@services/remote-api/user.service';
 import { SnackBarService } from '@services/snackbar.service';
+import { LoansService } from '../../../shared/services/remote-api/loans.service';
 
 @Component({
   selector: 'rente-preferences',
@@ -13,12 +14,12 @@ export class PreferencesComponent implements OnInit {
   public isLoading: boolean;
   constructor(
     private fb: FormBuilder,
-    private useService: UserService,
+    private loansService: LoansService,
     private snackBar: SnackBarService
   ) { }
 
   ngOnInit() {
-    this.useService.getUserPreferences().subscribe(preferances => {
+    this.loansService.getLoanPreferences().subscribe(preferances => {
       this.preferencesForm = this.fb.group({
         checkRateReminderType: [preferances.checkRateReminderType],
         fetchCreditLinesOnly: [preferances.fetchCreditLinesOnly],
@@ -30,7 +31,7 @@ export class PreferencesComponent implements OnInit {
 
   public updatePreferances() {
     this.isLoading = true;
-    this.useService.updateUserPreferences(this.preferencesForm.value).subscribe(res => {
+    this.loansService.updateLoanPreferences(this.preferencesForm.value).subscribe(res => {
       this.isLoading = false;
       this.snackBar.openSuccessSnackBar('Endringene dine er lagret');
     }, err => {
