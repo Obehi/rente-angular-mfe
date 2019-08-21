@@ -10,8 +10,7 @@ import { ContactService } from '../../shared/services/remote-api/contact.service
 
 @Component({
   selector: 'rente-get-notified',
-  templateUrl: './get-notified.component.html',
-  styleUrls: ['./get-notified.component.scss']
+  templateUrl: './get-notified.component.html'
 })
 export class GetNotifiedComponent implements OnInit {
   public missingBankForm: FormGroup;
