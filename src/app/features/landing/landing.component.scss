@@ -13,10 +13,14 @@
   margin: 60px 0;
 }
 
-.card-text {
-  @media (max-width:750px) {
-    margin-bottom: 20px !important;
-  }
+.partner-logo-finansportalen {
+  max-width: 150px !important;
+  height: 80px !important;
+}
+
+.partner-logo-virdi {
+  max-width: 50px !important;
+  height: 50px !important;
 }
 
 .card-wrapper {
@@ -24,6 +28,9 @@
   background-color: rgba(33, 37, 41, 0.05);
 }
 .card {
+  &-icon{
+    height: 150px !important;
+  }
 
   &-number-wrapper {
     &:after {
@@ -38,27 +45,31 @@
 
     p {
       box-sizing: border-box;
-      height: 53px;
-      width: 54px;
+      height: 40px;
+      width: 40px;
       border: 2px solid $primary;
       background-color: $white;
       border-radius: 50%;
-      @include text-style(24px, 29px);
+      @include text-style(18px, 20px);
       z-index: 1;
     }
   }
 
   &-title {
-    @include text-style(24px, 29px);
+    height: 30px;
+    @include text-style(23px, 29px);
   }
 
   &-text {
+    @media (max-width:750px) {
+      margin-bottom: 20px !important;
+    }
     @include text-style(16px, 24px);
-    margin-bottom: 64px;
+    margin-bottom: 30px;
   }
 
   &-btn {
     width: 368px;	
-    margin: 40px 0;
+    margin: 20px 0;
   }
 }

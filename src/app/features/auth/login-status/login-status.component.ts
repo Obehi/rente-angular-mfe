@@ -222,7 +222,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
                     this.router.navigate(['/dashboard/fastrente']);
                   } else {
                     if (userInfo.income === null) {
-                      this.router.navigate(['/init-confirmation']);
+                      this.router.navigate(['/bekreft']);
                     } else {
                       this.router.navigate(['/dashboard/tilbud/']);
                     }
