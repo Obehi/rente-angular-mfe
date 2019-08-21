@@ -105,9 +105,9 @@ export class InitConfirmationComponent implements OnInit {
 
     // TODO: Add error state
     forkJoin(
-      [this.userService.updateUserInfo(userData),
-      this.loansService.setUsersMemberships(memebershipsData),
-      this.loansService.updateApartmentSize(apartmentsData)]
+      [this.loansService.updateApartmentSize(apartmentsData),
+      this.userService.updateUserInfo(userData),
+      this.loansService.setUsersMemberships(memebershipsData)]
     ).subscribe(([data]) => {
       this.isLoading = false;
       this.router.navigate(['/dashboard/tilbud']);
