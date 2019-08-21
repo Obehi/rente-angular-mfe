@@ -16,12 +16,16 @@
         <div *ngSwitchDefault>-</div>
       </div>
       <!-- <h3>Du har ikke noe å spare på å bytte bank</h3> -->
-      <p class="text-border mb-5">Tips: Boligverdi/belåningsgrad er viktig mtp hva bankene tilbyr. Du kan endre i Bolig
-        fanen</p>
+      <p class="text-border mb-5">Tips: Boligverdi/belåningsgrad er viktig mtp hva bankene tilbyr. Du kan endre i
+        <a [routerLink]="['/dashboard/bolig']">
+          Bolig fanen
+        </a>
+      </p>
       <p class="text-border" *ngIf="!offersInfo.memberships.length">Enkelte banker tilbyr bedre betingelser gitt at du
         har et medlemskap i en
         interesseorganisasjon. Hvis du har
-        mulighet til å bli medlem prøv gjerne å endre ditt medlemskap ved å <a [routerLink]="'/dashboard/profil'">klikke her</a> for å se om det påvirker
+        mulighet til å bli medlem prøv gjerne å endre ditt medlemskap ved å <a [routerLink]="'/dashboard/profil'">klikke
+          her</a> for å se om det påvirker
         resultatet av din rentesjekk. (Medlemskap pleier å koste ca 4000 i året)</p>
       <p class="text-border" *ngIf="offersInfo.aggregatedRateType === aggregatedRateType.MIX_FIXED_FLOATING">Vi ser du
         har ett eller flere fastrentelån. Renteradar viser besparelsespotensialet kun for lånet/lånene med flytende
@@ -133,7 +137,8 @@
                 hjemmeside</rente-button>
               <rente-button class="mt-2 disabled-button" [disabled]="true" color="primary" type="raised">Start bytte*
               </rente-button>
-              <rente-button class="mt-2 disabled-button" [disabled]="true" color="primary" type="raised">Be min bank om å
+              <rente-button class="mt-2 disabled-button" [disabled]="true" color="primary" type="raised">Be min bank om
+                å
                 matche dette tilbudet*</rente-button>
               <p class="text-right coming-soon-text">
                 *Kommer snart
