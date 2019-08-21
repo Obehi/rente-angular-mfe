@@ -95,19 +95,15 @@ export class InitConfirmationComponent implements OnInit {
       income: typeof formData.income === 'string' ? formData.income.replace(/\s/g, '') : formData.income
     };
 
-    const memebershipsData = {
-      memberships: this.memberships.map(membership => membership.name)
-    };
-
-    const apartmentsData = {
+    const confirmationData = {
+      memberships: this.memberships.map(membership => membership.name),
       apartmentSize: formData.apartmentSize
     };
 
     // TODO: Add error state
     forkJoin(
-      [this.loansService.updateApartmentSize(apartmentsData),
-      this.userService.updateUserInfo(userData),
-      this.loansService.setUsersMemberships(memebershipsData)]
+      [this.userService.updateUserInfo(userData),
+      this.loansService.setConfirmationData(confirmationData)]
     ).subscribe(([data]) => {
       this.isLoading = false;
       this.router.navigate(['/dashboard/tilbud']);

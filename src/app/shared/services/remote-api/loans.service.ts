@@ -49,6 +49,11 @@ export class LoansService {
     return this.http.put(url, appartmentData);
   }
 
+  public setConfirmationData(confirmationData) {
+    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.confirmation}`;
+    return this.http.post(url, confirmationData);
+  }
+
   public getLoanPreferences() {
     const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.preferences}`;
     return this.http.get(url);

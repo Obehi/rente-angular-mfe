@@ -26,6 +26,7 @@ export const API_URL_MAP = {
   },
   loan: {
     base: '/loan',
+    confirmation: '/confirmation',
     loans: {
       base: '/loans',
       state: '/state'
