@@ -31,6 +31,7 @@ export const API_URL_MAP = {
       state: '/state'
     },
     offers: '/offers',
+    preferences: '/preferences',
     membership: '/membership',
     membershipTypes: '/membership-types',
     address: '/address',

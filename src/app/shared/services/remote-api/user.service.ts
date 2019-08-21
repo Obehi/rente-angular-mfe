@@ -18,14 +18,4 @@ export class UserService {
     const url = `${API_URL_MAP.user.base}${API_URL_MAP.user.me}`;
     return this.http.post(url, userData);
   }
-
-  public getUserPreferences() {
-    const url = `${API_URL_MAP.user.base}${API_URL_MAP.user.preferences}`;
-    return this.http.get(url);
-  }
-
-  public updateUserPreferences(userData) {
-    const url = `${API_URL_MAP.user.base}${API_URL_MAP.user.preferences}`;
-    return this.http.put(url, userData);
-  }
 }
