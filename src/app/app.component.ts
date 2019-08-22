@@ -36,7 +36,7 @@ export class AppComponent implements OnInit {
     let data = this.route.root.firstChild.snapshot.data;
 
     if (!data.title) {
-      data = this.route.root.children[0].children[0].data['_value'];
+      data = this.route.root.children[0].children[0].data;
     }
     const title = data.title;
     const metaData = data.meta;

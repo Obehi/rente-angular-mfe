@@ -2,18 +2,23 @@ export const defaultTitle = 'Renteradar.no | Sjekk og overvåk boliglånsrenten 
 
 export const defaultMeta = {
   name: 'description',
-  description: 'Renteradar sammenligner renten du har på boliglånet ditt med renten du kan få i andre banker. Tjenesten er gratis og du oppretter enkelt og raskt profil med BankId på mobil. Se hva du kan spare per år! Få de bedre betingelser og vit at du ikke blir lurt.'
-}
+  description: 'Renteradar sammenligner renten du har på boliglånet ditt med renten du kan få i andre banker.' +
+    'Tjenesten er gratis og du oppretter enkelt og raskt profil med BankId på mobil. Se hva du kan spare per år!' +
+    'Få de bedre betingelser og vit at du ikke blir lurt.'
+};
 
 export const customMeta = {
   velgbankTitle: 'Registrer deg - gratis | Velg banken du har boliglån i | Logg inn med BankID på Mobil |',
-  velgbankDescription: 'Velg banken du har boliglån i og registrer deg inn med BankID på mobil. Renteradar henter renten du har og lånebeløp automatisk.',
+  velgbankDescription: 'Velg banken du har boliglån i og registrer deg inn med BankID på mobil.'
+    + 'Renteradar henter renten du har og lånebeløp automatisk.',
   omossTitle: 'Om oss | Renteradar.no | Overvåker boliglånsrenten din gratis',
-  omossDescription: 'Markedet for boliglån kan være kaotisk, og det kan være vanskelig å vite hvilken rente du fortjener og i hvilken bank du finner denne.',
+  omossDescription: 'Markedet for boliglån kan være kaotisk, og det kan være vanskelig å vite hvilken rente du fortjener' +
+    'og i hvilken bank du finner denne.',
   ofteStilteSporsmaalTitle: '| Renteradar.no | Overvåker boliglånsrenten din gratis',
   ofteStilteSporsmaalDescription: 'Hvor mye kan jeg spare? Koster det noe? Trenger jeg å laste opp noe dokumentasjon?',
   personvernTitle: 'Personvern | Renteradar.no | Overvåker boliglånsrenten din gratis',
-  personvernDescription: 'Vi tar GDPR på alvor og ditt personvern er viktig for oss i Renteradar.no. Renteradar.no eies og drives av Forbrukerøkonomene AS som er et norsk selskap underlagt norsk lov...',
+  personvernDescription: 'Vi tar GDPR på alvor og ditt personvern er viktig for oss i Renteradar.no.'
+    + 'Renteradar.no eies og drives av Forbrukerøkonomene AS som er et norsk selskap underlagt norsk lov...',
   bankDescription: 'Renteradar henter renten du har og lånebeløp automatisk med BankID på mobil',
   DNBTitle: 'Registrer deg | Logg inn | DNB | Renteradar.no',
   NordeaTitle: 'Registrer deg | Logg inn | Nordea | Renteradar.no',
@@ -32,7 +37,7 @@ export const customMeta = {
   SRBankSparebankTitle: 'Registrer deg | Logg inn | Sparebank 1 Telemark| Renteradar.no',
   ostfoldAkershusTelemarkSparebankTitle: 'Registrer deg | Logg inn | Sparebank 1 Østfold Akershus | Renteradar.no',
   OstlandetSparebankTitle: 'Registrer deg | Logg inn | Sparebank 1 Østlandet | Renteradar.no'
-}
+};
 
 export const ROUTES_MAP: any = {
   aboutUs: 'omoss',
