@@ -23,7 +23,7 @@
     <div class="row justify-content-center">
       <div class="col-12 col-md-5">
         <div class="text-center">
-          <form [formGroup]="bankIdForm" novalidate>
+          <form [formGroup]="bankIdForm" novalidate (ngSubmit)="startLogin(bankIdForm.value)" >
 
             <div class="mb-4 bg-wrap">
               <div class="mb-4"><img class="mw-100" src="{{bankLogo}}" alt="{{this.userBank.label}}"
@@ -79,7 +79,8 @@
               Ved registrering bekrefter du <a (click)="openServiceDialog()">vilkårene</a> våre
             </p>
             <div class="register-btn">
-              <rente-button color="primary" (click)="startLogin(bankIdForm.value)">Logg inn</rente-button>
+              <rente-button color="primary" [disabled]="!bankIdForm.valid">Logg inn
+              </rente-button>
             </div>
           </form>
         </div>

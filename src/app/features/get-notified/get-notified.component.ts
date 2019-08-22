@@ -56,10 +56,6 @@ export class GetNotifiedComponent implements OnInit {
   }
 
   public request() {
-    // looks like bug button is disabled but when we click on text click event still work
-    if (this.missingBankForm.invalid) {
-      return;
-    }
     this.isLoading = true;
     const missingBankData = {
       email: this.missingBankForm.value.email,

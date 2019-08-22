@@ -82,10 +82,6 @@ export class InitConfirmationComponent implements OnInit {
   }
 
   public updateProperty(formData) {
-    if (this.propertyForm.invalid) {
-      return;
-    }
-
     this.propertyForm.markAllAsTouched();
     this.propertyForm.updateValueAndValidity();
 

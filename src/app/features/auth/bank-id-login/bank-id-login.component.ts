@@ -70,8 +70,8 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
         Validators.pattern(VALIDATION_PATTERN.phoneShort)
       ])],
     }, {
-      updateOn: 'blur'
-    });
+        updateOn: 'blur'
+      });
   }
 
   public openServiceDialog(): void {
@@ -85,9 +85,9 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     this.bankIdForm = this.initForm();
     if (!this.isSsnBankLogin) {
       this.bankIdForm.addControl('birthdate', new FormControl('', Validators.compose([
-          Validators.required,
-          Validators.pattern(VALIDATION_PATTERN.dob)
-        ])
+        Validators.required,
+        Validators.pattern(VALIDATION_PATTERN.dob)
+      ])
       ));
       this.bankIdForm.removeControl('ssn');
     }
