@@ -21,13 +21,12 @@ export class GetNotifiedComponent implements OnInit {
   public removable = true;
   public addOnBlur = true;
   public separatorKeysCodes: number[] = [ENTER, COMMA];
-  public bankCtrl = new FormControl();
+  // public bankCtrl = new FormControl();
   public filteredBanks: Observable<string[]>;
   public banks: any = [];
   public allBanks: any[];
   public isLoading: boolean;
 
-  @ViewChild('bankInput', { static: false }) bankInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto', { static: false }) matAutocomplete: MatAutocomplete;
 
   constructor(
@@ -35,16 +34,11 @@ export class GetNotifiedComponent implements OnInit {
     private contactService: ContactService,
     private router: Router,
     private snackBar: SnackBarService
-  ) {
-    this.filteredBanks = this.bankCtrl.valueChanges.pipe(
-      startWith(null),
-      map((bank: string | null) => bank ? this.filter(bank) : this.allBanks.slice()));
-  }
+  ) { }
 
   ngOnInit() {
     this.contactService.getMissingBanks().subscribe((allBanks: any) => {
       this.allBanks = allBanks;
-      // TODO: Add validators and validation messages for form
       this.missingBankForm = this.fb.group({
         bank: [''],
         email: ['', Validators.compose([
@@ -52,6 +46,10 @@ export class GetNotifiedComponent implements OnInit {
           Validators.pattern(VALIDATION_PATTERN.email)
         ])]
       });
+
+      this.filteredBanks = this.missingBankForm.controls.bank.valueChanges.pipe(
+        startWith(null),
+        map((bank: string | null) => bank ? this.filter(bank) : this.allBanks.slice()));
     });
   }
   // TODO: Move to service
@@ -61,12 +59,10 @@ export class GetNotifiedComponent implements OnInit {
 
   public request() {
     this.isLoading = true;
-    const selectedBank = this.allBanks.find(bank => {
-      return bank.name === this.bankCtrl.value;
-    });
+
     const missingBankData = {
       email: this.missingBankForm.value.email,
-      bank: selectedBank.bank
+      bank: this.missingBankForm.value.bank.bank
     };
 
     this.contactService.sendMissingBank(missingBankData).subscribe(_ => {
@@ -79,57 +75,13 @@ export class GetNotifiedComponent implements OnInit {
 
   }
 
-  add(event: MatChipInputEvent): void {
-    if (!this.matAutocomplete.isOpen) {
-      const input = event.input;
-      const value = event.value;
-
-      // if ((value || '').trim()) {
-      //   this.banks.push({
-      //     value: value.trim(),
-      //     label: value.trim()
-      //   });
-      // }
-
-      // Reset the input value
-      if (input) {
-        input.value = '';
-      }
-
-      this.bankCtrl.setValue(null);
-    }
-  }
-
-  remove(bank, index): void {
-    this.allBanks.push(bank);
-    this.allBanks.sort((a, b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0));
-    this.banks.splice(index, 1);
-  }
-
-  selected(event: MatAutocompleteSelectedEvent): void {
-    if (this.banks.length < 1) {
-      this.banks.push(event.option.value);
-      this.bankInput.nativeElement.value = '';
-      this.bankCtrl.setValue(null);
-    }
+  public displayFn(bank: any): string | undefined {
+    return bank ? bank.name : undefined;
   }
 
   private filter(value: any): any[] {
     const filterValue = value.name ? value.name.toLowerCase() : value.toLowerCase();
-    this.allBanks = this.clearDuplicates(this.allBanks, this.banks);
     return this.allBanks.filter(bank => bank.name.toLowerCase().includes(filterValue));
   }
 
-  private clearDuplicates(array: any[], toRemoveArray: any[]) {
-    for (let i = array.length - 1; i >= 0; i--) {
-      // tslint:disable-next-line:prefer-for-of
-      for (let j = 0; j < toRemoveArray.length; j++) {
-        if (array[i] && (array[i].bank === toRemoveArray[j].bank)) {
-          array.splice(i, 1);
-        }
-      }
-    }
-
-    return array;
-  }
 }

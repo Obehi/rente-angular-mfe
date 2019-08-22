@@ -60,6 +60,10 @@
               *ngIf="profileForm.controls['email'].hasError('required')">
               Ikke gyldig email
             </rente-form-message>
+            <rente-form-message class="text-left d-block" [type]="'error'"
+              *ngIf="profileForm.controls['email'].hasError('pattern')">
+              Ikke gyldig email
+            </rente-form-message>
           </div>
         </div>
       </div>

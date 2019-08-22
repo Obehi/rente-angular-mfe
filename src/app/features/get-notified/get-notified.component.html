@@ -5,9 +5,9 @@
             <div class="row">
                 <mat-form-field class="col-12">
                     <mat-label>Bank:</mat-label>
-                    <input placeholder="Bank" #bankInput matInput [formControl]="bankCtrl" [matAutocomplete]="auto">
-                    <mat-autocomplete #auto="matAutocomplete">
-                        <mat-option *ngFor="let bank of filteredBanks | async" [value]="bank.name">
+                    <input placeholder="Bank" #bankInput matInput formControlName="bank" [matAutocomplete]="auto">
+                    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+                        <mat-option *ngFor="let bank of filteredBanks | async" [value]="bank">
                             {{bank.name}}
                         </mat-option>
                     </mat-autocomplete>
@@ -22,6 +22,10 @@
                     <div *ngIf="missingBankForm.controls['email'].touched" class="error-message">
                         <rente-form-message class="text-left d-block" [type]="'error'"
                             *ngIf="missingBankForm.controls['email'].hasError('required')">
+                            Ikke gyldig email
+                        </rente-form-message>
+                        <rente-form-message class="text-left d-block" [type]="'error'"
+                            *ngIf="missingBankForm.controls['email'].hasError('pattern')">
                             Ikke gyldig email
                         </rente-form-message>
                     </div>

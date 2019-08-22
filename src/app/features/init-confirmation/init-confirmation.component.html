@@ -63,6 +63,10 @@
               *ngIf="propertyForm.controls['email'].hasError('required')">
               Kan ikke være tom
             </rente-form-message>
+            <rente-form-message class="text-left d-block" [type]="'error'"
+              *ngIf="propertyForm.controls['email'].hasError('pattern')">
+              Kan ikke være tom
+            </rente-form-message>
           </div>
         </div>
 
