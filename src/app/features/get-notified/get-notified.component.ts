@@ -7,6 +7,8 @@ import { ENTER, COMMA } from '@angular/cdk/keycodes';
 import { startWith, map, mergeMap } from 'rxjs/operators';
 import { LoansService } from '@services/remote-api/loans.service';
 import { ContactService } from '../../shared/services/remote-api/contact.service';
+import { Router } from '@angular/router';
+import { SnackBarService } from '@services/snackbar.service';
 
 @Component({
   selector: 'rente-get-notified',
@@ -30,7 +32,9 @@ export class GetNotifiedComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private contactService: ContactService
+    private contactService: ContactService,
+    private router: Router,
+    private snackBar: SnackBarService
   ) {
     this.filteredBanks = this.bankCtrl.valueChanges.pipe(
       startWith(null),
@@ -57,12 +61,19 @@ export class GetNotifiedComponent implements OnInit {
 
   public request() {
     this.isLoading = true;
+    const selectedBank = this.allBanks.find(bank => {
+      return bank.name === this.bankCtrl.value;
+    })
     const missingBankData = {
       email: this.missingBankForm.value.email,
-      bank: this.banks[0].bank
+      bank: selectedBank.bank
     };
 
     this.contactService.sendMissingBank(missingBankData).subscribe(_ => {
+      this.isLoading = false;
+      this.router.navigate(['/']);
+      this.snackBar.openSuccessSnackBar('Endringene dine er lagret');
+    }, err => {
       this.isLoading = false;
     });
 

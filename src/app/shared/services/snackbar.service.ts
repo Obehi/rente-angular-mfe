@@ -9,7 +9,7 @@ export class SnackBarService {
     constructor(private snackBar: MatSnackBar) { }
 
     public openSuccessSnackBar(message: string) {
-        this.snackBar.open(message, 'Close', {
+        this.snackBar.open(message, 'Lukk', {
             duration: 2 * 1000,
             panelClass: ['bg-primary'],
             horizontalPosition: 'right'
@@ -17,7 +17,7 @@ export class SnackBarService {
     }
 
     public openFailSnackBar(message: string) {
-        this.snackBar.open(message, 'Close', {
+        this.snackBar.open(message, 'Lukk', {
             duration: 2 * 1000,
             panelClass: ['bg-error'],
             horizontalPosition: 'right'

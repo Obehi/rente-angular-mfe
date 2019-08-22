@@ -17,6 +17,7 @@ export class ButtonComponent {
   @Input() noHover: boolean;
   @Input() routerLink: string;
   @Input() href: string;
+  @Input() isLoading: boolean;
 
   @Output() public action = new EventEmitter();
 

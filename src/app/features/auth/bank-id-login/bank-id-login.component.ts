@@ -1,6 +1,6 @@
 import { Subscription } from 'rxjs';
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl, AbstractControl, NgForm } from '@angular/forms';
 import { VALIDATION_PATTERN } from '@config/validation-patterns.config';
 import { ActivatedRoute } from '@angular/router';
 import { BANK_MAP } from '../login-status/login-status.config';
@@ -91,6 +91,10 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
       ));
       this.bankIdForm.removeControl('ssn');
     }
+  }
+
+  isErrorState(control: AbstractControl | null, form: FormGroup | NgForm | null): boolean {
+    return !!(control && control.invalid && (control.dirty || control.touched));
   }
 
 }

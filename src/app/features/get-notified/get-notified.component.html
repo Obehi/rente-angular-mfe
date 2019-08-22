@@ -3,28 +3,15 @@
         (ngSubmit)="request(missingBankForm.value)">
         <div class="bg-wrap">
             <div class="row">
-                <p class="col-12">Bank:</p>
                 <mat-form-field class="col-12">
                     <mat-label>Bank:</mat-label>
-                    <mat-chip-list #bankList aria-label="bank selection">
-                        <mat-chip *ngFor="let bank of banks; let i = index;" [selectable]="selectable"
-                            [removable]="removable" (removed)="remove(bank, i)">
-                            {{bank.name}}
-                            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-                        </mat-chip>
-                        <input placeholder="Bank" #bankInput [formControl]="bankCtrl" [matAutocomplete]="auto"
-                            [matChipInputFor]="bankList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                            [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event)">
-                    </mat-chip-list>
-                    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
-                        <mat-option *ngFor="let bank of filteredBanks | async" [value]="bank">
+                    <input placeholder="Bank" #bankInput matInput [formControl]="bankCtrl" [matAutocomplete]="auto">
+                    <mat-autocomplete #auto="matAutocomplete">
+                        <mat-option *ngFor="let bank of filteredBanks | async" [value]="bank.name">
                             {{bank.name}}
                         </mat-option>
                     </mat-autocomplete>
                 </mat-form-field>
-                <rente-form-message class="text-left d-block" [type]="'info'">
-                    Bankene gir ofte bedre betingelser hvis du er medlem i en organisasjon
-                </rente-form-message>
             </div>
             <div class="row">
                 <div class="form-group col-12">
@@ -41,7 +28,8 @@
                 </div>
             </div>
             <div class="register-btn">
-                <rente-button color="primary" [disabled]="!missingBankForm.valid">Gi meg lyd når på plass!</rente-button>
+                <rente-button color="primary" [disabled]="!missingBankForm.valid || isLoading">Gi meg lyd når på plass!
+                </rente-button>
             </div>
         </div>
 
