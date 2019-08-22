@@ -30,6 +30,8 @@ import { UserService } from '@services/remote-api/user.service';
 import { AbsPipe } from './pipes/abs.pipe';
 import { MaterialModule } from './material/material.module';
 import { SnackBarService } from './services/snackbar.service';
+import { MetaService } from './services/meta.service';
+import { TitleService } from './services/title.service';
 
 // export declare const options: Partial<IConfig> | (() => Partial<IConfig>);
 
@@ -58,7 +60,9 @@ const services = [
   LoansService,
   PreferancesService,
   ProfileService,
-  UserService
+  UserService,
+  MetaService,
+  TitleService
 ];
 
 @NgModule({
