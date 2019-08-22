@@ -43,7 +43,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
   private timer: Observable<number>;
   private connectionTimer: Observable<number>;
   private connectionTimerSubscription: Subscription;
-  @Output() returnToInputPage = new EventEmitter<File>();
+  @Output() returnToInputPage = new EventEmitter<any>();
 
   constructor(
     private router: Router,
