@@ -1,6 +1,6 @@
 import { Subscription } from 'rxjs';
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl, AbstractControl, NgForm } from '@angular/forms';
 import { VALIDATION_PATTERN } from '@config/validation-patterns.config';
 import { ActivatedRoute } from '@angular/router';
 import { BANK_MAP } from '../login-status/login-status.config';
@@ -70,8 +70,8 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
         Validators.pattern(VALIDATION_PATTERN.phoneShort)
       ])],
     }, {
-      updateOn: 'blur'
-    });
+        updateOn: 'blur'
+      });
   }
 
   public openServiceDialog(): void {
@@ -85,12 +85,16 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     this.bankIdForm = this.initForm();
     if (!this.isSsnBankLogin) {
       this.bankIdForm.addControl('birthdate', new FormControl('', Validators.compose([
-          Validators.required,
-          Validators.pattern(VALIDATION_PATTERN.dob)
-        ])
+        Validators.required,
+        Validators.pattern(VALIDATION_PATTERN.dob)
+      ])
       ));
       this.bankIdForm.removeControl('ssn');
     }
+  }
+
+  isErrorState(control: AbstractControl | null, form: FormGroup | NgForm | null): boolean {
+    return !!(control && control.invalid && (control.dirty || control.touched));
   }
 
 }

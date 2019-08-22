@@ -30,15 +30,26 @@
               *ngIf="contactUsForm.controls['email'].hasError('required')">
               Ikke gyldig email
             </rente-form-message>
+            <rente-form-message class="text-left d-block" [type]="'error'"
+                *ngIf="contactUsForm.controls['email'].hasError('pattern')">
+                Ikke gyldig email
+            </rente-form-message>
           </div>
         </div>
 
         <div class="mb-4">
-          <rente-input [placeholder]="'Telefonnr'" formControlName="phone" [type]="'tel'">
+          <rente-input [placeholder]="'Telefonnr'" formControlName="phone" [mask]="phoneMask" [type]="'tel'"
+            [errorStateMatcher]="isErrorState(contactUsForm.controls['phone'], contactUsForm)">
           </rente-input>
           <rente-form-message class="text-left d-block pb-0" [type]="'info'">
             8 siffer
           </rente-form-message>
+          <div *ngIf="contactUsForm.controls['phone'].touched" class="error-message">
+            <rente-form-message class="text-left d-block" [type]="'error'"
+              *ngIf="contactUsForm.controls['phone'].hasError('required')">
+              Telefonnummer kan ikke være tomt
+            </rente-form-message>
+          </div>
         </div>
 
         <div class="mb-4">
@@ -54,7 +65,8 @@
         </div>
 
         <div class="register-btn">
-          <rente-button color="primary" [disabled]="!contactUsForm.valid">Send</rente-button>
+          <rente-button color="primary" [isLoading]="isLoading" [disabled]="!contactUsForm.valid || isLoading">Send
+          </rente-button>
         </div>
       </form>
     </div>

@@ -45,7 +45,7 @@
         color="primary"
         [type]="'stroked'"
         *ngIf="viewStatus.isCrawlerError || viewStatus.isPassphraseConfirmFail || viewStatus.isTimedOut"
-        (click)="sendUserData(true)">
+        (click)="returnToInput()">
         Prøv igjen
       </rente-button>
     </div>

@@ -1,5 +1,5 @@
 import { AuthService } from '@services/remote-api/auth.service';
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy, Output, EventEmitter } from '@angular/core';
 import * as Stomp from 'stompjs';
 import * as SockJS from 'sockjs-client';
 import { environment } from '@environments/environment';
@@ -43,6 +43,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
   private timer: Observable<number>;
   private connectionTimer: Observable<number>;
   private connectionTimerSubscription: Subscription;
+  @Output() returnToInputPage = new EventEmitter<any>();
 
   constructor(
     private router: Router,
@@ -65,6 +66,10 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
     if (this.connectionTimerSubscription) {
       this.connectionTimerSubscription.unsubscribe();
     }
+  }
+
+  returnToInput() {
+    this.returnToInputPage.emit();
   }
 
   sendUserData(resendData = false) {

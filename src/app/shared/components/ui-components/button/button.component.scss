@@ -1,13 +1,13 @@
 @import '../../../../../styles/theme/_colors.scss';
 
 button.mat-primary {
-    border-radius: 4px;
-    font-family: Lato;	
-    font-size: 16px;
-    font-weight: bold;	
-    line-height: 19px;
-    width: 100%;	
-    min-height: 40px;
+  border-radius: 4px;
+  font-family: Lato;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 19px;
+  width: 100%;
+  min-height: 40px;
 }
 
 .mat-raised-button.mat-primary {
@@ -26,8 +26,23 @@ button.mat-primary {
 }
 
 .mat-stroked-button.mat-primary {
-    border-color: $primary;
-    color: $primary;
-    border-width: 2px;
-    white-space: normal;
+  border-color: $primary;
+  color: $primary;
+  border-width: 2px;
+  white-space: normal;
+}
+
+.loading-icon {
+  animation: spin 2s infinite linear;
+  display: inline-block;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }
