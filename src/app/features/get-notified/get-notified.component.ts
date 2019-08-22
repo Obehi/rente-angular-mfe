@@ -63,7 +63,7 @@ export class GetNotifiedComponent implements OnInit {
     this.isLoading = true;
     const selectedBank = this.allBanks.find(bank => {
       return bank.name === this.bankCtrl.value;
-    })
+    });
     const missingBankData = {
       email: this.missingBankForm.value.email,
       bank: selectedBank.bank
