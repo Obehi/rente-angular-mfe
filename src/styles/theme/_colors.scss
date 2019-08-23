@@ -1,15 +1,62 @@
-$white:    #fff !default;
-$black:    #212529 !default;
+$white:   #fff !default;
+$black:   #212529 !default;
 $blue:    #2B3E50 !default;
 $green:   #18BC9C !default;
-$grey: #CDCDCD !default;
-$light: #F4F4F4 !default;
+$grey:    #CDCDCD !default;
+$light:   #F4F4F4 !default;
+$text-color: #636669 !default;
+$red:   #F41515 !default;
 
 $primary:       $green !default;
 $secondary:     $blue !default;
 $grey:          $grey !default;
+$error:         $red !default;
 $light:         $light !default;
 $dark:          $black !default;
+$white:         $white !default;
+
+$theme-colors: () !default;
+// stylelint-disable-next-line scss/dollar-variable-default
+$theme-colors: map-merge(
+  (
+    "primary":    $primary,
+    "secondary":  $secondary,
+    "grey":       $grey,
+    "light":      $light,
+    "dark":       $dark,
+    "white":      $white,
+    "black":      $black,
+    "error":      $error
+  ),
+  $theme-colors
+);
+
+$gray-100: #f8f9fa !default;
+$gray-200: #e9ecef !default;
+$gray-300: #dee2e6 !default;
+$gray-400: #ced4da !default;
+$gray-500: #adb5bd !default;
+$gray-600: #6c757d !default;
+$gray-700: #495057 !default;
+$gray-800: #343a40 !default;
+$gray-900: #212529 !default;
+
+$grays: () !default;
+// stylelint-disable-next-line scss/dollar-variable-default
+$grays: map-merge(
+  (
+    "100": $gray-100,
+    "200": $gray-200,
+    "300": $gray-300,
+    "400": $gray-400,
+    "500": $gray-500,
+    "600": $gray-600,
+    "700": $gray-700,
+    "800": $gray-800,
+    "900": $gray-900
+  ),
+  $grays
+);
 
 // $theme-colors: () !default;
 // $theme-colors: map-merge(
@@ -25,3 +72,8 @@ $dark:          $black !default;
 //   ),
 //   $theme-colors
 // );
+
+$body-bg:                   $white !default;
+$body-color:                $gray-900 !default;
+
+$text-muted:                  $gray-600 !default;

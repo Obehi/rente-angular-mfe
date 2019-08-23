@@ -1,0 +1,34 @@
+<div class="container dashboard">
+  <div class="row">
+    <div class="col-12">
+      <nav mat-tab-nav-bar mat-stretch-tabs [ngClass]="{mobile: isMobile}">
+        <a mat-tab-link [active]="activeLinkIndex == 0" [routerLink]="'./tilbud'">
+          <img src="{{imgLink.tilbud}}" alt="tilbud">
+          Tilbud
+        </a>
+
+        <a mat-tab-link [active]="activeLinkIndex == 1" [routerLink]="'./mine-lan'">
+          <img src="{{imgLink['mine-lan']}}" alt="mine-lan">
+          Mine lån
+        </a>
+
+        <a mat-tab-link [active]="activeLinkIndex == 2" [routerLink]="'./bolig'">
+          <img src="{{imgLink.bolig}}" alt="bolig">
+          Bolig
+        </a>
+
+        <a mat-tab-link [active]="activeLinkIndex == 3" [routerLink]="'./preferanser'">
+          <img src="{{imgLink.preferanser}}" alt="preferanser">
+          Preferanser
+        </a>
+
+        <a mat-tab-link class="last" [active]="activeLinkIndex == 4"
+          [routerLink]="'./profil'">
+          <img src="{{imgLink.profil}}" alt="profil">
+          Profil
+        </a>
+      </nav>
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

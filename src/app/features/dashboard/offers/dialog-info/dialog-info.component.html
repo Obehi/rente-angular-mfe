@@ -1,0 +1,22 @@
+<h1 mat-dialog-title *ngIf="data.bank">{{data.bankName}}</h1>
+<div mat-dialog-content>
+  <div class="modal-body text-left">
+    <div *ngIf="data.bank"><b>Leverandør: </b><span>{{data.bankName}}</span></div>
+    <div><b>Produktnavn: </b><span>{{data.productName}}</span></div>
+    <div><b>Nominell rente: </b><span>{{data.effectiveRate}}%</span></div>
+    <div><b>Markedsområde: </b><span>{{data.marketArea}}</span></div>
+    <div><b>Krav om annet produkt: </b><span>{{data.requiredProductPackage == null ? 'Nei' : 'Ja'}}</span></div>
+    <div *ngIf="data.requiredProductPackage != null"><b>Produktpakke: </b><span>{{data.requiredProductPackage}}</span></div>
+    <div><b>Forutsetter medlemskap: </b><span>{{data.requiredMembership == null ? 'Nei' : 'Ja'}}</span></div>
+    <div  *ngIf="data.requiredMembership != null"><b>Medlemskap: </b><span>{{data.requiredMembership}}</span></div>
+    <div><b>Maksimal belåningsgrad: </b><span>{{data.maxLTV}}%</span></div>
+    <div><b>Maksimalt antall år løpetid: </b><span>{{data.maxLoanPeriod}}</span></div>
+    <div><b>Maksimalt antall år avdragsfrihet: </b><span>{{data.maxInstallmentFreePeriod}}</span></div>
+    <div><b>Etableringsgebyr: </b><span>{{data.establishmentFee}},-</span></div>
+    <div><b>Depotgebyr: </b><span>{{data.depotFee}},-</span></div>
+    <div><b>Forbehold: </b><span>{{data.otherConditions}}</span></div>
+  </div>
+</div>
+<div mat-dialog-actions>
+  <rente-button cdkFocusInitial color="primary" (click)="onClose()">Ok</rente-button>
+</div>

@@ -11,6 +11,7 @@ import { catchError } from 'rxjs/operators';
 import { environment } from '@environments/environment';
 import { storageName } from '@config/index';
 import { LocalStorageService } from '@services/local-storage.service';
+import { SnackBarService } from './snackbar.service';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +20,7 @@ export class GenericHttpService {
   private apiUrl: string;
   private deafultContentType: any = {
     name: 'Content-Type',
-    value: 'application/json;charset=utf-8'
+    value: 'application/json;charset=UTF-8'
   };
   private deafultAcceptType: any = {
     name: 'Accept',
@@ -29,10 +30,11 @@ export class GenericHttpService {
   constructor(
     private http: HttpClient,
     private localStorageService: LocalStorageService,
-    private router: Router
-    ) {
-      this.apiUrl = environment.baseUrl;
-    }
+    private router: Router,
+    private snackBar: SnackBarService
+  ) {
+    this.apiUrl = environment.baseUrl;
+  }
 
   public get(path: string, searchParams: any = {}): Observable<any> {
     const fullPath = `${this.apiUrl}${path}`;
@@ -43,7 +45,7 @@ export class GenericHttpService {
     const httpOptions = {
       headers: this.shapeHeaders(),
       withCredentials: true,
-      params: {...params}
+      // params: {...params}
     };
 
     return this.http
@@ -96,35 +98,42 @@ export class GenericHttpService {
   }
 
   private shapeHeaders(): HttpHeaders {
-    // const accessToken: string = this.cookiesService
-    //   .getCookie(config.accessTokenKey);
-    const headers: HttpHeaders = new HttpHeaders()
-      .set(this.deafultContentType.name, this.deafultContentType.value);
-      // .set(this.deafultAcceptType.name, this.deafultAcceptType.value);
+    const userInfo = this.localStorageService.getObject(storageName.user);
+    const accessToken = userInfo ? userInfo.token : null;
 
-    // if (Boolean(accessToken)) {
-    //   headers = headers.append('Authorization', `Bearer ${accessToken}`);
-    // }
+    let headers: HttpHeaders = new HttpHeaders()
+      .set(this.deafultContentType.name, this.deafultContentType.value)
+      .set(this.deafultAcceptType.name, this.deafultAcceptType.value);
+
+    if (Boolean(accessToken)) {
+      headers = headers.append('X-Auth-Token', accessToken);
+    }
 
     return headers;
   }
 
   private handleError(responseError: HttpResponse<any> | any): Observable<any> {
     console.log(responseError);
-    // || !this.cookieService.getCookie('JSESSIONID')
+
+    // this.snackBar.openFailSnackBar(responseError.error.detail);
+
     if (responseError.status === 401) {
       // TODO: Show unauthorized error
       console.log('Not logged in!');
       this.clearSession();
     }
 
+    // if (responseError.status === 500) {
+    //   this.snackBar.openFailSnackBar(responseError.error.error);
+    // } else {
+    //   this.snackBar.openFailSnackBar(responseError.error.detail);
+    // }
+
     return throwError(responseError.error);
   }
 
   private clearSession(): void {
     this.localStorageService.clear();
-    // this.cookiesService.deleteCookie('JSESSIONID');
-    // this.cookiesService.deleteCookie('SESSION');
-    this.router.navigate(['/auth']);
+    this.router.navigate(['/velgbank']);
   }
 }

@@ -5,26 +5,38 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class LocalStorageService {
-  appPrefix = storageName.appPrefix;
+  public appPrefix = storageName.appPrefix;
   constructor() { }
 
-  setItem(param: string, value: any): void {
+  public get isFixedRateType() {
+    return !!this.getItem('isAggregatedRateTypeFixed');
+  }
+
+  public get isNoLoansPresent() {
+    return !!this.getItem('noLoansPresent');
+  }
+
+  public setItem(param: string, value: any): void {
     localStorage.setItem(`${this.appPrefix}-${param}`, value);
   }
 
-  setObject(param: string, value: any): void {
+  public  setObject(param: string, value: any): void {
     localStorage.setItem(`${this.appPrefix}-${param}`, JSON.stringify(value));
   }
 
-  getItem(param: string): any {
+  public getItem(param: string): any {
     return localStorage.getItem(`${this.appPrefix}-${param}`);
   }
 
-  removeItem(param: string): any {
+  public getObject(param: string): any {
+    return JSON.parse(localStorage.getItem(`${this.appPrefix}-${param}`));
+  }
+
+  public removeItem(param: string): any {
     localStorage.removeItem(`${this.appPrefix}-${param}`);
   }
 
-  clear(): void {
+  public clear(): void {
     localStorage.clear();
   }
 }

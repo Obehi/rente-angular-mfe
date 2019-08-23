@@ -33,44 +33,6 @@
 .font-weight-bolder  { font-weight: $font-weight-bolder !important; }
 .font-italic         { font-style: italic !important; }
 
-.text-decoration-none { text-decoration: none !important; }
+.text-decoration-none      { text-decoration: none !important; }
+.text-decoration-underline { text-decoration: underline !important; }
 
-// TODO: add tokens
-p,
-.paragraph,
-small,
-ul li,
-ol li {
-  color: $color-white-100;
-  font-size: $size-font-paragraph;
-  margin: 0 0 8px 0;
-  line-height: 1.4;
-}
-
-p.inverted,
-.paragraph.inverted,
-small.inverted,
-ul li.inverted,
-ol li.inverted {
-  color: $color-dark-100;
-}
-
-small {
-  font-size: $size-font-paragraph-small;
-  margin: 0;
-
-  &.secondary {
-    color: #86838A;
-  }
-}
-
-.link {
-  color: $color-text-link;
-  font-size: $size-font-link;
-  text-decoration: underline;
-  line-height: 16px;
-
-  &:hover {
-    cursor: pointer;
-  }
-}

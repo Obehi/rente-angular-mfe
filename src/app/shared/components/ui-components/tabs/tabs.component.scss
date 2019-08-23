@@ -1,0 +1,23 @@
+.nav-tabs {
+  padding-left: 0;
+  margin-bottom: 0;
+
+  >.nav-tab-item {
+    float: left;
+    margin-right: 10px;
+    position: relative;
+    display: block;
+    cursor: pointer;
+
+    &--active {
+      padding: 0px 6px;
+      border-radius: 38px;
+      display: inline-block;
+    }
+
+    a {
+      text-decoration: none;
+    }
+  }
+}
+

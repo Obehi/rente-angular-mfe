@@ -12,5 +12,4 @@ $spacers: map-merge(
   $spacers
 );
 
-$form-group-margin-bottom: 32px;
-$form-text-margin-top: 20px;
+$negative-spacers: negativify-map($spacers) !default;

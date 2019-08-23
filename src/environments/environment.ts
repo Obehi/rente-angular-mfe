@@ -4,7 +4,10 @@
 
 export const environment = {
   production: false,
-  baseUrl: ''
+  // baseUrl: 'http://192.168.1.99:8000',
+  // crawlerUrl: 'http://192.168.1.99:8200/ws'
+  baseUrl: 'https://rente-gateway-dev.herokuapp.com',
+  crawlerUrl: 'https://rente-ws-dev.herokuapp.com/ws'
 };
 
 /*

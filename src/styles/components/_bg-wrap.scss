@@ -1,0 +1,9 @@
+.bg-wrap {
+    border-radius: 12px;	
+    background-color: rgba(33,37,41,0.05);
+    padding: 24px 32px;
+
+    @include media-breakpoint-down(sm) {
+        padding: 16px 24px;
+    }
+}

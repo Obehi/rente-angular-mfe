@@ -1,0 +1,11 @@
+.star {
+  width: 58px;
+  height: 58px;
+  background-image: url('../../../../../assets/icons/ic_star_empty.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+
+  &.filled {
+    background-image: url('../../../../../assets/icons/ic_star_full.svg');
+  }
+}

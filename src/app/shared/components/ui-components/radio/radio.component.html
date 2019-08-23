@@ -1,0 +1,24 @@
+<ul
+class="radio-group"
+[ngClass]="{
+  'radio-group-default': !type,
+  'radio-group-horizontal': type === 'horizontal'
+}">
+  <label class="radio-label">{{label}}</label>
+  <div class="radio-group-wrap">
+    <li
+      class="radio"
+      *ngFor="let radio of buttons; let i = index">
+      <input
+        type="radio"
+        [name]="radio.name"
+        [value]="radio.value"
+        [ngModel]="currValue"
+        (ngModelChange)="valueChange($event)"
+        [id]="'radio-' + i" />
+        <label for="{{'radio-' + i}}">
+          {{radio.label}}
+        </label>
+    </li>
+  </div>
+</ul>
