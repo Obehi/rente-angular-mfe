@@ -43,6 +43,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
   private timer: Observable<number>;
   private connectionTimer: Observable<number>;
   private connectionTimerSubscription: Subscription;
+  private intervalSubscription: Subscription;
   @Output() returnToInputPage = new EventEmitter<any>();
 
   constructor(
@@ -61,6 +62,10 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
     this.stompClient.unsubscribe();
     if (this.timerSubscription) {
       this.timerSubscription.unsubscribe();
+    }
+
+    if (this.intervalSubscription) {
+      this.intervalSubscription.unsubscribe();
     }
 
     if (this.connectionTimerSubscription) {
@@ -91,7 +96,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
     this.passPhrase = '';
 
     // TODO: Add bank name
-    this.stompClient.send(API_URL_MAP.crawlerSendMessageUrl + this.userBank.label, {}, data);
+    this.stompClient.send(API_URL_MAP.crawlerSendMessageUrl + this.userBank.bankName, {}, data);
     if (!resendData) {
       this.initTimer(IDENTIFICATION_TIMEOUT_TIME);
       this.initConnectionTimer();
@@ -125,7 +130,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
       this.resendDataAfterReconnect();
       this.successSocketCallback();
       // Send ping to prevent socket closing
-      interval(PING_TIME)
+      this.intervalSubscription = interval(PING_TIME)
         .subscribe(() => {
           this.stompClient.send(API_URL_MAP.crawlerComunicationUrl, {}, JSON.stringify({ message: 'ping' }));
         });
