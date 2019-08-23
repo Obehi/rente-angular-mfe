@@ -36,59 +36,59 @@ export const BANK_MAP = {
     label: 'NORDEA',
     bankIcon: '../../../assets/img/banks-logo/nordea.png'
   },
-  SPAREBANK_1_BV: {
+  sparebank_1_bv: {
     label: 'SPAREBANK',
     bankIcon: '../../../../assets/img/banks-logo/square/sparebank1.png'
   },
-  SPAREBANK_1_GUDBRANDSDAL: {
+  sparebank_1_gudbrandsdaL: {
     label: 'SPAREBANK',
     bankIcon: '../../../../assets/img/banks-logo/square/sparebank1.png'
   },
-  SPAREBANK_1_HALLINGDAL_VALDRES: {
+  sparebank_1_hallingdal_valdres: {
     label: 'SPAREBANK',
     bankIcon: '../../../../assets/img/banks-logo/square/sparebank1.png'
   },
-  SPAREBANK_1_LOM_OG_SKJAK: {
+  sparebank_1_lom_og_skjak: {
     label: 'SPAREBANK',
     bankIcon: '../../../../assets/img/banks-logo/square/sparebank1.png'
   },
-  SPAREBANK_1_MODUM: {
+  sparebank_1_modum: {
     label: 'SPAREBANK',
     bankIcon: '../../../../assets/img/banks-logo/square/sparebank1.png'
   },
-  SPAREBANK_1_NORD_NORGE: {
+  sparebank_1_nord_norge: {
     label: 'SPAREBANK',
     bankIcon: '../../../../assets/img/banks-logo/square/sparebank1.png'
   },
-  SPAREBANK_1_NORDVEST: {
+  sparebank_1_nordvest: {
     label: 'SPAREBANK',
     bankIcon: '../../../../assets/img/banks-logo/square/sparebank1.png'
   },
-  SPAREBANK_1_RINGERIKE_HADELAND: {
+  sparebank_1_ringerike_hadeland: {
     label: 'SPAREBANK',
     bankIcon: '../../../../assets/img/banks-logo/square/sparebank1.png'
   },
-  SPAREBANK_1_SMN: {
+  sparebank_1_smn: {
     label: 'SPAREBANK',
     bankIcon: '../../../../assets/img/banks-logo/square/sparebank1.png'
   },
-  SPAREBANK_1_SORE_SUNNMORE: {
+  sparebank_1_sore_sunnmore: {
     label: 'SPAREBANK',
     bankIcon: '../../../../assets/img/banks-logo/square/sparebank1.png'
   },
-  SPAREBANK_1_SR_BANK: {
+  sparebank_1_sr_bank: {
     label: 'SPAREBANK',
     bankIcon: '../../../../assets/img/banks-logo/square/sparebank1.png'
   },
-  SPAREBANK_1_TELEMARK: {
+  sparebank_1_telemark: {
     label: 'SPAREBANK',
     bankIcon: '../../../../assets/img/banks-logo/square/sparebank1.png'
   },
-  SPAREBANK_1_OSTFOLD_AKERSHUS: {
+  sparebank_1_ostfold_akershus: {
     label: 'SPAREBANK',
     bankIcon: '../../../../assets/img/banks-logo/square/sparebank1.png'
   },
-  SPAREBANK_1_OSTLANDET: {
+  sparebank_1_ostlandet: {
     label: 'SPAREBANK',
     bankIcon: '../../../../assets/img/banks-logo/square/sparebank1.png'
   },
