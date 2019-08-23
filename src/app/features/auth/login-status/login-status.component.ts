@@ -83,7 +83,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
       mobile: this.userData.phone
     };
 
-    console.log(dataObj);
+    // console.log(dataObj);
 
     this.setDefaultSteps();
 
@@ -118,7 +118,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
       this.stompClient.debug = null;
     }
     this.stompClient.connect({}, (frame) => {
-      console.log('success connection', frame);
+      // console.log('success connection', frame);
       this.viewStatus.isSocketConnectionLost = false;
       // Resend user data after reconnection
       this.sendUserData();
@@ -175,14 +175,14 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
       if (message.body) {
         const response = JSON.parse(message.body);
 
-        console.log(response);
+        // console.log(response);
 
         switch (response.eventType) {
           case BANKID_STATUS.PROCESS_STARTED:
             this.initTimer(BANKID_TIMEOUT_TIME);
             this.initConnectionTimer();
-            this.loginStep1Status = MESSAGE_STATUS.SUCCESS;
             this.viewStatus.isProcessStarted = true;
+            // this.loginStep1Status = MESSAGE_STATUS.SUCCESS;
             break;
           case BANKID_STATUS.PASSPHRASE_CONFIRM:
             this.passPhrase = response.passphrase;
@@ -202,6 +202,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
           case BANKID_STATUS.CRAWLER_ERROR:
             this.viewStatus.isCrawlerError = true;
             this.connectionTimerSubscription.unsubscribe();
+            this.loginStep1Status = MESSAGE_STATUS.ERROR;
             this.loginStep2Status = MESSAGE_STATUS.ERROR;
             this.loginStep3Status = MESSAGE_STATUS.ERROR;
             break;
@@ -213,7 +214,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
             const user = response.data.user;
 
             this.authService.loginWithToken(user.phone, user.oneTimeToken).subscribe(res => {
-              console.log('login', res);
+              // console.log('login', res);
 
               // this.router.navigate(['/dashboard/tilbud/']);
               forkJoin([this.loansService.getLoansAndRateType(), this.userService.getUserInfo()])

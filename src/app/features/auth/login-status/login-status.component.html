@@ -34,9 +34,6 @@
             <span *ngIf="viewStatus.isCrawlerError">Det oppstod en feil under henting av dine lånedetaljer, vennligst prøv igjen senere</span>
           </rente-status-message>
 
-          <rente-form-message class="text-left d-block mb-4" *ngIf="viewStatus.isTimedOut" [type]="'error'">
-            Response is taking too long. Please try again
-          </rente-form-message>
         </div>
       </div>
 

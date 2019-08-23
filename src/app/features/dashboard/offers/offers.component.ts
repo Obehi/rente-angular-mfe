@@ -36,7 +36,6 @@ export class OffersComponent implements OnInit {
 
   public ngOnInit(): void {
     this.loansService.getOffers().subscribe((res: Offers) => {
-      console.log('offers', res);
       this.offersInfo = res;
       this.isLoading = false;
 

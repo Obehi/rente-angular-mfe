@@ -44,8 +44,6 @@ export class AuthService {
   }
 
   private handleLogin(userInfo) {
-    console.log(userInfo);
     this.localStorageService.setObject(storageName.user, userInfo);
-
   }
 }

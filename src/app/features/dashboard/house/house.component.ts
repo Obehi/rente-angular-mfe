@@ -78,11 +78,9 @@ export class HouseComponent implements OnInit {
 
   public setPropertyMode() {
     if (this.isAutoMode) {
-      console.log('iSAuto');
       this.autoPropertyForm.enable();
       this.manualPropertyForm.disable();
     } else {
-      console.log('iSManual');
       this.manualPropertyForm.enable();
       this.autoPropertyForm.disable();
     }

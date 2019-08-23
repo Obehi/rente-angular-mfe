@@ -18,7 +18,6 @@ export class LoansComponent implements OnInit {
   ngOnInit() {
     // this.loansData = this.loans;
     this.loansService.getLoans().subscribe((res: Loans) => {
-      console.log('loans', res);
       this.loansData = res;
     }, err => {
       this.errorMessage = err.title;

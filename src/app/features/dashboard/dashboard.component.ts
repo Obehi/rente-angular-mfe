@@ -74,10 +74,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
       .observe(['(min-width: 992px)'])
       .subscribe((state: BreakpointState) => {
         if (state.matches) {
-          console.log('Viewport is 500px or over!');
           this.isMobile = false;
         } else {
-          console.log('Viewport is getting smaller!');
           this.isMobile = true;
         }
       });
