@@ -20,7 +20,6 @@ export class LoansComponent implements OnInit {
     this.loansService.getLoans().subscribe((res: Loans) => {
       console.log('loans', res);
       this.loansData = res;
-      console.log(this.loansData.aggregatedTotalInterestAndFee)
     }, err => {
       this.errorMessage = err.title;
     });
