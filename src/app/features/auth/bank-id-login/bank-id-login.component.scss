@@ -1,24 +1,25 @@
 @import '../../../../styles/theme/_colors.scss';
 
-.text{
-    letter-spacing: 0.27px;
-    line-height: 24px;
+.text {
+  letter-spacing: 0.27px;
+  line-height: 24px;
 }
 
 a {
-    color: $primary;
-    text-decoration: none;
-    &:hover {
-        text-decoration: underline;
-    }
+  color: $primary;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
-.register-btn{
-    margin-bottom: 90px;
+.register-btn {
+  margin-bottom: 90px;
 }
 
 .text-left-small-screen {
-    @media (max-width:450px) {
-        text-align: left !important;
-    }
+  @media (max-width:450px) {
+    text-align: left !important;
+  }
 }

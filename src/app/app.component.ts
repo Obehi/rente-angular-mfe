@@ -42,6 +42,8 @@ export class AppComponent implements OnInit {
     const metaData = data.meta;
 
     this.titleService.setTitle(title);
-    this.metaService.updateMetaTags(metaData.name, metaData.description);
+    if (metaData) {
+      this.metaService.updateMetaTags(metaData.name, metaData.description);
+    }
   }
 }

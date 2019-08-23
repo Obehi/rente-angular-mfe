@@ -43,7 +43,12 @@ const routes: Routes = [
       }
     }
   },
-  { path: ROUTES_MAP.contactUs, component: ContactUsComponent },
+  {
+    path: ROUTES_MAP.contactUs, component: ContactUsComponent, data: {
+      title: defaultTitle,
+      meta: defaultMeta
+    }
+  },
   {
     path: ROUTES_MAP.privacy, component: PrivacyComponent,
     data: {
@@ -54,8 +59,24 @@ const routes: Routes = [
       }
     }
   },
-  { path: ROUTES_MAP.termsConditions, component: TermsConditionsComponent },
-  { path: ROUTES_MAP.privacyPolicy, component: PrivacyPolicyComponent },
+  {
+    path: ROUTES_MAP.termsConditions, component: TermsConditionsComponent, data: {
+      title: customMeta.personvernTitle,
+      meta: {
+        name: defaultMeta.name,
+        description: customMeta.personvernDescription
+      }
+    }
+  },
+  {
+    path: ROUTES_MAP.privacyPolicy, component: PrivacyPolicyComponent, data: {
+      title: customMeta.personvernTitle,
+      meta: {
+        name: defaultMeta.name,
+        description: customMeta.personvernDescription
+      }
+    }
+  },
   {
     path: ROUTES_MAP.bankSelect, component: BankSelectComponent,
     data: {

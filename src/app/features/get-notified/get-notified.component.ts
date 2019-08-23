@@ -68,7 +68,7 @@ export class GetNotifiedComponent implements OnInit {
     this.contactService.sendMissingBank(missingBankData).subscribe(_ => {
       this.isLoading = false;
       this.router.navigate(['/']);
-      this.snackBar.openSuccessSnackBar('Endringene dine er lagret');
+      this.snackBar.openSuccessSnackBar('Du får beskjed når din bank er tilgjengelig');
     }, err => {
       this.isLoading = false;
     });

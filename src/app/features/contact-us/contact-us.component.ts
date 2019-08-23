@@ -48,7 +48,7 @@ export class ContactUsComponent implements OnInit {
     this.contactService.sendContactForm(formData).subscribe(_ => {
       this.isLoading = false;
       this.router.navigate(['/']);
-      this.snackBar.openSuccessSnackBar('Endringene dine er lagret');
+      this.snackBar.openSuccessSnackBar('Din melding er sendt');
     }, err => {
       this.isLoading = false;
     });
