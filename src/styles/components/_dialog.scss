@@ -1,0 +1,64 @@
+@import '../theme/variables';
+
+.dialogs-container {
+  position: fixed;
+  z-index: 10;
+
+  &.opened {
+    left: 0;
+  }
+}
+
+.cdk-overlay-pane {
+  @media (max-width:500px) {
+    max-width: 100vw !important;
+  }
+}
+
+
+.button-200 {
+  min-width: 200px !important;
+}
+
+.info-dialog {
+  padding: 16px;
+  background-color: rgba(14, 7, 21, .75);
+  border-radius: 4px;
+  min-width: 370px;
+
+  &.centered {
+    left: 0;
+    right: 0;
+    max-width: 500px;
+    margin: 16px auto;
+  }
+
+  &.alert {
+    background-color: $color-text-error;
+  }
+
+  .info-close {
+    display: inline-block;
+    margin-left: 8px;
+
+    .close-button,
+    .close-button-secondary {
+      background-color: #870000;
+      border-radius: 50%;
+      width: 24px;
+      height: 24px;
+    }
+
+    .close-button-secondary {
+      background-color: #0e0715;
+    }
+  }
+}
+
+.full-height-dialog {
+  padding: 16px;
+  width: 310px;
+  background-color: #26202C;
+  height: 100vh;
+  overflow-y: auto;
+}

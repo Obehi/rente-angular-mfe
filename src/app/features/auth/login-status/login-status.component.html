@@ -1,0 +1,50 @@
+<div class="container login-status">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-6 text-center bg-wrap">
+      <img class="mw-100" 
+            src="{{userBank?.bankIcon}}"
+            alt="{{userBank?.label}}"
+            title="{{userBank?.label}}">
+      <h3 class="my-0" *ngIf="passPhrase">Din referanse:
+      </h3>
+      <h3 class="font-weight-bold">{{passPhrase}}</h3>
+
+      <div class="mt-2 row justify-content-center">
+        <div class="col-10 col-md-8 d-flex flex-column align-items-start">
+          <rente-status-message
+            [status]="loginStep1Status">
+            <span>
+              Forbereder identifisering <br>
+              <span *ngIf="!viewStatus.isProcessStarted">
+                (tar cirka 15 sekunder)
+              </span>
+            </span>
+          </rente-status-message>
+
+          <rente-status-message [status]="loginStep2Status" [step]="2">
+            <span *ngIf="!passPhrase">Bekreft BankID på mobil</span>
+            <span *ngIf="passPhrase && !viewStatus.isPassphraseConfirmFail && !viewStatus.isPassphraseConfirmSuccess">Vennligst følg instruksjonen på mobilen</span>
+            <span *ngIf="viewStatus.isPassphraseConfirmSuccess">BankID bekreftet</span>
+            <span *ngIf="viewStatus.isPassphraseConfirmFail">Det oppstod en feil, det kan virke som du ikke bekreftet BankID på mobil. Vennligst prøv igjen</span>
+          </rente-status-message>
+
+          <rente-status-message [status]="loginStep3Status" [step]="3">
+            <span *ngIf="!viewStatus.isPassphraseConfirmSuccess && !viewStatus.isCrawlerError">Hent rente- og lånedata</span>
+            <span *ngIf="viewStatus.isPassphraseConfirmSuccess && !viewStatus.isCrawlerError">Vi henter din rente og låneinformasjon</span>
+            <span *ngIf="viewStatus.isCrawlerError">Det oppstod en feil under henting av dine lånedetaljer, vennligst prøv igjen senere</span>
+          </rente-status-message>
+
+        </div>
+      </div>
+
+      <rente-button
+        class="login-status-btn"
+        color="primary"
+        [type]="'stroked'"
+        *ngIf="viewStatus.isCrawlerError || viewStatus.isPassphraseConfirmFail || viewStatus.isTimedOut"
+        (click)="returnToInput()">
+        Prøv igjen
+      </rente-button>
+    </div>
+  </div>
+</div>

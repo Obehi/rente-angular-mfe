@@ -1,0 +1,63 @@
+<h1 class="title text-center font-weight-bold my-3">Vi overvåker boliglånsrenten din</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-sm card-wrapper mb-3 mr-md-4 mr-sm-3 text-center" [routerLink]="['/velgbank']">
+      <img class="pt-4 card-icon" src="assets/icons/ic_bank_id.svg" alt="">
+      <div class="card-number-wrapper d-flex justify-content-center mt-md-2 mb-md-4 mx-4 position-relative">
+        <p class="d-flex align-items-center justify-content-center font-weight-bold m-0">1</p>
+      </div>
+      <div class="card-info-wrapper">
+        <h2 class="card-title font-weight-bold mb-2 mb-md-5">Logg inn med BankID</h2>
+        <p class="card-text text-left">Tjenesten er gratis og du oppretter enkelt og raskt profil med BankId på mobil.
+          Vi henter renten din og annen nødvendig informasjon automatisk.</p>
+      </div>
+    </div>
+    <div class="col-sm card-wrapper mb-3 mr-md-4 mr-sm-3 text-center" [routerLink]="['/velgbank']">
+      <img class="pt-4 card-icon" src="assets/icons/ic_stats.svg" alt="">
+      <div class="card-number-wrapper d-flex justify-content-center mt-md-2 mb-md-4 mx-4 position-relative">
+        <p class="d-flex align-items-center justify-content-center font-weight-bold m-0">2</p>
+      </div>
+      <div class="card-info-wrapper">
+        <h2 class="card-title font-weight-bold mb-2 mb-md-5">Se hva du kan spare på å bytte bank</h2>
+        <p class="card-text text-left">Vi gir deg oversikten over renten du kan få i andre banker, og hvor mye du kan
+          spare både i året og over lånets løpetid.</p>
+      </div>
+    </div>
+    <div class="col-sm card-wrapper mb-3 mr-sm-3 text-center" [routerLink]="['/velgbank']">
+      <img class="pt-4 card-icon" src="assets/icons/ic_compare.svg" alt="">
+      <div class="card-number-wrapper d-flex justify-content-center mt-md-2 mb-md-4 mx-4 position-relative">
+        <p class="d-flex align-items-center justify-content-center font-weight-bold m-0">3</p>
+      </div>
+      <div class="card-info-wrapper">
+        <h2 class="card-title font-weight-bold mb-2 mb-md-5">Vi passer på renten din over tid</h2>
+        <p class="card-text text-left">Vi sammenligner løpende renten du betaler på boliglånet ditt med renten du kan få
+          i andre banker. Du får beskjed når nye og bedre tilbud er tilgjengelig. Som bruker av Renteradar slipper du å
+          bruke tid på dette, vi gjør jobben helt gratis.</p>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row justify-content-center">
+      <rente-button class="card-btn" mat-button color="primary" [routerLink]="'/velgbank'">
+        Kom i gang!
+      </rente-button>
+    </div>
+    <div class="row justify-content-center align-items-center mb-3">
+      <div class="col-12 col-md-2">
+        <div class="text-center">
+          <a href="https://www.finansportalen.no/" target="_blank">
+            <img class="partner-logo-finansportalen"
+              src="https://www.finansportalen.no/uploads/2015/10/fp_data-levert-av_rgb.svg" alt="finansportalen">
+          </a>
+        </div>
+      </div>
+      <div class="col-12 col-md-1">
+        <div class="text-center">
+          <a href="https://virdi.no/" target="_blank">
+            <img class="partner-logo-virdi" src="https://virdi.no/images/virdi.7c97b43940.png" alt="virdi">
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

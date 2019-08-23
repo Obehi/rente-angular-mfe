@@ -1,0 +1,110 @@
+@import '../theme/variables';
+
+.list-item {
+  display: flex;
+  align-items: center;
+  position: relative;
+
+  &.clickable {
+    // border-bottom: 1px solid rgba(255, 255, 255, .5);
+
+    &.active {
+      // background-color: rgba(255,255,255, 0.25);
+      background-color: $color-text-link;
+
+      .list-label {
+        color: #fff;
+      }
+    }
+
+    &:hover {
+      cursor: pointer;
+      background-color: rgba(255,255,255, 0.25);
+    }
+  }
+
+  &.large {
+    .list-img {
+      height: 88px;
+      width: 88px;
+      min-width: 88px;
+    }
+  }
+
+  .list-img {
+    height: 48px;
+    width: 48px;
+    min-width: 48px;
+    border-radius: 50%;
+    display: inline-block;
+    font-size: 10px;
+    background-color: $color-button-background-primary;
+
+    + .status-icon {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      bottom: 5px;
+      left: 40px;
+      border-radius: 50%;
+      background-color: $color-button-background-primary;
+    }
+  }
+
+  .list-status {}
+
+  .list-info {
+    display: inline-block;
+    padding-left: 8px;
+
+    .list-title {
+      color: $color-text-list;
+      font-size: $size-font-list;
+      line-height: 20px;
+      margin: 0;
+    }
+    .list-label {
+      color: $color-text-list-secondary;
+      font-size: $size-font-list-secondary;
+      line-height: 16px;
+      margin: 0;
+    }
+  }
+
+  &.inverted {
+    .list-info {
+      .list-title {
+        color: $color-text-list-inverted;
+      }
+
+      .list-label {
+        color: $color-text-list-secondary-inverted;
+      }
+    }
+  }
+  
+  .guard-btn {
+    background-color: $color-button-background-primary;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    line-height: 32px;
+
+    &.alert {
+      background-color: $color-text-error;
+
+      &:hover {
+        cursor: pointer;
+        background-color: $color-alarm;
+      }
+    }
+
+    &:hover {
+      cursor: pointer;
+      background-color: $color-button-background-primary-pressed;
+    }
+  }
+}

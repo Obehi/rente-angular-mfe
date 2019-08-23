@@ -1,0 +1,6 @@
+<div class="form-message" [ngClass]="{
+      'form-message-info': type === 'info',
+      'form-message-error': type === 'error',
+      'form-message-success': type === 'success'}">
+  <ng-content></ng-content>
+</div>

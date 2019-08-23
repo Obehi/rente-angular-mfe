@@ -1,0 +1,55 @@
+@import '../theme/variables';
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  margin-bottom: $headings-margin-bottom;
+  font-family: $headings-font-family;
+  font-weight: $headings-font-weight;
+  line-height: $headings-line-height;
+  color: $headings-color;
+}
+
+h1, .h1 { font-size: $h1-font-size; }
+h2, .h2 { font-size: $h2-font-size; }
+h3, .h3 { font-size: $h3-font-size; }
+h4, .h4 { font-size: $h4-font-size; }
+h5, .h5 { font-size: $h5-font-size; }
+h6, .h6 { font-size: $h6-font-size; }
+
+.popup-title {
+  color: $color-white-100;
+  font-size: $size-font-popup-title;
+  line-height: 33px;
+  font-weight: bold;
+
+  &.inverted {
+    color: $color-dark-100;
+  }
+}
+
+.dialog-title {
+  color: $color-text-dialogue-title;
+  font-size: 22px;
+  font-weight: bold;
+
+  &.inverted {
+    color: $color-white-100;
+  }
+}
+
+.title {
+  color: $dark;
+  font-family: Lato;	
+  font-size: 30px;	
+  font-weight: bold;	
+  letter-spacing: 0.5px;	
+  line-height: 36px;
+  white-space: normal;
+}
+
+
+@media (max-width: 960px) {
+  .title{
+      font-size: 24px;
+  }
+}

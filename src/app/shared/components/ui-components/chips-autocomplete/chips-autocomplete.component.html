@@ -1,0 +1,24 @@
+<!-- <div class="chips-autocomplete">
+  <mat-chip-list #membershipList aria-label="Membership selection">
+    <mat-chip *ngFor="let membership of memberships; let i = index;" [selectable]="selectable" [removable]="removable"
+      (removed)="remove(membership, i)">
+      {{membership.label}}
+      <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+    </mat-chip>
+    <input
+      placeholder="Medlemskap"
+      #membershipInput
+      [formControl]="membershipCtrl"
+      [matAutocomplete]="auto"
+      [matChipInputFor]="membershipList"
+      [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+      [matChipInputAddOnBlur]="addOnBlur"
+      (matChipInputTokenEnd)="add($event)">
+  </mat-chip-list>
+
+  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+    <mat-option *ngFor="let membership of filteredMemberships | async" [value]="membership">
+      {{membership.label}}
+    </mat-option>
+  </mat-autocomplete>
+</div> -->
