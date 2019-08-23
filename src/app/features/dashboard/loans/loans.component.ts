@@ -20,21 +20,11 @@ export class LoansComponent implements OnInit {
     this.loansService.getLoans().subscribe((res: Loans) => {
       console.log('loans', res);
       this.loansData = res;
-      this.checkLoans(this.loansData);
+      console.log(this.loansData.aggregatedTotalInterestAndFee)
     }, err => {
       this.errorMessage = err.title;
     });
   }
-  checkLoans(loansData: Loans) {
-    loansData.loans.forEach(loan => {
-      if (!loan.totalInterest) {
-        this.unableToCalculateTotalInterest = true;
-      }
-      if (!loan.totalInterestByRemainingYears) {
-        this.unableToCalculateTotalInterestByRemainingYears = true;
-      }
 
-    });
-  }
 
 }

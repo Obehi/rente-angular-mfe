@@ -1,6 +1,6 @@
 export interface Loans {
-  aggregatedTotalInterest: number;
-  aggregatedTotalInterestByRemainingYears: number;
+  aggregatedTotalInterestAndFee: number;
+  aggregatedTotalInterestAndFeeByRemainingYears: number;
   averageRemainingYears: number;
   loans: LoanInfo[];
   totalEffectiveRate: number;
@@ -10,10 +10,10 @@ export interface Loans {
 export interface LoanInfo {
   bank: string;
   effectiveRate: number;
-  loanType: string;
+  loanName: string;
   nominalRate: number;
   outstandingDebt: number;
   remainingYears: number;
-  totalInterest: number;
-  totalInterestByRemainingYears: number;
+  totalInterestAndTotalFee: number;
+  totalInterestAndTotalFeeByRemainingYears: number;
 }

@@ -274,6 +274,11 @@ export const BANKS_DATA = {
     img: '',
     imgCircle: ''
   },
+  NAL: {
+    name: 'NAL',
+    img: '../../assets/img/banks-logo/square/gjensidige.png',
+    imgCircle: '../../assets/img/banks-logo/round/gjensidige.png'
+  },
   NORDEA: {
     name: 'NORDEA',
     img: '../../assets/img/banks-logo/square/nordea.png',

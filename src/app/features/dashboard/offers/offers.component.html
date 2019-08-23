@@ -126,7 +126,7 @@
                 </div>
                 <div class="col-12 col-sm-12 mb-4 mb-md-0">
                   <p class="mb-0 mb-md-2">Krever annet produkt (e.g. lønnskonto):</p>
-                  <h3> Ja</h3>
+                  <h3> {{offer.requiredProductPackage == null ? 'Nei' : 'Ja'}}</h3>
                 </div>
               </div>
             </div>
