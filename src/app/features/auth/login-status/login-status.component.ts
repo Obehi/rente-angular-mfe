@@ -59,7 +59,11 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.stompClient.unsubscribe();
+    if (this.stompClient && this.stompClient.connected) {
+      this.stompClient.disconnect();
+      this.stompClient.unsubscribe();
+    }
+
     if (this.timerSubscription) {
       this.timerSubscription.unsubscribe();
     }
