@@ -14,7 +14,7 @@ export const environment = {
 };
 `;
 
-fs.writeFile(targetPath, envConfigFile, function (err) {
+fs.writeFile(targetPath, envConfigFile, (err) => {
   if (err) {
     console.log(err);
     return;
