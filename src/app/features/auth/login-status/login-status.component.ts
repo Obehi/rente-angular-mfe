@@ -37,7 +37,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
   public loginStep1Status: string;
   public loginStep2Status: string;
   public loginStep3Status: string;
-  private maxConnectionTime = 30;
+  private maxConnectionTime = 90;
   private stompClient: any;
   private timerSubscription: Subscription;
   private timer: Observable<number>;
