@@ -1,5 +1,5 @@
-import * as fs from 'fs';
-import { argv } from 'yargs';
+const fs = require('fs');
+const argv = require('yargs');
 
 // This is good for local dev environments, when it's better to
 // store a projects environment variables in a .gitignore'd file

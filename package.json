@@ -15,7 +15,7 @@
     "build-i18n:en": "ng build --output-path=dist/rente-front-end/en/ --aot --environment=prod --sourceMap --base-href /en/ --i18n-file=src/locale/messages.en.xtb --i18n-format=xtb --i18n-locale=en",
     "build-i18n": "npm run build-i18n:no && npm run build-i18n:en",
     "version": "node app-version.js",
-    "heroku-postbuild": "npm run config-env && ng build --configuration=heroku",
+    "heroku-postbuild": "npm run config-env -- --environment=prod  && ng build --environment=prod",
     "config-env": "ts-node ./src/set-env.ts"
   },
   "private": true,
@@ -32,6 +32,7 @@
     "@angular/router": "~8.0.2",
     "angular2-text-mask": "^9.0.0",
     "core-js": "^2.5.4",
+    "dotenv": "^8.1.0",
     "express": "^4.16.3",
     "net": "^1.0.2",
     "rxjs": "~6.5.2",
