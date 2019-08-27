@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const environment = process.env.ENV;
-const isProd = environment === 'PROD';
+const isProd = environment === 'prod';
 const targetPath = path.join(__dirname + `/environments/environment.heroku.ts`);
 
 // Setup Heroku configs

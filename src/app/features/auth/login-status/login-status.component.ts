@@ -119,9 +119,9 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
     const socket = new SockJS(environment.crawlerUrl);
     this.stompClient = Stomp.over(socket);
     // Disable websocket logs for production
-    // if (environment.production) {
-    //   this.stompClient.debug = null;
-    // }
+    if (environment.production) {
+      this.stompClient.debug = null;
+    }
     this.stompClient.connect({}, (frame) => {
       // console.log('success connection', frame);
       this.viewStatus.isSocketConnectionLost = false;
