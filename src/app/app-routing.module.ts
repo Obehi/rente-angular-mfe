@@ -19,7 +19,7 @@ const routes: Routes = [
   {
     path: '', component: LandingComponent,
     data: {
-      title: defaultTitle,
+      title: customMeta.landingTitle,
       meta: defaultMeta
     }
   },
@@ -44,15 +44,20 @@ const routes: Routes = [
     }
   },
   {
-    path: ROUTES_MAP.contactUs, component: ContactUsComponent, data: {
-      title: defaultTitle,
-      meta: defaultMeta
+    path: ROUTES_MAP.contactUs, component: ContactUsComponent,
+    data: {
+      title: customMeta.kontaktTitle,
+      meta: {
+        name: defaultMeta.name,
+        description: defaultMeta.description
+      }
     }
   },
   {
     path: ROUTES_MAP.privacy, component: PrivacyComponent,
+
     data: {
-      title: customMeta.personvernTitle,
+      title: customMeta.personvernerklaeringTitle,
       meta: {
         name: defaultMeta.name,
         description: customMeta.personvernDescription
@@ -60,11 +65,12 @@ const routes: Routes = [
     }
   },
   {
-    path: ROUTES_MAP.termsConditions, component: TermsConditionsComponent, data: {
-      title: customMeta.personvernTitle,
+    path: ROUTES_MAP.termsConditions, component: TermsConditionsComponent,
+    data: {
+      title: customMeta.brukervilkarTitle,
       meta: {
         name: defaultMeta.name,
-        description: customMeta.personvernDescription
+        description: defaultMeta.description
       }
     }
   },
@@ -88,10 +94,26 @@ const routes: Routes = [
     }
   },
   { path: ROUTES_MAP.initConfirmation, component: InitConfirmationComponent },
-  { path: ROUTES_MAP.getNotified, component: GetNotifiedComponent },
+  {
+    path: ROUTES_MAP.getNotified, component: GetNotifiedComponent,
+    data: {
+      title: customMeta.faabeskjedTitle,
+      meta: {
+        name: defaultMeta.name,
+        description: defaultMeta.description
+      }
+    }
+  },
   {
     path: ROUTES_MAP.auth,
-    loadChildren: () => import('./features/auth/auth.module').then(m => m.AuthModule)
+    loadChildren: () => import('./features/auth/auth.module').then(m => m.AuthModule),
+    data: {
+      title: customMeta.bankLoginTitle,
+      meta: {
+        name: defaultMeta.name,
+        description: customMeta.bankDescription
+      }
+    }
   },
   {
     path: ROUTES_MAP.dashboard,
