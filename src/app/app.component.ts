@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { MetaService } from '@shared/services/meta.service';
@@ -21,12 +21,11 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-
     this.navigationSubscription = this.router.events.subscribe((event) => {
-
 
       if (event instanceof NavigationEnd) {
         this.changeTitles();
+        window['dataLayer'].push({ event: 'virtualPageView' });
       }
     });
 
