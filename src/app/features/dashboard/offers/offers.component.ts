@@ -46,7 +46,7 @@ export class OffersComponent implements OnInit {
     }, err => {
       if (err.errorType === 'PROPERTY_VALUE_MISSING') {
         this.errorMessage = err.title;
-        this.router.navigate(['/dashboard/bolig']);
+        this.router.navigate(['/bekreft']);
       }
       console.log(err);
     });

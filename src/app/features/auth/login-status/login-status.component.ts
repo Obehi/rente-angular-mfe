@@ -37,14 +37,22 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
   public loginStep1Status: string;
   public loginStep2Status: string;
   public loginStep3Status: string;
+  public firstStepTimer = 10;
+  public firstStepTimerFinished: boolean;
+  public thirdStepTimer = 80;
+  public thirdStepTimerFinished: boolean;
+  public isShowpassPhrase: boolean;
   private maxConnectionTime = 90;
   private stompClient: any;
   private timerSubscription: Subscription;
   private timer: Observable<number>;
   private connectionTimer: Observable<number>;
+  private crawlingTimer: Observable<number>;
   private connectionTimerSubscription: Subscription;
+  private crawlingTimerSubscription: Subscription;
   private intervalSubscription: Subscription;
   @Output() returnToInputPage = new EventEmitter<any>();
+  isShowTimer: boolean;
 
   constructor(
     private router: Router,
@@ -74,6 +82,9 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
 
     if (this.connectionTimerSubscription) {
       this.connectionTimerSubscription.unsubscribe();
+    }
+    if (this.crawlingTimerSubscription) {
+      this.crawlingTimerSubscription.unsubscribe();
     }
   }
 
@@ -174,6 +185,10 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
       if (time > this.maxConnectionTime) {
         this.viewStatus.isTimedOut = true;
       }
+      this.firstStepTimer--;
+      if (!this.firstStepTimer) {
+        this.firstStepTimerFinished = true;
+      }
     });
   }
 
@@ -190,29 +205,36 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
           case BANKID_STATUS.PROCESS_STARTED:
             this.initTimer(BANKID_TIMEOUT_TIME);
             this.initConnectionTimer();
-            this.viewStatus.isProcessStarted = true;
             // this.loginStep1Status = MESSAGE_STATUS.SUCCESS;
+            this.viewStatus.isProcessStarted = true;
             break;
           case BANKID_STATUS.PASSPHRASE_CONFIRM:
+            this.isShowpassPhrase = true;
+            this.isShowTimer = false;
             this.passPhrase = response.passphrase;
             this.loginStep1Status = MESSAGE_STATUS.SUCCESS;
             this.loginStep2Status = MESSAGE_STATUS.LOADING;
             break;
           case BANKID_STATUS.PASSPHRASE_CONFIRM_SUCCESS:
+            this.initCrawlingTimer();
+            this.isShowpassPhrase = false;
             this.viewStatus.isPassphraseConfirmSuccess = true;
             this.loginStep2Status = MESSAGE_STATUS.SUCCESS;
             this.loginStep3Status = MESSAGE_STATUS.LOADING;
             break;
           case BANKID_STATUS.PASSPHRASE_CONFIRM_FAIL:
+            this.isShowpassPhrase = false;
             this.viewStatus.isPassphraseConfirmFail = true;
             this.connectionTimerSubscription.unsubscribe();
+            this.crawlingTimerSubscription.unsubscribe();
             this.loginStep2Status = MESSAGE_STATUS.ERROR;
             break;
           case BANKID_STATUS.CRAWLER_ERROR:
             this.viewStatus.isCrawlerError = true;
             this.connectionTimerSubscription.unsubscribe();
-            this.loginStep1Status = MESSAGE_STATUS.ERROR;
-            this.loginStep2Status = MESSAGE_STATUS.ERROR;
+            this.crawlingTimerSubscription.unsubscribe();
+            this.loginStep1Status = MESSAGE_STATUS.SUCCESS;
+            this.loginStep2Status = MESSAGE_STATUS.SUCCESS;
             this.loginStep3Status = MESSAGE_STATUS.ERROR;
             break;
           case BANKID_STATUS.CRAWLER_RESULT:
@@ -264,11 +286,24 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
     });
   }
 
+  initCrawlingTimer() {
+    if (this.crawlingTimerSubscription) {
+      this.crawlingTimerSubscription.unsubscribe();
+    }
+    this.crawlingTimer = timer(1000, 1000);
+    this.crawlingTimerSubscription = this.crawlingTimer.subscribe(time => {
+      this.thirdStepTimer--;
+      if (!this.thirdStepTimer) {
+        this.thirdStepTimerFinished = true;
+      }
+    });
+  }
+
   private setDefaultSteps() {
+    this.isShowTimer = true;
     this.loginStep1Status = MESSAGE_STATUS.LOADING;
     this.loginStep2Status = MESSAGE_STATUS.INFO;
     this.loginStep3Status = MESSAGE_STATUS.INFO;
   }
-
 
 }
