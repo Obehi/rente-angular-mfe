@@ -37,7 +37,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
   public loginStep1Status: string;
   public loginStep2Status: string;
   public loginStep3Status: string;
-  private maxConnectionTime = 30;
+  private maxConnectionTime = 90;
   private stompClient: any;
   private timerSubscription: Subscription;
   private timer: Observable<number>;
@@ -59,7 +59,11 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.stompClient.unsubscribe();
+    if (this.stompClient && this.stompClient.connected) {
+      this.stompClient.disconnect();
+      this.stompClient.unsubscribe();
+    }
+
     if (this.timerSubscription) {
       this.timerSubscription.unsubscribe();
     }
