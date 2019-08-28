@@ -9,11 +9,11 @@ export const defaultMeta = {
 
 export const customMeta = {
   landingTitle: 'Renteradar.no | Bekreft  | Overvåk boliglånsrenten din gratis',
-  tilbudTitle:'Renteradar.no | Min side | Overvåk boliglånsrenten din gratis',
-  mineLanTitle:'Renteradar.no | Mine lån  | Overvåk boliglånsrenten din gratis',
-  boligTitle:'Renteradar.no | Bolig  | Overvåk boliglånsrenten din gratis',
-  preferanserTitle:'Renteradar.no | Preferanser  | Overvåk boliglånsrenten din gratis',
-  profilTitle:'Renteradar.no | Profil  | Overvåk boliglånsrenten din gratis',
+  tilbudTitle: 'Renteradar.no | Min side | Overvåk boliglånsrenten din gratis',
+  mineLanTitle: 'Renteradar.no | Mine lån  | Overvåk boliglånsrenten din gratis',
+  boligTitle: 'Renteradar.no | Bolig  | Overvåk boliglånsrenten din gratis',
+  preferanserTitle: 'Renteradar.no | Preferanser  | Overvåk boliglånsrenten din gratis',
+  profilTitle: 'Renteradar.no | Profil  | Overvåk boliglånsrenten din gratis',
   velgbankTitle: 'Renteradar.no | Registrer deg - gratis | Velg banken du har boliglån i',
   kontaktTitle: 'Renteradar.no | Kontakt oss',
   velgbankDescription: 'Velg banken du har boliglån i og registrer deg inn med BankID på mobil.'

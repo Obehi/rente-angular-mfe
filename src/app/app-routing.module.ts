@@ -117,12 +117,7 @@ const routes: Routes = [
   },
   {
     path: ROUTES_MAP.dashboard,
-    loadChildren: () =>{
-      return import('./features/dashboard/dashboard.module').then(m =>{
-        console.log(m.DashboardModule)
-        return m.DashboardModule
-      })
-    },
+    loadChildren: () => import('./features/dashboard/dashboard.module').then(m => m.DashboardModule),
     canActivate: [AuthGuard]
   },
   { path: '**', component: PageNotFoundComponent },
