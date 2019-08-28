@@ -8,18 +8,29 @@ export const defaultMeta = {
 };
 
 export const customMeta = {
-  velgbankTitle: 'Registrer deg - gratis | Velg banken du har boliglån i | Logg inn med BankID på Mobil |',
+  landingTitle: 'Renteradar.no | Bekreft  | Overvåk boliglånsrenten din gratis',
+  tilbudTitle:'Renteradar.no | Min side | Overvåk boliglånsrenten din gratis',
+  mineLanTitle:'Renteradar.no | Mine lån  | Overvåk boliglånsrenten din gratis',
+  boligTitle:'Renteradar.no | Bolig  | Overvåk boliglånsrenten din gratis',
+  preferanserTitle:'Renteradar.no | Preferanser  | Overvåk boliglånsrenten din gratis',
+  profilTitle:'Renteradar.no | Profil  | Overvåk boliglånsrenten din gratis',
+  velgbankTitle: 'Renteradar.no | Registrer deg - gratis | Velg banken du har boliglån i',
+  kontaktTitle: 'Renteradar.no | Kontakt oss',
   velgbankDescription: 'Velg banken du har boliglån i og registrer deg inn med BankID på mobil.'
     + 'Renteradar henter renten du har og lånebeløp automatisk.',
-  omossTitle: 'Om oss | Renteradar.no | Overvåker boliglånsrenten din gratis',
+  omossTitle: 'Renteradar.no | Om oss | Overvåk boliglånsrenten din gratis',
   omossDescription: 'Markedet for boliglån kan være kaotisk, og det kan være vanskelig å vite hvilken rente du fortjener' +
     'og i hvilken bank du finner denne.',
-  ofteStilteSporsmaalTitle: '| Renteradar.no | Overvåker boliglånsrenten din gratis',
+  ofteStilteSporsmaalTitle: 'Renteradar.no | Ofte stilte spørsmål',
   ofteStilteSporsmaalDescription: 'Hvor mye kan jeg spare? Koster det noe? Trenger jeg å laste opp noe dokumentasjon?',
-  personvernTitle: 'Personvern | Renteradar.no | Overvåker boliglånsrenten din gratis',
+  personvernTitle: 'Renteradar.no | Personvern | Overvåk boliglånsrenten din gratis',
   personvernDescription: 'Vi tar GDPR på alvor og ditt personvern er viktig for oss i Renteradar.no.'
     + 'Renteradar.no eies og drives av Forbrukerøkonomene AS som er et norsk selskap underlagt norsk lov...',
+  personvernerklaeringTitle: 'Renteradar.no | Personvernerklæring | Overvåk boliglånsrenten din gratis',
+  brukervilkarTitle: 'Renteradar.no | Brukervilkår | Overvåk boliglånsrenten din gratis',
+  faabeskjedTitle: 'Renteradar.no | Få beskjed  | Overvåk boliglånsrenten din gratis',
   bankDescription: 'Renteradar henter renten du har og lånebeløp automatisk med BankID på mobil',
+  bankLoginTitle: 'Renteradar.no | Registrer | Logg inn',
   DNBTitle: 'Registrer deg | Logg inn | DNB | Renteradar.no',
   NordeaTitle: 'Registrer deg | Logg inn | Nordea | Renteradar.no',
   SparebankTitle: 'Registrer deg | Logg inn | Velg din Sparebank 1 | Renteradar.no',
