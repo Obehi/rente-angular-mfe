@@ -25,7 +25,7 @@ export class AppComponent implements OnInit {
 
       if (event instanceof NavigationEnd) {
         this.changeTitles();
-        window['dataLayer'].push({ event: 'virtualPageView' });
+        (window as any).dataLayer.push({ event: 'virtualPageView' });
       }
     });
 
