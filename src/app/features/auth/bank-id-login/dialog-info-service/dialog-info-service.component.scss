@@ -1,4 +1,11 @@
 @import '../../../../../styles/theme/_colors.scss';
+
 a {
-    color: $primary;
+  color: $primary;
+}
+
+.dialog-text {
+  @media (max-width:450px) {
+    max-height: 40vh;
+  }
 }
