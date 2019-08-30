@@ -17,7 +17,11 @@ import { DialogInfoComponent } from './offers/dialog-info/dialog-info.component'
 import { RatingComponent } from './offers/rating/rating.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatSelectModule } from '@angular/material/select';
-import { MatInputModule, MatChipsModule, MatIconModule, MatAutocompleteModule, MatProgressSpinnerModule, MatCheckboxModule } from '@angular/material';
+import {
+  MatInputModule, MatChipsModule, MatIconModule, MatAutocompleteModule,
+  MatProgressSpinnerModule,
+  MatCheckboxModule
+} from '@angular/material';
 import { RateTypeFixedComponent } from './rate-type-fixed/rate-type-fixed.component';
 import { NoLoansComponent } from './no-loans/no-loans.component';
 import { ChangeBankDialogComponent } from './offers/change-bank-dialog/change-bank-dialog.component';
