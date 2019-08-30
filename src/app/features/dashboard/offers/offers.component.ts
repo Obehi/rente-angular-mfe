@@ -9,7 +9,8 @@ import { BANKS_DATA } from '@config/banks-config';
 import { Router } from '@angular/router';
 import { OFFER_SAVINGS_TYPE, AGGREGATED_RATE_TYPE } from '../../../config/loan-state';
 import { LocalStorageService } from '@services/local-storage.service';
-import { trigger, transition, style, animate } from '@angular/animations';
+import { trigger, transition, style, animate, keyframes } from '@angular/animations';
+import { ChangeBankDialogComponent } from './change-bank-dialog/change-bank-dialog.component';
 
 @Component({
   selector: 'rente-offers',
@@ -36,7 +37,18 @@ import { trigger, transition, style, animate } from '@angular/animations';
           ]
         )
       ]
-    )
+    ),
+    trigger(
+      'shakeAnimation',
+      [
+        transition(':enter', animate('200ms ease-in', keyframes([
+          style({ transform: 'translate3d(-15px, 0, 0)' }),
+          style({ transform: 'translate3d(0, 0, 0)' }),
+          style({ transform: 'translate3d(7px, 0, 0)' }),
+          style({ transform: 'translate3d(0, 0, 0)' })
+        ]))),
+      ]
+    ),
   ]
 })
 export class OffersComponent implements OnInit {
@@ -88,9 +100,16 @@ export class OffersComponent implements OnInit {
     });
   }
 
+  public openChangeBankDialog(): void {
+    this.dialog.open(ChangeBankDialogComponent, {
+      width: '800px',
+      maxHeight: '90vh'
+    });
+  }
+
   @HostListener('window:resize', ['$event'])
   onResize(event?) {
-    window.innerWidth <= 768 ? this.isSmallScreen = true : this.isSmallScreen = false;
+    window.innerWidth <= 1024 ? this.isSmallScreen = true : this.isSmallScreen = false;
   }
 
 }
