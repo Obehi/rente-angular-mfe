@@ -51,8 +51,9 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
   private connectionTimerSubscription: Subscription;
   private crawlingTimerSubscription: Subscription;
   private intervalSubscription: Subscription;
+  public isShowTimer: boolean;
   @Output() returnToInputPage = new EventEmitter<any>();
-  isShowTimer: boolean;
+  isNotSB1customer: boolean;
 
   constructor(
     private router: Router,
@@ -90,6 +91,9 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
 
   returnToInput() {
     this.returnToInputPage.emit();
+    if (this.isNotSB1customer) {
+      this.router.navigate(['/autentisering/sparebank1-sub']);
+    }
   }
 
   sendUserData(resendData = false) {
@@ -221,6 +225,14 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
             this.viewStatus.isPassphraseConfirmSuccess = true;
             this.loginStep2Status = MESSAGE_STATUS.SUCCESS;
             this.loginStep3Status = MESSAGE_STATUS.LOADING;
+            break;
+          case BANKID_STATUS.NOT_SB1_CUSTOMER:
+            this.isShowpassPhrase = false;
+            this.connectionTimerSubscription.unsubscribe();
+            this.isNotSB1customer = true;
+            this.loginStep1Status = MESSAGE_STATUS.SUCCESS;
+            this.loginStep2Status = MESSAGE_STATUS.SUCCESS;
+            this.loginStep3Status = MESSAGE_STATUS.ERROR;
             break;
           case BANKID_STATUS.PASSPHRASE_CONFIRM_FAIL:
             this.isShowpassPhrase = false;

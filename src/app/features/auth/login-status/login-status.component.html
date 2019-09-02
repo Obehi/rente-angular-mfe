@@ -38,9 +38,13 @@
           </rente-status-message>
 
           <rente-status-message [status]="loginStep3Status" [step]="3">
+            <span *ngIf="isNotSB1customer">Vi får beskjed om at du ikke er kunde i banken. Har du valgt riktig
+              bank?</span>
             <span *ngIf="!viewStatus.isPassphraseConfirmSuccess && !viewStatus.isCrawlerError">Hent rente- og
               lånedata</span>
-            <span *ngIf="viewStatus.isPassphraseConfirmSuccess && !viewStatus.isCrawlerError">Vi henter din rente og
+            <span *ngIf="viewStatus.isPassphraseConfirmSuccess && !viewStatus.isCrawlerError && !isNotSB1customer">Vi
+              henter din
+              rente og
               låneinformasjon</span>
             <span *ngIf="viewStatus.isCrawlerError">Det oppstod en feil under henting av dine lånedetaljer, vennligst
               prøv igjen senere</span>
@@ -59,7 +63,7 @@
       </div>
 
       <rente-button class="login-status-btn" color="primary" [type]="'stroked'"
-        *ngIf="viewStatus.isNotValidDataProvided || viewStatus.isCrawlerError || viewStatus.isPassphraseConfirmFail || viewStatus.isTimedOut"
+        *ngIf="viewStatus.isNotValidDataProvided || viewStatus.isCrawlerError || viewStatus.isPassphraseConfirmFail || viewStatus.isTimedOut || isNotSB1customer"
         (click)="returnToInput()">
         Prøv igjen
       </rente-button>
