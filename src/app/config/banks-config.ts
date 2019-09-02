@@ -191,8 +191,8 @@ export const BANKS_DATA = {
   },
   HJARTDAL_SB: {
     name: 'HJARTDAL_SB',
-    img: '',
-    imgCircle: ''
+    img: '../../assets/img/banks-logo/square/sogn.png',
+    imgCircle: '../../assets/img/banks-logo/round/sogn.png'
   },
   HJELMELAND_SB: {
     name: 'HJELMELAND_SB',
@@ -576,7 +576,7 @@ export const BANKS_DATA = {
   },
   ORSKOG_SB: {
     name: 'ORSKOG_SB',
-    img: '',
+    img: '../../assets/img/banks-logo/square/Old Eika.png',
     imgCircle: ''
   },
   OTHER: {

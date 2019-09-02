@@ -71,8 +71,6 @@ export class InitConfirmationComponent implements OnInit {
               Validators.pattern(VALIDATION_PATTERN.email)
             ])]
           });
-          this.propertyForm.markAllAsTouched();
-          this.propertyForm.updateValueAndValidity();
         });
     });
   }

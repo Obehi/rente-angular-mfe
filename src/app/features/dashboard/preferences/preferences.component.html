@@ -1,5 +1,5 @@
-<div class="my-5 row justify-content-center" *ngIf="preferencesForm">
-  <div class="col-lg-6 col-md-8 col-12">
+<div class="my-5 row justify-content-center" *ngIf="preferencesForm" [@shakeAnimation]>
+  <div class="col-lg-7 col-12">
     <div class="bg-wrap">
       <h5 class="mt-0">Hvor ofte skal vi sjekke renten du har?</h5>
       <p>Renteradar.no overvåker kontinuerlig markedet for bedre rente enn det du har på lånet ditt. Renten du har på
@@ -42,8 +42,7 @@
           <h5 class="mt-0">Grønne-/miljøboliglån:</h5>
 
           <mat-radio-group formControlName="interestedInEnvironmentMortgages" class="d-flex flex-column">
-            <mat-radio-button [value]="false" class="mb-2"><span class="text-wrap"> Jeg er ikke avhengig av
-                rammelån/boligkredittJeg er ikke interessert i lån som forutsetter nullhus, tiltak for energimerking,
+            <mat-radio-button [value]="false" class="mb-2"><span class="text-wrap">Jeg er ikke interessert i lån som forutsetter nullhus, tiltak for energimerking,
                 etc..</span></mat-radio-button>
             <mat-radio-button [value]="true" class="mb-2"><span class="text-wrap">Jeg er interessert i lån som
                 forutsetter nullhus, tiltak for energimerking, etc..</span></mat-radio-button>

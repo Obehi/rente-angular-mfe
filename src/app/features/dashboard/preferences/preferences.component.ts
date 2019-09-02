@@ -3,11 +3,25 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '@services/remote-api/user.service';
 import { SnackBarService } from '@services/snackbar.service';
 import { LoansService } from '../../../shared/services/remote-api/loans.service';
+import { trigger, transition, animate, keyframes, style } from '@angular/animations';
 
 @Component({
   selector: 'rente-preferences',
   templateUrl: './preferences.component.html',
-  styleUrls: ['./preferences.component.scss']
+  styleUrls: ['./preferences.component.scss'],
+  animations: [
+    trigger(
+      'shakeAnimation',
+      [
+        transition(':enter', animate('200ms ease-in', keyframes([
+          style({ transform: 'translate3d(-15px, 0, 0)' }),
+          style({ transform: 'translate3d(0, 0, 0)' }),
+          style({ transform: 'translate3d(7px, 0, 0)' }),
+          style({ transform: 'translate3d(0, 0, 0)' })
+        ]))),
+      ]
+    )
+  ]
 })
 export class PreferencesComponent implements OnInit {
   public preferencesForm: FormGroup;
