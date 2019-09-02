@@ -40,7 +40,7 @@
           <rente-status-message [status]="loginStep3Status" [step]="3">
             <span *ngIf="isNotSB1customer">Vi får beskjed om at du ikke er kunde i banken. Har du valgt riktig
               bank?</span>
-            <span *ngIf="!viewStatus.isPassphraseConfirmSuccess && !viewStatus.isCrawlerError">Hent rente- og
+            <span *ngIf="!viewStatus.isPassphraseConfirmSuccess && !viewStatus.isCrawlerError && !isNotSB1customer">Hent rente- og
               lånedata</span>
             <span *ngIf="viewStatus.isPassphraseConfirmSuccess && !viewStatus.isCrawlerError && !isNotSB1customer">Vi
               henter din
