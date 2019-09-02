@@ -10,6 +10,7 @@ export interface ViewStatus {
   isCrawlerResult: boolean;
   isLoansPersisted: boolean;
   isTimedOut: boolean;
+  isNotValidDataProvided: boolean;
 }
 
 export class ViewStatus {
@@ -25,5 +26,6 @@ export class ViewStatus {
     this.isCrawlerResult = false;
     this.isLoansPersisted = false;
     this.isTimedOut = false;
+    this.isNotValidDataProvided = false;
   }
 }

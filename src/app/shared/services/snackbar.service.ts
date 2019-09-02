@@ -11,7 +11,7 @@ export class SnackBarService {
 
     public openSuccessSnackBar(message: string, duration?: number) {
         this.snackBar.open(message, 'Lukk', {
-            duration: duration ? duration : this.duration * 1000,
+            duration: duration ? duration * 1000 : this.duration * 1000,
             panelClass: ['bg-primary'],
             horizontalPosition: 'right'
         });

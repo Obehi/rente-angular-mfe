@@ -226,7 +226,6 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
             this.isShowpassPhrase = false;
             this.viewStatus.isPassphraseConfirmFail = true;
             this.connectionTimerSubscription.unsubscribe();
-            this.crawlingTimerSubscription.unsubscribe();
             this.loginStep2Status = MESSAGE_STATUS.ERROR;
             break;
           case BANKID_STATUS.CRAWLER_ERROR:
@@ -239,6 +238,11 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
             break;
           case BANKID_STATUS.CRAWLER_RESULT:
             this.viewStatus.isCrawlerResult = true;
+            break;
+          case BANKID_STATUS.NOT_VALID_DATA_PROVIDED:
+            this.loginStep1Status = MESSAGE_STATUS.ERROR;
+            this.viewStatus.isNotValidDataProvided = true;
+            this.connectionTimerSubscription.unsubscribe();
             break;
           case BANKID_STATUS.LOANS_PERSISTED:
             this.viewStatus.isLoansPersisted = true;
