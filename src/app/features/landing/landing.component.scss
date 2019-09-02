@@ -56,8 +56,12 @@
   }
 
   &-title {
-    height: 30px;
+    height: 35px;
     @include text-style(23px, 29px);
+    @media (max-width:750px) {
+      height: auto;
+      @include text-style(20px, 29px);
+    }
   }
 
   &-text {

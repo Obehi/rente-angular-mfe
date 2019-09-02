@@ -6,12 +6,26 @@ import createNumberMask from 'text-mask-addons/dist/createNumberMask';
 import { forkJoin } from 'rxjs';
 import { Router } from '@angular/router';
 import { SnackBarService } from '@services/snackbar.service';
+import { trigger, transition, animate, keyframes, style } from '@angular/animations';
 
 @Component({
   selector: 'rente-house',
   templateUrl: './house.component.html',
   styleUrls: ['./house.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  animations: [
+    trigger(
+      'shakeAnimation',
+      [
+        transition(':enter', animate('200ms ease-in', keyframes([
+          style({ transform: 'translate3d(-15px, 0, 0)' }),
+          style({ transform: 'translate3d(0, 0, 0)' }),
+          style({ transform: 'translate3d(7px, 0, 0)' }),
+          style({ transform: 'translate3d(0, 0, 0)' })
+        ]))),
+      ]
+    )
+  ]
 })
 export class HouseComponent implements OnInit {
 

@@ -10,12 +10,26 @@ import { UserService } from '@services/remote-api/user.service';
 import createNumberMask from 'text-mask-addons/dist/createNumberMask';
 import { VALIDATION_PATTERN } from '../../../config/validation-patterns.config';
 import { SnackBarService } from '../../../shared/services/snackbar.service';
+import { trigger, transition, animate, keyframes, style } from '@angular/animations';
 
 
 @Component({
   selector: 'rente-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.scss']
+  styleUrls: ['./profile.component.scss'],
+  animations: [
+    trigger(
+      'shakeAnimation',
+      [
+        transition(':enter', animate('200ms ease-in', keyframes([
+          style({ transform: 'translate3d(-15px, 0, 0)' }),
+          style({ transform: 'translate3d(0, 0, 0)' }),
+          style({ transform: 'translate3d(7px, 0, 0)' }),
+          style({ transform: 'translate3d(0, 0, 0)' })
+        ]))),
+      ]
+    )
+  ]
 })
 export class ProfileComponent implements OnInit {
   public profileForm: FormGroup;

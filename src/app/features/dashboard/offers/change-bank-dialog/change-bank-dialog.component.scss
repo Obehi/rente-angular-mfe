@@ -4,8 +4,12 @@ a {
   color: $primary;
 }
 
+::ng-deep .mat-checkbox-layout {
+  white-space: normal !important;
+}
+
 .dialog-text {
   @media (max-width:450px) {
-    max-height: 60vh;
+    max-height: 28vh;
   }
 }
