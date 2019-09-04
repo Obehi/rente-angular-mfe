@@ -11,6 +11,7 @@ import { OFFER_SAVINGS_TYPE, AGGREGATED_RATE_TYPE } from '../../../config/loan-s
 import { LocalStorageService } from '@services/local-storage.service';
 import { trigger, transition, style, animate, keyframes } from '@angular/animations';
 import { ChangeBankDialogComponent } from './change-bank-dialog/change-bank-dialog.component';
+import { ChangeBankServiceService } from '@services/remote-api/change-bank-service.service';
 
 @Component({
   selector: 'rente-offers',
@@ -63,12 +64,14 @@ export class OffersComponent implements OnInit {
   public noOffers: boolean;
   public isSmallScreen: boolean;
   public isShowTips: boolean;
+  public changeBankLoading: boolean;
 
 
   constructor(
     public dialog: MatDialog,
     public offersService: OffersService,
     public loansService: LoansService,
+    private changeBankServiceService: ChangeBankServiceService,
     private router: Router
   ) {
     this.onResize();
@@ -100,11 +103,20 @@ export class OffersComponent implements OnInit {
     });
   }
 
-  public openChangeBankDialog(): void {
-    this.dialog.open(ChangeBankDialogComponent, {
-      width: '800px',
-      maxHeight: '90vh'
-    });
+  public openChangeBankDialog(offer): void {
+    this.changeBankLoading = true;
+    const offerId = offer.id;
+    this.changeBankServiceService.getBankOfferRequest(offerId).subscribe(preview => {
+      this.changeBankLoading = false;
+      this.dialog.open(ChangeBankDialogComponent, {
+        width: '800px',
+        maxHeight: '90vh',
+        data: { preview, offerId }
+      });
+    }, err => {
+      this.changeBankLoading = false;
+    })
+
   }
 
   @HostListener('window:resize', ['$event'])

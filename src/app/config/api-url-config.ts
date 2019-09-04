@@ -31,6 +31,11 @@ export const API_URL_MAP = {
       base: '/loans',
       state: '/state'
     },
+    bankOfferRequest: {
+      base: '/bank-offer-request',
+      preview: '/preview',
+      send: '/send'
+    },
     offers: '/offers',
     preferences: '/preferences',
     membership: '/membership',

@@ -11,21 +11,23 @@
     </div>
     <div class="text-left dialog-text">
         <div><b>Opplysninger om produkt:</b><span></span></div>
-        <div>Lånebeløp: 2 122 000 kr</div>
-        <div>Boligverdi: 7 960 000 kr</div>
-        <div>Nedbetalingstid: 1 år</div>
-        <div>Min alder: 27 år</div>
-        <div>Bank: Nybygger.no (Sparebanken Øst)</div>
-        <div>Produktnavn: Boliglån 60% </div>
-        <div>Eff. rente: 2.39% </div>
-        <div class="mb-4">Produkt: link</div>
+        <div>Lånebeløp: {{data.preview.totalOutstandingDebt | number: '1.0-0'}} kr</div>
+        <div>Boligverdi: {{data.preview.propertyValue | number: '1.0-0'}} kr</div>
+        <div>Nedbetalingstid: {{data.preview.averageRemainingYears | number: '1.2-2'}} år</div>
+        <div>Min alder: {{data.preview.clientInfo.age | number: '1.0-0'}} år</div>
+        <div>Bank: {{data.preview.bankName}}</div>
+        <div>Produktnavn: {{data.preview.productName}}</div>
+        <div>Eff. rente: {{data.preview.effectiveRate | number: '1.2-2'}}</div>
+        <div class="mb-4">Produkt: 
+            <a href="{{data.preview.offerUrl}}" target="_blank"> {{data.preview.offerUrl}} </a>
+        </div>
         <div><b>Opplysninger om meg:</b><span></span></div>
-        <div>Navn: Petter Hansen</div>
-        <div>Adresse:</div>
-        <div>Postnr:</div>
-        <div>Poststed:</div>
-        <div>Telefon:</div>
-        <div class="mb-4">E-post:</div>
+        <div>Navn: {{data.preview.clientInfo.name}}</div>
+        <div>Adresse: {{data.preview.clientInfo.address}}</div>
+        <div>Postnr: {{data.preview.clientInfo.zip}}</div>
+        <div>Telefon: {{data.preview.clientInfo.phone}}</div>
+        <div class="mb-4">E-post: {{data.preview.clientInfo.email}}
+        </div>
         <div class="mb-4">
             Jeg ønsker at dere kontakter meg per epost eller per telefon.
         </div>
@@ -35,9 +37,8 @@
         </div>
         <div class="mb-4">
             Mvh,<br>
-            Name
+            {{data.preview.clientInfo.name}}
         </div>
-
     </div>
 </div>
 <hr class="my-0">
@@ -47,8 +48,14 @@
         kredittvurdering.
     </mat-checkbox>
     <div mat-dialog-actions class="d-flex justify-content-center">
+        <div class="mx-4">
+            <rente-button color="primary" (click)="close()">
+                Lukk
+            </rente-button>
+        </div>
         <div class="button-200">
-            <rente-button cdkFocusInitial color="primary" [disabled]="!isConfirmed" (click)="onClose()">Be min
+            <rente-button color="primary" [isLoading]="isLoading" [disabled]="!isConfirmed" (click)="sendRequest()">Be
+                min
                 bank om å matche dette tilbudet
             </rente-button>
         </div>

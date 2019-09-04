@@ -9,7 +9,7 @@
           <div>
             <p class="my-0">Medlemskap:</p>
             <mat-form-field class="d-block">
-              <mat-label>Medlemskap:</mat-label>
+              <mat-label>Ingen (trykk her for å legge til)</mat-label>
               <mat-chip-list #membershipList aria-label="Membership selection">
                 <mat-chip *ngFor="let membership of memberships; let i = index;" [selectable]="selectable"
                   [removable]="removable" (removed)="remove(membership, i)">

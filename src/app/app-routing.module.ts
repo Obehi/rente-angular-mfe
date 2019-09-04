@@ -93,7 +93,16 @@ const routes: Routes = [
       }
     }
   },
-  { path: ROUTES_MAP.initConfirmation, component: InitConfirmationComponent },
+  {
+    path: ROUTES_MAP.initConfirmation, component: InitConfirmationComponent,
+    data: {
+      title: customMeta.bekreftTitle,
+      meta: {
+        name: defaultMeta.name,
+        description: defaultMeta.description
+      }
+    }
+  },
   {
     path: ROUTES_MAP.getNotified, component: GetNotifiedComponent,
     data: {

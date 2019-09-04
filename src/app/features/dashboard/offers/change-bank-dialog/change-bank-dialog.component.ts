@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { ChangeBankServiceService } from '../../../../shared/services/remote-api/change-bank-service.service';
 
 @Component({
   selector: 'rente-change-bank-dialog',
@@ -10,9 +11,11 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class ChangeBankDialogComponent implements OnInit {
   public confirmForm: FormGroup;
   public isConfirmed: boolean;
+  isLoading: boolean;
   constructor(
     private fb: FormBuilder,
     public dialogRef: MatDialogRef<ChangeBankDialogComponent>,
+    private changeBankServiceService: ChangeBankServiceService,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
 
@@ -22,7 +25,14 @@ export class ChangeBankDialogComponent implements OnInit {
     });
   }
 
-  public onClose(): void {
+  public sendRequest(): void {
+    this.isLoading = true;
+    this.changeBankServiceService.sendBankOfferRequest(this.data.offerId).subscribe(_ => {
+      this.isLoading = false;
+      this.dialogRef.close();
+    })
+  }
+  public close(): void {
     this.dialogRef.close();
   }
 
