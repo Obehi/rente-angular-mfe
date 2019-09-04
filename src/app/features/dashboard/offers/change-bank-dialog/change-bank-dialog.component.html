@@ -54,7 +54,7 @@
             </rente-button>
         </div>
         <div class="button-200">
-            <rente-button color="primary" [isLoading]="isLoading" [disabled]="!isConfirmed" (click)="sendRequest()">Be
+            <rente-button color="primary" [isLoading]="isLoading" [disabled]="!isConfirmed || isLoading" (click)="sendRequest()">Be
                 min
                 bank om å matche dette tilbudet
             </rente-button>
