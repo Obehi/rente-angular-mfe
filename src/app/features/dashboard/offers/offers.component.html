@@ -81,8 +81,10 @@
               <h3>{{offersInfo.propertyValue / 1000000 | number: '1.1-3'}} millioner</h3>
             </div>
           </div>
-          <rente-button class="mt-2 col-12" [disabled]="changeBankLoading" [isLoading]="changeBankLoading"
-            color="primary" type="raised" (click)="openChangeBankDialog(offersInfo.offers[0])">Be min bank
+          <rente-button class="mt-2 col-12"
+            [disabled]="changeBankLoading || offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS"
+            [isLoading]="changeBankLoading" color="primary" type="raised"
+            (click)="openChangeBankDialog(offersInfo.offers[0])">Be min bank
             om å matche beste tilbud*</rente-button>
         </div>
       </div>
@@ -142,8 +144,10 @@
                 </rente-button>
                 <rente-button class="mt-2" color="primary" type="stroked" [href]="offer.bankUrl">Bankens
                   hjemmeside</rente-button>
-                <rente-button class="mt-2" [disabled]="changeBankLoading" [isLoading]="changeBankLoading"
-                  color="primary" type="raised" (click)="openChangeBankDialog(offer)">Be min bank
+                <rente-button class="mt-2"
+                  [disabled]="changeBankLoading || offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS"
+                  [isLoading]="changeBankLoading" color="primary" type="raised" (click)="openChangeBankDialog(offer)">Be
+                  min bank
                   om
                   å
                   matche dette tilbudet*</rente-button>
@@ -200,26 +204,26 @@
           <div class="col-6">
             <div class="bg-wrap px-0">
               <p class="paragraph-mobile">Din rente:</p>
-              <h3>{{offersInfo.totalEffectiveRate | number: '1.2-2' }}%</h3>
+              <h5 class="m-0 font-weight-bold">{{offersInfo.totalEffectiveRate | number: '1.2-2' }}%</h5>
             </div>
           </div>
           <div class="col-6">
             <div class="bg-wrap px-0">
               <p class="paragraph-mobile">Beste tilbud:</p>
-              <h3>{{offersInfo.bestOfferEffectiveRate | number: '1.2-2' }}%</h3>
+              <h5 class="m-0 font-weight-bold">{{offersInfo.bestOfferEffectiveRate | number: '1.2-2' }}%</h5>
             </div>
           </div>
         </div>
 
         <div class="row">
           <div class="col-6">
-            <div class="bg-wrap h-120 px-0">
+            <div class="bg-wrap px-0">
               <p class="paragraph-mobile">Boligverdi:</p>
               <h5 class="m-0 font-weight-bold">{{offersInfo.propertyValue / 1000000 | number: '1.1-3'}} mill.</h5>
             </div>
           </div>
           <div class="col-6">
-            <div class="bg-wrap h-120 px-0">
+            <div class="bg-wrap px-0">
               <p class="paragraph-mobile">Gjenværende lån:</p>
               <h5 class="m-0 font-weight-bold">{{offersInfo.totalOutstandingDebt / 1000000 | number: '1.1-3'}} mill.
               </h5>
@@ -227,7 +231,8 @@
           </div>
         </div>
       </div>
-      <rente-button class="mt-2 col-12" color="primary" type="raised" [disabled]="changeBankLoading"
+      <rente-button class="mt-4 mb-2 col-12 change-bank-button-mobile" color="primary" type="raised"
+        [disabled]="changeBankLoading || offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS"
         [isLoading]="changeBankLoading" (click)="openChangeBankDialog(offersInfo.offers[0])">Be min bank om å
         matche beste tilbud*</rente-button>
       <div class="col-12" [@inOutAnimation] *ngIf="isShowTips">
@@ -311,7 +316,8 @@
                 </rente-button>
                 <rente-button class="mt-2" color="primary" type="stroked" [href]="offer.bankUrl">Bankens
                   hjemmeside</rente-button>
-                <rente-button class="mt-2" color="primary" [disabled]="changeBankLoading"
+                <rente-button class="mt-2" color="primary"
+                  [disabled]="changeBankLoading || offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS"
                   [isLoading]="changeBankLoading" type="raised" (click)="openChangeBankDialog(offer)">Be min bank
                   om
                   å

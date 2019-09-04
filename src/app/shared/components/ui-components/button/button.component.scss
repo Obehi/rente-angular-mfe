@@ -16,6 +16,10 @@ button.mat-primary {
   font-size: 15px !important;
 }
 
+.change-bank-button-mobile button.mat-primary {
+  min-height: 60px !important;
+}
+
 .disabled-button {
   border-radius: 4px;
   background-color: $green !important;
