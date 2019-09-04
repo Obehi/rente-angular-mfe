@@ -7,7 +7,7 @@
     <div class="my-3">
         Jeg er kunde i banken i dag, men jeg har funnet et bedre tilbud på renteradar.no og vurderer å bytte. Før jeg
         går
-        videre lurer jeg på om dere kan matche tilbudet? Opplysninger
+        videre lurer jeg på om dere kan matche tilbudet?
     </div>
     <div class="text-left dialog-text">
         <div><b>Opplysninger om produkt:</b><span></span></div>
@@ -17,8 +17,8 @@
         <div>Min alder: {{data.preview.clientInfo.age | number: '1.0-0'}} år</div>
         <div>Bank: {{data.preview.bankName}}</div>
         <div>Produktnavn: {{data.preview.productName}}</div>
-        <div>Eff. rente: {{data.preview.effectiveRate | number: '1.2-2'}}</div>
-        <div class="mb-4">Produkt: 
+        <div>Eff. rente: {{data.preview.effectiveRate | number: '1.2-2'}}%</div>
+        <div class="mb-4">Produkt:
             <a href="{{data.preview.offerUrl}}" target="_blank"> {{data.preview.offerUrl}} </a>
         </div>
         <div><b>Opplysninger om meg:</b><span></span></div>
@@ -44,19 +44,18 @@
 <hr class="my-0">
 <form [formGroup]="confirmForm" novalidate>
     <mat-checkbox formControlName="confirmation" (change)="isConfirmed = $event.checked">
-        Jeg bekrefter at jeg er over 18 år og myndig eller oppnevnt som verge,samt at banken ved behov kan foreta en
+        Jeg bekrefter at jeg er over 18 år og myndig eller oppnevnt som verge, samt at banken ved behov kan foreta en
         kredittvurdering.
     </mat-checkbox>
     <div mat-dialog-actions class="d-flex justify-content-center">
-        <div class="mx-4">
-            <rente-button color="primary" (click)="close()">
-                Lukk
+        <div class="button-200">
+            <rente-button color="primary" [isLoading]="isLoading" [disabled]="!isConfirmed || isLoading"
+                (click)="sendRequest()">Send til banken
             </rente-button>
         </div>
-        <div class="button-200">
-            <rente-button color="primary" [isLoading]="isLoading" [disabled]="!isConfirmed || isLoading" (click)="sendRequest()">Be
-                min
-                bank om å matche dette tilbudet
+        <div class="mx-4">
+            <rente-button color="primary" (click)="close()">
+                Avbryt
             </rente-button>
         </div>
     </div>
