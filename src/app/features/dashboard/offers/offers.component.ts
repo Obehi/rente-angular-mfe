@@ -115,7 +115,7 @@ export class OffersComponent implements OnInit {
       });
     }, err => {
       this.changeBankLoading = false;
-    })
+    });
 
   }
 

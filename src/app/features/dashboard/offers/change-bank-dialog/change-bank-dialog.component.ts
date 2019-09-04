@@ -30,7 +30,7 @@ export class ChangeBankDialogComponent implements OnInit {
     this.changeBankServiceService.sendBankOfferRequest(this.data.offerId).subscribe(_ => {
       this.isLoading = false;
       this.dialogRef.close();
-    })
+    });
   }
   public close(): void {
     this.dialogRef.close();
