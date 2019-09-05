@@ -1,8 +1,7 @@
 <div class="row justify-content-center" *ngIf="profileForm" [@shakeAnimation]>
-  <form [formGroup]="profileForm" class="col-lg-7 col-12 my-5" novalidate (ngSubmit)="updateProfile()">
+  <form [formGroup]="profileForm" class="col-lg-7 col-12 my-2 my-md-5" novalidate (ngSubmit)="updateProfile()">
     <div class="bg-wrap">
       <div class="row">
-        <p class="col-12 my-0">Medlemskap:</p>
         <mat-form-field class="col-12">
           <mat-label>Ingen (trykk her for å legge til)</mat-label>
           <mat-chip-list #membershipList aria-label="Membership selection">
@@ -11,7 +10,7 @@
               {{membership.label}}
               <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
             </mat-chip>
-            <input placeholder="Medlemskap" #membershipInput [formControl]="membershipCtrl" [matAutocomplete]="auto"
+            <input placeholder="Ingen (trykk her for å legge til)" #membershipInput [formControl]="membershipCtrl" [matAutocomplete]="auto"
               [matChipInputFor]="membershipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
               [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event)">
           </mat-chip-list>

@@ -1,5 +1,5 @@
 import { AuthService } from '@services/remote-api/auth.service';
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener, ViewChild, ElementRef } from '@angular/core';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { LocalStorageService } from '@services/local-storage.service';
 
@@ -34,6 +34,7 @@ import { LocalStorageService } from '@services/local-storage.service';
 export class HeaderComponent implements OnInit {
   public toggleNavbar: boolean;
   public isSmallScreen: boolean;
+  @ViewChild('navBarButton', { static: false }) navBarButton: ElementRef<HTMLElement>;
 
   constructor(
     public auth: AuthService,
@@ -54,4 +55,10 @@ export class HeaderComponent implements OnInit {
     this.isSmallScreen = window.innerWidth <= 1000;
   }
 
+  @HostListener('window:click', ['$event.target'])
+  onClick(targetElement: HTMLElement) {
+    if (targetElement !== this.navBarButton.nativeElement) {
+      this.toggleNavbar = false;
+    }
+  }
 }

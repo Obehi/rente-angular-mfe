@@ -16,7 +16,7 @@
                   {{membership.label}}
                   <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
                 </mat-chip>
-                <input placeholder="Medlemskap" #membershipInput [formControl]="membershipCtrl" [matAutocomplete]="auto"
+                <input placeholder="Ingen (trykk her for å legge til)" #membershipInput [formControl]="membershipCtrl" [matAutocomplete]="auto"
                   [matChipInputFor]="membershipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
                   [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event)">
               </mat-chip-list>

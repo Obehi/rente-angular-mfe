@@ -14,6 +14,7 @@ import { ContactUsComponent } from '@features/contact-us/contact-us.component';
 import { AuthGuard } from '@shared/guards/auth.guard';
 import { GetNotifiedComponent } from '@features/get-notified/get-notified.component';
 import { customMeta, defaultMeta, defaultTitle } from './config/routes-config';
+import { GuidePageComponent } from './features/guide-page/guide-page.component';
 
 const routes: Routes = [
   {
@@ -107,6 +108,16 @@ const routes: Routes = [
     path: ROUTES_MAP.getNotified, component: GetNotifiedComponent,
     data: {
       title: customMeta.faabeskjedTitle,
+      meta: {
+        name: defaultMeta.name,
+        description: defaultMeta.description
+      }
+    }
+  },
+  {
+    path: ROUTES_MAP.guide, component: GuidePageComponent,
+    data: {
+      title: customMeta.bekreftTitle,
       meta: {
         name: defaultMeta.name,
         description: defaultMeta.description

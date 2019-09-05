@@ -62,5 +62,6 @@ export const ROUTES_MAP: any = {
   auth: 'autentisering',
   dashboard: 'dashboard',
   initConfirmation: 'bekreft',
-  getNotified: 'faabeskjed'
+  getNotified: 'faabeskjed',
+  guide: 'slik-funger-renteradar'
 };
