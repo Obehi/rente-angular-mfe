@@ -1,12 +1,25 @@
 @import '../../../../../styles/theme/_colors.scss';
 
+@mixin text-style($size, $line-height) {
+  font-size: $size;
+  color: $black;
+  line-height: $line-height !important;
+}
+
 a {
   color: $primary;
 }
 
 ::ng-deep .mat-checkbox-layout {
   white-space: normal !important;
+
+  .mat-checkbox-label {
+    @include text-style(10px, 15px);
+  }
 }
+
+
+
 
 .dialog-text {
   @media (max-width:450px) {
