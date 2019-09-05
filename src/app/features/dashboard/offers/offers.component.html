@@ -82,7 +82,7 @@
             </div>
           </div>
           <rente-button class="mt-2 col-12"
-            [disabled]="changeBankLoading || offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS"
+            [disabled]="changeBankLoading"
             [isLoading]="changeBankLoading" color="primary" type="raised"
             (click)="openChangeBankDialog(offersInfo.offers[0])">Be min bank
             om å matche beste tilbud*</rente-button>

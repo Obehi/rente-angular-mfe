@@ -11,9 +11,9 @@
     </div>
     <div class="text-left dialog-text">
         <div><b>Opplysninger om produkt:</b><span></span></div>
-        <div>Lånebeløp: {{data.preview.totalOutstandingDebt | number: '1.0-0'}} kr</div>
+        <div><b>Lånebeløp: {{data.preview.totalOutstandingDebt | number: '0.0-0'}} kr</b></div>
         <div>Boligverdi: {{data.preview.propertyValue | number: '1.0-0'}} kr</div>
-        <div>Nedbetalingstid: {{data.preview.averageRemainingYears | number: '1.2-2'}} år</div>
+        <div>Nedbetalingstid: {{data.preview.averageRemainingYears | round}} år</div>
         <div>Min alder: {{data.preview.clientInfo.age | number: '1.0-0'}} år</div>
         <div>Bank: {{data.preview.bankName}}</div>
         <div>Produktnavn: {{data.preview.productName}}</div>
