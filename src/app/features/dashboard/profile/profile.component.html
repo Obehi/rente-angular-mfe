@@ -3,14 +3,14 @@
     <div class="bg-wrap">
       <div class="row">
         <mat-form-field class="col-12">
-          <mat-label>Ingen (trykk her for å legge til)</mat-label>
+          <p>Ingen (trykk her for å legge til):</p>
           <mat-chip-list #membershipList aria-label="Membership selection">
             <mat-chip *ngFor="let membership of memberships; let i = index;" [selectable]="selectable"
               [removable]="removable" (removed)="remove(membership, i)">
               {{membership.label}}
               <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
             </mat-chip>
-            <input placeholder="Ingen (trykk her for å legge til)" #membershipInput [formControl]="membershipCtrl" [matAutocomplete]="auto"
+            <input #membershipInput [formControl]="membershipCtrl" [matAutocomplete]="auto"
               [matChipInputFor]="membershipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
               [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event)">
           </mat-chip-list>

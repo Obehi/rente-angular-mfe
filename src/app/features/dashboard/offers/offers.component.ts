@@ -104,6 +104,9 @@ export class OffersComponent implements OnInit {
   }
 
   public openChangeBankDialog(offer): void {
+    if (this.changeBankLoading || this.offersInfo.offerSavingsType === this.offerSavingsType.NO_SAVINGS) {
+      return;
+    }
     this.changeBankLoading = true;
     const offerId = offer.id;
     this.changeBankServiceService.getBankOfferRequest(offerId).subscribe(preview => {
