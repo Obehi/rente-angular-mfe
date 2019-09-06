@@ -7,18 +7,18 @@
       <form [formGroup]="propertyForm" novalidate (ngSubmit)="updateProperty(propertyForm.value)">
         <div class="mb-4">
           <div>
-            <p class="my-0">Medlemskap:</p>
+            <p class="mb-1">Medlemskap:</p>
             <mat-form-field class="d-block">
-                <p>Ingen (trykk her for å legge til):</p>
               <mat-chip-list #membershipList aria-label="Membership selection">
                 <mat-chip *ngFor="let membership of memberships; let i = index;" [selectable]="selectable"
                   [removable]="removable" (removed)="remove(membership, i)">
                   {{membership.label}}
                   <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
                 </mat-chip>
-                <input #membershipInput [formControl]="membershipCtrl" [matAutocomplete]="auto"
-                  [matChipInputFor]="membershipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                  [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event)">
+                <input [placeholder]="'Ingen (trykk her for å legge til)'" #membershipInput
+                  [formControl]="membershipCtrl" [matAutocomplete]="auto" [matChipInputFor]="membershipList"
+                  [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+                  (matChipInputTokenEnd)="add($event)">
               </mat-chip-list>
 
               <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">

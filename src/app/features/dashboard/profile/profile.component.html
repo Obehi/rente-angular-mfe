@@ -2,28 +2,32 @@
   <form [formGroup]="profileForm" class="col-lg-7 col-12 my-2 my-md-5" novalidate (ngSubmit)="updateProfile()">
     <div class="bg-wrap">
       <div class="row">
-        <mat-form-field class="col-12">
-          <p>Ingen (trykk her for å legge til):</p>
-          <mat-chip-list #membershipList aria-label="Membership selection">
-            <mat-chip *ngFor="let membership of memberships; let i = index;" [selectable]="selectable"
-              [removable]="removable" (removed)="remove(membership, i)">
-              {{membership.label}}
-              <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-            </mat-chip>
-            <input #membershipInput [formControl]="membershipCtrl" [matAutocomplete]="auto"
-              [matChipInputFor]="membershipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-              [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event)">
-          </mat-chip-list>
+        <div class="col-12">
+          <p class="mb-1">Medlemskap:</p>
+          <mat-form-field class="col-12 px-0">
+            <mat-chip-list #membershipList aria-label="Membership selection">
+              <mat-chip *ngFor="let membership of memberships; let i = index;" [selectable]="selectable"
+                [removable]="removable" (removed)="remove(membership, i)">
+                {{membership.label}}
+                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+              </mat-chip>
+              <input [placeholder]="'Ingen (trykk her for å legge til)'" #membershipInput [formControl]="membershipCtrl"
+                [matAutocomplete]="auto" [matChipInputFor]="membershipList"
+                [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+                (matChipInputTokenEnd)="add($event)">
+            </mat-chip-list>
 
-          <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
-            <mat-option *ngFor="let membership of filteredMemberships | async" [value]="membership">
-              {{membership.label}}
-            </mat-option>
-          </mat-autocomplete>
-        </mat-form-field>
-        <rente-form-message class="text-left d-block" [type]="'info'">
-          Bankene gir ofte bedre betingelser hvis du er medlem i en organisasjon
-        </rente-form-message>
+            <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+              <mat-option *ngFor="let membership of filteredMemberships | async" [value]="membership">
+                {{membership.label}}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+          <rente-form-message class="text-left d-block memberships-info-messageцц" [type]="'info'">
+            Bankene gir ofte bedre betingelser hvis du er medlem i en organisasjon
+          </rente-form-message>
+        </div>
+
       </div>
 
       <div class="row">
