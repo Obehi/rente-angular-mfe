@@ -1,3 +1,17 @@
+@import '../../../styles/theme/_colors.scss';
+
+@mixin text-style($size, $line-height) {
+  font-size: $size;
+  color: $black;
+  font-family: Lato;
+  line-height: $line-height;
+}
+
 .guide-image {
-    max-width: 100%;
+  max-width: 100%;
+}
+
+.title {
+  @include text-style(30px, 36px);
+  letter-spacing: 0.5px;
 }
