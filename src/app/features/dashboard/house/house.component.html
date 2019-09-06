@@ -1,7 +1,7 @@
 <div class="house" *ngIf="autoPropertyForm && manualPropertyForm" [@shakeAnimation]>
   <div class="">
     <mat-radio-group [(ngModel)]="isAutoMode" (change)="setPropertyMode()" class="">
-      <div class="row justify-content-center mt-5">
+      <div class="row justify-content-center mt-2 mt-md-5">
         <div class="col-lg-5 col-12">
           <mat-radio-button [value]="true">
             <h2 class="title m-0">Bruk Renteradars estimerte boligverdi</h2>

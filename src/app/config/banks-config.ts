@@ -36,7 +36,7 @@ export const BANKS_DATA = {
   },
   BN_BANK: {
     name: 'BN_BANK',
-    img: '',
+    img: '../../assets/img/banks-logo/square/BN.png',
     imgCircle: ''
   },
   BANK2: {
@@ -61,7 +61,7 @@ export const BANKS_DATA = {
   },
   BJUGN_SB: {
     name: 'BJUGN_SB',
-    img: '',
+    img: '../../assets/img/banks-logo/square/bjugn.png',
     imgCircle: ''
   },
   BLAKER_SB: {
@@ -76,7 +76,7 @@ export const BANKS_DATA = {
   },
   CULTURA: {
     name: 'CULTURA',
-    img: '',
+    img: '../../assets/img/banks-logo/square/Cultura.png',
     imgCircle: ''
   },
   DANSKE_BANK: {
@@ -216,7 +216,7 @@ export const BANKS_DATA = {
   },
   JERNBANEPERSONALETS: {
     name: 'JERNBANEPERSONALETS',
-    img: '',
+    img: '../../assets/img/banks-logo/square/jernbane.png',
     imgCircle: ''
   },
   JAEREN_SB: {
@@ -336,7 +336,7 @@ export const BANKS_DATA = {
   },
   ROMSDAL_SB: {
     name: 'ROMSDAL_SB',
-    img: '',
+    img: '../../assets/img/banks-logo/square/Romsdal.png',
     imgCircle: ''
   },
   SANDNES_SB: {
@@ -471,7 +471,7 @@ export const BANKS_DATA = {
   },
   SB_SOGNFJORDANE: {
     name: 'SB_SOGNFJORDANE',
-    img: '',
+    img: '../../assets/img/banks-logo/square/Sogn og Fjordane.png',
     imgCircle: ''
   },
   SB_SOR: {
@@ -517,6 +517,11 @@ export const BANKS_DATA = {
   SOGNE_SB: {
     name: 'SOGNE_SB',
     img: '',
+    imgCircle: ''
+  },
+  SOKNEDAL: {
+    name: 'SOKNEDAL',
+    img: '../../assets/img/banks-logo/square/Soknedal.png',
     imgCircle: ''
   },
   TOLGA_SB: {

@@ -1,5 +1,5 @@
 <div class="offers" *ngIf="offersInfo && !noOffers" [@shakeAnimation]>
-  <div *ngIf="!isSmallScreen; else smallScreenOffers">
+  <div *ngIf="!isSmallScreen; else smallScreenOffers" class="mt-5">
     <h3>Rentebarometer:</h3>
     <div class="row">
       <div class="col-12 col-md-5">
@@ -81,6 +81,11 @@
               <h3>{{offersInfo.propertyValue / 1000000 | number: '1.1-3'}} millioner</h3>
             </div>
           </div>
+          <rente-button class="mt-2 col-12"
+            [disabled]="changeBankLoading || offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS || true"
+            [isLoading]="changeBankLoading" color="primary" type="raised"
+            (click)="openChangeBankDialog(offersInfo.offers[0])">Be min bank
+            matche beste tilbud*</rente-button>
         </div>
       </div>
     </div>
@@ -139,12 +144,13 @@
                 </rente-button>
                 <rente-button class="mt-2" color="primary" type="stroked" [href]="offer.bankUrl">Bankens
                   hjemmeside</rente-button>
-                <rente-button class="mt-2 disabled-button" [disabled]="true" color="primary" type="raised">Start bytte*
-                </rente-button>
-                <rente-button class="mt-2 disabled-button" [disabled]="true" color="primary" type="raised">Be min bank
-                  om
-                  å
+                <rente-button class="mt-2"
+                  [disabled]="changeBankLoading || offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS || true"
+                  [isLoading]="changeBankLoading" color="primary" type="raised" (click)="openChangeBankDialog(offer)">Be
+                  min bank
                   matche dette tilbudet*</rente-button>
+                <rente-button class="mt-2" [disabled]="true" color="primary" type="raised">Start bytte*
+                </rente-button>
                 <p class="text-right coming-soon-text">
                   *Kommer snart
                 </p>
@@ -157,7 +163,7 @@
   </div>
 
   <ng-template #smallScreenOffers>
-    <h3>Rentebarometer:</h3>
+    <h3 class="mt-1">Rentebarometer:</h3>
     <div class="row">
       <div class="col-12 col-md-5">
         <rente-rating [rating]="offersService.getRatingNumberFromLoanState(offersInfo.offerSavingsType)"></rente-rating>
@@ -196,26 +202,26 @@
           <div class="col-6">
             <div class="bg-wrap px-0">
               <p class="paragraph-mobile">Din rente:</p>
-              <h3>{{offersInfo.totalEffectiveRate | number: '1.2-2' }}%</h3>
+              <h5 class="m-0 font-weight-bold">{{offersInfo.totalEffectiveRate | number: '1.2-2' }}%</h5>
             </div>
           </div>
           <div class="col-6">
             <div class="bg-wrap px-0">
               <p class="paragraph-mobile">Beste tilbud:</p>
-              <h3>{{offersInfo.bestOfferEffectiveRate | number: '1.2-2' }}%</h3>
+              <h5 class="m-0 font-weight-bold">{{offersInfo.bestOfferEffectiveRate | number: '1.2-2' }}%</h5>
             </div>
           </div>
         </div>
 
         <div class="row">
           <div class="col-6">
-            <div class="bg-wrap h-120 px-0">
+            <div class="bg-wrap px-0">
               <p class="paragraph-mobile">Boligverdi:</p>
               <h5 class="m-0 font-weight-bold">{{offersInfo.propertyValue / 1000000 | number: '1.1-3'}} mill.</h5>
             </div>
           </div>
           <div class="col-6">
-            <div class="bg-wrap h-120 px-0">
+            <div class="bg-wrap px-0">
               <p class="paragraph-mobile">Gjenværende lån:</p>
               <h5 class="m-0 font-weight-bold">{{offersInfo.totalOutstandingDebt / 1000000 | number: '1.1-3'}} mill.
               </h5>
@@ -223,7 +229,10 @@
           </div>
         </div>
       </div>
-
+      <rente-button class="mt-4 mb-2 col-12 change-bank-button-mobile" color="primary" type="raised"
+        [disabled]="changeBankLoading || offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS || true"
+        [isLoading]="changeBankLoading" (click)="openChangeBankDialog(offersInfo.offers[0])">Be min bank
+        matche beste tilbud*</rente-button>
       <div class="col-12" [@inOutAnimation] *ngIf="isShowTips">
         <div class="row justify-content-start mt-2">
           <div class="col-12 pl-2" (click)="isShowTips = !isShowTips">
@@ -305,12 +314,12 @@
                 </rente-button>
                 <rente-button class="mt-2" color="primary" type="stroked" [href]="offer.bankUrl">Bankens
                   hjemmeside</rente-button>
-                <rente-button class="mt-2 disabled-button" [disabled]="true" color="primary" type="raised">Start bytte*
-                </rente-button>
-                <rente-button class="mt-2 disabled-button" color="primary" [disabled]="true" type="raised">Be min bank
-                  om
-                  å
+                <rente-button class="mt-2" color="primary"
+                  [disabled]="changeBankLoading || offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS || true"
+                  [isLoading]="changeBankLoading" type="raised" (click)="openChangeBankDialog(offer)">Be min bank
                   matche dette tilbudet*</rente-button>
+                <rente-button class="mt-2" [disabled]="true" color="primary" type="raised">Start bytte*
+                </rente-button>
                 <p class="text-right coming-soon-text">
                   *Kommer snart
                 </p>

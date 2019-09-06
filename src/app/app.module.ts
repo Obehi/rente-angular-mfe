@@ -22,6 +22,7 @@ import { registerLocaleData } from '@angular/common';
 import localeNo from '@angular/common/locales/nb';
 import { MaterialModule } from '@shared/material/material.module';
 import { GetNotifiedComponent } from '@features/get-notified/get-notified.component';
+import { GuidePageComponent } from './features/guide-page/guide-page.component';
 
 registerLocaleData(localeNo);
 
@@ -38,7 +39,8 @@ registerLocaleData(localeNo);
     BankSelectComponent,
     ContactUsComponent,
     InitConfirmationComponent,
-    GetNotifiedComponent
+    GetNotifiedComponent,
+    GuidePageComponent
   ],
   imports: [
     BrowserModule,

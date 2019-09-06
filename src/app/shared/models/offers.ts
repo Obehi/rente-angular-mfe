@@ -5,7 +5,7 @@ export interface Offers {
   bestOfferTotalSaving: number | null;
   bestSavingsFirstYear: number | null;
   bestTotalSavings: number | null;
-  currentLoaofferSavingsTypenState: string;
+  offerSavingsType: string;
   membership: string | null;
   offers: OfferInfo[];
   offersPresent: boolean | null;

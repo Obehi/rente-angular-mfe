@@ -7,50 +7,58 @@
     <div class="my-3">
         Jeg er kunde i banken i dag, men jeg har funnet et bedre tilbud på renteradar.no og vurderer å bytte. Før jeg
         går
-        videre lurer jeg på om dere kan matche tilbudet? Opplysninger
+        videre lurer jeg på om dere kan matche tilbudet?
     </div>
     <div class="text-left dialog-text">
         <div><b>Opplysninger om produkt:</b><span></span></div>
-        <div>Lånebeløp: 2 122 000 kr</div>
-        <div>Boligverdi: 7 960 000 kr</div>
-        <div>Nedbetalingstid: 1 år</div>
-        <div>Min alder: 27 år</div>
-        <div>Bank: Nybygger.no (Sparebanken Øst)</div>
-        <div>Produktnavn: Boliglån 60% </div>
-        <div>Eff. rente: 2.39% </div>
-        <div class="mb-4">Produkt: link</div>
+        <div><b>Lånebeløp:</b> {{data.preview.totalOutstandingDebt | number: '0.0-0'}} kr</div>
+        <div><b>Boligverdi: </b> {{data.preview.propertyValue | number: '1.0-0'}} kr</div>
+        <div><b>Nedbetalingstid:</b> {{data.preview.averageRemainingYears | round}} år</div>
+        <div><b>Min alder:</b> {{data.preview.clientInfo.age | number: '1.0-0'}} år</div>
+        <div><b>Bank:</b> {{data.preview.bankName}}</div>
+        <div><b>Produktnavn: </b>{{data.preview.productName}}</div>
+        <div> <b>Eff. rente:</b> {{data.preview.effectiveRate | number: '1.2-2'}}%</div>
+        <div class="mb-4"> <b>Produkt:</b>
+            <a href="{{data.preview.offerUrl}}" target="_blank"> Link til produkt på Finansportalen </a>
+        </div>
         <div><b>Opplysninger om meg:</b><span></span></div>
-        <div>Navn: Petter Hansen</div>
-        <div>Adresse:</div>
-        <div>Postnr:</div>
-        <div>Poststed:</div>
-        <div>Telefon:</div>
-        <div class="mb-4">E-post:</div>
+        <div><b>Navn:</b> {{data.preview.clientInfo.name}}</div>
+        <div><b>Adresse:</b> {{data.preview.clientInfo.address}}</div>
+        <div><b>Postnr:</b> {{data.preview.clientInfo.zip}}</div>
+        <div><b>Telefon:</b> {{data.preview.clientInfo.phone}}</div>
+        <div class="mb-4"><b>E-post:</b> {{data.preview.clientInfo.email}}
+        </div>
         <div class="mb-4">
             Jeg ønsker at dere kontakter meg per epost eller per telefon.
         </div>
         <div class="mb-4">
-            Jeg bekrefter at jeg er over 18 år og myndig eller oppnevnt som verge,samt at banken ved behov kan foreta en
+            Jeg bekrefter at jeg er over 18 år og myndig eller oppnevnt som verge, samt at banken ved behov kan foreta
+            en
             kredittvurdering.
         </div>
         <div class="mb-4">
             Mvh,<br>
-            Name
+            {{data.preview.clientInfo.name}}
         </div>
-
     </div>
 </div>
 <hr class="my-0">
 <form [formGroup]="confirmForm" novalidate>
     <mat-checkbox formControlName="confirmation" (change)="isConfirmed = $event.checked">
-        Jeg bekrefter at jeg er over 18 år og myndig eller oppnevnt som verge,samt at banken ved behov kan foreta en
+        Jeg bekrefter at jeg er over 18 år og myndig eller oppnevnt som verge, samt at banken ved behov kan foreta en
         kredittvurdering.
     </mat-checkbox>
-    <div mat-dialog-actions class="d-flex justify-content-center">
-        <div class="button-200">
-            <rente-button cdkFocusInitial color="primary" [disabled]="!isConfirmed" (click)="onClose()">Be min
-                bank om å matche dette tilbudet
+    <div mat-dialog-actions class="row justify-content-center">
+        <div class="col-8 col-md-6">
+            <rente-button color="primary" [isLoading]="isLoading" [disabled]="!isConfirmed || isLoading"
+                (click)="sendRequest()">Send til banken
             </rente-button>
         </div>
+        <div class="col-4 col-md-2">
+            <rente-button color="primary" (click)="close()">
+                Avbryt
+            </rente-button>
+        </div>
+
     </div>
 </form>

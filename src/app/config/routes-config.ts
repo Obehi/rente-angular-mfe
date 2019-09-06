@@ -8,7 +8,8 @@ export const defaultMeta = {
 };
 
 export const customMeta = {
-  landingTitle: 'Renteradar.no | Bekreft  | Overvåk boliglånsrenten din gratis',
+  landingTitle: 'Renteradar.no | Sjekk og overvåk boliglånsrenten din | Hjelp med å velge riktig lån',
+  bekreftTitle: 'Renteradar.no | Bekreft  | Overvåk boliglånsrenten din gratis',
   tilbudTitle: 'Renteradar.no | Min side | Overvåk boliglånsrenten din gratis',
   mineLanTitle: 'Renteradar.no | Mine lån  | Overvåk boliglånsrenten din gratis',
   boligTitle: 'Renteradar.no | Bolig  | Overvåk boliglånsrenten din gratis',
@@ -61,5 +62,6 @@ export const ROUTES_MAP: any = {
   auth: 'autentisering',
   dashboard: 'dashboard',
   initConfirmation: 'bekreft',
-  getNotified: 'faabeskjed'
+  getNotified: 'faabeskjed',
+  guide: 'slik-funger-renteradar'
 };

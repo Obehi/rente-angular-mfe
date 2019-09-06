@@ -32,6 +32,7 @@ import { MaterialModule } from './material/material.module';
 import { SnackBarService } from './services/snackbar.service';
 import { MetaService } from './services/meta.service';
 import { TitleService } from './services/title.service';
+import { RoundPipe } from './pipes/round.pipe';
 
 // export declare const options: Partial<IConfig> | (() => Partial<IConfig>);
 
@@ -80,8 +81,8 @@ const services = [
     // MatChipsModule,
     // MatIconModule
   ],
-  declarations: [...components, BigNumberPipe, ChipsAutocompleteComponent, AbsPipe],
-  exports: [...components, AbsPipe, TextMaskModule],
+  declarations: [...components, BigNumberPipe, ChipsAutocompleteComponent, AbsPipe, RoundPipe],
+  exports: [...components, AbsPipe, TextMaskModule, RoundPipe],
   providers: [...services]
 })
 export class SharedModule { }
