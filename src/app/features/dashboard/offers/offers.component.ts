@@ -104,7 +104,7 @@ export class OffersComponent implements OnInit {
   }
 
   public openChangeBankDialog(offer): void {
-    if (this.changeBankLoading || this.offersInfo.offerSavingsType === this.offerSavingsType.NO_SAVINGS) {
+    if (this.changeBankLoading || this.offersInfo.offerSavingsType === this.offerSavingsType.NO_SAVINGS || true) {
       return;
     }
     this.changeBankLoading = true;
