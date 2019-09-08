@@ -10,7 +10,7 @@
         videre lurer jeg på om dere kan matche tilbudet?
     </div>
     <div class="text-left dialog-text">
-        <div><b>Opplysninger om produkt:</b><span></span></div>
+        <div><u><b>Opplysninger om tilbud:</b></u><span></span></div>
         <div><b>Lånebeløp:</b> {{data.preview.totalOutstandingDebt | number: '0.0-0'}} kr</div>
         <div><b>Boligverdi: </b> {{data.preview.propertyValue | number: '1.0-0'}} kr</div>
         <div><b>Nedbetalingstid:</b> {{data.preview.averageRemainingYears | round}} år</div>
@@ -21,7 +21,7 @@
         <div class="mb-4"> <b>Produkt:</b>
             <a href="{{data.preview.offerUrl}}" target="_blank"> Link til produkt på Finansportalen </a>
         </div>
-        <div><b>Opplysninger om meg:</b><span></span></div>
+        <div><u><b>Opplysninger om meg:</b></u><span></span></div>
         <div><b>Navn:</b> {{data.preview.clientInfo.name}}</div>
         <div><b>Adresse:</b> {{data.preview.clientInfo.address}}</div>
         <div><b>Postnr:</b> {{data.preview.clientInfo.zip}}</div>

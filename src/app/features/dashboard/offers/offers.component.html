@@ -82,10 +82,10 @@
             </div>
           </div>
           <rente-button class="mt-2 col-12"
-            [disabled]="changeBankLoading || offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS || true"
+            [disabled]="changeBankLoading || offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS"
             [isLoading]="changeBankLoading" color="primary" type="raised"
             (click)="openChangeBankDialog(offersInfo.offers[0])">Be min bank
-            matche beste tilbud*</rente-button>
+            matche beste tilbud</rente-button>
         </div>
       </div>
     </div>
@@ -145,10 +145,10 @@
                 <rente-button class="mt-2" color="primary" type="stroked" [href]="offer.bankUrl">Bankens
                   hjemmeside</rente-button>
                 <rente-button class="mt-2"
-                  [disabled]="changeBankLoading || offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS || true"
+                  [disabled]="changeBankLoading || offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS"
                   [isLoading]="changeBankLoading" color="primary" type="raised" (click)="openChangeBankDialog(offer)">Be
                   min bank
-                  matche dette tilbudet*</rente-button>
+                  matche dette tilbudet</rente-button>
                 <rente-button class="mt-2" [disabled]="true" color="primary" type="raised">Start bytte*
                 </rente-button>
                 <p class="text-right coming-soon-text">
@@ -230,9 +230,9 @@
         </div>
       </div>
       <rente-button class="mt-4 mb-2 col-12 change-bank-button-mobile" color="primary" type="raised"
-        [disabled]="changeBankLoading || offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS || true"
+        [disabled]="changeBankLoading || offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS"
         [isLoading]="changeBankLoading" (click)="openChangeBankDialog(offersInfo.offers[0])">Be min bank
-        matche beste tilbud*</rente-button>
+        matche beste tilbud</rente-button>
       <div class="col-12" [@inOutAnimation] *ngIf="isShowTips">
         <div class="row justify-content-start mt-2">
           <div class="col-12 pl-2" (click)="isShowTips = !isShowTips">
@@ -315,9 +315,9 @@
                 <rente-button class="mt-2" color="primary" type="stroked" [href]="offer.bankUrl">Bankens
                   hjemmeside</rente-button>
                 <rente-button class="mt-2" color="primary"
-                  [disabled]="changeBankLoading || offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS || true"
+                  [disabled]="changeBankLoading || offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS"
                   [isLoading]="changeBankLoading" type="raised" (click)="openChangeBankDialog(offer)">Be min bank
-                  matche dette tilbudet*</rente-button>
+                  matche dette tilbudet</rente-button>
                 <rente-button class="mt-2" [disabled]="true" color="primary" type="raised">Start bytte*
                 </rente-button>
                 <p class="text-right coming-soon-text">
