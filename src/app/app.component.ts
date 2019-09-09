@@ -25,10 +25,12 @@ export class AppComponent implements OnInit {
 
       if (event instanceof NavigationEnd) {
         this.changeTitles();
-        (window as any).dataLayer.push({
-          event: 'virtualPageView',
-          url: window.location.href
-        });
+        if ((window as any).dataLayer) {
+          (window as any).dataLayer.push({
+            event: 'virtualPageView',
+            url: window.location.href
+          });
+        }
       }
     });
 
