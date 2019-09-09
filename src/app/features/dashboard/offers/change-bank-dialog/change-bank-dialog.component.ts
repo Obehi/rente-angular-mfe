@@ -36,7 +36,7 @@ export class ChangeBankDialogComponent implements OnInit {
         width: '800px',
         maxHeight: '90vh',
         data: { isError: false }
-      })
+      });
     }, err => {
       this.isLoading = false;
       this.dialogRef.close();
@@ -44,7 +44,7 @@ export class ChangeBankDialogComponent implements OnInit {
         width: '800px',
         maxHeight: '90vh',
         data: { isError: true }
-      })
+      });
     });
   }
   public close(): void {
