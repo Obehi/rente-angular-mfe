@@ -1,0 +1,36 @@
+<div *ngIf="!isErrorState; else errorState">
+    <h2 mat-dialog-title class="text-left my-0">Melding sendt til din bank!</h2>
+    <hr class="my-0">
+
+    <p>
+        Meldingen er sendt til din bank med deg på kopi. Hvis du ikke finner denne i din innboks ber vi deg sjekke
+        spam-filteret (Uønsket mail).
+    </p>
+    <p>
+        Banken tar vanligvis kontakt med deg i løpet av noen dager, men det er dessverre ingen garanti for dette. Hvis
+        du
+        ikke hører noe fra banken anbefaler vi deg å ta kontakt med den enten på telefon eller via chat. Du kan da
+        henvise
+        til tilbudet Renteradar fant (se mottatt email).
+    </p>
+</div>
+
+<ng-template #errorState>
+    <h2 mat-dialog-title class="text-left my-0">Noe gikk galt…</h2>
+    <hr class="my-0">
+
+    <p>
+        Beklager, noe gikk galt og vi vil rette opp feilen så fort som mulig.
+        Vennligst prøv igjen senere.
+    </p>
+
+</ng-template>
+
+
+<div mat-dialog-actions class="row justify-content-center">
+    <div class="col-12">
+        <rente-button color="primary" (click)="close()">
+            Lukk
+        </rente-button>
+    </div>
+</div>
