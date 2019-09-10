@@ -25,6 +25,10 @@ import {
 import { RateTypeFixedComponent } from './rate-type-fixed/rate-type-fixed.component';
 import { NoLoansComponent } from './no-loans/no-loans.component';
 import { ChangeBankDialogComponent } from './offers/change-bank-dialog/change-bank-dialog.component';
+import {
+  SuccessChangeBankDialogComponent
+} from './offers/change-bank-dialog/success-change-bank-dialog/success-change-bank-dialog.component';
+
 // TODO: ADD separate module for material import
 @NgModule({
   declarations: [
@@ -39,6 +43,7 @@ import { ChangeBankDialogComponent } from './offers/change-bank-dialog/change-ba
     RateTypeFixedComponent,
     NoLoansComponent,
     ChangeBankDialogComponent,
+    SuccessChangeBankDialogComponent,
   ],
   imports: [
     CommonModule,
@@ -58,6 +63,6 @@ import { ChangeBankDialogComponent } from './offers/change-bank-dialog/change-ba
     MatProgressSpinnerModule,
     MatCheckboxModule
   ],
-  entryComponents: [DialogInfoComponent, ChangeBankDialogComponent]
+  entryComponents: [DialogInfoComponent, ChangeBankDialogComponent, SuccessChangeBankDialogComponent]
 })
 export class DashboardModule { }

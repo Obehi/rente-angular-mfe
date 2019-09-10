@@ -1,7 +1,8 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ChangeBankServiceService } from '../../../../shared/services/remote-api/change-bank-service.service';
+import { SuccessChangeBankDialogComponent } from './success-change-bank-dialog/success-change-bank-dialog.component';
 
 @Component({
   selector: 'rente-change-bank-dialog',
@@ -16,6 +17,7 @@ export class ChangeBankDialogComponent implements OnInit {
     private fb: FormBuilder,
     public dialogRef: MatDialogRef<ChangeBankDialogComponent>,
     private changeBankServiceService: ChangeBankServiceService,
+    public dialog: MatDialog,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
 
@@ -30,6 +32,19 @@ export class ChangeBankDialogComponent implements OnInit {
     this.changeBankServiceService.sendBankOfferRequest(this.data.offerId).subscribe(_ => {
       this.isLoading = false;
       this.dialogRef.close();
+      this.dialog.open(SuccessChangeBankDialogComponent, {
+        width: '800px',
+        maxHeight: '90vh',
+        data: { isError: false }
+      });
+    }, err => {
+      this.isLoading = false;
+      this.dialogRef.close();
+      this.dialog.open(SuccessChangeBankDialogComponent, {
+        width: '800px',
+        maxHeight: '90vh',
+        data: { isError: true }
+      });
     });
   }
   public close(): void {

@@ -11,22 +11,22 @@
     </div>
     <div class="text-left dialog-text">
         <div><u><b>Opplysninger om tilbud:</b></u><span></span></div>
-        <div><b>Lånebeløp:</b> {{data.preview.totalOutstandingDebt | number: '0.0-0'}} kr</div>
-        <div><b>Boligverdi: </b> {{data.preview.propertyValue | number: '1.0-0'}} kr</div>
-        <div><b>Nedbetalingstid:</b> {{data.preview.averageRemainingYears | round}} år</div>
-        <div><b>Min alder:</b> {{data.preview.clientInfo.age | number: '1.0-0'}} år</div>
-        <div><b>Bank:</b> {{data.preview.bankName}}</div>
+        <div><b>Lånebeløp: </b>{{data.preview.totalOutstandingDebt | number: '0.0-0'}} kr</div>
+        <div><b>Boligverdi: </b>{{data.preview.propertyValue | number: '1.0-0'}} kr</div>
+        <div><b>Nedbetalingstid: </b>{{data.preview.averageRemainingYears | round}} år</div>
+        <div><b>Min alder: </b> {{data.preview.clientInfo.age | number: '1.0-0'}} år</div>
+        <div><b>Bank: </b> {{data.preview.bankName}}</div>
         <div><b>Produktnavn: </b>{{data.preview.productName}}</div>
-        <div> <b>Eff. rente:</b> {{data.preview.effectiveRate | number: '1.2-2'}}%</div>
-        <div class="mb-4"> <b>Produkt:</b>
+        <div> <b>Eff. rente: </b>{{data.preview.effectiveRate | number: '1.2-2'}}%</div>
+        <div class="mb-4"> <b>Produkt: </b>
             <a href="{{data.preview.offerUrl}}" target="_blank"> Link til produkt på Finansportalen </a>
         </div>
         <div><u><b>Opplysninger om meg:</b></u><span></span></div>
-        <div><b>Navn:</b> {{data.preview.clientInfo.name}}</div>
-        <div><b>Adresse:</b> {{data.preview.clientInfo.address}}</div>
-        <div><b>Postnr:</b> {{data.preview.clientInfo.zip}}</div>
-        <div><b>Telefon:</b> {{data.preview.clientInfo.phone}}</div>
-        <div class="mb-4"><b>E-post:</b> {{data.preview.clientInfo.email}}
+        <div><b>Navn: </b>{{data.preview.clientInfo.name}}</div>
+        <div><b>Adresse: </b>{{data.preview.clientInfo.address}}</div>
+        <div><b>Postnr: </b>{{data.preview.clientInfo.zip}}</div>
+        <div><b>Telefon: </b>{{data.preview.clientInfo.phone}}</div>
+        <div class="mb-4"><b>E-post: </b>{{data.preview.clientInfo.email}}
         </div>
         <div class="mb-4">
             Jeg ønsker at dere kontakter meg per epost eller per telefon.
