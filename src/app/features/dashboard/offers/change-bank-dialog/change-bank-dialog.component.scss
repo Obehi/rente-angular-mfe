@@ -18,8 +18,9 @@ a {
   }
 }
 
-
-
+.info-message{
+  @include text-style(13px, 15px);
+}
 
 .dialog-text {
   @media (max-width:450px) {
