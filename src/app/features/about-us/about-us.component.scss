@@ -1,8 +1,21 @@
+@import '../../../styles/theme/_colors.scss';
+
 .card-title {
-    @media (max-width:750px) {
-      margin-top: 0 !important;
-    }
+  @media (max-width:750px) {
+    margin-top: 0 !important;
+  }
 }
+
 .border-none {
   border: none;
+}
+
+a {
+  color: $primary;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
 }
