@@ -4,9 +4,9 @@
       <img class="img-fluid img-200" src="../../../../assets/img/renteradar_white_logo.svg" alt="Renteradar">
     </a>
 
-    <button #navBarButton class="navbar-toggler navbar-toggler-right text-uppercase bg-primary text-white rounded" type="button"
-      data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
-      aria-label="Toggle navigation" (click)="toggleNav()">
+    <button #navBarButton class="navbar-toggler navbar-toggler-right text-uppercase bg-primary text-white rounded"
+      type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
+      aria-expanded="false" aria-label="Toggle navigation" (click)="toggleNav()">
       Menu
       <i class="fas fa-bars"></i>
     </button>
@@ -111,6 +111,14 @@
             routerLinkActive="router-link-active">
             Logg ut
           </a>
+        </li>
+        <li class="nav-item mx-0 mx-lg-1">
+          <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger text-white"
+            [routerLink]="['/ofte-stilte-sporsmaal']" routerLinkActive="router-link-active">FAQ</a>
+        </li>
+        <li class="nav-item mx-0 mx-lg-1">
+          <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger text-white" [routerLink]="['/personvern']"
+            routerLinkActive="router-link-active">Personvern</a>
         </li>
       </ul>
     </div>
