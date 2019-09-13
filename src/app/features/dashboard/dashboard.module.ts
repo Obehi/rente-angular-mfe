@@ -28,7 +28,10 @@ import { ChangeBankDialogComponent } from './offers/change-bank-dialog/change-ba
 import {
   SuccessChangeBankDialogComponent
 } from './offers/change-bank-dialog/success-change-bank-dialog/success-change-bank-dialog.component';
+import { ShareButtonModule } from '@ngx-share/button';
 
+import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome';
+import { shareButtonsIcons } from '../../../icons';
 // TODO: ADD separate module for material import
 @NgModule({
   declarations: [
@@ -61,8 +64,15 @@ import {
     MatIconModule,
     MatAutocompleteModule,
     MatProgressSpinnerModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    ShareButtonModule,
+    FontAwesomeModule
   ],
   entryComponents: [DialogInfoComponent, ChangeBankDialogComponent, SuccessChangeBankDialogComponent]
 })
-export class DashboardModule { }
+export class DashboardModule {
+
+  constructor(library: FaIconLibrary) {
+    library.addIcons(...shareButtonsIcons);
+  }
+}
