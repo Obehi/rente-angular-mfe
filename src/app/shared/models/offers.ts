@@ -21,6 +21,8 @@ export interface OfferInfo {
   depotFee: number;
   effectiveRate: number;
   establishmentFee: number;
+  nominalRate: number;
+  monthlyFee: number;
   id: number;
   marketArea: string;
   maxInstallmentFreePeriod: number;
