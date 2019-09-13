@@ -68,6 +68,10 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
+    this.unsubscribeEverything();
+  }
+
+  unsubscribeEverything() {
     if (this.stompClient && this.stompClient.connected) {
       this.stompClient.disconnect();
       this.stompClient.unsubscribe();
@@ -237,13 +241,12 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
           case BANKID_STATUS.PASSPHRASE_CONFIRM_FAIL:
             this.isShowpassPhrase = false;
             this.viewStatus.isPassphraseConfirmFail = true;
-            this.connectionTimerSubscription.unsubscribe();
+            this.unsubscribeEverything();
             this.loginStep2Status = MESSAGE_STATUS.ERROR;
             break;
           case BANKID_STATUS.CRAWLER_ERROR:
             this.viewStatus.isCrawlerError = true;
-            this.connectionTimerSubscription.unsubscribe();
-            this.crawlingTimerSubscription.unsubscribe();
+            this.unsubscribeEverything();
             this.loginStep1Status = MESSAGE_STATUS.SUCCESS;
             this.loginStep2Status = MESSAGE_STATUS.SUCCESS;
             this.loginStep3Status = MESSAGE_STATUS.ERROR;
@@ -254,7 +257,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
           case BANKID_STATUS.NOT_VALID_DATA_PROVIDED:
             this.loginStep1Status = MESSAGE_STATUS.ERROR;
             this.viewStatus.isNotValidDataProvided = true;
-            this.connectionTimerSubscription.unsubscribe();
+            this.unsubscribeEverything();
             break;
           case BANKID_STATUS.LOANS_PERSISTED:
             this.viewStatus.isLoansPersisted = true;
