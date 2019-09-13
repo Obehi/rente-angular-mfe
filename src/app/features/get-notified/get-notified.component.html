@@ -6,8 +6,9 @@
             <p class="text-center">Velg bank og legg igjen din email adresse så får du beskjed når din bank er klar!</p>
             <div class="row">
                 <mat-form-field class="col-12">
-                    <mat-label>Bank:</mat-label>
-                    <input placeholder="Bank" #bankInput matInput formControlName="bank" [matAutocomplete]="auto">
+                    <mat-label>Velg din bank:</mat-label>
+                    <input placeholder="Velg din bank:" #bankInput matInput formControlName="bank"
+                        [matAutocomplete]="auto">
                     <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
                         <mat-option *ngFor="let bank of filteredBanks | async" [value]="bank">
                             {{bank.name}}
