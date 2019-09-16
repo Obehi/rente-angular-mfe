@@ -94,13 +94,13 @@ export class OffersComponent implements OnInit, OnDestroy {
     this.loansService.getOffers().subscribe((res: Offers) => {
       this.offersInfo = res;
       this.isLoading = false;
-      const shareLinkTimer = timer(30000);
-      if (!this.localStorageService.getItem('shareSheetShown')) {
+      const shareLinkTimer = timer(3000);
+      // if (!this.localStorageService.getItem('shareSheetShown')) {
         this.subscribeShareLinkTimer = shareLinkTimer.subscribe(_ => {
           this.bottomSheet.open(ShareSheetComponent);
           this.localStorageService.setItem('shareSheetShown', true);
         });
-      }
+      // }
       if (!this.offersInfo.offersPresent) {
         this.noOffers = true;
       }
