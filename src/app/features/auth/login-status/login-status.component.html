@@ -10,9 +10,9 @@
         <div class="col-10 col-md-8 d-flex flex-column align-items-start">
           <rente-status-message [status]="loginStep1Status">
             <span *ngIf="viewStatus.isNotValidDataProvided">
+              Vennligst kontroller at telefonnummer og fødselsdato er riktig. <br>
               Er du sikker på at du har BankID på mobil? <br>
-              Vi støtter ikke BankID med kodebrikke/app og passord enda. <br>
-              Vennligst kontroller at telefonnummer og fødselsdato er riktig.
+              Vi støtter ikke BankID med kodebrikke/app og passord enda.
             </span>
             <span *ngIf="!viewStatus.isNotValidDataProvided">
               Forbereder identifisering <br>
@@ -40,7 +40,8 @@
           <rente-status-message [status]="loginStep3Status" [step]="3">
             <span *ngIf="isNotSB1customer">Vi får beskjed om at du ikke er kunde i banken. Har du valgt riktig
               bank?</span>
-            <span *ngIf="!viewStatus.isPassphraseConfirmSuccess && !viewStatus.isCrawlerError && !isNotSB1customer">Hent rente- og
+            <span *ngIf="!viewStatus.isPassphraseConfirmSuccess && !viewStatus.isCrawlerError && !isNotSB1customer">Hent
+              rente- og
               lånedata</span>
             <span *ngIf="viewStatus.isPassphraseConfirmSuccess && !viewStatus.isCrawlerError && !isNotSB1customer">Vi
               henter din
