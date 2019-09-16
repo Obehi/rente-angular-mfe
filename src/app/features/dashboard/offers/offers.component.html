@@ -1,10 +1,4 @@
 <div class="offers" *ngIf="offersInfo && !noOffers" [@shakeAnimation]>
-  <share-button button="facebook" [url]="'https://rente-frontend-dev.herokuapp.com/'"></share-button>
-  <share-button button="messenger" [url]="'https://rente-frontend-dev.herokuapp.com/'"></share-button>
-  <share-button button="sms" [url]="'https://rente-frontend-dev.herokuapp.com/'"></share-button>
-  <share-button button="email" [url]="'https://rente-frontend-dev.herokuapp.com/'"></share-button>
-  <share-button button="whatsapp" [url]="'https://rente-frontend-dev.herokuapp.com/'"></share-button>
-  <share-button button="copy" [url]="'https://rente-frontend-dev.herokuapp.com/'"></share-button>
   <div *ngIf="!isSmallScreen; else smallScreenOffers" class="mt-5">
     <h3>Rentebarometer:</h3>
     <div class="row">

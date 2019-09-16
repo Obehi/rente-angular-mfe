@@ -33,6 +33,9 @@ import { SnackBarService } from './services/snackbar.service';
 import { MetaService } from './services/meta.service';
 import { TitleService } from './services/title.service';
 import { RoundPipe } from './pipes/round.pipe';
+import { ShareButtonModule } from '@ngx-share/button';
+import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome';
+import { shareButtonsIcons } from '../../icons';
 
 // export declare const options: Partial<IConfig> | (() => Partial<IConfig>);
 
@@ -80,9 +83,16 @@ const services = [
     TextMaskModule,
     // MatChipsModule,
     // MatIconModule
+    ShareButtonModule,
+    FontAwesomeModule
   ],
   declarations: [...components, BigNumberPipe, ChipsAutocompleteComponent, AbsPipe, RoundPipe],
   exports: [...components, AbsPipe, TextMaskModule, RoundPipe],
   providers: [...services]
 })
-export class SharedModule { }
+export class SharedModule {
+
+  constructor(library: FaIconLibrary) {
+    library.addIcons(...shareButtonsIcons);
+  }
+}

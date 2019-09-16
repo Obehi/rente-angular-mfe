@@ -2,18 +2,25 @@
   <div class="container justify-content-center align-self-center">
     <div class="row">
 
-      <div class="col-md-8 col-sm-8 col-8 d-flex justify-content-center flex-column">
-
+      <div class="col-6 pr-0 col-md-4 col-lg-5 d-flex justify-content-center flex-column">
         <p class="text-white small mb-0">
           Renteradar.no eies og driftes av Forbrukerøkonomene AS (Org nr: 921 534 191) <br>
         </p>
-
         <p class="text-white small mb-3 mt-0 d-none d-sm-block">
           Spar penger, spar tid, føl trygghet – la oss komme i gang med å overvåke lånet ditt
         </p>
-
       </div>
-      <div class="col-md-4 col-sm-4 col-4 text-right d-none d-md-block">
+      <div class="col-6 pl-0 col-md-7 col-lg-5 d-md-flex align-items-md-center justify-content-md-end">
+        <share-button button="facebook" [url]="'https://renteradar.no/'"></share-button>
+        <share-button button="messenger" [url]="'https://renteradar.no/'"></share-button>
+        <div class="d-inline-block d-lg-none">
+        <share-button button="sms" [url]="'https://renteradar.no/'" ></share-button>
+        </div>
+        <share-button button="email" [url]="'https://renteradar.no/'"></share-button>
+        <share-button button="whatsapp" [url]="'https://renteradar.no/'"></share-button>
+        <share-button button="copy" [url]="'https://renteradar.no/'"></share-button>
+      </div>
+      <div class="col-0 col-lg-2 text-right d-none d-lg-block">
         <ul class="navbar-nav ml-auto">
           <li>
             <a class="text-white small" [routerLink]="['/ofte-stilte-sporsmaal']"
