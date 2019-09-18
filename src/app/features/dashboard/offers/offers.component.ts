@@ -1,7 +1,7 @@
 import { LoansService } from '@services/remote-api/loans.service';
 import { OffersService } from './offers.service';
 import { OfferInfo, Offers } from './../../../shared/models/offers';
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener, OnDestroy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogInfoComponent } from './dialog-info/dialog-info.component';
 import { Loans } from '@shared/models/loans';
@@ -12,6 +12,9 @@ import { LocalStorageService } from '@services/local-storage.service';
 import { trigger, transition, style, animate, keyframes } from '@angular/animations';
 import { ChangeBankDialogComponent } from './change-bank-dialog/change-bank-dialog.component';
 import { ChangeBankServiceService } from '@services/remote-api/change-bank-service.service';
+import { MatBottomSheet } from '@angular/material';
+import { ShareSheetComponent } from './share-sheet/share-sheet.component';
+import { timer, Subscription } from 'rxjs';
 
 @Component({
   selector: 'rente-offers',
@@ -52,7 +55,7 @@ import { ChangeBankServiceService } from '@services/remote-api/change-bank-servi
     ),
   ]
 })
-export class OffersComponent implements OnInit {
+export class OffersComponent implements OnInit, OnDestroy {
   public offersInfo: Offers;
   public loansInfo: any;
   public loans: Loans;
@@ -65,6 +68,7 @@ export class OffersComponent implements OnInit {
   public isSmallScreen: boolean;
   public isShowTips: boolean;
   public changeBankLoading: boolean;
+  public subscribeShareLinkTimer: Subscription;
 
 
   constructor(
@@ -72,17 +76,31 @@ export class OffersComponent implements OnInit {
     public offersService: OffersService,
     public loansService: LoansService,
     private changeBankServiceService: ChangeBankServiceService,
-    private router: Router
+    private bottomSheet: MatBottomSheet,
+    private router: Router,
+    private localStorageService: LocalStorageService
   ) {
     this.onResize();
     this.isShowTips = true;
+  }
+
+  public ngOnDestroy(): void {
+    if (this.subscribeShareLinkTimer) {
+      this.subscribeShareLinkTimer.unsubscribe();
+    }
   }
 
   public ngOnInit(): void {
     this.loansService.getOffers().subscribe((res: Offers) => {
       this.offersInfo = res;
       this.isLoading = false;
-
+      const shareLinkTimer = timer(30000);
+      if (!this.localStorageService.getItem('shareSheetShown')) {
+        this.subscribeShareLinkTimer = shareLinkTimer.subscribe(_ => {
+          this.bottomSheet.open(ShareSheetComponent);
+          this.localStorageService.setItem('shareSheetShown', true);
+        });
+      }
       if (!this.offersInfo.offersPresent) {
         this.noOffers = true;
       }
@@ -101,6 +119,10 @@ export class OffersComponent implements OnInit {
       width: '600px',
       data: offer
     });
+  }
+
+  public openBottomSheet() {
+
   }
 
   public openChangeBankDialog(offer): void {

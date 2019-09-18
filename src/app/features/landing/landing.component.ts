@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 
 @Component({
   selector: 'rente-landing',
@@ -6,10 +6,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./landing.component.scss']
 })
 export class LandingComponent implements OnInit {
+  public isSmallScreen: boolean;
 
-  constructor() { }
+  constructor() {
+    this.onResize();
+  }
 
   ngOnInit() {
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event?) {
+    window.innerWidth <= 1024 ? this.isSmallScreen = true : this.isSmallScreen = false;
   }
 
 }

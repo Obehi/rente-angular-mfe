@@ -1,4 +1,13 @@
-<h1 class="title text-center font-weight-bold my-3">Få den beste boliglånsrenten!</h1>
+<h1 class="title text-center font-weight-bold my-3" *ngIf="!isSmallScreen;else titleButton">Få den beste
+  boliglånsrenten!</h1>
+<ng-template #titleButton>
+  <div class="my-3">
+    <rente-button class="title-btn" mat-button color="primary" [routerLink]="'/velgbank'">
+      Få den beste boliglånsrenten!
+    </rente-button>
+  </div>
+</ng-template>
+
 <div class="container">
   <div class="row">
     <div class="col-sm card-wrapper mb-3 mr-md-4 mr-sm-3 text-center" [routerLink]="['/velgbank']">

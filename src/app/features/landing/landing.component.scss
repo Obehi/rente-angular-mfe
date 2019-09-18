@@ -11,6 +11,16 @@
   @include text-style(30px, 36px);
   letter-spacing: 0.5px;
   margin: 60px 0;
+
+  &-btn {
+    ::ng-deep.mat-raised-button {
+      min-height: 60px !important;
+      font-size: 23px !important;
+      color: $white;
+      font-family: Lato;
+      line-height: 35px;
+    }
+  }
 }
 
 .partner-logo-finansportalen {
@@ -27,8 +37,9 @@
   border-radius: 12px;
   background-color: rgba(33, 37, 41, 0.05);
 }
+
 .card {
-  &-icon{
+  &-icon {
     height: 150px !important;
   }
 
@@ -58,6 +69,7 @@
   &-title {
     height: 35px;
     @include text-style(23px, 29px);
+
     @media (max-width:750px) {
       height: auto;
       @include text-style(20px, 29px);
@@ -68,12 +80,23 @@
     @media (max-width:750px) {
       margin-bottom: 20px !important;
     }
+
     @include text-style(16px, 24px);
     margin-bottom: 30px;
   }
 
   &-btn {
-    width: 368px;	
+    width: 368px;
     margin: 20px 0;
+
+    @media (max-width:750px) {
+      ::ng-deep.mat-raised-button {
+        min-height: 60px !important;
+        font-size: 24px !important;
+        color: $white;
+        font-family: Lato;
+        line-height: 35px;
+      }
+    }
   }
 }
