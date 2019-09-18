@@ -10,11 +10,11 @@ const port = process.env.PORT || 4300;
 //app.use(favicon(clientPath + '/favicon.ico'));
 app.use(express.static(clientPath));
 app.get(
-  "/proxy",
+  "/blogg",
   requestProxy({
-    url: "https://xn--forbrukerkonomene-80b.no/",
+    url: "http://13.48.57.112",
     headers: {
-      "X-Forwarded-Host": "https://renteradar.no/"
+      "X-Forwarded-Host": "renteradar.no"
     }
   })
 );
@@ -34,6 +34,6 @@ app.get('/*', renderIndex);
 const server = app.listen(port, function () {
   let host = server.address().address;
   let port = server.address().port;
-  host = (host === '::') ? 'localhost': host;
+  host = (host === '::') ? 'localhost' : host;
   console.log(`This express app is listening on: ${host}:${port}`);
 });
