@@ -10,7 +10,7 @@ const port = process.env.PORT || 4300;
 //app.use(favicon(clientPath + '/favicon.ico'));
 app.use(express.static(clientPath));
 app.get(
-  "/blogg",
+  "/blogg/*",
   requestProxy({
     url: "http://13.48.57.112",
     headers: {
