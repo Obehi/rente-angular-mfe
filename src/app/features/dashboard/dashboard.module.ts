@@ -20,7 +20,8 @@ import { MatSelectModule } from '@angular/material/select';
 import {
   MatInputModule, MatChipsModule, MatIconModule, MatAutocompleteModule,
   MatProgressSpinnerModule,
-  MatCheckboxModule
+  MatCheckboxModule,
+  MatBottomSheetModule
 } from '@angular/material';
 import { RateTypeFixedComponent } from './rate-type-fixed/rate-type-fixed.component';
 import { NoLoansComponent } from './no-loans/no-loans.component';
@@ -28,7 +29,8 @@ import { ChangeBankDialogComponent } from './offers/change-bank-dialog/change-ba
 import {
   SuccessChangeBankDialogComponent
 } from './offers/change-bank-dialog/success-change-bank-dialog/success-change-bank-dialog.component';
-
+import { ShareSheetComponent } from './offers/share-sheet/share-sheet.component';
+import { ShareButtonModule } from '@ngx-share/button';
 // TODO: ADD separate module for material import
 @NgModule({
   declarations: [
@@ -44,6 +46,7 @@ import {
     NoLoansComponent,
     ChangeBankDialogComponent,
     SuccessChangeBankDialogComponent,
+    ShareSheetComponent
   ],
   imports: [
     CommonModule,
@@ -61,8 +64,15 @@ import {
     MatIconModule,
     MatAutocompleteModule,
     MatProgressSpinnerModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatBottomSheetModule,
+    ShareButtonModule
   ],
-  entryComponents: [DialogInfoComponent, ChangeBankDialogComponent, SuccessChangeBankDialogComponent]
+  entryComponents: [
+    DialogInfoComponent,
+    ChangeBankDialogComponent,
+    SuccessChangeBankDialogComponent,
+    ShareSheetComponent
+  ]
 })
 export class DashboardModule { }
