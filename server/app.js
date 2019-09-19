@@ -10,16 +10,7 @@ const port = process.env.PORT || 4300;
 //app.use(favicon(clientPath + '/favicon.ico'));
 app.use(express.static(clientPath));
 app.get(
-  "/blogg/*",
-  requestProxy({
-    url: "https://xn--forbrukerkonomene-80b.no",
-    headers: {
-      "X-Forwarded-Host": "renteradar.no"
-    }
-  })
-);
-app.get(
-  "/blogg",
+  "/blogg*",
   requestProxy({
     url: "https://xn--forbrukerkonomene-80b.no",
     headers: {
