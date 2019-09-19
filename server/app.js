@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const app = express();
+const requestProxy = require("express-request-proxy");
 //const favicon = require('serve-favicon');
 
 const clientPath = path.resolve(__dirname, '../dist/rente-front-end');
@@ -8,6 +9,15 @@ const port = process.env.PORT || 4300;
 
 //app.use(favicon(clientPath + '/favicon.ico'));
 app.use(express.static(clientPath));
+app.get(
+  "/blogg*",
+  requestProxy({
+    url: "https://xn--forbrukerkonomene-80b.no",
+    headers: {
+      "X-Forwarded-Host": "renteradar.no"
+    }
+  })
+);
 
 var renderIndex = (req, res) => {
   res.sendFile(path.resolve(__dirname, clientPath + '/index.html'));
@@ -24,6 +34,6 @@ app.get('/*', renderIndex);
 const server = app.listen(port, function () {
   let host = server.address().address;
   let port = server.address().port;
-  host = (host === '::') ? 'localhost': host;
+  host = (host === '::') ? 'localhost' : host;
   console.log(`This express app is listening on: ${host}:${port}`);
 });

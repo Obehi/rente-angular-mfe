@@ -20,3 +20,9 @@
   @include text-style(30px, 36px);
   letter-spacing: 0.5px;
 }
+
+@media (max-width: 960px) {
+  .title{
+      font-size: 24px;
+  }
+}
