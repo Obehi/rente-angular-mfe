@@ -12,7 +12,16 @@ app.use(express.static(clientPath));
 app.get(
   "/blogg/*",
   requestProxy({
-    url: "http://13.48.57.112",
+    url: "https://xn--forbrukerkonomene-80b.no",
+    headers: {
+      "X-Forwarded-Host": "renteradar.no"
+    }
+  })
+);
+app.get(
+  "/blogg",
+  requestProxy({
+    url: "https://xn--forbrukerkonomene-80b.no",
     headers: {
       "X-Forwarded-Host": "renteradar.no"
     }
