@@ -12,7 +12,7 @@ app.use(express.static(clientPath));
 app.get(
   "/blogg*",
   requestProxy({
-    url: "https://xn--forbrukerkonomene-80b.no",
+    url: "https://stabelo.no",
     headers: {
       "X-Forwarded-Host": "renteradar.no"
     }
