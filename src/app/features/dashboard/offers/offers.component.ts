@@ -103,11 +103,11 @@ export class OffersComponent implements OnInit, OnDestroy {
           this.localStorageService.setItem('shareSheetShown', true);
         });
       }
-      if (!this.offersInfo.offersPresent) {
-        this.noOffers = true;
-      }
+      
       if (this.offersInfo.creditLinesOnlyLtvTooHigh) {
         this.isLtvTooHigh = true;
+      } else if (!this.offersInfo.offersPresent) {
+        this.noOffers = true;
       }
 
     }, err => {
