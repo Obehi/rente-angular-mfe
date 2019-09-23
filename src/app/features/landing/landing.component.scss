@@ -106,3 +106,43 @@
     }
   }
 }
+
+mat-expansion-panel-header {
+  height: 61px !important;
+}
+
+.mat-expansion-panel:not([class*='mat-elevation-z']) {
+  box-shadow: none;
+}
+
+a {
+  color: $primary;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+}
+
+.img-wrapper {
+  min-height: 455px;
+  .media-img {
+    max-height: 450px;
+    max-width: 100%;
+  }
+  @media (max-width:750px) {
+    min-height: 0;
+  }
+}
+
+.divider {
+  height: 5px;
+}
+
+::ng-deep.mat-expansion-panel-body,
+.mat-expansion-panel-header {
+  @media (max-width:750px) {
+    padding: 0 !important;
+  }
+}

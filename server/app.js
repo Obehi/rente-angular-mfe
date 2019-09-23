@@ -8,19 +8,6 @@ const proxy = require('http-proxy-middleware');
 const clientPath = path.resolve(__dirname, '../dist/rente-front-end');
 const port = process.env.PORT || 4300;
 
-
-app.use(
-  '/blogg',
-  proxy({
-    target: 'https://xn--forbrukerkonomene-80b.no',
-    changeOrigin: true,
-    onProxyReq(proxyReq, req, res) {
-      // add custom header to request
-      proxyReq.setHeader('X-Forwarded-Host', 'renteradar.no');
-    }
-  })
-);
-
 //app.use(favicon(clientPath + '/favicon.ico'));
 app.use(express.static(clientPath));
 

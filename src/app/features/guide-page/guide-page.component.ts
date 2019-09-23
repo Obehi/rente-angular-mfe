@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'rente-guide-page',
@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./guide-page.component.scss']
 })
 export class GuidePageComponent implements OnInit {
-
+  @Input() isFrontPage: boolean;
   constructor() { }
 
   ngOnInit() {

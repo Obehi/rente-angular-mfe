@@ -8,12 +8,16 @@
 }
 
 .guide-image {
-    min-width: 100%;
+  min-width: 100%;
   max-width: 100%;
-  max-height: 400px;
+  max-height: 650px !important;
   @media (max-width:750px) {
     max-height: 600px;
   }
+}
+
+.guide-image-default {
+  max-height: 380px;
 }
 
 .title {
