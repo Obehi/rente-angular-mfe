@@ -127,17 +127,14 @@ a {
 
 .img-wrapper {
   min-height: 455px;
-
   .media-img {
     max-height: 450px;
     max-width: 100%;
   }
-
   @media (max-width:750px) {
     min-height: 0;
   }
 }
-
 
 .divider {
   height: 5px;
