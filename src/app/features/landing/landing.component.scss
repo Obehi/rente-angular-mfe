@@ -106,3 +106,40 @@
     }
   }
 }
+
+mat-expansion-panel-header {
+  height: 61px !important;
+}
+
+.mat-expansion-panel:not([class*='mat-elevation-z']) {
+  box-shadow: none;
+}
+
+a {
+  color: $primary;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+}
+
+.media-img {
+  width: 50%;
+
+  @media (max-width:750px) {
+    width: 100%;
+  }
+}
+
+.divider {
+  height: 5px;
+}
+
+::ng-deep.mat-expansion-panel-body,
+.mat-expansion-panel-header {
+  @media (max-width:750px) {
+    padding: 0 !important;
+  }
+}

@@ -1,18 +1,23 @@
 <div class="mb-5">
-  <h3 class="title" i18n="About us header@@about-us-header">Om oss</h3>
+  <h3 class="title" i18n="About us header@@about-us-header" *ngIf="!isFrontPage">Om oss</h3>
 
   <div>
-    <p>
+    <p *ngIf="!isFrontPage">
       Markedet for boliglån kan være kaotisk, og det kan være vanskelig å vite hvilken rente du fortjener og i hvilken
       bank du finner denne. I tillegg tilbyr bankene et mylder av forskjellige kundeprogrammer som gjør det enda
       vanskeligere å orientere seg. Boliglån er i prinsippet et fryktelig enkelt produkt og det er ingen grunn til at
       man skal betale mer enn man trenger. Vi vet også at det kan være tidkrevende å følge med på rentemarkedet og hente
       inn tilbud fra andre banker. Flere synes også det kan være ubehagelig å prute i banken.
     </p>
-    <p>
+    <p *ngIf="!isFrontPage">
       Med bakgrunn i dette startet vi Renteradar.no. Vi ønsker å gjøre det lettere for deg som boliglånskunde, og vi har
       bygget opp tjenesten rundt 3 pilarer. Våre brukere skal:
     </p>
+    <p *ngIf="isFrontPage">Markedet for boliglån kan være kaotisk, og det kan være vanskelig å vite hvilken rente du
+      fortjener og i hvilken
+      bank du finner denne. Boliglån er i prinsippet et fryktelig enkelt produkt og det er ingen grunn til at man skal
+      betale mer enn man trenger.</p>
+    <p *ngIf="isFrontPage">Vi ønsker å gjøre det lettere for deg som boliglånskunde. Våre brukere skal:</p>
     <ul>
       <li><b>Spare penger:</b> Våre brukere skal spare penger gjennom å alltid ha de beste betingelsene</li>
       <li><b>Spare tid:</b> Våre brukere skal spare tid ved at vi gjør jobben med å overvåke både renten deres og hvilke
@@ -29,10 +34,10 @@
     </p>
   </div>
 
-  <p>
-  <span class="font-weight-bold">
+  <p *ngIf="!isFrontPage">
+    <span class="font-weight-bold">
       Renterdar i media:
-  </span>  <br>
+    </span> <br>
     <a href="https://shifter.no/renteradar-vil-la-deg-bytte-bank-med-ett-klikk-de-store-bankene-tjener-pa-kundenes-uvitenhet/"
       target="_blank">Link til Shifter</a>
     <br>

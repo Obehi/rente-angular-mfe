@@ -1,5 +1,7 @@
 export interface Offers {
   aggregatedRateType: string;
+  aggregatedLoanType: string;
+  creditLinesOnlyLtvTooHigh: boolean | null;
   bank: string;
   bestOfferEffectiveRate: number | null;
   bestOfferTotalSaving: number | null;

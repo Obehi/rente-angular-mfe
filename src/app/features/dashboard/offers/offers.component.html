@@ -1,4 +1,4 @@
-<div class="offers" *ngIf="offersInfo && !noOffers" [@shakeAnimation]>
+<div class="offers" *ngIf="offersInfo && !noOffers && !isLtvTooHigh" [@shakeAnimation]>
   <div *ngIf="!isSmallScreen; else smallScreenOffers" class="mt-5">
     <h3>Rentebarometer:</h3>
     <div class="row">
@@ -35,6 +35,10 @@
         <p class="text-border" *ngIf="offersInfo.aggregatedRateType === aggregatedRateType.MIX_FIXED_FLOATING">Vi ser du
           har ett eller flere fastrentelån. Renteradar viser besparelsespotensialet kun for lånet/lånene med flytende
           rente. Beste rente viser også kun beste rente for lånet/lånene med flytende rente.
+        </p>
+        <p class="text-border">Du har rammelån/boligkreditt. Ønsker du å se tilbud kun for denne typen lån kan du endre
+          dette i
+          <a [routerLink]="'/dashboard/preferanser'">preferanser</a>
         </p>
       </div>
       <div class="col-12 col-md-7 text-center">
@@ -261,6 +265,13 @@
           har ett eller flere fastrentelån. Renteradar viser besparelsespotensialet kun for lånet/lånene med flytende
           rente. Beste rente viser også kun beste rente for lånet/lånene med flytende rente.
         </p>
+        <p class="text-border" *ngIf="offersInfo.aggregatedLoanType === aggregatedLoanType.CREDIT_LINE 
+        || offersInfo.aggregatedLoanType === aggregatedLoanType.MIX_D_C 
+        || offersInfo.aggregatedLoanType === aggregatedLoanType.MIX_C_O 
+        || offersInfo.aggregatedLoanType === aggregatedLoanType.MIX_D_C_O">Du har rammelån/boligkreditt. Ønsker du å se
+          tilbud kun for denne typen lån kan du endre dette i
+          <a [routerLink]="'/dashboard/preferanser'">preferanser</a>
+        </p>
       </div>
     </div>
     <h3 class="mb-4">Beste tilbud:</h3>
@@ -350,6 +361,17 @@
       <div class="bg-wrap">
         <h3>Størrelsen på lånet ditt er for stor i forhold til boligverdi (>85%).
           Kontroller og endre boligverdien din <a [routerLink]="['/dashboard/bolig']">her i boligfanen</a></h3>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="my-5 row justify-content-center" *ngIf="isLtvTooHigh">
+  <div class="my-5 row justify-content-center">
+    <div class="col-lg-6 col-md-8 col-12">
+      <div class="bg-wrap">
+        <h3>Rammelån/boligkreditt er kun tilgjengelig for lavere belåningsgrad enn 60%. Din belåningsgrad er høyere enn
+          dette, vennligst endre din belåningsgrad i<a [routerLink]="['/dashboard/bolig']"> boligfanen</a></h3>
       </div>
     </div>
   </div>
