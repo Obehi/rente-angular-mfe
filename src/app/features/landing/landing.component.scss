@@ -125,13 +125,19 @@ a {
   }
 }
 
-.media-img {
-  width: 50%;
+.img-wrapper {
+  min-height: 455px;
+
+  .media-img {
+    max-height: 450px;
+    max-width: 100%;
+  }
 
   @media (max-width:750px) {
-    width: 100%;
+    min-height: 0;
   }
 }
+
 
 .divider {
   height: 5px;
