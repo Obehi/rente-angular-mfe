@@ -7,7 +7,7 @@ import { DialogInfoComponent } from './dialog-info/dialog-info.component';
 import { Loans } from '@shared/models/loans';
 import { BANKS_DATA } from '@config/banks-config';
 import { Router } from '@angular/router';
-import { OFFER_SAVINGS_TYPE, AGGREGATED_RATE_TYPE } from '../../../config/loan-state';
+import { OFFER_SAVINGS_TYPE, AGGREGATED_RATE_TYPE, AGGREGATED_LOAN_TYPE } from '../../../config/loan-state';
 import { LocalStorageService } from '@services/local-storage.service';
 import { trigger, transition, style, animate, keyframes } from '@angular/animations';
 import { ChangeBankDialogComponent } from './change-bank-dialog/change-bank-dialog.component';
@@ -62,6 +62,7 @@ export class OffersComponent implements OnInit, OnDestroy {
   public banksMap = BANKS_DATA;
   public offerSavingsType = OFFER_SAVINGS_TYPE;
   public aggregatedRateType = AGGREGATED_RATE_TYPE;
+  public aggregatedLoanType = AGGREGATED_LOAN_TYPE;
   public isLoading = true;
   public errorMessage: string;
   public noOffers: boolean;
@@ -69,6 +70,7 @@ export class OffersComponent implements OnInit, OnDestroy {
   public isShowTips: boolean;
   public changeBankLoading: boolean;
   public subscribeShareLinkTimer: Subscription;
+  public isLtvTooHigh: boolean;
 
 
   constructor(
@@ -101,7 +103,10 @@ export class OffersComponent implements OnInit, OnDestroy {
           this.localStorageService.setItem('shareSheetShown', true);
         });
       }
-      if (!this.offersInfo.offersPresent) {
+
+      if (this.offersInfo.creditLinesOnlyLtvTooHigh) {
+        this.isLtvTooHigh = true;
+      } else if (!this.offersInfo.offersPresent) {
         this.noOffers = true;
       }
 
