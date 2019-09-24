@@ -15,6 +15,7 @@ import { ChangeBankServiceService } from '@services/remote-api/change-bank-servi
 import { MatBottomSheet } from '@angular/material';
 import { ShareSheetComponent } from './share-sheet/share-sheet.component';
 import { timer, Subscription } from 'rxjs';
+import { OFFERS_RESULT_TYPE } from '../../../shared/models/offers';
 
 @Component({
   selector: 'rente-offers',
@@ -63,14 +64,13 @@ export class OffersComponent implements OnInit, OnDestroy {
   public offerSavingsType = OFFER_SAVINGS_TYPE;
   public aggregatedRateType = AGGREGATED_RATE_TYPE;
   public aggregatedLoanType = AGGREGATED_LOAN_TYPE;
+  public offersResultType = OFFERS_RESULT_TYPE;
   public isLoading = true;
   public errorMessage: string;
-  public noOffers: boolean;
   public isSmallScreen: boolean;
   public isShowTips: boolean;
   public changeBankLoading: boolean;
   public subscribeShareLinkTimer: Subscription;
-  public isLtvTooHigh: boolean;
 
 
   constructor(
@@ -104,11 +104,11 @@ export class OffersComponent implements OnInit, OnDestroy {
         });
       }
 
-      if (this.offersInfo.creditLinesOnlyLtvTooHigh) {
-        this.isLtvTooHigh = true;
-      } else if (!this.offersInfo.offersPresent) {
-        this.noOffers = true;
-      }
+      // if (this.offersInfo.creditLinesOnlyLtvTooHigh) {
+      //   this.isLtvTooHigh = true;
+      // } else if (!this.offersInfo.offersPresent) {
+      //   this.noOffers = true;
+      // }
 
     }, err => {
       if (err.errorType === 'PROPERTY_VALUE_MISSING') {
