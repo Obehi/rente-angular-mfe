@@ -571,8 +571,8 @@ export const BANKS_DATA = {
   },
   TOTENS_SB: {
     name: 'TOTENS_SB',
-    img: '',
-    imgCircle: ''
+    img: '../../assets/img/banks-logo/square/toten.png',
+    imgCircle: '../../assets/img/banks-logo/round/toten.png'
   },
   TROGSTAD_SB: {
     name: 'TROGSTAD_SB',
