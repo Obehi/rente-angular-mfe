@@ -1,7 +1,6 @@
 export interface Offers {
   aggregatedRateType: string;
   aggregatedLoanType: string;
-  creditLinesOnlyLtvTooHigh: boolean | null;
   bank: string;
   bestOfferEffectiveRate: number | null;
   bestOfferTotalSaving: number | null;
@@ -10,10 +9,10 @@ export interface Offers {
   offerSavingsType: string;
   membership: string | null;
   offers: OfferInfo[];
-  offersPresent: boolean | null;
   propertyValue: number | null;
   totalEffectiveRate: number | null;
   totalOutstandingDebt: number | null;
+  resultType: string;
 }
 
 export interface OfferInfo {
@@ -38,3 +37,10 @@ export interface OfferInfo {
   selectedRate: number;
   totalSavings: number;
 }
+
+export const OFFERS_RESULT_TYPE = {
+  NO_OFFERS: 'NO_OFFERS',
+  OFFERS_PRESENT: 'OFFERS_PRESENT',
+  LTV_TOO_HIGH_85: 'LTV_TOO_HIGH_85',
+  LTV_CREDIT_LINE_TOO_HIGH_60: 'LTV_CREDIT_LINE_TOO_HIGH_60'
+};
