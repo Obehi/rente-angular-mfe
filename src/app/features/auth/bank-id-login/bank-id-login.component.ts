@@ -15,6 +15,7 @@ import { DialogInfoServiceComponent } from './dialog-info-service/dialog-info-se
 export class BankIdLoginComponent implements OnInit, OnDestroy {
   public bankIdForm: FormGroup;
   public isSsnBankLogin: boolean;
+  public isConfirmed: boolean;
   public isLoginStarted = false;
   public userData: any = {};
   public userBank: any;
@@ -69,9 +70,10 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
         Validators.required,
         Validators.pattern(VALIDATION_PATTERN.phoneShort)
       ])],
+      confirmation: ['', Validators.required]
     }, {
-        updateOn: 'blur'
-      });
+      updateOn: 'blur'
+    });
   }
 
   public openServiceDialog(): void {

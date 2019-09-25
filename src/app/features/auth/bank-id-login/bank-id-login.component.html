@@ -9,7 +9,8 @@
     <div class="row justify-content-center">
       <div class="col-12 col-md-6">
         <p class="my-0 text text-left">
-          Legg inn {{ isSsnBankLogin ? 'fødselsnummer' : 'fødselsdato' }} og mobilnummer. Bekreft referansen på mobilen, så hentes
+          Legg inn {{ isSsnBankLogin ? 'fødselsnummer' : 'fødselsdato' }} og mobilnummer. Bekreft referansen på mobilen,
+          så hentes
           dine lånedata automatisk. Vi
           bruker
           SSL verifisering, så all informasjon sendes kryptert.
@@ -80,12 +81,13 @@
                 </div>
               </div>
             </div>
-
-            <p class="small my-4 text-center text-left-small-screen">
-              Ved registrering bekrefter du <a class="link" (click)="openServiceDialog()">vilkårene</a> våre
-            </p>
+            <div class="mb-2 text-left">
+                <mat-checkbox formControlName="confirmation" (change)="isConfirmed = $event.checked">
+                    Jeg bekrefter at jeg akrepterer Renteradars <a class="link" (click)="openServiceDialog()">vilkårene</a>
+                  </mat-checkbox>
+            </div>
             <div class="register-btn">
-              <rente-button color="primary" [disabled]="!bankIdForm.valid">Logg inn
+              <rente-button color="primary" [disabled]="!bankIdForm.valid || !isConfirmed">Logg inn
               </rente-button>
             </div>
           </form>
