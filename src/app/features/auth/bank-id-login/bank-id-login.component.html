@@ -82,9 +82,9 @@
               </div>
             </div>
             <div class="mb-2 text-left">
-                <mat-checkbox formControlName="confirmation" (change)="isConfirmed = $event.checked">
-                    Jeg bekrefter at jeg aksepterer Renteradars <a class="link" (click)="openServiceDialog()">vilkårene</a>
-                  </mat-checkbox>
+              <mat-checkbox formControlName="confirmation" (change)="isConfirmed = $event.checked">
+                Jeg aksepterer Renteradar.no's <a class="link" (click)="openServiceDialog()">vilkår</a>
+              </mat-checkbox>
             </div>
             <div class="register-btn">
               <rente-button color="primary" [disabled]="!bankIdForm.valid || !isConfirmed">Logg inn

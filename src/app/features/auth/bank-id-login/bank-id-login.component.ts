@@ -71,8 +71,6 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
         Validators.pattern(VALIDATION_PATTERN.phoneShort)
       ])],
       confirmation: ['', Validators.required]
-    }, {
-      updateOn: 'blur'
     });
   }
 
