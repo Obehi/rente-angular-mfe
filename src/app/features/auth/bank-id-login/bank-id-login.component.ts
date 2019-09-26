@@ -15,6 +15,7 @@ import { DialogInfoServiceComponent } from './dialog-info-service/dialog-info-se
 export class BankIdLoginComponent implements OnInit, OnDestroy {
   public bankIdForm: FormGroup;
   public isSsnBankLogin: boolean;
+  public isConfirmed: boolean;
   public isLoginStarted = false;
   public userData: any = {};
   public userBank: any;
@@ -49,7 +50,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     this.userData = formData;
     for (const key in this.userData) {
       // remove everything except numbers
-      if (this.userData[key]) {
+      if (typeof this.userData[key] === 'string') {
         this.userData[key] = this.userData[key].replace(/\s/g, '');
       }
     }
@@ -69,9 +70,8 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
         Validators.required,
         Validators.pattern(VALIDATION_PATTERN.phoneShort)
       ])],
-    }, {
-        updateOn: 'blur'
-      });
+      confirmation: ['', Validators.required]
+    });
   }
 
   public openServiceDialog(): void {

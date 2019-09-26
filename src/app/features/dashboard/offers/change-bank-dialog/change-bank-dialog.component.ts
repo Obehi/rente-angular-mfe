@@ -12,7 +12,7 @@ import { SuccessChangeBankDialogComponent } from './success-change-bank-dialog/s
 export class ChangeBankDialogComponent implements OnInit {
   public confirmForm: FormGroup;
   public isConfirmed: boolean;
-  isLoading: boolean;
+  public isLoading: boolean;
   constructor(
     private fb: FormBuilder,
     public dialogRef: MatDialogRef<ChangeBankDialogComponent>,

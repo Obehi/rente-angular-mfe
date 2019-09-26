@@ -1,5 +1,9 @@
-<h1 class="title text-center font-weight-bold my-3" *ngIf="!isSmallScreen;else titleButton">Få den beste
-  boliglånsrenten!</h1>
+<div class="row justify-content-center" *ngIf="!isSmallScreen;else titleButton">
+  <div class="col-md-12">
+    <h3 class="heading font-weight-bold text-center mb-4">Få den beste
+      boliglånsrenten!</h3>
+  </div>
+</div>
 <ng-template #titleButton>
   <div class="my-3">
     <rente-button class="title-btn" mat-button color="primary" [routerLink]="'/velgbank'">
@@ -140,6 +144,17 @@
           </mat-panel-title>
         </mat-expansion-panel-header>
         <rente-about-us [isFrontPage]="true"></rente-about-us>
+      </mat-expansion-panel>
+    </div>
+    <hr class="divider">
+    <div class="col-12 px-0">
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title class="font-weight-bold">
+            <h3 class="title">Ofte stilte spørsmål</h3>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <rente-faq [isFrontPage]="true"></rente-faq>
       </mat-expansion-panel>
     </div>
     <hr class="divider">

@@ -1,14 +1,39 @@
 @import '../../../styles/theme/_colors.scss';
 
-mat-panel-title {
-    color: $primary;
-    font-family: Lato;
+@mixin text-style($size, $line-height) {
+  font-size: $size;
+  color: $black;
+  font-family: Lato;
+  line-height: $line-height;
 }
+
+mat-panel-title {
+  color: $primary;
+  font-family: Lato;
+}
+
 mat-expansion-panel-header {
-    background:  rgba(0, 0, 0, 0.03);
-    height: 61px !important;
+  background: rgba(0, 0, 0, 0.03);
+  height: 61px !important;
 }
 
 p {
-    font-family: Lato;
+  font-family: Lato;
 }
+
+.title {
+  @include text-style(30px, 36px);
+  letter-spacing: 0.5px;
+}
+
+@media (max-width: 960px) {
+  .title {
+    font-size: 24px;
+  }
+}
+
+.expansion-content {
+    @media (max-width: 450px) {
+        margin:0;
+    }
+  }

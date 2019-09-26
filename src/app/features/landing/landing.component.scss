@@ -21,6 +21,12 @@
       line-height: 35px;
     }
   }
+
+}
+
+.heading {
+  @include text-style(30px, 36px);
+  letter-spacing: 0.5px;
 }
 
 @media (max-width: 960px) {
@@ -127,10 +133,12 @@ a {
 
 .img-wrapper {
   min-height: 455px;
+
   .media-img {
     max-height: 450px;
     max-width: 100%;
   }
+
   @media (max-width:750px) {
     min-height: 0;
   }
@@ -144,5 +152,17 @@ a {
 .mat-expansion-panel-header {
   @media (max-width:750px) {
     padding: 0 !important;
+  }
+}
+
+::ng-deep.mat-expansion-panel-content {
+  font: inherit !important;
+}
+
+::ng-deep.mat-expansion-panel-body {
+  .expansion-content {
+    @media (max-width: 450px) {
+      padding: 0 24px 16px !important;
+    }
   }
 }
