@@ -156,5 +156,13 @@ a {
 }
 
 ::ng-deep.mat-expansion-panel-content {
-  font:inherit !important;
+  font: inherit !important;
+}
+
+::ng-deep.mat-expansion-panel-body {
+  .expansion-content {
+    @media (max-width: 450px) {
+      padding: 0 24px 16px !important;
+    }
+  }
 }

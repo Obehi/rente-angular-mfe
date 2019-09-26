@@ -50,7 +50,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     this.userData = formData;
     for (const key in this.userData) {
       // remove everything except numbers
-      if (this.userData[key]) {
+      if (typeof this.userData[key] === 'string') {
         this.userData[key] = this.userData[key].replace(/\s/g, '');
       }
     }

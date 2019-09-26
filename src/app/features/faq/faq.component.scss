@@ -33,7 +33,7 @@ p {
 }
 
 .expansion-content {
-  @media (max-width: 450px) {
-    padding: 0 24px 16px;
+    @media (max-width: 450px) {
+        margin:0;
+    }
   }
-}
