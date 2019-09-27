@@ -29,6 +29,7 @@ import { ChangeBankDialogComponent } from './offers/change-bank-dialog/change-ba
 import {
   SuccessChangeBankDialogComponent
 } from './offers/change-bank-dialog/success-change-bank-dialog/success-change-bank-dialog.component';
+import { ChartModule } from 'angular-highcharts';
 import { ShareSheetComponent } from './offers/share-sheet/share-sheet.component';
 import { ShareButtonModule } from '@ngx-share/button';
 // TODO: ADD separate module for material import
@@ -66,7 +67,8 @@ import { ShareButtonModule } from '@ngx-share/button';
     MatProgressSpinnerModule,
     MatCheckboxModule,
     MatBottomSheetModule,
-    ShareButtonModule
+    ShareButtonModule,
+    ChartModule
   ],
   entryComponents: [
     DialogInfoComponent,
