@@ -1,157 +1,170 @@
 <section [ngClass]="{'container' : !isFrontPage,'mb-5': !isFrontPage}">
 
-  <div class="row justify-content-center" *ngIf="!isFrontPage">
-    <h3 class="title">Ofte stilte spørsmål</h3>
-  </div>
-  <mat-accordion>
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          Hvorfor må jeg logge på med BankID på mobil?
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      <p class="expansion-content">
-        Renteradar.no henter automatisk dine lånebetingelser fra din bank. For at dette skal fungere trenger vi at du
-        identifiserer deg med BankID på mobil. Du finner mer detaljer om dette i vilkårene ved innlogging.</p>
-    </mat-expansion-panel>
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-
-          Jeg har ikke BankID på mobil, men bruker BankID med passord
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      <p class="expansion-content">
-        Vi har dessverre ingen løsning for BankID med passord. Grunnen til dette er at passordet ditt er personlig og
-        bør
-        ikke oppgis til tredjeparter som Renteradar.no
-      </p>
-    </mat-expansion-panel>
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          Hvor mye kan jeg spare
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      <p class="expansion-content">
-        Hvor mye du kan spare avhenger av flere faktorer. De viktigste er hvor mye renten reduseres og hvor stort lån du
-        har. Som eksempel vil en boliglånskunde med 4 millioner i lån som reduserer renten med 0,3% spare 12 000
-        allerede
-        første året.
-      </p>
-    </mat-expansion-panel>
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          Koster det noe å bruke Renteradar.no?
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      <p class="expansion-content">
-        Nei, det er gratis å bruke Renteradar.no. Forretningsmodellen vår er bygget opp slik at det er bankene som skal
-        dekke kostnaden for denne tjenesten, ikke deg som forbruker.
-      </p>
-    </mat-expansion-panel>
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          Viser dere tilbud fra alle banker?
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      <p class="expansion-content">
-        Ja, du ser tilbud fra alle banker. Enkelte lignende tjenester viser kun tilbud fra banker de har avtale med; det
-        gjør ikke Renteradar.no.
-      </p>
-    </mat-expansion-panel>
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          Hvem kan bruke Renteradar.no?
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      <p class="expansion-content">
-        Alle som allerede har boliglån kan bruke Renteradar.no
-      </p>
-    </mat-expansion-panel>
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          Jeg har ikke lån enda, kan jeg bruke Renteradar.no?
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      <p class="expansion-content">
-        Foreløpig er tjenesten kun for brukere som allerede har boliglån.
-      </p>
-    </mat-expansion-panel>
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          Kan jeg slette profilen min når jeg ønsker?
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      <p class="expansion-content">
-        Ja, selvfølgelig! Send en email til slettmeg@renteradar.no og vi sletter alle dine data. Du får bekreftelse på
-        dette på email.
-      </p>
-    </mat-expansion-panel>
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          Trenger jeg å laste opp noe dokumentasjon?
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      <p class="expansion-content">
-        Nei, vi har laget en løsning med BankID på mobil hvor du gir oss fullmakt til å hente dine lånedata automatisk.
-        Vi
-        støtter ikke BankID med kode og passord enda.
-      </p>
-    </mat-expansion-panel>
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          Hvordan virker Renteradar.no?
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      <p class="expansion-content">
-        Renteradar.no henter automatisk renten du har på boliglånet ditt. Denne sammenlignes denne med renten du kan få
-        i
-        andre banker, og du kan se hvor mye du kan spare. Du kan prute i banken du er kunde med et klikk, og snart vil
-        du
-        også kunne bytte bank med et klikk.
-      </p>
-      <p class="expansion-content">
-        Vi følger også med på om det blir tilgjengelig bedre tilbud i fremtiden. Du vil da få beskjed om dette.
-      </p>
-    </mat-expansion-panel>
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          Hvorfor opprette profil hos Renteradar.no?
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      <p class="expansion-content">
-        Renteradar.no sammenligner renten du har med renten du kan få og viser deg hvor mye du kan spare. Du kan prute i
-        banken du er kunde med et klikk, og snart vil du også kunne bytte bank med et klikk.
-      </p>
-    </mat-expansion-panel>
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          Personvern: Er informasjonen min trygg?
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      <p class="expansion-content">
-        Ja, informasjonen din er helt trygg og vi deler den ikke med tredjeparter.
-      </p>
-    </mat-expansion-panel>
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          Hvem står bak Renteradar.no?
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      <p class="expansion-content">
-        Renteradar.no eies og drives av Forbrukerøkonomene AS. Se "Om oss" for mer informasjon.
-      </p>
-    </mat-expansion-panel>
-  </mat-accordion>
-</section>
+    <div class="row justify-content-center" *ngIf="!isFrontPage">
+      <h3 class="title">Ofte stilte spørsmål</h3>
+    </div>
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Hvorfor må jeg logge på med BankID på mobil?
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p class="expansion-content">
+          Renteradar.no henter automatisk dine lånebetingelser fra din bank. For at dette skal fungere trenger vi at du
+          identifiserer deg med BankID på mobil. Du finner mer detaljer om dette i vilkårene ved innlogging.</p>
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+  
+            Jeg har ikke BankID på mobil, men bruker BankID med passord
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p class="expansion-content">
+          Vi har dessverre ingen løsning for BankID med passord. Grunnen til dette er at passordet ditt er personlig og
+          bør
+          ikke oppgis til tredjeparter som Renteradar.no
+        </p>
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Hvor mye kan jeg spare
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p class="expansion-content">
+          Hvor mye du kan spare avhenger av flere faktorer. De viktigste er hvor mye renten reduseres og hvor stort lån du
+          har. Som eksempel vil en boliglånskunde med 4 millioner i lån som reduserer renten med 0,3% spare 12 000
+          allerede
+          første året.
+        </p>
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Koster det noe å bruke Renteradar.no?
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p class="expansion-content">
+          Nei, det er gratis å bruke Renteradar.no. Forretningsmodellen vår er bygget opp slik at det er bankene som skal
+          dekke kostnaden for denne tjenesten, ikke deg som forbruker.
+        </p>
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Viser dere tilbud fra alle banker?
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p class="expansion-content">
+          Ja, du ser tilbud fra alle banker. Enkelte lignende tjenester viser kun tilbud fra banker de har avtale med; det
+          gjør ikke Renteradar.no.
+        </p>
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Hvordan sorterer og filtrerer Renteradar.no lån?
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p class="expansion-content">
+          Renteradar.no viser tilbud fra alle banker. Disse tilbudene sorteres og vises alltid etter laveste effektive
+          rente. Renteradar.no viser foreløpig kun landsdekkende tilbud, det vil si tilbud som er tilgjengelig for
+          låntakere uavhengig av hvor de bor. Renteradar.no sorter også ut lån for dem som kjøper sin første bolig,
+          såkalte Førstehjemslån. Grunnen til dette er at våre brukere allerede har lån og bolig.
+        </p>
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Hvem kan bruke Renteradar.no?
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p class="expansion-content">
+          Alle som allerede har boliglån kan bruke Renteradar.no
+        </p>
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Jeg har ikke lån enda, kan jeg bruke Renteradar.no?
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p class="expansion-content">
+          Foreløpig er tjenesten kun for brukere som allerede har boliglån.
+        </p>
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Kan jeg slette profilen min når jeg ønsker?
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p class="expansion-content">
+          Ja, selvfølgelig! Send en email til slettmeg@renteradar.no og vi sletter alle dine data. Du får bekreftelse på
+          dette på email.
+        </p>
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Trenger jeg å laste opp noe dokumentasjon?
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p class="expansion-content">
+          Nei, vi har laget en løsning med BankID på mobil hvor du gir oss fullmakt til å hente dine lånedata automatisk.
+          Vi
+          støtter ikke BankID med kode og passord enda.
+        </p>
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Hvordan virker Renteradar.no?
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p class="expansion-content">
+          Renteradar.no henter automatisk renten du har på boliglånet ditt. Denne sammenlignes denne med renten du kan få
+          i
+          andre banker, og du kan se hvor mye du kan spare. Du kan prute i banken du er kunde med et klikk, og snart vil
+          du
+          også kunne bytte bank med et klikk.
+        </p>
+        <p class="expansion-content">
+          Vi følger også med på om det blir tilgjengelig bedre tilbud i fremtiden. Du vil da få beskjed om dette.
+        </p>
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Hvorfor opprette profil hos Renteradar.no?
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p class="expansion-content">
+          Renteradar.no sammenligner renten du har med renten du kan få og viser deg hvor mye du kan spare. Du kan prute i
+          banken du er kunde med et klikk, og snart vil du også kunne bytte bank med et klikk.
+        </p>
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Personvern: Er informasjonen min trygg?
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p class="expansion-content">
+          Ja, informasjonen din er helt trygg og vi deler den ikke med tredjeparter.
+        </p>
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Hvem står bak Renteradar.no?
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p class="expansion-content">
+          Renteradar.no eies og drives av Forbrukerøkonomene AS. Se "Om oss" for mer informasjon.
+        </p>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </section>
