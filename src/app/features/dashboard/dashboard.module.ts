@@ -21,7 +21,9 @@ import {
   MatInputModule, MatChipsModule, MatIconModule, MatAutocompleteModule,
   MatProgressSpinnerModule,
   MatCheckboxModule,
-  MatBottomSheetModule
+  MatBottomSheetModule,
+  MatButtonModule,
+  MatTooltipModule
 } from '@angular/material';
 import { RateTypeFixedComponent } from './rate-type-fixed/rate-type-fixed.component';
 import { NoLoansComponent } from './no-loans/no-loans.component';
@@ -32,6 +34,7 @@ import {
 import { ChartModule } from 'angular-highcharts';
 import { ShareSheetComponent } from './offers/share-sheet/share-sheet.component';
 import { ShareButtonModule } from '@ngx-share/button';
+import { VirdiStatisticsComponent } from './house/virdi-statistics/virdi-statistics.component';
 // TODO: ADD separate module for material import
 @NgModule({
   declarations: [
@@ -47,7 +50,8 @@ import { ShareButtonModule } from '@ngx-share/button';
     NoLoansComponent,
     ChangeBankDialogComponent,
     SuccessChangeBankDialogComponent,
-    ShareSheetComponent
+    ShareSheetComponent,
+    VirdiStatisticsComponent
   ],
   imports: [
     CommonModule,
@@ -63,6 +67,8 @@ import { ShareButtonModule } from '@ngx-share/button';
     MatInputModule,
     MatChipsModule,
     MatIconModule,
+    MatButtonModule,
+    MatTooltipModule,
     MatAutocompleteModule,
     MatProgressSpinnerModule,
     MatCheckboxModule,
