@@ -1,16 +1,26 @@
-<div class="row justify-content-center" *ngIf="!isSmallScreen;else titleButton">
-  <div class="col-md-12">
-    <h3 class="heading font-weight-bold text-center mb-4">Få den beste
-      boliglånsrenten!</h3>
+<div class="my-3">
+  <rente-button class="title-btn" mat-button color="primary" [routerLink]="'/velgbank'">
+    Få den beste boliglånsrenten!
+  </rente-button>
+</div>
+<div class="pb-4 mb-4" [ngClass]="{'card-wrapper': !isSmallScreen}">
+  <h3 class="heading font-weight-bold text-center ">Velg din bank:</h3>
+  <div class="row justify-content-center">
+    <div class="col-4 col-lg-2 text-center">
+      <a [routerLink]="['/autentisering/dnb']"><img class="mw-100" src="../../../assets/img/banks-logo/dnb.png"
+          alt="DNB" title="DNB"></a>
+    </div>
+    <div class="col-4 col-lg-2 text-center">
+      <a [routerLink]="['/autentisering/nordea']"><img class="mw-100" src="../../../assets/img/banks-logo/nordea.png"
+          alt="NORDEA" title="NORDEA"></a>
+    </div>
+    <div class="col-4 col-lg-2 text-center">
+      <a [routerLink]="['/autentisering/sparebank1-sub']"><img class="mw-100"
+          src="../../../assets/img/banks-logo/square/sparebank1v2.png" alt="Sparebank1" title="Sparebank1"></a>
+    </div>
   </div>
 </div>
-<ng-template #titleButton>
-  <div class="my-3">
-    <rente-button class="title-btn" mat-button color="primary" [routerLink]="'/velgbank'">
-      Få den beste boliglånsrenten!
-    </rente-button>
-  </div>
-</ng-template>
+
 
 <div class="container">
   <div class="row">
