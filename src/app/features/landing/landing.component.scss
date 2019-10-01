@@ -101,14 +101,12 @@
     width: 368px;
     margin: 20px 0;
 
-    @media (max-width:750px) {
-      ::ng-deep.mat-raised-button {
-        min-height: 60px !important;
-        font-size: 24px !important;
-        color: $white;
-        font-family: Lato;
-        line-height: 35px;
-      }
+    ::ng-deep.mat-raised-button {
+      min-height: 60px !important;
+      font-size: 24px !important;
+      color: $white;
+      font-family: Lato;
+      line-height: 35px;
     }
   }
 }
