@@ -30,7 +30,7 @@ import {
   SuccessChangeBankDialogComponent
 } from './offers/change-bank-dialog/success-change-bank-dialog/success-change-bank-dialog.component';
 import { ShareSheetComponent } from './offers/share-sheet/share-sheet.component';
-import { ShareButtonModule } from '@ngx-share/button';
+// import { ShareButtonModule } from '@ngx-share/button';
 // TODO: ADD separate module for material import
 @NgModule({
   declarations: [
@@ -66,7 +66,7 @@ import { ShareButtonModule } from '@ngx-share/button';
     MatProgressSpinnerModule,
     MatCheckboxModule,
     MatBottomSheetModule,
-    ShareButtonModule
+    // ShareButtonModule
   ],
   entryComponents: [
     DialogInfoComponent,
