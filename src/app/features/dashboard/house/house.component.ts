@@ -60,7 +60,7 @@ export class HouseComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.statisticTooltip = 'Virdi statistikk';
+    this.statisticTooltip = 'Bolig statistikk';
     forkJoin([this.loansService.getPropertValue(), this.loansService.getEstimatedPropertValue(), this.loansService.getAddresses()])
       .subscribe(([propValue, estimatedPropValue, res]) => {
         this.propertyValue = propValue.propertyValue;
@@ -100,7 +100,7 @@ export class HouseComponent implements OnInit {
     } else {
       this.hideStatisticsButton = false;
 
-      this.statisticTooltip = 'Virdi statistikk';
+      this.statisticTooltip = 'Bolig statistikk';
     }
   }
 

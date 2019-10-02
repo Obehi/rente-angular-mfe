@@ -56,8 +56,7 @@ export class VirdiStatisticsComponent implements OnInit {
 
       xAxis: {
         title: {
-          enabled: 'bottom',
-          text: 'NOK'
+          enabled: 'bottom'
         },
         categories: []
       },
@@ -98,7 +97,7 @@ export class VirdiStatisticsComponent implements OnInit {
       },
 
       title: {
-        text: 'avg sqm: value'
+        text: ''
       },
 
       xAxis: {
@@ -123,7 +122,7 @@ export class VirdiStatisticsComponent implements OnInit {
       tooltip: {
         formatter() {
           return '<b>' + this.x + '</b><br/>' +
-            'Telle' + ': ' + this.y
+            'Antall' + ': ' + this.y
         }
       },
 
@@ -154,7 +153,7 @@ export class VirdiStatisticsComponent implements OnInit {
         this.priceDestributionSqm.push({ from: element.from, to: element.to });
         this.columnChartOptions.series[0].data.push(element.count);
         this.columnChartOptions.title.text = `Din kvadratmeter pris: ${extendedInfo.statistics.average_sqm_price} NOK`;
-        this.lineChartOptions.title.text = `${extendedInfo.indexHistory.area}`;
+        this.lineChartOptions.title.text = `Prisutvikling ${extendedInfo.indexHistory.area}`;
         if (extendedInfo.statistics.average_sqm_price >= element.from && extendedInfo.statistics.average_sqm_price <= element.to) {
           this.columnChartOptions.plotOptions.column.colors.push('#2b3e50');
         } else {
@@ -162,10 +161,20 @@ export class VirdiStatisticsComponent implements OnInit {
         }
       });
       this.columnChartOptions.xAxis.categories = [...this.createThousandsCategories(this.priceDestributionSqm)];
-      extendedInfo.indexHistory.data.forEach(element => {
-        this.lineChartOptions.series[0].data.unshift(element.index_value);
-        this.lineChartOptions.xAxis.categories.unshift(element.date);
-      });
+      const BreakException = {};
+      try {
+        extendedInfo.indexHistory.data.forEach((element, index) => {
+          if (index >= 39) {
+            throw BreakException;
+          } else {
+            this.lineChartOptions.xAxis.categories.unshift(element.date);
+            this.lineChartOptions.series[0].data.unshift(element.index_value);
+          }
+        });
+      } catch (e) {
+        if (e !== BreakException) throw e;
+      }
+
       Highcharts.chart('columnChart', this.columnChartOptions);
       Highcharts.chart('lineChart', this.lineChartOptions);
     }, err => {
