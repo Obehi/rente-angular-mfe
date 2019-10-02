@@ -44,7 +44,8 @@ export const API_URL_MAP = {
     size: '/size',
     property: '/property',
     value: '/current-value',
-    estimatedValue: '/estimated-value'
+    estimatedValue: '/estimated-value',
+    extendedInfo: '/extended-info'
   },
   profile: '/profil',
   preferances: '/preferanser',

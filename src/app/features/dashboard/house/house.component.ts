@@ -37,7 +37,7 @@ export class HouseComponent implements OnInit {
   public propertyValue: number;
   public estimatedPropertyValue: number;
   public statisticsView: boolean;
-  public statisticTooltip: string  = 'Virdi statistikk';
+  public statisticTooltip: string;
 
   public threeDigitsMask = { mask: [/\d/, /\d/, /\d/], guide: false };
   public fourDigitsMask = { mask: [/\d/, /\d/, /\d/, /\d/], guide: false };
@@ -49,6 +49,7 @@ export class HouseComponent implements OnInit {
     }),
     guide: false
   };
+  hideStatisticsButton: boolean;
 
 
   constructor(
@@ -59,7 +60,7 @@ export class HouseComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-
+    this.statisticTooltip = 'Virdi statistikk';
     forkJoin([this.loansService.getPropertValue(), this.loansService.getEstimatedPropertValue(), this.loansService.getAddresses()])
       .subscribe(([propValue, estimatedPropValue, res]) => {
         this.propertyValue = propValue.propertyValue;
@@ -93,8 +94,12 @@ export class HouseComponent implements OnInit {
   public toggleStatisticsViewState() {
     this.statisticsView = !this.statisticsView;
     if (this.statisticsView) {
+      this.hideStatisticsButton = true;
+
       this.statisticTooltip = 'Tilbake til bolig';
     } else {
+      this.hideStatisticsButton = false;
+
       this.statisticTooltip = 'Virdi statistikk';
     }
   }

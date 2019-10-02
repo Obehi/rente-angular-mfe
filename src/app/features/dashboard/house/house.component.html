@@ -115,10 +115,10 @@
   </div>
 </div>
 
-<div *ngIf="statisticsView" [@shakeAnimation]>
-  <rente-virdi-statistics></rente-virdi-statistics>
+<div *ngIf="statisticsView">
+  <rente-virdi-statistics (statisticsLoaded)="hideStatisticsButton = false"></rente-virdi-statistics>
 </div>
-<div *ngIf="autoPropertyForm && manualPropertyForm">
+<div *ngIf="autoPropertyForm && manualPropertyForm && !hideStatisticsButton">
   <div class="button-wrap mt-4 text-center">
     <rente-button *ngIf="!statisticsView" class="mr-3" color="primary" (click)="updatePropertyMode()"
       [isLoading]="isLoading" [disabled]="isLoading">Lagre
