@@ -36,6 +36,10 @@ export class HouseComponent implements OnInit {
   public isLoading: boolean;
   public propertyValue: number;
   public estimatedPropertyValue: number;
+  public statisticsView: boolean;
+  public statisticTooltip: string;
+  public hideStatisticsButton: boolean;
+  public disableStatisticsButton: boolean;
 
   public threeDigitsMask = { mask: [/\d/, /\d/, /\d/], guide: false };
   public fourDigitsMask = { mask: [/\d/, /\d/, /\d/, /\d/], guide: false };
@@ -48,6 +52,8 @@ export class HouseComponent implements OnInit {
     guide: false
   };
 
+
+
   constructor(
     private fb: FormBuilder,
     private loansService: LoansService,
@@ -56,6 +62,7 @@ export class HouseComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.statisticTooltip = 'Bolig statistikk';
     forkJoin([this.loansService.getPropertValue(), this.loansService.getEstimatedPropertValue(), this.loansService.getAddresses()])
       .subscribe(([propValue, estimatedPropValue, res]) => {
         this.propertyValue = propValue.propertyValue;
@@ -86,11 +93,31 @@ export class HouseComponent implements OnInit {
 
   }
 
+  public toggleStatisticsViewState() {
+    this.statisticsView = !this.statisticsView;
+    if (this.statisticsView) {
+      this.hideStatisticsButton = true;
+
+      this.statisticTooltip = 'Tilbake til bolig';
+    } else {
+      this.hideStatisticsButton = false;
+
+      this.statisticTooltip = 'Bolig statistikk';
+    }
+  }
+
   public isErrorState(control: AbstractControl | null, form: FormGroup | NgForm | null): boolean {
     return !!(control && control.invalid && (control.dirty || control.touched));
   }
 
+  public statisticsError() {
+    this.toggleStatisticsViewState();
+    this.disableStatisticsButton = true;
+    this.statisticTooltip = 'Boligstatistikk utilgjengelig for øyeblikket';
+  }
+
   public setPropertyMode() {
+
     if (this.isAutoMode) {
       this.autoPropertyForm.enable();
       this.manualPropertyForm.disable();
@@ -107,8 +134,13 @@ export class HouseComponent implements OnInit {
       addressData = this.autoPropertyForm.value;
       addressData.manualPropertyValue = null;
     } else {
-      this.manualPropertyForm.value.manualPropertyValue = this.manualPropertyForm.value.manualPropertyValue.replace(/\s/g, '');
-      addressData = Object.assign(this.autoPropertyForm.value, this.manualPropertyForm.value);
+      if (this.manualPropertyForm.value.manualPropertyValue) {
+        this.manualPropertyForm.value.manualPropertyValue = this.manualPropertyForm.value.manualPropertyValue.replace(/\s/g, '');
+        addressData = Object.assign(this.autoPropertyForm.value, this.manualPropertyForm.value);
+      } else {
+        this.isLoading = false;
+        return;
+      }
     }
     this.loansService.updateAddress(addressData).subscribe(res => {
       this.isLoading = false;
