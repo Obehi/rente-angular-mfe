@@ -33,11 +33,13 @@ noData(Highcharts);
 })
 export class VirdiStatisticsComponent implements OnInit {
   @Output() statisticsLoaded = new EventEmitter();
+  @Output() statisticsError = new EventEmitter();
   public isLoading: boolean;
   public priceDestributionSqm: any[] = [];
   public columnChartOptions: any;
   public lineChartOptions: any;
   public openMarketSalesHalfYear: number;
+  public indexArea: string;
 
   constructor(
     private loansService: LoansService
@@ -149,10 +151,11 @@ export class VirdiStatisticsComponent implements OnInit {
       this.isLoading = false;
       this.statisticsLoaded.emit();
       this.openMarketSalesHalfYear = extendedInfo.statistics.open_market_sales_6_months;
+      this.indexArea = extendedInfo.indexHistory.area;
       extendedInfo.statistics.price_distribution_sqm.forEach(element => {
         this.priceDestributionSqm.push({ from: element.from, to: element.to });
         this.columnChartOptions.series[0].data.push(element.count);
-        this.columnChartOptions.title.text = `Din kvadratmeter pris: ${extendedInfo.statistics.average_sqm_price} NOK`;
+        this.columnChartOptions.title.text = `Din kvadratmeterpris: ${extendedInfo.statistics.average_sqm_price} NOK`;
         this.lineChartOptions.title.text = `Prisutvikling ${extendedInfo.indexHistory.area}`;
         if (extendedInfo.statistics.average_sqm_price >= element.from && extendedInfo.statistics.average_sqm_price <= element.to) {
           this.columnChartOptions.plotOptions.column.colors.push('#2b3e50');
@@ -180,6 +183,7 @@ export class VirdiStatisticsComponent implements OnInit {
       Highcharts.chart('columnChart', this.columnChartOptions);
       Highcharts.chart('lineChart', this.lineChartOptions);
     }, err => {
+      this.statisticsError.emit();
       this.isLoading = false;
     });
   }

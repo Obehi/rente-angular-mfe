@@ -78,9 +78,9 @@ export class OffersComponent implements OnInit, OnDestroy {
     public offersService: OffersService,
     public loansService: LoansService,
     private changeBankServiceService: ChangeBankServiceService,
-    private bottomSheet: MatBottomSheet,
+    // private bottomSheet: MatBottomSheet,
     private router: Router,
-    private localStorageService: LocalStorageService
+    // private localStorageService: LocalStorageService
   ) {
     this.onResize();
     this.isShowTips = true;

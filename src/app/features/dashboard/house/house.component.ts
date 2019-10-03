@@ -38,6 +38,8 @@ export class HouseComponent implements OnInit {
   public estimatedPropertyValue: number;
   public statisticsView: boolean;
   public statisticTooltip: string;
+  public hideStatisticsButton: boolean;
+  public disableStatisticsButton: boolean;
 
   public threeDigitsMask = { mask: [/\d/, /\d/, /\d/], guide: false };
   public fourDigitsMask = { mask: [/\d/, /\d/, /\d/, /\d/], guide: false };
@@ -49,7 +51,7 @@ export class HouseComponent implements OnInit {
     }),
     guide: false
   };
-  hideStatisticsButton: boolean;
+
 
 
   constructor(
@@ -106,6 +108,12 @@ export class HouseComponent implements OnInit {
 
   public isErrorState(control: AbstractControl | null, form: FormGroup | NgForm | null): boolean {
     return !!(control && control.invalid && (control.dirty || control.touched));
+  }
+
+  public statisticsError() {
+    this.toggleStatisticsViewState();
+    this.disableStatisticsButton = true;
+    this.statisticTooltip = 'Boligstatistikk utilgjengelig for øyeblikket';
   }
 
   public setPropertyMode() {

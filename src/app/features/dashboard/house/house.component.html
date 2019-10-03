@@ -116,18 +116,21 @@
 </div>
 
 <div *ngIf="statisticsView">
-  <rente-virdi-statistics (statisticsLoaded)="hideStatisticsButton = false"></rente-virdi-statistics>
+  <rente-virdi-statistics (statisticsLoaded)="hideStatisticsButton = false" (statisticsError)="statisticsError()"></rente-virdi-statistics>
 </div>
 <div *ngIf="autoPropertyForm && manualPropertyForm && !hideStatisticsButton">
   <div class="button-wrap mt-4 text-center">
     <rente-button *ngIf="!statisticsView" class="mr-3" color="primary" (click)="updatePropertyMode()"
       [isLoading]="isLoading" [disabled]="isLoading">Lagre
     </rente-button>
-    <button mat-raised-button [matTooltip]="statisticTooltip" class="statistics-button"
-      (click)="toggleStatisticsViewState()" [ngClass]="{'mb-4': statisticsView}">
-      <mat-icon *ngIf="!statisticsView">bar_chart</mat-icon>
-      <mat-icon *ngIf="statisticsView">keyboard_backspace</mat-icon>
-    </button>
+    <div [ngClass]="{'mb-4': statisticsView}" [matTooltip]="statisticTooltip">
+      <button [disabled]="disableStatisticsButton" mat-raised-button class="statistics-button"
+        (click)="toggleStatisticsViewState()">
+        <mat-icon *ngIf="!statisticsView">bar_chart</mat-icon>
+        <mat-icon *ngIf="statisticsView">keyboard_backspace</mat-icon>
+      </button>
+    </div>
+
   </div>
   <p class="text-center button-label" *ngIf="!statisticsView">Husk å lagre etter bytte mellom estimattype</p>
 </div>
