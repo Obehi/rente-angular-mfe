@@ -1,0 +1,9 @@
+.provided-container {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  @media (max-width:450px) {
+    justify-content: center;
+  }
+}
