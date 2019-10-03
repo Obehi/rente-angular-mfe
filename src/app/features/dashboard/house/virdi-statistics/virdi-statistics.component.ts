@@ -122,7 +122,7 @@ export class VirdiStatisticsComponent implements OnInit {
       tooltip: {
         formatter() {
           return '<b>' + this.x + '</b><br/>' +
-            'Antall' + ': ' + this.y
+            'Antall' + ': ' + this.y;
         }
       },
 
@@ -172,7 +172,9 @@ export class VirdiStatisticsComponent implements OnInit {
           }
         });
       } catch (e) {
-        if (e !== BreakException) throw e;
+        if (e !== BreakException) {
+          throw e;
+        }
       }
 
       Highcharts.chart('columnChart', this.columnChartOptions);

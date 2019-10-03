@@ -33,8 +33,7 @@ import {
 } from './offers/change-bank-dialog/success-change-bank-dialog/success-change-bank-dialog.component';
 import { ChartModule } from 'angular-highcharts';
 import { ShareSheetComponent } from './offers/share-sheet/share-sheet.component';
-import { ShareButtonModule } from '@ngx-share/button';
-import { VirdiStatisticsComponent } from './house/virdi-statistics/virdi-statistics.component';
+// import { ShareButtonModule } from '@ngx-share/button';
 // TODO: ADD separate module for material import
 @NgModule({
   declarations: [
@@ -73,8 +72,7 @@ import { VirdiStatisticsComponent } from './house/virdi-statistics/virdi-statist
     MatProgressSpinnerModule,
     MatCheckboxModule,
     MatBottomSheetModule,
-    ShareButtonModule,
-    ChartModule
+    // ShareButtonModule
   ],
   entryComponents: [
     DialogInfoComponent,
