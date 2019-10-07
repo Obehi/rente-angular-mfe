@@ -63,7 +63,7 @@ export class HouseComponent implements OnInit {
 
   ngOnInit() {
     this.statisticTooltip = 'Bolig statistikk';
-    forkJoin([this.loansService.getPropertValue(), this.loansService.getEstimatedPropertValue(), this.loansService.getAddresses()])
+    forkJoin([this.loansService.getPropertyValue(), this.loansService.getEstimatedPropertValue(), this.loansService.getAddresses()])
       .subscribe(([propValue, estimatedPropValue, res]) => {
         this.propertyValue = propValue.propertyValue;
         this.estimatedPropertyValue = estimatedPropValue.propertyValue;
@@ -89,8 +89,12 @@ export class HouseComponent implements OnInit {
 
         this.isAutoMode = !Boolean(this.addressData.manualPropertyValue);
         this.setPropertyMode();
+      }, err => {
+        if (err.status === 400) {
+          this.snackBar.openFailSnackBar('Vi klarte dessverre ikke estimere din boligverdi.' +
+            'Vi ber derfor om at du legger inn denne manuelt.');
+        }
       });
-
   }
 
   public toggleStatisticsViewState() {

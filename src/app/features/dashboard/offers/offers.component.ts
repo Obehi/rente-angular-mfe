@@ -80,7 +80,7 @@ export class OffersComponent implements OnInit, OnDestroy {
     private changeBankServiceService: ChangeBankServiceService,
     // private bottomSheet: MatBottomSheet,
     private router: Router,
-    // private localStorageService: LocalStorageService
+    private localStorageService: LocalStorageService
   ) {
     this.onResize();
     this.isShowTips = true;
@@ -103,17 +103,12 @@ export class OffersComponent implements OnInit, OnDestroy {
       //     this.localStorageService.setItem('shareSheetShown', true);
       //   });
       // }
-
-      // if (this.offersInfo.creditLinesOnlyLtvTooHigh) {
-      //   this.isLtvTooHigh = true;
-      // } else if (!this.offersInfo.offersPresent) {
-      //   this.noOffers = true;
-      // }
+      this.localStorageService.removeItem('isNewUser');
 
     }, err => {
       if (err.errorType === 'PROPERTY_VALUE_MISSING') {
         this.errorMessage = err.title;
-        this.router.navigate(['/bekreft']);
+        this.router.navigate(['/dashboard/bolig']);
       }
       console.log(err);
     });
