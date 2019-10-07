@@ -62,8 +62,6 @@ export class HouseComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.snackBar.openFailSnackBar('Vi klarte dessverre ikke estimere din boligverdi.' +
-    'Vi ber derfor om at du legger inn denne manuelt.');
     this.statisticTooltip = 'Bolig statistikk';
     forkJoin([this.loansService.getPropertyValue(), this.loansService.getEstimatedPropertValue(), this.loansService.getAddresses()])
       .subscribe(([propValue, estimatedPropValue, res]) => {
