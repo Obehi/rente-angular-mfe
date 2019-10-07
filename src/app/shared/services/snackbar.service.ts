@@ -13,7 +13,7 @@ export class SnackBarService {
         this.snackBar.open(message, 'Lukk', {
             duration: duration ? duration * 1000 : this.duration * 1000,
             panelClass: ['bg-primary'],
-            horizontalPosition: 'right'
+            horizontalPosition: 'left'
         });
     }
 
@@ -21,7 +21,7 @@ export class SnackBarService {
         this.snackBar.open(message, 'Lukk', {
             duration: 2 * 1000,
             panelClass: ['bg-error'],
-            horizontalPosition: 'right'
+            horizontalPosition: 'left'
         });
     }
 }
