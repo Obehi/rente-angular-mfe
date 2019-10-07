@@ -86,13 +86,17 @@
 }
 
 .card-wrapper {
-  img {
-    box-sizing: border-box;
+  a {
+    img {
+      box-sizing: border-box;
+    }
   }
 
-  img:hover {
-    border: 6px solid $primary;
-    border-radius: 23px;
+  a {
+    img:hover {
+      border: 6px solid $primary;
+      border-radius: 23px;
+    }
   }
 
   border-radius: 12px;
