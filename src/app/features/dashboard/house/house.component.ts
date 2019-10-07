@@ -68,7 +68,7 @@ export class HouseComponent implements OnInit {
     }, err => {
       if (err.status === 400) {
         this.snackBar.openFailSnackBar('Vi klarte dessverre ikke estimere din boligverdi.' +
-          'Vi ber derfor om at du legger inn denne manuelt.', 5);
+          'Vi ber derfor om at du legger inn denne manuelt.', 10);
         this.isAutoMode = false;
         this.setPropertyMode();
       }
@@ -172,7 +172,7 @@ export class HouseComponent implements OnInit {
       this.isLoading = false;
       if (err.status === 400) {
         this.snackBar.openFailSnackBar('Vi klarte dessverre ikke estimere din boligverdi.' +
-          'Vi ber derfor om at du legger inn denne manuelt.', 5);
+          'Vi ber derfor om at du legger inn denne manuelt.', 10);
         this.isAutoMode = false;
         this.setPropertyMode();
       }
