@@ -17,9 +17,9 @@ export class SnackBarService {
         });
     }
 
-    public openFailSnackBar(message: string) {
+    public openFailSnackBar(message: string, duration?: number) {
         this.snackBar.open(message, 'Lukk', {
-            duration: 2 * 1000,
+            duration: duration ? duration * 1000 : this.duration * 1000,
             panelClass: ['bg-error'],
             horizontalPosition: 'left'
         });

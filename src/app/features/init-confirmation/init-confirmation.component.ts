@@ -104,7 +104,7 @@ export class InitConfirmationComponent implements OnInit {
       this.snackBar.openSuccessSnackBar('Endringene dine er lagret');
     }, err => {
       this.isLoading = false;
-      this.snackBar.openFailSnackBar('Oops, noe gikk galt');
+      this.router.navigate(['/dashboard/bolig']);
     });
   }
 
