@@ -8,12 +8,14 @@
             {{openMarketSalesHalfYear}}</div>
     </div>
     <div id="lineChart" class="col-12 col-lg-6 order-lg-2 mt-3 mt-lg-0"></div>
-    <div class="col-12 col-lg-6 order-lg-4" *ngIf="!isLoading" [@shakeAnimation]>
+    <div class="col-12 order-lg-4" *ngIf="!isLoading" [@shakeAnimation]>
         <div class="provided-container font-weight-normal">
-            Se mer info om din bolig:&nbsp;&nbsp;
+            <span class="provided-text">
+                Se mer info om din bolig:&nbsp;&nbsp;
+            </span>    
             <a href="https://virdi.no/" target="_blank">
                 <span class="logo logo--full" ng-class="{ 'logo--full': $ctrl.full, 'logo--footer': $ctrl.footer }">
-                    <svg class="logo__typo" xmlns="http://www.w3.org/2000/svg" width="86" height="32"
+                    <svg class="logo__typo" xmlns="http://www.w3.org/2000/svg" width="100" height="40"
                         viewBox="0 0 86 32">
                         <polygon fill="#565368"
                             points="40.149 9.417 42.875 9.417 47.341 22.507 47.433 22.507 51.945 9.417 54.555 9.417 48.83 25.053 45.852 25.053">

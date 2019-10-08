@@ -40,7 +40,7 @@ export class GetNotifiedComponent implements OnInit {
     this.contactService.getMissingBanks().subscribe((allBanks: any) => {
       this.allBanks = allBanks;
       this.missingBankForm = this.fb.group({
-        bank: [''],
+        bank: ['', Validators.required],
         email: ['', Validators.compose([
           Validators.required,
           Validators.pattern(VALIDATION_PATTERN.email)

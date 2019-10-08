@@ -1,9 +1,18 @@
+@import '../../../../../styles/theme/_colors.scss';
+
+@mixin text-style($size, $line-height) {
+  font-size: $size;
+  color: $black;
+  font-family: Lato;
+  line-height: $line-height;
+}
+
 .provided-container {
-  height: 40px;
+  height: 60px;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
-  @media (max-width:450px) {
-    justify-content: center;
+  justify-content: center;
+  .provided-text {
+    @include text-style(23px, 29px);
   }
 }

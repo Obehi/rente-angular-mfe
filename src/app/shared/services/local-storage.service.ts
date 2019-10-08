@@ -15,6 +15,9 @@ export class LocalStorageService {
   public get isNoLoansPresent() {
     return !!this.getItem('noLoansPresent');
   }
+  public get isNewUser() {
+    return !!this.getItem('isNewUser');
+  }
 
   public setItem(param: string, value: any): void {
     localStorage.setItem(`${this.appPrefix}-${param}`, value);

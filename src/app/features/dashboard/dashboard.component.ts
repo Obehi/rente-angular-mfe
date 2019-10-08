@@ -54,7 +54,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   public getActiveIndex(): number {
-    return this.navLinks.indexOf(this.navLinks.find(link => `/dashboard/${link}` === this.router.url));
+    return this.navLinks.indexOf(this.navLinks.find(link => `/dashboard/${link}` === this.router.url.split('?')[0]));
   }
 
   private setActiveIcon(activeIndex: number) {
