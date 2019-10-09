@@ -33,6 +33,17 @@
   }
 }
 
+
+a {
+  color: $primary;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+}
+
 .disabled {
   opacity: 0.5;
   pointer-events: none;
