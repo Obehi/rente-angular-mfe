@@ -279,6 +279,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
                   } else {
                     if (userInfo.income === null) {
                       this.router.navigate(['/bekreft']);
+                      this.localStorageService.setItem('isNewUser', true);
                     } else {
                       this.router.navigate(['/dashboard/tilbud/']);
                     }

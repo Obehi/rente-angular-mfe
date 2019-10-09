@@ -14,7 +14,7 @@
       <ul class="navbar-nav m-0 ml-auto">
 
         <li class="nav-item mx-0 mx-lg-1"
-          *ngIf="!localStorageService.isFixedRateType && !localStorageService.isNoLoansPresent && auth.isLoggedIn">
+          *ngIf="!localStorageService.isFixedRateType && !localStorageService.isNoLoansPresent && !localStorageService.isNewUser && auth.isLoggedIn">
           <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger text-white"
             [routerLink]="['/dashboard/tilbud']" routerLinkActive="router-link-active">
             Min side
@@ -73,7 +73,7 @@
       <ul class="navbar-nav m-0 ml-auto">
 
         <li class="nav-item mx-0 mx-lg-1"
-          *ngIf="!localStorageService.isFixedRateType && !localStorageService.isNoLoansPresent && auth.isLoggedIn">
+          *ngIf="!localStorageService.isFixedRateType && !localStorageService.isNoLoansPresent && !localStorageService.isNewUser && auth.isLoggedIn">
           <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger text-white"
             [routerLink]="['/dashboard/tilbud']" routerLinkActive="router-link-active">
             Min side

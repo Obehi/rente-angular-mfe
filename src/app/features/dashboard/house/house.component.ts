@@ -4,7 +4,7 @@ import { FormGroup, FormBuilder, Validators, NgForm, AbstractControl } from '@an
 import { VALIDATION_PATTERN } from '@config/validation-patterns.config';
 import createNumberMask from 'text-mask-addons/dist/createNumberMask';
 import { forkJoin } from 'rxjs';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { SnackBarService } from '@services/snackbar.service';
 import { trigger, transition, animate, keyframes, style } from '@angular/animations';
 
@@ -52,20 +52,30 @@ export class HouseComponent implements OnInit {
     guide: false
   };
 
-
-
   constructor(
     private fb: FormBuilder,
     private loansService: LoansService,
     private snackBar: SnackBarService,
     private router: Router,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
     this.statisticTooltip = 'Bolig statistikk';
-    forkJoin([this.loansService.getPropertValue(), this.loansService.getEstimatedPropertValue(), this.loansService.getAddresses()])
-      .subscribe(([propValue, estimatedPropValue, res]) => {
-        this.propertyValue = propValue.propertyValue;
+
+    this.loansService.getPropertyValue().subscribe(propValue => {
+      this.propertyValue = propValue.propertyValue;
+    }, err => {
+      if (err.status === 400) {
+        this.snackBar.openFailSnackBar('Vi klarte dessverre ikke estimere din boligverdi.' +
+          'Vi ber derfor om at du legger inn denne manuelt.', 10);
+        this.isAutoMode = false;
+        this.setPropertyMode();
+      }
+    });
+
+    forkJoin([this.loansService.getEstimatedPropertValue(), this.loansService.getAddresses()])
+      .subscribe(([estimatedPropValue, res]) => {
         this.estimatedPropertyValue = estimatedPropValue.propertyValue;
         this.addressData = res.addresses[0];
         this.autoPropertyForm = this.fb.group({
@@ -87,10 +97,22 @@ export class HouseComponent implements OnInit {
           ])]
         });
 
-        this.isAutoMode = !Boolean(this.addressData.manualPropertyValue);
+        // this.isAutoMode = !Boolean(this.addressData.manualPropertyValue);
         this.setPropertyMode();
+        this.route.queryParams.subscribe(param => {
+          if (param.statistikk) {
+            this.toggleStatisticsViewState();
+          }
+        });
+      }, err => {
+        this.isLoading = false;
+        if (err.status === 400) {
+          this.snackBar.openFailSnackBar('Vi klarte dessverre ikke estimere din boligverdi.' +
+            'Vi ber derfor om at du legger inn denne manuelt.', 5);
+          this.isAutoMode = false;
+          this.setPropertyMode();
+        }
       });
-
   }
 
   public toggleStatisticsViewState() {
@@ -148,7 +170,12 @@ export class HouseComponent implements OnInit {
       this.snackBar.openSuccessSnackBar('Endringene dine er lagret');
     }, err => {
       this.isLoading = false;
-      this.snackBar.openFailSnackBar('Oops, noe gikk galt');
+      if (err.status === 400) {
+        this.snackBar.openFailSnackBar('Vi klarte dessverre ikke estimere din boligverdi.' +
+          'Vi ber derfor om at du legger inn denne manuelt.', 10);
+        this.isAutoMode = false;
+        this.setPropertyMode();
+      }
     });
   }
 

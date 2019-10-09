@@ -26,6 +26,9 @@
           <a [routerLink]="['/dashboard/bolig']">
             Bolig fanen
           </a>
+          <br>
+          Du kan også se <a [routerLink]="['/dashboard/bolig']" [queryParams]="{ statistikk: true }">statistikk (feks.
+            prisutvikling)</a> om din bolig.
         </p>
         <p class="text-border" *ngIf="!offersInfo.memberships.length">Enkelte banker tilbyr bedre betingelser gitt at du
           har et medlemskap i en

@@ -116,12 +116,15 @@
 </div>
 
 <div *ngIf="statisticsView">
-  <rente-virdi-statistics (statisticsLoaded)="hideStatisticsButton = false" (statisticsError)="statisticsError()"></rente-virdi-statistics>
+  <rente-virdi-statistics (statisticsLoaded)="hideStatisticsButton = false" (statisticsError)="statisticsError()">
+  </rente-virdi-statistics>
 </div>
 <div *ngIf="autoPropertyForm && manualPropertyForm && !hideStatisticsButton">
   <div class="button-wrap mt-4 text-center">
     <rente-button *ngIf="!statisticsView" class="mr-3" color="primary" (click)="updatePropertyMode()"
-      [isLoading]="isLoading" [disabled]="isLoading">Lagre
+      [isLoading]="isLoading"
+      [disabled]="isLoading ||(isAutoMode && autoPropertyForm.invalid) || (!isAutoMode && manualPropertyForm.invalid)">
+      Lagre
     </rente-button>
     <div [ngClass]="{'mb-4': statisticsView}" [matTooltip]="statisticTooltip">
       <button [disabled]="disableStatisticsButton" mat-raised-button class="statistics-button"

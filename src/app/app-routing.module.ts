@@ -50,7 +50,7 @@ const routes: Routes = [
       title: customMeta.kontaktTitle,
       meta: {
         name: defaultMeta.name,
-        description: defaultMeta.description
+        description: customMeta.kontaktDescription
       }
     }
   },
@@ -71,7 +71,7 @@ const routes: Routes = [
       title: customMeta.brukervilkarTitle,
       meta: {
         name: defaultMeta.name,
-        description: defaultMeta.description
+        description: customMeta.personvernDescription
       }
     }
   },
@@ -110,17 +110,17 @@ const routes: Routes = [
       title: customMeta.faabeskjedTitle,
       meta: {
         name: defaultMeta.name,
-        description: defaultMeta.description
+        description: customMeta.faabeskjedDescription
       }
     }
   },
   {
     path: ROUTES_MAP.guide, component: GuidePageComponent,
     data: {
-      title: customMeta.bekreftTitle,
+      title: customMeta.guideTitle,
       meta: {
         name: defaultMeta.name,
-        description: defaultMeta.description
+        description: customMeta.guideDescription
       }
     }
   },

@@ -13,15 +13,15 @@ export class SnackBarService {
         this.snackBar.open(message, 'Lukk', {
             duration: duration ? duration * 1000 : this.duration * 1000,
             panelClass: ['bg-primary'],
-            horizontalPosition: 'right'
+            horizontalPosition: 'left'
         });
     }
 
-    public openFailSnackBar(message: string) {
+    public openFailSnackBar(message: string, duration?: number) {
         this.snackBar.open(message, 'Lukk', {
-            duration: 2 * 1000,
+            duration: duration ? duration * 1000 : this.duration * 1000,
             panelClass: ['bg-error'],
-            horizontalPosition: 'right'
+            horizontalPosition: 'left'
         });
     }
 }

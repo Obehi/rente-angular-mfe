@@ -2,10 +2,13 @@ import { Subscription } from 'rxjs';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl, AbstractControl, NgForm } from '@angular/forms';
 import { VALIDATION_PATTERN } from '@config/validation-patterns.config';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { BANK_MAP } from '../login-status/login-status.config';
 import { MatDialog } from '@angular/material';
 import { DialogInfoServiceComponent } from './dialog-info-service/dialog-info-service.component';
+import { MetaService } from '@services/meta.service';
+import { TitleService } from '@services/title.service';
+import { customMeta } from '../../../config/routes-config';
 
 @Component({
   selector: 'rente-bank-id-login',
@@ -24,16 +27,29 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
   public phoneMask = { mask: [/\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/], guide: false };
   public birthdateMask = { mask: [/\d/, /\d/, /\d/, /\d/, /\d/, /\d/], guide: false };
   private routeParamsSub: Subscription;
+  public metaTitle: string;
+  public metaDescription: string;
 
   constructor(
     private fb: FormBuilder,
     private route: ActivatedRoute,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private metaService: MetaService,
+    private titleService: TitleService
   ) { }
 
   ngOnInit() {
     this.routeParamsSub = this.route.params.subscribe((params: any) => {
       if (params && params.bankName) {
+        for (const iterator in customMeta) {
+          if (customMeta[iterator].title) {
+            if (params.bankName === customMeta[iterator].bankName) {
+              this.metaTitle = customMeta[iterator].title;
+              this.metaDescription = customMeta[iterator].description;
+              this.changeTitles();
+            }
+          }
+        }
         this.userBank = BANK_MAP[params.bankName];
         this.bankLogo = this.userBank.bankIcon;
         this.isSsnBankLogin = BANK_MAP[params.bankName].isSSN;
@@ -79,6 +95,13 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
       width: '800px',
       maxHeight: '85vh'
     });
+  }
+
+  private changeTitles(): void {
+    if (this.metaTitle && this.metaDescription) {
+      this.titleService.setTitle(this.metaTitle);
+      this.metaService.updateMetaTags('description', this.metaDescription);
+    }
   }
 
   private setBankIdForm() {
