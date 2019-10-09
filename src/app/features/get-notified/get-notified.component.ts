@@ -84,7 +84,7 @@ export class GetNotifiedComponent implements OnInit {
   public noWhitespaceValidator(control: FormControl) {
     const isWhitespace = (control.value.name || control.value || '').trim().length === 0;
     const isValid = !isWhitespace;
-    return isValid ? null : { 'whitespace': true };
+    return isValid ? null : { whitespace: true };
   }
 
   public displayFn(bank: any): string | undefined {
