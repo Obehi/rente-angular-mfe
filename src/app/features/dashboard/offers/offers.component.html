@@ -38,7 +38,7 @@
           har ett eller flere fastrentelån. Renteradar viser besparelsespotensialet kun for lånet/lånene med flytende
           rente. Beste rente viser også kun beste rente for lånet/lånene med flytende rente.
         </p>
-        <p class="text-border">Du har rammelån/boligkreditt. Ønsker du å se tilbud kun for denne typen lån kan du endre
+        <p class="text-border" *ngIf="offersInfo.aggregatedLoanType === aggregatedLoanType.MIX_D_C || offersInfo.aggregatedLoanType === aggregatedLoanType.CREDIT_LINE">Du har rammelån/boligkreditt. Ønsker du å se tilbud kun for denne typen lån kan du endre
           dette i
           <a [routerLink]="'/dashboard/preferanser'">preferanser</a>
         </p>
