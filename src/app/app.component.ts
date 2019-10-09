@@ -37,14 +37,10 @@ export class AppComponent implements OnInit {
   }
 
   private changeTitles(): void {
-    let data = this.route.root.firstChild.snapshot.data;
 
+    let data = this.route.root.firstChild.snapshot.data;
     if (!data.title) {
-      if (this.route.root.children[0].children[0]) {
-        data = this.route.root.children[0].children[0].data;
-      } else {
-        data = this.route.root.children[0].data;
-      }
+      data = this.route.root.firstChild.firstChild.firstChild.snapshot.data;
     }
     const title = data.title;
     const metaData = data.meta;
