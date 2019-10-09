@@ -40,7 +40,10 @@ export class GetNotifiedComponent implements OnInit {
     this.contactService.getMissingBanks().subscribe((allBanks: any) => {
       this.allBanks = allBanks;
       this.missingBankForm = this.fb.group({
-        bank: ['', Validators.required],
+        bank: ['', Validators.compose([
+          Validators.required,
+          this.noWhitespaceValidator
+        ])],
         email: ['', Validators.compose([
           Validators.required,
           Validators.pattern(VALIDATION_PATTERN.email)
@@ -62,8 +65,11 @@ export class GetNotifiedComponent implements OnInit {
 
     const missingBankData = {
       email: this.missingBankForm.value.email,
-      bank: this.missingBankForm.value.bank.bank
+      bank: this.missingBankForm.value.bank.name
     };
+    if (!missingBankData.bank) {
+      missingBankData.bank = this.missingBankForm.value.bank;
+    }
 
     this.contactService.sendMissingBank(missingBankData).subscribe(_ => {
       this.isLoading = false;
@@ -73,6 +79,12 @@ export class GetNotifiedComponent implements OnInit {
       this.isLoading = false;
     });
 
+  }
+
+  public noWhitespaceValidator(control: FormControl) {
+    const isWhitespace = (control.value.name || control.value || '').trim().length === 0;
+    const isValid = !isWhitespace;
+    return isValid ? null : { whitespace: true };
   }
 
   public displayFn(bank: any): string | undefined {
