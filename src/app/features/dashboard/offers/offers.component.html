@@ -266,9 +266,7 @@
           rente. Beste rente viser også kun beste rente for lånet/lånene med flytende rente.
         </p>
         <p class="text-border" *ngIf="offersInfo.aggregatedLoanType === aggregatedLoanType.CREDIT_LINE 
-        || offersInfo.aggregatedLoanType === aggregatedLoanType.MIX_D_C 
-        || offersInfo.aggregatedLoanType === aggregatedLoanType.MIX_C_O 
-        || offersInfo.aggregatedLoanType === aggregatedLoanType.MIX_D_C_O">Du har rammelån/boligkreditt. Ønsker du å se
+        || offersInfo.aggregatedLoanType === aggregatedLoanType.MIX_D_C">Du har rammelån/boligkreditt. Ønsker du å se
           tilbud kun for denne typen lån kan du endre dette i
           <a [routerLink]="'/dashboard/preferanser'">preferanser</a>
         </p>
