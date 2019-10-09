@@ -54,6 +54,10 @@ a {
   flex-direction: row;
   justify-content: center;
   align-items: center;
+
+  rente-button {
+    width: 348px;
+  }
 }
 
 .statistics-button {
@@ -70,8 +74,4 @@ a {
 
 .button-label {
   color: $text-color;
-}
-
-rente-button {
-  width: 348px;
 }
