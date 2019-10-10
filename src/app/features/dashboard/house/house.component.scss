@@ -33,6 +33,17 @@
   }
 }
 
+
+a {
+  color: $primary;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+}
+
 .disabled {
   opacity: 0.5;
   pointer-events: none;
@@ -43,6 +54,10 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
+
+  rente-button {
+    width: 348px;
+  }
 }
 
 .statistics-button {
@@ -59,8 +74,4 @@
 
 .button-label {
   color: $text-color;
-}
-
-rente-button {
-  width: 348px;
 }
