@@ -11,8 +11,13 @@
   height: 60px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
+
   .provided-text {
-    @include text-style(23px, 29px);
+    @include text-style(25px, 29px);
+  }
+
+  @media (max-width:750px) {
+    justify-content: center;
   }
 }
