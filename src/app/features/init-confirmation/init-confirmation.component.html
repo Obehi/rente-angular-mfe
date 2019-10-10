@@ -1,7 +1,7 @@
 <div class="container contact-us my-5" *ngIf="propertyForm">
   <div class="row justify-content-center">
     <div class="col-lg-6 col-md-8 col-12 bg-wrap">
-      <h2 class="title">Hei, {{userData.name}}</h2>
+      <h3>Hei, {{userData.name}}</h3>
       <p>Vi trenger litt mer informasjon:</p>
 
       <form [formGroup]="propertyForm" novalidate (ngSubmit)="updateProperty(propertyForm.value)">

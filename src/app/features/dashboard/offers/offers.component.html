@@ -53,10 +53,10 @@
           <div class="col-12 col-sm-7 mb-3 mb-md-0">
             <div class="bg-wrap h-120" [ngSwitch]="offersInfo.currentLoanState">
               <p class="mb-0">Du kan spare:</p>
-              <h3 class="mb-0 mb-md-2" *ngIf="offersInfo.bestOfferTotalSaving > 0; else noBestOffer">
+              <h3 *ngIf="offersInfo.bestOfferTotalSaving > 0; else noBestOffer">
                 {{offersInfo.bestOfferTotalSaving | abs | number}},-</h3>
               <ng-template #noBestOffer>
-                <h3 class="my-0">0,-</h3>
+                <h3>0,-</h3>
               </ng-template>
               <p class="mb-0">over lånets løpetid</p>
             </div>
@@ -101,7 +101,7 @@
         </div>
       </div>
     </div>
-    <h3 class="mb-4">Beste tilbud:</h3>
+    <h3>Beste tilbud:</h3>
     <ng-container *ngIf="offersInfo">
 
       <div class="bg-wrap offers-bank mb-5" *ngFor="let offer of offersInfo.offers; let i = index">
@@ -176,7 +176,7 @@
   </div>
 
   <ng-template #smallScreenOffers>
-    <h3 class="mt-1">Rentebarometer:</h3>
+    <h3>Rentebarometer:</h3>
     <div class="row">
       <div class="col-12 col-md-5">
         <rente-rating [rating]="offersService.getRatingNumberFromLoanState(offersInfo.offerSavingsType)"></rente-rating>
@@ -202,10 +202,10 @@
           <div class="col-12 mb-md-0">
             <div class="bg-wrap" [ngSwitch]="offersInfo.currentLoanState">
               <p class="mb-0">Du kan spare:</p>
-              <h3 class="mb-0 mb-md-2" *ngIf="offersInfo.bestOfferTotalSaving > 0; else noBestOffer">
+              <h3 *ngIf="offersInfo.bestOfferTotalSaving > 0; else noBestOffer">
                 {{offersInfo.bestOfferTotalSaving | abs | number}},-</h3>
               <ng-template #noBestOffer>
-                <h3 class="my-0">0,-</h3>
+                <h3>0,-</h3>
               </ng-template>
               <p class="mb-0">over lånets løpetid</p>
             </div>
@@ -276,7 +276,7 @@
         </p>
       </div>
     </div>
-    <h3 class="mb-4">Beste tilbud:</h3>
+    <h3>Beste tilbud:</h3>
     <ng-container *ngIf="offersInfo">
       <div class="bg-wrap offers-bank mb-5" *ngFor="let offer of offersInfo.offers; let i = index">
         <div class="number-label">

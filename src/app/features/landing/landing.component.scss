@@ -41,11 +41,11 @@
   }
 }
 
-.title-heading {
-  @include text-style(30px, 36px);
-  letter-spacing: 0.5px;
+// .title-heading {
+//   @include text-style(30px, 36px);
+//   letter-spacing: 0.5px;
 
-  &-btn {
+  .title-heading-btn {
     ::ng-deep.mat-raised-button {
       min-height: 60px !important;
       font-size: 23px !important;
@@ -55,7 +55,7 @@
     }
   }
 
-}
+// }
 
 .heading {
   @include text-style(23px, 29px);

@@ -2,9 +2,9 @@
   <div class="row justify-content-center">
     <div class="col-12 col-md-6 text-center bg-wrap">
       <img class="mw-100" src="{{userBank?.bankIcon}}" alt="{{userBank?.label}}" title="{{userBank?.label}}">
-      <h3 class="my-0" *ngIf="isShowpassPhrase && !viewStatus.isCrawlerError">Din referanse:
+      <h3 *ngIf="isShowpassPhrase && !viewStatus.isCrawlerError">Din referanse:
       </h3>
-      <h3 class="font-weight-bold" *ngIf="isShowpassPhrase && !viewStatus.isCrawlerError">{{passPhrase}}</h3>
+      <h3 *ngIf="isShowpassPhrase && !viewStatus.isCrawlerError">{{passPhrase}}</h3>
 
       <div class="mt-2 row justify-content-center">
         <div class="col-10 col-md-8 d-flex flex-column align-items-start">
