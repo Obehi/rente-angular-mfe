@@ -4,6 +4,7 @@ export interface ViewStatus {
   isNoActiveInsurances: boolean;
   isOfferCreated: boolean;
   isProcessStarted: boolean;
+  isConfirmationRequired: boolean;
   isPassphraseConfirmSuccess: boolean;
   isPassphraseConfirmFail: boolean;
   isCrawlerError: boolean;

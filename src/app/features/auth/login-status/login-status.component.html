@@ -2,9 +2,9 @@
   <div class="row justify-content-center">
     <div class="col-12 col-lg-6 text-center bg-wrap">
       <img class="mw-100" src="{{userBank?.bankIcon}}" alt="{{userBank?.label}}" title="{{userBank?.label}}">
-      <h3 *ngIf="isShowpassPhrase && !viewStatus.isCrawlerError">Din referanse:
+      <h3 class="my-2" *ngIf="isShowPassPhrase && !viewStatus.isCrawlerError">Din referanse:
       </h3>
-      <h3 *ngIf="isShowpassPhrase && !viewStatus.isCrawlerError">{{passPhrase}}</h3>
+      <h3 class="my-2" *ngIf="isShowPassPhrase && !viewStatus.isCrawlerError">{{passPhrase}}</h3>
 
       <div class="mt-2 row justify-content-center">
         <div class="col-10 col-lg-8 d-flex flex-column align-items-start">
@@ -33,8 +33,12 @@
           <rente-status-message [status]="loginStep2Status" [step]="2">
             <span *ngIf="!passPhrase">Bekreft BankID på mobil</span>
             <span
-              *ngIf="passPhrase && !viewStatus.isPassphraseConfirmFail && !viewStatus.isPassphraseConfirmSuccess">Vennligst
+              *ngIf="passPhrase && !viewStatus.isPassphraseConfirmFail && !viewStatus.isPassphraseConfirmSuccess && !viewStatus.isConfirmationRequired">Vennligst
               følg instruksjonen på mobilen</span>
+            <span *ngIf="viewStatus.isPassphraseConfirmFail">Vi fikk ikke bekreftet BankID referansen fra din
+              mobiltelefonen. Vennligst prøv igjen</span>
+            <span *ngIf="viewStatus.isConfirmationRequired">Banken din krever at du oppdaterer din informasjon.
+              Vennligst gå til din nettbank før du prøver igjen.</span>
             <span *ngIf="viewStatus.isPassphraseConfirmSuccess">BankID bekreftet</span>
             <span *ngIf="viewStatus.isPassphraseConfirmFail">Vi fikk ikke bekreftet BankID referansen fra din
               mobiltelefonen. Vennligst prøv igjen</span>
@@ -67,7 +71,7 @@
       </div>
 
       <rente-button class="login-status-btn" color="primary" [type]="'stroked'"
-        *ngIf="viewStatus.isNotValidDataProvided || viewStatus.isCrawlerError || viewStatus.isPassphraseConfirmFail || viewStatus.isTimedOut || isNotSB1customer"
+        *ngIf="viewStatus.isConfirmationRequired|| viewStatus.isNotValidDataProvided || viewStatus.isCrawlerError || viewStatus.isPassphraseConfirmFail || viewStatus.isTimedOut || isNotSB1customer"
         (click)="returnToInput()">
         Prøv igjen
       </rente-button>

@@ -41,7 +41,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
   public firstStepTimerFinished: boolean;
   public thirdStepTimer = 20;
   public thirdStepTimerFinished: boolean;
-  public isShowpassPhrase: boolean;
+  public isShowPassPhrase: boolean;
   private maxConnectionTime = 90;
   private stompClient: any;
   private timerSubscription: Subscription;
@@ -217,21 +217,27 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
             this.viewStatus.isProcessStarted = true;
             break;
           case BANKID_STATUS.PASSPHRASE_CONFIRM:
-            this.isShowpassPhrase = true;
+            this.isShowPassPhrase = true;
             this.isShowTimer = false;
             this.passPhrase = response.passphrase;
             this.loginStep1Status = MESSAGE_STATUS.SUCCESS;
             this.loginStep2Status = MESSAGE_STATUS.LOADING;
             break;
+          case BANKID_STATUS.CONFIRMATION_REQUIRED:
+            this.viewStatus.isConfirmationRequired = true;
+            this.isShowPassPhrase = false;
+            this.loginStep1Status = MESSAGE_STATUS.SUCCESS;
+            this.loginStep2Status = MESSAGE_STATUS.ERROR;
+            break;
           case BANKID_STATUS.PASSPHRASE_CONFIRM_SUCCESS:
             this.initCrawlingTimer();
-            this.isShowpassPhrase = false;
+            this.isShowPassPhrase = false;
             this.viewStatus.isPassphraseConfirmSuccess = true;
             this.loginStep2Status = MESSAGE_STATUS.SUCCESS;
             this.loginStep3Status = MESSAGE_STATUS.LOADING;
             break;
           case BANKID_STATUS.NOT_SB1_CUSTOMER:
-            this.isShowpassPhrase = false;
+            this.isShowPassPhrase = false;
             this.connectionTimerSubscription.unsubscribe();
             this.isNotSB1customer = true;
             this.loginStep1Status = MESSAGE_STATUS.SUCCESS;
@@ -239,7 +245,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
             this.loginStep3Status = MESSAGE_STATUS.ERROR;
             break;
           case BANKID_STATUS.PASSPHRASE_CONFIRM_FAIL:
-            this.isShowpassPhrase = false;
+            this.isShowPassPhrase = false;
             this.viewStatus.isPassphraseConfirmFail = true;
             this.unsubscribeEverything();
             this.loginStep2Status = MESSAGE_STATUS.ERROR;
