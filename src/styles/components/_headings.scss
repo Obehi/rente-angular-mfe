@@ -16,6 +16,8 @@ h1, h2, h3, h4, h5, h6,
   color: $headings-color;
 }
 
+
+
 h1, .h1 { font-size: $h1-font-size; }
 h2, .h2 { font-size: $h2-font-size; }
 h3,
@@ -23,7 +25,7 @@ h3,
   @include text-style(30px, 36px);
   font-weight: $font-weight-bold;
 
-  @media (max-width:1000px) {
+  @media (max-width:991px) {
     @include text-style(24px, 28px);
     margin: $headings-margin-bottom;
   }
@@ -50,6 +52,12 @@ h6, .h6 { font-size: $h6-font-size; }
 
   &.inverted {
     color: $color-white-100;
+  }
+}
+
+p {
+  @media (max-width:991px) {
+    margin: 5px 0;
   }
 }
 

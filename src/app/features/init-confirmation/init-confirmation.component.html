@@ -1,6 +1,6 @@
 <div class="container contact-us my-5" *ngIf="propertyForm">
   <div class="row justify-content-center">
-    <div class="col-lg-6 col-md-8 col-12 bg-wrap">
+    <div class="col-lg-6 col-lg-8 col-12 bg-wrap">
       <h3>Hei, {{userData.name}}</h3>
       <p>Vi trenger litt mer informasjon:</p>
 
@@ -8,25 +8,27 @@
         <div class="mb-4">
           <div>
             <p class="mb-1">Medlemskap:</p>
-            <mat-form-field class="d-block">
-              <mat-chip-list #membershipList aria-label="Membership selection">
-                <mat-chip *ngFor="let membership of memberships; let i = index;" [selectable]="selectable"
-                  [removable]="removable" (removed)="remove(membership, i)">
-                  {{membership.label}}
-                  <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-                </mat-chip>
-                <input [placeholder]="'Legg til her hvis du har (ikke nødvendig)'" #membershipInput
-                  [formControl]="membershipCtrl" [matAutocomplete]="auto" [matChipInputFor]="membershipList"
-                  [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
-                  (matChipInputTokenEnd)="add($event)">
-              </mat-chip-list>
+            <div class="input-block">
+              <mat-form-field class="d-block">
+                <mat-chip-list #membershipList aria-label="Membership selection">
+                  <mat-chip *ngFor="let membership of memberships; let i = index;" [selectable]="selectable"
+                    [removable]="removable" (removed)="remove(membership, i)">
+                    {{membership.label}}
+                    <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                  </mat-chip>
+                  <input [placeholder]="'Legg til her hvis du har (ikke nødvendig)'" #membershipInput
+                    [formControl]="membershipCtrl" [matAutocomplete]="auto" [matChipInputFor]="membershipList"
+                    [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+                    (matChipInputTokenEnd)="add($event)">
+                </mat-chip-list>
 
-              <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
-                <mat-option *ngFor="let membership of filteredMemberships | async" [value]="membership">
-                  {{membership.label}}
-                </mat-option>
-              </mat-autocomplete>
-            </mat-form-field>
+                <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+                  <mat-option *ngFor="let membership of filteredMemberships | async" [value]="membership">
+                    {{membership.label}}
+                  </mat-option>
+                </mat-autocomplete>
+              </mat-form-field>
+            </div>
           </div>
 
           <rente-form-message class="text-left d-block" [type]="'info'">

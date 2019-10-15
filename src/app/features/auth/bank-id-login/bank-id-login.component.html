@@ -7,7 +7,7 @@
   </div>
   <div class="container">
     <div class="row justify-content-center">
-      <div class="col-12 col-md-6">
+      <div class="col-12 col-lg-6">
         <p class="my-0 text text-left">
           Legg inn {{ isSsnBankLogin ? 'fødselsnummer' : 'fødselsdato' }} og mobilnummer. Bekreft referansen på mobilen,
           så hentes
@@ -23,7 +23,7 @@
   </div>
   <div class="container">
     <div class="row justify-content-center">
-      <div class="col-12 col-md-5">
+      <div class="col-12 col-lg-5">
         <div class="text-center">
           <form [formGroup]="bankIdForm" novalidate (ngSubmit)="startLogin(bankIdForm.value)">
 
