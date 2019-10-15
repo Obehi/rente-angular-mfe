@@ -10,7 +10,7 @@
 </ng-template>
 
 <div class="pb-4 mb-4" [ngClass]="{'card-wrapper': !isSmallScreen}" *ngIf="isSmallScreen" >
-  <h3 class="text-center">Start med å velge banken du har boliglån i:</h3>
+  <h3 class="heading text-center">Start med å velge banken du har boliglån i:</h3>
   <div class="row justify-content-center">
     <div class="col-4 col-lg-2 text-center">
       <a [routerLink]="['/autentisering/dnb']"><img class="mw-100" src="../../../assets/img/banks-logo/dnb.png"
@@ -70,7 +70,7 @@
       Kom i gang!
     </rente-button>
     <div class="pb-2 mb-4 col-12" [ngClass]="{'card-wrapper': !isSmallScreen}" *ngIf="!isSmallScreen">
-        <h3 class="text-center my-2">Start med å velge banken du har boliglån i:</h3>
+        <h3 class="heading text-center my-2">Start med å velge banken du har boliglån i:</h3>
         <div class="row justify-content-center">
           <div class="col-3 col-lg-2 text-center px-0">
             <a [routerLink]="['/autentisering/dnb']"><img class="mw-100" src="../../../assets/img/banks-logo/dnb.png"

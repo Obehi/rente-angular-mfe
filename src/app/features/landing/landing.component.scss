@@ -63,8 +63,6 @@
 
 .heading {
   @include text-style(23px, 29px);
-  letter-spacing: 0.5px;
-
   @media (max-width: 450px) {
     @include text-style(16px, 20px);
   }

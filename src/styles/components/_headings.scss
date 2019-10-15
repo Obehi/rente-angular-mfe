@@ -30,7 +30,13 @@ h3,
     margin: $headings-margin-bottom;
   }
 }
-h4, .h4 { font-size: $h4-font-size; }
+h4, .h4 { 
+  @include text-style(20px, 24px);
+  font-weight: $font-weight-bold;
+  @media (max-width:991px) {
+    @include text-style(16px, 20px);
+  }
+ }
 h5, .h5 { font-size: $h5-font-size; }
 h6, .h6 { font-size: $h6-font-size; }
 
