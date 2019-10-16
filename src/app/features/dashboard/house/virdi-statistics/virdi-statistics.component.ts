@@ -55,7 +55,7 @@ export class VirdiStatisticsComponent implements OnInit {
       title: {
         text: '',
         style: {
-          'fontFamily': 'Lato'
+          fontFamily: 'Lato'
         }
       },
 
@@ -102,8 +102,8 @@ export class VirdiStatisticsComponent implements OnInit {
           chartOptions: {
             title: {
               style: {
-                'fontFamily': 'Lato',
-                'fontSize': '16px'
+                fontFamily: 'Lato',
+                fontSize: '16px'
               }
             }
           }
@@ -119,7 +119,7 @@ export class VirdiStatisticsComponent implements OnInit {
       title: {
         text: '',
         style: {
-          'fontFamily': 'Lato'
+          fontFamily: 'Lato'
         }
       },
 
@@ -175,8 +175,8 @@ export class VirdiStatisticsComponent implements OnInit {
           chartOptions: {
             title: {
               style: {
-                'fontFamily': 'Lato',
-                'fontSize': '16px'
+                fontFamily: 'Lato',
+                fontSize: '16px'
               }
             }
           }
