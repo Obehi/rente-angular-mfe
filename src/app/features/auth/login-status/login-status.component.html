@@ -32,13 +32,18 @@
 
           <rente-status-message [status]="loginStep2Status" [step]="2">
             <span *ngIf="!passPhrase">Bekreft BankID på mobil</span>
-            <span
-              *ngIf="passPhrase && !viewStatus.isPassphraseConfirmFail && !viewStatus.isPassphraseConfirmSuccess && !viewStatus.isConfirmationRequired">Vennligst
-              følg instruksjonen på mobilen</span>
+            <span *ngIf="
+              passPhrase && 
+              !viewStatus.isPassphraseConfirmFail && 
+              !viewStatus.isPassphraseConfirmSuccess && 
+              !viewStatus.isConfirmationRequired && 
+              !viewStatus.isRenewBankId">Vennligst følg instruksjonen på mobilen</span>
             <span *ngIf="viewStatus.isPassphraseConfirmFail">Vi fikk ikke bekreftet BankID referansen fra din
               mobiltelefonen. Vennligst prøv igjen</span>
-            <span *ngIf="viewStatus.isConfirmationRequired">Banken din krever at du oppdaterer din informasjon.
+            <span *ngIf="viewStatus.isConfirmationRequired ">Banken din krever at du oppdaterer din informasjon.
               Vennligst gå til din nettbank før du prøver igjen.</span>
+            <span *ngIf="viewStatus.isRenewBankId">Du må fornye din BankID på mobil. Vennligst forny BankID på mobil i
+              din nettbank før du prøver å logge inn på nytt.</span>
             <span *ngIf="viewStatus.isPassphraseConfirmSuccess">BankID bekreftet</span>
             <span *ngIf="viewStatus.isPassphraseConfirmFail">Vi fikk ikke bekreftet BankID referansen fra din
               mobiltelefonen. Vennligst prøv igjen</span>
@@ -70,9 +75,14 @@
         </div>
       </div>
 
-      <rente-button class="login-status-btn" color="primary" [type]="'stroked'"
-        *ngIf="viewStatus.isConfirmationRequired|| viewStatus.isNotValidDataProvided || viewStatus.isCrawlerError || viewStatus.isPassphraseConfirmFail || viewStatus.isTimedOut || isNotSB1customer"
-        (click)="returnToInput()">
+      <rente-button class="login-status-btn" color="primary" [type]="'stroked'" *ngIf="
+        viewStatus.isRenewBankId || 
+        viewStatus.isConfirmationRequired || 
+        viewStatus.isNotValidDataProvided || 
+        viewStatus.isCrawlerError || 
+        viewStatus.isPassphraseConfirmFail || 
+        viewStatus.isTimedOut || 
+        isNotSB1customer" (click)="returnToInput()">
         Prøv igjen
       </rente-button>
     </div>
