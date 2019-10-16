@@ -33,7 +33,7 @@
               <div *ngIf="isSsnBankLogin; else birthdateInput" class="form-group">
                 <rente-input [errorStateMatcher]="isErrorState(bankIdForm.controls['ssn'], bankIdForm)"
                   [placeholder]="'Ditt fødselsnummer (11 siffer)'" formControlName="ssn" [mask]="ssnMask"
-                  [type]="'tel'"></rente-input>
+                  [type]="'tel'" [modelOptions]="{updateOn:'blur'}"></rente-input>
                 <div class="error-message" *ngIf="bankIdForm.controls['ssn'].touched">
                   <rente-form-message class="text-left d-block" *ngIf="bankIdForm.controls['ssn'].hasError('required')"
                     [type]="'error'">
@@ -50,7 +50,7 @@
                 <div class="form-group">
                   <rente-input [errorStateMatcher]="isErrorState(bankIdForm.controls['birthdate'], bankIdForm)"
                     [placeholder]="'Din fødselsdato (ddmmåå)'" formControlName="birthdate" [mask]="birthdateMask"
-                    [type]="'tel'"></rente-input>
+                    [type]="'tel'" [modelOptions]="{updateOn:'blur'}"></rente-input>
                   <div class="error-message" *ngIf="bankIdForm.controls['birthdate'].touched">
                     <rente-form-message class="text-left d-block"
                       *ngIf="bankIdForm.controls['birthdate'].hasError('required')" [type]="'error'">
@@ -67,7 +67,7 @@
               <div class="form-group">
                 <rente-input [errorStateMatcher]="isErrorState(bankIdForm.controls['phone'], bankIdForm)"
                   [placeholder]="'Ditt mobilnummer (8 siffer)'" formControlName="phone" [mask]="phoneMask"
-                  [type]="'tel'">
+                  [type]="'tel'" [modelOptions]="{updateOn:'blur'}">
                 </rente-input>
                 <div class="error-message" *ngIf="bankIdForm.controls['phone'].touched">
                   <rente-form-message class="text-left d-block"

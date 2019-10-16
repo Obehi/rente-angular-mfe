@@ -58,7 +58,8 @@
         <div class="mb-4">
           <mat-label>E-post</mat-label>
           <rente-input [placeholder]="'E-post'" formControlName="email"
-            [errorStateMatcher]="isErrorState(propertyForm.controls['email'], propertyForm)">
+            [errorStateMatcher]="isErrorState(propertyForm.controls['email'], propertyForm)"
+            [modelOptions]="{updateOn:'blur'}">
           </rente-input>
           <div *ngIf="propertyForm.controls['email'].touched" class="error-message">
             <rente-form-message class="text-left d-block" [type]="'error'"

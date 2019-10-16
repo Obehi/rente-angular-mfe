@@ -23,7 +23,7 @@
 
         <div class="mb-4">
           <rente-input [placeholder]="'E-post:'" formControlName="email"
-            [errorStateMatcher]="isErrorState(contactUsForm.controls['email'], contactUsForm)">
+            [errorStateMatcher]="isErrorState(contactUsForm.controls['email'], contactUsForm)" [modelOptions]="{updateOn:'blur'}">
           </rente-input>
           <div *ngIf="contactUsForm.controls['email'].touched" class="error-message">
             <rente-form-message class="text-left d-block" [type]="'error'"
@@ -39,14 +39,14 @@
 
         <div class="mb-4">
           <rente-input [placeholder]="'Telefonnr'" formControlName="phone" [mask]="phoneMask" [type]="'tel'"
-            [errorStateMatcher]="isErrorState(contactUsForm.controls['phone'], contactUsForm)">
+            [errorStateMatcher]="isErrorState(contactUsForm.controls['phone'], contactUsForm)" [modelOptions]="{updateOn:'blur'}">
           </rente-input>
           <rente-form-message class="text-left d-block pb-0" [type]="'info'">
             8 siffer
           </rente-form-message>
           <div *ngIf="contactUsForm.controls['phone'].touched" class="error-message">
             <rente-form-message class="text-left d-block" [type]="'error'"
-              *ngIf="contactUsForm.controls['phone'].hasError('required')">
+              *ngIf="contactUsForm.controls['phone'].hasError('required') || contactUsForm.controls['phone'].hasError('pattern')">
               Telefonnummer kan ikke være tomt
             </rente-form-message>
           </div>

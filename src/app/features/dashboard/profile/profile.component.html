@@ -32,7 +32,7 @@
 
       </div>
 
-      <div class="row">
+      <div class="row mt-2 mt-lg-0">
         <div class="col-12">
           <p>Din/Husstandens brutto årsinntekt:</p>
           <rente-input [placeholder]="'Bruttoårsinntekt'" formControlName="income"
@@ -54,11 +54,12 @@
         </div>
       </div>
 
-      <div class="row">
+      <div class="row mt-2 mt-lg-0">
         <div class="form-group col-12">
           <p>E-post:</p>
           <rente-input [placeholder]="'E-post'" formControlName="email"
-            [errorStateMatcher]="isErrorState(profileForm.controls['email'], profileForm)">
+            [errorStateMatcher]="isErrorState(profileForm.controls['email'], profileForm)"
+            [modelOptions]="{updateOn:'blur'}">
           </rente-input>
           <div *ngIf="profileForm.controls['email'].touched" class="error-message">
             <rente-form-message class="text-left d-block" [type]="'error'"
