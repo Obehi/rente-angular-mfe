@@ -2,7 +2,6 @@ const express = require('express');
 const path = require('path');
 const app = express();
 // const requestProxy = require("express-request-proxy");
-const proxy = require('http-proxy-middleware');
 //const favicon = require('serve-favicon');
 
 const clientPath = path.resolve(__dirname, '../dist/rente-front-end');
