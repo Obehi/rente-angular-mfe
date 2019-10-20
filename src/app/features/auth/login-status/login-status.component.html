@@ -38,6 +38,8 @@
             <span *ngIf="viewStatus.isPassphraseConfirmSuccess">BankID bekreftet</span>
             <span *ngIf="viewStatus.isPassphraseConfirmFail">Vi fikk ikke bekreftet BankID referansen fra din
               mobiltelefonen. Vennligst prøv igjen</span>
+            <span *ngIf="viewStatus.isConfirmationRequired">Banken din krever at du oppdaterer din informasjon. 
+              Vennligst gå til din nettbank før du prøver igjen.</span>
           </rente-status-message>
 
           <rente-status-message [status]="loginStep3Status" [step]="3">

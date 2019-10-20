@@ -11,6 +11,7 @@ export interface ViewStatus {
   isLoansPersisted: boolean;
   isTimedOut: boolean;
   isNotValidDataProvided: boolean;
+  isConfirmationRequired: boolean;
 }
 
 export class ViewStatus {

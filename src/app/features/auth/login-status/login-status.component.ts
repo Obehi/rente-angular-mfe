@@ -244,6 +244,12 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
             this.unsubscribeEverything();
             this.loginStep2Status = MESSAGE_STATUS.ERROR;
             break;
+          case BANKID_STATUS.CONFIRMATION_REQUIRED:
+            this.isShowpassPhrase = false;
+            this.viewStatus.isConfirmationRequired = true;
+            this.unsubscribeEverything();
+            this.loginStep2Status = MESSAGE_STATUS.ERROR;
+            break;
           case BANKID_STATUS.CRAWLER_ERROR:
             this.viewStatus.isCrawlerError = true;
             this.unsubscribeEverything();
