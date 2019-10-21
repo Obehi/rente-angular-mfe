@@ -31,15 +31,21 @@
           </rente-status-message>
 
           <rente-status-message [status]="loginStep2Status" [step]="2">
-            <span *ngIf="!passPhrase">Bekreft BankID på mobil</span>
-            <span
-              *ngIf="passPhrase && !viewStatus.isPassphraseConfirmFail && !viewStatus.isPassphraseConfirmSuccess">Vennligst
-              følg instruksjonen på mobilen</span>
-            <span *ngIf="viewStatus.isPassphraseConfirmSuccess">BankID bekreftet</span>
-            <span *ngIf="viewStatus.isPassphraseConfirmFail">Vi fikk ikke bekreftet BankID referansen fra din
-              mobiltelefonen. Vennligst prøv igjen</span>
-            <span *ngIf="viewStatus.isConfirmationRequired">Banken din krever at du oppdaterer din informasjon. 
-              Vennligst gå til din nettbank før du prøver igjen.</span>
+            <span *ngIf="!passPhrase">
+              Bekreft BankID på mobil
+            </span>
+            <span *ngIf="passPhrase && !viewStatus.isPassphraseConfirmFail && !viewStatus.isPassphraseConfirmSuccess">
+              Vennligst følg instruksjonen på mobilen
+            </span>
+            <span *ngIf="viewStatus.isPassphraseConfirmSuccess && !viewStatus.isConfirmationRequired">
+              BankID bekreftet
+            </span>
+            <span *ngIf="viewStatus.isPassphraseConfirmFail">
+              Vi fikk ikke bekreftet BankID referansen fra dinmobiltelefonen. Vennligst prøv igjen
+            </span>
+            <span *ngIf="viewStatus.isConfirmationRequired">
+              Banken din krever at du oppdaterer din informasjon. Vennligst gå til din nettbank før du prøver igjen.
+            </span>
           </rente-status-message>
 
           <rente-status-message [status]="loginStep3Status" [step]="3">
