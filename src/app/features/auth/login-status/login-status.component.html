@@ -34,17 +34,20 @@
             <span *ngIf="!passPhrase">
               Bekreft BankID på mobil
             </span>
-            <span *ngIf="passPhrase && !viewStatus.isPassphraseConfirmFail && !viewStatus.isPassphraseConfirmSuccess">
+            <span *ngIf="passPhrase && !viewStatus.isPassphraseConfirmFail && !viewStatus.isPassphraseConfirmSuccess && !viewStatus.step2Error">
               Vennligst følg instruksjonen på mobilen
             </span>
-            <span *ngIf="viewStatus.isPassphraseConfirmSuccess && !viewStatus.isConfirmationRequired">
+            <span *ngIf="viewStatus.isPassphraseConfirmSuccess && !viewStatus.step2Error">
               BankID bekreftet
             </span>
-            <span *ngIf="viewStatus.isPassphraseConfirmFail && !viewStatus.isConfirmationRequired">
-              Vi fikk ikke bekreftet BankID referansen fra dinmobiltelefonen. Vennligst prøv igjen
+            <span *ngIf="viewStatus.step2Error && viewStatus.isPassphraseConfirmFail">
+              Vi fikk ikke bekreftet BankID referansen fra dinmobiltelefonen. Vennligst prøv igjen.
             </span>
-            <span *ngIf="viewStatus.isConfirmationRequired">
+            <span *ngIf="viewStatus.step2Error && viewStatus.isConfirmationRequired">
               Banken din krever at du oppdaterer din informasjon. Vennligst gå til din nettbank før du prøver igjen.
+            </span>
+            <span *ngIf="viewStatus.step2Error && viewStatus.isRenewBankIdRequired">
+              Du må fornye din BankID på mobil. Vennligst forny BankID på mobil i din nettbank før du prøver å logge inn på nytt.
             </span>
           </rente-status-message>
 

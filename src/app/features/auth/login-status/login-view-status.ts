@@ -12,6 +12,8 @@ export interface ViewStatus {
   isTimedOut: boolean;
   isNotValidDataProvided: boolean;
   isConfirmationRequired: boolean;
+  isRenewBankIdRequired: boolean;
+  step2Error:boolean;
 }
 
 export class ViewStatus {
