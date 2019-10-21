@@ -40,7 +40,7 @@
             <span *ngIf="viewStatus.isPassphraseConfirmSuccess && !viewStatus.isConfirmationRequired">
               BankID bekreftet
             </span>
-            <span *ngIf="viewStatus.isPassphraseConfirmFail">
+            <span *ngIf="viewStatus.isPassphraseConfirmFail && !viewStatus.isConfirmationRequired">
               Vi fikk ikke bekreftet BankID referansen fra dinmobiltelefonen. Vennligst prøv igjen
             </span>
             <span *ngIf="viewStatus.isConfirmationRequired">
