@@ -34,42 +34,41 @@
             <span *ngIf="!passPhrase">
               Bekreft BankID på mobil
             </span>
-            <span *ngIf="passPhrase && !viewStatus.isPassphraseConfirmFail && !viewStatus.isPassphraseConfirmSuccess && !viewStatus.step2Error">
+            <span *ngIf="passPhrase && !viewStatus.isPassphraseConfirmFail && !viewStatus.isPassphraseConfirmSuccess">
               Vennligst følg instruksjonen på mobilen
             </span>
-            <span *ngIf="viewStatus.isPassphraseConfirmSuccess && !viewStatus.step2Error">
+            <span *ngIf="viewStatus.isPassphraseConfirmSuccess">
               BankID bekreftet
             </span>
-            <span *ngIf="viewStatus.step2Error && viewStatus.isPassphraseConfirmFail">
+            <span *ngIf="viewStatus.isPassphraseConfirmFail">
               Vi fikk ikke bekreftet BankID referansen fra dinmobiltelefonen. Vennligst prøv igjen.
-            </span>
-            <span *ngIf="viewStatus.step2Error && viewStatus.isConfirmationRequired">
-              Banken din krever at du oppdaterer din informasjon. Vennligst gå til din nettbank før du prøver igjen.
-            </span>
-            <span *ngIf="viewStatus.step2Error && viewStatus.isRenewBankIdRequired">
-              Du må fornye din BankID på mobil. Vennligst forny BankID på mobil i din nettbank før du prøver å logge inn på nytt.
             </span>
           </rente-status-message>
 
           <rente-status-message [status]="loginStep3Status" [step]="3">
-            <span *ngIf="isNotSB1customer">Vi får beskjed om at du ikke er kunde i banken. Har du valgt riktig
-              bank?</span>
-            <span *ngIf="!viewStatus.isPassphraseConfirmSuccess && !viewStatus.isCrawlerError && !isNotSB1customer">Hent
-              rente- og
-              lånedata</span>
-            <span *ngIf="viewStatus.isPassphraseConfirmSuccess && !viewStatus.isCrawlerError && !isNotSB1customer">Vi
-              henter din
-              rente og
-              låneinformasjon</span>
-            <span *ngIf="viewStatus.isCrawlerError">Det oppstod en feil under henting av dine lånedetaljer, vennligst
-              prøv igjen senere</span>
+            <span *ngIf="isStep3Error && isNotSB1customer">
+              Vi får beskjed om at du ikke er kunde i banken. Har du valgt riktig bank?
+            </span>
+            <span *ngIf="!viewStatus.isPassphraseConfirmSuccess && !viewStatus.isCrawlerError && !isNotSB1customer">
+              Hent rente- oglånedata
+            </span>
+            <span *ngIf="!isStep3Error && viewStatus.isPassphraseConfirmSuccess">
+              Vi henter din rente og låneinformasjon
+            </span>
+            <span *ngIf="isStep3Error && viewStatus.isConfirmationRequired">
+              Banken din krever at du oppdaterer din informasjon. Vennligst gå til din nettbank før du prøver igjen.
+            </span>
+            <span *ngIf="isStep3Error && viewStatus.isRenewBankIdRequired">
+              Du må fornye din BankID på mobil. Vennligst forny BankID på mobil i din nettbank før du prøver å logge inn på nytt.
+            </span>
+            <span *ngIf="isStep3Error && viewStatus.isCrawlerError">
+              Det oppstod en feil under henting av dine lånedetaljer, vennligst prøv igjen senere
+            </span>
             <br>
-            <span
-              *ngIf="viewStatus.isPassphraseConfirmSuccess && !viewStatus.isPassphraseConfirmFail && !viewStatus.isCrawlerError && !thirdStepTimerFinished">
+            <span *ngIf="viewStatus.isPassphraseConfirmSuccess && !isStep3Error">
               (tar cirka {{thirdStepTimer}} sekunder)
             </span>
-            <span
-              *ngIf="viewStatus.isPassphraseConfirmSuccess && !viewStatus.isPassphraseConfirmFail && !viewStatus.isCrawlerError && thirdStepTimerFinished">
+            <span *ngIf="viewStatus.isPassphraseConfirmSuccess && !isStep3Error">
               (Litt til, straks ferdig)
             </span>
           </rente-status-message>

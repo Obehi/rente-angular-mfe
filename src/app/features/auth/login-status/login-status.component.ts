@@ -206,9 +206,6 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
     this.stompClient.subscribe(repliesUrl, (message) => {
       if (message.body) {
         const response = JSON.parse(message.body);
-
-        // console.log(response);
-
         switch (response.eventType) {
           case BANKID_STATUS.PROCESS_STARTED:
             this.initTimer(BANKID_TIMEOUT_TIME);
@@ -223,24 +220,18 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
             this.loginStep1Status = MESSAGE_STATUS.SUCCESS;
             this.loginStep2Status = MESSAGE_STATUS.LOADING;
             break;
-          case BANKID_STATUS.CONFIRMATION_REQUIRED:
-            this.viewStatus.isConfirmationRequired = true;
-            this.isShowPassPhrase = false;
-            this.loginStep1Status = MESSAGE_STATUS.SUCCESS;
-            this.loginStep2Status = MESSAGE_STATUS.ERROR;
-            break;
-          case BANKID_STATUS.RENEW_BANK_ID:
-            this.viewStatus.isRenewBankId = true;
-            this.isShowPassPhrase = false;
-            this.loginStep1Status = MESSAGE_STATUS.SUCCESS;
-            this.loginStep2Status = MESSAGE_STATUS.ERROR;
-            break;
           case BANKID_STATUS.PASSPHRASE_CONFIRM_SUCCESS:
             this.initCrawlingTimer();
             this.isShowPassPhrase = false;
             this.viewStatus.isPassphraseConfirmSuccess = true;
             this.loginStep2Status = MESSAGE_STATUS.SUCCESS;
             this.loginStep3Status = MESSAGE_STATUS.LOADING;
+            break;
+          case BANKID_STATUS.BANKID_NO_ACCESS_FOR_SIGNIN:
+            this.viewStatus.isCrawlerError = true;
+            this.isShowPassPhrase = false;
+            this.loginStep3Status = MESSAGE_STATUS.ERROR;
+            this.unsubscribeEverything();
             break;
           case BANKID_STATUS.NOT_SB1_CUSTOMER:
             this.isShowPassPhrase = false;
@@ -251,25 +242,22 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
             this.loginStep3Status = MESSAGE_STATUS.ERROR;
             break;
           case BANKID_STATUS.PASSPHRASE_CONFIRM_FAIL:
-            this.viewStatus.step2Error = true;
             this.isShowPassPhrase = false;
             this.viewStatus.isPassphraseConfirmFail = true;
-            this.unsubscribeEverything();
             this.loginStep2Status = MESSAGE_STATUS.ERROR;
+            this.unsubscribeEverything();
             break;
           case BANKID_STATUS.CONFIRMATION_REQUIRED:
             this.isShowPassPhrase = false;
-            this.viewStatus.step2Error = true;
             this.viewStatus.isConfirmationRequired = true;
+            this.loginStep3Status = MESSAGE_STATUS.ERROR;
             this.unsubscribeEverything();
-            this.loginStep2Status = MESSAGE_STATUS.ERROR;
             break;
           case BANKID_STATUS.RENEW_BANK_ID:
             this.isShowPassPhrase = false;
-            this.viewStatus.step2Error = true;
             this.viewStatus.isRenewBankIdRequired = true;
+            this.loginStep3Status = MESSAGE_STATUS.ERROR;
             this.unsubscribeEverything();
-            this.loginStep2Status = MESSAGE_STATUS.ERROR;
             break;
           case BANKID_STATUS.CRAWLER_ERROR:
             this.viewStatus.isCrawlerError = true;
@@ -351,6 +339,10 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
     this.loginStep1Status = MESSAGE_STATUS.LOADING;
     this.loginStep2Status = MESSAGE_STATUS.INFO;
     this.loginStep3Status = MESSAGE_STATUS.INFO;
+  }
+
+  get isStep3Error():boolean {
+    return this.loginStep3Status == MESSAGE_STATUS.ERROR;
   }
 
 }
