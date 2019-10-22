@@ -95,7 +95,7 @@ export class HouseComponent implements OnInit {
           ])]
         });
 
-        // this.isAutoMode = !Boolean(this.addressData.manualPropertyValue);
+        this.isAutoMode = !Boolean(this.addressData.manualPropertyValue);
         this.setPropertyMode();
         this.route.queryParams.subscribe(param => {
           if (param.statistikk) {
