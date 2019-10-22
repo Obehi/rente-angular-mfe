@@ -1,7 +1,7 @@
-<div class="container contact-us mt-3 mb-5 mt-lg-5 mb-lg-5">
+<div class="container contact-us mt-3 mb-5 mb-lg-5">
   <div class="row justify-content-center">
     <div class="col-12 col-lg-6 text-center bg-wrap">
-      <h3 class="title my-1">Kontakt oss</h3>
+      <h3>Kontakt oss</h3>
       <p>Kontakt oss gjerne ved å fylle ut skjemaet nedenfor hvis du har spørsmål</p>
 
       <form [formGroup]="contactUsForm" (ngSubmit)="sendContactUsForm(contactUsForm.value)" novalidate>
@@ -23,7 +23,7 @@
 
         <div class="mb-4">
           <rente-input [placeholder]="'E-post:'" formControlName="email"
-            [errorStateMatcher]="isErrorState(contactUsForm.controls['email'], contactUsForm)">
+            [errorStateMatcher]="isErrorState(contactUsForm.controls['email'], contactUsForm)" [modelOptions]="{updateOn:'blur'}">
           </rente-input>
           <div *ngIf="contactUsForm.controls['email'].touched" class="error-message">
             <rente-form-message class="text-left d-block" [type]="'error'"
@@ -39,14 +39,14 @@
 
         <div class="mb-4">
           <rente-input [placeholder]="'Telefonnr'" formControlName="phone" [mask]="phoneMask" [type]="'tel'"
-            [errorStateMatcher]="isErrorState(contactUsForm.controls['phone'], contactUsForm)">
+            [errorStateMatcher]="isErrorState(contactUsForm.controls['phone'], contactUsForm)" [modelOptions]="{updateOn:'blur'}">
           </rente-input>
           <rente-form-message class="text-left d-block pb-0" [type]="'info'">
             8 siffer
           </rente-form-message>
           <div *ngIf="contactUsForm.controls['phone'].touched" class="error-message">
             <rente-form-message class="text-left d-block" [type]="'error'"
-              *ngIf="contactUsForm.controls['phone'].hasError('required')">
+              *ngIf="contactUsForm.controls['phone'].hasError('required') || contactUsForm.controls['phone'].hasError('pattern')">
               Telefonnummer kan ikke være tomt
             </rente-form-message>
           </div>

@@ -1,13 +1,13 @@
 <div class="container login-status">
   <div class="row justify-content-center">
-    <div class="col-12 col-md-6 text-center bg-wrap">
+    <div class="col-12 col-lg-6 text-center bg-wrap">
       <img class="mw-100" src="{{userBank?.bankIcon}}" alt="{{userBank?.label}}" title="{{userBank?.label}}">
-      <h3 class="my-0" *ngIf="isShowpassPhrase && !viewStatus.isCrawlerError">Din referanse:
+      <h3 class="my-2" *ngIf="isShowPassPhrase && !viewStatus.isCrawlerError">Din referanse:
       </h3>
-      <h3 class="font-weight-bold" *ngIf="isShowpassPhrase && !viewStatus.isCrawlerError">{{passPhrase}}</h3>
+      <h3 class="my-2" *ngIf="isShowPassPhrase && !viewStatus.isCrawlerError">{{passPhrase}}</h3>
 
       <div class="mt-2 row justify-content-center">
-        <div class="col-10 col-md-8 d-flex flex-column align-items-start">
+        <div class="col-10 col-lg-8 d-flex flex-column align-items-start">
           <rente-status-message [status]="loginStep1Status">
             <span *ngIf="viewStatus.isNotValidDataProvided && userBank.bankName === 'DNB'">
               Kontroller at du har oppgitt riktig fødselsnummer og mobilnummer. Du må ha bestilt og aktivert BankID på
@@ -77,9 +77,14 @@
         </div>
       </div>
 
-      <rente-button class="login-status-btn" color="primary" [type]="'stroked'"
-        *ngIf="viewStatus.isNotValidDataProvided || viewStatus.isCrawlerError || viewStatus.isPassphraseConfirmFail || viewStatus.isTimedOut || isNotSB1customer"
-        (click)="returnToInput()">
+      <rente-button class="login-status-btn" color="primary" [type]="'stroked'" *ngIf="
+        viewStatus.isRenewBankId || 
+        viewStatus.isConfirmationRequired || 
+        viewStatus.isNotValidDataProvided || 
+        viewStatus.isCrawlerError || 
+        viewStatus.isPassphraseConfirmFail || 
+        viewStatus.isTimedOut || 
+        isNotSB1customer" (click)="returnToInput()">
         Prøv igjen
       </rente-button>
     </div>

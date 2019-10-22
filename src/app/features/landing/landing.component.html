@@ -4,13 +4,13 @@
   </rente-button>
 </div>
 <ng-template #desktopTitle>
-  <h3 class="title text-center">
+  <h3 class="text-center">
       Få den beste boliglånsrenten!
   </h3>
 </ng-template>
 
 <div class="pb-4 mb-4" [ngClass]="{'card-wrapper': !isSmallScreen}" *ngIf="isSmallScreen" >
-  <h3 class="heading font-weight-bold text-center">Start med å velge banken du har boliglån i:</h3>
+  <h3 class="heading text-center">Start med å velge banken du har boliglån i:</h3>
   <div class="row justify-content-center">
     <div class="col-4 col-lg-2 text-center">
       <a [routerLink]="['/autentisering/dnb']"><img class="mw-100" src="../../../assets/img/banks-logo/dnb.png"
@@ -30,35 +30,35 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-sm card-wrapper mb-3 mr-md-4 mr-sm-3 text-center" [routerLink]="['/velgbank']">
+    <div class="col-lg card-wrapper mb-3 mr-lg-4 mr-sm-3 text-center" [routerLink]="['/velgbank']">
       <img class="pt-4 card-icon" src="assets/icons/ic_bank_id.svg" alt="">
-      <div class="card-number-wrapper d-flex justify-content-center mt-md-2 mb-md-4 mx-4 position-relative">
+      <div class="card-number-wrapper d-flex justify-content-center mt-lg-2 mb-lg-4 mx-4 position-relative">
         <p class="d-flex align-items-center justify-content-center font-weight-bold m-0">1</p>
       </div>
       <div class="card-info-wrapper">
-        <h2 class="card-title font-weight-bold mb-2 mb-md-5">Logg inn med BankID</h2>
+        <h3 class="card-title font-weight-bold mb-lg-5 mb-2">Logg inn med BankID</h3>
         <p class="card-text text-left">Tjenesten er gratis og du oppretter enkelt og raskt profil med BankId på mobil.
           Vi henter renten din og annen nødvendig informasjon automatisk.</p>
       </div>
     </div>
-    <div class="col-sm card-wrapper mb-3 mr-md-4 mr-sm-3 text-center" [routerLink]="['/velgbank']">
+    <div class="col-lg card-wrapper mb-3 mr-lg-4 mr-sm-3 text-center" [routerLink]="['/velgbank']">
       <img class="pt-4 card-icon" src="assets/icons/ic_stats.svg" alt="">
-      <div class="card-number-wrapper d-flex justify-content-center mt-md-2 mb-md-4 mx-4 position-relative">
+      <div class="card-number-wrapper d-flex justify-content-center mt-lg-2 mb-lg-4 mx-4 position-relative">
         <p class="d-flex align-items-center justify-content-center font-weight-bold m-0">2</p>
       </div>
       <div class="card-info-wrapper">
-        <h2 class="card-title font-weight-bold mb-2 mb-md-5">Se hva du kan spare og få bedre rente med et klikk</h2>
+        <h3 class="card-title font-weight-bold mb-lg-5 mb-2">Se hva du kan spare og få bedre rente med et klikk</h3>
         <p class="card-text text-left">Vi gir deg oversikten over renten du kan få i andre banker, og hvor mye du kan
           spare både i året og over lånets løpetid. Få bedre rente med et klikk!</p>
       </div>
     </div>
-    <div class="col-sm card-wrapper mb-3 text-center" [routerLink]="['/velgbank']">
+    <div class="col-lg card-wrapper mb-3 text-center" [routerLink]="['/velgbank']">
       <img class="pt-4 card-icon" src="assets/icons/ic_compare.svg" alt="">
-      <div class="card-number-wrapper d-flex justify-content-center mt-md-2 mb-md-4 mx-4 position-relative">
+      <div class="card-number-wrapper d-flex justify-content-center mt-lg-2 mb-lg-4 mx-4 position-relative">
         <p class="d-flex align-items-center justify-content-center font-weight-bold m-0">3</p>
       </div>
       <div class="card-info-wrapper">
-        <h2 class="card-title font-weight-bold mb-2 mb-md-5">Vi passer på renten din over tid</h2>
+        <h3 class="card-title font-weight-bold mb-lg-5 mb-2">Vi passer på renten din over tid</h3>
         <p class="card-text text-left">Vi sammenligner løpende renten du betaler på boliglånet ditt med renten du kan få
           i andre banker. Du får beskjed når nye og bedre tilbud er tilgjengelig. Som bruker av Renteradar slipper du å
           bruke tid på dette, vi gjør jobben helt gratis.</p>
@@ -70,7 +70,7 @@
       Kom i gang!
     </rente-button>
     <div class="pb-2 mb-4 col-12" [ngClass]="{'card-wrapper': !isSmallScreen}" *ngIf="!isSmallScreen">
-        <h3 class="heading font-weight-bold text-center my-2">Start med å velge banken du har boliglån i:</h3>
+        <h3 class="heading text-center my-2">Start med å velge banken du har boliglån i:</h3>
         <div class="row justify-content-center">
           <div class="col-3 col-lg-2 text-center px-0">
             <a [routerLink]="['/autentisering/dnb']"><img class="mw-100" src="../../../assets/img/banks-logo/dnb.png"

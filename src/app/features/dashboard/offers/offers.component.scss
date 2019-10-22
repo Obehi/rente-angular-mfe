@@ -18,10 +18,13 @@ a {
 }
 
 .offers {
-  h3 {
-    font-weight: bold;
-    @include text-style(24px, 34px, 0.4px);
+  .bg-wrap {
+    h3 {
+      font-weight: bold;
+      @include text-style(24px, 34px, 0.4px);
+    }
   }
+
 
   .coming-soon-text {
     color: $gray-700 !important;
@@ -32,7 +35,8 @@ a {
     height: 35px;
     font-size: 14px !important;
     margin: 0;
-    &-estimate{
+
+    &-estimate {
       font-size: 11px !important;
     }
   }
@@ -80,6 +84,7 @@ a {
     top: 50%;
     transform: translateY(-50%);
   }
+
   display: inline-block;
   position: absolute;
   width: 40px;

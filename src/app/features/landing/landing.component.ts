@@ -17,7 +17,7 @@ export class LandingComponent implements OnInit {
 
   @HostListener('window:resize', ['$event'])
   onResize(event?) {
-    window.innerWidth <= 1024 ? this.isSmallScreen = true : this.isSmallScreen = false;
+    window.innerWidth <= 991 ? this.isSmallScreen = true : this.isSmallScreen = false;
   }
 
 }

@@ -53,7 +53,10 @@ export class VirdiStatisticsComponent implements OnInit {
       },
 
       title: {
-        text: ''
+        text: '',
+        style: {
+          fontFamily: 'Lato'
+        }
       },
 
       xAxis: {
@@ -90,7 +93,22 @@ export class VirdiStatisticsComponent implements OnInit {
           color: '#18BC9C',
           data: []
         }
-      ]
+      ],
+      responsive: {
+        rules: [{
+          condition: {
+            maxWidth: 500
+          },
+          chartOptions: {
+            title: {
+              style: {
+                fontFamily: 'Lato',
+                fontSize: '16px'
+              }
+            }
+          }
+        }]
+      }
     };
 
     this.columnChartOptions = {
@@ -99,7 +117,10 @@ export class VirdiStatisticsComponent implements OnInit {
       },
 
       title: {
-        text: ''
+        text: '',
+        style: {
+          fontFamily: 'Lato'
+        }
       },
 
       xAxis: {
@@ -145,7 +166,22 @@ export class VirdiStatisticsComponent implements OnInit {
           data: []
         },
 
-      ]
+      ],
+      responsive: {
+        rules: [{
+          condition: {
+            maxWidth: 500
+          },
+          chartOptions: {
+            title: {
+              style: {
+                fontFamily: 'Lato',
+                fontSize: '16px'
+              }
+            }
+          }
+        }]
+      }
     };
     this.loansService.getExtendedInfo().subscribe(extendedInfo => {
       this.isLoading = false;

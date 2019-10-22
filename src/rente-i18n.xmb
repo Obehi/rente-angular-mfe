@@ -21,5 +21,4 @@
 <!ELEMENT ex (#PCDATA)>
 ]>
 <messagebundle>
-  <msg id="about-us-header" desc="About us header"><source>app/features/about-us/about-us.component.html:2</source>Om oss</msg>
 </messagebundle>

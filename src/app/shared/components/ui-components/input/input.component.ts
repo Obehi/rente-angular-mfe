@@ -20,7 +20,7 @@ import { ViewEncapsulation } from '@angular/core';
 import { ErrorStateMatcher } from '@angular/material/core';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
-  constructor(public state: boolean) {}
+  constructor(public state: boolean) { }
 
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
     return this.state;
@@ -46,15 +46,16 @@ export class InputComponent implements ControlValueAccessor, OnChanges {
   @Input() type: string;
   @Input() placeholder: string;
   @Input() errorStateMatcher: boolean;
+  @Input() modelOptions?: { updateOn: string };
   // tslint:disable-next-line:no-input-rename
   @Input('value') inputValue: any = '';
   @Input() mask?: any[];
   public matcher: MyErrorStateMatcher;
   @HostBinding('class.input-component') true;
 
-  propagateChange: any = () => {};
-  onChange: any = () => {};
-  onTouch: any = () => {};
+  propagateChange: any = () => { };
+  onChange: any = () => { };
+  onTouch: any = () => { };
 
   get value() {
     return this.inputValue;

@@ -1,4 +1,4 @@
-<h2 mat-dialog-title class="text-left my-0">Melding til din bank:</h2>
+<h3 mat-dialog-title class="text-left my-0">Melding til din bank:</h3>
 <hr class="my-0">
 <div mat-dialog-content class="dialog-body">
     <p>
@@ -54,12 +54,12 @@
         kredittvurdering.
     </mat-checkbox>
     <div mat-dialog-actions class="row justify-content-center">
-        <div class="col-8 col-md-6">
+        <div class="col-8 col-lg-6">
             <rente-button color="primary" [isLoading]="isLoading" [disabled]="!isConfirmed || isLoading"
                 (click)="sendRequest()">Send til banken
             </rente-button>
         </div>
-        <div class="col-4 col-md-2">
+        <div class="col-4 col-lg-2">
             <rente-button color="primary" (click)="close()">
                 Avbryt
             </rente-button>

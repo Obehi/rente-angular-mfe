@@ -4,6 +4,7 @@ export interface ViewStatus {
   isNoActiveInsurances: boolean;
   isOfferCreated: boolean;
   isProcessStarted: boolean;
+  isRenewBankId: boolean;
   isPassphraseConfirmSuccess: boolean;
   isPassphraseConfirmFail: boolean;
   isCrawlerError: boolean;
@@ -23,6 +24,8 @@ export class ViewStatus {
     this.isNoActiveInsurances = false;
     this.isOfferCreated = false;
     this.isProcessStarted = false;
+    this.isConfirmationRequired = false;
+    this.isRenewBankId = false;
     this.isPassphraseConfirmSuccess = false;
     this.isPassphraseConfirmFail = false;
     this.isCrawlerError = false;

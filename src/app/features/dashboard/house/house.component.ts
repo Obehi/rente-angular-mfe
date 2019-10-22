@@ -81,12 +81,10 @@ export class HouseComponent implements OnInit {
         this.autoPropertyForm = this.fb.group({
           street: [this.addressData.street, Validators.required],
           zip: [this.addressData.zip, Validators.compose([
-            Validators.required,
-            Validators.pattern(VALIDATION_PATTERN.zip)
+            Validators.required
           ])],
           apartmentSize: [this.addressData.apartmentSize, Validators.compose([
-            Validators.required,
-            Validators.pattern(VALIDATION_PATTERN.number)
+            Validators.required
           ])],
           manualPropertyValue: [this.addressData.manualPropertyValue]
         });
@@ -97,7 +95,7 @@ export class HouseComponent implements OnInit {
           ])]
         });
 
-        // this.isAutoMode = !Boolean(this.addressData.manualPropertyValue);
+        this.isAutoMode = !Boolean(this.addressData.manualPropertyValue);
         this.setPropertyMode();
         this.route.queryParams.subscribe(param => {
           if (param.statistikk) {
@@ -150,6 +148,9 @@ export class HouseComponent implements OnInit {
   }
 
   public updatePropertyMode() {
+    if (this.isLoading || (this.isAutoMode && this.autoPropertyForm.invalid) || (!this.isAutoMode && this.manualPropertyForm.invalid)) {
+      return;
+    }
     this.isLoading = true;
     let addressData: any;
     if (this.isAutoMode) {
