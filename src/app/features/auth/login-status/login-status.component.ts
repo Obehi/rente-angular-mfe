@@ -341,8 +341,8 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
     this.loginStep3Status = MESSAGE_STATUS.INFO;
   }
 
-  get isStep3Error():boolean {
-    return this.loginStep3Status == MESSAGE_STATUS.ERROR;
+  get isStep3Error(): boolean {
+    return this.loginStep3Status === MESSAGE_STATUS.ERROR;
   }
 
 }
