@@ -56,10 +56,10 @@
               Vi henter din rente og låneinformasjon
             </span>
             <span *ngIf="isStep3Error && viewStatus.isConfirmationRequired">
-              Banken din krever at du oppdaterer din informasjon. Vennligst gå til din nettbank før du prøver igjen.
+              Banken din krever at du oppdaterer dine personalia. Vennligst gå til din nettbank før du prøver igjen.
             </span>
             <span *ngIf="isStep3Error && viewStatus.isRenewBankIdRequired">
-              Du må fornye din BankID på mobil. Vennligst forny BankID på mobil i din nettbank før du prøver å logge inn på nytt.
+              Du må fornye din BankID. Vennligst forny BankID i din nettbank før du prøver igjen.
             </span>
             <span *ngIf="isStep3Error && viewStatus.isCrawlerError">
               Det oppstod en feil under henting av dine lånedetaljer, vennligst prøv igjen senere
