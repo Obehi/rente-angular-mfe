@@ -2,7 +2,9 @@
 
 .dashboard {
   margin-top: 63px;
-
+  @media (max-width:991px) {
+    margin-top: 30px;
+  }
   .mat-tab-links {
     border: 2px solid $primary;
     border-radius: 8px;
@@ -64,4 +66,8 @@
     font-size: 11px;
     letter-spacing: 0.18px;
   }
+}
+
+.mat-tab-header-pagination.mat-tab-header-pagination-disabled {
+  display: none !important;
 }

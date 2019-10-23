@@ -1,28 +1,30 @@
 <div class="row justify-content-center" *ngIf="profileForm" [@shakeAnimation]>
-  <form [formGroup]="profileForm" class="col-lg-7 col-12 my-2 my-md-5" novalidate (ngSubmit)="updateProfile()">
+  <form [formGroup]="profileForm" class="col-lg-7 col-12 my-2 my-lg-5" novalidate (ngSubmit)="updateProfile()">
     <div class="bg-wrap">
       <div class="row">
         <div class="col-12">
           <p class="mb-1">Medlemskap:</p>
-          <mat-form-field class="col-12 px-0">
-            <mat-chip-list #membershipList aria-label="Membership selection">
-              <mat-chip *ngFor="let membership of memberships; let i = index;" [selectable]="selectable"
-                [removable]="removable" (removed)="remove(membership, i)">
-                {{membership.label}}
-                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-              </mat-chip>
-              <input [placeholder]="'Ingen (trykk her for å legge til)'" #membershipInput [formControl]="membershipCtrl"
-                [matAutocomplete]="auto" [matChipInputFor]="membershipList"
-                [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
-                (matChipInputTokenEnd)="add($event)">
-            </mat-chip-list>
+          <div class="input-block">
+            <mat-form-field>
+              <mat-chip-list #membershipList aria-label="Membership selection">
+                <mat-chip *ngFor="let membership of memberships; let i = index;" [selectable]="selectable"
+                  [removable]="removable" (removed)="remove(membership, i)">
+                  {{membership.label}}
+                  <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                </mat-chip>
+                <input [placeholder]="'Ingen (trykk her for å legge til)'" #membershipInput
+                  [formControl]="membershipCtrl" [matAutocomplete]="auto" [matChipInputFor]="membershipList"
+                  [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+                  (matChipInputTokenEnd)="add($event)">
+              </mat-chip-list>
 
-            <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
-              <mat-option *ngFor="let membership of filteredMemberships | async" [value]="membership">
-                {{membership.label}}
-              </mat-option>
-            </mat-autocomplete>
-          </mat-form-field>
+              <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+                <mat-option *ngFor="let membership of filteredMemberships | async" [value]="membership">
+                  {{membership.label}}
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+          </div>
           <rente-form-message class="text-left d-block memberships-info-messageцц" [type]="'info'">
             Bankene gir ofte bedre betingelser hvis du er medlem i en organisasjon
           </rente-form-message>
@@ -30,7 +32,7 @@
 
       </div>
 
-      <div class="row">
+      <div class="row mt-2 mt-lg-0">
         <div class="col-12">
           <p>Din/Husstandens brutto årsinntekt:</p>
           <rente-input [placeholder]="'Bruttoårsinntekt'" formControlName="income"
@@ -52,11 +54,12 @@
         </div>
       </div>
 
-      <div class="row">
+      <div class="row mt-2 mt-lg-0">
         <div class="form-group col-12">
           <p>E-post:</p>
           <rente-input [placeholder]="'E-post'" formControlName="email"
-            [errorStateMatcher]="isErrorState(profileForm.controls['email'], profileForm)">
+            [errorStateMatcher]="isErrorState(profileForm.controls['email'], profileForm)"
+            [modelOptions]="{updateOn:'blur'}">
           </rente-input>
           <div *ngIf="profileForm.controls['email'].touched" class="error-message">
             <rente-form-message class="text-left d-block" [type]="'error'"

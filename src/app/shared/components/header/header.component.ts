@@ -40,7 +40,7 @@ export class HeaderComponent implements OnInit {
     public auth: AuthService,
     public localStorageService: LocalStorageService
   ) {
-    this.isSmallScreen = window.innerWidth <= 1000;
+    this.isSmallScreen = window.innerWidth <= 991;
   }
 
   ngOnInit() {
@@ -52,7 +52,7 @@ export class HeaderComponent implements OnInit {
 
   @HostListener('window:resize', ['$event'])
   onResize(event?) {
-    this.isSmallScreen = window.innerWidth <= 1000;
+    this.isSmallScreen = window.innerWidth <= 991;
   }
 
   @HostListener('window:click', ['$event.target'])

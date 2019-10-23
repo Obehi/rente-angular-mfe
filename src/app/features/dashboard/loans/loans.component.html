@@ -1,6 +1,6 @@
 <div *ngIf="loansData && loansData.loans && loansData.loans.length > 0" [@shakeAnimation]>
 
-  <h4 class="font-weight-bold mt-2 mt-md-5">Sammendrag</h4>
+  <h3>Sammendrag</h3>
 
   <div class="bg-wrap bg-light mb-4">
     <div class="mb-0 list-unstyled">
@@ -18,7 +18,7 @@
     </div>
   </div>
 
-  <h4 class="font-weight-bold">Detaljert</h4>
+  <h3>Detaljert</h3>
 
   <div class="bg-wrap  mb-4" *ngFor="let loan of loansData.loans">
 

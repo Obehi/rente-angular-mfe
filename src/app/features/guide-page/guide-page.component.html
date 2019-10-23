@@ -1,12 +1,12 @@
 <div class="row justify-content-center" *ngIf="!isFrontPage" >
     <div class="col-md-10" [ngClass]="{'col-lg-6': !isFrontPage}">
-        <h3 class="title font-weight-bold text-left text-md-center">Hvordan fungerer Renteradar?</h3>
+        <h3 class="text-left text-lg-center">Hvordan fungerer Renteradar?</h3>
     </div>
 </div>
 
-<div class="row justify-content-center mb-2 mb-md-0">
+<div class="row justify-content-center mb-2 mb-lg-0">
     <div class="col-md-10" [ngClass]="{'col-lg-6': !isFrontPage}">
-        <p class="text-left mt-md-1">
+        <p class="text-left mt-0 mt-lg-1">
             Renteradar henter renten og dine lånedetaljer automatisk med BankID på mobil. Vi sammenligner renten du
             betaler med renten du kan få i andre banker og viser deg hvor mye du kan spare. Du kan også prute i banken
             du er kunde med et klikk:
@@ -15,7 +15,7 @@
 </div>
 
 <div class="row justify-content-center">
-    <div class="col-12 col-md-5 mb-4 mb-md-0 text-center" [ngClass]="{'col-lg-3': !isFrontPage}">
+    <div class="col-12 col-md-5 mb-4 mb-lg-0 text-center" [ngClass]="{'col-lg-3': !isFrontPage}">
         <img class="guide-image-default" [ngClass]="{'guide-image': isFrontPage}" src="../../../assets/img/guide-page/guide-1.png" alt="guide">
     </div>
     <div class="col-12 col-md-5 text-center" [ngClass]="{'col-lg-3': !isFrontPage}">
@@ -23,7 +23,7 @@
     </div>
 </div>
 
-<div class="row justify-content-center my-4 my-md-3">
+<div class="row justify-content-center my-4 my-lg-3">
     <div class="col-md-10" [ngClass]="{'col-lg-6': !isFrontPage}">
         <p class="text-left my-0">
             Vi overvåker markedet og gir deg beskjed når nye og bedre tilbud er tilgjengelig i fremtiden!
@@ -32,7 +32,7 @@
 </div>
 
 <div class="row justify-content-center my-5">
-    <div class="col-md-5">
+    <div class="col-lg-5">
         <rente-button color="primary" [routerLink]="'/velgbank'">Kom igang
         </rente-button>
     </div>

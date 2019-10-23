@@ -34,6 +34,9 @@ button.mat-primary {
   color: $primary;
   border-width: 2px;
   white-space: normal;
+  &:hover {
+    background-color: $gray-300;
+  }
 }
 
 .loading-icon {
