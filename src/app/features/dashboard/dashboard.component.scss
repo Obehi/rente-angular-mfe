@@ -67,3 +67,7 @@
     letter-spacing: 0.18px;
   }
 }
+
+.mat-tab-header-pagination.mat-tab-header-pagination-disabled {
+  display: none !important;
+}
