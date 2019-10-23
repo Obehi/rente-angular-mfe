@@ -1,7 +1,7 @@
 <div class="container dashboard">
   <div class="row">
     <div class="col-12">
-      <nav mat-tab-nav-bar mat-stretch-tabs disablePagination [ngClass]="{mobile: isMobile}">
+      <nav mat-tab-nav-bar mat-stretch-tabs mat-tab-header-pagination-disabled [ngClass]="{mobile: isMobile}">
         <a mat-tab-link [active]="activeLinkIndex == 0" [routerLink]="'./tilbud'">
           <img src="{{imgLink.tilbud}}" alt="tilbud">
           Tilbud
