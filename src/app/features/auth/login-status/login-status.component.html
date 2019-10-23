@@ -65,10 +65,10 @@
               Det oppstod en feil under henting av dine lånedetaljer, vennligst prøv igjen senere
             </span>
             <br>
-            <span *ngIf="viewStatus.isPassphraseConfirmSuccess && !isStep3Error">
+            <span *ngIf="isStep3InProgress && !timerExceeded">
               (tar cirka {{thirdStepTimer}} sekunder)
             </span>
-            <span *ngIf="viewStatus.isPassphraseConfirmSuccess && !isStep3Error">
+            <span *ngIf="isStep3InProgress && timerExceeded">
               (Litt til, straks ferdig)
             </span>
           </rente-status-message>

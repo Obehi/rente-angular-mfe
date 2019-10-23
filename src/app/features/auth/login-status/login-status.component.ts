@@ -345,4 +345,12 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
     return this.loginStep3Status === MESSAGE_STATUS.ERROR;
   }
 
+  get isStep3InProgress(): boolean {
+    return this.loginStep3Status === MESSAGE_STATUS.LOADING;
+  }
+
+  get timerExceeded(): boolean {
+    return this.thirdStepTimer <= 0;
+  }
+
 }
