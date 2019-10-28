@@ -46,7 +46,7 @@
       .mat-tab-link {
         flex-direction: column;
         min-width: auto;
-
+        padding: 0;
         img {
           display: block;
         }
@@ -66,8 +66,4 @@
     font-size: 11px;
     letter-spacing: 0.18px;
   }
-}
-
-.mat-tab-header-pagination.mat-tab-header-pagination-disabled {
-  display: none !important;
 }
