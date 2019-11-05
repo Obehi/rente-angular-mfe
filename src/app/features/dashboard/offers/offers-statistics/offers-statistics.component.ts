@@ -40,7 +40,7 @@ export class OffersStatisticsComponent implements OnInit {
         title: {
           text: 'Din rente i forhold til andre i din bank:',
           align: 'left',
-          margin: 0,
+          margin: -10,
           style: {
             fontWeight: 'bold'
           }
@@ -112,9 +112,9 @@ export class OffersStatisticsComponent implements OnInit {
         },
 
         title: {
-          text: 'Din rente i forhold til andre som deg, alle banker:',
+          text: 'Din rente i forhold til andre i alle banker:',
           align: 'left',
-          margin: 0,
+          margin: -10,
           style: {
             fontWeight: 'bold'
           }
