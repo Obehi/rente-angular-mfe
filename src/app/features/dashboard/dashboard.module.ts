@@ -35,6 +35,7 @@ import { ChartModule } from 'angular-highcharts';
 import { ShareSheetComponent } from './offers/share-sheet/share-sheet.component';
 // import { ShareButtonModule } from '@ngx-share/button';
 import { VirdiStatisticsComponent } from './house/virdi-statistics/virdi-statistics.component';
+import { OffersStatisticsComponent } from './offers/offers-statistics/offers-statistics.component';
 // TODO: ADD separate module for material import
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { VirdiStatisticsComponent } from './house/virdi-statistics/virdi-statist
     ChangeBankDialogComponent,
     SuccessChangeBankDialogComponent,
     ShareSheetComponent,
-    VirdiStatisticsComponent
+    VirdiStatisticsComponent,
+    OffersStatisticsComponent
   ],
   imports: [
     CommonModule,
