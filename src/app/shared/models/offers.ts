@@ -13,6 +13,11 @@ export interface Offers {
   totalEffectiveRate: number | null;
   totalOutstandingDebt: number | null;
   resultType: string;
+  bestPercentileEffectiveRateYourBank: number;
+  bestPercentileEffectiveRateAllBanks: number;
+  medianEffectiveRateYourBank: number;
+  medianEffectiveRateAllBanks: number;
+  tips: string;
 }
 
 export interface OfferInfo {
