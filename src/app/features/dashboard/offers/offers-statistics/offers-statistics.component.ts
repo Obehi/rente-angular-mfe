@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, HostListener } from '@angular/core';
 import * as Highcharts from 'highcharts';
 import { Offers } from '@shared/models/offers';
 
@@ -25,11 +25,12 @@ export class OffersStatisticsComponent implements OnInit {
   allBanksEffRateOptions: any;
   clientBankEffRateChart: Highcharts.Chart;
   allBankEffRateCharts: Highcharts.Chart;
-  isSmallScreen: boolean;
   tips: string;
 
   ngOnInit() {
     if (this.offersInfo) {
+      let isSmallScreen = window.innerWidth <= 991;
+      let titleMargin = isSmallScreen ? -50 : -10;
       this.tips = this.offersInfo.tips;
 
       this.clientBankEffRateOptions = {
@@ -40,7 +41,7 @@ export class OffersStatisticsComponent implements OnInit {
         title: {
           text: 'Din rente i forhold til andre i din bank:',
           align: 'left',
-          margin: -10,
+          margin: titleMargin,
           style: {
             fontWeight: 'bold'
           }
@@ -114,7 +115,7 @@ export class OffersStatisticsComponent implements OnInit {
         title: {
           text: 'Din rente i forhold til andre i alle banker:',
           align: 'left',
-          margin: -10,
+          margin: titleMargin,
           style: {
             fontWeight: 'bold'
           }
