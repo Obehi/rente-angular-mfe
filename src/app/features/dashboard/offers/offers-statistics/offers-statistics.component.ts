@@ -30,7 +30,7 @@ export class OffersStatisticsComponent implements OnInit {
   ngOnInit() {
     if (this.offersInfo) {
       let isSmallScreen = window.innerWidth <= 991;
-      let titleMargin = isSmallScreen ? -50 : -10;
+      let titleMargin = isSmallScreen ? -80 : -10;
       this.tips = this.offersInfo.tips;
 
       this.clientBankEffRateOptions = {
