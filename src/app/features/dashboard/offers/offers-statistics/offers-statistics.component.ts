@@ -40,13 +40,19 @@ export class OffersStatisticsComponent implements OnInit {
         title: {
           text: 'Din rente i forhold til andre i din bank:',
           align: 'left',
+          margin: 0,
           style: {
             fontWeight: 'bold'
           }
         },
 
         xAxis: {
-          categories: ['Flere har', 'Median', 'Du har']
+          categories: ['De med lavest rente', 'Snitt-kunden', 'Du har'],
+          labels: {
+            style: {
+              fontSize: '14px',
+            }
+          }
         },
 
         yAxis: {
@@ -62,6 +68,7 @@ export class OffersStatisticsComponent implements OnInit {
         },
 
         tooltip: {
+          enabled: false,
           formatter() {
             return '<b>' + this.x + '</b><br/>' + this.y + '%';
           }
@@ -91,7 +98,8 @@ export class OffersStatisticsComponent implements OnInit {
               format: '{point.y:.2f}%', // one decimal
               y: 10, // 10 pixels down from the top
               style: {
-                fontSize: '24px'
+                fontSize: '24px',
+                textOutline: false
               }
             }
           },
@@ -106,13 +114,19 @@ export class OffersStatisticsComponent implements OnInit {
         title: {
           text: 'Din rente i forhold til andre som deg, alle banker:',
           align: 'left',
+          margin: 0,
           style: {
             fontWeight: 'bold'
           }
         },
 
         xAxis: {
-          categories: ['Flere har', 'Median', 'Du har']
+          categories: ['De med lavest rente', 'Snitt-kunden', 'Du har'],
+          labels: {
+            style: {
+              fontSize: '14px',
+            }
+          }
         },
 
         yAxis: {
@@ -128,6 +142,7 @@ export class OffersStatisticsComponent implements OnInit {
         },
 
         tooltip: {
+          enabled: false,
           formatter() {
             return '<b>' + this.x + '</b><br/>' + this.y + '%';
           }
@@ -157,7 +172,8 @@ export class OffersStatisticsComponent implements OnInit {
               format: '{point.y:.2f}%', // one decimal
               y: 10, // 10 pixels down from the top
               style: {
-                fontSize: '24px'
+                fontSize: '24px',
+                textOutline: false
               }
             }
           },
