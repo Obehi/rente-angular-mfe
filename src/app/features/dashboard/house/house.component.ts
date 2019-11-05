@@ -159,7 +159,7 @@ export class HouseComponent implements OnInit {
     } else {
       if (this.manualPropertyForm.value.manualPropertyValue) {
         if (this.manualPropertyForm.value && this.manualPropertyForm.value.manualPropertyValue) {
-          this.manualPropertyForm.value.manualPropertyValue = this.manualPropertyForm.value.manualPropertyValue.replace(/\s/g, '');
+          this.manualPropertyForm.value.manualPropertyValue = String(this.manualPropertyForm.value.manualPropertyValue).replace(/\s/g, '');
         }
         addressData = Object.assign(this.autoPropertyForm.value, this.manualPropertyForm.value);
       } else {
