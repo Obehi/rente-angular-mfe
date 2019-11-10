@@ -46,7 +46,7 @@ export class OffersStatisticsComponent {
   allBanksChartChartId = 'allBanksChartChartId';
 
   get chartTitleMargin() {
-    return window.innerWidth <= 991 ? -40 : -10;
+    return window.innerWidth <= 991 ? 0 : -10;
   }
 
   ngAfterViewInit() {
