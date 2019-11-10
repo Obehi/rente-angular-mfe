@@ -4,12 +4,14 @@
         <div class="row">
             <div
                 *ngIf="hasClientBankData"
-                class="col-12 col-lg-6">
+                class="col-12 col-lg-6 pb-4">
+                <h3>Din rente i forhold til andre i din bank:</h3>
                 <div id="clientBankChartId"></div>
             </div>
             <div
                 *ngIf="hasOthersBankData"
-                class="col-12 col-lg-6">
+                class="col-12 col-lg-6 pb-4">
+                <h3>Din rente i forhold til andre i alle banker:</h3>
                 <div id="allBanksChartChartId"></div>
             </div>
         </div>
