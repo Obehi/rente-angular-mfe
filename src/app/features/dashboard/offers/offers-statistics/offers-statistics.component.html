@@ -1,0 +1,23 @@
+<div class="row" style="margin-top: 50px;">
+    <div
+        class="col-12 px-0">
+        <div class="row">
+            <div
+                *ngIf="hasClientBankData"
+                class="col-12 col-lg-6">
+                <div id="clientBankChartId"></div>
+            </div>
+            <div
+                *ngIf="hasOthersBankData"
+                class="col-12 col-lg-6">
+                <div id="allBanksChartChartId"></div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="tips">
+        <h3 class="mb-3">Renteradars tips:</h3>
+        <div class="col-12 bg-wrap">
+            <p>{{tips}}</p>
+        </div>
+    </div>
+</div>

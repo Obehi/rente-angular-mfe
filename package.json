@@ -11,7 +11,6 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "postinstall": "npm run build",
     "i18n": "ng xi18n --i18n-format=xmb --out-file rente-i18n.xmb --i18n-locale en",
     "build-i18n:no": "ng build --output-path=dist/rente-front-end/ --aot --prod --sourceMap --i18n-file=src/locale/messages.no.xtb --i18n-format=xtb --i18n-locale=nn",
     "build-i18n:no:stats": "ng build --stats-json --output-path=dist/rente-front-end/ --aot --prod --sourceMap --i18n-file=src/locale/messages.no.xtb --i18n-format=xtb --i18n-locale=nn",

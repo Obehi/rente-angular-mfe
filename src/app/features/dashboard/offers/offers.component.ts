@@ -72,6 +72,14 @@ export class OffersComponent implements OnInit, OnDestroy {
   public changeBankLoading: boolean;
   public subscribeShareLinkTimer: Subscription;
 
+  get hasLoansStatistics():boolean {
+    let res = this.offersInfo 
+      && this.offersInfo.bestPercentileEffectiveRateYourBank > 0
+      && this.offersInfo.bestPercentileEffectiveRateAllBanks > 0
+      && this.offersInfo.medianEffectiveRateYourBank > 0
+      && this.offersInfo.medianEffectiveRateAllBanks > 0
+    return res;
+  }
 
   constructor(
     public dialog: MatDialog,

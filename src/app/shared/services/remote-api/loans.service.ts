@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { GenericHttpService } from '@services/generic-http.service';
 import { API_URL_MAP } from '@config/api-url-config';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -34,7 +35,7 @@ export class LoansService {
     return this.http.get(url);
   }
 
-  public getAddresses() {
+  public getAddresses():Observable<any> {
     const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.address}`;
     return this.http.get(url);
   }
@@ -64,11 +65,11 @@ export class LoansService {
     return this.http.put(url, loanData);
   }
 
-  public getPropertyValue() {
+  public getPropertyValue():Observable<any> {
     const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.property}${API_URL_MAP.loan.value}`;
     return this.http.get(url);
   }
-  public getEstimatedPropertValue() {
+  public getEstimatedPropertValue():Observable<any> {
     const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.property}${API_URL_MAP.loan.estimatedValue}`;
     return this.http.get(url);
   }
