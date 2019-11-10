@@ -59,7 +59,7 @@ export class OffersStatisticsComponent {
           this.offersInfo.totalEffectiveRate || 0
         ];
         this.clientBankEffRateChart = Highcharts.chart(this.clientBankChartId, this.clientBankEffRateOptions);
-        this.clientBankEffRateChart.setSize(null, 300);
+        this.clientBankEffRateChart.setSize(null, 250);
       }
       if (this.hasOthersBankData) {
         this.allBanksEffRateOptions = this.getOtherBanksChartOptions();
@@ -69,7 +69,7 @@ export class OffersStatisticsComponent {
           this.offersInfo.totalEffectiveRate || 0
         ];
         this.allBankEffRateCharts = Highcharts.chart(this.allBanksChartChartId, this.allBanksEffRateOptions);
-        this.allBankEffRateCharts.setSize(null, 300);
+        this.allBankEffRateCharts.setSize(null, 250);
       }
     }
   }
@@ -81,7 +81,7 @@ export class OffersStatisticsComponent {
       },
 
       title: {
-        text: 'Din rente i forhold til andre i din bank:',
+        text: null, //'Din rente i forhold til andre i din bank:',
         align: 'left',
         margin: this.chartTitleMargin,
         style: {
@@ -158,7 +158,7 @@ export class OffersStatisticsComponent {
       },
 
       title: {
-        text: 'Din rente i forhold til andre i alle banker:',
+        text: null, //'Din rente i forhold til andre i alle banker:',
         align: 'left',
         margin: this.chartTitleMargin,
         style: {
