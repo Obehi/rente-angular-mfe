@@ -81,6 +81,10 @@ export class OffersComponent implements OnInit, OnDestroy {
     return res;
   }
 
+  get hasStatensPensjonskasseMembership():boolean {
+    return this.offersInfo && this.offersInfo.memberships && this.offersInfo.memberships.indexOf('STATENS_PENSJONSKASSE_STATLIG_ANSATT') > -1;
+  }
+
   constructor(
     public dialog: MatDialog,
     public offersService: OffersService,

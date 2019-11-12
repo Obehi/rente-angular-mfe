@@ -47,6 +47,13 @@
           dette i
           <a [routerLink]="'/dashboard/preferanser'">preferanser</a>
         </p>
+
+        <p class="text-border" *ngIf="hasStatensPensjonskasseMembership">
+          Medlemmer i Statens Pensjonskasse kan finansiere opptil 2 millioner 
+          hos Statens Pensjonskasse. For mer info om tilbudet 
+          <a target="_blank" href="https://www.finansportalen.no/bank/boliglan/product/46473/">klikk her</a>
+        </p>
+
       </div>
       <div class="col-12 col-lg-7 text-center">
         <div class="row mb-4">
