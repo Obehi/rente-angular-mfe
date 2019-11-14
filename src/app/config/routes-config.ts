@@ -37,6 +37,8 @@ export const customMeta = {
   faabeskjedDescription: 'Vi har foreløpig kun støtte for automatisk innhenting av dine betingelser hvis du er kunde i DNB, Nordea eller Sparebank 1. Legg igjen din email og få beskjed når vi har en løsning for din bank',
   bankDescription: 'Renteradar henter renten du har og lånebeløp automatisk med BankID på mobil',
   bankLoginTitle: 'Renteradar.no | Registrer | Logg inn',
+  coFounderTitle: 'Renteradar.no | Co-Founder',
+  coFounderDescription: 'Beste boliglånsrente | Sammenlign rente på boliglån | Renteradar.no',
   DNB: {
     title: 'Beste boliglånsrente | Sammenlign rente på boliglån | DNB | Renteradar.no',
     description: 'Renteradar henter renten du har og lånebeløp automatisk med BankID på mobil. Logg inn og registrering for deg som har boliglån i DNB',
@@ -124,7 +126,7 @@ export const customMeta = {
   }
 };
 
-export const ROUTES_MAP: any = {
+export const ROUTES_MAP = {
   aboutUs: 'omoss',
   faq: 'ofte-stilte-sporsmaal',
   contactUs: 'kontakt',
@@ -136,5 +138,6 @@ export const ROUTES_MAP: any = {
   dashboard: 'dashboard',
   initConfirmation: 'bekreft',
   getNotified: 'faabeskjed',
-  guide: 'slik-funger-renteradar'
+  guide: 'slik-funger-renteradar',
+  coFounder: 'co-founder'
 };
