@@ -1,44 +1,38 @@
-@import '../../../../../styles/theme/_colors.scss';
+@import "../../../../../styles/theme/_colors.scss";
 
-button.mat-primary {
-  border-radius: 4px;
-  font-family: Lato;
+button.mat-button {
+  border-radius: 100px;
+  max-width: 150px;
+  margin: auto;
   font-size: 16px;
-  font-weight: bold;
+  font-weight: 400;
   line-height: 19px;
   width: 100%;
-  min-height: 40px;
+  height: 56px;
+  border: none;
+  outline: none;
+  display: block;
+  p {
+    color: white;
+  }
+  img {
+    height: 20px;
+  }
 }
 
-.mat-raised-button.mat-primary {
+button.mat-primary[disabled] {
+  background-color: transparent;
+}
+
+button.mat-primary {
   background-color: $primary;
-  white-space: pre-wrap;
-  font-size: 15px !important;
 }
-
-.change-bank-button-mobile button.mat-primary {
-  min-height: 60px !important;
+.mat-button.mat-primary {
+  color: white;
 }
-
-.disabled-button {
-  border-radius: 4px;
-  background-color: $green !important;
-
-  .mat-button-wrapper {
-    color: $white !important;
-  }
+button.mat-blue {
+  background-color: $blue;
 }
-
-.mat-stroked-button.mat-primary {
-  border-color: $primary;
-  color: $primary;
-  border-width: 2px;
-  white-space: normal;
-  &:hover {
-    background-color: $gray-300;
-  }
-}
-
 .loading-icon {
   animation: spin 2s infinite linear;
   display: inline-block;

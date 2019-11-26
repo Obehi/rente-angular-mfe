@@ -1,10 +1,17 @@
-@import '../../../../styles/theme/_colors.scss';
+@import "../../../../styles/theme/_colors.scss";
 
-.text {
-  letter-spacing: 0.27px;
-  line-height: 24px;
+.login {
+  text-align: center;
 }
-
+h2 {
+  margin-bottom: 20px;
+}
+h4 {
+  margin-bottom: 40px;
+}
+.bank-logo {
+  margin-bottom: 40px;
+}
 a {
   color: $primary;
   text-decoration: none;
@@ -14,13 +21,11 @@ a {
     cursor: pointer;
   }
 }
-
-.register-btn {
-  margin-bottom: 90px;
+form {
+  margin: auto;
+  max-width: 300px;
 }
-
-.text-left-small-screen {
-  @media (max-width:450px) {
-    text-align: left !important;
-  }
+mat-checkbox {
+  margin-bottom: 40px;
+  display: block;
 }

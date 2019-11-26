@@ -1,32 +1,32 @@
-$white:   #fff !default;
-$black:   #212529 !default;
-$blue:    #2B3E50 !default;
-$green:   #18BC9C !default;
-$grey:    #CDCDCD !default;
-$light:   #F4F4F4 !default;
+$white: #fff !default;
+$black: #112639 !default;
+$blue: #112639 !default;
+$green: #18bc9c !default;
+$grey: #cdcdcd !default;
+$light: #e7e9eb !default;
 $text-color: #636669 !default;
-$red:   #F41515 !default;
+$red: #f41515 !default;
 
-$primary:       $green !default;
-$secondary:     $blue !default;
-$grey:          $grey !default;
-$error:         $red !default;
-$light:         $light !default;
-$dark:          $black !default;
-$white:         $white !default;
+$primary: $green !default;
+$secondary: $blue !default;
+$grey: $grey !default;
+$error: $red !default;
+$light: $light !default;
+$dark: $black !default;
+$white: $white !default;
 
 $theme-colors: () !default;
 // stylelint-disable-next-line scss/dollar-variable-default
 $theme-colors: map-merge(
   (
-    "primary":    $primary,
-    "secondary":  $secondary,
-    "grey":       $grey,
-    "light":      $light,
-    "dark":       $dark,
-    "white":      $white,
-    "black":      $black,
-    "error":      $error
+    "primary": $primary,
+    "secondary": $secondary,
+    "grey": $grey,
+    "light": $light,
+    "dark": $dark,
+    "white": $white,
+    "black": $black,
+    "error": $error
   ),
   $theme-colors
 );
@@ -73,7 +73,7 @@ $grays: map-merge(
 //   $theme-colors
 // );
 
-$body-bg:                   $white !default;
-$body-color:                $gray-900 !default;
+$body-bg: $white !default;
+$body-color: $gray-900 !default;
 
-$text-muted:                  $gray-600 !default;
+$text-muted: $gray-600 !default;

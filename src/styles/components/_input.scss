@@ -1,4 +1,4 @@
-@import '../theme/_colors.scss';
+@import "../theme/_colors.scss";
 
 .input-block {
   .mat-form-field-infix {
@@ -16,7 +16,7 @@
       }
 
       input {
-        color: rgba(0,0,0,0.87);
+        color: rgba(0, 0, 0, 0.87);
       }
 
       label {
@@ -25,8 +25,8 @@
     }
 
     .mat-form-field-underline {
-        background-color: $dark;
-        bottom: 0px;
+      background-color: $dark;
+      bottom: 0px;
     }
 
     .mat-form-field-wrapper {
@@ -37,7 +37,7 @@
   label {
     // padding-left: 20px;
     margin-top: 6px;
-    font-family: Lato;
+    font-family: Roboto;
     font-size: 12px;
     letter-spacing: 0.4px;
   }
@@ -46,7 +46,7 @@
     height: 24px;
     width: 292px;
     color: #636669;
-    font-family: Lato;
+    font-family: Roboto;
     font-size: 16px;
     letter-spacing: 0.15px;
     line-height: 24px;
@@ -54,7 +54,7 @@
     width: 100%;
     // background-color: #DEDFDF !important;
     // &:-internal-autofill-selected {
-      // background-color: #DEDFDF !important;
+    // background-color: #DEDFDF !important;
     // }
   }
 }

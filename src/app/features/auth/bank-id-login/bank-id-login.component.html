@@ -1,6 +1,131 @@
-<section *ngIf="!isLoginStarted && bankIdForm">
-  <div class="row justify-content-center text-center my-2">
+<section *ngIf="!isLoginStarted && bankIdForm" class="login">
+  <h2>Logg inn med BankID på mobil</h2>
+  <h4>Vi støtter kun BankID på Mobil, ikke kodebrikke og passord.</h4>
+  <form
+    [formGroup]="bankIdForm"
+    novalidate
+    (ngSubmit)="startLogin(bankIdForm.value)"
+  >
+    <img
+      src="{{ bankLogo }}"
+      class="bank-logo"
+      alt="{{ userBank.label }}"
+      title="{{ this.userBank.label }}"
+    />
 
+    <div *ngIf="isSsnBankLogin; else birthdateInput" class="form-group">
+      <rente-input
+        [errorStateMatcher]="
+          isErrorState(bankIdForm.controls['ssn'], bankIdForm)
+        "
+        [placeholder]="'Ditt fødselsnummer (11 siffer)'"
+        formControlName="ssn"
+        [mask]="ssnMask"
+        [type]="'tel'"
+        [modelOptions]="{ updateOn: 'blur' }"
+      ></rente-input>
+      <div class="error-message" *ngIf="bankIdForm.controls['ssn'].touched">
+        <rente-form-message
+          class="text-left d-block"
+          *ngIf="bankIdForm.controls['ssn'].hasError('required')"
+          [type]="'error'"
+        >
+          Fødselsnummer kan ikke være tomt
+        </rente-form-message>
+        <rente-form-message
+          class="text-left d-block"
+          *ngIf="bankIdForm.controls['ssn'].hasError('pattern')"
+          [type]="'error'"
+        >
+          Fødselsnummer ikke gyldig
+        </rente-form-message>
+      </div>
+    </div>
+
+    <ng-template #birthdateInput>
+      <div class="form-group">
+        <rente-input
+          [errorStateMatcher]="
+            isErrorState(bankIdForm.controls['birthdate'], bankIdForm)
+          "
+          [placeholder]="'Din fødselsdato (ddmmåå)'"
+          formControlName="birthdate"
+          [mask]="birthdateMask"
+          [type]="'tel'"
+          [modelOptions]="{ updateOn: 'blur' }"
+        ></rente-input>
+        <div
+          class="error-message"
+          *ngIf="bankIdForm.controls['birthdate'].touched"
+        >
+          <rente-form-message
+            class="text-left d-block"
+            *ngIf="bankIdForm.controls['birthdate'].hasError('required')"
+            [type]="'error'"
+          >
+            Fødselsdato kan ikke være tomt
+          </rente-form-message>
+          <rente-form-message
+            class="text-left d-block"
+            *ngIf="bankIdForm.controls['birthdate'].hasError('pattern')"
+            [type]="'error'"
+          >
+            Fødselsdato ikke gyldig
+          </rente-form-message>
+        </div>
+      </div>
+    </ng-template>
+
+    <div class="form-group">
+      <rente-input
+        [errorStateMatcher]="
+          isErrorState(bankIdForm.controls['phone'], bankIdForm)
+        "
+        [placeholder]="'Ditt mobilnummer (8 siffer)'"
+        formControlName="phone"
+        [mask]="phoneMask"
+        [type]="'tel'"
+        [modelOptions]="{ updateOn: 'blur' }"
+      >
+      </rente-input>
+      <div class="error-message" *ngIf="bankIdForm.controls['phone'].touched">
+        <rente-form-message
+          class="text-left d-block"
+          *ngIf="bankIdForm.controls['phone'].hasError('required')"
+          [type]="'error'"
+        >
+          Telefonnummer kan ikke være tomt
+        </rente-form-message>
+        <rente-form-message
+          class="text-left d-block"
+          *ngIf="bankIdForm.controls['phone'].hasError('pattern')"
+          [type]="'error'"
+        >
+          Telefonnummer ikke gyldig
+        </rente-form-message>
+      </div>
+    </div>
+
+    <mat-checkbox
+      formControlName="confirmation"
+      (change)="isConfirmed = $event.checked"
+    >
+      Jeg aksepterer Renteradar.no's
+      <a class="link" (click)="openServiceDialog()">vilkår</a>
+    </mat-checkbox>
+
+    <div class="register-btn">
+      <rente-button
+        color="primary"
+        [disabled]="!bankIdForm.valid || !isConfirmed"
+        >Logg inn
+      </rente-button>
+    </div>
+  </form>
+</section>
+
+<!-- <section *ngIf="!isLoginStarted && bankIdForm">
+  <div class="row justify-content-center text-center my-2">
     <div class="col">
       <h3>Logg inn med BankID på mobil</h3>
     </div>
@@ -9,11 +134,10 @@
     <div class="row justify-content-center">
       <div class="col-12 col-lg-6">
         <p class="my-0 text text-left">
-          Legg inn {{ isSsnBankLogin ? 'fødselsnummer' : 'fødselsdato' }} og mobilnummer. Bekreft referansen på mobilen,
-          så hentes
-          dine lånedata automatisk. Vi
-          bruker
-          SSL verifisering, så all informasjon sendes kryptert.
+          Legg inn {{ isSsnBankLogin ? "fødselsnummer" : "fødselsdato" }} og
+          mobilnummer. Bekreft referansen på mobilen, så hentes dine lånedata
+          automatisk. Vi bruker SSL verifisering, så all informasjon sendes
+          kryptert.
         </p>
         <p class="mt-2 mb-4 text text-left">
           Vi støtter kun BankID på Mobil, ikke kodebrikke og passord
@@ -25,22 +149,51 @@
     <div class="row justify-content-center">
       <div class="col-12 col-lg-5">
         <div class="text-center">
-          <form [formGroup]="bankIdForm" novalidate (ngSubmit)="startLogin(bankIdForm.value)">
-
+          <form
+            [formGroup]="bankIdForm"
+            novalidate
+            (ngSubmit)="startLogin(bankIdForm.value)"
+          >
             <div class="mb-4 bg-wrap">
-              <div class="mb-4"><img class="mw-100" src="{{bankLogo}}" alt="{{userBank.label}}"
-                  title="{{this.userBank.label}}"></div>
-              <div *ngIf="isSsnBankLogin; else birthdateInput" class="form-group">
-                <rente-input [errorStateMatcher]="isErrorState(bankIdForm.controls['ssn'], bankIdForm)"
-                  [placeholder]="'Ditt fødselsnummer (11 siffer)'" formControlName="ssn" [mask]="ssnMask"
-                  [type]="'tel'" [modelOptions]="{updateOn:'blur'}"></rente-input>
-                <div class="error-message" *ngIf="bankIdForm.controls['ssn'].touched">
-                  <rente-form-message class="text-left d-block" *ngIf="bankIdForm.controls['ssn'].hasError('required')"
-                    [type]="'error'">
+              <div class="mb-4">
+                <img
+                  class="mw-100"
+                  src="{{ bankLogo }}"
+                  alt="{{ userBank.label }}"
+                  title="{{ this.userBank.label }}"
+                />
+              </div>
+
+              <div
+                *ngIf="isSsnBankLogin; else birthdateInput"
+                class="form-group"
+              >
+                <rente-input
+                  [errorStateMatcher]="
+                    isErrorState(bankIdForm.controls['ssn'], bankIdForm)
+                  "
+                  [placeholder]="'Ditt fødselsnummer (11 siffer)'"
+                  formControlName="ssn"
+                  [mask]="ssnMask"
+                  [type]="'tel'"
+                  [modelOptions]="{ updateOn: 'blur' }"
+                ></rente-input>
+                <div
+                  class="error-message"
+                  *ngIf="bankIdForm.controls['ssn'].touched"
+                >
+                  <rente-form-message
+                    class="text-left d-block"
+                    *ngIf="bankIdForm.controls['ssn'].hasError('required')"
+                    [type]="'error'"
+                  >
                     Fødselsnummer kan ikke være tomt
                   </rente-form-message>
-                  <rente-form-message class="text-left d-block" *ngIf="bankIdForm.controls['ssn'].hasError('pattern')"
-                    [type]="'error'">
+                  <rente-form-message
+                    class="text-left d-block"
+                    *ngIf="bankIdForm.controls['ssn'].hasError('pattern')"
+                    [type]="'error'"
+                  >
                     Fødselsnummer ikke gyldig
                   </rente-form-message>
                 </div>
@@ -48,16 +201,36 @@
 
               <ng-template #birthdateInput>
                 <div class="form-group">
-                  <rente-input [errorStateMatcher]="isErrorState(bankIdForm.controls['birthdate'], bankIdForm)"
-                    [placeholder]="'Din fødselsdato (ddmmåå)'" formControlName="birthdate" [mask]="birthdateMask"
-                    [type]="'tel'" [modelOptions]="{updateOn:'blur'}"></rente-input>
-                  <div class="error-message" *ngIf="bankIdForm.controls['birthdate'].touched">
-                    <rente-form-message class="text-left d-block"
-                      *ngIf="bankIdForm.controls['birthdate'].hasError('required')" [type]="'error'">
+                  <rente-input
+                    [errorStateMatcher]="
+                      isErrorState(bankIdForm.controls['birthdate'], bankIdForm)
+                    "
+                    [placeholder]="'Din fødselsdato (ddmmåå)'"
+                    formControlName="birthdate"
+                    [mask]="birthdateMask"
+                    [type]="'tel'"
+                    [modelOptions]="{ updateOn: 'blur' }"
+                  ></rente-input>
+                  <div
+                    class="error-message"
+                    *ngIf="bankIdForm.controls['birthdate'].touched"
+                  >
+                    <rente-form-message
+                      class="text-left d-block"
+                      *ngIf="
+                        bankIdForm.controls['birthdate'].hasError('required')
+                      "
+                      [type]="'error'"
+                    >
                       Fødselsdato kan ikke være tomt
                     </rente-form-message>
-                    <rente-form-message class="text-left d-block"
-                      *ngIf="bankIdForm.controls['birthdate'].hasError('pattern')" [type]="'error'">
+                    <rente-form-message
+                      class="text-left d-block"
+                      *ngIf="
+                        bankIdForm.controls['birthdate'].hasError('pattern')
+                      "
+                      [type]="'error'"
+                    >
                       Fødselsdato ikke gyldig
                     </rente-form-message>
                   </div>
@@ -65,29 +238,52 @@
               </ng-template>
 
               <div class="form-group">
-                <rente-input [errorStateMatcher]="isErrorState(bankIdForm.controls['phone'], bankIdForm)"
-                  [placeholder]="'Ditt mobilnummer (8 siffer)'" formControlName="phone" [mask]="phoneMask"
-                  [type]="'tel'" [modelOptions]="{updateOn:'blur'}">
+                <rente-input
+                  [errorStateMatcher]="
+                    isErrorState(bankIdForm.controls['phone'], bankIdForm)
+                  "
+                  [placeholder]="'Ditt mobilnummer (8 siffer)'"
+                  formControlName="phone"
+                  [mask]="phoneMask"
+                  [type]="'tel'"
+                  [modelOptions]="{ updateOn: 'blur' }"
+                >
                 </rente-input>
-                <div class="error-message" *ngIf="bankIdForm.controls['phone'].touched">
-                  <rente-form-message class="text-left d-block"
-                    *ngIf="bankIdForm.controls['phone'].hasError('required')" [type]="'error'">
+                <div
+                  class="error-message"
+                  *ngIf="bankIdForm.controls['phone'].touched"
+                >
+                  <rente-form-message
+                    class="text-left d-block"
+                    *ngIf="bankIdForm.controls['phone'].hasError('required')"
+                    [type]="'error'"
+                  >
                     Telefonnummer kan ikke være tomt
                   </rente-form-message>
-                  <rente-form-message class="text-left d-block" *ngIf="bankIdForm.controls['phone'].hasError('pattern')"
-                    [type]="'error'">
+                  <rente-form-message
+                    class="text-left d-block"
+                    *ngIf="bankIdForm.controls['phone'].hasError('pattern')"
+                    [type]="'error'"
+                  >
                     Telefonnummer ikke gyldig
                   </rente-form-message>
                 </div>
               </div>
             </div>
             <div class="mb-2 text-left">
-              <mat-checkbox formControlName="confirmation" (change)="isConfirmed = $event.checked">
-                Jeg aksepterer Renteradar.no's <a class="link" (click)="openServiceDialog()">vilkår</a>
+              <mat-checkbox
+                formControlName="confirmation"
+                (change)="isConfirmed = $event.checked"
+              >
+                Jeg aksepterer Renteradar.no's
+                <a class="link" (click)="openServiceDialog()">vilkår</a>
               </mat-checkbox>
             </div>
             <div class="register-btn">
-              <rente-button color="primary" [disabled]="!bankIdForm.valid || !isConfirmed">Logg inn
+              <rente-button
+                color="primary"
+                [disabled]="!bankIdForm.valid || !isConfirmed"
+                >Logg inn
               </rente-button>
             </div>
           </form>
@@ -96,6 +292,10 @@
     </div>
   </div>
 </section>
-
-<rente-login-status (returnToInputPage)="isLoginStarted = false" [userData]="userData" [userBank]="userBank"
-  *ngIf="isLoginStarted"></rente-login-status>
+ -->
+<rente-login-status
+  (returnToInputPage)="isLoginStarted = false"
+  [userData]="userData"
+  [userBank]="userBank"
+  *ngIf="isLoginStarted"
+></rente-login-status>

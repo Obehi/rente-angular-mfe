@@ -4,16 +4,17 @@ import {
   Output,
   EventEmitter,
   forwardRef
-} from '@angular/core';
+} from "@angular/core";
 import {
   FormControl,
   ControlValueAccessor,
   NG_VALUE_ACCESSOR
-} from '@angular/forms';
+} from "@angular/forms";
 
 @Component({
-  selector: 'rente-checkbox',
-  templateUrl: './checkbox.component.html',
+  selector: "rente-checkbox",
+  styleUrls: ["./checkbox.component.scss"],
+  templateUrl: "./checkbox.component.html",
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -22,7 +23,6 @@ import {
     }
   ]
 })
-
 export class CheckboxComponent {
   @Input() name: string;
 

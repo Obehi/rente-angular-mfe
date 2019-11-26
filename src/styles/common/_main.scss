@@ -1,6 +1,7 @@
 html {
   height: 100%;
   overflow: auto;
+  background-color: $blue;
 }
 
 body {
@@ -13,13 +14,34 @@ body {
 ::after,
 ::before {
   box-sizing: border-box;
+  margin: 0;
 }
 
 hr {
   border: 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.5);
   width: 100%;
-  background-color: $gray-300;
+  background-color: $light;
+}
+
+.content {
+  background-color: $light;
+}
+
+.mobile {
+  display: block;
+}
+.desktop {
+  display: none;
+}
+
+@media (min-width: 600px) {
+  .mobile {
+    display: none;
+  }
+  .desktop {
+    display: block;
+  }
 }
 
 mat-radio-button.mat-accent {
