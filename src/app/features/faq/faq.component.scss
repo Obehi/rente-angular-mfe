@@ -4,6 +4,9 @@ mat-expansion-panel-header {
   background: $lightgreen;
   border: none;
 }
+mat-expansion-panel-header:hover {
+  background: $light;
+}
 mat-panel-title {
   font-weight: bold;
 }

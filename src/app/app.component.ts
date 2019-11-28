@@ -21,8 +21,10 @@ export class AppComponent implements OnInit {
   ) {}
 
   onActivate(event: any) {
+    console.log("HEU");
     window.scrollTo(0, 0);
   }
+
   ngOnInit() {
     this.navigationSubscription = this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
