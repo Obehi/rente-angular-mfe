@@ -11,6 +11,8 @@ h4 {
 }
 .bank-logo {
   margin-bottom: 40px;
+  max-width: 100px;
+  max-height: 30px;
 }
 a {
   color: $primary;
@@ -21,10 +23,7 @@ a {
     cursor: pointer;
   }
 }
-form {
-  margin: auto;
-  max-width: 300px;
-}
+
 mat-checkbox {
   margin-bottom: 40px;
   display: block;

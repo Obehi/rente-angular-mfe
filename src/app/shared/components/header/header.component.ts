@@ -19,6 +19,10 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {}
 
+  public goToPage() {
+    this.toggleNav();
+    window.scrollTo(0, 0);
+  }
   public toggleNav() {
     this.toggleNavbar = !this.toggleNavbar;
   }

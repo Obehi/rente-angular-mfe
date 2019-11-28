@@ -1,128 +1,67 @@
-<h3>Fortvil ikke, flere banker kommer!</h3>
-<p class="text-center">
+<h2>Fortvil ikke, flere banker kommer!</h2>
+<h4>
   Velg bank og legg igjen din e-post adresse så får du beskjed når din bank er
   klar!
-  <mat-form-field>
-    <mat-label>Velg din bank:</mat-label>
-    <input
-      placeholder="Velg din bank:"
-      #bankInput
-      matInput
-      formControlName="bank"
-      [matAutocomplete]="auto"
-    />
-    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
-      <mat-option *ngFor="let bank of filteredBanks | async" [value]="bank">
-        {{ bank.name }}
-      </mat-option>
-    </mat-autocomplete>
-  </mat-form-field>
-  <rente-input
-    [placeholder]="'E-post'"
-    formControlName="email"
-    [errorStateMatcher]="
-      isErrorState(missingBankForm.controls['email'], missingBankForm)
-    "
-    [modelOptions]="{ updateOn: 'blur' }"
-  >
-  </rente-input>
-</p>
-<!--
-<div *ngIf="missingBankForm.controls['email'].touched" class="error-message">
-  <rente-form-message
-    class="text-left d-block"
-    [type]="'error'"
-    *ngIf="missingBankForm.controls['email'].hasError('required')"
-  >
-    Ikke gyldig email
-  </rente-form-message>
-  <rente-form-message
-    class="text-left d-block"
-    [type]="'error'"
-    *ngIf="missingBankForm.controls['email'].hasError('pattern')"
-  >
-    Ikke gyldig email
-  </rente-form-message>
-</div>
-
-<div class="row justify-content-center" *ngIf="missingBankForm">
+</h4>
+<div *ngIf="missingBankForm">
   <form
     [formGroup]="missingBankForm"
-    class="col-lg-6 col-12 mt-3 mb-5 mb-lg-5"
     novalidate
     (ngSubmit)="request(missingBankForm.value)"
   >
-    <div class="bg-wrap">
-      <h3>Fortvil ikke, flere banker kommer!</h3>
-      <p class="text-center">
-        Velg bank og legg igjen din e-post adresse så får du beskjed når din
-        bank er klar!
-      </p>
-      <div class="row">
-        <div class="input-block col-12">
-          <mat-form-field>
-            <mat-label>Velg din bank:</mat-label>
-            <input
-              placeholder="Velg din bank:"
-              #bankInput
-              matInput
-              formControlName="bank"
-              [matAutocomplete]="auto"
-            />
-            <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
-              <mat-option
-                *ngFor="let bank of filteredBanks | async"
-                [value]="bank"
-              >
-                {{ bank.name }}
-              </mat-option>
-            </mat-autocomplete>
-          </mat-form-field>
-        </div>
-      </div>
-      <div class="row">
-        <div class="form-group col-12">
-          <p class="mt-2 mb-0">E-post:</p>
-          <rente-input
-            [placeholder]="'E-post'"
-            formControlName="email"
-            [errorStateMatcher]="
-              isErrorState(missingBankForm.controls['email'], missingBankForm)
-            "
-            [modelOptions]="{ updateOn: 'blur' }"
-          >
-          </rente-input>
-          <div
-            *ngIf="missingBankForm.controls['email'].touched"
-            class="error-message"
-          >
-            <rente-form-message
-              class="text-left d-block"
-              [type]="'error'"
-              *ngIf="missingBankForm.controls['email'].hasError('required')"
-            >
-              Ikke gyldig email
-            </rente-form-message>
-            <rente-form-message
-              class="text-left d-block"
-              [type]="'error'"
-              *ngIf="missingBankForm.controls['email'].hasError('pattern')"
-            >
-              Ikke gyldig email
-            </rente-form-message>
-          </div>
-        </div>
-      </div>
-      <div class="register-btn">
-        <rente-button
-          color="primary"
-          [disabled]="!missingBankForm.valid || isLoading"
-          >Gi meg lyd når på plass!
-        </rente-button>
+    <mat-form-field>
+      <mat-label>Velg din bank:</mat-label>
+      <input
+        placeholder="Velg din bank:"
+        #bankInput
+        matInput
+        formControlName="bank"
+        [matAutocomplete]="auto"
+      />
+      <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+        <mat-option *ngFor="let bank of filteredBanks | async" [value]="bank">
+          {{ bank.name }}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+    <div>
+      <rente-input
+        [placeholder]="'E-post'"
+        formControlName="email"
+        [errorStateMatcher]="
+          isErrorState(missingBankForm.controls['email'], missingBankForm)
+        "
+        [modelOptions]="{ updateOn: 'blur' }"
+      >
+      </rente-input>
+      <div
+        *ngIf="missingBankForm.controls['email'].touched"
+        class="error-message"
+      >
+        <rente-form-message
+          class="text-left d-block"
+          [type]="'error'"
+          *ngIf="missingBankForm.controls['email'].hasError('required')"
+        >
+          Ikke gyldig email
+        </rente-form-message>
+        <rente-form-message
+          class="text-left d-block"
+          [type]="'error'"
+          *ngIf="missingBankForm.controls['email'].hasError('pattern')"
+        >
+          Ikke gyldig email
+        </rente-form-message>
       </div>
     </div>
+
+    <rente-button
+      color="primary"
+      [disabled]="!missingBankForm.valid || isLoading"
+      >Gi meg lyd når på plass!
+    </rente-button>
   </form>
-</div> -->
+</div>
 
 <div
   class="d-flex justify-content-center align-items-center mt-4"

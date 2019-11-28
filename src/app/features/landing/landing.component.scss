@@ -131,6 +131,48 @@ h3 {
 a {
   text-decoration: none;
 }
+.sitater {
+  display: table;
+
+  .sitatboks {
+    background-color: $lightgreen;
+    padding: 20px;
+    min-width: 280px;
+    white-space: normal;
+    display: table-cell;
+    border-right: 20px solid white;
+    vertical-align: top;
+    position: relative;
+    *,
+    h3 {
+      text-align: center;
+    }
+    h4 {
+      margin-bottom: 20px;
+    }
+    .bilde {
+      height: 80px;
+      width: 80px;
+      background-position: center;
+      background-size: cover;
+      display: block;
+      margin: auto;
+      border-radius: 100%;
+
+      margin-bottom: 10px;
+    }
+    .align-bottom {
+      position: absolute;
+      bottom: 0;
+      left: 20px;
+      right: 20px;
+    }
+    .hide {
+      opacity: 0;
+    }
+  }
+}
+
 @media (min-width: 600px) {
   .four-columns {
     display: grid;

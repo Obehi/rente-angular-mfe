@@ -5,7 +5,7 @@ h1 {
   font-weight: 900;
   line-height: 1.2;
   color: $black;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
   span {
     color: $primary;
     position: relative;
@@ -35,20 +35,23 @@ h3 {
   font-size: 18px;
   line-height: 1.5;
   color: $black;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 h4 {
   font-size: 18px;
   line-height: 1.5;
   color: $black;
-  font-weight: 400;
+  font-weight: 300;
 }
 p {
   font-size: 14px;
   line-height: 1.5;
   color: $black;
-  font-weight: 400;
+  font-weight: 300;
+}
+a {
+  font-weight: 300;
 }
 @media (min-width: 600px) {
   h1 {

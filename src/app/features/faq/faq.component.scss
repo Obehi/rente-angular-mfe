@@ -1,39 +1,24 @@
-@import '../../../styles/theme/_colors.scss';
-
-@mixin text-style($size, $line-height) {
-  font-size: $size;
-  color: $black;
-  font-family: Lato;
-  line-height: $line-height;
-}
-
-mat-panel-title {
-  color: $primary;
-  font-family: Lato;
-}
+@import "../../../styles/theme/_colors.scss";
 
 mat-expansion-panel-header {
-  background: rgba(0, 0, 0, 0.03);
-  height: 61px !important;
+  background: $lightgreen;
+  border: none;
+}
+mat-panel-title {
+  font-weight: bold;
+}
+.mat-expansion-panel {
+  box-shadow: none;
+  border-radius: 0 !important;
+  border-bottom: 1px solid $primary;
+}
+.mat-expansion-panel-header {
+  padding: 20px;
 }
 
-p {
-  font-family: Lato;
+.mat-expansion-panel-spacing {
+  margin: 0;
 }
-
-// .title {
-//   @include text-style(30px, 36px);
-//   letter-spacing: 0.5px;
-// }
-
-// @media (max-width: 960px) {
-//   .title {
-//     font-size: 24px;
-//   }
-// }
-
-.expansion-content {
-    @media (max-width: 450px) {
-        margin:0;
-    }
-  }
+.mat-expanded mat-expansion-panel-header {
+  background: transparent;
+}

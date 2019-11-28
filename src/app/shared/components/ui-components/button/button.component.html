@@ -19,9 +19,16 @@
   <ng-container *ngTemplateOutlet="content"></ng-container>
   <mat-icon class="loading-icon" *ngIf="isLoading">sync</mat-icon>
 </button> -->
-<button mat-button [color]="color" [disabled]="disabled" (click)="clickEvent()">
-  <ng-container *ngTemplateOutlet="content"></ng-container>
-</button>
-<ng-template #content>
-  <ng-content></ng-content>
-</ng-template>
+<div class="button-wrapper">
+  <button
+    mat-button
+    [color]="color"
+    [disabled]="disabled"
+    (click)="clickEvent()"
+  >
+    <ng-container *ngTemplateOutlet="content"></ng-container>
+  </button>
+  <ng-template #content>
+    <ng-content></ng-content>
+  </ng-template>
+</div>
