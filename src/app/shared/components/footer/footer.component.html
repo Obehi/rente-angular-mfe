@@ -8,11 +8,20 @@
         <img src="../../../../assets/img/linkedin.svg" alt="LinkedIn logo" />
       </a>
     </div>
+
     <p>
       Renteradar.no eies og driftes av
     </p>
     <p>
       Forbrukerøkonomene AS (Org nr: 921 534 191)
+      <br />
+      <a
+        [routerLink]="['/personvernerklaering']"
+        routerLinkActive="active-link"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        Personvern
+      </a>
     </p>
   </div>
 </footer>

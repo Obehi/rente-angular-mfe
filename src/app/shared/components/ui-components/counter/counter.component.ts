@@ -20,7 +20,13 @@ export class CounterComponent {
 
     setTimeout(() => {
       setInterval(() => {
-        this.loan += 500;
+        this.loan += 1000;
+      }, 2000);
+    }, 1000);
+
+    setTimeout(() => {
+      setInterval(() => {
+        this.save += 30;
       }, 2000);
     }, 1000);
 
