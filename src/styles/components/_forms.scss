@@ -1,3 +1,5 @@
+@import "../theme/_colors.scss";
+
 $form-text-margin-top: 0.25rem !default;
 
 $form-check-input-gutter: 1.25rem !default;
@@ -13,6 +15,8 @@ $form-group-margin-bottom: 1rem !default;
 form {
   margin: auto;
   max-width: 400px;
+  background-color: $light;
+  padding: 20px;
 }
 
 .form-group {
