@@ -16,7 +16,13 @@
           SSL verifisering, så all informasjon sendes kryptert.
         </p>
         <p class="mt-2 mb-4 text text-left">
-          Vi støtter kun BankID på Mobil, ikke kodebrikke og passord
+          Vi støtter kun BankID på Mobil, ikke kodebrikke og passord.
+        </p>
+        <p *ngIf="isDnbBank"
+          class="mb-4 text text-left" style="color:red; margin-top:-10px;">
+          Feilmelding: Vi opplever problemer for enkelte DNB kunder.
+          Disse vil få feilmelding om å oppdatere personalia i nettbanken gjentatte ganger.
+          Feilen skyldes en feil hos DNB.
         </p>
       </div>
     </div>
