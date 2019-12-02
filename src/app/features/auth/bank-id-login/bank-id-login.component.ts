@@ -120,4 +120,8 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     return !!(control && control.invalid && (control.dirty || control.touched));
   }
 
+  get isDnbBank(): boolean {
+    return this.userBank && this.userBank.bankName === 'DNB';
+  }
+
 }
