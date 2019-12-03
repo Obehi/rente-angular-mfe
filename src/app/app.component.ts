@@ -21,7 +21,6 @@ export class AppComponent implements OnInit {
   ) {}
 
   onActivate(event: any) {
-    console.log("HEU");
     window.scrollTo(0, 0);
   }
 

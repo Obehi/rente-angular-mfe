@@ -285,6 +285,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
               forkJoin([this.loansService.getLoansAndRateType(), this.userService.getUserInfo()])
                 .subscribe(([rateAndLoans, userInfo]) => {
                   this.loginStep3Status = MESSAGE_STATUS.SUCCESS;
+                  this.loansService.loanState = rateAndLoans;
                   if (!rateAndLoans.loansPresent) {
                     this.localStorageService.setItem('noLoansPresent', true);
                     this.router.navigate(['/dashboard/ingenlaan']);

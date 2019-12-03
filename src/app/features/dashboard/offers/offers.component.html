@@ -1,5 +1,6 @@
 <div
   class="offers"
+  [class.blured]="isDialogVisble"
   *ngIf="offersInfo?.resultType === offersResultType.OFFERS_PRESENT"
   [@shakeAnimation]
 >
@@ -603,11 +604,7 @@
 
 <div
   class="my-5 row justify-content-center"
-  *ngIf="
-    offersInfo?.resultType === offersResultType.NO_OFFERS ||
-    offersInfo?.resultType === offersResultType.LTV_TOO_HIGH_85
-  "
->
+  *ngIf="offersInfo?.resultType === offersResultType.NO_OFFERS || offersInfo?.resultType === offersResultType.LTV_TOO_HIGH_85">
   <div class="my-5 row justify-content-center">
     <div class="col-lg-6 col-lg-8 col-12">
       <div class="bg-wrap">
@@ -623,10 +620,7 @@
 
 <div
   class="my-5 row justify-content-center"
-  *ngIf="
-    offersInfo?.resultType === offersResultType.LTV_CREDIT_LINE_TOO_HIGH_60
-  "
->
+  *ngIf="offersInfo?.resultType === offersResultType.LTV_CREDIT_LINE_TOO_HIGH_60">
   <div class="my-5 row justify-content-center">
     <div class="col-lg-6 col-lg-8 col-12">
       <div class="bg-wrap">
@@ -642,8 +636,7 @@
 
 <div
   class="d-flex justify-content-center align-items-center mt-4"
-  *ngIf="isLoading && !errorMessage"
->
+  *ngIf="isLoading && !errorMessage">
   <mat-spinner [diameter]="48" [strokeWidth]="4"></mat-spinner>
 </div>
 
@@ -653,4 +646,14 @@
 
 <div *ngIf="errorMessage">
   <h1 class="text-center mt-4">{{ errorMessage }}</h1>
+</div>
+
+<div
+  *ngIf="effRateLoweredDialogVisible"
+  class="d-flex justify-content-center align-items-center mt-4 centered-popup">
+  <rente-dialog
+    [title]="'Hei! Du har lavere rente enn forrige gang'"
+    [message]="'Vi ser du har fått lavere rente siden forrige gang du brukte Renteradar.no. Brukte du prutefunksjonen i Renteradar.no til å få bedre rente?'"
+    (action)="onDialogAction($event)">
+  </rente-dialog>
 </div>

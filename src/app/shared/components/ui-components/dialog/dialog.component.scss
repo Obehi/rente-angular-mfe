@@ -1,0 +1,39 @@
+@import "../../../../../styles/theme/_colors.scss";
+
+.container {
+  background-color: #dddddd;
+  border-radius: 30px;
+  .title {
+    width: 100%;
+    padding: 30px;
+    font-size: 22px;
+    text-align: center;
+  }
+  .message {
+    width: 100%;
+    padding: 20px;
+    font-size: 18px;
+    text-align: center;
+    font-weight: 300;
+  }
+  .buttons {
+    padding: 30px;
+    width: 100%;
+    text-align: center;
+    button {
+      width: 100px;
+      display: inline-block;
+      margin: 0 30px;
+      padding: 20px 30px;
+      border-radius: 10px;
+      outline: none;
+      color: white;
+    }
+    .yes {
+      background-color: $green;
+    }
+    .no {
+      background-color: #888888;
+    }
+  }
+}
