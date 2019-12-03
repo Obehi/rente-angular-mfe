@@ -14,7 +14,6 @@
       border-right: 2px solid $primary;
       opacity: 1;
       color: $primary;
-      font-family: Lato;
       font-size: 16px;
       font-weight: bold;
       letter-spacing: 0.27px;
@@ -57,7 +56,7 @@
 }
 
 @media (max-width:750px) {
-  
+
   .dashboard {
     margin-top: 20px;
   }

@@ -116,7 +116,7 @@
       <div class="col-12 col-lg-7 text-center">
         <div class="row mb-4">
           <div class="col-12 col-sm-7 mb-3 mb-lg-0">
-            <div class="bg-wrap h-120" [ngSwitch]="offersInfo.currentLoanState">
+            <div class="bg-wrap h-120">
               <p class="mb-0">Du kan spare:</p>
               <h3 *ngIf="offersInfo.bestOfferTotalSaving > 0; else noBestOffer">
                 {{ offersInfo.bestOfferTotalSaving | abs | number }},-
@@ -360,7 +360,7 @@
       <div class="col-12 text-center">
         <div class="row mb-2">
           <div class="col-12 mb-lg-0">
-            <div class="bg-wrap" [ngSwitch]="offersInfo.currentLoanState">
+            <div class="bg-wrap">
               <p class="mb-0">Du kan spare:</p>
               <h3 *ngIf="offersInfo.bestOfferTotalSaving > 0; else noBestOffer">
                 {{ offersInfo.bestOfferTotalSaving | abs | number }},-
@@ -492,13 +492,7 @@
     <ng-container *ngIf="offersInfo">
       <div
         class="bg-wrap offers-bank mb-5"
-        *ngFor="let offer of offersInfo.offers; let i = index"
-      >
-        <div class="number-label">
-          <div>
-            {{ i + 1 }}
-          </div>
-        </div>
+        *ngFor="let offer of offersInfo.offers; let i = index">
         <div class="row">
           <div class="col-12">
             <div class="row">

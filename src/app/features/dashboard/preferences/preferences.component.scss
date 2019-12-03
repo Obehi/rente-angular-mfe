@@ -1,5 +1,9 @@
-mat-radio-button {
-  .mat-radio-label-content {
-    white-space: wrap;
-  }
+.mat-radio-label {
+  white-space: normal !important;
+  font-size: 14px;
+  font-weight: 300;
+}
+.reminder {
+  width: 100%;
+  text-align: center;
 }

@@ -3,7 +3,6 @@
 @mixin text-style($size, $line-height) {
   font-size: $size;
   color: $black;
-  font-family: Lato;
   line-height: $line-height;
 }
 
