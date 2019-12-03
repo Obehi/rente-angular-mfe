@@ -83,74 +83,76 @@
 >
   <mat-spinner [diameter]="48" [strokeWidth]="4"></mat-spinner>
 </div> -->
-<h2>Fortvil ikke, flere banker kommer!</h2>
-<h4>
-  Velg bank og legg igjen din e-post adresse så får du beskjed når din bank er
-  klar!
-</h4>
-<div *ngIf="missingBankForm">
-  <form
-    [formGroup]="missingBankForm"
-    novalidate
-    (ngSubmit)="request(missingBankForm.value)"
-  >
-    <mat-form-field>
-      <mat-label>Velg din bank:</mat-label>
-      <input
-        placeholder="Velg din bank:"
-        #bankInput
-        matInput
-        formControlName="bank"
-        [matAutocomplete]="auto"
-      />
-      <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
-        <mat-option *ngFor="let bank of filteredBanks | async" [value]="bank">
-          {{ bank.name }}
-        </mat-option>
-      </mat-autocomplete>
-    </mat-form-field>
-    <div>
-      <rente-input
-        [placeholder]="'E-post'"
-        formControlName="email"
-        [errorStateMatcher]="
-          isErrorState(missingBankForm.controls['email'], missingBankForm)
-        "
-        [modelOptions]="{ updateOn: 'blur' }"
-      >
-      </rente-input>
-      <div
-        *ngIf="missingBankForm.controls['email'].touched"
-        class="error-message"
-      >
-        <rente-form-message
-          class="text-left d-block"
-          [type]="'error'"
-          *ngIf="missingBankForm.controls['email'].hasError('required')"
+<div class="front-container">
+  <h2>Fortvil ikke, flere banker kommer!</h2>
+  <h4>
+    Velg bank og legg igjen din e-post adresse så får du beskjed når din bank er
+    klar!
+  </h4>
+  <div *ngIf="missingBankForm">
+    <form
+      [formGroup]="missingBankForm"
+      novalidate
+      (ngSubmit)="request(missingBankForm.value)"
+    >
+      <mat-form-field>
+        <mat-label>Velg din bank:</mat-label>
+        <input
+          placeholder="Velg din bank:"
+          #bankInput
+          matInput
+          formControlName="bank"
+          [matAutocomplete]="auto"
+        />
+        <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+          <mat-option *ngFor="let bank of filteredBanks | async" [value]="bank">
+            {{ bank.name }}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+      <div>
+        <rente-input
+          [placeholder]="'E-post'"
+          formControlName="email"
+          [errorStateMatcher]="
+            isErrorState(missingBankForm.controls['email'], missingBankForm)
+          "
+          [modelOptions]="{ updateOn: 'blur' }"
         >
-          Ikke gyldig email
-        </rente-form-message>
-        <rente-form-message
-          class="text-left d-block"
-          [type]="'error'"
-          *ngIf="missingBankForm.controls['email'].hasError('pattern')"
+        </rente-input>
+        <div
+          *ngIf="missingBankForm.controls['email'].touched"
+          class="error-message"
         >
-          Ikke gyldig email
-        </rente-form-message>
+          <rente-form-message
+            class="text-left d-block"
+            [type]="'error'"
+            *ngIf="missingBankForm.controls['email'].hasError('required')"
+          >
+            Ikke gyldig email
+          </rente-form-message>
+          <rente-form-message
+            class="text-left d-block"
+            [type]="'error'"
+            *ngIf="missingBankForm.controls['email'].hasError('pattern')"
+          >
+            Ikke gyldig email
+          </rente-form-message>
+        </div>
       </div>
-    </div>
 
-    <rente-button
-      color="primary"
-      [disabled]="!missingBankForm.valid || isLoading"
-      >Gi meg lyd når på plass!
-    </rente-button>
-  </form>
-</div>
+      <rente-button
+        color="primary"
+        [disabled]="!missingBankForm.valid || isLoading"
+        >Gi meg lyd når på plass!
+      </rente-button>
+    </form>
+  </div>
 
-<div
-  class="d-flex justify-content-center align-items-center mt-4"
-  *ngIf="!missingBankForm"
->
-  <mat-spinner [diameter]="48" [strokeWidth]="4"></mat-spinner>
+  <div
+    class="d-flex justify-content-center align-items-center mt-4"
+    *ngIf="!missingBankForm"
+  >
+    <mat-spinner [diameter]="48" [strokeWidth]="4"></mat-spinner>
+  </div>
 </div>

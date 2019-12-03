@@ -1,4 +1,4 @@
-@import '../../../../styles/theme/_colors.scss';
+@import "../../../../styles/theme/_colors.scss";
 
 @mixin text-style($size, $line-height, $letter-spacing) {
   font-size: $size;
@@ -24,7 +24,6 @@ a {
       @include text-style(24px, 34px, 0.4px);
     }
   }
-
 
   .coming-soon-text {
     color: $gray-700 !important;
@@ -56,7 +55,7 @@ a {
 
   .text-border {
     @include text-style(16px, 24px, 0.27px);
-    color: #2B3E50;
+    color: #2b3e50;
     position: relative;
     padding-left: 15px;
 

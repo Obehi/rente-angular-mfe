@@ -1,59 +1,117 @@
-<div class="offers" *ngIf="offersInfo?.resultType === offersResultType.OFFERS_PRESENT" [@shakeAnimation]>
+<div
+  class="offers"
+  *ngIf="offersInfo?.resultType === offersResultType.OFFERS_PRESENT"
+  [@shakeAnimation]
+>
   <div *ngIf="!isSmallScreen; else smallScreenOffers">
     <h3>Din rente:</h3>
     <div class="row">
       <div class="col-12 col-lg-5">
-        <rente-rating [rating]="offersService.getRatingNumberFromLoanState(offersInfo.offerSavingsType)"></rente-rating>
+        <rente-rating
+          [rating]="
+            offersService.getRatingNumberFromLoanState(
+              offersInfo.offerSavingsType
+            )
+          "
+        ></rente-rating>
         <div [ngSwitch]="offersInfo.offerSavingsType">
-          <h4 class="my-2" *ngSwitchCase="offerSavingsType.NO_SAVINGS">Renten din er svært god</h4>
-          <h4 class="my-2" *ngSwitchCase="offerSavingsType.SAVINGS_FIRST_YEAR_BETWEEN_0_AND_2000">Renten din er god, men
-            ikke best</h4>
-          <h4 class="my-2" *ngSwitchCase="offerSavingsType.SAVINGS_FIRST_YEAR_BETWEEN_2000_AND_6000">Renten din er OK,
-            med
-            du kan få bedre</h4>
-          <h4 class="my-2" *ngSwitchCase="offerSavingsType.SAVINGS_FIRST_YEAR_BETWEEN_6000_AND_10000">Renten din er høy
-            og
-            du kan spare en del</h4>
-          <h4 class="my-2" *ngSwitchCase="offerSavingsType.SAVINGS_FIRST_YEAR_GREATER_10000">Renten din er svært høy -
-            du
-            har mye å spare</h4>
+          <h4 class="my-2" *ngSwitchCase="offerSavingsType.NO_SAVINGS">
+            Renten din er svært god
+          </h4>
+          <h4
+            class="my-2"
+            *ngSwitchCase="
+              offerSavingsType.SAVINGS_FIRST_YEAR_BETWEEN_0_AND_2000
+            "
+          >
+            Renten din er god, men ikke best
+          </h4>
+          <h4
+            class="my-2"
+            *ngSwitchCase="
+              offerSavingsType.SAVINGS_FIRST_YEAR_BETWEEN_2000_AND_6000
+            "
+          >
+            Renten din er OK, med du kan få bedre
+          </h4>
+          <h4
+            class="my-2"
+            *ngSwitchCase="
+              offerSavingsType.SAVINGS_FIRST_YEAR_BETWEEN_6000_AND_10000
+            "
+          >
+            Renten din er høy og du kan spare en del
+          </h4>
+          <h4
+            class="my-2"
+            *ngSwitchCase="offerSavingsType.SAVINGS_FIRST_YEAR_GREATER_10000"
+          >
+            Renten din er svært høy - du har mye å spare
+          </h4>
           <div *ngSwitchDefault>-</div>
         </div>
         <!-- <h3>Du har ikke noe å spare på å bytte bank</h3> -->
-        <p class="text-border"
-          *ngIf="offersInfo.aggregatedLoanType === aggregatedLoanType.CREDIT_LINE || offersInfo.aggregatedLoanType === aggregatedLoanType.MIX_D_C">
-          Tips: Boligverdi/belåningsgrad er viktig mtp hva bankene tilbyr. Du kan endre i
+        <p
+          class="text-border"
+          *ngIf="
+            offersInfo.aggregatedLoanType === aggregatedLoanType.CREDIT_LINE ||
+            offersInfo.aggregatedLoanType === aggregatedLoanType.MIX_D_C
+          "
+        >
+          Tips: Boligverdi/belåningsgrad er viktig mtp hva bankene tilbyr. Du
+          kan endre i
           <a [routerLink]="['/dashboard/bolig']">
             Bolig fanen
           </a>
-          <br>
-          Du kan også se <a [routerLink]="['/dashboard/bolig']" [queryParams]="{ statistikk: true }">statistikk (feks.
-            prisutvikling)</a> om din bolig.
+          <br />
+          Du kan også se
+          <a
+            [routerLink]="['/dashboard/bolig']"
+            [queryParams]="{ statistikk: true }"
+            >statistikk (feks. prisutvikling)</a
+          >
+          om din bolig.
         </p>
-        <p class="text-border" *ngIf="!offersInfo.memberships.length">Enkelte banker tilbyr bedre betingelser gitt at du
-          har et medlemskap i en
-          interesseorganisasjon. Hvis du har
-          mulighet til å bli medlem prøv gjerne å endre ditt medlemskap ved å <a
-            [routerLink]="'/dashboard/profil'">klikke
-            her</a> for å se om det påvirker
-          resultatet av din rentesjekk. (Medlemskap pleier å koste ca 4000 i året)</p>
-        <p class="text-border" *ngIf="offersInfo.aggregatedRateType === aggregatedRateType.MIX_FIXED_FLOATING">Vi ser du
-          har ett eller flere fastrentelån. Renteradar viser besparelsespotensialet kun for lånet/lånene med flytende
-          rente. Beste rente viser også kun beste rente for lånet/lånene med flytende rente.
+        <p class="text-border" *ngIf="!offersInfo.memberships.length">
+          Enkelte banker tilbyr bedre betingelser gitt at du har et medlemskap i
+          en interesseorganisasjon. Hvis du har mulighet til å bli medlem prøv
+          gjerne å endre ditt medlemskap ved å
+          <a [routerLink]="'/dashboard/profil'">klikke her</a> for å se om det
+          påvirker resultatet av din rentesjekk. (Medlemskap pleier å koste ca
+          4000 i året)
         </p>
-        <p class="text-border"
-          *ngIf="offersInfo.aggregatedLoanType === aggregatedLoanType.MIX_D_C || offersInfo.aggregatedLoanType === aggregatedLoanType.CREDIT_LINE">
-          Du har rammelån/boligkreditt. Ønsker du å se tilbud kun for denne typen lån kan du endre
-          dette i
+        <p
+          class="text-border"
+          *ngIf="
+            offersInfo.aggregatedRateType ===
+            aggregatedRateType.MIX_FIXED_FLOATING
+          "
+        >
+          Vi ser du har ett eller flere fastrentelån. Renteradar viser
+          besparelsespotensialet kun for lånet/lånene med flytende rente. Beste
+          rente viser også kun beste rente for lånet/lånene med flytende rente.
+        </p>
+        <p
+          class="text-border"
+          *ngIf="
+            offersInfo.aggregatedLoanType === aggregatedLoanType.MIX_D_C ||
+            offersInfo.aggregatedLoanType === aggregatedLoanType.CREDIT_LINE
+          "
+        >
+          Du har rammelån/boligkreditt. Ønsker du å se tilbud kun for denne
+          typen lån kan du endre dette i
           <a [routerLink]="'/dashboard/preferanser'">preferanser</a>
         </p>
 
         <p class="text-border" *ngIf="hasStatensPensjonskasseMembership">
           Medlemmer i Statens Pensjonskasse kan finansiere opptil 2 millioner
           hos Statens Pensjonskasse. For mer info om tilbudet
-          <a target="_blank" href="https://www.finansportalen.no/bank/boliglan/product/46473/">klikk her</a>
+          <a
+            target="_blank"
+            href="https://www.finansportalen.no/bank/boliglan/product/46473/"
+            >klikk her</a
+          >
         </p>
-
       </div>
       <div class="col-12 col-lg-7 text-center">
         <div class="row mb-4">
@@ -61,7 +119,8 @@
             <div class="bg-wrap h-120" [ngSwitch]="offersInfo.currentLoanState">
               <p class="mb-0">Du kan spare:</p>
               <h3 *ngIf="offersInfo.bestOfferTotalSaving > 0; else noBestOffer">
-                {{offersInfo.bestOfferTotalSaving | abs | number}},-</h3>
+                {{ offersInfo.bestOfferTotalSaving | abs | number }},-
+              </h3>
               <ng-template #noBestOffer>
                 <h3>0,-</h3>
               </ng-template>
@@ -71,9 +130,19 @@
           <div class="col-12 col-sm-5">
             <div class="bg-wrap h-120">
               <p class="mb-0">Gjenværende lån:</p>
-              <h3>{{offersInfo.totalOutstandingDebt / 1000000 | number: '1.1-3'}} millioner</h3>
-              <p class="mb-0">Belåningsgrad
-                {{(offersInfo.totalOutstandingDebt / offersInfo.propertyValue) * 100 | number: '1.1-1'}}%</p>
+              <h3>
+                {{
+                  offersInfo.totalOutstandingDebt / 1000000 | number: "1.1-3"
+                }}
+                millioner
+              </h3>
+              <p class="mb-0">
+                Belåningsgrad
+                {{
+                  (offersInfo.totalOutstandingDebt / offersInfo.propertyValue) *
+                    100 | number: "1.1-1"
+                }}%
+              </p>
             </div>
           </div>
         </div>
@@ -83,65 +152,93 @@
               <div class="col-12 col-sm-6 mb-3">
                 <div class="bg-wrap px-0 h-120">
                   <p>Din eff. rente:</p>
-                  <h3>{{offersInfo.totalEffectiveRate | number: '1.2-2' }}%</h3>
+                  <h3>
+                    {{ offersInfo.totalEffectiveRate | number: "1.2-2" }}%
+                  </h3>
                 </div>
               </div>
               <div class="col-12 col-sm-6 mb-3">
                 <div class="bg-wrap px-0 h-120">
                   <p>Beste tilbud:</p>
-                  <h3>{{offersInfo.bestOfferEffectiveRate | number: '1.2-2' }}%</h3>
+                  <h3>
+                    {{ offersInfo.bestOfferEffectiveRate | number: "1.2-2" }}%
+                  </h3>
                 </div>
               </div>
             </div>
-
           </div>
           <div class="col-12 col-sm-5">
             <div class="bg-wrap px-0 h-120">
               <p class="mb-0">Boligverdi:</p>
-              <h3>{{offersInfo.propertyValue / 1000000 | number: '1.1-3'}} millioner</h3>
-              <p class="mb-0">Estimat levert av <a href="https://virdi.no/" target="_blank">virdi.no</a></p>
+              <h3>
+                {{
+                  offersInfo.propertyValue / 1000000 | number: "1.1-3"
+                }}
+                millioner
+              </h3>
+              <p class="mb-0">
+                Estimat levert av
+                <a href="https://virdi.no/" target="_blank">virdi.no</a>
+              </p>
             </div>
           </div>
-          <rente-button class="mt-2 col-12"
-            [disabled]="changeBankLoading || offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS"
-            [isLoading]="changeBankLoading" color="primary" type="raised"
-            (click)="openChangeBankDialog(offersInfo.offers[0])">Be min bank
-            matche beste tilbud</rente-button>
+          <rente-button
+            class="mt-2 col-12"
+            [disabled]="
+              changeBankLoading ||
+              offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS
+            "
+            [isLoading]="changeBankLoading"
+            color="primary"
+            type="raised"
+            (click)="openChangeBankDialog(offersInfo.offers[0])"
+            >Be min bank matche beste tilbud</rente-button
+          >
         </div>
       </div>
     </div>
-    <rente-offers-statistics
-      [offersInfo]="offersInfo">
+    <rente-offers-statistics [offersInfo]="offersInfo">
     </rente-offers-statistics>
     <h3 class="mb-4">Beste tilbud:</h3>
     <ng-container *ngIf="offersInfo">
-
-      <div class="bg-wrap offers-bank mb-5" *ngFor="let offer of offersInfo.offers; let i = index">
+      <div
+        class="bg-wrap offers-bank mb-5"
+        *ngFor="let offer of offersInfo.offers; let i = index"
+      >
         <div class="row">
           <div class="col-12 col-sm-6 pt-0 pt-lg-2">
             <div class="row">
               <div class="col-12 col-sm-4 mb-2 mb-lg-0">
-                <img class="mw-120" *ngIf="banksMap[offer.bank].img" [src]="banksMap[offer.bank].img" alt=""
-                  title="banksMap[offer.bank].label">
+                <img
+                  class="mw-120"
+                  *ngIf="banksMap[offer.bank].img"
+                  [src]="banksMap[offer.bank].img"
+                  alt=""
+                  title="banksMap[offer.bank].label"
+                />
               </div>
               <div class="col-12 col-sm-8">
                 <div class="mb-2 mb-lg-4">
-                  <p class="mb-0 mb-lg-2">{{offer.bankName}}</p>
-                  <h3>{{offer.productName}}</h3>
+                  <p class="mb-0 mb-lg-2">{{ offer.bankName }}</p>
+                  <h3>{{ offer.productName }}</h3>
                 </div>
                 <div class="row">
                   <div class="col-12 col-sm-6 mb-2 mb-lg-0">
-                    <p class="mb-0 mb-lg-2">Rentebesparelse over lånets løpetid:</p>
-                    <h3 *ngIf="offer.totalSavings > 0; else noTotalSavings">{{offer.totalSavings | abs | number}},-</h3>
+                    <p class="mb-0 mb-lg-2">
+                      Rentebesparelse over lånets løpetid:
+                    </p>
+                    <h3 *ngIf="offer.totalSavings > 0; else noTotalSavings">
+                      {{ offer.totalSavings | abs | number }},-
+                    </h3>
                     <ng-template #noTotalSavings>
                       <h3>0,-</h3>
                     </ng-template>
-
                   </div>
                   <div class="col-12 col-sm-6 mb-2 mb-lg-0">
                     <p class="mb-0 mb-lg-2">Rentebesparelse første år:</p>
                     <h3 *ngIf="offer.savingsFirstYear > 0; else noTotalSavings">
-                      {{offer.savingsFirstYear | abs | number}},-</h3>
+                      {{ offer.savingsFirstYear | abs | number }},-
+                    </h3>
                     <ng-template #noSavingsFirstYear>
                       <h3>0,-</h3>
                     </ng-template>
@@ -155,26 +252,52 @@
               <div class="col-12 col-sm-7 ">
                 <div class="row">
                   <div class="col-12 col-sm-12 mb-2 mb-lg-4">
-                    <p class="mb-0 mb-lg-2">Effektiv rente: </p>
-                    <h3>{{offer.effectiveRate | number: '1.2-2' }}%</h3>
+                    <p class="mb-0 mb-lg-2">Effektiv rente:</p>
+                    <h3>{{ offer.effectiveRate | number: "1.2-2" }}%</h3>
                   </div>
                   <div class="col-12 col-sm-12 mb-4 mb-lg-0">
-                    <p class="mb-0 mb-lg-2">Krever annet produkt (e.g. lønnskonto):</p>
-                    <h3> {{offer.requiredProductPackage == null ? 'Nei' : 'Ja'}}</h3>
+                    <p class="mb-0 mb-lg-2">
+                      Krever annet produkt (e.g. lønnskonto):
+                    </p>
+                    <h3>
+                      {{ offer.requiredProductPackage == null ? "Nei" : "Ja" }}
+                    </h3>
                   </div>
                 </div>
               </div>
               <div class="col-12 col-sm-5">
-                <rente-button class="mb-2" color="primary" type="stroked" (click)="openOfferDialog(offer)">Mer info
+                <rente-button
+                  class="mb-2"
+                  color="primary"
+                  type="stroked"
+                  (click)="openOfferDialog(offer)"
+                  >Mer info
                 </rente-button>
-                <rente-button class="mt-2" color="primary" type="stroked" [href]="offer.bankUrl">Bankens
-                  hjemmeside</rente-button>
-                <rente-button class="mt-2"
-                  [disabled]="changeBankLoading || offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS"
-                  [isLoading]="changeBankLoading" color="primary" type="raised" (click)="openChangeBankDialog(offer)">Be
-                  min bank
-                  matche dette tilbudet</rente-button>
-                <rente-button class="mt-2" [disabled]="true" color="primary" type="raised">Start bytte*
+                <rente-button
+                  class="mt-2"
+                  color="primary"
+                  type="stroked"
+                  [href]="offer.bankUrl"
+                  >Bankens hjemmeside</rente-button
+                >
+                <rente-button
+                  class="mt-2"
+                  [disabled]="
+                    changeBankLoading ||
+                    offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS
+                  "
+                  [isLoading]="changeBankLoading"
+                  color="primary"
+                  type="raised"
+                  (click)="openChangeBankDialog(offer)"
+                  >Be min bank matche dette tilbudet</rente-button
+                >
+                <rente-button
+                  class="mt-2"
+                  [disabled]="true"
+                  color="primary"
+                  type="raised"
+                  >Start bytte*
                 </rente-button>
                 <p class="text-right coming-soon-text">
                   *Kommer snart
@@ -191,20 +314,47 @@
     <h3>Din rente:</h3>
     <div class="row">
       <div class="col-12 col-lg-5">
-        <rente-rating [rating]="offersService.getRatingNumberFromLoanState(offersInfo.offerSavingsType)"></rente-rating>
+        <rente-rating
+          [rating]="
+            offersService.getRatingNumberFromLoanState(
+              offersInfo.offerSavingsType
+            )
+          "
+        ></rente-rating>
         <div [ngSwitch]="offersInfo.offerSavingsType">
-          <h4 class="my-2" *ngSwitchCase="offerSavingsType.NO_SAVINGS">Renten din er svært god</h4>
-          <h4 class="my-2" *ngSwitchCase="offerSavingsType.SAVINGS_FIRST_YEAR_BETWEEN_0_AND_2000">Renten din er god, men
-            ikke best</h4>
-          <h4 class="my-2" *ngSwitchCase="offerSavingsType.SAVINGS_FIRST_YEAR_BETWEEN_2000_AND_6000">Renten din er OK,
-            med
-            du kan få bedre</h4>
-          <h4 class="my-2" *ngSwitchCase="offerSavingsType.SAVINGS_FIRST_YEAR_BETWEEN_6000_AND_10000">Renten din er høy
-            og
-            du kan spare en del</h4>
-          <h4 class="my-2" *ngSwitchCase="offerSavingsType.SAVINGS_FIRST_YEAR_GREATER_10000">Renten din er svært høy -
-            du
-            har mye å spare</h4>
+          <h4 class="my-2" *ngSwitchCase="offerSavingsType.NO_SAVINGS">
+            Renten din er svært god
+          </h4>
+          <h4
+            class="my-2"
+            *ngSwitchCase="
+              offerSavingsType.SAVINGS_FIRST_YEAR_BETWEEN_0_AND_2000
+            "
+          >
+            Renten din er god, men ikke best
+          </h4>
+          <h4
+            class="my-2"
+            *ngSwitchCase="
+              offerSavingsType.SAVINGS_FIRST_YEAR_BETWEEN_2000_AND_6000
+            "
+          >
+            Renten din er OK, med du kan få bedre
+          </h4>
+          <h4
+            class="my-2"
+            *ngSwitchCase="
+              offerSavingsType.SAVINGS_FIRST_YEAR_BETWEEN_6000_AND_10000
+            "
+          >
+            Renten din er høy og du kan spare en del
+          </h4>
+          <h4
+            class="my-2"
+            *ngSwitchCase="offerSavingsType.SAVINGS_FIRST_YEAR_GREATER_10000"
+          >
+            Renten din er svært høy - du har mye å spare
+          </h4>
           <div *ngSwitchDefault>-</div>
         </div>
         <!-- <h3>Du har ikke noe å spare på å bytte bank</h3> -->
@@ -215,7 +365,8 @@
             <div class="bg-wrap" [ngSwitch]="offersInfo.currentLoanState">
               <p class="mb-0">Du kan spare:</p>
               <h3 *ngIf="offersInfo.bestOfferTotalSaving > 0; else noBestOffer">
-                {{offersInfo.bestOfferTotalSaving | abs | number}},-</h3>
+                {{ offersInfo.bestOfferTotalSaving | abs | number }},-
+              </h3>
               <ng-template #noBestOffer>
                 <h3>0,-</h3>
               </ng-template>
@@ -227,13 +378,17 @@
           <div class="col-6">
             <div class="bg-wrap px-0">
               <p class="paragraph-mobile">Din eff. rente:</p>
-              <h5 class="m-0 font-weight-bold">{{offersInfo.totalEffectiveRate | number: '1.2-2' }}%</h5>
+              <h5 class="m-0 font-weight-bold">
+                {{ offersInfo.totalEffectiveRate | number: "1.2-2" }}%
+              </h5>
             </div>
           </div>
           <div class="col-6">
             <div class="bg-wrap px-0">
               <p class="paragraph-mobile">Beste tilbud:</p>
-              <h5 class="m-0 font-weight-bold">{{offersInfo.bestOfferEffectiveRate | number: '1.2-2' }}%</h5>
+              <h5 class="m-0 font-weight-bold">
+                {{ offersInfo.bestOfferEffectiveRate | number: "1.2-2" }}%
+              </h5>
             </div>
           </div>
         </div>
@@ -242,51 +397,88 @@
           <div class="col-6">
             <div class="bg-wrap px-0 h-100">
               <p class="paragraph-mobile">Boligverdi:</p>
-              <h5 class="m-0 font-weight-bold">{{offersInfo.propertyValue / 1000000 | number: '1.1-3'}} mill.</h5>
-              <p class="mb-0 paragraph-mobile-estimate">Estimat levert av <a href="https://virdi.no/"
-                  target="_blank">virdi.no</a></p>
+              <h5 class="m-0 font-weight-bold">
+                {{ offersInfo.propertyValue / 1000000 | number: "1.1-3" }} mill.
+              </h5>
+              <p class="mb-0 paragraph-mobile-estimate">
+                Estimat levert av
+                <a href="https://virdi.no/" target="_blank">virdi.no</a>
+              </p>
             </div>
           </div>
           <div class="col-6">
             <div class="bg-wrap px-0 h-100">
               <p class="paragraph-mobile mb-0">Gjenværende lån:</p>
-              <h5 class="m-0 font-weight-bold">{{offersInfo.totalOutstandingDebt / 1000000 | number: '1.1-3'}} mill.
+              <h5 class="m-0 font-weight-bold">
+                {{
+                  offersInfo.totalOutstandingDebt / 1000000 | number: "1.1-3"
+                }}
+                mill.
               </h5>
-              <p class="mb-0 paragraph-mobile-estimate">Belåningsgrad
-                {{(offersInfo.totalOutstandingDebt / offersInfo.propertyValue) * 100 | number: '1.1-1'}}%</p>
+              <p class="mb-0 paragraph-mobile-estimate">
+                Belåningsgrad
+                {{
+                  (offersInfo.totalOutstandingDebt / offersInfo.propertyValue) *
+                    100 | number: "1.1-1"
+                }}%
+              </p>
             </div>
           </div>
         </div>
       </div>
-      <rente-button class="mt-4 mb-2 col-12 change-bank-button-mobile" color="primary" type="raised"
-        [disabled]="changeBankLoading || offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS"
-        [isLoading]="changeBankLoading" (click)="openChangeBankDialog(offersInfo.offers[0])">Be min bank
-        matche beste tilbud</rente-button>
+      <rente-button
+        class="mt-4 mb-2 col-12 change-bank-button-mobile"
+        color="primary"
+        type="raised"
+        [disabled]="
+          changeBankLoading ||
+          offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS
+        "
+        [isLoading]="changeBankLoading"
+        (click)="openChangeBankDialog(offersInfo.offers[0])"
+        >Be min bank matche beste tilbud</rente-button
+      >
       <div class="col-12" [@inOutAnimation] *ngIf="isShowTips">
         <div class="row justify-content-start mt-2">
           <div class="col-12 pl-2" (click)="isShowTips = !isShowTips">
             <mat-icon>close</mat-icon>
           </div>
         </div>
-        <p class="text-border mt-0">Tips: Boligverdi/belåningsgrad er viktig mtp hva bankene tilbyr. Du kan endre i
+        <p class="text-border mt-0">
+          Tips: Boligverdi/belåningsgrad er viktig mtp hva bankene tilbyr. Du
+          kan endre i
           <a [routerLink]="['/dashboard/bolig']">
             Bolig fanen
           </a>
         </p>
-        <p class="text-border" *ngIf="!offersInfo.memberships.length">Enkelte banker tilbyr bedre betingelser gitt at du
-          har et medlemskap i en
-          interesseorganisasjon. Hvis du har
-          mulighet til å bli medlem prøv gjerne å endre ditt medlemskap ved å <a
-            [routerLink]="'/dashboard/profil'">klikke
-            her</a> for å se om det påvirker
-          resultatet av din rentesjekk. (Medlemskap pleier å koste ca 4000 i året)</p>
-        <p class="text-border" *ngIf="offersInfo.aggregatedRateType === aggregatedRateType.MIX_FIXED_FLOATING">Vi ser du
-          har ett eller flere fastrentelån. Renteradar viser besparelsespotensialet kun for lånet/lånene med flytende
-          rente. Beste rente viser også kun beste rente for lånet/lånene med flytende rente.
+        <p class="text-border" *ngIf="!offersInfo.memberships.length">
+          Enkelte banker tilbyr bedre betingelser gitt at du har et medlemskap i
+          en interesseorganisasjon. Hvis du har mulighet til å bli medlem prøv
+          gjerne å endre ditt medlemskap ved å
+          <a [routerLink]="'/dashboard/profil'">klikke her</a> for å se om det
+          påvirker resultatet av din rentesjekk. (Medlemskap pleier å koste ca
+          4000 i året)
         </p>
-        <p class="text-border" *ngIf="offersInfo.aggregatedLoanType === aggregatedLoanType.CREDIT_LINE
-        || offersInfo.aggregatedLoanType === aggregatedLoanType.MIX_D_C">Du har rammelån/boligkreditt. Ønsker du å se
-          tilbud kun for denne typen lån kan du endre dette i
+        <p
+          class="text-border"
+          *ngIf="
+            offersInfo.aggregatedRateType ===
+            aggregatedRateType.MIX_FIXED_FLOATING
+          "
+        >
+          Vi ser du har ett eller flere fastrentelån. Renteradar viser
+          besparelsespotensialet kun for lånet/lånene med flytende rente. Beste
+          rente viser også kun beste rente for lånet/lånene med flytende rente.
+        </p>
+        <p
+          class="text-border"
+          *ngIf="
+            offersInfo.aggregatedLoanType === aggregatedLoanType.CREDIT_LINE ||
+            offersInfo.aggregatedLoanType === aggregatedLoanType.MIX_D_C
+          "
+        >
+          Du har rammelån/boligkreditt. Ønsker du å se tilbud kun for denne
+          typen lån kan du endre dette i
           <a [routerLink]="'/dashboard/preferanser'">preferanser</a>
         </p>
       </div>
@@ -294,38 +486,48 @@
     <div class="row justify-content-center">
       <div id="bankChart" class="col-12"></div>
       <div id="groupChart" class="col-12"></div>
-      <div class="col-12">
-      </div>
+      <div class="col-12"></div>
     </div>
-    <rente-offers-statistics
-      [offersInfo]="offersInfo">
+    <rente-offers-statistics [offersInfo]="offersInfo">
     </rente-offers-statistics>
     <h3 class="mb-4">Beste tilbud:</h3>
     <ng-container *ngIf="offersInfo">
-      <div class="bg-wrap offers-bank mb-5" *ngFor="let offer of offersInfo.offers; let i = index">
+      <div
+        class="bg-wrap offers-bank mb-5"
+        *ngFor="let offer of offersInfo.offers; let i = index"
+      >
         <div class="number-label">
           <div>
-            {{i + 1}}
+            {{ i + 1 }}
           </div>
         </div>
         <div class="row">
           <div class="col-12">
             <div class="row">
               <div class="col-5 col-lg-3 col-lg-2 mb-2">
-                <img class="mw-100" *ngIf="banksMap[offer.bank].img" [src]="banksMap[offer.bank].img" alt=""
-                  title="banksMap[offer.bank].label">
+                <img
+                  class="mw-100"
+                  *ngIf="banksMap[offer.bank].img"
+                  [src]="banksMap[offer.bank].img"
+                  alt=""
+                  title="banksMap[offer.bank].label"
+                />
               </div>
               <div class="col-7 col-lg-9 col-lg-10 px-0">
                 <div>
-                  <p class="mb-0">{{offer.bankName}}</p>
-                  <h5 class="font-weight-bold my-0">{{offer.productName}}</h5>
+                  <p class="mb-0">{{ offer.bankName }}</p>
+                  <h5 class="font-weight-bold my-0">{{ offer.productName }}</h5>
                 </div>
               </div>
               <div class="col-12 mt-2">
                 <div class="row mb-4">
                   <div class="col-6 pr-0">
-                    <p class="paragraph-mobile">Rentebesparelse over lånets løpetid:</p>
-                    <h3 *ngIf="offer.totalSavings > 0; else noTotalSavings">{{offer.totalSavings | abs | number}},-</h3>
+                    <p class="paragraph-mobile">
+                      Rentebesparelse over lånets løpetid:
+                    </p>
+                    <h3 *ngIf="offer.totalSavings > 0; else noTotalSavings">
+                      {{ offer.totalSavings | abs | number }},-
+                    </h3>
                     <ng-template #noTotalSavings>
                       <h3>0,-</h3>
                     </ng-template>
@@ -333,7 +535,8 @@
                   <div class="col-6">
                     <p class="paragraph-mobile">Rentebesparelse første år:</p>
                     <h3 *ngIf="offer.savingsFirstYear > 0; else noTotalSavings">
-                      {{offer.savingsFirstYear | abs | number}},-</h3>
+                      {{ offer.savingsFirstYear | abs | number }},-
+                    </h3>
                     <ng-template #noSavingsFirstYear>
                       <h3>0,-</h3>
                     </ng-template>
@@ -343,30 +546,56 @@
               <div class="col-12">
                 <div class="row mb-4">
                   <div class="col-6">
-                    <p class="paragraph-mobile">Effektiv rente: </p>
-                    <h3>{{offer.effectiveRate | number: '1.2-2' }}%</h3>
+                    <p class="paragraph-mobile">Effektiv rente:</p>
+                    <h3>{{ offer.effectiveRate | number: "1.2-2" }}%</h3>
                   </div>
                   <div class="col-6 px-0 px-lg-3">
-                    <p class="paragraph-mobile">Krever annet produkt (e.g. lønnskonto):</p>
-                    <h3> {{offer.requiredProductPackage == null ? 'Nei' : 'Ja'}}</h3>
+                    <p class="paragraph-mobile">
+                      Krever annet produkt (e.g. lønnskonto):
+                    </p>
+                    <h3>
+                      {{ offer.requiredProductPackage == null ? "Nei" : "Ja" }}
+                    </h3>
                   </div>
                 </div>
               </div>
             </div>
           </div>
           <div class="col-12">
-
             <div class="row">
               <div class="col-12">
-                <rente-button class="mb-2" color="primary" type="stroked" (click)="openOfferDialog(offer)">Mer info
+                <rente-button
+                  class="mb-2"
+                  color="primary"
+                  type="stroked"
+                  (click)="openOfferDialog(offer)"
+                  >Mer info
                 </rente-button>
-                <rente-button class="mt-2" color="primary" type="stroked" [href]="offer.bankUrl">Bankens
-                  hjemmeside</rente-button>
-                <rente-button class="mt-2" color="primary"
-                  [disabled]="changeBankLoading || offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS"
-                  [isLoading]="changeBankLoading" type="raised" (click)="openChangeBankDialog(offer)">Be min bank
-                  matche dette tilbudet</rente-button>
-                <rente-button class="mt-2" [disabled]="true" color="primary" type="raised">Start bytte*
+                <rente-button
+                  class="mt-2"
+                  color="primary"
+                  type="stroked"
+                  [href]="offer.bankUrl"
+                  >Bankens hjemmeside</rente-button
+                >
+                <rente-button
+                  class="mt-2"
+                  color="primary"
+                  [disabled]="
+                    changeBankLoading ||
+                    offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS
+                  "
+                  [isLoading]="changeBankLoading"
+                  type="raised"
+                  (click)="openChangeBankDialog(offer)"
+                  >Be min bank matche dette tilbudet</rente-button
+                >
+                <rente-button
+                  class="mt-2"
+                  [disabled]="true"
+                  color="primary"
+                  type="raised"
+                  >Start bytte*
                 </rente-button>
                 <p class="text-right coming-soon-text">
                   *Kommer snart
@@ -378,34 +607,51 @@
       </div>
     </ng-container>
   </ng-template>
-
 </div>
 
-<div class="my-5 row justify-content-center"
-  *ngIf="offersInfo?.resultType === offersResultType.NO_OFFERS || offersInfo?.resultType === offersResultType.LTV_TOO_HIGH_85">
+<div
+  class="my-5 row justify-content-center"
+  *ngIf="
+    offersInfo?.resultType === offersResultType.NO_OFFERS ||
+    offersInfo?.resultType === offersResultType.LTV_TOO_HIGH_85
+  "
+>
   <div class="my-5 row justify-content-center">
     <div class="col-lg-6 col-lg-8 col-12">
       <div class="bg-wrap">
-        <h3>Størrelsen på lånet ditt er for stor i forhold til boligverdi (>85%).
-          Kontroller og endre boligverdien din <a [routerLink]="['/dashboard/bolig']">her i boligfanen</a></h3>
+        <h3>
+          Størrelsen på lånet ditt er for stor i forhold til boligverdi (>85%).
+          Kontroller og endre boligverdien din
+          <a [routerLink]="['/dashboard/bolig']">her i boligfanen</a>
+        </h3>
       </div>
     </div>
   </div>
 </div>
 
-<div class="my-5 row justify-content-center"
-  *ngIf="offersInfo?.resultType === offersResultType.LTV_CREDIT_LINE_TOO_HIGH_60">
+<div
+  class="my-5 row justify-content-center"
+  *ngIf="
+    offersInfo?.resultType === offersResultType.LTV_CREDIT_LINE_TOO_HIGH_60
+  "
+>
   <div class="my-5 row justify-content-center">
     <div class="col-lg-6 col-lg-8 col-12">
       <div class="bg-wrap">
-        <h3>Rammelån/boligkreditt er kun tilgjengelig for lavere belåningsgrad enn 60%. Din belåningsgrad er høyere enn
-          dette, vennligst endre din belåningsgrad i<a [routerLink]="['/dashboard/bolig']"> boligfanen</a></h3>
+        <h3>
+          Rammelån/boligkreditt er kun tilgjengelig for lavere belåningsgrad enn
+          60%. Din belåningsgrad er høyere enn dette, vennligst endre din
+          belåningsgrad i<a [routerLink]="['/dashboard/bolig']"> boligfanen</a>
+        </h3>
       </div>
     </div>
   </div>
 </div>
 
-<div class="d-flex justify-content-center align-items-center mt-4" *ngIf="isLoading && !errorMessage">
+<div
+  class="d-flex justify-content-center align-items-center mt-4"
+  *ngIf="isLoading && !errorMessage"
+>
   <mat-spinner [diameter]="48" [strokeWidth]="4"></mat-spinner>
 </div>
 
@@ -414,5 +660,5 @@
 </div>
 
 <div *ngIf="errorMessage">
-  <h1 class="text-center mt-4">{{errorMessage}}</h1>
+  <h1 class="text-center mt-4">{{ errorMessage }}</h1>
 </div>
