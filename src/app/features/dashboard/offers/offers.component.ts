@@ -72,16 +72,16 @@ export class OffersComponent implements OnInit, OnDestroy {
   public changeBankLoading: boolean;
   public subscribeShareLinkTimer: Subscription;
 
-  get hasLoansStatistics():boolean {
-    let res = this.offersInfo 
+  get hasLoansStatistics(): boolean {
+    const res: boolean = this.offersInfo
       && this.offersInfo.bestPercentileEffectiveRateYourBank > 0
       && this.offersInfo.bestPercentileEffectiveRateAllBanks > 0
       && this.offersInfo.medianEffectiveRateYourBank > 0
-      && this.offersInfo.medianEffectiveRateAllBanks > 0
+      && this.offersInfo.medianEffectiveRateAllBanks > 0;
     return res;
   }
 
-  get hasStatensPensjonskasseMembership():boolean {
+  get hasStatensPensjonskasseMembership(): boolean {
     return this.offersInfo && this.offersInfo.memberships && this.offersInfo.memberships.indexOf('STATENS_PENSJONSKASSE_STATLIG_ANSATT') > -1;
   }
 
@@ -157,8 +157,8 @@ export class OffersComponent implements OnInit, OnDestroy {
   }
 
   @HostListener('window:resize', ['$event'])
-  onResize(event?) {
-    window.innerWidth <= 1024 ? this.isSmallScreen = true : this.isSmallScreen = false;
+  onResize(event: any=null) {
+    this.isSmallScreen = window.innerWidth <= 1024;
   }
 
 }

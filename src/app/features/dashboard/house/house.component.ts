@@ -63,7 +63,7 @@ export class HouseComponent implements OnInit {
     this.statisticTooltip = 'Bolig statistikk';
     forkJoin([
       this.loansService.getPropertyValue().pipe(catchError(err => of(null))),
-      this.loansService.getEstimatedPropertValue().pipe(catchError(err => of(null))), 
+      this.loansService.getEstimatedPropertValue().pipe(catchError(err => of(null))),
       this.loansService.getAddresses().pipe(catchError(err => of(null)))
     ]).subscribe(([savedPropertyValueResult, estimatedPropertyValueResult, addressResult]) => {
       this.isLoading = false;

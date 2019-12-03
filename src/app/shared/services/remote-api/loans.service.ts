@@ -83,4 +83,10 @@ export class LoansService {
     const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.property}${API_URL_MAP.loan.extendedInfo}`;
     return this.http.get(url);
   }
+
+  public getLoanStatistics() {
+    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.statistics}`;
+    return this.http.get(url);
+  }
+
 }

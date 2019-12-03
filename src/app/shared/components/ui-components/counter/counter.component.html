@@ -2,7 +2,7 @@
   <h4>Våre brukere har tilsammen:</h4>
   <div class="counter black">
     <ng2-odometer
-      [number]="loan"
+      [number]="totalOutstandingDebt"
       [config]="{
         animation: 'slide',
         format: '  ddd',
@@ -19,7 +19,7 @@
   <h4>…og kan potensielt spare:</h4>
   <div class="counter green">
     <ng2-odometer
-      [number]="save"
+      [number]="combinedSavingsPotential"
       [config]="{
         animation: 'slide',
         format: ' ddd',
