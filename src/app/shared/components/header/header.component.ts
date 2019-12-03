@@ -1,12 +1,12 @@
-import { AuthService } from "@services/remote-api/auth.service";
-import { Component, OnInit } from "@angular/core";
+import { AuthService } from '@services/remote-api/auth.service';
+import { Component, OnInit } from '@angular/core';
 
-import { LocalStorageService } from "@services/local-storage.service";
+import { LocalStorageService } from '@services/local-storage.service';
 
 @Component({
-  selector: "rente-header",
-  templateUrl: "./header.component.html",
-  styleUrls: ["./header.component.scss"]
+  selector: 'rente-header',
+  templateUrl: './header.component.html',
+  styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
   public toggleNavbar: boolean;
@@ -23,7 +23,13 @@ export class HeaderComponent implements OnInit {
     this.toggleNav();
     window.scrollTo(0, 0);
   }
+
   public toggleNav() {
     this.toggleNavbar = !this.toggleNavbar;
   }
+
+  get isLoggedIn(): boolean {
+    return this.auth.isLoggedIn;
+  }
+
 }

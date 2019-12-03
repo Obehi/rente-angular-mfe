@@ -11,16 +11,12 @@
         <a
           [routerLink]="['/']"
           routerLinkActive="active-link"
-          [routerLinkActiveOptions]="{ exact: true }"
-        >
-          Hjem
-        </a>
+          [routerLinkActiveOptions]="{ exact: true }">Hjem</a>
         <a [routerLink]="['/blogg']" routerLinkActive="active-link">Blogg</a>
-        <a [routerLink]="['/kontakt']" routerLinkActive="active-link">
-          Kontakt
-        </a>
+        <a [routerLink]="['/kontakt']" routerLinkActive="active-link">Kontakt</a>
         <a [routerLink]="['/om-oss']" routerLinkActive="active-link">Om oss</a>
         <a [routerLink]="['/faq']" routerLinkActive="active-link">FAQ</a>
+        <a [routerLink]="['/']" *ngIf="isLoggedIn" (click)="auth.logout()">Logg ut</a>
       </div>
       <div class="menu mobile" (click)="toggleNav()">
         <span></span>
@@ -33,47 +29,32 @@
         [routerLink]="['/']"
         routerLinkActive="active-link"
         [routerLinkActiveOptions]="{ exact: true }"
-        (click)="toggleNav()"
-      >
-        <h3>
-          Hjem
-        </h3>
+        (click)="toggleNav()"><h3>Hjem</h3>
       </a>
       <a
         [routerLink]="['/blogg']"
         routerLinkActive="active-link"
-        (click)="toggleNav()"
-      >
-        <h3>
-          Blogg
-        </h3>
+        (click)="toggleNav()"><h3>Blogg</h3>
       </a>
       <a
         [routerLink]="['/kontakt']"
         routerLinkActive="active-link"
-        (click)="toggleNav()"
-      >
-        <h3>
-          Kontakt
-        </h3>
+        (click)="toggleNav()"><h3>Kontakt</h3>
       </a>
       <a
         [routerLink]="['/om-oss']"
         routerLinkActive="active-link"
-        (click)="toggleNav()"
-      >
-        <h3>
-          Om oss
-        </h3>
+        (click)="toggleNav()"><h3>Om oss</h3>
       </a>
       <a
         [routerLink]="['/faq']"
         routerLinkActive="active-link"
-        (click)="toggleNav()"
-      >
-        <h3>
-          FAQ
-        </h3>
+        (click)="toggleNav()"><h3>FAQ</h3>
+      </a>
+      <a
+        [routerLink]="['/']"
+        *ngIf="isLoggedIn"
+        (click)="auth.logout()"><h3>Logg ut</h3>
       </a>
     </div>
   </div>
