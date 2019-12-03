@@ -1,45 +1,13 @@
-// Container widths
-//
-// Set the container width, and override it for fixed navbars in media queries.
-
 .container {
-  @include make-container();
-  @include make-container-max-widths();
+  padding: 40px 20px;
+  max-width: 1010px;
+  margin: auto;
+  background-color: white;
+  min-height: calc(100vh - 60px);
 }
 
-// Fluid container
-//
-// Utilizes the mixin meant for fixed width containers, but with 100% width for
-// fluid, full width layouts.
-
-.container-fluid {
-  @include make-container();
-}
-
-// Row
-//
-// Rows contain and clear the floats of your columns.
-
-.row {
-  @include make-row();
-}
-
-// Remove the negative margin from default .row, then the horizontal padding
-// from all immediate children columns (to prevent runaway style inheritance).
-.no-gutters {
-  margin-right: 0;
-  margin-left: 0;
-
-  >.col,
-  >[class*="col-"] {
-    padding-right: 0;
-    padding-left: 0;
+@media (min-width: 600px) {
+  .container {
+    padding: 80px;
   }
 }
-
-
-// Columns
-//
-// Common styles for small and large grid columns
-
-@include make-grid-columns();

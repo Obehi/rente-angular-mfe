@@ -1,74 +1,106 @@
-<div class="container contact-us mt-3 mb-5 mb-lg-5">
-  <div class="row justify-content-center">
-    <div class="col-12 col-lg-6 text-center bg-wrap">
-      <h3>Kontakt oss</h3>
-      <p>Kontakt oss gjerne ved å fylle ut skjemaet nedenfor hvis du har spørsmål</p>
+<h2>Kontakt oss</h2>
 
-      <form [formGroup]="contactUsForm" (ngSubmit)="sendContactUsForm(contactUsForm.value)" novalidate>
-        <div class="mb-4">
-          <rente-input [placeholder]="'Navn'" formControlName="name"
-            [errorStateMatcher]="isErrorState(contactUsForm.controls['name'], contactUsForm)">
-          </rente-input>
+<form
+  [formGroup]="contactUsForm"
+  (ngSubmit)="sendContactUsForm(contactUsForm.value)"
+  novalidate
+>
+  <rente-input
+    [placeholder]="'Navn'"
+    formControlName="name"
+    [errorStateMatcher]="
+      isErrorState(contactUsForm.controls['name'], contactUsForm)
+    "
+  >
+  </rente-input>
 
-          <rente-form-message class="text-left d-block" [type]="'info'">
-          </rente-form-message>
+  <rente-form-message class="text-left d-block" [type]="'info'">
+  </rente-form-message>
 
-          <div *ngIf="contactUsForm.controls['name'].touched" class="error-message">
-            <rente-form-message class="text-left d-block" [type]="'error'"
-              *ngIf="contactUsForm.controls['name'].hasError('required')">
-              Vennligst fyll inn navn
-            </rente-form-message>
-          </div>
-        </div>
-
-        <div class="mb-4">
-          <rente-input [placeholder]="'E-post:'" formControlName="email"
-            [errorStateMatcher]="isErrorState(contactUsForm.controls['email'], contactUsForm)" [modelOptions]="{updateOn:'blur'}">
-          </rente-input>
-          <div *ngIf="contactUsForm.controls['email'].touched" class="error-message">
-            <rente-form-message class="text-left d-block" [type]="'error'"
-              *ngIf="contactUsForm.controls['email'].hasError('required')">
-              Ikke gyldig email
-            </rente-form-message>
-            <rente-form-message class="text-left d-block" [type]="'error'"
-                *ngIf="contactUsForm.controls['email'].hasError('pattern')">
-                Ikke gyldig email
-            </rente-form-message>
-          </div>
-        </div>
-
-        <div class="mb-4">
-          <rente-input [placeholder]="'Telefonnr'" formControlName="phone" [mask]="phoneMask" [type]="'tel'"
-            [errorStateMatcher]="isErrorState(contactUsForm.controls['phone'], contactUsForm)" [modelOptions]="{updateOn:'blur'}">
-          </rente-input>
-          <rente-form-message class="text-left d-block pb-0" [type]="'info'">
-            8 siffer
-          </rente-form-message>
-          <div *ngIf="contactUsForm.controls['phone'].touched" class="error-message">
-            <rente-form-message class="text-left d-block" [type]="'error'"
-              *ngIf="contactUsForm.controls['phone'].hasError('required') || contactUsForm.controls['phone'].hasError('pattern')">
-              Telefonnummer kan ikke være tomt
-            </rente-form-message>
-          </div>
-        </div>
-
-        <div class="mb-4">
-          <rente-text-area [placeholder]="'Melding'" formControlName="message"
-            [errorStateMatcher]="isErrorState(contactUsForm.controls['message'], contactUsForm)">
-          </rente-text-area>
-          <div class="error-message" *ngIf="contactUsForm.controls['message'].touched">
-            <rente-form-message class="text-left d-block" [type]="'error'"
-              *ngIf="contactUsForm.controls['message'].hasError('required')">
-              Meldingen kan ikke være tom
-            </rente-form-message>
-          </div>
-        </div>
-
-        <div class="register-btn">
-          <rente-button color="primary" [isLoading]="isLoading" [disabled]="!contactUsForm.valid || isLoading">Send
-          </rente-button>
-        </div>
-      </form>
-    </div>
+  <div *ngIf="contactUsForm.controls['name'].touched" class="error-message">
+    <rente-form-message
+      class="text-left d-block"
+      [type]="'error'"
+      *ngIf="contactUsForm.controls['name'].hasError('required')"
+    >
+      Vennligst fyll inn navn
+    </rente-form-message>
   </div>
-</div>
+
+  <rente-input
+    [placeholder]="'E-post:'"
+    formControlName="email"
+    [errorStateMatcher]="
+      isErrorState(contactUsForm.controls['email'], contactUsForm)
+    "
+    [modelOptions]="{ updateOn: 'blur' }"
+  >
+  </rente-input>
+  <div *ngIf="contactUsForm.controls['email'].touched" class="error-message">
+    <rente-form-message
+      class="text-left d-block"
+      [type]="'error'"
+      *ngIf="contactUsForm.controls['email'].hasError('required')"
+    >
+      Ikke gyldig email
+    </rente-form-message>
+    <rente-form-message
+      class="text-left d-block"
+      [type]="'error'"
+      *ngIf="contactUsForm.controls['email'].hasError('pattern')"
+    >
+      Ikke gyldig email
+    </rente-form-message>
+  </div>
+
+  <rente-input
+    [placeholder]="'Telefonnr'"
+    formControlName="phone"
+    [mask]="phoneMask"
+    [type]="'tel'"
+    [errorStateMatcher]="
+      isErrorState(contactUsForm.controls['phone'], contactUsForm)
+    "
+    [modelOptions]="{ updateOn: 'blur' }"
+  >
+  </rente-input>
+  <rente-form-message class="text-left d-block pb-0" [type]="'info'">
+    8 siffer
+  </rente-form-message>
+  <div *ngIf="contactUsForm.controls['phone'].touched" class="error-message">
+    <rente-form-message
+      class="text-left d-block"
+      [type]="'error'"
+      *ngIf="
+        contactUsForm.controls['phone'].hasError('required') ||
+        contactUsForm.controls['phone'].hasError('pattern')
+      "
+    >
+      Telefonnummer kan ikke være tomt
+    </rente-form-message>
+  </div>
+
+  <rente-text-area
+    formControlName="message"
+    [errorStateMatcher]="
+      isErrorState(contactUsForm.controls['message'], contactUsForm)
+    "
+  >
+  </rente-text-area>
+  <div class="error-message" *ngIf="contactUsForm.controls['message'].touched">
+    <rente-form-message
+      class="text-left d-block"
+      [type]="'error'"
+      *ngIf="contactUsForm.controls['message'].hasError('required')"
+    >
+      Meldingen kan ikke være tom
+    </rente-form-message>
+  </div>
+
+  <rente-button
+    color="primary"
+    [isLoading]="isLoading"
+    [disabled]="!contactUsForm.valid || isLoading"
+    >Send
+  </rente-button>
+</form>

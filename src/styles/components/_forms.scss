@@ -1,14 +1,23 @@
-$form-text-margin-top:                  .25rem !default;
+@import "../theme/_colors.scss";
 
-$form-check-input-gutter:               1.25rem !default;
-$form-check-input-margin-y:             .3rem !default;
-$form-check-input-margin-x:             .25rem !default;
+$form-text-margin-top: 0.25rem !default;
 
-$form-check-inline-margin-x:            .75rem !default;
-$form-check-inline-input-margin-x:      .3125rem !default;
+$form-check-input-gutter: 1.25rem !default;
+$form-check-input-margin-y: 0.3rem !default;
+$form-check-input-margin-x: 0.25rem !default;
 
-$form-grid-gutter-width:                10px !default;
-$form-group-margin-bottom:              1rem !default;
+$form-check-inline-margin-x: 0.75rem !default;
+$form-check-inline-input-margin-x: 0.3125rem !default;
+
+$form-grid-gutter-width: 10px !default;
+$form-group-margin-bottom: 1rem !default;
+
+form {
+  margin: auto;
+  max-width: 400px;
+  background-color: $light;
+  padding: 20px;
+}
 
 .form-group {
   margin-bottom: $form-group-margin-bottom;

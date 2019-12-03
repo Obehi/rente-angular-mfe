@@ -1,11 +1,12 @@
-@import '../../../styles/theme/_colors.scss';
+@import "../../../styles/theme/_colors.scss";
 
 a {
-    color: $primary;
+  color: $primary;
 }
 
 p {
-    font-size: 16px;
-    color: $dark;
-    line-height: 24px;
+  font-size: 16px;
+  color: $dark;
+  line-height: 24px;
+  margin-bottom: 20px;
 }

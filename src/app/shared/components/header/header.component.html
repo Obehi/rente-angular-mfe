@@ -1,4 +1,86 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-secondary" id="mainNav">
+<nav>
+  <div class="inner-nav">
+    <a [routerLink]="['/']">
+      <img
+        src="../../../../assets/img/renteradar_white_logo.svg"
+        alt="Renteradar logo"
+      />
+    </a>
+    <div class="menu-container">
+      <div class="desktop-menu desktop">
+        <a
+          [routerLink]="['/']"
+          routerLinkActive="active-link"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          Hjem
+        </a>
+        <a [routerLink]="['/blogg']" routerLinkActive="active-link">Blogg</a>
+        <a [routerLink]="['/kontakt']" routerLinkActive="active-link">
+          Kontakt
+        </a>
+        <a [routerLink]="['/om-oss']" routerLinkActive="active-link">Om oss</a>
+        <a [routerLink]="['/faq']" routerLinkActive="active-link">FAQ</a>
+      </div>
+      <div class="menu mobile" (click)="toggleNav()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+    <div class="mobile-menu mobile" *ngIf="toggleNavbar">
+      <a
+        [routerLink]="['/']"
+        routerLinkActive="active-link"
+        [routerLinkActiveOptions]="{ exact: true }"
+        (click)="toggleNav()"
+      >
+        <h3>
+          Hjem
+        </h3>
+      </a>
+      <a
+        [routerLink]="['/blogg']"
+        routerLinkActive="active-link"
+        (click)="toggleNav()"
+      >
+        <h3>
+          Blogg
+        </h3>
+      </a>
+      <a
+        [routerLink]="['/kontakt']"
+        routerLinkActive="active-link"
+        (click)="toggleNav()"
+      >
+        <h3>
+          Kontakt
+        </h3>
+      </a>
+      <a
+        [routerLink]="['/om-oss']"
+        routerLinkActive="active-link"
+        (click)="toggleNav()"
+      >
+        <h3>
+          Om oss
+        </h3>
+      </a>
+      <a
+        [routerLink]="['/faq']"
+        routerLinkActive="active-link"
+        (click)="toggleNav()"
+      >
+        <h3>
+          FAQ
+        </h3>
+      </a>
+    </div>
+  </div>
+</nav>
+<div class="nav-space"></div>
+
+<!-- <nav class="navbar navbar-expand-lg navbar-dark bg-secondary" id="mainNav">
   <div class="container py-2">
     <a class="navbar-brand js-scroll-trigger" [routerLink]="['/']">
       <img class="img-fluid img-200" src="../../../../assets/img/renteradar_white_logo.svg" alt="Renteradar">
@@ -141,3 +223,4 @@
     </div>
   </div>
 </nav>
+ -->

@@ -1,4 +1,347 @@
-<div class="my-3" *ngIf="isSmallScreen;else desktopTitle">
+<div class="intro">
+  <h1>Få den beste <span>boliglånsrenten</span></h1>
+  <h4>
+    Sammenlign boliglånet ditt mot markedets beste tilbud kjapt, enkelt og
+    gratis.
+  </h4>
+</div>
+
+<h3>Velg banken du har boliglån i:</h3>
+<div class="bank-buttons">
+  <rente-button color="blue" [routerLink]="'/autentisering/sparebank1-sub'">
+    <img
+      src="../../../assets/img/banks-logo/sparebank1.svg"
+      alt="Sparebank1 logo"
+    />
+  </rente-button>
+  <rente-button color="blue" [routerLink]="'/autentisering/bank/nordea'">
+    <img
+      src="../../../assets/img/banks-logo/nordea.svg"
+      style="height: 16px;"
+      alt="Nordea logo"
+    />
+  </rente-button>
+  <rente-button color="blue" [routerLink]="'/autentisering/bank/dnb'">
+    <img
+      src="../../../assets/img/banks-logo/dnb.svg"
+      style="height: 26px;"
+      alt="DNB logo"
+    />
+  </rente-button>
+  <rente-button color="blue" [routerLink]="'/faabeskjed'">
+    <p>Annen bank</p>
+  </rente-button>
+</div>
+
+<div class="data-logos">
+  <a target="_blank" href="https://www.finansportalen.no">
+    <img
+      src="../../../assets/img/banks-logo/finansportalen.svg"
+      alt="Finansportalen logo"
+    />
+  </a>
+  <a target="_blank" href="https://virdi.no/">
+    <img src="../../../assets/img/banks-logo/virdi.svg" alt="Virdi logo" />
+  </a>
+</div>
+
+<rente-counter></rente-counter>
+
+<div class="list">
+  <div class="list-inner">
+    <div class="four-columns">
+      <div class="block">
+        <img src="../../../assets/icons/renteradar.svg" alt="renteradar" />
+        <p>Renteradar finner de beste tilbudene helt gratis.</p>
+      </div>
+      <div class="block">
+        <img src="../../../assets/icons/user.svg" alt="bankID" />
+        <p>
+          Ingen utfylling av skjema. <br />
+          Logg inn med BankID på mobil.
+        </p>
+      </div>
+      <div class="block">
+        <img src="../../../assets/icons/save.svg" alt="save" />
+        <p>Få oversikt og spar penger med et klikk.</p>
+      </div>
+      <div class="block">
+        <img src="../../../assets/icons/notify.svg" alt="notify" />
+        <p>
+          Renteradar overvåker markedet og gir deg beskjed når det kommer bedre
+          tilbud.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="list gradient">
+  <div class="list-inner">
+    <div class="desktop-inner">
+      <h2>Slik fungerer det</h2>
+      <h4>
+        Renteradar henter renten og dine lånedetaljer automatisk med BankID på
+        mobil.
+      </h4>
+      <h4>
+        Vi sammenligner renten du betaler med renten du kan få i andre banker og
+        viser deg hvor mye du kan spare. Du kan også prute i banken du er kunde
+        med et klikk.
+      </h4>
+      <img
+        class="mobile"
+        src="../../../assets/img/example.svg"
+        alt="Screenshot Example"
+      />
+      <h4>
+        Vi overvåker markedet og gir deg beskjed når nye og bedre tilbud er
+        tilgjengelig i fremtiden!
+      </h4>
+    </div>
+    <img
+      class="desktop"
+      src="../../../assets/img/example.svg"
+      alt="Screenshot Example"
+    />
+  </div>
+</div>
+
+<h3>Velg banken du har boliglån i:</h3>
+<div class="bank-buttons" style="margin-bottom: 80px;">
+  <rente-button color="blue" [routerLink]="'/autentisering/sparebank1-sub'">
+    <img
+      src="../../../assets/img/banks-logo/sparebank1.svg"
+      alt="Sparebank1 logo"
+    />
+  </rente-button>
+  <rente-button color="blue" [routerLink]="'/autentisering/bank/nordea'">
+    <img
+      src="../../../assets/img/banks-logo/nordea.svg"
+      style="height: 16px;"
+      alt="Nordea logo"
+    />
+  </rente-button>
+  <rente-button color="blue" [routerLink]="'/autentisering/bank/dnb'">
+    <img
+      src="../../../assets/img/banks-logo/dnb.svg"
+      style="height: 26px;"
+      alt="DNB logo"
+    />
+  </rente-button>
+  <rente-button color="blue" [routerLink]="'/faabeskjed'">
+    <p>Annen bank</p>
+  </rente-button>
+</div>
+
+<div class="articles">
+  <h2 style="margin-bottom: 20px;">Fornøyde brukere</h2>
+  <div class="horizontal-scroll">
+    <div class="sitater">
+      <div class="sitatboks">
+        <h4>
+          Fikk akkurat beskjed fra banken at jeg fikk renta ned fra 2,74% til
+          nominell rente på 2,59%! Superfornøyd!
+        </h4>
+        <!-- Adding a hidden div to keep height making it possible to position at bottom of cell -->
+        <div class="hide">
+          <div
+            class="bilde"
+            style="background-image: url('../../../assets/img/sitat1.jpg')"
+          ></div>
+          <h3>
+            Johanna, 26, Tromsø
+          </h3>
+        </div>
+        <div class="align-bottom">
+          <div
+            class="bilde"
+            style="background-image: url('../../../assets/img/sitat1.jpg')"
+          ></div>
+          <h3>
+            Johanna, 26, Tromsø
+          </h3>
+        </div>
+      </div>
+
+      <div class="sitatboks">
+        <h4>
+          Jeg er superglad jeg brukte Renteradar.no og anbefaler alle å bruke
+          Renteradar.no for alt den er verdt!
+        </h4>
+        <div class="hide">
+          <div
+            class="bilde"
+            style="background-image: url('../../../assets/img/sitat2.jpg')"
+          ></div>
+          <h3>
+            Silje Martinsen, 25 år, Hedmark
+          </h3>
+        </div>
+        <div class="align-bottom">
+          <div
+            class="bilde"
+            style="background-image: url('../../../assets/img/sitat2.jpg')"
+          ></div>
+          <h3>
+            Silje Martinsen, 25 år, Hedmark
+          </h3>
+        </div>
+      </div>
+      <div class="sitatboks">
+        <h4>
+          Det ble bedre rente! Testet Renteradar.no og fikk satt ned renten
+          0,20%
+        </h4>
+
+        <div class="align-bottom">
+          <div
+            class="bilde"
+            style="background-image: url('../../../assets/img/sitat3.jpg')"
+          ></div>
+          <h3>
+            Morten, 37 år, Kongsvinger
+          </h3>
+        </div>
+        <div class="hide">
+          <div
+            class="bilde"
+            style="background-image: url('../../../assets/img/sitat3.jpg')"
+          ></div>
+          <h3>
+            Morten, 37 år, Kongsvinger
+          </h3>
+        </div>
+      </div>
+      <div class="sitatboks">
+        <h4>
+          Jeg ble overrasket over at det var lett å spare 5000 bare ved å klikke
+          på pruteknappen. Anbefaler alle å teste Renteradar.no
+        </h4>
+        <div class="hide">
+          <div
+            class="bilde"
+            style="background-image: url('../../../assets/img/sitat4.jpg')"
+          ></div>
+          <h3>
+            Susanne, 30 år, Oslo
+          </h3>
+        </div>
+        <div class="align-bottom">
+          <div
+            class="bilde"
+            style="background-image: url('../../../assets/img/sitat4.jpg')"
+          ></div>
+          <h3>
+            Susanne, 30 år, Oslo
+          </h3>
+        </div>
+      </div>
+      <div class="sitatboks">
+        <h4>
+          Jeg trodde jeg hadde full kontroll på boliglånsrenten vår, men det
+          hadde jeg ikke.
+          <br />
+          <br />
+          Vi sparer 16 000 i året takket være Renteradar.no
+        </h4>
+        <div class="hide">
+          <h3>
+            Kristian, 31 år, Oslo
+          </h3>
+        </div>
+        <div class="align-bottom">
+          <h3>
+            Kristian, 31 år, Oslo
+          </h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="articles">
+  <h2 style="margin-bottom: 20px;">Renteradar i media</h2>
+  <div class="horizontal-scroll">
+    <a
+      href="https://twitter.com/halkva/status/1187385224432410624"
+      target="_blank"
+      class="article"
+    >
+      <div
+        class="image"
+        style="background-image: url('../../../assets/img/kvadsheim.jpg')"
+      ></div>
+      <img
+        class="logo"
+        src="../../../assets/img/twitter.svg"
+        alt="twitter logo"
+      />
+      <h3>
+        Hallgeir Kvadsheim: "[...] en fintech-nykommer som gjør prutejobben
+        enklere"
+      </h3>
+    </a>
+    <a
+      href="https://shifter.no/axel-busch-christensen-fredrik-stang-heffermehl-renteradar/renteradar-vil-la-deg-bytte-bank-med-ett-klikk----de-store-bankene-tjener-pa-kundenes-uvitenhet/125418"
+      target="_blank"
+      class="article"
+    >
+      <div
+        class="image"
+        style="background-image: url('../../../assets/img/shifter.jpg')"
+      ></div>
+      <img
+        class="logo"
+        src="../../../assets/img/shifter_logo.svg"
+        alt="Shifter logo"
+      />
+      <h3>
+        Renteradar vil la deg bytte bank med ett klikk: – De store bankene
+        tjener på kundenes uvitenhet
+      </h3>
+    </a>
+    <a
+      href="https://www.dinepenger.no/penger/bank/naa-gaar-vi-inn-i-en-ny-bankvirkelighet-kan-utloese-et-ras-av-ferske-tjenester/24695762"
+      target="_blank"
+      class="article"
+    >
+      <div
+        class="image"
+        style="background-image: url('../../../assets/img/dinepenger.jpg')"
+      ></div>
+      <img
+        class="logo"
+        src="../../../assets/img/dine-penger-logo.png"
+        alt="Dine Penger logo"
+      />
+      <h3>
+        Nå går vi inn i en ny bankvirkelighet – kan utløse et ras av ferske
+        tjenester
+      </h3>
+    </a>
+    <a
+      href="https://kapital.no/tech/2019/10/renteradar-pruter-kundene"
+      target="_blank"
+      class="article"
+    >
+      <div
+        class="image"
+        style="background-image: url('../../../assets/img/kapital.jpg')"
+      ></div>
+      <img
+        class="logo"
+        src="../../../assets/img/kaptial.svg"
+        alt="Kapital logo"
+      />
+      <h3>
+        Renteradar pruter for kundene
+      </h3>
+    </a>
+  </div>
+</div>
+<!-- <img class="scroll-down" src="../../../assets/icons/arrow-down.svg" alt="" /> -->
+
+<!-- <div class="my-3" *ngIf="isSmallScreen;else desktopTitle">
   <rente-button class="title-heading-btn" mat-button color="primary" [routerLink]="'/velgbank'" >
     Få den beste boliglånsrenten!
   </rente-button>
@@ -85,9 +428,7 @@
                 src="../../../assets/img/banks-logo/square/sparebank1v2.png" alt="Sparebank1" title="Sparebank1"></a>
           </div>
           <div class="link col-3 col-lg-2 px-0">
-              <!-- <div class="d-flex align-items-center justify-content-center"> -->
-               <a class="font-weight-bold d-flex justify-content-center text-center align-items-center mx-auto" [routerLink]="['/faabeskjed']">Flere banker kommer!</a>
-              <!-- </div> -->
+
             </div>
         </div>
       </div>
@@ -198,4 +539,4 @@
     <hr class="divider">
   </div>
 
-</div>
+</div> -->
