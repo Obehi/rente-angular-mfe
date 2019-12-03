@@ -4,16 +4,21 @@
         <div class="row">
             <div
                 *ngIf="hasClientBankData"
-                class="col-12 col-lg-6 pb-4">
-                <h3>Din rente i forhold til andre i din bank:</h3>
+                class="col-12 col-lg-6">
+                <h3 class="ml-3">Din rente i forhold til andre i din bank:</h3>
                 <div id="clientBankChartId"></div>
             </div>
             <div
                 *ngIf="hasOthersBankData"
-                class="col-12 col-lg-6 pb-4">
-                <h3>Din rente i forhold til andre i alle banker:</h3>
+                class="col-12 col-lg-6">
+                <h3 class="ml-3">Din rente i forhold til andre i alle banker:</h3>
                 <div id="allBanksChartChartId"></div>
             </div>
+        </div>
+        <div class="row">
+          <p class="ml-4 mr-4 mb-5 mt-1">
+            <small>* Grafene tar foreløpig ikke hensyn til alder, belåninsgrad og fordeler av medlemskap.</small>
+          </p>
         </div>
     </div>
     <div *ngIf="tips">
