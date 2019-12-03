@@ -1,8 +1,7 @@
 <div class="content">
   <rente-header></rente-header>
-  <div class="container">
-    <router-outlet></router-outlet>
-  </div>
+
+  <router-outlet (activate)="onActivate($event)"></router-outlet>
 </div>
 
 <rente-footer></rente-footer>

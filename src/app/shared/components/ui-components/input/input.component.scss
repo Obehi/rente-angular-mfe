@@ -1,13 +1,12 @@
-@import '../../../../../styles/theme/_colors.scss';
+@import "../../../../../styles/theme/_colors.scss";
 
 .input-component.ng-invalid.ng-touched {
-    .input-block {
-      input {
-        color: $error;
-      }
+  .input-block {
+    input {
+      color: $error;
     }
   }
-
+}
 
 // .input-block {
 //   .mat-form-field-infix {

@@ -1,4 +1,22 @@
 <div class="text-area-block">
+  <mat-form-field class="example-full-width">
+    <mat-label>Melding</mat-label>
+    <textarea
+      matInput
+      cdkTextareaAutosize
+      #autosize="cdkTextareaAutosize"
+      [placeholder]="placeholder"
+      [errorStateMatcher]="matcher"
+      [(ngModel)]="value"
+      cdkAutosizeMinRows="1"
+      cdkAutosizeMaxRows="5"
+    >
+    </textarea>
+  </mat-form-field>
+</div>
+
+<!--
+  <div class="text-area-block">
   <div class="input-block">
     <mat-form-field class="example-full-width">
       <textarea matInput [placeholder]="placeholder" [errorStateMatcher]="matcher" [(ngModel)]="value">
@@ -6,3 +24,4 @@
     </mat-form-field>
   </div>
 </div>
+ -->

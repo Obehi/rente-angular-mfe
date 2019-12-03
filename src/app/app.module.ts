@@ -21,6 +21,8 @@ import { MaterialModule } from '@shared/material/material.module';
 import { GetNotifiedComponent } from '@features/get-notified/get-notified.component';
 import { GuidePageComponent } from './features/guide-page/guide-page.component';
 import { CoFounderComponent } from './features/co-founder/co-founder.component';
+import { CounterComponent } from './shared/components/ui-components/counter/counter.component';
+import { Ng2OdometerModule } from 'ng2-odometer'; // <-- import the module
 
 registerLocaleData(localeNo);
 
@@ -39,7 +41,8 @@ registerLocaleData(localeNo);
     InitConfirmationComponent,
     GetNotifiedComponent,
     GuidePageComponent,
-    CoFounderComponent
+    CoFounderComponent,
+    CounterComponent
   ],
   imports: [
     BrowserModule,
@@ -47,6 +50,7 @@ registerLocaleData(localeNo);
     AppRoutingModule,
     SharedModule,
     MaterialModule,
+    Ng2OdometerModule.forRoot(),
     // MatExpansionModule,
     // MatFormFieldModule,
     ReactiveFormsModule
@@ -54,4 +58,4 @@ registerLocaleData(localeNo);
   providers: [{ provide: LOCALE_ID, useValue: 'nb-NO' }],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

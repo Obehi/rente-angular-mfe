@@ -7,7 +7,7 @@ import {
   HostBinding,
   SimpleChanges,
   OnChanges
-} from '@angular/core';
+} from "@angular/core";
 import {
   FormControl,
   ControlValueAccessor,
@@ -15,21 +15,24 @@ import {
   FormGroupDirective,
   FormsModule,
   NgForm
-} from '@angular/forms';
-import { ViewEncapsulation } from '@angular/core';
-import { ErrorStateMatcher } from '@angular/material/core';
+} from "@angular/forms";
+import { ViewEncapsulation } from "@angular/core";
+import { ErrorStateMatcher } from "@angular/material/core";
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
-  constructor(public state: boolean) { }
+  constructor(public state: boolean) {}
 
-  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+  isErrorState(
+    control: FormControl | null,
+    form: FormGroupDirective | NgForm | null
+  ): boolean {
     return this.state;
   }
 }
 @Component({
-  selector: 'rente-input',
-  templateUrl: './input.component.html',
-  styleUrls: ['./input.component.scss'],
+  selector: "rente-input",
+  templateUrl: "./input.component.html",
+  styleUrls: ["./input.component.scss"],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -37,9 +40,8 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
       multi: true
     }
   ],
-  encapsulation: ViewEncapsulation.None,
+  encapsulation: ViewEncapsulation.None
 })
-
 export class InputComponent implements ControlValueAccessor, OnChanges {
   @Input() label: string;
   @Input() name: string;
@@ -48,14 +50,14 @@ export class InputComponent implements ControlValueAccessor, OnChanges {
   @Input() errorStateMatcher: boolean;
   @Input() modelOptions?: { updateOn: string };
   // tslint:disable-next-line:no-input-rename
-  @Input('value') inputValue: any = '';
+  @Input("value") inputValue: any = "";
   @Input() mask?: any[];
   public matcher: MyErrorStateMatcher;
-  @HostBinding('class.input-component') true;
+  @HostBinding("class.input-component") true;
 
-  propagateChange: any = () => { };
-  onChange: any = () => { };
-  onTouch: any = () => { };
+  propagateChange: any = () => {};
+  onChange: any = () => {};
+  onTouch: any = () => {};
 
   get value() {
     return this.inputValue;
@@ -86,5 +88,4 @@ export class InputComponent implements ControlValueAccessor, OnChanges {
   registerOnTouched(fn: any) {
     this.onTouch = fn;
   }
-
 }

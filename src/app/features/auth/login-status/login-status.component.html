@@ -1,30 +1,60 @@
 <div class="container login-status">
   <div class="row justify-content-center">
     <div class="col-12 col-lg-6 text-center bg-wrap">
-      <img class="mw-100" src="{{userBank?.bankIcon}}" alt="{{userBank?.label}}" title="{{userBank?.label}}">
-      <h3 class="my-2" *ngIf="isShowPassPhrase && !viewStatus.isCrawlerError">Din referanse:
+      <img
+        class="mw-100"
+        src="{{ userBank?.bankIcon }}"
+        alt="{{ userBank?.label }}"
+        title="{{ userBank?.label }}"
+      />
+      <h3 class="my-2" *ngIf="isShowPassPhrase && !viewStatus.isCrawlerError">
+        Din referanse:
       </h3>
-      <h3 class="my-2" *ngIf="isShowPassPhrase && !viewStatus.isCrawlerError">{{passPhrase}}</h3>
+      <h3 class="my-2" *ngIf="isShowPassPhrase && !viewStatus.isCrawlerError">
+        {{ passPhrase }}
+      </h3>
 
       <div class="mt-2 row justify-content-center">
         <div class="col-10 col-lg-8 d-flex flex-column align-items-start">
           <rente-status-message [status]="loginStep1Status">
-            <span *ngIf="viewStatus.isNotValidDataProvided && userBank.bankName === 'DNB'">
-              Kontroller at du har oppgitt riktig fødselsnummer og mobilnummer. Du må ha bestilt og aktivert BankID på
-              mobil for å kunne bruke denne innloggingen.
+            <span
+              *ngIf="
+                viewStatus.isNotValidDataProvided && userBank.bankName === 'DNB'
+              "
+            >
+              Kontroller at du har oppgitt riktig fødselsnummer og mobilnummer.
+              Du må ha bestilt og aktivert BankID på mobil for å kunne bruke
+              denne innloggingen.
             </span>
-            <span *ngIf="viewStatus.isNotValidDataProvided && userBank.bankName !== 'DNB'">
-              Kontroller at du har oppgitt riktig fødselsdato og mobilnummer. Du må ha bestilt og aktivert BankID på
-              mobil for å kunne bruke denne innloggingen.
+            <span
+              *ngIf="
+                viewStatus.isNotValidDataProvided && userBank.bankName !== 'DNB'
+              "
+            >
+              Kontroller at du har oppgitt riktig fødselsdato og mobilnummer. Du
+              må ha bestilt og aktivert BankID på mobil for å kunne bruke denne
+              innloggingen.
             </span>
             <span *ngIf="!viewStatus.isNotValidDataProvided">
-              Forbereder identifisering <br>
+              Forbereder identifisering <br />
               <span
-                *ngIf="viewStatus.isProcessStarted && !viewStatus.isCrawlerError && isShowTimer && !firstStepTimerFinished">
-                (tar cirka {{firstStepTimer}} sekunder)
+                *ngIf="
+                  viewStatus.isProcessStarted &&
+                  !viewStatus.isCrawlerError &&
+                  isShowTimer &&
+                  !firstStepTimerFinished
+                "
+              >
+                (tar cirka {{ firstStepTimer }} sekunder)
               </span>
               <span
-                *ngIf="viewStatus.isProcessStarted && !viewStatus.isCrawlerError && isShowTimer && firstStepTimerFinished">
+                *ngIf="
+                  viewStatus.isProcessStarted &&
+                  !viewStatus.isCrawlerError &&
+                  isShowTimer &&
+                  firstStepTimerFinished
+                "
+              >
                 (Litt til, straks ferdig)
               </span>
             </span>
@@ -34,56 +64,81 @@
             <span *ngIf="!passPhrase">
               Bekreft BankID på mobil
             </span>
-            <span *ngIf="passPhrase && !viewStatus.isPassphraseConfirmFail && !viewStatus.isPassphraseConfirmSuccess">
+            <span
+              *ngIf="
+                passPhrase &&
+                !viewStatus.isPassphraseConfirmFail &&
+                !viewStatus.isPassphraseConfirmSuccess
+              "
+            >
               Vennligst følg instruksjonen på mobilen
             </span>
             <span *ngIf="viewStatus.isPassphraseConfirmSuccess">
               BankID bekreftet
             </span>
             <span *ngIf="viewStatus.isPassphraseConfirmFail">
-              Vi fikk ikke bekreftet BankID referansen fra din mobiltelefon. Vennligst prøv igjen.
+              Vi fikk ikke bekreftet BankID referansen fra din mobiltelefon.
+              Vennligst prøv igjen.
             </span>
           </rente-status-message>
 
           <rente-status-message [status]="loginStep3Status" [step]="3">
             <span *ngIf="isStep3Error && isNotSB1customer">
-              Vi får beskjed om at du ikke er kunde i banken. Har du valgt riktig bank?
+              Vi får beskjed om at du ikke er kunde i banken. Har du valgt
+              riktig bank?
             </span>
-            <span *ngIf="!viewStatus.isPassphraseConfirmSuccess && !viewStatus.isCrawlerError && !isNotSB1customer">
+            <span
+              *ngIf="
+                !viewStatus.isPassphraseConfirmSuccess &&
+                !viewStatus.isCrawlerError &&
+                !isNotSB1customer
+              "
+            >
               Hent rente- oglånedata
             </span>
-            <span *ngIf="!isStep3Error && viewStatus.isPassphraseConfirmSuccess">
+            <span
+              *ngIf="!isStep3Error && viewStatus.isPassphraseConfirmSuccess"
+            >
               Vi henter din rente og låneinformasjon
             </span>
             <span *ngIf="isStep3Error && viewStatus.isConfirmationRequired">
-              Banken din krever at du oppdaterer dine personalia. Vennligst gå til din nettbank før du prøver igjen.
+              Banken din krever at du oppdaterer dine personalia. Vennligst gå
+              til din nettbank før du prøver igjen.
             </span>
             <span *ngIf="isStep3Error && viewStatus.isRenewBankIdRequired">
-              Du må fornye din BankID. Vennligst forny BankID i din nettbank før du prøver igjen.
+              Du må fornye din BankID. Vennligst forny BankID i din nettbank før
+              du prøver igjen.
             </span>
             <span *ngIf="isStep3Error && viewStatus.isCrawlerError">
-              Det oppstod en feil under henting av dine lånedetaljer, vennligst prøv igjen senere
+              Det oppstod en feil under henting av dine lånedetaljer, vennligst
+              prøv igjen senere
             </span>
-            <br>
+            <br />
             <span *ngIf="isStep3InProgress && !timerExceeded">
-              (tar cirka {{thirdStepTimer}} sekunder)
+              (tar cirka {{ thirdStepTimer }} sekunder)
             </span>
             <span *ngIf="isStep3InProgress && timerExceeded">
               (Litt til, straks ferdig)
             </span>
           </rente-status-message>
-
         </div>
       </div>
 
-      <rente-button class="login-status-btn" color="primary" [type]="'stroked'" *ngIf="
-        viewStatus.isRenewBankId || 
-        viewStatus.isConfirmationRequired || 
-        viewStatus.isNotValidDataProvided || 
-        viewStatus.isCrawlerError || 
-        viewStatus.isPassphraseConfirmFail || 
-        viewStatus.isTimedOut || 
-        isNotSB1customer" (click)="returnToInput()">
+      <rente-button
+        class="login-status-btn"
+        color="primary"
+        [type]="'stroked'"
+        *ngIf="
+          viewStatus.isRenewBankId ||
+          viewStatus.isConfirmationRequired ||
+          viewStatus.isNotValidDataProvided ||
+          viewStatus.isCrawlerError ||
+          viewStatus.isPassphraseConfirmFail ||
+          viewStatus.isTimedOut ||
+          isNotSB1customer
+        "
+        (click)="returnToInput()"
+      >
         Prøv igjen
       </rente-button>
     </div>

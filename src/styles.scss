@@ -1,4 +1,50 @@
 /* You can add global styles to this file, and also import other style files */
-@import './styles/styles.scss';
+@import "./styles/styles.scss";
+@import "./styles/theme/_colors.scss";
 // @import '~@ngx-share/button/themes/default/default-theme';
 // @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+.ng-trigger-shakeAnimation {
+  padding: 20px 0;
+}
+.ng-trigger-shakeAnimation form {
+  background-color: transparent !important;
+  padding: 0;
+  max-width: unset;
+  margin: 20px 0;
+}
+
+.offers-bank button {
+  font-size: 14px !important;
+  padding: 0 15px;
+  width: 100%;
+  white-space: normal;
+}
+
+.counter.green .odometer {
+  * {
+    color: $primary !important;
+  }
+}
+.counter.black .odometer {
+  * {
+    color: $black !important;
+  }
+}
+.odometer {
+  background: transparent !important;
+  .odometer-digit {
+    padding: 0 2px !important;
+  }
+  * {
+    background: transparent !important;
+
+    background-color: transparent !important;
+    box-shadow: none !important;
+    background-image: none !important;
+    font-family: Roboto, "Helvetica Neue", Arial, sans-serif,
+      "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+      "Noto Color Emoji" !important;
+    font-weight: 900;
+    font-size: 26px !important;
+  }
+}

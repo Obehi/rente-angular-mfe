@@ -1,50 +1,53 @@
-<h3 mat-dialog-title class="text-center my-0">Vilkår for bruk av tjenesten</h3>
-<hr class="my-0">
-<div mat-dialog-content class="dialog-body">
-      <div class="text-left dialog-text">
-            <div class="mb-4">
-                  Denne tjenesten er laget for at du så enkelt som mulig skal kunne hente dine rente-og lånedata,
-                  for at
-                  vi skal kunne overvåke dine betingelser. Bruk av denne tjenesten innebærer at du logger inn hos
-                  din
-                  bank med din BankID på mobil, og gir oss i Renteradar.no (Forbrukerøkonomene AS) tilgang til din
-                  side
-                  hos din bank. Det betyr at vi får tilgang til den samme informasjonen du selv ser, dersom du
-                  logger
-                  deg inn hos din bank. Vi garanterer at vi kun bruker tilgangen du gir oss utelukkende til å
-                  hente dine
-                  rente-og lånedata, samt navn, adresse, fødselsdato/nummer og email, via krypterte
-                  kommunikasjonskanaler.
-            </div>
-            <div class="mb-4">
-                  Vi vil ikke kunne logge inn på et senere tidspunkt fordi innloggingen du gjør med BankID på
-                  mobil ikke
-                  kan gjenbrukes. For å benytte tjenesten må du oppgi telefonnummeret ditt og fødselsdato/nummer,
-                  men vi
-                  vil ikke kunne se eller få tilgang til passordet ditt.
-            </div>
+<div class="front-container">
+  <h3 mat-dialog-title class="text-center my-0">
+    Vilkår for bruk av tjenesten
+  </h3>
+  <hr class="my-0" />
+  <div mat-dialog-content class="dialog-body">
+    <div class="text-left dialog-text">
+      <div class="mb-4">
+        Denne tjenesten er laget for at du så enkelt som mulig skal kunne hente
+        dine rente-og lånedata, for at vi skal kunne overvåke dine betingelser.
+        Bruk av denne tjenesten innebærer at du logger inn hos din bank med din
+        BankID på mobil, og gir oss i Renteradar.no (Forbrukerøkonomene AS)
+        tilgang til din side hos din bank. Det betyr at vi får tilgang til den
+        samme informasjonen du selv ser, dersom du logger deg inn hos din bank.
+        Vi garanterer at vi kun bruker tilgangen du gir oss utelukkende til å
+        hente dine rente-og lånedata, samt navn, adresse, fødselsdato/nummer og
+        email, via krypterte kommunikasjonskanaler.
+      </div>
+      <div class="mb-4">
+        Vi vil ikke kunne logge inn på et senere tidspunkt fordi innloggingen du
+        gjør med BankID på mobil ikke kan gjenbrukes. For å benytte tjenesten må
+        du oppgi telefonnummeret ditt og fødselsdato/nummer, men vi vil ikke
+        kunne se eller få tilgang til passordet ditt.
+      </div>
 
-            <div class="mb-4">
-                  I tillegg til vilkårene for bruk av denne tjenesten godkjenner du også våre generelle vilkår,
-                  som du
-                  finner her:
-                  <p  class="my-0">
-                        <a [routerLink]="['/brukervilkar']" target="_blank">Brukervilkår</a>
-                  </p>
-            </div>
-            <div class="mb-2">
-                  Ved å bruke tjenesten aksepterer du også hvordan vi behandler personopplysningene dine. Du lese
-                  vår
-                  personvernerklæring som du finner her:
-                  <p  class="my-0">
-                        <a [routerLink]="['/personvernerklaering']" target="_blank">Personvernerklæring</a>
-                  </p>
-            </div>
+      <div class="mb-4">
+        I tillegg til vilkårene for bruk av denne tjenesten godkjenner du også
+        våre generelle vilkår, som du finner her:
+        <p class="my-0">
+          <a [routerLink]="['/brukervilkar']" target="_blank">Brukervilkår</a>
+        </p>
       </div>
-</div>
-<hr  class="my-0">
-<div mat-dialog-actions class="d-flex justify-content-center">
-      <div class="button-200">
-            <rente-button cdkFocusInitial color="primary" (click)="onClose()">OK</rente-button>
+      <div class="mb-2">
+        Ved å bruke tjenesten aksepterer du også hvordan vi behandler
+        personopplysningene dine. Du lese vår personvernerklæring som du finner
+        her:
+        <p class="my-0">
+          <a [routerLink]="['/personvernerklaering']" target="_blank"
+            >Personvernerklæring</a
+          >
+        </p>
       </div>
+    </div>
+  </div>
+  <hr class="my-0" />
+  <div mat-dialog-actions class="d-flex justify-content-center">
+    <div class="button-200">
+      <rente-button cdkFocusInitial color="primary" (click)="onClose()"
+        >OK</rente-button
+      >
+    </div>
+  </div>
 </div>

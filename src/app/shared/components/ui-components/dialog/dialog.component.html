@@ -1,0 +1,9 @@
+<div class="container"
+  [style.width.px]="dialogWidth">
+  <div class="title">{{title}}</div>
+  <div class="message">{{message}}</div>
+  <div class="buttons">
+      <button class="yes" (click)="onClick(true)">Ja</button>
+      <button class="no" (click)="onClick(false)">Nei</button>
+  </div>
+</div>

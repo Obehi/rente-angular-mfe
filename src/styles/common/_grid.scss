@@ -1,3 +1,17 @@
+.front-container {
+  padding: 40px 20px;
+  max-width: 1010px;
+  margin: auto;
+  background-color: white;
+  min-height: calc(100vh - 60px);
+}
+
+@media (min-width: 600px) {
+  .front-container {
+    padding: 80px;
+  }
+}
+
 // Container widths
 //
 // Set the container width, and override it for fixed navbars in media queries.
@@ -30,13 +44,12 @@
   margin-right: 0;
   margin-left: 0;
 
-  >.col,
-  >[class*="col-"] {
+  > .col,
+  > [class*="col-"] {
     padding-right: 0;
     padding-left: 0;
   }
 }
-
 
 // Columns
 //

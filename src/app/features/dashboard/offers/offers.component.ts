@@ -12,9 +12,7 @@ import { LocalStorageService } from '@services/local-storage.service';
 import { trigger, transition, style, animate, keyframes } from '@angular/animations';
 import { ChangeBankDialogComponent } from './change-bank-dialog/change-bank-dialog.component';
 import { ChangeBankServiceService } from '@services/remote-api/change-bank-service.service';
-import { MatBottomSheet } from '@angular/material';
-// import { ShareSheetComponent } from './share-sheet/share-sheet.component';
-import { timer, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { OFFERS_RESULT_TYPE } from '../../../shared/models/offers';
 
 @Component({
@@ -71,17 +69,18 @@ export class OffersComponent implements OnInit, OnDestroy {
   public isShowTips: boolean;
   public changeBankLoading: boolean;
   public subscribeShareLinkTimer: Subscription;
+  public effRateLoweredDialogVisible: boolean;
 
-  get hasLoansStatistics():boolean {
-    let res = this.offersInfo 
+  get hasLoansStatistics(): boolean {
+    const res: boolean = this.offersInfo
       && this.offersInfo.bestPercentileEffectiveRateYourBank > 0
       && this.offersInfo.bestPercentileEffectiveRateAllBanks > 0
       && this.offersInfo.medianEffectiveRateYourBank > 0
-      && this.offersInfo.medianEffectiveRateAllBanks > 0
+      && this.offersInfo.medianEffectiveRateAllBanks > 0;
     return res;
   }
 
-  get hasStatensPensjonskasseMembership():boolean {
+  get hasStatensPensjonskasseMembership(): boolean {
     return this.offersInfo && this.offersInfo.memberships && this.offersInfo.memberships.indexOf('STATENS_PENSJONSKASSE_STATLIG_ANSATT') > -1;
   }
 
@@ -90,12 +89,12 @@ export class OffersComponent implements OnInit, OnDestroy {
     public offersService: OffersService,
     public loansService: LoansService,
     private changeBankServiceService: ChangeBankServiceService,
-    // private bottomSheet: MatBottomSheet,
     private router: Router,
     private localStorageService: LocalStorageService
   ) {
     this.onResize();
     this.isShowTips = true;
+    this.effRateLoweredDialogVisible = loansService.loanState && loansService.loanState.lowerRateAvailable;
   }
 
   public ngOnDestroy(): void {
@@ -157,8 +156,24 @@ export class OffersComponent implements OnInit, OnDestroy {
   }
 
   @HostListener('window:resize', ['$event'])
-  onResize(event?) {
-    window.innerWidth <= 1024 ? this.isSmallScreen = true : this.isSmallScreen = false;
+  onResize(event: any=null) {
+    this.isSmallScreen = window.innerWidth <= 1024;
+  }
+
+  onDialogAction(answer: boolean) {
+    this.effRateLoweredDialogVisible = false;
+    if (answer === true) {
+      if (this.loansService.loanState) {
+        this.loansService.loanState.lowerRateAvailable = false;
+      }
+      this.loansService.confirmLowerRate().subscribe(res => {
+        console.log(res);
+      });
+    }
+  }
+
+  get isDialogVisble(): boolean {
+    return this.effRateLoweredDialogVisible;
   }
 
 }

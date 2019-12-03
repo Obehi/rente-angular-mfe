@@ -1,0 +1,16 @@
+.spart {
+  text-align: center;
+  h2,
+  h4 {
+    margin-bottom: 20px;
+  }
+  margin-bottom: 80px;
+}
+.counter {
+  display: block;
+  text-align: center;
+
+  ng2-odometer {
+    margin: auto;
+  }
+}

@@ -1,3 +1,18 @@
+h2 {
+  margin-bottom: 40px;
+  text-align: center;
+}
+
 rente-button {
-    display: inline-block;
+  margin-top: 20px;
+}
+rente-input,
+rente-text-area {
+  margin-bottom: 20px;
+  display: block;
+}
+rente-form-message {
+  position: relative;
+  float: right;
+  top: -60px;
 }

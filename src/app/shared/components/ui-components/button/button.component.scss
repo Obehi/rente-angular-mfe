@@ -1,44 +1,44 @@
-@import '../../../../../styles/theme/_colors.scss';
+@import "../../../../../styles/theme/_colors.scss";
+.button-wrapper {
+  display: block;
+  text-align: center;
+}
+button.mat-button {
+  min-width: 150px;
+  border-radius: 100px;
+  margin: auto;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 19px;
+  height: 56px;
+  border: none;
+  outline: none;
+  display: inline-block;
+  opacity: 1;
+  p {
+    color: white;
+  }
+  img {
+    height: 20px;
+  }
+}
+button.mat-button:hover {
+  opacity: 0.8;
+}
+button.mat-button[disabled] {
+  opacity: 0.3;
+}
 
 button.mat-primary {
-  border-radius: 4px;
-  font-family: Lato;
-  font-size: 16px;
-  font-weight: bold;
-  line-height: 19px;
-  width: 100%;
-  min-height: 40px;
-}
-
-.mat-raised-button.mat-primary {
   background-color: $primary;
-  white-space: pre-wrap;
-  font-size: 15px !important;
 }
-
-.change-bank-button-mobile button.mat-primary {
-  min-height: 60px !important;
+.mat-button.mat-primary {
+  color: white !important;
 }
-
-.disabled-button {
-  border-radius: 4px;
-  background-color: $green !important;
-
-  .mat-button-wrapper {
-    color: $white !important;
-  }
+button.mat-blue {
+  background-color: $blue;
+  width: 100%;
 }
-
-.mat-stroked-button.mat-primary {
-  border-color: $primary;
-  color: $primary;
-  border-width: 2px;
-  white-space: normal;
-  &:hover {
-    background-color: $gray-300;
-  }
-}
-
 .loading-icon {
   animation: spin 2s infinite linear;
   display: inline-block;

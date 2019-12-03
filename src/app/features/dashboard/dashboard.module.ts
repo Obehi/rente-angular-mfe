@@ -36,6 +36,7 @@ import { ShareSheetComponent } from './offers/share-sheet/share-sheet.component'
 // import { ShareButtonModule } from '@ngx-share/button';
 import { VirdiStatisticsComponent } from './house/virdi-statistics/virdi-statistics.component';
 import { OffersStatisticsComponent } from './offers/offers-statistics/offers-statistics.component';
+import { DialogComponent } from '../../shared/components/ui-components/dialog/dialog.component';
 // TODO: ADD separate module for material import
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { OffersStatisticsComponent } from './offers/offers-statistics/offers-sta
     SuccessChangeBankDialogComponent,
     ShareSheetComponent,
     VirdiStatisticsComponent,
-    OffersStatisticsComponent
+    OffersStatisticsComponent,
+    DialogComponent
   ],
   imports: [
     CommonModule,

@@ -1,10 +1,25 @@
-<div class="input-block" [ngClass]="{'error': errorStateMatcher}">
+<div class="input-block" [ngClass]="{ error: errorStateMatcher }">
   <mat-form-field class="example-full-width">
     <div *ngIf="mask; else noMask">
-        <input matInput type="{{type}}" [placeholder]="placeholder" [errorStateMatcher]="matcher" [ngModelOptions]="modelOptions" [(ngModel)]="value" [textMask]="mask">
+      <input
+        matInput
+        type="{{ type }}"
+        [placeholder]="placeholder"
+        [errorStateMatcher]="matcher"
+        [ngModelOptions]="modelOptions"
+        [(ngModel)]="value"
+        [textMask]="mask"
+      />
     </div>
     <ng-template #noMask>
-        <input matInput type="{{type}}" [placeholder]="placeholder" [errorStateMatcher]="matcher" [ngModelOptions]="modelOptions" [(ngModel)]="value">
+      <input
+        matInput
+        type="{{ type }}"
+        [placeholder]="placeholder"
+        [errorStateMatcher]="matcher"
+        [ngModelOptions]="modelOptions"
+        [(ngModel)]="value"
+      />
     </ng-template>
   </mat-form-field>
 </div>

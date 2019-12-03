@@ -2,11 +2,14 @@ import { Injectable } from '@angular/core';
 import { GenericHttpService } from '@services/generic-http.service';
 import { API_URL_MAP } from '@config/api-url-config';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoansService {
+
+  loanState: LoanStateDto;
 
   constructor(private http: GenericHttpService) { }
 
@@ -35,7 +38,7 @@ export class LoansService {
     return this.http.get(url);
   }
 
-  public getAddresses():Observable<any> {
+  public getAddresses(): Observable<any> {
     const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.address}`;
     return this.http.get(url);
   }
@@ -65,22 +68,41 @@ export class LoansService {
     return this.http.put(url, loanData);
   }
 
-  public getPropertyValue():Observable<any> {
+  public getPropertyValue(): Observable<any> {
     const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.property}${API_URL_MAP.loan.value}`;
     return this.http.get(url);
   }
-  public getEstimatedPropertValue():Observable<any> {
+  public getEstimatedPropertValue(): Observable<any> {
     const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.property}${API_URL_MAP.loan.estimatedValue}`;
     return this.http.get(url);
   }
 
-  public getLoansAndRateType() {
+  public getLoansAndRateType(): Observable<LoanStateDto> {
     const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.loans.base}${API_URL_MAP.loan.loans.state}`;
-    return this.http.get(url);
+    return this.http.get(url).pipe(
+        map(res => Object.assign(new LoanStateDto(), res))
+    );
   }
 
   public getExtendedInfo() {
     const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.property}${API_URL_MAP.loan.extendedInfo}`;
     return this.http.get(url);
   }
+
+  public getLoanStatistics() {
+    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.statistics}`;
+    return this.http.get(url);
+  }
+
+  public confirmLowerRate(): Observable<any> {
+    const url = `${API_URL_MAP.loan.base}/lower-rate/confirm`;
+    return this.http.post(url, null);
+  }
+
+}
+
+export class LoanStateDto {
+  isAggregatedRateTypeFixed: boolean;
+  loansPresent: boolean;
+  lowerRateAvailable: boolean;
 }

@@ -1,49 +1,55 @@
 <div class="my-2 my-lg-5 row justify-content-center" *ngIf="preferencesForm" [@shakeAnimation]>
   <div class="col-lg-7 col-12">
     <div class="bg-wrap">
-      <h5 class="mt-0">Hvor ofte skal vi sjekke renten du har?</h5>
+      <h2 class="mt-0">Hvor ofte skal vi sjekke renten du har?</h2><br/>
+
       <p>Renteradar.no overvåker kontinuerlig markedet for bedre rente enn det du har på lånet ditt. Renten du har på
         lånet ditt sjekkes og oppdateres ved at du identifiserer deg med BankID. Det er viktig at dette gjøres fra tid
         til annen for at eventuelle renteendringer på lånet ditt skal fanges opp</p>
 
       <form [formGroup]="preferencesForm" novalidate>
-        <div class="mb-2">
+        <div class="mb-3">
           <mat-radio-group formControlName="checkRateReminderType" class="d-flex flex-column">
-            <mat-radio-button value="HVER_MANED_1" class="mb-2">Hver måned</mat-radio-button>
-            <mat-radio-button value="HVER_MANED_2" class="mb-2">Hver 2. måned</mat-radio-button>
-            <mat-radio-button value="HVER_MANED_3" class="mb-2">Hver 3. måned</mat-radio-button>
-            <mat-radio-button value="HVER_MANED_4" class="mb-2">Hver 4. måned</mat-radio-button>
+            <mat-radio-button value="HVER_MANED_1" class="mb-2"><span class="mat-radio-label">Hver måned</span></mat-radio-button>
+            <mat-radio-button value="HVER_MANED_2" class="mb-2"><span class="mat-radio-label">Hver 2. måned</span></mat-radio-button>
+            <mat-radio-button value="HVER_MANED_3" class="mb-2"><span class="mat-radio-label">Hver 3. måned</span></mat-radio-button>
+            <mat-radio-button value="HVER_MANED_4" class="mb-2"><span class="mat-radio-label">Hver 4. måned</span></mat-radio-button>
           </mat-radio-group>
         </div>
 
-        <div class="mb-2">
-          <h5 class="mt-0">Kun rammelån/boligkreditt:</h5>
-
+        <div class="mb-3">
+          <h3 class="mt-0 mb-2">Kun rammelån/boligkreditt:</h3>
           <mat-radio-group formControlName="fetchCreditLinesOnly" class="d-flex flex-column">
-            <mat-radio-button [value]="false" class="mb-2"><span class="text-wrap">Jeg er ikke avhengig av
-                rammelån/boligkreditt</span></mat-radio-button>
-            <mat-radio-button [value]="true" class="mb-2"><span class="text-wrap">Jeg er avhengig av å ha et
-                rammelån/boligkreditt og vil kun ha overvåkning denne type lån</span></mat-radio-button>
+            <mat-radio-button [value]="false" class="mb-2"><span class="mat-radio-label">
+              Jeg er ikke avhengig av rammelån/boligkreditt</span>
+            </mat-radio-button>
+            <mat-radio-button [value]="true" class="mb-2"><span class="mat-radio-label">
+              Jeg er avhengig av å ha et rammelån/boligkreditt og vil kun ha overvåkning denne type lån</span>
+            </mat-radio-button>
           </mat-radio-group>
         </div>
 
-        <div class="mb-2">
-          <h5 class="mt-0">Krav om andre produkter (e.g. lønnskonto):</h5>
-
+        <div class="mb-3">
+          <h3 class="mt-0 mb-2">Krav om andre produkter (e.g. lønnskonto):</h3>
           <mat-radio-group formControlName="noAdditionalProductsRequired" class="d-flex flex-column">
-            <mat-radio-button [value]="false" class="mb-2"><span class="text-wrap">Jeg vil sammenligne mine betingelser
-                med andre tilbud uavhengig om de krever andre produkter</span></mat-radio-button>
-            <mat-radio-button [value]="true" class="mb-2"><span class="text-wrap">Jeg vil kun sammenligne mine
-                betingelser med tilbud som ikke krever andre produkter</span></mat-radio-button>
+            <mat-radio-button [value]="false" class="mb-2"><span class="mat-radio-label">
+              Jeg vil sammenligne mine betingelser med andre tilbud uavhengig om de krever andre produkter</span>
+            </mat-radio-button>
+            <mat-radio-button [value]="true" class="mb-2"><span class="mat-radio-label">
+              Jeg vil kun sammenligne mine betingelser med tilbud som ikke krever andre produkter</span>
+            </mat-radio-button>
           </mat-radio-group>
         </div>
 
         <div class="mb-2">
-          <h5 class="mt-0">Grønne-/miljøboliglån:</h5>
-
+          <h3 class="mt-0 mb-2">Grønne-/miljøboliglån:</h3>
           <mat-radio-group formControlName="interestedInEnvironmentMortgages" class="d-flex flex-column">
-            <mat-radio-button [value]="false" class="mb-2"><span class="text-wrap">Jeg er ikke interessert i lån som forutsetter energiklasse A eller B, nullhus, Svanemerket, tiltak for energimerking, etc.</span></mat-radio-button>
-            <mat-radio-button [value]="true" class="mb-2"><span class="text-wrap">Jeg er interessert i lån som forutsetter energiklasse A eller B, nullhus, Svanemerket, tiltak for energimerking, etc.</span></mat-radio-button>
+            <mat-radio-button [value]="false" class="mb-2"><span class="mat-radio-label">
+              Jeg er ikke interessert i lån som forutsetter energiklasse A eller B, nullhus, Svanemerket, tiltak for energimerking, etc.</span>
+            </mat-radio-button>
+            <mat-radio-button [value]="true" class="mb-2"><span class="mat-radio-label">
+              Jeg er interessert i lån som forutsetter energiklasse A eller B, nullhus, Svanemerket, tiltak for energimerking, etc.</span>
+            </mat-radio-button>
           </mat-radio-group>
         </div>
 
@@ -51,13 +57,10 @@
           <div class="col-12 col-sm-6 ">
             <rente-button color="primary" (click)="updatePreferances()" [isLoading]="isLoading" [disabled]="isLoading">
               Lagre</rente-button>
-            <small class="form-text text-muted">Husk å lagre ved endringer</small>
+            <small class="form-text text-muted reminder mt-3">Husk å lagre ved endringer</small>
           </div>
         </div>
-
       </form>
-
-
     </div>
   </div>
 </div>

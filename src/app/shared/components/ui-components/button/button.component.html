@@ -1,12 +1,34 @@
-<button *ngIf="type === 'raised'" mat-raised-button [color]="color" [disabled]="disabled" (click)="clickEvent()"
-        [routerLink]="routerLink">
-        <ng-container *ngTemplateOutlet="content"></ng-container>
-        <mat-icon class="loading-icon" *ngIf="isLoading">sync</mat-icon>
+<!-- <button
+  *ngIf="type === 'raised'"
+  mat-raised-button
+  [color]="color"
+  [disabled]="disabled"
+  (click)="clickEvent()"
+  [routerLink]="routerLink"
+>
+  <ng-container *ngTemplateOutlet="content"></ng-container>
+  <mat-icon class="loading-icon" *ngIf="isLoading">sync</mat-icon>
 </button>
-<button *ngIf="type === 'stroked'" mat-stroked-button [disabled]="disabled" [color]="color" (click)="clickEvent()">
-        <ng-container *ngTemplateOutlet="content"></ng-container>
-        <mat-icon class="loading-icon" *ngIf="isLoading">sync</mat-icon>
-</button>
-<ng-template #content>
-        <ng-content></ng-content>
-</ng-template>
+<button
+  *ngIf="type === 'stroked'"
+  mat-stroked-button
+  [disabled]="disabled"
+  [color]="color"
+  (click)="clickEvent()"
+>
+  <ng-container *ngTemplateOutlet="content"></ng-container>
+  <mat-icon class="loading-icon" *ngIf="isLoading">sync</mat-icon>
+</button> -->
+<div class="button-wrapper">
+  <button
+    mat-button
+    [color]="color"
+    [disabled]="disabled"
+    (click)="clickEvent()"
+  >
+    <ng-container *ngTemplateOutlet="content"></ng-container>
+  </button>
+  <ng-template #content>
+    <ng-content></ng-content>
+  </ng-template>
+</div>

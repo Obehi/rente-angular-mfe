@@ -1,85 +1,64 @@
-@import '../theme/variables';
-
-@mixin text-style($size, $line-height) {
-  font-size: $size;
+h1 {
+  font-size: 30px;
+  font-weight: 900;
+  line-height: 1.2;
   color: $black;
-  font-family: Lato;
-  line-height: $line-height;
-}
-
-h1, h2, h3, h4, h5, h6,
-.h1, .h2, .h3, .h4, .h5, .h6 {
-  margin-bottom: $headings-margin-bottom;
-  font-family: $headings-font-family;
-  font-weight: $headings-font-weight;
-  line-height: $headings-line-height;
-  color: $headings-color;
-}
-
-
-
-h1, .h1 { font-size: $h1-font-size; }
-h2, .h2 { font-size: $h2-font-size; }
-h3,
-.h3 {
-  @include text-style(30px, 36px);
-  font-weight: $font-weight-bold;
-
-  @media (max-width:991px) {
-    @include text-style(24px, 28px);
-    margin: $headings-margin-bottom;
+  margin-bottom: 40px;
+  span {
+    color: $primary;
+    position: relative;
+    &:after {
+      content: "";
+      background-color: $black;
+      height: 4px;
+      width: 100%;
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      right: 0;
+    }
   }
 }
-h4, .h4 { 
-  @include text-style(20px, 24px);
-  font-weight: $font-weight-bold;
-  @media (max-width:991px) {
-    @include text-style(16px, 20px);
-  }
- }
-h5, .h5 { font-size: $h5-font-size; }
-h6, .h6 { font-size: $h6-font-size; }
-
-.popup-title {
-  color: $color-white-100;
-  font-size: $size-font-popup-title;
-  line-height: 33px;
-  font-weight: bold;
-
-  &.inverted {
-    color: $color-dark-100;
-  }
+h2.primary {
+  color: $primary;
+}
+h2 {
+  font-size: 26px;
+  font-weight: 900;
+  line-height: 1.2;
+  color: $black;
 }
 
-.dialog-title {
-  color: $color-text-dialogue-title;
-  font-size: 22px;
-  font-weight: bold;
-
-  &.inverted {
-    color: $color-white-100;
-  }
+h3 {
+  font-size: 18px;
+  line-height: 1.5;
+  color: $black;
+  font-weight: 500;
 }
 
+h4 {
+  font-size: 18px;
+  line-height: 1.5;
+  color: $black;
+  font-weight: 300;
+}
 p {
-  @media (max-width:991px) {
-    margin: 5px 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: $black;
+  font-weight: 300;
+}
+a {
+  font-weight: 300;
+}
+@media (min-width: 600px) {
+  h1 {
+    font-size: 40px;
+    span {
+      &:after {
+        height: 8px;
+        bottom: -10px;
+      }
+    }
   }
 }
-
-// .title {
-//   color: $dark;
-//   font-family: Lato;	
-//   font-size: 30px;	
-//   font-weight: bold;	
-//   letter-spacing: 0.5px;	
-//   line-height: 36px;
-//   white-space: normal;
-// }
-
-
-// @media (max-width: 960px) {
-//   .title{
-//       font-size: 24px;
-//   }
-// }
