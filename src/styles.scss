@@ -3,8 +3,19 @@
 @import "./styles/theme/_colors.scss";
 // @import '~@ngx-share/button/themes/default/default-theme';
 // @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+.ng-trigger-shakeAnimation {
+  padding: 20px 0;
+}
+.ng-trigger-shakeAnimation form {
+  background-color: transparent !important;
+  padding: 0;
+  max-width: unset;
+  margin: 20px 0;
+}
+
 .offers-bank button {
-  font-size: 12px !important;
+  font-size: 14px !important;
+  padding: 0 15px;
   width: 100%;
   white-space: normal;
 }

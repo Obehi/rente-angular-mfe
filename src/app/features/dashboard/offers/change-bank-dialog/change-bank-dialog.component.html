@@ -1,68 +1,97 @@
 <h3 mat-dialog-title class="text-left my-0">Melding til din bank:</h3>
-<hr class="my-0">
+<hr class="my-0" />
 <div mat-dialog-content class="dialog-body">
-    <p>
-        Hei,
-    </p>
-    <div class="my-3">
-        Jeg er kunde i banken i dag, men jeg har funnet et bedre tilbud på renteradar.no og vurderer å bytte. Før jeg
-        går
-        videre lurer jeg på om dere kan matche tilbudet?
+  <p>
+    Hei,
+  </p>
+  <div class="my-3">
+    Jeg er kunde i banken i dag, men jeg har funnet et bedre tilbud på
+    renteradar.no og vurderer å bytte. Før jeg går videre lurer jeg på om dere
+    kan matche tilbudet?
+  </div>
+  <div class="text-left dialog-text">
+    <div>
+      <u><b>Opplysninger om tilbud:</b></u
+      ><span></span>
     </div>
-    <div class="text-left dialog-text">
-        <div><u><b>Opplysninger om tilbud:</b></u><span></span></div>
-        <div><b>Lånebeløp: </b>{{data.preview.totalOutstandingDebt | number: '0.0-0'}} kr</div>
-        <div><b>Boligverdi: </b>{{data.preview.propertyValue | number: '1.0-0'}} kr</div>
-        <div><b>Nedbetalingstid: </b>{{data.preview.averageRemainingYears | round}} år</div>
-        <div><b>Min alder: </b> {{data.preview.clientInfo.age | number: '1.0-0'}} år</div>
-        <div><b>Bank: </b> {{data.preview.bankName}}</div>
-        <div><b>Produktnavn: </b>{{data.preview.productName}}</div>
-        <div><b>Nominell rente: </b>{{data.preview.nominalRate | number: '1.2-2'}}%</div>
-        <div><b>Effektiv rente: </b>{{data.preview.effectiveRate | number: '1.2-2'}}%</div>
-        <div class="mb-4"> <b>Produkt: </b>
-            <a href="{{data.preview.offerUrl}}" target="_blank"> Link til produkt på Finansportalen </a>
-        </div>
-        <div><u><b>Opplysninger om meg:</b></u><span></span></div>
-        <div><b>Navn: </b>{{data.preview.clientInfo.name}}</div>
-        <div><b>Adresse: </b>{{data.preview.clientInfo.address}}</div>
-        <div><b>Postnr: </b>{{data.preview.clientInfo.zip}}</div>
-        <div><b>Telefon: </b>{{data.preview.clientInfo.phone}}</div>
-        <div class="mb-4"><b>E-post: </b>{{data.preview.clientInfo.email}}
-        </div>
-        <div class="mb-4">
-            Jeg ønsker at dere kontakter meg per epost eller per telefon.
-        </div>
-        <div class="mb-4">
-            Jeg bekrefter at jeg er over 18 år og myndig eller oppnevnt som verge, samt at banken ved behov kan foreta
-            en
-            kredittvurdering.
-        </div>
-        <div class="mb-4">
-            Mvh,<br>
-            {{data.preview.clientInfo.name}}
-        </div>
+    <div>
+      <b>Lånebeløp: </b
+      >{{ data.preview.totalOutstandingDebt | number: "0.0-0" }} kr
     </div>
+    <div>
+      <b>Boligverdi: </b>{{ data.preview.propertyValue | number: "1.0-0" }} kr
+    </div>
+    <div>
+      <b>Nedbetalingstid: </b
+      >{{ data.preview.averageRemainingYears | round }} år
+    </div>
+    <div>
+      <b>Min alder: </b> {{ data.preview.clientInfo.age | number: "1.0-0" }} år
+    </div>
+    <div><b>Bank: </b> {{ data.preview.bankName }}</div>
+    <div><b>Produktnavn: </b>{{ data.preview.productName }}</div>
+    <div>
+      <b>Nominell rente: </b>{{ data.preview.nominalRate | number: "1.2-2" }}%
+    </div>
+    <div>
+      <b>Effektiv rente: </b>{{ data.preview.effectiveRate | number: "1.2-2" }}%
+    </div>
+    <div class="mb-4">
+      <b>Produkt: </b>
+      <a href="{{ data.preview.offerUrl }}" target="_blank">
+        Link til produkt på Finansportalen
+      </a>
+    </div>
+    <div>
+      <u><b>Opplysninger om meg:</b></u
+      ><span></span>
+    </div>
+    <div><b>Navn: </b>{{ data.preview.clientInfo.name }}</div>
+    <div><b>Adresse: </b>{{ data.preview.clientInfo.address }}</div>
+    <div><b>Postnr: </b>{{ data.preview.clientInfo.zip }}</div>
+    <div><b>Telefon: </b>{{ data.preview.clientInfo.phone }}</div>
+    <div class="mb-4"><b>E-post: </b>{{ data.preview.clientInfo.email }}</div>
+    <div class="mb-4">
+      Jeg ønsker at dere kontakter meg per epost eller per telefon.
+    </div>
+    <div class="mb-4">
+      Jeg bekrefter at jeg er over 18 år og myndig eller oppnevnt som verge,
+      samt at banken ved behov kan foreta en kredittvurdering.
+    </div>
+    <div class="mb-4">
+      Mvh,<br />
+      {{ data.preview.clientInfo.name }}
+    </div>
+  </div>
 </div>
-<hr class="my-0">
+<hr class="my-0" />
 <p class="info-message my-1">
-    Meldingen sendes til din bank per mail med deg som avsender. Du får også en kopi av meldingen i din innboks. Ønsker
-    du å kontakte din bank direkte kan du kopiere teksten og bruke den som utgangspunkt for dialog.
+  Meldingen sendes til din bank per mail med deg som avsender. Du får også en
+  kopi av meldingen i din innboks. Ønsker du å kontakte din bank direkte kan du
+  kopiere teksten og bruke den som utgangspunkt for dialog.
 </p>
 <form [formGroup]="confirmForm" novalidate>
-    <mat-checkbox formControlName="confirmation" (change)="isConfirmed = $event.checked">
-        Jeg bekrefter at jeg er over 18 år og myndig eller oppnevnt som verge, samt at banken ved behov kan foreta en
-        kredittvurdering.
-    </mat-checkbox>
-    <div mat-dialog-actions class="row justify-content-center">
-        <div class="col-8 col-lg-6">
-            <rente-button color="primary" [isLoading]="isLoading" [disabled]="!isConfirmed || isLoading"
-                (click)="sendRequest()">Send til banken
-            </rente-button>
-        </div>
-        <div class="col-4 col-lg-2">
-            <rente-button color="primary" (click)="close()">
-                Avbryt
-            </rente-button>
-        </div>
+  <mat-checkbox
+    formControlName="confirmation"
+    (change)="isConfirmed = $event.checked"
+  >
+    Jeg bekrefter at jeg er over 18 år og myndig eller oppnevnt som verge, samt
+    at banken ved behov kan foreta en kredittvurdering.
+  </mat-checkbox>
+  <div mat-dialog-actions class="row justify-content-center">
+    <div>
+      <rente-button
+        color="primary"
+        [isLoading]="isLoading"
+        [disabled]="!isConfirmed || isLoading"
+        (click)="sendRequest()"
+        >Send til banken
+      </rente-button>
     </div>
+    <div>
+      <rente-button color="primary" (click)="close()">
+        Avbryt
+      </rente-button>
+    </div>
+  </div>
 </form>
