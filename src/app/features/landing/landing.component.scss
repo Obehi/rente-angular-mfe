@@ -79,12 +79,11 @@ h3 {
     max-width: 300px;
   }
 }
+
 .horizontal-scroll {
   overflow: scroll;
   -webkit-overflow-scrolling: touch;
   white-space: nowrap;
-  margin-left: -20px;
-  padding-left: 20px;
   width: calc(100% + 40px);
 
   &::-webkit-scrollbar {
@@ -104,6 +103,7 @@ h3 {
   }
 
 }
+
 .articles {
   margin-bottom: 80px;
   &:last-of-type {
@@ -147,12 +147,17 @@ a {
     border-right: 20px solid white;
     vertical-align: top;
     position: relative;
-    *,
-    h3 {
-      text-align: center;
+    text-align: center;
+    font-size: 18px;
+    line-height: 1.5;
+    color: $blue;
+    font-weight: 300;
+    .quote {
+      height: 150px;
     }
-    h4 {
-      margin-bottom: 20px;
+    .name {
+      font-weight: 500;
+      width: 100%;
     }
     .bilde {
       height: 80px;
@@ -162,17 +167,7 @@ a {
       display: block;
       margin: auto;
       border-radius: 100%;
-
       margin-bottom: 10px;
-    }
-    .align-bottom {
-      position: absolute;
-      bottom: 0;
-      left: 20px;
-      right: 20px;
-    }
-    .hide {
-      opacity: 0;
     }
   }
 }
