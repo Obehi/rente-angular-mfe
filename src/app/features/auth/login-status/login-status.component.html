@@ -87,18 +87,10 @@
               Vi får beskjed om at du ikke er kunde i banken. Har du valgt
               riktig bank?
             </span>
-            <span
-              *ngIf="
-                !viewStatus.isPassphraseConfirmSuccess &&
-                !viewStatus.isCrawlerError &&
-                !isNotSB1customer
-              "
-            >
-              Hent rente- oglånedata
+            <span *ngIf="!viewStatus.isPassphraseConfirmSuccess && !viewStatus.isCrawlerError && !isNotSB1customer">
+              Hent rente og lånedata
             </span>
-            <span
-              *ngIf="!isStep3Error && viewStatus.isPassphraseConfirmSuccess"
-            >
+            <span *ngIf="!isStep3Error && viewStatus.isPassphraseConfirmSuccess" >
               Vi henter din rente og låneinformasjon
             </span>
             <span *ngIf="isStep3Error && viewStatus.isConfirmationRequired">
