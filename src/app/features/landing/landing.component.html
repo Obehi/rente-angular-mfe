@@ -1,13 +1,11 @@
 <div class="front-container">
-  <div class="intro">
-    <h1>Få den beste <span>boliglånsrenten</span></h1>
-    <h4>
-      Sammenlign boliglånet ditt mot markedets beste tilbud kjapt, enkelt og
-      gratis.
-    </h4>
+  <div class="intro"
+    [style.margin-bottom.px]="isMobile ? 20 : 80">
+    <h1 [style.margin-bottom.px]="isMobile ? 20 : 40"
+      >Få den beste <span>boliglånsrenten</span></h1>
+    <h4>Sammenlign boliglånet ditt mot markedets beste tilbud - kjapt, enkelt og gratis!</h4>
   </div>
-
-  <h3>Velg banken du har boliglån i:</h3>
+  <h3>Start med å velge banken du har boliglån i:</h3>
   <div class="bank-buttons">
     <rente-button color="blue" [routerLink]="'/autentisering/sparebank1-sub'">
       <img
@@ -18,14 +16,12 @@
     <rente-button color="blue" [routerLink]="'/autentisering/bank/nordea'">
       <img
         src="../../../assets/img/banks-logo/nordea.svg"
-        style="height: 16px;"
         alt="Nordea logo"
       />
     </rente-button>
     <rente-button color="blue" [routerLink]="'/autentisering/bank/dnb'">
       <img
         src="../../../assets/img/banks-logo/dnb.svg"
-        style="height: 26px;"
         alt="DNB logo"
       />
     </rente-button>
@@ -107,7 +103,7 @@
     </div>
   </div>
 
-  <h3>Velg banken du har boliglån i:</h3>
+  <h3>Start med å velge banken du har boliglån i:</h3>
   <div class="bank-buttons" style="margin-bottom: 80px;">
     <rente-button color="blue" [routerLink]="'/autentisering/sparebank1-sub'">
       <img

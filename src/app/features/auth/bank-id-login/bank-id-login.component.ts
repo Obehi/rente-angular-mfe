@@ -81,7 +81,6 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
         }
 
         this.userBank = BANK_MAP[params.bankName];
-        console.log(this.userBank);
         this.bankLogo = this.userBank.bankIcon;
         this.isSsnBankLogin = BANK_MAP[params.bankName].isSSN;
         this.setBankIdForm();
