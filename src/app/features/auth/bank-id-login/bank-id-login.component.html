@@ -1,8 +1,9 @@
 <div class="front-container">
   <section *ngIf="!isLoginStarted && bankIdForm" class="login">
     <h2>Logg inn med BankID på mobil</h2>
-    <h4>Renteradar henter renten og dine lånedetaljer automatisk med BankID på Mobil.</h4>
-    <h4>Vi støtter kun BankID på Mobil, ikke kodebrikke eller engangskode appen.</h4>
+    <h4>Renteradar henter lånedetaljer og renten din automatisk med BankID på Mobil.</h4>
+    <h4 *ngIf="isSB1Bank">Vi støtter kun BankID på Mobil, ikke kodebrikke eller engangskode appen.</h4>
+    <h4 *ngIf="!isSB1Bank">Vi støtter kun BankID på Mobil, ikke kodebrikke og passord.</h4>
     <form
       class="mt-5"
       [formGroup]="bankIdForm"
