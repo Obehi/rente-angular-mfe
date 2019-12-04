@@ -16,7 +16,6 @@ h3 {
 }
 
 .intro {
-  margin-bottom: 80px;
   h4 {
     max-width: 250px;
     margin: auto;
@@ -31,15 +30,11 @@ h3 {
   max-width: 600px;
 }
 .data-logos {
-  display: grid;
-  grid-gap: 20px;
-  grid-template-columns: calc(50% - 10px) calc(50% - 10px);
-  margin: auto;
-  max-width: 300px;
-  margin-bottom: 80px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
   img {
-    margin: auto;
-    height: 30px;
+    margin: 0 35px;
   }
 }
 
@@ -84,14 +79,31 @@ h3 {
     max-width: 300px;
   }
 }
+
 .horizontal-scroll {
   overflow: scroll;
   -webkit-overflow-scrolling: touch;
   white-space: nowrap;
-  margin-left: -20px;
-  padding-left: 20px;
   width: calc(100% + 40px);
+
+  &::-webkit-scrollbar {
+    -webkit-appearance: none;
+  }
+  &::-webkit-scrollbar:horizontal {
+      height: 11px;
+  }
+  &::-webkit-scrollbar-thumb {
+      border-radius: 8px;
+      border: 2px solid white;
+      background-color: rgba(0, 0, 0, .5);
+  }
+  &::-webkit-scrollbar-track {
+      background-color: #fff;
+      border-radius: 8px;
+  }
+
 }
+
 .articles {
   margin-bottom: 80px;
   &:last-of-type {
@@ -135,12 +147,17 @@ a {
     border-right: 20px solid white;
     vertical-align: top;
     position: relative;
-    *,
-    h3 {
-      text-align: center;
+    text-align: center;
+    font-size: 18px;
+    line-height: 1.5;
+    color: $blue;
+    font-weight: 300;
+    .quote {
+      height: 150px;
     }
-    h4 {
-      margin-bottom: 20px;
+    .name {
+      font-weight: 500;
+      width: 100%;
     }
     .bilde {
       height: 80px;
@@ -150,17 +167,7 @@ a {
       display: block;
       margin: auto;
       border-radius: 100%;
-
       margin-bottom: 10px;
-    }
-    .align-bottom {
-      position: absolute;
-      bottom: 0;
-      left: 20px;
-      right: 20px;
-    }
-    .hide {
-      opacity: 0;
     }
   }
 }

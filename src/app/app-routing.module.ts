@@ -85,7 +85,7 @@ const routes: Routes = [
       }
     }
   },
-  {
+  /*{
     path: ROUTES_MAP.bankSelect, component: BankSelectComponent,
     data: {
       title: customMeta.velgbankTitle,
@@ -94,7 +94,7 @@ const routes: Routes = [
         description: customMeta.velgbankDescription
       }
     }
-  },
+  },*/
   {
     path: ROUTES_MAP.initConfirmation, component: InitConfirmationComponent,
     data: {

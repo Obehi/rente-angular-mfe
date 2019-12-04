@@ -1,16 +1,16 @@
-import { Component, OnInit, Inject } from "@angular/core";
-import { Router, NavigationEnd, ActivatedRoute } from "@angular/router";
-import { Subscription } from "rxjs";
-import { MetaService } from "@shared/services/meta.service";
-import { TitleService } from "@services/title.service";
+import { Component, OnInit } from '@angular/core';
+import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { MetaService } from '@shared/services/meta.service';
+import { TitleService } from '@services/title.service';
 
 @Component({
-  selector: "rente-root",
-  templateUrl: "./app.component.html",
-  styleUrls: ["./app.component.scss"]
+  selector: 'rente-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  public title = "rente-front-end";
+  public title = 'rente-front-end';
   public navigationSubscription: Subscription;
 
   constructor(
@@ -30,7 +30,7 @@ export class AppComponent implements OnInit {
         this.changeTitles();
         if ((window as any).dataLayer) {
           (window as any).dataLayer.push({
-            event: "virtualPageView",
+            event: 'virtualPageView',
             url: window.location.href
           });
         }
@@ -40,7 +40,9 @@ export class AppComponent implements OnInit {
 
   private changeTitles(): void {
     let data = this.route.root.firstChild.snapshot.data;
-    if (!data.title) {
+    if (!data.title && this.route.root.firstChild
+        && this.route.root.firstChild.firstChild
+        && this.route.root.firstChild.firstChild.firstChild) {
       data = this.route.root.firstChild.firstChild.firstChild.snapshot.data;
     }
     const title = data.title;
