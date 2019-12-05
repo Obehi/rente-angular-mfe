@@ -167,12 +167,8 @@ export class OffersComponent implements OnInit, OnDestroy {
   onDialogAction(answer: boolean) {
     this.effRateLoweredDialogVisible = false;
     if (answer === true) {
-      if (this.loansService.loanState) {
-        this.loansService.loanState.lowerRateAvailable = false;
-      }
-      this.loansService.confirmLowerRate().subscribe(res => {
-        console.log(res);
-      });
+        UserService.lowerRateAvailable.next(false);
+        this.loansService.confirmLowerRate().subscribe(res => {});
     }
   }
 
