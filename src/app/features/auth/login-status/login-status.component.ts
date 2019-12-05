@@ -14,7 +14,7 @@ import {
   BANKID_TIMEOUT_TIME,
   MESSAGE_STATUS
 } from './login-status.config';
-import { Subscription, interval, Observable, timer, forkJoin, BehaviorSubject } from 'rxjs';
+import { Subscription, interval, Observable, timer, forkJoin } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { UserService } from '@services/remote-api/user.service';
@@ -277,12 +277,11 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
           case BANKID_STATUS.LOANS_PERSISTED:
             this.viewStatus.isLoansPersisted = true;
             const user = response.data.user;
-
             this.authService.loginWithToken(user.phone, user.oneTimeToken).subscribe(res => {
               forkJoin([this.loansService.getLoansAndRateType(), this.userService.getUserInfo()])
                 .subscribe(([rateAndLoans, userInfo]) => {
                   this.loginStep3Status = MESSAGE_STATUS.SUCCESS;
-                  UserService.lowerRateAvailable.next(rateAndLoans.lowerRateAvailable);
+                  this.userService.lowerRateAvailable.next(rateAndLoans.lowerRateAvailable);
                   if (!rateAndLoans.loansPresent) {
                     this.localStorageService.setItem('noLoansPresent', true);
                     this.router.navigate(['/dashboard/ingenlaan']);

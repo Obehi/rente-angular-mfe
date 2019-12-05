@@ -91,13 +91,18 @@ export class OffersComponent implements OnInit, OnDestroy {
     public loansService: LoansService,
     private changeBankServiceService: ChangeBankServiceService,
     private router: Router,
-    private localStorageService: LocalStorageService
+    private localStorageService: LocalStorageService,
+    private userService: UserService
   ) {
     this.onResize();
     this.isShowTips = true;
-    UserService.lowerRateAvailable.subscribe(value => {
+    userService.lowerRateAvailable.subscribe(value => {
+      console.log('OffersComponent, lowerRateAvailable2=', value);
       if (value) {
+        console.log(' > set effRateLoweredDialogVisible', true);
         this.effRateLoweredDialogVisible = value;
+      } else {
+        console.log(' > set effRateLoweredDialogVisible', false);
       }
     });
   }
@@ -167,7 +172,7 @@ export class OffersComponent implements OnInit, OnDestroy {
   onDialogAction(answer: boolean) {
     this.effRateLoweredDialogVisible = false;
     if (answer === true) {
-        UserService.lowerRateAvailable.next(false);
+        this.userService.lowerRateAvailable.next(false);
         this.loansService.confirmLowerRate().subscribe(res => {});
     }
   }

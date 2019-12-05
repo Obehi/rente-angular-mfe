@@ -8,7 +8,7 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class UserService {
 
-  public static lowerRateAvailable: BehaviorSubject<boolean> = new BehaviorSubject(false);
+  public lowerRateAvailable: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
   constructor(private http: GenericHttpService) { }
 
