@@ -9,8 +9,6 @@ import { map } from 'rxjs/operators';
 })
 export class LoansService {
 
-  loanState: LoanStateDto;
-
   constructor(private http: GenericHttpService) { }
 
   public getLoans() {

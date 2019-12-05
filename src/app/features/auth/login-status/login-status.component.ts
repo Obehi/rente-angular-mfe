@@ -277,15 +277,11 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
           case BANKID_STATUS.LOANS_PERSISTED:
             this.viewStatus.isLoansPersisted = true;
             const user = response.data.user;
-
             this.authService.loginWithToken(user.phone, user.oneTimeToken).subscribe(res => {
-              // console.log('login', res);
-
-              // this.router.navigate(['/dashboard/tilbud/']);
               forkJoin([this.loansService.getLoansAndRateType(), this.userService.getUserInfo()])
                 .subscribe(([rateAndLoans, userInfo]) => {
                   this.loginStep3Status = MESSAGE_STATUS.SUCCESS;
-                  this.loansService.loanState = rateAndLoans;
+                  this.userService.lowerRateAvailable.next(rateAndLoans.lowerRateAvailable);
                   if (!rateAndLoans.loansPresent) {
                     this.localStorageService.setItem('noLoansPresent', true);
                     this.router.navigate(['/dashboard/ingenlaan']);

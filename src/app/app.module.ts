@@ -23,6 +23,7 @@ import { GuidePageComponent } from './features/guide-page/guide-page.component';
 import { CoFounderComponent } from './features/co-founder/co-founder.component';
 import { CounterComponent } from './shared/components/ui-components/counter/counter.component';
 import { Ng2OdometerModule } from 'ng2-odometer'; // <-- import the module
+import { UserService } from '@services/remote-api/user.service';
 
 registerLocaleData(localeNo);
 
@@ -55,7 +56,9 @@ registerLocaleData(localeNo);
     // MatFormFieldModule,
     ReactiveFormsModule
   ],
-  providers: [{ provide: LOCALE_ID, useValue: 'nb-NO' }],
+  providers: [
+    { provide: LOCALE_ID, useValue: 'nb-NO' },
+    UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

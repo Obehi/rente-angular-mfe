@@ -82,7 +82,6 @@ a {
     top: 50%;
     transform: translateY(-50%);
   }
-
   display: inline-block;
   position: absolute;
   width: 40px;
@@ -95,14 +94,16 @@ a {
   color: $white;
 }
 
+.blured {
+  filter: blur(6px);
+  opacity: 0.5;
+}
+
 .centered-popup {
   position: absolute;
   top: 0;
   right: 0;
   left: 0;
-}
-
-.blured {
-  filter: blur(6px);
-  opacity: 0.5;
+  opacity: 1;
+  margin-top: 80px;
 }
