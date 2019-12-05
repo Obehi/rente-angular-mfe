@@ -14,6 +14,7 @@ import { ChangeBankDialogComponent } from './change-bank-dialog/change-bank-dial
 import { ChangeBankServiceService } from '@services/remote-api/change-bank-service.service';
 import { Subscription } from 'rxjs';
 import { OFFERS_RESULT_TYPE } from '../../../shared/models/offers';
+import { UserService } from '@services/remote-api/user.service';
 
 @Component({
   selector: 'rente-offers',
@@ -94,7 +95,11 @@ export class OffersComponent implements OnInit, OnDestroy {
   ) {
     this.onResize();
     this.isShowTips = true;
-    this.effRateLoweredDialogVisible = loansService.loanState && loansService.loanState.lowerRateAvailable;
+    UserService.lowerRateAvailable.subscribe(value => {
+      if (value) {
+        this.effRateLoweredDialogVisible = value;
+      }
+    });
   }
 
   public ngOnDestroy(): void {
@@ -115,7 +120,6 @@ export class OffersComponent implements OnInit, OnDestroy {
       //   });
       // }
       this.localStorageService.removeItem('isNewUser');
-
     }, err => {
       if (err.errorType === 'PROPERTY_VALUE_MISSING') {
         this.errorMessage = err.title;
