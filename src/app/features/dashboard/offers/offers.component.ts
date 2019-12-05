@@ -97,13 +97,7 @@ export class OffersComponent implements OnInit, OnDestroy {
     this.onResize();
     this.isShowTips = true;
     userService.lowerRateAvailable.subscribe(value => {
-      console.log('OffersComponent, lowerRateAvailable2=', value);
-      if (value) {
-        console.log(' > set effRateLoweredDialogVisible', true);
         this.effRateLoweredDialogVisible = value;
-      } else {
-        console.log(' > set effRateLoweredDialogVisible', false);
-      }
     });
   }
 
