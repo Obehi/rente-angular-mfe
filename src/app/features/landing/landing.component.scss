@@ -143,7 +143,7 @@ a {
 
   .sitatboks {
     background-color: $lightgreen;
-    padding: 20px;
+    padding: 20px 20px 0 20px;
     min-width: 280px;
     white-space: normal;
     display: table-cell;
@@ -156,11 +156,12 @@ a {
     color: $blue;
     font-weight: 300;
     .quote {
-      height: 150px;
+      height: 170px;
     }
     .name {
       font-weight: 500;
       width: 100%;
+      margin-top: 10px;
     }
     .bilde {
       height: 80px;
@@ -170,7 +171,6 @@ a {
       display: block;
       margin: auto;
       border-radius: 100%;
-      margin-bottom: 10px;
     }
   }
 }
