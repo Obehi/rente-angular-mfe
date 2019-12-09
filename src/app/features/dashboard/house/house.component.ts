@@ -1,4 +1,4 @@
-import { LoansService } from '@services/remote-api/loans.service';
+import { LoansService, AddressDto } from '@services/remote-api/loans.service';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, NgForm, AbstractControl } from '@angular/forms';
 import createNumberMask from 'text-mask-addons/dist/createNumberMask';
@@ -37,7 +37,7 @@ export class HouseComponent implements OnInit {
   public propertyValue: number;
   public estimatedPropertyValue: number;
   public statisticsView: boolean;
-  public statisticTooltip: string;
+  public statisticTooltip: string = 'Bolig statistikk';
   public hideStatisticsButton: boolean;
   public disableStatisticsButton: boolean;
   public threeDigitsMask = { mask: [/\d/, /\d/, /\d/], guide: false };
@@ -50,6 +50,8 @@ export class HouseComponent implements OnInit {
     }),
     guide: false
   };
+  public addresses:AddressDto[];
+  public showAddresses:boolean;
 
   constructor(
     private fb: FormBuilder,
@@ -60,8 +62,14 @@ export class HouseComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.statisticTooltip = 'Bolig statistikk';
-    forkJoin([
+    this.isLoading = true;
+    this.loansService.getAddresses().subscribe(r => {
+      this.isLoading = false;
+      this.addresses = r.addresses;
+      this.showAddresses = true;
+    });
+
+    /*forkJoin([
       this.loansService.getPropertyValue().pipe(catchError(err => of(null))),
       this.loansService.getEstimatedPropertValue().pipe(catchError(err => of(null))),
       this.loansService.getAddresses().pipe(catchError(err => of(null)))
@@ -77,6 +85,45 @@ export class HouseComponent implements OnInit {
         this.setPropertyMode();
       }
       this.processStatistikRoute();
+    });*/
+  }
+
+  addAddress() {
+    if (this.addresses.length < 4) {
+      this.addresses.push(new AddressDto());
+    }
+  }
+
+  deleteAddress(address:AddressDto) {
+    let i:number = this.addresses.indexOf(address);
+    if (i > -1) {
+      this.addresses.splice(i, 1);
+    }
+  }
+
+  get ableToAddAddress():boolean {
+    return this.addresses.length < 4;
+  }
+
+  get totalPropertyValue():number {
+    let res = 0;
+    if (this.addresses) {
+      this.addresses.forEach(a => {
+        if (a.useManualPropertyValue && a.manualPropertyValue) {
+          res += a.manualPropertyValue;
+        } else if (a.estimatedPropertyValue) {
+          res += a.estimatedPropertyValue;
+        }
+      });
+    }
+    return res;
+  }
+
+  saveAddresses() {
+    this.isLoading = true;
+    this.loansService.updateAddress(this.addresses).subscribe(r => {
+      this.isLoading = false;
+      this.addresses = r.addresses;
     });
   }
 
