@@ -134,6 +134,6 @@ export class GenericHttpService {
 
   private clearSession(): void {
     this.localStorageService.clear();
-    this.router.navigate(['/velgbank']);
+    this.router.navigate(['/']);
   }
 }
