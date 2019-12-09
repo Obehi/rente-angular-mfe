@@ -1,0 +1,128 @@
+<div class="property-group mb-4">
+
+  <div class="row">
+      <div class="col-lg-5 col-12">
+        Property {{address.order}}
+      </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12 col-lg-6">
+      <form [formGroup]="propertyForm" novalidate>
+        <div class="mb-4">
+          <rente-input
+            [placeholder]="'Adresse:'"
+            formControlName="street"
+            [errorStateMatcher]="isErrorState(propertyForm.controls['street'], propertyForm)">
+          </rente-input>
+          <rente-form-message
+            class="text-left d-block"
+            [type]="'info'">
+            Adressen til boligen det er lån på
+          </rente-form-message>
+          <div
+            *ngIf="propertyForm.controls['street'].touched"
+            class="error-message">
+            <rente-form-message
+              *ngIf="propertyForm.controls['street'].hasError('required')"
+              class="text-left d-block"
+              [type]="'error'">
+              Kan ikke være tom
+            </rente-form-message>
+          </div>
+        </div>
+
+        <div class="mb-4">
+          <rente-input
+            type="number"
+            [placeholder]="'Postnummer:'"
+            formControlName="zip"
+            [errorStateMatcher]="isErrorState(propertyForm.controls['zip'], propertyForm)"
+            [type]="'tel'"
+            [mask]="fourDigitsMask">
+          </rente-input>
+          <div *ngIf="propertyForm.controls['zip'].touched" class="error-message">
+            <rente-form-message class="text-left d-block" [type]="'error'"
+              *ngIf="propertyForm.controls['zip'].hasError('required')">
+              Kan ikke være tom
+            </rente-form-message>
+            <rente-form-message class="text-left d-block" [type]="'error'"
+              *ngIf="propertyForm.controls['zip'].hasError('pattern')">
+              Postnummer 4 siffer
+            </rente-form-message>
+          </div>
+        </div>
+
+        <div class="mb-4">
+          <rente-input
+            type="number"
+            [placeholder]="'Størrelse på bolig (kvm):'"
+            formControlName="apartmentSize"
+            [type]="'tel'"
+            [mask]="threeDigitsMask">
+          </rente-input>
+          <div *ngIf="propertyForm.controls['apartmentSize'].touched" class="error-message">
+            <rente-form-message class="text-left d-block" [type]="'error'"
+              *ngIf="propertyForm.controls['apartmentSize'].hasError('required')">
+              Kan ikke være tom
+            </rente-form-message>
+            <rente-form-message class="text-left d-block" [type]="'error'"
+              *ngIf="propertyForm.controls['apartmentSize'].hasError('pattern')">
+              Ugyldig størrelse
+            </rente-form-message>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="col-12 col-lg-6">
+      <form [formGroup]="propertyForm" novalidate>
+        <mat-radio-group
+          formControlName="useManualPropertyValue"
+          (change)="onChange($event)">
+          <div class="mb-4">
+            <mat-radio-button [value]="false">
+              <h3>Bruk estimat</h3>
+            </mat-radio-button>
+            <div class="mt-1">
+              <h3 *ngIf="address.estimatedPropertyValue">
+                {{address.estimatedPropertyValue / 1000000 | number: '1.1-3'}} millioner
+              </h3>
+              <h3 *ngIf="!address.estimatedPropertyValue">-</h3>
+            </div>
+          </div>
+          <div class="mb-4">
+            <mat-radio-button [value]="true">
+              <h3>Jeg vet hva boligen er verdt</h3>
+            </mat-radio-button>
+            <h3 *ngIf="!address.useManualPropertyValue"
+              style="color: #888888;">
+              {{address.manualPropertyValue}}
+            </h3>
+            <rente-input
+              *ngIf="address.useManualPropertyValue"
+              type="number"
+              [placeholder]="'Boligen min er verdt:'"
+              formControlName="manualPropertyValue"
+              [errorStateMatcher]="isErrorState(propertyForm.controls['manualPropertyValue'], propertyForm)"
+              [type]="'tel'"
+              [mask]="thousandSeparatorMask">
+            </rente-input>
+          </div>
+        </mat-radio-group>
+      </form>
+    </div>
+
+  </div>
+
+  <div
+    *ngIf="ableToDelete"
+    class="row">
+    <rente-button
+      color="secondary"
+      (click)="deleteAddress()">
+      Delete property
+    </rente-button>
+  </div>
+
+</div>

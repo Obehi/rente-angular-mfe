@@ -1,4 +1,4 @@
-import { LoansService } from '@services/remote-api/loans.service';
+import { LoansService, AddressDto } from '@services/remote-api/loans.service';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, NgForm, AbstractControl } from '@angular/forms';
 import createNumberMask from 'text-mask-addons/dist/createNumberMask';
@@ -37,7 +37,7 @@ export class HouseComponent implements OnInit {
   public propertyValue: number;
   public estimatedPropertyValue: number;
   public statisticsView: boolean;
-  public statisticTooltip: string;
+  public statisticTooltip: string = 'Bolig statistikk';
   public hideStatisticsButton: boolean;
   public disableStatisticsButton: boolean;
   public threeDigitsMask = { mask: [/\d/, /\d/, /\d/], guide: false };
@@ -50,6 +50,9 @@ export class HouseComponent implements OnInit {
     }),
     guide: false
   };
+  public addresses:AddressDto[];
+  public totalPropertyValue:number;
+  public showAddresses:boolean;
 
   constructor(
     private fb: FormBuilder,
@@ -60,8 +63,16 @@ export class HouseComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.statisticTooltip = 'Bolig statistikk';
-    forkJoin([
+    this.isLoading = true;
+    this.loansService.getAddresses().subscribe(r => {
+      console.log('Addresses dto:', r);
+      this.isLoading = false;
+      this.addresses = r.addresses;
+      this.totalPropertyValue = r.totalPropertyValue;
+      this.showAddresses = true;
+    });
+
+    /*forkJoin([
       this.loansService.getPropertyValue().pipe(catchError(err => of(null))),
       this.loansService.getEstimatedPropertValue().pipe(catchError(err => of(null))),
       this.loansService.getAddresses().pipe(catchError(err => of(null)))
@@ -77,6 +88,26 @@ export class HouseComponent implements OnInit {
         this.setPropertyMode();
       }
       this.processStatistikRoute();
+    });*/
+  }
+
+  addAddress() {
+    if (this.addresses.length < 4) {
+      const addr:AddressDto = new AddressDto();
+      addr.order = this.addresses.length + 1;
+      this.addresses.push(addr);
+    }
+  }
+
+  get ableToAddAddress():boolean {
+    return this.addresses.length < 4;
+  }
+
+  saveAddresses() {
+    this.isLoading = true;
+    this.loansService.updateAddress(this.addresses).subscribe(r => {
+      console.log('Updated addresses dto:', r);
+      this.isLoading = false;
     });
   }
 
