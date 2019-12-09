@@ -1,0 +1,86 @@
+<div class="property-group mb-4">
+
+  <div class="row">
+      <div class="col-lg-5 col-12">
+        Property {{idx+1}}
+      </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12 col-lg-6">
+      <div class="mb-4 mt-4">
+        <input
+          type="text"
+          class="text-input"
+          placeholder="Adresse"
+          [(ngModel)]="address.street"
+        />
+      </div>
+      <div class="mb-4">
+        <input
+          type="text"
+          class="text-input"
+          placeholder="Postnummer"
+          [(ngModel)]="address.zip"
+        />
+      </div>
+      <div class="mb-0">
+        <input
+          type="text"
+          class="text-input"
+          placeholder="Størrelse på bolig (kvm)"
+          [(ngModel)]="address.apartmentSize"
+        />
+      </div>
+    </div>
+
+    <div class="col-12 col-lg-6">
+      <mat-radio-group [(ngModel)]="address.useManualPropertyValue" >
+        <div class="mb-2 mt-4">
+          <mat-radio-button
+            [value]="false"
+            (change)="onRbChange($event)">
+            <h3>Bruk estimat</h3>
+          </mat-radio-button>
+          <div class="mt-1">
+            <input
+              type="number"
+              class="text-input"
+              [ngModel]="address.estimatedPropertyValue"
+              [disabled]="true"
+            />
+          </div>
+        </div>
+        <div class="mt-3">
+          <mat-radio-button
+            [value]="true"
+            (change)="onRbChange($event)">
+            <h3>Jeg vet hva boligen er verdt</h3>
+          </mat-radio-button>
+          <input
+            type="number"
+            min="0"
+            max="7"
+            class="text-input"
+            placeholder="Boligen min er verdt"
+            [(ngModel)]="address.manualPropertyValue"
+            [disabled]="address.useManualPropertyValue == false"
+          />
+        </div>
+      </mat-radio-group>
+    </div>
+
+  </div>
+
+  <div
+    *ngIf="ableToDelete"
+    class="row">
+    <div class="ml-3 mt-3">
+      <button
+        (click)="onDeleteAddressClick()">
+        Delete property
+      </button>
+    </div>
+  </div>
+
+</div>

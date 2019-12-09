@@ -7,7 +7,7 @@ import {
   HostBinding,
   SimpleChanges,
   OnChanges
-} from "@angular/core";
+} from '@angular/core';
 import {
   FormControl,
   ControlValueAccessor,
@@ -15,9 +15,9 @@ import {
   FormGroupDirective,
   FormsModule,
   NgForm
-} from "@angular/forms";
-import { ViewEncapsulation } from "@angular/core";
-import { ErrorStateMatcher } from "@angular/material/core";
+} from '@angular/forms';
+import { ViewEncapsulation } from '@angular/core';
+import { ErrorStateMatcher } from '@angular/material/core';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   constructor(public state: boolean) {}
@@ -30,9 +30,9 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   }
 }
 @Component({
-  selector: "rente-input",
-  templateUrl: "./input.component.html",
-  styleUrls: ["./input.component.scss"],
+  selector: 'rente-input',
+  templateUrl: './input.component.html',
+  styleUrls: ['./input.component.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -50,10 +50,10 @@ export class InputComponent implements ControlValueAccessor, OnChanges {
   @Input() errorStateMatcher: boolean;
   @Input() modelOptions?: { updateOn: string };
   // tslint:disable-next-line:no-input-rename
-  @Input("value") inputValue: any = "";
+  @Input('value') inputValue: any = '';
   @Input() mask?: any[];
   public matcher: MyErrorStateMatcher;
-  @HostBinding("class.input-component") true;
+  @HostBinding('class.input-component') true;
 
   propagateChange: any = () => {};
   onChange: any = () => {};
