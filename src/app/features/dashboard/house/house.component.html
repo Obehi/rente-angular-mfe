@@ -1,15 +1,22 @@
 <div class="house" *ngIf="showAddresses" [@shakeAnimation]>
 
-  <rente-address-form *ngFor="let address of addresses"
-    [address]="address">
+  <rente-address-form
+    *ngFor="let address of addresses; let i=index"
+    [idx]="i"
+    [address]="address"
+    (deleteAddress)="deleteAddress($event)">
   </rente-address-form>
 
-  <div *ngIf="ableToAddAddress" class="row mt-2">
-    <rente-button
-      color="secondary"
-      (click)="addAddress()">
-      Add property
-    </rente-button>
+  <div *ngIf="ableToAddAddress" class="row" style="width:100%">
+    <div class="col-12">
+      <button style="display: inline"
+        (click)="addAddress()">
+        Add property
+      </button>
+      <div style="float: right;">
+        <p>Total verdi av boliger: {{totalPropertyValue}}</p>
+      </div>
+    </div>
   </div>
 
   <div

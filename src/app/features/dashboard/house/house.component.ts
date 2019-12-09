@@ -51,7 +51,6 @@ export class HouseComponent implements OnInit {
     guide: false
   };
   public addresses:AddressDto[];
-  public totalPropertyValue:number;
   public showAddresses:boolean;
 
   constructor(
@@ -68,7 +67,6 @@ export class HouseComponent implements OnInit {
       console.log('Addresses dto:', r);
       this.isLoading = false;
       this.addresses = r.addresses;
-      this.totalPropertyValue = r.totalPropertyValue;
       this.showAddresses = true;
     });
 
@@ -93,14 +91,33 @@ export class HouseComponent implements OnInit {
 
   addAddress() {
     if (this.addresses.length < 4) {
-      const addr:AddressDto = new AddressDto();
-      addr.order = this.addresses.length + 1;
-      this.addresses.push(addr);
+      this.addresses.push(new AddressDto());
+    }
+  }
+
+  deleteAddress(address:AddressDto) {
+    let i:number = this.addresses.indexOf(address);
+    if (i > -1) {
+      this.addresses.splice(i, 1);
     }
   }
 
   get ableToAddAddress():boolean {
     return this.addresses.length < 4;
+  }
+
+  get totalPropertyValue():number {
+    let res = 0;
+    if (this.addresses) {
+      this.addresses.forEach(a => {
+        if (a.useManualPropertyValue && a.manualPropertyValue) {
+          res += a.manualPropertyValue;
+        } else if (a.estimatedPropertyValue) {
+          res += a.estimatedPropertyValue;
+        }
+      });
+    }
+    return res;
   }
 
   saveAddresses() {

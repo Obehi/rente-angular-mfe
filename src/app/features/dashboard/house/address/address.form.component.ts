@@ -11,43 +11,26 @@ import { MatRadioChange } from '@angular/material';
 })
 export class AddressFormComponent implements OnInit {
 
+  @Input() idx:number;
   @Input() address:AddressDto;
   @Output() deleteAddress:EventEmitter<AddressDto> = new EventEmitter();
-
-  propertyForm:FormGroup;
-  housandSeparatorMask = {
-    mask: createNumberMask({
-      prefix: '',
-      suffix: '',
-      thousandsSeparatorSymbol: ' '
-    }),
-    guide: false
-  };
 
   constructor(private fb:FormBuilder) { }
 
   ngOnInit():void {
-    this.address.useManualPropertyValue = this.address.useManualPropertyValue === true;
-    this.propertyForm = this.fb.group({
-      street: [this.address.street, Validators.required],
-      zip: [this.address.zip, Validators.compose([Validators.required])],
-      apartmentSize: [this.address.apartmentSize, Validators.compose([Validators.required])],
-      manualPropertyValue: this.address.manualPropertyValue,
-      estimatedPropertyValue: this.address.estimatedPropertyValue,
-      useManualPropertyValue: this.address.useManualPropertyValue
-    });
-  }
-
-  isErrorState(control: AbstractControl | null, form: FormGroup | NgForm | null): boolean {
-    return !!(control && control.invalid && (control.dirty || control.touched));
   }
 
   get ableToDelete():boolean {
-    return this.address.order > 1;
+    return this.idx > 0;
   }
 
-  onChange(event:MatRadioChange) {
+  onRbChange(event:MatRadioChange) {
+    console.log(event.value);
     this.address.useManualPropertyValue = event.value;
+  }
+
+  onDeleteAddressClick() {
+    this.deleteAddress.emit(this.address);
   }
 
 }

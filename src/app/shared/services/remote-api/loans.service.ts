@@ -53,7 +53,11 @@ export class LoansService {
   mapClientAddressDto(r:any) {
     const dto = new ClientAddressDto();
     dto.totalPropertyValue = r.totalPropertyValue;
-    dto.addresses = r.addresses.map(item => Object.assign(new AddressDto(), item));
+    dto.addresses = r.addresses.map(item => {
+      let a:AddressDto = Object.assign(new AddressDto(), item);
+      a.useManualPropertyValue = item.useManualPropertyValue == true;
+      return a;
+    });
     return dto;
   }
 
@@ -118,13 +122,12 @@ export class LoanStateDto {
 
 export class AddressDto {
   id:number;
-  order:number;
   street:string;
   zip:string;
   apartmentSize:number;
   manualPropertyValue:number;
   estimatedPropertyValue:number;
-  useManualPropertyValue:boolean;
+  useManualPropertyValue:boolean = false;
 }
 
 export class ClientAddressDto {
