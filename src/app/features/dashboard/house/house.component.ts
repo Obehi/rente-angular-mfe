@@ -64,7 +64,6 @@ export class HouseComponent implements OnInit {
   ngOnInit() {
     this.isLoading = true;
     this.loansService.getAddresses().subscribe(r => {
-      console.log('Addresses dto:', r);
       this.isLoading = false;
       this.addresses = r.addresses;
       this.showAddresses = true;
@@ -123,8 +122,8 @@ export class HouseComponent implements OnInit {
   saveAddresses() {
     this.isLoading = true;
     this.loansService.updateAddress(this.addresses).subscribe(r => {
-      console.log('Updated addresses dto:', r);
       this.isLoading = false;
+      this.addresses = r.addresses;
     });
   }
 
