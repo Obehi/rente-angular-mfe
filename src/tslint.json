@@ -16,7 +16,13 @@
         "max-line-length": [
             false
         ],
-        "whitespace": false,
-        "typedef-whitespace": false
+        "whitespace": [
+            false,
+            "check-branch",
+            "check-decl",
+            "check-operator",
+            "check-separator",
+            "check-type"
+        ]
     }
 }

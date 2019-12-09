@@ -36,29 +36,14 @@ export class LoansService {
     return this.http.get(url);
   }
 
-  public getAddresses():Observable<ClientAddressDto> {
+  public getAddresses(): Observable<any> {
     const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.address}`;
-    return this.http.get(url).pipe(
-      map(r => this.mapClientAddressDto(r))
-    );
+    return this.http.get(url);
   }
 
-  public updateAddress(addresses:AddressDto[]):Observable<ClientAddressDto> {
+  public updateAddress(addressData) {
     const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.address}`;
-    return this.http.post(url, addresses).pipe(
-      map(r => this.mapClientAddressDto(r))
-    );
-  }
-
-  mapClientAddressDto(r:any) {
-    const dto = new ClientAddressDto();
-    dto.totalPropertyValue = r.totalPropertyValue;
-    dto.addresses = r.addresses.map(item => {
-      let a:AddressDto = Object.assign(new AddressDto(), item);
-      a.useManualPropertyValue = item.useManualPropertyValue == true;
-      return a;
-    });
-    return dto;
+    return this.http.put(url, addressData);
   }
 
   public updateApartmentSize(appartmentData) {
@@ -115,22 +100,7 @@ export class LoansService {
 }
 
 export class LoanStateDto {
-  isAggregatedRateTypeFixed:boolean;
-  loansPresent:boolean;
-  lowerRateAvailable:boolean;
-}
-
-export class AddressDto {
-  id:number;
-  street:string;
-  zip:string;
-  apartmentSize:number;
-  manualPropertyValue:number;
-  estimatedPropertyValue:number;
-  useManualPropertyValue:boolean = false;
-}
-
-export class ClientAddressDto {
-  addresses:AddressDto[];
-  totalPropertyValue:number;
+  isAggregatedRateTypeFixed: boolean;
+  loansPresent: boolean;
+  lowerRateAvailable: boolean;
 }

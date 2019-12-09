@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { OffersComponent } from './offers/offers.component';
 import { DashboardComponent } from './dashboard.component';
@@ -30,12 +31,12 @@ import { ChangeBankDialogComponent } from './offers/change-bank-dialog/change-ba
 import {
   SuccessChangeBankDialogComponent
 } from './offers/change-bank-dialog/success-change-bank-dialog/success-change-bank-dialog.component';
+import { ChartModule } from 'angular-highcharts';
 import { ShareSheetComponent } from './offers/share-sheet/share-sheet.component';
+// import { ShareButtonModule } from '@ngx-share/button';
 import { VirdiStatisticsComponent } from './house/virdi-statistics/virdi-statistics.component';
 import { OffersStatisticsComponent } from './offers/offers-statistics/offers-statistics.component';
 import { DialogComponent } from '../../shared/components/ui-components/dialog/dialog.component';
-import { AddressFormComponent } from './house/address/address.form.component';
-
 // TODO: ADD separate module for material import
 @NgModule({
   declarations: [
@@ -54,8 +55,7 @@ import { AddressFormComponent } from './house/address/address.form.component';
     ShareSheetComponent,
     VirdiStatisticsComponent,
     OffersStatisticsComponent,
-    DialogComponent,
-    AddressFormComponent
+    DialogComponent
   ],
   imports: [
     CommonModule,
