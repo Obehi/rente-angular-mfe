@@ -128,6 +128,7 @@ export class AddressDto {
   manualPropertyValue:number;
   estimatedPropertyValue:number;
   useManualPropertyValue:boolean = false;
+  message:string;
 }
 
 export class ClientAddressDto {

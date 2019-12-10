@@ -13,6 +13,7 @@
         <input
           type="text"
           class="text-input"
+          maxlength="100"
           placeholder="Adresse"
           [(ngModel)]="address.street"
         />
@@ -20,17 +21,20 @@
       <div class="mt-2">
         <span class="input-label">ZIP</span>
         <input
-          type="text"
+          type="number"
           class="text-input"
           placeholder="Postnummer"
+          min="0"
+          max="9999"
           [(ngModel)]="address.zip"
         />
       </div>
       <div class="mt-2">
         <span class="input-label">Størrelse på bolig (kvm)</span>
         <input
-          type="text"
+          type="number"
           class="text-input"
+          maxlength="5"
           placeholder="Størrelse på bolig (kvm)"
           [(ngModel)]="address.apartmentSize"
         />
@@ -62,19 +66,18 @@
           </mat-radio-button>
           <div class="mt-0">
               <input
-              type="number"
-              min="0"
-              max="7"
-              class="text-input"
-              placeholder="Boligen min er verdt"
-              [(ngModel)]="address.manualPropertyValue"
-              [disabled]="address.useManualPropertyValue == false"
-            />
+                type="number"
+                min="0"
+                maxlength="8"
+                class="text-input"
+                placeholder="Boligen min er verdt"
+                [(ngModel)]="address.manualPropertyValue"
+                [disabled]="address.useManualPropertyValue == false"
+              />
           </div>
         </div>
       </mat-radio-group>
     </div>
-
   </div>
 
   <div
@@ -86,6 +89,12 @@
         Delete property
       </button>
     </div>
+  </div>
+
+  <div
+    *ngIf="address.message"
+    class="row">
+    <p class="ml-3 mt-1 error-message">{{address.message}}</p>
   </div>
 
 </div>
