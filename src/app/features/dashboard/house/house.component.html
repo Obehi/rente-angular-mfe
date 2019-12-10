@@ -23,8 +23,8 @@
     class="row justify-content-center mt-2">
     <rente-button
       color="primary"
-      (click)="saveAddresses()"
-      [disabled]="isLoading">
+      [disabled]="!ableToSave"
+      (click)="saveAddresses()">
       Lagre
     </rente-button>
   </div>

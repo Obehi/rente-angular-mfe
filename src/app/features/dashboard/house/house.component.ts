@@ -2,11 +2,9 @@ import { LoansService, AddressDto } from '@services/remote-api/loans.service';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, NgForm, AbstractControl } from '@angular/forms';
 import createNumberMask from 'text-mask-addons/dist/createNumberMask';
-import { forkJoin, interval, of, zip, combineLatest, Observable, empty } from 'rxjs';
 import { Router, ActivatedRoute } from '@angular/router';
 import { SnackBarService } from '@services/snackbar.service';
 import { trigger, transition, animate, keyframes, style } from '@angular/animations';
-import { combineAll, catchError } from 'rxjs/operators';
 
 @Component({
   selector: 'rente-house',
@@ -68,24 +66,6 @@ export class HouseComponent implements OnInit {
       this.addresses = r.addresses;
       this.showAddresses = true;
     });
-
-    /*forkJoin([
-      this.loansService.getPropertyValue().pipe(catchError(err => of(null))),
-      this.loansService.getEstimatedPropertValue().pipe(catchError(err => of(null))),
-      this.loansService.getAddresses().pipe(catchError(err => of(null)))
-    ]).subscribe(([savedPropertyValueResult, estimatedPropertyValueResult, addressResult]) => {
-      this.isLoading = false;
-      this.setAddressFromResult(addressResult);
-      this.setCurrentPropertyValue(savedPropertyValueResult);
-      this.setPropertyEsimationValue(estimatedPropertyValueResult);
-      if (savedPropertyValueResult == null || estimatedPropertyValueResult == null) {
-        this.onPropertyEstimationFailed();
-      } else {
-        this.isAutoMode = this.addressData && this.addressData.manualPropertyValue ? false : true;
-        this.setPropertyMode();
-      }
-      this.processStatistikRoute();
-    });*/
   }
 
   addAddress() {
@@ -120,42 +100,44 @@ export class HouseComponent implements OnInit {
   }
 
   saveAddresses() {
-    this.isLoading = true;
-    this.loansService.updateAddress(this.addresses).subscribe(r => {
-      this.isLoading = false;
-      this.addresses = r.addresses;
-    });
-  }
-
-  setAddressFromResult(addressResult:any) {
-    if (addressResult && addressResult.addresses && addressResult.addresses[0]) {
-      this.addressData = addressResult.addresses[0];
-      this.autoPropertyForm = this.fb.group({
-        street: [this.addressData.street, Validators.required],
-        zip: [this.addressData.zip, Validators.compose([
-          Validators.required
-        ])],
-        apartmentSize: [this.addressData.apartmentSize, Validators.compose([
-          Validators.required
-        ])],
-        manualPropertyValue: [this.addressData.manualPropertyValue]
-      });
-      this.manualPropertyForm = this.fb.group({
-        manualPropertyValue: [this.addressData.manualPropertyValue, Validators.compose([Validators.required])]
+    if (this.ableToSave) {
+      this.isLoading = true;
+      this.loansService.updateAddress(this.addresses).subscribe(r => {
+        this.isLoading = false;
+        this.addresses = r.addresses;
       });
     }
   }
 
-  setCurrentPropertyValue(savedPropValueResult:any) {
-    if (savedPropValueResult) {
-      this.propertyValue = savedPropValueResult.propertyValue;
+  get ableToSave():boolean {
+    let res = true;
+    if (this.isLoading) {
+      res = false;
+    } else if (this.addresses != null) {
+      let isCorrect = true;
+      for (const a of this.addresses) {
+        if (!this.isCorrectAddress(a)) {
+          isCorrect = false;
+          break;
+        }
+      }
+      res = isCorrect;
+    } else {
+      res = false;
+    }
+    return res;
+  }
+
+  isCorrectAddress(a:AddressDto) {
+    if (a.useManualPropertyValue) {
+      return a.manualPropertyValue > 0;
+    } else {
+      return this.notEmpty(a.street) && this.notEmpty(a.zip) && a.apartmentSize > 0;
     }
   }
 
-  setPropertyEsimationValue(estimatedPropValueResult:any) {
-    if (estimatedPropValueResult) {
-      this.estimatedPropertyValue = estimatedPropValueResult.propertyValue;
-    }
+  notEmpty(s:string) {
+    return s != null && s.length > 0;
   }
 
   processStatistikRoute() {
