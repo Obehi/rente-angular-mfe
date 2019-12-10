@@ -125,6 +125,8 @@ export class HouseComponent implements OnInit {
     } else {
       res = false;
     }
+    console.log(res);
+
     return res;
   }
 
@@ -137,7 +139,7 @@ export class HouseComponent implements OnInit {
   }
 
   notEmpty(s:string) {
-    return s != null && s.length > 0;
+    return s != null && String(s).length > 0;
   }
 
   processStatistikRoute() {
