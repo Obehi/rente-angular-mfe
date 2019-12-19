@@ -24,6 +24,7 @@ import { CoFounderComponent } from './features/co-founder/co-founder.component';
 import { CounterComponent } from './shared/components/ui-components/counter/counter.component';
 import { Ng2OdometerModule } from 'ng2-odometer'; // <-- import the module
 import { UserService } from '@services/remote-api/user.service';
+import { FormsModule } from '@angular/forms';
 
 registerLocaleData(localeNo);
 
@@ -54,7 +55,8 @@ registerLocaleData(localeNo);
     Ng2OdometerModule.forRoot(),
     // MatExpansionModule,
     // MatFormFieldModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'nb-NO' },

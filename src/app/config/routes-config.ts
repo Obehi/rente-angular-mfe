@@ -186,7 +186,7 @@ export const ROUTES_MAP = {
   privacy: 'personvern',
   privacyPolicy: 'personvernerklaering',
   termsConditions: 'brukervilkar',
-  // bankSelect: "velgbank",
+  bankSelect: "velgbank",
   auth: 'autentisering',
   dashboard: 'dashboard',
   initConfirmation: 'bekreft',

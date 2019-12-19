@@ -70,3 +70,26 @@
     }
   }
 }
+
+mat-selection-list {
+  max-height: 600px;
+  overflow: auto;
+}
+.bank-list {
+  width: 100%;
+}
+.bank-button {
+  width: 100%;
+  text-align: left;
+  margin: 5px 0;
+  font-size: 14px;
+  font-weight: 100;
+  padding: 0;
+  border-radius: 0;
+}
+.bank-button-logo {
+  width: 40px;
+  height: 40px;
+  margin-right: 20px;
+  padding: 0;
+}

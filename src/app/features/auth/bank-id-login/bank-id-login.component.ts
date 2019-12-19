@@ -16,6 +16,7 @@ import { DialogInfoServiceComponent } from './dialog-info-service/dialog-info-se
 import { MetaService } from '@services/meta.service';
 import { TitleService } from '@services/title.service';
 import { customMeta } from '../../../config/routes-config';
+import { BankVo, BankList } from '@shared/models/bank';
 
 @Component({
   selector: 'rente-bank-id-login',
@@ -59,6 +60,8 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
   public metaTitle: string;
   public metaDescription: string;
 
+  selectedBank:BankVo;
+
   constructor(
     private fb: FormBuilder,
     private route: ActivatedRoute,
@@ -70,24 +73,40 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.routeParamsSub = this.route.params.subscribe((params: any) => {
       if (params && params.bankName) {
+        this.selectedBank = this.getBankByName(params.bankName);
+
         for (const iterator in customMeta) {
           if (customMeta[iterator].title) {
             if (params.bankName === customMeta[iterator].bankName) {
               this.metaTitle = customMeta[iterator].title;
               this.metaDescription = customMeta[iterator].description;
-              this.changeTitles();
             }
           }
         }
 
         this.userBank = BANK_MAP[params.bankName];
-        this.bankLogo = this.userBank.bankIcon;
-        this.isSsnBankLogin = BANK_MAP[params.bankName].isSSN;
-        this.setBankIdForm();
-        console.log(this.userBank.bankName);
+        if (this.userBank) {
+          this.bankLogo = this.userBank.bankIcon;
+          this.isSsnBankLogin = this.userBank.isSSN;
+        } else {
+          this.bankLogo = '../../../assets/img/banks-logo/round/' + this.selectedBank.icon;
+        }
 
+        this.changeTitles();
+        this.setBankIdForm();
       }
     });
+  }
+
+  getBankByName(name:string):BankVo {
+    const allBanks = BankList;
+    const n = name.toLocaleLowerCase();
+    for (const bank of allBanks) {
+      if (bank.name.toLocaleLowerCase() == n) {
+        return bank;
+      }
+    }
+    return null;
   }
 
   ngOnDestroy() {

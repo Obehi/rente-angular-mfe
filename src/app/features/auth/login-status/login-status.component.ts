@@ -20,6 +20,7 @@ import { Router } from '@angular/router';
 import { UserService } from '@services/remote-api/user.service';
 import { LoansService } from '@services/remote-api/loans.service';
 import { LocalStorageService } from '@services/local-storage.service';
+import { BankVo } from '@shared/models/bank';
 
 @Component({
   selector: 'rente-login-status',
@@ -27,8 +28,10 @@ import { LocalStorageService } from '@services/local-storage.service';
   styleUrls: ['./login-status.component.scss']
 })
 export class LoginStatusComponent implements OnInit, OnDestroy {
-  @Input() userData: any = {};
-  @Input() userBank: any = {};
+
+  @Input() bank:BankVo;
+  @Input() userData:any = {};
+
   public viewStatus: ViewStatus = new ViewStatus();
   public reconnectIterator = 0;
   public passPhrase = '';
@@ -101,25 +104,14 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
   }
 
   sendUserData(resendData = false) {
-    // this.userData = {
-    //   birthdateOrSsn: 13018939554,
-    //   mobile: 93253768
-    // };
-
     const dataObj = {
       birthdateOrSsn: this.userData.ssn || this.userData.birthdate,
       mobile: this.userData.phone
     };
-
-    // console.log(dataObj);
-
     this.setDefaultSteps();
-
     const data = JSON.stringify(dataObj);
     this.passPhrase = '';
-
-    // TODO: Add bank name
-    this.stompClient.send(API_URL_MAP.crawlerSendMessageUrl + this.userBank.bankName, {}, data);
+    this.stompClient.send(API_URL_MAP.crawlerSendMessageUrl + this.bank.name, {}, data);
     if (!resendData) {
       this.initTimer(IDENTIFICATION_TIMEOUT_TIME);
       this.initConnectionTimer();
