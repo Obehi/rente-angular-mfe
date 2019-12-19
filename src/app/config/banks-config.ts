@@ -16,8 +16,8 @@ export const BANKS_DATA = {
   },
   ARENDAL_SK: {
     name: 'ARENDAL_SK',
-    img: '../../assets/img/banks-logo/square/Arendal.png',
-    imgCircle: '../../assets/img/banks-logo/round/Arendal.png'
+    img: '../../assets/img/banks-logo/square/EikaNewGreenThree.png',
+    imgCircle: '../../assets/img/banks-logo/round/EikaNewGreenThree.png'
   },
   ASKIM_SB: {
     name: 'ASKIM_SB',
@@ -366,8 +366,8 @@ export const BANKS_DATA = {
   },
   ROROS: {
     name: 'ROROS',
-    img: '../../assets/img/banks-logo/square/Arendal.png',
-    imgCircle: '../../assets/img/banks-logo/round/Arendal.png'
+    img: '../../assets/img/banks-logo/square/EikaNewGreenThree.png',
+    imgCircle: '../../assets/img/banks-logo/round/EikaNewGreenThree.png'
   },
   SANDNES_SB: {
     name: 'SANDNES_SB',

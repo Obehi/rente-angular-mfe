@@ -17,6 +17,7 @@ import { MetaService } from '@services/meta.service';
 import { TitleService } from '@services/title.service';
 import { customMeta } from '../../../config/routes-config';
 import { BankVo, BankList } from '@shared/models/bank';
+import { BANKS_DATA } from '@config/banks-config';
 
 @Component({
   selector: 'rente-bank-id-login',
@@ -73,7 +74,8 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.routeParamsSub = this.route.params.subscribe((params: any) => {
       if (params && params.bankName) {
-        this.selectedBank = this.getBankByName(params.bankName);
+        const bank = this.getBankByName(params.bankName);
+        this.selectedBank = bank;
 
         for (const iterator in customMeta) {
           if (customMeta[iterator].title) {
@@ -84,12 +86,13 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
           }
         }
 
-        this.userBank = BANK_MAP[params.bankName];
+        this.userBank = BANK_MAP[bank.name.toLocaleLowerCase()];
         if (this.userBank) {
           this.bankLogo = this.userBank.bankIcon;
           this.isSsnBankLogin = this.userBank.isSSN;
-        } else {
-          this.bankLogo = '../../../assets/img/banks-logo/round/' + this.selectedBank.icon;
+        }
+        if (this.bankLogo == null) {
+          this.bankLogo = BANKS_DATA[bank.name] ? BANKS_DATA[bank.name].img : null;
         }
 
         this.changeTitles();

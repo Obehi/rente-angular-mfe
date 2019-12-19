@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BankVo, BankList } from '../../shared/models/bank';
 import { Router } from '@angular/router';
 import { ROUTES_MAP } from '@config/routes-config';
+import { BANKS_DATA } from '@config/banks-config';
 
 @Component({
   selector: 'rente-bank-select',
@@ -13,11 +14,13 @@ export class BankSelectComponent implements OnInit {
   searchStr:string;
   banks:BankVo[];
   otherBank:BankVo = new BankVo('ANNEN', 'Annen', null);
+  allBanks:BankVo[];
 
   constructor(
     private router: Router) { }
 
   ngOnInit() {
+    this.allBanks = BankList.sort((a,b) => (a.label > b.label) ? 1 : ((b.label > a.label) ? -1 : 0));
     this.filterBank(this.searchStr);
   }
 
@@ -32,23 +35,26 @@ export class BankSelectComponent implements OnInit {
 
   filterBank(filter:string) {
     let filteredBanks = [];
-    if (filter == null || filter.length == 0) {
-      filteredBanks = BankList;
+    if (filter == null || filter.length === 0) {
+      filteredBanks = this.allBanks.concat();
     } else {
-      let f = filter.toLocaleLowerCase();
-      filteredBanks = BankList.filter(bank => bank.label.toLocaleLowerCase().indexOf(f) > -1);
+      const f = filter.toLocaleLowerCase();
+      filteredBanks = this.allBanks.filter(bank => bank.label.toLocaleLowerCase().indexOf(f) > -1);
     }
     filteredBanks.push(this.otherBank);
     this.banks = filteredBanks;
   }
 
   selectBank(bank:BankVo) {
-    console.log('select bank', bank);
-    if (bank.name == 'ANNEN') {
+    if (bank.name === 'ANNEN') {
       this.router.navigate([ROUTES_MAP.getNotified]);
     } else {
       this.router.navigate(['/autentisering/' + bank.name.toLocaleLowerCase()]);
     }
+  }
+
+  getIcon(bankName:string) {
+    return BANKS_DATA[bankName] ? BANKS_DATA[bankName].imgCircle : null;
   }
 
 }

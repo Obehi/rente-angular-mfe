@@ -36,8 +36,8 @@
           mat-button
           class="bank-button"
           (click)="selectBank(bank)">
-          <div *ngIf="bank.icon; then hasLogo else noLogo"></div>
-          <ng-template #hasLogo><img class="bank-button-logo" src="../../../assets/img/banks-logo/round/{{bank.icon}}" /></ng-template>
+          <div *ngIf="getIcon(bank.name); then hasLogo else noLogo"></div>
+          <ng-template #hasLogo><img class="bank-button-logo" [src]="getIcon(bank.name)" /></ng-template>
           <ng-template #noLogo><img class="bank-button-logo" src="../../../assets/img/banks-logo/round/annen.png" /></ng-template>
           {{bank.label}}
         </button>
