@@ -225,7 +225,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
             this.loginStep3Status = MESSAGE_STATUS.ERROR;
             this.unsubscribeEverything();
             break;
-          case BANKID_STATUS.NOT_SB1_CUSTOMER:
+          case BANKID_STATUS.NOT_BANK_CUSTOMER:
             this.isShowPassPhrase = false;
             this.connectionTimerSubscription.unsubscribe();
             this.isNotSB1customer = true;
