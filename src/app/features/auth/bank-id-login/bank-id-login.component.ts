@@ -85,11 +85,10 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
             }
           }
         }
-
+        this.isSsnBankLogin = bank.loginWithSsn;
         this.userBank = BANK_MAP[bank.name.toLocaleLowerCase()];
         if (this.userBank) {
           this.bankLogo = this.userBank.bankIcon;
-          this.isSsnBankLogin = this.userBank.isSSN;
         }
         if (this.bankLogo == null) {
           this.bankLogo = BANKS_DATA[bank.name] ? BANKS_DATA[bank.name].img : null;
