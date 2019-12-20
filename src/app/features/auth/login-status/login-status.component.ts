@@ -20,7 +20,7 @@ import { Router } from '@angular/router';
 import { UserService } from '@services/remote-api/user.service';
 import { LoansService } from '@services/remote-api/loans.service';
 import { LocalStorageService } from '@services/local-storage.service';
-import { BankVo } from '@shared/models/bank';
+import { BankVo, BankUtils } from '@shared/models/bank';
 
 @Component({
   selector: 'rente-login-status',
@@ -72,6 +72,10 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.unsubscribeEverything();
+  }
+
+  get bankLogo():string {
+    return this.bank ? BankUtils.getBankLogoUrl(this.bank.name) : '../../../assets/img/banks-logo/round/annen.png';
   }
 
   unsubscribeEverything() {

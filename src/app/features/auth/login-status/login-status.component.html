@@ -1,11 +1,11 @@
 <div class="container login-status">
   <div class="row justify-content-center">
     <div class="col-12 col-lg-6 text-center bg-wrap">
-      <img
+      <img *ngIf="bank"
         class="mw-100"
-        src="{{ userBank?.bankIcon }}"
-        alt="{{ userBank?.label }}"
-        title="{{ userBank?.label }}"
+        [src]="bankLogo"
+        [alt]="bank.label"
+        [title]="bank.label"
       />
       <h3 class="my-2" *ngIf="isShowPassPhrase && !viewStatus.isCrawlerError">
         Din referanse:
@@ -18,19 +18,13 @@
         <div class="col-10 col-lg-8 d-flex flex-column align-items-start">
           <rente-status-message [status]="loginStep1Status">
             <span
-              *ngIf="
-                viewStatus.isNotValidDataProvided && userBank.bankName === 'DNB'
-              "
-            >
+              *ngIf="viewStatus.isNotValidDataProvided && bank.name === 'DNB'">
               Kontroller at du har oppgitt riktig fødselsnummer og mobilnummer.
               Du må ha bestilt og aktivert BankID på mobil for å kunne bruke
               denne innloggingen.
             </span>
             <span
-              *ngIf="
-                viewStatus.isNotValidDataProvided && userBank.bankName !== 'DNB'
-              "
-            >
+              *ngIf="viewStatus.isNotValidDataProvided && bank.name !== 'DNB'">
               Kontroller at du har oppgitt riktig fødselsdato og mobilnummer. Du
               må ha bestilt og aktivert BankID på mobil for å kunne bruke denne
               innloggingen.

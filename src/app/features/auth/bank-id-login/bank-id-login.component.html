@@ -12,9 +12,9 @@
 
       <img
         class="bank-logo"
-        src="{{bankLogo}}"
-        alt="{{selectedBank.label}}"
-        title="{{selectedBank.label}}" />
+        [src]="bankLogo"
+        [alt]="bank.label"
+        [title]="bank.label" />
 
       <div *ngIf="isSsnBankLogin; else birthdateInput" class="form-group">
         <rente-input
@@ -115,7 +115,7 @@
   <rente-login-status
     *ngIf="isLoginStarted"
     [userData]="userData"
-    [bank]="selectedBank"
+    [bank]="bank"
     (returnToInputPage)="isLoginStarted = false">
   </rente-login-status>
 

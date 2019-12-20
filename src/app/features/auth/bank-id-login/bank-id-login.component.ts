@@ -9,15 +9,13 @@ import {
   NgForm
 } from '@angular/forms';
 import { VALIDATION_PATTERN } from '@config/validation-patterns.config';
-import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
-import { BANK_MAP } from '../login-status/login-status.config';
+import { ActivatedRoute} from '@angular/router';
 import { MatDialog } from '@angular/material';
 import { DialogInfoServiceComponent } from './dialog-info-service/dialog-info-service.component';
 import { MetaService } from '@services/meta.service';
 import { TitleService } from '@services/title.service';
 import { customMeta } from '../../../config/routes-config';
-import { BankVo, BankList } from '@shared/models/bank';
-import { BANKS_DATA } from '@config/banks-config';
+import { BankVo, BankUtils } from '@shared/models/bank';
 
 @Component({
   selector: 'rente-bank-id-login',
@@ -25,43 +23,20 @@ import { BANKS_DATA } from '@config/banks-config';
   styleUrls: ['./bank-id-login.component.scss']
 })
 export class BankIdLoginComponent implements OnInit, OnDestroy {
+
   public bankIdForm: FormGroup;
   public isSsnBankLogin: boolean;
   public isConfirmed: boolean;
   public isLoginStarted = false;
   public userData: any = {};
-  public userBank: any;
-  public bankLogo: string;
-  public ssnMask = {
-    mask: [
-      /\d/,
-      /\d/,
-      /\d/,
-      /\d/,
-      /\d/,
-      /\d/,
-      ' ',
-      /\d/,
-      /\d/,
-      /\d/,
-      /\d/,
-      /\d/
-    ],
-    guide: false
-  };
-  public phoneMask = {
-    mask: [/\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/],
-    guide: false
-  };
-  public birthdateMask = {
-    mask: [/\d/, /\d/, /\d/, /\d/, /\d/, /\d/],
-    guide: false
-  };
+  public ssnMask = {mask: [/\d/, /\d/, /\d/, /\d/, /\d/, /\d/, ' ', /\d/, /\d/, /\d/, /\d/, /\d/], guide: false};
+  public phoneMask = {mask: [/\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/], guide: false};
+  public birthdateMask = {mask: [/\d/, /\d/, /\d/, /\d/, /\d/, /\d/], guide: false};
   private routeParamsSub: Subscription;
   public metaTitle: string;
   public metaDescription: string;
 
-  selectedBank:BankVo;
+  bank:BankVo;
 
   constructor(
     private fb: FormBuilder,
@@ -69,13 +44,14 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     public dialog: MatDialog,
     private metaService: MetaService,
     private titleService: TitleService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.routeParamsSub = this.route.params.subscribe((params: any) => {
       if (params && params.bankName) {
-        const bank = this.getBankByName(params.bankName);
-        this.selectedBank = bank;
+        const bank = BankUtils.getBankByName(params.bankName);
+        this.bank = bank;
+        this.isSsnBankLogin = bank.loginWithSsn;
 
         for (const iterator in customMeta) {
           if (customMeta[iterator].title) {
@@ -85,14 +61,6 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
             }
           }
         }
-        this.isSsnBankLogin = bank.loginWithSsn;
-        this.userBank = BANK_MAP[bank.name.toLocaleLowerCase()];
-        if (this.userBank) {
-          this.bankLogo = this.userBank.bankIcon;
-        }
-        if (this.bankLogo == null) {
-          this.bankLogo = BANKS_DATA[bank.name] ? BANKS_DATA[bank.name].img : null;
-        }
 
         this.changeTitles();
         this.setBankIdForm();
@@ -100,19 +68,12 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     });
   }
 
-  getBankByName(name:string):BankVo {
-    const allBanks = BankList;
-    const n = name.toLocaleLowerCase();
-    for (const bank of allBanks) {
-      if (bank.name.toLocaleLowerCase() == n) {
-        return bank;
-      }
-    }
-    return null;
-  }
-
   ngOnDestroy() {
     this.routeParamsSub.unsubscribe();
+  }
+
+  get bankLogo():string {
+    return BankUtils.getBankLogoUrl(this.bank.name);
   }
 
   public startLogin(formData) {
@@ -188,11 +149,11 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
   }
 
   get isDnbBank(): boolean {
-    return this.userBank && this.userBank.bankName === 'DNB';
+    return this.bank && this.bank.name === 'DNB';
   }
 
   get isSB1Bank(): boolean {
-    return this.userBank && this.userBank.bankName && this.userBank.bankName.indexOf('SPAREBANK_1') > -1;
+    return this.bank && this.bank.name && this.bank.name.indexOf('SPAREBANK_1') > -1;
   }
 
 }

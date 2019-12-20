@@ -31,6 +31,7 @@ export const MESSAGE_STATUS = {
   ERROR: "error"
 };
 
+/*
 export const BANK_MAP = {
   dnb: {
     label: "DNB",
@@ -113,4 +114,4 @@ export const BANK_MAP = {
     bankName: "SPAREBANK_1_OSTLANDET",
     bankIcon: "../../../../assets/img/banks-logo/sparebank1-color.svg"
   }
-};
+}; */

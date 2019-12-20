@@ -5,7 +5,6 @@ import { Component, OnInit, HostListener, OnDestroy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogInfoComponent } from './dialog-info/dialog-info.component';
 import { Loans } from '@shared/models/loans';
-import { BANKS_DATA } from '@config/banks-config';
 import { Router } from '@angular/router';
 import { OFFER_SAVINGS_TYPE, AGGREGATED_RATE_TYPE, AGGREGATED_LOAN_TYPE } from '../../../config/loan-state';
 import { LocalStorageService } from '@services/local-storage.service';
@@ -15,6 +14,8 @@ import { ChangeBankServiceService } from '@services/remote-api/change-bank-servi
 import { Subscription } from 'rxjs';
 import { OFFERS_RESULT_TYPE } from '../../../shared/models/offers';
 import { UserService } from '@services/remote-api/user.service';
+import { BankUtils } from '@shared/models/bank';
+import { BANKS_DATA } from '@config/banks-config';
 
 @Component({
   selector: 'rente-offers',
@@ -59,7 +60,6 @@ export class OffersComponent implements OnInit, OnDestroy {
   public offersInfo: Offers;
   public loansInfo: any;
   public loans: Loans;
-  public banksMap = BANKS_DATA;
   public offerSavingsType = OFFER_SAVINGS_TYPE;
   public aggregatedRateType = AGGREGATED_RATE_TYPE;
   public aggregatedLoanType = AGGREGATED_LOAN_TYPE;
@@ -83,6 +83,16 @@ export class OffersComponent implements OnInit, OnDestroy {
 
   get hasStatensPensjonskasseMembership(): boolean {
     return this.offersInfo && this.offersInfo.memberships && this.offersInfo.memberships.indexOf('STATENS_PENSJONSKASSE_STATLIG_ANSATT') > -1;
+  }
+
+  getBankLogo(bankName:string):string {
+    const b = BANKS_DATA[bankName];
+    if (b && b.img) {
+      return b.img;
+    } else {
+      const bank =  BankUtils.getBankByName(bankName);
+      return (bank && bank.icon) ? '../../assets/img/banks-logo/round/' + bank.icon : '../../assets/img/banks-logo/round/annen.png';
+    }
   }
 
   constructor(

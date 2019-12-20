@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { BankVo, BankList } from '../../shared/models/bank';
 import { Router } from '@angular/router';
 import { ROUTES_MAP } from '@config/routes-config';
-import { BANKS_DATA } from '@config/banks-config';
 
 @Component({
   selector: 'rente-bank-select',
@@ -51,10 +50,6 @@ export class BankSelectComponent implements OnInit {
     } else {
       this.router.navigate(['/autentisering/' + bank.name.toLocaleLowerCase()]);
     }
-  }
-
-  getIcon(bankName:string) {
-    return BANKS_DATA[bankName] ? BANKS_DATA[bankName].imgCircle : null;
   }
 
 }
