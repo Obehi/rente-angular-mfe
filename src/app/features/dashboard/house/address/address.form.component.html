@@ -2,7 +2,7 @@
 
   <div class="row">
       <div class="col-lg-5 col-12">
-        Property {{idx+1}}
+        Bolig {{idx+1}}
       </div>
   </div>
 
@@ -19,7 +19,7 @@
         />
       </div>
       <div class="mt-2">
-        <span class="input-label">ZIP</span>
+        <span class="input-label">Postnummer</span>
         <input
           type="number"
           class="text-input"
@@ -51,9 +51,9 @@
           </mat-radio-button>
           <div class="mt-1">
             <input
-              type="number"
+              type="text"
               class="text-input"
-              [ngModel]="address.estimatedPropertyValue"
+              [ngModel]="address.estimatedPropertyValue | thousands"
               [disabled]="true"
             />
           </div>
@@ -66,13 +66,15 @@
           </mat-radio-button>
           <div class="mt-0">
               <input
-                type="number"
+                type="text"
                 min="0"
-                maxlength="8"
+                maxlength="100"
                 class="text-input"
                 placeholder="Boligen min er verdt"
-                [(ngModel)]="address.manualPropertyValue"
+                [ngModel]="address.manualPropertyValue | thousands"
+                (ngModelChange)="onManPropChange($event)"
                 [disabled]="address.useManualPropertyValue == false"
+                (keyup)="onManPropChange($event)"
               />
           </div>
         </div>
@@ -86,7 +88,7 @@
     <div class="ml-3 mt-3">
       <button
         (click)="onDeleteAddressClick()">
-        Delete property
+        Fjerne bolig
       </button>
     </div>
   </div>

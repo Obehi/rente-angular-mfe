@@ -125,8 +125,6 @@ export class HouseComponent implements OnInit {
     } else {
       res = false;
     }
-    console.log(res);
-
     return res;
   }
 
