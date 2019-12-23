@@ -21,11 +21,11 @@
       <div class="mt-2">
         <span class="input-label">Postnummer</span>
         <input
-          type="number"
+          type="text"
           class="text-input"
           placeholder="Postnummer"
           min="0"
-          max="9999"
+          maxlength="4"
           [(ngModel)]="address.zip"
         />
       </div>
