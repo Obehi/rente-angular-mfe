@@ -12,7 +12,7 @@ export class BankSelectComponent implements OnInit {
 
   searchStr:string;
   banks:BankVo[];
-  otherBank:BankVo = new BankVo('ANNEN', 'Annen', null);
+  otherBank:BankVo = new BankVo('ANNEN', 'Jeg finner ikke banken', null);
   allBanks:BankVo[];
 
   constructor(
