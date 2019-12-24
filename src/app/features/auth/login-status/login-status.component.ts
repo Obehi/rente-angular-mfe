@@ -244,12 +244,13 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
             this.unsubscribeEverything();
             break;
           case BANKID_STATUS.CONFIRMATION_REQUIRED:
+          case BANKID_STATUS.CONFIRMATION_REQUIRED_DNB_PORTAL_AGREEMENT:
             this.isShowPassPhrase = false;
             this.viewStatus.isConfirmationRequired = true;
             this.loginStep3Status = MESSAGE_STATUS.ERROR;
             this.unsubscribeEverything();
             break;
-          case BANKID_STATUS.RENEW_BANK_ID:
+          case BANKID_STATUS.CONFIRMATION_REQUIRED_DNB_RENEW_BANK_ID:
             this.isShowPassPhrase = false;
             this.viewStatus.isRenewBankIdRequired = true;
             this.loginStep3Status = MESSAGE_STATUS.ERROR;
