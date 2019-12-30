@@ -1,20 +1,10 @@
 @import '../../../../../styles/theme/_colors.scss';
 
-@mixin text-style($size, $line-height) {
-  font-size: $size;
-  color: $black;
-  line-height: $line-height;
-}
-
 .provided-container {
-  height: 60px;
   display: flex;
   align-items: center;
   justify-content: flex-end;
-
-  .provided-text {
-    @include text-style(25px, 29px);
-  }
+  font-size: 12px;
 
   @media (max-width:750px) {
     justify-content: center;
