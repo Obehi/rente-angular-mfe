@@ -1,7 +1,8 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import * as Highcharts from 'highcharts';
-import { LoansService } from '../../../../shared/services/remote-api/loans.service';
+import { LoansService, AddressDto } from '../../../../shared/services/remote-api/loans.service';
 import { trigger, transition, keyframes, animate, style } from '@angular/animations';
+import { SnackBarService } from '@services/snackbar.service';
 
 declare var require: any;
 const Boost = require('highcharts/modules/boost');
@@ -32,17 +33,19 @@ noData(Highcharts);
   ]
 })
 export class VirdiStatisticsComponent implements OnInit {
-  @Output() statisticsLoaded = new EventEmitter();
-  @Output() statisticsError = new EventEmitter();
-  public isLoading: boolean;
-  public priceDestributionSqm: any[] = [];
-  public columnChartOptions: any;
-  public lineChartOptions: any;
-  public openMarketSalesHalfYear: number;
-  public indexArea: string;
+
+  @Input() address:AddressDto;
+
+  isLoading: boolean;
+  priceDestributionSqm: any[] = [];
+  columnChartOptions: any;
+  lineChartOptions: any;
+  openMarketSalesHalfYear: number;
+  indexArea: string;
 
   constructor(
-    private loansService: LoansService
+    private loansService: LoansService,
+    private snackBar: SnackBarService,
   ) { }
 
   ngOnInit() {
@@ -183,9 +186,9 @@ export class VirdiStatisticsComponent implements OnInit {
         }]
       }
     };
-    this.loansService.getExtendedInfo().subscribe(extendedInfo => {
+
+    this.loansService.getAddressStatistics(this.address.id).subscribe(extendedInfo => {
       this.isLoading = false;
-      this.statisticsLoaded.emit();
       this.openMarketSalesHalfYear = extendedInfo.statistics.open_market_sales_6_months;
       this.indexArea = extendedInfo.indexHistory.area;
       extendedInfo.statistics.price_distribution_sqm.forEach(element => {
@@ -216,10 +219,10 @@ export class VirdiStatisticsComponent implements OnInit {
         }
       }
 
-      Highcharts.chart('columnChart', this.columnChartOptions);
-      Highcharts.chart('lineChart', this.lineChartOptions);
+      Highcharts.chart(`columnChartAddress${this.address.id}`, this.columnChartOptions);
+      Highcharts.chart(`lineChartAddress${this.address.id}`, this.lineChartOptions);
     }, err => {
-      this.statisticsError.emit();
+      this.notifError();
       this.isLoading = false;
     });
   }
@@ -240,6 +243,10 @@ export class VirdiStatisticsComponent implements OnInit {
         return '>' + this.convertThousands(item.from);
       }
     });
+  }
+
+  notifError() {
+    this.snackBar.openFailSnackBar('Feil ved lasting av statistikkdata', 10);
   }
 
 }

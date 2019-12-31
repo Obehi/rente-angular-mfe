@@ -1,24 +1,30 @@
-<div class="row justify-content-center" *ngIf="!isLoading" [@shakeAnimation]>
-    <h3>Bolig statistikk</h3>
+<div
+  class="row justify-content-center"
+  *ngIf="!isLoading"
+  [@shakeAnimation]>
+  <h3>Bolig statistikk</h3>
 </div>
+
 <div class="row">
-    <div id="columnChart" class="col-12 col-lg-6 order-lg-1"></div>
-    <div class="col-12 col-lg-6 order-lg-3" *ngIf="!isLoading" [@shakeAnimation]>
-        <div class="text-left font-weight-normal">Antall salg i/på {{indexArea}} siste 6 mnder:
-            {{openMarketSalesHalfYear}}</div>
+
+  <div id="columnChartAddress{{address.id}}" class="col-12 col-lg-6 order-lg-1"></div>
+
+  <div class="col-12 col-lg-6 order-lg-3" *ngIf="!isLoading" [@shakeAnimation] style="padding: 0;">
+    <div class="text-left ml-3 mt-3">
+      Antall salg i/på {{indexArea}} siste 6 mnder: {{openMarketSalesHalfYear}}
     </div>
-    <div id="lineChart" class="col-12 col-lg-6 order-lg-2 mt-3 mt-lg-0"></div>
-    <div class="col-12 order-lg-4" *ngIf="!isLoading" [@shakeAnimation]>
-        <div class="provided-container font-weight-normal">
-            <span class="provided-text">
-                Statistikk levert av
-                <a href="https://virdi.no/" target="_blank">
-                    virdi.no
-                </a>
-            </span>
-        </div>
+  </div>
+
+  <div id="lineChartAddress{{address.id}}" class="col-12 col-lg-6 order-lg-2 mt-3 mt-lg-0"></div>
+
+  <div class="col-12 order-lg-4 mt-3" *ngIf="!isLoading" [@shakeAnimation] style="padding: 0;">
+    <div class="provided-container mr-3">
+      <span class="provided-text">Data levert av <a href="https://virdi.no/" target="_blank">virdi.no</a></span>
     </div>
+  </div>
+
 </div>
+
 <div class="d-flex justify-content-center align-items-center mt-4" *ngIf="isLoading">
-    <mat-spinner [diameter]="48" [strokeWidth]="4"></mat-spinner>
+  <mat-spinner [diameter]="48" [strokeWidth]="4"></mat-spinner>
 </div>

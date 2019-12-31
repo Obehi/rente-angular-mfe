@@ -1,14 +1,26 @@
 <div class="property-group mb-4">
 
+  <!-- Header -->
   <div class="row">
-      <div class="col-lg-5 col-12">
-        Bolig {{idx+1}}
-      </div>
+    <div class="col-lg-10 col-10">
+      Bolig {{index + 1}}
+    </div>
+    <div class="col-lg-2 col-2">
+      <button
+        class="statistics-button"
+        mat-raised-button
+        [disabled]="!isAddressValid"
+        (click)="toggleMode()">
+        <mat-icon *ngIf="isEditMode">bar_chart</mat-icon>
+        <mat-icon *ngIf="isStatMode">keyboard_backspace</mat-icon>
+      </button>
+    </div>
   </div>
 
-  <div class="row">
+  <!-- Address Editing View -->
+  <div class="row" *ngIf="isEditMode">
     <div class="col-12 col-lg-6">
-      <div class="mt-2">
+      <div>
         <span class="input-label">Adresse</span>
         <input
           type="text"
@@ -72,9 +84,9 @@
                 class="text-input"
                 placeholder="Boligen min er verdt"
                 [ngModel]="address.manualPropertyValue | thousands"
-                (ngModelChange)="onManPropChange($event)"
+                (ngModelChange)="manualPropertyValueChanged($event)"
                 [disabled]="address.useManualPropertyValue == false"
-                (keyup)="onManPropChange($event)"
+                (keyup)="manualPropertyValueChanged($event)"
               />
           </div>
         </div>
@@ -82,20 +94,24 @@
     </div>
   </div>
 
-  <div
-    *ngIf="ableToDelete"
-    class="row">
+  <!-- Address Statistics View -->
+  <div *ngIf="isStatMode">
+    <rente-virdi-statistics
+      [address]="address">
+    </rente-virdi-statistics>
+  </div>
+
+  <!-- Delete Address Button -->
+  <div class="row" *ngIf="isAbleToDelete">
     <div class="ml-3 mt-3">
-      <button
-        (click)="onDeleteAddressClick()">
+      <button (click)="onDeleteAddressClick()">
         Fjerne bolig
       </button>
     </div>
   </div>
 
-  <div
-    *ngIf="address.message"
-    class="row">
+  <!-- Error message from address service -->
+  <div class="row" *ngIf="address.message">
     <p class="ml-3 mt-1 error-message">{{address.message}}</p>
   </div>
 

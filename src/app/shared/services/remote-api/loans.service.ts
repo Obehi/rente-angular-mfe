@@ -97,8 +97,8 @@ export class LoansService {
     );
   }
 
-  public getExtendedInfo() {
-    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.property}${API_URL_MAP.loan.extendedInfo}`;
+  public getAddressStatistics(id:number) {
+    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.address}${API_URL_MAP.loan.statistics}/${id}`;
     return this.http.get(url);
   }
 
@@ -127,7 +127,7 @@ export class AddressDto {
   apartmentSize:number;
   manualPropertyValue:number;
   estimatedPropertyValue:number;
-  useManualPropertyValue:boolean = false;
+  useManualPropertyValue:boolean;
   message:string;
 }
 
