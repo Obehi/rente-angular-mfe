@@ -210,18 +210,20 @@ export class VirdiStatisticsComponent implements OnInit {
       }
       this.columnChartOptions.xAxis.categories = [...this.createThousandsCategories(this.priceDestributionSqm)];
       const BreakException = {};
-      try {
-        extendedInfo.indexHistory.data.forEach((element, index) => {
-          if (index >= 39) {
-            throw BreakException;
-          } else {
-            this.lineChartOptions.xAxis.categories.unshift(element.date);
-            this.lineChartOptions.series[0].data.unshift(element.index_value);
+      if (extendedInfo.indexHistory && extendedInfo.indexHistory.data) {
+        try {
+          extendedInfo.indexHistory.data.forEach((element, index) => {
+            if (index >= 39) {
+              throw BreakException;
+            } else {
+              this.lineChartOptions.xAxis.categories.unshift(element.date);
+              this.lineChartOptions.series[0].data.unshift(element.index_value);
+            }
+          });
+        } catch (e) {
+          if (e !== BreakException) {
+            throw e;
           }
-        });
-      } catch (e) {
-        if (e !== BreakException) {
-          throw e;
         }
       }
 
