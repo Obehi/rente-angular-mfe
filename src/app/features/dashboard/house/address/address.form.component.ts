@@ -26,7 +26,9 @@ export class AddressFormComponent implements OnInit {
   get isAbleToDelete():boolean { return this.index > 0; }
   get isEditMode() { return this.mode === AddressFormMode.Editing; }
   get isStatMode() { return this.mode === AddressFormMode.Statistics; }
-  get isAddressValid():boolean { return this.address != null && this.address.id > 0 && this.address.zip.length == 4 && this.address.street.length > 0; }
+  get isAddressValid():boolean {
+    return this.address != null && this.address.id > 0 && this.address.zip && this.address.zip.length === 4 && this.address.street.length > 0;
+  }
 
   onRbChange(event:MatRadioChange) {
     this.address.useManualPropertyValue = event.value;
