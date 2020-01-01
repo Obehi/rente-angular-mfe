@@ -191,17 +191,19 @@ export class VirdiStatisticsComponent implements OnInit {
       this.isLoading = false;
       this.openMarketSalesHalfYear = extendedInfo.statistics.open_market_sales_6_months;
       this.indexArea = extendedInfo.indexHistory.area;
-      extendedInfo.statistics.price_distribution_sqm.forEach(element => {
-        this.priceDestributionSqm.push({ from: element.from, to: element.to });
-        this.columnChartOptions.series[0].data.push(element.count);
-        this.columnChartOptions.title.text = `Din kvadratmeterpris: ${extendedInfo.statistics.average_sqm_price} NOK`;
-        this.lineChartOptions.title.text = `Prisutvikling ${extendedInfo.indexHistory.area}`;
-        if (extendedInfo.statistics.average_sqm_price >= element.from && extendedInfo.statistics.average_sqm_price <= element.to) {
-          this.columnChartOptions.plotOptions.column.colors.push('#2b3e50');
-        } else {
-          this.columnChartOptions.plotOptions.column.colors.push('#18BC9C');
-        }
-      });
+      if (extendedInfo.statistics.price_distribution_sq && extendedInfo.statistics.price_distribution_sq.length > 0) {
+        extendedInfo.statistics.price_distribution_sqm.forEach(element => {
+          this.priceDestributionSqm.push({ from: element.from, to: element.to });
+          this.columnChartOptions.series[0].data.push(element.count);
+          this.columnChartOptions.title.text = `Din kvadratmeterpris: ${extendedInfo.statistics.average_sqm_price} NOK`;
+          this.lineChartOptions.title.text = `Prisutvikling ${extendedInfo.indexHistory.area}`;
+          if (extendedInfo.statistics.average_sqm_price >= element.from && extendedInfo.statistics.average_sqm_price <= element.to) {
+            this.columnChartOptions.plotOptions.column.colors.push('#2b3e50');
+          } else {
+            this.columnChartOptions.plotOptions.column.colors.push('#18BC9C');
+          }
+        });
+      }
       this.columnChartOptions.xAxis.categories = [...this.createThousandsCategories(this.priceDestributionSqm)];
       const BreakException = {};
       try {
