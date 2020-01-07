@@ -12,7 +12,7 @@ export enum AddressFormMode {
   templateUrl: './address.form.component.html',
   styleUrls: ['./address.form.component.scss']
 })
-export class AddressFormComponent implements OnInit {
+export class AddressFormComponent {
 
   @Input() index:number;
   @Input() address:AddressDto;
@@ -20,8 +20,6 @@ export class AddressFormComponent implements OnInit {
   @Output() deleteAddress:EventEmitter<AddressDto> = new EventEmitter();
 
   mode = AddressFormMode.Editing;
-
-  ngOnInit():void { }
 
   get isAbleToDelete():boolean { return this.index > 0; }
   get isEditMode() { return this.mode === AddressFormMode.Editing; }
