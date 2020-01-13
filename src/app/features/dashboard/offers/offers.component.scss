@@ -1,5 +1,123 @@
 @import "../../../../styles/theme/_colors.scss";
+.offers {
+  text-align: center;
+  .double {
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: 1fr 1fr;
+    &.buttons {
+      padding: 10px;
+    }
+  }
+  .split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    &:last-of-type {
+      border-bottom: 1px solid $lesslight;
+    }
+  }
+  a {
+    color: $green !important;
+  }
+  > div {
+    padding: 10px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid $light;
+  }
+  .barometer {
+    .rente-status {
+      margin-bottom: 20px;
+    }
 
+    .box {
+      padding: 20px 10px;
+      margin-bottom: 10px;
+      width: 100%;
+      background-color: $light;
+      &.positive {
+        background-color: $lightgreen;
+      }
+      p img {
+        position: relative;
+        top: 2px;
+        margin-left: 5px;
+        height: 16px;
+      }
+    }
+  }
+  .compared {
+  }
+  .the-offers {
+    padding-left: 0;
+    padding-right: 0;
+    .split .offer-info:first-of-type {
+      border-right: 1px solid $lesslight;
+    }
+    .the-offer {
+      border-top: 1px solid $primary;
+      margin-bottom: 80px;
+      .the-offer-header {
+        background-color: $lightgreen;
+        padding: 10px;
+        text-align: left;
+        .logo {
+          width: 60px;
+          height: 60px;
+          background-position: center;
+          background-size: cover;
+          border-radius: 100%;
+          border: 1px solid $primary;
+          position: relative;
+          display: inline-block;
+          .nr {
+            text-align: center;
+            color: $primary;
+            border: 1px solid;
+            background-color: white;
+            position: absolute;
+            left: 0;
+            top: 0;
+            border-radius: 100%;
+            width: 20px;
+            height: 20px;
+            p {
+              font-weight: 500;
+              position: absolute;
+              left: 0;
+              right: 0;
+              margin: auto;
+              top: 50%;
+              transform: translateY(-50%);
+            }
+          }
+        }
+        .offer-product {
+          display: inline-block;
+          margin-left: 10px;
+          vertical-align: super;
+        }
+      }
+      .the-offer-body {
+        .small-header {
+          background-color: $light;
+          padding: 4px 0;
+          border-top: 1px solid $lesslight;
+          border-bottom: 1px solid $lesslight;
+        }
+        .offer-inner {
+          padding: 15px 10px;
+        }
+        .save {
+          h3 {
+            color: $primary;
+          }
+        }
+      }
+    }
+  }
+}
+/*
 @mixin text-style($size, $line-height, $letter-spacing) {
   font-size: $size;
   color: $black;
@@ -107,3 +225,4 @@ a {
   opacity: 1;
   margin-top: 80px;
 }
+ */

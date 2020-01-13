@@ -1,11 +1,11 @@
-import { Component, OnInit, Input, HostListener } from '@angular/core';
-import * as Highcharts from 'highcharts';
-import { Offers } from '@shared/models/offers';
+import { Component, OnInit, Input, HostListener } from "@angular/core";
+import * as Highcharts from "highcharts";
+import { Offers } from "@shared/models/offers";
 
 declare var require: any;
-const Boost = require('highcharts/modules/boost');
-const noData = require('highcharts/modules/no-data-to-display');
-const More = require('highcharts/highcharts-more');
+const Boost = require("highcharts/modules/boost");
+const noData = require("highcharts/modules/no-data-to-display");
+const More = require("highcharts/highcharts-more");
 
 Boost(Highcharts);
 noData(Highcharts);
@@ -13,27 +13,28 @@ More(Highcharts);
 noData(Highcharts);
 
 @Component({
-  selector: 'rente-offers-statistics',
-  templateUrl: './offers-statistics.component.html',
-  styleUrls: ['./offers-statistics.component.scss']
+  selector: "rente-offers-statistics",
+  templateUrl: "./offers-statistics.component.html",
+  styleUrls: ["./offers-statistics.component.scss"]
 })
 export class OffersStatisticsComponent {
-
   @Input()
   public get offersInfo(): Offers {
     return this._offersInfo;
   }
   public set offersInfo(value: Offers) {
     this._offersInfo = value;
-    this.hasClientBankData = value &&
+    this.hasClientBankData =
+      value &&
       value.bestPercentileEffectiveRateYourBank > 0 &&
       value.medianEffectiveRateYourBank > 0;
-    this.hasOthersBankData = value &&
+    this.hasOthersBankData =
+      value &&
       value.bestPercentileEffectiveRateAllBanks > 0 &&
       value.medianEffectiveRateAllBanks > 0;
     this.tips = value && value.tips;
   }
-  
+
   _offersInfo: Offers;
   clientBankEffRateOptions: any;
   allBanksEffRateOptions: any;
@@ -42,8 +43,8 @@ export class OffersStatisticsComponent {
   tips: string;
   hasClientBankData = true;
   hasOthersBankData = true;
-  clientBankChartId = 'clientBankChartId';
-  allBanksChartChartId = 'allBanksChartChartId';
+  clientBankChartId = "clientBankChartId";
+  allBanksChartChartId = "allBanksChartChartId";
 
   get chartTitleMargin() {
     return window.innerWidth <= 991 ? 0 : -10;
@@ -54,11 +55,14 @@ export class OffersStatisticsComponent {
       if (this.hasClientBankData) {
         this.clientBankEffRateOptions = this.getClientBankChartOptions();
         this.clientBankEffRateOptions.series[0].data = [
-          this.offersInfo.bestPercentileEffectiveRateYourBank || 0,
+          this.offersInfo.totalEffectiveRate || 0,
           this.offersInfo.medianEffectiveRateYourBank || 0,
-          this.offersInfo.totalEffectiveRate || 0
+          this.offersInfo.bestPercentileEffectiveRateYourBank || 0
         ];
-        this.clientBankEffRateChart = Highcharts.chart(this.clientBankChartId, this.clientBankEffRateOptions);
+        this.clientBankEffRateChart = Highcharts.chart(
+          this.clientBankChartId,
+          this.clientBankEffRateOptions
+        );
         this.clientBankEffRateChart.setSize(null, 250);
       }
       if (this.hasOthersBankData) {
@@ -68,7 +72,10 @@ export class OffersStatisticsComponent {
           this.offersInfo.medianEffectiveRateAllBanks || 0,
           this.offersInfo.totalEffectiveRate || 0
         ];
-        this.allBankEffRateCharts = Highcharts.chart(this.allBanksChartChartId, this.allBanksEffRateOptions);
+        this.allBankEffRateCharts = Highcharts.chart(
+          this.allBanksChartChartId,
+          this.allBanksEffRateOptions
+        );
         this.allBankEffRateCharts.setSize(null, 250);
       }
     }
@@ -77,23 +84,26 @@ export class OffersStatisticsComponent {
   getClientBankChartOptions() {
     let opt = {
       chart: {
-        type: 'column',
+        type: "column",
+        spacingLeft: 0,
+        spacingRight: 0
       },
 
       title: {
         text: null, //'Din rente i forhold til andre i din bank:',
-        align: 'left',
+        align: "left",
         margin: this.chartTitleMargin,
         style: {
-          fontWeight: 'bold'
+          fontWeight: "bold"
         }
       },
 
       xAxis: {
-        categories: ['De med lavest rente', 'Snitt-kunden', 'Du har'],
+        categories: ["Du har", "Snitt-kunden", "De med lavest rente"],
         labels: {
           style: {
-            fontSize: '14px',
+            fontSize: "12px",
+            color: "black"
           }
         }
       },
@@ -103,7 +113,7 @@ export class OffersStatisticsComponent {
         title: {
           enabled: false
         },
-        allowDecimals: false,
+        allowDecimals: false
         // min: 0,
       },
       legend: {
@@ -113,39 +123,41 @@ export class OffersStatisticsComponent {
       tooltip: {
         enabled: false,
         formatter() {
-          return '<b>' + this.x + '</b><br/>' + this.y + '%';
+          return "<b>" + this.x + "</b><br/>" + this.y + "%";
         }
       },
 
       plotOptions: {
         column: {
-          stacking: 'normal',
+          stacking: "normal",
           groupPadding: 0,
           colorByPoint: true,
-          colors: ['#1abc9c', '#7f7f7f', '#2d3e50'],
-          borderRadius: 4
+          colors: ["#112639", "#E7E9EB", "#D1F2EB"],
+          borderRadius: 0
         }
       },
 
       series: [
         {
-          type: 'column' as 'column',
-          name: 'data',
-          color: '#18BC9C',
+          type: "column" as "column",
+          name: "data",
+
           data: [], //[2.21, 2.62, 2.43],
           dataLabels: {
             enabled: true,
             rotation: 0,
-            color: '#FFFFFF',
-            align: 'center',
-            format: '{point.y:.2f}%', // one decimal
-            y: 10, // 10 pixels down from the top
+
+            align: "center",
+            verticalAlign: "bottom",
+            format: "{point.y:.2f}%", // one decimal
+            y: 0, // 10 pixels down from the top
             style: {
-              fontSize: '24px',
-              textOutline: false
+              fontSize: "26px",
+              textOutline: false,
+              color: "contrast"
             }
           }
-        },
+        }
       ]
     };
     return opt;
@@ -154,23 +166,23 @@ export class OffersStatisticsComponent {
   getOtherBanksChartOptions() {
     let opt = {
       chart: {
-        type: 'column',
+        type: "column"
       },
 
       title: {
         text: null, //'Din rente i forhold til andre i alle banker:',
-        align: 'left',
+        align: "left",
         margin: this.chartTitleMargin,
         style: {
-          fontWeight: 'bold'
+          fontWeight: "bold"
         }
       },
 
       xAxis: {
-        categories: ['De med lavest rente', 'Snitt-kunden', 'Du har'],
+        categories: ["Du har", "Snitt-kunden", "De med lavest rente"],
         labels: {
           style: {
-            fontSize: '14px',
+            fontSize: "14px"
           }
         }
       },
@@ -178,9 +190,9 @@ export class OffersStatisticsComponent {
       yAxis: {
         visible: false,
         title: {
-          enabled: false,
+          enabled: false
         },
-        allowDecimals: false,
+        allowDecimals: false
         // min: 0,
       },
       legend: {
@@ -190,43 +202,41 @@ export class OffersStatisticsComponent {
       tooltip: {
         enabled: false,
         formatter() {
-          return '<b>' + this.x + '</b><br/>' + this.y + '%';
+          return "<b>" + this.x + "</b><br/>" + this.y + "%";
         }
       },
 
       plotOptions: {
         column: {
-          stacking: 'normal',
+          stacking: "normal",
           groupPadding: 0,
           colorByPoint: true,
-          colors: ['#1abc9c', '#7f7f7f', '#2d3e50'],
+          colors: ["#1abc9c", "#7f7f7f", "#2d3e50"],
           borderRadius: 4
         }
       },
 
       series: [
         {
-          type: 'column' as 'column',
-          name: 'data',
-          color: '#18BC9C',
+          type: "column" as "column",
+          name: "data",
+          color: "#18BC9C",
           data: [], //[2.52, 2.65, 2.41],
           dataLabels: {
             enabled: true,
             rotation: 0,
-            color: '#FFFFFF',
-            align: 'center',
-            format: '{point.y:.2f}%', // one decimal
+            color: "#FFFFFF",
+            align: "center",
+            format: "{point.y:.2f}%", // one decimal
             y: 10, // 10 pixels down from the top
             style: {
-              fontSize: '24px',
+              fontSize: "24px",
               textOutline: false
             }
           }
-        },
-
+        }
       ]
     };
     return opt;
   }
-
 }

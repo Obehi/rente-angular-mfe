@@ -44,6 +44,25 @@ hr {
     display: block;
   }
 }
+.bank-buttons .button-wrapper {
+  display: block;
+}
+.full-width .button-wrapper {
+  display: block;
+  button {
+    width: 100%;
+  }
+}
+.mat-ink-bar {
+  background-color: $green !important;
+}
+.mat-tab-label {
+  width: 100%;
+}
+.mat-tab-label-active {
+  color: black !important;
+  opacity: 1 !important;
+}
 
 mat-radio-button.mat-accent {
   &.mat-radio-checked .mat-radio-container {

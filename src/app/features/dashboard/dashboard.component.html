@@ -1,35 +1,97 @@
-<div class="container dashboard">
+<div class="dash-tabs">
+  <nav mat-tab-nav-bar class="dash-tab">
+    <a mat-tab-link [active]="activeLinkIndex == 0" [routerLink]="'./tilbud'">
+      <div class="inside-btn">
+        <img src="../../../assets/icons/bank-icon.svg" alt="Banktilbud" />
+        <p>Tilbud</p>
+      </div>
+    </a>
+  </nav>
+  <nav mat-tab-nav-bar class="dash-tab">
+    <a mat-tab-link [active]="activeLinkIndex == 1" [routerLink]="'./mine-lan'">
+      <div class="inside-btn">
+        <img src="../../../assets/icons/loan-icon.svg" alt="Mine lån" />
+        <p>Mine lån</p>
+      </div>
+    </a>
+  </nav>
+  <nav mat-tab-nav-bar class="dash-tab">
+    <a mat-tab-link [active]="activeLinkIndex == 2" [routerLink]="'./bolig'">
+      <div class="inside-btn">
+        <img src="../../../assets/icons/house-icon.svg" alt="Bolig" />
+        <p>Bolig</p>
+      </div>
+    </a>
+  </nav>
+  <nav mat-tab-nav-bar class="dash-tab">
+    <a
+      mat-tab-link
+      [active]="activeLinkIndex == 3"
+      [routerLink]="'./preferanser'"
+    >
+      <div class="inside-btn">
+        <img src="../../../assets/icons/profile-icon.svg" alt="Profil" />
+        <p>Profil</p>
+      </div>
+    </a>
+  </nav>
+</div>
+<div class="dashboard-content">
+  <router-outlet></router-outlet>
+</div>
+<!-- <div class="container dashboard">
   <div class="row">
     <div class="col-12">
-      <nav 
-        mat-tab-nav-bar 
-        mat-stretch-tabs 
-        [ngClass]="{mobile: isMobile}"
+      <nav
+        mat-tab-nav-bar
+        mat-stretch-tabs
+        [ngClass]="{ mobile: isMobile }"
         [class.mat-tab-header-pagination-controls-enabled]="!isMobile"
-        [class.mat-tab-header-pagination-controls-disabled]="true">
-        <a mat-tab-link [active]="activeLinkIndex == 0" [routerLink]="'./tilbud'">
-          <img src="{{imgLink.tilbud}}" alt="tilbud">
+        [class.mat-tab-header-pagination-controls-disabled]="true"
+      >
+        <a
+          mat-tab-link
+          [active]="activeLinkIndex == 0"
+          [routerLink]="'./tilbud'"
+        >
+          <img src="{{ imgLink.tilbud }}" alt="tilbud" />
           Tilbud
         </a>
 
-        <a mat-tab-link [active]="activeLinkIndex == 1" [routerLink]="'./mine-lan'">
-          <img src="{{imgLink['mine-lan']}}" alt="mine-lan">
+        <a
+          mat-tab-link
+          [active]="activeLinkIndex == 1"
+          [routerLink]="'./mine-lan'"
+        >
+          <img src="{{ imgLink['mine-lan'] }}" alt="mine-lan" />
           Mine lån
         </a>
 
-        <a mat-tab-link [active]="activeLinkIndex == 2" [routerLink]="'./bolig'">
-          <img src="{{imgLink.bolig}}" alt="bolig">
+        <a
+          mat-tab-link
+          [active]="activeLinkIndex == 2"
+          [routerLink]="'./bolig'"
+        >
+          <img src="{{ imgLink.bolig }}" alt="bolig" />
           Bolig
         </a>
 
-        <a mat-tab-link [active]="activeLinkIndex == 3" [routerLink]="'./preferanser'">
-          <img src="{{imgLink.preferanser}}" alt="preferanser">
+        <a
+          mat-tab-link
+          [active]="activeLinkIndex == 3"
+          [routerLink]="'./preferanser'"
+        >
+          <img src="{{ imgLink.preferanser }}" alt="preferanser" />
           Preferanser
         </a>
 
-        <a mat-tab-link class="last" [active]="activeLinkIndex == 4"
-          [routerLink]="'./profil'">
-          <img src="{{imgLink.profil}}" alt="profil">
+        <a
+          mat-tab-link
+          class="last"
+          [active]="activeLinkIndex == 4"
+          [routerLink]="'./profil'"
+        >
+          <img src="{{ imgLink.profil }}" alt="profil" />
           Profil
         </a>
       </nav>
@@ -37,3 +99,4 @@
     </div>
   </div>
 </div>
+ -->
