@@ -25,6 +25,7 @@ import { ChangeBankServiceService } from "@services/remote-api/change-bank-servi
 import { Subscription } from "rxjs";
 import { OFFERS_RESULT_TYPE } from "../../../shared/models/offers";
 import { UserService } from "@services/remote-api/user.service";
+import smoothscroll from "smoothscroll-polyfill";
 
 @Component({
   selector: "rente-offers",
@@ -117,6 +118,8 @@ export class OffersComponent implements OnInit, OnDestroy {
   }
 
   public ngOnInit(): void {
+    // kick off the polyfill!
+    smoothscroll.polyfill();
     this.loansService.getOffers().subscribe(
       (res: Offers) => {
         this.offersInfo = res;
@@ -142,8 +145,7 @@ export class OffersComponent implements OnInit, OnDestroy {
   public goToBestOffer() {
     document.getElementById("the-offers").scrollIntoView({
       behavior: "smooth",
-      block: "start",
-      inline: "nearest"
+      block: "start"
     });
   }
 

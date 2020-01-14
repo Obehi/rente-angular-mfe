@@ -100,7 +100,7 @@
     </rente-offers-statistics>
   </div>
 
-  <div class="the-offers" id="the-offers">
+  <div class="the-offers">
     <h3 class="mb-4">{{ offersInfo.offers.length }} bedre tilbud</h3>
     <ng-container *ngIf="offersInfo">
       <div
@@ -124,23 +124,23 @@
           </div>
         </div>
         <div class="the-offer-body">
-          <div class="small-header"><p class="small">Rentebesparelse</p></div>
+          <div class="small-header"><p>Rentebesparelse</p></div>
           <div class="split">
             <div class="offer-inner save">
-              <h3 *ngIf="offer.totalSavings > 0; else noTotalSavings">
+              <h2 *ngIf="offer.totalSavings > 0; else noTotalSavings">
                 {{ offer.totalSavings | abs | number }},-
-              </h3>
+              </h2>
               <ng-template #noTotalSavings>
-                <h3>0,-</h3>
+                <h2>0,-</h2>
               </ng-template>
               <p>over lånets løpetid</p>
             </div>
             <div class="offer-inner save">
-              <h3 *ngIf="offer.savingsFirstYear > 0; else noTotalSavings">
+              <h2 *ngIf="offer.savingsFirstYear > 0; else noTotalSavings">
                 {{ offer.savingsFirstYear | abs | number }},-
-              </h3>
+              </h2>
               <ng-template #noSavingsFirstYear>
-                <h3>0,-</h3>
+                <h2>0,-</h2>
               </ng-template>
               <p>første år</p>
             </div>
@@ -148,20 +148,20 @@
           <div class="split">
             <div class="offer-info">
               <div class="small-header">
-                <p class="small">Effektiv rente</p>
+                <p>Effektiv rente</p>
               </div>
               <div class="offer-inner">
-                <h3>{{ offer.effectiveRate | number: "1.2-2" }}%</h3>
+                <h2>{{ offer.effectiveRate | number: "1.2-2" }}%</h2>
               </div>
             </div>
             <div class="offer-info">
               <div class="small-header">
-                <p class="small">Krever tilleggsprodukt</p>
+                <p>Krever tilleggsprodukt</p>
               </div>
               <div class="offer-inner">
-                <h3>
+                <h2>
                   {{ offer.requiredProductPackage == null ? "Nei" : "Ja" }}
-                </h3>
+                </h2>
               </div>
             </div>
           </div>
