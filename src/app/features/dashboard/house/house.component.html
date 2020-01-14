@@ -2,7 +2,7 @@
 
   <rente-address-form
     *ngFor="let address of addresses; let i=index"
-    [idx]="i"
+    [index]="i"
     [address]="address"
     (deleteAddress)="deleteAddress($event)">
   </rente-address-form>
@@ -11,16 +11,15 @@
     <div class="col-12">
       <button style="display: inline"
         (click)="addAddress()">
-        Add property
+        Legg til bolig
       </button>
       <div style="float: right;">
-        <p>Total verdi av boliger: {{totalPropertyValue}}</p>
+        <p>Total verdi av boliger: {{totalPropertyValue | thousands}}</p>
       </div>
     </div>
   </div>
 
-  <div
-    class="row justify-content-center mt-2">
+  <div class="row justify-content-center mt-2">
     <rente-button
       color="primary"
       [disabled]="!ableToSave"
@@ -29,152 +28,10 @@
     </rente-button>
   </div>
 
-
-
-  <!-- *ngIf="autoPropertyForm && manualPropertyForm && !statisticsView"
-  <div>
-    <mat-radio-group [(ngModel)]="isAutoMode" (change)="setPropertyMode()">
-      <div class="row justify-content-center mt-2">
-        <div class="col-lg-5 col-12">
-          <mat-radio-button [value]="true">
-            <h3>Bruk estimert boligverdi</h3>
-          </mat-radio-button>
-        </div>
-        <div class="col-lg-5 col-12">
-          <mat-radio-button [value]="false">
-            <h3>Bruk eget estimat</h3>
-          </mat-radio-button>
-        </div>
-      </div>
-      <div class="row justify-content-center">
-        <div class="col-lg-5 col-12">
-
-
-          <div class="bg-wrap mt-0 mt-lg-3" [ngClass]="{disabled: autoPropertyForm.disabled}">
-            <p class="mt-0 mb-2">Estimert boligverdi:</p>
-            <h3 *ngIf="estimatedPropertyValue">
-              {{estimatedPropertyValue / 1000000 | number: '1.1-3'}}
-              millioner</h3>
-            <form [formGroup]="autoPropertyForm" novalidate>
-              <div class="mb-4">
-                <rente-input [placeholder]="'Adresse:'" formControlName="street"
-                  [errorStateMatcher]="isErrorState(autoPropertyForm.controls['street'], autoPropertyForm)">
-                </rente-input>
-
-                <rente-form-message class="text-left d-block" [type]="'info'">
-                  Adressen til boligen det er lån på
-                </rente-form-message>
-
-                <div *ngIf="autoPropertyForm.controls['street'].touched" class="error-message">
-                  <rente-form-message class="text-left d-block" [type]="'error'"
-                    *ngIf="autoPropertyForm.controls['street'].hasError('required')">
-                    Kan ikke være tom
-                  </rente-form-message>
-                </div>
-              </div>
-
-              <div class="mb-4">
-                <rente-input type="number" [placeholder]="'Postnummer:'" formControlName="zip"
-                  [errorStateMatcher]="isErrorState(autoPropertyForm.controls['zip'], autoPropertyForm)" [type]="'tel'"
-                  [mask]="fourDigitsMask">
-                </rente-input>
-                <div *ngIf="autoPropertyForm.controls['zip'].touched" class="error-message">
-                  <rente-form-message class="text-left d-block" [type]="'error'"
-                    *ngIf="autoPropertyForm.controls['zip'].hasError('required')">
-                    Kan ikke være tom
-                  </rente-form-message>
-
-                  <rente-form-message class="text-left d-block" [type]="'error'"
-                    *ngIf="autoPropertyForm.controls['zip'].hasError('pattern')">
-                    Postnummer 4 siffer
-                  </rente-form-message>
-                </div>
-              </div>
-
-              <div class="mb-4">
-                <rente-input type="number" [placeholder]="'Størrelse på bolig (kvm):'" formControlName="apartmentSize"
-                  [type]="'tel'" [mask]="threeDigitsMask">
-                </rente-input>
-
-                <div *ngIf="autoPropertyForm.controls['apartmentSize'].touched" class="error-message">
-                  <rente-form-message class="text-left d-block" [type]="'error'"
-                    *ngIf="autoPropertyForm.controls['apartmentSize'].hasError('required')">
-                    Kan ikke være tom
-                  </rente-form-message>
-
-                  <rente-form-message class="text-left d-block" [type]="'error'"
-                    *ngIf="autoPropertyForm.controls['apartmentSize'].hasError('pattern')">
-                    Ugyldig størrelse
-                  </rente-form-message>
-                </div>
-              </div>
-            </form>
-            <p class="text-right my-0">Estimat levert av <a href="https://virdi.no/" target="_blank">virdi.no</a></p>
-          </div>
-        </div>
-        <div class="col-lg-5 col-12">
-
-          <div class="bg-wrap mt-0 mt-lg-3" [ngClass]="{disabled: manualPropertyForm.disabled}">
-            <p class="mt-0 mb-2">Min estimerte boligverdi:</p>
-            <form [formGroup]="manualPropertyForm" novalidate>
-              <div class="mb-4">
-                <rente-input type="number" [placeholder]="'Boligen min er verdt:'" formControlName="manualPropertyValue"
-                  [errorStateMatcher]="isErrorState(manualPropertyForm.controls['manualPropertyValue'], manualPropertyForm)"
-                  [type]="'tel'" [mask]="thousandSeparatorMask">
-                </rente-input>
-
-                <rente-form-message class="text-left d-block" [type]="'info'">Vi benytter boligverdien når vi overvåker
-                  renten din, pass derfor på at denne ikke er helt urealistisk
-                </rente-form-message>
-
-                <div *ngIf="manualPropertyForm.controls['manualPropertyValue'].touched" class="error-message">
-                  <rente-form-message class="text-left d-block" [type]="'error'"
-                    *ngIf="manualPropertyForm.controls['manualPropertyValue'].hasError('required')">
-                    Fyll inn boligverdi eller velg å bruke estimat
-                  </rente-form-message>
-
-                  <rente-form-message class="text-left d-block" [type]="'error'"
-                    *ngIf="manualPropertyForm.controls['manualPropertyValue'].hasError('pattern')">
-                    Fyll inn boligverdi eller velg å bruke estimat
-                  </rente-form-message>
-                </div>
-
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </mat-radio-group>
-
-  </div>
--->
 </div>
 
-<div *ngIf="statisticsView">
-  <rente-virdi-statistics (statisticsLoaded)="hideStatisticsButton = false" (statisticsError)="statisticsError()">
-  </rente-virdi-statistics>
-</div>
-<div *ngIf="autoPropertyForm && manualPropertyForm && !hideStatisticsButton">
-  <div class="button-wrap mt-4 text-center">
-    <rente-button *ngIf="!statisticsView" class="mr-3" color="primary" (click)="updatePropertyMode()"
-      [isLoading]="isLoading"
-      [disabled]="isLoading ||(isAutoMode && autoPropertyForm.invalid) || (!isAutoMode && manualPropertyForm.invalid)">
-      Lagre
-    </rente-button>
-    <div [ngClass]="{'mb-4': statisticsView}" [matTooltip]="statisticTooltip">
-      <button [disabled]="disableStatisticsButton" mat-raised-button class="statistics-button"
-        (click)="toggleStatisticsViewState()">
-        <mat-icon *ngIf="!statisticsView">bar_chart</mat-icon>
-        <mat-icon *ngIf="statisticsView">keyboard_backspace</mat-icon>
-      </button>
-    </div>
-
-  </div>
-  <p class="text-center button-label" *ngIf="!statisticsView">Husk å lagre etter bytte mellom estimattype</p>
-</div>
-
-
-<div *ngIf="isLoading"
-  class="d-flex justify-content-center align-items-center mt-4" >
+<div class="d-flex justify-content-center align-items-center mt-4"
+  *ngIf="isLoading">
   <mat-spinner [diameter]="48" [strokeWidth]="4"></mat-spinner>
 </div>
+

@@ -1,7 +1,8 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import * as Highcharts from 'highcharts';
-import { LoansService } from '../../../../shared/services/remote-api/loans.service';
+import { LoansService, AddressDto } from '../../../../shared/services/remote-api/loans.service';
 import { trigger, transition, keyframes, animate, style } from '@angular/animations';
+import { SnackBarService } from '@services/snackbar.service';
 
 declare var require: any;
 const Boost = require('highcharts/modules/boost');
@@ -32,17 +33,19 @@ noData(Highcharts);
   ]
 })
 export class VirdiStatisticsComponent implements OnInit {
-  @Output() statisticsLoaded = new EventEmitter();
-  @Output() statisticsError = new EventEmitter();
-  public isLoading: boolean;
-  public priceDestributionSqm: any[] = [];
-  public columnChartOptions: any;
-  public lineChartOptions: any;
-  public openMarketSalesHalfYear: number;
-  public indexArea: string;
+
+  @Input() address:AddressDto;
+
+  isLoading: boolean;
+  priceDestributionSqm: any[] = [];
+  columnChartOptions: any;
+  lineChartOptions: any;
+  openMarketSalesHalfYear: number;
+  indexArea: string;
 
   constructor(
-    private loansService: LoansService
+    private loansService: LoansService,
+    private snackBar: SnackBarService,
   ) { }
 
   ngOnInit() {
@@ -183,43 +186,51 @@ export class VirdiStatisticsComponent implements OnInit {
         }]
       }
     };
-    this.loansService.getExtendedInfo().subscribe(extendedInfo => {
+
+    this.loansService.getAddressStatistics(this.address.id).subscribe(extendedInfo => {
       this.isLoading = false;
-      this.statisticsLoaded.emit();
-      this.openMarketSalesHalfYear = extendedInfo.statistics.open_market_sales_6_months;
-      this.indexArea = extendedInfo.indexHistory.area;
-      extendedInfo.statistics.price_distribution_sqm.forEach(element => {
-        this.priceDestributionSqm.push({ from: element.from, to: element.to });
-        this.columnChartOptions.series[0].data.push(element.count);
-        this.columnChartOptions.title.text = `Din kvadratmeterpris: ${extendedInfo.statistics.average_sqm_price} NOK`;
-        this.lineChartOptions.title.text = `Prisutvikling ${extendedInfo.indexHistory.area}`;
-        if (extendedInfo.statistics.average_sqm_price >= element.from && extendedInfo.statistics.average_sqm_price <= element.to) {
-          this.columnChartOptions.plotOptions.column.colors.push('#2b3e50');
-        } else {
-          this.columnChartOptions.plotOptions.column.colors.push('#18BC9C');
+      if (extendedInfo.indexHistory && extendedInfo.indexHistory.area) {
+        this.indexArea = extendedInfo.indexHistory.area;
+      }
+      if (extendedInfo.statistics) {
+        this.openMarketSalesHalfYear = extendedInfo.statistics.open_market_sales_6_months;
+        if (extendedInfo.statistics.price_distribution_sqm && extendedInfo.statistics.price_distribution_sqm.length > 0) {
+          extendedInfo.statistics.price_distribution_sqm.forEach(element => {
+            this.priceDestributionSqm.push({ from: element.from, to: element.to });
+            this.columnChartOptions.series[0].data.push(element.count);
+            this.columnChartOptions.title.text = `Din kvadratmeterpris: ${extendedInfo.statistics.average_sqm_price} NOK`;
+            this.lineChartOptions.title.text = `Prisutvikling ${extendedInfo.indexHistory.area}`;
+            if (extendedInfo.statistics.average_sqm_price >= element.from && extendedInfo.statistics.average_sqm_price <= element.to) {
+              this.columnChartOptions.plotOptions.column.colors.push('#2b3e50');
+            } else {
+              this.columnChartOptions.plotOptions.column.colors.push('#18BC9C');
+            }
+          });
         }
-      });
+      }
       this.columnChartOptions.xAxis.categories = [...this.createThousandsCategories(this.priceDestributionSqm)];
       const BreakException = {};
-      try {
-        extendedInfo.indexHistory.data.forEach((element, index) => {
-          if (index >= 39) {
-            throw BreakException;
-          } else {
-            this.lineChartOptions.xAxis.categories.unshift(element.date);
-            this.lineChartOptions.series[0].data.unshift(element.index_value);
+      if (extendedInfo.indexHistory && extendedInfo.indexHistory.data) {
+        try {
+          extendedInfo.indexHistory.data.forEach((element, index) => {
+            if (index >= 39) {
+              throw BreakException;
+            } else {
+              this.lineChartOptions.xAxis.categories.unshift(element.date);
+              this.lineChartOptions.series[0].data.unshift(element.index_value);
+            }
+          });
+        } catch (e) {
+          if (e !== BreakException) {
+            throw e;
           }
-        });
-      } catch (e) {
-        if (e !== BreakException) {
-          throw e;
         }
       }
 
-      Highcharts.chart('columnChart', this.columnChartOptions);
-      Highcharts.chart('lineChart', this.lineChartOptions);
+      Highcharts.chart(`columnChartAddress${this.address.id}`, this.columnChartOptions);
+      Highcharts.chart(`lineChartAddress${this.address.id}`, this.lineChartOptions);
     }, err => {
-      this.statisticsError.emit();
+      this.notifError();
       this.isLoading = false;
     });
   }
@@ -240,6 +251,10 @@ export class VirdiStatisticsComponent implements OnInit {
         return '>' + this.convertThousands(item.from);
       }
     });
+  }
+
+  notifError() {
+    this.snackBar.openFailSnackBar('Feil ved lasting av statistikkdata', 10);
   }
 
 }

@@ -62,7 +62,6 @@ export class OffersComponent implements OnInit, OnDestroy {
   public offersInfo: Offers;
   public loansInfo: any;
   public loans: Loans;
-  public banksMap = BANKS_DATA;
   public offerSavingsType = OFFER_SAVINGS_TYPE;
   public aggregatedRateType = AGGREGATED_RATE_TYPE;
   public aggregatedLoanType = AGGREGATED_LOAN_TYPE;
@@ -93,6 +92,18 @@ export class OffersComponent implements OnInit, OnDestroy {
         "STATENS_PENSJONSKASSE_STATLIG_ANSATT"
       ) > -1
     );
+  }
+
+  getBankLogo(bankName: string): string {
+    const b = BANKS_DATA[bankName];
+    if (b && b.img) {
+      return b.img;
+    } else {
+      const bank = BankUtils.getBankByName(bankName);
+      return bank && bank.icon
+        ? "../../assets/img/banks-logo/round/" + bank.icon
+        : "../../assets/img/banks-logo/round/annen.png";
+    }
   }
 
   constructor(

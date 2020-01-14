@@ -16,8 +16,8 @@ export const BANKS_DATA = {
   },
   ARENDAL_SK: {
     name: 'ARENDAL_SK',
-    img: '../../assets/img/banks-logo/square/Arendal.png',
-    imgCircle: '../../assets/img/banks-logo/round/Arendal.png'
+    img: '../../assets/img/banks-logo/square/EikaNewGreenThree.png',
+    imgCircle: '../../assets/img/banks-logo/round/eika_new_green_three.png'
   },
   ASKIM_SB: {
     name: 'ASKIM_SB',
@@ -37,7 +37,7 @@ export const BANKS_DATA = {
   BN_BANK: {
     name: 'BN_BANK',
     img: '../../assets/img/banks-logo/square/BN.png',
-    imgCircle: '../../assets/img/banks-logo/round/BN.png'
+    imgCircle: '../../assets/img/banks-logo/round/bn.png'
   },
   BANK2: {
     name: 'BANK2',
@@ -77,12 +77,12 @@ export const BANKS_DATA = {
   BULDER: {
     name: 'BULDER',
     img: '../../assets/img/banks-logo/square/Bulder.png',
-    imgCircle: '../../assets/img/banks-logo/round/Bulder.png'
+    imgCircle: '../../assets/img/banks-logo/round/bulder.png'
   },
   CULTURA: {
     name: 'CULTURA',
     img: '../../assets/img/banks-logo/square/Cultura.png',
-    imgCircle: '../../assets/img/banks-logo/round/Cultura.png'
+    imgCircle: '../../assets/img/banks-logo/round/cultura.png'
   },
   DANSKE_BANK: {
     name: 'DANSKE_BANK',
@@ -327,7 +327,7 @@ export const BANKS_DATA = {
   OFOTEN_SB: {
     name: 'OFOTEN_SB',
     img: '../../assets/img/banks-logo/square/Old Eika.png',
-    imgCircle: '../../assets/img/banks-logo/round/Old Eika.png'
+    imgCircle: '../../assets/img/banks-logo/round/old_eika.png'
   },
   OPPDALSBANKEN: {
     name: 'OPPDALSBANKEN',
@@ -342,7 +342,7 @@ export const BANKS_DATA = {
   ORLAND_SB: {
     name: 'ORLAND_SB',
     img: '../../assets/img/banks-logo/square/Old Eika.png',
-    imgCircle: '../../assets/img/banks-logo/round/Old Eika.png'
+    imgCircle: '../../assets/img/banks-logo/round/old_eika.png'
   },
   OSLO_PENSJON: {
     name: 'OSLO_PENSJON',
@@ -362,12 +362,12 @@ export const BANKS_DATA = {
   ROMSDAL_SB: {
     name: 'ROMSDAL_SB',
     img: '../../assets/img/banks-logo/square/Romsdal.png',
-    imgCircle: '../../assets/img/banks-logo/round/Romsdal.png'
+    imgCircle: '../../assets/img/banks-logo/round/romsdal.png'
   },
   ROROS: {
     name: 'ROROS',
-    img: '../../assets/img/banks-logo/square/Arendal.png',
-    imgCircle: '../../assets/img/banks-logo/round/Arendal.png'
+    img: '../../assets/img/banks-logo/square/EikaNewGreenThree.png',
+    imgCircle: '../../assets/img/banks-logo/round/eika_new_green_three.png'
   },
   SANDNES_SB: {
     name: 'SANDNES_SB',
@@ -382,7 +382,7 @@ export const BANKS_DATA = {
   SEB: {
     name: 'SEB',
     img: '../../assets/img/banks-logo/square/Skandinaviske Enskilda.png',
-    imgCircle: '../../assets/img/banks-logo/round/Skandinaviske Enskilda.png'
+    imgCircle: '../../assets/img/banks-logo/round/skandinaviske_enskilda.png'
   },
   SELBU_SB: {
     name: 'SELBU_SB',
@@ -412,7 +412,7 @@ export const BANKS_DATA = {
   SOKNEDAL_SB: {
     name: 'SOKNEDAL_SB',
     img: '../../assets/img/banks-logo/square/Soknedal.png',
-    imgCircle: '../../assets/img/banks-logo/round/Soknedal.png'
+    imgCircle: '../../assets/img/banks-logo/round/soknedal.png'
   },
   SPAREBANKEN_DIN: {
     name: 'SPAREBANKEN_DIN',
@@ -517,7 +517,7 @@ export const BANKS_DATA = {
   SB_SOGNFJORDANE: {
     name: 'SB_SOGNFJORDANE',
     img: '../../assets/img/banks-logo/square/Sogn og Fjordane.png',
-    imgCircle: '../../assets/img/banks-logo/round/Sogn og Fjordane.png'
+    imgCircle: '../../assets/img/banks-logo/round/sogn_og_fjordane.png'
   },
   SB_SOR: {
     name: 'SB_SOR',
@@ -622,7 +622,7 @@ export const BANKS_DATA = {
   ORSKOG_SB: {
     name: 'ORSKOG_SB',
     img: '../../assets/img/banks-logo/square/Old Eika.png',
-    imgCircle: '../../assets/img/banks-logo/round/Old Eika.png'
+    imgCircle: '../../assets/img/banks-logo/round/old_eika.png'
   },
   OTHER: {
     name: 'OTHER',

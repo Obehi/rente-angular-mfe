@@ -20,6 +20,7 @@ import { Router } from '@angular/router';
 import { UserService } from '@services/remote-api/user.service';
 import { LoansService } from '@services/remote-api/loans.service';
 import { LocalStorageService } from '@services/local-storage.service';
+import { BankVo, BankUtils } from '@shared/models/bank';
 
 @Component({
   selector: 'rente-login-status',
@@ -27,8 +28,10 @@ import { LocalStorageService } from '@services/local-storage.service';
   styleUrls: ['./login-status.component.scss']
 })
 export class LoginStatusComponent implements OnInit, OnDestroy {
-  @Input() userData: any = {};
-  @Input() userBank: any = {};
+
+  @Input() bank:BankVo;
+  @Input() userData:any = {};
+
   public viewStatus: ViewStatus = new ViewStatus();
   public reconnectIterator = 0;
   public passPhrase = '';
@@ -71,6 +74,10 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
     this.unsubscribeEverything();
   }
 
+  get bankLogo():string {
+    return this.bank ? BankUtils.getBankLogoUrl(this.bank.name) : '../../../assets/img/banks-logo/round/annen.png';
+  }
+
   unsubscribeEverything() {
     if (this.stompClient && this.stompClient.connected) {
       this.stompClient.disconnect();
@@ -101,25 +108,14 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
   }
 
   sendUserData(resendData = false) {
-    // this.userData = {
-    //   birthdateOrSsn: 13018939554,
-    //   mobile: 93253768
-    // };
-
     const dataObj = {
       birthdateOrSsn: this.userData.ssn || this.userData.birthdate,
       mobile: this.userData.phone
     };
-
-    // console.log(dataObj);
-
     this.setDefaultSteps();
-
     const data = JSON.stringify(dataObj);
     this.passPhrase = '';
-
-    // TODO: Add bank name
-    this.stompClient.send(API_URL_MAP.crawlerSendMessageUrl + this.userBank.bankName, {}, data);
+    this.stompClient.send(API_URL_MAP.crawlerSendMessageUrl + this.bank.name, {}, data);
     if (!resendData) {
       this.initTimer(IDENTIFICATION_TIMEOUT_TIME);
       this.initConnectionTimer();
@@ -233,7 +229,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
             this.loginStep3Status = MESSAGE_STATUS.ERROR;
             this.unsubscribeEverything();
             break;
-          case BANKID_STATUS.NOT_SB1_CUSTOMER:
+          case BANKID_STATUS.NOT_BANK_CUSTOMER:
             this.isShowPassPhrase = false;
             this.connectionTimerSubscription.unsubscribe();
             this.isNotSB1customer = true;
@@ -248,12 +244,13 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
             this.unsubscribeEverything();
             break;
           case BANKID_STATUS.CONFIRMATION_REQUIRED:
+          case BANKID_STATUS.CONFIRMATION_REQUIRED_DNB_PORTAL_AGREEMENT:
             this.isShowPassPhrase = false;
             this.viewStatus.isConfirmationRequired = true;
             this.loginStep3Status = MESSAGE_STATUS.ERROR;
             this.unsubscribeEverything();
             break;
-          case BANKID_STATUS.RENEW_BANK_ID:
+          case BANKID_STATUS.CONFIRMATION_REQUIRED_DNB_RENEW_BANK_ID:
             this.isShowPassPhrase = false;
             this.viewStatus.isRenewBankIdRequired = true;
             this.loginStep3Status = MESSAGE_STATUS.ERROR;

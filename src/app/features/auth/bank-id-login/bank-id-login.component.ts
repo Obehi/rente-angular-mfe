@@ -9,13 +9,13 @@ import {
   NgForm
 } from '@angular/forms';
 import { VALIDATION_PATTERN } from '@config/validation-patterns.config';
-import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
-import { BANK_MAP } from '../login-status/login-status.config';
+import { ActivatedRoute} from '@angular/router';
 import { MatDialog } from '@angular/material';
 import { DialogInfoServiceComponent } from './dialog-info-service/dialog-info-service.component';
 import { MetaService } from '@services/meta.service';
 import { TitleService } from '@services/title.service';
 import { customMeta } from '../../../config/routes-config';
+import { BankVo, BankUtils } from '@shared/models/bank';
 
 @Component({
   selector: 'rente-bank-id-login',
@@ -23,41 +23,20 @@ import { customMeta } from '../../../config/routes-config';
   styleUrls: ['./bank-id-login.component.scss']
 })
 export class BankIdLoginComponent implements OnInit, OnDestroy {
+
   public bankIdForm: FormGroup;
   public isSsnBankLogin: boolean;
   public isConfirmed: boolean;
   public isLoginStarted = false;
   public userData: any = {};
-  public userBank: any;
-  public bankLogo: string;
-  public ssnMask = {
-    mask: [
-      /\d/,
-      /\d/,
-      /\d/,
-      /\d/,
-      /\d/,
-      /\d/,
-      ' ',
-      /\d/,
-      /\d/,
-      /\d/,
-      /\d/,
-      /\d/
-    ],
-    guide: false
-  };
-  public phoneMask = {
-    mask: [/\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/],
-    guide: false
-  };
-  public birthdateMask = {
-    mask: [/\d/, /\d/, /\d/, /\d/, /\d/, /\d/],
-    guide: false
-  };
+  public ssnMask = {mask: [/\d/, /\d/, /\d/, /\d/, /\d/, /\d/, ' ', /\d/, /\d/, /\d/, /\d/, /\d/], guide: false};
+  public phoneMask = {mask: [/\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/], guide: false};
+  public birthdateMask = {mask: [/\d/, /\d/, /\d/, /\d/, /\d/, /\d/], guide: false};
   private routeParamsSub: Subscription;
   public metaTitle: string;
   public metaDescription: string;
+
+  bank:BankVo;
 
   constructor(
     private fb: FormBuilder,
@@ -65,33 +44,36 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     public dialog: MatDialog,
     private metaService: MetaService,
     private titleService: TitleService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.routeParamsSub = this.route.params.subscribe((params: any) => {
       if (params && params.bankName) {
+        const bank = BankUtils.getBankByName(params.bankName);
+        this.bank = bank;
+        this.isSsnBankLogin = bank.loginWithSsn;
+
         for (const iterator in customMeta) {
           if (customMeta[iterator].title) {
             if (params.bankName === customMeta[iterator].bankName) {
               this.metaTitle = customMeta[iterator].title;
               this.metaDescription = customMeta[iterator].description;
-              this.changeTitles();
             }
           }
         }
 
-        this.userBank = BANK_MAP[params.bankName];
-        this.bankLogo = this.userBank.bankIcon;
-        this.isSsnBankLogin = BANK_MAP[params.bankName].isSSN;
+        this.changeTitles();
         this.setBankIdForm();
-        console.log(this.userBank.bankName);
-
       }
     });
   }
 
   ngOnDestroy() {
     this.routeParamsSub.unsubscribe();
+  }
+
+  get bankLogo():string {
+    return BankUtils.getBankLogoUrl(this.bank.name);
   }
 
   public startLogin(formData) {
@@ -167,11 +149,15 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
   }
 
   get isDnbBank(): boolean {
-    return this.userBank && this.userBank.bankName === 'DNB';
+    return this.bank && this.bank.name === 'DNB';
   }
 
   get isSB1Bank(): boolean {
-    return this.userBank && this.userBank.bankName && this.userBank.bankName.indexOf('SPAREBANK_1') > -1;
+    return this.bank && this.bank.name && this.bank.name.indexOf('SPAREBANK_1') > -1;
+  }
+
+  get isEikaBank(): boolean {
+    return this.bank && this.bank.isEikaBank;
   }
 
 }

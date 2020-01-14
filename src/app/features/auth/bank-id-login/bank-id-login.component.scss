@@ -10,9 +10,8 @@ h4 {
   margin-bottom: 20px;
 }
 .bank-logo {
-  margin-bottom: 40px;
-  max-width: 100px;
-  max-height: 30px;
+  margin-bottom: 30px;
+  width: 200px;
 }
 a {
   color: $primary;
@@ -27,4 +26,8 @@ a {
 mat-checkbox {
   margin-bottom: 40px;
   display: block;
+}
+
+.red {
+  color: red;
 }

@@ -4,6 +4,15 @@
     <h4>Renteradar henter lånedetaljer og renten din automatisk med BankID på Mobil.</h4>
     <h4 *ngIf="isSB1Bank">Vi støtter kun BankID på Mobil, ikke kodebrikke eller engangskode appen.</h4>
     <h4 *ngIf="!isSB1Bank">Vi støtter kun BankID på Mobil, ikke kodebrikke og passord.</h4>
+    <h4 *ngIf="isEikaBank" class="red">
+      OBS: Vi tester fortsatt løsningen for denne banken. <br/>
+      Gi gjerne beskjed hvis noe ikke fungerer optimalt.
+    </h4>
+    <p *ngIf="isSB1Bank" class="red">
+      Vi opplever store problemer med Sparebanken 1. <br/>
+      Vi jobber med en løsning.
+    </p>
+
     <form
       class="mt-5"
       [formGroup]="bankIdForm"
@@ -11,10 +20,10 @@
       (ngSubmit)="startLogin(bankIdForm.value)">
 
       <img
-        src="{{ bankLogo }}"
         class="bank-logo"
-        alt="{{ userBank.label }}"
-        title="{{ this.userBank.label }}" />
+        [src]="bankLogo"
+        [alt]="bank.label"
+        [title]="bank.label" />
 
       <div *ngIf="isSsnBankLogin; else birthdateInput" class="form-group">
         <rente-input
@@ -112,185 +121,11 @@
     </form>
   </section>
 
-  <!-- <section *ngIf="!isLoginStarted && bankIdForm">
-    <div class="row justify-content-center text-center my-2">
-      <div class="col">
-        <h3>Logg inn med BankID på mobil</h3>
-      </div>
-    </div>
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-12 col-lg-6">
-          <p class="my-0 text text-left">
-            Legg inn {{ isSsnBankLogin ? "fødselsnummer" : "fødselsdato" }} og
-            mobilnummer. Bekreft referansen på mobilen, så hentes dine lånedata
-            automatisk. Vi bruker SSL verifisering, så all informasjon sendes
-            kryptert.
-          </p>
-          <p class="mt-2 mb-4 text text-left">
-            Vi støtter kun BankID på Mobil, ikke kodebrikke og passord.
-          </p>
-          <p *ngIf="isDnbBank"
-            class="mb-4 text text-left" style="color:red; margin-top:-10px;">
-            Feilmelding: Vi opplever problemer for enkelte DNB kunder.
-            Disse vil få feilmelding om å oppdatere personalia i nettbanken gjentatte ganger.
-            Feilen skyldes en feil hos DNB.
-          </p>
-        </div>
-      </div>
-    </div>
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-12 col-lg-5">
-          <div class="text-center">
-            <form
-              [formGroup]="bankIdForm"
-              novalidate
-              (ngSubmit)="startLogin(bankIdForm.value)"
-            >
-              <div class="mb-4 bg-wrap">
-                <div class="mb-4">
-                  <img
-                    class="mw-100"
-                    src="{{ bankLogo }}"
-                    alt="{{ userBank.label }}"
-                    title="{{ this.userBank.label }}"
-                  />
-                </div>
-
-                <div
-                  *ngIf="isSsnBankLogin; else birthdateInput"
-                  class="form-group"
-                >
-                  <rente-input
-                    [errorStateMatcher]="
-                      isErrorState(bankIdForm.controls['ssn'], bankIdForm)
-                    "
-                    [placeholder]="'Ditt fødselsnummer (11 siffer)'"
-                    formControlName="ssn"
-                    [mask]="ssnMask"
-                    [type]="'tel'"
-                    [modelOptions]="{ updateOn: 'blur' }"
-                  ></rente-input>
-                  <div
-                    class="error-message"
-                    *ngIf="bankIdForm.controls['ssn'].touched"
-                  >
-                    <rente-form-message
-                      class="text-left d-block"
-                      *ngIf="bankIdForm.controls['ssn'].hasError('required')"
-                      [type]="'error'"
-                    >
-                      Fødselsnummer kan ikke være tomt
-                    </rente-form-message>
-                    <rente-form-message
-                      class="text-left d-block"
-                      *ngIf="bankIdForm.controls['ssn'].hasError('pattern')"
-                      [type]="'error'"
-                    >
-                      Fødselsnummer ikke gyldig
-                    </rente-form-message>
-                  </div>
-                </div>
-
-                <ng-template #birthdateInput>
-                  <div class="form-group">
-                    <rente-input
-                      [errorStateMatcher]="
-                        isErrorState(bankIdForm.controls['birthdate'], bankIdForm)
-                      "
-                      [placeholder]="'Din fødselsdato (ddmmåå)'"
-                      formControlName="birthdate"
-                      [mask]="birthdateMask"
-                      [type]="'tel'"
-                      [modelOptions]="{ updateOn: 'blur' }"
-                    ></rente-input>
-                    <div
-                      class="error-message"
-                      *ngIf="bankIdForm.controls['birthdate'].touched"
-                    >
-                      <rente-form-message
-                        class="text-left d-block"
-                        *ngIf="
-                          bankIdForm.controls['birthdate'].hasError('required')
-                        "
-                        [type]="'error'"
-                      >
-                        Fødselsdato kan ikke være tomt
-                      </rente-form-message>
-                      <rente-form-message
-                        class="text-left d-block"
-                        *ngIf="
-                          bankIdForm.controls['birthdate'].hasError('pattern')
-                        "
-                        [type]="'error'"
-                      >
-                        Fødselsdato ikke gyldig
-                      </rente-form-message>
-                    </div>
-                  </div>
-                </ng-template>
-
-                <div class="form-group">
-                  <rente-input
-                    [errorStateMatcher]="
-                      isErrorState(bankIdForm.controls['phone'], bankIdForm)
-                    "
-                    [placeholder]="'Ditt mobilnummer (8 siffer)'"
-                    formControlName="phone"
-                    [mask]="phoneMask"
-                    [type]="'tel'"
-                    [modelOptions]="{ updateOn: 'blur' }"
-                  >
-                  </rente-input>
-                  <div
-                    class="error-message"
-                    *ngIf="bankIdForm.controls['phone'].touched"
-                  >
-                    <rente-form-message
-                      class="text-left d-block"
-                      *ngIf="bankIdForm.controls['phone'].hasError('required')"
-                      [type]="'error'"
-                    >
-                      Telefonnummer kan ikke være tomt
-                    </rente-form-message>
-                    <rente-form-message
-                      class="text-left d-block"
-                      *ngIf="bankIdForm.controls['phone'].hasError('pattern')"
-                      [type]="'error'"
-                    >
-                      Telefonnummer ikke gyldig
-                    </rente-form-message>
-                  </div>
-                </div>
-              </div>
-              <div class="mb-2 text-left">
-                <mat-checkbox
-                  formControlName="confirmation"
-                  (change)="isConfirmed = $event.checked"
-                >
-                  Jeg aksepterer Renteradar.no's
-                  <a class="link" (click)="openServiceDialog()">vilkår</a>
-                </mat-checkbox>
-              </div>
-              <div class="register-btn">
-                <rente-button
-                  color="primary"
-                  [disabled]="!bankIdForm.valid || !isConfirmed"
-                  >Logg inn
-                </rente-button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-   -->
   <rente-login-status
-    (returnToInputPage)="isLoginStarted = false"
-    [userData]="userData"
-    [userBank]="userBank"
     *ngIf="isLoginStarted"
-  ></rente-login-status>
+    [userData]="userData"
+    [bank]="bank"
+    (returnToInputPage)="isLoginStarted = false">
+  </rente-login-status>
+
 </div>
