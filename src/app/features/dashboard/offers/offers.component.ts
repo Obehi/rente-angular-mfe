@@ -26,6 +26,7 @@ import { Subscription } from "rxjs";
 import { OFFERS_RESULT_TYPE } from "../../../shared/models/offers";
 import { UserService } from "@services/remote-api/user.service";
 import smoothscroll from "smoothscroll-polyfill";
+import { BankUtils } from "@shared/models/bank";
 
 @Component({
   selector: "rente-offers",
