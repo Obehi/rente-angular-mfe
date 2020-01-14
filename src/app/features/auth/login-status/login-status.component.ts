@@ -60,6 +60,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
   isNotSB1customer: boolean;
   isAccountSelection: boolean;
   accounts:string[];
+  userSessionId:string;
 
   constructor(
     private router: Router,
@@ -276,7 +277,9 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
             break;
           case BANKID_STATUS.EIKA_CHOOSE_ACCOUNT_TO_PROCESS:
             console.log('EIKA_CHOOSE_ACCOUNT_TO_PROCESS', response.accounts);
+            this.viewStatus.isPassphraseConfirmSuccess = true;
             if (response.accounts && response.accounts.length > 0) {
+              this.userSessionId = response.sessionId;
               this.accounts = response.accounts;
               this.isAccountSelection = true;
             }
@@ -358,7 +361,8 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
   }
 
   selectAccount(name:string) {
-    console.log('selectAccount:', name);
+    const data = `{"eventType":"EIKA_CHOOSE_ACCOUNT_TO_PROCESS_RESPONSE", "sessionId":"${this.userSessionId}", "accountToProcess":"${name}"}`;
+    this.stompClient.send(API_URL_MAP.crawlerAccountSelectUrl, {}, data);
   }
 
 }

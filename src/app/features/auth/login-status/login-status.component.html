@@ -51,20 +51,22 @@
             <span *ngIf="!passPhrase">
               Bekreft BankID på mobil
             </span>
-            <span *ngIf="passPhrase &&
-                !viewStatus.isPassphraseConfirmFail &&
-                !viewStatus.isPassphraseConfirmSuccess">
+            <span *ngIf="passPhrase && !viewStatus.isPassphraseConfirmFail && !viewStatus.isPassphraseConfirmSuccess">
               Vennligst følg instruksjonen på mobilen
             </span>
             <span *ngIf="viewStatus.isPassphraseConfirmSuccess">
               BankID bekreftet
             </span>
             <span *ngIf="viewStatus.isPassphraseConfirmFail">
-              Vi fikk ikke bekreftet BankID referansen fra din mobiltelefon.
-              Vennligst prøv igjen.
+              Vi fikk ikke bekreftet BankID referansen fra din mobiltelefon. Vennligst prøv igjen.
             </span>
             <div *ngIf="isAccountSelection">
-              <p>Vennligst velg konto:</p>
+              <span>Vennligst velg konto:</span>
+              <p *ngFor="let acc of accounts"
+                class="account-select-item"
+                (click)="selectAccount(acc)">
+                {{acc}}
+              </p>
             </div>
           </rente-status-message>
 
