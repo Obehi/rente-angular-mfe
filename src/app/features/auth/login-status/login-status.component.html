@@ -31,24 +31,17 @@
             </span>
             <span *ngIf="!viewStatus.isNotValidDataProvided">
               Forbereder identifisering <br />
-              <span
-                *ngIf="
-                  viewStatus.isProcessStarted &&
+              <span *ngIf="viewStatus.isProcessStarted &&
                   !viewStatus.isCrawlerError &&
                   isShowTimer &&
-                  !firstStepTimerFinished
-                "
-              >
+                  !firstStepTimerFinished">
                 (tar cirka {{ firstStepTimer }} sekunder)
               </span>
               <span
-                *ngIf="
-                  viewStatus.isProcessStarted &&
+                *ngIf="viewStatus.isProcessStarted &&
                   !viewStatus.isCrawlerError &&
                   isShowTimer &&
-                  firstStepTimerFinished
-                "
-              >
+                  firstStepTimerFinished">
                 (Litt til, straks ferdig)
               </span>
             </span>
@@ -58,13 +51,9 @@
             <span *ngIf="!passPhrase">
               Bekreft BankID på mobil
             </span>
-            <span
-              *ngIf="
-                passPhrase &&
+            <span *ngIf="passPhrase &&
                 !viewStatus.isPassphraseConfirmFail &&
-                !viewStatus.isPassphraseConfirmSuccess
-              "
-            >
+                !viewStatus.isPassphraseConfirmSuccess">
               Vennligst følg instruksjonen på mobilen
             </span>
             <span *ngIf="viewStatus.isPassphraseConfirmSuccess">
@@ -74,6 +63,9 @@
               Vi fikk ikke bekreftet BankID referansen fra din mobiltelefon.
               Vennligst prøv igjen.
             </span>
+            <div *ngIf="isAccountSelection">
+              <p>Vennligst velg konto:</p>
+            </div>
           </rente-status-message>
 
           <rente-status-message [status]="loginStep3Status" [step]="3">

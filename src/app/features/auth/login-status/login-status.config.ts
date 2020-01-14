@@ -12,7 +12,9 @@ export const BANKID_STATUS = {
   CONFIRMATION_REQUIRED: 'CONFIRMATION_REQUIRED',
   CONFIRMATION_REQUIRED_DNB_RENEW_BANK_ID: 'CONFIRMATION_REQUIRED_DNB_RENEW_BANK_ID',
   CONFIRMATION_REQUIRED_DNB_PORTAL_AGREEMENT: 'CONFIRMATION_REQUIRED_DNB_PORTAL_AGREEMENT',
-  BANKID_NO_ACCESS_FOR_SIGNIN: 'BANKID_NO_ACCESS_FOR_SIGNIN'
+  BANKID_NO_ACCESS_FOR_SIGNIN: 'BANKID_NO_ACCESS_FOR_SIGNIN',
+  EIKA_CHOOSE_ACCOUNT_TO_PROCESS: 'EIKA_CHOOSE_ACCOUNT_TO_PROCESS',
+  EIKA_CHOOSE_ACCOUNT_TO_PROCESS_RESPONSE: 'EIKA_CHOOSE_ACCOUNT_TO_PROCESS_RESPONSE'
 };
 
 export const IDENTIFICATION_TIMEOUT_TIME = 15;
@@ -31,88 +33,3 @@ export const MESSAGE_STATUS = {
   INFO: 'info',
   ERROR: 'error'
 };
-
-/*
-export const BANK_MAP = {
-  dnb: {
-    label: "DNB",
-    bankName: "DNB",
-    bankIcon: "../../../assets/img/banks-logo/dnb-color.svg",
-    isSSN: true
-  },
-  nordea: {
-    label: "NORDEA",
-    bankName: "NORDEA",
-    bankIcon: "../../../assets/img/banks-logo/nordea-color.svg"
-  },
-  sparebank_1_bv: {
-    label: "SPAREBANK",
-    bankName: "SPAREBANK_1_BV",
-    bankIcon: "../../../../assets/img/banks-logo/sparebank1-color.svg"
-  },
-  sparebank_1_gudbrandsdal: {
-    label: "SPAREBANK",
-    bankName: "SPAREBANK_1_GUDBRANDSDAL",
-    bankIcon: "../../../../assets/img/banks-logo/sparebank1-color.svg"
-  },
-  sparebank_1_hallingdal_valdres: {
-    label: "SPAREBANK",
-    bankName: "SPAREBANK_1_HALLINGDAL_VALDRES",
-    bankIcon: "../../../../assets/img/banks-logo/sparebank1-color.svg"
-  },
-  sparebank_1_lom_og_skjak: {
-    label: "SPAREBANK",
-    bankName: "SPAREBANK_1_LOM_OG_SKJAK",
-    bankIcon: "../../../../assets/img/banks-logo/sparebank1-color.svg"
-  },
-  sparebank_1_modum: {
-    label: "SPAREBANK",
-    bankName: "SPAREBANK_1_MODUM",
-    bankIcon: "../../../../assets/img/banks-logo/sparebank1-color.svg"
-  },
-  sparebank_1_nord_norge: {
-    label: "SPAREBANK",
-    bankName: "SPAREBANK_1_NORD_NORGE",
-    bankIcon: "../../../../assets/img/banks-logo/sparebank1-color.svg"
-  },
-  sparebank_1_nordvest: {
-    label: "SPAREBANK",
-    bankName: "SPAREBANK_1_NORDVEST",
-    bankIcon: "../../../../assets/img/banks-logo/sparebank1-color.svg"
-  },
-  sparebank_1_ringerike_hadeland: {
-    label: "SPAREBANK",
-    bankName: "SPAREBANK_1_RINGERIKE_HADELAND",
-    bankIcon: "../../../../assets/img/banks-logo/sparebank1-color.svg"
-  },
-  sparebank_1_smn: {
-    label: "SPAREBANK",
-    bankName: "SPAREBANK_1_SMN",
-    bankIcon: "../../../../assets/img/banks-logo/sparebank1-color.svg"
-  },
-  sparebank_1_sore_sunnmore: {
-    label: "SPAREBANK",
-    bankName: "SPAREBANK_1_SORE_SUNNMORE",
-    bankIcon: "../../../../assets/img/banks-logo/sparebank1-color.svg"
-  },
-  sparebank_1_sr_bank: {
-    label: "SPAREBANK",
-    bankName: "SPAREBANK_1_SR_BANK",
-    bankIcon: "../../../../assets/img/banks-logo/sparebank1-color.svg"
-  },
-  sparebank_1_telemark: {
-    label: "SPAREBANK",
-    bankName: "SPAREBANK_1_TELEMARK",
-    bankIcon: "../../../../assets/img/banks-logo/sparebank1-color.svg"
-  },
-  sparebank_1_ostfold_akershus: {
-    label: "SPAREBANK",
-    bankName: "SPAREBANK_1_OSTFOLD_AKERSHUS",
-    bankIcon: "../../../../assets/img/banks-logo/sparebank1-color.svg"
-  },
-  sparebank_1_ostlandet: {
-    label: "SPAREBANK",
-    bankName: "SPAREBANK_1_OSTLANDET",
-    bankIcon: "../../../../assets/img/banks-logo/sparebank1-color.svg"
-  }
-}; */

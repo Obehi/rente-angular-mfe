@@ -32,6 +32,8 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
   @Input() bank:BankVo;
   @Input() userData:any = {};
 
+  @Output() returnToInputPage = new EventEmitter<any>();
+
   public viewStatus: ViewStatus = new ViewStatus();
   public reconnectIterator = 0;
   public passPhrase = '';
@@ -55,8 +57,9 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
   private crawlingTimerSubscription: Subscription;
   private intervalSubscription: Subscription;
   public isShowTimer: boolean;
-  @Output() returnToInputPage = new EventEmitter<any>();
   isNotSB1customer: boolean;
+  isAccountSelection: boolean;
+  accounts:string[];
 
   constructor(
     private router: Router,
@@ -271,6 +274,13 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
             this.viewStatus.isNotValidDataProvided = true;
             this.unsubscribeEverything();
             break;
+          case BANKID_STATUS.EIKA_CHOOSE_ACCOUNT_TO_PROCESS:
+            console.log('EIKA_CHOOSE_ACCOUNT_TO_PROCESS', response.accounts);
+            if (response.accounts && response.accounts.length > 0) {
+              this.accounts = response.accounts;
+              this.isAccountSelection = true;
+            }
+            break;
           case BANKID_STATUS.LOANS_PERSISTED:
             this.viewStatus.isLoansPersisted = true;
             const user = response.data.user;
@@ -345,6 +355,10 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
 
   get timerExceeded(): boolean {
     return this.thirdStepTimer <= 0;
+  }
+
+  selectAccount(name:string) {
+    console.log('selectAccount:', name);
   }
 
 }
