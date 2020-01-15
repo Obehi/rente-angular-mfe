@@ -55,10 +55,10 @@
       });
     </script>
     <!-- Start of Async Drift Code -->
-    <!-- script>
+    <script>
       "use strict";
 
-      !(function() {
+      function loadDriftWidget() {
         var t = (window.driftt = window.drift = window.driftt || []);
         if (!t.init) {
           if (t.invoked)
@@ -103,11 +103,14 @@
               i.parentNode.insertBefore(o, i);
             });
         }
-      })();
-      drift.SNIPPET_VERSION = "0.3.1";
-      drift.load("yumwszidc85g");
-    </script -->
+        drift.SNIPPET_VERSION = "0.3.1";
+        drift.load("yumwszidc85g");
+      }
 
+      setTimeout(function() {
+        loadDriftWidget();
+      }, 7000);
+    </script>
     <!-- End of Async Drift Code -->
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
