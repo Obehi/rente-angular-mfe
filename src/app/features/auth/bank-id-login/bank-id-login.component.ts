@@ -1,4 +1,4 @@
-import { Subscription } from 'rxjs';
+import { Subscription, timer, of, Observable } from 'rxjs';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import {
   FormGroup,
@@ -6,7 +6,9 @@ import {
   Validators,
   FormControl,
   AbstractControl,
-  NgForm
+  NgForm,
+  ValidatorFn,
+  ValidationErrors
 } from '@angular/forms';
 import { VALIDATION_PATTERN } from '@config/validation-patterns.config';
 import { ActivatedRoute} from '@angular/router';
@@ -16,6 +18,9 @@ import { MetaService } from '@services/meta.service';
 import { TitleService } from '@services/title.service';
 import { customMeta } from '../../../config/routes-config';
 import { BankVo, BankUtils } from '@shared/models/bank';
+import { environment } from '@environments/environment';
+import { UserService } from '@services/remote-api/user.service';
+import { switchMap, map, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'rente-bank-id-login',
@@ -43,7 +48,8 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     public dialog: MatDialog,
     private metaService: MetaService,
-    private titleService: TitleService
+    private titleService: TitleService,
+    private userService:UserService
   ) { }
 
   ngOnInit() {
@@ -88,16 +94,15 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
   }
 
   private initForm() {
-    // 13018939554
-    // 93253768
-    // VALIDATION_PATTERN.ssn
     return this.fb.group({
       ssn: [
         '',
         Validators.compose([
           Validators.required,
-          Validators.pattern(VALIDATION_PATTERN.ssnMasked)
-        ])
+          Validators.pattern(VALIDATION_PATTERN.ssnMasked),
+        ]),
+        // Async Validators
+        environment.production ? [this.ssnAsyncValidator()] : []
       ],
       phone: [
         '',
@@ -158,6 +163,20 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
 
   get isEikaBank(): boolean {
     return this.bank && this.bank.isEikaBank;
+  }
+
+  ssnAsyncValidator():ValidatorFn {
+    return (input:FormControl):ValidationErrors => {
+      let ssnToValidate:string = input.value;
+      if (ssnToValidate && ssnToValidate.length >= 11) {
+        ssnToValidate = ssnToValidate.replace(' ', '');
+        return this.userService.validateSsn(ssnToValidate).pipe(
+          map(res => res && res.ssn === ssnToValidate && res.valid ? {} : { ssnNotValid : true })
+        );
+      } else {
+        of({});
+      }
+    };
   }
 
 }
