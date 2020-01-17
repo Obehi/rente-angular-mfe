@@ -284,6 +284,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
             this.isAccountSelection = false;
             this.loginStep3Status = MESSAGE_STATUS.ERROR;
             this.viewStatus.isSelectUserAccountTimeout = true;
+            this.unsubscribeEverything();
             break;
           case BANKID_STATUS.LOANS_PERSISTED:
             this.viewStatus.isLoansPersisted = true;
