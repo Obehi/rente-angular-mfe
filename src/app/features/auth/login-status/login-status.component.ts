@@ -357,7 +357,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
 
   selectAccount(name:string) {
     const data = `{"eventType":"EIKA_CHOOSE_ACCOUNT_TO_PROCESS_RESPONSE", "sessionId":"${this.userSessionId}", "accountToProcess":"${name}"}`;
-    this.stompClient.send(API_URL_MAP.crawlerAccountSelectUrl, {}, data);
+    this.stompClient.send(API_URL_MAP.crawlerAccountSelectEikaUrl, {}, data);
     this.isAccountSelection = false;
     this.startCrawlingTimer();
   }

@@ -5,7 +5,7 @@ export const API_URL_MAP = {
   crawlerSendMessageUrl: `/app/crawler/start/`,
   crawlerComunicationUrl: `/app/crawler/p2p_message`,
   crawlerRepliesUrl: `/user/topic/replies`,
-  crawlerAccountSelectUrl: `/app/crawler/reply`,
+  crawlerAccountSelectEikaUrl: `/app/crawler/reply/eika/choose-account-to-process`,
   auth: {
     base: '/auth',
     token: '/token',
