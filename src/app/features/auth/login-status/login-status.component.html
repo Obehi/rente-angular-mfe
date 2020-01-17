@@ -7,10 +7,10 @@
         [alt]="bank.label"
         [title]="bank.label"
       />
-      <h3 class="my-2" *ngIf="isShowPassPhrase && !viewStatus.isCrawlerError">
+      <h3 class="mt-0 mb-0" *ngIf="isShowPassPhrase && !viewStatus.isCrawlerError">
         Din referanse:
       </h3>
-      <h3 class="my-2" *ngIf="isShowPassPhrase && !viewStatus.isCrawlerError">
+      <h3 class="mt-0 mb-5" *ngIf="isShowPassPhrase && !viewStatus.isCrawlerError">
         {{ passPhrase }}
       </h3>
 
@@ -60,46 +60,54 @@
             <span *ngIf="viewStatus.isPassphraseConfirmFail">
               Vi fikk ikke bekreftet BankID referansen fra din mobiltelefon. Vennligst prøv igjen.
             </span>
-            <div *ngIf="isAccountSelection">
-              <span>Vennligst velg konto:</span>
-              <p *ngFor="let acc of accounts"
-                class="account-select-item"
-                (click)="selectAccount(acc)">
-                {{acc}}
-              </p>
-            </div>
           </rente-status-message>
 
+          <!-- STEP 3 -->
           <rente-status-message [status]="loginStep3Status" [step]="3">
-            <span *ngIf="isStep3Error && isNotSB1customer">
-              Vi får beskjed om at du ikke er kunde i banken. Har du valgt
-              riktig bank?
-            </span>
+
+            <!-- STEP 3 NOT STARTED -->
             <span *ngIf="!viewStatus.isPassphraseConfirmSuccess && !viewStatus.isCrawlerError && !isNotSB1customer">
               Hent rente og lånedata
             </span>
-            <span *ngIf="!isStep3Error && viewStatus.isPassphraseConfirmSuccess" >
-              Vi henter din rente og låneinformasjon
-            </span>
-            <span *ngIf="isStep3Error && viewStatus.isConfirmationRequired">
-              Banken din krever at du oppdaterer informasjon i nettbanken din.
-              Du må logge inn i nettbanken din og oppdatere/bekrefte informasjon før du kan benytte Renteradar.
-            </span>
-            <span *ngIf="isStep3Error && viewStatus.isRenewBankIdRequired">
-              Du må fornye din BankID. Vennligst forny BankID i din nettbank før
-              du prøver igjen.
-            </span>
-            <span *ngIf="isStep3Error && viewStatus.isCrawlerError">
-              Det oppstod en feil under henting av dine lånedetaljer, vennligst
-              prøv igjen senere
-            </span>
-            <br />
-            <span *ngIf="isStep3InProgress && !timerExceeded">
-              (tar cirka {{ thirdStepTimer }} sekunder)
-            </span>
-            <span *ngIf="isStep3InProgress && timerExceeded">
-              (Litt til, straks ferdig)
-            </span>
+
+            <!-- STEP 3 IN PROGRESS -->
+            <div *ngIf="isStep3InProgress">
+              <div *ngIf="!isAccountSelection">
+                <div>Vi henter din rente og låneinformasjon</div>
+                <div *ngIf="!timerExceeded">(tar cirka {{thirdStepTimer}} sekunder)</div>
+                <div *ngIf="timerExceeded">(Litt til, straks ferdig)</div>
+              </div>
+              <!-- SHOW ACCOUNT SELECTION -->
+              <div *ngIf="isAccountSelection">
+                <div>Vennligst velg konto:</div>
+                <div *ngFor="let accountName of accounts"
+                  class="account-select-item"
+                  (click)="selectAccount(accountName)">
+                  {{accountName}}
+                </div>
+              </div>
+            </div>
+
+            <!-- STEP 3 ERROR -->
+            <div *ngIf="isStep3Error">
+              <span *ngIf="isNotSB1customer">
+                Vi får beskjed om at du ikke er kunde i banken. Har du valgt riktig bank?
+              </span>
+              <span *ngIf="viewStatus.isConfirmationRequired">
+                Banken din krever at du oppdaterer informasjon i nettbanken din.
+                Du må logge inn i nettbanken din og oppdatere/bekrefte informasjon før du kan benytte Renteradar.
+              </span>
+              <span *ngIf="viewStatus.isRenewBankIdRequired">
+                Du må fornye din BankID. Vennligst forny BankID i din nettbank førm du prøver igjen.
+              </span>
+              <span *ngIf="viewStatus.isCrawlerError">
+                Det oppstod en feil under henting av dine lånedetaljer, vennligst prøv igjen senere.
+              </span>
+              <span *ngIf="viewStatus.isSelectUserAccountTimeout">
+                  Du valgte ikke konto innen 30 sekunder. Du må logge inn igjen.
+              </span>
+            </div>
+
           </rente-status-message>
         </div>
       </div>
@@ -115,10 +123,9 @@
           viewStatus.isCrawlerError ||
           viewStatus.isPassphraseConfirmFail ||
           viewStatus.isTimedOut ||
-          isNotSB1customer
-        "
-        (click)="returnToInput()"
-      >
+          viewStatus.isSelectUserAccountTimeout ||
+          isNotSB1customer"
+        (click)="returnToInput()">
         Prøv igjen
       </rente-button>
     </div>
