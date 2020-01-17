@@ -32,6 +32,8 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
   @Input() bank:BankVo;
   @Input() userData:any = {};
 
+  @Output() returnToInputPage = new EventEmitter<any>();
+
   public viewStatus: ViewStatus = new ViewStatus();
   public reconnectIterator = 0;
   public passPhrase = '';
@@ -55,8 +57,10 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
   private crawlingTimerSubscription: Subscription;
   private intervalSubscription: Subscription;
   public isShowTimer: boolean;
-  @Output() returnToInputPage = new EventEmitter<any>();
   isNotSB1customer: boolean;
+  isAccountSelection: boolean;
+  accounts:string[];
+  userSessionId:string;
 
   constructor(
     private router: Router,
@@ -83,15 +87,12 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
       this.stompClient.disconnect();
       this.stompClient.unsubscribe();
     }
-
     if (this.timerSubscription) {
       this.timerSubscription.unsubscribe();
     }
-
     if (this.intervalSubscription) {
       this.intervalSubscription.unsubscribe();
     }
-
     if (this.connectionTimerSubscription) {
       this.connectionTimerSubscription.unsubscribe();
     }
@@ -217,7 +218,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
             this.loginStep2Status = MESSAGE_STATUS.LOADING;
             break;
           case BANKID_STATUS.PASSPHRASE_CONFIRM_SUCCESS:
-            this.initCrawlingTimer();
+            this.startCrawlingTimer();
             this.isShowPassPhrase = false;
             this.viewStatus.isPassphraseConfirmSuccess = true;
             this.loginStep2Status = MESSAGE_STATUS.SUCCESS;
@@ -271,6 +272,20 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
             this.viewStatus.isNotValidDataProvided = true;
             this.unsubscribeEverything();
             break;
+          case BANKID_STATUS.EIKA_CHOOSE_ACCOUNT_TO_PROCESS:
+            if (response.accounts && response.accounts.length > 0) {
+              this.stopCrawlerTimer();
+              this.userSessionId = response.sessionId;
+              this.accounts = response.accounts;
+              this.isAccountSelection = true;
+            }
+            break;
+          case BANKID_STATUS.DIALOG_NO_RESPONSE_FROM_USER:
+            this.isAccountSelection = false;
+            this.loginStep3Status = MESSAGE_STATUS.ERROR;
+            this.viewStatus.isSelectUserAccountTimeout = true;
+            this.unsubscribeEverything();
+            break;
           case BANKID_STATUS.LOANS_PERSISTED:
             this.viewStatus.isLoansPersisted = true;
             const user = response.data.user;
@@ -295,27 +310,13 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
                   }
                 });
             });
-
             break;
-
-          // case BANKID_STATUS.USER_PERSISTED:
-          //     this.viewStatus.isLoansPersisted = true;
-          //     this.loginStep3Status = MESSAGE_STATUS.SUCCESS;
-
-          //     const userData = response.data.user;
-          //     this.authService.loginWithToken(userData.phone, userData.oneTimeToken).subscribe(res => {
-          //       console.log('login', res);
-          //       localStorage.setItem('loans', JSON.stringify(response.data));
-          //       this.router.navigate(['/dashboard/tilbud/']);
-          //     });
-
-          //     break;
         }
       }
     });
   }
 
-  initCrawlingTimer() {
+  startCrawlingTimer() {
     if (this.crawlingTimerSubscription) {
       this.crawlingTimerSubscription.unsubscribe();
     }
@@ -328,8 +329,16 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
     });
   }
 
+  stopCrawlerTimer() {
+    if (this.crawlingTimerSubscription) {
+      this.crawlingTimerSubscription.unsubscribe();
+      this.crawlingTimerSubscription = null;
+    }
+  }
+
   private setDefaultSteps() {
     this.isShowTimer = true;
+    this.isAccountSelection = false;
     this.loginStep1Status = MESSAGE_STATUS.LOADING;
     this.loginStep2Status = MESSAGE_STATUS.INFO;
     this.loginStep3Status = MESSAGE_STATUS.INFO;
@@ -345,6 +354,13 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
 
   get timerExceeded(): boolean {
     return this.thirdStepTimer <= 0;
+  }
+
+  selectAccount(name:string) {
+    const data = `{"eventType":"EIKA_CHOOSE_ACCOUNT_TO_PROCESS_RESPONSE", "sessionId":"${this.userSessionId}", "accountToProcess":"${name}"}`;
+    this.stompClient.send(API_URL_MAP.crawlerAccountSelectEikaUrl, {}, data);
+    this.isAccountSelection = false;
+    this.startCrawlingTimer();
   }
 
 }
