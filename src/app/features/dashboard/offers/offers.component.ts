@@ -74,6 +74,8 @@ export class OffersComponent implements OnInit, OnDestroy {
   public changeBankLoading: boolean;
   public subscribeShareLinkTimer: Subscription;
   public effRateLoweredDialogVisible: boolean;
+  public banksMap = BANKS_DATA;
+  public tips: object[];
 
   get hasLoansStatistics(): boolean {
     const res: boolean =
@@ -117,7 +119,8 @@ export class OffersComponent implements OnInit, OnDestroy {
     private userService: UserService
   ) {
     this.onResize();
-    this.isShowTips = true;
+    this.isShowTips = false;
+    this.tips = [];
     userService.lowerRateAvailable.subscribe(value => {
       this.effRateLoweredDialogVisible = value;
     });
@@ -144,6 +147,8 @@ export class OffersComponent implements OnInit, OnDestroy {
         //   });
         // }
         this.localStorageService.removeItem("isNewUser");
+
+        this.getTips();
       },
       err => {
         if (err.errorType === "PROPERTY_VALUE_MISSING") {
@@ -154,6 +159,59 @@ export class OffersComponent implements OnInit, OnDestroy {
       }
     );
   }
+
+  public getTips() {
+    if (
+      this.offersInfo.aggregatedLoanType ===
+        this.aggregatedLoanType.CREDIT_LINE ||
+      this.offersInfo.aggregatedLoanType === this.aggregatedLoanType.MIX_D_C
+    ) {
+      this.tips.push({
+        text:
+          "Boligverdi/belåningsgrad er viktig mtp hva bankene tilbyr. Klikk her for å endre.",
+        buttonLink: "/dashboard/bolig"
+      });
+    }
+
+    if (!this.offersInfo.memberships.length) {
+      this.tips.push({
+        text:
+          "Enkelte banker tilbyr bedre betingelser gitt at du har et medlemskap i en organisasjon. Prøv å endre ditt medlemskap for å se om det påvirker resultatet av din rentesjekk. (Medlemskap pleier å koste ca 4000 i året)",
+        buttonLink: "/dashboard/profil"
+      });
+    }
+    if (
+      this.offersInfo.aggregatedRateType ===
+      this.aggregatedRateType.MIX_FIXED_FLOATING
+    ) {
+      this.tips.push({
+        text:
+          "Vi ser du har ett eller flere fastrentelån. Renteradar viser besparelsespotensialet kun for lånet/lånene med flytende rente. Beste rente viser også kun beste rente for lånet/lånene med flytende rente.",
+        buttonLink: "./"
+      });
+    }
+    if (
+      this.offersInfo.aggregatedLoanType ===
+        this.aggregatedLoanType.CREDIT_LINE ||
+      this.offersInfo.aggregatedLoanType === this.aggregatedLoanType.MIX_D_C
+    ) {
+      this.tips.push({
+        text:
+          "Du har rammelån/boligkreditt. Ønsker du å se tilbud kun for denne typen lån kan du endre dette i preferanser",
+        buttonLink: "/dashboard/preferanser"
+      });
+    }
+
+    if (this.hasStatensPensjonskasseMembership) {
+      this.tips.push({
+        text:
+          "Medlemmer i Statens Pensjonskasse kan finansiere opptil 2 millioner hos Statens Pensjonskasse. Klikk her for mer info om tilbudet.",
+        buttonLink: "https://www.finansportalen.no/bank/boliglan/",
+        external: true
+      });
+    }
+  }
+
   public goToBestOffer() {
     document.getElementById("the-offers").scrollIntoView({
       behavior: "smooth",

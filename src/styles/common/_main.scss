@@ -27,6 +27,7 @@ hr {
 .content {
   background-color: white;
   overflow-x: hidden;
+  padding-top: 60px;
 }
 
 .mobile {
@@ -95,4 +96,55 @@ mat-radio-button.mat-accent {
 }
 .cdk-overlay-container {
   padding-bottom: 1px;
+}
+.cdk-overlay-dark-backdrop {
+  background: none !important;
+}
+.cdk-global-overlay-wrapper {
+  background: rgba(17, 38, 57, 0.2) !important;
+  top: 60px !important;
+  align-items: unset !important;
+  padding: 20px;
+}
+.mat-dialog-container {
+  box-shadow: none !important;
+  border-radius: 0px !important;
+  height: calc(100% - 100px) !important;
+}
+rente-header {
+  z-index: 99999999999;
+  position: fixed;
+}
+
+.split {
+  display: grid;
+  /* grid-gap: 10px; */
+  grid-template-columns: 1fr 1fr;
+  margin-bottom: 10px;
+  &:last-of-type {
+    margin-bottom: 0px;
+  }
+}
+.automatic .mat-form-field-underline {
+  background-color: unset !important;
+  background: unset !important;
+}
+.double {
+  margin-bottom: 10px;
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: 1fr 1fr;
+  &.buttons {
+    padding: 10px;
+  }
+  .box {
+    padding: 10px;
+  }
+}
+/* button:disabled {
+  background-color: rgba(0, 0, 0, 0.12) !important;
+}
+ */
+.estimated input {
+  text-align: center;
 }

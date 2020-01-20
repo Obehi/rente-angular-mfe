@@ -1,6 +1,37 @@
-@import '../../../../styles/theme/_colors.scss';
+@import "../../../../styles/theme/_colors.scss";
 
 .house {
+  padding-bottom: 80px;
+}
+
+.title {
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+.addressform:last-of-type {
+  margin-bottom: 40px;
+  display: block;
+}
+
+.save {
+  position: fixed;
+  bottom: 70px;
+  z-index: 999;
+  left: 0;
+  right: 0;
+  margin: auto;
+  display: block;
+  text-align: center;
+}
+
+.add {
+  margin: auto;
+  display: block;
+  text-align: center;
+}
+
+/* .house {
   mat-radio-button {
     label {
       align-items: baseline;
@@ -73,3 +104,4 @@ a {
 .button-label {
   color: $text-color;
 }
+ */

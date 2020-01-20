@@ -1,4 +1,32 @@
-<div class="house" *ngIf="showAddresses" [@shakeAnimation]>
+<div class="house" *ngIf="showAddresses">
+  <div class="title">
+    <h3>Mine bolig</h3>
+    <p class="small">Total verdi: {{ totalPropertyValue | thousands }}</p>
+  </div>
+  <rente-address-form
+    class="addressform"
+    *ngFor="let address of addresses; let i = index"
+    [index]="i"
+    [address]="address"
+    (deleteAddress)="deleteAddress($event)"
+    (change)="countChange($event)"
+  >
+  </rente-address-form>
+
+  <rente-button class="add" color="blue" (click)="addAddress()">
+    Legg til bolig
+  </rente-button>
+  <rente-button
+    color="primary"
+    [disabled]="!ableToSave"
+    (click)="saveAddresses()"
+    class="save"
+  >
+    Lagre endringer
+  </rente-button>
+</div>
+
+<!-- <div class="house" *ngIf="showAddresses" [@shakeAnimation]>
 
   <rente-address-form
     *ngFor="let address of addresses; let i=index"
@@ -35,3 +63,4 @@
   <mat-spinner [diameter]="48" [strokeWidth]="4"></mat-spinner>
 </div>
 
+ -->

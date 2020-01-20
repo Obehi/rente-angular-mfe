@@ -1,30 +1,119 @@
-<div class="property-group mb-4">
+<div class="heading">
+  <img src="../../../assets/icons/house-icon.svg" alt="Bolig" />
+  <b>Bolig {{ index + 1 }}</b>
+  <mat-icon *ngIf="isAbleToDelete" (click)="onDeleteAddressClick()"
+    >delete_forever</mat-icon
+  >
+</div>
+<div class="body">
+  <div class="address">
+    <rente-input
+      type="text"
+      [placeholder]="'Adresse'"
+      [(ngModel)]="address.street"
+    ></rente-input>
+    <button [disabled]="!isAddressValid" (click)="toggleMode()">
+      <mat-icon *ngIf="isEditMode">bar_chart</mat-icon>
+      <mat-icon *ngIf="isStatMode">keyboard_backspace</mat-icon>
+    </button>
+  </div>
+  <div *ngIf="isStatMode">
+    <rente-virdi-statistics [address]="address"> </rente-virdi-statistics>
+  </div>
+  <div class="double">
+    <rente-input
+      type="text"
+      [placeholder]="'Postnummer'"
+      [(ngModel)]="address.zip"
+    ></rente-input>
 
-  <!-- Header -->
-  <div class="row">
-    <div class="col-lg-10 col-10">
-      Bolig {{index + 1}}
+    <rente-input
+      matInput
+      type="number"
+      [placeholder]="'Størrelse på bolig'"
+      [(ngModel)]="address.apartmentSize"
+      matSuffix="kvm"
+    ></rente-input>
+  </div>
+  <div class="estimate">
+    <p class="small">Boligverdi</p>
+
+    <mat-tab-group
+      (selectedTabChange)="onRbChange($event)"
+      [selectedIndex]="!address.useManualPropertyValue ? 0 : 1"
+    >
+      <mat-tab
+        selectedIndex="!address.useManualPropertyValue"
+        label="Automatisk estimat"
+        (click)="onRbChange(false)"
+        [disabled]="!address.estimatedPropertyValue"
+      >
+      </mat-tab>
+
+      <mat-tab
+        selectedIndex="address.useManualPropertyValue"
+        label="Eget estimat"
+        (click)="onRbChange(true)"
+      >
+      </mat-tab>
+    </mat-tab-group>
+    <div class="double estimated">
+      <div>
+        <rente-input
+          matInput
+          class="automatic"
+          type="text"
+          [ngModel]="address.estimatedPropertyValue | thousands"
+          [disabled]="address.useManualPropertyValue"
+          style="pointer-events: none; text-align: center !important;"
+          [matSuffix]="!address.estimatedPropertyValue ? kr : ''"
+        ></rente-input>
+
+        <p *ngIf="address.estimatedPropertyValue" class="small">
+          Estimert av Virdi
+        </p>
+
+        <p *ngIf="!address.estimatedPropertyValue" class="small">
+          Estimat utilgjengelig
+        </p>
+      </div>
+      <rente-input
+        matInput
+        [disabled]="!address.useManualPropertyValue"
+        type="text"
+        [ngModel]="address.manualPropertyValue | thousands"
+        style="text-align: center !important;"
+        (keyup)="manualPropertyValueChanged($event)"
+        matSuffix="kr"
+      ></rente-input>
     </div>
+  </div>
+</div>
+
+<!-- <div class="property-group mb-4"> -->
+<!-- <div class="row">
+    <div class="col-lg-10 col-10">Bolig {{ index + 1 }}</div>
     <div class="col-lg-2 col-2">
       <button
         class="statistics-button"
         mat-raised-button
         [disabled]="!isAddressValid"
-        (click)="toggleMode()">
+        (click)="toggleMode()"
+      >
         <mat-icon *ngIf="isEditMode">bar_chart</mat-icon>
         <mat-icon *ngIf="isStatMode">keyboard_backspace</mat-icon>
       </button>
     </div>
-  </div>
+  </div> -->
 
-  <!-- Address Editing View -->
+<!--
   <div class="row" *ngIf="isEditMode">
     <div class="col-12 col-lg-6">
       <div>
         <span class="input-label">Adresse</span>
         <input
           type="text"
-          class="text-input"
+          class="text-input "
           maxlength="100"
           placeholder="Adresse"
           [(ngModel)]="address.street"
@@ -54,11 +143,9 @@
     </div>
 
     <div class="col-12 col-lg-6">
-      <mat-radio-group [(ngModel)]="address.useManualPropertyValue" >
+      <mat-radio-group [(ngModel)]="address.useManualPropertyValue">
         <div class="mb-2 mt-4">
-          <mat-radio-button
-            [value]="false"
-            (change)="onRbChange($event)">
+          <mat-radio-button [value]="false" (change)="onRbChange($event)">
             <h3>Bruk estimat</h3>
           </mat-radio-button>
           <div class="mt-1">
@@ -71,48 +158,43 @@
           </div>
         </div>
         <div class="mt-4">
-          <mat-radio-button
-            [value]="true"
-            (change)="onRbChange($event)">
+          <mat-radio-button [value]="true" (change)="onRbChange($event)">
             <h3>Jeg vet hva boligen er verdt</h3>
           </mat-radio-button>
           <div class="mt-0">
-              <input
-                type="text"
-                min="0"
-                maxlength="100"
-                class="text-input"
-                placeholder="Boligen min er verdt"
-                [ngModel]="address.manualPropertyValue | thousands"
-                (ngModelChange)="manualPropertyValueChanged($event)"
-                [disabled]="address.useManualPropertyValue == false"
-                (keyup)="manualPropertyValueChanged($event)"
-              />
+            <input
+              type="text"
+              min="0"
+              maxlength="100"
+              class="text-input"
+              placeholder="Boligen min er verdt"
+              [ngModel]="address.manualPropertyValue | thousands"
+              (ngModelChange)="manualPropertyValueChanged($event)"
+              [disabled]="address.useManualPropertyValue == false"
+              (keyup)="manualPropertyValueChanged($event)"
+            />
           </div>
         </div>
       </mat-radio-group>
     </div>
-  </div>
+  </div> -->
 
-  <!-- Address Statistics View -->
-  <div *ngIf="isStatMode">
-    <rente-virdi-statistics
-      [address]="address">
-    </rente-virdi-statistics>
-  </div>
+<!-- Address Statistics View -->
+<!-- <div *ngIf="isStatMode">
+    <rente-virdi-statistics [address]="address"> </rente-virdi-statistics>
+  </div> -->
 
-  <!-- Delete Address Button -->
-  <div class="row" *ngIf="isAbleToDelete">
+<!-- Delete Address Button -->
+<!-- <div class="row" *ngIf="isAbleToDelete">
     <div class="ml-3 mt-3">
       <button (click)="onDeleteAddressClick()">
         Fjerne bolig
       </button>
     </div>
-  </div>
+  </div> -->
 
-  <!-- Error message from address service -->
-  <div class="row" *ngIf="address.message">
-    <p class="ml-3 mt-1 error-message">{{address.message}}</p>
-  </div>
-
-</div>
+<!-- Error message from address service -->
+<!-- <div class="row" *ngIf="address.message">
+    <p class="ml-3 mt-1 error-message">{{ address.message }}</p>
+  </div> -->
+<!-- </div> -->

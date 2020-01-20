@@ -1,19 +1,141 @@
-<div *ngIf="loansData && loansData.loans && loansData.loans.length > 0" [@shakeAnimation]>
+<div *ngIf="loansData && loansData.loans && loansData.loans.length > 0">
+  <div class="summary">
+    <h3 class="title">Sammendrag av lån</h3>
+    <div class="double">
+      <div class="box">
+        <p class="small">Uteståend lån</p>
+        <h3>
+          {{ loansData.totalOutstandingDebt / 1000000 | number: "1.3-3" }}
+          millioner
+        </h3>
+      </div>
+      <div class="box">
+        <p class="small">Effektiv rente</p>
+        <h3>{{ loansData.totalEffectiveRate | number: "1.2-2" }}%</h3>
+      </div>
+    </div>
+    <div class="double">
+      <div class="box">
+        <p class="small">
+          Totale renteutgifter
+        </p>
+        <h3>
+          {{
+            loansData.aggregatedTotalInterestAndFee == null
+              ? "N/A"
+              : (loansData.aggregatedTotalInterestAndFee | number: "1.0-0") +
+                ",-"
+          }}
+        </h3>
+      </div>
+      <div class="box">
+        <p class="small">
+          Renter per år (gj.snitt)
+        </p>
+        <h3>
+          {{
+            loansData.aggregatedTotalInterestAndFeeByRemainingYears == null
+              ? "N/A"
+              : (loansData.aggregatedTotalInterestAndFeeByRemainingYears
+                  | number: "1.0-0") + ",-"
+          }}
+        </h3>
+      </div>
+    </div>
+  </div>
 
-  <h3>Sammendrag</h3>
+  <h3 style="padding: 10px 20px 10px;">Detaljert</h3>
+  <div class="detailed" *ngFor="let loan of loansData.loans">
+    <b class="heading">{{ loan.loanName }}</b>
 
-  <div class="bg-wrap bg-light mb-4">
+    <div class="inner">
+      <div class="double">
+        <div class="box">
+          <p class="small">Utestående lån</p>
+          <h3>
+            {{ loan.outstandingDebt / 1000000 | number: "1.3-3" }} millioner
+          </h3>
+        </div>
+        <div class="box">
+          <p class="small">Løpetid</p>
+          <h3>{{ loan.remainingYears | number: "1.2-2" }} år</h3>
+        </div>
+      </div>
+
+      <div class="double">
+        <div class="box">
+          <p class="small">Effektiv rente</p>
+          <h3>{{ loan.effectiveRate | number: "1.2-2" }}%</h3>
+        </div>
+        <div class="box">
+          <p class="small">Nominell rente</p>
+          <h3>{{ loan.nominalRate | number: "1.2-2" }}%</h3>
+        </div>
+      </div>
+
+      <div class="double">
+        <div class="box">
+          <p class="small">Totale renteutgifter</p>
+          <h3>
+            {{
+              loan.totalInterestAndTotalFee == null
+                ? "N/A"
+                : (loan.totalInterestAndTotalFee | number: "1.0-0") + ",-"
+            }}
+          </h3>
+        </div>
+        <div class="box">
+          <p class="small">Renter per år (gj.snitt)</p>
+          <h3>
+            {{
+              loan.totalInterestAndTotalFeeByRemainingYears == null
+                ? "N/A"
+                : (loan.totalInterestAndTotalFeeByRemainingYears
+                    | number: "1.0-0") + ",-"
+            }}
+          </h3>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- <div class="bg-wrap bg-light mb-4">
     <div class="mb-0 list-unstyled">
       <p class="font-weight-bold">Totalt</p>
-      <p>Utestående lån: <strong>{{loansData.totalOutstandingDebt / 1000000 | number: '1.3-3'}} millioner</strong>
+      <p>
+        Utestående lån:
+        <strong
+          >{{
+            loansData.totalOutstandingDebt / 1000000 | number: "1.3-3"
+          }}
+          millioner</strong
+        >
       </p>
-      <p>Effektiv rente: <strong>{{loansData.totalEffectiveRate | number: '1.2-2'}}%</strong>
+      <p>
+        Effektiv rente:
+        <strong>{{ loansData.totalEffectiveRate | number: "1.2-2" }}%</strong>
       </p>
-      <p>Totale renteutgifter: <strong>
-          {{loansData.aggregatedTotalInterestAndFee == null ? 'N/A' : (loansData.aggregatedTotalInterestAndFee | number: '1.0-0') + ',-'}}</strong>
+      <p>
+        Totale renteutgifter:
+        <strong>
+          {{
+            loansData.aggregatedTotalInterestAndFee == null
+              ? "N/A"
+              : (loansData.aggregatedTotalInterestAndFee | number: "1.0-0") +
+                ",-"
+          }}</strong
+        >
       </p>
-      <p>Renter per år (gj.snitt): <strong>
-          {{loansData.aggregatedTotalInterestAndFeeByRemainingYears == null ? 'N/A' : (loansData.aggregatedTotalInterestAndFeeByRemainingYears | number: '1.0-0') + ',-'}}</strong>
+      <p>
+        Renter per år (gj.snitt):
+        <strong>
+          {{
+            loansData.aggregatedTotalInterestAndFeeByRemainingYears == null
+              ? "N/A"
+              : (loansData.aggregatedTotalInterestAndFeeByRemainingYears
+                  | number: "1.0-0") + ",-"
+          }}</strong
+        >
       </p>
     </div>
   </div>
@@ -21,32 +143,59 @@
   <h3>Detaljert</h3>
 
   <div class="bg-wrap  mb-4" *ngFor="let loan of loansData.loans">
-
     <div class="mb-0 list-unstyled">
-      <p class="font-weight-bold">{{loan.loanName}}</p>
-      <p>Utestående lån: <strong>{{loan.outstandingDebt / 1000000 | number: '1.3-3'}} millioner</strong></p>
-      <p>Løpetid: <strong>{{loan.remainingYears | number: '1.2-2'}} år</strong>
+      <p class="font-weight-bold">{{ loan.loanName }}</p>
+      <p>
+        Utestående lån:
+        <strong
+          >{{
+            loan.outstandingDebt / 1000000 | number: "1.3-3"
+          }}
+          millioner</strong
+        >
       </p>
-      <p>Effektiv rente: <strong>{{loan.effectiveRate | number: '1.2-2'}}%</strong>
+      <p>
+        Løpetid: <strong>{{ loan.remainingYears | number: "1.2-2" }} år</strong>
       </p>
-      <p>Nom.rente: <strong>{{loan.nominalRate | number: '1.2-2'}}%</strong>
+      <p>
+        Effektiv rente:
+        <strong>{{ loan.effectiveRate | number: "1.2-2" }}%</strong>
       </p>
-      <p>Totale renteutgifter: <strong>
-          {{loan.totalInterestAndTotalFee == null ? 'N/A' : (loan.totalInterestAndTotalFee | number: '1.0-0') + ',-'}}</strong>
+      <p>
+        Nom.rente: <strong>{{ loan.nominalRate | number: "1.2-2" }}%</strong>
       </p>
-      <p>Renter per år (gj.snitt): <strong>
-          {{loan.totalInterestAndTotalFeeByRemainingYears == null ? 'N/A' : (loan.totalInterestAndTotalFeeByRemainingYears | number: '1.0-0') + ',-'}}
+      <p>
+        Totale renteutgifter:
+        <strong>
+          {{
+            loan.totalInterestAndTotalFee == null
+              ? "N/A"
+              : (loan.totalInterestAndTotalFee | number: "1.0-0") + ",-"
+          }}</strong
+        >
+      </p>
+      <p>
+        Renter per år (gj.snitt):
+        <strong>
+          {{
+            loan.totalInterestAndTotalFeeByRemainingYears == null
+              ? "N/A"
+              : (loan.totalInterestAndTotalFeeByRemainingYears
+                  | number: "1.0-0") + ",-"
+          }}
         </strong>
       </p>
     </div>
-  </div>
-
+  </div> -->
 </div>
 
-<div class="d-flex justify-content-center align-items-center mt-4" *ngIf="!loansData && !errorMessage">
+<div
+  class="d-flex justify-content-center align-items-center mt-4"
+  *ngIf="!loansData && !errorMessage"
+>
   <mat-spinner [diameter]="48" [strokeWidth]="4"></mat-spinner>
 </div>
 
 <div *ngIf="errorMessage">
-  <h1 class="text-center mt-4">{{errorMessage}}</h1>
+  <h1 class="text-center mt-4">{{ errorMessage }}</h1>
 </div>

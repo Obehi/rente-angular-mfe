@@ -1,4 +1,48 @@
-<div class="offers">
+<div
+  class="offers"
+  *ngIf="offersInfo?.resultType === offersResultType.OFFERS_PRESENT"
+>
+  <div
+    class="tipsAccordion"
+    (click)="isShowTips = !isShowTips"
+    *ngIf="tips.length > 0"
+  >
+    <p>
+      <mat-icon *ngIf="!isShowTips">expand_more</mat-icon>
+      <mat-icon *ngIf="isShowTips">expand_less</mat-icon>
+      <span class="nr">{{ tips.length }}</span> tips
+    </p>
+  </div>
+  <div
+    class="tips"
+    style="border-bottom: none;"
+    *ngIf="tips.length > 0 && !isShowTips"
+  ></div>
+  <div class="tips" *ngIf="isShowTips && tips.length > 0">
+    <div *ngFor="let tip of tips; let i = index">
+      <div *ngIf="!tip.external" routerLink="{{ tip.buttonLink }}" class="tip">
+        <p>
+          {{ tip.text }}
+        </p>
+
+        <mat-icon *ngIf="tip.buttonLink !== './'">chevron_right</mat-icon>
+      </div>
+
+      <a
+        *ngIf="tip.external"
+        href="{{ tip.buttonLink }}"
+        target="_blank"
+        class="tip"
+      >
+        <p>
+          {{ tip.text }}
+        </p>
+
+        <mat-icon>chevron_right</mat-icon>
+      </a>
+    </div>
+  </div>
+
   <div class="barometer">
     <h3>Rentebarometer</h3>
     <rente-rating
@@ -119,8 +163,12 @@
             </div>
           </div>
           <div class="offer-product">
-            <p>{{ offer.bankName }}</p>
-            <h3>{{ offer.productName }}</h3>
+            <a [href]="offer.bankUrl" target="_blank"
+              >{{ offer.bankName }} <mat-icon>open_in_new</mat-icon></a
+            >
+            <h3 (click)="openOfferDialog(offer)">
+              {{ offer.productName }}<span>?</span>
+            </h3>
           </div>
         </div>
         <div class="the-offer-body">
@@ -194,8 +242,10 @@
         </div>
       </div>
     </ng-container>
+  </div>
+</div>
 
-    <!-- <div
+<!-- <div
   class="offers"
   [class.blured]="isDialogVisble"
   *ngIf="offersInfo?.resultType === offersResultType.OFFERS_PRESENT"
@@ -868,5 +918,3 @@
   </rente-dialog>
 </div>
  -->
-  </div>
-</div>
