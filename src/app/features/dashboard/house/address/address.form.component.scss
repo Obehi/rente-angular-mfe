@@ -2,6 +2,9 @@
 .mat-form-field {
   text-align: center;
 }
+.mat-form-field-disabled * {
+  color: rgba(0, 0, 0, 0.38) !important;
+}
 .estimated .small {
   text-align: center;
   top: -10px;

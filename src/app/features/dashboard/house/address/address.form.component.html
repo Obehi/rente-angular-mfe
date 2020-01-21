@@ -20,7 +20,7 @@
   <div *ngIf="isStatMode">
     <rente-virdi-statistics [address]="address"> </rente-virdi-statistics>
   </div>
-  <div class="double">
+  <div [class]="isStatMode ? 'hidden' : 'double'">
     <rente-input
       type="text"
       [placeholder]="'Postnummer'"
@@ -35,7 +35,7 @@
       matSuffix="kvm"
     ></rente-input>
   </div>
-  <div class="estimate">
+  <div [class]="isStatMode ? 'hidden' : 'estimate'">
     <p class="small">Boligverdi</p>
 
     <mat-tab-group
@@ -43,19 +43,13 @@
       [selectedIndex]="!address.useManualPropertyValue ? 0 : 1"
     >
       <mat-tab
-        selectedIndex="!address.useManualPropertyValue"
         label="Automatisk estimat"
         (click)="onRbChange($event)"
         [disabled]="!address.estimatedPropertyValue"
       >
       </mat-tab>
 
-      <mat-tab
-        selectedIndex="address.useManualPropertyValue"
-        label="Eget estimat"
-        (click)="onRbChange($event)"
-      >
-      </mat-tab>
+      <mat-tab label="Eget estimat" (click)="onRbChange($event)"> </mat-tab>
     </mat-tab-group>
     <div class="double estimated">
       <div>
@@ -66,7 +60,7 @@
           [ngModel]="address.estimatedPropertyValue | thousands"
           [disabled]="address.useManualPropertyValue"
           style="pointer-events: none; text-align: center !important;"
-          [matSuffix]="!address.estimatedPropertyValue ? 'kr' : ''"
+          [matSuffix]="address.estimatedPropertyValue ? 'kr' : ''"
         ></rente-input>
 
         <p *ngIf="address.estimatedPropertyValue" class="small">
@@ -84,7 +78,7 @@
         [ngModel]="address.manualPropertyValue | thousands"
         style="text-align: center !important;"
         (keyup)="manualPropertyValueChanged($event)"
-        matSuffix="'kr'"
+        matSuffix="kr"
       ></rente-input>
     </div>
   </div>
