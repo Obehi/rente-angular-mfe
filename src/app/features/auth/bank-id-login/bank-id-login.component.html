@@ -47,6 +47,12 @@
             [type]="'error'">
             Fødselsnummer ikke gyldig
           </rente-form-message>
+          <rente-form-message
+            class="text-left d-block"
+            *ngIf="bankIdForm.controls['ssn'].hasError('ssnNotValid')"
+            [type]="'error'">
+            Fødselsnummeret er ikke gyldig
+          </rente-form-message>
         </div>
       </div>
 

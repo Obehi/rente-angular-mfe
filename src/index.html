@@ -58,7 +58,7 @@
     <script>
       "use strict";
 
-      !(function() {
+      function loadDriftWidget() {
         var t = (window.driftt = window.drift = window.driftt || []);
         if (!t.init) {
           if (t.invoked)
@@ -103,17 +103,14 @@
               i.parentNode.insertBefore(o, i);
             });
         }
-      })();
-      drift.SNIPPET_VERSION = "0.3.1";
-      drift.load("yumwszidc85g");
-    </script>
-    <style>
-      iframe#drift-widget.drift-widget-welcome-online {
-        bottom: 65px !important;
-        right: 20px !important;
+        drift.SNIPPET_VERSION = "0.3.1";
+        drift.load("yumwszidc85g");
       }
-    </style>
 
+      setTimeout(function() {
+        loadDriftWidget();
+      }, 7000);
+    </script>
     <!-- End of Async Drift Code -->
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
