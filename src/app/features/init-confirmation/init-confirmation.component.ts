@@ -61,7 +61,7 @@ export class InitConfirmationComponent implements OnInit {
       forkJoin([this.userService.getUserInfo(), this.loansService.getAddresses()])
         .subscribe(([user, loan]) => {
           this.userData = user;
-          const apartmentSize = loan.addresses && loan.addresses.length > 0 ? loan.addresses[0] : 0;
+          const apartmentSize = loan.addresses && loan.addresses.length > 0 ? loan.addresses[0].apartmentSize : 0;
           this.propertyForm = this.fb.group({
             apartmentSize: [apartmentSize, Validators.required],
             membership: [],
