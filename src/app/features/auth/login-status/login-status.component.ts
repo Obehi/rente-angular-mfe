@@ -294,19 +294,22 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
                 .subscribe(([rateAndLoans, userInfo]) => {
                   this.loginStep3Status = MESSAGE_STATUS.SUCCESS;
                   this.userService.lowerRateAvailable.next(rateAndLoans.lowerRateAvailable);
-                  if (!rateAndLoans.loansPresent) {
+                  if (rateAndLoans.loansPresent) {
+                    this.localStorageService.removeItem('noLoansPresent');
+                    if (rateAndLoans.isAggregatedRateTypeFixed) {
+                      this.localStorageService.setItem('isAggregatedRateTypeFixed', true);
+                      this.router.navigate(['/dashboard/fastrente']);
+                    } else {
+                      if (userInfo.income === null) {
+                        this.router.navigate(['/bekreft']);
+                        this.localStorageService.setItem('isNewUser', true);
+                      } else {
+                        this.router.navigate(['/dashboard/tilbud/']);
+                      }
+                    }
+                  } else {
                     this.localStorageService.setItem('noLoansPresent', true);
                     this.router.navigate(['/dashboard/ingenlaan']);
-                  } else if (rateAndLoans.isAggregatedRateTypeFixed) {
-                    this.localStorageService.setItem('isAggregatedRateTypeFixed', true);
-                    this.router.navigate(['/dashboard/fastrente']);
-                  } else {
-                    if (userInfo.income === null) {
-                      this.router.navigate(['/bekreft']);
-                      this.localStorageService.setItem('isNewUser', true);
-                    } else {
-                      this.router.navigate(['/dashboard/tilbud/']);
-                    }
                   }
                 });
             });
