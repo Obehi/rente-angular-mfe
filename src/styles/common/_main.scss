@@ -1,3 +1,4 @@
+@import "../theme/_colors.scss";
 html {
   height: 100%;
   overflow: auto;
@@ -105,6 +106,7 @@ mat-radio-button.mat-accent {
   top: 60px !important;
   align-items: unset !important;
   padding: 20px;
+  display: block !important;
 }
 .mat-dialog-container {
   box-shadow: none !important;
@@ -160,4 +162,98 @@ iframe#drift-widget {
 }
 .hidden {
   display: none;
+}
+.mat-radio-group {
+  grid-template-columns: 1fr 1fr;
+  display: grid;
+  grid-column-gap: 40px;
+  line-height: 2;
+  .mat-radio-button {
+    margin-bottom: 20px;
+  }
+  .mat-radio-container {
+    display: none;
+  }
+  .mat-radio-label-content {
+    padding: 0;
+  }
+
+  .mat-radio-checked .mat-radio-label-content {
+    span {
+      font-weight: 500;
+    }
+    :after {
+      background-color: $green;
+    }
+  }
+  .mat-radio-label-content {
+    position: relative;
+    width: 100%;
+    span {
+      font-weight: 300;
+    }
+    :after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background-color: $light;
+      bottom: 0;
+    }
+  }
+}
+.save-changes button {
+  position: fixed;
+  top: 70px;
+  z-index: 999;
+  left: 0;
+  right: 0;
+  margin: auto;
+  display: block;
+  text-align: center;
+  width: calc(100% - 40px);
+}
+.mat-tab-header-pagination {
+  display: none !important;
+}
+.mat-tab-list {
+  transform: unset !important;
+}
+.mat-tab-label {
+  min-width: unset !important;
+}
+.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background,
+.mat-checkbox-checked.mat-accent .mat-checkbox-background {
+  background: $green !important;
+}
+.mat-checkbox-layout {
+  display: block !important;
+  white-space: normal !important;
+}
+.mat-checkbox-layout {
+  margin-bottom: 20px;
+  .mat-checkbox-label {
+    line-height: 1.5 !important;
+    font-size: 14px;
+    font-weight: 300;
+    margin-bottom: 20px;
+  }
+}
+.error {
+  color: $red;
+}
+.withinfo {
+  position: relative;
+  display: grid;
+  grid-template-columns: 10fr 2fr;
+  > div {
+    position: relative;
+  }
+  mat-icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 0;
+  }
 }

@@ -13,13 +13,6 @@ import {
   AGGREGATED_LOAN_TYPE
 } from "../../../config/loan-state";
 import { LocalStorageService } from "@services/local-storage.service";
-import {
-  trigger,
-  transition,
-  style,
-  animate,
-  keyframes
-} from "@angular/animations";
 import { ChangeBankDialogComponent } from "./change-bank-dialog/change-bank-dialog.component";
 import { ChangeBankServiceService } from "@services/remote-api/change-bank-service.service";
 import { Subscription } from "rxjs";
@@ -31,33 +24,7 @@ import { BankUtils } from "@shared/models/bank";
 @Component({
   selector: "rente-offers",
   templateUrl: "./offers.component.html",
-  styleUrls: ["./offers.component.scss"],
-  animations: [
-    trigger("inOutAnimation", [
-      transition(":enter", [
-        style({ height: 0, opacity: 0 }),
-        animate("0.5s ease-out", style({ height: 200, opacity: 1 }))
-      ]),
-      transition(":leave", [
-        style({ height: 200, opacity: 1 }),
-        animate("0.5s ease-in", style({ height: 0, opacity: 0 }))
-      ])
-    ]),
-    trigger("shakeAnimation", [
-      transition(
-        ":enter",
-        animate(
-          "200ms ease-in",
-          keyframes([
-            style({ transform: "translate3d(-15px, 0, 0)" }),
-            style({ transform: "translate3d(0, 0, 0)" }),
-            style({ transform: "translate3d(7px, 0, 0)" }),
-            style({ transform: "translate3d(0, 0, 0)" })
-          ])
-        )
-      )
-    ])
-  ]
+  styleUrls: ["./offers.component.scss"]
 })
 export class OffersComponent implements OnInit, OnDestroy {
   public offersInfo: Offers;
@@ -221,7 +188,6 @@ export class OffersComponent implements OnInit, OnDestroy {
 
   public openOfferDialog(offer: OfferInfo): void {
     this.dialog.open(DialogInfoComponent, {
-      width: "600px",
       data: offer
     });
   }
@@ -241,8 +207,6 @@ export class OffersComponent implements OnInit, OnDestroy {
       preview => {
         this.changeBankLoading = false;
         this.dialog.open(ChangeBankDialogComponent, {
-          width: "800px",
-          maxHeight: "90vh",
           data: { preview, offerId }
         });
       },

@@ -3,7 +3,10 @@
 footer {
   padding: 40px;
   background-color: $blue;
-
+  display: none;
+  &.visible {
+    display: block;
+  }
   @media (max-width: 600px) {
     padding: 40px 20px;
   }

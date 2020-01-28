@@ -1,41 +1,23 @@
 import { LoansService, AddressDto } from "@services/remote-api/loans.service";
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
-import {
-  trigger,
-  transition,
-  animate,
-  keyframes,
-  style
-} from "@angular/animations";
+import { SnackBarService } from "../../../shared/services/snackbar.service";
 
 @Component({
   selector: "rente-house",
   templateUrl: "./house.component.html",
   styleUrls: ["./house.component.scss"],
-  encapsulation: ViewEncapsulation.None,
-  animations: [
-    trigger("shakeAnimation", [
-      transition(
-        ":enter",
-        animate(
-          "200ms ease-in",
-          keyframes([
-            style({ transform: "translate3d(-15px, 0, 0)" }),
-            style({ transform: "translate3d(0, 0, 0)" }),
-            style({ transform: "translate3d(7px, 0, 0)" }),
-            style({ transform: "translate3d(0, 0, 0)" })
-          ])
-        )
-      )
-    ])
-  ]
+  encapsulation: ViewEncapsulation.None
 })
 export class HouseComponent implements OnInit {
   isLoading: boolean;
   addresses: AddressDto[];
   showAddresses: boolean;
+  changesMade = false;
 
-  constructor(private loansService: LoansService) {}
+  constructor(
+    private loansService: LoansService,
+    private snackBar: SnackBarService
+  ) {}
 
   ngOnInit() {
     this.isLoading = true;
@@ -78,14 +60,26 @@ export class HouseComponent implements OnInit {
     }
     return res;
   }
-
+  countChange() {
+    this.changesMade = true;
+  }
   saveAddresses() {
     if (this.ableToSave) {
       this.isLoading = true;
-      this.loansService.updateAddress(this.addresses).subscribe(r => {
-        this.isLoading = false;
-        this.addresses = r.addresses;
-      });
+      this.loansService.updateAddress(this.addresses).subscribe(
+        r => {
+          this.addresses = r.addresses;
+        },
+        err => {
+          this.isLoading = false;
+          this.snackBar.openFailSnackBar("Oops, noe gikk galt");
+        },
+        () => {
+          this.isLoading = false;
+          this.changesMade = false;
+          this.snackBar.openSuccessSnackBar("Endringene dine er lagret");
+        }
+      );
     }
   }
 

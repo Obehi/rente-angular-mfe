@@ -95,6 +95,7 @@
         <div class="box positive" (click)="goToBestOffer()">
           <p>Beste tilbud <img src="../../../../assets/icons/go_to.svg" /></p>
           <h2>{{ offersInfo.bestOfferEffectiveRate | number: "1.2-2" }}%</h2>
+          <!-- <h2>{{ offersInfo.customerName | null }}</h2> -->
         </div>
       </div>
       <div class="double">
@@ -145,7 +146,9 @@
   </div>
 
   <div class="the-offers">
-    <h3 class="mb-4">{{ offersInfo.offers.length }} bedre tilbud</h3>
+    <h3 style="margin-bottom: 20px;">
+      {{ offersInfo.offers.length }} bedre tilbud
+    </h3>
     <ng-container *ngIf="offersInfo">
       <div
         *ngFor="let offer of offersInfo.offers; let i = index"
@@ -167,7 +170,7 @@
               >{{ offer.bankName }} <mat-icon>open_in_new</mat-icon></a
             >
             <h3 (click)="openOfferDialog(offer)">
-              {{ offer.productName }}<span>?</span>
+              {{ offer.productName }}<mat-icon>help</mat-icon>
             </h3>
           </div>
         </div>
@@ -224,7 +227,7 @@
               [isLoading]="changeBankLoading"
               color="primary"
               type="raised"
-              (click)="openChangeBankDialog(offersInfo.offers[0])"
+              (click)="openChangeBankDialog(offersInfo.offers[i])"
               >Match tilbud</rente-button
             >
           </div>
@@ -234,7 +237,7 @@
               [isLoading]="changeBankLoading"
               color="primary"
               type="raised"
-              (click)="openChangeBankDialog(offersInfo.offers[0])"
+              (click)="openChangeBankDialog(offersInfo.offers[i])"
               >Start bytte</rente-button
             >
             <p class="small">(Kommer snart!)</p>
@@ -245,6 +248,56 @@
   </div>
 </div>
 
+<div
+  *ngIf="
+    offersInfo?.resultType === offersResultType.NO_OFFERS ||
+    offersInfo?.resultType === offersResultType.LTV_TOO_HIGH_85
+  "
+>
+  <h3>
+    Størrelsen på lånet ditt er for stor i forhold til boligverdi (>85%).
+    Kontroller og endre boligverdien din
+    <a [routerLink]="['/dashboard/bolig']">her i boligfanen</a>
+  </h3>
+</div>
+<div
+  *ngIf="
+    offersInfo?.resultType === offersResultType.LTV_CREDIT_LINE_TOO_HIGH_60
+  "
+>
+  <h3>
+    Rammelån/boligkreditt er kun tilgjengelig for lavere belåningsgrad enn 60%.
+    Din belåningsgrad er høyere enn dette, vennligst endre din belåningsgrad i<a
+      [routerLink]="['/dashboard/bolig']"
+    >
+      boligfanen</a
+    >
+  </h3>
+</div>
+
+<div
+  class="d-flex justify-content-center align-items-center mt-4"
+  *ngIf="isLoading && !errorMessage"
+>
+  <mat-spinner [diameter]="48" [strokeWidth]="4"></mat-spinner>
+</div>
+
+<div *ngIf="!offersInfo && !isLoading && !errorMessage">
+  <h1 class="text-center mt-4">No offers yet...</h1>
+</div>
+
+<div *ngIf="errorMessage">
+  <h1 class="text-center mt-4">{{ errorMessage }}</h1>
+</div>
+
+<div *ngIf="effRateLoweredDialogVisible">
+  <rente-dialog
+    [title]="'Du har lavere rente enn forrige gang!'"
+    [message]="'Brukte du prutefunksjonen vår for å få bedre rente?'"
+    (action)="onDialogAction($event)"
+  >
+  </rente-dialog>
+</div>
 <!-- <div
   class="offers"
   [class.blured]="isDialogVisble"
