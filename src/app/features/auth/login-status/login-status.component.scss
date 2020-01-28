@@ -31,3 +31,12 @@
   padding-top: 10px;
   cursor: pointer;
 }
+a {
+  color: $primary;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+}
