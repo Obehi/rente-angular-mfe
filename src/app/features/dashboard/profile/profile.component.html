@@ -1,11 +1,10 @@
-<div
-*ngIf="!profileForm || !preferencesForm"
-class="loading">
+<div *ngIf="!profileForm || !preferencesForm" class="loading">
   <mat-spinner [diameter]="48" [strokeWidth]="4"></mat-spinner>
 </div>
 
 <div class="preferences" *ngIf="profileForm">
   <h3>{{ username }}</h3>
+  <div></div>
   <form [formGroup]="profileForm" novalidate change>
     <div class="field">
       <rente-input

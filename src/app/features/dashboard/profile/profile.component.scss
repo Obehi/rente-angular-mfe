@@ -64,3 +64,17 @@ form {
     }
   }
 }
+
+@media (min-width: 600px) {
+  .preferences {
+    padding: 40px 80px;
+    h3 {
+      padding: 0;
+      padding-bottom: 20px;
+    }
+    form {
+      margin: 0;
+      padding: 0;
+    }
+  }
+}

@@ -43,9 +43,9 @@ h3.title {
   .summary,
   .detailed {
     padding: 40px 80px;
-    h3 {
+    > h3 {
       padding: 0px;
-      padding-bottom: 10px;
+      padding-bottom: 20px;
     }
     .heading {
       margin-bottom: 20px;
