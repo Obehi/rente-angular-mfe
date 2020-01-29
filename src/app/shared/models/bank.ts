@@ -70,7 +70,7 @@ export const BankList:BankVo[] = [
   new BankVo('OPPDALSBANKEN', 'Oppdalsbanken', 'oppdalsbanken.png', null, true, true, 'https://oppdalsbanken.no/aktuelt/bankid-paa-mobil'),
   new BankVo('ORKLA_SB', 'Orkla Sparebank', 'orkla.png', null, true, true, 'https://orklasparebank.no/aktuelt/bankid-paa-mobil'),
   new BankVo('RINDAL_SB', 'Rindal Sparebank', 'rindal.png', null, true, true, 'https://rindalsbanken.no/aktuelt/bankid-paa-mobil'),
-  new BankVo('ROMSDAL_SB', 'Romsdal Sparebank', 'romsdal.png', null, true, true, 'https://romsdalsbanken.no/aktuelt/bankid-paa-mobil'),
+  new BankVo('ROMSDAL_SB', 'Romsdalsbanken', 'romsdal.png', null, true, true, 'https://romsdalsbanken.no/aktuelt/bankid-paa-mobil'),
   new BankVo('ROROS', 'Rørosbanken', 'roros.png', null, true, true, 'https://rorosbanken.no/aktuelt/bankid-paa-mobil'),
   new BankVo('SANDNES_SB', 'Sandnes Sparebank', 'sandnes.png', null, true, true, 'https://sandnes-sparebank.no/aktuelt/bankid-paa-mobil'),
   new BankVo('SELBU_SB', 'Selbu Sparebank', 'selbu.png', null, true, true, 'https://selbusparebank.no/aktuelt/bankid-paa-mobil'),
