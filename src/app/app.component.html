@@ -13,9 +13,16 @@
       Vi bryr oss om ditt personvern. Vi bruker dine data til å forbedre og tilpasse tjenestene ser og bruker.
     </div>
     <div class="cookie-acc-btn">
-      <rente-button color="primary" (action)="acceptCookies()">
-        <p>JEG FORSTÅR</p>
-      </rente-button>
+      <div style="opacity:0.4">
+        <rente-button color="blue" (action)="readMore()">
+          <p>Vis meg mer</p>
+        </rente-button>
+      </div>
+      <div>
+        <rente-button color="primary" (action)="acceptCookies()">
+          <p>JEG FORSTÅR</p>
+        </rente-button>
+      </div>
     </div>
   </div>
 </div>

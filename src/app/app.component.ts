@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { MetaService } from '@shared/services/meta.service';
 import { TitleService } from '@services/title.service';
 import { LocalStorageService } from '@services/local-storage.service';
+import { ROUTES_MAP } from '@config/routes-config';
 
 @Component({
   selector: 'rente-root',
@@ -67,6 +68,10 @@ export class AppComponent implements OnInit {
   acceptCookies() {
     this.localStorageService.setItem(AppComponent.CookiesAcceptedKey, true);
     this.showCookieAcc = false;
+  }
+
+  readMore() {
+    this.router.navigate([`/${ROUTES_MAP.privacyPolicy}`]);
   }
 
 }
