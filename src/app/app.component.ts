@@ -3,6 +3,7 @@ import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { MetaService } from '@shared/services/meta.service';
 import { TitleService } from '@services/title.service';
+import { LocalStorageService } from '@services/local-storage.service';
 
 @Component({
   selector: 'rente-root',
@@ -10,15 +11,20 @@ import { TitleService } from '@services/title.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+
+  public static CookiesAcceptedKey = 'isCookiesAccepted';
+
   public title = 'rente-front-end';
   public navigationSubscription: Subscription;
+  public showCookieAcc:boolean;
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private metaService: MetaService,
-    private titleService: TitleService
-  ) {}
+    private titleService: TitleService,
+    private localStorageService: LocalStorageService
+  ) { }
 
   onActivate(event: any) {
     window.scrollTo(0, 0);
@@ -36,6 +42,10 @@ export class AppComponent implements OnInit {
         }
       }
     });
+
+    if (!this.localStorageService.getItem(AppComponent.CookiesAcceptedKey)) {
+      this.showCookieAcc = true;
+    }
   }
 
   private changeTitles(): void {
@@ -53,4 +63,10 @@ export class AppComponent implements OnInit {
       this.metaService.updateMetaTags(metaData.name, metaData.description);
     }
   }
+
+  acceptCookies() {
+    this.localStorageService.setItem(AppComponent.CookiesAcceptedKey, true);
+    this.showCookieAcc = false;
+  }
+
 }

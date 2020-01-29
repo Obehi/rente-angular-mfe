@@ -1,7 +1,22 @@
 <div class="content">
   <rente-header></rente-header>
-
   <router-outlet (activate)="onActivate($event)"></router-outlet>
 </div>
 
 <rente-footer></rente-footer>
+
+<div class="absolute-pos" *ngIf="showCookieAcc">
+  <div class="cookie-acc-panel">
+    <div class="cookie-acc-title">Dine data, dine valg</div>
+    <div class="cookie-acc-message">
+      E24 Dine Penger er en del av Schibsted Norge, som er ansvarlig for dine data.<br/>
+      Vi bryr oss om ditt personvern. Vi bruker dine data til å forbedre og
+      tilpasse tjenestene, tilbudene og annonsene du ser og bruker.
+    </div>
+    <div class="cookie-acc-btn">
+      <rente-button color="primary" (action)="acceptCookies()">
+        <p>JEG FORSTÅR</p>
+      </rente-button>
+    </div>
+  </div>
+</div>

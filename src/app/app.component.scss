@@ -6,3 +6,30 @@
 .content {
   flex: 1 0 auto;
 }
+.cookie-acc-panel {
+  box-shadow: 0 0 8px 3px rgba(0, 0, 0, 0.2);
+  bottom: 0;
+  background-color: white;
+  padding: 20px;
+  max-width: 600px;
+  .cookie-acc-title {
+    font-weight: 500;
+    font-size: 26px;
+    margin: 10px 0 10px 0;
+  }
+  .cookie-acc-message {
+    line-height: 24px;
+    font-size: 16px;
+    font-weight: 300;
+  }
+  .cookie-acc-btn {
+    margin: 15px 0 10px 0;
+  }
+}
+.absolute-pos {
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
