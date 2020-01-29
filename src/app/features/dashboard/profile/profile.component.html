@@ -1,7 +1,6 @@
 <div
-  class="d-flex justify-content-center align-items-center mt-4"
-  *ngIf="!profileForm || !preferencesForm"
->
+*ngIf="!profileForm || !preferencesForm"
+class="loading">
   <mat-spinner [diameter]="48" [strokeWidth]="4"></mat-spinner>
 </div>
 
@@ -84,7 +83,6 @@
               type="text"
               placeholder="+ Legg til"
               matInput
-              #membershipInput
               [formControl]="membershipCtrl"
               [matAutocomplete]="auto"
             />
@@ -376,7 +374,7 @@
 </div>
  -->
 <!-- <div
-  class="d-flex justify-content-center align-items-center mt-4"
+  class="loading"
   *ngIf="!profileForm"
 >
   <mat-spinner [diameter]="48" [strokeWidth]="4"></mat-spinner>
@@ -507,7 +505,7 @@
 </div>
 
 <div
-  class="d-flex justify-content-center align-items-center mt-4"
+  class="loading"
   *ngIf="!preferencesForm"
 >
   <mat-spinner [diameter]="48" [strokeWidth]="4"></mat-spinner>

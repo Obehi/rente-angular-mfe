@@ -1,143 +1,148 @@
-<div class="title">
-  <h3>Hei, {{ userData.name }}</h3>
-  <p>Vi trenger litt mer informasjon før vi kan søke etter tilbud</p>
-</div>
-<form
-  [formGroup]="propertyForm"
-  novalidate
-  (ngSubmit)="updateProperty(propertyForm.value)"
->
-  <div class="field">
-    <rente-input
-      [placeholder]="'E-post'"
-      formControlName="email"
-      [errorStateMatcher]="
-        isErrorState(propertyForm.controls['email'], propertyForm)
-      "
-      [modelOptions]="{ updateOn: 'blur' }"
-    >
-    </rente-input>
-
-    <div *ngIf="propertyForm.controls['email'].touched">
-      <p
-        class="error small"
-        *ngIf="propertyForm.controls['email'].hasError('required')"
-      >
-        Kan ikke være tom
-      </p>
-      <p
-        class="error small"
-        *ngIf="propertyForm.controls['email'].hasError('pattern')"
-      >
-        Ugyldig e-post
-      </p>
-    </div>
-  </div>
-  <div class="field">
-    <div class="withinfo">
-      <div>
-        <rente-input
-          [placeholder]="'Antall kvadratmeter'"
-          formControlName="apartmentSize"
-          matSuffix="kvm"
-          [errorStateMatcher]="
-            isErrorState(propertyForm.controls['apartmentSize'], propertyForm)
-          "
-          [type]="'tel'"
-          [mask]="threeDigitsMask"
-        >
-        </rente-input>
-
-        <div *ngIf="propertyForm.controls['apartmentSize'].touched">
-          <p
-            class="error small"
-            *ngIf="propertyForm.controls['apartmentSize'].hasError('required')"
-          >
-            Kan ikke være tom
-          </p>
-        </div>
-      </div>
-      <div (click)="openInfoDialog('Brukes til å estimere din boligverdi')">
-        <mat-icon>help</mat-icon>
-      </div>
-    </div>
-  </div>
-  <div class="field">
-    <div class="withinfo">
-      <div>
-        <rente-input
-          [placeholder]="'Bruttoårsinntekt'"
-          formControlName="income"
-          matSuffix="kr"
-          [errorStateMatcher]="
-            isErrorState(propertyForm.controls['income'], propertyForm)
-          "
-          [type]="'tel'"
-          [mask]="thousandSeparatorMask"
-        >
-        </rente-input>
-        <div *ngIf="propertyForm.controls['income'].touched">
-          <p
-            class="error small"
-            *ngIf="propertyForm.controls['income'].hasError('required')"
-          >
-            Kan ikke være tom
-          </p>
-        </div>
-      </div>
-      <div
-        (click)="
-          openInfoDialog(
-            ' Din/Husstandens inntekt er en viktig parameter for renten bankene tilbyr '
-          )
-        "
-      >
-        <mat-icon>help</mat-icon>
-      </div>
-    </div>
+<div *ngIf="propertyForm">
+  <div class="title">
+    <h3>Hei, {{ userData.name }}</h3>
+    <p>Vi trenger litt mer informasjon før vi kan søke etter tilbud</p>
   </div>
 
-  <p class="small">
-    Bankene gir ofte bedre betingelser om du er medlem i en organisasjon
-  </p>
-  <mat-form-field>
-    <input
-      type="text"
-      placeholder="+ Legg til medlemskap (valgfritt)"
-      matInput
-      [formControl]="membershipCtrl"
-      formControlName="membership"
-      [matAutocomplete]="auto"
-    />
-    <mat-autocomplete
-      #auto="matAutocomplete"
-      (optionSelected)="selected($event)"
-    >
-      <mat-option
-        *ngFor="let membership of filteredMemberships | async"
-        [value]="membership"
-      >
-        {{ membership.label }}
-      </mat-option>
-    </mat-autocomplete>
-  </mat-form-field>
-  <p class="small" *ngIf="memberships.length">
-    Mine medlemskap
-  </p>
-  <p class="memberlist" *ngFor="let membership of memberships; let i = index">
-    {{ membership.label }}
-    <mat-icon (click)="remove(membership, i)" *ngIf="removable"
-      >delete_forever</mat-icon
-    >
-  </p>
-  <rente-button
-    color="primary"
-    [isLoading]="isLoading"
-    [disabled]="propertyForm.invalid || isLoading"
+  <form
+    [formGroup]="propertyForm"
+    novalidate
+    (ngSubmit)="updateProperty(propertyForm.value)"
   >
-    Ferdig!
-  </rente-button>
-</form>
+    <div class="field">
+      <rente-input
+        [placeholder]="'E-post'"
+        formControlName="email"
+        [errorStateMatcher]="
+          isErrorState(propertyForm.controls['email'], propertyForm)
+        "
+        [modelOptions]="{ updateOn: 'blur' }"
+      >
+      </rente-input>
+
+      <div *ngIf="propertyForm.controls['email'].touched">
+        <p
+          class="error small"
+          *ngIf="propertyForm.controls['email'].hasError('required')"
+        >
+          Kan ikke være tom
+        </p>
+        <p
+          class="error small"
+          *ngIf="propertyForm.controls['email'].hasError('pattern')"
+        >
+          Ugyldig e-post
+        </p>
+      </div>
+    </div>
+    <div class="field">
+      <div class="withinfo">
+        <div>
+          <rente-input
+            [placeholder]="'Antall kvadratmeter'"
+            formControlName="apartmentSize"
+            matSuffix="kvm"
+            [errorStateMatcher]="
+              isErrorState(propertyForm.controls['apartmentSize'], propertyForm)
+            "
+            [type]="'tel'"
+            [mask]="threeDigitsMask"
+          >
+          </rente-input>
+
+          <div *ngIf="propertyForm.controls['apartmentSize'].touched">
+            <p
+              class="error small"
+              *ngIf="
+                propertyForm.controls['apartmentSize'].hasError('required')
+              "
+            >
+              Kan ikke være tom
+            </p>
+          </div>
+        </div>
+        <div (click)="openInfoDialog('Brukes til å estimere din boligverdi')">
+          <mat-icon>help</mat-icon>
+        </div>
+      </div>
+    </div>
+    <div class="field">
+      <div class="withinfo">
+        <div>
+          <rente-input
+            [placeholder]="'Bruttoårsinntekt'"
+            formControlName="income"
+            matSuffix="kr"
+            [errorStateMatcher]="
+              isErrorState(propertyForm.controls['income'], propertyForm)
+            "
+            [type]="'tel'"
+            [mask]="thousandSeparatorMask"
+          >
+          </rente-input>
+          <div *ngIf="propertyForm.controls['income'].touched">
+            <p
+              class="error small"
+              *ngIf="propertyForm.controls['income'].hasError('required')"
+            >
+              Kan ikke være tom
+            </p>
+          </div>
+        </div>
+        <div
+          (click)="
+            openInfoDialog(
+              ' Din/Husstandens inntekt er en viktig parameter for renten bankene tilbyr '
+            )
+          "
+        >
+          <mat-icon>help</mat-icon>
+        </div>
+      </div>
+    </div>
+
+    <p class="small">
+      Bankene gir ofte bedre betingelser om du er medlem i en organisasjon
+    </p>
+    <mat-form-field>
+      <input
+        type="text"
+        placeholder="+ Legg til medlemskap (valgfritt)"
+        matInput
+        [formControl]="membershipCtrl"
+        formControlName="membership"
+        [matAutocomplete]="auto"
+      />
+      <mat-autocomplete
+        #auto="matAutocomplete"
+        (optionSelected)="selected($event)"
+      >
+        <mat-option
+          *ngFor="let membership of filteredMemberships | async"
+          [value]="membership"
+        >
+          {{ membership.label }}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+    <p class="small" *ngIf="memberships.length">
+      Mine medlemskap
+    </p>
+    <p class="memberlist" *ngFor="let membership of memberships; let i = index">
+      {{ membership.label }}
+      <mat-icon (click)="remove(membership, i)" *ngIf="removable"
+        >delete_forever</mat-icon
+      >
+    </p>
+    <rente-button
+      color="primary"
+      [isLoading]="isLoading"
+      [disabled]="propertyForm.invalid || isLoading"
+    >
+      Ferdig!
+    </rente-button>
+  </form>
+</div>
 <!--
 <div class="container contact-us my-5" *ngIf="propertyForm">
   <div class="row justify-content-center">
@@ -315,9 +320,6 @@
   </div>
 </div>
  -->
-<div
-  class="d-flex justify-content-center align-items-center mt-4"
-  *ngIf="!propertyForm"
->
+<div class="loading" *ngIf="!propertyForm">
   <mat-spinner [diameter]="48" [strokeWidth]="4"></mat-spinner>
 </div>

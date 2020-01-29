@@ -1,7 +1,4 @@
-<div
-  class="d-flex justify-content-center align-items-center mt-4"
-  *ngIf="isLoading"
->
+<div class="loading" *ngIf="isLoading">
   <mat-spinner [diameter]="48" [strokeWidth]="4"></mat-spinner>
 </div>
 <div class="house" *ngIf="showAddresses">
@@ -9,19 +6,21 @@
     <h3>Mine bolig</h3>
     <p class="small">Total verdi: {{ totalPropertyValue | thousands }}</p>
   </div>
-  <rente-address-form
-    class="addressform"
-    *ngFor="let address of addresses; let i = index"
-    [index]="i"
-    [address]="address"
-    (deleteAddress)="deleteAddress($event)"
-    (change)="countChange($event)"
-  >
-  </rente-address-form>
+  <div class="houses">
+    <rente-address-form
+      class="addressform"
+      *ngFor="let address of addresses; let i = index"
+      [index]="i"
+      [address]="address"
+      (deleteAddress)="deleteAddress($event)"
+      (change)="countChange($event)"
+    >
+    </rente-address-form>
+    <rente-button class="add" color="blue" (click)="addAddress()">
+      Legg til bolig
+    </rente-button>
+  </div>
 
-  <rente-button class="add" color="blue" (click)="addAddress()">
-    Legg til bolig
-  </rente-button>
   <rente-button
     color="primary"
     [disabled]="!ableToSave"

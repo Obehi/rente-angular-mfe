@@ -67,6 +67,15 @@
     }
   }
 }
+@media (min-width: 600px) {
+  .housecontainer {
+    border: 1px solid $lesslight;
+    .heading {
+      border-top: none;
+      border-bottom: 1px solid $lesslight;
+    }
+  }
+}
 /* .property-group {
   background-color: #efefef;
   border-radius: 10px;

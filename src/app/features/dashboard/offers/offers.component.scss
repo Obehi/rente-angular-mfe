@@ -1,7 +1,9 @@
 @import "../../../../styles/theme/_colors.scss";
 .offers {
   text-align: center;
+
   .tipsAccordion {
+    cursor: pointer;
     position: absolute;
     left: 0;
     right: 0;
@@ -31,10 +33,9 @@
 
   .tips {
     position: relative;
-    top: 37px;
+    margin-top: 37px;
     padding: 0 !important;
     text-align: left;
-    margin-bottom: 20px;
     border-bottom: 1px solid $green;
     .tip {
       padding: 10px 20px;
@@ -67,35 +68,28 @@
   a {
     color: $green !important;
   }
-  > div {
-    padding: 10px;
-    padding-top: 40px;
-    padding-bottom: 40px;
-    border-bottom: 1px solid $light;
-  }
+
   .barometer {
     .rente-status {
       margin-bottom: 20px;
     }
-
-    .box {
-      padding: 20px 10px;
-      margin-bottom: 10px;
-      width: 100%;
-      background-color: $light;
-      &.positive {
-        background-color: $lightgreen;
-      }
-      p img {
-        position: relative;
-        top: 2px;
-        margin-left: 5px;
-        height: 16px;
-      }
+  }
+  .box {
+    padding: 20px 10px;
+    margin-bottom: 10px;
+    width: 100%;
+    background-color: $light;
+    &.positive {
+      background-color: $lightgreen;
+    }
+    p img {
+      position: relative;
+      top: 2px;
+      margin-left: 5px;
+      height: 16px;
     }
   }
-  .compared {
-  }
+
   .the-offers {
     padding-left: 0;
     padding-right: 0;
@@ -103,9 +97,9 @@
       border-right: 1px solid $lesslight;
     }
     .the-offer {
-      border-top: 1px solid $primary;
       margin-bottom: 80px;
       .the-offer-header {
+        border-top: 1px solid $green;
         background-color: $lightgreen;
         padding: 10px;
         text-align: left;
@@ -174,6 +168,56 @@
           }
         }
       }
+    }
+  }
+}
+@media (min-width: 600px) {
+  .barometer,
+  .compared {
+    text-align: left;
+  }
+
+  .offers {
+    .tipsAccordion {
+      position: relative;
+      top: 0;
+      border: 1px solid #18bc9c;
+      padding: 6px 10px !important;
+    }
+    .tips {
+      border: 1px solid #18bc9c;
+      border-top: 0px solid #18bc9c;
+      margin-top: 0px;
+    }
+  }
+  .offers .the-offers {
+    padding: 80px;
+    .the-offer {
+      .the-offer-header {
+        border: 1px solid $green;
+        border-bottom: none;
+      }
+      .the-offer-body {
+        border-left: 1px solid $lesslight;
+        border-right: 1px solid $lesslight;
+      }
+    }
+  }
+
+  .split-sections {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-bottom: 1px solid $light;
+
+    .split-section {
+      padding: 40px 40px 80px 40px;
+    }
+    .split-section:first-of-type {
+      border-right: 1px solid $light;
+    }
+    rente-button {
+      display: block;
+      margin-top: 30px;
     }
   }
 }

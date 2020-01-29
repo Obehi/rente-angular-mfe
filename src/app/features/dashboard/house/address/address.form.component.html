@@ -1,85 +1,90 @@
-<div class="heading">
-  <img src="../../../assets/icons/house-icon.svg" alt="Bolig" />
-  <b>Bolig {{ index + 1 }}</b>
-  <mat-icon *ngIf="isAbleToDelete" (click)="onDeleteAddressClick()"
-    >delete_forever</mat-icon
-  >
-</div>
-<div class="body">
-  <div class="address">
-    <rente-input
-      type="text"
-      [placeholder]="'Adresse'"
-      [(ngModel)]="address.street"
-    ></rente-input>
-    <button [disabled]="!isAddressValid" (click)="toggleMode()">
-      <mat-icon *ngIf="isEditMode">bar_chart</mat-icon>
-      <mat-icon *ngIf="isStatMode">keyboard_backspace</mat-icon>
-    </button>
-  </div>
-  <div *ngIf="isStatMode">
-    <rente-virdi-statistics [address]="address"> </rente-virdi-statistics>
-  </div>
-  <div [class]="isStatMode ? 'hidden' : 'double'">
-    <rente-input
-      type="text"
-      [placeholder]="'Postnummer'"
-      [(ngModel)]="address.zip"
-    ></rente-input>
-
-    <rente-input
-      matInput
-      type="number"
-      [placeholder]="'Størrelse på bolig'"
-      [(ngModel)]="address.apartmentSize"
-      matSuffix="kvm"
-    ></rente-input>
-  </div>
-  <div [class]="isStatMode ? 'hidden' : 'estimate'">
-    <p class="small">Boligverdi</p>
-
-    <mat-tab-group
-      (selectedTabChange)="onRbChange($event)"
-      [selectedIndex]="!address.useManualPropertyValue ? 0 : 1"
+<div class="housecontainer">
+  <div class="heading">
+    <img src="../../../assets/icons/house-icon.svg" alt="Bolig" />
+    <b>Bolig {{ index + 1 }}</b>
+    <mat-icon
+      *ngIf="isAbleToDelete"
+      (click)="onDeleteAddressClick()"
+      class="clickable"
+      >delete_forever</mat-icon
     >
-      <mat-tab
-        label="Automatisk estimat"
-        (click)="onRbChange($event)"
-        [disabled]="!address.estimatedPropertyValue"
-      >
-      </mat-tab>
+  </div>
+  <div class="body">
+    <div class="address">
+      <rente-input
+        type="text"
+        [placeholder]="'Adresse'"
+        [(ngModel)]="address.street"
+      ></rente-input>
+      <button [disabled]="!isAddressValid" (click)="toggleMode()">
+        <mat-icon *ngIf="isEditMode">bar_chart</mat-icon>
+        <mat-icon *ngIf="isStatMode">keyboard_backspace</mat-icon>
+      </button>
+    </div>
+    <div *ngIf="isStatMode">
+      <rente-virdi-statistics [address]="address"> </rente-virdi-statistics>
+    </div>
+    <div [class]="isStatMode ? 'hidden' : 'double'">
+      <rente-input
+        type="text"
+        [placeholder]="'Postnummer'"
+        [(ngModel)]="address.zip"
+      ></rente-input>
 
-      <mat-tab label="Eget estimat" (click)="onRbChange($event)"> </mat-tab>
-    </mat-tab-group>
-    <div class="double estimated">
-      <div>
-        <rente-input
-          matInput
-          class="automatic"
-          type="text"
-          [ngModel]="address.estimatedPropertyValue | thousands"
-          [disabled]="address.useManualPropertyValue"
-          style="pointer-events: none; text-align: center !important;"
-          [matSuffix]="address.estimatedPropertyValue ? 'kr' : ''"
-        ></rente-input>
-
-        <p *ngIf="address.estimatedPropertyValue" class="small">
-          Estimert av Virdi
-        </p>
-
-        <p *ngIf="!address.estimatedPropertyValue" class="small">
-          Estimat utilgjengelig
-        </p>
-      </div>
       <rente-input
         matInput
-        [disabled]="!address.useManualPropertyValue"
-        type="text"
-        [ngModel]="address.manualPropertyValue | thousands"
-        style="text-align: center !important;"
-        (keyup)="manualPropertyValueChanged($event)"
-        matSuffix="kr"
+        type="number"
+        [placeholder]="'Størrelse på bolig'"
+        [(ngModel)]="address.apartmentSize"
+        matSuffix="kvm"
       ></rente-input>
+    </div>
+    <div [class]="isStatMode ? 'hidden' : 'estimate'">
+      <p class="small">Boligverdi</p>
+
+      <mat-tab-group
+        (selectedTabChange)="onRbChange($event)"
+        [selectedIndex]="!address.useManualPropertyValue ? 0 : 1"
+      >
+        <mat-tab
+          label="Automatisk estimat"
+          (click)="onRbChange($event)"
+          [disabled]="!address.estimatedPropertyValue"
+        >
+        </mat-tab>
+
+        <mat-tab label="Eget estimat" (click)="onRbChange($event)"> </mat-tab>
+      </mat-tab-group>
+      <div class="double estimated">
+        <div>
+          <rente-input
+            matInput
+            class="automatic"
+            type="text"
+            [ngModel]="address.estimatedPropertyValue | thousands"
+            [disabled]="address.useManualPropertyValue"
+            style="pointer-events: none; text-align: center !important;"
+            [matSuffix]="address.estimatedPropertyValue ? 'kr' : ''"
+          ></rente-input>
+
+          <p *ngIf="address.estimatedPropertyValue" class="small">
+            Estimert av Virdi
+          </p>
+
+          <p *ngIf="!address.estimatedPropertyValue" class="small">
+            Estimat utilgjengelig
+          </p>
+        </div>
+        <rente-input
+          matInput
+          [disabled]="!address.useManualPropertyValue"
+          type="text"
+          [ngModel]="address.manualPropertyValue | thousands"
+          style="text-align: center !important;"
+          (keyup)="manualPropertyValueChanged($event)"
+          matSuffix="kr"
+        ></rente-input>
+      </div>
     </div>
   </div>
 </div>

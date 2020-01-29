@@ -1,6 +1,11 @@
 .stars {
   display: flex;
   justify-content: center;
+
+  @media (min-width: 600px) {
+    justify-content: start;
+  }
+
   .star {
     width: 35px;
     height: 64px;

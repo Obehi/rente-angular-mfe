@@ -31,6 +31,24 @@
   text-align: center;
 }
 
+@media (min-width: 600px) {
+  .house {
+    padding: 40px 80px;
+    .title {
+      padding: 0;
+      padding-bottom: 10px;
+    }
+  }
+  .houses {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 80px;
+  }
+  rente-address-form {
+    margin-bottom: 80px;
+  }
+}
+
 /* .house {
   mat-radio-button {
     label {

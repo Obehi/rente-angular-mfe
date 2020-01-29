@@ -26,7 +26,7 @@ hr {
 }
 
 .content {
-  background-color: white;
+  background-color: $light;
   overflow-x: hidden;
   padding-top: 60px;
 }
@@ -112,6 +112,9 @@ mat-radio-button.mat-accent {
   box-shadow: none !important;
   border-radius: 0px !important;
   height: calc(100% - 100px) !important;
+
+  max-width: 600px;
+  margin: auto;
 }
 rente-header {
   z-index: 99999999999;
@@ -255,5 +258,18 @@ iframe#drift-widget {
     top: 50%;
     transform: translateY(-50%);
     right: 0;
+  }
+}
+.loading {
+  padding: 20px;
+  mat-spinner {
+    display: block;
+    margin: auto;
+  }
+}
+.clickable {
+  cursor: pointer;
+  &:hover {
+    opacity: 0.8;
   }
 }

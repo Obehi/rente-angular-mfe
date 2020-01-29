@@ -84,9 +84,12 @@ export class InitConfirmationComponent implements OnInit {
         this.userData = user;
         const apartmentSize =
           loan.addresses && loan.addresses.length > 0 ? loan.addresses[0] : 0;
-        console.log(apartmentSize);
+
         this.propertyForm = this.fb.group({
-          apartmentSize: [apartmentSize.apartmentSize, Validators.required],
+          apartmentSize: [
+            apartmentSize === 0 ? 0 : apartmentSize.apartmentSize,
+            Validators.required
+          ],
           membership: [],
           income: [this.userData.income, Validators.required],
           email: [

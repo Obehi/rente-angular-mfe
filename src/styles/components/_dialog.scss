@@ -11,7 +11,8 @@
 
 .cdk-overlay-pane {
   max-height: calc(100vh - 155px) !important;
-  max-width: unset !important;
+  max-width: 600px !important;
+  margin: auto;
 }
 
 .button-200 {

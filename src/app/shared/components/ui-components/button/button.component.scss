@@ -23,7 +23,7 @@ button.mat-button {
     height: 20px;
   }
 }
-button.mat-button:hover {
+button.mat-button:hover:not([disabled]) {
   opacity: 0.8;
 }
 button[disabled] {
