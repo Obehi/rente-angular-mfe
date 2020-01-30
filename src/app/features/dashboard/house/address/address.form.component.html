@@ -16,7 +16,11 @@
         [placeholder]="'Adresse'"
         [(ngModel)]="address.street"
       ></rente-input>
-      <button [disabled]="!isAddressValid" (click)="toggleMode()">
+      <button
+        [disabled]="!isAddressValid"
+        (click)="toggleMode()"
+        class="clickable"
+      >
         <mat-icon *ngIf="isEditMode">bar_chart</mat-icon>
         <mat-icon *ngIf="isStatMode">keyboard_backspace</mat-icon>
       </button>

@@ -9,6 +9,7 @@ h3.title {
   background-color: $lightgreen;
   border-bottom: 1px solid $green;
   padding: 10px;
+  padding-bottom: 0;
 
   .double {
     .box {
@@ -20,8 +21,8 @@ h3.title {
 .detailed {
   margin-bottom: 40px;
   .heading {
-    background-color: $light;
-    border-top: 1px solid $lesslight;
+    background-color: $lightgreen;
+    border-top: 1px solid $green;
     display: block;
     padding: 10px 20px;
     font-weight: 500;
@@ -29,6 +30,17 @@ h3.title {
   }
   .box {
     background-color: $light;
+  }
+}
+
+@media (max-width: 600px) {
+  .detailed {
+    .inner {
+      padding-bottom: 30px;
+    }
+    h3.title {
+      padding: 40px 0px 10px 20px;
+    }
   }
 }
 

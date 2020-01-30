@@ -3,232 +3,253 @@
 </div>
 
 <div class="preferences" *ngIf="profileForm">
-  <h3>{{ username }}</h3>
-  <div></div>
-  <form [formGroup]="profileForm" novalidate change>
-    <div class="field">
-      <rente-input
-        [placeholder]="'E-post'"
-        formControlName="email"
-        [errorStateMatcher]="
-          isErrorState(profileForm.controls['email'], profileForm)
-        "
-        [modelOptions]="{ updateOn: 'blur' }"
-      >
-      </rente-input>
-      <div *ngIf="profileForm.controls['email'].touched" class="error-message">
-        <rente-form-message
-          [type]="'error'"
-          *ngIf="profileForm.controls['email'].hasError('required')"
+  <div class="desktop-section">
+    <h3>{{ username }}</h3>
+    <form [formGroup]="profileForm" novalidate change>
+      <div class="field">
+        <rente-input
+          [placeholder]="'E-post'"
+          formControlName="email"
+          [errorStateMatcher]="
+            isErrorState(profileForm.controls['email'], profileForm)
+          "
+          [modelOptions]="{ updateOn: 'blur' }"
         >
-          Ikke gyldig email
-        </rente-form-message>
-        <rente-form-message
-          [type]="'error'"
-          *ngIf="profileForm.controls['email'].hasError('pattern')"
+        </rente-input>
+        <div
+          *ngIf="profileForm.controls['email'].touched"
+          class="error-message"
         >
-          Ikke gyldig email
-        </rente-form-message>
-      </div>
-    </div>
-
-    <div class="field withinfo">
-      <rente-input
-        [placeholder]="'Bruttoårsinntekt'"
-        formControlName="income"
-        [errorStateMatcher]="
-          isErrorState(profileForm.controls['income'], profileForm)
-        "
-        [type]="'tel'"
-        [mask]="thousandSeparatorMask"
-        matSuffix="kr"
-      >
-      </rente-input>
-      <div
-        (click)="
-          openInfoDialog(
-            'Bankene gir ofte bedre betingelser hvis du er medlem i en organisasjon'
-          )
-        "
-      >
-        <mat-icon>help</mat-icon>
-      </div>
-    </div>
-    <div class="field">
-      <div *ngIf="profileForm.controls['income'].touched" class="error-message">
-        <rente-form-message
-          class="text-left d-block"
-          [type]="'error'"
-          *ngIf="profileForm.controls['income'].hasError('required')"
-        >
-          Kan ikke være tom
-        </rente-form-message>
-      </div>
-    </div>
-
-    <p class="small">
-      Bankene gir ofte bedre betingelser om du er medlem i en organisasjon.
-    </p>
-    <div class="accordion ">
-      <div class="header" (click)="showMemberships = !showMemberships">
-        <h4>Medlemskap ({{ memberships.length }})</h4>
-        <mat-icon *ngIf="!showMemberships">expand_more</mat-icon>
-        <mat-icon *ngIf="showMemberships">expand_less</mat-icon>
-      </div>
-      <div class="body">
-        <div class="inner-body" *ngIf="showMemberships">
-          <mat-form-field>
-            <input
-              type="text"
-              placeholder="+ Legg til"
-              matInput
-              [formControl]="membershipCtrl"
-              [matAutocomplete]="auto"
-            />
-            <mat-autocomplete
-              #auto="matAutocomplete"
-              (optionSelected)="selected($event)"
-            >
-              <mat-option
-                *ngFor="let membership of filteredMemberships | async"
-                [value]="membership"
-              >
-                {{ membership.label }}
-              </mat-option>
-            </mat-autocomplete>
-          </mat-form-field>
-          <p class="small" *ngIf="memberships.length">
-            Mine medlemskap
-          </p>
-          <p
-            class="memberlist"
-            *ngFor="let membership of memberships; let i = index"
+          <rente-form-message
+            [type]="'error'"
+            *ngIf="profileForm.controls['email'].hasError('required')"
           >
-            {{ membership.label }}
-            <mat-icon (click)="remove(membership, i)" *ngIf="removable"
-              >delete_forever</mat-icon
-            >
-          </p>
+            Ikke gyldig email
+          </rente-form-message>
+          <rente-form-message
+            [type]="'error'"
+            *ngIf="profileForm.controls['email'].hasError('pattern')"
+          >
+            Ikke gyldig email
+          </rente-form-message>
         </div>
       </div>
-    </div>
-  </form>
-  <form [formGroup]="preferencesForm" novalidate change>
-    <div class="field">
+
+      <div class="field withinfo">
+        <rente-input
+          [placeholder]="'Bruttoårsinntekt'"
+          formControlName="income"
+          [errorStateMatcher]="
+            isErrorState(profileForm.controls['income'], profileForm)
+          "
+          [type]="'tel'"
+          [mask]="thousandSeparatorMask"
+          matSuffix="kr"
+        >
+        </rente-input>
+        <div
+          (click)="
+            openInfoDialog(
+              'Bankene gir ofte bedre betingelser hvis du er medlem i en organisasjon'
+            )
+          "
+          class="clickable"
+        >
+          <mat-icon>help</mat-icon>
+        </div>
+      </div>
+      <div class="field">
+        <div
+          *ngIf="profileForm.controls['income'].touched"
+          class="error-message"
+        >
+          <rente-form-message
+            class="text-left d-block"
+            [type]="'error'"
+            *ngIf="profileForm.controls['income'].hasError('required')"
+          >
+            Kan ikke være tom
+          </rente-form-message>
+        </div>
+      </div>
+
+      <h3 class="desktop">Medlemskap</h3>
       <p class="small">
-        Hvor ofte skal vi sjekke renten du har?
+        Bankene gir ofte bedre betingelser om du er medlem i en organisasjon.
       </p>
-      <div class="accordion field">
-        <div class="header" (click)="showPreferences = !showPreferences">
-          <h4>Preferanser</h4>
-          <mat-icon *ngIf="!showPreferences">expand_more</mat-icon>
-          <mat-icon *ngIf="showPreferences">expand_less</mat-icon>
+      <div class="accordion ">
+        <div class="header mobile" (click)="showMemberships = !showMemberships">
+          <h3>Medlemskap ({{ memberships.length }})</h3>
+          <mat-icon *ngIf="!showMemberships">expand_more</mat-icon>
+          <mat-icon *ngIf="showMemberships">expand_less</mat-icon>
         </div>
         <div class="body">
-          <div class="inner-body" *ngIf="showPreferences">
-            <div class="field">
-              <div class="withinfo">
-                <h4>Bli påminnet om bedre rente</h4>
-                <div
-                  (click)="
-                    openInfoDialog(
-                      'Renteradar.no overvåker kontinuerlig markedet for bedre rente enn det du har på lånet ditt. Renten du har på lånet ditt sjekkes og oppdateres ved at du identifiserer deg med BankID. Det er viktig at dette gjøres fra tid til annen for at eventuelle renteendringer på lånet ditt skal fanges opp.'
-                    )
-                  "
-                >
-                  <mat-icon>help</mat-icon>
-                </div>
-              </div>
-              <mat-radio-group formControlName="checkRateReminderType">
-                <mat-radio-button value="HVER_MANED_1"
-                  ><span class="mat-radio-label"
-                    >Hver måned</span
-                  ></mat-radio-button
-                >
-                <mat-radio-button value="HVER_MANED_2"
-                  ><span class="mat-radio-label"
-                    >Hver 2. måned</span
-                  ></mat-radio-button
-                >
-                <mat-radio-button value="HVER_MANED_3"
-                  ><span class="mat-radio-label"
-                    >Hver 3. måned</span
-                  ></mat-radio-button
-                >
-                <mat-radio-button value="HVER_MANED_4"
-                  ><span class="mat-radio-label"
-                    >Hver 4. måned</span
-                  ></mat-radio-button
-                >
-                <mat-radio-button value="NONE"
-                  ><span class="mat-radio-label">Aldri</span></mat-radio-button
-                >
-              </mat-radio-group>
-            </div>
-            <div class="field">
-              <h4 style="margin-bottom: 20px;">
-                Er du avhengig av rammelån eller boligkreditt?
-              </h4>
-
-              <mat-radio-group formControlName="fetchCreditLinesOnly">
-                <mat-radio-button [value]="true"
-                  ><span class="mat-radio-label">Ja</span></mat-radio-button
-                >
-                <mat-radio-button [value]="false"
-                  ><span class="mat-radio-label">Nei</span></mat-radio-button
-                >
-              </mat-radio-group>
-            </div>
-            <div class="field">
-              <h4 style="margin-bottom: 20px;">
-                Vil du se tilbud som krever andre produkter? (F.eks. lønnskonto)
-              </h4>
-
-              <mat-radio-group formControlName="noAdditionalProductsRequired">
-                <mat-radio-button [value]="false"
-                  ><span class="mat-radio-label">Ja</span></mat-radio-button
-                >
-                <mat-radio-button [value]="true"
-                  ><span class="mat-radio-label">Nei</span></mat-radio-button
-                >
-              </mat-radio-group>
-            </div>
-
-            <div class="field">
-              <h4 style="margin-bottom: 20px;">
-                Er du interessert i lån som forutsetter energiklasse A eller B,
-                nullhus, Svanemerket, tiltak for energimerking, etc.
-              </h4>
-
-              <mat-radio-group
-                formControlName="interestedInEnvironmentMortgages"
+          <div class="inner-body" *ngIf="showMemberships">
+            <mat-form-field>
+              <input
+                type="text"
+                placeholder="+ Legg til"
+                matInput
+                [formControl]="membershipCtrl"
+                [matAutocomplete]="auto"
+              />
+              <mat-autocomplete
+                #auto="matAutocomplete"
+                (optionSelected)="selected($event)"
               >
-                <mat-radio-button [value]="true"
-                  ><span class="mat-radio-label">Ja</span></mat-radio-button
+                <mat-option
+                  *ngFor="let membership of filteredMemberships | async"
+                  [value]="membership"
                 >
-                <mat-radio-button [value]="false"
-                  ><span class="mat-radio-label">Nei</span></mat-radio-button
+                  {{ membership.label }}
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+            <p class="small" *ngIf="memberships.length">
+              Mine medlemskap
+            </p>
+            <p
+              class="memberlist"
+              *ngFor="let membership of memberships; let i = index"
+            >
+              {{ membership.label }}
+              <mat-icon
+                class="clickable"
+                (click)="remove(membership, i)"
+                *ngIf="removable"
+                >delete_forever</mat-icon
+              >
+            </p>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="desktop-section">
+    <form [formGroup]="preferencesForm" novalidate change>
+      <div class="field">
+        <h3 class="desktop">Preferanser</h3>
+        <p class="small mobile">
+          Hvor ofte skal vi sjekke renten du har?
+        </p>
+        <div class="accordion field">
+          <div
+            class="header mobile"
+            (click)="showPreferences = !showPreferences"
+          >
+            <h3>Preferanser</h3>
+            <mat-icon *ngIf="!showPreferences">expand_more</mat-icon>
+            <mat-icon *ngIf="showPreferences">expand_less</mat-icon>
+          </div>
+          <div class="body">
+            <div class="inner-body" *ngIf="showPreferences">
+              <div class="field">
+                <div class="withinfo">
+                  <p class="small">Bli påminnet om bedre rente</p>
+                  <div
+                    (click)="
+                      openInfoDialog(
+                        'Renteradar.no overvåker kontinuerlig markedet for bedre rente enn det du har på lånet ditt. Renten du har på lånet ditt sjekkes og oppdateres ved at du identifiserer deg med BankID. Det er viktig at dette gjøres fra tid til annen for at eventuelle renteendringer på lånet ditt skal fanges opp.'
+                      )
+                    "
+                    class="clickable"
+                  >
+                    <mat-icon>help</mat-icon>
+                  </div>
+                </div>
+                <mat-radio-group formControlName="checkRateReminderType">
+                  <mat-radio-button value="HVER_MANED_1"
+                    ><span class="mat-radio-label"
+                      >Hver måned</span
+                    ></mat-radio-button
+                  >
+                  <mat-radio-button value="HVER_MANED_2"
+                    ><span class="mat-radio-label"
+                      >Hver 2. måned</span
+                    ></mat-radio-button
+                  >
+                  <mat-radio-button value="HVER_MANED_3"
+                    ><span class="mat-radio-label"
+                      >Hver 3. måned</span
+                    ></mat-radio-button
+                  >
+                  <mat-radio-button value="HVER_MANED_4"
+                    ><span class="mat-radio-label"
+                      >Hver 4. måned</span
+                    ></mat-radio-button
+                  >
+                  <mat-radio-button value="NONE"
+                    ><span class="mat-radio-label"
+                      >Aldri</span
+                    ></mat-radio-button
+                  >
+                </mat-radio-group>
+              </div>
+              <div class="field">
+                <p class="small">
+                  Er du avhengig av rammelån eller boligkreditt?
+                </p>
+
+                <mat-radio-group formControlName="fetchCreditLinesOnly">
+                  <mat-radio-button [value]="true"
+                    ><span class="mat-radio-label">Ja</span></mat-radio-button
+                  >
+                  <mat-radio-button [value]="false"
+                    ><span class="mat-radio-label">Nei</span></mat-radio-button
+                  >
+                </mat-radio-group>
+              </div>
+              <div class="field">
+                <p class="small">
+                  Vil du se tilbud som krever andre produkter? (F.eks.
+                  lønnskonto)
+                </p>
+
+                <mat-radio-group formControlName="noAdditionalProductsRequired">
+                  <mat-radio-button [value]="false"
+                    ><span class="mat-radio-label">Ja</span></mat-radio-button
+                  >
+                  <mat-radio-button [value]="true"
+                    ><span class="mat-radio-label">Nei</span></mat-radio-button
+                  >
+                </mat-radio-group>
+              </div>
+
+              <div class="field">
+                <p class="small">
+                  Er du interessert i lån som forutsetter energiklasse A eller
+                  B, nullhus, Svanemerket, tiltak for energimerking, etc.
+                </p>
+
+                <mat-radio-group
+                  formControlName="interestedInEnvironmentMortgages"
                 >
-              </mat-radio-group>
+                  <mat-radio-button [value]="true"
+                    ><span class="mat-radio-label">Ja</span></mat-radio-button
+                  >
+                  <mat-radio-button [value]="false"
+                    ><span class="mat-radio-label">Nei</span></mat-radio-button
+                  >
+                </mat-radio-group>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </form>
-</div>
+    </form>
+  </div>
 
-<rente-button
-  color="primary"
-  (click)="updatePreferances()"
-  [isLoading]="isLoading"
-  [disabled]="isLoading"
-  class="save-changes"
-  *ngIf="changesMade"
-  >Lagre endringer</rente-button
->
+  <rente-button
+    color="primary"
+    (click)="updatePreferances()"
+    [isLoading]="isLoading"
+    [disabled]="isLoading"
+    class="save-changes"
+    *ngIf="changesMade"
+    >Lagre endringer</rente-button
+  >
 
-<!-- <div style="height: 100vh"></div>
+  <!-- <div style="height: 100vh"></div>
 
 <div class="row justify-content-center" *ngIf="profileForm">
   <form
@@ -372,7 +393,7 @@
   </form>
 </div>
  -->
-<!-- <div
+  <!-- <div
   class="loading"
   *ngIf="!profileForm"
 >
@@ -510,3 +531,4 @@
   <mat-spinner [diameter]="48" [strokeWidth]="4"></mat-spinner>
 </div>
  -->
+</div>

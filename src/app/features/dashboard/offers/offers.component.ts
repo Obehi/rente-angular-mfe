@@ -164,8 +164,8 @@ export class OffersComponent implements OnInit, OnDestroy {
     ) {
       this.tips.push({
         text:
-          "Du har rammelån/boligkreditt. Ønsker du å se tilbud kun for denne typen lån kan du endre dette i preferanser",
-        buttonLink: "/dashboard/preferanser"
+          "Du har rammelån/boligkreditt. Ønsker du å se tilbud kun for denne typen lån?",
+        buttonLink: "/dashboard/profil"
       });
     }
 

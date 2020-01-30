@@ -98,6 +98,12 @@
     }
     .the-offer {
       margin-bottom: 80px;
+      &:first-of-type
+        .split:last-of-type
+        .offer-info:first-of-type
+        .offer-inner {
+        background-color: $lightgreen;
+      }
       .the-offer-header {
         border-top: 1px solid $green;
         background-color: $lightgreen;
@@ -171,7 +177,27 @@
     }
   }
 }
+@media (max-width: 600px) {
+  .barometer {
+    padding: 20px 10px;
+    padding-bottom: 40px;
+    margin-bottom: 40px;
+    border-bottom: 1px solid $light;
+  }
+  .compared {
+    padding: 0px 10px;
+    padding-bottom: 40px;
+    margin-bottom: 40px;
+    border-bottom: 1px solid $light;
+  }
+}
 @media (min-width: 600px) {
+  .offers-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 80px;
+    margin-top: 40px;
+  }
   .barometer,
   .compared {
     text-align: left;
@@ -181,12 +207,12 @@
     .tipsAccordion {
       position: relative;
       top: 0;
-      border: 1px solid #18bc9c;
+      border: 1px solid $green;
       padding: 6px 10px !important;
     }
     .tips {
-      border: 1px solid #18bc9c;
-      border-top: 0px solid #18bc9c;
+      border: 1px solid $green;
+      border-top: 0px solid $green;
       margin-top: 0px;
     }
   }
@@ -216,7 +242,7 @@
       border-right: 1px solid $light;
     }
     rente-button {
-      display: block;
+      display: inline-block;
       margin-top: 30px;
     }
   }

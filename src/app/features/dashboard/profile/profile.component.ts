@@ -67,8 +67,14 @@ export class ProfileComponent implements OnInit {
     private snackBar: SnackBarService,
     public dialog: MatDialog
   ) {
-    this.showMemberships = false;
-    this.showPreferences = false;
+    if (window.innerWidth > 600) {
+      this.showMemberships = true;
+      this.showPreferences = true;
+    } else {
+      this.showMemberships = false;
+      this.showPreferences = false;
+    }
+
     this.filteredMemberships = this.membershipCtrl.valueChanges.pipe(
       startWith(null),
       map((membership: string | null) =>

@@ -63,7 +63,7 @@ export class OffersStatisticsComponent {
           this.clientBankChartId,
           this.clientBankEffRateOptions
         );
-        this.clientBankEffRateChart.setSize(null, 250);
+        this.clientBankEffRateChart.setSize(null, 200);
       }
       if (this.hasOthersBankData) {
         this.allBanksEffRateOptions = this.getOtherBanksChartOptions();
@@ -76,7 +76,7 @@ export class OffersStatisticsComponent {
           this.allBanksChartChartId,
           this.allBanksEffRateOptions
         );
-        this.allBankEffRateCharts.setSize(null, 250);
+        this.allBankEffRateCharts.setSize(null, 200);
       }
     }
   }

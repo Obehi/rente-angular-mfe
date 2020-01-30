@@ -213,7 +213,6 @@
         </div>
       </div>
       <div class="compared">
-        <h3>Din rente i forhold til andre i:</h3>
         <rente-offers-statistics [offersInfo]="offersInfo">
         </rente-offers-statistics>
       </div>
@@ -290,102 +289,104 @@
     <h3 style="margin-bottom: 20px;">
       {{ offersInfo.offers.length }} bedre tilbud
     </h3>
-    <ng-container *ngIf="offersInfo">
-      <div
-        *ngFor="let offer of offersInfo.offers; let i = index"
-        class="the-offer"
-      >
-        <div class="the-offer-header">
-          <div
-            class="logo"
-            [ngStyle]="{
-              'background-image': 'url(' + banksMap[offer.bank].img + ')'
-            }"
-          >
-            <div class="nr">
-              <p>{{ i + 1 }}</p>
-            </div>
-          </div>
-          <div class="offer-product">
-            <a [href]="offer.bankUrl" target="_blank"
-              >{{ offer.bankName }} <mat-icon>open_in_new</mat-icon></a
+    <div class="offers-grid">
+      <ng-container *ngIf="offersInfo">
+        <div
+          *ngFor="let offer of offersInfo.offers; let i = index"
+          class="the-offer"
+        >
+          <div class="the-offer-header">
+            <div
+              class="logo"
+              [ngStyle]="{
+                'background-image': 'url(' + banksMap[offer.bank].img + ')'
+              }"
             >
-            <h3 (click)="openOfferDialog(offer)" class="clickable">
-              {{ offer.productName }}<mat-icon>help</mat-icon>
-            </h3>
-          </div>
-        </div>
-        <div class="the-offer-body">
-          <div class="small-header"><p>Rentebesparelse</p></div>
-          <div class="split">
-            <div class="offer-inner save">
-              <h2 *ngIf="offer.totalSavings > 0; else noTotalSavings">
-                {{ offer.totalSavings | abs | number }},-
-              </h2>
-              <ng-template #noTotalSavings>
-                <h2>0,-</h2>
-              </ng-template>
-              <p>over lånets løpetid</p>
+              <div class="nr">
+                <p>{{ i + 1 }}</p>
+              </div>
             </div>
-            <div class="offer-inner save">
-              <h2 *ngIf="offer.savingsFirstYear > 0; else noTotalSavings">
-                {{ offer.savingsFirstYear | abs | number }},-
-              </h2>
-              <ng-template #noSavingsFirstYear>
-                <h2>0,-</h2>
-              </ng-template>
-              <p>første år</p>
+            <div class="offer-product">
+              <a [href]="offer.bankUrl" target="_blank"
+                >{{ offer.bankName }} <mat-icon>open_in_new</mat-icon></a
+              >
+              <h3 (click)="openOfferDialog(offer)" class="clickable">
+                {{ offer.productName }}<mat-icon>help</mat-icon>
+              </h3>
             </div>
           </div>
-          <div class="split">
-            <div class="offer-info">
-              <div class="small-header">
-                <p>Effektiv rente</p>
-              </div>
-              <div class="offer-inner">
-                <h2>{{ offer.effectiveRate | number: "1.2-2" }}%</h2>
-              </div>
-            </div>
-            <div class="offer-info">
-              <div class="small-header">
-                <p>Krever tilleggsprodukt</p>
-              </div>
-              <div class="offer-inner">
-                <h2>
-                  {{ offer.requiredProductPackage == null ? "Nei" : "Ja" }}
+          <div class="the-offer-body">
+            <div class="small-header"><p>Rentebesparelse</p></div>
+            <div class="split">
+              <div class="offer-inner save">
+                <h2 *ngIf="offer.totalSavings > 0; else noTotalSavings">
+                  {{ offer.totalSavings | abs | number }},-
                 </h2>
+                <ng-template #noTotalSavings>
+                  <h2>0,-</h2>
+                </ng-template>
+                <p>over lånets løpetid</p>
+              </div>
+              <div class="offer-inner save">
+                <h2 *ngIf="offer.savingsFirstYear > 0; else noTotalSavings">
+                  {{ offer.savingsFirstYear | abs | number }},-
+                </h2>
+                <ng-template #noSavingsFirstYear>
+                  <h2>0,-</h2>
+                </ng-template>
+                <p>første år</p>
+              </div>
+            </div>
+            <div class="split">
+              <div class="offer-info">
+                <div class="small-header">
+                  <p>Effektiv rente</p>
+                </div>
+                <div class="offer-inner">
+                  <h2>{{ offer.effectiveRate | number: "1.2-2" }}%</h2>
+                </div>
+              </div>
+              <div class="offer-info">
+                <div class="small-header">
+                  <p>Krever tilleggsprodukt</p>
+                </div>
+                <div class="offer-inner">
+                  <h2>
+                    {{ offer.requiredProductPackage == null ? "Nei" : "Ja" }}
+                  </h2>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div class="double buttons">
-          <div class="full-width">
-            <rente-button
-              [disabled]="
-                changeBankLoading ||
-                offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS
-              "
-              [isLoading]="changeBankLoading"
-              color="primary"
-              type="raised"
-              (click)="openChangeBankDialog(offersInfo.offers[i])"
-              >Match tilbud</rente-button
-            >
+          <div class="double buttons">
+            <div class="full-width">
+              <rente-button
+                [disabled]="
+                  changeBankLoading ||
+                  offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS
+                "
+                [isLoading]="changeBankLoading"
+                color="primary"
+                type="raised"
+                (click)="openChangeBankDialog(offersInfo.offers[i])"
+                >Match tilbud</rente-button
+              >
+            </div>
+            <div class="full-width">
+              <rente-button
+                [disabled]="true"
+                [isLoading]="changeBankLoading"
+                color="primary"
+                type="raised"
+                (click)="openChangeBankDialog(offersInfo.offers[i])"
+                >Start bytte</rente-button
+              >
+              <p class="small">(Kommer snart!)</p>
+            </div>
           </div>
-          <div class="full-width">
-            <rente-button
-              [disabled]="true"
-              [isLoading]="changeBankLoading"
-              color="primary"
-              type="raised"
-              (click)="openChangeBankDialog(offersInfo.offers[i])"
-              >Start bytte</rente-button
-            >
-            <p class="small">(Kommer snart!)</p>
-          </div>
         </div>
-      </div>
-    </ng-container>
+      </ng-container>
+    </div>
   </div>
 </div>
 

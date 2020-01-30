@@ -14,8 +14,8 @@
   position: relative;
 }
 .heading {
-  background-color: $light;
-  border-top: 1px solid $lesslight;
+  background-color: $lightgreen;
+  border-top: 1px solid $green;
   display: block;
   padding: 10px 20px;
   font-weight: 500;
@@ -72,7 +72,10 @@
     border: 1px solid $lesslight;
     .heading {
       border-top: none;
-      border-bottom: 1px solid $lesslight;
+      border-bottom: 1px solid $green;
+    }
+    .body {
+      border-bottom: 0;
     }
   }
 }

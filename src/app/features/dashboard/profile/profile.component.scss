@@ -40,9 +40,6 @@ form {
     .inner-body {
       padding: 20px;
     }
-    .withinfo {
-      margin-bottom: 20px;
-    }
   }
   mat-form-field {
     width: 100%;
@@ -64,17 +61,42 @@ form {
     }
   }
 }
+form {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
 
+@media (max-width: 600px) {
+  form {
+    padding: 20px;
+  }
+  .header {
+    h3 {
+      padding: 0;
+    }
+  }
+}
 @media (min-width: 600px) {
   .preferences {
     padding: 40px 80px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 160px;
     h3 {
       padding: 0;
       padding-bottom: 20px;
     }
-    form {
-      margin: 0;
-      padding: 0;
+  }
+
+  .accordion {
+    left: 0;
+    width: 100%;
+    .body {
+      border: none;
+      .inner-body {
+        padding: 0;
+      }
     }
   }
 }

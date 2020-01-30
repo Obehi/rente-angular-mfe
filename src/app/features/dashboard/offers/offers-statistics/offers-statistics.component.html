@@ -1,12 +1,15 @@
+<h3 *ngIf="!hasOthersBankData">Din rente i forhold til andre i din bank</h3>
+<div *ngIf="!hasOthersBankData" class="chart" id="clientBankChartId"></div>
+<h3 *ngIf="hasOthersBankData">Din rente i forhold til andre i:</h3>
 <mat-tab-group>
-  <mat-tab label="din bank">
+  <mat-tab label="din bank" *ngIf="hasOthersBankData">
     <ng-template matTabContent>
-      <div id="clientBankChartId"></div>
+      <div id="clientBankChartId" class="chart"></div>
     </ng-template>
   </mat-tab>
-  <mat-tab label="alle banker">
+  <mat-tab label="alle banker" *ngIf="hasOthersBankData">
     <ng-template matTabContent>
-      <div *ngIf="hasOthersBankData" id="allBanksChartChartId"></div>
+      <div id="allBanksChartChartId" class="chart"></div>
     </ng-template>
   </mat-tab>
 </mat-tab-group>

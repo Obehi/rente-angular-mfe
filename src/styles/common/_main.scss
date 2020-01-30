@@ -216,6 +216,11 @@ iframe#drift-widget {
   display: block;
   text-align: center;
   width: calc(100% - 40px);
+  @media (min-width: 600px) {
+    top: unset;
+    bottom: 40px;
+    max-width: 400px;
+  }
 }
 .mat-tab-header-pagination {
   display: none !important;
