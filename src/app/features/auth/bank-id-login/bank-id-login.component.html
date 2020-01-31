@@ -6,11 +6,11 @@
     <h4 *ngIf="!isSB1Bank">Vi støtter kun BankID på Mobil, ikke kodebrikke og passord.</h4>
     <h4 *ngIf="isEikaBank" class="red">
       OBS: Vi tester fortsatt løsningen for denne banken. <br/>
-      Gi gjerne beskjed hvis noe ikke fungerer optimalt.
+      Gi gjerne beskjed hvis noe ikke fungerer optimalt.<br/>
+      BankID på mobil er for tiden utilgjengelig for Telenor-kunder.
     </h4>
-    <p *ngIf="isSB1Bank" class="red">
-      Vi opplever store problemer med Sparebanken 1. <br/>
-      Vi jobber med en løsning.
+    <p *ngIf="isDnbBank || isNordeaBank || isSB1Bank" class="red">
+      BankID på mobil er for tiden utilgjengelig for Telenor-kunder. Vennligst prøv igjen senere. Vi beklager dette.
     </p>
 
     <form

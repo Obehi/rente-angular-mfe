@@ -157,6 +157,10 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     return this.bank && this.bank.name === 'DNB';
   }
 
+  get isNordeaBank(): boolean {
+    return this.bank && this.bank.name === 'NORDEA';
+  }
+
   get isSB1Bank(): boolean {
     return this.bank && this.bank.name && this.bank.name.indexOf('SPAREBANK_1') > -1;
   }
