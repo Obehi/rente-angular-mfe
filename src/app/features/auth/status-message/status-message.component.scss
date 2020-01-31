@@ -1,9 +1,9 @@
-@import '../../../../styles/theme/_colors.scss';
+@import "../../../../styles/theme/_colors.scss";
 
 $block-size: 48px;
 
 .status-message {
- 
+  margin-bottom: 20px;
   .mat-spinner {
     flex-shrink: 0;
   }
@@ -25,7 +25,7 @@ $block-size: 48px;
     word-break: break-word;
 
     &.step {
-        color: $text-color;
+      color: $text-color;
     }
   }
 
@@ -38,7 +38,7 @@ $block-size: 48px;
 
   &-step {
     font-size: 16px;
-    border: 4px solid #A6A8A9;
+    border: 4px solid #a6a8a9;
     color: $text-color;
   }
 
@@ -49,5 +49,4 @@ $block-size: 48px;
   &-error {
     background: $error;
   }
-
 }

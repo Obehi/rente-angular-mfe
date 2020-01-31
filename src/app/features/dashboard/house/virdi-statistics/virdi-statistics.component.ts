@@ -306,6 +306,6 @@ export class VirdiStatisticsComponent implements OnInit {
   }
 
   notifError() {
-    this.snackBar.openFailSnackBar("Feil ved lasting av statistikkdata", 10);
+    this.snackBar.openFailSnackBar("Feil ved lasting av statistikkdata", 2);
   }
 }

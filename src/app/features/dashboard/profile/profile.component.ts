@@ -191,11 +191,11 @@ export class ProfileComponent implements OnInit {
       ([data]) => {
         this.isLoading = false;
         this.changesMade = false;
-        this.snackBar.openSuccessSnackBar("Endringene dine er lagret");
+        this.snackBar.openSuccessSnackBar("Endringene dine er lagret", 1.2);
       },
       err => {
         this.isLoading = false;
-        this.snackBar.openFailSnackBar("Oops, noe gikk galt");
+        this.snackBar.openFailSnackBar("Oops, noe gikk galt", 1.2);
       }
     );
     this.loansService
@@ -204,12 +204,12 @@ export class ProfileComponent implements OnInit {
         res => {
           this.isLoading = false;
           this.changesMade = false;
-          this.snackBar.openSuccessSnackBar("Endringene dine er lagret");
+          this.snackBar.openSuccessSnackBar("Endringene dine er lagret", 1.2);
           console.log(res);
         },
         err => {
           this.isLoading = false;
-          this.snackBar.openFailSnackBar("Oops, noe gikk galt");
+          this.snackBar.openFailSnackBar("Oops, noe gikk galt", 1.2);
         }
       );
   }
@@ -281,7 +281,6 @@ export class ProfileComponent implements OnInit {
   }
 
   selected(event: MatAutocompleteSelectedEvent): void {
-    console.log(event);
     this.memberships.push(event.option.value);
     this.membershipInput.nativeElement.value = "";
     this.membershipCtrl.setValue(null);

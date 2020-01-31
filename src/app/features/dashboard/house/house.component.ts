@@ -37,10 +37,16 @@ export class HouseComponent implements OnInit {
   }
 
   deleteAddress(address: AddressDto) {
+    console.log("OY");
+    this.changesMade = true;
     const i: number = this.addresses.indexOf(address);
     if (i > -1) {
       this.addresses.splice(i, 1);
     }
+  }
+
+  log(log: any) {
+    console.log("HUEHU");
   }
 
   get ableToAddAddress(): boolean {
@@ -72,12 +78,12 @@ export class HouseComponent implements OnInit {
         },
         err => {
           this.isLoading = false;
-          this.snackBar.openFailSnackBar("Oops, noe gikk galt");
+          this.snackBar.openFailSnackBar("Oops, noe gikk galt", 1.2);
         },
         () => {
           this.isLoading = false;
           this.changesMade = false;
-          this.snackBar.openSuccessSnackBar("Endringene dine er lagret");
+          this.snackBar.openSuccessSnackBar("Endringene dine er lagret", 1.2);
         }
       );
     }

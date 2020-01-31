@@ -25,6 +25,7 @@ export class ChangeBankDialogComponent implements OnInit {
     this.confirmForm = this.fb.group({
       confirmation: ["", Validators.required]
     });
+    console.log(document.getElementById("mat-dialog-9"));
   }
 
   public sendRequest(): void {

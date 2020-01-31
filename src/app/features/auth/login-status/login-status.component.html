@@ -1,3 +1,149 @@
+<div class="login-status">
+  <img *ngIf="bank" [src]="bankLogo" [alt]="bank.label" [title]="bank.label" />
+
+  <div style="height: 42px; margin: 10px 0;">
+    <h3 *ngIf="isShowPassPhrase && !viewStatus.isCrawlerError">
+      Din referanse:
+    </h3>
+    <h3 *ngIf="isShowPassPhrase && !viewStatus.isCrawlerError">
+      {{ passPhrase }}
+    </h3>
+  </div>
+
+  <rente-status-message [status]="loginStep1Status">
+    <span *ngIf="viewStatus.isNotValidDataProvided && bank.name === 'DNB'">
+      Kontroller at du har oppgitt riktig fødselsnummer og mobilnummer. Du må ha
+      bestilt og aktivert BankID på mobil for å kunne bruke denne innloggingen.
+    </span>
+    <span *ngIf="viewStatus.isNotValidDataProvided && bank.name !== 'DNB'">
+      Kontroller at du har oppgitt riktig fødselsdato og mobilnummer. Du må ha
+      bestilt og aktivert BankID på mobil for å kunne bruke denne innloggingen.
+    </span>
+    <span *ngIf="!viewStatus.isNotValidDataProvided">
+      Forbereder identifisering <br />
+      <span
+        *ngIf="
+          viewStatus.isProcessStarted &&
+          !viewStatus.isCrawlerError &&
+          isShowTimer &&
+          !firstStepTimerFinished
+        "
+      >
+        (tar cirka {{ firstStepTimer }} sekunder)
+      </span>
+      <span
+        *ngIf="
+          viewStatus.isProcessStarted &&
+          !viewStatus.isCrawlerError &&
+          isShowTimer &&
+          firstStepTimerFinished
+        "
+      >
+        (Litt til, straks ferdig)
+      </span>
+    </span>
+  </rente-status-message>
+
+  <rente-status-message [status]="loginStep2Status" [step]="2">
+    <span *ngIf="!passPhrase">
+      Bekreft BankID på mobil
+    </span>
+    <span
+      *ngIf="
+        passPhrase &&
+        !viewStatus.isPassphraseConfirmFail &&
+        !viewStatus.isPassphraseConfirmSuccess
+      "
+    >
+      Vennligst følg instruksjonen på mobilen
+    </span>
+    <span *ngIf="viewStatus.isPassphraseConfirmSuccess">
+      BankID bekreftet
+    </span>
+    <span *ngIf="viewStatus.isPassphraseConfirmFail">
+      Vi fikk ikke bekreftet BankID referansen fra din mobiltelefon. Vennligst
+      prøv igjen.
+    </span>
+  </rente-status-message>
+
+  <!-- STEP 3 -->
+  <rente-status-message [status]="loginStep3Status" [step]="3">
+    <!-- STEP 3 NOT STARTED -->
+    <span
+      *ngIf="
+        !viewStatus.isPassphraseConfirmSuccess &&
+        !viewStatus.isCrawlerError &&
+        !isNotSB1customer
+      "
+    >
+      Hent rente og lånedata
+    </span>
+
+    <!-- STEP 3 IN PROGRESS -->
+    <div *ngIf="isStep3InProgress">
+      <div *ngIf="!isAccountSelection">
+        <div>Vi henter din rente og låneinformasjon</div>
+        <div *ngIf="!timerExceeded">
+          (tar cirka {{ thirdStepTimer }} sekunder)
+        </div>
+        <div *ngIf="timerExceeded">(Litt til, straks ferdig)</div>
+      </div>
+      <!-- SHOW ACCOUNT SELECTION -->
+      <div *ngIf="isAccountSelection">
+        <div>Vennligst velg konto:</div>
+        <div
+          *ngFor="let accountName of accounts"
+          class="account-select-item"
+          (click)="selectAccount(accountName)"
+        >
+          {{ accountName }}
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 3 ERROR -->
+    <div *ngIf="isStep3Error">
+      <span *ngIf="isNotSB1customer">
+        Vi får beskjed om at du ikke er kunde i banken. Har du valgt riktig
+        bank?
+      </span>
+      <span *ngIf="viewStatus.isConfirmationRequired">
+        Banken din krever at du oppdaterer informasjon i nettbanken din. Du må
+        logge inn i nettbanken din og oppdatere/bekrefte informasjon før du kan
+        benytte Renteradar.
+      </span>
+      <span *ngIf="viewStatus.isRenewBankIdRequired">
+        Du må fornye din BankID. Vennligst forny BankID i din nettbank førm du
+        prøver igjen.
+      </span>
+      <span *ngIf="viewStatus.isCrawlerError">
+        Det oppstod en feil under henting av dine lånedetaljer, vennligst prøv
+        igjen senere.
+      </span>
+      <span *ngIf="viewStatus.isSelectUserAccountTimeout">
+        Du valgte ikke konto innen 60 sekunder. Du må logge inn igjen.
+      </span>
+    </div>
+  </rente-status-message>
+  <rente-button
+    color="primary"
+    [type]="'stroked'"
+    *ngIf="
+      viewStatus.isRenewBankId ||
+      viewStatus.isConfirmationRequired ||
+      viewStatus.isNotValidDataProvided ||
+      viewStatus.isCrawlerError ||
+      viewStatus.isPassphraseConfirmFail ||
+      viewStatus.isTimedOut ||
+      viewStatus.isSelectUserAccountTimeout ||
+      isNotSB1customer
+    "
+    (click)="returnToInput()"
+  >
+    Prøv igjen
+  </rente-button>
+</div>
+<!--
 <div class="container login-status">
   <div class="row justify-content-center">
     <div class="col-12 col-lg-6 text-center bg-wrap">
@@ -62,22 +208,22 @@
             </span>
           </rente-status-message>
 
-          <!-- STEP 3 -->
+
           <rente-status-message [status]="loginStep3Status" [step]="3">
 
-            <!-- STEP 3 NOT STARTED -->
+
             <span *ngIf="!viewStatus.isPassphraseConfirmSuccess && !viewStatus.isCrawlerError && !isNotSB1customer">
               Hent rente og lånedata
             </span>
 
-            <!-- STEP 3 IN PROGRESS -->
+
             <div *ngIf="isStep3InProgress">
               <div *ngIf="!isAccountSelection">
                 <div>Vi henter din rente og låneinformasjon</div>
                 <div *ngIf="!timerExceeded">(tar cirka {{thirdStepTimer}} sekunder)</div>
                 <div *ngIf="timerExceeded">(Litt til, straks ferdig)</div>
               </div>
-              <!-- SHOW ACCOUNT SELECTION -->
+
               <div *ngIf="isAccountSelection">
                 <div>Vennligst velg konto:</div>
                 <div *ngFor="let accountName of accounts"
@@ -88,7 +234,7 @@
               </div>
             </div>
 
-            <!-- STEP 3 ERROR -->
+
             <div *ngIf="isStep3Error">
               <span *ngIf="isNotSB1customer">
                 Vi får beskjed om at du ikke er kunde i banken. Har du valgt riktig bank?
@@ -113,7 +259,6 @@
       </div>
 
       <rente-button
-        class="login-status-btn"
         color="primary"
         [type]="'stroked'"
         *ngIf="
@@ -131,3 +276,4 @@
     </div>
   </div>
 </div>
+ -->

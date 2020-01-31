@@ -31,6 +31,7 @@ export class AddressFormComponent {
   @Input() address: AddressDto;
 
   @Output() deleteAddress: EventEmitter<AddressDto> = new EventEmitter();
+  @Output() change: EventEmitter<any> = new EventEmitter();
 
   mode = AddressFormMode.Editing;
 
@@ -54,6 +55,7 @@ export class AddressFormComponent {
   }
 
   onRbChange(event: MatTabChangeEvent) {
+    this.change.emit();
     if (event.index === 1) {
       this.address.useManualPropertyValue = true;
     } else {

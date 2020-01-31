@@ -1,10 +1,17 @@
-import { AuthService } from '@services/remote-api/auth.service';
-import { Component, OnInit, Input, OnDestroy, Output, EventEmitter } from '@angular/core';
-import * as Stomp from 'stompjs';
-import * as SockJS from 'sockjs-client';
-import { environment } from '@environments/environment';
-import { ViewStatus } from './login-view-status';
-import { API_URL_MAP } from '@config/api-url-config';
+import { AuthService } from "@services/remote-api/auth.service";
+import {
+  Component,
+  OnInit,
+  Input,
+  OnDestroy,
+  Output,
+  EventEmitter
+} from "@angular/core";
+import * as Stomp from "stompjs";
+import * as SockJS from "sockjs-client";
+import { environment } from "@environments/environment";
+import { ViewStatus } from "./login-view-status";
+import { API_URL_MAP } from "@config/api-url-config";
 import {
   IDENTIFICATION_TIMEOUT_TIME,
   PING_TIME,
@@ -13,30 +20,29 @@ import {
   BANKID_STATUS,
   BANKID_TIMEOUT_TIME,
   MESSAGE_STATUS
-} from './login-status.config';
-import { Subscription, interval, Observable, timer, forkJoin } from 'rxjs';
-import { take } from 'rxjs/operators';
-import { Router } from '@angular/router';
-import { UserService } from '@services/remote-api/user.service';
-import { LoansService } from '@services/remote-api/loans.service';
-import { LocalStorageService } from '@services/local-storage.service';
-import { BankVo, BankUtils } from '@shared/models/bank';
+} from "./login-status.config";
+import { Subscription, interval, Observable, timer, forkJoin } from "rxjs";
+import { take } from "rxjs/operators";
+import { Router } from "@angular/router";
+import { UserService } from "@services/remote-api/user.service";
+import { LoansService } from "@services/remote-api/loans.service";
+import { LocalStorageService } from "@services/local-storage.service";
+import { BankVo, BankUtils } from "@shared/models/bank";
 
 @Component({
-  selector: 'rente-login-status',
-  templateUrl: './login-status.component.html',
-  styleUrls: ['./login-status.component.scss']
+  selector: "rente-login-status",
+  templateUrl: "./login-status.component.html",
+  styleUrls: ["./login-status.component.scss"]
 })
 export class LoginStatusComponent implements OnInit, OnDestroy {
-
-  @Input() bank:BankVo;
-  @Input() userData:any = {};
+  @Input() bank: BankVo;
+  @Input() userData: any = {};
 
   @Output() returnToInputPage = new EventEmitter<any>();
 
   public viewStatus: ViewStatus = new ViewStatus();
   public reconnectIterator = 0;
-  public passPhrase = '';
+  public passPhrase = "";
   public ticks: number;
   public MESSAGE_STATUS = MESSAGE_STATUS;
   public loginStep1Status: string;
@@ -59,27 +65,32 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
   public isShowTimer: boolean;
   isNotSB1customer: boolean;
   isAccountSelection: boolean;
-  accounts:string[];
-  userSessionId:string;
+  accounts: string[];
+  userSessionId: string;
 
   constructor(
     private router: Router,
     private authService: AuthService,
     private userService: UserService,
     private loansService: LoansService,
-    private localStorageService: LocalStorageService) { }
+    private localStorageService: LocalStorageService
+  ) {}
 
   ngOnInit() {
     this.setDefaultSteps();
     this.initializeWebSocketConnection();
+
+    window.scrollTo(0, 0);
   }
 
   ngOnDestroy() {
     this.unsubscribeEverything();
   }
 
-  get bankLogo():string {
-    return this.bank ? BankUtils.getBankLogoUrl(this.bank.name) : '../../../assets/img/banks-logo/round/annen.png';
+  get bankLogo(): string {
+    return this.bank
+      ? BankUtils.getBankLogoUrl(this.bank.name)
+      : "../../../assets/img/banks-logo/round/annen.png";
   }
 
   unsubscribeEverything() {
@@ -104,7 +115,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
   returnToInput() {
     this.returnToInputPage.emit();
     if (this.isNotSB1customer) {
-      this.router.navigate(['/autentisering/sparebank1-sub']);
+      this.router.navigate(["/autentisering/sparebank1-sub"]);
     }
   }
 
@@ -115,8 +126,12 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
     };
     this.setDefaultSteps();
     const data = JSON.stringify(dataObj);
-    this.passPhrase = '';
-    this.stompClient.send(API_URL_MAP.crawlerSendMessageUrl + this.bank.name, {}, data);
+    this.passPhrase = "";
+    this.stompClient.send(
+      API_URL_MAP.crawlerSendMessageUrl + this.bank.name,
+      {},
+      data
+    );
     if (!resendData) {
       this.initTimer(IDENTIFICATION_TIMEOUT_TIME);
       this.initConnectionTimer();
@@ -128,9 +143,16 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
   }
 
   private resendDataAfterReconnect() {
-    const notConnectionLost = !this.viewStatus.isSocketConnectionLost && !this.viewStatus.isRecconectFail;
+    const notConnectionLost =
+      !this.viewStatus.isSocketConnectionLost &&
+      !this.viewStatus.isRecconectFail;
     const isUserDataEntered = this.userData.phone && this.userData.dob;
-    if (this.reconnectIterator > 0 && notConnectionLost && isUserDataEntered && !this.viewStatus.isLoansPersisted) {
+    if (
+      this.reconnectIterator > 0 &&
+      notConnectionLost &&
+      isUserDataEntered &&
+      !this.viewStatus.isLoansPersisted
+    ) {
       this.sendUserData(true);
     }
   }
@@ -142,32 +164,38 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
     if (environment.production) {
       this.stompClient.debug = null;
     }
-    this.stompClient.connect({}, (frame) => {
-      // console.log('success connection', frame);
-      this.viewStatus.isSocketConnectionLost = false;
-      // Resend user data after reconnection
-      this.sendUserData();
-      this.resendDataAfterReconnect();
-      this.successSocketCallback();
-      // Send ping to prevent socket closing
-      this.intervalSubscription = interval(PING_TIME)
-        .subscribe(() => {
-          this.stompClient.send(API_URL_MAP.crawlerComunicationUrl, {}, JSON.stringify({ message: 'ping' }));
+    this.stompClient.connect(
+      {},
+      frame => {
+        // console.log('success connection', frame);
+        this.viewStatus.isSocketConnectionLost = false;
+        // Resend user data after reconnection
+        this.sendUserData();
+        this.resendDataAfterReconnect();
+        this.successSocketCallback();
+        // Send ping to prevent socket closing
+        this.intervalSubscription = interval(PING_TIME).subscribe(() => {
+          this.stompClient.send(
+            API_URL_MAP.crawlerComunicationUrl,
+            {},
+            JSON.stringify({ message: "ping" })
+          );
         });
-
-    }, () => {
-      this.viewStatus.isSocketConnectionLost = true;
-      // this.setErrorMessage(this.errorMessages.RECONNECTION, messageTypes.info);
-      if (this.reconnectIterator <= RECONNECTION_TRIES) {
-        setTimeout(() => {
-          this.reconnectIterator++;
-          this.connectAndReconnectSocket(successCallback);
-        }, RECONNECTION_TIME);
-      } else {
-        this.viewStatus.isRecconectFail = true;
-        // this.setErrorMessage(this.errorMessages.RECONNECT_FAILED);
+      },
+      () => {
+        this.viewStatus.isSocketConnectionLost = true;
+        // this.setErrorMessage(this.errorMessages.RECONNECTION, messageTypes.info);
+        if (this.reconnectIterator <= RECONNECTION_TRIES) {
+          setTimeout(() => {
+            this.reconnectIterator++;
+            this.connectAndReconnectSocket(successCallback);
+          }, RECONNECTION_TIME);
+        } else {
+          this.viewStatus.isRecconectFail = true;
+          // this.setErrorMessage(this.errorMessages.RECONNECT_FAILED);
+        }
       }
-    });
+    );
   }
 
   private initTimer(timeoutTime: number) {
@@ -177,7 +205,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
     this.ticks = timeoutTime;
     this.timer = timer(1000, 1000).pipe(take(timeoutTime + 1));
     this.timerSubscription = this.timer.subscribe(
-      time => this.ticks = this.ticks > 0 ? timeoutTime - time : 0
+      time => (this.ticks = this.ticks > 0 ? timeoutTime - time : 0)
     );
   }
 
@@ -200,7 +228,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
   private successSocketCallback() {
     const repliesUrl = `${API_URL_MAP.crawlerRepliesUrl}`;
     this.viewStatus.isSocketConnectionLost = false;
-    this.stompClient.subscribe(repliesUrl, (message) => {
+    this.stompClient.subscribe(repliesUrl, message => {
       if (message.body) {
         const response = JSON.parse(message.body);
         switch (response.eventType) {
@@ -289,27 +317,36 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
           case BANKID_STATUS.LOANS_PERSISTED:
             this.viewStatus.isLoansPersisted = true;
             const user = response.data.user;
-            this.authService.loginWithToken(user.phone, user.oneTimeToken).subscribe(res => {
-              forkJoin([this.loansService.getLoansAndRateType(), this.userService.getUserInfo()])
-                .subscribe(([rateAndLoans, userInfo]) => {
+            this.authService
+              .loginWithToken(user.phone, user.oneTimeToken)
+              .subscribe(res => {
+                forkJoin([
+                  this.loansService.getLoansAndRateType(),
+                  this.userService.getUserInfo()
+                ]).subscribe(([rateAndLoans, userInfo]) => {
                   this.loginStep3Status = MESSAGE_STATUS.SUCCESS;
-                  this.userService.lowerRateAvailable.next(rateAndLoans.lowerRateAvailable);
+                  this.userService.lowerRateAvailable.next(
+                    rateAndLoans.lowerRateAvailable
+                  );
                   if (!rateAndLoans.loansPresent) {
-                    this.localStorageService.setItem('noLoansPresent', true);
-                    this.router.navigate(['/dashboard/ingenlaan']);
+                    this.localStorageService.setItem("noLoansPresent", true);
+                    this.router.navigate(["/dashboard/ingenlaan"]);
                   } else if (rateAndLoans.isAggregatedRateTypeFixed) {
-                    this.localStorageService.setItem('isAggregatedRateTypeFixed', true);
-                    this.router.navigate(['/dashboard/fastrente']);
+                    this.localStorageService.setItem(
+                      "isAggregatedRateTypeFixed",
+                      true
+                    );
+                    this.router.navigate(["/dashboard/fastrente"]);
                   } else {
                     if (userInfo.income === null) {
-                      this.router.navigate(['/bekreft']);
-                      this.localStorageService.setItem('isNewUser', true);
+                      this.router.navigate(["/bekreft"]);
+                      this.localStorageService.setItem("isNewUser", true);
                     } else {
-                      this.router.navigate(['/dashboard/tilbud/']);
+                      this.router.navigate(["/dashboard/tilbud/"]);
                     }
                   }
                 });
-            });
+              });
             break;
         }
       }
@@ -356,11 +393,10 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
     return this.thirdStepTimer <= 0;
   }
 
-  selectAccount(name:string) {
+  selectAccount(name: string) {
     const data = `{"eventType":"EIKA_CHOOSE_ACCOUNT_TO_PROCESS_RESPONSE", "sessionId":"${this.userSessionId}", "accountToProcess":"${name}"}`;
     this.stompClient.send(API_URL_MAP.crawlerAccountSelectEikaUrl, {}, data);
     this.isAccountSelection = false;
     this.startCrawlingTimer();
   }
-
 }

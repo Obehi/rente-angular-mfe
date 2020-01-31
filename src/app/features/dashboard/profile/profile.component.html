@@ -50,7 +50,7 @@
         <div
           (click)="
             openInfoDialog(
-              'Bankene gir ofte bedre betingelser hvis du er medlem i en organisasjon'
+              'Din/Husstandens inntekt er en viktig parameter for renten bankene tilbyr'
             )
           "
           class="clickable"
@@ -74,9 +74,7 @@
       </div>
 
       <h3 class="desktop">Medlemskap</h3>
-      <p class="small">
-        Bankene gir ofte bedre betingelser om du er medlem i en organisasjon.
-      </p>
+
       <div class="accordion ">
         <div class="header mobile" (click)="showMemberships = !showMemberships">
           <h3>Medlemskap ({{ memberships.length }})</h3>
@@ -90,6 +88,7 @@
                 type="text"
                 placeholder="+ Legg til"
                 matInput
+                #membershipInput
                 [formControl]="membershipCtrl"
                 [matAutocomplete]="auto"
               />
@@ -129,9 +128,7 @@
     <form [formGroup]="preferencesForm" novalidate change>
       <div class="field">
         <h3 class="desktop">Preferanser</h3>
-        <p class="small mobile">
-          Hvor ofte skal vi sjekke renten du har?
-        </p>
+
         <div class="accordion field">
           <div
             class="header mobile"
