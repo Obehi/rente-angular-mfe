@@ -30,11 +30,16 @@
   }
   .houses {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     grid-column-gap: 80px;
   }
   rente-address-form {
     margin-bottom: 80px;
+  }
+}
+@media (min-width: 900px) {
+  .houses {
+    grid-template-columns: 1fr 1fr;
   }
 }
 

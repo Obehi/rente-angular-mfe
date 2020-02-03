@@ -18,7 +18,8 @@ export class CounterComponent implements OnInit {
       if (res) {
         this.totalOutstandingDebt =
           Math.round(res.totalOutstandingDebt / 1000) * 1000;
-        this.combinedSavingsPotential = res.combinedSavingsPotential;
+        this.combinedSavingsPotential =
+          Math.round(res.combinedSavingsPotential / 10) * 10;
         this.setupRefresh();
       }
     });

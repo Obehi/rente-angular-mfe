@@ -25,27 +25,29 @@
   * {
     color: $primary !important;
   }
+  .odometer-digit {
+    &:last-of-type * {
+      transition: none !important;
+    }
+  }
 }
 .counter.black .odometer {
   * {
     color: $black !important;
   }
-}
-.big-numbers {
-  .odometer {
-    .odometer-digit {
-      &:nth-last-of-type(3) * {
-        transition: none !important;
-      }
-      &:nth-last-of-type(2) * {
-        transition: none !important;
-      }
-      &:last-of-type * {
-        transition: none !important;
-      }
+  .odometer-digit {
+    &:nth-last-of-type(3) * {
+      transition: none !important;
+    }
+    &:nth-last-of-type(2) * {
+      transition: none !important;
+    }
+    &:last-of-type * {
+      transition: none !important;
     }
   }
 }
+
 .odometer {
   background: transparent !important;
 
