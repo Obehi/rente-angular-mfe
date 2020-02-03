@@ -2,13 +2,13 @@
 
 .house {
   padding-bottom: 80px;
+  .title {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+  }
 }
 
-.title {
-  padding: 20px;
-  display: flex;
-  justify-content: space-between;
-}
 .addressform:last-of-type {
   margin-bottom: 40px;
   display: block;

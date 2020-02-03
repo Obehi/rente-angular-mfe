@@ -33,7 +33,7 @@
   </nav>
 </div>
 <div class="dashboard-content">
-  <router-outlet></router-outlet>
+  <router-outlet (activate)="onActivate($event)"></router-outlet>
 </div>
 <!-- <div class="container dashboard">
   <div class="row">

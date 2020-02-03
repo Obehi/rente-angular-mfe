@@ -1,15 +1,14 @@
-import { Injectable } from '@angular/core';
-import { GenericHttpService } from '@services/generic-http.service';
-import { API_URL_MAP } from '@config/api-url-config';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Injectable } from "@angular/core";
+import { GenericHttpService } from "@services/generic-http.service";
+import { API_URL_MAP } from "@config/api-url-config";
+import { Observable } from "rxjs";
+import { map } from "rxjs/operators";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class LoansService {
-
-  constructor(private http: GenericHttpService) { }
+  constructor(private http: GenericHttpService) {}
 
   public getLoans() {
     const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.loans.base}`;
@@ -36,25 +35,24 @@ export class LoansService {
     return this.http.get(url);
   }
 
-  public getAddresses():Observable<ClientAddressDto> {
+  public getAddresses(): Observable<ClientAddressDto> {
     const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.address}`;
-    return this.http.get(url).pipe(
-      map(r => this.mapClientAddressDto(r))
-    );
+    return this.http.get(url).pipe(map(r => this.mapClientAddressDto(r)));
   }
 
-  public updateAddress(addresses:AddressDto[]):Observable<ClientAddressDto> {
+  public updateAddress(addresses: AddressDto[]): Observable<ClientAddressDto> {
     const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.address}`;
-    return this.http.post(url, addresses).pipe(
-      map(r => this.mapClientAddressDto(r))
-    );
+
+    return this.http
+      .post(url, addresses)
+      .pipe(map(r => this.mapClientAddressDto(r)));
   }
 
-  mapClientAddressDto(r:any) {
+  mapClientAddressDto(r: any) {
     const dto = new ClientAddressDto();
     dto.totalPropertyValue = r.totalPropertyValue;
     dto.addresses = r.addresses.map(item => {
-      let a:AddressDto = Object.assign(new AddressDto(), item);
+      let a: AddressDto = Object.assign(new AddressDto(), item);
       a.useManualPropertyValue = item.useManualPropertyValue == true;
       return a;
     });
@@ -92,12 +90,12 @@ export class LoansService {
 
   public getLoansAndRateType(): Observable<LoanStateDto> {
     const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.loans.base}${API_URL_MAP.loan.loans.state}`;
-    return this.http.get(url).pipe(
-        map(res => Object.assign(new LoanStateDto(), res))
-    );
+    return this.http
+      .get(url)
+      .pipe(map(res => Object.assign(new LoanStateDto(), res)));
   }
 
-  public getAddressStatistics(id:number) {
+  public getAddressStatistics(id: number) {
     const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.address}${API_URL_MAP.loan.statistics}/${id}`;
     return this.http.get(url);
   }
@@ -111,27 +109,26 @@ export class LoansService {
     const url = `${API_URL_MAP.loan.base}/lower-rate/confirm`;
     return this.http.post(url, null);
   }
-
 }
 
 export class LoanStateDto {
-  isAggregatedRateTypeFixed:boolean;
-  loansPresent:boolean;
-  lowerRateAvailable:boolean;
+  isAggregatedRateTypeFixed: boolean;
+  loansPresent: boolean;
+  lowerRateAvailable: boolean;
 }
 
 export class AddressDto {
-  id:number;
-  street:string;
-  zip:string;
-  apartmentSize:number;
-  manualPropertyValue:number;
-  estimatedPropertyValue:number;
-  useManualPropertyValue:boolean;
-  message:string;
+  id: number;
+  street: string;
+  zip: string;
+  apartmentSize: number;
+  manualPropertyValue: number;
+  estimatedPropertyValue: number;
+  useManualPropertyValue: boolean;
+  message: string;
 }
 
 export class ClientAddressDto {
-  addresses:AddressDto[];
-  totalPropertyValue:number;
+  addresses: AddressDto[];
+  totalPropertyValue: number;
 }

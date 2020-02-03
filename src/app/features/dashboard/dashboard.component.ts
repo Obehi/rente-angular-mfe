@@ -29,6 +29,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   private subscription: any;
 
+  onActivate(event: any) {
+    window.scrollTo(0, 0);
+  }
+
   ngOnInit(): void {
     if (this.localStorageService.getItem("noLoansPresent")) {
       this.router.navigate(["/dashboard/ingenlaan"]);

@@ -1,4 +1,15 @@
 @import "../../../../styles/theme/_colors.scss";
+
+.title {
+  padding-bottom: 20px;
+  text-align: center;
+  h3 {
+    margin-bottom: 20px;
+  }
+  a {
+    color: $green;
+  }
+}
 .offers {
   text-align: center;
 

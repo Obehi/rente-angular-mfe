@@ -1,24 +1,23 @@
-import { Component, OnInit } from '@angular/core';
-import { LoansService } from '@services/remote-api/loans.service';
+import { Component, OnInit } from "@angular/core";
+import { LoansService } from "@services/remote-api/loans.service";
 
 @Component({
-  selector: 'rente-counter',
-  templateUrl: './counter.component.html',
-  styleUrls: ['./counter.component.scss']
+  selector: "rente-counter",
+  templateUrl: "./counter.component.html",
+  styleUrls: ["./counter.component.scss"]
 })
 export class CounterComponent implements OnInit {
-
   totalOutstandingDebt: number;
   combinedSavingsPotential: number;
   interval: any;
 
-  constructor(
-    private loansService: LoansService) { }
+  constructor(private loansService: LoansService) {}
 
   ngOnInit(): void {
     this.loansService.getLoanStatistics().subscribe(res => {
       if (res) {
-        this.totalOutstandingDebt = res.totalOutstandingDebt;
+        this.totalOutstandingDebt =
+          Math.round(res.totalOutstandingDebt / 1000) * 1000;
         this.combinedSavingsPotential = res.combinedSavingsPotential;
         this.setupRefresh();
       }
@@ -34,5 +33,4 @@ export class CounterComponent implements OnInit {
       this.combinedSavingsPotential += 30;
     }, 2000);
   }
-
 }

@@ -1,3 +1,7 @@
+<div class="loading" *ngIf="isLoading && !errorMessage">
+  <mat-spinner [diameter]="48" [strokeWidth]="4"></mat-spinner>
+</div>
+
 <div
   class="offers"
   *ngIf="offersInfo?.resultType === offersResultType.OFFERS_PRESENT"
@@ -389,44 +393,44 @@
     </div>
   </div>
 </div>
+<div class="front-container problems">
+  <div
+    class="title"
+    *ngIf="
+      offersInfo?.resultType === offersResultType.NO_OFFERS ||
+      offersInfo?.resultType === offersResultType.LTV_TOO_HIGH_85
+    "
+  >
+    <h3>
+      Størrelsen på lånet ditt er for stor i forhold til boligverdi (>85%).
+    </h3>
+    <p>
+      Kontroller og endre boligverdien din
+      <a [routerLink]="['/dashboard/bolig']">her i boligfanen</a>
+    </p>
+  </div>
+  <div
+    class="title"
+    *ngIf="
+      offersInfo?.resultType === offersResultType.LTV_CREDIT_LINE_TOO_HIGH_60
+    "
+  >
+    <h3>
+      Rammelån/boligkreditt er kun tilgjengelig for lavere belåningsgrad enn
+      60%.
+    </h3>
+    <p>
+      Din belåningsgrad er høyere enn dette, vennligst endre din belåningsgrad
+      i<a [routerLink]="['/dashboard/bolig']"> boligfanen</a>
+    </p>
+  </div>
+  <div class="title" *ngIf="!offersInfo && !isLoading && !errorMessage">
+    <h3>Ingen bedre tilbud enda...</h3>
+  </div>
 
-<div
-  *ngIf="
-    offersInfo?.resultType === offersResultType.NO_OFFERS ||
-    offersInfo?.resultType === offersResultType.LTV_TOO_HIGH_85
-  "
->
-  <h3>
-    Størrelsen på lånet ditt er for stor i forhold til boligverdi (>85%).
-    Kontroller og endre boligverdien din
-    <a [routerLink]="['/dashboard/bolig']">her i boligfanen</a>
-  </h3>
-</div>
-<div
-  *ngIf="
-    offersInfo?.resultType === offersResultType.LTV_CREDIT_LINE_TOO_HIGH_60
-  "
->
-  <h3>
-    Rammelån/boligkreditt er kun tilgjengelig for lavere belåningsgrad enn 60%.
-    Din belåningsgrad er høyere enn dette, vennligst endre din belåningsgrad i<a
-      [routerLink]="['/dashboard/bolig']"
-    >
-      boligfanen</a
-    >
-  </h3>
-</div>
-
-<div class="loading" *ngIf="isLoading && !errorMessage">
-  <mat-spinner [diameter]="48" [strokeWidth]="4"></mat-spinner>
-</div>
-
-<div *ngIf="!offersInfo && !isLoading && !errorMessage">
-  <h1 class="text-center mt-4">No offers yet...</h1>
-</div>
-
-<div *ngIf="errorMessage">
-  <h1 class="text-center mt-4">{{ errorMessage }}</h1>
+  <div class="title" *ngIf="errorMessage">
+    <h3>{{ errorMessage }}</h3>
+  </div>
 </div>
 
 <div *ngIf="effRateLoweredDialogVisible">

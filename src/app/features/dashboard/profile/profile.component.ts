@@ -104,7 +104,6 @@ export class ProfileComponent implements OnInit {
           this.loansService.getAddresses()
         ]).subscribe(
           ([user, loan]) => {
-            console.log(user);
             this.username = user.name;
             const userData = user;
             const addressData = loan;
@@ -152,7 +151,6 @@ export class ProfileComponent implements OnInit {
   }
 
   public openInfoDialog(offer: OfferInfo): void {
-    console.log(offer);
     this.dialog.open(ProfileDialogInfoComponent, {
       data: offer
     });
@@ -205,7 +203,6 @@ export class ProfileComponent implements OnInit {
           this.isLoading = false;
           this.changesMade = false;
           this.snackBar.openSuccessSnackBar("Endringene dine er lagret", 1.2);
-          console.log(res);
         },
         err => {
           this.isLoading = false;

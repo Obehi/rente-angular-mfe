@@ -47,16 +47,12 @@
       <p class="small">Boligverdi</p>
 
       <mat-tab-group
+        class="radio"
         (selectedTabChange)="onRbChange($event)"
         [selectedIndex]="!address.useManualPropertyValue ? 0 : 1"
       >
-        <mat-tab
-          label="Automatisk estimat"
-          (click)="onRbChange($event)"
-          [disabled]="!address.estimatedPropertyValue"
-        >
+        <mat-tab label="Automatisk estimat" (click)="onRbChange($event)">
         </mat-tab>
-
         <mat-tab label="Eget estimat" (click)="onRbChange($event)"> </mat-tab>
       </mat-tab-group>
       <div class="double estimated">
@@ -76,7 +72,7 @@
           </p>
 
           <p *ngIf="!address.estimatedPropertyValue" class="small">
-            Estimat utilgjengelig
+            Lagre endringene for å hente estimat
           </p>
         </div>
         <rente-input
@@ -109,78 +105,77 @@
     </div>
   </div> -->
 
-<!--
-  <div class="row" *ngIf="isEditMode">
-    <div class="col-12 col-lg-6">
-      <div>
-        <span class="input-label">Adresse</span>
-        <input
-          type="text"
-          class="text-input "
-          maxlength="100"
-          placeholder="Adresse"
-          [(ngModel)]="address.street"
-        />
-      </div>
-      <div class="mt-2">
-        <span class="input-label">Postnummer</span>
-        <input
-          type="text"
-          class="text-input"
-          placeholder="Postnummer"
-          min="0"
-          maxlength="4"
-          [(ngModel)]="address.zip"
-        />
-      </div>
-      <div class="mt-2">
-        <span class="input-label">Størrelse på bolig (kvm)</span>
-        <input
-          type="number"
-          class="text-input"
-          maxlength="5"
-          placeholder="Størrelse på bolig (kvm)"
-          [(ngModel)]="address.apartmentSize"
-        />
-      </div>
+<!-- <div class="row" *ngIf="isEditMode">
+  <div class="col-12 col-lg-6">
+    <div>
+      <span class="input-label">Adresse</span>
+      <input
+        type="text"
+        class="text-input "
+        maxlength="100"
+        placeholder="Adresse"
+        [(ngModel)]="address.street"
+      />
     </div>
+    <div class="mt-2">
+      <span class="input-label">Postnummer</span>
+      <input
+        type="text"
+        class="text-input"
+        placeholder="Postnummer"
+        min="0"
+        maxlength="4"
+        [(ngModel)]="address.zip"
+      />
+    </div>
+    <div class="mt-2">
+      <span class="input-label">Størrelse på bolig (kvm)</span>
+      <input
+        type="number"
+        class="text-input"
+        maxlength="5"
+        placeholder="Størrelse på bolig (kvm)"
+        [(ngModel)]="address.apartmentSize"
+      />
+    </div>
+  </div>
 
-    <div class="col-12 col-lg-6">
-      <mat-radio-group [(ngModel)]="address.useManualPropertyValue">
-        <div class="mb-2 mt-4">
-          <mat-radio-button [value]="false" (change)="onRbChange($event)">
-            <h3>Bruk estimat</h3>
-          </mat-radio-button>
-          <div class="mt-1">
-            <input
-              type="text"
-              class="text-input"
-              [ngModel]="address.estimatedPropertyValue | thousands"
-              [disabled]="true"
-            />
-          </div>
+  <div class="col-12 col-lg-6">
+    <mat-radio-group [(ngModel)]="address.useManualPropertyValue">
+      <div class="mb-2 mt-4">
+        <mat-radio-button [value]="false" (change)="onRbChange($event)">
+          <h3>Bruk estimat</h3>
+        </mat-radio-button>
+        <div class="mt-1">
+          <input
+            type="text"
+            class="text-input"
+            [ngModel]="address.estimatedPropertyValue | thousands"
+            [disabled]="true"
+          />
         </div>
-        <div class="mt-4">
-          <mat-radio-button [value]="true" (change)="onRbChange($event)">
-            <h3>Jeg vet hva boligen er verdt</h3>
-          </mat-radio-button>
-          <div class="mt-0">
-            <input
-              type="text"
-              min="0"
-              maxlength="100"
-              class="text-input"
-              placeholder="Boligen min er verdt"
-              [ngModel]="address.manualPropertyValue | thousands"
-              (ngModelChange)="manualPropertyValueChanged($event)"
-              [disabled]="address.useManualPropertyValue == false"
-              (keyup)="manualPropertyValueChanged($event)"
-            />
-          </div>
+      </div>
+      <div class="mt-4">
+        <mat-radio-button [value]="true" (change)="onRbChange($event)">
+          <h3>Jeg vet hva boligen er verdt</h3>
+        </mat-radio-button>
+        <div class="mt-0">
+          <input
+            type="text"
+            min="0"
+            maxlength="100"
+            class="text-input"
+            placeholder="Boligen min er verdt"
+            [ngModel]="address.manualPropertyValue | thousands"
+            (ngModelChange)="manualPropertyValueChanged($event)"
+            [disabled]="address.useManualPropertyValue == false"
+            (keyup)="manualPropertyValueChanged($event)"
+          />
         </div>
-      </mat-radio-group>
-    </div>
-  </div> -->
+      </div>
+    </mat-radio-group>
+  </div>
+</div> -->
 
 <!-- Address Statistics View -->
 <!-- <div *ngIf="isStatMode">

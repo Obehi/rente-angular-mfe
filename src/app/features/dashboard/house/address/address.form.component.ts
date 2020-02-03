@@ -1,17 +1,7 @@
-import {
-  Component,
-  OnInit,
-  Input,
-  Output,
-  EventEmitter,
-  NgModule
-} from "@angular/core";
+import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import { AddressDto } from "@services/remote-api/loans.service";
-import {
-  MatRadioChange,
-  MatInputModule,
-  MatTabChangeEvent
-} from "@angular/material";
+import { LoansService } from "@services/remote-api/loans.service";
+import { MatTabChangeEvent } from "@angular/material";
 
 export enum AddressFormMode {
   Editing,
@@ -23,17 +13,24 @@ export enum AddressFormMode {
   templateUrl: "./address.form.component.html",
   styleUrls: ["./address.form.component.scss"]
 })
-@NgModule({
-  imports: [MatInputModule]
-})
-export class AddressFormComponent {
+export class AddressFormComponent implements OnInit {
   @Input() index: number;
   @Input() address: AddressDto;
 
   @Output() deleteAddress: EventEmitter<AddressDto> = new EventEmitter();
   @Output() change: EventEmitter<any> = new EventEmitter();
 
+  addresses: AddressDto[];
+
   mode = AddressFormMode.Editing;
+
+  constructor(private loansService: LoansService) {}
+
+  ngOnInit() {
+    this.loansService.getAddresses().subscribe(r => {
+      this.addresses = r.addresses;
+    });
+  }
 
   get isAbleToDelete(): boolean {
     return this.index > 0;
@@ -61,7 +58,6 @@ export class AddressFormComponent {
     } else {
       this.address.useManualPropertyValue = false;
     }
-    /* this.address.useManualPropertyValue = event; */
   }
 
   onDeleteAddressClick() {

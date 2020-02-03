@@ -176,7 +176,6 @@ export class InitConfirmationComponent implements OnInit {
 
   selected(event: MatAutocompleteSelectedEvent): void {
     this.memberships.push(event.option.value);
-    console.log("assasda", this.membershipInput);
     this.membershipInput.nativeElement.value = "";
     this.membershipCtrl.setValue(null);
   }

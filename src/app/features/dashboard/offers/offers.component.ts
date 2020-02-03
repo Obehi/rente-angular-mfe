@@ -205,7 +205,6 @@ export class OffersComponent implements OnInit, OnDestroy {
     const offerId = offer.id;
     this.changeBankServiceService.getBankOfferRequest(offerId).subscribe(
       preview => {
-        console.log(preview);
         this.changeBankLoading = false;
         this.dialog.open(ChangeBankDialogComponent, {
           data: { preview, offerId }

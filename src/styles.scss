@@ -31,8 +31,24 @@
     color: $black !important;
   }
 }
+.big-numbers {
+  .odometer {
+    .odometer-digit {
+      &:nth-last-of-type(3) * {
+        transition: none !important;
+      }
+      &:nth-last-of-type(2) * {
+        transition: none !important;
+      }
+      &:last-of-type * {
+        transition: none !important;
+      }
+    }
+  }
+}
 .odometer {
   background: transparent !important;
+
   .odometer-digit {
     padding: 0 2px !important;
   }
