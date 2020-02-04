@@ -1,13 +1,27 @@
 const express = require('express');
 const path = require('path');
 const app = express();
-// const requestProxy = require("express-request-proxy");
-//const favicon = require('serve-favicon');
+const https = require('https');
 
 const clientPath = path.resolve(__dirname, '../dist/rente-front-end');
 const port = process.env.PORT || 4300;
 
-//app.use(favicon(clientPath + '/favicon.ico'));
+https.globalAgent.options.ca = require('ssl-root-cas/latest').create();
+
+const proxy = require('http-proxy').createProxyServer({
+  host: 'https://blogg.renteradar.no',
+  changeOrigin: true,
+  agent: new https.Agent({
+    port: 443,
+  })
+});
+
+app.use('/blogg', function(req, res, next) {
+  proxy.web(req, res, {
+      target: 'https://blogg.renteradar.no'
+  }, next);
+});
+
 app.use(express.static(clientPath));
 
 var renderIndex = (req, res) => {

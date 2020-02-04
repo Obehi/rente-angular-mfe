@@ -161,20 +161,23 @@
       </h3>
 
       <div class="mt-2 row justify-content-center">
-        <div class="col-10 col-lg-8 d-flex flex-column align-items-start">
+        <div class="col-10 col-lg-10 d-flex flex-column align-items-start">
           <rente-status-message [status]="loginStep1Status">
-            <span
-              *ngIf="viewStatus.isNotValidDataProvided && bank.name === 'DNB'">
-              Kontroller at du har oppgitt riktig fødselsnummer og mobilnummer.
-              Du må ha bestilt og aktivert BankID på mobil for å kunne bruke
-              denne innloggingen.
-            </span>
-            <span
-              *ngIf="viewStatus.isNotValidDataProvided && bank.name !== 'DNB'">
-              Kontroller at du har oppgitt riktig fødselsdato og mobilnummer. Du
-              må ha bestilt og aktivert BankID på mobil for å kunne bruke denne
-              innloggingen.
-            </span>
+
+            < -- NOT VALID DATA PROVIDED ERROR -- >
+            <div *ngIf="viewStatus.isNotValidDataProvided">
+              <span *ngIf="bank.loginWithSsn">
+                Kontroller at du har oppgitt riktig fødselsnummer og mobilnummer.
+                Du må ha bestilt og aktivert BankID på Mobil for å logge inn.
+                Les hvordan du <a href="{{bank.mobileUrl}}">aktiverer BankID på Mobil her</a>.
+              </span>
+              <span *ngIf="!bank.loginWithSsn">
+                Kontroller at du har oppgitt riktig fødselsdato og mobilnummer.
+                Du må ha bestilt og aktivert BankID på Mobil for å logge inn.
+                Les hvordan du <a href="{{bank.mobileUrl}}">aktiverer BankID på Mobil her</a>.
+              </span>
+            </div>
+
             <span *ngIf="!viewStatus.isNotValidDataProvided">
               Forbereder identifisering <br />
               <span *ngIf="viewStatus.isProcessStarted &&
