@@ -52,8 +52,17 @@
         </a>
       </div>
     </div>
+    <div *ngIf="isIncompleteInfoLoan" class="obs">
+      <p>
+        <b>OBS:</b> Vi får kun hentet din nominelle rente og lånebeløp. For
+        utregninger har vi tatt utgangspunkt i en gjenværende løpetid på 20 år,
+        månedlige betalinger og 50,- i termingebyr. Faktisk løpetid og
+        termingebyrer vil endre forventede besparelser.
+      </p>
+    </div>
   </div>
   <!-- Mobile Tips -->
+
   <div class="split-sections">
     <div class="split-section">
       <div class="barometer">
@@ -167,6 +176,7 @@
         </div>
         <!-- Mobile boxes -->
       </div>
+
       <div class="desktop" style="margin-bottom: 40px;">
         <div
           class="tipsAccordion clickable"
@@ -214,6 +224,14 @@
               <mat-icon>chevron_right</mat-icon>
             </a>
           </div>
+        </div>
+        <div *ngIf="isIncompleteInfoLoan" class="obs">
+          <p>
+            <b>OBS:</b> Vi får kun hentet din nominelle rente og lånebeløp. For
+            utregninger har vi tatt utgangspunkt i en gjenværende løpetid på 20
+            år, månedlige betalinger og 50,- i termingebyr. Faktisk løpetid og
+            termingebyrer vil endre forventede besparelser.
+          </p>
         </div>
       </div>
       <div class="compared">
@@ -355,8 +373,9 @@
                   <p>Krever tilleggsprodukt</p>
                 </div>
                 <div class="offer-inner">
-                  <h2>
+                  <h2 (click)="openOfferDialog(offer)" class="clickable">
                     {{ offer.requiredProductPackage == null ? "Nei" : "Ja" }}
+                    <mat-icon>help</mat-icon>
                   </h2>
                 </div>
               </div>
