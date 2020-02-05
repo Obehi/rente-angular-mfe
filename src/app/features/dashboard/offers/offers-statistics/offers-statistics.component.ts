@@ -70,9 +70,9 @@ export class OffersStatisticsComponent {
       if (this.hasOthersBankData) {
         this.allBanksEffRateOptions = this.ChartOptions();
         this.allBanksEffRateOptions.series[0].data = [
+          this.offersInfo.totalEffectiveRate || 0,
           this.offersInfo.bestPercentileEffectiveRateAllBanks || 0,
-          this.offersInfo.medianEffectiveRateAllBanks || 0,
-          this.offersInfo.totalEffectiveRate || 0
+          this.offersInfo.medianEffectiveRateAllBanks || 0
         ];
         this.allBankEffRateCharts = Highcharts.chart(
           this.allBanksChartChartId,
@@ -82,6 +82,7 @@ export class OffersStatisticsComponent {
       }
     }
   }
+
   onRbChange(event: MatTabChangeEvent) {
     if (event.index === 0) {
       this.showAllBanks = false;
@@ -89,6 +90,7 @@ export class OffersStatisticsComponent {
       this.showAllBanks = true;
     }
   }
+
   ChartOptions() {
     let opt = {
       chart: {
