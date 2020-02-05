@@ -77,6 +77,15 @@
       }
     }
   }
+  .obs {
+    padding: 10px 20px;
+    border-bottom: 1px solid $warning;
+    background-color: $lightwarning;
+    @media (min-width: 600px) {
+      border-left: 1px solid $warning;
+      border-right: 1px solid $warning;
+    }
+  }
   .rente-boxes {
     margin-bottom: 10px;
     .double {

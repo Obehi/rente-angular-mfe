@@ -7,6 +7,8 @@ $grey: #cdcdcd !default;
 $light: #e7e9eb !default;
 $lesslight: #c3c9ce !default;
 $text-color: #636669 !default;
+$warning: #ff8834 !default;
+$lightwarning: #fff4ed !default;
 $red: #f41515 !default;
 
 $primary: $green !default;
@@ -28,7 +30,9 @@ $theme-colors: map-merge(
     "dark": $dark,
     "white": $white,
     "black": $black,
-    "error": $error
+    "error": $error,
+    "warning": $warning,
+    "lightwarning": $lightwarning
   ),
   $theme-colors
 );
