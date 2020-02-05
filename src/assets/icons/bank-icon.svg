@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="17px" height="16px" viewBox="0 0 17 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
+    <title>bank-icon</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="dashboard-mobile" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="dashboard-offers" transform="translate(-52.000000, -1921.000000)" fill-rule="nonzero" fill="#000000">
+            <g id="Group-30" transform="translate(-1.000000, 1911.000000)">
+                <g id="Group-26" transform="translate(21.000000, 10.000000)">
+                    <g id="bank-icon" transform="translate(32.000000, 0.000000)">
+                        <polygon id="Shape" points="1.30760064 2.97563559 14.9635858 2.97563559 8.13559322 0.0169491525"></polygon>
+                        <polygon id="Shape" points="1.3559322 14.3654661 4.06779661 14.3654661 4.06779661 14.907839 1.3559322 14.907839"></polygon>
+                        <polygon id="Shape" points="1.89830508 5.6875 3.52542373 5.6875 3.52542373 13.8230932 1.89830508 13.8230932"></polygon>
+                        <polygon id="Shape" points="1.3559322 4.60275424 4.06779661 4.60275424 4.06779661 5.14512712 1.3559322 5.14512712"></polygon>
+                        <polygon id="Shape" points="6.77966102 14.3654661 9.49152542 14.3654661 9.49152542 14.907839 6.77966102 14.907839"></polygon>
+                        <polygon id="Shape" points="6.77966102 4.60275424 9.49152542 4.60275424 9.49152542 5.14512712 6.77966102 5.14512712"></polygon>
+                        <polygon id="Shape" points="7.3220339 5.6875 8.94915254 5.6875 8.94915254 13.8230932 7.3220339 13.8230932"></polygon>
+                        <polygon id="Shape" points="12.2033898 14.3654661 14.9152542 14.3654661 14.9152542 14.907839 12.2033898 14.907839"></polygon>
+                        <polygon id="Shape" points="12.2033898 4.60275424 14.9152542 4.60275424 14.9152542 5.14512712 12.2033898 5.14512712"></polygon>
+                        <polygon id="Shape" points="12.7457627 5.6875 14.3728814 5.6875 14.3728814 13.8230932 12.7457627 13.8230932"></polygon>
+                        <polygon id="Shape" points="0 15.4502119 16.2711864 15.4502119 16.2711864 15.9925847 0 15.9925847"></polygon>
+                        <polygon id="Shape" points="0 3.51800847 16.2711864 3.51800847 16.2711864 4.06038136 0 4.06038136"></polygon>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

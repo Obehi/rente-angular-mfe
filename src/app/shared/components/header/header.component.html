@@ -10,7 +10,7 @@
       <div class="desktop-menu desktop">
         <a [routerLink]="['/']" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:true}">Hjem</a>
         <a [routerLink]="['/dashboard/tilbud']" *ngIf="isLoggedIn" routerLinkActive="active-link">Min side</a>
-        <a href="https://blogg.renteradar.no/" routerLinkActive="router-link-active" target="_blank">Blogg</a>
+        <a href="/blogg" target="_self">Blogg</a>
         <a [routerLink]="['/kontakt']" routerLinkActive="active-link">Kontakt</a>
         <a [routerLink]="['/om-oss']" routerLinkActive="active-link">Om oss</a>
         <a [routerLink]="['/faq']" routerLinkActive="active-link">FAQ</a>

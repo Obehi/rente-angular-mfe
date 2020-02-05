@@ -1,9 +1,15 @@
-<div class="container"
-  [style.width.px]="dialogWidth">
-  <div class="title">{{title}}</div>
-  <div class="message">{{message}}</div>
-  <div class="buttons">
-      <button class="yes" (click)="onClick(true)">Ja</button>
-      <button class="no" (click)="onClick(false)">Nei</button>
+<div class="container" [style.width.px]="dialogWidth">
+  <div class="dialog">
+    <h3>{{ title }}</h3>
+    <p>{{ message }}</p>
+    <div class="split">
+      <rente-button color="primary" class="yes" (click)="onClick(true)"
+        >Ja</rente-button
+      >
+      <rente-button color="blue" class="no" (click)="onClick(false)"
+        >Nei</rente-button
+      >
+    </div>
   </div>
 </div>
+<div class="fade"></div>

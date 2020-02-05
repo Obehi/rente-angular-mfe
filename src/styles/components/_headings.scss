@@ -24,14 +24,14 @@ h2.primary {
 }
 h2 {
   font-size: 26px;
-  font-weight: 900;
+  font-weight: 500;
   line-height: 1.2;
   color: $black;
 }
 
 h3 {
   font-size: 18px;
-  line-height: 1.5;
+  line-height: 1.2;
   color: $black;
   font-weight: 500;
 }
@@ -47,6 +47,9 @@ p {
   line-height: 1.5;
   color: $black;
   font-weight: 300;
+}
+p.small {
+  font-size: 12px;
 }
 a {
   font-weight: 300;

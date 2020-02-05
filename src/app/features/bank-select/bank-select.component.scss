@@ -1,14 +1,18 @@
-@import '../../../styles/theme/_colors.scss';
+@import "../../../styles/theme/_colors.scss";
 
-.bank-select {
-  h2 {
-    color: $dark;
-    font-size: 30px;
-    letter-spacing: 0.5px;
-    line-height: 36px;
-    margin: 67px 0 40px;
+.banks {
+  max-width: 600px;
+  margin: auto;
+  h3 {
+    text-align: center;
+    margin-bottom: 20px;
   }
-
+  .banks-inner {
+    padding: 20px;
+    border: 1px solid $light;
+  }
+}
+.bank-select {
   img {
     border: 4px solid $white;
     box-sizing: border-box;
@@ -19,14 +23,13 @@
     border-radius: 20px;
   }
 
-  @media (max-width:800px) {
+  @media (max-width: 800px) {
     img:hover {
       border: none;
     }
   }
 
   .link {
-
     &:hover {
       a {
         border: 4px solid $primary;
@@ -64,8 +67,8 @@
   }
 
   .p {
-    @media (max-width:991px) {
-      margin:0;
+    @media (max-width: 991px) {
+      margin: 0;
       margin-bottom: 10px;
     }
   }

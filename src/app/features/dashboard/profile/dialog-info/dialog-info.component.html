@@ -1,0 +1,63 @@
+<h4>{{ data }}</h4>
+
+<rente-button cdkFocusInitial color="primary" (click)="onClose()">
+  Ok
+</rente-button>
+
+<!-- <div mat-dialog-content>
+  <div class="modal-body text-left">
+    <div *ngIf="data.bank">
+      <b>Leverandør: </b><span>{{ data.bankName }}</span>
+    </div>
+    <div>
+      <b>Produktnavn: </b><span>{{ data.productName }}</span>
+    </div>
+    <div>
+      <b>Nominell rente: </b
+      ><span>{{ data.nominalRate | number: "1.2-2" }}%</span>
+    </div>
+    <div>
+      <b>Effektiv rente: </b
+      ><span>{{ data.effectiveRate | number: "1.2-2" }}%</span>
+    </div>
+    <div>
+      <b>Termingebyr: </b><span>{{ data.monthlyFee }},-</span>
+    </div>
+    <div>
+      <b>Markedsområde: </b><span>{{ data.marketArea }}</span>
+    </div>
+    <div>
+      <b>Krav om annet produkt: </b
+      ><span>{{ data.requiredProductPackage == null ? "Nei" : "Ja" }}</span>
+    </div>
+    <div *ngIf="data.requiredProductPackage != null">
+      <b>Produktpakke: </b><span>{{ data.requiredProductPackage }}</span>
+    </div>
+    <div>
+      <b>Forutsetter medlemskap: </b
+      ><span>{{ data.requiredMembership == null ? "Nei" : "Ja" }}</span>
+    </div>
+    <div *ngIf="data.requiredMembership != null">
+      <b>Medlemskap: </b><span>{{ data.requiredMembership }}</span>
+    </div>
+    <div>
+      <b>Maksimal belåningsgrad: </b><span>{{ data.maxLTV }}%</span>
+    </div>
+    <div>
+      <b>Maksimal løpetid: </b><span>{{ data.maxLoanPeriod }} år</span>
+    </div>
+    <div>
+      <b>Maksimal avdragsfrihet: </b
+      ><span>{{ data.maxInstallmentFreePeriod }} år</span>
+    </div>
+    <div>
+      <b>Etableringsgebyr: </b><span>{{ data.establishmentFee }},-</span>
+    </div>
+    <div>
+      <b>Depotgebyr: </b><span>{{ data.depotFee }},-</span>
+    </div>
+    <div>
+      <b>Forbehold: </b><span>{{ data.otherConditions }}</span>
+    </div>
+  </div>
+</div> -->

@@ -1,4 +1,4 @@
-@import '../../../../../styles/theme/_colors.scss';
+@import "../../../../../styles/theme/_colors.scss";
 
 .provided-container {
   display: flex;
@@ -6,7 +6,17 @@
   justify-content: flex-end;
   font-size: 12px;
 
-  @media (max-width:750px) {
+  @media (max-width: 750px) {
     justify-content: center;
   }
+}
+
+.chart-title {
+  padding: 20px 0;
+  .small {
+    margin-bottom: 5px;
+  }
+}
+a {
+  color: $primary;
 }

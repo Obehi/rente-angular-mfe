@@ -1,9 +1,12 @@
 <div class="front-container">
-  <div class="intro"
-    [style.margin-bottom.px]="isMobile ? 20 : 80">
-    <h1 [style.margin-bottom.px]="isMobile ? 20 : 40"
-      >Få den beste <span>boliglånsrenten</span></h1>
-    <h4>Sammenlign boliglånet ditt mot markedets beste tilbud - kjapt, enkelt og gratis!</h4>
+  <div class="intro" [style.margin-bottom.px]="isMobile ? 20 : 80">
+    <h1 [style.margin-bottom.px]="isMobile ? 20 : 40">
+      Få den beste <span>boliglånsrenten</span>
+    </h1>
+    <h4>
+      Sammenlign boliglånet ditt mot markedets beste tilbud - kjapt, enkelt og
+      gratis!
+    </h4>
   </div>
   <h3>Start med å velge banken du har lån i:</h3>
   <div class="bank-buttons">
@@ -11,6 +14,7 @@
       <img
         src="../../../assets/img/banks-logo/svg/sparebank1.svg"
         alt="Sparebank1 logo"
+        class="sparebank1"
       />
     </rente-button>
     <rente-button color="blue" [routerLink]="'/autentisering/bank/nordea'">
@@ -21,10 +25,7 @@
       />
     </rente-button>
     <rente-button color="blue" [routerLink]="'/autentisering/bank/dnb'">
-      <img
-        src="../../../assets/img/banks-logo/svg/dnb.svg"
-        alt="DNB logo"
-      />
+      <img src="../../../assets/img/banks-logo/svg/dnb.svg" alt="DNB logo" />
     </rente-button>
     <rente-button color="blue" [routerLink]="'/velgbank'">
       <p>Annen bank</p>
@@ -39,7 +40,10 @@
       />
     </a>
     <a target="_blank" href="https://virdi.no/">
-      <img src="../../../assets/img/banks-logo/svg/virdi.svg" alt="Virdi logo" />
+      <img
+        src="../../../assets/img/banks-logo/svg/virdi.svg"
+        alt="Virdi logo"
+      />
     </a>
   </div>
 
@@ -151,28 +155,57 @@
           <div class="name">Stine Kischel, 30 år, Ås</div>
         </div>
         <div class="sitatboks">
-          <div class="quote">Jeg ble overrasket over at det var lett å spare 5000 bare ved å klikke på pruteknappen. Anbefaler alle å teste Renteradar.no</div>
-          <div class="bilde" style="background-image: url('../../../assets/img/sitat4.jpg')"></div>
+          <div class="quote">
+            Jeg ble overrasket over at det var lett å spare 5000 bare ved å
+            klikke på pruteknappen. Anbefaler alle å teste Renteradar.no
+          </div>
+          <div
+            class="bilde"
+            style="background-image: url('../../../assets/img/sitat4.jpg')"
+          ></div>
           <div class="name">Susanne, 30 år, Oslo</div>
         </div>
         <div class="sitatboks">
-          <div class="quote" style="height: 120px;">Jeg trodde jeg hadde full kontroll på boliglånsrenten vår, men det hadde jeg ikke.</div>
-          <div class="quote" style="height: 118px;">Vi sparer 16 000 i året takket være Renteradar.no</div>
+          <div class="quote" style="height: 120px;">
+            Jeg trodde jeg hadde full kontroll på boliglånsrenten vår, men det
+            hadde jeg ikke.
+          </div>
+          <div class="quote" style="height: 118px;">
+            Vi sparer 16 000 i året takket være Renteradar.no
+          </div>
           <div class="name">Kristian, 31 år, Oslo</div>
         </div>
         <div class="sitatboks">
-          <div class="quote">Jeg er superglad jeg brukte Renteradar.no og anbefaler alle å bruke Renteradar.no for alt den er verdt!</div>
-          <div class="bilde" style="background-image: url('../../../assets/img/sitat2.jpg')"></div>
+          <div class="quote">
+            Jeg er superglad jeg brukte Renteradar.no og anbefaler alle å bruke
+            Renteradar.no for alt den er verdt!
+          </div>
+          <div
+            class="bilde"
+            style="background-image: url('../../../assets/img/sitat2.jpg')"
+          ></div>
           <div class="name">Silje Martinsen, 25 år, Hamar</div>
         </div>
         <div class="sitatboks">
-          <div class="quote">Det ble bedre rente! Testet Renteradar.no og fikk satt ned renten 0,20%</div>
-          <div class="bilde" style="background-image: url('../../../assets/img/sitat3.jpg')"></div>
+          <div class="quote">
+            Det ble bedre rente! Testet Renteradar.no og fikk satt ned renten
+            0,20%
+          </div>
+          <div
+            class="bilde"
+            style="background-image: url('../../../assets/img/sitat3.jpg')"
+          ></div>
           <div class="name">Morten, 37 år, Kongsvinger</div>
         </div>
         <div class="sitatboks">
-          <div class="quote">Fikk akkurat beskjed fra banken at jeg fikk renta ned fra 2,74% til nominell rente på 2,59%! Superfornøyd!</div>
-          <div class="bilde" style="background-image: url('../../../assets/img/sitat1.jpg')"></div>
+          <div class="quote">
+            Fikk akkurat beskjed fra banken at jeg fikk renta ned fra 2,74% til
+            nominell rente på 2,59%! Superfornøyd!
+          </div>
+          <div
+            class="bilde"
+            style="background-image: url('../../../assets/img/sitat1.jpg')"
+          ></div>
           <div class="name">Johanna, 26, Tromsø</div>
         </div>
       </div>

@@ -28,8 +28,15 @@ h3 {
   margin: auto;
   margin-bottom: 40px;
   max-width: 600px;
+
   img {
-    height: 28px;
+    min-width: 60px;
+    max-width: 80px;
+    min-height: 20px;
+    height: auto;
+  }
+  img.sparebank1 {
+    max-width: 90px;
   }
 }
 .data-logos {
@@ -93,18 +100,17 @@ h3 {
     -webkit-appearance: none;
   }
   &::-webkit-scrollbar:horizontal {
-      height: 11px;
+    height: 11px;
   }
   &::-webkit-scrollbar-thumb {
-      border-radius: 8px;
-      border: 2px solid white;
-      background-color: rgba(0, 0, 0, .5);
+    border-radius: 8px;
+    border: 2px solid white;
+    background-color: rgba(0, 0, 0, 0.5);
   }
   &::-webkit-scrollbar-track {
-      background-color: #fff;
-      border-radius: 8px;
+    background-color: #fff;
+    border-radius: 8px;
   }
-
 }
 
 .articles {

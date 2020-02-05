@@ -1,68 +1,56 @@
-@import '../../../styles/theme/_colors.scss';
+@import "../../../styles/theme/_colors.scss";
 
-.dashboard {
-  margin-top: 63px;
-  @media (max-width:991px) {
-    margin-top: 30px;
-  }
-  .mat-tab-links {
-    border: 2px solid $primary;
-    border-radius: 8px;
-    height: 57px;
+.dash-tabs {
+  position: fixed;
+  margin: auto;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 55px;
+  width: 100%;
+  max-width: 1010px;
+  z-index: 100;
+  background-color: white;
+  border-top: 1px solid $light;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .dash-tab {
+    text-align: center;
+    width: 25%;
+    display: block;
+    border: none;
+    height: 100%;
+    .mat-tab-link-container {
+      height: 100%;
+    }
+    .mat-tab-header-pagination {
+      display: none;
+    }
+    .mat-tab-label-active p {
+      color: $green !important;
+    }
+    .mat-tab-links {
+      display: block;
+      transform: unset !important;
+      height: 100%;
 
-    .mat-tab-link {
-      border-right: 2px solid $primary;
-      opacity: 1;
-      color: $primary;
-      font-size: 16px;
-      font-weight: bold;
-      letter-spacing: 0.27px;
-      line-height: 20px;
-      height: 57px;
-
-      &.mat-tab-label-active {
-        color: $white;
-      }
-
-      &.last {
-        border-right: 0px;
+      .mat-tab-link {
+        opacity: 1;
+        width: 100%;
+        height: 100% !important;
+        padding: 0;
+        text-decoration: none;
       }
     }
-
-    img {
+    .mat-ink-bar {
       display: none;
     }
   }
-
-  mat-ink-bar {
-    height: 100%;
-    background-color: $primary !important;
-    z-index: -1;
-  }
-
-  .mobile {
-    .mat-tab-links {
-      .mat-tab-link {
-        flex-direction: column;
-        min-width: auto;
-        padding: 0;
-        img {
-          display: block;
-        }
-      }
-    }
-  }
-
-}
-
-@media (max-width:750px) {
-
-  .dashboard {
-    margin-top: 20px;
-  }
-
-  .dashboard .mat-tab-links .mat-tab-link {
-    font-size: 11px;
-    letter-spacing: 0.18px;
+  @media (min-width: 600px) {
+    top: 60px;
+    bottom: unset;
+    background-color: $light;
+    border-bottom: 1px solid $lesslight;
   }
 }

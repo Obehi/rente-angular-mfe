@@ -1,39 +1,33 @@
 @import "../../../../../styles/theme/_colors.scss";
 
 .container {
-  background-color: #dddddd;
-  border-radius: 30px;
-  .title {
-    width: 100%;
-    padding: 30px;
-    font-size: 22px;
-    text-align: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 99999;
+  text-align: center;
+
+  .dialog {
+    background-color: white;
+    position: relative;
+    top: 80px;
+    padding: 40px;
   }
-  .message {
-    width: 100%;
-    padding: 20px;
-    font-size: 18px;
-    text-align: center;
-    font-weight: 300;
+  h3 {
+    margin-bottom: 20px;
   }
-  .buttons {
-    padding: 30px;
-    width: 100%;
-    text-align: center;
-    button {
-      width: 100px;
-      display: inline-block;
-      margin: 0 30px;
-      padding: 20px 30px;
-      border-radius: 10px;
-      outline: none;
-      color: white;
-    }
-    .yes {
-      background-color: $green;
-    }
-    .no {
-      background-color: #888888;
-    }
+  p {
+    margin-bottom: 20px;
   }
+}
+.fade {
+  height: 100%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(17, 38, 57, 0.2) !important;
+  position: fixed;
+  z-index: 99998;
 }

@@ -1,4 +1,447 @@
+<div class="loading" *ngIf="isLoading && !errorMessage">
+  <mat-spinner [diameter]="48" [strokeWidth]="4"></mat-spinner>
+</div>
+
 <div
+  class="offers"
+  *ngIf="offersInfo?.resultType === offersResultType.OFFERS_PRESENT"
+>
+  <!-- Mobile Tips -->
+  <div class="mobile">
+    <div
+      class="tipsAccordion"
+      (click)="isShowTips = !isShowTips"
+      *ngIf="tips.length > 0"
+    >
+      <p>
+        <mat-icon *ngIf="!isShowTips">expand_more</mat-icon>
+        <mat-icon *ngIf="isShowTips">expand_less</mat-icon>
+        <span class="nr">{{ tips.length }}</span> tips
+      </p>
+    </div>
+    <div
+      class="tips"
+      style="border-bottom: none;"
+      *ngIf="tips.length > 0 && !isShowTips"
+    ></div>
+    <div class="tips" *ngIf="isShowTips && tips.length > 0">
+      <div *ngFor="let tip of tips; let i = index">
+        <div
+          *ngIf="!tip.external"
+          routerLink="{{ tip.buttonLink }}"
+          class="tip"
+        >
+          <p>
+            {{ tip.text }}
+          </p>
+
+          <mat-icon *ngIf="tip.buttonLink !== './'">chevron_right</mat-icon>
+        </div>
+
+        <a
+          *ngIf="tip.external"
+          href="{{ tip.buttonLink }}"
+          target="_blank"
+          class="tip"
+        >
+          <p>
+            {{ tip.text }}
+          </p>
+
+          <mat-icon>chevron_right</mat-icon>
+        </a>
+      </div>
+    </div>
+  </div>
+  <!-- Mobile Tips -->
+  <div class="split-sections">
+    <div class="split-section">
+      <div class="barometer">
+        <h3>Rentebarometer</h3>
+        <rente-rating
+          [rating]="
+            offersService.getRatingNumberFromLoanState(
+              offersInfo.offerSavingsType
+            )
+          "
+        ></rente-rating>
+        <div class="rente-status" [ngSwitch]="offersInfo.offerSavingsType">
+          <p *ngSwitchCase="offerSavingsType.NO_SAVINGS">
+            Renten din er <b>svært god</b>
+          </p>
+          <p
+            *ngSwitchCase="
+              offerSavingsType.SAVINGS_FIRST_YEAR_BETWEEN_0_AND_2000
+            "
+          >
+            Renten din er <b>god</b>, men ikke best
+          </p>
+          <p
+            *ngSwitchCase="
+              offerSavingsType.SAVINGS_FIRST_YEAR_BETWEEN_2000_AND_6000
+            "
+          >
+            Renten din er <b>OK</b>, med du kan få bedre
+          </p>
+          <p
+            *ngSwitchCase="
+              offerSavingsType.SAVINGS_FIRST_YEAR_BETWEEN_6000_AND_10000
+            "
+          >
+            Renten din er <b>høy</b> og du kan spare en del
+          </p>
+          <p *ngSwitchCase="offerSavingsType.SAVINGS_FIRST_YEAR_GREATER_10000">
+            Renten din er <b>svært høy</b> – du har mye å spare
+          </p>
+          <div *ngSwitchDefault>-</div>
+        </div>
+
+        <!-- Mobile boxes -->
+        <div class="rente-boxes mobile">
+          <div class="box positive">
+            <p>Du kan spare</p>
+            <h2 *ngIf="offersInfo.bestOfferTotalSaving > 0; else noBestOffer">
+              {{ offersInfo.bestOfferTotalSaving | abs | number }},-
+            </h2>
+            <ng-template #noBestOffer>
+              <h2>0,-</h2>
+            </ng-template>
+            <p>over lånets løpetid</p>
+          </div>
+          <div class="double">
+            <div class="box">
+              <p>Din eff. rente</p>
+              <h2>{{ offersInfo.totalEffectiveRate | number: "1.2-2" }}%</h2>
+            </div>
+            <div class="box positive" (click)="goToBestOffer()">
+              <p>
+                Beste tilbud <img src="../../../../assets/icons/go_to.svg" />
+              </p>
+              <h2>
+                {{ offersInfo.bestOfferEffectiveRate | number: "1.2-2" }}%
+              </h2>
+              <!-- <h2>{{ offersInfo.customerName | null }}</h2> -->
+            </div>
+          </div>
+          <div class="double">
+            <div class="box">
+              <p>Boligverdi</p>
+              <h2>
+                {{ offersInfo.propertyValue / 1000000 | number: "1.1-3" }}
+                mill.
+              </h2>
+              <p class="small">
+                Estimat levert av
+                <a href="https://virdi.no/" target="_blank">virdi.no</a>
+              </p>
+            </div>
+            <div class="box">
+              <p>Gjenværende lån</p>
+              <h2>
+                {{
+                  offersInfo.totalOutstandingDebt / 1000000 | number: "1.1-3"
+                }}
+                mill.
+              </h2>
+              <p class="small">
+                Belåningsgrad
+                {{
+                  (offersInfo.totalOutstandingDebt / offersInfo.propertyValue) *
+                    100 | number: "1.1-1"
+                }}%
+              </p>
+            </div>
+          </div>
+
+          <rente-button
+            [disabled]="
+              changeBankLoading ||
+              offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS
+            "
+            [isLoading]="changeBankLoading"
+            color="primary"
+            type="raised"
+            (click)="openChangeBankDialog(offersInfo.offers[0])"
+            >Be banken matche tilbud</rente-button
+          >
+        </div>
+        <!-- Mobile boxes -->
+      </div>
+      <div class="desktop" style="margin-bottom: 40px;">
+        <div
+          class="tipsAccordion clickable"
+          (click)="isShowTips = !isShowTips"
+          *ngIf="tips.length > 0"
+        >
+          <p>
+            <mat-icon *ngIf="!isShowTips">expand_more</mat-icon>
+            <mat-icon *ngIf="isShowTips">expand_less</mat-icon>
+            <span class="nr">{{ tips.length }}</span> tips
+          </p>
+        </div>
+        <div
+          class="tips"
+          style="border-bottom: none;"
+          *ngIf="tips.length > 0 && !isShowTips"
+        ></div>
+        <div class="tips" *ngIf="isShowTips && tips.length > 0">
+          <div
+            *ngFor="let tip of tips; let i = index"
+            [ngClass]="tip.buttonLink === './' ? '' : 'clickable'"
+          >
+            <div
+              *ngIf="!tip.external"
+              routerLink="{{ tip.buttonLink }}"
+              class="tip"
+            >
+              <p>
+                {{ tip.text }}
+              </p>
+
+              <mat-icon *ngIf="tip.buttonLink !== './'">chevron_right</mat-icon>
+            </div>
+
+            <a
+              *ngIf="tip.external"
+              href="{{ tip.buttonLink }}"
+              target="_blank"
+              class="tip"
+            >
+              <p>
+                {{ tip.text }}
+              </p>
+
+              <mat-icon>chevron_right</mat-icon>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="compared">
+        <rente-offers-statistics [offersInfo]="offersInfo">
+        </rente-offers-statistics>
+      </div>
+    </div>
+    <div class="split-section">
+      <!-- Desktop boxes -->
+      <div class="rente-boxes desktop">
+        <div class="box positive">
+          <p>Du kan spare</p>
+          <h2 *ngIf="offersInfo.bestOfferTotalSaving > 0; else noBestOffer">
+            {{ offersInfo.bestOfferTotalSaving | abs | number }},-
+          </h2>
+          <ng-template #noBestOffer>
+            <h2>0,-</h2>
+          </ng-template>
+          <p>over lånets løpetid</p>
+        </div>
+        <div class="double">
+          <div class="box">
+            <p>Din eff. rente</p>
+            <h2>{{ offersInfo.totalEffectiveRate | number: "1.2-2" }}%</h2>
+          </div>
+          <div class="box positive clickable" (click)="goToBestOffer()">
+            <p>Beste tilbud <img src="../../../../assets/icons/go_to.svg" /></p>
+            <h2>{{ offersInfo.bestOfferEffectiveRate | number: "1.2-2" }}%</h2>
+            <!-- <h2>{{ offersInfo.customerName | null }}</h2> -->
+          </div>
+        </div>
+        <div class="double">
+          <div class="box">
+            <p>Boligverdi</p>
+            <h2>
+              {{ offersInfo.propertyValue / 1000000 | number: "1.1-3" }}
+              mill.
+            </h2>
+            <p class="small">
+              Estimat levert av
+              <a href="https://virdi.no/" target="_blank">virdi.no</a>
+            </p>
+          </div>
+          <div class="box">
+            <p>Gjenværende lån</p>
+            <h2>
+              {{ offersInfo.totalOutstandingDebt / 1000000 | number: "1.1-3" }}
+              mill.
+            </h2>
+            <p class="small">
+              Belåningsgrad
+              {{
+                (offersInfo.totalOutstandingDebt / offersInfo.propertyValue) *
+                  100 | number: "1.1-1"
+              }}%
+            </p>
+          </div>
+        </div>
+
+        <rente-button
+          [disabled]="
+            changeBankLoading ||
+            offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS
+          "
+          [isLoading]="changeBankLoading"
+          color="primary"
+          type="raised"
+          (click)="openChangeBankDialog(offersInfo.offers[0])"
+          >Be banken matche tilbud</rente-button
+        >
+      </div>
+      <!-- Desktop boxes -->
+    </div>
+  </div>
+
+  <div class="the-offers">
+    <h3 style="margin-bottom: 20px;">
+      {{ offersInfo.offers.length }} bedre tilbud
+    </h3>
+    <div class="offers-grid">
+      <ng-container *ngIf="offersInfo">
+        <div
+          *ngFor="let offer of offersInfo.offers; let i = index"
+          class="the-offer"
+        >
+          <div class="the-offer-header">
+            <div
+              class="logo"
+              [ngStyle]="{
+                'background-image': 'url(' + banksMap[offer.bank].img + ')'
+              }"
+            >
+              <div class="nr">
+                <p>{{ i + 1 }}</p>
+              </div>
+            </div>
+            <div class="offer-product">
+              <a [href]="offer.bankUrl" target="_blank"
+                >{{ offer.bankName }} <mat-icon>open_in_new</mat-icon></a
+              >
+              <h3 (click)="openOfferDialog(offer)" class="clickable">
+                {{ offer.productName }}<mat-icon>help</mat-icon>
+              </h3>
+            </div>
+          </div>
+          <div class="the-offer-body">
+            <div class="small-header"><p>Rentebesparelse</p></div>
+            <div class="split">
+              <div class="offer-inner save">
+                <h2 *ngIf="offer.totalSavings > 0; else noTotalSavings">
+                  {{ offer.totalSavings | abs | number }},-
+                </h2>
+                <ng-template #noTotalSavings>
+                  <h2>0,-</h2>
+                </ng-template>
+                <p>over lånets løpetid</p>
+              </div>
+              <div class="offer-inner save">
+                <h2 *ngIf="offer.savingsFirstYear > 0; else noTotalSavings">
+                  {{ offer.savingsFirstYear | abs | number }},-
+                </h2>
+                <ng-template #noSavingsFirstYear>
+                  <h2>0,-</h2>
+                </ng-template>
+                <p>første år</p>
+              </div>
+            </div>
+            <div class="split">
+              <div class="offer-info">
+                <div class="small-header">
+                  <p>Effektiv rente</p>
+                </div>
+                <div class="offer-inner">
+                  <h2>{{ offer.effectiveRate | number: "1.2-2" }}%</h2>
+                </div>
+              </div>
+              <div class="offer-info">
+                <div class="small-header">
+                  <p>Krever tilleggsprodukt</p>
+                </div>
+                <div class="offer-inner">
+                  <h2>
+                    {{ offer.requiredProductPackage == null ? "Nei" : "Ja" }}
+                  </h2>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="double buttons">
+            <div class="full-width">
+              <rente-button
+                [disabled]="
+                  changeBankLoading ||
+                  offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS
+                "
+                [isLoading]="changeBankLoading"
+                color="primary"
+                type="raised"
+                (click)="openChangeBankDialog(offersInfo.offers[i])"
+                >Match tilbud</rente-button
+              >
+            </div>
+            <div class="full-width">
+              <rente-button
+                [disabled]="true"
+                [isLoading]="changeBankLoading"
+                color="primary"
+                type="raised"
+                (click)="openChangeBankDialog(offersInfo.offers[i])"
+                >Start bytte</rente-button
+              >
+              <p class="small">(Kommer snart!)</p>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>
+<div class="problems">
+  <div
+    class="title"
+    *ngIf="
+      offersInfo?.resultType === offersResultType.NO_OFFERS ||
+      offersInfo?.resultType === offersResultType.LTV_TOO_HIGH_85
+    "
+  >
+    <h3>
+      Størrelsen på lånet ditt er for stor i forhold til boligverdi (>85%).
+    </h3>
+    <p>
+      Kontroller og endre boligverdien din
+      <a [routerLink]="['/dashboard/bolig']">her i boligfanen</a>
+    </p>
+  </div>
+  <div
+    class="title"
+    *ngIf="
+      offersInfo?.resultType === offersResultType.LTV_CREDIT_LINE_TOO_HIGH_60
+    "
+  >
+    <h3>
+      Rammelån/boligkreditt er kun tilgjengelig for lavere belåningsgrad enn
+      60%.
+    </h3>
+    <p>
+      Din belåningsgrad er høyere enn dette, vennligst endre din belåningsgrad
+      i<a [routerLink]="['/dashboard/bolig']"> boligfanen</a>
+    </p>
+  </div>
+  <div class="title" *ngIf="!offersInfo && !isLoading && !errorMessage">
+    <h3>Ingen bedre tilbud enda...</h3>
+  </div>
+
+  <div class="title" *ngIf="errorMessage">
+    <h3>{{ errorMessage }}</h3>
+  </div>
+</div>
+
+<div *ngIf="effRateLoweredDialogVisible">
+  <rente-dialog
+    [title]="'Du har lavere rente enn forrige gang!'"
+    [message]="'Brukte du prutefunksjonen vår for å få bedre rente?'"
+    (action)="onDialogAction($event)"
+  >
+  </rente-dialog>
+</div>
+<!-- <div
   class="offers"
   [class.blured]="isDialogVisble"
   *ngIf="offersInfo?.resultType === offersResultType.OFFERS_PRESENT"
@@ -51,7 +494,7 @@
           </h4>
           <div *ngSwitchDefault>-</div>
         </div>
-        <!-- <h3>Du har ikke noe å spare på å bytte bank</h3> -->
+
         <p
           class="text-border"
           *ngIf="
@@ -210,7 +653,10 @@
               <div class="col-12 col-sm-4 mb-2 mb-lg-0">
                 <img
                   class="mw-120"
-                  [src]="getBankLogo(offer.bank)"
+                  *ngIf="banksMap[offer.bank].img"
+                  [src]="banksMap[offer.bank].img"
+                  alt=""
+                  title="banksMap[offer.bank].label"
                 />
               </div>
               <div class="col-12 col-sm-8">
@@ -307,7 +753,7 @@
   </div>
 
   <ng-template #smallScreenOffers>
-    <h3>Din rente:</h3>
+    <h3>Rentebarometer</h3>
     <div class="row">
       <div class="col-12 col-lg-5">
         <rente-rating
@@ -353,7 +799,7 @@
           </h4>
           <div *ngSwitchDefault>-</div>
         </div>
-        <!-- <h3>Du har ikke noe å spare på å bytte bank</h3> -->
+
       </div>
       <div class="col-12 text-center">
         <div class="row mb-2">
@@ -490,14 +936,18 @@
     <ng-container *ngIf="offersInfo">
       <div
         class="bg-wrap offers-bank mb-5"
-        *ngFor="let offer of offersInfo.offers; let i = index">
+        *ngFor="let offer of offersInfo.offers; let i = index"
+      >
         <div class="row">
           <div class="col-12">
             <div class="row">
               <div class="col-5 col-lg-3 col-lg-2 mb-2">
                 <img
                   class="mw-100"
-                  [src]="getBankLogo(offer.bank)"
+                  *ngIf="banksMap[offer.bank].img"
+                  [src]="banksMap[offer.bank].img"
+                  alt=""
+                  title="banksMap[offer.bank].label"
                 />
               </div>
               <div class="col-7 col-lg-9 col-lg-10 px-0">
@@ -598,7 +1048,11 @@
 
 <div
   class="my-5 row justify-content-center"
-  *ngIf="offersInfo?.resultType === offersResultType.NO_OFFERS || offersInfo?.resultType === offersResultType.LTV_TOO_HIGH_85">
+  *ngIf="
+    offersInfo?.resultType === offersResultType.NO_OFFERS ||
+    offersInfo?.resultType === offersResultType.LTV_TOO_HIGH_85
+  "
+>
   <div class="my-5 row justify-content-center">
     <div class="col-lg-6 col-lg-8 col-12">
       <div class="bg-wrap">
@@ -614,7 +1068,10 @@
 
 <div
   class="my-5 row justify-content-center"
-  *ngIf="offersInfo?.resultType === offersResultType.LTV_CREDIT_LINE_TOO_HIGH_60">
+  *ngIf="
+    offersInfo?.resultType === offersResultType.LTV_CREDIT_LINE_TOO_HIGH_60
+  "
+>
   <div class="my-5 row justify-content-center">
     <div class="col-lg-6 col-lg-8 col-12">
       <div class="bg-wrap">
@@ -629,8 +1086,9 @@
 </div>
 
 <div
-  class="d-flex justify-content-center align-items-center mt-4"
-  *ngIf="isLoading && !errorMessage">
+  class="loading"
+  *ngIf="isLoading && !errorMessage"
+>
   <mat-spinner [diameter]="48" [strokeWidth]="4"></mat-spinner>
 </div>
 
@@ -644,10 +1102,15 @@
 
 <div
   *ngIf="effRateLoweredDialogVisible"
-  class="d-flex justify-content-center centered-popup">
+  class="d-flex justify-content-center centered-popup"
+>
   <rente-dialog
     [title]="'Hei! Du har lavere rente enn forrige gang'"
-    [message]="'Vi ser du har fått lavere rente siden forrige gang du brukte Renteradar.no. Brukte du prutefunksjonen i Renteradar.no til å få bedre rente?'"
-    (action)="onDialogAction($event)">
+    [message]="
+      'Vi ser du har fått lavere rente siden forrige gang du brukte Renteradar.no. Brukte du prutefunksjonen i Renteradar.no til å få bedre rente?'
+    "
+    (action)="onDialogAction($event)"
+  >
   </rente-dialog>
 </div>
+ -->

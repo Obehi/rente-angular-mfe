@@ -1,3 +1,4 @@
+@import "../theme/colors";
 .front-container {
   padding: 40px 20px;
   max-width: 1010px;
@@ -6,9 +7,24 @@
   min-height: calc(100vh - 60px);
 }
 
+.dashboard-content {
+  background-color: white;
+  max-width: 1010px;
+  margin: auto;
+  min-height: calc(100vh - 60px);
+  margin-top: 0;
+  padding-bottom: 80px;
+}
+
 @media (min-width: 600px) {
   .front-container {
     padding: 80px;
+  }
+  .dashboard-content {
+    margin-top: 55px;
+    border-left: 1px solid $lesslight;
+    border-right: 1px solid $lesslight;
+    border-bottom: 1px solid $lesslight;
   }
 }
 

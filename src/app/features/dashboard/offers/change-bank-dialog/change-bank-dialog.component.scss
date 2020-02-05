@@ -1,29 +1,18 @@
-@import '../../../../../styles/theme/_colors.scss';
+@import "../../../../../styles/theme/_colors.scss";
 
-@mixin text-style($size, $line-height) {
-  font-size: $size;
-  color: $black;
-  line-height: $line-height !important;
+p,
+b {
+  margin-bottom: 20px;
 }
-
+.small {
+  margin-bottom: 0px;
+}
 a {
-  color: $primary;
+  color: $green;
 }
-
-::ng-deep .mat-checkbox-layout {
-  white-space: normal !important;
-
-  .mat-checkbox-label {
-    @include text-style(10px, 15px);
-  }
-}
-
-.info-message{
-  @include text-style(13px, 15px);
-}
-
-.dialog-text {
-  @media (max-width:450px) {
-    max-height: 28vh;
-  }
+form {
+  padding: 0;
+  background: unset;
+  border: 0;
+  max-width: unset;
 }

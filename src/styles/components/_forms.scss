@@ -15,8 +15,8 @@ $form-group-margin-bottom: 1rem !default;
 form {
   margin: auto;
   max-width: 400px;
-  background-color: $light;
-  padding: 20px;
+  padding: 40px;
+  border: 1px solid $light;
 }
 
 .form-group {

@@ -1,5 +1,277 @@
 @import "../../../../styles/theme/_colors.scss";
 
+.problems {
+  padding: 40px 20px;
+  max-width: 1010px;
+  margin: auto;
+  background-color: white;
+}
+
+@media (min-width: 600px) {
+  .problems {
+    padding: 80px;
+  }
+}
+
+.title {
+  padding-bottom: 20px;
+  text-align: center;
+  h3 {
+    margin-bottom: 20px;
+  }
+  a {
+    color: $green;
+  }
+}
+.offers {
+  text-align: center;
+
+  .tipsAccordion {
+    cursor: pointer;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 60px;
+    padding: 6px 20px !important;
+    background-color: $lightgreen;
+    text-align: left;
+    border-bottom: 1px solid $green;
+    p {
+      font-size: 16px;
+      span {
+        background-color: $blue;
+        height: 19px;
+        border-radius: 100%;
+        color: white;
+        padding: 2px 6px;
+        font-size: 14px;
+        font-weight: 400;
+      }
+    }
+    mat-icon {
+      vertical-align: top;
+      margin-right: 5px;
+      color: $green;
+    }
+  }
+
+  .tips {
+    position: relative;
+    margin-top: 37px;
+    padding: 0 !important;
+    text-align: left;
+    border-bottom: 1px solid $green;
+    .tip {
+      padding: 10px 20px;
+      position: relative;
+      display: block;
+      text-decoration: none;
+      padding-right: 40px;
+      border-bottom: 1px solid $light;
+      mat-icon {
+        color: $green;
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+    }
+  }
+  .rente-boxes {
+    margin-bottom: 10px;
+    .double {
+      margin-bottom: 0;
+    }
+  }
+
+  .split {
+    &:last-of-type {
+      border-bottom: 1px solid $lesslight;
+    }
+  }
+  a {
+    color: $green !important;
+  }
+
+  .barometer {
+    .rente-status {
+      margin-bottom: 20px;
+    }
+  }
+  .box {
+    padding: 20px 10px;
+    margin-bottom: 10px;
+    width: 100%;
+    background-color: $light;
+    &.positive {
+      background-color: $lightgreen;
+    }
+    p img {
+      position: relative;
+      top: 2px;
+      margin-left: 5px;
+      height: 16px;
+    }
+  }
+
+  .the-offers {
+    padding-left: 0;
+    padding-right: 0;
+    .split .offer-info:first-of-type {
+      border-right: 1px solid $lesslight;
+    }
+    .the-offer {
+      margin-bottom: 80px;
+      &:first-of-type
+        .split:last-of-type
+        .offer-info:first-of-type
+        .offer-inner {
+        background-color: $lightgreen;
+      }
+      .the-offer-header {
+        border-top: 1px solid $green;
+        background-color: $lightgreen;
+        padding: 10px;
+        text-align: left;
+        .logo {
+          width: 60px;
+          height: 60px;
+          background-position: center;
+          background-size: cover;
+          border-radius: 100%;
+          border: 1px solid $primary;
+          position: relative;
+          display: inline-block;
+          .nr {
+            text-align: center;
+            color: $primary;
+            border: 1px solid;
+            background-color: white;
+            position: absolute;
+            left: 0;
+            top: 0;
+            border-radius: 100%;
+            width: 20px;
+            height: 20px;
+            p {
+              font-weight: 500;
+              position: absolute;
+              left: 0;
+              right: 0;
+              margin: auto;
+              top: 50%;
+              transform: translateY(-50%);
+            }
+          }
+        }
+        .offer-product {
+          display: inline-block;
+          margin-left: 10px;
+          vertical-align: super;
+          a {
+            margin-bottom: 10px;
+            display: block;
+            color: $blue !important;
+            text-decoration: underline;
+          }
+          .mat-icon {
+            font-size: 18px;
+            margin-left: 5px;
+            vertical-align: middle;
+            color: $blue;
+          }
+        }
+      }
+      .the-offer-body {
+        .small-header {
+          background-color: $light;
+          padding: 4px 0;
+          border-top: 1px solid $lesslight;
+          border-bottom: 1px solid $lesslight;
+        }
+        .offer-inner {
+          padding: 15px 10px;
+        }
+        .save {
+          h3 {
+            color: $primary;
+          }
+        }
+      }
+    }
+  }
+}
+@media (max-width: 600px) {
+  .barometer {
+    padding: 20px 10px;
+    padding-bottom: 40px;
+    margin-bottom: 40px;
+    border-bottom: 1px solid $light;
+  }
+  .compared {
+    padding: 0px 10px;
+    padding-bottom: 40px;
+    margin-bottom: 40px;
+    border-bottom: 1px solid $light;
+  }
+}
+@media (min-width: 600px) {
+  /* .offers-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 80px;
+    margin-top: 40px;
+  } */
+  .barometer,
+  .compared {
+    text-align: left;
+  }
+
+  .offers {
+    .tipsAccordion {
+      position: relative;
+      top: 0;
+      border: 1px solid $green;
+      padding: 6px 10px !important;
+    }
+    .tips {
+      border: 1px solid $green;
+      border-top: 0px solid $green;
+      margin-top: 0px;
+    }
+  }
+  .offers .the-offers {
+    padding: 80px;
+    .the-offer {
+      .the-offer-header {
+        border: 1px solid $green;
+        border-bottom: none;
+      }
+      .the-offer-body {
+        border-left: 1px solid $lesslight;
+        border-right: 1px solid $lesslight;
+      }
+    }
+  }
+
+  .split-sections {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-bottom: 1px solid $light;
+
+    .split-section {
+      padding: 40px 40px 80px 40px;
+    }
+    .split-section:first-of-type {
+      border-right: 1px solid $light;
+    }
+    rente-button {
+      display: inline-block;
+      margin-top: 30px;
+    }
+  }
+}
+/*
 @mixin text-style($size, $line-height, $letter-spacing) {
   font-size: $size;
   color: $black;
@@ -107,3 +379,4 @@ a {
   opacity: 1;
   margin-top: 80px;
 }
+ */

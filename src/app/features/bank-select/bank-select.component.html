@@ -1,13 +1,62 @@
+<div class="front-container">
+  <div class="banks">
+    <h3>Hvilken bank har du boliglån i?</h3>
+    <div class="banks-inner">
+      <mat-form-field class="bank-list">
+        <input
+          matInput
+          type="text"
+          placeholder="Skriv for å søke i banken"
+          [(ngModel)]="searchStr"
+          (ngModelChange)="onFilterChanged()"
+        />
+        <button
+          *ngIf="searchStr"
+          mat-button
+          matSuffix
+          mat-icon-button
+          aria-label="Clear"
+          (click)="clear()"
+        >
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+      <mat-selection-list #banklist>
+        <button
+          *ngFor="let bank of banks"
+          mat-button
+          class="bank-button"
+          (click)="selectBank(bank)"
+        >
+          <div *ngIf="bank.icon; then hasIcon; else noIcon"></div>
+          <ng-template #hasIcon
+            ><img
+              class="bank-button-logo"
+              src="../../../assets/img/banks-logo/round/{{ bank.icon }}"
+          /></ng-template>
+          <ng-template #noIcon
+            ><img
+              class="bank-button-logo"
+              src="../../../assets/img/banks-logo/round/annen.png"
+          /></ng-template>
+          {{ bank.label }}
+        </button>
+      </mat-selection-list>
+    </div>
+  </div>
+</div>
+<!--
+
 <div class="mt-3">
   <div class="row justify-content-center">
     <div class="col text-center">
-      <h3>Hvilken bank har du boliglån i?</h3>
-      <!-- <p class="text-center mt-2">
+
+<p class="text-center mt-2">
         Klikk på din bank for å logge deg inn med BankID på mobil - og gi oss fullmakt til å hente dine rente og lånedata
       </p>
       <p class="text-center mb-2">
         Vi støtter <span class="font-weight-bold">kun BankID på Mobil, ikke med passord/kode.</span>
-      </p> -->
+      </p>
     </div>
   </div>
 
@@ -44,9 +93,9 @@
       </mat-selection-list>
     </div>
   </div>
+ -->
 
-
-  <!-- section class="masthead bank-select">
+<!-- section class="masthead bank-select">
     <div class="row justify-content-center text-center align-items-center mb-2 mb-lg-4 flex-wrap">
       <div class="col-6 col-lg-2">
         <a [routerLink]="['/autentisering/dnb']"
@@ -84,5 +133,4 @@
     </div>
   </section> -->
 
-
-</div>
+<!-- </div> -->

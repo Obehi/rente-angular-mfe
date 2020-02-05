@@ -3,6 +3,7 @@
 @import "./styles/theme/_colors.scss";
 // @import '~@ngx-share/button/themes/default/default-theme';
 // @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
 .ng-trigger-shakeAnimation {
   padding: 20px 0;
 }
@@ -24,14 +25,32 @@
   * {
     color: $primary !important;
   }
+  .odometer-digit {
+    &:last-of-type * {
+      transition: none !important;
+    }
+  }
 }
 .counter.black .odometer {
   * {
     color: $black !important;
   }
+  .odometer-digit {
+    &:nth-last-of-type(3) * {
+      transition: none !important;
+    }
+    &:nth-last-of-type(2) * {
+      transition: none !important;
+    }
+    &:last-of-type * {
+      transition: none !important;
+    }
+  }
 }
+
 .odometer {
   background: transparent !important;
+
   .odometer-digit {
     padding: 0 2px !important;
   }

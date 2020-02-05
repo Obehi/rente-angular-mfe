@@ -1,20 +1,21 @@
 @import "../../../../../styles/theme/_colors.scss";
 .button-wrapper {
-  display: block;
+  display: inline-block;
   text-align: center;
 }
 button.mat-button {
-  min-width: 150px;
+  min-width: 100px;
   border-radius: 100px;
   margin: auto;
   font-size: 16px;
-  font-weight: 300;
   line-height: 19px;
   height: 56px;
   border: none;
   outline: none;
   display: inline-block;
   opacity: 1;
+  padding: 0 20px;
+  font-weight: 500;
   p {
     color: white;
   }
@@ -22,10 +23,10 @@ button.mat-button {
     height: 20px;
   }
 }
-button.mat-button:hover {
+button.mat-button:hover:not([disabled]) {
   opacity: 0.8;
 }
-button.mat-button[disabled] {
+button[disabled] {
   opacity: 0.3;
 }
 
@@ -37,6 +38,7 @@ button.mat-primary {
 }
 button.mat-blue {
   background-color: $blue;
+  color: white;
   width: 100%;
 }
 .loading-icon {
