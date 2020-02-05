@@ -8,6 +8,9 @@
     <p *ngIf="isSB1Bank">
       Vi støtter kun BankID på Mobil, ikke kodebrikke eller engangskode appen.
     </p>
+    <p *ngIf="isSB1Bank" class="red">
+      TJENESTEN ER FOR ØYEBLIKKET NEDE FOR SPAREBANK 1
+    </p>
     <p *ngIf="!isSB1Bank">
       Vi støtter kun BankID på Mobil, ikke kodebrikke og passord.
     </p>
