@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, HostListener } from "@angular/core";
 import * as Highcharts from "highcharts";
 import { Offers } from "@shared/models/offers";
+import { MatTabChangeEvent } from "@angular/material";
 
 declare var require: any;
 const Boost = require("highcharts/modules/boost");
@@ -45,6 +46,7 @@ export class OffersStatisticsComponent {
   hasOthersBankData = true;
   clientBankChartId = "clientBankChartId";
   allBanksChartChartId = "allBanksChartChartId";
+  showAllBanks = false;
 
   get chartTitleMargin() {
     return window.innerWidth <= 991 ? 0 : -10;
@@ -53,7 +55,7 @@ export class OffersStatisticsComponent {
   ngAfterViewInit() {
     if (this.offersInfo) {
       if (this.hasClientBankData) {
-        this.clientBankEffRateOptions = this.getClientBankChartOptions();
+        this.clientBankEffRateOptions = this.ChartOptions();
         this.clientBankEffRateOptions.series[0].data = [
           this.offersInfo.totalEffectiveRate || 0,
           this.offersInfo.medianEffectiveRateYourBank || 0,
@@ -63,10 +65,10 @@ export class OffersStatisticsComponent {
           this.clientBankChartId,
           this.clientBankEffRateOptions
         );
-        this.clientBankEffRateChart.setSize(null, 200);
+        /* this.clientBankEffRateChart.setSize(null, 200); */
       }
       if (this.hasOthersBankData) {
-        this.allBanksEffRateOptions = this.getOtherBanksChartOptions();
+        this.allBanksEffRateOptions = this.ChartOptions();
         this.allBanksEffRateOptions.series[0].data = [
           this.offersInfo.bestPercentileEffectiveRateAllBanks || 0,
           this.offersInfo.medianEffectiveRateAllBanks || 0,
@@ -76,23 +78,30 @@ export class OffersStatisticsComponent {
           this.allBanksChartChartId,
           this.allBanksEffRateOptions
         );
-        this.allBankEffRateCharts.setSize(null, 200);
+        /* this.allBankEffRateCharts.setSize(null, 200); */
       }
     }
   }
-
-  getClientBankChartOptions() {
+  onRbChange(event: MatTabChangeEvent) {
+    if (event.index === 0) {
+      this.showAllBanks = false;
+    } else {
+      this.showAllBanks = true;
+    }
+  }
+  ChartOptions() {
     let opt = {
       chart: {
         type: "column",
         spacingLeft: 0,
-        spacingRight: 0
+        spacingRight: 0,
+        height: 200
       },
 
       title: {
         text: null, //'Din rente i forhold til andre i din bank:',
         align: "left",
-        margin: this.chartTitleMargin,
+
         style: {
           fontWeight: "bold"
         }
@@ -211,7 +220,7 @@ export class OffersStatisticsComponent {
           stacking: "normal",
           groupPadding: 0,
           colorByPoint: true,
-          colors: ["#1abc9c", "#7f7f7f", "#2d3e50"],
+          colors: ["#112639", "#E7E9EB", "#D1F2EB"],
           borderRadius: 4
         }
       },
@@ -220,18 +229,20 @@ export class OffersStatisticsComponent {
         {
           type: "column" as "column",
           name: "data",
-          color: "#18BC9C",
-          data: [], //[2.52, 2.65, 2.41],
+
+          data: [], //[2.21, 2.62, 2.43],
           dataLabels: {
             enabled: true,
             rotation: 0,
-            color: "#FFFFFF",
+
             align: "center",
+            verticalAlign: "bottom",
             format: "{point.y:.2f}%", // one decimal
-            y: 10, // 10 pixels down from the top
+            y: 0, // 10 pixels down from the top
             style: {
-              fontSize: "24px",
-              textOutline: false
+              fontSize: "26px",
+              textOutline: false,
+              color: "contrast"
             }
           }
         }

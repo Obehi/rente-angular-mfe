@@ -30,14 +30,14 @@
     </div>
     <div [class]="isStatMode ? 'hidden' : 'double'">
       <rente-input
-        type="text"
+        [type]="'tel'"
         [placeholder]="'Postnummer'"
         [(ngModel)]="address.zip"
       ></rente-input>
 
       <rente-input
         matInput
-        type="number"
+        [type]="'tel'"
         [placeholder]="'Størrelse på bolig'"
         [(ngModel)]="address.apartmentSize"
         matSuffix="kvm"
@@ -60,7 +60,7 @@
           <rente-input
             matInput
             class="automatic"
-            type="text"
+            [type]="'tel'"
             [ngModel]="address.estimatedPropertyValue | thousands"
             [disabled]="address.useManualPropertyValue"
             style="pointer-events: none; text-align: center !important;"
@@ -78,7 +78,7 @@
         <rente-input
           matInput
           [disabled]="!address.useManualPropertyValue"
-          type="text"
+          [type]="'tel'"
           [ngModel]="address.manualPropertyValue | thousands"
           style="text-align: center !important;"
           (keyup)="manualPropertyValueChanged($event)"

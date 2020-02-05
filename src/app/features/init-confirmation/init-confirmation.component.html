@@ -40,7 +40,7 @@
         <div class="withinfo">
           <div>
             <rente-input
-              [placeholder]="'Antall kvadratmeter'"
+              [placeholder]="'Størrelse på boligen din'"
               formControlName="apartmentSize"
               matSuffix="kvm"
               [errorStateMatcher]="
@@ -77,7 +77,7 @@
         <div class="withinfo">
           <div>
             <rente-input
-              [placeholder]="'Bruttoårsinntekt'"
+              [placeholder]="'Din brutto årsinntekt'"
               formControlName="income"
               matSuffix="kr"
               [errorStateMatcher]="
@@ -226,7 +226,7 @@
         <div class="mb-4">
           <mat-label>Størrelse på bolig (kvm):</mat-label>
           <rente-input
-            [placeholder]="'Antall kvadratmeter'"
+            [placeholder]="'Størrelse på boligen din'"
             formControlName="apartmentSize"
             [errorStateMatcher]="
               isErrorState(propertyForm.controls['apartmentSize'], propertyForm)
@@ -292,7 +292,7 @@
           <mat-label> Din/Husstandens brutto årsinntekt:</mat-label>
 
           <rente-input
-            [placeholder]="'Bruttoårsinntekt'"
+            [placeholder]="'Din brutto årsinntekt'"
             formControlName="income"
             [errorStateMatcher]="
               isErrorState(propertyForm.controls['income'], propertyForm)
