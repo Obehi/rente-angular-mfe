@@ -2,7 +2,13 @@
   <h3>Din rente i forhold til andre i din bank</h3>
   <div class="chart" id="clientBankChartId"></div>
 </div>
-<div *ngIf="hasOthersBankData">
+
+<div *ngIf="!hasClientBankData">
+  <h3>Din rente i forhold til andre i andre banker</h3>
+  <div class="chart" id="allBanksChartChartId"></div>
+</div>
+
+<div *ngIf="hasOthersBankData && hasClientBankData">
   <h3>Din rente i forhold til andre i:</h3>
   <mat-tab-group (selectedTabChange)="onRbChange($event)">
     <mat-tab label="din bank"> </mat-tab>

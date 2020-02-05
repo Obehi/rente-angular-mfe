@@ -4,7 +4,11 @@
 
 <div
   class="offers"
-  *ngIf="offersInfo?.resultType === offersResultType.OFFERS_PRESENT"
+  *ngIf="
+    offersInfo?.resultType === offersResultType.OFFERS_PRESENT ||
+    offersInfo?.resultType ===
+      offersResultType.OFFERS_PRESENT_LOAN_INCOMPLETE_INFO
+  "
 >
   <!-- Mobile Tips -->
   <div class="mobile">
@@ -52,7 +56,13 @@
         </a>
       </div>
     </div>
-    <div *ngIf="isIncompleteInfoLoan" class="obs">
+    <div
+      *ngIf="
+        offersInfo?.resultType ===
+        offersResultType.OFFERS_PRESENT_LOAN_INCOMPLETE_INFO
+      "
+      class="obs"
+    >
       <p>
         <b>OBS:</b> Vi får kun hentet din nominelle rente og lånebeløp. For
         utregninger har vi tatt utgangspunkt i en gjenværende løpetid på 20 år,
@@ -225,7 +235,13 @@
             </a>
           </div>
         </div>
-        <div *ngIf="isIncompleteInfoLoan" class="obs">
+        <div
+          *ngIf="
+            offersInfo?.resultType ===
+            offersResultType.OFFERS_PRESENT_LOAN_INCOMPLETE_INFO
+          "
+          class="obs"
+        >
           <p>
             <b>OBS:</b> Vi får kun hentet din nominelle rente og lånebeløp. For
             utregninger har vi tatt utgangspunkt i en gjenværende løpetid på 20
