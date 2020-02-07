@@ -11,6 +11,9 @@
     <p *ngIf="!isSB1Bank">
       Vi støtter kun BankID på Mobil, ikke kodebrikke og passord.
     </p>
+    <p *ngIf="isSB1Bank" class="red">
+      T<strong>JENESTEN ER FOR ØYEBLIKKET NEDE FOR SPAREBANK 1</strong>
+    </p>
     <p *ngIf="isEikaBank" class="red">
       OBS: Vi tester fortsatt løsningen for denne banken. <br />
       Gi gjerne beskjed hvis noe ikke fungerer optimalt.
