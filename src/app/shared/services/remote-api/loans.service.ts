@@ -109,6 +109,21 @@ export class LoansService {
     const url = `${API_URL_MAP.loan.base}/lower-rate/confirm`;
     return this.http.post(url, null);
   }
+
+  saveUserPreferences(dto:UserPreferencesDto):Observable<UserPreferencesDto> {
+    const url = `${API_URL_MAP.loan.base}/preferences`;
+    return this.http.post(url, dto);
+  }
+}
+
+export class UserPreferencesDto {
+  memberships:string[];
+  checkRateReminderType:string;
+  fetchCreditLinesOnly:boolean;
+  noAdditionalProductsRequired:boolean;
+  interestedInEnvironmentMortgages:boolean;
+  email:string;
+  income:string;
 }
 
 export class LoanStateDto {
