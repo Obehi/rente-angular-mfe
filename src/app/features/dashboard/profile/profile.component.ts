@@ -38,7 +38,7 @@ export class ProfileComponent implements OnInit {
   public addOnBlur = true;
   public separatorKeysCodes: number[] = [ENTER, COMMA];
   public membershipCtrl = new FormControl();
-  public filteredMemberships: Observable<string[]>;
+  public filteredMemberships: Observable<any[]>;
   public memberships: any = [];
   public showMemberships: boolean;
   public showPreferences: boolean;
@@ -196,34 +196,6 @@ export class ProfileComponent implements OnInit {
       this.isLoading = false;
       this.snackBar.openFailSnackBar('Oops, noe gikk galt', 1.2);
     });
-
-    /*
-    forkJoin([
-      this.userService.updateUserInfo(userData),
-      this.loansService.setUsersMemberships(memebershipsData)
-    ]).subscribe(
-      ([data]) => {
-        this.isLoading = false;
-        this.changesMade = false;
-        this.snackBar.openSuccessSnackBar('Endringene dine er lagret', 1.2);
-      },
-      err => {
-        this.isLoading = false;
-        this.snackBar.openFailSnackBar('Oops, noe gikk galt', 1.2);
-      }
-    );
-    this.loansService.updateLoanPreferences(this.preferencesForm.value).subscribe(
-        res => {
-          this.isLoading = false;
-          this.changesMade = false;
-          this.snackBar.openSuccessSnackBar('Endringene dine er lagret', 1.2);
-        },
-        err => {
-          this.isLoading = false;
-          this.snackBar.openFailSnackBar('Oops, noe gikk galt', 1.2);
-        }
-      );*/
-
   }
 
   // TODO: Move to service
