@@ -9,7 +9,7 @@
 
 <div [class]="showPriceDevelopment ? 'hidden' : ''">
   <div class="chart-title">
-    <p class="small">Din kvsadratmeterpris</p>
+    <p class="small">Din kvadratmeterpris:</p>
     <h3>{{ averageSqmPrice | thousands }} NOK</h3>
   </div>
   <p class="small">Boliger i {{ indexArea }}</p>
@@ -31,50 +31,7 @@
 <p class="small">
   Data levert av <a href="https://virdi.no/" target="_blank">virdi.no</a>
 </p>
-<!--
-<div class="row justify-content-center" *ngIf="!isLoading" [@shakeAnimation]>
-  <h3>Bolig statistikk</h3>
-</div>
 
-<div class="row">
-  <div
-    id="columnChartAddress{{ address.id }}"
-    class="col-12 col-lg-6 order-lg-1"
-  ></div>
-
-  <div
-    class="col-12 col-lg-6 order-lg-3"
-    *ngIf="!isLoading"
-    [@shakeAnimation]
-    style="padding: 0;"
-  >
-    <div class="text-left ml-3 mt-3">
-      Antall salg i/på {{ indexArea }} siste 6 mnder:
-      {{ openMarketSalesHalfYear }}
-    </div>
-  </div>
-
-  <div
-    id="lineChartAddress{{ address.id }}"
-    class="col-12 col-lg-6 order-lg-2 mt-3 mt-lg-0"
-  ></div>
-
-  <div
-    class="col-12 order-lg-4 mt-3"
-    *ngIf="!isLoading"
-    [@shakeAnimation]
-    style="padding: 0;"
-  >
-    <div class="provided-container mr-3">
-      <span class="provided-text"
-        >Data levert av
-        <a href="https://virdi.no/" target="_blank">virdi.no</a></span
-      >
-    </div>
-  </div>
-</div>
-
--->
 <div class="loading" *ngIf="isLoading">
   <mat-spinner [diameter]="48" [strokeWidth]="4"></mat-spinner>
 </div>

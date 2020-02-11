@@ -223,8 +223,6 @@ export class VirdiStatisticsComponent implements OnInit {
               this.averageSqmPrice = extendedInfo.statistics.average_sqm_price;
               this.area = extendedInfo.indexHistory.area;
 
-              /* this.columnChartOptions.title.text = `<b>Din kvadratmeterpris:</b><i> ${extendedInfo.statistics.average_sqm_price} NOK</i>`; */
-              /* this.lineChartOptions.title.text = `Prisutvikling ${extendedInfo.indexHistory.area}`; */
               if (
                 extendedInfo.statistics.average_sqm_price >= element.from &&
                 extendedInfo.statistics.average_sqm_price <= element.to
