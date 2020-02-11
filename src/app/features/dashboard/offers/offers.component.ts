@@ -135,7 +135,7 @@ export class OffersComponent implements OnInit, OnDestroy {
     ) {
       this.tips.push({
         text:
-          'Boligverdi/belåningsgrad er viktig mtp hva bankene tilbyr. Klikk her for å endre.',
+          'Boligverdi/belåningsgrad er viktig for renten bankene tilbyr. Pass på at boligverdien din er riktig. Du kan også legge til flere boliger hvis du har det',
         buttonLink: '/dashboard/bolig'
       });
     }
@@ -143,7 +143,7 @@ export class OffersComponent implements OnInit, OnDestroy {
     if (!this.offersInfo.memberships.length) {
       this.tips.push({
         text:
-          'Enkelte banker tilbyr bedre betingelser gitt at du har et medlemskap i en organisasjon. Prøv å endre ditt medlemskap for å se om det påvirker resultatet av din rentesjekk. (Medlemskap pleier å koste ca 4000 i året)',
+          'Enkelte banker tilbyr bedre betingelser hvis du er medlem i en interesseorganisasjon eller fagforening. Hvis du har mulighet til å melde deg inn i en kan det være penger å spare. (Medlemskap koster ca 4000 i året)',
         buttonLink: '/dashboard/profil'
       });
     }
