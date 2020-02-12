@@ -64,9 +64,9 @@ export class LoansService {
     return this.http.put(url, appartmentData);
   }
 
-  public setConfirmationData(confirmationData) {
+  public setConfirmationData(dto:UserConfirmationDto):Observable<UserConfirmationDto> {
     const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.confirmation}`;
-    return this.http.post(url, confirmationData);
+    return this.http.post(url, dto);
   }
 
   public getLoanPreferences() {
@@ -146,4 +146,11 @@ export class AddressDto {
 export class ClientAddressDto {
   addresses: AddressDto[];
   totalPropertyValue: number;
+}
+
+export class UserConfirmationDto {
+  memberships:string[];
+  apartmentSize:number;
+  email:string;
+  income:number;
 }

@@ -1,6 +1,6 @@
-import { LoansService } from "@services/remote-api/loans.service";
-import { UserService } from "@services/remote-api/user.service";
-import { Component, OnInit, ElementRef, ViewChild } from "@angular/core";
+import { LoansService, UserConfirmationDto } from '@services/remote-api/loans.service';
+import { UserService } from '@services/remote-api/user.service';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import {
   Validators,
   AbstractControl,
@@ -8,27 +8,27 @@ import {
   NgForm,
   FormBuilder,
   FormControl
-} from "@angular/forms";
-import { forkJoin, Observable } from "rxjs";
-import { mergeMap, startWith, map } from "rxjs/operators";
-import { ENTER, COMMA } from "@angular/cdk/keycodes";
+} from '@angular/forms';
+import { forkJoin, Observable } from 'rxjs';
+import { startWith, map } from 'rxjs/operators';
+import { ENTER, COMMA } from '@angular/cdk/keycodes';
 import {
   MatAutocomplete,
   MatAutocompleteSelectedEvent,
   MatChipInputEvent,
   MatDialog
-} from "@angular/material";
-import { Router } from "@angular/router";
-import createNumberMask from "text-mask-addons/dist/createNumberMask";
-import { VALIDATION_PATTERN } from "@config/validation-patterns.config";
-import { SnackBarService } from "../../shared/services/snackbar.service";
-import { OfferInfo } from "@shared/models/offers";
-import { DialogInfoComponent } from "./dialog-info/dialog-info.component";
+} from '@angular/material';
+import { Router } from '@angular/router';
+import createNumberMask from 'text-mask-addons/dist/createNumberMask';
+import { VALIDATION_PATTERN } from '@config/validation-patterns.config';
+import { SnackBarService } from '../../shared/services/snackbar.service';
+import { OfferInfo } from '@shared/models/offers';
+import { DialogInfoComponent } from './dialog-info/dialog-info.component';
 
 @Component({
-  selector: "rente-init-confirmation",
-  templateUrl: "./init-confirmation.component.html",
-  styleUrls: ["./init-confirmation.component.scss"]
+  selector: 'rente-init-confirmation',
+  templateUrl: './init-confirmation.component.html',
+  styleUrls: ['./init-confirmation.component.scss']
 })
 export class InitConfirmationComponent implements OnInit {
   public propertyForm: FormGroup;
@@ -46,17 +46,15 @@ export class InitConfirmationComponent implements OnInit {
   public threeDigitsMask = { mask: [/\d/, /\d/, /\d/], guide: false };
   public thousandSeparatorMask = {
     mask: createNumberMask({
-      prefix: "",
-      suffix: "",
-      thousandsSeparatorSymbol: " "
+      prefix: '',
+      suffix: '',
+      thousandsSeparatorSymbol: ' '
     }),
     guide: false
   };
 
-  @ViewChild("membershipInput", { static: false }) membershipInput: ElementRef<
-    HTMLInputElement
-  >;
-  @ViewChild("auto", { static: false }) matAutocomplete: MatAutocomplete;
+  @ViewChild('membershipInput', { static: false }) membershipInput: ElementRef<HTMLInputElement>;
+  @ViewChild('auto', { static: false }) matAutocomplete: MatAutocomplete;
 
   constructor(
     private fb: FormBuilder,
@@ -116,8 +114,8 @@ export class InitConfirmationComponent implements OnInit {
     const userData = {
       email: formData.email,
       income:
-        typeof formData.income === "string"
-          ? formData.income.replace(/\s/g, "")
+        typeof formData.income === 'string'
+          ? formData.income.replace(/\s/g, '')
           : formData.income
     };
 
@@ -126,21 +124,21 @@ export class InitConfirmationComponent implements OnInit {
       apartmentSize: formData.apartmentSize
     };
 
-    // TODO: Add error state
-    forkJoin([
-      this.userService.updateUserInfo(userData),
-      this.loansService.setConfirmationData(confirmationData)
-    ]).subscribe(
-      ([data]) => {
-        this.isLoading = false;
-        this.router.navigate(["/dashboard/tilbud"]);
-        this.snackBar.openSuccessSnackBar("Endringene dine er lagret", 1.2);
-      },
-      err => {
-        this.isLoading = false;
-        this.router.navigate(["/dashboard/bolig"]);
-      }
-    );
+    const dto:UserConfirmationDto = new UserConfirmationDto();
+    dto.email = userData.email;
+    dto.income = userData.income;
+    dto.memberships = confirmationData.memberships;
+    dto.apartmentSize = confirmationData.apartmentSize;
+
+    this.loansService.setConfirmationData(dto).subscribe(res => {
+      this.isLoading = false;
+      this.router.navigate(['/dashboard/tilbud']);
+      this.snackBar.openSuccessSnackBar('Endringene dine er lagret', 1.2);
+    },
+    err => {
+      this.isLoading = false;
+      this.router.navigate(['/dashboard/bolig']);
+    });
   }
 
   add(event: MatChipInputEvent): void {
@@ -150,7 +148,7 @@ export class InitConfirmationComponent implements OnInit {
 
       // Reset the input value
       if (input) {
-        input.value = "";
+        input.value = '';
       }
 
       this.membershipCtrl.setValue(null);
@@ -167,7 +165,7 @@ export class InitConfirmationComponent implements OnInit {
 
   selected(event: MatAutocompleteSelectedEvent): void {
     this.memberships.push(event.option.value);
-    this.membershipInput.nativeElement.value = "";
+    this.membershipInput.nativeElement.value = '';
     this.membershipCtrl.setValue(null);
   }
 

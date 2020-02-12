@@ -106,13 +106,6 @@ export class OffersComponent implements OnInit, OnDestroy {
       (res: Offers) => {
         this.offersInfo = res;
         this.isLoading = false;
-        // const shareLinkTimer = timer(30000);
-        // if (!this.localStorageService.getItem('shareSheetShown')) {
-        //   this.subscribeShareLinkTimer = shareLinkTimer.subscribe(_ => {
-        //     this.bottomSheet.open(ShareSheetComponent);
-        //     this.localStorageService.setItem('shareSheetShown', true);
-        //   });
-        // }
         this.localStorageService.removeItem('isNewUser');
 
         this.getTips();
@@ -135,7 +128,7 @@ export class OffersComponent implements OnInit, OnDestroy {
     ) {
       this.tips.push({
         text:
-          'Boligverdi/belåningsgrad er viktig for renten bankene tilbyr. Pass på at boligverdien din er riktig. Du kan også legge til flere boliger hvis du har det',
+          'Boligverdi/belåningsgrad er viktig for renten bankene tilbyr. Pass på at boligverdien din er riktig. Du kan også legge til flere boliger hvis du har det.',
         buttonLink: '/dashboard/bolig'
       });
     }
@@ -143,7 +136,7 @@ export class OffersComponent implements OnInit, OnDestroy {
     if (!this.offersInfo.memberships.length) {
       this.tips.push({
         text:
-          'Enkelte banker tilbyr bedre betingelser hvis du er medlem i en interesseorganisasjon eller fagforening. Hvis du har mulighet til å melde deg inn i en kan det være penger å spare. (Medlemskap koster ca 4000 i året)',
+          'Enkelte banker tilbyr bedre betingelser hvis du er medlem i en interesseorganisasjon eller fagforening. Hvis du har mulighet til å melde deg inn i en kan det være penger å spare. (Medlemskap koster ca 4000 i året).',
         buttonLink: '/dashboard/profil'
       });
     }
