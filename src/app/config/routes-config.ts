@@ -46,6 +46,10 @@ export const customMeta = {
     'Vi tar GDPR på alvor og ditt personvern er viktig for oss i Renteradar.no. Renteradar.no eies og drives av Forbrukerøkonomene AS som er et norsk selskap underlagt norsk lov...',
   personvernerklaeringTitle:
     'Beste boliglånsrente | Sammenlign rente på boliglån | Personvernerklæring',
+  cookiesTitle:
+    'Beste boliglånsrente | Sammenlign rente på boliglån | Personvernerklæring',
+  cookiesDescription:
+    'Renteradar henter renten du har og lånebeløp automatisk med BankID på mobil',
   brukervilkarTitle:
     'Beste boliglånsrente | Sammenlign rente på boliglån | Brukervilkår',
   faabeskjedTitle:
@@ -184,13 +188,14 @@ export const ROUTES_MAP = {
   faq: 'faq',
   contactUs: 'kontakt',
   privacy: 'personvern',
-  privacyPolicy: 'personvernerklaering',
-  termsConditions: 'brukervilkar',
-  bankSelect: "velgbank",
+  privacyPolicy: 'personvern/personvernerklaering',
+  termsConditions: 'personvern/brukervilkar',
+  bankSelect: 'velgbank',
   auth: 'autentisering',
   dashboard: 'dashboard',
   initConfirmation: 'bekreft',
   getNotified: 'faabeskjed',
   guide: 'slik-funger-renteradar',
-  coFounder: 'co-founder'
+  coFounder: 'co-founder',
+  cookies: 'personvern/cookies'
 };
