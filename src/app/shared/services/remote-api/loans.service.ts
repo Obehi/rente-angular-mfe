@@ -1,11 +1,11 @@
-import { Injectable } from "@angular/core";
-import { GenericHttpService } from "@services/generic-http.service";
-import { API_URL_MAP } from "@config/api-url-config";
-import { Observable } from "rxjs";
-import { map } from "rxjs/operators";
+import { Injectable } from '@angular/core';
+import { GenericHttpService } from '@services/generic-http.service';
+import { API_URL_MAP } from '@config/api-url-config';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class LoansService {
   constructor(private http: GenericHttpService) {}
@@ -148,7 +148,7 @@ export class ClientAddressDto {
   totalPropertyValue: number;
 }
 
-export class UserConfirmationDto {
+export class UserConfirmationDto { // TODO: UpdateUserConfirmationDto
   memberships:string[];
   apartmentSize:number;
   email:string;
