@@ -7,6 +7,7 @@ import { AboutUsComponent } from '@features/about-us/about-us.component';
 import { ROUTES_MAP } from '@config/routes-config';
 import { FaqComponent } from '@features/faq/faq.component';
 import { PrivacyComponent } from '@features/privacy/privacy.component';
+import { AboutCookiesComponent } from '@features/cookies/cookies.component';
 import { TermsConditionsComponent } from '@features/terms-conditions/terms-conditions.component';
 import { PrivacyPolicyComponent } from '@features/privacy-policy/privacy-policy.component';
 import { BankSelectComponent } from '@features/bank-select/bank-select.component';
@@ -57,12 +58,21 @@ const routes: Routes = [
   },
   {
     path: ROUTES_MAP.privacy, component: PrivacyComponent,
-
     data: {
       title: customMeta.personvernerklaeringTitle,
       meta: {
         name: defaultMeta.name,
         description: customMeta.personvernDescription
+      }
+    }
+  },
+  {
+    path: ROUTES_MAP.cookies, component: AboutCookiesComponent,
+    data: {
+      title: customMeta.cookiesTitle,
+      meta: {
+        name: defaultMeta.name,
+        description: customMeta.cookiesDescription
       }
     }
   },
