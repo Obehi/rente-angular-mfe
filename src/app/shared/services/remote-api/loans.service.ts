@@ -64,11 +64,6 @@ export class LoansService {
     return this.http.put(url, appartmentData);
   }
 
-  public getPreferencesDto():Observable<PreferencesGetDto> {
-    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.preferences}`;
-    return this.http.get(url);
-  }
-
   public getConfirmationData():Observable<ConfirmationGetDto> {
     const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.confirmation}`;
     return this.http.get(url);
@@ -120,20 +115,17 @@ export class LoansService {
     return this.http.post(url, null);
   }
 
-  saveUserPreferences(dto:UserPreferencesDto):Observable<UserPreferencesDto> {
+  // Preferences
+
+  getPreferencesDto():Observable<PreferencesDto> {
+    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.preferences}`;
+    return this.http.get(url);
+  }
+
+  updateUserPreferences(dto:PreferencesUpdateDto):Observable<PreferencesUpdateDto> {
     const url = `${API_URL_MAP.loan.base}/preferences`;
     return this.http.post(url, dto);
   }
-}
-
-export class UserPreferencesDto {
-  memberships:string[];
-  checkRateReminderType:string;
-  fetchCreditLinesOnly:boolean;
-  noAdditionalProductsRequired:boolean;
-  interestedInEnvironmentMortgages:boolean;
-  email:string;
-  income:string;
 }
 
 export class LoanStateDto {
@@ -173,33 +165,9 @@ export class ConfirmationSetDto {
   income:number;
 }
 
-/*
-public class PreferencesUpdateDto {
-    private String email;
-    private Integer income;
-    private List<String> memberships;
-    private CommunicationChannelType communicationChannelType;
-    private CheckRateReminderType checkRateReminderType;
-    private Boolean fetchCreditLinesOnly = false;
-    private Boolean noAdditionalProductsRequired = false;
-    private Boolean interestedInEnvironmentMortgages = false;
-}
-public class ConfirmationDataDto {
-    private String email;
-    private Integer income;
-    private List<MembershipTypeDto> availableMemberships;
-    private Integer apartmentsSize;
-}
-public class ConfirmationDataUpdateDto {
-    private Integer apartmentsSize;
-    private String email;
-    private Integer income;
-    private List<String> memberships;
-}
-*/
-
-export class PreferencesGetDto {
+export class PreferencesDto {
   email:string;
+  name:string;
   income:number;
   availableMemberships:MembershipTypeDto[];
   memberships:string[];
@@ -208,6 +176,16 @@ export class PreferencesGetDto {
   fetchCreditLinesOnly:boolean;
   noAdditionalProductsRequired:boolean;
   interestedInEnvironmentMortgages:boolean;
+}
+
+export class PreferencesUpdateDto {
+  memberships:string[];
+  checkRateReminderType:string;
+  fetchCreditLinesOnly:boolean;
+  noAdditionalProductsRequired:boolean;
+  interestedInEnvironmentMortgages:boolean;
+  email:string;
+  income:string;
 }
 
 export class MembershipTypeDto {

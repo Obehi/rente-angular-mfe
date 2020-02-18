@@ -17,7 +17,7 @@ import {
 import { MatDialog } from '@angular/material/dialog';
 import { ProfileDialogInfoComponent } from './dialog-info/dialog-info.component';
 import { MatChipInputEvent } from '@angular/material';
-import { LoansService, UserPreferencesDto, MembershipTypeDto } from '@services/remote-api/loans.service';
+import { LoansService, MembershipTypeDto, PreferencesUpdateDto, PreferencesDto } from '@services/remote-api/loans.service';
 import { UserService } from '@services/remote-api/user.service';
 import createNumberMask from 'text-mask-addons/dist/createNumberMask';
 import { VALIDATION_PATTERN } from '../../../config/validation-patterns.config';
@@ -82,7 +82,46 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.loansService
+    this.loansService.getPreferencesDto().subscribe(res => {
+      let dto:PreferencesDto = res;
+      this.allMemberships = dto.availableMemberships;
+      this.memberships = this.allMemberships.filter(membership => {
+        if (dto.memberships.includes(membership.name)) {
+          return membership;
+        }
+      });
+      this.username = dto.name;
+      this.profileForm = this.fb.group({
+        membership: [dto.memberships],
+        income: [dto.income, Validators.required],
+        email: [
+          dto.email,
+          Validators.compose([
+            Validators.required,
+            Validators.pattern(VALIDATION_PATTERN.email)
+          ])
+        ]
+      });
+      this.preferencesForm = this.fb.group({
+        checkRateReminderType: [dto.checkRateReminderType],
+        fetchCreditLinesOnly: [dto.fetchCreditLinesOnly],
+        noAdditionalProductsRequired: [
+          dto.noAdditionalProductsRequired
+        ],
+        interestedInEnvironmentMortgages: [
+          dto.interestedInEnvironmentMortgages
+        ]
+      });
+    },
+    err => {
+      console.log(err);
+    },
+    () => {
+      this.onValueChanges();
+    });
+
+
+    /* this.loansService
       .getMembershipTypes()
       .pipe(
         mergeMap((memberships: any) => {
@@ -144,7 +183,7 @@ export class ProfileComponent implements OnInit {
       () => {
         this.onValueChanges();
       }
-    );
+    ); */
   }
 
   public openInfoDialog(offer: OfferInfo): void {
@@ -174,11 +213,7 @@ export class ProfileComponent implements OnInit {
       income: typeof income === 'string' ? income.replace(/\s/g, '') : income
     };
 
-    const memebershipsData = {
-      memberships: this.memberships.map(membership => membership.name)
-    };
-
-    const dto = new UserPreferencesDto();
+    const dto = new PreferencesUpdateDto();
     dto.email = userData.email;
     dto.income = userData.income;
     dto.memberships = this.memberships.map(membership => membership.name);
@@ -187,7 +222,7 @@ export class ProfileComponent implements OnInit {
     dto.noAdditionalProductsRequired = this.preferencesForm.get('noAdditionalProductsRequired').value;
     dto.interestedInEnvironmentMortgages = this.preferencesForm.get('interestedInEnvironmentMortgages').value;
 
-    this.loansService.saveUserPreferences(dto).subscribe(res => {
+    this.loansService.updateUserPreferences(dto).subscribe(res => {
       this.isLoading = false;
       this.changesMade = false;
       this.snackBar.openSuccessSnackBar('Endringene dine er lagret', 1.2);
