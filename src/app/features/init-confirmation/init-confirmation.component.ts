@@ -1,4 +1,4 @@
-import { LoansService, ConfirmationSetDto, PreferencesGetDto, ConfirmationGetDto, MembershipTypeDto } from '@services/remote-api/loans.service';
+import { LoansService, ConfirmationSetDto, ConfirmationGetDto, MembershipTypeDto } from '@services/remote-api/loans.service';
 import { UserService } from '@services/remote-api/user.service';
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import {

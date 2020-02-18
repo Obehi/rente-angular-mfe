@@ -152,6 +152,7 @@ export class ClientAddressDto {
 
 export class ConfirmationGetDto {
   email:string;
+  name:string;
   income:number;
   memberships:string[];
   apartmentSize:number;
