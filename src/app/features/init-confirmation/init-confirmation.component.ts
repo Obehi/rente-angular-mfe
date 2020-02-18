@@ -39,7 +39,7 @@ export class InitConfirmationComponent implements OnInit {
   public addOnBlur = true;
   public separatorKeysCodes: number[] = [ENTER, COMMA];
   public membershipCtrl = new FormControl();
-  public filteredMemberships: Observable<string[]>;
+  public filteredMemberships: Observable<MembershipTypeDto[]>;
   public memberships: any = [];
   public allMemberships: MembershipTypeDto[];
   public userData:ConfirmationGetDto;
