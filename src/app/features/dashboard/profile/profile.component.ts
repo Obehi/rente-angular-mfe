@@ -38,7 +38,7 @@ export class ProfileComponent implements OnInit {
   public addOnBlur = true;
   public separatorKeysCodes: number[] = [ENTER, COMMA];
   public membershipCtrl = new FormControl();
-  public filteredMemberships: Observable<any[]>;
+  public filteredMemberships: Observable<MembershipTypeDto[]>;
   public memberships: any = [];
   public showMemberships: boolean;
   public showPreferences: boolean;

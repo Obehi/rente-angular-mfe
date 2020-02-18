@@ -100,7 +100,7 @@
                   *ngFor="let membership of filteredMemberships | async"
                   [value]="membership"
                 >
-                  {{ membership.name }}
+                  {{ membership.label }}
                 </mat-option>
               </mat-autocomplete>
             </mat-form-field>
