@@ -1,4 +1,4 @@
-import { LoansService, UserConfirmationDto } from '@services/remote-api/loans.service';
+import { LoansService, ConfirmationSetDto, PreferencesGetDto, ConfirmationGetDto } from '@services/remote-api/loans.service';
 import { UserService } from '@services/remote-api/user.service';
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import {
@@ -42,7 +42,7 @@ export class InitConfirmationComponent implements OnInit {
   public filteredMemberships: Observable<string[]>;
   public memberships: any = [];
   public allMemberships: any[];
-  public userData: any;
+  public userData:ConfirmationGetDto;
   public threeDigitsMask = { mask: [/\d/, /\d/, /\d/], guide: false };
   public thousandSeparatorMask = {
     mask: createNumberMask({
@@ -73,7 +73,21 @@ export class InitConfirmationComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.loansService.getMembershipTypes().subscribe((memberships: any) => {
+    this.loansService.getConfirmationData().subscribe(res => {
+      this.userData = res;
+      this.propertyForm = this.fb.group({
+        apartmentSize: [res.apartmentSize, Validators.required],
+        membership: [],
+        income: [res.income, Validators.required],
+        email: [res.email, Validators.compose([
+            Validators.required,
+            Validators.pattern(VALIDATION_PATTERN.email)
+          ])
+        ]
+      });
+    });
+
+    /* this.loansService.getMembershipTypes().subscribe((memberships: any) => {
       this.allMemberships = memberships;
       forkJoin([this.userService.getUserInfo(), this.loansService.getAddresses()])
         .subscribe(([user, loan]) => {
@@ -90,7 +104,7 @@ export class InitConfirmationComponent implements OnInit {
           ]
         });
       });
-    });
+    }); */
   }
 
   isErrorState(
@@ -124,7 +138,7 @@ export class InitConfirmationComponent implements OnInit {
       apartmentSize: formData.apartmentSize
     };
 
-    const dto:UserConfirmationDto = new UserConfirmationDto();
+    const dto:ConfirmationSetDto = new ConfirmationSetDto();
     dto.email = userData.email;
     dto.income = userData.income;
     dto.memberships = confirmationData.memberships;

@@ -64,9 +64,19 @@ export class LoansService {
     return this.http.put(url, appartmentData);
   }
 
-  public setConfirmationData(dto:UserConfirmationDto):Observable<UserConfirmationDto> {
+  public getPreferencesDto():Observable<PreferencesGetDto> {
+    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.preferences}`;
+    return this.http.get(url);
+  }
+
+  public getConfirmationData():Observable<ConfirmationGetDto> {
     const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.confirmation}`;
-    return this.http.post(url, dto);
+    return this.http.get(url);
+  }
+
+  public setConfirmationData(dto:ConfirmationSetDto):Observable<ConfirmationSetDto> {
+    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.confirmation}`;
+    return this.http.post(url, dto); // TODO: Object.assign()
   }
 
   public getLoanPreferences() {
@@ -148,9 +158,59 @@ export class ClientAddressDto {
   totalPropertyValue: number;
 }
 
-export class UserConfirmationDto { // TODO: UpdateUserConfirmationDto
+export class ConfirmationGetDto {
+  email:string;
+  income:number;
+  memberships:string[];
+  apartmentSize:number;
+  availableMemberships:MembershipTypeDto[];
+}
+
+export class ConfirmationSetDto {
   memberships:string[];
   apartmentSize:number;
   email:string;
   income:number;
+}
+
+/*
+public class PreferencesUpdateDto {
+    private String email;
+    private Integer income;
+    private List<String> memberships;
+    private CommunicationChannelType communicationChannelType;
+    private CheckRateReminderType checkRateReminderType;
+    private Boolean fetchCreditLinesOnly = false;
+    private Boolean noAdditionalProductsRequired = false;
+    private Boolean interestedInEnvironmentMortgages = false;
+}
+public class ConfirmationDataDto {
+    private String email;
+    private Integer income;
+    private List<MembershipTypeDto> availableMemberships;
+    private Integer apartmentsSize;
+}
+public class ConfirmationDataUpdateDto {
+    private Integer apartmentsSize;
+    private String email;
+    private Integer income;
+    private List<String> memberships;
+}
+*/
+
+export class PreferencesGetDto {
+  email:string;
+  income:number;
+  availableMemberships:MembershipTypeDto[];
+  memberships:string[];
+  communicationChannelType:string;
+  checkRateReminderType:string;
+  fetchCreditLinesOnly:boolean;
+  noAdditionalProductsRequired:boolean;
+  interestedInEnvironmentMortgages:boolean;
+}
+
+export class MembershipTypeDto {
+  name:string;
+  label:string;
 }
