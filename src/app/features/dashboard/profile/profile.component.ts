@@ -17,7 +17,7 @@ import {
 import { MatDialog } from '@angular/material/dialog';
 import { ProfileDialogInfoComponent } from './dialog-info/dialog-info.component';
 import { MatChipInputEvent } from '@angular/material';
-import { LoansService, UserPreferencesDto } from '@services/remote-api/loans.service';
+import { LoansService, UserPreferencesDto, MembershipTypeDto } from '@services/remote-api/loans.service';
 import { UserService } from '@services/remote-api/user.service';
 import createNumberMask from 'text-mask-addons/dist/createNumberMask';
 import { VALIDATION_PATTERN } from '../../../config/validation-patterns.config';
@@ -42,7 +42,7 @@ export class ProfileComponent implements OnInit {
   public memberships: any = [];
   public showMemberships: boolean;
   public showPreferences: boolean;
-  public allMemberships: any[];
+  public allMemberships: MembershipTypeDto[];
   public isLoading: boolean;
   public username: string;
   public thousandSeparatorMask = {

@@ -1,4 +1,4 @@
-import { LoansService, ConfirmationSetDto, PreferencesGetDto, ConfirmationGetDto } from '@services/remote-api/loans.service';
+import { LoansService, ConfirmationSetDto, PreferencesGetDto, ConfirmationGetDto, MembershipTypeDto } from '@services/remote-api/loans.service';
 import { UserService } from '@services/remote-api/user.service';
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import {
@@ -41,7 +41,7 @@ export class InitConfirmationComponent implements OnInit {
   public membershipCtrl = new FormControl();
   public filteredMemberships: Observable<string[]>;
   public memberships: any = [];
-  public allMemberships: any[];
+  public allMemberships: MembershipTypeDto[];
   public userData:ConfirmationGetDto;
   public threeDigitsMask = { mask: [/\d/, /\d/, /\d/], guide: false };
   public thousandSeparatorMask = {
@@ -74,6 +74,7 @@ export class InitConfirmationComponent implements OnInit {
 
   ngOnInit() {
     this.loansService.getConfirmationData().subscribe(res => {
+      this.allMemberships = res.availableMemberships;
       this.userData = res;
       this.propertyForm = this.fb.group({
         apartmentSize: [res.apartmentSize, Validators.required],
