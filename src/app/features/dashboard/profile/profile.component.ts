@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import {
   FormGroup,
   FormBuilder,
@@ -6,28 +6,28 @@ import {
   NgForm,
   FormControl,
   Validators
-} from "@angular/forms";
-import { COMMA, ENTER } from "@angular/cdk/keycodes";
-import { Observable, forkJoin } from "rxjs";
-import { map, startWith, mergeMap } from "rxjs/operators";
+} from '@angular/forms';
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { Observable, forkJoin } from 'rxjs';
+import { map, startWith, mergeMap } from 'rxjs/operators';
 import {
   MatAutocomplete,
   MatAutocompleteSelectedEvent
-} from "@angular/material/autocomplete";
-import { MatDialog } from "@angular/material/dialog";
-import { ProfileDialogInfoComponent } from "./dialog-info/dialog-info.component";
-import { MatChipInputEvent } from "@angular/material";
-import { LoansService } from "@services/remote-api/loans.service";
-import { UserService } from "@services/remote-api/user.service";
-import createNumberMask from "text-mask-addons/dist/createNumberMask";
-import { VALIDATION_PATTERN } from "../../../config/validation-patterns.config";
-import { SnackBarService } from "../../../shared/services/snackbar.service";
-import { OfferInfo } from "@shared/models/offers";
+} from '@angular/material/autocomplete';
+import { MatDialog } from '@angular/material/dialog';
+import { ProfileDialogInfoComponent } from './dialog-info/dialog-info.component';
+import { MatChipInputEvent } from '@angular/material';
+import { LoansService, MembershipTypeDto, PreferencesUpdateDto, PreferencesDto } from '@services/remote-api/loans.service';
+import { UserService } from '@services/remote-api/user.service';
+import createNumberMask from 'text-mask-addons/dist/createNumberMask';
+import { VALIDATION_PATTERN } from '../../../config/validation-patterns.config';
+import { SnackBarService } from '../../../shared/services/snackbar.service';
+import { OfferInfo } from '@shared/models/offers';
 
 @Component({
-  selector: "rente-profile",
-  templateUrl: "./profile.component.html",
-  styleUrls: ["./profile.component.scss"]
+  selector: 'rente-profile',
+  templateUrl: './profile.component.html',
+  styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
   public preferencesForm: FormGroup;
@@ -38,27 +38,25 @@ export class ProfileComponent implements OnInit {
   public addOnBlur = true;
   public separatorKeysCodes: number[] = [ENTER, COMMA];
   public membershipCtrl = new FormControl();
-  public filteredMemberships: Observable<string[]>;
+  public filteredMemberships: Observable<MembershipTypeDto[]>;
   public memberships: any = [];
   public showMemberships: boolean;
   public showPreferences: boolean;
-  public allMemberships: any[];
+  public allMemberships: MembershipTypeDto[];
   public isLoading: boolean;
   public username: string;
   public thousandSeparatorMask = {
     mask: createNumberMask({
-      prefix: "",
-      suffix: "",
-      thousandsSeparatorSymbol: " "
+      prefix: '',
+      suffix: '',
+      thousandsSeparatorSymbol: ' '
     }),
     guide: false
   };
   changesMade = false;
 
-  @ViewChild("membershipInput", { static: false }) membershipInput: ElementRef<
-    HTMLInputElement
-  >;
-  @ViewChild("auto", { static: false }) matAutocomplete: MatAutocomplete;
+  @ViewChild('membershipInput', { static: false }) membershipInput: ElementRef<HTMLInputElement>;
+  @ViewChild('auto', { static: false }) matAutocomplete: MatAutocomplete;
 
   constructor(
     private fb: FormBuilder,
@@ -84,7 +82,46 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.loansService
+    this.loansService.getPreferencesDto().subscribe(res => {
+      let dto:PreferencesDto = res;
+      this.allMemberships = dto.availableMemberships;
+      this.memberships = this.allMemberships.filter(membership => {
+        if (dto.memberships.includes(membership.name)) {
+          return membership;
+        }
+      });
+      this.username = dto.name;
+      this.profileForm = this.fb.group({
+        membership: [dto.memberships],
+        income: [dto.income, Validators.required],
+        email: [
+          dto.email,
+          Validators.compose([
+            Validators.required,
+            Validators.pattern(VALIDATION_PATTERN.email)
+          ])
+        ]
+      });
+      this.preferencesForm = this.fb.group({
+        checkRateReminderType: [dto.checkRateReminderType],
+        fetchCreditLinesOnly: [dto.fetchCreditLinesOnly],
+        noAdditionalProductsRequired: [
+          dto.noAdditionalProductsRequired
+        ],
+        interestedInEnvironmentMortgages: [
+          dto.interestedInEnvironmentMortgages
+        ]
+      });
+    },
+    err => {
+      console.log(err);
+    },
+    () => {
+      this.onValueChanges();
+    });
+
+
+    /* this.loansService
       .getMembershipTypes()
       .pipe(
         mergeMap((memberships: any) => {
@@ -106,7 +143,6 @@ export class ProfileComponent implements OnInit {
           ([user, loan]) => {
             this.username = user.name;
             const userData = user;
-            const addressData = loan;
             // TODO: Add validators and validation messages for form
             this.profileForm = this.fb.group({
               membership: [userMemberships.memberships],
@@ -147,7 +183,7 @@ export class ProfileComponent implements OnInit {
       () => {
         this.onValueChanges();
       }
-    );
+    ); */
   }
 
   public openInfoDialog(offer: OfferInfo): void {
@@ -174,41 +210,27 @@ export class ProfileComponent implements OnInit {
     const income = this.profileForm.value.income;
     const userData = {
       email: this.profileForm.value.email,
-      income: typeof income === "string" ? income.replace(/\s/g, "") : income
+      income: typeof income === 'string' ? income.replace(/\s/g, '') : income
     };
 
-    const memebershipsData = {
-      memberships: this.memberships.map(membership => membership.name)
-    };
+    const dto = new PreferencesUpdateDto();
+    dto.email = userData.email;
+    dto.income = userData.income;
+    dto.memberships = this.memberships.map(membership => membership.name);
+    dto.checkRateReminderType = this.preferencesForm.get('checkRateReminderType').value;
+    dto.fetchCreditLinesOnly = this.preferencesForm.get('fetchCreditLinesOnly').value;
+    dto.noAdditionalProductsRequired = this.preferencesForm.get('noAdditionalProductsRequired').value;
+    dto.interestedInEnvironmentMortgages = this.preferencesForm.get('interestedInEnvironmentMortgages').value;
 
-    // TODO: Add error state
-    forkJoin([
-      this.userService.updateUserInfo(userData),
-      this.loansService.setUsersMemberships(memebershipsData)
-    ]).subscribe(
-      ([data]) => {
-        this.isLoading = false;
-        this.changesMade = false;
-        this.snackBar.openSuccessSnackBar("Endringene dine er lagret", 1.2);
-      },
-      err => {
-        this.isLoading = false;
-        this.snackBar.openFailSnackBar("Oops, noe gikk galt", 1.2);
-      }
-    );
-    this.loansService
-      .updateLoanPreferences(this.preferencesForm.value)
-      .subscribe(
-        res => {
-          this.isLoading = false;
-          this.changesMade = false;
-          this.snackBar.openSuccessSnackBar("Endringene dine er lagret", 1.2);
-        },
-        err => {
-          this.isLoading = false;
-          this.snackBar.openFailSnackBar("Oops, noe gikk galt", 1.2);
-        }
-      );
+    this.loansService.updateUserPreferences(dto).subscribe(res => {
+      this.isLoading = false;
+      this.changesMade = false;
+      this.snackBar.openSuccessSnackBar('Endringene dine er lagret', 1.2);
+    },
+    err => {
+      this.isLoading = false;
+      this.snackBar.openFailSnackBar('Oops, noe gikk galt', 1.2);
+    });
   }
 
   // TODO: Move to service
@@ -219,49 +241,13 @@ export class ProfileComponent implements OnInit {
     return !!(control && control.invalid && (control.dirty || control.touched));
   }
 
-  /*   public updateProfile() {
-    this.isLoading = true;
-    const income = this.profileForm.value.income;
-    const userData = {
-      email: this.profileForm.value.email,
-      income: typeof income === "string" ? income.replace(/\s/g, "") : income
-    };
-
-    const memebershipsData = {
-      memberships: this.memberships.map(membership => membership.name)
-    };
-
-    // TODO: Add error state
-    forkJoin([
-      this.userService.updateUserInfo(userData),
-      this.loansService.setUsersMemberships(memebershipsData)
-    ]).subscribe(
-      ([data]) => {
-        this.isLoading = false;
-        this.snackBar.openSuccessSnackBar("Endringene dine er lagret", 3);
-      },
-      err => {
-        this.isLoading = false;
-        this.snackBar.openFailSnackBar("Oops, noe gikk galt");
-      }
-    );
-  }
- */
   add(event: MatChipInputEvent): void {
     if (!this.matAutocomplete.isOpen) {
       const input = event.input;
       const value = event.value;
-
-      // if ((value || '').trim()) {
-      //   this.memberships.push({
-      //     value: value.trim(),
-      //     label: value.trim()
-      //   });
-      // }
-
       // Reset the input value
       if (input) {
-        input.value = "";
+        input.value = '';
       }
 
       this.membershipCtrl.setValue(null);
@@ -279,7 +265,7 @@ export class ProfileComponent implements OnInit {
 
   selected(event: MatAutocompleteSelectedEvent): void {
     this.memberships.push(event.option.value);
-    this.membershipInput.nativeElement.value = "";
+    this.membershipInput.nativeElement.value = '';
     this.membershipCtrl.setValue(null);
     this.changesMade = true;
   }

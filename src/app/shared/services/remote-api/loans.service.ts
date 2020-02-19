@@ -1,11 +1,11 @@
-import { Injectable } from "@angular/core";
-import { GenericHttpService } from "@services/generic-http.service";
-import { API_URL_MAP } from "@config/api-url-config";
-import { Observable } from "rxjs";
-import { map } from "rxjs/operators";
+import { Injectable } from '@angular/core';
+import { GenericHttpService } from '@services/generic-http.service';
+import { API_URL_MAP } from '@config/api-url-config';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class LoansService {
   constructor(private http: GenericHttpService) {}
@@ -64,9 +64,14 @@ export class LoansService {
     return this.http.put(url, appartmentData);
   }
 
-  public setConfirmationData(confirmationData) {
+  public getConfirmationData():Observable<ConfirmationGetDto> {
     const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.confirmation}`;
-    return this.http.post(url, confirmationData);
+    return this.http.get(url);
+  }
+
+  public setConfirmationData(dto:ConfirmationSetDto):Observable<ConfirmationSetDto> {
+    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.confirmation}`;
+    return this.http.post(url, dto); // TODO: Object.assign()
   }
 
   public getLoanPreferences() {
@@ -109,6 +114,18 @@ export class LoansService {
     const url = `${API_URL_MAP.loan.base}/lower-rate/confirm`;
     return this.http.post(url, null);
   }
+
+  // Preferences
+
+  getPreferencesDto():Observable<PreferencesDto> {
+    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.preferences}`;
+    return this.http.get(url);
+  }
+
+  updateUserPreferences(dto:PreferencesUpdateDto):Observable<PreferencesUpdateDto> {
+    const url = `${API_URL_MAP.loan.base}/preferences`;
+    return this.http.post(url, dto);
+  }
 }
 
 export class LoanStateDto {
@@ -131,4 +148,48 @@ export class AddressDto {
 export class ClientAddressDto {
   addresses: AddressDto[];
   totalPropertyValue: number;
+}
+
+export class ConfirmationGetDto {
+  email:string;
+  name:string;
+  income:number;
+  memberships:string[];
+  apartmentSize:number;
+  availableMemberships:MembershipTypeDto[];
+}
+
+export class ConfirmationSetDto {
+  memberships:string[];
+  apartmentSize:number;
+  email:string;
+  income:number;
+}
+
+export class PreferencesDto {
+  email:string;
+  name:string;
+  income:number;
+  availableMemberships:MembershipTypeDto[];
+  memberships:string[];
+  communicationChannelType:string;
+  checkRateReminderType:string;
+  fetchCreditLinesOnly:boolean;
+  noAdditionalProductsRequired:boolean;
+  interestedInEnvironmentMortgages:boolean;
+}
+
+export class PreferencesUpdateDto {
+  memberships:string[];
+  checkRateReminderType:string;
+  fetchCreditLinesOnly:boolean;
+  noAdditionalProductsRequired:boolean;
+  interestedInEnvironmentMortgages:boolean;
+  email:string;
+  income:string;
+}
+
+export class MembershipTypeDto {
+  name:string;
+  label:string;
 }

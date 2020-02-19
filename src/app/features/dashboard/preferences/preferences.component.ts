@@ -1,31 +1,30 @@
-import { FormGroup, FormBuilder } from "@angular/forms";
-import { Component, OnInit } from "@angular/core";
-import { UserService } from "@services/remote-api/user.service";
-import { SnackBarService } from "@services/snackbar.service";
-import { LoansService } from "../../../shared/services/remote-api/loans.service";
+import { FormGroup, FormBuilder } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { SnackBarService } from '@services/snackbar.service';
+import { LoansService } from '../../../shared/services/remote-api/loans.service';
 import {
   trigger,
   transition,
   animate,
   keyframes,
   style
-} from "@angular/animations";
+} from '@angular/animations';
 
 @Component({
-  selector: "rente-preferences",
-  templateUrl: "./preferences.component.html",
-  styleUrls: ["./preferences.component.scss"],
+  selector: 'rente-preferences',
+  templateUrl: './preferences.component.html',
+  styleUrls: ['./preferences.component.scss'],
   animations: [
-    trigger("shakeAnimation", [
+    trigger('shakeAnimation', [
       transition(
-        ":enter",
+        ':enter',
         animate(
-          "200ms ease-in",
+          '200ms ease-in',
           keyframes([
-            style({ transform: "translate3d(-15px, 0, 0)" }),
-            style({ transform: "translate3d(0, 0, 0)" }),
-            style({ transform: "translate3d(7px, 0, 0)" }),
-            style({ transform: "translate3d(0, 0, 0)" })
+            style({ transform: 'translate3d(-15px, 0, 0)' }),
+            style({ transform: 'translate3d(0, 0, 0)' }),
+            style({ transform: 'translate3d(7px, 0, 0)' }),
+            style({ transform: 'translate3d(0, 0, 0)' })
           ])
         )
       )
@@ -63,11 +62,11 @@ export class PreferencesComponent implements OnInit {
       .subscribe(
         res => {
           this.isLoading = false;
-          this.snackBar.openSuccessSnackBar("Endringene dine er lagret", 1.2);
+          this.snackBar.openSuccessSnackBar('Endringene dine er lagret', 1.2);
         },
         err => {
           this.isLoading = false;
-          this.snackBar.openFailSnackBar("Oops, noe gikk galt", 1.2);
+          this.snackBar.openFailSnackBar('Oops, noe gikk galt', 1.2);
         }
       );
   }
