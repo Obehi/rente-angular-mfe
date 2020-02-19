@@ -11,34 +11,33 @@
   </div>
 
   <rente-status-message [status]="loginStep1Status">
-    <span *ngIf="viewStatus.isNotValidDataProvided && bank.name === 'DNB'">
-      Kontroller at du har oppgitt riktig fødselsnummer og mobilnummer. Du må ha
-      bestilt og aktivert BankID på mobil for å kunne bruke denne innloggingen.
-    </span>
-    <span *ngIf="viewStatus.isNotValidDataProvided && bank.name !== 'DNB'">
-      Kontroller at du har oppgitt riktig fødselsdato og mobilnummer. Du må ha
-      bestilt og aktivert BankID på mobil for å kunne bruke denne innloggingen.
-    </span>
+    <!-- NOT VALID DATA PROVIDED ERROR -->
+    <div *ngIf="viewStatus.isNotValidDataProvided">
+      <span *ngIf="bank.loginWithSsn">
+        Kontroller at du har oppgitt riktig fødselsnummer og mobilnummer.
+        Du må ha bestilt og aktivert BankID på Mobil for å logge inn.
+        Les hvordan du <a href="{{bank.mobileUrl}}" target="_blank">aktiverer BankID på Mobil her</a>.
+      </span>
+      <span *ngIf="!bank.loginWithSsn">
+        Kontroller at du har oppgitt riktig fødselsdato og mobilnummer.
+        Du må ha bestilt og aktivert BankID på Mobil for å logge inn.
+        Les hvordan du <a href="{{bank.mobileUrl}}" target="_blank">aktiverer BankID på Mobil her</a>.
+      </span>
+    </div>
+    <!-- PROCESSING -->
     <span *ngIf="!viewStatus.isNotValidDataProvided">
       Forbereder identifisering <br />
-      <span
-        *ngIf="
-          viewStatus.isProcessStarted &&
+      <span *ngIf="viewStatus.isProcessStarted &&
           !viewStatus.isCrawlerError &&
           isShowTimer &&
-          !firstStepTimerFinished
-        "
-      >
+          !firstStepTimerFinished">
         (tar cirka {{ firstStepTimer }} sekunder)
       </span>
       <span
-        *ngIf="
-          viewStatus.isProcessStarted &&
+        *ngIf="viewStatus.isProcessStarted &&
           !viewStatus.isCrawlerError &&
           isShowTimer &&
-          firstStepTimerFinished
-        "
-      >
+          firstStepTimerFinished">
         (Litt til, straks ferdig)
       </span>
     </span>
