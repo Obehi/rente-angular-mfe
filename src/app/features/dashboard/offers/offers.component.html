@@ -431,29 +431,31 @@
 <div class="problems" style="max-width: 780px;">
   <div
     class="title"
-    *ngIf="offersInfo?.resultType === offersResultType.NO_OFFERS ||
+    *ngIf="true || offersInfo?.resultType === offersResultType.NO_OFFERS ||
            offersInfo?.resultType === offersResultType.LTV_TOO_HIGH_85">
     <h3>
-      Oooops, her er det noe som ikke stemmer. Sjekk at <a [routerLink]="['/dashboard/bolig']">boligverdien din er riktig</a>.
+      Oooops, her er det noe som ikke stemmer. Sjekk <a [routerLink]="['/dashboard/bolig']"> din boligverdi</a>.
     </h3>
-    <p>
-      Utifra boligverdien vi har beregnet er belåningsgraden din over 85% og vi får derfor ikke innhentet tilbud.
-      Grunner til dette kan blant annet være:
-    </p>
-    <ul class="problem-list">
-      <li>Vi har bommet på estimatet og estimert for lav verdi</li>
-      <li>Du har kausjonist/medlånetaker som stiller ekstra sikkerhet</li>
-      <li>Du har sikkerhet i flere eiendommer</li>
-    </ul>
-    <p>
-      For å se tilbud må belåningsgraden være under 85%. Du kan endre boligverdien og/eller legge til flere boliger
-      i <a [routerLink]="['/dashboard/bolig']">boligfanen ved å klikke her</a>.
-      Har du kausjonist anbefaler vi å endre boligverdien manuelt,
-      slik at du akkurat kommer innenfor 85% belåningsgrad.
-    </p><br/>
-    <p>
-      Belåningsgrad = Lånebeløp / Boligverdi
-    </p>
+    <div style="text-align: left;">
+      <p>
+        Utifra boligverdien vi har beregnet er belåningsgraden din over 85% og vi får derfor ikke innhentet tilbud.
+        Grunner til dette kan blant annet være:
+      </p>
+      <ul class="problem-list">
+        <li>Vi har bommet på estimatet og estimert for lav verdi</li>
+        <li>Du har kausjonist/medlånetaker som stiller ekstra sikkerhet</li>
+        <li>Du har sikkerhet i flere eiendommer</li>
+      </ul>
+      <p>
+        For å se tilbud må belåningsgraden være under 85%. Du kan endre boligverdien og/eller legge til flere boliger
+        i <a [routerLink]="['/dashboard/bolig']">boligfanen ved å klikke her</a>.
+        Har du kausjonist anbefaler vi å endre boligverdien manuelt,
+        slik at du akkurat kommer innenfor 85% belåningsgrad.
+      </p><br/>
+      <p>
+        Belåningsgrad = Lånebeløp / Boligverdi
+      </p>
+    </div>
   </div>
   <div
     class="title"
