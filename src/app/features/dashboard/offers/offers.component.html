@@ -431,7 +431,7 @@
 <div class="problems" style="max-width: 780px;">
   <div
     class="title"
-    *ngIf="true || offersInfo?.resultType === offersResultType.NO_OFFERS ||
+    *ngIf="offersInfo?.resultType === offersResultType.NO_OFFERS ||
            offersInfo?.resultType === offersResultType.LTV_TOO_HIGH_85">
     <h3>
       Oooops, her er det noe som ikke stemmer. Sjekk <a [routerLink]="['/dashboard/bolig']"> din boligverdi</a>.
