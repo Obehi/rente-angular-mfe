@@ -18,9 +18,9 @@ h4 {
 .styret {
   @media (min-width: 600px) {
     display: grid;
-    grid-template-columns: calc(50% - 40px) calc(50% - 40px);
-    grid-column-gap: 80px;
-    margin-top: 80px;
+    grid-template-columns: calc(33% - 20px) calc(33% - 20px) calc(33% - 20px);
+    grid-column-gap: 40px;
+    //margin-top: 60px;
   }
   .styremedlem {
     mask-border: 40px;
@@ -36,7 +36,7 @@ h4 {
       }
       .navn {
         align-self: flex-end;
-        margin-left: 20px;
+        //margin-left: 20px;
       }
       h4 {
         margin: 0;

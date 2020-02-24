@@ -25,7 +25,6 @@ export class ChangeBankDialogComponent implements OnInit {
     this.confirmForm = this.fb.group({
       confirmation: ["", Validators.required]
     });
-    console.log(document.getElementById("mat-dialog-9"));
   }
 
   public sendRequest(): void {
@@ -37,7 +36,7 @@ export class ChangeBankDialogComponent implements OnInit {
           this.isLoading = false;
           this.dialogRef.close();
           this.dialog.open(SuccessChangeBankDialogComponent, {
-            width: "800px",
+            width: "80%",
             maxHeight: "90vh",
             data: { isError: false }
           });
