@@ -36,7 +36,7 @@ export class ChangeBankDialogComponent implements OnInit {
           this.isLoading = false;
           this.dialogRef.close();
           this.dialog.open(SuccessChangeBankDialogComponent, {
-            width: "80%",
+            width: "100%",
             maxHeight: "90vh",
             data: { isError: false }
           });
@@ -45,14 +45,16 @@ export class ChangeBankDialogComponent implements OnInit {
           this.isLoading = false;
           this.dialogRef.close();
           this.dialog.open(SuccessChangeBankDialogComponent, {
-            width: "800px",
+            width: "100%",
             maxHeight: "90vh",
             data: { isError: true }
           });
         }
       );
   }
+
   public close(): void {
     this.dialogRef.close();
   }
+
 }
