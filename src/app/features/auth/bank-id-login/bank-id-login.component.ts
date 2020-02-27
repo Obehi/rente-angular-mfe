@@ -116,10 +116,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
   }
 
   public openServiceDialog(): void {
-    this.dialog.open(DialogInfoServiceComponent, {
-      width: '100%',
-      maxHeight: '90vh',
-    });
+    this.dialog.open(DialogInfoServiceComponent, {});
   }
 
   private changeTitles(): void {
