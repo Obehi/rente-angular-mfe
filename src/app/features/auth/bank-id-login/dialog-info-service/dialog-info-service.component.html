@@ -1,9 +1,12 @@
-<div class="front-container">
-  <h3 mat-dialog-title class="text-center my-0">
+<div class="cont">
+
+  <h3 class="text-center my-0">
     Vilkår for bruk av tjenesten
   </h3>
+  <br/>
   <hr class="my-0" />
-  <div mat-dialog-content class="dialog-body">
+  <br/>
+  <div  class="dialog-body">
     <div class="text-left dialog-text">
       <div class="mb-4">
         Denne tjenesten er laget for at du så enkelt som mulig skal kunne hente dine
@@ -24,22 +27,26 @@
         I tillegg til vilkårene for bruk av denne tjenesten godkjenner du også
         våre generelle vilkår, som du finner her:
         <p class="my-0">
-          <a [routerLink]="['brukervilkar']" target="_blank">Brukervilkår</a>
+          <a [routerLink]="['personvern/brukervilkar']" target="_blank">Brukervilkår</a>
         </p>
       </div>
       <div class="mb-2">
         Ved å bruke tjenesten aksepterer du også hvordan vi behandler
         personopplysningene dine. Du lese vår personvernerklæring som du finner her:
         <p class="my-0">
-          <a [routerLink]="['personvernerklaering']" target="_blank">Personvernerklæring</a>
+          <a [routerLink]="['personvern/personvernerklaering']" target="_blank">Personvernerklæring</a>
         </p>
       </div>
     </div>
   </div>
   <hr class="my-0" />
-  <div mat-dialog-actions class="d-flex justify-content-center">
-    <div class="button-200">
+
+  <div  class="d-flex justify-content-center">
+    <div class="button-200" style="text-align: center;">
+      <br/>
       <rente-button cdkFocusInitial color="primary" (click)="onClose()">OK</rente-button>
+      <br/><br/>
     </div>
   </div>
+
 </div>

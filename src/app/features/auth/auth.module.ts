@@ -12,7 +12,13 @@ import { Sparebank1SubComponent } from './sparebank1-sub/sparebank1-sub.componen
 import { MaterialModule } from '@shared/material/material.module';
 
 @NgModule({
-  declarations: [BankIdLoginComponent, LoginStatusComponent, StatusMessageComponent, DialogInfoServiceComponent, Sparebank1SubComponent],
+  declarations: [
+    BankIdLoginComponent,
+    LoginStatusComponent,
+    StatusMessageComponent,
+    DialogInfoServiceComponent,
+    Sparebank1SubComponent
+  ],
   imports: [
     CommonModule,
     AuthRoutingModule,

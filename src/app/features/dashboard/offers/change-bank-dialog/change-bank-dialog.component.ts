@@ -1,13 +1,13 @@
-import { Component, Inject, OnInit } from "@angular/core";
-import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from "@angular/material";
-import { FormGroup, FormBuilder, Validators } from "@angular/forms";
-import { ChangeBankServiceService } from "../../../../shared/services/remote-api/change-bank-service.service";
-import { SuccessChangeBankDialogComponent } from "./success-change-bank-dialog/success-change-bank-dialog.component";
+import { Component, Inject, OnInit } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { ChangeBankServiceService } from '../../../../shared/services/remote-api/change-bank-service.service';
+import { SuccessChangeBankDialogComponent } from './success-change-bank-dialog/success-change-bank-dialog.component';
 
 @Component({
-  selector: "rente-change-bank-dialog",
-  templateUrl: "./change-bank-dialog.component.html",
-  styleUrls: ["./change-bank-dialog.component.scss"]
+  selector: 'rente-change-bank-dialog',
+  templateUrl: './change-bank-dialog.component.html',
+  styleUrls: ['./change-bank-dialog.component.scss']
 })
 export class ChangeBankDialogComponent implements OnInit {
   public confirmForm: FormGroup;
@@ -23,7 +23,7 @@ export class ChangeBankDialogComponent implements OnInit {
 
   ngOnInit() {
     this.confirmForm = this.fb.group({
-      confirmation: ["", Validators.required]
+      confirmation: ['', Validators.required]
     });
   }
 
@@ -36,8 +36,8 @@ export class ChangeBankDialogComponent implements OnInit {
           this.isLoading = false;
           this.dialogRef.close();
           this.dialog.open(SuccessChangeBankDialogComponent, {
-            width: "100%",
-            maxHeight: "90vh",
+            width: '100%',
+            maxHeight: '90vh',
             data: { isError: false }
           });
         },
@@ -45,8 +45,8 @@ export class ChangeBankDialogComponent implements OnInit {
           this.isLoading = false;
           this.dialogRef.close();
           this.dialog.open(SuccessChangeBankDialogComponent, {
-            width: "100%",
-            maxHeight: "90vh",
+            width: '100%',
+            maxHeight: '90vh',
             data: { isError: true }
           });
         }
