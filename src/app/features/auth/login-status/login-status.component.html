@@ -74,6 +74,9 @@
       <span *ngIf="viewStatus.isBankError">
         Banken din har dessverre tekniske problemer. Vennligst prøv igjen senere.
       </span>
+      <span *ngIf="viewStatus.isNotBankCustomer">
+        Vi får beskjed om at du ikke er kunde i banken. Har du valgt riktig bank?
+      </span>
     </div>
 
     <!-- STEP 2: SUCCESS -->
@@ -89,7 +92,7 @@
   <rente-status-message [status]="loginStep3Status" [step]="3">
 
     <!-- STEP 3: NOT STARTED -->
-    <span *ngIf="!viewStatus.isPassphraseConfirmSuccess && !viewStatus.isCrawlerError && !isNotSB1customer">
+    <span *ngIf="!viewStatus.isPassphraseConfirmSuccess && !viewStatus.isCrawlerError">
       Hent rente og lånedata
     </span>
 
@@ -116,9 +119,6 @@
 
     <!-- STEP 3: ERROR -->
     <div *ngIf="isStep3Error">
-      <span *ngIf="isNotSB1customer">
-        Vi får beskjed om at du ikke er kunde i banken. Har du valgt riktig bank?
-      </span>
       <span *ngIf="viewStatus.isConfirmationRequired">
         Banken din krever at du oppdaterer informasjon i nettbanken din.
         Du må logge inn i nettbanken din og oppdatere/bekrefte informasjon før du kan benytte Renteradar.
