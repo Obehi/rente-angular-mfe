@@ -264,11 +264,10 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
             this.connectionTimerSubscription.unsubscribe();
             this.isNotSB1customer = true;
             this.viewStatus.isNotBankCustomer = true;
-            // this.viewStatus.isCrawlerError = true;
-            this.viewStatus.isPassphraseConfirmSuccess = false;
+            this.viewStatus.isPassphraseConfirmSuccess = true;
             this.loginStep1Status = MESSAGE_STATUS.SUCCESS;
-            this.loginStep2Status = MESSAGE_STATUS.ERROR;
-            this.loginStep3Status = MESSAGE_STATUS.INFO;
+            this.loginStep2Status = MESSAGE_STATUS.SUCCESS;
+            this.loginStep3Status = MESSAGE_STATUS.ERROR;
             break;
           case BANKID_STATUS.PASSPHRASE_CONFIRM_FAIL:
             this.isShowPassPhrase = false;
