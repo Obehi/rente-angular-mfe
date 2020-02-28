@@ -314,6 +314,21 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
             this.viewStatus.isSelectUserAccountTimeout = true;
             this.unsubscribeEverything();
             break;
+          case BANKID_STATUS.BANK_WEBSITE_DOESNT_WORK:
+            this.unsubscribeEverything();
+            this.viewStatus.isBankError = true;
+            if (this.loginStep1Status === MESSAGE_STATUS.LOADING) {
+              this.loginStep1Status = MESSAGE_STATUS.ERROR;
+            } else if (this.loginStep2Status === MESSAGE_STATUS.LOADING) {
+              this.loginStep2Status = MESSAGE_STATUS.ERROR;
+            } else if (this.loginStep3Status === MESSAGE_STATUS.LOADING) {
+              this.loginStep3Status = MESSAGE_STATUS.ERROR;
+            } else {
+              this.loginStep1Status = MESSAGE_STATUS.INFO;
+              this.loginStep2Status = MESSAGE_STATUS.INFO;
+              this.loginStep3Status = MESSAGE_STATUS.ERROR;
+            }
+            break;
           case BANKID_STATUS.LOANS_PERSISTED:
             this.viewStatus.isLoansPersisted = true;
             const user = response.data.user;
@@ -377,6 +392,14 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
     this.loginStep1Status = MESSAGE_STATUS.LOADING;
     this.loginStep2Status = MESSAGE_STATUS.INFO;
     this.loginStep3Status = MESSAGE_STATUS.INFO;
+  }
+
+  get isStep1Error(): boolean {
+    return this.loginStep1Status === MESSAGE_STATUS.ERROR;
+  }
+
+  get isStep2Error(): boolean {
+    return this.loginStep2Status === MESSAGE_STATUS.ERROR;
   }
 
   get isStep3Error(): boolean {
