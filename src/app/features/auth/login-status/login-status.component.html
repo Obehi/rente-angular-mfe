@@ -53,15 +53,18 @@
 
   <!-- STEP 2 -->
   <rente-status-message [status]="loginStep2Status" [step]="2">
+
+    <!-- STEP 1: NOT STARTED -->
     <span *ngIf="!passPhrase">
       Bekreft BankID på mobil
     </span>
-    <span *ngIf="passPhrase && !viewStatus.isPassphraseConfirmFail && !viewStatus.isPassphraseConfirmSuccess">
-      Vennligst følg instruksjonen på mobilen
-    </span>
-    <span *ngIf="viewStatus.isPassphraseConfirmSuccess">
-      BankID bekreftet
-    </span>
+
+    <!-- STEP 2: IN PROGRESS -->
+    <div *ngIf="isStep2InProgress">
+      <span *ngIf="passPhrase && !viewStatus.isPassphraseConfirmFail && !viewStatus.isPassphraseConfirmSuccess">
+        Vennligst følg instruksjonen på mobilen
+      </span>
+    </div>
 
     <!-- STEP 2: ERROR -->
     <div *ngIf="isStep2Error">
@@ -70,6 +73,13 @@
       </span>
       <span *ngIf="viewStatus.isBankError">
         Banken din har dessverre tekniske problemer. Vennligst prøv igjen senere.
+      </span>
+    </div>
+
+    <!-- STEP 2: SUCCESS -->
+    <div *ngIf="isStep2Success">
+      <span *ngIf="viewStatus.isPassphraseConfirmSuccess">
+        BankID bekreftet
       </span>
     </div>
 

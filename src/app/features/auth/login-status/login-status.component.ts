@@ -231,6 +231,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
     this.stompClient.subscribe(repliesUrl, message => {
       if (message.body) {
         const response = JSON.parse(message.body);
+        console.log('STATUS:', response.eventType);
         switch (response.eventType) {
           case BANKID_STATUS.PROCESS_STARTED:
             this.initTimer(BANKID_TIMEOUT_TIME);
@@ -394,8 +395,20 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
     this.loginStep3Status = MESSAGE_STATUS.INFO;
   }
 
+  get isStep1InProgress(): boolean {
+    return this.loginStep1Status === MESSAGE_STATUS.LOADING;
+  }
+
   get isStep1Error(): boolean {
     return this.loginStep1Status === MESSAGE_STATUS.ERROR;
+  }
+
+  get isStep2InProgress(): boolean {
+    return this.loginStep2Status === MESSAGE_STATUS.LOADING;
+  }
+
+  get isStep2Success(): boolean {
+    return this.loginStep2Status === MESSAGE_STATUS.SUCCESS;
   }
 
   get isStep2Error(): boolean {
