@@ -231,6 +231,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
     this.stompClient.subscribe(repliesUrl, message => {
       if (message.body) {
         const response = JSON.parse(message.body);
+        console.log('STATUS:', response.eventType);
         switch (response.eventType) {
           case BANKID_STATUS.PROCESS_STARTED:
             this.initTimer(BANKID_TIMEOUT_TIME);
@@ -262,6 +263,8 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
             this.isShowPassPhrase = false;
             this.connectionTimerSubscription.unsubscribe();
             this.isNotSB1customer = true;
+            this.viewStatus.isNotBankCustomer = true;
+            this.viewStatus.isPassphraseConfirmSuccess = true;
             this.loginStep1Status = MESSAGE_STATUS.SUCCESS;
             this.loginStep2Status = MESSAGE_STATUS.SUCCESS;
             this.loginStep3Status = MESSAGE_STATUS.ERROR;
@@ -313,6 +316,21 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
             this.loginStep3Status = MESSAGE_STATUS.ERROR;
             this.viewStatus.isSelectUserAccountTimeout = true;
             this.unsubscribeEverything();
+            break;
+          case BANKID_STATUS.BANK_WEBSITE_DOESNT_WORK:
+            this.unsubscribeEverything();
+            this.viewStatus.isBankError = true;
+            if (this.loginStep1Status === MESSAGE_STATUS.LOADING) {
+              this.loginStep1Status = MESSAGE_STATUS.ERROR;
+            } else if (this.loginStep2Status === MESSAGE_STATUS.LOADING) {
+              this.loginStep2Status = MESSAGE_STATUS.ERROR;
+            } else if (this.loginStep3Status === MESSAGE_STATUS.LOADING) {
+              this.loginStep3Status = MESSAGE_STATUS.ERROR;
+            } else {
+              this.loginStep1Status = MESSAGE_STATUS.INFO;
+              this.loginStep2Status = MESSAGE_STATUS.INFO;
+              this.loginStep3Status = MESSAGE_STATUS.ERROR;
+            }
             break;
           case BANKID_STATUS.LOANS_PERSISTED:
             this.viewStatus.isLoansPersisted = true;
@@ -377,6 +395,26 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
     this.loginStep1Status = MESSAGE_STATUS.LOADING;
     this.loginStep2Status = MESSAGE_STATUS.INFO;
     this.loginStep3Status = MESSAGE_STATUS.INFO;
+  }
+
+  get isStep1InProgress(): boolean {
+    return this.loginStep1Status === MESSAGE_STATUS.LOADING;
+  }
+
+  get isStep1Error(): boolean {
+    return this.loginStep1Status === MESSAGE_STATUS.ERROR;
+  }
+
+  get isStep2InProgress(): boolean {
+    return this.loginStep2Status === MESSAGE_STATUS.LOADING;
+  }
+
+  get isStep2Success(): boolean {
+    return this.loginStep2Status === MESSAGE_STATUS.SUCCESS;
+  }
+
+  get isStep2Error(): boolean {
+    return this.loginStep2Status === MESSAGE_STATUS.ERROR;
   }
 
   get isStep3Error(): boolean {

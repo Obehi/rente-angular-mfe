@@ -15,6 +15,8 @@ export interface ViewStatus {
   isConfirmationRequired: boolean;
   isRenewBankIdRequired: boolean;
   isSelectUserAccountTimeout: boolean;
+  isBankError: boolean;
+  isNotBankCustomer: boolean;
 }
 
 export class ViewStatus {
