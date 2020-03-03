@@ -144,10 +144,10 @@ export const BANKS_DATA = {
     img: '',
     imgCircle: ''
   },
-  GJENSIDIGE_BANK: {
-    name: 'GJENSIDIGE_BANK',
-    img: '../../assets/img/banks-logo/square/gjensidige.png',
-    imgCircle: '../../assets/img/banks-logo/round/gjensidige.png'
+  NORDEA_DIRECT: {
+    name: 'NORDEA_DIRECT',
+    img: '../../assets/img/banks-logo/square/nordea.png',
+    imgCircle: '../../assets/img/banks-logo/round/nordea.png'
   },
   GRONG_SB: {
     name: 'GRONG_SB',
@@ -279,10 +279,10 @@ export const BANKS_DATA = {
     img: '',
     imgCircle: ''
   },
-  NAL: {
-    name: 'NAL',
-    img: '../../assets/img/banks-logo/square/gjensidige.png',
-    imgCircle: '../../assets/img/banks-logo/round/gjensidige.png'
+  NAL_NORDEA_DIRECT: {
+    name: 'NAL_NORDEA_DIRECT',
+    img: '../../assets/img/banks-logo/square/nordea.png',
+    imgCircle: '../../assets/img/banks-logo/round/nordea.png'
   },
   NORDEA: {
     name: 'NORDEA',
@@ -609,10 +609,10 @@ export const BANKS_DATA = {
     img: '',
     imgCircle: ''
   },
-  YS_GJENSIDIGE: {
-    name: 'YS_GJENSIDIGE',
-    img: '../../assets/img/banks-logo/square/gjensidige.png',
-    imgCircle: '../../assets/img/banks-logo/round/gjensidige.png'
+  YS_NORDEA_DIRECT: {
+    name: 'YS_NORDEA_DIRECT',
+    img: '../../assets/img/banks-logo/square/nordea.png',
+    imgCircle: '../../assets/img/banks-logo/round/nordea.png'
   },
   AFJORD_SB: {
     name: 'AFJORD_SB',
