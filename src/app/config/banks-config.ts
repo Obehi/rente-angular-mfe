@@ -34,6 +34,11 @@ export const BANKS_DATA = {
     img: '',
     imgCircle: ''
   },
+  BATE: {
+    name: 'BATE',
+    img: '../../assets/img/banks-logo/square/dnb.png',
+    imgCircle: '../../assets/img/banks-logo/round/dnb.png'
+  },
   BN_BANK: {
     name: 'BN_BANK',
     img: '../../assets/img/banks-logo/square/BN.png',
@@ -623,6 +628,16 @@ export const BANKS_DATA = {
     name: 'ORSKOG_SB',
     img: '../../assets/img/banks-logo/square/Old Eika.png',
     imgCircle: '../../assets/img/banks-logo/round/old_eika.png'
+  },
+  TOBB: {
+    name: 'TOBB',
+    img: '../../assets/img/banks-logo/square/dnb.png',
+    imgCircle: '../../assets/img/banks-logo/round/dnb.png'
+  },
+  USBL: {
+    name: 'USBL',
+    img: '../../assets/img/banks-logo/square/dnb.png',
+    imgCircle: '../../assets/img/banks-logo/round/dnb.png'
   },
   OTHER: {
     name: 'OTHER',
