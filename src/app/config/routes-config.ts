@@ -29,13 +29,6 @@ export const customMeta = {
   omossTitle: 'Beste boliglånsrente | Sammenlign rente på boliglån | Om oss',
   omossDescription:
     'Markedet for boliglån kan være kaotisk, og det kan være vanskelig å vite hvilken rente du fortjener og i hvilken bank du finner denne.',
-  guideTitle:
-    'Beste boliglånsrente | Sammenlign rente på boliglån | Renteradar.no',
-  guideDescription:
-    'Renteradar henter renten og dine lånedetaljer automatisk med BankID på mobil.' +
-    ' Vi sammenligner renten du betaler med renten du kan få i andre banker og viser deg hvor mye du kan spare. ' +
-    'Få beste boliglånsrente med ett klikk.' +
-    ' Vi bruker data fra finansportalen',
   ofteStilteSporsmaalTitle:
     'Beste boliglånsrente | Sammenlign rente på boliglån | Ofte stilte spørsmål',
   ofteStilteSporsmaalDescription:
