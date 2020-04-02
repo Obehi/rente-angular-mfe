@@ -37,6 +37,7 @@ import { VirdiStatisticsComponent } from "./house/virdi-statistics/virdi-statist
 import { OffersStatisticsComponent } from "./offers/offers-statistics/offers-statistics.component";
 import { DialogComponent } from "../../shared/components/ui-components/dialog/dialog.component";
 import { AddressFormComponent } from "./house/address/address.form.component";
+import { GetOfferFromBankDialogComponent } from './offers/get-offer-from-bank-dialog/get-offer-from-bank-dialog.component';
 
 // TODO: ADD separate module for material import
 @NgModule({
@@ -58,7 +59,8 @@ import { AddressFormComponent } from "./house/address/address.form.component";
     VirdiStatisticsComponent,
     OffersStatisticsComponent,
     DialogComponent,
-    AddressFormComponent
+    AddressFormComponent,
+    GetOfferFromBankDialogComponent
   ],
   imports: [
     CommonModule,
@@ -87,7 +89,8 @@ import { AddressFormComponent } from "./house/address/address.form.component";
     ProfileDialogInfoComponent,
     ChangeBankDialogComponent,
     SuccessChangeBankDialogComponent,
-    ShareSheetComponent
+    ShareSheetComponent,
+    GetOfferFromBankDialogComponent
   ]
 })
 export class DashboardModule {}

@@ -18,6 +18,8 @@ export interface Offers {
   medianEffectiveRateYourBank: number;
   medianEffectiveRateAllBanks: number;
   tips: string;
+  commonDebt: number;
+  ltv: number;
 }
 
 export interface OfferInfo {
@@ -41,6 +43,7 @@ export interface OfferInfo {
   savingsFirstYear: number;
   selectedRate: number;
   totalSavings: number;
+  haveSpecialDealWithBank: Boolean
 }
 
 export const OFFERS_RESULT_TYPE = {

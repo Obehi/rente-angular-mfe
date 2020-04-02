@@ -23,6 +23,14 @@
     color: $green;
   }
 }
+.vertical {
+  margin-bottom: 10px;
+
+}
+
+.min-width {
+  min-width: 300px;
+}
 .offers {
   text-align: center;
 
@@ -86,6 +94,7 @@
       border-right: 1px solid $warning;
     }
   }
+  
   .rente-boxes {
     margin-bottom: 10px;
     .double {
@@ -276,6 +285,7 @@
     }
     rente-button {
       display: inline-block;
+
       margin-top: 30px;
     }
   }

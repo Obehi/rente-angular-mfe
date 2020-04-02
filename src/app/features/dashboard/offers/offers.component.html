@@ -143,19 +143,31 @@
             </div>
           </div>
           <div class="double">
-            <div class="box">
-              <p>Boligverdi</p>
+            <div class="box" (click)="goToProperty()">
+              <p>
+                Boligverdi <img src="../../../../assets/icons/go_to.svg" />
+              </p>
               <h2>
                 {{ offersInfo.propertyValue / 1000000 | number: "1.1-3" }}
                 mill.
               </h2>
               <p class="small">
+                  Fellesgjeld
+                {{
+                  (offersInfo.commonDebt / 1000000 | number: "1.1-2")
+                }}
+                mill.
+              </p>
+            
+              <p class="small">
                 Estimat levert av
                 <a href="https://virdi.no/" target="_blank">virdi.no</a>
               </p>
             </div>
-            <div class="box">
-              <p>Gjenværende lån</p>
+            <div class="box" (click)="goToLoans()">
+              <p>
+                Gjenværende lån <img src="../../../../assets/icons/go_to.svg" />
+              </p>
               <h2>
                 {{
                   offersInfo.totalOutstandingDebt / 1000000 | number: "1.1-3"
@@ -165,24 +177,40 @@
               <p class="small">
                 Belåningsgrad
                 {{
-                  (offersInfo.totalOutstandingDebt / offersInfo.propertyValue) *
+                  (offersInfo.ltv) *
                     100 | number: "1.1-1"
                 }}%
               </p>
             </div>
           </div>
 
-          <rente-button
-            [disabled]="
+          
+          <!-- Saving button for later iteration
+          <div class="full-width vertical">
+            <rente-button
+              [disabled]="changeBankLoading ||
+              offersInfo.offerSavingsType === offerSavingsType.NO_SAVING"
+              [isLoading]="changeBankLoading"
+              color="primary"
+              type="raised"
+              (click)="goToBestOffer()"
+              >Se beste tilbud</rente-button
+            >
+          </div>
+          -->
+
+          <div class="vertical">
+            <rente-button
+              [disabled]="
               changeBankLoading ||
-              offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS
-            "
-            [isLoading]="changeBankLoading"
-            color="primary"
-            type="raised"
-            (click)="openChangeBankDialog(offersInfo.offers[0])"
-            >Be banken matche tilbud</rente-button
-          >
+              offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS"
+              [isLoading]="changeBankLoading"
+              color="primary"
+              type="raised"
+              (click)="openChangeBankDialog(offersInfo.offers[0])"
+              >Be banken matche tilbud</rente-button
+            > 
+          </div>  
         </div>
         <!-- Mobile boxes -->
       </div>
@@ -280,44 +308,74 @@
           </div>
         </div>
         <div class="double">
-          <div class="box">
-            <p>Boligverdi</p>
-            <h2>
-              {{ offersInfo.propertyValue / 1000000 | number: "1.1-3" }}
-              mill.
-            </h2>
-            <p class="small">
-              Estimat levert av
-              <a href="https://virdi.no/" target="_blank">virdi.no</a>
-            </p>
+            <div class="box" (click)="goToProperty()">
+              <p>
+                Boligverdi <img src="../../../../assets/icons/go_to.svg" />
+              </p>
+              <h2>
+                {{ offersInfo.propertyValue / 1000000 | number: "1.1-3" }}
+                mill.
+              </h2>
+              <p class="small">
+                  Fellesgjeld
+                {{
+                  (offersInfo.commonDebt / 1000000 | number: "1.1-2")
+                }}
+                mill.
+              </p>
+            
+              <p class="small">
+                Estimat levert av
+                <a href="https://virdi.no/" target="_blank">virdi.no</a>
+              </p>
+            </div>
+            <div class="box" (click)="goToLoans()">
+              <p>
+                Gjenværende lån <img src="../../../../assets/icons/go_to.svg" />
+              </p>
+              <h2>
+                {{
+                  offersInfo.totalOutstandingDebt / 1000000 | number: "1.1-3"
+                }}
+                mill.
+              </h2>
+              <p class="small">
+                Belåningsgrad
+                {{
+                  (offersInfo.totalOutstandingDebt / offersInfo.propertyValue) *
+                    100 | number: "1.1-1"
+                }}%
+              </p>
+            </div>
           </div>
-          <div class="box">
-            <p>Gjenværende lån</p>
-            <h2>
-              {{ offersInfo.totalOutstandingDebt / 1000000 | number: "1.1-3" }}
-              mill.
-            </h2>
-            <p class="small">
-              Belåningsgrad
-              {{
-                (offersInfo.totalOutstandingDebt / offersInfo.propertyValue) *
-                  100 | number: "1.1-1"
-              }}%
-            </p>
-          </div>
-        </div>
 
-        <rente-button
-          [disabled]="
+        
+        <div class="full-width vertical">
+          <!-- Saving button for later iteration
+            <rente-button class="min-width"
+              [disabled]="changeBankLoading ||
+              offersInfo.offerSavingsType === offerSavingsType.NO_SAVING"
+              [isLoading]="changeBankLoading"
+              color="primary"
+              type="raised"
+              (click)="goToBestOffer()"
+              >Se beste tilbud</rente-button
+            >
+
+          -->
+          <rente-button
+            class="min-width"
+            [disabled]="
             changeBankLoading ||
-            offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS
-          "
-          [isLoading]="changeBankLoading"
-          color="primary"
-          type="raised"
-          (click)="openChangeBankDialog(offersInfo.offers[0])"
-          >Be banken matche tilbud</rente-button
-        >
+            offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS"
+            [isLoading]="changeBankLoading"
+            color="primary"
+            type="raised"
+            (click)="openChangeBankDialog(offersInfo.offers[0])"
+            >Be banken matche tilbud</rente-button
+          >   
+          </div>
+
       </div>
       <!-- Desktop boxes -->
     </div>
@@ -397,32 +455,68 @@
               </div>
             </div>
           </div>
+          
           <div class="double buttons">
+            <!--
             <div class="full-width">
+             
               <rente-button
                 [disabled]="
                   changeBankLoading ||
-                  offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS
-                "
+                  offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS ||
+                  offer.haveSpecialDealWithBank === false"
                 [isLoading]="changeBankLoading"
                 color="primary"
                 type="raised"
-                (click)="openChangeBankDialog(offersInfo.offers[i])"
-                >Match tilbud</rente-button
+                [href]="offer.bankUrl"
+                >Se mer på bankens <br/> hjemmeside</rente-button
               >
+              <p class="small" *ngIf=" offer.haveSpecialDealWithBank === false"> (Ingen avtale med banken enda)</p>
             </div>
+            -->
+            
             <div class="full-width">
+                <rente-button
+                  [disabled]="
+                    changeBankLoading ||
+                    offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS"
+                  [isLoading]="changeBankLoading"
+                  color="primary"
+                  type="raised"
+                  (click)="openChangeBankDialog(offer)"
+                  >Match</rente-button
+                >
+              </div>
+
+
+            <div class="full-width">
+              <!--
+              <rente-button
+              [disabled]="
+                  changeBankLoading ||
+                  offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS ||
+                  offer.haveSpecialDealWithBank === false"
+                [isLoading]="changeBankLoading"
+                color="primary"
+                type="raised"
+                (click)="openNewOfferDialog(offersInfo.offers[i])"
+                >Få tilbud fra banken!</rente-button
+              >     
+              <p class="small" *ngIf=" offer.haveSpecialDealWithBank === false"> (Ingen avtale med banken enda)</p>
+              </div>
+              -->
               <rente-button
                 [disabled]="true"
                 [isLoading]="changeBankLoading"
                 color="primary"
                 type="raised"
-                (click)="openChangeBankDialog(offersInfo.offers[i])"
+                (click)="openNewOfferDialog(offersInfo.offers[i])"
                 >Start bytte</rente-button
-              >
-              <p class="small">(Kommer snart!)</p>
+              >       
+              <p class="small"> (Kommer snart)</p>
             </div>
           </div>
+          
         </div>
       </ng-container>
     </div>

@@ -14,6 +14,7 @@ import {
 } from '../../../config/loan-state';
 import { LocalStorageService } from '@services/local-storage.service';
 import { ChangeBankDialogComponent } from './change-bank-dialog/change-bank-dialog.component';
+import { GetOfferFromBankDialogComponent } from './get-offer-from-bank-dialog/get-offer-from-bank-dialog.component';
 import { ChangeBankServiceService } from '@services/remote-api/change-bank-service.service';
 import { Subscription } from 'rxjs';
 import { OFFERS_RESULT_TYPE } from '../../../shared/models/offers';
@@ -43,6 +44,7 @@ export class OffersComponent implements OnInit, OnDestroy {
   public effRateLoweredDialogVisible: boolean;
   public banksMap = BANKS_DATA;
   public tips: object[];
+  public remainingLoan = 8000000
 
   get hasLoansStatistics(): boolean {
     const res: boolean =
@@ -98,7 +100,7 @@ export class OffersComponent implements OnInit, OnDestroy {
       this.subscribeShareLinkTimer.unsubscribe();
     }
   }
-
+  
   public ngOnInit(): void {
     // kick off the polyfill!
     smoothscroll.polyfill();
@@ -107,7 +109,6 @@ export class OffersComponent implements OnInit, OnDestroy {
         this.offersInfo = res;
         this.isLoading = false;
         this.localStorageService.removeItem('isNewUser');
-
         this.getTips();
       },
       err => {
@@ -179,8 +180,24 @@ export class OffersComponent implements OnInit, OnDestroy {
     });
   }
 
+  public goToProperty() {
+    this.router.navigate(['/dashboard/bolig'])
+  }
+
+  public goToLoans() {
+    this.router.navigate(['/dashboard/mine-lan'])
+  }
+
+
   public openOfferDialog(offer: OfferInfo): void {
     this.dialog.open(DialogInfoComponent, {
+      data: offer
+    });
+  }
+
+  //Change name for this function
+  public openNewOfferDialog(offer: OfferInfo): void {
+    this.dialog.open(GetOfferFromBankDialogComponent, {
       data: offer
     });
   }

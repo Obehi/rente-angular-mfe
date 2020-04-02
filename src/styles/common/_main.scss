@@ -64,6 +64,13 @@ hr {
 .bank-buttons .button-wrapper {
   display: block;
 }
+.medium-width .button-wrapper {
+  display: inline-block;
+  button {
+    width: 100%;
+  }
+}
+
 .full-width .button-wrapper {
   display: block;
   button {

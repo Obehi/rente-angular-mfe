@@ -1,3 +1,4 @@
+
 <a href=""></a>
 <mat-icon (click)="close()" class="close-modal">close</mat-icon>
 
@@ -14,53 +15,76 @@
   matche tilbudet?
 </p>
 
-<p><b>Opplysninger om tilbud</b></p>
 
-<p class="small">Lånebeløp:</p>
-<p>{{ data.preview.totalOutstandingDebt | number: "0.0-0" }} kr</p>
+<p class="bold"><b>Opplysninger om tilbud</b></p>
 
-<p class="small">Boligverdi:</p>
-<p>{{ data.preview.propertyValue | number: "1.0-0" }} kr</p>
-
-<p class="small">Nedbetalingstid:</p>
-<p>{{ data.preview.averageRemainingYears | round }} år</p>
-
-<p class="small">Min alder:</p>
-<p>{{ data.preview.clientInfo.age | number: "1.0-0" }} år</p>
-
-<p class="small">Bank:</p>
-<p>{{ data.preview.bankName }}</p>
-
-<p class="small">Produktnavn:</p>
-<p>{{ data.preview.productName }}</p>
-
-<p class="small">Nominell rente:</p>
-<p>{{ data.preview.nominalRate | number: "1.2-2" }}%</p>
-
-<p class="small">Effektiv rente:</p>
-<p>{{ data.preview.effectiveRate | number: "1.2-2" }}%</p>
+<div class="grid-wrapper">
+  <div class="item">
+      <p class="small">Lånebeløp:</p>
+      <p>{{ data.preview.totalOutstandingDebt | number: "0.0-0" }} kr</p>
+  </div>
+  <div class="item">
+      <p class="small">Boligverdi:</p>
+      <p>{{ data.preview.propertyValue | number: "1.0-0" }} kr</p>
+  </div>
+  <div class="item">
+      <p class="small">Nedbetalingstid:</p>
+      <p>{{ data.preview.averageRemainingYears | round }} år</p>
+  </div>
+  <div class="item">
+      <p class="small">Min alder:</p>
+      <p>{{ data.preview.clientInfo.age | number: "1.0-0" }} år</p>
+  </div>
+  <div class="item">
+    <p class="small">Bank:</p>
+    <p>{{ data.preview.bankName }}</p>
+  </div>
+  <div class="item">
+      <p class="small">Produktnavn:</p>
+      <p>{{ data.preview.productName }}</p>    
+  </div>
+  <div class="item">
+      <p class="small">Nominell rente:</p>
+      <p>{{ data.preview.nominalRate | number: "1.2-2" }}%</p>
+  </div>
+  <div class="item">
+      <p class="small">Effektiv rente:</p>
+      <p>{{ data.preview.effectiveRate | number: "1.2-2" }}%</p>
+  </div>
+</div>
 
 <p class="small">Produkt:</p>
 <a href="{{ data.preview.offerUrl }}" target="_blank">
   <p>Link til produkt på Finansportalen</p>
 </a>
+<br />
 
-<p><b>Opplysninger om meg:</b></p>
 
-<p class="small">Navn:</p>
-<p>{{ data.preview.clientInfo.name }}</p>
+<p class="bold"><b>Opplysninger om meg:</b></p>
 
-<p class="small">Adresse:</p>
-<p>{{ data.preview.clientInfo.address }}</p>
-
-<p class="small">Postnr:</p>
-<p>{{ data.preview.clientInfo.zip }}</p>
-
-<p class="small">Telefon:</p>
-<p>{{ data.preview.clientInfo.phone }}</p>
+<div class="grid-wrapper">
+    <div class="item">
+        <p class="small">Navn:</p>
+        <p>{{ data.preview.clientInfo.name }}</p>
+    </div>
+    <div class="item">
+        <p class="small">Telefon:</p>
+        <p>{{ data.preview.clientInfo.phone }}</p>
+    </div>
+    <div class="item">
+        <p class="small">Adresse:</p>
+        <p>{{ data.preview.clientInfo.address }}</p>
+    </div>
+    <div class="item">
+        <p class="small">Postnr:</p>
+        <p>{{ data.preview.clientInfo.zip }}</p>
+    </div>
+    
+</div>
 
 <p class="small">E-post:</p>
 <p>{{ data.preview.clientInfo.email }}</p>
+<br />
 
 <p>
   Jeg ønsker at dere kontakter meg per telefon.
@@ -82,7 +106,7 @@
   kopi av meldingen i din innboks. Ønsker du å kontakte din bank direkte kan du
   kopiere teksten og bruke den som utgangspunkt for dialog.
 </p>
-
+<br />
 <form [formGroup]="confirmForm" novalidate>
   <mat-checkbox
     formControlName="confirmation"
