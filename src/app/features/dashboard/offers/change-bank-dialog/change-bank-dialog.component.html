@@ -28,6 +28,15 @@
       <p>{{ data.preview.propertyValue | number: "1.0-0" }} kr</p>
   </div>
   <div class="item">
+    <p class="small">Fellesgjeld:</p>
+    <p>{{ (data.preview.commonDebt / 1000000 | number: "1.1-2")}} mill.</p>
+</div>
+<div class="item">
+    <p class="small">Est. belåningsgrad:</p>
+    <p>{{ (data.preview.ltv) * 100 | number: "1.1-1"}}%
+    </p>
+</div>
+  <div class="item">
       <p class="small">Nedbetalingstid:</p>
       <p>{{ data.preview.averageRemainingYears | round }} år</p>
   </div>
