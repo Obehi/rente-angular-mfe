@@ -43,8 +43,6 @@ export class ChangeBankDialogComponent implements OnInit {
           this.isLoading = false;
           this.dialogRef.close();
           this.dialog.open(SuccessChangeBankDialogComponent, {
-            width: '100%',
-            maxHeight: '90vh',
             data: { isError: true }
           });
         }
