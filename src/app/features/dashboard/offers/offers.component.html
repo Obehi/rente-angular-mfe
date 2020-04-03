@@ -132,7 +132,7 @@
               <p>Din eff. rente</p>
               <h2>{{ offersInfo.totalEffectiveRate | number: "1.2-2" }}%</h2>
             </div>
-            <a class="box positive clickable" (click)="goToBestOffer()">
+            <div class="box positive" (click)="goToBestOffer()">
               <p>
                 Beste tilbud <img src="../../../../assets/icons/go_to.svg" />
               </p>
@@ -140,10 +140,10 @@
                 {{ offersInfo.bestOfferEffectiveRate | number: "1.2-2" }}%
               </h2>
               <!-- <h2>{{ offersInfo.customerName | null }}</h2> -->
-            </a>
+            </div>
           </div>
           <div class="double">
-            <a class="box clickable" (click)="goToProperty()">
+            <div class="box" (click)="goToProperty()">
               <p>
                 Boligverdi <img src="../../../../assets/icons/go_to.svg" />
               </p>
@@ -163,8 +163,8 @@
                 Estimat levert av
                 <a href="https://virdi.no/" target="_blank">virdi.no</a>
               </p>
-            </a>
-            <a class="box clickable" (click)="goToLoans()">
+            </div>
+            <div class="box" (click)="goToLoans()">
               <p>
                 Gjenværende lån <img src="../../../../assets/icons/go_to.svg" />
               </p>
@@ -181,7 +181,7 @@
                     100 | number: "1.1-1"
                 }}%
               </p>
-            </a>
+            </div>
           </div>
 
           
@@ -301,14 +301,14 @@
             <p>Din eff. rente</p>
             <h2>{{ offersInfo.totalEffectiveRate | number: "1.2-2" }}%</h2>
           </div>
-          <a class="box positive clickable" (click)="goToBestOffer()">
+          <div class="box positive clickable" (click)="goToBestOffer()">
             <p>Beste tilbud <img src="../../../../assets/icons/go_to.svg" /></p>
             <h2>{{ offersInfo.bestOfferEffectiveRate | number: "1.2-2" }}%</h2>
             <!-- <h2>{{ offersInfo.customerName | null }}</h2> -->
-          </a>
+          </div>
         </div>
         <div class="double">
-            <a class="box clickable" (click)="goToProperty()">
+            <div class="box" (click)="goToProperty()">
               <p>
                 Boligverdi <img src="../../../../assets/icons/go_to.svg" />
               </p>
@@ -327,8 +327,8 @@
                 Estimat levert av
                 <a href="https://virdi.no/" target="_blank">virdi.no</a>
               </p>
-            </a>
-            <a class="box clickable" (click)="goToLoans()">
+            </div>
+            <div class="box" (click)="goToLoans()">
               <p>
                 Gjenværende lån <img src="../../../../assets/icons/go_to.svg" />
               </p>
@@ -345,7 +345,7 @@
                     100 | number: "1.1-1"
                 }}%
               </p>
-            </a>
+            </div>
           </div>
 
         
