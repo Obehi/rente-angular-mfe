@@ -44,6 +44,12 @@ export interface OfferInfo {
   selectedRate: number;
   totalSavings: number;
   haveSpecialDealWithBank: Boolean
+  //REMOVE BEFORE PRODUCTION
+  effectiveInterest: number | null;
+  loanAmount: number | null;
+  years: number | null;
+  cost: number | null;
+  total: number | null;
 }
 
 export const OFFERS_RESULT_TYPE = {

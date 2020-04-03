@@ -16,12 +16,6 @@ form {
   max-width: unset;
 }
 
-.grid-wrapper-1 {
-  display: grid;
-  grid-template-columns: 100px 150px;
-  grid-gap: 10px;
-}
-
 .grid-wrapper{
     display: grid;
     grid-template-columns: 200px 150px;
@@ -36,4 +30,11 @@ form {
     p {
       line-height: 1.2
     }
+}
+
+.insignificant {
+  font-style: italic;
+  span {
+    font-style: normal
+  }
 }

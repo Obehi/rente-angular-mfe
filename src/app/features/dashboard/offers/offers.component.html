@@ -454,9 +454,13 @@
               </div>
             </div>
           </div>
-          <div class="full-width reddit">
-            
-
+          <div class="full-width the-offer-footer">
+            <p>Tilbud: Eff.rente {{offer.effectiveInterest | number: "1.1"}}%, 
+              låne beløp {{offer.loanAmount | number: "1.0" }}, 
+              {{offer.years | number}} år, 
+              kostnad: {{offer.cost | number: "1.0"}}, 
+              total: {{offer.total | number: "1.0"}}
+            </p>
           </div>
           
           <div class="double buttons">

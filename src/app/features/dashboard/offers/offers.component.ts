@@ -44,7 +44,7 @@ export class OffersComponent implements OnInit, OnDestroy {
   public effRateLoweredDialogVisible: boolean;
   public banksMap = BANKS_DATA;
   public tips: object[];
-  public remainingLoan = 8000000
+
 
   get hasLoansStatistics(): boolean {
     const res: boolean =
@@ -110,6 +110,16 @@ export class OffersComponent implements OnInit, OnDestroy {
         this.isLoading = false;
         this.localStorageService.removeItem('isNewUser');
         this.getTips();
+
+        //REMOVE BEFORE PRODUCTION
+
+        for(let offer of this.offersInfo.offers) {
+          offer.effectiveInterest = 2.232423
+          offer.loanAmount = 230000
+          offer.years = 15
+          offer.cost = 23039933
+          offer.total =  44499044
+        }
       },
       err => {
         if (err.errorType === 'PROPERTY_VALUE_MISSING') {
