@@ -41,6 +41,12 @@ button.mat-blue {
   color: white;
   width: 100%;
 }
+
+button.mat-grey {
+  background-color: $grey;
+  color: white;
+  width: 100%;
+}
 .loading-icon {
   animation: spin 2s infinite linear;
   display: inline-block;

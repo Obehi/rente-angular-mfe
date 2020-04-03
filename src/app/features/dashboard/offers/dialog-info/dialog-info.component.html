@@ -1,53 +1,73 @@
-<mat-icon (click)="onClose()" class="close-modal">close</mat-icon>
+  <mat-icon (click)="onClose()" class="close-modal">close</mat-icon>
 
 <h3 *ngIf="data.bank">{{ data.bankName }}</h3>
-<p class="small">Produkt</p>
-<p>{{ data.productName }}</p>
 
-<p class="small">Nominell rente</p>
-<p>{{ data.nominalRate | number: "1.2-2" }}%</p>
 
-<p class="small">Effektiv rente</p>
-<p>{{ data.effectiveRate | number: "1.2-2" }}%</p>
+<div class="grid-wrapper">
+    <div class="item">
+      <p class="small">Produkt</p>
+      <p>{{ data.productName }}</p>
+    </div>
+    <div class="item">
+        <p class="small">Maksimal belåningsgrad</p>
+        <p>{{ data.maxLTV }}%</p>        
+    </div>
+    <div class="item">
+      <p class="small">Nominell rente</p>
+      <p>{{ data.nominalRate | number: "1.2-2" }}%</p>
+    </div>
+    <div class="item">
+      <p class="small">Effektiv rente</p>
+      <p>{{ data.effectiveRate | number: "1.2-2" }}%</p>
+    </div>
+    <div class="item">
+        <p class="small">Krav om annet produkt</p>
+        <p>{{ data.requiredProductPackage == null ? "Nei" : "Ja" }}</p>
+    </div>
 
-<p class="small">Termingebyr</p>
-<p>{{ data.monthlyFee }},-</p>
-
-<p class="small">Markedsområde</p>
-<p>{{ data.marketArea }}</p>
-
-<p class="small">Krav om annet produkt</p>
-<p>{{ data.requiredProductPackage == null ? "Nei" : "Ja" }}</p>
-
-<div *ngIf="data.requiredProductPackage != null">
-  <p class="small">Produktpakke</p>
-  <p>{{ data.requiredProductPackage }}</p>
+    <div class="item">
+      <p class="small">Produktpakke</p>
+      <p>{{ data.requiredProductPackage == null ? "Ingen krav" :  data.requiredProductPackage}}</p>
+    </div>
+    <div class="item">
+      <p class="small">Maksimal løpetid</p>
+      <p>{{ data.maxLoanPeriod }} år</p>
+    </div>
+    <div class="item">
+      <p class="small">Maksimal avdragsfrihet</p>
+      <p>{{ data.maxInstallmentFreePeriod }} år</p>
+    </div>
+    <div class="item">
+      <p class="small">Termingebyr</p>
+      <p>{{ data.monthlyFee }},-</p>
+    </div>
+    <div class="item">
+      <p class="small">Etableringsgebyr</p>
+      <p>{{ data.establishmentFee }},-</p>
+    </div>
+    <div class="item">
+      <p class="small">Depotgebyr</p>
+      <p>{{ data.depotFee }},-</p>
+    </div>
+    <div class="item">  
+      <p class="small">Markedsområde</p>
+      <p>{{ data.marketArea }}</p>
+    </div>
+    <div class="item">
+      <p class="small">Forutsetter medlemskap</p>
+      <p>{{ data.requiredMembership == null ? "Nei" : "Ja" }}</p>
+    </div>
+    <div *ngIf="data.requiredMembership != null">
+      <div class="item">
+        <p class="small">Medlemskap</p>
+        <p>{{ data.requiredMembership }}</p>
+      </div>
+    </div>
+  
+    
 </div>
 
-<p class="small">Forutsetter medlemskap</p>
-<p>{{ data.requiredMembership == null ? "Nei" : "Ja" }}</p>
-
-<div *ngIf="data.requiredMembership != null">
-  <p class="small">Medlemskap</p>
-  <p>{{ data.requiredMembership }}</p>
-</div>
-
-<p class="small">Maksimal belåningsgrad</p>
-<p>{{ data.maxLTV }}%</p>
-
-<p class="small">Maksimal løpetid</p>
-<p>{{ data.maxLoanPeriod }} år</p>
-
-<p class="small">Maksimal avdragsfrihet</p>
-<p>{{ data.maxInstallmentFreePeriod }} år</p>
-
-<p class="small">Etableringsgebyr</p>
-<p>{{ data.establishmentFee }},-</p>
-
-<p class="small">Depotgebyr</p>
-<p>{{ data.depotFee }},-</p>
-
-<p class="small">Forbehold</p>
+<p class="small">Forbehold:</p>
 <p>{{ data.otherConditions }}</p>
 
 <rente-button cdkFocusInitial color="primary" (click)="onClose()">

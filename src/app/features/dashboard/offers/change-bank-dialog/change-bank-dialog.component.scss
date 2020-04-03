@@ -1,8 +1,11 @@
 @import "../../../../../styles/theme/_colors.scss";
 
-p,
-b {
-  margin-bottom: 20px;
+p {
+  margin-bottom: 10px;
+}
+
+.bold {
+  margin-bottom: 5px;
 }
 .small {
   margin-bottom: 0px;
@@ -15,4 +18,26 @@ form {
   background: unset;
   border: 0;
   max-width: unset;
+}
+
+.grid-wrapper-1 {
+  display: grid;
+  grid-template-columns: 100px 150px;
+  grid-gap: 10px;
+}
+
+.grid-wrapper{
+    display: grid;
+    grid-template-columns: 200px 150px;
+    grid-column-gap: 10px;
+
+    div {
+      p:nth-child(even) {
+        font-weight: 500;
+      }
+    }
+
+    p {
+      line-height: 1.2
+    }
 }
