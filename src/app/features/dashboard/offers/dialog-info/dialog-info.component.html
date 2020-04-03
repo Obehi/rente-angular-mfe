@@ -1,4 +1,4 @@
-<mat-icon (click)="onClose()" class="close-modal">close</mat-icon>
+  <mat-icon (click)="onClose()" class="close-modal">close</mat-icon>
 
 <h3 *ngIf="data.bank">{{ data.bankName }}</h3>
 
@@ -8,11 +8,9 @@
       <p class="small">Produkt</p>
       <p>{{ data.productName }}</p>
     </div>
-    <div *ngIf="data.requiredProductPackage != null">
-      <div class="item">
-        <p class="small">Produktpakke</p>
-        <p>{{ data.requiredProductPackage }}</p>
-      </div>
+    <div class="item">
+        <p class="small">Maksimal belåningsgrad</p>
+        <p>{{ data.maxLTV }}%</p>        
     </div>
     <div class="item">
       <p class="small">Nominell rente</p>
@@ -22,10 +20,14 @@
       <p class="small">Effektiv rente</p>
       <p>{{ data.effectiveRate | number: "1.2-2" }}%</p>
     </div>
-   
     <div class="item">
-        <p class="small">Maksimal belåningsgrad</p>
-        <p>{{ data.maxLTV }}%</p>        
+        <p class="small">Krav om annet produkt</p>
+        <p>{{ data.requiredProductPackage == null ? "Nei" : "Ja" }}</p>
+    </div>
+
+    <div class="item">
+      <p class="small">Produktpakke</p>
+      <p>{{ data.requiredProductPackage == null ? "Ingen produktpakke" :  data.requiredProductPackage}}</p>
     </div>
     <div class="item">
       <p class="small">Maksimal løpetid</p>
@@ -36,6 +38,10 @@
       <p>{{ data.maxInstallmentFreePeriod }} år</p>
     </div>
     <div class="item">
+      <p class="small">Termingebyr</p>
+      <p>{{ data.monthlyFee }},-</p>
+    </div>
+    <div class="item">
       <p class="small">Etableringsgebyr</p>
       <p>{{ data.establishmentFee }},-</p>
     </div>
@@ -43,28 +49,22 @@
       <p class="small">Depotgebyr</p>
       <p>{{ data.depotFee }},-</p>
     </div>
-    <div class="item">
-      <p class="small">Termingebyr</p>
-      <p>{{ data.monthlyFee }},-</p>
-    </div>
     <div class="item">  
-        <p class="small">Markedsområde</p>
-        <p>{{ data.marketArea }}</p>
-      </div>
+      <p class="small">Markedsområde</p>
+      <p>{{ data.marketArea }}</p>
+    </div>
+    <div class="item">
+      <p class="small">Forutsetter medlemskap</p>
+      <p>{{ data.requiredMembership == null ? "Nei" : "Ja" }}</p>
+    </div>
+    <div *ngIf="data.requiredMembership != null">
       <div class="item">
-          <p class="small">Krav om annet produkt</p>
-          <p>{{ data.requiredProductPackage == null ? "Nei" : "Ja" }}</p>
+        <p class="small">Medlemskap</p>
+        <p>{{ data.requiredMembership }}</p>
       </div>
-      <div class="item">
-        <p class="small">Forutsetter medlemskap</p>
-        <p>{{ data.requiredMembership == null ? "Nei" : "Ja" }}</p>
-      </div>
-      <div *ngIf="data.requiredMembership != null">
-          <div class="item">
-            <p class="small">Medlemskap</p>
-            <p>{{ data.requiredMembership }}</p>
-        </div>
-      </div>
+    </div>
+  
+    
 </div>
 
 <p class="small">Forbehold:</p>
