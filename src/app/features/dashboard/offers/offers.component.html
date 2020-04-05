@@ -454,18 +454,7 @@
               </div>
             </div>
           </div>
-<<<<<<< HEAD
-          <div class="full-width the-offer-footer">
-            <p>Tilbud: Eff.rente {{offer.effectiveInterest | number: "1.1"}}%, 
-              låne beløp {{offer.loanAmount | number: "1.0" }}, 
-              {{offer.years | number}} år, 
-              kostnad: {{offer.cost | number: "1.0"}}, 
-              total: {{offer.total | number: "1.0"}}
-            </p>
-          </div>
-=======
 
->>>>>>> rm-319
           
           <div class="double buttons">
           
@@ -507,7 +496,7 @@
               [disabled]="
                   changeBankLoading ||
                   offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS ||
-                  offer.bankInfo.partner == false"
+                    offer.bankInfo.partner == false"
                 [isLoading]="changeBankLoading"
                 color="primary"
                 type="raised"

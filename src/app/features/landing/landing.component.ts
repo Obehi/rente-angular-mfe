@@ -20,6 +20,12 @@ import { trigger, transition, style, animate } from '@angular/animations';
   ]
 })
 export class LandingComponent implements OnInit {
+  
+  public slides = [
+    { src: "../assets/img/img1.jpg" },
+    { src: "../assets/img/img2.jpg" },
+    { src: "../assets/img/img3.jpg" },
+  ];
 
   time = 0;
 
