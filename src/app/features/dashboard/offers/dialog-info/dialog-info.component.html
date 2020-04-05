@@ -1,6 +1,6 @@
   <mat-icon (click)="onClose()" class="close-modal">close</mat-icon>
 
-<h3 *ngIf="data.bankInfo.bank">{{ data.bankInfo.bank }}</h3>
+<h3 *ngIf="data.bankInfo.bank">{{ data.bankInfo.name }}</h3>
 
 <div class="grid-wrapper">
     <div class="item">
@@ -66,10 +66,11 @@
     
 </div>
 
-<p class="small">Forbehold:</p>
+<p class="small-header">Forbehold:</p>
 <p>{{ data.otherConditions }}</p>
 
-<p class="insignificant"><span>Tilbud:</span> Eff.rente {{data.effectiveInterest | number: "1.1-2"}}%, 
+<p class="small-header">Tilbud:</p>
+<p class="insignificant">Eff.rente {{data.effectiveInterest | number: "1.1-2"}}%, 
   Lånebeløp {{data.outstandingDebt | number: "1.0" }}, 
   {{data.loanPeriodYears | number: "1.1" }} år, 
   Kostnad: {{data.cost | number: "1.0" }}, 
