@@ -114,10 +114,10 @@ export class OffersComponent implements OnInit, OnDestroy {
 
         for(let offer of this.offersInfo.offers) {
           offer.effectiveInterest = 2.232423
-          offer.loanAmount = 230000
-          offer.years = 15
+          offer.outstandingDebt = 230000
+          offer.loanPeriodYears  = 15
           offer.cost = 23039933
-          offer.total =  44499044
+          offer.totalCost =  44499044
         }
       },
       err => {

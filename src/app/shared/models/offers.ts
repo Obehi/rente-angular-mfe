@@ -44,10 +44,10 @@ export interface OfferInfo {
   haveSpecialDealWithBank: Boolean
   //REMOVE BEFORE PRODUCTION
   effectiveInterest: number | null;
-  loanAmount: number | null;
-  years: number | null;
+  outstandingDebt: number | null;
+  loanPeriodYears: number | null;
   cost: number | null;
-  total: number | null;
+  totalCost: number | null;
 }
 
 export interface BankInfo{
