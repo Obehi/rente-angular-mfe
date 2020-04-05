@@ -45,7 +45,6 @@ export class OffersComponent implements OnInit, OnDestroy {
   public banksMap = BANKS_DATA;
   public tips: object[];
 
-
   get hasLoansStatistics(): boolean {
     const res: boolean =
       this.offersInfo &&
@@ -207,6 +206,8 @@ export class OffersComponent implements OnInit, OnDestroy {
 
   //Change name for this function
   public openNewOfferDialog(offer: OfferInfo): void {
+    if(offer.bankInfo.partner === false)
+      return
     this.dialog.open(GetOfferFromBankDialogComponent, {
       data: offer
     });

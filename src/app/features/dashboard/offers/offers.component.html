@@ -394,7 +394,7 @@
             <div
               class="logo"
               [ngStyle]="{
-                'background-image': 'url(' + banksMap[offer.bank].img + ')'
+                'background-image': 'url(' + banksMap[offer.bankInfo.bank].img + ')'
               }"
             >
               <div class="nr">
@@ -403,7 +403,7 @@
             </div>
             <div class="offer-product">
               <a [href]="offer.bankUrl" target="_blank"
-                >{{ offer.bankName }}<mat-icon>open_in_new</mat-icon></a
+                >{{ offer.bankInfo.bank }}<mat-icon>open_in_new</mat-icon></a
               >
               <h3 (click)="openOfferDialog(offer)" class="clickable">
                 {{ offer.productName }}<mat-icon>help</mat-icon>
@@ -454,6 +454,7 @@
               </div>
             </div>
           </div>
+<<<<<<< HEAD
           <div class="full-width the-offer-footer">
             <p>Tilbud: Eff.rente {{offer.effectiveInterest | number: "1.1"}}%, 
               låne beløp {{offer.loanAmount | number: "1.0" }}, 
@@ -462,27 +463,30 @@
               total: {{offer.total | number: "1.0"}}
             </p>
           </div>
+=======
+
+>>>>>>> rm-319
           
           <div class="double buttons">
-            <!--
+          
             <div class="full-width">
              
               <rente-button
                 [disabled]="
                   changeBankLoading ||
                   offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS ||
-                  offer.haveSpecialDealWithBank === false"
+                  offer.bankInfo.partner == false"
                 [isLoading]="changeBankLoading"
                 color="primary"
                 type="raised"
-                [href]="offer.bankUrl"
+                [href]="offer.bankInfo.url"
                 >Se mer på bankens <br/> hjemmeside</rente-button
               >
-              <p class="small" *ngIf=" offer.haveSpecialDealWithBank === false"> (Ingen avtale med banken enda)</p>
+              <p class="small" *ngIf=" offer.bankInfo.partner === false"> (Ingen avtale med banken enda)</p>
             </div>
-            -->
-            
-            <div class="full-width">
+          
+            <!--            
+              <div class="full-width">
                 <rente-button
                   [disabled]="
                     changeBankLoading ||
@@ -494,24 +498,25 @@
                   >Match tilbud</rente-button
                 >
               </div>
+              -->
 
 
             <div class="full-width">
-              <!--
+              
               <rente-button
               [disabled]="
                   changeBankLoading ||
                   offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS ||
-                  offer.haveSpecialDealWithBank === false"
+                  offer.bankInfo.partner == false"
                 [isLoading]="changeBankLoading"
                 color="primary"
                 type="raised"
                 (click)="openNewOfferDialog(offersInfo.offers[i])"
                 >Få tilbud fra banken!</rente-button
               >     
-              <p class="small" *ngIf=" offer.haveSpecialDealWithBank === false"> (Ingen avtale med banken enda)</p>
-              </div>
-              -->
+              <p class="small" *ngIf=" offer.bankInfo.partner === false"> (Ingen avtale med banken enda)</p>
+              
+              <!--
               <rente-button
                 [disabled]="true"
                 [isLoading]="changeBankLoading"
@@ -520,6 +525,7 @@
                 >Start bytte</rente-button
               >       
               <p class="small"> (Kommer snart)</p>
+              -->
             </div>
           </div>
           
