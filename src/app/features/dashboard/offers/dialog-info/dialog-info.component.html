@@ -1,7 +1,6 @@
   <mat-icon (click)="onClose()" class="close-modal">close</mat-icon>
 
-<h3 *ngIf="data.bank">{{ data.bankName }}</h3>
-
+<h3 *ngIf="data.bankInfo.bank">{{ data.bankInfo.bank }}</h3>
 
 <div class="grid-wrapper">
     <div class="item">
@@ -69,6 +68,13 @@
 
 <p class="small">Forbehold:</p>
 <p>{{ data.otherConditions }}</p>
+
+<p class="insignificant"><span>Tilbud:</span> Eff.rente {{data.effectiveInterest | number: "1.1"}}%, 
+  lånebeløp {{data.loanAmount | number: "1.0" }}, 
+  {{data.years | number}} år, 
+  kostnad: {{data.cost | number: "1.0"}}, 
+  totalt: {{data.total | number: "1.0"}}
+</p>
 
 <rente-button cdkFocusInitial color="primary" (click)="onClose()">
   Ok
