@@ -10,7 +10,7 @@ export interface Offers {
   memberships: string[];
   offers: OfferInfo[];
   propertyValue: number | null;
-  totalEffectiveRate: number | null;
+  totalEffectiveRate: number | null;  
   totalOutstandingDebt: number | null;
   resultType: string;
   bestPercentileEffectiveRateYourBank: number;
@@ -23,9 +23,7 @@ export interface Offers {
 }
 
 export interface OfferInfo {
-  bank: string;
-  bankName: string;
-  bankUrl: string;
+  bankInfo: BankInfo;
   depotFee: number;
   effectiveRate: number;
   establishmentFee: number;
@@ -46,6 +44,13 @@ export interface OfferInfo {
   haveSpecialDealWithBank: Boolean
 }
 
+export interface BankInfo{
+  bank: string;
+  bankName: string;
+  bankUrl: string;
+  transferUrl: string | null;
+  partner: boolean
+}
 export const OFFERS_RESULT_TYPE = {
   NO_OFFERS: "NO_OFFERS",
   OFFERS_PRESENT: "OFFERS_PRESENT",
