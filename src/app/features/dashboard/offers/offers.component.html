@@ -403,7 +403,7 @@
             </div>
             <div class="offer-product">
               <a [href]="offer.bankUrl" target="_blank"
-                >{{ offer.bankInfo.bank }}<mat-icon>open_in_new</mat-icon></a
+                >{{ offer.bankInfo.name }}<mat-icon>open_in_new</mat-icon></a
               >
               <h3 (click)="openOfferDialog(offer)" class="clickable">
                 {{ offer.productName }}<mat-icon>help</mat-icon>
@@ -457,10 +457,10 @@
             <div class="small-header">
               <p class="insignificant"><span>Tilbud:
               </span> Eff.rente {{offer.effectiveInterest | number: "1.1-2"}}%, 
-                lånebeløp {{offer.outstandingDebt | number: "1.0" }}, 
+                Lånebeløp {{offer.outstandingDebt | number: "1.0" }}, 
                 {{offer.loanPeriodYears | number: "1.1" }} år, 
-                kostnad: {{offer.cost | number: "1.0" }}, 
-                totalt: {{offer.totalCost | number: "1.0" }}
+                Kostnad: {{offer.cost | number: "1.0" }}, 
+                Totalt: {{offer.totalCost | number: "1.0" }}
               </p>
             </div>
           </div>

@@ -1,12 +1,12 @@
 <mat-icon (click)="onClose()" class="close-modal">close</mat-icon>
 
-<div class="inner">
-    <h3>Godt valg!</h3>
-    <p >Å bytte bank er lettere enn du tror.</p>
-    <p>Du blir nå videresendt til Landkredits søknadssystem. 
-        Vi har started søknaden for deg. Følg instruksene videre 
-        for å få det beste tilbudet.</p>
-    <rente-button cdkFocusInitial color="primary" [href]="data.bankInfo.transferUrl">
-    Fortsett
-    </rente-button>
-</div>
+
+
+<h3>Godt valg!</h3>
+<p >Å bytte bank er lettere enn du tror.</p>
+<p>Du blir nå videresendt til Landkredits søknadssystem. 
+    Vi har started søknaden for deg. Følg instruksene videre 
+    for å få det beste tilbudet.</p>
+<rente-button class="button" cdkFocusInitial color="primary" [href]="data.bankInfo.transferUrl">
+Fortsett
+</rente-button>
