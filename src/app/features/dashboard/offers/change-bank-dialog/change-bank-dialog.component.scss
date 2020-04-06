@@ -18,6 +18,7 @@ form {
   background: unset;
   border: 0;
   max-width: unset;
+  margin-bottom: 20px;
 }
 
 .grid-wrapper-1 {
@@ -28,7 +29,7 @@ form {
 
 .grid-wrapper{
     display: grid;
-    grid-template-columns: 200px 150px;
+    grid-template-columns: 140px 150px;
     grid-column-gap: 10px;
 
     div {

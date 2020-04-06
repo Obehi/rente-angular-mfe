@@ -9,6 +9,12 @@ p {
   margin-bottom: 0px;
 }
 
+.small-header {
+  font-size: 12px;
+  margin-bottom: 0px;
+  font-weight: 400;
+}
+
 form {
   padding: 0;
   background: unset;
@@ -16,24 +22,21 @@ form {
   max-width: unset;
 }
 
-.grid-wrapper-1 {
-  display: grid;
-  grid-template-columns: 100px 150px;
-  grid-gap: 10px;
-}
-
 .grid-wrapper{
     display: grid;
-    grid-template-columns: 200px 150px;
+    grid-template-columns: 140px 150px;
     grid-column-gap: 10px;
 
     div {
       p:nth-child(even) {
         font-weight: 500;
       }
+      p:nth-child(odd) {
+        margin-bottom: 0px
+      }
     }
 
     p {
-      line-height: 1.2
+      line-height: 1.2;
     }
 }

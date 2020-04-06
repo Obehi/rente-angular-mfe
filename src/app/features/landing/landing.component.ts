@@ -20,9 +20,7 @@ import { trigger, transition, style, animate } from '@angular/animations';
   ]
 })
 export class LandingComponent implements OnInit {
-
   time = 0;
-
   get isMobile(): boolean { return window.innerWidth < 1024; }
 
   ngOnInit(): void {

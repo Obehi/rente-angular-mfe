@@ -34,6 +34,7 @@ a.box {
 
 .min-width {
   min-width: 300px;
+  display: inline-block;
 }
 .offers {
   text-align: center;
@@ -220,9 +221,26 @@ a.box {
           }
         }
       }
+      .the-offer-footer {
+        p{
+          text-align: start;
+          font-size: 13px
+        }
+      }
     }
   }
 }
+
+.small-header {
+  background-color: $light;
+  padding: 4px 0;
+  border-top: 1px solid $lesslight;
+  border-bottom: 1px solid $lesslight;
+  p{
+    font-size: 12px
+  }
+}
+
 @media (max-width: 600px) {
   .barometer {
     padding: 20px 10px;
@@ -287,9 +305,8 @@ a.box {
     .split-section:first-of-type {
       border-right: 1px solid $light;
     }
-    rente-button {
-      display: inline-block;
-
+    .vertical:nth-child(odd) {
+     // display: inline-block;
       margin-top: 30px;
     }
   }
