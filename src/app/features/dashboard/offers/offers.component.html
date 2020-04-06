@@ -184,33 +184,34 @@
             </a>
           </div>
 
-          
-          <!-- Saving button for later iteration
           <div class="full-width vertical">
-            <rente-button
-              [disabled]="changeBankLoading ||
-              offersInfo.offerSavingsType === offerSavingsType.NO_SAVING"
-              [isLoading]="changeBankLoading"
-              color="primary"
-              type="raised"
-              (click)="goToBestOffer()"
-              >Se beste tilbud</rente-button
-            >
-          </div>
-          -->
+            
+              
+                <rente-button class="min-width vertical"
+                  [disabled]="changeBankLoading ||
+                  offersInfo.offerSavingsType === offerSavingsType.NO_SAVING"
+                  [isLoading]="changeBankLoading"
+                  color="primary"
+                  type="raised"
+                  (click)="goToBestOffer()"
+                  >Se beste tilbud</rente-button
+                >
+            
 
-          <div class="vertical">
-            <rente-button
-              [disabled]="
-              changeBankLoading ||
-              offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS"
-              [isLoading]="changeBankLoading"
-              color="primary"
-              type="raised"
-              (click)="openChangeBankDialog(offersInfo.offers[0])"
-              >Be banken matche tilbud</rente-button
-            > 
-          </div>  
+            <div class="max-width vertical">
+              <rente-button
+                class="min-width"
+                [disabled]="
+                changeBankLoading ||
+                offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS"
+                [isLoading]="changeBankLoading"
+                color="primary"
+                type="raised"
+                (click)="openChangeBankDialog(offersInfo.offers[0])"
+                >Be banken matche tilbud</rente-button
+              > 
+            </div> 
+          </div>
         </div>
         <!-- Mobile boxes -->
       </div>
@@ -350,8 +351,7 @@
 
         
         <div class="full-width vertical">
-          <!-- Saving button for later iteration
-            <rente-button class="min-width"
+            <rente-button class="min-width vertical"
               [disabled]="changeBankLoading ||
               offersInfo.offerSavingsType === offerSavingsType.NO_SAVING"
               [isLoading]="changeBankLoading"
@@ -360,8 +360,6 @@
               (click)="goToBestOffer()"
               >Se beste tilbud</rente-button
             >
-
-          -->
           <rente-button
             class="min-width"
             [disabled]="
