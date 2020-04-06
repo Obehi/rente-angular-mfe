@@ -382,7 +382,7 @@
     <h3 style="margin-bottom: 20px;">
       {{ offersInfo.offers.length }} beste tilbud
     </h3>
-    <div class="offers-gri  ">
+    <div class="offers-grid">
       <ng-container *ngIf="offersInfo">
         <div
           *ngFor="let offer of offersInfo.offers; let i = index"
@@ -454,7 +454,7 @@
 
             <div class="small-header">
               <p class="insignificant"><span>Tilbud:
-              </span> Eff.rente {{offer.effectiveInterest | number: "1.1-2"}}%, 
+              </span> Eff.rente {{offer.effectiveRate | number: "1.1-2"}}%, 
                 Lånebeløp {{offer.outstandingDebt | number: "1.0" }}, 
                 {{offer.loanPeriodYears | number: "1.1" }} år, 
                 Kostnad: {{offer.cost | number: "1.0" }}, 

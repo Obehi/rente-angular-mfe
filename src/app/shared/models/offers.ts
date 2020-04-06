@@ -42,7 +42,6 @@ export interface OfferInfo {
   selectedRate: number;
   totalSavings: number;
   haveSpecialDealWithBank: Boolean
-  //REMOVE BEFORE PRODUCTION
   effectiveInterest: number | null;
   outstandingDebt: number | null;
   loanPeriodYears: number | null;
@@ -57,6 +56,7 @@ export interface BankInfo{
   transferUrl: string | null;
   partner: boolean
 }
+
 export const OFFERS_RESULT_TYPE = {
   NO_OFFERS: "NO_OFFERS",
   OFFERS_PRESENT: "OFFERS_PRESENT",

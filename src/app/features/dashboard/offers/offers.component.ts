@@ -109,13 +109,6 @@ export class OffersComponent implements OnInit, OnDestroy {
         this.isLoading = false;
         this.localStorageService.removeItem('isNewUser');
         this.getTips();
-
-        //REMOVE BEFORE PRODUCTION
-
-        for(let offer of this.offersInfo.offers) {
-          offer.effectiveInterest = 2.232423
-          
-        }
       },
       err => {
         if (err.errorType === 'PROPERTY_VALUE_MISSING') {
