@@ -29,7 +29,7 @@ form {
 
 .grid-wrapper{
     display: grid;
-    grid-template-columns: 200px 150px;
+    grid-template-columns: 140px 150px;
     grid-column-gap: 10px;
 
     div {
@@ -41,9 +41,4 @@ form {
     p {
       line-height: 1.2
     }
-}
-
-
-.double {
-  margin-bottom: 300px
 }

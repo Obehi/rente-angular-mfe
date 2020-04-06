@@ -24,7 +24,6 @@ import { PreferancesService } from '@services/remote-api/preferances.service';
 import { ProfileService } from '@services/remote-api/profile.service';
 import { HttpClientModule } from '@angular/common/http';
 import { BigNumberPipe } from './pipes/big-number.pipe';
-import { DotPipe } from './pipes/dot.pipe';
 import { ChipsAutocompleteComponent } from './components/ui-components/chips-autocomplete/chips-autocomplete.component';
 import { TextMaskModule } from 'angular2-text-mask';
 import { AbsPipe } from './pipes/abs.pipe';
@@ -73,8 +72,8 @@ const services = [
     MaterialModule,
     TextMaskModule,
   ],
-  declarations: [...components, BigNumberPipe, ChipsAutocompleteComponent, AbsPipe, RoundPipe, DotPipe, ThousandsSeprator],
-  exports: [...components, AbsPipe, TextMaskModule, RoundPipe, ThousandsSeprator, DotPipe],
+  declarations: [...components, BigNumberPipe, ChipsAutocompleteComponent, AbsPipe, RoundPipe, ThousandsSeprator],
+  exports: [...components, AbsPipe, TextMaskModule, RoundPipe, ThousandsSeprator],
   providers: [...services]
 })
 export class SharedModule {
