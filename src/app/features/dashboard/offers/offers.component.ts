@@ -45,6 +45,12 @@ export class OffersComponent implements OnInit, OnDestroy {
   public banksMap = BANKS_DATA;
   public tips: object[];
 
+  get isMobile(): boolean { return window.innerWidth < 600; }
+
+<<<<<<< HEAD
+=======
+
+>>>>>>> 58864c4... Align buttons again
   get hasLoansStatistics(): boolean {
     const res: boolean =
       this.offersInfo &&
