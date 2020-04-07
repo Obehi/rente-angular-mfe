@@ -162,6 +162,9 @@ rente-header {
   grid-template-columns: 1fr 1fr;
   &.buttons {
     padding: 10px;
+    @media (max-width: 600px) {
+      grid-template-columns: 1fr;
+    }
   }
   .box {
     padding: 10px;

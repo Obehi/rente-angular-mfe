@@ -45,6 +45,9 @@ export class OffersComponent implements OnInit, OnDestroy {
   public banksMap = BANKS_DATA;
   public tips: object[];
 
+  get isMobile(): boolean { return window.innerWidth < 600; }
+
+
   get hasLoansStatistics(): boolean {
     const res: boolean =
       this.offersInfo &&
