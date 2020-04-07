@@ -48,9 +48,13 @@ export class OffersComponent implements OnInit, OnDestroy {
   get isMobile(): boolean { return window.innerWidth < 600; }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 58864c4... Align buttons again
+=======
+
+>>>>>>> rebase-backup
   get hasLoansStatistics(): boolean {
     const res: boolean =
       this.offersInfo &&
