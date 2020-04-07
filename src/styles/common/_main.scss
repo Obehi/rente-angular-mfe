@@ -160,8 +160,12 @@ rente-header {
   display: grid;
   grid-gap: 10px;
   grid-template-columns: 1fr 1fr;
+  
   &.buttons {
     padding: 10px;
+    @media (max-width: 600px) {
+      grid-template-columns: 1fr;
+    }
   }
   .box {
     padding: 10px;

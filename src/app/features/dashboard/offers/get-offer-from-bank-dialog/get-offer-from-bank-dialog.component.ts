@@ -11,7 +11,7 @@ export class GetOfferFromBankDialogComponent {
 
   constructor(
     public dialogRef: MatDialogRef<GetOfferFromBankDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: OfferInfo) {}
+    @Inject(MAT_DIALOG_DATA) public offerInfo: OfferInfo) {}
 
   public onClose(): void {
     this.dialogRef.close();
