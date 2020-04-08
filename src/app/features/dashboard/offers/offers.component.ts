@@ -203,11 +203,12 @@ export class OffersComponent implements OnInit, OnDestroy {
       return
     
       //QUICK FIX FOR BUILDER DEAL
-      if(offer.bankInfo.bank === "BUILDER") {
+      if(offer.bankInfo.bank === "BULDER") {
         window.open(
           offer.bankInfo.transferUrl,
           '_blank' // <- This is what makes it open in a new window.
         );
+        return 
       }
     
     this.dialog.open(GetOfferFromBankDialogComponent, {
