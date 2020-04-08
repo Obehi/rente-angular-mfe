@@ -45,6 +45,8 @@ export class OffersComponent implements OnInit, OnDestroy {
   public banksMap = BANKS_DATA;
   public tips: object[];
 
+  get isMobile(): boolean { return window.innerWidth < 600; }
+
   get hasLoansStatistics(): boolean {
     const res: boolean =
       this.offersInfo &&
@@ -196,8 +198,18 @@ export class OffersComponent implements OnInit, OnDestroy {
 
   //Change name for this function
   public openNewOfferDialog(offer: OfferInfo): void {
+
     if(offer.bankInfo.partner === false)
       return
+    
+      //QUICK FIX FOR BUILDER DEAL
+      if(offer.bankInfo.bank === "BUILDER") {
+        window.open(
+          offer.bankInfo.transferUrl,
+          '_blank' // <- This is what makes it open in a new window.
+        );
+      }
+    
     this.dialog.open(GetOfferFromBankDialogComponent, {
       data: offer
     });
@@ -242,5 +254,24 @@ export class OffersComponent implements OnInit, OnDestroy {
 
   get isDialogVisble(): boolean {
     return this.effRateLoweredDialogVisible;
+  }
+
+  getbankNameOrDefault(offer: OfferInfo): string {
+    let text = ""
+    switch(offer.bankInfo.bank) { 
+      case "SBANKEN": { 
+         text = "Sbanken"
+         break; 
+      } 
+      case "BULDER": { 
+        text = "Bulder"
+         break; 
+      } 
+      default: { 
+        text = "banken"
+         break; 
+      } 
+   }
+   return text 
   }
 }
