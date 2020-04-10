@@ -15,6 +15,7 @@ import {
 import { LocalStorageService } from '@services/local-storage.service';
 import { ChangeBankDialogComponent } from './change-bank-dialog/change-bank-dialog.component';
 import { GetOfferFromBankDialogComponent } from './get-offer-from-bank-dialog/get-offer-from-bank-dialog.component';
+import { LtvTooHighDialogComponent } from './ltv-too-high-dialog/ltv-too-high-dialog.component';
 import { ChangeBankServiceService } from '@services/remote-api/change-bank-service.service';
 import { Subscription } from 'rxjs';
 import { OFFERS_RESULT_TYPE } from '../../../shared/models/offers';
@@ -244,6 +245,10 @@ export class OffersComponent implements OnInit, OnDestroy {
         this.changeBankLoading = false;
       }
     );
+  }
+
+  openLtvTooHightDialog() {
+    this.dialog.open(LtvTooHighDialogComponent)
   }
 
   @HostListener('window:resize', ['$event'])

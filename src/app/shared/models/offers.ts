@@ -14,6 +14,7 @@ export interface Offers {
   totalOutstandingDebt: number | null;
   resultType: string;
   ltvType: string;
+  incompleteInfoLoanPresent: boolean;
   bestPercentileEffectiveRateYourBank: number;
   bestPercentileEffectiveRateAllBanks: number;
   medianEffectiveRateYourBank: number;

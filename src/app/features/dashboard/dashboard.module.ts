@@ -38,6 +38,7 @@ import { OffersStatisticsComponent } from "./offers/offers-statistics/offers-sta
 import { DialogComponent } from "../../shared/components/ui-components/dialog/dialog.component";
 import { AddressFormComponent } from "./house/address/address.form.component";
 import { GetOfferFromBankDialogComponent } from './offers/get-offer-from-bank-dialog/get-offer-from-bank-dialog.component';
+import { LtvTooHighDialogComponent } from './offers/ltv-too-high-dialog/ltv-too-high-dialog.component';
 
 // TODO: ADD separate module for material import
 @NgModule({
@@ -50,6 +51,7 @@ import { GetOfferFromBankDialogComponent } from './offers/get-offer-from-bank-di
     ProfileComponent,
     DialogInfoComponent,
     ProfileDialogInfoComponent,
+    LtvTooHighDialogComponent,
     RatingComponent,
     RateTypeFixedComponent,
     NoLoansComponent,
@@ -60,7 +62,8 @@ import { GetOfferFromBankDialogComponent } from './offers/get-offer-from-bank-di
     OffersStatisticsComponent,
     DialogComponent,
     AddressFormComponent,
-    GetOfferFromBankDialogComponent
+    GetOfferFromBankDialogComponent,
+    LtvTooHighDialogComponent
   ],
   imports: [
     CommonModule,
@@ -90,7 +93,8 @@ import { GetOfferFromBankDialogComponent } from './offers/get-offer-from-bank-di
     ChangeBankDialogComponent,
     SuccessChangeBankDialogComponent,
     ShareSheetComponent,
-    GetOfferFromBankDialogComponent
+    GetOfferFromBankDialogComponent,
+    LtvTooHighDialogComponent
   ]
 })
 export class DashboardModule {}

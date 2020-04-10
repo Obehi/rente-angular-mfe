@@ -1,0 +1,46 @@
+h3 {
+    margin-bottom: 20px;
+  }
+  p, ul {
+    margin-bottom: 10px;
+  }
+
+  ul{
+    font-weight: 100;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #112639;
+    font-weight: 300;
+  }
+
+rente-button {
+  display: block;
+  margin-top: 20px;
+  text-align: center;
+
+  .button-wrapper {
+    display: block;
+    button{
+      display: block;
+      min-width: 155px
+    }
+    .mat-button.mat-primary {
+      display: block;
+      min-width: 155px
+    }
+    .mat-button {
+      display: block;
+      min-width: 155px
+    }
+  }
+}
+
+.mat-button {
+  display: block;
+  min-width: 155px
+}
+
+.mat-button.mat-primary {
+  display: block;
+  min-width: 155px
+}
