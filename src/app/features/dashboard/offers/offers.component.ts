@@ -202,18 +202,22 @@ export class OffersComponent implements OnInit, OnDestroy {
     if(offer.bankInfo.partner === false)
       return
     
+      window.open(
+        offer.bankInfo.transferUrl,
+        '_blank' // <- This is what makes it open in a new window.
+      );
+      /*
       //QUICK FIX FOR BUILDER DEAL
       if(offer.bankInfo.bank === "BULDER") {
-        window.open(
-          offer.bankInfo.transferUrl,
-          '_blank' // <- This is what makes it open in a new window.
-        );
+        
         return 
       }
     
     this.dialog.open(GetOfferFromBankDialogComponent, {
       data: offer
     });
+
+    */
   }
 
   public openBottomSheet() {}
