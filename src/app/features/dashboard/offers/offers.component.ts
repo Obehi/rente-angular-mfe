@@ -15,9 +15,10 @@ import {
 import { LocalStorageService } from '@services/local-storage.service';
 import { ChangeBankDialogComponent } from './change-bank-dialog/change-bank-dialog.component';
 import { GetOfferFromBankDialogComponent } from './get-offer-from-bank-dialog/get-offer-from-bank-dialog.component';
+import { LtvTooHighDialogComponent } from './ltv-too-high-dialog/ltv-too-high-dialog.component';
 import { ChangeBankServiceService } from '@services/remote-api/change-bank-service.service';
 import { Subscription } from 'rxjs';
-import { OFFERS_RESULT_TYPE } from '../../../shared/models/offers';
+import { OFFERS_LTV_TYPE } from '../../../shared/models/offers';
 import { UserService } from '@services/remote-api/user.service';
 import smoothscroll from 'smoothscroll-polyfill';
 import { BankUtils } from '@shared/models/bank';
@@ -34,7 +35,7 @@ export class OffersComponent implements OnInit, OnDestroy {
   public offerSavingsType = OFFER_SAVINGS_TYPE;
   public aggregatedRateType = AGGREGATED_RATE_TYPE;
   public aggregatedLoanType = AGGREGATED_LOAN_TYPE;
-  public offersResultType = OFFERS_RESULT_TYPE;
+  public offersLtvType = OFFERS_LTV_TYPE;
   public isLoading = true;
   public errorMessage: string;
   public isSmallScreen: boolean;
@@ -202,18 +203,22 @@ export class OffersComponent implements OnInit, OnDestroy {
     if(offer.bankInfo.partner === false)
       return
     
+      window.open(
+        offer.bankInfo.transferUrl,
+        '_blank' // <- This is what makes it open in a new window.
+      );
+      /*
       //QUICK FIX FOR BUILDER DEAL
       if(offer.bankInfo.bank === "BULDER") {
-        window.open(
-          offer.bankInfo.transferUrl,
-          '_blank' // <- This is what makes it open in a new window.
-        );
+        
         return 
       }
     
     this.dialog.open(GetOfferFromBankDialogComponent, {
       data: offer
     });
+
+    */
   }
 
   public openBottomSheet() {}
@@ -238,6 +243,10 @@ export class OffersComponent implements OnInit, OnDestroy {
         this.changeBankLoading = false;
       }
     );
+  }
+
+  openLtvTooHightDialog() {
+    this.dialog.open(LtvTooHighDialogComponent)
   }
 
   @HostListener('window:resize', ['$event'])

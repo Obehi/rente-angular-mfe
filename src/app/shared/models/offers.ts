@@ -13,6 +13,8 @@ export interface Offers {
   totalEffectiveRate: number | null;  
   totalOutstandingDebt: number | null;
   resultType: string;
+  ltvType: string;
+  incompleteInfoLoanPresent: boolean;
   bestPercentileEffectiveRateYourBank: number;
   bestPercentileEffectiveRateAllBanks: number;
   medianEffectiveRateYourBank: number;
@@ -57,10 +59,8 @@ export interface BankInfo{
   partner: boolean
 }
 
-export const OFFERS_RESULT_TYPE = {
-  NO_OFFERS: "NO_OFFERS",
-  OFFERS_PRESENT: "OFFERS_PRESENT",
-  OFFERS_PRESENT_LOAN_INCOMPLETE_INFO: "OFFERS_PRESENT_LOAN_INCOMPLETE_INFO",
+export const OFFERS_LTV_TYPE = {
+  LTV_OK: "LTV_OK",
   LTV_TOO_HIGH_85: "LTV_TOO_HIGH_85",
   LTV_CREDIT_LINE_TOO_HIGH_60: "LTV_CREDIT_LINE_TOO_HIGH_60"
 };

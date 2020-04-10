@@ -5,11 +5,39 @@
 <div
   class="offers"
   *ngIf="
-    offersInfo?.resultType === offersResultType.OFFERS_PRESENT ||
-    offersInfo?.resultType ===
-      offersResultType.OFFERS_PRESENT_LOAN_INCOMPLETE_INFO
-  "
+    offersInfo?.ltvType === offersLtvType.LTV_OK ||
+    offersInfo?.ltvType === offersLtvType.LTV_TOO_HIGH_85"
 >
+
+<div class ="desktop">
+  <a
+      *ngIf="offersInfo?.ltvType === offersLtvType.LTV_TOO_HIGH_85"
+      class="obs clickable"  
+      (click)="openLtvTooHightDialog()"
+    >
+    
+      <p>
+        <b>OBS:</b> Vi har beregnet belåningsgraden din til over 85%. 
+        Vennligst kontroller boligverdien i boligfanen. Du kan også lese 
+        mer om dette ved å  <a >klikke her</a>.
+        
+      </p>
+  </a>
+
+  <div
+      *ngIf="
+        offersInfo?.incompleteInfoLoanPresent === true
+      "
+      class="obs"
+    >
+      <p>
+        <b>OBS:</b> Vi får kun hentet din nominelle rente og lånebeløp. For
+        utregninger har vi tatt utgangspunkt i en gjenværende løpetid på 20 år,
+        månedlige betalinger og 50,- i termingebyr. Faktisk løpetid og
+        termingebyrer vil endre forventede besparelser.
+      </p>
+    </div>
+</div>
   <!-- Mobile Tips -->
   <div class="mobile">
     <div
@@ -56,10 +84,22 @@
         </a>
       </div>
     </div>
+    <a
+      *ngIf="offersInfo?.ltvType === offersLtvType.LTV_TOO_HIGH_85"
+      class="obs clickable"  
+      (click)="openLtvTooHightDialog()"
+    >
+    
+      <p>
+        <b>OBS:</b> Vi har beregnet belåningsgraden din til over 85%. 
+        Vennligst kontroller boligverdien i boligfanen. Du kan også lese 
+        mer om dette ved å  <a (click)="openLtvTooHightDialog()">klikke her</a>.
+        
+      </p>
+    </a>
     <div
       *ngIf="
-        offersInfo?.resultType ===
-        offersResultType.OFFERS_PRESENT_LOAN_INCOMPLETE_INFO
+        offersInfo?.incompleteInfoLoanPresent === true
       "
       class="obs"
     >
@@ -100,7 +140,7 @@
               offerSavingsType.SAVINGS_FIRST_YEAR_BETWEEN_2000_AND_6000
             "
           >
-            Renten din er <b>OK</b>, med du kan få bedre
+            Renten din er <b>OK</b>, men du kan få bedre
           </p>
           <p
             *ngSwitchCase="
@@ -217,6 +257,7 @@
       </div>
 
       <div class="desktop" style="margin-bottom: 40px;">
+        
         <div
           class="tipsAccordion clickable"
           (click)="isShowTips = !isShowTips"
@@ -263,20 +304,6 @@
               <mat-icon>chevron_right</mat-icon>
             </a>
           </div>
-        </div>
-        <div
-          *ngIf="
-            offersInfo?.resultType ===
-            offersResultType.OFFERS_PRESENT_LOAN_INCOMPLETE_INFO
-          "
-          class="obs"
-        >
-          <p>
-            <b>OBS:</b> Vi får kun hentet din nominelle rente og lånebeløp. For
-            utregninger har vi tatt utgangspunkt i en gjenværende løpetid på 20
-            år, månedlige betalinger og 50,- i termingebyr. Faktisk løpetid og
-            termingebyrer vil endre forventede besparelser.
-          </p>
         </div>
       </div>
       <div class="compared">
@@ -533,38 +560,11 @@
   </div>
 </div>
 <div class="problems" style="max-width: 780px;">
-  <div
-    class="title"
-    *ngIf="offersInfo?.resultType === offersResultType.NO_OFFERS ||
-           offersInfo?.resultType === offersResultType.LTV_TOO_HIGH_85">
-    <h3>
-      Oooops, her er det noe som ikke stemmer. Sjekk <a [routerLink]="['/dashboard/bolig']"> din boligverdi</a>.
-    </h3>
-    <div style="text-align: left;">
-      <p>
-        Utifra boligverdien vi har beregnet er belåningsgraden din over 85% og vi får derfor ikke innhentet tilbud.
-        Grunner til dette kan blant annet være:
-      </p>
-      <ul class="problem-list">
-        <li>Vi har bommet på estimatet og estimert for lav verdi</li>
-        <li>Du har kausjonist/medlånetaker som stiller ekstra sikkerhet</li>
-        <li>Du har sikkerhet i flere eiendommer</li>
-      </ul>
-      <p>
-        For å se tilbud må belåningsgraden være under 85%. Du kan endre boligverdien og/eller legge til flere boliger
-        i <a [routerLink]="['/dashboard/bolig']">boligfanen ved å klikke her</a>.
-        Har du kausjonist anbefaler vi å endre boligverdien manuelt,
-        slik at du akkurat kommer innenfor 85% belåningsgrad.
-      </p><br/>
-      <p>
-        Belåningsgrad = Lånebeløp / Boligverdi
-      </p>
-    </div>
-  </div>
+  
   <div
     class="title"
     *ngIf="
-      offersInfo?.resultType === offersResultType.LTV_CREDIT_LINE_TOO_HIGH_60
+      offersInfo?.ltvType === offersLtvType.LTV_CREDIT_LINE_TOO_HIGH_60
     "
   >
     <h3>
