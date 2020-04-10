@@ -23,6 +23,8 @@ export class AddressFormComponent implements OnInit {
   addresses: AddressDto[];
 
   mode = AddressFormMode.Editing;
+  changesMade = false;
+  ableTosave = false
 
   constructor(private loansService: LoansService) {}
 
@@ -59,6 +61,13 @@ export class AddressFormComponent implements OnInit {
       this.address.useManualPropertyValue = false;
     }
   }
+
+  countChange($event) {
+    console.log("adresss componente countchange")
+    this.changesMade = true;    
+  }
+
+ 
 
   onDeleteAddressClick() {
     this.deleteAddress.emit(this.address);

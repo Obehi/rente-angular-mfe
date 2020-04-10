@@ -15,6 +15,7 @@
         type="text"
         [placeholder]="'Adresse'"
         [(ngModel)]="address.street"
+        (change)="countChange($event)"
       ></rente-input>
       <button
         [disabled]="!isAddressValid"
@@ -86,7 +87,16 @@
         ></rente-input>
       </div>
     </div>
+    
+    <rente-button
+    color="primary"
+    [disabled]="!ableToSave"
+    (click)="saveAddresses()"
+    class="save-changes-local"
+    >Lagre endringer</rente-button
+  >
   </div>
+ 
 </div>
 
 <!-- <div class="property-group mb-4"> -->

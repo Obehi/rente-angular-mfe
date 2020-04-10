@@ -34,6 +34,25 @@
   }
 }
 
+rente-button {
+  text-align: center;
+  display: block;
+
+  .save-changes-local button {
+    margin: auto;
+    display: block;
+    text-align: center;
+    width: calc(100% - 40px);
+    @media (min-width: 600px) {
+      top: unset;
+      bottom: 40px;
+      max-width: 400px;
+    }
+  }
+}
+
+
+
 .body {
   padding: 20px;
   border-bottom: 1px solid $lesslight;
