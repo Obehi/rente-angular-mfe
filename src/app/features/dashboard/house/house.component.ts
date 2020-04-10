@@ -22,7 +22,11 @@ export class HouseComponent implements OnInit {
     private loansService: LoansService,
     private snackBar: SnackBarService,
     eventService: EventService
-  ) {}
+  ) {
+    eventService.on(Events.INPUT_CHANGE, _ => {
+      this.saveAddresses();
+    });
+  }
 
   ngOnInit() {
     this.isLoading = true;
@@ -30,13 +34,6 @@ export class HouseComponent implements OnInit {
       this.isLoading = false;
       this.addresses = r.addresses;
       this.showAddresses = true;
-
-      this.eventService.on("input change", button => {
-        console.log("test button object in houuse");
-        console.log(button);
-  
-        this.saveAddresses(button);
-      });
     });
   }
 
