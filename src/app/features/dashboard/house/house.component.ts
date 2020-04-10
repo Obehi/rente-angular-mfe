@@ -50,6 +50,7 @@ export class HouseComponent implements OnInit {
     const i: number = this.addresses.indexOf(address);
     if (i > -1) {
       this.addresses.splice(i, 1);
+      this.saveAddresses()
     }
   }
 
