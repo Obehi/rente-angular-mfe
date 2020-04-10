@@ -2,6 +2,11 @@ import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import { AddressDto } from "@services/remote-api/loans.service";
 import { LoansService } from "@services/remote-api/loans.service";
 import { MatTabChangeEvent } from "@angular/material";
+import {
+  EventService,
+  EmitEvent,
+  Events,
+} from "@services/event-service";
 
 export enum AddressFormMode {
   Editing,
@@ -26,7 +31,7 @@ export class AddressFormComponent implements OnInit {
   changesMade = false;
   ableTosave = false
 
-  constructor(private loansService: LoansService) {}
+  constructor(private loansService: LoansService, private eventService: EventService) {}
 
   ngOnInit() {
     this.loansService.getAddresses().subscribe(r => {
@@ -62,6 +67,10 @@ export class AddressFormComponent implements OnInit {
     }
   }
 
+  save() {
+
+    this.eventService.emit(new EmitEvent(Events.INPUT_CHANGE, null));
+  }
   countChange($event) {
     console.log("adresss componente countchange")
     this.changesMade = true;    

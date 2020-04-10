@@ -1,7 +1,11 @@
 import { LoansService, AddressDto } from "@services/remote-api/loans.service";
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { SnackBarService } from "../../../shared/services/snackbar.service";
-
+import {
+  EventService,
+  EmitEvent,
+  Events,
+} from "@services/event-service";
 @Component({
   selector: "rente-house",
   templateUrl: "./house.component.html",
@@ -16,7 +20,8 @@ export class HouseComponent implements OnInit {
 
   constructor(
     private loansService: LoansService,
-    private snackBar: SnackBarService
+    private snackBar: SnackBarService,
+    eventService: EventService
   ) {}
 
   ngOnInit() {
@@ -25,6 +30,13 @@ export class HouseComponent implements OnInit {
       this.isLoading = false;
       this.addresses = r.addresses;
       this.showAddresses = true;
+
+      this.eventService.on("input change", button => {
+        console.log("test button object in houuse");
+        console.log(button);
+  
+        this.saveAddresses(button);
+      });
     });
   }
 
