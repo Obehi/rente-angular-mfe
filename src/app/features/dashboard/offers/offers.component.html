@@ -536,7 +536,7 @@
   <div
     class="title"
     *ngIf="offersInfo?.resultType === offersResultType.NO_OFFERS ||
-           offersInfo?.resultType === offersResultType.LTV_TOO_HIGH_85">
+           offersInfo?.ltvType === offersLtvType.LTV_TOO_HIGH_85">
     <h3>
       Oooops, her er det noe som ikke stemmer. Sjekk <a [routerLink]="['/dashboard/bolig']"> din boligverdi</a>.
     </h3>
@@ -564,7 +564,7 @@
   <div
     class="title"
     *ngIf="
-      offersInfo?.resultType === offersResultType.LTV_CREDIT_LINE_TOO_HIGH_60
+      offersInfo?.ltvType === offersLtvType.LTV_CREDIT_LINE_TOO_HIGH_60
     "
   >
     <h3>

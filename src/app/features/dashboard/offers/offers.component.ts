@@ -18,6 +18,7 @@ import { GetOfferFromBankDialogComponent } from './get-offer-from-bank-dialog/ge
 import { ChangeBankServiceService } from '@services/remote-api/change-bank-service.service';
 import { Subscription } from 'rxjs';
 import { OFFERS_RESULT_TYPE } from '../../../shared/models/offers';
+import { OFFERS_LTV_TYPE } from '../../../shared/models/offers';
 import { UserService } from '@services/remote-api/user.service';
 import smoothscroll from 'smoothscroll-polyfill';
 import { BankUtils } from '@shared/models/bank';
@@ -35,6 +36,7 @@ export class OffersComponent implements OnInit, OnDestroy {
   public aggregatedRateType = AGGREGATED_RATE_TYPE;
   public aggregatedLoanType = AGGREGATED_LOAN_TYPE;
   public offersResultType = OFFERS_RESULT_TYPE;
+  public offersLtvType = OFFERS_LTV_TYPE;
   public isLoading = true;
   public errorMessage: string;
   public isSmallScreen: boolean;
