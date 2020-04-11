@@ -31,6 +31,7 @@ import { MaterialModule } from './material/material.module';
 import { SnackBarService } from './services/snackbar.service';
 import { MetaService } from './services/meta.service';
 import { TitleService } from './services/title.service';
+import { EventService } from './services/event-service';
 import { RoundPipe } from './pipes/round.pipe';
 import { ThousandsSeprator } from './pipes/thousands.pipe';
 
@@ -60,7 +61,8 @@ const services = [
   PreferancesService,
   ProfileService,
   MetaService,
-  TitleService
+  TitleService,
+  EventService
 ];
 
 @NgModule({

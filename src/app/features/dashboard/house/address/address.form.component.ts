@@ -2,6 +2,11 @@ import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import { AddressDto } from "@services/remote-api/loans.service";
 import { LoansService } from "@services/remote-api/loans.service";
 import { MatTabChangeEvent } from "@angular/material";
+import {
+  EventService,
+  EmitEvent,
+  Events,
+} from "@services/event-service";
 
 export enum AddressFormMode {
   Editing,
@@ -23,8 +28,10 @@ export class AddressFormComponent implements OnInit {
   addresses: AddressDto[];
 
   mode = AddressFormMode.Editing;
+  changesMade = false;
+  ableTosave = false
 
-  constructor(private loansService: LoansService) {}
+  constructor(private loansService: LoansService, private eventService: EventService) {}
 
   ngOnInit() {
     this.loansService.getAddresses().subscribe(r => {
@@ -52,13 +59,25 @@ export class AddressFormComponent implements OnInit {
   }
 
   onRbChange(event: MatTabChangeEvent) {
-    this.change.emit();
+    this.ableTosave = true
     if (event.index === 1) {
       this.address.useManualPropertyValue = true;
     } else {
       this.address.useManualPropertyValue = false;
     }
   }
+
+  save() {
+
+    this.eventService.emit(new EmitEvent(Events.INPUT_CHANGE, null));
+    this.ableTosave = false
+  }
+  countChange($event) {
+    this.ableTosave = true
+    this.changesMade = true;    
+  }
+
+ 
 
   onDeleteAddressClick() {
     this.deleteAddress.emit(this.address);

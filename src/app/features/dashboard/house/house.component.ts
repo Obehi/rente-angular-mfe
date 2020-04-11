@@ -1,7 +1,11 @@
 import { LoansService, AddressDto } from "@services/remote-api/loans.service";
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { SnackBarService } from "../../../shared/services/snackbar.service";
-
+import {
+  EventService,
+  EmitEvent,
+  Events,
+} from "@services/event-service";
 @Component({
   selector: "rente-house",
   templateUrl: "./house.component.html",
@@ -16,8 +20,13 @@ export class HouseComponent implements OnInit {
 
   constructor(
     private loansService: LoansService,
-    private snackBar: SnackBarService
-  ) {}
+    private snackBar: SnackBarService,
+    eventService: EventService
+  ) {
+    eventService.on(Events.INPUT_CHANGE, _ => {
+      this.saveAddresses();
+    });
+  }
 
   ngOnInit() {
     this.isLoading = true;
@@ -41,6 +50,7 @@ export class HouseComponent implements OnInit {
     const i: number = this.addresses.indexOf(address);
     if (i > -1) {
       this.addresses.splice(i, 1);
+      this.saveAddresses()
     }
   }
 
