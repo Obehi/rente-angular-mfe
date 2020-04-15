@@ -24,10 +24,38 @@ import { VALIDATION_PATTERN } from '../../../config/validation-patterns.config';
 import { SnackBarService } from '../../../shared/services/snackbar.service';
 import { OfferInfo } from '@shared/models/offers';
 
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition,
+  keyframes
+  // ...
+} from '@angular/animations';
+import { NONE_TYPE } from '@angular/compiler/src/output/output_ast';
+
 @Component({
   selector: 'rente-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.scss']
+  styleUrls: ['./profile.component.scss'],
+  animations: [
+    trigger('loading', [
+      // ...
+      state('false', style({
+        
+      })),
+      transition(':enter', []),
+      transition('* => *', [
+        animate('2s', keyframes([
+          style({ opacity: 1, offset: 0.1}),
+          style({ opacity: 1, offset: 0.8}),
+          style({ opacity: 0, offset: 1}),
+        ]
+        ))
+      ]),
+    ]),
+  ],
 })
 export class ProfileComponent implements OnInit {
   public preferencesForm: FormGroup;
@@ -43,7 +71,8 @@ export class ProfileComponent implements OnInit {
   public showMemberships: boolean;
   public showPreferences: boolean;
   public allMemberships: MembershipTypeDto[];
-  public isLoading: boolean;
+  public isLoading = true;
+  public updateFinished :boolean;
   public username: string;
   public thousandSeparatorMask = {
     mask: createNumberMask({
@@ -82,7 +111,9 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit() {
+    
     this.loansService.getPreferencesDto().subscribe(res => {
+      this.isLoading = false;
       let dto:PreferencesDto = res;
       this.allMemberships = dto.availableMemberships;
       this.memberships = this.allMemberships.filter(membership => {
@@ -114,11 +145,16 @@ export class ProfileComponent implements OnInit {
       });
     },
     err => {
+      console.log("error made");
       console.log(err);
     },
     () => {
+      console.log("change made");
+      this.onChanges();
       this.onValueChanges();
     });
+
+    //this.onChanges();
 
 
     /* this.loansService
@@ -186,6 +222,23 @@ export class ProfileComponent implements OnInit {
     ); */
   }
 
+  // Listen to blur updates in forms. Save  changes if the form is valid.
+  onChanges(): void {
+    this.profileForm.valueChanges.subscribe(val => {
+      if (this.profileForm.valid) {
+        this.updatePreferances()
+      } 
+    });
+
+    this.preferencesForm.valueChanges.subscribe(val => {
+      if (this.profileForm.valid) {
+        console.log("form is valid")
+        this.updatePreferances()
+      } 
+    });
+  }
+
+
   public openInfoDialog(offer: OfferInfo): void {
     this.dialog.open(ProfileDialogInfoComponent, {
       data: offer
@@ -206,7 +259,6 @@ export class ProfileComponent implements OnInit {
   }
 
   public updatePreferances() {
-    this.isLoading = true;
     const income = this.profileForm.value.income;
     const userData = {
       email: this.profileForm.value.email,
@@ -223,9 +275,9 @@ export class ProfileComponent implements OnInit {
     dto.interestedInEnvironmentMortgages = this.preferencesForm.get('interestedInEnvironmentMortgages').value;
 
     this.loansService.updateUserPreferences(dto).subscribe(res => {
-      this.isLoading = false;
       this.changesMade = false;
-      this.snackBar.openSuccessSnackBar('Endringene dine er lagret', 1.2);
+      // A hack to trigger "saved" animation
+      this.updateFinished  = !this.updateFinished 
     },
     err => {
       this.isLoading = false;
@@ -261,6 +313,7 @@ export class ProfileComponent implements OnInit {
     );
     this.memberships.splice(index, 1);
     this.changesMade = true;
+    this.updatePreferances()
   }
 
   selected(event: MatAutocompleteSelectedEvent): void {
@@ -268,6 +321,7 @@ export class ProfileComponent implements OnInit {
     this.membershipInput.nativeElement.value = '';
     this.membershipCtrl.setValue(null);
     this.changesMade = true;
+    this.updatePreferances()
   }
 
   private filter(value: any): any[] {

@@ -67,6 +67,84 @@ form {
   border: 0;
 }
 
+.update-complete {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  z-index: 1000;
+  background: $primary;
+  border-radius: 10%;
+  padding: 1em;
+
+  p{
+    text-align: center;
+    font-weight: 400;
+    color: white;
+  }
+  img{
+    border-radius: 50%;
+    margin: auto;
+    display: block;
+  }
+}
+
+
+/*
+.update-complete {
+  position:absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 1;
+    z-index: 1000;
+    background: white;
+    border-radius: 10%;
+    padding: 40px
+
+  p {
+    text-align: center;
+    font-weight: bold;
+    color: black;
+  }
+  img{
+  
+    background: $primary; ;
+    border-radius: 50%;
+    padding: 20px;
+    
+  }
+}
+*/
+/*
+.update-complete {
+  position:absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    z-index: 1000;
+    background: $primary;
+    border-radius: 10%;
+    padding: 20px;
+
+  p {
+    text-align: center;
+    font-weight: bold;
+    color: white;
+  }
+  img{
+    display: none;
+    background: $primary; ;
+   
+    border-radius: 50%;
+    padding: 20px;
+    
+  }
+}
+*/
+
 @media (max-width: 600px) {
   form {
     padding: 20px;

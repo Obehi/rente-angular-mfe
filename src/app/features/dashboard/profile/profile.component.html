@@ -1,5 +1,15 @@
-<div *ngIf="!profileForm || !preferencesForm" class="loading">
-  <mat-spinner [diameter]="48" [strokeWidth]="4"></mat-spinner>
+
+
+
+
+
+<div class="update-complete" [@loading]="updateFinished ? 'true' : 'false'">
+  <img src="../../../../assets/icons/ic_done.svg" alt="success-icon" />
+  <p>Lagret</p>
+</div>
+
+<div class="loading" *ngIf="isLoading && !errorMessage">
+    <mat-spinner [diameter]="48" [strokeWidth]="4"></mat-spinner>
 </div>
 
 <div class="preferences" *ngIf="profileForm">
@@ -13,7 +23,7 @@
           [errorStateMatcher]="
             isErrorState(profileForm.controls['email'], profileForm)
           "
-          [modelOptions]="{ updateOn: 'blur' }"
+          [modelOptions]="{ updateOn: 'blur'}"
         >
         </rente-input>
         <div
@@ -42,6 +52,7 @@
           [errorStateMatcher]="
             isErrorState(profileForm.controls['income'], profileForm)
           "
+          [modelOptions]="{ updateOn: 'blur'}"
           [type]="'tel'"
           [mask]="thousandSeparatorMask"
           matSuffix="kr"
@@ -235,13 +246,5 @@
       </div>
     </form>
   </div>
-
-  <rente-button
-    color="primary"
-    (click)="updatePreferances()"
-    [isLoading]="isLoading"
-    [disabled]="isLoading"
-    class="save-changes"
-    *ngIf="changesMade">Lagre endringer</rente-button>
 
 </div>

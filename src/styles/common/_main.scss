@@ -297,6 +297,18 @@ button#widgetButton {
     margin: auto;
   }
 }
+
+.loading {
+  position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%, -50%);
+    color: white; 
+    background: #cccccc; 
+    opacity:0.6;
+    border-radius: 50%;
+    z-index: 1000;
+}
 .clickable {
   cursor: pointer;
   &:hover {
