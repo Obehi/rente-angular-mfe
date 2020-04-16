@@ -36,6 +36,7 @@ const routes: Routes = [
       },
       {
         path: 'bolig', component: HouseComponent,
+        canDeactivate: [RouteGuard],
         data: {
           title: customMeta.boligTitle,
           meta: {

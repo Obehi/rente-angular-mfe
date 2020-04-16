@@ -1,22 +1,58 @@
 import { LoansService, AddressDto } from "@services/remote-api/loans.service";
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { SnackBarService } from "../../../shared/services/snackbar.service";
+import { Observable, Subject } from 'rxjs';
+import { DeactivationGuarded } from '@shared/guards/route.guard';
+
 import {
   EventService,
   EmitEvent,
   Events,
 } from "@services/event-service";
+
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition,
+  keyframes
+  // ...
+} from '@angular/animations';
+
 @Component({
   selector: "rente-house",
   templateUrl: "./house.component.html",
   styleUrls: ["./house.component.scss"],
+  animations: [
+    trigger('loading', [
+      // ...
+      state('false', style({
+        
+      })),
+      transition(':enter', []),
+      transition('* => *', [
+        animate('2s', keyframes([
+          style({ opacity: 1, offset: 0.1}),
+          style({ opacity: 1, offset: 0.8}),
+          style({ opacity: 0, offset: 1}),
+        ]
+        ))
+      ]),
+    ]),
+  ],
   encapsulation: ViewEncapsulation.None
 })
-export class HouseComponent implements OnInit {
+
+export class HouseComponent implements OnInit, DeactivationGuarded {
   isLoading: boolean;
   addresses: AddressDto[];
   showAddresses: boolean;
   changesMade = false;
+  public canNavigateBooolean$: Subject<boolean> = new Subject<boolean>();
+  public canLeavePage = true;
+  public updateAnimationTrigger :boolean;
+  public errorAnimationTrigger :boolean;
 
   constructor(
     private loansService: LoansService,
@@ -35,6 +71,19 @@ export class HouseComponent implements OnInit {
       this.addresses = r.addresses;
       this.showAddresses = true;
     });
+  }
+
+  // DeactivationGuarded Interface method. 
+  // Gets called every time user navigates rom this page.
+  // Determines if you can leave this page or if you have to wait. 
+  canDeactivate(): boolean | Observable<boolean> | Promise<boolean> {
+    console.log('canDeactivate has fired in the component!');
+    if(this.canLeavePage)
+    return true;
+    
+    // Wait for upload info before navigating to another page
+    this.isLoading = true
+    return this.canNavigateBooolean$
   }
 
   addAddress() {
@@ -77,18 +126,23 @@ export class HouseComponent implements OnInit {
   saveAddresses() {
     if (this.ableToSave) {
       this.isLoading = true;
+      this.canLeavePage = false;
       this.loansService.updateAddress(this.addresses).subscribe(
         r => {
+          this.canNavigateBooolean$.next(true);
           this.addresses = r.addresses;
         },
         err => {
           this.isLoading = false;
-          this.snackBar.openFailSnackBar("Oops, noe gikk galt", 1.2);
+          this.changesMade = false;
+          this.errorAnimationTrigger  = !this.errorAnimationTrigger 
+          this.canLeavePage = true
         },
         () => {
-          this.isLoading = false;
           this.changesMade = false;
-          this.snackBar.openSuccessSnackBar("Endringene dine er lagret", 1.2);
+          this.isLoading = false;
+          this.updateAnimationTrigger  = !this.updateAnimationTrigger 
+          this.canLeavePage = true
         }
       );
     }

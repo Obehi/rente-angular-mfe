@@ -8,7 +8,7 @@ import {
   Validators
 } from '@angular/forms';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { Observable, forkJoin } from 'rxjs';
+import { Observable, forkJoin, Subject } from 'rxjs';
 import { map, startWith, mergeMap } from 'rxjs/operators';
 import {
   MatAutocomplete,
@@ -24,7 +24,6 @@ import { VALIDATION_PATTERN } from '../../../config/validation-patterns.config';
 import { SnackBarService } from '../../../shared/services/snackbar.service';
 import { OfferInfo } from '@shared/models/offers';
 import { DeactivationGuarded } from '@shared/guards/route.guard';
-import { Subject } from 'rxjs';
 import {
   trigger,
   state,
@@ -225,7 +224,6 @@ export class ProfileComponent implements OnInit, DeactivationGuarded {
       this.canLeavePage = true
       this.isLoading = false;
       this.errorAnimationTrigger  = !this.errorAnimationTrigger 
-      this.snackBar.openFailSnackBar('Oops, noe gikk galt', 1.2);
     });
   }
 
