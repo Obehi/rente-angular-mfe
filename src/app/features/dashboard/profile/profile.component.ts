@@ -23,7 +23,8 @@ import createNumberMask from 'text-mask-addons/dist/createNumberMask';
 import { VALIDATION_PATTERN } from '../../../config/validation-patterns.config';
 import { SnackBarService } from '../../../shared/services/snackbar.service';
 import { OfferInfo } from '@shared/models/offers';
-
+import { DeactivationGuarded } from '@shared/guards/route.guard';
+import { Subject } from 'rxjs';
 import {
   trigger,
   state,
@@ -57,7 +58,7 @@ import { NONE_TYPE } from '@angular/compiler/src/output/output_ast';
     ]),
   ],
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent implements OnInit, DeactivationGuarded {
   public preferencesForm: FormGroup;
   public profileForm: FormGroup;
   public visible = true;
@@ -72,7 +73,10 @@ export class ProfileComponent implements OnInit {
   public showPreferences: boolean;
   public allMemberships: MembershipTypeDto[];
   public isLoading = true;
-  public updateFinished :boolean;
+  public canLeavePage = true;
+  public updateAnimationTrigger :boolean;
+  public errorAnimationTrigger :boolean;
+  public canNavigateBooolean$: Subject<boolean> = new Subject<boolean>();
   public username: string;
   public thousandSeparatorMask = {
     mask: createNumberMask({
@@ -145,94 +149,40 @@ export class ProfileComponent implements OnInit {
       });
     },
     err => {
-      console.log("error made");
       console.log(err);
     },
     () => {
-      console.log("change made");
-      this.onChanges();
-      this.onValueChanges();
+      this.onFormChange();
     });
+  }
 
-    //this.onChanges();
-
-
-    /* this.loansService
-      .getMembershipTypes()
-      .pipe(
-        mergeMap((memberships: any) => {
-          this.allMemberships = memberships;
-          return this.loansService.getUsersMemberships();
-        })
-      )
-      .subscribe((userMemberships: any) => {
-        this.memberships = this.allMemberships.filter(membership => {
-          if (userMemberships.memberships.includes(membership.name)) {
-            return membership;
-          }
-        });
-
-        forkJoin([
-          this.userService.getUserInfo(),
-          this.loansService.getAddresses()
-        ]).subscribe(
-          ([user, loan]) => {
-            this.username = user.name;
-            const userData = user;
-            // TODO: Add validators and validation messages for form
-            this.profileForm = this.fb.group({
-              membership: [userMemberships.memberships],
-              income: [userData.income, Validators.required],
-              email: [
-                userData.email,
-                Validators.compose([
-                  Validators.required,
-                  Validators.pattern(VALIDATION_PATTERN.email)
-                ])
-              ]
-            });
-          },
-          err => {
-            console.log(err);
-          },
-          () => {
-            this.onValueChanges();
-          }
-        );
-      });
-    this.loansService.getLoanPreferences().subscribe(
-      preferances => {
-        this.preferencesForm = this.fb.group({
-          checkRateReminderType: [preferances.checkRateReminderType],
-          fetchCreditLinesOnly: [preferances.fetchCreditLinesOnly],
-          noAdditionalProductsRequired: [
-            preferances.noAdditionalProductsRequired
-          ],
-          interestedInEnvironmentMortgages: [
-            preferances.interestedInEnvironmentMortgages
-          ]
-        });
-      },
-      err => {
-        console.log(err);
-      },
-      () => {
-        this.onValueChanges();
-      }
-    ); */
+  
+  // DeactivationGuarded Interface method. 
+  // Gets called every time user navigates rom this page.
+  // Determines if you can leave this page or if you have to wait. 
+  canDeactivate(): boolean | Observable<boolean> | Promise<boolean> {
+    console.log('canDeactivate has fired in the component!');
+    if(this.canLeavePage)
+    return true;
+    
+    // Wait for upload info before navigating to another page
+    this.isLoading = true
+    return this.canNavigateBooolean$
   }
 
   // Listen to blur updates in forms. Save  changes if the form is valid.
-  onChanges(): void {
+  onFormChange(): void {
     this.profileForm.valueChanges.subscribe(val => {
       if (this.profileForm.valid) {
+        this.changesMade = true;
         this.updatePreferances()
       } 
     });
 
     this.preferencesForm.valueChanges.subscribe(val => {
-      if (this.profileForm.valid) {
+      if(this.profileForm.valid) {
         console.log("form is valid")
+        this.changesMade = true;
         this.updatePreferances()
       } 
     });
@@ -243,19 +193,6 @@ export class ProfileComponent implements OnInit {
     this.dialog.open(ProfileDialogInfoComponent, {
       data: offer
     });
-  }
-
-  public onValueChanges() {
-    if (this.profileForm) {
-      this.profileForm.valueChanges.subscribe(val => {
-        this.changesMade = true;
-      });
-    }
-    if (this.preferencesForm) {
-      this.preferencesForm.valueChanges.subscribe(val => {
-        this.changesMade = true;
-      });
-    }
   }
 
   public updatePreferances() {
@@ -274,13 +211,20 @@ export class ProfileComponent implements OnInit {
     dto.noAdditionalProductsRequired = this.preferencesForm.get('noAdditionalProductsRequired').value;
     dto.interestedInEnvironmentMortgages = this.preferencesForm.get('interestedInEnvironmentMortgages').value;
 
+    // No one leaves the page while updating
+    this.canLeavePage = false;
+   
     this.loansService.updateUserPreferences(dto).subscribe(res => {
+      this.canNavigateBooolean$.next(true);
       this.changesMade = false;
       // A hack to trigger "saved" animation
-      this.updateFinished  = !this.updateFinished 
+      this.updateAnimationTrigger  = !this.updateAnimationTrigger 
+      this.canLeavePage = true
     },
     err => {
+      this.canLeavePage = true
       this.isLoading = false;
+      this.errorAnimationTrigger  = !this.errorAnimationTrigger 
       this.snackBar.openFailSnackBar('Oops, noe gikk galt', 1.2);
     });
   }
