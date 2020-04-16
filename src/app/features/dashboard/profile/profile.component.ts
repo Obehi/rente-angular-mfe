@@ -47,7 +47,7 @@ import { NONE_TYPE } from '@angular/compiler/src/output/output_ast';
       })),
       transition(':enter', []),
       transition('* => *', [
-        animate('2s', keyframes([
+        animate('1s', keyframes([
           style({ opacity: 1, offset: 0.1}),
           style({ opacity: 1, offset: 0.8}),
           style({ opacity: 0, offset: 1}),

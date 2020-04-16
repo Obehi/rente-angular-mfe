@@ -32,7 +32,7 @@ import {
       })),
       transition(':enter', []),
       transition('* => *', [
-        animate('2s', keyframes([
+        animate('1s', keyframes([
           style({ opacity: 1, offset: 0.1}),
           style({ opacity: 1, offset: 0.8}),
           style({ opacity: 0, offset: 1}),
@@ -123,11 +123,14 @@ export class HouseComponent implements OnInit, DeactivationGuarded {
     this.changesMade = true;
   }
   saveAddresses() {
+    console.log("Enter save address")
+    
     if (this.ableToSave) {
       this.isLoading = true;
       this.canLeavePage = false;
       this.loansService.updateAddress(this.addresses).subscribe(
         r => {
+          console.log("Save address success")
           this.canNavigateBooolean$.next(true);
           this.addresses = r.addresses;
         },

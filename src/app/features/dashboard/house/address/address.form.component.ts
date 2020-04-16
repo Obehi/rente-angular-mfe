@@ -68,7 +68,7 @@ export class AddressFormComponent implements OnInit {
   }
 
   save() {
-
+    console.log("save")
     this.eventService.emit(new EmitEvent(Events.INPUT_CHANGE, null));
     this.ableTosave = false
   }
