@@ -22,6 +22,7 @@
       [index]="i"
       [address]="address"
       (deleteAddress)="deleteAddress($event)"
+      (onSave)="saveAddresses()"
       (change)="countChange($event)"
     >
     </rente-address-form>

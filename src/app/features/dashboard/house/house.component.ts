@@ -53,7 +53,8 @@ export class HouseComponent implements OnInit, DeactivationGuarded {
   public canLeavePage = true;
   public updateAnimationTrigger :boolean;
   public errorAnimationTrigger :boolean;
-
+  
+  
   constructor(
     private loansService: LoansService,
     private snackBar: SnackBarService,

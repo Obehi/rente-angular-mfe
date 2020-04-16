@@ -24,6 +24,7 @@ export class AddressFormComponent implements OnInit {
 
   @Output() deleteAddress: EventEmitter<AddressDto> = new EventEmitter();
   @Output() change: EventEmitter<any> = new EventEmitter();
+  @Output() onSave: EventEmitter<any> = new EventEmitter();
 
   addresses: AddressDto[];
 
@@ -69,15 +70,14 @@ export class AddressFormComponent implements OnInit {
 
   save() {
     console.log("save")
-    this.eventService.emit(new EmitEvent(Events.INPUT_CHANGE, null));
+    this.onSave.emit("test")
+    //this.eventService.emit(new EmitEvent(Events.INPUT_CHANGE, null));
     this.ableTosave = false
   }
   countChange($event) {
     this.ableTosave = true
     this.changesMade = true;    
   }
-
- 
 
   onDeleteAddressClick() {
     this.deleteAddress.emit(this.address);
