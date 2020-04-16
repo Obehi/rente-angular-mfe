@@ -350,6 +350,14 @@ button#widgetButton {
   }
 }
 
+.disabled
+{
+  pointer-events: none;
+  /* for "disabled" effect */
+  opacity: 0.6;
+  //background: #CCC;
+}
+
 .clickable {
   cursor: pointer;
   &:hover {

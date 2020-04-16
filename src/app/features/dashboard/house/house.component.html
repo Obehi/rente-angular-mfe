@@ -7,7 +7,7 @@
   <p>Oops, noe gikk galt</p>
 </div>
 
-<div class="loading" *ngIf="isLoading && !errorMessage">
+<div class="loading" *ngIf="isLoading">
     <mat-spinner [diameter]="48" [strokeWidth]="4"></mat-spinner>
 </div>
 <div class="house" *ngIf="showAddresses">
@@ -24,6 +24,7 @@
       (deleteAddress)="deleteAddress($event)"
       (onSave)="saveAddresses()"
       (change)="countChange($event)"
+      [ngClass]="{'disabled':isLoading}"
     >
     </rente-address-form>
     <rente-button class="add" color="blue" (click)="addAddress()">
