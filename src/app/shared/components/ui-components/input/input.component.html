@@ -20,7 +20,9 @@
         [placeholder]="placeholder"
         [errorStateMatcher]="matcher"
         [ngModelOptions]="modelOptions"
+        (focus)="onFocus()"
         [(ngModel)]="value"
+        [maxlength]="maxLength"
       />
     </ng-template>
     <span matSuffix>{{ matSuffix }}</span>

@@ -69,14 +69,13 @@ export class AddressFormComponent implements OnInit {
   }
 
   save() {
-    console.log("save")
     this.onSave.emit("test")
     //this.eventService.emit(new EmitEvent(Events.INPUT_CHANGE, null));
     this.ableTosave = false
   }
   countChange($event) {
     this.ableTosave = true
-    this.changesMade = true;    
+    //this.changesMade = true;    
   }
 
   onDeleteAddressClick() {
