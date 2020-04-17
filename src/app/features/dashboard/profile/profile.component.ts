@@ -179,7 +179,6 @@ export class ProfileComponent implements OnInit, DeactivationGuarded {
 
     this.preferencesForm.valueChanges.subscribe(val => {
       if(this.profileForm.valid) {
-        console.log("form is valid")
         this.changesMade = true;
         this.updatePreferances()
       } 

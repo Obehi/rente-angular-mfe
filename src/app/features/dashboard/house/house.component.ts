@@ -124,14 +124,11 @@ export class HouseComponent implements OnInit, DeactivationGuarded {
     this.changesMade = true;
   }
   saveAddresses() {
-    console.log("Enter save address")
-    
     if (this.ableToSave) {
       this.isLoading = true;
       this.canLeavePage = false;
       this.loansService.updateAddress(this.addresses).subscribe(
         r => {
-          console.log("Save address success")
           this.canNavigateBooolean$.next(true);
           this.addresses = r.addresses;
         },

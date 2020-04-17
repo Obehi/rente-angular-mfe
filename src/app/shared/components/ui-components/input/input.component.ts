@@ -80,7 +80,6 @@ export class InputComponent implements ControlValueAccessor, OnChanges {
   }
 
   onFocus() {
-    console.log("input component on focus")
     this.focus.emit()
   }
 
