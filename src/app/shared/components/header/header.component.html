@@ -13,7 +13,9 @@
         <a href="https://blogg.renteradar.no" target="_self">Blogg</a>
         <a [routerLink]="['/kontakt']" routerLinkActive="active-link">Kontakt</a>
         <a [routerLink]="['/om-oss']" routerLinkActive="active-link">Om oss</a>
-        <a [routerLink]="['/faq']" routerLinkActive="active-link">FAQ</a>
+        <span [routerLink]="['/']" fragment="faq"> 
+            <a href="#faq">FAQ </a> 
+        </span>
         <a [routerLink]="['/']" *ngIf="isLoggedIn" (click)="auth.logout()">Logg ut</a>
       </div>
       <div class="menu mobile" (click)="toggleNav()">

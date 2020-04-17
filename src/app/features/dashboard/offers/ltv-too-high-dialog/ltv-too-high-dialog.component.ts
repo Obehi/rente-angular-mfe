@@ -10,7 +10,6 @@ export class LtvTooHighDialogComponent {
   constructor(public dialogRef: MatDialogRef<LtvTooHighDialogComponent>) { }
 
   onClose() {
-    console.log("colsing! colsing!")
     this.dialogRef.close('Pizza!');
   }
 }

@@ -297,6 +297,67 @@ button#widgetButton {
     margin: auto;
   }
 }
+
+.loading {
+  position:fixed;
+    top:50%;
+    left:50%;
+    transform:translate(-50%, -50%);
+    color: white; 
+    background: #cccccc; 
+    opacity:0.6;
+    border-radius: 50%;
+    z-index: 1000;
+}
+
+.update-error {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  z-index: 1000;
+  background: $red;
+  border-radius: 5%;
+  padding: 1em;
+  p{
+    text-align: center;
+    font-weight: 400;
+    color: white;
+  }
+}
+
+.update-complete {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  z-index: 1000;
+  background: $primary;
+  border-radius: 10%;
+  padding: 1em;
+
+  p{
+    text-align: center;
+    font-weight: 400;
+    color: white;
+  }
+  img{
+    border-radius: 50%;
+    margin: auto;
+    display: block;
+  }
+}
+
+.disabled
+{
+  pointer-events: none;
+  /* for "disabled" effect */
+  opacity: 0.6;
+  //background: #CCC;
+}
+
 .clickable {
   cursor: pointer;
   &:hover {

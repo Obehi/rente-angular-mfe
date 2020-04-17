@@ -167,7 +167,6 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
     this.stompClient.connect(
       {},
       frame => {
-        // console.log('success connection', frame);
         this.viewStatus.isSocketConnectionLost = false;
         // Resend user data after reconnection
         this.sendUserData();

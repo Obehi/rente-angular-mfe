@@ -9,6 +9,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { RateTypeFixedComponent } from './rate-type-fixed/rate-type-fixed.component';
 import { NoLoansComponent } from './no-loans/no-loans.component';
 import { customMeta, defaultMeta } from '@config/routes-config';
+import {RouteGuard } from '@shared/guards/route.guard';
 
 const routes: Routes = [
   {
@@ -35,6 +36,7 @@ const routes: Routes = [
       },
       {
         path: 'bolig', component: HouseComponent,
+        canDeactivate: [RouteGuard],
         data: {
           title: customMeta.boligTitle,
           meta: {
@@ -42,6 +44,7 @@ const routes: Routes = [
             description: defaultMeta.description
           }
         }
+
       },
       {
         path: 'preferanser', component: PreferencesComponent,
@@ -55,6 +58,7 @@ const routes: Routes = [
       },
       {
         path: 'profil', component: ProfileComponent,
+        canDeactivate: [RouteGuard],
         data: {
           title: customMeta.profilTitle,
           meta: {
@@ -70,6 +74,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
+  providers: [ProfileComponent, RouteGuard],
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })

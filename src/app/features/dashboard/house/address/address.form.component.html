@@ -16,6 +16,7 @@
         [placeholder]="'Adresse'"
         [(ngModel)]="address.street"
         (change)="countChange($event)"
+        (focus)="countChange($event)"
       ></rente-input>
       <button
         [disabled]="!isAddressValid"
@@ -34,7 +35,9 @@
         [type]="'tel'"
         [placeholder]="'Postnummer'"
         [(ngModel)]="address.zip"
+        [maxLength] ="4"
         (change)="countChange($event)"
+        (focus)="countChange($event)"
       ></rente-input>
 
       <rente-input
@@ -42,7 +45,9 @@
         [type]="'tel'"
         [placeholder]="'Størrelse på bolig'"
         [(ngModel)]="address.apartmentSize"
+        [maxLength] ="3"
         (change)="countChange($event)"
+        (focus)="countChange($event)"
         matSuffix="kvm"
       ></rente-input>
     </div>
@@ -67,6 +72,7 @@
             [type]="'tel'"
             [ngModel]="address.estimatedPropertyValue | thousands"
             (change)="countChange($event)"
+            (focus)="countChange($event)"
             [disabled]="address.useManualPropertyValue"
             style="pointer-events: none; text-align: center !important;"
             [matSuffix]="address.estimatedPropertyValue ? 'kr' : ''"
@@ -86,13 +92,14 @@
           [type]="'tel'"
           [ngModel]="address.manualPropertyValue | thousands"
           (change)="countChange($event)"
+          (focus)="countChange($event)"
           style="text-align: center !important;"
           (keyup)="manualPropertyValueChanged($event)"
           matSuffix="kr"
         ></rente-input>
       </div>
     </div>
-    
+    <div class="center-button">
     <rente-button
     color="primary"
     [disabled]="!ableTosave"
@@ -100,6 +107,7 @@
     class="save-changes-local"
     >Lagre endringer</rente-button
   >
+  </div>
   </div>
  
 </div>

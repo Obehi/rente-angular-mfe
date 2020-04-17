@@ -47,6 +47,7 @@ export class InputComponent implements ControlValueAccessor, OnChanges {
   @Input() name: string;
   @Input() type: string;
   @Input() disabled: boolean;
+  @Input() maxLength: number;
   @Input() matSuffix: string;
   @Input() placeholder: string;
   @Input() errorStateMatcher: boolean;
@@ -56,7 +57,8 @@ export class InputComponent implements ControlValueAccessor, OnChanges {
   @Input() mask?: any[];
   public matcher: MyErrorStateMatcher;
   @HostBinding("class.input-component") true;
-
+  @Output() focus: EventEmitter<any> = new EventEmitter();
+  
   propagateChange: any = () => {};
   onChange: any = () => {};
   onTouch: any = () => {};
@@ -75,6 +77,10 @@ export class InputComponent implements ControlValueAccessor, OnChanges {
     if (changes.errorStateMatcher) {
       this.matcher = new MyErrorStateMatcher(this.errorStateMatcher);
     }
+  }
+
+  onFocus() {
+    this.focus.emit()
   }
 
   writeValue(value) {

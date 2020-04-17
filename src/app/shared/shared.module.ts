@@ -2,6 +2,7 @@ import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AuthGuard } from './guards/auth.guard';
+import { RouteGuard } from './guards/route.guard';
 import { LocalStorageService } from '@services/local-storage.service';
 import { GenericHttpService } from '@services/generic-http.service';
 import { HeaderComponent } from './components/header/header.component';
@@ -51,6 +52,7 @@ const components = [
 
 const services = [
   AuthGuard,
+  RouteGuard,
   GenericHttpService,
   SnackBarService,
   LocalStorageService,

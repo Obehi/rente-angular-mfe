@@ -8,7 +8,7 @@ import {
   Validators
 } from '@angular/forms';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { Observable, forkJoin } from 'rxjs';
+import { Observable, forkJoin, Subject } from 'rxjs';
 import { map, startWith, mergeMap } from 'rxjs/operators';
 import {
   MatAutocomplete,
@@ -23,13 +23,41 @@ import createNumberMask from 'text-mask-addons/dist/createNumberMask';
 import { VALIDATION_PATTERN } from '../../../config/validation-patterns.config';
 import { SnackBarService } from '../../../shared/services/snackbar.service';
 import { OfferInfo } from '@shared/models/offers';
+import { DeactivationGuarded } from '@shared/guards/route.guard';
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition,
+  keyframes
+  // ...
+} from '@angular/animations';
+import { NONE_TYPE } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'rente-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.scss']
+  styleUrls: ['./profile.component.scss'],
+  animations: [
+    trigger('loading', [
+      // ...
+      state('false', style({
+        
+      })),
+      transition(':enter', []),
+      transition('* => *', [
+        animate('2s', keyframes([
+          style({ opacity: 1, offset: 0.1}),
+          style({ opacity: 1, offset: 0.8}),
+          style({ opacity: 0, offset: 1}),
+        ]
+        ))
+      ]),
+    ]),
+  ],
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent implements OnInit, DeactivationGuarded {
   public preferencesForm: FormGroup;
   public profileForm: FormGroup;
   public visible = true;
@@ -43,7 +71,11 @@ export class ProfileComponent implements OnInit {
   public showMemberships: boolean;
   public showPreferences: boolean;
   public allMemberships: MembershipTypeDto[];
-  public isLoading: boolean;
+  public isLoading = true;
+  public canLeavePage = true;
+  public updateAnimationTrigger :boolean;
+  public errorAnimationTrigger :boolean;
+  public canNavigateBooolean$: Subject<boolean> = new Subject<boolean>();
   public username: string;
   public thousandSeparatorMask = {
     mask: createNumberMask({
@@ -82,7 +114,9 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit() {
+    
     this.loansService.getPreferencesDto().subscribe(res => {
+      this.isLoading = false;
       let dto:PreferencesDto = res;
       this.allMemberships = dto.availableMemberships;
       this.memberships = this.allMemberships.filter(membership => {
@@ -117,74 +151,40 @@ export class ProfileComponent implements OnInit {
       console.log(err);
     },
     () => {
-      this.onValueChanges();
+      this.onFormChange();
+    });
+  }
+
+  
+  // DeactivationGuarded Interface method. 
+  // Gets called every time user navigates rom this page.
+  // Determines if you can leave this page or if you have to wait. 
+  canDeactivate(): boolean | Observable<boolean> | Promise<boolean> {
+    if(this.canLeavePage)
+    return true;
+    
+    // Wait for upload info before navigating to another page
+    this.isLoading = true
+    return this.canNavigateBooolean$
+  }
+
+  // Listen to blur updates in forms. Save  changes if the form is valid.
+  onFormChange(): void {
+    this.profileForm.valueChanges.subscribe(val => {
+      if (this.profileForm.valid) {
+        this.changesMade = true;
+        this.updatePreferances()
+      } 
     });
 
-
-    /* this.loansService
-      .getMembershipTypes()
-      .pipe(
-        mergeMap((memberships: any) => {
-          this.allMemberships = memberships;
-          return this.loansService.getUsersMemberships();
-        })
-      )
-      .subscribe((userMemberships: any) => {
-        this.memberships = this.allMemberships.filter(membership => {
-          if (userMemberships.memberships.includes(membership.name)) {
-            return membership;
-          }
-        });
-
-        forkJoin([
-          this.userService.getUserInfo(),
-          this.loansService.getAddresses()
-        ]).subscribe(
-          ([user, loan]) => {
-            this.username = user.name;
-            const userData = user;
-            // TODO: Add validators and validation messages for form
-            this.profileForm = this.fb.group({
-              membership: [userMemberships.memberships],
-              income: [userData.income, Validators.required],
-              email: [
-                userData.email,
-                Validators.compose([
-                  Validators.required,
-                  Validators.pattern(VALIDATION_PATTERN.email)
-                ])
-              ]
-            });
-          },
-          err => {
-            console.log(err);
-          },
-          () => {
-            this.onValueChanges();
-          }
-        );
-      });
-    this.loansService.getLoanPreferences().subscribe(
-      preferances => {
-        this.preferencesForm = this.fb.group({
-          checkRateReminderType: [preferances.checkRateReminderType],
-          fetchCreditLinesOnly: [preferances.fetchCreditLinesOnly],
-          noAdditionalProductsRequired: [
-            preferances.noAdditionalProductsRequired
-          ],
-          interestedInEnvironmentMortgages: [
-            preferances.interestedInEnvironmentMortgages
-          ]
-        });
-      },
-      err => {
-        console.log(err);
-      },
-      () => {
-        this.onValueChanges();
-      }
-    ); */
+    this.preferencesForm.valueChanges.subscribe(val => {
+      if(this.profileForm.valid) {
+        this.changesMade = true;
+        this.updatePreferances()
+      } 
+    });
   }
+
 
   public openInfoDialog(offer: OfferInfo): void {
     this.dialog.open(ProfileDialogInfoComponent, {
@@ -192,21 +192,7 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-  public onValueChanges() {
-    if (this.profileForm) {
-      this.profileForm.valueChanges.subscribe(val => {
-        this.changesMade = true;
-      });
-    }
-    if (this.preferencesForm) {
-      this.preferencesForm.valueChanges.subscribe(val => {
-        this.changesMade = true;
-      });
-    }
-  }
-
   public updatePreferances() {
-    this.isLoading = true;
     const income = this.profileForm.value.income;
     const userData = {
       email: this.profileForm.value.email,
@@ -222,14 +208,20 @@ export class ProfileComponent implements OnInit {
     dto.noAdditionalProductsRequired = this.preferencesForm.get('noAdditionalProductsRequired').value;
     dto.interestedInEnvironmentMortgages = this.preferencesForm.get('interestedInEnvironmentMortgages').value;
 
+    // No one leaves the page while updating
+    this.canLeavePage = false;
+   
     this.loansService.updateUserPreferences(dto).subscribe(res => {
-      this.isLoading = false;
+      this.canNavigateBooolean$.next(true);
       this.changesMade = false;
-      this.snackBar.openSuccessSnackBar('Endringene dine er lagret', 1.2);
+      // A hack to trigger "saved" animation
+      this.updateAnimationTrigger  = !this.updateAnimationTrigger 
+      this.canLeavePage = true
     },
     err => {
+      this.canLeavePage = true
       this.isLoading = false;
-      this.snackBar.openFailSnackBar('Oops, noe gikk galt', 1.2);
+      this.errorAnimationTrigger  = !this.errorAnimationTrigger 
     });
   }
 
@@ -261,6 +253,7 @@ export class ProfileComponent implements OnInit {
     );
     this.memberships.splice(index, 1);
     this.changesMade = true;
+    this.updatePreferances()
   }
 
   selected(event: MatAutocompleteSelectedEvent): void {
@@ -268,6 +261,7 @@ export class ProfileComponent implements OnInit {
     this.membershipInput.nativeElement.value = '';
     this.membershipCtrl.setValue(null);
     this.changesMade = true;
+    this.updatePreferances()
   }
 
   private filter(value: any): any[] {

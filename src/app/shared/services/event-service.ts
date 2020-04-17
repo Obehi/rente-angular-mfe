@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Subject, Subscription } from "rxjs";
-import { map, filter, throttleTime } from "rxjs/operators";
+import { map, filter, throttleTime, debounceTime } from "rxjs/operators";
 
 //https://stackoverflow.com/questions/56290722/how-pass-a-event-from-deep-nested-child-to-parent-in-angular-2
 export enum Events {
@@ -28,7 +28,7 @@ export class EventService {
   on(event: string, action: any): Subscription {
     return this.subject$
       .pipe(
-        throttleTime(1000),
+        debounceTime(2000),
         filter((e: EmitEvent) => e.name == event),
         map((e: EmitEvent) => e.value)
       )

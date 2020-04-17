@@ -1,7 +1,8 @@
 @import "../../../styles/theme/_colors.scss";
 
+
 mat-expansion-panel-header {
-  background: $lightgreen;
+  background: white;
   border: none;
 }
 mat-expansion-panel-header:hover {
@@ -13,8 +14,8 @@ mat-panel-title {
 .mat-expansion-panel {
   box-shadow: none;
   border-radius: 0 !important;
-  border-bottom: 1px solid $primary;
-}
+  border-bottom: 0px !important;
+} 
 .mat-expansion-panel-header {
   padding: 20px;
 }
@@ -22,6 +23,13 @@ mat-panel-title {
 .mat-expansion-panel-spacing {
   margin: 0;
 }
-.mat-expanded mat-expansion-panel-header {
-  background: transparent;
+.mat-expanded {
+  background: $lightgreen;
+}
+
+ul {
+  margin: 10px 0 10px 0;
+  li {
+    font-weight: 100;
+  }
 }

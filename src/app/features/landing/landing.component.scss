@@ -115,9 +115,6 @@ h3 {
 
 .articles {
   margin-bottom: 80px;
-  &:last-of-type {
-    margin-bottom: 0px;
-  }
   h2,
   h3 {
     text-align: left;
@@ -228,4 +225,12 @@ a {
       }
     }
   }
+}
+
+//Hack for anchor scroll for FAQ section
+.anchor {
+  display: block;
+  height: 115px;       /* same height as header */
+  margin-top: -115px;  /* same height as header */
+  visibility: hidden;
 }

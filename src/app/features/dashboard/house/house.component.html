@@ -1,5 +1,14 @@
+<div class="update-complete" [@loading]="updateAnimationTrigger? 'true' : 'false'">
+  <img src="../../../../assets/icons/ic_done.svg" alt="success-icon" />
+  <p>Lagret</p>
+</div>
+
+<div class="update-error" [@loading]="errorAnimationTrigger ? 'true' : 'false'">
+  <p>Oops, noe gikk galt</p>
+</div>
+
 <div class="loading" *ngIf="isLoading">
-  <mat-spinner [diameter]="48" [strokeWidth]="4"></mat-spinner>
+    <mat-spinner [diameter]="48" [strokeWidth]="4"></mat-spinner>
 </div>
 <div class="house" *ngIf="showAddresses">
   <div class="title">
@@ -13,7 +22,9 @@
       [index]="i"
       [address]="address"
       (deleteAddress)="deleteAddress($event)"
+      (onSave)="saveAddresses()"
       (change)="countChange($event)"
+      [ngClass]="{'disabled':isLoading}"
     >
     </rente-address-form>
     <rente-button class="add" color="blue" (click)="addAddress()">
