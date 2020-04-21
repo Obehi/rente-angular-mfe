@@ -1,5 +1,6 @@
 @import "../../../../styles/theme/_colors.scss";
 
+
 footer {
   padding: 40px;
   background-color: $blue;
@@ -7,40 +8,81 @@ footer {
   &.visible {
     display: block;
   }
+
+  ul {list-style-type: none;
+    margin: 0px;
+    padding: 0;
+  }
+
+  @media (min-width: 600px) {
+    ul.adjust-margin {
+      margin-top: 6px;
+    }
+
+    .virdi {
+      width: 130px;
+      margin-left: -27px;
+    }
+  }
+  
+  
   @media (max-width: 600px) {
     padding: 40px 20px;
   }
-
+  
   .inner-footer {
-    max-width: 1010px;
     margin: auto;
 
-    p,
-    a {
-      color: white;
+    @media (min-width: 600px) {
+      max-width: 1010px;
+      grid-template-columns:  1fr 1fr;
+      display: grid;
+      grid-column-end: span 3;
+      grid-gap: 40px;
       text-align: center;
+      font-size: 14px;
+      padding: 2rem 2rem 1rem;
+      .item:nth-child(3) { 
+        grid-column-end: span 3;
+      }
+    }
+
+    @media (max-width: 600px) {
+      grid-template-columns:  1fr;
+      display: grid;
+      grid-gap: 40px;
+      text-align: center;
+      font-size: 14px;
+      padding: 2rem 2rem 1rem;
+
+     
+    }
+
+    .item{
+
+      H4, p,
+      a {
+        color: white;
+        text-align: center;
+      }
+    
+    img {
+      margin: 10px
+    }
+
+    img.virdi {
+      width: 130px;
+      margin-left: -27px;
     }
     .social {
       display: table;
       margin: auto;
-      margin-bottom: 40px;
+      margin-bottom: 10px;
       img {
         margin: 0 40px;
         height: 40px;
       }
     }
+    }
   }
 }
-
-/* :host {
-  flex-shrink: 0;
-}
-ul {
-  margin: 10px 0;
-}
-a, p {
-  font-size: 14px;
-  line-height: 19px;
-  letter-spacing: 0.23px;
-  text-decoration: none;
-} */
