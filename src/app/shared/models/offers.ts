@@ -54,7 +54,7 @@ export interface OfferInfo {
 export interface BankInfo{
   bank: string;
   bankName: string;
-  bankUrl: string;
+  url: string;
   transferUrl: string | null;
   partner: boolean
 }

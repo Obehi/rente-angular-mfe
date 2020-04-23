@@ -427,7 +427,9 @@
               </div>
             </div>
             <div class="offer-product">
-              <a [href]="offer.bankInfo.url" target="_blank"
+
+              <a class="clickable" target="_blank"
+              (click)="openBankUrl(offer)"
                 >{{ offer.bankInfo.name }}<mat-icon>open_in_new</mat-icon></a
               >
               <h3 (click)="openOfferDialog(offer)" class="clickable">
@@ -502,7 +504,7 @@
                 [isLoading]="changeBankLoading"
                 color="primary"
                 type="raised"
-                [href]="offer.bankInfo.url"
+                (click)="openBankUrlByButton(offer)"
                 >Se mer på {{getbankNameOrDefault(offer)}}s <br/> hjemmeside</rente-button
               >
 
