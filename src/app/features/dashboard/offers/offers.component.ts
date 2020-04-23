@@ -215,7 +215,7 @@ export class OffersComponent implements OnInit, OnDestroy {
   }
 
   public openBankUrlByButton(offer: OfferInfo) {
-    if(offer.bankInfo.url === null)
+    if(offer.bankInfo.url === null || offer.bankInfo.partner == false)
       return
     
     window.open(
