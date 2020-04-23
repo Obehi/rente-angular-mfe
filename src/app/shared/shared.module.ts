@@ -19,6 +19,7 @@ import { FormMessageComponent } from './components/ui-components/form-message/fo
 import { TextAreaComponent } from './components/ui-components/text-area/text-area.component';
 import { AuthService } from '@services/remote-api/auth.service';
 import { ContactService } from '@services/remote-api/contact.service';
+import { TrackingService } from '@services/remote-api/tracking.service';
 import { HouseService } from '@services/remote-api/house.service';
 import { LoansService } from '@services/remote-api/loans.service';
 import { PreferancesService } from '@services/remote-api/preferances.service';
@@ -58,6 +59,7 @@ const services = [
   LocalStorageService,
   AuthService,
   ContactService,
+  TrackingService,
   HouseService,
   LoansService,
   PreferancesService,

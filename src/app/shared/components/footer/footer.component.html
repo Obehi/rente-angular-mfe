@@ -1,94 +1,63 @@
 <footer [class]="router.url.includes('dashboard') ? '' : 'visible'">
   <div class="inner-footer">
-    <div class="social">
-      <a href="https://www.facebook.com/renteradar/" target="_blank">
-        <img src="../../../../assets/img/facebook.svg" alt="Facebook logo" />
-      </a>
-      <a href="https://www.linkedin.com/company/renteradar/" target="_blank">
-        <img src="../../../../assets/img/linkedin.svg" alt="LinkedIn logo" />
-      </a>
-    </div>
 
-    <p>
-      Renteradar.no eies og driftes av
-    </p>
-    <p>
-      Forbrukerøkonomene AS (Org nr: 921 534 191)
-      <br />
-      <a
-        [routerLink]="['/personvern']"
-        routerLinkActive="active-link"
-        [routerLinkActiveOptions]="{ exact: true }"
-      >
-        Personvern
-      </a>
-    </p>
-  </div>
-</footer>
-
-<!-- <footer class="footer bg-secondary d-flex">
-  <div class="container justify-content-center align-self-center">
-    <div class="row">
-      <div class="col-6 pr-0 d-flex justify-content-center flex-column">
-        <p class="text-white small mb-0">
-          Renteradar.no eies og driftes av Forbrukerøkonomene AS (Org nr: 921
-          534 191) <br />
-        </p>
-      </div> -->
-<!-- <div class="col-6 pl-0 col-lg-7 col-lg-5 d-lg-flex align-items-lg-center justify-content-lg-end">
-        <share-button button="facebook" [url]="'https://renteradar.no/'"></share-button>
-        <div class="d-inline-block d-lg-none">
-          <share-button button="messenger" [url]="'https://renteradar.no/'"
-            [description]="'Hei! Jeg har testet Renteradar.no! Tjenesten er gratis og viser deg hvor mye du kan spare på boliglånet ditt. Du kan også be din bank om bedre rente med et klikk!'">
-          </share-button>
-        </div>
-        <div class="d-inline-block d-lg-none">
-          <share-button button="sms" [url]="'https://renteradar.no/'"
-            [description]="'Hei! Jeg har testet Renteradar.no! Tjenesten er gratis og viser deg hvor mye du kan spare på boliglånet ditt. Du kan også be din bank om bedre rente med et klikk!'">
-          </share-button>
-        </div>
-        <share-button button="email" [url]="'https://renteradar.no/'" [title]="'Har du testet Renteradar.no?'"
-          [description]="'Hei,
-
-  Jeg har testet Renteradar.no! Tjenesten er gratis og viser deg hvor mye du kan spare på boliglånet ditt. Du kan også be din bank om bedre rente med et klikk!
-  '">
-        </share-button>
-        <div class="d-inline-block d-lg-none">
-          <share-button button="whatsapp" [url]="'https://renteradar.no/'"
-            [description]="'Hei! Jeg har testet Renteradar.no! Tjenesten er gratis og viser deg hvor mye du kan spare på boliglånet ditt. Du kan også be din bank om bedre rente med et klikk!'">
-          </share-button>
-        </div>
-        <share-button button="copy" [url]="'https://renteradar.no/'"></share-button>
-      </div> -->
-<!-- <div class="col-6 text-right d-none d-lg-block">
-        <ul class="navbar-nav ml-auto">
+      <div class ="item">
+        <H4>Samarbeidsbanker:</H4>
+        <ul class ="adjust-margin">
+  
           <li>
-            <a
-              class="text-white small"
-              [routerLink]="['/ofte-stilte-sporsmaal']"
-              routerLinkActive="router-link-active"
-              >FAQ</a
-            >
+            <a target="_blank" href="https://sbanken.no/lan/boliglan/flytte-boliglan/?utm_source=renteradar&utm_medium=cpc&utm_campaign=boliglan&utm_content=flyttboliglan">
+              <img src="../../../../assets/img/partners/sbanken.png" alt="Sbanken logo" />
+            </a>
           </li>
           <li>
-            <a
-              class="text-white small"
-              [routerLink]="['/personvern']"
-              routerLinkActive="router-link-active"
-              >Personvern</a
-            >
-          </li>
-          <li>
-            <a
-              class="text-white small"
-              [routerLink]="['/kontakt']"
-              routerLinkActive="router-link-active"
-              >Kontakt oss</a
-            >
+            <a target="_blank" href="https://bulderbank.no/boliglan/flytte-boliglan?utm_source=renteradar.no&utm_medium=cpc&utm_campaign=boliglan&utm_term=lesmer">
+              <img src="../../../../assets/img/partners/bulder.png" alt="Bulder logo" />
+            </a>
           </li>
         </ul>
       </div>
+
+      <div class ="item">
+        <H4>Samarbeidspartnere:</H4>
+        <ul>
+          <li>
+            <a target="_blank" href="https://virdi.no/">
+              <img class="virdi" src="../../../../assets/img/partners/virdi.png" alt="Virdi logo" />
+            </a>
+          </li>
+          <li>
+            <a target="_blank" href="https://www.finansportalen.no/">
+              <img class="virdi" src="../../../../assets/img/partners/finansportalen.png" alt="finansportalen logo" />
+            </a>
+          </li>
+        </ul>
+      </div>
+
+    <div class ="item">
+      <div class="social">  
+        <a href="https://www.facebook.com/renteradar/" target="_blank">
+          <img src="../../../../assets/img/facebook.svg" alt="Facebook logo" />
+        </a>
+        <a href="https://www.linkedin.com/company/renteradar/" target="_blank">
+          <img src="../../../../assets/img/linkedin.svg" alt="LinkedIn logo" />
+        </a>
+      </div>
+
+      <p>
+        Renteradar.no eies og driftes av
+      </p>
+      <p>
+        Forbrukerøkonomene AS (Org nr: 921 534 191)
+        <br />
+        <a
+          [routerLink]="['/personvern']"
+          routerLinkActive="active-link"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          Personvern
+        </a>
+      </p>
     </div>
   </div>
 </footer>
- -->

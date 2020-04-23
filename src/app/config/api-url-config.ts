@@ -25,6 +25,10 @@ export const API_URL_MAP = {
   loan: {
     base: '/loan',
     confirmation: '/confirmation',
+    stat: {
+      base: '/stat',
+      click: '/click'
+    },
     loans: {
       base: '/loans',
       state: '/state'

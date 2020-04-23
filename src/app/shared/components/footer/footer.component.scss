@@ -1,46 +1,130 @@
 @import "../../../../styles/theme/_colors.scss";
 
+
 footer {
-  padding: 40px;
+  padding: 20px;
   background-color: $blue;
   display: none;
   &.visible {
     display: block;
   }
-  @media (max-width: 600px) {
-    padding: 40px 20px;
+
+  ul {list-style-type: none;
+    margin: 0px;
+    padding: 0;
   }
 
+  @media (min-width: 600px) {
+    ul.adjust-margin {
+      margin-top: 5px;
+    }
+
+    .virdi {
+      width: 130px;
+      margin-top: 0px;
+      margin-left: -27px;
+    }
+  }
+  
   .inner-footer {
-    max-width: 1010px;
     margin: auto;
 
-    p,
-    a {
-      color: white;
+    .item:nth-child(3) { 
+      grid-column-end: span 3;
+      margin-top: 20px;
+    }
+
+    @media (min-width: 600px) {
+      max-width: 1010px;
+      grid-template-columns:  1fr 1fr;
+      display: grid;
+      grid-column-end: span 3;
+      grid-gap: 40px;
       text-align: center;
+      font-size: 14px;
+      padding: 2rem 2rem 1rem;
+  
+    .item{ 
+      ul.adjust-margin {
+        margin-top: -5px;
+
+      }
+    }
+  }
+
+    @media (max-width: 600px) {
+      grid-template-columns:  1fr 1fr;
+      display: grid;
+      grid-gap: 15px;
+      text-align: center;
+      font-size: 14px;
+      .item { 
+        p {
+          font-size: 13px;
+        }
+
+        ul {
+          li{
+            a{
+              img{
+              
+              }
+            }
+          }
+          
+        }
+      }
+      //padding: 2rem 2rem 1rem;
+
+      
+      .item {
+        h4 {
+          font-size: 13px
+        }
+        ul {
+          li{
+            
+            a{
+              img{
+                width: 100px
+              }
+
+              img.virdi {
+                //margin-left: -27px;-b
+                margin-bottom: 3px;
+              }
+            }
+          }
+        }
+      }
+
+     
+    }
+
+    .item{
+
+      H4, p,
+      a {
+        color: white;
+        text-align: center;
+      }
+    
+    img {
+      margin: 10px
+    }
+
+    img.virdi {
+      width: 130px;
     }
     .social {
       display: table;
       margin: auto;
-      margin-bottom: 40px;
+      margin-bottom: 10px;
       img {
         margin: 0 40px;
         height: 40px;
       }
     }
+    }
   }
 }
-
-/* :host {
-  flex-shrink: 0;
-}
-ul {
-  margin: 10px 0;
-}
-a, p {
-  font-size: 14px;
-  line-height: 19px;
-  letter-spacing: 0.23px;
-  text-decoration: none;
-} */

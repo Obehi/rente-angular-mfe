@@ -17,6 +17,7 @@ import { ChangeBankDialogComponent } from './change-bank-dialog/change-bank-dial
 import { GetOfferFromBankDialogComponent } from './get-offer-from-bank-dialog/get-offer-from-bank-dialog.component';
 import { LtvTooHighDialogComponent } from './ltv-too-high-dialog/ltv-too-high-dialog.component';
 import { ChangeBankServiceService } from '@services/remote-api/change-bank-service.service';
+import { TrackingService, TrackingDto } from '@services/remote-api/tracking.service';
 import { Subscription } from 'rxjs';
 import { OFFERS_LTV_TYPE } from '../../../shared/models/offers';
 import { UserService } from '@services/remote-api/user.service';
@@ -87,7 +88,8 @@ export class OffersComponent implements OnInit, OnDestroy {
     private changeBankServiceService: ChangeBankServiceService,
     private router: Router,
     private localStorageService: LocalStorageService,
-    private userService: UserService
+    private userService: UserService,
+    private trackingService: TrackingService
   ) {
     this.onResize();
     this.isShowTips = false;
@@ -197,28 +199,59 @@ export class OffersComponent implements OnInit, OnDestroy {
     });
   }
 
-  //Change name for this function
-  public openNewOfferDialog(offer: OfferInfo): void {
+  public openBankUrl(offer: OfferInfo) {
+    if(offer.bankInfo.url === null)
+      return
+    
+    window.open(
+      offer.bankInfo.url,
+      '_blank' 
+    );
 
+    const trackingDto = new TrackingDto();
+    trackingDto.offerId = offer.id;
+    trackingDto.type = "OFFER_HEADER_LINK";
+    this.sendOfferTrackingData(trackingDto, offer)
+  }
+
+  public openBankUrlByButton(offer: OfferInfo) {
+    if(offer.bankInfo.url === null)
+      return
+    
+    window.open(
+      offer.bankInfo.url,
+      '_blank' 
+    );
+
+    const trackingDto = new TrackingDto();
+    trackingDto.offerId = offer.id;
+    trackingDto.type = "BANK_BUTTON_1";
+    this.sendOfferTrackingData(trackingDto, offer)
+  }
+
+  
+  public openNewOfferDialog(offer: OfferInfo): void {
     if(offer.bankInfo.partner === false)
       return
     
-      window.open(
-        offer.bankInfo.transferUrl,
-        '_blank' // <- This is what makes it open in a new window.
-      );
-      /*
-      //QUICK FIX FOR BUILDER DEAL
-      if(offer.bankInfo.bank === "BULDER") {
-        
-        return 
-      }
-    
-    this.dialog.open(GetOfferFromBankDialogComponent, {
-      data: offer
-    });
+    window.open(
+      offer.bankInfo.transferUrl,
+      '_blank'
+    );
 
-    */
+    const trackingDto = new TrackingDto();
+    trackingDto.offerId = offer.id;
+    trackingDto.type = "BANK_BUTTON_2";
+    this.sendOfferTrackingData(trackingDto, offer)
+  }
+
+  private sendOfferTrackingData(trackingDto: TrackingDto, offer: OfferInfo){
+    this.trackingService.sendTrackingStats(trackingDto).subscribe(res => {
+    },
+    err => {
+    console.log("err");
+    console.log(err);
+    });
   }
 
   public openBottomSheet() {}
