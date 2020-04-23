@@ -2,7 +2,7 @@
 
 
 footer {
-  padding: 40px;
+  padding: 20px;
   background-color: $blue;
   display: none;
   &.visible {
@@ -16,22 +16,23 @@ footer {
 
   @media (min-width: 600px) {
     ul.adjust-margin {
-      margin-top: 6px;
+      margin-top: 5px;
     }
 
     .virdi {
       width: 130px;
+      margin-top: 0px;
       margin-left: -27px;
     }
   }
   
-  
-  @media (max-width: 600px) {
-    padding: 40px 20px;
-  }
-  
   .inner-footer {
     margin: auto;
+
+    .item:nth-child(3) { 
+      grid-column-end: span 3;
+      margin-top: 20px;
+    }
 
     @media (min-width: 600px) {
       max-width: 1010px;
@@ -42,18 +43,60 @@ footer {
       text-align: center;
       font-size: 14px;
       padding: 2rem 2rem 1rem;
-      .item:nth-child(3) { 
-        grid-column-end: span 3;
+  
+    .item{ 
+      ul.adjust-margin {
+        margin-top: -5px;
+
       }
     }
+  }
 
     @media (max-width: 600px) {
-      grid-template-columns:  1fr;
+      grid-template-columns:  1fr 1fr;
       display: grid;
-      grid-gap: 40px;
+      grid-gap: 15px;
       text-align: center;
       font-size: 14px;
-      padding: 2rem 2rem 1rem;
+      .item { 
+        p {
+          font-size: 13px;
+        }
+
+        ul {
+          li{
+            a{
+              img{
+              
+              }
+            }
+          }
+          
+        }
+      }
+      //padding: 2rem 2rem 1rem;
+
+      
+      .item {
+        h4 {
+          font-size: 13px
+        }
+        ul {
+          li{
+            
+            a{
+              img{
+                width: 100px
+              }
+
+              img.virdi {
+                //margin-left: -27px;-b
+                margin-bottom: 3px;
+              }
+            }
+          }
+        }
+      }
 
      
     }
@@ -72,7 +115,6 @@ footer {
 
     img.virdi {
       width: 130px;
-      margin-left: -27px;
     }
     .social {
       display: table;
