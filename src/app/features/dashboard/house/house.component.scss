@@ -43,6 +43,19 @@
   }
 }
 
+.center-logo {
+  margin-top: 40px;
+
+  p{
+    font-weight: 400;
+    margin-bottom: 0.5em;
+  }
+  text-align: center;
+
+  img{
+    width: 180px;
+  }
+}
 /* .house {
   mat-radio-button {
     label {

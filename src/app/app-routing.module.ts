@@ -36,16 +36,6 @@ const routes: Routes = [
     }
   },
   {
-    path: ROUTES_MAP.faq, component: FaqComponent,
-    data: {
-      title: customMeta.ofteStilteSporsmaalTitle,
-      meta: {
-        name: defaultMeta.name,
-        description: customMeta.ofteStilteSporsmaalDescription
-      }
-    }
-  },
-  {
     path: ROUTES_MAP.contactUs, component: ContactUsComponent,
     data: {
       title: customMeta.kontaktTitle,

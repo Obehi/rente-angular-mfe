@@ -76,9 +76,21 @@ nav {
       margin-bottom: 40px;
     }
   }
+
+  // Special case for FAQ link
+  span { 
+    a {
+      h3 {
+        color: white;
+        display: block;
+        margin-bottom: 40px;
+      }
+    }
+  }
   a.active-link h3 {
     color: $primary;
   }
+
 }
 
 @media (min-width: 600px) {
