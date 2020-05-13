@@ -487,8 +487,8 @@
                   <p>Kundetilfredshet</p>
                 </div>
                 <div class="offer-inner center-align">
-                  <img class="offer-score" src="../../../../assets/icons/score-{{1}}.svg"/>
-                  <h2>{{ offer.score }}</h2>
+                  <img class="offer-score" src="../../../../assets/icons/score-{{offer.bankInfo.score }}.svg"/>
+              
                 </div>
               </div>
               <div class="offer-info">
@@ -499,7 +499,7 @@
                   <div class="center">
                     <img src="../../../../assets/icons/clock.svg"/> 
                     <h3 >
-                      5 min
+                      {{offer.bankInfo.applicationTime  === null ? 'Ukjent' : offer.bankInfo.applicationTime + "min"}}
                     </h3>
                 </div>
                 </div>

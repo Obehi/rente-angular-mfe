@@ -48,9 +48,7 @@ export interface OfferInfo {
   outstandingDebt: number | null;
   loanPeriodYears: number | null;
   cost: number | null;
-  totalCost: number | null;
-  score: number,
-  applicationTime: number,
+  totalCost: number | null,
 }
 
 export interface BankInfo{
@@ -58,7 +56,9 @@ export interface BankInfo{
   bankName: string;
   url: string;
   transferUrl: string | null;
-  partner: boolean
+  partner: boolean,
+  score: number,
+  applicationTime: number
 }
 
 export const OFFERS_LTV_TYPE = {
