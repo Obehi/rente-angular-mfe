@@ -72,6 +72,18 @@
                 }
               ]
             },
+            "develop": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.develop.ts"
+                },
+                {
+                  "replace": "src/index.html",
+                  "with": "src/index-dev.html"
+                }
+              ]
+            },
             "heroku": {
               "fileReplacements": [
                 {
@@ -109,6 +121,9 @@
             },
             "local": {
               "browserTarget": "rente-front-end:build:local"
+            },
+            "develop": {
+              "browserTarget": "rente-front-end:build:develop"
             }
           }
         },
