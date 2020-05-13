@@ -49,6 +49,8 @@ export interface OfferInfo {
   loanPeriodYears: number | null;
   cost: number | null;
   totalCost: number | null;
+  score: number,
+  applicationTime: number,
 }
 
 export interface BankInfo{
