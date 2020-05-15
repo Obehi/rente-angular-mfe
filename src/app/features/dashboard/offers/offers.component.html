@@ -481,6 +481,31 @@
               </div>
             </div>
 
+            <div class="split">
+              <div class="offer-info">
+                <div class="small-header">
+                  <p>Kundetilfredshet</p>
+                </div>
+                <div class="offer-inner center-align">
+                  <img class="offer-score" src="../../../../assets/icons/score-{{offer.bankInfo.score }}.svg"/>
+              
+                </div>
+              </div>
+              <div class="offer-info">
+                <div class="small-header">
+                  <p>Hvor lang tid tar det å bytte</p>
+                </div>
+                <div class="offer-inner time">
+                  <div class="center">
+                    <img src="../../../../assets/icons/clock.svg"/> 
+                    <h3 >
+                      {{offer.bankInfo.applicationTime  === null ? 'Ukjent' : offer.bankInfo.applicationTime + " min"}}
+                    </h3>
+                </div>
+                </div>
+              </div>
+            </div>
+
             <div class="small-header">
               <p class="insignificant"><span>Tilbud:
               </span> Eff.rente {{offer.effectiveRate | number: "1.1-2"}}%, 

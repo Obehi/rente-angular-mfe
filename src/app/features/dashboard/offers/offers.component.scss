@@ -27,6 +27,10 @@
   margin-bottom: 10px;
 }
 
+// Overriding css from main.css
+.split {
+  margin-bottom: 0px !important
+}
 a.box {
   display: block;
   text-decoration: none
@@ -116,6 +120,15 @@ a.box {
     color: $green !important;
   }
 
+  .center-align {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 50px;
+    img {
+      width: 40px;
+    }
+  }
   .barometer {
     .rente-status {
       margin-bottom: 20px;
@@ -150,6 +163,27 @@ a.box {
         .offer-info:first-of-type
         .offer-inner {
         background-color: $lightgreen;
+      }
+      .time {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 50px;
+        .center {
+       
+          img {
+            width: 40px;
+            margin-right: 10px;
+            display: inline-block;
+            vertical-align: middle;
+          }
+          h3 {
+            display: inline-block;
+            vertical-align: middle;
+          }
+        }
+        
+
       }
       .the-offer-header {
         border-top: 1px solid $green;

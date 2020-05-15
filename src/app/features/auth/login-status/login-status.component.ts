@@ -79,7 +79,6 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.setDefaultSteps();
     this.initializeWebSocketConnection();
-
     window.scrollTo(0, 0);
   }
 
@@ -232,6 +231,14 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
         const response = JSON.parse(message.body);
         console.log('STATUS:', response.eventType);
         switch (response.eventType) {
+
+          case BANKID_STATUS.BANKID_UNSTABLE:
+            this.viewStatus.isBankIdUnstable = true
+            this.loginStep1Status = MESSAGE_STATUS.ERROR;
+            this.unsubscribeEverything();
+            break;
+
+
           case BANKID_STATUS.PROCESS_STARTED:
             this.initTimer(BANKID_TIMEOUT_TIME);
             this.initConnectionTimer();
@@ -331,6 +338,11 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
               this.loginStep3Status = MESSAGE_STATUS.ERROR;
             }
             break;
+          case BANKID_STATUS.BID_C167:
+            this.viewStatus.isErrorBIDC167 = true
+            this.loginStep1Status = MESSAGE_STATUS.ERROR;
+            this.unsubscribeEverything();
+            break;
           case BANKID_STATUS.LOANS_PERSISTED:
             this.viewStatus.isLoansPersisted = true;
             const user = response.data.user;
@@ -402,6 +414,10 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
 
   get isStep1Error(): boolean {
     return this.loginStep1Status === MESSAGE_STATUS.ERROR;
+  }
+
+  get isStep1Success(): boolean {
+    return this.loginStep1Status === MESSAGE_STATUS.SUCCESS;
   }
 
   get isStep2InProgress(): boolean {

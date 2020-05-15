@@ -11,7 +11,7 @@
   <rente-status-message [status]="loginStep1Status" [step]="1">
 
     <!-- STEP 1: PROCESSING -->
-    <span *ngIf="!viewStatus.isNotValidDataProvided">
+    <span *ngIf="isStep1InProgress || isStep1Success">
       Forbereder identifisering <br />
       <span *ngIf="viewStatus.isProcessStarted &&
           !viewStatus.isCrawlerError &&
@@ -47,6 +47,17 @@
       <span *ngIf="viewStatus.isBankError">
         Banken din har dessverre tekniske problemer. Vennligst prøv igjen senere.
       </span>
+      <span *ngIf="viewStatus.isErrorBIDC167">
+        Feilkode BID-C167:  Det kan skje hvis du for eksempel har endret abonnementet, 
+        byttet SIM-kort eller mobiltelefon. Du løser det ved å logge deg inn i nettbanken 
+        bestille BankID på mobil på nytt.
+      </span>
+
+      <span *ngIf="viewStatus.isBankIdUnstable">
+        BankID på Mobil er for tiden ustabil. Vennligst prøv igjen senere
+      </span>
+
+      
     </div>
 
   </rente-status-message>

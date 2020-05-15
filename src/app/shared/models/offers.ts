@@ -56,7 +56,9 @@ export interface BankInfo{
   bankName: string;
   url: string;
   transferUrl: string | null;
-  partner: boolean
+  partner: boolean,
+  score: number,
+  applicationTime: number
 }
 
 export const OFFERS_LTV_TYPE = {
