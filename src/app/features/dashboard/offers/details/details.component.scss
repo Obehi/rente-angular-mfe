@@ -1,0 +1,18 @@
+.grid-wrapper{
+    display: grid;
+    grid-template-columns: 140px 150px;
+    grid-column-gap: 10px;
+
+    div {
+      p:nth-child(even) {
+        font-weight: 500;
+      }
+      p:nth-child(odd) {
+        margin-bottom: 0px
+      }
+    }
+
+    p {
+      line-height: 1.2;
+    }
+}

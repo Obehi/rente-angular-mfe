@@ -356,3 +356,18 @@ a.box {
     margin: 7px 0;
   }
 }
+
+
+
+.offer-details {
+
+  .mat-expansion-panel{
+    box-shadow: unset;
+    .mat-expansion-panel-header{
+      width: 120px;
+      margin: auto;
+      background: #e7e9eb;
+    }
+  }
+}
+

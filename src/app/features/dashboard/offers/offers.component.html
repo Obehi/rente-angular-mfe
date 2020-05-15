@@ -506,13 +506,14 @@
               </div>
             </div>
 
+            <div class="offer-details offer-inner">
             <mat-expansion-panel>
               <mat-expansion-panel-header>
                 Detaljer
               </mat-expansion-panel-header>
               <rente-details [offer]="offer"></rente-details>
             </mat-expansion-panel>
-
+          </div>
             <div class="small-header">
               <p class="insignificant"><span>Tilbud:
               </span> Eff.rente {{offer.effectiveRate | number: "1.1-2"}}%, 
