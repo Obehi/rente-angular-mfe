@@ -46,8 +46,6 @@ export class OffersComponent implements OnInit, OnDestroy {
   public effRateLoweredDialogVisible: boolean;
   public banksMap = BANKS_DATA;
   public tips: object[];
-  // REMOVE BEFORE PRODUCTION
-  public score = 5;
 
   get isMobile(): boolean { return window.innerWidth < 600; }
 

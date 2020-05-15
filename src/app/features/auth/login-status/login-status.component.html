@@ -52,6 +52,12 @@
         byttet SIM-kort eller mobiltelefon. Du løser det ved å logge deg inn i nettbanken 
         bestille BankID på mobil på nytt.
       </span>
+
+      <span *ngIf="viewStatus.isBankIdUnstable">
+        BankID på Mobil er for tiden ustabil. Vennligst prøv igjen senere
+      </span>
+
+      
     </div>
 
   </rente-status-message>
