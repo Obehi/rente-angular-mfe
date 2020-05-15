@@ -48,7 +48,7 @@ export interface OfferInfo {
   outstandingDebt: number | null;
   loanPeriodYears: number | null;
   cost: number | null;
-  totalCost: number | null,
+  totalCost: number | null;
 }
 
 export interface BankInfo{
