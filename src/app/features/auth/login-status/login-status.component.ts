@@ -231,6 +231,14 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
         const response = JSON.parse(message.body);
         console.log('STATUS:', response.eventType);
         switch (response.eventType) {
+
+          case BANKID_STATUS.BANKID_UNSTABLE:
+            this.viewStatus.isBankIdUnstable = true
+            this.loginStep1Status = MESSAGE_STATUS.ERROR;
+            this.unsubscribeEverything();
+            break;
+
+
           case BANKID_STATUS.PROCESS_STARTED:
             this.initTimer(BANKID_TIMEOUT_TIME);
             this.initConnectionTimer();
