@@ -46,8 +46,6 @@ export class OffersComponent implements OnInit, OnDestroy {
   public effRateLoweredDialogVisible: boolean;
   public banksMap = BANKS_DATA;
   public tips: object[];
-  // REMOVE BEFORE PRODUCTION
-  public score = 5;
 
   get isMobile(): boolean { return window.innerWidth < 600; }
 
@@ -318,5 +316,78 @@ export class OffersComponent implements OnInit, OnDestroy {
       } 
    }
    return text 
+  }
+
+  get rateBarPercentage(): string {
+    
+    switch(this.offersInfo.offerSavingsType ) { 
+      case this.offerSavingsType.NO_SAVINGS: { 
+         return '100%';
+         break; 
+      } 
+      case this.offerSavingsType.SAVINGS_FIRST_YEAR_BETWEEN_0_AND_2000: { 
+        return '80%';
+         break; 
+      } 
+      case this.offerSavingsType.SAVINGS_FIRST_YEAR_BETWEEN_2000_AND_6000: { 
+        return '60%';
+        break; 
+     } 
+     case this.offerSavingsType.SAVINGS_FIRST_YEAR_BETWEEN_6000_AND_10000: { 
+       return '40%';
+        break; 
+     } 
+     case this.offerSavingsType.SAVINGS_FIRST_YEAR_GREATER_10000: { 
+      return '20%';
+      break; 
+   } 
+   case this.offerSavingsType.SAVINGS_FIRST_YEAR_BETWEEN_0_AND_2000: { 
+     return '80%';
+      break; 
+   } 
+      default: { 
+        return '80%';
+         break; 
+      } 
+   }
+   
+  }
+
+  get barBoxPosition(): string {
+    
+    switch(this.offersInfo.offerSavingsType ) { 
+      case this.offerSavingsType.NO_SAVINGS: { 
+
+       
+         return '100%';
+         break; 
+      } 
+      case this.offerSavingsType.SAVINGS_FIRST_YEAR_BETWEEN_0_AND_2000: { 
+        return 'calc(80% - 2.5em)';
+         break; 
+      } 
+      case this.offerSavingsType.SAVINGS_FIRST_YEAR_BETWEEN_2000_AND_6000: { 
+        return 'calc(60% - 2.5em)';
+        break; 
+     } 
+     case this.offerSavingsType.SAVINGS_FIRST_YEAR_BETWEEN_6000_AND_10000: { 
+       return 'calc(40% - 2.5em)';
+        break; 
+     } 
+     case this.offerSavingsType.SAVINGS_FIRST_YEAR_GREATER_10000: { 
+      
+      return 'calc(20%  - 2.5em)';
+      break; 
+   } 
+   case this.offerSavingsType.SAVINGS_FIRST_YEAR_BETWEEN_0_AND_2000: { 
+     return 'calc(0% - 2.5em)';
+      break; 
+   } 
+      default: { 
+        return 'calc(0% - 2.5em)';
+         break; 
+      } 
+   }
+  
   }
 }

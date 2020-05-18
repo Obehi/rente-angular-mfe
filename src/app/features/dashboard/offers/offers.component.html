@@ -116,14 +116,7 @@
   <div class="split-sections">
     <div class="split-section">
       <div class="barometer">
-        <h3>Rentebarometer</h3>
-        <rente-rating
-          [rating]="
-            offersService.getRatingNumberFromLoanState(
-              offersInfo.offerSavingsType
-            )
-          "
-        ></rente-rating>
+
         <div class="rente-status" [ngSwitch]="offersInfo.offerSavingsType">
           <p *ngSwitchCase="offerSavingsType.NO_SAVINGS">
             Renten din er <b>svært god</b>
@@ -149,11 +142,147 @@
           >
             Renten din er <b>høy</b> og du kan spare en del
           </p>
-          <p *ngSwitchCase="offerSavingsType.SAVINGS_FIRST_YEAR_GREATER_10000">
-            Renten din er <b>svært høy</b> – du har mye å spare
-          </p>
+          <h3 *ngSwitchCase="offerSavingsType.SAVINGS_FIRST_YEAR_GREATER_10000">
+            Renten din er <b>svært høy</b> 
+          </h3>
           <div *ngSwitchDefault>-</div>
         </div>
+
+        <div class="bar-ticks">
+          <p>Høy rente</p>
+          <p>Lav rente</p>
+        </div>
+        <div class="bar-wrap">
+          <span class="bar-fill" [ngStyle]="{'width': rateBarPercentage}">
+          </span>
+        </div>
+
+        <div class="arrow-box center-align" [ngStyle]="{'left': barBoxPosition}">
+          <p>Din rente</p>
+        </div>
+
+        <div class="save-info">
+          <p>Du kan spare</p>
+            <h2 *ngIf="offersInfo.bestOfferTotalSaving > 0; else noBestOffer">
+              {{ offersInfo.bestOfferTotalSaving | abs | number }},-
+            </h2>
+            <ng-template #noBestOffer>
+              <h2>0,-</h2>
+            </ng-template>
+          <p>over lånets løpetid</p>
+        </div>
+      </div>
+
+      <div class="rente-info">
+        <div class="rente-row">
+          <p>
+          Din effektive rente
+          </p>
+          <span>
+          <h3>
+            2,26%
+          </h3>
+          </span>
+        </div>
+        
+        <div class="row-multi">
+          <div class="item-big">
+            <p>
+              Beste tilbud:
+            </p>
+            <span>
+              <h3>
+                1,26%
+              </h3>
+            </span>
+          </div>
+          <div class="item-small">
+            <p>
+             differanse: 
+            </p>
+            <span>
+              <p>
+                1,00%
+              </p>
+            </span>
+          </div>
+        </div>
+        
+        <div class="row-multi">
+          <div class="item-big">
+            <p>
+              Boligverdi:
+            </p>
+            <span>
+              <h3>
+                4.0 mill
+              </h3>
+            </span>
+          </div>
+          <div class="item-small">
+            <p>
+             fellesgjeld
+            </p>
+            <span>
+              <p>
+                0.0 mill
+              </p>
+            </span>
+          </div>
+        </div>
+        
+        <div class="row-multi">
+          <div class="item-big">
+            <p>
+              Gjenværende lån:
+            </p>
+            <span>
+              <h3>
+                1.3 mill
+              </h3>
+            </span>
+          </div>
+          <div class="item-small">
+            <p>
+             belåningsgrad
+            </p>
+            <span>
+              <p>
+                26.6%
+              </p>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="full-width vertical">
+            
+        <p>Vi har funnet de 5 beste tilbudene for deg</p>
+        <rente-button class="min-width vertical-20"
+          [disabled]="changeBankLoading ||
+          offersInfo.offerSavingsType === offerSavingsType.NO_SAVING"
+          [isLoading]="changeBankLoading"
+          color="primary"
+          type="raised"
+          (click)="goToBestOffer()"
+          >Se beste tilbud</rente-button
+        >
+        
+        <p>Vi hjelper deg å be banken din om lavere rente</p>
+        <div class="max-width vertical-20">
+          <rente-button
+            class="min-width"
+            [disabled]="
+            changeBankLoading ||
+            offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS"
+            [isLoading]="changeBankLoading"
+            color="primary"
+            type="raised"
+            (click)="openChangeBankDialog(offersInfo.offers[0])"
+            >Be banken matche tilbud</rente-button
+          > 
+        </div> 
+      </div>
 
         <!-- Mobile boxes -->
         <div class="rente-boxes mobile">
@@ -223,38 +352,9 @@
               </p>
             </a>
           </div>
-
-          <div class="full-width vertical">
-            
-              
-                <rente-button class="min-width vertical"
-                  [disabled]="changeBankLoading ||
-                  offersInfo.offerSavingsType === offerSavingsType.NO_SAVING"
-                  [isLoading]="changeBankLoading"
-                  color="primary"
-                  type="raised"
-                  (click)="goToBestOffer()"
-                  >Se beste tilbud</rente-button
-                >
-            
-
-            <div class="max-width vertical">
-              <rente-button
-                class="min-width"
-                [disabled]="
-                changeBankLoading ||
-                offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS"
-                [isLoading]="changeBankLoading"
-                color="primary"
-                type="raised"
-                (click)="openChangeBankDialog(offersInfo.offers[0])"
-                >Be banken matche tilbud</rente-button
-              > 
-            </div> 
-          </div>
         </div>
         <!-- Mobile boxes -->
-      </div>
+     
 
       <div class="desktop" style="margin-bottom: 40px;">
         
@@ -438,7 +538,22 @@
             </div>
           </div>
           <div class="the-offer-body">
-            <div class="small-header"><p>Rentebesparelse</p></div>
+
+            <div class="offer-info">
+              <div class="small-header">
+                <p>Effektiv rente</p>
+              </div>
+              <div class="offer-inner">
+                <h2>{{ offer.effectiveRate | number: "1.2-2" }}%</h2>
+              </div>
+            </div>
+            <div class="offer-info">
+              <div class="offer-inner single   border-top">
+                <h4>Krever bytte av nettbank og bankkort:  </h4> 
+                <span class="circle-option"><h4>Nei</h4></span>
+              </div>
+            </div>
+            <div class="small-header"><p>Du sparer</p></div>
             <div class="split">
               <div class="offer-inner save">
                 <h2 *ngIf="offer.totalSavings > 0; else noTotalSavings">
@@ -459,29 +574,8 @@
                 <p>første år</p>
               </div>
             </div>
-            <div class="split">
-              <div class="offer-info">
-                <div class="small-header">
-                  <p>Effektiv rente</p>
-                </div>
-                <div class="offer-inner">
-                  <h2>{{ offer.effectiveRate | number: "1.2-2" }}%</h2>
-                </div>
-              </div>
-              <div class="offer-info">
-                <div class="small-header">
-                  <p>Krever tilleggsprodukt</p>
-                </div>
-                <div class="offer-inner">
-                  <h2 (click)="openOfferDialog(offer)" class="clickable">
-                    {{ offer.requiredProductPackage == null ? "Nei" : "Ja" }}
-                    <mat-icon>help</mat-icon>
-                  </h2>
-                </div>
-              </div>
-            </div>
 
-            <div class="split">
+            <div class="split border-bottom ">
               <div class="offer-info">
                 <div class="small-header">
                   <p>Kundetilfredshet</p>
@@ -513,15 +607,35 @@
               </mat-expansion-panel-header>
               <rente-details [offer]="offer"></rente-details>
             </mat-expansion-panel>
+
           </div>
+
+
+          <rente-button
+              class="offer-inner"
+              [disabled]="changeBankLoading ||
+              offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS ||
+                offer.bankInfo.partner == false"
+                [isLoading]="changeBankLoading"
+                [color]="changeBankLoading ||
+                offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS ||
+                  offer.bankInfo.partner == false ? 'grey' : 'orange'"
+                type="raised"
+                (click)="openNewOfferDialog(offersInfo.offers[i])"
+                >Få tilbud fra {{getbankNameOrDefault(offer)}}!</rente-button
+              >     
+              <p class="small" *ngIf=" offer.bankInfo.partner === false"> (Ingen avtale med banken enda)</p>
+            
+            <div class="mandatory">
             <div class="small-header">
-              <p class="insignificant"><span>Tilbud:
-              </span> Eff.rente {{offer.effectiveRate | number: "1.1-2"}}%, 
-                Lånebeløp {{offer.outstandingDebt | number: "1.0" }}, 
-                {{offer.loanPeriodYears | number: "1.1" }} år, 
-                Kostnad: {{offer.cost | number: "1.0" }}, 
-                Totalt: {{offer.totalCost | number: "1.0" }}
-              </p>
+                <p class="insignificant"><span>Tilbud:
+                </span> Eff.rente {{offer.effectiveRate | number: "1.1-2"}}%, 
+                  Lånebeløp {{offer.outstandingDebt | number: "1.0" }}, 
+                  {{offer.loanPeriodYears | number: "1.1" }} år, 
+                  Kostnad: {{offer.cost | number: "1.0" }}, 
+                  Totalt: {{offer.totalCost | number: "1.0" }}
+                </p>
+              </div>
             </div>
           </div>
 
@@ -561,32 +675,7 @@
               -->
 
 
-            <div class="full-width">
-              
-              <rente-button
-              [disabled]="
-                  changeBankLoading ||
-                  offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS ||
-                    offer.bankInfo.partner == false"
-                [isLoading]="changeBankLoading"
-                color="primary"
-                type="raised"
-                (click)="openNewOfferDialog(offersInfo.offers[i])"
-                >Få tilbud fra {{getbankNameOrDefault(offer)}}!</rente-button
-              >     
-              <p class="small" *ngIf=" offer.bankInfo.partner === false"> (Ingen avtale med banken enda)</p>
-              
-              <!--
-              <rente-button
-                [disabled]="true"
-                [isLoading]="changeBankLoading"
-                color="primary"
-                type="raised"
-                >Start bytte</rente-button
-              >       
-              <p class="small"> (Kommer snart)</p>
-              -->
-            </div>
+            
           </div>
           
         </div>

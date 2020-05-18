@@ -10,6 +10,7 @@ $text-color: #636669 !default;
 $warning: #ff8834 !default;
 $lightwarning: #fff4ed !default;
 $red: #f41515 !default;
+$orange: #FFC700 !default;
 
 $primary: $green !default;
 $secondary: $blue !default;
@@ -26,6 +27,7 @@ $theme-colors: map-merge(
     "primary": $primary,
     "secondary": $secondary,
     "grey": $grey,
+    "orange": $orange,
     "light": $light,
     "dark": $dark,
     "white": $white,

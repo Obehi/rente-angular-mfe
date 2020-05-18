@@ -1,7 +1,18 @@
-.grid-wrapper{
+@import "../../../../../styles/theme/colors";
+
+.offer-details{
+  border-radius: 5px;
+  background: $light;
+  padding: 20px 10px;
+  margin-top: 10px;
+  .grid-wrapper{
     display: grid;
     grid-template-columns: 140px 150px;
     grid-column-gap: 10px;
+
+    .item {
+      margin-bottom: 10px;
+    }
 
     div {
       p:nth-child(even) {
@@ -14,5 +25,14 @@
 
     p {
       line-height: 1.2;
+    }
+  }
+
+    .small-header {
+      font-weight: 400;
+    }
+
+    .forbehold {
+      line-height: 1.4
     }
 }
