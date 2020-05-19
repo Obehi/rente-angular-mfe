@@ -318,35 +318,40 @@ export class OffersComponent implements OnInit, OnDestroy {
    return text 
   }
 
-  get rateBarPercentage(): string {
+
+  get rateBarPercentageInverted() {
+    return 100 - this.rateBarPercentage;
+  }
+
+  get rateBarPercentage(): number {
     
     switch(this.offersInfo.offerSavingsType ) { 
       case this.offerSavingsType.NO_SAVINGS: { 
-         return '100%';
+         return 100;
          break; 
       } 
       case this.offerSavingsType.SAVINGS_FIRST_YEAR_BETWEEN_0_AND_2000: { 
-        return '80%';
+        return 80;
          break; 
       } 
       case this.offerSavingsType.SAVINGS_FIRST_YEAR_BETWEEN_2000_AND_6000: { 
-        return '60%';
+        return 60;
         break; 
      } 
      case this.offerSavingsType.SAVINGS_FIRST_YEAR_BETWEEN_6000_AND_10000: { 
-       return '40%';
+       return 40;
         break; 
      } 
      case this.offerSavingsType.SAVINGS_FIRST_YEAR_GREATER_10000: { 
-      return '20%';
+      return 20;
       break; 
    } 
    case this.offerSavingsType.SAVINGS_FIRST_YEAR_BETWEEN_0_AND_2000: { 
-     return '80%';
+     return 80;
       break; 
    } 
       default: { 
-        return '80%';
+        return 80;
          break; 
       } 
    }
