@@ -137,14 +137,28 @@ a.box {
     }
   }
   .barometer {
+    padding-top: 20px;
+    padding-bottom: 40px;
+    margin-bottom: 20px;
     background: $blue;
 
-    h3 {
+    @media (min-width: 600px) {
+      margin-bottom: 30px;
+    }
+
+    h3, {
       color: white;
     }
     
     .rente-status {
-      margin-bottom: 20px;
+      text-align: center;
+      margin: 20px 0;
+
+      p {
+        color: white;
+        font-size: 18px;
+        font-weight: 100;
+      }
     }
   }
   .box {
@@ -347,7 +361,7 @@ a.box {
   .offers {
     .tipsAccordion {
       position: relative;
-      top: 0;
+      top: 7px;
       border: 1px solid $green;
       padding: 6px 10px !important;
     }
@@ -375,9 +389,11 @@ a.box {
     display: grid;
     grid-template-columns: 1fr 1fr;
     border-bottom: 1px solid $light;
+    border-top: 1px solid $light;
+    margin-top: 20px;
 
     .split-section {
-      padding: 40px 40px 80px 40px;
+      padding: 40px 40px 40px 40px;
     }
     .split-section:first-of-type {
       border-right: 1px solid $light;
@@ -399,6 +415,25 @@ a.box {
     margin: 7px 0;
   }
 }
+
+.item {
+  p{
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 5px;
+  }
+}
+
+@media (min-width: 600px) {
+  .top-buttons {
+    display: flex;
+    justify-content: space-evenly;
+
+    
+  }
+}
+
+
 
 
 
@@ -431,6 +466,12 @@ a.box {
     @if $o      {      -o-#{$property}: $value; }
     @if $ms     {     -ms-#{$property}: $value; }
     @if $spec   {         #{$property}: $value; }
+}
+
+@media (min-width: 600px) {
+  .rente-bar-container {
+    width: 60%
+  }
 }
 
 
@@ -532,7 +573,7 @@ a.box {
 .rente-info {
   display: flex;
   flex-direction: column;
-  padding: 20px 10px;
+  padding: 0px 10px;
 
   p {
     font-size: 18px;
@@ -541,7 +582,7 @@ a.box {
   }
   
   h3 {
-    font-size: 26px;
+    font-size: 18px;
     color: $blue;
   }
   
@@ -585,11 +626,28 @@ a.box {
 }
 
 .save-info {
+  p {
+    font-size: 18px;
+  }
+}
+
+@media (min-width: 600px) {
+  .save-info {
+   
+    p, h2{
+      display: inline;
+    }
+    h2 {
+      font-size: 37px;
+    }
+    
+  }
+}
+
+.save-info {
+  text-align: center;
   p, h2{
     color: white;
-  }
-  h2 {
-
   }
 }
 
