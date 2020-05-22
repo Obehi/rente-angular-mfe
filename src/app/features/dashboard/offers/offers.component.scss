@@ -267,7 +267,6 @@ a.box {
         }
       }
       .the-offer-body {
-        margin-bottom: 20px;
         .small-header {
           background-color: $light;
           padding: 4px 0;
@@ -420,7 +419,7 @@ a.box {
 
   &.buttons {
     grid-gap: 10px;
-    padding: 0px;
+    padding: 10px;
   }
 }
 
@@ -475,23 +474,23 @@ a.box {
     #18bc9c
   ); 
 
-  &.twenty {
+  &.level-1 {
     background: red;  
   }
 
-  &.forty {
+  &.level-2 {
     background: #E45A2A;  
   }
 
-  &.sixty {
+  &.level-3 {
     background: $orange;   
   }
 
-  &.eighty {
+  &.level-4 {
     background: #82C6B4;  
   }
 
-  &.hundred {
+  &.level-5 {
     background: $primary;  
   }
 

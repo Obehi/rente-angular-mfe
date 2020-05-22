@@ -335,49 +335,43 @@ export class OffersComponent implements OnInit, OnDestroy {
       case this.offerSavingsType.NO_SAVINGS: { 
          return {
            percentage: 100,
-           class: 'hundred'
+           class: 'level-5'
          }
          break; 
       } 
       case this.offerSavingsType.SAVINGS_FIRST_YEAR_BETWEEN_0_AND_2000: { 
         return {
           percentage: 80,
-          class: 'eighty'
+          class: 'level-4'
         }
          break; 
       } 
       case this.offerSavingsType.SAVINGS_FIRST_YEAR_BETWEEN_2000_AND_6000: { 
         return {
           percentage: 50,
-          class: 'sixty'
+          class: 'level-3'
         }
         break; 
      } 
      case this.offerSavingsType.SAVINGS_FIRST_YEAR_BETWEEN_6000_AND_10000: { 
        return {
         percentage: 30,
-        class: 'forty'
+        class: 'level-2'
       }
         break; 
      } 
      case this.offerSavingsType.SAVINGS_FIRST_YEAR_GREATER_10000: { 
       return {
         percentage: 12,
-        class: 'twenty'
+        class: 'level-1'
       }
       break; 
    } 
-   case this.offerSavingsType.SAVINGS_FIRST_YEAR_BETWEEN_0_AND_2000: { 
-     return {
-      percentage: 80,
-      class: 'zero'
-    }
-      break; 
-   } 
+
       default: { 
         return {
           percentage: 80,
-          class: 'eighty'
+          class: 'level-3'
         }
          break; 
       } 
