@@ -46,6 +46,7 @@ export class OffersComponent implements OnInit, OnDestroy {
   public effRateLoweredDialogVisible: boolean;
   public banksMap = BANKS_DATA;
   public tips: object[];
+  public detailsExpandedStatus: boolean[]
 
   get isMobile(): boolean { return window.innerWidth < 600; }
 
@@ -114,6 +115,9 @@ export class OffersComponent implements OnInit, OnDestroy {
         this.isLoading = false;
         this.localStorageService.removeItem('isNewUser');
         this.getTips();
+        this.detailsExpandedStatus = new Array(res.offers.length).fill(false)
+        console.log("detailsExpandedStatus on init")
+        console.log(this.detailsExpandedStatus)
       },
       err => {
         if (err.errorType === 'PROPERTY_VALUE_MISSING') {
@@ -123,6 +127,7 @@ export class OffersComponent implements OnInit, OnDestroy {
         console.log(err);
       }
     );
+   
   }
 
   public getTips() {
@@ -318,40 +323,62 @@ export class OffersComponent implements OnInit, OnDestroy {
    return text 
   }
 
+  
 
   get rateBarPercentageInverted() {
-    return 100 - this.rateBarPercentage;
+    return 100 - this.rateBarPercentage.percentage;
   }
 
-  get rateBarPercentage(): number {
+  get rateBarPercentage(): RateBar {
     
     switch(this.offersInfo.offerSavingsType ) { 
       case this.offerSavingsType.NO_SAVINGS: { 
-         return 100;
+         return {
+           percentage: 100,
+           class: 'hundred'
+         }
          break; 
       } 
       case this.offerSavingsType.SAVINGS_FIRST_YEAR_BETWEEN_0_AND_2000: { 
-        return 80;
+        return {
+          percentage: 80,
+          class: 'eighty'
+        }
          break; 
       } 
       case this.offerSavingsType.SAVINGS_FIRST_YEAR_BETWEEN_2000_AND_6000: { 
-        return 60;
+        return {
+          percentage: 50,
+          class: 'sixty'
+        }
         break; 
      } 
      case this.offerSavingsType.SAVINGS_FIRST_YEAR_BETWEEN_6000_AND_10000: { 
-       return 40;
+       return {
+        percentage: 30,
+        class: 'forty'
+      }
         break; 
      } 
      case this.offerSavingsType.SAVINGS_FIRST_YEAR_GREATER_10000: { 
-      return 20;
+      return {
+        percentage: 12,
+        class: 'twenty'
+      }
       break; 
    } 
    case this.offerSavingsType.SAVINGS_FIRST_YEAR_BETWEEN_0_AND_2000: { 
-     return 80;
+     return {
+      percentage: 80,
+      class: 'zero'
+    }
       break; 
    } 
       default: { 
-        return 80;
+        return {
+          percentage: 80,
+          class: 'eighty'
+        }
          break; 
       } 
    }
@@ -362,8 +389,6 @@ export class OffersComponent implements OnInit, OnDestroy {
     
     switch(this.offersInfo.offerSavingsType ) { 
       case this.offerSavingsType.NO_SAVINGS: { 
-
-       
          return '100%';
          break; 
       } 
@@ -383,16 +408,29 @@ export class OffersComponent implements OnInit, OnDestroy {
       
       return 'calc(20%  - 2.5em)';
       break; 
-   } 
-   case this.offerSavingsType.SAVINGS_FIRST_YEAR_BETWEEN_0_AND_2000: { 
-     return 'calc(0% - 2.5em)';
-      break; 
-   } 
-      default: { 
-        return 'calc(0% - 2.5em)';
-         break; 
-      } 
-   }
-  
+    } 
+    case this.offerSavingsType.SAVINGS_FIRST_YEAR_BETWEEN_0_AND_2000: { 
+      return 'calc(0% - 2.5em)';
+        break; 
+    } 
+        default: { 
+          return 'calc(0% - 2.5em)';
+          break; 
+        } 
+    }
   }
+
+  isExpanded(index: number) {
+    console.log("isExpanded")
+    return this.detailsExpandedStatus[index]
+  }
+  setExpanded(index: number) {
+    console.log("setExpanded")
+    this.detailsExpandedStatus[index] = !this.detailsExpandedStatus[index]
+  }
+}
+
+interface RateBar {
+  percentage: number
+  class: string
 }

@@ -138,12 +138,12 @@ a.box {
   }
   .barometer {
     padding-top: 20px;
-    padding-bottom: 40px;
-    margin-bottom: 20px;
+    padding-bottom: 20px;
+    margin-bottom: 10px;
     background: $blue;
 
     @media (min-width: 600px) {
-      margin-bottom: 30px;
+      margin-bottom: 40px;
     }
 
     h3, {
@@ -345,6 +345,10 @@ a.box {
     margin-bottom: 40px;
     border-bottom: 1px solid $light;
   }
+
+  .split-section:last-of-type {
+    margin-top: 40px;
+  }
 }
 @media (min-width: 600px) {
   /* .offers-grid {
@@ -390,7 +394,8 @@ a.box {
     grid-template-columns: 1fr 1fr;
     border-bottom: 1px solid $light;
     border-top: 1px solid $light;
-    margin-top: 20px;
+    margin-top: 200px;
+    margin-bottom: 40px;
 
     .split-section {
       padding: 40px 40px 40px 40px;
@@ -428,17 +433,21 @@ a.box {
   .top-buttons {
     display: flex;
     justify-content: space-evenly;
+  }
+}
 
-    
+
+.double {
+
+  &.buttons {
+    grid-gap: 0px;
+    padding: 0px;
   }
 }
 
 
 
-
-
 .offer-details {
-
   .mat-expansion-panel{
     border-radius: 0px;
     box-shadow: unset;
@@ -494,13 +503,8 @@ a.box {
   margin-bottom: 10px;
   display: flex;
   justify-content: flex-end;
-  background-image: linear-gradient(
-    to right, 
-    red, 
-    #f06d06, 
-    hsl(60, 100%, 50%), 
-    green
-  );
+  
+  
 
   background-image: linear-gradient(
     to right, 
@@ -509,6 +513,39 @@ a.box {
     #ffe800, 
     #18bc9c
   ); 
+
+  &.twenty {
+    background: red;  
+  }
+
+  &.forty {
+    background: #E45A2A;  
+  }
+
+  &.sixty {
+    background: $orange;   
+  }
+
+  &.eighty {
+    background: #82C6B4;  
+  }
+
+  &.hundred {
+    background: $primary;  
+  }
+
+  background-image: linear-gradient(
+    to right, 
+    red, 
+    #f06d06, 
+    hsl(60, 100%, 50%), 
+    green
+  );
+}
+
+
+.test {
+  background: purple;
 }
 
 
