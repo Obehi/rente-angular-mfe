@@ -123,6 +123,7 @@ export class OffersComponent implements OnInit, OnDestroy {
         console.log(err);
       }
     );
+   
   }
 
   public getTips() {
@@ -317,4 +318,100 @@ export class OffersComponent implements OnInit, OnDestroy {
    }
    return text 
   }
+
+  
+
+  get rateBarPercentageInverted() {
+    return 100 - this.rateBarPercentage.percentage;
+  }
+
+  get rateBarPercentage(): RateBar {
+    
+    switch(this.offersInfo.offerSavingsType ) { 
+      case this.offerSavingsType.NO_SAVINGS: { 
+         return {
+           percentage: 95,
+           class: 'level-5'
+         }
+         break; 
+      } 
+      case this.offerSavingsType.SAVINGS_FIRST_YEAR_BETWEEN_0_AND_2000: { 
+        return {
+          percentage: 75,
+          class: 'level-4'
+        }
+         break; 
+      } 
+      case this.offerSavingsType.SAVINGS_FIRST_YEAR_BETWEEN_2000_AND_6000: { 
+        return {
+          percentage: 50,
+          class: 'level-3'
+        }
+        break; 
+     } 
+     case this.offerSavingsType.SAVINGS_FIRST_YEAR_BETWEEN_6000_AND_10000: { 
+       return {
+        percentage: 30,
+        class: 'level-2'
+      }
+        break; 
+     } 
+     case this.offerSavingsType.SAVINGS_FIRST_YEAR_GREATER_10000: { 
+      return {
+        percentage: 12,
+        class: 'level-1'
+      }
+      break; 
+   } 
+
+      default: { 
+        return {
+          percentage: 80,
+          class: 'level-3'
+        }
+         break; 
+      } 
+   }
+   
+  }
+
+  get barBoxPosition(): string {
+    
+    switch(this.offersInfo.offerSavingsType ) { 
+      case this.offerSavingsType.NO_SAVINGS: { 
+         return '100%';
+         break; 
+      } 
+      case this.offerSavingsType.SAVINGS_FIRST_YEAR_BETWEEN_0_AND_2000: { 
+        return 'calc(80% - 2.5em)';
+         break; 
+      } 
+      case this.offerSavingsType.SAVINGS_FIRST_YEAR_BETWEEN_2000_AND_6000: { 
+        return 'calc(60% - 2.5em)';
+        break; 
+     } 
+     case this.offerSavingsType.SAVINGS_FIRST_YEAR_BETWEEN_6000_AND_10000: { 
+       return 'calc(40% - 2.5em)';
+        break; 
+     } 
+     case this.offerSavingsType.SAVINGS_FIRST_YEAR_GREATER_10000: { 
+      
+      return 'calc(20%  - 2.5em)';
+      break; 
+    } 
+    case this.offerSavingsType.SAVINGS_FIRST_YEAR_BETWEEN_0_AND_2000: { 
+      return 'calc(0% - 2.5em)';
+        break; 
+    } 
+        default: { 
+          return 'calc(0% - 2.5em)';
+          break; 
+        } 
+    }
+  }
+}
+
+interface RateBar {
+  percentage: number
+  class: string
 }
