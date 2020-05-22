@@ -36,7 +36,7 @@ export interface OfferInfo {
   maxInstallmentFreePeriod: number;
   maxLTV: number;
   maxLoanPeriod: number;
-  otherConditions: string;
+  otherConditions: string | null;
   productName: string;
   requiredMembership: string;
   requiredProductPackage: string;
