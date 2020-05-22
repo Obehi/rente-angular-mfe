@@ -46,7 +46,6 @@ export class OffersComponent implements OnInit, OnDestroy {
   public effRateLoweredDialogVisible: boolean;
   public banksMap = BANKS_DATA;
   public tips: object[];
-  public detailsExpandedStatus: boolean[]
 
   get isMobile(): boolean { return window.innerWidth < 600; }
 
@@ -115,9 +114,6 @@ export class OffersComponent implements OnInit, OnDestroy {
         this.isLoading = false;
         this.localStorageService.removeItem('isNewUser');
         this.getTips();
-        this.detailsExpandedStatus = new Array(res.offers.length).fill(false)
-        console.log("detailsExpandedStatus on init")
-        console.log(this.detailsExpandedStatus)
       },
       err => {
         if (err.errorType === 'PROPERTY_VALUE_MISSING') {
@@ -412,15 +408,6 @@ export class OffersComponent implements OnInit, OnDestroy {
           break; 
         } 
     }
-  }
-
-  isExpanded(index: number) {
-    console.log("isExpanded")
-    return this.detailsExpandedStatus[index]
-  }
-  setExpanded(index: number) {
-    console.log("setExpanded")
-    this.detailsExpandedStatus[index] = !this.detailsExpandedStatus[index]
   }
 }
 
