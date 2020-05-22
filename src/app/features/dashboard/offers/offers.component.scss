@@ -325,6 +325,11 @@ a.box {
   }
 
   .split-section:last-of-type {
+    border-top: 1px solid #e7e9eb;
+    padding-top: 40px;
+  }
+
+  .split-section:last-of-type {
     margin-top: 40px;
   }
 }
