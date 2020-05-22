@@ -334,14 +334,14 @@ export class OffersComponent implements OnInit, OnDestroy {
     switch(this.offersInfo.offerSavingsType ) { 
       case this.offerSavingsType.NO_SAVINGS: { 
          return {
-           percentage: 100,
+           percentage: 95,
            class: 'level-5'
          }
          break; 
       } 
       case this.offerSavingsType.SAVINGS_FIRST_YEAR_BETWEEN_0_AND_2000: { 
         return {
-          percentage: 80,
+          percentage: 75,
           class: 'level-4'
         }
          break; 
