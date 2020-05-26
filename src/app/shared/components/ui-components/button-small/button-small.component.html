@@ -1,0 +1,14 @@
+<div class="button-wrapper">
+    <button
+      mat-button
+      class ="small-button"
+      [color]="color"
+      [disabled]="disabled"
+      (click)="clickEvent()"
+    >
+      <ng-container *ngTemplateOutlet="content"></ng-container>
+    </button>
+    <ng-template #content>
+      <ng-content></ng-content>
+    </ng-template>
+  </div>
