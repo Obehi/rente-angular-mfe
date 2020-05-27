@@ -39,10 +39,11 @@
       padding: 10px;
       font-size: 15px;
       text-align: left;
-
+      align-items: center;
+      
       p {
         display: inline;
-        font-size: 20px;
+        font-size: 14px;
         font-weight: 400;
         margin-left: auto;
       }
@@ -69,6 +70,7 @@
           height: 1em;
           p {
             font-weight: 500;
+            font-size: 0.8em;
             position: absolute;
             left: 0;
             right: 0;
@@ -84,11 +86,12 @@
         vertical-align: super;
         a {
             font-weight: 400;
+            font-size: 14px;
             display: inline-block;
             color: $blue !important;
         }
         h3 {
-            font-size: 14px;
+            font-size: 12px;
             font-weight: 100;
         }
         .mat-icon {
@@ -98,24 +101,33 @@
           color: $blue;
         }
       }
+      p {
+        font-size: 14px;
+      }
     }
     .the-offer-body {
-        border-radius: 0px 0px 10px 10px;
+       
         background: #F8F8F8;
         display: grid;
         grid-gap: 10px;
         grid-template-columns:3fr 2fr;
         padding: 10px;
+        border-bottom: 1px solid #cdcdcd;
 
         .offer-top  {
             display: flex;
             justify-content: flex-end;
-            grid-row: 2;
+            grid-row: 1;
             padding-top: 0px;
+            
+            p.save-text {
+              margin-right: auto;
+              font-weight: 400;
+            }
         }
 
         .offer-bottom {
-            grid-row: 4;
+            grid-row: 3;
         }
         .full-row {
             grid-column-start: 1;
@@ -124,6 +136,7 @@
         }
         .obligatory-info {
           text-align: left;
+          grid-row: 4;
           p {
             font-size: 9px;
           }
@@ -144,7 +157,6 @@
             display: grid;
             grid-gap: 0px;
             grid-template-columns: 7fr 2fr;
-
             .right {
                 justify-self: end;
 
@@ -160,7 +172,7 @@
             
             p {
                 font-size: 12px;
-                font-weight: bold;
+                font-weight: 400;
             }
 
             .details {
@@ -174,19 +186,19 @@
         }
 
         .buttons {
-            grid-row: 3;
-            grid-column: 2;
-            display: flex;
-            flex-direction: column;
+          display: flex;
+          flex-direction: row;
+          justify-content: space-around;
+          grid-column-start: 1;
+          grid-column-end: span 2;
 
 
           div:nth-child(2) {
-            margin-top: 10px;
+           
           }
 
         }
       .small-header {
-        grid-row: 1;
         padding: 4px 0;
         font-size: 14px;
         //background: #e7e9eb;

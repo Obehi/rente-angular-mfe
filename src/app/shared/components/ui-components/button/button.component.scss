@@ -31,8 +31,9 @@ button[disabled] {
 }
 
 button.mat-secondary[disabled][disabled] {
-  opacity: 0.6;
-  color: white;
+  background: #ECECEC;
+  color: #B5B4B4;
+  opacity: 1;
 }
 
 button.mat-grey[disabled] {

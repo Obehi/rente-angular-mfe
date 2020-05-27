@@ -40,9 +40,11 @@ hr {
   background-color: $light;
 }
 
+
+//CHECK COMPATIBILITY BEFORE PRODUCTION
 .content {
   background-color: $light;
-  overflow-x: hidden;
+  overflow-x: unset;
   padding-top: 60px;
 }
 

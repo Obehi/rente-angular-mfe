@@ -14,18 +14,14 @@
                 -->
                 </a>
 
-            
-            <!--
             <h3 (click)="openOfferDialog(offer)" class="clickable">
-                {{ offer.productName }}<mat-icon>help</mat-icon>
+                {{ offer.productName }} 
             </h3>
-        -->
+        
         </div>
         <p>{{ offer.effectiveRate | number: "1.2-2" }}%</p>
     </div>
     <div class="the-offer-body">
-
-        <div class="small-header full-row">Du sparer</div>
         <div class="offer-top full-row">
 
             <!--
@@ -50,7 +46,10 @@
             -->
 
             
+
+            <p class="save-text">Du sparer</p>
             <div class="split evenly">
+               
                 <div class="offer-inner save">
                   <h2 *ngIf="offer.totalSavings > 0; else noTotalSavings">
                     {{ offer.totalSavings | abs | number }},-
@@ -73,15 +72,15 @@
         </div>
 
         <div class="offer-properties">
-            <p class="left">Kundetilfredshet</p>
+            <p class="left">Kundetilfredshet:</p>
             <p class="right"><img class="offer-score"
                     src="../../../../assets/icons/score-{{offer.bankInfo.score }}.svg" /></p>
 
-            <p class="left">Hvor lang tid tar det å bytte</p>
+            <p class="left">Hvor lang tid tar det å bytte:</p>
             <p class="right">
                 {{offer.bankInfo.applicationTime  === null ? 'Ukjent' : offer.bankInfo.applicationTime + " min"}}</p>
 
-            <p class="left">Krever bytte av bank</p>
+            <p class="left">Krever bytte av nettbank:</p>
             <p class="right">{{ offer.requiredProductPackage == null ? "Nei" : "Ja" }}</p>
 
             <p class="left details">

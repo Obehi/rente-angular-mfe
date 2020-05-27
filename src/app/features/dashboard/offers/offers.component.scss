@@ -188,21 +188,25 @@ a.box {
       display: flex;
       justify-content: end;
       align-items: center;
+      position: sticky;
+      z-index: 10;
+      top: 55px;
       font-size: 14px;
       color: #fff;
-      background-color: $secondary;
+      background-color: white;
       height: 4em;
       width: 100%;
       padding: 10px;
+      border-top: 1px solid #e7e9eb;
+      border-bottom: 1px solid #e7e9eb;
 
-      p{
-
-        color: #fff;
+      p {
+        color: $secondary;
         font-weight: 400;
 
         span {
-
-          font-size: 20px;
+          margin-left: 20px;
+          font-size: 14px;
         }
       }
       p:first-of-type {
@@ -307,10 +311,6 @@ a.box {
             margin-left: 5px;
             vertical-align: middle;
             color: $blue;
-          }
-
-          h3 {
-            font-size: 12px;
           }
         }
       }
