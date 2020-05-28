@@ -200,18 +200,49 @@
                 grid-row-start: 1;
                 grid-row-end: span 3;
                 border-left: 1px solid #ECECEC;
-                padding-top: 15px
+                padding-top: 15px;
+                z-index: 10;
 
                 img {
-                  width: 60px;
+                  width: 45px;
                   margin-top: 10px;
 
                 }
               }
 
               &.details {
-                grid-row: 3;
+                grid-row: 4;
+                grid-column-start: 1;
+                grid-column-end: span 2;
+                //Hack to position details next to smiley
+                position: relative;
+                top: -30px;
+                  .mat-expansion-panel{
+                    border-radius: 0px;
+                    box-shadow: unset;
+                    width: 100%;
+                    background: transparent;
+                    z-index: 5;
 
+                    .mat-expansion-panel-header{
+                      margin-left: 0px;
+                      width: 70px;
+                      padding: 0px;
+                      background: transparent;
+
+                      .mat-expansion-indicator {
+                        display: none;
+                      }
+
+                      //selector doesnt work
+                      .mat-expansion-indicator::after {
+                        //color: red !important;
+                      }
+                    }
+                    
+                  }
+
+                  
                 
               }
 
@@ -221,6 +252,7 @@
                 background: #ECECEC;
                 min-width: 45px;
                 text-align: center;
+                z-index: 10;
               }
             }
             .right {
@@ -238,11 +270,7 @@
 
             .details {
               font-size: 12px;
-              font-weight: bold;
-              text-align: center;
-              padding: 0.5em 1em 0.5em 1em;
-              background: #e7e9eb;
-              border-radius: 8px;
+              font-weight: bold;      
             }
         }
 
@@ -253,12 +281,10 @@
           grid-column-start: 1;
           grid-column-end: span 2;
           grid-row: 3;
-
-
-          div:nth-child(2) {
-           
-          }
-
+          //Positional hack for details button
+          position: relative;
+          top: -30px;
+          height: 30px;
         }
       .small-header {
         padding: 4px 0;

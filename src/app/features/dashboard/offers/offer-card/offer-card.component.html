@@ -92,9 +92,15 @@
             </div>
 
             <div class="item left details">
-                <p class="left details">
-                    Detaljer
-                </p>
+               
+                    <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                          Detaljer
+                        </mat-expansion-panel-header>
+                        
+                        <rente-details [offer]="offer"></rente-details>
+                      </mat-expansion-panel>
+              
             </div>
         </div>
 
@@ -129,7 +135,7 @@
             <p class="insignificant"><span>
                 </span> Eff.rente {{offer.effectiveRate | number: "1.1-2"}}%,
                 Lånebeløp {{offer.outstandingDebt | number: "1.0" }},
-                {{offer.loanPeriodYears | number: "1.1" }} år,
+                {{offer.loanPeriodYears | number: "1.1-1" }} år,
                 Kostnad: {{offer.cost | number: "1.0" }},
                 Totalt: {{offer.totalCost | number: "1.0" }}
             </p>
