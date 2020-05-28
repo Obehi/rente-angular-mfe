@@ -153,21 +153,82 @@
             }   
         }
 
+        .property {
+          &.left{
+            grid-column: 1;
+          }
+          &.right{
+            grid-column: 2;
+          }
+        }
+
         .offer-properties {
+            grid-row: 2;
             display: grid;
             grid-gap: 0px;
-            grid-template-columns: 7fr 2fr;
-            .right {
-                justify-self: end;
+            grid-column-gap: 10px;
+            grid-row-gap: 5px;
+            grid-template-columns: 3fr 2fr;          
+            grid-column-start: 1;
+            grid-column-end: span 2;
+            border-top: 1px solid #ECECEC;
+            
+            .item{
+              display: flex;
+              flex-direction: row;
+              text-align: left;
+              justify-content: space-between;
+              align-items: center;
+
+              &.first {
+                padding-top: 10px
+              }
+              &.left {
+                grid-column: 1;
+              }
+
+              &.right {
+                grid-column: 2;
+                
+              }
+
+              &.satisfaction {
+                grid-row: 1;
+                display: flex;
+                flex-direction: column;
+                justify-content: start;
+                grid-row-start: 1;
+                grid-row-end: span 3;
+                border-left: 1px solid #ECECEC;
+                padding-top: 15px
 
                 img {
-                    width: 20px;
+                  width: 60px;
+                  margin-top: 10px;
+
+                }
+              }
+
+              &.details {
+                grid-row: 3;
+
+                
+              }
+
+              .box {
+                padding: 5px;
+                border-radius: 5px;
+                background: #ECECEC;
+                min-width: 45px;
+                text-align: center;
+              }
+            }
+            .right {
+                img {
+                    width: 60px;
+                    margin-top: 10px;
                     display: inherit;
                 }
-            }
-
-            .left {
-                justify-self: start;
             }
             
             p {
@@ -191,6 +252,7 @@
           justify-content: space-around;
           grid-column-start: 1;
           grid-column-end: span 2;
+          grid-row: 3;
 
 
           div:nth-child(2) {

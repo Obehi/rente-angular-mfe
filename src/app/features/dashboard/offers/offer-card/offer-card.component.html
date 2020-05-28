@@ -72,20 +72,30 @@
         </div>
 
         <div class="offer-properties">
-            <p class="left">Kundetilfredshet:</p>
-            <p class="right"><img class="offer-score"
-                    src="../../../../assets/icons/score-{{offer.bankInfo.score }}.svg" /></p>
+           
 
-            <p class="left">Hvor lang tid tar det å bytte:</p>
-            <p class="right">
-                {{offer.bankInfo.applicationTime  === null ? 'Ukjent' : offer.bankInfo.applicationTime + " min"}}</p>
+            <div class="item left first">
+                <p class="left">Hvor lang tid tar det å bytte:</p>
+                <p class="box">
+                    {{offer.bankInfo.applicationTime  === null ? 'Ukjent' : offer.bankInfo.applicationTime + " min"}}</p>
+            </div>
 
-            <p class="left">Krever bytte av nettbank:</p>
-            <p class="right">{{ offer.requiredProductPackage == null ? "Nei" : "Ja" }}</p>
+            <div class="item left">
+                <p class="left">Krever bytte av nettbank:</p>
+                <p class="box">{{ offer.requiredProductPackage == null ? "Nei" : "Ja" }}</p>
+            </div>
 
-            <p class="left details">
-                Detaljer
-            </p>
+            <div class="item right first satisfaction">
+                <p class="left">Kundetilfredshet:</p>
+                <img class="offer-score"
+                        src="../../../../assets/icons/score-{{offer.bankInfo.score }}.svg" />
+            </div>
+
+            <div class="item left details">
+                <p class="left details">
+                    Detaljer
+                </p>
+            </div>
         </div>
 
         <div class="buttons">
