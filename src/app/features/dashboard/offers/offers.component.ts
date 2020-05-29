@@ -125,7 +125,7 @@ export class OffersComponent implements OnInit, OnDestroy {
     );
    
     console.log("test optimize")
-    this.testOptimize()
+
   }
 
   public getTips() {
@@ -418,7 +418,6 @@ export class OffersComponent implements OnInit, OnDestroy {
 
   getVariation(): number | null {
     console.log("variation " + (window as any).google_optimize.get('35KXhAdMSYmOW7kszA1Juw'));
-
     let variation = Number((window as any).google_optimize.get('35KXhAdMSYmOW7kszA1Juw'))
     return variation;
   }
