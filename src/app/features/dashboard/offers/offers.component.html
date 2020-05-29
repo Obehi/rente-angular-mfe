@@ -457,7 +457,7 @@
           class="the-offer"
         >
        
-        <ng-container *ngIf="getVariation() === undefined || getVariation() === null">
+        <ng-container *ngIf="getVariation() === undefined || getVariation() === null || Number.isNaN(getVariation())">
           <rente-offer-card-big [offer]="offer" [offersInfo]="offersInfo" [index]=i></rente-offer-card-big>
         </ng-container>
 
