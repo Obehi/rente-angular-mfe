@@ -444,7 +444,16 @@ export class OffersComponent implements OnInit, OnDestroy {
  
  (window as any).dataLayer.push({
   event: 'optimize.callback',
-  name: 'tq80AQO-QyWnJiiBS-uFUA',
+  name: 'pTIZ80YDSNmhtJXRhYQ-rA',
+  callback: (value) =>{
+    console.log("experiment value")
+    console.log(value)
+  }
+});
+
+(window as any).dataLayer.push({
+  event: 'optimize.callback',
+  name: '<pTIZ80YDSNmhtJXRhYQ-rA>',
   callback: (value) =>{
     console.log("experiment value")
     console.log(value)
