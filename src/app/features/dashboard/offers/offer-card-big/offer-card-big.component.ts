@@ -32,6 +32,7 @@ export class OfferCardBigComponent implements OnInit {
     console.log(this.offer)
   }
 
+  get isMobile(): boolean { return window.innerWidth < 600; }
 
 
   getbankNameOrDefault(offer: OfferInfo): string {
