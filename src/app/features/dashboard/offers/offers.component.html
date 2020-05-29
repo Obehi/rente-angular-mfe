@@ -441,10 +441,10 @@
 
   <div class="the-offers">
     <h3 style="margin-bottom: 20px;">
-      {{ offersInfo.offers.length }} beste tilbud
+      {{  getVariation() }} beste tilbud
     </h3>
     <div class="offers-grid">
-      <ng-container *ngIf="offersInfo && getVariation == 0">
+      <ng-container *ngIf="offersInfo && getVariation == 2">
         <div
           *ngFor="let offer of offersInfo.offers; let i = index"
           class="the-offer"
