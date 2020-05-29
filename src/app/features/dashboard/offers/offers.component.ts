@@ -418,7 +418,18 @@ export class OffersComponent implements OnInit, OnDestroy {
 
 
   testOptimize(){
-   
+    console.log("testOptimize pre");
+  
+    (window as any).dataLayer.push({
+      event: 'optimize.callback',
+      name: '<d3kvDy2EQfWJSO3PWsIczg>',
+      callback: (value) =>{
+        console.log("experiment value");
+        console.log(value);
+      }
+    });
+    console.log("testOptimize post");
+
   /*
     gtag('event', 'optimize.callback', {
       name: '<experiment_id_A>',
@@ -444,21 +455,14 @@ export class OffersComponent implements OnInit, OnDestroy {
  
  (window as any).dataLayer.push({
   event: 'optimize.callback',
-  name: 'pTIZ80YDSNmhtJXRhYQ-rA',
+  name: 'd3kvDy2EQfWJSO3PWsIczg',
   callback: (value) =>{
-    console.log("experiment value")
-    console.log(value)
+    console.log("experiment value1");
+    console.log(value);
   }
 });
 
-(window as any).dataLayer.push({
-  event: 'optimize.callback',
-  name: '<pTIZ80YDSNmhtJXRhYQ-rA>',
-  callback: (value) =>{
-    console.log("experiment value")
-    console.log(value)
-  }
-});
+
 
 }
 }

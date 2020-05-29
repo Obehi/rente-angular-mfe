@@ -67,19 +67,28 @@
       });
 
       console.log("optmize get")
-      console.log(google_optimize &&  google_optimize.get('pTIZ80YDSNmhtJXRhYQ-rA'));
+      console.log(google_optimize &&  google_optimize.get('d3kvDy2EQfWJSO3PWsIczg'));
       console.log("optmize get")
       dataLayer.push({'event': 'optimize.activate'})
 
       console.log("front page")
-      var test = datalayer.google_optimize.get('pTIZ80YDSNmhtJXRhYQ-rA');
+      var test = datalayer.google_optimize.get('<d3kvDy2EQfWJSO3PWsIczg>');
       console.log(test)
       windows.dataLayer.push({
   event: 'optimize.callback',
-  name: ' DyWZq5pWSQ6szM5HlAmaxw',
+  name: '<d3kvDy2EQfWJSO3PWsIczg>',
   callback: (value) =>{
-    console.log("experiment value in frontpage  ")
-    console.log(value)
+    console.log("experiment value in frontpage  ");
+    console.log(value);
+  }
+});
+
+windows.dataLayer.push({
+  event: 'optimize.callback',
+  name: 'd3kvDy2EQfWJSO3PWsIczg',
+  callback: (value) =>{
+    console.log("experiment value in frontpage  ");
+    console.log(value);
   }
 });
 
