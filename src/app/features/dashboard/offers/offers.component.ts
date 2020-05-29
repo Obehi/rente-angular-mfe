@@ -124,6 +124,8 @@ export class OffersComponent implements OnInit, OnDestroy {
       }
     );
    
+    console.log("test optimize")
+    this.testOptimize()
   }
 
   public getTips() {
@@ -413,6 +415,43 @@ export class OffersComponent implements OnInit, OnDestroy {
         } 
     }
   }
+
+
+  testOptimize(){
+   
+  /*
+    gtag('event', 'optimize.callback', {
+      name: '<experiment_id_A>',
+      callback: implementExperimentA
+   });
+  }
+  */
+  
+
+  /*
+  if ((window as any).dataLayer) {
+    (window as any).dataLayer.push({
+      event: 'virtualPageView',
+      url: window.location.href
+    });
+  }
+  */
+
+ //let test = (window as any).dataLayer.google_optimize.get('DyWZq5pWSQ6szM5HlAmaxw');
+ //(window as any).dataLayer.push({event: 'optimize.activate'})
+ 
+ (window as any).dataLayer.push({event: 'optimize.activate'});
+ 
+ (window as any).dataLayer.push({
+  event: 'optimize.callback',
+  name: 'tq80AQO-QyWnJiiBS-uFUA',
+  callback: (value) =>{
+    console.log("experiment value")
+    console.log(value)
+  }
+});
+
+}
 }
 
 interface RateBar {
