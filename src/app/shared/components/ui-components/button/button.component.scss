@@ -30,6 +30,12 @@ button[disabled] {
   opacity: 0.3;
 }
 
+button.mat-secondary[disabled][disabled] {
+  background: #ECECEC;
+  color: #B5B4B4;
+  opacity: 1;
+}
+
 button.mat-grey[disabled] {
   opacity: 1.0  ;
   color: white;
@@ -37,6 +43,11 @@ button.mat-grey[disabled] {
 
 button.mat-primary {
   background-color: $primary;
+}
+
+button.mat-secondary {
+  background-color: $secondary;
+  color: white;
 }
 .mat-button.mat-primary {
   color: white !important;

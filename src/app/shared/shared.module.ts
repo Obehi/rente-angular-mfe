@@ -36,11 +36,14 @@ import { TitleService } from './services/title.service';
 import { EventService } from './services/event-service';
 import { RoundPipe } from './pipes/round.pipe';
 import { ThousandsSeprator } from './pipes/thousands.pipe';
+import { ButtonSmallComponent } from './components/ui-components/button-small/button-small.component';
+
 
 const components = [
   HeaderComponent,
   FooterComponent,
   ButtonComponent,
+  ButtonSmallComponent,
   InputComponent,
   SelectComponent,
   CheckboxComponent,
