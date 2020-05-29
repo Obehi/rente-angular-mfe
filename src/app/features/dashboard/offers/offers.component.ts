@@ -419,10 +419,12 @@ export class OffersComponent implements OnInit, OnDestroy {
 
   testOptimize(){
     console.log("testOptimize pre");
-  
+    console.log((window as any).google_optimize.get('d3kvDy2EQfWJSO3PWsIczg'));
+    let test = (window as any).google_optimize.get('d3kvDy2EQfWJSO3PWsIczg');
+    console.log(test);
     (window as any).dataLayer.push({
       event: 'optimize.callback',
-      name: '<d3kvDy2EQfWJSO3PWsIczg>',
+      name: 'd3kvDy2EQfWJSO3PWsIczg',
       callback: (value) =>{
         console.log("experiment value");
         console.log(value);
