@@ -42,6 +42,7 @@ import { AddressFormComponent } from "./house/address/address.form.component";
 import { GetOfferFromBankDialogComponent } from './offers/get-offer-from-bank-dialog/get-offer-from-bank-dialog.component';
 import { LtvTooHighDialogComponent } from './offers/ltv-too-high-dialog/ltv-too-high-dialog.component';
 import { OfferCardComponent } from './offers/offer-card/offer-card.component';
+import { OfferCardBigComponent } from './offers/offer-card-big/offer-card-big.component';
 
 // TODO: ADD separate module for material import
 @NgModule({
@@ -68,7 +69,8 @@ import { OfferCardComponent } from './offers/offer-card/offer-card.component';
     GetOfferFromBankDialogComponent,
     LtvTooHighDialogComponent,
     DetailsComponent,
-    OfferCardComponent
+    OfferCardComponent,
+    OfferCardBigComponent
   ],
   imports: [
     CommonModule,

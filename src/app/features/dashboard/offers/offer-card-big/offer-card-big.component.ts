@@ -11,12 +11,11 @@ import {
 
 
 @Component({
-  selector: 'rente-offer-card',
-  templateUrl: './offer-card.component.html',
-  styleUrls: ['./offer-card.component.scss']
+  selector: 'rente-offer-card-big',
+  templateUrl: './offer-card-big.component.html',
+  styleUrls: ['./offer-card-big.component.scss']
 })
-export class OfferCardComponent implements OnInit {
-
+export class OfferCardBigComponent implements OnInit {
   public banksMap = BANKS_DATA;
   public offerSavingsType = OFFER_SAVINGS_TYPE
 
@@ -105,16 +104,5 @@ export class OfferCardComponent implements OnInit {
     this.sendOfferTrackingData(trackingDto, offer)
   }
 
-  getVariation(): number | null {
-    console.log("variation " + (window as any).google_optimize.get('35KXhAdMSYmOW7kszA1Juw'));
-    return (window as any).google_optimize.get('35KXhAdMSYmOW7kszA1Juw');
-  }
 
-  isPrimary(): boolean {
-    let variation = this.getVariation()
-    if(variation === 0 || variation === 1) {
-      return true
-    }
-    return false
-  }
 }

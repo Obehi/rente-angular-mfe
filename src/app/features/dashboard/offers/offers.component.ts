@@ -413,6 +413,11 @@ export class OffersComponent implements OnInit, OnDestroy {
         } 
     }
   }
+
+  getVariation(): number | null {
+    console.log("variation " + (window as any).google_optimize.get('35KXhAdMSYmOW7kszA1Juw'));
+    return (window as any).google_optimize.get('35KXhAdMSYmOW7kszA1Juw');
+  }
 }
 
 interface RateBar {
