@@ -181,7 +181,11 @@
               align-items: center;
 
               &.first {
-                padding-top: 10px
+                padding-top: 10px;
+                @media (min-width: 600px) {
+                  margin-bottom: 3px;
+                }
+
               }
               &.left {
                 grid-column: 1;
@@ -203,9 +207,22 @@
                 padding-top: 15px;
                 z-index: 10;
 
+                @media (min-width: 600px) {
+                  grid-row: 3;
+                  grid-column: 1;
+                  flex-direction: row;
+                  justify-content: space-between;
+                  padding-top: 0;
+                  border-left: unset;
+                }
                 img {
                   width: 45px;
                   margin-top: 10px;
+
+                  @media (min-width: 600px) { 
+                    width: 30px;
+                    margin-top: 0;
+                  }
 
                 }
               }
@@ -214,9 +231,16 @@
                 grid-row: 4;
                 grid-column-start: 1;
                 grid-column-end: span 2;
+
+
                 //Hack to position details next to smiley
-                position: relative;
-                top: -30px;
+                @media (max-width: 600px) { 
+                  position: relative;
+                  top: -30px;
+                }
+                
+
+                
                   .mat-expansion-panel{
                     border-radius: 0px;
                     box-shadow: unset;
@@ -274,17 +298,44 @@
             }
         }
 
-        .buttons {
+        .buttons.item {
+
           display: flex;
           flex-direction: row;
           justify-content: space-around;
+          align-items: unset;
           grid-column-start: 1;
           grid-column-end: span 2;
-          grid-row: 3;
-          //Positional hack for details button
-          position: relative;
-          top: -30px;
-          height: 30px;
+          grid-row: 5;
+
+          @media (max-width: 600px) {
+            //Positional hack for details button
+            position: relative;
+            top: -30px;
+            height: 30px;
+            &.item {
+            align-items: unset;
+            }
+          }
+          
+          @media (min-width: 600px) {
+
+            &.item {
+              grid-row-start: 1;
+              grid-row-end: span 3;
+              grid-column: 2;
+              flex-direction: column;
+              align-items: center;
+              justify-content: end;
+              text-align: center;
+              border-left: 1px solid #ECECEC;
+
+              div {
+                margin-top: 10px;
+              }
+            }
+           
+          }
         }
       .small-header {
         padding: 4px 0;
