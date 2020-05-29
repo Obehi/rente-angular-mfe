@@ -200,6 +200,10 @@ a.box {
       border-top: 1px solid #e7e9eb;
       border-bottom: 1px solid #e7e9eb;
 
+      @media (min-width: 600px) {
+        top: 114px;
+      }
+
       p {
         color: $secondary;
         font-weight: 400;

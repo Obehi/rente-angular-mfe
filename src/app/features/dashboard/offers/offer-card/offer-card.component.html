@@ -22,7 +22,7 @@
         <p>{{ offer.effectiveRate | number: "1.2-2" }}%</p>
     </div>
     <div class="the-offer-body">
-        <div class="offer-top full-row">
+        <div class="offer-top">
 
             <!--
             <ul class="info-table">
@@ -48,7 +48,7 @@
             
 
             <p class="save-text">Du sparer</p>
-            <div class="split evenly">
+            <div class="split">
                
                 <div class="offer-inner save">
                   <h2 *ngIf="offer.totalSavings > 0; else noTotalSavings">
@@ -129,7 +129,7 @@
                     </div>
             </div>
         </div>
-        
+
         <div class="obligatory-info offer-bottom full-row">
             
             <p class="insignificant"><span>

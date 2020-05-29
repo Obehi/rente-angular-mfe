@@ -450,10 +450,7 @@
       <p>Din effektive rente: <span>{{ offersInfo.totalEffectiveRate | number: "1.2-2" }}%</span></p>
     </div>
     
-    <div class="offers-grid">
-    
-      <rente-offer-card [offer]="offersInfo.offers[1]" [offersInfo]="offersInfo" [index]=0></rente-offer-card>
-      
+    <div class="offers-grid">    
       <ng-container *ngIf="offersInfo">
         <div
           *ngFor="let offer of offersInfo.offers; let i = index"
