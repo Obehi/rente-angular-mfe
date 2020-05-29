@@ -444,7 +444,7 @@
       {{ offersInfo.offers.length }} beste tilbud
     </h3>
     <div class="offers-grid">
-      <ng-container *ngIf="offersInfo">
+      <ng-container *ngIf="offersInfo && getVariation == 0">
         <div
           *ngFor="let offer of offersInfo.offers; let i = index"
           class="the-offer"

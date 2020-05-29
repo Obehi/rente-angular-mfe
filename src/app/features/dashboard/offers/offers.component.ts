@@ -416,6 +416,11 @@ export class OffersComponent implements OnInit, OnDestroy {
     }
   }
 
+  getVariation(): number | null {
+    console.log("variation " + (window as any).google_optimize.get('d3kvDy2EQfWJSO3PWsIczg'));
+    return (window as any).google_optimize.get('d3kvDy2EQfWJSO3PWsIczg');
+  }
+
 
   testOptimize(){
     console.log("testOptimize pre");
