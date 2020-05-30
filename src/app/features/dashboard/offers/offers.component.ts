@@ -417,20 +417,20 @@ export class OffersComponent implements OnInit, OnDestroy {
   }
 
   getVariation(): number | null {
-    console.log("variation " + (window as any).google_optimize.get('8oRnnaA5T164EYp0ie-ZMQ'));
-    let variation = (window as any).google_optimize.get('8oRnnaA5T164EYp0ie-ZMQ');
+    console.log("variation " + (window as any).google_optimize.get('qlX5oVPeQyGGT7fcBeG2MA'));
+    let variation = (window as any).google_optimize.get('qlX5oVPeQyGGT7fcBeG2MA');
     return variation;
   }
 
 
   testOptimize(){
     console.log("testOptimize pre");
-    console.log((window as any).google_optimize.get('8oRnnaA5T164EYp0ie-ZMQ'));
-    let test = (window as any).google_optimize.get('8oRnnaA5T164EYp0ie-ZMQ');
+    console.log((window as any).google_optimize.get('qlX5oVPeQyGGT7fcBeG2MA'));
+    let test = (window as any).google_optimize.get('qlX5oVPeQyGGT7fcBeG2MA');
     console.log(test);
     (window as any).dataLayer.push({
       event: 'optimize.callback',
-      name: '8oRnnaA5T164EYp0ie-ZMQ',
+      name: 'qlX5oVPeQyGGT7fcBeG2MA',
       callback: (value) =>{
         console.log("experiment value");
         console.log(value);
@@ -463,7 +463,7 @@ export class OffersComponent implements OnInit, OnDestroy {
  
  (window as any).dataLayer.push({
   event: 'optimize.callback',
-  name: '8oRnnaA5T164EYp0ie-ZMQ',
+  name: 'qlX5oVPeQyGGT7fcBeG2MA',
   callback: (value) =>{
     console.log("experiment value1");
     console.log(value);
