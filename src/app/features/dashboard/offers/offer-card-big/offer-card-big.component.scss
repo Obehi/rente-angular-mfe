@@ -9,6 +9,11 @@
     }
   }
 
+  .double {
+    &.buttons {
+      margin-bottom: 40px;
+    }
+  }
 
 .the-offer-header {
     border: 1px solid $green;
