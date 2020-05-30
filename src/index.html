@@ -65,32 +65,6 @@
           document.location.search
       });
 
-      console.log("optmize get")
-      console.log(google_optimize &&  google_optimize.get('35KXhAdMSYmOW7kszA1Juw'));
-      console.log("optmize get")
-      dataLayer.push({'event': 'optimize.activate'})
-
-      console.log("front page")
-      var test = datalayer.google_optimize.get('<35KXhAdMSYmOW7kszA1Juw>');
-      console.log(test)
-      windows.dataLayer.push({
-  event: 'optimize.callback',
-  name: '<35KXhAdMSYmOW7kszA1Juw>',
-  callback: (value) =>{
-    console.log("experiment value in frontpage  "); 
-    console.log(value);
-  }
-});
-
-windows.dataLayer.push({
-  event: 'optimize.callback',
-  name: '35KXhAdMSYmOW7kszA1Juw',
-  callback: (value) =>{
-    console.log("experiment value in frontpage  ");
-    console.log(value);
-  }
-});
-
 //google_optimize.get()
     </script>
     <!-- Start of Async Drift Code -->
