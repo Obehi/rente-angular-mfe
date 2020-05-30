@@ -123,7 +123,7 @@ export class OfferCardComponent implements OnInit {
 
   isPrimary(): boolean {
     let variation = this.getVariation()
-    if(variation === 0 || variation === 1) {
+    if(variation == 0 || variation == 1) {
       return true
     }
     return false
