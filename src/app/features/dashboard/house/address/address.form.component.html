@@ -99,6 +99,19 @@
         ></rente-input>
       </div>
     </div>
+
+    <div class="address">
+      
+      <rente-input
+        type="text"
+        [placeholder]="'Fellesgjeld'"
+        [(ngModel)]="address.commonDebt"
+        (change)="countChange($event)"
+        (focus)="countChange($event)"
+        matSuffix="kr"
+      ></rente-input>
+      
+    </div>
     <div class="center-button">
       <rente-button
       color="primary"
