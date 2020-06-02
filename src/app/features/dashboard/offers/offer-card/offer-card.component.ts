@@ -2,8 +2,6 @@ import { Component, OnInit, Input } from '@angular/core';
 import { OfferInfo, Offers } from './../../../../shared/models/offers';
 import { BANKS_DATA } from '@config/banks-config';
 import { TrackingService, TrackingDto } from '@services/remote-api/tracking.service';
-import { MatDialog } from '@angular/material/dialog';
-import { DialogInfoComponent } from '../dialog-info/dialog-info.component';
 
 import {
   OFFER_SAVINGS_TYPE,
@@ -25,10 +23,7 @@ export class OfferCardComponent implements OnInit {
   @Input() offer: OfferInfo;
   @Input() offersInfo: Offers
   @Input() index: number
-  constructor(
-    private trackingService: TrackingService, 
-    public dialog: MatDialog) 
-    { }
+  constructor(private trackingService: TrackingService) { }
 
   ngOnInit() {
     console.log(this.offer)
@@ -57,12 +52,6 @@ export class OfferCardComponent implements OnInit {
       } 
    }
    return text 
-  }
-
-  public openOfferDialog(offer: OfferInfo): void {
-    this.dialog.open(DialogInfoComponent, {
-      data: offer
-    });
   }
 
   private sendOfferTrackingData(trackingDto: TrackingDto, offer: OfferInfo){
@@ -121,13 +110,9 @@ export class OfferCardComponent implements OnInit {
   }
 
   getVariation(): number | null {
-<<<<<<< HEAD
-    console.log("variation " + (window as any).google_optimize.get('8oRnnaA5T164EYp0ie-ZMQ'));
-    return (window as any).google_optimize.get('8oRnnaA5T164EYp0ie-ZMQ');
-=======
     console.log("variation " + (window as any).google_optimize.get('8oRnnaA5T164EYp0ie'));
     return (window as any).google_optimize.get('8oRnnaA5T164EYp0ie');
->>>>>>> offer-card-compact
+
   }
 
   isPrimary(): boolean {
