@@ -14,7 +14,7 @@
                 -->
                 </a>
 
-            <h3 (click)="openOfferDialog(offer)" class="clickable">
+            <h3>
                 {{ offer.productName }} 
             </h3>
         
@@ -133,7 +133,7 @@
         <div class="obligatory-info offer-bottom full-row">
             
             <p class="insignificant"><span>
-                </span> Eff.rente {{offer.effectiveRate | number: "1.1-2"}}%,
+                </span> Eff.rente {{offer.effectiveRate | number: "1.2-2"}}%,
                 Lånebeløp {{offer.outstandingDebt | number: "1.0" }},
                 {{offer.loanPeriodYears | number: "1.1-1" }} år,
                 Kostnad: {{offer.cost | number: "1.0" }},
