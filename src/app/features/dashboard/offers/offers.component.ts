@@ -417,8 +417,8 @@ export class OffersComponent implements OnInit, OnDestroy {
   }
 
   getVariation(): number | null {
-    console.log("variation " + (window as any).google_optimize.get('8oRnnaA5T164EYp0ie'));
-    return (window as any).google_optimize.get('8oRnnaA5T164EYp0ie');
+    console.log("variation " + (window as any).google_optimize.get('8oRnnaA5T164EYp0ie-ZMQ'));
+    return (window as any).google_optimize.get('8oRnnaA5T164EYp0ie-ZMQ');
   }
 };
 
