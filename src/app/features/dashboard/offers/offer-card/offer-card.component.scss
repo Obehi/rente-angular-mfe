@@ -330,6 +330,7 @@
             margin-top: 10px;
             &.item {
               align-items: unset;
+              justify-content: space-around;
             }
 
             p {
@@ -372,8 +373,8 @@
           }
 
           @media (max-width: 340px) {
-            margin-top: 20px;
-            margin-bottom: 25px !important;
+            margin-top: 60px;
+            margin-bottom: 20px !important;
             &.item {
               flex-direction: column;
 

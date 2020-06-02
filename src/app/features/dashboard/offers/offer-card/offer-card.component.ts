@@ -42,6 +42,10 @@ export class OfferCardComponent implements OnInit {
         text = "Bulder"
          break; 
       } 
+      case "LANDKREDITT": { 
+        text = "Landkreditt"
+         break; 
+      } 
       default: { 
         text = "banken"
          break; 

@@ -397,6 +397,10 @@ a.box {
     text-align: left;
   }
 
+  .rente-boxes {
+    min-width: 300px;
+  }
+
   .offers {
     .tipsAccordion {
       position: relative;
@@ -425,11 +429,11 @@ a.box {
   }
 
   .split-sections {
+    overflow: hidden;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, minmax(360px, 1fr));
     border-bottom: 1px solid $light;
     border-top: 1px solid $light;
-  
     margin-bottom: 40px;
 
     .split-section {
