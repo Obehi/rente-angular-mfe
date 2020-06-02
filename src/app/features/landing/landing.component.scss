@@ -21,6 +21,11 @@ h3 {
     margin: auto;
   }
 }
+
+//overflow hidden is set only on the wrapper on landing page
+.front-container {
+  overflow: hidden;
+}
 .bank-buttons {
   display: grid;
   grid-gap: 20px;

@@ -97,7 +97,8 @@ export class OffersStatisticsComponent implements AfterViewInit {
         type: 'column',
         spacingLeft: 0,
         spacingRight: 0,
-        height: 200
+        height: 200,
+        width: 400,
       },
 
       title: {
