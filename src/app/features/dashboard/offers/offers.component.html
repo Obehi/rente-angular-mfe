@@ -445,7 +445,7 @@
     </h3>
 
     
-    <div *ngIf="  getVariation() == 1 || getVariation() == 2" class="sticky-table-header">
+    <div *ngIf="getVariation() == 1 || getVariation() == 2" class="sticky-table-header">
       <p>BANK</p>
       <p>Din effektive rente: <span>{{ offersInfo.totalEffectiveRate | number: "1.2-2" }}%</span></p>
     </div>
@@ -456,8 +456,8 @@
           *ngFor="let offer of offersInfo.offers; let i = index"
           class="the-offer"
         >
-       
-        <ng-container *ngIf="getVariation() == undefined || getVariation() === null">
+
+        <ng-container *ngIf="getVariation() == undefined || getVariation() === null";>
           <rente-offer-card-big [offer]="offer" [offersInfo]="offersInfo" [index]=i></rente-offer-card-big>
         </ng-container>
 
@@ -465,7 +465,7 @@
           <rente-offer-card-big [offer]="offer" [offersInfo]="offersInfo" [index]=i></rente-offer-card-big>
         </ng-container>
 
-        <ng-container *ngIf="getVariation() == 1 || getVariation() == 2 || getVariation() == 3 ">
+        <ng-container *ngIf="getVariation() == 1 || getVariation() == 2">
           <rente-offer-card [offer]="offer" [offersInfo]="offersInfo" [index]=i></rente-offer-card>
         </ng-container>   
 

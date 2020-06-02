@@ -97,7 +97,7 @@ export class OffersStatisticsComponent implements AfterViewInit {
         type: 'column',
         spacingLeft: 0,
         spacingRight: 0,
-        height: 200
+        height: 200,
       },
 
       title: {
@@ -110,6 +110,7 @@ export class OffersStatisticsComponent implements AfterViewInit {
       },
 
       xAxis: {
+        
         categories: ['Du har', 'Snitt-kunden', 'De med lavest rente'],
         labels: {
           style: {
@@ -117,6 +118,7 @@ export class OffersStatisticsComponent implements AfterViewInit {
             color: 'black'
           }
         }
+      
       },
 
       yAxis: {

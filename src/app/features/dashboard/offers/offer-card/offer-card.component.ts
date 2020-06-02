@@ -47,6 +47,10 @@ export class OfferCardComponent implements OnInit {
         text = "Bulder"
          break; 
       } 
+      case "LANDKREDITT": { 
+        text = "Landkreditt"
+         break; 
+      } 
       default: { 
         text = "banken"
          break; 
@@ -117,8 +121,13 @@ export class OfferCardComponent implements OnInit {
   }
 
   getVariation(): number | null {
+<<<<<<< HEAD
     console.log("variation " + (window as any).google_optimize.get('8oRnnaA5T164EYp0ie-ZMQ'));
     return (window as any).google_optimize.get('8oRnnaA5T164EYp0ie-ZMQ');
+=======
+    console.log("variation " + (window as any).google_optimize.get('8oRnnaA5T164EYp0ie'));
+    return (window as any).google_optimize.get('8oRnnaA5T164EYp0ie');
+>>>>>>> offer-card-compact
   }
 
   isPrimary(): boolean {

@@ -378,7 +378,7 @@ export class OffersComponent implements OnInit, OnDestroy {
          break; 
       } 
    }
-   
+  
   }
 
   get barBoxPosition(): string {
@@ -417,63 +417,12 @@ export class OffersComponent implements OnInit, OnDestroy {
   }
 
   getVariation(): number | null {
-    console.log("variation " + (window as any).google_optimize.get('8oRnnaA5T164EYp0ie-ZMQ'));
-    let variation = (window as any).google_optimize.get('8oRnnaA5T164EYp0ie-ZMQ');
-    return variation;
+    console.log("variation " + (window as any).google_optimize.get('8oRnnaA5T164EYp0ie'));
+    return (window as any).google_optimize.get('8oRnnaA5T164EYp0ie');
   }
+};
 
 
-  testOptimize(){
-    console.log("testOptimize pre");
-    console.log((window as any).google_optimize.get('8oRnnaA5T164EYp0ie-ZMQ'));
-    let test = (window as any).google_optimize.get('8oRnnaA5T164EYp0ie-ZMQ');
-    console.log(test);
-    (window as any).dataLayer.push({
-      event: 'optimize.callback',
-      name: '8oRnnaA5T164EYp0ie-ZMQ',
-      callback: (value) =>{
-        console.log("experiment value");
-        console.log(value);
-      }
-    });
-    console.log("testOptimize post");
-
-  /*
-    gtag('event', 'optimize.callback', {
-      name: '<experiment_id_A>',
-      callback: implementExperimentA
-   });
-  }
-  */
-  
-
-  /*
-  if ((window as any).dataLayer) {
-    (window as any).dataLayer.push({
-      event: 'virtualPageView',
-      url: window.location.href
-    });
-  }
-  */
-
- //let test = (window as any).dataLayer.google_optimize.get('DyWZq5pWSQ6szM5HlAmaxw');
- //(window as any).dataLayer.push({event: 'optimize.activate'})
- 
- (window as any).dataLayer.push({event: 'optimize.activate'});
- 
- (window as any).dataLayer.push({
-  event: 'optimize.callback',
-  name: '8oRnnaA5T164EYp0ie-ZMQ',
-  callback: (value) =>{
-    console.log("experiment value1");
-    console.log(value);
-  }
-});
-
-
-
-}
-}
 
 interface RateBar {
   percentage: number

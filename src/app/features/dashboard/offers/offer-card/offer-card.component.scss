@@ -319,9 +319,8 @@
           grid-column-end: span 2;
           grid-row: 5;
 
-          p {
-            font-weight: 100;
-          }
+          
+
 
           @media (max-width: 600px) {
             //Positional hack for details button
@@ -331,6 +330,7 @@
             margin-top: 10px;
             &.item {
               align-items: unset;
+              justify-content: space-around;
             }
 
             p {
@@ -346,6 +346,12 @@
             div:first-of-type {
               margin-right: 10px;
             }
+          }
+
+         
+
+          p {
+            font-weight: 100;
           }
           
           @media (min-width: 600px) {
@@ -364,7 +370,20 @@
                 margin-top: 10px;
               }
             }
-           
+          }
+
+          @media (max-width: 340px) {
+            margin-top: 60px;
+            margin-bottom: 20px !important;
+            &.item {
+              flex-direction: column;
+
+              div:first-of-type {
+                margin-right: 0px;
+                margin-bottom: 10px;
+              }
+             
+            }
           }
         }
       .small-header {
