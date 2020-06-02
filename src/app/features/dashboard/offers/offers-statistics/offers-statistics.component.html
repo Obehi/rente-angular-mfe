@@ -17,11 +17,11 @@
   <div class="bankcustomers">
     <div
       id="clientBankChartId"
-      [class]="showAllBanks ? 'chart hidden' : 'chart'"
+      [class]="showAllBanks ? 'chart-hidden' : 'chart'"
     ></div>
     <div
       id="allBanksChartChartId"
-      [class]="showAllBanks ? 'chart' : 'chart hidden'"
+      [class]="showAllBanks ? 'chart' : 'chart-hidden'"
     ></div>
   </div>
 </div>
@@ -31,31 +31,3 @@
   medlemskap.
 </p>
 
-<!-- <div class="row" style="margin-top: 50px;">
-  <div class="col-12 px-0">
-    <div class="row">
-      <div *ngIf="hasClientBankData" class="col-12 col-lg-6">
-        <h3 class="ml-3">Din rente i forhold til andre i din bank:</h3>
-        <div id="clientBankChartId"></div>
-      </div>
-      <div *ngIf="hasOthersBankData" class="col-12 col-lg-6">
-        <h3 class="ml-3">Din rente i forhold til andre i alle banker:</h3>
-        <div id="allBanksChartChartId"></div>
-      </div>
-    </div>
-    <div class="row">
-      <p class="ml-4 mr-4 mb-5 mt-1">
-        <small
-          >* Grafene tar foreløpig ikke hensyn til alder, belåninsgrad og
-          fordeler av medlemskap.</small
-        >
-      </p>
-    </div>
-  </div>
-  <div *ngIf="tips">
-    <h3 class="mb-3">Renteradars tips:</h3>
-    <div class="col-12 bg-wrap">
-      <p>{{ tips }}</p>
-    </div>
-  </div>
-</div> -->
