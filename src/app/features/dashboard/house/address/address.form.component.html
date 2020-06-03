@@ -99,6 +99,20 @@
         ></rente-input>
       </div>
     </div>
+
+    <!--
+    <div class="double">
+      <rente-input
+        type="text"
+        [placeholder]="'Fellesgjeld'"
+        [ngModel]="address.commonDebt | thousands"
+        (change)="countChange($event)"
+        (focus)="countChange($event)"
+        matSuffix="kr"
+      ></rente-input>
+    </div>
+    -->
+    
     <div class="center-button">
       <rente-button
       color="primary"
@@ -111,111 +125,3 @@
   </div>
  
 </div>
-
-<!-- <div class="property-group mb-4"> -->
-<!-- <div class="row">
-    <div class="col-lg-10 col-10">Bolig {{ index + 1 }}</div>
-    <div class="col-lg-2 col-2">
-      <button
-        class="statistics-button"
-        mat-raised-button
-        [disabled]="!isAddressValid"
-        (click)="toggleMode()"
-      >
-        <mat-icon *ngIf="isEditMode">bar_chart</mat-icon>
-        <mat-icon *ngIf="isStatMode">keyboard_backspace</mat-icon>
-      </button>
-    </div>
-  </div> -->
-
-<!-- <div class="row" *ngIf="isEditMode">
-  <div class="col-12 col-lg-6">
-    <div>
-      <span class="input-label">Adresse</span>
-      <input
-        type="text"
-        class="text-input "
-        maxlength="100"
-        placeholder="Adresse"
-        [(ngModel)]="address.street"
-      />
-    </div>
-    <div class="mt-2">
-      <span class="input-label">Postnummer</span>
-      <input
-        type="text"
-        class="text-input"
-        placeholder="Postnummer"
-        min="0"
-        maxlength="4"
-        [(ngModel)]="address.zip"
-      />
-    </div>
-    <div class="mt-2">
-      <span class="input-label">Størrelse på bolig (kvm)</span>
-      <input
-        type="number"
-        class="text-input"
-        maxlength="5"
-        placeholder="Størrelse på bolig (kvm)"
-        [(ngModel)]="address.apartmentSize"
-      />
-    </div>
-  </div>
-
-  <div class="col-12 col-lg-6">
-    <mat-radio-group [(ngModel)]="address.useManualPropertyValue">
-      <div class="mb-2 mt-4">
-        <mat-radio-button [value]="false" (change)="onRbChange($event)">
-          <h3>Bruk estimat</h3>
-        </mat-radio-button>
-        <div class="mt-1">
-          <input
-            type="text"
-            class="text-input"
-            [ngModel]="address.estimatedPropertyValue | thousands"
-            [disabled]="true"
-          />
-        </div>
-      </div>
-      <div class="mt-4">
-        <mat-radio-button [value]="true" (change)="onRbChange($event)">
-          <h3>Jeg vet hva boligen er verdt</h3>
-        </mat-radio-button>
-        <div class="mt-0">
-          <input
-            type="text"
-            min="0"
-            maxlength="100"
-            class="text-input"
-            placeholder="Boligen min er verdt"
-            [ngModel]="address.manualPropertyValue | thousands"
-            (ngModelChange)="manualPropertyValueChanged($event)"
-            [disabled]="address.useManualPropertyValue == false"
-            (keyup)="manualPropertyValueChanged($event)"
-          />
-        </div>
-      </div>
-    </mat-radio-group>
-  </div>
-</div> -->
-
-<!-- Address Statistics View -->
-<!-- <div *ngIf="isStatMode">
-    <rente-virdi-statistics [address]="address"> </rente-virdi-statistics>
-  </div> -->
-
-<!-- Delete Address Button -->
-<!-- <div class="row" *ngIf="isAbleToDelete">
-    <div class="ml-3 mt-3">
-      <button (click)="onDeleteAddressClick()">
-        Fjerne bolig
-      </button>
-    </div>
-  </div> -->
-
-<!-- Error message from address service -->
-<!-- <div class="row" *ngIf="address.message">
-    <p class="ml-3 mt-1 error-message">{{ address.message }}</p>
-  </div> -->
-<!-- </div> -->
