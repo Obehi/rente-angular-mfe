@@ -124,6 +124,8 @@ export class OffersComponent implements OnInit, OnDestroy {
       }
     );
    
+    console.log("test optimize")
+
   }
 
   public getTips() {
@@ -376,7 +378,7 @@ export class OffersComponent implements OnInit, OnDestroy {
          break; 
       } 
    }
-   
+  
   }
 
   get barBoxPosition(): string {
@@ -413,7 +415,14 @@ export class OffersComponent implements OnInit, OnDestroy {
         } 
     }
   }
-}
+
+  getVariation(): number | null {
+    console.log("variation " + (window as any).google_optimize.get('wgXRexVhQJ6_wdY3FRxh9g'));
+    return (window as any).google_optimize.get('wgXRexVhQJ6_wdY3FRxh9g');
+  }
+};
+
+
 
 interface RateBar {
   percentage: number
