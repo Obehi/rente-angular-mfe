@@ -47,6 +47,11 @@ export class OffersStatisticsComponent implements AfterViewInit {
   clientBankChartId = 'clientBankChartId';
   allBanksChartChartId = 'allBanksChartChartId';
   showAllBanks = false;
+  
+  //REMOVE BEFORE PRODUCTION
+  ageSegment: String = "over 34 år";
+  totalOutstandingDebtSegment: String = "under 2 millioner";
+  ltvSegment: String = "60-75%";
 
   get chartTitleMargin() {
     return window.innerWidth <= 991 ? 0 : -10;
