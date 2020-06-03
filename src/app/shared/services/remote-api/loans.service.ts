@@ -142,6 +142,7 @@ export class AddressDto {
   manualPropertyValue: number;
   estimatedPropertyValue: number;
   useManualPropertyValue: boolean;
+  commonDebt: number;
   message: string;
 }
 
