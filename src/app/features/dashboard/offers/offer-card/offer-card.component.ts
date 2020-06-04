@@ -110,6 +110,14 @@ export class OfferCardComponent implements OnInit {
   }
 
   getVariation(): number | null {
+    if((window as any).google_optimize == undefined) {
+      console.log("optimize == undefined");
+      return null;
+    }
+    if((window as any).google_optimize == null) {
+      console.log("optimize == null");
+      return null;
+    }
     console.log("variation " + (window as any).google_optimize.get('wgXRexVhQJ6_wdY3FRxh9g'));
     return (window as any).google_optimize.get('wgXRexVhQJ6_wdY3FRxh9g');
   }
