@@ -1,6 +1,6 @@
 import { Component, Input, AfterViewInit } from '@angular/core';
 import * as Highcharts from 'highcharts';
-import { Offers } from '@shared/models/offers';
+import { Offers, BankStatisticItem, BankStatistics } from '@shared/models/offers';
 import { MatTabChangeEvent } from '@angular/material';
 
 declare var require: any;
@@ -25,9 +25,20 @@ export class OffersStatisticsComponent implements AfterViewInit {
   }
   public set offersInfo(value: Offers) {
     this._offersInfo = value;
-    this.hasClientBankData = value.bankStatistics.clientBankStatistics.segmentedData
-    this.hasOthersBankData = value.bankStatistics.allBanksStatistics.segmentedData
-    
+    this.hasClientBankData = false
+    this.hasOthersBankData = false
+
+    this.hasClientBankData =
+      value &&
+      value.bankStatistics.clientBankStatistics.bestPercentileEffectiveRate > 0 &&
+      value.bankStatistics.allBanksStatistics.medianEffectiveRate > 0;
+    this.hasOthersBankData =
+      value &&
+      value.bankStatistics.allBanksStatistics.bestPercentileEffectiveRate  > 0 &&
+      value.bankStatistics.allBanksStatistics.medianEffectiveRate > 0;
+
+      this.clientBankData = value && value.bankStatistics.clientBankStatistics;
+      this.allBankData = value && value.bankStatistics.allBanksStatistics;
   }
 
   _offersInfo: Offers;
@@ -40,14 +51,11 @@ export class OffersStatisticsComponent implements AfterViewInit {
   clientBankChartId = 'clientBankChartId';
   allBanksChartChartId = 'allBanksChartChartId';
   showAllBanks = false;
+  clientBankData: BankStatisticItem;
+  allBankData: BankStatisticItem;
   
-  //REMOVE BEFORE PRODUCTION
-  _ageSegment: String = "over 34 år";
-  _totalOutstandingDebtSegment: String = "under 2 millioner";
-  _ltvSegment: String = "60-75%";
-
   get ageSegment() {
-    return this.offersInfo.bankStatistics.age > 34 ? "over 34 år" : "under 34 år";
+    return this.offersInfo.bankStatistics.age >= 34 ? "over 34 år" : "under 34 år";
   }
 
   get totalOutstandingDebtSegment() {
@@ -55,14 +63,14 @@ export class OffersStatisticsComponent implements AfterViewInit {
     let text = ""
     let totalOutstandingDebt = this.offersInfo.bankStatistics.totalOutstandingDebt;
 
-    if(totalOutstandingDebt < 2000000) {
-      text = "mindre enn 2.mill"
+    if(totalOutstandingDebt <= 2000000) {
+      text = "mindre enn 2 mill. i lån"
     } 
-    else if(totalOutstandingDebt > 2000000 && totalOutstandingDebt < 3990000) {
-      text = "mellom 2.mill og 3,99 mill"
+    else if(totalOutstandingDebt > 2000000 && totalOutstandingDebt <= 3990000) {
+      text = " 2-4 mill. i lån"
     }
     else if(totalOutstandingDebt > 3999999) {
-      text = "over 3,99 mill"
+      text = "over 4 mill. i lån"
     }  
    return text 
   }
@@ -71,11 +79,11 @@ export class OffersStatisticsComponent implements AfterViewInit {
 
     let text = ""
     let ltv = this.offersInfo.bankStatistics.ltv;
-    if(ltv < 0.6) {
+    if(ltv <= 0.6) {
       text = "under 60%"
     }
-    else if(ltv > 0.6 && ltv < 0.75){
-      text = "60 - 70%"
+    else if(ltv > 0.6 && ltv <= 0.75){
+      text = "60-75%"
     }
     else if(ltv > 0.75) {
       text = "over 75%"
@@ -97,10 +105,14 @@ export class OffersStatisticsComponent implements AfterViewInit {
           this.offersInfo.bankStatistics.clientBankStatistics.medianEffectiveRate || 0,
           this.offersInfo.bankStatistics.clientBankStatistics.bestPercentileEffectiveRate || 0
         ];
-        this.clientBankEffRateChart = Highcharts.chart(
+
+        // Only show clientbank graph when everything is false or true 
+        if(this.clientBankData.segmentedData == this.allBankData.segmentedData )
+          this.clientBankEffRateChart = Highcharts.chart(
           this.clientBankChartId,
           this.clientBankEffRateOptions
         );
+      
         /* this.clientBankEffRateChart.setSize(null, 200); */
       }
 
@@ -111,10 +123,12 @@ export class OffersStatisticsComponent implements AfterViewInit {
           this.offersInfo.bankStatistics.allBanksStatistics.medianEffectiveRate || 0,
           this.offersInfo.bankStatistics.allBanksStatistics.bestPercentileEffectiveRate || 0
         ];
+
         this.allBankEffRateCharts = Highcharts.chart(
           this.allBanksChartChartId,
           this.allBanksEffRateOptions
         );
+        
         /* this.allBankEffRateCharts.setSize(null, 200); */
       }
     }
