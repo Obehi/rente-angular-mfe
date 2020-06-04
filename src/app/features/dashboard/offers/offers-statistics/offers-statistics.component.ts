@@ -27,7 +27,7 @@ export class OffersStatisticsComponent implements AfterViewInit {
     this._offersInfo = value;
     this.hasClientBankData = value.bankStatistics.clientBankStatistics.segmentedData
     this.hasOthersBankData = value.bankStatistics.allBanksStatistics.segmentedData
-  
+    
   }
 
   _offersInfo: Offers;
@@ -42,9 +42,46 @@ export class OffersStatisticsComponent implements AfterViewInit {
   showAllBanks = false;
   
   //REMOVE BEFORE PRODUCTION
-  ageSegment: String = "over 34 år";
-  totalOutstandingDebtSegment: String = "under 2 millioner";
-  ltvSegment: String = "60-75%";
+  _ageSegment: String = "over 34 år";
+  _totalOutstandingDebtSegment: String = "under 2 millioner";
+  _ltvSegment: String = "60-75%";
+
+  get ageSegment() {
+    return this.offersInfo.bankStatistics.age > 34 ? "over 34 år" : "under 34 år";
+  }
+
+  get totalOutstandingDebtSegment() {
+
+    let text = ""
+    let totalOutstandingDebt = this.offersInfo.bankStatistics.totalOutstandingDebt;
+
+    if(totalOutstandingDebt < 2000000) {
+      text = "mindre enn 2.mill"
+    } 
+    else if(totalOutstandingDebt > 2000000 && totalOutstandingDebt < 3990000) {
+      text = "mellom 2.mill og 3,99 mill"
+    }
+    else if(totalOutstandingDebt > 3999999) {
+      text = "over 3,99 mill"
+    }  
+   return text 
+  }
+
+  get ltvSegment() {
+
+    let text = ""
+    let ltv = this.offersInfo.bankStatistics.ltv;
+    if(ltv < 0.6) {
+      text = "under 60%"
+    }
+    else if(ltv > 0.6 && ltv < 0.75){
+      text = "60 - 70%"
+    }
+    else if(ltv > 0.75) {
+      text = "over 75%"
+    }
+    return text;
+  }
 
   get chartTitleMargin() {
     return window.innerWidth <= 991 ? 0 : -10;

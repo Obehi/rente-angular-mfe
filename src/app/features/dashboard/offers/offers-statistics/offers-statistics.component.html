@@ -14,9 +14,13 @@
     <mat-tab label="din bank"> </mat-tab>
     <mat-tab label="alle banker"> </mat-tab>
   </mat-tab-group>
+</div>
+
+  
   <div class="bankcustomers">
     <div
       id="clientBankChartId"
+      *ngIf="hasClientBankData"
       [class]="showAllBanks ? 'chart-hidden' : 'chart'"
     ></div>
     <div
@@ -24,14 +28,25 @@
       [class]="showAllBanks ? 'chart' : 'chart-hidden'"
     ></div>
   </div>
-</div>
 
-<p class="segmentText">
+
+
+
+<p *ngIf="hasOthersBankData || hasClientBankData" class="segmentText">
   Grafen sammenligner renten din med andre som er <strong>{{ageSegment}}</strong>, har <strong>{{totalOutstandingDebtSegment}}</strong> i 
   lån og en belåningsgrad på <strong>{{ltvSegment}}</strong>
 </p>
 
-<p class="small" id="the-offers">
+<p *ngIf="hasOthersBankData || hasClientBankData" class="small" id="the-offers">
   * Grafen tar ikke hensyn til geografi og medlemskap
 </p>
 
+
+
+
+<!-- old version-->
+
+<p *ngIf="!hasOthersBankData && !hasClientBankData" class="small" id="the-offers" >
+  * Grafene tar foreløpig ikke hensyn til alder, belåninsgrad og fordeler av
+  medlemskap.
+</p>
