@@ -15,13 +15,10 @@ export interface Offers {
   resultType: string;
   ltvType: string;
   incompleteInfoLoanPresent: boolean;
-  bestPercentileEffectiveRateYourBank: number;
-  bestPercentileEffectiveRateAllBanks: number;
-  medianEffectiveRateYourBank: number;
-  medianEffectiveRateAllBanks: number;
   tips: string;
   commonDebt: number;
   ltv: number;
+  bankStatistics: BankStatistics
 }
 
 export interface OfferInfo {
@@ -59,6 +56,20 @@ export interface BankInfo{
   partner: boolean,
   score: number,
   applicationTime: number
+}
+
+export interface BankStatistics {
+  age: number;
+  allBanksStatistics: BankStatisticItem
+  clientBankStatistics: BankStatisticItem;
+  ltv: number;
+  totalOutstandingDebt: number;
+}
+
+export interface BankStatisticItem {
+  bestPercentileEffectiveRate: number;
+  medianEffectiveRate: number;
+  segmentedData: boolean;
 }
 
 export const OFFERS_LTV_TYPE = {

@@ -25,15 +25,9 @@ export class OffersStatisticsComponent implements AfterViewInit {
   }
   public set offersInfo(value: Offers) {
     this._offersInfo = value;
-    this.hasClientBankData =
-      value &&
-      value.bestPercentileEffectiveRateYourBank > 0 &&
-      value.medianEffectiveRateYourBank > 0;
-    this.hasOthersBankData =
-      value &&
-      value.bestPercentileEffectiveRateAllBanks > 0 &&
-      value.medianEffectiveRateAllBanks > 0;
-    this.tips = value && value.tips;
+    this.hasClientBankData = value.bankStatistics.clientBankStatistics.segmentedData
+    this.hasOthersBankData = value.bankStatistics.allBanksStatistics.segmentedData
+  
   }
 
   _offersInfo: Offers;
@@ -41,7 +35,6 @@ export class OffersStatisticsComponent implements AfterViewInit {
   allBanksEffRateOptions: any;
   clientBankEffRateChart: Highcharts.Chart;
   allBankEffRateCharts: Highcharts.Chart;
-  tips: string;
   hasClientBankData = true;
   hasOthersBankData = true;
   clientBankChartId = 'clientBankChartId';
@@ -62,9 +55,10 @@ export class OffersStatisticsComponent implements AfterViewInit {
       if (this.hasClientBankData) {
         this.clientBankEffRateOptions = this.ChartOptions();
         this.clientBankEffRateOptions.series[0].data = [
+         
           this.offersInfo.totalEffectiveRate || 0,
-          this.offersInfo.medianEffectiveRateYourBank || 0,
-          this.offersInfo.bestPercentileEffectiveRateYourBank || 0
+          this.offersInfo.bankStatistics.clientBankStatistics.medianEffectiveRate || 0,
+          this.offersInfo.bankStatistics.clientBankStatistics.bestPercentileEffectiveRate || 0
         ];
         this.clientBankEffRateChart = Highcharts.chart(
           this.clientBankChartId,
@@ -72,12 +66,13 @@ export class OffersStatisticsComponent implements AfterViewInit {
         );
         /* this.clientBankEffRateChart.setSize(null, 200); */
       }
+
       if (this.hasOthersBankData) {
         this.allBanksEffRateOptions = this.ChartOptions();
         this.allBanksEffRateOptions.series[0].data = [
           this.offersInfo.totalEffectiveRate || 0,
-          this.offersInfo.medianEffectiveRateAllBanks || 0,
-          this.offersInfo.bestPercentileEffectiveRateAllBanks || 0
+          this.offersInfo.bankStatistics.allBanksStatistics.medianEffectiveRate || 0,
+          this.offersInfo.bankStatistics.allBanksStatistics.bestPercentileEffectiveRate || 0
         ];
         this.allBankEffRateCharts = Highcharts.chart(
           this.allBanksChartChartId,
