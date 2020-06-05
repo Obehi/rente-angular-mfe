@@ -104,7 +104,7 @@
     <div class="double">
       <rente-input
         type="text"
-        [placeholder]="'Fellesgjeld '"
+        [placeholder]="'Fellesgjeld'"
         [ngModel]="address.commonDebt | thousands"
         (ngModelChange)="address.commonDebt = formatThousand($event)"
         (focus)="countChange($event)"
