@@ -65,7 +65,7 @@ export class OffersStatisticsComponent implements AfterViewInit {
     if(totalOutstandingDebt <= 2000000) {
       text = "mindre enn 2 mill. i lån"
     } 
-    else if(totalOutstandingDebt > 2000000 && totalOutstandingDebt <= 3990000) {
+    else if(totalOutstandingDebt > 2000000 && totalOutstandingDebt <= 3999999) {
       text = " 2-4 mill. i lån"
     }
     else if(totalOutstandingDebt > 3999999) {
