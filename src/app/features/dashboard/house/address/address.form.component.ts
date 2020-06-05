@@ -68,6 +68,11 @@ export class AddressFormComponent implements OnInit {
     }
   }
 
+  //remove spaces and convert to number type
+  formatThousand(event): number {
+    return Number(event.replace(/\s+/g, ''))
+  }
+
   save() {
     this.onSave.emit()
     this.ableTosave = false

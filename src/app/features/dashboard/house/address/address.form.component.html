@@ -100,18 +100,18 @@
       </div>
     </div>
 
-    <!--
+    
     <div class="double">
       <rente-input
         type="text"
         [placeholder]="'Fellesgjeld'"
         [ngModel]="address.commonDebt | thousands"
-        (change)="countChange($event)"
+        (ngModelChange)="address.commonDebt = formatThousand($event)"
         (focus)="countChange($event)"
         matSuffix="kr"
       ></rente-input>
     </div>
-    -->
+    
     
     <div class="center-button">
       <rente-button
