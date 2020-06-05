@@ -49,16 +49,6 @@ export class OffersComponent implements OnInit, OnDestroy {
 
   get isMobile(): boolean { return window.innerWidth < 600; }
 
-  get hasLoansStatistics(): boolean {
-    const res: boolean =
-      this.offersInfo &&
-      this.offersInfo.bestPercentileEffectiveRateYourBank > 0 &&
-      this.offersInfo.bestPercentileEffectiveRateAllBanks > 0 &&
-      this.offersInfo.medianEffectiveRateYourBank > 0 &&
-      this.offersInfo.medianEffectiveRateAllBanks > 0;
-    return res;
-  }
-
   get hasStatensPensjonskasseMembership(): boolean {
     return (
       this.offersInfo &&

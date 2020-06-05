@@ -1,6 +1,6 @@
 import { Component, Input, AfterViewInit } from '@angular/core';
 import * as Highcharts from 'highcharts';
-import { Offers, BankStatisticItem, BankStatistics } from '@shared/models/offers';
+import { Offers, BankStatisticItem } from '@shared/models/offers';
 import { MatTabChangeEvent } from '@angular/material';
 
 declare var require: any;
@@ -59,7 +59,6 @@ export class OffersStatisticsComponent implements AfterViewInit {
   }
 
   get totalOutstandingDebtSegment() {
-
     let text = ""
     let totalOutstandingDebt = this.offersInfo.bankStatistics.totalOutstandingDebt;
 
@@ -76,7 +75,6 @@ export class OffersStatisticsComponent implements AfterViewInit {
   }
 
   get ltvSegment() {
-
     let text = ""
     let ltv = this.offersInfo.bankStatistics.ltv;
     if(ltv <= 0.6) {
@@ -130,7 +128,7 @@ export class OffersStatisticsComponent implements AfterViewInit {
         );
         
         /* this.allBankEffRateCharts.setSize(null, 200); */
-      }
+      }   
     }
   }
 
