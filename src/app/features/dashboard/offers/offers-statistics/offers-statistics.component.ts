@@ -62,13 +62,13 @@ export class OffersStatisticsComponent implements AfterViewInit {
     let text = ""
     let totalOutstandingDebt = this.offersInfo.bankStatistics.totalOutstandingDebt;
 
-    if(totalOutstandingDebt <= 2000000) {
+    if(totalOutstandingDebt < 2000000) {
       text = "mindre enn 2 mill. i lån"
     } 
-    else if(totalOutstandingDebt > 2000000 && totalOutstandingDebt <= 3999999) {
+    else if(totalOutstandingDebt >= 2000000 && totalOutstandingDebt < 4000000) {
       text = " 2-4 mill. i lån"
     }
-    else if(totalOutstandingDebt > 3999999) {
+    else if(totalOutstandingDebt >= 4000000) {
       text = "over 4 mill. i lån"
     }  
    return text 
