@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BankVo, BankList } from '../../shared/models/bank';
+import { BankVo, BankList, MissingBankList } from '../../shared/models/bank';
 import { Router } from '@angular/router';
 import { ROUTES_MAP } from '@config/routes-config';
 
@@ -19,7 +19,9 @@ export class BankSelectComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
-    this.allBanks = BankList.sort((a,b) => (a.label > b.label) ? 1 : ((b.label > a.label) ? -1 : 0));
+
+    let mergeArrays = [...BankList, ...MissingBankList]
+    this.allBanks = mergeArrays.sort((a,b) => (a.label > b.label) ? 1 : ((b.label > a.label) ? -1 : 0));
     this.filterBank(this.searchStr);
   }
 
@@ -45,9 +47,10 @@ export class BankSelectComponent implements OnInit {
   }
 
   selectBank(bank:BankVo) {
-    if (bank.name === 'ANNEN') {
+    if (bank.name === 'ANNEN' || bank.isMissing) {
       this.router.navigate([ROUTES_MAP.getNotified]);
-    } else {
+    }
+    else {
       this.router.navigate(['/autentisering/' + bank.name.toLocaleLowerCase()]);
     }
   }
