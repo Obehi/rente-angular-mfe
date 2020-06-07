@@ -103,8 +103,39 @@ export const BankList:BankVo[] = [
 ];
 
 export const MissingBankList:BankVo[] = [
-  new BankVo('BOLIGKREDITT', 'Boligkreditt.no (Sparebanken Øst Boligkreditt AS)', 'boligkreditt.png', null, false, true, true, '')
-
+  new BankVo('BOLIGKREDITT', 'Boligkreditt.no (Sparebanken Øst Boligkreditt AS)', 'boligkreditt.png', null, false, true, true, null),
+  new BankVo('BN_BANK', 'BN Bank ASA', 'bn.png', null, false, true, true, null),
+  new BankVo('BULDER', 'Bulder Bank (Sparebanken Vest)', 'bulder.png', null, false, true, true, null),
+  new BankVo('CULTURA', 'Cultura Sparebank', 'cultura.png', null, false, true, true, null),
+  new BankVo('DANSKE_BANK', 'Danske Bank', 'danske.png', null, false, true, true, null),
+  new BankVo('DIN_BANK', 'Din Bank (Sparebanken Øst)', 'dinbank.png', null, false, true, true, null),
+  new BankVo('ETNE_SB', 'Etne Sparebank', 'etne.png', null, false, true, true, null),
+  new BankVo('FANA_SB', 'Fana Sparebank', 'fana.png', null, false, true, true, null),
+  new BankVo('FLEKKEFJORD_SB', 'Flekkefjord Sparebank', 'flekkefjord.png', null, false, true, true, null),
+  new BankVo('HANDELSBANKEN', 'Handelsbanken NUF', 'handelsbanken.png', null, false, true, true, null),
+  new BankVo('HAUGESUND_SB', 'Haugesund Sparebank', 'haugesund.png', null, false, true, true, null),
+  new BankVo('KLP', 'KLP Banken AS', 'klp.png', null, false, true, true, null),
+  new BankVo('KRAFTBANK', 'Kraft Bank ASA', 'kraft.png', null, false, true, true, null),
+  new BankVo('LANDKREDITT', 'Landkreditt Bank AS', 'landkreditt.png', null, false, true, true, null),
+  new BankVo('LILLESANDS_SB', 'Lillesands Sparebank', 'landkreditt.png', null, false, true, true, null),
+  new BankVo('LUSTER_SB', 'Luster Sparebank', 'luster.png', null, false, true, true, null),
+  new BankVo('NORDAX', 'Nordax Bank AB (publ)', 'nordax.png', null, false, true, true, null),
+  new BankVo('NORDEA_DIRECT', 'Nordea Direct', 'nordea_direct.png', null, false, true, true, null),
+  new BankVo('NYBYGGER', 'Nybygger.no (Sparebanken Øst)', 'nybygger.png', null, false, true, true, null),
+  new BankVo('OBOS_BANKEN', 'OBOS-banken AS', 'obos.png', null, false, true, true, null),
+  new BankVo('OSLO_PENSJON', 'Oslo Pensjonsforsikring AS', 'oslopensjon.png', null, false, true, true, null),
+  new BankVo('SBANKEN', 'Sbanken ASA', 'sbanken.png', null, false, true, true, null),
+  new BankVo('SKUDENES_SB', 'Skudenes & Aakra Sparebank', 'skudenes.png', null, false, true, true, null),
+  new BankVo('SB_SOGNFJORDANE', 'Sparebanken Sogn og Fjordane', 'sogn_og_fjordane.png', null, false, true, true, null),
+  new BankVo('SB_SOR', 'Sparebanken Sør', 'sparebanken_sor.png', null, false, true, true, null),
+  new BankVo('SB_VEST', 'Sparebanken Vest', 'sparebanken_vest.png', null, false, true, true, null),
+  new BankVo('SPAREBANKEN_OST', 'Sparebanken Øst', 'sparebanken_ost.png', null, false, true, true, null),
+  new BankVo('SPARESKILLINGSBANKEN', 'Spareskillingsbanken', 'spareskillingsbanken.png', null, false, true, true, null),
+  new BankVo('STATENS_PENSJONSKASSE', 'Statens pensjonskasse', 'statenspensjonskasse.png', null, false, true, true, null),
+  new BankVo('STOREBRAND', 'Storebrand Bank ASA', 'storebrand.png', null, false, true, true, null),
+  new BankVo('SOGNE_SB', 'Søgne og Greipstad Sparebank', 'sognegreipstad.png', null, false, true, true, null),
+  new BankVo('VOSS_SB', 'Voss Sparebank', 'voss.png', null, false, true, true, null),
+  new BankVo('SB_MORE', 'Sparebanken Møre', 'more.png', null, false, true, true, null),
 ]
 
 export class BankUtils {
