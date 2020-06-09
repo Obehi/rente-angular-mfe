@@ -346,8 +346,8 @@ export const BANKS_DATA = {
   },
   ORKLA_SB: {
     name: 'ORKLA_SB',
-    img: '',
-    imgCircle: ''
+    img: '../../assets/img/banks-logo/round/orkla.png',
+    imgCircle: '../../assets/img/banks-logo/round/orkla.png'
   },
   ORLAND_SB: {
     name: 'ORLAND_SB',
