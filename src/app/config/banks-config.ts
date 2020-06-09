@@ -199,6 +199,11 @@ export const BANKS_DATA = {
     img: '',
     imgCircle: ''
   },
+  HIMLA_FANA_SB: {
+    name: 'Himla (Fana Sparebank)',
+    img: '../../assets/img/banks-logo/round/himla.png',
+    imgCircle: '../../assets/img/banks-logo/round/himla.png'
+  },
   HJARTDAL_SB: {
     name: 'HJARTDAL_SB',
     img: '../../assets/img/banks-logo/square/sogn.png',
@@ -341,8 +346,8 @@ export const BANKS_DATA = {
   },
   ORKLA_SB: {
     name: 'ORKLA_SB',
-    img: '',
-    imgCircle: ''
+    img: '../../assets/img/banks-logo/round/orkla.png',
+    imgCircle: '../../assets/img/banks-logo/round/orkla.png'
   },
   ORLAND_SB: {
     name: 'ORLAND_SB',

@@ -103,7 +103,7 @@
     
     <div class="double">
       <rente-input
-        type="text"
+        [type]="'tel'"
         [placeholder]="'Fellesgjeld'"
         [ngModel]="address.commonDebt | thousands"
         (ngModelChange)="address.commonDebt = formatThousand($event)"
