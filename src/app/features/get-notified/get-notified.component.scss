@@ -14,3 +14,10 @@ rente-button {
   margin-top: 40px;
   display: block;
 }
+
+// constant height to account for dynamic error messages   
+form {
+  div {
+    height: 70px;
+  }
+}

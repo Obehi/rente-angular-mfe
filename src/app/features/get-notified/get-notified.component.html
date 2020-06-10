@@ -1,9 +1,10 @@
 <div class="front-container">
-  <h2>Fortvil ikke, flere banker kommer!</h2>
+  <h2>{{missingBank.label}}</h2>
 
  
     <h4>
-     Vi har ikke {{missingBank.label}} enda. 
+     Vi har desverre ikke støtte for banken din enda.<br>
+     Legg igjen din epost så gir vi deg beskjed når det er klart. 
     </h4>
 
   <div *ngIf="missingBankForm">
@@ -21,8 +22,8 @@
           [errorStateMatcher]="
             isErrorState(missingBankForm.controls['email'], missingBankForm)
           "
+          [textControl]="inValid()"
           (blur)="onBlurErrorCheck($event)"
-          
         >
         </rente-input>
         <div

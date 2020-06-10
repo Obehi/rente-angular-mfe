@@ -76,16 +76,13 @@ export class GetNotifiedComponent implements OnInit {
     });
     this.missingBankForm.get("email").valueChanges.pipe(debounce(data => {
       this.emailError = false;
-      return this.inValid(data) ? timer(2000) : EMPTY
+      return this.inValid() ? timer(2000) : EMPTY
     })).subscribe(data => 
-      this.emailError = this.inValid(data)
+      this.emailError = this.inValid()
       );
   }
 
-  inValid(data: string) {
-    console.log(data)
-    console.log(this.missingBankForm.get('email').hasError('pattern') && 
-    this.missingBankForm.get('email').dirty)
+  inValid() {
     return (
       this.missingBankForm.get('email').hasError('pattern') && 
       this.missingBankForm.get('email').dirty
@@ -93,12 +90,9 @@ export class GetNotifiedComponent implements OnInit {
   } 
 
   onBlurErrorCheck() {
-   this.emailError = this.inValid("")
+   this.emailError = this.inValid()
   }
-
-  //.debounce(ev => ev.hasSomeValue ? timer(2000) : EMPTY)
-   //     .subscribe(event => this.onInput(event));
-
+  
   // TODO: Move to service
   public isErrorState(
     control: AbstractControl | null,

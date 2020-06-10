@@ -1,4 +1,4 @@
-<div class="input-block" [ngClass]="{ error: errorStateMatcher }">
+<div class="input-block" [ngClass]="{ error: errorStateMatcher, textControl: textControl }" >
   <mat-form-field class="example-full-width">
     <div *ngIf="mask; else noMask">
       <input
