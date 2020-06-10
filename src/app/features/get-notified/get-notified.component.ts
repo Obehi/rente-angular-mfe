@@ -1,8 +1,11 @@
-import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
+import { Component, OnInit, ViewChild, ElementRef} from "@angular/core";
+import {ActivatedRoute} from '@angular/router';
+import { BankVo } from '../../shared/models/bank';
+import { ROUTES_MAP } from '@config/routes-config';
+
+
 import {
-  MatAutocompleteSelectedEvent,
   MatAutocomplete,
-  MatChipInputEvent
 } from "@angular/material";
 import {
   FormGroup,
@@ -13,15 +16,14 @@ import {
   FormControl
 } from "@angular/forms";
 import { VALIDATION_PATTERN } from "@config/validation-patterns.config";
-import { Observable } from "rxjs";
+import { Observable, timer, EMPTY } from "rxjs";
 import { ENTER, COMMA } from "@angular/cdk/keycodes";
-import { startWith, map, mergeMap } from "rxjs/operators";
-import { LoansService } from "@services/remote-api/loans.service";
+import {  debounce } from "rxjs/operators";
 import { ContactService } from "../../shared/services/remote-api/contact.service";
 import { Router } from "@angular/router";
 import { SnackBarService } from "@services/snackbar.service";
 
-@Component({
+@Component({  
   selector: "rente-get-notified",
   templateUrl: "./get-notified.component.html",
   styleUrls: ["./get-notified.component.scss"]
@@ -38,6 +40,8 @@ export class GetNotifiedComponent implements OnInit {
   public banks: any = [];
   public allBanks: any[];
   public isLoading: boolean;
+  public missingBank: BankVo | null;
+  public emailError: boolean = false
 
   @ViewChild("auto", { static: false }) matAutocomplete: MatAutocomplete;
 
@@ -45,34 +49,56 @@ export class GetNotifiedComponent implements OnInit {
     private fb: FormBuilder,
     private contactService: ContactService,
     private router: Router,
-    private snackBar: SnackBarService
-  ) {}
+    private snackBar: SnackBarService,
+    private route: ActivatedRoute
+  ) {
+
+    // state.bank is potentially sent through routing
+    if(window.history.state.bank) {
+      this.missingBank = window.history.state.bank;
+    } else {
+      this.router.navigate([ROUTES_MAP.bankSelect]);
+    }
+    
+  }
 
   ngOnInit() {
-    this.contactService.getMissingBanks().subscribe((allBanks: any) => {
-      this.allBanks = allBanks;
-      this.missingBankForm = this.fb.group({
-        bank: [
-          "",
-          Validators.compose([Validators.required, this.noWhitespaceValidator])
-        ],
-        email: [
-          "",
-          Validators.compose([
-            Validators.required,
-            Validators.pattern(VALIDATION_PATTERN.email)
-          ])
-        ]
-      });
 
-      this.filteredBanks = this.missingBankForm.controls.bank.valueChanges.pipe(
-        startWith(null),
-        map((bank: string | null) =>
-          bank ? this.filter(bank) : this.allBanks.slice()
-        )
-      );
+    this.missingBankForm = this.fb.group({
+      
+      email: [
+        "",
+        Validators.compose([
+          Validators.required,
+          Validators.pattern(VALIDATION_PATTERN.email)
+        ])
+      ]
     });
+    this.missingBankForm.get("email").valueChanges.pipe(debounce(data => {
+      this.emailError = false;
+      return this.inValid(data) ? timer(2000) : EMPTY
+    })).subscribe(data => 
+      this.emailError = this.inValid(data)
+      );
   }
+
+  inValid(data: string) {
+    console.log(data)
+    console.log(this.missingBankForm.get('email').hasError('pattern') && 
+    this.missingBankForm.get('email').dirty)
+    return (
+      this.missingBankForm.get('email').hasError('pattern') && 
+      this.missingBankForm.get('email').dirty
+    );
+  } 
+
+  onBlurErrorCheck() {
+   this.emailError = this.inValid("")
+  }
+
+  //.debounce(ev => ev.hasSomeValue ? timer(2000) : EMPTY)
+   //     .subscribe(event => this.onInput(event));
+
   // TODO: Move to service
   public isErrorState(
     control: AbstractControl | null,
@@ -86,12 +112,13 @@ export class GetNotifiedComponent implements OnInit {
 
     const missingBankData = {
       email: this.missingBankForm.value.email,
-      bank: this.missingBankForm.value.bank.name
+      bank: this.missingBank.name
     };
+
     if (!missingBankData.bank) {
       missingBankData.bank = this.missingBankForm.value.bank;
     }
-
+    
     this.contactService.sendMissingBank(missingBankData).subscribe(
       _ => {
         this.isLoading = false;
@@ -108,6 +135,9 @@ export class GetNotifiedComponent implements OnInit {
   }
 
   public noWhitespaceValidator(control: FormControl) {
+
+    if(control == null) return null;
+
     const isWhitespace =
       (control.value.name || control.value || "").trim().length === 0;
     const isValid = !isWhitespace;

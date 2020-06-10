@@ -12,16 +12,13 @@ export class BankSelectComponent implements OnInit {
 
   searchStr:string;
   banks:BankVo[];
-  otherBank:BankVo = new BankVo('ANNEN', 'Jeg finner ikke banken', null);
   allBanks:BankVo[];
 
   constructor(
     private router: Router) { }
 
   ngOnInit() {
-
-    let mergeArrays = [...BankList, ...MissingBankList]
-    this.allBanks = mergeArrays.sort((a,b) => (a.label > b.label) ? 1 : ((b.label > a.label) ? -1 : 0));
+    this.allBanks = [...BankList, ...MissingBankList].sort((a,b) => (a.label > b.label) ? 1 : ((b.label > a.label) ? -1 : 0));
     this.filterBank(this.searchStr);
   }
 
@@ -42,16 +39,15 @@ export class BankSelectComponent implements OnInit {
       const f = filter.toLocaleLowerCase();
       filteredBanks = this.allBanks.filter(bank => bank.label.toLocaleLowerCase().indexOf(f) > -1);
     }
-    filteredBanks.push(this.otherBank);
     this.banks = filteredBanks;
   }
 
   selectBank(bank:BankVo) {
-    if (bank.name === 'ANNEN' || bank.isMissing) {
-      this.router.navigate([ROUTES_MAP.getNotified]);
+    if (bank.isMissing) {
+      this.router.navigate([ROUTES_MAP.getNotified],{ state: { bank: bank } });
     }
     else {
-      this.router.navigate(['/autentisering/' + bank.name.toLocaleLowerCase()]);
+      this.router.navigate([ROUTES_MAP.auth + '/' +  bank.name.toLocaleLowerCase()]);
     }
   }
 

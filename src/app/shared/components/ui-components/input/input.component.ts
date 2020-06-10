@@ -58,6 +58,7 @@ export class InputComponent implements ControlValueAccessor, OnChanges {
   public matcher: MyErrorStateMatcher;
   @HostBinding("class.input-component") true;
   @Output() focus: EventEmitter<any> = new EventEmitter();
+  @Output() blur: EventEmitter<any> = new EventEmitter();
   
   propagateChange: any = () => {};
   onChange: any = () => {};
@@ -81,6 +82,10 @@ export class InputComponent implements ControlValueAccessor, OnChanges {
 
   onFocus() {
     this.focus.emit()
+  }
+
+  onBlur(){
+    this.blur.emit()
   }
 
   writeValue(value) {
