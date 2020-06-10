@@ -52,12 +52,14 @@ export class InputComponent implements ControlValueAccessor, OnChanges {
   @Input() placeholder: string;
   @Input() errorStateMatcher: boolean;
   @Input() modelOptions?: { updateOn: string };
+  @Input() textControl: boolean;
   // tslint:disable-next-line:no-input-rename
   @Input("value") inputValue: any = "";
   @Input() mask?: any[];
   public matcher: MyErrorStateMatcher;
   @HostBinding("class.input-component") true;
   @Output() focus: EventEmitter<any> = new EventEmitter();
+  @Output() blur: EventEmitter<any> = new EventEmitter();
   
   propagateChange: any = () => {};
   onChange: any = () => {};
@@ -81,6 +83,10 @@ export class InputComponent implements ControlValueAccessor, OnChanges {
 
   onFocus() {
     this.focus.emit()
+  }
+
+  onBlur(){
+    this.blur.emit()
   }
 
   writeValue(value) {

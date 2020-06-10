@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BankVo, BankList } from '../../shared/models/bank';
+import { BankVo, BankList, MissingBankList } from '../../shared/models/bank';
 import { Router } from '@angular/router';
 import { ROUTES_MAP } from '@config/routes-config';
 
@@ -12,14 +12,13 @@ export class BankSelectComponent implements OnInit {
 
   searchStr:string;
   banks:BankVo[];
-  otherBank:BankVo = new BankVo('ANNEN', 'Jeg finner ikke banken', null);
   allBanks:BankVo[];
 
   constructor(
     private router: Router) { }
 
   ngOnInit() {
-    this.allBanks = BankList.sort((a,b) => (a.label > b.label) ? 1 : ((b.label > a.label) ? -1 : 0));
+    this.allBanks = [...BankList, ...MissingBankList].sort((a,b) => (a.label > b.label) ? 1 : ((b.label > a.label) ? -1 : 0));
     this.filterBank(this.searchStr);
   }
 
@@ -40,15 +39,15 @@ export class BankSelectComponent implements OnInit {
       const f = filter.toLocaleLowerCase();
       filteredBanks = this.allBanks.filter(bank => bank.label.toLocaleLowerCase().indexOf(f) > -1);
     }
-    filteredBanks.push(this.otherBank);
     this.banks = filteredBanks;
   }
 
   selectBank(bank:BankVo) {
-    if (bank.name === 'ANNEN') {
-      this.router.navigate([ROUTES_MAP.getNotified]);
-    } else {
-      this.router.navigate(['/autentisering/' + bank.name.toLocaleLowerCase()]);
+    if (bank.isMissing) {
+      this.router.navigate([ROUTES_MAP.getNotified],{ state: { bank: bank } });
+    }
+    else {
+      this.router.navigate([ROUTES_MAP.auth + '/' +  bank.name.toLocaleLowerCase()]);
     }
   }
 
