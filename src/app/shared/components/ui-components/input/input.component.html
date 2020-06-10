@@ -1,4 +1,4 @@
-<div class="input-block" [ngClass]="{ error: errorStateMatcher }">
+<div class="input-block" [ngClass]="{ error: errorStateMatcher, textControl: textControl }" >
   <mat-form-field class="example-full-width">
     <div *ngIf="mask; else noMask">
       <input
@@ -10,6 +10,7 @@
         [ngModelOptions]="modelOptions"
         [(ngModel)]="value"
         [textMask]="mask"
+        (blur)="onBlur()"
       />
     </div>
     <ng-template #noMask>
@@ -23,6 +24,7 @@
         (focus)="onFocus()"
         [(ngModel)]="value"
         [maxlength]="maxLength"
+        (blur)="onBlur()"
       />
     </ng-template>
     <span matSuffix>{{ matSuffix }}</span>
