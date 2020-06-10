@@ -1,8 +1,8 @@
 export const BANKS_DATA = {
   AASEN_SB: {
     name: 'AASEN_SB',
-    img: '',
-    imgCircle: ''
+    img: '../../assets/img/banks-logo/round/aasen.png',
+    imgCircle: '../../assets/img/banks-logo/round/aasen.png'
   },
   AKADEMIKERNE_DANSKE: {
     name: 'AKADEMIKERNE_DANSKE',
@@ -11,8 +11,8 @@ export const BANKS_DATA = {
   },
   ANDEBU_SB: {
     name: 'ANDEBU_SB',
-    img: '',
-    imgCircle: ''
+    img: '../../assets/img/banks-logo/round/andebu.png',
+    imgCircle: '../../assets/img/banks-logo/round/andebu.png'
   },
   ARENDAL_SK: {
     name: 'ARENDAL_SK',
@@ -21,8 +21,8 @@ export const BANKS_DATA = {
   },
   ASKIM_SB: {
     name: 'ASKIM_SB',
-    img: '',
-    imgCircle: ''
+    img: '../../assets/img/banks-logo/round/askim.png',
+    imgCircle: '../../assets/img/banks-logo/round/askim.png'
   },
   AURLAND_SB: {
     name: 'AURLAND_SB',
@@ -31,8 +31,8 @@ export const BANKS_DATA = {
   },
   AURSKOG_SB: {
     name: 'AURSKOG_SB',
-    img: '',
-    imgCircle: ''
+    img: '../../assets/img/banks-logo/round/aurskog.png',
+    imgCircle: '../../assets/img/banks-logo/round/aurskog.png'
   },
   BATE: {
     name: 'BATE',
@@ -46,18 +46,18 @@ export const BANKS_DATA = {
   },
   BANK2: {
     name: 'BANK2',
-    img: '',
-    imgCircle: ''
+    img: '../../assets/img/banks-logo/round/bank2.png',
+    imgCircle: '../../assets/img/banks-logo/round/bank2.png'
   },
   BERG_SB: {
     name: 'BERG_SB',
-    img: '',
-    imgCircle: ''
+    img: '../../assets/img/banks-logo/round/berg.png',
+    imgCircle: '../../assets/img/banks-logo/round/berg.png'
   },
   BIEN: {
     name: 'BIEN',
-    img: '',
-    imgCircle: ''
+    img: '../../assets/img/banks-logo/round/bien.png',
+    imgCircle: '../../assets/img/banks-logo/round/bien.png'
   },
   BIRKENES_SB: {
     name: 'BIRKENES_SB',
@@ -71,8 +71,8 @@ export const BANKS_DATA = {
   },
   BLAKER_SB: {
     name: 'BLAKER_SB',
-    img: '',
-    imgCircle: ''
+    img: '../../assets/img/banks-logo/round/blaker.png',
+    imgCircle: '../../assets/img/banks-logo/round/blaker.png'
   },
   BOLIGKREDITT: {
     name: 'BOLIGKREDITT',
@@ -106,28 +106,28 @@ export const BANKS_DATA = {
   },
   DRANGEDAL_SB: {
     name: 'DRANGEDAL_SB',
-    img: '',
-    imgCircle: ''
+    img: '../../assets/img/banks-logo/round/drangedal.png',
+    imgCircle: '../../assets/img/banks-logo/round/drangedal.png'
   },
   EIDSBERG_SB: {
     name: 'EIDSBERG_SB',
-    img: '',
-    imgCircle: ''
+    img: '../../assets/img/banks-logo/round/eidsberg.png',
+    imgCircle: '../../assets/img/banks-logo/round/eidsberg.png'
   },
   ETNE_SB: {
     name: 'ETNE_SB',
-    img: '',
-    imgCircle: ''
+    img: '../../assets/img/banks-logo/round/etne.png',
+    imgCircle: '../../assets/img/banks-logo/round/etne.png'
   },
   ETNEDAL_SB: {
     name: 'ETNEDAL_SB',
-    img: '',
-    imgCircle: ''
+    img: '../../assets/img/banks-logo/round/etnedal.png',
+    imgCircle: '../../assets/img/banks-logo/round/etnedal.png'
   },
   EVJE_SB: {
     name: 'EVJE_SB',
-    img: '',
-    imgCircle: ''
+    img: '../../assets/img/banks-logo/round/',
+    imgCircle: '../../assets/img/banks-logo/round/'
   },
   FANA_SB: {
     name: 'FANA_SB',
@@ -136,18 +136,18 @@ export const BANKS_DATA = {
   },
   FLEKKEFJORD_SB: {
     name: 'FLEKKEFJORD_SB',
-    img: '',
-    imgCircle: ''
+    img: '../../assets/img/banks-logo/round/',
+    imgCircle: '../../assets/img/banks-logo/round/'
   },
   FORNEBU_SB: {
     name: 'FORNEBU_SB',
-    img: '',
-    imgCircle: ''
+    img: '../../assets/img/banks-logo/round/',
+    imgCircle: '../../assets/img/banks-logo/round/'
   },
   GILDESKAL_SB: {
     name: 'GILDESKAL_SB',
-    img: '',
-    imgCircle: ''
+    img: '../../assets/img/banks-logo/round/',
+    imgCircle: '../../assets/img/banks-logo/round/'
   },
   NORDEA_DIRECT: {
     name: 'NORDEA_DIRECT',
@@ -156,18 +156,18 @@ export const BANKS_DATA = {
   },
   GRONG_SB: {
     name: 'GRONG_SB',
-    img: '',
-    imgCircle: ''
+    img: '../../assets/img/banks-logo/round/',
+    imgCircle: '../../assets/img/banks-logo/round/'
   },
   GRUE_SB: {
     name: 'GRUE_SB',
-    img: '',
-    imgCircle: ''
+    img: '../../assets/img/banks-logo/round/',
+    imgCircle: '../../assets/img/banks-logo/round/'
   },
   HALTDALEN_SB: {
     name: 'HALTDALEN_SB',
-    img: '',
-    imgCircle: ''
+    img: '../../assets/img/banks-logo/round/',
+    imgCircle: '../../assets/img/banks-logo/round/'
   },
   HANDELSBANKEN: {
     name: 'HANDELSBANKEN',
@@ -176,13 +176,13 @@ export const BANKS_DATA = {
   },
   HARSTAD_SB: {
     name: 'HARSTAD_SB',
-    img: '',
-    imgCircle: ''
+    img: '../../assets/img/banks-logo/round/',
+    imgCircle: '../../assets/img/banks-logo/round/'
   },
   HAUGESUND_SB: {
     name: 'HAUGESUND_SB',
-    img: '',
-    imgCircle: ''
+    img: '../../assets/img/banks-logo/round/',
+    imgCircle: '../../assets/img/banks-logo/round/'
   },
   HEGRA_SB: {
     name: 'HEGRA_SB',
@@ -191,13 +191,13 @@ export const BANKS_DATA = {
   },
   HELGELAND_SB: {
     name: 'HELGELAND_SB',
-    img: '',
-    imgCircle: ''
+    img: '../../assets/img/banks-logo/round/',
+    imgCircle: '../../assets/img/banks-logo/round/'
   },
   HEMNE_SB: {
     name: 'HEMNE_SB',
-    img: '',
-    imgCircle: ''
+    img: '../../assets/img/banks-logo/round/',
+    imgCircle: '../../assets/img/banks-logo/round/'
   },
   HIMLA_FANA_SB: {
     name: 'Himla (Fana Sparebank)',
@@ -211,18 +211,18 @@ export const BANKS_DATA = {
   },
   HJELMELAND_SB: {
     name: 'HJELMELAND_SB',
-    img: '',
-    imgCircle: ''
+    img: '../../assets/img/banks-logo/round/',
+    imgCircle: '../../assets/img/banks-logo/round/'
   },
   HOLAND_SB: {
     name: 'HOLAND_SB',
-    img: '',
-    imgCircle: ''
+    img: '../../assets/img/banks-logo/round/',
+    imgCircle: '../../assets/img/banks-logo/round/'
   },
   HONEFOSS_SB: {
     name: 'HONEFOSS_SB',
-    img: '',
-    imgCircle: ''
+    img: '../../assets/img/banks-logo/round/',
+    imgCircle: '../../assets/img/banks-logo/round/'
   },
   INDRE_SOGN_SB: {
     name: 'INDRE_SOGN_SB',
@@ -236,8 +236,8 @@ export const BANKS_DATA = {
   },
   JAEREN_SB: {
     name: 'JAEREN_SB',
-    img: '',
-    imgCircle: ''
+    img: '../../assets/img/banks-logo/round/',
+    imgCircle: '../../assets/img/banks-logo/round/'
   },
   KLP: {
     name: 'KLP',
@@ -246,8 +246,8 @@ export const BANKS_DATA = {
   },
   KRAFTBANK: {
     name: 'KRAFTBANK',
-    img: '',
-    imgCircle: ''
+    img: '../../assets/img/banks-logo/round/',
+    imgCircle: '../../assets/img/banks-logo/round/'
   },
   KVINESDAL_SB: {
     name: 'KVINESDAL_SB',
@@ -261,13 +261,13 @@ export const BANKS_DATA = {
   },
   LARVIKBANKEN: {
     name: 'LARVIKBANKEN',
-    img: '',
-    imgCircle: ''
+    img: '../../assets/img/banks-logo/round/',
+    imgCircle: '../../assets/img/banks-logo/round/'
   },
   LILLESANDS_SB: {
     name: 'LILLESANDS_SB',
-    img: '',
-    imgCircle: ''
+    img: '../../assets/img/banks-logo/round/',
+    imgCircle: '../../assets/img/banks-logo/round/'
   },
   LILLESTROMBANKEN: {
     name: 'LILLESTROMBANKEN',
@@ -276,18 +276,18 @@ export const BANKS_DATA = {
   },
   LUSTER_SB: {
     name: 'LUSTER_SB',
-    img: '',
-    imgCircle: ''
+    img: '../../assets/img/banks-logo/round/',
+    imgCircle: '../../assets/img/banks-logo/round/'
   },
   MARKER_SB: {
     name: 'MARKER_SB',
-    img: '',
-    imgCircle: ''
+    img: '../../assets/img/banks-logo/round/',
+    imgCircle: '../../assets/img/banks-logo/round/'
   },
   MELHUSBANKEN: {
     name: 'MELHUSBANKEN',
-    img: '',
-    imgCircle: ''
+    img: '../../assets/img/banks-logo/round/',
+    imgCircle: '../../assets/img/banks-logo/round/'
   },
   NAL_NORDEA_DIRECT: {
     name: 'NAL_NORDEA_DIRECT',
@@ -301,8 +301,8 @@ export const BANKS_DATA = {
   },
   NORDAX: {
     name: 'NORDAX',
-    img: '',
-    imgCircle: ''
+    img: '../../assets/img/banks-logo/round/',
+    imgCircle: '../../assets/img/banks-logo/round/'
   },
   NORDIREKTEBANK: {
     name: 'NORDIREKTEBANK',
@@ -311,8 +311,8 @@ export const BANKS_DATA = {
   },
   NIDAROS_SB: {
     name: 'NIDAROS_SB',
-    img: '',
-    imgCircle: ''
+    img: '../../assets/img/banks-logo/round/',
+    imgCircle: '../../assets/img/banks-logo/round/'
   },
   SYKEPLEIERFORBUND_DNB: {
     name: 'SYKEPLEIERFORBUND_DNB',
@@ -331,8 +331,8 @@ export const BANKS_DATA = {
   },
   ODAL_SB: {
     name: 'ODAL_SB',
-    img: '',
-    imgCircle: ''
+    img: '../../assets/img/banks-logo/round/',
+    imgCircle: '../../assets/img/banks-logo/round/'
   },
   OFOTEN_SB: {
     name: 'OFOTEN_SB',
@@ -341,8 +341,8 @@ export const BANKS_DATA = {
   },
   OPPDALSBANKEN: {
     name: 'OPPDALSBANKEN',
-    img: '',
-    imgCircle: ''
+    img: '../../assets/img/banks-logo/round/',
+    imgCircle: '../../assets/img/banks-logo/round/'
   },
   ORKLA_SB: {
     name: 'ORKLA_SB',
@@ -361,13 +361,13 @@ export const BANKS_DATA = {
   },
   OSTRE_AGDER_SB: {
     name: 'OSTRE_AGDER_SB',
-    img: '',
-    imgCircle: ''
+    img: '../../assets/img/banks-logo/round/',
+    imgCircle: '../../assets/img/banks-logo/round/'
   },
   RINDAL_SB: {
     name: 'RINDAL_SB',
-    img: '',
-    imgCircle: ''
+    img: '../../assets/img/banks-logo/round/',
+    imgCircle: '../../assets/img/banks-logo/round/'
   },
   ROMSDAL_SB: {
     name: 'ROMSDAL_SB',
@@ -396,8 +396,8 @@ export const BANKS_DATA = {
   },
   SELBU_SB: {
     name: 'SELBU_SB',
-    img: '',
-    imgCircle: ''
+    img: '../../assets/img/banks-logo/round/',
+    imgCircle: '../../assets/img/banks-logo/round/'
   },
   SKAGERRAK_SB: {
     name: 'SKAGERRAK_SB',
@@ -406,13 +406,13 @@ export const BANKS_DATA = {
   },
   SKUDENES_SB: {
     name: 'SKUDENES_SB',
-    img: '',
-    imgCircle: ''
+    img: '../../assets/img/banks-logo/round/',
+    imgCircle: '../../assets/img/banks-logo/round/'
   },
   SKUE_SB: {
     name: 'SKUE_SB',
-    img: '',
-    imgCircle: ''
+    img: '../../assets/img/banks-logo/round/',
+    imgCircle: '../../assets/img/banks-logo/round/'
   },
   SOGN: {
     name: 'SOGN',
@@ -426,13 +426,13 @@ export const BANKS_DATA = {
   },
   SPAREBANKEN_DIN: {
     name: 'SPAREBANKEN_DIN',
-    img: '',
-    imgCircle: ''
+    img: '../../assets/img/banks-logo/round/',
+    imgCircle: '../../assets/img/banks-logo/round/'
   },
   SPAREBANK_68: {
     name: 'SPAREBANK_68',
-    img: '',
-    imgCircle: ''
+    img: '../../assets/img/banks-logo/round/',
+    imgCircle: '../../assets/img/banks-logo/round/'
   },
   SPAREBANKEN_OST: {
     name: 'SPAREBANKEN_OST',
@@ -511,18 +511,18 @@ export const BANKS_DATA = {
   },
   STADSBYGD_SB: {
     name: 'STADSBYGD_SB',
-    img: '',
-    imgCircle: ''
+    img: '../../assets/img/banks-logo/round/',
+    imgCircle: '../../assets/img/banks-logo/round/'
   },
   SB_MORE: {
     name: 'SB_MORE',
-    img: '',
-    imgCircle: ''
+    img: '../../assets/img/banks-logo/round/',
+    imgCircle: '../../assets/img/banks-logo/round/'
   },
   SB_NARVIK: {
     name: 'SB_NARVIK',
-    img: '',
-    imgCircle: ''
+    img: '../../assets/img/banks-logo/round/',
+    imgCircle: '../../assets/img/banks-logo/round/'
   },
   SB_SOGNFJORDANE: {
     name: 'SB_SOGNFJORDANE',
@@ -531,18 +531,18 @@ export const BANKS_DATA = {
   },
   SB_SOR: {
     name: 'SB_SOR',
-    img: '',
-    imgCircle: ''
+    img: '../../assets/img/banks-logo/round/',
+    imgCircle: '../../assets/img/banks-logo/round/'
   },
   SB_VEST: {
     name: 'SB_VEST',
-    img: '',
-    imgCircle: ''
+    img: '../../assets/img/banks-logo/round/',
+    imgCircle: '../../assets/img/banks-logo/round/'
   },
   SPARESKILLINGSBANKEN: {
     name: 'SPARESKILLINGSBANKEN',
-    img: '',
-    imgCircle: ''
+    img: '../../assets/img/banks-logo/round/',
+    imgCircle: '../../assets/img/banks-logo/round/'
   },
   STATENS_PENSJONSKASSE: {
     name: 'STATENS_PENSJONSKASSE',
@@ -556,8 +556,8 @@ export const BANKS_DATA = {
   },
   STROMMEN_SB: {
     name: 'STROMMEN_SB',
-    img: '',
-    imgCircle: ''
+    img: '../../assets/img/banks-logo/round/',
+    imgCircle: '../../assets/img/banks-logo/round/'
   },
   SUNNDAL_SB: {
     name: 'SUNNDAL_SB',
@@ -566,13 +566,13 @@ export const BANKS_DATA = {
   },
   SURNADAL_SB: {
     name: 'SURNADAL_SB',
-    img: '',
-    imgCircle: ''
+    img: '../../assets/img/banks-logo/round/',
+    imgCircle: '../../assets/img/banks-logo/round/'
   },
   SOGNE_SB: {
     name: 'SOGNE_SB',
-    img: '',
-    imgCircle: ''
+    img: '../../assets/img/banks-logo/round/',
+    imgCircle: '../../assets/img/banks-logo/round/'
   },
   TOLGA_SB: {
     name: 'TOLGA_SB',
@@ -586,13 +586,13 @@ export const BANKS_DATA = {
   },
   TROGSTAD_SB: {
     name: 'TROGSTAD_SB',
-    img: '',
-    imgCircle: ''
+    img: '../../assets/img/banks-logo/round/',
+    imgCircle: '../../assets/img/banks-logo/round/'
   },
   TYSNES_SB: {
     name: 'TYSNES_SB',
-    img: '',
-    imgCircle: ''
+    img: '../../assets/img/banks-logo/round/',
+    imgCircle: '../../assets/img/banks-logo/round/'
   },
   VALDRES_SB: {
     name: 'VALDRES_SB',
@@ -601,13 +601,13 @@ export const BANKS_DATA = {
   },
   VALLE_SB: {
     name: 'VALLE_SB',
-    img: '',
-    imgCircle: ''
+    img: '../../assets/img/banks-logo/round/',
+    imgCircle: '../../assets/img/banks-logo/round/'
   },
   VEKSELBANKEN: {
     name: 'VEKSELBANKEN',
-    img: '',
-    imgCircle: ''
+    img: '../../assets/img/banks-logo/round/',
+    imgCircle: '../../assets/img/banks-logo/round/'
   },
   VIK_SB: {
     name: 'VIK_SB',
@@ -616,8 +616,8 @@ export const BANKS_DATA = {
   },
   VOSS_SB: {
     name: 'VOSS_SB',
-    img: '',
-    imgCircle: ''
+    img: '../../assets/img/banks-logo/round/',
+    imgCircle: '../../assets/img/banks-logo/round/'
   },
   YS_NORDEA_DIRECT: {
     name: 'YS_NORDEA_DIRECT',
@@ -626,8 +626,8 @@ export const BANKS_DATA = {
   },
   AFJORD_SB: {
     name: 'AFJORD_SB',
-    img: '',
-    imgCircle: ''
+    img: '../../assets/img/banks-logo/round/',
+    imgCircle: '../../assets/img/banks-logo/round/'
   },
   ORSKOG_SB: {
     name: 'ORSKOG_SB',
@@ -646,7 +646,7 @@ export const BANKS_DATA = {
   },
   OTHER: {
     name: 'OTHER',
-    img: '',
-    imgCircle: ''
+    img: '../../assets/img/banks-logo/round/',
+    imgCircle: '../../assets/img/banks-logo/round/'
   }
 };
