@@ -8,7 +8,7 @@ export interface Offers {
   bestTotalSavings: number | null;
   offerSavingsType: string;
   memberships: string[];
-  offers: OfferInfo[];
+  offers: AllOffers;
   propertyValue: number | null;
   totalEffectiveRate: number | null;  
   totalOutstandingDebt: number | null;
@@ -19,6 +19,14 @@ export interface Offers {
   commonDebt: number;
   ltv: number;
   bankStatistics: BankStatistics
+  top5: OfferInfo[];
+  additionalPartnersOffers: OfferInfo[];
+
+}
+
+export interface AllOffers {
+  top5: OfferInfo[];
+  additionalPartnersOffers: OfferInfo[];
 }
 
 export interface OfferInfo {
@@ -46,6 +54,7 @@ export interface OfferInfo {
   loanPeriodYears: number | null;
   cost: number | null;
   totalCost: number | null;
+  top5;
 }
 
 export interface BankInfo{

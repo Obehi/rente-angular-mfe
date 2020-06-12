@@ -1,8 +1,8 @@
 export const BANKS_DATA = {
   AASEN_SB: {
     name: 'AASEN_SB',
-    img: '',
-    imgCircle: ''
+    img: '../../assets/img/banks-logo/round/aasen.png',
+    imgCircle: '../../assets/img/banks-logo/round/aasen.png'
   },
   AKADEMIKERNE_DANSKE: {
     name: 'AKADEMIKERNE_DANSKE',
@@ -11,8 +11,8 @@ export const BANKS_DATA = {
   },
   ANDEBU_SB: {
     name: 'ANDEBU_SB',
-    img: '',
-    imgCircle: ''
+    img: '../../assets/img/banks-logo/round/andebu.png',
+    imgCircle: '../../assets/img/banks-logo/round/andebu.png'
   },
   ARENDAL_SK: {
     name: 'ARENDAL_SK',
@@ -21,8 +21,8 @@ export const BANKS_DATA = {
   },
   ASKIM_SB: {
     name: 'ASKIM_SB',
-    img: '',
-    imgCircle: ''
+    img: '../../assets/img/banks-logo/round/askim.png',
+    imgCircle: '../../assets/img/banks-logo/round/askim.png'
   },
   AURLAND_SB: {
     name: 'AURLAND_SB',
@@ -31,8 +31,8 @@ export const BANKS_DATA = {
   },
   AURSKOG_SB: {
     name: 'AURSKOG_SB',
-    img: '',
-    imgCircle: ''
+    img: '../../assets/img/banks-logo/round/aurskog.png',
+    imgCircle: '../../assets/img/banks-logo/round/aurskog.png'
   },
   BATE: {
     name: 'BATE',
@@ -46,18 +46,18 @@ export const BANKS_DATA = {
   },
   BANK2: {
     name: 'BANK2',
-    img: '',
-    imgCircle: ''
+    img: '../../assets/img/banks-logo/round/bank2.png',
+    imgCircle: '../../assets/img/banks-logo/round/bank2.png'
   },
   BERG_SB: {
     name: 'BERG_SB',
-    img: '',
-    imgCircle: ''
+    img: '../../assets/img/banks-logo/round/berg.png',
+    imgCircle: '../../assets/img/banks-logo/round/berg.png'
   },
   BIEN: {
     name: 'BIEN',
-    img: '',
-    imgCircle: ''
+    img: '../../assets/img/banks-logo/round/bien.png',
+    imgCircle: '../../assets/img/banks-logo/round/bien.png'
   },
   BIRKENES_SB: {
     name: 'BIRKENES_SB',
@@ -71,8 +71,8 @@ export const BANKS_DATA = {
   },
   BLAKER_SB: {
     name: 'BLAKER_SB',
-    img: '',
-    imgCircle: ''
+    img: '../../assets/img/banks-logo/round/blaker.png',
+    imgCircle: '../../assets/img/banks-logo/round/blaker.png'
   },
   BOLIGKREDITT: {
     name: 'BOLIGKREDITT',
@@ -106,22 +106,22 @@ export const BANKS_DATA = {
   },
   DRANGEDAL_SB: {
     name: 'DRANGEDAL_SB',
-    img: '',
-    imgCircle: ''
+    img: '../../assets/img/banks-logo/round/drangedal.png',
+    imgCircle: '../../assets/img/banks-logo/round/drangedal.png'
   },
   EIDSBERG_SB: {
     name: 'EIDSBERG_SB',
-    img: '',
-    imgCircle: ''
+    img: '../../assets/img/banks-logo/round/eidsberg.png',
+    imgCircle: '../../assets/img/banks-logo/round/eidsberg.png'
   },
   ETNE_SB: {
     name: 'ETNE_SB',
-    img: '',
-    imgCircle: ''
+    img: '../../assets/img/banks-logo/round/etne.png',
+    imgCircle: '../../assets/img/banks-logo/round/etne.png'
   },
   ETNEDAL_SB: {
     name: 'ETNEDAL_SB',
-    img: '',
+    img: '../../assets/img/banks-logo/round/etnedal.png',
     imgCircle: ''
   },
   EVJE_SB: {
