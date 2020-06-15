@@ -268,7 +268,7 @@
                   [isLoading]="changeBankLoading"
                   color="primary"
                   type="raised"
-                  (click)="openChangeBankDialog(offersInfo.offers[0])"
+                  (click)="openChangeBankDialog(offersInfo.offers.top5[0])"
                   >Be banken matche tilbud</rente-button
                 > 
               </div> 
@@ -427,7 +427,7 @@
             [isLoading]="changeBankLoading"
             color="primary"
             type="raised"
-            (click)="openChangeBankDialog(offersInfo.offers[0])"
+            (click)="openChangeBankDialog(offersInfo.offers.top5[0])"
             >Be banken matche tilbud</rente-button
           > 
         </div> 
