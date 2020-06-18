@@ -9,6 +9,22 @@ p {
 
 h1 {
   margin-bottom: 40px;
+
+  a  {
+    color: $primary;
+    position: relative;
+    font-weight: 900; 
+  }
+  a:after {
+    content: '';
+      background-color: $black;
+      height: 8px;
+      width: 100%;
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      right: 0;
+  }
 }
 
 h3 {
