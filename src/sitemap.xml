@@ -31,11 +31,4 @@
     <priority>1.0</priority>
     <changefreq>monthly</changefreq>
   </url>
-
-  <url>
-    <loc>https://renteradar.no/faq</loc>
-    <priority>1.0</priority>
-    <changefreq>monthly</changefreq>
-  </url>
-
 </urlset>
