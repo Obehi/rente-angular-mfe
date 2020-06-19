@@ -151,6 +151,19 @@ h3 {
       height: 16px;
       margin-bottom: 5px;
     }
+    .background-image {
+      width: 260px;
+      height: 160px;
+    }
+    picture  {
+      width: 260px;
+      height: 160px;
+      .background-image {
+        width: 260px;
+        height: 160px;
+      }
+    }
+    
     .image {
       height: 160px;
       width: 100%;

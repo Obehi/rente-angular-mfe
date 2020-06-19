@@ -4,20 +4,6 @@ h1 {
   line-height: 1.2;
   color: $black;
   margin-bottom: 40px;
-  span {
-    color: $primary;
-    position: relative;
-    &:after {
-      content: "";
-      background-color: $black;
-      height: 4px;
-      width: 100%;
-      position: absolute;
-      bottom: -6px;
-      left: 0;
-      right: 0;
-    }
-  }
 }
 h2.primary {
   color: $primary;
