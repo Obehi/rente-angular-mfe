@@ -203,7 +203,6 @@ a.box {
       @media (min-width: 600px) {
         top: 114px;
       }
-
       p {
         color: $secondary;
         font-weight: 400;
@@ -308,7 +307,7 @@ a.box {
             margin-bottom: 10px;
             display: block;
             color: $blue !important;
-            text-decoration: underline;
+            
           }
           .mat-icon {
             font-size: 18px;

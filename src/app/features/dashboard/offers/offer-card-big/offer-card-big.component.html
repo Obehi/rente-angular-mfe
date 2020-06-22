@@ -13,10 +13,10 @@
 
       <a class="clickable" target="_blank"
       (click)="openBankUrl(offer)"
-        >{{ offer.bankInfo.name }}<mat-icon>open_in_new</mat-icon></a
+        >{{ offer.bankInfo.name }}</a
       >
       <h3 (click)="openOfferDialog(offer)" class="clickable">
-        {{ offer.productName }}<mat-icon>help</mat-icon>
+        {{ offer.productName }}
       </h3>
     </div>
   </div>
@@ -53,13 +53,15 @@
       </div>
       <div class="offer-info">
         <div class="small-header">
-          <p>Krever tilleggsprodukt</p>
+          <p>Krever bytte av nettbank</p>
         </div>
         <div class="offer-inner">
-          <h2 (click)="openOfferDialog(offer)" class="clickable">
-            {{ offer.requiredProductPackage == null ? "Nei" : "Ja" }}
-            <mat-icon>help</mat-icon>
-          </h2>
+          <div>
+            <h2 (click)="openOfferDialog(offer)" class="clickable">
+              {{ offer.requiredProductPackage == null ? "Nei" : "Ja" }}
+              <mat-icon>help</mat-icon>
+            </h2>
+        </div>
         </div>
       </div>
     </div>

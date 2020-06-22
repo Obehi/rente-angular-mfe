@@ -5,7 +5,6 @@ export interface Offers {
   bestOfferEffectiveRate: number | null;
   bestOfferTotalSaving: number | null;
   bestSavingsFirstYear: number | null;
-  bestTotalSavings: number | null;
   offerSavingsType: string;
   memberships: string[];
   offers: AllOffers;

@@ -109,18 +109,6 @@ export class OfferCardComponent implements OnInit {
     this.sendOfferTrackingData(trackingDto, offer)
   }
 
-  getVariation(): number | null {
-    if((window as any).google_optimize == undefined) {
-      return null;
-    }
-    if((window as any).google_optimize == null) {
-      return null;
-    }
-
-    console.log("variation " + (window as any).google_optimize.get('wgXRexVhQJ6_wdY3FRxh9g'));
-    return (window as any).google_optimize.get('wgXRexVhQJ6_wdY3FRxh9g');
-  }
-
   isPrimary(): boolean {
     let variation = this.getVariation()
     if(variation == 0 || variation == 1) {
