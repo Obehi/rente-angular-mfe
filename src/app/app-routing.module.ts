@@ -5,7 +5,6 @@ import { PageNotFoundComponent } from '@features/page-not-found/page-not-found.c
 import { LandingComponent } from '@features/landing/landing.component';
 import { AboutUsComponent } from '@features/about-us/about-us.component';
 import { ROUTES_MAP } from '@config/routes-config';
-import { FaqComponent } from '@features/faq/faq.component';
 import { PrivacyComponent } from '@features/privacy/privacy.component';
 import { AboutCookiesComponent } from '@features/cookies/cookies.component';
 import { TermsConditionsComponent } from '@features/terms-conditions/terms-conditions.component';
