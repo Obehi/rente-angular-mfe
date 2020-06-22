@@ -169,7 +169,7 @@
           {{ offersInfo.bestOfferTotalSaving | abs | number }},-
         </h2>
         <ng-template #noBestOffer>
-          <h2>0,-</h2>
+          <h2> 0,- </h2>
         </ng-template>
       <p>over lånets løpetid</p>
     </div>
@@ -439,13 +439,10 @@
     <h3 style="margin-bottom: 20px;">
       Beste tilbud:
     </h3>
-
-    
     <div *ngIf="getVariation() == 1 || getVariation() == 2" class="sticky-table-header">
       <p>BANK</p>
       <p>Din effektive rente: <span>{{ offersInfo.totalEffectiveRate | number: "1.2-2" }}%</span></p>
     </div>
-
 
     <div class="offers-grid">    
       <ng-container *ngIf="offersInfo">
@@ -487,8 +484,6 @@
         <ng-container *ngIf="getVariation() == 1 || getVariation() == 2">
           <rente-offer-card [offer]="offer" [offersInfo]="offersInfo" [index]=offer.offerPosition></rente-offer-card>
         </ng-container>   
-
-        
           <!--
           <div class="the-offer-header">
             <div
