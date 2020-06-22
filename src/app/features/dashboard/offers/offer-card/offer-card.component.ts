@@ -108,12 +108,4 @@ export class OfferCardComponent implements OnInit {
     trackingDto.type = "BANK_BUTTON_2";
     this.sendOfferTrackingData(trackingDto, offer)
   }
-
-  isPrimary(): boolean {
-    let variation = this.getVariation()
-    if(variation == 0 || variation == 1) {
-      return true
-    }
-    return false
-  }
 }
