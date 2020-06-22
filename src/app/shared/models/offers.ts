@@ -20,7 +20,6 @@ export interface Offers {
   bankStatistics: BankStatistics
   top5: OfferInfo[];
   additionalPartnersOffers: OfferInfo[];
-
 }
 
 export interface AllOffers {
