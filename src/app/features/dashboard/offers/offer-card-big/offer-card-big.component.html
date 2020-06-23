@@ -57,9 +57,8 @@
         </div>
         <div class="offer-inner">
           <div>
-            <h2 (click)="openOfferDialog(offer)" class="clickable">
+            <h2>
               {{ offer.requiredProductPackage == null ? "Nei" : "Ja" }}
-              <mat-icon>help</mat-icon>
             </h2>
         </div>
         </div>
@@ -91,7 +90,7 @@
       </div>
     </div>
 
-    <div class="small-header">
+    <div class="small-header bottom">
       <p class="insignificant"><span>Tilbud:
       </span> Eff.rente {{offer.effectiveRate | number: "1.2-2"}}%, 
         Lånebeløp {{offer.outstandingDebt | number: "1.0" }}, 
@@ -99,6 +98,14 @@
         Kostnad: {{offer.cost | number: "1.0" }}, 
         Totalt: {{offer.totalCost | number: "1.0" }}
       </p>
+
+      <a (click)="openOfferDialog(offer)" class="clickable details">
+        <p>Detaljer</p>
+        <img class="offer-score" src="../../../../assets/icons/arrow-down-green.svg"/>
+      </a>
+
+
+
     </div>
   </div>
 
