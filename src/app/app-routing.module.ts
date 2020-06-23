@@ -14,7 +14,6 @@ import { ContactUsComponent } from '@features/contact-us/contact-us.component';
 import { AuthGuard } from '@shared/guards/auth.guard';
 import { GetNotifiedComponent } from '@features/get-notified/get-notified.component';
 import { customMeta, defaultMeta, defaultTitle } from './config/routes-config';
-import { CoFounderComponent } from '@features/co-founder/co-founder.component';
 
 const routes: Routes = [
   {
@@ -128,16 +127,6 @@ const routes: Routes = [
     path: ROUTES_MAP.dashboard,
     loadChildren: () => import('./features/dashboard/dashboard.module').then(m => m.DashboardModule),
     canActivate: [AuthGuard]
-  },
-  {
-    path: ROUTES_MAP.coFounder, component: CoFounderComponent,
-    data: {
-      title: customMeta.coFounderTitle,
-      meta: {
-        name: defaultMeta.name,
-        description: customMeta.coFounderDescription
-      }
-    }
   },
   { path: '**', component: PageNotFoundComponent },
 ];
