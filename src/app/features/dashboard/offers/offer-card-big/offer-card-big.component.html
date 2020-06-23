@@ -99,10 +99,20 @@
         Totalt: {{offer.totalCost | number: "1.0" }}
       </p>
 
-      <a (click)="openOfferDialog(offer)" class="clickable details">
+
+      <a *ngIf=" index === 1; else detailstest" (click)="openOfferDialog(offer)" class="clickable details">
         <p>Detaljer</p>
         <img class="offer-score" src="../../../../assets/icons/arrow-down-green.svg"/>
       </a>
+
+      <ng-template #detailstest>
+        <a (click)="openOfferDialog(offer)" class="clickable details2">
+          <p>Detaljer</p>
+          <img class="offer-score" src="../../../../assets/icons/arrow-down-green.svg"/>
+        </a>
+      </ng-template>
+
+      
 
 
 
