@@ -26,6 +26,7 @@ import { Ng2OdometerModule } from 'ng2-odometer'; // <-- import the module
 import { UserService } from '@services/remote-api/user.service';
 import { FormsModule } from '@angular/forms';
 import { DialogInfoComponent } from './features/init-confirmation/dialog-info/dialog-info.component';
+import { DeferLoadModule } from '@trademe/ng-defer-load';
 
 registerLocaleData(localeNo);
 
@@ -55,10 +56,9 @@ registerLocaleData(localeNo);
     SharedModule,
     MaterialModule,
     Ng2OdometerModule.forRoot(),
-    // MatExpansionModule,
-    // MatFormFieldModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    DeferLoadModule
   ],
   entryComponents: [DialogInfoComponent],
   providers: [{ provide: LOCALE_ID, useValue: 'nb-NO' }, UserService],

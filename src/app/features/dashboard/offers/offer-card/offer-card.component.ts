@@ -108,24 +108,4 @@ export class OfferCardComponent implements OnInit {
     trackingDto.type = "BANK_BUTTON_2";
     this.sendOfferTrackingData(trackingDto, offer)
   }
-
-  getVariation(): number | null {
-    if((window as any).google_optimize == undefined) {
-      return null;
-    }
-    if((window as any).google_optimize == null) {
-      return null;
-    }
-
-    console.log("variation " + (window as any).google_optimize.get('wgXRexVhQJ6_wdY3FRxh9g'));
-    return (window as any).google_optimize.get('wgXRexVhQJ6_wdY3FRxh9g');
-  }
-
-  isPrimary(): boolean {
-    let variation = this.getVariation()
-    if(variation == 0 || variation == 1) {
-      return true
-    }
-    return false
-  }
 }

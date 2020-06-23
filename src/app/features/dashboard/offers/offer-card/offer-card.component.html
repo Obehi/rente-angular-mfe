@@ -109,7 +109,7 @@
                     <div>
                         <rente-button-small [disabled]=" 
                             offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS ||
-                            offer.bankInfo.partner == false"  [color]="isPrimary() ? 'primary': 'secondary'" type="raised"
+                            offer.bankInfo.partner == false"  [color]="'primary'" type="raised"
                             (click)="openBankUrlByButton(offer)">Se mer på {{getbankNameOrDefault(offer)}}s <br/> hjemmeside
                         </rente-button-small>
                     </div>
@@ -117,7 +117,7 @@
                     <div>
                         <rente-button-small [disabled]="
                         offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS ||
-                          offer.bankInfo.partner == false" [color]="isPrimary() ? 'primary': 'secondary'" type="raised"
+                          offer.bankInfo.partner == false" [color]="'primary'" type="raised"
                             (click)="openNewOfferDialog(offer)">Få tilbud fra {{getbankNameOrDefault(offer)}}!
                         </rente-button-small>
                         <p class="small" *ngIf=" offer.bankInfo.partner === false"> (Ingen avtale med banken)</p>

@@ -169,7 +169,7 @@
           {{ offersInfo.bestOfferTotalSaving | abs | number }},-
         </h2>
         <ng-template #noBestOffer>
-          <h2>0,-</h2>
+          <h2> 0,- </h2>
         </ng-template>
       <p>over lånets løpetid</p>
     </div>
@@ -439,13 +439,10 @@
     <h3 style="margin-bottom: 20px;">
       Beste tilbud:
     </h3>
-
-    
-    <div *ngIf="getVariation() == 1 || getVariation() == 2" class="sticky-table-header">
+    <div *ngIf="isMobile" class="sticky-table-header">
       <p>BANK</p>
       <p>Din effektive rente: <span>{{ offersInfo.totalEffectiveRate | number: "1.2-2" }}%</span></p>
     </div>
-
 
     <div class="offers-grid">    
       <ng-container *ngIf="offersInfo">
@@ -454,186 +451,33 @@
           class="the-offer"
         >
 
-        <ng-container *ngIf="getVariation() == undefined || getVariation() === null";>
-          <rente-offer-card-big [offer]="offer" [offersInfo]="offersInfo" [index]=offer.offerPosition></rente-offer-card-big>
-        </ng-container>
-
-        <ng-container *ngIf="getVariation() == 0">
-          <rente-offer-card-big [offer]="offer" [offersInfo]="offersInfo" [index]=offer.offerPosition></rente-offer-card-big>
-        </ng-container>
-
-        <ng-container *ngIf="getVariation() == 1 || getVariation() == 2">
+        <ng-container *ngIf="isMobile; else desktop">
           <rente-offer-card [offer]="offer" [offersInfo]="offersInfo" [index]=offer.offerPosition></rente-offer-card>
-        </ng-container>  
+        </ng-container>
+    
+        <ng-template #desktop>
+          <rente-offer-card-big [offer]="offer" [offersInfo]="offersInfo" [index]=offer.offerPosition></rente-offer-card-big>
+        </ng-template>
+
         </div> 
       </ng-container>
     </div>  
     
     <div class="offers-grid">    
+      
       <ng-container *ngIf="offersInfo">
         <div
           *ngFor="let offer of offersInfo.offers.additionalPartnersOffers; let i = index"
           class="the-offer"
         >
 
-        <ng-container *ngIf="getVariation() == undefined || getVariation() === null";>
-          <rente-offer-card-big [offer]="offer" [offersInfo]="offersInfo" [index]=offer.offerPosition></rente-offer-card-big>
-        </ng-container>
-
-        <ng-container *ngIf="getVariation() == 0">
-          <rente-offer-card-big [offer]="offer" [offersInfo]="offersInfo" [index]=offer.offerPosition></rente-offer-card-big>
-        </ng-container>
-
-        <ng-container *ngIf="getVariation() == 1 || getVariation() == 2">
+        <ng-container *ngIf="isMobile; else desktop">
           <rente-offer-card [offer]="offer" [offersInfo]="offersInfo" [index]=offer.offerPosition></rente-offer-card>
-        </ng-container>   
-
-        
-          <!--
-          <div class="the-offer-header">
-            <div
-              class="logo"
-              [ngStyle]="{
-                'background-image': 'url(' + banksMap[offer.bankInfo.bank].img + ')'
-              }"
-            >
-              <div class="nr">
-                <p>{{ i + 1 }}</p>
-              </div>
-            </div>
-            <div class="offer-product">
-
-              <a class="clickable" target="_blank"
-              (click)="openBankUrl(offer)"
-                >{{ offer.bankInfo.name }}<mat-icon>open_in_new</mat-icon></a
-              >
-              <h3 (click)="openOfferDialog(offer)" class="clickable">
-                {{ offer.productName }}<mat-icon>help</mat-icon>
-              </h3>
-            </div>
-          </div>
-          <div class="the-offer-body">
-            <div class="small-header"><p>Rentebesparelse</p></div>
-            <div class="split">
-              <div class="offer-inner save">
-                <h2 *ngIf="offer.totalSavings > 0; else noTotalSavings">
-                  {{ offer.totalSavings | abs | number }},-
-                </h2>
-                <ng-template #noTotalSavings>
-                  <h2>0,-</h2>
-                </ng-template>
-                <p>over lånets løpetid</p>
-              </div>
-              <div class="offer-inner save">
-                <h2 *ngIf="offer.savingsFirstYear > 0; else noTotalSavings">
-                  {{ offer.savingsFirstYear | abs | number }},-
-                </h2>
-                <ng-template #noSavingsFirstYear>
-                  <h2>0,-</h2>
-                </ng-template>
-                <p>første år</p>
-              </div>
-            </div>
-            <div class="split">
-              <div class="offer-info">
-                <div class="small-header">
-                  <p>Effektiv rente</p>
-                </div>
-                <div class="offer-inner">
-                  <h2>{{ offer.effectiveRate | number: "1.2-2" }}%</h2>
-                </div>
-              </div>
-              <div class="offer-info">
-                <div class="small-header">
-                  <p>Krever tilleggsprodukt</p>
-                </div>
-                <div class="offer-inner">
-                  <h2 (click)="openOfferDialog(offer)" class="clickable">
-                    {{ offer.requiredProductPackage == null ? "Nei" : "Ja" }}
-                    <mat-icon>help</mat-icon>
-                  </h2>
-                </div>
-              </div>
-            </div>
-
-            <div class="split">
-              <div class="offer-info">
-                <div class="small-header">
-                  <p>Kundetilfredshet</p>
-                </div>
-                <div class="offer-inner center-align">
-                  <img class="offer-score" src="../../../../assets/icons/score-{{offer.bankInfo.score }}.svg"/>
-              
-                </div>
-              </div>
-              <div class="offer-info">
-                <div class="small-header">
-                  <p>Hvor lang tid tar det å bytte</p>
-                </div>
-                <div class="offer-inner time">
-                  <div class="center">
-                    <img src="../../../../assets/icons/clock.svg"/> 
-                    <h3 >
-                      {{offer.bankInfo.applicationTime  === null ? 'Ukjent' : offer.bankInfo.applicationTime + " min"}}
-                    </h3>
-                </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="small-header">
-              <p class="insignificant"><span>Tilbud:
-              </span> Eff.rente {{offer.effectiveRate | number: "1.2-2"}}%, 
-                Lånebeløp {{offer.outstandingDebt | number: "1.0" }}, 
-                {{offer.loanPeriodYears | number: "1.1-1" }} år, 
-                Kostnad: {{offer.cost | number: "1.0" }}, 
-                Totalt: {{offer.totalCost | number: "1.0" }}
-              </p>
-            </div>
-          </div>
-
-          <div class="double buttons">
-          
-            <div class="full-width">
-             
-              <rente-button
-                [disabled]="
-                  changeBankLoading ||
-                  offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS ||
-                  offer.bankInfo.partner == false"
-                [isLoading]="changeBankLoading"
-                color="primary"
-                type="raised"
-                (click)="openBankUrlByButton(offer)"
-                >Se mer på {{getbankNameOrDefault(offer)}}s <br/> hjemmeside</rente-button
-              >
-
-              <p class="small" *ngIf=" offer.bankInfo.partner === false && isMobile === false"> (Ingen avtale med banken enda)</p>
-
-            </div>
-          
-           
-
-
-            <div class="full-width">
-              
-              <rente-button
-              [disabled]="
-                  changeBankLoading ||
-                  offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS ||
-                    offer.bankInfo.partner == false"
-                [isLoading]="changeBankLoading"
-                color="primary"
-                type="raised"
-                (click)="openNewOfferDialog(offersInfo.offers[i])"
-                >Få tilbud fra {{getbankNameOrDefault(offer)}}!</rente-button
-              >     
-              <p class="small" *ngIf=" offer.bankInfo.partner === false"> (Ingen avtale med banken enda)</p>
-              
-             
-            </div>
-          </div>
-        -->
+        </ng-container>
+    
+        <ng-template #desktop>
+          <rente-offer-card-big [offer]="offer" [offersInfo]="offersInfo" [index]=offer.offerPosition></rente-offer-card-big>
+        </ng-template>
         </div>
       </ng-container>
     </div>

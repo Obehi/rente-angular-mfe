@@ -20,6 +20,9 @@
     background-color: $lightgreen;
     padding: 10px;
     text-align: left;
+    display: flex;
+    align-items: center;
+    
     .logo {
       width: 60px;
       height: 60px;
@@ -56,16 +59,14 @@
       margin-left: 10px;
       vertical-align: super;
       a {
-        margin-bottom: 10px;
+        font-size: 16px;
+        font-weight: 400;
         display: block;
         color: $blue !important;
-        text-decoration: underline;
       }
-      .mat-icon {
-        font-size: 18px;
-        margin-left: 5px;
-        vertical-align: middle;
-        color: $blue;
+      h3 {
+        font-size: 14px;
+        font-weight: 100;
       }
     }
   }
@@ -77,6 +78,23 @@
       padding: 4px 0;
       border-top: 1px solid $lesslight;
       border-bottom: 1px solid $lesslight;
+
+      &.bottom {
+        background: #ffffff
+      }
+      .details{
+        background: #e5e5e5;
+        padding: 2px 10px;
+        border-radius: 5px;
+        display: inline-block;
+        margin: 5px;
+
+        p{
+          display: inline-block;
+          margin-right:  5px;
+          padding: 5px 0;
+        }
+      }
     }
     .split .offer-info:first-of-type {
         border-right: 1px solid $lesslight;
