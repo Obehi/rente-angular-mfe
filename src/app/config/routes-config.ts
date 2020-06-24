@@ -38,26 +38,6 @@ export const customMeta = {
   boligTitle: 'Bolig | Renteradar.no',
   preferanserTitle: 'Preferanser | Renteradar.no',
   profilTitle: 'Profil | Renteradar.no',
-
-
-  
-  
-  velgbankTitle:
-    'Beste boliglånsrente | Sammenlign rente på boliglån | Renteradar.no',
-  kontaktTitle:
-    'Beste boliglånsrente | Sammenlign rente på boliglån | Kontakt oss',
-  kontaktDescription:
-    'Renteradar gjør det enkelt å sammenligne boliglån og få beste boliglånsrente. Hvis du har spørsmål ta gjerne kontakt med oss',
-  velgbankDescription:
-    'Velg banken du har boliglån i og registrer deg inn med BankID på mobil.' +
-    ' Renteradar henter renten du har og lånebeløp automatisk.',
-  omossTitle: 'Beste boliglånsrente | Sammenlign rente på boliglån | Om oss',
-  omossDescription:
-    'Markedet for boliglån kan være kaotisk, og det kan være vanskelig å vite hvilken rente du fortjener og i hvilken bank du finner denne.',
-  ofteStilteSporsmaalTitle:
-    'Beste boliglånsrente | Sammenlign rente på boliglån | Ofte stilte spørsmål',
-  ofteStilteSporsmaalDescription:
-    'Hvor finner jeg beste boliglånsrente? Bruker dere data fra Finansportalen? Hvor mye kan jeg spare? Koster det noe?',
   
   personvernTitle:
     'Beste boliglånsrente | Sammenlign rente på boliglån | Personvern',
@@ -75,7 +55,9 @@ export const customMeta = {
     'Beste boliglånsrente | Sammenlign rente på boliglån | Renteradar.no',
   faabeskjedDescription:
     'Vi har foreløpig kun støtte for automatisk innhenting av dine betingelser hvis du er kunde i DNB, Nordea eller Sparebank 1. Legg igjen din email og få beskjed når vi har en løsning for din bank',
-  bankDescription:
+  bankDescription:  
+
+  
     'Renteradar henter renten du har og lånebeløp automatisk med BankID på mobil',
   bankLoginTitle: 'Renteradar.no | Registrer | Logg inn',
   DNB: {

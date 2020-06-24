@@ -15,41 +15,45 @@ import { AuthGuard } from '@shared/guards/auth.guard';
 import { GetNotifiedComponent } from '@features/get-notified/get-notified.component';
 import { customMeta, defaultMeta, defaultTitle } from './config/routes-config';
 
+
 const routes: Routes = [
   {
     path: '', component: LandingComponent,
     data: {
-      title: customMeta.landingTitle,
-      meta: defaultMeta
+      title: customMeta.landing.title,
+      meta: {
+        name: defaultMeta.name,
+        description: customMeta.landing.description
+      }
     }
   },
   {
     path: ROUTES_MAP.aboutUs, component: AboutUsComponent,
     data: {
-      title: customMeta.omossTitle,
+      title: customMeta.omOss.title,
       meta: {
         name: defaultMeta.name,
-        description: customMeta.omossDescription
+        description: customMeta.omOss.description
       }
     }
   },
   {
     path: ROUTES_MAP.contactUs, component: ContactUsComponent,
     data: {
-      title: customMeta.kontaktTitle,
+      title: customMeta.kontakt.title,
       meta: {
         name: defaultMeta.name,
-        description: customMeta.kontaktDescription
+        description: customMeta.kontakt.description
       }
     }
   },
   {
     path: ROUTES_MAP.privacy, component: PrivacyComponent,
     data: {
-      title: customMeta.personvernerklaeringTitle,
+      title: customMeta.personvern.title,
       meta: {
         name: defaultMeta.name,
-        description: customMeta.personvernDescription
+        description: customMeta.personvern.description
       }
     }
   },
@@ -85,10 +89,10 @@ const routes: Routes = [
   {
     path: ROUTES_MAP.bankSelect, component: BankSelectComponent,
     data: {
-      title: customMeta.velgbankTitle,
+      title: customMeta.valgBank.title,
       meta: {
         name: defaultMeta.name,
-        description: customMeta.velgbankDescription
+        description: customMeta.valgBank.description
       }
     }
   },
