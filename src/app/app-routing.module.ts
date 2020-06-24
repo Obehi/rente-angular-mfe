@@ -60,29 +60,29 @@ const routes: Routes = [
   {
     path: ROUTES_MAP.cookies, component: AboutCookiesComponent,
     data: {
-      title: customMeta.cookiesTitle,
+      title: customMeta.cookies.title,
       meta: {
         name: defaultMeta.name,
-        description: customMeta.cookiesDescription
+        description: customMeta.cookies.description
       }
     }
   },
   {
     path: ROUTES_MAP.termsConditions, component: TermsConditionsComponent,
     data: {
-      title: customMeta.brukervilkarTitle,
+      title: customMeta.personvernerklaering.title,
       meta: {
         name: defaultMeta.name,
-        description: customMeta.personvernDescription
+        description: customMeta.personvernerklaering.description
       }
     }
   },
   {
     path: ROUTES_MAP.privacyPolicy, component: PrivacyPolicyComponent, data: {
-      title: customMeta.personvernTitle,
+      title: customMeta.personvernerklaering.title,
       meta: {
         name: defaultMeta.name,
-        description: customMeta.personvernDescription
+        description: customMeta.personvernerklaering.description
       }
     }
   },
@@ -109,10 +109,10 @@ const routes: Routes = [
   {
     path: ROUTES_MAP.getNotified, component: GetNotifiedComponent,
     data: {
-      title: customMeta.faabeskjedTitle,
+      title: customMeta.faabeskjed.title,
       meta: {
         name: defaultMeta.name,
-        description: customMeta.faabeskjedDescription
+        description: customMeta.faabeskjed.description
       }
     }
   },
@@ -120,10 +120,10 @@ const routes: Routes = [
     path: ROUTES_MAP.auth,
     loadChildren: () => import('./features/auth/auth.module').then(m => m.AuthModule),
     data: {
-      title: customMeta.bankLoginTitle,
+      title: customMeta.auth.title,
       meta: {
         name: defaultMeta.name,
-        description: customMeta.bankDescription
+        description: customMeta.auth.description
       }
     }
   },
