@@ -10,6 +10,27 @@ export const defaultMeta = {
 };
 
 export const customMeta = {
+  landing: {
+    title: 'Beste boliglånsrente | Sammenlign rente på boliglån | Renteradar.no',
+    description: 'Få beste boliglånsrente. Sammenlign renten din med andre og de beste tilbudene i markedet. Du kan prute på renten eller bytte bank- helt automatisk og gratis.'
+  },
+  personvern: {
+    title: 'Personvern | Renteradar.no',
+    description: 'Forbrukerøkonomene AS som driver Renteradar.no, tar personvern og GDPR på alvor. Les mer i vår personvernerklæring og brukervilkår her.'
+  },
+  valgBank: {
+    title: 'Velg banken hvor du har boliglån | Renteradar.no',
+    description: 'Velg banken hvor du har boliglån og logg inn med BankID på mobil. Da henter vi automatisk inn din rente og låneinformasjon.'
+  },
+  omOss: {
+    title: 'Vår visjon og teamet bak tjenesten | Renteradar.no',
+    description: 'Vår visjon er å gjøre det lettere for deg å alltid ha de beste betingelsene på boliglånet. Les mer om teamet bak Renteradar.no her.'
+  },
+  kontakt: {
+    title: 'Kontakt oss | Renteradar.no',
+    description: 'Ta gjerne kontakt om du har spørsmål eller om noe ikke fungerer. Bruk dette kontaktskjemaet eller chat-funksjonen i tjenesten så kommer vi raskt tilbake til deg.'
+  },
+  
   landingTitle: defaultTitle,
   bekreftTitle: 'Renteradar.no | Bekreft  | Overvåk boliglånsrenten din gratis',
   tilbudTitle: 'Oversikt beste tilbud | Renteradar.no',
@@ -17,6 +38,10 @@ export const customMeta = {
   boligTitle: 'Bolig | Renteradar.no',
   preferanserTitle: 'Preferanser | Renteradar.no',
   profilTitle: 'Profil | Renteradar.no',
+
+
+  
+  
   velgbankTitle:
     'Beste boliglånsrente | Sammenlign rente på boliglån | Renteradar.no',
   kontaktTitle:
@@ -33,6 +58,7 @@ export const customMeta = {
     'Beste boliglånsrente | Sammenlign rente på boliglån | Ofte stilte spørsmål',
   ofteStilteSporsmaalDescription:
     'Hvor finner jeg beste boliglånsrente? Bruker dere data fra Finansportalen? Hvor mye kan jeg spare? Koster det noe?',
+  
   personvernTitle:
     'Beste boliglånsrente | Sammenlign rente på boliglån | Personvern',
   personvernDescription:
@@ -52,9 +78,6 @@ export const customMeta = {
   bankDescription:
     'Renteradar henter renten du har og lånebeløp automatisk med BankID på mobil',
   bankLoginTitle: 'Renteradar.no | Registrer | Logg inn',
-  coFounderTitle: 'Renteradar.no | Co-Founder',
-  coFounderDescription:
-    'Beste boliglånsrente | Sammenlign rente på boliglån | Renteradar.no',
   DNB: {
     title:
       'Beste boliglånsrente | Sammenlign rente på boliglån | DNB | Renteradar.no',
@@ -189,6 +212,5 @@ export const ROUTES_MAP = {
   initConfirmation: 'bekreft',
   getNotified: 'faabeskjed',
   guide: 'slik-funger-renteradar',
-  coFounder: 'co-founder',
   cookies: 'personvern/cookies'
 };
