@@ -15,80 +15,84 @@ import { AuthGuard } from '@shared/guards/auth.guard';
 import { GetNotifiedComponent } from '@features/get-notified/get-notified.component';
 import { customMeta, defaultMeta, defaultTitle } from './config/routes-config';
 
+
 const routes: Routes = [
   {
     path: '', component: LandingComponent,
     data: {
-      title: customMeta.landingTitle,
-      meta: defaultMeta
+      title: customMeta.landing.title,
+      meta: {
+        name: defaultMeta.name,
+        description: customMeta.landing.description
+      }
     }
   },
   {
     path: ROUTES_MAP.aboutUs, component: AboutUsComponent,
     data: {
-      title: customMeta.omossTitle,
+      title: customMeta.omOss.title,
       meta: {
         name: defaultMeta.name,
-        description: customMeta.omossDescription
+        description: customMeta.omOss.description
       }
     }
   },
   {
     path: ROUTES_MAP.contactUs, component: ContactUsComponent,
     data: {
-      title: customMeta.kontaktTitle,
+      title: customMeta.kontakt.title,
       meta: {
         name: defaultMeta.name,
-        description: customMeta.kontaktDescription
+        description: customMeta.kontakt.description
       }
     }
   },
   {
     path: ROUTES_MAP.privacy, component: PrivacyComponent,
     data: {
-      title: customMeta.personvernerklaeringTitle,
+      title: customMeta.personvern.title,
       meta: {
         name: defaultMeta.name,
-        description: customMeta.personvernDescription
+        description: customMeta.personvern.description
       }
     }
   },
   {
     path: ROUTES_MAP.cookies, component: AboutCookiesComponent,
     data: {
-      title: customMeta.cookiesTitle,
+      title: customMeta.cookies.title,
       meta: {
         name: defaultMeta.name,
-        description: customMeta.cookiesDescription
+        description: customMeta.cookies.description
       }
     }
   },
   {
     path: ROUTES_MAP.termsConditions, component: TermsConditionsComponent,
     data: {
-      title: customMeta.brukervilkarTitle,
+      title: customMeta.personvernerklaering.title,
       meta: {
         name: defaultMeta.name,
-        description: customMeta.personvernDescription
+        description: customMeta.personvernerklaering.description
       }
     }
   },
   {
     path: ROUTES_MAP.privacyPolicy, component: PrivacyPolicyComponent, data: {
-      title: customMeta.personvernTitle,
+      title: customMeta.personvernerklaering.title,
       meta: {
         name: defaultMeta.name,
-        description: customMeta.personvernDescription
+        description: customMeta.personvernerklaering.description
       }
     }
   },
   {
     path: ROUTES_MAP.bankSelect, component: BankSelectComponent,
     data: {
-      title: customMeta.velgbankTitle,
+      title: customMeta.valgBank.title,
       meta: {
         name: defaultMeta.name,
-        description: customMeta.velgbankDescription
+        description: customMeta.valgBank.description
       }
     }
   },
@@ -105,10 +109,10 @@ const routes: Routes = [
   {
     path: ROUTES_MAP.getNotified, component: GetNotifiedComponent,
     data: {
-      title: customMeta.faabeskjedTitle,
+      title: customMeta.faabeskjed.title,
       meta: {
         name: defaultMeta.name,
-        description: customMeta.faabeskjedDescription
+        description: customMeta.faabeskjed.description
       }
     }
   },
@@ -116,10 +120,10 @@ const routes: Routes = [
     path: ROUTES_MAP.auth,
     loadChildren: () => import('./features/auth/auth.module').then(m => m.AuthModule),
     data: {
-      title: customMeta.bankLoginTitle,
+      title: customMeta.auth.title,
       meta: {
         name: defaultMeta.name,
-        description: customMeta.bankDescription
+        description: customMeta.auth.description
       }
     }
   },

@@ -30,6 +30,22 @@ export const customMeta = {
     title: 'Kontakt oss | Renteradar.no',
     description: 'Ta gjerne kontakt om du har spørsmål eller om noe ikke fungerer. Bruk dette kontaktskjemaet eller chat-funksjonen i tjenesten så kommer vi raskt tilbake til deg.'
   },
+  cookies: {
+    title: 'Cookies | Personvern | Renteradar.no',
+    description: 'Les vår Cookiepolicy her om hvorfor og hvordan Renteradar.no bruker cookies.'
+  },
+  faabeskjed: {
+    title: 'Flere banker kommer | Få beskjed | Renteradar.no',
+    description: 'Tjenesten støtter i dag kun kunder av DNB, Nordea, Sparebank 1- eller Eika-bankene. Legg igjen din email og få beskjed når din bank er på plass.'
+  },
+  personvernerklaering: {
+    title: 'Personvernserklæring | Personvern | Renteradar.no',
+    description: 'Forbrukerøkonomene AS som driver Renteradar.no, tar personvern  og GDPR på alvor. Les mer i vår personvernerklæring her.'
+  },
+  auth: {
+    title: 'Registrer | Logg inn | Renteradar.no',
+    description: 'Renteradar.no henter renten du har og lånebeløp automatisk gjennom innlogging med BankID på mobil'
+  },
   
   landingTitle: defaultTitle,
   bekreftTitle: 'Renteradar.no | Bekreft  | Overvåk boliglånsrenten din gratis',
@@ -38,45 +54,7 @@ export const customMeta = {
   boligTitle: 'Bolig | Renteradar.no',
   preferanserTitle: 'Preferanser | Renteradar.no',
   profilTitle: 'Profil | Renteradar.no',
-
-
   
-  
-  velgbankTitle:
-    'Beste boliglånsrente | Sammenlign rente på boliglån | Renteradar.no',
-  kontaktTitle:
-    'Beste boliglånsrente | Sammenlign rente på boliglån | Kontakt oss',
-  kontaktDescription:
-    'Renteradar gjør det enkelt å sammenligne boliglån og få beste boliglånsrente. Hvis du har spørsmål ta gjerne kontakt med oss',
-  velgbankDescription:
-    'Velg banken du har boliglån i og registrer deg inn med BankID på mobil.' +
-    ' Renteradar henter renten du har og lånebeløp automatisk.',
-  omossTitle: 'Beste boliglånsrente | Sammenlign rente på boliglån | Om oss',
-  omossDescription:
-    'Markedet for boliglån kan være kaotisk, og det kan være vanskelig å vite hvilken rente du fortjener og i hvilken bank du finner denne.',
-  ofteStilteSporsmaalTitle:
-    'Beste boliglånsrente | Sammenlign rente på boliglån | Ofte stilte spørsmål',
-  ofteStilteSporsmaalDescription:
-    'Hvor finner jeg beste boliglånsrente? Bruker dere data fra Finansportalen? Hvor mye kan jeg spare? Koster det noe?',
-  
-  personvernTitle:
-    'Beste boliglånsrente | Sammenlign rente på boliglån | Personvern',
-  personvernDescription:
-    'Vi tar GDPR på alvor og ditt personvern er viktig for oss i Renteradar.no. Renteradar.no eies og drives av Forbrukerøkonomene AS som er et norsk selskap underlagt norsk lov...',
-  personvernerklaeringTitle:
-    'Beste boliglånsrente | Sammenlign rente på boliglån | Personvernerklæring',
-  cookiesTitle:
-    'Beste boliglånsrente | Sammenlign rente på boliglån | Personvernerklæring',
-  cookiesDescription:
-    'Renteradar henter renten du har og lånebeløp automatisk med BankID på mobil',
-  brukervilkarTitle:
-    'Beste boliglånsrente | Sammenlign rente på boliglån | Brukervilkår',
-  faabeskjedTitle:
-    'Beste boliglånsrente | Sammenlign rente på boliglån | Renteradar.no',
-  faabeskjedDescription:
-    'Vi har foreløpig kun støtte for automatisk innhenting av dine betingelser hvis du er kunde i DNB, Nordea eller Sparebank 1. Legg igjen din email og få beskjed når vi har en løsning for din bank',
-  bankDescription:
-    'Renteradar henter renten du har og lånebeløp automatisk med BankID på mobil',
   bankLoginTitle: 'Renteradar.no | Registrer | Logg inn',
   DNB: {
     title:
