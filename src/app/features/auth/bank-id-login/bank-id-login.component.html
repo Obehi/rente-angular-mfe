@@ -22,6 +22,10 @@
       Gi gjerne beskjed hvis noe ikke fungerer optimalt.
     </p>
 
+    <p class="red" *ngIf="isDnbBank">
+      Vi opplever for tiden problemer med login for enkelte DNB kunder, vi håper å ha en løsning klar snart.
+    </p>
+    
     <form
       [formGroup]="bankIdForm"
       novalidate
