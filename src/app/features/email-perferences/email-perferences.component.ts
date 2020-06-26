@@ -44,15 +44,15 @@ import {
 })
 export class EmailPerferencesComponent implements OnInit, DeactivationGuarded {
   private guid: string | null;
-  private emailForm: FormGroup;
+  public emailForm: FormGroup;
   private checkRateReminderType: string
   private receiveNewsEmails: boolean
   public canNavigateBooolean$: Subject<boolean> = new Subject<boolean>();
   private canLeavePage = true;
   public isLoading = false;
-  private errorAnimationTrigger:boolean;
-  private updateAnimationTrigger: boolean;
-  private errorMessage: string
+  public errorAnimationTrigger:boolean;
+  public updateAnimationTrigger: boolean;
+  public errorMessage: string
 
 
   constructor(
