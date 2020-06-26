@@ -3,7 +3,8 @@ import { PreferancesService } from '@shared/services/remote-api/preferances.serv
 import { EmailDto } from '@services/remote-api/loans.service';
 import { ActivatedRoute } from '@angular/router';
 import {Location} from '@angular/common';
-
+import { ProfileDialogInfoComponent } from '../dashboard/profile/dialog-info/dialog-info.component';
+import { MatDialog } from '@angular/material/dialog';
 import {
   FormGroup,
   FormBuilder
@@ -52,25 +53,30 @@ export class EmailPerferencesComponent implements OnInit, DeactivationGuarded {
   public isLoading = false;
   public errorAnimationTrigger:boolean;
   public updateAnimationTrigger: boolean;
-  public errorMessage: string
-
-
+  public showErrorMessage = false;
+  public errorMessage: string;
+ 
   constructor(
     private fb: FormBuilder,
     private preferancesService: PreferancesService, 
     private activatedRoute: ActivatedRoute,
-    public location: Location) { }
+    public location: Location,
+    private dialog: MatDialog) { }
 
   ngOnInit() {
    
+    console.log(this.showErrorMessage)
     let currentUrl = this.location.path();
-    this.guid = this.getGuIdFromUrl(currentUrl)
-    console.log(this.guid)
 
+    
+    this.guid = this.getGuIdFromUrl(currentUrl);
+    console.log(this.guid);
+    
+    
+  
     if (this.guid) {
       this.preferancesService.getPreferancesWithGUID(this.guid).subscribe(preferances => { 
-
-        let dto: EmailDto = preferances;
+        console.log("preferancesService callback")
         this.checkRateReminderType = preferances.checkRateReminderType;
         this.receiveNewsEmails = preferances.receiveNewsEmails;
       
@@ -78,9 +84,17 @@ export class EmailPerferencesComponent implements OnInit, DeactivationGuarded {
           receiveNewsEmails: [this.receiveNewsEmails],
           checkRateReminderType: [this.checkRateReminderType],
         });
-      }
+      }, err => {
+        console.log("error")
+        console.log(err)
+        this.showErrorMessage = true;
+   
+        }
       )
+    } else {
+      this.showErrorMessage = true;
     }
+    
   }
 
   // DeactivationGuarded Interface method. 
@@ -93,6 +107,12 @@ export class EmailPerferencesComponent implements OnInit, DeactivationGuarded {
     // Wait for upload info before navigating to another page
     this.isLoading = true
     return this.canNavigateBooolean$
+  }
+
+  public openInfoDialog(offer: string): void {
+    this.dialog.open(ProfileDialogInfoComponent, {
+      data: offer
+    });
   }
 
   sendForm(){

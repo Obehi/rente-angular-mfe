@@ -27,7 +27,7 @@ import { FormsModule } from '@angular/forms';
 import { DialogInfoComponent } from './features/init-confirmation/dialog-info/dialog-info.component';
 import { DeferLoadModule } from '@trademe/ng-defer-load';
 import { EmailPerferencesComponent } from './features/email-perferences/email-perferences.component';
-
+import { ProfileDialogInfoComponent } from "./features/dashboard/profile/dialog-info/dialog-info.component";
 
 registerLocaleData(localeNo);
 
@@ -48,7 +48,8 @@ registerLocaleData(localeNo);
     CounterComponent,
     DialogInfoComponent,
     AboutCookiesComponent,
-    EmailPerferencesComponent
+    EmailPerferencesComponent,
+    ProfileDialogInfoComponent
   ],
   imports: [
     BrowserModule,
@@ -61,7 +62,7 @@ registerLocaleData(localeNo);
     FormsModule,
     DeferLoadModule
   ],
-  entryComponents: [DialogInfoComponent],
+  entryComponents: [DialogInfoComponent, ProfileDialogInfoComponent],
   providers: [{ provide: LOCALE_ID, useValue: 'nb-NO' }, UserService],
   bootstrap: [AppComponent]
 })

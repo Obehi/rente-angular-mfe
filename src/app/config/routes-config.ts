@@ -191,5 +191,5 @@ export const ROUTES_MAP = {
   getNotified: 'faabeskjed',
   guide: 'slik-funger-renteradar',
   cookies: 'personvern/cookies',
-  emailPreferences: 'email/instillinger'
+  emailPreferences: 'epost/innstillinger'
 };

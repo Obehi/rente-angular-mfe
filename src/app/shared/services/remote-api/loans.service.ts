@@ -174,6 +174,7 @@ export class PreferencesDto {
   availableMemberships:MembershipTypeDto[];
   memberships:string[];
   communicationChannelType:string;
+  receiveNewsEmails:string;
   checkRateReminderType:string;
   fetchCreditLinesOnly:boolean;
   noAdditionalProductsRequired:boolean;

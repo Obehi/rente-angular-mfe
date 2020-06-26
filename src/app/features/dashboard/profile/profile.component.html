@@ -139,22 +139,36 @@
   <div class="desktop-section">
     <form [formGroup]="preferencesForm" novalidate change>
       <div class="field">
-        <h3 class="desktop">Preferanser</h3>
+        <h3 class="desktop">Epost innstillinger</h3>
 
         <div class="accordion field">
           <div
             class="header mobile"
             (click)="showPreferences = !showPreferences"
           >
-            <h3>Preferanser</h3>
+            <h3>Epost innstillinger</h3>
             <mat-icon *ngIf="!showPreferences">expand_more</mat-icon>
             <mat-icon *ngIf="showPreferences">expand_less</mat-icon>
           </div>
           <div class="body">
             <div class="inner-body" *ngIf="showPreferences">
               <div class="field">
+                <p class="small">
+                    Få markedsoppdateringer, nyheter og annen informasjon på epost
+                </p>
+                <mat-radio-group formControlName="receiveNewsEmails">
+                <mat-radio-button [value]="true"
+                    ><span class="mat-radio-label">Ja</span></mat-radio-button
+                >
+                <mat-radio-button [value]="false"
+                    ><span class="mat-radio-label">Nei</span></mat-radio-button
+                >
+                </mat-radio-group>     
+            </div>  
+       
+              <div class="field">
                 <div class="withinfo">
-                  <p class="small">Bli påminnet om bedre rente</p>
+                  <p class="small">Markedsovervåkning / Rentesjekk av dine lån</p>
                   <div
                     (click)="
                       openInfoDialog(
@@ -194,6 +208,7 @@
                   >
                 </mat-radio-group>
               </div>
+              <h3>Preferanser for lån</h3>
               <div class="field">
                 <p class="small">
                   Ønsker du kun å se tilbud på rammelån/flexilån?
@@ -247,5 +262,4 @@
       </div>
     </form>
   </div>
-
 </div>
