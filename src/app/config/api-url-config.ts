@@ -29,6 +29,13 @@ export const API_URL_MAP = {
       base: '/stat',
       click: '/click'
     },
+    public: {
+      base: '/public',
+      email: {
+        base: '/email',
+        preferences: '/preferences/'
+      }
+    },
     loans: {
       base: '/loans',
       state: '/state'

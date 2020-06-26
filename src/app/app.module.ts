@@ -26,6 +26,8 @@ import { UserService } from '@services/remote-api/user.service';
 import { FormsModule } from '@angular/forms';
 import { DialogInfoComponent } from './features/init-confirmation/dialog-info/dialog-info.component';
 import { DeferLoadModule } from '@trademe/ng-defer-load';
+import { EmailPerferencesComponent } from './features/email-perferences/email-perferences.component';
+
 
 registerLocaleData(localeNo);
 
@@ -45,7 +47,8 @@ registerLocaleData(localeNo);
     GetNotifiedComponent,
     CounterComponent,
     DialogInfoComponent,
-    AboutCookiesComponent
+    AboutCookiesComponent,
+    EmailPerferencesComponent
   ],
   imports: [
     BrowserModule,

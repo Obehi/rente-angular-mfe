@@ -1,0 +1,114 @@
+@import "../../../styles/theme/_colors.scss";
+
+h3 {
+  padding: 20px;
+  padding-bottom: 0;
+}
+form {
+  background-color: unset;
+}
+.field {
+  margin-bottom: 40px;
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+}
+.small {
+  margin-bottom: 5px;
+}
+
+.accordion {
+  position: relative;
+  left: -20px;
+  width: calc(100% + 40px);
+
+  .header {
+    position: relative;
+    background-color: $lightgreen;
+    text-align: left;
+    border-top: 1px solid $green;
+    padding: 10px 20px;
+    mat-icon {
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+  .body {
+    border-bottom: 1px solid $green;
+    .inner-body {
+      padding: 20px;
+    }
+  }
+  mat-form-field {
+    width: 100%;
+  }
+
+  .memberlist {
+    font-size: 16px;
+    position: relative;
+    border-bottom: 1px solid $light;
+    padding: 10px 30px 10px 0px;
+    &:last-of-type {
+      border-bottom: none;
+    }
+    mat-icon {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+}
+form {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.loading {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+}
+
+.preferences {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 40px;
+    background: #ffffff;
+}
+
+@media (max-width: 600px) {
+  form {
+    padding: 20px;
+  }
+  .header {
+    h3 {
+      padding: 0;
+    }
+  }
+}
+@media (min-width: 600px) {
+  .preferences {
+    padding: 40px 80px;
+    
+    h3 {
+      padding: 0;
+      padding-bottom: 20px;
+    }
+  }
+
+  .accordion {
+    left: 0;
+    width: 100%;
+    .body {
+      border: none;
+      .inner-body {
+        padding: 0;
+      }
+    }
+  }
+}

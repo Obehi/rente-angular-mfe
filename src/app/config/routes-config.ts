@@ -190,5 +190,6 @@ export const ROUTES_MAP = {
   initConfirmation: 'bekreft',
   getNotified: 'faabeskjed',
   guide: 'slik-funger-renteradar',
-  cookies: 'personvern/cookies'
+  cookies: 'personvern/cookies',
+  emailPreferences: 'email/instillinger'
 };

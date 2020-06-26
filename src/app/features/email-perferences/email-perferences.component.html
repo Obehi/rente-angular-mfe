@@ -1,0 +1,66 @@
+
+<div class="loading" *ngIf="isLoading">
+    <mat-spinner [diameter]="48" [strokeWidth]="4"></mat-spinner>
+</div>
+<div class="update-complete" [@loading]="updateAnimationTrigger? 'true' : 'false'">
+    <img src="../../../../assets/icons/ic_done.svg" alt="success-icon" />
+    <p>Lagret</p>
+  </div>
+
+<div class="update-error" [@loading]="errorAnimationTrigger ? 'true' : 'false'">
+    <p>{{errorMessage}}</p>
+  </div>
+<div class="preferences" *ngIf="emailForm">
+    <h3>Email instillinger</h3>
+    <form [formGroup]="emailForm" novalidate change>
+        <div class="field">
+            <p class="small">
+                Få markedsoppdateringer, nyheter og annen informasjon på epost
+            </p>
+            <mat-radio-group formControlName="receiveNewsEmails">
+            <mat-radio-button [value]="true"
+                ><span class="mat-radio-label">Ja</span></mat-radio-button
+            >
+            <mat-radio-button [value]="false"
+                ><span class="mat-radio-label">Nei</span></mat-radio-button
+            >
+            </mat-radio-group>     
+        </div>  
+
+        <div class="field">
+            <p class="small">
+                Bli påminnet om bedre rente på epost
+            </p>
+        <mat-radio-group formControlName="checkRateReminderType">
+            <mat-radio-button value="HVER_MANED_1"
+              ><span class="mat-radio-label"
+                >Hver måned</span
+              ></mat-radio-button
+            >
+            <mat-radio-button value="HVER_MANED_2"
+              ><span class="mat-radio-label"
+                >Hver 2. måned</span
+              ></mat-radio-button
+            >
+            <mat-radio-button value="HVER_MANED_3"
+              ><span class="mat-radio-label"
+                >Hver 3. måned</span
+              ></mat-radio-button
+            >
+            <mat-radio-button value="HVER_MANED_4"
+              ><span class="mat-radio-label"
+                >Hver 4. måned</span
+              ></mat-radio-button
+            >
+            <mat-radio-button value="NONE"
+              ><span class="mat-radio-label"
+                >Aldri</span
+              ></mat-radio-button
+            >
+          </mat-radio-group>
+        </div>
+        
+  </form>
+  <rente-button class="add" color="primary" (click)="sendForm()">
+    Lagre endringer
+</rente-button>

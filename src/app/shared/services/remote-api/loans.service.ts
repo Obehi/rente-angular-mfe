@@ -194,3 +194,9 @@ export class MembershipTypeDto {
   name:string;
   label:string;
 }
+
+export class EmailDto  {
+  checkRateReminderType: null | string;
+  receiveNewsEmails: false | true;
+}
+
