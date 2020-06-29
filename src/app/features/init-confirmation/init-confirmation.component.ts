@@ -19,7 +19,7 @@ import {
   MatDialog
 } from '@angular/material';
 import { Router } from '@angular/router';
-import createNumberMask from 'text-mask-addons/dist/createNumberMask';
+
 import { VALIDATION_PATTERN } from '@config/validation-patterns.config';
 import { SnackBarService } from '../../shared/services/snackbar.service';
 import { OfferInfo } from '@shared/models/offers';
@@ -44,14 +44,7 @@ export class InitConfirmationComponent implements OnInit {
   public allMemberships: MembershipTypeDto[];
   public userData:ConfirmationGetDto;
   public threeDigitsMask = { mask: [/\d/, /\d/, /\d/], guide: false };
-  public thousandSeparatorMask = {
-    mask: createNumberMask({
-      prefix: '',
-      suffix: '',
-      thousandsSeparatorSymbol: ' '
-    }),
-    guide: false
-  };
+
 
   @ViewChild('membershipInput', { static: false }) membershipInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto', { static: false }) matAutocomplete: MatAutocomplete;

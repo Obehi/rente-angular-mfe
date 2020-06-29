@@ -21,11 +21,10 @@ import localeNo from '@angular/common/locales/nb';
 import { MaterialModule } from '@shared/material/material.module';
 import { GetNotifiedComponent } from '@features/get-notified/get-notified.component';
 import { CounterComponent } from './shared/components/ui-components/counter/counter.component';
-import { Ng2OdometerModule } from 'ng2-odometer'; // <-- import the module
+
 import { UserService } from '@services/remote-api/user.service';
 import { FormsModule } from '@angular/forms';
 import { DialogInfoComponent } from './features/init-confirmation/dialog-info/dialog-info.component';
-import { DeferLoadModule } from '@trademe/ng-defer-load';
 import { EmailPerferencesComponent } from './features/email-perferences/email-perferences.component';
 import { ProfileDialogInfoComponent } from "./features/dashboard/profile/dialog-info/dialog-info.component";
 
@@ -57,10 +56,8 @@ registerLocaleData(localeNo);
     AppRoutingModule,
     SharedModule,
     MaterialModule,
-    Ng2OdometerModule.forRoot(),
     ReactiveFormsModule,
-    FormsModule,
-    DeferLoadModule
+    FormsModule
   ],
   entryComponents: [DialogInfoComponent, ProfileDialogInfoComponent],
   providers: [{ provide: LOCALE_ID, useValue: 'nb-NO' }, UserService],

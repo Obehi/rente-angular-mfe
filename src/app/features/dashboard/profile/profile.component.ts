@@ -19,7 +19,7 @@ import { ProfileDialogInfoComponent } from './dialog-info/dialog-info.component'
 import { MatChipInputEvent } from '@angular/material';
 import { LoansService, MembershipTypeDto, PreferencesUpdateDto, PreferencesDto } from '@services/remote-api/loans.service';
 import { UserService } from '@services/remote-api/user.service';
-import createNumberMask from 'text-mask-addons/dist/createNumberMask';
+
 import { VALIDATION_PATTERN } from '../../../config/validation-patterns.config';
 import { SnackBarService } from '../../../shared/services/snackbar.service';
 import { OfferInfo } from '@shared/models/offers';
@@ -77,14 +77,7 @@ export class ProfileComponent implements OnInit, DeactivationGuarded {
   public errorAnimationTrigger :boolean;
   public canNavigateBooolean$: Subject<boolean> = new Subject<boolean>();
   public username: string;
-  public thousandSeparatorMask = {
-    mask: createNumberMask({
-      prefix: '',
-      suffix: '',
-      thousandsSeparatorSymbol: ' '
-    }),
-    guide: false
-  };
+
   changesMade = false;
 
   @ViewChild('membershipInput', { static: false }) membershipInput: ElementRef<HTMLInputElement>;

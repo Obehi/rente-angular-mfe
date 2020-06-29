@@ -26,5 +26,8 @@
       "@assets/*": ["./src/assets/*"],
       "@config/*": ["./src/app/config/*"]
     }
+  },
+  "angularCompilerOptions": {
+    "enableIvy": true
   }
 }
