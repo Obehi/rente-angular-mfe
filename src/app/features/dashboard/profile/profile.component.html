@@ -153,20 +153,6 @@
           <div class="body">
             <div class="inner-body" *ngIf="showPreferences">
               <div class="field">
-                <p class="small">
-                    Få markedsoppdateringer, nyheter og annen informasjon på epost
-                </p>
-                <mat-radio-group formControlName="receiveNewsEmails">
-                <mat-radio-button [value]="true"
-                    ><span class="mat-radio-label">Ja</span></mat-radio-button
-                >
-                <mat-radio-button [value]="false"
-                    ><span class="mat-radio-label">Nei</span></mat-radio-button
-                >
-                </mat-radio-group>     
-            </div>  
-       
-              <div class="field">
                 <div class="withinfo">
                   <p class="small">Markedsovervåkning / Rentesjekk av dine lån</p>
                   <div
@@ -208,10 +194,23 @@
                   >
                 </mat-radio-group>
               </div>
-              <h3>Preferanser for lån</h3>
               <div class="field">
                 <p class="small">
-                  Ønsker du kun å se tilbud på rammelån/flexilån?
+                    Få markedsoppdateringer, nyheter og annen informasjon på epost
+                </p>
+                <mat-radio-group formControlName="receiveNewsEmails">
+                <mat-radio-button [value]="true"
+                    ><span class="mat-radio-label">Ja</span></mat-radio-button
+                >
+                <mat-radio-button [value]="false"
+                    ><span class="mat-radio-label">Nei</span></mat-radio-button
+                >
+                </mat-radio-group>     
+              </div>  
+              <h3>Hvilke tilbud vil du se?</h3>
+              <div class="field">
+                <p class="small">
+                  Ønsker du <b>kun</b> å se tilbud på rammelån/flexilån?
                 </p>
 
                 <mat-radio-group formControlName="fetchCreditLinesOnly">
@@ -225,8 +224,7 @@
               </div>
               <div class="field">
                 <p class="small">
-                  Vil du se tilbud som krever andre produkter? (F.eks.
-                  lønnskonto)
+                  Vil du se tilbud som krever andre produkter? (F.eks. bytte av nettbank og aktiv lønnskonto)
                 </p>
 
                 <mat-radio-group formControlName="noAdditionalProductsRequired">
