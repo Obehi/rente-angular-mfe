@@ -80,8 +80,8 @@ export class ProfileComponent implements OnInit, DeactivationGuarded {
 
   changesMade = false;
 
-  @ViewChild('membershipInput', { static: false }) membershipInput: ElementRef<HTMLInputElement>;
-  @ViewChild('auto', { static: false }) matAutocomplete: MatAutocomplete;
+  @ViewChild('membershipInput') membershipInput: ElementRef<HTMLInputElement>;
+  @ViewChild('auto') matAutocomplete: MatAutocomplete;
 
   constructor(
     private fb: FormBuilder,
