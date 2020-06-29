@@ -208,6 +208,7 @@ export class ProfileComponent implements OnInit, DeactivationGuarded {
     dto.fetchCreditLinesOnly = this.preferencesForm.get('fetchCreditLinesOnly').value;
     dto.noAdditionalProductsRequired = this.preferencesForm.get('noAdditionalProductsRequired').value;
     dto.interestedInEnvironmentMortgages = this.preferencesForm.get('interestedInEnvironmentMortgages').value;
+    dto.receiveNewsEmails = this.preferencesForm.get('receiveNewsEmails').value;
 
     // No one leaves the page while updating
     this.canLeavePage = false;
