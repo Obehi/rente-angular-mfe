@@ -64,19 +64,12 @@ export class EmailPerferencesComponent implements OnInit, DeactivationGuarded {
     private dialog: MatDialog) { }
 
   ngOnInit() {
-   
-    console.log(this.showErrorMessage)
     let currentUrl = this.location.path();
-
-    
     this.guid = this.getGuIdFromUrl(currentUrl);
     console.log(this.guid);
     
-    
-  
     if (this.guid) {
       this.preferancesService.getPreferancesWithGUID(this.guid).subscribe(preferances => { 
-        console.log("preferancesService callback")
         this.checkRateReminderType = preferances.checkRateReminderType;
         this.receiveNewsEmails = preferances.receiveNewsEmails;
       
@@ -85,10 +78,7 @@ export class EmailPerferencesComponent implements OnInit, DeactivationGuarded {
           checkRateReminderType: [this.checkRateReminderType],
         });
       }, err => {
-        console.log("error")
-        console.log(err)
         this.showErrorMessage = true;
-   
         }
       )
     } else {
