@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EmailPerferencesComponent } from './email-perferences.component';
+import { EmailPreferencesComponent } from './email-preferences.component';
 
-describe('EmailPerferencesComponent', () => {
-  let component: EmailPerferencesComponent;
-  let fixture: ComponentFixture<EmailPerferencesComponent>;
+describe('EmailPreferencesComponent', () => {
+  let component: EmailPreferencesComponent;
+  let fixture: ComponentFixture<EmailPreferencesComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EmailPerferencesComponent ]
+      declarations: [ EmailPreferencesComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(EmailPerferencesComponent);
+    fixture = TestBed.createComponent(EmailPreferencesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -22,9 +22,9 @@ import {
 
 
 @Component({
-  selector: 'rente-email-perferences',
-  templateUrl: './email-perferences.component.html',
-  styleUrls: ['./email-perferences.component.scss'],
+  selector: 'rente-email-preferences',
+  templateUrl: './email-preferences.component.html',
+  styleUrls: ['./email-preferences.component.scss'],
   animations: [
     trigger('loading', [
       // ...
@@ -33,7 +33,7 @@ import {
       })),
       transition(':enter', []),
       transition('* => *', [
-        animate('3s', keyframes([
+        animate('1.5s', keyframes([
           style({ opacity: 1, offset: 0.1}),
           style({ opacity: 1, offset: 0.8}),
           style({ opacity: 0, offset: 1}),
@@ -43,7 +43,7 @@ import {
     ]),
   ]
 })
-export class EmailPerferencesComponent implements OnInit, DeactivationGuarded {
+export class EmailPreferencesComponent implements OnInit, DeactivationGuarded {
   private guid: string | null;
   public emailForm: FormGroup;
   private checkRateReminderType: string
@@ -66,7 +66,6 @@ export class EmailPerferencesComponent implements OnInit, DeactivationGuarded {
   ngOnInit() {
     let currentUrl = this.location.path();
     this.guid = this.getGuIdFromUrl(currentUrl);
-    console.log(this.guid);
     
     if (this.guid) {
       this.preferancesService.getPreferancesWithGUID(this.guid).subscribe(preferances => { 
@@ -84,7 +83,6 @@ export class EmailPerferencesComponent implements OnInit, DeactivationGuarded {
     } else {
       this.showErrorMessage = true;
     }
-    
   }
 
   // DeactivationGuarded Interface method. 

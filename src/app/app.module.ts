@@ -26,7 +26,7 @@ import { UserService } from '@services/remote-api/user.service';
 import { FormsModule } from '@angular/forms';
 import { DialogInfoComponent } from './features/init-confirmation/dialog-info/dialog-info.component';
 import { DeferLoadModule } from '@trademe/ng-defer-load';
-import { EmailPerferencesComponent } from './features/email-perferences/email-perferences.component';
+import { EmailPreferencesComponent } from './features/email-preferences/email-preferences.component';
 import { ProfileDialogInfoComponent } from "./features/dashboard/profile/dialog-info/dialog-info.component";
 
 registerLocaleData(localeNo);
@@ -48,7 +48,7 @@ registerLocaleData(localeNo);
     CounterComponent,
     DialogInfoComponent,
     AboutCookiesComponent,
-    EmailPerferencesComponent,
+    EmailPreferencesComponent,
     ProfileDialogInfoComponent
   ],
   imports: [
