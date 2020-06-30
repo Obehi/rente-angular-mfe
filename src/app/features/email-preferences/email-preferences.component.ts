@@ -9,8 +9,7 @@ import {
   FormGroup,
   FormBuilder
 } from '@angular/forms';
-import { DeactivationGuarded } from '@shared/guards/route.guard';
-import { Observable, Subject } from 'rxjs';
+import {  Subject } from 'rxjs';
 import {
   trigger,
   state,
@@ -43,13 +42,12 @@ import {
     ]),
   ]
 })
-export class EmailPreferencesComponent implements OnInit, DeactivationGuarded {
+export class EmailPreferencesComponent implements OnInit {
   private guid: string | null;
   public emailForm: FormGroup;
   private checkRateReminderType: string
   private receiveNewsEmails: boolean
   public canNavigateBooolean$: Subject<boolean> = new Subject<boolean>();
-  private canLeavePage = true;
   public isLoading = false;
   public errorAnimationTrigger:boolean;
   public updateAnimationTrigger: boolean;
@@ -85,18 +83,6 @@ export class EmailPreferencesComponent implements OnInit, DeactivationGuarded {
     }
   }
 
-  // DeactivationGuarded Interface method. 
-  // Gets called every time user navigates from this page.
-  // Determines if you can leave this page or if you have to wait. 
-  canDeactivate(): boolean | Observable<boolean> | Promise<boolean> {
-    if(this.canLeavePage)
-    return true;
-    
-    // Wait for upload info before navigating to another page
-    this.isLoading = true
-    return this.canNavigateBooolean$
-  }
-
   public openInfoDialog(offer: string): void {
     this.dialog.open(ProfileDialogInfoComponent, {
       data: offer
@@ -104,7 +90,6 @@ export class EmailPreferencesComponent implements OnInit, DeactivationGuarded {
   }
 
   sendForm(){
-    this.canLeavePage = false;
     this.isLoading = true;
 
     let dto = new EmailDto()
@@ -112,7 +97,6 @@ export class EmailPreferencesComponent implements OnInit, DeactivationGuarded {
     dto.receiveNewsEmails = this.emailForm.get('receiveNewsEmails').value;
 
     this.preferancesService.postPreferancesWithGUID(this.guid, dto).subscribe(response => {
-      this.canLeavePage = true;
       this.isLoading = false;
       this.updateAnimationTrigger  = !this.updateAnimationTrigger 
     }, err => {
@@ -124,7 +108,6 @@ export class EmailPreferencesComponent implements OnInit, DeactivationGuarded {
       }
 
       this.errorAnimationTrigger = !this.errorAnimationTrigger 
-      this.canLeavePage = true;
       this.isLoading = false;
     })
   }
