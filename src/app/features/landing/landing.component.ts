@@ -23,10 +23,6 @@ export class LandingComponent implements OnInit {
   time = 0;
   get isMobile(): boolean { return window.innerWidth < 600; }
 
-  defer = {
-    example: false
-  }
-
   ngOnInit(): void {
     const subscription = timer(1000, 1000).subscribe(t => {
       this.time = t;
