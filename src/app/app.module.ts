@@ -25,7 +25,7 @@ import { Ng2OdometerModule } from 'ng2-odometer'; // <-- import the module
 import { UserService } from '@services/remote-api/user.service';
 import { FormsModule } from '@angular/forms';
 import { DialogInfoComponent } from './features/init-confirmation/dialog-info/dialog-info.component';
-import { EmailPerferencesComponent } from './features/email-perferences/email-perferences.component';
+import { EmailPreferencesComponent } from './features/email-preferences/email-preferences.component';
 import { ProfileDialogInfoComponent } from "./features/dashboard/profile/dialog-info/dialog-info.component";
 
 registerLocaleData(localeNo);
@@ -47,7 +47,7 @@ registerLocaleData(localeNo);
     CounterComponent,
     DialogInfoComponent,
     AboutCookiesComponent,
-    EmailPerferencesComponent,
+    EmailPreferencesComponent,
     ProfileDialogInfoComponent
   ],
   imports: [
