@@ -15,7 +15,7 @@ import {
   templateUrl: './offer-card.component.html',
   styleUrls: ['./offer-card.component.scss']
 })
-export class OfferCardComponent {
+export class OfferCardComponent implements OnInit {
 
   public banksMap = BANKS_DATA;
   public offerSavingsType = OFFER_SAVINGS_TYPE
@@ -24,6 +24,10 @@ export class OfferCardComponent {
   @Input() offersInfo: Offers
   @Input() index: number
   constructor(private trackingService: TrackingService) { }
+
+  ngOnInit() {
+    console.log(this.offer)
+  }
 
   get isMobile(): boolean { return window.innerWidth < 600; }
 

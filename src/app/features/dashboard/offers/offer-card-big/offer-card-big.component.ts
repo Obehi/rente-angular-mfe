@@ -17,7 +17,7 @@ import {
   templateUrl: './offer-card-big.component.html',
   styleUrls: ['./offer-card-big.component.scss']
 })
-export class OfferCardBigComponent {
+export class OfferCardBigComponent implements OnInit {
   public banksMap = BANKS_DATA;
   public offerSavingsType = OFFER_SAVINGS_TYPE
 
@@ -27,6 +27,10 @@ export class OfferCardBigComponent {
   constructor(
     private trackingService: TrackingService,
     public dialog: MatDialog) { }
+
+  ngOnInit() {
+    console.log(this.offer)
+  }
 
   get isMobile(): boolean { return window.innerWidth < 600; }
 
@@ -110,4 +114,6 @@ export class OfferCardBigComponent {
     trackingDto.type = "BANK_BUTTON_2";
     this.sendOfferTrackingData(trackingDto, offer)
   }
+
+
 }
