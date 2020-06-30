@@ -1,0 +1,91 @@
+
+<div class="loading" *ngIf="isLoading">
+    <mat-spinner [diameter]="48" [strokeWidth]="4"></mat-spinner>
+</div>
+<div class="update-complete" [@loading]="updateAnimationTrigger? 'true' : 'false'">
+    <img src="../../../../assets/icons/ic_done.svg" alt="success-icon" />
+    <p>Lagret</p>
+  </div>
+
+<div class="update-error" [@loading]="errorAnimationTrigger ? 'true' : 'false'">
+    <p>{{errorMessage}}</p>
+  </div>
+
+
+<div class="preferences">
+    <h3>Epost innstillinger</h3>
+    <ng-container *ngIf="showErrorMessage; else form">
+        <p class="warning">Noe gikk galt, vennligst logg inn eller ta kontakt med oss på <a href = "mailto: hei@renteradar.no">hei@renteradar.no</a></p>
+    </ng-container>
+
+      <ng-template #form>
+        <ng-container *ngIf="emailForm">
+        <form [formGroup]="emailForm" novalidate change>
+             
+
+            <div class="field">
+                <div class="withinfo">
+                    <p class="small">Markedsovervåkning / Rentesjekk av dine lån</p>
+                    <div
+                      (click)="
+                        openInfoDialog(
+                          'Renteradar.no overvåker kontinuerlig markedet for bedre rente enn det du har på lånet ditt. Renten du har på lånet ditt sjekkes og oppdateres ved at du identifiserer deg med BankID. Det er viktig at dette gjøres fra tid til annen for at eventuelle renteendringer på lånet ditt skal fanges opp.'
+                        )
+                      "
+                      class="clickable"
+                    >
+                      <mat-icon>help</mat-icon>
+                    </div>
+                  </div>
+                <mat-radio-group formControlName="checkRateReminderType">
+                    <mat-radio-button value="HVER_MANED_1"
+                    ><span class="mat-radio-label"
+                        >Hver måned</span
+                    ></mat-radio-button
+                    >
+                    <mat-radio-button value="HVER_MANED_2"
+                    ><span class="mat-radio-label"
+                        >Hver 2. måned</span
+                    ></mat-radio-button
+                    >
+                    <mat-radio-button value="HVER_MANED_3"
+                    ><span class="mat-radio-label"
+                        >Hver 3. måned</span
+                    ></mat-radio-button
+                    >
+                    <mat-radio-button value="HVER_MANED_4"
+                    ><span class="mat-radio-label"
+                        >Hver 4. måned</span
+                    ></mat-radio-button
+                    >
+                    <mat-radio-button value="NONE"
+                    ><span class="mat-radio-label"
+                        >Aldri</span
+                    ></mat-radio-button
+                    >
+                </mat-radio-group>
+            </div>
+
+            <div class="field">
+                <p class="small">
+                    Få markedsoppdateringer, nyheter og annen informasjon på epost
+                </p>
+                <mat-radio-group formControlName="receiveNewsEmails">
+                <mat-radio-button [value]="true"
+                    ><span class="mat-radio-label">Ja</span></mat-radio-button
+                >
+                <mat-radio-button [value]="false"
+                    ><span class="mat-radio-label">Nei</span></mat-radio-button
+                >
+                </mat-radio-group>     
+            </div> 
+            
+        </form>
+        <div class="center-button">
+            <rente-button class="add" color="primary" (click)="sendForm()">
+                Lagre endringer
+            </rente-button>
+        </div>
+        </ng-container>
+    </ng-template>
+</div>

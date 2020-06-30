@@ -25,7 +25,8 @@ import { Ng2OdometerModule } from 'ng2-odometer'; // <-- import the module
 import { UserService } from '@services/remote-api/user.service';
 import { FormsModule } from '@angular/forms';
 import { DialogInfoComponent } from './features/init-confirmation/dialog-info/dialog-info.component';
-import { DeferLoadModule } from '@trademe/ng-defer-load';
+import { EmailPreferencesComponent } from './features/email-preferences/email-preferences.component';
+import { ProfileDialogInfoComponent } from "./features/dashboard/profile/dialog-info/dialog-info.component";
 
 registerLocaleData(localeNo);
 
@@ -45,7 +46,9 @@ registerLocaleData(localeNo);
     GetNotifiedComponent,
     CounterComponent,
     DialogInfoComponent,
-    AboutCookiesComponent
+    AboutCookiesComponent,
+    EmailPreferencesComponent,
+    ProfileDialogInfoComponent
   ],
   imports: [
     BrowserModule,
@@ -55,10 +58,9 @@ registerLocaleData(localeNo);
     MaterialModule,
     Ng2OdometerModule.forRoot(),
     ReactiveFormsModule,
-    FormsModule,
-    DeferLoadModule
+    FormsModule
   ],
-  entryComponents: [DialogInfoComponent],
+  entryComponents: [DialogInfoComponent, ProfileDialogInfoComponent],
   providers: [{ provide: LOCALE_ID, useValue: 'nb-NO' }, UserService],
   bootstrap: [AppComponent]
 })

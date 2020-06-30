@@ -8,7 +8,7 @@ import {
   Validators
 } from '@angular/forms';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { Observable, forkJoin, Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { map, startWith, mergeMap } from 'rxjs/operators';
 import {
   MatAutocomplete,
@@ -137,6 +137,7 @@ export class ProfileComponent implements OnInit, DeactivationGuarded {
         ]
       });
       this.preferencesForm = this.fb.group({
+        receiveNewsEmails: [dto.receiveNewsEmails],
         checkRateReminderType: [dto.checkRateReminderType],
         fetchCreditLinesOnly: [dto.fetchCreditLinesOnly],
         noAdditionalProductsRequired: [
@@ -157,7 +158,7 @@ export class ProfileComponent implements OnInit, DeactivationGuarded {
 
   
   // DeactivationGuarded Interface method. 
-  // Gets called every time user navigates rom this page.
+  // Gets called every time user navigates from this page.
   // Determines if you can leave this page or if you have to wait. 
   canDeactivate(): boolean | Observable<boolean> | Promise<boolean> {
     if(this.canLeavePage)
@@ -207,6 +208,7 @@ export class ProfileComponent implements OnInit, DeactivationGuarded {
     dto.fetchCreditLinesOnly = this.preferencesForm.get('fetchCreditLinesOnly').value;
     dto.noAdditionalProductsRequired = this.preferencesForm.get('noAdditionalProductsRequired').value;
     dto.interestedInEnvironmentMortgages = this.preferencesForm.get('interestedInEnvironmentMortgages').value;
+    dto.receiveNewsEmails = this.preferencesForm.get('receiveNewsEmails').value;
 
     // No one leaves the page while updating
     this.canLeavePage = false;

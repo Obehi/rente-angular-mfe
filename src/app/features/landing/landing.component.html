@@ -51,7 +51,7 @@
 
   <div>
     <!-- Dont load huge example svgs before scroll hits this element -->
-    <div class="list" (deferLoad)="defer.example = true">
+    <div class="list">
       <div class="list-inner">
         <div class="four-columns">
           <div class="block">
@@ -96,7 +96,6 @@
             kunde med et klikk.
           </h4>
         </div>
-        <ng-container *ngIf="defer.example && !isMobile">
           <div class="item img">
             <img
                 src="../../../assets/img/example-desktop-info.svg"
@@ -110,7 +109,6 @@
                 alt="Screenshot example"
               />
           </div>
-        </ng-container>
         <h4 class="bottom">
           Vi overvåker markedet og gir deg beskjed når nye og bedre tilbud er
           tilgjengelig i fremtiden!
@@ -132,13 +130,11 @@
             og viser deg hvor mye du kan spare. Du kan også prute i banken du er
             kunde med et klikk.
           </h4>
-          <ng-container *ngIf="defer.example && isMobile">
             <img
               class="mobile"
               src="../../../assets/img/example.svg"
               alt="Screenshot Example"
             />
-          </ng-container>
           <h4>
             Vi overvåker markedet og gir deg beskjed når nye og bedre tilbud er
             tilgjengelig i fremtiden!

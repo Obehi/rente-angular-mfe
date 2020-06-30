@@ -11,10 +11,11 @@ import { TermsConditionsComponent } from '@features/terms-conditions/terms-condi
 import { PrivacyPolicyComponent } from '@features/privacy-policy/privacy-policy.component';
 import { BankSelectComponent } from '@features/bank-select/bank-select.component';
 import { ContactUsComponent } from '@features/contact-us/contact-us.component';
+import { EmailPreferencesComponent } from '@features/email-preferences/email-preferences.component';
+
 import { AuthGuard } from '@shared/guards/auth.guard';
 import { GetNotifiedComponent } from '@features/get-notified/get-notified.component';
 import { customMeta, defaultMeta, defaultTitle } from './config/routes-config';
-
 
 const routes: Routes = [
   {
@@ -26,6 +27,15 @@ const routes: Routes = [
         description: customMeta.landing.description
       }
     }
+  },
+  {
+    path: ROUTES_MAP.emailPreferences, component: EmailPreferencesComponent,
+    children: [ 
+      {
+          path: '**',
+          component: EmailPreferencesComponent
+      },      
+    ]
   },
   {
     path: ROUTES_MAP.aboutUs, component: AboutUsComponent,
