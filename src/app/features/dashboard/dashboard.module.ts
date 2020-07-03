@@ -62,7 +62,7 @@ import { OfferCardBigComponent } from './offers/offer-card-big/offer-card-big.co
     SuccessChangeBankDialogComponent,
     ShareSheetComponent,
     VirdiStatisticsComponent,
-    OffersStatisticsComponent,
+    OffersStatisticsComponent, 
     DialogComponent,
     AddressFormComponent,
     GetOfferFromBankDialogComponent,
