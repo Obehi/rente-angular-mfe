@@ -1,5 +1,4 @@
 
-
 <div class="update-complete" [@loading]="updateAnimationTrigger? 'true' : 'false'">
   <img src="../../../../assets/icons/ic_done.svg" alt="success-icon" />
   <p>Lagret</p>
@@ -207,7 +206,29 @@
                 >
                 </mat-radio-group>     
               </div>  
-              <h3>Hvilke tilbud vil du se?</h3>
+            
+              
+
+              
+            </div>
+          </div>
+        </div>
+
+        <h3 class="desktop">Hvilke tilbud vil du se?</h3>
+
+        <div class="accordion field">
+          <div
+            class="header mobile"
+            (click)="showPreferences = !showPreferences"
+          >
+          <h3>Hvilke tilbud vil du se?</h3>
+            <mat-icon *ngIf="!showPreferences">expand_more</mat-icon>
+            <mat-icon *ngIf="showPreferences">expand_less</mat-icon>
+          </div>
+          <div class="body">
+            <div class="inner-body" *ngIf="showPreferences">
+              
+
               <div class="field">
                 <p class="small">
                   Ønsker du <b>kun</b> å se tilbud på rammelån/flexilån?
