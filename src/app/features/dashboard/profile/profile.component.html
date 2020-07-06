@@ -219,14 +219,14 @@
         <div class="accordion field">
           <div
             class="header mobile"
-            (click)="showPreferences = !showPreferences"
+            (click)="showOfferPreferences = !showOfferPreferences"
           >
           <h3>Hvilke tilbud vil du se?</h3>
-            <mat-icon *ngIf="!showPreferences">expand_more</mat-icon>
-            <mat-icon *ngIf="showPreferences">expand_less</mat-icon>
+            <mat-icon *ngIf="!showOfferPreferences">expand_more</mat-icon>
+            <mat-icon *ngIf="showOfferPreferences">expand_less</mat-icon>
           </div>
           <div class="body">
-            <div class="inner-body" *ngIf="showPreferences">
+            <div class="inner-body" *ngIf="showOfferPreferences">
               
 
               <div class="field">
