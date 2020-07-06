@@ -63,11 +63,30 @@ h3 {
 .data-logos {
   display: flex;
   justify-content: center;
+  align-items: center;
   margin-bottom: 30px;
+  flex-wrap: wrap;
+
+  @media (max-width: 600px) { 
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns:1fr 1fr;
+  }
   img {
     margin: 0 35px;
+    width: 80px;
   }
 }
+
+
+
+
+
+
+
+
+
+
 
 .list {
   background-color: $blue;
