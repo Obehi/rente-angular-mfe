@@ -136,6 +136,7 @@ export const MissingBankList:BankVo[] = [
   new BankVo('SOGNE_SB', 'Søgne og Greipstad Sparebank', 'sognegreipstad.png', null, false, true, true, null),
   new BankVo('VOSS_SB', 'Voss Sparebank', 'voss.png', null, false, true, true, null),
   new BankVo('SB_MORE', 'Sparebanken Møre', 'more.png', null, false, true, true, null),
+  new BankVo('HUSBANKEN', 'Husbanken', 'husbanken.png', null, false, true, true, null),
 ]
 
 export class BankUtils {
