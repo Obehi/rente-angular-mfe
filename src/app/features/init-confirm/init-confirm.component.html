@@ -1,0 +1,16 @@
+<form
+        [formGroup]="confirmForm"
+        novalidate
+        (ngSubmit)="startLogin(bankIdForm.value)"
+      >
+
+      <rente-input
+         
+          [placeholder]="'Ditt fødselsnummer (11 siffer)'"
+          formControlName="ssn"
+          [imask]="{mask: '000000 00000'}"
+          [type]="'tel'"
+          [modelOptions]="{ updateOn: 'blur' }"
+        >
+      </rente-input>
+</form>
