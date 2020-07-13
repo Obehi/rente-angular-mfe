@@ -69,10 +69,12 @@ export class InitConfirmationComponent implements OnInit {
     this.loansService.getConfirmationData().subscribe(res => {
       this.allMemberships = res.availableMemberships;
       this.userData = res;
+
+      let income = String(res.income)
       this.propertyForm = this.fb.group({
         apartmentSize: [res.apartmentSize, Validators.required],
         membership: [],
-        income: [res.income, Validators.required],
+        income: [income, Validators.required],
         email: [res.email, Validators.compose([
             Validators.required,
             Validators.pattern(VALIDATION_PATTERN.email)

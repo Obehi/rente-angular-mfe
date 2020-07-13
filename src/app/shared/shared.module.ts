@@ -37,6 +37,7 @@ import { EventService } from './services/event-service';
 import { RoundPipe } from './pipes/round.pipe';
 import { ThousandsSeprator } from './pipes/thousands.pipe';
 import { ButtonSmallComponent } from './components/ui-components/button-small/button-small.component';
+import {IMaskModule} from 'angular-imask';
 
 
 const components = [
@@ -79,6 +80,7 @@ const services = [
     RouterModule,
     FormsModule,
     MaterialModule,
+    IMaskModule
   ],
   declarations: [...components, BigNumberPipe, ChipsAutocompleteComponent, AbsPipe, RoundPipe, ThousandsSeprator],
   exports: [...components, AbsPipe, RoundPipe, ThousandsSeprator],

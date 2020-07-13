@@ -76,6 +76,7 @@
       <div class="field">
         <div class="withinfo">
           <div>
+
             <rente-input
               [placeholder]="'Din brutto årsinntekt'"
               formControlName="income"
@@ -83,7 +84,8 @@
               [errorStateMatcher]="
                 isErrorState(propertyForm.controls['income'], propertyForm)
               "
-              [type]="'tel'"
+              [type]="'text'"
+              [theMask]="'000 0000'"
             >
             </rente-input>
             <div *ngIf="propertyForm.controls['income'].touched">

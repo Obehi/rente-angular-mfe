@@ -1,6 +1,6 @@
 <div class="input-block" [ngClass]="{ error: errorStateMatcher, textControl: textControl }" >
   <mat-form-field class="example-full-width">
-    <div *ngIf="mask; else noMask">
+    <div *ngIf="!!theMask; else noMask">
       <input
         matInput
         [disabled]="disabled"
@@ -11,6 +11,8 @@
         [(ngModel)]="value"
         [textMask]="mask"
         (blur)="onBlur()"
+
+        [imask]="{mask: theMask}"
       />
     </div>
     <ng-template #noMask>

@@ -27,7 +27,7 @@ import { FormsModule } from '@angular/forms';
 import { DialogInfoComponent } from './features/init-confirmation/dialog-info/dialog-info.component';
 import { EmailPerferencesComponent } from './features/email-perferences/email-perferences.component';
 import { ProfileDialogInfoComponent } from "./features/dashboard/profile/dialog-info/dialog-info.component";
-
+import {IMaskModule} from 'angular-imask';
 registerLocaleData(localeNo);
 
 @NgModule({
@@ -57,7 +57,8 @@ registerLocaleData(localeNo);
     SharedModule,
     MaterialModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    IMaskModule
   ],
   entryComponents: [DialogInfoComponent, ProfileDialogInfoComponent],
   providers: [{ provide: LOCALE_ID, useValue: 'nb-NO' }, UserService],

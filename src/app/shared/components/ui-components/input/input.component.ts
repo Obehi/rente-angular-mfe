@@ -53,6 +53,10 @@ export class InputComponent implements ControlValueAccessor, OnChanges {
   @Input() errorStateMatcher: boolean;
   @Input() modelOptions?: { updateOn: string };
   @Input() textControl: boolean;
+  @Input() isMask: boolean;
+  @Input() theMask: string;
+
+
   // tslint:disable-next-line:no-input-rename
   @Input("value") inputValue: any = "";
   @Input() mask?: any[];
@@ -64,6 +68,8 @@ export class InputComponent implements ControlValueAccessor, OnChanges {
   propagateChange: any = () => {};
   onChange: any = () => {};
   onTouch: any = () => {};
+
+  public myMask = "0000 000000"
 
   get value() {
     return this.inputValue;
