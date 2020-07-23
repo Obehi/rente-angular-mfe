@@ -4,6 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "cd server && node app.js",
+    "start:sv": "ng serve --configuration=sv",
     "build": "npm run version && npm run build-i18n",
     "build:stats": "npm run lint && npm run version && npm run i18n && npm run build-i18n:stats",
     "analyze": "webpack-bundle-analyzer dist/rente-front-end/stats.json",
@@ -20,7 +21,8 @@
     "build-i18n:stats": "npm run build-i18n:no:stats && npm run build-i18n:en:stats",
     "version": "node app-version.js",
     "heroku-postbuild": "npm run config-env && ng build --configuration=heroku",
-    "config-env": "ts-node ./src/set-env.ts"
+    "config-env": "ts-node ./src/set-env.ts",
+    "int:extract": "ng xi18n"
   },
   "private": true,
   "dependencies": {

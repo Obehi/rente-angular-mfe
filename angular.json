@@ -107,6 +107,14 @@
                   "maximumError": "5mb"
                 }
               ]
+            },
+            "sv": {
+              "aot": true,
+              "outputPath": "dist/under-construction-sv/",
+              "i18nFile": "src/messages.xlf",
+              "i18nFormat": "xlf",
+              "i18nLocale": "sv",
+              "i18nMissingTranslation": "error"
             }
           }
         },
@@ -124,6 +132,9 @@
             },
             "develop": {
               "browserTarget": "rente-front-end:build:develop"
+            },
+            "sv": {
+              "browserTarget": "rente-front-end:build:sv"
             }
           }
         },
