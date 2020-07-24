@@ -27,6 +27,7 @@ import { FormsModule } from '@angular/forms';
 import { DialogInfoComponent } from './features/init-confirmation/dialog-info/dialog-info.component';
 import { EmailPreferencesComponent } from './features/email-preferences/email-preferences.component';
 import { ProfileDialogInfoComponent } from "./features/dashboard/profile/dialog-info/dialog-info.component";
+import { LazyLoadImageModule } from 'ng-lazyload-image';
 
 registerLocaleData(localeNo);
 
@@ -58,7 +59,8 @@ registerLocaleData(localeNo);
     MaterialModule,
     Ng2OdometerModule.forRoot(),
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    LazyLoadImageModule
   ],
   entryComponents: [DialogInfoComponent, ProfileDialogInfoComponent],
   providers: [{ provide: LOCALE_ID, useValue: 'nb-NO' }, UserService],
