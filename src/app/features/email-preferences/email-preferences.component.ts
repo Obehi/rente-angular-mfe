@@ -9,8 +9,7 @@ import {
   FormGroup,
   FormBuilder
 } from '@angular/forms';
-import { DeactivationGuarded } from '@shared/guards/route.guard';
-import { Observable, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 import {
   trigger,
   state,
@@ -22,9 +21,9 @@ import {
 
 
 @Component({
-  selector: 'rente-email-perferences',
-  templateUrl: './email-perferences.component.html',
-  styleUrls: ['./email-perferences.component.scss'],
+  selector: 'rente-email-preferences',
+  templateUrl: './email-preferences.component.html',
+  styleUrls: ['./email-preferences.component.scss'],
   animations: [
     trigger('loading', [
       // ...
@@ -43,13 +42,12 @@ import {
     ]),
   ]
 })
-export class EmailPerferencesComponent implements OnInit, DeactivationGuarded {
+export class EmailPreferencesComponent implements OnInit {
   private guid: string | null;
   public emailForm: FormGroup;
   private checkRateReminderType: string
   private receiveNewsEmails: boolean
   public canNavigateBooolean$: Subject<boolean> = new Subject<boolean>();
-  private canLeavePage = true;
   public isLoading = false;
   public errorAnimationTrigger:boolean;
   public updateAnimationTrigger: boolean;
@@ -64,19 +62,11 @@ export class EmailPerferencesComponent implements OnInit, DeactivationGuarded {
     private dialog: MatDialog) { }
 
   ngOnInit() {
-   
-    console.log(this.showErrorMessage)
     let currentUrl = this.location.path();
-
-    
     this.guid = this.getGuIdFromUrl(currentUrl);
-    console.log(this.guid);
     
-    
-  
     if (this.guid) {
       this.preferancesService.getPreferancesWithGUID(this.guid).subscribe(preferances => { 
-        console.log("preferancesService callback")
         this.checkRateReminderType = preferances.checkRateReminderType;
         this.receiveNewsEmails = preferances.receiveNewsEmails;
       
@@ -85,28 +75,13 @@ export class EmailPerferencesComponent implements OnInit, DeactivationGuarded {
           checkRateReminderType: [this.checkRateReminderType],
         });
       }, err => {
-        console.log("error")
-        console.log(err)
         this.showErrorMessage = true;
-   
         }
       )
     } else {
       this.showErrorMessage = true;
     }
     
-  }
-
-  // DeactivationGuarded Interface method. 
-  // Gets called every time user navigates from this page.
-  // Determines if you can leave this page or if you have to wait. 
-  canDeactivate(): boolean | Observable<boolean> | Promise<boolean> {
-    if(this.canLeavePage)
-    return true;
-    
-    // Wait for upload info before navigating to another page
-    this.isLoading = true
-    return this.canNavigateBooolean$
   }
 
   public openInfoDialog(offer: string): void {
@@ -116,7 +91,6 @@ export class EmailPerferencesComponent implements OnInit, DeactivationGuarded {
   }
 
   sendForm(){
-    this.canLeavePage = false;
     this.isLoading = true;
 
     let dto = new EmailDto()
@@ -124,7 +98,6 @@ export class EmailPerferencesComponent implements OnInit, DeactivationGuarded {
     dto.receiveNewsEmails = this.emailForm.get('receiveNewsEmails').value;
 
     this.preferancesService.postPreferancesWithGUID(this.guid, dto).subscribe(response => {
-      this.canLeavePage = true;
       this.isLoading = false;
       this.updateAnimationTrigger  = !this.updateAnimationTrigger 
     }, err => {
@@ -136,7 +109,6 @@ export class EmailPerferencesComponent implements OnInit, DeactivationGuarded {
       }
 
       this.errorAnimationTrigger = !this.errorAnimationTrigger 
-      this.canLeavePage = true;
       this.isLoading = false;
     })
   }

@@ -1,9 +1,16 @@
 @import "../../../../styles/theme/_colors.scss";
 
-h3 {
-  padding: 20px;
-  padding-bottom: 0;
+@media (min-width: 600px) {
+  h3 {
+    padding: 20px;
+    padding-bottom: 0;
+  }
 }
+
+h3 {
+  padding-bottom: 10px;
+}
+
 form {
   background-color: unset;
 }

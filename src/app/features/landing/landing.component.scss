@@ -61,13 +61,63 @@ h3 {
   }
 }
 .data-logos {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 30px;
+  
+
+  @media (min-width: 600px) { 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    .boligmappa {
+      img {
+        width: 130px;
+      }
+    }
+  }
+
+  @media (max-width: 600px) { 
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: 1fr 1fr;
+    margin-bottom: 40px;
+
+    a {
+      grid-row: 1;
+      align-self: center;
+    }
+    .finansportalen {
+      grid-row: 2;
+      grid-column-start: 1;
+      grid-column-end: span 2;
+      margin: auto;
+      img {
+        width:  110px;
+      }
+    }
+    .boligmappa {
+      img {
+        width: 110px;
+      }
+    }
+  }
   img {
     margin: 0 35px;
+    width: 80px;
   }
+
+  
 }
+
+
+
+
+
+
+
+
+
+
 
 .list {
   background-color: $blue;

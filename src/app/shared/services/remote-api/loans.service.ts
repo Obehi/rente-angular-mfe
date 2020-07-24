@@ -174,7 +174,7 @@ export class PreferencesDto {
   availableMemberships:MembershipTypeDto[];
   memberships:string[];
   communicationChannelType:string;
-  receiveNewsEmails:string;
+  receiveNewsEmails: boolean;
   checkRateReminderType:string;
   fetchCreditLinesOnly:boolean;
   noAdditionalProductsRequired:boolean;
@@ -189,6 +189,7 @@ export class PreferencesUpdateDto {
   interestedInEnvironmentMortgages:boolean;
   email:string;
   income:string;
+  receiveNewsEmails: boolean;
 }
 
 export class MembershipTypeDto {

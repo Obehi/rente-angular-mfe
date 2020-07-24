@@ -21,19 +21,7 @@
       <ng-template #form>
         <ng-container *ngIf="emailForm">
         <form [formGroup]="emailForm" novalidate change>
-            <div class="field">
-                <p class="small">
-                    Få markedsoppdateringer, nyheter og annen informasjon på epost
-                </p>
-                <mat-radio-group formControlName="receiveNewsEmails">
-                <mat-radio-button [value]="true"
-                    ><span class="mat-radio-label">Ja</span></mat-radio-button
-                >
-                <mat-radio-button [value]="false"
-                    ><span class="mat-radio-label">Nei</span></mat-radio-button
-                >
-                </mat-radio-group>     
-            </div>  
+             
 
             <div class="field">
                 <div class="withinfo">
@@ -49,34 +37,48 @@
                       <mat-icon>help</mat-icon>
                     </div>
                   </div>
-            <mat-radio-group formControlName="checkRateReminderType">
-                <mat-radio-button value="HVER_MANED_1"
-                ><span class="mat-radio-label"
-                    >Hver måned</span
-                ></mat-radio-button
-                >
-                <mat-radio-button value="HVER_MANED_2"
-                ><span class="mat-radio-label"
-                    >Hver 2. måned</span
-                ></mat-radio-button
-                >
-                <mat-radio-button value="HVER_MANED_3"
-                ><span class="mat-radio-label"
-                    >Hver 3. måned</span
-                ></mat-radio-button
-                >
-                <mat-radio-button value="HVER_MANED_4"
-                ><span class="mat-radio-label"
-                    >Hver 4. måned</span
-                ></mat-radio-button
-                >
-                <mat-radio-button value="NONE"
-                ><span class="mat-radio-label"
-                    >Aldri</span
-                ></mat-radio-button
-                >
-            </mat-radio-group>
+                <mat-radio-group formControlName="checkRateReminderType">
+                    <mat-radio-button value="HVER_MANED_1"
+                    ><span class="mat-radio-label"
+                        >Hver måned</span
+                    ></mat-radio-button
+                    >
+                    <mat-radio-button value="HVER_MANED_2"
+                    ><span class="mat-radio-label"
+                        >Hver 2. måned</span
+                    ></mat-radio-button
+                    >
+                    <mat-radio-button value="HVER_MANED_3"
+                    ><span class="mat-radio-label"
+                        >Hver 3. måned</span
+                    ></mat-radio-button
+                    >
+                    <mat-radio-button value="HVER_MANED_4"
+                    ><span class="mat-radio-label"
+                        >Hver 4. måned</span
+                    ></mat-radio-button
+                    >
+                    <mat-radio-button value="NONE"
+                    ><span class="mat-radio-label"
+                        >Aldri</span
+                    ></mat-radio-button
+                    >
+                </mat-radio-group>
             </div>
+
+            <div class="field">
+                <p class="small">
+                    Få markedsoppdateringer, nyheter og annen informasjon på epost
+                </p>
+                <mat-radio-group formControlName="receiveNewsEmails">
+                <mat-radio-button [value]="true"
+                    ><span class="mat-radio-label">Ja</span></mat-radio-button
+                >
+                <mat-radio-button [value]="false"
+                    ><span class="mat-radio-label">Nei</span></mat-radio-button
+                >
+                </mat-radio-group>     
+            </div> 
             
         </form>
         <div class="center-button">

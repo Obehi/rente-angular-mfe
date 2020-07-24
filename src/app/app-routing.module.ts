@@ -9,7 +9,8 @@ import { AboutCookiesComponent } from '@features/cookies/cookies.component';
 import { TermsConditionsComponent } from '@features/terms-conditions/terms-conditions.component';
 import { PrivacyPolicyComponent } from '@features/privacy-policy/privacy-policy.component';
 import { ContactUsComponent } from '@features/contact-us/contact-us.component';
-import { EmailPerferencesComponent } from '@features/email-perferences/email-perferences.component';
+import { EmailPreferencesComponent } from '@features/email-preferences/email-preferences.component';
+
 import { AuthGuard } from '@shared/guards/auth.guard';
 import { GetNotifiedComponent } from '@features/get-notified/get-notified.component';
 import { customMeta, defaultMeta, defaultTitle } from './config/routes-config';
@@ -26,11 +27,11 @@ const routes: Routes = [
     }
   },
   {
-    path: ROUTES_MAP.emailPreferences, component: EmailPerferencesComponent,
+    path: ROUTES_MAP.emailPreferences, component: EmailPreferencesComponent,
     children: [ 
       {
           path: '**',
-          component: EmailPerferencesComponent
+          component: EmailPreferencesComponent
       },      
     ]
   },

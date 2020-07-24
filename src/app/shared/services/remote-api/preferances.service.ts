@@ -28,7 +28,6 @@ export class PreferancesService {
   }
 
   public postPreferancesWithGUID(guId: string, preferences: EmailDto) {
-    console.log(preferences)
     const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.public.base}${API_URL_MAP.loan.public.email.base}${API_URL_MAP.loan.public.email.preferences}${guId}`;
     return this.http.put(url, preferences);
   }

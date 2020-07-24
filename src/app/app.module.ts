@@ -24,8 +24,10 @@ import { UserService } from '@services/remote-api/user.service';
 import { FormsModule } from '@angular/forms';
 import { DialogInfoComponent } from './features/init-confirmation/dialog-info/dialog-info.component';
 import { EmailPerferencesComponent } from './features/email-perferences/email-perferences.component';
-import { ProfileDialogInfoComponent } from "./features/dashboard/profile/dialog-info/dialog-info.component";
 import {IMaskModule} from 'angular-imask';
+import { EmailPreferencesComponent } from './features/email-preferences/email-preferences.component';
+import { ProfileDialogInfoComponent } from "./features/dashboard/profile/dialog-info/dialog-info.component";
+import { LazyLoadImageModule } from 'ng-lazyload-image';
 
 registerLocaleData(localeNo);
 
@@ -44,7 +46,7 @@ registerLocaleData(localeNo);
     CounterComponent,
     DialogInfoComponent,
     AboutCookiesComponent,
-    EmailPerferencesComponent,
+    EmailPreferencesComponent,
     ProfileDialogInfoComponent
   ],
   imports: [
@@ -55,7 +57,8 @@ registerLocaleData(localeNo);
     MaterialModule,
     ReactiveFormsModule,
     FormsModule,
-    IMaskModule
+    IMaskModule,
+    LazyLoadImageModule
   ],
   entryComponents: [DialogInfoComponent, ProfileDialogInfoComponent],
   providers: [{ provide: LOCALE_ID, useValue: 'nb-NO' }, UserService],

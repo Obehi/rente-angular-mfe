@@ -70,6 +70,7 @@ export class ProfileComponent implements OnInit, DeactivationGuarded {
   public memberships: any = [];
   public showMemberships: boolean;
   public showPreferences: boolean;
+  public showOfferPreferences: boolean;
   public allMemberships: MembershipTypeDto[];
   public isLoading = true;
   public canLeavePage = true;
@@ -93,9 +94,11 @@ export class ProfileComponent implements OnInit, DeactivationGuarded {
     if (window.innerWidth > 600) {
       this.showMemberships = true;
       this.showPreferences = true;
+      this.showOfferPreferences = true;
     } else {
       this.showMemberships = false;
       this.showPreferences = false;
+      this.showOfferPreferences = false;
     }
 
     this.filteredMemberships = this.membershipCtrl.valueChanges.pipe(
@@ -201,6 +204,7 @@ export class ProfileComponent implements OnInit, DeactivationGuarded {
     dto.fetchCreditLinesOnly = this.preferencesForm.get('fetchCreditLinesOnly').value;
     dto.noAdditionalProductsRequired = this.preferencesForm.get('noAdditionalProductsRequired').value;
     dto.interestedInEnvironmentMortgages = this.preferencesForm.get('interestedInEnvironmentMortgages').value;
+    dto.receiveNewsEmails = this.preferencesForm.get('receiveNewsEmails').value;
 
     // No one leaves the page while updating
     this.canLeavePage = false;
