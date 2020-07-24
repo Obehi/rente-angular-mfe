@@ -22,7 +22,9 @@
     "version": "node app-version.js",
     "heroku-postbuild": "npm run config-env && ng build --configuration=heroku",
     "config-env": "ts-node ./src/set-env.ts",
-    "int:extract": "ng xi18n"
+    "int:extract": "ng xi18n",
+    "extract-i18n": "ng xi18n rente-front-end --i18n-format xlf --output-path i18n --i18n-locale no && ng run rente-front-end:xliffmerge",
+    "start-sv": "ng serve --configuration=sv"
   },
   "private": true,
   "dependencies": {
@@ -36,6 +38,7 @@
     "@angular/platform-browser": "~8.0.2",
     "@angular/platform-browser-dynamic": "~8.0.2",
     "@angular/router": "~8.0.2",
+    "@ngx-i18nsupport/tooling": "^8.0.3",
     "@trademe/ng-defer-load": "^8.0.0",
     "angular": "^1.7.8",
     "angular-highcharts": "^8.0.3",
@@ -64,6 +67,7 @@
     "@angular/cli": "~8.0.4",
     "@angular/compiler-cli": "~8.0.2",
     "@angular/language-service": "~8.0.2",
+    "@ngx-i18nsupport/ngx-i18nsupport": "^1.1.6",
     "@types/jasmine": "~2.8.8",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "~8.9.4",

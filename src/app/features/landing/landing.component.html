@@ -1,14 +1,14 @@
 <div class="front-container">
   <div class="intro" [style.margin-bottom.px]="isMobile ? 20 : 80">
-    <h1 [style.margin-bottom.px]="isMobile ? 20 : 40">
+    <h1 i18n [style.margin-bottom.px]="isMobile ? 20 : 40">
       Få beste <a [routerLink]="'/velgbank'">boliglånsrente</a>
     </h1>
-    <h4>
+    <h4 i18n>
       Sammenlign boliglånet ditt mot markedets beste tilbud - kjapt, enkelt og
       gratis!
     </h4>
   </div>
-  <h3>Start med å velge banken du har lån i:</h3>
+  <h3 i18n>Start med å velge banken du har lån i:</h3>
   <div class="bank-buttons">
     <rente-button color="blue" [routerLink]="'/autentisering/sparebank1-sub'">
       <img
@@ -28,7 +28,7 @@
       <img src="../../../assets/img/banks-logo/svg/dnb.svg" alt="DNB logo" />
     </rente-button>
     <rente-button color="blue" [routerLink]="'/velgbank'">
-      <p>Annen bank</p>
+      <p i18n>Annen bank</p>
     </rente-button>
   </div>
 
@@ -60,22 +60,22 @@
         <div class="four-columns">
           <div class="block">
             <img src="../../../assets/icons/renteradar.svg" alt="renteradar" />
-            <p>Renteradar finner den beste boliglånsrenten helt gratis.</p>
+            <p i18n>Renteradar finner den beste boliglånsrenten helt gratis.</p>
           </div>
           <div class="block">
             <img src="../../../assets/icons/user.svg" alt="bankID" />
-            <p>
+            <p i18n>
               Ingen utfylling av skjema. <br />
               Logg inn med BankID på mobil.
             </p>
           </div>
           <div class="block">
             <img src="../../../assets/icons/save.svg" alt="save" />
-            <p>Få oversikt og spar penger med et klikk.</p>
+            <p i18n>Få oversikt og spar penger med et klikk.</p>
           </div>
           <div class="block">
             <img src="../../../assets/icons/notify.svg" alt="notify" />
-            <p>
+            <p i18n>
               Renteradar overvåker markedet og gir deg beskjed når det kommer
               bedre tilbud.
             </p>
@@ -86,15 +86,15 @@
 
     <div class="list gradient desktop small-padding">
       <div class="example">
-        <h2>Slik fungerer det</h2>
+        <h2 i18n>Slik fungerer det</h2>
         <div class="item second-row">
 
-          <h4>
+          <h4 i18n>
             Renteradar henter renten og dine lånedetaljer automatisk med BankID på
             mobil.
           </h4>
 
-          <h4>
+          <h4 i18n>
             Vi sammenligner renten du betaler med renten du kan få i andre banker
             og viser deg hvor mye du kan spare. Du kan også prute i banken du er
             kunde med et klikk.
@@ -113,7 +113,7 @@
                 alt="Screenshot example"
               />
           </div>
-        <h4 class="bottom">
+        <h4 i18n class="bottom">
           Vi overvåker markedet og gir deg beskjed når nye og bedre tilbud er
           tilgjengelig i fremtiden!
         </h4>
@@ -124,12 +124,12 @@
 
       <div class="list-inner">
         <div class="desktop-inner">
-          <h2>Slik fungerer det</h2>
-          <h4>
+          <h2 i18n>Slik fungerer det</h2>
+          <h4 i18n>
             Renteradar henter renten og dine lånedetaljer automatisk med BankID på
             mobil.
           </h4>
-          <h4>
+          <h4 i18n>
             Vi sammenligner renten du betaler med renten du kan få i andre banker
             og viser deg hvor mye du kan spare. Du kan også prute i banken du er
             kunde med et klikk.
@@ -139,7 +139,7 @@
               src="../../../assets/img/example.svg"
               alt="Screenshot Example"
             />
-          <h4>
+          <h4 i18n>
             Vi overvåker markedet og gir deg beskjed når nye og bedre tilbud er
             tilgjengelig i fremtiden!
           </h4>
@@ -148,7 +148,7 @@
     </div>
 
   <div class="articles">
-    <h2 style="margin-bottom: 20px;">Fornøyde brukere</h2>
+    <h2 i18n style="margin-bottom: 20px;">Fornøyde brukere</h2>
     <div class="horizontal-scroll">
       <div class="sitater">
         <!-- TODO: move to component -->
@@ -246,7 +246,7 @@
   </div>
 
   <div class="articles">
-    <h2 style="margin-bottom: 20px;">Renteradar i media</h2>
+    <h2 i18n style="margin-bottom: 20px;">Renteradar i media</h2>
     <div class="horizontal-scroll">
 
       <a class="article" target="_blank" href="https://www.tv2.no/nyheter/11327692/">

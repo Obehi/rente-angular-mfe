@@ -110,11 +110,10 @@
             },
             "sv": {
               "aot": true,
-              "outputPath": "dist/under-construction-sv/",
-              "i18nFile": "src/messages.xlf",
+              "outputPath": "dist/rente-front-end-sv",
+              "i18nFile": "src/i18n/messages.sv.xlf",
               "i18nFormat": "xlf",
-              "i18nLocale": "sv",
-              "i18nMissingTranslation": "error"
+              "i18nLocale": "sv"
             }
           }
         },
@@ -151,16 +150,41 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
-            "styles": ["src/styles.scss"],
+            "styles": [
+              "src/styles.scss"
+            ],
             "scripts": [],
-            "assets": ["src/favicon.ico", "src/assets"]
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ]
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["src/tsconfig.app.json", "src/tsconfig.spec.json"],
-            "exclude": ["**/node_modules/**"]
+            "tsConfig": [
+              "src/tsconfig.app.json",
+              "src/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "xliffmerge": {
+          "builder": "@ngx-i18nsupport/tooling:xliffmerge",
+          "options": {
+            "xliffmergeOptions": {
+              "i18nFormat": "xlf",
+              "srcDir": "src/i18n",
+              "genDir": "src/i18n",
+              "defaultLanguage": "no",
+              "languages": [
+                "no",
+                "sv"
+              ]
+            }
           }
         }
       }
@@ -186,7 +210,9 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": "e2e/tsconfig.e2e.json",
-            "exclude": ["**/node_modules/**"]
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         }
       }

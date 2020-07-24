@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="no" datatype="plaintext" original="ng2.template" target-language="sv">
+    <body>
+      <trans-unit id="5c2da899da197098e64e0a626cb1613a0ec927a2" datatype="html">
+        <source>
+      Få beste <x id="START_LINK" ctype="x-a" equiv-text="&lt;a>"/>boliglånsrente<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a>"/>
+    </source><target state="translated">
+      Få bästa <x id="START_LINK" ctype="x-a" equiv-text="&lt;a>"/>bolåneräntan<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a>"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/landing/landing.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit><trans-unit id="f4962b060c1316116400d47f94a67584de7dddae" datatype="html">
+        <source>
+      Sammenlign boliglånet ditt mot markedets beste tilbud - kjapt, enkelt og
+      gratis!
+    </source><target state="new">
+      Sammenlign boliglånet ditt mot markedets beste tilbud - kjapt, enkelt og
+      gratis!
+    </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/landing/landing.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="f7024c486a69fdea6fb179a616f71680b9520ef9" datatype="html">
+        <source>Start med å velge banken du har lån i:</source><target state="translated">Start med å velge banken du har lån i aaa nej hur bra som helst:</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/landing/landing.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+      </trans-unit><trans-unit id="33ad33306e2f8d82dca86276e39ceac6464ef5cd" datatype="html">
+        <source>Annen bank</source><target state="new">Annen bank</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/landing/landing.component.html</context>
+          <context context-type="linenumber">31</context>
+        </context-group>
+      </trans-unit><trans-unit id="59c0e0743de7075f84cc811d2a1d13c4de110be5" datatype="html">
+        <source>Renteradar finner den beste boliglånsrenten helt gratis.</source><target state="new">Renteradar finner den beste boliglånsrenten helt gratis.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/landing/landing.component.html</context>
+          <context context-type="linenumber">63</context>
+        </context-group>
+      </trans-unit><trans-unit id="5125810ac4105e017d6376d16fe1e0812ae23ffe" datatype="html">
+        <source>
+              Ingen utfylling av skjema. <x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br/>"/>
+              Logg inn med BankID på mobil.
+            </source><target state="new">
+              Ingen utfylling av skjema. <x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br/>"/>
+              Logg inn med BankID på mobil.
+            </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/landing/landing.component.html</context>
+          <context context-type="linenumber">67</context>
+        </context-group>
+      </trans-unit><trans-unit id="b1243417fb3fa57d408013c6b9b597898a7d48af" datatype="html">
+        <source>Få oversikt og spar penger med et klikk.</source><target state="new">Få oversikt og spar penger med et klikk.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/landing/landing.component.html</context>
+          <context context-type="linenumber">74</context>
+        </context-group>
+      </trans-unit><trans-unit id="ddd2fb31f6186a5eea761f6b05e3d34416c3bc6e" datatype="html">
+        <source>
+              Renteradar overvåker markedet og gir deg beskjed når det kommer
+              bedre tilbud.
+            </source><target state="new">
+              Renteradar overvåker markedet og gir deg beskjed når det kommer
+              bedre tilbud.
+            </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/landing/landing.component.html</context>
+          <context context-type="linenumber">78</context>
+        </context-group>
+      </trans-unit><trans-unit id="b83a0eee3c0acf3d4274a71dc13481f7d7dc5347" datatype="html">
+        <source>Slik fungerer det</source><target state="new">Slik fungerer det</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/landing/landing.component.html</context>
+          <context context-type="linenumber">89</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/landing/landing.component.html</context>
+          <context context-type="linenumber">127</context>
+        </context-group>
+      </trans-unit><trans-unit id="6afd4146e247ac3eb09f415adcceb09d3bc0fc41" datatype="html">
+        <source>
+            Renteradar henter renten og dine lånedetaljer automatisk med BankID på
+            mobil.
+          </source><target state="new">
+            Renteradar henter renten og dine lånedetaljer automatisk med BankID på
+            mobil.
+          </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/landing/landing.component.html</context>
+          <context context-type="linenumber">92</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/landing/landing.component.html</context>
+          <context context-type="linenumber">128</context>
+        </context-group>
+      </trans-unit><trans-unit id="910fe5e33408ef7c9e87e31c025ca3504527e7f9" datatype="html">
+        <source>
+            Vi sammenligner renten du betaler med renten du kan få i andre banker
+            og viser deg hvor mye du kan spare. Du kan også prute i banken du er
+            kunde med et klikk.
+          </source><target state="new">
+            Vi sammenligner renten du betaler med renten du kan få i andre banker
+            og viser deg hvor mye du kan spare. Du kan også prute i banken du er
+            kunde med et klikk.
+          </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/landing/landing.component.html</context>
+          <context context-type="linenumber">97</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/landing/landing.component.html</context>
+          <context context-type="linenumber">132</context>
+        </context-group>
+      </trans-unit><trans-unit id="8f9db8c4a931c09a5fbc9d0cd82b1c6a12542c6f" datatype="html">
+        <source>
+          Vi overvåker markedet og gir deg beskjed når nye og bedre tilbud er
+          tilgjengelig i fremtiden!
+        </source><target state="new">
+          Vi overvåker markedet og gir deg beskjed når nye og bedre tilbud er
+          tilgjengelig i fremtiden!
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/landing/landing.component.html</context>
+          <context context-type="linenumber">116</context>
+        </context-group>
+      </trans-unit><trans-unit id="6999e76cc64cfb478c41689db4e1f47a6039665a" datatype="html">
+        <source>
+            Vi overvåker markedet og gir deg beskjed når nye og bedre tilbud er
+            tilgjengelig i fremtiden!
+          </source><target state="new">
+            Vi overvåker markedet og gir deg beskjed når nye og bedre tilbud er
+            tilgjengelig i fremtiden!
+          </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/landing/landing.component.html</context>
+          <context context-type="linenumber">142</context>
+        </context-group>
+      </trans-unit><trans-unit id="d9c907f12c7c75ac34e76113dad39a52143fafd2" datatype="html">
+        <source>Fornøyde brukere</source><target state="new">Fornøyde brukere</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/landing/landing.component.html</context>
+          <context context-type="linenumber">151</context>
+        </context-group>
+      </trans-unit><trans-unit id="2c1ee72bfac81a659dc50ec750486a0998fcff05" datatype="html">
+        <source>Renteradar i media</source><target state="new">Renteradar i media</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/landing/landing.component.html</context>
+          <context context-type="linenumber">249</context>
+        </context-group>
+      </trans-unit><trans-unit id="a07e09df5115e764e3ce91d3847daa8299cba5fa" datatype="html">
+        <source>Lagret</source><target state="new">Lagret</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/dashboard/house/house.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit><trans-unit id="ddd5b49845ce42c953ce335548bf465b9605076e" datatype="html">
+        <source>Oops, noe gikk galt</source><target state="new">Oops, noe gikk galt</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/dashboard/house/house.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit><trans-unit id="20b3169d0018ddf830fd0fdba2a0d97bff3023d0" datatype="html">
+        <source>Mine boliger</source><target state="new">Mine boliger</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/dashboard/house/house.component.html</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+      </trans-unit><trans-unit id="96a7bab517d2e3a04c16bd074b26d37c78ef6644" datatype="html">
+        <source>Total verdi: <x id="INTERPOLATION" equiv-text="{{ totalPropertyValue | thousands }}"/></source><target state="new">Total verdi: <x id="INTERPOLATION" equiv-text="{{ totalPropertyValue | thousands }}"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/dashboard/house/house.component.html</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+      </trans-unit><trans-unit id="50ec49764dce4b7b2f0462387499659b1b999809" datatype="html">
+        <source>
+        Legg til flere boliger
+    </source><target state="new">
+        Legg til flere boliger
+    </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/dashboard/house/house.component.html</context>
+          <context context-type="linenumber">30</context>
+        </context-group>
+      </trans-unit><trans-unit id="046cd5bb3224d8a084c0edcebb42b05b6098dd76" datatype="html">
+        <source>Få full kontroll på din bolig med:</source><target state="new">Få full kontroll på din bolig med:</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/dashboard/house/house.component.html</context>
+          <context context-type="linenumber">46</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
