@@ -23,7 +23,6 @@ import { CounterComponent } from './shared/components/ui-components/counter/coun
 import { UserService } from '@services/remote-api/user.service';
 import { FormsModule } from '@angular/forms';
 import { DialogInfoComponent } from './features/init-confirmation/dialog-info/dialog-info.component';
-import { EmailPerferencesComponent } from './features/email-perferences/email-perferences.component';
 import {IMaskModule} from 'angular-imask';
 import { EmailPreferencesComponent } from './features/email-preferences/email-preferences.component';
 import { ProfileDialogInfoComponent } from "./features/dashboard/profile/dialog-info/dialog-info.component";
