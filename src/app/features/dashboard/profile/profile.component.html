@@ -52,6 +52,7 @@
           [errorStateMatcher]="
             isErrorState(profileForm.controls['income'], profileForm)
           "
+          [maskType]="mask.currency"
           [modelOptions]="{ updateOn: 'blur'}"
           [type]="'tel'"
 
