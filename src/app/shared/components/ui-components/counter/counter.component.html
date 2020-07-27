@@ -1,14 +1,12 @@
 <div class="spart">
   <h4>Våre brukere har tilsammen:</h4>
-  <div class="counter black">
-  
-  
-  </div>
+  <div><h2 [countUp]="totalOutstandingDebt " [options]="totalOutstandingoptions"></h2> <span>kr</span></div>
 
   <h4 style="margin-bottom: 40px">i boliglån…</h4>
   <h4>…og kan potensielt spare:</h4>
+  
+  <div><h2 class = "green" [countUp]="combinedSavingsPotential " [options]="combinedSavingsPotentialOptions"> </h2>  <span>kr</span></div>
   <div class="counter green">
-   
-    kr
+
   </div>
 </div>

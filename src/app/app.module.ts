@@ -27,6 +27,7 @@ import {IMaskModule} from 'angular-imask';
 import { EmailPreferencesComponent } from './features/email-preferences/email-preferences.component';
 import { ProfileDialogInfoComponent } from "./features/dashboard/profile/dialog-info/dialog-info.component";
 import { LazyLoadImageModule } from 'ng-lazyload-image';
+import { CountUpModule } from 'ngx-countup';
 
 registerLocaleData(localeNo);
 
@@ -57,7 +58,8 @@ registerLocaleData(localeNo);
     ReactiveFormsModule,
     FormsModule,
     IMaskModule,
-    LazyLoadImageModule
+    LazyLoadImageModule,
+    CountUpModule
   ],
   entryComponents: [DialogInfoComponent, ProfileDialogInfoComponent],
   providers: [{ provide: LOCALE_ID, useValue: 'nb-NO' }, UserService],

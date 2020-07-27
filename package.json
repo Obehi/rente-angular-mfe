@@ -48,6 +48,7 @@
     "net": "^1.0.2",
     "ng-drift": "^0.1.1",
     "ng-lazyload-image": "^8.0.1",
+    "ngx-countup": "^7.3.1",
     "rxjs": "~6.5.2",
     "smoothscroll-polyfill": "^0.4.4",
     "sockjs-client": "^1.4.0",
