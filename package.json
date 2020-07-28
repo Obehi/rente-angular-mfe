@@ -5,7 +5,6 @@
     "ng": "ng",
     "start": "cd server && node app.js",
     "build": "npm run version && npm run build-i18n",
-    "build-test": "ng build --configuration=dev",
     "build:stats": "npm run lint && npm run version && npm run i18n && npm run build-i18n:stats",
     "local": "ng serve --configuration=local",
     "test": "ng test",
