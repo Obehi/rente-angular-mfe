@@ -1,10 +1,10 @@
 <mat-icon (click)="onClose()" class="close-modal">close</mat-icon>
 
-<h3>Godt valg!</h3>
-<p >Å bytte bank er lettere enn du tror.</p>
-<p>Du blir nå videresendt til Sbankens søknadssystem. Du oppretter da et kundeforhold i Sbanken samtidig som du søker.
+<h3 i18n>Godt valg!</h3>
+<p i18n >Å bytte bank er lettere enn du tror.</p>
+<p i18n>Du blir nå videresendt til Sbankens søknadssystem. Du oppretter da et kundeforhold i Sbanken samtidig som du søker.
   Dette går raskt med BankID og koster ingenting.</p>
 
-<rente-button class="button" cdkFocusInitial color="primary" [href]="offerInfo.bankInfo.transferUrl">
+<rente-button class="button" cdkFocusInitial color="primary" [href]="offerInfo.bankInfo.transferUrl" i18n>
 Fortsett
 </rente-button>
