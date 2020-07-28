@@ -24,7 +24,7 @@ export class CounterComponent implements OnInit {
   ngOnInit(): void {
     this.loansService.getLoanStatistics().subscribe(res => {
       if (res) {
-        var totalOutstandingDebt = Math.round(res.totalOutstandingDebt / 1000);
+        var totalOutstandingDebt = Math.round(res.totalOutstandingDebt / 1000) * 1000;
         this.totalOutstandingoptions.startVal = totalOutstandingDebt;
         this.totalOutstandingDebt = totalOutstandingDebt;
 
