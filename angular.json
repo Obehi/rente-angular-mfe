@@ -121,6 +121,7 @@
               ]
 
             },
+            
             "dev": {
               "index": { 
                 "input": "src/index-dev.html",
