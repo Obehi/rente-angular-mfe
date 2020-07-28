@@ -4,10 +4,10 @@ let command;
 
 if (process.env.ENV === 'dev') {
     console.log("running heroku dev")
-    command = exec('npm run config-env && ng build --configuration=dev');
-} else if (process.env.ENV === 'staging') {
+    command = exec('npm run config-env && ng build --configuration=heroku-dev');
+} else if (process.env.ENV === 'prod') {
     console.log("running not heroku dev")
-    command = exec('npm run config-env && ng build --configuration=dev');
+    command = exec('npm run config-env && ng build --configuration=heroku-prod');
 }
 
 if (command != undefined) {
