@@ -135,10 +135,6 @@
               ]
             },
             "heroku-prod": {
-              "index": { 
-                "input": "src/index-dev.html",
-                "output": "index.html"
-              },
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
