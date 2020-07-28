@@ -19,7 +19,7 @@
     "build-i18n": "npm run build-i18n:no",
     "build-i18n:stats": "npm run build-i18n:no:stats && npm run build-i18n:en:stats",
     "version": "node app-version.js",
-    "heroku-postbuild": "npm run config-env && ng build --configuration=dev",
+    "heroku-postbuild": "node post-install.js",
     "config-env": "ts-node ./src/set-env.ts",
     "build:stats-analyze": "ng build --stats-json",
     "analyze": "webpack-bundle-analyzer dist/rente-front-end/stats.json"
