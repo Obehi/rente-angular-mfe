@@ -2,11 +2,11 @@
 <a href=""></a>
 <mat-icon (click)="close()" class="close-modal">close</mat-icon>
 
-<h3>Melding til banken din:</h3>
+<h3 i18n>Melding til banken din:</h3>
 <br />
 <hr />
 <br />
-<p>
+<p i18n>
   Hei,
   <br />
   <br />
@@ -16,93 +16,93 @@
 </p>
 
 
-<p class="bold"><b>Opplysninger om tilbud:</b></p>
+<p i18n class="bold"><b>Opplysninger om tilbud:</b></p>
 
 <div class="grid-wrapper">
   <div class="item">
-      <p class="small">Lånebeløp:</p>
+      <p i18n class="small">Lånebeløp:</p>
       <p>{{ data.preview.totalOutstandingDebt | number: "0.0-0" }} kr</p>
   </div>
   <div class="item">
-      <p class="small">Boligverdi:</p>
+      <p i18n class="small">Boligverdi:</p>
       <p>{{ data.preview.propertyValue | number: "1.0-0" }} kr</p>
   </div>
   <div class="item">
-    <p class="small">Fellesgjeld:</p>
+    <p i18n class="small">Fellesgjeld:</p>
     <p>{{ (data.preview.commonDebt / 1000000 | number: "1.1-2")}} mill.</p>
 </div>
 <div class="item">
-    <p class="small">Est. belåningsgrad:</p>
+    <p i18n class="small">Est. belåningsgrad:</p>
     <p>{{ (data.preview.ltv) * 100 | number: "1.1-1"}}%
     </p>
 </div>
   <div class="item">
-      <p class="small">Nedbetalingstid:</p>
+      <p i18n class="small">Nedbetalingstid:</p>
       <p>{{ data.preview.averageRemainingYears | round }} år</p>
   </div>
   <div class="item">
-      <p class="small">Min alder:</p>
+      <p i18n class="small">Min alder:</p>
       <p>{{ data.preview.clientInfo.age | number: "1.0-0" }} år</p>
   </div>
   <div class="item">
-    <p class="small">Bank:</p>
+    <p i18n class="small">Bank:</p>
     <p>{{ data.preview.bankName }}</p>
   </div>
   <div class="item">
-      <p class="small">Produktnavn:</p>
+      <p i18n class="small">Produktnavn:</p>
       <p>{{ data.preview.productName }}</p>    
   </div>
   <div class="item">
-      <p class="small">Nominell rente:</p>
+      <p i18n class="small">Nominell rente:</p>
       <p>{{ data.preview.nominalRate | number: "1.2-2" }}%</p>
   </div>
   <div class="item">
-      <p class="small">Effektiv rente:</p>
+      <p i18n class="small">Effektiv rente:</p>
       <p>{{ data.preview.effectiveRate | number: "1.2-2" }}%</p>
   </div>
 </div>
 
-<p class="small">Produkt:</p>
+<p i18n class="small">Produkt:</p>
 <a href="{{ data.preview.offerUrl }}" target="_blank">
-  <p>Link til produkt på Finansportalen</p>
+  <p i18n>Link til produkt på Finansportalen</p>
 </a>
 <br />
 
 
-<p class="bold"><b>Opplysninger om meg:</b></p>
+<p i18n class="bold"><b>Opplysninger om meg:</b></p>
 
 <div class="grid-wrapper">
     <div class="item">
-        <p class="small">Navn:</p>
+        <p i18n class="small">Navn:</p>
         <p>{{ data.preview.clientInfo.name }}</p>
     </div>
     <div class="item">
-        <p class="small">Telefon:</p>
+        <p i18n class="small">Telefon:</p>
         <p>{{ data.preview.clientInfo.phone }}</p>
     </div>
     <div class="item">
-        <p class="small">Adresse:</p>
+        <p i18n class="small">Adresse:</p>
         <p>{{ data.preview.clientInfo.address }}</p>
     </div>
     <div class="item">
-        <p class="small">Postnr:</p>
+        <p i18n class="small">Postnr:</p>
         <p>{{ data.preview.clientInfo.zip }}</p>
     </div>
     
 </div>
 
-<p class="small">E-post:</p>
+<p i18n class="small">E-post:</p>
 <p>{{ data.preview.clientInfo.email }}</p>
 <br />
 
-<p>
+<p i18n>
   Jeg ønsker at dere kontakter meg per telefon.
 </p>
-<p>
+<p i18n>
   Jeg bekrefter at jeg er over 18 år og myndig eller oppnevnt som verge, samt at
   banken ved behov kan foreta en kredittvurdering.
 </p>
-<p>
+<p i18n>
   Mvh,<br />
   {{ data.preview.clientInfo.name }}
 </p>
@@ -110,14 +110,14 @@
 <hr />
 <br />
 
-<p>
+<p i18n>
   Meldingen sendes til din bank per mail med deg som avsender. Du får også en
   kopi av meldingen i din innboks. Ønsker du å kontakte din bank direkte kan du
   kopiere teksten og bruke den som utgangspunkt for dialog.
 </p>
 <br />
 <form [formGroup]="confirmForm" novalidate>
-  <mat-checkbox
+  <mat-checkbox i18n
     formControlName="confirmation"
     (change)="isConfirmed = $event.checked"
   >
@@ -125,7 +125,7 @@
     at banken ved behov kan foreta en kredittvurdering.
   </mat-checkbox>
   <div class="double">
-    <rente-button
+    <rente-button i18n
       color="primary"
       [isLoading]="isLoading"
       [disabled]="!isConfirmed || isLoading"
@@ -133,7 +133,7 @@
       >Send til banken
     </rente-button>
 
-    <rente-button color="primary" (click)="close()">
+    <rente-button color="primary" (click)="close()" i18n>
       Avbryt
     </rente-button>
   </div>
