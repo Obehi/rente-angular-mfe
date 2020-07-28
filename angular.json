@@ -83,6 +83,10 @@
               ]
             },
             "develop": {
+              "index": { 
+                "input": "src/index-dev.html",
+                "output": "index.html"
+              },
               "budgets": [
                 {
                   "type": "anyComponentStyle",
@@ -93,10 +97,6 @@
                 {
                   "replace": "src/environments/environment.ts",
                   "with": "src/environments/environment.develop.ts"
-                },
-                {
-                  "replace": "src/index.html",
-                  "with": "src/index-dev.html"
                 }
               ],
               "optimization": true,
@@ -122,14 +122,14 @@
 
             },
             "heroku": {
+              "index": { 
+                "input": "src/index-dev.html",
+                "output": "index.html"
+              },
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
                   "with": "src/environments/environment.heroku.ts"
-                },
-                {
-                  "replace": "src/index.html",
-                  "with": "src/index-dev.html"
                 }
               ],
               "optimization": true,
