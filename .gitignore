@@ -38,6 +38,8 @@ npm-debug.log
 yarn-error.log
 testem.log
 /typings
+/.vscode
+.vscode/launch.json
 
 # System Files
 .DS_Store
@@ -45,4 +47,4 @@ Thumbs.db
 
 package-lock.json
 src/version.ts
-.vscode/launch.json
+
