@@ -1,4 +1,6 @@
-<nav>
+
+<ng-container *ngIf="false">
+  <nav class="variation-1">
   <div class="inner-nav">
     <a [routerLink]="['/']">
       <img
@@ -65,4 +67,147 @@
     </div>
   </div>
 </nav>
+</ng-container> 
+
+<ng-container *ngIf="false">
+  <nav class="variation-2">
+    <div class="inner-nav">
+      <a [routerLink]="['/']">
+        <img
+          src="../../../../assets/img/Renteradar_darkblue.svg"
+          alt="Renteradar logo"
+        />
+      </a>
+      <div class="menu-container">
+        <div class="desktop-menu desktop">
+          <a [routerLink]="['/']" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:true}">Hjem</a>
+          <a [routerLink]="['/dashboard/tilbud']" *ngIf="isLoggedIn" routerLinkActive="active-link">Min side</a>
+          <a href="https://blogg.renteradar.no" target="_self">Blogg</a>
+          <a [routerLink]="['/kontakt']" routerLinkActive="active-link">Kontakt</a>
+          <a [routerLink]="['/om-oss']" routerLinkActive="active-link">Om oss</a>
+          <span [routerLink]="['/']" fragment="faq"> 
+              <a href="#faq">FAQ </a> 
+          </span>
+          <a [routerLink]="['/']" *ngIf="isLoggedIn" (click)="auth.logout()">Logg ut</a>
+        </div>
+        <div class="menu mobile" (click)="toggleNav()">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+      <div class="mobile-menu mobile" *ngIf="toggleNavbar">
+        <a
+          [routerLink]="['/']"
+          routerLinkActive="active-link"
+          [routerLinkActiveOptions]="{ exact: true }"
+          (click)="toggleNav()"><h3>Hjem</h3>
+        </a>
+        <a
+          *ngIf="isLoggedIn"
+          [routerLink]="['/dashboard/tilbud']"
+          routerLinkActive="active-link"
+          (click)="toggleNav()"><h3>Min side</h3>
+        </a>
+        <a
+          href="https://blogg.renteradar.no/"
+          target="_blank"
+          (click)="toggleNav()"><h3>Blogg</h3>
+        </a>
+        <a
+          [routerLink]="['/kontakt']"
+          routerLinkActive="active-link"
+          (click)="toggleNav()"><h3>Kontakt</h3>
+        </a>
+        <a
+          [routerLink]="['/om-oss']"
+          routerLinkActive="active-link"
+          (click)="toggleNav()"><h3>Om oss</h3>
+        </a>
+        <span [routerLink]="['/']" fragment="faq"> 
+          <a href="#faq"
+          (click)="toggleNav()"> <h3>FAQ</h3> 
+          </a> 
+        </span>
+        <a
+          [routerLink]="['/']"
+          *ngIf="isLoggedIn"
+          (click)="auth.logout()"><h3>Logg ut</h3>
+        </a>
+      </div>
+    </div>
+  </nav>
+  </ng-container> 
+
+
+
+<ng-container *ngIf="true">
+  <nav class="variation-3">
+    <div class="inner-nav">
+      <a [routerLink]="['/']">
+        <img
+          src="../../../../assets/img/renteradar_white_logo.svg"
+          alt="Renteradar logo"
+        />
+      </a>
+      <div class="menu-container">
+        <div class="desktop-menu desktop">
+          <a [routerLink]="['/']" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:true}">Hjem</a>
+          <a [routerLink]="['/dashboard/tilbud']" *ngIf="isLoggedIn" routerLinkActive="active-link">Min side</a>
+          <a href="https://blogg.renteradar.no" target="_self">Blogg</a>
+          <a [routerLink]="['/kontakt']" routerLinkActive="active-link">Kontakt</a>
+          <a [routerLink]="['/om-oss']" routerLinkActive="active-link">Om oss</a>
+          <span [routerLink]="['/']" fragment="faq"> 
+              <a href="#faq">FAQ </a> 
+          </span>
+          <a [routerLink]="['/']" *ngIf="isLoggedIn" (click)="auth.logout()">Logg ut</a>
+        </div>
+        <div class="menu mobile" (click)="toggleNav()">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+      <div class="mobile-menu mobile" *ngIf="toggleNavbar">
+        <a
+          [routerLink]="['/']"
+          routerLinkActive="active-link"
+          [routerLinkActiveOptions]="{ exact: true }"
+          (click)="toggleNav()"><h3>Hjem</h3>
+        </a>
+        <a
+          *ngIf="isLoggedIn"
+          [routerLink]="['/dashboard/tilbud']"
+          routerLinkActive="active-link"
+          (click)="toggleNav()"><h3>Min side</h3>
+        </a>
+        <a
+          href="https://blogg.renteradar.no/"
+          target="_blank"
+          (click)="toggleNav()"><h3>Blogg</h3>
+        </a>
+        <a
+          [routerLink]="['/kontakt']"
+          routerLinkActive="active-link"
+          (click)="toggleNav()"><h3>Kontakt</h3>
+        </a>
+        <a
+          [routerLink]="['/om-oss']"
+          routerLinkActive="active-link"
+          (click)="toggleNav()"><h3>Om oss</h3>
+        </a>
+        <span [routerLink]="['/']" fragment="faq"> 
+          <a href="#faq"
+          (click)="toggleNav()"> <h3>FAQ</h3> 
+          </a> 
+        </span>
+        <a
+          [routerLink]="['/']"
+          *ngIf="isLoggedIn"
+          (click)="auth.logout()"><h3>Logg ut</h3>
+        </a>
+      </div>
+    </div>
+  </nav>
+  </ng-container> 
 <div class="nav-space"></div>

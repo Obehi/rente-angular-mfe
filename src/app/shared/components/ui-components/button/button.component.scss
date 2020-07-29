@@ -55,8 +55,22 @@ button.mat-secondary {
 button.mat-blue {
   background-color: $blue;
   color: white;
-  width: 100%;
+  width: 80%;
 }
+
+button.mat-primary-wide {
+  background-color: $primary;
+  color: white;
+  height: 56px;
+  width: 80%
+}
+  
+  button.mat-blue-wide {
+    background-color: $blue;
+    color: white;
+    height: 43px;
+    width: 80%;
+  }
 
 button.mat-grey {
   background-color: $grey;
