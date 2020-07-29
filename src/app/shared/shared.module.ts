@@ -27,7 +27,7 @@ import { ProfileService } from '@services/remote-api/profile.service';
 import { HttpClientModule } from '@angular/common/http';
 import { BigNumberPipe } from './pipes/big-number.pipe';
 import { ChipsAutocompleteComponent } from './components/ui-components/chips-autocomplete/chips-autocomplete.component';
-import { TextMaskModule } from 'angular2-text-mask';
+
 import { AbsPipe } from './pipes/abs.pipe';
 import { MaterialModule } from './material/material.module';
 import { SnackBarService } from './services/snackbar.service';
@@ -37,6 +37,7 @@ import { EventService } from './services/event-service';
 import { RoundPipe } from './pipes/round.pipe';
 import { ThousandsSeprator } from './pipes/thousands.pipe';
 import { ButtonSmallComponent } from './components/ui-components/button-small/button-small.component';
+import {IMaskModule} from 'angular-imask';
 
 
 const components = [
@@ -79,10 +80,10 @@ const services = [
     RouterModule,
     FormsModule,
     MaterialModule,
-    TextMaskModule,
+    IMaskModule
   ],
   declarations: [...components, BigNumberPipe, ChipsAutocompleteComponent, AbsPipe, RoundPipe, ThousandsSeprator],
-  exports: [...components, AbsPipe, TextMaskModule, RoundPipe, ThousandsSeprator],
+  exports: [...components, AbsPipe, RoundPipe, ThousandsSeprator],
   providers: [...services]
 })
 export class SharedModule {

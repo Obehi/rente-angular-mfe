@@ -12,6 +12,7 @@ import { VALIDATION_PATTERN } from "@config/validation-patterns.config";
 import { ContactService } from "@services/remote-api/contact.service";
 import { Router } from "@angular/router";
 import { SnackBarService } from "@services/snackbar.service";
+import { Mask } from '@shared/constants/mask'
 
 @Component({
   selector: "rente-contact-us",
@@ -20,10 +21,7 @@ import { SnackBarService } from "@services/snackbar.service";
 })
 export class ContactUsComponent implements OnInit {
   public contactUsForm: FormGroup;
-  public phoneMask = {
-    mask: [/\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/],
-    guide: false
-  };
+  public mask = Mask
   public isLoading: boolean;
 
   constructor(

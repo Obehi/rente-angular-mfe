@@ -1,9 +1,8 @@
 {
-  "extends": "../tsconfig.json",
+  "extends": "../tsconfig.base.json",
   "compilerOptions": {
     "outDir": "../out-tsc/app",
     "baseUrl": "./",
-    "module": "esnext",
     "paths": {
       "@services/*": ["./app/shared/services/*"],
       "@features/*": ["./app/features/*"],
@@ -13,8 +12,11 @@
       "@config/*": ["./app/config/*"]
     }
   },
-  "exclude": [
-    "test.ts",
-    "**/*.spec.ts"
+  "files": [
+    "main.ts",
+    "polyfills.ts"
+  ],
+  "include": [
+    "src/**/*.d.ts"
   ]
 }

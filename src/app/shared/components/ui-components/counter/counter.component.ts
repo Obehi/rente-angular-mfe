@@ -10,16 +10,27 @@ export class CounterComponent implements OnInit {
   totalOutstandingDebt: number;
   combinedSavingsPotential: number;
   interval: any;
+  public totalOutstandingoptions = {
+    startVal: 0,
+    separator: ' '
+  }
 
+  public combinedSavingsPotentialOptions = {
+    starVal: 0,
+    separator: ' '
+  }
   constructor(private loansService: LoansService) {}
 
   ngOnInit(): void {
     this.loansService.getLoanStatistics().subscribe(res => {
       if (res) {
-        this.totalOutstandingDebt =
-          Math.round(res.totalOutstandingDebt / 1000) * 1000;
-        this.combinedSavingsPotential =
-          Math.round(res.combinedSavingsPotential / 10) * 10;
+        var totalOutstandingDebt = Math.round(res.totalOutstandingDebt / 1000) * 1000;
+        this.totalOutstandingoptions.startVal = totalOutstandingDebt;
+        this.totalOutstandingDebt = totalOutstandingDebt;
+
+        var combinedSavingsPotential = Math.round(res.combinedSavingsPotential / 10) * 10;
+        this.combinedSavingsPotentialOptions.starVal = combinedSavingsPotential;
+        this.combinedSavingsPotential = Math.round(res.combinedSavingsPotential / 10) * 10;
         this.setupRefresh();
       }
     });

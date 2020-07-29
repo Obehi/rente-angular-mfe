@@ -53,6 +53,9 @@ export class InputComponent implements ControlValueAccessor, OnChanges {
   @Input() errorStateMatcher: boolean;
   @Input() modelOptions?: { updateOn: string };
   @Input() textControl: boolean;
+  @Input() maskType: string;
+
+
   // tslint:disable-next-line:no-input-rename
   @Input("value") inputValue: any = "";
   @Input() mask?: any[];

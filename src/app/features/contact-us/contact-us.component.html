@@ -57,7 +57,7 @@
     <rente-input
       [placeholder]="'Telefonnr'"
       formControlName="phone"
-      [mask]="phoneMask"
+      [maskType]="mask.phone"
       [type]="'tel'"
       [errorStateMatcher]="
         isErrorState(contactUsForm.controls['phone'], contactUsForm)
