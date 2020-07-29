@@ -3491,6 +3491,50 @@ Fortsett
           <context context-type="sourcefile">app/shared/components/ui-components/dialog/dialog.component.html</context>
           <context context-type="linenumber">5</context>
         </context-group>
+      </trans-unit><trans-unit id="d2b90b913c2f102c984f9856f7e447a03876e617" datatype="html">
+        <source>Bolig <x id="INTERPOLATION" equiv-text="{{ index + 1 }}"/></source><target state="final">Bolig <x id="INTERPOLATION" equiv-text="{{ index + 1 }}"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/dashboard/house/address/address.form.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit><trans-unit id="d24e5a46f91ce6163a46a264e85846e9128ce16b" datatype="html">
+        <source>Boligverdi</source><target state="final">Boligverdi</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/dashboard/house/address/address.form.component.html</context>
+          <context context-type="linenumber">55</context>
+        </context-group>
+      </trans-unit><trans-unit id="79caeab8a0e2c8f7d083c3e3f31d475210087299" datatype="html">
+        <source>
+            Estimert av Virdi
+          </source><target state="final">
+            Estimert av Virdi
+          </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/dashboard/house/address/address.form.component.html</context>
+          <context context-type="linenumber">81</context>
+        </context-group>
+      </trans-unit><trans-unit id="c11a8356df2d74ba3585b33223488571c54ab1a8" datatype="html">
+        <source>
+            Lagre endringene for å hente estimat
+          </source><target state="final">
+            Lagre endringene for å hente estimat
+          </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/dashboard/house/address/address.form.component.html</context>
+          <context context-type="linenumber">85</context>
+        </context-group>
+      </trans-unit><trans-unit id="4b74311a34da4dfd72f755e4667bf5db07036eee" datatype="html">
+        <source>
+      <x id="START_TAG_RENTE-BUTTON" ctype="x-rente-button" equiv-text="&lt;rente-button>"/>Lagre endringer
+    <x id="CLOSE_TAG_RENTE-BUTTON" ctype="x-rente-button" equiv-text="&lt;/rente-button>"/>
+  </source><target state="final">
+      <x id="START_TAG_RENTE-BUTTON" ctype="x-rente-button" equiv-text="&lt;rente-button>"/>Lagre endringer
+    <x id="CLOSE_TAG_RENTE-BUTTON" ctype="x-rente-button" equiv-text="&lt;/rente-button>"/>
+  </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/dashboard/house/address/address.form.component.html</context>
+          <context context-type="linenumber">116</context>
+        </context-group>
       </trans-unit><trans-unit id="7f09a0a5d2ea27044b9d13bfe2b0ab38ef47a9d4" datatype="html">
         <source>
           <x id="START_PARAGRAPH" ctype="x-p" equiv-text="&lt;p>"/>Krav om annet produkt<x id="CLOSE_PARAGRAPH" ctype="x-p" equiv-text="&lt;/p>"/>
