@@ -24,12 +24,25 @@ export class LandingComponent implements OnInit {
   get isMobile(): boolean { return window.innerWidth < 600; }
 
   ngOnInit(): void {
+    this.getVariation()
     const subscription = timer(1000, 1000).subscribe(t => {
       this.time = t;
       if (t === 3) {
         subscription.unsubscribe();
       }
     });
+  }
+
+  getVariation(): number | null {
+    if((window as any).google_optimize == undefined) {
+      return null;
+    }
+    if((window as any).google_optimize == null) {
+      return null;
+    }
+
+    console.log("variation " + (window as any).google_optimize.get('-FGlj4ayQK66hF9kV4Wiow'));
+    return (window as any).google_optimize.get('-FGlj4ayQK66hF9kV4Wiow');
   }
 
 }
