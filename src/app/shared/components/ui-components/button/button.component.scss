@@ -10,7 +10,6 @@ button.mat-button {
   font-size: 16px;
   line-height: 19px;
   height: 56px;
-  border: none;
   outline: none;
   display: inline-block;
   opacity: 1;
@@ -64,13 +63,29 @@ button.mat-primary-wide {
   height: 56px;
   width: 80%
 }
+
+button.mat-primary-wide-hollow {
+  background-color: whitie;
+  color: black;
+  border: 1px solid $primary;
+  height: 56px;
+  width: 80%
+}
+
+button.mat-primary-wide-hollow {
+  background-color: whitie;
+  color: black;
+  border: 1px solid $primary;
+  height: 56px;
+  width: 80%
+}
   
-  button.mat-blue-wide {
-    background-color: $blue;
-    color: white;
-    height: 43px;
-    width: 80%;
-  }
+button.mat-blue-wide {
+  background-color: $blue;
+  color: white;
+  height: 43px;
+  width: 80%;
+}
 
 button.mat-grey {
   background-color: $grey;

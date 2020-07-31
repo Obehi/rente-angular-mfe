@@ -1,11 +1,12 @@
 <div class="the-offer">
+    <div class="nr">
+        {{ index }}
+    </div>
     <div class="the-offer-header">
         <div class="logo" [ngStyle]="{
                 'background-image': 'url(' + banksMap[offer.bankInfo.bank].img + ')'
               }">
-            <div class="nr">
-                <p>{{ index }}</p>
-            </div>
+            
         </div>
         <div class="offer-product">
             <a class="clickable" target="_blank" (click)="openBankUrl(offer)">{{ offer.bankInfo.name }}
@@ -13,17 +14,14 @@
                     open_in_new</mat-icon>
                 -->
                 </a>
-
             <h3>
                 {{ offer.productName }} 
             </h3>
-        
         </div>
         <p>{{ offer.effectiveRate | number: "1.2-2" }}%</p>
     </div>
     <div class="the-offer-body">
         <div class="offer-top">
-
             <!--
             <ul class="info-table">
                 <li>
@@ -44,9 +42,6 @@
                 </li>
             </ul>
             -->
-
-            
-
             <p class="save-text">Du sparer</p>
             <div class="split">
                
@@ -109,16 +104,27 @@
                     <div>
                         <rente-button-small [disabled]=" 
                             offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS ||
-                            offer.bankInfo.partner == false"  [color]="'primary'" type="raised"
+                            offer.bankInfo.partner == false"  [color]="'primary-hollow-small'" type="raised"
                             (click)="openBankUrlByButton(offer)">Se mer på {{getbankNameOrDefault(offer)}}s <br/> hjemmeside
                         </rente-button-small>
                     </div>
         
                     <div>
-                        <rente-button-small [disabled]="
+                        <!-- awfull line break hack with two if statements-->
+                        <rente-button-small 
+                        *ngIf="getbankNameOrDefault(offer).length < 8"
+                        [disabled]="
                         offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS ||
                           offer.bankInfo.partner == false" [color]="'primary'" type="raised"
-                            (click)="openNewOfferDialog(offer)">Få tilbud fra {{getbankNameOrDefault(offer)}}!
+                            (click)="openNewOfferDialog(offer)">Få tilbud fra  {{ getbankNameOrDefault(offer) }}!
+                        </rente-button-small>
+
+                        <rente-button-small 
+                        *ngIf="getbankNameOrDefault(offer).length >= 8"
+                        [disabled]="
+                        offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS ||
+                          offer.bankInfo.partner == false" [color]="'primary'" type="raised"
+                            (click)="openNewOfferDialog(offer)">Få tilbud fra  <br/> {{ getbankNameOrDefault(offer) }}!
                         </rente-button-small>
                         <p class="small" *ngIf=" offer.bankInfo.partner === false"> (Ingen avtale med banken)</p>
                     </div>

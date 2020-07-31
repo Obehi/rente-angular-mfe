@@ -1,6 +1,89 @@
 @import "../../../../styles/theme/_colors.scss";
 
 
+.dashboard-wrapper {
+  background: linear-gradient(180deg, #162537 0%, #183A63 27.08%);
+  .dashboard-inner-wrapper {
+    margin: 0 10px;
+
+  }
+
+  .barometer {
+    background: white;
+    grid-row: 1;
+    grid-column-start: 1;
+    grid-column-end: span 2;
+    p, h2 {
+      color: black
+    }
+  }
+
+  .round-box-grid {
+    display: grid;
+    grid-gap: 22px;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .round-box {
+    border-radius: 15px;
+  }
+}
+
+.blue-bg {
+  background: $blue;
+  * {
+    color: white;
+  }
+}
+.primary-bg {
+  background: #57B99D;
+  * {
+    color: white;
+  }
+}
+
+.white-bg {
+  background: white
+}
+
+.arrow-big {
+  float: right;
+  margin-bottom: -5px;
+  margin-right: 5px;
+}
+
+.extra-small-virdi {
+  font-size: 9px;
+  margin-bottom: 10px;
+}
+
+.margin-top-extra {
+  margin-top: 22px;
+}
+
+.big-box {
+  background: white;
+  margin-bottom: 20px;
+  .top {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20px;
+
+    border-bottom: 1px solid $grey;
+
+    img {
+    }
+    p {
+      text-align: left;
+      margin-left: 10px;
+    }
+  }
+
+  .bottom {
+    padding: 20px;
+  }
+}
 
 .problems {
   padding: 40px 20px;
@@ -50,19 +133,22 @@ a.box {
   text-align: center;
 
   .tipsAccordion {
+
+    grid-row: 4;
+    grid-column-start: 1;
+    grid-column-end: span 2;
+
+    padding: 10px;
+
     cursor: pointer;
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 60px;
-    padding: 6px 20px !important;
-    background-color: $lightgreen;
+    background-color: $blue;
     text-align: left;
-    border-bottom: 1px solid $green;
+
     p {
       font-size: 16px;
+      color: white;
       span {
-        background-color: $blue;
+        background-color: $primary;
         height: 22px;
         border-radius: 100%;
         color: white;
@@ -113,7 +199,6 @@ a.box {
   }
   
   .rente-boxes {
-    margin-bottom: 10px;
     .double {
       margin-bottom: 0;
     }
@@ -139,15 +224,13 @@ a.box {
   .barometer {
     padding-top: 20px;
     padding-bottom: 20px;
-    margin-bottom: 10px;
-    background: $blue;
 
     @media (min-width: 600px) {
       margin-bottom: 40px;
     }
 
-    h3, {
-      color: white;
+    h3 {
+      color: black;
     }
     
     .rente-status {
@@ -155,7 +238,7 @@ a.box {
       margin: 20px 0;
 
       p {
-        color: white;
+        color: black;
         font-size: 18px;
         font-weight: 100;
       }
@@ -163,12 +246,9 @@ a.box {
   }
   .box {
     padding: 20px 10px;
-    margin-bottom: 10px;
+    //margin-bottom: 10px;
     width: 100%;
-    background-color: $light;
-    &.positive {
-      background-color: $lightgreen;
-    }
+
     p img {
       position: relative;
       top: 2px;
@@ -182,6 +262,10 @@ a.box {
     padding-right: 0;
     .split .offer-info:first-of-type {
       border-right: 1px solid $lesslight;
+    }
+
+    h3 {
+      color: white;
     }
 
     .sticky-table-header{
@@ -376,7 +460,6 @@ a.box {
   }
 
   .split-section:last-of-type {
-    border-top: 1px solid #e7e9eb;
     padding-top: 40px;
   }
 
@@ -431,15 +514,14 @@ a.box {
     overflow: hidden;
     display: grid;
     grid-template-columns: repeat(2, minmax(360px, 1fr));
-    border-bottom: 1px solid $light;
-    border-top: 1px solid $light;
+
     margin-bottom: 40px;
 
     .split-section {
       padding: 40px 40px 40px 40px;
     }
     .split-section:first-of-type {
-      border-right: 1px solid $light;
+
     }
     .vertical:nth-child(odd) {
      // display: inline-block;

@@ -1,13 +1,37 @@
 @import "../../../../../styles/theme/_colors.scss";
 
  .the-offer {
-    margin: 0px 0px 15px 0px;
+    margin: 40px 0px 15px 0px;
+    border-radius: 15px;
+    background: white;
     &:first-of-type
       .split:last-of-type
       .offer-info:first-of-type
       .offer-inner {
       background-color: $lightgreen;
     }
+
+    .nr {
+      text-align: center;
+      color: black;
+      background-color: white;
+      border-radius: 100%;
+      width: 3em;
+      height: 3em;
+      box-shadow: 1px 1px 8px -4px;
+      line-height: 3em;
+      margin: auto;
+      position: relative;
+      top: -1em;
+
+      p {
+        font-weight: 500;
+        font-size: 0.8em;
+        margin: auto;
+      }
+    }
+
+
     .small {
       font-size: 11px;
     }
@@ -29,18 +53,18 @@
           vertical-align: middle;
         }
       }
-      
-
     }
+    
     .the-offer-header {
       display: flex;
       justify-content: space-evenly;
-      background-color: $lightgreen;
       padding: 10px;
       font-size: 15px;
       text-align: left;
       align-items: center;
-      
+      border-bottom: 1px solid #ECECEC;
+      padding-top: 0px;
+      margin-top: -10px;
       p {
         display: inline;
         font-size: 14px;
@@ -54,7 +78,6 @@
         background-position: center;
         background-size: cover;
         border-radius: 100%;
-        border: 1px solid $primary;
         position: relative;
         display: inline-block;
         .nr {
@@ -106,13 +129,10 @@
       }
     }
     .the-offer-body {
-       
-        background: #F8F8F8;
         display: grid;
         grid-gap: 10px;
         grid-template-columns:3fr 2fr;
         padding: 10px;
-        border-bottom: 1px solid #cdcdcd;
 
         .offer-top  {
             display: flex;
@@ -121,9 +141,6 @@
             grid-column-start: 1;
             grid-column-end: span 2;
             padding-top: 0px;
-
-
-
             @media (min-width: 600px) { 
                 display: flex;
                 grid-column-start: 1;
@@ -186,7 +203,7 @@
             grid-gap: 0px;
             grid-column-gap: 10px;
             grid-row-gap: 5px;
-            grid-template-columns: 3fr 2fr;          
+            grid-template-columns: 5fr 2fr;          
             grid-column-start: 1;
             grid-column-end: span 2;
             border-top: 1px solid #ECECEC;
@@ -221,7 +238,6 @@
                 justify-content: start;
                 grid-row-start: 1;
                 grid-row-end: span 3;
-                border-left: 1px solid #ECECEC;
                 padding-top: 15px;
                 z-index: 10;
 
@@ -264,6 +280,7 @@
                   z-index: 5;
 
                   .mat-expansion-panel-header{
+                    font-size:  12px;
                     margin-left: 0px;
                     width: 70px;
                     padding: 0px;
