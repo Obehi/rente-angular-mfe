@@ -1,12 +1,13 @@
+
 import { Component, OnInit } from '@angular/core';
 import { LoansService } from '@services/remote-api/loans.service';
 import { Loans } from '@shared/models/loans';
 import { trigger, transition, animate, keyframes, style } from '@angular/animations';
 
 @Component({
-  selector: 'rente-loans',
-  templateUrl: './loans.component.html',
-  styleUrls: ['./loans.component.scss'],
+  selector: 'rente-loans-blue',
+  templateUrl: './loans-blue.component.html',
+  styleUrls: ['./loans-blue.component.scss'],
   animations: [
     trigger(
       'shakeAnimation',
@@ -21,7 +22,7 @@ import { trigger, transition, animate, keyframes, style } from '@angular/animati
     )
   ]
 })
-export class LoansComponent implements OnInit {
+export class LoansBlueComponent implements OnInit {
   public loansData: Loans;
   public errorMessage: string;
   public unableToCalculateTotalInterest: boolean;
@@ -36,15 +37,6 @@ export class LoansComponent implements OnInit {
     }, err => {
       this.errorMessage = err.title;
     });
-  }
-
-  getVariation(): number | null {
-    if((window as any).google_optimize == undefined) {
-      return null;
-    }
-    if((window as any).google_optimize == null) {
-      return null;
-    }
   }
 
 
