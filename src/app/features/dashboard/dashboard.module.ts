@@ -47,6 +47,7 @@ import { BargainSuccessComponent } from './offers/bargain-success/bargain-succes
 import { LoansBlueComponent } from './loans/loans-blue/loans-blue.component';
 import { HouseBlueComponent } from './house/house-blue/house-blue.component';
 import { BlueAddressComponent } from './house/house-blue/blue-address/blue-address.component';
+import { BlueProfileComponent } from './profile/blue-profile/blue-profile.component';
 
 // TODO: ADD separate module for material import
 @NgModule({
@@ -77,7 +78,8 @@ import { BlueAddressComponent } from './house/house-blue/blue-address/blue-addre
     BargainSuccessComponent,
     LoansBlueComponent,
     HouseBlueComponent,
-    BlueAddressComponent
+    BlueAddressComponent,
+    BlueProfileComponent
   ],
   imports: [
     CommonModule,
