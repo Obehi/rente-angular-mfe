@@ -44,6 +44,9 @@ import { LtvTooHighDialogComponent } from './offers/ltv-too-high-dialog/ltv-too-
 import { OfferCardComponent } from './offers/offer-card/offer-card.component';
 import { OfferCardBigComponent } from './offers/offer-card-big/offer-card-big.component';
 import { BargainSuccessComponent } from './offers/bargain-success/bargain-success.component';
+import { LoansBlueComponent } from './loans/loans-blue/loans-blue.component';
+import { HouseBlueComponent } from './house/house-blue/house-blue.component';
+import { BlueAddressComponent } from './house/house-blue/blue-address/blue-address.component';
 
 // TODO: ADD separate module for material import
 @NgModule({
@@ -71,7 +74,10 @@ import { BargainSuccessComponent } from './offers/bargain-success/bargain-succes
     DetailsComponent,
     OfferCardComponent,
     OfferCardBigComponent,
-    BargainSuccessComponent
+    BargainSuccessComponent,
+    LoansBlueComponent,
+    HouseBlueComponent,
+    BlueAddressComponent
   ],
   imports: [
     CommonModule,
