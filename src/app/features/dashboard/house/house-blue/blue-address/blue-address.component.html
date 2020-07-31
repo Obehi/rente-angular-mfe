@@ -1,0 +1,127 @@
+<div class="housecontainer">
+    <div class="heading">
+      <img src="../../../assets/icons/house-icon.svg" alt="Bolig" />
+      <b>Bolig {{ index + 1 }}</b>
+      <mat-icon
+        *ngIf="isAbleToDelete"
+        (click)="onDeleteAddressClick()"
+        class="clickable"
+        >delete_forever</mat-icon
+      >
+    </div>
+    <div class="body">
+      <div class="address">
+        <rente-input
+          type="text"
+          [placeholder]="'Adresse'"
+          [(ngModel)]="address.street"
+          (change)="countChange($event)"
+          (focus)="countChange($event)"
+        ></rente-input>
+        <button
+          [disabled]="!isAddressValid"
+          (click)="toggleMode()"
+          class="clickable"
+        >
+          <mat-icon *ngIf="isEditMode">bar_chart</mat-icon>
+          <mat-icon *ngIf="isStatMode">keyboard_backspace</mat-icon>
+        </button>
+      </div>
+      <div *ngIf="isStatMode">
+        <rente-virdi-statistics [address]="address"> </rente-virdi-statistics>
+      </div>
+      <div [class]="isStatMode ? 'hidden' : 'double'">
+        <rente-input
+          [type]="'tel'"
+          [placeholder]="'Postnummer'"
+          [(ngModel)]="address.zip"
+          [maxLength] ="4"
+          (change)="countChange($event)"
+          (focus)="countChange($event)"
+        ></rente-input>
+  
+        <rente-input
+          matInput
+          [type]="'tel'"
+          [placeholder]="'Størrelse på bolig'"
+          [(ngModel)]="address.apartmentSize"
+          [maxLength] ="3"
+          (change)="countChange($event)"
+          (focus)="countChange($event)"
+          matSuffix="kvm"
+        ></rente-input>
+      </div>
+      <div [class]="isStatMode ? 'hidden' : 'estimate'">
+        <p class="small">Boligverdi</p>
+  
+        <mat-tab-group
+          class="radio"
+          (selectedTabChange)="onRbChange($event)"
+        
+          [selectedIndex]="!address.useManualPropertyValue ? 0 : 1"
+        >
+          <mat-tab label="Automatisk estimat" (click)="onRbChange($event)">
+          </mat-tab>
+          <mat-tab label="Eget estimat" (click)="onRbChange($event)"> </mat-tab>
+        </mat-tab-group>
+        <div class="double estimated">
+          <div>
+            <rente-input
+              matInput
+              class="automatic"
+              [type]="'tel'"
+              [ngModel]="address.estimatedPropertyValue | thousands"
+              (change)="countChange($event)"
+              (focus)="countChange($event)"
+              [disabled]="address.useManualPropertyValue"
+              style="pointer-events: none; text-align: center !important;"
+              [matSuffix]="address.estimatedPropertyValue ? 'kr' : ''"
+            ></rente-input>
+  
+            <p *ngIf="address.estimatedPropertyValue" class="small">
+              Estimert av Virdi
+            </p>
+  
+            <p *ngIf="!address.estimatedPropertyValue" class="small">
+              Lagre endringene for å hente estimat
+            </p>
+          </div>
+          <rente-input
+            matInput
+            [disabled]="!address.useManualPropertyValue"
+            [type]="'tel'"
+            [ngModel]="address.manualPropertyValue | thousands"
+            (change)="countChange($event)"
+            (focus)="countChange($event)"
+            style="text-align: center !important;"
+            (keyup)="manualPropertyValueChanged($event)"
+            matSuffix="kr"
+          ></rente-input>
+        </div>
+      </div>
+  
+      
+      <div class="double">
+        <rente-input
+          [type]="'tel'"
+          [placeholder]="'Fellesgjeld'"
+          [ngModel]="address.commonDebt | thousands"
+          (ngModelChange)="address.commonDebt = formatThousand($event)"
+          (focus)="countChange($event)"
+          matSuffix="kr"
+        ></rente-input>
+      </div>
+      
+      
+      <div class="center-button">
+        <rente-button
+        color="primary"
+        [disabled]="!ableTosave"
+        (click)="save()"
+        class="save-changes-local"
+        >Lagre endringer
+      </rente-button>
+    </div>
+    </div>
+   
+  </div>
