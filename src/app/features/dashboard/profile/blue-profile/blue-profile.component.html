@@ -15,7 +15,8 @@
   <div class="preferences" *ngIf="profileForm">
     <div class="desktop-section">
       <h3>{{ username }}</h3>
-      <form [formGroup]="profileForm" novalidate change>
+      <div class="class container-inner"></div>
+      <form class ="form" [formGroup]="profileForm" novalidate change>
         <div class="field">
           <rente-input
             [placeholder]="'E-post'"
