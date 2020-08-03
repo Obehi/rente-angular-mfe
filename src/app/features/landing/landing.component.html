@@ -1,6 +1,6 @@
 <div class="front-container">
 
-  <ng-container *ngIf="false">
+  <ng-container *ngIf="true">
     <div class="variation-1">
       <div class="intro" [style.margin-bottom.px]="isMobile ? 20 : 80">
         <h1 [style.margin-bottom.px]="isMobile ? 20 : 40">
@@ -13,24 +13,24 @@
       </div>
       <h3>Start med å velge banken du har lån i:</h3>
       <div class="bank-buttons">
-        <rente-button color="blue" [routerLink]="'/autentisering/sparebank1-sub'">
+        <rente-button color="blue-bank" [routerLink]="'/autentisering/sparebank1-sub'">
           <img
             src="../../../assets/img/banks-logo/svg/sparebank1.svg"
             alt="Sparebank1 logo"
             class="sparebank1"
           />
         </rente-button>
-        <rente-button color="blue" [routerLink]="'/autentisering/bank/nordea'">
+        <rente-button color="blue-bank" [routerLink]="'/autentisering/bank/nordea'">
           <img
             src="../../../assets/img/banks-logo/svg/nordea.svg"
             alt="Nordea logo"
             style="height: 20px;"
           />
         </rente-button>
-        <rente-button color="blue" [routerLink]="'/autentisering/bank/dnb'">
+        <rente-button color="blue-bank" [routerLink]="'/autentisering/bank/dnb'">
           <img src="../../../assets/img/banks-logo/svg/dnb.svg" alt="DNB logo" />
         </rente-button>
-        <rente-button color="blue" [routerLink]="'/velgbank'">
+        <rente-button color="blue-bank" [routerLink]="'/velgbank'">
           <p>Annen bank</p>
         </rente-button>
       </div>
@@ -74,7 +74,7 @@
         </h4>
       </div>
 
-      <rente-button color="primary-wide" [routerLink]="'/autentisering/bank/nordea'">
+      <rente-button color="primary-wide" [routerLink]="'/velgdinbank'">
         Finn beste tilbud
       </rente-button>
 
