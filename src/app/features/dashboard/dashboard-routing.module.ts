@@ -10,7 +10,6 @@ import { RateTypeFixedComponent } from './rate-type-fixed/rate-type-fixed.compon
 import { NoLoansComponent } from './no-loans/no-loans.component';
 import { customMeta, defaultMeta } from '@config/routes-config';
 import {RouteGuard } from '@shared/guards/route.guard';
-import { BargainSuccessComponent } from './offers/bargain-success/bargain-success.component';
 
 const routes: Routes = [
   {
@@ -24,9 +23,6 @@ const routes: Routes = [
             description: defaultMeta.description
           }
         }
-      },
-      {
-        path: 'prute-fullfort', component: BargainSuccessComponent
       },
       {
         path: 'mine-lan', component: LoansComponent,

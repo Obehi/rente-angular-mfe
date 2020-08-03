@@ -2,8 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ChangeBankServiceService } from '../../../../shared/services/remote-api/change-bank-service.service';
-import { Router } from '@angular/router';
-
+import { SuccessChangeBankDialogComponent } from './success-change-bank-dialog/success-change-bank-dialog.component';
 
 @Component({
   selector: 'rente-change-bank-dialog',
@@ -15,7 +14,6 @@ export class ChangeBankDialogComponent implements OnInit {
   public isConfirmed: boolean;
   public isLoading: boolean;
   constructor(
-    private router: Router,
     private fb: FormBuilder,
     public dialogRef: MatDialogRef<ChangeBankDialogComponent>,
     private changeBankServiceService: ChangeBankServiceService,
@@ -34,17 +32,19 @@ export class ChangeBankDialogComponent implements OnInit {
     this.changeBankServiceService
       .sendBankOfferRequest(this.data.offerId)
       .subscribe(
-
-    _ => {
+        _ => {
           this.isLoading = false;
           this.dialogRef.close();
-
-        this.router.navigate(['/dashboard/prute-fullfort'],{ state: { isError: true , fromChangeBankDialog: true} });
+          this.dialog.open(SuccessChangeBankDialogComponent, {
+            data: { isError: false }
+          });
         },
         err => {
           this.isLoading = false;
-          this.router.navigate(['/dashboard/prute-fullfort'],{ state: { isError: true , fromChangeBankDialog: true} });
           this.dialogRef.close();
+          this.dialog.open(SuccessChangeBankDialogComponent, {
+            data: { isError: true }
+          });
         }
       );
   }

@@ -43,7 +43,6 @@ import { GetOfferFromBankDialogComponent } from './offers/get-offer-from-bank-di
 import { LtvTooHighDialogComponent } from './offers/ltv-too-high-dialog/ltv-too-high-dialog.component';
 import { OfferCardComponent } from './offers/offer-card/offer-card.component';
 import { OfferCardBigComponent } from './offers/offer-card-big/offer-card-big.component';
-import { BargainSuccessComponent } from './offers/bargain-success/bargain-success.component';
 
 // TODO: ADD separate module for material import
 @NgModule({
@@ -70,8 +69,7 @@ import { BargainSuccessComponent } from './offers/bargain-success/bargain-succes
     LtvTooHighDialogComponent,
     DetailsComponent,
     OfferCardComponent,
-    OfferCardBigComponent,
-    BargainSuccessComponent
+    OfferCardBigComponent
   ],
   imports: [
     CommonModule,
