@@ -73,10 +73,20 @@
               ]
             },
             "develop": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
                   "with": "src/environments/environment.develop.ts"
+                },
+                {
+                  "replace": "src/index.html",
+                  "with": "src/index-dev.html"
                 }
               ],
               "optimization": true,
@@ -106,6 +116,10 @@
                 {
                   "replace": "src/environments/environment.ts",
                   "with": "src/environments/environment.heroku.ts"
+                },
+                {
+                  "replace": "src/index.html",
+                  "with": "src/index-dev.html"
                 }
               ],
               "optimization": true,
