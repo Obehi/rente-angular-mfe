@@ -16,10 +16,20 @@ export class CounterComponent implements OnInit {
   ngOnInit(): void {
     this.loansService.getLoanStatistics().subscribe(res => {
       if (res) {
+<<<<<<< HEAD
         this.totalOutstandingDebt =
           Math.round(res.totalOutstandingDebt / 1000) * 1000;
         this.combinedSavingsPotential =
           Math.round(res.combinedSavingsPotential / 10) * 10;
+=======
+        var totalOutstandingDebt = Math.round(res.totalOutstandingDebt / 1000);
+        this.totalOutstandingoptions.startVal = totalOutstandingDebt;
+        this.totalOutstandingDebt = totalOutstandingDebt;
+
+        var combinedSavingsPotential = Math.round(res.combinedSavingsPotential / 10) * 10;
+        this.combinedSavingsPotentialOptions.starVal = combinedSavingsPotential;
+        this.combinedSavingsPotential = Math.round(res.combinedSavingsPotential / 10) * 10;
+>>>>>>> parent of 4e5f4bb... Fix counter bug
         this.setupRefresh();
       }
     });
