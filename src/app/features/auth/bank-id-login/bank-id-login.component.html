@@ -41,10 +41,9 @@
           "
           [placeholder]="'Ditt fødselsnummer (11 siffer)'"
           formControlName="ssn"
+          [mask]="ssnMask"
           [type]="'tel'"
-          [maskType]="mask.ssn"
           [modelOptions]="{ updateOn: 'blur' }"
-
         >
         </rente-input>
         <div class="error-message" *ngIf="bankIdForm.controls['ssn'].touched">
@@ -80,7 +79,7 @@
             "
             [placeholder]="'Din fødselsdato (ddmmåå)'"
             formControlName="birthdate"
-            [maskType]="mask.birthDate"
+            [mask]="birthdateMask"
             [type]="'tel'"
             [modelOptions]="{ updateOn: 'blur' }"
           >
@@ -114,7 +113,7 @@
           "
           [placeholder]="'Ditt mobilnummer (8 siffer)'"
           formControlName="phone"
-          [maskType]="mask.phone"
+          [mask]="phoneMask"
           [type]="'tel'"
           [modelOptions]="{ updateOn: 'blur' }"
         >

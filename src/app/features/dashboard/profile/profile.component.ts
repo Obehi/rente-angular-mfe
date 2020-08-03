@@ -19,7 +19,7 @@ import { ProfileDialogInfoComponent } from './dialog-info/dialog-info.component'
 import { MatChipInputEvent } from '@angular/material';
 import { LoansService, MembershipTypeDto, PreferencesUpdateDto, PreferencesDto } from '@services/remote-api/loans.service';
 import { UserService } from '@services/remote-api/user.service';
-import { Mask } from '@shared/constants/mask'
+import createNumberMask from 'text-mask-addons/dist/createNumberMask';
 import { VALIDATION_PATTERN } from '../../../config/validation-patterns.config';
 import { SnackBarService } from '../../../shared/services/snackbar.service';
 import { OfferInfo } from '@shared/models/offers';
@@ -33,6 +33,7 @@ import {
   keyframes
   // ...
 } from '@angular/animations';
+import { NONE_TYPE } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'rente-profile',
@@ -77,12 +78,18 @@ export class ProfileComponent implements OnInit, DeactivationGuarded {
   public errorAnimationTrigger :boolean;
   public canNavigateBooolean$: Subject<boolean> = new Subject<boolean>();
   public username: string;
-  public mask = Mask
-
+  public thousandSeparatorMask = {
+    mask: createNumberMask({
+      prefix: '',
+      suffix: '',
+      thousandsSeparatorSymbol: ' '
+    }),
+    guide: false
+  };
   changesMade = false;
 
-  @ViewChild('membershipInput') membershipInput: ElementRef<HTMLInputElement>;
-  @ViewChild('auto') matAutocomplete: MatAutocomplete;
+  @ViewChild('membershipInput', { static: false }) membershipInput: ElementRef<HTMLInputElement>;
+  @ViewChild('auto', { static: false }) matAutocomplete: MatAutocomplete;
 
   constructor(
     private fb: FormBuilder,

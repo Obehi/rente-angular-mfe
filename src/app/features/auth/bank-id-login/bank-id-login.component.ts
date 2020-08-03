@@ -20,8 +20,7 @@ import { customMeta } from '../../../config/routes-config';
 import { BankVo, BankUtils } from '@shared/models/bank';
 import { environment } from '@environments/environment';
 import { UserService } from '@services/remote-api/user.service';
-import { map } from 'rxjs/operators';
-import { Mask } from '@shared/constants/mask'
+import { switchMap, map, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'rente-bank-id-login',
@@ -35,10 +34,12 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
   public isConfirmed: boolean;
   public isLoginStarted = false;
   public userData: any = {};
+  public ssnMask = {mask: [/\d/, /\d/, /\d/, /\d/, /\d/, /\d/, ' ', /\d/, /\d/, /\d/, /\d/, /\d/], guide: false};
+  public phoneMask = {mask: [/\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/], guide: false};
+  public birthdateMask = {mask: [/\d/, /\d/, /\d/, /\d/, /\d/, /\d/], guide: false};
   private routeParamsSub: Subscription;
   public metaTitle: string;
   public metaDescription: string;
-  public mask = Mask
 
   bank:BankVo;
 

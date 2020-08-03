@@ -63,7 +63,7 @@ import { BargainSuccessComponent } from './offers/bargain-success/bargain-succes
     SuccessChangeBankDialogComponent,
     ShareSheetComponent,
     VirdiStatisticsComponent,
-    OffersStatisticsComponent, 
+    OffersStatisticsComponent,
     DialogComponent,
     AddressFormComponent,
     GetOfferFromBankDialogComponent,

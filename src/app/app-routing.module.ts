@@ -3,11 +3,13 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { PageNotFoundComponent } from '@features/page-not-found/page-not-found.component';
 import { LandingComponent } from '@features/landing/landing.component';
+import { AboutUsComponent } from '@features/about-us/about-us.component';
 import { ROUTES_MAP } from '@config/routes-config';
 import { PrivacyComponent } from '@features/privacy/privacy.component';
 import { AboutCookiesComponent } from '@features/cookies/cookies.component';
 import { TermsConditionsComponent } from '@features/terms-conditions/terms-conditions.component';
 import { PrivacyPolicyComponent } from '@features/privacy-policy/privacy-policy.component';
+import { BankSelectComponent } from '@features/bank-select/bank-select.component';
 import { ContactUsComponent } from '@features/contact-us/contact-us.component';
 import { EmailPreferencesComponent } from '@features/email-preferences/email-preferences.component';
 
@@ -36,8 +38,7 @@ const routes: Routes = [
     ]
   },
   {
-    path: ROUTES_MAP.aboutUs,
-    loadChildren: () => import('./features/about-us/about-us.module').then(m => m.AboutUsModule),
+    path: ROUTES_MAP.aboutUs, component: AboutUsComponent,
     data: {
       title: customMeta.omOss.title,
       meta: {
@@ -96,8 +97,7 @@ const routes: Routes = [
     }
   },
   {
-    path: ROUTES_MAP.bankSelect,
-    loadChildren: () => import('./features/bank-select/bank-select.module').then(m => m.BankSelectModule),
+    path: ROUTES_MAP.bankSelect, component: BankSelectComponent,
     data: {
       title: customMeta.valgBank.title,
       meta: {

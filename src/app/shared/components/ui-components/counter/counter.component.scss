@@ -1,8 +1,6 @@
-
-@import "../../../../../styles/theme/colors";
 .spart {
   text-align: center;
-  
+  h2,
   h4 {
     margin-bottom: 20px;
   }
@@ -15,13 +13,4 @@
   ng2-odometer {
     margin: auto;
   }
-}
-
-h2 {
-  display: inline-block;
-  margin-right: 10px
-}
-
-.green {
-  color: $green;
 }

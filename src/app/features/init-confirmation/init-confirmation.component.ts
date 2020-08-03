@@ -19,11 +19,11 @@ import {
   MatDialog
 } from '@angular/material';
 import { Router } from '@angular/router';
+import createNumberMask from 'text-mask-addons/dist/createNumberMask';
 import { VALIDATION_PATTERN } from '@config/validation-patterns.config';
 import { SnackBarService } from '../../shared/services/snackbar.service';
 import { OfferInfo } from '@shared/models/offers';
 import { DialogInfoComponent } from './dialog-info/dialog-info.component';
-import { Mask } from '@shared/constants/mask'
 
 @Component({
   selector: 'rente-init-confirmation',
@@ -43,10 +43,18 @@ export class InitConfirmationComponent implements OnInit {
   public memberships: any = [];
   public allMemberships: MembershipTypeDto[];
   public userData:ConfirmationGetDto;
-  public mask = Mask;
+  public threeDigitsMask = { mask: [/\d/, /\d/, /\d/], guide: false };
+  public thousandSeparatorMask = {
+    mask: createNumberMask({
+      prefix: '',
+      suffix: '',
+      thousandsSeparatorSymbol: ' '
+    }),
+    guide: false
+  };
 
-  @ViewChild('membershipInput') membershipInput: ElementRef<HTMLInputElement>;
-  @ViewChild('auto') matAutocomplete: MatAutocomplete;
+  @ViewChild('membershipInput', { static: false }) membershipInput: ElementRef<HTMLInputElement>;
+  @ViewChild('auto', { static: false }) matAutocomplete: MatAutocomplete;
 
   constructor(
     private fb: FormBuilder,
@@ -68,13 +76,10 @@ export class InitConfirmationComponent implements OnInit {
     this.loansService.getConfirmationData().subscribe(res => {
       this.allMemberships = res.availableMemberships;
       this.userData = res;
-
-      let income = String(res.income)
-      let apartmentSize = String(res.apartmentSize)
       this.propertyForm = this.fb.group({
-        apartmentSize: [apartmentSize, Validators.required],
+        apartmentSize: [res.apartmentSize, Validators.required],
         membership: [],
-        income: [income, Validators.required],
+        income: [res.income, Validators.required],
         email: [res.email, Validators.compose([
             Validators.required,
             Validators.pattern(VALIDATION_PATTERN.email)
@@ -82,6 +87,25 @@ export class InitConfirmationComponent implements OnInit {
         ]
       });
     });
+
+    /* this.loansService.getMembershipTypes().subscribe((memberships: any) => {
+      this.allMemberships = memberships;
+      forkJoin([this.userService.getUserInfo(), this.loansService.getAddresses()])
+        .subscribe(([user, loan]) => {
+          this.userData = user;
+          const apartmentSize = loan.addresses && loan.addresses.length > 0 ? loan.addresses[0].apartmentSize : 0;
+          this.propertyForm = this.fb.group({
+            apartmentSize: [apartmentSize, Validators.required],
+            membership: [],
+            income: [this.userData.income, Validators.required],
+            email: [this.userData.email, Validators.compose([
+              Validators.required,
+              Validators.pattern(VALIDATION_PATTERN.email)
+            ])
+          ]
+        });
+      });
+    }); */
   }
 
   isErrorState(

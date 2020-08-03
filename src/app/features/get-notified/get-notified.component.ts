@@ -43,7 +43,7 @@ export class GetNotifiedComponent implements OnInit {
   public missingBank: BankVo | null;
   public emailError: boolean = false
 
-  @ViewChild("auto") matAutocomplete: MatAutocomplete;
+  @ViewChild("auto", { static: false }) matAutocomplete: MatAutocomplete;
 
   constructor(
     private fb: FormBuilder,

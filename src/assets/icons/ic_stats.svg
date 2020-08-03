@@ -1,1 +1,24 @@
-<svg width="150" height="150" xmlns="http://www.w3.org/2000/svg"><g transform="translate(27 24)" fill="none" fill-rule="evenodd"><g stroke="#2B3E50" stroke-width="3"><circle cx="48" cy="48" r="48"/><path d="M81 84l17 17" stroke-linecap="round"/></g><path d="M19.106 46.447l12-6A2 2 0 0 1 34 42.237V70a2 2 0 0 1-2 2H20a2 2 0 0 1-2-2V48.236a2 2 0 0 1 1.106-1.789zm23.788-6l12 6A2 2 0 0 1 56 48.237V70a2 2 0 0 1-2 2H42a2 2 0 0 1-2-2V42.236a2 2 0 0 1 2.894-1.789zm20.212 6l12-6A2 2 0 0 1 78 42.237V70a2 2 0 0 1-2 2H64a2 2 0 0 1-2-2V48.236a2 2 0 0 1 1.106-1.789z" fill="#2B3E50"/><path stroke="#18BC9C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" d="M18 37.5L37 28 59.5 39 76 30.5"/><circle stroke="#18BC9C" stroke-width="3" fill="#FFF" cx="37" cy="28" r="4"/><circle stroke="#18BC9C" stroke-width="3" fill="#FFF" cx="18" cy="37" r="4"/><circle stroke="#18BC9C" stroke-width="3" fill="#FFF" cx="59" cy="38" r="4"/><circle stroke="#18BC9C" stroke-width="3" fill="#FFF" cx="77" cy="30" r="4"/></g></svg>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="150px" height="150px" viewBox="0 0 150 150" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55.1 (78136) - https://sketchapp.com -->
+    <title>ic_main_2</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" transform="translate(-396.000000, -29.000000)">
+            <g id="Group-2" transform="translate(423.000000, 53.000000)">
+                <g id="Group" stroke="#2B3E50" stroke-width="3">
+                    <circle id="Oval" cx="48" cy="48" r="48"></circle>
+                    <path d="M81,84 L98,101" id="Line-4" stroke-linecap="round"></path>
+                </g>
+                <path d="M19.1055728,46.4472136 L31.1055728,40.4472136 C32.0935298,39.9532351 33.2948759,40.3536838 33.7888544,41.3416408 C33.9277098,41.6193517 34,41.9255778 34,42.236068 L34,70 C34,71.1045695 33.1045695,72 32,72 L20,72 C18.8954305,72 18,71.1045695 18,70 L18,48.236068 C18,47.4785239 18.4280048,46.7859976 19.1055728,46.4472136 Z" id="Rectangle-Copy-9" fill="#2B3E50"></path>
+                <path d="M42.8944272,40.4472136 L54.8944272,46.4472136 C55.5719952,46.7859976 56,47.4785239 56,48.236068 L56,70 C56,71.1045695 55.1045695,72 54,72 L42,72 C40.8954305,72 40,71.1045695 40,70 L40,42.236068 C40,41.1314985 40.8954305,40.236068 42,40.236068 C42.3104902,40.236068 42.6167163,40.3083582 42.8944272,40.4472136 Z" id="Rectangle-Copy-10" fill="#2B3E50"></path>
+                <path d="M63.1055728,46.4472136 L75.1055728,40.4472136 C76.0935298,39.9532351 77.2948759,40.3536838 77.7888544,41.3416408 C77.9277098,41.6193517 78,41.9255778 78,42.236068 L78,70 C78,71.1045695 77.1045695,72 76,72 L64,72 C62.8954305,72 62,71.1045695 62,70 L62,48.236068 C62,47.4785239 62.4280048,46.7859976 63.1055728,46.4472136 Z" id="Rectangle-Copy-11" fill="#2B3E50"></path>
+                <polyline id="Line-2-Copy" stroke="#18BC9C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" points="18 37.5 37 28 59.5 39 76 30.5"></polyline>
+                <circle id="Oval-Copy-6" stroke="#18BC9C" stroke-width="3" fill="#FFFFFF" cx="37" cy="28" r="4"></circle>
+                <circle id="Oval-Copy-7" stroke="#18BC9C" stroke-width="3" fill="#FFFFFF" cx="18" cy="37" r="4"></circle>
+                <circle id="Oval-Copy-8" stroke="#18BC9C" stroke-width="3" fill="#FFFFFF" cx="59" cy="38" r="4"></circle>
+                <circle id="Oval-Copy-9" stroke="#18BC9C" stroke-width="3" fill="#FFFFFF" cx="77" cy="30" r="4"></circle>
+            </g>
+        </g>
+    </g>
+</svg>
