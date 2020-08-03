@@ -45,4 +45,3 @@ Thumbs.db
 
 package-lock.json
 src/version.ts
-.vscode/launch.json
