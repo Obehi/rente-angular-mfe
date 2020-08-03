@@ -3,6 +3,15 @@
 
 .desktop {
 
+.formBox {
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 20px;
+    position: relative;
+    left: -20px;
+    width: calc(100% + 40px);
+}
 .container {
     background: linear-gradient(180deg, #162537 0%, #183A63 27.08%);
 }
@@ -12,6 +21,7 @@
   h3 {
     padding: 20px;
     padding-bottom: 0;
+    color: white;
   }
 }
 
@@ -21,6 +31,10 @@ h3 {
 
 form {
   background-color: unset;
+
+  h3:first {
+      color: black
+  }
 }
 .field {
   margin-bottom: 40px;
@@ -99,10 +113,10 @@ form {
 }
 @media (min-width: 600px) {
   .preferences {
-    padding: 40px 80px;
+    padding: 40px 20px;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-column-gap: 160px;
+    grid-column-gap: 90px;
     h3 {
       padding: 0;
       padding-bottom: 20px;
@@ -181,6 +195,9 @@ form {
 
 .container {
     background: linear-gradient(180deg, #162537 0%, #183A63 27.08%);
+}
+.membershipHelp {
+    margin-right: 26px;
 }
 
 .topForm {
