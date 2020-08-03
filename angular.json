@@ -101,8 +101,7 @@
               ]
 
             },
-            
-            "dev": {
+            "heroku-dev": {
               "index": { 
                 "input": "src/index-dev.html",
                 "output": "index.html"
