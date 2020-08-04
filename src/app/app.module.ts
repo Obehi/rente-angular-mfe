@@ -29,6 +29,7 @@ import { ProfileDialogInfoComponent } from "./features/dashboard/profile/dialog-
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { CountUpModule } from 'ngx-countup';
 
+
 registerLocaleData(localeNo);
 
 @NgModule({
