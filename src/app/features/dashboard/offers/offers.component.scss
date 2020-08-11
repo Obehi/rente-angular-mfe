@@ -18,7 +18,19 @@
     }
   }
 
-  .round-box-grid {
+  @media (min-width: 600px) {
+    .desktop-main-box-grid {
+      display: grid;
+    }
+  }
+
+  .desktop-main-box-grid {
+    grid-gap: 22px;
+    grid-template-columns: 1fr 1fr;
+    margin: 0px 30px 0px 30px
+  }
+
+  .info-box-grid {
     display: grid;
     grid-gap: 22px;
     grid-template-columns: 1fr 1fr;
@@ -27,6 +39,8 @@
   .round-box {
     border-radius: 15px;
   }
+
+
 }
 
 .blue-bg {
@@ -134,9 +148,17 @@ a.box {
 
   .tipsAccordion {
 
-    grid-row: 4;
-    grid-column-start: 1;
-    grid-column-end: span 2;
+    @media (max-width: 600px) {
+      grid-row: 4;
+      grid-column-start: 1;
+      grid-column-end: span 2;
+    }
+
+    @media (min-width: 600px) {
+      grid-row: 3;
+    }
+
+    
 
     padding: 10px;
 
@@ -167,18 +189,24 @@ a.box {
   }
 
   .tips {
+
+    @media (min-width: 600px) {
+      grid-row: 5;
+      grid-column-start: 1;
+      grid-column-end: span 2;
+    }
+    background: $secondary;
     position: relative;
     margin-top: 37px;
     padding: 0 !important;
     text-align: left;
-    border-bottom: 1px solid $green;
     .tip {
       padding: 10px 20px;
       position: relative;
       display: block;
       text-decoration: none;
       padding-right: 40px;
-      border-bottom: 1px solid $light;
+
       mat-icon {
         color: $green;
         position: absolute;
@@ -186,6 +214,9 @@ a.box {
         top: 50%;
         transform: translateY(-50%);
       }
+    }
+    p {
+      color: white;
     }
   }
   .obs {
@@ -195,6 +226,17 @@ a.box {
     background-color: $lightwarning;
     @media (min-width: 600px) {
      
+    }
+  }
+
+  .cta-boxes-desktop {
+    @media (min-width: 600px) {
+      grid-row: 6;
+      grid-column-start: 1;
+      grid-column-end: span 2;
+      display: flex;
+      justify-content: space-evenly;
+      margin: 30px 0 30px 0;
     }
   }
   
@@ -227,6 +269,7 @@ a.box {
 
     @media (min-width: 600px) {
       margin-bottom: 40px;
+      margin-top: 30px;
     }
 
     h3 {
@@ -348,8 +391,11 @@ a.box {
 
       }
       .the-offer-header {
-        border-top: 1px solid $green;
-        background-color: $lightgreen;
+        @media (min-width: 600px) {
+
+          background-color: white;
+          border-radius: 15px 15px 0 0;
+        }
         padding: 10px;
         text-align: left;
         .logo {
@@ -453,11 +499,13 @@ a.box {
     border-bottom: 1px solid $light;
   }
   .compared {
+    background: white;
     padding: 0px 10px;
     padding-bottom: 40px;
     margin-bottom: 40px;
     border-bottom: 1px solid $light;
   }
+  
 
   .split-section:last-of-type {
     padding-top: 40px;
@@ -476,7 +524,12 @@ a.box {
   } */
   .barometer,
   .compared {
+    background: white;
     text-align: left;
+
+    grid-row-start: 2;
+    grid-row-end: span 3;
+    grid-column-start: 2;
   }
 
   .rente-boxes {
@@ -487,25 +540,28 @@ a.box {
     .tipsAccordion {
       position: relative;
       top: 7px;
-      border: 1px solid $green;
+
       padding: 6px 10px !important;
     }
     .tips {
-      border: 1px solid $green;
-      border-top: 0px solid $green;
+      display: flex;
       margin-top: 0px;
+
+      .tip-wrapper {
+        max-width: 300px;
+      }
     }
+
+
   }
   .offers .the-offers {
     padding: 80px;
     .the-offer {
       .the-offer-header {
-        border: 1px solid $green;
-        border-bottom: none;
+        display: none;
       }
       .the-offer-body {
-        border-left: 1px solid $lesslight;
-        border-right: 1px solid $lesslight;
+        border-radius: 0 0 15px 15px ;
       }
     }
   }
