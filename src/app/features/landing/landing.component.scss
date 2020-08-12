@@ -38,6 +38,11 @@ h3 {
   }
 }
 
+iframe {
+  margin: auto;
+  display: block;
+}
+
 //overflow hidden is set only on the wrapper on landing page
 .front-container {
   overflow: hidden;
