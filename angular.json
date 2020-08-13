@@ -18,6 +18,7 @@
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "aot": true,
+            "localize": true,
             "outputPath": "dist/rente-front-end",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -63,6 +64,24 @@
                   "maximumWarning": "6kb"
                 }
               ]
+            },
+            "nb": {
+              "aot": true,
+              "outputPath": "dist/nb/",
+              "i18nFile": "src/locale/messages.nb.xtb",
+              "i18nFormat": "xtb",
+              "i18nLocale": "nb",
+              "i18nMissingTranslation": "error",
+              "baseHref": "/"
+            },
+            "sv": {
+              "aot": true,
+              "outputPath": "dist/sv/",
+              "i18nFile": "src/locale/messages.sv.xtb",
+              "i18nFormat": "xtb",
+              "i18nLocale": "sv",
+              "i18nMissingTranslation": "error",
+              "baseHref": "/sv/"
             },
             "local": {
               "budgets": [
@@ -221,11 +240,25 @@
             "production": {
               "browserTarget": "rente-front-end:build:production"
             },
+            "sv": {
+              "browserTarget": "rente-front-end:build:sv"
+            },
             "local": {
               "browserTarget": "rente-front-end:build:local"
             },
             "develop": {
               "browserTarget": "rente-front-end:build:develop"
+            }
+          },
+          "i18nFile": "src/locale/messages.nb.xtb",
+          "i18nFormat": "xtb",
+          "i18nLocale": "nb",
+          "i18nMissingTranslation": "error",
+          "baseHref": "/nb/",
+          "i18n": {
+            "sourceLocale": "nb",
+            "locales": {
+              "nb": "src/locale/messages.nb.xtb"
             }
           }
         },
