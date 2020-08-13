@@ -21,7 +21,7 @@
 <!ELEMENT ex (#PCDATA)>
 ]>
 <messagebundle>
-  <msg id="myId"><source>app/features/landing/landing.component.html:6,9</source>
+  <msg id="landingheader" desc="Describes the header" meaning="Our header"><source>app/features/landing/landing.component.html:6,9</source>
       Sammenlign boliglånet ditt mot markedets beste tilbud - kjapt, enkelt og
       gratis!
     </msg>

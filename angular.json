@@ -83,7 +83,7 @@
               ]
             },
             "develop": {
-              "index": { 
+              "index": {
                 "input": "src/index-dev.html",
                 "output": "index.html"
               },
@@ -100,11 +100,10 @@
                 }
               ]
             },
-            
             "heroku-dev": {
-              "index": { 	
-                "input": "src/index-dev.html",	
-                "output": "index.html"	
+              "index": {
+                "input": "src/index-dev.html",
+                "output": "index.html"
               },
               "fileReplacements": [
                 {
@@ -112,7 +111,6 @@
                   "with": "src/environments/environment.heroku.ts"
                 }
               ],
-              
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
@@ -141,7 +139,6 @@
                   "with": "src/environments/environment.heroku.ts"
                 }
               ],
-              
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
@@ -164,7 +161,7 @@
               ]
             },
             "heroku": {
-              "index": { 
+              "index": {
                 "input": "src/index-dev.html",
                 "output": "index.html"
               },
@@ -196,7 +193,7 @@
               ]
             },
             "se": {
-              "index": { 
+              "index": {
                 "input": "src/index-dev.html",
                 "output": "index.html"
               },
@@ -245,16 +242,26 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
-            "styles": ["src/styles.scss"],
+            "styles": [
+              "src/styles.scss"
+            ],
             "scripts": [],
-            "assets": ["src/favicon.ico", "src/assets"]
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ]
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["src/tsconfig.app.json", "src/tsconfig.spec.json"],
-            "exclude": ["**/node_modules/**"]
+            "tsConfig": [
+              "src/tsconfig.app.json",
+              "src/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         }
       }
@@ -280,11 +287,16 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": "e2e/tsconfig.e2e.json",
-            "exclude": ["**/node_modules/**"]
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         }
       }
     }
   },
-  "defaultProject": "rente-front-end"
+  "defaultProject": "rente-front-end",
+  "cli": {
+    "analytics": false
+  }
 }

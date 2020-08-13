@@ -22,7 +22,7 @@
     "config-env": "ts-node ./src/set-env.ts",
     "build:stats-analyze": "ng build --stats-json",
     "analyze": "webpack-bundle-analyzer dist/rente-front-end/stats.json",
-    "i18n:poeditor": "poeditor --config=./src/app/config/poeditor.json",
+    "i18n:poeditor": "poeditor --config=poeditor.json",
     "i18n-test": "npm run i18n --i18nFormat=xmb && npm run i18n:poeditor"
   },
   "private": true,

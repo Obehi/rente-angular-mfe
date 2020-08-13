@@ -32,3 +32,21 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## Run Chrome without CORS
     open -n -a /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --args --user-data-dir="/tmp/chrome_dev_test" --disable-web-security
+
+## Localization with poeditor
+First extract translations from code. Use .xmb as that's what poeditor support. 
+
+    $ ng xi18n --format xmb --output-path .
+    $ ng xi18n --format xmb --i18n-locale nb --output-path .
+
+Then configure config file and download the language files from poeditor
+
+    Config file here
+    ./src/app/config/poeditor.json
+    $ npm run i18n:poeditor
+    
+
+## OLD IGNORE
+    $ ng xi18n --i18n-format xmb --output-path src
+    $ ng xi18n  --i18n-format xmb
+    $ ng xi18n  --format xmb

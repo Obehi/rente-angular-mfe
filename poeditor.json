@@ -1,0 +1,12 @@
+{
+    "apiToken":"d34970122a1f1a52e61f9cc12c68790f",
+    "projectId":"365565",
+    "importFile":"src/messages.xmb",
+    "exportTags": "all",
+    "exportDir":"src/locale",
+    "exportFiles":{
+      "nb":"messages.nb.xtb",
+      "sv":"messages.sv.xtb",
+      "en":"messages.en.xtb"
+    }
+  }
