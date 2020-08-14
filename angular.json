@@ -15,7 +15,7 @@
       },
       "i18n": {
         "locales": {
-          "sv": "src/locale/messages.sv.xlf"
+          "sv": "src/locale/messages.sv.xtb"
         }
       },
       "architect": {
