@@ -234,6 +234,7 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
+            "aot": true,
             "browserTarget": "rente-front-end:build"
           },
           "configurations": {
@@ -241,6 +242,7 @@
               "browserTarget": "rente-front-end:build:production"
             },
             "sv": {
+              "aot": true,
               "browserTarget": "rente-front-end:build:sv"
             },
             "local": {
