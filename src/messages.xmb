@@ -25,5 +25,4 @@
       Sammenlign boliglånet ditt mot markedets beste tilbud - kjapt, enkelt og
       gratis!
     </msg>
-  <msg id="myheader2id" desc="Amazing description" meaning="Test h2 header"><source>app/features/landing/landing.component.html:10</source>En subtittel her på default norsk</msg>
 </messagebundle>
