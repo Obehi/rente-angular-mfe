@@ -19,4 +19,13 @@
       Sammenlign boliglånet ditt mot markedets beste tilbud - kjapt, enkelt og
       gratis!
     </translation>
+  <translation id="landing.sellingpoint-1" desc="Describes sellingpoint 1" meaning="Sellingpoint 1">Renteradar finner den beste boliglånsrenten helt gratis.</translation>
+  <translation id="landing.sellingpoint-2" desc="Describes sellingpoint 2" meaning="Sellingpoint 2">
+              Ingen utfylling av skjema. <ph name="LINE_BREAK"><ex>&lt;br&gt;</ex>&lt;br&gt;</ph>
+              Logg inn med BankID på mobil.
+            </translation>
+  <translation id="landing.sellingpoint-3" desc="Describes sellingpoint 3" meaning="Sellingpoint 3">
+              Renteradar overvåker markedet og gir deg beskjed når det kommer
+              bedre tilbud.
+            </translation>
 </translationbundle>

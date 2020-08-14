@@ -8,10 +8,32 @@
       gratis!
     </h4>
   </div>
-
+<!--
   <iframe src="https://link.tink.com/1.0/authorize/?client_id=f58c3faf6749466384b71791fe233a22&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fcallback&scope=accounts:read,investments:read,transactions:read,user:read,statistics:read,identity:read,credentials:read&market=SE&locale=en_US&test=true">
-
-
+-->
+    <h3>Start med å velge banken du har lån i:</h3>
+    <div class="bank-buttons">
+      <rente-button color="blue" [routerLink]="'/autentisering/sparebank1-sub'">
+        <img
+          src="../../../assets/img/banks-logo/svg/sparebank1.svg"
+          alt="Sparebank1 logo"
+          class="sparebank1"
+        />
+      </rente-button>
+      <rente-button color="blue" [routerLink]="'/autentisering/bank/nordea'">
+        <img
+          src="../../../assets/img/banks-logo/svg/nordea.svg"
+          alt="Nordea logo"
+          style="height: 20px;"
+        />
+      </rente-button>
+      <rente-button color="blue" [routerLink]="'/autentisering/bank/dnb'">
+        <img src="../../../assets/img/banks-logo/svg/dnb.svg" alt="DNB logo" />
+      </rente-button>
+      <rente-button color="blue" [routerLink]="'/velgbank'">
+        <p>Annen bank</p>
+      </rente-button>
+    </div>
   <div class="data-logos">
     <a class="finansportalen" target="_blank" href="https://www.finansportalen.no">
       <img
@@ -40,11 +62,11 @@
         <div class="four-columns">
           <div class="block">
             <img src="../../../assets/icons/renteradar.svg" alt="renteradar" />
-            <p>Renteradar finner den beste boliglånsrenten helt gratis.</p>
+            <p i18n="Sellingpoint 1|Describes sellingpoint 1@@landing.sellingpoint-1">Renteradar finner den beste boliglånsrenten helt gratis.</p>
           </div>
           <div class="block">
             <img src="../../../assets/icons/user.svg" alt="bankID" />
-            <p>
+            <p i18n="Sellingpoint 2|Describes sellingpoint 2@@landing.sellingpoint-2">
               Ingen utfylling av skjema. <br />
               Logg inn med BankID på mobil.
             </p>
@@ -55,7 +77,7 @@
           </div>
           <div class="block">
             <img src="../../../assets/icons/notify.svg" alt="notify" />
-            <p>
+            <p i18n="Sellingpoint 3|Describes sellingpoint 3@@landing.sellingpoint-3">
               Renteradar overvåker markedet og gir deg beskjed når det kommer
               bedre tilbud.
             </p>

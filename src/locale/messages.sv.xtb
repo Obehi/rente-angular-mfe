@@ -15,6 +15,15 @@
 <!ELEMENT ex (#PCDATA)>
 ]>
 <translationbundle lang="sv">
-  <translation id="landingheader" desc="Please don't change the name of the application">SVENSK Sammenlign boliglånet ditt mot markedets beste tilbud - kjapt, enkelt og
-      gratis!</translation>
+  <translation id="landingheader" desc="Describes the header" meaning="Our header">SVENSK Sammenlign boliglånet ditt mot markedets beste tilbud - kjapt, enkelt og gratis!
+    </translation>
+  <translation id="landing.sellingpoint-1" desc="Describes sellingpoint 1" meaning="Sellingpoint 1">Ränteradaren hittar den bästa hypoteksräntan gratis.</translation>
+  <translation id="landing.sellingpoint-2" desc="Describes sellingpoint 2" meaning="Sellingpoint 2">
+              Ingen blankett. <ph name="LINE_BREAK"> <ex> &amp; lt; br &amp; gt; </ex> &amp; lt; br &amp; gt; </ph>
+              Logga in med BankID på mobil.
+            </translation>
+  <translation id="landing.sellingpoint-3" desc="Describes sellingpoint 3" meaning="Sellingpoint 3">
+              Ränteradar övervakar marknaden och meddelar dig när den anländer
+              bättre erbjudanden.
+            </translation>
 </translationbundle>

@@ -23,7 +23,7 @@
     "build:stats-analyze": "ng build --stats-json",
     "analyze": "webpack-bundle-analyzer dist/rente-front-end/stats.json",
     "i18n:poeditor": "poeditor --config=poeditor.json",
-    "i18n-test": "ng xi18n --i18nFormat=xlf --out-file messages.xlf && npm run i18n:poeditor"
+    "i18n-test": "ng xi18n --i18nFormat=xmb --out-file messages.xmb && npm run i18n:poeditor"
 
   },
   "private": true,
