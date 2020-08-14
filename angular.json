@@ -13,6 +13,11 @@
           "style": "scss"
         }
       },
+      "i18n": {
+        "locales": {
+          "sv": "src/locale/messages.sv.xlf"
+        }
+      },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -75,13 +80,7 @@
               "baseHref": "/"
             },
             "sv": {
-              "aot": true,
-              "outputPath": "dist/sv/",
-              "i18nFile": "src/locale/messages.sv.xtb",
-              "i18nFormat": "xtb",
-              "i18nLocale": "sv",
-              "i18nMissingTranslation": "error",
-              "baseHref": "/sv/"
+              "localize": ["sv"]
             },
             "local": {
               "budgets": [
@@ -242,7 +241,6 @@
               "browserTarget": "rente-front-end:build:production"
             },
             "sv": {
-              "aot": true,
               "browserTarget": "rente-front-end:build:sv"
             },
             "local": {
