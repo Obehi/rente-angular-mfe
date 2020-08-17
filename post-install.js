@@ -4,7 +4,7 @@ let command;
 
 if (process.env.ENV === 'dev') {
     console.log("running heroku dev")
-    command = exec('npm run config-env && ng build --configuration=heroku-dev, sv');
+    command = exec('npm run config-env && ng build --configuration=heroku-dev');
 } else if (process.env.ENV === 'prod') {
     console.log("running heroku prod")
     command = exec('npm run config-env && ng build --configuration=heroku-prod');
