@@ -1,8 +1,8 @@
 <div class="front-container">
   <div *ngIf="propertyForm">
     <div class="title">
-      <h3>Hei, {{ userData.name }}</h3>
-      <p>Vi trenger litt mer informasjon før vi kan søke etter tilbud</p>
+      <h3 i18n>Hei, {{ userData.name }}</h3>
+      <p i18n>Vi trenger litt mer informasjon før vi kan søke etter tilbud</p>
     </div>
 
     <form
@@ -22,13 +22,13 @@
         </rente-input>
 
         <div *ngIf="propertyForm.controls['email'].touched">
-          <p
+          <p i18n
             class="error small"
             *ngIf="propertyForm.controls['email'].hasError('required')"
           >
             Kan ikke være tom
           </p>
-          <p
+          <p i18n
             class="error small"
             *ngIf="propertyForm.controls['email'].hasError('pattern')"
           >
@@ -55,7 +55,7 @@
             </rente-input>
 
             <div *ngIf="propertyForm.controls['apartmentSize'].touched">
-              <p
+              <p i18n
                 class="error small"
                 *ngIf="
                   propertyForm.controls['apartmentSize'].hasError('required')
@@ -65,7 +65,7 @@
               </p>
             </div>
           </div>
-          <div
+          <div i18n
             class="clickable"
             (click)="openInfoDialog('Brukes til å estimere din boligverdi')"
           >
@@ -89,7 +89,7 @@
             >
             </rente-input>
             <div *ngIf="propertyForm.controls['income'].touched">
-              <p
+              <p i18n
                 class="error small"
                 *ngIf="propertyForm.controls['income'].hasError('required')"
               >
@@ -97,7 +97,7 @@
               </p>
             </div>
           </div>
-          <div
+          <div i18n
             (click)="
               openInfoDialog(
                 ' Din/Husstandens inntekt er en viktig parameter for renten bankene tilbyr '
@@ -110,7 +110,7 @@
         </div>
       </div>
 
-      <p class="small">
+      <p i18n class="small">
         Bankene gir ofte bedre betingelser om du er medlem i en organisasjon
       </p>
       <mat-form-field>
@@ -134,7 +134,7 @@
           </mat-option>
         </mat-autocomplete>
       </mat-form-field>
-      <p class="small" *ngIf="memberships.length">
+      <p i18n class="small" *ngIf="memberships.length">
         Mine medlemskap
       </p>
       <p
@@ -149,7 +149,7 @@
           >delete_forever</mat-icon
         >
       </p>
-      <rente-button
+      <rente-button i18n
         color="primary"
         [isLoading]="isLoading"
         [disabled]="propertyForm.invalid || isLoading"

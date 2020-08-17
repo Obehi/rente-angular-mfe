@@ -1,10 +1,10 @@
 <div class="update-complete" [@loading]="updateAnimationTrigger? 'true' : 'false'">
   <img src="../../../../assets/icons/ic_done.svg" alt="success-icon" />
-  <p>Lagret</p>
+  <p i18n>Lagret</p>
 </div>
 
 <div class="update-error" [@loading]="errorAnimationTrigger ? 'true' : 'false'">
-  <p>Oops, noe gikk galt</p>
+  <p i18n>Oops, noe gikk galt</p>
 </div>
 
 <div class="loading" *ngIf="isLoading">
@@ -12,8 +12,8 @@
 </div>
 <div class="house" *ngIf="showAddresses">
   <div class="title">
-    <h3>Mine boliger</h3>
-    <p class="small">Total verdi: {{ totalPropertyValue | thousands }}</p>
+    <h3 i18n>Mine boliger</h3>
+    <p i18n class="small">Total verdi: {{ totalPropertyValue | thousands }}</p>
   </div>
   <div class="houses">
     <rente-address-form
@@ -27,7 +27,7 @@
       [ngClass]="{'disabled':isLoading}"
     >
     </rente-address-form>
-    <rente-button class="add" color="blue" (click)="addAddress()">
+    <rente-button class="add" color="blue" (click)="addAddress()" i18n>
         Legg til flere boliger
     </rente-button>
   </div>
@@ -43,7 +43,7 @@
   >
   -->
   <div class="center-logo">
-    <p>Få full kontroll på din bolig med:</p>
+    <p i18n>Få full kontroll på din bolig med:</p>
 
     <a target="_blank" href="https://www.boligmappa.no/">
       <img src="../../../../assets/img/partners/boligmappa-color.png" alt="boligmappa logo" />

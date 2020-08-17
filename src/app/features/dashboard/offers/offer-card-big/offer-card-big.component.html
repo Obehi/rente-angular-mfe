@@ -21,7 +21,7 @@
     </div>
   </div>
   <div class="the-offer-body">
-    <div class="small-header"><p>Rentebesparelse</p></div>
+    <div i18n class="small-header"><p>Rentebesparelse</p></div>
     <div class="split">
       <div class="offer-inner save">
         <h2 *ngIf="offer.totalSavings > 0; else noTotalSavings">
@@ -30,7 +30,7 @@
         <ng-template #noTotalSavings>
           <h2>0,-</h2>
         </ng-template>
-        <p>over lånets løpetid</p>
+        <p i18n>over lånets løpetid</p>
       </div>
       <div class="offer-inner save">
         <h2 *ngIf="offer.savingsFirstYear > 0; else noTotalSavings">
@@ -39,13 +39,13 @@
         <ng-template #noSavingsFirstYear>
           <h2>0,-</h2>
         </ng-template>
-        <p>første år</p>
+        <p i18n>første år</p>
       </div>
     </div>
     <div class="split">
       <div class="offer-info">
         <div class="small-header">
-          <p>Effektiv rente</p>
+          <p i18n>Effektiv rente</p>
         </div>
         <div class="offer-inner">
           <h2>{{ offer.effectiveRate | number: "1.2-2" }}%</h2>
@@ -53,11 +53,11 @@
       </div>
       <div class="offer-info">
         <div class="small-header">
-          <p>Krever bytte av nettbank</p>
+          <p i18n>Krever bytte av nettbank</p>
         </div>
         <div class="offer-inner">
           <div>
-            <h2>
+            <h2 i18n>
               {{ offer.requiredProductPackage == null ? "Nei" : "Ja" }}
             </h2>
         </div>
@@ -68,7 +68,7 @@
     <div class="split">
       <div class="offer-info">
         <div class="small-header">
-          <p>Kundetilfredshet</p>
+          <p i18n>Kundetilfredshet</p>
         </div>
         <div class="offer-inner center-align">
           <img class="offer-score" src="../../../../assets/icons/score-{{offer.bankInfo.score }}.svg"/>
@@ -77,7 +77,7 @@
       </div>
       <div class="offer-info">
         <div class="small-header">
-          <p>Hvor lang tid tar det å søke</p>
+          <p i18n>Hvor lang tid tar det å søke</p>
         </div>
         <div class="offer-inner time">
           <div class="center">
@@ -91,7 +91,7 @@
     </div>
 
     <div class="small-header bottom">
-      <p class="insignificant"><span>Tilbud:
+      <p i18n class="insignificant"><span>Tilbud:
       </span> Eff.rente {{offer.effectiveRate | number: "1.2-2"}}%, 
         Lånebeløp {{offer.outstandingDebt | number: "1.0" }}, 
         {{offer.loanPeriodYears | number: "1.1-1" }} år, 
@@ -100,7 +100,7 @@
       </p>
 
       <a (click)="openOfferDialog(offer)" class="clickable details">
-        <p>Detaljer</p>
+        <p i18n>Detaljer</p>
         <img class="offer-score" src="../../../../assets/icons/arrow-down-green.svg"/>
       </a>
     </div>
@@ -110,7 +110,7 @@
   
     <div class="full-width">
      
-      <rente-button
+      <rente-button i18n
         [disabled]="
           offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS ||
           offer.bankInfo.partner == false"
@@ -120,7 +120,7 @@
         >Se mer på {{getbankNameOrDefault(offer)}}s <br/> hjemmeside</rente-button
       >
 
-      <p class="small" *ngIf=" offer.bankInfo.partner === false && isMobile === false"> (Ingen avtale med banken enda)</p>
+      <p i18n class="small" *ngIf=" offer.bankInfo.partner === false && isMobile === false"> (Ingen avtale med banken enda)</p>
 
     </div>
   
@@ -129,7 +129,7 @@
 
     <div class="full-width">
       
-      <rente-button
+      <rente-button i18n
       [disabled]="
           offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS ||
             offer.bankInfo.partner == false"
@@ -138,7 +138,7 @@
         (click)="openNewOfferDialog(offer)"
         >Få tilbud fra {{getbankNameOrDefault(offer)}}!</rente-button
       >     
-      <p class="small" *ngIf=" offer.bankInfo.partner === false"> (Ingen avtale med banken enda)</p>
+      <p i18n class="small" *ngIf=" offer.bankInfo.partner === false"> (Ingen avtale med banken enda)</p>
       
      
     </div>

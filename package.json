@@ -4,6 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "cd server && node app.js",
+    "start:sv": "ng serve --configuration=sv",
     "build": "npm run version && npm run build-i18n",
     "build:stats": "npm run lint && npm run version && npm run i18n && npm run build-i18n:stats",
     "local": "ng serve --configuration=local",

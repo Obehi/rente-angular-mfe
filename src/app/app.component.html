@@ -7,20 +7,20 @@
 
 <div class="absolute-pos" *ngIf="showCookieAcc">
   <div class="cookie-acc-panel">
-    <div class="cookie-acc-title">Dine data, dine valg</div>
-    <div class="cookie-acc-message">
+    <div i18n class="cookie-acc-title">Dine data, dine valg</div>
+    <div i18n class="cookie-acc-message">
       Renteradar.no eies av Forbrukerøkonomene AS som er ansvarlig for dine data.<br/>
       Vi bryr oss om ditt personvern. Vi bruker dine data til å forbedre og tilpasse tjenestene ser og bruker.
     </div>
     <div class="cookie-acc-btn">
       <div style="opacity:0.4">
         <rente-button color="blue" (action)="readMore()">
-          <p>Vis meg mer</p>
+          <p i18n>Vis meg mer</p>
         </rente-button>
       </div>
       <div>
         <rente-button color="primary" (action)="acceptCookies()">
-          <p>JEG FORSTÅR</p>
+          <p i18n>JEG FORSTÅR</p>
         </rente-button>
       </div>
     </div>

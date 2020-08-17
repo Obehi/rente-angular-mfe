@@ -4,7 +4,7 @@
 </div>
 <div class="update-complete" [@loading]="updateAnimationTrigger? 'true' : 'false'">
     <img src="../../../../assets/icons/ic_done.svg" alt="success-icon" />
-    <p>Lagret</p>
+    <p i18n>Lagret</p>
   </div>
 
 <div class="update-error" [@loading]="errorAnimationTrigger ? 'true' : 'false'">
@@ -13,9 +13,9 @@
 
 
 <div class="preferences">
-    <h3>Epost innstillinger</h3>
+    <h3 i18n>Epost innstillinger</h3>
     <ng-container *ngIf="showErrorMessage; else form">
-        <p class="warning">Noe gikk galt, vennligst logg inn eller ta kontakt med oss på <a href = "mailto: hei@renteradar.no">hei@renteradar.no</a></p>
+        <p i18n class="warning">Noe gikk galt, vennligst logg inn eller ta kontakt med oss på <a href = "mailto: hei@renteradar.no">hei@renteradar.no</a></p>
     </ng-container>
 
       <ng-template #form>
@@ -25,7 +25,7 @@
 
             <div class="field">
                 <div class="withinfo">
-                    <p class="small">Markedsovervåkning / Rentesjekk av dine lån</p>
+                    <p i18n class="small">Markedsovervåkning / Rentesjekk av dine lån</p>
                     <div
                       (click)="
                         openInfoDialog(
@@ -39,27 +39,27 @@
                   </div>
                 <mat-radio-group formControlName="checkRateReminderType">
                     <mat-radio-button value="HVER_MANED_1"
-                    ><span class="mat-radio-label"
+                    ><span class="mat-radio-label" i18n
                         >Hver måned</span
                     ></mat-radio-button
                     >
                     <mat-radio-button value="HVER_MANED_2"
-                    ><span class="mat-radio-label"
+                    ><span class="mat-radio-label" i18n
                         >Hver 2. måned</span
                     ></mat-radio-button
                     >
                     <mat-radio-button value="HVER_MANED_3"
-                    ><span class="mat-radio-label"
+                    ><span class="mat-radio-label" i18n
                         >Hver 3. måned</span
                     ></mat-radio-button
                     >
                     <mat-radio-button value="HVER_MANED_4"
-                    ><span class="mat-radio-label"
+                    ><span class="mat-radio-label" i18n
                         >Hver 4. måned</span
                     ></mat-radio-button
                     >
                     <mat-radio-button value="NONE"
-                    ><span class="mat-radio-label"
+                    ><span class="mat-radio-label" i18n
                         >Aldri</span
                     ></mat-radio-button
                     >
@@ -67,22 +67,22 @@
             </div>
 
             <div class="field">
-                <p class="small">
+                <p i18n class="small">
                     Få markedsoppdateringer, nyheter og annen informasjon på epost
                 </p>
                 <mat-radio-group formControlName="receiveNewsEmails">
                 <mat-radio-button [value]="true"
-                    ><span class="mat-radio-label">Ja</span></mat-radio-button
+                    ><span class="mat-radio-label" i18n>Ja</span></mat-radio-button
                 >
                 <mat-radio-button [value]="false"
-                    ><span class="mat-radio-label">Nei</span></mat-radio-button
+                    ><span class="mat-radio-label" i18n>Nei</span></mat-radio-button
                 >
                 </mat-radio-group>     
             </div> 
             
         </form>
         <div class="center-button">
-            <rente-button class="add" color="primary" (click)="sendForm()">
+            <rente-button class="add" color="primary" (click)="sendForm()" i18n>
                 Lagre endringer
             </rente-button>
         </div>
