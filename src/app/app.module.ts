@@ -28,6 +28,8 @@ import { EmailPreferencesComponent } from './features/email-preferences/email-pr
 import { ProfileDialogInfoComponent } from "./features/dashboard/profile/dialog-info/dialog-info.component";
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { CountUpModule } from 'ngx-countup';
+import { LoginNoComponent } from './features/landing/locale/login/login-no/login-no.component';
+import { LoginSVComponent } from './features/landing/locale/login/login-sv/login-sv.component';
 
 registerLocaleData(localeNo);
 
@@ -47,7 +49,9 @@ registerLocaleData(localeNo);
     DialogInfoComponent,
     AboutCookiesComponent,
     EmailPreferencesComponent,
-    ProfileDialogInfoComponent
+    ProfileDialogInfoComponent,
+    LoginNoComponent,
+    LoginSVComponent
   ],
   imports: [
     BrowserModule,

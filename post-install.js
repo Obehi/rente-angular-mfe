@@ -2,6 +2,7 @@ const { exec } = require('child_process');
 
 let command;
 
+
 if (process.env.ENV === 'dev') {
     console.log("running heroku dev")
     command = exec('npm run config-env && ng build --configuration=heroku-dev');
