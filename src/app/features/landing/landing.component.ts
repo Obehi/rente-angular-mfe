@@ -1,7 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { timer } from 'rxjs';
 import { trigger, transition, style, animate } from '@angular/animations';
-import { environment } from '../../../environments/environment';
+import {
+  FormGroup,
+  FormBuilder,
+  Validators,
+  FormControl,
+  FormGroupDirective,
+  NgForm,
+  AbstractControl
+} from "@angular/forms";
+
+import { VALIDATION_PATTERN } from "@config/validation-patterns.config";
+import { ContactService } from "@services/remote-api/contact.service";
+import { Router } from "@angular/router";
+import { SnackBarService } from "@services/snackbar.service";
+import { Mask } from '@shared/constants/mask'
 
 @Component({
   selector: 'rente-landing',
@@ -23,7 +37,18 @@ import { environment } from '../../../environments/environment';
 export class LandingComponent implements OnInit {
   time = 0;
   get isMobile(): boolean { return window.innerWidth < 600; }
-  enviorment = environment
+
+  public contactUsForm: FormGroup;
+  public mask = Mask
+  public isLoading: boolean;
+
+  constructor(
+    private fb: FormBuilder,
+    private contactService: ContactService,
+    private router: Router,
+    private snackBar: SnackBarService
+  ) {}
+
   ngOnInit(): void {
     const subscription = timer(1000, 1000).subscribe(t => {
       this.time = t;
@@ -32,5 +57,4 @@ export class LandingComponent implements OnInit {
       }
     });
   }
-
 }

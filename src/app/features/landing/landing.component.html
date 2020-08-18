@@ -3,7 +3,7 @@
     <h1 [style.margin-bottom.px]="isMobile ? 20 : 40">
       Få beste <a [routerLink]="'/velgbank'">boliglånsrente</a>
     </h1>
-    <h4>
+    <h4 i18n="Our header|Describes the header@@landingheader">
       Sammenlign boliglånet ditt mot markedets beste tilbud - kjapt, enkelt og
       gratis!
     </h4>
@@ -39,11 +39,11 @@
         <div class="four-columns">
           <div class="block">
             <img src="../../../assets/icons/renteradar.svg" alt="renteradar" />
-            <p>Renteradar finner den beste boliglånsrenten helt gratis.</p>
+            <p i18n="Sellingpoint 1|Describes sellingpoint 1@@landing.sellingpoint-1">Renteradar finner den beste boliglånsrenten helt gratis.</p>
           </div>
           <div class="block">
             <img src="../../../assets/icons/user.svg" alt="bankID" />
-            <p>
+            <p i18n="Sellingpoint 2|Describes sellingpoint 2@@landing.sellingpoint-2">
               Ingen utfylling av skjema. <br />
               Logg inn med BankID på mobil.
             </p>
@@ -54,7 +54,7 @@
           </div>
           <div class="block">
             <img src="../../../assets/icons/notify.svg" alt="notify" />
-            <p>
+            <p i18n="Sellingpoint 3|Describes sellingpoint 3@@landing.sellingpoint-3">
               Renteradar overvåker markedet og gir deg beskjed når det kommer
               bedre tilbud.
             </p>
@@ -80,14 +80,14 @@
           </h4>
         </div>
           <div class="item img">
-            <img              
+            <img
             [lazyLoad]="'../../../assets/img/example-desktop-info.svg'"
             offset="600"
             alt="Screenshot example"
             />
           </div>
           <div class="item img">
-            
+
             <img
               [lazyLoad]="'../../../assets/img/example-desktop-offers.svg'"
               offset="600"
@@ -148,27 +148,27 @@
         </div>
         <div class="sitatboks">
             <div class="quote">Sparte 400 kroner i måneden. Veldig brukervennlig. Slipper å bruke tid på å kontakte sin egen bank eller andre. Renteradar.no gjør jobben.</div>
-            <picture> 
+            <picture>
               <source srcset="../../../assets/img-webp/sitat9.webp" type="image/webp">
-              <source srcset="../../../assets/img/sitat9.jpg" type="image/jpeg"> 
+              <source srcset="../../../assets/img/sitat9.jpg" type="image/jpeg">
               <img class="bilde" src="../../../assets/img/sitat9.jpg"/>
             </picture>
             <div class="name">Rita Bügelmeyer, Stavanger</div>
           </div>
         <div class="sitatboks">
           <div class="quote">For 3-4 dager siden testet vi renteradar.no og i dag ringte banken. De satte ned boliglånsrenten med ett prosent!</div>
-          <picture> 
+          <picture>
             <source srcset="../../../assets/img-webp/sitat7.webp" type="image/webp">
-            <source srcset="../../../assets/img/sitat7.jpg" type="image/jpeg"> 
+            <source srcset="../../../assets/img/sitat7.jpg" type="image/jpeg">
             <img class="bilde" src="../../../assets/img/sitat7.jpg"/>
           </picture>
           <div class="name">Rita Hansen, Spydeberg</div>
         </div>
         <div class="sitatboks">
           <div class="quote">Renteradar.no foreslo Bulder Bank. Der fikk jeg lavere rente, uten gebyr som DNB hadde på 60kr i måneden!! Så derfor Bulder Bank for meg!</div>
-          <picture> 
+          <picture>
             <source srcset="../../../assets/img-webp/sitat6.webp" type="image/webp">
-            <source srcset="../../../assets/img/sitat6.jpg" type="image/jpeg"> 
+            <source srcset="../../../assets/img/sitat6.jpg" type="image/jpeg">
             <img class="bilde" src="../../../assets/img/sitat6.jpg"/>
           </picture>
           <div class="name">Berit Bongo, Hammerfest</div>
@@ -182,9 +182,9 @@
           <div class="quote">
             Jeg ble overrasket over at det var så lett å spare 5000 bare ved å klikke på pruteknappen. Anbefaler alle å teste Renteradar.no
           </div>
-          <picture> 
+          <picture>
             <source srcset="../../../assets/img-webp/sitat4.webp" type="image/webp">
-            <source srcset="../../../assets/img/sitat4.jpg" type="image/jpeg"> 
+            <source srcset="../../../assets/img/sitat4.jpg" type="image/jpeg">
             <img class="bilde" src="../../../assets/img/sitat4.jpg"/>
           </picture>
           <div class="name">Susanne, Oslo</div>
@@ -216,9 +216,9 @@
           <div class="quote">
             Fikk akkurat beskjed fra banken at jeg fikk boliglånsrenta ned med 0,15%! Superfornøyd!
           </div>
-          <picture> 
+          <picture>
             <source srcset="../../../assets/img-webp/sitat1.webp" type="image/webp">
-            <source srcset="../../../assets/img/sitat1.jpg" type="image/jpeg"> 
+            <source srcset="../../../assets/img/sitat1.jpg" type="image/jpeg">
             <img class="bilde" src="../../../assets/img/sitat1.jpg"/>
           </picture>
           <div class="name">Johanna, Tromsø</div>
@@ -232,19 +232,19 @@
     <div class="horizontal-scroll">
 
       <a class="article" target="_blank" href="https://www.tv2.no/nyheter/11327692/">
-        <picture> 
+        <picture>
           <source srcset="../../../assets/img-webp/200325_tv2_sak_kollasje.webp" type="image/webp">
-          <source srcset="../../../assets/img/200325_tv2_sak_kollasje.jpg" type="image/jpeg"> 
+          <source srcset="../../../assets/img/200325_tv2_sak_kollasje.jpg" type="image/jpeg">
           <img class="background-image" src="../../../assets/img/200325_tv2_sak_kollasje.jpg"/>
         </picture>
         <img class="logo" src="../../../assets/img/tv2-logo.svg" alt="https://tv2.no" style="margin: -10px 0; width: 40px; height: 40px;" />
         <h3>Renteradar.no og TV2.no setter søkelyset på ordet «inntil» når bankene varsler rentekutt.</h3>
       </a>
-      
+
       <a class="article" target="_blank" href="https://www.dn.no/makrookonomi/privatokonomi/norges-bank/rente/dette-blir-den-nye-gullrenten-men-bankene-kunne-vist-samfunnsansvar-og-kuttet-raskere/2-1-775551">
-        <picture> 
+        <picture>
           <source srcset="../../../assets/img-webp/200320_DN_Fredrik_Sindre_kollasje.webp" type="image/webp">
-          <source srcset="../../../assets/img/200320_DN_Fredrik_Sindre_kollasje.jpg" type="image/jpeg"> 
+          <source srcset="../../../assets/img/200320_DN_Fredrik_Sindre_kollasje.jpg" type="image/jpeg">
           <img class="background-image" src="../../../assets/img/200320_DN_Fredrik_Sindre_kollasje.jpg"/>
         </picture>
       <img class="logo" src="../../../assets/img/dagens_naeringsliv.jpg" alt="https://dn.no" />
@@ -257,7 +257,7 @@
         <h3>Hallgeir Kvadsheim: "[...] en fintech-nykommer som gjør prutejobben enklere"</h3>
       </a>
 
-      <a class="article" target="_blank" href="https://www.dn.no/privatokonomi/rente/privatokonomi/makrookonomi/ny-analyse-lojale-lanekunder-over-50-pa-boligrente-toppen/2-1-743720">  
+      <a class="article" target="_blank" href="https://www.dn.no/privatokonomi/rente/privatokonomi/makrookonomi/ny-analyse-lojale-lanekunder-over-50-pa-boligrente-toppen/2-1-743720">
         <img class="background-image" src="../../../assets/img/dn_eldre_kunder.jpg"/>
         <img class="logo" src="../../../assets/img/dagens_naeringsliv.jpg" alt="Dagens Næringsliv" />
         <h3>Med data fra Renteradar.no setter DN søkelyset på at lojale og eldre bankkunder ofte betaler mer i rente enn andre.</h3>
@@ -272,8 +272,8 @@
           class="image"
           style="background-image: url('../../../assets/img/shifter.jpg')"
         ></div>
-       
-        
+
+
         <img
           class="logo"
           src="../../../assets/img/shifter_logo.svg"
@@ -289,10 +289,10 @@
         target="_blank"
         class="article"
       >
-        
-        <picture> 
+
+        <picture>
           <source srcset="../../../assets/img-webp/dinepenger.webp" type="image/webp">
-          <source srcset="../../../assets/img/dinepenger.jpg" type="image/jpeg"> 
+          <source srcset="../../../assets/img/dinepenger.jpg" type="image/jpeg">
           <img class="background-image" src="../../../assets/img/dinepenger.jpg"/>
         </picture>
         <img
@@ -310,12 +310,12 @@
         target="_blank"
         class="article"
       >
-        <picture> 
+        <picture>
           <source srcset="../../../assets/img-webp/kapital.webp" type="image/webp">
-          <source srcset="../../../assets/img/kapital.jpg" type="image/jpeg"> 
+          <source srcset="../../../assets/img/kapital.jpg" type="image/jpeg">
           <img class="background-image" src="../../../assets/img/kapital.jpg"/>
         </picture>
-     
+
         <img
           class="logo"
           src="../../../assets/img/kaptial.svg"

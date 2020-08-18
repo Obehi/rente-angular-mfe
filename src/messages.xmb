@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE messagebundle [
+<!ELEMENT messagebundle (msg)*>
+<!ATTLIST messagebundle class CDATA #IMPLIED>
+
+<!ELEMENT msg (#PCDATA|ph|source)*>
+<!ATTLIST msg id CDATA #IMPLIED>
+<!ATTLIST msg seq CDATA #IMPLIED>
+<!ATTLIST msg name CDATA #IMPLIED>
+<!ATTLIST msg desc CDATA #IMPLIED>
+<!ATTLIST msg meaning CDATA #IMPLIED>
+<!ATTLIST msg obsolete (obsolete) #IMPLIED>
+<!ATTLIST msg xml:space (default|preserve) "default">
+<!ATTLIST msg is_hidden CDATA #IMPLIED>
+
+<!ELEMENT source (#PCDATA)>
+
+<!ELEMENT ph (#PCDATA|ex)*>
+<!ATTLIST ph name CDATA #REQUIRED>
+
+<!ELEMENT ex (#PCDATA)>
+]>
+<messagebundle>
+  <msg id="landingheader" desc="Describes the header" meaning="Our header"><source>app/features/landing/landing.component.html:6,9</source>
+      Sammenlign boliglånet ditt mot markedets beste tilbud - kjapt, enkelt og
+      gratis!
+    </msg>
+  <msg id="landing.sellingpoint-1" desc="Describes sellingpoint 1" meaning="Sellingpoint 1"><source>app/features/landing/landing.component.html:65</source>Renteradar finner den beste boliglånsrenten helt gratis.</msg>
+  <msg id="landing.sellingpoint-2" desc="Describes sellingpoint 2" meaning="Sellingpoint 2"><source>app/features/landing/landing.component.html:69,72</source>
+              Ingen utfylling av skjema. <ph name="LINE_BREAK"><ex>&lt;br&gt;</ex>&lt;br&gt;</ph>
+              Logg inn med BankID på mobil.
+            </msg>
+  <msg id="landing.sellingpoint-3" desc="Describes sellingpoint 3" meaning="Sellingpoint 3"><source>app/features/landing/landing.component.html:80,83</source>
+              Renteradar overvåker markedet og gir deg beskjed når det kommer
+              bedre tilbud.
+            </msg>
+</messagebundle>

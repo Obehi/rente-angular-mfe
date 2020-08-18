@@ -13,11 +13,18 @@
           "style": "scss"
         }
       },
+      "i18n": {
+        "locales": {
+          "sv": "src/locale/messages.sv.xtb",
+          "nb": "src/locale/messages.nb.xtb"
+        }
+      },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "aot": true,
+            "localize": true,
             "outputPath": "dist/rente-front-end",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -64,6 +71,12 @@
                 }
               ]
             },
+            "nb": {
+              "localize": ["nb"]
+            },
+            "sv": {
+              "localize": ["sv"]
+            },
             "local": {
               "budgets": [
                 {
@@ -83,7 +96,7 @@
               ]
             },
             "develop": {
-              "index": { 
+              "index": {
                 "input": "src/index-dev.html",
                 "output": "index.html"
               },
@@ -100,11 +113,10 @@
                 }
               ]
             },
-            
             "heroku-dev": {
-              "index": { 	
-                "input": "src/index-dev.html",	
-                "output": "index.html"	
+              "index": {
+                "input": "src/index-dev.html",
+                "output": "index.html"
               },
               "fileReplacements": [
                 {
@@ -112,7 +124,6 @@
                   "with": "src/environments/environment.heroku.ts"
                 }
               ],
-              
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
@@ -141,7 +152,6 @@
                   "with": "src/environments/environment.heroku.ts"
                 }
               ],
-              
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
@@ -164,7 +174,7 @@
               ]
             },
             "heroku": {
-              "index": { 
+              "index": {
                 "input": "src/index-dev.html",
                 "output": "index.html"
               },
@@ -194,41 +204,41 @@
                   "maximumWarning": "6kb"
                 }
               ]
-            },
-            "se": {
-              "index": { 
-                "input": "src/index-dev.html",
-                "output": "index.html"
-              },
-              "budgets": [
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb"
-                }
-              ],
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.se.ts"
-                }
-              ]
             }
           }
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
+            "aot": true,
             "browserTarget": "rente-front-end:build"
           },
           "configurations": {
             "production": {
               "browserTarget": "rente-front-end:build:production"
             },
+            "sv": {
+              "browserTarget": "rente-front-end:build:sv"
+            },
+            "nb": {
+              "browserTarget": "rente-front-end:build:nb"
+            },
             "local": {
               "browserTarget": "rente-front-end:build:local"
             },
             "develop": {
               "browserTarget": "rente-front-end:build:develop"
+            }
+          },
+          "i18nFile": "src/locale/messages.nb.xtb",
+          "i18nFormat": "xtb",
+          "i18nLocale": "nb",
+          "i18nMissingTranslation": "error",
+          "baseHref": "/nb/",
+          "i18n": {
+            "sourceLocale": "nb",
+            "locales": {
+              "nb": "src/locale/messages.nb.xtb"
             }
           }
         },
@@ -245,16 +255,26 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
-            "styles": ["src/styles.scss"],
+            "styles": [
+              "src/styles.scss"
+            ],
             "scripts": [],
-            "assets": ["src/favicon.ico", "src/assets"]
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ]
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["src/tsconfig.app.json", "src/tsconfig.spec.json"],
-            "exclude": ["**/node_modules/**"]
+            "tsConfig": [
+              "src/tsconfig.app.json",
+              "src/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         }
       }
@@ -280,11 +300,16 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": "e2e/tsconfig.e2e.json",
-            "exclude": ["**/node_modules/**"]
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         }
       }
     }
   },
-  "defaultProject": "rente-front-end"
+  "defaultProject": "rente-front-end",
+  "cli": {
+    "analytics": false
+  }
 }
