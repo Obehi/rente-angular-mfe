@@ -9,6 +9,54 @@
     </h4>
   </div>
 
+  <form
+      [formGroup]="contactUsForm"
+      novalidate
+      (ngSubmit)="request()"
+    >
+    
+      
+      <div>
+        <rente-input
+          [placeholder]="'E-post'"
+          formControlName="email"
+          [errorStateMatcher]="
+            isErrorState(contactUsForm.controls['email'], contactUsForm)
+          "
+          [textControl]="inValid()"
+          (blur)="onBlurErrorCheck()"
+        >
+        </rente-input>
+        <div
+          *ngIf="emailError"
+          class="error-message"
+        >
+          <rente-form-message
+            class="text-left d-block"
+            [type]="'error'"
+            *ngIf="contactUsForm.controls['email'].hasError('required')"
+          >
+            Ikke gyldig email
+          </rente-form-message>
+          <rente-form-message
+            class="text-left d-block"
+            [type]="'error'"
+            *ngIf="contactUsForm.controls['email'].hasError('pattern')"
+          >
+            Ikke gyldig email
+          </rente-form-message>
+        </div>
+      </div>
+
+      <rente-button
+        color="primary"
+        [disabled]="!contactUsForm.valid || isLoading"
+        >Si ifra
+      </rente-button>
+    </form>
+
+
+  
   <iframe src="https://link.tink.com/1.0/authorize/?client_id=3973e78ee8c140edbf36e53d50132ba1&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fcallback&scope=accounts:read,investments:read,transactions:read,user:read,statistics:read,identity:read,credentials:read&market=SE&locale=sv_SE&test=true&iframe=true">
 
   <div class="data-logos">
@@ -27,9 +75,8 @@
     <a class="boligmappa" target="_blank" href="https://www.boligmappa.no/">
       <img src="../../../../assets/img/partners/boligmappa-color.png" alt="boligmappa logo" />
     </a>
-
   </div>
-
+  
   <rente-counter></rente-counter>
 
   <div>
