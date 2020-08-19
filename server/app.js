@@ -3,7 +3,7 @@ const path = require('path');
 const app = express();
 const https = require('https');
 
-const clientPath = path.resolve(__dirname, '../dist/rente-front-end/sv');
+const clientPath = path.resolve(__dirname, '../dist/rente-front-end/');
 const port = process.env.PORT || 4300;
 
 https.globalAgent.options.ca = require('ssl-root-cas/latest').create();
@@ -32,7 +32,12 @@ var renderEnIndex = (req, res) => {
   res.sendFile(path.resolve(__dirname, clientPath + '/en' + '/index.html'))
 }
 
+var renderSvIndex = (req, res) => {
+  res.sendFile(path.resolve(__dirname, clientPath + '/sv' + '/index.html'))
+}
+
 app.get('/en*', renderEnIndex);
+app.get('/*', renderSvIndex);
 app.get('/*', renderIndex);
 
 // Start the app by listening on the default Heroku port
