@@ -3,7 +3,7 @@ const path = require('path');
 const app = express();
 const https = require('https');
 
-const clientPath = path.resolve(__dirname, '../dist/rente-front-end');
+const clientPath = path.resolve(__dirname, '../dist/rente-front-end/sv');
 const port = process.env.PORT || 4300;
 
 https.globalAgent.options.ca = require('ssl-root-cas/latest').create();
