@@ -36,9 +36,14 @@ var renderSvIndex = (req, res) => {
   res.sendFile(path.resolve(__dirname, clientPath + '/sv' + '/index.html'))
 }
 
+var renderNbIndex = (req, res) => {
+  res.sendFile(path.resolve(__dirname, clientPath + '/nb' + '/index.html'))
+}
+
 app.get('/en*', renderEnIndex);
-app.get('/*', renderSvIndex);
-app.get('/*', renderIndex);
+app.get('/sv*', renderSvIndex);
+app.get('/nb*', renderIndex);
+app.get('/*', renderNbIndex);
 
 // Start the app by listening on the default Heroku port
 const server = app.listen(port, function () {
