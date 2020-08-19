@@ -24,8 +24,1349 @@
               Ingen utfylling av skjema. <ph name="LINE_BREAK"><ex>&lt;br&gt;</ex>&lt;br&gt;</ph>
               Logg inn med BankID på mobil.
             </translation>
-  <translation id="landing.sellingpoint-3" desc="Describes sellingpoint 3" meaning="Sellingpoint 3">
+  <translation id="955768507366840868">Hjem</translation>
+  <translation id="5954436502499769428">Min side</translation>
+  <translation id="8266599949765020603">Blogg</translation>
+  <translation id="397497450705980813">Kontakt</translation>
+  <translation id="8198522670169303684">Om oss</translation>
+  <translation id="6697571135954210237">FAQ </translation>
+  <translation id="5987658635044112615">Logg ut</translation>
+  <translation id="7441903142936828428"><ph name="START_HEADING_LEVEL3"><ex>&lt;h3&gt;</ex>&lt;h3&gt;</ph>Hjem<ph name="CLOSE_HEADING_LEVEL3"><ex>&lt;/h3&gt;</ex>&lt;/h3&gt;</ph>
+      </translation>
+  <translation id="3021321205999998856"><ph name="START_HEADING_LEVEL3"><ex>&lt;h3&gt;</ex>&lt;h3&gt;</ph>Min side<ph name="CLOSE_HEADING_LEVEL3"><ex>&lt;/h3&gt;</ex>&lt;/h3&gt;</ph>
+      </translation>
+  <translation id="1954951702595990763"><ph name="START_HEADING_LEVEL3"><ex>&lt;h3&gt;</ex>&lt;h3&gt;</ph>Blogg<ph name="CLOSE_HEADING_LEVEL3"><ex>&lt;/h3&gt;</ex>&lt;/h3&gt;</ph>
+      </translation>
+  <translation id="1891296237535264124"><ph name="START_HEADING_LEVEL3"><ex>&lt;h3&gt;</ex>&lt;h3&gt;</ph>Kontakt<ph name="CLOSE_HEADING_LEVEL3"><ex>&lt;/h3&gt;</ex>&lt;/h3&gt;</ph>
+      </translation>
+  <translation id="8108758150266387082"><ph name="START_HEADING_LEVEL3"><ex>&lt;h3&gt;</ex>&lt;h3&gt;</ph>Om oss<ph name="CLOSE_HEADING_LEVEL3"><ex>&lt;/h3&gt;</ex>&lt;/h3&gt;</ph>
+      </translation>
+  <translation id="7442447568922483268"> <ph name="START_HEADING_LEVEL3"><ex>&lt;h3&gt;</ex>&lt;h3&gt;</ph>FAQ<ph name="CLOSE_HEADING_LEVEL3"><ex>&lt;/h3&gt;</ex>&lt;/h3&gt;</ph> 
+        </translation>
+  <translation id="5905294547893051908"><ph name="START_HEADING_LEVEL3"><ex>&lt;h3&gt;</ex>&lt;h3&gt;</ph>Logg ut<ph name="CLOSE_HEADING_LEVEL3"><ex>&lt;/h3&gt;</ex>&lt;/h3&gt;</ph>
+      </translation>
+  <translation id="3185021677385346022">Våre kunder:</translation>
+  <translation id="4525761148073733362">Samarbeidspartnere:</translation>
+  <translation id="4794228676930795015">
+        Renteradar.no eies og driftes av
+      </translation>
+  <translation id="3770994838998212802">
+          Personvern
+        </translation>
+  <translation id="3095614564589929836">Melding</translation>
+  <translation id="6269291119407657112">Dine data, dine valg</translation>
+  <translation id="4492510665082185464">
+      Renteradar.no eies av Forbrukerøkonomene AS som er ansvarlig for dine data.<ph name="LINE_BREAK"><ex>&lt;br&gt;</ex>&lt;br&gt;</ph>
+      Vi bryr oss om ditt personvern. Vi bruker dine data til å forbedre og tilpasse tjenestene ser og bruker.
+    </translation>
+  <translation id="6116246298164893011">Vis meg mer</translation>
+  <translation id="6326252842548937945">JEG FORSTÅR</translation>
+  <translation id="4281674011554979219">
+      Få beste <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>boliglånsrente<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph>
+    </translation>
+  <translation id="9020335479858709330">Annen bank</translation>
+  <translation id="2745845889630989681">Få oversikt og spar penger med et klikk.</translation>
+  <translation id="4649147847868602583">
               Renteradar overvåker markedet og gir deg beskjed når det kommer
               bedre tilbud.
             </translation>
+  <translation id="5594669459459426971">Slik fungerer det</translation>
+  <translation id="2178903939449633376">
+            Renteradar henter renten og dine lånedetaljer automatisk med BankID på
+            mobil.
+          </translation>
+  <translation id="5667494241960099707">
+            Vi sammenligner renten du betaler med renten du kan få i andre banker
+            og viser deg hvor mye du kan spare. Du kan også prute i banken du er
+            kunde med et klikk.
+          </translation>
+  <translation id="3287467487665329583">
+          Vi overvåker markedet og gir deg beskjed når nye og bedre tilbud er
+          tilgjengelig i fremtiden!
+        </translation>
+  <translation id="1012759620160747705">
+            Vi overvåker markedet og gir deg beskjed når nye og bedre tilbud er
+            tilgjengelig i fremtiden!
+          </translation>
+  <translation id="324590388918240462">Fornøyde brukere</translation>
+  <translation id="3124073080734832621">Renteradar i media</translation>
+  <translation id="9016590213746173192">Vanlig stilte spørsmål om boliglån</translation>
+  <translation id="4021696086425297897">
+            Hvor mye kan jeg spare på boliglånet?
+          </translation>
+  <translation id="852929765003524855">
+        Hvor mye du kan spare på boliglånet avhenger av flere faktorer. 
+        De viktigste er hvor mye renten reduseres, og hvor stort lån du har. 
+        En gjennomsnittlig bruker hos Renteradar.no kan spare over 9 000 kroner 
+        i året og 125 000 kroner over lånets løpetid i renteutgifter.
+      </translation>
+  <translation id="1538050583248233850">
+            Er det enkelt å flytte boliglånet til en annen bank?
+          </translation>
+  <translation id="2187047572159420124">
+        Det korte svaret er ja. Banken du flytter til gjør mesteparten av jobben. 
+        Søknadsprosessen i de fleste bankene er digital og enkel å fylle ut. 
+        Mange banker krever at du logger inn med bank-ID. Man må underskrive 
+        en del skjema når man flytter lånet, men i mange banker gjøres også 
+        dette enkelt gjennom såkalt e-signering.
+        <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>
+          Du kan lese mer om å flytte boliglånet her.
+        <ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph>
+      </translation>
+  <translation id="4168827324237856992">
+            Kan jeg flytte kun boliglån til ny bank? 
+          </translation>
+  <translation id="2168383957155373008">
+        Man kan normalt beholde eksisterende kontoer hos sin nåværende bank, 
+        og kun flytte boliglån over til den nye banken. Enkelte banker krever 
+        at man åpner en brukskonto i tillegg til lån.  Noen banker krever også at 
+        du må ha flere produkter og tjenester for å få deres beste rente. 
+        Det er en praksis som ikke bør aksepteres.  Hva de enkelte krever av 
+        andre produkter blir man informert om gjennom vår tjeneste.
+      </translation>
+  <translation id="7602059083718616385">
+            Hvorfor får kunder ulike boliglånsrenter hos bankene?
+          </translation>
+  <translation id="3127422466617175234">
+        Det finnes gode grunner og mindre gode grunner til at bankene gir 
+        kundene sine ulike boliglånsrenter. Mange betaler for mye rett og 
+        slett fordi at de stoler på banken sin og ikke forhandler ned 
+        renten jevnlig. De viktigste «gode» grunnene er:
+      </translation>
+  <translation id="772912153003034719">
+            <ph name="START_BOLD_TEXT"><ex>&lt;b&gt;</ex>&lt;b&gt;</ph>Belåningsgrad:<ph name="CLOSE_BOLD_TEXT"><ex>&lt;/b&gt;</ex>&lt;/b&gt;</ph> Lav belåningsgrad skal gi lavere rente. Banken har da mindre risiko for kreditt-tap.
+          </translation>
+  <translation id="3210674499963853814">
+            <ph name="START_BOLD_TEXT"><ex>&lt;b&gt;</ex>&lt;b&gt;</ph>Alder:<ph name="CLOSE_BOLD_TEXT"><ex>&lt;/b&gt;</ex>&lt;/b&gt;</ph> De fleste bankene tilbyr ekstra gode betingelser til de som er 34 år eller yngre.
+          </translation>
+  <translation id="4706012260317469573"><ph name="START_BOLD_TEXT"><ex>&lt;b&gt;</ex>&lt;b&gt;</ph>Lånestørrelse:<ph name="CLOSE_BOLD_TEXT"><ex>&lt;/b&gt;</ex>&lt;/b&gt;</ph> Bankene belønner ofte større lån med lavere rente. Det skyldes at 
+            administrasjonskostnadene for ett lån er det samme uavhengig av størrelse. 
+          </translation>
+  <translation id="2154769757855807597"><ph name="START_BOLD_TEXT"><ex>&lt;b&gt;</ex>&lt;b&gt;</ph>Medlemskap i en organisasjon:<ph name="CLOSE_BOLD_TEXT"><ex>&lt;/b&gt;</ex>&lt;/b&gt;</ph> Arbeidstakerorganisasjoner og andre organisasjoner har ofte 
+            fremforhandlet gunstige betingelser på boliglån med en samarbeidsbank.
+          </translation>
+  <translation id="2898735042838652880">Her er de ti viktigste faktorene som påvirker boliglånsrenten din</translation>
+  <translation id="1575247999381440498">
+              Hvor mye kan jeg låne til bolig?
+          </translation>
+  <translation id="9026537522134403470">
+          Myndighetene begrenser bankenes utlån til bolig gjennom boliglånsforskriften. 
+          Den sier at man kan maksimalt låne fem ganger årsinntekt og maks belåningsgrad er 85 %. 
+      </translation>
+  <translation id="8024201819201879903">Les mer om hvor mye man kan låne til bolig her.</translation>
+  <translation id="704008578475749674">
+            Hva er belåningsgrad?
+          </translation>
+  <translation id="6736326798353159736">
+          <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>Belåningsgrad<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph> er lånebeløp delt på boligens markedsverdi. 
+          Eksempel: Boliglån: 3 mill. kroner og markedsverdi på bolig: 4 mill. 
+          kroner gir belåningsgrad på 75 %.  Maks belåningsgrad for ordinære boliglån 
+          er satt til 85 % i Boliglånsforskriften. 
+      </translation>
+  <translation id="556872736180771974">Vanlig stilte spørsmål om Renteradar.no</translation>
+  <translation id="8311013480583671042">
+                Hvordan fungerer Renteradar.no?
+              </translation>
+  <translation id="1296528708352192658">
+              Renteradar.no henter automatisk renten du har på boliglånet ditt. 
+              Renten din sammenlignes med renten du kan få i andre banker, og 
+              du kan se hvor mye du kan spare. Du kan prute i banken du er kunde 
+              med et klikk, og vi jobber meg å gjøre bytte av bank enkelt. 
+              Vi følger også med på om det blir tilgjengelig bedre tilbud i 
+              fremtiden. Du vil da få beskjed om dette.
+              <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph> Her kan du lese mer om hvordan renteradar.no fungerer<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph>
+          </translation>
+  <translation id="7797709627005256608">
+              Hvorfor må jeg logge på med BankID på mobil?
+          </translation>
+  <translation id="218171465750962659">
+          Renteradar.no henter automatisk dine lånebetingelser fra din bank. 
+          For at dette skal fungere trenger vi at du identifiserer deg med 
+          BankID på mobil. Du finner mer detaljer om dette i vilkårene ved innlogging.
+      </translation>
+  <translation id="7362043173694307042">
+            Kan jeg bruke BankID med passord/kodebrikke?
+          </translation>
+  <translation id="4725412437907167636">
+          Vi har dessverre ingen løsning for BankID med passord/kodebrikke, heller ikke engangspassord app. 
+          Grunnen til dette er at passordet ditt er personlig og bør ikke oppgis til tredjeparter som Renteradar.no
+      </translation>
+  <translation id="5027048135932190619">
+            Personvern: Er det trygt å bruke tjenesten deres?
+          </translation>
+  <translation id="4218088224029660722">
+          Ja, informasjonen din er helt trygg og vi deler ikke 
+          personlig informasjon med tredjeparter. Les mer i vår
+          <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>personvernserklæring<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph>
+          og
+          <ph name="START_LINK_1"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>brukervilkår<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph>
+      </translation>
+  <translation id="2368606022953202151">
+            Jeg finner ikke banken jeg har boliglån i
+          </translation>
+  <translation id="763045324331610232">
+          Vi har ikke bygget funksjonalitet for å hente lånedetaljer fra alle banker. 
+          Det er hittil kun kunder av de fire største bankene (DNB, Nordea, Sparebank 1-bankene og alle Eika-bankene) 
+          som kan bruke tjenesten. Vi kommer til å legge til flere banker fremover. 
+      </translation>
+  <translation id="5916590468610353628">Gå gjerne til: <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>https://renteradar.no/faabeskjed<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph></translation>
+  <translation id="359044236715706904">Legg til din bank og e-post, så gir vi deg beskjed når din bank er lagt til.</translation>
+  <translation id="546609516477925017">
+            Koster det noe å bruke Renteradar.no?
+          </translation>
+  <translation id="9092869369136611917">
+          Nei, det er gratis å bruke Renteradar.no. Forretningsmodellen vår er 
+          bygget opp slik at det er bankene som skal dekke kostnaden for denne tjenesten, ikke deg som forbruker.
+      </translation>
+  <translation id="6285396973886547415">
+            Viser dere tilbud fra alle banker?
+          </translation>
+  <translation id="7080353815848360504">
+          Ja, du ser tilbud fra alle banker. Enkelte lignende tjenester 
+          viser kun tilbud fra banker de har avtale med; det gjør ikke Renteradar.no.
+      </translation>
+  <translation id="8282539507841717385">
+              Jeg har ikke lån enda, kan jeg bruke Renteradar.no?
+          </translation>
+  <translation id="4151315206529272513">
+        Foreløpig er tjenesten kun for brukere som allerede har boliglån.
+      </translation>
+  <translation id="7939579861487865904">
+            Kan jeg slette profilen min når jeg ønsker?
+          </translation>
+  <translation id="8656844584380763803">
+          Ja, selvfølgelig! Send en mail til <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>slettmeg@renteradar.no<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph> og 
+          vi sletter alle dine data. Du får bekreftelse på dette på mail.
+      </translation>
+  <translation id="1452406410557511724">
+            Hvem står bak Renteradar.no?
+          </translation>
+  <translation id="4490199133916030109">
+          Renteradar.no eies og drives av Forbrukerøkonomene AS. 
+         Se <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>om oss<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph> for mer informasjon.
+      </translation>
+  <translation id="807251846252787901">
+            Har dere samarbeidsavtaler med noen banker?
+          </translation>
+  <translation id="7218496842071335156">
+          Ja, per i dag har vi samarbeidsavtaler med Sbanken, Bulder Bank og Landkreditt.
+      </translation>
+  <translation id="3523992283308578818">Personvern er viktig for oss</translation>
+  <translation id="625471113346385180">
+      Vi tar GDPR på alvor og ditt personvern er viktig for oss i Renteradar.no.
+      Renteradar.no eies og drives av Forbrukerøkonomene AS som er et norsk
+      selskap underlagt norsk lov, og vi behandler personopplysninger i samsvar
+      med gjeldende personvernlovgivning. Vår fulle personvernerklæring kan
+      leses
+      <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>her<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph>.
+    </translation>
+  <translation id="3203973363487916211">Brukervilkår</translation>
+  <translation id="2138189774006581230">
+      Våre brukervilkår finner du <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>her<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph>.
+    </translation>
+  <translation id="7245134952316046375">Informasjon om cookies (informasjonskapsler)</translation>
+  <translation id="7052012489679057817">
+      Vår cookiepolicy og informasjon finner du <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>her<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph>.
+    </translation>
+  <translation id="3523380382411932943">Vilkår for bruk av Renteradar.no</translation>
+  <translation id="8057551615143064477">1. Beskrivelse av tjenesten</translation>
+  <translation id="2313219102701707764">
+      Dette dokumentet beskriver Renteradar.no sine vilkår for tjenesten,
+      herunder ditt uttrykkelige samtykke til behandling og formidling av
+      opplysninger til selskapene Renteradar.no samarbeider med.
+    </translation>
+  <translation id="654822949128222578">2. Forutsetninger for avtaleinngåelse</translation>
+  <translation id="1375616887672619349">
+      Renteradar.no innhenter betingelsene (herunder: lånebeløp, lånetype, rente, etc..)
+      på dine lån i din bank ved hjelp av fullmakt. Ved å akseptere brukervilkårene og
+      registrere deg som bruker gir du oss fullmakt til å behandle disse opplysningene.
+      Vi overvåker samtidig markedet for hvilke betingelser du kan oppnå i andre banker.
+      Du gir ditt samtykke til at vi kan formidle kontakt med banker som kan gi deg et
+      bedre tilbud enn det du har i dag. Dette samtykket inkluderer formidling av anonymiserte data.
+      Bindende avtale inngås direkte med ny bank dersom det skal være aktuelt.
+    </translation>
+  <translation id="2382409587286952873">3. Avtalens parter</translation>
+  <translation id="1302621798501179042">
+      Renteradar.no/Forbrukerøkonomene AS er ikke part i avtalen som inngås mellom deg
+      og banken du eventuelt velger. Renteradar.no opptrer som en plattform for formidling
+      av informasjon mellom deg som forbruker og finansinstitusjoner som er tilknyttet
+      tjenesten. Avtaler inngås direkte mellom selskapene og deg som kunde.
+    </translation>
+  <translation id="2753435070580185398">
+      4. Samtykke til kredittvurdering gjort av banken
+    </translation>
+  <translation id="4152094893022272413">
+      Ved å akseptere vilkårene, bekrefter du at aktuelle selskaper du er i dialog med kan foreta
+      en kredittvurdering av deg. Selskapene vil trenge et aktivt samtykke av deg for å gjøre dette
+      i form av at du oppgir personnummeret ditt til det aktuelle selskapet.
+    </translation>
+  <translation id="1488304790563020545">5. Dine rettigheter og ansvar</translation>
+  <translation id="8659468414475617213">
+      Du plikter å oppgi riktig informasjon om deg, både til Renteradar.no og banker
+      du eventuelt skulle komme i kontakt med gjennom tjenesten.
+    </translation>
+  <translation id="4489815037576161129">6. Renteradar.no og selskapets ansvar</translation>
+  <translation id="7174205790980114193">
+      Renteradar.no har ansvaret for tjenesten slik den er beskrevet på våre nettsider.
+      Renteradar.no er ikke under noen omstendighet ansvarlig for avtaler du inngår.
+      Alminnelig norsk erstatnings- og avtalerett gjelder.
+    </translation>
+  <translation id="8146225128912125244">7. Sletting av brukerdata</translation>
+  <translation id="1502864183011861227">
+      Du kan når som helst kreve at vi sletter alle dine lånedata,
+      og alle andre opplysninger vi har innhentet fra deg.
+      Dette gjøres ved å sende email til <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>slettmeg@renteradar.no<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph> 
+      og be om å bli glemt.
+    </translation>
+  <translation id="2422651740395824071">
+      Oslo, 10.02.2020
+    </translation>
+  <translation id="2122439812788376542"><ph name="START_TAG_STRONG"><ex>&lt;strong&gt;</ex>&lt;strong&gt;</ph>Personvernerklæring<ph name="CLOSE_TAG_STRONG"><ex>&lt;/strong&gt;</ex>&lt;/strong&gt;</ph></translation>
+  <translation id="2125205426397776040">
+    Renteradar.no er en tjeneste levert av Forbrukerøkonomene AS (org. nr: 921
+    534 191). Her vil du finne en orientering om hvordan vi forholder oss til
+    personopplysninger om brukerne i vår tjeneste. Denne orienteringen vil være
+    gjenstand for oppdateringer og endringer. Dersom det gjøres vesentlige
+    endringer vil du få beskjed om dette på din registrerte e-postadresse.
+  </translation>
+  <translation id="2902524785654863204">
+    Forbrukerøkonomene AS er et norsk selskap underlagt norsk lov. Vi behandler
+    personopplysninger i samsvar med gjeldende personvernlovgivning. Om du har
+    spørsmål om vår personvernpolicy eller håndtering av dine opplysninger må du
+    gjerne kontakte vårt personvernombud på
+    personvernombud@forbrukerøkonomene.no. Vi oppfordrer deg til å lese denne
+    erklæringen nøye før du benytter deg av tjenesten. Denne
+    personvernerklæringen gjelder for all behandling av personopplysninger som
+    skjer når du besøker Renteradar.no hjemmesider og benytter deg av
+    Renteradar.no’s tjenester.
+  </translation>
+  <translation id="5848156459366704290">
+    Hva er personopplysninger?
+  </translation>
+  <translation id="5122513690123165907">
+    En personopplysning er informasjon som direkte eller indirekte kan knyttes
+    til en fysisk levende person. Eksempel på personopplysninger er navn,
+    adresse, telefonnummer og e-postadresse, men også IP-nummer og hvordan du
+    bruker tjenesten betegnes som personopplysninger. Behandling av
+    personopplysninger inkluderer all håndtering av personopplysninger, feks
+    innsamling, analysering, registrering og lagring.
+  </translation>
+  <translation id="4487350501631339156">
+    Behandling av personopplysninger er enhver bruk av personopplysninger, som
+    for eksempel innsamling, registrering, sammenstilling, lagring og utlevering
+    eller en kombinasjon av slike bruksmåter. All behandling av
+    personopplysninger er underlagt personopplysningsloven, og Datatilsynet
+    fører tilsyn med loven og medvirker til at personvernet til hver enkelt ikke
+    blir krenket gjennom bruken av personopplysninger. Personvernsansvarlig er
+    den som alene eller sammen med andre bestemmer formålet og midler for
+    behandlingen av personopplysningene og som er ansvarlig for at behandlingen
+    skjer i samsvar med gjeldende personvernlovgivning. Opplysningene vil kunne
+    bli supplert med tilgjengelig informasjon fra tredjepartsaktører, e.g.
+    informasjon om boligverdi eller kredittopplysningsselskap.
+  </translation>
+  <translation id="3627535542451716266">Hva slags opplysninger samler vi inn?</translation>
+  <translation id="2376205529045372280">
+    For å kunne gjennomføre våre tjenester samler vi inn data fra deg som kan
+    suppleres med informasjon fra bankene. Videre vil også bankene trenge data
+    om deg for å kunne gi et lånetilbud. Bankene som eventuelt mottar
+    informasjon om deg er personvernansvarlige for sin egen behandling av
+    personopplysninger. Du kan lese mer om bankenes grunnkrav samt
+    personvernerklæring på deres hjemmesider.
+  </translation>
+  <translation id="4607581493836168755">
+    Opplysningene samles inn på følgende måter:
+  </translation>
+  <translation id="1400911991231150192">Opplysninger du selv gir til oss</translation>
+  <translation id="8192853774125173294">
+        Når du registrerer en brukerkonto hos vil du oppgi en del data som
+        lagres av oss. Disse opplysningene lagres i vår database for å yte eller
+        sikre leveranse av vår tjeneste. Likeledes vil vi lagre opplysninger når
+        du kontakter oss ved å sende oss en e-post eksempelvis til kundeservice
+        eller gir tilbakemeldinger gjennom funksjoner i tjenesten, herunder
+        e-postadresse, telefonnummer og innholdet i e-postforespørsler slik at
+        vi kan svare på dine spørsmål.
+      </translation>
+  <translation id="4766508780943128533">
+        Opplysninger som samles inn gjennom bruk av tjenestene
+      </translation>
+  <translation id="2100100094584681882">
+        Når du bruker våre tjenester registrerer vi informasjon om hvilke
+        tjenester du bruker og hvordan du bruker dem. Dette gjør det mulig å
+        forbedre tjenestene våre og avdekke tekniske feil. Som eksempel, kan vi
+        samle informasjon om hvor mye en gjennomsnittlig kunde sparer ved å
+        bytte boliglånet sitt
+      </translation>
+  <translation id="1301213548451446781">
+        Teknisk informasjon om din enhet og internett-tilkobling
+      </translation>
+  <translation id="3954404017553520676">
+        Gjennom tjenerlogger og andre verktøy registrerer vi informasjon om
+        enheten og tilkoblingen til våre tjenester, herunder operativsystem,
+        nettleserversjon, ip-adresser, informasjonskapsler og unike
+        identifikasjonsfiler. Denne informasjon brukes ofte i anonym og
+        aggregert statistikk, men vi kan også koble den mot din brukerkonto.
+        Informasjonen gjør blant annet at vi kan tilpasse visningen av våre
+        tjenester til den enheten du bruker, i tillegg til at vi kan analysere
+        ulike måter som brukerne benytter tjenestene våre på.
+      </translation>
+  <translation id="4036338926462603676">Informasjon om bruk av tjenestene</translation>
+  <translation id="5727821643036851238">
+        Når du bruker tjenestene våre, registreres denne aktiviteten automatisk
+        i våre datalogger. Vi bruker denne informasjonen til å forbedre
+        tjenestene våre og for å gi deg innhold som er tilpasset deg som bruker.
+      </translation>
+  <translation id="2922535346767008991">Informasjon om posisjon</translation>
+  <translation id="1118569500122043112">
+        Det kan hende at vi registrerer din geografiske posisjon ut i fra
+        ip-adressen eller andre former for geolokalisering, eksempelvis når du
+        bruker mobiltjenestene våre. Informasjonen kan blant annet brukes til å
+        utarbeide statistikk eller tilby lokalt innhold. Informasjonskapsler og
+        annet innhold som lagres lokalt
+      </translation>
+  <translation id="6311609666936280954">
+        Når du besøker våre tjenester bruker vi ulike teknologier for å
+        gjenkjenne deg som bruker. Vi bruker informasjonskapsler (cookies) for å
+        analysere og teste hvordan brukerne reagerer på endringer av nettsidene
+        eller tjenestene. Informasjonskapsler kan også gi informasjon om
+        feilsaker, og gir oss mulighet til å måle effekten av våre
+        markedsføringskampanjer. Vi kan også lagre anonyme identifikatorer
+        lokalt på din enhet, eksempelvis for enheter hvor vi ikke kan benytte
+        informasjonskapsler. Disse identifikatorene fungerer i stor utstrekning
+        på samme vis som informasjonskapslene, men kan være vanskeligere å
+        fjerne. Se under for informasjon om hvordan du kan slette
+        informasjonskapsler. Dersom du ikke ønsker lagring av anonyme
+        identifikatorer, kan du deaktivere javascript i nettleseren. Det vil
+        imidlertid innebære at Renteradar.no ikke vil fungere i nettleseren din.
+      </translation>
+  <translation id="1994915282316167163">Informasjon fra bankene</translation>
+  <translation id="997000414824618172">
+        For å drifte tjeneste kan vi innhente informasjon fra bankene om deg og
+        ditt/dine lån. Denne informasjonen inkluderer navn, adresse, email,
+        fødselsdato/nummer, medlåntaker/kausjonist, lånt beløp, gjenværende
+        lånebeløpbeløp, type lån, rente, renteutgifter og løpetid for dine/ditt
+        lån. Denne informasjonen vil ikke deles u-anonymisert med våre
+        samarbeidspartnere uten ditt spesifikke samtykke. Hvis du ønsker at vi
+        formidler kontakt med banker som kan tilby deg bedre rente vil deler av
+        denne informasjonen bli delt med disse bankene, men vi vil da spørre deg
+        spesifikt om tillatelse til dette.
+      </translation>
+  <translation id="3017016848738835026">Kredittopplysninger</translation>
+  <translation id="1566962559323852645">
+        Før vi eventuelt formidler informasjon til relevante banker kan vi
+        foreta en kredittsjekk begrenset til innhenting av informasjon om
+        eventuelle betalingsanmerkninger. Dette for å sikre at du er kvalifisert
+        for å søke om lån hos våre samarbeidende banker. Kredittsjekken foretas
+        av et kredittopplysningsbyrå. I tillegg til den begrensede
+        kredittsjekken som vi kan foreta, vil bankene vi formidler kontakt med
+        også foreta en egen fullstendig kredittsjekk. Gjenpartsbrevet sendes til
+        deg pr post. Dersom banken har mulighet til dette, vil gjenpartsbrevet
+        sendes elektronisk til deg via e-post eller SMS.
+      </translation>
+  <translation id="6333895244468637189">Informasjon fra andre kilder</translation>
+  <translation id="7179294889651478605">
+        Vi kan fra tid til annen også ta imot og behandle personopplysninger fra
+        andre kilder, som f eks: tilbydere av målingsverktøy eller andre parter
+        som hjelper oss med å forstå brukeraktiviteten eller for å forbedre
+        personalisere tjenesten.
+      </translation>
+  <translation id="7839376538670385883">Hva brukes opplysningene til?</translation>
+  <translation id="3728617529429498612">
+        Vi behandler hovedsakelig personopplysninger om deg for å drifte
+        tjenesten. Vi behandler også ovennevnte informasjon til følgende formål:
+      </translation>
+  <translation id="1182323343465470385">For å sikkerhetsstille kjennskap til tjenesten</translation>
+  <translation id="2505113010287463260">For å personalisere og forbedre din opplevelse av tjenesten</translation>
+  <translation id="8008293098153762186">
+          For å sende deg varslinger og meldinger via elektronisk kommunikasjon
+          (som SMS eller e-post)
+        </translation>
+  <translation id="668355318573869995">
+          For å informere deg om våre oppdateringer av tjenesten og
+          brukervilkårene
+        </translation>
+  <translation id="1137111150544330676">
+          For å forbedre og utvikle tjenesten og nye tjenester og produkter,
+          samt å analyser din bruk av tjenesten
+        </translation>
+  <translation id="1367081822140559604">For å sikkerstille den tekniske funksjonaliteten i tjenesten</translation>
+  <translation id="9214795338370274569">
+          For å forhindre bruk av tjenesten i strid med brukervilkårene for
+          tjenesten og for å forebygge og utrede misbruk av tjenesten
+        </translation>
+  <translation id="4892893335163611381">
+          Og for å oppfylle forpliktelser i henhold til gjeldende lover og
+          regler.
+        </translation>
+  <translation id="172519781759902793">
+
+          Renteradar.no bearbeider personopplysninger for å tilby statistikk til 
+          bruk i media, samt offentlige og private virksomheter på aggregert nivå. 
+          Statistikken vi deler med disse er aldri personopplysninger og du vil aldri 
+          være identifiserbare overfor dem.
+      </translation>
+  <translation id="5564047118129277453">
+        Din rett til å motsette deg behandlingen: denne behandlingen av dine
+        personopplysninger er nødvendig for at vi skal kunne levere vår
+        tjeneste. Om du vil motsette deg denne typen behandling av
+        personopplysninger kan vi dessverre ikke tilby vår tjeneste.
+      </translation>
+  <translation id="3355001280496448626">
+    Slik forhindrer du at informasjonskapsler lagres
+  </translation>
+  <translation id="1751485048640367335">
+      Du kan slette informasjonskapsler fra din harddisk når som helst, men
+      dette gjør at dine personlige innstillinger forsvinner.
+    </translation>
+  <translation id="2376905228193685399">
+      Du kan også endre innstillingene i din nettleser slik at den ikke tillater
+      at informasjonskapsler lagres på din harddisk, eller at du manuelt må
+      godkjenne hver enkelt cookie. Dette kan imidlertid gi dårligere
+      funksjonalitet på visse nettsider, kan forhindre tilgang til sider som
+      krever innlogging og gjøre at deler av innhold og enkelte funksjoner ikke
+      blir tilgjengelige.
+    </translation>
+  <translation id="6738221084587457726">
+      Du kan reservere deg mot cookier som gir deg markedsføring basert på
+      interesseområder for en lang rekke aktører på reservasjonssiden til
+      Network Advertising Initiative.
+    </translation>
+  <translation id="1325749417347722470">
+    Dine rettigheter
+  </translation>
+  <translation id="1577198009154477748">Som registrert hos Renteradar.no har du følgende rettigheter:</translation>
+  <translation id="7801974861837663763">
+      Rett på tilgang til personopplysninger registrert om deg. Du kan ved
+      skriftlig og undertegnet henvendelse til oss kreve innsyn i øvrige
+      registrerte personopplysninger, beskrivelse av hvilke typer opplysninger
+      som behandles, og nærmere informasjon om vår behandling av opplysningene.
+    </translation>
+  <translation id="1307392959080469174">
+      Rett til å kreve at vi retter feil i personopplysningene registrert om
+      deg. Du kan endre all informasjon du har oppgitt ved registrering av
+      profil på min side. Dersom forespørselen gjelder kommunikasjon eller annen
+      informasjon som ikke er registrert på min side, kan du sende en skriftlig,
+      undertegnet henvendelse til oss.
+    </translation>
+  <translation id="5517367514449513302">
+      Rett til å forespørre sletting eller begrenset behandling av
+      personopplysninger, i tilfeller hvor du mistenker opplysningene blir
+      behandlet ulovlig eller ikke er korrekte.
+    </translation>
+  <translation id="3877591207902604941">
+      Retten til å motsette seg bruk av personopplysninger i direkte
+      markedsføring og i annen kommunikasjon. Dette omfatter også retten til å
+      trekke tilbake samtykke om bruk av personopplysninger, når samtykke er
+      grunnlaget for behandlingen.
+    </translation>
+  <translation id="6943283502322354369">
+      Rett til når som helst å kalle tilbake samtykke til at vi kan behandle
+      dine personopplysninger.
+    </translation>
+  <translation id="7956009346522214247">
+      Rett til å bli glemt. Det vil si at når du avslutter kontoen din hos
+      Renteradar.no slettes all informasjon om deg hos oss.
+    </translation>
+  <translation id="1038871084244147502">
+    Sist oppdatert 14.08.2019
+  </translation>
+  <translation id="7619543976322469224">Kontakt oss</translation>
+  <translation id="4836287961745510371">
+        Vennligst fyll inn navn
+      </translation>
+  <translation id="4490520033731758909">
+        Ikke gyldig email
+      </translation>
+  <translation id="2942578643741834862">
+      8 siffer
+    </translation>
+  <translation id="2177798482524957106">
+        Telefonnummer kan ikke være tomt
+      </translation>
+  <translation id="4431735166526670843">
+        Meldingen kan ikke være tom
+      </translation>
+  <translation id="7919468338218777434">Send
+    </translation>
+  <translation id="5964697489719636480">Hei, <ph name="INTERPOLATION"><ex>{{ userData.name }}</ex>{{ userData.name }}</ph></translation>
+  <translation id="7529712309072005230">Vi trenger litt mer informasjon før vi kan søke etter tilbud</translation>
+  <translation id="8023316103566269421">
+            Kan ikke være tom
+          </translation>
+  <translation id="2126372294139508054">
+            Ugyldig e-post
+          </translation>
+  <translation id="6804963493101614367">
+                Kan ikke være tom
+              </translation>
+  <translation id="8674189906144105997">
+            <ph name="START_TAG_MAT_ICON"><ex>&lt;mat-icon&gt;</ex>&lt;mat-icon&gt;</ph>help<ph name="CLOSE_TAG_MAT_ICON"><ex>&lt;/mat-icon&gt;</ex>&lt;/mat-icon&gt;</ph>
+          </translation>
+  <translation id="3351328260682939362">
+        Bankene gir ofte bedre betingelser om du er medlem i en organisasjon
+      </translation>
+  <translation id="5543753456860416308">
+        Mine medlemskap
+      </translation>
+  <translation id="7179121875000589410">
+        Ferdig!
+      </translation>
+  <translation id="1017899738506839825">
+     Vi har desverre ikke støtte for banken din enda.<ph name="LINE_BREAK"><ex>&lt;br&gt;</ex>&lt;br&gt;</ph>
+     Legg igjen din epost så gir vi deg beskjed når det er klart. 
+    </translation>
+  <translation id="7432948948686790442">
+          <ph name="START_TAG_RENTE_FORM_MESSAGE"><ex>&lt;rente-form-message&gt;</ex>&lt;rente-form-message&gt;</ph>
+            Ikke gyldig email
+          <ph name="CLOSE_TAG_RENTE_FORM_MESSAGE"><ex>&lt;/rente-form-message&gt;</ex>&lt;/rente-form-message&gt;</ph>
+          <ph name="START_TAG_RENTE_FORM_MESSAGE_1"><ex>&lt;rente-form-message&gt;</ex>&lt;rente-form-message&gt;</ph>
+            Ikke gyldig email
+          <ph name="CLOSE_TAG_RENTE_FORM_MESSAGE"><ex>&lt;/rente-form-message&gt;</ex>&lt;/rente-form-message&gt;</ph>
+        </translation>
+  <translation id="4656074009545138552">Gi meg lyd når på plass!
+      </translation>
+  <translation id="4929448423650544004">Våre brukere har tilsammen:</translation>
+  <translation id="7133205105871966022">i boliglån…</translation>
+  <translation id="5088941122578777907">…og kan potensielt spare:</translation>
+  <translation id="1640385979079908217">Cookiepolicy</translation>
+  <translation id="5907212769159314118">
+    Renteradar.no benytter seg av cookies (informasjonskapsler).
+    Cookies er tekstfiler som lagres på din data eller enhet via din nettleser når du besøker en webside.
+    Informasjonen i en cookie kan blant annet beskrive:
+  </translation>
+  <translation id="8819688686709531241">om du tidligere har besøkt websiden</translation>
+  <translation id="3959296532970799603">om du har en konto som du har valgt å være innlogget på</translation>
+  <translation id="2726261880879929199">data du har skrevet inn på nettsiden</translation>
+  <translation id="5620543665503113520">Hvorfor og hvordan bruker vi cookies?</translation>
+  <translation id="2324715854979815861">
+    Renteradar.no bruker cookies for analytiske, tekniske og markedsføringsmessige formål.
+    Det vil si at cookies brukes for å gi våre brukere god opplevelse når bruker tjenesten,
+    og gir oss mulighet til å utvikle og forbedre tjenesten. Det gir også anledning til å analysere
+    trafikken på våre nettsider for blant annet å oppnå bedre målrettet markedsføring. Nærmere
+    informasjon om de ulike bruksområdene følger lenger ned.
+  </translation>
+  <translation id="5711883568379967131">Hvilken informasjon registreres om deg som bruker</translation>
+  <translation id="3526432866514421620">
+    Når du besøker renteradar.no kan vi registrere ulik informasjon om deg og enheten. Det inkluderer blant annet:
+  </translation>
+  <translation id="3746314794652920864">Posisjonsdata</translation>
+  <translation id="1600537542038765014">Adferd på siden. Det inkluderer blant annet hvilke sider du er inne på og tidsbruk på hver side.</translation>
+  <translation id="8500767307950113288">Teknisk informasjon om nettleser og operativsystem</translation>
+  <translation id="795900663319788297">Sletting informasjonskapsler i ulike nettlesere</translation>
+  <translation id="6534576848411980890">
+    Du kan i nettleseren få en oversikt over alle informasjonskapsler som er lagret.
+    Der kan du slette informasjonskapsler og angi om du aksepterer lagring av informasjonskapsler
+    fra nettsider du besøker. Den nøyaktige fremgangsmåten avhenger av enheten din og hvilken
+    nettleser du bruker. I linkene under kan du lese mer:
+  </translation>
+  <translation id="9022532645382920654">Hvilke cookies benytter vi?</translation>
+  <translation id="7754618361400697501">
+        <ph name="START_TAG_STRONG"><ex>&lt;strong&gt;</ex>&lt;strong&gt;</ph>Google Analytics:<ph name="CLOSE_TAG_STRONG"><ex>&lt;/strong&gt;</ex>&lt;/strong&gt;</ph>
+        Er et verktøy som måler all trafikk på nettsiden og kan benyttes for analyseformål. Mer informasjon
+        <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>her.<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph></translation>
+  <translation id="4689497896131627037">
+        <ph name="START_TAG_STRONG"><ex>&lt;strong&gt;</ex>&lt;strong&gt;</ph>Google Ads:<ph name="CLOSE_TAG_STRONG"><ex>&lt;/strong&gt;</ex>&lt;/strong&gt;</ph>
+        Brukes for måling av betalt reklame av søkeord og Google annonsering. Mer informasjon
+        <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>her.<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph></translation>
+  <translation id="1624412863999953621">
+        <ph name="START_TAG_STRONG"><ex>&lt;strong&gt;</ex>&lt;strong&gt;</ph>Google Tag Manager:<ph name="CLOSE_TAG_STRONG"><ex>&lt;/strong&gt;</ex>&lt;/strong&gt;</ph>
+        Styrer tags for tracking og analyse. Mer info
+        <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>her.<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph></translation>
+  <translation id="6080306438680699133">
+        <ph name="START_TAG_STRONG"><ex>&lt;strong&gt;</ex>&lt;strong&gt;</ph>Facebook Pixel:<ph name="CLOSE_TAG_STRONG"><ex>&lt;/strong&gt;</ex>&lt;/strong&gt;</ph>
+        Interaksjonsverktøy som Facebook bruker mot nettsteder for å bruke data til mer målrettet reklame. Mer informasjon
+        <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>her.<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph></translation>
+  <translation id="2636974787500515517">
+        <ph name="START_TAG_STRONG"><ex>&lt;strong&gt;</ex>&lt;strong&gt;</ph>Hotjar:<ph name="CLOSE_TAG_STRONG"><ex>&lt;/strong&gt;</ex>&lt;/strong&gt;</ph>
+        Er et interaksjonsverktøy som registrerer hvordan brukere bruker nettsiden. Mer informasjon
+        <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>her.<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph></translation>
+  <translation id="3436619560860783850">Lagret</translation>
+  <translation id="1901684765916219521">Epost innstillinger</translation>
+  <translation id="2726884389381809666">Noe gikk galt, vennligst logg inn eller ta kontakt med oss på <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>hei@renteradar.no<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph></translation>
+  <translation id="5086446706010382343">Markedsovervåkning / Rentesjekk av dine lån</translation>
+  <translation id="5828634596696325138">Hver måned</translation>
+  <translation id="1207294476093639650">Hver 2. måned</translation>
+  <translation id="4712161219169111644">Hver 3. måned</translation>
+  <translation id="6747891283158783343">Hver 4. måned</translation>
+  <translation id="4812211098387685291">Aldri</translation>
+  <translation id="308895727571224965">
+                    Få markedsoppdateringer, nyheter og annen informasjon på epost
+                </translation>
+  <translation id="8807722618432376624">Ja</translation>
+  <translation id="2977456047091383832">Nei</translation>
+  <translation id="4441583790734139490">
+                Lagre endringer
+            </translation>
+  <translation id="7416236346149013416">
+    <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>Renteradar.no<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph>
+    så sitt lys våren 2019. Vi var en gjeng som mente at det var vanskelig å
+    navigere i markedet for boliglån. I tillegg måtte man følge med på banken sin hele tiden
+    for å få den lave renten man fortjener. Dette ønsket vi å gjøre noe med og laget
+    <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>Renteradar.no<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph>
+  </translation>
+  <translation id="5234214494411192474">
+    Boliglån er i grunnen et veldig enkelt produkt som bankene tjener veldig godt på.
+    I Norge betaler nesten alle renter og avdrag på boliglånet og bankene har svært
+    lave tap. Det er derfor ingen grunn til at man skal betale mer enn det man trenger på boliglånet.
+  </translation>
+  <translation id="1018474800148874224">
+    Vi ønsker å gjøre det enklere for deg som boliglånskunde gjennom å:
+  </translation>
+  <translation id="2192806164849806609">
+        <ph name="START_BOLD_TEXT"><ex>&lt;b&gt;</ex>&lt;b&gt;</ph>Spare penger<ph name="CLOSE_BOLD_TEXT"><ex>&lt;/b&gt;</ex>&lt;/b&gt;</ph> gjennom å alltid ha de beste betingelsene.
+      </translation>
+  <translation id="578357647660249672">
+        <ph name="START_BOLD_TEXT"><ex>&lt;b&gt;</ex>&lt;b&gt;</ph>Spare tid<ph name="CLOSE_BOLD_TEXT"><ex>&lt;/b&gt;</ex>&lt;/b&gt;</ph> ved at vi automatisk, raskt og enkelt sjekker renten du
+        har og sammenligner med det beste tilbudet i markedet for deg.
+      </translation>
+  <translation id="5250747765744003830">
+        <ph name="START_BOLD_TEXT"><ex>&lt;b&gt;</ex>&lt;b&gt;</ph>Få trygghet<ph name="CLOSE_BOLD_TEXT"><ex>&lt;/b&gt;</ex>&lt;/b&gt;</ph> rundt hva du betaler i rente, og vite at du ikke blir lurt av banken.
+      </translation>
+  <translation id="6829292091089748959">
+    <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>Renteradar.no<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph>
+    eies og driftes av Forbrukerøkonomene AS. Vi kjenner rentemarkedet godt og har bred erfaring
+    innenfor bank, finans og teknologi. Sammen har vi satt dette i system som skal komme brukerne av
+    <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>Renteradar.no<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph> til gode.
+  </translation>
+  <translation id="2790028318537351725"><ph name="START_ITALIC_TEXT"><ex>&lt;i&gt;</ex>&lt;i&gt;</ph>Co-Founder<ph name="CLOSE_ITALIC_TEXT"><ex>&lt;/i&gt;</ex>&lt;/i&gt;</ph></translation>
+  <translation id="706572263476697576">
+        Finn Olav er økonom fra Cass Business School i London og har jobbet fem år med renter i
+        Nordea Markets. Nå har han tatt steget ut fra bank-verden for å leve ut gründer-drømmen.
+        Finn Olav er tall-knuseren vår som elsker statistikk og data.
+      </translation>
+  <translation id="4328292660708476002"><ph name="START_ITALIC_TEXT"><ex>&lt;i&gt;</ex>&lt;i&gt;</ph>Daglig Leder/Founder<ph name="CLOSE_ITALIC_TEXT"><ex>&lt;/i&gt;</ex>&lt;/i&gt;</ph></translation>
+  <translation id="3042526379598421916">
+        Fredrik er ingeniør fra NTNU og arkitekten bak <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>Renteradar.no<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph>.
+        Han brenner for å gi våre kunder verdi og finne gode løsninger.
+        Før Fredrik startet opp <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>Renteradar.no<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph> jobbet han som
+        konsulent i Arkwright Consulting.
+      </translation>
+  <translation id="4618451402470871176">
+        Sindre er siviløkonom fra NHH og har jobbet i 15 år i DNB Markets.
+        De siste fire årene ledet han aktivitetene på renteprodukter.
+        Nå har han tatt forbrukernes side og vil utfordre storbankene.
+        Sindre kjenner markedet for boliglån og bankene godt.
+      </translation>
+  <translation id="1063515710591619847">Hvilken bank har du boliglån i?</translation>
+  <translation id="9171416583086612821">
+    Vilkår for bruk av tjenesten
+  </translation>
+  <translation id="5249287977212421448">
+        Denne tjenesten er laget for at du så enkelt som mulig skal kunne hente dine
+        rente- og lånedata. Bruk av denne tjenesten innebærer at du logger inn hos
+        din bank med din BankID på mobil, og gir oss i Renteradar.no (Forbrukerøkonomene AS)
+        tilgang til din side hos din bank. Det betyr at vi får tilgang til den samme
+        informasjonen du selv ser, dersom du logger deg inn hos din bank. Vi garanterer
+        at vi kun bruker tilgangen du gir oss utelukkende til å hente dine rente- og lånedata,
+        samt navn, adresse, fødselsdato/nummer og email, via krypterte kommunikasjonskanaler.
+      </translation>
+  <translation id="1744552510505217332">
+        Vi vil ikke kunne logge inn på et senere tidspunkt fordi innloggingen du
+        gjør med BankID på mobil ikke kan gjenbrukes. For å benytte tjenesten må
+        du oppgi telefonnummeret ditt og fødselsdato/nummer, men vi vil ikke kunne
+        se eller få tilgang til passordet ditt.
+      </translation>
+  <translation id="5541044041021323572">
+        I tillegg til vilkårene for bruk av denne tjenesten godkjenner du også
+        våre generelle vilkår, som du finner her:
+        <ph name="START_PARAGRAPH"><ex>&lt;p&gt;</ex>&lt;p&gt;</ph>
+          <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>Brukervilkår<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph>
+        <ph name="CLOSE_PARAGRAPH"><ex>&lt;/p&gt;</ex>&lt;/p&gt;</ph>
+      </translation>
+  <translation id="6140956214681572625">
+        Ved å bruke tjenesten aksepterer du også hvordan vi behandler
+        personopplysningene dine. Du lese vår personvernerklæring som du finner her:
+        <ph name="START_PARAGRAPH"><ex>&lt;p&gt;</ex>&lt;p&gt;</ph>
+          <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>Personvernerklæring<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph>
+        <ph name="CLOSE_PARAGRAPH"><ex>&lt;/p&gt;</ex>&lt;/p&gt;</ph>
+      </translation>
+  <translation id="6754311422450298">Logg inn med BankID på mobil</translation>
+  <translation id="5406562440434070247">
+      Renteradar henter lånedetaljer og renten din automatisk med BankID på
+      Mobil.
+    </translation>
+  <translation id="1627259170894149873">
+      Vi støtter kun BankID på Mobil, ikke kodebrikke eller engangskode appen.
+    </translation>
+  <translation id="3646095447754172197">
+      Akkurat nå er det mange banker som setter ned renten og oppdaterer systemene sine.
+      Det kan derfor være en uriktig forskjell på nominell og effektiv rente som vi henter.
+      Besparelsen blir da for høy.
+    </translation>
+  <translation id="4268490450447156869">
+      Vi støtter kun BankID på Mobil, ikke kodebrikke og passord.
+    </translation>
+  <translation id="2500040693726154875">
+      OBS: Vi tester fortsatt løsningen for denne banken. <ph name="LINE_BREAK"><ex>&lt;br&gt;</ex>&lt;br&gt;</ph>
+      Gi gjerne beskjed hvis noe ikke fungerer optimalt.
+    </translation>
+  <translation id="6933632715857456386">
+            Fødselsnummer kan ikke være tomt
+          </translation>
+  <translation id="6683716293016097812">
+            Fødselsnummer ikke gyldig
+          </translation>
+  <translation id="1728288032136525847">
+            Fødselsnummeret er ikke gyldig
+          </translation>
+  <translation id="2250388058727689664">
+              Fødselsdato kan ikke være tomt
+            </translation>
+  <translation id="4451864370051988343">
+              Fødselsdato ikke gyldig
+            </translation>
+  <translation id="4586107070541175595">
+            Telefonnummer kan ikke være tomt
+          </translation>
+  <translation id="3087157587461419705">
+            Telefonnummer ikke gyldig
+          </translation>
+  <translation id="3370443422787328720">
+        Jeg aksepterer Renteradar.no&apos;s
+        <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>vilkår<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph>
+      </translation>
+  <translation id="895907784489368667">
+          Logg inn
+        </translation>
+  <translation id="1999097041745138660">Din referanse:</translation>
+  <translation id="4516645725680604539">
+      Forbereder identifisering <ph name="LINE_BREAK"><ex>&lt;br&gt;</ex>&lt;br&gt;</ph>
+      <ph name="START_TAG_SPAN"><ex>&lt;span&gt;</ex>&lt;span&gt;</ph>
+        (tar cirka <ph name="INTERPOLATION"><ex>{{ firstStepTimer }}</ex>{{ firstStepTimer }}</ph> sekunder)
+      <ph name="CLOSE_TAG_SPAN"><ex>&lt;/span&gt;</ex>&lt;/span&gt;</ph>
+      <ph name="START_TAG_SPAN_1"><ex>&lt;span&gt;</ex>&lt;span&gt;</ph>
+        (Litt til, straks ferdig)
+      <ph name="CLOSE_TAG_SPAN"><ex>&lt;/span&gt;</ex>&lt;/span&gt;</ph>
+    </translation>
+  <translation id="505549214859001727">
+          Kontroller at du har oppgitt riktig fødselsnummer og mobilnummer.
+          Du må ha bestilt og aktivert BankID på Mobil for å logge inn.
+          Les hvordan du <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>aktiverer BankID på Mobil her<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph>.
+        </translation>
+  <translation id="436186748417743017">
+          Kontroller at du har oppgitt riktig fødselsdato og mobilnummer.
+          Du må ha bestilt og aktivert BankID på Mobil for å logge inn.
+          Les hvordan du <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>aktiverer BankID på Mobil her<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph>.
+        </translation>
+  <translation id="3052164788242181063">
+        Banken din har dessverre tekniske problemer. Vennligst prøv igjen senere.
+      </translation>
+  <translation id="1202604689009830444">
+        Feilkode BID-C167:  Det kan skje hvis du for eksempel har endret abonnementet, 
+        byttet SIM-kort eller mobiltelefon. Du løser det ved å logge deg inn i nettbanken 
+        bestille BankID på mobil på nytt.
+      </translation>
+  <translation id="6946657498622444036">
+        BankID på Mobil er for tiden ustabil. Vennligst prøv igjen senere
+      </translation>
+  <translation id="918651986451412685">
+      Bekreft BankID på mobil
+    </translation>
+  <translation id="6016097431179810544">
+        Vennligst følg instruksjonen på mobilen
+      </translation>
+  <translation id="8359894254085399200">
+        Vi fikk ikke bekreftet BankID referansen fra din mobiltelefon. Vennligst prøv igjen.
+      </translation>
+  <translation id="1440765849001259900">
+        BankID bekreftet
+      </translation>
+  <translation id="6529284456810478177">
+      Hent rente og lånedata
+    </translation>
+  <translation id="4470264901473632671">Vi henter din rente og låneinformasjon</translation>
+  <translation id="1077243761833581156">
+          (tar cirka <ph name="INTERPOLATION"><ex>{{ thirdStepTimer }}</ex>{{ thirdStepTimer }}</ph> sekunder)
+        </translation>
+  <translation id="8553189946128725583">(Litt til, straks ferdig)</translation>
+  <translation id="1737547111639379120">Vennligst velg konto:</translation>
+  <translation id="2615838765373568178">
+        Vi får beskjed om at du ikke er kunde i banken. Har du valgt riktig bank?
+      </translation>
+  <translation id="7800208313052268189">
+        Banken din krever at du oppdaterer informasjon i nettbanken din.
+        Du må logge inn i nettbanken din og oppdatere/bekrefte informasjon før du kan benytte Renteradar.
+      </translation>
+  <translation id="72730370973066919">
+        Du må fornye din BankID. Du kan gjøre dette ved å logge inn i din nettbank fra PC (ikke mobil)
+      </translation>
+  <translation id="735666502297998517">
+        Det oppstod en feil under henting av dine lånedetaljer, vennligst prøv igjen senere.
+      </translation>
+  <translation id="883404220220395700">
+        Du valgte ikke konto innen 60 sekunder. Du må logge inn igjen.
+      </translation>
+  <translation id="1229124009191713867">
+    Prøv igjen
+  </translation>
+  <translation id="7095687158483678340">Velg din bank</translation>
+  <translation id="5885718116180826886">Produkt</translation>
+  <translation id="4649101814392031211">Max belåningsgrad</translation>
+  <translation id="5613351186974345873">Nominell rente</translation>
+  <translation id="6906756648389071560">Effektiv rente</translation>
+  <translation id="8251885134558537825">Krav om annet produkt</translation>
+  <translation id="6268147779239327086">Produktpakke</translation>
+  <translation id="6433636442999912448">Max løpetid</translation>
+  <translation id="6263630442699390965">Max avdragsfrihet</translation>
+  <translation id="6819227206018023151">Termingebyr</translation>
+  <translation id="3800529519181203761">Etableringsgebyr</translation>
+  <translation id="1866828647804702264">Depotgebyr</translation>
+  <translation id="8609133164691601608">Markedsområde</translation>
+  <translation id="6471638272193457529">Forutsetter medlemskap</translation>
+  <translation id="936069948368739972">Medlemskap</translation>
+  <translation id="3356607288603353046">Forbehold:</translation>
+  <translation id="2215765956385713589">Tilbud:</translation>
+  <translation id="6628959571341435399">Eff.rente <ph name="INTERPOLATION"><ex>{{data.effectiveRate | number: &quot;1.1-2&quot;}}</ex>{{data.effectiveRate | number: &quot;1.1-2&quot;}}</ph>%, 
+  Lånebeløp <ph name="INTERPOLATION_1"><ex>{{data.outstandingDebt | number: &quot;1.0&quot; }}</ex>{{data.outstandingDebt | number: &quot;1.0&quot; }}</ph>, 
+  <ph name="INTERPOLATION_2"><ex>{{data.loanPeriodYears | number: &quot;1.1&quot; }}</ex>{{data.loanPeriodYears | number: &quot;1.1&quot; }}</ph> år, 
+  Kostnad: <ph name="INTERPOLATION_3"><ex>{{data.cost | number: &quot;1.0&quot; }}</ex>{{data.cost | number: &quot;1.0&quot; }}</ph>, 
+  Totalt: <ph name="INTERPOLATION_4"><ex>{{data.totalCost | number: &quot;1.0&quot; }}</ex>{{data.totalCost | number: &quot;1.0&quot; }}</ph>
+</translation>
+  <translation id="8464995645369141323">Melding til banken din:</translation>
+  <translation id="6260787729954558456">
+  Hei,
+  <ph name="LINE_BREAK"><ex>&lt;br&gt;</ex>&lt;br&gt;</ph>
+  <ph name="LINE_BREAK"><ex>&lt;br&gt;</ex>&lt;br&gt;</ph>
+  Jeg er kunde i banken i dag, men jeg har funnet et bedre tilbud på
+  renteradar.no og vurderer å bytte. Før jeg går videre lurer jeg på om dere kan
+  matche tilbudet?
+</translation>
+  <translation id="6233426656187922546"><ph name="START_BOLD_TEXT"><ex>&lt;b&gt;</ex>&lt;b&gt;</ph>Opplysninger om tilbud:<ph name="CLOSE_BOLD_TEXT"><ex>&lt;/b&gt;</ex>&lt;/b&gt;</ph></translation>
+  <translation id="1578796457333659693">Lånebeløp:</translation>
+  <translation id="2813463483223752743">Boligverdi:</translation>
+  <translation id="7016867793464678008">Fellesgjeld:</translation>
+  <translation id="2797794214924772678">Est. belåningsgrad:</translation>
+  <translation id="7017467900196732094">Nedbetalingstid:</translation>
+  <translation id="1955012773136038396">Min alder:</translation>
+  <translation id="6029153214884959129">Bank:</translation>
+  <translation id="2593801662413936014">Produktnavn:</translation>
+  <translation id="9134365650704245064">Nominell rente:</translation>
+  <translation id="9195005229187414618">Effektiv rente:</translation>
+  <translation id="520445707074254280">Produkt:</translation>
+  <translation id="6757416729868173342">Link til produkt på Finansportalen</translation>
+  <translation id="1861503387534835102"><ph name="START_BOLD_TEXT"><ex>&lt;b&gt;</ex>&lt;b&gt;</ph>Opplysninger om meg:<ph name="CLOSE_BOLD_TEXT"><ex>&lt;/b&gt;</ex>&lt;/b&gt;</ph></translation>
+  <translation id="5647424960720371130">Navn:</translation>
+  <translation id="7483715370790406936">Telefon:</translation>
+  <translation id="8109569333483225668">Adresse:</translation>
+  <translation id="6545314760002669522">Postnr:</translation>
+  <translation id="463865531265904941">E-post:</translation>
+  <translation id="1694401514504518093">
+  Jeg ønsker at dere kontakter meg per telefon.
+</translation>
+  <translation id="3642553843915200035">
+  Jeg bekrefter at jeg er over 18 år og myndig eller oppnevnt som verge, samt at
+  banken ved behov kan foreta en kredittvurdering.
+</translation>
+  <translation id="7306998563443809862">
+  Mvh,<ph name="LINE_BREAK"><ex>&lt;br&gt;</ex>&lt;br&gt;</ph>
+  <ph name="INTERPOLATION"><ex>{{ data.preview.clientInfo.name }}</ex>{{ data.preview.clientInfo.name }}</ph>
+</translation>
+  <translation id="5852007366124888630">
+  Meldingen sendes til din bank per mail med deg som avsender. Du får også en
+  kopi av meldingen i din innboks. Ønsker du å kontakte din bank direkte kan du
+  kopiere teksten og bruke den som utgangspunkt for dialog.
+</translation>
+  <translation id="15575386468855329">
+    Jeg bekrefter at jeg er over 18 år og myndig eller oppnevnt som verge, samt
+    at banken ved behov kan foreta en kredittvurdering.
+  </translation>
+  <translation id="4287124343191144015">Send til banken
+    </translation>
+  <translation id="8689341132794043893">
+      Avbryt
+    </translation>
+  <translation id="1342296455496008013">Godt valg!</translation>
+  <translation id="3174754429727362040">Å bytte bank er lettere enn du tror.</translation>
+  <translation id="4258883744819241223">Du blir nå videresendt til Sbankens søknadssystem. Du oppretter da et kundeforhold i Sbanken samtidig som du søker.
+  Dette går raskt med BankID og koster ingenting.</translation>
+  <translation id="5612104468502817775">
+Fortsett
+</translation>
+  <translation id="4505310063548345196">Boligverdi over 85%</translation>
+  <translation id="5808135840612754019">Utifra boligverdien har vi beregnet er belåningsgraden din over 85%. 
+    Bankene kan i utgangspunktet ikke gi tilbud hvis belåningsgraden er høyere. 
+    Tilbudene du ser er basert på en belåningsgrad på 85%. Det kan være flere 
+    grunner til at vi har beregnet din belåningsgrad feil: 
+</translation>
+  <translation id="7377347457387335053">
+    <ph name="START_LIST_ITEM"><ex>&lt;li&gt;</ex>&lt;li&gt;</ph>Vi har bommet på estimatet og estimert for lav verdi<ph name="CLOSE_LIST_ITEM"><ex>&lt;/li&gt;</ex>&lt;/li&gt;</ph>
+    <ph name="START_LIST_ITEM"><ex>&lt;li&gt;</ex>&lt;li&gt;</ph>Du har kausjonist/medlånetaker som stiller ekstra sikkerhet<ph name="CLOSE_LIST_ITEM"><ex>&lt;/li&gt;</ex>&lt;/li&gt;</ph>
+    <ph name="START_LIST_ITEM"><ex>&lt;li&gt;</ex>&lt;li&gt;</ph>Du har sikkerhet i flere eiendommer<ph name="CLOSE_LIST_ITEM"><ex>&lt;/li&gt;</ex>&lt;/li&gt;</ph>
+</translation>
+  <translation id="4920381186755409711">
+    Du kan endre boligverdien og/eller legge til flere boliger i boligfanen ved å klikke her.
+    Har du kausjonist anbefaler vi deg også å sjekke at boligverdien stemmer, men utover det 
+    trenger du ikke endre noe.
+</translation>
+  <translation id="3480851764082129932">
+        <ph name="START_BOLD_TEXT"><ex>&lt;b&gt;</ex>&lt;b&gt;</ph>OBS:<ph name="CLOSE_BOLD_TEXT"><ex>&lt;/b&gt;</ex>&lt;/b&gt;</ph> Vi har beregnet belåningsgraden din til over 85%. 
+        Vennligst kontroller boligverdien i boligfanen. Du kan også lese 
+        mer om dette ved å  <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>klikke her<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph>.
+        
+      </translation>
+  <translation id="8798609747535038281">
+        <ph name="START_BOLD_TEXT"><ex>&lt;b&gt;</ex>&lt;b&gt;</ph>OBS:<ph name="CLOSE_BOLD_TEXT"><ex>&lt;/b&gt;</ex>&lt;/b&gt;</ph> Vi får kun hentet din nominelle rente og lånebeløp. For
+        utregninger har vi tatt utgangspunkt i en gjenværende løpetid på 20 år,
+        månedlige betalinger og 50,- i termingebyr. Faktisk løpetid og
+        termingebyrer vil endre forventede besparelser.
+      </translation>
+  <translation id="4039746100055160809">
+        Renten din er <ph name="START_BOLD_TEXT"><ex>&lt;b&gt;</ex>&lt;b&gt;</ph>svært god<ph name="CLOSE_BOLD_TEXT"><ex>&lt;/b&gt;</ex>&lt;/b&gt;</ph>
+      </translation>
+  <translation id="2232111592986969184">
+        Renten din er <ph name="START_BOLD_TEXT"><ex>&lt;b&gt;</ex>&lt;b&gt;</ph>god<ph name="CLOSE_BOLD_TEXT"><ex>&lt;/b&gt;</ex>&lt;/b&gt;</ph>, men ikke best
+      </translation>
+  <translation id="9093193430840364907"> 
+        Renten din er <ph name="START_BOLD_TEXT"><ex>&lt;b&gt;</ex>&lt;b&gt;</ph>OK<ph name="CLOSE_BOLD_TEXT"><ex>&lt;/b&gt;</ex>&lt;/b&gt;</ph>, men du kan få bedre
+      </translation>
+  <translation id="3988684830215428912">
+        Renten din er <ph name="START_BOLD_TEXT"><ex>&lt;b&gt;</ex>&lt;b&gt;</ph>dårlig<ph name="CLOSE_BOLD_TEXT"><ex>&lt;/b&gt;</ex>&lt;/b&gt;</ph> og du kan spare en del
+      </translation>
+  <translation id="6342902091669859975">
+        Renten din er <ph name="START_BOLD_TEXT"><ex>&lt;b&gt;</ex>&lt;b&gt;</ph>svært  dårlig<ph name="CLOSE_BOLD_TEXT"><ex>&lt;/b&gt;</ex>&lt;/b&gt;</ph> 
+      </translation>
+  <translation id="1153526926057039174">Dårlig rente</translation>
+  <translation id="848888422413234671">Bra rente</translation>
+  <translation id="455764818568454747">Du kan spare</translation>
+  <translation id="5148903359058497234">over lånets løpetid</translation>
+  <translation id="6355708038791887330">Din effektive rente</translation>
+  <translation id="427125236928461517">
+                Beste tilbud <ph name="TAG_IMG"><ex>&lt;img&gt;</ex>&lt;img&gt;</ph>
+              </translation>
+  <translation id="3341210020801920960">
+                Boligverdi <ph name="TAG_IMG"><ex>&lt;img&gt;</ex>&lt;img&gt;</ph>
+              </translation>
+  <translation id="7069181264401378666">
+                <ph name="INTERPOLATION"><ex>{{ offersInfo.propertyValue / 1000000 | number: &quot;1.1-3&quot; }}</ex>{{ offersInfo.propertyValue / 1000000 | number: &quot;1.1-3&quot; }}</ph>
+                mill.
+              </translation>
+  <translation id="8362217230831451408">
+                  Fellesgjeld
+                <ph name="INTERPOLATION"><ex>{{
+                  (offersInfo.commonDebt / 1000000 | number: &quot;1.1-2&quot;)
+                }}</ex>{{
+                  (offersInfo.commonDebt / 1000000 | number: &quot;1.1-2&quot;)
+                }}</ph>
+                mill.
+              </translation>
+  <translation id="4891521187014104503">
+                Estimat levert av
+                <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>virdi.no<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph>
+              </translation>
+  <translation id="8960464123145030803">
+                Gjenværende lån <ph name="TAG_IMG"><ex>&lt;img&gt;</ex>&lt;img&gt;</ph>
+              </translation>
+  <translation id="8385561911148217446">
+                <ph name="INTERPOLATION"><ex>{{
+                  offersInfo.totalOutstandingDebt / 1000000 | number: &quot;1.1-3&quot;
+                }}</ex>{{
+                  offersInfo.totalOutstandingDebt / 1000000 | number: &quot;1.1-3&quot;
+                }}</ph>
+                mill.
+              </translation>
+  <translation id="5278062192860184601">
+                Belåningsgrad
+                <ph name="INTERPOLATION"><ex>{{
+                  (offersInfo.ltv) *
+                    100 | number: &quot;1.1-1&quot;
+                }}</ex>{{
+                  (offersInfo.ltv) *
+                    100 | number: &quot;1.1-1&quot;
+                }}</ph>%
+              </translation>
+  <translation id="5655397647314349231">
+            
+            
+              <ph name="START_PARAGRAPH"><ex>&lt;p&gt;</ex>&lt;p&gt;</ph>Vi har funnet de beste tilbudene for deg<ph name="CLOSE_PARAGRAPH"><ex>&lt;/p&gt;</ex>&lt;/p&gt;</ph>
+              <ph name="START_TAG_RENTE_BUTTON"><ex>&lt;rente-button&gt;</ex>&lt;rente-button&gt;</ph>Se beste tilbud<ph name="CLOSE_TAG_RENTE_BUTTON"><ex>&lt;/rente-button&gt;</ex>&lt;/rente-button&gt;</ph>
+            </translation>
+  <translation id="5656133047966789416">
+        
+              <ph name="START_PARAGRAPH"><ex>&lt;p&gt;</ex>&lt;p&gt;</ph>Vi hjelper deg å be banken din om lavere rente<ph name="CLOSE_PARAGRAPH"><ex>&lt;/p&gt;</ex>&lt;/p&gt;</ph>
+              <ph name="START_TAG_DIV"><ex>&lt;div&gt;</ex>&lt;div&gt;</ph>
+                <ph name="START_TAG_RENTE_BUTTON"><ex>&lt;rente-button&gt;</ex>&lt;rente-button&gt;</ph>Be banken matche tilbud<ph name="CLOSE_TAG_RENTE_BUTTON"><ex>&lt;/rente-button&gt;</ex>&lt;/rente-button&gt;</ph> 
+              <ph name="CLOSE_TAG_DIV"><ex>&lt;/div&gt;</ex>&lt;/div&gt;</ph> 
+            </translation>
+  <translation id="7490679940019813443">Beste tilbud <ph name="TAG_IMG"><ex>&lt;img&gt;</ex>&lt;img&gt;</ph></translation>
+  <translation id="1114767759095153155">
+              Boligverdi <ph name="TAG_IMG"><ex>&lt;img&gt;</ex>&lt;img&gt;</ph>
+            </translation>
+  <translation id="4580382626837430563">
+              <ph name="INTERPOLATION"><ex>{{ offersInfo.propertyValue / 1000000 | number: &quot;1.1-3&quot; }}</ex>{{ offersInfo.propertyValue / 1000000 | number: &quot;1.1-3&quot; }}</ph>
+              mill.
+            </translation>
+  <translation id="8290131601797063873">
+                Fellesgjeld
+              <ph name="INTERPOLATION"><ex>{{
+                (offersInfo.commonDebt / 1000000 | number: &quot;1.1-2&quot;)
+              }}</ex>{{
+                (offersInfo.commonDebt / 1000000 | number: &quot;1.1-2&quot;)
+              }}</ph> mill.
+            </translation>
+  <translation id="7785125809090766229">
+              Estimat levert av
+              <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>virdi.no<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph>
+            </translation>
+  <translation id="2659155281966968741">
+              Gjenværende lån <ph name="TAG_IMG"><ex>&lt;img&gt;</ex>&lt;img&gt;</ph>
+            </translation>
+  <translation id="8002272044297516590">
+              <ph name="INTERPOLATION"><ex>{{
+                offersInfo.totalOutstandingDebt / 1000000 | number: &quot;1.1-3&quot;
+              }}</ex>{{
+                offersInfo.totalOutstandingDebt / 1000000 | number: &quot;1.1-3&quot;
+              }}</ph>
+              mill.
+            </translation>
+  <translation id="6994692722605514835">
+              Belåningsgrad
+              <ph name="INTERPOLATION"><ex>{{
+                (offersInfo.ltv) *
+                  100 | number: &quot;1.1-1&quot;
+              }}</ex>{{
+                (offersInfo.ltv) *
+                  100 | number: &quot;1.1-1&quot;
+              }}</ph>%
+            </translation>
+  <translation id="6713684880358711545">
+      
+      
+        <ph name="START_PARAGRAPH"><ex>&lt;p&gt;</ex>&lt;p&gt;</ph>Vi har funnet de beste tilbudene for deg<ph name="CLOSE_PARAGRAPH"><ex>&lt;/p&gt;</ex>&lt;/p&gt;</ph>
+        <ph name="START_TAG_RENTE_BUTTON"><ex>&lt;rente-button&gt;</ex>&lt;rente-button&gt;</ph>Se beste tilbud<ph name="CLOSE_TAG_RENTE_BUTTON"><ex>&lt;/rente-button&gt;</ex>&lt;/rente-button&gt;</ph>
+      </translation>
+  <translation id="5468909610811431459">
+  
+        <ph name="START_PARAGRAPH"><ex>&lt;p&gt;</ex>&lt;p&gt;</ph>Vi hjelper deg å be banken din om lavere rente<ph name="CLOSE_PARAGRAPH"><ex>&lt;/p&gt;</ex>&lt;/p&gt;</ph>
+        <ph name="START_TAG_DIV"><ex>&lt;div&gt;</ex>&lt;div&gt;</ph>
+          <ph name="START_TAG_RENTE_BUTTON"><ex>&lt;rente-button&gt;</ex>&lt;rente-button&gt;</ph>Be banken matche tilbud<ph name="CLOSE_TAG_RENTE_BUTTON"><ex>&lt;/rente-button&gt;</ex>&lt;/rente-button&gt;</ph> 
+        <ph name="CLOSE_TAG_DIV"><ex>&lt;/div&gt;</ex>&lt;/div&gt;</ph> 
+      </translation>
+  <translation id="7486232466818714324">
+      Beste tilbud:
+    </translation>
+  <translation id="5563875629860499246">
+      <ph name="START_PARAGRAPH"><ex>&lt;p&gt;</ex>&lt;p&gt;</ph>BANK<ph name="CLOSE_PARAGRAPH"><ex>&lt;/p&gt;</ex>&lt;/p&gt;</ph>
+      <ph name="START_PARAGRAPH"><ex>&lt;p&gt;</ex>&lt;p&gt;</ph>Din effektive rente: <ph name="START_TAG_SPAN"><ex>&lt;span&gt;</ex>&lt;span&gt;</ph><ph name="INTERPOLATION"><ex>{{ offersInfo.totalEffectiveRate | number: &quot;1.2-2&quot; }}</ex>{{ offersInfo.totalEffectiveRate | number: &quot;1.2-2&quot; }}</ph>%<ph name="CLOSE_TAG_SPAN"><ex>&lt;/span&gt;</ex>&lt;/span&gt;</ph><ph name="CLOSE_PARAGRAPH"><ex>&lt;/p&gt;</ex>&lt;/p&gt;</ph>
+    </translation>
+  <translation id="6755654981282999846">
+      Rammelån/boligkreditt er kun tilgjengelig for lavere belåningsgrad enn
+      60%.
+    </translation>
+  <translation id="5351778277313352797">
+      Din belåningsgrad er høyere enn dette, vennligst endre din belåningsgrad
+      i<ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph> boligfanen<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph>
+    </translation>
+  <translation id="8390026299753307390">Ingen bedre tilbud enda...</translation>
+  <translation id="7953688026484836361">Tilbud</translation>
+  <translation id="3376999486090038043">Mine lån</translation>
+  <translation id="485774405989316631">Bolig</translation>
+  <translation id="5363940464046088994">Profil</translation>
+  <translation id="2431471592684427143">Sammendrag av lån</translation>
+  <translation id="8872762964489439762">Utestående lån</translation>
+  <translation id="2177473751644069384">
+            <ph name="INTERPOLATION"><ex>{{ loansData.totalOutstandingDebt / 1000000 | number: &quot;1.3-3&quot; }}</ex>{{ loansData.totalOutstandingDebt / 1000000 | number: &quot;1.3-3&quot; }}</ph>
+            millioner
+          </translation>
+  <translation id="6092906483917247256">
+            Totale renter &amp; gebyrer
+          </translation>
+  <translation id="4415125900091906857">
+            Renter &amp; gebyrer per år
+          </translation>
+  <translation id="6979183132686253029">Detaljert</translation>
+  <translation id="6405534898185663750">
+                <ph name="INTERPOLATION"><ex>{{ loan.outstandingDebt / 1000000 | number: &quot;1.3-3&quot; }}</ex>{{ loan.outstandingDebt / 1000000 | number: &quot;1.3-3&quot; }}</ph> millioner
+              </translation>
+  <translation id="1537143187866911903">Løpetid</translation>
+  <translation id="2491369884464357967">Totale renter &amp; gebyrer</translation>
+  <translation id="3832773283399514247">Renter &amp; gebyrer per år</translation>
+  <translation id="1222716726015341718">Oops, noe gikk galt</translation>
+  <translation id="2520978996716925050">Mine boliger</translation>
+  <translation id="2371278918650677009">Total verdi: <ph name="INTERPOLATION"><ex>{{ totalPropertyValue | thousands }}</ex>{{ totalPropertyValue | thousands }}</ph></translation>
+  <translation id="8293820096640587911">
+        Legg til flere boliger
+    </translation>
+  <translation id="8031655082490415999">Få full kontroll på din bolig med:</translation>
+  <translation id="5337447661313684447">
+            Ikke gyldig email
+          </translation>
+  <translation id="6503836526994160110">Medlemskap (<ph name="INTERPOLATION"><ex>{{ memberships.length }}</ex>{{ memberships.length }}</ph>)</translation>
+  <translation id="6538043065750750417">
+              Mine medlemskap
+            </translation>
+  <translation id="6265608114878079228">Hvilke tilbud vil du se?</translation>
+  <translation id="4638786096430412922">
+                  Ønsker du <ph name="START_BOLD_TEXT"><ex>&lt;b&gt;</ex>&lt;b&gt;</ph>kun<ph name="CLOSE_BOLD_TEXT"><ex>&lt;/b&gt;</ex>&lt;/b&gt;</ph> å se tilbud på rammelån/flexilån?
+                </translation>
+  <translation id="6301374752494933057">
+                  Vil du se tilbud som krever andre produkter? (F.eks. bytte av nettbank og aktiv lønnskonto)
+                </translation>
+  <translation id="121014881250667288">
+                  Er du interessert i lån som forutsetter energiklasse A eller
+                  B, nullhus, Svanemerket, tiltak for energimerking, etc.
+                </translation>
+  <translation id="860609579907363008">Beklager, vi har ikke noen tjeneste for fastrente enda</translation>
+  <translation id="461861740952945812">Vi fant ingen lån, er du sikker på at du har valgt riktig bank?</translation>
+  <translation id="4679520070320680055">E-post er nå sendt til din bank</translation>
+  <translation id="6396071074498860181">
+      Vi har også sendt deg en epost fra prute@renteradar.no med kopi av eposten vi har sendt
+      til din bank. Hvis du ikke finner den, sjekk om eposten kan ha kommet i spam/søppelpost.
+    </translation>
+  <translation id="134573402535084101">
+      Bankene pleier å bruke én eller to uker på å svare deg.
+      Får du ikke noe svar fra banken i løpet av to uker, anbefaler vi følgende:
+    </translation>
+  <translation id="8047548113023064293">
+      <ph name="START_LIST_ITEM"><ex>&lt;li&gt;</ex>&lt;li&gt;</ph>Kopier teksten vi har sendt til din bank og som ligger nederst i eposten<ph name="CLOSE_LIST_ITEM"><ex>&lt;/li&gt;</ex>&lt;/li&gt;</ph>
+      <ph name="START_LIST_ITEM"><ex>&lt;li&gt;</ex>&lt;li&gt;</ph>Logg inn på nettbanken hos banken din<ph name="CLOSE_LIST_ITEM"><ex>&lt;/li&gt;</ex>&lt;/li&gt;</ph>
+      <ph name="START_LIST_ITEM"><ex>&lt;li&gt;</ex>&lt;li&gt;</ph>Gå til din postkasse i nettbanken. Send en melding til banken derfra og lim inn teksten du har kopiert<ph name="CLOSE_LIST_ITEM"><ex>&lt;/li&gt;</ex>&lt;/li&gt;</ph>
+    </translation>
+  <translation id="7715836202770360499">
+      Får du fortsatt ikke svar fra banken din eller banken ikke vil sette ned renten,
+      er det kanskje på tide å bytte bank. Renteradar.no viser deg hvilken bank du bør bytte til.
+    </translation>
+  <translation id="4066268080729513580">
+      Send oss gjerne en e-post på hei@renteradar.no eller bruk chat-funksjonen i tjenesten
+      for å fortelle oss om du har fått lavere rente eller om du har noen spørsmål.
+    </translation>
+  <translation id="3170746484089276903">Noe gikk galt…</translation>
+  <translation id="2512036117647083292">
+        Beklager, noe gikk galt og vi vil rette opp feilen så fort som mulig. Vennligst prøv igjen senere.
+      </translation>
+  <translation id="8216939591053699536">
+      <ph name="START_TAG_RENTE_BUTTON"><ex>&lt;rente-button&gt;</ex>&lt;rente-button&gt;</ph>Lykke til!<ph name="CLOSE_TAG_RENTE_BUTTON"><ex>&lt;/rente-button&gt;</ex>&lt;/rente-button&gt;</ph>
+    </translation>
+  <translation id="4939463314998111294">Boligstatistikk</translation>
+  <translation id="1381675146229383622">Din kvadratmeterpris:</translation>
+  <translation id="7558530398921612869"><ph name="INTERPOLATION"><ex>{{ averageSqmPrice | thousands }}</ex>{{ averageSqmPrice | thousands }}</ph> NOK</translation>
+  <translation id="1829768220470988706">Boliger i <ph name="INTERPOLATION"><ex>{{ indexArea }}</ex>{{ indexArea }}</ph></translation>
+  <translation id="786201691427040467">
+    Antall salg i/på <ph name="INTERPOLATION"><ex>{{ indexArea }}</ex>{{ indexArea }}</ph> siste 6 mnder:
+    <ph name="START_BOLD_TEXT"><ex>&lt;b&gt;</ex>&lt;b&gt;</ph><ph name="INTERPOLATION_1"><ex>{{ openMarketSalesHalfYear }}</ex>{{ openMarketSalesHalfYear }}</ph><ph name="CLOSE_BOLD_TEXT"><ex>&lt;/b&gt;</ex>&lt;/b&gt;</ph>
+  </translation>
+  <translation id="8232176749655275288">Prisutvikling i</translation>
+  <translation id="3892690050406429830">kr i 10 000</translation>
+  <translation id="451734601044957743">
+  Data levert av <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>virdi.no<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph>
+</translation>
+  <translation id="8342095948777211673">Din rente i forhold til andre i din bank</translation>
+  <translation id="2934793499608297498">Din rente i forhold til andre i alle banker</translation>
+  <translation id="522995351952616004">Din rente i forhold til andre i:</translation>
+  <translation id="4724171679114334160">
+    Grafen sammenligner renten din med andre som er <ph name="START_TAG_STRONG"><ex>&lt;strong&gt;</ex>&lt;strong&gt;</ph><ph name="INTERPOLATION"><ex>{{ageSegment}}</ex>{{ageSegment}}</ph><ph name="CLOSE_TAG_STRONG"><ex>&lt;/strong&gt;</ex>&lt;/strong&gt;</ph>, har <ph name="START_TAG_STRONG"><ex>&lt;strong&gt;</ex>&lt;strong&gt;</ph><ph name="INTERPOLATION_1"><ex>{{totalOutstandingDebtSegment}}</ex>{{totalOutstandingDebtSegment}}</ph><ph name="CLOSE_TAG_STRONG"><ex>&lt;/strong&gt;</ex>&lt;/strong&gt;</ph> 
+     og <ph name="START_TAG_STRONG"><ex>&lt;strong&gt;</ex>&lt;strong&gt;</ph>belåningsgrad <ph name="INTERPOLATION_2"><ex>{{ltvSegment}}</ex>{{ltvSegment}}</ph><ph name="CLOSE_TAG_STRONG"><ex>&lt;/strong&gt;</ex>&lt;/strong&gt;</ph>
+  </translation>
+  <translation id="3416769255545791476">
+    *Grafen tar ikke hensyn til geografi og medlemskap
+  </translation>
+  <translation id="3270684773208958895">
+  *Grafen tar ikke hensyn til alder, belåninsgrad, fordeler av
+  medlemskap, etc. da vi ikke har nok data for din brukergruppe
+</translation>
+  <translation id="8570534854138619756">
+      <ph name="START_TAG_RENTE_BUTTON"><ex>&lt;rente-button&gt;</ex>&lt;rente-button&gt;</ph>Ja<ph name="CLOSE_TAG_RENTE_BUTTON"><ex>&lt;/rente-button&gt;</ex>&lt;/rente-button&gt;</ph>
+      <ph name="START_TAG_RENTE_BUTTON_1"><ex>&lt;rente-button&gt;</ex>&lt;rente-button&gt;</ph>Nei<ph name="CLOSE_TAG_RENTE_BUTTON"><ex>&lt;/rente-button&gt;</ex>&lt;/rente-button&gt;</ph>
+    </translation>
+  <translation id="1093511522209284047">Bolig <ph name="INTERPOLATION"><ex>{{ index + 1 }}</ex>{{ index + 1 }}</ph></translation>
+  <translation id="753839858450562814">Boligverdi</translation>
+  <translation id="6359194450354924145">
+            Estimert av Virdi
+          </translation>
+  <translation id="1465334165455258344">
+            Lagre endringene for å hente estimat
+          </translation>
+  <translation id="5647814906650799534">
+      <ph name="START_TAG_RENTE_BUTTON"><ex>&lt;rente-button&gt;</ex>&lt;rente-button&gt;</ph>Lagre endringer
+    <ph name="CLOSE_TAG_RENTE_BUTTON"><ex>&lt;/rente-button&gt;</ex>&lt;/rente-button&gt;</ph>
+  </translation>
+  <translation id="6806991585707452032">
+          <ph name="START_PARAGRAPH"><ex>&lt;p&gt;</ex>&lt;p&gt;</ph>Krav om annet produkt<ph name="CLOSE_PARAGRAPH"><ex>&lt;/p&gt;</ex>&lt;/p&gt;</ph>
+          <ph name="START_PARAGRAPH_1"><ex>&lt;p&gt;</ex>&lt;p&gt;</ph><ph name="INTERPOLATION"><ex>{{ offer.requiredProductPackage == null ? &quot;Nei&quot; : &quot;Ja&quot; }}</ex>{{ offer.requiredProductPackage == null ? &quot;Nei&quot; : &quot;Ja&quot; }}</ph><ph name="CLOSE_PARAGRAPH"><ex>&lt;/p&gt;</ex>&lt;/p&gt;</ph>
+      </translation>
+  <translation id="8804685630785204305">
+    <ph name="INTERPOLATION"><ex>{{ offer.requiredProductPackage == null ? &quot;Ingen krav&quot; :  offer.requiredProductPackage}}</ex>{{ offer.requiredProductPackage == null ? &quot;Ingen krav&quot; :  offer.requiredProductPackage}}</ph>
+  </translation>
+  <translation id="5076934145129179372">
+    <ph name="INTERPOLATION"><ex>{{ offer.requiredMembership == null ? &quot;Nei&quot; : &quot;Ja&quot; }}</ex>{{ offer.requiredMembership == null ? &quot;Nei&quot; : &quot;Ja&quot; }}</ph>
+  </translation>
+  <translation id="6029053668352070058">Du sparer</translation>
+  <translation id="7692334728779127104">første år</translation>
+  <translation id="3711700189622576601">Hvor lang tid tar det å søke:</translation>
+  <translation id="7085501956665743924">Krever bytte av nettbank:</translation>
+  <translation id="5972628355442932663">
+    <ph name="INTERPOLATION"><ex>{{ offer.requiredProductPackage == null ? &quot;Nei&quot; : &quot;Ja&quot; }}</ex>{{ offer.requiredProductPackage == null ? &quot;Nei&quot; : &quot;Ja&quot; }}</ph>
+  </translation>
+  <translation id="3225218843011753843">Kundetilfredshet:</translation>
+  <translation id="3500012573489049385">
+               
+                    <ph name="START_TAG_MAT_EXPANSION_PANEL"><ex>&lt;mat-expansion-panel&gt;</ex>&lt;mat-expansion-panel&gt;</ph>
+                        <ph name="START_TAG_MAT_EXPANSION_PANEL_HEADER"><ex>&lt;mat-expansion-panel-header&gt;</ex>&lt;mat-expansion-panel-header&gt;</ph>
+                          Detaljer
+                        <ph name="CLOSE_TAG_MAT_EXPANSION_PANEL_HEADER"><ex>&lt;/mat-expansion-panel-header&gt;</ex>&lt;/mat-expansion-panel-header&gt;</ph>
+                        
+                        <ph name="START_TAG_RENTE_DETAILS"><ex>&lt;rente-details&gt;</ex>&lt;rente-details&gt;</ph><ph name="CLOSE_TAG_RENTE_DETAILS"><ex>&lt;/rente-details&gt;</ex>&lt;/rente-details&gt;</ph>
+                      <ph name="CLOSE_TAG_MAT_EXPANSION_PANEL"><ex>&lt;/mat-expansion-panel&gt;</ex>&lt;/mat-expansion-panel&gt;</ph>
+              
+            </translation>
+  <translation id="2150012607947091695">
+                        <ph name="START_TAG_RENTE_BUTTON_SMALL"><ex>&lt;rente-button-small&gt;</ex>&lt;rente-button-small&gt;</ph>Se mer på <ph name="INTERPOLATION"><ex>{{getbankNameOrDefault(offer)}}</ex>{{getbankNameOrDefault(offer)}}</ph>s <ph name="LINE_BREAK"><ex>&lt;br&gt;</ex>&lt;br&gt;</ph> hjemmeside
+                        <ph name="CLOSE_TAG_RENTE_BUTTON_SMALL"><ex>&lt;/rente-button-small&gt;</ex>&lt;/rente-button-small&gt;</ph>
+                    </translation>
+  <translation id="4935045564490888195">
+                        <ph name="START_TAG_RENTE_BUTTON_SMALL"><ex>&lt;rente-button-small&gt;</ex>&lt;rente-button-small&gt;</ph>Få tilbud fra <ph name="INTERPOLATION"><ex>{{getbankNameOrDefault(offer)}}</ex>{{getbankNameOrDefault(offer)}}</ph>!
+                        <ph name="CLOSE_TAG_RENTE_BUTTON_SMALL"><ex>&lt;/rente-button-small&gt;</ex>&lt;/rente-button-small&gt;</ph>
+                        <ph name="START_PARAGRAPH"><ex>&lt;p&gt;</ex>&lt;p&gt;</ph> (Ingen avtale med banken)<ph name="CLOSE_PARAGRAPH"><ex>&lt;/p&gt;</ex>&lt;/p&gt;</ph>
+                    </translation>
+  <translation id="4391428007921836377"><ph name="START_TAG_SPAN"><ex>&lt;span&gt;</ex>&lt;span&gt;</ph>
+                <ph name="CLOSE_TAG_SPAN"><ex>&lt;/span&gt;</ex>&lt;/span&gt;</ph> Eff.rente <ph name="INTERPOLATION"><ex>{{offer.effectiveRate | number: &quot;1.2-2&quot;}}</ex>{{offer.effectiveRate | number: &quot;1.2-2&quot;}}</ph>%,
+                Lånebeløp <ph name="INTERPOLATION_1"><ex>{{offer.outstandingDebt | number: &quot;1.0&quot; }}</ex>{{offer.outstandingDebt | number: &quot;1.0&quot; }}</ph>,
+                <ph name="INTERPOLATION_2"><ex>{{offer.loanPeriodYears | number: &quot;1.1-1&quot; }}</ex>{{offer.loanPeriodYears | number: &quot;1.1-1&quot; }}</ph> år,
+                Kostnad: <ph name="INTERPOLATION_3"><ex>{{offer.cost | number: &quot;1.0&quot; }}</ex>{{offer.cost | number: &quot;1.0&quot; }}</ph>,
+                Totalt: <ph name="INTERPOLATION_4"><ex>{{offer.totalCost | number: &quot;1.0&quot; }}</ex>{{offer.totalCost | number: &quot;1.0&quot; }}</ph>
+            </translation>
+  <translation id="5591081594628473283"><ph name="START_PARAGRAPH"><ex>&lt;p&gt;</ex>&lt;p&gt;</ph>Rentebesparelse<ph name="CLOSE_PARAGRAPH"><ex>&lt;/p&gt;</ex>&lt;/p&gt;</ph></translation>
+  <translation id="1559981186598880798">Krever bytte av nettbank</translation>
+  <translation id="3793837025671233985">
+              <ph name="INTERPOLATION"><ex>{{ offer.requiredProductPackage == null ? &quot;Nei&quot; : &quot;Ja&quot; }}</ex>{{ offer.requiredProductPackage == null ? &quot;Nei&quot; : &quot;Ja&quot; }}</ph>
+            </translation>
+  <translation id="7924356511092340">Kundetilfredshet</translation>
+  <translation id="196696653613837526">Hvor lang tid tar det å søke</translation>
+  <translation id="8990417947255340593"><ph name="START_TAG_SPAN"><ex>&lt;span&gt;</ex>&lt;span&gt;</ph>Tilbud:
+      <ph name="CLOSE_TAG_SPAN"><ex>&lt;/span&gt;</ex>&lt;/span&gt;</ph> Eff.rente <ph name="INTERPOLATION"><ex>{{offer.effectiveRate | number: &quot;1.2-2&quot;}}</ex>{{offer.effectiveRate | number: &quot;1.2-2&quot;}}</ph>%, 
+        Lånebeløp <ph name="INTERPOLATION_1"><ex>{{offer.outstandingDebt | number: &quot;1.0&quot; }}</ex>{{offer.outstandingDebt | number: &quot;1.0&quot; }}</ph>, 
+        <ph name="INTERPOLATION_2"><ex>{{offer.loanPeriodYears | number: &quot;1.1-1&quot; }}</ex>{{offer.loanPeriodYears | number: &quot;1.1-1&quot; }}</ph> år, 
+        Kostnad: <ph name="INTERPOLATION_3"><ex>{{offer.cost | number: &quot;1.0&quot; }}</ex>{{offer.cost | number: &quot;1.0&quot; }}</ph>, 
+        Totalt: <ph name="INTERPOLATION_4"><ex>{{offer.totalCost | number: &quot;1.0&quot; }}</ex>{{offer.totalCost | number: &quot;1.0&quot; }}</ph>
+      </translation>
+  <translation id="9184852390022204852">Detaljer</translation>
+  <translation id="5612620120156081967">Se mer på <ph name="INTERPOLATION"><ex>{{getbankNameOrDefault(offer)}}</ex>{{getbankNameOrDefault(offer)}}</ph>s <ph name="LINE_BREAK"><ex>&lt;br&gt;</ex>&lt;br&gt;</ph> hjemmeside</translation>
+  <translation id="1567738231052350136"> (Ingen avtale med banken enda)</translation>
+  <translation id="9002327285160830034">Få tilbud fra <ph name="INTERPOLATION"><ex>{{getbankNameOrDefault(offer)}}</ex>{{getbankNameOrDefault(offer)}}</ph>!</translation>
+  <translation id="4446830034901284141">
+        Vi har også sendt deg en epost fra prute@renteradar.no med kopi av eposten vi har sendt
+        til din bank. Hvis du ikke finner den, sjekk om eposten kan ha kommet i spam/søppelpost.
+      </translation>
+  <translation id="5890650774614512468">
+        Bankene pleier å bruke én eller to uker på å svare deg.
+        Får du ikke noe svar fra banken i løpet av to uker, anbefaler vi følgende:
+      </translation>
+  <translation id="4338413914980980876">
+        <ph name="START_LIST_ITEM"><ex>&lt;li&gt;</ex>&lt;li&gt;</ph>Kopier teksten vi har sendt til din bank og som ligger nederst i eposten<ph name="CLOSE_LIST_ITEM"><ex>&lt;/li&gt;</ex>&lt;/li&gt;</ph>
+        <ph name="START_LIST_ITEM"><ex>&lt;li&gt;</ex>&lt;li&gt;</ph>Logg inn på nettbanken hos banken din<ph name="CLOSE_LIST_ITEM"><ex>&lt;/li&gt;</ex>&lt;/li&gt;</ph>
+        <ph name="START_LIST_ITEM"><ex>&lt;li&gt;</ex>&lt;li&gt;</ph>Gå til din postkasse i nettbanken. Send en melding til banken derfra og lim inn teksten du har kopiert<ph name="CLOSE_LIST_ITEM"><ex>&lt;/li&gt;</ex>&lt;/li&gt;</ph>
+      </translation>
+  <translation id="6539092359662923123">
+        Får du fortsatt ikke svar fra banken din eller banken ikke vil sette ned renten,
+        er det kanskje på tide å bytte bank. Renteradar.no viser deg hvilken bank du bør bytte til.
+      </translation>
+  <translation id="6218864028127816464">
+        Send oss gjerne en e-post på <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>hei@renteradar.no<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph>  eller bruk chat-funksjonen i tjenesten
+        for å fortelle oss om du har fått lavere rente eller om du har noen spørsmål.
+      </translation>
+  <translation id="542115829779252804">
+          Beklager, noe gikk galt og vi vil rette opp feilen så fort som mulig. Vennligst prøv igjen senere.
+        </translation>
+  <translation id="8623356652531639879">
+        <ph name="START_TAG_RENTE_BUTTON"><ex>&lt;rente-button&gt;</ex>&lt;rente-button&gt;</ph>Lykke til!<ph name="CLOSE_TAG_RENTE_BUTTON"><ex>&lt;/rente-button&gt;</ex>&lt;/rente-button&gt;</ph>
+      </translation>
+  <translation id="landing.choosebank">Start med å velge banken du har lån i:</translation>
 </translationbundle>

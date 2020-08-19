@@ -72,10 +72,18 @@
               ]
             },
             "nb": {
-              "localize": ["nb"]
+              "localize": ["nb"],
+              "assets": [
+                { "glob": "**/*", "input": "src/assets/nb", "output": "/assets/" },
+                "src/assets"
+              ]
             },
             "sv": {
-              "localize": ["sv"]
+              "localize": ["sv"],
+              "assets": [
+                { "glob": "**/*", "input": "src/assets/sv", "output": "/assets/" },
+                "src/assets"
+              ]
             },
             "local": {
               "budgets": [
