@@ -218,6 +218,13 @@
                   "maximumWarning": "6kb"
                 }
               ]
+            },
+            "sv": {
+              "aot": true,
+              "outputPath": "dist/rente-front-end-sv",
+              "i18nFile": "src/i18n/messages.sv.xlf",
+              "i18nFormat": "xlf",
+              "i18nLocale": "sv"
             }
           }
         },
@@ -242,6 +249,9 @@
             },
             "develop": {
               "browserTarget": "rente-front-end:build:develop"
+            },
+            "sv": {
+              "browserTarget": "rente-front-end:build:sv"
             }
           },
           "i18nFile": "src/locale/messages.nb.xtb",

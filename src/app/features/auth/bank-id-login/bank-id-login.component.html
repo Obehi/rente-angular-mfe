@@ -1,23 +1,23 @@
 <div class="front-container">
   <section *ngIf="!isLoginStarted && bankIdForm" class="login">
-    <h3>Logg inn med BankID på mobil</h3>
-    <p>
+    <h3 i18n=“title|bank-id@@bankId.title”>Logg inn med BankID på mobil</h3>
+    <p i18n=“description|bank-id@@bankId.description”>
       Renteradar henter lånedetaljer og renten din automatisk med BankID på
       Mobil.
     </p>
-    <p *ngIf="isSB1Bank">
+    <p i18n=“description|bank-id@@bankId.description2” *ngIf="isSB1Bank">
       Vi støtter kun BankID på Mobil, ikke kodebrikke eller engangskode appen.
     </p>
-    <p *ngIf="isSB1Bank && false" class="red">
+    <p i18n=“issue|bank-id@@bankId.issue” *ngIf="isSB1Bank && false" class="red">
       Akkurat nå er det mange banker som setter ned renten og oppdaterer systemene sine.
       Det kan derfor være en uriktig forskjell på nominell og effektiv rente som vi henter.
       Besparelsen blir da for høy.
     </p>
 
-    <p *ngIf="!isSB1Bank">
+    <p i18n=“information|bank-id@@bankId.info” *ngIf="!isSB1Bank">
       Vi støtter kun BankID på Mobil, ikke kodebrikke og passord.
     </p>
-    <p *ngIf="isEikaBank && false" class="red">
+    <p i18n=“issue|bank-id@@bankId.issue2” *ngIf="isEikaBank && false" class="red">
       OBS: Vi tester fortsatt løsningen for denne banken. <br />
       Gi gjerne beskjed hvis noe ikke fungerer optimalt.
     </p>
@@ -52,21 +52,21 @@
             class="text-left d-block"
             *ngIf="bankIdForm.controls['ssn'].hasError('required')"
             [type]="'error'"
-          >
+            i18n=“issue|bank-id@@bankId.description.birthNumber”>
             Fødselsnummer kan ikke være tomt
           </rente-form-message>
           <rente-form-message
             class="text-left d-block"
             *ngIf="bankIdForm.controls['ssn'].hasError('pattern')"
             [type]="'error'"
-          >
+            i18n=“issue|bank-id@@bankId.description.birthNumber2”>
             Fødselsnummer ikke gyldig
           </rente-form-message>
           <rente-form-message
             class="text-left d-block"
             *ngIf="bankIdForm.controls['ssn'].hasError('ssnNotValid')"
             [type]="'error'"
-          >
+            i18n=“issue|bank-id@@bankId.description.birthNumber3”>
             Fødselsnummeret er ikke gyldig
           </rente-form-message>
         </div>
@@ -93,14 +93,14 @@
               class="text-left d-block"
               *ngIf="bankIdForm.controls['birthdate'].hasError('required')"
               [type]="'error'"
-            >
+              i18n=“issue|bank-id@@bankId.description.birthNumber4”>
               Fødselsdato kan ikke være tomt
             </rente-form-message>
             <rente-form-message
               class="text-left d-block"
               *ngIf="bankIdForm.controls['birthdate'].hasError('pattern')"
               [type]="'error'"
-            >
+              i18n=“issue|bank-id@@bankId.description.birthNumber5”>
               Fødselsdato ikke gyldig
             </rente-form-message>
           </div>
@@ -124,14 +124,14 @@
             class="text-left d-block"
             *ngIf="bankIdForm.controls['phone'].hasError('required')"
             [type]="'error'"
-          >
+            i18n=“issue|bank-id@@bankId.description.telephoneNumber”>
             Telefonnummer kan ikke være tomt
           </rente-form-message>
           <rente-form-message
             class="text-left d-block"
             *ngIf="bankIdForm.controls['phone'].hasError('pattern')"
             [type]="'error'"
-          >
+            i18n=“issue|bank-id@@bankId.description.telephoneNumber2”>
             Telefonnummer ikke gyldig
           </rente-form-message>
         </div>
@@ -140,7 +140,7 @@
       <mat-checkbox
         formControlName="confirmation"
         (change)="isConfirmed = $event.checked"
-      >
+        i18n=“accepting|bank-id@@bankId.policy” >
         Jeg aksepterer Renteradar.no's
         <a class="link" (click)="openServiceDialog()">vilkår</a>
       </mat-checkbox>
@@ -149,7 +149,7 @@
         <rente-button
           color="primary"
           [disabled]="!bankIdForm.valid || !isConfirmed"
-        >
+          i18n=“log-in|bank-id@@bankId.logIn” >
           Logg inn
         </rente-button>
       </div>
