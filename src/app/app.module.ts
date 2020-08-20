@@ -30,6 +30,7 @@ import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { CountUpModule } from 'ngx-countup';
 import { LoginNoComponent } from './features/landing/locale/login/login-no/login-no.component';
 import { LoginSVComponent } from './features/landing/locale/login/login-sv/login-sv.component';
+import { LoginLangGenericComponent } from '../environments/environment'
 
 registerLocaleData(localeNo);
 
@@ -51,7 +52,8 @@ registerLocaleData(localeNo);
     EmailPreferencesComponent,
     ProfileDialogInfoComponent,
     LoginNoComponent,
-    LoginSVComponent
+    LoginSVComponent,
+    LoginLangGenericComponent
   ],
   imports: [
     BrowserModule,
