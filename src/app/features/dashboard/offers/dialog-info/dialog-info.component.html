@@ -4,61 +4,61 @@
 
 <div class="grid-wrapper">
     <div class="item">
-      <p i18n class="small">Produkt</p>
+      <p i18n=“product|dialog@@dialog.component.product” class="small">Produkt</p>
       <p>{{ data.productName }}</p>
     </div>
     <div class="item">
-        <p i18n class="small">Max belåningsgrad</p>
+        <p i18n=“max-leverage|dialog@@dialog.component.maxLeverage” class="small">Max belåningsgrad</p>
         <p>{{ data.maxLTV }}%</p>        
     </div>
     <div class="item">
-      <p i18n class="small">Nominell rente</p>
+      <p i18n=“nominal|dialog@@dialog.component.nominal” class="small">Nominell rente</p>
       <p>{{ data.nominalRate | number: "1.2-2" }}%</p>
     </div>
     <div class="item">
-      <p i18n class="small">Effektiv rente</p>
+      <p i18n=“efficient|dialog@@dialog.component.efficient” class="small">Effektiv rente</p>
       <p>{{ data.effectiveRate | number: "1.2-2" }}%</p>
     </div>
     <div class="item">
-        <p i18n class="small">Krav om annet produkt</p>
+        <p i18n=“demand-product|dialog@@dialog.component.demandProduct” class="small">Krav om annet produkt</p>
         <p>{{ data.requiredProductPackage == null ? "Nei" : "Ja" }}</p>
     </div>
 
     <div class="item">
-      <p i18n class="small">Produktpakke</p>
+      <p i18n=“product-package|dialog@@dialog.component.productPackage” class="small">Produktpakke</p>
       <p>{{ data.requiredProductPackage == null ? "Ingen krav" :  data.requiredProductPackage}}</p>
     </div>
     <div class="item">
-      <p i18n class="small">Max løpetid</p>
+      <p i18n=“max-time|dialog@@dialog.component.maxTime” class="small">Max løpetid</p>
       <p>{{ data.maxLoanPeriod }} år</p>
     </div>
     <div class="item">
-      <p i18n class="small">Max avdragsfrihet</p>
+      <p i18n=“max-deduction|dialog@@dialog.component.maxDeduction” class="small">Max avdragsfrihet</p>
       <p>{{ data.maxInstallmentFreePeriod }} år</p>
     </div>
     <div class="item">
-      <p i18n class="small">Termingebyr</p>
+      <p i18n=“monthly-fee|dialog@@dialog.component.monthlyFee” class="small">Termingebyr</p>
       <p>{{ data.monthlyFee }},-</p>
     </div>
     <div class="item">
-      <p i18n class="small">Etableringsgebyr</p>
+      <p i18n=“establishment-fee|dialog@@dialog.component.establishmentFee” class="small">Etableringsgebyr</p>
       <p>{{ data.establishmentFee }},-</p>
     </div>
     <div class="item">
-      <p i18n class="small">Depotgebyr</p>
+      <p i18n=“depot-fee|dialog@@dialog.component.depotFee” class="small">Depotgebyr</p>
       <p>{{ data.depotFee }},-</p>
     </div>
     <div class="item">  
-      <p i18n class="small">Markedsområde</p>
+      <p i18n=“market|dialog@@dialog.component.market” class="small">Markedsområde</p>
       <p>{{ data.marketArea }}</p>
     </div>
     <div class="item">
-      <p i18n class="small">Forutsetter medlemskap</p>
+      <p i18n=“required-membership|dialog@@dialog.component.requiredMembership” class="small">Forutsetter medlemskap</p>
       <p>{{ data.requiredMembership == null ? "Nei" : "Ja" }}</p>
     </div>
     <div *ngIf="data.requiredMembership != null">
       <div class="item">
-        <p i18n class="small">Medlemskap</p>
+        <p i18n=“membership|dialog@@dialog.component.membership” class="small">Medlemskap</p>
         <p>{{ data.requiredMembership }}</p>
       </div>
     </div>
@@ -66,11 +66,11 @@
     
 </div>
 
-<p i18n class="small-header">Forbehold:</p>
+<p i18n=“conditions|dialog@@dialog.component.conditions” class="small-header">Forbehold:</p>
 <p>{{ data.otherConditions }}</p>
 
-<p i18n class="small-header">Tilbud:</p>
-<p i18n class="insignificant">Eff.rente {{data.effectiveRate | number: "1.1-2"}}%, 
+<p i18n=“offer|dialog@@dialog.component.offer” class="small-header">Tilbud:</p>
+<p i18n=“efficient-interest|dialog@@dialog.component.effcientInterest” class="insignificant">Eff.rente {{data.effectiveRate | number: "1.1-2"}}%, 
   Lånebeløp {{data.outstandingDebt | number: "1.0" }}, 
   {{data.loanPeriodYears | number: "1.1" }} år, 
   Kostnad: {{data.cost | number: "1.0" }}, 

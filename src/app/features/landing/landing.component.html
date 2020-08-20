@@ -1,9 +1,9 @@
 <div class="front-container">
   <div class="intro" [style.margin-bottom.px]="isMobile ? 20 : 80">
-    <h1 i18n [style.margin-bottom.px]="isMobile ? 20 : 40">
+    <h1 i18n="title|landing-page@@landing.title" [style.margin-bottom.px]="isMobile ? 20 : 40">
       Få beste <a [routerLink]="'/velgbank'">boliglånsrente</a>
     </h1>
-    <h4 i18n="Our header|Describes the header@@landingheader">
+    <h4 i18n="Our-header|Describes-the-header@@landing.header">
       Sammenlign boliglånet ditt mot markedets beste tilbud - kjapt, enkelt og
       gratis!
     </h4>
@@ -11,7 +11,7 @@
   <!--
   <iframe src="https://link.tink.com/1.0/authorize/?client_id=f58c3faf6749466384b71791fe233a22&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fcallback&scope=accounts:read,investments:read,transactions:read,user:read,statistics:read,identity:read,credentials:read&market=SE&locale=en_US&test=true">
 -->
-  <h3 i18n>Start med å velge banken du har lån i:</h3>
+  <h3 i18n="start|landing-page@@landing.start">Start med å velge banken du har lån i:</h3>
   <div class="bank-buttons">
     <rente-button color="blue" [routerLink]="'/autentisering/sparebank1-sub'">
       <img
@@ -31,7 +31,7 @@
       <img src="../../../assets/img/banks-logo/svg/dnb.svg" alt="DNB logo" />
     </rente-button>
     <rente-button color="blue" [routerLink]="'/velgbank'">
-      <p i18n>Annen bank</p>
+      <p i18n="other-bank|landing-page@@landing.otherBank">Annen bank</p>
     </rente-button>
   </div>
 
@@ -63,22 +63,22 @@
         <div class="four-columns">
           <div class="block">
             <img src="../../../assets/icons/renteradar.svg" alt="renteradar" />
-            <p i18n="Sellingpoint 1|Describes sellingpoint 1@@landing.sellingpoint-1">Renteradar finner den beste boliglånsrenten helt gratis.</p>
+            <p i18n="encouragement|landing-page@@landing.encouragement">Renteradar finner den beste boliglånsrenten helt gratis.</p>
           </div>
           <div class="block">
             <img src="../../../assets/icons/user.svg" alt="bankID" />
-            <p i18n="Sellingpoint 2|Describes sellingpoint 2@@landing.sellingpoint-2">
+            <p i18n="description|landing-page@@landing.description">
               Ingen utfylling av skjema. <br />
               Logg inn med BankID på mobil.
             </p>
           </div>
           <div class="block">
             <img src="../../../assets/icons/save.svg" alt="save" />
-            <p i18n>Få oversikt og spar penger med et klikk.</p>
+            <p i18n="explanation-service|landing-page@@landing.explanationService">Få oversikt og spar penger med et klikk.</p>
           </div>
           <div class="block">
             <img src="../../../assets/icons/notify.svg" alt="notify" />
-            <p i18n>
+            <p i18n="description-service|landing-page@@landing.descriptionService">
               Renteradar overvåker markedet og gir deg beskjed når det kommer
               bedre tilbud.
             </p>
@@ -89,15 +89,15 @@
 
     <div class="list gradient desktop small-padding">
       <div class="example">
-        <h2 i18n>Slik fungerer det</h2>
+        <h2 i18n="how-it-functions|landing-page@@landing.function">Slik fungerer det</h2>
         <div class="item second-row">
 
-          <h4 i18n>
+          <h4 i18n="automatic-service|landing-page@@landing.automaticService">
             Renteradar henter renten og dine lånedetaljer automatisk med BankID på
             mobil.
           </h4>
 
-          <h4 i18n>
+          <h4 i18n="comparing-service|landing-page@@landing.comparingService">
             Vi sammenligner renten du betaler med renten du kan få i andre banker
             og viser deg hvor mye du kan spare. Du kan også prute i banken du er
             kunde med et klikk.
@@ -118,7 +118,7 @@
               alt="Screenshot example"
               />
           </div>
-        <h4 i18n class="bottom">
+        <h4 i18n="surveillance-service|landing-page@@landing.surveillanceService" class="bottom">
           Vi overvåker markedet og gir deg beskjed når nye og bedre tilbud er
           tilgjengelig i fremtiden!
         </h4>
@@ -129,12 +129,12 @@
 
       <div class="list-inner">
         <div class="desktop-inner">
-          <h2 i18n>Slik fungerer det</h2>
-          <h4 i18n>
+          <h2 i18n="title-explanation|landing-page@@landing.title.explanation">Slik fungerer det</h2>
+          <h4 i18n="step1-explanation|landing-page@@landing.step1.explanation">
             Renteradar henter renten og dine lånedetaljer automatisk med BankID på
             mobil.
           </h4>
-          <h4 i18n>
+          <h4 i18n="step2-explanation|landing-page@@landing.step2.explanation">
             Vi sammenligner renten du betaler med renten du kan få i andre banker
             og viser deg hvor mye du kan spare. Du kan også prute i banken du er
             kunde med et klikk.
@@ -146,7 +146,7 @@
 
               alt="Screenshot Example"
             />
-          <h4 i18n>
+          <h4 i18n="step3-explanation|landing-page@@landing.step3.explanation">
             Vi overvåker markedet og gir deg beskjed når nye og bedre tilbud er
             tilgjengelig i fremtiden!
           </h4>
@@ -155,7 +155,7 @@
     </div>
 
   <div class="articles">
-    <h2 i18n style="margin-bottom: 20px;">Fornøyde brukere</h2>
+    <h2 i18n="title-review|landing-page@@landing.title.review" style="margin-bottom: 20px;">Fornøyde brukere</h2>
     <div class="horizontal-scroll">
       <div class="sitater">
         <!-- TODO: move to component -->
@@ -252,7 +252,7 @@
   </div>
 
   <div class="articles">
-    <h2 i18n style="margin-bottom: 20px;">Renteradar i media</h2>
+    <h2 i18n="title-media|landing-page@@landing.title.media" style="margin-bottom: 20px;">Renteradar i media</h2>
     <div class="horizontal-scroll">
 
       <a class="article" target="_blank" href="https://www.tv2.no/nyheter/11327692/">

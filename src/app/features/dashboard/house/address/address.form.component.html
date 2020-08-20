@@ -1,7 +1,7 @@
 <div class="housecontainer">
   <div class="heading">
     <img src="../../../assets/icons/house-icon.svg" alt="Bolig" />
-    <b i18n>Bolig {{ index + 1 }}</b>
+    <b i18n=“title|house@@address.component”>Bolig {{ index + 1 }}</b>
     <mat-icon
       *ngIf="isAbleToDelete"
       (click)="onDeleteAddressClick()"
@@ -52,7 +52,7 @@
       ></rente-input>
     </div>
     <div [class]="isStatMode ? 'hidden' : 'estimate'">
-      <p i18n class="small">Boligverdi</p>
+      <p i18n=“value|house@@address.component.value” class="small">Boligverdi</p>
 
       <mat-tab-group
         class="radio"
@@ -78,11 +78,11 @@
             [matSuffix]="address.estimatedPropertyValue ? 'kr' : ''"
           ></rente-input>
 
-          <p i18n *ngIf="address.estimatedPropertyValue" class="small">
+          <p i18n=“estimate|house@@address.component.estimate” *ngIf="address.estimatedPropertyValue" class="small">
             Estimert av Virdi
           </p>
 
-          <p i18n *ngIf="!address.estimatedPropertyValue" class="small">
+          <p i18n=“save|house@@address.component.save” *ngIf="!address.estimatedPropertyValue" class="small">
             Lagre endringene for å hente estimat
           </p>
         </div>
@@ -113,7 +113,7 @@
     </div>
     
     
-    <div i18n class="center-button">
+    <div i18n=“save2|house@@address.component.save2” class="center-button">
       <rente-button
       color="primary"
       [disabled]="!ableTosave"

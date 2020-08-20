@@ -47,7 +47,7 @@
 
             
 
-            <p i18n class="save-text">Du sparer</p>
+            <p i18n=“title|offer-card@@offer.card.title” class="save-text">Du sparer</p>
             <div class="split">
                
                 <div class="offer-inner save">
@@ -57,7 +57,7 @@
                   <ng-template #noTotalSavings>
                     <h2>0,-</h2>
                   </ng-template>
-                  <p i18n>over lånets løpetid</p>
+                  <p i18n=“over-time|offer-card@@offer.card.over.time”>over lånets løpetid</p>
                 </div>
                 <div class="offer-inner save">
                   <h2 *ngIf="offer.savingsFirstYear > 0; else noTotalSavings">
@@ -66,7 +66,7 @@
                   <ng-template #noSavingsFirstYear>
                     <h2>0,-</h2>
                   </ng-template>
-                  <p i18n>første år</p>
+                  <p i18n=“first-year|offer-card@@offer.card.firstYear”>første år</p>
                 </div>
               </div>
         </div>
@@ -75,23 +75,23 @@
            
 
             <div class="item left first">
-                <p i18n class="left">Hvor lang tid tar det å søke:</p>
+                <p i18n=“application-time|offer-card@@offer.card.applicationTime” class="left">Hvor lang tid tar det å søke:</p>
                 <p class="box">
                     {{offer.bankInfo.applicationTime  === null ? 'Ukjent' : offer.bankInfo.applicationTime + " min"}}</p>
             </div>
 
             <div class="item left">
-                <p i18n class="left">Krever bytte av nettbank:</p>
-                <p i18n class="box">{{ offer.requiredProductPackage == null ? "Nei" : "Ja" }}</p>
+                <p i18n=“demand-change|offer-card@@offer.card.demandChange” class="left">Krever bytte av nettbank:</p>
+                <p i18n=“no-yes|offer-card@@offer.card.noYes” class="box">{{ offer.requiredProductPackage == null ? "Nei" : "Ja" }}</p>
             </div>
 
             <div class="item right first satisfaction">
-                <p i18n class="left">Kundetilfredshet:</p>
+                <p i18n=“customer-satisfied|offer-card@@offer.card.customerSatisfied” class="left">Kundetilfredshet:</p>
                 <img class="offer-score"
                         src="../../../../assets/icons/score-{{offer.bankInfo.score }}.svg" />
             </div>
 
-            <div class="item left details" i18n>
+            <div class="item left details" i18n=“details|offer-card@@offer.card.details”>
                
                     <mat-expansion-panel>
                         <mat-expansion-panel-header>
@@ -106,7 +106,7 @@
 
             <div class="item buttons">
                 
-                    <div i18n>
+                    <div i18n=“see-webpage|offer-card@@offer.card.seeWebpage”>
                         <rente-button-small [disabled]=" 
                             offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS ||
                             offer.bankInfo.partner == false"  [color]="'primary'" type="raised"
@@ -114,7 +114,7 @@
                         </rente-button-small>
                     </div>
         
-                    <div i18n>
+                    <div i18n=“get-offer|offer-card@@offer.card.getOffer”>
                         <rente-button-small [disabled]="
                         offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS ||
                           offer.bankInfo.partner == false" [color]="'primary'" type="raised"
@@ -127,7 +127,7 @@
 
         <div class="obligatory-info offer-bottom full-row">
             
-            <p i18n class="insignificant"><span>
+            <p i18n=“number-details|offer-card@@offer.card.numberDetails” class="insignificant"><span>
                 </span> Eff.rente {{offer.effectiveRate | number: "1.2-2"}}%,
                 Lånebeløp {{offer.outstandingDebt | number: "1.0" }},
                 {{offer.loanPeriodYears | number: "1.1-1" }} år,

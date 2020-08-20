@@ -21,17 +21,1452 @@
 <!ELEMENT ex (#PCDATA)>
 ]>
 <messagebundle>
-  <msg id="landingheader" desc="Describes the header" meaning="Our header"><source>app/features/landing/landing.component.html:6,9</source>
+  <msg id="header.home”" desc="homepage" meaning="“Headerlink"><source>app/shared/components/header/header.component.html:11</source>Hjem</msg>
+  <msg id="header.myPage”" desc="my-page" meaning="“Headerlink"><source>app/shared/components/header/header.component.html:12</source>Min side</msg>
+  <msg id="header.blog”" desc="blog" meaning="“Headerlink"><source>app/shared/components/header/header.component.html:13</source>Blogg</msg>
+  <msg id="header.contact”" desc="contact" meaning="“Headerlink"><source>app/shared/components/header/header.component.html:14</source>Kontakt</msg>
+  <msg id="header.aboutUs”" desc="about-us" meaning="“Headerlink"><source>app/shared/components/header/header.component.html:15</source>Om oss</msg>
+  <msg id="header.faq”" desc="faq" meaning="“Headerlink"><source>app/shared/components/header/header.component.html:17</source>FAQ </msg>
+  <msg id="header.logOut”" desc="log-out" meaning="“Headerlink"><source>app/shared/components/header/header.component.html:19</source>Logg ut</msg>
+  <msg id="header.home2”" desc="homepage" meaning="“Headerlink"><source>app/shared/components/header/header.component.html:32,33</source><ph name="START_HEADING_LEVEL3"><ex>&lt;h3&gt;</ex>&lt;h3&gt;</ph>Hjem<ph name="CLOSE_HEADING_LEVEL3"><ex>&lt;/h3&gt;</ex>&lt;/h3&gt;</ph>
+      </msg>
+  <msg id="header.myPage2”" desc="my-page" meaning="“Headerlink"><source>app/shared/components/header/header.component.html:38,39</source><ph name="START_HEADING_LEVEL3"><ex>&lt;h3&gt;</ex>&lt;h3&gt;</ph>Min side<ph name="CLOSE_HEADING_LEVEL3"><ex>&lt;/h3&gt;</ex>&lt;/h3&gt;</ph>
+      </msg>
+  <msg id="header.blog2”" desc="blog" meaning="“Headerlink"><source>app/shared/components/header/header.component.html:43,44</source><ph name="START_HEADING_LEVEL3"><ex>&lt;h3&gt;</ex>&lt;h3&gt;</ph>Blogg<ph name="CLOSE_HEADING_LEVEL3"><ex>&lt;/h3&gt;</ex>&lt;/h3&gt;</ph>
+      </msg>
+  <msg id="header.contact2”" desc="contact" meaning="“Headerlink"><source>app/shared/components/header/header.component.html:48,49</source><ph name="START_HEADING_LEVEL3"><ex>&lt;h3&gt;</ex>&lt;h3&gt;</ph>Kontakt<ph name="CLOSE_HEADING_LEVEL3"><ex>&lt;/h3&gt;</ex>&lt;/h3&gt;</ph>
+      </msg>
+  <msg id="header.aboutUs2”" desc="about-us" meaning="“Headerlink"><source>app/shared/components/header/header.component.html:53,54</source><ph name="START_HEADING_LEVEL3"><ex>&lt;h3&gt;</ex>&lt;h3&gt;</ph>Om oss<ph name="CLOSE_HEADING_LEVEL3"><ex>&lt;/h3&gt;</ex>&lt;/h3&gt;</ph>
+      </msg>
+  <msg id="header.faq2”" desc="faq" meaning="“Headerlink"><source>app/shared/components/header/header.component.html:57,58</source> <ph name="START_HEADING_LEVEL3"><ex>&lt;h3&gt;</ex>&lt;h3&gt;</ph>FAQ<ph name="CLOSE_HEADING_LEVEL3"><ex>&lt;/h3&gt;</ex>&lt;/h3&gt;</ph> 
+        </msg>
+  <msg id="header.logOut2”" desc="log-out" meaning="“Headerlink"><source>app/shared/components/header/header.component.html:63,64</source><ph name="START_HEADING_LEVEL3"><ex>&lt;h3&gt;</ex>&lt;h3&gt;</ph>Logg ut<ph name="CLOSE_HEADING_LEVEL3"><ex>&lt;/h3&gt;</ex>&lt;/h3&gt;</ph>
+      </msg>
+  <msg id="footer.customers”" desc="footer" meaning="“our-customers"><source>app/shared/components/footer/footer.component.html:5</source>Våre kunder:</msg>
+  <msg id="footer.partners”" desc="footer" meaning="“our-partners"><source>app/shared/components/footer/footer.component.html:35</source>Samarbeidspartnere:</msg>
+  <msg id="footer.ownership”" desc="footer" meaning="“ownership"><source>app/shared/components/footer/footer.component.html:73,75</source>
+        Renteradar.no eies og driftes av
+      </msg>
+  <msg id="footer.privacy”" desc="footer" meaning="“privacy"><source>app/shared/components/footer/footer.component.html:83,85</source>
+          Personvern
+        </msg>
+  <msg id="textArea.message”" desc="text-area" meaning="“message"><source>app/shared/components/ui-components/text-area/text-area.component.html:3</source>Melding</msg>
+  <msg id="popup.privacy.header”" desc="intro" meaning="“header"><source>app/app.component.html:10</source>Dine data, dine valg</msg>
+  <msg id="popup.privacy.text”" desc="text" meaning="“description"><source>app/app.component.html:11,14</source>
+      Renteradar.no eies av Forbrukerøkonomene AS som er ansvarlig for dine data.<ph name="LINE_BREAK"><ex>&lt;br&gt;</ex>&lt;br&gt;</ph>
+      Vi bryr oss om ditt personvern. Vi bruker dine data til å forbedre og tilpasse tjenestene ser og bruker.
+    </msg>
+  <msg id="popup.privacy.option1”" desc="more" meaning="“button"><source>app/app.component.html:18</source>Vis meg mer</msg>
+  <msg id="popup.privacy.option2”" desc="accept" meaning="“button"><source>app/app.component.html:23</source>JEG FORSTÅR</msg>
+  <msg id="landing.title" desc="landing-page" meaning="title"><source>app/features/landing/landing.component.html:3,5</source>
+      Få beste <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>boliglånsrente<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph>
+    </msg>
+  <msg id="landing.header" desc="Describes-the-header" meaning="Our-header"><source>app/features/landing/landing.component.html:6,9</source>
       Sammenlign boliglånet ditt mot markedets beste tilbud - kjapt, enkelt og
       gratis!
     </msg>
-  <msg id="landing.sellingpoint-1" desc="Describes sellingpoint 1" meaning="Sellingpoint 1"><source>app/features/landing/landing.component.html:65</source>Renteradar finner den beste boliglånsrenten helt gratis.</msg>
-  <msg id="landing.sellingpoint-2" desc="Describes sellingpoint 2" meaning="Sellingpoint 2"><source>app/features/landing/landing.component.html:69,72</source>
+  <msg id="landing.start" desc="landing-page" meaning="start"><source>app/features/landing/landing.component.html:14</source>Start med å velge banken du har lån i:</msg>
+  <msg id="landing.otherBank" desc="landing-page" meaning="other-bank"><source>app/features/landing/landing.component.html:34</source>Annen bank</msg>
+  <msg id="landing.encouragement" desc="landing-page" meaning="encouragement"><source>app/features/landing/landing.component.html:66</source>Renteradar finner den beste boliglånsrenten helt gratis.</msg>
+  <msg id="landing.description" desc="landing-page" meaning="description"><source>app/features/landing/landing.component.html:70,73</source>
               Ingen utfylling av skjema. <ph name="LINE_BREAK"><ex>&lt;br&gt;</ex>&lt;br&gt;</ph>
               Logg inn med BankID på mobil.
             </msg>
-  <msg id="landing.sellingpoint-3" desc="Describes sellingpoint 3" meaning="Sellingpoint 3"><source>app/features/landing/landing.component.html:80,83</source>
+  <msg id="landing.explanationService" desc="landing-page" meaning="explanation-service"><source>app/features/landing/landing.component.html:77</source>Få oversikt og spar penger med et klikk.</msg>
+  <msg id="landing.descriptionService" desc="landing-page" meaning="description-service"><source>app/features/landing/landing.component.html:81,84</source>
               Renteradar overvåker markedet og gir deg beskjed når det kommer
               bedre tilbud.
             </msg>
+  <msg id="landing.function" desc="landing-page" meaning="how-it-functions"><source>app/features/landing/landing.component.html:92</source>Slik fungerer det</msg>
+  <msg id="landing.automaticService" desc="landing-page" meaning="automatic-service"><source>app/features/landing/landing.component.html:95,98</source>
+            Renteradar henter renten og dine lånedetaljer automatisk med BankID på
+            mobil.
+          </msg>
+  <msg id="landing.comparingService" desc="landing-page" meaning="comparing-service"><source>app/features/landing/landing.component.html:100,104</source>
+            Vi sammenligner renten du betaler med renten du kan få i andre banker
+            og viser deg hvor mye du kan spare. Du kan også prute i banken du er
+            kunde med et klikk.
+          </msg>
+  <msg id="landing.surveillanceService" desc="landing-page" meaning="surveillance-service"><source>app/features/landing/landing.component.html:121,124</source>
+          Vi overvåker markedet og gir deg beskjed når nye og bedre tilbud er
+          tilgjengelig i fremtiden!
+        </msg>
+  <msg id="landing.title.explanation" desc="landing-page" meaning="title-explanation"><source>app/features/landing/landing.component.html:132</source>Slik fungerer det</msg>
+  <msg id="landing.step1.explanation" desc="landing-page" meaning="step1-explanation"><source>app/features/landing/landing.component.html:133,136</source>
+            Renteradar henter renten og dine lånedetaljer automatisk med BankID på
+            mobil.
+          </msg>
+  <msg id="landing.step2.explanation" desc="landing-page" meaning="step2-explanation"><source>app/features/landing/landing.component.html:137,141</source>
+            Vi sammenligner renten du betaler med renten du kan få i andre banker
+            og viser deg hvor mye du kan spare. Du kan også prute i banken du er
+            kunde med et klikk.
+          </msg>
+  <msg id="landing.step3.explanation" desc="landing-page" meaning="step3-explanation"><source>app/features/landing/landing.component.html:149,152</source>
+            Vi overvåker markedet og gir deg beskjed når nye og bedre tilbud er
+            tilgjengelig i fremtiden!
+          </msg>
+  <msg id="landing.title.review" desc="landing-page" meaning="title-review"><source>app/features/landing/landing.component.html:158</source>Fornøyde brukere</msg>
+  <msg id="landing.title.media" desc="landing-page" meaning="title-media"><source>app/features/landing/landing.component.html:255</source>Renteradar i media</msg>
+  <msg id="faq.title”" desc="faq" meaning="“faq-title"><source>app/features/faq/faq.component.html:2</source>Vanlig stilte spørsmål om boliglån</msg>
+  <msg id="faq.question1”" desc="faq" meaning="“question1"><source>app/features/faq/faq.component.html:7,9</source>
+            Hvor mye kan jeg spare på boliglånet?
+          </msg>
+  <msg id="faq.response1”" desc="faq" meaning="“response1"><source>app/features/faq/faq.component.html:12,17</source>
+        Hvor mye du kan spare på boliglånet avhenger av flere faktorer. 
+        De viktigste er hvor mye renten reduseres, og hvor stort lån du har. 
+        En gjennomsnittlig bruker hos Renteradar.no kan spare over 9 000 kroner 
+        i året og 125 000 kroner over lånets løpetid i renteutgifter.
+      </msg>
+  <msg id="faq.question2”" desc="faq" meaning="“question2"><source>app/features/faq/faq.component.html:22,24</source>
+            Er det enkelt å flytte boliglånet til en annen bank?
+          </msg>
+  <msg id="faq.response2”" desc="faq" meaning="“response2"><source>app/features/faq/faq.component.html:27,36</source>
+        Det korte svaret er ja. Banken du flytter til gjør mesteparten av jobben. 
+        Søknadsprosessen i de fleste bankene er digital og enkel å fylle ut. 
+        Mange banker krever at du logger inn med bank-ID. Man må underskrive 
+        en del skjema når man flytter lånet, men i mange banker gjøres også 
+        dette enkelt gjennom såkalt e-signering.
+        <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>
+          Du kan lese mer om å flytte boliglånet her.
+        <ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph>
+      </msg>
+  <msg id="faq.question3”" desc="faq" meaning="“question3"><source>app/features/faq/faq.component.html:41,43</source>
+            Kan jeg flytte kun boliglån til ny bank? 
+          </msg>
+  <msg id="faq.response3”" desc="faq" meaning="“response3"><source>app/features/faq/faq.component.html:46,53</source>
+        Man kan normalt beholde eksisterende kontoer hos sin nåværende bank, 
+        og kun flytte boliglån over til den nye banken. Enkelte banker krever 
+        at man åpner en brukskonto i tillegg til lån.  Noen banker krever også at 
+        du må ha flere produkter og tjenester for å få deres beste rente. 
+        Det er en praksis som ikke bør aksepteres.  Hva de enkelte krever av 
+        andre produkter blir man informert om gjennom vår tjeneste.
+      </msg>
+  <msg id="faq.question4”" desc="faq" meaning="“question4"><source>app/features/faq/faq.component.html:58,60</source>
+            Hvorfor får kunder ulike boliglånsrenter hos bankene?
+          </msg>
+  <msg id="faq.response4”" desc="faq" meaning="“response4"><source>app/features/faq/faq.component.html:63,68</source>
+        Det finnes gode grunner og mindre gode grunner til at bankene gir 
+        kundene sine ulike boliglånsrenter. Mange betaler for mye rett og 
+        slett fordi at de stoler på banken sin og ikke forhandler ned 
+        renten jevnlig. De viktigste «gode» grunnene er:
+      </msg>
+  <msg id="faq.sub1.response4”" desc="faq" meaning="“sub1-response4"><source>app/features/faq/faq.component.html:70,72</source>
+            <ph name="START_BOLD_TEXT"><ex>&lt;b&gt;</ex>&lt;b&gt;</ph>Belåningsgrad:<ph name="CLOSE_BOLD_TEXT"><ex>&lt;/b&gt;</ex>&lt;/b&gt;</ph> Lav belåningsgrad skal gi lavere rente. Banken har da mindre risiko for kreditt-tap.
+          </msg>
+  <msg id="faq.sub2.response4”" desc="faq" meaning="“sub2-response4"><source>app/features/faq/faq.component.html:73,75</source>
+            <ph name="START_BOLD_TEXT"><ex>&lt;b&gt;</ex>&lt;b&gt;</ph>Alder:<ph name="CLOSE_BOLD_TEXT"><ex>&lt;/b&gt;</ex>&lt;/b&gt;</ph> De fleste bankene tilbyr ekstra gode betingelser til de som er 34 år eller yngre.
+          </msg>
+  <msg id="faq.sub3.response4”" desc="faq" meaning="“sub3-response4"><source>app/features/faq/faq.component.html:76,78</source><ph name="START_BOLD_TEXT"><ex>&lt;b&gt;</ex>&lt;b&gt;</ph>Lånestørrelse:<ph name="CLOSE_BOLD_TEXT"><ex>&lt;/b&gt;</ex>&lt;/b&gt;</ph> Bankene belønner ofte større lån med lavere rente. Det skyldes at 
+            administrasjonskostnadene for ett lån er det samme uavhengig av størrelse. 
+          </msg>
+  <msg id="faq.sub4.response4”" desc="faq" meaning="“sub4-response4"><source>app/features/faq/faq.component.html:79,81</source><ph name="START_BOLD_TEXT"><ex>&lt;b&gt;</ex>&lt;b&gt;</ph>Medlemskap i en organisasjon:<ph name="CLOSE_BOLD_TEXT"><ex>&lt;/b&gt;</ex>&lt;/b&gt;</ph> Arbeidstakerorganisasjoner og andre organisasjoner har ofte 
+            fremforhandlet gunstige betingelser på boliglån med en samarbeidsbank.
+          </msg>
+  <msg id="2898735042838652880"><source>app/features/faq/faq.component.html:83</source>Her er de ti viktigste faktorene som påvirker boliglånsrenten din</msg>
+  <msg id="faq.question5”" desc="faq" meaning="“question5"><source>app/features/faq/faq.component.html:88,90</source>
+              Hvor mye kan jeg låne til bolig?
+          </msg>
+  <msg id="faq.response5”" desc="faq" meaning="“response5"><source>app/features/faq/faq.component.html:93,96</source>
+          Myndighetene begrenser bankenes utlån til bolig gjennom boliglånsforskriften. 
+          Den sier at man kan maksimalt låne fem ganger årsinntekt og maks belåningsgrad er 85 %. 
+      </msg>
+  <msg id="faq.sub.response5”" desc="faq" meaning="“sub-response5"><source>app/features/faq/faq.component.html:97</source>Les mer om hvor mye man kan låne til bolig her.</msg>
+  <msg id="faq.question6”" desc="faq" meaning="“question6"><source>app/features/faq/faq.component.html:102,104</source>
+            Hva er belåningsgrad?
+          </msg>
+  <msg id="faq.response6”" desc="faq" meaning="“response6"><source>app/features/faq/faq.component.html:107,112</source>
+          <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>Belåningsgrad<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph> er lånebeløp delt på boligens markedsverdi. 
+          Eksempel: Boliglån: 3 mill. kroner og markedsverdi på bolig: 4 mill. 
+          kroner gir belåningsgrad på 75 %.  Maks belåningsgrad for ordinære boliglån 
+          er satt til 85 % i Boliglånsforskriften. 
+      </msg>
+  <msg id="faq.title.part2”" desc="faq" meaning="“title-part2"><source>app/features/faq/faq.component.html:116</source>Vanlig stilte spørsmål om Renteradar.no</msg>
+  <msg id="faq.question7”" desc="faq" meaning="“question7"><source>app/features/faq/faq.component.html:121,123</source>
+                Hvordan fungerer Renteradar.no?
+              </msg>
+  <msg id="faq.response7”" desc="faq" meaning="“response7"><source>app/features/faq/faq.component.html:126,134</source>
+              Renteradar.no henter automatisk renten du har på boliglånet ditt. 
+              Renten din sammenlignes med renten du kan få i andre banker, og 
+              du kan se hvor mye du kan spare. Du kan prute i banken du er kunde 
+              med et klikk, og vi jobber meg å gjøre bytte av bank enkelt. 
+              Vi følger også med på om det blir tilgjengelig bedre tilbud i 
+              fremtiden. Du vil da få beskjed om dette.
+              <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph> Her kan du lese mer om hvordan renteradar.no fungerer<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph>
+          </msg>
+  <msg id="faq.question8”" desc="faq" meaning="“question8"><source>app/features/faq/faq.component.html:139,141</source>
+              Hvorfor må jeg logge på med BankID på mobil?
+          </msg>
+  <msg id="faq.response8”" desc="faq" meaning="“response8"><source>app/features/faq/faq.component.html:144,148</source>
+          Renteradar.no henter automatisk dine lånebetingelser fra din bank. 
+          For at dette skal fungere trenger vi at du identifiserer deg med 
+          BankID på mobil. Du finner mer detaljer om dette i vilkårene ved innlogging.
+      </msg>
+  <msg id="faq.question9”" desc="faq" meaning="“question9"><source>app/features/faq/faq.component.html:153,155</source>
+            Kan jeg bruke BankID med passord/kodebrikke?
+          </msg>
+  <msg id="faq.response9”" desc="faq" meaning="“response9"><source>app/features/faq/faq.component.html:158,161</source>
+          Vi har dessverre ingen løsning for BankID med passord/kodebrikke, heller ikke engangspassord app. 
+          Grunnen til dette er at passordet ditt er personlig og bør ikke oppgis til tredjeparter som Renteradar.no
+      </msg>
+  <msg id="faq.question10”" desc="faq" meaning="“question10"><source>app/features/faq/faq.component.html:166,168</source>
+            Personvern: Er det trygt å bruke tjenesten deres?
+          </msg>
+  <msg id="faq.response10”" desc="faq" meaning="“response10"><source>app/features/faq/faq.component.html:171,177</source>
+          Ja, informasjonen din er helt trygg og vi deler ikke 
+          personlig informasjon med tredjeparter. Les mer i vår
+          <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>personvernserklæring<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph>
+          og
+          <ph name="START_LINK_1"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>brukervilkår<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph>
+      </msg>
+  <msg id="faq.question11”" desc="faq" meaning="“question11"><source>app/features/faq/faq.component.html:182,184</source>
+            Jeg finner ikke banken jeg har boliglån i
+          </msg>
+  <msg id="faq.response11”" desc="faq" meaning="“response11"><source>app/features/faq/faq.component.html:187,191</source>
+          Vi har ikke bygget funksjonalitet for å hente lånedetaljer fra alle banker. 
+          Det er hittil kun kunder av de fire største bankene (DNB, Nordea, Sparebank 1-bankene og alle Eika-bankene) 
+          som kan bruke tjenesten. Vi kommer til å legge til flere banker fremover. 
+      </msg>
+  <msg id="faq.sub.response11”" desc="faq" meaning="“sub-response11"><source>app/features/faq/faq.component.html:193</source>Gå gjerne til: <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>https://renteradar.no/faabeskjed<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph></msg>
+  <msg id="faq.sub2.response11”" desc="faq" meaning="“sub2-response11"><source>app/features/faq/faq.component.html:195</source>Legg til din bank og e-post, så gir vi deg beskjed når din bank er lagt til.</msg>
+  <msg id="faq.question12”" desc="faq" meaning="“question12"><source>app/features/faq/faq.component.html:200,202</source>
+            Koster det noe å bruke Renteradar.no?
+          </msg>
+  <msg id="faq.response12”" desc="faq" meaning="“response12"><source>app/features/faq/faq.component.html:205,208</source>
+          Nei, det er gratis å bruke Renteradar.no. Forretningsmodellen vår er 
+          bygget opp slik at det er bankene som skal dekke kostnaden for denne tjenesten, ikke deg som forbruker.
+      </msg>
+  <msg id="faq.question13”" desc="faq" meaning="“question13"><source>app/features/faq/faq.component.html:213,215</source>
+            Viser dere tilbud fra alle banker?
+          </msg>
+  <msg id="faq.response13”" desc="faq" meaning="“response13"><source>app/features/faq/faq.component.html:218,221</source>
+          Ja, du ser tilbud fra alle banker. Enkelte lignende tjenester 
+          viser kun tilbud fra banker de har avtale med; det gjør ikke Renteradar.no.
+      </msg>
+  <msg id="faq.question14”" desc="faq" meaning="“question14"><source>app/features/faq/faq.component.html:226,228</source>
+              Jeg har ikke lån enda, kan jeg bruke Renteradar.no?
+          </msg>
+  <msg id="faq.response14”" desc="faq" meaning="“response14"><source>app/features/faq/faq.component.html:231,233</source>
+        Foreløpig er tjenesten kun for brukere som allerede har boliglån.
+      </msg>
+  <msg id="faq.question15”" desc="faq" meaning="“question15"><source>app/features/faq/faq.component.html:238,240</source>
+            Kan jeg slette profilen min når jeg ønsker?
+          </msg>
+  <msg id="faq.response15”" desc="faq" meaning="“response15"><source>app/features/faq/faq.component.html:243,246</source>
+          Ja, selvfølgelig! Send en mail til <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>slettmeg@renteradar.no<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph> og 
+          vi sletter alle dine data. Du får bekreftelse på dette på mail.
+      </msg>
+  <msg id="faq.question16”" desc="faq" meaning="“question16"><source>app/features/faq/faq.component.html:251,253</source>
+            Hvem står bak Renteradar.no?
+          </msg>
+  <msg id="faq.response16”" desc="faq" meaning="“response16"><source>app/features/faq/faq.component.html:256,259</source>
+          Renteradar.no eies og drives av Forbrukerøkonomene AS. 
+         Se <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>om oss<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph> for mer informasjon.
+      </msg>
+  <msg id="faq.question17”" desc="faq" meaning="“question17"><source>app/features/faq/faq.component.html:264,266</source>
+            Har dere samarbeidsavtaler med noen banker?
+          </msg>
+  <msg id="faq.response17”" desc="faq" meaning="“response17"><source>app/features/faq/faq.component.html:269,271</source>
+          Ja, per i dag har vi samarbeidsavtaler med Sbanken, Bulder Bank og Landkreditt.
+      </msg>
+  <msg id="privacy.component.title.integrity" desc="privacy-component" meaning="title-integrity"><source>app/features/privacy/privacy.component.html:3</source>Personvern er viktig for oss</msg>
+  <msg id="privacy.component.text.integrity" desc="privacy-component" meaning="text-integrity"><source>app/features/privacy/privacy.component.html:5,12</source>
+      Vi tar GDPR på alvor og ditt personvern er viktig for oss i Renteradar.no.
+      Renteradar.no eies og drives av Forbrukerøkonomene AS som er et norsk
+      selskap underlagt norsk lov, og vi behandler personopplysninger i samsvar
+      med gjeldende personvernlovgivning. Vår fulle personvernerklæring kan
+      leses
+      <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>her<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph>.
+    </msg>
+  <msg id="privacy.component.terms" desc="privacy-component" meaning="terms-of-use"><source>app/features/privacy/privacy.component.html:15</source>Brukervilkår</msg>
+  <msg id="privacy.component.terms.link" desc="privacy-component" meaning="terms-of-use-link"><source>app/features/privacy/privacy.component.html:17,19</source>
+      Våre brukervilkår finner du <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>her<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph>.
+    </msg>
+  <msg id="privacy.component.title.cookies" desc="privacy-component" meaning="title-cookies"><source>app/features/privacy/privacy.component.html:22</source>Informasjon om cookies (informasjonskapsler)</msg>
+  <msg id="privacy.component.cookies.link" desc="privacy-component" meaning="cookies-link"><source>app/features/privacy/privacy.component.html:24,26</source>
+      Vår cookiepolicy og informasjon finner du <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>her<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph>.
+    </msg>
+  <msg id="terms.conditions”" desc="terms" meaning="“title"><source>app/features/terms-conditions/terms-conditions.component.html:2</source>Vilkår for bruk av Renteradar.no</msg>
+  <msg id="terms.conditions.titleService”" desc="terms" meaning="“title-service"><source>app/features/terms-conditions/terms-conditions.component.html:4</source>1. Beskrivelse av tjenesten</msg>
+  <msg id="terms.conditions.descriptionDocument”" desc="terms" meaning="“description-document"><source>app/features/terms-conditions/terms-conditions.component.html:5,9</source>
+      Dette dokumentet beskriver Renteradar.no sine vilkår for tjenesten,
+      herunder ditt uttrykkelige samtykke til behandling og formidling av
+      opplysninger til selskapene Renteradar.no samarbeider med.
+    </msg>
+  <msg id="terms.conditions.titleConditions”" desc="terms" meaning="“title-conditions"><source>app/features/terms-conditions/terms-conditions.component.html:11</source>2. Forutsetninger for avtaleinngåelse</msg>
+  <msg id="terms.conditions.descriptionConditions”" desc="terms" meaning="“description-conditions"><source>app/features/terms-conditions/terms-conditions.component.html:12,20</source>
+      Renteradar.no innhenter betingelsene (herunder: lånebeløp, lånetype, rente, etc..)
+      på dine lån i din bank ved hjelp av fullmakt. Ved å akseptere brukervilkårene og
+      registrere deg som bruker gir du oss fullmakt til å behandle disse opplysningene.
+      Vi overvåker samtidig markedet for hvilke betingelser du kan oppnå i andre banker.
+      Du gir ditt samtykke til at vi kan formidle kontakt med banker som kan gi deg et
+      bedre tilbud enn det du har i dag. Dette samtykket inkluderer formidling av anonymiserte data.
+      Bindende avtale inngås direkte med ny bank dersom det skal være aktuelt.
+    </msg>
+  <msg id="terms.conditions.titleAgreement”" desc="terms" meaning="“title-agreement"><source>app/features/terms-conditions/terms-conditions.component.html:22</source>3. Avtalens parter</msg>
+  <msg id="terms.conditions.descriptionAgreement”" desc="terms" meaning="“description-agreement"><source>app/features/terms-conditions/terms-conditions.component.html:23,28</source>
+      Renteradar.no/Forbrukerøkonomene AS er ikke part i avtalen som inngås mellom deg
+      og banken du eventuelt velger. Renteradar.no opptrer som en plattform for formidling
+      av informasjon mellom deg som forbruker og finansinstitusjoner som er tilknyttet
+      tjenesten. Avtaler inngås direkte mellom selskapene og deg som kunde.
+    </msg>
+  <msg id="terms.conditions.titleConsent”" desc="terms" meaning="“title-consent"><source>app/features/terms-conditions/terms-conditions.component.html:30,32</source>
+      4. Samtykke til kredittvurdering gjort av banken
+    </msg>
+  <msg id="terms.conditions.descriptionConsent”" desc="terms" meaning="“description-consent"><source>app/features/terms-conditions/terms-conditions.component.html:33,37</source>
+      Ved å akseptere vilkårene, bekrefter du at aktuelle selskaper du er i dialog med kan foreta
+      en kredittvurdering av deg. Selskapene vil trenge et aktivt samtykke av deg for å gjøre dette
+      i form av at du oppgir personnummeret ditt til det aktuelle selskapet.
+    </msg>
+  <msg id="terms.conditions.titleRights”" desc="terms" meaning="“title-rights"><source>app/features/terms-conditions/terms-conditions.component.html:39</source>5. Dine rettigheter og ansvar</msg>
+  <msg id="terms.conditions.descriptionRights”" desc="terms" meaning="“description-rights"><source>app/features/terms-conditions/terms-conditions.component.html:40,43</source>
+      Du plikter å oppgi riktig informasjon om deg, både til Renteradar.no og banker
+      du eventuelt skulle komme i kontakt med gjennom tjenesten.
+    </msg>
+  <msg id="terms.conditions.titleResponsibility”" desc="terms" meaning="“title-responsibility"><source>app/features/terms-conditions/terms-conditions.component.html:45</source>6. Renteradar.no og selskapets ansvar</msg>
+  <msg id="terms.conditions.descriptionResponsibility”" desc="terms" meaning="“description-responsibility"><source>app/features/terms-conditions/terms-conditions.component.html:46,50</source>
+      Renteradar.no har ansvaret for tjenesten slik den er beskrevet på våre nettsider.
+      Renteradar.no er ikke under noen omstendighet ansvarlig for avtaler du inngår.
+      Alminnelig norsk erstatnings- og avtalerett gjelder.
+    </msg>
+  <msg id="terms.conditions.titleErase.data”" desc="terms" meaning="“title-erase-data"><source>app/features/terms-conditions/terms-conditions.component.html:51</source>7. Sletting av brukerdata</msg>
+  <msg id="terms.conditions.descriptionErase.data”" desc="terms" meaning="“description-erase-data"><source>app/features/terms-conditions/terms-conditions.component.html:52,57</source>
+      Du kan når som helst kreve at vi sletter alle dine lånedata,
+      og alle andre opplysninger vi har innhentet fra deg.
+      Dette gjøres ved å sende email til <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>slettmeg@renteradar.no<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph> 
+      og be om å bli glemt.
+    </msg>
+  <msg id="terms.conditions.timePublished”" desc="terms" meaning="“time-published"><source>app/features/terms-conditions/terms-conditions.component.html:58,60</source>
+      Oslo, 10.02.2020
+    </msg>
+  <msg id="privacy.policy.first.title”" desc="privacy-policy" meaning="“first-title"><source>app/features/privacy-policy/privacy-policy.component.html:2</source><ph name="START_TAG_STRONG"><ex>&lt;strong&gt;</ex>&lt;strong&gt;</ph>Personvernerklæring<ph name="CLOSE_TAG_STRONG"><ex>&lt;/strong&gt;</ex>&lt;/strong&gt;</ph></msg>
+  <msg id="privacy.policy.first.paragraph”" desc="privacy-title" meaning="“first-paragraph"><source>app/features/privacy-policy/privacy-policy.component.html:3,9</source>
+    Renteradar.no er en tjeneste levert av Forbrukerøkonomene AS (org. nr: 921
+    534 191). Her vil du finne en orientering om hvordan vi forholder oss til
+    personopplysninger om brukerne i vår tjeneste. Denne orienteringen vil være
+    gjenstand for oppdateringer og endringer. Dersom det gjøres vesentlige
+    endringer vil du få beskjed om dette på din registrerte e-postadresse.
+  </msg>
+  <msg id="privacy.policy.second.paragraph”" desc="privacy-policy" meaning="“second-paragraph"><source>app/features/privacy-policy/privacy-policy.component.html:10,20</source>
+    Forbrukerøkonomene AS er et norsk selskap underlagt norsk lov. Vi behandler
+    personopplysninger i samsvar med gjeldende personvernlovgivning. Om du har
+    spørsmål om vår personvernpolicy eller håndtering av dine opplysninger må du
+    gjerne kontakte vårt personvernombud på
+    personvernombud@forbrukerøkonomene.no. Vi oppfordrer deg til å lese denne
+    erklæringen nøye før du benytter deg av tjenesten. Denne
+    personvernerklæringen gjelder for all behandling av personopplysninger som
+    skjer når du besøker Renteradar.no hjemmesider og benytter deg av
+    Renteradar.no’s tjenester.
+  </msg>
+  <msg id="privacy.policy.second.title”" desc="privacy-policy" meaning="“second-title"><source>app/features/privacy-policy/privacy-policy.component.html:21,23</source>
+    Hva er personopplysninger?
+  </msg>
+  <msg id="privacy.policy.first2.paragraph”" desc="privacy-policy" meaning="“first2-paragraph"><source>app/features/privacy-policy/privacy-policy.component.html:24,31</source>
+    En personopplysning er informasjon som direkte eller indirekte kan knyttes
+    til en fysisk levende person. Eksempel på personopplysninger er navn,
+    adresse, telefonnummer og e-postadresse, men også IP-nummer og hvordan du
+    bruker tjenesten betegnes som personopplysninger. Behandling av
+    personopplysninger inkluderer all håndtering av personopplysninger, feks
+    innsamling, analysering, registrering og lagring.
+  </msg>
+  <msg id="privacy.policy.second2.paragraph”" desc="privacy-policy" meaning="“second2-paragraph"><source>app/features/privacy-policy/privacy-policy.component.html:32,44</source>
+    Behandling av personopplysninger er enhver bruk av personopplysninger, som
+    for eksempel innsamling, registrering, sammenstilling, lagring og utlevering
+    eller en kombinasjon av slike bruksmåter. All behandling av
+    personopplysninger er underlagt personopplysningsloven, og Datatilsynet
+    fører tilsyn med loven og medvirker til at personvernet til hver enkelt ikke
+    blir krenket gjennom bruken av personopplysninger. Personvernsansvarlig er
+    den som alene eller sammen med andre bestemmer formålet og midler for
+    behandlingen av personopplysningene og som er ansvarlig for at behandlingen
+    skjer i samsvar med gjeldende personvernlovgivning. Opplysningene vil kunne
+    bli supplert med tilgjengelig informasjon fra tredjepartsaktører, e.g.
+    informasjon om boligverdi eller kredittopplysningsselskap.
+  </msg>
+  <msg id="privacy.policy.third.title”" desc="privacy-policy" meaning="“third-title"><source>app/features/privacy-policy/privacy-policy.component.html:46</source>Hva slags opplysninger samler vi inn?</msg>
+  <msg id="privacy.policy.first3.paragraph”" desc="privacy-policy" meaning="“first3-paragraph"><source>app/features/privacy-policy/privacy-policy.component.html:47,54</source>
+    For å kunne gjennomføre våre tjenester samler vi inn data fra deg som kan
+    suppleres med informasjon fra bankene. Videre vil også bankene trenge data
+    om deg for å kunne gi et lånetilbud. Bankene som eventuelt mottar
+    informasjon om deg er personvernansvarlige for sin egen behandling av
+    personopplysninger. Du kan lese mer om bankenes grunnkrav samt
+    personvernerklæring på deres hjemmesider.
+  </msg>
+  <msg id="privacy.policy.collectingInfo”" desc="privacy-policy" meaning="“collecting-info"><source>app/features/privacy-policy/privacy-policy.component.html:55,57</source>
+    Opplysningene samles inn på følgende måter:
+  </msg>
+  <msg id="privacy.policy.collectingInfo1”" desc="privacy-policy" meaning="“collecting-info1"><source>app/features/privacy-policy/privacy-policy.component.html:60</source>Opplysninger du selv gir til oss</msg>
+  <msg id="privacy.policy.collectingInfo2”" desc="privacy-policy" meaning="“collecting-info2"><source>app/features/privacy-policy/privacy-policy.component.html:61,69</source>
+        Når du registrerer en brukerkonto hos vil du oppgi en del data som
+        lagres av oss. Disse opplysningene lagres i vår database for å yte eller
+        sikre leveranse av vår tjeneste. Likeledes vil vi lagre opplysninger når
+        du kontakter oss ved å sende oss en e-post eksempelvis til kundeservice
+        eller gir tilbakemeldinger gjennom funksjoner i tjenesten, herunder
+        e-postadresse, telefonnummer og innholdet i e-postforespørsler slik at
+        vi kan svare på dine spørsmål.
+      </msg>
+  <msg id="privacy.policy.collectingInfo3”" desc="privacy-policy" meaning="“collecting3-info"><source>app/features/privacy-policy/privacy-policy.component.html:72,74</source>
+        Opplysninger som samles inn gjennom bruk av tjenestene
+      </msg>
+  <msg id="privacy.policy.collectingInfo4”" desc="privacy-policy" meaning="“collecting4-info"><source>app/features/privacy-policy/privacy-policy.component.html:75,81</source>
+        Når du bruker våre tjenester registrerer vi informasjon om hvilke
+        tjenester du bruker og hvordan du bruker dem. Dette gjør det mulig å
+        forbedre tjenestene våre og avdekke tekniske feil. Som eksempel, kan vi
+        samle informasjon om hvor mye en gjennomsnittlig kunde sparer ved å
+        bytte boliglånet sitt
+      </msg>
+  <msg id="privacy.policy.collectingInfo5”" desc="privacy-policy" meaning="“collecting5-info"><source>app/features/privacy-policy/privacy-policy.component.html:83,85</source>
+        Teknisk informasjon om din enhet og internett-tilkobling
+      </msg>
+  <msg id="privacy.policy.collectingInfo6”" desc="privacy-policy" meaning="“collecting6-info"><source>app/features/privacy-policy/privacy-policy.component.html:86,95</source>
+        Gjennom tjenerlogger og andre verktøy registrerer vi informasjon om
+        enheten og tilkoblingen til våre tjenester, herunder operativsystem,
+        nettleserversjon, ip-adresser, informasjonskapsler og unike
+        identifikasjonsfiler. Denne informasjon brukes ofte i anonym og
+        aggregert statistikk, men vi kan også koble den mot din brukerkonto.
+        Informasjonen gjør blant annet at vi kan tilpasse visningen av våre
+        tjenester til den enheten du bruker, i tillegg til at vi kan analysere
+        ulike måter som brukerne benytter tjenestene våre på.
+      </msg>
+  <msg id="privacy.policy.useInfo”" desc="privacy-policy" meaning="“use-info"><source>app/features/privacy-policy/privacy-policy.component.html:97</source>Informasjon om bruk av tjenestene</msg>
+  <msg id="privacy.policy.useInfo.description”" desc="privacy-policy" meaning="“use-info-description"><source>app/features/privacy-policy/privacy-policy.component.html:98,102</source>
+        Når du bruker tjenestene våre, registreres denne aktiviteten automatisk
+        i våre datalogger. Vi bruker denne informasjonen til å forbedre
+        tjenestene våre og for å gi deg innhold som er tilpasset deg som bruker.
+      </msg>
+  <msg id="privacy.policy.positionInfo.title”" desc="privacy-policy" meaning="“position-info-title"><source>app/features/privacy-policy/privacy-policy.component.html:104</source>Informasjon om posisjon</msg>
+  <msg id="privacy.policy.positionInfo”" desc="privacy-policy" meaning="“position-info"><source>app/features/privacy-policy/privacy-policy.component.html:105,111</source>
+        Det kan hende at vi registrerer din geografiske posisjon ut i fra
+        ip-adressen eller andre former for geolokalisering, eksempelvis når du
+        bruker mobiltjenestene våre. Informasjonen kan blant annet brukes til å
+        utarbeide statistikk eller tilby lokalt innhold. Informasjonskapsler og
+        annet innhold som lagres lokalt
+      </msg>
+  <msg id="privacy.policy.positionInfo2”" desc="privacy-policy" meaning="“position-info2"><source>app/features/privacy-policy/privacy-policy.component.html:112,126</source>
+        Når du besøker våre tjenester bruker vi ulike teknologier for å
+        gjenkjenne deg som bruker. Vi bruker informasjonskapsler (cookies) for å
+        analysere og teste hvordan brukerne reagerer på endringer av nettsidene
+        eller tjenestene. Informasjonskapsler kan også gi informasjon om
+        feilsaker, og gir oss mulighet til å måle effekten av våre
+        markedsføringskampanjer. Vi kan også lagre anonyme identifikatorer
+        lokalt på din enhet, eksempelvis for enheter hvor vi ikke kan benytte
+        informasjonskapsler. Disse identifikatorene fungerer i stor utstrekning
+        på samme vis som informasjonskapslene, men kan være vanskeligere å
+        fjerne. Se under for informasjon om hvordan du kan slette
+        informasjonskapsler. Dersom du ikke ønsker lagring av anonyme
+        identifikatorer, kan du deaktivere javascript i nettleseren. Det vil
+        imidlertid innebære at Renteradar.no ikke vil fungere i nettleseren din.
+      </msg>
+  <msg id="privacy.policy.bankInfo.title”" desc="privacy-policy" meaning="“bank-info-title"><source>app/features/privacy-policy/privacy-policy.component.html:129</source>Informasjon fra bankene</msg>
+  <msg id="privacy.policy.bankInfo”" desc="privacy-policy" meaning="“bank-info"><source>app/features/privacy-policy/privacy-policy.component.html:130,140</source>
+        For å drifte tjeneste kan vi innhente informasjon fra bankene om deg og
+        ditt/dine lån. Denne informasjonen inkluderer navn, adresse, email,
+        fødselsdato/nummer, medlåntaker/kausjonist, lånt beløp, gjenværende
+        lånebeløpbeløp, type lån, rente, renteutgifter og løpetid for dine/ditt
+        lån. Denne informasjonen vil ikke deles u-anonymisert med våre
+        samarbeidspartnere uten ditt spesifikke samtykke. Hvis du ønsker at vi
+        formidler kontakt med banker som kan tilby deg bedre rente vil deler av
+        denne informasjonen bli delt med disse bankene, men vi vil da spørre deg
+        spesifikt om tillatelse til dette.
+      </msg>
+  <msg id="privacy.policy.creditInfo.title”" desc="privacy-policy" meaning="“credit-info-title"><source>app/features/privacy-policy/privacy-policy.component.html:143</source>Kredittopplysninger</msg>
+  <msg id="privacy.policy.creditInfo”" desc="privacy-policy" meaning="“credit-info"><source>app/features/privacy-policy/privacy-policy.component.html:144,154</source>
+        Før vi eventuelt formidler informasjon til relevante banker kan vi
+        foreta en kredittsjekk begrenset til innhenting av informasjon om
+        eventuelle betalingsanmerkninger. Dette for å sikre at du er kvalifisert
+        for å søke om lån hos våre samarbeidende banker. Kredittsjekken foretas
+        av et kredittopplysningsbyrå. I tillegg til den begrensede
+        kredittsjekken som vi kan foreta, vil bankene vi formidler kontakt med
+        også foreta en egen fullstendig kredittsjekk. Gjenpartsbrevet sendes til
+        deg pr post. Dersom banken har mulighet til dette, vil gjenpartsbrevet
+        sendes elektronisk til deg via e-post eller SMS.
+      </msg>
+  <msg id="privacy.policy.otherInfo.title”" desc="privacy-policy" meaning="“other-info-title"><source>app/features/privacy-policy/privacy-policy.component.html:157</source>Informasjon fra andre kilder</msg>
+  <msg id="privacy.policy.otherInfo”" desc="privacy-policy" meaning="“other-info"><source>app/features/privacy-policy/privacy-policy.component.html:158,163</source>
+        Vi kan fra tid til annen også ta imot og behandle personopplysninger fra
+        andre kilder, som f eks: tilbydere av målingsverktøy eller andre parter
+        som hjelper oss med å forstå brukeraktiviteten eller for å forbedre
+        personalisere tjenesten.
+      </msg>
+  <msg id="privacy.policy.purposeInfo.title”" desc="privacy-policy" meaning="“purpose-info-title"><source>app/features/privacy-policy/privacy-policy.component.html:164</source>Hva brukes opplysningene til?</msg>
+  <msg id="privacy.policy.purposeInfo”" desc="privacy-policy" meaning="“purpose-info"><source>app/features/privacy-policy/privacy-policy.component.html:165,168</source>
+        Vi behandler hovedsakelig personopplysninger om deg for å drifte
+        tjenesten. Vi behandler også ovennevnte informasjon til følgende formål:
+      </msg>
+  <msg id="privacy.policy.purposeInfo.reason1”" desc="privacy-policy" meaning="“purpose-info-reason1"><source>app/features/privacy-policy/privacy-policy.component.html:170</source>For å sikkerhetsstille kjennskap til tjenesten</msg>
+  <msg id="privacy.policy.purposeInfo.reason2”" desc="privacy-policy" meaning="“purpose-info-reason2"><source>app/features/privacy-policy/privacy-policy.component.html:171</source>For å personalisere og forbedre din opplevelse av tjenesten</msg>
+  <msg id="privacy.policy.purposeInfo.reason3”" desc="privacy-policy" meaning="“purpose-info-reason3"><source>app/features/privacy-policy/privacy-policy.component.html:172,175</source>
+          For å sende deg varslinger og meldinger via elektronisk kommunikasjon
+          (som SMS eller e-post)
+        </msg>
+  <msg id="privacy.policy.purposeInfo.reason4”" desc="privacy-policy" meaning="“purpose-info-reason4"><source>app/features/privacy-policy/privacy-policy.component.html:176,179</source>
+          For å informere deg om våre oppdateringer av tjenesten og
+          brukervilkårene
+        </msg>
+  <msg id="privacy.policy.purposeInfo.reason5”" desc="privacy-policy" meaning="“purpose-info-reason5"><source>app/features/privacy-policy/privacy-policy.component.html:180,183</source>
+          For å forbedre og utvikle tjenesten og nye tjenester og produkter,
+          samt å analyser din bruk av tjenesten
+        </msg>
+  <msg id="privacy.policy.purposeInfo.reason6”" desc="privacy-policy" meaning="“purpose-info-reason6"><source>app/features/privacy-policy/privacy-policy.component.html:184</source>For å sikkerstille den tekniske funksjonaliteten i tjenesten</msg>
+  <msg id="privacy.policy.purposeInfo.reason7”" desc="privacy-policy" meaning="“purpose-info-reason7"><source>app/features/privacy-policy/privacy-policy.component.html:185,188</source>
+          For å forhindre bruk av tjenesten i strid med brukervilkårene for
+          tjenesten og for å forebygge og utrede misbruk av tjenesten
+        </msg>
+  <msg id="privacy.policy.purposeInfo.reason8”" desc="privacy-policy" meaning="“purpose-info-reason8"><source>app/features/privacy-policy/privacy-policy.component.html:189,192</source>
+          Og for å oppfylle forpliktelser i henhold til gjeldende lover og
+          regler.
+        </msg>
+  <msg id="privacy.policy.privacyInfo.usage”" desc="privacy-policy" meaning="“privacy-usage-info"><source>app/features/privacy-policy/privacy-policy.component.html:196,202</source>
+
+          Renteradar.no bearbeider personopplysninger for å tilby statistikk til 
+          bruk i media, samt offentlige og private virksomheter på aggregert nivå. 
+          Statistikken vi deler med disse er aldri personopplysninger og du vil aldri 
+          være identifiserbare overfor dem.
+      </msg>
+  <msg id="privacy.policy.privacyInfo.rights”" desc="privacy-policy" meaning="“privacy-rights-info"><source>app/features/privacy-policy/privacy-policy.component.html:204,209</source>
+        Din rett til å motsette deg behandlingen: denne behandlingen av dine
+        personopplysninger er nødvendig for at vi skal kunne levere vår
+        tjeneste. Om du vil motsette deg denne typen behandling av
+        personopplysninger kan vi dessverre ikke tilby vår tjeneste.
+      </msg>
+  <msg id="privacy.policy.cookiesInfo.rights”" desc="privacy-policy" meaning="“cookies-rights-info"><source>app/features/privacy-policy/privacy-policy.component.html:213,215</source>
+    Slik forhindrer du at informasjonskapsler lagres
+  </msg>
+  <msg id="privacy.policy.cookiesInfo.remove”" desc="privacy-policy" meaning="“cookies-remove-info"><source>app/features/privacy-policy/privacy-policy.component.html:217,220</source>
+      Du kan slette informasjonskapsler fra din harddisk når som helst, men
+      dette gjør at dine personlige innstillinger forsvinner.
+    </msg>
+  <msg id="privacy.policy.cookiesInfo.remove2”" desc="privacy-policy" meaning="“cookies-remove2-info"><source>app/features/privacy-policy/privacy-policy.component.html:221,228</source>
+      Du kan også endre innstillingene i din nettleser slik at den ikke tillater
+      at informasjonskapsler lagres på din harddisk, eller at du manuelt må
+      godkjenne hver enkelt cookie. Dette kan imidlertid gi dårligere
+      funksjonalitet på visse nettsider, kan forhindre tilgang til sider som
+      krever innlogging og gjøre at deler av innhold og enkelte funksjoner ikke
+      blir tilgjengelige.
+    </msg>
+  <msg id="privacy.policy.cookiesInfo.remove3”" desc="privacy-policy" meaning="“cookies-remove3-info"><source>app/features/privacy-policy/privacy-policy.component.html:229,233</source>
+      Du kan reservere deg mot cookier som gir deg markedsføring basert på
+      interesseområder for en lang rekke aktører på reservasjonssiden til
+      Network Advertising Initiative.
+    </msg>
+  <msg id="privacy.policy.rightsInfo.title”" desc="privacy-policy" meaning="“rights-info-title"><source>app/features/privacy-policy/privacy-policy.component.html:236,238</source>
+    Dine rettigheter
+  </msg>
+  <msg id="privacy.policy.rightsInfo”" desc="privacy-policy" meaning="“rights-info"><source>app/features/privacy-policy/privacy-policy.component.html:239</source>Som registrert hos Renteradar.no har du følgende rettigheter:</msg>
+  <msg id="privacy.policy.rightsInfo2”" desc="privacy-policy" meaning="“rights-info2"><source>app/features/privacy-policy/privacy-policy.component.html:241,246</source>
+      Rett på tilgang til personopplysninger registrert om deg. Du kan ved
+      skriftlig og undertegnet henvendelse til oss kreve innsyn i øvrige
+      registrerte personopplysninger, beskrivelse av hvilke typer opplysninger
+      som behandles, og nærmere informasjon om vår behandling av opplysningene.
+    </msg>
+  <msg id="privacy.policy.rightsInfo3”" desc="privacy-policy" meaning="“rights-info3"><source>app/features/privacy-policy/privacy-policy.component.html:247,253</source>
+      Rett til å kreve at vi retter feil i personopplysningene registrert om
+      deg. Du kan endre all informasjon du har oppgitt ved registrering av
+      profil på min side. Dersom forespørselen gjelder kommunikasjon eller annen
+      informasjon som ikke er registrert på min side, kan du sende en skriftlig,
+      undertegnet henvendelse til oss.
+    </msg>
+  <msg id="privacy.policy.rightsInfo”4" desc="privacy-policy" meaning="“rights-info4"><source>app/features/privacy-policy/privacy-policy.component.html:254,258</source>
+      Rett til å forespørre sletting eller begrenset behandling av
+      personopplysninger, i tilfeller hvor du mistenker opplysningene blir
+      behandlet ulovlig eller ikke er korrekte.
+    </msg>
+  <msg id="privacy.policy.rightsInfo”5" desc="privacy-policy" meaning="“rights-info5"><source>app/features/privacy-policy/privacy-policy.component.html:259,264</source>
+      Retten til å motsette seg bruk av personopplysninger i direkte
+      markedsføring og i annen kommunikasjon. Dette omfatter også retten til å
+      trekke tilbake samtykke om bruk av personopplysninger, når samtykke er
+      grunnlaget for behandlingen.
+    </msg>
+  <msg id="privacy.policy.rightsInfo6”" desc="privacy-policy" meaning="“rights-info6"><source>app/features/privacy-policy/privacy-policy.component.html:265,268</source>
+      Rett til når som helst å kalle tilbake samtykke til at vi kan behandle
+      dine personopplysninger.
+    </msg>
+  <msg id="privacy.policy.rightsInfo”7" desc="privacy-policy" meaning="“rights-info7"><source>app/features/privacy-policy/privacy-policy.component.html:269,272</source>
+      Rett til å bli glemt. Det vil si at når du avslutter kontoen din hos
+      Renteradar.no slettes all informasjon om deg hos oss.
+    </msg>
+  <msg id="privacy.policy.updated”" desc="privacy-policy" meaning="“privacy-updated"><source>app/features/privacy-policy/privacy-policy.component.html:275,277</source>
+    Sist oppdatert 14.08.2019
+  </msg>
+  <msg id="contactUs.title”" desc="title" meaning="“top"><source>app/features/contact-us/contact-us.component.html:2</source>Kontakt oss</msg>
+  <msg id="contactUs.name”" desc="name" meaning="“text"><source>app/features/contact-us/contact-us.component.html:26,28</source>
+        Vennligst fyll inn navn
+      </msg>
+  <msg id="contactUs.email.issue”" desc="e-mail" meaning="“issue"><source>app/features/contact-us/contact-us.component.html:45,47</source>
+        Ikke gyldig email
+      </msg>
+  <msg id="contactUs.email.issue2”" desc="e-mail" meaning="“issue"><source>app/features/contact-us/contact-us.component.html:52,54</source>
+        Ikke gyldig email
+      </msg>
+  <msg id="contactUs.phone”" desc="telephone" meaning="“number"><source>app/features/contact-us/contact-us.component.html:68,70</source>
+      8 siffer
+    </msg>
+  <msg id="contactUs.phone.missing”" desc="missing" meaning="“number"><source>app/features/contact-us/contact-us.component.html:79,81</source>
+        Telefonnummer kan ikke være tomt
+      </msg>
+  <msg id="contactUs.message”" desc="missing" meaning="“message"><source>app/features/contact-us/contact-us.component.html:99,101</source>
+        Meldingen kan ikke være tom
+      </msg>
+  <msg id="contactUs.send”" desc="send" meaning="“message"><source>app/features/contact-us/contact-us.component.html:108,109</source>Send
+    </msg>
+  <msg id="info.confirmation.hi”" desc="info-confirmation" meaning="“hi"><source>app/features/init-confirmation/init-confirmation.component.html:4</source>Hei, <ph name="INTERPOLATION"><ex>{{ userData.name }}</ex>{{ userData.name }}</ph></msg>
+  <msg id="info.confirmation.moreInfo”" desc="info-confirmation" meaning="“more-infor"><source>app/features/init-confirmation/init-confirmation.component.html:5</source>Vi trenger litt mer informasjon før vi kan søke etter tilbud</msg>
+  <msg id="info.confirmation.empty”" desc="info-confirmation" meaning="“empty"><source>app/features/init-confirmation/init-confirmation.component.html:28,30</source>
+            Kan ikke være tom
+          </msg>
+  <msg id="info.confirmation.invalid”" desc="info-confirmation" meaning="“invalid"><source>app/features/init-confirmation/init-confirmation.component.html:34,36</source>
+            Ugyldig e-post
+          </msg>
+  <msg id="info.confirmation.empty2”" desc="info-confirmation" meaning="“empty2"><source>app/features/init-confirmation/init-confirmation.component.html:63,65</source>
+                Kan ikke være tom
+              </msg>
+  <msg id="info.confirmation.help”" desc="info-confirmation" meaning="“help"><source>app/features/init-confirmation/init-confirmation.component.html:71,73</source>
+            <ph name="START_TAG_MAT_ICON"><ex>&lt;mat-icon&gt;</ex>&lt;mat-icon&gt;</ph>help<ph name="CLOSE_TAG_MAT_ICON"><ex>&lt;/mat-icon&gt;</ex>&lt;/mat-icon&gt;</ph>
+          </msg>
+  <msg id="info.confirmation.empty3”" desc="info-confirmation" meaning="“empty3"><source>app/features/init-confirmation/init-confirmation.component.html:95,97</source>
+                Kan ikke være tom
+              </msg>
+  <msg id="info.confirmation.help2”" desc="info-confirmation" meaning="“help2"><source>app/features/init-confirmation/init-confirmation.component.html:107,109</source>
+            <ph name="START_TAG_MAT_ICON"><ex>&lt;mat-icon&gt;</ex>&lt;mat-icon&gt;</ph>help<ph name="CLOSE_TAG_MAT_ICON"><ex>&lt;/mat-icon&gt;</ex>&lt;/mat-icon&gt;</ph>
+          </msg>
+  <msg id="info.confirmation.organization”" desc="info-confirmation" meaning="“organization"><source>app/features/init-confirmation/init-confirmation.component.html:113,115</source>
+        Bankene gir ofte bedre betingelser om du er medlem i en organisasjon
+      </msg>
+  <msg id="info.confirmation.myMemberships”" desc="info-confirmation" meaning="“my-memberships"><source>app/features/init-confirmation/init-confirmation.component.html:137,139</source>
+        Mine medlemskap
+      </msg>
+  <msg id="info.confirmation.done”" desc="info-confirmation" meaning="“done"><source>app/features/init-confirmation/init-confirmation.component.html:156,158</source>
+        Ferdig!
+      </msg>
+  <msg id="get.notified.noSupport”" desc="get-notified" meaning="“no-support"><source>app/features/get-notified/get-notified.component.html:5,8</source>
+     Vi har desverre ikke støtte for banken din enda.<ph name="LINE_BREAK"><ex>&lt;br&gt;</ex>&lt;br&gt;</ph>
+     Legg igjen din epost så gir vi deg beskjed når det er klart. 
+    </msg>
+  <msg id="get.notified.email”" desc="get-notified" meaning="“issue-email"><source>app/features/get-notified/get-notified.component.html:32,47</source>
+          <ph name="START_TAG_RENTE_FORM_MESSAGE"><ex>&lt;rente-form-message&gt;</ex>&lt;rente-form-message&gt;</ph>
+            Ikke gyldig email
+          <ph name="CLOSE_TAG_RENTE_FORM_MESSAGE"><ex>&lt;/rente-form-message&gt;</ex>&lt;/rente-form-message&gt;</ph>
+          <ph name="START_TAG_RENTE_FORM_MESSAGE_1"><ex>&lt;rente-form-message&gt;</ex>&lt;rente-form-message&gt;</ph>
+            Ikke gyldig email
+          <ph name="CLOSE_TAG_RENTE_FORM_MESSAGE"><ex>&lt;/rente-form-message&gt;</ex>&lt;/rente-form-message&gt;</ph>
+        </msg>
+  <msg id="get.notified.notifyMe”" desc="get-notified" meaning="“notify-me"><source>app/features/get-notified/get-notified.component.html:53,54</source>Gi meg lyd når på plass!
+      </msg>
+  <msg id="counter.ourUsers”" desc="counter" meaning="“our-users"><source>app/shared/components/ui-components/counter/counter.component.html:2</source>Våre brukere har tilsammen:</msg>
+  <msg id="counter.mortgages”" desc="counter" meaning="“mortgages"><source>app/shared/components/ui-components/counter/counter.component.html:5</source>i boliglån…</msg>
+  <msg id="counter.saved”" desc="counter" meaning="“saved"><source>app/shared/components/ui-components/counter/counter.component.html:6</source>…og kan potensielt spare:</msg>
+  <msg id="cookies.mainTitle”" desc="cookies" meaning="“headline"><source>app/features/cookies/cookies.component.html:3</source>Cookiepolicy</msg>
+  <msg id="cookies.description”" desc="cookies" meaning="“description"><source>app/features/cookies/cookies.component.html:4,8</source>
+    Renteradar.no benytter seg av cookies (informasjonskapsler).
+    Cookies er tekstfiler som lagres på din data eller enhet via din nettleser når du besøker en webside.
+    Informasjonen i en cookie kan blant annet beskrive:
+  </msg>
+  <msg id="cookies.explanation”" desc="cookies" meaning="“explanation"><source>app/features/cookies/cookies.component.html:11</source>om du tidligere har besøkt websiden</msg>
+  <msg id="cookies.explanation2”" desc="cookies" meaning="“explanation"><source>app/features/cookies/cookies.component.html:14</source>om du har en konto som du har valgt å være innlogget på</msg>
+  <msg id="cookies.explanation3”" desc="cookies" meaning="“explanation"><source>app/features/cookies/cookies.component.html:17</source>data du har skrevet inn på nettsiden</msg>
+  <msg id="cookies.title1”" desc="cookies" meaning="“why-and-how-cookies-work"><source>app/features/cookies/cookies.component.html:21</source>Hvorfor og hvordan bruker vi cookies?</msg>
+  <msg id="cookies.text.whyHow”" desc="cookies" meaning="“text-why-how"><source>app/features/cookies/cookies.component.html:22,28</source>
+    Renteradar.no bruker cookies for analytiske, tekniske og markedsføringsmessige formål.
+    Det vil si at cookies brukes for å gi våre brukere god opplevelse når bruker tjenesten,
+    og gir oss mulighet til å utvikle og forbedre tjenesten. Det gir også anledning til å analysere
+    trafikken på våre nettsider for blant annet å oppnå bedre målrettet markedsføring. Nærmere
+    informasjon om de ulike bruksområdene følger lenger ned.
+  </msg>
+  <msg id="cookies.title2”" desc="cookies" meaning="“what-info"><source>app/features/cookies/cookies.component.html:30</source>Hvilken informasjon registreres om deg som bruker</msg>
+  <msg id="cookies.text.what”" desc="cookies" meaning="“info"><source>app/features/cookies/cookies.component.html:31,33</source>
+    Når du besøker renteradar.no kan vi registrere ulik informasjon om deg og enheten. Det inkluderer blant annet:
+  </msg>
+  <msg id="cookies.text.position”" desc="cookies" meaning="“info-position"><source>app/features/cookies/cookies.component.html:36</source>Posisjonsdata</msg>
+  <msg id="cookies.text.adferd”" desc="cookies" meaning="“info-adferd"><source>app/features/cookies/cookies.component.html:39</source>Adferd på siden. Det inkluderer blant annet hvilke sider du er inne på og tidsbruk på hver side.</msg>
+  <msg id="cookies.text.tech”" desc="cookies" meaning="“info-tech"><source>app/features/cookies/cookies.component.html:42</source>Teknisk informasjon om nettleser og operativsystem</msg>
+  <msg id="cookies.title3”" desc="cookies" meaning="“erase"><source>app/features/cookies/cookies.component.html:46</source>Sletting informasjonskapsler i ulike nettlesere</msg>
+  <msg id="cookies.text.erase”" desc="cookies" meaning="“info-erase"><source>app/features/cookies/cookies.component.html:47,52</source>
+    Du kan i nettleseren få en oversikt over alle informasjonskapsler som er lagret.
+    Der kan du slette informasjonskapsler og angi om du aksepterer lagring av informasjonskapsler
+    fra nettsider du besøker. Den nøyaktige fremgangsmåten avhenger av enheten din og hvilken
+    nettleser du bruker. I linkene under kan du lese mer:
+  </msg>
+  <msg id="cookies.title4”" desc="cookies" meaning="“which"><source>app/features/cookies/cookies.component.html:71</source>Hvilke cookies benytter vi?</msg>
+  <msg id="cookies.googleAnalytics”" desc="cookies" meaning="“google-analytics"><source>app/features/cookies/cookies.component.html:74,77</source>
+        <ph name="START_TAG_STRONG"><ex>&lt;strong&gt;</ex>&lt;strong&gt;</ph>Google Analytics:<ph name="CLOSE_TAG_STRONG"><ex>&lt;/strong&gt;</ex>&lt;/strong&gt;</ph>
+        Er et verktøy som måler all trafikk på nettsiden og kan benyttes for analyseformål. Mer informasjon
+        <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>her.<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph></msg>
+  <msg id="cookies.googleAds”" desc="cookies" meaning="“google-ads"><source>app/features/cookies/cookies.component.html:80,83</source>
+        <ph name="START_TAG_STRONG"><ex>&lt;strong&gt;</ex>&lt;strong&gt;</ph>Google Ads:<ph name="CLOSE_TAG_STRONG"><ex>&lt;/strong&gt;</ex>&lt;/strong&gt;</ph>
+        Brukes for måling av betalt reklame av søkeord og Google annonsering. Mer informasjon
+        <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>her.<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph></msg>
+  <msg id="cookies.googleTag”" desc="cookies" meaning="“google-tag"><source>app/features/cookies/cookies.component.html:86,89</source>
+        <ph name="START_TAG_STRONG"><ex>&lt;strong&gt;</ex>&lt;strong&gt;</ph>Google Tag Manager:<ph name="CLOSE_TAG_STRONG"><ex>&lt;/strong&gt;</ex>&lt;/strong&gt;</ph>
+        Styrer tags for tracking og analyse. Mer info
+        <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>her.<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph></msg>
+  <msg id="cookies.facebook”" desc="cookies" meaning="“facebook"><source>app/features/cookies/cookies.component.html:92,95</source>
+        <ph name="START_TAG_STRONG"><ex>&lt;strong&gt;</ex>&lt;strong&gt;</ph>Facebook Pixel:<ph name="CLOSE_TAG_STRONG"><ex>&lt;/strong&gt;</ex>&lt;/strong&gt;</ph>
+        Interaksjonsverktøy som Facebook bruker mot nettsteder for å bruke data til mer målrettet reklame. Mer informasjon
+        <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>her.<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph></msg>
+  <msg id="cookies.hotjar”" desc="cookies" meaning="“hotjar"><source>app/features/cookies/cookies.component.html:98,101</source>
+        <ph name="START_TAG_STRONG"><ex>&lt;strong&gt;</ex>&lt;strong&gt;</ph>Hotjar:<ph name="CLOSE_TAG_STRONG"><ex>&lt;/strong&gt;</ex>&lt;/strong&gt;</ph>
+        Er et interaksjonsverktøy som registrerer hvordan brukere bruker nettsiden. Mer informasjon
+        <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>her.<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph></msg>
+  <msg id="email.preferences.saved”" desc="email-preferences" meaning="“saved"><source>app/features/email-preferences/email-preferences.component.html:7</source>Lagret</msg>
+  <msg id="email.preferences.settings”" desc="email-preferences" meaning="“settings"><source>app/features/email-preferences/email-preferences.component.html:16</source>Epost innstillinger</msg>
+  <msg id="email.preferences.error”" desc="email-preferences" meaning="“error"><source>app/features/email-preferences/email-preferences.component.html:18</source>Noe gikk galt, vennligst logg inn eller ta kontakt med oss på <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>hei@renteradar.no<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph></msg>
+  <msg id="email.preferences.market”" desc="email-preferences" meaning="“market"><source>app/features/email-preferences/email-preferences.component.html:28</source>Markedsovervåkning / Rentesjekk av dine lån</msg>
+  <msg id="email.preferences.monthEvery”" desc="email-preferences" meaning="“month-every"><source>app/features/email-preferences/email-preferences.component.html:43</source>Hver måned</msg>
+  <msg id="email.preferences.monthTwo”" desc="email-preferences" meaning="“month-two"><source>app/features/email-preferences/email-preferences.component.html:48</source>Hver 2. måned</msg>
+  <msg id="email.preferences.monthThree”" desc="email-preferences" meaning="“month-three"><source>app/features/email-preferences/email-preferences.component.html:53</source>Hver 3. måned</msg>
+  <msg id="email.preferences.monthFour”" desc="email-preferences" meaning="“month-four"><source>app/features/email-preferences/email-preferences.component.html:58</source>Hver 4. måned</msg>
+  <msg id="email.preferences.monthNever”" desc="email-preferences" meaning="“month-never"><source>app/features/email-preferences/email-preferences.component.html:63</source>Aldri</msg>
+  <msg id="email.preferences.marketUpdate”" desc="email-preferences" meaning="“market-update"><source>app/features/email-preferences/email-preferences.component.html:69,81</source>
+                <ph name="START_PARAGRAPH"><ex>&lt;p&gt;</ex>&lt;p&gt;</ph>
+                    Få markedsoppdateringer, nyheter og annen informasjon på epost
+                <ph name="CLOSE_PARAGRAPH"><ex>&lt;/p&gt;</ex>&lt;/p&gt;</ph>
+                <ph name="START_TAG_MAT_RADIO_GROUP"><ex>&lt;mat-radio-group&gt;</ex>&lt;mat-radio-group&gt;</ph>
+                <ph name="START_TAG_MAT_RADIO_BUTTON"><ex>&lt;mat-radio-button&gt;</ex>&lt;mat-radio-button&gt;</ph><ph name="START_TAG_SPAN"><ex>&lt;span&gt;</ex>&lt;span&gt;</ph>Ja<ph name="CLOSE_TAG_SPAN"><ex>&lt;/span&gt;</ex>&lt;/span&gt;</ph><ph name="CLOSE_TAG_MAT_RADIO_BUTTON"><ex>&lt;/mat-radio-button&gt;</ex>&lt;/mat-radio-button&gt;</ph>
+                <ph name="START_TAG_MAT_RADIO_BUTTON_1"><ex>&lt;mat-radio-button&gt;</ex>&lt;mat-radio-button&gt;</ph><ph name="START_TAG_SPAN"><ex>&lt;span&gt;</ex>&lt;span&gt;</ph>Nei<ph name="CLOSE_TAG_SPAN"><ex>&lt;/span&gt;</ex>&lt;/span&gt;</ph><ph name="CLOSE_TAG_MAT_RADIO_BUTTON"><ex>&lt;/mat-radio-button&gt;</ex>&lt;/mat-radio-button&gt;</ph>
+                <ph name="CLOSE_TAG_MAT_RADIO_GROUP"><ex>&lt;/mat-radio-group&gt;</ex>&lt;/mat-radio-group&gt;</ph>     
+            </msg>
+  <msg id="email.preferences.saveChanges”" desc="email-preferences" meaning="“save-changes"><source>app/features/email-preferences/email-preferences.component.html:85,87</source>
+                Lagre endringer
+            </msg>
+  <msg id="aboutUs”" desc="about-us" meaning="“headline"><source>app/features/about-us/about-us.component.html:2</source>Om oss</msg>
+  <msg id="aboutUs.intro”" desc="intro" meaning="“text"><source>app/features/about-us/about-us.component.html:3,9</source>
+    <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>Renteradar.no<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph>
+    så sitt lys våren 2019. Vi var en gjeng som mente at det var vanskelig å
+    navigere i markedet for boliglån. I tillegg måtte man følge med på banken sin hele tiden
+    for å få den lave renten man fortjener. Dette ønsket vi å gjøre noe med og laget
+    <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>Renteradar.no<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph>
+  </msg>
+  <msg id="aboutUs.intro2”" desc="about-us" meaning="“text"><source>app/features/about-us/about-us.component.html:10,14</source>
+    Boliglån er i grunnen et veldig enkelt produkt som bankene tjener veldig godt på.
+    I Norge betaler nesten alle renter og avdrag på boliglånet og bankene har svært
+    lave tap. Det er derfor ingen grunn til at man skal betale mer enn det man trenger på boliglånet.
+  </msg>
+  <msg id="aboutUs.goals”" desc="about-us" meaning="“text"><source>app/features/about-us/about-us.component.html:15,17</source>
+    Vi ønsker å gjøre det enklere for deg som boliglånskunde gjennom å:
+  </msg>
+  <msg id="aboutUs.goal1”" desc="about-us" meaning="“text"><source>app/features/about-us/about-us.component.html:20,22</source>
+        <ph name="START_BOLD_TEXT"><ex>&lt;b&gt;</ex>&lt;b&gt;</ph>Spare penger<ph name="CLOSE_BOLD_TEXT"><ex>&lt;/b&gt;</ex>&lt;/b&gt;</ph> gjennom å alltid ha de beste betingelsene.
+      </msg>
+  <msg id="aboutUs.goal2”" desc="about-us" meaning="“text"><source>app/features/about-us/about-us.component.html:23,26</source>
+        <ph name="START_BOLD_TEXT"><ex>&lt;b&gt;</ex>&lt;b&gt;</ph>Spare tid<ph name="CLOSE_BOLD_TEXT"><ex>&lt;/b&gt;</ex>&lt;/b&gt;</ph> ved at vi automatisk, raskt og enkelt sjekker renten du
+        har og sammenligner med det beste tilbudet i markedet for deg.
+      </msg>
+  <msg id="aboutUs.goal3”" desc="about-us" meaning="“text"><source>app/features/about-us/about-us.component.html:27,29</source>
+        <ph name="START_BOLD_TEXT"><ex>&lt;b&gt;</ex>&lt;b&gt;</ph>Få trygghet<ph name="CLOSE_BOLD_TEXT"><ex>&lt;/b&gt;</ex>&lt;/b&gt;</ph> rundt hva du betaler i rente, og vite at du ikke blir lurt av banken.
+      </msg>
+  <msg id="aboutUs.governance”" desc="about-us" meaning="“text"><source>app/features/about-us/about-us.component.html:32,37</source>
+    <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>Renteradar.no<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph>
+    eies og driftes av Forbrukerøkonomene AS. Vi kjenner rentemarkedet godt og har bred erfaring
+    innenfor bank, finans og teknologi. Sammen har vi satt dette i system som skal komme brukerne av
+    <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>Renteradar.no<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph> til gode.
+  </msg>
+  <msg id="aboutUs.Finn”" desc="about-us" meaning="“title"><source>app/features/about-us/about-us.component.html:49</source><ph name="START_ITALIC_TEXT"><ex>&lt;i&gt;</ex>&lt;i&gt;</ph>Co-Founder<ph name="CLOSE_ITALIC_TEXT"><ex>&lt;/i&gt;</ex>&lt;/i&gt;</ph></msg>
+  <msg id="aboutUs.finn.intro”" desc="about-us" meaning="“text"><source>app/features/about-us/about-us.component.html:52,56</source>
+        Finn Olav er økonom fra Cass Business School i London og har jobbet fem år med renter i
+        Nordea Markets. Nå har han tatt steget ut fra bank-verden for å leve ut gründer-drømmen.
+        Finn Olav er tall-knuseren vår som elsker statistikk og data.
+      </msg>
+  <msg id="aboutUs.fredrik”" desc="about-us" meaning="“title"><source>app/features/about-us/about-us.component.html:64</source><ph name="START_ITALIC_TEXT"><ex>&lt;i&gt;</ex>&lt;i&gt;</ph>Daglig Leder/Founder<ph name="CLOSE_ITALIC_TEXT"><ex>&lt;/i&gt;</ex>&lt;/i&gt;</ph></msg>
+  <msg id="aboutUs.fredrik.intro”" desc="about-us" meaning="“text"><source>app/features/about-us/about-us.component.html:67,72</source>
+        Fredrik er ingeniør fra NTNU og arkitekten bak <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>Renteradar.no<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph>.
+        Han brenner for å gi våre kunder verdi og finne gode løsninger.
+        Før Fredrik startet opp <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>Renteradar.no<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph> jobbet han som
+        konsulent i Arkwright Consulting.
+      </msg>
+  <msg id="aboutUs.sindre”" desc="about-us" meaning="“title"><source>app/features/about-us/about-us.component.html:80</source><ph name="START_ITALIC_TEXT"><ex>&lt;i&gt;</ex>&lt;i&gt;</ph>Co-Founder<ph name="CLOSE_ITALIC_TEXT"><ex>&lt;/i&gt;</ex>&lt;/i&gt;</ph></msg>
+  <msg id="aboutUs.sindre.intro”" desc="about-us" meaning="“text"><source>app/features/about-us/about-us.component.html:83,88</source>
+        Sindre er siviløkonom fra NHH og har jobbet i 15 år i DNB Markets.
+        De siste fire årene ledet han aktivitetene på renteprodukter.
+        Nå har han tatt forbrukernes side og vil utfordre storbankene.
+        Sindre kjenner markedet for boliglån og bankene godt.
+      </msg>
+  <msg id="selection.bank”" desc="selection" meaning="“select-bank"><source>app/features/bank-select/bank-select.component.html:3</source>Hvilken bank har du boliglån i?</msg>
+  <msg id="terms.title”" desc="terms" meaning="“title"><source>app/features/auth/bank-id-login/dialog-info-service/dialog-info-service.component.html:3,5</source>
+    Vilkår for bruk av tjenesten
+  </msg>
+  <msg id="terms.text”" desc="terms" meaning="“text"><source>app/features/auth/bank-id-login/dialog-info-service/dialog-info-service.component.html:11,19</source>
+        Denne tjenesten er laget for at du så enkelt som mulig skal kunne hente dine
+        rente- og lånedata. Bruk av denne tjenesten innebærer at du logger inn hos
+        din bank med din BankID på mobil, og gir oss i Renteradar.no (Forbrukerøkonomene AS)
+        tilgang til din side hos din bank. Det betyr at vi får tilgang til den samme
+        informasjonen du selv ser, dersom du logger deg inn hos din bank. Vi garanterer
+        at vi kun bruker tilgangen du gir oss utelukkende til å hente dine rente- og lånedata,
+        samt navn, adresse, fødselsdato/nummer og email, via krypterte kommunikasjonskanaler.
+      </msg>
+  <msg id="terms.text1”" desc="terms" meaning="“text"><source>app/features/auth/bank-id-login/dialog-info-service/dialog-info-service.component.html:20,25</source>
+        Vi vil ikke kunne logge inn på et senere tidspunkt fordi innloggingen du
+        gjør med BankID på mobil ikke kan gjenbrukes. For å benytte tjenesten må
+        du oppgi telefonnummeret ditt og fødselsdato/nummer, men vi vil ikke kunne
+        se eller få tilgang til passordet ditt.
+      </msg>
+  <msg id="terms.text2”" desc="terms" meaning="“text"><source>app/features/auth/bank-id-login/dialog-info-service/dialog-info-service.component.html:26,32</source>
+        I tillegg til vilkårene for bruk av denne tjenesten godkjenner du også
+        våre generelle vilkår, som du finner her:
+        <ph name="START_PARAGRAPH"><ex>&lt;p&gt;</ex>&lt;p&gt;</ph>
+          <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>Brukervilkår<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph>
+        <ph name="CLOSE_PARAGRAPH"><ex>&lt;/p&gt;</ex>&lt;/p&gt;</ph>
+      </msg>
+  <msg id="terms.text.acceptance”" desc="terms" meaning="“text"><source>app/features/auth/bank-id-login/dialog-info-service/dialog-info-service.component.html:33,39</source>
+        Ved å bruke tjenesten aksepterer du også hvordan vi behandler
+        personopplysningene dine. Du lese vår personvernerklæring som du finner her:
+        <ph name="START_PARAGRAPH"><ex>&lt;p&gt;</ex>&lt;p&gt;</ph>
+          <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>Personvernerklæring<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph>
+        <ph name="CLOSE_PARAGRAPH"><ex>&lt;/p&gt;</ex>&lt;/p&gt;</ph>
+      </msg>
+  <msg id="bankId.title”" desc="bank-id" meaning="“title"><source>app/features/auth/bank-id-login/bank-id-login.component.html:3</source>Logg inn med BankID på mobil</msg>
+  <msg id="bankId.description”" desc="bank-id" meaning="“description"><source>app/features/auth/bank-id-login/bank-id-login.component.html:4,7</source>
+      Renteradar henter lånedetaljer og renten din automatisk med BankID på
+      Mobil.
+    </msg>
+  <msg id="bankId.description2”" desc="bank-id" meaning="“description"><source>app/features/auth/bank-id-login/bank-id-login.component.html:8,10</source>
+      Vi støtter kun BankID på Mobil, ikke kodebrikke eller engangskode appen.
+    </msg>
+  <msg id="bankId.issue”" desc="bank-id" meaning="“issue"><source>app/features/auth/bank-id-login/bank-id-login.component.html:11,15</source>
+      Akkurat nå er det mange banker som setter ned renten og oppdaterer systemene sine.
+      Det kan derfor være en uriktig forskjell på nominell og effektiv rente som vi henter.
+      Besparelsen blir da for høy.
+    </msg>
+  <msg id="bankId.info”" desc="bank-id" meaning="“information"><source>app/features/auth/bank-id-login/bank-id-login.component.html:17,19</source>
+      Vi støtter kun BankID på Mobil, ikke kodebrikke og passord.
+    </msg>
+  <msg id="bankId.issue2”" desc="bank-id" meaning="“issue"><source>app/features/auth/bank-id-login/bank-id-login.component.html:20,23</source>
+      OBS: Vi tester fortsatt løsningen for denne banken. <ph name="LINE_BREAK"><ex>&lt;br&gt;</ex>&lt;br&gt;</ph>
+      Gi gjerne beskjed hvis noe ikke fungerer optimalt.
+    </msg>
+  <msg id="bankId.description.birthNumber”" desc="bank-id" meaning="“issue"><source>app/features/auth/bank-id-login/bank-id-login.component.html:55,57</source>
+            Fødselsnummer kan ikke være tomt
+          </msg>
+  <msg id="bankId.description.birthNumber2”" desc="bank-id" meaning="“issue"><source>app/features/auth/bank-id-login/bank-id-login.component.html:62,64</source>
+            Fødselsnummer ikke gyldig
+          </msg>
+  <msg id="bankId.description.birthNumber3”" desc="bank-id" meaning="“issue"><source>app/features/auth/bank-id-login/bank-id-login.component.html:69,71</source>
+            Fødselsnummeret er ikke gyldig
+          </msg>
+  <msg id="bankId.description.birthNumber4”" desc="bank-id" meaning="“issue"><source>app/features/auth/bank-id-login/bank-id-login.component.html:96,98</source>
+              Fødselsdato kan ikke være tomt
+            </msg>
+  <msg id="bankId.description.birthNumber5”" desc="bank-id" meaning="“issue"><source>app/features/auth/bank-id-login/bank-id-login.component.html:103,105</source>
+              Fødselsdato ikke gyldig
+            </msg>
+  <msg id="bankId.description.telephoneNumber”" desc="bank-id" meaning="“issue"><source>app/features/auth/bank-id-login/bank-id-login.component.html:127,129</source>
+            Telefonnummer kan ikke være tomt
+          </msg>
+  <msg id="bankId.description.telephoneNumber2”" desc="bank-id" meaning="“issue"><source>app/features/auth/bank-id-login/bank-id-login.component.html:134,136</source>
+            Telefonnummer ikke gyldig
+          </msg>
+  <msg id="bankId.policy”" desc="bank-id" meaning="“accepting"><source>app/features/auth/bank-id-login/bank-id-login.component.html:143,146</source>
+        Jeg aksepterer Renteradar.no&apos;s
+        <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>vilkår<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph>
+      </msg>
+  <msg id="bankId.logIn”" desc="bank-id" meaning="“log-in"><source>app/features/auth/bank-id-login/bank-id-login.component.html:152,154</source>
+          Logg inn
+        </msg>
+  <msg id="login”" desc="reference" meaning="“login"><source>app/features/auth/login-status/login-status.component.html:6</source><source>app/features/auth/login-status/login-status.component.html:14,29</source>Din referanse:</msg>
+  <msg id="login.control”" desc="login" meaning="“control"><source>app/features/auth/login-status/login-status.component.html:35,39</source>
+          Kontroller at du har oppgitt riktig fødselsnummer og mobilnummer.
+          Du må ha bestilt og aktivert BankID på Mobil for å logge inn.
+          Les hvordan du <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>aktiverer BankID på Mobil her<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph>.
+        </msg>
+  <msg id="login.control2”" desc="login" meaning="“control2"><source>app/features/auth/login-status/login-status.component.html:40,44</source>
+          Kontroller at du har oppgitt riktig fødselsdato og mobilnummer.
+          Du må ha bestilt og aktivert BankID på Mobil for å logge inn.
+          Les hvordan du <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>aktiverer BankID på Mobil her<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph>.
+        </msg>
+  <msg id="login.error”" desc="login" meaning="“tech-error"><source>app/features/auth/login-status/login-status.component.html:47,49</source>
+        Banken din har dessverre tekniske problemer. Vennligst prøv igjen senere.
+      </msg>
+  <msg id="login.error3”" desc="login" meaning="“control-error"><source>app/features/auth/login-status/login-status.component.html:50,54</source>
+        Feilkode BID-C167:  Det kan skje hvis du for eksempel har endret abonnementet, 
+        byttet SIM-kort eller mobiltelefon. Du løser det ved å logge deg inn i nettbanken 
+        bestille BankID på mobil på nytt.
+      </msg>
+  <msg id="login.error.bankId”" desc="login" meaning="“bank-id"><source>app/features/auth/login-status/login-status.component.html:56,58</source>
+        BankID på Mobil er for tiden ustabil. Vennligst prøv igjen senere
+      </msg>
+  <msg id="login.confirmation”" desc="login" meaning="“control-confirm"><source>app/features/auth/login-status/login-status.component.html:69,71</source>
+      Bekreft BankID på mobil
+    </msg>
+  <msg id="login.instructions”" desc="login" meaning="“instructions"><source>app/features/auth/login-status/login-status.component.html:75,77</source>
+        Vennligst følg instruksjonen på mobilen
+      </msg>
+  <msg id="login.fault”" desc="login" meaning="“fault-attempt"><source>app/features/auth/login-status/login-status.component.html:82,84</source>
+        Vi fikk ikke bekreftet BankID referansen fra din mobiltelefon. Vennligst prøv igjen.
+      </msg>
+  <msg id="login.fault.bank”" desc="login" meaning="“fault-bank"><source>app/features/auth/login-status/login-status.component.html:85,87</source>
+        Banken din har dessverre tekniske problemer. Vennligst prøv igjen senere.
+      </msg>
+  <msg id="login.confirmation.bankId”" desc="login" meaning="“confirm"><source>app/features/auth/login-status/login-status.component.html:92,94</source>
+        BankID bekreftet
+      </msg>
+  <msg id="login.title.step3”" desc="login" meaning="“title-gather"><source>app/features/auth/login-status/login-status.component.html:103,105</source>
+      Hent rente og lånedata
+    </msg>
+  <msg id="login.title.step.onGoing”" desc="login" meaning="“on-going-gather"><source>app/features/auth/login-status/login-status.component.html:110</source>Vi henter din rente og låneinformasjon</msg>
+  <msg id="login.timer”" desc="login" meaning="“timer"><source>app/features/auth/login-status/login-status.component.html:111,113</source>
+          (tar cirka <ph name="INTERPOLATION"><ex>{{ thirdStepTimer }}</ex>{{ thirdStepTimer }}</ph> sekunder)
+        </msg>
+  <msg id="login.timer2”" desc="login" meaning="“timer-done"><source>app/features/auth/login-status/login-status.component.html:114</source>(Litt til, straks ferdig)</msg>
+  <msg id="login.account”" desc="login" meaning="“account-pick"><source>app/features/auth/login-status/login-status.component.html:118</source>Vennligst velg konto:</msg>
+  <msg id="login.error.missingCustomer”" desc="login" meaning="“error-bank"><source>app/features/auth/login-status/login-status.component.html:130,132</source>
+        Vi får beskjed om at du ikke er kunde i banken. Har du valgt riktig bank?
+      </msg>
+  <msg id="login.error.missingUpdate”" desc="login" meaning="“error-bank"><source>app/features/auth/login-status/login-status.component.html:133,136</source>
+        Banken din krever at du oppdaterer informasjon i nettbanken din.
+        Du må logge inn i nettbanken din og oppdatere/bekrefte informasjon før du kan benytte Renteradar.
+      </msg>
+  <msg id="login.error.missingBankId”" desc="login" meaning="“error-bank"><source>app/features/auth/login-status/login-status.component.html:137,139</source>
+        Du må fornye din BankID. Du kan gjøre dette ved å logge inn i din nettbank fra PC (ikke mobil)
+      </msg>
+  <msg id="login.error.wrongCollection”" desc="login" meaning="“error-collection"><source>app/features/auth/login-status/login-status.component.html:140,142</source>
+        Det oppstod en feil under henting av dine lånedetaljer, vennligst prøv igjen senere.
+      </msg>
+  <msg id="login.error.slow”" desc="login" meaning="“error-account"><source>app/features/auth/login-status/login-status.component.html:143,145</source>
+        Du valgte ikke konto innen 60 sekunder. Du må logge inn igjen.
+      </msg>
+  <msg id="login.error.technological”" desc="login" meaning="“error-tech"><source>app/features/auth/login-status/login-status.component.html:146,148</source>
+        Banken din har dessverre tekniske problemer. Vennligst prøv igjen senere.
+      </msg>
+  <msg id="login.error.tryAgain”" desc="login" meaning="“try-again"><source>app/features/auth/login-status/login-status.component.html:166,168</source>
+    Prøv igjen
+  </msg>
+  <msg id="sparebank1”" desc="sub-component" meaning="“title"><source>app/features/auth/sparebank1-sub/sparebank1-sub.component.html:2</source>Velg din bank</msg>
+  <msg id="dialog.component.product”" desc="dialog" meaning="“product"><source>app/features/dashboard/offers/dialog-info/dialog-info.component.html:7</source>Produkt</msg>
+  <msg id="dialog.component.maxLeverage”" desc="dialog" meaning="“max-leverage"><source>app/features/dashboard/offers/dialog-info/dialog-info.component.html:11</source>Max belåningsgrad</msg>
+  <msg id="dialog.component.nominal”" desc="dialog" meaning="“nominal"><source>app/features/dashboard/offers/dialog-info/dialog-info.component.html:15</source>Nominell rente</msg>
+  <msg id="dialog.component.efficient”" desc="dialog" meaning="“efficient"><source>app/features/dashboard/offers/dialog-info/dialog-info.component.html:19</source>Effektiv rente</msg>
+  <msg id="dialog.component.demandProduct”" desc="dialog" meaning="“demand-product"><source>app/features/dashboard/offers/dialog-info/dialog-info.component.html:23</source>Krav om annet produkt</msg>
+  <msg id="dialog.component.productPackage”" desc="dialog" meaning="“product-package"><source>app/features/dashboard/offers/dialog-info/dialog-info.component.html:28</source>Produktpakke</msg>
+  <msg id="dialog.component.maxTime”" desc="dialog" meaning="“max-time"><source>app/features/dashboard/offers/dialog-info/dialog-info.component.html:32</source>Max løpetid</msg>
+  <msg id="dialog.component.maxDeduction”" desc="dialog" meaning="“max-deduction"><source>app/features/dashboard/offers/dialog-info/dialog-info.component.html:36</source>Max avdragsfrihet</msg>
+  <msg id="dialog.component.monthlyFee”" desc="dialog" meaning="“monthly-fee"><source>app/features/dashboard/offers/dialog-info/dialog-info.component.html:40</source>Termingebyr</msg>
+  <msg id="dialog.component.establishmentFee”" desc="dialog" meaning="“establishment-fee"><source>app/features/dashboard/offers/dialog-info/dialog-info.component.html:44</source>Etableringsgebyr</msg>
+  <msg id="dialog.component.depotFee”" desc="dialog" meaning="“depot-fee"><source>app/features/dashboard/offers/dialog-info/dialog-info.component.html:48</source>Depotgebyr</msg>
+  <msg id="dialog.component.market”" desc="dialog" meaning="“market"><source>app/features/dashboard/offers/dialog-info/dialog-info.component.html:52</source>Markedsområde</msg>
+  <msg id="dialog.component.requiredMembership”" desc="dialog" meaning="“required-membership"><source>app/features/dashboard/offers/dialog-info/dialog-info.component.html:56</source>Forutsetter medlemskap</msg>
+  <msg id="dialog.component.membership”" desc="dialog" meaning="“membership"><source>app/features/dashboard/offers/dialog-info/dialog-info.component.html:61</source>Medlemskap</msg>
+  <msg id="dialog.component.conditions”" desc="dialog" meaning="“conditions"><source>app/features/dashboard/offers/dialog-info/dialog-info.component.html:69</source>Forbehold:</msg>
+  <msg id="dialog.component.offer”" desc="dialog" meaning="“offer"><source>app/features/dashboard/offers/dialog-info/dialog-info.component.html:72</source>Tilbud:</msg>
+  <msg id="dialog.component.effcientInterest”" desc="dialog" meaning="“efficient-interest"><source>app/features/dashboard/offers/dialog-info/dialog-info.component.html:73,78</source>Eff.rente <ph name="INTERPOLATION"><ex>{{data.effectiveRate | number: &quot;1.1-2&quot;}}</ex>{{data.effectiveRate | number: &quot;1.1-2&quot;}}</ph>%, 
+  Lånebeløp <ph name="INTERPOLATION_1"><ex>{{data.outstandingDebt | number: &quot;1.0&quot; }}</ex>{{data.outstandingDebt | number: &quot;1.0&quot; }}</ph>, 
+  <ph name="INTERPOLATION_2"><ex>{{data.loanPeriodYears | number: &quot;1.1&quot; }}</ex>{{data.loanPeriodYears | number: &quot;1.1&quot; }}</ph> år, 
+  Kostnad: <ph name="INTERPOLATION_3"><ex>{{data.cost | number: &quot;1.0&quot; }}</ex>{{data.cost | number: &quot;1.0&quot; }}</ph>, 
+  Totalt: <ph name="INTERPOLATION_4"><ex>{{data.totalCost | number: &quot;1.0&quot; }}</ex>{{data.totalCost | number: &quot;1.0&quot; }}</ph>
+</msg>
+  <msg id="change.bank.title”" desc="change-bank" meaning="“title"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:5</source>Melding til banken din:</msg>
+  <msg id="change.bank.intro”" desc="change-bank" meaning="“intro"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:9,16</source>
+  Hei,
+  <ph name="LINE_BREAK"><ex>&lt;br&gt;</ex>&lt;br&gt;</ph>
+  <ph name="LINE_BREAK"><ex>&lt;br&gt;</ex>&lt;br&gt;</ph>
+  Jeg er kunde i banken i dag, men jeg har funnet et bedre tilbud på
+  renteradar.no og vurderer å bytte. Før jeg går videre lurer jeg på om dere kan
+  matche tilbudet?
+</msg>
+  <msg id="change.bank.info”" desc="change-bank" meaning="“info"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:19</source><ph name="START_BOLD_TEXT"><ex>&lt;b&gt;</ex>&lt;b&gt;</ph>Opplysninger om tilbud:<ph name="CLOSE_BOLD_TEXT"><ex>&lt;/b&gt;</ex>&lt;/b&gt;</ph></msg>
+  <msg id="change.bank.infoAmount”" desc="change-bank" meaning="“info-amount"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:23</source>Lånebeløp:</msg>
+  <msg id="change.bank.infoValue”" desc="change-bank" meaning="“info-value"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:27</source>Boligverdi:</msg>
+  <msg id="change.bank.infoDebt”" desc="change-bank" meaning="“info-debt"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:31</source>Fellesgjeld:</msg>
+  <msg id="change.bank.infoLeverage”" desc="change-bank" meaning="“info-leverage"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:35</source>Est. belåningsgrad:</msg>
+  <msg id="change.bank.infoTime.remaining”" desc="change-bank" meaning="“info-time-remaining"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:40</source>Nedbetalingstid:</msg>
+  <msg id="change.bank.infoAge”" desc="change-bank" meaning="“info-age"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:44</source>Min alder:</msg>
+  <msg id="change.bank.infoBank”" desc="change-bank" meaning="“info-bank"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:48</source>Bank:</msg>
+  <msg id="change.bank.infoProduct”" desc="change-bank" meaning="“info-product"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:52</source>Produktnavn:</msg>
+  <msg id="change.bank.infoNominal”" desc="change-bank" meaning="“info-nominal-interest"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:56</source>Nominell rente:</msg>
+  <msg id="change.bank.infoEffective”" desc="change-bank" meaning="“info-effective-interest"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:60</source>Effektiv rente:</msg>
+  <msg id="change.bank.infoProduct2”" desc="change-bank" meaning="“info-product2"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:65</source>Produkt:</msg>
+  <msg id="change.bank.infoLink”" desc="change-bank" meaning="“info-link"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:67</source>Link til produkt på Finansportalen</msg>
+  <msg id="change.bank.infoMe”" desc="change-bank" meaning="“info-me"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:72</source><ph name="START_BOLD_TEXT"><ex>&lt;b&gt;</ex>&lt;b&gt;</ph>Opplysninger om meg:<ph name="CLOSE_BOLD_TEXT"><ex>&lt;/b&gt;</ex>&lt;/b&gt;</ph></msg>
+  <msg id="change.bank.infoName”" desc="change-bank" meaning="“info-name"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:76</source>Navn:</msg>
+  <msg id="change.bank.infoPhone”" desc="change-bank" meaning="“info-phone"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:80</source>Telefon:</msg>
+  <msg id="change.bank.infoAddress”" desc="change-bank" meaning="“info-address"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:84</source>Adresse:</msg>
+  <msg id="change.bank.infoPost”" desc="change-bank" meaning="“info-post"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:88</source>Postnr:</msg>
+  <msg id="change.bank.infoMail”" desc="change-bank" meaning="“info-mail"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:94</source>E-post:</msg>
+  <msg id="change.bank.infoContact.phone”" desc="change-bank" meaning="“info-contact-phone"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:98,100</source>
+  Jeg ønsker at dere kontakter meg per telefon.
+</msg>
+  <msg id="change.bank.infoConfirmation”" desc="change-bank" meaning="“info-confirmation"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:101,104</source>
+  Jeg bekrefter at jeg er over 18 år og myndig eller oppnevnt som verge, samt at
+  banken ved behov kan foreta en kredittvurdering.
+</msg>
+  <msg id="change.bank.kindRegards”" desc="change-bank" meaning="“kind-regards"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:105,108</source>
+  Mvh,<ph name="LINE_BREAK"><ex>&lt;br&gt;</ex>&lt;br&gt;</ph>
+  <ph name="INTERPOLATION"><ex>{{ data.preview.clientInfo.name }}</ex>{{ data.preview.clientInfo.name }}</ph>
+</msg>
+  <msg id="change.bank.infoSent”" desc="change-bank" meaning="“info-sent-message"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:113,117</source>
+  Meldingen sendes til din bank per mail med deg som avsender. Du får også en
+  kopi av meldingen i din innboks. Ønsker du å kontakte din bank direkte kan du
+  kopiere teksten og bruke den som utgangspunkt for dialog.
+</msg>
+  <msg id="change.bank.ageConfirmation”" desc="change-bank" meaning="“age-confirmation"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:123,126</source>
+    Jeg bekrefter at jeg er over 18 år og myndig eller oppnevnt som verge, samt
+    at banken ved behov kan foreta en kredittvurdering.
+  </msg>
+  <msg id="change.bank.sendBank”" desc="change-bank" meaning="“send-bank"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:133,134</source>Send til banken
+    </msg>
+  <msg id="change.bank.cancel”" desc="change-bank" meaning="“cancel"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:136,138</source>
+      Avbryt
+    </msg>
+  <msg id="get.offer.from.bank.good”" desc="get-offer-from-bank" meaning="“good"><source>app/features/dashboard/offers/get-offer-from-bank-dialog/get-offer-from-bank-dialog.component.html:3</source>Godt valg!</msg>
+  <msg id="get.offer.from.bank.change”" desc="get-offer-from-bank" meaning="“change"><source>app/features/dashboard/offers/get-offer-from-bank-dialog/get-offer-from-bank-dialog.component.html:4</source>Å bytte bank er lettere enn du tror.</msg>
+  <msg id="get.offer.from.bank.passedOn”" desc="get-offer-from-bank" meaning="“passed-on"><source>app/features/dashboard/offers/get-offer-from-bank-dialog/get-offer-from-bank-dialog.component.html:5,6</source>Du blir nå videresendt til Sbankens søknadssystem. Du oppretter da et kundeforhold i Sbanken samtidig som du søker.
+  Dette går raskt med BankID og koster ingenting.</msg>
+  <msg id="get.offer.from.bank.continue”" desc="get-offer-from-bank" meaning="“continue"><source>app/features/dashboard/offers/get-offer-from-bank-dialog/get-offer-from-bank-dialog.component.html:8,10</source>
+Fortsett
+</msg>
+  <msg id="leverage.too.high.value”" desc="leverage-too-high" meaning="“high-value"><source>app/features/dashboard/offers/ltv-too-high-dialog/ltv-too-high-dialog.component.html:5</source>Boligverdi over 85%</msg>
+  <msg id="leverage.too.high.highLevrage”" desc="leverage-too-high" meaning="“high-leverage"><source>app/features/dashboard/offers/ltv-too-high-dialog/ltv-too-high-dialog.component.html:7,11</source>Utifra boligverdien har vi beregnet er belåningsgraden din over 85%. 
+    Bankene kan i utgangspunktet ikke gi tilbud hvis belåningsgraden er høyere. 
+    Tilbudene du ser er basert på en belåningsgrad på 85%. Det kan være flere 
+    grunner til at vi har beregnet din belåningsgrad feil: 
+</msg>
+  <msg id="leverage.too.high.lowValue”" desc="leverage-too-high" meaning="“low-value"><source>app/features/dashboard/offers/ltv-too-high-dialog/ltv-too-high-dialog.component.html:13,17</source>
+    <ph name="START_LIST_ITEM"><ex>&lt;li&gt;</ex>&lt;li&gt;</ph>Vi har bommet på estimatet og estimert for lav verdi<ph name="CLOSE_LIST_ITEM"><ex>&lt;/li&gt;</ex>&lt;/li&gt;</ph>
+    <ph name="START_LIST_ITEM"><ex>&lt;li&gt;</ex>&lt;li&gt;</ph>Du har kausjonist/medlånetaker som stiller ekstra sikkerhet<ph name="CLOSE_LIST_ITEM"><ex>&lt;/li&gt;</ex>&lt;/li&gt;</ph>
+    <ph name="START_LIST_ITEM"><ex>&lt;li&gt;</ex>&lt;li&gt;</ph>Du har sikkerhet i flere eiendommer<ph name="CLOSE_LIST_ITEM"><ex>&lt;/li&gt;</ex>&lt;/li&gt;</ph>
+</msg>
+  <msg id="leverage.too.high.change”" desc="leverage-too-high" meaning="“change"><source>app/features/dashboard/offers/ltv-too-high-dialog/ltv-too-high-dialog.component.html:19,23</source>
+    Du kan endre boligverdien og/eller legge til flere boliger i boligfanen ved å klikke her.
+    Har du kausjonist anbefaler vi deg også å sjekke at boligverdien stemmer, men utover det 
+    trenger du ikke endre noe.
+</msg>
+  <msg id="offers.mainPage.high”" desc="offers-main" meaning="“too-high-leverage"><source>app/features/dashboard/offers/offers.component.html:19,24</source>
+        <ph name="START_BOLD_TEXT"><ex>&lt;b&gt;</ex>&lt;b&gt;</ph>OBS:<ph name="CLOSE_BOLD_TEXT"><ex>&lt;/b&gt;</ex>&lt;/b&gt;</ph> Vi har beregnet belåningsgraden din til over 85%. 
+        Vennligst kontroller boligverdien i boligfanen. Du kan også lese 
+        mer om dette ved å  <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>klikke her<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph>.
+        
+      </msg>
+  <msg id="offers.mainPage.assumption”" desc="offers-main" meaning="“assumption"><source>app/features/dashboard/offers/offers.component.html:33,38</source>
+        <ph name="START_BOLD_TEXT"><ex>&lt;b&gt;</ex>&lt;b&gt;</ph>OBS:<ph name="CLOSE_BOLD_TEXT"><ex>&lt;/b&gt;</ex>&lt;/b&gt;</ph> Vi får kun hentet din nominelle rente og lånebeløp. For
+        utregninger har vi tatt utgangspunkt i en gjenværende løpetid på 20 år,
+        månedlige betalinger og 50,- i termingebyr. Faktisk løpetid og
+        termingebyrer vil endre forventede besparelser.
+      </msg>
+  <msg id="offers.mainPage.highCheck”" desc="offers-main" meaning="“too-high-leverage-check"><source>app/features/dashboard/offers/offers.component.html:93,98</source>
+        <ph name="START_BOLD_TEXT"><ex>&lt;b&gt;</ex>&lt;b&gt;</ph>OBS:<ph name="CLOSE_BOLD_TEXT"><ex>&lt;/b&gt;</ex>&lt;/b&gt;</ph> Vi har beregnet belåningsgraden din til over 85%. 
+        Vennligst kontroller boligverdien i boligfanen. Du kan også lese 
+        mer om dette ved å  <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>klikke her<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph>.
+        
+      </msg>
+  <msg id="offers.mainPage.assumption2”" desc="offers-main" meaning="“assumption2"><source>app/features/dashboard/offers/offers.component.html:106,111</source>
+        <ph name="START_BOLD_TEXT"><ex>&lt;b&gt;</ex>&lt;b&gt;</ph>OBS:<ph name="CLOSE_BOLD_TEXT"><ex>&lt;/b&gt;</ex>&lt;/b&gt;</ph> Vi får kun hentet din nominelle rente og lånebeløp. For
+        utregninger har vi tatt utgangspunkt i en gjenværende løpetid på 20 år,
+        månedlige betalinger og 50,- i termingebyr. Faktisk løpetid og
+        termingebyrer vil endre forventede besparelser.
+      </msg>
+  <msg id="offers.mainPage.interest.veryGood”" desc="offers-main" meaning="“interest-very-good"><source>app/features/dashboard/offers/offers.component.html:119,121</source>
+        Renten din er <ph name="START_BOLD_TEXT"><ex>&lt;b&gt;</ex>&lt;b&gt;</ph>svært god<ph name="CLOSE_BOLD_TEXT"><ex>&lt;/b&gt;</ex>&lt;/b&gt;</ph>
+      </msg>
+  <msg id="offers.mainPage.interest.good”" desc="offers-main" meaning="“interest-good"><source>app/features/dashboard/offers/offers.component.html:126,128</source>
+        Renten din er <ph name="START_BOLD_TEXT"><ex>&lt;b&gt;</ex>&lt;b&gt;</ph>god<ph name="CLOSE_BOLD_TEXT"><ex>&lt;/b&gt;</ex>&lt;/b&gt;</ph>, men ikke best
+      </msg>
+  <msg id="offers.mainPage.interest.ok”" desc="offers-main" meaning="“interest-ok"><source>app/features/dashboard/offers/offers.component.html:133,135</source> 
+        Renten din er <ph name="START_BOLD_TEXT"><ex>&lt;b&gt;</ex>&lt;b&gt;</ph>OK<ph name="CLOSE_BOLD_TEXT"><ex>&lt;/b&gt;</ex>&lt;/b&gt;</ph>, men du kan få bedre
+      </msg>
+  <msg id="offers.mainPage.interest.bad”" desc="offers-main" meaning="“interest-bad"><source>app/features/dashboard/offers/offers.component.html:140,142</source>
+        Renten din er <ph name="START_BOLD_TEXT"><ex>&lt;b&gt;</ex>&lt;b&gt;</ph>dårlig<ph name="CLOSE_BOLD_TEXT"><ex>&lt;/b&gt;</ex>&lt;/b&gt;</ph> og du kan spare en del
+      </msg>
+  <msg id="offers.mainPage.interest.veryBad”" desc="offers-main" meaning="“interest-very-bad"><source>app/features/dashboard/offers/offers.component.html:143,145</source>
+        Renten din er <ph name="START_BOLD_TEXT"><ex>&lt;b&gt;</ex>&lt;b&gt;</ph>svært  dårlig<ph name="CLOSE_BOLD_TEXT"><ex>&lt;/b&gt;</ex>&lt;/b&gt;</ph> 
+      </msg>
+  <msg id="offers.mainPage.interest.bad2”" desc="offers-main" meaning="“interest-bad2"><source>app/features/dashboard/offers/offers.component.html:151</source>Dårlig rente</msg>
+  <msg id="offers.mainPage.interest.good2”" desc="offers-main" meaning="“interest-good2"><source>app/features/dashboard/offers/offers.component.html:152</source>Bra rente</msg>
+  <msg id="offers.mainPage.save”" desc="offers-main" meaning="“save"><source>app/features/dashboard/offers/offers.component.html:167</source>Du kan spare</msg>
+  <msg id="offers.mainPage.time”" desc="offers-main" meaning="“time"><source>app/features/dashboard/offers/offers.component.html:174</source>over lånets løpetid</msg>
+  <msg id="offers.mainPage.yourInterest”" desc="offers-main" meaning="“your-interest"><source>app/features/dashboard/offers/offers.component.html:185</source><source>app/features/dashboard/offers/offers.component.html:287</source>Din effektive rente</msg>
+  <msg id="offers.mainPage.bestOffer”" desc="offers-main" meaning="“best-offer"><source>app/features/dashboard/offers/offers.component.html:189,191</source>
+                Beste tilbud <ph name="TAG_IMG"><ex>&lt;img&gt;</ex>&lt;img&gt;</ph>
+              </msg>
+  <msg id="offers.mainPage.value”" desc="offers-main" meaning="“value"><source>app/features/dashboard/offers/offers.component.html:200,202</source>
+                Boligverdi <ph name="TAG_IMG"><ex>&lt;img&gt;</ex>&lt;img&gt;</ph>
+              </msg>
+  <msg id="offers.mainPage.millions”" desc="offers-main" meaning="“millions"><source>app/features/dashboard/offers/offers.component.html:203,206</source>
+                <ph name="INTERPOLATION"><ex>{{ offersInfo.propertyValue / 1000000 | number: &quot;1.1-3&quot; }}</ex>{{ offersInfo.propertyValue / 1000000 | number: &quot;1.1-3&quot; }}</ph>
+                mill.
+              </msg>
+  <msg id="offers.mainPage.debt”" desc="offers-main" meaning="“debt"><source>app/features/dashboard/offers/offers.component.html:207,213</source>
+                  Fellesgjeld
+                <ph name="INTERPOLATION"><ex>{{
+                  (offersInfo.commonDebt / 1000000 | number: &quot;1.1-2&quot;)
+                }}</ex>{{
+                  (offersInfo.commonDebt / 1000000 | number: &quot;1.1-2&quot;)
+                }}</ph>
+                mill.
+              </msg>
+  <msg id="offers.mainPage.virdiEstimate”" desc="offers-main" meaning="“virdi-estimate"><source>app/features/dashboard/offers/offers.component.html:215,218</source>
+                Estimat levert av
+                <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>virdi.no<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph>
+              </msg>
+  <msg id="offers.mainPage.loanRemaining”" desc="offers-main" meaning="“loan-remaining"><source>app/features/dashboard/offers/offers.component.html:221,223</source>
+                Gjenværende lån <ph name="TAG_IMG"><ex>&lt;img&gt;</ex>&lt;img&gt;</ph>
+              </msg>
+  <msg id="offers.mainPage.millions2”" desc="offers-main" meaning="“millions2"><source>app/features/dashboard/offers/offers.component.html:224,229</source>
+                <ph name="INTERPOLATION"><ex>{{
+                  offersInfo.totalOutstandingDebt / 1000000 | number: &quot;1.1-3&quot;
+                }}</ex>{{
+                  offersInfo.totalOutstandingDebt / 1000000 | number: &quot;1.1-3&quot;
+                }}</ph>
+                mill.
+              </msg>
+  <msg id="offers.mainPage.leverage2”" desc="offers-main" meaning="“leverage2"><source>app/features/dashboard/offers/offers.component.html:230,236</source><source>app/features/dashboard/offers/offers.component.html:327,333</source>
+                Belåningsgrad
+                <ph name="INTERPOLATION"><ex>{{
+                  (offersInfo.ltv) *
+                    100 | number: &quot;1.1-1&quot;
+                }}</ex>{{
+                  (offersInfo.ltv) *
+                    100 | number: &quot;1.1-1&quot;
+                }}</ph>%
+              </msg>
+  <msg id="offers.mainPage.foundOffers”" desc="offers-main" meaning="“found-offers"><source>app/features/dashboard/offers/offers.component.html:244,257</source>
+            
+            
+              <ph name="START_PARAGRAPH"><ex>&lt;p&gt;</ex>&lt;p&gt;</ph>Vi har funnet de beste tilbudene for deg<ph name="CLOSE_PARAGRAPH"><ex>&lt;/p&gt;</ex>&lt;/p&gt;</ph>
+              <ph name="START_TAG_RENTE_BUTTON"><ex>&lt;rente-button&gt;</ex>&lt;rente-button&gt;</ph>Se beste tilbud<ph name="CLOSE_TAG_RENTE_BUTTON"><ex>&lt;/rente-button&gt;</ex>&lt;/rente-button&gt;</ph>
+            </msg>
+  <msg id="offers.mainPage.helpDeal”" desc="offers-main" meaning="“help-deal"><source>app/features/dashboard/offers/offers.component.html:259,275</source>
+        
+              <ph name="START_PARAGRAPH"><ex>&lt;p&gt;</ex>&lt;p&gt;</ph>Vi hjelper deg å be banken din om lavere rente<ph name="CLOSE_PARAGRAPH"><ex>&lt;/p&gt;</ex>&lt;/p&gt;</ph>
+              <ph name="START_TAG_DIV"><ex>&lt;div&gt;</ex>&lt;div&gt;</ph>
+                <ph name="START_TAG_RENTE_BUTTON"><ex>&lt;rente-button&gt;</ex>&lt;rente-button&gt;</ph>Be banken matche tilbud<ph name="CLOSE_TAG_RENTE_BUTTON"><ex>&lt;/rente-button&gt;</ex>&lt;/rente-button&gt;</ph> 
+              <ph name="CLOSE_TAG_DIV"><ex>&lt;/div&gt;</ex>&lt;/div&gt;</ph> 
+            </msg>
+  <msg id="offers.mainPage.bestOffers2”" desc="offers-main" meaning="“best-offers2"><source>app/features/dashboard/offers/offers.component.html:291</source>Beste tilbud <ph name="TAG_IMG"><ex>&lt;img&gt;</ex>&lt;img&gt;</ph></msg>
+  <msg id="offers.mainPage.value2”" desc="offers-main" meaning="“value2"><source>app/features/dashboard/offers/offers.component.html:298,300</source>
+              Boligverdi <ph name="TAG_IMG"><ex>&lt;img&gt;</ex>&lt;img&gt;</ph>
+            </msg>
+  <msg id="offers.mainPage.millions3”" desc="offers-main" meaning="“millions3"><source>app/features/dashboard/offers/offers.component.html:301,304</source>
+              <ph name="INTERPOLATION"><ex>{{ offersInfo.propertyValue / 1000000 | number: &quot;1.1-3&quot; }}</ex>{{ offersInfo.propertyValue / 1000000 | number: &quot;1.1-3&quot; }}</ph>
+              mill.
+            </msg>
+  <msg id="offers.mainPage.debt2”" desc="offers-main" meaning="“debt2"><source>app/features/dashboard/offers/offers.component.html:305,310</source>
+                Fellesgjeld
+              <ph name="INTERPOLATION"><ex>{{
+                (offersInfo.commonDebt / 1000000 | number: &quot;1.1-2&quot;)
+              }}</ex>{{
+                (offersInfo.commonDebt / 1000000 | number: &quot;1.1-2&quot;)
+              }}</ph> mill.
+            </msg>
+  <msg id="offers.mainPage.virdiDelivered”" desc="offers-main" meaning="“virdi-delivered"><source>app/features/dashboard/offers/offers.component.html:312,315</source>
+              Estimat levert av
+              <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>virdi.no<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph>
+            </msg>
+  <msg id="offers.mainPage.remainingLoans2”" desc="offers-main" meaning="“remaining-loans2"><source>app/features/dashboard/offers/offers.component.html:318,320</source>
+              Gjenværende lån <ph name="TAG_IMG"><ex>&lt;img&gt;</ex>&lt;img&gt;</ph>
+            </msg>
+  <msg id="offers.mainPage.millions4”" desc="offers-main" meaning="“millions4"><source>app/features/dashboard/offers/offers.component.html:321,326</source>
+              <ph name="INTERPOLATION"><ex>{{
+                offersInfo.totalOutstandingDebt / 1000000 | number: &quot;1.1-3&quot;
+              }}</ex>{{
+                offersInfo.totalOutstandingDebt / 1000000 | number: &quot;1.1-3&quot;
+              }}</ph>
+              mill.
+            </msg>
+  <msg id="offers.mainPage.found.bestOffers”" desc="offers-main" meaning="“found-best-offers"><source>app/features/dashboard/offers/offers.component.html:401,414</source>
+      
+      
+        <ph name="START_PARAGRAPH"><ex>&lt;p&gt;</ex>&lt;p&gt;</ph>Vi har funnet de beste tilbudene for deg<ph name="CLOSE_PARAGRAPH"><ex>&lt;/p&gt;</ex>&lt;/p&gt;</ph>
+        <ph name="START_TAG_RENTE_BUTTON"><ex>&lt;rente-button&gt;</ex>&lt;rente-button&gt;</ph>Se beste tilbud<ph name="CLOSE_TAG_RENTE_BUTTON"><ex>&lt;/rente-button&gt;</ex>&lt;/rente-button&gt;</ph>
+      </msg>
+  <msg id="offers.mainPage.helpYou”" desc="offers-main" meaning="“help-you"><source>app/features/dashboard/offers/offers.component.html:416,432</source>
+  
+        <ph name="START_PARAGRAPH"><ex>&lt;p&gt;</ex>&lt;p&gt;</ph>Vi hjelper deg å be banken din om lavere rente<ph name="CLOSE_PARAGRAPH"><ex>&lt;/p&gt;</ex>&lt;/p&gt;</ph>
+        <ph name="START_TAG_DIV"><ex>&lt;div&gt;</ex>&lt;div&gt;</ph>
+          <ph name="START_TAG_RENTE_BUTTON"><ex>&lt;rente-button&gt;</ex>&lt;rente-button&gt;</ph>Be banken matche tilbud<ph name="CLOSE_TAG_RENTE_BUTTON"><ex>&lt;/rente-button&gt;</ex>&lt;/rente-button&gt;</ph> 
+        <ph name="CLOSE_TAG_DIV"><ex>&lt;/div&gt;</ex>&lt;/div&gt;</ph> 
+      </msg>
+  <msg id="offers.mainPage.bestOffers3”" desc="offers-main" meaning="“best-offers3"><source>app/features/dashboard/offers/offers.component.html:437,439</source>
+      Beste tilbud:
+    </msg>
+  <msg id="offers.mainPage.bankInterest”" desc="offers-main" meaning="“bank-interest"><source>app/features/dashboard/offers/offers.component.html:440,443</source>
+      <ph name="START_PARAGRAPH"><ex>&lt;p&gt;</ex>&lt;p&gt;</ph>BANK<ph name="CLOSE_PARAGRAPH"><ex>&lt;/p&gt;</ex>&lt;/p&gt;</ph>
+      <ph name="START_PARAGRAPH"><ex>&lt;p&gt;</ex>&lt;p&gt;</ph>Din effektive rente: <ph name="START_TAG_SPAN"><ex>&lt;span&gt;</ex>&lt;span&gt;</ph><ph name="INTERPOLATION"><ex>{{ offersInfo.totalEffectiveRate | number: &quot;1.2-2&quot; }}</ex>{{ offersInfo.totalEffectiveRate | number: &quot;1.2-2&quot; }}</ph>%<ph name="CLOSE_TAG_SPAN"><ex>&lt;/span&gt;</ex>&lt;/span&gt;</ph><ph name="CLOSE_PARAGRAPH"><ex>&lt;/p&gt;</ex>&lt;/p&gt;</ph>
+    </msg>
+  <msg id="offers.mainPage.mortgageCredit”" desc="offers-main" meaning="“mortgage-credit"><source>app/features/dashboard/offers/offers.component.html:493,496</source>
+      Rammelån/boligkreditt er kun tilgjengelig for lavere belåningsgrad enn
+      60%.
+    </msg>
+  <msg id="offers.mainPage.highLeverage.change”" desc="offers-main" meaning="“high-leverage-change"><source>app/features/dashboard/offers/offers.component.html:497,500</source>
+      Din belåningsgrad er høyere enn dette, vennligst endre din belåningsgrad
+      i<ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph> boligfanen<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph>
+    </msg>
+  <msg id="offers.mainPage.noOffers.found”" desc="offers-main" meaning="“no-offers-found"><source>app/features/dashboard/offers/offers.component.html:503</source>Ingen bedre tilbud enda...</msg>
+  <msg id="dashboard.loggedIn.offer”" desc="offer" meaning="“title"><source>app/features/dashboard/dashboard.component.html:6</source>Tilbud</msg>
+  <msg id="dashboard.loggedIn.myLoans”" desc="my-loans" meaning="“title2"><source>app/features/dashboard/dashboard.component.html:14</source>Mine lån</msg>
+  <msg id="dashboard.loggedIn.house”" desc="house" meaning="“title3"><source>app/features/dashboard/dashboard.component.html:22</source>Bolig</msg>
+  <msg id="dashboard.loggedIn.profile”" desc="profile" meaning="“title4"><source>app/features/dashboard/dashboard.component.html:30</source>Profil</msg>
+  <msg id="loans.title”" desc="loans" meaning="“title"><source>app/features/dashboard/loans/loans.component.html:3</source>Sammendrag av lån</msg>
+  <msg id="loans.outbound”" desc="loans" meaning="“text-outbound"><source>app/features/dashboard/loans/loans.component.html:7</source>Utestående lån</msg>
+  <msg id="loans.outbound.data”" desc="loans" meaning="“text-data"><source>app/features/dashboard/loans/loans.component.html:8,11</source>
+            <ph name="INTERPOLATION"><ex>{{ loansData.totalOutstandingDebt / 1000000 | number: &quot;1.3-3&quot; }}</ex>{{ loansData.totalOutstandingDebt / 1000000 | number: &quot;1.3-3&quot; }}</ph>
+            millioner
+          </msg>
+  <msg id="loans.interest”" desc="loans" meaning="“text-interest"><source>app/features/dashboard/loans/loans.component.html:14</source>Effektiv rente</msg>
+  <msg id="loans.interestFee”" desc="loans" meaning="“text-interest-fee"><source>app/features/dashboard/loans/loans.component.html:20,22</source>
+            Totale renter &amp; gebyrer
+          </msg>
+  <msg id="loans.interestFee.year”" desc="loans" meaning="“interest-fees-year"><source>app/features/dashboard/loans/loans.component.html:33,35</source><source>app/features/dashboard/loans/loans.component.html:93</source>
+            Renter &amp; gebyrer per år
+          </msg>
+  <msg id="loans.details”" desc="loans" meaning="“details"><source>app/features/dashboard/loans/loans.component.html:50</source>Detaljert</msg>
+  <msg id="loans.mortgage”" desc="loans" meaning="“mortgage"><source>app/features/dashboard/loans/loans.component.html:58</source>Utestående lån</msg>
+  <msg id="loans.mortgage.amount”" desc="loans" meaning="“mortgage-amount"><source>app/features/dashboard/loans/loans.component.html:59,61</source>
+                <ph name="INTERPOLATION"><ex>{{ loan.outstandingDebt / 1000000 | number: &quot;1.3-3&quot; }}</ex>{{ loan.outstandingDebt / 1000000 | number: &quot;1.3-3&quot; }}</ph> millioner
+              </msg>
+  <msg id="loans.mortgage.time”" desc="loans" meaning="“mortgage-time"><source>app/features/dashboard/loans/loans.component.html:64</source>Løpetid</msg>
+  <msg id="loans.mortgage.interest”" desc="loans" meaning="“mortgage-interest"><source>app/features/dashboard/loans/loans.component.html:71</source>Effektiv rente</msg>
+  <msg id="loans.nominal.interest”" desc="loans" meaning="“nominal-interest"><source>app/features/dashboard/loans/loans.component.html:75</source>Nominell rente</msg>
+  <msg id="loans.interestFee.total”" desc="loans" meaning="“total-interest-fee"><source>app/features/dashboard/loans/loans.component.html:83</source>Totale renter &amp; gebyrer</msg>
+  <msg id="house.component.save”" desc="save" meaning="“house"><source>app/features/dashboard/house/house.component.html:3</source>Lagret</msg>
+  <msg id="house.component.error”" desc="error" meaning="“house"><source>app/features/dashboard/house/house.component.html:7</source>Oops, noe gikk galt</msg>
+  <msg id="house.component.houses”" desc="my-houses" meaning="“title"><source>app/features/dashboard/house/house.component.html:15</source>Mine boliger</msg>
+  <msg id="house.component.value”" desc="value" meaning="“house"><source>app/features/dashboard/house/house.component.html:16</source>Total verdi: <ph name="INTERPOLATION"><ex>{{ totalPropertyValue | thousands }}</ex>{{ totalPropertyValue | thousands }}</ph></msg>
+  <msg id="house.component.addMore”" desc="additional" meaning="“house"><source>app/features/dashboard/house/house.component.html:30,32</source>
+        Legg til flere boliger
+    </msg>
+  <msg id="house.component.advertisement”" desc="advertisement" meaning="“house"><source>app/features/dashboard/house/house.component.html:46</source>Få full kontroll på din bolig med:</msg>
+  <msg id="profile.saved”" desc="profile" meaning="“saved"><source>app/features/dashboard/profile/profile.component.html:4</source>Lagret</msg>
+  <msg id="profile.issue”" desc="profile" meaning="“issue"><source>app/features/dashboard/profile/profile.component.html:8</source>Oops, noe gikk galt</msg>
+  <msg id="profile.issueMail”" desc="profile" meaning="“issue-mail"><source>app/features/dashboard/profile/profile.component.html:36,38</source>
+            Ikke gyldig email
+          </msg>
+  <msg id="profile.issueMail2”" desc="profile" meaning="“issue-mail2"><source>app/features/dashboard/profile/profile.component.html:42,44</source>
+            Ikke gyldig email
+          </msg>
+  <msg id="profile.issueEmpty”" desc="profile" meaning="“issue-empty"><source>app/features/dashboard/profile/profile.component.html:82,84</source>
+            Kan ikke være tom
+          </msg>
+  <msg id="profile.membership”" desc="profile" meaning="“membership"><source>app/features/dashboard/profile/profile.component.html:88</source>Medlemskap</msg>
+  <msg id="profile.membershipLength”" desc="profile" meaning="“membership-length"><source>app/features/dashboard/profile/profile.component.html:92</source>Medlemskap (<ph name="INTERPOLATION"><ex>{{ memberships.length }}</ex>{{ memberships.length }}</ph>)</msg>
+  <msg id="profile.myMemberships”" desc="profile" meaning="“my-memberships"><source>app/features/dashboard/profile/profile.component.html:119,121</source>
+              Mine medlemskap
+            </msg>
+  <msg id="profile.settingsMail”" desc="profile" meaning="“settings-mail"><source>app/features/dashboard/profile/profile.component.html:142</source>Epost innstillinger</msg>
+  <msg id="profile.settingsMail2”" desc="profile" meaning="“settings-mail2"><source>app/features/dashboard/profile/profile.component.html:149</source>Epost innstillinger</msg>
+  <msg id="profile.marketCheck”" desc="profile" meaning="“market-check"><source>app/features/dashboard/profile/profile.component.html:157</source>Markedsovervåkning / Rentesjekk av dine lån</msg>
+  <msg id="profile.monthEvery”" desc="profile" meaning="“month-every"><source>app/features/dashboard/profile/profile.component.html:172</source>Hver måned</msg>
+  <msg id="profile.monthTwo”" desc="profile" meaning="“month-two"><source>app/features/dashboard/profile/profile.component.html:177</source>Hver 2. måned</msg>
+  <msg id="profile.monthThree”" desc="profile" meaning="“month-three"><source>app/features/dashboard/profile/profile.component.html:182</source>Hver 3. måned</msg>
+  <msg id="profile.monthFour”" desc="profile" meaning="“month-four"><source>app/features/dashboard/profile/profile.component.html:187</source>Hver 4. måned</msg>
+  <msg id="profile.monthNever”" desc="profile" meaning="“month-never"><source>app/features/dashboard/profile/profile.component.html:192</source>Aldri</msg>
+  <msg id="profile.marketUpdates”" desc="profile" meaning="“market-updates"><source>app/features/dashboard/profile/profile.component.html:197,209</source>
+                <ph name="START_PARAGRAPH"><ex>&lt;p&gt;</ex>&lt;p&gt;</ph>
+                    Få markedsoppdateringer, nyheter og annen informasjon på epost
+                <ph name="CLOSE_PARAGRAPH"><ex>&lt;/p&gt;</ex>&lt;/p&gt;</ph>
+                <ph name="START_TAG_MAT_RADIO_GROUP"><ex>&lt;mat-radio-group&gt;</ex>&lt;mat-radio-group&gt;</ph>
+                <ph name="START_TAG_MAT_RADIO_BUTTON"><ex>&lt;mat-radio-button&gt;</ex>&lt;mat-radio-button&gt;</ph><ph name="START_TAG_SPAN"><ex>&lt;span&gt;</ex>&lt;span&gt;</ph>Ja<ph name="CLOSE_TAG_SPAN"><ex>&lt;/span&gt;</ex>&lt;/span&gt;</ph><ph name="CLOSE_TAG_MAT_RADIO_BUTTON"><ex>&lt;/mat-radio-button&gt;</ex>&lt;/mat-radio-button&gt;</ph>
+                <ph name="START_TAG_MAT_RADIO_BUTTON_1"><ex>&lt;mat-radio-button&gt;</ex>&lt;mat-radio-button&gt;</ph><ph name="START_TAG_SPAN"><ex>&lt;span&gt;</ex>&lt;span&gt;</ph>Nei<ph name="CLOSE_TAG_SPAN"><ex>&lt;/span&gt;</ex>&lt;/span&gt;</ph><ph name="CLOSE_TAG_MAT_RADIO_BUTTON"><ex>&lt;/mat-radio-button&gt;</ex>&lt;/mat-radio-button&gt;</ph>
+                <ph name="CLOSE_TAG_MAT_RADIO_GROUP"><ex>&lt;/mat-radio-group&gt;</ex>&lt;/mat-radio-group&gt;</ph>     
+              </msg>
+  <msg id="profile.marketOffers”" desc="profile" meaning="“market-offers"><source>app/features/dashboard/profile/profile.component.html:218</source>Hvilke tilbud vil du se?</msg>
+  <msg id="profile.seeOffers”" desc="profile" meaning="“see-offers"><source>app/features/dashboard/profile/profile.component.html:225</source>Hvilke tilbud vil du se?</msg>
+  <msg id="profile.seeOffers.special”" desc="profile" meaning="“see-offers-special"><source>app/features/dashboard/profile/profile.component.html:233,246</source>
+                <ph name="START_PARAGRAPH"><ex>&lt;p&gt;</ex>&lt;p&gt;</ph>
+                  Ønsker du <ph name="START_BOLD_TEXT"><ex>&lt;b&gt;</ex>&lt;b&gt;</ph>kun<ph name="CLOSE_BOLD_TEXT"><ex>&lt;/b&gt;</ex>&lt;/b&gt;</ph> å se tilbud på rammelån/flexilån?
+                <ph name="CLOSE_PARAGRAPH"><ex>&lt;/p&gt;</ex>&lt;/p&gt;</ph>
+
+                <ph name="START_TAG_MAT_RADIO_GROUP"><ex>&lt;mat-radio-group&gt;</ex>&lt;mat-radio-group&gt;</ph>
+                  <ph name="START_TAG_MAT_RADIO_BUTTON"><ex>&lt;mat-radio-button&gt;</ex>&lt;mat-radio-button&gt;</ph><ph name="START_TAG_SPAN"><ex>&lt;span&gt;</ex>&lt;span&gt;</ph>Ja<ph name="CLOSE_TAG_SPAN"><ex>&lt;/span&gt;</ex>&lt;/span&gt;</ph><ph name="CLOSE_TAG_MAT_RADIO_BUTTON"><ex>&lt;/mat-radio-button&gt;</ex>&lt;/mat-radio-button&gt;</ph>
+                  <ph name="START_TAG_MAT_RADIO_BUTTON_1"><ex>&lt;mat-radio-button&gt;</ex>&lt;mat-radio-button&gt;</ph><ph name="START_TAG_SPAN"><ex>&lt;span&gt;</ex>&lt;span&gt;</ph>Nei<ph name="CLOSE_TAG_SPAN"><ex>&lt;/span&gt;</ex>&lt;/span&gt;</ph><ph name="CLOSE_TAG_MAT_RADIO_BUTTON"><ex>&lt;/mat-radio-button&gt;</ex>&lt;/mat-radio-button&gt;</ph>
+                <ph name="CLOSE_TAG_MAT_RADIO_GROUP"><ex>&lt;/mat-radio-group&gt;</ex>&lt;/mat-radio-group&gt;</ph>
+              </msg>
+  <msg id="profile.seeOffers.other”" desc="profile" meaning="“see-offers-other"><source>app/features/dashboard/profile/profile.component.html:247,260</source>
+                <ph name="START_PARAGRAPH"><ex>&lt;p&gt;</ex>&lt;p&gt;</ph>
+                  Vil du se tilbud som krever andre produkter? (F.eks. bytte av nettbank og aktiv lønnskonto)
+                <ph name="CLOSE_PARAGRAPH"><ex>&lt;/p&gt;</ex>&lt;/p&gt;</ph>
+
+                <ph name="START_TAG_MAT_RADIO_GROUP"><ex>&lt;mat-radio-group&gt;</ex>&lt;mat-radio-group&gt;</ph>
+                  <ph name="START_TAG_MAT_RADIO_BUTTON"><ex>&lt;mat-radio-button&gt;</ex>&lt;mat-radio-button&gt;</ph><ph name="START_TAG_SPAN"><ex>&lt;span&gt;</ex>&lt;span&gt;</ph>Ja<ph name="CLOSE_TAG_SPAN"><ex>&lt;/span&gt;</ex>&lt;/span&gt;</ph><ph name="CLOSE_TAG_MAT_RADIO_BUTTON"><ex>&lt;/mat-radio-button&gt;</ex>&lt;/mat-radio-button&gt;</ph>
+                  <ph name="START_TAG_MAT_RADIO_BUTTON_1"><ex>&lt;mat-radio-button&gt;</ex>&lt;mat-radio-button&gt;</ph><ph name="START_TAG_SPAN"><ex>&lt;span&gt;</ex>&lt;span&gt;</ph>Nei<ph name="CLOSE_TAG_SPAN"><ex>&lt;/span&gt;</ex>&lt;/span&gt;</ph><ph name="CLOSE_TAG_MAT_RADIO_BUTTON"><ex>&lt;/mat-radio-button&gt;</ex>&lt;/mat-radio-button&gt;</ph>
+                <ph name="CLOSE_TAG_MAT_RADIO_GROUP"><ex>&lt;/mat-radio-group&gt;</ex>&lt;/mat-radio-group&gt;</ph>
+              </msg>
+  <msg id="profile.seeOffers.climate”" desc="profile" meaning="“see-offers-climate"><source>app/features/dashboard/profile/profile.component.html:262,278</source>
+                <ph name="START_PARAGRAPH"><ex>&lt;p&gt;</ex>&lt;p&gt;</ph>
+                  Er du interessert i lån som forutsetter energiklasse A eller
+                  B, nullhus, Svanemerket, tiltak for energimerking, etc.
+                <ph name="CLOSE_PARAGRAPH"><ex>&lt;/p&gt;</ex>&lt;/p&gt;</ph>
+
+                <ph name="START_TAG_MAT_RADIO_GROUP"><ex>&lt;mat-radio-group&gt;</ex>&lt;mat-radio-group&gt;</ph>
+                  <ph name="START_TAG_MAT_RADIO_BUTTON"><ex>&lt;mat-radio-button&gt;</ex>&lt;mat-radio-button&gt;</ph><ph name="START_TAG_SPAN"><ex>&lt;span&gt;</ex>&lt;span&gt;</ph>Ja<ph name="CLOSE_TAG_SPAN"><ex>&lt;/span&gt;</ex>&lt;/span&gt;</ph><ph name="CLOSE_TAG_MAT_RADIO_BUTTON"><ex>&lt;/mat-radio-button&gt;</ex>&lt;/mat-radio-button&gt;</ph>
+                  <ph name="START_TAG_MAT_RADIO_BUTTON_1"><ex>&lt;mat-radio-button&gt;</ex>&lt;mat-radio-button&gt;</ph><ph name="START_TAG_SPAN"><ex>&lt;span&gt;</ex>&lt;span&gt;</ph>Nei<ph name="CLOSE_TAG_SPAN"><ex>&lt;/span&gt;</ex>&lt;/span&gt;</ph><ph name="CLOSE_TAG_MAT_RADIO_BUTTON"><ex>&lt;/mat-radio-button&gt;</ex>&lt;/mat-radio-button&gt;</ph>
+                <ph name="CLOSE_TAG_MAT_RADIO_GROUP"><ex>&lt;/mat-radio-group&gt;</ex>&lt;/mat-radio-group&gt;</ph>
+              </msg>
+  <msg id="rate-type-fixed”" desc="rate-type" meaning="“not-available"><source>app/features/dashboard/rate-type-fixed/rate-type-fixed.component.html:4</source>Beklager, vi har ikke noen tjeneste for fastrente enda</msg>
+  <msg id="noLoans”" desc="no-loans" meaning="“error"><source>app/features/dashboard/no-loans/no-loans.component.html:4</source>Vi fant ingen lån, er du sikker på at du har valgt riktig bank?</msg>
+  <msg id="success.change.bank.sent”" desc="success-change-bank" meaning="“sent"><source>app/features/dashboard/offers/change-bank-dialog/success-change-bank-dialog/success-change-bank-dialog.component.html:4</source>E-post er nå sendt til din bank</msg>
+  <msg id="success.change.bank.sentYou”" desc="success-change-bank" meaning="“sent-you"><source>app/features/dashboard/offers/change-bank-dialog/success-change-bank-dialog/success-change-bank-dialog.component.html:6,9</source>
+      Vi har også sendt deg en epost fra prute@renteradar.no med kopi av eposten vi har sendt
+      til din bank. Hvis du ikke finner den, sjekk om eposten kan ha kommet i spam/søppelpost.
+    </msg>
+  <msg id="success.change.bank.sentTime”" desc="success-change-bank" meaning="“sent-time"><source>app/features/dashboard/offers/change-bank-dialog/success-change-bank-dialog/success-change-bank-dialog.component.html:10,13</source>
+      Bankene pleier å bruke én eller to uker på å svare deg.
+      Får du ikke noe svar fra banken i løpet av to uker, anbefaler vi følgende:
+    </msg>
+  <msg id="success.change.bank.instructions”" desc="success-change-bank" meaning="“instructions"><source>app/features/dashboard/offers/change-bank-dialog/success-change-bank-dialog/success-change-bank-dialog.component.html:14,18</source>
+      <ph name="START_LIST_ITEM"><ex>&lt;li&gt;</ex>&lt;li&gt;</ph>Kopier teksten vi har sendt til din bank og som ligger nederst i eposten<ph name="CLOSE_LIST_ITEM"><ex>&lt;/li&gt;</ex>&lt;/li&gt;</ph>
+      <ph name="START_LIST_ITEM"><ex>&lt;li&gt;</ex>&lt;li&gt;</ph>Logg inn på nettbanken hos banken din<ph name="CLOSE_LIST_ITEM"><ex>&lt;/li&gt;</ex>&lt;/li&gt;</ph>
+      <ph name="START_LIST_ITEM"><ex>&lt;li&gt;</ex>&lt;li&gt;</ph>Gå til din postkasse i nettbanken. Send en melding til banken derfra og lim inn teksten du har kopiert<ph name="CLOSE_LIST_ITEM"><ex>&lt;/li&gt;</ex>&lt;/li&gt;</ph>
+    </msg>
+  <msg id="success.change.bank.noResponse”" desc="success-change-bank" meaning="“no-response"><source>app/features/dashboard/offers/change-bank-dialog/success-change-bank-dialog/success-change-bank-dialog.component.html:19,22</source>
+      Får du fortsatt ikke svar fra banken din eller banken ikke vil sette ned renten,
+      er det kanskje på tide å bytte bank. Renteradar.no viser deg hvilken bank du bør bytte til.
+    </msg>
+  <msg id="success.change.bank.review”" desc="success-change-bank" meaning="“review"><source>app/features/dashboard/offers/change-bank-dialog/success-change-bank-dialog/success-change-bank-dialog.component.html:23,26</source>
+      Send oss gjerne en e-post på hei@renteradar.no eller bruk chat-funksjonen i tjenesten
+      for å fortelle oss om du har fått lavere rente eller om du har noen spørsmål.
+    </msg>
+  <msg id="success.change.bank.error”" desc="success-change-bank" meaning="“error"><source>app/features/dashboard/offers/change-bank-dialog/success-change-bank-dialog/success-change-bank-dialog.component.html:30</source>Noe gikk galt…</msg>
+  <msg id="success.change.bank.error2”" desc="success-change-bank" meaning="“error2"><source>app/features/dashboard/offers/change-bank-dialog/success-change-bank-dialog/success-change-bank-dialog.component.html:32,34</source>
+        Beklager, noe gikk galt og vi vil rette opp feilen så fort som mulig. Vennligst prøv igjen senere.
+      </msg>
+  <msg id="success.change.bank.goodLuck”" desc="success-change-bank" meaning="“good-luck"><source>app/features/dashboard/offers/change-bank-dialog/success-change-bank-dialog/success-change-bank-dialog.component.html:38,40</source>
+      <ph name="START_TAG_RENTE_BUTTON"><ex>&lt;rente-button&gt;</ex>&lt;rente-button&gt;</ph>Lykke til!<ph name="CLOSE_TAG_RENTE_BUTTON"><ex>&lt;/rente-button&gt;</ex>&lt;/rente-button&gt;</ph>
+    </msg>
+  <msg id="virdi.statistics”" desc="statistics" meaning="“title"><source>app/features/dashboard/house/virdi-statistics/virdi-statistics.component.html:1</source>Boligstatistikk</msg>
+  <msg id="virdi.statistics.sqmPrice”" desc="sqm-price" meaning="“title"><source>app/features/dashboard/house/virdi-statistics/virdi-statistics.component.html:12</source>Din kvadratmeterpris:</msg>
+  <msg id="virdi.statistics.avgSqm”" desc="avg-sqm" meaning="“input"><source>app/features/dashboard/house/virdi-statistics/virdi-statistics.component.html:13</source><ph name="INTERPOLATION"><ex>{{ averageSqmPrice | thousands }}</ex>{{ averageSqmPrice | thousands }}</ph> NOK</msg>
+  <msg id="virdi.statistics.houses”" desc="statistics" meaning="“houses"><source>app/features/dashboard/house/virdi-statistics/virdi-statistics.component.html:15</source>Boliger i <ph name="INTERPOLATION"><ex>{{ indexArea }}</ex>{{ indexArea }}</ph></msg>
+  <msg id="virdi.statistics.sales”" desc="statistics" meaning="“sales"><source>app/features/dashboard/house/virdi-statistics/virdi-statistics.component.html:17,20</source>
+    Antall salg i/på <ph name="INTERPOLATION"><ex>{{ indexArea }}</ex>{{ indexArea }}</ph> siste 6 mnder:
+    <ph name="START_BOLD_TEXT"><ex>&lt;b&gt;</ex>&lt;b&gt;</ph><ph name="INTERPOLATION_1"><ex>{{ openMarketSalesHalfYear }}</ex>{{ openMarketSalesHalfYear }}</ph><ph name="CLOSE_BOLD_TEXT"><ex>&lt;/b&gt;</ex>&lt;/b&gt;</ph>
+  </msg>
+  <msg id="virdi.statistics.priceDev”" desc="statistics" meaning="“price-dev"><source>app/features/dashboard/house/virdi-statistics/virdi-statistics.component.html:25</source>Prisutvikling i</msg>
+  <msg id="virdi.statistics.10k”" desc="statistics" meaning="“10k"><source>app/features/dashboard/house/virdi-statistics/virdi-statistics.component.html:28</source>kr i 10 000</msg>
+  <msg id="virdi.statistics.data”" desc="statistics" meaning="“data"><source>app/features/dashboard/house/virdi-statistics/virdi-statistics.component.html:31,33</source>
+  Data levert av <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>virdi.no<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph>
+</msg>
+  <msg id="offers.statistics.mortgageRelation”" desc="offers-statistics" meaning="“mortage-relation"><source>app/features/dashboard/offers/offers-statistics/offers-statistics.component.html:2</source>Din rente i forhold til andre i din bank</msg>
+  <msg id="offers.statistics.banksRelation”" desc="offers-statistics" meaning="“banks-relation"><source>app/features/dashboard/offers/offers-statistics/offers-statistics.component.html:8</source>Din rente i forhold til andre i alle banker</msg>
+  <msg id="offers.statistics.othersRelation”" desc="offers-statistics" meaning="“others-relation"><source>app/features/dashboard/offers/offers-statistics/offers-statistics.component.html:14</source>Din rente i forhold til andre i:</msg>
+  <msg id="offers.statistics.graph”" desc="offers-statistics" meaning="“graph"><source>app/features/dashboard/offers/offers-statistics/offers-statistics.component.html:35,38</source>
+    Grafen sammenligner renten din med andre som er <ph name="START_TAG_STRONG"><ex>&lt;strong&gt;</ex>&lt;strong&gt;</ph><ph name="INTERPOLATION"><ex>{{ageSegment}}</ex>{{ageSegment}}</ph><ph name="CLOSE_TAG_STRONG"><ex>&lt;/strong&gt;</ex>&lt;/strong&gt;</ph>, har <ph name="START_TAG_STRONG"><ex>&lt;strong&gt;</ex>&lt;strong&gt;</ph><ph name="INTERPOLATION_1"><ex>{{totalOutstandingDebtSegment}}</ex>{{totalOutstandingDebtSegment}}</ph><ph name="CLOSE_TAG_STRONG"><ex>&lt;/strong&gt;</ex>&lt;/strong&gt;</ph> 
+     og <ph name="START_TAG_STRONG"><ex>&lt;strong&gt;</ex>&lt;strong&gt;</ph>belåningsgrad <ph name="INTERPOLATION_2"><ex>{{ltvSegment}}</ex>{{ltvSegment}}</ph><ph name="CLOSE_TAG_STRONG"><ex>&lt;/strong&gt;</ex>&lt;/strong&gt;</ph>
+  </msg>
+  <msg id="offers.statistics.noShow.graph”" desc="offers-statistics" meaning="“no-show-graph"><source>app/features/dashboard/offers/offers-statistics/offers-statistics.component.html:40,42</source>
+    *Grafen tar ikke hensyn til geografi og medlemskap
+  </msg>
+  <msg id="offers.statistics.noShow2.graph”" desc="offers-statistics" meaning="“no-show2-graph"><source>app/features/dashboard/offers/offers-statistics/offers-statistics.component.html:45,48</source>
+  *Grafen tar ikke hensyn til alder, belåninsgrad, fordeler av
+  medlemskap, etc. da vi ikke har nok data for din brukergruppe
+</msg>
+  <msg id="dialog.yesNo”" desc="dialog" meaning="“yes-no"><source>app/shared/components/ui-components/dialog/dialog.component.html:5,12</source>
+      <ph name="START_TAG_RENTE_BUTTON"><ex>&lt;rente-button&gt;</ex>&lt;rente-button&gt;</ph>Ja<ph name="CLOSE_TAG_RENTE_BUTTON"><ex>&lt;/rente-button&gt;</ex>&lt;/rente-button&gt;</ph>
+      <ph name="START_TAG_RENTE_BUTTON_1"><ex>&lt;rente-button&gt;</ex>&lt;rente-button&gt;</ph>Nei<ph name="CLOSE_TAG_RENTE_BUTTON"><ex>&lt;/rente-button&gt;</ex>&lt;/rente-button&gt;</ph>
+    </msg>
+  <msg id="address.component”" desc="house" meaning="“title"><source>app/features/dashboard/house/address/address.form.component.html:4</source>Bolig <ph name="INTERPOLATION"><ex>{{ index + 1 }}</ex>{{ index + 1 }}</ph></msg>
+  <msg id="address.component.value”" desc="house" meaning="“value"><source>app/features/dashboard/house/address/address.form.component.html:55</source>Boligverdi</msg>
+  <msg id="address.component.estimate”" desc="house" meaning="“estimate"><source>app/features/dashboard/house/address/address.form.component.html:81,83</source>
+            Estimert av Virdi
+          </msg>
+  <msg id="address.component.save”" desc="house" meaning="“save"><source>app/features/dashboard/house/address/address.form.component.html:85,87</source>
+            Lagre endringene for å hente estimat
+          </msg>
+  <msg id="address.component.save2”" desc="house" meaning="“save2"><source>app/features/dashboard/house/address/address.form.component.html:116,124</source>
+      <ph name="START_TAG_RENTE_BUTTON"><ex>&lt;rente-button&gt;</ex>&lt;rente-button&gt;</ph>Lagre endringer
+    <ph name="CLOSE_TAG_RENTE_BUTTON"><ex>&lt;/rente-button&gt;</ex>&lt;/rente-button&gt;</ph>
+  </msg>
+  <msg id="details.component.product”" desc="details" meaning="“product"><source>app/features/dashboard/offers/details/details.component.html:5</source>Produkt</msg>
+  <msg id="details.component.maxLeverage”" desc="details" meaning="“max-leverage"><source>app/features/dashboard/offers/details/details.component.html:9</source>Max belåningsgrad</msg>
+  <msg id="details.component.nominalInterest”" desc="details" meaning="“nominal-interest"><source>app/features/dashboard/offers/details/details.component.html:13</source>Nominell rente</msg>
+  <msg id="details.component.efficientInterest”" desc="details" meaning="“efficient-interest"><source>app/features/dashboard/offers/details/details.component.html:17</source>Effektiv rente</msg>
+  <msg id="details.component.productDemand”" desc="details" meaning="“product-demand"><source>app/features/dashboard/offers/details/details.component.html:20,23</source>
+          <ph name="START_PARAGRAPH"><ex>&lt;p&gt;</ex>&lt;p&gt;</ph>Krav om annet produkt<ph name="CLOSE_PARAGRAPH"><ex>&lt;/p&gt;</ex>&lt;/p&gt;</ph>
+          <ph name="START_PARAGRAPH_1"><ex>&lt;p&gt;</ex>&lt;p&gt;</ph><ph name="INTERPOLATION"><ex>{{ offer.requiredProductPackage == null ? &quot;Nei&quot; : &quot;Ja&quot; }}</ex>{{ offer.requiredProductPackage == null ? &quot;Nei&quot; : &quot;Ja&quot; }}</ph><ph name="CLOSE_PARAGRAPH"><ex>&lt;/p&gt;</ex>&lt;/p&gt;</ph>
+      </msg>
+  <msg id="details.component.productPackage”" desc="details" meaning="“product-package"><source>app/features/dashboard/offers/details/details.component.html:26</source>Produktpakke</msg>
+  <msg id="details.component.productPackage.no”" desc="details" meaning="“product-no-package"><source>app/features/dashboard/offers/details/details.component.html:27</source><ph name="INTERPOLATION"><ex>{{ offer.requiredProductPackage == null ? &quot;Ingen krav&quot; :  offer.requiredProductPackage}}</ex>{{ offer.requiredProductPackage == null ? &quot;Ingen krav&quot; :  offer.requiredProductPackage}}</ph></msg>
+  <msg id="details.component.maxTime”" desc="details" meaning="“max-time"><source>app/features/dashboard/offers/details/details.component.html:30</source>Max løpetid</msg>
+  <msg id="details.component.maxDeduction”" desc="details" meaning="“max-deduction"><source>app/features/dashboard/offers/details/details.component.html:34</source>Max avdragsfrihet</msg>
+  <msg id="details.component.feeMonth”" desc="details" meaning="“fee-month"><source>app/features/dashboard/offers/details/details.component.html:38</source>Termingebyr</msg>
+  <msg id="details.component.feeEstablish”" desc="details" meaning="“fee-establish"><source>app/features/dashboard/offers/details/details.component.html:42</source>Etableringsgebyr</msg>
+  <msg id="details.component.feeStart”" desc="details" meaning="“fee-start"><source>app/features/dashboard/offers/details/details.component.html:46</source>Depotgebyr</msg>
+  <msg id="details.component.market”" desc="details" meaning="“market"><source>app/features/dashboard/offers/details/details.component.html:50</source>Markedsområde</msg>
+  <msg id="details.component.demandMembership”" desc="details" meaning="“demand-membership"><source>app/features/dashboard/offers/details/details.component.html:54</source>Forutsetter medlemskap</msg>
+  <msg id="details.component.noYes”" desc="details" meaning="“no-yes"><source>app/features/dashboard/offers/details/details.component.html:55</source><ph name="INTERPOLATION"><ex>{{ offer.requiredMembership == null ? &quot;Nei&quot; : &quot;Ja&quot; }}</ex>{{ offer.requiredMembership == null ? &quot;Nei&quot; : &quot;Ja&quot; }}</ph></msg>
+  <msg id="details.component.membership”" desc="details" meaning="“membership"><source>app/features/dashboard/offers/details/details.component.html:59</source>Medlemskap</msg>
+  <msg id="details.component.other”" desc="details" meaning="“other-conditions"><source>app/features/dashboard/offers/details/details.component.html:67</source><ph name="INTERPOLATION"><ex>{{offer.otherConditions ? &quot;Forbehold:&quot; : &quot;Ingen forbehold&quot;}}</ex>{{offer.otherConditions ? &quot;Forbehold:&quot; : &quot;Ingen forbehold&quot;}}</ph> </msg>
+  <msg id="offer.card.title”" desc="offer-card" meaning="“title"><source>app/features/dashboard/offers/offer-card/offer-card.component.html:50</source>Du sparer</msg>
+  <msg id="offer.card.over.time”" desc="offer-card" meaning="“over-time"><source>app/features/dashboard/offers/offer-card/offer-card.component.html:60</source>over lånets løpetid</msg>
+  <msg id="offer.card.firstYear”" desc="offer-card" meaning="“first-year"><source>app/features/dashboard/offers/offer-card/offer-card.component.html:69</source>første år</msg>
+  <msg id="offer.card.applicationTime”" desc="offer-card" meaning="“application-time"><source>app/features/dashboard/offers/offer-card/offer-card.component.html:78</source>Hvor lang tid tar det å søke:</msg>
+  <msg id="offer.card.demandChange”" desc="offer-card" meaning="“demand-change"><source>app/features/dashboard/offers/offer-card/offer-card.component.html:84</source>Krever bytte av nettbank:</msg>
+  <msg id="offer.card.noYes”" desc="offer-card" meaning="“no-yes"><source>app/features/dashboard/offers/offer-card/offer-card.component.html:85</source><ph name="INTERPOLATION"><ex>{{ offer.requiredProductPackage == null ? &quot;Nei&quot; : &quot;Ja&quot; }}</ex>{{ offer.requiredProductPackage == null ? &quot;Nei&quot; : &quot;Ja&quot; }}</ph></msg>
+  <msg id="offer.card.customerSatisfied”" desc="offer-card" meaning="“customer-satisfied"><source>app/features/dashboard/offers/offer-card/offer-card.component.html:89</source>Kundetilfredshet:</msg>
+  <msg id="offer.card.details”" desc="offer-card" meaning="“details"><source>app/features/dashboard/offers/offer-card/offer-card.component.html:94,104</source>
+               
+                    <ph name="START_TAG_MAT_EXPANSION_PANEL"><ex>&lt;mat-expansion-panel&gt;</ex>&lt;mat-expansion-panel&gt;</ph>
+                        <ph name="START_TAG_MAT_EXPANSION_PANEL_HEADER"><ex>&lt;mat-expansion-panel-header&gt;</ex>&lt;mat-expansion-panel-header&gt;</ph>
+                          Detaljer
+                        <ph name="CLOSE_TAG_MAT_EXPANSION_PANEL_HEADER"><ex>&lt;/mat-expansion-panel-header&gt;</ex>&lt;/mat-expansion-panel-header&gt;</ph>
+                        
+                        <ph name="START_TAG_RENTE_DETAILS"><ex>&lt;rente-details&gt;</ex>&lt;rente-details&gt;</ph><ph name="CLOSE_TAG_RENTE_DETAILS"><ex>&lt;/rente-details&gt;</ex>&lt;/rente-details&gt;</ph>
+                      <ph name="CLOSE_TAG_MAT_EXPANSION_PANEL"><ex>&lt;/mat-expansion-panel&gt;</ex>&lt;/mat-expansion-panel&gt;</ph>
+              
+            </msg>
+  <msg id="offer.card.seeWebpage”" desc="offer-card" meaning="“see-webpage"><source>app/features/dashboard/offers/offer-card/offer-card.component.html:109,115</source>
+                        <ph name="START_TAG_RENTE_BUTTON_SMALL"><ex>&lt;rente-button-small&gt;</ex>&lt;rente-button-small&gt;</ph>Se mer på <ph name="INTERPOLATION"><ex>{{getbankNameOrDefault(offer)}}</ex>{{getbankNameOrDefault(offer)}}</ph>s <ph name="LINE_BREAK"><ex>&lt;br&gt;</ex>&lt;br&gt;</ph> hjemmeside
+                        <ph name="CLOSE_TAG_RENTE_BUTTON_SMALL"><ex>&lt;/rente-button-small&gt;</ex>&lt;/rente-button-small&gt;</ph>
+                    </msg>
+  <msg id="offer.card.getOffer”" desc="offer-card" meaning="“get-offer"><source>app/features/dashboard/offers/offer-card/offer-card.component.html:117,124</source>
+                        <ph name="START_TAG_RENTE_BUTTON_SMALL"><ex>&lt;rente-button-small&gt;</ex>&lt;rente-button-small&gt;</ph>Få tilbud fra <ph name="INTERPOLATION"><ex>{{getbankNameOrDefault(offer)}}</ex>{{getbankNameOrDefault(offer)}}</ph>!
+                        <ph name="CLOSE_TAG_RENTE_BUTTON_SMALL"><ex>&lt;/rente-button-small&gt;</ex>&lt;/rente-button-small&gt;</ph>
+                        <ph name="START_PARAGRAPH"><ex>&lt;p&gt;</ex>&lt;p&gt;</ph> (Ingen avtale med banken)<ph name="CLOSE_PARAGRAPH"><ex>&lt;/p&gt;</ex>&lt;/p&gt;</ph>
+                    </msg>
+  <msg id="offer.card.numberDetails”" desc="offer-card" meaning="“number-details"><source>app/features/dashboard/offers/offer-card/offer-card.component.html:130,136</source><ph name="START_TAG_SPAN"><ex>&lt;span&gt;</ex>&lt;span&gt;</ph>
+                <ph name="CLOSE_TAG_SPAN"><ex>&lt;/span&gt;</ex>&lt;/span&gt;</ph> Eff.rente <ph name="INTERPOLATION"><ex>{{offer.effectiveRate | number: &quot;1.2-2&quot;}}</ex>{{offer.effectiveRate | number: &quot;1.2-2&quot;}}</ph>%,
+                Lånebeløp <ph name="INTERPOLATION_1"><ex>{{offer.outstandingDebt | number: &quot;1.0&quot; }}</ex>{{offer.outstandingDebt | number: &quot;1.0&quot; }}</ph>,
+                <ph name="INTERPOLATION_2"><ex>{{offer.loanPeriodYears | number: &quot;1.1-1&quot; }}</ex>{{offer.loanPeriodYears | number: &quot;1.1-1&quot; }}</ph> år,
+                Kostnad: <ph name="INTERPOLATION_3"><ex>{{offer.cost | number: &quot;1.0&quot; }}</ex>{{offer.cost | number: &quot;1.0&quot; }}</ph>,
+                Totalt: <ph name="INTERPOLATION_4"><ex>{{offer.totalCost | number: &quot;1.0&quot; }}</ex>{{offer.totalCost | number: &quot;1.0&quot; }}</ph>
+            </msg>
+  <msg id="offer.card.big.title”" desc="offer-card-big" meaning="“title"><source>app/features/dashboard/offers/offer-card-big/offer-card-big.component.html:24</source><ph name="START_PARAGRAPH"><ex>&lt;p&gt;</ex>&lt;p&gt;</ph>Rentebesparelse<ph name="CLOSE_PARAGRAPH"><ex>&lt;/p&gt;</ex>&lt;/p&gt;</ph></msg>
+  <msg id="offer.card.big.time”" desc="offer-card-big" meaning="“time"><source>app/features/dashboard/offers/offer-card-big/offer-card-big.component.html:33</source>over lånets løpetid</msg>
+  <msg id="offer.card.big.firstYear”" desc="offer-card-big" meaning="“first-year"><source>app/features/dashboard/offers/offer-card-big/offer-card-big.component.html:42</source>første år</msg>
+  <msg id="offer.card.big.efficient”" desc="offer-card-big" meaning="“efficient"><source>app/features/dashboard/offers/offer-card-big/offer-card-big.component.html:48</source>Effektiv rente</msg>
+  <msg id="offer.card.big.demandChange”" desc="offer-card-big" meaning="“demand-change"><source>app/features/dashboard/offers/offer-card-big/offer-card-big.component.html:56</source>Krever bytte av nettbank</msg>
+  <msg id="offer.card.big.noYes”" desc="offer-card-big" meaning="“no-yes"><source>app/features/dashboard/offers/offer-card-big/offer-card-big.component.html:60,62</source>
+              <ph name="INTERPOLATION"><ex>{{ offer.requiredProductPackage == null ? &quot;Nei&quot; : &quot;Ja&quot; }}</ex>{{ offer.requiredProductPackage == null ? &quot;Nei&quot; : &quot;Ja&quot; }}</ph>
+            </msg>
+  <msg id="offer.card.big.customerSatisfaction”" desc="offer-card-big" meaning="“customer-satisfaction"><source>app/features/dashboard/offers/offer-card-big/offer-card-big.component.html:71</source>Kundetilfredshet</msg>
+  <msg id="offer.card.big.timeApply”" desc="offer-card-big" meaning="“time-apply"><source>app/features/dashboard/offers/offer-card-big/offer-card-big.component.html:80</source>Hvor lang tid tar det å søke</msg>
+  <msg id="offer.card.big.unknown”" desc="offer-card-big" meaning="“unknown"><source>app/features/dashboard/offers/offer-card-big/offer-card-big.component.html:85,87</source>
+              <ph name="INTERPOLATION"><ex>{{offer.bankInfo.applicationTime  === null ? &apos;Ukjent&apos; : offer.bankInfo.applicationTime + &quot; min&quot;}}</ex>{{offer.bankInfo.applicationTime  === null ? &apos;Ukjent&apos; : offer.bankInfo.applicationTime + &quot; min&quot;}}</ph>
+            </msg>
+  <msg id="offer.card.big.offerInfo”" desc="offer-card-big" meaning="“offer-info"><source>app/features/dashboard/offers/offer-card-big/offer-card-big.component.html:94,100</source><ph name="START_TAG_SPAN"><ex>&lt;span&gt;</ex>&lt;span&gt;</ph>Tilbud:
+      <ph name="CLOSE_TAG_SPAN"><ex>&lt;/span&gt;</ex>&lt;/span&gt;</ph> Eff.rente <ph name="INTERPOLATION"><ex>{{offer.effectiveRate | number: &quot;1.2-2&quot;}}</ex>{{offer.effectiveRate | number: &quot;1.2-2&quot;}}</ph>%, 
+        Lånebeløp <ph name="INTERPOLATION_1"><ex>{{offer.outstandingDebt | number: &quot;1.0&quot; }}</ex>{{offer.outstandingDebt | number: &quot;1.0&quot; }}</ph>, 
+        <ph name="INTERPOLATION_2"><ex>{{offer.loanPeriodYears | number: &quot;1.1-1&quot; }}</ex>{{offer.loanPeriodYears | number: &quot;1.1-1&quot; }}</ph> år, 
+        Kostnad: <ph name="INTERPOLATION_3"><ex>{{offer.cost | number: &quot;1.0&quot; }}</ex>{{offer.cost | number: &quot;1.0&quot; }}</ph>, 
+        Totalt: <ph name="INTERPOLATION_4"><ex>{{offer.totalCost | number: &quot;1.0&quot; }}</ex>{{offer.totalCost | number: &quot;1.0&quot; }}</ph>
+      </msg>
+  <msg id="offer.card.big.details”" desc="offer-card-big" meaning="“details"><source>app/features/dashboard/offers/offer-card-big/offer-card-big.component.html:103</source>Detaljer</msg>
+  <msg id="offer.card.big.seeMore”" desc="offer-card-big" meaning="“see-more"><source>app/features/dashboard/offers/offer-card-big/offer-card-big.component.html:120</source>Se mer på <ph name="INTERPOLATION"><ex>{{getbankNameOrDefault(offer)}}</ex>{{getbankNameOrDefault(offer)}}</ph>s <ph name="LINE_BREAK"><ex>&lt;br&gt;</ex>&lt;br&gt;</ph> hjemmeside</msg>
+  <msg id="offer.card.big.noDeal”" desc="offer-card-big" meaning="“no-deal"><source>app/features/dashboard/offers/offer-card-big/offer-card-big.component.html:123</source> (Ingen avtale med banken enda)</msg>
+  <msg id="offer.card.big.getOffer”" desc="offer-card-big" meaning="“get-offer"><source>app/features/dashboard/offers/offer-card-big/offer-card-big.component.html:139</source>Få tilbud fra <ph name="INTERPOLATION"><ex>{{getbankNameOrDefault(offer)}}</ex>{{getbankNameOrDefault(offer)}}</ph>!</msg>
+  <msg id="offer.card.big.noDeal2”" desc="offer-card-big" meaning="“no-deal2"><source>app/features/dashboard/offers/offer-card-big/offer-card-big.component.html:141</source> (Ingen avtale med banken enda)</msg>
+  <msg id="bargain.success.sent”" desc="bargain" meaning="“confirmation"><source>app/features/dashboard/offers/bargain-success/bargain-success.component.html:4</source>E-post er nå sendt til din bank</msg>
+  <msg id="bargain.success.sent.you”" desc="bargain" meaning="“confirmation-you"><source>app/features/dashboard/offers/bargain-success/bargain-success.component.html:6,9</source>
+        Vi har også sendt deg en epost fra prute@renteradar.no med kopi av eposten vi har sendt
+        til din bank. Hvis du ikke finner den, sjekk om eposten kan ha kommet i spam/søppelpost.
+      </msg>
+  <msg id="bargain.success.time”" desc="bargain" meaning="“time"><source>app/features/dashboard/offers/bargain-success/bargain-success.component.html:10,13</source>
+        Bankene pleier å bruke én eller to uker på å svare deg.
+        Får du ikke noe svar fra banken i løpet av to uker, anbefaler vi følgende:
+      </msg>
+  <msg id="bargain.success.instructions”" desc="bargain" meaning="“instructions"><source>app/features/dashboard/offers/bargain-success/bargain-success.component.html:14,18</source>
+        <ph name="START_LIST_ITEM"><ex>&lt;li&gt;</ex>&lt;li&gt;</ph>Kopier teksten vi har sendt til din bank og som ligger nederst i eposten<ph name="CLOSE_LIST_ITEM"><ex>&lt;/li&gt;</ex>&lt;/li&gt;</ph>
+        <ph name="START_LIST_ITEM"><ex>&lt;li&gt;</ex>&lt;li&gt;</ph>Logg inn på nettbanken hos banken din<ph name="CLOSE_LIST_ITEM"><ex>&lt;/li&gt;</ex>&lt;/li&gt;</ph>
+        <ph name="START_LIST_ITEM"><ex>&lt;li&gt;</ex>&lt;li&gt;</ph>Gå til din postkasse i nettbanken. Send en melding til banken derfra og lim inn teksten du har kopiert<ph name="CLOSE_LIST_ITEM"><ex>&lt;/li&gt;</ex>&lt;/li&gt;</ph>
+      </msg>
+  <msg id="bargain.success.noResponse”" desc="bargain" meaning="“no-response"><source>app/features/dashboard/offers/bargain-success/bargain-success.component.html:19,22</source>
+        Får du fortsatt ikke svar fra banken din eller banken ikke vil sette ned renten,
+        er det kanskje på tide å bytte bank. Renteradar.no viser deg hvilken bank du bør bytte til.
+      </msg>
+  <msg id="bargain.success.review”" desc="bargain" meaning="“review"><source>app/features/dashboard/offers/bargain-success/bargain-success.component.html:23,26</source>
+        Send oss gjerne en e-post på <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>hei@renteradar.no<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph>  eller bruk chat-funksjonen i tjenesten
+        for å fortelle oss om du har fått lavere rente eller om du har noen spørsmål.
+      </msg>
+  <msg id="bargain.success.error”" desc="bargain" meaning="“error"><source>app/features/dashboard/offers/bargain-success/bargain-success.component.html:30</source>Noe gikk galt…</msg>
+  <msg id="bargain.success.error2”" desc="bargain" meaning="“error2"><source>app/features/dashboard/offers/bargain-success/bargain-success.component.html:32,34</source>
+          Beklager, noe gikk galt og vi vil rette opp feilen så fort som mulig. Vennligst prøv igjen senere.
+        </msg>
+  <msg id="bargain.success.luck”" desc="bargain" meaning="“luck"><source>app/features/dashboard/offers/bargain-success/bargain-success.component.html:38,40</source>
+        <ph name="START_TAG_RENTE_BUTTON"><ex>&lt;rente-button&gt;</ex>&lt;rente-button&gt;</ph>Lykke til!<ph name="CLOSE_TAG_RENTE_BUTTON"><ex>&lt;/rente-button&gt;</ex>&lt;/rente-button&gt;</ph>
+      </msg>
 </messagebundle>

@@ -1,4 +1,4 @@
-<h3 i18n>Boligstatistikk</h3>
+<h3 i18n=“title|statistics@@virdi.statistics”>Boligstatistikk</h3>
 <mat-tab-group
   (selectedTabChange)="onRbChange($event)"
   [selectedIndex]="!showPriceDevelopment ? 0 : 1"
@@ -9,12 +9,12 @@
 
 <div [class]="showPriceDevelopment ? 'hidden' : ''">
   <div class="chart-title">
-    <p i18n class="small">Din kvadratmeterpris:</p>
-    <h3 i18n>{{ averageSqmPrice | thousands }} NOK</h3>
+    <p i18n=“title|sqm-price@@virdi.statistics.sqmPrice” class="small">Din kvadratmeterpris:</p>
+    <h3 i18n=“input|avg-sqm@@virdi.statistics.avgSqm”>{{ averageSqmPrice | thousands }} NOK</h3>
   </div>
-  <p i18n class="small">Boliger i {{ indexArea }}</p>
+  <p i18n=“houses|statistics@@virdi.statistics.houses” class="small">Boliger i {{ indexArea }}</p>
   <div id="columnChartAddress{{ address.id }}"></div>
-  <p i18n class="small">
+  <p i18n=“sales|statistics@@virdi.statistics.sales” class="small">
     Antall salg i/på {{ indexArea }} siste 6 mnder:
     <b>{{ openMarketSalesHalfYear }}</b>
   </p>
@@ -22,13 +22,13 @@
 
 <div [class]="!showPriceDevelopment ? 'hidden' : ''">
   <div class="chart-title">
-    <p i18n class="small">Prisutvikling i</p>
+    <p i18n=“price-dev|statistics@@virdi.statistics.priceDev” class="small">Prisutvikling i</p>
     <h3>{{ indexArea }}</h3>
   </div>
-  <p i18n class="small">kr i 10 000</p>
+  <p i18n=“10k|statistics@@virdi.statistics.10k” class="small">kr i 10 000</p>
   <div id="lineChartAddress{{ address.id }}"></div>
 </div>
-<p i18n class="small">
+<p i18n=“data|statistics@@virdi.statistics.data” class="small">
   Data levert av <a href="https://virdi.no/" target="_blank">virdi.no</a>
 </p>
 

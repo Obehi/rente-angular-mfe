@@ -3,7 +3,7 @@
     <a mat-tab-link [active]="activeLinkIndex == 0" [routerLink]="'./tilbud'">
       <div class="inside-btn">
         <img src="../../../assets/icons/bank-icon.svg" alt="Banktilbud" />
-        <p i18n>Tilbud</p>
+        <p i18n=“title|offer@@dashboard.loggedIn.offer”>Tilbud</p>
       </div>
     </a>
   </nav>
@@ -11,7 +11,7 @@
     <a mat-tab-link [active]="activeLinkIndex == 1" [routerLink]="'./mine-lan'">
       <div class="inside-btn">
         <img src="../../../assets/icons/loan-icon.svg" alt="Mine lån" />
-        <p i18n>Mine lån</p>
+        <p i18n=“title2|my-loans@@dashboard.loggedIn.myLoans”>Mine lån</p>
       </div>
     </a>
   </nav>
@@ -19,7 +19,7 @@
     <a mat-tab-link [active]="activeLinkIndex == 2" [routerLink]="'./bolig'">
       <div class="inside-btn">
         <img src="../../../assets/icons/house-icon.svg" alt="Bolig" />
-        <p i18n>Bolig</p>
+        <p i18n=“title3|house@@dashboard.loggedIn.house”>Bolig</p>
       </div>
     </a>
   </nav>
@@ -27,7 +27,7 @@
     <a mat-tab-link [active]="activeLinkIndex == 4" [routerLink]="'./profil'">
       <div class="inside-btn">
         <img src="../../../assets/icons/profile-icon.svg" alt="Profil" />
-        <p i18n>Profil</p>
+        <p i18n=“title4|profile@@dashboard.loggedIn.profile”>Profil</p>
       </div>
     </a>
   </nav>
@@ -35,64 +35,3 @@
 <div class="dashboard-content">
   <router-outlet (activate)="onActivate($event)"></router-outlet>
 </div>
-<!-- <div class="container dashboard">
-  <div class="row">
-    <div class="col-12">
-      <nav
-        mat-tab-nav-bar
-        mat-stretch-tabs
-        [ngClass]="{ mobile: isMobile }"
-        [class.mat-tab-header-pagination-controls-enabled]="!isMobile"
-        [class.mat-tab-header-pagination-controls-disabled]="true"
-      >
-        <a
-          mat-tab-link
-          [active]="activeLinkIndex == 0"
-          [routerLink]="'./tilbud'"
-        >
-          <img src="{{ imgLink.tilbud }}" alt="tilbud" />
-          Tilbud
-        </a>
-
-        <a
-          mat-tab-link
-          [active]="activeLinkIndex == 1"
-          [routerLink]="'./mine-lan'"
-        >
-          <img src="{{ imgLink['mine-lan'] }}" alt="mine-lan" />
-          Mine lån
-        </a>
-
-        <a
-          mat-tab-link
-          [active]="activeLinkIndex == 2"
-          [routerLink]="'./bolig'"
-        >
-          <img src="{{ imgLink.bolig }}" alt="bolig" />
-          Bolig
-        </a>
-
-        <a
-          mat-tab-link
-          [active]="activeLinkIndex == 3"
-          [routerLink]="'./preferanser'"
-        >
-          <img src="{{ imgLink.preferanser }}" alt="preferanser" />
-          Preferanser
-        </a>
-
-        <a
-          mat-tab-link
-          class="last"
-          [active]="activeLinkIndex == 4"
-          [routerLink]="'./profil'"
-        >
-          <img src="{{ imgLink.profil }}" alt="profil" />
-          Profil
-        </a>
-      </nav>
-      <router-outlet></router-outlet>
-    </div>
-  </div>
-</div>
- -->
