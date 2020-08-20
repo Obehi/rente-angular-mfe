@@ -58,7 +58,13 @@ form {
   }
 }
 
+.root {
+  background: black;
+}
 iframe {
+  border: 0px;
+  width: 500px;
+  height: 1000px;
   margin: auto;
   display: block;
 }
@@ -133,16 +139,6 @@ iframe {
 
   
 }
-
-
-
-
-
-
-
-
-
-
 
 .list {
   background-color: $blue;

@@ -10,7 +10,7 @@ if (process.env.ENV === 'dev') {
     command = exec('npm run config-env && ng build --configuration=heroku-prod');
 } else {
     console.log("cant find env. running heroku dev")
-    command = exec('npm run config-env && npm run i18n-poeditor && ng build --configuration=heroku-dev,sv');
+    command = exec('npm run config-env && npm run i18n-poeditor && ng build --configuration=heroku-dev,sv && node move-locale-dir.js');
 }
 
 if (command != undefined) {

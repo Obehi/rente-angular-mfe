@@ -14,9 +14,15 @@
         }
       },
       "i18n": {
+        "sourceLocale": {
+          "code": "nb",
+          "baseHref": ""
+        },
         "locales": {
-          "sv": "src/locale/messages.sv.xtb",
-          "nb": "src/locale/messages.nb.xtb"
+          "sv": {
+            "translation": "src/locale/messages.sv.xtb",
+            "baseHref": ""
+          }
         }
       },
       "architect": {
