@@ -6,8 +6,8 @@
     (ngSubmit)="sendContactUsForm(contactUsForm.value)"
     novalidate
   >
-    <rente-input
-      [placeholder]="'Navn'"
+    <rente-input i18n=“navn|navn@@contactUs.navn.placeholder”
+      [placeholder]="'Namn'"
       formControlName="name"
       [errorStateMatcher]="
         isErrorState(contactUsForm.controls['name'], contactUsForm)
@@ -81,7 +81,8 @@
       </rente-form-message>
     </div>
 
-    <rente-text-area
+    <rente-text-area 
+      placeholder=""
       formControlName="message"
       [errorStateMatcher]="
         isErrorState(contactUsForm.controls['message'], contactUsForm)

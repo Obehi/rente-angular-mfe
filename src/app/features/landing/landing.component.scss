@@ -38,6 +38,12 @@ h3 {
   }
 }
 
+.signUp {
+  font-weight: 500;
+  color: $secondary;
+  font-size: 18px;
+}
+
 .mat-form-field {
   width: 100%;
 }
@@ -304,6 +310,7 @@ a {
     h4 {
       max-width: unset;
     }
+    margin-bottom: 40px;
   }
   .list-desktop {
     width: 80vw;

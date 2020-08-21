@@ -9,14 +9,12 @@
     </h4>
   </div>
 
-  <p>skriv upp dig här så håller vi dig uppdaterad</p>
+  <p class="signUp">skriv upp dig här så håller vi dig uppdaterad</p>
   <form
       [formGroup]="contactUsForm"
       novalidate
       (ngSubmit)="request()"
     >
-    
-      
       <div>
         <rente-input
           [placeholder]="'E-post'"
@@ -52,7 +50,7 @@
       <rente-button
         color="primary"
         [disabled]="!contactUsForm.valid || isLoading"
-        >Sign up
+        >Håll mig uppdaterad
       </rente-button>
     </form>
 
