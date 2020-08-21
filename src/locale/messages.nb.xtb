@@ -99,19 +99,6 @@
         En gjennomsnittlig bruker hos Renteradar.no kan spare over 9 000 kroner 
         i året og 125 000 kroner over lånets løpetid i renteutgifter.
       </translation>
-  <translation id="faq.question2”" desc="faq" meaning="“question2">
-            Er det enkelt å flytte boliglånet til en annen bank?
-          </translation>
-  <translation id="faq.response2”" desc="faq" meaning="“response2">
-        Det korte svaret er ja. Banken du flytter til gjør mesteparten av jobben. 
-        Søknadsprosessen i de fleste bankene er digital og enkel å fylle ut. 
-        Mange banker krever at du logger inn med bank-ID. Man må underskrive 
-        en del skjema når man flytter lånet, men i mange banker gjøres også 
-        dette enkelt gjennom såkalt e-signering.
-        <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>
-          Du kan lese mer om å flytte boliglånet her.
-        <ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph>
-      </translation>
   <translation id="faq.question3”" desc="faq" meaning="“question3">
             Kan jeg flytte kun boliglån til ny bank? 
           </translation>
@@ -144,7 +131,6 @@
   <translation id="faq.sub4.response4”" desc="faq" meaning="“sub4-response4"><ph name="START_BOLD_TEXT"><ex>&lt;b&gt;</ex>&lt;b&gt;</ph>Medlemskap i en organisasjon:<ph name="CLOSE_BOLD_TEXT"><ex>&lt;/b&gt;</ex>&lt;/b&gt;</ph> Arbeidstakerorganisasjoner og andre organisasjoner har ofte 
             fremforhandlet gunstige betingelser på boliglån med en samarbeidsbank.
           </translation>
-  <translation id="2898735042838652880">Her er de ti viktigste faktorene som påvirker boliglånsrenten din</translation>
   <translation id="faq.question5”" desc="faq" meaning="“question5">
               Hvor mye kan jeg låne til bolig?
           </translation>
@@ -152,29 +138,7 @@
           Myndighetene begrenser bankenes utlån til bolig gjennom boliglånsforskriften. 
           Den sier at man kan maksimalt låne fem ganger årsinntekt og maks belåningsgrad er 85 %. 
       </translation>
-  <translation id="faq.sub.response5”" desc="faq" meaning="“sub-response5">Les mer om hvor mye man kan låne til bolig her.</translation>
-  <translation id="faq.question6”" desc="faq" meaning="“question6">
-            Hva er belåningsgrad?
-          </translation>
-  <translation id="faq.response6”" desc="faq" meaning="“response6">
-          <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>Belåningsgrad<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph> er lånebeløp delt på boligens markedsverdi. 
-          Eksempel: Boliglån: 3 mill. kroner og markedsverdi på bolig: 4 mill. 
-          kroner gir belåningsgrad på 75 %.  Maks belåningsgrad for ordinære boliglån 
-          er satt til 85 % i Boliglånsforskriften. 
-      </translation>
   <translation id="faq.title.part2”" desc="faq" meaning="“title-part2">Vanlig stilte spørsmål om Renteradar.no</translation>
-  <translation id="faq.question7”" desc="faq" meaning="“question7">
-                Hvordan fungerer Renteradar.no?
-              </translation>
-  <translation id="faq.response7”" desc="faq" meaning="“response7">
-              Renteradar.no henter automatisk renten du har på boliglånet ditt. 
-              Renten din sammenlignes med renten du kan få i andre banker, og 
-              du kan se hvor mye du kan spare. Du kan prute i banken du er kunde 
-              med et klikk, og vi jobber meg å gjøre bytte av bank enkelt. 
-              Vi følger også med på om det blir tilgjengelig bedre tilbud i 
-              fremtiden. Du vil da få beskjed om dette.
-              <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph> Her kan du lese mer om hvordan renteradar.no fungerer<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph>
-          </translation>
   <translation id="faq.question8”" desc="faq" meaning="“question8">
               Hvorfor må jeg logge på med BankID på mobil?
           </translation>
@@ -182,13 +146,6 @@
           Renteradar.no henter automatisk dine lånebetingelser fra din bank. 
           For at dette skal fungere trenger vi at du identifiserer deg med 
           BankID på mobil. Du finner mer detaljer om dette i vilkårene ved innlogging.
-      </translation>
-  <translation id="faq.question9”" desc="faq" meaning="“question9">
-            Kan jeg bruke BankID med passord/kodebrikke?
-          </translation>
-  <translation id="faq.response9”" desc="faq" meaning="“response9">
-          Vi har dessverre ingen løsning for BankID med passord/kodebrikke, heller ikke engangspassord app. 
-          Grunnen til dette er at passordet ditt er personlig og bør ikke oppgis til tredjeparter som Renteradar.no
       </translation>
   <translation id="faq.question10”" desc="faq" meaning="“question10">
             Personvern: Er det trygt å bruke tjenesten deres?
@@ -200,16 +157,6 @@
           og
           <ph name="START_LINK_1"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>brukervilkår<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph>
       </translation>
-  <translation id="faq.question11”" desc="faq" meaning="“question11">
-            Jeg finner ikke banken jeg har boliglån i
-          </translation>
-  <translation id="faq.response11”" desc="faq" meaning="“response11">
-          Vi har ikke bygget funksjonalitet for å hente lånedetaljer fra alle banker. 
-          Det er hittil kun kunder av de fire største bankene (DNB, Nordea, Sparebank 1-bankene og alle Eika-bankene) 
-          som kan bruke tjenesten. Vi kommer til å legge til flere banker fremover. 
-      </translation>
-  <translation id="faq.sub.response11”" desc="faq" meaning="“sub-response11">Gå gjerne til: <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>https://renteradar.no/faabeskjed<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph></translation>
-  <translation id="faq.sub2.response11”" desc="faq" meaning="“sub2-response11">Legg til din bank og e-post, så gir vi deg beskjed når din bank er lagt til.</translation>
   <translation id="faq.question12”" desc="faq" meaning="“question12">
             Koster det noe å bruke Renteradar.no?
           </translation>
@@ -243,12 +190,6 @@
   <translation id="faq.response16”" desc="faq" meaning="“response16">
           Renteradar.no eies og drives av Forbrukerøkonomene AS. 
          Se <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>om oss<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph> for mer informasjon.
-      </translation>
-  <translation id="faq.question17”" desc="faq" meaning="“question17">
-            Har dere samarbeidsavtaler med noen banker?
-          </translation>
-  <translation id="faq.response17”" desc="faq" meaning="“response17">
-          Ja, per i dag har vi samarbeidsavtaler med Sbanken, Bulder Bank og Landkreditt.
       </translation>
   <translation id="privacy.component.title.integrity" desc="privacy-component" meaning="title-integrity">Personvern er viktig for oss</translation>
   <translation id="privacy.component.text.integrity" desc="privacy-component" meaning="text-integrity">
@@ -1457,4 +1398,37 @@ Fortsett
   <translation id="bargain.success.luck”" desc="bargain" meaning="“luck">
         <ph name="START_TAG_RENTE_BUTTON"><ex>&lt;rente-button&gt;</ex>&lt;rente-button&gt;</ph>Lykke til!<ph name="CLOSE_TAG_RENTE_BUTTON"><ex>&lt;/rente-button&gt;</ex>&lt;/rente-button&gt;</ph>
       </translation>
+  <translation id="contactUs.navn.placeholder”" desc="navn" meaning="“navn">
+    </translation>
+  <translation id="faq.question2”" desc="faq" meaning="“question2">
+            Er det enkelt å flytte boliglånet til en annen bank?
+          </translation>
+  <translation id="faq.response2”" desc="faq" meaning="“response2">
+        Det korte svaret er ja. Banken du flytter til gjør mesteparten av jobben. 
+        Søknadsprosessen i de fleste bankene er digital og enkel å fylle ut. 
+        Mange banker krever at du logger inn med bank-ID. Man må underskrive 
+        en del skjema når man flytter lånet, men i mange banker gjøres også 
+        dette enkelt gjennom såkalt e-signering.
+     
+      </translation>
+  <translation id="faq.question6”" desc="faq" meaning="“question6">
+            Hva er belåningsgrad?
+          </translation>
+  <translation id="faq.response6”" desc="faq" meaning="“response6">
+          Belåningsgrad er lånebeløp delt på boligens markedsverdi. 
+          Eksempel: Boliglån: 3 mill. kroner og markedsverdi på bolig: 4 mill. 
+          kroner gir belåningsgrad på 75 %.  Maks belåningsgrad for ordinære boliglån 
+          er satt til 85 % i Boliglånsforskriften. 
+      </translation>
+  <translation id="faq.question7”" desc="faq" meaning="“question7">
+                Hvordan fungerer Renteradar.no?
+              </translation>
+  <translation id="faq.response7”" desc="faq" meaning="“response7">
+              Renteradar.no henter automatisk renten du har på boliglånet ditt. 
+              Renten din sammenlignes med renten du kan få i andre banker, og 
+              du kan se hvor mye du kan spare. Du kan prute i banken du er kunde 
+              med et klikk, og vi jobber meg å gjøre bytte av bank enkelt. 
+              Vi følger også med på om det blir tilgjengelig bedre tilbud i 
+              fremtiden. Du vil da få beskjed om dette.
+          </translation>
 </translationbundle>
