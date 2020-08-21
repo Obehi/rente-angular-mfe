@@ -22,162 +22,221 @@
   <translation id="header.aboutUs”" desc="about-us" meaning="“Headerlink">Om oss</translation>
   <translation id="header.faq”" desc="faq" meaning="“Headerlink">FAQ</translation>
   <translation id="header.logOut”" desc="log-out" meaning="“Headerlink">Logga ut</translation>
-  <translation id="header.home2”" desc="homepage" meaning="“Headerlink"/>
-  <translation id="header.myPage2”" desc="my-page" meaning="“Headerlink"/>
-  <translation id="header.blog2”" desc="blog" meaning="“Headerlink"/>
-  <translation id="header.contact2”" desc="contact" meaning="“Headerlink"/>
-  <translation id="header.aboutUs2”" desc="about-us" meaning="“Headerlink"/>
-  <translation id="header.faq2”" desc="faq" meaning="“Headerlink"/>
-  <translation id="header.logOut2”" desc="log-out" meaning="“Headerlink"/>
-  <translation id="footer.customers”" desc="footer" meaning="“our-customers"/>
-  <translation id="footer.partners”" desc="footer" meaning="“our-partners"/>
-  <translation id="footer.ownership”" desc="footer" meaning="“ownership"/>
-  <translation id="footer.privacy”" desc="footer" meaning="“privacy"/>
-  <translation id="textArea.message”" desc="text-area" meaning="“message"/>
-  <translation id="popup.privacy.header”" desc="intro" meaning="“header"/>
-  <translation id="popup.privacy.text”" desc="text" meaning="“description"/>
-  <translation id="popup.privacy.option1”" desc="more" meaning="“button"/>
-  <translation id="popup.privacy.option2”" desc="accept" meaning="“button"/>
-  <translation id="landing.title" desc="landing-page" meaning="title"/>
-  <translation id="landing.header" desc="Describes-the-header" meaning="Our-header"/>
-  <translation id="landing.start" desc="landing-page" meaning="start"/>
-  <translation id="landing.otherBank" desc="landing-page" meaning="other-bank"/>
-  <translation id="landing.encouragement" desc="landing-page" meaning="encouragement"/>
-  <translation id="landing.description" desc="landing-page" meaning="description"/>
-  <translation id="landing.explanationService" desc="landing-page" meaning="explanation-service"/>
-  <translation id="landing.descriptionService" desc="landing-page" meaning="description-service"/>
-  <translation id="landing.function" desc="landing-page" meaning="how-it-functions"/>
-  <translation id="landing.automaticService" desc="landing-page" meaning="automatic-service"/>
-  <translation id="landing.comparingService" desc="landing-page" meaning="comparing-service"/>
-  <translation id="landing.surveillanceService" desc="landing-page" meaning="surveillance-service"/>
-  <translation id="landing.title.explanation" desc="landing-page" meaning="title-explanation"/>
-  <translation id="landing.step1.explanation" desc="landing-page" meaning="step1-explanation"/>
-  <translation id="landing.step2.explanation" desc="landing-page" meaning="step2-explanation"/>
-  <translation id="landing.step3.explanation" desc="landing-page" meaning="step3-explanation"/>
-  <translation id="landing.title.review" desc="landing-page" meaning="title-review"/>
-  <translation id="landing.title.media" desc="landing-page" meaning="title-media"/>
-  <translation id="faq.title”" desc="faq" meaning="“faq-title"/>
-  <translation id="faq.question1”" desc="faq" meaning="“question1"/>
-  <translation id="faq.response1”" desc="faq" meaning="“response1"/>
-  <translation id="faq.question2”" desc="faq" meaning="“question2"/>
-  <translation id="faq.response2”" desc="faq" meaning="“response2"/>
-  <translation id="faq.question3”" desc="faq" meaning="“question3"/>
-  <translation id="faq.response3”" desc="faq" meaning="“response3"/>
-  <translation id="faq.question4”" desc="faq" meaning="“question4"/>
-  <translation id="faq.response4”" desc="faq" meaning="“response4"/>
-  <translation id="faq.sub1.response4”" desc="faq" meaning="“sub1-response4"/>
-  <translation id="faq.sub2.response4”" desc="faq" meaning="“sub2-response4"/>
-  <translation id="faq.sub3.response4”" desc="faq" meaning="“sub3-response4"/>
-  <translation id="faq.sub4.response4”" desc="faq" meaning="“sub4-response4"/>
-  <translation id="2898735042838652880"/>
-  <translation id="faq.question5”" desc="faq" meaning="“question5"/>
-  <translation id="faq.response5”" desc="faq" meaning="“response5"/>
-  <translation id="faq.sub.response5”" desc="faq" meaning="“sub-response5"/>
-  <translation id="faq.question6”" desc="faq" meaning="“question6"/>
-  <translation id="faq.response6”" desc="faq" meaning="“response6"/>
-  <translation id="faq.title.part2”" desc="faq" meaning="“title-part2"/>
-  <translation id="faq.question7”" desc="faq" meaning="“question7"/>
-  <translation id="faq.response7”" desc="faq" meaning="“response7"/>
-  <translation id="faq.question8”" desc="faq" meaning="“question8"/>
-  <translation id="faq.response8”" desc="faq" meaning="“response8"/>
-  <translation id="faq.question9”" desc="faq" meaning="“question9"/>
-  <translation id="faq.response9”" desc="faq" meaning="“response9"/>
-  <translation id="faq.question10”" desc="faq" meaning="“question10"/>
-  <translation id="faq.response10”" desc="faq" meaning="“response10"/>
-  <translation id="faq.question11”" desc="faq" meaning="“question11"/>
-  <translation id="faq.response11”" desc="faq" meaning="“response11"/>
-  <translation id="faq.sub.response11”" desc="faq" meaning="“sub-response11"/>
-  <translation id="faq.sub2.response11”" desc="faq" meaning="“sub2-response11"/>
-  <translation id="faq.question12”" desc="faq" meaning="“question12"/>
-  <translation id="faq.response12”" desc="faq" meaning="“response12"/>
-  <translation id="faq.question13”" desc="faq" meaning="“question13"/>
-  <translation id="faq.response13”" desc="faq" meaning="“response13"/>
-  <translation id="faq.question14”" desc="faq" meaning="“question14"/>
-  <translation id="faq.response14”" desc="faq" meaning="“response14"/>
-  <translation id="faq.question15”" desc="faq" meaning="“question15"/>
-  <translation id="faq.response15”" desc="faq" meaning="“response15"/>
-  <translation id="faq.question16”" desc="faq" meaning="“question16"/>
-  <translation id="faq.response16”" desc="faq" meaning="“response16"/>
-  <translation id="faq.question17”" desc="faq" meaning="“question17"/>
-  <translation id="faq.response17”" desc="faq" meaning="“response17"/>
-  <translation id="privacy.component.title.integrity" desc="privacy-component" meaning="title-integrity"/>
-  <translation id="privacy.component.text.integrity" desc="privacy-component" meaning="text-integrity"/>
-  <translation id="privacy.component.terms" desc="privacy-component" meaning="terms-of-use"/>
-  <translation id="privacy.component.terms.link" desc="privacy-component" meaning="terms-of-use-link"/>
-  <translation id="privacy.component.title.cookies" desc="privacy-component" meaning="title-cookies"/>
-  <translation id="privacy.component.cookies.link" desc="privacy-component" meaning="cookies-link"/>
-  <translation id="terms.conditions”" desc="terms" meaning="“title"/>
-  <translation id="terms.conditions.titleService”" desc="terms" meaning="“title-service"/>
-  <translation id="terms.conditions.descriptionDocument”" desc="terms" meaning="“description-document"/>
-  <translation id="terms.conditions.titleConditions”" desc="terms" meaning="“title-conditions"/>
-  <translation id="terms.conditions.descriptionConditions”" desc="terms" meaning="“description-conditions"/>
-  <translation id="terms.conditions.titleAgreement”" desc="terms" meaning="“title-agreement"/>
-  <translation id="terms.conditions.descriptionAgreement”" desc="terms" meaning="“description-agreement"/>
-  <translation id="terms.conditions.titleConsent”" desc="terms" meaning="“title-consent"/>
-  <translation id="terms.conditions.descriptionConsent”" desc="terms" meaning="“description-consent"/>
-  <translation id="terms.conditions.titleRights”" desc="terms" meaning="“title-rights"/>
-  <translation id="terms.conditions.descriptionRights”" desc="terms" meaning="“description-rights"/>
-  <translation id="terms.conditions.titleResponsibility”" desc="terms" meaning="“title-responsibility"/>
-  <translation id="terms.conditions.descriptionResponsibility”" desc="terms" meaning="“description-responsibility"/>
-  <translation id="terms.conditions.titleErase.data”" desc="terms" meaning="“title-erase-data"/>
-  <translation id="terms.conditions.descriptionErase.data”" desc="terms" meaning="“description-erase-data"/>
-  <translation id="terms.conditions.timePublished”" desc="terms" meaning="“time-published"/>
-  <translation id="privacy.policy.first.title”" desc="privacy-policy" meaning="“first-title"/>
-  <translation id="privacy.policy.first.paragraph”" desc="privacy-title" meaning="“first-paragraph"/>
-  <translation id="privacy.policy.second.paragraph”" desc="privacy-policy" meaning="“second-paragraph"/>
-  <translation id="privacy.policy.second.title”" desc="privacy-policy" meaning="“second-title"/>
-  <translation id="privacy.policy.first2.paragraph”" desc="privacy-policy" meaning="“first2-paragraph"/>
-  <translation id="privacy.policy.second2.paragraph”" desc="privacy-policy" meaning="“second2-paragraph"/>
-  <translation id="privacy.policy.third.title”" desc="privacy-policy" meaning="“third-title"/>
-  <translation id="privacy.policy.first3.paragraph”" desc="privacy-policy" meaning="“first3-paragraph"/>
-  <translation id="privacy.policy.collectingInfo”" desc="privacy-policy" meaning="“collecting-info"/>
-  <translation id="privacy.policy.collectingInfo1”" desc="privacy-policy" meaning="“collecting-info1"/>
-  <translation id="privacy.policy.collectingInfo2”" desc="privacy-policy" meaning="“collecting-info2"/>
-  <translation id="privacy.policy.collectingInfo3”" desc="privacy-policy" meaning="“collecting3-info"/>
-  <translation id="privacy.policy.collectingInfo4”" desc="privacy-policy" meaning="“collecting4-info"/>
-  <translation id="privacy.policy.collectingInfo5”" desc="privacy-policy" meaning="“collecting5-info"/>
-  <translation id="privacy.policy.collectingInfo6”" desc="privacy-policy" meaning="“collecting6-info"/>
-  <translation id="privacy.policy.useInfo”" desc="privacy-policy" meaning="“use-info"/>
-  <translation id="privacy.policy.useInfo.description”" desc="privacy-policy" meaning="“use-info-description"/>
-  <translation id="privacy.policy.positionInfo.title”" desc="privacy-policy" meaning="“position-info-title"/>
-  <translation id="privacy.policy.positionInfo”" desc="privacy-policy" meaning="“position-info"/>
-  <translation id="privacy.policy.positionInfo2”" desc="privacy-policy" meaning="“position-info2"/>
-  <translation id="privacy.policy.bankInfo.title”" desc="privacy-policy" meaning="“bank-info-title"/>
-  <translation id="privacy.policy.bankInfo”" desc="privacy-policy" meaning="“bank-info"/>
-  <translation id="privacy.policy.creditInfo.title”" desc="privacy-policy" meaning="“credit-info-title"/>
-  <translation id="privacy.policy.creditInfo”" desc="privacy-policy" meaning="“credit-info"/>
-  <translation id="privacy.policy.otherInfo.title”" desc="privacy-policy" meaning="“other-info-title"/>
-  <translation id="privacy.policy.otherInfo”" desc="privacy-policy" meaning="“other-info"/>
-  <translation id="privacy.policy.purposeInfo.title”" desc="privacy-policy" meaning="“purpose-info-title"/>
-  <translation id="privacy.policy.purposeInfo”" desc="privacy-policy" meaning="“purpose-info"/>
-  <translation id="privacy.policy.purposeInfo.reason1”" desc="privacy-policy" meaning="“purpose-info-reason1"/>
-  <translation id="privacy.policy.purposeInfo.reason2”" desc="privacy-policy" meaning="“purpose-info-reason2"/>
-  <translation id="privacy.policy.purposeInfo.reason3”" desc="privacy-policy" meaning="“purpose-info-reason3"/>
-  <translation id="privacy.policy.purposeInfo.reason4”" desc="privacy-policy" meaning="“purpose-info-reason4"/>
-  <translation id="privacy.policy.purposeInfo.reason5”" desc="privacy-policy" meaning="“purpose-info-reason5"/>
-  <translation id="privacy.policy.purposeInfo.reason6”" desc="privacy-policy" meaning="“purpose-info-reason6"/>
-  <translation id="privacy.policy.purposeInfo.reason7”" desc="privacy-policy" meaning="“purpose-info-reason7"/>
-  <translation id="privacy.policy.purposeInfo.reason8”" desc="privacy-policy" meaning="“purpose-info-reason8"/>
-  <translation id="privacy.policy.privacyInfo.usage”" desc="privacy-policy" meaning="“privacy-usage-info"/>
-  <translation id="privacy.policy.privacyInfo.rights”" desc="privacy-policy" meaning="“privacy-rights-info"/>
-  <translation id="privacy.policy.cookiesInfo.rights”" desc="privacy-policy" meaning="“cookies-rights-info"/>
-  <translation id="privacy.policy.cookiesInfo.remove”" desc="privacy-policy" meaning="“cookies-remove-info"/>
-  <translation id="privacy.policy.cookiesInfo.remove2”" desc="privacy-policy" meaning="“cookies-remove2-info"/>
-  <translation id="privacy.policy.cookiesInfo.remove3”" desc="privacy-policy" meaning="“cookies-remove3-info"/>
-  <translation id="privacy.policy.rightsInfo.title”" desc="privacy-policy" meaning="“rights-info-title"/>
-  <translation id="privacy.policy.rightsInfo”" desc="privacy-policy" meaning="“rights-info"/>
-  <translation id="privacy.policy.rightsInfo2”" desc="privacy-policy" meaning="“rights-info2"/>
-  <translation id="privacy.policy.rightsInfo3”" desc="privacy-policy" meaning="“rights-info3"/>
-  <translation id="privacy.policy.rightsInfo”4" desc="privacy-policy" meaning="“rights-info4"/>
-  <translation id="privacy.policy.rightsInfo”5" desc="privacy-policy" meaning="“rights-info5"/>
-  <translation id="privacy.policy.rightsInfo6”" desc="privacy-policy" meaning="“rights-info6"/>
-  <translation id="privacy.policy.rightsInfo”7" desc="privacy-policy" meaning="“rights-info7"/>
-  <translation id="privacy.policy.updated”" desc="privacy-policy" meaning="“privacy-updated"/>
-  <translation id="contactUs.title”" desc="title" meaning="“top"/>
-  <translation id="contactUs.name”" desc="name" meaning="“text"/>
-  <translation id="contactUs.email.issue”" desc="e-mail" meaning="“issue"/>
-  <translation id="contactUs.email.issue2”" desc="e-mail" meaning="“issue"/>
-  <translation id="contactUs.phone”" desc="telephone" meaning="“number"/>
+  <translation id="header.home2”" desc="homepage" meaning="“Headerlink"><ph name="START_HEADING_LEVEL3"><ex>&lt;h3&gt;</ex>&lt;h3&gt;</ph>Hem<ph name="CLOSE_HEADING_LEVEL3"><ex>&lt;/h3&gt;</ex>&lt;/h3&gt;</ph></translation>
+  <translation id="header.myPage2”" desc="my-page" meaning="“Headerlink"><ph name="START_HEADING_LEVEL3"><ex>&lt;h3&gt;</ex>&lt;h3&gt;</ph>Min side<ph name="CLOSE_HEADING_LEVEL3"><ex>&lt;/h3&gt;</ex>&lt;/h3&gt;</ph></translation>
+  <translation id="header.blog2”" desc="blog" meaning="“Headerlink"><ph name="START_HEADING_LEVEL3"><ex>&lt;h3&gt;</ex>&lt;h3&gt;</ph>Blogg<ph name="CLOSE_HEADING_LEVEL3"><ex>&lt;/h3&gt;</ex>&lt;/h3&gt;</ph></translation>
+  <translation id="header.contact2”" desc="contact" meaning="“Headerlink"><ph name="START_HEADING_LEVEL3"><ex>&lt;h3&gt;</ex>&lt;h3&gt;</ph>Kontakt<ph name="CLOSE_HEADING_LEVEL3"><ex>&lt;/h3&gt;</ex>&lt;/h3&gt;</ph></translation>
+  <translation id="header.aboutUs2”" desc="about-us" meaning="“Headerlink"><ph name="START_HEADING_LEVEL3"><ex>&lt;h3&gt;</ex>&lt;h3&gt;</ph>Om oss<ph name="CLOSE_HEADING_LEVEL3"><ex>&lt;/h3&gt;</ex>&lt;/h3&gt;</ph></translation>
+  <translation id="header.faq2”" desc="faq" meaning="“Headerlink"><ph name="START_HEADING_LEVEL3"><ex>&lt;h3&gt;</ex>&lt;h3&gt;</ph>FAQ<ph name="CLOSE_HEADING_LEVEL3"><ex>&lt;/h3&gt;</ex>&lt;/h3&gt;</ph> </translation>
+  <translation id="header.logOut2”" desc="log-out" meaning="“Headerlink">
+<ph name="START_HEADING_LEVEL3"><ex>&lt;h3&gt;</ex>&lt;h3&gt;</ph>Logga ut<ph name="CLOSE_HEADING_LEVEL3"><ex>&lt;/h3&gt;</ex>&lt;/h3&gt;</ph></translation>
+  <translation id="textArea.message”" desc="text-area" meaning="“message">Meddelande</translation>
+  <translation id="popup.privacy.header”" desc="intro" meaning="“header">Din data, dina val</translation>
+  <translation id="popup.privacy.text”" desc="text" meaning="“description">
+      Ränteradar.se ägs av Forbrukerøkonomene AS som är ansvariga för din data.<ph name="LINE_BREAK"><ex>&lt;br&gt;</ex>&lt;br&gt;</ph>
+      Vi bryr oss om din integritet. Vi använder din data till att förbättra och anpassa hur tjänsterna ser ut och fungerar.</translation>
+  <translation id="popup.privacy.option1”" desc="more" meaning="“button">Visa mig mer</translation>
+  <translation id="popup.privacy.option2”" desc="accept" meaning="“button">JAG FÖRSTÅR</translation>
+  <translation id="landing.title" desc="landing-page" meaning="title">
+      Få bästa <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>bolåneräntan<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph></translation>
+  <translation id="landing.header" desc="Describes-the-header" meaning="Our-header">
+      Jämför ditt bolån mot marknadens bästa erbjudanden – snabbt,
+ enkelt och 
+      gratis!</translation>
+  <translation id="landing.encouragement" desc="landing-page" meaning="encouragement">Ränteradar hittar de bästa erbjudandena helt gratis.</translation>
+  <translation id="landing.description" desc="landing-page" meaning="description">
+              Inget utfyllnadsschema. <ph name="LINE_BREAK"><ex>&lt;br&gt;</ex>&lt;br&gt;</ph>
+              Logga in med Mobilt BankID.</translation>
+  <translation id="landing.explanationService" desc="landing-page" meaning="explanation-service">Få översikt och spara pengar med ett klick.</translation>
+  <translation id="landing.descriptionService" desc="landing-page" meaning="description-service">
+              Ränteradar övervakar marknaden och ger dig besked när
+ det kommer
+              bättre erbjudanden.</translation>
+  <translation id="landing.function" desc="landing-page" meaning="how-it-functions">Så här fungerar det</translation>
+  <translation id="landing.automaticService" desc="landing-page" meaning="automatic-service">
+            Ränteradar hämtar automatiskt räntan och dina bolånedetaljer automatiskt med Mobilt BankID.</translation>
+  <translation id="landing.comparingService" desc="landing-page" meaning="comparing-service">Vi jämför bolåneräntan du betalar med räntan du kan få hos andra banker och visar dig hur mycket du kan spara. Du kan också pruta i banken du är kund i med ett klick.</translation>
+  <translation id="landing.surveillanceService" desc="landing-page" meaning="surveillance-service">Vi övervakar marknaden och ger dig besked när nya och bättre erbjudanden är tillgängliga i framtiden!</translation>
+  <translation id="landing.title.explanation" desc="landing-page" meaning="title-explanation">Så här fungerar det</translation>
+  <translation id="landing.step1.explanation" desc="landing-page" meaning="step1-explanation">Ränteradar hämtar räntan och dina bolånedetaljer automatiskt med Mobilt BankID.</translation>
+  <translation id="landing.step2.explanation" desc="landing-page" meaning="step2-explanation">Vi jämför bolåneräntan du betalar med räntan du kan få hos andra banker och visar dig hur mycket du kan spara. Du kan också pruta i banken du är kund i med ett klick.</translation>
+  <translation id="landing.step3.explanation" desc="landing-page" meaning="step3-explanation">Vi övervakar marknaden och ger dig besked när nya och bättre erbjudanden är tillgängliga i framtiden!</translation>
+  <translation id="faq.title”" desc="faq" meaning="“faq-title">Vanligt ställda frågor om bolån</translation>
+  <translation id="faq.question1”" desc="faq" meaning="“question1">Hur mycket kan jag spara på bolånet?</translation>
+  <translation id="faq.response1”" desc="faq" meaning="“response1">Hur mycket du kan spara på bolånet beror på flera faktorer.
+De viktigaste är hur mycket räntan minskar och hur stort ditt lån är.
+En genomsnittlig brukare hos Renteradar.no kan spara över 9 000kr per år och 125 000 kronor över lånets löptid i ränteutgifter.</translation>
+  <translation id="faq.question2”" desc="faq" meaning="“question2">Är det enkelt att flytta bolånet till en annan bank?</translation>
+  <translation id="faq.response2”" desc="faq" meaning="“response2">Är det enkelt att flytta bolånet till en annan bank?
+Det korta svaret är ja.
+Banken du flyttar till gör mest parten av jobbet.
+Sökandeprocessen i de flesta bankerna är digital och enkel att fylla ut.
+Många banker kräver att du loggar in med bank-ID.
+Man måste fylla i en del scheman när man flyttar lånet, men i många banker görs också detta enkelt genom så kallad e-signering.<ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>
+          Du kan läsa mer om att flytta bolånet här.
+        <ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph>
+</translation>
+  <translation id="faq.question3”" desc="faq" meaning="“question3">Kan jag endast flytta bolånet till en ny bank?</translation>
+  <translation id="faq.response3”" desc="faq" meaning="“response3">Man kan normalt sett behålla existerande konton hos sin nuvarande bank och bara flytta bolånet över till den nya banken. Vissa banker kräver att man öppnar ett konto i tillägg till bolånet.
+Några banker kräver också att du måste ha flera produkter och tjänster för att få deras bästa ränta.
+Det är praxis som inte bör accepteras. 
+Vad de kräver för andra produkter blir man informerad om genom vår tjänst.
+</translation>
+  <translation id="faq.question4”" desc="faq" meaning="“question4">Varför får kunder olika bolåneräntor hos bankerna?</translation>
+  <translation id="faq.response4”" desc="faq" meaning="“response4">Det finns goda anledningar och mindre goda anledningar till att bankerna ger kunderna olika bolåneräntor. 
+Många betalar för mycket rätt och slätt för att de litar på sin bank och inte förhandlar ned räntan.
+De viktigaste goda grunderna är:
+</translation>
+  <translation id="faq.sub1.response4”" desc="faq" meaning="“sub1-response4"><ph name="START_BOLD_TEXT"><ex>&lt;b&gt;</ex>&lt;b&gt;</ph>Belåningsgrad:<ph name="CLOSE_BOLD_TEXT"><ex>&lt;/b&gt;</ex>&lt;/b&gt;</ph> Låg belåningsgrad skall ge lägre ränta. Banken tar då mindre risk för en kreditförlust.</translation>
+  <translation id="faq.sub2.response4”" desc="faq" meaning="“sub2-response4"><ph name="START_BOLD_TEXT"><ex>&lt;b&gt;</ex>&lt;b&gt;</ph>Ålder:<ph name="CLOSE_BOLD_TEXT"><ex>&lt;/b&gt;</ex>&lt;/b&gt;</ph> De flesta bankerna erbjuder extra goda villkor till de som är 34 år eller yngre.</translation>
+  <translation id="faq.sub3.response4”" desc="faq" meaning="“sub3-response4"><ph name="START_BOLD_TEXT"><ex>&lt;b&gt;</ex>&lt;b&gt;</ph>Lånets storlek:<ph name="CLOSE_BOLD_TEXT"><ex>&lt;/b&gt;</ex>&lt;/b&gt;</ph> Bankerna belönar ofta större lån med en lägre ränta. Det förklaras genom att administrationskostnaderna för ett lån är det samma oberoende storlek.</translation>
+  <translation id="faq.sub4.response4”" desc="faq" meaning="“sub4-response4"><ph name="START_BOLD_TEXT"><ex>&lt;b&gt;</ex>&lt;b&gt;</ph>Medlemskap i en organisation:<ph name="CLOSE_BOLD_TEXT"><ex>&lt;/b&gt;</ex>&lt;/b&gt;</ph> Fackliga organisationer och andra organisationer har ofta förhandlat fram gynnsamma villkor på bolån med samarbetspartners. </translation>
+  <translation id="2898735042838652880">Här är de tio viktigaste faktorerna som påverkar din bolåneränta</translation>
+  <translation id="faq.question5”" desc="faq" meaning="“question5">Hur mycket kan jag låna till en bostad?</translation>
+  <translation id="faq.response5”" desc="faq" meaning="“response5">Myndigheterna i Sverige begränsar inte bankernas utlåning till boende. Bankerna har istället egna skuldkvotstak som generellt sett ligger runt 5–5,5 gånger bruttoårsinkomsten hos bolånetagaren. Finansinspektionens allmänna råd säger att bankerna inte bör låna ut mer än 85 %. Detta kallas ofta bolånetak.</translation>
+  <translation id="faq.sub.response5”" desc="faq" meaning="“sub-response5">Läs mer om hur mycket man kan låna till bostad här.</translation>
+  <translation id="faq.question6”" desc="faq" meaning="“question6">Vad är belåningsgrad?</translation>
+  <translation id="faq.response6”" desc="faq" meaning="“response6"><ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>Belåningsgrad<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph>är lånebeloppet delat på bostadens marknadsvärde. Exempel: Vid ett bolån på 3 miljoner kronor och ett marknadsvärde på bostaden på 4 miljoner kronor fås en belåningsgrad på 75%.
+Finansinspektionens allmänna råd säger att bankerna inte bör låna ut mer än 85 %. Detta kallas bolånetak.</translation>
+  <translation id="faq.title.part2”" desc="faq" meaning="“title-part2">Vanligt ställda frågor om Ränteradar.se</translation>
+  <translation id="faq.question7”" desc="faq" meaning="“question7">Hur fungerar Ränteradar.se?</translation>
+  <translation id="faq.response7”" desc="faq" meaning="“response7">Ränteradar.se hämtar automatiskt räntan du har på ditt bolån. Din ränta jämförs med räntan du kan få hos andra banker, och du kan se hur mycket du kan spara.
+Du kan pruta i banken du är kund hos med ett klick, och vi arbetar med att göra bytet av bank enkelt.
+Vi följer också med på om det i framtiden dyker upp bättre erbjudanden på marknaden. Du som brukare får då besked om detta. <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph> Här kan du läsa mer om hur Ränteradar.se fungerar.<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph></translation>
+  <translation id="faq.question8”" desc="faq" meaning="“question8">Varför måste jag logga in med Mobilt BankID?</translation>
+  <translation id="faq.response8”" desc="faq" meaning="“response8">Ränteradar.se hämtar automatiskt dina låneuppgifter från din bank. För att detta skall fungera krävs det att du identifierar dig med Mobilt BankID. Du finner mer detaljer om detta i villkoren vid inloggningen.</translation>
+  <translation id="faq.question9”" desc="faq" meaning="“question9">Kan jag använda BankID med lösenord/kodbricka?</translation>
+  <translation id="faq.response9”" desc="faq" meaning="“response9">Vi har dessvärre ingen lösning för BankID med lösenord/kodbricka, inte heller för engångslösenords app. Grunden till detta är att lösenordet ditt är personligt och inte bör uppges för tredjepartsaktörer som Ränteradar.se.</translation>
+  <translation id="faq.question10”" desc="faq" meaning="“question10">Integritet: Är det tryggt att använda er tjänst?</translation>
+  <translation id="faq.response10”" desc="faq" meaning="“response10">Ja, din information är helt säker och vi delar inte personlig information med tredjeparter. Läs mer om detta i vår  <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>privacy policy<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph> och <ph name="START_LINK_1"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>användarvillkor<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph></translation>
+  <translation id="faq.question11”" desc="faq" meaning="“question11">Jag hittar inte banken som jag har bolån i</translation>
+  <translation id="faq.response11”" desc="faq" meaning="“response11">Vi har inte byggt funktionalitet för att hämta lånedetaljer ifrån alla banker. Det är hittills bara för kunder av de fyra största bankerna (DNB, Nordea, Sparebank 1-bankerna och alla Eika-bankerna) som kan använda tjänsten. Vi kommer att lägga till fler banker framöver.</translation>
+  <translation id="faq.sub.response11”" desc="faq" meaning="“sub-response11">Gå gärna in på: <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>https://ranteradar.se/fabesked<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph></translation>
+  <translation id="faq.sub2.response11”" desc="faq" meaning="“sub2-response11">Lägg till din bank och din e-post, så ger vi dig besked när din bank är tillagd.</translation>
+  <translation id="faq.question12”" desc="faq" meaning="“question12">Kostar det något att använda Ränteradar.se?</translation>
+  <translation id="faq.response12”" desc="faq" meaning="“response12">Nej, det är gratis att använda Ränteradar.se. Vår företagsmodell bygger på att det är bankerna som skall stå för kostnaden av denna tjänst, inte du som brukare.</translation>
+  <translation id="faq.question13”" desc="faq" meaning="“question13">Visar ni erbjudanden från alla banker?</translation>
+  <translation id="faq.response13”" desc="faq" meaning="“response13">Ja, du ser erbjudanden från alla banker. Liknande tjänster visar endast erbjudanden från banker de har avtal med; det gör inte Ränteradar.se. </translation>
+  <translation id="faq.question14”" desc="faq" meaning="“question14">Jag har inget bolån, kan jag använda Ränteradar.se?</translation>
+  <translation id="faq.response14”" desc="faq" meaning="“response14">För tillfället är tjänsten endast för användare som redan har bolån.</translation>
+  <translation id="faq.question15”" desc="faq" meaning="“question15">Kan jag ta bort min profil om jag vill?</translation>
+  <translation id="faq.response15”" desc="faq" meaning="“response15">Ja, självklart! Skicka ett mail till <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>tabortmig@ranteradar.se<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph> och vi tar bort all din data. Du får en bekräftelse på detta på mail.</translation>
+  <translation id="faq.question16”" desc="faq" meaning="“question16">Vem står bakom Ränteradar.se?</translation>
+  <translation id="faq.response16”" desc="faq" meaning="“response16">Ränteradar.se ägs och drivs av Forbrukerøkonomene AS. Se <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>om oss<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph> för mer information.</translation>
+  <translation id="faq.question17”" desc="faq" meaning="“question17">Har ni samarbetsavtal med några banker?</translation>
+  <translation id="faq.response17”" desc="faq" meaning="“response17">Ja, idag har vi samarbetsavtal med Sbanken och Bulder Bank.</translation>
+  <translation id="privacy.component.title.integrity" desc="privacy-component" meaning="title-integrity">Personuppgiftsbehandling är viktigt för oss</translation>
+  <translation id="privacy.component.text.integrity" desc="privacy-component" meaning="text-integrity">Vi tar GDPR på allvar och behandling av dina personuppgifter är viktigt för oss i Renteradar.no. Renteradar.no ägs och drivs av Forbrukerøkonomene AS som är ett norskt företag under norsk lag, och vi behandlar personupplysningar i linje med den gällande lagstiftningen för personuppgiftsbehandling. Vår fulla integritetspolicy kan du läsa <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>här<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph>.</translation>
+  <translation id="privacy.component.terms" desc="privacy-component" meaning="terms-of-use">Användarvillkor</translation>
+  <translation id="privacy.component.terms.link" desc="privacy-component" meaning="terms-of-use-link">Våra användarvillkor finner du <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>här<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph>.</translation>
+  <translation id="privacy.component.title.cookies" desc="privacy-component" meaning="title-cookies">Information om cookies</translation>
+  <translation id="privacy.component.cookies.link" desc="privacy-component" meaning="cookies-link">Vår cookiepolicy och information finner du <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>här<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph>.</translation>
+  <translation id="terms.conditions”" desc="terms" meaning="“title">Villkor för användande av Ränteradar.se</translation>
+  <translation id="terms.conditions.titleService”" desc="terms" meaning="“title-service">1. Beskrivning av tjänsten</translation>
+  <translation id="terms.conditions.descriptionDocument”" desc="terms" meaning="“description-document">I detta dokument beskriver Ränteradar.se sina villkor för tjänsten, inklusive ditt uttryckliga samtycke till behandling och distribuering av information till dem företagen Ränteradar.se samarbetar med.</translation>
+  <translation id="terms.conditions.titleConditions”" desc="terms" meaning="“title-conditions">2. Förutsättningar för avtal</translation>
+  <translation id="terms.conditions.descriptionConditions”" desc="terms" meaning="“description-conditions">Ränteradar.se inhämtar uppgifter (nedan: lånebelopp, typ av lån, ränta, etc…) på dina lån i din bank med hjälp av fullmakt.
+Vid accept av användarvillkoren och registrering som brukare ger du oss fullmakt till att behandla dessa upplysningar. 
+Vi övervakar samtidigt marknaden för vilka villkor du kan få ta hos andra banker.
+Du ger ditt samtycke till att vi kan förmedla kontakt med banker som kan ge dig ett bättre erbjudande än det du har idag. 
+Detta samtycke inkluderar förmedling av anonymiserade data.
+Bindande avtal ingås direkt med ny bank om det skulle bli aktuellt.</translation>
+  <translation id="terms.conditions.titleAgreement”" desc="terms" meaning="“title-agreement">3. Avtalets parter</translation>
+  <translation id="terms.conditions.descriptionAgreement”" desc="terms" meaning="“description-agreement">Ränteradar.se/Forbrukerøkonomene AS är inte part i avtalen som ingår mellan dig och banken du eventuellt väljer.
+Ränteradar.se uppträder som en plattform för förmedling av information mellan dig som brukare och finansinstitutioner som är kopplade till tjänsten.
+Avtal ingås direkt mellan företagen och dig som kund.</translation>
+  <translation id="terms.conditions.titleConsent”" desc="terms" meaning="“title-consent">4. Samtycke till kreditupplysning gjord av banken</translation>
+  <translation id="terms.conditions.descriptionConsent”" desc="terms" meaning="“description-consent">Vid accept av villkoren, bekräftar du att aktuella sällskap du är i dialog med kan företa en kreditupplysning av dig.
+Företagen behöver ett aktivt samtycke av dig för att göra detta i form av att du uppger personnumret ditt till det aktuella sällskapet.</translation>
+  <translation id="terms.conditions.titleRights”" desc="terms" meaning="“title-rights">5. Dina rättigheter och ansvar</translation>
+  <translation id="terms.conditions.descriptionRights”" desc="terms" meaning="“description-rights">Du förpliktar dig att uppge riktig information, både till Renteradar.no och banker du eventuellt skulle komma i kontakt med genom tjänsten.</translation>
+  <translation id="terms.conditions.titleResponsibility”" desc="terms" meaning="“title-responsibility">6. Ränteradar.se och företagets ansvar</translation>
+  <translation id="terms.conditions.descriptionResponsibility”" desc="terms" meaning="“description-responsibility">Ränteradar.se har ansvaret för tjänsten som den är beskriven på våra webbplatser.
+Ränteradar.se är inte under någon omständighet ansvarig för avtal du ingår. Allmän svensk ersättnings- och avtalsrätt gäller.</translation>
+  <translation id="terms.conditions.titleErase.data”" desc="terms" meaning="“title-erase-data">7. Borttagande av användardata</translation>
+  <translation id="terms.conditions.descriptionErase.data”" desc="terms" meaning="“description-erase-data">Du kan när som helst kräva att vi tar bort all din lånedata, och alla andra upplysningar vi har inhämtat från dig. Detta görs genom att skicka ett e-mail till <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>tabortmig@ranteradar.se<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph> och be om att bli borttagen. </translation>
+  <translation id="terms.conditions.timePublished”" desc="terms" meaning="“time-published">Stockholm, 20.08.2020</translation>
+  <translation id="privacy.policy.first.title”" desc="privacy-policy" meaning="“first-title"><ph name="START_TAG_STRONG"><ex>&lt;strong&gt;</ex>&lt;strong&gt;</ph>Personuppgiftsbehandling<ph name="CLOSE_TAG_STRONG"><ex>&lt;/strong&gt;</ex>&lt;/strong&gt;</ph></translation>
+  <translation id="privacy.policy.first.paragraph”" desc="privacy-title" meaning="“first-paragraph">Ränteradar.se är en tjänst levererat av Forbrukerøkonomene AS (org. Nr: 921 534 191). Här vill du finna en orientering om hur vi förhåller oss till brukarnas personuppgifter i vår tjänst.
+Denna information kan komma att vara föremål för uppdateringar och ändringar från tid till annan. Vid väsentliga ändringar kommer du få besked om detta på din registrerade e-postadress. </translation>
+  <translation id="privacy.policy.second.paragraph”" desc="privacy-policy" meaning="“second-paragraph">Forbrukerøkonomene AS är ett norskt företag under norsk lag. Vi behandlar personupplysningar på ett sätt som överensstämmer med rådande personupplysningslagstiftning.   
+Om du har frågor kring vår integritetspolicy eller hanteringen av dina uppgifter får du gärna kontakta vårt ombud för personuppgifter på personvernombud@forbrukerøkonomene.no.
+Vi uppmuntrar dig att läsa denna information noggrant innan du använder dig av tjänsten.
+Denna personuppgiftsförklaring gäller för all behandling av personuppgifter som sker när du besöker Ränteradar.se och använder dig av Ränteradar.se’s tjänster.</translation>
+  <translation id="privacy.policy.second.title”" desc="privacy-policy" meaning="“second-title">Vad är personuppgifter?</translation>
+  <translation id="privacy.policy.first2.paragraph”" desc="privacy-policy" meaning="“first2-paragraph">En personuppgift är information som direkt eller indirekt kan hänföras till en fysisk person som är i livet. Exempel på personuppgifter är namn, adress, telefonnummer och e-postadress, men också IP-nummer och hur du använder tjänsten kategoriseras som personuppgifter.
+Behandling av personuppgifter inkluderar all hantering av personuppgifter, exempelvis insamling, registrering, lagring, bearbetning, ändring, läsning, utlämning, spridning, justering, radering eller förstöring.</translation>
+  <translation id="privacy.policy.second2.paragraph”" desc="privacy-policy" meaning="“second2-paragraph">Behandling av personuppgifter inkluderar all användning av personuppgifter, exempelvis insamling, registrering, lagring, bearbetning, ändring, läsning, utlämning, spridning, justering, radering eller en kombination av olika användningar.
+All behandling av personuppgifter är ämne för personuppgiftslagen, och Datainspektionen för tillsyn med lagen och medverkar till att den personliga integriteten inte blir kränkt genom användandet av personuppgifter. 
+Personuppgiftsansvarig är den som ensam eller tillsammans med andra bestämmer syftet och medlen för behandling av personuppgifter och som är ansvarig för att behandlingen sker i enlighet med gällande sekretesslagar. 
+Uppgifterna kan komma att kompletteras med tillgänglig information från tredjepartsaktör, till exempel information om bostadens värde eller kreditupplysningsföretag. </translation>
+  <translation id="privacy.policy.third.title”" desc="privacy-policy" meaning="“third-title">Vilka personuppgifter samlar vi in?</translation>
+  <translation id="privacy.policy.first3.paragraph”" desc="privacy-policy" meaning="“first3-paragraph">För att kunna genomföra våra tjänster samlar vi in data från dig som kan kompletteras med information från bankerna.
+Vidare kommer också bankerna behöva data om dig för att kunna erbjuda bolån.
+Bankerna som eventuellt tar emot information om dig är personuppgiftsansvariga for sin egen behandling av personuppgifter. Du kan läsa mer om bankernas grundkrav samt integritetspolicy på deras webbplatser.</translation>
+  <translation id="privacy.policy.collectingInfo”" desc="privacy-policy" meaning="“collecting-info">Uppgifterna samlas in på följande sätt:</translation>
+  <translation id="privacy.policy.collectingInfo1”" desc="privacy-policy" meaning="“collecting-info1">Uppgifter du själv ger till oss</translation>
+  <translation id="privacy.policy.collectingInfo2”" desc="privacy-policy" meaning="“collecting-info2">När du registrerar ett användarkonto hos oss kommer du uppge en del data som lagras av oss.
+Dessa uppgifter lagras i vår databas för att tillhandahålla eller säkra leverans av vår tjänst.
+På liknande sätt kommer vi lagra uppgifter när du kontaktar oss genom e-post exempelvis till kundservice eller ger återkoppling genom funktioner i tjänsten, här under e-postadress, telefonnummer och innehållet i frågorna ställda genom e-post så att vi kan svara på dina frågor.</translation>
+  <translation id="privacy.policy.collectingInfo3”" desc="privacy-policy" meaning="“collecting3-info">Uppgifter samlas in genom användning av tjänsterna</translation>
+  <translation id="privacy.policy.collectingInfo4”" desc="privacy-policy" meaning="“collecting4-info">När du använder tjänsterna registrerar vi information om vilka tjänster du använder och hur du använder dem. 
+Detta gör det möjligt att förbättra våra tjänster och avslöja tekniska fel. Exempelvis, kan vi samla information om hur mycket en genomsnittlig kund sparar genom att byta sitt bolån.  
+</translation>
+  <translation id="privacy.policy.collectingInfo5”" desc="privacy-policy" meaning="“collecting5-info">Teknisk information om din enhet och internetuppkoppling</translation>
+  <translation id="privacy.policy.collectingInfo6”" desc="privacy-policy" meaning="“collecting6-info">Genom serverloggar och andra verktyg registrerar vi information om enheten och tillkopplingen till våra tjänster, inklusive operativsystem, webbläsare, IP-adresser, cookies och unika identifikationsfiler. 
+Denna information används ofta i anonym och aggregerad statistik, men vi kan också koppla den mot ditt användarkonto. Informationen gör bland annat att vi kan anpassa presentationen av våra tjänster efter den enhet som du använder dig av, i tillägg till att vi kan analysera olika sätt som användare använder våra tjänster.</translation>
+  <translation id="privacy.policy.useInfo”" desc="privacy-policy" meaning="“use-info">Information om användning av tjänsterna</translation>
+  <translation id="privacy.policy.useInfo.description”" desc="privacy-policy" meaning="“use-info-description">När du använder våra tjänster, registreras denna aktivitet automatiskt i våra dataloggar. 
+Vi använder denna information till att förbättra vår tjänst och för att ge dig innehåll som är anpassat för dig som användare. </translation>
+  <translation id="privacy.policy.positionInfo.title”" desc="privacy-policy" meaning="“position-info-title">Information om position</translation>
+  <translation id="privacy.policy.positionInfo”" desc="privacy-policy" meaning="“position-info">Det kan hända att vi registrerar din geografiska position från IP-adressen eller andra former av geolokalisering, exempelvis när du använder våra mobiltjänster.
+Informationen kan bland annat användas till att utarbeta statistik eller presentera lokalt innehåll. Cookies och annat innehåll som lagras lokalt. </translation>
+  <translation id="privacy.policy.positionInfo2”" desc="privacy-policy" meaning="“position-info2">När du besöker våra tjänster använder vi olika tekniker för att känna igen dig som användare. Vi använder cookies för att analysera och testa hur användare reagerar på ändringar av webbsidan eller tjänsterna.
+Cookies kan också ge information om buggar, och ger oss möjlighet till att mäta effektiviteten av våra marknadsföringskampanjer. Vi kan också lagra anonyma identifikationer lokalt på din enhet, exempelvis på enheter där vi inte kan utnyttja cookies. 
+Dessa identifikationer fungerar i stort sett på samma sätt som cookies, men kan vara svårare att ta bort. Se under för information om hur du kan ta bort cookies.
+Om du inte önskar lagring av anonyma identifikationer, kan du avaktivera javascript i webbläsaren. Det kommer dock innebära att Renteradar.no inte kommer fungera i webbläsaren.</translation>
+  <translation id="privacy.policy.bankInfo.title”" desc="privacy-policy" meaning="“bank-info-title">Information från bankerna</translation>
+  <translation id="privacy.policy.bankInfo”" desc="privacy-policy" meaning="“bank-info">För att bedriva tjänsten kan vi inhämta information från bankerna om dig och ditt/dina lån. Denna information inkluderar namn, adress, e-mail, personnummer, medlåntagare, borgenär, lånat belopp, kvarstående belopp, typ av lån, ränta, ränteutgifter och löptid för ditt/dina lån.
+Denna information kommer inte att delas o-anonymiserat med våra samarbetspartners utan ditt specifika samtycke. Om du önskar att vi förmedlar kontakt med banker som kan erbjuda dig en bättre ränta kommer delar av denna information att bli delad med dessa banker, men vi vill då fråga dig specifikt om tillåtelse till detta. </translation>
+  <translation id="privacy.policy.creditInfo.title”" desc="privacy-policy" meaning="“credit-info-title">Kreditupplysningar</translation>
+  <translation id="privacy.policy.creditInfo”" desc="privacy-policy" meaning="“credit-info">Innan vi eventuellt förmedlar information till relevanta banker kan vi företa en kreditupplysning begränsad till information om eventuella betalningsanmärkningar. Detta för att säkra att du är kvalificerad för att söka om lån hos våra samarbetande banker.
+Kreditupplysningen företas av en kreditupplysningsbyrå. I tillägg till den begränsade kreditchecken som vi kan företa, kommer bankerna som vi förmedlar kontakt med också att företa en egen fullständig kreditupplysning. 
+Returbrevet skickas till dig per post. Om banken har möjlighet, kommer de att skicka returbrevet digitalt till dig via e-post eller sms.</translation>
+  <translation id="privacy.policy.otherInfo.title”" desc="privacy-policy" meaning="“other-info-title">Information från andra källor</translation>
+  <translation id="privacy.policy.otherInfo”" desc="privacy-policy" meaning="“other-info">Vi kan då och då också ta emot och behandla personuppgifter från andra källor, som exempelvis: mätverktyg eller andra parter som hjälper oss med att förstå användaraktiviteten eller för att förbättra personifieringen av tjänsten.</translation>
+  <translation id="privacy.policy.purposeInfo.title”" desc="privacy-policy" meaning="“purpose-info-title">Vad används uppgifterna till?</translation>
+  <translation id="privacy.policy.purposeInfo”" desc="privacy-policy" meaning="“purpose-info">Vi behandlar huvudsakligen personuppgifter om dig för att driva tjänsten. Vi behandlar också ovannämnda information till följande:</translation>
+  <translation id="privacy.policy.purposeInfo.reason1”" desc="privacy-policy" meaning="“purpose-info-reason1">För att säkerställa tjänsten.</translation>
+  <translation id="privacy.policy.purposeInfo.reason2”" desc="privacy-policy" meaning="“purpose-info-reason2">För att personifiera och förbättra användarupplevelsen av tjänsten.</translation>
+  <translation id="privacy.policy.purposeInfo.reason3”" desc="privacy-policy" meaning="“purpose-info-reason3">För att skicka dig aviseringar och meddelanden via elektronisk kommunikation (som sms eller e-post)</translation>
+  <translation id="privacy.policy.purposeInfo.reason4”" desc="privacy-policy" meaning="“purpose-info-reason4">För att informera om våra uppdateringar av tjänsten och användarvillkoren. </translation>
+  <translation id="privacy.policy.purposeInfo.reason5”" desc="privacy-policy" meaning="“purpose-info-reason5">För att förbättra och utveckla tjänsten och nya tjänster och produkter, samt för att analysera din användning av tjänsten.</translation>
+  <translation id="privacy.policy.purposeInfo.reason6”" desc="privacy-policy" meaning="“purpose-info-reason6">För att säkerställa den tekniska funktionaliteteten i tjänsten.</translation>
+  <translation id="privacy.policy.purposeInfo.reason7”" desc="privacy-policy" meaning="“purpose-info-reason7">För att förhindra användning av tjänsten som bryter mot användarvillkoren för tjänsten och för att förebygga och utreda missbruk av tjänsten. </translation>
+  <translation id="privacy.policy.purposeInfo.reason8”" desc="privacy-policy" meaning="“purpose-info-reason8">Och för att uppfylla förpliktelser med hänsyn till gällande lagar och regler.</translation>
+  <translation id="privacy.policy.privacyInfo.usage”" desc="privacy-policy" meaning="“privacy-usage-info">Ränteradar.se bearbetar personuppgifter för att skapa statistik som sedan kan användas i media, samt offentliga och privata verksamheter på en aggregerad nivå. Statistiken vi delar med dessa är aldrig personuppgifter och du kommer aldrig att vara identifierbar. </translation>
+  <translation id="privacy.policy.privacyInfo.rights”" desc="privacy-policy" meaning="“privacy-rights-info">Din rätt till att motsäga dig behandlingen: denna behandling av dina personuppgifter är nödvändig för att vi skall kunna leverera vår tjänst. Om du vill motsätta dig denna typ av behandling av personuppgifter kan vi dessvärre inte erbjuda våran tjänst.</translation>
+  <translation id="privacy.policy.cookiesInfo.rights”" desc="privacy-policy" meaning="“cookies-rights-info">Så här förhindrar du att cookies lagras</translation>
+  <translation id="privacy.policy.cookiesInfo.remove”" desc="privacy-policy" meaning="“cookies-remove-info">Du kan ta bort cookies från din hårddisk när som helst, men detta gör att dina personliga inställningar försvinner.</translation>
+  <translation id="privacy.policy.cookiesInfo.remove2”" desc="privacy-policy" meaning="“cookies-remove2-info">Du kan också ändra inställningarna i din webbläsare till att den inte skall tillåta cookies att lagra sig på din hårddisk, eller att du manuellt godkänner varje cookie.
+Detta kan emellertid ge sämre funktionalitet på vissa webbplatser, kan förhindra tillgång till sidor som kräver inloggning och göra att delar av innehåll och vissa funktioner inte blir tillgängliga.</translation>
+  <translation id="privacy.policy.cookiesInfo.remove3”" desc="privacy-policy" meaning="“cookies-remove3-info">Du kan reglera cookies som ger dig marknadsföring baserat på intresseområden för en lång rad aktörer på reglerings sidan Network Advertising Initiative.</translation>
+  <translation id="privacy.policy.rightsInfo.title”" desc="privacy-policy" meaning="“rights-info-title">Dina rättigheter</translation>
+  <translation id="privacy.policy.rightsInfo”" desc="privacy-policy" meaning="“rights-info">Som registrerad användare hos Ränteradar.se har du följande rättigheter:</translation>
+  <translation id="privacy.policy.rightsInfo2”" desc="privacy-policy" meaning="“rights-info2">Rätt att tillhandahålla de personuppgifter som är registrerade om dig. Du kan vid skriftligt och undertecknad förfrågan till oss kräva insyn i övriga registrerade personupplysningar, beskrivning av vilka typer av uppgifter som behandlas, och närmare information om vår behandling av uppgifterna.</translation>
+  <translation id="privacy.policy.rightsInfo3”" desc="privacy-policy" meaning="“rights-info3">Rätt till att kräva att vi rättar fel i personuppgifterna som är registrerade om dig. Du kan ändra all information du har uppgett vid registrering av profil på min sida. 
+Om begäran gäller kommunikation eller annan information som inte är registrerad på min sida, kan du skicka en skriftlig, underskriven begäran till oss. </translation>
+  <translation id="privacy.policy.rightsInfo”4" desc="privacy-policy" meaning="“rights-info4">Rätt till att begära borttagande eller begränsad behandling av personuppgifter, vid tillfälle då du misstänker att uppgifterna blir behandlade olagligt eller inte är korrekt. </translation>
+  <translation id="privacy.policy.rightsInfo”5" desc="privacy-policy" meaning="“rights-info5">Rätten till att motsätta sig användning av personuppgifter i direkt marknadsföring och i annan kommunikation. Detta omfattar också rätten till att återkalla samtycke om användning av personuppgifter, när samtycke är grunden för behandlingen.</translation>
+  <translation id="privacy.policy.rightsInfo6”" desc="privacy-policy" meaning="“rights-info6">Rätt till att när som helst återkalla samtycke till att vi kan behandla dina personuppgifter.</translation>
+  <translation id="privacy.policy.rightsInfo”7" desc="privacy-policy" meaning="“rights-info7">Rätt till att bli glömd. Det vill säga att när du avslutar ditt användarkonto hos Ränteradar.se, tas all information om dig bort.</translation>
+  <translation id="privacy.policy.updated”" desc="privacy-policy" meaning="“privacy-updated">Sist uppdaterad 20.08.2020</translation>
+  <translation id="contactUs.title”" desc="title" meaning="“top">Kontakta oss</translation>
+  <translation id="contactUs.name”" desc="name" meaning="“text">Vänligast fyll i namn</translation>
+  <translation id="contactUs.email.issue”" desc="e-mail" meaning="“issue">Ingen giltig e-mail</translation>
+  <translation id="contactUs.email.issue2”" desc="e-mail" meaning="“issue">Ingen giltig e-mail</translation>
+  <translation id="contactUs.phone”" desc="telephone" meaning="“number">10 siffror</translation>
   <translation id="contactUs.phone.missing”" desc="missing" meaning="“number"/>
   <translation id="contactUs.message”" desc="missing" meaning="“message"/>
   <translation id="contactUs.send”" desc="send" meaning="“message"/>

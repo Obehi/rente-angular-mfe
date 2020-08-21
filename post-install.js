@@ -17,6 +17,8 @@ if (process.env.ENV === 'dev') {
     command = exec('npm run config-env && npm run i18n-poeditor && ng build --configuration=heroku-dev,sv && node move-locale-dir.js');
 }
 
+console.log("locale enviornment is:" + locale)
+
 if (command != undefined) {
     command.stdout.on('data', (data) => {
         console.log(data);

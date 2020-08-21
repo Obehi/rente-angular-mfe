@@ -60,11 +60,7 @@ export class LandingComponent implements OnInit {
 
     this.contactUsForm = this.fb.group({
       email: [
-        "",
-        Validators.compose([
-          Validators.required,
-          Validators.pattern(VALIDATION_PATTERN.email)
-        ])
+        ""
       ]
     });
   }

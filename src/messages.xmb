@@ -42,14 +42,6 @@
         </msg>
   <msg id="header.logOut2”" desc="log-out" meaning="“Headerlink"><source>app/shared/components/header/header.component.html:63,64</source><ph name="START_HEADING_LEVEL3"><ex>&lt;h3&gt;</ex>&lt;h3&gt;</ph>Logg ut<ph name="CLOSE_HEADING_LEVEL3"><ex>&lt;/h3&gt;</ex>&lt;/h3&gt;</ph>
       </msg>
-  <msg id="footer.customers”" desc="footer" meaning="“our-customers"><source>app/shared/components/footer/footer.component.html:5</source>Våre kunder:</msg>
-  <msg id="footer.partners”" desc="footer" meaning="“our-partners"><source>app/shared/components/footer/footer.component.html:35</source>Samarbeidspartnere:</msg>
-  <msg id="footer.ownership”" desc="footer" meaning="“ownership"><source>app/shared/components/footer/footer.component.html:73,75</source>
-        Renteradar.no eies og driftes av
-      </msg>
-  <msg id="footer.privacy”" desc="footer" meaning="“privacy"><source>app/shared/components/footer/footer.component.html:83,85</source>
-          Personvern
-        </msg>
   <msg id="textArea.message”" desc="text-area" meaning="“message"><source>app/shared/components/ui-components/text-area/text-area.component.html:3</source>Melding</msg>
   <msg id="popup.privacy.header”" desc="intro" meaning="“header"><source>app/app.component.html:10</source>Dine data, dine valg</msg>
   <msg id="popup.privacy.text”" desc="text" meaning="“description"><source>app/app.component.html:11,14</source>
@@ -65,48 +57,44 @@
       Sammenlign boliglånet ditt mot markedets beste tilbud - kjapt, enkelt og
       gratis!
     </msg>
-  <msg id="landing.start" desc="landing-page" meaning="start"><source>app/features/landing/landing.component.html:14</source>Start med å velge banken du har lån i:</msg>
-  <msg id="landing.otherBank" desc="landing-page" meaning="other-bank"><source>app/features/landing/landing.component.html:34</source>Annen bank</msg>
-  <msg id="landing.encouragement" desc="landing-page" meaning="encouragement"><source>app/features/landing/landing.component.html:66</source>Renteradar finner den beste boliglånsrenten helt gratis.</msg>
-  <msg id="landing.description" desc="landing-page" meaning="description"><source>app/features/landing/landing.component.html:70,73</source>
+  <msg id="landing.encouragement" desc="landing-page" meaning="encouragement"><source>app/features/landing/landing.component.html:69</source>Renteradar finner den beste boliglånsrenten helt gratis.</msg>
+  <msg id="landing.description" desc="landing-page" meaning="description"><source>app/features/landing/landing.component.html:73,76</source>
               Ingen utfylling av skjema. <ph name="LINE_BREAK"><ex>&lt;br&gt;</ex>&lt;br&gt;</ph>
               Logg inn med BankID på mobil.
             </msg>
-  <msg id="landing.explanationService" desc="landing-page" meaning="explanation-service"><source>app/features/landing/landing.component.html:77</source>Få oversikt og spar penger med et klikk.</msg>
-  <msg id="landing.descriptionService" desc="landing-page" meaning="description-service"><source>app/features/landing/landing.component.html:81,84</source>
+  <msg id="landing.explanationService" desc="landing-page" meaning="explanation-service"><source>app/features/landing/landing.component.html:80</source>Få oversikt og spar penger med et klikk.</msg>
+  <msg id="landing.descriptionService" desc="landing-page" meaning="description-service"><source>app/features/landing/landing.component.html:84,87</source>
               Renteradar overvåker markedet og gir deg beskjed når det kommer
               bedre tilbud.
             </msg>
-  <msg id="landing.function" desc="landing-page" meaning="how-it-functions"><source>app/features/landing/landing.component.html:92</source>Slik fungerer det</msg>
-  <msg id="landing.automaticService" desc="landing-page" meaning="automatic-service"><source>app/features/landing/landing.component.html:95,98</source>
+  <msg id="landing.function" desc="landing-page" meaning="how-it-functions"><source>app/features/landing/landing.component.html:95</source>Slik fungerer det</msg>
+  <msg id="landing.automaticService" desc="landing-page" meaning="automatic-service"><source>app/features/landing/landing.component.html:98,101</source>
             Renteradar henter renten og dine lånedetaljer automatisk med BankID på
             mobil.
           </msg>
-  <msg id="landing.comparingService" desc="landing-page" meaning="comparing-service"><source>app/features/landing/landing.component.html:100,104</source>
+  <msg id="landing.comparingService" desc="landing-page" meaning="comparing-service"><source>app/features/landing/landing.component.html:103,107</source>
             Vi sammenligner renten du betaler med renten du kan få i andre banker
             og viser deg hvor mye du kan spare. Du kan også prute i banken du er
             kunde med et klikk.
           </msg>
-  <msg id="landing.surveillanceService" desc="landing-page" meaning="surveillance-service"><source>app/features/landing/landing.component.html:121,124</source>
+  <msg id="landing.surveillanceService" desc="landing-page" meaning="surveillance-service"><source>app/features/landing/landing.component.html:124,127</source>
           Vi overvåker markedet og gir deg beskjed når nye og bedre tilbud er
           tilgjengelig i fremtiden!
         </msg>
-  <msg id="landing.title.explanation" desc="landing-page" meaning="title-explanation"><source>app/features/landing/landing.component.html:132</source>Slik fungerer det</msg>
-  <msg id="landing.step1.explanation" desc="landing-page" meaning="step1-explanation"><source>app/features/landing/landing.component.html:133,136</source>
+  <msg id="landing.title.explanation" desc="landing-page" meaning="title-explanation"><source>app/features/landing/landing.component.html:135</source>Slik fungerer det</msg>
+  <msg id="landing.step1.explanation" desc="landing-page" meaning="step1-explanation"><source>app/features/landing/landing.component.html:136,139</source>
             Renteradar henter renten og dine lånedetaljer automatisk med BankID på
             mobil.
           </msg>
-  <msg id="landing.step2.explanation" desc="landing-page" meaning="step2-explanation"><source>app/features/landing/landing.component.html:137,141</source>
+  <msg id="landing.step2.explanation" desc="landing-page" meaning="step2-explanation"><source>app/features/landing/landing.component.html:140,144</source>
             Vi sammenligner renten du betaler med renten du kan få i andre banker
             og viser deg hvor mye du kan spare. Du kan også prute i banken du er
             kunde med et klikk.
           </msg>
-  <msg id="landing.step3.explanation" desc="landing-page" meaning="step3-explanation"><source>app/features/landing/landing.component.html:149,152</source>
+  <msg id="landing.step3.explanation" desc="landing-page" meaning="step3-explanation"><source>app/features/landing/landing.component.html:151,154</source>
             Vi overvåker markedet og gir deg beskjed når nye og bedre tilbud er
             tilgjengelig i fremtiden!
           </msg>
-  <msg id="landing.title.review" desc="landing-page" meaning="title-review"><source>app/features/landing/landing.component.html:158</source>Fornøyde brukere</msg>
-  <msg id="landing.title.media" desc="landing-page" meaning="title-media"><source>app/features/landing/landing.component.html:255</source>Renteradar i media</msg>
   <msg id="faq.title”" desc="faq" meaning="“faq-title"><source>app/features/faq/faq.component.html:2</source>Vanlig stilte spørsmål om boliglån</msg>
   <msg id="faq.question1”" desc="faq" meaning="“question1"><source>app/features/faq/faq.component.html:7,9</source>
             Hvor mye kan jeg spare på boliglånet?
@@ -1454,5 +1442,19 @@ Fortsett
         <ph name="START_LIST_ITEM"><ex>&lt;li&gt;</ex>&lt;li&gt;</ph>Logg inn på nettbanken hos banken din<ph name="CLOSE_LIST_ITEM"><ex>&lt;/li&gt;</ex>&lt;/li&gt;</ph>
         <ph name="START_LIST_ITEM"><ex>&lt;li&gt;</ex>&lt;li&gt;</ph>Gå til din postkasse i nettbanken. Send en melding til banken derfra og lim inn teksten du har kopiert<ph name="CLOSE_LIST_ITEM"><ex>&lt;/li&gt;</ex>&lt;/li&gt;</ph>
       </msg>
+  <msg id="bargain.success.noResponse”" desc="bargain" meaning="“no-response"><source>app/features/dashboard/offers/bargain-success/bargain-success.component.html:19,22</source>
+        Får du fortsatt ikke svar fra banken din eller banken ikke vil sette ned renten,
+        er det kanskje på tide å bytte bank. Renteradar.no viser deg hvilken bank du bør bytte til.
+      </msg>
+  <msg id="bargain.success.review”" desc="bargain" meaning="“review"><source>app/features/dashboard/offers/bargain-success/bargain-success.component.html:23,26</source>
+        Send oss gjerne en e-post på <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>hei@renteradar.no<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph>  eller bruk chat-funksjonen i tjenesten
+        for å fortelle oss om du har fått lavere rente eller om du har noen spørsmål.
+      </msg>
+  <msg id="bargain.success.error”" desc="bargain" meaning="“error"><source>app/features/dashboard/offers/bargain-success/bargain-success.component.html:30</source>Noe gikk galt…</msg>
+  <msg id="bargain.success.error2”" desc="bargain" meaning="“error2"><source>app/features/dashboard/offers/bargain-success/bargain-success.component.html:32,34</source>
+          Beklager, noe gikk galt og vi vil rette opp feilen så fort som mulig. Vennligst prøv igjen senere.
+        </msg>
+  <msg id="bargain.success.luck”" desc="bargain" meaning="“luck"><source>app/features/dashboard/offers/bargain-success/bargain-success.component.html:38,40</source>
+        <ph name="START_TAG_RENTE_BUTTON"><ex>&lt;rente-button&gt;</ex>&lt;rente-button&gt;</ph>Lykke til!<ph name="CLOSE_TAG_RENTE_BUTTON"><ex>&lt;/rente-button&gt;</ex>&lt;/rente-button&gt;</ph>
       </msg>
 </messagebundle>
