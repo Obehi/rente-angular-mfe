@@ -57,41 +57,41 @@
       Sammenlign boliglånet ditt mot markedets beste tilbud - kjapt, enkelt og
       gratis!
     </msg>
-  <msg id="landing.encouragement" desc="landing-page" meaning="encouragement"><source>app/features/landing/landing.component.html:69</source>Renteradar finner den beste boliglånsrenten helt gratis.</msg>
-  <msg id="landing.description" desc="landing-page" meaning="description"><source>app/features/landing/landing.component.html:73,76</source>
+  <msg id="landing.encouragement" desc="landing-page" meaning="encouragement"><source>app/features/landing/landing.component.html:70</source>Renteradar finner den beste boliglånsrenten helt gratis.</msg>
+  <msg id="landing.description" desc="landing-page" meaning="description"><source>app/features/landing/landing.component.html:74,77</source>
               Ingen utfylling av skjema. <ph name="LINE_BREAK"><ex>&lt;br&gt;</ex>&lt;br&gt;</ph>
               Logg inn med BankID på mobil.
             </msg>
-  <msg id="landing.explanationService" desc="landing-page" meaning="explanation-service"><source>app/features/landing/landing.component.html:80</source>Få oversikt og spar penger med et klikk.</msg>
-  <msg id="landing.descriptionService" desc="landing-page" meaning="description-service"><source>app/features/landing/landing.component.html:84,87</source>
+  <msg id="landing.explanationService" desc="landing-page" meaning="explanation-service"><source>app/features/landing/landing.component.html:81</source>Få oversikt og spar penger med et klikk.</msg>
+  <msg id="landing.descriptionService" desc="landing-page" meaning="description-service"><source>app/features/landing/landing.component.html:85,88</source>
               Renteradar overvåker markedet og gir deg beskjed når det kommer
               bedre tilbud.
             </msg>
-  <msg id="landing.function" desc="landing-page" meaning="how-it-functions"><source>app/features/landing/landing.component.html:95</source>Slik fungerer det</msg>
-  <msg id="landing.automaticService" desc="landing-page" meaning="automatic-service"><source>app/features/landing/landing.component.html:98,101</source>
+  <msg id="landing.function" desc="landing-page" meaning="how-it-functions"><source>app/features/landing/landing.component.html:96</source>Slik fungerer det</msg>
+  <msg id="landing.automaticService" desc="landing-page" meaning="automatic-service"><source>app/features/landing/landing.component.html:99,102</source>
             Renteradar henter renten og dine lånedetaljer automatisk med BankID på
             mobil.
           </msg>
-  <msg id="landing.comparingService" desc="landing-page" meaning="comparing-service"><source>app/features/landing/landing.component.html:103,107</source>
+  <msg id="landing.comparingService" desc="landing-page" meaning="comparing-service"><source>app/features/landing/landing.component.html:104,108</source>
             Vi sammenligner renten du betaler med renten du kan få i andre banker
             og viser deg hvor mye du kan spare. Du kan også prute i banken du er
             kunde med et klikk.
           </msg>
-  <msg id="landing.surveillanceService" desc="landing-page" meaning="surveillance-service"><source>app/features/landing/landing.component.html:124,127</source>
+  <msg id="landing.surveillanceService" desc="landing-page" meaning="surveillance-service"><source>app/features/landing/landing.component.html:125,128</source>
           Vi overvåker markedet og gir deg beskjed når nye og bedre tilbud er
           tilgjengelig i fremtiden!
         </msg>
-  <msg id="landing.title.explanation" desc="landing-page" meaning="title-explanation"><source>app/features/landing/landing.component.html:135</source>Slik fungerer det</msg>
-  <msg id="landing.step1.explanation" desc="landing-page" meaning="step1-explanation"><source>app/features/landing/landing.component.html:136,139</source>
+  <msg id="landing.title.explanation" desc="landing-page" meaning="title-explanation"><source>app/features/landing/landing.component.html:136</source>Slik fungerer det</msg>
+  <msg id="landing.step1.explanation" desc="landing-page" meaning="step1-explanation"><source>app/features/landing/landing.component.html:137,140</source>
             Renteradar henter renten og dine lånedetaljer automatisk med BankID på
             mobil.
           </msg>
-  <msg id="landing.step2.explanation" desc="landing-page" meaning="step2-explanation"><source>app/features/landing/landing.component.html:140,144</source>
+  <msg id="landing.step2.explanation" desc="landing-page" meaning="step2-explanation"><source>app/features/landing/landing.component.html:141,145</source>
             Vi sammenligner renten du betaler med renten du kan få i andre banker
             og viser deg hvor mye du kan spare. Du kan også prute i banken du er
             kunde med et klikk.
           </msg>
-  <msg id="landing.step3.explanation" desc="landing-page" meaning="step3-explanation"><source>app/features/landing/landing.component.html:151,154</source>
+  <msg id="landing.step3.explanation" desc="landing-page" meaning="step3-explanation"><source>app/features/landing/landing.component.html:152,155</source>
             Vi overvåker markedet og gir deg beskjed når nye og bedre tilbud er
             tilgjengelig i fremtiden!
           </msg>
@@ -189,72 +189,59 @@
           For at dette skal fungere trenger vi at du identifiserer deg med 
           BankID på mobil. Du finner mer detaljer om dette i vilkårene ved innlogging.
       </msg>
-  <msg id="faq.question9”" desc="faq" meaning="“question9"><source>app/features/faq/faq.component.html:153,155</source>
-            Kan jeg bruke BankID med passord/kodebrikke?
-          </msg>
-  <msg id="faq.response9”" desc="faq" meaning="“response9"><source>app/features/faq/faq.component.html:158,161</source>
-          Vi har dessverre ingen løsning for BankID med passord/kodebrikke, heller ikke engangspassord app. 
-          Grunnen til dette er at passordet ditt er personlig og bør ikke oppgis til tredjeparter som Renteradar.no
-      </msg>
-  <msg id="faq.question10”" desc="faq" meaning="“question10"><source>app/features/faq/faq.component.html:166,168</source>
+  <msg id="faq.question10”" desc="faq" meaning="“question10"><source>app/features/faq/faq.component.html:153,155</source>
             Personvern: Er det trygt å bruke tjenesten deres?
           </msg>
-  <msg id="faq.response10”" desc="faq" meaning="“response10"><source>app/features/faq/faq.component.html:171,177</source>
+  <msg id="faq.response10”" desc="faq" meaning="“response10"><source>app/features/faq/faq.component.html:158,164</source>
           Ja, informasjonen din er helt trygg og vi deler ikke 
           personlig informasjon med tredjeparter. Les mer i vår
           <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>personvernserklæring<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph>
           og
           <ph name="START_LINK_1"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>brukervilkår<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph>
       </msg>
-  <msg id="faq.question11”" desc="faq" meaning="“question11"><source>app/features/faq/faq.component.html:182,184</source>
+  <msg id="faq.question11”" desc="faq" meaning="“question11"><source>app/features/faq/faq.component.html:169,171</source>
             Jeg finner ikke banken jeg har boliglån i
           </msg>
-  <msg id="faq.response11”" desc="faq" meaning="“response11"><source>app/features/faq/faq.component.html:187,191</source>
+  <msg id="faq.response11”" desc="faq" meaning="“response11"><source>app/features/faq/faq.component.html:174,178</source>
           Vi har ikke bygget funksjonalitet for å hente lånedetaljer fra alle banker. 
           Det er hittil kun kunder av de fire største bankene (DNB, Nordea, Sparebank 1-bankene og alle Eika-bankene) 
           som kan bruke tjenesten. Vi kommer til å legge til flere banker fremover. 
       </msg>
-  <msg id="faq.sub.response11”" desc="faq" meaning="“sub-response11"><source>app/features/faq/faq.component.html:193</source>Gå gjerne til: <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>https://renteradar.no/faabeskjed<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph></msg>
-  <msg id="faq.sub2.response11”" desc="faq" meaning="“sub2-response11"><source>app/features/faq/faq.component.html:195</source>Legg til din bank og e-post, så gir vi deg beskjed når din bank er lagt til.</msg>
-  <msg id="faq.question12”" desc="faq" meaning="“question12"><source>app/features/faq/faq.component.html:200,202</source>
+  <msg id="faq.sub.response11”" desc="faq" meaning="“sub-response11"><source>app/features/faq/faq.component.html:180</source>Gå gjerne til: <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>https://renteradar.no/faabeskjed<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph></msg>
+  <msg id="faq.sub2.response11”" desc="faq" meaning="“sub2-response11"><source>app/features/faq/faq.component.html:182</source>Legg til din bank og e-post, så gir vi deg beskjed når din bank er lagt til.</msg>
+  <msg id="faq.question12”" desc="faq" meaning="“question12"><source>app/features/faq/faq.component.html:187,189</source>
             Koster det noe å bruke Renteradar.no?
           </msg>
-  <msg id="faq.response12”" desc="faq" meaning="“response12"><source>app/features/faq/faq.component.html:205,208</source>
+  <msg id="faq.response12”" desc="faq" meaning="“response12"><source>app/features/faq/faq.component.html:192,195</source>
           Nei, det er gratis å bruke Renteradar.no. Forretningsmodellen vår er 
           bygget opp slik at det er bankene som skal dekke kostnaden for denne tjenesten, ikke deg som forbruker.
       </msg>
-  <msg id="faq.question13”" desc="faq" meaning="“question13"><source>app/features/faq/faq.component.html:213,215</source>
+  <msg id="faq.question13”" desc="faq" meaning="“question13"><source>app/features/faq/faq.component.html:200,202</source>
             Viser dere tilbud fra alle banker?
           </msg>
-  <msg id="faq.response13”" desc="faq" meaning="“response13"><source>app/features/faq/faq.component.html:218,221</source>
+  <msg id="faq.response13”" desc="faq" meaning="“response13"><source>app/features/faq/faq.component.html:205,208</source>
           Ja, du ser tilbud fra alle banker. Enkelte lignende tjenester 
           viser kun tilbud fra banker de har avtale med; det gjør ikke Renteradar.no.
       </msg>
-  <msg id="faq.question14”" desc="faq" meaning="“question14"><source>app/features/faq/faq.component.html:226,228</source>
+  <msg id="faq.question14”" desc="faq" meaning="“question14"><source>app/features/faq/faq.component.html:213,215</source>
               Jeg har ikke lån enda, kan jeg bruke Renteradar.no?
           </msg>
-  <msg id="faq.response14”" desc="faq" meaning="“response14"><source>app/features/faq/faq.component.html:231,233</source>
+  <msg id="faq.response14”" desc="faq" meaning="“response14"><source>app/features/faq/faq.component.html:218,220</source>
         Foreløpig er tjenesten kun for brukere som allerede har boliglån.
       </msg>
-  <msg id="faq.question15”" desc="faq" meaning="“question15"><source>app/features/faq/faq.component.html:238,240</source>
+  <msg id="faq.question15”" desc="faq" meaning="“question15"><source>app/features/faq/faq.component.html:225,227</source>
             Kan jeg slette profilen min når jeg ønsker?
           </msg>
-  <msg id="faq.response15”" desc="faq" meaning="“response15"><source>app/features/faq/faq.component.html:243,246</source>
+  <msg id="faq.response15”" desc="faq" meaning="“response15"><source>app/features/faq/faq.component.html:230,233</source>
           Ja, selvfølgelig! Send en mail til <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>slettmeg@renteradar.no<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph> og 
           vi sletter alle dine data. Du får bekreftelse på dette på mail.
       </msg>
-  <msg id="faq.question16”" desc="faq" meaning="“question16"><source>app/features/faq/faq.component.html:251,253</source>
+  <msg id="faq.question16”" desc="faq" meaning="“question16"><source>app/features/faq/faq.component.html:238,240</source>
             Hvem står bak Renteradar.no?
           </msg>
-  <msg id="faq.response16”" desc="faq" meaning="“response16"><source>app/features/faq/faq.component.html:256,259</source>
+  <msg id="faq.response16”" desc="faq" meaning="“response16"><source>app/features/faq/faq.component.html:243,246</source>
           Renteradar.no eies og drives av Forbrukerøkonomene AS. 
          Se <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>om oss<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph> for mer informasjon.
-      </msg>
-  <msg id="faq.question17”" desc="faq" meaning="“question17"><source>app/features/faq/faq.component.html:264,266</source>
-            Har dere samarbeidsavtaler med noen banker?
-          </msg>
-  <msg id="faq.response17”" desc="faq" meaning="“response17"><source>app/features/faq/faq.component.html:269,271</source>
-          Ja, per i dag har vi samarbeidsavtaler med Sbanken, Bulder Bank og Landkreditt.
       </msg>
   <msg id="privacy.component.title.integrity" desc="privacy-component" meaning="title-integrity"><source>app/features/privacy/privacy.component.html:3</source>Personvern er viktig for oss</msg>
   <msg id="privacy.component.text.integrity" desc="privacy-component" meaning="text-integrity"><source>app/features/privacy/privacy.component.html:5,12</source>
@@ -590,10 +577,12 @@
   <msg id="contactUs.phone.missing”" desc="missing" meaning="“number"><source>app/features/contact-us/contact-us.component.html:79,81</source>
         Telefonnummer kan ikke være tomt
       </msg>
-  <msg id="contactUs.message”" desc="missing" meaning="“message"><source>app/features/contact-us/contact-us.component.html:99,101</source>
+  <msg id="4295306958087049003"><source>app/features/contact-us/contact-us.component.html:90,91</source>
+    </msg>
+  <msg id="contactUs.message”" desc="missing" meaning="“message"><source>app/features/contact-us/contact-us.component.html:100,102</source>
         Meldingen kan ikke være tom
       </msg>
-  <msg id="contactUs.send”" desc="send" meaning="“message"><source>app/features/contact-us/contact-us.component.html:108,109</source>Send
+  <msg id="contactUs.send”" desc="send" meaning="“message"><source>app/features/contact-us/contact-us.component.html:109,110</source>Send
     </msg>
   <msg id="info.confirmation.hi”" desc="info-confirmation" meaning="“hi"><source>app/features/init-confirmation/init-confirmation.component.html:4</source>Hei, <ph name="INTERPOLATION"><ex>{{ userData.name }}</ex>{{ userData.name }}</ph></msg>
   <msg id="info.confirmation.moreInfo”" desc="info-confirmation" meaning="“more-infor"><source>app/features/init-confirmation/init-confirmation.component.html:5</source>Vi trenger litt mer informasjon før vi kan søke etter tilbud</msg>
