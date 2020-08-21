@@ -223,7 +223,9 @@
       </mat-expansion-panel-header>
       <p i18n=“response16|faq@@faq.response16” class="expansion-content">
           Renteradar.no eies og drives av Forbrukerøkonomene AS. 
-         Se <a href="https://renteradar.no/om-oss" target="_blank">om oss</a> for mer informasjon.
+         Se <a [routerLink]="['/om-oss']"  target="_blank">om oss</a> for mer informasjon.
       </p>
     </mat-expansion-panel>
   </mat-accordion>
+
+  
