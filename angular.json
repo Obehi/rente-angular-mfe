@@ -82,6 +82,12 @@
               "assets": [
                 { "glob": "**/*", "input": "src/assets/nb", "output": "/assets/" },
                 "src/assets"
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/components/components.ts",
+                  "with": "src/environments/components/components-no.ts"
+                }
               ]
             },
             "sv": {
@@ -89,7 +95,13 @@
               "assets": [
                 { "glob": "**/*", "input": "src/assets/sv", "output": "/assets/" },
                 "src/assets"
-              ]         
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/components/components.ts",
+                  "with": "src/environments/components/components-sv.ts"
+                }
+              ]
             },  
             "local": {
               "budgets": [

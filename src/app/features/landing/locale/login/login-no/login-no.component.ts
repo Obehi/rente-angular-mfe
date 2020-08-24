@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'rente-login-no',
+  selector: 'rente-login',
   templateUrl: './login-no.component.html',
   styleUrls: ['./login-no.component.scss']
 })
