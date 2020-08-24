@@ -16,11 +16,20 @@ const proxy = require('http-proxy').createProxyServer({
   })
 });
 
-app.use('/blogg', function(req, res, next) {
-  proxy.web(req, res, {
-      target: 'https://blogg.renteradar.no'
-  }, next);
-});
+if(process.env.LOCALE == undefined || process.env.LOCALE == "no") {
+  app.use('/blogg', function(req, res, next) {
+    proxy.web(req, res, {
+        target: 'https://blogg.ranteradar.se'
+    }, next);
+  });
+} else if(process.env.LOCALE == "sv") {
+  app.use('/blogg', function(req, res, next) {
+    proxy.web(req, res, {
+        target: 'https://blogg.renteradar.no'
+    }, next);
+  });
+}
+
 
 app.use(express.static(clientPath));
 
