@@ -51,8 +51,6 @@ registerLocaleData(localeNo);
     AboutCookiesComponent,
     EmailPreferencesComponent,
     ProfileDialogInfoComponent,
-    LoginNoComponent,
-    LoginSVComponent,
     LoginLangGenericComponent
   ],
   imports: [
