@@ -9,13 +9,14 @@
     </h4>
   </div>
 
+  <div class="singupContainer">
   <p class="signUp">Skriv upp dig här så håller vi dig uppdaterad</p>
   <form
       [formGroup]="contactUsForm"
       novalidate
       (ngSubmit)="request()"
     >
-      <div>
+      <div class="inputWrapper">
         <rente-input
           [placeholder]="'E-post'"
           formControlName="email"
@@ -53,7 +54,7 @@
         >Håll mig uppdaterad
       </rente-button>
     </form>
-
+  </div>
 
   <!--
   <iframe src="https://link.tink.com/1.0/authorize/?client_id=3973e78ee8c140edbf36e53d50132ba1&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fcallback&scope=accounts:read,investments:read,transactions:read,user:read,statistics:read,identity:read,credentials:read&market=SE&locale=sv_SE&test=true&iframe=true">

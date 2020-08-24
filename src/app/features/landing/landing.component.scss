@@ -33,8 +33,41 @@ h3 {
 .intro {
   h4 {
     max-width: 250px;
-    margin: 100px auto 0 auto;
+    margin: 75px auto 75px auto;
 
+  }
+}
+
+@media (min-width: 600px) {
+  .singupContainer {
+    background: $secondary;
+    border-radius: 15px;
+    padding: 46px 0 4px 0;
+    margin-bottom: 40px;
+
+    p {
+      color: white;
+      margin-bottom: 40px;
+    }
+  }
+
+  .inputWrapper {
+    background: white;
+    padding: 0px 31px 27px 40px;
+    border-radius: 35px;
+  }
+
+  .mat-form-field-label {
+    color: white !important;
+  }
+ 
+
+  .placeholder {
+  
+  }
+
+  .ng-touched {
+   
   }
 }
 
@@ -43,6 +76,7 @@ h3 {
   color: $secondary;
   font-size: 18px;
 }
+
 
 .mat-form-field {
   width: 100%;
