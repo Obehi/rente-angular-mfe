@@ -1,5 +1,13 @@
 <footer [class]="router.url.includes('dashboard') ? '' : 'visible'">
   <div class="inner-footer">
 
+    <a class="temp-swedish-policy" i18n=“privacy|footer@@footer.privacy”
+          [routerLink]="['/personvern']"
+          routerLinkActive="active-link"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+      Personvern
+    </a>
+
   </div>
 </footer>

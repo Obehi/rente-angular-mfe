@@ -43,7 +43,7 @@ h3 {
     background: $secondary;
     border-radius: 15px;
     padding: 46px 0 4px 0;
-    margin-bottom: 40px;
+    margin-bottom: 120px;
 
     p {
       color: white;
@@ -52,22 +52,14 @@ h3 {
   }
 
   .inputWrapper {
-    background: white;
+    border: 1px solid $primary;
     padding: 0px 31px 27px 40px;
     border-radius: 35px;
   }
 
-  .mat-form-field-label {
-    color: white !important;
-  }
- 
 
-  .placeholder {
-  
-  }
-
-  .ng-touched {
-   
+  :host ::ng-deep .mat-form-field-label {
+    color: white;
   }
 }
 
