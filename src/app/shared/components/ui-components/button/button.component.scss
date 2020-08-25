@@ -4,7 +4,7 @@
   text-align: center;
 }
 button.mat-button {
-  min-width: 300px;
+  min-width: 100px;
   border-radius: 100px;
   margin: auto;
   font-size: 16px;
@@ -49,6 +49,7 @@ button.mat-secondary {
   background-color: $secondary;
   color: white;
 }
+
 .mat-button.mat-primary {
   color: white !important;
 }

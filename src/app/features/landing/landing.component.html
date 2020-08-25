@@ -9,8 +9,9 @@
     </h4>
   </div>
 
-  <div class="singupContainer">
   <p class="signUp">Skriv upp dig här så håller vi dig uppdaterad</p>
+  <div class="singupContainer">
+  
   <form
       [formGroup]="contactUsForm"
       novalidate
@@ -48,11 +49,11 @@
         </div>
       </div>
 
-      <rente-button
+      <rente-button-small
         color="primary"
         [disabled]="!contactUsForm.valid || isLoading"
         >Håll mig uppdaterad
-      </rente-button>
+      </rente-button-small>
     </form>
   </div>
 

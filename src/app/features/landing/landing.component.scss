@@ -38,13 +38,14 @@ h3 {
   }
 }
 
-@media (min-width: 600px) {
+@media (min-width: 0px) {
   .singupContainer {
-    background: $secondary;
+
     border-radius: 15px;
-    padding: 46px 0 4px 0;
     margin-bottom: 120px;
 
+    margin: auto;
+    margin-bottom: 120px;
     p {
       color: white;
       margin-bottom: 40px;
@@ -65,6 +66,7 @@ h3 {
   font-weight: 500;
   color: $secondary;
   font-size: 18px;
+  margin-bottom: 20px;
 }
 
 
@@ -81,9 +83,10 @@ rente-button {
 form {
   padding: unset;
   border: unset;
-  max-width: 300px;
-  margin-bottom: 80px;
+  width: 300px;
+  
   div {
+    margin-bottom: 20px;
     height: 70px;
   }
 }
@@ -513,87 +516,6 @@ input.mat-input-element {
 }
 
 
-
-// mat-icon-stepper selected color change 
-::ng-deep .mat-step-header .mat-step-icon-selected, .mat-step-header .mat-step-icon-state-done, .mat-step-header .mat-step-icon-state-edit {
-  background-color: white!important;
+::ng-deep .mat-form-field-underline {
+  display: none;
 }
-
-//input outline color
-::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
-  color: white!important;
-  // opacity: 1!important;
-}
-
-//mat-input focused color
-::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
-  color: white!important;
-}
-
-// mat-input error outline color
-::ng-deep .mat-form-field-appearance-outline.mat-form-field-invalid.mat-form-field-invalid .mat-form-field-outline-thick{
-  color: white!important;
-  opacity: 0.8!important;
-}
-
-// mat-input carent color
-::ng-deep .mat-input-element {
-  caret-color: white!important;
-}
-
-// mat-input error carent color
-::ng-deep .mat-form-field-invalid .mat-input-element, .mat-warn .mat-input-element {
-  caret-color: white!important;
-}
-
-// mat-label normal state style
-::ng-deep .mat-form-field-label {
-  color: white!important;
-  // color: $mainColor!important;
-}
-
-// mat-label focused style
-::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
-  color: white!important;
-}
-
-// mat-label error style
-::ng-deep .mat-form-field.mat-form-field-invalid .mat-form-field-label {
-  color: white!important;
-}
-
-
-
-.mat-form-field-empty.mat-form-field-label {
-  color: green;
-}
-
-
-
-
-
-
-
-/* input color class */
-::ng-deep input.mat-input-element {
-  color: white;
-}
-
-
-
-:host ::ng-deep .mat-form-field-label {
-  color: white;
-}
-::ng-deep .mat-focused .mat-form-field-label {
-
-  color: white !important;
- }
-
- ::ng-deep.mat-form-field-ripple {
-  /*change color of underline when focused*/
-  background-color: unset !important;
- }
-
- .input-block {
-   color: white !important;
- }

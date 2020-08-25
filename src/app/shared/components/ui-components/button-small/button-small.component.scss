@@ -1,26 +1,49 @@
 
-
+@import "../../../../../styles/theme/_colors.scss";
 .small-button.mat-button.mat-button-base.mat-secondary {
-    min-width: 150px;
-    font-size: 12px;
-    height: 3.5em;
-    padding: 0 2em;
-    border-radius: 8px;
-
-    @media (max-width: 340px) {
-        min-width: 300px;
-    }
+    min-width: 300px;
+  border-radius: 100px;
+  margin: auto;
+  font-size: 16px;
+  line-height: 19px;
+  height: 56px;
+  border: none;
+  outline: none;
+  display: inline-block;
+  opacity: 1;
+  padding: 0 20px;
+  font-weight: 500;
+  color: white;
+  background: $primary;
+  p {
+    color: white;
+  }
+  img {
+    height: 20px;
+  }
 }
 
 
 .small-button.mat-button.mat-button-base.mat-primary {
-    min-width: 150px;
-    font-size: 12px;
-    height: 3.5em;
-    padding: 0 2em;
-    border-radius: 8px;
+    min-width: 300px;
+  border-radius: 100px;
+  margin: auto;
+  font-size: 16px;
+  line-height: 19px;
+  height: 56px;
+  border: none;
+  outline: none;
+  display: inline-block;
+  opacity: 1;
+  color: white;
 
-    @media (max-width: 340px) {
-        min-width: 300px;
-    }
+  padding: 0 20px;
+  font-weight: 500;
+  background: $primary;
+  p {
+    color: white;
+  }
+  img {
+    height: 20px;
+  }
 }
