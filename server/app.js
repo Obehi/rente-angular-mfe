@@ -16,6 +16,7 @@ const proxy = require('http-proxy').createProxyServer({
   })
 });
 
+/*
 if(process.env.LOCALE == undefined || process.env.LOCALE == "no") {
   app.use('/blogg', function(req, res, next) {
     proxy.web(req, res, {
@@ -29,7 +30,7 @@ if(process.env.LOCALE == undefined || process.env.LOCALE == "no") {
     }, next);
   });
 }
-
+*/
 
 app.use(express.static(clientPath));
 
