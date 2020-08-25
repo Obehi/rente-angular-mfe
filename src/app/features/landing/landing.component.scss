@@ -58,9 +58,7 @@ h3 {
   }
 
 
-  :host ::ng-deep .mat-form-field-label {
-    color: white;
-  }
+   
 }
 
 .signUp {
@@ -437,3 +435,165 @@ a {
   margin-top: -115px;  /* same height as header */
   visibility: hidden;
 }
+
+
+
+
+/* Border */
+.mat-form-field-appearance-outline .mat-form-field-outline {
+  color: white;
+}
+/* Font color */
+input.mat-input-element {
+  color: white;
+}
+
+
+
+.input-block {
+  display: none !important;
+  .mat-form-field-infix {
+    height: 56px;
+    width: unset !important;
+    padding: 10px 0 !important;
+    // border-radius: 4px 4px 0 0;
+    // background-color: #DEDFDF;
+  }
+
+  .mat-form-field {
+    width: 100%;
+
+    &.mat-focused {
+      .mat-form-field-ripple {
+        background-color: $primary;
+      }
+
+      input {
+        color: white !important;
+      }
+
+      label {
+        color: $primary;
+      }
+    }
+
+    .mat-form-field-underline {
+      background-color: $dark;
+      bottom: 0px;
+    }
+
+    .mat-form-field-wrapper {
+      padding-bottom: 0px;
+    }
+  }
+
+  label {
+    // padding-left: 20px;
+    margin-top: 6px;
+    font-family: Roboto;
+    font-size: 16px;
+    font-weight: 300;
+  }
+
+  input {
+    height: 24px;
+    width: 292px;
+    color: #636669;
+    font-family: Roboto;
+    font-size: 16px;
+
+    line-height: 24px;
+    // padding:0 16px;
+    width: 100%;
+    // background-color: #DEDFDF !important;
+    // &:-internal-autofill-selected {
+    // background-color: #DEDFDF !important;
+    // }
+  }
+}
+
+
+
+// mat-icon-stepper selected color change 
+::ng-deep .mat-step-header .mat-step-icon-selected, .mat-step-header .mat-step-icon-state-done, .mat-step-header .mat-step-icon-state-edit {
+  background-color: white!important;
+}
+
+//input outline color
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+  color: white!important;
+  // opacity: 1!important;
+}
+
+//mat-input focused color
+::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+  color: white!important;
+}
+
+// mat-input error outline color
+::ng-deep .mat-form-field-appearance-outline.mat-form-field-invalid.mat-form-field-invalid .mat-form-field-outline-thick{
+  color: white!important;
+  opacity: 0.8!important;
+}
+
+// mat-input carent color
+::ng-deep .mat-input-element {
+  caret-color: white!important;
+}
+
+// mat-input error carent color
+::ng-deep .mat-form-field-invalid .mat-input-element, .mat-warn .mat-input-element {
+  caret-color: white!important;
+}
+
+// mat-label normal state style
+::ng-deep .mat-form-field-label {
+  color: white!important;
+  // color: $mainColor!important;
+}
+
+// mat-label focused style
+::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
+  color: white!important;
+}
+
+// mat-label error style
+::ng-deep .mat-form-field.mat-form-field-invalid .mat-form-field-label {
+  color: white!important;
+}
+
+
+
+.mat-form-field-empty.mat-form-field-label {
+  color: green;
+}
+
+
+
+
+
+
+
+/* input color class */
+::ng-deep input.mat-input-element {
+  color: white;
+}
+
+
+
+:host ::ng-deep .mat-form-field-label {
+  color: white;
+}
+::ng-deep .mat-focused .mat-form-field-label {
+
+  color: white !important;
+ }
+
+ ::ng-deep.mat-form-field-ripple {
+  /*change color of underline when focused*/
+  background-color: unset !important;
+ }
+
+ .input-block {
+   color: white !important;
+ }
