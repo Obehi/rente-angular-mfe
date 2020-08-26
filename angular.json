@@ -89,6 +89,12 @@
               "assets": [
                 { "glob": "**/*", "input": "src/assets/sv", "output": "/assets/" },
                 "src/assets"
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "src/app/config/routes-config.ts",
+                  "with": "src/app/config/routes-config-sv.ts"
+                }
               ]
             },
             "local": {
