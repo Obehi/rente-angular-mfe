@@ -5,7 +5,7 @@
     "importLanguage": "nb",
     "exportTags": "all",
     "exportDir":"src/locale",
-    "importSyncTerms": 1,
+    "importSyncTerms": 0,
     "exportFiles":{
       "sv":"messages.sv.xtb",
       "nb":"messages.nb.xtb"
