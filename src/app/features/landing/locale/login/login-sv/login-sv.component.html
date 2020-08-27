@@ -1,1 +1,48 @@
-<p>login-sv works!</p>
+<p class="signUp">Skriv upp dig här så håller vi dig uppdaterad</p>
+  <div class="singupContainer">
+  
+  <form
+      [formGroup]="contactUsForm"
+      novalidate
+      (ngSubmit)="request()"
+    >
+      <div class="inputWrapper">
+        <rente-input
+          class="signup"
+          [placeholder]="'E-post'"
+          formControlName="email"
+          [errorStateMatcher]="
+            isErrorState(contactUsForm.controls['email'], contactUsForm)
+          "
+          [textControl]="inValid()"
+          (blur)="onBlurErrorCheck()"
+        >
+        </rente-input>
+        <div
+          *ngIf="emailError"
+          class="error-message"
+        >
+          <rente-form-message
+            class="text-left d-block"
+            [type]="'error'"
+            *ngIf="contactUsForm.controls['email'].hasError('required')"
+          >
+            Ikke gyldig email
+          </rente-form-message>
+          <rente-form-message
+            class="text-left d-block"
+            [type]="'error'"
+            *ngIf="contactUsForm.controls['email'].hasError('pattern')"
+          >
+            Ikke gyldig email
+          </rente-form-message>
+        </div>
+      </div>
+
+      <rente-button-small
+        color="primary"
+        [disabled]="!contactUsForm.valid || isLoading"
+        >Håll mig uppdaterad
+      </rente-button-small>
+    </form>
+  </div>
