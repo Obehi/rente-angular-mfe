@@ -94,6 +94,10 @@
                 {
                   "replace": "src/app/config/routes-config.ts",
                   "with": "src/app/config/routes-config-sv.ts"
+                },
+                {
+                  "replace": "src/environments/locale.ts",
+                  "with": "src/environments/locale-sv.ts"
                 }
               ]
             },
