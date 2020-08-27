@@ -68,7 +68,8 @@ export class ContactUsComponent implements OnInit {
     } else if(this.locale === "sv") {
       formLocale = "SWE";
     }
-    formData["country"] = formLocale;
+    // QUICKFIX FOR NOR
+    formData["country"] = "NOR";
 
     this.isLoading = true;
     this.contactUsForm.markAllAsTouched();
