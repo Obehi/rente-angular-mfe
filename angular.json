@@ -98,6 +98,10 @@
                 {
                   "replace": "src/environments/locale.ts",
                   "with": "src/environments/locale-sv.ts"
+                },
+                {
+                  "replace": "src/sitemap.xml",
+                  "with": "src/sitemap-sv.xml"
                 }
               ]
             },
