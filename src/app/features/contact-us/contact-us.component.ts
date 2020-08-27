@@ -13,6 +13,7 @@ import { ContactService } from "@services/remote-api/contact.service";
 import { Router } from "@angular/router";
 import { SnackBarService } from "@services/snackbar.service";
 import { Mask } from '@shared/constants/mask'
+import { locale } from '../../../environments/locale';
 
 @Component({
   selector: "rente-contact-us",
@@ -23,7 +24,7 @@ export class ContactUsComponent implements OnInit {
   public contactUsForm: FormGroup;
   public mask = Mask
   public isLoading: boolean;
-
+  private locale = locale
   constructor(
     private fb: FormBuilder,
     private contactService: ContactService,
@@ -60,6 +61,15 @@ export class ContactUsComponent implements OnInit {
   }
 
   public sendContactUsForm(formData) {
+
+    var formLocale
+    if(this.locale === "nb") {
+      formLocale = "NOR";
+    } else if(this.locale === "sv") {
+      formLocale = "SWE";
+    }
+    formData["country"] = formLocale;
+
     this.isLoading = true;
     this.contactUsForm.markAllAsTouched();
     this.contactUsForm.updateValueAndValidity();
