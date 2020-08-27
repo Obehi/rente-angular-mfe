@@ -16,7 +16,7 @@
       (click)="openLtvTooHightDialog()"
     >
     
-      <p>
+      <p i18n=“too-high-leverage|offers-main@@offers.mainPage.high”>
         <b>OBS:</b> Vi har beregnet belåningsgraden din til over 85%. 
         Vennligst kontroller boligverdien i boligfanen. Du kan også lese 
         mer om dette ved å  <a >klikke her</a>.
@@ -30,7 +30,7 @@
       "
       class="obs"
     >
-      <p>
+      <p i18n=“assumption|offers-main@@offers.mainPage.assumption”>
         <b>OBS:</b> Vi får kun hentet din nominelle rente og lånebeløp. For
         utregninger har vi tatt utgangspunkt i en gjenværende løpetid på 20 år,
         månedlige betalinger og 50,- i termingebyr. Faktisk løpetid og
@@ -90,7 +90,7 @@
       (click)="openLtvTooHightDialog()"
     >
     
-      <p>
+      <p i18n=“too-high-leverage-check|offers-main@@offers.mainPage.highCheck”>
         <b>OBS:</b> Vi har beregnet belåningsgraden din til over 85%. 
         Vennligst kontroller boligverdien i boligfanen. Du kan også lese 
         mer om dette ved å  <a (click)="openLtvTooHightDialog()">klikke her</a>.
@@ -103,7 +103,7 @@
       "
       class="obs"
     >
-      <p>
+      <p i18n=“assumption2|offers-main@@offers.mainPage.assumption2”>
         <b>OBS:</b> Vi får kun hentet din nominelle rente og lånebeløp. For
         utregninger har vi tatt utgangspunkt i en gjenværende løpetid på 20 år,
         månedlige betalinger og 50,- i termingebyr. Faktisk løpetid og
@@ -116,31 +116,31 @@
   <div class="barometer">
     
     <div class="rente-status" [ngSwitch]="offersInfo.offerSavingsType">
-      <p *ngSwitchCase="offerSavingsType.NO_SAVINGS">
+      <p i18n=“interest-very-good|offers-main@@offers.mainPage.interest.veryGood” *ngSwitchCase="offerSavingsType.NO_SAVINGS">
         Renten din er <b>svært god</b>
       </p>
-      <p
+      <p i18n=“interest-good|offers-main@@offers.mainPage.interest.good”
         *ngSwitchCase="
           offerSavingsType.SAVINGS_FIRST_YEAR_BETWEEN_0_AND_2000
         "
       >
         Renten din er <b>god</b>, men ikke best
       </p>
-      <p
+      <p i18n=“interest-ok|offers-main@@offers.mainPage.interest.ok”
         *ngSwitchCase="
           offerSavingsType.SAVINGS_FIRST_YEAR_BETWEEN_2000_AND_6000
         "
       > 
         Renten din er <b>OK</b>, men du kan få bedre
       </p>
-      <p
+      <p i18n=“interest-bad|offers-main@@offers.mainPage.interest.bad”
         *ngSwitchCase="
           offerSavingsType.SAVINGS_FIRST_YEAR_BETWEEN_6000_AND_10000
         "
       >
         Renten din er <b>dårlig</b> og du kan spare en del
       </p>
-      <p *ngSwitchCase="offerSavingsType.SAVINGS_FIRST_YEAR_GREATER_10000">
+      <p i18n=“interest-very-bad|offers-main@@offers.mainPage.interest.veryBad” *ngSwitchCase="offerSavingsType.SAVINGS_FIRST_YEAR_GREATER_10000">
         Renten din er <b>svært  dårlig</b> 
       </p>
       <div *ngSwitchDefault>-</div>
@@ -148,8 +148,8 @@
 
     <div class="rente-bar-container center-horizontal">
       <div class="bar-ticks">
-        <p>Dårlig rente</p>
-        <p>Bra rente</p>
+        <p i18n=“interest-bad2|offers-main@@offers.mainPage.interest.bad2”>Dårlig rente</p>
+        <p i18n=“interest-good2|offers-main@@offers.mainPage.interest.good2”>Bra rente</p>
       </div>
       <div class="bar-wrap" [ngClass]="[rateBarPercentage.class]" > 
         <span class="bar-fill" [ngStyle]="{'width': rateBarPercentageInverted + '%'}"></span> 
@@ -164,14 +164,14 @@
     </div>
 
     <div class="save-info">
-      <p>Du kan spare</p>
+      <p i18n=“save|offers-main@@offers.mainPage.save”>Du kan spare</p>
         <h2 *ngIf="offersInfo.bestOfferTotalSaving > 0; else noBestOffer">
           {{ offersInfo.bestOfferTotalSaving | abs | number }},-
         </h2>
         <ng-template #noBestOffer>
           <h2> 0,- </h2>
         </ng-template>
-      <p>over lånets løpetid</p>
+      <p i18n=“time|offers-main@@offers.mainPage.time”>over lånets løpetid</p>
     </div>
   </div>
 
@@ -182,11 +182,11 @@
         <div class="rente-boxes mobile">
           <div class="double">
             <div class="box">
-              <p>Din effektive rente</p>
+              <p i18n=“your-interest|offers-main@@offers.mainPage.yourInterest”>Din effektive rente</p>
               <h2>{{ offersInfo.totalEffectiveRate | number: "1.2-2" }}%</h2>
             </div>
             <a class="box positive clickable" (click)="goToBestOffer()">
-              <p>
+              <p i18n=“best-offer|offers-main@@offers.mainPage.bestOffer”>
                 Beste tilbud <img src="../../../../assets/icons/go_to.svg" />
               </p>
               <h2>
@@ -197,14 +197,14 @@
           </div>
           <div class="double">
             <a class="box clickable" (click)="goToProperty()">
-              <p>
+              <p i18n=“value|offers-main@@offers.mainPage.value”>
                 Boligverdi <img src="../../../../assets/icons/go_to.svg" />
               </p>
-              <h2>
+              <h2 i18n=“millions|offers-main@@offers.mainPage.millions”>
                 {{ offersInfo.propertyValue / 1000000 | number: "1.1-3" }}
                 mill.
               </h2>
-              <p class="small">
+              <p i18n=“debt|offers-main@@offers.mainPage.debt” class="small">
                   Fellesgjeld
                 {{
                   (offersInfo.commonDebt / 1000000 | number: "1.1-2")
@@ -212,22 +212,22 @@
                 mill.
               </p>
             
-              <p class="small">
+              <p i18n=“virdi-estimate|offers-main@@offers.mainPage.virdiEstimate” class="small">
                 Estimat levert av
                 <a href="https://virdi.no/" target="_blank">virdi.no</a>
               </p>
             </a>
             <a class="box clickable" (click)="goToLoans()">
-              <p>
+              <p i18n=“loan-remaining|offers-main@@offers.mainPage.loanRemaining”>
                 Gjenværende lån <img src="../../../../assets/icons/go_to.svg" />
               </p>
-              <h2>
+              <h2 i18n=“millions2|offers-main@@offers.mainPage.millions2”>
                 {{
                   offersInfo.totalOutstandingDebt / 1000000 | number: "1.1-3"
                 }}
                 mill.
               </h2>
-              <p class="small">
+              <p i18n=“leverage2|offers-main@@offers.mainPage.leverage2” class="small">
                 Belåningsgrad
                 {{
                   (offersInfo.ltv) *
@@ -241,7 +241,7 @@
      
         <div class="mobile">
           <div class="top-buttons full-width">
-            <div class="item">
+            <div i18n=“found-offers|offers-main@@offers.mainPage.foundOffers” class="item">
             
             
               <p>Vi har funnet de beste tilbudene for deg</p>
@@ -256,7 +256,7 @@
               >
             </div> 
             
-            <div class="item">
+            <div i18n=“help-deal|offers-main@@offers.mainPage.helpDeal” class="item">
         
               <p>Vi hjelper deg å be banken din om lavere rente</p>
               <div class="max-width vertical-20">
@@ -284,47 +284,47 @@
     <div class="rente-boxes desktop">
       <div class="double">
         <div class="box">
-          <p>Din effektive rente</p>
+          <p i18n=“your-interest|offers-main@@offers.mainPage.yourInterest”>Din effektive rente</p>
           <h2>{{ offersInfo.totalEffectiveRate | number: "1.2-2" }}%</h2>
         </div>
         <a class="box positive clickable" (click)="goToBestOffer()">
-          <p>Beste tilbud <img src="../../../../assets/icons/go_to.svg" /></p>
+          <p i18n=“best-offers2|offers-main@@offers.mainPage.bestOffers2”>Beste tilbud <img src="../../../../assets/icons/go_to.svg" /></p>
           <h2>{{ offersInfo.bestOfferEffectiveRate | number: "1.2-2" }}%</h2>
         
         </a>
       </div>
       <div class="double">
           <a class="box clickable" (click)="goToProperty()">
-            <p>
+            <p i18n=“value2|offers-main@@offers.mainPage.value2”>
               Boligverdi <img src="../../../../assets/icons/go_to.svg" />
             </p>
-            <h2>
+            <h2 i18n=“millions3|offers-main@@offers.mainPage.millions3”>
               {{ offersInfo.propertyValue / 1000000 | number: "1.1-3" }}
               mill.
             </h2>
-            <p class="small">
+            <p i18n=“debt2|offers-main@@offers.mainPage.debt2” class="small">
                 Fellesgjeld
               {{
                 (offersInfo.commonDebt / 1000000 | number: "1.1-2")
               }} mill.
             </p>
           
-            <p class="small">
+            <p i18n=“virdi-delivered|offers-main@@offers.mainPage.virdiDelivered” class="small">
               Estimat levert av
               <a href="https://virdi.no/" target="_blank">virdi.no</a>
             </p>
           </a>
           <a class="box clickable" (click)="goToLoans()">
-            <p>
+            <p i18n=“remaining-loans2|offers-main@@offers.mainPage.remainingLoans2”>
               Gjenværende lån <img src="../../../../assets/icons/go_to.svg" />
             </p>
-            <h2>
+            <h2 i18n=“millions4|offers-main@@offers.mainPage.millions4”>
               {{
                 offersInfo.totalOutstandingDebt / 1000000 | number: "1.1-3"
               }}
               mill.
             </h2>
-            <p class="small">
+            <p i18n=“leverage2|offers-main@@offers.mainPage.leverage2” class="small">
               Belåningsgrad
               {{
                 (offersInfo.ltv) *
@@ -398,7 +398,7 @@
 
   <div class="desktop">
     <div class="top-buttons full-width">
-      <div class="item">
+      <div i18n=“found-best-offers|offers-main@@offers.mainPage.found.bestOffers” class="item">
       
       
         <p>Vi har funnet de beste tilbudene for deg</p>
@@ -413,7 +413,7 @@
         >
       </div> 
       
-      <div class="item">
+      <div i18n=“help-you|offers-main@@offers.mainPage.helpYou” class="item">
   
         <p>Vi hjelper deg å be banken din om lavere rente</p>
         <div class="max-width vertical-20">
@@ -434,10 +434,10 @@
   </div>
 
   <div class="the-offers">
-    <h3 style="margin-bottom: 20px;">
+    <h3 i18n=“best-offers3|offers-main@@offers.mainPage.bestOffers3” style="margin-bottom: 20px;">
       Beste tilbud:
     </h3>
-    <div *ngIf="isMobile" class="sticky-table-header">
+    <div i18n=“bank-interest|offers-main@@offers.mainPage.bankInterest” *ngIf="isMobile" class="sticky-table-header">
       <p>BANK</p>
       <p>Din effektive rente: <span>{{ offersInfo.totalEffectiveRate | number: "1.2-2" }}%</span></p>
     </div>
@@ -490,17 +490,17 @@
       offersInfo?.ltvType === offersLtvType.LTV_CREDIT_LINE_TOO_HIGH_60
     "
   >
-    <h3>
+    <h3 i18n=“mortgage-credit|offers-main@@offers.mainPage.mortgageCredit”>
       Rammelån/boligkreditt er kun tilgjengelig for lavere belåningsgrad enn
       60%.
     </h3>
-    <p>
+    <p i18n=“high-leverage-change|offers-main@@offers.mainPage.highLeverage.change”>
       Din belåningsgrad er høyere enn dette, vennligst endre din belåningsgrad
       i<a [routerLink]="['/dashboard/bolig']"> boligfanen</a>
     </p>
   </div>
   <div class="title" *ngIf="!offersInfo && !isLoading && !errorMessage">
-    <h3>Ingen bedre tilbud enda...</h3>
+    <h3 i18n=“no-offers-found|offers-main@@offers.mainPage.noOffers.found”>Ingen bedre tilbud enda...</h3>
   </div>
 
   <div class="title" *ngIf="errorMessage">

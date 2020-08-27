@@ -8,13 +8,15 @@ p {
 }
 
 h1 {
-  margin-bottom: 40px;
-
+  @media (max-width: 600px) {
+    line-height: 1.8;
+  }
   a  {
     color: $primary;
     position: relative;
     font-weight: 900; 
   }
+  
   a:after {
     content: '';
       background-color: $black;
@@ -34,11 +36,72 @@ h3 {
 .intro {
   h4 {
     max-width: 250px;
-    margin: auto;
+    margin: 75px auto 75px auto;
+
   }
 }
 
+@media (min-width: 0px) {
+  .singupContainer {
+
+    border-radius: 15px;
+    margin-bottom: 120px;
+
+    margin: auto;
+    margin-bottom: 120px;
+    
+    p {
+      color: white;
+      margin-bottom: 40px;
+    }
+  }
+
+  .inputWrapper {
+    border: 1px solid $primary;
+    padding: 0px 31px 27px 40px;
+    border-radius: 35px;
+  }
+
+
+   
+}
+
+.signUp {
+  font-weight: 500;
+  color: $secondary;
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+
+.mat-form-field {
+  width: 100%;
+}
+rente-button {
+  text-align: center;
+  margin-top: 15px;
+  display: block;
+}
+
+// constant height to account for dynamic error messages   
+form {
+  padding: unset;
+  border: unset;
+  width: 300px;
+  
+  div {
+    margin-bottom: 20px;
+    height: 70px;
+  }
+}
+
+.root {
+  background: black;
+}
 iframe {
+  border: 0px;
+  width: 500px;
+  height: 1000px;
   margin: auto;
   display: block;
 }
@@ -278,6 +341,7 @@ a {
     h4 {
       max-width: unset;
     }
+    margin-bottom: 40px;
   }
   .list-desktop {
     width: 80vw;
@@ -377,4 +441,85 @@ a {
   height: 115px;       /* same height as header */
   margin-top: -115px;  /* same height as header */
   visibility: hidden;
+}
+
+
+
+
+/* Border */
+.mat-form-field-appearance-outline .mat-form-field-outline {
+  color: white;
+}
+/* Font color */
+input.mat-input-element {
+  color: white;
+}
+
+
+
+.input-block {
+  display: none !important;
+  .mat-form-field-infix {
+    height: 56px;
+    width: unset !important;
+    padding: 10px 0 !important;
+    // border-radius: 4px 4px 0 0;
+    // background-color: #DEDFDF;
+  }
+
+  .mat-form-field {
+    width: 100%;
+
+    &.mat-focused {
+      .mat-form-field-ripple {
+        background-color: $primary;
+      }
+
+      input {
+        color: white !important;
+      }
+
+      label {
+        color: $primary;
+      }
+    }
+
+    .mat-form-field-underline {
+      background-color: $dark;
+      bottom: 0px;
+    }
+
+    .mat-form-field-wrapper {
+      padding-bottom: 0px;
+    }
+  }
+
+  label {
+    // padding-left: 20px;
+    margin-top: 6px;
+    font-family: Roboto;
+    font-size: 16px;
+    font-weight: 300;
+  }
+
+  input {
+    height: 24px;
+    width: 292px;
+    color: #636669;
+    font-family: Roboto;
+    font-size: 16px;
+
+    line-height: 24px;
+    // padding:0 16px;
+    width: 100%;
+    // background-color: #DEDFDF !important;
+    // &:-internal-autofill-selected {
+    // background-color: #DEDFDF !important;
+    // }
+  }
+}
+
+
+::ng-deep .singupContainer .mat-form-field-underline {
+  display: none;
 }

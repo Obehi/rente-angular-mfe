@@ -1,17 +1,17 @@
 <div *ngIf="!hasOthersBankData && clientBankData.segmentedData === true && !allBankData.segmentedData">
-  <h3>Din rente i forhold til andre i din bank</h3>
+  <h3 i18n=“mortage-relation|offers-statistics@@offers.statistics.mortgageRelation”>Din rente i forhold til andre i din bank</h3>
   <div class="chart" id="clientBankChartId"></div>
 </div>
 
 <!--<div *ngIf="!hasClientBankData"> -->
 <div *ngIf="allBankData.segmentedData && !clientBankData.segmentedData">
-  <h3>Din rente i forhold til andre i alle banker</h3>
+  <h3 i18n=“banks-relation|offers-statistics@@offers.statistics.banksRelation”>Din rente i forhold til andre i alle banker</h3>
   <div class="chart" id="allBanksChartChartId"></div>
 </div>
 
 <div *ngIf="hasOthersBankData && hasClientBankData && ((allBankData.segmentedData && clientBankData.segmentedData) || (!allBankData.segmentedData && !clientBankData.segmentedData))">
   <div *ngIf="true">
-    <h3>Din rente i forhold til andre i:</h3>
+    <h3 i18n=“others-relation|offers-statistics@@offers.statistics.othersRelation”>Din rente i forhold til andre i:</h3>
     <mat-tab-group (selectedTabChange)="onRbChange($event)">
       <mat-tab label="din bank"> </mat-tab>
       <mat-tab label="alle banker"> </mat-tab>
@@ -32,17 +32,17 @@
 
 
 <div *ngIf="allBankData.segmentedData || clientBankData.segmentedData">
-  <p *ngIf="hasOthersBankData || hasClientBankData" class="segmentText">
+  <p i18n=“graph|offers-statistics@@offers.statistics.graph” *ngIf="hasOthersBankData || hasClientBankData" class="segmentText">
     Grafen sammenligner renten din med andre som er <strong>{{ageSegment}}</strong>, har <strong>{{totalOutstandingDebtSegment}}</strong> 
      og <strong>belåningsgrad {{ltvSegment}}</strong>
   </p>
 
-  <p *ngIf="hasOthersBankData || hasClientBankData" class="small" id="the-offers">
+  <p i18n=“no-show-graph|offers-statistics@@offers.statistics.noShow.graph” *ngIf="hasOthersBankData || hasClientBankData" class="small" id="the-offers">
     *Grafen tar ikke hensyn til geografi og medlemskap
   </p>
 </div>
 
-<p *ngIf="(!allBankData.segmentedData && !clientBankData.segmentedData)" class="small" id="the-offers" >
+<p i18n=“no-show2-graph|offers-statistics@@offers.statistics.noShow2.graph” *ngIf="(!allBankData.segmentedData && !clientBankData.segmentedData)" class="small" id="the-offers" >
   *Grafen tar ikke hensyn til alder, belåninsgrad, fordeler av
   medlemskap, etc. da vi ikke har nok data for din brukergruppe
 </p>

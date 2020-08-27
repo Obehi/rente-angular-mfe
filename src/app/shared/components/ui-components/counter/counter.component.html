@@ -1,9 +1,9 @@
 <div class="spart">
-  <h4>Våre brukere har tilsammen:</h4>
+  <h4 i18n=“our-users|counter@@counter.ourUsers”>Våre brukere har tilsammen:</h4>
   <div><h2 [countUp]="totalOutstandingDebt " [options]="totalOutstandingoptions"></h2> <span>kr</span></div>
 
-  <h4 style="margin-bottom: 40px">i boliglån…</h4>
-  <h4>…og kan potensielt spare:</h4>
+  <h4 i18n=“mortgages|counter@@counter.mortgages” style="margin-bottom: 40px">i boliglån…</h4>
+  <h4 i18n=“saved|counter@@counter.saved”>…og kan potensielt spare:</h4>
   
   <div><h2 class = "green" [countUp]="combinedSavingsPotential " [options]="combinedSavingsPotentialOptions"> </h2>  <span>kr</span></div>
   <div class="counter green">

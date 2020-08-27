@@ -1,13 +1,13 @@
 <div class="front-container">
-  <h2>Kontakt oss</h2>
+  <h2 i18n=“top|title@@contactUs.title”>Kontakt oss</h2>
 
   <form
     [formGroup]="contactUsForm"
     (ngSubmit)="sendContactUsForm(contactUsForm.value)"
     novalidate
   >
-    <rente-input
-      [placeholder]="'Navn'"
+    <rente-input i18n=“navn|navn@@contactUs.navn.placeholder”
+      [placeholder]="'Namn'"
       formControlName="name"
       [errorStateMatcher]="
         isErrorState(contactUsForm.controls['name'], contactUsForm)
@@ -23,7 +23,7 @@
         class="text-left d-block"
         [type]="'error'"
         *ngIf="contactUsForm.controls['name'].hasError('required')"
-      >
+        i18n=“text|name@@contactUs.name”>
         Vennligst fyll inn navn
       </rente-form-message>
     </div>
@@ -42,14 +42,14 @@
         class="text-left d-block"
         [type]="'error'"
         *ngIf="contactUsForm.controls['email'].hasError('required')"
-      >
+        i18n=“issue|e-mail@@contactUs.email.issue”>
         Ikke gyldig email
       </rente-form-message>
       <rente-form-message
         class="text-left d-block"
         [type]="'error'"
         *ngIf="contactUsForm.controls['email'].hasError('pattern')"
-      >
+        i18n=“issue|e-mail@@contactUs.email.issue2”>
         Ikke gyldig email
       </rente-form-message>
     </div>
@@ -65,7 +65,7 @@
       [modelOptions]="{ updateOn: 'blur' }"
     >
     </rente-input>
-    <rente-form-message class="text-left d-block pb-0" [type]="'info'">
+    <rente-form-message class="text-left d-block pb-0" [type]="'info'" i18n=“number|telephone@@contactUs.phone”>
       8 siffer
     </rente-form-message>
     <div *ngIf="contactUsForm.controls['phone'].touched" class="error-message">
@@ -76,12 +76,13 @@
           contactUsForm.controls['phone'].hasError('required') ||
           contactUsForm.controls['phone'].hasError('pattern')
         "
-      >
+        i18n=“number|missing@@contactUs.phone.missing”>
         Telefonnummer kan ikke være tomt
       </rente-form-message>
     </div>
 
-    <rente-text-area
+    <rente-text-area 
+      placeholder=""
       formControlName="message"
       [errorStateMatcher]="
         isErrorState(contactUsForm.controls['message'], contactUsForm)
@@ -96,7 +97,7 @@
         class="text-left d-block"
         [type]="'error'"
         *ngIf="contactUsForm.controls['message'].hasError('required')"
-      >
+        i18n=“message|missing@@contactUs.message”>
         Meldingen kan ikke være tom
       </rente-form-message>
     </div>
@@ -105,7 +106,7 @@
       color="primary"
       [isLoading]="isLoading"
       [disabled]="!contactUsForm.valid || isLoading"
-      >Send
+      i18n=“message|send@@contactUs.send”>Send
     </rente-button>
   </form>
 </div>

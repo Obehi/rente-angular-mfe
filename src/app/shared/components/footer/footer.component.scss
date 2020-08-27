@@ -8,6 +8,10 @@ footer {
   &.visible {
     display: block;
   }
+  
+  a {
+    color: white;
+  }
 
   ul {list-style-type: none;
     margin: 0px;
@@ -29,6 +33,11 @@ footer {
   .inner-footer {
     margin: auto;
 
+    .temp-swedish-policy {
+      grid-column-start: 1;
+      grid-column-end: span 2;
+    }
+
     .item:nth-child(3) { 
       grid-column-end: span 3;
       margin-top: 20px;
@@ -44,6 +53,7 @@ footer {
       font-size: 14px;
       padding: 2rem 2rem 1rem;
   
+    
     .item{ 
       ul.adjust-margin {
         margin-top: -5px;

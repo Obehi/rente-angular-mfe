@@ -100,9 +100,13 @@
                 {
                   "replace": "src/environments/components/components.ts",
                   "with": "src/environments/components/components-sv.ts"
+                },
+                {
+                  "replace": "src/app/config/routes-config.ts",
+                  "with": "src/app/config/routes-config-sv.ts"
                 }
-              ]
-            },  
+              ]  
+            },
             "local": {
               "budgets": [
                 {
@@ -262,6 +266,13 @@
                   "maximumWarning": "6kb"
                 }
               ]
+            },
+            "sv": {
+              "aot": true,
+              "outputPath": "dist/rente-front-end-sv",
+              "i18nFile": "src/i18n/messages.sv.xlf",
+              "i18nFormat": "xlf",
+              "i18nLocale": "sv"
             }
           }
         },
@@ -286,6 +297,9 @@
             },
             "develop": {
               "browserTarget": "rente-front-end:build:develop"
+            },
+            "sv": {
+              "browserTarget": "rente-front-end:build:sv"
             }
           },
           "i18nFile": "src/locale/messages.nb.xtb",

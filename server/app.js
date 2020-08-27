@@ -16,11 +16,21 @@ const proxy = require('http-proxy').createProxyServer({
   })
 });
 
-app.use('/blogg', function(req, res, next) {
-  proxy.web(req, res, {
-      target: 'https://blogg.renteradar.no'
-  }, next);
-});
+/*
+if(process.env.LOCALE == undefined || process.env.LOCALE == "no") {
+  app.use('/blogg', function(req, res, next) {
+    proxy.web(req, res, {
+        target: 'https://blogg.ranteradar.se'
+    }, next);
+  });
+} else if(process.env.LOCALE == "sv") {
+  app.use('/blogg', function(req, res, next) {
+    proxy.web(req, res, {
+        target: 'https://blogg.renteradar.no'
+    }, next);
+  });
+}
+*/
 
 app.use(express.static(clientPath));
 
@@ -28,11 +38,11 @@ var renderIndex = (req, res) => {
   res.sendFile(path.resolve(__dirname, clientPath + '/index.html'));
 }
 
-var renderEnIndex = (req, res) => {
-  res.sendFile(path.resolve(__dirname, clientPath + '/en' + '/index.html'))
+var renderSvIndex = (req, res) => {
+  res.sendFile(path.resolve(__dirname, clientPath + '/sv' + '/index.html'))
 }
 
-app.get('/en*', renderEnIndex);
+//app.get('/*', renderSvIndex);
 app.get('/*', renderIndex);
 
 // Start the app by listening on the default Heroku port
@@ -41,4 +51,5 @@ const server = app.listen(port, function () {
   let port = server.address().port;
   host = (host === '::') ? 'localhost' : host;
   console.log(`This express app is listening on: ${host}:${port}`);
+  console.log("dir is: " + __dirname, clientPath + '/index.html');
 });
