@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { ROUTES_MAP } from '@config/routes-config';
 
 @Component({
   selector: 'rente-faq',
@@ -7,8 +8,10 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class FaqComponent implements OnInit {
   @Input() isFrontPage: boolean;
-  constructor() { }
+  public routes = ROUTES_MAP
 
+  constructor() { }
+  
   ngOnInit() {
   }
 

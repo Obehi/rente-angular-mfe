@@ -82,6 +82,16 @@
               "assets": [
                 { "glob": "**/*", "input": "src/assets/nb", "output": "/assets/" },
                 "src/assets"
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/locale.ts",
+                  "with": "src/environments/locale-nb.ts"
+                },
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.heroku.ts"
+                }
               ]
             },
             "sv": {
@@ -102,6 +112,10 @@
                 {
                   "replace": "src/sitemap.xml",
                   "with": "src/sitemap-sv.xml"
+                },
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.heroku.ts"
                 }
               ]
             },
