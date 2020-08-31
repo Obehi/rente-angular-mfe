@@ -85,8 +85,16 @@
               ],
               "fileReplacements": [
                 {
+                  "replace": "src/environments/locale.ts",
+                  "with": "src/environments/locale-nb.ts"
+                },
+                {
                   "replace": "src/environments/components/components.ts",
                   "with": "src/environments/components/components-no.ts"
+                },
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.heroku.ts"
                 }
               ]
             },
@@ -108,6 +116,14 @@
                 {
                   "replace": "src/environments/locale.ts",
                   "with": "src/environments/locale-sv.ts"
+                },
+                {
+                  "replace": "src/sitemap.xml",
+                  "with": "src/sitemap-sv.xml"
+                },
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.heroku.ts"
                 }
               ]  
             },
