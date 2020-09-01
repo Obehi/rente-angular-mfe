@@ -1,13 +1,15 @@
 <div *ngIf="!hasOthersBankData && clientBankData.segmentedData === true && !allBankData.segmentedData">
   <h3>Din rente i forhold til andre i din bank</h3>
-  <div class="chart" id="clientBankChartId"></div>
 </div>
 
 <!--<div *ngIf="!hasClientBankData"> -->
 <div *ngIf="allBankData.segmentedData && !clientBankData.segmentedData">
   <h3>Din rente i forhold til andre i alle banker</h3>
-  <div class="chart" id="allBanksChartChartId"></div>
+  
 </div>
+
+<div>
+<div class="chart" id="allBanksChartChartId"></div>
 
 <div *ngIf="hasOthersBankData && hasClientBankData && ((allBankData.segmentedData && clientBankData.segmentedData) || (!allBankData.segmentedData && !clientBankData.segmentedData))">
   <div *ngIf="true">
@@ -31,18 +33,22 @@
 </div>
 
 
-<div *ngIf="allBankData.segmentedData || clientBankData.segmentedData">
-  <p *ngIf="hasOthersBankData || hasClientBankData" class="segmentText">
-    Grafen sammenligner renten din med andre som er <strong>{{ageSegment}}</strong>, har <strong>{{totalOutstandingDebtSegment}}</strong> 
-     og <strong>belåningsgrad {{ltvSegment}}</strong>
-  </p>
+<div class="bottomBox">
+  <div *ngIf="allBankData.segmentedData || clientBankData.segmentedData">
+    <p *ngIf="hasOthersBankData || hasClientBankData" class="segmentText">
+      Grafen sammenligner renten din med andre som er <strong>{{ageSegment}}</strong>, har <strong>{{totalOutstandingDebtSegment}}</strong> 
+      og <strong>belåningsgrad {{ltvSegment}}</strong>
+    </p>
 
-  <p *ngIf="hasOthersBankData || hasClientBankData" class="small" id="the-offers">
-    *Grafen tar ikke hensyn til geografi og medlemskap
+    <p *ngIf="hasOthersBankData || hasClientBankData" class="small">
+      *Grafen tar ikke hensyn til geografi og medlemskap
+    </p>
+  </div>
+
+  <p *ngIf="(!allBankData.segmentedData && !clientBankData.segmentedData)" class="small" id="the-offers" >
+    *Grafen tar ikke hensyn til alder, belåninsgrad, fordeler av
+    medlemskap, etc. da vi ikke har nok data for din brukergruppe
   </p>
 </div>
 
-<p *ngIf="(!allBankData.segmentedData && !clientBankData.segmentedData)" class="small" id="the-offers" >
-  *Grafen tar ikke hensyn til alder, belåninsgrad, fordeler av
-  medlemskap, etc. da vi ikke har nok data for din brukergruppe
-</p>
+</div>

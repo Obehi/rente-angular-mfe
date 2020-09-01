@@ -104,7 +104,7 @@
                     <div>
                         <rente-button-small [disabled]=" 
                             offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS ||
-                            offer.bankInfo.partner == false"  [color]="'primary-hollow-small'" type="raised"
+                            offer.bankInfo.partner == false"  [color]="offer.bankInfo.bank == 'LANDKREDITT' ? 'primary-hollow-small-landkreditt' : 'primary-hollow-small'" type="raised"
                             (click)="openBankUrlByButton(offer)">Se mer på {{getbankNameOrDefault(offer)}}s <br/> hjemmeside
                         </rente-button-small>
                     </div>

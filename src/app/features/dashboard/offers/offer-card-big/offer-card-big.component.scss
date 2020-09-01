@@ -28,7 +28,7 @@
       background-position: center;
       background-size: cover;
       border-radius: 100%;
-      border: 1px solid $primary;
+
       position: relative;
       display: inline-block;
       .nr {
@@ -53,6 +53,7 @@
         }
       }
     }
+    
     .offer-product {
       display: inline-block;
       margin-left: 10px;
@@ -78,7 +79,7 @@
 
       &.bottom {
         background: #ffffff;
-        border-radius: 0 0 15px 15px;
+
       }
       .details{
         background: #e5e5e5;
@@ -136,6 +137,16 @@
       font-size: 13px
     }
 
-    border-radius: 0 0 15px 15px;
+   
   }
+
+  .buttons {
+    background: white;
+    border-radius: 0 0 15px 15px;
+    padding: 25px;
+  }
+}
+
+.bgHack {
+  background: white;
 }

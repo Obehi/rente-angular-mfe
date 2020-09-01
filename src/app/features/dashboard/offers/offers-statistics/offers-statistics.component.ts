@@ -95,6 +95,9 @@ export class OffersStatisticsComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     if (this.offersInfo) {
+      console.log("this.clientBankData")
+      console.log(this.clientBankData)
+      
       if (this.hasClientBankData) {
         this.clientBankEffRateOptions = this.ChartOptions();
         this.clientBankEffRateOptions.series[0].data = [
@@ -147,6 +150,8 @@ export class OffersStatisticsComponent implements AfterViewInit {
         spacingLeft: 0,
         spacingRight: 0,
         height: 200,
+        borderRadius: 20,
+        backgroundColor:'#162537'
       },
 
       title: {
@@ -158,18 +163,16 @@ export class OffersStatisticsComponent implements AfterViewInit {
         }
       },
 
-      xAxis: {
-        
+      xAxis: { 
         categories: ['Du har', 'Snitt-kunden', 'De med lavest rente'],
         labels: {
           style: {
             fontSize: '12px',
-            color: 'black'
+            color: 'white'
           }
-        }
-      
+        },
+        lineWidth: 0
       },
-
       yAxis: {
         visible: false,
         title: {
@@ -194,8 +197,9 @@ export class OffersStatisticsComponent implements AfterViewInit {
           stacking: 'normal',
           groupPadding: 0,
           colorByPoint: true,
-          colors: ['#112639', '#E7E9EB', '#D1F2EB'],
-          borderRadius: 0
+          colors: ['#E13322', '#183A63', '#183A63'],
+          borderRadius: 5,
+          borderWidth: 0
         }
       },
 
@@ -228,7 +232,8 @@ export class OffersStatisticsComponent implements AfterViewInit {
   getOtherBanksChartOptions() {
     let opt = {
       chart: {
-        type: 'column'
+        type: 'column',
+        backgroundColor:'#162537'
       },
 
       title: {
@@ -244,7 +249,8 @@ export class OffersStatisticsComponent implements AfterViewInit {
         categories: ['Du har', 'Snitt-kunden', 'De med lavest rente'],
         labels: {
           style: {
-            fontSize: '14px'
+            fontSize: '14px',
+            color: 'white'
           }
         }
       },

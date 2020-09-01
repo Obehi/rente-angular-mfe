@@ -128,7 +128,7 @@ export class OffersComponent implements OnInit, OnDestroy {
         text:
           'Boligverdi/belåningsgrad er viktig for renten bankene tilbyr. Pass på at boligverdien din er riktig. Du kan også legge til flere boliger hvis du har det.',
         buttonLink: '/dashboard/bolig',
-        icon: "bolig"
+        icon: this.isMobile ? "house" : 'house-blue'
       });
     }
 
@@ -137,7 +137,7 @@ export class OffersComponent implements OnInit, OnDestroy {
         text:
           'Enkelte banker tilbyr bedre betingelser hvis du er medlem i en interesseorganisasjon eller fagforening. Hvis du har mulighet til å melde deg inn i en kan det være penger å spare. (Medlemskap koster ca 4000 i året).',
         buttonLink: '/dashboard/profil',
-        icon: "profil"
+        icon: this.isMobile ? "profile-icon-white" : 'profile-icon-blue'
       });
     }
     if (
@@ -148,7 +148,7 @@ export class OffersComponent implements OnInit, OnDestroy {
         text:
           'Vi ser du har ett eller flere fastrentelån. Renteradar viser besparelsespotensialet kun for lånet/lånene med flytende rente. Beste rente viser også kun beste rente for lånet/lånene med flytende rente.',
         buttonLink: './',
-        icon: "rente"
+        icon: "rate"
       });
     }
     if (
@@ -159,7 +159,56 @@ export class OffersComponent implements OnInit, OnDestroy {
       this.tips.push({
         text:
           'Du har rammelån/boligkreditt. Ønsker du å se tilbud kun for denne typen lån?',
-        buttonLink: '/dashboard/profil'
+        buttonLink: '/dashboard/profil',
+        icon: this.isMobile ? "profile-icon-white" : 'profile-icon-blue'
+      });
+    }
+    if (
+      this.offersInfo.aggregatedLoanType ===
+        this.aggregatedLoanType.CREDIT_LINE ||
+      this.offersInfo.aggregatedLoanType === this.aggregatedLoanType.MIX_D_C
+    ) {
+      this.tips.push({
+        text:
+          'Du har rammelån/boligkreditt. Ønsker du å se tilbud kun for denne typen lån?',
+        buttonLink: '/dashboard/profil',
+        icon: this.isMobile ? "profile-icon-white" : 'profile-icon-blue'
+      });
+    }
+    if (
+      this.offersInfo.aggregatedLoanType ===
+        this.aggregatedLoanType.CREDIT_LINE ||
+      this.offersInfo.aggregatedLoanType === this.aggregatedLoanType.MIX_D_C
+    ) {
+      this.tips.push({
+        text:
+          'Du har rammelån/boligkreditt. Ønsker du å se tilbud kun for denne typen lån?',
+        buttonLink: '/dashboard/profil',
+        icon: this.isMobile ? "profile-icon-white" : 'profile-icon-blue'
+      });
+    }
+    if (
+      this.offersInfo.aggregatedLoanType ===
+        this.aggregatedLoanType.CREDIT_LINE ||
+      this.offersInfo.aggregatedLoanType === this.aggregatedLoanType.MIX_D_C
+    ) {
+      this.tips.push({
+        text:
+          'Du har rammelån/boligkreditt. Ønsker du å se tilbud kun for denne typen lån?',
+        buttonLink: '/dashboard/profil',
+        icon: this.isMobile ? "profile-icon-white" : 'profile-icon-blue'
+      });
+    }
+    if (
+      this.offersInfo.aggregatedLoanType ===
+        this.aggregatedLoanType.CREDIT_LINE ||
+      this.offersInfo.aggregatedLoanType === this.aggregatedLoanType.MIX_D_C
+    ) {
+      this.tips.push({
+        text:
+          'Du har rammelån/boligkreditt. Ønsker du å se tilbud kun for denne typen lån?',
+        buttonLink: '/dashboard/profil',
+        icon:  this.isMobile ? "profile-icon-white" : 'profile-icon-blue'
       });
     }
 
@@ -168,7 +217,8 @@ export class OffersComponent implements OnInit, OnDestroy {
         text:
           'Medlemmer i Statens Pensjonskasse kan finansiere opptil 2 millioner hos Statens Pensjonskasse. Klikk her for mer info om tilbudet.',
         buttonLink: 'https://www.finansportalen.no/bank/boliglan/',
-        external: true
+        external: true,
+        icon: this.isMobile ? "profile-icon-white" : 'profile-icon-blue'
       });
     }
   }

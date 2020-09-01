@@ -83,9 +83,9 @@
             <p>Dårlig rente</p>
             <p>Bra rente</p>
           </div>
-          <div class="bar-wrap" [ngClass]="[rateBarPercentage.class]" > 
-            <span class="bar-fill" [ngStyle]="{'width': rateBarPercentageInverted + '%'}"></span> 
-            <!-- <span class="bar-fill" [ngStyle]="{'width': 0 + '%'}"></span> -->
+          <div class="bar-wrap" > 
+            <span class="bar-fill-left" [ngClass]="[rateBarPercentage.class]" [ngStyle]="{'width': rateBarPercentage.percentage + '%'}"></span>
+            <span class="bar-fill-right" [ngStyle]="{'width': rateBarPercentageInverted + '%'}"></span> 
           </div>
     
           <!--
@@ -150,7 +150,7 @@
           <img class="arrow-big" src="../../../../assets/icons/arrow-big.svg"/>
         </a>
         <a class="box round-box blue-bg clickable" (click)="goToLoans()">
-          <img src="../../../../assets/icons/house.svg"/>
+          <img src="../../../../assets/icons/rate.svg"/>
           <p>
             Gjenværende lån <img src="../../../../assets/icons/go_to.svg" />
           </p>
@@ -174,7 +174,7 @@
       </div>
       <!-- end desktop rente-info-grid-->
 
-      <div class="compared round-box">
+      <div class="compared">
         <rente-offers-statistics [offersInfo]="offersInfo">
         </rente-offers-statistics>
       </div>
@@ -203,7 +203,7 @@
               class="tip"
             >
               
-              <img src="../../../../assets/icons/house.svg"/>
+              <img src="../../../../assets/icons/{{tip.icon}}.svg"/>
               <p>
                 {{ tip.text }}
               </p>
@@ -217,6 +217,7 @@
               target="_blank"
               class="tip"
             >
+              <img src="../../../../assets/icons/{{tip.icon}}.svg"/>
               <p>
                 {{ tip.text }}
               </p>
@@ -230,7 +231,7 @@
       <div class= "cta-boxes-desktop">
         <div class="big-box round-box">
           <div class="top">
-            <img class="" src="../../../../assets/icons/rente-green-big.png"/>
+            <div class="circleIconWrapper"><img class="" src="../../../../assets/icons/rente-green-big.svg"/></div>
             <p>
                 Vi har funnet de beste tilbudene for deg
             </p>
@@ -244,7 +245,7 @@
       
         <div class="big-box round-box">
           <div class="top">
-            <img class="" src="../../../../assets/icons/rente-green-big.png"/>
+            <div class="circleIconWrapper"><img class="" src="../../../../assets/icons/mail-green.svg"/></div>
             <p>Vi hjelper deg å be banken din om lavere rente</p>
           </div>
           <div class="bottom">
@@ -299,9 +300,10 @@
               <p>Dårlig rente</p>
               <p>Bra rente</p>
             </div>
-            <div class="bar-wrap" [ngClass]="[rateBarPercentage.class]" > 
-              <span class="bar-fill" [ngStyle]="{'width': rateBarPercentageInverted + '%'}"></span> 
-              <!-- <span class="bar-fill" [ngStyle]="{'width': 0 + '%'}"></span> -->
+  
+            <div class="bar-wrap" > 
+              <span class="bar-fill-left" [ngClass]="[rateBarPercentage.class]" [ngStyle]="{'width': rateBarPercentage.percentage + '%'}"></span>
+              <span class="bar-fill-right" [ngStyle]="{'width': rateBarPercentageInverted + '%'}"></span> 
             </div>
       
             <!--
@@ -367,7 +369,7 @@
           <img class="arrow-big" src="../../../../assets/icons/arrow-big.svg"/>
         </a>
         <a class="box round-box blue-bg clickable" (click)="goToLoans()">
-          <img src="../../../../assets/icons/house.svg"/>
+          <img src="../../../../assets/icons/rate.svg"/>
           <p>
             Gjenværende lån <img src="../../../../assets/icons/go_to.svg" />
           </p>
@@ -388,7 +390,7 @@
         </a>
 
   <!-- Mobile Tips -->
-
+    <div class="tipsWrapper round-box">
     <div
       class="tipsAccordion mobile round-box"
       (click)="isShowTips = !isShowTips"
@@ -413,7 +415,36 @@
           *ngIf="!tip.external"
           routerLink="{{ tip.buttonLink }}"
           class="tip"
+        > 
+          <img class="tipIcon" src="../../../../assets/icons/{{tip.icon}}.svg"/>
+          <p>
+            {{ tip.text }}
+          </p>
+
+          <mat-icon *ngIf="tip.buttonLink !== './'">chevron_right</mat-icon>
+        </div>
+
+        <a
+          *ngIf="tip.external"
+          href="{{ tip.buttonLink }}"
+          target="_blank"
+          class="tip"
         >
+          <p>
+            {{ tip.text }}
+          </p>
+
+          <mat-icon>chevron_right</mat-icon>
+        </a>
+      </div>
+
+      <div *ngFor="let tip of tips; let i = index">
+        <div
+          *ngIf="!tip.external"
+          routerLink="{{ tip.buttonLink }}"
+          class="tip"
+        > 
+          <img class="tipIcon" src="../../../../assets/icons/{{tip.icon}}.svg"/>
           <p>
             {{ tip.text }}
           </p>
@@ -461,16 +492,24 @@
         termingebyrer vil endre forventede besparelser.
       </p>
     </div>
+    </div>
+    <!-- Mobile Tips -->
 
-  <!-- Mobile Tips -->
+    <div class="compared">
+      <rente-offers-statistics [offersInfo]="offersInfo">
+      </rente-offers-statistics>
+    </div>
   </div>
-
+  <div class="compared">
+    <rente-offers-statistics [offersInfo]="offersInfo">
+    </rente-offers-statistics>
+  </div>
   <div class="split-sections">
     <div class="split-section">
         <div class="mobile">
           <div class="big-box round-box">
             <div class="top">
-              <img class="" src="../../../../assets/icons/rente-green-big.png"/>
+              <div class="circleIconWrapper"><img class="" src="../../../../assets/icons/rente-green-big.svg"/></div>
               <p>
                   Vi har funnet de beste tilbudene for deg
               </p>
@@ -484,7 +523,7 @@
         
           <div class="big-box round-box">
             <div class="top">
-              <img class="" src="../../../../assets/icons/rente-green-big.png"/>
+              <div class="circleIconWrapper"><img class="" src="../../../../assets/icons/mail-green.svg"/></div>
               <p>Vi hjelper deg å be banken din om lavere rente</p>
             </div>
             <div class="bottom">
