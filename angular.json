@@ -81,7 +81,13 @@
               "localize": ["nb"],
               "assets": [
                 { "glob": "**/*", "input": "src/assets/nb", "output": "/assets/" },
-                "src/assets"
+                { "glob": "sitemap.xml", "input": "src/sitemaps/nb", "output": "/" },
+                "src/assets",
+                "src/favicon.ico",
+                "src/sitemap.xml",
+                "src/sitemap-sv.xml",
+                "src/robots.txt"
+
               ],
               "fileReplacements": [
                 {
@@ -102,7 +108,16 @@
               "localize": ["sv"],
               "assets": [
                 { "glob": "**/*", "input": "src/assets/sv", "output": "/assets/" },
-                "src/assets"
+                { "glob": "sitemap.xml", "input": "src/sv/sitemap/", "output": "/" },
+                { "glob": "index.html", "input": "src/sv/index/", "output": "/" },
+                { "glob": "test.html", "input": "src/sv/test/", "output": "/" },
+
+                "src/assets",
+                "src/favicon.ico",
+                "src/sitemap.xml",
+                "src/sitemap-sv.xml",
+                "src/robots.txt"
+
               ],
               "fileReplacements": [
                 {
@@ -116,10 +131,6 @@
                 {
                   "replace": "src/environments/locale.ts",
                   "with": "src/environments/locale-sv.ts"
-                },
-                {
-                  "replace": "src/sitemap.xml",
-                  "with": "src/sitemap-sv.xml"
                 },
                 {
                   "replace": "src/environments/environment.ts",
