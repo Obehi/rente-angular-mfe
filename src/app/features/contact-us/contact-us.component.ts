@@ -33,8 +33,7 @@ export class ContactUsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    console.log("locale");
-    console.log(this.locale);
+ 
     this.contactUsForm = this.fb.group({
       name: ["", Validators.required],
       email: [
@@ -70,6 +69,7 @@ export class ContactUsComponent implements OnInit {
     } else if(this.locale === "sv") {
       formLocale = "SWE";
     }
+    formData["country"] = formLocale;
 
     this.isLoading = true;
     this.contactUsForm.markAllAsTouched();
