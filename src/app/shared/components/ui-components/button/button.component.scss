@@ -70,19 +70,20 @@ button.mat-primary-wide {
 }
 
 button.mat-primary-wide-hollow {
-  background-color: whitie;
+  background-color: white;
   color: black;
   border: 1px solid $primary;
   height: 56px;
   width: 80%
 }
 
-button.mat-primary-wide-hollow {
-  background-color: whitie;
-  color: black;
-  border: 1px solid $primary;
+button.mat-primary-wide-hollow[disabled] {
+  opacity: 1;
+  background-color: #E5E5E5;
+  color: #A9A9A9;
   height: 56px;
-  width: 80%
+  width: 80%;
+  border: unset;
 }
   
 button.mat-blue-wide {
@@ -108,6 +109,22 @@ button.mat-orange {
   display: inline-block;
 }
 
+
+.small-button.mat-button.mat-button-base.mat-primary-hollow-small-landkreditt{
+  width: 165px;
+  font-size: 12px;
+  height: 3.5em;
+  padding: 0 2em;
+  border: 1px solid $primary;
+  border-radius: 8px;
+  @media (max-width: 340px) {
+      min-width: 280px;
+  }
+}
+
+
+
+
 @keyframes spin {
   from {
     transform: rotate(0deg);
@@ -117,3 +134,5 @@ button.mat-orange {
     transform: rotate(360deg);
   }
 }
+
+
