@@ -71,6 +71,8 @@ export class ContactUsComponent implements OnInit {
       formLocale = "SWE";
     }
 
+    console.log(formData);
+    formData["country"] = formLocale;
     this.isLoading = true;
     this.contactUsForm.markAllAsTouched();
     this.contactUsForm.updateValueAndValidity();
