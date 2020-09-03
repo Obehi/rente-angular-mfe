@@ -3,6 +3,7 @@ export const API_URL_MAP = {
   crawlerComunicationUrl: `/app/crawler/p2p_message`,
   crawlerRepliesUrl: `/user/topic/replies`,
   crawlerAccountSelectEikaUrl: `/app/crawler/reply/eika/choose-account-to-process`,
+  tinkSendMessageUrl: `/tink/start/`,
   auth: {
     base: '/auth',
     token: '/token',
