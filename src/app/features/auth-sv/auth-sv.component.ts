@@ -52,14 +52,7 @@ export class AuthSvComponent implements OnInit, OnDestroy {
       console.log("NOT TINK RESPONSE");
     return;
     }
-
-    console.log("Tink response:");
-    console.log(event);
-    console.log(event.data);
-
-
-    console.log(JSON.parse(event.data));
-    console.log(event.data["data"]);
+    
     let data = JSON.parse(event.data)
     if (data.type === 'code') {
       // This is the authorization code that should be exchanged for an access token
