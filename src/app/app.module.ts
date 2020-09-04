@@ -30,7 +30,7 @@ import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { CountUpModule } from 'ngx-countup';
 import { LoginLangGenericComponent } from '../environments/components/components';
 import { AuthSvComponent } from './features/auth-sv/auth-sv.component';
-import { LoginStatusSvComponent } from './features/auth-sv/login-status-sv/login-status-sv.component'
+
 
 registerLocaleData(localeNo);
 
@@ -52,8 +52,7 @@ registerLocaleData(localeNo);
     EmailPreferencesComponent,
     ProfileDialogInfoComponent,
     LoginLangGenericComponent,
-    AuthSvComponent,
-    LoginStatusSvComponent
+    AuthSvComponent
   ],
   imports: [
     BrowserModule,
