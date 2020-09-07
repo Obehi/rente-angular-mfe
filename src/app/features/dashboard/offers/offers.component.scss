@@ -34,6 +34,10 @@
     display: grid;
     grid-gap: 22px;
     grid-template-columns: 1fr 1fr;
+
+    @media (min-width: 600px) {
+      min-height: 350px
+    }
   }
 
   .round-box {
@@ -78,9 +82,15 @@
 .big-box {
   background: white;
   margin-bottom: 20px;
+
+  @media (min-width: 600px) {
+    width: 390px;
+    margin: 0 auto;
+    grid-row: 5;
+  }
   .top {
     display: flex;
-    justify-content: space-around;
+    justify-content: start;
     align-items: center;
     padding: 20px;
     height: 120px;
@@ -102,7 +112,7 @@
     }
     p {
       text-align: left;
-      margin-left: 10px;
+      margin-left: 20px;
     }
   }
 
@@ -573,8 +583,7 @@ a.box {
 
     text-align: left;
     color: white;
-    grid-row-start: 2;
-    grid-row-end: span 2;
+    grid-row: 2;
     grid-column-start: 2;
   }
 
@@ -608,14 +617,14 @@ a.box {
       }
 
       
-
+      padding: 5px !important;
       display: flex;
       flex-wrap: wrap;
       margin-top: 0px;
       background: $secondary;
 
       p{
-        color: black;
+        color: white;
       }
 
       .tip-wrapper {
@@ -624,8 +633,8 @@ a.box {
         @media (min-width: 600px) {
 
           background: white;
-          margin: 20px;
-          border-radius: 15px;
+          margin: 5px;
+          border-radius: 5px;
 
           .tip {
             display: grid;
@@ -650,6 +659,10 @@ a.box {
               h4 {
                 font-weight: 400;
               }
+            }
+
+            p {
+              color: $secondary
             }
             
           }

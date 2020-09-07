@@ -80,20 +80,34 @@
                 <p class="box">{{ offer.requiredProductPackage == null ? "Nei" : "Ja" }}</p>
             </div>
 
-            <div class="item right first satisfaction">
-                <p class="left">Kundetilfredshet:</p>
-                <img class="offer-score"
-                        src="../../../../assets/icons/score-{{offer.bankInfo.score }}.svg" />
+            <div class="item right first satisfaction-wrapper">
+                <div class="satisfaction">
+                    <div class ="bank-rating-text">
+                        <p class="left">Kundetilfredshet</p>
+                        
+                    </div>
+                    <img class="offer-score" src="../../../../assets/icons/score-{{offer.bankInfo.score }}.svg" />
+                </div>
+                <span 
+                      (click)="
+                        openInfoDialog(
+                          'Renteradar.no overvåker kontinuerlig markedet for bedre rente enn det du har på lånet ditt. Renten du har på lånet ditt sjekkes og oppdateres ved at du identifiserer deg med BankID. Det er viktig at dette gjøres fra tid til annen for at eventuelle renteendringer på lånet ditt skal fanges opp.'
+                        )
+                      "
+                      class="clickable bank-rating-info-button"
+                    >
+                      <mat-icon class="material-icons secondary">help</mat-icon>
+                </span>
             </div>
 
-            <div class="item left details">
+            <div class="item details">
                
-                    <mat-expansion-panel>
-                        <mat-expansion-panel-header>
+                    <mat-expansion-panel (opened)="detailOpenClicked()" [expanded]="xpandStatus">
+                        <mat-expansion-panel-header [collapsedHeight]="'20px'" [expandedHeight]="'20px'">
                           Detaljer
                         </mat-expansion-panel-header>
                         
-                        <rente-details [offer]="offer"></rente-details>
+                        <rente-details [offer]="offer" (closeClicked)="xpandStatus=xpandStatus?false:true" ></rente-details>
                       </mat-expansion-panel>
               
             </div>

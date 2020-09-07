@@ -48,6 +48,7 @@ import { LoansBlueComponent } from './loans/loans-blue/loans-blue.component';
 import { HouseBlueComponent } from './house/house-blue/house-blue.component';
 import { BlueAddressComponent } from './house/house-blue/blue-address/blue-address.component';
 import { BlueProfileComponent } from './profile/blue-profile/blue-profile.component';
+import { BankRatingDialogComponent } from './offers/bank-rating-dialog/bank-rating-dialog.component';
 
 // TODO: ADD separate module for material import
 @NgModule({
@@ -79,7 +80,8 @@ import { BlueProfileComponent } from './profile/blue-profile/blue-profile.compon
     LoansBlueComponent,
     HouseBlueComponent,
     BlueAddressComponent,
-    BlueProfileComponent
+    BlueProfileComponent,
+    BankRatingDialogComponent
   ],
   imports: [
     CommonModule,

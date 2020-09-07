@@ -68,7 +68,19 @@
     <div class="split">
       <div class="offer-info">
         <div class="small-header">
-          <p>Kundetilfredshet</p>
+          <p class="with-icon">Kundetilfredshet</p>
+          <span 
+            (click)="
+              openInfoDialog(
+                'Renteradar.no overvåker kontinuerlig markedet for bedre rente enn det du har på lånet ditt. Renten du har på lånet ditt sjekkes og oppdateres ved at du identifiserer deg med BankID. Det er viktig at dette gjøres fra tid til annen for at eventuelle renteendringer på lånet ditt skal fanges opp.'
+              )
+            "
+            class="clickable bank-rating-info-button">
+
+            <mat-icon class="material-icons secondary">help</mat-icon>
+          </span>
+
+          
         </div>
         <div class="offer-inner center-align">
           <img class="offer-score" src="../../../../assets/icons/score-{{offer.bankInfo.score }}.svg"/>
@@ -118,7 +130,7 @@
           (click)="openBankUrlByButton(offer)"
           >Se mer på {{getbankNameOrDefault(offer)}}s <br/> hjemmeside</rente-button
         >
-        
+
         <p class="small" *ngIf=" offer.bankInfo.partner === false && isMobile === false"> (Ingen avtale med banken enda)</p>
   
       </div>

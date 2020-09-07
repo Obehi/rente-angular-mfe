@@ -4,6 +4,7 @@ import { BANKS_DATA } from '@config/banks-config';
 import { TrackingService, TrackingDto } from '@services/remote-api/tracking.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogInfoComponent } from '../dialog-info/dialog-info.component';
+import { BankRatingDialogComponent } from '../bank-rating-dialog/bank-rating-dialog.component';
 
 import {
   OFFER_SAVINGS_TYPE,
@@ -113,6 +114,10 @@ export class OfferCardBigComponent implements OnInit {
     trackingDto.offerId = offer.id;
     trackingDto.type = "BANK_BUTTON_2";
     this.sendOfferTrackingData(trackingDto, offer)
+  }
+
+  public openInfoDialog(text: String): void {
+    this.dialog.open(BankRatingDialogComponent);
   }
 
 

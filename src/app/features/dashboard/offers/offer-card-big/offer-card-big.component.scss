@@ -81,6 +81,25 @@
         background: #ffffff;
 
       }
+      .with-icon {
+        display: inline-block;
+        position: relative;
+
+        span {
+          display: inline-block;
+          position: absolute;
+          margin-top: -2px;
+          margin-left: 4px;
+        }
+      }
+
+      .bank-rating-info-button {
+        display: inline-block;
+        position: absolute;
+        margin-top: -2px;
+        margin-left: 4px;
+      }
+
       .details{
         background: #e5e5e5;
         padding: 2px 10px;

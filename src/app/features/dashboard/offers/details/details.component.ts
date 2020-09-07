@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { OfferInfo } from '@shared/models/offers';
 
 @Component({
@@ -9,9 +9,15 @@ import { OfferInfo } from '@shared/models/offers';
 export class DetailsComponent implements OnInit {
 
   @Input() offer: OfferInfo;
+  @Output() closeClicked = new EventEmitter();
+
   constructor() {}
 
   ngOnInit() {
+  }
+
+  public onClick(bigBoolean) {
+    this.closeClicked.emit(bigBoolean)
   }
 
 }

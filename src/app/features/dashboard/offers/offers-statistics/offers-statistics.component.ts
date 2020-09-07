@@ -1,4 +1,4 @@
-import { Component, Input, AfterViewInit } from '@angular/core';
+import { Component, Input, AfterViewInit, OnInit } from '@angular/core';
 import * as Highcharts from 'highcharts';
 import { Offers, BankStatisticItem } from '@shared/models/offers';
 import { MatTabChangeEvent } from '@angular/material';
@@ -16,9 +16,9 @@ noData(Highcharts);
 @Component({
   selector: 'rente-offers-statistics',
   templateUrl: './offers-statistics.component.html',
-  styleUrls: ['./offers-statistics.component.scss']
+  styleUrls: ['./offers-statistics.component.scss'],
 })
-export class OffersStatisticsComponent implements AfterViewInit {
+export class OffersStatisticsComponent implements AfterViewInit, OnInit {
   @Input()
   public get offersInfo(): Offers {
     return this._offersInfo;
@@ -53,7 +53,8 @@ export class OffersStatisticsComponent implements AfterViewInit {
   showAllBanks = false;
   clientBankData: BankStatisticItem;
   allBankData: BankStatisticItem;
-  
+  haveAllBankData = false;
+
   get ageSegment() {
     return this.offersInfo.bankStatistics.age >= 34 ? "over 34 år" : "under 34 år";
   }
@@ -93,11 +94,17 @@ export class OffersStatisticsComponent implements AfterViewInit {
     return window.innerWidth <= 991 ? 0 : -10;
   }
 
+  ngOnInit() {
+    this.haveAllBankData = this.hasOthersBankData && this.hasClientBankData 
+      && ((this.allBankData.segmentedData && this.clientBankData.segmentedData) 
+      || (!this.allBankData.segmentedData && !this.clientBankData.segmentedData))
+  }
+
   ngAfterViewInit() {
     if (this.offersInfo) {
       console.log("this.clientBankData")
       console.log(this.clientBankData)
-      
+
       if (this.hasClientBankData) {
         this.clientBankEffRateOptions = this.ChartOptions();
         this.clientBankEffRateOptions.series[0].data = [
@@ -149,7 +156,8 @@ export class OffersStatisticsComponent implements AfterViewInit {
         type: 'column',
         spacingLeft: 0,
         spacingRight: 0,
-        height: 200,
+        margin: [0, 0, 25, 0],
+        height: this.haveAllBankData ? 170 : 230,
         borderRadius: 20,
         backgroundColor:'#162537'
       },
@@ -176,7 +184,7 @@ export class OffersStatisticsComponent implements AfterViewInit {
       yAxis: {
         visible: false,
         title: {
-          enabled: false
+          text: null,
         },
         allowDecimals: false
         // min: 0,
@@ -256,7 +264,6 @@ export class OffersStatisticsComponent implements AfterViewInit {
       },
 
       yAxis: {
-        visible: false,
         title: {
           enabled: false
         },

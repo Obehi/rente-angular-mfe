@@ -79,6 +79,7 @@
         border-radius: 100%;
         position: relative;
         display: inline-block;
+        border: 1px solid #d1d1d1;
         .nr {
           text-align: center;
           color: $primary;
@@ -131,7 +132,7 @@
         display: grid;
         grid-gap: 10px;
         grid-template-columns:3fr 2fr;
-        padding: 10px;
+
 
         .offer-top  {
             display: flex;
@@ -139,7 +140,7 @@
             grid-row: 1;
             grid-column-start: 1;
             grid-column-end: span 2;
-            padding-top: 0px;
+            padding-top: 10px;
             @media (min-width: 600px) { 
                 display: flex;
                 grid-column-start: 1;
@@ -156,6 +157,8 @@
             p.save-text {
               margin-right: auto;
               font-weight: 400;
+              margin-left: 10px;
+              align-self: center;
             }
         }
 
@@ -202,7 +205,7 @@
             grid-gap: 0px;
             grid-column-gap: 10px;
             grid-row-gap: 5px;
-            grid-template-columns: 5fr 2fr;          
+            grid-template-columns: 3fr 2fr;          
             grid-column-start: 1;
             grid-column-end: span 2;
             border-top: 1px solid #ECECEC;
@@ -222,43 +225,67 @@
 
               }
               &.left {
+                margin-left: 10px;
                 grid-column: 1;
               }
 
               &.right {
+                margin-right: 10px;
                 grid-column: 2;
                 
               }
 
-              &.satisfaction {
+              &.satisfaction-wrapper {
                 grid-row: 1;
-                display: flex;
-                flex-direction: column;
-                justify-content: start;
                 grid-row-start: 1;
                 grid-row-end: span 3;
-                padding-top: 15px;
+                padding-top: 8px;
                 z-index: 10;
+                margin-right: 10px;
+                display: flex;
+                align-items: flex-start;
+                margin-top: 7px;
+                justify-content: flex-end;
 
-                @media (min-width: 600px) {
-                  grid-row: 3;
-                  grid-column: 1;
-                  flex-direction: row;
-                  justify-content: space-between;
-                  padding-top: 0;
-                  border-left: unset;
+                .bank-rating-info-button {
+                  margin-top: -3px;
+                  margin-left: 3px;
                 }
-                img {
-                  width: 35px;
-                  margin-top: 10px;
+                .satisfaction {
+                  display: flex;
+                  flex-direction: column;
+                  align-items: center;
+                  
 
-                  @media (min-width: 600px) { 
-                    width: 30px;
-                    margin-top: 0;
-                    //align img to boxes above
-                    margin-right: 8px;
+                  .bank-rating-text {
+                    display: flex;
+                    align-items: center;
+                    span {
+                      margin-top: 4px;
+                    }
+                  }
+
+                  @media (min-width: 600px) {
+                    grid-row: 3;
+                    grid-column: 1;
+                    flex-direction: row;
+                    justify-content: space-between;
+                    padding-top: 0;
+                    border-left: unset;
+                  }
+                  img {
+                    width: 35px;
+                    margin-top: 5px;
+
+                    @media (min-width: 600px) { 
+                      width: 30px;
+                      margin-top: 0;
+                      //align img to boxes above
+                      margin-right: 8px;
+                    }
                   }
                 }
+                
               }
 
               &.details {
@@ -277,11 +304,14 @@
                   width: 100%;
                   background: transparent;
                   z-index: 5;
+                  margin-bottom: 10px;
 
                   .mat-expansion-panel-header{
                     font-size:  12px;
-                    margin-left: 0px;
+                    margin-left: 10px;
+                    margin-top: 13px;
                     width: 70px;
+                    height: 20px;
                     padding: 0px;
                     background: transparent;
 
@@ -293,6 +323,22 @@
                     .mat-expansion-indicator::after {
                       //color: red !important;
                     }
+                  }
+
+                  .mat-expansion-panel-content {
+                    display: none;
+                  }
+                  
+                  ::ng-deep .mat-expansion-panel-body{
+                    margin: 0 !important;
+                    padding: 0 !important;
+                  }
+
+
+                  .mat-expansion-panel-body {
+                    padding: 0 !important;
+                    padding-top: 0 !important;
+                    padding-bottom: 0 !important;
                   }
                 }
               }

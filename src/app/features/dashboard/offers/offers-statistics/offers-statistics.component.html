@@ -8,12 +8,16 @@
   
 </div>
 
-<div>
-  <div class="chart" id="allBanksChartChartId"></div>
+<div class="wrapper">
+  <!-- <div class="chart" id="allBanksChartChartId"></div> -->
 
-  <div *ngIf="hasOthersBankData && hasClientBankData && ((allBankData.segmentedData && clientBankData.segmentedData) || (!allBankData.segmentedData && !clientBankData.segmentedData))">
+ <!--  <div *ngIf="hasOthersBankData && hasClientBankData 
+  && ((allBankData.segmentedData && clientBankData.segmentedData) 
+  || (!allBankData.segmentedData && !clientBankData.segmentedData))"> -->
+
+  <div class="both-graph-container" *ngIf="haveAllBankData else clientBankContainer" >
     <div *ngIf="true">
-      <h3>Din rente i forhold til andre i:</h3>
+
       <mat-tab-group (selectedTabChange)="onRbChange($event)">
         <mat-tab label="din bank"> </mat-tab>
         <mat-tab label="alle banker"> </mat-tab>
@@ -32,22 +36,37 @@
     </div>
   </div>
 
+  <ng-template #clientBankContainer>
+    <div class="chart" id="allBanksChartChartId"></div>
+  </ng-template>
+  
+  <div class="details">
+                
+    <mat-expansion-panel>
+      <mat-expansion-panel-header [collapsedHeight]="'20px'" [expandedHeight]="'20px'">
+        Detaljer
+      </mat-expansion-panel-header>
+      
+      <div class="bottomBox">
+        <div *ngIf="allBankData.segmentedData || clientBankData.segmentedData">
+          <p *ngIf="hasOthersBankData || hasClientBankData" class="segmentText">
+            Grafen sammenligner renten din med andre som er <strong>{{ageSegment}}</strong>, har <strong>{{totalOutstandingDebtSegment}}</strong> 
+            og <strong>belåningsgrad {{ltvSegment}}</strong>
+          </p>
+    
+          <p *ngIf="hasOthersBankData || hasClientBankData" class="small">
+            *Grafen tar ikke hensyn til geografi og medlemskap
+          </p>
+        </div>
+    
+        <p *ngIf="(!allBankData.segmentedData && !clientBankData.segmentedData)" class="small" id="the-offers" >
+          *Grafen tar ikke hensyn til alder, belåninsgrad, fordeler av
+          medlemskap, etc. da vi ikke har nok data for din brukergruppe
+        </p>
+      </div>
+    </mat-expansion-panel>
+  </div> 
+</div>  
 
-  <div class="bottomBox">
-    <div *ngIf="allBankData.segmentedData || clientBankData.segmentedData">
-      <p *ngIf="hasOthersBankData || hasClientBankData" class="segmentText">
-        Grafen sammenligner renten din med andre som er <strong>{{ageSegment}}</strong>, har <strong>{{totalOutstandingDebtSegment}}</strong> 
-        og <strong>belåningsgrad {{ltvSegment}}</strong>
-      </p>
 
-      <p *ngIf="hasOthersBankData || hasClientBankData" class="small">
-        *Grafen tar ikke hensyn til geografi og medlemskap
-      </p>
-    </div>
 
-    <p *ngIf="(!allBankData.segmentedData && !clientBankData.segmentedData)" class="small" id="the-offers" >
-      *Grafen tar ikke hensyn til alder, belåninsgrad, fordeler av
-      medlemskap, etc. da vi ikke har nok data for din brukergruppe
-    </p>
-  </div>
-</div>

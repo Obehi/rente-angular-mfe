@@ -1,7 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { OfferInfo, Offers } from './../../../../shared/models/offers';
+import { BankRatingDialogComponent } from '../bank-rating-dialog/bank-rating-dialog.component';
 import { BANKS_DATA } from '@config/banks-config';
 import { TrackingService, TrackingDto } from '@services/remote-api/tracking.service';
+import { MatDialog } from '@angular/material/dialog';
+
 
 import {
   OFFER_SAVINGS_TYPE,
@@ -19,11 +22,13 @@ export class OfferCardComponent implements OnInit {
 
   public banksMap = BANKS_DATA;
   public offerSavingsType = OFFER_SAVINGS_TYPE
+  public xpandStatus = false;
+  
 
   @Input() offer: OfferInfo;
   @Input() offersInfo: Offers
   @Input() index: number
-  constructor(private trackingService: TrackingService) { }
+  constructor(private trackingService: TrackingService, public dialog: MatDialog) { }
 
   ngOnInit() {
     console.log(this.offer)
@@ -102,10 +107,18 @@ export class OfferCardComponent implements OnInit {
       offer.bankInfo.transferUrl,
       '_blank'
     );
-
+    
     const trackingDto = new TrackingDto();
     trackingDto.offerId = offer.id;
     trackingDto.type = "BANK_BUTTON_2";
     this.sendOfferTrackingData(trackingDto, offer)
+  }
+
+  public detailOpenClicked() {
+    this.xpandStatus = true;
+  } 
+
+  public openInfoDialog(text: String): void {
+    this.dialog.open(BankRatingDialogComponent);
   }
 }

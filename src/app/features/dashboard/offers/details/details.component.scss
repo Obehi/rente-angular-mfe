@@ -1,10 +1,10 @@
 @import "../../../../../styles/theme/colors";
 
-.offer-details{
-  border-radius: 5px;
-  background: $light;
-  padding: 20px 10px;
+.offer-details {
   margin-top: 10px;
+  border-top: 1px solid $light;
+  border-bottom: 1px solid $light;
+  padding: 10px;
   .grid-wrapper{
     display: grid;
     grid-template-columns: 140px 150px;
@@ -38,4 +38,12 @@
       line-height: 1.4;
       text-align: left;
     }
+}
+
+.mat-grey {
+  display: block;
+  margin: 20px auto 0px auto;
+  color: $secondary;
+  width: 150px;
+  background: #ECECEC;
 }
