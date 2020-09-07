@@ -1,7 +1,7 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { DashboardRoutingModule } from "./dashboard-routing.module";
-import { OffersComponent } from "./offers/offers.component";
+import { OffersComponentBlue } from "./offers/offers-blue/offers.component";
 import { DashboardComponent } from "./dashboard.component";
 import { MatTabsModule } from "@angular/material/tabs";
 import { LoansComponent } from "./loans/loans.component";
@@ -13,7 +13,7 @@ import { SharedModule } from "@shared/shared.module";
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatRadioModule } from "@angular/material/radio";
 import { DialogInfoComponent } from "./offers/dialog-info/dialog-info.component";
-import { DetailsComponent } from "./offers/details/details.component";
+import { DetailsComponentBlue } from "./offers/offers-blue/details/details.component";
 
 import { RatingComponent } from "./offers/rating/rating.component";
 import { LayoutModule } from "@angular/cdk/layout";
@@ -41,19 +41,20 @@ import { DialogComponent } from "../../shared/components/ui-components/dialog/di
 import { AddressFormComponent } from "./house/address/address.form.component";
 import { GetOfferFromBankDialogComponent } from './offers/get-offer-from-bank-dialog/get-offer-from-bank-dialog.component';
 import { LtvTooHighDialogComponent } from './offers/ltv-too-high-dialog/ltv-too-high-dialog.component';
-import { OfferCardComponent } from './offers/offer-card/offer-card.component';
-import { OfferCardBigComponent } from './offers/offer-card-big/offer-card-big.component';
+import { OfferCardComponentBlue } from './offers/offers-blue/offer-card/offer-card.component';
+import { OfferCardBigComponentBlue } from './offers/offers-blue/offer-card-big/offer-card-big.component';
 import { BargainSuccessComponent } from './offers/bargain-success/bargain-success.component';
 import { LoansBlueComponent } from './loans/loans-blue/loans-blue.component';
 import { HouseBlueComponent } from './house/house-blue/house-blue.component';
 import { BlueAddressComponent } from './house/house-blue/blue-address/blue-address.component';
 import { BlueProfileComponent } from './profile/blue-profile/blue-profile.component';
-import { BankRatingDialogComponent } from './offers/bank-rating-dialog/bank-rating-dialog.component';
+
+import { BankRatingDialogComponent } from './offers/offers-blue/bank-rating-dialog/bank-rating-dialog.component';
 
 // TODO: ADD separate module for material import
 @NgModule({
   declarations: [
-    OffersComponent,
+    OffersComponentBlue,
     DashboardComponent,
     LoansComponent,
     HouseComponent,
@@ -73,9 +74,9 @@ import { BankRatingDialogComponent } from './offers/bank-rating-dialog/bank-rati
     AddressFormComponent,
     GetOfferFromBankDialogComponent,
     LtvTooHighDialogComponent,
-    DetailsComponent,
-    OfferCardComponent,
-    OfferCardBigComponent,
+    DetailsComponentBlue,
+    OfferCardComponentBlue,
+    OfferCardBigComponentBlue,
     BargainSuccessComponent,
     LoansBlueComponent,
     HouseBlueComponent,

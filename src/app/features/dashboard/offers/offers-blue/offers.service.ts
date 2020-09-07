@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { OFFER_SAVINGS_TYPE } from '../../../config/loan-state';
+import { OFFER_SAVINGS_TYPE } from '../../../../config/loan-state';
 
 @Injectable({
   providedIn: 'root'

@@ -1,4 +1,4 @@
-@import "../../../../styles/theme/_colors.scss";
+@import "../../../../../styles/theme/_colors.scss";
 
 
 .dashboard-wrapper {
@@ -662,7 +662,7 @@ a.box {
             }
 
             p {
-              color: $secondary
+              color: $secondary;
             }
             
           }

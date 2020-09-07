@@ -1,9 +1,9 @@
 import { LoansService } from '@services/remote-api/loans.service';
 import { OffersService } from './offers.service';
-import { OfferInfo, Offers } from './../../../shared/models/offers';
+import { OfferInfo, Offers } from './../../../../shared/models/offers';
 import { Component, OnInit, HostListener, OnDestroy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { DialogInfoComponent } from './dialog-info/dialog-info.component';
+import { DialogInfoComponent } from './../dialog-info/dialog-info.component';
 import { Loans } from '@shared/models/loans';
 import { BANKS_DATA } from '@config/banks-config';
 import { Router } from '@angular/router';
@@ -11,15 +11,15 @@ import {
   OFFER_SAVINGS_TYPE,
   AGGREGATED_RATE_TYPE,
   AGGREGATED_LOAN_TYPE
-} from '../../../config/loan-state';
+} from '../../../../config/loan-state';
 import { LocalStorageService } from '@services/local-storage.service';
-import { ChangeBankDialogComponent } from './change-bank-dialog/change-bank-dialog.component';
-import { GetOfferFromBankDialogComponent } from './get-offer-from-bank-dialog/get-offer-from-bank-dialog.component';
-import { LtvTooHighDialogComponent } from './ltv-too-high-dialog/ltv-too-high-dialog.component';
+import { ChangeBankDialogComponent } from './../change-bank-dialog/change-bank-dialog.component';
+import { GetOfferFromBankDialogComponent } from './../get-offer-from-bank-dialog/get-offer-from-bank-dialog.component';
+import { LtvTooHighDialogComponent } from './../ltv-too-high-dialog/ltv-too-high-dialog.component';
 import { ChangeBankServiceService } from '@services/remote-api/change-bank-service.service';
 import { TrackingService, TrackingDto } from '@services/remote-api/tracking.service';
 import { Subscription } from 'rxjs';
-import { OFFERS_LTV_TYPE } from '../../../shared/models/offers';
+import { OFFERS_LTV_TYPE } from '../../../../shared/models/offers';
 import { UserService } from '@services/remote-api/user.service';
 import smoothscroll from 'smoothscroll-polyfill';
 import { BankUtils } from '@shared/models/bank';
@@ -29,7 +29,7 @@ import { BankUtils } from '@shared/models/bank';
   templateUrl: './offers.component.html',
   styleUrls: ['./offers.component.scss']
 })
-export class OffersComponent implements OnInit, OnDestroy {
+export class OffersComponentBlue implements OnInit, OnDestroy {
   public offersInfo: Offers;
   public loansInfo: any;
   public loans: Loans;

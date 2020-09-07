@@ -1,4 +1,4 @@
-import { OffersComponent } from './offers/offers.component';
+import { OffersComponentBlue } from './offers/offers-blue/offers.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { DashboardComponent } from './dashboard.component';
@@ -16,7 +16,7 @@ const routes: Routes = [
   {
     path: '', component: DashboardComponent, children: [
       {
-        path: 'tilbud', component: OffersComponent,
+        path: 'tilbud', component: OffersComponentBlue,
         data: {
           title: customMeta.tilbudTitle,
           meta: {

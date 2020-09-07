@@ -6,7 +6,7 @@ import { OfferInfo } from '@shared/models/offers';
   templateUrl: './details.component.html',
   styleUrls: ['./details.component.scss']
 })
-export class DetailsComponent implements OnInit {
+export class DetailsComponentBlue implements OnInit {
 
   @Input() offer: OfferInfo;
   @Output() closeClicked = new EventEmitter();
