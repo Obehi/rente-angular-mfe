@@ -117,7 +117,7 @@ export const MissingBankList:BankVo[] = [
   new BankVo('KLP', 'KLP Banken AS', 'klp.png', null, false, true, true, null),
   new BankVo('KRAFTBANK', 'Kraft Bank ASA', 'kraft.png', null, false, true, true, null),
   new BankVo('LANDKREDITT', 'Landkreditt Bank AS', 'landkreditt.png', null, false, true, true, null),
-  new BankVo('LILLESANDS_SB', 'Lillesands Sparebank', 'landkreditt.png', null, false, true, true, null),
+  new BankVo('LILLESANDS_SB', 'Lillesands Sparebank', 'lillesands.png', null, false, true, true, null),
   new BankVo('LUSTER_SB', 'Luster Sparebank', 'luster.png', null, false, true, true, null),
   new BankVo('NORDAX', 'Nordax Bank AB (publ)', 'nordax.png', null, false, true, true, null),
   new BankVo('NORDEA_DIRECT', 'Nordea Direct', 'nordea_direct.png', null, false, true, true, null),
@@ -137,6 +137,8 @@ export const MissingBankList:BankVo[] = [
   new BankVo('VOSS_SB', 'Voss Sparebank', 'voss.png', null, false, true, true, null),
   new BankVo('SB_MORE', 'Sparebanken Møre', 'more.png', null, false, true, true, null),
   new BankVo('HUSBANKEN', 'Husbanken', 'husbanken.png', null, false, true, true, null),
+  new BankVo('HELGELAND_SB', 'Helgeland Sparebank', 'helgeland.png', null, false, true, true, null),
+
 ]
 
 export class BankUtils {
