@@ -235,7 +235,6 @@
 
 
 
-
       <!-- Mobile boxes -->
       <div class="rente-boxes mobile">
         <div class="info-box-grid">
@@ -425,7 +424,7 @@
             </a>
             <div *ngIf="
         offersInfo?.incompleteInfoLoanPresent === true
-      " class="obs">
+        " class="obs">
               <p>
                 <b>OBS:</b> Vi får kun hentet din nominelle rente og lånebeløp. For
                 utregninger har vi tatt utgangspunkt i en gjenværende løpetid på 20 år,
@@ -471,81 +470,66 @@
         </div>
 
 
+
         <div *ngIf="isMobile" class="compared">
           <rente-offers-statistics-blue [offersInfo]="offersInfo">
           </rente-offers-statistics-blue>
         </div>
 
-
-        <div class="the-offers">
-          <h3 style="margin-bottom: 20px;">
-            Beste tilbud:
-          </h3>
-          <div *ngIf="isMobile" class="sticky-table-header">
-            <p>BANK</p>
-            <p>Din effektive rente: <span>{{ offersInfo.totalEffectiveRate | number: "1.2-2" }}%</span></p>
-          </div>
-
-          <div class="offers-grid">
-            <ng-container *ngIf="offersInfo">
-              <div *ngFor="let offer of offersInfo.offers.top5; let i = index" class="the-offer">
-
-                <ng-container *ngIf="isMobile; else desktop">
-                  <rente-offer-card-blue [offer]="offer" [offersInfo]="offersInfo" [index]=offer.offerPosition>
-                  </rente-offer-card-blue>
-                </ng-container>
-
-                <ng-template #desktop>
-                  <rente-offer-card-big-blue [offer]="offer" [offersInfo]="offersInfo" [index]=offer.offerPosition>
-                  </rente-offer-card-big-blue>
-                </ng-template>
-
-              </div>
-            </ng-container>
-          </div>
-
-          <div class="offers-grid">
-
-            <ng-container *ngIf="offersInfo">
-              <div *ngFor="let offer of offersInfo.offers.additionalPartnersOffers; let i = index" class="the-offer">
-
-                <ng-container *ngIf="isMobile; else desktop">
-                  <rente-offer-card-blue [offer]="offer" [offersInfo]="offersInfo" [index]=offer.offerPosition>
-                  </rente-offer-card-blue>
-                </ng-container>
-
-                <ng-template #desktop>
-                  <rente-offer-card-big-blue [offer]="offer" [offersInfo]="offersInfo" [index]=offer.offerPosition>
-                  </rente-offer-card-big-blue>
-                </ng-template>
-              </div>
-            </ng-container>
-          </div>
+      </div>
+      <div class="the-offers">
+        <h3 style="margin-bottom: 20px;">
+          Beste tilbud:
+        </h3>
+        <div *ngIf="isMobile" class="sticky-table-header">
+          <p>BANK</p>
+          <p>Din effektive rente: <span>{{ offersInfo.totalEffectiveRate | number: "1.2-2" }}%</span></p>
         </div>
 
+        <div class="offers-grid">
+          <ng-container *ngIf="offersInfo">
+            <div *ngFor="let offer of offersInfo.offers.top5; let i = index" class="the-offer">
 
+              <ng-container *ngIf="isMobile; else desktop">
+                <rente-offer-card-blue [offer]="offer" [offersInfo]="offersInfo" [index]=offer.offerPosition>
+                </rente-offer-card-blue>
+              </ng-container>
 
+              <ng-template #desktop>
+                <rente-offer-card-big-blue [offer]="offer" [offersInfo]="offersInfo" [index]=offer.offerPosition>
+                </rente-offer-card-big-blue>
+              </ng-template>
+
+            </div>
+          </ng-container>
+        </div>
+
+        <div class="offers-grid">
+
+          <ng-container *ngIf="offersInfo">
+            <div *ngFor="let offer of offersInfo.offers.additionalPartnersOffers; let i = index" class="the-offer">
+
+              <ng-container *ngIf="isMobile; else desktop">
+                <rente-offer-card-blue [offer]="offer" [offersInfo]="offersInfo" [index]=offer.offerPosition>
+                </rente-offer-card-blue>
+              </ng-container>
+
+              <ng-template #desktop>
+                <rente-offer-card-big-blue [offer]="offer" [offersInfo]="offersInfo" [index]=offer.offerPosition>
+                </rente-offer-card-big-blue>
+              </ng-template>
+            </div>
+          </ng-container>
+        </div>
       </div>
-      <!-- Mobile boxes -->
-
-
-
-
 
 
 
     </div>
-
-
-   
-
-    <div class="desktop">
-
-    </div>
-
-    
+    <!-- Mobile boxes -->
 
   </div>
+
   <div class="problems" style="max-width: 780px;">
 
     <div class="title" *ngIf="

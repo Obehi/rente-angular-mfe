@@ -15,7 +15,7 @@ import {
 
 
 @Component({
-  selector: 'rente-offer-card-big',
+  selector: 'rente-offer-card-big-blue',
   templateUrl: './offer-card-big.component.html',
   styleUrls: ['./offer-card-big.component.scss']
 })
