@@ -2,7 +2,7 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { OfferInfo } from '@shared/models/offers';
 
 @Component({
-  selector: 'rente-details',
+  selector: 'rente-details-blue',
   templateUrl: './details.component.html',
   styleUrls: ['./details.component.scss']
 })

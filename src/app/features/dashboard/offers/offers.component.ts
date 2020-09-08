@@ -1,9 +1,9 @@
 import { LoansService } from '@services/remote-api/loans.service';
 import { OffersService } from './offers.service';
-import { OfferInfo, Offers } from './../../../../shared/models/offers';
+import { OfferInfo, Offers } from './../../../shared/models/offers';
 import { Component, OnInit, HostListener, OnDestroy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { DialogInfoComponent } from './../dialog-info/dialog-info.component';
+import { DialogInfoComponent } from './dialog-info/dialog-info.component';
 import { Loans } from '@shared/models/loans';
 import { BANKS_DATA } from '@config/banks-config';
 import { Router } from '@angular/router';
@@ -11,25 +11,25 @@ import {
   OFFER_SAVINGS_TYPE,
   AGGREGATED_RATE_TYPE,
   AGGREGATED_LOAN_TYPE
-} from '../../../../config/loan-state';
+} from '../../../config/loan-state';
 import { LocalStorageService } from '@services/local-storage.service';
-import { ChangeBankDialogComponent } from './../change-bank-dialog/change-bank-dialog.component';
-import { GetOfferFromBankDialogComponent } from './../get-offer-from-bank-dialog/get-offer-from-bank-dialog.component';
-import { LtvTooHighDialogComponent } from './../ltv-too-high-dialog/ltv-too-high-dialog.component';
+import { ChangeBankDialogComponent } from './change-bank-dialog/change-bank-dialog.component';
+import { GetOfferFromBankDialogComponent } from './get-offer-from-bank-dialog/get-offer-from-bank-dialog.component';
+import { LtvTooHighDialogComponent } from './ltv-too-high-dialog/ltv-too-high-dialog.component';
 import { ChangeBankServiceService } from '@services/remote-api/change-bank-service.service';
 import { TrackingService, TrackingDto } from '@services/remote-api/tracking.service';
 import { Subscription } from 'rxjs';
-import { OFFERS_LTV_TYPE } from '../../../../shared/models/offers';
+import { OFFERS_LTV_TYPE } from '../../../shared/models/offers';
 import { UserService } from '@services/remote-api/user.service';
 import smoothscroll from 'smoothscroll-polyfill';
 import { BankUtils } from '@shared/models/bank';
 
 @Component({
-  selector: 'rente-offers-blue',
+  selector: 'rente-offers',
   templateUrl: './offers.component.html',
   styleUrls: ['./offers.component.scss']
 })
-export class OffersComponentBlue implements OnInit, OnDestroy {
+export class OffersComponent implements OnInit, OnDestroy {
   public offersInfo: Offers;
   public loansInfo: any;
   public loans: Loans;
@@ -127,8 +127,7 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
       this.tips.push({
         text:
           'Boligverdi/belåningsgrad er viktig for renten bankene tilbyr. Pass på at boligverdien din er riktig. Du kan også legge til flere boliger hvis du har det.',
-        buttonLink: '/dashboard/bolig',
-        icon: this.isMobile ? "house" : 'house-blue'
+        buttonLink: '/dashboard/bolig'
       });
     }
 
@@ -136,8 +135,7 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
       this.tips.push({
         text:
           'Enkelte banker tilbyr bedre betingelser hvis du er medlem i en interesseorganisasjon eller fagforening. Hvis du har mulighet til å melde deg inn i en kan det være penger å spare. (Medlemskap koster ca 4000 i året).',
-        buttonLink: '/dashboard/profil',
-        icon: this.isMobile ? "profile-icon-white" : 'profile-icon-blue'
+        buttonLink: '/dashboard/profil'
       });
     }
     if (
@@ -147,8 +145,7 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
       this.tips.push({
         text:
           'Vi ser du har ett eller flere fastrentelån. Renteradar viser besparelsespotensialet kun for lånet/lånene med flytende rente. Beste rente viser også kun beste rente for lånet/lånene med flytende rente.',
-        buttonLink: './',
-        icon: "rate"
+        buttonLink: './'
       });
     }
     if (
@@ -159,56 +156,7 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
       this.tips.push({
         text:
           'Du har rammelån/boligkreditt. Ønsker du å se tilbud kun for denne typen lån?',
-        buttonLink: '/dashboard/profil',
-        icon: this.isMobile ? "profile-icon-white" : 'profile-icon-blue'
-      });
-    }
-    if (
-      this.offersInfo.aggregatedLoanType ===
-        this.aggregatedLoanType.CREDIT_LINE ||
-      this.offersInfo.aggregatedLoanType === this.aggregatedLoanType.MIX_D_C
-    ) {
-      this.tips.push({
-        text:
-          'Du har rammelån/boligkreditt. Ønsker du å se tilbud kun for denne typen lån?',
-        buttonLink: '/dashboard/profil',
-        icon: this.isMobile ? "profile-icon-white" : 'profile-icon-blue'
-      });
-    }
-    if (
-      this.offersInfo.aggregatedLoanType ===
-        this.aggregatedLoanType.CREDIT_LINE ||
-      this.offersInfo.aggregatedLoanType === this.aggregatedLoanType.MIX_D_C
-    ) {
-      this.tips.push({
-        text:
-          'Du har rammelån/boligkreditt. Ønsker du å se tilbud kun for denne typen lån?',
-        buttonLink: '/dashboard/profil',
-        icon: this.isMobile ? "profile-icon-white" : 'profile-icon-blue'
-      });
-    }
-    if (
-      this.offersInfo.aggregatedLoanType ===
-        this.aggregatedLoanType.CREDIT_LINE ||
-      this.offersInfo.aggregatedLoanType === this.aggregatedLoanType.MIX_D_C
-    ) {
-      this.tips.push({
-        text:
-          'Du har rammelån/boligkreditt. Ønsker du å se tilbud kun for denne typen lån?',
-        buttonLink: '/dashboard/profil',
-        icon: this.isMobile ? "profile-icon-white" : 'profile-icon-blue'
-      });
-    }
-    if (
-      this.offersInfo.aggregatedLoanType ===
-        this.aggregatedLoanType.CREDIT_LINE ||
-      this.offersInfo.aggregatedLoanType === this.aggregatedLoanType.MIX_D_C
-    ) {
-      this.tips.push({
-        text:
-          'Du har rammelån/boligkreditt. Ønsker du å se tilbud kun for denne typen lån?',
-        buttonLink: '/dashboard/profil',
-        icon:  this.isMobile ? "profile-icon-white" : 'profile-icon-blue'
+        buttonLink: '/dashboard/profil'
       });
     }
 
@@ -217,8 +165,7 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
         text:
           'Medlemmer i Statens Pensjonskasse kan finansiere opptil 2 millioner hos Statens Pensjonskasse. Klikk her for mer info om tilbudet.',
         buttonLink: 'https://www.finansportalen.no/bank/boliglan/',
-        external: true,
-        icon: this.isMobile ? "profile-icon-white" : 'profile-icon-blue'
+        external: true
       });
     }
   }

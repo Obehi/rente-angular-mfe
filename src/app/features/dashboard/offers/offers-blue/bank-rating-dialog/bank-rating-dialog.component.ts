@@ -4,7 +4,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { OfferInfo } from "@shared/models/offers";
 
 @Component({
-  selector: 'rente-bank-rating-dialog',
+  selector: 'rente-bank-rating-dialog-blue',
   templateUrl: './bank-rating-dialog.component.html',
   styleUrls: ['./bank-rating-dialog.component.scss']
 })

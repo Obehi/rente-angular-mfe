@@ -1,34 +1,30 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { OfferInfo, Offers } from './../../../../../shared/models/offers';
-import { BankRatingDialogComponent } from '../bank-rating-dialog/bank-rating-dialog.component';
+import { CommonModule } from '@angular/common';
+import { OfferInfo, Offers } from './../../../../shared/models/offers';
 import { BANKS_DATA } from '@config/banks-config';
 import { TrackingService, TrackingDto } from '@services/remote-api/tracking.service';
-import { MatDialog } from '@angular/material/dialog';
-
 
 import {
   OFFER_SAVINGS_TYPE,
   AGGREGATED_RATE_TYPE,
   AGGREGATED_LOAN_TYPE
-} from '../../../../../config/loan-state';
+} from '../../../../config/loan-state';
 
 
 @Component({
-  selector: 'rente-offer-card-blue',
+  selector: 'rente-offer-card',
   templateUrl: './offer-card.component.html',
   styleUrls: ['./offer-card.component.scss']
 })
-export class OfferCardComponentBlue implements OnInit {
+export class OfferCardComponent implements OnInit {
 
   public banksMap = BANKS_DATA;
   public offerSavingsType = OFFER_SAVINGS_TYPE
-  public xpandStatus = false;
-  
 
   @Input() offer: OfferInfo;
   @Input() offersInfo: Offers
   @Input() index: number
-  constructor(private trackingService: TrackingService, public dialog: MatDialog) { }
+  constructor(private trackingService: TrackingService) { }
 
   ngOnInit() {
     console.log(this.offer)
@@ -107,18 +103,10 @@ export class OfferCardComponentBlue implements OnInit {
       offer.bankInfo.transferUrl,
       '_blank'
     );
-    
+
     const trackingDto = new TrackingDto();
     trackingDto.offerId = offer.id;
     trackingDto.type = "BANK_BUTTON_2";
     this.sendOfferTrackingData(trackingDto, offer)
-  }
-
-  public detailOpenClicked() {
-    this.xpandStatus = true;
-  } 
-
-  public openInfoDialog(text: String): void {
-    this.dialog.open(BankRatingDialogComponent);
   }
 }

@@ -1,4 +1,4 @@
-import { Component, Input, AfterViewInit } from '@angular/core';
+import { Component, Input, AfterViewInit, OnInit } from '@angular/core';
 import * as Highcharts from 'highcharts';
 import { Offers, BankStatisticItem } from '@shared/models/offers';
 import { MatTabChangeEvent } from '@angular/material';
@@ -14,11 +14,11 @@ More(Highcharts);
 noData(Highcharts);
 
 @Component({
-  selector: 'rente-offers-statistics',
+  selector: 'rente-offers-statistics-blue',
   templateUrl: './offers-statistics.component.html',
-  styleUrls: ['./offers-statistics.component.scss']
+  styleUrls: ['./offers-statistics.component.scss'],
 })
-export class OffersStatisticsComponent implements AfterViewInit {
+export class OffersStatisticsComponentBlue implements AfterViewInit, OnInit {
   @Input()
   public get offersInfo(): Offers {
     return this._offersInfo;
@@ -53,7 +53,8 @@ export class OffersStatisticsComponent implements AfterViewInit {
   showAllBanks = false;
   clientBankData: BankStatisticItem;
   allBankData: BankStatisticItem;
-  
+  haveAllBankData = false;
+
   get ageSegment() {
     return this.offersInfo.bankStatistics.age >= 34 ? "over 34 år" : "under 34 år";
   }
@@ -93,8 +94,17 @@ export class OffersStatisticsComponent implements AfterViewInit {
     return window.innerWidth <= 991 ? 0 : -10;
   }
 
+  ngOnInit() {
+    this.haveAllBankData = this.hasOthersBankData && this.hasClientBankData 
+      && ((this.allBankData.segmentedData && this.clientBankData.segmentedData) 
+      || (!this.allBankData.segmentedData && !this.clientBankData.segmentedData))
+  }
+
   ngAfterViewInit() {
     if (this.offersInfo) {
+      console.log("this.clientBankData")
+      console.log(this.clientBankData)
+
       if (this.hasClientBankData) {
         this.clientBankEffRateOptions = this.ChartOptions();
         this.clientBankEffRateOptions.series[0].data = [
@@ -146,7 +156,10 @@ export class OffersStatisticsComponent implements AfterViewInit {
         type: 'column',
         spacingLeft: 0,
         spacingRight: 0,
-        height: 200,
+        margin: [0, 0, 25, 0],
+        height: this.haveAllBankData ? 170 : 230,
+        borderRadius: 20,
+        backgroundColor:'#162537'
       },
 
       title: {
@@ -158,22 +171,20 @@ export class OffersStatisticsComponent implements AfterViewInit {
         }
       },
 
-      xAxis: {
-        
+      xAxis: { 
         categories: ['Du har', 'Snitt-kunden', 'De med lavest rente'],
         labels: {
           style: {
             fontSize: '12px',
-            color: 'black'
+            color: 'white'
           }
-        }
-      
+        },
+        lineWidth: 0
       },
-
       yAxis: {
         visible: false,
         title: {
-          enabled: false
+          text: null,
         },
         allowDecimals: false
         // min: 0,
@@ -194,8 +205,9 @@ export class OffersStatisticsComponent implements AfterViewInit {
           stacking: 'normal',
           groupPadding: 0,
           colorByPoint: true,
-          colors: ['#112639', '#E7E9EB', '#D1F2EB'],
-          borderRadius: 0
+          colors: ['#E13322', '#183A63', '#183A63'],
+          borderRadius: 5,
+          borderWidth: 0
         }
       },
 
@@ -228,7 +240,8 @@ export class OffersStatisticsComponent implements AfterViewInit {
   getOtherBanksChartOptions() {
     let opt = {
       chart: {
-        type: 'column'
+        type: 'column',
+        backgroundColor:'#162537'
       },
 
       title: {
@@ -244,13 +257,13 @@ export class OffersStatisticsComponent implements AfterViewInit {
         categories: ['Du har', 'Snitt-kunden', 'De med lavest rente'],
         labels: {
           style: {
-            fontSize: '14px'
+            fontSize: '14px',
+            color: 'white'
           }
         }
       },
 
       yAxis: {
-        visible: false,
         title: {
           enabled: false
         },

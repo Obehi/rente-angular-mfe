@@ -1,12 +1,11 @@
 <div class="the-offer">
-    <div class="nr">
-        {{ index }}
-    </div>
     <div class="the-offer-header">
         <div class="logo" [ngStyle]="{
                 'background-image': 'url(' + banksMap[offer.bankInfo.bank].img + ')'
               }">
-            
+            <div class="nr">
+                <p>{{ index }}</p>
+            </div>
         </div>
         <div class="offer-product">
             <a class="clickable" target="_blank" (click)="openBankUrl(offer)">{{ offer.bankInfo.name }}
@@ -14,14 +13,17 @@
                     open_in_new</mat-icon>
                 -->
                 </a>
+
             <h3>
                 {{ offer.productName }} 
             </h3>
+        
         </div>
         <p>{{ offer.effectiveRate | number: "1.2-2" }}%</p>
     </div>
     <div class="the-offer-body">
         <div class="offer-top">
+
             <!--
             <ul class="info-table">
                 <li>
@@ -42,6 +44,9 @@
                 </li>
             </ul>
             -->
+
+            
+
             <p class="save-text">Du sparer</p>
             <div class="split">
                
@@ -80,34 +85,20 @@
                 <p class="box">{{ offer.requiredProductPackage == null ? "Nei" : "Ja" }}</p>
             </div>
 
-            <div class="item right first satisfaction-wrapper">
-                <div class="satisfaction">
-                    <div class ="bank-rating-text">
-                        <p class="left">Kundetilfredshet</p>
-                        
-                    </div>
-                    <img class="offer-score" src="../../../../assets/icons/score-{{offer.bankInfo.score }}.svg" />
-                </div>
-                <span 
-                      (click)="
-                        openInfoDialog(
-                          'Renteradar.no overvåker kontinuerlig markedet for bedre rente enn det du har på lånet ditt. Renten du har på lånet ditt sjekkes og oppdateres ved at du identifiserer deg med BankID. Det er viktig at dette gjøres fra tid til annen for at eventuelle renteendringer på lånet ditt skal fanges opp.'
-                        )
-                      "
-                      class="clickable bank-rating-info-button"
-                    >
-                      <mat-icon class="material-icons secondary">help</mat-icon>
-                </span>
+            <div class="item right first satisfaction">
+                <p class="left">Kundetilfredshet:</p>
+                <img class="offer-score"
+                        src="../../../../assets/icons/score-{{offer.bankInfo.score }}.svg" />
             </div>
 
-            <div class="item details">
+            <div class="item left details">
                
-                    <mat-expansion-panel (opened)="detailOpenClicked()" [expanded]="xpandStatus">
-                        <mat-expansion-panel-header [collapsedHeight]="'20px'" [expandedHeight]="'20px'">
+                    <mat-expansion-panel>
+                        <mat-expansion-panel-header>
                           Detaljer
                         </mat-expansion-panel-header>
                         
-                        <rente-details-blue [offer]="offer" (closeClicked)="xpandStatus=xpandStatus?false:true" ></rente-details-blue>
+                        <rente-details [offer]="offer"></rente-details>
                       </mat-expansion-panel>
               
             </div>
@@ -118,28 +109,16 @@
                     <div>
                         <rente-button-small [disabled]=" 
                             offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS ||
-                            offer.bankInfo.partner == false"  
-                            [color]="offer.bankInfo.bank == 'LANDKREDITT' ? 'primary-hollow-small-landkreditt' : 'primary-hollow-small'" type="raised"
+                            offer.bankInfo.partner == false"  [color]="'primary'" type="raised"
                             (click)="openBankUrlByButton(offer)">Se mer på {{getbankNameOrDefault(offer)}}s <br/> hjemmeside
                         </rente-button-small>
                     </div>
         
                     <div>
-                        <!-- awfull line break hack with two if statements-->
-                        <rente-button-small 
-                        *ngIf="getbankNameOrDefault(offer).length < 8"
-                        [disabled]="
+                        <rente-button-small [disabled]="
                         offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS ||
                           offer.bankInfo.partner == false" [color]="'primary'" type="raised"
-                            (click)="openNewOfferDialog(offer)">Få tilbud fra  {{ getbankNameOrDefault(offer) }}!
-                        </rente-button-small>
-
-                        <rente-button-small 
-                        *ngIf="getbankNameOrDefault(offer).length >= 8"
-                        [disabled]="
-                        offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS ||
-                          offer.bankInfo.partner == false" [color]="'primary'" type="raised"
-                            (click)="openNewOfferDialog(offer)">Få tilbud fra  <br/> {{ getbankNameOrDefault(offer) }}!
+                            (click)="openNewOfferDialog(offer)">Få tilbud fra {{getbankNameOrDefault(offer)}}!
                         </rente-button-small>
                         <p class="small" *ngIf=" offer.bankInfo.partner === false"> (Ingen avtale med banken)</p>
                     </div>

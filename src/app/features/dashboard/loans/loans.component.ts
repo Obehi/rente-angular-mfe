@@ -45,6 +45,9 @@ export class LoansComponent implements OnInit {
     if((window as any).google_optimize == null) {
       return null;
     }
+
+    console.log("variation " + (window as any).google_optimize.get('-FGlj4ayQK66hF9kV4Wiow'));
+    return (window as any).google_optimize.get('-FGlj4ayQK66hF9kV4Wiow');
   }
 
 

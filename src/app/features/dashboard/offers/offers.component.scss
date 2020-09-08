@@ -1,133 +1,12 @@
-@import "../../../../../styles/theme/_colors.scss";
-
-.dashboard-content {
-    background: #162537
-}
-.dashboard-wrapper { 
-  background: linear-gradient(180deg, #162537 0%, #183A63 27.08%);
-  .dashboard-inner-wrapper {
-    margin: 0 10px;
-
-  }
-
-  .barometer {
-    background: white;
-    grid-row: 1;
-    grid-column-start: 1;
-    grid-column-end: span 2;
-    p, h2 {
-      color: black
-    }
-  }
-
-  @media (min-width: 600px) {
-    .desktop-main-box-grid {
-      display: grid;
-    }
-  }
-
-  .desktop-main-box-grid {
-    grid-gap: 22px;
-    grid-template-columns: 1fr 1fr;
-    margin: 0px 30px 0px 30px
-  }
-
-  .info-box-grid {
-    display: grid;
-    grid-gap: 22px;
-    grid-template-columns: 1fr 1fr;
-
-    @media (min-width: 600px) {
-      min-height: 350px
-    }
-  }
-
-  .round-box {
-    border-radius: 15px;
-  }
+@import "../../../../styles/theme/_colors.scss";
 
 
-}
-
-.blue-bg {
-  background: $blue;
-  * {
-    color: white;
-  }
-}
-.primary-bg {
-  background: #57B99D;
-  * {
-    color: white;
-  }
-}
-
-.white-bg {
-  background: white
-}
-
-.arrow-big {
-  float: right;
-  margin-bottom: -5px;
-  margin-right: 5px;
-}
-
-.extra-small-virdi {
-  font-size: 9px;
-  margin-bottom: 10px;
-}
-
-.margin-top-extra {
-  margin-top: 22px;
-}
-
-.big-box {
-  background: white;
-  margin-bottom: 20px;
-
-  @media (min-width: 600px) {
-    width: 390px;
-    margin: 0 auto;
-    grid-row: 5;
-  }
-  .top {
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    padding: 20px;
-    height: 120px;
-    border-bottom: 1px solid $grey;
-
-    @media (max-width: 600px) {
-      height: 80px;
-    }
-
-    .circleIconWrapper {
-      width: 50px;
-      height: 50px;
-      box-shadow: 1px 1px 8px -4px;
-      border-radius: 25px;
-    }
-
-    img {
-      width: 50px;
-    }
-    p {
-      text-align: left;
-      margin-left: 20px;
-    }
-  }
-
-  .bottom {
-    padding: 20px;
-  }
-}
 
 .problems {
   padding: 40px 20px;
   max-width: 1010px;
   margin: auto;
-  background-color: #183A63;
+  background-color: white;
 }
 
 @media (min-width: 600px) {
@@ -171,30 +50,19 @@ a.box {
   text-align: center;
 
   .tipsAccordion {
-
-    @media (max-width: 600px) {
-      grid-row: 4;
-      grid-column-start: 1;
-      grid-column-end: span 2;
-    }
-
-    @media (min-width: 600px) {
-      grid-row: 3;
-    }
-
-    
-
-    padding: 10px;
-
     cursor: pointer;
-    background-color: $blue;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 60px;
+    padding: 6px 20px !important;
+    background-color: $lightgreen;
     text-align: left;
-
+    border-bottom: 1px solid $green;
     p {
       font-size: 16px;
-      color: white;
       span {
-        background-color: $primary;
+        background-color: $blue;
         height: 22px;
         border-radius: 100%;
         color: white;
@@ -212,45 +80,19 @@ a.box {
     }
   }
 
-  .tipsWrapper {
-    grid-column-start: 1;
-    grid-column-end: span 2;
-    background: $secondary;
-
-    @media (min-width: 600px) {
-      display: flex;
-    }
-  }
-
-  
-
   .tips {
-
-    @media (min-width: 600px) {
-      grid-row: 4;
-      margin-top: 37px;
-    }
-    grid-column-start: 1;
-    grid-column-end: span 2;
     position: relative;
+    margin-top: 37px;
     padding: 0 !important;
     text-align: left;
-
-    @media (max-width: 600px) {
-      div:not(:last-child) {
-        border-bottom: 1px solid #183A63;
-      }
-    }
-    
-    
+    border-bottom: 1px solid $green;
     .tip {
-      padding: 20px 20px;
+      padding: 10px 20px;
       position: relative;
       display: block;
       text-decoration: none;
       padding-right: 40px;
-      display: flex;
-
+      border-bottom: 1px solid $light;
       mat-icon {
         color: $green;
         position: absolute;
@@ -258,16 +100,6 @@ a.box {
         top: 50%;
         transform: translateY(-50%);
       }
-
-    .tipIcon {
-      display: block;
-      margin: auto;
-      width: 20px;
-      margin-right: 15px;
-    }
-    }
-    p {
-      color: white;
     }
   }
   .obs {
@@ -279,18 +111,9 @@ a.box {
      
     }
   }
-
-  .cta-boxes-desktop {
-    @media (min-width: 600px) {
-      grid-row: 6;
-      grid-column-start: 1;
-      grid-column-end: span 2;
-      display: flex;
-      justify-content: space-evenly;
-    }
-  }
   
   .rente-boxes {
+    margin-bottom: 10px;
     .double {
       margin-bottom: 0;
     }
@@ -316,14 +139,15 @@ a.box {
   .barometer {
     padding-top: 20px;
     padding-bottom: 20px;
+    margin-bottom: 10px;
+    background: $blue;
 
     @media (min-width: 600px) {
       margin-bottom: 40px;
-      margin-top: 30px;
     }
 
-    h3 {
-      color: black;
+    h3, {
+      color: white;
     }
     
     .rente-status {
@@ -331,7 +155,7 @@ a.box {
       margin: 20px 0;
 
       p {
-        color: black;
+        color: white;
         font-size: 18px;
         font-weight: 100;
       }
@@ -339,9 +163,12 @@ a.box {
   }
   .box {
     padding: 20px 10px;
-    //margin-bottom: 10px;
+    margin-bottom: 10px;
     width: 100%;
-
+    background-color: $light;
+    &.positive {
+      background-color: $lightgreen;
+    }
     p img {
       position: relative;
       top: 2px;
@@ -353,16 +180,8 @@ a.box {
   .the-offers {
     padding-left: 0;
     padding-right: 0;
-
-    @media (max-width: 600px) {
-      margin-top: 40px;
-    }
     .split .offer-info:first-of-type {
       border-right: 1px solid $lesslight;
-    }
-
-    h3 {
-      color: white;
     }
 
     .sticky-table-header{
@@ -445,11 +264,8 @@ a.box {
 
       }
       .the-offer-header {
-        @media (min-width: 600px) {
-
-          background-color: white;
-          border-radius: 15px 15px 0 0;
-        }
+        border-top: 1px solid $green;
+        background-color: $lightgreen;
         padding: 10px;
         text-align: left;
         .logo {
@@ -545,11 +361,6 @@ a.box {
   }
 }
 
-.compared {
-  background: $secondary;
-  border-radius: 15px;
-}
-
 @media (max-width: 600px) {
   .barometer {
     padding: 20px 10px;
@@ -558,15 +369,15 @@ a.box {
     border-bottom: 1px solid $light;
   }
   .compared {
-    grid-column-start: 1;
-    grid-column-end: span 2;
-
+    padding: 0px 10px;
+    padding-bottom: 40px;
+    margin-bottom: 40px;
+    border-bottom: 1px solid $light;
   }
-  
 
   .split-section:last-of-type {
+    border-top: 1px solid #e7e9eb;
     padding-top: 40px;
-    padding-bottom: 40px;
   }
 
   .split-section:last-of-type {
@@ -582,11 +393,7 @@ a.box {
   } */
   .barometer,
   .compared {
-
     text-align: left;
-    color: white;
-    grid-row: 2;
-    grid-column-start: 2;
   }
 
   .rente-boxes {
@@ -597,103 +404,25 @@ a.box {
     .tipsAccordion {
       position: relative;
       top: 7px;
-
+      border: 1px solid $green;
       padding: 6px 10px !important;
     }
     .tips {
-
-      @media (min-width: 850px) {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        //grid-auto-rows: 1fr; //Same height for all boxes across all rows
-      }
-
-      @media (min-width: 768px) and (max-width: 849px)  {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-      }
-
-      @media (min-width: 601) and (max-width: 768px)  {
-        display: grid;
-        grid-template-columns: 1fr;
-      }
-
-      
-      padding: 5px !important;
-      display: flex;
-      flex-wrap: wrap;
+      border: 1px solid $green;
+      border-top: 0px solid $green;
       margin-top: 0px;
-      background: $secondary;
-
-      p{
-        color: white;
-      }
-
-      .tip-wrapper {
-        
-
-        @media (min-width: 600px) {
-
-          background: white;
-          margin: 5px;
-          border-radius: 5px;
-
-          .tip {
-            display: grid;
-            margin: 15px;
-            grid-template-columns: 6fr 1fr;
-            padding: 5px 0px 15px 5px;
-            .tipTop {
-              display: flex;
-              grid-row: 1;
-              grid-column-start: 1;
-              grid-column-end: span 2;
-              align-items: baseline;
-
-              img {
-                grid-row: 1;
-                grid-column-start: 1;
-                grid-column-end: span 2;
-                width: 20px;
-                margin: 0 10px 10px 0;
-              }
-
-              h4 {
-                font-weight: 400;
-              }
-            }
-
-            p {
-              color: $secondary;
-            }
-            
-          }
-          
-        }
-        @media (min-width: 600) and (max-width: 768px)  {
-         width: 100%;
-        }
-
-        @media (min-width: 768px) {
-          max-width: 300px;
-        }
-
-
-      }
-
-
     }
-
-
   }
   .offers .the-offers {
     padding: 80px;
     .the-offer {
       .the-offer-header {
-        display: none;
+        border: 1px solid $green;
+        border-bottom: none;
       }
       .the-offer-body {
-        border-radius: 0 0 15px 15px ;
+        border-left: 1px solid $lesslight;
+        border-right: 1px solid $lesslight;
       }
     }
   }
@@ -702,14 +431,15 @@ a.box {
     overflow: hidden;
     display: grid;
     grid-template-columns: repeat(2, minmax(360px, 1fr));
-
+    border-bottom: 1px solid $light;
+    border-top: 1px solid $light;
     margin-bottom: 40px;
 
     .split-section {
       padding: 40px 40px 40px 40px;
     }
     .split-section:first-of-type {
-
+      border-right: 1px solid $light;
     }
     .vertical:nth-child(odd) {
      // display: inline-block;
@@ -795,7 +525,7 @@ a.box {
   justify-content: flex-end;
   
   
-  /*
+
   background-image: linear-gradient(
     to right, 
     red,
@@ -803,30 +533,6 @@ a.box {
     #ffe800, 
     #18bc9c
   ); 
-  */
-}
-
-
-.test {
-  background: purple;
-}
-
-
-.bar-fill-right { 
-  border-radius: 0px 10px 10px 0px;
-  background: $light;
-  display: block;
-  height: 15px;
-  width: 0px;
-}
-
-.bar-fill-left { 
-  border-radius: 10px 0px 0px 10px;
- 
-  background: $light;
-  display: block;
-  height: 15px;
-  width: 0px;
 
   &.level-1 {
     background: red;  
@@ -847,6 +553,31 @@ a.box {
   &.level-5 {
     background: $primary;  
   }
+
+  background-image: linear-gradient(
+    to right, 
+    red, 
+    #f06d06, 
+    hsl(60, 100%, 50%), 
+    green
+  );
+}
+
+
+.test {
+  background: purple;
+}
+
+
+.bar-fill { 
+  border-radius: 10px 0px 0px 10px;
+ 
+  background: $light;
+  display: block;
+  height: 15px;
+  width: 0px;
+  -webkit-transform: rotate(180deg);
+  transform: rotate(180deg);
 }
 
 .arrow-box {
