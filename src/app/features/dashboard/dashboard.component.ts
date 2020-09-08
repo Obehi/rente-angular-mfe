@@ -79,7 +79,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   public getVariation = (): number | null => {
-    console.log("variation: " + (window as any).google_optimize == undefined);
+    //console.log("variation: " + (window as any).google_optimize == undefined);
     return 0;
     if((window as any).google_optimize == undefined) {
       return null;
