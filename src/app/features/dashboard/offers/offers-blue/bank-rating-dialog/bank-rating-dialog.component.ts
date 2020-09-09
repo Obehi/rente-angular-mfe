@@ -14,6 +14,10 @@ export class BankRatingDialogComponent {
     public dialogRef: MatDialogRef<BankRatingDialogComponent>
   ) {}
 
+  public onClick() {
+    window.open("", "_blank");
+  }
+
 
   public onClose(): void {
     this.dialogRef.close();

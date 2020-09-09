@@ -119,6 +119,8 @@ export class OfferCardComponentBlue implements OnInit {
   } 
 
   public openInfoDialog(text: String): void {
-    this.dialog.open(BankRatingDialogComponent);
+    this.dialog.open(BankRatingDialogComponent, {
+      height: '400px'
+    });
   }
 }
