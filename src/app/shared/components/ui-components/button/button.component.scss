@@ -69,6 +69,16 @@ button.mat-primary-wide {
   width: 80%
 }
 
+button.mat-primary-wide-landing {
+  background-color: $primary;
+  color: white;
+  height: 56px;
+  width: 80%;
+  @media (min-width: 600px) {
+    width: 320px;
+  }
+}
+
 button.mat-primary-wide-hollow {
   background-color: white;
   color: black;
