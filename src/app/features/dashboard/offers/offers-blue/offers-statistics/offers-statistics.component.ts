@@ -19,6 +19,7 @@ noData(Highcharts);
   styleUrls: ['./offers-statistics.component.scss'],
 })
 export class OffersStatisticsComponentBlue implements AfterViewInit, OnInit {
+  @Input() userRateColor;
   @Input()
   public get offersInfo(): Offers {
     return this._offersInfo;
@@ -205,7 +206,7 @@ export class OffersStatisticsComponentBlue implements AfterViewInit, OnInit {
           stacking: 'normal',
           groupPadding: 0,
           colorByPoint: true,
-          colors: ['#E13322', '#183A63', '#183A63'],
+          colors: [this.userRateColor, '#183A63', '#183A63'],
           borderRadius: 5,
           borderWidth: 0
         }

@@ -1,4 +1,6 @@
 
+@import "../../../../../../styles/theme/colors.scss";
+
 :host {
   display: flex;
   flex-direction: column;
@@ -106,11 +108,29 @@ h3 {
 } 
 
 ::ng-deep.mat-tab-label {
+  color: $primary;
+  opacity: 1;
+}
+
+::ng-deep {
   color: white;
   opacity: 1;
 }
 
-::ng-deep.mat-tab-label-active {
-  color: white;
-  opacity: 1;
+
+
+::ng-deep .mat-tab-list .mat-tab-labels .mat-tab-label  {
+  color: $primary !important;
+  //background-color: #183A63;
+  border-radius: 0 5px 5px 0;
+  }
+
+::ng-deep .mat-tab-list .mat-tab-labels .mat-tab-label-active {
+  color:white !important;
+  //background-color: #183A63;
+  border-radius: 0 5px 5px 0;
+  }
+
+::ng-deep .highcharts-credits {
+  display: none !important;
 }

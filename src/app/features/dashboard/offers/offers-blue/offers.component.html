@@ -162,7 +162,7 @@
 
 
         <div *ngIf="!isMobile" class="compared">
-          <rente-offers-statistics-blue [offersInfo]="offersInfo">
+          <rente-offers-statistics-blue [offersInfo]="offersInfo" [userRateColor]="rateBarPercentage.hex">
           </rente-offers-statistics-blue>
         </div>
 
@@ -472,7 +472,7 @@
 
 
         <div *ngIf="isMobile" class="compared">
-          <rente-offers-statistics-blue [offersInfo]="offersInfo">
+          <rente-offers-statistics-blue [offersInfo]="offersInfo" [userRateColor]="rateBarPercentage.hex">
           </rente-offers-statistics-blue>
         </div>
 
