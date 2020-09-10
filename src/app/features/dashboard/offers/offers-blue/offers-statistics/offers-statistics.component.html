@@ -1,0 +1,72 @@
+<div *ngIf="!hasOthersBankData && clientBankData.segmentedData === true && !allBankData.segmentedData">
+  <h3>Din rente i forhold til andre i din bank</h3>
+</div>
+
+<!--<div *ngIf="!hasClientBankData"> -->
+<div *ngIf="allBankData.segmentedData && !clientBankData.segmentedData">
+  <h3>Din rente i forhold til andre i alle banker</h3>
+  
+</div>
+
+<div class="wrapper">
+  <!-- <div class="chart" id="allBanksChartChartId"></div> -->
+
+ <!--  <div *ngIf="hasOthersBankData && hasClientBankData 
+  && ((allBankData.segmentedData && clientBankData.segmentedData) 
+  || (!allBankData.segmentedData && !clientBankData.segmentedData))"> -->
+
+  <div class="both-graph-container" *ngIf="haveAllBankData else clientBankContainer" >
+    <div *ngIf="true">
+
+      <mat-tab-group (selectedTabChange)="onRbChange($event)">
+        <mat-tab label="din bank"> </mat-tab>
+        <mat-tab label="alle banker"> </mat-tab>
+      </mat-tab-group>
+    </div>
+
+    <div *ngIf="true">
+      <div
+        id="clientBankChartId"
+        [class]="showAllBanks ? 'chart-hidden' : 'chart'"
+      ></div>
+      <div
+        id="allBanksChartChartId"
+        [class]="showAllBanks ? 'chart' : 'chart-hidden'"
+      ></div>
+    </div>
+  </div>
+
+  <ng-template #clientBankContainer>
+    <div class="chart" id="allBanksChartChartId"></div>
+  </ng-template>
+  
+  <div class="details">
+                
+    <mat-expansion-panel>
+      <mat-expansion-panel-header [collapsedHeight]="'20px'" [expandedHeight]="'20px'">
+        Detaljer
+      </mat-expansion-panel-header>
+      
+      <div class="bottomBox">
+        <div *ngIf="allBankData.segmentedData || clientBankData.segmentedData">
+          <p *ngIf="hasOthersBankData || hasClientBankData" class="segmentText">
+            Grafen sammenligner renten din med andre som er <strong>{{ageSegment}}</strong>, har <strong>{{totalOutstandingDebtSegment}}</strong> 
+            og <strong>belåningsgrad {{ltvSegment}}</strong>
+          </p>
+    
+          <p *ngIf="hasOthersBankData || hasClientBankData" class="small">
+            *Grafen tar ikke hensyn til geografi og medlemskap
+          </p>
+        </div>
+    
+        <p *ngIf="(!allBankData.segmentedData && !clientBankData.segmentedData)" class="small" id="the-offers" >
+          *Grafen tar ikke hensyn til alder, belåninsgrad, fordeler av
+          medlemskap, etc. da vi ikke har nok data for din brukergruppe
+        </p>
+      </div>
+    </mat-expansion-panel>
+  </div> 
+</div>  
+
+
+

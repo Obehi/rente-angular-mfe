@@ -185,11 +185,12 @@ export const ROUTES_MAP = {
   privacyPolicy: 'personvern/personvernerklaering',
   termsConditions: 'personvern/brukervilkar',
   bankSelect: 'velgbank',
+  bankTestVariationSelect: 'velgdinbank',
   auth: 'autentisering',
   dashboard: 'dashboard',
   initConfirmation: 'bekreft',
   getNotified: 'faabeskjed',
   guide: 'slik-funger-renteradar',
   cookies: 'personvern/cookies',
-  emailPreferences: 'epost/innstillinger'
+  emailPreferences: 'epost/innstillinger',
 };

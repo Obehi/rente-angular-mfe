@@ -1,0 +1,30 @@
+<div class="container" >
+  <div class="dialog">
+    <h3>EPSI-Score</h3>
+
+    <img class="offer-score"
+    src="../../../../assets/img/epsi-score-tabel.png" />
+    
+    <p>Scoren baserer resultatet i EPSI sin siste kundetilfredshetsanalyse om bankene.</p>
+
+    
+  
+    <div class="bottom split">
+
+      <rente-button
+          [disabled]="
+            false"
+          [color]="'primary-wide-hollow'"
+          type="raised"
+          (click)="onClick()"
+      >Se mer </rente-button>
+
+      <rente-button cdkFocusInitial color="primary" (click)="onClose()">
+        Ok
+      </rente-button>
+    </div>
+  </div>
+</div>
+<div class="fade" (click)="onClose()" ></div>
+
+
