@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ReferralComponent } from './referral/referral.component';
+import { MatDialog } from '@angular/material/dialog';
+
 
 @Component({
   selector: 'rente-bargain-success',
@@ -10,17 +13,22 @@ export class BargainSuccessComponent implements OnInit {
   
   public isErrorState = false
 
-  constructor(private router: Router) {
+  constructor(private router: Router, public dialog: MatDialog) {
 
-    if(!window.history.state.fromChangeBankDialog) {
+
+    //REMOVE COMMENTS BEFORE PRODUCTION!!!!
+    /*
+     if(!window.history.state.fromChangeBankDialog) {
       this.router.navigate(['/dashboard/tilbud'])
     }
-    if(!window.history.state.isError) {
+     if(!window.history.state.isError) {
       this.isErrorState = true
-    } 
-   }
+    }  
+   */
+   } 
 
   ngOnInit() {
+    this.dialog.open(ReferralComponent);
   }
 
   public continue() {
