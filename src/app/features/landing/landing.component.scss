@@ -93,13 +93,74 @@ p {
     }
   }
 
-  /*
+  
   .data-logos {
-    margin: 80px 0;
+    @media (min-width: 600px) {
+      margin: 80px 0;
+    }
   }
-  */
+  
 }
 
+@media (max-width: 600px) {
+  #singleVideo {
+    width: 100%;
+    border-radius: 10px;
+    margin: 80px auto 20px;
+    background-image: url('../../../assets/img/video-cover-mobile.png');
+    background-size: contain;
+  }
+}
+
+
+@media (min-width: 600px) {
+  #singleVideo {
+    width: 100%;
+    box-shadow: 0px 0px 17px #ccc;
+    border-radius: 10px;
+    margin: 80px auto 60px;
+    
+  }
+}
+
+.variation-4 {
+  h1{
+    color: black;
+    font-size: 34px;
+    font-weight: 400; 
+  }
+
+  a  {
+    color: $primary;
+    position: relative;
+    font-weight: 400; 
+  }
+
+  h4 {
+    margin-top: 60px;
+    max-width: 250px;
+    margin: auto;
+    font-size: 16px;
+
+    .green {
+      color: $primary;
+    }
+  }
+
+  .intro {
+    margin-bottom: 40px;
+    h4 {
+      max-width: 250px;
+      margin: 25px auto 80px;
+    }
+  }
+
+  .showcase {
+    width: 90%;
+    display: block;
+    margin: 40px auto;
+  }
+}
 
 
 .variation-1 {
