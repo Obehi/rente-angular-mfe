@@ -13,7 +13,10 @@
     width: calc(100% + 40px);
 }
 .container {
-    background: linear-gradient(180deg, #162537 0%, #183A63 27.08%);
+    @media (min-width: 600px) {
+      margin-top: 55px;
+    }
+    //background: linear-gradient(180deg, #162537 0%, #183A63 27.08%);
 }
 
 
@@ -58,9 +61,9 @@ form {
 
   .header {
     position: relative;
-    background-color: $lightgreen;
+    background-color: $secondary;
     text-align: left;
-    border-top: 1px solid $green;
+    color: white; 
     padding: 10px 20px;
     mat-icon {
       position: absolute;
@@ -247,15 +250,19 @@ form {
 
   .header {
     position: relative;
-    background-color: $lightgreen;
+    background-color: $secondary;
     text-align: left;
-    border-top: 1px solid $green;
+    color: white;
     padding: 10px 20px;
     mat-icon {
       position: absolute;
       right: 20px;
       top: 50%;
       transform: translateY(-50%);
+    }
+
+    h3 {
+      color: white;
     }
   }
   .body {

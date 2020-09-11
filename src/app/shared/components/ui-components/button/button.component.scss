@@ -84,7 +84,9 @@ button.mat-primary-wide-hollow {
   color: black;
   border: 1px solid $primary;
   height: 56px;
-  width: 80%
+  width: 80%;
+  white-space: break-spaces;
+
 }
 
 button.mat-primary-wide-hollow[disabled] {

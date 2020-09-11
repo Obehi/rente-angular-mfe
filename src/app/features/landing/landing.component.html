@@ -62,7 +62,7 @@
 
 
 
-  <ng-container *ngIf="true">
+  <ng-container *ngIf="false">
     <div class="variation-2">
       <div class="intro" [style.margin-bottom.px]="isMobile ? 20 : 80">
         <h1 [style.margin-bottom.px]="isMobile ? 20 : 40">
@@ -115,7 +115,7 @@
         </h4>
       </div>
 
-      <rente-button color="primary-wide" [routerLink]="'/autentisering/bank/nordea'">
+      <rente-button color="primary-wide-landing" [routerLink]="'/autentisering/bank/nordea'">
         Finn beste tilbud
       </rente-button>
 
@@ -140,6 +140,69 @@
       <rente-counter></rente-counter>
     </div>
   </ng-container>
+
+
+
+
+  <ng-container *ngIf="true">
+    <div class="variation-4">
+      <div class="intro" [style.margin-bottom.px]="isMobile ? 20 : 80">
+        <h1 class="mobile" [style.margin-bottom.px]="isMobile ? 20 : 40">
+          Få beste  <br> <a [routerLink]="'/velgbank'">boliglånsrente</a>
+        </h1>
+
+        <h1 class="desktop" [style.margin-bottom.px]="isMobile ? 20 : 40">
+          Få beste <a [routerLink]="'/velgbank'">boliglånsrente</a>
+        </h1>
+
+        <h4>
+          Sammenlign boliglånet ditt mot markedets beste tilbud - <span class="green">kjapt, enkelt og
+          gratis!</span>
+        </h4>
+
+      </div>
+      
+
+      <rente-button color="primary-wide-landing" [routerLink]="'/velgdinbank'">
+        Finn beste tilbud
+      </rente-button>
+       
+  
+
+      <vg-player>
+       <!--  <vg-overlay-play></vg-overlay-play> -->
+        <video class="desktop" [vgMedia]="media" #media id="singleVideo" preload="auto" controls>
+            <source src="../../../assets/video/promo-desktop.mp4"  type="video/mp4">
+        </video>
+
+        <video class="mobile" [vgMedia]="media" #media id="singleVideo" preload="auto" controls>
+          <source src="../../../assets/video/promo-mobil.mp4"  type="video/mp4">
+      </video>
+        
+    </vg-player>
+
+      <div class="data-logos">
+        <a class="finansportalen" target="_blank" href="https://www.finansportalen.no">
+          <img
+            src="../../../assets/img/banks-logo/svg/finansportalen.svg"
+            alt="Finansportalen logo"
+          />
+        </a>
+        <a target="_blank" href="https://virdi.no/">
+          <img
+            src="../../../assets/img/banks-logo/svg/virdi.svg"
+            alt="Virdi logo"
+          />
+        </a>
+        <a class="boligmappa" target="_blank" href="https://www.boligmappa.no/">
+          <img src="../../../../assets/img/partners/boligmappa-color.png" alt="boligmappa logo" />
+        </a>
+      </div>
+
+      <rente-counter></rente-counter>
+    </div>
+  </ng-container>
+  
 
 
 

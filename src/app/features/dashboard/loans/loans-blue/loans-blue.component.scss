@@ -9,8 +9,11 @@ p {
 }
 
 .container {
-    background: linear-gradient(180deg, #162537 0%, #183A63 27.08%);
+    //background: linear-gradient(180deg, #162537 0%, #183A63 27.08%);
     padding-bottom: 80px;
+    @media (min-width: 600px) {
+      margin-top: 55px;
+    }
 }
 .inner {
   padding: 10px;

@@ -28,8 +28,8 @@
 
   .desktop-main-box-grid {
     grid-gap: 22px;
-    grid-template-columns: 1fr 1fr;
-    margin: 0px 30px 0px 30px
+    grid-template-columns: repeat( 2, minmax(100px, 1fr) );
+    margin: 0px 30px 0px 30px;
   }
 
   .info-box-grid {
@@ -86,7 +86,7 @@
   margin-bottom: 20px;
 
   @media (min-width: 600px) {
-    width: 390px;
+    width: 90%;
     margin: 0 auto;
     grid-row: 5;
   }
