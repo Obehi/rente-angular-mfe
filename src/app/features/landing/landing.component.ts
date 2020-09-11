@@ -34,6 +34,8 @@ export class LandingComponent implements OnInit {
   }
 
   getVariation(): number | null {
+    console.log("variation " + (window as any).google_optimize.get('-FGlj4ayQK66hF9kV4Wiow'));
+    
     if((window as any).google_optimize == undefined) {
       return null;
     }
