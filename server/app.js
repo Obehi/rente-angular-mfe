@@ -5,7 +5,7 @@ const https = require('https');
 
 const clientPath = path.resolve(__dirname, '../dist/rente-front-end');
 const port = process.env.PORT || 4300;
-const baseUrl = process.env.LOANS_API_URL || 'https://rente-loan-dev.herokuapp.com/';
+const baseUrl = process.env.LOANS_API_URL || 'https://rente-loan-dev.herokuapp.com';
 
 https.globalAgent.options.ca = require('ssl-root-cas/latest').create();
 
@@ -27,19 +27,15 @@ app.use('/blogg', function(req, res, next) {
 
 const historicalRatesProxy = require('http-proxy').createProxyServer({
   host: 'https://blogg.renteradar.no',
-  changeOrigin: true,
-  agent: new https.Agent({
-    port: 443,
-    auth: 'login:pass'
-  })
+  changeOrigin: true
 });
 
  app.use('/api/historical-rates', function(req, res, next) {
-   console.log(req.headers);
+/*    console.log(req.headers);
    console.log(req.headers.authorization);
-   console.log(req.query);
+   console.log(req.query); */
    historicalRatesProxy.web(req, res, {
-      target: baseUrl + 'ext-services/bank-statistics',
+      target: baseUrl + '/ext-services/bank-statistics',
       auth: 'login:pass'
   }, next); 
 });
