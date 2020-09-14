@@ -35,7 +35,7 @@ const historicalRatesProxy = require('http-proxy').createProxyServer({
    console.log(req.headers.authorization);
    console.log(req.query); */
    historicalRatesProxy.web(req, res, {
-      target: baseUrl + '/ext-services/bank-statistics',
+      target: baseUrl + '/loan/ext-services/historical-rates-statistics',
       auth: 'login:pass'
   }, next); 
 });
