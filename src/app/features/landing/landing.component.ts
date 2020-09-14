@@ -34,7 +34,7 @@ export class LandingComponent implements OnInit {
   }
 
   getVariation(): number | null {
-    console.log("variation " + (window as any).google_optimize.get('-FGlj4ayQK66hF9kV4Wiow'));
+    console.log("variation " + (window as any).google_optimize.get('2oFfAFXmSlq6iu7MTmo4zA'));
     
     if((window as any).google_optimize == undefined) {
       return null;
@@ -43,8 +43,8 @@ export class LandingComponent implements OnInit {
       return null;
     }
 
-    console.log("variation " + (window as any).google_optimize.get('-FGlj4ayQK66hF9kV4Wiow'));
-    return (window as any).google_optimize.get('-FGlj4ayQK66hF9kV4Wiow');
+    console.log("variation " + (window as any).google_optimize.get('2oFfAFXmSlq6iu7MTmo4zA'));
+    return (window as any).google_optimize.get('2oFfAFXmSlq6iu7MTmo4zA');
   }
 
 }
