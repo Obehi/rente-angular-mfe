@@ -5,7 +5,7 @@ const https = require('https');
 
 const clientPath = path.resolve(__dirname, '../dist/rente-front-end');
 const port = process.env.PORT || 4300;
-const baseUrl = process.env.PORT || 'https://rente-loan-dev.herokuapp.com/';
+const baseUrl = process.env.LOANS_API_URL || 'https://rente-loan-dev.herokuapp.com/';
 
 https.globalAgent.options.ca = require('ssl-root-cas/latest').create();
 
