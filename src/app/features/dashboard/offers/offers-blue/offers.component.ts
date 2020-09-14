@@ -113,9 +113,6 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
         console.log(err);
       }
     );
-   
-    console.log("test optimize")
-
   }
 
   public getTips() {
