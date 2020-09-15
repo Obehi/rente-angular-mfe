@@ -180,4 +180,18 @@ export class HouseComponent implements OnInit, DeactivationGuarded {
   notEmpty(s: string) {
     return s != null && String(s).length > 0;
   }
+
+  public getVariation = (): number | null => {
+    //console.log("variation: " + (window as any).google_optimize == undefined);
+    return 0;
+    if((window as any).google_optimize == undefined) {
+      return null;
+    }
+    if((window as any).google_optimize == null) {
+      return null;
+    }
+
+    console.log("variation " + (window as any).google_optimize.get('-FGlj4ayQK66hF9kV4Wiow'));
+    return (window as any).google_optimize.get('-FGlj4ayQK66hF9kV4Wiow');
+  }
 }
