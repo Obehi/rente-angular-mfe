@@ -28,14 +28,12 @@ const getVariation = (): number | null => {
 
 const getOfferVariationComponent = () => {
   let variation =  getVariation()
-  return OffersComponentBlue;
+
 
   if(variation == 0 || variation == null) {
     return OffersComponent;
-  } else if(variation == 1) {
-    return OffersComponentBlue;
   } else {
-    return OffersComponent;
+    return OffersComponentBlue;
   }
 };
 
