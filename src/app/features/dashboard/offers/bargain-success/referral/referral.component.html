@@ -1,0 +1,76 @@
+<mat-icon (click)="onClose()" class="close-modal">close</mat-icon>
+
+<div class="dialog">
+    <div class="desktop">
+        <div class="wrapper-desktop">
+            <div class="left">
+                <div class="top">
+                    <h2>Hjelp en venn!</h2>
+                    <p>Fortell noen du kjenner om Renteradar.no og kanskje de spanderer en middag for alle pengene de
+                        sparer. Del med knappene under</p>
+                </div>
+
+                <div class="linksWrapper">
+                    <a class="link margin-hack" href="https://www.facebook.com/dialog/send?app_id=326133992135942&link=https%3A%2F%2Frente-frontend-dev.herokuapp.com%2F%3Fgrsf%3Dmidspm&redirect_uri=https%3A%2F%2Frente-frontend-dev.herokuapp.com%2F">
+                        <img src="../../../../../../assets/img/referral-messenger.png" />
+                        <p  
+                          >Messenger
+                    </p>
+                    </a>
+
+                    <a class="link"  href="mailto:?subject=Her%20er%20en%20genial%20tjeneste%20du%20kan%20teste&body=Hei!%20%0A%0ASjekk%20ut%20https://renteradar.no/%0A%0AGenial%20tjeneste">
+                        <img src="../../../../../../assets/img/referral-email.png" />
+                        <p>
+                        E-post</p>
+                    </a>
+
+                </div>
+            </div>
+            <img class="right" src="../../../../../../assets/img/referral-social-media.png" />
+        </div>
+    </div>
+
+
+    <div class="mobile">
+
+        <div class="wrapper-mobile">
+            <img class="social" src="../../../../../../assets/img/referral-social-media.png" />
+
+            <div class="top">
+                <h2>Hjelp en venn!</h2>
+                <p>Fortell noen du kjenner om Renteradar.no og kanskje de spanderer en middag for alle pengene de
+                    sparer.
+                    Del med knappene under</p>
+            </div>
+
+            <div class="linksWrapper">
+                <a class="link" href="fb-messenger://share?link=https://renteradar.no/&amp;&amp;app_id=326133992135942
+                ">
+                    <img src="../../../../../../assets/img/referral-messenger.png" />
+                    <p>Messenger</p>
+            </a>
+
+                <a class="link" href="sms:?&body=Hei!%20%0A%0ASjekk%20ut%20https://renteradar.no/%0A%0AGenial%20tjeneste">
+                    <img src="../../../../../../assets/img/referral-sms.png" />
+                    <p>Sms</p>
+                </a>
+
+                <a class="link" href="https://api.whatsapp.com/send?phone=&text=Hei%21%20%0a%0aSjekk%20ut%20https%3a%2f%2frenteradar.no%0a%0aGenial%20tjeneste&source=&data=&app_absent=">
+                    <img src="../../../../../../assets/img/referral-whatsapp.png" />
+                    <p>Whatsapp</p>
+                </a>
+
+                <a class="link" href="mailto:?subject=Her%20er%20en%20genial%20tjeneste%20du%20kan%20teste&body=Hei!%20%0A%0ASjekk%20ut%20https://renteradar.no/%0A%0AGenial%20tjeneste">
+                    <img src="../../../../../../assets/img/referral-email.png" />
+                    <p>E-post</p>  
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="bottom ">
+    <rente-button cdkFocusInitial color="primary" (click)="onClose()">
+        Ok
+    </rente-button>
+</div>
