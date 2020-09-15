@@ -5,7 +5,7 @@ const https = require('https');
 
 const clientPath = path.resolve(__dirname, '../dist/rente-front-end');
 const port = process.env.PORT || 4300;
-const baseUrl = process.env.LOANS_API_URL || 'https://rente-loan-dev.herokuapp.com';
+const baseUrl = process.env.BASE_URL;
 
 https.globalAgent.options.ca = require('ssl-root-cas/latest').create();
 
@@ -31,9 +31,6 @@ const historicalRatesProxy = require('http-proxy').createProxyServer({
 });
 
  app.use('/api/historical-rates', function(req, res, next) {
-/*    console.log(req.headers);
-   console.log(req.headers.authorization);
-   console.log(req.query); */
    historicalRatesProxy.web(req, res, {
       target: baseUrl + '/loan/ext-services/historical-rates-statistics',
       auth: 'login:pass'
