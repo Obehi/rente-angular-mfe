@@ -32,4 +32,16 @@ export class HeaderComponent implements OnInit {
     return this.auth.isLoggedIn;
   }
 
+  getVariation(): number | null {
+    if((window as any).google_optimize == undefined) {
+      return null;
+    }
+    if((window as any).google_optimize == null) {
+      return null;
+    }
+
+    console.log("variation " + (window as any).google_optimize.get('-FGlj4ayQK66hF9kV4Wiow'));
+    return (window as any).google_optimize.get('-FGlj4ayQK66hF9kV4Wiow');
+  }
+
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { timer } from 'rxjs';
 import { trigger, transition, style, animate } from '@angular/animations';
+import optimize from 'google-optimize-service';
 
 @Component({
   selector: 'rente-landing',
@@ -24,6 +25,10 @@ export class LandingComponent implements OnInit {
   get isMobile(): boolean { return window.innerWidth < 600; }
 
   ngOnInit(): void {
+    this.getVariation()
+    const experiment = optimize.get();
+    console.log(experiment);
+    console.log(optimize);
     const subscription = timer(1000, 1000).subscribe(t => {
       this.time = t;
       if (t === 3) {
@@ -32,4 +37,17 @@ export class LandingComponent implements OnInit {
     });
   }
 
+  getVariation(): number | null {
+    console.log("variation " + (window as any).google_optimize.get('-FGlj4ayQK66hF9kV4Wiow'));
+    
+    if((window as any).google_optimize == undefined) {
+      return null;
+    }
+    if((window as any).google_optimize == null) {
+      return null;
+    }
+
+    console.log("variation " + (window as any).google_optimize.get('-FGlj4ayQK66hF9kV4Wiow'));
+    return (window as any).google_optimize.get('-FGlj4ayQK66hF9kV4Wiow');
+  }
 }

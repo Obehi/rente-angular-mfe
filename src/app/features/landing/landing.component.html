@@ -1,57 +1,211 @@
 <div class="front-container">
-  <div class="intro" [style.margin-bottom.px]="isMobile ? 20 : 80">
-    <h1 [style.margin-bottom.px]="isMobile ? 20 : 40">
-      Få beste <a [routerLink]="'/velgbank'">boliglånsrente</a>
-    </h1>
-    <h4>
-      Sammenlign boliglånet ditt mot markedets beste tilbud - kjapt, enkelt og
-      gratis!
-    </h4>
-  </div>
-  <h3>Start med å velge banken du har lån i:</h3>
-  <div class="bank-buttons">
-    <rente-button color="blue" [routerLink]="'/autentisering/sparebank1-sub'">
-      <img
-        src="../../../assets/img/banks-logo/svg/sparebank1.svg"
-        alt="Sparebank1 logo"
-        class="sparebank1"
-      />
-    </rente-button>
-    <rente-button color="blue" [routerLink]="'/autentisering/bank/nordea'">
-      <img
-        src="../../../assets/img/banks-logo/svg/nordea.svg"
-        alt="Nordea logo"
-        style="height: 20px;"
-      />
-    </rente-button>
-    <rente-button color="blue" [routerLink]="'/autentisering/bank/dnb'">
-      <img src="../../../assets/img/banks-logo/svg/dnb.svg" alt="DNB logo" />
-    </rente-button>
-    <rente-button color="blue" [routerLink]="'/velgbank'">
-      <p>Annen bank</p>
-    </rente-button>
-  </div>
 
-  <div class="data-logos">
-    <a class="finansportalen" target="_blank" href="https://www.finansportalen.no">
-      <img
-        src="../../../assets/img/banks-logo/svg/finansportalen.svg"
-        alt="Finansportalen logo"
-      />
-    </a>
-    <a target="_blank" href="https://virdi.no/">
-      <img
-        src="../../../assets/img/banks-logo/svg/virdi.svg"
-        alt="Virdi logo"
-      />
-    </a>
-    <a class="boligmappa" target="_blank" href="https://www.boligmappa.no/">
-      <img src="../../../../assets/img/partners/boligmappa-color.png" alt="boligmappa logo" />
-    </a>
+  <ng-container *ngIf="getVariation() == 0">
+    <div class="variation-1">
+      <div class="intro" [style.margin-bottom.px]="isMobile ? 20 : 80">
+        <h1 [style.margin-bottom.px]="isMobile ? 20 : 40">
+          Få beste <a [routerLink]="'/velgbank'">boliglånsrente</a>
+        </h1>
+        <h4>
+          Sammenlign boliglånet ditt mot markedets beste tilbud - kjapt, enkelt og
+          gratis!
+        </h4>
+      </div>
+      <h3>Start med å velge banken du har lån i:</h3>
+      <div class="bank-buttons">
+        <rente-button color="blue-bank" [routerLink]="'/autentisering/sparebank1-sub'">
+          <img
+            src="../../../assets/img/banks-logo/svg/sparebank1.svg"
+            alt="Sparebank1 logo"
+            class="sparebank1"
+          />
+        </rente-button>
+        <rente-button color="blue-bank" [routerLink]="'/autentisering/bank/nordea'">
+          <img
+            src="../../../assets/img/banks-logo/svg/nordea.svg"
+            alt="Nordea logo"
+            style="height: 20px;"
+          />
+        </rente-button>
+        <rente-button color="blue-bank" [routerLink]="'/autentisering/bank/dnb'">
+          <img src="../../../assets/img/banks-logo/svg/dnb.svg" alt="DNB logo" />
+        </rente-button>
+        <rente-button color="blue-bank" [routerLink]="'/velgbank'">
+          <p>Annen bank</p>
+        </rente-button>
+      </div>
 
-  </div>
 
-  <rente-counter></rente-counter>
+      <div class="data-logos">
+        <a class="finansportalen" target="_blank" href="https://www.finansportalen.no">
+          <img
+            src="../../../assets/img/banks-logo/svg/finansportalen.svg"
+            alt="Finansportalen logo"
+          />
+        </a>
+        <a target="_blank" href="https://virdi.no/">
+          <img
+            src="../../../assets/img/banks-logo/svg/virdi.svg"
+            alt="Virdi logo"
+          />
+        </a>
+        <a class="boligmappa" target="_blank" href="https://www.boligmappa.no/">
+          <img src="../../../../assets/img/partners/boligmappa-color.png" alt="boligmappa logo" />
+        </a>
+
+      </div>
+
+      <rente-counter></rente-counter>
+    </div>
+  </ng-container>
+
+
+
+
+  <ng-container *ngIf="getVariation() == 1">
+    <div class="variation-2">
+      <div class="intro" [style.margin-bottom.px]="isMobile ? 20 : 80">
+        <h1 [style.margin-bottom.px]="isMobile ? 20 : 40">
+          Få beste  <br> <a [routerLink]="'/velgbank'">boliglånsrente</a>
+        </h1>
+        <h4>
+          Sammenlign boliglånet ditt mot markedets beste tilbud - <span class="green">kjapt, enkelt og
+          gratis!</span>
+        </h4>
+      </div>
+
+      <rente-button color="primary-wide-landing" [routerLink]="'/velgdinbank'">
+        Finn beste tilbud
+      </rente-button>
+
+      <img class="showcase" src="../../../assets/img/isometric-showcase.svg"/>
+
+      <div class="data-logos">
+        <a class="finansportalen" target="_blank" href="https://www.finansportalen.no">
+          <img
+            src="../../../assets/img/banks-logo/svg/finansportalen.svg"
+            alt="Finansportalen logo"
+          />
+        </a>
+        <a target="_blank" href="https://virdi.no/">
+          <img
+            src="../../../assets/img/banks-logo/svg/virdi.svg"
+            alt="Virdi logo"
+          />
+        </a>
+        <a class="boligmappa" target="_blank" href="https://www.boligmappa.no/">
+          <img src="../../../../assets/img/partners/boligmappa-color.png" alt="boligmappa logo" />
+        </a>
+      </div>
+
+      <rente-counter></rente-counter>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="getVariation() == 2">
+    <div class="variation-3">
+      <div class="intro" [style.margin-bottom.px]="isMobile ? 20 : 80">
+
+        <h3>Kjapt, enkelt og gratis!</h3>
+        <h1 [style.margin-bottom.px]="isMobile ? 20 : 40">
+          Få beste  <br> <a [routerLink]="'/velgbank'">boliglånsrente</a>
+        </h1>
+        <h4>
+          Sammenlign boliglånet ditt mot markedets beste tilbud
+        </h4>
+      </div>
+
+      <rente-button color="primary-wide-landing" [routerLink]="'/autentisering/bank/nordea'">
+        Finn beste tilbud
+      </rente-button>
+
+      <div class="data-logos">
+        <a class="finansportalen" target="_blank" href="https://www.finansportalen.no">
+          <img
+            src="../../../assets/img/banks-logo/svg/finansportalen.svg"
+            alt="Finansportalen logo"
+          />
+        </a>
+        <a target="_blank" href="https://virdi.no/">
+          <img
+            src="../../../assets/img/banks-logo/svg/virdi.svg"
+            alt="Virdi logo"
+          />
+        </a>
+        <a class="boligmappa" target="_blank" href="https://www.boligmappa.no/">
+          <img src="../../../../assets/img/partners/boligmappa-color.png" alt="boligmappa logo" />
+        </a>
+      </div>
+
+      <rente-counter></rente-counter>
+    </div>
+  </ng-container>
+
+
+
+
+  <ng-container *ngIf="getVariation() == 3">
+    <div class="variation-4">
+      <div class="intro" [style.margin-bottom.px]="isMobile ? 20 : 80">
+        <h1 class="mobile" [style.margin-bottom.px]="isMobile ? 20 : 40">
+          Få beste  <br> <a [routerLink]="'/velgbank'">boliglånsrente</a>
+        </h1>
+
+        <h1 class="desktop" [style.margin-bottom.px]="isMobile ? 20 : 40">
+          Få beste <a [routerLink]="'/velgbank'">boliglånsrente</a>
+        </h1>
+
+        <h4>
+          Sammenlign boliglånet ditt mot markedets beste tilbud - <span class="green">kjapt, enkelt og
+          gratis!</span>
+        </h4>
+
+      </div>
+      
+
+      <rente-button color="primary-wide-landing" [routerLink]="'/velgdinbank'">
+        Finn beste tilbud
+      </rente-button>
+       
+  
+
+      <vg-player>
+       <!--  <vg-overlay-play></vg-overlay-play> -->
+        <video class="desktop" [vgMedia]="media" #media id="singleVideo" preload="auto" controls>
+            <source src="../../../assets/video/promo-desktop.mp4"  type="video/mp4">
+        </video>
+
+        <video class="mobile" [vgMedia]="media" #media id="singleVideo" preload="auto" controls>
+          <source src="../../../assets/video/promo-mobil.mp4"  type="video/mp4">
+      </video>
+        
+    </vg-player>
+
+      <div class="data-logos">
+        <a class="finansportalen" target="_blank" href="https://www.finansportalen.no">
+          <img
+            src="../../../assets/img/banks-logo/svg/finansportalen.svg"
+            alt="Finansportalen logo"
+          />
+        </a>
+        <a target="_blank" href="https://virdi.no/">
+          <img
+            src="../../../assets/img/banks-logo/svg/virdi.svg"
+            alt="Virdi logo"
+          />
+        </a>
+        <a class="boligmappa" target="_blank" href="https://www.boligmappa.no/">
+          <img src="../../../../assets/img/partners/boligmappa-color.png" alt="boligmappa logo" />
+        </a>
+      </div>
+
+      <rente-counter></rente-counter>
+    </div>
+  </ng-container>
+  
+
+
+
 
   <div>
     <!-- Dont load huge example svgs before scroll hits this element -->

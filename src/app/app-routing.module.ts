@@ -14,6 +14,7 @@ import { EmailPreferencesComponent } from '@features/email-preferences/email-pre
 import { AuthGuard } from '@shared/guards/auth.guard';
 import { GetNotifiedComponent } from '@features/get-notified/get-notified.component';
 import { customMeta, defaultMeta, defaultTitle } from './config/routes-config';
+import { BankChoiceComponent } from '@features/auth/bank-choice/bank-choice.component';
 
 const routes: Routes = [
   {
@@ -94,6 +95,9 @@ const routes: Routes = [
         description: customMeta.personvernerklaering.description
       }
     }
+  },
+  {
+    path: ROUTES_MAP.bankTestVariationSelect, component: BankChoiceComponent
   },
   {
     path: ROUTES_MAP.bankSelect,

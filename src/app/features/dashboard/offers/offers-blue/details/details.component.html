@@ -1,0 +1,74 @@
+<div class="offer-details">
+
+  <div class="grid-wrapper">
+      <div class="item">
+        <p class="small">Produkt</p>
+        <p>{{ offer.productName }}</p>
+      </div>
+      <div class="item">
+          <p class="small">Max belåningsgrad</p>
+          <p>{{ offer.maxLTV }}%</p>        
+      </div>
+      <div class="item">
+        <p class="small">Nominell rente</p>
+        <p>{{ offer.nominalRate | number: "1.2-2" }}%</p>
+      </div>
+      <div class="item">
+        <p class="small">Effektiv rente</p>
+        <p>{{ offer.effectiveRate | number: "1.2-2" }}%</p>
+      </div>
+      <div class="item">
+          <p class="small">Krav om annet produkt</p>
+          <p>{{ offer.requiredProductPackage == null ? "Nei" : "Ja" }}</p>
+      </div>
+
+      <div class="item">
+        <p class="small">Produktpakke</p>
+        <p>{{ offer.requiredProductPackage == null ? "Ingen krav" :  offer.requiredProductPackage}}</p>
+      </div>
+      <div class="item">
+        <p class="small">Max løpetid</p>
+        <p>{{ offer.maxLoanPeriod }} år</p>
+      </div>
+      <div class="item">
+        <p class="small">Max avdragsfrihet</p>
+        <p>{{ offer.maxInstallmentFreePeriod }} år</p>
+      </div>
+      <div class="item">
+        <p class="small">Termingebyr</p>
+        <p>{{ offer.monthlyFee }},-</p>
+      </div>
+      <div class="item">
+        <p class="small">Etableringsgebyr</p>
+        <p>{{ offer.establishmentFee }},-</p>
+      </div>
+      <div class="item">
+        <p class="small">Depotgebyr</p>
+        <p>{{ offer.depotFee }},-</p>
+      </div>
+      <div class="item">  
+        <p class="small">Markedsområde</p>
+        <p>{{ offer.marketArea }}</p>
+      </div>
+      <div class="item">
+        <p class="small">Forutsetter medlemskap</p>
+        <p>{{ offer.requiredMembership == null ? "Nei" : "Ja" }}</p>
+      </div>
+      <div *ngIf="offer.requiredMembership != null">
+        <div class="item">
+          <p class="small">Medlemskap</p>
+          <p>{{ offer.requiredMembership }}</p>
+        </div>
+      </div>
+    
+      
+  </div>
+
+<p class="small-header"  >{{offer.otherConditions ? "Forbehold:" : "Ingen forbehold"}} </p>
+<p class = otherConditions>{{ offer.otherConditions }}</p>
+
+
+<button mat-flat-button color="grey" (click)="onClick(true)">Lukk</button>
+
+
+</div>

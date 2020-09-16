@@ -32,7 +32,7 @@
     </a>
   </nav>
 </div>
-<div class="dashboard-content">
+<div class="dashboard-content" [ngClass]="(getVariation() === 1)?'dashboard-content':'dashboard-content-blue'">
   <router-outlet (activate)="onActivate($event)"></router-outlet>
 </div>
 <!-- <div class="container dashboard">

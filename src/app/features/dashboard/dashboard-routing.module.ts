@@ -1,9 +1,10 @@
+import { OffersComponentBlue } from './offers/offers-blue/offers.component';
 import { OffersComponent } from './offers/offers.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { DashboardComponent } from './dashboard.component';
 import { LoansComponent } from './loans/loans.component';
-import { HouseComponent } from './house/house.component';
+import { HouseComponent }   from './house/house.component';
 import { PreferencesComponent } from './preferences/preferences.component';
 import { ProfileComponent } from './profile/profile.component';
 import { RateTypeFixedComponent } from './rate-type-fixed/rate-type-fixed.component';
@@ -12,11 +13,35 @@ import { customMeta, defaultMeta } from '@config/routes-config';
 import {RouteGuard } from '@shared/guards/route.guard';
 import { BargainSuccessComponent } from './offers/bargain-success/bargain-success.component';
 
+
+const getVariation = (): number | null => {
+  if((window as any).google_optimize == undefined) {
+    return null;
+  }
+  if((window as any).google_optimize == null) {
+    return null;
+  }
+
+  console.log("variation " + (window as any).google_optimize.get('-FGlj4ayQK66hF9kV4Wiow'));
+  return (window as any).google_optimize.get('-FGlj4ayQK66hF9kV4Wiow');
+}
+
+const getOfferVariationComponent = () => {
+  let variation =  getVariation()
+
+
+  if(variation == 0 || variation == null) {
+    return OffersComponent;
+  } else {
+    return OffersComponentBlue;
+  }
+};
+
 const routes: Routes = [
   {
     path: '', component: DashboardComponent, children: [
       {
-        path: 'tilbud', component: OffersComponent,
+        path: 'tilbud', component: getOfferVariationComponent(),
         data: {
           title: customMeta.tilbudTitle,
           meta: {

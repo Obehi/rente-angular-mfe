@@ -1,3 +1,9 @@
+<div *ngIf="getVariation() != null && getVariation() != undefined && getVariation() != 0"> 
+  <rente-loans-blue></rente-loans-blue>
+
+</div>
+
+<div *ngIf="false">
 <div *ngIf="loansData && loansData.loans && loansData.loans.length > 0">
   <div class="summary">
     <h3 class="title">Sammendrag av lån</h3>
@@ -202,4 +208,7 @@
 
 <div *ngIf="errorMessage">
   <h1 class="text-center mt-4">{{ errorMessage }}</h1>
+</div>
+
+
 </div>
