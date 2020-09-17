@@ -56,6 +56,13 @@ export class BankSelectComponentVariation implements OnInit {
   }
 
   selectBank(bank:BankVo) {
+
+    if(bank.name == 'SPAREBANK_1') {
+      this.searchStr = "Sparebank 1";
+      this.filterBank(this.searchStr);
+      return
+    }
+
     if (bank.isMissing) {
       this.router.navigate([ROUTES_MAP.getNotified],{ state: { bank: bank } });
     }
