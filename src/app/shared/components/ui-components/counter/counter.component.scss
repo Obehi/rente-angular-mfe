@@ -3,8 +3,11 @@
 .spart {
   text-align: center;
   
+  h2, h4 {
+    line-height: 1.35;
+  }
   h4 {
-    margin-bottom: 20px;
+    //margin-bottom: 20px;
   }
   margin-bottom: 80px;
 }
@@ -24,4 +27,11 @@ h2 {
 
 .green {
   color: $green;
+  font-size: 36px;
+}
+
+.blue {
+  font-size: 36px;
+  font-weight: 400;
+  color: $secondary;
 }

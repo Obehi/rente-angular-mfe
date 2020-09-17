@@ -21,21 +21,6 @@ import { LoansBlueComponent }   from './loans/loans-blue/loans-blue.component';
 
 
 
-const getOfferVariationComponent = () => {
-  //let variation =  getVariation()
-  console.log("getOfferVariationComponent");
-  const optimize = new OptimizeService()
-  let variation = optimize.getVariation()
-  console.log(variation);
-
-  if(variation == 0 || variation == null) {
-    return OffersComponent;
-  } else {
-    return OffersComponentBlue;
-  }
-};
-
-
 const optimize = new OptimizeService()
 
 

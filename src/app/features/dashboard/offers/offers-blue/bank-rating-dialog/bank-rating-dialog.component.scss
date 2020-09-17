@@ -12,16 +12,19 @@
   z-index: 99999;
   text-align: center;
   height: 500px;
-  width: 90%;
+  width: 100%;
   overflow: scroll;
 
   .dialog {
     background-color: white;
-    position: relative;
+    position: absolute;
+    left: 0;
+    margin: 10px;
     border-radius: 10px 10px 10px 10px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    box-shadow:  1px 2px 0 rgba(60,64,67,.3), 0 1px 3px 1px rgba(60,64,67,.15)
   }
   
   h3 {
