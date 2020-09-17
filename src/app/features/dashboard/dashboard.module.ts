@@ -89,7 +89,7 @@ import { BankRatingDialogComponent } from './offers/offers-blue/bank-rating-dial
     OfferCardBigComponentBlue,
     OfferCardBigComponent,
     BargainSuccessComponent,
-    ReferralComponent
+    ReferralComponent,
     LoansBlueComponent,
     HouseBlueComponent,
     BlueAddressComponent,

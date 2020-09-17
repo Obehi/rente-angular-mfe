@@ -1,17 +1,18 @@
 @import "../../../styles/theme/_colors.scss";
 
+
 .dash-tabs {
   position: fixed;
   margin: auto;
   bottom: 0;
   left: 0;
   right: 0;
-  height: 55px;
+  height: 70px;
   width: 100%;
   max-width: 1010px;
   z-index: 100;
-  background-color: white;
-  border-top: 1px solid $light;
+  background-color: $secondary;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -27,8 +28,25 @@
     .mat-tab-header-pagination {
       display: none;
     }
+
     .mat-tab-label-active p {
       color: $green !important;
+    }
+
+    .mat-tab-label-active .rente-icon {
+      content:url("../../../assets/icons/rente-logo-icon-green.svg");
+    }
+
+    .mat-tab-label-active .graph-icon {
+      content:url("../../../assets/icons/graph-icon-green.svg");
+    }
+
+    .mat-tab-label-active .house-icon {
+      content:url("../../../assets/icons/house-icon-green.svg");
+    }
+
+    .mat-tab-label-active .profile-icon {
+      content:url("../../../assets/icons/profile-icon-green.svg");
     }
     .mat-tab-links {
       display: block;
@@ -41,6 +59,20 @@
         height: 100% !important;
         padding: 0;
         text-decoration: none;
+
+        img {
+          width: 20px;
+          margin-top: 3px;
+
+          &.rente-icon {
+            width: 26px;
+            margin-bottom: -2px;
+          }
+        }
+
+        p {
+          color: white;
+        }
       }
     }
     .mat-ink-bar {
@@ -65,7 +97,7 @@
 }
 
 .dashboard-content-blue {
-  background-color: #183A63 ;
+  background: linear-gradient(180deg, #162537 0%, #183A63 10.08%) !important;
   max-width: 1010px;
   margin: auto;
   min-height: calc(100vh - 60px);

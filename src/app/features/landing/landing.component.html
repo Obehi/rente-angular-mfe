@@ -1,6 +1,6 @@
 <div class="front-container">
 
-  <ng-container *ngIf="getVariation() == 0">
+  <ng-container *ngIf="optimize.getVariation() == 0">
     <div class="variation-1">
       <div class="intro" [style.margin-bottom.px]="isMobile ? 20 : 80">
         <h1 [style.margin-bottom.px]="isMobile ? 20 : 40">
@@ -62,7 +62,7 @@
 
 
 
-  <ng-container *ngIf="getVariation() == 1">
+  <ng-container *ngIf="optimize.getVariation() == 1">
     <div class="variation-2">
       <div class="intro" [style.margin-bottom.px]="isMobile ? 20 : 80">
         <h1 [style.margin-bottom.px]="isMobile ? 20 : 40">
@@ -102,7 +102,7 @@
     </div>
   </ng-container>
 
-  <ng-container *ngIf="getVariation() == 2">
+  <ng-container *ngIf="optimize.getVariation() == 2">
     <div class="variation-3">
       <div class="intro" [style.margin-bottom.px]="isMobile ? 20 : 80">
 
@@ -144,7 +144,7 @@
 
 
 
-  <ng-container *ngIf="getVariation() == 3">
+  <ng-container *ngIf="optimize.getVariation() == 3">
     <div class="variation-4">
       <div class="intro" [style.margin-bottom.px]="isMobile ? 20 : 80">
         <h1 class="mobile" [style.margin-bottom.px]="isMobile ? 20 : 40">

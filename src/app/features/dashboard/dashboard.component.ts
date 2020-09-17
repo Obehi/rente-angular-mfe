@@ -2,7 +2,7 @@ import { Component, OnInit, ViewEncapsulation, OnDestroy } from "@angular/core";
 import { Routes, RouterModule, Router } from "@angular/router";
 import { BreakpointObserver, BreakpointState } from "@angular/cdk/layout";
 import { LocalStorageService } from "@services/local-storage.service";
-
+import { OptimizeService } from '@services/optimize.service'
 @Component({
   selector: "rente-dashboard",
   templateUrl: "./dashboard.component.html",
@@ -10,11 +10,17 @@ import { LocalStorageService } from "@services/local-storage.service";
   encapsulation: ViewEncapsulation.None
 })
 export class DashboardComponent implements OnInit, OnDestroy {
+
+  public optimize: OptimizeService;
+
   constructor(
     private router: Router,
     public breakpointObserver: BreakpointObserver,
-    private localStorageService: LocalStorageService
-  ) {}
+    private localStorageService: LocalStorageService,
+    public optimizeService: OptimizeService
+  ) {
+    this.optimize = optimizeService
+  }
 
   public navLinks = ["tilbud", "mine-lan", "bolig", "preferanser", "profil"];
   public activeLinkIndex = -1;
@@ -78,19 +84,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     });
   }
 
-  public getVariation = (): number | null => {
-    //console.log("variation: " + (window as any).google_optimize == undefined);
-    return 0;
-    if((window as any).google_optimize == undefined) {
-      return null;
-    }
-    if((window as any).google_optimize == null) {
-      return null;
-    }
 
-    console.log("variation " + (window as any).google_optimize.get('-FGlj4ayQK66hF9kV4Wiow'));
-    return (window as any).google_optimize.get('-FGlj4ayQK66hF9kV4Wiow');
-  }
 
   private checkmobileVersion() {
     this.breakpointObserver

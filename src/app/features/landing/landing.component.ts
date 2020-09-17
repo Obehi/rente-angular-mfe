@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { timer } from 'rxjs';
 import { trigger, transition, style, animate } from '@angular/animations';
-import optimize from 'google-optimize-service';
+import {OptimizeService} from '@services/optimize.service'
 
 @Component({
   selector: 'rente-landing',
@@ -23,12 +23,16 @@ import optimize from 'google-optimize-service';
 export class LandingComponent implements OnInit {
   time = 0;
   get isMobile(): boolean { return window.innerWidth < 600; }
-
+  optimize: OptimizeService
+  constructor(optimize: OptimizeService) {
+    this.optimize = optimize;
+  }
   ngOnInit(): void {
     this.getVariation()
-    const experiment = optimize.get();
-    console.log(experiment);
-    console.log(optimize);
+    console.log(this.optimize.getVariation() )
+
+
+
     const subscription = timer(1000, 1000).subscribe(t => {
       this.time = t;
       if (t === 3) {

@@ -11,7 +11,7 @@
     }
 
     p {
-        color: white;
+        color: black;
     }
 }
 .house {
@@ -20,6 +20,9 @@
     padding: 20px;
     display: flex;
     justify-content: space-between;
+    h3 {
+      color: white;
+    }
   }
 }
 
@@ -61,6 +64,7 @@
   margin-top: 40px;
 
   p{
+    color: white;
     font-weight: 400;
     margin-bottom: 0.5em;
   }

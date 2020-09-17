@@ -1,4 +1,3 @@
-import { OffersComponentBlue } from './offers/offers-blue/offers.component';
 import { OffersComponent } from './offers/offers.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -12,23 +11,22 @@ import { NoLoansComponent } from './no-loans/no-loans.component';
 import { customMeta, defaultMeta } from '@config/routes-config';
 import {RouteGuard } from '@shared/guards/route.guard';
 import { BargainSuccessComponent } from './offers/bargain-success/bargain-success.component';
+import { OptimizeService } from '@services/optimize.service'
+
+import { OffersComponentBlue } from './offers/offers-blue/offers.component';
+import { HouseBlueComponent }   from './house/house-blue/house-blue.component';
+import { BlueProfileComponent }   from './profile/blue-profile/blue-profile.component';
+import { LoansBlueComponent }   from './loans/loans-blue/loans-blue.component';
 
 
-const getVariation = (): number | null => {
-  if((window as any).google_optimize == undefined) {
-    return null;
-  }
-  if((window as any).google_optimize == null) {
-    return null;
-  }
 
-  console.log("variation " + (window as any).google_optimize.get('-FGlj4ayQK66hF9kV4Wiow'));
-  return (window as any).google_optimize.get('-FGlj4ayQK66hF9kV4Wiow');
-}
 
 const getOfferVariationComponent = () => {
-  let variation =  getVariation()
-
+  //let variation =  getVariation()
+  console.log("getOfferVariationComponent");
+  const optimize = new OptimizeService()
+  let variation = optimize.getVariation()
+  console.log(variation);
 
   if(variation == 0 || variation == null) {
     return OffersComponent;
@@ -37,11 +35,16 @@ const getOfferVariationComponent = () => {
   }
 };
 
+
+const optimize = new OptimizeService()
+
+
+
 const routes: Routes = [
   {
     path: '', component: DashboardComponent, children: [
       {
-        path: 'tilbud', component: getOfferVariationComponent(),
+        path: 'tilbud', component: optimize.getBinaryVariation() ?  OffersComponent : OffersComponentBlue,
         data: {
           title: customMeta.tilbudTitle,
           meta: {
@@ -54,7 +57,7 @@ const routes: Routes = [
         path: 'prute-fullfort', component: BargainSuccessComponent
       },
       {
-        path: 'mine-lan', component: LoansComponent,
+        path: 'mine-lan', component: optimize.getBinaryVariation() ?  LoansComponent : LoansBlueComponent,
         data: {
           title: customMeta.mineLanTitle,
           meta: {
@@ -64,7 +67,7 @@ const routes: Routes = [
         }
       },
       {
-        path: 'bolig', component: HouseComponent,
+        path: 'bolig', component: optimize.getBinaryVariation() ? HouseComponent : HouseBlueComponent,
         canDeactivate: [RouteGuard],
         data: {
           title: customMeta.boligTitle,
@@ -86,7 +89,7 @@ const routes: Routes = [
         }
       },
       {
-        path: 'profil', component: ProfileComponent,
+        path: 'profil', component: optimize.getBinaryVariation() ? ProfileComponent : BlueProfileComponent,
         canDeactivate: [RouteGuard],
         data: {
           title: customMeta.profilTitle,

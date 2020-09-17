@@ -3,7 +3,7 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { SnackBarService } from "../../../shared/services/snackbar.service";
 import { Observable, Subject } from 'rxjs';
 import { DeactivationGuarded } from '@shared/guards/route.guard';
-
+import { OptimizeService } from '@services/optimize.service'
 import {
   EventService,
   EmitEvent,
@@ -53,13 +53,15 @@ export class HouseComponent implements OnInit, DeactivationGuarded {
   public canLeavePage = true;
   public updateAnimationTrigger :boolean;
   public errorAnimationTrigger :boolean;
-  
+  public optimize: OptimizeService
   
   constructor(
     private loansService: LoansService,
     private snackBar: SnackBarService,
-    eventService: EventService
+    eventService: EventService,
+    optimizeService: OptimizeService
   ) {
+    this.optimize = optimizeService
     eventService.on(Events.INPUT_CHANGE, _ => {
       this.saveAddresses();
     });

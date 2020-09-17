@@ -7890,6 +7890,14 @@
         }
       }
     },
+    "ngx-videogular": {
+      "version": "10.1.0-0",
+      "resolved": "https://registry.npmjs.org/ngx-videogular/-/ngx-videogular-10.1.0-0.tgz",
+      "integrity": "sha512-DqXSIaDLsSZwflo+KCbxH2WgSiBqfq6fk2PGD9CFxpanXkvV7H8O7xyutxeEoHktWo3eET7x5F60U3k/8mIeMw==",
+      "requires": {
+        "tslib": "^2.0.0"
+      }
+    },
     "nice-try": {
       "version": "1.0.5",
       "resolved": "https://registry.npmjs.org/nice-try/-/nice-try-1.0.5.tgz",

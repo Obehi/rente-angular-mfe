@@ -28,6 +28,7 @@ import { EmailPreferencesComponent } from './features/email-preferences/email-pr
 import { ProfileDialogInfoComponent } from "./features/dashboard/profile/dialog-info/dialog-info.component";
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { CountUpModule } from 'ngx-countup';
+import { OptimizeService } from '@services/optimize.service';
 
 registerLocaleData(localeNo);
 
@@ -62,7 +63,7 @@ registerLocaleData(localeNo);
     CountUpModule
   ],
   entryComponents: [DialogInfoComponent, ProfileDialogInfoComponent],
-  providers: [{ provide: LOCALE_ID, useValue: 'nb-NO' }, UserService],
+  providers: [{ provide: LOCALE_ID, useValue: 'nb-NO' }, UserService, OptimizeService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
