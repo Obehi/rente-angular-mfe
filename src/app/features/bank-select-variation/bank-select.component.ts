@@ -18,7 +18,19 @@ export class BankSelectComponentVariation implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
-    this.allBanks = [...BankList, ...MissingBankList].sort((a,b) => (a.label > b.label) ? 1 : ((b.label > a.label) ? -1 : 0));
+    let sortedBanksAlphabetic = [...BankList, ...MissingBankList].sort((a,b) => (a.label > b.label) ? 1 : ((b.label > a.label) ? -1 : 0));
+
+
+    let dnb = 'DNB';
+    let sparebank = 'SPAREBANK_1';
+    let nordea = 'NORDEA';
+
+    let sortedBanksSpareBankFirst = sortedBanksAlphabetic.sort(function(x,y){ return x.name == sparebank ? -1 : y.name == sparebank ? 1 : 0; });
+    let sortedBanksNoredaFirst = sortedBanksSpareBankFirst.sort(function(x,y){ return x.name == nordea ? -1 : y.name == nordea ? 1 : 0; });
+    let sortedBanksDNBFirst = sortedBanksNoredaFirst.sort(function(x,y){ return x.name == dnb ? -1 : y.name == dnb ? 1 : 0; });
+   
+
+    this.allBanks = sortedBanksDNBFirst;
     this.filterBank(this.searchStr);
   }
 
@@ -39,6 +51,7 @@ export class BankSelectComponentVariation implements OnInit {
       const f = filter.toLocaleLowerCase();
       filteredBanks = this.allBanks.filter(bank => bank.label.toLocaleLowerCase().indexOf(f) > -1);
     }
+    
     this.banks = filteredBanks;
   }
 
