@@ -14,27 +14,50 @@ export class BankSelectComponentVariation implements OnInit {
   banks:BankVo[];
   allBanks:BankVo[];
 
+  sparebankIsClicked: boolean = false;
+
   constructor(
     private router: Router) { }
 
   ngOnInit() {
+    this.sortBanks();
+    this.filterBank(this.searchStr);
+  }
+
+  sortBanks() {
     let sortedBanksAlphabetic = [...BankList, ...MissingBankList].sort((a,b) => (a.label > b.label) ? 1 : ((b.label > a.label) ? -1 : 0));
-
-
     let dnb = 'DNB';
     let sparebank = 'SPAREBANK_1';
     let nordea = 'NORDEA';
 
     let sortedBanksSpareBankFirst = sortedBanksAlphabetic.sort(function(x,y){ return x.name == sparebank ? -1 : y.name == sparebank ? 1 : 0; });
     let sortedBanksNoredaFirst = sortedBanksSpareBankFirst.sort(function(x,y){ return x.name == nordea ? -1 : y.name == nordea ? 1 : 0; });
+
+    
     let sortedBanksDNBFirst = sortedBanksNoredaFirst.sort(function(x,y){ return x.name == dnb ? -1 : y.name == dnb ? 1 : 0; });
+    
    
 
     this.allBanks = sortedBanksDNBFirst;
-    this.filterBank(this.searchStr);
+  }
+
+  removeSparebank() {
+    let sparebank = 'SPAREBANK_1';
+
+    this.allBanks = this.allBanks.filter(function(bank) {
+      return bank.name !== sparebank
+    })
   }
 
   onFilterChanged() {
+
+    if(this.searchStr.toLocaleLowerCase() == 'sparebank 1') {
+      this.removeSparebank()
+    }
+    if(this.sparebankIsClicked == true) {
+      this.sparebankIsClicked = false;
+      this.sortBanks();
+    }
     this.filterBank(this.searchStr);
   }
 
@@ -59,6 +82,9 @@ export class BankSelectComponentVariation implements OnInit {
 
     if(bank.name == 'SPAREBANK_1') {
       this.searchStr = "Sparebank 1";
+
+      this.removeSparebank()
+      this.sparebankIsClicked = true;
       this.filterBank(this.searchStr);
       return
     }
