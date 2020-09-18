@@ -116,6 +116,15 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
   }
 
   public getTips() {
+    if( this.offersInfo.incompleteInfoLoanPresent !== true) {
+      this.tips.push({
+        text:
+          'Vi får kun hentet din nominelle rente og lånebeløp. For utregninger har vi tatt utgangspunkt i en gjenværende løpetid på 20 år, månedelige betalinger og 50,- i termingebyr. Faktisk løpetid og termingebyrer vil endre forventede besparelser.',
+        buttonLink: '/dashboard/bolig',
+        icon: this.isMobile ? "warning-white" : 'warning'
+      })
+    }
+
     if (
       this.offersInfo.aggregatedLoanType ===
         this.aggregatedLoanType.CREDIT_LINE ||

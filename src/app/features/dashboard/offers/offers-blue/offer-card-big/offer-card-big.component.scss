@@ -1,5 +1,26 @@
 @import "../../../../../../styles/theme/_colors.scss";
 
+
+.nr {
+  text-align: center;
+  color: black;
+  background-color: white;
+  border-radius: 100%;
+  width: 3em;
+  height: 3em;
+  box-shadow: 1px 1px 8px -4px;
+  line-height: 3em;
+  margin: auto;
+  position: relative;
+  top: 23px;
+
+  p {
+    font-weight: 500;
+    font-size: 0.8em;
+    margin: auto;
+  }
+}
+
 .center-align {
     display: flex;
     align-items: center;
@@ -31,27 +52,7 @@
       position: relative;
       display: inline-block;
       border: 1px solid #f3f3f3;
-      .nr {
-        text-align: center;
-        color: $primary;
-        border: 1px solid;
-        background-color: white;
-        position: absolute;
-        left: 0;
-        top: 0;
-        border-radius: 100%;
-        width: 20px;
-        height: 20px;
-        p {
-          font-weight: 500;
-          position: absolute;
-          left: 0;
-          right: 0;
-          margin: auto;
-          top: 50%;
-          transform: translateY(-50%);
-        }
-      }
+      
     }
     
     .offer-product {

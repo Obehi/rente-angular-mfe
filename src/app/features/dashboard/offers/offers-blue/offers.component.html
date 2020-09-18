@@ -385,7 +385,9 @@
             <div class="tips" *ngIf="isShowTips && tips.length > 0">
               <div *ngFor="let tip of tips; let i = index">
                 <div *ngIf="!tip.external" routerLink="{{ tip.buttonLink }}" class="tip">
+                  <div class=tips-img-wrapper>
                   <img class="tipIcon" src="../../../../assets/icons/{{tip.icon}}.svg" />
+                  </div>
                   <p>
                     {{ tip.text }}
                   </p>
@@ -402,24 +404,7 @@
                 </a>
               </div>
 
-              <div *ngFor="let tip of tips; let i = index">
-                <div *ngIf="!tip.external" routerLink="{{ tip.buttonLink }}" class="tip">
-                  <img class="tipIcon" src="../../../../assets/icons/{{tip.icon}}.svg" />
-                  <p>
-                    {{ tip.text }}
-                  </p>
-
-                  <mat-icon *ngIf="tip.buttonLink !== './'">chevron_right</mat-icon>
-                </div>
-
-                <a *ngIf="tip.external" href="{{ tip.buttonLink }}" target="_blank" class="tip">
-                  <p>
-                    {{ tip.text }}
-                  </p>
-
-                  <mat-icon>chevron_right</mat-icon>
-                </a>
-              </div>
+              
             </div>
             <a *ngIf="offersInfo?.ltvType === offersLtvType.LTV_TOO_HIGH_85" class="obs clickable"
               (click)="openLtvTooHightDialog()">
