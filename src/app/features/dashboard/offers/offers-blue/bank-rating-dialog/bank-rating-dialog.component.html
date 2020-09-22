@@ -1,6 +1,7 @@
 <div class="container" >
-  <div class="test"></div>
   <div class="dialog">
+  <mat-icon (click)="close()" class="close-modal">close</mat-icon>
+
     <h3>EPSI-Score</h3>
 
     <img class="offer-score"
@@ -17,9 +18,8 @@
             false"
           [color]="'primary-wide-hollow'"
           type="raised"
-          (click)="onClick()"
+          (click)="onSeeMoreClick()"
       >Se mer </rente-button>
-
       <rente-button cdkFocusInitial color="primary" (click)="onClose()">
         Lukk
       </rente-button>

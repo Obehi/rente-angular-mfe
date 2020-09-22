@@ -12,12 +12,7 @@
     left: -20px;
     width: calc(100% + 40px);
 }
-.container {
-    @media (min-width: 600px) {
-      margin-top: 55px;
-    }
-    //background: linear-gradient(180deg, #162537 0%, #183A63 27.08%);
-}
+
 
 
 @media (min-width: 600px) {
@@ -201,9 +196,11 @@ form {
 
 
 .mobile {
-
+  margin: 0 10px 0 10px;
 .container {
-    background: linear-gradient(180deg, #162537 0%, #183A63 27.08%);
+  padding: unset !important;
+
+   //background: linear-gradient(180deg, #162537 0%, #183A63 27.08%);
 }
 .membershipHelp {
     margin-right: 26px;
@@ -229,6 +226,7 @@ form {
 
 h3 {
   padding: 10px 0;
+  color: white;
 }
 
 form {

@@ -9,8 +9,14 @@
 }
 
 .close-modal {
-    top: 20px;
-    right: 20px;
+    top: 8px;
+    right: 16px;
+    z-index: 999;
+    @media (min-width: 600px) {
+    top: 8px;
+    right: 56px;
+    z-index: 999;
+    }
 }
 
 .dialog {

@@ -89,9 +89,13 @@
   margin-top: 22px;
 }
 
+.big-box:first-of-type {
+  margin-bottom: 20px;
+}
+
 .big-box {
   background: white;
-  margin-bottom: 20px;
+  
 
   @media (min-width: 600px) {
     width: 90%;
@@ -134,8 +138,15 @@
 .problems {
   padding: 40px 20px;
   max-width: 1010px;
-  margin: auto;
-  background-color: #183A63;
+
+  @media (min-width: 600px) {
+    margin: 70px auto 0;
+  }
+
+
+  h3,p {
+    color: #fff;
+  }
 }
 
 @media (min-width: 600px) {
@@ -372,9 +383,18 @@ a.box {
   .the-offers {
     padding-left: 0;
     padding-right: 0;
-
+    margin-top: 30px;
+    
     @media (max-width: 600px) {
       margin-top: 40px;
+    }
+
+    @media (min-width: 600px) {
+      h3 {
+        font-size: 38px;
+        margin-bottom: 0;
+      }
+      padding: 30px;
     }
     .split .offer-info:first-of-type {
       border-right: 1px solid $lesslight;
@@ -393,18 +413,17 @@ a.box {
       top: 55px;
       font-size: 14px;
       color: #fff;
-      background-color: white;
+      background-color: #6c7580;
       height: 4em;
       width: 100%;
       padding: 10px;
-      border-top: 1px solid #e7e9eb;
-      border-bottom: 1px solid #e7e9eb;
+
 
       @media (min-width: 600px) {
         top: 114px;
       }
       p {
-        color: $secondary;
+        color: white;
         font-weight: 400;
 
         span {
@@ -707,7 +726,7 @@ a.box {
 
   }
   .offers .the-offers {
-    padding: 80px;
+    padding: 30px;
     .the-offer {
       .the-offer-header {
         display: none;

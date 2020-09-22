@@ -12,8 +12,8 @@ body {
 }
 .close-modal {
   position: absolute;
-  right: 10px;
-  top: 10px;
+  right: 17px;
+  top: 7px;
   color: white;
   background-color: black;
   border-radius: 100px;
@@ -21,7 +21,7 @@ body {
   margin: auto;
   cursor: pointer;
   @media (min-width: 600px) {
-    right: 0;
+    right: 60px;
     left: 0;
     transform: translateX(300px);
   }
@@ -126,19 +126,22 @@ mat-radio-button.mat-accent {
   background: none !important;
 }
 .cdk-global-overlay-wrapper {
-  background: rgba(17, 38, 57, 0.2) !important;
+    background: rgba(17, 38, 57, 0.8) !important;
   top: 60px !important;
   align-items: unset !important;
-  padding: 20px;
+  width: calc(100% + 40px);
   display: block !important;
 }
 .mat-dialog-container {
-  box-shadow: none !important;
-  border-radius: 0px !important;
+  box-shadow: unset !important;
+  //box-shadow: 1px 2px 0 rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
+  border-radius: 10px !important;
   height: calc(100% - 100px) !important;
+  padding: 0 !important;
   max-width: 600px;
-  margin: auto;
-}
+  //border: 1px solid #c1c1c1 !important;
+  margin: auto 10px auto;
+} 
 rente-header {
   z-index: 99999999999;
   position: fixed;

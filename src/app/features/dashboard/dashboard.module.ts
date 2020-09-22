@@ -56,6 +56,7 @@ import { BlueAddressComponent } from './house/house-blue/blue-address/blue-addre
 import { BlueProfileComponent } from './profile/blue-profile/blue-profile.component';
 
 import { BankRatingDialogComponent } from './offers/offers-blue/bank-rating-dialog/bank-rating-dialog.component';
+import { EPSIScoreComponent } from './offers/offers-blue/epsi-score/epsi-score.component';
 
 // TODO: ADD separate module for material import
 @NgModule({
@@ -94,7 +95,8 @@ import { BankRatingDialogComponent } from './offers/offers-blue/bank-rating-dial
     HouseBlueComponent,
     BlueAddressComponent,
     BlueProfileComponent,
-    BankRatingDialogComponent
+    BankRatingDialogComponent,
+    EPSIScoreComponent
   ],
   imports: [
     CommonModule,

@@ -26,7 +26,7 @@ path: 'tilbud', component: optimize.getBinaryVariation() ?  OffersComponent : Of
  */
 
 const chooseBankVariation = () =>  {
-  if(optimize.getBinaryVariation()) 
+  if(!optimize.getBinaryVariation()) 
   return import('./features/bank-select/bank-select.module').then(m => m.BankSelectModule)
   else
   return import('./features/bank-select-variation/bank-select.module').then(m => m.BankSelectVariationModule)

@@ -94,6 +94,12 @@ h3 {
   ::ng-deep .mat-expansion-indicator {
     margin: auto
   }
+  ::ng-deep .mat-expansion-panel-header:hover {
+    background: $secondary !important;
+  }
+  ::ng-deep .mat-expansion-panel-header {
+    background: $secondary !important;
+  }
 }
 
 .mat-tab-group{
@@ -107,29 +113,38 @@ h3 {
 
 } 
 
-::ng-deep.mat-tab-label {
-  color: $primary;
-  opacity: 1;
-}
 
-::ng-deep {
+/* ::ng-deep {
   color: white;
   opacity: 1;
 }
+ */
 
 
+ .both-graph-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
 
-::ng-deep .mat-tab-list .mat-tab-labels .mat-tab-label  {
-  color: $primary !important;
-  //background-color: #183A63;
-  border-radius: 0 5px 5px 0;
+  ::ng-deep.mat-tab-label {
+    color: $primary;
+    opacity: 1;
+  }
+  
+  ::ng-deep .mat-tab-list .mat-tab-labels .mat-tab-label  {
+    color:white !important;
+    opacity: 1;
+    border-radius: 0 5px 5px 0;
   }
 
-::ng-deep .mat-tab-list .mat-tab-labels .mat-tab-label-active {
-  color:white !important;
-  //background-color: #183A63;
-  border-radius: 0 5px 5px 0;
+  ::ng-deep .mat-tab-list .mat-tab-labels .mat-tab-label-active {
+    color: $primary !important;
+    opacity: 1;
+    border-radius: 0 5px 5px 0;
   }
+}
 
 ::ng-deep .highcharts-credits {
   display: none !important;

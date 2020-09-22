@@ -20,7 +20,7 @@
         </p>
       </a>
 
-      <div *ngIf="
+      <!-- <div *ngIf="
         offersInfo?.incompleteInfoLoanPresent === true
       " class="obs">
         <p>
@@ -29,7 +29,7 @@
           månedlige betalinger og 50,- i termingebyr. Faktisk løpetid og
           termingebyrer vil endre forventede besparelser.
         </p>
-      </div>
+      </div> -->
     </div>
 
     <div class="dashboard-inner-wrapper">
@@ -186,7 +186,7 @@
 
               <div class="tipTop">
                 <img src="../../../../assets/icons/{{tip.icon}}.svg" />
-                <h4>Låneinfo</h4>
+                <h4>{{tip.header}}</h4>
               </div>
               <p>
                 {{ tip.text }}
@@ -216,9 +216,16 @@
             </p>
           </div>
           <div class="bottom">
-            <rente-button color="primary-wide">
-              Se beste tilbud
-            </rente-button>
+
+            <rente-button 
+              [disabled]="changeBankLoading ||
+              offersInfo.offerSavingsType === offerSavingsType.NO_SAVING"
+              [isLoading]="changeBankLoading"
+              color="primary-wide"
+              (click)="goToBestOffer()"
+              >Se beste tilbud</rente-button
+            >
+
           </div>
         </div>
 
@@ -228,9 +235,15 @@
             <p>Vi hjelper deg å be banken din om lavere rente</p>
           </div>
           <div class="bottom">
-            <rente-button color="primary-wide-hollow">
-              Be banken matche tilbud
-            </rente-button>
+            <rente-button
+              color="primary-wide-hollow"
+              [disabled]="
+              changeBankLoading ||
+              offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS"
+              [isLoading]="changeBankLoading"
+              (click)="openChangeBankDialog(offersInfo.offers.top5[0])"
+              >Be banken matche tilbud</rente-button
+            > 
           </div>
         </div>
 
@@ -416,16 +429,6 @@
 
               </p>
             </a>
-            <div *ngIf="
-        offersInfo?.incompleteInfoLoanPresent === true
-        " class="obs">
-              <p>
-                <b>OBS:</b> Vi får kun hentet din nominelle rente og lånebeløp. For
-                utregninger har vi tatt utgangspunkt i en gjenværende løpetid på 20 år,
-                månedlige betalinger og 50,- i termingebyr. Faktisk løpetid og
-                termingebyrer vil endre forventede besparelser.
-              </p>
-            </div>
           </div>
           <!-- Mobile Tips -->
         </div>
@@ -442,9 +445,14 @@
                   </p>
                 </div>
                 <div class="bottom">
-                  <rente-button color="primary-wide">
-                    Se beste tilbud
-                  </rente-button>
+                  <rente-button 
+                    [disabled]="changeBankLoading ||
+                    offersInfo.offerSavingsType === offerSavingsType.NO_SAVING"
+                    [isLoading]="changeBankLoading"
+                    color="primary-wide"
+                    (click)="goToBestOffer()"
+                    >Se beste tilbud</rente-button
+                  >
                 </div>
               </div>
 
@@ -454,9 +462,15 @@
                   <p>Be banken min om lavere rente</p>
                 </div>
                 <div class="bottom">
-                  <rente-button color="primary-wide-hollow">
-                    Be banken matche tilbud
-                  </rente-button>
+                  <rente-button
+                    color="primary-wide-hollow"
+                    [disabled]="
+                    changeBankLoading ||
+                    offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS"
+                    [isLoading]="changeBankLoading"
+                    (click)="openChangeBankDialog(offersInfo.offers.top5[0])"
+                    >Be banken matche tilbud</rente-button
+                  > 
                 </div>
               </div>
             </div>

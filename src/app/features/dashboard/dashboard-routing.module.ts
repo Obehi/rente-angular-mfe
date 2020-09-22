@@ -17,6 +17,7 @@ import { OffersComponentBlue } from './offers/offers-blue/offers.component';
 import { HouseBlueComponent }   from './house/house-blue/house-blue.component';
 import { BlueProfileComponent }   from './profile/blue-profile/blue-profile.component';
 import { LoansBlueComponent }   from './loans/loans-blue/loans-blue.component';
+import { EPSIScoreComponent }   from './offers/offers-blue/epsi-score/epsi-score.component';
 
 
 
@@ -29,7 +30,7 @@ const routes: Routes = [
   {
     path: '', component: DashboardComponent, children: [
       {
-        path: 'tilbud', component: optimize.getBinaryVariation() ?  OffersComponent : OffersComponentBlue,
+        path: 'tilbud', component: optimize.getBinaryVariation() ?  OffersComponentBlue : OffersComponent,
         data: {
           title: customMeta.tilbudTitle,
           meta: {
@@ -42,7 +43,7 @@ const routes: Routes = [
         path: 'prute-fullfort', component: BargainSuccessComponent
       },
       {
-        path: 'mine-lan', component: optimize.getBinaryVariation() ?  LoansComponent : LoansBlueComponent,
+        path: 'mine-lan', component: optimize.getBinaryVariation() ?  LoansBlueComponent : LoansComponent,
         data: {
           title: customMeta.mineLanTitle,
           meta: {
@@ -52,7 +53,7 @@ const routes: Routes = [
         }
       },
       {
-        path: 'bolig', component: optimize.getBinaryVariation() ? HouseComponent : HouseBlueComponent,
+        path: 'bolig', component: optimize.getBinaryVariation() ? HouseBlueComponent : HouseComponent,
         canDeactivate: [RouteGuard],
         data: {
           title: customMeta.boligTitle,
@@ -74,7 +75,18 @@ const routes: Routes = [
         }
       },
       {
-        path: 'profil', component: optimize.getBinaryVariation() ? ProfileComponent : BlueProfileComponent,
+        path: 'profil', component: optimize.getBinaryVariation() ? BlueProfileComponent : ProfileComponent,
+        canDeactivate: [RouteGuard],
+        data: {
+          title: customMeta.profilTitle,
+          meta: {
+            name: defaultMeta.name,
+            description: defaultMeta.description
+          }
+        }
+      },
+      {
+        path: 'epsi-kundetilfredshet', component: EPSIScoreComponent,
         canDeactivate: [RouteGuard],
         data: {
           title: customMeta.profilTitle,

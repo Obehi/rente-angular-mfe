@@ -13,12 +13,25 @@ p {
 a {
   color: $green;
 }
+
+.top {
+  padding: 20px;
+  background: white;
+}
+.bottom {
+  border-top: 1px solid #ECECEC;
+  padding: 20px;
+  border-radius: 0 0 10px 10px;
+  background: white;
+
+}
 form {
-  padding: 0;
   background: unset;
   border: 0;
   max-width: unset;
   margin-bottom: 20px;
+  padding: 0;
+  background: white;
 }
 
 .grid-wrapper-1 {

@@ -118,6 +118,7 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
   public getTips() {
     if( this.offersInfo.incompleteInfoLoanPresent !== true) {
       this.tips.push({
+        header: "Obs",
         text:
           'Vi får kun hentet din nominelle rente og lånebeløp. For utregninger har vi tatt utgangspunkt i en gjenværende løpetid på 20 år, månedelige betalinger og 50,- i termingebyr. Faktisk løpetid og termingebyrer vil endre forventede besparelser.',
         buttonLink: '/dashboard/bolig',
@@ -131,6 +132,7 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
       this.offersInfo.aggregatedLoanType === this.aggregatedLoanType.MIX_D_C
     ) {
       this.tips.push({
+        header: "Belåningsgrad",
         text:
           'Boligverdi/belåningsgrad er viktig for renten bankene tilbyr. Pass på at boligverdien din er riktig. Du kan også legge til flere boliger hvis du har det.',
         buttonLink: '/dashboard/bolig',
@@ -140,6 +142,7 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
 
     if (!this.offersInfo.memberships.length) {
       this.tips.push({
+        header: "Medlemskap",
         text:
           'Enkelte banker tilbyr bedre betingelser hvis du er medlem i en interesseorganisasjon eller fagforening. Hvis du har mulighet til å melde deg inn i en kan det være penger å spare. (Medlemskap koster ca 4000 i året).',
         buttonLink: '/dashboard/profil',
@@ -151,6 +154,7 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
       this.aggregatedRateType.MIX_FIXED_FLOATING
     ) {
       this.tips.push({
+        header: "Fastrentelån",
         text:
           'Vi ser du har ett eller flere fastrentelån. Renteradar viser besparelsespotensialet kun for lånet/lånene med flytende rente. Beste rente viser også kun beste rente for lånet/lånene med flytende rente.',
         buttonLink: './',
@@ -163,63 +167,18 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
       this.offersInfo.aggregatedLoanType === this.aggregatedLoanType.MIX_D_C
     ) {
       this.tips.push({
+        header: "Rammelån/boligkreditt",
         text:
           'Du har rammelån/boligkreditt. Ønsker du å se tilbud kun for denne typen lån?',
         buttonLink: '/dashboard/profil',
         icon: this.isMobile ? "profile-icon-white" : 'profile-icon-blue'
       });
     }
-    if (
-      this.offersInfo.aggregatedLoanType ===
-        this.aggregatedLoanType.CREDIT_LINE ||
-      this.offersInfo.aggregatedLoanType === this.aggregatedLoanType.MIX_D_C
-    ) {
-      this.tips.push({
-        text:
-          'Du har rammelån/boligkreditt. Ønsker du å se tilbud kun for denne typen lån?',
-        buttonLink: '/dashboard/profil',
-        icon: this.isMobile ? "profile-icon-white" : 'profile-icon-blue'
-      });
-    }
-    if (
-      this.offersInfo.aggregatedLoanType ===
-        this.aggregatedLoanType.CREDIT_LINE ||
-      this.offersInfo.aggregatedLoanType === this.aggregatedLoanType.MIX_D_C
-    ) {
-      this.tips.push({
-        text:
-          'Du har rammelån/boligkreditt. Ønsker du å se tilbud kun for denne typen lån?',
-        buttonLink: '/dashboard/profil',
-        icon: this.isMobile ? "profile-icon-white" : 'profile-icon-blue'
-      });
-    }
-    if (
-      this.offersInfo.aggregatedLoanType ===
-        this.aggregatedLoanType.CREDIT_LINE ||
-      this.offersInfo.aggregatedLoanType === this.aggregatedLoanType.MIX_D_C
-    ) {
-      this.tips.push({
-        text:
-          'Du har rammelån/boligkreditt. Ønsker du å se tilbud kun for denne typen lån?',
-        buttonLink: '/dashboard/profil',
-        icon: this.isMobile ? "profile-icon-white" : 'profile-icon-blue'
-      });
-    }
-    if (
-      this.offersInfo.aggregatedLoanType ===
-        this.aggregatedLoanType.CREDIT_LINE ||
-      this.offersInfo.aggregatedLoanType === this.aggregatedLoanType.MIX_D_C
-    ) {
-      this.tips.push({
-        text:
-          'Du har rammelån/boligkreditt. Ønsker du å se tilbud kun for denne typen lån?',
-        buttonLink: '/dashboard/profil',
-        icon:  this.isMobile ? "profile-icon-white" : 'profile-icon-blue'
-      });
-    }
+  
 
     if (this.hasStatensPensjonskasseMembership) {
       this.tips.push({
+        header: "Statens pensjonskasse",
         text:
           'Medlemmer i Statens Pensjonskasse kan finansiere opptil 2 millioner hos Statens Pensjonskasse. Klikk her for mer info om tilbudet.',
         buttonLink: 'https://www.finansportalen.no/bank/boliglan/',
@@ -470,9 +429,6 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
     }
   }
 };
-
-
-
 interface RateBar {
   percentage: number
   class: string

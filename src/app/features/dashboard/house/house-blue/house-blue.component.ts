@@ -41,7 +41,6 @@ import {
       ]),
     ]),
   ],
-  encapsulation: ViewEncapsulation.None
 })
 
 export class HouseBlueComponent implements OnInit, DeactivationGuarded {

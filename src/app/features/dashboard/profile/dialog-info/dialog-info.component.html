@@ -1,9 +1,14 @@
-<h4>{{ data }}</h4>
 
-<rente-button cdkFocusInitial color="primary" (click)="onClose()">
-  Ok
-</rente-button>
+<div class="top">
+  <mat-icon (click)="onClose()" class="close-modal">close</mat-icon>
 
+  <h4>{{ data }}</h4>
+</div>
+<div class="bottom">
+  <rente-button cdkFocusInitial color="primary" (click)="onClose()">
+    Lukk
+  </rente-button>
+</div>
 <!-- <div mat-dialog-content>
   <div class="modal-body text-left">
     <div *ngIf="data.bank">

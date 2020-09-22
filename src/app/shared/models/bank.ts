@@ -11,10 +11,10 @@ export class BankVo {
   ) { }
 }
 
+
 export const BankList:BankVo[] = [
   new BankVo('DNB', 'DNB Bank ASA', 'dnb.png', 'dnb-color.svg', true, false, false, 'https://m.dnb.no/kundeservice/privat/bankidmobil.html'),
   new BankVo('NORDEA', 'NORDEA BANK ABP, FILIAL I NORGE', 'nordea.png', 'nordea-color.svg', false, false, false, 'https://www.nordea.no/privat/kundeservice/slik-gjor-du/slik-kommer-du-i-gang-med-bankid-pa-mobil.html'),
-  // Sparebank 1
   new BankVo('SPAREBANK_1', 'SpareBank 1', 'sparebanken1v2.png', 'sparebank1-color.svg', false, false, false, 'https://www.sparebank1.no/nb/bank/privat/kundeservice/mobil/hvordan-bestiller-jeg-bankid-pa-mobil.html'),
   new BankVo('SPAREBANK_1_BV', 'SpareBank 1 BV', 'sparebanken1v2.png', 'sparebank1-color.svg', false, false, false, 'https://www.sparebank1.no/nb/bank/privat/kundeservice/mobil/hvordan-bestiller-jeg-bankid-pa-mobil.html'),
   new BankVo('SPAREBANK_1_GUDBRANDSDAL', 'SpareBank 1 Gudbrandsdal', 'sparebanken1v2.png', 'sparebank1-color.svg', false, false, false, 'https://www.sparebank1.no/nb/bank/privat/kundeservice/mobil/hvordan-bestiller-jeg-bankid-pa-mobil.html'),

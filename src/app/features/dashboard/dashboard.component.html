@@ -1,41 +1,93 @@
-<div class="dash-tabs">
-  <nav mat-tab-nav-bar class="dash-tab">
-    <a mat-tab-link [active]="activeLinkIndex == 0" [routerLink]="'./tilbud'">
-      <div class="inside-btn">
-        <img class="rente-icon" src="../../../assets/icons/rente-logo-icon-white.svg" alt="Banktilbud" />
-        <p>Tilbud</p>
-      </div>
-    </a>
-  </nav>
-  <nav mat-tab-nav-bar class="dash-tab">
-    <a mat-tab-link [active]="activeLinkIndex == 1" [routerLink]="'./mine-lan'">
-      <div class="inside-btn">
-        <img class="graph-icon"  src="../../../assets/icons/graph-icon-white.svg" alt="Mine lån" />
-        <p>Mine lån</p>
-      </div>
-    </a>
-  </nav>
-  <nav mat-tab-nav-bar class="dash-tab">
-    <a mat-tab-link [active]="activeLinkIndex == 2" [routerLink]="'./bolig'">
-      <div class="inside-btn">
-        <img class="house-icon"  src="../../../assets/icons/house-icon-white.svg" alt="Bolig" />
-        <p>Bolig</p>
-      </div>
-    </a>
-  </nav>
-  <nav mat-tab-nav-bar class="dash-tab">
-    <a mat-tab-link [active]="activeLinkIndex == 4" [routerLink]="'./profil'">
-      <div class="inside-btn">
-        <img class="profile-icon"  src="../../../assets/icons/profile-icon-white.svg" alt="Profil" />
-        <p>Profil</p>
-      </div>
-    </a>
-  </nav>
+<div *ngIf="optimize.getBinaryVariation(); else normal">
+
+  
+    <div class="dash-tabs-blue">
+  
+      <nav mat-tab-nav-bar class="dash-tab">
+        <a mat-tab-link [active]="activeLinkIndex == 0" [routerLink]="'./tilbud'">
+          <div class="inside-btn">
+            <img class="rente-icon" src="../../../assets/icons/rente-logo-icon-white.svg" alt="Banktilbud" />
+            <p>Tilbud</p>
+          </div>
+        </a>
+      </nav>
+      <nav mat-tab-nav-bar class="dash-tab">
+        <a mat-tab-link [active]="activeLinkIndex == 1" [routerLink]="'./mine-lan'">
+          <div class="inside-btn">
+            <img class="graph-icon"  src="../../../assets/icons/graph-icon-white.svg" alt="Mine lån" />
+            <p>Mine lån</p>
+          </div>
+        </a>
+      </nav>
+      <nav mat-tab-nav-bar class="dash-tab">
+        <a mat-tab-link [active]="activeLinkIndex == 2" [routerLink]="'./bolig'">
+          <div class="inside-btn">
+            <img class="house-icon"  src="../../../assets/icons/house-icon-white.svg" alt="Bolig" />
+            <p>Bolig</p>
+          </div>
+        </a>
+      </nav>
+      <nav mat-tab-nav-bar class="dash-tab">
+        <a mat-tab-link [active]="activeLinkIndex == 4" [routerLink]="'./profil'">
+          <div class="inside-btn">
+            <img class="profile-icon"  src="../../../assets/icons/profile-icon-white.svg" alt="Profil" />
+            <p>Profil</p>
+          </div>
+        </a>
+      </nav>
+    </div>
+    
+  
+
+  <div [ngClass]="(optimize.getVariation() == 0) ? 'dashboard-content' : 'dashboard-content-blue'">
+    <!-- <div class="dashboard-content"> -->
+    <router-outlet (activate)="onActivate($event)"></router-outlet>
+  </div>
 </div>
-<div [ngClass]="(optimize.getVariation() == 0) ? 'dashboard-content' : 'dashboard-content-blue'">
-  <!-- <div class="dashboard-content"> -->
-  <router-outlet (activate)="onActivate($event)"></router-outlet>
-</div>
+
+
+<ng-template #normal>
+
+
+  <div class="dash-tabs-normal">
+    <nav mat-tab-nav-bar class="dash-tab">
+      <a mat-tab-link [active]="activeLinkIndex == 0" [routerLink]="'./tilbud'">
+        <div class="inside-btn">
+          <img src="../../../assets/icons/bank-icon.svg" alt="Banktilbud" />
+          <p>Tilbud</p>
+        </div>
+      </a>
+    </nav>
+    <nav mat-tab-nav-bar class="dash-tab">
+      <a mat-tab-link [active]="activeLinkIndex == 1" [routerLink]="'./mine-lan'">
+        <div class="inside-btn">
+          <img src="../../../assets/icons/loan-icon.svg" alt="Mine lån" />
+          <p>Mine lån</p>
+        </div>
+      </a>
+    </nav>
+    <nav mat-tab-nav-bar class="dash-tab">
+      <a mat-tab-link [active]="activeLinkIndex == 2" [routerLink]="'./bolig'">
+        <div class="inside-btn">
+          <img src="../../../assets/icons/house-icon.svg" alt="Bolig" />
+          <p>Bolig</p>
+        </div>
+      </a>
+    </nav>
+    <nav mat-tab-nav-bar class="dash-tab">
+      <a mat-tab-link [active]="activeLinkIndex == 4" [routerLink]="'./profil'">
+        <div class="inside-btn">
+          <img src="../../../assets/icons/profile-icon.svg" alt="Profil" />
+          <p>Profil</p>
+        </div>
+      </a>
+    </nav>
+  </div>
+  <div class="dashboard-content">
+    <router-outlet (activate)="onActivate($event)"></router-outlet>
+  </div>
+
+</ng-template >
 <!-- <div class="container dashboard">
   <div class="row">
     <div class="col-12">
