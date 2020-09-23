@@ -51,7 +51,7 @@
           <p>Effektiv rente</p>
         </div>
         <div class="offer-inner">
-          <h2>{{ offer.effectiveRate | number: "1.2-2" }}%</h2>
+          <h2>{{ offer.effectiveRate | number: "1.2-2" }} %</h2>
         </div>
       </div>
       <div class="offer-info">
@@ -106,20 +106,14 @@
     </div>
 
     <div class="small-header bottom">
-      <p class="insignificant"><span>Tilbud:
-      </span> Eff.rente {{offer.effectiveRate | number: "1.2-2"}}%, 
-        Lånebeløp {{offer.outstandingDebt | number: "1.0" }}, 
-        {{offer.loanPeriodYears | number: "1.1-1" }} år, 
-        Kostnad: {{offer.cost | number: "1.0" }}, 
-        Totalt: {{offer.totalCost | number: "1.0" }}
-      </p>
-
+      
       <a (click)="openOfferDialog(offer)" class="clickable details">
         <p>Detaljer</p>
         <img class="offer-score" src="../../../../assets/icons/arrow-down-green.svg"/>
       </a>
     </div>
 
+    <div class="the-offer-footer">
     <div class="double buttons">
   
       <div class="full-width">
@@ -147,11 +141,21 @@
           type="raised"
           (click)="openNewOfferDialog(offer)"
           >Få tilbud fra {{getbankNameOrDefault(offer)}}!</rente-button
-        >     
-        <p class="small" *ngIf=" offer.bankInfo.partner === false"> (Ingen avtale med banken enda)</p>
-        
+        >   
+        <div class="split">  
+          <p class="small" *ngIf=" offer.bankInfo.partner === false"> (Ingen avtale med banken enda)</p>
+        </div>
        
       </div>
     </div>
-  
+
+    <p class="insignificant"><span>Tilbud:
+    </span> Eff.rente {{offer.effectiveRate | number: "1.2-2"}} %, 
+      Lånebeløp {{offer.outstandingDebt | number: "1.0" }}, 
+      {{offer.loanPeriodYears | number: "1.1-1" }} år, 
+      Kostnad: {{offer.cost | number: "1.0" }}, 
+      Totalt: {{offer.totalCost | number: "1.0" }}
+    </p>
+   
+    </div>
   </div>

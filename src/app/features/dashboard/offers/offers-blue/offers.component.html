@@ -99,7 +99,7 @@
             <div>
               <img class="box-icon" src="../../../../assets/icons/rate.svg" />
               <p>Min effektive rente</p>
-              <h2>{{ offersInfo.totalEffectiveRate | number: "1.2-2" }}%</h2>
+              <h2>{{ offersInfo.totalEffectiveRate | number: "1.2-2" }} %</h2>
             </div>
           </div>
           <a class="box round-box primary-bg positive clickable" (click)="goToBestOffer()">
@@ -109,7 +109,7 @@
                 Beste tilbud
               </p>
               <h2>
-                {{ offersInfo.bestOfferEffectiveRate | number: "1.2-2" }}%
+                {{ offersInfo.bestOfferEffectiveRate | number: "1.2-2" }} %
               </h2>
           </div>
             <img class="arrow-big" src="../../../../assets/icons/arrow-big.svg" />
@@ -155,7 +155,7 @@
               {{
               (offersInfo.ltv) *
                 100 | number: "1.1-1"
-            }}%
+            }} %
             </p>
             <img class="arrow-big margin-top-extra" src="../../../../assets/icons/arrow-big.svg" />
           </a>
@@ -334,7 +334,7 @@
             <div>
               <img class="box-icon" src="../../../../assets/icons/rate.svg" />
               <p>Min effektive rente</p>
-              <h2>{{ offersInfo.totalEffectiveRate | number: "1.2-2" }}%</h2>
+              <h2>{{ offersInfo.totalEffectiveRate | number: "1.2-2" }} %</h2>
             </div>
           </div>
           <a class="box round-box primary-bg positive clickable" (click)="goToBestOffer()">
@@ -344,7 +344,7 @@
                 Beste tilbud
               </p>
               <h2>
-                {{ offersInfo.bestOfferEffectiveRate | number: "1.2-2" }}%
+                {{ offersInfo.bestOfferEffectiveRate | number: "1.2-2" }} %
               </h2>
               <img class="arrow-big" src="../../../../assets/icons/arrow-big.svg" />
             </div>
@@ -391,7 +391,7 @@
               {{
               (offersInfo.ltv) *
                 100 | number: "1.1-1"
-            }}%
+            }} %
             </p>
             <img class="arrow-big margin-top-extra" src="../../../../assets/icons/arrow-big.svg" />
           </a>
@@ -512,12 +512,12 @@
 
       </div>
       <div class="the-offers">
-        <h3 style="margin-bottom: 20px;">
+        <h3 id="best-offers-text" style="margin-bottom: 20px;">
           Beste tilbud:
         </h3>
         <div *ngIf="isMobile" class="sticky-table-header">
           <p>Min effektive rente: </p>
-          <span>{{ offersInfo.totalEffectiveRate | number: "1.2-2" }}%</span>
+          <span>{{ offersInfo.totalEffectiveRate | number: "1.2-2" }} %</span>
         </div>
 
         <div class="offers-grid">

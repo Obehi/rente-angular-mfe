@@ -120,10 +120,12 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
           return membership;
         }
       });
+
+      let income = String(dto.income)
       this.username = dto.name;
       this.profileForm = this.fb.group({
         membership: [dto.memberships],
-        income: [dto.income, Validators.required],
+        income: [String(dto.income), Validators.required],
         email: [
           dto.email,
           Validators.compose([

@@ -14,6 +14,9 @@ export class DetailsComponentBlue implements OnInit {
   constructor() {}
 
   ngOnInit() {
+    if(this.offer.establishmentFee == undefined) {
+      this.offer.establishmentFee = 0;
+    }
   }
 
   public onClick(bigBoolean) {

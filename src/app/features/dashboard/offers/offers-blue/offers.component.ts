@@ -189,10 +189,21 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
   }
 
   public goToBestOffer() {
-    document.getElementById('the-offers').scrollIntoView({
+    var element =  document.getElementById('best-offers-text')
+    var headerOffset = 140;
+    var elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+    var offsetPosition = elementPosition - headerOffset;
+
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: "smooth"
+     });
+
+
+   /*  document.getElementById('best-offers-text').scrollIntoView({
       behavior: 'smooth',
       block: 'start'
-    });
+    }); */
   }
 
   public goToProperty() {

@@ -192,14 +192,14 @@
             <div class="double">
               <div class="box">
                 <p>Din effektive rente</p>
-                <h2>{{ offersInfo.totalEffectiveRate | number: "1.2-2" }}%</h2>
+                <h2>{{ offersInfo.totalEffectiveRate | number: "1.2-2" }} %</h2>
               </div>
               <a class="box positive clickable" (click)="goToBestOffer()">
                 <p>
                   Beste tilbud <img src="../../../../assets/icons/go_to.svg" />
                 </p>
                 <h2>
-                  {{ offersInfo.bestOfferEffectiveRate | number: "1.2-2" }}%
+                  {{ offersInfo.bestOfferEffectiveRate | number: "1.2-2" }} %
                 </h2>
                 <!-- <h2>{{ offersInfo.customerName | null }}</h2> -->
               </a>
@@ -241,7 +241,7 @@
                   {{
                     (offersInfo.ltv) *
                       100 | number: "1.1-1"
-                  }}%
+                  }} %
                 </p>
               </a>
             </div>
@@ -294,11 +294,11 @@
         <div class="double">
           <div class="box">
             <p>Din effektive rente</p>
-            <h2>{{ offersInfo.totalEffectiveRate | number: "1.2-2" }}%</h2>
+            <h2>{{ offersInfo.totalEffectiveRate | number: "1.2-2" }} %</h2>
           </div>
           <a class="box positive clickable" (click)="goToBestOffer()">
             <p>Beste tilbud <img src="../../../../assets/icons/go_to.svg" /></p>
-            <h2>{{ offersInfo.bestOfferEffectiveRate | number: "1.2-2" }}%</h2>
+            <h2>{{ offersInfo.bestOfferEffectiveRate | number: "1.2-2" }} %</h2>
           
           </a>
         </div>
@@ -338,7 +338,7 @@
                 {{
                   (offersInfo.ltv) *
                     100 | number: "1.1-1"
-                }}%
+                }} %
               </p>
             </a>
         </div>
@@ -448,7 +448,7 @@
       </h3>
       <div *ngIf="isMobile" class="sticky-table-header">
         <p>BANK</p>
-        <p>Din effektive rente: <span>{{ offersInfo.totalEffectiveRate | number: "1.2-2" }}%</span></p>
+        <p>Din effektive rente: <span>{{ offersInfo.totalEffectiveRate | number: "1.2-2" }} %</span></p>
       </div>
   
       <div class="offers-grid">    

@@ -30,11 +30,6 @@
     }
   }
 
-  .double {
-    &.buttons {
-      margin-bottom: 60px;
-    }
-  }
 .the-offer-header {
     background: white;
     padding: 10px;
@@ -152,11 +147,8 @@
         }
   }
   .the-offer-footer {
-    p{
-      text-align: start;
-      font-size: 13px
-    }
-
+    background: white;
+    border-radius: 0 0 15px 15px;
    
   }
 

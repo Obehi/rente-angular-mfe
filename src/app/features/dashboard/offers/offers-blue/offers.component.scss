@@ -274,7 +274,9 @@ a.box {
       align-items: center;
 
       p {
-        width: 80%;
+        @media (max-width: 600px) {
+          width: 80%;
+        }
       }
       mat-icon {
         color: $green;

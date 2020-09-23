@@ -11,15 +11,15 @@
       </div>
       <div class="item">
           <p class="small">Max belåningsgrad</p>
-          <p>{{ data.maxLTV }}%</p>        
+          <p>{{ data.maxLTV }} %</p>        
       </div>
       <div class="item">
         <p class="small">Nominell rente</p>
-        <p>{{ data.nominalRate | number: "1.2-2" }}%</p>
+        <p>{{ data.nominalRate | number: "1.2-2" }} %</p>
       </div>
       <div class="item">
         <p class="small">Effektiv rente</p>
-        <p>{{ data.effectiveRate | number: "1.2-2" }}%</p>
+        <p>{{ data.effectiveRate | number: "1.2-2" }} %</p>
       </div>
       <div class="item">
           <p class="small">Krav om annet produkt</p>
@@ -72,7 +72,7 @@
   <p>{{ data.otherConditions }}</p>
 
   <p class="small-header">Tilbud:</p>
-  <p class="insignificant">Eff.rente {{data.effectiveRate | number: "1.1-2"}}%, 
+  <p class="insignificant">Eff.rente {{data.effectiveRate | number: "1.1-2"}} %, 
     Lånebeløp {{data.outstandingDebt | number: "1.0" }}, 
     {{data.loanPeriodYears | number: "1.1" }} år, 
     Kostnad: {{data.cost | number: "1.0" }}, 

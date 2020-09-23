@@ -82,9 +82,7 @@
               Estimert av Virdi
             </p>
   
-            <p *ngIf="!address.estimatedPropertyValue" class="small">
-              Lagre endringene for å hente estimat
-            </p>
+            
           </div>
           <rente-input
             matInput
@@ -121,6 +119,11 @@
         class="save-changes-local"
         >Lagre endringer
       </rente-button>
+
+
+      <p *ngIf="!address.estimatedPropertyValue" class="small saveForEstimate">
+        Lagre endringene for å hente estimat
+      </p>
     </div>
     </div>
    
