@@ -1,8 +1,9 @@
 <div *ngIf="optimize.getBinaryVariation(); else normal">
 
-  
+  <div class="dash-tabs-blue-wrapper">
     <div class="dash-tabs-blue">
-  
+      
+      <div class="inner">
       <nav mat-tab-nav-bar class="dash-tab">
         <a mat-tab-link [active]="activeLinkIndex == 0" [routerLink]="'./tilbud'">
           <div class="inside-btn">
@@ -35,7 +36,10 @@
           </div>
         </a>
       </nav>
+      
     </div>
+  </div>
+  </div>
     
   
 

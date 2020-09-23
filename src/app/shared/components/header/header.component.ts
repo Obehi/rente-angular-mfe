@@ -1,6 +1,6 @@
 import { AuthService } from '@services/remote-api/auth.service';
 import { Component, OnInit } from '@angular/core';
-
+import { Router } from '@angular/router';
 import { LocalStorageService } from '@services/local-storage.service';
 
 @Component({
@@ -14,13 +14,27 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     public auth: AuthService,
-    public localStorageService: LocalStorageService
+    public localStorageService: LocalStorageService,
+    private router: Router
   ) {}
 
   ngOnInit() {}
 
   public goToTop() {
+
+    console.log("test gototop")
+    console.log(this.router.url === '/')
     window.scrollTo(0, 0);
+  }
+
+  public goToHome() {
+    if(this.router.url === '/') {
+      window.scrollTo(0, 0);
+    } else {
+      this.router.navigateByUrl('/');
+    }
+
+    this.toggleNav();
   }
 
   public toggleNav() {
