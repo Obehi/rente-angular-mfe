@@ -19,8 +19,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {}
 
-  public goToPage() {
-    this.toggleNav();
+  public goToTop() {
     window.scrollTo(0, 0);
   }
 

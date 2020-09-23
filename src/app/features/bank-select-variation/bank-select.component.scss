@@ -1,5 +1,10 @@
 @import "../../../styles/theme/_colors.scss";
 
+
+
+::ng-deep .mat-input-wrapper{
+  display: none !important;
+}
 .banks {
   max-width: 600px;
   margin: auto;

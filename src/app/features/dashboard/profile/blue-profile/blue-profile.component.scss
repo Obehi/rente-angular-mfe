@@ -1,6 +1,10 @@
 @import "../../../../../styles/theme/_colors.scss";
 
 
+.update-error {
+  background: red !important;
+}
+
 .desktop {
 
 .formBox {
@@ -9,10 +13,8 @@
     padding: 20px;
     margin-bottom: 20px;
     position: relative;
-    left: -20px;
-    width: calc(100% + 40px);
+    width: calc(100% + 0px);
 }
-
 
 
 @media (min-width: 600px) {
@@ -146,57 +148,10 @@ form {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.mobile {
+.mobile-container {
   margin: 0 10px 0 10px;
+
+}
 .container {
   padding: unset !important;
 
@@ -253,6 +208,7 @@ form {
     text-align: left;
     color: white;
     padding: 10px 20px;
+    margin: 0px;
     mat-icon {
       position: absolute;
       right: 20px;
@@ -266,9 +222,13 @@ form {
   }
   .body {
     .inner-body {
-      padding: 20px;
+      padding: 20px !important;
       background: white;
       border-radius: 0 0 15px 15px;
+
+      @media (min-width: 600px) {
+        border-radius: 15px 15px 15px 15px;
+      }
     }
   }
   mat-form-field {
@@ -335,6 +295,4 @@ form {
       }
     }
   }
-}
-
 }

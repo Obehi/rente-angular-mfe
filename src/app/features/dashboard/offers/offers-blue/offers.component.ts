@@ -116,13 +116,14 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
   }
 
   public getTips() {
+  
     if( this.offersInfo.incompleteInfoLoanPresent !== true) {
       this.tips.push({
         header: "Obs",
         text:
           'Vi får kun hentet din nominelle rente og lånebeløp. For utregninger har vi tatt utgangspunkt i en gjenværende løpetid på 20 år, månedelige betalinger og 50,- i termingebyr. Faktisk løpetid og termingebyrer vil endre forventede besparelser.',
-        buttonLink: '/dashboard/bolig',
-        icon: this.isMobile ? "warning-white" : 'warning'
+        icon: 'warning',
+        obs: true
       })
     }
 
@@ -174,7 +175,6 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
         icon: this.isMobile ? "profile-icon-white" : 'profile-icon-blue'
       });
     }
-  
 
     if (this.hasStatensPensjonskasseMembership) {
       this.tips.push({

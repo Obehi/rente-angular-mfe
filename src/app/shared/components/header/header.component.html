@@ -2,7 +2,7 @@
 <ng-container *ngIf="false">
   <nav class="variation-1">
   <div class="inner-nav">
-    <a [routerLink]="['/']">
+    <a (click)="goToTop()" [routerLink]="['/']">
       <img
         src="../../../../assets/img/renteradar_white_logo.svg"
         alt="Renteradar logo"
@@ -72,7 +72,7 @@
 <ng-container *ngIf="false">
   <nav class="variation-2">
     <div class="inner-nav">
-      <a [routerLink]="['/']">
+      <a (click)="goToTop()" [routerLink]="['/']">
         <img
           src="../../../../assets/img/Renteradar_darkblue.svg"
           alt="Renteradar logo"
@@ -144,7 +144,7 @@
 <ng-container *ngIf="true">
   <nav class="variation-3">
     <div class="inner-nav">
-      <a [routerLink]="['/']">
+      <a (click)="goToTop()" [routerLink]="['/']">
         <img
           src="../../../../assets/img/renteradar_white_logo.svg"
           alt="Renteradar logo"

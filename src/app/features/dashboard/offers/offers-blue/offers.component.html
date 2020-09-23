@@ -98,7 +98,7 @@
           <div class="box round-box blue-bg">
             <div>
               <img class="box-icon" src="../../../../assets/icons/rate.svg" />
-              <p>Din effektive rente</p>
+              <p>Min effektive rente</p>
               <h2>{{ offersInfo.totalEffectiveRate | number: "1.2-2" }}%</h2>
             </div>
           </div>
@@ -181,8 +181,21 @@
 
         <div class="tips round-box" *ngIf="isShowTips && tips.length > 0">
           <div *ngFor="let tip of tips; let i = index"
-            [ngClass]="tip.buttonLink === './' ? 'tip-wrapper' : 'clickable tip-wrapper'">
-            <div *ngIf="!tip.external" routerLink="{{ tip.buttonLink }}" class="tip">
+            [ngClass]="{'obs': tip.obs, 'clickable': tip.buttonLink === './', 'tip-wrapper': true}"
+            >
+
+            <div *ngIf="tip.buttonLink == null" class="tip">
+              
+              <div class="tipTop">
+                <img src="../../../../assets/icons/{{tip.icon}}.svg" />
+                <h4>{{tip.header}}</h4>
+              </div>
+                <p>
+                  {{ tip.text }}
+                </p>
+            </div>
+            
+            <div *ngIf="!tip.external && tip.buttonLink != null" routerLink="{{ tip.buttonLink }}"  class="tip">
 
               <div class="tipTop">
                 <img src="../../../../assets/icons/{{tip.icon}}.svg" />
@@ -195,7 +208,7 @@
               <mat-icon *ngIf="tip.buttonLink !== './'">chevron_right</mat-icon>
             </div>
 
-            <a *ngIf="tip.external" href="{{ tip.buttonLink }}" target="_blank" class="tip">
+            <a *ngIf="tip.external && tip.buttonLink != null" href="{{ tip.buttonLink }}" target="_blank" class="tip">
               <img src="../../../../assets/icons/{{tip.icon}}.svg" />
               <p>
                 {{ tip.text }}
@@ -320,7 +333,7 @@
           <div class="box round-box blue-bg">
             <div>
               <img class="box-icon" src="../../../../assets/icons/rate.svg" />
-              <p>Din effektive rente</p>
+              <p>Min effektive rente</p>
               <h2>{{ offersInfo.totalEffectiveRate | number: "1.2-2" }}%</h2>
             </div>
           </div>
@@ -396,19 +409,32 @@
             </div>
             <div class="tips" style="border-bottom: none;" *ngIf="tips.length > 0 && !isShowTips"></div>
             <div class="tips" *ngIf="isShowTips && tips.length > 0">
-              <div *ngFor="let tip of tips; let i = index">
-                <div *ngIf="!tip.external" routerLink="{{ tip.buttonLink }}" class="tip">
-                  <div class=tips-img-wrapper>
+              <div *ngFor="let tip of tips; let i = index"   
+                [ngClass]="{'obs': tip.obs, 'clickable': tip.buttonLink !== 'undefined', 'tip-wrapper': true}"
+              > 
+
+                <div *ngIf="tip.buttonLink == null" class="tip">
+
+                  <div class="tips-img-wrapper">
+                    <img class="tipIcon" src="../../../../assets/icons/{{tip.icon}}.svg" />
+                    </div>
+                    <p>
+                      {{ tip.text }}
+                    </p>
+                </div>
+
+                
+                <div *ngIf="!tip.external && tip.buttonLink != null" routerLink="{{ tip.buttonLink }}" class="tip">
+                  <div class="tips-img-wrapper">
                   <img class="tipIcon" src="../../../../assets/icons/{{tip.icon}}.svg" />
                   </div>
                   <p>
                     {{ tip.text }}
                   </p>
-
                   <mat-icon *ngIf="tip.buttonLink !== './'">chevron_right</mat-icon>
                 </div>
 
-                <a *ngIf="tip.external" href="{{ tip.buttonLink }}" target="_blank" class="tip">
+                <a *ngIf="tip.external  && tip.buttonLink != null" href="{{ tip.buttonLink }}" target="_blank" class="tip">
                   <p>
                     {{ tip.text }}
                   </p>
@@ -490,8 +516,8 @@
           Beste tilbud:
         </h3>
         <div *ngIf="isMobile" class="sticky-table-header">
-          <p>BANK</p>
-          <p>Din effektive rente: <span>{{ offersInfo.totalEffectiveRate | number: "1.2-2" }}%</span></p>
+          <p>Min effektive rente: </p>
+          <span>{{ offersInfo.totalEffectiveRate | number: "1.2-2" }}%</span>
         </div>
 
         <div class="offers-grid">

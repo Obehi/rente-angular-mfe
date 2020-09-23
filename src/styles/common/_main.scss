@@ -12,7 +12,7 @@ body {
 }
 .close-modal {
   position: absolute;
-  right: 17px;
+  right: 7px;
   top: 7px;
   color: white;
   background-color: black;
@@ -21,9 +21,8 @@ body {
   margin: auto;
   cursor: pointer;
   @media (min-width: 600px) {
-    right: 60px;
-    left: 0;
-    transform: translateX(300px);
+
+
   }
 }
 *,
@@ -75,6 +74,13 @@ hr {
   button {
     width: 100%;
   }
+}
+
+*:focus {outline:none !important}
+
+//Hack to get iphone with smaller screens to not zoom in on inputs and there after stay zoomed in
+input {
+  font-size: 20px !important;
 }
 
 .full-width .button-wrapper {
@@ -133,10 +139,12 @@ mat-radio-button.mat-accent {
   display: block !important;
 }
 .mat-dialog-container {
+  position: relative;
   box-shadow: unset !important;
   //box-shadow: 1px 2px 0 rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
   border-radius: 10px !important;
-  height: calc(100% - 100px) !important;
+  // height: calc(100% - 100px) !important;
+  height: unset !important;
   padding: 0 !important;
   max-width: 600px;
   //border: 1px solid #c1c1c1 !important;
@@ -344,12 +352,10 @@ button#widgetButton {
   padding: 1em;
   box-shadow: 1px 1px 3px 0px rgba(0,0,0,0.12);
 
-
-
   p{
     text-align: center;
     font-weight: 400;
-    color: white;
+    color: white !important;
   }
   img{
     border-radius: 50%;
