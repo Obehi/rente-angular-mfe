@@ -1,12 +1,12 @@
 <div class="container" [style.width.px]="dialogWidth">
   <div class="dialog">
     <h3>{{ title }}</h3>
-    <p>{{ message }}</p>
-    <div class="split">
+    <p>{{ message }}</p>  
+    <div class="split bottom">
       <rente-button color="primary" class="yes" (click)="onClick(true)"
         >Ja</rente-button
       >
-      <rente-button color="blue" class="no" (click)="onClick(false)"
+      <rente-button color="primary" class="no" (click)="onClick(false)"
         >Nei</rente-button
       >
     </div>

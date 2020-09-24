@@ -1,5 +1,18 @@
 @import "../../../../../styles/theme/_colors.scss";
 
+
+// Hack for centering dialog popup 
+::ng-deep .cdk-global-overlay-wrapper {
+
+  .cdk-overlay-pane {
+    max-height: calc(100vh - 155px) !important;
+    max-width: 600px !important;
+    height: 100% !important;
+    margin: auto;
+  }
+}
+
+
 p {
   margin-bottom: 10px;
 }

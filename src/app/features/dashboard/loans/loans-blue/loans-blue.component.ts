@@ -31,8 +31,6 @@ export class LoansBlueComponent implements OnInit {
   constructor(private loansService: LoansService) { }
 
   ngOnInit() {
-    // this.loansData = this.loans;
-    window.scroll(200,200);
     this.loansService.getLoans().subscribe((res: Loans) => {
       this.loansData = res;
     }, err => {
