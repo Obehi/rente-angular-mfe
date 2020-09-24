@@ -12,10 +12,10 @@ export class OptimizeService {
 
   getVariation(): number {
     const isLocale = (environment.name == 'locale' || environment.name == 'dev' || environment.name == 'undefined' )  ? true : false;
-    console.log("is locale: " + isLocale);
+    //console.log("is locale: " + isLocale);
 
     if(isLocale) {
-      console.log("variation: " + this.localeVariation);
+      //console.log("variation: " + this.localeVariation);
       return this.localeVariation
     }
     if((window as any).google_optimize == undefined) {
@@ -25,15 +25,15 @@ export class OptimizeService {
       return null;
     }
 
-    console.log("variation in service: " + (window as any).google_optimize.get('-FGlj4ayQK66hF9kV4Wiow'));
+   //console.log("variation in service: " + (window as any).google_optimize.get('-FGlj4ayQK66hF9kV4Wiow'));
     return (window as any).google_optimize.get('-FGlj4ayQK66hF9kV4Wiow');
   }
 
   getBinaryVariation = () => {
-    console.log("getBinaryOptimizeVariation");
+    //console.log("getBinaryOptimizeVariation");
     
     let variation = this.getVariation()
-    console.log(variation);
+    //console.log(variation);
   
     if( variation == null || variation == 0  ) {
       return false

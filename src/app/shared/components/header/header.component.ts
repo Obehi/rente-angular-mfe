@@ -28,7 +28,7 @@ export class HeaderComponent implements OnInit {
   }
 
   public goToHome() {
-    if(this.router.url === '/') {
+    if(this.router.url === '/' || this.router.url === '/#faq' ) {
       window.scrollTo(0, 0);
     } else {
       this.router.navigateByUrl('/');

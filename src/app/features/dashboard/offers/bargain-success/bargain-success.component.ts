@@ -12,7 +12,7 @@ import { MatDialog } from '@angular/material/dialog';
 export class BargainSuccessComponent implements OnInit {
   
   public isErrorState = false
-
+  private hasScrolledToTop = false;
   
 
   constructor(private router: Router, public dialog: MatDialog) {
@@ -35,7 +35,14 @@ export class BargainSuccessComponent implements OnInit {
   }
 
   ngAfterViewChecked() {
-    window.scrollTo(0, 0);
+    //window.scrollTo(0, 0);
+    console.log("hasScrolledToTop: " + this.hasScrolledToTop)
+     if(this.hasScrolledToTop == false) {
+       console.log("should scroll now")
+      this.hasScrolledToTop = true;
+      window.scrollTo(0, 0);
+    } 
+    console.log("should not scroll now")
   }
 
   

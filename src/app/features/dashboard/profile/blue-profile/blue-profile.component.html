@@ -43,7 +43,7 @@
             <div class="field withinfo">
               <rente-input [placeholder]="'Din brutto årsinntekt'" formControlName="income" [errorStateMatcher]="
                 isErrorState(profileForm.controls['income'], profileForm)
-                "  [modelOptions]="{ updateOn: 'blur'}" [type]="'tel'" matSuffix="kr">
+                " [maskType]="mask.currency" [modelOptions]="{ updateOn: 'blur'}" [type]="'tel'" matSuffix="kr">
               </rente-input>
               <div (click)="
                 openInfoDialog(
@@ -66,7 +66,7 @@
           <h3 class="desktop">Medlemskap</h3>
 
           <div class="accordion ">
-            <div class="header mobile" (click)="showMemberships = !showMemberships">
+            <div class="header mobile questionLeft" (click)="showMemberships = !showMemberships">
               <h3>Medlemskap ({{ memberships.length }})</h3>
               <mat-icon class="membershipHelp" (click)="
                         openInfoDialog(
