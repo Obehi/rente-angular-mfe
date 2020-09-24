@@ -7,6 +7,7 @@ import {
   FormControl,
   Validators
 } from '@angular/forms';
+import { CurrencyPipe} from '@angular/common'
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { Observable, Subject } from 'rxjs';
 import { map, startWith, mergeMap } from 'rxjs/operators';
@@ -21,6 +22,7 @@ import { LoansService, MembershipTypeDto, PreferencesUpdateDto, PreferencesDto }
 import { UserService } from '@services/remote-api/user.service';
 import { Mask } from '@shared/constants/mask'
 import { VALIDATION_PATTERN } from '../../../../config/validation-patterns.config';
+import { ThousandsSeprator} from '@shared/pipes/thousands.pipe'
 import { SnackBarService } from '../../../../shared/services/snackbar.service';
 import { OfferInfo } from '@shared/models/offers';
 import { DeactivationGuarded } from '@shared/guards/route.guard';
@@ -46,7 +48,7 @@ import {
       })),
       transition(':enter', []),
       transition('* => *', [
-        animate('2s', keyframes([
+        animate('1s', keyframes([
           style({ opacity: 1, offset: 0.1}),
           style({ opacity: 1, offset: 0.8}),
           style({ opacity: 0, offset: 1}),
@@ -77,8 +79,7 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
   public errorAnimationTrigger :boolean;
   public canNavigateBooolean$: Subject<boolean> = new Subject<boolean>();
   public username: string;
-  public mask = Mask
-
+  public mask = Mask;
   changesMade = false;
 
   @ViewChild('membershipInput') membershipInput: ElementRef<HTMLInputElement>;
@@ -192,6 +193,7 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
   }
 
   public updatePreferances() {
+    this.isLoading = true;
     const income = this.profileForm.value.income;
     const userData = {
       email: this.profileForm.value.email,
@@ -214,6 +216,8 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
     this.loansService.updateUserPreferences(dto).subscribe(res => {
       this.canNavigateBooolean$.next(true);
       this.changesMade = false;
+      this.isLoading = false;
+
       // A hack to trigger "saved" animation
       this.updateAnimationTrigger  = !this.updateAnimationTrigger 
       this.canLeavePage = true

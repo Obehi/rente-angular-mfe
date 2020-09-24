@@ -1,3 +1,9 @@
+
+
+ <div class="loading" *ngIf="isLoading">
+  <mat-spinner [diameter]="48" [strokeWidth]="4"></mat-spinner>
+</div>
+
 <div class="mobile-container mobile">
   <div class="container">
     <div class="update-complete" [@loading]="updateAnimationTrigger? 'true' : 'false'">
@@ -37,7 +43,7 @@
             <div class="field withinfo">
               <rente-input [placeholder]="'Din brutto årsinntekt'" formControlName="income" [errorStateMatcher]="
                 isErrorState(profileForm.controls['income'], profileForm)
-                " [maskType]="mask.currency" [modelOptions]="{ updateOn: 'blur'}" [type]="'tel'" matSuffix="kr">
+                "  [modelOptions]="{ updateOn: 'blur'}" [type]="'tel'" matSuffix="kr">
               </rente-input>
               <div (click)="
                 openInfoDialog(

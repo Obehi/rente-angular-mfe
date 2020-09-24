@@ -11,7 +11,7 @@
         [(ngModel)]="value"
         [textMask]="mask"
         (blur)="onBlur()"
-        [imask]="{mask: maskType}"
+        [imask]="getMask()"
       />
     </div>
     <ng-template #noMask>

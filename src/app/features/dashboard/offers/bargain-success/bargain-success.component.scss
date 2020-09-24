@@ -8,6 +8,11 @@
     }
 }
 
+h3 {
+    @media (min-width: 600px) {
+        margin-top: 30px;
+    }
+}
 
 h3,p,li {
     color: white;

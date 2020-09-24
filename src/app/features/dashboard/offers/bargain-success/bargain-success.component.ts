@@ -13,6 +13,8 @@ export class BargainSuccessComponent implements OnInit {
   
   public isErrorState = false
 
+  
+
   constructor(private router: Router, public dialog: MatDialog) {
 
 
@@ -27,10 +29,16 @@ export class BargainSuccessComponent implements OnInit {
    */
    } 
 
+  
   ngOnInit() {
     this.dialog.open(ReferralComponent);
   }
 
+  ngAfterViewChecked() {
+    window.scrollTo(0, 0);
+  }
+
+  
   public continue() {
     this.router.navigate(['/dashboard/tilbud'])
   }

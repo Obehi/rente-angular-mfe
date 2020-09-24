@@ -5,12 +5,13 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './epsi-score.component.html',
   styleUrls: ['./epsi-score.component.scss']
 })
-export class EPSIScoreComponent implements OnInit {
+export class EPSIScoreComponent  {
 
   constructor() { }
 
-  ngOnInit(): void {
-    window.scrollTo(0,0);
+
+  ngAfterViewChecked() {
+    window.scrollTo(0, 0);
   }
 
 }

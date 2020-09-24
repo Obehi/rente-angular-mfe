@@ -190,7 +190,8 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
 
   public goToBestOffer() {
     var element =  document.getElementById('best-offers-text')
-    var headerOffset = 140;
+    var headerOffset = this.isMobile ? 80 : 180;
+    
     var elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
     var offsetPosition = elementPosition - headerOffset;
 
@@ -198,12 +199,6 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
       top: offsetPosition,
       behavior: "smooth"
      });
-
-
-   /*  document.getElementById('best-offers-text').scrollIntoView({
-      behavior: 'smooth',
-      block: 'start'
-    }); */
   }
 
   public goToProperty() {
