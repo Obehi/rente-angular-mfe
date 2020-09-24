@@ -1,4 +1,4 @@
-<div class="front-container">
+<div class="front-container" [ngClass]="{'blue': optimizeService.getBinaryVariation()}">
   <div *ngIf="propertyForm">
     <div class="title">
       <h3>Hei, {{ userData.name }}</h3>
