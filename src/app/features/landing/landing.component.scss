@@ -40,9 +40,14 @@ p {
   }
 
   .showcase {
-    width: 90%;
+    @media (min-width: 600px) {
+      width: 500px;
+    }
+    @media (max-width: 600px) {
+      width: 90%;
+    }
     display: block;
-    margin: 40px auto;
+    margin: 80px auto;
   }
 }
 

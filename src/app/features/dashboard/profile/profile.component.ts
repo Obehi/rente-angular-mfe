@@ -121,9 +121,10 @@ export class ProfileComponent implements OnInit, DeactivationGuarded {
         }
       });
       this.username = dto.name;
+      let income = String(dto.income)
       this.profileForm = this.fb.group({
         membership: [dto.memberships],
-        income: [dto.income, Validators.required],
+        income: [income, Validators.required],
         email: [
           dto.email,
           Validators.compose([
