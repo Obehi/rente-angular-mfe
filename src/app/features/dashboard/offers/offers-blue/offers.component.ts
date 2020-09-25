@@ -2,7 +2,7 @@ import { LoansService } from '@services/remote-api/loans.service';
 import { OffersService } from './offers.service';
 import { OfferInfo, Offers } from './../../../../shared/models/offers';
 import { Component, OnInit, HostListener, OnDestroy } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { DialogInfoComponent } from './../dialog-info/dialog-info.component';
 import { Loans } from '@shared/models/loans';
 import { BANKS_DATA } from '@config/banks-config';
@@ -82,6 +82,7 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
     private trackingService: TrackingService
   ) {
     this.onResize();
+ 
     this.isShowTips = false;
     this.tips = [];
     userService.lowerRateAvailable.subscribe(value => {
@@ -285,14 +286,37 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
     this.changeBankServiceService.getBankOfferRequest(offerId).subscribe(
       preview => {
         this.changeBankLoading = false;
-        this.dialog.open(ChangeBankDialogComponent, {
+
+        var changeBankRef = this.dialog.open(ChangeBankDialogComponent, {
+          autoFocus: false,
           data: { preview, offerId }
         });
+        changeBankRef.afterClosed().subscribe(() => {
+          console.log("subscribe afterClosed")
+          console.log(changeBankRef.componentInstance.closeState)
+          this.handleChangeBankdialogOnClose(changeBankRef.componentInstance.closeState)
+        })
       },
       err => {
         this.changeBankLoading = false;
       }
     );
+  }
+
+  public handleChangeBankdialogOnClose(state: String) {
+    switch(state) { 
+      case "canceled": { 
+         break; 
+      } 
+      case "procced": { 
+        this.router.navigate(['/dashboard/prute-fullfort'],{ state: { isError: false , fromChangeBankDialog: true} });
+        break; 
+     } 
+     case "error": { 
+      this.router.navigate(['/dashboard/prute-fullfort'],{ state: { isError: false , fromChangeBankDialog: true} });
+      break; 
+    } 
+    }
   }
 
   openLtvTooHightDialog() {

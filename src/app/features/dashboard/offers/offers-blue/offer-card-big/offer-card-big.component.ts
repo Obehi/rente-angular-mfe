@@ -5,6 +5,7 @@ import { TrackingService, TrackingDto } from '@services/remote-api/tracking.serv
 import { MatDialog } from '@angular/material/dialog';
 import { DialogInfoComponent } from '../../dialog-info/dialog-info.component';
 import { BankRatingDialogComponent } from '../bank-rating-dialog/bank-rating-dialog.component';
+import { Router } from '@angular/router';
 
 
 import {
@@ -28,7 +29,8 @@ export class OfferCardBigComponentBlue implements OnInit {
   @Input() index: number
   constructor(
     private trackingService: TrackingService,
-    public dialog: MatDialog) { }
+    public dialog: MatDialog,
+    private router: Router) { }
 
   ngOnInit() {
     console.log(this.offer)
@@ -118,8 +120,24 @@ export class OfferCardBigComponentBlue implements OnInit {
   }
 
   public openInfoDialog(text: String): void {
-    this.dialog.open(BankRatingDialogComponent);
+    var bankRatingDialogRef = this.dialog.open(BankRatingDialogComponent);
+
+    bankRatingDialogRef.afterClosed().subscribe(() => {
+      console.log("subscribe afterClosed")
+      console.log(bankRatingDialogRef.componentInstance.closeState)
+      this.handlebankRatingdialogOnClose(bankRatingDialogRef.componentInstance.closeState)
+    })
   }
 
-
+  public handlebankRatingdialogOnClose(state: String) {
+    switch(state) { 
+      case "canceled": { 
+         break; 
+      } 
+      case "procced": { 
+        this.router.navigate(['/dashboard', 'epsi-kundetilfredshet']);
+        break; 
+     } 
+    }
+  }
 }

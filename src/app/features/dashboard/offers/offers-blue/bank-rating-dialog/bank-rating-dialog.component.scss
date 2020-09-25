@@ -29,7 +29,9 @@
   justify-content: center;
 
   max-height: calc(100vh - 155px) !important;
-
+  background: white;
+  border-radius: 15px;
+  
   @media (max-width: 600px) {
     max-height: 500px;;
   }

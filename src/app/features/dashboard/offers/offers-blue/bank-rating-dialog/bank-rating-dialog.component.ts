@@ -10,6 +10,8 @@ import { Router } from '@angular/router';
 })
 export class BankRatingDialogComponent {
 
+  public closeState: string;
+
   constructor(
     public dialogRef: MatDialogRef<BankRatingDialogComponent>,
     private router: Router
@@ -19,17 +21,20 @@ export class BankRatingDialogComponent {
     window.open("", "_blank");
   }
 
-
   public onClose(): void {
+    this.closeState = "canceled"
     this.dialogRef.close();
   }
 
   public close(): void {
+    this.closeState = "canceled"
+
     this.dialogRef.close();
   }
+
   public onSeeMoreClick(): void {
+    this.closeState = "procced"
     this.dialogRef.close();
-    this.router.navigate(['/dashboard', 'epsi-kundetilfredshet']);
   }
 
 }
