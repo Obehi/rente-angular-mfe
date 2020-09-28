@@ -11,7 +11,7 @@ export class OptimizeService {
   constructor() { }
 
   getVariation(): number {
-    const isLocale = (environment.name == 'locale' || environment.name == 'dev' || environment.name == 'undefined' )  ? true : false;
+    const isLocale = (environment.name == 'locale' || environment.name == 'undefined' )  ? true : false;
     //console.log("is locale: " + isLocale);
 
     if(isLocale) {
