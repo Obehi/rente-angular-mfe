@@ -18,15 +18,17 @@ export class OptimizeService {
       //console.log("variation: " + this.localeVariation);
       return this.localeVariation
     }
-    if((window as any).google_optimize == undefined) {
+
+    let variation = (window as any).google_optimize.get(this.experimentID);
+    if( variation == undefined) {
       return 0;
     }
-    if((window as any).google_optimize == null) {
+    if((variation == null) {
       return 0;
     }
 
    console.log("variation in service: " + (window as any).google_optimize.get(this.experimentID));
-    return (window as any).google_optimize.get(this.experimentID);
+    return variation;
   }
 
   getBinaryVariation = () => {
