@@ -23,7 +23,7 @@ export class OptimizeService {
     if( variation == undefined) {
       return 0;
     }
-    if((variation == null) {
+    if(variation == null) {
       return 0;
     }
 
