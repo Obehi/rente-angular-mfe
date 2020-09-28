@@ -116,9 +116,7 @@
             <div class="item buttons">
                 
                     
-                        <rente-button-small class="firstButton" [disabled]=" 
-                            offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS ||
-                            offer.bankInfo.partner == false"  
+                        <rente-button-small class="firstButton" [disabled]="offer.bankInfo.partner == false"  
                             [color]="offer.bankInfo.bank == 'LANDKREDITT' ? 'primary-hollow-small-landkreditt' : 'primary-hollow-small'" type="raised"
                             (click)="openBankUrlByButton(offer)">Se mer på {{getbankNameOrDefault(offer)}}s <br/> hjemmeside
                         </rente-button-small>
@@ -127,17 +125,13 @@
                         <!-- awfull line break hack with two if statements-->
                         <rente-button-small 
                         *ngIf="getbankNameOrDefault(offer).length < 8"
-                        [disabled]="
-                        offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS ||
-                          offer.bankInfo.partner == false" [color]="'primary'" type="raised"
+                        [disabled]="offer.bankInfo.partner == false" [color]="'primary'" type="raised"
                             (click)="openNewOfferDialog(offer)">Få tilbud fra  {{ getbankNameOrDefault(offer) }}!
                         </rente-button-small>
 
                         <rente-button-small 
                         *ngIf="getbankNameOrDefault(offer).length >= 8"
-                        [disabled]="
-                        offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS ||
-                          offer.bankInfo.partner == false" [color]="'primary'" type="raised"
+                        [disabled]="offer.bankInfo.partner == false" [color]="'primary'" type="raised"
                             (click)="openNewOfferDialog(offer)">Få tilbud fra  <br/> {{ getbankNameOrDefault(offer) }}!
                         </rente-button-small>
                         <p class="small" *ngIf=" offer.bankInfo.partner === false"> (Ingen avtale med banken)</p>

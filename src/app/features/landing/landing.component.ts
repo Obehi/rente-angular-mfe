@@ -28,7 +28,7 @@ export class LandingComponent implements OnInit {
     this.optimize = optimize;
   }
   ngOnInit(): void {
-    this.getVariation()
+
     console.log(this.optimize.getVariation() )
 
 
@@ -41,17 +41,4 @@ export class LandingComponent implements OnInit {
     });
   }
 
-  getVariation(): number | null {
-    console.log("variation " + (window as any).google_optimize.get('-FGlj4ayQK66hF9kV4Wiow'));
-    
-    if((window as any).google_optimize == undefined) {
-      return null;
-    }
-    if((window as any).google_optimize == null) {
-      return null;
-    }
-
-    console.log("variation " + (window as any).google_optimize.get('-FGlj4ayQK66hF9kV4Wiow'));
-    return (window as any).google_optimize.get('-FGlj4ayQK66hF9kV4Wiow');
-  }
 }

@@ -158,7 +158,7 @@ export class OffersStatisticsComponentBlue implements AfterViewInit, OnInit {
         spacingLeft: 0,
         spacingRight: 0,
         margin: [0, 0, 25, 0],
-        height: this.haveAllBankData ? 170 : 230,
+        height: this.haveAllBankData ? 200 : 230,
         borderRadius: 20,
         backgroundColor:'#162537'
       },

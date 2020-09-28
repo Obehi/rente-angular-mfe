@@ -119,9 +119,7 @@
       <div class="full-width">
        
         <rente-button
-          [disabled]="
-            offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS ||
-            offer.bankInfo.partner == false"
+          [disabled]="offer.bankInfo.partner == false"
           [color]="'primary-wide-hollow'"
           type="raised"
           (click)="openBankUrlByButton(offer)"
@@ -134,9 +132,7 @@
       <div class="full-width">
         
         <rente-button
-        [disabled]="
-            offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS ||
-              offer.bankInfo.partner == false"
+        [disabled]="offer.bankInfo.partner == false"
           color="primary"
           type="raised"
           (click)="openNewOfferDialog(offer)"
