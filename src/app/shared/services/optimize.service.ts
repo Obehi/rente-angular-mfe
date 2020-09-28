@@ -6,7 +6,7 @@ import { environment } from '../../../environments/environment.heroku';
 })
 export class OptimizeService {
 
-  private experimentID = '-FGlj4ayQK66hF9kV4Wiow';
+  private experimentID = '71Yy7dFHST2juAi74Q9Kpg';
   private localeVariation = 1;
   constructor() { }
 
@@ -25,8 +25,8 @@ export class OptimizeService {
       return null;
     }
 
-   //console.log("variation in service: " + (window as any).google_optimize.get('-FGlj4ayQK66hF9kV4Wiow'));
-    return (window as any).google_optimize.get('-FGlj4ayQK66hF9kV4Wiow');
+   console.log("variation in service: " + (window as any).google_optimize.get(this.experimentID));
+    return (window as any).google_optimize.get(this.experimentID);
   }
 
   getBinaryVariation = () => {
