@@ -2,13 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { BankVo, BankList, MissingBankList } from '../../shared/models/bank';
 import { Router } from '@angular/router';
 import { ROUTES_MAP } from '@config/routes-config';
+import {ErrorHandler, Injectable} from '@angular/core';
 
 @Component({
   selector: 'rente-bank-select-variation',
   templateUrl: './bank-select.component.html',
   styleUrls: ['./bank-select.component.scss']
 })
-export class BankSelectComponentVariation implements OnInit {
+export class BankSelectComponentVariation implements OnInit, ErrorHandler{
 
   searchStr:string;
   banks:BankVo[];
@@ -23,6 +24,17 @@ export class BankSelectComponentVariation implements OnInit {
     this.sortBanks();
     this.filterBank(this.searchStr);
   }
+
+  // Workaround for bug. Cant click on banks in list. console error message: Loading chunk 6 failed"
+  handleError(error: any): void {
+    const chunkFailedMessage = /Loading chunk [\d]+ failed/;
+     console.log("Handeling error");
+     console.log(error)
+     if (chunkFailedMessage.test(error.message)) {
+       console.log("error detected. Implement window.location.reload()");
+       //window.location.reload();
+     }
+   }
 
   sortBanks() {
     let sortedBanksAlphabetic = [...BankList, ...MissingBankList].sort((a,b) => (a.label > b.label) ? 1 : ((b.label > a.label) ? -1 : 0));
