@@ -19,10 +19,10 @@ export class OptimizeService {
       return this.localeVariation
     }
     if((window as any).google_optimize == undefined) {
-      return null;
+      return 0;
     }
     if((window as any).google_optimize == null) {
-      return null;
+      return 0;
     }
 
    console.log("variation in service: " + (window as any).google_optimize.get(this.experimentID));
