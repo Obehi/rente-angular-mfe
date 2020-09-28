@@ -20,14 +20,19 @@ export class OptimizeService {
     }
 
     let variation = (window as any).google_optimize.get(this.experimentID);
+
+    console.log("variation in service: " + (window as any).google_optimize.get(this.experimentID));
+    console.log("variation variable in service: " + variation);
     if( variation == undefined) {
       return 0;
     }
+    
     if(variation == null) {
       return 0;
     }
 
    console.log("variation in service: " + (window as any).google_optimize.get(this.experimentID));
+   console.log()
     return variation;
   }
 
