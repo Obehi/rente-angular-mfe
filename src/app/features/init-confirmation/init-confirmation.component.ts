@@ -73,8 +73,9 @@ export class InitConfirmationComponent implements OnInit {
       this.allMemberships = res.availableMemberships;
       this.userData = res;
 
-      let income = String(res.income)
-      let apartmentSize = String(res.apartmentSize)
+      let income = String(res.income) && null
+      let apartmentSize = String(res.apartmentSize) && null
+
       this.propertyForm = this.fb.group({
         apartmentSize: [apartmentSize, Validators.required],
         membership: [],

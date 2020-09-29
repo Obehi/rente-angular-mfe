@@ -18,12 +18,10 @@ import { HouseBlueComponent }   from './house/house-blue/house-blue.component';
 import { BlueProfileComponent }   from './profile/blue-profile/blue-profile.component';
 import { LoansBlueComponent }   from './loans/loans-blue/loans-blue.component';
 import { EPSIScoreComponent }   from './offers/offers-blue/epsi-score/epsi-score.component';
-import { ScriptService } from '@services/script.service'
 
 
 
-const optimize = new OptimizeService(new ScriptService())
-
+const optimize = new OptimizeService()
 
 
 const routes: Routes = [
