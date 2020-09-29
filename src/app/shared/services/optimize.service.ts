@@ -7,7 +7,7 @@ import { environment } from '../../../environments/environment.heroku';
 export class OptimizeService {
 
   private experimentID = 'BEisN21ASOCXln5YuNNJPA';
-  private localeVariation = 1;
+  private localeVariation = 0;
   constructor() { }
 
   getVariation(): number {

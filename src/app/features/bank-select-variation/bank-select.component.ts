@@ -25,7 +25,7 @@ export class BankSelectComponentVariation implements OnInit, ErrorHandler{
     this.filterBank(this.searchStr);
   }
 
-  // Workaround for bug. Cant click on banks in list. console error message: Loading chunk 6 failed"
+  // Workaround for bug. Cant click on banks in list. console error message: ChunkLoadError: Loading chunk 6 failed.
   handleError(error: any): void {
     const chunkFailedMessage = /Loading chunk [\d]+ failed/;
      console.log("Handeling error");
