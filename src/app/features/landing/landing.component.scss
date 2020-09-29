@@ -218,6 +218,7 @@ h3 {
   }
   .otherBank {
     display: inline;
+    pointer-events: all;
   }
 
   img {
@@ -225,6 +226,7 @@ h3 {
     max-width: 80px;
     min-height: 20px;
     height: auto;
+    pointer-events:none;
   }
   img.sparebank1 {
     max-width: 90px;
