@@ -28,14 +28,15 @@
       bytte bank- helt automatisk og gratis."
     />
     <base href="/" />
-
     <!-- Anti-flicker snippet (recommended)  -->
+    <!-- 
     <style>.async-hide { opacity: 0 !important} </style>
     <script>(function(a,s,y,n,c,h,i,d,e){s.className+=' '+y;h.start=1*new Date;
     h.end=i=function(){s.className=s.className.replace(RegExp(' ?'+y),'')};
     (a[n]=a[n]||[]).hide=h;setTimeout(function(){i();h.end=null},c);h.timeout=c;
     })(window,document.documentElement,'async-hide','dataLayer',4000,
     {'GTM-PRJ7GZF':true});</script>
+    -->
     <!-- Google Tag Manager -->
     <script>
       (function(w, d, s, l, i) {
@@ -53,7 +54,18 @@
       })(window, document, "script", "dataLayer", "GTM-PRJ7GZF");
     </script>
     <!-- End Google Tag Manager -->
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
     <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-125660730-3', { 'optimize_id': 'OPT-PSDKVPW', 'send_page_view': false }); 
+    </script>
+
+
+   <!--  <script>
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({
         originalLocation:
@@ -62,7 +74,7 @@
           document.location.hostname +
           document.location.pathname +
           document.location.search
-      });
+      }); -->
 
     </script>
     <!-- Start of Async Drift Code -->

@@ -7,17 +7,13 @@ import { environment } from '../../../environments/environment.heroku';
 export class OptimizeService {
 
 
-
-  private experimentID = 'BEisN21ASOCXln5YuNNJPA';
+  private experimentID = '486O0RUlSMCPtcnEjUtFtg';
   private localeVariation = 1;
   constructor() {}
   
   getVariation(): number {
     const isLocale = (environment.name == 'locale' || environment.name == 'undefined' )  ? true : false;
     //console.log("is locale: " + isLocale);
-
-
-   
 
     if(isLocale) {
       //console.log("variation: " + this.localeVariation);
@@ -49,11 +45,9 @@ export class OptimizeService {
   }
 
   getBinaryVariation = () => {
-    //console.log("getBinaryOptimizeVariation");
-    
+
     let variation = this.getVariation()
-    //console.log(variation);
-  
+
     if( variation == null || variation == 0  ) {
       return false
     } else {
