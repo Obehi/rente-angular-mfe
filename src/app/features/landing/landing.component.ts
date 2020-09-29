@@ -31,7 +31,7 @@ export class LandingComponent implements OnInit {
 
     console.log(this.optimize.getVariation() )
 
-
+    this.optimize.testLoadScript()
 
     const subscription = timer(1000, 1000).subscribe(t => {
       this.time = t;

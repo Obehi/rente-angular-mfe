@@ -1,18 +1,33 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment.heroku';
-
+import { ScriptService } from '@services/script.service'
 @Injectable({
   providedIn: 'root'
 })
 export class OptimizeService {
 
+  private scriptService : ScriptService;
+
   private experimentID = 'BEisN21ASOCXln5YuNNJPA';
   private localeVariation = 0;
-  constructor() { }
+  constructor(private script: ScriptService) {
+    this.script = script
+   }
+  
 
+   testLoadScript() {
+    this.script.load('optimize').then ( () => {
+      console.log("optimize LOADED: " + (window as any).google_optimize.get(this.experimentID));
+ 
+    })
+   }
+  
   getVariation(): number {
     const isLocale = (environment.name == 'locale' || environment.name == 'undefined' )  ? true : false;
     //console.log("is locale: " + isLocale);
+
+
+   
 
     if(isLocale) {
       //console.log("variation: " + this.localeVariation);

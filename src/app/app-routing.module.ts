@@ -16,10 +16,10 @@ import { GetNotifiedComponent } from '@features/get-notified/get-notified.compon
 import { customMeta, defaultMeta, defaultTitle } from './config/routes-config';
 import { BankChoiceComponent } from '@features/auth/bank-choice/bank-choice.component';
 import { OptimizeService } from '@services/optimize.service';
+import { ScriptService } from '@services/script.service'
 
 
-
-const optimize = new OptimizeService()
+const optimize = new OptimizeService(new ScriptService())
 
 /* 
 path: 'tilbud', component: optimize.getBinaryVariation() ?  OffersComponent : OffersComponentBlue,
