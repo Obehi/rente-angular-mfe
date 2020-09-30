@@ -32,10 +32,10 @@ export class AuthSvComponent implements OnInit, OnDestroy {
   
   public isLoginStarted = false;
   public tinkCode: number;
-
+  public tinkSuccess: boolean = false;
   private stompClient: any;
   private intervalSubscription: Subscription;
-
+  
   constructor(
     private authService: AuthService,
   ) { 
@@ -53,7 +53,9 @@ export class AuthSvComponent implements OnInit, OnDestroy {
     return;
     }
     
+    console.log("IS TINK RESPONSE")
     let data = JSON.parse(event.data)
+    console.log(data)
     if (data.type === 'code') {
       // This is the authorization code that should be exchanged for an access token
       this.isLoginStarted = true;
@@ -78,7 +80,8 @@ export class AuthSvComponent implements OnInit, OnDestroy {
 
     this.stompClient.connect({}, frame => {
       this.sendUserData(tinkCode);
-
+      console.log("frameeee")
+      console.log(frame)
       //this.resendDataAfterReconnect();
         this.successSocketCallback();
         // Send ping to prevent socket closing
@@ -93,10 +96,11 @@ export class AuthSvComponent implements OnInit, OnDestroy {
   }
 
   private successSocketCallback() {
+
   }
 
   private connectAndReconnectSocket(successCallback) {
-  
+    this.tinkSuccess = true
   }
 
   sendUserData(tinkCode: number, resendData = false) {
