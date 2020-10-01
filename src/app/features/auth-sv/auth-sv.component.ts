@@ -32,7 +32,7 @@ export class AuthSvComponent implements OnInit, OnDestroy {
   
   public isLoginStarted = false;
   public tinkCode: number;
-
+  public isSuccess = false;
   private stompClient: any;
   private intervalSubscription: Subscription;
 
@@ -93,6 +93,8 @@ export class AuthSvComponent implements OnInit, OnDestroy {
   }
 
   private successSocketCallback() {
+    console.log("this is the shit")
+    this.isSuccess = true
   }
 
   private connectAndReconnectSocket(successCallback) {

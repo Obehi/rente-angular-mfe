@@ -1,6 +1,13 @@
 
-test auth-sv
+<div class="tink-wrapper">
+    <h3 *ngIf="isSuccess == false">
+        Logg på med Tink
+    </h3>
 
-<iframe src="https://link.tink.com/1.0/authorize/?client_id=3973e78ee8c140edbf36e53d50132ba1&redirect_uri=http%3A%2F%2Flocalhost%3A4302%2F&scope=accounts:read,investments:read,transactions:read,user:read&market=NO&locale=en_US&iframe=true">
+    <h3 *ngIf="isSuccess == true">
+        Innlogging fullført
+    </h3>
 
+    <iframe *ngIf="isSuccess == false"
+        src="https://link.tink.com/1.0/authorize/?client_id=3973e78ee8c140edbf36e53d50132ba1&redirect_uri=http%3A%2F%2Flocalhost%3A4302%2F&scope=accounts:read,investments:read,transactions:read,user:read&market=NO&locale=en_US&iframe=true">
 
