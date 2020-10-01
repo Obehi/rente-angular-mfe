@@ -1,0 +1,156 @@
+<div class="nr">
+  {{ index }}
+</div>
+
+<div class="the-offer-header">
+
+  
+    <div
+      class="logo"
+      [ngStyle]="{
+        'background-image': 'url(' + banksMap[offer.bankInfo.bank].img + ')'
+      }"
+    >
+    </div>
+    <div class="offer-product">
+
+      <a class="clickable" target="_blank"
+      (click)="openBankUrl(offer)"
+        >{{ offer.bankInfo.name }}</a
+      >
+      <h3 (click)="openOfferDialog(offer)" class="clickable">
+        {{ offer.productName }}
+      </h3>
+    </div>
+  </div>
+  <div class="the-offer-body">
+    <div class="small-header"><p>Rentebesparelse</p></div>
+    <div class="split">
+      <div class="offer-inner save">
+        <h2 *ngIf="offer.totalSavings > 0; else noTotalSavings">
+          {{ offer.totalSavings | abs | number }},-
+        </h2>
+        <ng-template #noTotalSavings>
+          <h2>0,-</h2>
+        </ng-template>
+        <p>over lånets løpetid</p>
+      </div>
+      <div class="offer-inner save">
+        <h2 *ngIf="offer.savingsFirstYear > 0; else noTotalSavings">
+          {{ offer.savingsFirstYear | abs | number }},-
+        </h2>
+        <ng-template #noSavingsFirstYear>
+          <h2>0,-</h2>
+        </ng-template>
+        <p>første år</p>
+      </div>
+    </div>
+    <div class="split">
+      <div class="offer-info">
+        <div class="small-header">
+          <p>Effektiv rente</p>
+        </div>
+        <div class="offer-inner">
+          <h2>{{ offer.effectiveRate | number: "1.2-2" }} %</h2>
+        </div>
+      </div>
+      <div class="offer-info">
+        <div class="small-header">
+          <p>Krever bytte av nettbank</p>
+        </div>
+        <div class="offer-inner">
+          <div>
+            <h2>
+              {{ offer.requiredProductPackage == null ? "Nei" : "Ja" }}
+            </h2>
+        </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="split">
+      <div class="offer-info">
+        <div class="small-header">
+          <p class="with-icon">Kundetilfredshet</p>
+          <span 
+            (click)="
+              openInfoDialog(
+                'Renteradar.no overvåker kontinuerlig markedet for bedre rente enn det du har på lånet ditt. Renten du har på lånet ditt sjekkes og oppdateres ved at du identifiserer deg med BankID. Det er viktig at dette gjøres fra tid til annen for at eventuelle renteendringer på lånet ditt skal fanges opp.'
+              )
+            "
+            class="clickable bank-rating-info-button">
+
+            <mat-icon class="material-icons secondary">help</mat-icon>
+          </span>
+
+          
+        </div>
+        <div class="offer-inner center-align">
+          <img class="offer-score" src="../../../../assets/icons/score-{{offer.bankInfo.score }}.svg"/>
+      
+        </div>
+      </div>
+      <div class="offer-info bgHack">
+        <div class="small-header">
+          <p>Hvor lang tid tar det å søke</p>
+        </div>
+        <div class="offer-inner time">
+          <div class="center">
+            <img src="../../../../assets/icons/clock.svg"/> 
+            <h3 >
+              {{offer.bankInfo.applicationTime  === null ? 'Ukjent' : offer.bankInfo.applicationTime + " min"}}
+            </h3>
+        </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="small-header bottom">
+      
+      <a (click)="openOfferDialog(offer)" class="clickable details">
+        <p>Detaljer</p>
+        <img class="offer-score" src="../../../../assets/icons/arrow-down-green.svg"/>
+      </a>
+    </div>
+
+    <div class="the-offer-footer">
+    <div class="double buttons">
+  
+      <div class="full-width">
+       
+        <rente-button
+          [disabled]="offer.bankInfo.partner == false"
+          [color]="'primary-wide-hollow'"
+          type="raised"
+          (click)="openBankUrlByButton(offer)"
+          >Se mer på {{getbankNameOrDefault(offer)}}s <br/> hjemmeside</rente-button
+        >
+        <p class="small" *ngIf=" offer.bankInfo.partner === false && isMobile === false"> (Ingen avtale med banken enda)</p>
+      </div>
+  
+  
+      <div class="full-width">
+        
+        <rente-button
+        [disabled]="offer.bankInfo.partner == false"
+          color="primary"
+          type="raised"
+          (click)="openNewOfferDialog(offer)"
+          >Få tilbud fra {{getbankNameOrDefault(offer)}}!</rente-button
+        >   
+   
+          <p class="small" *ngIf=" offer.bankInfo.partner === false"> (Ingen avtale med banken enda)</p>
+       
+      </div>
+    </div>
+
+    <p class="insignificant"><span>Tilbud:
+    </span> Eff.rente {{offer.effectiveRate | number: "1.2-2"}} %, 
+      Lånebeløp {{offer.outstandingDebt | number: "1.0" }}, 
+      {{offer.loanPeriodYears | number: "1.1-1" }} år, 
+      Kostnad: {{offer.cost | number: "1.0" }}, 
+      Totalt: {{offer.totalCost | number: "1.0" }}
+    </p>
+   
+    </div>
+  </div>

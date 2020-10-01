@@ -33,6 +33,7 @@ export class ContactUsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+ 
     this.contactUsForm = this.fb.group({
       name: ["", Validators.required],
       email: [

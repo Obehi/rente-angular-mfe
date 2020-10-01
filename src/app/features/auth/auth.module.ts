@@ -10,6 +10,7 @@ import { StatusMessageComponent } from './status-message/status-message.componen
 import { DialogInfoServiceComponent } from './bank-id-login/dialog-info-service/dialog-info-service.component';
 import { Sparebank1SubComponent } from './sparebank1-sub/sparebank1-sub.component';
 import { MaterialModule } from '@shared/material/material.module';
+import { BankChoiceComponent } from './bank-choice/bank-choice.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { MaterialModule } from '@shared/material/material.module';
     LoginStatusComponent,
     StatusMessageComponent,
     DialogInfoServiceComponent,
-    Sparebank1SubComponent
+    Sparebank1SubComponent,
+    BankChoiceComponent
   ],
   imports: [
     CommonModule,

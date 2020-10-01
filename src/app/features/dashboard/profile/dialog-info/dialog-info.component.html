@@ -1,9 +1,14 @@
-<h4>{{ data }}</h4>
 
-<rente-button cdkFocusInitial color="primary" (click)="onClose()">
-  Ok
-</rente-button>
+<div class="top">
+  <mat-icon (click)="onClose()" class="close-modal">close</mat-icon>
 
+  <h4>{{ data }}</h4>
+</div>
+<div class="bottom">
+  <rente-button cdkFocusInitial color="primary" (click)="onClose()">
+    Lukk
+  </rente-button>
+</div>
 <!-- <div mat-dialog-content>
   <div class="modal-body text-left">
     <div *ngIf="data.bank">
@@ -14,11 +19,11 @@
     </div>
     <div>
       <b>Nominell rente: </b
-      ><span>{{ data.nominalRate | number: "1.2-2" }}%</span>
+      ><span>{{ data.nominalRate | number: "1.2-2" }} %</span>
     </div>
     <div>
       <b>Effektiv rente: </b
-      ><span>{{ data.effectiveRate | number: "1.2-2" }}%</span>
+      ><span>{{ data.effectiveRate | number: "1.2-2" }} %</span>
     </div>
     <div>
       <b>Termingebyr: </b><span>{{ data.monthlyFee }},-</span>
@@ -41,7 +46,7 @@
       <b>Medlemskap: </b><span>{{ data.requiredMembership }}</span>
     </div>
     <div>
-      <b>Maksimal belåningsgrad: </b><span>{{ data.maxLTV }}%</span>
+      <b>Maksimal belåningsgrad: </b><span>{{ data.maxLTV }} %</span>
     </div>
     <div>
       <b>Maksimal løpetid: </b><span>{{ data.maxLoanPeriod }} år</span>

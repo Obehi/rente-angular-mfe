@@ -54,6 +54,7 @@
     "ng-lazyload-image": "9.0.0",
     "ngx-countup": "7.3.0",
     "poeditor-connector": "1.0.2",
+    "ngx-videogular": "^10.1.0-0",
     "rxjs": "~6.5.2",
     "smoothscroll-polyfill": "^0.4.4",
     "sockjs-client": "^1.4.0",

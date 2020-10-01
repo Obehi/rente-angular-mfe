@@ -48,7 +48,7 @@
           <p i18n=“efficient|offer-card-big@@offer.card.big.efficient”>Effektiv rente</p>
         </div>
         <div class="offer-inner">
-          <h2>{{ offer.effectiveRate | number: "1.2-2" }}%</h2>
+          <h2>{{ offer.effectiveRate | number: "1.2-2" }} %</h2>
         </div>
       </div>
       <div class="offer-info">
@@ -72,7 +72,7 @@
         </div>
         <div class="offer-inner center-align">
           <img class="offer-score" src="../../../../assets/icons/score-{{offer.bankInfo.score }}.svg"/>
-      
+
         </div>
       </div>
       <div class="offer-info">
@@ -81,7 +81,7 @@
         </div>
         <div class="offer-inner time">
           <div class="center">
-            <img src="../../../../assets/icons/clock.svg"/> 
+            <img src="../../../../assets/icons/clock.svg"/>
             <h3 i18n=“unknown|offer-card-big@@offer.card.big.unknown”>
               {{offer.bankInfo.applicationTime  === null ? 'Ukjent' : offer.bankInfo.applicationTime + " min"}}
             </h3>
@@ -92,10 +92,10 @@
 
     <div class="small-header bottom">
       <p i18n=“offer-info|offer-card-big@@offer.card.big.offerInfo” class="insignificant"><span>Tilbud:
-      </span> Eff.rente {{offer.effectiveRate | number: "1.2-2"}}%, 
-        Lånebeløp {{offer.outstandingDebt | number: "1.0" }}, 
-        {{offer.loanPeriodYears | number: "1.1-1" }} år, 
-        Kostnad: {{offer.cost | number: "1.0" }}, 
+      </span> Eff.rente {{offer.effectiveRate | number: "1.2-2"}} %,
+        Lånebeløp {{offer.outstandingDebt | number: "1.0" }},
+        {{offer.loanPeriodYears | number: "1.1-1" }} år,
+        Kostnad: {{offer.cost | number: "1.0" }},
         Totalt: {{offer.totalCost | number: "1.0" }}
       </p>
 
@@ -107,9 +107,9 @@
   </div>
 
   <div class="double buttons">
-  
+
     <div class="full-width">
-     
+
       <rente-button i18n=“see-more|offer-card-big@@offer.card.big.seeMore”
         [disabled]="
           offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS ||
@@ -123,12 +123,12 @@
       <p i18n=“no-deal|offer-card-big@@offer.card.big.noDeal” class="small" *ngIf=" offer.bankInfo.partner === false && isMobile === false"> (Ingen avtale med banken enda)</p>
 
     </div>
-  
-   
+
+
 
 
     <div class="full-width">
-      
+
       <rente-button i18n=“get-offer|offer-card-big@@offer.card.big.getOffer”
       [disabled]="
           offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS ||
@@ -137,9 +137,9 @@
         type="raised"
         (click)="openNewOfferDialog(offer)"
         >Få tilbud fra {{getbankNameOrDefault(offer)}}!</rente-button
-      >     
+      >
       <p i18n=“no-deal2|offer-card-big@@offer.card.big.noDeal2” class="small" *ngIf=" offer.bankInfo.partner === false"> (Ingen avtale med banken enda)</p>
-      
-     
+
+
     </div>
   </div>

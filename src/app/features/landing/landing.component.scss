@@ -14,9 +14,9 @@ h1 {
   a  {
     color: $primary;
     position: relative;
-    font-weight: 900; 
+    font-weight: 900;
   }
-  
+
   a:after {
     content: '';
       background-color: $black;
@@ -49,7 +49,7 @@ h3 {
 
     margin: auto;
     margin-bottom: 120px;
-    
+
     p {
       color: white;
       margin-bottom: 40px;
@@ -63,7 +63,7 @@ h3 {
   }
 
 
-   
+
 }
 
 .signUp {
@@ -83,12 +83,12 @@ rente-button {
   display: block;
 }
 
-// constant height to account for dynamic error messages   
+// constant height to account for dynamic error messages
 form {
   padding: unset;
   border: unset;
   width: 300px;
-  
+
   div {
     margin-bottom: 20px;
     height: 70px;
@@ -129,9 +129,9 @@ iframe {
   }
 }
 .data-logos {
-  
 
-  @media (min-width: 600px) { 
+
+  @media (min-width: 600px) {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -144,7 +144,7 @@ iframe {
     }
   }
 
-  @media (max-width: 600px) { 
+  @media (max-width: 600px) {
     display: grid;
     grid-gap: 10px;
     grid-template-columns: 1fr 1fr;
@@ -174,7 +174,7 @@ iframe {
     width: 80px;
   }
 
-  
+
 }
 
 .list {
@@ -271,7 +271,7 @@ iframe {
         height: 160px;
       }
     }
-    
+
     .image {
       height: 160px;
       width: 100%;
@@ -383,7 +383,7 @@ a {
     }
 
     .item {
-    
+
       &.img {
         grid-row: 3;
       display: flex;
@@ -394,7 +394,7 @@ a {
         margin-bottom: 40px;
       }
       }
-      
+
     }
 
     .bottom {

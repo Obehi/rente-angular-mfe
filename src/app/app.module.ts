@@ -30,7 +30,7 @@ import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { CountUpModule } from 'ngx-countup';
 import { LoginLangGenericComponent } from '../environments/components/components';
 import { AuthSvComponent } from './features/auth-sv/auth-sv.component';
-
+import { OptimizeService } from '@services/optimize.service';
 
 registerLocaleData(localeNo);
 
@@ -67,7 +67,7 @@ registerLocaleData(localeNo);
     CountUpModule
   ],
   entryComponents: [DialogInfoComponent, ProfileDialogInfoComponent],
-  providers: [{ provide: LOCALE_ID, useValue: 'nb-NO' }, UserService],
+  providers: [{ provide: LOCALE_ID, useValue: 'nb-NO' }, UserService, OptimizeService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

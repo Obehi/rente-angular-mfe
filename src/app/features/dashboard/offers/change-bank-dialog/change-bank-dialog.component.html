@@ -1,12 +1,12 @@
+<div class="top">
 
-<a href=""></a>
-<mat-icon (click)="close()" class="close-modal">close</mat-icon>
+  <mat-icon (click)="close()" class="close-modal">close</mat-icon>
 
 <h3 i18n=“title|change-bank@@change.bank.title”>Melding til banken din:</h3>
 <br />
 <hr />
 <br />
-<p i18n=“intro|change-bank@@change.bank.intro”>
+<p>
   Hei,
   <br />
   <br />
@@ -50,7 +50,7 @@
   </div>
   <div class="item">
       <p i18n=“info-product|change-bank@@change.bank.infoProduct” class="small">Produktnavn:</p>
-      <p>{{ data.preview.productName }}</p>    
+      <p>{{ data.preview.productName }}</p>
   </div>
   <div class="item">
       <p i18n=“info-nominal-interest|change-bank@@change.bank.infoNominal” class="small">Nominell rente:</p>
@@ -88,7 +88,7 @@
         <p i18n=“info-post|change-bank@@change.bank.infoPost” class="small">Postnr:</p>
         <p>{{ data.preview.clientInfo.zip }}</p>
     </div>
-    
+
 </div>
 
 <p i18n=“info-mail|change-bank@@change.bank.infoMail” class="small">E-post:</p>
@@ -106,10 +106,10 @@
   Mvh,<br />
   {{ data.preview.clientInfo.name }}
 </p>
+  <br />
+</div>
 
-<hr />
-<br />
-
+  <div class="bottom">
 <p i18n=“info-sent-message|change-bank@@change.bank.infoSent”>
   Meldingen sendes til din bank per mail med deg som avsender. Du får også en
   kopi av meldingen i din innboks. Ønsker du å kontakte din bank direkte kan du
@@ -138,3 +138,4 @@
     </rente-button>
   </div>
 </form>
+</div>

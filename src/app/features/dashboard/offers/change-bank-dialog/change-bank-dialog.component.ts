@@ -14,6 +14,8 @@ export class ChangeBankDialogComponent implements OnInit {
   public confirmForm: FormGroup;
   public isConfirmed: boolean;
   public isLoading: boolean;
+  public closeState: string;
+
   constructor(
     private router: Router,
     private fb: FormBuilder,
@@ -28,6 +30,7 @@ export class ChangeBankDialogComponent implements OnInit {
       confirmation: ['', Validators.required]
     });
   }
+  
 
   public sendRequest(): void {
     this.isLoading = true;
@@ -37,19 +40,20 @@ export class ChangeBankDialogComponent implements OnInit {
 
     _ => {
           this.isLoading = false;
+          this.closeState = "procced"
           this.dialogRef.close();
 
-        this.router.navigate(['/dashboard/prute-fullfort'],{ state: { isError: true , fromChangeBankDialog: true} });
         },
         err => {
           this.isLoading = false;
-          this.router.navigate(['/dashboard/prute-fullfort'],{ state: { isError: true , fromChangeBankDialog: true} });
+          this.closeState = "error"
           this.dialogRef.close();
         }
       );
   }
 
   public close(): void {
+    this.closeState = "canceled"
     this.dialogRef.close();
   }
 

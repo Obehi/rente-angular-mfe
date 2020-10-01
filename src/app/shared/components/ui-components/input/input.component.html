@@ -10,7 +10,7 @@
         [ngModelOptions]="modelOptions"
         [(ngModel)]="value"
         (blur)="onBlur()"
-        [imask]="{mask: maskType}"
+        [imask]="getMask()"
       />
     </div>
     <ng-template #noMask>

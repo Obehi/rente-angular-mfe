@@ -8,6 +8,7 @@ if (process.env.LOCALE == "sv")
 else if (process.env.LOCALE == "nb")
     locale = ",nb"
 
+console.log("locale is: " + locale);
 
 if (process.env.ENV === 'dev') {
     console.log("running heroku dev")

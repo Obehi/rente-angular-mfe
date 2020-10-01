@@ -47,6 +47,7 @@
   margin-top: 40px;
 
   p{
+    
     font-weight: 400;
     margin-bottom: 0.5em;
   }
@@ -56,77 +57,3 @@
     width: 180px;
   }
 }
-/* .house {
-  mat-radio-button {
-    label {
-      align-items: baseline;
-    }
-  }
-
-  .bg-wrap {
-    p {
-      opacity: 0.7;
-      color: $black;
-      font-size: 16px;
-      font-weight: bold;
-      letter-spacing: 0.27px;
-      line-height: 20px;
-    }
-  }
-}
-
-@media (max-width: 960px) {
-  .house {
-    .disabled {
-      display: none;
-    }
-
-    mat-radio-button {
-      margin-bottom: 10px;
-    }
-  }
-}
-
-
-a {
-  color: $primary;
-  text-decoration: none;
-
-  &:hover {
-    text-decoration: underline;
-    cursor: pointer;
-  }
-}
-
-.disabled {
-  opacity: 0.5;
-  pointer-events: none;
-}
-
-.button-wrap {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-
-  rente-button {
-    width: 348px;
-  }
-}
-
-.statistics-button {
-  background-color: $primary;
-  height: 40px;
-  color: $white !important;
-}
-
-.mat-raised-button {
-  min-width: 40px !important;
-  padding: 0 !important;
-}
-
-
-.button-label {
-  color: $text-color;
-}
- */

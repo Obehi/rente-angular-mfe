@@ -5,6 +5,7 @@ const https = require('https');
 
 const clientPath = path.resolve(__dirname, '../dist/rente-front-end');
 const port = process.env.PORT || 4300;
+const baseUrl = process.env.BASE_URL;
 
 https.globalAgent.options.ca = require('ssl-root-cas/latest').create();
 
@@ -31,6 +32,21 @@ if(process.env.LOCALE == undefined || process.env.LOCALE == "no") {
   });
 }
 */
+
+
+
+const historicalRatesProxy = require('http-proxy').createProxyServer({
+  host: 'https://blogg.renteradar.no',
+  changeOrigin: true
+});
+
+ app.use('/api/historical-rates', function(req, res, next) {
+   historicalRatesProxy.web(req, res, {
+      target: baseUrl + '/loan/ext-services/historical-rates-statistics',
+      auth: 'login:pass'
+  }, next); 
+});
+ 
 
 app.use(express.static(clientPath));
 

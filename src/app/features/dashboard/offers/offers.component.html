@@ -12,15 +12,15 @@
 <div class ="desktop">
   <a
       *ngIf="offersInfo?.ltvType === offersLtvType.LTV_TOO_HIGH_85"
-      class="obs clickable"  
+      class="obs clickable"
       (click)="openLtvTooHightDialog()"
     >
-    
-      <p i18n=“too-high-leverage|offers-main@@offers.mainPage.high”>
-        <b>OBS:</b> Vi har beregnet belåningsgraden din til over 85%. 
-        Vennligst kontroller boligverdien i boligfanen. Du kan også lese 
+
+    <p i18n=“too-high-leverage|offers-main@@offers.mainPage.high”>
+        <b>OBS:</b> Vi har beregnet belåningsgraden din til over 85%.
+        Vennligst kontroller boligverdien i boligfanen. Du kan også lese
         mer om dette ved å  <a >klikke her</a>.
-        
+
       </p>
   </a>
 
@@ -30,8 +30,8 @@
       "
       class="obs"
     >
-      <p i18n=“assumption|offers-main@@offers.mainPage.assumption”>
-        <b>OBS:</b> Vi får kun hentet din nominelle rente og lånebeløp. For
+    <p i18n=“assumption|offers-main@@offers.mainPage.assumption”>
+    <b>OBS:</b> Vi får kun hentet din nominelle rente og lånebeløp. For
         utregninger har vi tatt utgangspunkt i en gjenværende løpetid på 20 år,
         månedlige betalinger og 50,- i termingebyr. Faktisk løpetid og
         termingebyrer vil endre forventede besparelser.
@@ -86,15 +86,15 @@
     </div>
     <a
       *ngIf="offersInfo?.ltvType === offersLtvType.LTV_TOO_HIGH_85"
-      class="obs clickable"  
+      class="obs clickable"
       (click)="openLtvTooHightDialog()"
     >
-    
+
       <p i18n=“too-high-leverage-check|offers-main@@offers.mainPage.highCheck”>
-        <b>OBS:</b> Vi har beregnet belåningsgraden din til over 85%. 
-        Vennligst kontroller boligverdien i boligfanen. Du kan også lese 
+      <b>OBS:</b> Vi har beregnet belåningsgraden din til over 85%.
+        Vennligst kontroller boligverdien i boligfanen. Du kan også lese
         mer om dette ved å  <a (click)="openLtvTooHightDialog()">klikke her</a>.
-        
+
       </p>
     </a>
     <div
@@ -114,34 +114,34 @@
   <!-- Mobile Tips -->
 
   <div class="barometer">
-    
+
     <div class="rente-status" [ngSwitch]="offersInfo.offerSavingsType">
       <p i18n=“interest-very-good|offers-main@@offers.mainPage.interest.veryGood” *ngSwitchCase="offerSavingsType.NO_SAVINGS">
         Renten din er <b>svært god</b>
       </p>
       <p i18n=“interest-good|offers-main@@offers.mainPage.interest.good”
-        *ngSwitchCase="
+         *ngSwitchCase="
           offerSavingsType.SAVINGS_FIRST_YEAR_BETWEEN_0_AND_2000
         "
       >
         Renten din er <b>god</b>, men ikke best
       </p>
       <p i18n=“interest-ok|offers-main@@offers.mainPage.interest.ok”
-        *ngSwitchCase="
+         *ngSwitchCase="
           offerSavingsType.SAVINGS_FIRST_YEAR_BETWEEN_2000_AND_6000
         "
-      > 
+      >
         Renten din er <b>OK</b>, men du kan få bedre
       </p>
       <p i18n=“interest-bad|offers-main@@offers.mainPage.interest.bad”
-        *ngSwitchCase="
+         *ngSwitchCase="
           offerSavingsType.SAVINGS_FIRST_YEAR_BETWEEN_6000_AND_10000
         "
       >
         Renten din er <b>dårlig</b> og du kan spare en del
       </p>
       <p i18n=“interest-very-bad|offers-main@@offers.mainPage.interest.veryBad” *ngSwitchCase="offerSavingsType.SAVINGS_FIRST_YEAR_GREATER_10000">
-        Renten din er <b>svært  dårlig</b> 
+        Renten din er <b>svært  dårlig</b>
       </p>
       <div *ngSwitchDefault>-</div>
     </div>
@@ -151,8 +151,8 @@
         <p i18n=“interest-bad2|offers-main@@offers.mainPage.interest.bad2”>Dårlig rente</p>
         <p i18n=“interest-good2|offers-main@@offers.mainPage.interest.good2”>Bra rente</p>
       </div>
-      <div class="bar-wrap" [ngClass]="[rateBarPercentage.class]" > 
-        <span class="bar-fill" [ngStyle]="{'width': rateBarPercentageInverted + '%'}"></span> 
+      <div class="bar-wrap" [ngClass]="[rateBarPercentage.class]" >
+        <span class="bar-fill" [ngStyle]="{'width': rateBarPercentageInverted + '%'}"></span>
         <!-- <span class="bar-fill" [ngStyle]="{'width': 0 + '%'}"></span> -->
       </div>
 
@@ -160,7 +160,7 @@
       <div class="arrow-box center-align" [ngStyle]="{'left': barBoxPosition}">
         <p>Din rente</p>
       </div>
-      --> 
+      -->
     </div>
 
     <div class="save-info">
@@ -177,7 +177,7 @@
 
   <div class="split-sections">
     <div class="split-section">
-      
+
         <!-- Mobile boxes -->
         <div class="rente-boxes mobile">
           <div class="double">
@@ -211,7 +211,7 @@
                 }}
                 mill.
               </p>
-            
+
               <p i18n=“virdi-estimate|offers-main@@offers.mainPage.virdiEstimate” class="small">
                 Estimat levert av
                 <a href="https://virdi.no/" target="_blank">virdi.no</a>
@@ -238,12 +238,12 @@
           </div>
         </div>
         <!-- Mobile boxes -->
-     
+
         <div class="mobile">
           <div class="top-buttons full-width">
             <div i18n=“found-offers|offers-main@@offers.mainPage.foundOffers” class="item">
-            
-            
+
+
               <p>Vi har funnet de beste tilbudene for deg</p>
               <rente-button class="min-width vertical-20"
                 [disabled]="changeBankLoading ||
@@ -254,10 +254,10 @@
                 (click)="goToBestOffer()"
                 >Se beste tilbud</rente-button
               >
-            </div> 
-            
+            </div>
+
             <div i18n=“help-deal|offers-main@@offers.mainPage.helpDeal” class="item">
-        
+
               <p>Vi hjelper deg å be banken din om lavere rente</p>
               <div class="max-width vertical-20">
                 <rente-button
@@ -270,15 +270,15 @@
                   type="raised"
                   (click)="openChangeBankDialog(offersInfo.offers.top5[0])"
                   >Be banken matche tilbud</rente-button
-                > 
-              </div> 
-            </div> 
+                >
+              </div>
+            </div>
           </div>
         </div>
 
       <div class="desktop">
-        
-        
+
+
 
      <!-- Desktop boxes -->
     <div class="rente-boxes desktop">
@@ -290,7 +290,7 @@
         <a class="box positive clickable" (click)="goToBestOffer()">
           <p i18n=“best-offers2|offers-main@@offers.mainPage.bestOffers2”>Beste tilbud <img src="../../../../assets/icons/go_to.svg" /></p>
           <h2>{{ offersInfo.bestOfferEffectiveRate | number: "1.2-2" }}%</h2>
-        
+
         </a>
       </div>
       <div class="double">
@@ -308,7 +308,7 @@
                 (offersInfo.commonDebt / 1000000 | number: "1.1-2")
               }} mill.
             </p>
-          
+
             <p i18n=“virdi-delivered|offers-main@@offers.mainPage.virdiDelivered” class="small">
               Estimat levert av
               <a href="https://virdi.no/" target="_blank">virdi.no</a>
@@ -384,7 +384,7 @@
       </div>
     </div>
     <!-- Desktop boxes -->
-      
+
     </div>
     <div class="split-section">
 
@@ -399,8 +399,8 @@
   <div class="desktop">
     <div class="top-buttons full-width">
       <div i18n=“found-best-offers|offers-main@@offers.mainPage.found.bestOffers” class="item">
-      
-      
+
+
         <p>Vi har funnet de beste tilbudene for deg</p>
         <rente-button class="min-width vertical-20"
           [disabled]="changeBankLoading ||
@@ -411,10 +411,10 @@
           (click)="goToBestOffer()"
           >Se beste tilbud</rente-button
         >
-      </div> 
-      
+      </div>
+
       <div i18n=“help-you|offers-main@@offers.mainPage.helpYou” class="item">
-  
+
         <p>Vi hjelper deg å be banken din om lavere rente</p>
         <div class="max-width vertical-20">
           <rente-button
@@ -427,9 +427,9 @@
             type="raised"
             (click)="openChangeBankDialog(offersInfo.offers.top5[0])"
             >Be banken matche tilbud</rente-button
-          > 
-        </div> 
-      </div> 
+          >
+        </div>
+      </div>
     </div>
   </div>
 
@@ -442,7 +442,7 @@
       <p>Din effektive rente: <span>{{ offersInfo.totalEffectiveRate | number: "1.2-2" }}%</span></p>
     </div>
 
-    <div class="offers-grid">    
+    <div class="offers-grid">
       <ng-container *ngIf="offersInfo">
         <div
           *ngFor="let offer of offersInfo.offers.top5; let i = index"
@@ -452,17 +452,17 @@
         <ng-container *ngIf="isMobile; else desktop">
           <rente-offer-card [offer]="offer" [offersInfo]="offersInfo" [index]=offer.offerPosition></rente-offer-card>
         </ng-container>
-    
+
         <ng-template #desktop>
           <rente-offer-card-big [offer]="offer" [offersInfo]="offersInfo" [index]=offer.offerPosition></rente-offer-card-big>
         </ng-template>
 
-        </div> 
+        </div>
       </ng-container>
-    </div>  
-    
-    <div class="offers-grid">    
-      
+    </div>
+
+    <div class="offers-grid">
+
       <ng-container *ngIf="offersInfo">
         <div
           *ngFor="let offer of offersInfo.offers.additionalPartnersOffers; let i = index"
@@ -472,7 +472,7 @@
         <ng-container *ngIf="isMobile; else desktop">
           <rente-offer-card [offer]="offer" [offersInfo]="offersInfo" [index]=offer.offerPosition></rente-offer-card>
         </ng-container>
-    
+
         <ng-template #desktop>
           <rente-offer-card-big [offer]="offer" [offersInfo]="offersInfo" [index]=offer.offerPosition></rente-offer-card-big>
         </ng-template>
@@ -483,7 +483,7 @@
 
 </div>
 <div class="problems" style="max-width: 780px;">
-  
+
   <div
     class="title"
     *ngIf="
