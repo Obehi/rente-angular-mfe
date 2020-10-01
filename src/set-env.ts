@@ -7,7 +7,7 @@ const targetPath = path.join(__dirname + `/environments/environment.heroku.ts`);
 // Setup Heroku configs
 const envConfigFile = `
 export const environment = {
-  name: '${environment}',
+  name: '${environment || "locale"}',
   production: ${isProd},
   baseUrl: '${process.env.BASE_URL}',
   crawlerUrl: '${process.env.CRAWLER_URL}'
