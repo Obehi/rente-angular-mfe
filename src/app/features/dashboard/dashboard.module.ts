@@ -1,6 +1,7 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { DashboardRoutingModule } from "./dashboard-routing.module";
+import { OffersComponentBlue } from "./offers/offers-blue/offers.component";
 import { OffersComponent } from "./offers/offers.component";
 import { DashboardComponent } from "./dashboard.component";
 import { MatTabsModule } from "@angular/material/tabs";
@@ -13,6 +14,7 @@ import { SharedModule } from "@shared/shared.module";
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatRadioModule } from "@angular/material/radio";
 import { DialogInfoComponent } from "./offers/dialog-info/dialog-info.component";
+import { DetailsComponentBlue } from "./offers/offers-blue/details/details.component";
 import { DetailsComponent } from "./offers/details/details.component";
 
 import { RatingComponent } from "./offers/rating/rating.component";
@@ -36,18 +38,30 @@ import { ChangeBankDialogComponent } from "./offers/change-bank-dialog/change-ba
 import { SuccessChangeBankDialogComponent } from "./offers/change-bank-dialog/success-change-bank-dialog/success-change-bank-dialog.component";
 import { ShareSheetComponent } from "./offers/share-sheet/share-sheet.component";
 import { VirdiStatisticsComponent } from "./house/virdi-statistics/virdi-statistics.component";
+import { OffersStatisticsComponentBlue } from "./offers/offers-blue/offers-statistics/offers-statistics.component";
 import { OffersStatisticsComponent } from "./offers/offers-statistics/offers-statistics.component";
 import { DialogComponent } from "../../shared/components/ui-components/dialog/dialog.component";
 import { AddressFormComponent } from "./house/address/address.form.component";
 import { GetOfferFromBankDialogComponent } from './offers/get-offer-from-bank-dialog/get-offer-from-bank-dialog.component';
 import { LtvTooHighDialogComponent } from './offers/ltv-too-high-dialog/ltv-too-high-dialog.component';
+import { OfferCardComponentBlue } from './offers/offers-blue/offer-card/offer-card.component';
 import { OfferCardComponent } from './offers/offer-card/offer-card.component';
+import { OfferCardBigComponentBlue } from './offers/offers-blue/offer-card-big/offer-card-big.component';
 import { OfferCardBigComponent } from './offers/offer-card-big/offer-card-big.component';
 import { BargainSuccessComponent } from './offers/bargain-success/bargain-success.component';
+import { ReferralComponent } from './offers/bargain-success/referral/referral.component';
+import { LoansBlueComponent } from './loans/loans-blue/loans-blue.component';
+import { HouseBlueComponent } from './house/house-blue/house-blue.component';
+import { BlueAddressComponent } from './house/house-blue/blue-address/blue-address.component';
+import { BlueProfileComponent } from './profile/blue-profile/blue-profile.component';
+
+import { BankRatingDialogComponent } from './offers/offers-blue/bank-rating-dialog/bank-rating-dialog.component';
+import { EPSIScoreComponent } from './offers/offers-blue/epsi-score/epsi-score.component';
 
 // TODO: ADD separate module for material import
 @NgModule({
   declarations: [
+    OffersComponentBlue,
     OffersComponent,
     DashboardComponent,
     LoansComponent,
@@ -63,15 +77,26 @@ import { BargainSuccessComponent } from './offers/bargain-success/bargain-succes
     SuccessChangeBankDialogComponent,
     ShareSheetComponent,
     VirdiStatisticsComponent,
+    OffersStatisticsComponentBlue, 
     OffersStatisticsComponent, 
     DialogComponent,
     AddressFormComponent,
     GetOfferFromBankDialogComponent,
     LtvTooHighDialogComponent,
+    DetailsComponentBlue,
     DetailsComponent,
+    OfferCardComponentBlue,
     OfferCardComponent,
+    OfferCardBigComponentBlue,
     OfferCardBigComponent,
-    BargainSuccessComponent
+    BargainSuccessComponent,
+    ReferralComponent,
+    LoansBlueComponent,
+    HouseBlueComponent,
+    BlueAddressComponent,
+    BlueProfileComponent,
+    BankRatingDialogComponent,
+    EPSIScoreComponent
   ],
   imports: [
     CommonModule,

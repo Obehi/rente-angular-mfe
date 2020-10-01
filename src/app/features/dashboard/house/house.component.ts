@@ -3,7 +3,7 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { SnackBarService } from "../../../shared/services/snackbar.service";
 import { Observable, Subject } from 'rxjs';
 import { DeactivationGuarded } from '@shared/guards/route.guard';
-
+import { OptimizeService } from '@services/optimize.service'
 import {
   EventService,
   EmitEvent,
@@ -53,13 +53,15 @@ export class HouseComponent implements OnInit, DeactivationGuarded {
   public canLeavePage = true;
   public updateAnimationTrigger :boolean;
   public errorAnimationTrigger :boolean;
-  
+  public optimize: OptimizeService
   
   constructor(
     private loansService: LoansService,
     private snackBar: SnackBarService,
-    eventService: EventService
+    eventService: EventService,
+    optimizeService: OptimizeService
   ) {
+    this.optimize = optimizeService
     eventService.on(Events.INPUT_CHANGE, _ => {
       this.saveAddresses();
     });
@@ -179,5 +181,19 @@ export class HouseComponent implements OnInit, DeactivationGuarded {
 
   notEmpty(s: string) {
     return s != null && String(s).length > 0;
+  }
+
+  public getVariation = (): number | null => {
+    //console.log("variation: " + (window as any).google_optimize == undefined);
+    return 0;
+    if((window as any).google_optimize == undefined) {
+      return null;
+    }
+    if((window as any).google_optimize == null) {
+      return null;
+    }
+
+    console.log("variation " + (window as any).google_optimize.get('-FGlj4ayQK66hF9kV4Wiow'));
+    return (window as any).google_optimize.get('-FGlj4ayQK66hF9kV4Wiow');
   }
 }

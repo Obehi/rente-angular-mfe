@@ -30,12 +30,26 @@ export class LoansComponent implements OnInit {
   constructor(private loansService: LoansService) { }
 
   ngOnInit() {
+    //TEMP fix for bug. This particular component scrolls down on load
+    window.scrollTo(0,0)
     // this.loansData = this.loans;
     this.loansService.getLoans().subscribe((res: Loans) => {
       this.loansData = res;
     }, err => {
       this.errorMessage = err.title;
     });
+  }
+
+  getVariation(): number | null {
+    if((window as any).google_optimize == undefined) {
+      return null;
+    }
+    if((window as any).google_optimize == null) {
+      return null;
+    }
+
+    console.log("variation " + (window as any).google_optimize.get('-FGlj4ayQK66hF9kV4Wiow'));
+    return (window as any).google_optimize.get('-FGlj4ayQK66hF9kV4Wiow');
   }
 
 

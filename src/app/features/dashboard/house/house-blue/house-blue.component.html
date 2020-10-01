@@ -1,0 +1,89 @@
+<div class="update-complete" [@loading]="updateAnimationTrigger? 'true' : 'false'">
+    <img src="../../../../assets/icons/ic_done.svg" alt="success-icon" />
+    <p>Lagret</p>
+  </div>
+  
+  <div class="update-error" [@loading]="errorAnimationTrigger ? 'true' : 'false'">
+    <p>Oops, noe gikk galt</p>
+  </div>
+  
+  <div class="loading" *ngIf="isLoading">
+      <mat-spinner [diameter]="48" [strokeWidth]="4"></mat-spinner>
+  </div>
+  <div class="house" *ngIf="showAddresses">
+    <div class="title">
+      <h3>Mine boliger</h3>
+      <p>Total verdi: {{ totalPropertyValue | thousands }}</p>
+    </div>
+    <div class="houses">
+      <rente-blue-address
+        class="addressform"
+        *ngFor="let address of addresses; let i = index"
+        [index]="i"
+        [address]="address"
+        (deleteAddress)="deleteAddress($event)"
+        (onSave)="saveAddresses()"
+        (change)="countChange($event)"
+        [ngClass]="{'disabled':isLoading}"
+      >
+      </rente-blue-address>
+      <rente-button class="add" color="blue" (click)="addAddress()">
+          Legg til flere boliger
+      </rente-button>
+    </div>
+  
+    <!--
+    <rente-button
+      color="primary"
+      [disabled]="!ableToSave"
+      (click)="saveAddresses()"
+      class="save-changes"
+      *ngIf="changesMade"
+      >Lagre endringer</rente-button
+    >
+    -->
+    <div class="center-logo">
+      <p>Få full kontroll på din bolig med:</p>
+  
+      <a target="_blank" href="https://www.boligmappa.no/">
+        <img src="../../../../assets/img/partners/boligmappa-white.png" alt="boligmappa logo" />
+      </a>
+    </div>  
+  </div>
+  
+  <!-- <div class="house" *ngIf="showAddresses" [@shakeAnimation]>
+  
+    <rente-address-form
+      *ngFor="let address of addresses; let i=index"
+      [index]="i"
+      [address]="address"
+      (deleteAddress)="deleteAddress($event)">
+    </rente-address-form>
+  
+    <div *ngIf="ableToAddAddress" class="row" style="width:100%">
+      <div class="col-12">
+        <button style="display: inline"
+          (click)="addAddress()">
+          Legg til bolig
+        </button>
+        <div style="float: right;">
+          <p>Total verdi av boliger: {{totalPropertyValue | thousands}}</p>
+        </div>
+      </div>
+    </div>
+  
+    <div class="row justify-content-center mt-2">
+      <rente-button
+        color="primary"
+        [disabled]="!ableToSave"
+        (click)="saveAddresses()">
+        Lagre
+      </rente-button>
+    </div>
+  
+  </div>
+  
+  
+  
+   -->
+  

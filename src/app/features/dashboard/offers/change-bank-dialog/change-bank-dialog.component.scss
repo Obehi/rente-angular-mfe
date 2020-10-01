@@ -1,5 +1,18 @@
 @import "../../../../../styles/theme/_colors.scss";
 
+
+// Hack for centering dialog popup 
+::ng-deep .cdk-global-overlay-wrapper {
+
+  .cdk-overlay-pane {
+    max-height: calc(100vh - 155px) !important;
+    max-width: 600px !important;
+    height: 100% !important;
+    margin: auto;
+  }
+}
+
+
 p {
   margin-bottom: 10px;
 }
@@ -13,12 +26,26 @@ p {
 a {
   color: $green;
 }
+
+.top {
+  position: relative;
+  padding: 20px;
+  background: white;
+}
+.bottom {
+  border-top: 1px solid #ECECEC;
+  padding: 20px;
+  border-radius: 0 0 10px 10px;
+  background: white;
+
+}
 form {
-  padding: 0;
   background: unset;
   border: 0;
   max-width: unset;
   margin-bottom: 20px;
+  padding: 0;
+  background: white;
 }
 
 .grid-wrapper-1 {

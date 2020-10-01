@@ -2,6 +2,12 @@
 .nav-space {
   height: 60px;
 }
+
+.highlight {
+  background: #183a63;
+  padding: 10px;
+  border-radius: 10px;
+}
 nav {
   top: 0;
   z-index: 10;
@@ -120,4 +126,26 @@ nav {
       }
     }
   }
+}
+
+
+
+
+.variation-1 {
+
+}
+
+.variation-2 {
+  background: white;  
+  .menu-container {
+    .menu {
+      span {
+        background-color: $blue;
+      }
+    }
+  }
+}
+
+.variation-3 {
+ 
 }

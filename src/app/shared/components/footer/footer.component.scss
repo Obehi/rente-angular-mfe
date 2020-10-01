@@ -133,8 +133,10 @@ footer {
       display: table;
       margin: auto;
       margin-bottom: 10px;
+      display: flex;
+      justify-content: center;
       img {
-        margin: 0 40px;
+        margin: 0 20px;
         height: 40px;
       }
     }

@@ -53,7 +53,7 @@ export class InputComponent implements ControlValueAccessor, OnChanges {
   @Input() errorStateMatcher: boolean;
   @Input() modelOptions?: { updateOn: string };
   @Input() textControl: boolean;
-  @Input() maskType: string;
+  @Input() maskType: any;
 
 
   // tslint:disable-next-line:no-input-rename
@@ -82,6 +82,14 @@ export class InputComponent implements ControlValueAccessor, OnChanges {
     if (changes.errorStateMatcher) {
       this.matcher = new MyErrorStateMatcher(this.errorStateMatcher);
     }
+  }
+
+  // Hack to get iMask to play with strict mode
+  getMask(): any {
+    if(typeof this.maskType === 'string') {
+      return { mask: this.maskType}
+    }
+    return this.maskType
   }
 
   onFocus() {

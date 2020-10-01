@@ -12,8 +12,8 @@ body {
 }
 .close-modal {
   position: absolute;
-  right: 10px;
-  top: 10px;
+  right: 7px;
+  top: 7px;
   color: white;
   background-color: black;
   border-radius: 100px;
@@ -21,9 +21,8 @@ body {
   margin: auto;
   cursor: pointer;
   @media (min-width: 600px) {
-    right: 0;
-    left: 0;
-    transform: translateX(300px);
+
+
   }
 }
 *,
@@ -77,6 +76,13 @@ hr {
   }
 }
 
+*:focus {outline:none !important}
+
+//Hack to get iphone with smaller screens to not zoom in on inputs and there after stay zoomed in
+input {
+  font-size: 20px !important;
+}
+
 .full-width .button-wrapper {
   display: block;
   button {
@@ -118,11 +124,7 @@ mat-radio-button.mat-accent {
 .mat-expansion-indicator::after {
   color: $primary !important;
 }
-.mat-expansion-panel-body {
-  padding: 20px !important;
-  padding-top: 0 !important;
-  padding-bottom: 40px !important;
-}
+
 .cdk-overlay-container {
   padding-bottom: 1px;
 }
@@ -130,19 +132,24 @@ mat-radio-button.mat-accent {
   background: none !important;
 }
 .cdk-global-overlay-wrapper {
-  background: rgba(17, 38, 57, 0.2) !important;
+    background: rgba(17, 38, 57, 0.8) !important;
   top: 60px !important;
   align-items: unset !important;
-  padding: 20px;
+  width: calc(100% + 40px);
   display: block !important;
 }
 .mat-dialog-container {
-  box-shadow: none !important;
-  border-radius: 0px !important;
-  height: calc(100% - 100px) !important;
+  position: relative;
+  box-shadow: unset !important;
+  //box-shadow: 1px 2px 0 rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
+  border-radius: 10px !important;
+  // height: calc(100% - 100px) !important;
+  height: unset !important;
+  padding: 0 !important;
   max-width: 600px;
-  margin: auto;
-}
+  //border: 1px solid #c1c1c1 !important;
+  margin: auto 10px auto;
+} 
 rente-header {
   z-index: 99999999999;
   position: fixed;
@@ -345,12 +352,10 @@ button#widgetButton {
   padding: 1em;
   box-shadow: 1px 1px 3px 0px rgba(0,0,0,0.12);
 
-
-
   p{
     text-align: center;
     font-weight: 400;
-    color: white;
+    color: white !important;
   }
   img{
     border-radius: 50%;

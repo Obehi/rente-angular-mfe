@@ -1,0 +1,59 @@
+@import "../../../../../../styles/theme/colors.scss";
+
+.wrapper {
+  margin: 0 10px;
+
+  @media (min-width: 600px) {
+    margin-top: 70px;
+
+    h3 {
+      margin-top: 20px;
+      padding-top: 25px;
+    }
+    p, h3 {
+        margin: 20px 80px;
+    }
+
+   
+    img {
+      display: block;
+      max-width: 100%;
+      max-height: 350px;
+      width: auto;
+      height: auto;
+    }
+  }
+}
+p,
+h3 {
+  color: white;
+}
+
+a {
+  color: $primary;
+}
+
+h3 {
+  margin-bottom: 20px;
+}
+
+p {
+  margin: 20px 0;
+}
+
+img {
+  width: 50%;
+  margin: auto;
+  display: block;
+}
+img:first-of-type {
+  width: 100%;
+}
+
+img:last-of-type {
+  margin-bottom: 20px;
+}
+
+.button-wrapper {
+  margin: 20px;
+}
