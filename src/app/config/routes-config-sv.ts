@@ -178,6 +178,7 @@ export const customMeta = {
 };
 
 export const ROUTES_MAP = {
+  bankTestVariationSelect: 'velgdinbank',
   aboutUs: 'om-oss',
   faq: 'faq',
   contactUs: 'kontakt',
