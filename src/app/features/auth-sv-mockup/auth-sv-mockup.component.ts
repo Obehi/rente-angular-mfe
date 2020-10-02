@@ -92,7 +92,6 @@ export class AuthSvMockupComponent implements OnInit {
 
   public request() {
     var data = this.contactUsForm.value.loginId
-    console.log("request requested")
     this.initializeWebSocketConnection(data)
    
   }
