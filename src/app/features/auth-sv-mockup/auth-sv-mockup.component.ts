@@ -143,7 +143,7 @@ export class AuthSvMockupComponent implements OnInit {
     const data = JSON.stringify(dataObj);
 
     this.stompClient.send( 
-      "urlurl",
+      API_URL_MAP.tinkSendMessageUrl + loginId,
       {},
       data
     );

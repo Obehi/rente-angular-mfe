@@ -52,6 +52,7 @@ export interface OfferInfo {
   loanPeriodYears: number | null;
   cost: number | null;
   totalCost: number | null;
+  loanType: String | null;
 }
 
 export interface BankInfo{

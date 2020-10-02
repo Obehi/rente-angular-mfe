@@ -31,6 +31,7 @@ import { BankUtils } from '@shared/models/bank';
 })
 export class OffersComponentBlue implements OnInit, OnDestroy {
   public offersInfo: Offers;
+  public currentOfferInfo: Offers;
   public loansInfo: any;
   public loans: Loans;
   public offerSavingsType = OFFER_SAVINGS_TYPE;
@@ -46,7 +47,8 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
   public effRateLoweredDialogVisible: boolean;
   public banksMap = BANKS_DATA;
   public tips: object[];
-
+  public offerTypes: String[];
+  public currentOfferType: String;
   get isMobile(): boolean { return window.innerWidth < 600; }
 
   get hasStatensPensjonskasseMembership(): boolean {
@@ -97,11 +99,27 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
   }
   
   public ngOnInit(): void {
+
+    this.offerTypes = [
+      "threeMonths",
+      "oneYear",
+      "all"
+    ]
     // kick off the polyfill!
     smoothscroll.polyfill();
     this.loansService.getOffers().subscribe(
       (res: Offers) => {
-        this.offersInfo = res;
+        this.offersInfo = Object.assign({}, res);
+        this.currentOfferInfo = (JSON.parse(JSON.stringify(res)))
+
+        
+        //REMOVE BEFORE PRODUCTION
+        var flag = false
+        this.offersInfo.offers.top5 = this.offersInfo.offers.top5.map( (offer) => {
+            offer.loanType = flag ? 'threeMonths' : 'oneYear'
+            flag = !flag
+            return offer
+        }) 
         this.isLoading = false;
         this.localStorageService.removeItem('isNewUser');
         this.getTips();
@@ -208,6 +226,20 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
 
   public goToLoans() {
     this.router.navigate(['/dashboard/mine-lan'])
+  }
+
+  public setOfferType(type: String) {
+    this.currentOfferType = type;
+
+    if(type == 'all') {
+      this.currentOfferInfo.offers.top5 = this.offersInfo.offers.top5;
+      return;
+    }
+    let newLoanTypeSelected = this.offersInfo.offers.top5.filter( (item, index, offers) => {
+      return  item.loanType == type 
+    })
+    
+    this.currentOfferInfo.offers.top5 = newLoanTypeSelected
   }
 
 
