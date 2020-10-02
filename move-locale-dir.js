@@ -1,19 +1,19 @@
 var fs = require('fs')
 const path = require('path');
 const { exec } = require('child_process');
+const rimraf = rmdir = require('rimraf');
 
-
-let locale = "/nb"
+let locale = "/sv"
 if (process.env.LOCALE === "sv")
     locale = "/sv"
 else if (process.env.LOCALE === "nb")
     locale = "/nb"
 
-let localePath =  __dirname + "/dist/rente-front-end" + locale;
+let originalPath =  __dirname + "/dist/rente-front-end" + locale;
 let buffer = __dirname + "/dist/buffer"
-let rentePath = __dirname + "/dist/rente-front-end"
+let finalPath = __dirname + "/dist/rente-front-end"
 
-fs.readdir(localePath, function (err, files) {
+fs.readdir(originalPath, function (err, files) {
     if (err) {
         return console.log('Unable to scan directory: ' + err);
     } 
@@ -25,13 +25,17 @@ fs.readdir(localePath, function (err, files) {
 
 
 console.log("moving files")
-console.log(localePath + " <- localePath");
+console.log(originalPath + " <- originalPath");
 console.log(buffer + " <- bufferPath");
-console.log(rentePath + " <- finalPath");
+console.log(finalPath + " <- finalPath");
 
+fs.renameSync(originalPath, buffer)
+console.log("renamed to buffer")
 
+rmdir(finalPath, function(error){
+    console.log("removed rente-front-end")
+    fs.renameSync(buffer, finalPath);
+    console.log("renamed buffer to rente-front-end");
+});
 
-fs.renameSync(localePath, buffer)
-fs.rmdirSync(rentePath)
-fs.renameSync(buffer, rentePath)
 

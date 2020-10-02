@@ -21,14 +21,14 @@ import { EPSIScoreComponent }   from './offers/offers-blue/epsi-score/epsi-score
 
 
 
-const optimize = new OptimizeService()
+
 
 
 const routes: Routes = [
   {
     path: '', component: DashboardComponent, children: [
       {
-        path: 'tilbud', component: optimize.getBinaryVariation() ?  OffersComponentBlue : OffersComponent,
+        path: 'tilbud', component: 1 ? OffersComponentBlue : OffersComponent,
         data: {
           title: customMeta.tilbudTitle,
           meta: {
@@ -41,7 +41,7 @@ const routes: Routes = [
         path: 'prute-fullfort', component: BargainSuccessComponent
       },
       {
-        path: 'mine-lan', component: optimize.getBinaryVariation() ?  LoansBlueComponent : LoansComponent,
+        path: 'mine-lan', component: 1 ?  LoansBlueComponent : LoansComponent,
         data: {
           title: customMeta.mineLanTitle,
           meta: {
@@ -51,7 +51,7 @@ const routes: Routes = [
         }
       },
       {
-        path: 'bolig', component: optimize.getBinaryVariation() ? HouseBlueComponent : HouseComponent,
+        path: 'bolig', component: 1 ? HouseBlueComponent : HouseComponent,
         canDeactivate: [RouteGuard],
         data: {
           title: customMeta.boligTitle,
@@ -73,7 +73,7 @@ const routes: Routes = [
         }
       },
       {
-        path: 'profil', component: optimize.getBinaryVariation() ? BlueProfileComponent : ProfileComponent,
+        path: 'profil', component: 1 ? BlueProfileComponent : ProfileComponent,
         canDeactivate: [RouteGuard],
         data: {
           title: customMeta.profilTitle,
