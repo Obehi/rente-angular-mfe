@@ -30,6 +30,7 @@ import {
 })
 export class AuthSvComponent implements OnInit, OnDestroy {
   
+  public isMockTest = false;
   public isLoginStarted = false;
   public tinkCode: number;
   public isSuccess = false;

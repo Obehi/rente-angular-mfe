@@ -31,6 +31,7 @@ import { CountUpModule } from 'ngx-countup';
 import { LoginLangGenericComponent } from '../environments/components/components';
 import { AuthSvComponent } from './features/auth-sv/auth-sv.component';
 import { OptimizeService } from '@services/optimize.service';
+import { AuthSvMockupComponent } from './features/auth-sv-mockup/auth-sv-mockup.component';
 
 registerLocaleData(localeNo);
 
@@ -52,7 +53,8 @@ registerLocaleData(localeNo);
     EmailPreferencesComponent,
     ProfileDialogInfoComponent,
     LoginLangGenericComponent,
-    AuthSvComponent
+    AuthSvComponent,
+    AuthSvMockupComponent
   ],
   imports: [
     BrowserModule,
