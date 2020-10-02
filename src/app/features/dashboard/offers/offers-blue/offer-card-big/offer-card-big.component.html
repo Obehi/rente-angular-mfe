@@ -1,4 +1,4 @@
-<div class="nr">
+<div class="nr" [ngClass]="{'threeMonths': offer.loanType == 'threeMonths', 'oneYear': offer.loanType == 'oneYear', 'all': offer.loanType == 'all'}">
   {{ index }}
 </div>
 

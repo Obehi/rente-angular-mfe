@@ -33,7 +33,7 @@ export class AuthSvComponent implements OnInit, OnDestroy {
   public isMockTest = false;
   public isLoginStarted = false;
   public tinkCode: number;
-  public isSuccess = false;
+  public tinkSuccess = false;
   private stompClient: any;
   private intervalSubscription: Subscription;
 
@@ -69,8 +69,8 @@ export class AuthSvComponent implements OnInit, OnDestroy {
 
   private initializeWebSocketConnection(tinkCode: number) {
     this.connectAndReconnectSocket(this.successSocketCallback);
-
-    const socket = new SockJS(environment.crawlerUrl);
+    
+    const socket = new SockJS('environment.crawlerUrl');
     this.stompClient = Stomp.over(socket);
 
     if (environment.production) {
@@ -95,7 +95,7 @@ export class AuthSvComponent implements OnInit, OnDestroy {
 
   private successSocketCallback() {
     console.log("this is the shit")
-    this.isSuccess = true
+    this.tinkSuccess = true
   }
 
   private connectAndReconnectSocket(successCallback) {
