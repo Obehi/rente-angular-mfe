@@ -102,7 +102,7 @@ export class AuthSvMockupComponent implements OnInit {
 
     console.log("environment.crawlerUrl")
     console.log(environment.crawlerUrl)
-    const socket = new SockJS(API_URL_MAP.crawlerComunicationUrl);
+    const socket = new SockJS(environment.crawlerUrl);
     this.stompClient = Stomp.over(socket);
 
     if (environment.production) {
