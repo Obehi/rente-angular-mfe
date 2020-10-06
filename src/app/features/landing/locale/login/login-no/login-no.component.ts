@@ -10,6 +10,8 @@ export class LoginNoComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    console.log("login-no!");
+
   }
 
 }

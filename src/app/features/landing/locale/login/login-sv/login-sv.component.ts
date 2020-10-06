@@ -10,6 +10,7 @@ export class LoginSVComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    console.log("login-sv!");
   }
 
 }
