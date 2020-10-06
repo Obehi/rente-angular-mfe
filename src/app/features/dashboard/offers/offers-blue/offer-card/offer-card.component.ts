@@ -44,6 +44,11 @@ export class OfferCardComponentBlue implements OnInit {
   getbankNameOrDefault(offer: OfferInfo): string {
     let text = ""
     switch(offer.bankInfo.bank) { 
+
+      case "SPAREBANKENOST": {
+        text = "Sparebanken Øst"
+      }
+      
       case "SBANKEN": { 
          text = "Sbanken"
          break; 
