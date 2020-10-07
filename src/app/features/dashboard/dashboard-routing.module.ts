@@ -28,7 +28,7 @@ const routes: Routes = [
   {
     path: '', component: DashboardComponent, children: [
       {
-        path: 'tilbud', component: optimize.getBinaryVariation() ?  OffersComponentBlue : OffersComponent,
+        path: 'tilbud', component: OffersComponentBlue,
         data: {
           title: customMeta.tilbudTitle,
           meta: {
@@ -41,7 +41,7 @@ const routes: Routes = [
         path: 'prute-fullfort', component: BargainSuccessComponent
       },
       {
-        path: 'mine-lan', component: optimize.getBinaryVariation() ?  LoansBlueComponent : LoansComponent,
+        path: 'mine-lan', component:    LoansBlueComponent,
         data: {
           title: customMeta.mineLanTitle,
           meta: {
@@ -51,7 +51,7 @@ const routes: Routes = [
         }
       },
       {
-        path: 'bolig', component: optimize.getBinaryVariation() ? HouseBlueComponent : HouseComponent,
+        path: 'bolig', component: HouseBlueComponent,
         canDeactivate: [RouteGuard],
         data: {
           title: customMeta.boligTitle,
@@ -73,7 +73,7 @@ const routes: Routes = [
         }
       },
       {
-        path: 'profil', component: optimize.getBinaryVariation() ? BlueProfileComponent : ProfileComponent,
+        path: 'profil', component: BlueProfileComponent,
         canDeactivate: [RouteGuard],
         data: {
           title: customMeta.profilTitle,

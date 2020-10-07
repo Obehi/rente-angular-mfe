@@ -114,7 +114,21 @@
     </div>
 
     <div class="the-offer-footer">
-    <div class="double buttons">
+
+      <div class="single-button" *ngIf="offer.bankInfo.bank == 'NYBYGGER'">
+        <rente-button 
+        [disabled]="changeBankLoading ||
+        offersInfo.offerSavingsType === offerSavingsType.NO_SAVING"
+        [isLoading]="changeBankLoading"
+        color="primary-semi-wide"
+        (click)="goToBestOffer()"
+        >Les mer og søk om lån</rente-button
+       >
+
+      </div>
+
+    
+    <div class="double buttons" *ngIf="offer.bankInfo.bank != 'NYBYGGER'">
   
       <div class="full-width">
        

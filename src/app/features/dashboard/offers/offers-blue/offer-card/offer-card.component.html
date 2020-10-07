@@ -113,7 +113,19 @@
             </div>
 
 
-            <div class="item buttons">
+            <div class="item single-button" *ngIf="offer.bankInfo.bank == 'NYBYGGER'">
+                <rente-button-small  
+              [disabled]="changeBankLoading ||
+              offersInfo.offerSavingsType === offerSavingsType.NO_SAVING"
+              [isLoading]="changeBankLoading"
+              color="primary"
+              (click)="goToBestOffer()"
+              >Les mer og søk om lån</rente-button-small 
+             >
+
+            </div> 
+
+            <div class="item buttons" *ngIf="offer.bankInfo.bank != 'NYBYGGER'">
                 
                     
                         <rente-button-small class="firstButton" [disabled]="offer.bankInfo.partner == false"  
