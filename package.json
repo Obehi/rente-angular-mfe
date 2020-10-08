@@ -7,6 +7,7 @@
     "build": "npm run version && npm run build-i18n",
     "build:stats": "npm run lint && npm run version && npm run i18n && npm run build-i18n:stats",
     "local": "ng serve --configuration=local",
+    "build:local": "ng build --configuration=local",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
