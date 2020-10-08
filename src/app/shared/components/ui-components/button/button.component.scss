@@ -76,6 +76,14 @@ button.mat-primary-semi-wide {
   width: 325px;
 }
 
+button.mat-primary-medium {
+  background-color: $primary;
+  color: white;
+  height: 56px;
+  width: 90%;
+  border-radius: 8px;
+}
+
 
 button.mat-primary-wide-landing {
   background-color: $primary;
