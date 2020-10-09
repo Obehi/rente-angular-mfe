@@ -13,7 +13,6 @@ export class OptimizeService {
   
   getVariation(): number {
     const isLocale = (environment.name == 'locale' || environment.name == 'undefined' )  ? true : false;
-    //console.log("is locale: " + isLocale);
 
     if(isLocale) {
 
@@ -29,17 +28,13 @@ export class OptimizeService {
     let variation = (window as any).google_optimize.get(this.experimentID);
 
     if( variation == undefined) {
-      console.log("variation is undefined");
       return 0;
     }
     
     if(variation == null) {
-      console.log("variation is null");
       return 0;
     }
     
-
-   console.log("variation in service: " + (window as any).google_optimize.get(this.experimentID));
     return variation;
   }
 

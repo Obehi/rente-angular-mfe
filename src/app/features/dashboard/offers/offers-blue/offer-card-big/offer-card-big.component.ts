@@ -73,9 +73,10 @@ export class OfferCardBigComponentBlue implements OnInit {
   }
 
   public handleNybyggerProductSpecialCase(offer: OfferInfo): boolean {
-    if(offer.productName.includes("rammelån") && offer.bankInfo.bank == "NYBYGGER") {
+    if(offer.productName.includes("Rammelån") && offer.bankInfo.bank == "NYBYGGER") {
+
       window.open(
-        offer.bankInfo.url,
+        "https://www.nybygger.no/kampanje-rammelan/?utm_medium=affiliate%20&utm_source=renteradar.no&utm_campaign=rammelan110&utm_content=cta",
         '_blank')
 
       return true
@@ -125,10 +126,11 @@ export class OfferCardBigComponentBlue implements OnInit {
   }
 
   public openNewOfferDialog(offer: OfferInfo): void {
-
+    console.log("before handleNybyggerProductSpecialCase")
     if(this.handleNybyggerProductSpecialCase(offer) == true) {
       return 
     }
+    console.log("after handleNybyggerProductSpecialCase")
 
     if(offer.bankInfo.partner === false)
       return

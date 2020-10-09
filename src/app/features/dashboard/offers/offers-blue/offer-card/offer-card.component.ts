@@ -113,9 +113,9 @@ export class OfferCardComponentBlue implements OnInit {
   }
 
   public handleNybyggerProductSpecialCase(offer: OfferInfo): boolean {
-    if(offer.productName.includes("rammelån") && offer.bankInfo.bank == "NYBYGGER") {
+    if(offer.productName.includes("Rammelån") && offer.bankInfo.bank == "NYBYGGER") {
       window.open(
-        offer.bankInfo.transferUrl,
+        "https://www.nybygger.no/kampanje-rammelan/?utm_medium=affiliate%20&utm_source=renteradar.no&utm_campaign=rammelan110&utm_content=cta",
         '_blank')
 
       console.log("special bank product case")

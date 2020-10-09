@@ -29,8 +29,6 @@ export class LandingComponent implements OnInit {
   }
   ngOnInit(): void {
 
-    console.log(this.optimize.getVariation() )
-
     const subscription = timer(1000, 1000).subscribe(t => {
       this.time = t;
       if (t === 3) {
