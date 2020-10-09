@@ -72,6 +72,17 @@ export class OfferCardBigComponentBlue implements OnInit {
     });
   }
 
+  public handleNybyggerProductSpecialCase(offer: OfferInfo): boolean {
+    if(offer.productName == "" && offer.bankInfo.bank == "NYBYGGER") {
+      window.open(
+        offer.bankInfo.url,
+        '_blank')
+
+      return true
+    } 
+    return false;
+  }
+
   public openOfferDialog(offer: OfferInfo): void {
     this.dialog.open(DialogInfoComponent, {
       data: offer
@@ -80,6 +91,10 @@ export class OfferCardBigComponentBlue implements OnInit {
   
   
   public openBankUrl(offer: OfferInfo) {
+    if(this.handleNybyggerProductSpecialCase(offer) == true) {
+      return 
+    }
+
     if(offer.bankInfo.url === null)
       return
     
@@ -110,6 +125,11 @@ export class OfferCardBigComponentBlue implements OnInit {
   }
 
   public openNewOfferDialog(offer: OfferInfo): void {
+
+    if(this.handleNybyggerProductSpecialCase(offer) == true) {
+      return 
+    }
+
     if(offer.bankInfo.partner === false)
       return
     

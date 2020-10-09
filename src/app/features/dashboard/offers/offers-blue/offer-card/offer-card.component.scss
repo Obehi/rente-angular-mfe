@@ -395,7 +395,7 @@
           
           
 
-          @media (max-width: 380px) {
+          @media (max-width: 600px) {
             .firstButton {
               margin-bottom: 15px;
             }
@@ -414,6 +414,7 @@
 
             p {
               font-size: 10px;
+              text-align: center;
             }
 
             div {
@@ -451,7 +452,7 @@
             }
           }
 
-          @media (max-width: 380px) {
+          @media (max-width: 600px) {
             margin-top: 60px;
             margin-bottom: 20px !important;
             &.item {

@@ -119,35 +119,24 @@
               offersInfo.offerSavingsType === offerSavingsType.NO_SAVING"
               [isLoading]="changeBankLoading"
               color="primary-medium"
-              (click)="goToBestOffer()"
+              (click)="openNewOfferDialog(offer)"
               >Les mer og søk om lån</rente-button 
              >
-
             </div> 
 
             <div class="item buttons" *ngIf="offer.bankInfo.bank != 'NYBYGGER'">
                 
-                    
-                        <rente-button-small class="firstButton" [disabled]="offer.bankInfo.partner == false"  
-                            [color]="offer.bankInfo.bank == 'LANDKREDITT' ? 'primary-hollow-small-landkreditt' : 'primary-hollow-small'" type="raised"
-                            (click)="openBankUrlByButton(offer)">Se mer på {{getbankNameOrDefault(offer)}}s <br/> hjemmeside
-                        </rente-button-small>
-                                         
-                        <div>
-                        <!-- awfull line break hack with two if statements-->
-                        <rente-button-small 
-                        *ngIf="getbankNameOrDefault(offer).length < 8"
-                        [disabled]="offer.bankInfo.partner == false" [color]="'primary'" type="raised"
-                            (click)="openNewOfferDialog(offer)">Få tilbud fra  {{ getbankNameOrDefault(offer) }}!
-                        </rente-button-small>
+                <rente-button class="firstButton" [disabled]="offer.bankInfo.partner == false"  
+                    [color]="'primary-wide-hollow-card'" type="raised"
+                    (click)="openBankUrlByButton(offer)">Se mer på {{getbankNameOrDefault(offer)}}s <br/> hjemmeside
+                </rente-button>
 
-                        <rente-button-small 
-                        *ngIf="getbankNameOrDefault(offer).length >= 8"
-                        [disabled]="offer.bankInfo.partner == false" [color]="'primary'" type="raised"
-                            (click)="openNewOfferDialog(offer)">Få tilbud fra  <br/> {{ getbankNameOrDefault(offer) }}!
-                        </rente-button-small>
-                        <p class="small" *ngIf=" offer.bankInfo.partner === false"> (Ingen avtale med banken)</p>
-                        </div>
+                <rente-button
+                [disabled]="offer.bankInfo.partner == false" color="primary-medium" type="raised"
+                    (click)="openNewOfferDialog(offer)">Få tilbud fra {{ getbankNameOrDefault(offer) }}!
+                </rente-button>
+                <p class="small" *ngIf=" offer.bankInfo.partner === false"> (Ingen avtale med banken)</p>
+                        
             </div>
         </div>
 

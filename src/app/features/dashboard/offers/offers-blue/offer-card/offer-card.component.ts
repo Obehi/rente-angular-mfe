@@ -83,6 +83,9 @@ export class OfferCardComponentBlue implements OnInit {
     if(offer.bankInfo.url === null)
       return
     
+    if(this.handleNybyggerProductSpecialCase(offer) == true) {
+      return 
+    }  
     window.open(
       offer.bankInfo.url,
       '_blank' 
@@ -109,10 +112,32 @@ export class OfferCardComponentBlue implements OnInit {
     this.sendOfferTrackingData(trackingDto, offer)
   }
 
+  public handleNybyggerProductSpecialCase(offer: OfferInfo): boolean {
+    if(offer.productName == "" && offer.bankInfo.bank == "NYBYGGER") {
+      window.open(
+        offer.bankInfo.transferUrl,
+        '_blank')
+
+      console.log("special bank product case")
+      return true
+    } 
+
+    console.log("NOT special bank product case")
+    
+    return false;
+  }
+
   public openNewOfferDialog(offer: OfferInfo): void {
+   
+
     if(offer.bankInfo.partner === false)
       return
     
+    if(this.handleNybyggerProductSpecialCase(offer) == true) {
+      return 
+    }
+    
+    console.log(offer.productName)
     window.open(
       offer.bankInfo.transferUrl,
       '_blank'
