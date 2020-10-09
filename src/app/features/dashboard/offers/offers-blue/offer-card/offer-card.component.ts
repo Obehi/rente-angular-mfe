@@ -113,7 +113,7 @@ export class OfferCardComponentBlue implements OnInit {
   }
 
   public handleNybyggerProductSpecialCase(offer: OfferInfo): boolean {
-    if(offer.productName == "" && offer.bankInfo.bank == "NYBYGGER") {
+    if(offer.productName.includes("rammelån") && offer.bankInfo.bank == "NYBYGGER") {
       window.open(
         offer.bankInfo.transferUrl,
         '_blank')
@@ -121,9 +121,7 @@ export class OfferCardComponentBlue implements OnInit {
       console.log("special bank product case")
       return true
     } 
-
     console.log("NOT special bank product case")
-    
     return false;
   }
 

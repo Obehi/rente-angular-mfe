@@ -73,7 +73,7 @@ export class OfferCardBigComponentBlue implements OnInit {
   }
 
   public handleNybyggerProductSpecialCase(offer: OfferInfo): boolean {
-    if(offer.productName == "" && offer.bankInfo.bank == "NYBYGGER") {
+    if(offer.productName.includes("rammelån") && offer.bankInfo.bank == "NYBYGGER") {
       window.open(
         offer.bankInfo.url,
         '_blank')
