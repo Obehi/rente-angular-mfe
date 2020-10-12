@@ -95,8 +95,8 @@
                   "with": "src/environments/locale-nb.ts"
                 },
                 {
-                  "replace": "src/environments/components/components.ts",
-                  "with": "src/environments/components/components-no.ts"
+                  "replace": "src/app/local-components/components.ts",
+                  "with": "src/app/local-components/components-no.ts"
                 },
                 {
                   "replace": "src/environments/environment.ts",
@@ -121,8 +121,8 @@
               ],
               "fileReplacements": [
                 {
-                  "replace": "src/environments/components/components.ts",
-                  "with": "src/environments/components/components-sv.ts"
+                  "replace": "src/app/local-components/components.ts",
+                  "with": "src/app/local-components/components-sv.ts"
                 },
                 {
                   "replace": "src/app/config/routes-config.ts",

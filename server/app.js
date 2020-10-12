@@ -57,7 +57,6 @@ var renderIndex = (req, res) => {
 var renderSvIndex = (req, res) => {
   res.sendFile(path.resolve(__dirname, clientPath + '/sv' + '/index.html'))
 }
-
 //app.get('/*', renderSvIndex);
 app.get('/*', renderIndex);
 
@@ -67,5 +66,4 @@ const server = app.listen(port, function () {
   let port = server.address().port;
   host = (host === '::') ? 'localhost' : host;
   console.log(`This express app is listening on: ${host}:${port}`);
-  console.log("dir is: " + __dirname, clientPath + '/index.html');
 });

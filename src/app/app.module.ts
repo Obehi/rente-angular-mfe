@@ -28,7 +28,7 @@ import { EmailPreferencesComponent } from './features/email-preferences/email-pr
 import { ProfileDialogInfoComponent } from "./features/dashboard/profile/dialog-info/dialog-info.component";
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { CountUpModule } from 'ngx-countup';
-import { LoginLangGenericComponent } from '../environments/components/components';
+import { LoginLangGenericComponent } from './local-components/components';
 import { AuthSvComponent } from './features/auth-sv/auth-sv.component';
 import { OptimizeService } from '@services/optimize.service';
 import { AuthSvMockupComponent } from './features/auth-sv-mockup/auth-sv-mockup.component';
