@@ -126,6 +126,10 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
     this.setDefaultSteps();
     const data = JSON.stringify(dataObj);
     this.passPhrase = "";
+    console.log("this.bank.name")
+    console.log("this.bank.name")
+    console.log("this.bank.name")
+    console.log(this.bank.name)
     this.stompClient.send(
       API_URL_MAP.crawlerSendMessageUrl + this.bank.name,
       {},
@@ -158,6 +162,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
 
   private connectAndReconnectSocket(successCallback) {
     const socket = new SockJS(environment.crawlerUrl);
+
     this.stompClient = Stomp.over(socket);
     // Disable websocket logs for production
     if (environment.production) {
