@@ -160,16 +160,16 @@
     top: 60px;
     bottom: unset;
     background-color: $light;
-    border-bottom: 1px solid $lesslight;
+    //border-bottom: 1px solid $lesslight;
   }
 }
 
 .dashboard-content {
-  background-color: white;
+  background: linear-gradient(180deg, #162537 0%, #183a63 10.08%) !important;
   max-width: 1010px;
   margin: auto;
   min-height: calc(100vh - 60px);
-  margin-top: 55px;
+  padding-top: 55px;
   padding-bottom: 80px;
 }
 
