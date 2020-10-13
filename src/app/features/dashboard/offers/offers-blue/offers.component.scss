@@ -31,7 +31,7 @@
   .desktop-main-box-grid {
     grid-gap: 22px;
     grid-template-columns: repeat( 2, minmax(100px, 1fr) );
-    margin: 55px 30px 0px 30px;
+    margin: 55px 30px 80px 30px;
   }
 
   .info-box-grid {
@@ -49,6 +49,12 @@
   }
 
 
+}
+
+@media(max-width: 600px) {
+  .rente-boxes {
+    margin-bottom: 40px;
+  }
 }
 
 .blue-bg {
