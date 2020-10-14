@@ -61,7 +61,6 @@ import { BankRatingDialogComponent } from './offers/offers-blue/bank-rating-dial
 import { EPSIScoreComponent } from './offers/offers-blue/epsi-score/epsi-score.component';
 
 import { OffersListLangGenericComponent } from '../../local-components/components';
-import { OffersListSvComponent } from './offers/offers-list/offers-list-sv/offers-list-sv.component';
 
 // TODO: ADD separate module for material import
 @NgModule({
@@ -103,7 +102,6 @@ import { OffersListSvComponent } from './offers/offers-list/offers-list-sv/offer
     BankRatingDialogComponent,
     EPSIScoreComponent,
     OffersListLangGenericComponent,
-    OffersListSvComponent
   ],
   imports: [
     CommonModule,

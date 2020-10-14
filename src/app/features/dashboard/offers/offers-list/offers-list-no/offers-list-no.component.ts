@@ -21,7 +21,16 @@ export class OffersListNoComponent implements OnInit {
 
     this.currentOfferInfo = (JSON.parse(JSON.stringify(this.offersInfo)));
     this.currentOfferType = "all";
+
+    //REMOVE BEFORE PRODUCTION
+    var flag = false
+    this.offersInfo.offers.top5 = this.offersInfo.offers.top5.map( (offer) => {
+        offer.loanType = flag ? 'threeMonths' : 'oneYear'
+        flag = !flag
+        return offer
+    }) 
   }
+  
 
   public setOfferType(type: String) {
     this.currentOfferType = type;

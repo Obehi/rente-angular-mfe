@@ -27,12 +27,14 @@ export const environment = {
 
 const svFile = `
   export { LoginSVComponent as LoginLangGenericComponent } from '@features/landing/locale/login/login-sv/login-sv.component';
+  export { OffersListSvComponent as OffersListLangGenericComponent } from  '@features/dashboard/offers/offers-list/offers-list-sv/offers-list-sv.component';
 `;
 const noFile = `
   export { LoginNoComponent as LoginLangGenericComponent } from '@features/landing/locale/login/login-no/login-no.component';  
+
 `;
 
-const mockFile = noFile
+const mockFile = svFile
 
 let componentFile = "";
 
@@ -47,10 +49,13 @@ if(!process.env.LOCALE) {
 
 if(process.env.LOCALE == null && componentFile != null) {
   console.log("Couldnt find LOCALE environment variable. Writing to locale mockup constant")
+  console.log(mainPath)
+  console.log("Couldnt find LOCALE environment variable. Writing to locale mockup constant")
+
   writeToComponentFile(componentFile, mainPath)
 } else if(componentFile != null) {
-  writeToComponentFile(componentFile, mainPath)
   console.log("Couldnt find LOCALE environment variable")
+  writeToComponentFile(componentFile, mainPath)
 } else {
   process.on('exit', function(code) {
     return console.log(`About to exit with code ${code}`);
@@ -70,7 +75,7 @@ if(process.env == null) {
 
 
 function writeToComponentFile(file: string, path: string) {
-  fs.writeFile(file, file, (err) => {
+  fs.writeFile(path, file, (err) => {
     if (err) {
       console.log(err);
       return;
