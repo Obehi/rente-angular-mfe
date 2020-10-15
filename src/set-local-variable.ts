@@ -1,7 +1,4 @@
-
 //File replacement did not work with language interfaces when running heroku-postbuild (it works with ng serve...). This file is the workaround
-
-
 const fs = require('fs');
 const path = require('path');
 const environment = process.env.ENV;
@@ -24,8 +21,8 @@ const noFileJs = `module.exports =  "nb"`;
 const svFileTs = `module.exports =  "sv"`;
 const noFileTs = `module.exports =  "nb"`;
 
-const mockFileJs = svFileJs
-const mockFileTs = svFileTs
+const mockFileJs = noFileJs
+const mockFileTs = noFileTs
 
 let localefileJS = "";
 let localefileTs = "";
@@ -73,11 +70,12 @@ if(process.env == null) {
 }
 
 function writeToComponentFile(file, path) {
+console.log("writing file: " + file + " to path: " + path)
   fs.writeFile(path, file, (err) => {
     if (err) {
       console.log(err);
       return;
     }
-    console.log(`Environment config generated at ${mainPathJs}. Environment mode is ${process.env.APP} `);
+    console.log("Locale variable file: " + file + ". Environment mode is ${process.env.APP} ");
   });
 }

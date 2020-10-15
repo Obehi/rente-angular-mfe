@@ -7,7 +7,7 @@ const path = require('path');
 const environment = process.env.ENV;
 const locale = process.env.LOCALE || require('./app/config/locale/locale-js')
 const isProd = environment === 'prod';
-const mainPath = path.join(__dirname + `/app/local-components/components.ts`);
+const mainPath = path.join(__dirname + `/app/local-components/components-output.ts`);
 const svPath = path.join(__dirname + `/app/local-components/components-sv.ts`);
 const noPath = path.join(__dirname + `/app/local-components/components-no.ts`);
 
@@ -32,12 +32,14 @@ const svFile = `
 `;
 const noFile = `
   export { LoginNoComponent as LoginLangGenericComponent } from '@features/landing/locale/login/login-no/login-no.component';  
+  export { OffersListNoComponent as OffersListLangGenericComponent } from  '@features/dashboard/offers/offers-list/offers-list-no/offers-list-no.component';
 `;
 
 const mockFile = noFile
 
 let componentFile = "";
 
+console.log("locale in set-local-components.ts: " + locale)
 if(!locale) {
   console.log("Couldnt find locale variable neither in environmen or in config/locale.ts");
   componentFile = mockFile;
@@ -51,9 +53,8 @@ if(!locale) {
 if(locale == null && componentFile != null) {
   console.log("Couldnt find LOCALE environment variable. Writing to locale mockup constant")
   console.log(mainPath)
-  console.log("Couldnt find LOCALE environment variable. Writing to locale mockup constant")
-
   writeToComponentFile(componentFile, mainPath)
+
 } else if(componentFile != null) {
   console.log("Couldnt find LOCALE environment variable")
   writeToComponentFile(componentFile, mainPath)
