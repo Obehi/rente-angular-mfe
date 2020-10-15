@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { OfferInfo, Offers } from './../../../../../shared/models//offers';
 
 @Component({
-  selector: 'rente-offers-list-sv',
+  selector: 'rente-offers-list',
   templateUrl: './offers-list-sv.component.html',
   styleUrls: ['./offers-list-sv.component.scss']
 })
