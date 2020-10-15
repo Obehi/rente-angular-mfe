@@ -99,10 +99,6 @@
                   "with": "src/app/config/locale/locale-nb.js"
                 },
                 {
-                  "replace": "src/app/local-components/components.ts",
-                  "with": "src/app/local-components/components-no.ts"
-                },
-                {
                   "replace": "src/environments/environment.ts",
                   "with": "src/environments/environment.heroku.ts"
                 }
@@ -124,11 +120,6 @@
 
               ],
               "fileReplacements": [
-                {
-                  "replace": "src/app/local-components/components.ts",
-                  "with": "src/app/local-components/components-sv.ts"
-                },
-                
                 {
                   "replace": "src/app/config/routes-config.ts",
                   "with": "src/app/config/routes-config-sv.ts"

@@ -25,7 +25,8 @@
     "analyze": "webpack-bundle-analyzer dist/rente-front-end/stats.json",
     "i18n:poeditor": "poeditor --config=poeditor.json",
     "i18n-poeditor": "ng xi18n --i18nFormat=xmb --out-file messages.xmb && npm run i18n:poeditor",
-    "move-test": "ng build --configuration=heroku-dev,sv && node move-locale-dir.js"
+    "move-test": "ng build --configuration=heroku-dev,sv && node move-locale-dir.js",
+    "set-local-variable": "ts-node ./src/set-local-variable.ts"
   },
   "private": true,
   "dependencies": {

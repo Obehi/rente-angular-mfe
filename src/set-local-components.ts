@@ -5,11 +5,12 @@
 const fs = require('fs');
 const path = require('path');
 const environment = process.env.ENV;
-const locale = process.env.LOCALE
+const locale = process.env.LOCALE || require('./app/config/locale/locale-js')
 const isProd = environment === 'prod';
 const mainPath = path.join(__dirname + `/app/local-components/components.ts`);
 const svPath = path.join(__dirname + `/app/local-components/components-sv.ts`);
 const noPath = path.join(__dirname + `/app/local-components/components-no.ts`);
+
 
 
 // Setup Heroku configs
@@ -37,16 +38,17 @@ const mockFile = noFile
 
 let componentFile = "";
 
-if(!process.env.LOCALE) {
+if(!locale) {
+  console.log("Couldnt find locale variable neither in environmen or in config/locale.ts");
   componentFile = mockFile;
-} else if(process.env.LOCALE == "nb") {
+} else if(locale == "nb") {
   componentFile = noFile;
-} else if(process.env.LOCALE == "sv") {
+} else if(locale == "sv") {
   componentFile = svFile;
 }
 
 
-if(process.env.LOCALE == null && componentFile != null) {
+if(locale == null && componentFile != null) {
   console.log("Couldnt find LOCALE environment variable. Writing to locale mockup constant")
   console.log(mainPath)
   console.log("Couldnt find LOCALE environment variable. Writing to locale mockup constant")
@@ -73,13 +75,13 @@ if(process.env == null) {
 
 
 
-function writeToComponentFile(file: string, path: string) {
+function writeToComponentFile(file, path) {
   fs.writeFile(path, file, (err) => {
     if (err) {
       console.log(err);
       return;
     }
     console.log(`Environment config generated at ${mainPath}. Environment mode is ${process.env.APP} `);
-    console.log(envConfigFile);
+    console.log(componentFile);
   });
 }

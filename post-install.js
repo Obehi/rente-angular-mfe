@@ -1,11 +1,11 @@
 const { exec } = require('child_process');
+var locale = process.env.LOCALE || require('./src/app/config/locale/locale-js')
 
 let command;
 
-var locale = ",nb"
-if (process.env.LOCALE == "sv")
+if (locale== "sv")
     locale = ",sv"
-else if (process.env.LOCALE == "nb")
+else if (locale== "nb")
     locale = ",nb"
 
 console.log("locale is: " + locale);
@@ -18,10 +18,10 @@ if (process.env.ENV === 'dev') {
     command = exec('npm run config-env && npm run i18n-poeditor && ng build --configuration=heroku-prod'  + locale +  '&& node move-locale-dir.js');
 } else {
     console.log("cant find env. running heroku dev")
-    command = exec('npm run config-env && npm run i18n-poeditor && ng build --configuration=heroku-dev' + locale +  '&& node move-locale-dir.js');
+    command = exec('npm run config-env npm run set-local-variable && npm run set-local-components && npm run i18n-poeditor && ng build --configuration=heroku-dev' + locale +  '&& node move-locale-dir.js');
 }
 
-console.log("locale enviornment is:" + process.env.LOCALE)
+console.log("locale enviornment is:" + process.env.LOCALE);
 
 if (command != undefined) {
     command.stdout.on('data', (data) => {
