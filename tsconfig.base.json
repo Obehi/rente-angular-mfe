@@ -24,10 +24,14 @@
       "@shared/*": ["./src/app/shared/*"],
       "@environments/*": ["./src/environments/*"],
       "@assets/*": ["./src/assets/*"],
-      "@config/*": ["./src/app/config/*"]
+      "@config/*": ["./src/app/config/*"],
+      "@locale/*": ["./src/app/local-components/*"]
     }
   },
   "angularCompilerOptions": {
     "enableIvy": true
-  }
+  }, 
+  "exclude": [
+    "src/**/*.ts"
+  ]
 }

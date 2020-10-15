@@ -9,7 +9,8 @@
       "@shared/*": ["./app/shared/*"],
       "@environments/*": ["./environments/*"],
       "@assets/*": ["./assets/*"],
-      "@config/*": ["./app/config/*"]
+      "@config/*": ["./app/config/*"],
+      "@locale/*": ["./src/app/local-components/*"]
     }
   },
   "files": [
@@ -17,6 +18,11 @@
     "polyfills.ts"
   ],
   "include": [
-    "src/**/*.d.ts"
+
+  ], 
+  "exclude": [
+
   ]
 }
+
+

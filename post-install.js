@@ -2,7 +2,7 @@ const { exec } = require('child_process');
 
 let command;
 
-var locale = ",sv"
+var locale = ",nb"
 if (process.env.LOCALE == "sv")
     locale = ",sv"
 else if (process.env.LOCALE == "nb")

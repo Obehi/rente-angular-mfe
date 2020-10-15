@@ -91,8 +91,12 @@
               ],
               "fileReplacements": [
                 {
-                  "replace": "src/environments/locale.ts",
-                  "with": "src/environments/locale-nb.ts"
+                  "replace": "src/app/config/locale/locale.ts",
+                  "with": "src/app/config/locale/locale-nb.ts"
+                },
+                {
+                  "replace": "src/app/config/locale/locale-js.js",
+                  "with": "src/app/config/locale/locale-nb.js"
                 },
                 {
                   "replace": "src/app/local-components/components.ts",
@@ -124,13 +128,18 @@
                   "replace": "src/app/local-components/components.ts",
                   "with": "src/app/local-components/components-sv.ts"
                 },
+                
                 {
                   "replace": "src/app/config/routes-config.ts",
                   "with": "src/app/config/routes-config-sv.ts"
                 },
                 {
-                  "replace": "src/environments/locale.ts",
-                  "with": "src/environments/locale-sv.ts"
+                  "replace": "src/app/config/locale/locale-js.js",
+                  "with": "src/app/config/locale/locale-sv.ts"
+                },
+                {
+                  "replace": "src/app/config/locale/locale-test.js",
+                  "with": "src/app/config/locale/locale-sv-test.js"
                 },
                 {
                   "replace": "src/environments/environment.ts",

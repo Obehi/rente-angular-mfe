@@ -31,10 +31,9 @@ const svFile = `
 `;
 const noFile = `
   export { LoginNoComponent as LoginLangGenericComponent } from '@features/landing/locale/login/login-no/login-no.component';  
-
 `;
 
-const mockFile = svFile
+const mockFile = noFile
 
 let componentFile = "";
 

@@ -16,7 +16,6 @@ import { MatRadioModule } from "@angular/material/radio";
 import { DialogInfoComponent } from "./offers/dialog-info/dialog-info.component";
 import { DetailsComponentBlue } from "./offers/offers-blue/details/details.component";
 import { DetailsComponent } from "./offers/details/details.component";
-export { OffersListNoComponent } from  '@features/dashboard/offers/offers-list/offers-list-no/offers-list-no.component';  
 
 
 import { RatingComponent } from "./offers/rating/rating.component";
@@ -60,7 +59,9 @@ import { BlueProfileComponent } from './profile/blue-profile/blue-profile.compon
 import { BankRatingDialogComponent } from './offers/offers-blue/bank-rating-dialog/bank-rating-dialog.component';
 import { EPSIScoreComponent } from './offers/offers-blue/epsi-score/epsi-score.component';
 
-import { OffersListLangGenericComponent } from '../../local-components/components';
+//import { OffersListNoComponent } from '../../local-components/components';
+import { OffersListLangGenericComponent } from '../../local-components/components-output';
+
 
 // TODO: ADD separate module for material import
 @NgModule({
@@ -101,7 +102,7 @@ import { OffersListLangGenericComponent } from '../../local-components/component
     BlueProfileComponent,
     BankRatingDialogComponent,
     EPSIScoreComponent,
-    OffersListLangGenericComponent,
+    OffersListLangGenericComponent
   ],
   imports: [
     CommonModule,

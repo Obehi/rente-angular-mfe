@@ -1,9 +1,18 @@
 var fs = require('fs')
 const path = require('path');
 const { exec } = require('child_process');
-const rimraf = rmdir = require('rimraf');
+const rimraf = rmdir = require('rimraf'); 
 
-let locale = "/sv"
+// cant hack filereplacement for js files. doesnt work
+var devLocale = require("./src/app/config/locale/locale-js"); 
+
+let locale = "/nb"; 
+
+console.log("locale")
+console.log("locale")
+console.log("locale")
+console.log(locale)
+console.log(locale)
 if (process.env.LOCALE === "sv")
     locale = "/sv"
 else if (process.env.LOCALE === "nb")
