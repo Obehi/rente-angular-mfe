@@ -13,69 +13,66 @@ const svPathTs = path.join(__dirname + `/app/config/locale/locale-sv.ts`);
 const noPathTs = path.join(__dirname + `/app/config/locale/locale-no.ts`);
 
 
+//nb | sv
+const MOCKUPLOCALVALUE = "sv"
 
 
-const svFileJs = `module.exports =  "sv"`;
-const noFileJs = `module.exports =  "nb"`;
-
-const svFileTs = `module.exports =  "sv"`;
-const noFileTs = `module.exports =  "nb"`;
-
-const mockFileJs = noFileJs
-const mockFileTs = noFileTs
-
-let localefileJS = "";
-let localefileTs = "";
-
-if(!process.env.LOCALE) {
-  localefileJS = mockFileJs;
-  localefileTs = mockFileTs;
-} else if(process.env.LOCALE == "nb") {
-  localefileJS = noFileJs;
-  localefileTs = noFileTs;
-} else if(process.env.LOCALE == "sv") {
-  localefileJS = svFileJs;
-  localefileTs = svFileTs;
-}
-
-
-if(process.env.LOCALE == null) {
-  console.log("Couldnt find LOCALE environment variable. Writing to locale mockup constant")
-  console.log(mainPathJs)
-  console.log("Couldnt find LOCALE environment variable. Writing to locale mockup constant")
-
-  writeToComponentFile(localefileJS, mainPathJs)
-  writeToComponentFile(localefileTs, mainPathTs)
-} else if(localefileJS != null) {
-  console.log("Couldnt find LOCALE environment variable")
-  writeToComponentFile(localefileJS, mainPathJs)
-  writeToComponentFile(localefileTs, mainPathTs)
-} else {
-  process.on('exit', function(code) {
-    return console.log(`About to exit with code ${code}`);
-});
-}
-
+initializeLocaleFile(mainPathTs, MOCKUPLOCALVALUE), 
+initializeLocaleFile(mainPathJs, MOCKUPLOCALVALUE), 
 
 /* overwrite local component files which can be used for file replacement with "ng serve ...". 
 This file is the source of truth, not the respective local files: "components-sv" and "components-nb". 
 This file does not run before ng serve 
 */
-if(process.env == null) {
+/* if(process.env == null) {
   writeToComponentFile(svFileJs, svPathJs);
   writeToComponentFile(noFileJs, noPathJs);
 
   writeToComponentFile(svFileTs, svPathTs);
   writeToComponentFile(noFileTs, noPathTs);
-}
+} 
+*/
 
 function writeToComponentFile(file, path) {
 console.log("writing file: " + file + " to path: " + path)
   fs.writeFile(path, file, (err) => {
     if (err) {
       console.log(err);
+      process.exit(1);
       return;
     }
     console.log("Locale variable file: " + file + ". Environment mode is ${process.env.APP} ");
+  });
+}
+
+
+function initializeLocaleFile(filepath, devMockupvalue) {
+
+  var fileOutput = "";
+  const fileExtension = filepath.split('.').pop();
+  var exportSyntax = "";
+  if(fileExtension == "js") {
+    exportSyntax = "module.exports"
+  } else if (fileExtension == "ts") {
+    exportSyntax = "export const locale "
+  } else {
+    console.log("Error: initializeLocaleFile filepath is not a ts or extension");
+    process.exit(1);
+  }
+
+  if(!process.env.LOCALE) {
+    fileOutput = `${exportSyntax} =  "${devMockupvalue}"`;
+
+  } else {
+    fileOutput = `${exportSyntax} =  "${process.env.LOCALE}"`;
+  }
+
+  console.log("writing file: " + fileOutput + " to path: " + filepath)
+  fs.writeFile(filepath, fileOutput, (err) => {
+    if (err) {
+      console.log(err);
+      process.exit(1);
+    }
+    console.log("Locale variable file: " + fileOutput + ". Environment mode is ${process.env.APP} ");
   });
 }

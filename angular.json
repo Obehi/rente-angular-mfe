@@ -91,6 +91,11 @@
               ],
               "fileReplacements": [
                 {
+                  "replace": "src/app/local-components/components-output.ts",
+                  "with": "src/app/local-components/components-no.ts"
+                },
+                
+                {
                   "replace": "src/app/config/locale/locale.ts",
                   "with": "src/app/config/locale/locale-nb.ts"
                 },
@@ -120,6 +125,10 @@
 
               ],
               "fileReplacements": [
+                {
+                  "replace": "src/app/local-components/components-output.ts",
+                  "with": "src/app/local-components/components-sv.ts"
+                },
                 {
                   "replace": "src/app/config/routes-config.ts",
                   "with": "src/app/config/routes-config-sv.ts"
