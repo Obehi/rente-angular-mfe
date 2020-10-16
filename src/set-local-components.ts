@@ -47,6 +47,9 @@ if(!locale) {
   componentFile = noFile;
 } else if(locale == "sv") {
   componentFile = svFile;
+} else {
+  console.log("set-local-components.ts: couldnt find locale: " + componentFile)
+  process.exit(1);
 }
 
 
@@ -82,7 +85,7 @@ function writeToComponentFile(file, path) {
       console.log(err);
       return;
     }
-    console.log(`Environment config generated at ${mainPath}. Environment mode is ${process.env.APP} `);
+    console.log(`Local component export file generated at ${mainPath}. Environment mode is ${process.env.APP} `);
     console.log(componentFile);
   });
 }

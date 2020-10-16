@@ -129,10 +129,6 @@
                   "with": "src/app/config/locale/locale-sv.ts"
                 },
                 {
-                  "replace": "src/app/config/locale/locale-test.js",
-                  "with": "src/app/config/locale/locale-sv-test.js"
-                },
-                {
                   "replace": "src/environments/environment.ts",
                   "with": "src/environments/environment.heroku.ts"
                 }
