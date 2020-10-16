@@ -5,10 +5,10 @@ import { LocalStorageService } from '@services/local-storage.service';
 import { OptimizeService} from '@services/optimize.service'
 @Component({
   selector: 'rente-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  templateUrl: './header-no.component.html',
+  styleUrls: ['./header-no.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderNoComponent implements OnInit {
   public toggleNavbar: boolean;
   public isSmallScreen: boolean;
   public optimizeService: OptimizeService

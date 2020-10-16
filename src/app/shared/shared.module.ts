@@ -5,7 +5,6 @@ import { AuthGuard } from './guards/auth.guard';
 import { RouteGuard } from './guards/route.guard';
 import { LocalStorageService } from '@services/local-storage.service';
 import { GenericHttpService } from '@services/generic-http.service';
-import { HeaderComponent } from './components/header/header.component';
 import { RouterModule } from '@angular/router';
 import { FooterComponent } from './components/footer/footer.component';
 import { ButtonComponent } from './components/ui-components/button/button.component';
@@ -38,10 +37,11 @@ import { RoundPipe } from './pipes/round.pipe';
 import { ThousandsSeprator } from './pipes/thousands.pipe';
 import { ButtonSmallComponent } from './components/ui-components/button-small/button-small.component';
 import {IMaskModule} from 'angular-imask';
+import { HeaderLangGenericComponent } from '../local-components/components-output'
 
 
 const components = [
-  HeaderComponent,
+  HeaderLangGenericComponent,
   FooterComponent,
   ButtonComponent,
   ButtonSmallComponent,

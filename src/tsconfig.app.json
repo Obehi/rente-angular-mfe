@@ -10,7 +10,7 @@
       "@environments/*": ["./environments/*"],
       "@assets/*": ["./assets/*"],
       "@config/*": ["./app/config/*"],
-      "@locale/*": ["./src/app/local-components/*"]
+      "@local-components/*": ["./src/app/local-components/*"]
     }
   },
   "files": [
