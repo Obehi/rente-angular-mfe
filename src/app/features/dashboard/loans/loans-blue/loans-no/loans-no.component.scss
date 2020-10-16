@@ -1,20 +1,36 @@
-@import "../../../../styles/theme/_colors.scss";
+@import "../../../../../styles/theme/_colors.scss";
 h3.title {
+    color: white;
   padding: 10px;
+}
+
+p {
+  color: black;
+}
+
+.container {
+    //background: linear-gradient(180deg, #162537 0%, #183A63 27.08%);
+    padding-bottom: 80px;
 }
 .inner {
   padding: 10px;
 }
 .summary {
-  background-color: $lightgreen;
-  border-bottom: 1px solid $green;
+
+  
   padding: 10px;
-  padding-bottom: 0;
+
 
   .double {
     .box {
-      background-color: white;  
+        border-radius: 15px;
+      background-color: white;
       color: black;
+
+      h3,p {
+          text-align: center;
+          color: black;
+      }
     }
   }
 }
@@ -30,7 +46,8 @@ h3.title {
     font-size: 14px;
   }
   .box {
-    background-color: $light;
+    border-radius: 7px;
+    background-color: $white;
   }
 }
 
@@ -47,7 +64,6 @@ h3.title {
 
 @media (min-width: 600px) {
   .summary {
-    border: 1px solid $green;
     border-top: none;
     position: relative;
     left: -1px;

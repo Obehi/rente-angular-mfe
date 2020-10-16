@@ -21,10 +21,15 @@ function runScript(currentLocale) {
     var locale = ""
 
     console.log("running runscript")
-    if (currentLocale== "sv")
-        locale = ",sv"
-    else if (currentLocale== "nb")
+    if (currentLocale== "sv") {
+        locale = ",sv";
+        exec("npm run set-sv-routes");
+        exec("cp -f ./src/app/config/routes-config-sv.ts ./src/app/config/routes-config.ts ");  
+    }
+    else if (currentLocale== "nb") {
         locale = ",nb"
+        exec("cp -f ./src/app/config/routes-config-no.ts ./src/app/config/routes-config.ts ");  
+    }
     else {
         console.log("Couldnt find locale in post-install.js");
     }

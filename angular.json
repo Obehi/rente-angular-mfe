@@ -94,6 +94,10 @@
                   "replace": "src/app/local-components/components-output.ts",
                   "with": "src/app/local-components/components-no.ts"
                 },
+                {
+                  "replace": "src/app/config/routes-config.ts",
+                  "with": "src/app/config/routes-config-no.ts"
+                },
                 
                 {
                   "replace": "src/app/config/locale/locale.ts",

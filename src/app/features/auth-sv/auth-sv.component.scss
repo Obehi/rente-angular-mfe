@@ -1,17 +1,20 @@
 
-
 .tink-wrapper {
-    height: 600px;
-    margin-bottom: 80px;
-    iframe{ 
-        height: 600px;
-        margin: auto;
-        display: block;
-    }
-    
-    h3{
+    margin: 20px auto 80px;
+    min-height: 800px;
+    h3 {
         text-align: center;
-        font-size: 37;
         margin-bottom: 20px;
     }
+
+    iframe {
+        display: block;
+        margin: auto;
+    }
+}
+
+iframe{ 
+    height: 600px;
+    box-shadow: 1px 1px 7px 2px #cdcdcd;
+    border: 0;
 }

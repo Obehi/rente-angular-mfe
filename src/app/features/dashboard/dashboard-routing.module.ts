@@ -2,7 +2,6 @@ import { OffersComponent } from './offers/offers.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { DashboardComponent } from './dashboard.component';
-import { LoansComponent } from './loans/loans.component';
 import { HouseComponent }   from './house/house.component';
 import { PreferencesComponent } from './preferences/preferences.component';
 import { ProfileComponent } from './profile/profile.component';
@@ -18,8 +17,7 @@ import { HouseBlueComponent }   from './house/house-blue/house-blue.component';
 import { BlueProfileComponent }   from './profile/blue-profile/blue-profile.component';
 import { LoansBlueComponent }   from './loans/loans-blue/loans-blue.component';
 import { EPSIScoreComponent }   from './offers/offers-blue/epsi-score/epsi-score.component';
-
-
+import { LoansLangGenericComponent } from '../../local-components/components-output'
 
 
 
@@ -40,7 +38,7 @@ const routes: Routes = [
         path: 'prute-fullfort', component: BargainSuccessComponent
       },
       {
-        path: 'mine-lan', component: LoansBlueComponent,
+        path: 'mine-lan', component: LoansLangGenericComponent,
         data: {
           title: customMeta.mineLanTitle,
           meta: {

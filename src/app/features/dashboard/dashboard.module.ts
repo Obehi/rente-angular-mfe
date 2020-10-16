@@ -5,7 +5,6 @@ import { OffersComponentBlue } from "./offers/offers-blue/offers.component";
 import { OffersComponent } from "./offers/offers.component";
 import { DashboardComponent } from "./dashboard.component";
 import { MatTabsModule } from "@angular/material/tabs";
-import { LoansComponent } from "./loans/loans.component";
 import { HouseComponent } from "./house/house.component";
 import { PreferencesComponent } from "./preferences/preferences.component";
 import { ProfileComponent } from "./profile/profile.component";
@@ -55,13 +54,10 @@ import { LoansBlueComponent } from './loans/loans-blue/loans-blue.component';
 import { HouseBlueComponent } from './house/house-blue/house-blue.component';
 import { BlueAddressComponent } from './house/house-blue/blue-address/blue-address.component';
 import { BlueProfileComponent } from './profile/blue-profile/blue-profile.component';
-
 import { BankRatingDialogComponent } from './offers/offers-blue/bank-rating-dialog/bank-rating-dialog.component';
 import { EPSIScoreComponent } from './offers/offers-blue/epsi-score/epsi-score.component';
-
-//import { OffersListNoComponent } from '../../local-components/components';
 import { OffersListLangGenericComponent } from '../../local-components/components-output';
-
+import { LoansLangGenericComponent } from '../../local-components/components-output';
 
 // TODO: ADD separate module for material import
 @NgModule({
@@ -69,7 +65,7 @@ import { OffersListLangGenericComponent } from '../../local-components/component
     OffersComponentBlue,
     OffersComponent,
     DashboardComponent,
-    LoansComponent,
+    LoansLangGenericComponent,
     HouseComponent,
     PreferencesComponent,
     ProfileComponent,
@@ -102,7 +98,8 @@ import { OffersListLangGenericComponent } from '../../local-components/component
     BlueProfileComponent,
     BankRatingDialogComponent,
     EPSIScoreComponent,
-    OffersListLangGenericComponent
+    OffersListLangGenericComponent,
+    LoansLangGenericComponent
   ],
   imports: [
     CommonModule,

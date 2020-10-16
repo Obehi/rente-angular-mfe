@@ -10,6 +10,7 @@ import { TermsConditionsComponent } from '@features/terms-conditions/terms-condi
 import { PrivacyPolicyComponent } from '@features/privacy-policy/privacy-policy.component';
 import { ContactUsComponent } from '@features/contact-us/contact-us.component';
 import { EmailPreferencesComponent } from '@features/email-preferences/email-preferences.component';
+import { AuthSvMockupComponent } from '@features/auth-sv-mockup/auth-sv-mockup.component'
 
 import { AuthGuard } from '@shared/guards/auth.guard';
 import { GetNotifiedComponent } from '@features/get-notified/get-notified.component';
@@ -156,6 +157,9 @@ const routes: Routes = [
         description: customMeta.auth.description
       }
     }
+  },
+  {
+    path: ROUTES_MAP.tinkMockup, component: AuthSvMockupComponent,
   },
   {
     path: ROUTES_MAP.dashboard,
