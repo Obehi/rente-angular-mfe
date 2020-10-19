@@ -1,0 +1,70 @@
+@import "../../../../styles/theme/_colors.scss";
+.problems {
+  .title {
+    padding-bottom: 20px;
+    text-align: center;
+    h3 {
+      margin-bottom: 20px;
+    }
+  }
+}
+
+.title {
+  padding-bottom: 30px;
+  text-align: center;
+  h3 {
+    margin-bottom: 10px;
+  }
+}
+
+rente-button {
+  margin: auto;
+  display: block;
+  margin-top: 20px;
+  text-align: center;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+.memberlist {
+  font-size: 16px;
+  position: relative;
+  border-bottom: 1px solid $light;
+  padding: 10px 30px 10px 0px;
+  &:last-of-type {
+    border-bottom: none;
+  }
+  mat-icon {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+
+.field {
+  margin-bottom: 20px;
+}
+.double {
+  grid-gap: 40px;
+  margin-bottom: 20px;
+}
+
+
+.blue {
+  background: $secondary;
+
+  h3, p {
+    color: white;
+  }
+
+  form {
+    h3, p {
+      color: #000
+    }
+    background: white;
+    border-radius: 15px;
+  }
+}

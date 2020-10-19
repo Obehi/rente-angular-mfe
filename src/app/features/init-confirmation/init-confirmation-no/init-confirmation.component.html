@@ -1,0 +1,130 @@
+<div class="front-container" [ngClass]="{'blue': optimizeService.getBinaryVariation()}">
+    <div *ngIf="propertyForm">
+      <div class="title">
+        <h3 i18n=“hi|info-confirmation@@info.confirmation.hi”>Hei, {{ userData.name }}</h3>
+        <p i18n=“more-infor|info-confirmation@@info.confirmation.moreInfo”>Vi trenger litt mer informasjon før vi kan søke etter tilbud</p>
+      </div>
+  
+      <form
+        [formGroup]="propertyForm"
+        novalidate
+        (ngSubmit)="updateProperty(propertyForm.value)"
+      >
+        <div class="field">
+          <rente-input
+            [placeholder]="'E-post'"
+            formControlName="email"
+            [errorStateMatcher]="
+              isErrorState(propertyForm.controls['email'], propertyForm)
+            "
+            [modelOptions]="{ updateOn: 'blur' }"
+          >
+          </rente-input>
+  
+          <div *ngIf="propertyForm.controls['email'].touched">
+            <p i18n=“empty|info-confirmation@@info.confirmation.empty”
+              class="error small"
+              *ngIf="propertyForm.controls['email'].hasError('required')"
+            >
+              Kan ikke være tom
+            </p>
+            <p i18n=“invalid|info-confirmation@@info.confirmation.invalid”
+              class="error small"
+              *ngIf="propertyForm.controls['email'].hasError('pattern')"
+            >
+              Ugyldig e-post
+            </p>
+          </div>
+        </div>
+        <div class="field">
+          <div class="withinfo">
+            <div>
+              <rente-input
+                [placeholder]="'Bostadens värde'"
+                formControlName="apartmentSize"
+                matSuffix="kr"
+                [errorStateMatcher]="
+                  isErrorState(
+                    propertyForm.controls['apartmentSize'],
+                    propertyForm
+                  )
+                "
+                [type]="'tel'"
+                [maskType]="mask.squareMeter"
+              >
+              </rente-input>
+  
+              <div *ngIf="propertyForm.controls['apartmentSize'].touched">
+                <p i18n=“empty2|info-confirmation@@info.confirmation.empty2”
+                  class="error small"
+                  *ngIf="
+                    propertyForm.controls['apartmentSize'].hasError('required')
+                  "
+                >
+                  Kan ikke være tom
+                </p>
+              </div>
+            </div>
+            <div i18n=“help|info-confirmation@@info.confirmation.help”
+              class="clickable"
+              (click)="openInfoDialog('Brukes til å estimere din boligverdi')"
+            >
+              <mat-icon>help</mat-icon>
+            </div>
+          </div>
+        </div>
+  
+        <p i18n=“organization|info-confirmation@@info.confirmation.organization” class="small">
+          Bankene gir ofte bedre betingelser om du er medlem i en organisasjon
+        </p>
+        <mat-form-field>
+          <input
+            type="text"
+            placeholder="+ Lägg till medlemskap (valfritt)"
+            matInput
+            [formControl]="membershipCtrl"
+            formControlName="membership"
+            #membershipInput
+            [matAutocomplete]="auto"
+          />
+          <mat-autocomplete
+            #auto="matAutocomplete"
+            (optionSelected)="selected($event)"
+          >
+            <mat-option
+              *ngFor="let membership of filteredMemberships | async"
+              [value]="membership">
+              {{ membership.label }}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+        <p i18n=“my-memberships|info-confirmation@@info.confirmation.myMemberships” class="small" *ngIf="memberships.length">
+          Mine medlemskap
+        </p>
+        <p
+          class="memberlist"
+          *ngFor="let membership of memberships; let i = index"
+        >
+          {{ membership.label }}
+          <mat-icon
+            class="clickable"
+            (click)="remove(membership, i)"
+            *ngIf="removable"
+            >delete_forever</mat-icon
+          >
+        </p>
+        <rente-button i18n=“done|info-confirmation@@info.confirmation.done”
+          color="primary"
+          [isLoading]="isLoading"
+          [disabled]="propertyForm.invalid || isLoading"
+        >
+          Ferdig!
+        </rente-button>
+      </form>
+    </div>
+  </div>
+  
+  <div class="loading" *ngIf="!propertyForm">
+    <mat-spinner [diameter]="48" [strokeWidth]="4"></mat-spinner>
+  </div>
+  

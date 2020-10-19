@@ -14,6 +14,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ContactUsComponent } from './features/contact-us/contact-us.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { InitConfirmationComponent } from '@features/init-confirmation/init-confirmation.component';
+
+
 import { registerLocaleData } from '@angular/common';
 import localeNo from '@angular/common/locales/nb';
 import { MaterialModule } from '@shared/material/material.module';
@@ -34,6 +36,9 @@ import { AuthSvMockupComponent } from './features/auth-sv-mockup/auth-sv-mockup.
 
 import { LoginLangGenericComponent } from './local-components/components-output'
 
+import { InitConfirmationLangGenericComponent  } from './local-components/components-output';
+
+
 registerLocaleData(localeNo);
 
 @NgModule({
@@ -46,6 +51,7 @@ registerLocaleData(localeNo);
     TermsConditionsComponent,
     PrivacyPolicyComponent,
     ContactUsComponent,
+    InitConfirmationLangGenericComponent,
     InitConfirmationComponent,
     GetNotifiedComponent,
     CounterComponent,
@@ -55,7 +61,7 @@ registerLocaleData(localeNo);
     ProfileDialogInfoComponent,
     LoginLangGenericComponent,
     AuthSvComponent,
-    AuthSvMockupComponent,
+    AuthSvMockupComponent
   ],
   imports: [
     BrowserModule,

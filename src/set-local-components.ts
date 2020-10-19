@@ -17,7 +17,7 @@ const svFile = `
   export { OffersListSvComponent as OffersListLangGenericComponent } from  '@features/dashboard/offers/offers-list/offers-list-sv/offers-list-sv.component';
   export { HeaderSvComponent as HeaderLangGenericComponent } from '@shared/components/header/header-sv/header-sv.component';
   export { LoansSvComponent as LoansLangGenericComponent } from '@features/dashboard/loans/loans-blue/loans-sv/loans-sv.component'
-
+  export { InitConfirmationSVComponent as InitConfirmationLangGenericComponent } from '@features/init-confirmation/init-confirmation-sv/init-confirmation.component'
 
 `;
 const noFile = `
@@ -25,6 +25,7 @@ const noFile = `
   export { OffersListNoComponent as OffersListLangGenericComponent } from  '@features/dashboard/offers/offers-list/offers-list-no/offers-list-no.component';
   export { HeaderNoComponent as HeaderLangGenericComponent } from '@shared/components/header/header-no/header-no.component';
   export { LoansNoComponent as LoansLangGenericComponent } from '@features/dashboard/loans/loans-blue/loans-no/loans-no.component'
+  export { InitConfirmationNoComponent as InitConfirmationLangGenericComponent } from '@features/init-confirmation/init-confirmation-no/init-confirmation.component'
 
 
 

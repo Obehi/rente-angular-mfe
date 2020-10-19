@@ -1,4 +1,3 @@
-import { InitConfirmationComponent } from './features/init-confirmation/init-confirmation.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { PageNotFoundComponent } from '@features/page-not-found/page-not-found.component';
@@ -18,7 +17,7 @@ import { customMeta, defaultMeta, defaultTitle } from './config/routes-config';
 import { BankChoiceComponent } from '@features/auth/bank-choice/bank-choice.component';
 import { OptimizeService } from '@services/optimize.service';
 
-
+import { InitConfirmationLangGenericComponent } from './local-components/components-output'
 
 const optimize = new OptimizeService()
 
@@ -128,7 +127,7 @@ const routes: Routes = [
     }
   },
   {
-    path: ROUTES_MAP.initConfirmation, component: InitConfirmationComponent,
+    path: ROUTES_MAP.initConfirmation, component: InitConfirmationLangGenericComponent,
     data: {
       title: customMeta.bekreftTitle,
       meta: {
