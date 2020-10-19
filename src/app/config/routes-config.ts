@@ -11,40 +11,40 @@ export const defaultMeta = {
 
 export const customMeta = {
   landing: {
-    title: 'Beste boliglånsrente | Sammenlign rente på boliglån | Renteradar.no',
-    description: 'Få beste boliglånsrente. Sammenlign renten din med andre og de beste tilbudene i markedet. Du kan prute på renten eller bytte bank- helt automatisk og gratis.'
+    title: 'Bolåneräntor| Vi hjälper dig hitta bästa räntan | Ränteradar.se',
+    description: 'Vi jämför olika bolåneräntor med din och hjälper dig hitta den bästa räntan på marknaden. Du kan pruta på räntan hos din befintliga bank eller byta bank – helt automatiskt och gratis.'
   },
   personvern: {
-    title: 'Personvern | Renteradar.no',
-    description: 'Forbrukerøkonomene AS som driver Renteradar.no, tar personvern og GDPR på alvor. Les mer i vår personvernerklæring og brukervilkår her.'
+    title: 'Om personuppgifter | Ränteradar.se',
+    description: 'Ränteradar Sweden AB som driver Ränteradar.se tar GDPR på största allvar, läs mer om behandling av personuppgifter samt användarvillkor här. '
   },
   valgBank: {
     title: 'Velg banken hvor du har boliglån | Renteradar.no',
     description: 'Velg banken hvor du har boliglån og logg inn med BankID på mobil. Da henter vi automatisk inn din rente og låneinformasjon.'
   },
   omOss: {
-    title: 'Vår visjon og teamet bak tjenesten | Renteradar.no',
-    description: 'Vår visjon er å gjøre det lettere for deg å alltid ha de beste betingelsene på boliglånet. Les mer om teamet bak Renteradar.no her.'
+    title: 'Vår vision och teamet bakom tjänsten | Ränteradar.se',
+    description: 'Vår vision är att göra det lättare för dig att alltid ha de bästa villkoren på ditt bolån. Läs mer om teamet bakom Ränteradar.se här.'
   },
   kontakt: {
-    title: 'Kontakt oss | Renteradar.no',
-    description: 'Ta gjerne kontakt om du har spørsmål eller om noe ikke fungerer. Bruk dette kontaktskjemaet eller chat-funksjonen i tjenesten så kommer vi raskt tilbake til deg.'
+    title: 'Kontakta oss | Ränteradar.se',
+    description: 'Kontakta oss gärna om du har frågor eller om något inte fungerar. Du kan lämna din information så kontaktar vi dig, eller använda chat-funktionen i tjänsten så återkommer vi så snabbt vi kan!'
   },
   cookies: {
-    title: 'Cookies | Personvern | Renteradar.no',
-    description: 'Les vår Cookiepolicy her om hvorfor og hvordan Renteradar.no bruker cookies.'
+    title: 'Cookies | Om personuppgifter| Ränteradar.se',
+    description: 'Läs vår cookiepolicy här om varför och hur Ränteradar.se använder cookies.'
   },
   faabeskjed: {
-    title: 'Flere banker kommer | Få beskjed | Renteradar.no',
-    description: 'Tjenesten støtter i dag kun kunder av DNB, Nordea, Sparebank 1- eller Eika-bankene. Legg igjen din email og få beskjed når din bank er på plass.'
+    title: 'Ränteradar.se',
+    description: ''
   },
   personvernerklaering: {
-    title: 'Personvernserklæring | Personvern | Renteradar.no',
-    description: 'Forbrukerøkonomene AS som driver Renteradar.no, tar personvern  og GDPR på alvor. Les mer i vår personvernerklæring her.'
+    title: 'Integritetspolicy | Ränteradar.se',
+    description: 'Ränteradar Sweden AB som driver Ränteradar.se tar behandling av personuppgifter samt GDPR på allvar. Läs mer om det här.'
   },
   auth: {
-    title: 'Registrer | Logg inn | Renteradar.no',
-    description: 'Renteradar.no henter renten du har og lånebeløp automatisk gjennom innlogging med BankID på mobil'
+    title: 'Registrera dig | Logga in | Ränteradar.se',
+    description: 'Ränteradar.se hämtar räntan du har och lånebeloppet automatiskt genom inloggning med mobilt BankID.'
   },
   
   landingTitle: defaultTitle,
@@ -181,9 +181,9 @@ export const ROUTES_MAP = {
   aboutUs: 'om-oss',
   faq: 'faq',
   contactUs: 'kontakt',
-  privacy: 'personvern',
-  privacyPolicy: 'personvern/personvernerklaering',
-  termsConditions: 'personvern/brukervilkar',
+  privacy: 'personuppgiftsbehandling',
+  privacyPolicy: 'personuppgiftsbehandling/integritypolicy',
+  termsConditions: 'personuppgiftsbehandling/anvandarvillkor',
   bankSelect: 'velgbank',
   bankTestVariationSelect: 'velgdinbank',
   auth: 'autentisering',
@@ -191,6 +191,7 @@ export const ROUTES_MAP = {
   initConfirmation: 'bekreft',
   getNotified: 'faabeskjed',
   guide: 'slik-funger-renteradar',
-  cookies: 'personvern/cookies',
+  cookies: 'personuppgiftsbehandling/cookies',
   emailPreferences: 'epost/innstillinger',
+  tinkMockup: 'tink-mockup'
 };
