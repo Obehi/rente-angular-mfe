@@ -93,12 +93,11 @@
                 {
                   "replace": "src/app/local-components/components-output.ts",
                   "with": "src/app/local-components/components-no.ts"
-                },
+                },  
                 {
-                  "replace": "src/app/config/routes-config.ts",
-                  "with": "src/app/config/routes-config-no.ts"
+                  "replace": "src/index.html",
+                  "with": "src/index-dev.html"
                 },
-                
                 {
                   "replace": "src/app/config/locale/locale.ts",
                   "with": "src/app/config/locale/locale-nb.ts"
@@ -112,6 +111,42 @@
                   "with": "src/environments/environment.heroku.ts"
                 }
               ]
+            },
+            "nb-local": {
+              "localize": ["nb"],
+              "assets": [
+                { "glob": "**/*", "input": "src/assets/nb", "output": "/assets/" },
+                { "glob": "sitemap.xml", "input": "src/sitemaps/nb", "output": "/" },
+                "src/assets",
+                "src/favicon.ico",
+                "src/sitemap.xml",
+                "src/sitemap-sv.xml",
+                "src/robots.txt"
+
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "src/app/local-components/components-output.ts",
+                  "with": "src/app/local-components/components-no.ts"
+                },  
+                {
+                  "replace": "src/index.html",
+                  "with": "src/index-dev.html"
+                },
+                {
+                  "replace": "src/app/config/locale/locale.ts",
+                  "with": "src/app/config/locale/locale-nb.ts"
+                },
+                {
+                  "replace": "src/app/config/locale/locale-js.js",
+                  "with": "src/app/config/locale/locale-nb.js"
+                },
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.heroku.ts"
+                }
+              ]
+              
             },
             "sv": {
               "localize": ["sv"],
@@ -132,6 +167,44 @@
                 {
                   "replace": "src/app/local-components/components-output.ts",
                   "with": "src/app/local-components/components-sv.ts"
+                },
+                {
+                  "replace": "src/app/config/routes-config.ts",
+                  "with": "src/app/config/routes-config-sv.ts"
+                },
+                {
+                  "replace": "src/app/config/locale/locale-js.js",
+                  "with": "src/app/config/locale/locale-sv.ts"
+                },
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.heroku.ts"
+                }
+              ]
+            },
+            "sv-local": {
+              "localize": ["sv"],
+              "assets": [
+                { "glob": "**/*", "input": "src/assets/sv", "output": "/assets/" },
+                { "glob": "sitemap.xml", "input": "src/sv/sitemap/", "output": "/" },
+                { "glob": "index.html", "input": "src/sv/index/", "output": "/" },
+                { "glob": "test.html", "input": "src/sv/test/", "output": "/" },
+
+                "src/assets",
+                "src/favicon.ico",
+                "src/sitemap.xml",
+                "src/sitemap-sv.xml",
+                "src/robots.txt"
+
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "src/app/local-components/components-output.ts",
+                  "with": "src/app/local-components/components-sv.ts"
+                },
+                {
+                  "replace": "src/index.html",
+                  "with": "src/index-dev.html"
                 },
                 {
                   "replace": "src/app/config/routes-config.ts",
@@ -340,6 +413,12 @@
             },
             "sv": {
               "browserTarget": "rente-front-end:build:sv"
+            },
+            "sv-local": {
+              "browserTarget": "rente-front-end:build:sv-local"
+            },
+            "nb-local": {
+              "browserTarget": "rente-front-end:build:nb-local"
             }
           },
           "i18nFile": "src/locale/messages.nb.xtb",
