@@ -13,7 +13,7 @@ import { ContactService } from "@services/remote-api/contact.service";
 import { Router } from "@angular/router";
 import { SnackBarService } from "@services/snackbar.service";
 import { Mask } from '@shared/constants/mask'
-import { locale } from '../../../environments/locale';
+import { locale } from '../../config/locale/locale';
 
 @Component({
   selector: "rente-contact-us",
@@ -33,7 +33,6 @@ export class ContactUsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
- 
     this.contactUsForm = this.fb.group({
       name: ["", Validators.required],
       email: [
@@ -62,7 +61,6 @@ export class ContactUsComponent implements OnInit {
   }
 
   public sendContactUsForm(formData) {
-
     var formLocale
     if(this.locale === "nb") {
       formLocale = "NOR";

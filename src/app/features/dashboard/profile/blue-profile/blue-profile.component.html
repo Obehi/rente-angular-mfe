@@ -8,11 +8,11 @@
   <div class="container">
     <div class="update-complete" [@loading]="updateAnimationTrigger? 'true' : 'false'">
       <img src="../../../../assets/icons/ic_done.svg" alt="success-icon" />
-      <p>Lagret</p>
+      <p i18n=“saved|profile@@profile.saved”>Lagret</p>
     </div>
 
     <div class="update-error" [@loading]="errorAnimationTrigger ? 'true' : 'false'">
-      <p>Oops, noe gikk galt</p>
+      <p i18n=“issue|profile@@profile.issue”>Oops, noe gikk galt</p>
     </div>
 
     <div class="loading" *ngIf="isLoading">
@@ -31,10 +31,10 @@
                 " [modelOptions]="{ updateOn: 'blur'}">
               </rente-input>
               <div *ngIf="profileForm.controls['email'].touched" class="error-message">
-                <rente-form-message [type]="'error'" *ngIf="profileForm.controls['email'].hasError('required')">
+                <rente-form-message i18n=“issue-mail|profile@@profile.issueMail” [type]="'error'" *ngIf="profileForm.controls['email'].hasError('required')">
                   Ikke gyldig email
                 </rente-form-message>
-                <rente-form-message [type]="'error'" *ngIf="profileForm.controls['email'].hasError('pattern')">
+                <rente-form-message i18n=“issue-mail2|profile@@profile.issueMail2” [type]="'error'" *ngIf="profileForm.controls['email'].hasError('pattern')">
                   Ikke gyldig email
                 </rente-form-message>
               </div>
@@ -56,6 +56,7 @@
             <div class="field">
               <div *ngIf="profileForm.controls['income'].touched" class="error-message">
                 <rente-form-message class="text-left d-block" [type]="'error'"
+                i18n=“issue-empty|profile@@profile.issueEmpty”
                   *ngIf="profileForm.controls['income'].hasError('required')">
                   Kan ikke være tom
                 </rente-form-message>
@@ -63,11 +64,11 @@
             </div>
           </div>
 
-          <h3 class="desktop">Medlemskap</h3>
-
+          <h3 i18n=“membership|profile@@profile.membership” class="desktop">Medlemskap</h3>
           <div class="accordion ">
             <div class="header mobile questionLeft" (click)="showMemberships = !showMemberships">
-              <h3>Medlemskap ({{ memberships.length }})</h3>
+          
+          <h3 i18n=“membership|profile@@profile.membershipLength”>Medlemskap ({{ memberships.length }})</h3>
               <mat-icon class="membershipHelp" (click)="
                         openInfoDialog(
                           'Enkelte banker har spesielt gunstige tilbud til deg som er medlem i en interesseorganisasjon eller fagforening. Legg inn ditt medlemsskap for å se disse under tilbudssiden.'
@@ -89,7 +90,7 @@
                     </mat-option>
                   </mat-autocomplete>
                 </mat-form-field>
-                <p class="small" *ngIf="memberships.length">
+                <p i18n=“my-memberships|profile@@profile.myMemberships” class="small" *ngIf="memberships.length">
                   Mine medlemskap
                 </p>
                 <p class="memberlist" *ngFor="let membership of memberships; let i = index">
@@ -105,11 +106,11 @@
       <div class="desktop-section">
         <form [formGroup]="preferencesForm" novalidate change>
           <div class="field">
-            <h3 class="desktop">Epost innstillinger</h3>
+            <h3 i18n=“settings-mail|profile@@profile.settingsMail” class="desktop">Epost innstillinger</h3>
 
             <div class="accordion field">
               <div class="header mobile" (click)="showPreferences = !showPreferences">
-                <h3>Epost innstillinger</h3>
+                <h3 i18n=“settings-mail|profile@@profile.settingsMail2”>Epost innstillinger</h3>
                 <mat-icon *ngIf="!showPreferences">expand_more</mat-icon>
                 <mat-icon *ngIf="showPreferences">expand_less</mat-icon>
               </div>
@@ -127,18 +128,18 @@
                       </div>
                     </div>
                     <mat-radio-group formControlName="checkRateReminderType">
-                      <mat-radio-button value="HVER_MANED_1"><span class="mat-radio-label">Hver måned</span>
+                      <mat-radio-button value="HVER_MANED_1"><span i18n=“month-every|profile@@profile.monthEvery” class="mat-radio-label">Hver måned</span>
                       </mat-radio-button>
-                      <mat-radio-button value="HVER_MANED_2"><span class="mat-radio-label">Hver 2. måned</span>
+                      <mat-radio-button value="HVER_MANED_2"><span i18n=“month-every|profile@@profile.monthTwo” class="mat-radio-label">Hver 2. måned</span>
                       </mat-radio-button>
-                      <mat-radio-button value="HVER_MANED_3"><span class="mat-radio-label">Hver 3. måned</span>
+                      <mat-radio-button value="HVER_MANED_3"><span i18n=“month-every|profile@@profile.monthThree” class="mat-radio-label">Hver 3. måned</span>
                       </mat-radio-button>
-                      <mat-radio-button value="HVER_MANED_4"><span class="mat-radio-label">Hver 4. måned</span>
+                      <mat-radio-button value="HVER_MANED_4"><span i18n=“month-every|profile@@profile.monthFour” class="mat-radio-label">Hver 4. måned</span>
                       </mat-radio-button>
                       <mat-radio-button value="NONE"><span class="mat-radio-label">Aldri</span></mat-radio-button>
                     </mat-radio-group>
                   </div>
-                  <div class="field">
+                  <div i18n=“market-updates|profile@@profile.marketUpdates” class="field">
                     <p class="small">
                       Få markedsoppdateringer, nyheter og annen informasjon på epost
                     </p>
@@ -155,11 +156,11 @@
               </div>
             </div>
 
-            <h3 class="desktop">Hvilke tilbud vil du se?</h3>
+            <h3 class="desktop" i18n=“market-offers|profile@@profile.marketOffers”>Hvilke tilbud vil du se?</h3>
 
             <div class="accordion field">
               <div class="header mobile" (click)="showOfferPreferences = !showOfferPreferences">
-                <h3>Hvilke tilbud vil du se?</h3>
+                <h3 i18n=“market-offers|profile@@profile.marketOffers”>Hvilke tilbud vil du se?</h3>
                 <mat-icon *ngIf="!showOfferPreferences">expand_more</mat-icon>
                 <mat-icon *ngIf="showOfferPreferences">expand_less</mat-icon>
               </div>
@@ -167,7 +168,7 @@
                 <div class="inner-body" *ngIf="showOfferPreferences">
 
 
-                  <div class="field">
+                  <div i18n=“see-offers-special|profile@@profile.seeOffers.special” *ngIf="local != sv" class="field">
                     <p class="small">
                       Ønsker du <b>kun</b> å se tilbud på rammelån/flexilån?
                     </p>
@@ -177,7 +178,7 @@
                       <mat-radio-button [value]="false"><span class="mat-radio-label">Nei</span></mat-radio-button>
                     </mat-radio-group>
                   </div>
-                  <div class="field">
+                  <div i18n=“see-offers-other|profile@@profile.seeOffers.other” class="field">
                     <p class="small">
                       Vil du se tilbud som krever andre produkter? (F.eks. bytte av nettbank og aktiv lønnskonto)
                     </p>
@@ -188,7 +189,7 @@
                     </mat-radio-group>
                   </div>
 
-                  <div class="field">
+                  <div i18n=“see-offers-climate|profile@@profile.seeOffers.climate” class="field">
                     <p class="small">
                       Er du interessert i lån som forutsetter energiklasse A eller
                       B, nullhus, Svanemerket, tiltak for energimerking, etc.
@@ -227,11 +228,11 @@
   <div class="container">
     <div class="update-complete" [@loading]="updateAnimationTrigger? 'true' : 'false'">
       <img src="../../../../assets/icons/ic_done.svg" alt="success-icon" />
-      <p>Lagret</p>
+      <p i18n=“saved|profile@@profile.saved”>Lagret</p>
     </div>
 
     <div class="update-error" [@loading]="errorAnimationTrigger ? 'true' : 'false'">
-      <p>Oops, noe gikk galt</p>
+      <p i18n=“issue|profile@@profile.issue”>Oops, noe gikk galt</p>
     </div>
 
     <div class="loading" *ngIf="isLoading">
@@ -251,10 +252,10 @@
                     " [modelOptions]="{ updateOn: 'blur'}">
               </rente-input>
               <div *ngIf="profileForm.controls['email'].touched" class="error-message">
-                <rente-form-message [type]="'error'" *ngIf="profileForm.controls['email'].hasError('required')">
+                <rente-form-message i18n=“issue-mail|profile@@profile.issueMail”  [type]="'error'" *ngIf="profileForm.controls['email'].hasError('required')">
                   Ikke gyldig email
                 </rente-form-message>
-                <rente-form-message [type]="'error'" *ngIf="profileForm.controls['email'].hasError('pattern')">
+                <rente-form-message i18n=“issue-mail|profile@@profile.issueMail2”  [type]="'error'" *ngIf="profileForm.controls['email'].hasError('pattern')">
                   Ikke gyldig email
                 </rente-form-message>
               </div>
@@ -319,11 +320,11 @@
       <div class="desktop-section">
         <form [formGroup]="preferencesForm" novalidate change>
           <div class="field">
-            <h3 class="desktop">Epost innstillinger</h3>
+            <h3  i18n=“settings-mail|profile@@profile.settingsMail” class="desktop">Epost innstillinger</h3>
 
             <div class="accordion field">
               <div class="header mobile" (click)="showPreferences = !showPreferences">
-                <h3>Epost innstillinger</h3>
+                <h3 i18n=“settings-mail|profile@@profile.settingsMail2”>Epost innstillinger</h3>
                 <mat-icon *ngIf="!showPreferences">expand_more</mat-icon>
                 <mat-icon *ngIf="showPreferences">expand_less</mat-icon>
               </div>
@@ -332,7 +333,7 @@
                   <div class="formBox">
                     <div class="field">
                       <div class="withinfo">
-                        <p class="small">Markedsovervåkning / Rentesjekk av dine lån</p>
+                        <p i18n=“market-check|profile@@profile.marketCheck” class="small">Markedsovervåkning / Rentesjekk av dine lån</p>
                         <div (click)="
                                 openInfoDialog(
                                 'Renteradar.no overvåker kontinuerlig markedet for bedre rente enn det du har på lånet ditt. Renten du har på lånet ditt sjekkes og oppdateres ved at du identifiserer deg med BankID. Det er viktig at dette gjøres fra tid til annen for at eventuelle renteendringer på lånet ditt skal fanges opp.'
@@ -342,18 +343,18 @@
                         </div>
                       </div>
                       <mat-radio-group formControlName="checkRateReminderType">
-                        <mat-radio-button value="HVER_MANED_1"><span class="mat-radio-label">Hver måned</span>
+                        <mat-radio-button value="HVER_MANED_1"><span i18n=“month-every|profile@@profile.monthEvery” class="mat-radio-label">Hver måned</span>
                         </mat-radio-button>
-                        <mat-radio-button value="HVER_MANED_2"><span class="mat-radio-label">Hver 2. måned</span>
+                        <mat-radio-button value="HVER_MANED_2"><span i18n=“month-every|profile@@profile.monthTwo” class="mat-radio-label">Hver 2. måned</span>
                         </mat-radio-button>
-                        <mat-radio-button value="HVER_MANED_3"><span class="mat-radio-label">Hver 3. måned</span>
+                        <mat-radio-button value="HVER_MANED_3"><span i18n=“month-every|profile@@profile.monthThree” class="mat-radio-label">Hver 3. måned</span>
                         </mat-radio-button>
-                        <mat-radio-button value="HVER_MANED_4"><span class="mat-radio-label">Hver 4. måned</span>
+                        <mat-radio-button value="HVER_MANED_4"><span i18n=“month-every|profile@@profile.monthFour” class="mat-radio-label">Hver 4. måned</span>
                         </mat-radio-button>
                         <mat-radio-button value="NONE"><span class="mat-radio-label">Aldri</span></mat-radio-button>
                       </mat-radio-group>
                     </div>
-                    <div class="field">
+                    <div i18n=“market-updates|profile@@profile.marketUpdates” class="field">
                       <p class="small">
                         Få markedsoppdateringer, nyheter og annen informasjon på epost
                       </p>
@@ -371,11 +372,11 @@
               </div>
             </div>
 
-            <h3 class="desktop">Hvilke tilbud vil du se?</h3>
+            <h3 class="desktop" i18n=“market-offers|profile@@profile.marketOffers”>Hvilke tilbud vil du se?</h3>
 
             <div class="accordion field">
               <div class="header mobile" (click)="showOfferPreferences = !showOfferPreferences">
-                <h3>Hvilke tilbud vil du se?</h3>
+                <h3 i18n=“market-offers|profile@@profile.marketOffers”>Hvilke tilbud vil du se?</h3>
                 <mat-icon *ngIf="!showOfferPreferences">expand_more</mat-icon>
                 <mat-icon *ngIf="showOfferPreferences">expand_less</mat-icon>
               </div>
@@ -383,7 +384,7 @@
                 <div class="inner-body" *ngIf="showOfferPreferences">
 
                   <div class="formBox">
-                    <div class="field">
+                    <div i18n=“see-offers-special|profile@@profile.seeOffers.special” *ngIf="local != sv"  class="field">
                       <p class="small">
                         Ønsker du <b>kun</b> å se tilbud på rammelån/flexilån?
                       </p>
@@ -393,7 +394,7 @@
                         <mat-radio-button [value]="false"><span class="mat-radio-label">Nei</span></mat-radio-button>
                       </mat-radio-group>
                     </div>
-                    <div class="field">
+                    <div i18n=“see-offers-other|profile@@profile.seeOffers.other” class="field">
                       <p class="small">
                         Vil du se tilbud som krever andre produkter? (F.eks. bytte av nettbank og aktiv lønnskonto)
                       </p>
@@ -404,7 +405,7 @@
                       </mat-radio-group>
                     </div>
 
-                    <div class="field">
+                    <div i18n=“see-offers-climate|profile@@profile.seeOffers.climate” class="field">
                       <p class="small">
                         Er du interessert i lån som forutsetter energiklasse A eller
                         B, nullhus, Svanemerket, tiltak for energimerking, etc.

@@ -1,4 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { locale } from '../../../../config/locale/locale';
+
 import {
   FormGroup,
   FormBuilder,
@@ -80,6 +82,7 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
   public canNavigateBooolean$: Subject<boolean> = new Subject<boolean>();
   public username: string;
   public mask = Mask;
+  public locale = locale
   changesMade = false;
 
   @ViewChild('membershipInput') membershipInput: ElementRef<HTMLInputElement>;
@@ -111,7 +114,8 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
   }
 
   ngOnInit() {
-    
+    console.log("locale")
+    console.log(this.locale)
     this.loansService.getPreferencesDto().subscribe(res => {
       this.isLoading = false;
       let dto:PreferencesDto = res;

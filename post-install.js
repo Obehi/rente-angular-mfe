@@ -45,10 +45,13 @@ function runScript(currentLocale) {
         locale = ",sv";
         exec("npm run set-sv-routes");
         exec("cp -f ./src/app/config/routes-config-sv.ts ./src/app/config/routes-config.ts ");  
+        exec("cp -f ./src/app/shared/constants/mask-sv.ts ./src/app/shared/constants/mask.ts ");
     }
     else if (currentLocale== "nb") {
         locale = ",nb"
         exec("cp -f ./src/app/config/routes-config-no.ts ./src/app/config/routes-config.ts ");  
+        exec("cp -f ./src/app/shared/constants/mask-no.ts ./src/app/shared/constants/mask.ts ");
+
     }
     else {
         console.log("Couldnt find locale in post-install.js");
