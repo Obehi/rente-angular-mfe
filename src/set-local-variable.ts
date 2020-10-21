@@ -13,8 +13,28 @@ const svPathTs = path.join(__dirname + `/app/config/locale/locale-sv.ts`);
 const noPathTs = path.join(__dirname + `/app/config/locale/locale-no.ts`);
 
 
+// get argument from npm command
+const arg = process.argv[0];
+
+var MOCKUPLOCALVALUE = ""
+switch (process.env.LOCALE) {
+  case 'sv':
+    MOCKUPLOCALVALUE = arg
+      break;
+  case 'nb':
+    MOCKUPLOCALVALUE = arg
+    break;
+  case 'no':
+    MOCKUPLOCALVALUE = "nb"
+      break;
+  
+  default:
+    // manually set local value 
+    MOCKUPLOCALVALUE = "nb"
+  }
 //nb | sv
-const MOCKUPLOCALVALUE = "sv"
+
+
 
 
 initializeLocaleFile(mainPathTs, MOCKUPLOCALVALUE), 

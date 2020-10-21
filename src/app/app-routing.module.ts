@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { PageNotFoundComponent } from '@features/page-not-found/page-not-found.component';
 import { LandingComponent } from '@features/landing/landing.component';
-import { ROUTES_MAP } from '@config/routes-config';
+import { ROUTES_MAP, ROUTES_MAP_SV, ROUTES_MAP_NO } from '@config/routes-config';
 import { PrivacyComponent } from '@features/privacy/privacy.component';
 import { AboutCookiesComponent } from '@features/cookies/cookies.component';
 import { TermsConditionsComponent } from '@features/terms-conditions/terms-conditions.component';
@@ -16,8 +16,9 @@ import { GetNotifiedComponent } from '@features/get-notified/get-notified.compon
 import { customMeta, defaultMeta, defaultTitle } from './config/routes-config';
 import { BankChoiceComponent } from '@features/auth/bank-choice/bank-choice.component';
 import { OptimizeService } from '@services/optimize.service';
-
 import { InitConfirmationLangGenericComponent } from './local-components/components-output'
+
+import { locale } from '../environments/locale';
 
 const optimize = new OptimizeService()
 
@@ -31,8 +32,9 @@ const chooseBankVariation = () =>  {
   else
   return import('./features/bank-select-variation/bank-select.module').then(m => m.BankSelectVariationModule)
 }
+
  
-const routes: Routes = [
+const commonRoutes: Routes = [
   {
     path: '', component: LandingComponent,
     data: {
@@ -158,15 +160,28 @@ const routes: Routes = [
     }
   },
   {
-    path: ROUTES_MAP.tinkMockup, component: AuthSvMockupComponent,
-  },
-  {
     path: ROUTES_MAP.dashboard,
     loadChildren: () => import('./features/dashboard/dashboard.module').then(m => m.DashboardModule),
     canActivate: [AuthGuard]
   },
   { path: '**', component: PageNotFoundComponent },
 ];
+
+
+
+const routesSV: Routes = [
+  {
+    path: ROUTES_MAP_SV.tinkMockup, component: AuthSvMockupComponent,
+  }
+]
+
+const routesNo: Routes = []
+
+
+
+
+
+let routes: Routes = [ ...routesNo, ...routesSV, ...commonRoutes]
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

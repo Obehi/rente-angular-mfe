@@ -1,10 +1,30 @@
 const { exec } = require('child_process');
+const { execFile } = require('child_process');
 
+const arg = process.argv[2]
+console.log("arg arg arg")
+console.log(arg)
 
 if(process.ENV == null) {
     
-    command = exec('npm run set-local-variable', () => {
-    var locale =  require('./src/app/config/locale/locale-js')
+    const arg = process.argv[2]
+    
+    var locale = ""
+    switch (arg) {
+        case 'sv':
+            locale = arg
+            break;
+        case 'no':
+            locale = "nb"
+            break;
+        default:
+            //fall back on value last set in set-local-variable.ts
+            locale =  require('./src/app/config/locale/locale-js')
+        }
+
+    process.env.LOCALE = locale
+    command = exec('myVar=something node ./src/set-local-variable.ts', () => {
+
     console.log("running locale script with: locale:" + locale);
     runScript(locale)
     });

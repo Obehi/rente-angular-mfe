@@ -177,6 +177,13 @@ export const customMeta = {
   }
 };
 
+export const ROUTES_MAP_SV = {
+  tinkMockup: 'tink-mockup'
+}
+
+export const ROUTES_MAP_NO= {
+}
+
 export const ROUTES_MAP = {
   aboutUs: 'om-oss',
   faq: 'faq',
@@ -193,5 +200,6 @@ export const ROUTES_MAP = {
   guide: 'slik-funger-renteradar',
   cookies: 'personuppgiftsbehandling/cookies',
   emailPreferences: 'epost/innstillinger',
-  tinkMockup: 'tink-mockup'
 };
+
+
