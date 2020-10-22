@@ -1,4 +1,8 @@
 import { AuthService } from "@services/remote-api/auth.service";
+import { LoansService } from "@services/remote-api/loans.service";
+import { UserService } from "@services/remote-api/user.service";
+import { LocalStorageService } from "@services/local-storage.service";
+
 import {
   Component,
   OnInit,
@@ -44,6 +48,10 @@ export class AuthSvComponent implements OnInit, OnDestroy {
 
   constructor(
     private router: Router,
+    private authService: AuthService,
+    private userService: UserService,
+    private loansService: LoansService,
+    private localStorageService: LocalStorageService,
     private sanitizer: DomSanitizer
 
   ) { 
@@ -106,7 +114,50 @@ export class AuthSvComponent implements OnInit, OnDestroy {
   private successSocketCallback() {
     console.log("this is the shit")
     this.tinkSuccess = true
-    this.router.navigate([`/${ROUTES_MAP.initConfirmation}`]);
+    //this.router.navigate([`/${ROUTES_MAP.initConfirmation}`]);
+
+    const repliesUrl = `${API_URL_MAP.crawlerRepliesUrl}`;
+    console.log(API_URL_MAP.crawlerRepliesUrl)
+    this.stompClient.subscribe(repliesUrl, message => {
+      console.log(message)
+      if (message.body) {
+        const response = JSON.parse(message.body);
+        console.log('STATUS:', response.eventType);
+        switch (response.eventType) {
+
+          case BANKID_STATUS.LOANS_PERSISTED:
+            const user = response.data.user;
+            this.authService
+              .loginWithToken(user.phone, user.oneTimeToken)
+              .subscribe(res => {
+                forkJoin([
+                  this.loansService.getLoansAndRateType(),
+                  this.userService.getUserInfo()
+                ]).subscribe(([rateAndLoans, userInfo]) => {
+                  this.userService.lowerRateAvailable.next(rateAndLoans.lowerRateAvailable);
+                  if (rateAndLoans.loansPresent) {
+                    this.localStorageService.removeItem('noLoansPresent');
+                    if (rateAndLoans.isAggregatedRateTypeFixed) {
+                      this.localStorageService.setItem('isAggregatedRateTypeFixed', true);
+                      this.router.navigate(['/dashboard/fastrente']);
+                    } else {
+                      if (userInfo.income === null) {
+                        this.router.navigate(['/bekreft']);
+                        this.localStorageService.setItem('isNewUser', true);
+                      } else {
+                        this.router.navigate(['/dashboard/tilbud/']);
+                      }
+                    }
+                  } else {
+                    this.localStorageService.setItem('noLoansPresent', true);
+                    this.router.navigate(['/dashboard/ingenlaan']);
+                  }
+                });
+              });
+            break;
+        }
+      }
+    });
 
   }
 

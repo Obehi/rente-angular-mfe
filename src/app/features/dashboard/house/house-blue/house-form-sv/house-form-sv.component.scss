@@ -1,9 +1,20 @@
-@import "../../../../../styles/theme/_colors.scss";
+@import "../../../../../../styles/theme/_colors.scss";
+
+.housecontainer {
+    background: white;
+    border-radius: 15px;
+    margin: 10px;
+    position: relative;
+}
 .mat-form-field {
   text-align: center;
 }
 .double {
   grid-gap: 40px;
+}
+
+ .estimated{
+ min-height: 74px;
 }
 .mat-form-field-disabled * {
   color: rgba(0, 0, 0, 0.38) !important;
@@ -13,11 +24,18 @@
   top: -10px;
   position: relative;
 }
+
+
+.saveForEstimate {
+  position: absolute;
+  bottom: 10px;
+  left: 25%;
+}
 .heading {
+  border-radius: 15px 15px 0 0;
   background-color: $lightgreen;
-  border-top: 1px solid $green;
   display: block;
-  padding: 10px 20px;
+  padding: 20px 20px;
   font-weight: 500;
   font-size: 14px;
   position: relative;
@@ -59,7 +77,7 @@ rente-button {
 
 .body {
   padding: 20px;
-  border-bottom: 1px solid $lesslight;
+  margin-bottom: 40px;
   > div {
     margin-bottom: 20px;
   }
@@ -94,6 +112,8 @@ rente-button {
 @media (min-width: 600px) {
   .housecontainer {
     border: 1px solid $lesslight;
+    min-height: 627px;
+    
     .heading {
       border-top: none;
       border-bottom: 1px solid $green;

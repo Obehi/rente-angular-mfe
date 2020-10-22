@@ -1,3 +1,4 @@
+
 import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import { AddressDto } from "@services/remote-api/loans.service";
 import { LoansService } from "@services/remote-api/loans.service";
@@ -14,11 +15,11 @@ export enum AddressFormMode {
 }
 
 @Component({
-  selector: "rente-address-form",
-  templateUrl: "./address.form.component.html",
-  styleUrls: ["./address.form.component.scss"]
+  selector: "rente-blue-address",
+  templateUrl: "./house-form-sv.component.html",
+  styleUrls: ["./house-form-sv.component.scss"]
 })
-export class AddressFormComponent implements OnInit {
+export class HouseFormSvComponent implements OnInit {
   @Input() index: number;
   @Input() address: AddressDto;
 

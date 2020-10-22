@@ -41,7 +41,6 @@ import { VirdiStatisticsComponent } from "./house/virdi-statistics/virdi-statist
 import { OffersStatisticsComponentBlue } from "./offers/offers-blue/offers-statistics/offers-statistics.component";
 import { OffersStatisticsComponent } from "./offers/offers-statistics/offers-statistics.component";
 import { DialogComponent } from "../../shared/components/ui-components/dialog/dialog.component";
-import { AddressFormComponent } from "./house/address/address.form.component";
 import { GetOfferFromBankDialogComponent } from './offers/get-offer-from-bank-dialog/get-offer-from-bank-dialog.component';
 import { LtvTooHighDialogComponent } from './offers/ltv-too-high-dialog/ltv-too-high-dialog.component';
 import { OfferCardComponentBlue } from './offers/offers-blue/offer-card/offer-card.component';
@@ -52,12 +51,15 @@ import { BargainSuccessComponent } from './offers/bargain-success/bargain-succes
 import { ReferralComponent } from './offers/bargain-success/referral/referral.component';
 import { LoansBlueComponent } from './loans/loans-blue/loans-blue.component';
 import { HouseBlueComponent } from './house/house-blue/house-blue.component';
-import { BlueAddressComponent } from './house/house-blue/blue-address/blue-address.component';
 import { BlueProfileComponent } from './profile/blue-profile/blue-profile.component';
 import { BankRatingDialogComponent } from './offers/offers-blue/bank-rating-dialog/bank-rating-dialog.component';
 import { EPSIScoreComponent } from './offers/offers-blue/epsi-score/epsi-score.component';
 import { OffersListLangGenericComponent } from '../../local-components/components-output';
 import { LoansLangGenericComponent } from '../../local-components/components-output';
+
+import { HouseFormLangGenericComponent } from '../../local-components/components-output';
+
+
 
 // TODO: ADD separate module for material import
 @NgModule({
@@ -81,7 +83,6 @@ import { LoansLangGenericComponent } from '../../local-components/components-out
     OffersStatisticsComponentBlue, 
     OffersStatisticsComponent, 
     DialogComponent,
-    AddressFormComponent,
     GetOfferFromBankDialogComponent,
     LtvTooHighDialogComponent,
     DetailsComponentBlue,
@@ -94,12 +95,12 @@ import { LoansLangGenericComponent } from '../../local-components/components-out
     ReferralComponent,
     LoansBlueComponent,
     HouseBlueComponent,
-    BlueAddressComponent,
     BlueProfileComponent,
     BankRatingDialogComponent,
     EPSIScoreComponent,
     OffersListLangGenericComponent,
-    LoansLangGenericComponent
+    LoansLangGenericComponent,
+    HouseFormLangGenericComponent
   ],
   imports: [
     CommonModule,

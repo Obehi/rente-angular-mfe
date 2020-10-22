@@ -4,7 +4,6 @@
         <h3 i18n=“hi|info-confirmation@@info.confirmation.hi”>Hei, {{ userData.name }}</h3>
         <p i18n=“more-infor|info-confirmation@@info.confirmation.moreInfo”>Vi trenger litt mer informasjon før vi kan søke etter tilbud</p>
       </div>
-  
       <form
         [formGroup]="propertyForm"
         novalidate
@@ -40,7 +39,7 @@
           <div class="withinfo">
             <div>
               <rente-input
-                [placeholder]="'Bostadens värde'"
+                [placeholder]="'Bostadens uppskattade värde'"
                 formControlName="apartmentValue"
                 matSuffix="kr"
                 [errorStateMatcher]="

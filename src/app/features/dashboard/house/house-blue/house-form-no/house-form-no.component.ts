@@ -16,10 +16,10 @@ export enum AddressFormMode {
 
 @Component({
   selector: "rente-blue-address",
-  templateUrl: "./blue-address.component.html",
-  styleUrls: ["./blue-address.component.scss"]
+  templateUrl: "./house-form-no.component.html",
+  styleUrls: ["./house-form-no.component.scss"]
 })
-export class BlueAddressComponent implements OnInit {
+export class HouseFormNoComponent implements OnInit {
   @Input() index: number;
   @Input() address: AddressDto;
 
