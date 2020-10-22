@@ -517,62 +517,6 @@
       
       <rente-offers-list [offer]="offer" [offersInfo]="currentOfferInfo" ></rente-offers-list>
 
-
-      <div class="the-offers">
-        <h3 id="best-offers-text" style="margin-bottom: 20px;">
-          Beste tilbud:
-        </h3>
-
-        <div class="offers-type-container">
-            <a class=" clickable" [ngClass]="currentOfferType == 'threeMonths' ? 'active' : 'deactive'" (click)="setOfferType('threeMonths')"> 3 mnd </a>
-            <a class=" clickable" [ngClass]="currentOfferType == 'oneYear' ? 'active' : 'deactive'" (click)="setOfferType('oneYear')"> 1 år </a>
-            <a class=" clickable" [ngClass]="currentOfferType == 'all' ? 'active' : 'deactive'" (click)="setOfferType('all')">  Alle lån </a>
-        </div>
-
-        <div *ngIf="isMobile" class="sticky-table-header">
-          <p>Min nåværende rente: </p>
-          <span>{{ offersInfo.totalEffectiveRate | number: "1.2-2" }} %</span>
-        </div>
-
-        <div class="offers-grid">
-          <ng-container *ngIf="currentOfferInfo">
-            <div *ngFor="let offer of currentOfferInfo.offers.top5; let i = index" class="the-offer">
-
-              <ng-container *ngIf="isMobile; else desktop">
-                <rente-offer-card-blue [offer]="offer" [offersInfo]="currentOfferInfo" [index]=i>
-                </rente-offer-card-blue>
-              </ng-container>
-
-              <ng-template #desktop>
-                <rente-offer-card-big-blue [offer]="offer" [offersInfo]="currentOfferInfo" [index]=i>
-                </rente-offer-card-big-blue>
-              </ng-template>
-
-            </div>
-          </ng-container>
-        </div>
-
-        <div class="offers-grid">
-
-          <ng-container *ngIf="offersInfo">
-            <div *ngFor="let offer of offersInfo.offers.additionalPartnersOffers; let i = index" class="the-offer">
-
-              <ng-container *ngIf="isMobile; else desktop">
-                <rente-offer-card-blue [offer]="offer" [offersInfo]="currentOfferInfo" [index]=offer.offerPosition>
-                </rente-offer-card-blue>
-              </ng-container>
-
-              <ng-template #desktop>
-                <rente-offer-card-big-blue [offer]="offer" [offersInfo]="currentOfferInfo" [index]=offer.offerPosition>
-                </rente-offer-card-big-blue>
-              </ng-template>
-            </div>
-          </ng-container>
-        </div>
-      </div>
-
-
-
     </div>
     <!-- Mobile boxes -->
 
