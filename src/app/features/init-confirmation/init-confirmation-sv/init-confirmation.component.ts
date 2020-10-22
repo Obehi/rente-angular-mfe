@@ -70,7 +70,44 @@ export class InitConfirmationSVComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.loansService.getConfirmationData().subscribe(res => {
+
+    /* this.loansService.getConfirmationData().subscribe(res => {
+      this.allMemberships = res.availableMemberships;
+      this.userData = res;
+
+      console.log(res);
+      console.log(res);
+      console.log(res);
+
+      let income = String(res.income) && null
+      let apartmentSize = String(res.apartmentSize) && null
+
+      this.propertyForm = this.fb.group({
+        apartmentSize: [apartmentSize, Validators.required],
+        membership: [],
+        income: [income, Validators.required],
+        email: [res.email, Validators.compose([
+            Validators.required,
+            Validators.pattern(VALIDATION_PATTERN.email)
+          ])
+        ]
+      });
+    }); */
+
+    const res = {
+      apartmentSize: 150,
+      availableMemberships: [
+        {name: "AKADEMIKERNE_ARKITEKTENES_FAGFORBUND", label: "Akademikerne/Arkitektenes fagforbund"},
+        {name: "AKADEMIKERNE_DEN_NORSKE_LEGEFORENING", label: "Akademikerne/Den norske legeforening"},
+        {name: "AKADEMIKERNE_DEN_NORSKE_TANNLEGEFORENING", label: "Akademikerne/Den norske tannlegeforening"},
+        {name: "AKADEMIKERNE_DEN_NORSKE_VETERINAERFORENING", label: "Akademikerne/Den norske veterinærforening"},
+        {name: "AKADEMIKERNE_ECONA", label: "Akademikerne/Econa"}
+      ],
+      email: "petter@renteradar.no",
+      income: 123456789,
+      name: "Petter Hansen",
+      memberships: []
+    }
       this.allMemberships = res.availableMemberships;
       this.userData = res;
       console.log("res")
@@ -87,7 +124,6 @@ export class InitConfirmationSVComponent implements OnInit {
           ])
         ]
       });
-    });
   }
 
   isErrorState(

@@ -43,14 +43,12 @@ export class AuthSvComponent implements OnInit, OnDestroy {
   public tinkUrl: SafeUrl;
 
   constructor(
-    private authService: AuthService,
     private router: Router,
     private sanitizer: DomSanitizer
 
   ) { 
 
   }
-
 
   ngOnInit(): void {
     console.log(environment["tinkUrl"])
