@@ -52,17 +52,18 @@ export class AuthSvComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     console.log(environment["tinkUrl"])
+
+    //environment["tinkUrl"] = "https://link.tink.com/1.0/authorize/?client_id=a84cfc4207574e08be2b561285e05998&redirect_uri=http%3A%2F%2Flocalhost%3A4302%2F&scope=accounts:read,investments:read,transactions:read,user:read&market=SE&locale=en_US&iframe=true&test=true"
     this.tinkUrl = this.sanitizer.bypassSecurityTrustResourceUrl(environment["tinkUrl"])
   }
 
   @HostListener('window:message', ['$event'])
   onMessage(event) {
     if (event.origin !== 'https://link.tink.com') {
-      console.log("NOT TINK RESPONSE");
     return;
     }
 
-    console.log("IS TINK RESPONSE!!");
+    console.log("Tink response");
 
     
     let data = JSON.parse(event.data)
