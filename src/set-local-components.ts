@@ -53,7 +53,6 @@ if(locale == null && componentFile != null) {
   writeToComponentFile(componentFile, mainPath)
 
 } else if(componentFile != null) {
-  console.log("Couldnt find LOCALE environment variable")
   writeToComponentFile(componentFile, mainPath)
 } else {
   process.on('exit', function(code) {
@@ -79,7 +78,7 @@ function writeToComponentFile(file, path) {
       console.log(err);
       return;
     }
-    console.log(`Local component export file generated at ${mainPath}. Environment mode is ${process.env.APP} `);
+    console.log(`Local component export file generated at ${mainPath}. Environment mode is ${process.env.ENV} `);
     console.log(componentFile);
   });
 }

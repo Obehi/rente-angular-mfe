@@ -5,7 +5,6 @@ import { OffersComponentBlue } from "./offers/offers-blue/offers.component";
 import { OffersComponent } from "./offers/offers.component";
 import { DashboardComponent } from "./dashboard.component";
 import { MatTabsModule } from "@angular/material/tabs";
-import { HouseComponent } from "./house/house.component";
 import { PreferencesComponent } from "./preferences/preferences.component";
 import { ProfileComponent } from "./profile/profile.component";
 import { ReactiveFormsModule, FormsModule } from "@angular/forms";
@@ -68,7 +67,6 @@ import { HouseFormLangGenericComponent } from '../../local-components/components
     OffersComponent,
     DashboardComponent,
     LoansLangGenericComponent,
-    HouseComponent,
     PreferencesComponent,
     ProfileComponent,
     DialogInfoComponent,

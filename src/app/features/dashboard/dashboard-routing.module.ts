@@ -2,7 +2,6 @@ import { OffersComponent } from './offers/offers.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { DashboardComponent } from './dashboard.component';
-import { HouseComponent }   from './house/house.component';
 import { PreferencesComponent } from './preferences/preferences.component';
 import { ProfileComponent } from './profile/profile.component';
 import { RateTypeFixedComponent } from './rate-type-fixed/rate-type-fixed.component';
