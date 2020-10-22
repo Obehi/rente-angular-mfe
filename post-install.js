@@ -5,7 +5,7 @@ const arg = process.argv[2]
 console.log("arg arg arg")
 console.log(arg)
 
-if(process.ENV == null) {
+if(process.env.ENV == null) {
     
     const arg = process.argv[2]
     
@@ -31,6 +31,7 @@ if(process.ENV == null) {
 
 } else {
     var locale = process.env.LOCALE;
+    console.log("Is not local build: " + locale);
     runScript(locale)
 }
 
