@@ -74,11 +74,13 @@ export class InitConfirmationNoComponent implements OnInit {
       this.allMemberships = res.availableMemberships;
       this.userData = res;
 
+      let income = String(res.income) && null
       let apartmentSize = String(res.apartmentSize) && null
 
       this.propertyForm = this.fb.group({
         apartmentSize: [apartmentSize, Validators.required],
         membership: [],
+        income: [income, Validators.required],
         email: [res.email, Validators.compose([
             Validators.required,
             Validators.pattern(VALIDATION_PATTERN.email)
@@ -107,7 +109,11 @@ export class InitConfirmationNoComponent implements OnInit {
 
     this.isLoading = true;
     const userData = {
-      email: formData.email
+      email: formData.email,
+      income:
+        typeof formData.income === 'string'
+          ? formData.income.replace(/\s/g, '')
+          : formData.income
     };
 
     const confirmationData = {
@@ -117,6 +123,7 @@ export class InitConfirmationNoComponent implements OnInit {
 
     const dto:ConfirmationSetDto = new ConfirmationSetDto();
     dto.email = userData.email;
+    dto.income = userData.income;
     dto.memberships = confirmationData.memberships;
     dto.apartmentSize = confirmationData.apartmentSize;
 

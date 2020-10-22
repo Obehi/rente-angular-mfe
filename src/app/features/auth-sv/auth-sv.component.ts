@@ -8,6 +8,8 @@ import {
   EventEmitter,
   HostListener
 } from "@angular/core";
+import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
+import { ROUTES_MAP } from '@config/routes-config';
 import * as Stomp from "stompjs";
 import * as SockJS from "sockjs-client";
 import { environment } from "@environments/environment";
@@ -22,6 +24,7 @@ import {
   BANKID_TIMEOUT_TIME,
   MESSAGE_STATUS
 } from "../auth/login-status/login-status.config";
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'rente-auth-sv',
@@ -36,15 +39,22 @@ export class AuthSvComponent implements OnInit, OnDestroy {
   public tinkSuccess = false;
   private stompClient: any;
   private intervalSubscription: Subscription;
+  public isSuccess = false;
+  public tinkUrl: SafeUrl;
 
   constructor(
     private authService: AuthService,
+    private router: Router,
+    private sanitizer: DomSanitizer
+
   ) { 
 
   }
 
 
   ngOnInit(): void {
+    console.log(environment["tinkUrl"])
+    this.tinkUrl = this.sanitizer.bypassSecurityTrustResourceUrl(environment["tinkUrl"])
   }
 
   @HostListener('window:message', ['$event'])
@@ -53,6 +63,9 @@ export class AuthSvComponent implements OnInit, OnDestroy {
       console.log("NOT TINK RESPONSE");
     return;
     }
+
+    console.log("IS TINK RESPONSE!!");
+
     
     let data = JSON.parse(event.data)
     if (data.type === 'code') {
@@ -70,7 +83,7 @@ export class AuthSvComponent implements OnInit, OnDestroy {
   private initializeWebSocketConnection(tinkCode: number) {
     this.connectAndReconnectSocket(this.successSocketCallback);
     
-    const socket = new SockJS('environment.crawlerUrl');
+    const socket = new SockJS(environment.crawlerUrl);
     this.stompClient = Stomp.over(socket);
 
     if (environment.production) {
@@ -96,6 +109,8 @@ export class AuthSvComponent implements OnInit, OnDestroy {
   private successSocketCallback() {
     console.log("this is the shit")
     this.tinkSuccess = true
+    this.router.navigate([`/${ROUTES_MAP.initConfirmation}`]);
+
   }
 
   private connectAndReconnectSocket(successCallback) {

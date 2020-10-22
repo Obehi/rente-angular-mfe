@@ -25,14 +25,14 @@ export class OptimizeService {
     let googleOptimize = (window as any).google_optimize;
 
     if(googleOptimize == undefined) {
-      console.log("Cant find google optimize object");
+     // console.log("Cant find google optimize object");
       return 0
     }
 
     let variation = (window as any).google_optimize.get(this.experimentID);
 
     if( variation == undefined) {
-      console.log("variation is undefined");
+      //console.log("variation is undefined");
       return 0;
     }
     
