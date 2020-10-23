@@ -56,7 +56,7 @@ import { EPSIScoreComponent } from './offers/offers-blue/epsi-score/epsi-score.c
 import { OffersListLangGenericComponent } from '../../local-components/components-output';
 import { LoansLangGenericComponent } from '../../local-components/components-output';
 
-import { HouseFormSvComponent } from '../../local-components/components-output';
+import { HouseFormSvComponent } from './house/house-blue/house-form-sv/house-form-sv.component';
 
 
 
