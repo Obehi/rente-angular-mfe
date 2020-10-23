@@ -47,11 +47,13 @@ function runScript(currentLocale) {
         exec("npm run set-sv-routes");
         exec("cp -f ./src/app/config/routes-config-sv.ts ./src/app/config/routes-config.ts ");  
         exec("cp -f ./src/app/shared/constants/mask-sv.ts ./src/app/shared/constants/mask.ts ");
+        exec("cp -f ./src/app/local-components/components-sv.ts ./src/app/local-components/components-output.ts ");
     }
     else if (currentLocale== "nb") {
         locale = ",nb"
         exec("cp -f ./src/app/config/routes-config-no.ts ./src/app/config/routes-config.ts ");  
         exec("cp -f ./src/app/shared/constants/mask-no.ts ./src/app/shared/constants/mask.ts ");
+        exec("cp -f ./src/app/local-components/components-no.ts ./src/app/local-components/components-output.ts ");
 
     }
     else {
@@ -61,13 +63,13 @@ function runScript(currentLocale) {
 
     if (process.env.ENV === 'dev') {
         console.log("running heroku dev")
-        command = exec('npm run config-env && npm run set-local-variable && npm run set-local-components && npm run i18n-poeditor && ng build --configuration=heroku-dev' + locale +  '&& node move-locale-dir.js');
+        command = exec('npm run config-env && npm run set-local-variable && npm run i18n-poeditor && ng build --configuration=heroku-dev' + locale +  '&& node move-locale-dir.js');
     } else if (process.env.ENV === 'prod') {
         console.log("running heroku prod")
-        command = exec('npm run config-env && npm run set-local-variable && npm run set-local-components && npm run i18n-poeditor && ng build --configuration=heroku-prod'  + locale +  '&& node move-locale-dir.js');
+        command = exec('npm run config-env && npm run set-local-variable && npm run i18n-poeditor && ng build --configuration=heroku-prod'  + locale +  '&& node move-locale-dir.js');
     } else {
         console.log("cant find env. running heroku dev")
-        command = exec('npm run set-local-variable && npm run set-local-components && npm run i18n-poeditor && ng build --configuration=heroku-dev' + locale +  '&& node move-locale-dir.js');
+        command = exec('npm run set-local-variable && npm run i18n-poeditor && ng build --configuration=heroku-dev' + locale +  '&& node move-locale-dir.js');
     }
 
     if (command != undefined) {
