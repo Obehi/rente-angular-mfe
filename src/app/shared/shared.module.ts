@@ -38,6 +38,7 @@ import { ThousandsSeprator } from './pipes/thousands.pipe';
 import { ButtonSmallComponent } from './components/ui-components/button-small/button-small.component';
 import {IMaskModule} from 'angular-imask';
 import { HeaderLangGenericComponent } from '../local-components/components-output'
+import { CustomLangTextService } from '@services/custom-lang-text.service';
 
 
 const components = [
@@ -70,7 +71,8 @@ const services = [
   ProfileService,
   MetaService,
   TitleService,
-  EventService
+  EventService,
+  CustomLangTextService
 ];
 
 @NgModule({

@@ -47,7 +47,7 @@
               </rente-input>
               <div (click)="
                 openInfoDialog(
-                    'Din/Husstandens inntekt er en viktig parameter for renten bankene tilbyr'
+                  textLangService.getHouseExplainationText()
                 )
                 " class="clickable">
                 <mat-icon>help</mat-icon>
@@ -262,13 +262,13 @@
             </div>
 
             <div class="field withinfo">
-              <rente-input [placeholder]="'Din brutto årsinntekt'" formControlName="income" [errorStateMatcher]="
+              <rente-input i18n=“income-per-year|profile@@profile.income  [placeholder]="'Din brutto årsinntekt'" formControlName="income" [errorStateMatcher]="
                     isErrorState(profileForm.controls['income'], profileForm)
                     " [maskType]="mask.currency" [modelOptions]="{ updateOn: 'blur'}" [type]="'tel'" matSuffix="kr">
               </rente-input>
               <div (click)="
                     openInfoDialog(
-                        'Din/Husstandens inntekt er en viktig parameter for renten bankene tilbyr'
+                      textLangService.getHouseExplainationText()
                     )
                     " class="clickable">
                 <mat-icon>help</mat-icon>
@@ -336,7 +336,7 @@
                         <p i18n=“market-check|profile@@profile.marketCheck” class="small">Markedsovervåkning / Rentesjekk av dine lån</p>
                         <div (click)="
                                 openInfoDialog(
-                                'Renteradar.no overvåker kontinuerlig markedet for bedre rente enn det du har på lånet ditt. Renten du har på lånet ditt sjekkes og oppdateres ved at du identifiserer deg med BankID. Det er viktig at dette gjøres fra tid til annen for at eventuelle renteendringer på lånet ditt skal fanges opp.'
+                                  textLangService.getMarkedObservationText()
                                 )
                             " class="clickable">
                           <mat-icon>help</mat-icon>

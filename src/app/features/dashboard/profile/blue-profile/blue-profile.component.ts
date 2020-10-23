@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { locale } from '../../../../config/locale/locale';
-
+import { CustomLangTextService } from '@shared/services/custom-lang-text.service'
 import {
   FormGroup,
   FormBuilder,
@@ -93,7 +93,8 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
     private loansService: LoansService,
     private userService: UserService,
     private snackBar: SnackBarService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    public textLangService: CustomLangTextService
   ) {
     if (window.innerWidth > 600) {
       this.showMemberships = true;
@@ -104,7 +105,6 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
       this.showPreferences = false;
       this.showOfferPreferences = false;
     }
-
     this.filteredMemberships = this.membershipCtrl.valueChanges.pipe(
       startWith(null),
       map((membership: string | null) =>

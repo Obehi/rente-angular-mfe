@@ -3,6 +3,7 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { SnackBarService } from "../../../../shared/services/snackbar.service";
 import { Observable, Subject } from 'rxjs';
 import { DeactivationGuarded } from '@shared/guards/route.guard';
+import { locale } from '../../../../config/locale/locale';
 
 import {
   EventService,
@@ -52,7 +53,7 @@ export class HouseBlueComponent implements OnInit, DeactivationGuarded {
   public canLeavePage = true;
   public updateAnimationTrigger :boolean;
   public errorAnimationTrigger :boolean;
-  
+  public locale: string;
   
   constructor(
     private loansService: LoansService,
@@ -65,6 +66,12 @@ export class HouseBlueComponent implements OnInit, DeactivationGuarded {
   }
 
   ngOnInit() {
+    console.log(locale)
+    console.log(locale)
+    console.log(locale)
+    console.log(locale)
+    console.log(locale)
+    this.locale = locale
     this.isLoading = true;
     this.loansService.getAddresses().subscribe(r => {
       this.isLoading = false;
