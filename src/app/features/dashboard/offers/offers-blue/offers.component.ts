@@ -23,7 +23,7 @@ import { OFFERS_LTV_TYPE } from '../../../../shared/models/offers';
 import { UserService } from '@services/remote-api/user.service';
 import smoothscroll from 'smoothscroll-polyfill';
 import { BankUtils } from '@shared/models/bank';
-
+import { CustomLangTextService } from '@shared/services/custom-lang-text.service'
 @Component({
   selector: 'rente-offers-blue',
   templateUrl: './offers.component.html',
@@ -81,7 +81,8 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
     private router: Router,
     private localStorageService: LocalStorageService,
     private userService: UserService,
-    private trackingService: TrackingService
+    private trackingService: TrackingService,
+    public customLangTextSerice: CustomLangTextService
   ) {
     this.onResize();
  
@@ -140,7 +141,7 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
       this.tips.push({
         header: "Obs",
         text:
-          'Vi får kun hentet din nominelle rente og lånebeløp. For utregninger har vi tatt utgangspunkt i en gjenværende løpetid på 20 år, månedelige betalinger og 50,- i termingebyr. Faktisk løpetid og termingebyrer vil endre forventede besparelser.',
+        this.customLangTextSerice.getLimitedLoanInfoWarning(),
         icon: 'warning',
         obs: true
       })

@@ -91,37 +91,12 @@
                         src="../../../../assets/icons/score-{{offer.bankInfo.score }}.svg" />
             </div>
 
-            <div class="item left details" i18n=“details|offer-card@@offer.card.details”>
-
-                    <mat-expansion-panel>
-                        <mat-expansion-panel-header>
-                          Detaljer
-                        </mat-expansion-panel-header>
-
-                        <rente-details [offer]="offer"></rente-details>
-                      </mat-expansion-panel>
-
-            </div>
+          
 
 
             <div class="item buttons">
 
-                    <div i18n=“see-webpage|offer-card@@offer.card.seeWebpage”>
-                        <rente-button-small [disabled]="
-                            offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS ||
-                            offer.bankInfo.partner == false"  [color]="'primary'" type="raised"
-                            (click)="openBankUrlByButton(offer)">Se mer på {{getbankNameOrDefault(offer)}}s <br/> hjemmeside
-                        </rente-button-small>
-                    </div>
-
-                    <div i18n=“get-offer|offer-card@@offer.card.getOffer”>
-                        <rente-button-small [disabled]="
-                        offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS ||
-                          offer.bankInfo.partner == false" [color]="'primary'" type="raised"
-                            (click)="openNewOfferDialog(offer)">Få tilbud fra {{getbankNameOrDefault(offer)}}!
-                        </rente-button-small>
-                        <p class="small" *ngIf=" offer.bankInfo.partner === false"> (Ingen avtale med banken)</p>
-                    </div>
+                  
             </div>
         </div>
 

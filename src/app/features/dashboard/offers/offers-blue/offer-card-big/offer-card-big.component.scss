@@ -85,6 +85,9 @@
       border-top: 1px solid $lesslight;
       border-bottom: 1px solid $lesslight;
 
+      p {
+        display: inline;
+      }
       &.bottom {
         background: #ffffff;
 

@@ -182,7 +182,7 @@
         <div class="rente-boxes mobile">
           <div class="double">
             <div class="box">
-              <p i18n=“your-interest|offers-main@@offers.mainPage.yourInterest”>Din effektive rente</p>
+              <p i18n=“your-interest|offers-main@@offers.mainPage.yourInterest”>Min effektive rente</p>
               <h2>{{ offersInfo.totalEffectiveRate | number: "1.2-2" }}%</h2>
             </div>
             <a class="box positive clickable" (click)="goToBestOffer()">
@@ -241,10 +241,10 @@
 
         <div class="mobile">
           <div class="top-buttons full-width">
-            <div i18n=“found-offers|offers-main@@offers.mainPage.foundOffers” class="item">
+            <div class="item">
 
 
-              <p>Vi har funnet de beste tilbudene for deg</p>
+              <p i18n=“found-offers|offers-main@@offers.mainPage.foundOffers>Vi har funnet de beste tilbudene for deg</p>
               <rente-button class="min-width vertical-20"
                 [disabled]="changeBankLoading ||
                 offersInfo.offerSavingsType === offerSavingsType.NO_SAVING"

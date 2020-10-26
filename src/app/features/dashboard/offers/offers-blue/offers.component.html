@@ -40,34 +40,40 @@
         <!-- barometer -->
         <div class="barometer round-box">
           <div class="rente-status" [ngSwitch]="offersInfo.offerSavingsType">
-            <p *ngSwitchCase="offerSavingsType.NO_SAVINGS">
+            <p i18n=“interest-very-good|offers-main@@offers.mainPage.interest.veryGood” *ngSwitchCase="offerSavingsType.NO_SAVINGS">
               Renten din er <b>svært god</b>
             </p>
-            <p *ngSwitchCase="
-              offerSavingsType.SAVINGS_FIRST_YEAR_BETWEEN_0_AND_2000
-            ">
+            <p i18n=“interest-good|offers-main@@offers.mainPage.interest.good”
+               *ngSwitchCase="
+                offerSavingsType.SAVINGS_FIRST_YEAR_BETWEEN_0_AND_2000
+              "
+            >
               Renten din er <b>god</b>, men ikke best
             </p>
-            <p *ngSwitchCase="
-              offerSavingsType.SAVINGS_FIRST_YEAR_BETWEEN_2000_AND_6000
-            ">
+            <p i18n=“interest-ok|offers-main@@offers.mainPage.interest.ok”
+               *ngSwitchCase="
+                offerSavingsType.SAVINGS_FIRST_YEAR_BETWEEN_2000_AND_6000
+              "
+            >
               Renten din er <b>OK</b>, men du kan få bedre
             </p>
-            <p *ngSwitchCase="
-              offerSavingsType.SAVINGS_FIRST_YEAR_BETWEEN_6000_AND_10000
-            ">
+            <p i18n=“interest-bad|offers-main@@offers.mainPage.interest.bad”
+               *ngSwitchCase="
+                offerSavingsType.SAVINGS_FIRST_YEAR_BETWEEN_6000_AND_10000
+              "
+            >
               Renten din er <b>dårlig</b> og du kan spare en del
             </p>
-            <p *ngSwitchCase="offerSavingsType.SAVINGS_FIRST_YEAR_GREATER_10000">
-              Renten din er <b>svært dårlig</b>
+            <p i18n=“interest-very-bad|offers-main@@offers.mainPage.interest.veryBad” *ngSwitchCase="offerSavingsType.SAVINGS_FIRST_YEAR_GREATER_10000">
+              Renten din er <b>svært  dårlig</b>
             </p>
             <div *ngSwitchDefault>-</div>
           </div>
 
           <div class="rente-bar-container center-horizontal">
             <div class="bar-ticks">
-              <p>Dårlig rente</p>
-              <p>Bra rente</p>
+              <p i18n=“interest-bad2|offers-main@@offers.mainPage.interest.bad2”>Dårlig rente</p>
+              <p i18n=“interest-good2|offers-main@@offers.mainPage.interest.good2”>Bra rente</p>
             </div>
             <div class="bar-wrap">
               <span class="bar-fill-left" [ngClass]="[rateBarPercentage.class]"
@@ -83,14 +89,14 @@
           </div>
 
           <div class="save-info">
-            <p>Du kan spare</p>
+            <p i18n=“save|offers-main@@offers.mainPage.save”>Du kan spare</p>
             <h2 *ngIf="offersInfo.bestOfferTotalSaving > 0; else noBestOffer">
               {{ offersInfo.bestOfferTotalSaving | abs | number }},-
             </h2>
             <ng-template #noBestOffer>
               <h2> 0,- </h2>
             </ng-template>
-            <p>over lånets løpetid</p>
+            <p i18n=“time|offers-main@@offers.mainPage.time”>over lånets løpetid</p>
           </div>
         </div>
         <!-- End barometer -->
@@ -100,14 +106,14 @@
           <div class="box round-box blue-bg">
             <div>
               <img class="box-icon" src="../../../../assets/icons/rate.svg" />
-              <p>Min effektive rente</p>
+              <p i18n=“your-interest|offers-main@@offers.mainPage.yourInterest”>Min effektive rente</p>
               <h2>{{ offersInfo.totalEffectiveRate | number: "1.2-2" }} %</h2>
             </div>
           </div>
           <a class="box round-box primary-bg positive clickable" (click)="goToBestOffer()">
             <div>
               <img class="box-icon" src="../../../../assets/icons/rente-icon-white.svg" />
-              <p>
+              <p i18n=“best-offer|offers-main@@offers.mainPage.bestOffer”>
                 Beste tilbud
               </p>
               <h2>
@@ -120,14 +126,14 @@
 
           <a class="box round-box blue-bg clickable" (click)="goToProperty()">
             <img class="box-icon" src="../../../../assets/icons/house.svg" />
-            <p>
+            <p i18n=“value|offers-main@@offers.mainPage.value”>
               Boligverdi
             </p>
-            <h2>
+            <h2 i18n=“millions|offers-main@@offers.mainPage.millions”>
               {{ offersInfo.propertyValue / 1000000 | number: "1.1-3" }}
               mill.
             </h2>
-            <p class="small">
+            <p i18n=“debt|offers-main@@offers.mainPage.debt” class="small">
               Fellesgjeld
               {{
               (offersInfo.commonDebt / 1000000 | number: "1.1-2")
@@ -135,7 +141,7 @@
               mill.
             </p>
 
-            <p class="extra-small-virdi">
+            <p i18n=“virdi-estimate|offers-main@@offers.mainPage.virdiEstimate”  class="extra-small-virdi">
               Estimat levert av
               <a href="https://virdi.no/" target="_blank">virdi.no</a>
             </p>
@@ -143,7 +149,7 @@
           </a>
           <a class="box round-box blue-bg clickable" (click)="goToLoans()">
             <img class="box-icon" src="../../../../assets/icons/graph-icon-white-small.svg" />
-            <p>
+            <p i18n=“loan-remaining|offers-main@@offers.mainPage.loanRemaining”>
               Gjenværende lån 
             </p>
             <h2>
@@ -152,7 +158,7 @@
             }}
               mill.
             </h2>
-            <p class="small">
+            <p i18n=“leverage2|offers-main@@offers.mainPage.leverage2” class="small">
               Belåningsgrad
               {{
               (offersInfo.ltv) *
@@ -226,13 +232,14 @@
         <div class="big-box round-box left">
           <div class="top">
             <div class="circleIconWrapper"><img class="" src="../../../../assets/icons/rente-green-big.svg" /></div>
-            <p>
+            <p i18n=“found-offers|offers-main@@offers.mainPage.foundOffers”>
               Vi har funnet de beste tilbudene for deg
             </p>
           </div>
           <div class="bottom">
 
             <rente-button 
+              i18n=“found-best-offers|offers-main@@offers.mainPage.found.bestOffers.button”
               [disabled]="changeBankLoading ||
               offersInfo.offerSavingsType === offerSavingsType.NO_SAVING"
               [isLoading]="changeBankLoading"
@@ -247,10 +254,11 @@
         <div class="big-box round-box right">
           <div class="top">
             <div class="circleIconWrapper"><img class="" src="../../../../assets/icons/mail-green.svg" /></div>
-            <p>Vi hjelper deg å be banken din om lavere rente</p>
+            <p i18n=“help-you|offers-main@@offers.mainPage.helpYou”>Vi hjelper deg å be banken din om lavere rente</p>
           </div>
           <div class="bottom">
             <rente-button
+            i18n=“help-you|offers-main@@offers.mainPage.helpYou.button” 
               color="primary-wide-hollow"
               [disabled]="
               changeBankLoading ||
@@ -318,14 +326,14 @@
             </div>
 
             <div class="save-info">
-              <p>Du kan spare</p>
+              <p i18n=“save|offers-main@@offers.mainPage.save”>Du kan spare</p>
               <h2 *ngIf="offersInfo.bestOfferTotalSaving > 0; else noBestOffer">
                 {{ offersInfo.bestOfferTotalSaving | abs | number }},-
               </h2>
               <ng-template #noBestOffer>
                 <h2> 0,- </h2>
               </ng-template>
-              <p>over lånets løpetid</p>
+              <p i18n=“time|offers-main@@offers.mainPage.time”>over lånets løpetid</p>
             </div>
           </div>
           <!-- End barometer -->
@@ -335,14 +343,14 @@
           <div class="box round-box blue-bg">
             <div>
               <img class="box-icon" src="../../../../assets/icons/rate.svg" />
-              <p>Min effektive rente</p>
+              <p i18n=“your-interest|offers-main@@offers.mainPage.yourInterest”>Min effektive rente</p>
               <h2>{{ offersInfo.totalEffectiveRate | number: "1.2-2" }} %</h2>
             </div>
           </div>
           <a class="box round-box primary-bg positive clickable" (click)="goToBestOffer()">
             <div>
               <img src="../../../../assets/icons/rente-icon-white.svg" />
-              <p>
+              <p i18n=“best-offer|offers-main@@offers.mainPage.bestOffer”>
                 Beste tilbud
               </p>
               <h2>
@@ -355,14 +363,14 @@
           <a class="box round-box blue-bg clickable" (click)="goToProperty()">
             <div>
               <img class="box-icon" src="../../../../assets/icons/house.svg" />
-              <p>
+              <p i18n=“value|offers-main@@offers.mainPage.value”>
                 Boligverdi
               </p>
-              <h2>
+              <h2 i18n=“millions|offers-main@@offers.mainPage.millions”>
                 {{ offersInfo.propertyValue / 1000000 | number: "1.1-3" }}
                 mill.
               </h2>
-              <p class="small">
+              <p i18n=“debt|offers-main@@offers.mainPage.debt” class="small">
                 Fellesgjeld
                 {{
                 (offersInfo.commonDebt / 1000000 | number: "1.1-2")
@@ -370,7 +378,7 @@
                 mill.
               </p>
 
-              <p class="extra-small-virdi">
+              <p i18n=“virdi-estimate|offers-main@@offers.mainPage.virdiEstimate” class="extra-small-virdi">
                 Estimat levert av
                 <a href="https://virdi.no/" target="_blank">virdi.no</a>
               </p>

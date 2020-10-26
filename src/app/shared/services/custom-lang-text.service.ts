@@ -26,4 +26,15 @@ export class CustomLangTextService {
     }
   }
 
+  getLimitedLoanInfoWarning() {
+    if(locale.includes("sv") ) {
+      return 'Vi har endast hämtat din nominella ränta och lånebeloppet. För uträkningarna har vi utgått från en återstående löptid på 20 år, månadsavgifter på 50,-. Faktisk löptid och månadsavgifter förändrar förväntade besparingar.'
+    } else if (locale.includes("nb")) {
+      return 'Vi får kun hentet din nominelle rente og lånebeløp. For utregninger har vi tatt utgangspunkt i en gjenværende løpetid på 20 år, månedelige betalinger og 50,- i termingebyr. Faktisk løpetid og termingebyrer vil endre forventede besparelser.'
+
+    }
+  }
+
+  
+
 }
