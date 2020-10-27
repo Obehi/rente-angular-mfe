@@ -43,7 +43,7 @@
     
   
 
-  <div [ngClass]="(optimize.getVariation() == 0) ? 'dashboard-content' : 'dashboard-content-blue'">
+  <div [ngClass]="'dashboard-content-blue'">
     <!-- <div class="dashboard-content"> -->
     <router-outlet (activate)="onActivate($event)"></router-outlet>
   </div>

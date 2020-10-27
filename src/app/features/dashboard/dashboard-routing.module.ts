@@ -11,7 +11,6 @@ import { NoLoansComponent } from './no-loans/no-loans.component';
 import { customMeta, defaultMeta } from '@config/routes-config';
 import {RouteGuard } from '@shared/guards/route.guard';
 import { BargainSuccessComponent } from './offers/bargain-success/bargain-success.component';
-import { OptimizeService } from '@services/optimize.service'
 
 import { OffersComponentBlue } from './offers/offers-blue/offers.component';
 import { HouseBlueComponent }   from './house/house-blue/house-blue.component';
@@ -21,7 +20,7 @@ import { EPSIScoreComponent }   from './offers/offers-blue/epsi-score/epsi-score
 
 
 
-const optimize = new OptimizeService()
+
 
 
 const routes: Routes = [

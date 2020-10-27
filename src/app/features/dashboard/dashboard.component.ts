@@ -2,7 +2,7 @@ import { Component, OnInit, ViewEncapsulation, OnDestroy } from "@angular/core";
 import { Routes, RouterModule, Router } from "@angular/router";
 import { BreakpointObserver, BreakpointState } from "@angular/cdk/layout";
 import { LocalStorageService } from "@services/local-storage.service";
-import { OptimizeService } from '@services/optimize.service'
+
 @Component({
   selector: "rente-dashboard",
   templateUrl: "./dashboard.component.html",
@@ -11,16 +11,11 @@ import { OptimizeService } from '@services/optimize.service'
 })
 export class DashboardComponent implements OnInit, OnDestroy {
 
-  public optimize: OptimizeService;
-
   constructor(
     private router: Router,
     public breakpointObserver: BreakpointObserver,
-    private localStorageService: LocalStorageService,
-    public optimizeService: OptimizeService
-  ) {
-    this.optimize = optimizeService
-  }
+    private localStorageService: LocalStorageService
+  ) { }
 
   public navLinks = ["tilbud", "mine-lan", "bolig", "preferanser", "profil"];
   public activeLinkIndex = -1;

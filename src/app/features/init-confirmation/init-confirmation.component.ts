@@ -24,7 +24,6 @@ import { SnackBarService } from '../../shared/services/snackbar.service';
 import { OfferInfo } from '@shared/models/offers';
 import { DialogInfoComponent } from './dialog-info/dialog-info.component';
 import { Mask } from '@shared/constants/mask'
-import { OptimizeService } from '@services/optimize.service'
 
 @Component({
   selector: 'rente-init-confirmation',
@@ -45,7 +44,6 @@ export class InitConfirmationComponent implements OnInit {
   public allMemberships: MembershipTypeDto[];
   public userData:ConfirmationGetDto;
   public mask = Mask;
-  public optimizeService: OptimizeService
 
   @ViewChild('membershipInput') membershipInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete: MatAutocomplete;
@@ -57,9 +55,7 @@ export class InitConfirmationComponent implements OnInit {
     private snackBar: SnackBarService,
     private router: Router,
     public dialog: MatDialog,
-    public optimize: OptimizeService
   ) {
-    this.optimizeService = optimize
     this.filteredMemberships = this.membershipCtrl.valueChanges.pipe(
       startWith(null),
       map((membership: string | null) =>

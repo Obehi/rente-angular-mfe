@@ -15,22 +15,8 @@ import { AuthGuard } from '@shared/guards/auth.guard';
 import { GetNotifiedComponent } from '@features/get-notified/get-notified.component';
 import { customMeta, defaultMeta, defaultTitle } from './config/routes-config';
 import { BankChoiceComponent } from '@features/auth/bank-choice/bank-choice.component';
-import { OptimizeService } from '@services/optimize.service';
 
 
-
-const optimize = new OptimizeService()
-
-/* 
-path: 'tilbud', component: optimize.getBinaryVariation() ?  OffersComponent : OffersComponentBlue,
- */
-
-const chooseBankVariation = () =>  {
-  if(!optimize.getBinaryVariation()) 
-  return import('./features/bank-select/bank-select.module').then(m => m.BankSelectModule)
-  else
-  return import('./features/bank-select-variation/bank-select.module').then(m => m.BankSelectVariationModule)
-}
  
 const routes: Routes = [
   {
@@ -117,7 +103,7 @@ const routes: Routes = [
   },
   {
     path: ROUTES_MAP.bankSelect,
-    loadChildren: () => chooseBankVariation(),
+    loadChildren: () => import('./features/bank-select-variation/bank-select.module').then(m => m.BankSelectVariationModule),
     data: {
       title: customMeta.valgBank.title,
       meta: {
