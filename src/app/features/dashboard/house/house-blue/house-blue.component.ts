@@ -32,15 +32,17 @@ import {
       })),
       transition(':enter', []),
       transition('* => *', [
-        animate('1s', keyframes([
+        animate('6s', keyframes([
           style({ opacity: 1, offset: 0.1}),
           style({ opacity: 1, offset: 0.8}),
           style({ opacity: 0, offset: 1}),
         ]
         ))
       ]),
-    ]),
+    ])
   ],
+  
+  
 })
 
 export class HouseBlueComponent implements OnInit, DeactivationGuarded {
@@ -50,9 +52,10 @@ export class HouseBlueComponent implements OnInit, DeactivationGuarded {
   changesMade = false;
   public canNavigateBooolean$: Subject<boolean> = new Subject<boolean>();
   public canLeavePage = true;
-  public updateAnimationTrigger :boolean;
-  public errorAnimationTrigger :boolean;
-  
+  public updateAnimationTrigger: boolean;
+  public errorAnimationTrigger: boolean;
+  public errorMessage: string; 
+  public isError: boolean = false; 
   
   constructor(
     private loansService: LoansService,
@@ -128,24 +131,51 @@ export class HouseBlueComponent implements OnInit, DeactivationGuarded {
       this.canLeavePage = false;
       this.loansService.updateAddress(this.addresses).subscribe(
         r => {
+
+          console.log("begining")
+          for(let address of r.addresses) {
+            if(address.message != null) {
+                console.log("in for loop")
+
+                this.isLoading = false;
+                this.changesMade = false;
+                this.errorAnimationTrigger  = !this.errorAnimationTrigger 
+                
+                this.canLeavePage = true
+                this.errorMessage = address.message;
+                this.isError = true;
+                return
+              }
+            }
+
           this.canNavigateBooolean$.next(true);
           this.addresses = r.addresses;
         },
         err => {
+          
+          this.errorMessage = "Oops, noe gikk galt";
           this.isLoading = false;
           this.changesMade = false;
-          this.errorAnimationTrigger  = !this.errorAnimationTrigger 
+          this.errorAnimationTrigger  = !this.errorAnimationTrigger;
           this.canLeavePage = true
         },
         () => {
+          if(this.isError) {
+            this.isError = false;
+            this.errorMessage == null
+            return
+          }
+          
           this.changesMade = false;
           this.isLoading = false;
-          this.updateAnimationTrigger  = !this.updateAnimationTrigger 
-          this.canLeavePage = true
+          this.updateAnimationTrigger  = !this.updateAnimationTrigger;
+          this.canLeavePage = true;
         }
       );
     }
   }
+
+ 
 
   get ableToSave(): boolean {
     let res = true;

@@ -19,6 +19,7 @@ import {
   keyframes
   // ...
 } from '@angular/animations';
+import { CommentStmt } from '@angular/compiler';
 
 @Component({
   selector: "rente-house",
@@ -53,7 +54,8 @@ export class HouseComponent implements OnInit, DeactivationGuarded {
   public canLeavePage = true;
   public updateAnimationTrigger :boolean;
   public errorAnimationTrigger :boolean;
-  
+  public errorMessage: string
+
   constructor(
     private loansService: LoansService,
     private snackBar: SnackBarService,
@@ -123,13 +125,27 @@ export class HouseComponent implements OnInit, DeactivationGuarded {
     this.changesMade = true;
   }
   saveAddresses() {
+         
     if (this.ableToSave) {
       this.isLoading = true;
       this.canLeavePage = false;
       this.loansService.updateAddress(this.addresses).subscribe(
         r => {
+          for(let address of r.addresses) {
+            if(address.message != null) {
+                this.isLoading = false;
+                this.changesMade = false;
+                this.errorAnimationTrigger  = !this.errorAnimationTrigger 
+                this.canLeavePage = true
+                this.errorMessage = address.message
+                return
+              }
+            }
           this.canNavigateBooolean$.next(true);
           this.addresses = r.addresses;
+
+          
+          
         },
         err => {
           this.isLoading = false;

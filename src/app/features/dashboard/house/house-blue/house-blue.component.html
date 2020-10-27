@@ -4,7 +4,8 @@
   </div>
   
   <div class="update-error" [@loading]="errorAnimationTrigger ? 'true' : 'false'">
-    <p>Oops, noe gikk galt</p>
+    <p>{{errorMessage}}</p>
+    
   </div>
   
   <div class="loading" *ngIf="isLoading">
