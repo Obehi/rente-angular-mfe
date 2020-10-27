@@ -37,6 +37,11 @@ import { AuthSvMockupComponent } from './features/auth-sv-mockup/auth-sv-mockup.
 import { LoginLangGenericComponent } from './local-components/components-output'
 
 import { InitConfirmationLangGenericComponent  } from './local-components/components-output';
+import { LandingTopLangGenericComponent  } from './local-components/components-output';
+
+import { BankSelectLangGenericRoutingModule  } from './local-components/components-output';
+
+import { BankSelectLangGenericComponent  } from './local-components/components-output';
 
 
 registerLocaleData(localeNo);
@@ -61,7 +66,9 @@ registerLocaleData(localeNo);
     ProfileDialogInfoComponent,
     LoginLangGenericComponent,
     AuthSvComponent,
-    AuthSvMockupComponent
+    AuthSvMockupComponent,
+    LandingTopLangGenericComponent,
+    BankSelectLangGenericComponent
   ],
   imports: [
     BrowserModule,
@@ -73,7 +80,8 @@ registerLocaleData(localeNo);
     FormsModule,
     IMaskModule,
     LazyLoadImageModule,
-    CountUpModule
+    CountUpModule,
+    BankSelectLangGenericRoutingModule
   ],
   entryComponents: [DialogInfoComponent, ProfileDialogInfoComponent],
   providers: [{ provide: LOCALE_ID, useValue: 'nb-NO' }, UserService, OptimizeService],

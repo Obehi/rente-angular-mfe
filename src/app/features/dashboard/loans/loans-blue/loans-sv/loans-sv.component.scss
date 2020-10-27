@@ -2,14 +2,19 @@
 h3.title {
     color: white;
   padding: 10px;
+  text-align: center;
 }
 
 p {
   color: black;
+  text-align: center;
 }
 
+h3,p {
+  text-align: center;
+}
 .container {
-    //background: linear-gradient(180deg, #162537 0%, #183A63 27.08%);
+    padding-top: 20px;
     padding-bottom: 80px;
 }
 
@@ -84,7 +89,7 @@ p {
   }
   .desktop-double {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     grid-column-gap: 10px;
   }
   .rente-boxes rente-button {

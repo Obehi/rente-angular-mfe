@@ -19,20 +19,6 @@ import { OptimizeService } from '@services/optimize.service';
 import { InitConfirmationLangGenericComponent } from './local-components/components-output'
 
 import { locale } from '../environments/locale';
-
-const optimize = new OptimizeService()
-
-/* 
-path: 'tilbud', component: optimize.getBinaryVariation() ?  OffersComponent : OffersComponentBlue,
- */
-
-const chooseBankVariation = () =>  {
-  if(!optimize.getBinaryVariation()) 
-  return import('./features/bank-select/bank-select.module').then(m => m.BankSelectModule)
-  else
-  return import('./features/bank-select-variation/bank-select.module').then(m => m.BankSelectVariationModule)
-}
-
  
 const commonRoutes: Routes = [
   {
@@ -119,7 +105,7 @@ const commonRoutes: Routes = [
   },
   {
     path: ROUTES_MAP.bankSelect,
-    loadChildren: () => chooseBankVariation(),
+    loadChildren: () => import('./local-modules/module-output').then(m => m.BankSelectLangGenericRoutingModule),
     data: {
       title: customMeta.valgBank.title,
       meta: {
