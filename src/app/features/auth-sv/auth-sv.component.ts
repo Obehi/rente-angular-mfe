@@ -128,7 +128,7 @@ export class AuthSvComponent implements OnInit, OnDestroy {
           case BANKID_STATUS.LOANS_PERSISTED:
             const user = response.data.user;
             this.authService
-              .loginWithToken(user.phone, user.oneTimeToken)
+              .loginWithToken(user.phone, user.oneTimeToken, "SWE")
               .subscribe(res => {
                 forkJoin([
                   this.loansService.getLoansAndRateType(),

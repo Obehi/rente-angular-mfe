@@ -349,7 +349,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
             this.viewStatus.isLoansPersisted = true;
             const user = response.data.user;
             this.authService
-              .loginWithToken(user.phone, user.oneTimeToken)
+              .loginWithToken(user.phone, user.oneTimeToken, "SWE")
               .subscribe(res => {
                 forkJoin([
                   this.loansService.getLoansAndRateType(),
