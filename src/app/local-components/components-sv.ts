@@ -3,7 +3,7 @@ export { OffersListSvComponent as  OffersListLangGenericComponent } from '@featu
 export { HeaderSvComponent as HeaderLangGenericComponent } from '@shared/components/header/header-sv/header-sv.component'
 export { LoansSvComponent as LoansLangGenericComponent } from '@features/dashboard/loans/loans-blue/loans-sv/loans-sv.component'
 export { InitConfirmationSVComponent as InitConfirmationLangGenericComponent } from '@features/init-confirmation/init-confirmation-sv/init-confirmation.component'
-export { HouseFormSvComponent } from '@features/dashboard/house/house-blue/house-form-sv/house-form-sv.component'
+export { HouseFormSvComponent as HouseFormLangGenericComponent } from '@features/dashboard/house/house-blue/house-form-sv/house-form-sv.component'
 
 //export { BankSelectSvRoutingModule as BankSelectLangGenericRoutingModule } from '@features/bank-select-sv/bank-select-routing.module';  
 export { BankSelectSvRoutingModule as BankSelectLangGenericRoutingModule } from '@features/bank-select-sv/bank-select-routing.module';  
