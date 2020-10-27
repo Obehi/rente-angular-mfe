@@ -37,12 +37,14 @@ import { AuthSvMockupComponent } from './features/auth-sv-mockup/auth-sv-mockup.
 import { LoginLangGenericComponent } from './local-components/components-output'
 
 import { InitConfirmationLangGenericComponent  } from './local-components/components-output';
-import { LandingTopLangGenericComponent  } from './local-components/components-output';
 
 import { BankSelectLangGenericRoutingModule  } from './local-components/components-output';
 
 import { BankSelectLangGenericComponent  } from './local-components/components-output';
 
+import { LandingTopLangGenericComponent  } from './local-components/components-output';
+
+//import { LandingTopNoComponent  } from './features/landing/landing-top-no/landing-top-no.component';
 
 registerLocaleData(localeNo);
 

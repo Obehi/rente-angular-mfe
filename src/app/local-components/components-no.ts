@@ -4,7 +4,9 @@ export { HeaderNoComponent as HeaderLangGenericComponent } from '@shared/compone
 export { LoansNoComponent as LoansLangGenericComponent } from '@features/dashboard/loans/loans-blue/loans-no/loans-no.component'
 export { InitConfirmationNoComponent as InitConfirmationLangGenericComponent } from '@features/init-confirmation/init-confirmation-no/init-confirmation.component'
 
+
 export { HouseFormNoComponent as HouseFormLangGenericComponent} from '@features/dashboard/house/house-blue/house-form-no/house-form-no.component'
+//export { HouseFormSvComponent } from '@features/dashboard/house/house-blue/house-form-sv/house-form-sv.component'
 
 
 export { LandingTopNoComponent as LandingTopLangGenericComponent } from '@features/landing/landing-top-no/landing-top-no.component';  

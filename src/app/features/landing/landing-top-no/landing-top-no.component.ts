@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'rente-landing-top-no',
+  selector: 'rente-landing-top',
   templateUrl: './landing-top-no.component.html',
   styleUrls: ['./landing-top-no.component.scss']
 })
