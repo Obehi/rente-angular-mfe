@@ -20,7 +20,7 @@ export class AuthService {
   public loginWithToken(phone: string, token: string, country: string) {
     const url = `${API_URL_MAP.auth.base}${API_URL_MAP.auth.token}`;
     const data = {
-      phone: phone.toString(),
+      identifier: phone.toString(),
       country: country,
       token
     };
