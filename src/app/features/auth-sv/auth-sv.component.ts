@@ -119,7 +119,7 @@ export class AuthSvComponent implements OnInit, OnDestroy {
         const response = JSON.parse(message.body);
       if (message.body) {
         switch (response.eventType) {
-
+         
           case BANKID_STATUS.LOANS_PERSISTED:
             const user = response.data.user;
             this.authService
@@ -136,7 +136,7 @@ export class AuthSvComponent implements OnInit, OnDestroy {
                       this.localStorageService.setItem('isAggregatedRateTypeFixed', true);
                       this.router.navigate(['/dashboard/fastrente']);
                     } else {
-                      if (userInfo.income === null) {
+                      if (res.apartmentSize === null) {
                         this.router.navigate(['/bekreft']);
                         this.localStorageService.setItem('isNewUser', true);
                       } else {
