@@ -71,7 +71,6 @@ export class AuthSvComponent implements OnInit, OnDestroy {
 
     console.log("Tink response");
 
-    
     let data = JSON.parse(event.data)
     if (data.type === 'code') {
       // This is the authorization code that should be exchanged for an access token
@@ -112,23 +111,19 @@ export class AuthSvComponent implements OnInit, OnDestroy {
   }
 
   private successSocketCallback() {
-    console.log("this is the shit")
     this.tinkSuccess = true
     //this.router.navigate([`/${ROUTES_MAP.initConfirmation}`]);
 
     const repliesUrl = `${API_URL_MAP.crawlerRepliesUrl}`;
-    console.log(API_URL_MAP.crawlerRepliesUrl)
     this.stompClient.subscribe(repliesUrl, message => {
-      console.log(message)
-      if (message.body) {
         const response = JSON.parse(message.body);
-        console.log('STATUS:', response.eventType);
+      if (message.body) {
         switch (response.eventType) {
 
           case BANKID_STATUS.LOANS_PERSISTED:
             const user = response.data.user;
             this.authService
-              .loginWithToken(user.phone, user.oneTimeToken, "SWE")
+              .loginWithToken(user.ssn, user.oneTimeToken, "SWE")
               .subscribe(res => {
                 forkJoin([
                   this.loansService.getLoansAndRateType(),
