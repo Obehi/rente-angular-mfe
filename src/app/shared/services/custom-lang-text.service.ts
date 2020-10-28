@@ -6,8 +6,6 @@ import { locale } from '@config/locale/locale';
 })
 export class CustomLangTextService {
 
-
-  
   constructor() { }
 
   getMarkedObservationText() {
@@ -28,13 +26,35 @@ export class CustomLangTextService {
 
   getLimitedLoanInfoWarning() {
     if(locale.includes("sv") ) {
-      return 'Vi har endast hämtat din nominella ränta och lånebeloppet. För uträkningarna har vi utgått från en återstående löptid på 20 år, månadsavgifter på 50,-. Faktisk löptid och månadsavgifter förändrar förväntade besparingar.'
+      return 'Vi har endast hämtat din nominella ränta och lånebeloppet. För uträkningarna har vi utgått från en återstående löptid på 20 år. Faktisk löptid och evt. månadsavgifter förändrar förväntade besparingar.'
     } else if (locale.includes("nb")) {
       return 'Vi får kun hentet din nominelle rente og lånebeløp. For utregninger har vi tatt utgangspunkt i en gjenværende løpetid på 20 år, månedelige betalinger og 50,- i termingebyr. Faktisk løpetid og termingebyrer vil endre forventede besparelser.'
+    }
+  }
 
+  getMembershipWarning() {
+    if(locale.includes("sv") ) {
+      return 'Bankerna ger ibland bättre erbjudanden om du är medlem i ett fackförbund'
+    } else if (locale.includes("nb")) {
+      return 'Enkelte banker tilbyr bedre betingelser hvis du er medlem i en interesseorganisasjon eller fagforening. Hvis du har mulighet til å melde deg inn i en kan det være penger å spare. (Medlemskap koster ca 4000 i året).'
+    }
+  } 
+
+  getHouseValue() {
+    if(locale.includes("sv") ) {
+      return 'milj.'
+    } else if (locale.includes("")) {
+      return 'Bostadens värde och belåningsgrad är viktiga parametrar när banken erbjuder en ränta. Kontrollera gärna att bostadens värde är korrekt. Du kan även lägga till fler bolån om du har det.'
+    }
+  }
+
+  getMillionShort() {
+    if(locale.includes("sv") ) {
+      return 'milj.'
+    } else if (locale.includes("nb")) {
+      return 'mill.'
     }
   }
 
   
-
 }

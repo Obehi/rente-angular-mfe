@@ -16,7 +16,7 @@
           <span [routerLink]="['/']" fragment="faq">
             <a  i18n=“Headerlink|faq@@header.faq” href="#faq">FAQ </a>
           </span>
-          <a [routerLink]="['/dashboard/tilbud']" *ngIf="isLoggedIn" routerLinkActive="active-link" class="highlight">Min side</a>
+          <a [routerLink]="['/dashboard/tilbud']" *ngIf="isLoggedIn" routerLinkActive="active-link" class="highlight">Min sida</a>
           <a [routerLink]="['/velgbank']" *ngIf="!isLoggedIn  && optimizeService.getBinaryVariation() == true" routerLinkActive="active-link" class="highlight">Logg inn</a>
           <a [routerLink]="['/']" *ngIf="isLoggedIn" (click)="auth.logout()">Logg ut</a>
         </div>

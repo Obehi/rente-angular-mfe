@@ -24,6 +24,8 @@ import { UserService } from '@services/remote-api/user.service';
 import smoothscroll from 'smoothscroll-polyfill';
 import { BankUtils } from '@shared/models/bank';
 import { CustomLangTextService } from '@shared/services/custom-lang-text.service'
+import { locale } from '../../../../config/locale/locale';
+
 @Component({
   selector: 'rente-offers-blue',
   templateUrl: './offers.component.html',
@@ -155,7 +157,7 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
       this.tips.push({
         header: "Belåningsgrad",
         text:
-          'Boligverdi/belåningsgrad er viktig for renten bankene tilbyr. Pass på at boligverdien din er riktig. Du kan også legge til flere boliger hvis du har det.',
+          this.customLangTextSerice.getHouseValue(),
         buttonLink: '/dashboard/bolig',
         icon: this.isMobile ? "house" : 'house-blue'
       });
@@ -165,7 +167,7 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
       this.tips.push({
         header: "Medlemskap",
         text:
-          'Enkelte banker tilbyr bedre betingelser hvis du er medlem i en interesseorganisasjon eller fagforening. Hvis du har mulighet til å melde deg inn i en kan det være penger å spare. (Medlemskap koster ca 4000 i året).',
+          this.customLangTextSerice.getMembershipWarning(),
         buttonLink: '/dashboard/profil',
         icon: this.isMobile ? "profile-icon-white" : 'profile-icon-blue'
       });
