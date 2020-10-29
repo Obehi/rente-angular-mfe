@@ -6,7 +6,7 @@
     <div class="offers-type-container">
         <a class=" clickable" [ngClass]="currentOfferType == 'threeMonths' ? 'active' : 'deactive'" (click)="setOfferType('threeMonths')"> 3 mnd </a>
         <a class=" clickable" [ngClass]="currentOfferType == 'oneYear' ? 'active' : 'deactive'" (click)="setOfferType('oneYear')"> 1 år </a>
-        <a class=" clickable" [ngClass]="currentOfferType == 'all' ? 'active' : 'deactive'" (click)="setOfferType('all')">  Alle lån </a>
+        <a class=" clickable" [ngClass]="currentOfferType == 'all' ? 'active' : 'deactive'" (click)="setOfferType('all')">  Alla lån </a>
     </div>
 
     <div *ngIf="isMobile" class="sticky-table-header">
