@@ -165,6 +165,7 @@ export class ConfirmationSetDto {
   apartmentSize:number;
   email:string;
   income:number;
+  apartmentValue: number
 }
 
 export class PreferencesDto {
