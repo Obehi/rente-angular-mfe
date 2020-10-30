@@ -3,7 +3,8 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { SnackBarService } from "../../../../shared/services/snackbar.service";
 import { Observable, Subject } from 'rxjs';
 import { DeactivationGuarded } from '@shared/guards/route.guard';
-
+import { HouseFormErrorDialogComponent } from './error-dialog/error-dialog.component'
+import { MatDialog } from '@angular/material';
 import {
   EventService,
   EmitEvent,
@@ -56,12 +57,16 @@ export class HouseBlueComponent implements OnInit, DeactivationGuarded {
   public errorAnimationTrigger: boolean;
   public errorMessage: string; 
   public isError: boolean = false; 
+  public dialog: MatDialog
   
   constructor(
     private loansService: LoansService,
     private snackBar: SnackBarService,
-    eventService: EventService
+    eventService: EventService,
+    dialog: MatDialog
   ) {
+    this.dialog = dialog
+
     eventService.on(Events.INPUT_CHANGE, _ => {
       this.saveAddresses();
     });
@@ -132,14 +137,15 @@ export class HouseBlueComponent implements OnInit, DeactivationGuarded {
       this.loansService.updateAddress(this.addresses).subscribe(
         r => {
           this.addresses = r.addresses;
-          console.log("begining")
           for(let address of r.addresses) {
-            if(address.message != null) {
-                console.log("in for loop")
+            if(address.error == true) {
+
+
 
                 this.isLoading = false;
                 this.changesMade = false;
-                this.errorAnimationTrigger  = !this.errorAnimationTrigger 
+                this.dialog.open(HouseFormErrorDialogComponent)
+
                 
                 this.canLeavePage = true
                 this.errorMessage = address.message;

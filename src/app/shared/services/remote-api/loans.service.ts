@@ -144,6 +144,7 @@ export class AddressDto {
   useManualPropertyValue: boolean;
   commonDebt: number;
   message: string;
+  error: boolean;
 }
 
 export class ClientAddressDto {
