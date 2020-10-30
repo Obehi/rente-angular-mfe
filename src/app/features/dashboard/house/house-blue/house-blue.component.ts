@@ -131,7 +131,7 @@ export class HouseBlueComponent implements OnInit, DeactivationGuarded {
       this.canLeavePage = false;
       this.loansService.updateAddress(this.addresses).subscribe(
         r => {
-
+          this.addresses = r.addresses;
           console.log("begining")
           for(let address of r.addresses) {
             if(address.message != null) {
@@ -149,7 +149,6 @@ export class HouseBlueComponent implements OnInit, DeactivationGuarded {
             }
 
           this.canNavigateBooolean$.next(true);
-          this.addresses = r.addresses;
         },
         err => {
           
