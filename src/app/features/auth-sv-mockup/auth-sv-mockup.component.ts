@@ -377,7 +377,7 @@ export class AuthSvMockupComponent implements OnInit, OnDestroy {
                       this.localStorageService.setItem('isAggregatedRateTypeFixed', true);
                       this.router.navigate(['/dashboard/fastrente']);
                     } else {
-                      if (res.apartmentSize === null) {
+                      if (res.income === null) {
                         this.router.navigate(['/bekreft']);
                         this.localStorageService.setItem('isNewUser', true);
                       } else {
