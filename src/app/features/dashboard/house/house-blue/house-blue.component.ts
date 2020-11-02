@@ -81,7 +81,7 @@ export class HouseBlueComponent implements OnInit, DeactivationGuarded {
   }
 
   // DeactivationGuarded Interface method. 
-  // Gets called every time user navigates rom this page.
+  // Gets called every time user navigates from this page.
   // Determines if you can leave this page or if you have to wait. 
   canDeactivate(): boolean | Observable<boolean> | Promise<boolean> {
     if(this.canLeavePage)

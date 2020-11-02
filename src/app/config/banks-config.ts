@@ -1,4 +1,6 @@
-export const BANKS_DATA = {
+
+
+const BANKS_DATA_NO = {
   AASEN_SB: {
     name: 'AASEN_SB',
     img: '../../assets/img/banks-logo/round/aasen.png',
@@ -643,10 +645,98 @@ export const BANKS_DATA = {
     name: 'USBL',
     img: '../../assets/img/banks-logo/square/dnb.png',
     imgCircle: '../../assets/img/banks-logo/round/dnb.png'
+  }
+};
+
+
+
+const BANKS_DATA_SV = {
+  SWE_AVANZA: {
+    name: 'SWE_AVANZA',
+    img: '../../assets/sv/img/banks-logo/round/avanza.png',
+    imgCircle: '../../assets/sv/img/banks-logo/round/avanza.png'
   },
+  SWE_DANSKE_BANK: {
+    name: 'SWE_DANSKE_BANK',
+    img: '../../assets/sv/img/banks-logo/round/danske.png',
+    imgCircle: '../../assets/sv/img/banks-logo/round/danske.png'
+  },
+  SWE_HANDELSBANKEN: {
+    name: 'SWE_HANDELSBANKEN',
+    img: '../../assets/img/sv/banks-logo/round/handelsbanken.png',
+    imgCircle: '../../assets/img/sv/banks-logo/round/handelsbanken.png'
+  },
+  SWE_HYPOTEKET: {
+    name: 'SWE_HYPOTEKET',
+    img: '../../assets/img/sv/banks-logo/round/hypoteket.png',
+    imgCircle: '../../assets/img/sv/banks-logo/round/hypoteket.png'
+  },
+  SWE_ICA_BANKEN: {
+    name: 'SWE_ICA_BANKEN',
+    img: '../../assets/img/sv/banks-logo/round/icabanken.png',
+    imgCircle: '../../assets/img/sv/banks-logo/round/icabanken.png'
+  },
+  SWE_LANDSHYPOTEKET: {
+    name: 'SWE_LANDSHYPOTEKET',
+    img: '../../assets/img/sv/banks-logo/round/landshypotek.png',
+    imgCircle: '../../assets/img/sv/banks-logo/round/landshypotek.png'
+  },
+  SWE_LANSFORSAKRINGAR: {
+    name: 'SWE_LANSFORSAKRINGAR',
+    img: '../../assets/img/sv/banks-logo/round/landsforsakringar.png',
+    imgCircle: '../../assets/img/sv/banks-logo/round/landsforsakringar.png'
+  },
+  SWE_NORDEA: {
+    name: 'SWE_NORDEA',
+    img: '../../assets/img/sv/banks-logo/round/nordea.png',
+    imgCircle: '../../assets/img/sv/banks-logo/round/nordea.png'
+  },
+  SWE_NORDNET: {
+    name: 'SWE_NORDNET',
+    img: '../../assets/img/sv/banks-logo/round/nordnet.png',
+    imgCircle: '../../assets/img/sv/banks-logo/round/nordnet.png'
+  },
+  SWE_SBAB: {
+    name: 'SWE_SBAB',
+    img: '../../assets/img/sv/banks-logo/round/sbab.png',
+    imgCircle: '../../assets/img/sv/banks-logo/round/sbab.png'
+  },
+  SWE_SEB: {
+    name: 'SWE_SEB',
+    img: '../../assets/img/sv/banks-logo/round/seb.png',
+    imgCircle: '../../assets/img/sv/banks-logo/round/seb.png'
+  },
+  SWE_SKANDIA: {
+    name: 'SWE_SKANDIA',
+    img: '../../assets/img/sv/banks-logo/round/skandia.png',
+    imgCircle: '../../assets/img/sv/banks-logo/round/skandia.png'
+  },
+  SWE_STABELO: {
+    name: 'SWE_STABELO',
+    img: '../../assets/img/sv/banks-logo/round/stabelo.png',
+    imgCircle: '../../assets/img/sv/banks-logo/round/stabelo.png'
+  },
+  SWE_SWEDBANK_OCH_SPARBANKERNA: {
+    name: 'SWE_SWEDBANK_OCH_SPARBANKERNA',
+    img: '../../assets/img/sv/banks-logo/round/swedbank.png',
+    imgCircle: '../../assets/img/sv/banks-logo/round/swedbank.png'
+  },
+  SWE_ALANDSBANKEN: {
+    name: 'SWE_ALANDSBANKEN',
+    img: '../../assets/img/sv/banks-logo/round/alandsbanken.png',
+    imgCircle: '../../assets/img/sv/banks-logo/round/alandsbanken.png'
+  }
+};    
+
+const MISCELLANEOUS = {
   OTHER: {
     name: 'OTHER',
     img: '',
     imgCircle: ''
   }
-};
+}
+
+
+
+  
+export const BANKS_DATA = { ...BANKS_DATA_SV, ...BANKS_DATA_NO, MISCELLANEOUS }
