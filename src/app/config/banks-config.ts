@@ -653,8 +653,8 @@ const BANKS_DATA_NO = {
 const BANKS_DATA_SV = {
   SWE_AVANZA: {
     name: 'SWE_AVANZA',
-    img: '../../assets/sv/img/banks-logo/round/avanza.png',
-    imgCircle: '../../assets/sv/img/banks-logo/round/avanza.png'
+    img: '../../assets/img/sv/banks-logo/round/avanza.png',
+    imgCircle: '../../assets/img/sv/banks-logo/round/avanza.png'
   },
   SWE_DANSKE_BANK: {
     name: 'SWE_DANSKE_BANK',
@@ -670,6 +670,7 @@ const BANKS_DATA_SV = {
     name: 'SWE_HYPOTEKET',
     img: '../../assets/img/sv/banks-logo/round/hypoteket.png',
     imgCircle: '../../assets/img/sv/banks-logo/round/hypoteket.png'
+
   },
   SWE_ICA_BANKEN: {
     name: 'SWE_ICA_BANKEN',

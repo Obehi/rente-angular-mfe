@@ -33,7 +33,6 @@ export class OfferCardBigComponentBlue implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
-    console.log(this.offer)
   }
 
   get isMobile(): boolean { return window.innerWidth < 600; }

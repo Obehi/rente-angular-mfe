@@ -63,7 +63,7 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
     );
   }
 
-  getBankLogo(bankName: string): string {
+  getBankLogo(bankName: string): string { 
     const b = BANKS_DATA[bankName];
     if (b && b.img) {
       return b.img;
@@ -115,7 +115,6 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
         this.offersInfo = Object.assign({}, res);
         this.currentOfferInfo = (JSON.parse(JSON.stringify(res)))
 
-        
         //REMOVE BEFORE PRODUCTION
         var flag = false
         this.offersInfo.offers.top5 = this.offersInfo.offers.top5.map( (offer) => {
