@@ -15,3 +15,5 @@ export { LandingTopNoComponent as LandingTopLangGenericComponent } from '@featur
 export { BankSelectNoRoutingModule as BankSelectLangGenericRoutingModule } from '@features/bank-select-no/bank-select-routing.module';  
 
 export { BankSelectNoComponent as BankSelectLangGenericComponent } from '@features/bank-select-no/bank-select.component';  
+export { BankSelectNoModule as BankSelectLangGenericModule } from '@features/bank-select-no/bank-select.module';  
+

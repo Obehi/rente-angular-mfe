@@ -8,6 +8,8 @@ export { HouseFormSvComponent as HouseFormLangGenericComponent } from '@features
 //export { BankSelectSvRoutingModule as BankSelectLangGenericRoutingModule } from '@features/bank-select-sv/bank-select-routing.module';  
 export { BankSelectSvRoutingModule as BankSelectLangGenericRoutingModule } from '@features/bank-select-sv/bank-select-routing.module';  
 
-export { BankSelectSvComponent as BankSelectLangGenericComponent } from '@features/bank-select-sv/bank-select.component';  
 
-export { LandingTopSvComponent as LandingTopLangGenericComponent } from '@features/landing/landing-top-sv/landing-top-sv.component';  
+export { LandingTopSvComponent as LandingTopLangGenericComponent } from '@features/landing/landing-top-sv/landing-top-sv.component';   
+
+export { BankSelectSvModule as BankSelectLangGenericModule } from '@features/bank-select-sv/bank-select.module';  
+export { BankSelectSvComponent as BankSelectLangGenericComponent } from '@features/bank-select-sv/bank-select.component';  

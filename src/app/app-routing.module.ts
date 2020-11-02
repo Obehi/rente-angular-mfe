@@ -17,7 +17,6 @@ import { customMeta, defaultMeta, defaultTitle } from './config/routes-config';
 import { BankChoiceComponent } from '@features/auth/bank-choice/bank-choice.component';
 import { OptimizeService } from '@services/optimize.service';
 import { InitConfirmationLangGenericComponent } from './local-components/components-output'
-
 import { locale } from '../environments/locale';
  
 const commonRoutes: Routes = [
@@ -101,11 +100,8 @@ const commonRoutes: Routes = [
     }
   },
   {
-    path: ROUTES_MAP.bankTestVariationSelect, component: BankChoiceComponent
-  },
-  {
     path: ROUTES_MAP.bankSelect,
-    loadChildren: () => import('./local-modules/module-output').then(m => m.BankSelectLangGenericRoutingModule),
+    loadChildren: () => import('./local-components/components-output').then(m => m.BankSelectLangGenericRoutingModule),
     data: {
       title: customMeta.valgBank.title,
       meta: {

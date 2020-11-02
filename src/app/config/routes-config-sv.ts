@@ -192,7 +192,6 @@ export const ROUTES_MAP = {
   privacyPolicy: 'personuppgiftsbehandling/integritypolicy',
   termsConditions: 'personuppgiftsbehandling/anvandarvillkor',
   bankSelect: 'velgbank',
-  bankTestVariationSelect: 'velgdinbank',
   auth: 'autentisering',
   dashboard: 'dashboard',
   initConfirmation: 'bekreft',

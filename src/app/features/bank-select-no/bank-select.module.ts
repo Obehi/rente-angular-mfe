@@ -1,18 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { BankSelectRoutingModule } from './bank-select-routing.module';
-import { BankSelectComponentVariation } from './bank-select.component';
+import { BankSelectNoRoutingModule } from './bank-select-routing.module';
+import { BankSelectNoComponent } from './bank-select.component';
 import { MaterialModule } from '@shared/material/material.module';
 
 
 @NgModule({
-  declarations: [BankSelectComponentVariation],
+  declarations: [BankSelectNoComponent],
   imports: [
     CommonModule,
-    BankSelectRoutingModule,
+    BankSelectNoRoutingModule,
     FormsModule,
     MaterialModule
   ]
 })
-export class BankSelectVariationModule { }
+export class BankSelectNoModule { }

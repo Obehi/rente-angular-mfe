@@ -11,4 +11,3 @@ const routes: Routes = [{ path: '', component: BankSelectSvComponent }];
 })
 export class BankSelectSvRoutingModule { }
   
-
