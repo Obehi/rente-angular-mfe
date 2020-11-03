@@ -15,8 +15,8 @@
           type="text"
           [placeholder]="'Adresse'"
           [(ngModel)]="address.street"
-          (change)="countChange($event)"
-          (focus)="countChange($event)"
+          (change)="countChange()"
+          (focus)="countChange()"
         ></rente-input>
         <button
           [disabled]="!isAddressValid"
@@ -36,8 +36,8 @@
           [placeholder]="'Postnummer'"
           [(ngModel)]="address.zip"
           [maxLength] ="4"
-          (change)="countChange($event)"
-          (focus)="countChange($event)"
+          (change)="countChange()"
+          (focus)="countChange()"
         ></rente-input>
   
         <rente-input
@@ -46,8 +46,8 @@
           [placeholder]="'Størrelse (P-rom)'"
           [(ngModel)]="address.apartmentSize"
           [maxLength] ="3"
-          (change)="countChange($event)"
-          (focus)="countChange($event)"
+          (change)="countChange()"
+          (focus)="countChange()"
           matSuffix="kvm"
         ></rente-input>
       </div>
@@ -71,8 +71,8 @@
               class="automatic"
               [type]="'tel'"
               [ngModel]="address.estimatedPropertyValue | thousands"
-              (change)="countChange($event)"
-              (focus)="countChange($event)"
+              (change)="countChange()"
+              (focus)="countChange()"
               [disabled]="address.useManualPropertyValue"
               style="pointer-events: none; text-align: center !important;"
               [matSuffix]="address.estimatedPropertyValue ? 'kr' : ''"
@@ -89,8 +89,8 @@
             [disabled]="!address.useManualPropertyValue"
             [type]="'tel'"
             [ngModel]="address.manualPropertyValue | thousands"
-            (change)="countChange($event)"
-            (focus)="countChange($event)"
+            (change)="countChange()"
+            (focus)="countChange()"
             style="text-align: center !important;"
             (keyup)="manualPropertyValueChanged($event)"
             matSuffix="kr"
@@ -105,7 +105,7 @@
           [placeholder]="'Fellesgjeld'"
           [ngModel]="address.commonDebt | thousands"
           (ngModelChange)="address.commonDebt = formatThousand($event)"
-          (focus)="countChange($event)"
+          (focus)="countChange()"
           matSuffix="kr"
         ></rente-input>
       </div>
