@@ -7,11 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LandingTopSvComponent implements OnInit {
 
+  get isMobile(): boolean { return window.innerWidth < 600; }
+  
   constructor() { }
-
+  
   ngOnInit(): void {
   }
 
-  get isMobile(): boolean { return window.innerWidth < 600; }
 
 }

@@ -7,9 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LandingTopNoComponent implements OnInit {
 
+  get isMobile(): boolean { return window.innerWidth < 600; }
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  
 }
