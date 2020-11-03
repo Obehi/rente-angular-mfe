@@ -61,11 +61,14 @@ export class BlueAddressComponent implements OnInit {
   }
 
   onRbChange(event: MatTabChangeEvent) {
-    this.ableTosave = true
     if (event.index === 1) {
       this.address.useManualPropertyValue = true;
     } else {
       this.address.useManualPropertyValue = false;
+
+      if(this.address.manualPropertyValue == "") {
+        this.ableTosave = false
+      }
     }
   }
 
@@ -79,6 +82,20 @@ export class BlueAddressComponent implements OnInit {
     this.ableTosave = false
   }
   countChange($event) {
+    if(this.address.street == "") {
+      this.ableTosave = false
+      return
+    }
+
+    if(this.address.zip == "") {
+      this.ableTosave = false
+      return
+    }
+
+    if(this.address.apartmentSize == "") {
+      this.ableTosave = false
+      return
+    }
     this.ableTosave = true
   }
 
