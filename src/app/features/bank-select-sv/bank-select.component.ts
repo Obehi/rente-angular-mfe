@@ -1,112 +1,180 @@
-import { Component, OnInit } from '@angular/core';
-import { BankVo, BankList, MissingBankList } from '../../shared/models/bank';
-import { Router } from '@angular/router';
+import { AuthService } from "@services/remote-api/auth.service";
+import { LoansService } from "@services/remote-api/loans.service";
+import { UserService } from "@services/remote-api/user.service";
+import { LocalStorageService } from "@services/local-storage.service";
+
+import {
+  Component,
+  OnInit,
+  Input,
+  OnDestroy,
+  Output,
+  EventEmitter,
+  HostListener
+} from "@angular/core";
+import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { ROUTES_MAP } from '@config/routes-config';
-import {ErrorHandler, Injectable} from '@angular/core';
+import * as Stomp from "stompjs";
+import * as SockJS from "sockjs-client";
+import { environment } from "@environments/environment";
+import { API_URL_MAP } from "@config/api-url-config";
+import { Subscription, interval, Observable, timer, forkJoin } from "rxjs";
+import {
+  IDENTIFICATION_TIMEOUT_TIME,
+  PING_TIME,
+  RECONNECTION_TRIES,
+  RECONNECTION_TIME,
+  BANKID_STATUS,
+  BANKID_TIMEOUT_TIME,
+  MESSAGE_STATUS
+} from "../auth/login-status/login-status.config";
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+
 
 @Component({
   selector: 'rente-bank-select-variation',
   templateUrl: './bank-select.component.html',
   styleUrls: ['./bank-select.component.scss']
 })
-export class BankSelectSvComponent implements OnInit, ErrorHandler{
-
-  searchStr:string;
-  banks:BankVo[];
-  allBanks:BankVo[];
-
-  sparebankIsClicked: boolean = false;
-
-  constructor(
-    private router: Router) { }
-
-  ngOnInit() {
-    this.sortBanks();
-    this.filterBank(this.searchStr);
-  }
-
-  // Workaround for bug. Cant click on banks in list. console error message: ChunkLoadError: Loading chunk 6 failed.
-  handleError(error: any): void {
-    const chunkFailedMessage = /Loading chunk [\d]+ failed/;
-     console.log("Handeling error");
-     console.log(error)
-     if (chunkFailedMessage.test(error.message)) {
-       console.log("error detected. Implement window.location.reload()");
-       //window.location.reload();
-     }
-   }
-
-  sortBanks() {
-    let sortedBanksAlphabetic = [...BankList, ...MissingBankList].sort((a,b) => (a.label > b.label) ? 1 : ((b.label > a.label) ? -1 : 0));
-    let dnb = 'DNB';
-    let sparebank = 'SPAREBANK_1';
-    let nordea = 'NORDEA';
-
-    let sortedBanksSpareBankFirst = sortedBanksAlphabetic.sort(function(x,y){ return x.name == sparebank ? -1 : y.name == sparebank ? 1 : 0; });
-    let sortedBanksNoredaFirst = sortedBanksSpareBankFirst.sort(function(x,y){ return x.name == nordea ? -1 : y.name == nordea ? 1 : 0; });
-
+export class BankSelectSvComponent implements OnInit, OnDestroy {
+  
+    public isMockTest = false;
+    public isLoginStarted = false;
+    public tinkCode: number;
+    public tinkSuccess = false;
+    private stompClient: any;
+    private intervalSubscription: Subscription;
+    public isSuccess = false;
+    public tinkUrl: SafeUrl;
+  
+    constructor(
+      private router: Router,
+      private authService: AuthService,
+      private userService: UserService,
+      private loansService: LoansService,
+      private localStorageService: LocalStorageService,
+      private sanitizer: DomSanitizer
+  
+    ) { 
+  
+    }
+  
+    ngOnInit(): void {
+      let tinkUrl = environment["tinkUrl"] || "https://link.tink.com/1.0/authorize/?client_id=2a14f1970f0b4b39a861a1c42b65daca&redirect_uri=http%3A%2F%2Flocalhost%3A4302%2F&scope=accounts:read,user:read,identity:read&market=SE&locale=sv_SE&iframe=true&test=true"
+      this.tinkUrl = this.sanitizer.bypassSecurityTrustResourceUrl(tinkUrl)
+    }
+  
+    @HostListener('window:message', ['$event'])
+    onMessage(event) {
+      if (event.origin !== 'https://link.tink.com') {
+      return;
+      }
+  
+      console.log("Tink response");
+  
+      let data = JSON.parse(event.data)
+      if (data.type === 'code') {
+        // This is the authorization code that should be exchanged for an access token
+  
+        this.tinkCode = event.data.data;
+        console.log(`Tink Link returned with authorization code: ${data.type }`);
+        this.initializeWebSocketConnection(data.data)
+      }
+    }
+  
+    ngOnDestroy() {
+    }
+  
+    private initializeWebSocketConnection(tinkCode: number) {
+      this.connectAndReconnectSocket(this.successSocketCallback);
+      
+      const socket = new SockJS(environment.crawlerUrl);
+      this.stompClient = Stomp.over(socket);
+  
+      if (environment.production) {
+        this.stompClient.debug = null;
+      }
+  
+      this.stompClient.connect({}, frame => {
+        this.sendUserData(tinkCode);
+  
+        //this.resendDataAfterReconnect();
+          this.successSocketCallback();
+          // Send ping to prevent socket closing
+          this.intervalSubscription = interval(PING_TIME).subscribe(() => {
+            this.stompClient.send(
+              API_URL_MAP.crawlerComunicationUrl,
+              {},
+              JSON.stringify({ message: "ping" })
+            );
+          });
+      }, () => {})
+    }
+  
+    private successSocketCallback() {
+      this.tinkSuccess = true
+      //this.router.navigate([`/${ROUTES_MAP.initConfirmation}`]);
+  
+      const repliesUrl = `${API_URL_MAP.crawlerRepliesUrl}`;
+      this.stompClient.subscribe(repliesUrl, message => {
+          const response = JSON.parse(message.body);
+        if (message.body) {
+          switch (response.eventType) {
+           
+            case BANKID_STATUS.LOANS_PERSISTED:
+              const user = response.data.user;
+              this.authService
+                .loginWithToken(user.ssn, user.oneTimeToken, "SWE")
+                .subscribe(res => {
+                  forkJoin([
+                    this.loansService.getLoansAndRateType(),
+                    this.userService.getUserInfo()
+                  ]).subscribe(([rateAndLoans, userInfo]) => {
+                    this.userService.lowerRateAvailable.next(rateAndLoans.lowerRateAvailable);
+                    if (rateAndLoans.loansPresent) {
+                      this.localStorageService.removeItem('noLoansPresent');
+                      if (rateAndLoans.isAggregatedRateTypeFixed) {
+                        this.localStorageService.setItem('isAggregatedRateTypeFixed', true);
+                        this.router.navigate(['/dashboard/fastrente']);
+                      } else {
+                        if (userInfo.income === null) {
+                          this.router.navigate(['/bekreft']);
+                          this.localStorageService.setItem('isNewUser', true);
+                        } else {
+                          this.router.navigate(['/dashboard/tilbud/']);
+                        }
+                      }
+                    } else {
+                      this.localStorageService.setItem('noLoansPresent', true);
+                      this.router.navigate(['/dashboard/ingenlaan']);
+                    }
+                  });
+                });
+              break;
+          }
+        }
+      });
+  
+    }
+  
+    private connectAndReconnectSocket(successCallback) {
     
-    let sortedBanksDNBFirst = sortedBanksNoredaFirst.sort(function(x,y){ return x.name == dnb ? -1 : y.name == dnb ? 1 : 0; });
-    
-   
-
-    this.allBanks = sortedBanksDNBFirst;
-  }
-
-  removeSparebank() {
-    let sparebank = 'SPAREBANK_1';
-
-    this.allBanks = this.allBanks.filter(function(bank) {
-      return bank.name !== sparebank
-    })
-  }
-
-  onFilterChanged() {
-
-    if(this.searchStr.toLocaleLowerCase() == 'sparebank 1') {
-      this.removeSparebank()
     }
-    if(this.sparebankIsClicked == true) {
-      this.sparebankIsClicked = false;
-      this.sortBanks();
-    }
-    this.filterBank(this.searchStr);
-  }
-
-  clear() {
-    this.searchStr = '';
-    this.filterBank(this.searchStr);
-  }
-
-  filterBank(filter:string) {
-    let filteredBanks = [];
-    if (filter == null || filter.length === 0) {
-      filteredBanks = this.allBanks.concat();
-    } else {
-      const f = filter.toLocaleLowerCase();
-      filteredBanks = this.allBanks.filter(bank => bank.label.toLocaleLowerCase().indexOf(f) > -1);
-    }
-    
-    this.banks = filteredBanks;
-  }
-
-  selectBank(bank:BankVo) {
-
-    if(bank.name == 'SPAREBANK_1') {
-      this.searchStr = "Sparebank 1";
-
-      this.removeSparebank()
-      this.sparebankIsClicked = true;
-      this.filterBank(this.searchStr);
-      return
-    }
-
-    if (bank.isMissing) {
-      this.router.navigate([ROUTES_MAP.getNotified],{ state: { bank: bank } });
-    }
-    else {
-      this.router.navigate([ROUTES_MAP.auth + '/' +  bank.name.toLocaleLowerCase()]);
+  
+    sendUserData(tinkCode: number, resendData = false) {
+      const dataObj = {
+      };
+      //this.setDefaultSteps();
+      const data = JSON.stringify(dataObj);
+  
+      this.stompClient.send(
+        API_URL_MAP.tinkSendMessageUrl + tinkCode,
+        {},
+        data
+      );
+      if (!resendData) {
+        //this.initTimer(IDENTIFICATION_TIMEOUT_TIME);
+        //this.initConnectionTimer();
+      }
     }
   }
-
-}
