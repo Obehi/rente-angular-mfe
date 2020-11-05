@@ -262,7 +262,7 @@
             </div>
 
             <div class="field withinfo">
-              <rente-input i18n=“income-per-year|profile@@profile.income  [placeholder]="textLangService.getProfileAddPlaceHolder()" formControlName="income" [errorStateMatcher]="
+              <rente-input i18n=“income-per-year|profile@@profile.income  [placeholder]="textLangService.getProfileIncomePlaceHolder()" formControlName="income" [errorStateMatcher]="
                     isErrorState(profileForm.controls['income'], profileForm)
                     " [maskType]="mask.currency" [modelOptions]="{ updateOn: 'blur'}" [type]="'tel'" matSuffix="kr">
               </rente-input>
