@@ -203,6 +203,7 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
   }
 
   public goToBestOffer() {
+    console.log("goToBestOffer")
     var element =  document.getElementById('best-offers-text')
     var headerOffset = this.isMobile ? 80 : 180;
     
