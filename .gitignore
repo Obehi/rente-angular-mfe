@@ -9,10 +9,11 @@
 src/app/config/locale/locale-js.js
 src/app/config/locale/locale.ts
 src/app/local-components/components-output.ts
-src/locale/messages.nb.xtb
-src/locale/messages.sv.xtb
-src/messages.xmb
-src/messages.xmb
+
+#src/locale/messages.nb.xtb
+#src/locale/messages.sv.xtb
+#src/messages.xmb
+
 
 src/app/shared/constants/mask.ts
 src/app/config/routes-config.ts

@@ -115,13 +115,6 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
         this.offersInfo = Object.assign({}, res);
         this.currentOfferInfo = (JSON.parse(JSON.stringify(res)))
 
-        //REMOVE BEFORE PRODUCTION
-        var flag = false
-        this.offersInfo.offers.top5 = this.offersInfo.offers.top5.map( (offer) => {
-            offer.loanType = flag ? 'threeMonths' : 'oneYear'
-            flag = !flag
-            return offer
-        }) 
         this.isLoading = false;
         this.localStorageService.removeItem('isNewUser');
         this.getTips();

@@ -1,10 +1,10 @@
 <div class="update-complete" [@loading]="updateAnimationTrigger? 'true' : 'false'">
     <img src="../../../../assets/icons/ic_done.svg" alt="success-icon" />
-    <p>Lagret</p>
+    <p i18n=“house|save@@house.component.save”>Lagret</p>
   </div>
   
   <div class="update-error" [@loading]="errorAnimationTrigger ? 'true' : 'false'">
-    <p>Oops, noe gikk galt</p>
+    <p i18n=“house|error@@house.component.error”>Oops, noe gikk galt</p>
   </div>
   
   <div class="loading" *ngIf="isLoading">
@@ -12,8 +12,9 @@
   </div>
   <div class="house" *ngIf="showAddresses">
     <div class="title">
-      <h3>Mine boliger</h3>
-      <p>Total verdi: {{ totalPropertyValue | thousands }}</p>
+      <h3 i18n=“title|my-houses@@house.component.houses”>Mine boliger</h3>
+      <p i18n=“house|value@@house.component.value” class="small">Total verdi: {{ totalPropertyValue | thousands }}</p>
+
     </div>
     <div class="houses">
       <rente-blue-address
@@ -27,7 +28,7 @@
         [ngClass]="{'disabled':isLoading}"
       >
       </rente-blue-address>
-      <rente-button class="add" color="blue" (click)="addAddress()">
+      <rente-button class="add" color="blue" (click)="addAddress()" i18n=“house|additional@@house.component.addMore”>
           Legg til flere boliger
       </rente-button>
     </div>

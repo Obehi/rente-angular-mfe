@@ -1,7 +1,7 @@
 <div class="housecontainer">
     <div class="heading">
       <img src="../../../assets/icons/house-icon.svg" alt="Bolig" />
-      <b>Bolig {{ index + 1 }}</b>
+    <b>Bostad {{ index + 1 }}</b>
       <mat-icon
         *ngIf="isAbleToDelete"
         (click)="onDeleteAddressClick()"
@@ -13,12 +13,12 @@
       <div class="address">
         <rente-input
           type="text"
-          [placeholder]="'Adresse'"
+          [placeholder]="'Adress'"
           [(ngModel)]="address.street"
           (change)="countChange($event)"
           (focus)="countChange($event)"
         ></rente-input>
-       
+
       </div>
       <div [class]="'double'">
         <rente-input
@@ -33,7 +33,7 @@
         <rente-input
           matInput
           [type]="'tel'"
-          [placeholder]="'Størrelse på bolig'"
+          [placeholder]="'Storlek på bostaden'"
           [(ngModel)]="address.apartmentSize"
           [maxLength] ="3"
           (change)="countChange($event)"
@@ -42,9 +42,8 @@
         ></rente-input>
       </div>
       <div [class]="isStatMode ? 'hidden' : 'estimate'">
-        <p class="small">Boligverdi</p>
+        <p class="small">Bostadens värde</p>
   
-        
         <div class=" estimated">
           <rente-input
             matInput
@@ -67,13 +66,13 @@
         [disabled]="!ableTosave"
         (click)="save()"
         class="save-changes-local"
-        >Lagre endringer
+        >Spara ändringar
       </rente-button>
 
-
       <p *ngIf="!address.estimatedPropertyValue" class="small saveForEstimate">
-        Lagre endringene for å hente estimat
+        Spara ändringar för att hämta estimat
       </p>
+
     </div>
     </div>
    

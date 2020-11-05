@@ -1,5 +1,5 @@
 <div class="the-offer">
-    <div class="nr" [ngClass]="{'threeMonths': offer.loanType == 'threeMonths', 'oneYear': offer.loanType == 'oneYear', 'all': offer.loanType == 'all'}">
+    <div class="nr" [ngClass]="{'threeMonths': offerType == 'threeMonths', 'oneYear': offerType == 'oneYear', 'all': offerType == 'all'}">
         {{ index }}
     </div>
     <div class="the-offer-header">
@@ -72,8 +72,9 @@
             <div class="item left first">
                 <p i18n=“application-time|offer-card@@offer.card.applicationTime” class="left">Hvor lang tid tar det å søke:</p>
 
-                <p class="box">
-                    {{offer.bankInfo.applicationTime  === null ? 'Ukjent' : offer.bankInfo.applicationTime + " min"}}</p>
+                <p i18n=“demand-change|offer-card@@offer.card.timeApply.value” class="box">
+                    {{offer.bankInfo.applicationTime  === null ? 'Ukjent' : offer.bankInfo.applicationTime + " min"}}
+                </p>
             </div>
 
             <div class="item left">
@@ -137,7 +138,7 @@
                         [disabled]="offer.bankInfo.partner == false" [color]="'primary'" type="raised"
                             (click)="openNewOfferDialog(offer)">Få tilbud fra  <br/> {{ getbankNameOrDefault(offer) }}!
                         </rente-button-small>
-                        <p class="small" *ngIf=" offer.bankInfo.partner === false"> (Ingen avtale med banken)</p>
+                        <p i18n=“get-offer|offer-card@@offer.card.noDeal.mobile” class="small" *ngIf=" offer.bankInfo.partner === false"> (Ingen avtale med banken)</p>
                         </div>
             </div>
         </div>

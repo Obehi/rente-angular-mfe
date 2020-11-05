@@ -26,6 +26,7 @@ export class OfferCardBigComponentBlue implements OnInit {
 
   @Input() offer: OfferInfo;
   @Input() offersInfo: Offers
+  @Input() offerType: string
   @Input() index: number
   constructor(
     private trackingService: TrackingService,

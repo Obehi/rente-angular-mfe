@@ -22,28 +22,35 @@ export class OffersListSvComponent implements OnInit {
     this.currentOfferInfo = (JSON.parse(JSON.stringify(this.offersInfo)));
     this.currentOfferType = "all";
 
-    //REMOVE BEFORE PRODUCTION
-    var flag = false
-    this.offersInfo.offers.top5 = this.offersInfo.offers.top5.map( (offer) => {
-        offer.loanType = flag ? 'threeMonths' : 'oneYear'
-        flag = !flag
-        return offer
-    }) 
+
+    this.offersInfo.offers.top5 = this.offersInfo.offers.top5.filter( offer => {
+      return offer
+    })
   }
   
 
   public setOfferType(type: String) {
     this.currentOfferType = type;
 
+    console.log("setOfferstype")
     if(type == 'all') {
-      this.currentOfferInfo.offers.top5 = this.offersInfo.offers.top5;
+      this.currentOfferInfo.offers.top5 =  this.offersInfo.offers.top5 = this.offersInfo.offers.top5
+
       return;
     }
-    let newLoanTypeSelected = this.offersInfo.offers.top5.filter( (item, index, offers) => {
-      return  item.loanType == type 
-    })
     
-    this.currentOfferInfo.offers.top5 = newLoanTypeSelected
+    if(type == 'threeMonths') {
+      this.currentOfferInfo.offers.top5 =  this.offersInfo.offers.top5.filter( offer => {
+        return offer.fixedRatePeriod == 0 ? true : false
+      })
+    }
+
+    if(type == 'oneYear') {
+      this.currentOfferInfo.offers.top5 =  this.offersInfo.offers.top5.filter( offer => {
+        return offer.fixedRatePeriod == 1 ? true : false
+      })
+    }
+    
   }
 
 }
