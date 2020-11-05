@@ -65,5 +65,19 @@ export class CustomLangTextService {
   }
 
 
-  
+  getProfileIncomePlaceHolder() {
+    if(locale.includes("sv") ) {
+      return 'Din årsinkomst'
+    } else if (locale.includes("nb")) {
+      return 'Din brutto årsinntekt'
+    }
+  }
+
+  getProfileAddPlaceHolder() {
+    if(locale.includes("sv") ) {
+      return '+ Lägg till'
+    } else if (locale.includes("nb")) {
+      return '+ Legg til'
+    }
+  }
 }

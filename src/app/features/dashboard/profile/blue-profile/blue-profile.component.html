@@ -41,7 +41,7 @@
             </div>
 
             <div class="field withinfo">
-              <rente-input [placeholder]="'Din brutto årsinntekt'" formControlName="income" [errorStateMatcher]="
+              <rente-input [placeholder]="textLangService.getProfileIncomePlaceHolder()" formControlName="income" [errorStateMatcher]="
                 isErrorState(profileForm.controls['income'], profileForm)
                 " [maskType]="mask.currency" [modelOptions]="{ updateOn: 'blur'}" [type]="'tel'" matSuffix="kr">
               </rente-input>
@@ -82,7 +82,7 @@
             <div class="body">
               <div class="inner-body" *ngIf="showMemberships">
                 <mat-form-field>
-                  <input type="text" placeholder="+ Legg til" matInput #membershipInput [formControl]="membershipCtrl"
+                  <input type="text" [placeholder]="textLangService.getProfileAddPlaceHolder()" matInput #membershipInput [formControl]="membershipCtrl"
                     [matAutocomplete]="auto" />
                   <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
                     <mat-option *ngFor="let membership of filteredMemberships | async" [value]="membership">
@@ -136,7 +136,7 @@
                       </mat-radio-button>
                       <mat-radio-button value="HVER_MANED_4"><span i18n=“month-every|profile@@profile.monthFour” class="mat-radio-label">Hver 4. måned</span>
                       </mat-radio-button>
-                      <mat-radio-button value="NONE"><span class="mat-radio-label">Aldri</span></mat-radio-button>
+                      <mat-radio-button value="NONE"><span i18n=“month-every|profile@@profile.monthNever“  class="mat-radio-label">Aldri</span></mat-radio-button>
                     </mat-radio-group>
                   </div>
                   <div i18n=“market-updates|profile@@profile.marketUpdates” class="field">
@@ -262,7 +262,7 @@
             </div>
 
             <div class="field withinfo">
-              <rente-input i18n=“income-per-year|profile@@profile.income  [placeholder]="'Din brutto årsinntekt'" formControlName="income" [errorStateMatcher]="
+              <rente-input i18n=“income-per-year|profile@@profile.income  [placeholder]="textLangService.getProfileAddPlaceHolder()" formControlName="income" [errorStateMatcher]="
                     isErrorState(profileForm.controls['income'], profileForm)
                     " [maskType]="mask.currency" [modelOptions]="{ updateOn: 'blur'}" [type]="'tel'" matSuffix="kr">
               </rente-input>
@@ -351,7 +351,7 @@
                         </mat-radio-button>
                         <mat-radio-button value="HVER_MANED_4"><span i18n=“month-every|profile@@profile.monthFour” class="mat-radio-label">Hver 4. måned</span>
                         </mat-radio-button>
-                        <mat-radio-button value="NONE"><span class="mat-radio-label">Aldri</span></mat-radio-button>
+                        <mat-radio-button value="NONE"><span i18n=“month-every|profile@@profile.monthNever“ class="mat-radio-label">Aldri</span></mat-radio-button>
                       </mat-radio-group>
                     </div>
                     <div i18n=“market-updates|profile@@profile.marketUpdates” class="field">
