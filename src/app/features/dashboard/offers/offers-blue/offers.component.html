@@ -152,7 +152,7 @@
               <p i18n=“loan-remaining|offers-main@@offers.mainPage.loanRemaining”>
                 Gjenværende lån 
               </p>
-              <h2>
+              <h2 i18n=“millions|offers-main@@offers.mainPage.millions”>
                 {{
                 offersInfo.totalOutstandingDebt / 1000000 | number: "1.1-3"
               }}
@@ -183,7 +183,7 @@
             <p>
               <mat-icon *ngIf="!isShowTips">expand_more</mat-icon>
               <mat-icon *ngIf="isShowTips">expand_less</mat-icon>
-              <span class="nr">{{ tips.length }}</span> tips
+              <span class="nr">{{ tips.length }}</span> Tips
             </p>
           </div>
   
@@ -390,10 +390,10 @@
             </a>
             <a class="box round-box blue-bg clickable" (click)="goToLoans()">
               <img class="box-icon" src="../../../../assets/icons/graph-icon-white-small.svg" />
-              <p>
+              <p i18n=“loan-remaining|offers-main@@offers.mainPage.loanRemaining”>
                 Gjenværende lån 
               </p>
-              <h2>
+              <h2 i18n=“millions|offers-main@@offers.mainPage.millions”>
                 {{
                 offersInfo.totalOutstandingDebt / 1000000 | number: "1.1-3"
               }}
@@ -425,7 +425,6 @@
                 <div *ngFor="let tip of tips; let i = index"   
                   [ngClass]="{'obs': tip.obs, 'clickable': tip.buttonLink !== 'undefined', 'tip-wrapper': true}"
                 > 
-  
                   <div *ngIf="tip.buttonLink == null" class="tip">
   
                     <div class="tips-img-wrapper">

@@ -184,6 +184,23 @@ rente-header {
     padding: 10px;
   }
 }
+
+.double-bias-right {
+  margin-bottom: 10px;
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: 2fr 4fr;
+  
+  &.buttons {
+    padding: 10px;
+    @media (max-width: 600px) {
+      grid-template-columns: 1fr;
+    }
+  }
+  .box {
+    padding: 10px;
+  }
+}
 /* button:disabled {
   background-color: rgba(0, 0, 0, 0.12) !important;
 }

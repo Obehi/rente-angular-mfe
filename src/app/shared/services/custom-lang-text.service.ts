@@ -56,5 +56,14 @@ export class CustomLangTextService {
     }
   }
 
+  getSaveSuccessSnackBar() {
+    if(locale.includes("sv") ) {
+      return 'Endringene dine er lagret'
+    } else if (locale.includes("nb")) {
+      return 'Endringene dine er lagret'
+    }
+  }
+
+
   
 }
