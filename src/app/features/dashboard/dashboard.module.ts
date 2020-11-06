@@ -12,8 +12,7 @@ import { SharedModule } from "@shared/shared.module";
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatRadioModule } from "@angular/material/radio";
 import { DialogInfoComponent } from "./offers/dialog-info/dialog-info.component";
-import { DetailsComponentBlue } from "./offers/offers-blue/details/details.component";
-import { DetailsComponent } from "./offers/details/details.component";
+
 
 
 import { RatingComponent } from "./offers/rating/rating.component";
@@ -57,6 +56,7 @@ import { OffersListLangGenericComponent } from '../../local-components/component
 import { LoansLangGenericComponent } from '../../local-components/components-output';
 
 import { HouseFormLangGenericComponent } from '../../local-components/components-output';
+import { OfferDetailsLangGenericComponent } from '../../local-components/components-output';
 
 
 
@@ -84,8 +84,6 @@ import { HouseFormLangGenericComponent } from '../../local-components/components
     DialogComponent,
     GetOfferFromBankDialogComponent,
     LtvTooHighDialogComponent,
-    DetailsComponentBlue,
-    DetailsComponent,
     OfferCardComponentBlue,
     OfferCardComponent,
     OfferCardBigComponentBlue,
@@ -99,7 +97,8 @@ import { HouseFormLangGenericComponent } from '../../local-components/components
     EPSIScoreComponent,
     OffersListLangGenericComponent,
     LoansLangGenericComponent,
-    HouseFormLangGenericComponent
+    HouseFormLangGenericComponent,
+    OfferDetailsLangGenericComponent
   ],
   imports: [
     CommonModule,

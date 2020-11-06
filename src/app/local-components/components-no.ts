@@ -11,3 +11,4 @@ export { BankSelectNoModule as BankSelectLangGenericModule } from '@features/ban
 
 
 
+export { OfferDetailsNoComponent as OfferDetailsLangGenericComponent  } from '@features/dashboard/offers/offers-blue/details/details-no/details-no.component';  

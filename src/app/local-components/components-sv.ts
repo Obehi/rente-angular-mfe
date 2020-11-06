@@ -4,12 +4,8 @@ export { HeaderSvComponent as HeaderLangGenericComponent } from '@shared/compone
 export { LoansSvComponent as LoansLangGenericComponent } from '@features/dashboard/loans/loans-blue/loans-sv/loans-sv.component'
 export { InitConfirmationSVComponent as InitConfirmationLangGenericComponent } from '@features/init-confirmation/init-confirmation-sv/init-confirmation.component'
 export { HouseFormSvComponent as HouseFormLangGenericComponent } from '@features/dashboard/house/house-blue/house-form-sv/house-form-sv.component'
-
-//export { BankSelectSvRoutingModule as BankSelectLangGenericRoutingModule } from '@features/bank-select-sv/bank-select-routing.module';  
 export { BankSelectSvRoutingModule as BankSelectLangGenericRoutingModule } from '@features/bank-select-sv/bank-select-routing.module';  
-
-
 export { LandingTopSvComponent as LandingTopLangGenericComponent } from '@features/landing/landing-top-sv/landing-top-sv.component';   
-
 export { BankSelectSvModule as BankSelectLangGenericModule } from '@features/bank-select-sv/bank-select.module';  
 export { BankSelectSvComponent as BankSelectLangGenericComponent } from '@features/bank-select-sv/bank-select.component';  
+export { OfferDetailsSvComponent as OfferDetailsLangGenericComponent  } from '@features/dashboard/offers/offers-blue/details/details-sv/details-sv.component';  
