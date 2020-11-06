@@ -191,7 +191,6 @@
             <div *ngFor="let tip of tips; let i = index"
               [ngClass]="{'obs': tip.obs, 'clickable': tip.buttonLink === './', 'tip-wrapper': true}"
               >
-  
               <div *ngIf="tip.buttonLink == null" class="tip">
                 
                 <div class="tipTop">
@@ -261,8 +260,7 @@
               i18n=“help-you|offers-main@@offers.mainPage.helpYou.button” 
                 color="primary-wide-hollow"
                 [disabled]="
-                changeBankLoading ||
-                offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS"
+                false"
                 [isLoading]="changeBankLoading"
                 (click)="openChangeBankDialog(offersInfo.offers.top5[0])"
                 >Be banken matche tilbud</rente-button

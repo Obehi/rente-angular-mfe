@@ -11,11 +11,11 @@ export class DialogInfoComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<DialogInfoComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: OfferInfo) {}
+    @Inject(MAT_DIALOG_DATA) public offer: OfferInfo) {}
 
   ngOnInit() {
-    if(this.data.establishmentFee == undefined) {
-      this.data.establishmentFee = 0;
+    if(this.offer.establishmentFee == undefined) {
+      this.offer.establishmentFee = 0;
     }
   }
   public onClose(): void {

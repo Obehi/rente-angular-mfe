@@ -1,145 +1,123 @@
   <mat-icon (click)="onClose()" class="close-modal">close</mat-icon>
 
 <div class="top">
-<h3 *ngIf="data.bankInfo.bank">{{ data.bankInfo.name }}</h3>
+<h3 *ngIf="offer.bankInfo.bank">{{ offer.bankInfo.name }}</h3>
 
 <div class="grid-wrapper">
     <div class="item">
-      <p class="small">Produkt</p>
-      <p>{{ data.productName }}</p>
+      <p i18n=“product|details@@details.component.product” class="small">Produkt</p>
+      <p>{{ offer.productName }}</p>
     </div>
     <div class="item">
-        <p class="small">Max belåningsgrad</p>
-        <p>{{ data.maxLTV }}%</p>
+      <p i18n=“max-leverage|details@@details.component.maxLeverage” class="small">Max belåningsgrad</p>
+        <p>{{ offer.maxLTV }}%</p>
     </div>
     <div class="item">
-      <p class="small">Nominell rente</p>
-      <p>{{ data.nominalRate | number: "1.2-2" }}%</p>
+      <p i18n=“nominal-interest|details@@details.component.nominalInterest” class="small">Nominell rente</p>
+      <p>{{ offer.nominalRate | number: "1.2-2" }}%</p>
     </div>
     <div class="item">
-      <p class="small">Effektiv rente</p>
-      <p>{{ data.effectiveRate | number: "1.2-2" }}%</p>
+      <p i18n=“efficient-interest|details@@details.component.efficientInterest” class="small">Effektiv rente</p>
+      <p>{{ offer.effectiveRate | number: "1.2-2" }}%</p>
     </div>
-    <div class="item">
+    <div class="item" i18n=“product-demand|details@@details.component.productDemand”>
         <p class="small">Krav om annet produkt</p>
-        <p>{{ data.requiredProductPackage == null ? "Nei" : "Ja" }}</p>
+        <p>{{ offer.requiredProductPackage == null ? "Nei" : "Ja" }}</p>
     </div>
 
     <div class="item">
-      <p class="small">Produktpakke</p>
-      <p>{{ data.requiredProductPackage == null ? "Ingen krav" :  data.requiredProductPackage}}</p>
+      <p i18n=“product-package|details@@details.component.productPackage” class="small">Produktpakke</p>
+      <p i18n=“product-no-package|details@@details.component.productPackage.no”>{{ offer.requiredProductPackage == null ? "Ingen krav" :  offer.requiredProductPackage}}</p>
     </div>
+    
     <div class="item">
-      <p class="small">Max løpetid</p>
-      <p>{{ data.maxLoanPeriod }} år</p>
+      <p i18n=“demand-membership|details@@details.component.demandMembership” class="small">Forutsetter medlemskap</p>
+      <p i18n=demand-membership-answer|details@@details.component.demandMembership.yesOrNo”>{{ offer.requiredMembership == null ? "Nei" : "Ja" }}</p>
     </div>
-    <div class="item">
-      <p class="small">Max avdragsfrihet</p>
-      <p>{{ data.maxInstallmentFreePeriod }} år</p>
-    </div>
-    <div class="item">
-      <p class="small">Termingebyr</p>
-      <p>{{ data.monthlyFee }},-</p>
-    </div>
-    <div class="item">
-      <p class="small">Etableringsgebyr</p>
-      <p>{{ data.establishmentFee }},-</p>
-    </div>
-    <div class="item">
-      <p class="small">Depotgebyr</p>
-      <p>{{ data.depotFee }},-</p>
-    </div>
-    <div class="item">
-      <p class="small">Markedsområde</p>
-      <p>{{ data.marketArea }}</p>
-    </div>
-    <div class="item">
-      <p class="small">Forutsetter medlemskap</p>
-      <p>{{ data.requiredMembership == null ? "Nei" : "Ja" }}</p>
-    </div>
-    <div *ngIf="data.requiredMembership != null">
+    <div *ngIf="offer.requiredMembership != null">
       <div class="item">
-        <p class="small">Medlemskap</p>
-        <p>{{ data.requiredMembership }}</p>
+        <p i18n=“membership|details@@details.component.membership” class="small">Medlemskap</p>
+        <p>{{ offer.requiredMembership }}</p>
       </div>
     </div>
 
 
 </div>
 
-<p class="small-header">Forbehold:</p>
-<p>{{ data.otherConditions }}</p>
+<p i18n=“other-conditions|details@@details.component.other” class="small-header"  >{{offer.otherConditions ? "Forbehold:" : "Ingen forbehold"}} </p>
+<p class ="otherConditions">{{ offer.otherConditions }}</p>
+
 
 <p class="small-header">Tilbud:</p>
-<p class="insignificant">Eff.rente {{data.effectiveRate | number: "1.1-2"}}%,
-  Lånebeløp {{data.outstandingDebt | number: "1.0" }},
-  {{data.loanPeriodYears | number: "1.1" }} år,
-  Kostnad: {{data.cost | number: "1.0" }},
-  Totalt: {{data.totalCost | number: "1.0" }}
+<p class="insignificant">Eff.rente {{offer.effectiveRate | number: "1.1-2"}}%,
+  Lånebeløp {{offer.outstandingDebt | number: "1.0" }},
+  {{offer.loanPeriodYears | number: "1.1" }} år,
+  Kostnad: {{offer.cost | number: "1.0" }},
+  Totalt: {{offer.totalCost | number: "1.0" }}
 </p>
 </div>
 
 
   <div class="bottom">
-    <rente-button cdkFocusInitial color="primary" (click)="onClose()">
+    <rente-button color="primary" (click)="onClose()">
       Lukk
     </rente-button>
   </div>
 
 <!-- <div mat-dialog-content>
   <div class="modal-body text-left">
-    <div *ngIf="data.bank">
-      <b>Leverandør: </b><span>{{ data.bankName }}</span>
+    <div *ngIf="offer.bank">
+      <b>Leverandør: </b><span>{{ offer.bankName }}</span>
     </div>
     <div>
-      <b>Produktnavn: </b><span>{{ data.productName }}</span>
+      <b>Produktnavn: </b><span>{{ offer.productName }}</span>
     </div>
     <div>
       <b>Nominell rente: </b
-      ><span>{{ data.nominalRate | number: "1.2-2" }}%</span>
+      ><span>{{ offer.nominalRate | number: "1.2-2" }}%</span>
     </div>
     <div>
       <b>Effektiv rente: </b
-      ><span>{{ data.effectiveRate | number: "1.2-2" }}%</span>
+      ><span>{{ offer.effectiveRate | number: "1.2-2" }}%</span>
     </div>
     <div>
-      <b>Termingebyr: </b><span>{{ data.monthlyFee }},-</span>
+      <b>Termingebyr: </b><span>{{ offer.monthlyFee }},-</span>
     </div>
     <div>
-      <b>Markedsområde: </b><span>{{ data.marketArea }}</span>
+      <b>Markedsområde: </b><span>{{ offer.marketArea }}</span>
     </div>
     <div>
       <b>Krav om annet produkt: </b
-      ><span>{{ data.requiredProductPackage == null ? "Nei" : "Ja" }}</span>
+      ><span>{{ offer.requiredProductPackage == null ? "Nei" : "Ja" }}</span>
     </div>
-    <div *ngIf="data.requiredProductPackage != null">
-      <b>Produktpakke: </b><span>{{ data.requiredProductPackage }}</span>
+    <div *ngIf="offer.requiredProductPackage != null">
+      <b>Produktpakke: </b><span>{{ offer.requiredProductPackage }}</span>
     </div>
     <div>
       <b>Forutsetter medlemskap: </b
-      ><span>{{ data.requiredMembership == null ? "Nei" : "Ja" }}</span>
+      ><span>{{ offer.requiredMembership == null ? "Nei" : "Ja" }}</span>
     </div>
-    <div *ngIf="data.requiredMembership != null">
-      <b>Medlemskap: </b><span>{{ data.requiredMembership }}</span>
-    </div>
-    <div>
-      <b>Maksimal belåningsgrad: </b><span>{{ data.maxLTV }}%</span>
+    <div *ngIf="offer.requiredMembership != null">
+      <b>Medlemskap: </b><span>{{ offer.requiredMembership }}</span>
     </div>
     <div>
-      <b>Maksimal løpetid: </b><span>{{ data.maxLoanPeriod }} år</span>
+      <b>Maksimal belåningsgrad: </b><span>{{ offer.maxLTV }}%</span>
+    </div>
+    <div>
+      <b>Maksimal løpetid: </b><span>{{ offer.maxLoanPeriod }} år</span>
     </div>
     <div>
       <b>Maksimal avdragsfrihet: </b
-      ><span>{{ data.maxInstallmentFreePeriod }} år</span>
+      ><span>{{ offer.maxInstallmentFreePeriod }} år</span>
     </div>
     <div>
-      <b>Etableringsgebyr: </b><span>{{ data.establishmentFee }},-</span>
+      <b>Etableringsgebyr: </b><span>{{ offer.establishmentFee }},-</span>
     </div>
     <div>
-      <b>Depotgebyr: </b><span>{{ data.depotFee }},-</span>
+      <b>Depotgebyr: </b><span>{{ offer.depotFee }},-</span>
     </div>
     <div>
-      <b>Forbehold: </b><span>{{ data.otherConditions }}</span>
+      <b>Forbehold: </b><span>{{ offer.otherConditions }}</span>
     </div>
   </div>
 </div> -->
