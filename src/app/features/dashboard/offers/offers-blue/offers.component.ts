@@ -45,6 +45,7 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
   public isSmallScreen: boolean;
   public isShowTips: boolean;
   public changeBankLoading: boolean;
+  public canBargain: boolean;
   public subscribeShareLinkTimer: Subscription;
   public effRateLoweredDialogVisible: boolean;
   public banksMap = BANKS_DATA;
@@ -93,6 +94,8 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
     userService.lowerRateAvailable.subscribe(value => {
       this.effRateLoweredDialogVisible = value;
     });
+
+
   }
 
   public ngOnDestroy(): void {
@@ -114,7 +117,16 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
       (res: Offers) => {
         this.offersInfo = Object.assign({}, res);
         this.currentOfferInfo = (JSON.parse(JSON.stringify(res)))
+        console.log("res")
+        console.log(res)
 
+        this.canBargain = 
+        res.bank == 'SWE_AVANZA'|| 
+        res.bank == 'SWE_SBAB'|| 
+        res.bank == 'SWE_DANSKE_BANK'|| 
+        res.bank == 'SWE_DANSKE_BANK' ||
+        res.bank == 'SWE_ICA_BANKEN' ? false : true;
+        
         this.isLoading = false;
         this.localStorageService.removeItem('isNewUser');
         this.getTips();
@@ -128,6 +140,7 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
       }
     );
   }
+
 
   public getTips() {
   

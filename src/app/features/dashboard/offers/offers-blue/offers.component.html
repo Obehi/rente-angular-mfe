@@ -250,7 +250,7 @@
             </div>
           </div>
   
-          <div class="big-box round-box right">
+          <div  *ngIf="canBargain"  class="big-box round-box right">
             <div class="top">
               <div class="circleIconWrapper"><img class="" src="../../../../assets/icons/mail-green.svg" /></div>
               <p i18n=“help-you|offers-main@@offers.mainPage.helpYou”>Be banken min om lavere rente</p>
@@ -493,7 +493,7 @@
                   </div>
                 </div>
   
-                <div class="big-box round-box">
+                <div *ngIf="canBargain" class="big-box round-box">
                   <div class="top">
                     <div class="circleIconWrapper"><img class="" src="../../../../assets/icons/mail-green.svg" /></div>
                     <p i18n=“help-you|offers-main@@offers.mainPage.helpYou”>Be banken min om lavere rente</p>
