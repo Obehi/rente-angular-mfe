@@ -98,6 +98,14 @@ export class CustomLangTextService {
     }
   }
 
+  get18nFixForRequirement() {
+    if(locale.includes("sv") ) {
+      return 'Krav'
+    } else if (locale.includes("nb")) {
+      return 'Forbehold'
+    }
+  }
+
   get18nFixForNoRequirement() {
     if(locale.includes("sv") ) {
       return 'Inget krav'
@@ -113,5 +121,4 @@ export class CustomLangTextService {
       return 'Ingen forbehold'
     }
   }
-
 }

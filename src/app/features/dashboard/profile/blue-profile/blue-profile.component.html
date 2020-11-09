@@ -136,7 +136,7 @@
                       </mat-radio-button>
                       <mat-radio-button value="HVER_MANED_4"><span i18n=“month-every|profile@@profile.monthFour” class="mat-radio-label">Hver 4. måned</span>
                       </mat-radio-button>
-                      <mat-radio-button value="NONE"><span i18n=“month-every|profile@@profile.monthNever“  class="mat-radio-label">Aldri</span></mat-radio-button>
+                      <mat-radio-button value="NONE"><span i18n=“month-every|profile@@profile.monthNever1“  class="mat-radio-label">Aldri</span></mat-radio-button>
                     </mat-radio-group>
                   </div>
                   <div i18n=“market-updates|profile@@profile.marketUpdates” class="field">
@@ -303,7 +303,7 @@
                       </mat-option>
                     </mat-autocomplete>
                   </mat-form-field>
-                  <p class="small" *ngIf="memberships.length">
+                  <p i18n=“my-memberships|profile@@profile.myMemberships2” class="small" *ngIf="memberships.length">
                     Mine medlemskap
                   </p>
                   <p class="memberlist" *ngFor="let membership of memberships; let i = index">
@@ -351,7 +351,7 @@
                         </mat-radio-button>
                         <mat-radio-button value="HVER_MANED_4"><span i18n=“month-every|profile@@profile.monthFour” class="mat-radio-label">Hver 4. måned</span>
                         </mat-radio-button>
-                        <mat-radio-button value="NONE"><span i18n=“month-every|profile@@profile.monthNever“ class="mat-radio-label">Aldri</span></mat-radio-button>
+                        <mat-radio-button value="NONE"><span i18n=“month-every|profile@@profile.monthNever2“ class="mat-radio-label">Aldri</span></mat-radio-button>
                       </mat-radio-group>
                     </div>
                     <div i18n=“market-updates|profile@@profile.marketUpdates” class="field">

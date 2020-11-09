@@ -1,4 +1,3 @@
-
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { DashboardComponent } from './dashboard.component';
@@ -10,7 +9,6 @@ import { customMeta, defaultMeta } from '@config/routes-config';
 import {RouteGuard } from '@shared/guards/route.guard';
 import { BargainSuccessComponent } from './offers/bargain-success/bargain-success.component';
 import { OptimizeService } from '@services/optimize.service'
-
 import { OffersComponentBlue } from './offers/offers-blue/offers.component';
 import { HouseBlueComponent }   from './house/house-blue/house-blue.component';
 import { BlueProfileComponent }   from './profile/blue-profile/blue-profile.component';

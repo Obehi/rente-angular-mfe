@@ -411,3 +411,16 @@ button#widgetButton {
 .mat-tab-label-active:after {
   background-color: #5bccb5;
 }
+
+
+iframe#drift-widget.drift-widget-welcome-online {
+  bottom: 60px !important;
+  right: 20px !important;
+}
+
+div.drift-frame-controller {
+
+  @media (max-width: 600px) {
+    bottom: 70px !important;
+  }
+}

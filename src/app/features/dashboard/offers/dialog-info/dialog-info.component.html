@@ -44,12 +44,12 @@
 
 </div>
 
-<p i18n=“other-conditions|details@@details.component.other” class="small-header"  >{{offer.otherConditions ? "Forbehold:" : customLangTextSerice.get18nFixForNoRequirement2()}} </p>
+<p i18n=“other-conditions|details@@details.component.other” class="small-header"  >{{offer.otherConditions ? customLangTextSerice.get18nFixForRequirement() : customLangTextSerice.get18nFixForNoRequirement2()}} </p>
 <p class ="otherConditions">{{ offer.otherConditions }}</p>
 
 
 <p i18n=“other-conditions|details@@details.component.offerHeader class="small-header">Tilbud:</p>
-<p i18n=“other-conditions|details@@details.component.offer class="insignificant">Eff.rente: {{offer.effectiveRate | number: "1.1-2"}}%,
+<p i18n=“other-conditions|details@@details.component.offer“ class="insignificant">Eff.rente: {{offer.effectiveRate | number: "1.1-2"}}%,
   Lånebeløp: {{offer.outstandingDebt | number: "1.0" }},
   {{offer.loanPeriodYears | number: "1.0" }} år,
   Kostnad: {{offer.cost | number: "1.0" }},
