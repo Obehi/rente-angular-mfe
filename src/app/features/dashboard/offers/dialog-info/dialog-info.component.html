@@ -22,17 +22,17 @@
     </div>
     <div class="item" i18n=“product-demand|details@@details.component.productDemand”>
         <p class="small">Krav om annet produkt</p>
-        <p>{{ offer.requiredProductPackage == null ? "Nei" : "Ja" }}</p>
+        <p>{{ offer.requiredProductPackage == null ? customLangTextSerice.get18nFixForNo() : "Ja" }}</p>
     </div>
 
     <div class="item">
       <p i18n=“product-package|details@@details.component.productPackage” class="small">Produktpakke</p>
-      <p i18n=“product-no-package|details@@details.component.productPackage.no”>{{ offer.requiredProductPackage == null ? "Ingen krav" :  offer.requiredProductPackage}}</p>
+      <p>{{ offer.requiredProductPackage == null ? customLangTextSerice.get18nFixForNoRequirement() :  offer.requiredProductPackage}}</p>
     </div>
     
     <div class="item">
       <p i18n=“demand-membership|details@@details.component.demandMembership” class="small">Forutsetter medlemskap</p>
-      <p i18n=demand-membership-answer|details@@details.component.demandMembership.yesOrNo”>{{ offer.requiredMembership == null ? "Nei" : "Ja" }}</p>
+      <p i18n=demand-membership-answer|details@@details.component.demandMembership.yesOrNo”>{{ offer.requiredMembership == null ? customLangTextSerice.get18nFixForNo() : "Ja" }}</p>
     </div>
     <div *ngIf="offer.requiredMembership != null">
       <div class="item">
@@ -44,14 +44,14 @@
 
 </div>
 
-<p i18n=“other-conditions|details@@details.component.other” class="small-header"  >{{offer.otherConditions ? "Forbehold:" : "Ingen forbehold"}} </p>
+<p i18n=“other-conditions|details@@details.component.other” class="small-header"  >{{offer.otherConditions ? "Forbehold:" : customLangTextSerice.get18nFixForNoRequirement2()}} </p>
 <p class ="otherConditions">{{ offer.otherConditions }}</p>
 
 
-<p class="small-header">Tilbud:</p>
-<p class="insignificant">Eff.rente {{offer.effectiveRate | number: "1.1-2"}}%,
-  Lånebeløp {{offer.outstandingDebt | number: "1.0" }},
-  {{offer.loanPeriodYears | number: "1.1" }} år,
+<p i18n=“other-conditions|details@@details.component.offerHeader class="small-header">Tilbud:</p>
+<p i18n=“other-conditions|details@@details.component.offer class="insignificant">Eff.rente: {{offer.effectiveRate | number: "1.1-2"}}%,
+  Lånebeløp: {{offer.outstandingDebt | number: "1.0" }},
+  {{offer.loanPeriodYears | number: "1.0" }} år,
   Kostnad: {{offer.cost | number: "1.0" }},
   Totalt: {{offer.totalCost | number: "1.0" }}
 </p>
@@ -59,65 +59,7 @@
 
 
   <div class="bottom">
-    <rente-button color="primary" (click)="onClose()">
+    <rente-button i18n=“other-conditions|details@@popUpDialog.close“ color="primary" (click)="onClose()">
       Lukk
     </rente-button>
   </div>
-
-<!-- <div mat-dialog-content>
-  <div class="modal-body text-left">
-    <div *ngIf="offer.bank">
-      <b>Leverandør: </b><span>{{ offer.bankName }}</span>
-    </div>
-    <div>
-      <b>Produktnavn: </b><span>{{ offer.productName }}</span>
-    </div>
-    <div>
-      <b>Nominell rente: </b
-      ><span>{{ offer.nominalRate | number: "1.2-2" }}%</span>
-    </div>
-    <div>
-      <b>Effektiv rente: </b
-      ><span>{{ offer.effectiveRate | number: "1.2-2" }}%</span>
-    </div>
-    <div>
-      <b>Termingebyr: </b><span>{{ offer.monthlyFee }},-</span>
-    </div>
-    <div>
-      <b>Markedsområde: </b><span>{{ offer.marketArea }}</span>
-    </div>
-    <div>
-      <b>Krav om annet produkt: </b
-      ><span>{{ offer.requiredProductPackage == null ? "Nei" : "Ja" }}</span>
-    </div>
-    <div *ngIf="offer.requiredProductPackage != null">
-      <b>Produktpakke: </b><span>{{ offer.requiredProductPackage }}</span>
-    </div>
-    <div>
-      <b>Forutsetter medlemskap: </b
-      ><span>{{ offer.requiredMembership == null ? "Nei" : "Ja" }}</span>
-    </div>
-    <div *ngIf="offer.requiredMembership != null">
-      <b>Medlemskap: </b><span>{{ offer.requiredMembership }}</span>
-    </div>
-    <div>
-      <b>Maksimal belåningsgrad: </b><span>{{ offer.maxLTV }}%</span>
-    </div>
-    <div>
-      <b>Maksimal løpetid: </b><span>{{ offer.maxLoanPeriod }} år</span>
-    </div>
-    <div>
-      <b>Maksimal avdragsfrihet: </b
-      ><span>{{ offer.maxInstallmentFreePeriod }} år</span>
-    </div>
-    <div>
-      <b>Etableringsgebyr: </b><span>{{ offer.establishmentFee }},-</span>
-    </div>
-    <div>
-      <b>Depotgebyr: </b><span>{{ offer.depotFee }},-</span>
-    </div>
-    <div>
-      <b>Forbehold: </b><span>{{ offer.otherConditions }}</span>
-    </div>
-  </div>
-</div> -->

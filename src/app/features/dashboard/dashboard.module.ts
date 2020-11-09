@@ -2,7 +2,6 @@ import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { DashboardRoutingModule } from "./dashboard-routing.module";
 import { OffersComponentBlue } from "./offers/offers-blue/offers.component";
-import { OffersComponent } from "./offers/offers.component";
 import { DashboardComponent } from "./dashboard.component";
 import { MatTabsModule } from "@angular/material/tabs";
 import { PreferencesComponent } from "./preferences/preferences.component";
@@ -42,9 +41,9 @@ import { DialogComponent } from "../../shared/components/ui-components/dialog/di
 import { GetOfferFromBankDialogComponent } from './offers/get-offer-from-bank-dialog/get-offer-from-bank-dialog.component';
 import { LtvTooHighDialogComponent } from './offers/ltv-too-high-dialog/ltv-too-high-dialog.component';
 import { OfferCardComponentBlue } from './offers/offers-blue/offer-card/offer-card.component';
-import { OfferCardComponent } from './offers/offer-card/offer-card.component';
+
 import { OfferCardBigComponentBlue } from './offers/offers-blue/offer-card-big/offer-card-big.component';
-import { OfferCardBigComponent } from './offers/offer-card-big/offer-card-big.component';
+
 import { BargainSuccessComponent } from './offers/bargain-success/bargain-success.component';
 import { ReferralComponent } from './offers/bargain-success/referral/referral.component';
 import { LoansBlueComponent } from './loans/loans-blue/loans-blue.component';
@@ -65,7 +64,6 @@ import { OfferDetailsLangGenericComponent } from '../../local-components/compone
 @NgModule({
   declarations: [
     OffersComponentBlue,
-    OffersComponent,
     DashboardComponent,
     LoansLangGenericComponent,
     PreferencesComponent,
@@ -85,9 +83,7 @@ import { OfferDetailsLangGenericComponent } from '../../local-components/compone
     GetOfferFromBankDialogComponent,
     LtvTooHighDialogComponent,
     OfferCardComponentBlue,
-    OfferCardComponent,
     OfferCardBigComponentBlue,
-    OfferCardBigComponent,
     BargainSuccessComponent,
     ReferralComponent,
     LoansBlueComponent,

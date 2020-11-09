@@ -80,4 +80,38 @@ export class CustomLangTextService {
       return '+ Legg til'
     }
   }
+
+
+  get18nFixForUnknown() {
+    if(locale.includes("sv") ) {
+      return 'Okänt'
+    } else if (locale.includes("nb")) {
+      return 'Ukjent'
+    }
+  }
+
+  get18nFixForNo() {
+    if(locale.includes("sv") ) {
+      return 'Nej'
+    } else if (locale.includes("nb")) {
+      return 'Nei'
+    }
+  }
+
+  get18nFixForNoRequirement() {
+    if(locale.includes("sv") ) {
+      return 'Inget krav'
+    } else if (locale.includes("nb")) {
+      return 'Ingen krav'
+    }
+  }
+
+  get18nFixForNoRequirement2() {
+    if(locale.includes("sv") ) {
+      return 'Inget forbehold'
+    } else if (locale.includes("nb")) {
+      return 'Ingen forbehold'
+    }
+  }
+
 }

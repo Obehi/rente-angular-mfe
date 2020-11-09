@@ -67,19 +67,17 @@
         </div>
 
         <div class="offer-properties">
-           
-
             <div class="item left first">
                 <p i18n=“application-time|offer-card@@offer.card.applicationTime” class="left">Hvor lang tid tar det å søke:</p>
 
                 <p i18n=“demand-change|offer-card@@offer.card.timeApply.value” class="box">
-                    {{offer.bankInfo.applicationTime  === null ? 'Ukjent' : offer.bankInfo.applicationTime + " min"}}
+                    {{offer.bankInfo.applicationTime  === null ? customLangTextSerice.get18nFixForUnknown() : offer.bankInfo.applicationTime + " min"}}
                 </p>
             </div>
 
             <div class="item left">
                 <p i18n=“demand-change|offer-card@@offer.card.demandChange” class="left">Krever bytte av nettbank:</p>
-                <p i18n=“no-yes|offer-card@@offer.card.noYes” class="box">{{ offer.requiredProductPackage == null ? "Nei" : "Ja" }}</p>
+                <p i18n=“no-yes|offer-card@@offer.card.noYes” class="box">{{ offer.requiredProductPackage == null ? customLangTextSerice.get18nFixForNo() : "Ja" }}</p>
             </div>
 
             <div class="item right first satisfaction-wrapper">
@@ -118,7 +116,9 @@
             <div class="item buttons">
                 
                     
-                        <rente-button-small class="firstButton" [disabled]="offer.bankInfo.partner == false"  
+                        <rente-button-small class="firstButton" 
+                            i18n=“see-more|offer-card-big@@offer.card.big.seeMore”
+                            [disabled]="offer.bankInfo.partner == false"  
                             [color]="offer.bankInfo.bank == 'LANDKREDITT' ? 'primary-hollow-small-landkreditt' : 'primary-hollow-small'" type="raised"
                             (click)="openBankUrlByButton(offer)">Se mer på {{getbankNameOrDefault(offer)}}s <br/> hjemmeside
                         </rente-button-small>

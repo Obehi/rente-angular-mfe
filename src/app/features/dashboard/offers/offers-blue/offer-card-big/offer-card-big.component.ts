@@ -6,6 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { DialogInfoComponent } from '../../dialog-info/dialog-info.component';
 import { BankRatingDialogComponent } from '../bank-rating-dialog/bank-rating-dialog.component';
 import { Router } from '@angular/router';
+import { CustomLangTextService } from '@shared/services/custom-lang-text.service'
 
 
 import {
@@ -31,7 +32,9 @@ export class OfferCardBigComponentBlue implements OnInit {
   constructor(
     private trackingService: TrackingService,
     public dialog: MatDialog,
-    private router: Router) { }
+    private router: Router,
+    public customLangTextSerice: CustomLangTextService
+    ) { }
 
   ngOnInit() {
   }

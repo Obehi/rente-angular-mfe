@@ -59,7 +59,7 @@
         <div class="offer-inner">
           <div>
             <h2 i18n=“no-yes|offer-card-big@@offer.card.big.noYes”>
-              {{ offer.requiredProductPackage == null ? "Nei" : "Ja" }}
+              {{ offer.requiredProductPackage == null ? customLangTextSerice.get18nFixForNo()  : "Ja" }}
             </h2>
         </div>
         </div>
@@ -96,7 +96,7 @@
           <div class="center">
             <img src="../../../../assets/icons/clock.svg"/> 
             <h3 i18n=“unknown|offer-card-big@@offer.card.big.unknown”>
-              {{offer.bankInfo.applicationTime  === null ? 'Ukjent' : offer.bankInfo.applicationTime + " min"}}
+              {{offer.bankInfo.applicationTime  === null ? customLangTextSerice.get18nFixForUnknown() : offer.bankInfo.applicationTime + " min"}}
             </h3>
         </div>
         </div>

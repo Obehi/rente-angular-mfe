@@ -5,6 +5,7 @@ import { BANKS_DATA } from '@config/banks-config';
 import { TrackingService, TrackingDto } from '@services/remote-api/tracking.service';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { CustomLangTextService } from '@shared/services/custom-lang-text.service'
 
 
 import {
@@ -33,7 +34,9 @@ export class OfferCardComponentBlue implements OnInit {
   constructor(
     private trackingService: TrackingService, 
     public dialog: MatDialog,
-    private router: Router) { }
+    private router: Router,
+    public customLangTextSerice: CustomLangTextService
+    ) { }
  
 
   ngOnInit() {
