@@ -52,6 +52,7 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
   public tips: object[];
   public offerTypes: String[];
   public currentOfferType: String;
+  public isSweden: boolean;
   get isMobile(): boolean { return window.innerWidth < 600; }
 
   get hasStatensPensjonskasseMembership(): boolean {
@@ -105,7 +106,11 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
   }
   
   public ngOnInit(): void {
-
+    if(locale.includes("sv")) {
+      this.isSweden = true
+    } else{
+      this.isSweden = false
+    }
     this.offerTypes = [
       "threeMonths",
       "oneYear",
