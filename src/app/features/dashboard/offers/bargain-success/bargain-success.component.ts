@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ReferralComponent } from './referral/referral.component';
 import { MatDialog } from '@angular/material/dialog';
-
+import { ROUTES_MAP } from '@config/routes-config';
 
 @Component({
   selector: 'rente-bargain-success',
@@ -17,16 +17,6 @@ export class BargainSuccessComponent implements OnInit {
 
   constructor(private router: Router, public dialog: MatDialog) {
 
-
-    //REMOVE COMMENTS BEFORE PRODUCTION!!!!
-    /*
-     if(!window.history.state.fromChangeBankDialog) {
-      this.router.navigate(['/dashboard/tilbud'])
-    }
-     if(!window.history.state.isError) {
-      this.isErrorState = true
-    }  
-   */
    } 
 
   
@@ -37,7 +27,7 @@ export class BargainSuccessComponent implements OnInit {
  
   
   public continue() {
-    this.router.navigate(['/dashboard/tilbud'])
+    this.router.navigate(['/dashboard/' + ROUTES_MAP.offers])
   }
 }
 

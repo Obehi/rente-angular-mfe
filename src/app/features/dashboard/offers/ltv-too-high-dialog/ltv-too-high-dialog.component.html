@@ -23,7 +23,7 @@
 </p>
 
 <div class="double">
-    <rente-button color="primary" i18n=navigate-to-house-tab|button@@navigate.to.house.tab [routerLink]="['/dashboard/bolig']" (click)="onClose()" >Gå til boligsiden</rente-button>
+    <rente-button color="primary" i18n=navigate-to-house-tab|button@@navigate.to.house.tab [routerLink]="['/dashboard/' + routesMap.property]" (click)="onClose()" >Gå til boligsiden</rente-button>
     <rente-button color="primary" i18n=“close|button@@close”  (click)="onClose()">Lukk</rente-button>
 </div>
 

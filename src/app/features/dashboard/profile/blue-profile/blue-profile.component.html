@@ -71,7 +71,7 @@
           <h3 i18n=“membership|profile@@profile.membershipLength”>Medlemskap ({{ memberships.length }})</h3>
               <mat-icon class="membershipHelp" (click)="
                         openInfoDialog(
-                          'Enkelte banker har spesielt gunstige tilbud til deg som er medlem i en interesseorganisasjon eller fagforening. Legg inn ditt medlemsskap for å se disse under tilbudssiden.'
+                          textLangService.getMembershipWarning()
                         )
                       ">help
               </mat-icon>
@@ -118,10 +118,10 @@
                 <div class="inner-body" *ngIf="showPreferences">
                   <div class="field">
                     <div class="withinfo">
-                      <p class="small">Markedsovervåkning / Rentesjekk av dine lån</p>
+                      <p i18n=“market-check|profile@@profile.marketCheck” class="small">Markedsovervåkning / Rentesjekk av dine lån</p>
                       <div (click)="
                         openInfoDialog(
-                          'Renteradar.no overvåker kontinuerlig markedet for bedre rente enn det du har på lånet ditt. Renten du har på lånet ditt sjekkes og oppdateres ved at du identifiserer deg med BankID. Det er viktig at dette gjøres fra tid til annen for at eventuelle renteendringer på lånet ditt skal fanges opp.'
+                          textLangService.getMarkedObservationText()
                         )
                       " class="clickable">
                         <mat-icon>help</mat-icon>

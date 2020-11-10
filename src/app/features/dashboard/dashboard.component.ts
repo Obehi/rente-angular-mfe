@@ -3,6 +3,8 @@ import { Routes, RouterModule, Router } from "@angular/router";
 import { BreakpointObserver, BreakpointState } from "@angular/cdk/layout";
 import { LocalStorageService } from "@services/local-storage.service";
 import { OptimizeService } from '@services/optimize.service'
+import { ROUTES_MAP } from '@config/routes-config';
+
 @Component({
   selector: "rente-dashboard",
   templateUrl: "./dashboard.component.html",
@@ -12,6 +14,7 @@ import { OptimizeService } from '@services/optimize.service'
 export class DashboardComponent implements OnInit, OnDestroy {
 
   public optimize: OptimizeService;
+  public routesMap = ROUTES_MAP;
 
   constructor(
     private router: Router,
@@ -41,7 +44,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     if (this.localStorageService.getItem("noLoansPresent")) {
-      this.router.navigate(["/dashboard/ingenlaan"]);
+      this.router.navigate(["/dashboard/" + ROUTES_MAP.noLoan]);
     } else if (this.localStorageService.getItem("isAggregatedRateTypeFixed")) {
       this.router.navigate(["/dashboard/fastrente"]);
     } else {

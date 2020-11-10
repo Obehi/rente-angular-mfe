@@ -34,7 +34,7 @@ export class CustomLangTextService {
 
   getMembershipWarning() {
     if(locale.includes("sv") ) {
-      return 'Bankerna ger ibland bättre erbjudanden om du är medlem i ett fackförbund'
+      return 'Vissa banker erbjuder bättre räntor om man är medlem i ett fackförbund. Lägg in ditt medlemskap för och se fler erbjudanden.'
     } else if (locale.includes("nb")) {
       return 'Enkelte banker tilbyr bedre betingelser hvis du er medlem i en interesseorganisasjon eller fagforening. Hvis du har mulighet til å melde deg inn i en kan det være penger å spare. (Medlemskap koster ca 4000 i året).'
     }

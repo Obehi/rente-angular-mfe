@@ -25,6 +25,7 @@ import smoothscroll from 'smoothscroll-polyfill';
 import { BankUtils } from '@shared/models/bank';
 import { CustomLangTextService } from '@shared/services/custom-lang-text.service'
 import { locale } from '../../../../config/locale/locale';
+import { ROUTES_MAP } from '@config/routes-config';
 
 @Component({
   selector: 'rente-offers-blue',
@@ -53,6 +54,7 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
   public offerTypes: String[];
   public currentOfferType: String;
   public isSweden: boolean;
+  public routesMap = ROUTES_MAP
   get isMobile(): boolean { return window.innerWidth < 600; }
 
   get hasStatensPensjonskasseMembership(): boolean {
@@ -139,7 +141,7 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
       err => {
         if (err.errorType === 'PROPERTY_VALUE_MISSING') {
           this.errorMessage = err.title;
-          this.router.navigate(['/dashboard/bolig']);
+          this.router.navigate(['/dashboard/' + ROUTES_MAP.property]);
         }
         console.log(err);
       }
@@ -168,7 +170,7 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
         header: "Belåningsgrad",
         text:
           this.customLangTextSerice.getHouseValue(),
-        buttonLink: '/dashboard/bolig',
+        buttonLink: '/dashboard/' + ROUTES_MAP.property,
         icon: this.isMobile ? "house" : 'house-blue'
       });
     }
@@ -178,7 +180,7 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
         header: "Medlemskap",
         text:
           this.customLangTextSerice.getMembershipWarning(),
-        buttonLink: '/dashboard/profil',
+        buttonLink: '/dashboard/' + ROUTES_MAP.profile,
         icon: this.isMobile ? "profile-icon-white" : 'profile-icon-blue'
       });
     }
@@ -203,7 +205,7 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
         header: "Rammelån/boligkreditt",
         text:
           'Du har rammelån/boligkreditt. Ønsker du å se tilbud kun for denne typen lån?',
-        buttonLink: '/dashboard/profil',
+        buttonLink: '/dashboard/' + ROUTES_MAP.profile,
         icon: this.isMobile ? "profile-icon-white" : 'profile-icon-blue'
       });
     }
@@ -235,11 +237,11 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
   }
 
   public goToProperty() {
-    this.router.navigate(['/dashboard/bolig'])
+    this.router.navigate(['/dashboard/' + ROUTES_MAP.property])
   }
 
   public goToLoans() {
-    this.router.navigate(['/dashboard/mine-lan'])
+    this.router.navigate(['/dashboard/' + ROUTES_MAP.loans])
   }
 
   public setOfferType(type: String) {

@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LocalStorageService } from '@services/local-storage.service';
 import { OptimizeService} from '@services/optimize.service'
+import { ROUTES_MAP } from '@config/routes-config';
+
 @Component({
   selector: 'rente-header',
   templateUrl: './header-sv.component.html',
@@ -12,6 +14,8 @@ export class HeaderSvComponent implements OnInit {
   public toggleNavbar: boolean;
   public isSmallScreen: boolean;
   public optimizeService: OptimizeService
+  public routesMap = ROUTES_MAP
+  
   constructor(
     public auth: AuthService,
     public localStorageService: LocalStorageService,

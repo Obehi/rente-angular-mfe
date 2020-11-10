@@ -25,6 +25,8 @@ import { OfferInfo } from '@shared/models/offers';
 import { DialogInfoComponent } from './dialog-info/dialog-info.component';
 import { Mask } from '@shared/constants/mask'
 import { OptimizeService } from '@services/optimize.service'
+import { ROUTES_MAP } from '@config/routes-config';
+
 
 @Component({
   selector: 'rente-init-confirmation',
@@ -128,12 +130,12 @@ export class InitConfirmationComponent implements OnInit {
 
     this.loansService.setConfirmationData(dto).subscribe(res => {
       this.isLoading = false;
-      this.router.navigate(['/dashboard/tilbud']);
+      this.router.navigate(['/dashboard/' + ROUTES_MAP.offers]);
       this.snackBar.openSuccessSnackBar('Endringene dine er lagret', 1.2);
     },
     err => {
       this.isLoading = false;
-      this.router.navigate(['/dashboard/bolig']);
+      this.router.navigate(['/dashboard/' + ROUTES_MAP.property]);
     });
   }
 

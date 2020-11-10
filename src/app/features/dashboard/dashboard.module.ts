@@ -12,8 +12,6 @@ import { MatDialogModule } from "@angular/material/dialog";
 import { MatRadioModule } from "@angular/material/radio";
 import { DialogInfoComponent } from "./offers/dialog-info/dialog-info.component";
 
-
-
 import { RatingComponent } from "./offers/rating/rating.component";
 import { LayoutModule } from "@angular/cdk/layout";
 import { MatSelectModule } from "@angular/material/select";

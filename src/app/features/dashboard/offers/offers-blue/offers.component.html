@@ -584,7 +584,7 @@
         </h3>
         <p>
           Din belåningsgrad er høyere enn dette, vennligst endre din belåningsgrad
-          i<a [routerLink]="['/dashboard/bolig']"> boligfanen</a>
+          i<a [routerLink]="['/dashboard/' + routesMap.property]"> boligfanen</a>
         </p>
       </div>
       <div class="title" *ngIf="!offersInfo && !isLoading && !errorMessage">

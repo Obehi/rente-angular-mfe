@@ -26,6 +26,7 @@ import { DialogInfoComponent } from '../dialog-info/dialog-info.component';
 
 import { Mask } from '@shared/constants/mask'
 import { OptimizeService } from '@services/optimize.service'
+import { ROUTES_MAP } from '@config/routes-config';
 
 @Component({
   selector: 'rente-init-confirmation-sv',
@@ -131,7 +132,7 @@ export class InitConfirmationSVComponent implements OnInit {
     },
     err => {
       this.isLoading = false;
-      this.router.navigate(['/dashboard/bolig']);
+      this.router.navigate(['/dashboard/' + ROUTES_MAP.property]);
     });
   }
 

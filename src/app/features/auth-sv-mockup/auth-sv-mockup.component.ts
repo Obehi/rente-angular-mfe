@@ -35,6 +35,7 @@ import { UserService } from "@services/remote-api/user.service";
 import { LoansService } from "@services/remote-api/loans.service";
 import { LocalStorageService } from "@services/local-storage.service";
 import { BankVo, BankUtils } from "@shared/models/bank";
+import { ROUTES_MAP } from '@config/routes-config';
 
 
 
@@ -375,18 +376,18 @@ export class AuthSvMockupComponent implements OnInit, OnDestroy {
                     this.localStorageService.removeItem('noLoansPresent');
                     if (rateAndLoans.isAggregatedRateTypeFixed) {
                       this.localStorageService.setItem('isAggregatedRateTypeFixed', true);
-                      this.router.navigate(['/dashboard/fastrente']);
+                      this.router.navigate(['/dashboard/' + ROUTES_MAP.fixedRate]);
                     } else {
                       if (userInfo.income === null) {
                         this.router.navigate(['/bekreft']);
                         this.localStorageService.setItem('isNewUser', true);
                       } else {
-                        this.router.navigate(['/dashboard/tilbud/']);
+                        this.router.navigate(['/dashboard/' + ROUTES_MAP.offers]);
                       }
                     }
                   } else {
                     this.localStorageService.setItem('noLoansPresent', true);
-                    this.router.navigate(['/dashboard/ingenlaan']);
+                    this.router.navigate(['/dashboard/' + ROUTES_MAP.noLoan]);
                   }
                 });
               });

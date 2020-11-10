@@ -134,18 +134,18 @@ export class AuthSvComponent implements OnInit, OnDestroy {
                     this.localStorageService.removeItem('noLoansPresent');
                     if (rateAndLoans.isAggregatedRateTypeFixed) {
                       this.localStorageService.setItem('isAggregatedRateTypeFixed', true);
-                      this.router.navigate(['/dashboard/fastrente']);
+                      this.router.navigate(['/dashboard/' + ROUTES_MAP.fixedRate]);
                     } else {
                       if (userInfo.income === null) {
                         this.router.navigate(['/bekreft']);
                         this.localStorageService.setItem('isNewUser', true);
                       } else {
-                        this.router.navigate(['/dashboard/tilbud/']);
+                        this.router.navigate(['/dashboard/' + ROUTES_MAP.offers]);
                       }
                     }
                   } else {
                     this.localStorageService.setItem('noLoansPresent', true);
-                    this.router.navigate(['/dashboard/ingenlaan']);
+                    this.router.navigate(['/dashboard/' + ROUTES_MAP.noLoan]);
                   }
                 });
               });

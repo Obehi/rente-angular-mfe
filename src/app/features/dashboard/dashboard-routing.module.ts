@@ -5,7 +5,7 @@ import { PreferencesComponent } from './preferences/preferences.component';
 import { ProfileComponent } from './profile/profile.component';
 import { RateTypeFixedComponent } from './rate-type-fixed/rate-type-fixed.component';
 import { NoLoansComponent } from './no-loans/no-loans.component';
-import { customMeta, defaultMeta } from '@config/routes-config';
+import { customMeta, defaultMeta, ROUTES_MAP } from '@config/routes-config';
 import {RouteGuard } from '@shared/guards/route.guard';
 import { BargainSuccessComponent } from './offers/bargain-success/bargain-success.component';
 import { OptimizeService } from '@services/optimize.service'
@@ -22,7 +22,7 @@ const routes: Routes = [
   {
     path: '', component: DashboardComponent, children: [
       {
-        path: 'tilbud', component: OffersComponentBlue,
+        path: ROUTES_MAP.offers, component: OffersComponentBlue,
         data: {
           title: customMeta.tilbudTitle,
           meta: {
@@ -35,7 +35,7 @@ const routes: Routes = [
         path: 'prute-fullfort', component: BargainSuccessComponent
       },
       {
-        path: 'mine-lan', component: LoansLangGenericComponent,
+        path: ROUTES_MAP.loans, component: LoansLangGenericComponent,
         data: {
           title: customMeta.mineLanTitle,
           meta: {
@@ -45,7 +45,7 @@ const routes: Routes = [
         }
       },
       {
-        path: 'bolig', component: HouseBlueComponent,
+        path: ROUTES_MAP.property, component: HouseBlueComponent,
         canDeactivate: [RouteGuard],
         data: {
           title: customMeta.boligTitle,
@@ -67,7 +67,7 @@ const routes: Routes = [
         }
       },
       {
-        path: 'profil', component: BlueProfileComponent,
+        path: ROUTES_MAP.profile, component: BlueProfileComponent,
         canDeactivate: [RouteGuard],
         data: {
           title: customMeta.profilTitle,
@@ -90,8 +90,8 @@ const routes: Routes = [
       },
     ]
   },
-  { path: 'fastrente', component: RateTypeFixedComponent },
-  { path: 'ingenlaan', component: NoLoansComponent }
+  { path: ROUTES_MAP.fixedRate, component: RateTypeFixedComponent },
+  { path: ROUTES_MAP.noLoan, component: NoLoansComponent }
 ];
 
 @NgModule({

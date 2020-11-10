@@ -194,10 +194,17 @@ export const ROUTES_MAP = {
   bankSelect: 'velgbank',
   auth: 'autentisering',
   dashboard: 'dashboard',
+  offers: 'tilbud',
+  loans: 'mine-lan',
+  property: 'bolig',
+  profile: 'profil',
   initConfirmation: 'bekreft',
+  noLoan: 'ingenlaan',
+  fixedRate: 'fastrente',
   getNotified: 'faabeskjed',
   guide: 'slik-funger-renteradar',
   cookies: 'personvern/cookies',
+  customerSatisfaction: 'epsi-kundetilfredshet',
   emailPreferences: 'epost/innstillinger',
 };
 

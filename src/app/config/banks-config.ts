@@ -658,8 +658,8 @@ const BANKS_DATA_SV = {
   },
   SWE_DANSKE_BANK: {
     name: 'SWE_DANSKE_BANK',
-    img: '../../assets/sv/img/banks-logo/round/danske.png',
-    imgCircle: '../../assets/sv/img/banks-logo/round/danske.png'
+    img: '../../assets/img/sv/banks-logo/round/danske.png',
+    imgCircle: '../../assets/img/sv/banks-logo/round/danske.png'
   },
   SWE_HANDELSBANKEN: {
     name: 'SWE_HANDELSBANKEN',
