@@ -8,7 +8,5 @@ export { LandingTopNoComponent as LandingTopLangGenericComponent } from '@featur
 export { BankSelectNoRoutingModule as BankSelectLangGenericRoutingModule } from '@features/bank-select-no/bank-select-routing.module';  
 export { BankSelectNoComponent as BankSelectLangGenericComponent } from '@features/bank-select-no/bank-select.component';  
 export { BankSelectNoModule as BankSelectLangGenericModule } from '@features/bank-select-no/bank-select.module';  
-
-
-
 export { OfferDetailsNoComponent as OfferDetailsLangGenericComponent  } from '@features/dashboard/offers/offers-blue/details/details-no/details-no.component';  
+export {  ChangeBankDialogComponent as ChangeBankDialogLangGenericComponent   } from '@features/dashboard/offers/change-bank-dialog/change-bank-dialog.component';  

@@ -9,3 +9,5 @@ export { LandingTopSvComponent as LandingTopLangGenericComponent } from '@featur
 export { BankSelectSvModule as BankSelectLangGenericModule } from '@features/bank-select-sv/bank-select.module';  
 export { BankSelectSvComponent as BankSelectLangGenericComponent } from '@features/bank-select-sv/bank-select.component';  
 export { OfferDetailsSvComponent as OfferDetailsLangGenericComponent  } from '@features/dashboard/offers/offers-blue/details/details-sv/details-sv.component';  
+export {  ChangeBankDialogSvComponent as ChangeBankDialogLangGenericComponent   } from '@features/dashboard/offers/change-bank-dialog/change-bank-dialog-sv/change-bank-dialog-sv.component';  
+ 

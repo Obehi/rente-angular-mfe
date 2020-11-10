@@ -56,6 +56,7 @@ import { LoansLangGenericComponent } from '../../local-components/components-out
 
 import { HouseFormLangGenericComponent } from '../../local-components/components-output';
 import { OfferDetailsLangGenericComponent } from '../../local-components/components-output';
+import { ChangeBankDialogLangGenericComponent } from '../../local-components/components-output';
 
 
 
@@ -94,7 +95,8 @@ import { OfferDetailsLangGenericComponent } from '../../local-components/compone
     OffersListLangGenericComponent,
     LoansLangGenericComponent,
     HouseFormLangGenericComponent,
-    OfferDetailsLangGenericComponent
+    OfferDetailsLangGenericComponent,
+    ChangeBankDialogLangGenericComponent
   ],
   imports: [
     CommonModule,
