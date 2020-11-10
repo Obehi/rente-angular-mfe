@@ -6,14 +6,14 @@
 /out-tsc
 
 #language output
-src/app/config/locale/locale-js.js
-src/app/config/locale/locale.ts
+#src/app/config/locale/locale-js.js
+#src/app/config/locale/locale.ts
 #src/app/local-components/components-output.ts
 #src/locale/messages.nb.xtb
 #src/locale/messages.sv.xtb
 #src/messages.xmb
 #src/app/config/routes-config.ts
-src/app/shared/constants/mask.ts
+#src/app/shared/constants/mask.ts
 
 # dependencies
 /node_modules
