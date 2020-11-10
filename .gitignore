@@ -8,7 +8,7 @@
 #language output
 src/app/config/locale/locale-js.js
 src/app/config/locale/locale.ts
-src/app/local-components/components-output.ts
+#src/app/local-components/components-output.ts
 #src/locale/messages.nb.xtb
 #src/locale/messages.sv.xtb
 #src/messages.xmb
