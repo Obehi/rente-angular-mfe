@@ -49,7 +49,6 @@ import { ReferralComponent } from './offers/bargain-success/referral/referral.co
 import { LoansBlueComponent } from './loans/loans-blue/loans-blue.component';
 import { HouseBlueComponent } from './house/house-blue/house-blue.component';
 import { BlueProfileComponent } from './profile/blue-profile/blue-profile.component';
-import { BankRatingDialogComponent } from './offers/offers-blue/bank-rating-dialog/bank-rating-dialog.component';
 import { EPSIScoreComponent } from './offers/offers-blue/epsi-score/epsi-score.component';
 import { OffersListLangGenericComponent } from '../../local-components/components-output';
 import { LoansLangGenericComponent } from '../../local-components/components-output';
@@ -57,8 +56,7 @@ import { LoansLangGenericComponent } from '../../local-components/components-out
 import { HouseFormLangGenericComponent } from '../../local-components/components-output';
 import { OfferDetailsLangGenericComponent } from '../../local-components/components-output';
 import { ChangeBankDialogLangGenericComponent } from '../../local-components/components-output';
-
-
+import { BankScoreLangGenericComponent } from '../../local-components/components-output';
 
 
 // TODO: ADD separate module for material import
@@ -90,13 +88,13 @@ import { ChangeBankDialogLangGenericComponent } from '../../local-components/com
     LoansBlueComponent,
     HouseBlueComponent,
     BlueProfileComponent,
-    BankRatingDialogComponent,
     EPSIScoreComponent,
     OffersListLangGenericComponent,
     LoansLangGenericComponent,
     HouseFormLangGenericComponent,
     OfferDetailsLangGenericComponent,
-    ChangeBankDialogLangGenericComponent
+    ChangeBankDialogLangGenericComponent,
+    BankScoreLangGenericComponent
   ],
   imports: [
     CommonModule,

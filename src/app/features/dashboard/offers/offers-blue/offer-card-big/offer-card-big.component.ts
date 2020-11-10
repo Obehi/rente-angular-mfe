@@ -4,7 +4,9 @@ import { BANKS_DATA } from '@config/banks-config';
 import { TrackingService, TrackingDto } from '@services/remote-api/tracking.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogInfoComponent } from '../../dialog-info/dialog-info.component';
-import { BankRatingDialogComponent } from '../bank-rating-dialog/bank-rating-dialog.component';
+
+import { BankScoreLangGenericComponent } from '../../../../../local-components/components-output'
+
 import { Router } from '@angular/router';
 import { CustomLangTextService } from '@shared/services/custom-lang-text.service'
 
@@ -123,7 +125,7 @@ export class OfferCardBigComponentBlue implements OnInit {
   }
 
   public openInfoDialog(text: String): void {
-    var bankRatingDialogRef = this.dialog.open(BankRatingDialogComponent);
+    var bankRatingDialogRef = this.dialog.open(BankScoreLangGenericComponent);
 
     bankRatingDialogRef.afterClosed().subscribe(() => {
       console.log("subscribe afterClosed")

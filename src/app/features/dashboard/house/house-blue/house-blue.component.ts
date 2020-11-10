@@ -66,11 +66,6 @@ export class HouseBlueComponent implements OnInit, DeactivationGuarded {
   }
 
   ngOnInit() {
-    console.log(locale)
-    console.log(locale)
-    console.log(locale)
-    console.log(locale)
-    console.log(locale)
     this.locale = locale
     this.isLoading = true;
     this.loansService.getAddresses().subscribe(r => {
@@ -95,7 +90,9 @@ export class HouseBlueComponent implements OnInit, DeactivationGuarded {
   addAddress() {
     if (this.addresses.length < 4) {
       const addr = new AddressDto();
-      addr.useManualPropertyValue = false;
+      if(locale.includes("nb")) {
+        addr.useManualPropertyValue = false;
+      } 
       this.addresses.push(addr);
     }
   }
@@ -133,6 +130,11 @@ export class HouseBlueComponent implements OnInit, DeactivationGuarded {
     if (this.ableToSave) {
       this.isLoading = true;
       this.canLeavePage = false;
+
+      this.addresses.forEach( address => {
+        console.log("address")
+        console.log(address)
+      })
       this.loansService.updateAddress(this.addresses).subscribe(
         r => {
           this.canNavigateBooolean$.next(true);

@@ -37,7 +37,11 @@ export class HouseFormSvComponent implements OnInit {
 
   ngOnInit() {
     this.loansService.getAddresses().subscribe(r => {
+
       this.addresses = r.addresses;
+
+      // Always true for swedish property
+      this.address.useManualPropertyValue = true;
     });
   }
 
@@ -62,11 +66,8 @@ export class HouseFormSvComponent implements OnInit {
 
   onRbChange(event: MatTabChangeEvent) {
     this.ableTosave = true
-    if (event.index === 1) {
-      this.address.useManualPropertyValue = true;
-    } else {
-      this.address.useManualPropertyValue = false;
-    }
+    this.address.useManualPropertyValue = true;
+ 
   }
 
   //remove spaces and convert to number type

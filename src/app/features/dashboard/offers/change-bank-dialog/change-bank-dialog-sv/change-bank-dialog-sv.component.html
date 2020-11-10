@@ -5,7 +5,7 @@
 <h3>For at pruta i din bank:</h3>
 
 <!-- <div class="instructions" *ngIf="data.currentBank === 'SEB'"> -->
-  <div class="instructions" *ngIf="data.currentBank === 'SEB'">
+  <div class="instructions" *ngIf="data.currentBank === 'SWE_SEB'">
   <span>1</span>
   <p> Gå in på denna länk <a target ="_blank" href="https://seb.se/privat/lana/bolan-och-rantor">https://seb.se/privat/lana/bolan-och-rantor</a> </p>
   <span>2</span>
@@ -47,9 +47,10 @@
   <div class="instruction-bottom">Återkom gärna till oss på Ränteradar om du fick igenom din räntesänkning.</div>
 </div>
 
-<div class="instructions" *ngIf="data.currentBank === 'LANSFORSAKRINGAR'">
+
+<div class="instructions" *ngIf="data.currentBank === 'SWE_LANSFORSAKRINGAR'">
   <span>1</span>
-  <p> Gå in på denna länk <a target ="_blank" href="https://www.lansforsakringar.se/stockholm/privat/">https://www.lansforsakringar.se/stockholm/privat/</a> </p>
+  <p> Gå in på denna länk <a target ="_blank" href="https://www.handelsbanken.se/sv/">https://www.handelsbanken.se/sv/</a> </p>
   <span>2</span>
   <p>Kontakta de genom att logga in på din profil. För att kunna logga in krävs bankID eller dosa.</p>
   <span>3</span>
@@ -61,7 +62,8 @@
   <div class="instruction-bottom">Återkom gärna till oss på Ränteradar om du fick igenom din räntesänkning.</div>
 </div>
 
-<div class="instructions" *ngIf="data.currentBank === 'LANSFORSAKRINGAR'">
+
+<div class="instructions" *ngIf="data.currentBank === 'SWE_HANDELSBANKEN'">
   <span>1</span>
   <p> Gå in på denna länk <a target ="_blank" href="https://www.handelsbanken.se/sv/">https://www.handelsbanken.se/sv/</a> </p>
   <span>2</span>
@@ -144,8 +146,8 @@
 
 
 
-    <rente-button color="primary" (click)="close()" i18n=“close|button@@close>
-      Lukk
+    <rente-button color="primary" (click)="close()">
+      Stäng
     </rente-button>
 
 </div>

@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { OfferInfo, Offers } from './../../../../../shared/models/offers';
-import { BankRatingDialogComponent } from '../bank-rating-dialog/bank-rating-dialog.component';
+import { BankScoreLangGenericComponent } from '../../../../../local-components/components-output'
 import { BANKS_DATA } from '@config/banks-config';
 import { TrackingService, TrackingDto } from '@services/remote-api/tracking.service';
 import { MatDialog } from '@angular/material/dialog';
@@ -128,7 +128,7 @@ export class OfferCardComponentBlue implements OnInit {
   } 
 
   public openInfoDialog(text: String): void {
-    var bankRatingDialogRef = this.dialog.open(BankRatingDialogComponent, {
+    var bankRatingDialogRef = this.dialog.open(BankScoreLangGenericComponent, {
       height: '400px'
     });
 

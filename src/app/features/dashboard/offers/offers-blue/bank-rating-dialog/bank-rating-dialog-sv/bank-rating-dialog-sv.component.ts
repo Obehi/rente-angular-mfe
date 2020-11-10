@@ -8,12 +8,12 @@ import { Router } from '@angular/router';
   templateUrl: './bank-rating-dialog.component.html',
   styleUrls: ['./bank-rating-dialog.component.scss']
 })
-export class BankRatingDialogNoComponent {
+export class BankRatingDialogSvComponent {
 
   public closeState: string;
 
   constructor(
-    public dialogRef: MatDialogRef<BankRatingDialogNoComponent>,
+    public dialogRef: MatDialogRef<BankRatingDialogSvComponent>,
     private router: Router
   ) {}
 

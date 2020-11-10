@@ -13,7 +13,7 @@ import {
   AGGREGATED_LOAN_TYPE
 } from '../../../../config/loan-state';
 import { LocalStorageService } from '@services/local-storage.service';
-import { ChangeBankDialogComponent } from './../change-bank-dialog/change-bank-dialog.component';
+import { ChangeBankDialogLangGenericComponent } from '../../../../local-components/components-output'
 import { GetOfferFromBankDialogComponent } from './../get-offer-from-bank-dialog/get-offer-from-bank-dialog.component';
 import { LtvTooHighDialogComponent } from './../ltv-too-high-dialog/ltv-too-high-dialog.component';
 import { ChangeBankServiceService } from '@services/remote-api/change-bank-service.service';
@@ -324,13 +324,14 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
     }
     this.changeBankLoading = true;
     const offerId = offer.id;
+    const currentBank = this.offersInfo.bank
     this.changeBankServiceService.getBankOfferRequest(offerId).subscribe(
       preview => {
         this.changeBankLoading = false;
-
-        var changeBankRef = this.dialog.open(ChangeBankDialogComponent, {
+        
+        var changeBankRef = this.dialog.open(ChangeBankDialogLangGenericComponent, {
           autoFocus: false,
-          data: { preview, offerId }
+          data: { preview, offerId, currentBank}
         });
         changeBankRef.afterClosed().subscribe(() => {
           console.log("subscribe afterClosed")
