@@ -1,6 +1,7 @@
 import { LoansService, ConfirmationSetDto, ConfirmationGetDto, MembershipTypeDto } from '@services/remote-api/loans.service';
 import { UserService } from '@services/remote-api/user.service';
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { TitleCasePipe} from '@angular/common';
 import {
   Validators,
   AbstractControl,
@@ -23,6 +24,7 @@ import { VALIDATION_PATTERN } from '@config/validation-patterns.config';
 import { SnackBarService } from '../../../shared/services/snackbar.service';
 import { OfferInfo } from '@shared/models/offers';
 import { DialogInfoComponent } from '../dialog-info/dialog-info.component';
+import { CustomLangTextService } from "@services/custom-lang-text.service";
 
 import { Mask } from '@shared/constants/mask'
 import { OptimizeService } from '@services/optimize.service'
@@ -59,7 +61,8 @@ export class InitConfirmationSVComponent implements OnInit {
     private snackBar: SnackBarService,
     private router: Router,
     public dialog: MatDialog,
-    public optimize: OptimizeService
+    public optimize: OptimizeService,
+    public customLangTextService: CustomLangTextService
   ) {
     this.optimizeService = optimize
     this.filteredMemberships = this.membershipCtrl.valueChanges.pipe(
@@ -126,9 +129,9 @@ export class InitConfirmationSVComponent implements OnInit {
     dto.apartmentValue = confirmationData.apartmentValue
 
     this.loansService.setConfirmationData(dto).subscribe(res => {
-      this.isLoading = false;
-      this.router.navigate(['/dashboard/tilbud']);
-      this.snackBar.openSuccessSnackBar('Endringene dine er lagret', 1.2);
+    this.isLoading = false;
+    this.router.navigate(['/dashboard/' + ROUTES_MAP.offers]);
+    this.snackBar.openSuccessSnackBar(this.customLangTextService.getSnackBarUpdatedMessage(), 1.2);
     },
     err => {
       this.isLoading = false;

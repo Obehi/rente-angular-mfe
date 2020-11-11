@@ -80,6 +80,38 @@ export class CustomLangTextService {
       return '+ Legg til'
     }
   }
+  
+  getSnackBarClose() {
+    if(locale.includes("sv") ) {
+      return 'Stäng'
+    } else if (locale.includes("nb")) {
+      return 'Lukk'
+    }
+  }
+
+  getSnackBarSavedMessage() {
+    if(locale.includes("sv") ) {
+      return 'Ditt meddelande är skickat'
+    } else if (locale.includes("nb")) {
+      return 'Din melding er sendt'
+    }
+  }
+
+  getSnackBarUpdatedMessage() {
+    if(locale.includes("sv") ) {
+      return 'Dina ändringar är sparade'
+    } else if (locale.includes("nb")) {
+      return 'Endringene dine er lagret'
+    }
+  }
+  
+  getSnackBarErrorMessage() {
+    if(locale.includes("sv") ) {
+      return 'Oops, något gick fel'
+    } else if (locale.includes("nb")) {
+      return 'Oops, noe gikk galt'
+    }
+  }
 
 
   get18nFixForUnknown() {

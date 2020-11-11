@@ -36,6 +36,7 @@ import { LoansService } from "@services/remote-api/loans.service";
 import { LocalStorageService } from "@services/local-storage.service";
 import { BankVo, BankUtils } from "@shared/models/bank";
 import { ROUTES_MAP } from '@config/routes-config';
+import { CustomLangTextService } from "@services/custom-lang-text.service";
 
 
 
@@ -110,7 +111,8 @@ export class AuthSvMockupComponent implements OnInit, OnDestroy {
     private authService: AuthService,
     private userService: UserService,
     private loansService: LoansService,
-    private localStorageService: LocalStorageService
+    private localStorageService: LocalStorageService,
+    public customLangTextService: CustomLangTextService
   ) {
   }
 
@@ -136,7 +138,7 @@ export class AuthSvMockupComponent implements OnInit, OnDestroy {
       _ => {
         this.isLoading = false;
         this.router.navigate(["/"]);
-        this.snackBar.openSuccessSnackBar("Din melding er sendt", 2);
+        this.snackBar.openSuccessSnackBar(this.customLangTextService.getSnackBarSavedMessage(), 2);
       },
       err => {
         this.isLoading = false;

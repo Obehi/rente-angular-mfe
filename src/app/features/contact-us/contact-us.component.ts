@@ -14,6 +14,7 @@ import { Router } from "@angular/router";
 import { SnackBarService } from "@services/snackbar.service";
 import { Mask } from '@shared/constants/mask'
 import { locale } from '../../config/locale/locale';
+import { CustomLangTextService } from "@services/custom-lang-text.service";
 
 @Component({
   selector: "rente-contact-us",
@@ -29,7 +30,8 @@ export class ContactUsComponent implements OnInit {
     private fb: FormBuilder,
     private contactService: ContactService,
     private router: Router,
-    private snackBar: SnackBarService
+    private snackBar: SnackBarService,
+    public customLangTextService: CustomLangTextService
   ) {}
 
   ngOnInit() {
@@ -76,7 +78,7 @@ export class ContactUsComponent implements OnInit {
       _ => {
         this.isLoading = false;
         this.router.navigate(["/"]);
-        this.snackBar.openSuccessSnackBar("Din melding er sendt", 2);
+        this.snackBar.openSuccessSnackBar(this.customLangTextService.getSnackBarSavedMessage(), 2);
       },
       err => {
         this.isLoading = false;

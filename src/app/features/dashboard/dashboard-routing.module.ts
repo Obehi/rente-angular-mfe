@@ -17,7 +17,6 @@ import { EPSIScoreComponent }   from './offers/offers-blue/epsi-score/epsi-score
 import { LoansLangGenericComponent } from '../../local-components/components-output'
 
 
-
 const routes: Routes = [
   {
     path: '', component: DashboardComponent, children: [
