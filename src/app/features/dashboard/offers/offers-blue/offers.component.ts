@@ -124,9 +124,7 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
       (res: Offers) => {
         this.offersInfo = Object.assign({}, res);
         this.currentOfferInfo = (JSON.parse(JSON.stringify(res)))
-        console.log("res")
-        console.log(res)
-
+        
         this.canBargain = 
         res.bank == 'SWE_AVANZA'|| 
         res.bank == 'SWE_SBAB'|| 
