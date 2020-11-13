@@ -19,12 +19,12 @@
         <div *ngFor="let offer of currentOfferInfo.offers.top5; let i = index" class="the-offer">
 
           <ng-container *ngIf="isMobile; else desktop">
-            <rente-offer-card-blue [offer]="offer" [offersInfo]="currentOfferInfo" [index]="i + 1" [offerType]="currentOfferType">
+            <rente-offer-card-blue [offer]="offer" [offersInfo]="currentOfferInfo" [index]="i + 1" >
             </rente-offer-card-blue>
           </ng-container>
 
           <ng-template #desktop>
-            <rente-offer-card-big-blue [offer]="offer" [offersInfo]="currentOfferInfo" [index]="i + 1" [offerType]="currentOfferType">
+            <rente-offer-card-big-blue [offer]="offer" [offersInfo]="currentOfferInfo" [index]="i + 1" >
             </rente-offer-card-big-blue>
           </ng-template>
 

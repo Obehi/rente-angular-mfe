@@ -21,7 +21,7 @@ export class OffersListSvComponent implements OnInit {
 
     this.currentOfferInfo = (JSON.parse(JSON.stringify(this.offersInfo)));
     this.currentOfferType = "threeMonths";
-
+    this.setOfferType(this.currentOfferType)
 
     this.offersInfo.offers.top5 = this.offersInfo.offers.top5.filter( offer => {
       return offer

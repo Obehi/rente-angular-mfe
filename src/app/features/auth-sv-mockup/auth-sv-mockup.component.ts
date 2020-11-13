@@ -359,6 +359,10 @@ export class AuthSvMockupComponent implements OnInit, OnDestroy {
             this.loginStep1Status = MESSAGE_STATUS.ERROR;
             this.unsubscribeEverything();
             break;
+
+          case BANKID_STATUS.NO_LOANS: {
+            this.router.navigate(['/dashboard/' + ROUTES_MAP.noLoan])
+          }
           case BANKID_STATUS.LOANS_PERSISTED:
             this.viewStatus.isLoansPersisted = true;
             const user = response.data.user;

@@ -121,6 +121,10 @@ export class AuthSvComponent implements OnInit, OnDestroy {
         switch (response.eventType) {
          
           case BANKID_STATUS.LOANS_PERSISTED:
+
+          case BANKID_STATUS.NO_LOANS: {
+            this.router.navigate(['/dashboard/' + ROUTES_MAP.noLoan])
+          }
             const user = response.data.user;
             this.authService
               .loginWithToken(user.ssn, user.oneTimeToken, "SWE")

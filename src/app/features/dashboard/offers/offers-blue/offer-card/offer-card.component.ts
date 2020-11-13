@@ -25,12 +25,12 @@ export class OfferCardComponentBlue implements OnInit {
   public banksMap = BANKS_DATA;
   public offerSavingsType = OFFER_SAVINGS_TYPE
   public xpandStatus = false;
+  public offerType: string
   
 
   @Input() offer: OfferInfo;
   @Input() offersInfo: Offers
   @Input() index: number
-  @Input() offerType: string
   constructor(
     private trackingService: TrackingService, 
     public dialog: MatDialog,
@@ -40,10 +40,18 @@ export class OfferCardComponentBlue implements OnInit {
  
 
   ngOnInit() {
-    console.log(this.offer)
+    if(this.offer.fixedRatePeriod === 0) {
+      this.offerType = 'threeMonths'
+    } else if(this.offer.fixedRatePeriod === 1) {
+      console.log("oneYear")
+      this.offerType = 'oneYear'
+    }
   }
 
-  get isMobile(): boolean { return window.innerWidth < 600; }
+  get isMobile(): boolean { 
+    console.log("offerType")
+    console.log(this.offerType)
+    return window.innerWidth < 600; }
 
   getbankNameOrDefault(offer: OfferInfo): string {
     let text = ""
