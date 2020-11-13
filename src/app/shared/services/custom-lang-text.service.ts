@@ -132,7 +132,7 @@ export class CustomLangTextService {
 
   get18nFixForRequirement() {
     if(locale.includes("sv") ) {
-      return 'Krav'
+      return 'Övriga krav'
     } else if (locale.includes("nb")) {
       return 'Forbehold'
     }
@@ -148,7 +148,7 @@ export class CustomLangTextService {
 
   get18nFixForNoRequirement2() {
     if(locale.includes("sv") ) {
-      return 'Inget krav'
+      return 'Inga övriga krav'
     } else if (locale.includes("nb")) {
       return 'Ingen forbehold'
     }
