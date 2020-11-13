@@ -148,7 +148,7 @@ export class CustomLangTextService {
 
   get18nFixForNoRequirement2() {
     if(locale.includes("sv") ) {
-      return 'Inget forbehold'
+      return 'Inget krav'
     } else if (locale.includes("nb")) {
       return 'Ingen forbehold'
     }
