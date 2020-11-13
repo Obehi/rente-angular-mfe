@@ -129,7 +129,6 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
         res.bank == 'SWE_AVANZA'|| 
         res.bank == 'SWE_SBAB'|| 
         res.bank == 'SWE_DANSKE_BANK'|| 
-        res.bank == 'SWE_DANSKE_BANK' ||
         res.bank == 'SWE_ICA_BANKEN' ? false : true;
         
         this.isLoading = false;
