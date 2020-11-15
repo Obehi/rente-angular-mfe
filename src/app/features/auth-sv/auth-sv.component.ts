@@ -141,7 +141,7 @@ export class AuthSvComponent implements OnInit, OnDestroy {
                       this.router.navigate(['/dashboard/' + ROUTES_MAP.fixedRate]);
                     } else {
                       if (userInfo.income === null) {
-                        this.router.navigate(['/bekreft']);
+                        this.router.navigate(['/' + ROUTES_MAP.initConfirmation]);
                         this.localStorageService.setItem('isNewUser', true);
                       } else {
                         this.router.navigate(['/dashboard/' + ROUTES_MAP.offers]);
