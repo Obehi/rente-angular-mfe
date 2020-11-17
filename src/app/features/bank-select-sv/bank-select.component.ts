@@ -60,7 +60,8 @@ export class BankSelectSvComponent implements OnInit, OnDestroy {
     }
   
     ngOnInit(): void {
-      let tinkUrl = environment["tinkUrl"] || "https://link.tink.com/1.0/authorize/?client_id=2a14f1970f0b4b39a861a1c42b65daca&redirect_uri=http%3A%2F%2Flocalhost%3A4302%2F&scope=accounts:read,user:read,identity:read&market=SE&locale=sv_SE&iframe=true&test=true"
+      //let tinkUrl = environment["tinkUrl"] || "https://link.tink.com/1.0/authorize/?client_id=2a14f1970f0b4b39a861a1c42b65daca&redirect_uri=http%3A%2F%2Flocalhost%3A4302%2F&scope=accounts:read,user:read,identity:read&market=SE&locale=sv_SE&iframe=true&test=true"
+      let tinkUrl = environment["tinkUrl"] || "https://link.tink.com/1.0/authorize/?client_id=3973e78ee8c140edbf36e53d50132ba1&redirect_uri=https%3A%2F%2Fse-rente-frontend-dev.herokuapp.com%2F&scope=accounts:read,investments:read,transactions:read,user:read&market=SE&locale=en_US&iframe=true"
       this.tinkUrl = this.sanitizer.bypassSecurityTrustResourceUrl(tinkUrl)
     }
   
@@ -113,7 +114,6 @@ export class BankSelectSvComponent implements OnInit, OnDestroy {
   
     private successSocketCallback() {
       this.tinkSuccess = true
-      //this.router.navigate([`/${ROUTES_MAP.initConfirmation}`]);
   
       const repliesUrl = `${API_URL_MAP.crawlerRepliesUrl}`;
       this.stompClient.subscribe(repliesUrl, message => {
@@ -138,7 +138,7 @@ export class BankSelectSvComponent implements OnInit, OnDestroy {
                         this.router.navigate(['/dashboard/' + ROUTES_MAP.fixedRate]);
                       } else {
                         if (userInfo.income === null) {
-                          this.router.navigate(['/bekreft']);
+                          this.router.navigate(['/' + ROUTES_MAP.initConfirmation]);
                           this.localStorageService.setItem('isNewUser', true);
                         } else {
                           this.router.navigate(['/dashboard/' + ROUTES_MAP.offers]);
