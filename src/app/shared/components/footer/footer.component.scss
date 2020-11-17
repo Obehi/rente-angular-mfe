@@ -38,6 +38,12 @@ footer {
       grid-column-end: span 2;
     }
 
+    .org {
+      grid-column-start: 1;
+      grid-column-end: span 2;
+      color: white;
+    }
+
     .item:nth-child(3) { 
       grid-column-end: span 3;
       margin-top: 20px;
