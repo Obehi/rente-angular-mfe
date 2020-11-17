@@ -32,10 +32,15 @@ footer {
   
   .inner-footer {
     margin: auto;
+    @media (max-width: 600px) {
+      margin: 40px 0px;
+    }
 
     .temp-swedish-policy {
       grid-column-start: 1;
       grid-column-end: span 2;
+
+
     }
 
     .org {
