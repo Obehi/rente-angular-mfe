@@ -45,7 +45,24 @@ export class GenericHttpService {
     const httpOptions = {
       headers: this.shapeHeaders(),
       withCredentials: true,
-      // params: {...params}
+    };
+
+    return this.http
+      .get(fullPath, httpOptions)
+      .pipe(
+        catchError((error) => this.handleError(error))
+      );
+  }
+
+  public getWithParams(path, searchParams): Observable<any> {
+    const fullPath = `${this.apiUrl}${path}`;
+
+    const params: HttpParams = new HttpParams({fromObject: searchParams});
+
+    const httpOptions = {
+      headers: this.shapeHeaders(),
+      withCredentials: true,
+      params: params
     };
 
     return this.http

@@ -3,6 +3,7 @@ import { GenericHttpService } from '@services/generic-http.service';
 import { API_URL_MAP } from '@config/api-url-config';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { locale } from '../../../config/locale/locale'
 
 @Injectable({
   providedIn: 'root'
@@ -106,8 +107,16 @@ export class LoansService {
   }
 
   public getLoanStatistics() {
+    var country;
+    if(locale.includes('sv')) {
+      country = 'SWE'
+    } else if(locale.includes('nb')) {
+      country = 'NOR'
+    }
+    let params = {'country': country}
     const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.statistics}`;
-    return this.http.get(url);
+
+    return this.http.getWithParams(url, params)
   }
 
   public confirmLowerRate(): Observable<any> {
