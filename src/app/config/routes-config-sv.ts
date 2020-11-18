@@ -1,5 +1,5 @@
 export const defaultTitle =
-  'Beste boliglånsrente | Sammenlign rente på boliglån | Renteradar.no';
+  'Bolåneräntor| Vi hjälper dig hitta bästa räntan | Ränteradar.se';
 
 export const defaultMeta = {
   name: 'description',
@@ -19,8 +19,8 @@ export const customMeta = {
     description: 'Ränteradar Sweden AB som driver Ränteradar.se tar GDPR på största allvar, läs mer om behandling av personuppgifter samt användarvillkor här. '
   },
   valgBank: {
-    title: 'Velg banken hvor du har boliglån | Renteradar.no',
-    description: 'Velg banken hvor du har boliglån og logg inn med BankID på mobil. Da henter vi automatisk inn din rente og låneinformasjon.'
+    title: 'Välj den bank där du har ditt bolån| Ränteradar.se',
+    description: 'Välj den bank du har ditt bolån i och logga in med mobilt BankID. Vi hämtar då automatiskt hämta din ränta och bolåneinformation.'
   },
   omOss: {
     title: 'Vår vision och teamet bakom tjänsten | Ränteradar.se',
@@ -48,12 +48,12 @@ export const customMeta = {
   },
   
   landingTitle: defaultTitle,
-  bekreftTitle: 'Renteradar.no | Bekreft  | Overvåk boliglånsrenten din gratis',
-  tilbudTitle: 'Oversikt beste tilbud | Renteradar.no',
-  mineLanTitle: 'Mine Lån | Renteradar.no',
-  boligTitle: 'Bolig | Renteradar.no',
-  preferanserTitle: 'Preferanser | Renteradar.no',
-  profilTitle: 'Profil | Renteradar.no',
+  bekreftTitle: 'Ränteradar.se | Bekräfta | Kontrollera din bolåneränta gratis',
+  tilbudTitle: 'Översikt bäst erbjudanden | Ränteradar.se',
+  mineLanTitle: 'Min Lån | Ränteradar.se',
+  boligTitle: 'Bostad | Ränteradar.se',
+  preferanserTitle: 'Preferanser | Ränteradar.se',
+  profilTitle: 'Profil | Ränteradar.se',
   
   bankLoginTitle: 'Renteradar.no | Registrer | Logg inn',
   DNB: {
