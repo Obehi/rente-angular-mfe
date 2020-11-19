@@ -46,7 +46,7 @@ export const customMeta = {
     title: 'Registrer | Logg inn | Renteradar.no',
     description: 'Renteradar.no henter renten du har og lånebeløp automatisk gjennom innlogging med BankID på mobil'
   },
-  
+
   landingTitle: defaultTitle,
   bekreftTitle: 'Renteradar.no | Bekreft  | Overvåk boliglånsrenten din gratis',
   tilbudTitle: 'Oversikt beste tilbud | Renteradar.no',
@@ -54,7 +54,7 @@ export const customMeta = {
   boligTitle: 'Bolig | Renteradar.no',
   preferanserTitle: 'Preferanser | Renteradar.no',
   profilTitle: 'Profil | Renteradar.no',
-  
+
   bankLoginTitle: 'Renteradar.no | Registrer | Logg inn',
   DNB: {
     title:
@@ -177,12 +177,11 @@ export const customMeta = {
   }
 };
 
-export const ROUTES_MAP_NO= {
-}
+export const ROUTES_MAP_NO = {};
 
 export const ROUTES_MAP_SV = {
   tinkMockup: 'tink-mockup'
-}
+};
 
 export const ROUTES_MAP = {
   aboutUs: 'om-oss',
@@ -206,5 +205,6 @@ export const ROUTES_MAP = {
   cookies: 'personvern/cookies',
   customerSatisfaction: 'epsi-kundetilfredshet',
   emailPreferences: 'epost/innstillinger',
+  banksGuide: 'bankguiden'
 };
 

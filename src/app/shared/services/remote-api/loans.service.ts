@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { GenericHttpService } from '@services/generic-http.service';
 import { API_URL_MAP } from '@config/api-url-config';
+import { GenericHttpService } from '@services/generic-http.service';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -8,10 +8,16 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class LoansService {
-  constructor(private http: GenericHttpService) {}
+  constructor(private http: GenericHttpService) {
+  }
 
   public getLoans() {
     const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.loans.base}`;
+    return this.http.get(url);
+  }
+
+  public getBankGuide(id: string) {
+    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.bankInfo}/${id}`;
     return this.http.get(url);
   }
 
@@ -64,12 +70,12 @@ export class LoansService {
     return this.http.put(url, appartmentData);
   }
 
-  public getConfirmationData():Observable<ConfirmationGetDto> {
+  public getConfirmationData(): Observable<ConfirmationGetDto> {
     const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.confirmation}`;
     return this.http.get(url);
   }
 
-  public setConfirmationData(dto:ConfirmationSetDto):Observable<ConfirmationSetDto> {
+  public setConfirmationData(dto: ConfirmationSetDto): Observable<ConfirmationSetDto> {
     const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.confirmation}`;
     return this.http.post(url, dto); // TODO: Object.assign()
   }
@@ -88,6 +94,7 @@ export class LoansService {
     const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.property}${API_URL_MAP.loan.value}`;
     return this.http.get(url);
   }
+
   public getEstimatedPropertValue(): Observable<any> {
     const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.property}${API_URL_MAP.loan.estimatedValue}`;
     return this.http.get(url);
@@ -117,12 +124,12 @@ export class LoansService {
 
   // Preferences
 
-  getPreferencesDto():Observable<PreferencesDto> {
+  getPreferencesDto(): Observable<PreferencesDto> {
     const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.preferences}`;
     return this.http.get(url);
   }
 
-  updateUserPreferences(dto:PreferencesUpdateDto):Observable<PreferencesUpdateDto> {
+  updateUserPreferences(dto: PreferencesUpdateDto): Observable<PreferencesUpdateDto> {
     const url = `${API_URL_MAP.loan.base}/preferences`;
     return this.http.post(url, dto);
   }
@@ -152,53 +159,53 @@ export class ClientAddressDto {
 }
 
 export class ConfirmationGetDto {
-  email:string;
-  name:string;
-  income:number;
-  memberships:string[];
-  apartmentSize:number;
-  availableMemberships:MembershipTypeDto[];
+  email: string;
+  name: string;
+  income: number;
+  memberships: string[];
+  apartmentSize: number;
+  availableMemberships: MembershipTypeDto[];
 }
 
 export class ConfirmationSetDto {
-  memberships:string[];
-  apartmentSize:number;
-  email:string;
-  income:number;
-  apartmentValue: number
+  memberships: string[];
+  apartmentSize: number;
+  email: string;
+  income: number;
+  apartmentValue: number;
 }
 
 export class PreferencesDto {
-  email:string;
-  name:string;
-  income:number;
-  availableMemberships:MembershipTypeDto[];
-  memberships:string[];
-  communicationChannelType:string;
+  email: string;
+  name: string;
+  income: number;
+  availableMemberships: MembershipTypeDto[];
+  memberships: string[];
+  communicationChannelType: string;
   receiveNewsEmails: boolean;
-  checkRateReminderType:string;
-  fetchCreditLinesOnly:boolean;
-  noAdditionalProductsRequired:boolean;
-  interestedInEnvironmentMortgages:boolean;
+  checkRateReminderType: string;
+  fetchCreditLinesOnly: boolean;
+  noAdditionalProductsRequired: boolean;
+  interestedInEnvironmentMortgages: boolean;
 }
 
 export class PreferencesUpdateDto {
-  memberships:string[];
-  checkRateReminderType:string;
-  fetchCreditLinesOnly:boolean;
-  noAdditionalProductsRequired:boolean;
-  interestedInEnvironmentMortgages:boolean;
-  email:string;
-  income:string;
+  memberships: string[];
+  checkRateReminderType: string;
+  fetchCreditLinesOnly: boolean;
+  noAdditionalProductsRequired: boolean;
+  interestedInEnvironmentMortgages: boolean;
+  email: string;
+  income: string;
   receiveNewsEmails: boolean;
 }
 
 export class MembershipTypeDto {
-  name:string;
-  label:string;
+  name: string;
+  label: string;
 }
 
-export class EmailDto  {
+export class EmailDto {
   checkRateReminderType: null | string;
   receiveNewsEmails: false | true;
 }

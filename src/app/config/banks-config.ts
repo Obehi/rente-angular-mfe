@@ -1,5 +1,3 @@
-
-
 const BANKS_DATA_NO = {
   AASEN_SB: {
     name: 'AASEN_SB',
@@ -649,7 +647,6 @@ const BANKS_DATA_NO = {
 };
 
 
-
 const BANKS_DATA_SV = {
   SWE_AVANZA: {
     name: 'SWE_AVANZA',
@@ -727,7 +724,7 @@ const BANKS_DATA_SV = {
     img: '../../assets/img/sv/banks-logo/round/alandsbanken.png',
     imgCircle: '../../assets/img/sv/banks-logo/round/alandsbanken.png'
   }
-};    
+};
 
 const MISCELLANEOUS = {
   OTHER: {
@@ -735,9 +732,10 @@ const MISCELLANEOUS = {
     img: '',
     imgCircle: ''
   }
-}
+};
 
 
-
-  
-export const BANKS_DATA = { ...BANKS_DATA_SV, ...BANKS_DATA_NO, MISCELLANEOUS }
+export const BANKS_DATA = {
+  ...BANKS_DATA_SV, ...BANKS_DATA_NO,
+  MISCELLANEOUS
+};

@@ -47,6 +47,7 @@ export const API_URL_MAP = {
       preview: '/preview',
       send: '/send'
     },
+    bankInfo: '/bank-info',
     offers: '/offers',
     preferences: '/preferences',
     membership: '/membership',
