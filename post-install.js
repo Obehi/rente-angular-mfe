@@ -2,8 +2,6 @@ const { exec } = require('child_process');
 const { execFile } = require('child_process');
 
 const arg = process.argv[2]
-console.log("arg arg arg")
-console.log(arg)
 
 if(process.env.ENV == null) {
     
@@ -41,20 +39,20 @@ function runScript(currentLocale) {
     let command;
     var locale = ""
 
-    console.log("running runscript")
+    //These should mostly reflect filereplacements in angular.json
     if (currentLocale== "sv") {
         locale = ",sv";
         exec("npm run set-sv-routes");
         exec("cp -f ./src/app/config/routes-config-sv.ts ./src/app/config/routes-config.ts ");  
         exec("cp -f ./src/app/shared/constants/mask-sv.ts ./src/app/shared/constants/mask.ts ");
         exec("cp -f ./src/app/local-components/components-sv.ts ./src/app/local-components/components-output.ts ");
+        exec("cp -f ./src/index-sv.html ./src/index.html ");
     }
     else if (currentLocale== "nb") {
         locale = ",nb"
         exec("cp -f ./src/app/config/routes-config-no.ts ./src/app/config/routes-config.ts ");  
         exec("cp -f ./src/app/shared/constants/mask-no.ts ./src/app/shared/constants/mask.ts ");
         exec("cp -f ./src/app/local-components/components-no.ts ./src/app/local-components/components-output.ts ");
-
     }
     else {
         console.log("Couldnt find locale in post-install.js");
