@@ -22,34 +22,12 @@ export class LandingTopSvComponent implements OnInit {
   
   ngOnInit(): void {
 
-    window.open(
-      'googlechromes://ranteradar.se/' + ROUTES_MAP.bankSelect
-    );
+
 
     this.agentTest = window.navigator.userAgent;
 
-    this.isIos = !window.MSStream && /iPad|iPhone|iPod/.test(navigator.userAgent); 
-    if(this.isIos) {
-      if(this.isCustomInAppBrowser()) {
-        // show dialog
-        return
-      }
-    }
     
-    this.isAndroid = /Android/.test(navigator.userAgent); 
 
-    if(this.isAndroid) {
-      if(this.isCustomInAppBrowser()) {
-
-        this.router.navigate(['googlechromes://ranteradar.se/' + ROUTES_MAP.bankSelect]);
-        return
-      }
-    }
-
-
-
-
-    var regex = new RegExp("snapchat"); 
     this.agentTest = /snapchat/i.test("somethingsnapchatsomething") ? "is snapchat" : "is not snapchat"
 
     
@@ -67,6 +45,31 @@ export class LandingTopSvComponent implements OnInit {
     let isInstagram = /Instagram/i.test(window.navigator.userAgent)
 
     return isSnapchat || isFacebook || isInstagram;
+  }
+
+
+  pushCTAButton() {
+    this.isIos = !window.MSStream && /iPad|iPhone|iPod/.test(navigator.userAgent); 
+    if(this.isIos) {
+      if(this.isCustomInAppBrowser()) {
+        // show dialog
+        return
+      }
+    }
+    
+    this.isAndroid = /Android/.test(navigator.userAgent); 
+
+    if(this.isAndroid) {
+      if(this.isCustomInAppBrowser()) {
+
+        window.open(
+          'googlechromes://ranteradar.se/' + ROUTES_MAP.bankSelect
+        );
+        return
+      }
+    }
+
+    this.router.navigate(['/' + ROUTES_MAP.bankSelect]);
   }
 
 }
