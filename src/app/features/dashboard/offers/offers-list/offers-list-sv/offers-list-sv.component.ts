@@ -32,10 +32,8 @@ export class OffersListSvComponent implements OnInit {
   public setOfferType(type: String) {
     this.currentOfferType = type;
 
-    console.log("setOfferstype")
     if(type == 'all') {
       this.currentOfferInfo.offers.top5 =  this.offersInfo.offers.top5 = this.offersInfo.offers.top5
-
       return;
     }
     
