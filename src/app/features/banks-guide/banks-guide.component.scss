@@ -56,6 +56,7 @@ h4 {
     font-size: 16px;
     line-height: 24px;
     font-weight: 300;
+
     &::before {
       content: "\2022"; /* Add content: \2022 is the CSS Code/unicode for a bullet */
       color: $primary; /* Change the color */
@@ -80,29 +81,25 @@ h4 {
   display: flex;
   justify-content: center;
   flex-direction: column;
-  //word-break: break-word;
-  //word-wrap: break-word !important;
-  //overflow: hidden;
-  //text-overflow: unset;
-  //text-overflow: ellipsis;
 }
 
-::ng-deep {
-  .mat-focused {
-    border-color: $primary !important;
-  }
 
-  .mat-autocomplete-panel {
-    border: 2px solid $primary;
-    border-top: unset;
-  }
-
-  .mat-select-panel mat-option.mat-option {
-    height: unset;
-  }
-
-  .mat-option-text.mat-option-text {
-    white-space: normal;
-  }
+::ng-deep.mat-focused {
+  border-color: $primary !important;
 }
+
+::ng-deep.autocomplete {
+  border: 2px solid $primary !important;
+  border-top: unset !important;
+}
+
+::ng-deep.option {
+  height: unset !important;
+  white-space: normal !important;
+
+}
+
+
+
+
 
