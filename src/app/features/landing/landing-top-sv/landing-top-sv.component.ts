@@ -25,7 +25,7 @@ export class LandingTopSvComponent implements OnInit {
   ngOnInit(): void {
     this.dialog.open(ChangeBrowserDialogInfoComponent, {
       panelClass: 'custom-modalbox'
-    });
+      });
     return
 
     this.agentTest = window.navigator.userAgent;
@@ -56,7 +56,9 @@ export class LandingTopSvComponent implements OnInit {
     this.isIos = !window.MSStream && /iPad|iPhone|iPod/.test(navigator.userAgent); 
     if(this.isIos) {
       if(this.isCustomInAppBrowser()) {
-        this.dialog.open(ChangeBrowserDialogInfoComponent);
+      this.dialog.open(ChangeBrowserDialogInfoComponent, {
+      panelClass: 'custom-modalbox'
+      });
         return
       }
     }
