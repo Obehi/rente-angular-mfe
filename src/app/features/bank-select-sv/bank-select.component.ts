@@ -124,7 +124,7 @@ export class BankSelectSvComponent implements OnInit, OnDestroy {
             case BANKID_STATUS.LOANS_PERSISTED:
               const user = response.data.user;
               this.authService
-                .loginWithToken(user.ssn, user.oneTimeToken, "SWE")
+                .loginWithToken(user.oneTimeToken)
                 .subscribe(res => {
                   forkJoin([
                     this.loansService.getLoansAndRateType(),
