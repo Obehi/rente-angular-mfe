@@ -1,4 +1,5 @@
 @import "../../../styles/theme/_colors.scss";
+
 h1,
 h2,
 h3,
@@ -11,7 +12,8 @@ h1 {
   @media (max-width: 600px) {
     line-height: 1.8;
   }
-  a  {
+
+  a {
     color: $primary;
     position: relative;
     font-weight: 900;
@@ -19,13 +21,13 @@ h1 {
 
   a:after {
     content: '';
-      background-color: $black;
-      height: 8px;
-      width: 100%;
-      position: absolute;
-      bottom: -10px;
-      left: 0;
-      right: 0;
+    background-color: $black;
+    height: 8px;
+    width: 100%;
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    right: 0;
   }
 }
 
@@ -63,7 +65,6 @@ h3 {
   }
 
 
-
 }
 
 .signUp {
@@ -77,6 +78,7 @@ h3 {
 .mat-form-field {
   width: 100%;
 }
+
 rente-button {
   text-align: center;
   margin-top: 15px;
@@ -98,6 +100,7 @@ form {
 .root {
   background: black;
 }
+
 iframe {
   border: 0px;
   width: 500px;
@@ -110,6 +113,7 @@ iframe {
 .front-container {
   overflow: hidden;
 }
+
 .bank-buttons {
   display: grid;
   grid-gap: 20px;
@@ -124,10 +128,12 @@ iframe {
     min-height: 20px;
     height: auto;
   }
+
   img.sparebank1 {
     max-width: 90px;
   }
 }
+
 .data-logos {
 
 
@@ -159,8 +165,9 @@ iframe {
       grid-column-start: 1;
       grid-column-end: span 2;
       margin: auto;
+
       img {
-        width:  110px;
+        width: 110px;
       }
     }
     .boligmappa {
@@ -169,6 +176,7 @@ iframe {
       }
     }
   }
+
   img {
     margin: 0 35px;
     width: 80px;
@@ -183,17 +191,21 @@ iframe {
   left: -20px;
   width: calc(100% + 40px);
   position: relative;
+
   .block {
     margin-bottom: 80px;
+
     &:last-of-type {
       margin-bottom: 0px;
     }
+
     img {
       display: block;
       margin: auto;
       margin-bottom: 10px;
       height: 40px;
     }
+
     p {
       color: white;
     }
@@ -204,14 +216,17 @@ iframe {
   margin-top: -1px;
   background: linear-gradient($blue, $primary);
   margin-bottom: 80px;
+
   h2,
   h4 {
     margin-bottom: 40px;
     color: white;
   }
+
   h4:last-of-type {
     margin-bottom: 0;
   }
+
   img {
     width: 100%;
     max-width: 300px;
@@ -229,14 +244,17 @@ iframe {
   &::-webkit-scrollbar {
     -webkit-appearance: none;
   }
+
   &::-webkit-scrollbar:horizontal {
     height: 11px;
   }
+
   &::-webkit-scrollbar-thumb {
     border-radius: 8px;
     border: 2px solid white;
     background-color: rgba(0, 0, 0, 0.5);
   }
+
   &::-webkit-scrollbar-track {
     background-color: #fff;
     border-radius: 8px;
@@ -245,27 +263,33 @@ iframe {
 
 .articles {
   margin-bottom: 80px;
+
   h2,
   h3 {
     text-align: left;
   }
+
   .article {
     width: 260px;
     display: inline-block;
     margin-right: 20px;
     white-space: normal;
     vertical-align: top;
+
     .logo {
       height: 16px;
       margin-bottom: 5px;
     }
+
     .background-image {
       width: 260px;
       height: 160px;
     }
-    picture  {
+
+    picture {
       width: 260px;
       height: 160px;
+
       .background-image {
         width: 260px;
         height: 160px;
@@ -281,9 +305,11 @@ iframe {
     }
   }
 }
+
 a {
   text-decoration: none;
 }
+
 .sitater {
   display: table;
 
@@ -301,14 +327,17 @@ a {
     line-height: 1.5;
     color: $blue;
     font-weight: 300;
+
     .quote {
       height: 170px;
     }
+
     .name {
       font-weight: 500;
       width: 100%;
       margin-top: 10px;
     }
+
     .bilde {
       height: 80px;
       width: 80px;
@@ -328,6 +357,7 @@ a {
         25% - 30px
       );
     column-gap: 40px;
+
     .block {
       margin-bottom: 0;
     }
@@ -341,6 +371,7 @@ a {
     h4 {
       max-width: unset;
     }
+
     margin-bottom: 40px;
   }
   .list-desktop {
@@ -348,6 +379,7 @@ a {
     left: 50%;
     transform: translateX(-50%);
     padding: 80px;
+
     .list-inner {
       max-width: calc(1010px - 160px);
       margin: auto;
@@ -386,13 +418,14 @@ a {
 
       &.img {
         grid-row: 3;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      h4 {
-        min-height: 110px;
-        margin-bottom: 40px;
-      }
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        h4 {
+          min-height: 110px;
+          margin-bottom: 40px;
+        }
       }
 
     }
@@ -412,6 +445,7 @@ a {
     &.small-padding {
       padding-top: 40px !important;
     }
+
     .list-inner {
       max-width: calc(1010px - 160px);
       margin: auto;
@@ -420,13 +454,16 @@ a {
   .list.gradient {
     .list-inner {
       display: flex;
+
       .desktop-inner {
         flex-grow: 1;
         margin-right: 80px;
       }
+
       img {
         margin-bottom: 0;
       }
+
       h2,
       h4 {
         text-align: left;
@@ -438,27 +475,26 @@ a {
 //Hack for anchor scroll for FAQ section
 .anchor {
   display: block;
-  height: 115px;       /* same height as header */
-  margin-top: -115px;  /* same height as header */
+  height: 115px; /* same height as header */
+  margin-top: -115px; /* same height as header */
   visibility: hidden;
 }
-
-
 
 
 /* Border */
 .mat-form-field-appearance-outline .mat-form-field-outline {
   color: white;
 }
+
 /* Font color */
 input.mat-input-element {
   color: white;
 }
 
 
-
 .input-block {
   display: none !important;
+
   .mat-form-field-infix {
     height: 56px;
     width: unset !important;
@@ -516,6 +552,22 @@ input.mat-input-element {
     // &:-internal-autofill-selected {
     // background-color: #DEDFDF !important;
     // }
+  }
+}
+
+.media-container {
+  & > div > a {
+    width: 75%;
+  }
+
+  & > div > a > img {
+    width: 100%;
+  }
+
+  & > div > i > a {
+    color: $blue;
+    font-weight: 300;
+    font-size: 18px;
   }
 }
 
