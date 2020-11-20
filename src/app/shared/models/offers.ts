@@ -9,7 +9,7 @@ export interface Offers {
   memberships: string[];
   offers: AllOffers;
   propertyValue: number | null;
-  totalEffectiveRate: number | null;  
+  totalEffectiveRate: number | null;
   totalOutstandingDebt: number | null;
   resultType: string;
   ltvType: string;
@@ -17,7 +17,7 @@ export interface Offers {
   tips: string;
   commonDebt: number;
   ltv: number;
-  bankStatistics: BankStatistics
+  bankStatistics: BankStatistics;
   top5: OfferInfo[];
   additionalPartnersOffers: OfferInfo[];
 }
@@ -46,29 +46,66 @@ export interface OfferInfo {
   savingsFirstYear: number;
   selectedRate: number;
   totalSavings: number;
-  haveSpecialDealWithBank: Boolean
+  haveSpecialDealWithBank: boolean;
   effectiveInterest: number | null;
   outstandingDebt: number | null;
   loanPeriodYears: number | null;
   cost: number | null;
   totalCost: number | null;
-  loanType: String | null;
+  loanType: string | null;
   fixedRatePeriod: number | null;
 }
 
-export interface BankInfo{
+export interface BankInfo {
   bank: string;
   name: string;
   url: string;
   transferUrl: string | null;
-  partner: boolean,
-  score: number,
-  applicationTime: number
+  partner: boolean;
+  score: number;
+  applicationTime: number;
+}
+
+export interface BankLocationAddress {
+  address: string;
+  name: string;
+  openingHours: string;
+  bankLocationServiceDomains: string[];
+  relevant: boolean;
+}
+
+export interface BankGuideInfo {
+  applicationTime: number;
+  score: number;
+  mobileAppRating: number;
+  bankType: string;
+  url: string;
+  area: string;
+  bestNomOffer: number;
+  text1: string;
+  text2: string;
+  text3: string;
+  text4: string;
+// byggelan
+  constructionLoans: boolean;
+// rammelån
+  frameworkLoans: boolean;
+// fastrentelan
+  fixedRateLoans: boolean;
+// mellomfinansiering
+  intermediateFinancing: boolean;
+  medianEffectiveRate: number;
+  constructionLoansOffers: string[];
+  frameworkLoansOffers: string[];
+  fixedRateLoansOffers: string[];
+  intermediateFinancingOffers: string[];
+  regularOffers: string[];
+  addresses: BankLocationAddress[];
 }
 
 export interface BankStatistics {
   age: number;
-  allBanksStatistics: BankStatisticItem
+  allBanksStatistics: BankStatisticItem;
   clientBankStatistics: BankStatisticItem;
   ltv: number;
   totalOutstandingDebt: number;
@@ -81,7 +118,7 @@ export interface BankStatisticItem {
 }
 
 export const OFFERS_LTV_TYPE = {
-  LTV_OK: "LTV_OK",
-  LTV_TOO_HIGH_85: "LTV_TOO_HIGH_85",
-  LTV_CREDIT_LINE_TOO_HIGH_60: "LTV_CREDIT_LINE_TOO_HIGH_60"
+  LTV_OK: 'LTV_OK',
+  LTV_TOO_HIGH_85: 'LTV_TOO_HIGH_85',
+  LTV_CREDIT_LINE_TOO_HIGH_60: 'LTV_CREDIT_LINE_TOO_HIGH_60'
 };

@@ -1,18 +1,14 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { OfferInfo, Offers } from './../../../../../shared/models/offers';
-import { BankScoreLangGenericComponent } from '../../../../../local-components/components-output'
-import { BANKS_DATA } from '@config/banks-config';
-import { TrackingService, TrackingDto } from '@services/remote-api/tracking.service';
+import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { CustomLangTextService } from '@shared/services/custom-lang-text.service'
+import { BANKS_DATA } from '@config/banks-config';
+import { TrackingDto, TrackingService } from '@services/remote-api/tracking.service';
+import { CustomLangTextService } from '@shared/services/custom-lang-text.service';
 
 
-import {
-  OFFER_SAVINGS_TYPE,
-  AGGREGATED_RATE_TYPE,
-  AGGREGATED_LOAN_TYPE
-} from '../../../../../config/loan-state';
+import { OFFER_SAVINGS_TYPE } from '../../../../../config/loan-state';
+import { BankScoreLangGenericComponent } from '../../../../../local-components/components-output';
+import { OfferInfo, Offers } from './../../../../../shared/models/offers';
 
 
 @Component({
@@ -26,18 +22,18 @@ export class OfferCardComponentBlue implements OnInit {
   public offerSavingsType = OFFER_SAVINGS_TYPE
   public xpandStatus = false;
   public offerType: string
-  
+
 
   @Input() offer: OfferInfo;
   @Input() offersInfo: Offers
   @Input() index: number
   constructor(
-    private trackingService: TrackingService, 
+    private trackingService: TrackingService,
     public dialog: MatDialog,
     private router: Router,
     public customLangTextSerice: CustomLangTextService
     ) { }
- 
+
 
   ngOnInit() {
     if(this.offer.fixedRatePeriod === 0) {
@@ -48,32 +44,32 @@ export class OfferCardComponentBlue implements OnInit {
     }
   }
 
-  get isMobile(): boolean { 
+  get isMobile(): boolean {
     console.log("offerType")
     console.log(this.offerType)
     return window.innerWidth < 600; }
 
   getbankNameOrDefault(offer: OfferInfo): string {
     let text = ""
-    switch(offer.bankInfo.bank) { 
-      case "SBANKEN": { 
+    switch(offer.bankInfo.bank) {
+      case "SBANKEN": {
          text = "Sbanken"
-         break; 
-      } 
-      case "BULDER": { 
+         break;
+      }
+      case "BULDER": {
         text = "Bulder"
-         break; 
-      } 
-      case "LANDKREDITT": { 
+         break;
+      }
+      case "LANDKREDITT": {
         text = "Landkreditt"
-         break; 
-      } 
-      default: { 
+         break;
+      }
+      default: {
         text = "banken"
-         break; 
-      } 
+         break;
+      }
    }
-   return text 
+   return text
   }
 
   private sendOfferTrackingData(trackingDto: TrackingDto, offer: OfferInfo){
@@ -84,15 +80,15 @@ export class OfferCardComponentBlue implements OnInit {
     console.log(err);
     });
   }
-  
-  
+
+
   public openBankUrl(offer: OfferInfo) {
     if(offer.bankInfo.url === null)
       return
-    
+
     window.open(
       offer.bankInfo.url,
-      '_blank' 
+      '_blank'
     );
 
     const trackingDto = new TrackingDto();
@@ -104,10 +100,10 @@ export class OfferCardComponentBlue implements OnInit {
   public openBankUrlByButton(offer: OfferInfo) {
     if(offer.bankInfo.url === null || offer.bankInfo.partner == false)
       return
-    
+
     window.open(
       offer.bankInfo.url,
-      '_blank' 
+      '_blank'
     );
 
     const trackingDto = new TrackingDto();
@@ -119,12 +115,12 @@ export class OfferCardComponentBlue implements OnInit {
   public openNewOfferDialog(offer: OfferInfo): void {
     if(offer.bankInfo.partner === false)
       return
-    
+
     window.open(
       offer.bankInfo.transferUrl,
       '_blank'
     );
-    
+
     const trackingDto = new TrackingDto();
     trackingDto.offerId = offer.id;
     trackingDto.type = "BANK_BUTTON_2";
@@ -133,7 +129,7 @@ export class OfferCardComponentBlue implements OnInit {
 
   public detailOpenClicked() {
     this.xpandStatus = true;
-  } 
+  }
 
   public openInfoDialog(text: String): void {
     var bankRatingDialogRef = this.dialog.open(BankScoreLangGenericComponent, {
@@ -149,14 +145,14 @@ export class OfferCardComponentBlue implements OnInit {
 
 
   public handlebankRatingdialogOnClose(state: String) {
-    switch(state) { 
-      case "canceled": { 
-         break; 
-      } 
-      case "procced": { 
+    switch(state) {
+      case "canceled": {
+         break;
+      }
+      case "procced": {
         this.router.navigate(['/dashboard', 'epsi-kundetilfredshet']);
-        break; 
-     } 
+        break;
+     }
     }
   }
 }

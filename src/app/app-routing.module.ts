@@ -1,24 +1,21 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { PageNotFoundComponent } from '@features/page-not-found/page-not-found.component';
-import { LandingComponent } from '@features/landing/landing.component';
-import { ROUTES_MAP, ROUTES_MAP_SV, ROUTES_MAP_NO } from '@config/routes-config';
-import { PrivacyComponent } from '@features/privacy/privacy.component';
-import { AboutCookiesComponent } from '@features/cookies/cookies.component';
-import { TermsConditionsComponent } from '@features/terms-conditions/terms-conditions.component';
-import { PrivacyPolicyComponent } from '@features/privacy-policy/privacy-policy.component';
+import { RouterModule, Routes } from '@angular/router';
+import { ROUTES_MAP, ROUTES_MAP_SV } from '@config/routes-config';
+import { AuthSvMockupComponent } from '@features/auth-sv-mockup/auth-sv-mockup.component';
 import { ContactUsComponent } from '@features/contact-us/contact-us.component';
+import { AboutCookiesComponent } from '@features/cookies/cookies.component';
 import { EmailPreferencesComponent } from '@features/email-preferences/email-preferences.component';
-import { AuthSvMockupComponent } from '@features/auth-sv-mockup/auth-sv-mockup.component'
+import { GetNotifiedComponent } from '@features/get-notified/get-notified.component';
+import { LandingComponent } from '@features/landing/landing.component';
+import { PageNotFoundComponent } from '@features/page-not-found/page-not-found.component';
+import { PrivacyPolicyComponent } from '@features/privacy-policy/privacy-policy.component';
+import { PrivacyComponent } from '@features/privacy/privacy.component';
+import { TermsConditionsComponent } from '@features/terms-conditions/terms-conditions.component';
 
 import { AuthGuard } from '@shared/guards/auth.guard';
-import { GetNotifiedComponent } from '@features/get-notified/get-notified.component';
-import { customMeta, defaultMeta, defaultTitle } from './config/routes-config';
-import { BankChoiceComponent } from '@features/auth/bank-choice/bank-choice.component';
-import { OptimizeService } from '@services/optimize.service';
-import { InitConfirmationLangGenericComponent } from './local-components/components-output'
-import { locale } from '../environments/locale';
- 
+import { customMeta, defaultMeta } from './config/routes-config';
+import { InitConfirmationLangGenericComponent } from './local-components/components-output';
+
 const commonRoutes: Routes = [
   {
     path: '', component: LandingComponent,
@@ -32,11 +29,11 @@ const commonRoutes: Routes = [
   },
   {
     path: ROUTES_MAP.emailPreferences, component: EmailPreferencesComponent,
-    children: [ 
+    children: [
       {
-          path: '**',
-          component: EmailPreferencesComponent
-      },      
+        path: '**',
+        component: EmailPreferencesComponent
+      },
     ]
   },
   {
@@ -111,6 +108,18 @@ const commonRoutes: Routes = [
     }
   },
   {
+    path: ROUTES_MAP.banksGuide,
+    loadChildren: () => import('./features/banks-guide/banks-guide.module').then(m => m.BanksGuideModule),
+    data: {
+      // TODO: Set up correct meta
+      title: customMeta.valgBank.title,
+      meta: {
+        name: defaultMeta.name,
+        description: customMeta.valgBank.description
+      }
+    }
+  },
+  {
     path: ROUTES_MAP.initConfirmation, component: InitConfirmationLangGenericComponent,
     data: {
       title: customMeta.bekreftTitle,
@@ -146,27 +155,24 @@ const commonRoutes: Routes = [
     loadChildren: () => import('./features/dashboard/dashboard.module').then(m => m.DashboardModule),
     canActivate: [AuthGuard]
   },
-  { path: '**', component: PageNotFoundComponent },
+  {path: '**', component: PageNotFoundComponent},
 ];
-
 
 
 const routesSV: Routes = [
   {
     path: ROUTES_MAP_SV.tinkMockup, component: AuthSvMockupComponent,
   }
-]
+];
 
-const routesNo: Routes = []
-
-
+const routesNo: Routes = [];
 
 
-
-let routes: Routes = [ ...routesNo, ...routesSV, ...commonRoutes]
+const routes: Routes = [...routesNo, ...routesSV, ...commonRoutes];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

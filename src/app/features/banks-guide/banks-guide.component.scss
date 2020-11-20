@@ -1,0 +1,105 @@
+@import "../../../styles/theme/colors";
+
+h1 {
+  color: black;
+  font-size: 34px;
+  font-weight: 400;
+  text-align: center;
+}
+
+a {
+  color: $primary;
+  position: relative;
+  font-weight: 400;
+  text-decoration: none;
+}
+
+h4 {
+  margin-top: 60px;
+  max-width: 250px;
+  margin: auto;
+  font-size: 16px;
+  text-align: center;
+
+  .green {
+    color: $primary;
+  }
+}
+
+.intro {
+
+  h4 {
+    max-width: 250px;
+  }
+}
+
+.showcase {
+  @media (min-width: 600px) {
+    width: 500px;
+  }
+  @media (max-width: 600px) {
+    width: 90%;
+  }
+  display: block;
+  margin: 80px auto;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  &-item {
+    width: 280px;
+    color: $black;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 300;
+
+    &::before {
+      content: "\2022"; /* Add content: \2022 is the CSS Code/unicode for a bullet */
+      color: $primary; /* Change the color */
+      font-size: 40px;
+      height: 24px;
+      font-weight: bold; /* If you want it to be bold */
+      display: inline-block; /* Needed to add space between the bullet and the text */
+      width: .5em; /* Also needed for space (tweak if needed) */
+      margin-right: .3em;
+    }
+  }
+}
+
+.bank-search {
+  width: 300px;
+}
+
+.bank-link {
+  color: $black;
+  max-width: 85%;
+  line-height: 16px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+
+::ng-deep.mat-focused {
+  border-color: $primary !important;
+}
+
+::ng-deep.autocomplete {
+  border: 2px solid $primary !important;
+  border-top: unset !important;
+}
+
+::ng-deep.option {
+  height: unset !important;
+  white-space: normal !important;
+
+}
+
+
+
+
+

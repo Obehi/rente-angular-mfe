@@ -1,0 +1,60 @@
+<div class="front-container">
+  <div class="intro mb-3">
+    <h1>
+      Bankguiden
+    </h1>
+    <h4>
+      Renteradar.no sin <span class="green">oversikt</span> over alle <span class="green">banker</span> som tilbyr
+      boliglån i Norge
+    </h4>
+  </div>
+  <div class="d-flex justify-content-center bank-search-wrapper">
+    <mat-form-field class="bank-search" appearance="outline" [floatLabel]="'never'">
+      <input type="text"
+             aria-label="Number"
+             matInput
+             placeholder="Velg bank"
+             [formControl]="banks"
+             [matAutocomplete]="auto">
+      <mat-icon matSuffix>search</mat-icon>
+      <mat-autocomplete #auto="matAutocomplete" class="autocomplete">
+        <mat-option *ngFor="let option of filteredBanks$ | async" [value]="option.name"
+                    class="option"
+                    [routerLink]="['/bankguiden',option.name.toLowerCase()]">
+          <div class="d-flex justify-content-between">
+            <a class="bank-link">
+              {{option.label}}
+            </a>
+            <div>
+              <mat-icon color="primary" class="mr-0">arrow_forward_ios</mat-icon>
+            </div>
+          </div>
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </div>
+  <ul class="list">
+    <li class="list-item">
+      Hvor bra er banken på boliglån?
+    </li>
+    <li class="list-item">
+      Hvor fornøyd er kundene?
+    </li>
+    <li class="list-item">
+      Er det riktig bank for deg?
+    </li>
+    <li class="list-item">
+      Oversikt over alle tilbud
+    </li>
+    <li class="list-item">
+      Hvilke andre tjenester tilbys
+    </li>
+    <li class="list-item">
+      Kontaktinformasjon og filialer
+    </li>
+    <li class="list-item">
+      Omtaler av banken
+    </li>
+  </ul>
+</div>
+
