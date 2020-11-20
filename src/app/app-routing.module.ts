@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ROUTES_MAP, ROUTES_MAP_SV } from '@config/routes-config';
+import { ROUTES_MAP, ROUTES_MAP_NO, ROUTES_MAP_SV } from '@config/routes-config';
 import { AuthSvMockupComponent } from '@features/auth-sv-mockup/auth-sv-mockup.component';
 import { ContactUsComponent } from '@features/contact-us/contact-us.component';
 import { AboutCookiesComponent } from '@features/cookies/cookies.component';
@@ -108,18 +108,6 @@ const commonRoutes: Routes = [
     }
   },
   {
-    path: ROUTES_MAP.banksGuide,
-    loadChildren: () => import('./features/banks-guide/banks-guide.module').then(m => m.BanksGuideModule),
-    data: {
-      // TODO: Set up correct meta
-      title: customMeta.valgBank.title,
-      meta: {
-        name: defaultMeta.name,
-        description: customMeta.valgBank.description
-      }
-    }
-  },
-  {
     path: ROUTES_MAP.initConfirmation, component: InitConfirmationLangGenericComponent,
     data: {
       title: customMeta.bekreftTitle,
@@ -165,7 +153,20 @@ const routesSV: Routes = [
   }
 ];
 
-const routesNo: Routes = [];
+const routesNo: Routes = [
+  {
+    path: ROUTES_MAP_NO.banksGuide,
+    loadChildren: () => import('./features/banks-guide/banks-guide.module').then(m => m.BanksGuideModule),
+    data: {
+      // TODO: Set up correct meta
+      title: customMeta.valgBank.title,
+      meta: {
+        name: defaultMeta.name,
+        description: customMeta.valgBank.description
+      }
+    }
+  },
+];
 
 
 const routes: Routes = [...routesNo, ...routesSV, ...commonRoutes];

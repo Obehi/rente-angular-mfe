@@ -177,7 +177,8 @@ export const customMeta = {
   }
 };
 
-export const ROUTES_MAP_NO= {
+export const ROUTES_MAP_NO = {
+  banksGuide: 'bankguiden'
 }
 
 export const ROUTES_MAP_SV = {

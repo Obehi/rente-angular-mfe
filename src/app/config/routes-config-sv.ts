@@ -181,7 +181,8 @@ export const ROUTES_MAP_SV = {
   tinkMockup: 'tink-mockup'
 }
 
-export const ROUTES_MAP_NO= {
+export const ROUTES_MAP_NO = {
+  banksGuide: 'bankguiden'
 }
 
 export const ROUTES_MAP = {
