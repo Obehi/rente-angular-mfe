@@ -1,0 +1,105 @@
+
+@import "../../../../../styles/theme/_colors.scss";
+
+
+// Hack for centering dialog popup 
+::ng-deep .cdk-global-overlay-wrapper {
+
+  .cdk-overlay-pane {
+    max-height: calc(100vh - 155px) !important;
+    max-width: 600px !important;
+    height: 100% !important;
+    margin: auto;
+  }
+}
+
+::ng-deep .custom-modalbox {
+  mat-dialog-container {
+      height: 100% !important;
+      background: unset !important;
+
+      .change-browser-container {
+        display: flex;
+        flex-direction: column;
+
+        .instruction-numbers {
+          margin: 0 10px;
+        }
+        
+      }
+
+      .fixed-bottom {
+        background: $secondary; 
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        height: 110px;
+        margin: unset;
+        .item {
+          margin: unset;
+
+          p {
+            width: 163px;
+          }
+        }
+
+        img {
+          object-fit: contain;
+        }
+      }
+  }
+}
+
+.item {
+  display: flex;
+  align-self: center;
+  align-items: center;
+  margin-bottom: unset;
+  .nr {
+    text-align: center;
+    color: #000;
+    background-color: #fff;
+    border-radius: 100%;
+    width: 3em;
+    height: 3em;
+    line-height: 3em;
+  }
+
+  p {
+    margin-left: 20px;
+  }
+}
+
+h3,
+h4,
+p,div {
+  margin-bottom: 20px;
+  color: white;
+}
+
+h4 {
+  margin-right: 20px;
+  font-size: 24px;
+  font-weight: 400; 
+  margin: 30px 10px;
+}
+
+p {
+  font-size: 16px;
+}
+.small {
+  margin-bottom: 0;
+}
+
+.top {
+  position: relative;
+  padding: 20px;
+  background: white;
+}
+
+.bottom {
+  border-top: 1px solid #ECECEC;
+  padding: 20px;
+  border-radius: 0 0 10px 10px;
+  background: white;
+}

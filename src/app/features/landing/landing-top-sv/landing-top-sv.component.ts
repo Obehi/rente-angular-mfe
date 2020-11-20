@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ROUTES_MAP } from '@config/routes-config';
 import { Router } from "@angular/router";
+import { MatDialog } from '@angular/material/dialog';
+import { ChangeBrowserDialogInfoComponent } from './change-browser-dialog-info/dialog-info.component';
 
 @Component({
   selector: 'rente-landing-top',
@@ -18,11 +20,13 @@ export class LandingTopSvComponent implements OnInit {
 
   agentTest: string;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private dialog: MatDialog) { }
   
   ngOnInit(): void {
-
-
+    this.dialog.open(ChangeBrowserDialogInfoComponent, {
+      panelClass: 'custom-modalbox'
+    });
+    return
 
     this.agentTest = window.navigator.userAgent;
 
@@ -52,7 +56,7 @@ export class LandingTopSvComponent implements OnInit {
     this.isIos = !window.MSStream && /iPad|iPhone|iPod/.test(navigator.userAgent); 
     if(this.isIos) {
       if(this.isCustomInAppBrowser()) {
-        // show dialog
+        this.dialog.open(ChangeBrowserDialogInfoComponent);
         return
       }
     }
