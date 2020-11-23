@@ -12,7 +12,7 @@ export const defaultMeta = {
 export const customMeta = {
   landing: {
     title: 'Beste boliglånsrente | Sammenlign rente på boliglån | Renteradar.no',
-    description: 'Få beste boliglånsrente. Sammenlign renten din med andre og de beste tilbudene i markedet. Du kan prute på renten eller bytte bank- helt automatisk og gratis.'
+    description: 'Få beste boliglånsrente. Gratis og automatisk tjeneste. Sammenlign renten din med markedet. Vi hjelper deg å forhandle ned renten med ett klikk eller bytte bank. Våre 30 000 brukere kan i snitt spare 110 000 på boliglånet.'
   },
   personvern: {
     title: 'Personvern | Renteradar.no',
