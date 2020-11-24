@@ -23,11 +23,11 @@ export class LandingTopSvComponent implements OnInit {
   constructor(private router: Router, private dialog: MatDialog) { }
   
   ngOnInit(): void {
-    this.dialog.open(ChangeBrowserDialogInfoComponent, {
+    /* this.dialog.open(ChangeBrowserDialogInfoComponent, {
       panelClass: 'custom-modalbox',
       data: { type: "button-middle"}
       });
-    return
+    return */
 
     this.agentTest = window.navigator.userAgent;
 
