@@ -17,7 +17,15 @@
   <img src="../../../../../assets/img/sv/browser-detection-safari.png"/>
 </div>
 
-<div class="fixed-bottom">
+<div *ngIf="data.type === 'button-middle'" class="fixed-bottom-middle">
+  <div class="item">
+    <div class="nr">1</div>
+    <p>Tryck på knappen nederst i det högre hörnet</p>
+    </div>
+  <img src="../../../../../assets/img/sv/browser-detection-arrow.png"/>
+</div>
+
+<div *ngIf="data.type === 'button-right'" class="fixed-bottom">
   <div class="item">
     <div class="nr">1</div>
     <p>Tryck på knappen nederst i det högre hörnet</p>

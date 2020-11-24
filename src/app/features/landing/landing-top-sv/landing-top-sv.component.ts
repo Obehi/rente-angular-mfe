@@ -23,10 +23,11 @@ export class LandingTopSvComponent implements OnInit {
   constructor(private router: Router, private dialog: MatDialog) { }
   
   ngOnInit(): void {
-    /* this.dialog.open(ChangeBrowserDialogInfoComponent, {
-      panelClass: 'custom-modalbox'
+    this.dialog.open(ChangeBrowserDialogInfoComponent, {
+      panelClass: 'custom-modalbox',
+      data: { type: "button-middle"}
       });
-    return */
+    return
 
     this.agentTest = window.navigator.userAgent;
 
@@ -57,12 +58,13 @@ export class LandingTopSvComponent implements OnInit {
     if(this.isIos) {
       if(this.isCustomInAppBrowser()) {
       this.dialog.open(ChangeBrowserDialogInfoComponent, {
-      panelClass: 'custom-modalbox'
+      panelClass: 'custom-modalbox',
+      data: { type: "button-middle"}
       });
         return
       }
     }
-    
+  
     this.isAndroid = /Android/.test(navigator.userAgent); 
 
     if(this.isAndroid) {

@@ -30,7 +30,7 @@
       }
       
 
-      .fixed-bottom {
+      .fixed-bottom-middle {
         background: $secondary; 
         display: flex;
         flex-direction: row;
@@ -48,6 +48,7 @@
           }
         }
       }
+
   }
 }
 
