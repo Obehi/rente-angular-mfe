@@ -108,7 +108,7 @@ const commonRoutes: Routes = [
     }
   },
   {
-    path: ROUTES_MAP.banksGuide,
+    path: ROUTES_MAP_NO.banksGuide,
     loadChildren: () => import('./features/banks-guide/banks-guide.module').then(m => m.BanksGuideModule),
     data: {
       title: customMeta.banksGuide.title,

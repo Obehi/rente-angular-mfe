@@ -46,7 +46,10 @@ export const customMeta = {
     title: 'Registrer | Logg inn | Renteradar.no',
     description: 'Renteradar.no henter renten du har og lånebeløp automatisk gjennom innlogging med BankID på mobil'
   },
-  
+  banksGuide: {
+    title: 'Få oversikt over norske banker | Bankguiden | Renteradar.no',
+    description: 'Bankguiden: Renteradar.no sin oversikt over alle banker som tilbyr boliglån i Norge.'
+  },
   landingTitle: defaultTitle,
   bekreftTitle: 'Renteradar.no | Bekreft  | Overvåk boliglånsrenten din gratis',
   tilbudTitle: 'Oversikt beste tilbud | Renteradar.no',
