@@ -75,6 +75,7 @@ export interface BankLocationAddress {
 }
 
 export interface BankGuideInfo {
+  renteRating: string;
   applicationTime: number;
   score: number;
   mobileAppRating: number;
@@ -86,21 +87,20 @@ export interface BankGuideInfo {
   text2: string;
   text3: string;
   text4: string;
+  creditLineLoans:string;
 // byggelan
   constructionLoans: boolean;
-// rammelån
-  frameworkLoans: boolean;
 // fastrentelan
   fixedRateLoans: boolean;
 // mellomfinansiering
   intermediateFinancing: boolean;
   medianEffectiveRate: number;
   constructionLoansOffers: string[];
-  frameworkLoansOffers: string[];
+  creditLineLoansOffers: string[];
   fixedRateLoansOffers: string[];
   intermediateFinancingOffers: string[];
   regularOffers: string[];
-  addresses: BankLocationAddress[];
+  addresses: { [key: string]: BankLocationAddress[] };
 }
 
 export interface BankStatistics {

@@ -111,11 +111,10 @@ const commonRoutes: Routes = [
     path: ROUTES_MAP.banksGuide,
     loadChildren: () => import('./features/banks-guide/banks-guide.module').then(m => m.BanksGuideModule),
     data: {
-      // TODO: Set up correct meta
-      title: customMeta.valgBank.title,
+      title: customMeta.banksGuide.title,
       meta: {
         name: defaultMeta.name,
-        description: customMeta.valgBank.description
+        description: customMeta.banksGuide.description
       }
     }
   },

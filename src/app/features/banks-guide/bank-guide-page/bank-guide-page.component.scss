@@ -34,6 +34,24 @@
   }
 }
 
+.star {
+  position: relative;
+  display: inline-block;
+  font-size: 1.3rem;
+  color: $white;
+}
+
+.full {
+  color: $primary;
+}
+
+.half {
+  position: absolute;
+  display: inline-block;
+  overflow: hidden;
+  color: $primary;
+}
+
 .white-bg {
   scroll-margin: 60px;
   background: $white;
@@ -185,8 +203,7 @@
   }
 
   &-body {
-    padding-left: 8px !important;
-    padding-bottom: 8px !important;
+    padding: 8px !important;
   }
 
   box-shadow: none !important;
