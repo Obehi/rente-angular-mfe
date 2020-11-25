@@ -1,5 +1,4 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { MetaService } from '@services/meta.service';
 import { LoansService } from '@services/remote-api/loans.service';
@@ -26,7 +25,12 @@ export class BankGuidePageComponent implements OnInit {
   banksLocations: string[];
   private _onDestroy$ = new Subject<void>();
 
-  constructor(private loansService: LoansService, private route: ActivatedRoute, private metaService: MetaService, private titleService: TitleService, private  fb: FormBuilder) {
+  constructor(
+    private loansService: LoansService,
+    private route: ActivatedRoute,
+    private metaService: MetaService,
+    private titleService: TitleService
+  ) {
   }
 
   get bankHasInShort() {
