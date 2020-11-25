@@ -108,6 +108,17 @@ const commonRoutes: Routes = [
     }
   },
   {
+    path: ROUTES_MAP.banksGuide,
+    loadChildren: () => import('./features/banks-guide/banks-guide.module').then(m => m.BanksGuideModule),
+    data: {
+      title: customMeta.banksGuide.title,
+      meta: {
+        name: defaultMeta.name,
+        description: customMeta.banksGuide.description
+      }
+    }
+  },
+  {
     path: ROUTES_MAP.initConfirmation, component: InitConfirmationLangGenericComponent,
     data: {
       title: customMeta.bekreftTitle,
