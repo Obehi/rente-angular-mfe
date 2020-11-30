@@ -23,31 +23,6 @@ app.use('/blogg', function(req, res, next) {
   }, next);
 });
 
-app.use('/redirect', function(req, res, next) {
-  var link = "fb-messenger://share?link=https://renteradar.no/&&app_id=326133992135942"
-  
-
- 
-/*   let obj = {}
-  if(detectMob){
-    link = "fb-messenger://share?link=https://renteradar.no/&&app_id=326133992135942"
-    obj =   {}
-  } else {
-    link = "https://www.facebook.com/dialog/send?app_id=326133992135942&link=https%3A%2F%2Frente-frontend-dev.herokuapp.com%2F%3Fgrsf%3Dmidspm&redirect_uri=https%3A%2F%2Frente-frontend-dev.herokuapp.com%2F"
-    obj=   {
-      target: link
-    }
-  } */
-  if(!detectMob){
-    console.log("not phone")
-    proxy.web(req, res, {
-      target: "https://www.facebook.com/dialog/send?app_id=326133992135942&link=https%3A%2F%2Frente-frontend-dev.herokuapp.com%2F%3Fgrsf%3Dmidspm&redirect_uri=https%3A%2F%2Frente-frontend-dev.herokuapp.com%2F"
-  }, next);
-  } else {
-    next()
-  }
-  
-});
 
 function detectMob() {
   const toMatch = [
