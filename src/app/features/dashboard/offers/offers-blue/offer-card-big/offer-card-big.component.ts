@@ -9,6 +9,7 @@ import { BankScoreLangGenericComponent } from '../../../../../local-components/c
 
 import { Router } from '@angular/router';
 import { CustomLangTextService } from '@shared/services/custom-lang-text.service'
+import { locale } from '../../../../../config/locale/locale';
 
 
 import {
@@ -27,6 +28,7 @@ export class OfferCardBigComponentBlue implements OnInit {
   public banksMap = BANKS_DATA;
   public offerSavingsType = OFFER_SAVINGS_TYPE
   public offerType: string
+  public isSweden: boolean
 
   @Input() offer: OfferInfo;
   @Input() offersInfo: Offers
@@ -39,6 +41,11 @@ export class OfferCardBigComponentBlue implements OnInit {
     ) { }
 
   ngOnInit() {
+    if(locale.includes("sv")) {
+      this.isSweden = true
+    } else{
+      this.isSweden = false
+    }
     if(this.offer.fixedRatePeriod === 0) {
       this.offerType = 'threeMonths'
     } else if(this.offer.fixedRatePeriod === 1) {

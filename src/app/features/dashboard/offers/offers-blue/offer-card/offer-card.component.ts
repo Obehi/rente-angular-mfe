@@ -9,6 +9,7 @@ import { CustomLangTextService } from '@shared/services/custom-lang-text.service
 import { OFFER_SAVINGS_TYPE } from '../../../../../config/loan-state';
 import { BankScoreLangGenericComponent } from '../../../../../local-components/components-output';
 import { OfferInfo, Offers } from './../../../../../shared/models/offers';
+import { locale } from '../../../../../config/locale/locale';
 
 
 @Component({
@@ -22,6 +23,7 @@ export class OfferCardComponentBlue implements OnInit {
   public offerSavingsType = OFFER_SAVINGS_TYPE
   public xpandStatus = false;
   public offerType: string
+  public isSweden: boolean
 
 
   @Input() offer: OfferInfo;
@@ -36,6 +38,12 @@ export class OfferCardComponentBlue implements OnInit {
 
 
   ngOnInit() {
+    if(locale.includes("sv")) {
+      this.isSweden = true
+    } else{
+      this.isSweden = false
+    }
+
     if(this.offer.fixedRatePeriod === 0) {
       this.offerType = 'threeMonths'
     } else if(this.offer.fixedRatePeriod === 1) {

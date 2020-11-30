@@ -1,4 +1,8 @@
-<div class="nr" [ngClass]="{'threeMonths': offerType == 'threeMonths', 'oneYear': offerType == 'oneYear', 'all': offerType == 'all'}">
+<div *ngIf="!isSweden" class="nr all">
+  {{ index }}
+</div>
+
+<div *ngIf="isSweden" class="nr" [ngClass]="{'threeMonths': offerType == 'threeMonths', 'oneYear': offerType == 'oneYear', 'all': offerType == 'all'}">
   {{ index }}
 </div>
 
