@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
+import { Router, NavigationEnd } from "@angular/router";
 
 @Component({
   selector: "rente-footer",
@@ -8,6 +8,15 @@ import { Router } from "@angular/router";
 })
 export class FooterComponent implements OnInit {
   constructor(public router: Router) {}
+  shouldShowFooter = true;
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.router.events
+    .subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.shouldShowFooter = (event.url !== '/redirect')
+      }
+    });
+
+  }
 }

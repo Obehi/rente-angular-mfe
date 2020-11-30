@@ -1,4 +1,4 @@
-<footer [class]="router.url.includes('dashboard') ? '' : 'visible'">
+<footer *ngIf="shouldShowFooter" [class]="router.url.includes('dashboard') ? '' : 'visible'">
   <div class="inner-footer">
 
       <div class ="item">
