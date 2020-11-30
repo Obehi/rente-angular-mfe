@@ -10,6 +10,7 @@ import { TermsConditionsComponent } from '@features/terms-conditions/terms-condi
 import { PrivacyPolicyComponent } from '@features/privacy-policy/privacy-policy.component';
 import { ContactUsComponent } from '@features/contact-us/contact-us.component';
 import { EmailPreferencesComponent } from '@features/email-preferences/email-preferences.component';
+import { EmailRedirectComponent } from '@features/email-redirect/email-redirect.component';
 
 import { AuthGuard } from '@shared/guards/auth.guard';
 import { GetNotifiedComponent } from '@features/get-notified/get-notified.component';
@@ -35,6 +36,16 @@ const routes: Routes = [
       {
           path: '**',
           component: EmailPreferencesComponent
+      },      
+    ]
+  },
+  {
+    path: "redirect", component:   EmailRedirectComponent,
+    children: [ 
+      {
+          path: '**',
+          component:   EmailRedirectComponent
+
       },      
     ]
   },

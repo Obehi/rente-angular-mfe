@@ -29,6 +29,7 @@ import { ProfileDialogInfoComponent } from "./features/dashboard/profile/dialog-
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { CountUpModule } from 'ngx-countup';
 import { OptimizeService } from '@services/optimize.service';
+import { EmailRedirectComponent } from './features/email-redirect/email-redirect.component'
 
 registerLocaleData(localeNo);
 
@@ -48,7 +49,8 @@ registerLocaleData(localeNo);
     DialogInfoComponent,
     AboutCookiesComponent,
     EmailPreferencesComponent,
-    ProfileDialogInfoComponent
+    ProfileDialogInfoComponent,
+    EmailRedirectComponent
   ],
   imports: [
     BrowserModule,
