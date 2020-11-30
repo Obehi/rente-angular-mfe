@@ -45,6 +45,15 @@ h4 {
   }
 }
 
+.about-us-image {
+  margin-bottom: 60px;
+
+  .sub-image {
+    font-style: italic;
+    font-size: 10px
+  }
+}
+
 a {
   color: $primary;
   text-decoration: none;

@@ -225,6 +225,20 @@
          Se <a [routerLink]="[routes.aboutUs]">om oss</a> for mer informasjon.
       </p>
     </mat-expansion-panel>
+    <mat-expansion-panel *ngIf="isSweden">
+      <mat-expansion-panel-header>
+        <p>
+          <b>
+            Tas det ut en kreditupplysning i mitt namn när man använder er tjänst?
+          </b>
+        </p>
+      </mat-expansion-panel-header>
+      <p>
+        Nej, det tas aldrig ut någon kreditupplysning av oss när du använder vår tjänst. 
+        Därför kan du använda tjänsten flera gånger utan att det någonsin kommer att påverka 
+        din kreditvärdighet.
+      </p>
+    </mat-expansion-panel>
   </mat-accordion>
 
   

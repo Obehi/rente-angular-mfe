@@ -320,12 +320,12 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
   public openBottomSheet() {}
 
   public openChangeBankDialog(offer): void {
-    /* if (
+     if (
       this.changeBankLoading ||
       this.offersInfo.offerSavingsType === this.offerSavingsType.NO_SAVINGS
     ) {
       return;
-    } */
+    } 
     this.changeBankLoading = true;
     const offerId = offer.id;
     const currentBank = this.offersInfo.bank
