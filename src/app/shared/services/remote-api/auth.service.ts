@@ -17,9 +17,11 @@ export class AuthService {
     private router: Router
   ) { }
 
-  public loginWithToken(token: StringConstructor) {
+  public loginWithToken(phone: string, token: string, country: string) {
     const url = `${API_URL_MAP.auth.base}${API_URL_MAP.auth.token}`;
     const data = {
+      identifier: phone.toString(),
+      country : country,
       token
     };
     return this.http.post(url, data)
