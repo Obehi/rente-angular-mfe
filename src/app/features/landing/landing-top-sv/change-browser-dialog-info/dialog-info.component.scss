@@ -11,7 +11,7 @@
     height: 100% !important;
     margin: auto;
 
-    background: rgba(0, 0, 0, 0.95) !important;
+    background: rgba(0, 0, 0, 0.75) !important;
   }
 }
 
@@ -19,13 +19,14 @@
   mat-dialog-container {
       height: 100% !important;
       background: unset !important;
+      margin: unset !important;
 
       .change-browser-container {
         display: flex;
         flex-direction: column;
 
         .instruction-numbers {
-          margin: 0 10px;
+          margin: 0 20px;
         }
       }
       
@@ -38,6 +39,7 @@
         position: fixed;
         bottom: 0;
         height: 110px;
+        width: 100%;
         margin: unset;
 
         .item {
@@ -87,7 +89,7 @@ h4 {
   margin-right: 20px;
   font-size: 24px;
   font-weight: 400; 
-  margin: 30px 10px;
+  margin: 30px 20px;
 }
 
 p {

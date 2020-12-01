@@ -30,12 +30,8 @@ export class LandingTopSvComponent implements OnInit {
     return */
 
     this.agentTest = window.navigator.userAgent;
-
-    
-
-    this.agentTest = /snapchat/i.test("somethingsnapchatsomething") ? "is snapchat" : "is not snapchat"
-
-    
+    this.isAndroid = /Android/.test(navigator.userAgent); 
+    this.isIos = !window.MSStream && /iPad|iPhone|iPod/.test(navigator.userAgent); 
     this.isSnapchat = /snapchat/i.test(window.navigator.userAgent) ? "is snapchat" : "is not snapchat"
     this.isFacebook = (/FBAN/i.test(window.navigator.userAgent)|| /FBAN/i.test(window.navigator.userAgent)) ? "is facebook" : "is not facebook"
     this.isInstagram = /Instagram/i.test(window.navigator.userAgent) ? "is insta" : "is not insta"
