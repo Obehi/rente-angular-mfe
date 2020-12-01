@@ -23,9 +23,14 @@ export class LandingTopSvComponent implements OnInit {
   constructor(private router: Router, private dialog: MatDialog) { }
   
   ngOnInit(): void {
+    window.open(
+      'http://google.com', 'blank'
+    );
+
+    return
     /* this.dialog.open(ChangeBrowserDialogInfoComponent, {
       panelClass: 'custom-modalbox',
-      data: { type: "button-middle"}
+      data: { type: this.getType()}
       });
     return */
 
@@ -35,6 +40,7 @@ export class LandingTopSvComponent implements OnInit {
     this.isSnapchat = /snapchat/i.test(window.navigator.userAgent) ? "is snapchat" : "is not snapchat"
     this.isFacebook = (/FBAN/i.test(window.navigator.userAgent)|| /FBAN/i.test(window.navigator.userAgent)) ? "is facebook" : "is not facebook"
     this.isInstagram = /Instagram/i.test(window.navigator.userAgent) ? "is insta" : "is not insta"
+    return
 
     
 
@@ -48,6 +54,16 @@ export class LandingTopSvComponent implements OnInit {
     return isSnapchat || isFacebook || isInstagram;
   }
 
+  
+  getType() {
+    let isInstagram = /Instagram/i.test(window.navigator.userAgent)
+    if(isInstagram) {
+      return "button-middle"
+    } else {
+      return 'button-right'
+    }
+  }
+
 
   pushCTAButton() {
     this.isIos = !window.MSStream && /iPad|iPhone|iPod/.test(navigator.userAgent); 
@@ -55,7 +71,7 @@ export class LandingTopSvComponent implements OnInit {
       if(this.isCustomInAppBrowser()) {
       this.dialog.open(ChangeBrowserDialogInfoComponent, {
       panelClass: 'custom-modalbox',
-      data: { type: "button-middle"}
+      data: { type: this.getType()}
       });
         return
       }

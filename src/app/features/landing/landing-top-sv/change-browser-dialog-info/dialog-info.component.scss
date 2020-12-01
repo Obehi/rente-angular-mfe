@@ -31,7 +31,7 @@
       }
       
 
-      .fixed-bottom-middle {
+      .fixed-bottom-right {
         background: $secondary; 
         display: flex;
         flex-direction: row;
@@ -110,4 +110,41 @@ p {
   padding: 20px;
   border-radius: 0 0 10px 10px;
   background: white;
+}
+
+.fixed-bottom-middle {
+
+  background: $secondary; 
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  position: fixed;
+  bottom: 0;
+  height: 110px;
+  width: 100%;
+  margin: unset;
+
+  .item {
+    position: absolute;
+    left: 20px;
+  }
+  .inner {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    margin: 20px;
+
+    .vertical {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      img {
+        object-fit: contain;
+        width: 30px;
+        margin: auto;
+      }
+    }
+  }
 }
