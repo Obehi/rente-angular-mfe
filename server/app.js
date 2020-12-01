@@ -25,22 +25,6 @@ app.use('/blogg', function(req, res, next) {
 
 
 
-function detectMob() {
-  const toMatch = [
-      /Android/i,
-      /iPhone/i,
-      /iPad/i,
-      /iPod/i,
-      /BlackBerry/i,
-      /Windows Phone/i
-  ];
-
-  return toMatch.some((toMatchItem) => {
-      return navigator.userAgent.match(toMatchItem);
-  });
-}
-
-
 const historicalRatesProxy = require('http-proxy').createProxyServer({
   host: 'https://blogg.renteradar.no',
   changeOrigin: true
