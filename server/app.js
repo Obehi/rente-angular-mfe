@@ -24,6 +24,7 @@ app.use('/blogg', function(req, res, next) {
 });
 
 
+
 function detectMob() {
   const toMatch = [
       /Android/i,
