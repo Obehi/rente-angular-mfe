@@ -1,6 +1,3 @@
-:host-context(.content) {
-
-}
 
 :host {
     border-radius: 10px;
@@ -24,6 +21,9 @@
     }
   }
 
+.redirect-buttons {
+    display: none;
+}
 .close-modal {
     top: 8px;
     right: 8px;
@@ -41,6 +41,17 @@
     position: relative;
     border-radius: 10px 10px 0px 0px;
     padding: 20px;
+
+    @media (min-width: 600px) {
+        border-radius: 10px;
+        padding: 20px;
+        width: 600px;
+        margin: 100px auto;
+    }
+
+    @media (max-width: 600px) {
+        height: 100%;
+    }
 }   
 
 .wrapper-desktop {
@@ -78,7 +89,7 @@
         .linksWrapper {
             display: flex;
             width: 100%; 
-            justify-content: space-around;
+
 
             
             .margin-hack {
