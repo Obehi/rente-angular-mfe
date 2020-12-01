@@ -90,7 +90,7 @@ button.mat-primary-medium {
   color: white;
   height: 56px;
   width: 90%;
-  border-radius: 8px;
+  border-radius: 100px;
 }
 
 button.mat-primary-medium[disabled] {
@@ -132,7 +132,7 @@ button.mat-primary-wide-hollow-card {
   height: 56px;
   width: 90%;
   white-space: break-spaces;
-  border-radius: 8px;
+  border-radius: 100px;
 }
 
 button.mat-primary-wide-hollow-card[disabled] {
@@ -142,7 +142,7 @@ button.mat-primary-wide-hollow-card[disabled] {
   background-color: unset;
   color: #A9A9A9;
   border: 1px solid #C9EAE3;
-  border-radius: 8px;
+  border-radius: 100px;
 }
   
   
@@ -176,7 +176,7 @@ button.mat-orange {
   height: 3.5em;
   padding: 0 2em;
   border: 1px solid $primary;
-  border-radius: 8px;
+  border-radius: 100px;
   @media (max-width: 340px) {
       min-width: 280px;
   }
