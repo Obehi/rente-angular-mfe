@@ -14,7 +14,7 @@ export class FooterComponent implements OnInit {
     this.router.events
     .subscribe((event) => {
       if (event instanceof NavigationEnd) {
-        this.shouldShowFooter = (event.url !== '/redirect')
+        this.shouldShowFooter = (event.url !== '/messenger-share')
       }
     });
 
