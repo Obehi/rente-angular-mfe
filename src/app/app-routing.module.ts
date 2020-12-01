@@ -40,7 +40,7 @@ const routes: Routes = [
     ]
   },
   {
-    path: "redirect", component:   EmailRedirectComponent,
+    path: "messenger-share", component:   EmailRedirectComponent,
     children: [ 
       {
           path: '**',
