@@ -16,7 +16,6 @@ export class EmailRedirectComponent implements OnInit {
 
   ngOnInit(): void {
 
-    return;
     if(this.isMobile) {
       var element = document.getElementById("mobil-fb")
       element.setAttribute("href", "fb-messenger://share?link=https://renteradar.no/&&app_id=326133992135942")
