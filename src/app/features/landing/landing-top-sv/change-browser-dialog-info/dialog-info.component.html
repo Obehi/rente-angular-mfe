@@ -1,0 +1,55 @@
+
+<div *ngIf="data.androidPopup !== true" class="change-browser-container">
+  <h4>Ränteradar kräver att du öppnar en webbläsare</h4>
+  
+  <div *ngIf="data.type === 'instagram'" class="fixed-top-right">
+    <div class="item">
+      <div class="nr">1</div>
+      <p>Tryck på knappen överst i det högre hörnet</p>
+      </div>
+    <img src="../../../../../assets/img/sv/insta-dots.png"/>
+    
+  </div>
+
+
+
+  <div class="instruction-numbers">
+    <div *ngIf="data.type !== 'instagram'" class="item">
+      <div class="nr">1</div>
+      <p>Tryck på knappen nederst i det högre hörnet
+      </p>
+    </div>
+    <div class="item">
+      <div class="nr">2</div>
+      <p>Tryck på öppna i safari</p>
+    </div>
+  </div>
+  <img src="../../../../../assets/img/sv/browser-detection-safari.png"/>
+</div>
+
+ <div *ngIf="data.type === 'instagram'" class="fixed-bottom-middle">
+  
+</div> 
+
+<div *ngIf="data.type === 'button-right' && data.androidPopup !== true" class="fixed-bottom-right">
+  <div class="item">
+    <div class="nr">1</div>
+    <p>Tryck på knappen nederst i det högre hörnet</p>
+    </div>
+  <img src="../../../../../assets/img/sv/browser-detection-arrow.png"/>
+</div>
+
+
+
+
+
+<div *ngIf="data.androidPopup === true" class="change-browser-container">
+  <h4>Ränteradar kräver att du öppnar tjänsten i en webbläsare (chrome, safari etc)</h4>
+</div>
+
+
+
+
+
+
+

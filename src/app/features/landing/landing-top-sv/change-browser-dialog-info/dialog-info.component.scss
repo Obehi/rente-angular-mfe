@@ -1,0 +1,171 @@
+
+@import "../../../../../styles/theme/_colors.scss";
+
+
+// Hack for centering dialog popup 
+::ng-deep .cdk-global-overlay-wrapper {
+
+  .cdk-overlay-pane {
+    max-height: calc(100vh - 155px) !important;
+    max-width: 600px !important;
+    height: 100% !important;
+    margin: auto;
+
+    background: rgba(0, 0, 0, 0.75) !important;
+  }
+}
+
+::ng-deep .custom-modalbox {
+  mat-dialog-container {
+      height: 100% !important;
+      background: unset !important;
+      margin: unset !important;
+
+      .change-browser-container {
+        display: flex;
+        flex-direction: column;
+
+        .instruction-numbers {
+          margin: 0 20px;
+        }
+      }
+
+      .fixed-top-right {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        height: 110px;
+        width: 100%;
+        margin: unset;
+
+        .item {
+          margin: unset;
+          margin-left: 20px;
+          p {
+            width: 200px;
+          }
+        }
+        img {
+          transform: rotate(180deg);
+        }
+      }
+      
+
+      .fixed-bottom-right {
+        background: $secondary; 
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        position: fixed;
+        bottom: 0;
+        height: 110px;
+        width: 100%;
+        margin: unset;
+
+        .item {
+          margin: unset;
+          margin-left: 20px;
+          p {
+            width: 200px;
+          }
+        }
+      }
+
+  }
+}
+
+.item {
+  display: flex;
+  align-self: center;
+  align-items: center;
+  margin-bottom: 20px;
+  .nr {
+    text-align: center;
+    color: #000;
+    background-color: #fff;
+    border-radius: 100%;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+  }
+
+  p {
+    margin-left: 20px;
+  }
+}
+
+h3,
+h4,
+p,div {
+
+  color: white;
+}
+
+img {
+  object-fit: contain;
+  margin: auto;
+}
+
+h4 {
+  margin-right: 20px;
+  font-size: 16px;
+  font-weight: 400; 
+  margin: 30px 20px;
+}
+
+p {
+  font-size: 16px;
+}
+.small {
+  margin-bottom: 0;
+}
+
+.top {
+  position: relative;
+  padding: 20px;
+  background: white;
+}
+
+.bottom {
+  border-top: 1px solid #ECECEC;
+  padding: 20px;
+  border-radius: 0 0 10px 10px;
+  background: white;
+}
+
+.fixed-bottom-middle {
+
+  background: rgba(0, 0, 0, 0.75) !important;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  position: fixed;
+  bottom: 0;
+  height: 110px;
+  width: 100%;
+  margin: unset;
+
+  .item {
+    position: absolute;
+    left: 20px;
+  }
+  .inner {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    margin: 20px;
+
+    .vertical {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      img {
+        object-fit: contain;
+        width: 30px;
+        margin: auto;
+      }
+    }
+  }
+}
