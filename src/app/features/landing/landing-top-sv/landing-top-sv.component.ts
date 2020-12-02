@@ -17,32 +17,11 @@ export class LandingTopSvComponent implements OnInit {
   isInstagram: string
   isIos: boolean
   isAndroid: boolean
-
   agentTest: string;
 
   constructor(private router: Router, private dialog: MatDialog) { }
   
   ngOnInit(): void {
-    window.open(
-      'http://google.com', 'blank'
-    );
-
-    return
-    /* this.dialog.open(ChangeBrowserDialogInfoComponent, {
-      panelClass: 'custom-modalbox',
-      data: { type: this.getType()}
-      });
-    return */
-
-    this.agentTest = window.navigator.userAgent;
-    this.isAndroid = /Android/.test(navigator.userAgent); 
-    this.isIos = !window.MSStream && /iPad|iPhone|iPod/.test(navigator.userAgent); 
-    this.isSnapchat = /snapchat/i.test(window.navigator.userAgent) ? "is snapchat" : "is not snapchat"
-    this.isFacebook = (/FBAN/i.test(window.navigator.userAgent)|| /FBAN/i.test(window.navigator.userAgent)) ? "is facebook" : "is not facebook"
-    this.isInstagram = /Instagram/i.test(window.navigator.userAgent) ? "is insta" : "is not insta"
-    return
-
-    
 
   }
 
@@ -81,17 +60,12 @@ export class LandingTopSvComponent implements OnInit {
 
     if(this.isAndroid) {
       if(this.isCustomInAppBrowser()) {
-
-        window.open(
-          'googlechromes://ranteradar.se/' + ROUTES_MAP.bankSelect
-        );
+        window.location.assign("intent:https://ranteradar.se/" + ROUTES_MAP.bankSelect + ";end");
         return
       }
     }
-
     this.router.navigate(['/' + ROUTES_MAP.bankSelect]);
   }
-
 }
 
 
