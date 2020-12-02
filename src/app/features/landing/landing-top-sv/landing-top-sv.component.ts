@@ -21,7 +21,6 @@ export class LandingTopSvComponent implements OnInit {
   constructor(private router: Router, private dialog: MatDialog) { }
   
   ngOnInit(): void {
-
   }
 
   isCustomInAppBrowser() {
