@@ -29,6 +29,26 @@
           margin: 0 20px;
         }
       }
+
+      .fixed-top-right {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        height: 110px;
+        width: 100%;
+        margin: unset;
+
+        .item {
+          margin: unset;
+          margin-left: 20px;
+          p {
+            width: 200px;
+          }
+        }
+        img {
+          transform: rotate(180deg);
+        }
+      }
       
 
       .fixed-bottom-right {
@@ -83,8 +103,6 @@ p,div {
 
 img {
   object-fit: contain;
-  width: 50%;
-  height: 50%;
   margin: auto;
 }
 
@@ -117,7 +135,7 @@ p {
 
 .fixed-bottom-middle {
 
-  background: $secondary; 
+  background: rgba(0, 0, 0, 0.75) !important;
   display: flex;
   flex-direction: row;
   justify-content: space-around;

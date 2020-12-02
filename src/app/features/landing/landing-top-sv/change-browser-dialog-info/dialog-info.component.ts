@@ -13,7 +13,6 @@ export class ChangeBrowserDialogInfoComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    console.log(this.data.type)
   }
   public onClose(): void {
     this.dialogRef.close();

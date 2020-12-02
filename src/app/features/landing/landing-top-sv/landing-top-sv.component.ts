@@ -47,16 +47,21 @@ export class LandingTopSvComponent implements OnInit {
     this.isIos = !window.MSStream && /iPad|iPhone|iPod/.test(navigator.userAgent); 
     if(this.isIos) {
       if(this.isCustomInAppBrowser()) {
-        this.router.navigate(['/' + ROUTES_MAP.bankSelect], {state: {data: {iosPopup: true}}});
+        let isInstagram = /Instagram/i.test(window.navigator.userAgent)
+        if(isInstagram) {
+          this.router.navigate(['/' + ROUTES_MAP.bankSelect], {state: {data: {iosPopup: true, hideNavbar: true}}});
+        } else{
+          this.router.navigate(['/' + ROUTES_MAP.bankSelect], {state: {data: {iosPopup: true}}});
+        }
         return
       }
     }
     
-
     this.isAndroid = /Android/.test(navigator.userAgent); 
     if(this.isAndroid) {
       if(this.isCustomInAppBrowser()) {
-        window.location.assign("intent:https://ranteradar.se/" + ROUTES_MAP.bankSelect + ";end");
+        //window.location.assign("intent:https://ranteradar.se/" + ROUTES_MAP.bankSelect + ";end")
+        this.router.navigate(['/' + ROUTES_MAP.bankSelect], {state: {data: {androidPopup: true}}});
         return
       }
     }
