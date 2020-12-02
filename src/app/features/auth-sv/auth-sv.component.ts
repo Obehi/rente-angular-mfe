@@ -127,7 +127,7 @@ export class AuthSvComponent implements OnInit, OnDestroy {
           }
             const user = response.data.user;
             this.authService
-            .loginWithToken(user.ssn, user.oneTimeToken, "SWE")
+            .loginWithToken(user.oneTimeToken)
               .subscribe(res => {
                 forkJoin([
                   this.loansService.getLoansAndRateType(),
