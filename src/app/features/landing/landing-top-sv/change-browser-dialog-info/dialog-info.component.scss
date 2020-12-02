@@ -44,7 +44,7 @@
 
         .item {
           margin: unset;
-
+          margin-left: 20px;
           p {
             width: 200px;
           }
@@ -64,9 +64,9 @@
     color: #000;
     background-color: #fff;
     border-radius: 100%;
-    width: 45px;
-    height: 45px;
-    line-height: 3em;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
   }
 
   p {
@@ -83,11 +83,14 @@ p,div {
 
 img {
   object-fit: contain;
+  width: 50%;
+  height: 50%;
+  margin: auto;
 }
 
 h4 {
   margin-right: 20px;
-  font-size: 24px;
+  font-size: 16px;
   font-weight: 400; 
   margin: 30px 20px;
 }

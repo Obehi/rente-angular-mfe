@@ -2,6 +2,8 @@ import { AuthService } from "@services/remote-api/auth.service";
 import { LoansService } from "@services/remote-api/loans.service";
 import { UserService } from "@services/remote-api/user.service";
 import { LocalStorageService } from "@services/local-storage.service";
+import { MatDialog } from '@angular/material/dialog';
+import { ChangeBrowserDialogInfoComponent } from '../landing/landing-top-sv/change-browser-dialog-info/dialog-info.component';
 
 import {
   Component,
@@ -53,14 +55,28 @@ export class BankSelectSvComponent implements OnInit, OnDestroy {
       private userService: UserService,
       private loansService: LoansService,
       private localStorageService: LocalStorageService,
-      private sanitizer: DomSanitizer
+      private sanitizer: DomSanitizer, 
+      private dialog: MatDialog
   
     ) { 
   
     }
   
     ngOnInit(): void {
-      //let tinkUrl = environment["tinkUrl"] || "https://link.tink.com/1.0/authorize/?client_id=2a14f1970f0b4b39a861a1c42b65daca&redirect_uri=http%3A%2F%2Flocalhost%3A4302%2F&scope=accounts:read,user:read,identity:read&market=SE&locale=sv_SE&iframe=true&test=true"
+
+      this.dialog.open(ChangeBrowserDialogInfoComponent, {
+        panelClass: 'custom-modalbox',
+        data: { type: this.getType()}
+        });
+  
+      if(history.state.data !== undefined && history.state.data.iosPopup === true) {
+
+          this.dialog.open(ChangeBrowserDialogInfoComponent, {
+            panelClass: 'custom-modalbox',
+            data: { type: this.getType()}
+            });
+
+      }
       let tinkUrl = environment["tinkUrl"] || "https://link.tink.com/1.0/authorize/?client_id=3973e78ee8c140edbf36e53d50132ba1&redirect_uri=https%3A%2F%2Fse-rente-frontend-dev.herokuapp.com%2F&scope=accounts:read,investments:read,transactions:read,user:read&market=SE&locale=en_US&iframe=true"
       this.tinkUrl = this.sanitizer.bypassSecurityTrustResourceUrl(tinkUrl)
     }
@@ -71,7 +87,6 @@ export class BankSelectSvComponent implements OnInit, OnDestroy {
       return;
       }
   
-      console.log("Tink response");
   
       let data = JSON.parse(event.data)
       if (data.type === 'code') {
@@ -84,6 +99,15 @@ export class BankSelectSvComponent implements OnInit, OnDestroy {
     }
   
     ngOnDestroy() {
+    }
+
+    getType() {
+      let isInstagram = /Instagram/i.test(window.navigator.userAgent)
+      if(isInstagram) {
+        return "button-middle"
+      } else {
+        return 'button-right'
+      }
     }
   
     private initializeWebSocketConnection(tinkCode: number) {

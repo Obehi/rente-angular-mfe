@@ -28,7 +28,6 @@ import { DialogInfoComponent } from './features/init-confirmation/dialog-info/di
 import {IMaskModule} from 'angular-imask';
 import { EmailPreferencesComponent } from './features/email-preferences/email-preferences.component';
 import { ProfileDialogInfoComponent } from "./features/dashboard/profile/dialog-info/dialog-info.component";
-import { ChangeBrowserDialogInfoComponent } from "./features/landing/landing-top-sv/change-browser-dialog-info/dialog-info.component";
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { CountUpModule } from 'ngx-countup';
 import { AuthSvComponent } from './features/auth-sv/auth-sv.component';
@@ -64,7 +63,6 @@ registerLocaleData(localeNo);
     AboutCookiesComponent,
     EmailPreferencesComponent,
     ProfileDialogInfoComponent,
-    ChangeBrowserDialogInfoComponent,
     LoginLangGenericComponent,
     AuthSvComponent,
     AuthSvMockupComponent,

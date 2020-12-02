@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ROUTES_MAP } from '@config/routes-config';
 import { Router } from "@angular/router";
 import { MatDialog } from '@angular/material/dialog';
-import { ChangeBrowserDialogInfoComponent } from './change-browser-dialog-info/dialog-info.component';
 
 @Component({
   selector: 'rente-landing-top',
@@ -48,16 +47,13 @@ export class LandingTopSvComponent implements OnInit {
     this.isIos = !window.MSStream && /iPad|iPhone|iPod/.test(navigator.userAgent); 
     if(this.isIos) {
       if(this.isCustomInAppBrowser()) {
-      this.dialog.open(ChangeBrowserDialogInfoComponent, {
-      panelClass: 'custom-modalbox',
-      data: { type: this.getType()}
-      });
+        this.router.navigate(['/' + ROUTES_MAP.bankSelect], {state: {data: {iosPopup: true}}});
         return
       }
     }
-  
-    this.isAndroid = /Android/.test(navigator.userAgent); 
+    
 
+    this.isAndroid = /Android/.test(navigator.userAgent); 
     if(this.isAndroid) {
       if(this.isCustomInAppBrowser()) {
         window.location.assign("intent:https://ranteradar.se/" + ROUTES_MAP.bankSelect + ";end");
