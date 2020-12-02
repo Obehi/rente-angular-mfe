@@ -370,7 +370,7 @@ export class AuthSvMockupComponent implements OnInit, OnDestroy {
             console.log("user")
             console.log(user)
             this.authService
-              .loginWithToken(user.oneTimeToken)
+            .loginWithToken(user.ssn, user.oneTimeToken, "SWE")
               .subscribe(res => {
                 forkJoin([
                   this.loansService.getLoansAndRateType(),
