@@ -68,6 +68,7 @@ export class BankSelectSvComponent implements OnInit, OnDestroy {
       
       if(history.state.data !== undefined && (history.state.data.iosPopup === true || history.state.data.androidPopup === true)) {
         let androidPopup = history.state.data.androidPopup 
+        console.log("1.")
         history.state.data = undefined;
         
           this.dialog.open(ChangeBrowserDialogInfoComponent, {
@@ -75,7 +76,7 @@ export class BankSelectSvComponent implements OnInit, OnDestroy {
             data: { type: this.getType(), androidPopup: androidPopup}
             });
       }
-
+      console.log("2.")
       this.tinkUrl = this.sanitizer.bypassSecurityTrustResourceUrl(tinkUrl)
     }
   
@@ -90,7 +91,8 @@ export class BankSelectSvComponent implements OnInit, OnDestroy {
         // This is the authorization code that should be exchanged for an access token
   
         this.tinkCode = event.data.data;
-        console.log(`Tink Link returned with authorization data code: ${data.type }`);
+        console.log(`T response: ${data.type }`);
+        
         this.initializeWebSocketConnection(data.data)
       }
     }
@@ -135,14 +137,15 @@ export class BankSelectSvComponent implements OnInit, OnDestroy {
   
     private successSocketCallback() {
       this.tinkSuccess = true
-
+      console.log("3.")
       const repliesUrl = `${API_URL_MAP.crawlerRepliesUrl}`;
       this.stompClient.subscribe(repliesUrl, message => {
           const response = JSON.parse(message.body);
         if (message.body) {
+          console.log("4.");
           switch (response.eventType) {
-           
             case BANKID_STATUS.LOANS_PERSISTED:
+              console.log("5.")
 
               const user = response.data.user;
               this.authService
@@ -152,7 +155,7 @@ export class BankSelectSvComponent implements OnInit, OnDestroy {
                     this.loansService.getLoansAndRateType(),
                     this.userService.getUserInfo()
                   ]).subscribe(([rateAndLoans, userInfo]) => {
-;
+                    console.log("6.")
                     this.userService.lowerRateAvailable.next(rateAndLoans.lowerRateAvailable);
                     if (rateAndLoans.loansPresent) {
                       this.localStorageService.removeItem('noLoansPresent');
