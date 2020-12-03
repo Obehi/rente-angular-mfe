@@ -101,7 +101,8 @@ export class BankSelectSvComponent implements OnInit, OnDestroy {
 
     getType() {
       let isInstagram = /Instagram/i.test(window.navigator.userAgent)
-      if(isInstagram) {
+      let linkedIn = /LinkedInApp/i.test(window.navigator.userAgent)
+      if(isInstagram || linkedIn) {
         return "instagram"
       } else {
         return 'button-right'
