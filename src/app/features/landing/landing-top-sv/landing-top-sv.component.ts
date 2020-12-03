@@ -34,15 +34,6 @@ export class LandingTopSvComponent implements OnInit {
     return isSnapchat || isFacebook || isInstagram || linkedIn;
   }
 
-  
-  getType() {
-    let isInstagram = /Instagram/i.test(window.navigator.userAgent)
-    if(isInstagram) {
-      return "button-middle"
-    } else {
-      return 'button-right'
-    }
-  }
 
 
   pushCTAButton() {
@@ -51,25 +42,29 @@ export class LandingTopSvComponent implements OnInit {
       if(this.isCustomInAppBrowser()) {
         let isInstagram = /Instagram/i.test(window.navigator.userAgent)
         let linkedIn = /LinkedInApp/i.test(window.navigator.userAgent)
-
-        if(isInstagram || linkedIn) {
-          this.router.navigate(['/' + ROUTES_MAP.bankSelect], {state: {data: {iosPopup: true, hideNavbar: true}}});
+        let type = this.getType();
+        if(isInstagram) {
+          this.router.navigate(['/' + ROUTES_MAP.bankSelect], {state: {data: {iosPopup: true, type: type, app: 'instagram'}}});
+        } else if (linkedIn) {
+          this.router.navigate(['/' + ROUTES_MAP.bankSelect], {state: {data: {iosPopup: true, type: type, app: 'linkedIn'}}});
         } else{
-          this.router.navigate(['/' + ROUTES_MAP.bankSelect], {state: {data: {iosPopup: true}}});
+          this.router.navigate(['/' + ROUTES_MAP.bankSelect], {state: {data: {iosPopup: true, type: type, app: 'other'}}});
         }
         return
       }
     }
-    
-   /*  this.isAndroid = /Android/.test(navigator.userAgent); 
-    if(this.isAndroid) {
-      if(this.isCustomInAppBrowser()) {
-        //window.location.assign("intent:https://ranteradar.se/" + ROUTES_MAP.bankSelect + ";end")
-        this.router.navigate(['/' + ROUTES_MAP.bankSelect], {state: {data: {androidPopup: true}}});
-        return
-      }
-    } */
     this.router.navigate(['/' + ROUTES_MAP.bankSelect]);
+  }
+
+  getType() {
+    let isInstagram = /Instagram/i.test(window.navigator.userAgent)
+    let linkedIn = /LinkedInApp/i.test(window.navigator.userAgent)
+
+    if(isInstagram || linkedIn) {
+      return "top-button"
+    } else {
+      return 'bottom-right'
+    }
   }
 }
 

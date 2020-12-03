@@ -48,7 +48,6 @@ export class BankSelectSvComponent implements OnInit, OnDestroy {
     private intervalSubscription: Subscription;
     public isSuccess = false;
     public tinkUrl: SafeUrl;
-    public linkedInString: string;
 
     constructor(
       private router: Router,
@@ -66,22 +65,18 @@ export class BankSelectSvComponent implements OnInit, OnDestroy {
     ngOnInit(): void {
  
       let linkedIn = /LinkedInApp/i.test(window.navigator.userAgent)
-
-      if(linkedIn) {
-        this.linkedInString = "is linkedin"
-      } else {
-        this.linkedInString = "is not linkedin"
-      }
       let tinkUrl = environment["tinkUrl"] || "https://link.tink.com/1.0/authorize/?client_id=2a14f1970f0b4b39a861a1c42b65daca&redirect_uri=https%3A%2F%2Fse-rente-frontend-dev.herokuapp.com%2F&scope=accounts:read,user:read,identity:read&market=SE&locale=sv_SE&iframe=true"
 
       if(history.state.data !== undefined && (history.state.data.iosPopup === true || history.state.data.androidPopup === true)) {
         let androidPopup = history.state.data.androidPopup 
+        let app = history.state.data.app
+        let type =  history.state.data
         console.log("1.")
         history.state.data = undefined;
         
           this.dialog.open(ChangeBrowserDialogInfoComponent, {
             panelClass: 'custom-modalbox',
-            data: { type: this.getType(), androidPopup: androidPopup}
+            data: { type: type, androidPopup: androidPopup, app: app}
             });
       }
       console.log("2.")
@@ -97,7 +92,6 @@ export class BankSelectSvComponent implements OnInit, OnDestroy {
       let data = JSON.parse(event.data)
       if (data.type === 'code') {
         // This is the authorization code that should be exchanged for an access token
-  
         this.tinkCode = event.data.data;
         console.log(`Tink Link returned with authorization code: ${data.type }`);
         this.initializeWebSocketConnection(data.data)
@@ -105,22 +99,6 @@ export class BankSelectSvComponent implements OnInit, OnDestroy {
     }
   
     ngOnDestroy() {
-    }
-
-    getType() {
-      let isInstagram = /Instagram/i.test(window.navigator.userAgent)
-      let linkedIn = /LinkedInApp/i.test(window.navigator.userAgent)
-
-      if(linkedIn) {
-        this.linkedInString = "is linkedin"
-      } else {
-        this.linkedInString = "is not linkedin"
-      }
-      if(isInstagram || linkedIn) {
-        return "instagram"
-      } else {
-        return 'button-right'
-      }
     }
   
     private initializeWebSocketConnection(tinkCode: number) {
