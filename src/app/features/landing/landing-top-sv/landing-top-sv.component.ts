@@ -45,8 +45,13 @@ export class LandingTopSvComponent implements OnInit {
   pushCTAButton() {
     this.isIos = !window.MSStream && /iPad|iPhone|iPod/.test(navigator.userAgent); 
     if(this.isIos) {
-      if(this.isCustomInAppBrowser()) { 
-        this.router.navigate(['/' + ROUTES_MAP.bankSelect], {state: {data: {iosPopup: true}}});
+      if(this.isCustomInAppBrowser()) {
+        let isInstagram = /Instagram/i.test(window.navigator.userAgent)
+        if(isInstagram) {
+          this.router.navigate(['/' + ROUTES_MAP.bankSelect], {state: {data: {iosPopup: true, hideNavbar: true}}});
+        } else{
+          this.router.navigate(['/' + ROUTES_MAP.bankSelect], {state: {data: {iosPopup: true}}});
+        }
         return
       }
     }

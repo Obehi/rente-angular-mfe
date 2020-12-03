@@ -103,7 +103,7 @@
       </div>
     </div>
 
-    <div class="articles">
+    <div *ngIf="!isSweden" class="articles">
       <h2 style="margin-bottom: 20px;">Fornøyde brukere</h2>
       <div class="horizontal-scroll">
         <div class="sitater">
@@ -213,7 +213,7 @@
       </div>
     </div>
 
-    <div class="articles">
+    <div *ngIf="!isSweden" class="articles">
       <h2 class="mb-3">Renteradar i media</h2>
       <div class="media-container row justify-content-start">
         <div class="col-6 col-lg-4 d-flex justify-content-center mt-4">
