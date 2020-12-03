@@ -61,7 +61,7 @@ export class LandingTopSvComponent implements OnInit {
     let linkedIn = /LinkedInApp/i.test(window.navigator.userAgent)
 
     if(isInstagram || linkedIn) {
-      return "top-button"
+      return "top-right"
     } else {
       return 'bottom-right'
     }
