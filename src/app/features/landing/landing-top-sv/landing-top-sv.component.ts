@@ -28,8 +28,10 @@ export class LandingTopSvComponent implements OnInit {
     let isSnapchat = /snapchat/i.test(window.navigator.userAgent) 
     let isFacebook = (/FBAN/i.test(window.navigator.userAgent)|| /FBAN/i.test(window.navigator.userAgent))
     let isInstagram = /Instagram/i.test(window.navigator.userAgent)
+    let linkedIn = /LinkedInApp/i.test(window.navigator.userAgent)
 
-    return isSnapchat || isFacebook || isInstagram;
+
+    return isSnapchat || isFacebook || isInstagram || linkedIn;
   }
 
   
@@ -48,7 +50,9 @@ export class LandingTopSvComponent implements OnInit {
     if(this.isIos) {
       if(this.isCustomInAppBrowser()) {
         let isInstagram = /Instagram/i.test(window.navigator.userAgent)
-        if(isInstagram) {
+        let linkedIn = /LinkedInApp/i.test(window.navigator.userAgent)
+
+        if(isInstagram || linkedIn) {
           this.router.navigate(['/' + ROUTES_MAP.bankSelect], {state: {data: {iosPopup: true, hideNavbar: true}}});
         } else{
           this.router.navigate(['/' + ROUTES_MAP.bankSelect], {state: {data: {iosPopup: true}}});
