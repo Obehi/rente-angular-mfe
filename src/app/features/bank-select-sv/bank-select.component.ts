@@ -48,7 +48,8 @@ export class BankSelectSvComponent implements OnInit, OnDestroy {
     private intervalSubscription: Subscription;
     public isSuccess = false;
     public tinkUrl: SafeUrl;
-  
+    public linkedInString: string;
+
     constructor(
       private router: Router,
       private authService: AuthService,
@@ -64,6 +65,13 @@ export class BankSelectSvComponent implements OnInit, OnDestroy {
   
     ngOnInit(): void {
  
+      let linkedIn = /LinkedInApp/i.test(window.navigator.userAgent)
+
+      if(linkedIn) {
+        this.linkedInString = "is linkedin"
+      } else {
+        this.linkedInString = "is not linkedin"
+      }
       let tinkUrl = environment["tinkUrl"] || "https://link.tink.com/1.0/authorize/?client_id=2a14f1970f0b4b39a861a1c42b65daca&redirect_uri=https%3A%2F%2Fse-rente-frontend-dev.herokuapp.com%2F&scope=accounts:read,user:read,identity:read&market=SE&locale=sv_SE&iframe=true"
 
       if(history.state.data !== undefined && (history.state.data.iosPopup === true || history.state.data.androidPopup === true)) {
@@ -102,6 +110,12 @@ export class BankSelectSvComponent implements OnInit, OnDestroy {
     getType() {
       let isInstagram = /Instagram/i.test(window.navigator.userAgent)
       let linkedIn = /LinkedInApp/i.test(window.navigator.userAgent)
+
+      if(linkedIn) {
+        this.linkedInString = "is linkedin"
+      } else {
+        this.linkedInString = "is not linkedin"
+      }
       if(isInstagram || linkedIn) {
         return "instagram"
       } else {
