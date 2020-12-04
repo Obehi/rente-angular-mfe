@@ -68,7 +68,7 @@ export class BankSelectSvComponent implements OnInit, OnDestroy {
       if(history.state.data !== undefined && (history.state.data.iosPopup === true || history.state.data.androidPopup === true)) {
         let androidPopup = history.state.data.androidPopup 
         let app = history.state.data.app
-        let type =  history.state.data
+        let type =  history.state.data.type
         console.log("1.")
         history.state.data = undefined;
         
