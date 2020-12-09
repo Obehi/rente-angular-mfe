@@ -1,75 +1,70 @@
 <footer *ngIf="shouldShowFooter" [class]="router.url.includes('dashboard') ? '' : 'visible'">
-  <div class="inner-footer">
+  <div *ngIf="!isSweden" class="inner-footer">
+    <div class="item">
+      <H4>Våre kunder:</H4>
+      <ul class="adjust-margin">
 
-    <a class="temp-swedish-policy" i18n=“privacy|footer@@footer.privacy”
-          [routerLink]="[routes.privacy]"
-          routerLinkActive="active-link"
-          [routerLinkActiveOptions]="{ exact: true }"
-        >
-      Personvern
-    </a>
-    
-      <div class ="item">
-        <H4>Våre kunder:</H4>
-        <ul class ="adjust-margin">
-  
-          <li>
-            <a target="_blank" href="https://sbanken.no/lan/boliglan/flytte-boliglan/?utm_source=renteradar&utm_medium=cpc&utm_campaign=boliglan&utm_content=flyttboliglan">
-              <picture> 
-                <source srcset="../../../assets/img-webp/partners/sbanken.webp" type="image/webp">
-                <source srcset="../../../../assets/img/partners/sbanken.png" type="image/jpeg"> 
-                <img class="sbanken" src="../../../../assets/img/partners/sbanken.png" alt="Sbanken logo"/>
-              </picture>
-            </a>
-          </li>
-          <li>
-            <a target="_blank" href="https://bulderbank.no/boliglan/flytte-boliglan?utm_source=renteradar.no&utm_medium=cpc&utm_campaign=boliglan&utm_term=lesmer">
-              <picture> 
-                <source srcset="../../../assets/img-webp/partners/bulder.webp" type="image/webp">
-                <source srcset="../../../../assets/img/partners/bulder.png" type="image/jpeg"> 
-                <img src="../../../../assets/img/partners/bulder.png" alt="Bulder logo"/>
-              </picture>
-            </a>
-          </li>
-          <li>
-            <a target="_blank" href="https://www.nybygger.no/kampanje-boliglan/?utm_medium=affiliate%20&utm_source=renteradar.no&utm_campaign=boliglan120&utm_content=cta">
-              <img class="nybygger"src="../../../../assets/img/partners/nybygger.svg" alt="Nybygger logo" />
-            </a>
-          </li>
-        </ul>
-      </div>
+        <li>
+          <a target="_blank"
+            href="https://sbanken.no/lan/boliglan/flytte-boliglan/?utm_source=renteradar&utm_medium=cpc&utm_campaign=boliglan&utm_content=flyttboliglan">
+            <picture>
+              <source srcset="../../../assets/img-webp/partners/sbanken.webp" type="image/webp">
+              <source srcset="../../../../assets/img/partners/sbanken.png" type="image/jpeg">
+              <img class="sbanken" src="../../../../assets/img/partners/sbanken.png" alt="Sbanken logo" />
+            </picture>
+          </a>
+        </li>
+        <li>
+          <a target="_blank"
+            href="https://bulderbank.no/boliglan/flytte-boliglan?utm_source=renteradar.no&utm_medium=cpc&utm_campaign=boliglan&utm_term=lesmer">
+            <picture>
+              <source srcset="../../../assets/img-webp/partners/bulder.webp" type="image/webp">
+              <source srcset="../../../../assets/img/partners/bulder.png" type="image/jpeg">
+              <img src="../../../../assets/img/partners/bulder.png" alt="Bulder logo" />
+            </picture>
+          </a>
+        </li>
+        <li>
+          <a target="_blank"
+            href="https://www.nybygger.no/kampanje-boliglan/?utm_medium=affiliate%20&utm_source=renteradar.no&utm_campaign=boliglan120&utm_content=cta">
+            <img class="nybygger" src="../../../../assets/img/partners/nybygger.svg" alt="Nybygger logo" />
+          </a>
+        </li>
+      </ul>
+    </div>
 
-      <div class ="item">
-        <H4>Samarbeidspartnere:</H4>
-        <ul>
-          <li>
-            <a target="_blank" href="https://virdi.no/">
-              <img class="partner-logo" src="../../../../assets/img/banks-logo/svg/virdi.svg" alt="Virdi logo" />
-            </a>
-          </li>
-          <li>
-              <a target="_blank" href="https://www.boligmappa.no/">
-                <picture> 
-                  <source srcset="../../../assets/img-webp/partners/boligmappa-white.webp" type="image/webp">
-                  <source srcset="../../../../assets/img/partners/boligmappa-white.png" type="image/jpeg"> 
-                  <img src="../../../../assets/img/partners/boligmappa-white.png" alt="Boligmappa logo"/>
-                </picture>
-              </a>
-            </li>
-          <li>
-            <a target="_blank" href="https://www.finansportalen.no/">
-              <picture> 
-                <source srcset="../../../assets/img-webp/partners/finansportalen.webp" type="image/webp">
-                <source srcset="../../../../assets/img/partners/finansportalen.png" type="image/jpeg"> 
-                <img  class="partner-logo" src="../../../../assets/img/partners/finansportalen.png" alt="finansportalen logo"/>
-              </picture>
-            </a>
-          </li>
-        </ul>
-      </div>
+    <div class="item">
+      <H4>Samarbeidspartnere:</H4>
+      <ul>
+        <li>
+          <a target="_blank" href="https://virdi.no/">
+            <img class="partner-logo" src="../../../../assets/img/banks-logo/svg/virdi.svg" alt="Virdi logo" />
+          </a>
+        </li>
+        <li>
+          <a target="_blank" href="https://www.boligmappa.no/">
+            <picture>
+              <source srcset="../../../assets/img-webp/partners/boligmappa-white.webp" type="image/webp">
+              <source srcset="../../../../assets/img/partners/boligmappa-white.png" type="image/jpeg">
+              <img src="../../../../assets/img/partners/boligmappa-white.png" alt="Boligmappa logo" />
+            </picture>
+          </a>
+        </li>
+        <li>
+          <a target="_blank" href="https://www.finansportalen.no/">
+            <picture>
+              <source srcset="../../../assets/img-webp/partners/finansportalen.webp" type="image/webp">
+              <source srcset="../../../../assets/img/partners/finansportalen.png" type="image/jpeg">
+              <img class="partner-logo" src="../../../../assets/img/partners/finansportalen.png"
+                alt="finansportalen logo" />
+            </picture>
+          </a>
+        </li>
+      </ul>
+    </div>
 
-    <div class ="item">
-      <div class="social">  
+    <div class="item">
+      <div class="social">
         <a class="desktop" href="https://www.facebook.com/renteradar/" target="_blank">
           <img src="../../../../assets/img/facebook.svg" alt="Facebook logo" />
         </a>
@@ -77,8 +72,8 @@
         <a class="mobile" href="fb://profile/241726976492191" target="_blank">
           <img src="../../../../assets/img/facebook.svg" alt="Facebook logo" />
         </a>
-        
-        
+
+
         <a href="https://www.instagram.com/renteradar.no" target="_blank">
           <img src="../../../../assets/icons/instagram.svg" alt="Facebook logo" />
         </a>
@@ -93,19 +88,18 @@
       <p>
         Forbrukerøkonomene AS (Org nr: 921 534 191)
         <br />
-        <a
-          [routerLink]="['/personvern']"
-          routerLinkActive="active-link"
-          [routerLinkActiveOptions]="{ exact: true }"
-        >
+    </div>
+  </div>
+
+    <div class="inner-footer">
+
+      <a class="temp-swedish-policy" i18n=“privacy|footer@@footer.privacy” [routerLink]="[routes.privacy]"
+      routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">
       Personvern
     </a>
-
-    <p class="org">
-      <a href="http://ranteradar.se/">Ränteradar.se</a>
-      ägs och drivs av Ränteradar
-      Sverige AB<br>(Org nr: 559271-9289). 
-    </p>
-
-
-  </div>
+      <p class="org">
+        <a href="http://ranteradar.se/">Ränteradar.se</a>
+        ägs och drivs av Ränteradar
+        Sverige AB<br>(Org nr: 559271-9289).
+      </p>
+    </div>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Router, NavigationEnd } from "@angular/router";
 import { ROUTES_MAP } from '@config/routes-config';
+import { locale } from '../../.././config/locale/locale';
 
 @Component({
   selector: "rente-footer",
@@ -9,10 +10,19 @@ import { ROUTES_MAP } from '@config/routes-config';
 })
 export class FooterComponent implements OnInit {
   public routes = ROUTES_MAP
+  isSweden: boolean;
+
   constructor(public router: Router) {}
   shouldShowFooter = true;
 
   ngOnInit() {
+
+    if(locale.includes("sv")) {
+      this.isSweden = true
+    } else{
+      this.isSweden = false
+    }
+
     this.router.events
     .subscribe((event) => {
       if (event instanceof NavigationEnd) {

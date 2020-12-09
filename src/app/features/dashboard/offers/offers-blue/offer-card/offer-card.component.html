@@ -124,7 +124,7 @@
                         </rente-button-small>
                                          
                         <div>
-                        <!-- awfull line break hack with two if statements-->
+                            
                         <rente-button-small 
                         i18n=“get-offer|offer-card@@offer.card.getOffer”
                         *ngIf="getbankNameOrDefault(offer).length < 8"
@@ -155,7 +155,7 @@
                     (click)="openNewOfferDialog(offer)">Få tilbud fra {{ getbankNameOrDefault(offer) }}!
                 </rente-button>
                 <p class="small" *ngIf=" offer.bankInfo.partner === false"> (Ingen avtale med banken)</p>
-                        
+                
             </div>
         </div>
 
