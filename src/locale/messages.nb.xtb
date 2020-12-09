@@ -1478,4 +1478,58 @@ Fortsett
     </translation>
   <translation id="info.confirmation.hi”" desc="info-confirmation" meaning="“hi">Hei, <ph name="INTERPOLATION"><ex>{{ userData.name | titlecase }}</ex>{{ userData.name | titlecase }}</ph></translation>
   <translation id="details.component.other”" desc="details" meaning="“other-conditions"><ph name="INTERPOLATION"><ex>{{offer.otherConditions ? &quot;Forbehold:&quot; : &quot;Ingen forbehold&quot;}}</ex>{{offer.otherConditions ? &quot;Forbehold:&quot; : &quot;Ingen forbehold&quot;}}</ph> </translation>
+  <translation id="aboutUs.sanna" desc="about-us" meaning="“title"><ph name="START_ITALIC_TEXT"><ex>&lt;i&gt;</ex>&lt;i&gt;</ph>Country manager<ph name="CLOSE_ITALIC_TEXT"><ex>&lt;/i&gt;</ex>&lt;/i&gt;</ph></translation>
+  <translation id="aboutUs.sanna.intro”" desc="about-us" meaning="“text">
+        Sanna er siviløkonom og har jobbet fem år i bank og finans i Sverige. 
+        Hun kommer fra boligslånsutfordreren Stabelo og før det jobbet hun i SEB. 
+        Nå skal kun ta Renteradar til Sverige og endre boliglånsmarkedet med <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>ränteradar.se <ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph>. 
+        Sanna liker teknologi, startups og boliglånsmarkedet – Perfekt match for Renteradar.
+      </translation>
+  <translation id="aboutUs.stian" desc="about-us" meaning="“title"><ph name="START_ITALIC_TEXT"><ex>&lt;i&gt;</ex>&lt;i&gt;</ph>Frontend utvikler<ph name="CLOSE_ITALIC_TEXT"><ex>&lt;/i&gt;</ex>&lt;/i&gt;</ph></translation>
+  <translation id="aboutUs.stian.intro”" desc="about-us" meaning="“text">
+        Stian er Frontend-utvikler og har studert informatikk på Universitetet i Oslo. 
+        Tidligere har han jobbet i oppstartsselskapet Tillit Forsikring. 
+        Stian skaper gode brukeropplevelser og står bak designet av tjenesten vår.
+      </translation>
+  <translation id="header.bankGuide”" desc="contact" meaning="“Headerlink">Bankguiden</translation>
+  <translation id="ngb.alert.close">Close</translation>
+  <translation id="ngb.carousel.slide-number" desc="Currently selected slide number read by screen reader">
+          Slide <ph name="INTERPOLATION"><ex>{{i + 1}}</ex>{{i + 1}}</ph> of <ph name="INTERPOLATION_1"><ex>{{c}}</ex>{{c}}</ph>
+        </translation>
+  <translation id="ngb.carousel.previous">Previous</translation>
+  <translation id="ngb.carousel.next">Next</translation>
+  <translation id="ngb.datepicker.previous-month">Previous month</translation>
+  <translation id="ngb.datepicker.next-month">Next month</translation>
+  <translation id="ngb.datepicker.select-month">Select month</translation>
+  <translation id="ngb.datepicker.select-year">Select year</translation>
+  <translation id="ngb.pagination.first">««</translation>
+  <translation id="ngb.pagination.previous">«</translation>
+  <translation id="ngb.pagination.next">»</translation>
+  <translation id="ngb.pagination.last">»»</translation>
+  <translation id="ngb.pagination.first-aria">First</translation>
+  <translation id="ngb.pagination.previous-aria">Previous</translation>
+  <translation id="ngb.pagination.next-aria">Next</translation>
+  <translation id="ngb.pagination.last-aria">Last</translation>
+  <translation id="ngb.progressbar.value">
+    <ph name="INTERPOLATION"><ex>{{getValue() / max | percent}}</ex>{{getValue() / max | percent}}</ph>
+  </translation>
+  <translation id="ngb.timepicker.increment-hours">Increment hours</translation>
+  <translation id="ngb.timepicker.HH">HH</translation>
+  <translation id="ngb.timepicker.hours">Hours</translation>
+  <translation id="ngb.timepicker.decrement-hours">Decrement hours</translation>
+  <translation id="ngb.timepicker.increment-minutes">Increment minutes</translation>
+  <translation id="ngb.timepicker.MM">MM</translation>
+  <translation id="ngb.timepicker.minutes">Minutes</translation>
+  <translation id="ngb.timepicker.decrement-minutes">Decrement minutes</translation>
+  <translation id="ngb.timepicker.increment-seconds">Increment seconds</translation>
+  <translation id="ngb.timepicker.SS">SS</translation>
+  <translation id="ngb.timepicker.seconds">Seconds</translation>
+  <translation id="ngb.timepicker.decrement-seconds">Decrement seconds</translation>
+  <translation id="ngb.timepicker.PM">
+    <ph name="INTERPOLATION"><ex>{{ i18n.getAfternoonPeriod() }}</ex>{{ i18n.getAfternoonPeriod() }}</ph>
+  </translation>
+  <translation id="ngb.timepicker.AM">
+    <ph name="INTERPOLATION"><ex>{{ i18n.getMorningPeriod() }}</ex>{{ i18n.getMorningPeriod() }}</ph>
+  </translation>
+  <translation id="ngb.toast.close-aria">Close</translation>
 </translationbundle>
