@@ -93,8 +93,7 @@ import { BankScoreLangGenericComponent } from '../../local-components/components
     HouseFormLangGenericComponent,
     OfferDetailsLangGenericComponent,
     ChangeBankDialogLangGenericComponent,
-    BankScoreLangGenericComponent
-    BankRatingDialogComponent,
+    BankScoreLangGenericComponent,
     EPSIScoreComponent,
     HouseFormErrorDialogComponent
 
