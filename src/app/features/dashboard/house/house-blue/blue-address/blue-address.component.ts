@@ -61,12 +61,14 @@ export class BlueAddressComponent implements OnInit {
   }
 
   onRbChange(event: MatTabChangeEvent) {
-    this.ableTosave = true
     if (event.index === 1) {
       this.address.useManualPropertyValue = true;
+
     } else {
       this.address.useManualPropertyValue = false;
     }
+
+    this.countChange()
   }
 
   //remove spaces and convert to number type
@@ -78,7 +80,28 @@ export class BlueAddressComponent implements OnInit {
     this.onSave.emit()
     this.ableTosave = false
   }
-  countChange($event) {
+  
+  countChange() {
+    if(this.address.street == "") {
+      this.ableTosave = false
+      return
+    }
+
+    if(this.address.zip == "") {
+      this.ableTosave = false
+      return
+    }
+
+    if(this.address.apartmentSize == 0 || this.address.apartmentSize == null) {
+      this.ableTosave = false
+      return
+    }
+
+    if(this.address.useManualPropertyValue && (this.address.manualPropertyValue == 0 || this.address.manualPropertyValue == null)) {
+      this.ableTosave = false
+      return
+    }
+    
     this.ableTosave = true
   }
 

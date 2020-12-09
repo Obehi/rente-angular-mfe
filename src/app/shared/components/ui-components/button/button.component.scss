@@ -22,6 +22,15 @@ button.mat-button {
     height: 20px;
   }
 }
+
+button.mat-primary-hollow {
+  background-color: white;
+  color: black;
+  border: 1px solid $primary;
+  white-space: break-spaces;
+}
+
+
 button.mat-button:hover:not([disabled]) {
   opacity: 0.8;
 }
@@ -60,7 +69,7 @@ button.mat-blue {
 button.mat-blue-bank{
   background-color: $blue;
   color: white;
-  width: 135px
+  width: 135px;
 }
 
 button.mat-primary-wide {
@@ -68,6 +77,25 @@ button.mat-primary-wide {
   color: white;
   height: 56px;
   width: 80%
+}
+
+button.mat-primary-semi-wide {
+  background-color: $primary;
+  color: white;
+  height: 56px;
+  width: 325px;
+}
+
+button.mat-primary-medium {
+  background-color: $primary;
+  color: white;
+  height: 56px;
+  width: 90%;
+  border-radius: 100px;
+}
+
+button.mat-primary-medium[disabled] {
+  color: white !important;
 }
 
 button.mat-primary-wide-landing {
@@ -87,7 +115,6 @@ button.mat-primary-wide-hollow {
   height: 56px;
   width: 80%;
   white-space: break-spaces;
-
 }
 
 button.mat-primary-wide-hollow[disabled] {
@@ -98,6 +125,27 @@ button.mat-primary-wide-hollow[disabled] {
   color: #A9A9A9;
   border: 1px solid #C9EAE3;
 }
+
+button.mat-primary-wide-hollow-card {
+  background-color: white;
+  color: black;
+  border: 1px solid $primary;
+  height: 56px;
+  width: 90%;
+  white-space: break-spaces;
+  border-radius: 100px;
+}
+
+button.mat-primary-wide-hollow-card[disabled] {
+  opacity: 1;
+  height: 56px;
+  width: 90%;
+  background-color: unset;
+  color: #A9A9A9;
+  border: 1px solid #C9EAE3;
+  border-radius: 100px;
+}
+  
   
 button.mat-blue-wide {
   background-color: $blue;
@@ -129,7 +177,7 @@ button.mat-orange {
   height: 3.5em;
   padding: 0 2em;
   border: 1px solid $primary;
-  border-radius: 8px;
+  border-radius: 100px;
   @media (max-width: 340px) {
       min-width: 280px;
   }

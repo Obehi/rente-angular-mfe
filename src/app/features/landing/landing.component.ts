@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { timer } from 'rxjs';
 import { trigger, transition, style, animate } from '@angular/animations';
-import {OptimizeService} from '@services/optimize.service'
 import { locale } from "@config/locale/locale";
 
 
@@ -26,18 +25,17 @@ export class LandingComponent implements OnInit {
   time = 0;
   isSweden = false;
   get isMobile(): boolean { return window.innerWidth < 600; }
-  optimize: OptimizeService
-  constructor(optimize: OptimizeService) {
-    this.optimize = optimize;
-  }
-  ngOnInit(): void {
 
+
+  constructor() {
     if(locale.includes("sv")) {
       this.isSweden = true
     } else{
       this.isSweden = false
     }
-
+  }
+  
+  ngOnInit(): void {
 
     const subscription = timer(1000, 1000).subscribe(t => {
       this.time = t;

@@ -19,11 +19,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
   constructor(
     private router: Router,
     public breakpointObserver: BreakpointObserver,
-    private localStorageService: LocalStorageService,
-    public optimizeService: OptimizeService
-  ) {
-    this.optimize = optimizeService
-  }
+    private localStorageService: LocalStorageService
+  ) { }
 
   public navLinks = ["tilbud", "mine-lan", "bolig", "preferanser", "profil"];
   public activeLinkIndex = -1;

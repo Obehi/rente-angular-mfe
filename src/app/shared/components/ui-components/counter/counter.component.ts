@@ -22,27 +22,6 @@ export class CounterComponent implements OnInit {
   constructor(private loansService: LoansService) {}
 
   ngOnInit(): void {
-    this.loansService.getLoanStatistics().subscribe(res => {
-      if (res) {
-        var totalOutstandingDebt = Math.round(res.totalOutstandingDebt / 1000) * 1000;
-        this.totalOutstandingoptions.startVal = totalOutstandingDebt;
-        this.totalOutstandingDebt = totalOutstandingDebt;
-
-        var combinedSavingsPotential = Math.round(res.combinedSavingsPotential / 10) * 10;
-        this.combinedSavingsPotentialOptions.starVal = combinedSavingsPotential;
-        this.combinedSavingsPotential = Math.round(res.combinedSavingsPotential / 10) * 10;
-        this.setupRefresh();
-      }
-    });
-  }
-
-  setupRefresh() {
-    if (this.interval) {
-      clearInterval(this.interval);
-    }
-    this.interval = setInterval(() => {
-      this.totalOutstandingDebt += 1000;
-      this.combinedSavingsPotential += 30;
-    }, 2000);
+   
   }
 }

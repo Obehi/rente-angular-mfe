@@ -8,7 +8,7 @@ export class OptimizeService {
 
 
   private experimentID = '486O0RUlSMCPtcnEjUtFtg';
-  private localeVariation = 1;
+  private localeVariation = 0;
   constructor() {}
   
   getVariation(): number {
@@ -18,31 +18,26 @@ export class OptimizeService {
     //console.log("is locale: " + isLocale);
 
     if(isLocale) {
-      //console.log("variation: " + this.localeVariation);
+
       return this.localeVariation
     }
 
     let googleOptimize = (window as any).google_optimize;
 
     if(googleOptimize == undefined) {
-     // console.log("Cant find google optimize object");
       return 0
     }
 
     let variation = (window as any).google_optimize.get(this.experimentID);
 
     if( variation == undefined) {
-      //console.log("variation is undefined");
       return 0;
     }
     
     if(variation == null) {
-      console.log("variation is null");
       return 0;
     }
     
-
-   console.log("variation in service: " + (window as any).google_optimize.get(this.experimentID));
     return variation;
   }
 

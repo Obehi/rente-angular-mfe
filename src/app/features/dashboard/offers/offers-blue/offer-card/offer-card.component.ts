@@ -59,8 +59,13 @@ export class OfferCardComponentBlue implements OnInit {
 
   getbankNameOrDefault(offer: OfferInfo): string {
     let text = ""
-    switch(offer.bankInfo.bank) {
-      case "SBANKEN": {
+    switch(offer.bankInfo.bank) { 
+
+      case "SPAREBANKENOST": {
+        text = "Sparebanken Øst"
+      }
+      
+      case "SBANKEN": { 
          text = "Sbanken"
          break;
       }
@@ -93,7 +98,10 @@ export class OfferCardComponentBlue implements OnInit {
   public openBankUrl(offer: OfferInfo) {
     if(offer.bankInfo.url === null)
       return
-
+    
+    if(this.handleNybyggerProductSpecialCase(offer) == true) {
+      return 
+    }  
     window.open(
       offer.bankInfo.url,
       '_blank'
@@ -120,10 +128,30 @@ export class OfferCardComponentBlue implements OnInit {
     this.sendOfferTrackingData(trackingDto, offer)
   }
 
+  public handleNybyggerProductSpecialCase(offer: OfferInfo): boolean {
+    if(offer.productName.includes("Rammelån") && offer.bankInfo.bank == "NYBYGGER") {
+      window.open(
+        "https://www.nybygger.no/kampanje-rammelan/?utm_medium=affiliate%20&utm_source=renteradar.no&utm_campaign=rammelan110&utm_content=cta",
+        '_blank')
+
+      console.log("special bank product case")
+      return true
+    } 
+    console.log("NOT special bank product case")
+    return false;
+  }
+
   public openNewOfferDialog(offer: OfferInfo): void {
+   
+
     if(offer.bankInfo.partner === false)
       return
-
+    
+    if(this.handleNybyggerProductSpecialCase(offer) == true) {
+      return 
+    }
+    
+    console.log(offer.productName)
     window.open(
       offer.bankInfo.transferUrl,
       '_blank'

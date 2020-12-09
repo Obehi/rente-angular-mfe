@@ -385,6 +385,17 @@
             }
         }
 
+       
+
+        .single-button {
+          width: 100%;
+          margin-bottom: 20px !important;
+          grid-column-start: 1;
+          grid-column-end: span 2;
+          grid-row: 5;
+          display: block !important;
+        }
+
         .buttons.item {
 
           display: flex;
@@ -417,6 +428,7 @@
 
             p {
               font-size: 10px;
+              text-align: center;
             }
 
             div {
