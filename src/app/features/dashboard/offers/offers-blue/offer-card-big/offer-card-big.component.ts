@@ -49,7 +49,6 @@ export class OfferCardBigComponentBlue implements OnInit {
     if(this.offer.fixedRatePeriod === 0) {
       this.offerType = 'threeMonths'
     } else if(this.offer.fixedRatePeriod === 1) {
-      console.log("oneYear")
       this.offerType = 'oneYear'
     }
   }
@@ -59,6 +58,11 @@ export class OfferCardBigComponentBlue implements OnInit {
   getbankNameOrDefault(offer: OfferInfo): string {
     let text = ""
     switch(offer.bankInfo.bank) { 
+
+      case "SPAREBANKENOST": {
+        text = "Sparebanken Øst"
+      }
+      
       case "SBANKEN": { 
          text = "Sbanken"
          break; 
@@ -84,6 +88,18 @@ export class OfferCardBigComponentBlue implements OnInit {
     });
   }
 
+  public handleNybyggerProductSpecialCase(offer: OfferInfo): boolean {
+    if(offer.productName.includes("Rammelån") && offer.bankInfo.bank == "NYBYGGER") {
+
+      window.open(
+        "https://www.nybygger.no/kampanje-rammelan/?utm_medium=affiliate%20&utm_source=renteradar.no&utm_campaign=rammelan110&utm_content=cta",
+        '_blank')
+
+      return true
+    } 
+    return false;
+  }
+
   public openOfferDialog(offer: OfferInfo): void {
     this.dialog.open(DialogInfoComponent, {
       data: offer
@@ -92,6 +108,10 @@ export class OfferCardBigComponentBlue implements OnInit {
   
   
   public openBankUrl(offer: OfferInfo) {
+    if(this.handleNybyggerProductSpecialCase(offer) == true) {
+      return 
+    }
+
     if(offer.bankInfo.url === null)
       return
     
@@ -122,6 +142,10 @@ export class OfferCardBigComponentBlue implements OnInit {
   }
 
   public openNewOfferDialog(offer: OfferInfo): void {
+    if(this.handleNybyggerProductSpecialCase(offer) == true) {
+      return 
+    }
+
     if(offer.bankInfo.partner === false)
       return
     
@@ -140,8 +164,6 @@ export class OfferCardBigComponentBlue implements OnInit {
     var bankRatingDialogRef = this.dialog.open(BankScoreLangGenericComponent);
 
     bankRatingDialogRef.afterClosed().subscribe(() => {
-      console.log("subscribe afterClosed")
-      console.log(bankRatingDialogRef.componentInstance.closeState)
       this.handlebankRatingdialogOnClose(bankRatingDialogRef.componentInstance.closeState)
     })
   }

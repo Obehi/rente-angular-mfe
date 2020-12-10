@@ -103,8 +103,6 @@ export class OffersStatisticsComponentBlue implements AfterViewInit, OnInit {
 
   ngAfterViewInit() {
     if (this.offersInfo) {
-      console.log("this.clientBankData")
-      console.log(this.clientBankData)
 
       if (this.hasClientBankData) {
         this.clientBankEffRateOptions = this.ChartOptions();

@@ -11,10 +11,14 @@ import { PageNotFoundComponent } from '@features/page-not-found/page-not-found.c
 import { PrivacyPolicyComponent } from '@features/privacy-policy/privacy-policy.component';
 import { PrivacyComponent } from '@features/privacy/privacy.component';
 import { TermsConditionsComponent } from '@features/terms-conditions/terms-conditions.component';
-
-import { AuthGuard } from '@shared/guards/auth.guard';
 import { customMeta, defaultMeta } from './config/routes-config';
 import { InitConfirmationLangGenericComponent } from './local-components/components-output';
+import { EmailRedirectComponent } from '@features/email-redirect/email-redirect.component';
+import { AuthGuard } from '@shared/guards/auth.guard';
+
+import { BankChoiceComponent } from '@features/auth/bank-choice/bank-choice.component';
+
+
 
 const commonRoutes: Routes = [
   {
@@ -34,6 +38,16 @@ const commonRoutes: Routes = [
         path: '**',
         component: EmailPreferencesComponent
       },
+    ]
+  },
+  {
+    path: "messenger-share", component:   EmailRedirectComponent,
+    children: [ 
+      {
+          path: '**',
+          component:   EmailRedirectComponent
+
+      },      
     ]
   },
   {

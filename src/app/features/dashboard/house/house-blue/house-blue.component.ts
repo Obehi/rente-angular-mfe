@@ -5,6 +5,8 @@ import { Observable, Subject } from 'rxjs';
 import { DeactivationGuarded } from '@shared/guards/route.guard';
 import { locale } from '../../../../config/locale/locale';
 
+import { HouseFormErrorDialogComponent } from './error-dialog/error-dialog.component'
+import { MatDialog } from '@angular/material';
 import {
   EventService,
   EmitEvent,
@@ -33,15 +35,17 @@ import {
       })),
       transition(':enter', []),
       transition('* => *', [
-        animate('1s', keyframes([
+        animate('6s', keyframes([
           style({ opacity: 1, offset: 0.1}),
           style({ opacity: 1, offset: 0.8}),
           style({ opacity: 0, offset: 1}),
         ]
         ))
       ]),
-    ]),
+    ])
   ],
+  
+  
 })
 
 export class HouseBlueComponent implements OnInit, DeactivationGuarded {
@@ -54,12 +58,18 @@ export class HouseBlueComponent implements OnInit, DeactivationGuarded {
   public updateAnimationTrigger :boolean;
   public errorAnimationTrigger :boolean;
   public locale: string;
+  public errorMessage: string; 
+  public isError: boolean = false; 
+  public dialog: MatDialog
   
   constructor(
     private loansService: LoansService,
     private snackBar: SnackBarService,
-    eventService: EventService
+    eventService: EventService,
+    dialog: MatDialog
   ) {
+    this.dialog = dialog
+
     eventService.on(Events.INPUT_CHANGE, _ => {
       this.saveAddresses();
     });
@@ -131,30 +141,53 @@ export class HouseBlueComponent implements OnInit, DeactivationGuarded {
       this.isLoading = true;
       this.canLeavePage = false;
 
-      this.addresses.forEach( address => {
-        console.log("address")
-        console.log(address)
-      })
       this.loansService.updateAddress(this.addresses).subscribe(
         r => {
-          this.canNavigateBooolean$.next(true);
           this.addresses = r.addresses;
+          for(let address of r.addresses) {
+            if(address.error == true) {
+
+
+
+                this.isLoading = false;
+                this.changesMade = false;
+                this.dialog.open(HouseFormErrorDialogComponent)
+
+                
+                this.canLeavePage = true
+                this.errorMessage = address.message;
+                this.isError = true;
+                return
+              }
+            }
+
+          this.canNavigateBooolean$.next(true);
         },
         err => {
+          
+          this.errorMessage = "Oops, noe gikk galt";
           this.isLoading = false;
           this.changesMade = false;
-          this.errorAnimationTrigger  = !this.errorAnimationTrigger 
+          this.errorAnimationTrigger  = !this.errorAnimationTrigger;
           this.canLeavePage = true
         },
         () => {
+          if(this.isError) {
+            this.isError = false;
+            this.errorMessage == null
+            return
+          }
+          
           this.changesMade = false;
           this.isLoading = false;
-          this.updateAnimationTrigger  = !this.updateAnimationTrigger 
-          this.canLeavePage = true
+          this.updateAnimationTrigger  = !this.updateAnimationTrigger;
+          this.canLeavePage = true;
         }
       );
     }
   }
+
+ 
 
   get ableToSave(): boolean {
     let res = true;

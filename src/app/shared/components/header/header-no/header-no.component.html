@@ -26,7 +26,7 @@
         <a [routerLink]="['/dashboard/tilbud']" *ngIf="isLoggedIn" routerLinkActive="active-link" class="highlight">Min
                                                                                                                     side
         </a>
-        <a [routerLink]="['/velgbank']" *ngIf="!isLoggedIn  && optimizeService.getBinaryVariation() == true"
+        <a [routerLink]="['/velgbank']" *ngIf="!isLoggedIn"
            routerLinkActive="active-link" class="highlight">Logg inn
         </a>
         <a [routerLink]="['/']" *ngIf="isLoggedIn" (click)="auth.logout()">Logg ut</a>
@@ -53,7 +53,7 @@
         (click)="toggleNav()"><h3 class="highlight">Min side</h3>
       </a>
       <a
-        *ngIf="!isLoggedIn  && optimizeService.getBinaryVariation() == 1"
+        *ngIf="!isLoggedIn"
         [routerLink]="['/velgbank']"
         routerLinkActive="active-link"
         (click)="toggleNav()"><h3 class="highlight">Logg inn</h3>

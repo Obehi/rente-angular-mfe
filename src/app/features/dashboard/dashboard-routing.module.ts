@@ -8,14 +8,11 @@ import { NoLoansComponent } from './no-loans/no-loans.component';
 import { customMeta, defaultMeta, ROUTES_MAP } from '@config/routes-config';
 import {RouteGuard } from '@shared/guards/route.guard';
 import { BargainSuccessComponent } from './offers/bargain-success/bargain-success.component';
-import { OptimizeService } from '@services/optimize.service'
 import { OffersComponentBlue } from './offers/offers-blue/offers.component';
 import { HouseBlueComponent }   from './house/house-blue/house-blue.component';
 import { BlueProfileComponent }   from './profile/blue-profile/blue-profile.component';
-import { LoansBlueComponent }   from './loans/loans-blue/loans-blue.component';
 import { EPSIScoreComponent }   from './offers/offers-blue/epsi-score/epsi-score.component';
 import { LoansLangGenericComponent } from '../../local-components/components-output'
-
 
 const routes: Routes = [
   {
@@ -98,4 +95,5 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
+
 export class DashboardRoutingModule { }

@@ -85,7 +85,7 @@ erbjuder.
   <translation id="faq.question12”" desc="faq" meaning="“question12">Kostar det något att använda Ränteradar.se?</translation>
   <translation id="faq.response12”" desc="faq" meaning="“response12">Nej, det är helt gratis att använda våra tjänster på Ränteradar.se </translation>
   <translation id="faq.question13”" desc="faq" meaning="“question13">Visar ni erbjudanden från alla banker?</translation>
-  <translation id="faq.response13”" desc="faq" meaning="“response13">Ja, du ser erbjudanden från alla banker. Liknande tjänster visar endast erbjudanden från banker de har avtal med; det gör inte Ränteradar.se. </translation>
+  <translation id="faq.response13”" desc="faq" meaning="“response13">Liknande tjänster visar endast erbjudanden från banker de har avtal med, det gör inte vi! Men vi visar endast de tio bästa erbjudandena anpassade efter dina unika förutsättningar, resten filtreras bort.</translation>
   <translation id="faq.question14”" desc="faq" meaning="“question14">Jag har inget bolån, kan jag använda Ränteradar.se?</translation>
   <translation id="faq.response14”" desc="faq" meaning="“response14">För tillfället är tjänsten endast för användare som redan har bolån.</translation>
   <translation id="faq.question15”" desc="faq" meaning="“question15">Kan jag ta bort min profil om jag vill?</translation>
@@ -753,4 +753,44 @@ Vi följer ständigt upp om det dyker upp bättre ränteerbjudanden på marknade
   <translation id="close" desc="button" meaning="“close"/>
   <translation id="info.confirmation.hi”" desc="info-confirmation" meaning="“hi">Hej, <ph name="INTERPOLATION"><ex>{{ userData.name | titlecase }}</ex>{{ userData.name | titlecase }}</ph></translation>
   <translation id="details.component.other”" desc="details" meaning="“other-conditions"><ph name="INTERPOLATION"><ex>{{offer.otherConditions ? &quot;Krav:&quot; : &quot;Inget krav&quot;}}</ex>{{offer.otherConditions ? &quot;Krav:&quot; : &quot;Inget krav&quot;}}</ph> </translation>
+  <translation id="aboutUs.sanna" desc="about-us" meaning="“title"><ph name="START_ITALIC_TEXT"><ex>&lt;i&gt;</ex>&lt;i&gt;</ph>Country manager<ph name="CLOSE_ITALIC_TEXT"><ex>&lt;/i&gt;</ex>&lt;/i&gt;</ph></translation>
+  <translation id="aboutUs.sanna.intro”" desc="about-us" meaning="“text">Sanna är civilekonom och har jobbat fem år inom finans. Hon kommer senast från bolåneutmanaren Stabelo och innan det i SEB. Nu ska hon ta <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>ränteradar.se <ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph> till Sverige. Sanna gillar tech, startups och bolånemarknaden - perfekt match för Ränteradar!</translation>
+  <translation id="aboutUs.stian" desc="about-us" meaning="“title"><ph name="START_ITALIC_TEXT"><ex>&lt;i&gt;</ex>&lt;i&gt;</ph>Front-end utvecklare<ph name="CLOSE_ITALIC_TEXT"><ex>&lt;/i&gt;</ex>&lt;/i&gt;</ph>
+</translation>
+  <translation id="aboutUs.stian.intro”" desc="about-us" meaning="“text">Stian är Front-end utvecklare och har studerat Informatik på Universitet i Oslo. 
+        Han har tidigare jobbat i uppstartssällskapet Tillit Forsikring. Stian skapar goda 
+        användarupplevelser och står bakom vår fina design på hemsidan.</translation>
+  <translation id="header.bankGuide”" desc="contact" meaning="“Headerlink"/>
+  <translation id="ngb.alert.close"/>
+  <translation id="ngb.carousel.slide-number" desc="Currently selected slide number read by screen reader"/>
+  <translation id="ngb.carousel.previous"/>
+  <translation id="ngb.carousel.next"/>
+  <translation id="ngb.datepicker.previous-month"/>
+  <translation id="ngb.datepicker.next-month"/>
+  <translation id="ngb.datepicker.select-month"/>
+  <translation id="ngb.datepicker.select-year"/>
+  <translation id="ngb.pagination.first"/>
+  <translation id="ngb.pagination.previous"/>
+  <translation id="ngb.pagination.next"/>
+  <translation id="ngb.pagination.last"/>
+  <translation id="ngb.pagination.first-aria"/>
+  <translation id="ngb.pagination.previous-aria"/>
+  <translation id="ngb.pagination.next-aria"/>
+  <translation id="ngb.pagination.last-aria"/>
+  <translation id="ngb.progressbar.value"/>
+  <translation id="ngb.timepicker.increment-hours"/>
+  <translation id="ngb.timepicker.HH"/>
+  <translation id="ngb.timepicker.hours"/>
+  <translation id="ngb.timepicker.decrement-hours"/>
+  <translation id="ngb.timepicker.increment-minutes"/>
+  <translation id="ngb.timepicker.MM"/>
+  <translation id="ngb.timepicker.minutes"/>
+  <translation id="ngb.timepicker.decrement-minutes"/>
+  <translation id="ngb.timepicker.increment-seconds"/>
+  <translation id="ngb.timepicker.SS"/>
+  <translation id="ngb.timepicker.seconds"/>
+  <translation id="ngb.timepicker.decrement-seconds"/>
+  <translation id="ngb.timepicker.PM"/>
+  <translation id="ngb.timepicker.AM"/>
+  <translation id="ngb.toast.close-aria"/>
 </translationbundle>

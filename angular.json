@@ -81,11 +81,10 @@
               "localize": ["nb"],
               "assets": [
                 { "glob": "**/*", "input": "src/assets/nb", "output": "/assets/" },
-                { "glob": "sitemap.xml", "input": "src/sitemaps/nb", "output": "/" },
+                { "glob": "sitemap.xml", "input": "src/sitemaps/no", "output": "/" },
                 "src/assets",
                 "src/favicon.ico",
                 "src/sitemap.xml",
-                "src/sitemap-sv.xml",
                 "src/robots.txt"
 
               ],
@@ -96,7 +95,7 @@
                 },  
                 {
                   "replace": "src/index.html",
-                  "with": "src/index-dev.html"
+                  "with": "src/index/no/index-no.html"
                 },
                 {
                   "replace": "src/app/config/locale/locale.ts",
@@ -116,15 +115,14 @@
                 }
               ]
             },
-            "nb-local": {
+            "no-local": {
               "localize": ["nb"],
               "assets": [
                 { "glob": "**/*", "input": "src/assets/nb", "output": "/assets/" },
-                { "glob": "sitemap.xml", "input": "src/sitemaps/nb", "output": "/" },
+                { "glob": "sitemap.xml", "input": "src/sitemaps/no", "output": "/" },
                 "src/assets",
                 "src/favicon.ico",
                 "src/sitemap.xml",
-                "src/sitemap-sv.xml",
                 "src/robots.txt"
 
               ],
@@ -135,7 +133,7 @@
                 },  
                 {
                   "replace": "src/index.html",
-                  "with": "src/index-dev.html"
+                  "with": "src/index/no-dev/index-no-dev.html"
                 },
                 {
                   "replace": "src/app/config/locale/locale.ts",
@@ -160,14 +158,12 @@
               "localize": ["sv"],
               "assets": [
                 { "glob": "**/*", "input": "src/assets/sv", "output": "/assets/" },
-                { "glob": "sitemap.xml", "input": "src/sv/sitemap/", "output": "/" },
-                { "glob": "index.html", "input": "src/sv/index/", "output": "/" },
-                { "glob": "test.html", "input": "src/sv/test/", "output": "/" },
+                { "glob": "sitemap.xml", "input": "src/sitemaps/sv/", "output": "/" },
+                { "glob": "index.html", "input": "src/index/sv/", "output": "/" },
 
                 "src/assets",
                 "src/favicon.ico",
                 "src/sitemap.xml",
-                "src/sitemap-sv.xml",
                 "src/robots.txt"
 
               ],
@@ -187,23 +183,19 @@
                 {
                   "replace": "src/app/shared/constants/mask.ts",
                   "with": "src/app/shared/constants/mask-sv.ts"
-                },   
+                } 
               ]
             },
             "sv-local": {
               "localize": ["sv"],
               "assets": [
                 { "glob": "**/*", "input": "src/assets/sv", "output": "/assets/" },
-                { "glob": "sitemap.xml", "input": "src/sv/sitemap/", "output": "/" },
-                { "glob": "index.html", "input": "src/sv/index/", "output": "/" },
-                { "glob": "test.html", "input": "src/sv/test/", "output": "/" },
-
+                { "glob": "sitemap.xml", "input": "src/sitemaps/sv/", "output": "/" },
+                { "glob": "index.html", "input": "src/index/sv-dev/", "output": "/" },
                 "src/assets",
                 "src/favicon.ico",
                 "src/sitemap.xml",
-                "src/sitemap-sv.xml",
                 "src/robots.txt"
-
               ],
               "fileReplacements": [
                 {
@@ -212,7 +204,7 @@
                 },
                 {
                   "replace": "src/index.html",
-                  "with": "src/index-dev.html"
+                  "with": "src/index/sv-dev/index-sv-dev.html"
                 },
                 {
                   "replace": "src/app/config/routes-config.ts",
@@ -243,18 +235,10 @@
                 {
                   "replace": "src/environments/environment.ts",
                   "with": "src/environments/environment.local.ts"
-                },
-                {
-                  "replace": "src/index.html",
-                  "with": "src/index-dev.html"
                 }
               ]
             },
             "develop": {
-              "index": {
-                "input": "src/index-dev.html",
-                "output": "index.html"
-              },
               "budgets": [
                 {
                   "type": "anyComponentStyle",
@@ -270,7 +254,7 @@
             },
             "heroku-sv": {
               "index": {
-                "input": "src/index-dev.html",
+                "input": "src/index/sv/index-sv.html",
                 "output": "index.html"
               },
               "fileReplacements": [
@@ -301,10 +285,6 @@
               ]
             },
             "heroku-dev": {
-              "index": {
-                "input": "src/index-dev.html",
-                "output": "index.html"
-              },
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
@@ -361,10 +341,6 @@
               ]
             },
             "heroku": {
-              "index": {
-                "input": "src/index-dev.html",
-                "output": "index.html"
-              },
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
@@ -429,8 +405,8 @@
             "sv-local": {
               "browserTarget": "rente-front-end:build:sv-local"
             },
-            "nb-local": {
-              "browserTarget": "rente-front-end:build:nb-local"
+            "no-local": {
+              "browserTarget": "rente-front-end:build:no-local"
             }
           },
           "i18nFile": "src/locale/messages.nb.xtb",

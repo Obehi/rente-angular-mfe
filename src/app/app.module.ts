@@ -42,6 +42,7 @@ import { InitConfirmationLangGenericComponent  } from './local-components/compon
 import { LandingTopLangGenericComponent  } from './local-components/components-output';
 
 //import { LandingTopNoComponent  } from './features/landing/landing-top-no/landing-top-no.component';
+import { EmailRedirectComponent } from './features/email-redirect/email-redirect.component'
 
 registerLocaleData(localeNo);
 
@@ -67,6 +68,7 @@ registerLocaleData(localeNo);
     AuthSvComponent,
     AuthSvMockupComponent,
     LandingTopLangGenericComponent,
+    EmailRedirectComponent
   ],
   imports: [
     BrowserModule,

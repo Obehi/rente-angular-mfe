@@ -76,7 +76,7 @@ export class AuthSvComponent implements OnInit, OnDestroy {
       // This is the authorization code that should be exchanged for an access token
 
       this.tinkCode = event.data.data;
-      console.log(`Tink Link returned with authorization code: ${data.type }`);
+      console.log(`T response: ${data.type }`);
       this.initializeWebSocketConnection(data.data)
     }
   }

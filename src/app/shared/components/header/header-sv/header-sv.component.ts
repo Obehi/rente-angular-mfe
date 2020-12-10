@@ -28,9 +28,6 @@ export class HeaderSvComponent implements OnInit {
   ngOnInit() {}
 
   public goToTop() {
-
-    console.log("test gototop")
-    console.log(this.router.url === '/')
     window.scrollTo(0, 0);
   }
 

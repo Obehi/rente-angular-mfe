@@ -115,11 +115,8 @@
               
             </div>
 
-
             <div class="item buttons">
-                
-                    
-                        <rente-button-small class="firstButton" 
+                        <!-- <rente-button-small class="firstButton" 
                             i18n=“see-more|offer-card-big@@offer.card.big.seeMore”
                             [disabled]="offer.bankInfo.partner == false"  
                             [color]="offer.bankInfo.bank == 'LANDKREDITT' ? 'primary-hollow-small-landkreditt' : 'primary-hollow-small'" type="raised"
@@ -127,7 +124,7 @@
                         </rente-button-small>
                                          
                         <div>
-                        <!-- awfull line break hack with two if statements-->
+                            
                         <rente-button-small 
                         i18n=“get-offer|offer-card@@offer.card.getOffer”
                         *ngIf="getbankNameOrDefault(offer).length < 8"
@@ -142,7 +139,23 @@
                             (click)="openNewOfferDialog(offer)">Få tilbud fra  <br/> {{ getbankNameOrDefault(offer) }}!
                         </rente-button-small>
                         <p i18n=“get-offer|offer-card@@offer.card.noDeal.mobile” class="small" *ngIf=" offer.bankInfo.partner === false"> (Ingen avtale med banken)</p>
-                        </div>
+                        </div> -->
+
+
+
+                <rente-button class="firstButton" [disabled]="offer.bankInfo.partner == false"  
+                    i18n=“see-more|offer-card-big@@offer.card.big.seeMore”
+                    [color]="'primary-wide-hollow-card'" type="raised"
+                    (click)="openBankUrlByButton(offer)">Se mer på {{getbankNameOrDefault(offer)}}s <br/> hjemmeside
+                </rente-button>
+
+                <rente-button
+                i18n=“get-offer|offer-card@@offer.card.getOffer”
+                [disabled]="offer.bankInfo.partner == false" color="primary-medium" type="raised"
+                    (click)="openNewOfferDialog(offer)">Få tilbud fra {{ getbankNameOrDefault(offer) }}!
+                </rente-button>
+                <p class="small" *ngIf=" offer.bankInfo.partner === false"> (Ingen avtale med banken)</p>
+                
             </div>
         </div>
 
@@ -157,5 +170,4 @@
             </p>
         </div>
 
-    </div>
 </div>

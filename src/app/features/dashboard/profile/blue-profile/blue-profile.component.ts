@@ -114,8 +114,6 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
   }
 
   ngOnInit() {
-    console.log("locale")
-    console.log(this.locale)
     this.loansService.getPreferencesDto().subscribe(res => {
       this.isLoading = false;
       let dto:PreferencesDto = res;

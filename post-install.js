@@ -1,12 +1,10 @@
 const { exec } = require('child_process');
-const { execFile } = require('child_process');
 
 const arg = process.argv[2]
-
+const dev = process.env.ENV === 'dev' || process.env.ENV == null
 if(process.env.ENV == null) {
     
     const arg = process.argv[2]
-    
     var locale = ""
     switch (arg) {
         case 'sv':
@@ -24,35 +22,44 @@ if(process.env.ENV == null) {
     command = exec('myVar=something node ./src/set-local-variable.ts', () => {
 
     console.log("running locale script with: locale:" + locale);
-    runScript(locale)
+    runScript(locale, dev)
     });
 
 } else {
     var locale = process.env.LOCALE;
     console.log("Is not local build: " + locale);
-    runScript(locale)
+    runScript(locale, dev)
 }
 
 
 
-function runScript(currentLocale) {
+function runScript(currentLocale, dev) {
     let command;
     var locale = ""
 
     //These should mostly reflect filereplacements in angular.json
-    if (currentLocale== "sv") {
+    if (currentLocale == "sv") {
         locale = ",sv";
         exec("npm run set-sv-routes");
         exec("cp -f ./src/app/config/routes-config-sv.ts ./src/app/config/routes-config.ts ");  
         exec("cp -f ./src/app/shared/constants/mask-sv.ts ./src/app/shared/constants/mask.ts ");
         exec("cp -f ./src/app/local-components/components-sv.ts ./src/app/local-components/components-output.ts ");
-        exec("cp -f ./src/index-sv.html ./src/index.html ");
+        if(dev) {
+            exec("cp -f ./src/index/sv-dev/index-sv-dev.html ./src/index.html ");
+        } else {
+            exec("cp -f ./src/index/sv/index-sv.html ./src/index.html "); 
+        }
     }
-    else if (currentLocale== "nb") {
+    else if (currentLocale == "nb") {
         locale = ",nb"
         exec("cp -f ./src/app/config/routes-config-no.ts ./src/app/config/routes-config.ts ");  
         exec("cp -f ./src/app/shared/constants/mask-no.ts ./src/app/shared/constants/mask.ts ");
         exec("cp -f ./src/app/local-components/components-no.ts ./src/app/local-components/components-output.ts ");
+        if(dev) {
+            exec("cp -f ./src/index/no-dev/index-no-dev.html ./src/index.html ");
+        } else {
+            exec("cp -f ./src/index/no/index-no.html ./src/index.html "); 
+        }
     }
     else {
         console.log("Couldnt find locale in post-install.js");

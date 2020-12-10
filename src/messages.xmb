@@ -21,22 +21,22 @@
 <!ELEMENT ex (#PCDATA)>
 ]>
 <messagebundle>
-  <msg id="header.home”" desc="homepage" meaning="“Headerlink"><source>app/shared/components/header/header-no/header-no.component.html:12</source>Hjem</msg>
-  <msg id="header.blog”" desc="blog" meaning="“Headerlink"><source>app/shared/components/header/header-no/header-no.component.html:13</source>Blogg</msg>
-  <msg id="header.contact”" desc="contact" meaning="“Headerlink"><source>app/shared/components/header/header-no/header-no.component.html:14</source>Kontakt</msg>
-  <msg id="header.aboutUs”" desc="about-us" meaning="“Headerlink"><source>app/shared/components/header/header-no/header-no.component.html:15</source>Om oss</msg>
-  <msg id="header.faq”" desc="faq" meaning="“Headerlink"><source>app/shared/components/header/header-no/header-no.component.html:17</source>FAQ </msg>
-  <msg id="header.home2”" desc="homepage" meaning="“Headerlink"><source>app/shared/components/header/header-no/header-no.component.html:35,36</source><ph name="START_HEADING_LEVEL3"><ex>&lt;h3&gt;</ex>&lt;h3&gt;</ph>Hjem<ph name="CLOSE_HEADING_LEVEL3"><ex>&lt;/h3&gt;</ex>&lt;/h3&gt;</ph>
+  <msg id="header.home”" desc="homepage" meaning="“Headerlink"><source>app/shared/components/header/header-sv/header-sv.component.html:12</source>Hjem</msg>
+  <msg id="header.blog”" desc="blog" meaning="“Headerlink"><source>app/shared/components/header/header-sv/header-sv.component.html:13</source>Blogg</msg>
+  <msg id="header.contact”" desc="contact" meaning="“Headerlink"><source>app/shared/components/header/header-sv/header-sv.component.html:14</source>Kontakt</msg>
+  <msg id="header.aboutUs”" desc="about-us" meaning="“Headerlink"><source>app/shared/components/header/header-sv/header-sv.component.html:15</source>Om oss</msg>
+  <msg id="header.faq”" desc="faq" meaning="“Headerlink"><source>app/shared/components/header/header-sv/header-sv.component.html:17</source>FAQ </msg>
+  <msg id="header.home2”" desc="homepage" meaning="“Headerlink"><source>app/shared/components/header/header-sv/header-sv.component.html:35,36</source><ph name="START_HEADING_LEVEL3"><ex>&lt;h3&gt;</ex>&lt;h3&gt;</ph>Hjem<ph name="CLOSE_HEADING_LEVEL3"><ex>&lt;/h3&gt;</ex>&lt;/h3&gt;</ph>
         </msg>
-  <msg id="header.myPage2”" desc="my-page" meaning="“Headerlink"><source>app/shared/components/header/header-no/header-no.component.html:42,43</source><ph name="START_HEADING_LEVEL3"><ex>&lt;h3&gt;</ex>&lt;h3&gt;</ph>Min side<ph name="CLOSE_HEADING_LEVEL3"><ex>&lt;/h3&gt;</ex>&lt;/h3&gt;</ph>
+  <msg id="header.myPage2”" desc="my-page" meaning="“Headerlink"><source>app/shared/components/header/header-sv/header-sv.component.html:42,43</source><ph name="START_HEADING_LEVEL3"><ex>&lt;h3&gt;</ex>&lt;h3&gt;</ph>Min side<ph name="CLOSE_HEADING_LEVEL3"><ex>&lt;/h3&gt;</ex>&lt;/h3&gt;</ph>
         </msg>
-  <msg id="header.blog2”" desc="blog" meaning="“Headerlink"><source>app/shared/components/header/header-no/header-no.component.html:54,55</source><ph name="START_HEADING_LEVEL3"><ex>&lt;h3&gt;</ex>&lt;h3&gt;</ph>Blogg<ph name="CLOSE_HEADING_LEVEL3"><ex>&lt;/h3&gt;</ex>&lt;/h3&gt;</ph>
+  <msg id="header.blog2”" desc="blog" meaning="“Headerlink"><source>app/shared/components/header/header-sv/header-sv.component.html:54,55</source><ph name="START_HEADING_LEVEL3"><ex>&lt;h3&gt;</ex>&lt;h3&gt;</ph>Blogg<ph name="CLOSE_HEADING_LEVEL3"><ex>&lt;/h3&gt;</ex>&lt;/h3&gt;</ph>
         </msg>
-  <msg id="header.contact2”" desc="contact" meaning="“Headerlink"><source>app/shared/components/header/header-no/header-no.component.html:60,61</source><ph name="START_HEADING_LEVEL3"><ex>&lt;h3&gt;</ex>&lt;h3&gt;</ph>Kontakt<ph name="CLOSE_HEADING_LEVEL3"><ex>&lt;/h3&gt;</ex>&lt;/h3&gt;</ph>
+  <msg id="header.contact2”" desc="contact" meaning="“Headerlink"><source>app/shared/components/header/header-sv/header-sv.component.html:60,61</source><ph name="START_HEADING_LEVEL3"><ex>&lt;h3&gt;</ex>&lt;h3&gt;</ph>Kontakt<ph name="CLOSE_HEADING_LEVEL3"><ex>&lt;/h3&gt;</ex>&lt;/h3&gt;</ph>
         </msg>
-  <msg id="header.aboutUs2”" desc="about-us" meaning="“Headerlink"><source>app/shared/components/header/header-no/header-no.component.html:66,67</source><ph name="START_HEADING_LEVEL3"><ex>&lt;h3&gt;</ex>&lt;h3&gt;</ph>Om oss<ph name="CLOSE_HEADING_LEVEL3"><ex>&lt;/h3&gt;</ex>&lt;/h3&gt;</ph>
+  <msg id="header.aboutUs2”" desc="about-us" meaning="“Headerlink"><source>app/shared/components/header/header-sv/header-sv.component.html:66,67</source><ph name="START_HEADING_LEVEL3"><ex>&lt;h3&gt;</ex>&lt;h3&gt;</ph>Om oss<ph name="CLOSE_HEADING_LEVEL3"><ex>&lt;/h3&gt;</ex>&lt;/h3&gt;</ph>
         </msg>
-  <msg id="header.logOut2”" desc="log-out" meaning="“Headerlink"><source>app/shared/components/header/header-no/header-no.component.html:77,78</source><ph name="START_HEADING_LEVEL3"><ex>&lt;h3&gt;</ex>&lt;h3&gt;</ph>Logg ut<ph name="CLOSE_HEADING_LEVEL3"><ex>&lt;/h3&gt;</ex>&lt;/h3&gt;</ph>
+  <msg id="header.logOut2”" desc="log-out" meaning="“Headerlink"><source>app/shared/components/header/header-sv/header-sv.component.html:77,78</source><ph name="START_HEADING_LEVEL3"><ex>&lt;h3&gt;</ex>&lt;h3&gt;</ph>Logg ut<ph name="CLOSE_HEADING_LEVEL3"><ex>&lt;/h3&gt;</ex>&lt;/h3&gt;</ph>
         </msg>
   <msg id="footer.privacy”" desc="footer" meaning="“privacy"><source>app/shared/components/footer/footer.component.html:8,10</source>
       Personvern
@@ -49,41 +49,44 @@
     </msg>
   <msg id="popup.privacy.option1”" desc="more" meaning="“button"><source>app/app.component.html:18</source>Vis meg mer</msg>
   <msg id="popup.privacy.option2”" desc="accept" meaning="“button"><source>app/app.component.html:23</source>JEG FORSTÅR</msg>
-  <msg id="landing.encouragement" desc="landing-page" meaning="encouragement"><source>app/features/landing/landing.component.html:14</source>Renteradar finner den beste boliglånsrenten helt gratis.</msg>
-  <msg id="landing.description" desc="landing-page" meaning="description"><source>app/features/landing/landing.component.html:18,21</source>
-              Ingen utfylling av skjema. <ph name="LINE_BREAK"><ex>&lt;br&gt;</ex>&lt;br&gt;</ph>
+  <msg id="landing.encouragement" desc="landing-page" meaning="encouragement"><source>app/features/landing/landing.component.html:13,14</source>Renteradar finner den beste boliglånsrenten helt
+                                                                        gratis.</msg>
+  <msg id="landing.description" desc="landing-page" meaning="description"><source>app/features/landing/landing.component.html:18,22</source>
+              Ingen utfylling av skjema.
+              <ph name="LINE_BREAK"><ex>&lt;br&gt;</ex>&lt;br&gt;</ph>
               Logg inn med BankID på mobil.
             </msg>
-  <msg id="landing.explanationService" desc="landing-page" meaning="explanation-service"><source>app/features/landing/landing.component.html:25</source>Få oversikt og spar penger med et klikk.</msg>
-  <msg id="landing.descriptionService" desc="landing-page" meaning="description-service"><source>app/features/landing/landing.component.html:29,32</source>
+  <msg id="landing.explanationService" desc="landing-page" meaning="explanation-service"><source>app/features/landing/landing.component.html:26,27</source>Få oversikt og spar penger med et
+                                                                                   klikk.</msg>
+  <msg id="landing.descriptionService" desc="landing-page" meaning="description-service"><source>app/features/landing/landing.component.html:31,34</source>
               Renteradar overvåker markedet og gir deg beskjed når det kommer
               bedre tilbud.
             </msg>
-  <msg id="landing.function" desc="landing-page" meaning="how-it-functions"><source>app/features/landing/landing.component.html:40</source>Slik fungerer det</msg>
-  <msg id="landing.automaticService" desc="landing-page" meaning="automatic-service"><source>app/features/landing/landing.component.html:43,46</source>
+  <msg id="landing.function" desc="landing-page" meaning="how-it-functions"><source>app/features/landing/landing.component.html:42</source>Slik fungerer det</msg>
+  <msg id="landing.automaticService" desc="landing-page" meaning="automatic-service"><source>app/features/landing/landing.component.html:45,48</source>
             Renteradar henter renten og dine lånedetaljer automatisk med BankID på
             mobil.
           </msg>
-  <msg id="landing.comparingService" desc="landing-page" meaning="comparing-service"><source>app/features/landing/landing.component.html:48,52</source>
+  <msg id="landing.comparingService" desc="landing-page" meaning="comparing-service"><source>app/features/landing/landing.component.html:50,54</source>
             Vi sammenligner renten du betaler med renten du kan få i andre banker
             og viser deg hvor mye du kan spare. Du kan også prute i banken du er
             kunde med et klikk.
           </msg>
-  <msg id="landing.surveillanceService" desc="landing-page" meaning="surveillance-service"><source>app/features/landing/landing.component.html:69,72</source>
+  <msg id="landing.surveillanceService" desc="landing-page" meaning="surveillance-service"><source>app/features/landing/landing.component.html:71,74</source>
           Vi overvåker markedet og gir deg beskjed når nye og bedre tilbud er
           tilgjengelig i fremtiden!
         </msg>
-  <msg id="landing.title.explanation" desc="landing-page" meaning="title-explanation"><source>app/features/landing/landing.component.html:80</source>Slik fungerer det</msg>
-  <msg id="landing.step1.explanation" desc="landing-page" meaning="step1-explanation"><source>app/features/landing/landing.component.html:81,84</source>
+  <msg id="landing.title.explanation" desc="landing-page" meaning="title-explanation"><source>app/features/landing/landing.component.html:82</source>Slik fungerer det</msg>
+  <msg id="landing.step1.explanation" desc="landing-page" meaning="step1-explanation"><source>app/features/landing/landing.component.html:83,86</source>
             Renteradar henter renten og dine lånedetaljer automatisk med BankID på
             mobil.
           </msg>
-  <msg id="landing.step2.explanation" desc="landing-page" meaning="step2-explanation"><source>app/features/landing/landing.component.html:85,89</source>
+  <msg id="landing.step2.explanation" desc="landing-page" meaning="step2-explanation"><source>app/features/landing/landing.component.html:87,91</source>
             Vi sammenligner renten du betaler med renten du kan få i andre banker
             og viser deg hvor mye du kan spare. Du kan også prute i banken du er
             kunde med et klikk.
           </msg>
-  <msg id="landing.step3.explanation" desc="landing-page" meaning="step3-explanation"><source>app/features/landing/landing.component.html:96,99</source>
+  <msg id="landing.step3.explanation" desc="landing-page" meaning="step3-explanation"><source>app/features/landing/landing.component.html:98,101</source>
             Vi overvåker markedet og gir deg beskjed når nye og bedre tilbud er
             tilgjengelig i fremtiden!
           </msg>
@@ -555,38 +558,38 @@
       </msg>
   <msg id="contactUs.send”" desc="send" meaning="“message"><source>app/features/contact-us/contact-us.component.html:109,110</source>Send
     </msg>
-  <msg id="close”" desc="button" meaning="“close"><source>app/features/init-confirmation/dialog-info/dialog-info.component.html:5,7</source><source>app/features/dashboard/profile/dialog-info/dialog-info.component.html:8,10</source><source>app/features/dashboard/offers/offers-blue/bank-rating-dialog/bank-rating-dialog.component.html:23,25</source><source>app/features/auth/bank-id-login/dialog-info-service/dialog-info-service.component.html:47</source><source>app/features/dashboard/offers/ltv-too-high-dialog/ltv-too-high-dialog.component.html:27</source><source>app/features/dashboard/offers/bargain-success/referral/referral.component.html:74,76</source>
+  <msg id="close”" desc="button" meaning="“close"><source>app/features/init-confirmation/dialog-info/dialog-info.component.html:5,7</source><source>app/features/dashboard/profile/dialog-info/dialog-info.component.html:8,10</source><source>app/features/dashboard/offers/offers-blue/bank-rating-dialog/bank-rating-dialog-sv/bank-rating-dialog.component.html:13,15</source><source>app/features/auth/bank-id-login/dialog-info-service/dialog-info-service.component.html:47</source><source>app/features/dashboard/offers/ltv-too-high-dialog/ltv-too-high-dialog.component.html:27</source><source>app/features/dashboard/offers/bargain-success/referral/referral.component.html:74,76</source>
     Lukk
   </msg>
-  <msg id="info.confirmation.hi”" desc="info-confirmation" meaning="“hi"><source>app/features/init-confirmation/init-confirmation-no/init-confirmation.component.html:4</source>Hei, <ph name="INTERPOLATION"><ex>{{ userData.name | titlecase }}</ex>{{ userData.name | titlecase }}</ph></msg>
-  <msg id="info.confirmation.moreInfo”" desc="info-confirmation" meaning="“more-infor"><source>app/features/init-confirmation/init-confirmation-no/init-confirmation.component.html:5</source><source>app/features/init-confirmation/init-confirmation.component.html:5</source>Vi trenger litt mer informasjon før vi kan søke etter tilbud</msg>
-  <msg id="info.confirmation.empty”" desc="info-confirmation" meaning="“empty"><source>app/features/init-confirmation/init-confirmation-no/init-confirmation.component.html:28,30</source><source>app/features/init-confirmation/init-confirmation.component.html:29,31</source>
-            Kan ikke være tom
-          </msg>
-  <msg id="info.confirmation.invalid”" desc="info-confirmation" meaning="“invalid"><source>app/features/init-confirmation/init-confirmation-no/init-confirmation.component.html:34,36</source><source>app/features/init-confirmation/init-confirmation.component.html:35,37</source>
-            Ugyldig e-post
-          </msg>
-  <msg id="info.confirmation.empty2”" desc="info-confirmation" meaning="“empty2"><source>app/features/init-confirmation/init-confirmation-no/init-confirmation.component.html:63,65</source><source>app/features/init-confirmation/init-confirmation.component.html:64,66</source>
+  <msg id="info.confirmation.hi”" desc="info-confirmation" meaning="“hi"><source>app/features/init-confirmation/init-confirmation-sv/init-confirmation.component.html:4</source>Hei, <ph name="INTERPOLATION"><ex>{{ userData.name | titlecase }}</ex>{{ userData.name | titlecase }}</ph></msg>
+  <msg id="info.confirmation.moreInfo”" desc="info-confirmation" meaning="“more-infor"><source>app/features/init-confirmation/init-confirmation-sv/init-confirmation.component.html:5</source><source>app/features/init-confirmation/init-confirmation.component.html:5</source>Vi trenger litt mer informasjon før vi kan søke etter tilbud</msg>
+  <msg id="info.confirmation.empty”" desc="info-confirmation" meaning="“empty"><source>app/features/init-confirmation/init-confirmation-sv/init-confirmation.component.html:28,30</source><source>app/features/init-confirmation/init-confirmation.component.html:29,31</source>
+              Kan ikke være tom
+            </msg>
+  <msg id="info.confirmation.invalid”" desc="info-confirmation" meaning="“invalid"><source>app/features/init-confirmation/init-confirmation-sv/init-confirmation.component.html:34,36</source><source>app/features/init-confirmation/init-confirmation.component.html:35,37</source>
+              Ugyldig e-post
+            </msg>
+  <msg id="info.confirmation.empty2”" desc="info-confirmation" meaning="“empty2"><source>app/features/init-confirmation/init-confirmation-sv/init-confirmation.component.html:63,65</source><source>app/features/init-confirmation/init-confirmation.component.html:64,66</source>
+                  Kan ikke være tom
+                </msg>
+  <msg id="info.confirmation.help”" desc="info-confirmation" meaning="“help"><source>app/features/init-confirmation/init-confirmation-sv/init-confirmation.component.html:71,73</source><source>app/features/init-confirmation/init-confirmation.component.html:72,74</source>
+              <ph name="START_TAG_MAT_ICON"><ex>&lt;mat-icon&gt;</ex>&lt;mat-icon&gt;</ph>help<ph name="CLOSE_TAG_MAT_ICON"><ex>&lt;/mat-icon&gt;</ex>&lt;/mat-icon&gt;</ph>
+            </msg>
+  <msg id="info.confirmation.organization”" desc="info-confirmation" meaning="“organization"><source>app/features/init-confirmation/init-confirmation-sv/init-confirmation.component.html:77,79</source><source>app/features/init-confirmation/init-confirmation.component.html:114,116</source>
+          Bankene gir ofte bedre betingelser om du er medlem i en organisasjon
+        </msg>
+  <msg id="info.confirmation.myMemberships”" desc="info-confirmation" meaning="“my-memberships"><source>app/features/init-confirmation/init-confirmation-sv/init-confirmation.component.html:101,103</source><source>app/features/init-confirmation/init-confirmation.component.html:138,140</source>
+          Mine medlemskap
+        </msg>
+  <msg id="info.confirmation.done”" desc="info-confirmation" meaning="“done"><source>app/features/init-confirmation/init-confirmation-sv/init-confirmation.component.html:120,122</source><source>app/features/init-confirmation/init-confirmation.component.html:157,159</source>
+          Ferdig!
+        </msg>
+  <msg id="info.confirmation.empty3”" desc="info-confirmation" meaning="“empty3"><source>app/features/init-confirmation/init-confirmation.component.html:96,98</source>
                 Kan ikke være tom
               </msg>
-  <msg id="info.confirmation.help”" desc="info-confirmation" meaning="“help"><source>app/features/init-confirmation/init-confirmation-no/init-confirmation.component.html:71,73</source><source>app/features/init-confirmation/init-confirmation.component.html:72,74</source>
+  <msg id="info.confirmation.help2”" desc="info-confirmation" meaning="“help2"><source>app/features/init-confirmation/init-confirmation.component.html:108,110</source>
             <ph name="START_TAG_MAT_ICON"><ex>&lt;mat-icon&gt;</ex>&lt;mat-icon&gt;</ph>help<ph name="CLOSE_TAG_MAT_ICON"><ex>&lt;/mat-icon&gt;</ex>&lt;/mat-icon&gt;</ph>
           </msg>
-  <msg id="info.confirmation.empty3”" desc="info-confirmation" meaning="“empty3"><source>app/features/init-confirmation/init-confirmation-no/init-confirmation.component.html:95,97</source><source>app/features/init-confirmation/init-confirmation.component.html:96,98</source>
-                Kan ikke være tom
-              </msg>
-  <msg id="info.confirmation.help2”" desc="info-confirmation" meaning="“help2"><source>app/features/init-confirmation/init-confirmation-no/init-confirmation.component.html:107,109</source><source>app/features/init-confirmation/init-confirmation.component.html:108,110</source>
-            <ph name="START_TAG_MAT_ICON"><ex>&lt;mat-icon&gt;</ex>&lt;mat-icon&gt;</ph>help<ph name="CLOSE_TAG_MAT_ICON"><ex>&lt;/mat-icon&gt;</ex>&lt;/mat-icon&gt;</ph>
-          </msg>
-  <msg id="info.confirmation.organization”" desc="info-confirmation" meaning="“organization"><source>app/features/init-confirmation/init-confirmation-no/init-confirmation.component.html:113,115</source><source>app/features/init-confirmation/init-confirmation.component.html:114,116</source>
-        Bankene gir ofte bedre betingelser om du er medlem i en organisasjon
-      </msg>
-  <msg id="info.confirmation.myMemberships”" desc="info-confirmation" meaning="“my-memberships"><source>app/features/init-confirmation/init-confirmation-no/init-confirmation.component.html:137,139</source><source>app/features/init-confirmation/init-confirmation.component.html:138,140</source>
-        Mine medlemskap
-      </msg>
-  <msg id="info.confirmation.done”" desc="info-confirmation" meaning="“done"><source>app/features/init-confirmation/init-confirmation-no/init-confirmation.component.html:156,158</source><source>app/features/init-confirmation/init-confirmation.component.html:157,159</source>
-        Ferdig!
-      </msg>
   <msg id="get.notified.noSupport”" desc="get-notified" meaning="“no-support"><source>app/features/get-notified/get-notified.component.html:5,8</source>
      Vi har desverre ikke støtte for banken din enda.<ph name="LINE_BREAK"><ex>&lt;br&gt;</ex>&lt;br&gt;</ph>
      Legg igjen din epost så gir vi deg beskjed når det er klart. 
@@ -674,83 +677,46 @@
   <msg id="email.preferences.saveChanges”" desc="email-preferences" meaning="“save-changes"><source>app/features/email-preferences/email-preferences.component.html:85,87</source>
                 Lagre endringer
             </msg>
-  <msg id="offers.mainPage.bestOffers3”" desc="offers-main" meaning="“best-offers3"><source>app/features/dashboard/offers/offers-list/offers-list-no/offers-list-no.component.html:2,4</source>
+  <msg id="landing.title" desc="landing-page" meaning="title"><source>app/features/landing/landing-top-sv/landing-top-sv.component.html:7,9</source>
+    Få beste <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>boliglånsrente<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph>
+  </msg>
+  <msg id="landing.bestOffer" desc="Call-to-action-button" meaning="CTA button"><source>app/features/landing/landing-top-sv/landing-top-sv.component.html:16,18</source>
+  Finn beste tilbud
+</msg>
+  <msg id="offers.mainPage.bestOffers3”" desc="offers-main" meaning="“best-offers3"><source>app/features/dashboard/offers/offers-list/offers-list-sv/offers-list-sv.component.html:2,4</source>
       Beste tilbud:
     </msg>
-  <msg id="offers.mainPage.yourInterestStickyBox”" desc="offers-main" meaning="“your-interest"><source>app/features/dashboard/offers/offers-list/offers-list-no/offers-list-no.component.html:7</source>Min effektive rente: </msg>
-  <msg id="details.component.product”" desc="details" meaning="“product"><source>app/features/dashboard/offers/offers-blue/details/details-no/details-no.component.html:5</source><source>app/features/dashboard/offers/dialog-info/dialog-info.component.html:8</source>Produkt</msg>
-  <msg id="details.component.maxLeverage”" desc="details" meaning="“max-leverage"><source>app/features/dashboard/offers/offers-blue/details/details-no/details-no.component.html:9</source><source>app/features/dashboard/offers/dialog-info/dialog-info.component.html:12</source>Max belåningsgrad</msg>
-  <msg id="details.component.nominalInterest”" desc="details" meaning="“nominal-interest"><source>app/features/dashboard/offers/offers-blue/details/details-no/details-no.component.html:13</source><source>app/features/dashboard/offers/dialog-info/dialog-info.component.html:16</source>Nominell rente</msg>
-  <msg id="details.component.efficientInterest”" desc="details" meaning="“efficient-interest"><source>app/features/dashboard/offers/offers-blue/details/details-no/details-no.component.html:17</source><source>app/features/dashboard/offers/dialog-info/dialog-info.component.html:20</source>Effektiv rente</msg>
-  <msg id="details.component.productDemand”" desc="details" meaning="“product-demand"><source>app/features/dashboard/offers/offers-blue/details/details-no/details-no.component.html:20,23</source><source>app/features/dashboard/offers/dialog-info/dialog-info.component.html:23,26</source>
+  <msg id="offers.mainPage.yourInterestStickyBox”" desc="offers-main" meaning="“your-interest"><source>app/features/dashboard/offers/offers-list/offers-list-sv/offers-list-sv.component.html:13</source>Min effektive rente: </msg>
+  <msg id="loans.title”" desc="loans" meaning="“title"><source>app/features/dashboard/loans/loans-blue/loans-sv/loans-sv.component.html:4</source>Sammendrag av lån</msg>
+  <msg id="loans.outbound”" desc="loans" meaning="“text-outbound"><source>app/features/dashboard/loans/loans-blue/loans-sv/loans-sv.component.html:8</source>Utestående lån</msg>
+  <msg id="loans.mortgage.amount”" desc="loans" meaning="“mortgage-amount"><source>app/features/dashboard/loans/loans-blue/loans-sv/loans-sv.component.html:9,12</source><source>app/features/dashboard/loans/loans-blue/loans-sv/loans-sv.component.html:35,37</source>
+              <ph name="INTERPOLATION"><ex>{{ loansData.totalOutstandingDebt / 1000000 | number: &quot;1.3-3&quot; }}</ex>{{ loansData.totalOutstandingDebt / 1000000 | number: &quot;1.3-3&quot; }}</ph>
+              millioner
+            </msg>
+  <msg id="loans.interest”" desc="loans" meaning="“text-interest"><source>app/features/dashboard/loans/loans-blue/loans-sv/loans-sv.component.html:15</source>Effektiv rente</msg>
+  <msg id="loans.mortgage”" desc="loans" meaning="“mortgage"><source>app/features/dashboard/loans/loans-blue/loans-sv/loans-sv.component.html:34</source>Utestående lån</msg>
+  <msg id="loans.mortgage.interest”" desc="loans" meaning="“mortgage-interest"><source>app/features/dashboard/loans/loans-blue/loans-sv/loans-sv.component.html:40</source>Effektiv rente</msg>
+  <msg id="details.component.product”" desc="details" meaning="“product"><source>app/features/dashboard/offers/offers-blue/details/details-sv/details-sv.component.html:5</source><source>app/features/dashboard/offers/dialog-info/dialog-info.component.html:8</source>Produkt</msg>
+  <msg id="details.component.maxLeverage”" desc="details" meaning="“max-leverage"><source>app/features/dashboard/offers/offers-blue/details/details-sv/details-sv.component.html:9</source><source>app/features/dashboard/offers/dialog-info/dialog-info.component.html:12</source>Max belåningsgrad</msg>
+  <msg id="details.component.nominalInterest”" desc="details" meaning="“nominal-interest"><source>app/features/dashboard/offers/offers-blue/details/details-sv/details-sv.component.html:13</source><source>app/features/dashboard/offers/dialog-info/dialog-info.component.html:16</source>Nominell rente</msg>
+  <msg id="details.component.efficientInterest”" desc="details" meaning="“efficient-interest"><source>app/features/dashboard/offers/offers-blue/details/details-sv/details-sv.component.html:17</source><source>app/features/dashboard/offers/dialog-info/dialog-info.component.html:20</source>Effektiv rente</msg>
+  <msg id="details.component.productDemand”" desc="details" meaning="“product-demand"><source>app/features/dashboard/offers/offers-blue/details/details-sv/details-sv.component.html:20,23</source><source>app/features/dashboard/offers/dialog-info/dialog-info.component.html:23,26</source>
           <ph name="START_PARAGRAPH"><ex>&lt;p&gt;</ex>&lt;p&gt;</ph>Krav om annet produkt<ph name="CLOSE_PARAGRAPH"><ex>&lt;/p&gt;</ex>&lt;/p&gt;</ph>
-          <ph name="START_PARAGRAPH_1"><ex>&lt;p&gt;</ex>&lt;p&gt;</ph><ph name="INTERPOLATION"><ex>{{ offer.requiredProductPackage == null ? &quot;Nei&quot; : &quot;Ja&quot; }}</ex>{{ offer.requiredProductPackage == null ? &quot;Nei&quot; : &quot;Ja&quot; }}</ph><ph name="CLOSE_PARAGRAPH"><ex>&lt;/p&gt;</ex>&lt;/p&gt;</ph>
+          <ph name="START_PARAGRAPH_1"><ex>&lt;p&gt;</ex>&lt;p&gt;</ph><ph name="INTERPOLATION"><ex>{{ offer.requiredProductPackage == null ? &quot;Nej&quot; : &quot;Ja&quot; }}</ex>{{ offer.requiredProductPackage == null ? &quot;Nej&quot; : &quot;Ja&quot; }}</ph><ph name="CLOSE_PARAGRAPH"><ex>&lt;/p&gt;</ex>&lt;/p&gt;</ph>
       </msg>
-  <msg id="details.component.productPackage”" desc="details" meaning="“product-package"><source>app/features/dashboard/offers/offers-blue/details/details-no/details-no.component.html:26</source><source>app/features/dashboard/offers/dialog-info/dialog-info.component.html:29</source>Produktpakke</msg>
-  <msg id="details.component.productPackage.no”" desc="details" meaning="“product-no-package"><source>app/features/dashboard/offers/offers-blue/details/details-no/details-no.component.html:27</source><ph name="INTERPOLATION"><ex>{{ offer.requiredProductPackage == null ? &quot;Ingen krav&quot; :  offer.requiredProductPackage}}</ex>{{ offer.requiredProductPackage == null ? &quot;Ingen krav&quot; :  offer.requiredProductPackage}}</ph></msg>
-  <msg id="details.component.maxTime”" desc="details" meaning="“max-time"><source>app/features/dashboard/offers/offers-blue/details/details-no/details-no.component.html:30</source>Max løpetid</msg>
-  <msg id="details.component.maxDeduction”" desc="details" meaning="“max-deduction"><source>app/features/dashboard/offers/offers-blue/details/details-no/details-no.component.html:34</source>Max avdragsfrihet</msg>
-  <msg id="details.component.feeMonth”" desc="details" meaning="“fee-month"><source>app/features/dashboard/offers/offers-blue/details/details-no/details-no.component.html:38</source>Termingebyr</msg>
-  <msg id="details.component.feeEstablish”" desc="details" meaning="“fee-establish"><source>app/features/dashboard/offers/offers-blue/details/details-no/details-no.component.html:42</source>Etableringsgebyr</msg>
-  <msg id="details.component.feeStart”" desc="details" meaning="“fee-start"><source>app/features/dashboard/offers/offers-blue/details/details-no/details-no.component.html:46</source>Depotgebyr</msg>
-  <msg id="details.component.market”" desc="details" meaning="“market"><source>app/features/dashboard/offers/offers-blue/details/details-no/details-no.component.html:50</source>Markedsområde</msg>
-  <msg id="details.component.demandMembership”" desc="details" meaning="“demand-membership"><source>app/features/dashboard/offers/offers-blue/details/details-no/details-no.component.html:54</source><source>app/features/dashboard/offers/dialog-info/dialog-info.component.html:34</source>Forutsetter medlemskap</msg>
-  <msg id="details.component.noYes”" desc="details" meaning="“no-yes"><source>app/features/dashboard/offers/offers-blue/details/details-no/details-no.component.html:55</source><ph name="INTERPOLATION"><ex>{{ offer.requiredMembership == null ? &quot;Nei&quot; : &quot;Ja&quot; }}</ex>{{ offer.requiredMembership == null ? &quot;Nei&quot; : &quot;Ja&quot; }}</ph></msg>
-  <msg id="details.component.membership”" desc="details" meaning="“membership"><source>app/features/dashboard/offers/offers-blue/details/details-no/details-no.component.html:59</source><source>app/features/dashboard/offers/dialog-info/dialog-info.component.html:39</source>Medlemskap</msg>
-  <msg id="details.component.other”" desc="details" meaning="“other-conditions"><source>app/features/dashboard/offers/offers-blue/details/details-no/details-no.component.html:65</source><ph name="INTERPOLATION"><ex>{{offer.otherConditions ? &quot;Forbehold:&quot; : &quot;Ingen forbehold&quot;}}</ex>{{offer.otherConditions ? &quot;Forbehold:&quot; : &quot;Ingen forbehold&quot;}}</ph> </msg>
-  <msg id="change.bank.title”" desc="change-bank" meaning="“title"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:5</source>Melding til banken din:</msg>
-  <msg id="change.bank.intro" desc="change-bank" meaning="test"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:9,16</source>
-  Hei,
-  <ph name="LINE_BREAK"><ex>&lt;br&gt;</ex>&lt;br&gt;</ph>
-  <ph name="LINE_BREAK"><ex>&lt;br&gt;</ex>&lt;br&gt;</ph>
-  Jeg er kunde i banken i dag, men jeg har funnet et bedre tilbud på
-  <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>renteradar.no<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph> og vurderer å bytte. Før jeg går videre lurer jeg på om dere kan
-  matche tilbudet?
-</msg>
-  <msg id="change.bank.info”" desc="change-bank" meaning="“info"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:19</source><ph name="START_BOLD_TEXT"><ex>&lt;b&gt;</ex>&lt;b&gt;</ph>Opplysninger om tilbud:<ph name="CLOSE_BOLD_TEXT"><ex>&lt;/b&gt;</ex>&lt;/b&gt;</ph></msg>
-  <msg id="change.bank.infoAmount”" desc="change-bank" meaning="“info-amount"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:23</source>Lånebeløp:</msg>
-  <msg id="change.bank.infoValue”" desc="change-bank" meaning="“info-value"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:27</source>Boligverdi:</msg>
-  <msg id="change.bank.infoDebt”" desc="change-bank" meaning="“info-debt"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:31</source>Fellesgjeld:</msg>
-  <msg id="change.bank.infoLeverage”" desc="change-bank" meaning="“info-leverage"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:35</source>Est. belåningsgrad:</msg>
-  <msg id="change.bank.infoTime.remaining”" desc="change-bank" meaning="“info-time-remaining"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:40</source>Nedbetalingstid:</msg>
-  <msg id="change.bank.infoAge”" desc="change-bank" meaning="“info-age"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:44</source>Min alder:</msg>
-  <msg id="change.bank.infoBank”" desc="change-bank" meaning="“info-bank"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:48</source>Bank:</msg>
-  <msg id="change.bank.infoProduct”" desc="change-bank" meaning="“info-product"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:52</source>Produktnavn:</msg>
-  <msg id="change.bank.infoNominal”" desc="change-bank" meaning="“info-nominal-interest"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:56</source>Nominell rente:</msg>
-  <msg id="change.bank.infoEffective”" desc="change-bank" meaning="“info-effective-interest"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:60</source>Effektiv rente:</msg>
-  <msg id="change.bank.infoProduct2”" desc="change-bank" meaning="“info-product2"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:65</source>Produkt:</msg>
-  <msg id="change.bank.infoLink”" desc="change-bank" meaning="“info-link"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:67</source>Link til produkt på Finansportalen</msg>
-  <msg id="change.bank.infoMe”" desc="change-bank" meaning="“info-me"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:72</source><ph name="START_BOLD_TEXT"><ex>&lt;b&gt;</ex>&lt;b&gt;</ph>Opplysninger om meg:<ph name="CLOSE_BOLD_TEXT"><ex>&lt;/b&gt;</ex>&lt;/b&gt;</ph></msg>
-  <msg id="change.bank.infoName”" desc="change-bank" meaning="“info-name"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:76</source>Navn:</msg>
-  <msg id="change.bank.infoPhone”" desc="change-bank" meaning="“info-phone"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:80</source>Telefon:</msg>
-  <msg id="change.bank.infoAddress”" desc="change-bank" meaning="“info-address"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:84</source>Adresse:</msg>
-  <msg id="change.bank.infoPost”" desc="change-bank" meaning="“info-post"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:88</source>Postnr:</msg>
-  <msg id="change.bank.infoMail”" desc="change-bank" meaning="“info-mail"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:94</source>E-post:</msg>
-  <msg id="change.bank.infoContact.phone”" desc="change-bank" meaning="“info-contact-phone"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:98,100</source>
-  Jeg ønsker at dere kontakter meg per telefon.
-</msg>
-  <msg id="change.bank.infoConfirmation”" desc="change-bank" meaning="“info-confirmation"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:101,104</source>
-  Jeg bekrefter at jeg er over 18 år og myndig eller oppnevnt som verge, samt at
-  banken ved behov kan foreta en kredittvurdering.
-</msg>
-  <msg id="change.bank.kindRegards”" desc="change-bank" meaning="“kind-regards"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:105,108</source>
-  Mvh,<ph name="LINE_BREAK"><ex>&lt;br&gt;</ex>&lt;br&gt;</ph>
-  <ph name="INTERPOLATION"><ex>{{ data.preview.clientInfo.name }}</ex>{{ data.preview.clientInfo.name }}</ph>
-</msg>
-  <msg id="change.bank.infoSent”" desc="change-bank" meaning="“info-sent-message"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:113,117</source>
-  Meldingen sendes til din bank per mail med deg som avsender. Du får også en
-  kopi av meldingen i din innboks. Ønsker du å kontakte din bank direkte kan du
-  kopiere teksten og bruke den som utgangspunkt for dialog.
-</msg>
-  <msg id="change.bank.ageConfirmation”" desc="change-bank" meaning="“age-confirmation"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:123,126</source>
-    Jeg bekrefter at jeg er over 18 år og myndig eller oppnevnt som verge, samt
-    at banken ved behov kan foreta en kredittvurdering.
-  </msg>
-  <msg id="change.bank.sendBank”" desc="change-bank" meaning="“send-bank"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:133,134</source>Send til banken
-    </msg>
-  <msg id="change.bank.cancel”" desc="change-bank" meaning="“cancel"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:136,138</source>
-      Avbryt
-    </msg>
+  <msg id="details.component.productPackage”" desc="details" meaning="“product-package"><source>app/features/dashboard/offers/offers-blue/details/details-sv/details-sv.component.html:26</source><source>app/features/dashboard/offers/dialog-info/dialog-info.component.html:29</source>Produktpakke</msg>
+  <msg id="details.component.demandMembership”" desc="details" meaning="“demand-membership"><source>app/features/dashboard/offers/offers-blue/details/details-sv/details-sv.component.html:31</source><source>app/features/dashboard/offers/dialog-info/dialog-info.component.html:34</source>Forutsetter medlemskap</msg>
+  <msg id="details.component.membership”" desc="details" meaning="“membership"><source>app/features/dashboard/offers/offers-blue/details/details-sv/details-sv.component.html:36</source><source>app/features/dashboard/offers/dialog-info/dialog-info.component.html:39</source>Medlemskap</msg>
+  <msg id="details.component.other”" desc="details" meaning="“other-conditions"><source>app/features/dashboard/offers/offers-blue/details/details-sv/details-sv.component.html:44</source><ph name="INTERPOLATION"><ex>{{offer.otherConditions ? &quot;Krav:&quot; : &quot;Inget krav&quot;}}</ex>{{offer.otherConditions ? &quot;Krav:&quot; : &quot;Inget krav&quot;}}</ph> </msg>
+  <msg id="change.bank.info”" desc="change-bank" meaning="“info"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog-sv/change-bank-dialog-sv.component.html:103</source><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:19</source><ph name="START_BOLD_TEXT"><ex>&lt;b&gt;</ex>&lt;b&gt;</ph>Opplysninger om tilbud:<ph name="CLOSE_BOLD_TEXT"><ex>&lt;/b&gt;</ex>&lt;/b&gt;</ph></msg>
+  <msg id="change.bank.infoAmount”" desc="change-bank" meaning="“info-amount"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog-sv/change-bank-dialog-sv.component.html:107</source><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:23</source>Lånebeløp:</msg>
+  <msg id="change.bank.infoValue”" desc="change-bank" meaning="“info-value"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog-sv/change-bank-dialog-sv.component.html:111</source><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:27</source>Boligverdi:</msg>
+  <msg id="change.bank.infoLeverage”" desc="change-bank" meaning="“info-leverage"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog-sv/change-bank-dialog-sv.component.html:116</source><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:35</source>Est. belåningsgrad:</msg>
+  <msg id="change.bank.infoTime.remaining”" desc="change-bank" meaning="“info-time-remaining"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog-sv/change-bank-dialog-sv.component.html:121</source><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:40</source>Nedbetalingstid:</msg>
+  <msg id="change.bank.infoBank”" desc="change-bank" meaning="“info-bank"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog-sv/change-bank-dialog-sv.component.html:125</source><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:48</source>Bank:</msg>
+  <msg id="change.bank.infoProduct”" desc="change-bank" meaning="“info-product"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog-sv/change-bank-dialog-sv.component.html:129</source><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:52</source>Produktnavn:</msg>
+  <msg id="change.bank.infoNominal”" desc="change-bank" meaning="“info-nominal-interest"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog-sv/change-bank-dialog-sv.component.html:133</source><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:56</source>Nominell rente:</msg>
+  <msg id="change.bank.infoEffective”" desc="change-bank" meaning="“info-effective-interest"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog-sv/change-bank-dialog-sv.component.html:137</source><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:60</source>Effektiv rente:</msg>
   <msg id="aboutUs”" desc="about-us" meaning="“headline"><source>app/features/about-us/about-us.component.html:2</source>Om oss</msg>
   <msg id="aboutUs.intro1”" desc="intro" meaning="“text"><source>app/features/about-us/about-us.component.html:3,8</source>
     <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>Renteradar.no<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph> så sitt lys våren 2019. Vi var en gjeng som mente at det var vanskelig å
@@ -782,26 +748,73 @@
     innenfor bank, finans og teknologi. Sammen har vi satt dette i system som skal komme brukerne av
     <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>Renteradar.no<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph> til gode.
   </msg>
-  <msg id="aboutUs.Finn”" desc="about-us" meaning="“title"><source>app/features/about-us/about-us.component.html:56</source><ph name="START_ITALIC_TEXT"><ex>&lt;i&gt;</ex>&lt;i&gt;</ph>Co-Founder<ph name="CLOSE_ITALIC_TEXT"><ex>&lt;/i&gt;</ex>&lt;/i&gt;</ph></msg>
-  <msg id="aboutUs.finn.intro”" desc="about-us" meaning="“text"><source>app/features/about-us/about-us.component.html:59,63</source>
-        Finn Olav er økonom fra Cass Business School i London og har jobbet fem år med renter i
-        Nordea Markets. Nå har han tatt steget ut fra bank-verden for å leve ut gründer-drømmen.
-        Finn Olav er tall-knuseren vår som elsker statistikk og data.
-      </msg>
-  <msg id="aboutUs.fredrik”" desc="about-us" meaning="“title"><source>app/features/about-us/about-us.component.html:71</source><ph name="START_ITALIC_TEXT"><ex>&lt;i&gt;</ex>&lt;i&gt;</ph>Daglig Leder/Founder<ph name="CLOSE_ITALIC_TEXT"><ex>&lt;/i&gt;</ex>&lt;/i&gt;</ph></msg>
-  <msg id="aboutUs.fredrik.intro”" desc="about-us" meaning="“text"><source>app/features/about-us/about-us.component.html:74,79</source>
+  <msg id="aboutUs.fredrik”" desc="about-us" meaning="“title"><source>app/features/about-us/about-us.component.html:52</source><ph name="START_ITALIC_TEXT"><ex>&lt;i&gt;</ex>&lt;i&gt;</ph>Daglig Leder/Founder<ph name="CLOSE_ITALIC_TEXT"><ex>&lt;/i&gt;</ex>&lt;/i&gt;</ph></msg>
+  <msg id="aboutUs.fredrik.intro”" desc="about-us" meaning="“text"><source>app/features/about-us/about-us.component.html:55,60</source>
         Fredrik er ingeniør fra NTNU og arkitekten bak <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>Renteradar.no<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph>.
         Han brenner for å gi våre kunder verdi og finne gode løsninger.
         Før Fredrik startet opp <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>Renteradar.no<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph> jobbet han som
         konsulent i Arkwright Consulting.
       </msg>
-  <msg id="aboutUs.sindre”" desc="about-us" meaning="“title"><source>app/features/about-us/about-us.component.html:87</source><ph name="START_ITALIC_TEXT"><ex>&lt;i&gt;</ex>&lt;i&gt;</ph>Co-Founder<ph name="CLOSE_ITALIC_TEXT"><ex>&lt;/i&gt;</ex>&lt;/i&gt;</ph></msg>
-  <msg id="aboutUs.sindre.intro”" desc="about-us" meaning="“text"><source>app/features/about-us/about-us.component.html:90,95</source>
+  <msg id="aboutUs.sanna" desc="about-us" meaning="“title"><source>app/features/about-us/about-us.component.html:66</source><ph name="START_ITALIC_TEXT"><ex>&lt;i&gt;</ex>&lt;i&gt;</ph>Country manager<ph name="CLOSE_ITALIC_TEXT"><ex>&lt;/i&gt;</ex>&lt;/i&gt;</ph></msg>
+  <msg id="aboutUs.sanna.intro”" desc="about-us" meaning="“text"><source>app/features/about-us/about-us.component.html:69,74</source>
+        Sanna er siviløkonom og har jobbet fem år i bank og finans i Sverige. 
+        Hun kommer fra boligslånsutfordreren Stabelo og før det jobbet hun i SEB. 
+        Nå skal kun ta Renteradar til Sverige og endre boliglånsmarkedet med <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>ränteradar.se <ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph>. 
+        Sanna liker teknologi, startups og boliglånsmarkedet – Perfekt match for Renteradar.
+      </msg>
+  <msg id="aboutUs.Finn”" desc="about-us" meaning="“title"><source>app/features/about-us/about-us.component.html:80</source><ph name="START_ITALIC_TEXT"><ex>&lt;i&gt;</ex>&lt;i&gt;</ph>Co-Founder<ph name="CLOSE_ITALIC_TEXT"><ex>&lt;/i&gt;</ex>&lt;/i&gt;</ph></msg>
+  <msg id="aboutUs.finn.intro”" desc="about-us" meaning="“text"><source>app/features/about-us/about-us.component.html:83,87</source>
+        Finn Olav er økonom fra Cass Business School i London og har jobbet fem år med renter i
+        Nordea Markets. Nå har han tatt steget ut fra bank-verden for å leve ut gründer-drømmen.
+        Finn Olav er tall-knuseren vår som elsker statistikk og data.
+      </msg>
+  <msg id="aboutUs.sindre”" desc="about-us" meaning="“title"><source>app/features/about-us/about-us.component.html:97</source><ph name="START_ITALIC_TEXT"><ex>&lt;i&gt;</ex>&lt;i&gt;</ph>Co-Founder<ph name="CLOSE_ITALIC_TEXT"><ex>&lt;/i&gt;</ex>&lt;/i&gt;</ph></msg>
+  <msg id="aboutUs.sindre.intro”" desc="about-us" meaning="“text"><source>app/features/about-us/about-us.component.html:100,105</source>
         Sindre er siviløkonom fra NHH og har jobbet i 15 år i DNB Markets.
         De siste fire årene ledet han aktivitetene på renteprodukter.
         Nå har han tatt forbrukernes side og vil utfordre storbankene.
         Sindre kjenner markedet for boliglån og bankene godt.
       </msg>
+  <msg id="aboutUs.stian" desc="about-us" meaning="“title"><source>app/features/about-us/about-us.component.html:111</source><ph name="START_ITALIC_TEXT"><ex>&lt;i&gt;</ex>&lt;i&gt;</ph>Frontend utvikler<ph name="CLOSE_ITALIC_TEXT"><ex>&lt;/i&gt;</ex>&lt;/i&gt;</ph></msg>
+  <msg id="aboutUs.stian.intro”" desc="about-us" meaning="“text"><source>app/features/about-us/about-us.component.html:114,118</source>
+        Stian er Frontend-utvikler og har studert informatikk på Universitetet i Oslo. 
+        Tidligere har han jobbet i oppstartsselskapet Tillit Forsikring. 
+        Stian skaper gode brukeropplevelser og står bak designet av tjenesten vår.
+      </msg>
+  <msg id="ngb.alert.close"><source>../node_modules/@ng-bootstrap/ng-bootstrap/alert/alert.d.ts:3</source>Close</msg>
+  <msg id="ngb.carousel.slide-number" desc="Currently selected slide number read by screen reader"><source>../node_modules/@ng-bootstrap/ng-bootstrap/carousel/carousel.d.ts:10,12</source>
+          Slide <ph name="INTERPOLATION"><ex>{{i + 1}}</ex>{{i + 1}}</ph> of <ph name="INTERPOLATION_1"><ex>{{c}}</ex>{{c}}</ph>
+        </msg>
+  <msg id="ngb.carousel.previous"><source>../node_modules/@ng-bootstrap/ng-bootstrap/carousel/carousel.d.ts:18</source>Previous</msg>
+  <msg id="ngb.carousel.next"><source>../node_modules/@ng-bootstrap/ng-bootstrap/carousel/carousel.d.ts:22</source>Next</msg>
+  <msg id="ngb.datepicker.previous-month"><source>../node_modules/@ng-bootstrap/ng-bootstrap/datepicker/datepicker-navigation.d.ts:4</source><source>../node_modules/@ng-bootstrap/ng-bootstrap/datepicker/datepicker-navigation.d.ts:5</source>Previous month</msg>
+  <msg id="ngb.datepicker.next-month"><source>../node_modules/@ng-bootstrap/ng-bootstrap/datepicker/datepicker-navigation.d.ts:26</source><source>../node_modules/@ng-bootstrap/ng-bootstrap/datepicker/datepicker-navigation.d.ts:27</source>Next month</msg>
+  <msg id="ngb.datepicker.select-month"><source>../node_modules/@ng-bootstrap/ng-bootstrap/datepicker/datepicker-navigation-select.d.ts:5</source><source>../node_modules/@ng-bootstrap/ng-bootstrap/datepicker/datepicker-navigation-select.d.ts:6</source>Select month</msg>
+  <msg id="ngb.datepicker.select-year"><source>../node_modules/@ng-bootstrap/ng-bootstrap/datepicker/datepicker-navigation-select.d.ts:13</source><source>../node_modules/@ng-bootstrap/ng-bootstrap/datepicker/datepicker-navigation-select.d.ts:14</source>Select year</msg>
+  <msg id="ngb.pagination.first"><source>../node_modules/@ng-bootstrap/ng-bootstrap/pagination/pagination.d.ts:2</source>««</msg>
+  <msg id="ngb.pagination.previous"><source>../node_modules/@ng-bootstrap/ng-bootstrap/pagination/pagination.d.ts:3</source>«</msg>
+  <msg id="ngb.pagination.next"><source>../node_modules/@ng-bootstrap/ng-bootstrap/pagination/pagination.d.ts:4</source>»</msg>
+  <msg id="ngb.pagination.last"><source>../node_modules/@ng-bootstrap/ng-bootstrap/pagination/pagination.d.ts:5</source>»»</msg>
+  <msg id="ngb.pagination.first-aria"><source>../node_modules/@ng-bootstrap/ng-bootstrap/pagination/pagination.d.ts:14</source>First</msg>
+  <msg id="ngb.pagination.previous-aria"><source>../node_modules/@ng-bootstrap/ng-bootstrap/pagination/pagination.d.ts:24</source>Previous</msg>
+  <msg id="ngb.pagination.next-aria"><source>../node_modules/@ng-bootstrap/ng-bootstrap/pagination/pagination.d.ts:44</source>Next</msg>
+  <msg id="ngb.pagination.last-aria"><source>../node_modules/@ng-bootstrap/ng-bootstrap/pagination/pagination.d.ts:53</source>Last</msg>
+  <msg id="ngb.progressbar.value"><source>../node_modules/@ng-bootstrap/ng-bootstrap/progressbar/progressbar.d.ts:6</source><ph name="INTERPOLATION"><ex>{{getValue() / max | percent}}</ex>{{getValue() / max | percent}}</ph></msg>
+  <msg id="ngb.timepicker.increment-hours"><source>../node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts:9</source>Increment hours</msg>
+  <msg id="ngb.timepicker.HH"><source>../node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts:13</source>HH</msg>
+  <msg id="ngb.timepicker.hours"><source>../node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts:15</source>Hours</msg>
+  <msg id="ngb.timepicker.decrement-hours"><source>../node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts:23</source>Decrement hours</msg>
+  <msg id="ngb.timepicker.increment-minutes"><source>../node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts:32</source>Increment minutes</msg>
+  <msg id="ngb.timepicker.MM"><source>../node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts:35</source>MM</msg>
+  <msg id="ngb.timepicker.minutes"><source>../node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts:37</source>Minutes</msg>
+  <msg id="ngb.timepicker.decrement-minutes"><source>../node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts:45</source>Decrement minutes</msg>
+  <msg id="ngb.timepicker.increment-seconds"><source>../node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts:54</source>Increment seconds</msg>
+  <msg id="ngb.timepicker.SS"><source>../node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts:57</source>SS</msg>
+  <msg id="ngb.timepicker.seconds"><source>../node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts:59</source>Seconds</msg>
+  <msg id="ngb.timepicker.decrement-seconds"><source>../node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts:67</source>Decrement seconds</msg>
+  <msg id="ngb.timepicker.PM"><source>../node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts:76</source><ph name="INTERPOLATION"><ex>{{ i18n.getAfternoonPeriod() }}</ex>{{ i18n.getAfternoonPeriod() }}</ph></msg>
+  <msg id="ngb.timepicker.AM"><source>../node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts:77</source><ph name="INTERPOLATION"><ex>{{ i18n.getMorningPeriod() }}</ex>{{ i18n.getMorningPeriod() }}</ph></msg>
+  <msg id="ngb.toast.close-aria"><source>../node_modules/@ng-bootstrap/ng-bootstrap/toast/toast.d.ts:8</source>Close</msg>
   <msg id="bankId.title”" desc="bank-id" meaning="“title"><source>app/features/auth/bank-id-login/bank-id-login.component.html:3</source>Logg inn med BankID på mobil</msg>
   <msg id="bankId.description”" desc="bank-id" meaning="“description"><source>app/features/auth/bank-id-login/bank-id-login.component.html:4,7</source>
       Renteradar henter lånedetaljer og renten din automatisk med BankID på
@@ -1088,6 +1101,50 @@ Fortsett
               </msg>
   <msg id="rate-type-fixed”" desc="rate-type" meaning="“not-available"><source>app/features/dashboard/rate-type-fixed/rate-type-fixed.component.html:4</source>Beklager, vi har ikke noen tjeneste for fastrente enda</msg>
   <msg id="noLoans”" desc="no-loans" meaning="“error"><source>app/features/dashboard/no-loans/no-loans.component.html:4</source>Vi fant ingen lån, er du sikker på at du har valgt riktig bank?</msg>
+  <msg id="change.bank.title”" desc="change-bank" meaning="“title"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:5</source>Melding til banken din:</msg>
+  <msg id="change.bank.intro" desc="change-bank" meaning="test"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:9,16</source>
+  Hei,
+  <ph name="LINE_BREAK"><ex>&lt;br&gt;</ex>&lt;br&gt;</ph>
+  <ph name="LINE_BREAK"><ex>&lt;br&gt;</ex>&lt;br&gt;</ph>
+  Jeg er kunde i banken i dag, men jeg har funnet et bedre tilbud på
+  <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>renteradar.no<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph> og vurderer å bytte. Før jeg går videre lurer jeg på om dere kan
+  matche tilbudet?
+</msg>
+  <msg id="change.bank.infoDebt”" desc="change-bank" meaning="“info-debt"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:31</source>Fellesgjeld:</msg>
+  <msg id="change.bank.infoAge”" desc="change-bank" meaning="“info-age"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:44</source>Min alder:</msg>
+  <msg id="change.bank.infoProduct2”" desc="change-bank" meaning="“info-product2"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:65</source>Produkt:</msg>
+  <msg id="change.bank.infoLink”" desc="change-bank" meaning="“info-link"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:67</source>Link til produkt på Finansportalen</msg>
+  <msg id="change.bank.infoMe”" desc="change-bank" meaning="“info-me"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:72</source><ph name="START_BOLD_TEXT"><ex>&lt;b&gt;</ex>&lt;b&gt;</ph>Opplysninger om meg:<ph name="CLOSE_BOLD_TEXT"><ex>&lt;/b&gt;</ex>&lt;/b&gt;</ph></msg>
+  <msg id="change.bank.infoName”" desc="change-bank" meaning="“info-name"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:76</source>Navn:</msg>
+  <msg id="change.bank.infoPhone”" desc="change-bank" meaning="“info-phone"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:80</source>Telefon:</msg>
+  <msg id="change.bank.infoAddress”" desc="change-bank" meaning="“info-address"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:84</source>Adresse:</msg>
+  <msg id="change.bank.infoPost”" desc="change-bank" meaning="“info-post"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:88</source>Postnr:</msg>
+  <msg id="change.bank.infoMail”" desc="change-bank" meaning="“info-mail"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:94</source>E-post:</msg>
+  <msg id="change.bank.infoContact.phone”" desc="change-bank" meaning="“info-contact-phone"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:98,100</source>
+  Jeg ønsker at dere kontakter meg per telefon.
+</msg>
+  <msg id="change.bank.infoConfirmation”" desc="change-bank" meaning="“info-confirmation"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:101,104</source>
+  Jeg bekrefter at jeg er over 18 år og myndig eller oppnevnt som verge, samt at
+  banken ved behov kan foreta en kredittvurdering.
+</msg>
+  <msg id="change.bank.kindRegards”" desc="change-bank" meaning="“kind-regards"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:105,108</source>
+  Mvh,<ph name="LINE_BREAK"><ex>&lt;br&gt;</ex>&lt;br&gt;</ph>
+  <ph name="INTERPOLATION"><ex>{{ data.preview.clientInfo.name }}</ex>{{ data.preview.clientInfo.name }}</ph>
+</msg>
+  <msg id="change.bank.infoSent”" desc="change-bank" meaning="“info-sent-message"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:113,117</source>
+  Meldingen sendes til din bank per mail med deg som avsender. Du får også en
+  kopi av meldingen i din innboks. Ønsker du å kontakte din bank direkte kan du
+  kopiere teksten og bruke den som utgangspunkt for dialog.
+</msg>
+  <msg id="change.bank.ageConfirmation”" desc="change-bank" meaning="“age-confirmation"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:123,126</source>
+    Jeg bekrefter at jeg er over 18 år og myndig eller oppnevnt som verge, samt
+    at banken ved behov kan foreta en kredittvurdering.
+  </msg>
+  <msg id="change.bank.sendBank”" desc="change-bank" meaning="“send-bank"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:133,134</source>Send til banken
+    </msg>
+  <msg id="change.bank.cancel”" desc="change-bank" meaning="“cancel"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:136,138</source>
+      Avbryt
+    </msg>
   <msg id="success.change.bank.sent”" desc="success-change-bank" meaning="“sent"><source>app/features/dashboard/offers/change-bank-dialog/success-change-bank-dialog/success-change-bank-dialog.component.html:4</source>E-post er nå sendt til din bank</msg>
   <msg id="success.change.bank.sentYou”" desc="success-change-bank" meaning="“sent-you"><source>app/features/dashboard/offers/change-bank-dialog/success-change-bank-dialog/success-change-bank-dialog.component.html:6,9</source>
       Vi har også sendt deg en epost fra prute@renteradar.no med kopi av eposten vi har sendt
@@ -1152,17 +1209,17 @@ Fortsett
       <ph name="START_TAG_RENTE_BUTTON"><ex>&lt;rente-button&gt;</ex>&lt;rente-button&gt;</ph>Ja<ph name="CLOSE_TAG_RENTE_BUTTON"><ex>&lt;/rente-button&gt;</ex>&lt;/rente-button&gt;</ph>
       <ph name="START_TAG_RENTE_BUTTON_1"><ex>&lt;rente-button&gt;</ex>&lt;rente-button&gt;</ph>Nei<ph name="CLOSE_TAG_RENTE_BUTTON"><ex>&lt;/rente-button&gt;</ex>&lt;/rente-button&gt;</ph>
     </msg>
-  <msg id="offer.card.title”" desc="offer-card" meaning="“title"><source>app/features/dashboard/offers/offers-blue/offer-card/offer-card.component.html:45</source>Du sparer</msg>
-  <msg id="offer.card.over.time”" desc="offer-card" meaning="“over-time"><source>app/features/dashboard/offers/offers-blue/offer-card/offer-card.component.html:55</source>over lånets løpetid</msg>
-  <msg id="offer.card.firstYear”" desc="offer-card" meaning="“first-year"><source>app/features/dashboard/offers/offers-blue/offer-card/offer-card.component.html:64</source>første år</msg>
-  <msg id="offer.card.applicationTime”" desc="offer-card" meaning="“application-time"><source>app/features/dashboard/offers/offers-blue/offer-card/offer-card.component.html:71</source>Hvor lang tid tar det å søke:</msg>
-  <msg id="offer.card.timeApply.value”" desc="offer-card" meaning="“demand-change"><source>app/features/dashboard/offers/offers-blue/offer-card/offer-card.component.html:73,75</source>
+  <msg id="offer.card.title”" desc="offer-card" meaning="“title"><source>app/features/dashboard/offers/offers-blue/offer-card/offer-card.component.html:48</source>Du sparer</msg>
+  <msg id="offer.card.over.time”" desc="offer-card" meaning="“over-time"><source>app/features/dashboard/offers/offers-blue/offer-card/offer-card.component.html:58</source>over lånets løpetid</msg>
+  <msg id="offer.card.firstYear”" desc="offer-card" meaning="“first-year"><source>app/features/dashboard/offers/offers-blue/offer-card/offer-card.component.html:67</source>første år</msg>
+  <msg id="offer.card.applicationTime”" desc="offer-card" meaning="“application-time"><source>app/features/dashboard/offers/offers-blue/offer-card/offer-card.component.html:74</source>Hvor lang tid tar det å søke:</msg>
+  <msg id="offer.card.timeApply.value”" desc="offer-card" meaning="“demand-change"><source>app/features/dashboard/offers/offers-blue/offer-card/offer-card.component.html:76,78</source>
                     <ph name="INTERPOLATION"><ex>{{offer.bankInfo.applicationTime  === null ? customLangTextSerice.get18nFixForUnknown() : offer.bankInfo.applicationTime + &quot; min&quot;}}</ex>{{offer.bankInfo.applicationTime  === null ? customLangTextSerice.get18nFixForUnknown() : offer.bankInfo.applicationTime + &quot; min&quot;}}</ph>
                 </msg>
-  <msg id="offer.card.demandChange”" desc="offer-card" meaning="“demand-change"><source>app/features/dashboard/offers/offers-blue/offer-card/offer-card.component.html:79</source>Krever bytte av nettbank:</msg>
-  <msg id="offer.card.noYes”" desc="offer-card" meaning="“no-yes"><source>app/features/dashboard/offers/offers-blue/offer-card/offer-card.component.html:80</source><ph name="INTERPOLATION"><ex>{{ offer.requiredProductPackage == null ? customLangTextSerice.get18nFixForNo() : &quot;Ja&quot; }}</ex>{{ offer.requiredProductPackage == null ? customLangTextSerice.get18nFixForNo() : &quot;Ja&quot; }}</ph></msg>
-  <msg id="offer.card.customerSatisfied”" desc="offer-card" meaning="“customer-satisfied"><source>app/features/dashboard/offers/offers-blue/offer-card/offer-card.component.html:86</source>Kundetilfredshet:</msg>
-  <msg id="offer.card.details”" desc="offer-card" meaning="“details"><source>app/features/dashboard/offers/offers-blue/offer-card/offer-card.component.html:103,113</source>
+  <msg id="offer.card.demandChange”" desc="offer-card" meaning="“demand-change"><source>app/features/dashboard/offers/offers-blue/offer-card/offer-card.component.html:82</source>Krever bytte av nettbank:</msg>
+  <msg id="offer.card.noYes”" desc="offer-card" meaning="“no-yes"><source>app/features/dashboard/offers/offers-blue/offer-card/offer-card.component.html:83</source><ph name="INTERPOLATION"><ex>{{ offer.requiredProductPackage == null ? customLangTextSerice.get18nFixForNo() : &quot;Ja&quot; }}</ex>{{ offer.requiredProductPackage == null ? customLangTextSerice.get18nFixForNo() : &quot;Ja&quot; }}</ph></msg>
+  <msg id="offer.card.customerSatisfied”" desc="offer-card" meaning="“customer-satisfied"><source>app/features/dashboard/offers/offers-blue/offer-card/offer-card.component.html:89</source>Kundetilfredshet:</msg>
+  <msg id="offer.card.details”" desc="offer-card" meaning="“details"><source>app/features/dashboard/offers/offers-blue/offer-card/offer-card.component.html:106,116</source>
                
                     <ph name="START_TAG_MAT_EXPANSION_PANEL"><ex>&lt;mat-expansion-panel&gt;</ex>&lt;mat-expansion-panel&gt;</ph>
                         <ph name="START_TAG_MAT_EXPANSION_PANEL_HEADER"><ex>&lt;mat-expansion-panel-header&gt;</ex>&lt;mat-expansion-panel-header&gt;</ph>
@@ -1173,37 +1230,37 @@ Fortsett
                       <ph name="CLOSE_TAG_MAT_EXPANSION_PANEL"><ex>&lt;/mat-expansion-panel&gt;</ex>&lt;/mat-expansion-panel&gt;</ph>
               
             </msg>
-  <msg id="offer.card.big.seeMore”" desc="offer-card-big" meaning="“see-more"><source>app/features/dashboard/offers/offers-blue/offer-card/offer-card.component.html:123,124</source><source>app/features/dashboard/offers/offers-blue/offer-card-big/offer-card-big.component.html:123</source>Se mer på <ph name="INTERPOLATION"><ex>{{getbankNameOrDefault(offer)}}</ex>{{getbankNameOrDefault(offer)}}</ph>s <ph name="LINE_BREAK"><ex>&lt;br&gt;</ex>&lt;br&gt;</ph> hjemmeside
+  <msg id="offer.card.big.seeMore”" desc="offer-card-big" meaning="“see-more"><source>app/features/dashboard/offers/offers-blue/offer-card/offer-card.component.html:126,127</source><source>app/features/dashboard/offers/offers-blue/offer-card-big/offer-card-big.component.html:127</source>Se mer på <ph name="INTERPOLATION"><ex>{{getbankNameOrDefault(offer)}}</ex>{{getbankNameOrDefault(offer)}}</ph>s <ph name="LINE_BREAK"><ex>&lt;br&gt;</ex>&lt;br&gt;</ph> hjemmeside
                         </msg>
-  <msg id="offer.card.getOffer”" desc="offer-card" meaning="“get-offer"><source>app/features/dashboard/offers/offers-blue/offer-card/offer-card.component.html:132,133</source>Få tilbud fra  <ph name="INTERPOLATION"><ex>{{ getbankNameOrDefault(offer) }}</ex>{{ getbankNameOrDefault(offer) }}</ph>!
+  <msg id="offer.card.getOffer”" desc="offer-card" meaning="“get-offer"><source>app/features/dashboard/offers/offers-blue/offer-card/offer-card.component.html:135,136</source>Få tilbud fra  <ph name="INTERPOLATION"><ex>{{ getbankNameOrDefault(offer) }}</ex>{{ getbankNameOrDefault(offer) }}</ph>!
                         </msg>
-  <msg id="offer.card.getOffer2”" desc="offer-card" meaning="“get-offer"><source>app/features/dashboard/offers/offers-blue/offer-card/offer-card.component.html:139,140</source>Få tilbud fra  <ph name="LINE_BREAK"><ex>&lt;br&gt;</ex>&lt;br&gt;</ph> <ph name="INTERPOLATION"><ex>{{ getbankNameOrDefault(offer) }}</ex>{{ getbankNameOrDefault(offer) }}</ph>!
+  <msg id="offer.card.getOffer2”" desc="offer-card" meaning="“get-offer"><source>app/features/dashboard/offers/offers-blue/offer-card/offer-card.component.html:142,143</source>Få tilbud fra  <ph name="LINE_BREAK"><ex>&lt;br&gt;</ex>&lt;br&gt;</ph> <ph name="INTERPOLATION"><ex>{{ getbankNameOrDefault(offer) }}</ex>{{ getbankNameOrDefault(offer) }}</ph>!
                         </msg>
-  <msg id="offer.card.noDeal.mobile”" desc="offer-card" meaning="“get-offer"><source>app/features/dashboard/offers/offers-blue/offer-card/offer-card.component.html:141</source> (Ingen avtale med banken)</msg>
-  <msg id="offer.card.numberDetails”" desc="offer-card" meaning="“number-details"><source>app/features/dashboard/offers/offers-blue/offer-card/offer-card.component.html:148,154</source><ph name="START_TAG_SPAN"><ex>&lt;span&gt;</ex>&lt;span&gt;</ph>
+  <msg id="offer.card.noDeal.mobile”" desc="offer-card" meaning="“get-offer"><source>app/features/dashboard/offers/offers-blue/offer-card/offer-card.component.html:144</source> (Ingen avtale med banken)</msg>
+  <msg id="offer.card.numberDetails”" desc="offer-card" meaning="“number-details"><source>app/features/dashboard/offers/offers-blue/offer-card/offer-card.component.html:151,157</source><ph name="START_TAG_SPAN"><ex>&lt;span&gt;</ex>&lt;span&gt;</ph>
                 <ph name="CLOSE_TAG_SPAN"><ex>&lt;/span&gt;</ex>&lt;/span&gt;</ph> Eff.rente <ph name="INTERPOLATION"><ex>{{offer.effectiveRate | number: &quot;1.2-2&quot;}}</ex>{{offer.effectiveRate | number: &quot;1.2-2&quot;}}</ph> %,
                 Lånebeløp <ph name="INTERPOLATION_1"><ex>{{offer.outstandingDebt | number: &quot;1.0&quot; }}</ex>{{offer.outstandingDebt | number: &quot;1.0&quot; }}</ph>,
                 <ph name="INTERPOLATION_2"><ex>{{offer.loanPeriodYears | number: &quot;1.1-1&quot; }}</ex>{{offer.loanPeriodYears | number: &quot;1.1-1&quot; }}</ph> år,
                 Kostnad: <ph name="INTERPOLATION_3"><ex>{{offer.cost | number: &quot;1.0&quot; }}</ex>{{offer.cost | number: &quot;1.0&quot; }}</ph>,
                 Totalt: <ph name="INTERPOLATION_4"><ex>{{offer.totalCost | number: &quot;1.0&quot; }}</ex>{{offer.totalCost | number: &quot;1.0&quot; }}</ph>
             </msg>
-  <msg id="offer.card.big.title”" desc="offer-card-big" meaning="“title"><source>app/features/dashboard/offers/offers-blue/offer-card-big/offer-card-big.component.html:25</source><ph name="START_PARAGRAPH"><ex>&lt;p&gt;</ex>&lt;p&gt;</ph>Rentebesparelse<ph name="CLOSE_PARAGRAPH"><ex>&lt;/p&gt;</ex>&lt;/p&gt;</ph></msg>
-  <msg id="offer.card.big.time”" desc="offer-card-big" meaning="“time"><source>app/features/dashboard/offers/offers-blue/offer-card-big/offer-card-big.component.html:34</source>over lånets løpetid</msg>
-  <msg id="offer.card.big.firstYear”" desc="offer-card-big" meaning="“first-year"><source>app/features/dashboard/offers/offers-blue/offer-card-big/offer-card-big.component.html:43</source>første år</msg>
-  <msg id="offer.card.big.efficient”" desc="offer-card-big" meaning="“efficient"><source>app/features/dashboard/offers/offers-blue/offer-card-big/offer-card-big.component.html:49</source>Effektiv rente</msg>
-  <msg id="offer.card.big.demandChange”" desc="offer-card-big" meaning="“demand-change"><source>app/features/dashboard/offers/offers-blue/offer-card-big/offer-card-big.component.html:57</source>Krever bytte av nettbank</msg>
-  <msg id="offer.card.big.noYes”" desc="offer-card-big" meaning="“no-yes"><source>app/features/dashboard/offers/offers-blue/offer-card-big/offer-card-big.component.html:61,63</source>
+  <msg id="offer.card.big.title”" desc="offer-card-big" meaning="“title"><source>app/features/dashboard/offers/offers-blue/offer-card-big/offer-card-big.component.html:29</source><ph name="START_PARAGRAPH"><ex>&lt;p&gt;</ex>&lt;p&gt;</ph>Rentebesparelse<ph name="CLOSE_PARAGRAPH"><ex>&lt;/p&gt;</ex>&lt;/p&gt;</ph></msg>
+  <msg id="offer.card.big.time”" desc="offer-card-big" meaning="“time"><source>app/features/dashboard/offers/offers-blue/offer-card-big/offer-card-big.component.html:38</source>over lånets løpetid</msg>
+  <msg id="offer.card.big.firstYear”" desc="offer-card-big" meaning="“first-year"><source>app/features/dashboard/offers/offers-blue/offer-card-big/offer-card-big.component.html:47</source>første år</msg>
+  <msg id="offer.card.big.efficient”" desc="offer-card-big" meaning="“efficient"><source>app/features/dashboard/offers/offers-blue/offer-card-big/offer-card-big.component.html:53</source>Effektiv rente</msg>
+  <msg id="offer.card.big.demandChange”" desc="offer-card-big" meaning="“demand-change"><source>app/features/dashboard/offers/offers-blue/offer-card-big/offer-card-big.component.html:61</source>Krever bytte av nettbank</msg>
+  <msg id="offer.card.big.noYes”" desc="offer-card-big" meaning="“no-yes"><source>app/features/dashboard/offers/offers-blue/offer-card-big/offer-card-big.component.html:65,67</source>
               <ph name="INTERPOLATION"><ex>{{ offer.requiredProductPackage == null ? customLangTextSerice.get18nFixForNo()  : &quot;Ja&quot; }}</ex>{{ offer.requiredProductPackage == null ? customLangTextSerice.get18nFixForNo()  : &quot;Ja&quot; }}</ph>
             </msg>
-  <msg id="offer.card.big.customerSatisfaction”" desc="offer-card-big" meaning="“customer-satisfaction"><source>app/features/dashboard/offers/offers-blue/offer-card-big/offer-card-big.component.html:72</source>Kundetilfredshet</msg>
-  <msg id="offer.card.big.timeApply”" desc="offer-card-big" meaning="“time-apply"><source>app/features/dashboard/offers/offers-blue/offer-card-big/offer-card-big.component.html:92</source>Hvor lang tid tar det å søke</msg>
-  <msg id="offer.card.big.unknown”" desc="offer-card-big" meaning="“unknown"><source>app/features/dashboard/offers/offers-blue/offer-card-big/offer-card-big.component.html:97,99</source>
+  <msg id="offer.card.big.customerSatisfaction”" desc="offer-card-big" meaning="“customer-satisfaction"><source>app/features/dashboard/offers/offers-blue/offer-card-big/offer-card-big.component.html:76</source>Kundetilfredshet</msg>
+  <msg id="offer.card.big.timeApply”" desc="offer-card-big" meaning="“time-apply"><source>app/features/dashboard/offers/offers-blue/offer-card-big/offer-card-big.component.html:96</source>Hvor lang tid tar det å søke</msg>
+  <msg id="offer.card.big.unknown”" desc="offer-card-big" meaning="“unknown"><source>app/features/dashboard/offers/offers-blue/offer-card-big/offer-card-big.component.html:101,103</source>
               <ph name="INTERPOLATION"><ex>{{offer.bankInfo.applicationTime  === null ? customLangTextSerice.get18nFixForUnknown() : offer.bankInfo.applicationTime + &quot; min&quot;}}</ex>{{offer.bankInfo.applicationTime  === null ? customLangTextSerice.get18nFixForUnknown() : offer.bankInfo.applicationTime + &quot; min&quot;}}</ph>
             </msg>
-  <msg id="offer.card.big.details”" desc="offer-card-big" meaning="“details"><source>app/features/dashboard/offers/offers-blue/offer-card-big/offer-card-big.component.html:108</source>Detaljer</msg>
-  <msg id="offer.card.big.noDeal”" desc="offer-card-big" meaning="“no-deal"><source>app/features/dashboard/offers/offers-blue/offer-card-big/offer-card-big.component.html:125</source><source>app/features/dashboard/offers/offers-blue/offer-card-big/offer-card-big.component.html:139</source> (Ingen avtale med banken enda)</msg>
-  <msg id="offer.card.big.getOffer”" desc="offer-card-big" meaning="“get-offer"><source>app/features/dashboard/offers/offers-blue/offer-card-big/offer-card-big.component.html:136</source>Få tilbud fra <ph name="INTERPOLATION"><ex>{{getbankNameOrDefault(offer)}}</ex>{{getbankNameOrDefault(offer)}}</ph>!</msg>
-  <msg id="offer.card.big.offerInfo”" desc="offer-card-big" meaning="“offer-info"><source>app/features/dashboard/offers/offers-blue/offer-card-big/offer-card-big.component.html:144,150</source><ph name="START_TAG_SPAN"><ex>&lt;span&gt;</ex>&lt;span&gt;</ph>Tilbud:
+  <msg id="offer.card.big.details”" desc="offer-card-big" meaning="“details"><source>app/features/dashboard/offers/offers-blue/offer-card-big/offer-card-big.component.html:112</source>Detaljer</msg>
+  <msg id="offer.card.big.noDeal”" desc="offer-card-big" meaning="“no-deal"><source>app/features/dashboard/offers/offers-blue/offer-card-big/offer-card-big.component.html:129</source><source>app/features/dashboard/offers/offers-blue/offer-card-big/offer-card-big.component.html:143</source> (Ingen avtale med banken enda)</msg>
+  <msg id="offer.card.big.getOffer”" desc="offer-card-big" meaning="“get-offer"><source>app/features/dashboard/offers/offers-blue/offer-card-big/offer-card-big.component.html:140</source>Få tilbud fra <ph name="INTERPOLATION"><ex>{{getbankNameOrDefault(offer)}}</ex>{{getbankNameOrDefault(offer)}}</ph>!</msg>
+  <msg id="offer.card.big.offerInfo”" desc="offer-card-big" meaning="“offer-info"><source>app/features/dashboard/offers/offers-blue/offer-card-big/offer-card-big.component.html:148,154</source><ph name="START_TAG_SPAN"><ex>&lt;span&gt;</ex>&lt;span&gt;</ph>Tilbud:
     <ph name="CLOSE_TAG_SPAN"><ex>&lt;/span&gt;</ex>&lt;/span&gt;</ph> Eff.rente <ph name="INTERPOLATION"><ex>{{offer.effectiveRate | number: &quot;1.2-2&quot;}}</ex>{{offer.effectiveRate | number: &quot;1.2-2&quot;}}</ph> %,
       Lånebeløp <ph name="INTERPOLATION_1"><ex>{{offer.outstandingDebt | number: &quot;1.0&quot; }}</ex>{{offer.outstandingDebt | number: &quot;1.0&quot; }}</ph>,
       <ph name="INTERPOLATION_2"><ex>{{offer.loanPeriodYears | number: &quot;1.1-1&quot; }}</ex>{{offer.loanPeriodYears | number: &quot;1.1-1&quot; }}</ph> år,

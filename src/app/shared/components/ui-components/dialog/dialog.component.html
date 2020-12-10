@@ -2,6 +2,7 @@
   <div class="dialog">
     <h3>{{ title }}</h3>
     <p>{{ message }}</p>
+    <div class="desktop">
     <div i18n=“yes-no|dialog@@dialog.yesNo”  class="split bottom">
       <rente-button color="primary" class="yes" (click)="onClick(true)"
         >Ja</rente-button
@@ -10,6 +11,18 @@
         >Nei</rente-button
       >
     </div>
+  </div>
+    <div class="mobile">
+      <div class="split bottom">
+        <rente-button color="primary" class="yes first" (click)="onClick(true)"
+          >Ja</rente-button
+        >
+        <rente-button color="primary-hollow" class="no" (click)="onClick(false)"
+          >Nei</rente-button
+        >
+      </div>
+    </div>
+
   </div>
 </div>
 <div class="fade"></div>

@@ -30,6 +30,7 @@ import {
 import { RateTypeFixedComponent } from "./rate-type-fixed/rate-type-fixed.component";
 import { NoLoansComponent } from "./no-loans/no-loans.component";
 import { ChangeBankDialogComponent } from "./offers/change-bank-dialog/change-bank-dialog.component";
+import { HouseFormErrorDialogComponent } from './house/house-blue/error-dialog/error-dialog.component'
 import { SuccessChangeBankDialogComponent } from "./offers/change-bank-dialog/success-change-bank-dialog/success-change-bank-dialog.component";
 import { ShareSheetComponent } from "./offers/share-sheet/share-sheet.component";
 import { VirdiStatisticsComponent } from "./house/virdi-statistics/virdi-statistics.component";
@@ -92,7 +93,10 @@ import { BankScoreLangGenericComponent } from '../../local-components/components
     HouseFormLangGenericComponent,
     OfferDetailsLangGenericComponent,
     ChangeBankDialogLangGenericComponent,
-    BankScoreLangGenericComponent
+    BankScoreLangGenericComponent,
+    EPSIScoreComponent,
+    HouseFormErrorDialogComponent
+
   ],
   imports: [
     CommonModule,
