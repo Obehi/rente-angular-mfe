@@ -7,7 +7,7 @@
     novalidate
   >
     <rente-input i18n=“navn|navn@@contactUs.navn.placeholder”
-      [placeholder]="'Namn'"
+      [placeholder]="customLangTextService.getName()"
       formControlName="name"
       [errorStateMatcher]="
         isErrorState(contactUsForm.controls['name'], contactUsForm)
