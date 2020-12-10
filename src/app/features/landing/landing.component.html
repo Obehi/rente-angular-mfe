@@ -53,14 +53,14 @@
             kunde med et klikk.
           </h4>
         </div>
-        <div class="item img">
+        <div *ngIf="isSweden" class="item img">
           <img
             [lazyLoad]="'../../../assets/img/example-desktop-info.svg'"
             offset="600"
             alt="Screenshot example"
           />
         </div>
-        <div class="item img">
+        <div *ngIf="isSweden" class="item img">
 
           <img
             [lazyLoad]="'../../../assets/img/example-desktop-offers.svg'"
@@ -68,6 +68,24 @@
             alt="Screenshot example"
           />
         </div>
+
+        <div *ngIf="!isSweden" class="item img">
+          <img              
+          [lazyLoad]="'../../../assets/img/example-desktop-info-blue.svg'"
+          offset="600"
+          alt="Screenshot example"
+          />
+        </div>
+        <div *ngIf="!isSweden" class="item img">
+          
+          <img
+            [lazyLoad]="'../../../assets/img/example-desktop-offers-blue.svg'"
+            offset="600"
+            alt="Screenshot example"
+            />
+        </div>
+
+
         <h4 i18n="surveillance-service|landing-page@@landing.surveillanceService" class="bottom">
           Vi overvåker markedet og gir deg beskjed når nye og bedre tilbud er
           tilgjengelig i fremtiden!
@@ -89,7 +107,13 @@
             og viser deg hvor mye du kan spare. Du kan også prute i banken du er
             kunde med et klikk.
           </h4>
-          <img
+          <img *ngIf="!isSweden"
+            [lazyLoad]="'../../../assets/img/example-no.svg'"
+            offset="600"
+            class="mobile"
+            alt="Screenshot Example"
+          />
+          <img *ngIf="isSweden"
             [lazyLoad]="'../../../assets/img/example.svg'"
             offset="600"
             class="mobile"
