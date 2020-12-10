@@ -28,6 +28,7 @@ if(process.env.ENV == null) {
 
 } else {
     var locale = process.env.LOCALE;
+    const dev = false
     console.log("Is not local build: " + locale);
     runScript(locale, dev)
 }
@@ -39,7 +40,7 @@ function runScript(currentLocale, dev) {
     var locale = ""
 
     //These should mostly reflect filereplacements in angular.json
-    if (currentLocale== "sv") {
+    if (currentLocale == "sv") {
         locale = ",sv";
         exec("npm run set-sv-routes");
         exec("cp -f ./src/app/config/routes-config-sv.ts ./src/app/config/routes-config.ts ");  
@@ -51,7 +52,7 @@ function runScript(currentLocale, dev) {
             exec("cp -f ./src/index/sv/index-sv.html ./src/index.html "); 
         }
     }
-    else if (currentLocale== "nb") {
+    else if (currentLocale == "nb") {
         locale = ",nb"
         exec("cp -f ./src/app/config/routes-config-no.ts ./src/app/config/routes-config.ts ");  
         exec("cp -f ./src/app/shared/constants/mask-no.ts ./src/app/shared/constants/mask.ts ");
