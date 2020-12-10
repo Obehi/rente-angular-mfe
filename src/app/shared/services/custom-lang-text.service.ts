@@ -42,9 +42,9 @@ export class CustomLangTextService {
 
   getHouseValue() {
     if(locale.includes("sv") ) {
-      return 'milj.'
-    } else if (locale.includes("")) {
       return 'Bostadens värde och belåningsgrad är viktiga parametrar när banken erbjuder en ränta. Kontrollera gärna att bostadens värde är korrekt. Du kan även lägga till fler bolån om du har det.'
+    } else if (locale.includes("")) {
+      return 'Boligverdi/belåningsgrad er viktig for renten bankene tilbyr. Pass på at boligverdien din er riktig. Du kan også legge til flere boliger hvis du har det.'
     }
   }
 

@@ -91,7 +91,7 @@
     </div>
   </div>
 
-    <div class="inner-footer">
+    <div *ngIf="isSweden" class="inner-footer">
 
       <a class="temp-swedish-policy" i18n=“privacy|footer@@footer.privacy” [routerLink]="[routes.privacy]"
       routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">
