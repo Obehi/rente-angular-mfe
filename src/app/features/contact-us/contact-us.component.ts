@@ -47,7 +47,7 @@ export class ContactUsComponent implements OnInit {
         "",
         Validators.compose([
           Validators.required,
-          Validators.pattern(locale === "sv" ? VALIDATION_PATTERN.phoneShortSv : VALIDATION_PATTERN.phoneShort)
+          Validators.pattern(locale.includes("sv") ? VALIDATION_PATTERN.phoneShortSv : VALIDATION_PATTERN.phoneShort)
         ])
       ],
       message: ["", Validators.required]
