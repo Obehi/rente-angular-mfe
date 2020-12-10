@@ -220,7 +220,6 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
   }
 
   public goToBestOffer() {
-    console.log("goToBestOffer")
     var element =  document.getElementById('best-offers-text')
     var headerOffset = this.isMobile ? 80 : 180;
     
@@ -338,8 +337,6 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
           data: { preview, offerId, currentBank}
         });
         changeBankRef.afterClosed().subscribe(() => {
-          console.log("subscribe afterClosed")
-          console.log(changeBankRef.componentInstance.closeState)
           this.handleChangeBankdialogOnClose(changeBankRef.componentInstance.closeState)
         })
       },

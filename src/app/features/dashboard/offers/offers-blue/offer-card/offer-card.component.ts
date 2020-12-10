@@ -47,14 +47,11 @@ export class OfferCardComponentBlue implements OnInit {
     if(this.offer.fixedRatePeriod === 0) {
       this.offerType = 'threeMonths'
     } else if(this.offer.fixedRatePeriod === 1) {
-      console.log("oneYear")
       this.offerType = 'oneYear'
     }
   }
 
   get isMobile(): boolean {
-    console.log("offerType")
-    console.log(this.offerType)
     return window.innerWidth < 600; }
 
   getbankNameOrDefault(offer: OfferInfo): string {
@@ -133,11 +130,8 @@ export class OfferCardComponentBlue implements OnInit {
       window.open(
         "https://www.nybygger.no/kampanje-rammelan/?utm_medium=affiliate%20&utm_source=renteradar.no&utm_campaign=rammelan110&utm_content=cta",
         '_blank')
-
-      console.log("special bank product case")
       return true
     } 
-    console.log("NOT special bank product case")
     return false;
   }
 
@@ -151,7 +145,6 @@ export class OfferCardComponentBlue implements OnInit {
       return 
     }
     
-    console.log(offer.productName)
     window.open(
       offer.bankInfo.transferUrl,
       '_blank'
@@ -173,8 +166,6 @@ export class OfferCardComponentBlue implements OnInit {
     });
 
     bankRatingDialogRef.afterClosed().subscribe(() => {
-      console.log("subscribe afterClosed")
-      console.log(bankRatingDialogRef.componentInstance.closeState)
       this.handlebankRatingdialogOnClose(bankRatingDialogRef.componentInstance.closeState)
     })
   }

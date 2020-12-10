@@ -49,7 +49,6 @@ export class OfferCardBigComponentBlue implements OnInit {
     if(this.offer.fixedRatePeriod === 0) {
       this.offerType = 'threeMonths'
     } else if(this.offer.fixedRatePeriod === 1) {
-      console.log("oneYear")
       this.offerType = 'oneYear'
     }
   }
@@ -143,11 +142,9 @@ export class OfferCardBigComponentBlue implements OnInit {
   }
 
   public openNewOfferDialog(offer: OfferInfo): void {
-    console.log("before handleNybyggerProductSpecialCase")
     if(this.handleNybyggerProductSpecialCase(offer) == true) {
       return 
     }
-    console.log("after handleNybyggerProductSpecialCase")
 
     if(offer.bankInfo.partner === false)
       return
@@ -167,8 +164,6 @@ export class OfferCardBigComponentBlue implements OnInit {
     var bankRatingDialogRef = this.dialog.open(BankScoreLangGenericComponent);
 
     bankRatingDialogRef.afterClosed().subscribe(() => {
-      console.log("subscribe afterClosed")
-      console.log(bankRatingDialogRef.componentInstance.closeState)
       this.handlebankRatingdialogOnClose(bankRatingDialogRef.componentInstance.closeState)
     })
   }

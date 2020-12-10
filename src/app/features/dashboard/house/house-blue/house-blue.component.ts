@@ -141,10 +141,6 @@ export class HouseBlueComponent implements OnInit, DeactivationGuarded {
       this.isLoading = true;
       this.canLeavePage = false;
 
-      this.addresses.forEach( address => {
-        console.log("address")
-        console.log(address)
-      })
       this.loansService.updateAddress(this.addresses).subscribe(
         r => {
           this.addresses = r.addresses;

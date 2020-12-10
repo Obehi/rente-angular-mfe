@@ -1,11 +1,10 @@
 const { exec } = require('child_process');
 
 const arg = process.argv[2]
-
+const dev = process.env.ENV === 'dev' || process.env.ENV == null
 if(process.env.ENV == null) {
     
     const arg = process.argv[2]
-    const dev = true
     var locale = ""
     switch (arg) {
         case 'sv':
@@ -28,7 +27,6 @@ if(process.env.ENV == null) {
 
 } else {
     var locale = process.env.LOCALE;
-    const dev = false
     console.log("Is not local build: " + locale);
     runScript(locale, dev)
 }

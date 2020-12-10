@@ -165,8 +165,6 @@ export class AuthSvMockupComponent implements OnInit, OnDestroy {
   private initializeWebSocketConnection(loginId: number) {
     this.connectAndReconnectSocket(this.successSocketCallback);
 
-    console.log("environment.crawlerUrl")
-    console.log(environment.crawlerUrl)
     const socket = new SockJS(environment.crawlerUrl);
     this.stompClient = Stomp.over(socket);
 
@@ -175,7 +173,6 @@ export class AuthSvMockupComponent implements OnInit, OnDestroy {
     }
 
     this.stompClient.connect({}, frame => {
-      console.log("send data")
       this.sendUserData(loginId);
 
       //this.resendDataAfterReconnect();
