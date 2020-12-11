@@ -42,7 +42,7 @@ const commonRoutes: Routes = [
     ]
   },
   {
-    path: "messenger-share", component:   EmailRedirectNOComponent,
+    path: "del-med-messenger", component:   EmailRedirectNOComponent,
     children: [ 
       {
           path: '**',
@@ -52,7 +52,7 @@ const commonRoutes: Routes = [
     ]
   },
   {
-    path: "messenger-del-sv", component:   EmailRedirectSVComponent,
+    path: "dela-pa-messenger", component:   EmailRedirectSVComponent,
     children: [ 
       {
           path: '**',
