@@ -32,7 +32,8 @@ import { AuthSvMockupComponent } from './features/auth-sv-mockup/auth-sv-mockup.
 import { LoginLangGenericComponent } from './local-components/components-output'
 import { InitConfirmationLangGenericComponent  } from './local-components/components-output';
 import { LandingTopLangGenericComponent  } from './local-components/components-output';
-import { EmailRedirectComponent } from './features/email-redirect/email-redirect.component'
+import { EmailRedirectSVComponent } from './features/email-redirect/email-redirect-sv/email-redirect-sv.component'
+import { EmailRedirectNOComponent } from './features/email-redirect/email-redirect-no/email-redirect-no.component'
 registerLocaleData(localeNo);
 
 @NgModule({
@@ -56,7 +57,8 @@ registerLocaleData(localeNo);
     AuthSvComponent,
     AuthSvMockupComponent,
     LandingTopLangGenericComponent,
-    EmailRedirectComponent
+    EmailRedirectSVComponent,
+    EmailRedirectNOComponent
   ],
   imports: [
     BrowserModule,
