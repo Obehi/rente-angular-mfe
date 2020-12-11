@@ -1,0 +1,8 @@
+version : "3.4"
+services:
+  rente-front-end:
+    build:
+      context: .
+    container_name: "rente-front-end"
+    ports:
+      - "7500:80"
