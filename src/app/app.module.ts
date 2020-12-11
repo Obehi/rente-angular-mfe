@@ -13,15 +13,11 @@ import { PrivacyPolicyComponent } from '@features/privacy-policy/privacy-policy.
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ContactUsComponent } from './features/contact-us/contact-us.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { InitConfirmationComponent } from '@features/init-confirmation/init-confirmation.component';
-
-
 import { registerLocaleData } from '@angular/common';
 import localeNo from '@angular/common/locales/nb';
 import { MaterialModule } from '@shared/material/material.module';
 import { GetNotifiedComponent } from '@features/get-notified/get-notified.component';
 import { CounterComponent } from './shared/components/ui-components/counter/counter.component';
-
 import { UserService } from '@services/remote-api/user.service';
 import { FormsModule } from '@angular/forms';
 import { DialogInfoComponent } from './features/init-confirmation/dialog-info/dialog-info.component';
@@ -33,17 +29,10 @@ import { CountUpModule } from 'ngx-countup';
 import { AuthSvComponent } from './features/auth-sv/auth-sv.component';
 import { OptimizeService } from '@services/optimize.service';
 import { AuthSvMockupComponent } from './features/auth-sv-mockup/auth-sv-mockup.component';
-
 import { LoginLangGenericComponent } from './local-components/components-output'
-
 import { InitConfirmationLangGenericComponent  } from './local-components/components-output';
-
-
 import { LandingTopLangGenericComponent  } from './local-components/components-output';
-
-//import { LandingTopNoComponent  } from './features/landing/landing-top-no/landing-top-no.component';
 import { EmailRedirectComponent } from './features/email-redirect/email-redirect.component'
-
 registerLocaleData(localeNo);
 
 @NgModule({
@@ -57,7 +46,6 @@ registerLocaleData(localeNo);
     PrivacyPolicyComponent,
     ContactUsComponent,
     InitConfirmationLangGenericComponent,
-    InitConfirmationComponent,
     GetNotifiedComponent,
     CounterComponent,
     DialogInfoComponent,

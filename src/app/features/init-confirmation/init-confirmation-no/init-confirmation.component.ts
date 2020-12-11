@@ -27,7 +27,7 @@ import { DialogInfoComponent } from '../dialog-info/dialog-info.component';
 
 import { Mask } from '@shared/constants/mask'
 import { OptimizeService } from '@services/optimize.service'
-import { ROUTES_MAP } from '../../../config/routes-config-sv';
+import { ROUTES_MAP } from '@config/routes-config';
 import { CustomLangTextService } from "@services/custom-lang-text.service";
 
 @Component({
