@@ -11,7 +11,6 @@ import { SharedModule } from "@shared/shared.module";
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatRadioModule } from "@angular/material/radio";
 import { DialogInfoComponent } from "./offers/dialog-info/dialog-info.component";
-
 import { RatingComponent } from "./offers/rating/rating.component";
 import { LayoutModule } from "@angular/cdk/layout";
 import { MatSelectModule } from "@angular/material/select";
@@ -40,9 +39,7 @@ import { DialogComponent } from "../../shared/components/ui-components/dialog/di
 import { GetOfferFromBankDialogComponent } from './offers/get-offer-from-bank-dialog/get-offer-from-bank-dialog.component';
 import { LtvTooHighDialogComponent } from './offers/ltv-too-high-dialog/ltv-too-high-dialog.component';
 import { OfferCardComponentBlue } from './offers/offers-blue/offer-card/offer-card.component';
-
 import { OfferCardBigComponentBlue } from './offers/offers-blue/offer-card-big/offer-card-big.component';
-
 import { BargainSuccessComponent } from './offers/bargain-success/bargain-success.component';
 import { ReferralComponent } from './offers/bargain-success/referral/referral.component';
 import { LoansBlueComponent } from './loans/loans-blue/loans-blue.component';
@@ -51,7 +48,6 @@ import { BlueProfileComponent } from './profile/blue-profile/blue-profile.compon
 import { EPSIScoreComponent } from './offers/offers-blue/epsi-score/epsi-score.component';
 import { OffersListLangGenericComponent } from '../../local-components/components-output';
 import { LoansLangGenericComponent } from '../../local-components/components-output';
-
 import { HouseFormLangGenericComponent } from '../../local-components/components-output';
 import { OfferDetailsLangGenericComponent } from '../../local-components/components-output';
 import { ChangeBankDialogLangGenericComponent } from '../../local-components/components-output';

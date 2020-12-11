@@ -15,7 +15,6 @@ import { SnackBarService } from "@services/snackbar.service";
 import { Mask } from '@shared/constants/mask'
 import { locale } from '../../config/locale/locale';
 import { CustomLangTextService } from "@services/custom-lang-text.service";
-
 @Component({
   selector: "rente-contact-us",
   templateUrl: "./contact-us.component.html",
@@ -48,7 +47,7 @@ export class ContactUsComponent implements OnInit {
         "",
         Validators.compose([
           Validators.required,
-          Validators.pattern(VALIDATION_PATTERN.phoneShortSv)
+          Validators.pattern(locale.includes("sv") ? VALIDATION_PATTERN.phoneShortSv : VALIDATION_PATTERN.phoneShort)
         ])
       ],
       message: ["", Validators.required]

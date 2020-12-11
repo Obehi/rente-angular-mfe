@@ -153,4 +153,12 @@ export class CustomLangTextService {
       return 'Ingen forbehold'
     }
   }
+  
+  getName() {
+    if(locale.includes("sv") ) {
+      return 'Namn'
+    } else if (locale.includes("nb")) {
+      return 'Navn'
+    }
+  }
 }
