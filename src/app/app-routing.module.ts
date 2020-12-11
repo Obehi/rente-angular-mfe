@@ -13,7 +13,8 @@ import { PrivacyComponent } from '@features/privacy/privacy.component';
 import { TermsConditionsComponent } from '@features/terms-conditions/terms-conditions.component';
 import { customMeta, defaultMeta } from './config/routes-config';
 import { InitConfirmationLangGenericComponent } from './local-components/components-output';
-import { EmailRedirectComponent } from '@features/email-redirect/email-redirect.component';
+import { EmailRedirectNOComponent } from '@features/email-redirect/email-redirect-no/email-redirect-no.component';
+import { EmailRedirectSVComponent } from '@features/email-redirect/email-redirect-sv/email-redirect-sv.component';
 import { AuthGuard } from '@shared/guards/auth.guard';
 
 import { BankChoiceComponent } from '@features/auth/bank-choice/bank-choice.component';
@@ -41,12 +42,21 @@ const commonRoutes: Routes = [
     ]
   },
   {
-    path: "messenger-share", component:   EmailRedirectComponent,
+    path: "messenger-share", component:   EmailRedirectNOComponent,
     children: [ 
       {
           path: '**',
-          component:   EmailRedirectComponent
+          component:   EmailRedirectNOComponent
 
+      },      
+    ]
+  },
+  {
+    path: "messenger-del-sv", component:   EmailRedirectSVComponent,
+    children: [ 
+      {
+          path: '**',
+          component:   EmailRedirectSVComponent
       },      
     ]
   },

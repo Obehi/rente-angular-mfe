@@ -3,10 +3,10 @@ import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'rente-email-redirect',
-  templateUrl: './email-redirect.component.html',
-  styleUrls: ['./email-redirect.component.scss']
+  templateUrl: './email-redirect-no.component.html',
+  styleUrls: ['./email-redirect-no.component.scss']
 })
-export class EmailRedirectComponent implements OnInit {
+export class EmailRedirectNOComponent implements OnInit {
   
   get isMobile (): boolean { return window.innerWidth < 600; }
   
