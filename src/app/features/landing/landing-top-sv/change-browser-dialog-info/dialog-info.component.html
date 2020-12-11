@@ -16,8 +16,6 @@
     <img *ngIf="data.app === 'linkedIn'" src="../../../../../assets/img/sv/browser-detection-safari-linkedIn.png" />
   </div>
 
-
-
   <div *ngIf="data.type === 'bottom-right'" class="instruction-numbers">
     <div class="item">
       <div class="nr">1</div>
@@ -32,8 +30,6 @@
 
     <img src="../../../../../assets/img/sv/browser-detection-safari.png" />
   </div>
-
-
 </div>
 
 
@@ -43,4 +39,13 @@
     <p>Tryck på knappen nederst i det högre hörnet</p>
   </div>
   <img src="../../../../../assets/img/sv/browser-detection-arrow.png" />
+</div>
+
+
+<div *ngIf="data.androidPopup === true" class="change-browser-container android">
+  <h4>Ränteradar kräver att du öppnar en webbläsare.</h4>
+
+  <p>Öppna www.ranteradar.se i den webbläsare du föredrar och få den bästa bolåneräntan!</p>
+  <img src="../../../../../assets/img/sv/browser-selection.png" />
+
 </div>

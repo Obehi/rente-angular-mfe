@@ -33,11 +33,10 @@ export class LandingTopSvComponent implements OnInit {
 
     return isSnapchat || isFacebook || isInstagram || linkedIn;
   }
-
-
-
+  
   pushCTAButton() {
     this.isIos = !window.MSStream && /iPad|iPhone|iPod/.test(navigator.userAgent); 
+    this.isAndroid = /Android/.test(navigator.userAgent)
     if(this.isIos) {
       if(this.isCustomInAppBrowser()) {
         let isInstagram = /Instagram/i.test(window.navigator.userAgent)
@@ -52,6 +51,13 @@ export class LandingTopSvComponent implements OnInit {
         }
         return
       }
+    
+    } else if (this.isAndroid) {
+        if(this.isCustomInAppBrowser()) {
+          //window.location.assign("intent:https://ranteradar.se/" + ROUTES_MAP.bankSelect + ";end")
+          this.router.navigate(['/' + ROUTES_MAP.bankSelect], {state: {data: {androidPopup: true}}});
+          return
+        }
     }
     this.router.navigate(['/' + ROUTES_MAP.bankSelect]);
   }
