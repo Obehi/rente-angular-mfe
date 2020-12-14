@@ -6,13 +6,13 @@
   <div *ngIf="data.type === 'top-right'" class="instruction-numbers">
     <div class="item">
       <div class="nr">1</div>
-      <p>Tryck på knappen överst i det högre hörnet</p>
+      <p>Tryck på de tre prickarna överst i det högra hörnet</p>
       <img src="../../../../../assets/img/sv/insta-dots.png" />
     </div>
     <div class="item">
       <div class="nr">2</div>
-      <p *ngIf="data.app !== 'linkedIn'">Tryck på öppna i safari</p>
-      <p *ngIf="data.app === 'linkedIn'">Tryck på öppna i browser </p>
+      <p *ngIf="data.app !== 'linkedIn'">Välj sedan open in safari</p>
+      <p *ngIf="data.app === 'linkedIn'">Välj sedan open in browser</p>
     </div>
     <img *ngIf="data.app !== 'linkedIn'" src="../../../../../assets/img/sv/browser-detection-safari.png" />
     <img *ngIf="data.app === 'linkedIn'" src="../../../../../assets/img/sv/browser-detection-safari-linkedIn.png" />
