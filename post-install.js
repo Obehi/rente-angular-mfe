@@ -44,6 +44,7 @@ function runScript(currentLocale, dev) {
         exec("cp -f ./src/app/config/routes-config-sv.ts ./src/app/config/routes-config.ts ");  
         exec("cp -f ./src/app/shared/constants/mask-sv.ts ./src/app/shared/constants/mask.ts ");
         exec("cp -f ./src/app/local-components/components-sv.ts ./src/app/local-components/components-output.ts ");
+        exec("cp -f ./src/sitemaps/sv/sitemap.xml ./src/sitemap.xml");
         if(dev) {
             exec("cp -f ./src/index/sv-dev/index-sv-dev.html ./src/index.html ");
         } else {
@@ -55,6 +56,7 @@ function runScript(currentLocale, dev) {
         exec("cp -f ./src/app/config/routes-config-no.ts ./src/app/config/routes-config.ts ");  
         exec("cp -f ./src/app/shared/constants/mask-no.ts ./src/app/shared/constants/mask.ts ");
         exec("cp -f ./src/app/local-components/components-no.ts ./src/app/local-components/components-output.ts ");
+        exec("cp -f ./src/sitemaps/no/sitemap.xml ./src/sitemap.xml");
         if(dev) {
             exec("cp -f ./src/index/no-dev/index-no-dev.html ./src/index.html ");
         } else {
