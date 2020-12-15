@@ -50,12 +50,11 @@ export class FirstBuyersComponent {
       country: 'NOR'
     })
       .pipe(flatMap(res => {
-        return this.authService.loginWithToken(null, res.token, null);
+        return this.authService.loginWithToken(res.token);
       }))
       .subscribe(res => {
         this.router.navigate(['/boliglanskalkulator/tilbud']);
         this.isLoading = false;
       });
   }
-
 }
