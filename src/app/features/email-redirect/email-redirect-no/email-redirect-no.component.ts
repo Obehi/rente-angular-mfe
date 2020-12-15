@@ -22,7 +22,7 @@ export class EmailRedirectNOComponent implements OnInit {
       this.triggerEvent(element, 'click')
     } else {
       window.open(
-        "https://www.facebook.com/dialog/send?app_id=326133992135942&amp;link=https://renteradar.no/&amp;redirect_uri=https://renteradar.no/"
+        "https://www.facebook.com/dialog/send?app_id=326133992135942&link=https%3A%2F%2Frenteradar.no%2F%3Fgrsf%3Dmidspm&redirect_uri=https%3A%2F%2Frenteradar.no%2F"
       ); 
     }
     }
