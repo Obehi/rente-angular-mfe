@@ -143,6 +143,11 @@ export class BankUtils {
         return bank;
       }
     }
+    for (const bank of MissingBankList) {
+      if (bank.name === name) {
+        return bank;
+      }
+    }
     return null;
   }
 

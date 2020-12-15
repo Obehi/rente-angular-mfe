@@ -1,0 +1,23 @@
+@import "../../../styles/theme/colors";
+
+.first-buyers-content-blue {
+  background: linear-gradient(180deg, #162537 0%, #183a63 10.08%) !important;
+  max-width: 1010px;
+  margin: auto;
+  min-height: calc(100vh - 60px);
+  padding-bottom: 80px;
+}
+
+.heading {
+  font-weight: 300;
+}
+
+.white-input {
+  ::ng-deep {
+    .mat-form-field-outline {
+      background-color: white !important;
+      border-radius: 4px !important;
+      color: $blue;
+    }
+  }
+}

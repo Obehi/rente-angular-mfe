@@ -1,0 +1,38 @@
+<div class="first-buyers-content-blue px-3 pt-3" *ngIf="!isLoading;else loading">
+  <h1 class="text-white heading mt-4">Finn beste tilbud for deg</h1>
+  <form [formGroup]="formGroup" class="p-0 border-0">
+    <h4 class="text-white">
+      Hvor mye kan jeg låne?
+    </h4>
+    <mat-form-field class="white-input w-75" appearance="outline">
+      <input placeholder="Hvor mye tjener du?" matInput type="tel" autocomplete="off" formControlName="income"
+             currencyMask
+             [options]="{prefix:'', align: 'left', thousands: ' ', precision: 0}"
+      >
+    </mat-form-field>
+    <h4 class="text-white mt-3 font-weight-bolder">
+      eller
+    </h4>
+
+    <h4 class="text-white mt-4">
+      Du vet hvor mye du skal låne:
+    </h4>
+    <mat-form-field class="white-input w-75" appearance="outline">
+      <input placeholder="Hvor mye skal du låne?" matInput type="tel" autocomplete="off"
+             formControlName="outstandingDebt"
+             currencyMask
+             [options]="{prefix:'', align: 'left', thousands: ' ', precision: 0}">
+    </mat-form-field>
+  </form>
+  <rente-button class="d-block mt-5" color="primary-wide-landing" (click)="showOffers()">
+    Finn de beste tilbudene
+  </rente-button>
+
+</div>
+
+<ng-template #loading>
+  <div class="loading">
+    <mat-spinner [diameter]="48" [strokeWidth]="4"></mat-spinner>
+  </div>
+</ng-template>
+

@@ -57,7 +57,6 @@ export const customMeta = {
   boligTitle: 'Bolig | Renteradar.no',
   preferanserTitle: 'Preferanser | Renteradar.no',
   profilTitle: 'Profil | Renteradar.no',
-  
   bankLoginTitle: 'Renteradar.no | Registrer | Logg inn',
   DNB: {
     title:
@@ -181,8 +180,9 @@ export const customMeta = {
 };
 
 export const ROUTES_MAP_NO = {
+  boliglanskalkulator: 'boliglanskalkulator',
   banksGuide: 'bankguiden'
-}
+};
 
 export const ROUTES_MAP_SV = {
   tinkMockup: 'tink-mockup'
