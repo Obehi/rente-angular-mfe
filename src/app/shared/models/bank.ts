@@ -138,7 +138,8 @@ export class BankUtils {
 
   static getBankByName(bankName: string): BankVo {
     const name = bankName.toUpperCase();
-    for (const bank of BankList) {
+    var banks = [...BankList, ...MissingBankList]
+    for (const bank of banks) {
       if (bank.name === name) {
         return bank;
       }

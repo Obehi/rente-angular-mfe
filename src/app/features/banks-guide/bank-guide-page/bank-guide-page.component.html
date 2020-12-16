@@ -168,9 +168,14 @@
                 </b>
               </p>
             </mat-expansion-panel-header>
-            <p *ngFor="let offer of bankGuideInfo?.regularOffers">
-              {{offer}}
-            </p>
+            <div class="d-flex justify-content-between align-middle mt-2" *ngFor="let offer of bankGuideInfo?.regularOffers">     
+            <p class="d-block">
+              {{offer.name}}
+            </p> 
+              <div class="offer-rate px-3 mx-2">
+                {{offer.rate | number: "1.2-2"}}%
+              </div>
+            </div>
           </mat-expansion-panel>
           <mat-expansion-panel *ngIf="bankGuideInfo?.creditLineLoansOffers.length">
             <mat-expansion-panel-header>
@@ -180,9 +185,14 @@
                 </b>
               </p>
             </mat-expansion-panel-header>
-            <p *ngFor="let offer of bankGuideInfo?.creditLineLoansOffers">
-              {{offer}}
-            </p>
+              <div class="d-flex justify-content-between align-middle mt-2" *ngFor="let offer of bankGuideInfo?.creditLineLoansOffers">     
+                <p class="d-block">
+                  {{offer.name}}
+                </p> 
+                <div class="offer-rate px-3 mx-2">
+                  {{offer.rate | number: '1.2-2'}}%
+                </div>
+              </div>
           </mat-expansion-panel>
           <mat-expansion-panel *ngIf="bankGuideInfo?.fixedRateLoansOffers.length">
             <mat-expansion-panel-header>
@@ -192,9 +202,14 @@
                 </b>
               </p>
             </mat-expansion-panel-header>
-            <p *ngFor="let offer of bankGuideInfo?.fixedRateLoansOffers">
-              {{offer}}
-            </p>
+            <div class="d-flex justify-content-between align-middle mt-2" *ngFor="let offer of bankGuideInfo?.fixedRateLoansOffers">     
+              <p class="d-block">
+                {{offer.name}}
+              </p> 
+              <div class="offer-rate px-3 mx-2">
+                {{offer.rate | number: "1.2-2"}}%
+              </div>
+            </div>
           </mat-expansion-panel>
           <mat-expansion-panel *ngIf="bankGuideInfo?.intermediateFinancingOffers.length">
             <mat-expansion-panel-header>
@@ -204,9 +219,14 @@
                 </b>
               </p>
             </mat-expansion-panel-header>
-            <p *ngFor="let offer of bankGuideInfo?.intermediateFinancingOffers">
-              {{offer}}
-            </p>
+              <div class="d-flex justify-content-between align-middle mt-2" *ngFor="let offer of bankGuideInfo?.intermediateFinancingOffers">     
+                <p class="d-block">
+                  {{offer.name}}
+                </p> 
+                <div class="offer-rate px-3 mx-2">
+                  {{offer.rate | number: "1.2-2"}}%
+                </div>
+              </div>
           </mat-expansion-panel>
           <mat-expansion-panel *ngIf="bankGuideInfo?.constructionLoansOffers.length">
             <mat-expansion-panel-header>
@@ -216,14 +236,19 @@
                 </b>
               </p>
             </mat-expansion-panel-header>
-            <p *ngFor="let offer of bankGuideInfo?.constructionLoansOffers">
-              {{offer}}
-            </p>
+              <div class="d-flex justify-content-between align-middle mt-2" *ngFor="let offer of bankGuideInfo?.constructionLoansOffers">     
+                <p class="d-block">
+                  {{offer.name}}
+                </p> 
+                <div class="offer-rate px-3 mx-2">
+                  {{offer.rate | number: "1.2-2"}}%
+                </div>
+              </div>
           </mat-expansion-panel>
         </mat-accordion>
       </div>
     </div>
-    <div class="white-bg p-3 mx-lg-auto mt-4" #offices>
+    <div *ngIf="bank.name === 'DNB' || bank.name === 'NORDEA'"  class="white-bg p-3 mx-lg-auto mt-4" #offices>
       <div class="bank-name justify-content-lg-center">
         <div class="logo d-inline-block mr-lg-4">
           <img [src]="bank.icon" [alt]="bank.label">
@@ -275,6 +300,51 @@
         </mat-accordion>
       </div>
     </div>
+
+    <div *ngIf="bank.name !== 'DNB' && bank.name !== 'NORDEA'"  class="white-bg p-3 mx-lg-auto mt-4" #offices>
+      <div class="bank-name justify-content-lg-center">
+        <div class="logo d-inline-block mr-lg-4">
+          <img [src]="bank.icon" [alt]="bank.label">
+        </div>
+        <div class="label d-flex text-left pl-4">
+          Filialer
+        </div>
+      </div>
+      <div class="accordion mt-2 w-100">
+        <mat-accordion>
+            <mat-expansion-panel *ngFor="let location of addressesArray">
+              <mat-expansion-panel-header>
+                <p>
+                  <b>
+                    {{location.name}}
+                  </b>
+                </p>
+              </mat-expansion-panel-header>
+              <div class="checklist-item font-weight-bolder mt-2">
+                <mat-icon color="primary">location_on</mat-icon>
+                <span>Adresse:</span>
+              </div>
+              <p class="location-content" [innerHTML]="location.address">
+              </p>
+              <div class="checklist-item font-weight-bolder mt-2">
+                <mat-icon color="primary">watch_later</mat-icon>
+                <span>Åpningstider:</span>
+              </div>
+              <p class="location-content" [innerHTML]="location.openingHours">
+              </p>
+              <div class="checklist-item font-weight-bolder mt-2">
+                <mat-icon color="primary">room_service</mat-icon>
+                <span>Tjenester:</span>
+              </div>
+              <div class="checklist-item mt-2" *ngFor="let service of location.bankLocationServiceDomains">
+                <mat-icon color="primary">verified</mat-icon>
+                <span>{{service}}</span>
+              </div>
+            </mat-expansion-panel>
+        </mat-accordion>
+      </div>  
+    </div>
+
   </ng-container>
 </div>
 

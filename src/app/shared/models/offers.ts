@@ -87,7 +87,7 @@ export interface BankGuideInfo {
   text2: string;
   text3: string;
   text4: string;
-  creditLineLoans:string;
+  creditLineLoans: string;
 // byggelan
   constructionLoans: boolean;
 // fastrentelan
@@ -99,7 +99,7 @@ export interface BankGuideInfo {
   creditLineLoansOffers: string[];
   fixedRateLoansOffers: string[];
   intermediateFinancingOffers: string[];
-  regularOffers: string[];
+  regularOffers: { name: string, rate: string }[];
   addresses: { [key: string]: BankLocationAddress[] };
 }
 

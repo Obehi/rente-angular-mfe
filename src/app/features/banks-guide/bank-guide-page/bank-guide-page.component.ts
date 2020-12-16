@@ -4,7 +4,7 @@ import { MetaService } from '@services/meta.service';
 import { LoansService } from '@services/remote-api/loans.service';
 import { TitleService } from '@services/title.service';
 import { BankList, BankUtils, MissingBankList } from '@shared/models/bank';
-import { BankGuideInfo } from '@shared/models/offers';
+import { BankGuideInfo, BankLocationAddress } from '@shared/models/offers';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
@@ -23,6 +23,7 @@ export class BankGuidePageComponent implements OnInit {
   bankGuideLoading: boolean;
   bankGuideInfo: BankGuideInfo;
   banksLocations: string[];
+  addressesArray: BankLocationAddress[] = [];
   private _onDestroy$ = new Subject<void>();
 
   constructor(
@@ -46,8 +47,14 @@ export class BankGuidePageComponent implements OnInit {
       .pipe(takeUntil(this._onDestroy$))
       .subscribe(bankInfo => {
         this.bankGuideInfo = bankInfo;
+     
         this.banksLocations = Object.keys(this.bankGuideInfo.addresses)
           .sort();
+  
+        for(let address in this.bankGuideInfo.addresses) {
+          this.addressesArray.push(...this.bankGuideInfo.addresses[address])
+        }
+
         this.banksLocations[this.banksLocations.findIndex(location => location === 'other')] = 'Annet';
         this.titleService.setTitle(`${this.bank.label} | Bankguiden | Renteradar.no`);
         if (this.bankGuideInfo.text1) {
