@@ -168,9 +168,14 @@
                 </b>
               </p>
             </mat-expansion-panel-header>
-            <p *ngFor="let offer of bankGuideInfo?.regularOffers">
-              {{offer}}
-            </p>
+            <div class="d-flex justify-content-between align-middle mt-2" *ngFor="let offer of bankGuideInfo?.regularOffers">
+              {{offer}}	              
+            <p class="d-block">
+            </p>	                {{offer.name}}
+              <div class="offer-rate px-3 mx-2">
+                {{offer.rate}}%
+              </div>
+            </div>
           </mat-expansion-panel>
           <mat-expansion-panel *ngIf="bankGuideInfo?.creditLineLoansOffers.length">
             <mat-expansion-panel-header>
