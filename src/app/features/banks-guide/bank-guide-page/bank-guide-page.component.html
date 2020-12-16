@@ -173,7 +173,7 @@
               {{offer.name}}
             </p> 
               <div class="offer-rate px-3 mx-2">
-                {{offer.rate}}%
+                {{offer.rate | number: "1.2-2"}}%
               </div>
             </div>
           </mat-expansion-panel>
@@ -190,7 +190,7 @@
                   {{offer.name}}
                 </p> 
                 <div class="offer-rate px-3 mx-2">
-                  {{offer.rate}}%
+                  {{offer.rate | number: '1.2-2'}}%
                 </div>
               </div>
           </mat-expansion-panel>
@@ -207,7 +207,7 @@
                 {{offer.name}}
               </p> 
               <div class="offer-rate px-3 mx-2">
-                {{offer.rate}}%
+                {{offer.rate | number: "1.2-2"}}%
               </div>
             </div>
           </mat-expansion-panel>
@@ -224,7 +224,7 @@
                   {{offer.name}}
                 </p> 
                 <div class="offer-rate px-3 mx-2">
-                  {{offer.rate}}%
+                  {{offer.rate | number: "1.2-2"}}%
                 </div>
               </div>
           </mat-expansion-panel>
@@ -241,15 +241,14 @@
                   {{offer.name}}
                 </p> 
                 <div class="offer-rate px-3 mx-2">
-                  {{offer.rate}}%
+                  {{offer.rate | number: "1.2-2"}}%
                 </div>
               </div>
           </mat-expansion-panel>
         </mat-accordion>
       </div>
     </div>
-
-    <div *ngIf="bank.name === 'DNB'"  class="white-bg p-3 mx-lg-auto mt-4" #offices>
+    <div *ngIf="bank.name === 'DNB' || bank.name === 'NORDEA'"  class="white-bg p-3 mx-lg-auto mt-4" #offices>
       <div class="bank-name justify-content-lg-center">
         <div class="logo d-inline-block mr-lg-4">
           <img [src]="bank.icon" [alt]="bank.label">
@@ -302,7 +301,7 @@
       </div>
     </div>
 
-    <div *ngIf="bank.name !== 'DNB'"  class="white-bg p-3 mx-lg-auto mt-4" #offices>
+    <div *ngIf="bank.name !== 'DNB' && bank.name !== 'NORDEA'"  class="white-bg p-3 mx-lg-auto mt-4" #offices>
       <div class="bank-name justify-content-lg-center">
         <div class="logo d-inline-block mr-lg-4">
           <img [src]="bank.icon" [alt]="bank.label">
