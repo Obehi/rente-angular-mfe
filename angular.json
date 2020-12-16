@@ -40,7 +40,7 @@
               "src/favicon.ico",
               "src/assets",
               "src/sitemap.xml",
-              "src/robots.txt"
+              "src/env-config.js"
             ],
             "styles": [
               "src/styles.scss",
@@ -85,7 +85,8 @@
                 "src/assets",
                 "src/favicon.ico",
                 "src/sitemap.xml",
-                "src/robots.txt"
+                "src/robots.txt",
+                "src/env-config.js"
 
               ],
               "fileReplacements": [
@@ -123,7 +124,8 @@
                 "src/assets",
                 "src/favicon.ico",
                 "src/sitemap.xml",
-                "src/robots.txt"
+                "src/robots.txt",
+                "src/env-config.js"
 
               ],
               "fileReplacements": [
@@ -164,7 +166,8 @@
                 "src/assets",
                 "src/favicon.ico",
                 "src/sitemap.xml",
-                "src/robots.txt"
+                "src/robots.txt",
+                "src/env-config.js"
 
               ],
               "fileReplacements": [
@@ -195,7 +198,8 @@
                 "src/assets",
                 "src/favicon.ico",
                 "src/sitemap.xml",
-                "src/robots.txt"
+                "src/robots.txt",
+                "src/env-config.js"
               ],
               "fileReplacements": [
                 {
