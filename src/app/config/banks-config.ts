@@ -154,6 +154,11 @@ const BANKS_DATA_NO = {
     img: '../../assets/img/banks-logo/square/nordea.png',
     imgCircle: '../../assets/img/banks-logo/round/nordea.png'
   },
+  UNIO_NORDEA_DIRECT: {
+    name: 'NORDEA_DIRECT',
+    img: '../../assets/img/banks-logo/square/nordea.png',
+    imgCircle: '../../assets/img/banks-logo/round/nordea.png'
+  },
   GRONG_SB: {
     name: 'GRONG_SB',
     img: '',
