@@ -185,7 +185,9 @@ export const ROUTES_MAP_SV = {
 }
 
 export const ROUTES_MAP_NO = {
+  boliglanskalkulator: 'boliglanskalkulator',
   banksGuide: 'bankguiden'
+  
 }
 
 export const ROUTES_MAP = {

@@ -1,11 +1,11 @@
 import { Meta } from '@angular/platform-browser';
-import { environment } from '@environments/environment';
 import { Injectable } from '@angular/core';
-
+import { EnvService} from '@services/env.service'
 @Injectable()
 export class MetaService {
     constructor(
-        private meta: Meta
+        private meta: Meta,
+        private envService: EnvService
     ) { }
 
     unsetRobots(): void {
@@ -26,7 +26,7 @@ export class MetaService {
     }
 
     enableProdRobots(): void {
-        if (environment.production) {
+        if (this.envService.get().production) {
             this.removeRobots();
         }
     }

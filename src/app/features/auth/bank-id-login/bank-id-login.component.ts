@@ -18,11 +18,10 @@ import { MetaService } from '@services/meta.service';
 import { TitleService } from '@services/title.service';
 import { customMeta } from '../../../config/routes-config';
 import { BankVo, BankUtils } from '@shared/models/bank';
-import { environment } from '@environments/environment';
 import { UserService } from '@services/remote-api/user.service';
 import { map } from 'rxjs/operators';
 import { Mask } from '@shared/constants/mask'
-
+import {EnvService } from '@services/env.service'
 @Component({
   selector: 'rente-bank-id-login',
   templateUrl: './bank-id-login.component.html',
@@ -48,7 +47,8 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     public dialog: MatDialog,
     private metaService: MetaService,
     private titleService: TitleService,
-    private userService:UserService
+    private userService:UserService,
+    private environment: EnvService
   ) { }
 
   ngOnInit() {
@@ -101,7 +101,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
           Validators.pattern(VALIDATION_PATTERN.ssnMasked),
         ]),
         // Async Validators
-        environment.production ? [this.ssnAsyncValidator()] : []
+        this.environment.get().production ? [this.ssnAsyncValidator()] : []
       ],
       phone: [
         '',

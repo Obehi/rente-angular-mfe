@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { EnvService } from '@services/env.service'
 
 @Component({
   selector: 'rente-landing-top',
@@ -10,13 +10,8 @@ export class LandingTopNoComponent implements OnInit {
 
   get isMobile(): boolean { return window.innerWidth < 600; }
 
-  constructor() { }
+  constructor(private envService: EnvService) { }
 
   ngOnInit(): void {
-    console.log((window as any).IMask)
-    console.log((window as any).ENV_CONFIG)
-    console.log("ENV_CONFIG")
   }
-
-  
 }

@@ -73,7 +73,7 @@ registerLocaleData(localeNo);
     CountUpModule,
   ],
   entryComponents: [DialogInfoComponent, ProfileDialogInfoComponent],
-  providers: [{ provide: LOCALE_ID, useValue: 'nb-NO' }, UserService, OptimizeService],
+  providers: [{ provide: LOCALE_ID, useValue: 'nb-NO' }, { provide: Window, useValue: window}, UserService, OptimizeService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

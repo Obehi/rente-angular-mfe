@@ -9,7 +9,6 @@ import {
 } from "@angular/core";
 import * as Stomp from "stompjs";
 import * as SockJS from "sockjs-client";
-import { environment } from "@environments/environment";
 import { ViewStatus } from "./login-view-status";
 import { API_URL_MAP } from "@config/api-url-config";
 import {
@@ -29,6 +28,7 @@ import { LoansService } from "@services/remote-api/loans.service";
 import { LocalStorageService } from "@services/local-storage.service";
 import { BankVo, BankUtils } from "@shared/models/bank";
 import { ROUTES_MAP } from '@config/routes-config';
+import { EnvService} from '@services/env.service'
 
 @Component({
   selector: "rente-login-status",
@@ -74,7 +74,8 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
     private authService: AuthService,
     private userService: UserService,
     private loansService: LoansService,
-    private localStorageService: LocalStorageService
+    private localStorageService: LocalStorageService,
+    private envService: EnvService
   ) {}
 
   ngOnInit() {
@@ -159,11 +160,11 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
   }
 
   private connectAndReconnectSocket(successCallback) {
-    const socket = new SockJS(environment.crawlerUrl);
+    const socket = new SockJS(this.envService.get().crawlerUrl);
 
     this.stompClient = Stomp.over(socket);
     // Disable websocket logs for production
-    if (environment.production) {
+    if (this.envService.get().production) {
       this.stompClient.debug = null;
     }
     this.stompClient.connect(

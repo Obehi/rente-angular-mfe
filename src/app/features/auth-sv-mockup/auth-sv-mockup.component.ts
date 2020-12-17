@@ -25,6 +25,7 @@ import {
   BANKID_TIMEOUT_TIME,
   MESSAGE_STATUS
 } from "../auth/login-status/login-status.config";
+import { EnvService} from '@services/env.service'
 
 
 import { ViewStatus } from "../auth/login-status/login-view-status";
@@ -112,7 +113,8 @@ export class AuthSvMockupComponent implements OnInit, OnDestroy {
     private userService: UserService,
     private loansService: LoansService,
     private localStorageService: LocalStorageService,
-    public customLangTextService: CustomLangTextService
+    public customLangTextService: CustomLangTextService,
+    private envService: EnvService
   ) {
   }
 
@@ -165,10 +167,10 @@ export class AuthSvMockupComponent implements OnInit, OnDestroy {
   private initializeWebSocketConnection(loginId: number) {
     this.connectAndReconnectSocket(this.successSocketCallback);
 
-    const socket = new SockJS(environment.crawlerUrl);
+    const socket = new SockJS(this.envService.get().crawlerUrl);
     this.stompClient = Stomp.over(socket);
 
-    if (environment.production) {
+    if (this.envService.get().production) {
       this.stompClient.debug = null;
     }
 

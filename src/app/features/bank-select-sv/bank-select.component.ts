@@ -4,7 +4,7 @@ import { UserService } from "@services/remote-api/user.service";
 import { LocalStorageService } from "@services/local-storage.service";
 import { MatDialog } from '@angular/material/dialog';
 import { ChangeBrowserDialogInfoComponent } from '../landing/landing-top-sv/change-browser-dialog-info/dialog-info.component';
-
+import { EnvService} from '@services/env.service'
 import {
   Component,
   OnInit,
@@ -18,7 +18,6 @@ import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { ROUTES_MAP } from '@config/routes-config';
 import * as Stomp from "stompjs";
 import * as SockJS from "sockjs-client";
-import { environment } from "@environments/environment";
 import { API_URL_MAP } from "@config/api-url-config";
 import { Subscription, interval, Observable, timer, forkJoin } from "rxjs";
 import {
@@ -56,14 +55,14 @@ export class BankSelectSvComponent implements OnInit, OnDestroy {
       private loansService: LoansService,
       private localStorageService: LocalStorageService,
       private sanitizer: DomSanitizer, 
-      private dialog: MatDialog
-  
+      private dialog: MatDialog,
+      private envService: EnvService
     ) { 
   
     }
   
     ngOnInit(): void {
-      let tinkUrl = environment["tinkUrl"] || "https://link.tink.com/1.0/authorize/?client_id=3973e78ee8c140edbf36e53d50132ba1&redirect_uri=https%3A%2F%2Franteradar.se&scope=accounts:read,identity:read&market=SE&locale=sv_SE&iframe=true"
+      let tinkUrl = this.envService.get().tinkUrl || "https://link.tink.com/1.0/authorize/?client_id=3973e78ee8c140edbf36e53d50132ba1&redirect_uri=https%3A%2F%2Franteradar.se&scope=accounts:read,identity:read&market=SE&locale=sv_SE&iframe=true"
 
       if(history.state.data !== undefined && (history.state.data.iosPopup === true || history.state.data.androidPopup === true)) {
         let androidPopup = history.state.data.androidPopup 
@@ -103,10 +102,10 @@ export class BankSelectSvComponent implements OnInit, OnDestroy {
     private initializeWebSocketConnection(tinkCode: number) {
       this.connectAndReconnectSocket(this.successSocketCallback);
       
-      const socket = new SockJS(environment.crawlerUrl);
+      const socket = new SockJS(this.envService.get().crawlerUrl);
       this.stompClient = Stomp.over(socket);
   
-      if (environment.production) {
+      if (this.envService.get().production) {
         this.stompClient.debug = null;
       }
   
