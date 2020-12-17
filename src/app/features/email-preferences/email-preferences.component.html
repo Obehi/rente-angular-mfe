@@ -15,7 +15,7 @@
 <div class="preferences">
     <h3 i18n=“settings|email-preferences@@email.preferences.settings”>Epost innstillinger</h3>
     <ng-container *ngIf="showErrorMessage; else form">
-        <p i18n=“error|email-preferences@@email.preferences.error” class="warning">Noe gikk galt, vennligst logg inn eller ta kontakt med oss på <a href = "mailto: hei@renteradar.no">hei@renteradar.no</a></p>
+        <p i18n=“error|email-preferences@@email.preferences.error” class="warning">Noe gikk galt, vennligst logg inn eller ta kontakt med oss på <a href = "mailto: {{langService.getEmail()}}">hei@renteradar.no</a></p>
     </ng-container>
 
       <ng-template #form>
