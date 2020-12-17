@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+
 @Component({
   selector: 'rente-landing-top',
   templateUrl: './landing-top-no.component.html',
@@ -12,6 +13,9 @@ export class LandingTopNoComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    console.log((window as any).IMask)
+    console.log((window as any).ENV_CONFIG)
+    console.log("ENV_CONFIG")
   }
 
   
