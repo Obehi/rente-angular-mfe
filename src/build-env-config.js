@@ -42,9 +42,7 @@ module.exports = (clientPath) => {
 
 
   let outputFile = isLocal ? localEnvConfig : envConfig;
-  let outputPath = isServe
-    ? "./dist/rente-front-end/env-config.js"
-    : "../env/env.js";
+  let outputPath = "../env/env.js";
 
   if(isServe) {
     console.log("is serve")
@@ -70,6 +68,9 @@ module.exports = (clientPath) => {
  
   console.log("outputFile");
   console.log(outputFile);
+  console.log("outputPath");
+  console.log(outputPath);
+  console.log(process.cwd());
 };
 
 

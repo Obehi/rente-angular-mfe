@@ -38,7 +38,7 @@ function runScript(currentLocale, dev) {
     var locale = ""
 
     exec("mkdir env && cd env && touch env.js && cd .."); 
-   // exec("cp -f ./src/env-config.js ./env/env.js "); 
+    exec("cp -f ./src/env-config.js ./env/env.js "); 
 
     //These should mostly reflect filereplacements in angular.json
     if (currentLocale == "sv") {
