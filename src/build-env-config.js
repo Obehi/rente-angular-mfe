@@ -10,8 +10,8 @@ const isLocal = process.env.ENV === undefined;
 module.exports = (clientPath) => {
   const localEnvConfig = `export const environment = {
     name: 'local',
-    production: '${isProd}',
-    baseUrl: true,
+    production: 'aaaargg',
+    baseUrl: 'https://rente-gateway-dev.herokuapp.com',
     crawlerUrl: 'https://rente-ws-dev.herokuapp.com/ws',
     tinkUrl: '${
       localeForLocalDev === "no"
@@ -30,9 +30,9 @@ module.exports = (clientPath) => {
   };
   `;
 
-  const envConfig = `export const remoteEnvironment ={
+  const envConfig = `export const environment ={
     name: '${environment}',
-    production: ${isProd},
+    production: '${isProd}',
     baseUrl: '${process.env.BASE_URL}',
     crawlerUrl: '${process.env.CRAWLER_URL}',
     tinkUrl: '${process.env.TINK_LINK}',
@@ -44,25 +44,31 @@ module.exports = (clientPath) => {
   let outputFile = isLocal ? localEnvConfig : envConfig;
   let outputPath = isServe
     ? "./dist/rente-front-end/env-config.js"
-    : "../dist/rente-front-end/env-config.js";
-
+    : "../env/env.js";
 
   if(isServe) {
-    createDirectories('../dist/rente-front-end/', () => {
+    console.log("is serve")
+    createDirectories(outputPath, () => {
 
-      fs.writeFile('./dist/rente-front-end/env-config.js', outputFile, "utf8", function (err) {
+      fs.writeFile(outputPath, outputFile, "utf8", function (err) {
         if (err) return console.log(err);
       });
+      console.log(
+        `Environment config generated. Environment mode is ${process.env.APP} `
+      );
     })
   } else {
+    console.log("is NOT serve")
     fs.writeFile(outputPath, outputFile, "utf8", function (err) {
       if (err) return console.log(err);
+      console.log(
+        `Environment config generated. Environment mode is ${process.env.APP} `
+      );
     });
   }
   
-  console.log(
-    `Environment config generated. Environment mode is ${process.env.APP} `
-  );
+ 
+  console.log("outputFile");
   console.log(outputFile);
 };
 

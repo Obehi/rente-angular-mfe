@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
+//import { environment } from '../../../../dist/rente-front-end/env-config'
+import { environment } from '../../../../env/env.js'
 
-import { environment } from '../../../../dist/rente-front-end/env-config'
 
 
 @Injectable({
@@ -11,10 +12,13 @@ export class EnvService {
   window: Window
   constructor( window: Window) { 
     this.window = window
+    console.log(environment)
+
   }
 
   get() {
-    return environment
+    console.log(environment)
+   return environment
   }
 
 
