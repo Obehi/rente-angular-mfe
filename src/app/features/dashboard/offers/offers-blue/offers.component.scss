@@ -83,7 +83,7 @@
 }
 
 .box-icon {
-  margin: auto;
+  margin: 10px auto;
   width: 20px;
 }
 
@@ -394,7 +394,6 @@ a.box {
     width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
 
     p img {
       position: relative;

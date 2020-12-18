@@ -133,7 +133,7 @@
                 {{ offersInfo.propertyValue / 1000000 | number: "1.1-3" }}
                 mill.
               </h2>
-              <p i18n=“debt|offers-main@@offers.mainPage.debt” class="small">
+              <p *ngIf="!isSweden" i18n=“debt|offers-main@@offers.mainPage.debt” class="small">
                 Fellesgjeld
                 {{
                 (offersInfo.commonDebt / 1000000 | number: "1.1-2")
@@ -392,7 +392,7 @@
             </div>
             <a class="box round-box primary-bg positive clickable" (click)="goToBestOffer()">
               <div>
-                <img src="../../../../assets/icons/rente-icon-white.svg" />
+                <img class="box-icon" src="../../../../assets/icons/rente-icon-white.svg" />
                 <p i18n=“best-offer|offers-main@@offers.mainPage.bestOffer”>
                   Beste tilbud
                 </p>
@@ -413,7 +413,7 @@
                   {{ offersInfo.propertyValue / 1000000 | number: "1.1-3" }}
                   mill.
                 </h2>
-                <p i18n=“debt|offers-main@@offers.mainPage.debt” class="small">
+                <p *ngIf="!isSweden" i18n=“debt|offers-main@@offers.mainPage.debt” class="small">
                   Fellesgjeld
                   {{
                   (offersInfo.commonDebt / 1000000 | number: "1.1-2")
