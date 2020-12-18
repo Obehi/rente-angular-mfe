@@ -35,7 +35,7 @@ module.exports = (clientPath) => {
     production: '${isProd}',
     baseUrl: '${process.env.BASE_URL}',
     crawlerUrl: '${process.env.CRAWLER_URL}',
-    tinkUrl: '${process.env.TINK_LINK}',
+    tinkUrl: 'tinkurlshouldbehere',
     locale: '${process.env.LOCALE}',
   };
   `;
