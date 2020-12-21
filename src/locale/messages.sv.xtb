@@ -260,8 +260,6 @@ Den exakta processen beror på din enhet och vilken webbläsare du använder. I 
         Är ett interaktionsverktyg som registrerar hur användare brukar webbplatsen. Mer information här.
         <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>här.<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph></translation>
   <translation id="email.preferences.saved”" desc="email-preferences" meaning="“saved">Sparat</translation>
-  <translation id="email.preferences.settings”" desc="email-preferences" meaning="“settings">E-post inställningar</translation>
-  <translation id="email.preferences.error”" desc="email-preferences" meaning="“error">Något gick fel, vänligen logga in eller ta kontakt med oss på <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>hej@ranteradar.se<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph></translation>
   <translation id="email.preferences.market”" desc="email-preferences" meaning="“market">Marknadsövervakning och påminnelse om att kolla räntan
 </translation>
   <translation id="email.preferences.monthEvery”" desc="email-preferences" meaning="“month-every">Varje månad</translation>
@@ -793,4 +791,26 @@ Vi följer ständigt upp om det dyker upp bättre ränteerbjudanden på marknade
   <translation id="ngb.timepicker.PM"/>
   <translation id="ngb.timepicker.AM"/>
   <translation id="ngb.toast.close-aria"/>
+  <translation id="messenger-redirect.header" desc="offers-main" meaning="interest-very-good">Hjälp en vän att sänka sin bolåneränta!</translation>
+  <translation id="messenger-redirect.explaination" desc="offers-main" meaning="interest-very-good">Tryck på knappen nedan om messenger inte öppnas automatiskt!</translation>
+  <translation id="messenger-redirect.messenger" desc="offers-main" meaning="interest-very-good"/>
+  <translation id="messenger-redirect.header" desc="offers-main" meaning="messenger-redirect-headline"/>
+  <translation id="messenger-redirect.explaination" desc="offers-main" meaning="messenger-redirect-selling-point"/>
+  <translation id="messenger-redirect.selling-point" desc="offers-main" meaning="messenger-redirect-messenger"> Hjälp dem sänka sina kostnader via <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph> Renteradar.se <ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph> 
+                        och spendera pengarna på något roligare, som en middag!</translation>
+  <translation id="header.home" desc="homepage" meaning="Headerlink"/>
+  <translation id="header.blog" desc="blog" meaning="Headerlink"/>
+  <translation id="header.contact" desc="contact" meaning="Headerlink"/>
+  <translation id="header.aboutUs" desc="about-us" meaning="Headerlink"/>
+  <translation id="header.faq" desc="faq" meaning="Headerlink"/>
+  <translation id="header.home2" desc="homepage" meaning="Headerlink"/>
+  <translation id="header.myPage2" desc="my-page" meaning="Headerlink"/>
+  <translation id="header.blog2" desc="blog" meaning="Headerlink"/>
+  <translation id="header.contact2" desc="contact" meaning="Headerlink"/>
+  <translation id="header.aboutUs2" desc="about-us" meaning="Headerlink"/>
+  <translation id="header.logOut2" desc="log-out" meaning="Headerlink"/>
+  <translation id="email.preferences.settings”" desc="email-preferences" meaning="“settings">E-post inställningar</translation>
+  <translation id="email.preferences.error”" desc="email-preferences" meaning="“error">Något gick fel, vänligen logga in eller ta kontakt med oss på <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>hej@ranteradar.se<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph>
+
+</translation>
 </translationbundle>
