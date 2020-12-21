@@ -81,6 +81,9 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
     this.setDefaultSteps();
     this.initializeWebSocketConnection();
     window.scrollTo(0, 0);
+    //Special case for
+    this.thirdStepTimer = this.bank.name === "DNB" ?  25 : 20;
+    
   }
 
   ngOnDestroy() {
