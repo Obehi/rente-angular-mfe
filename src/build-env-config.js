@@ -36,7 +36,7 @@ module.exports = (clientPath) => {
     "baseUrl": "${process.env.BASE_URL}",
     "crawlerUrl": "${process.env.CRAWLER_URL}",
     "tinkUrl": "${process.env.TINK_URL}",
-    "locale": "${process.env.LOCALE}",
+    "locale": "${process.env.LOCALE}"
   }
   `;
 
