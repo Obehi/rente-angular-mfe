@@ -61,12 +61,10 @@ export class AuthSvComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-   // let tinkUrl = this.envService.get().tinkUrl || "https://link.tink.com/1.0/authorize/?client_id=2a14f1970f0b4b39a861a1c42b65daca&redirect_uri=http%3A%2F%2Flocalhost%3A4302%2F&scope=accounts:read,user:read,identity:read&market=SE&locale=en_US&iframe=true&test=true"
+
   }
 
-  async setEnv() {
-    this.environment = await this.envService.get()
-  }
+ 
 
   @HostListener('window:message', ['$event'])
   onMessage(event) {
