@@ -62,7 +62,7 @@ export class BankSelectSvComponent implements OnInit, OnDestroy {
     }
   
     ngOnInit(): void {
-      let tinkUrl = this.envService.enviornment.tinkUrl || "https://link.tink.com/1.0/authorize/?client_id=3973e78ee8c140edbf36e53d50132ba1&redirect_uri=https%3A%2F%2Franteradar.se&scope=accounts:read,identity:read&market=SE&locale=sv_SE&iframe=true"
+      let tinkUrl = this.envService.environment.tinkUrl || "https://link.tink.com/1.0/authorize/?client_id=3973e78ee8c140edbf36e53d50132ba1&redirect_uri=https%3A%2F%2Franteradar.se&scope=accounts:read,identity:read&market=SE&locale=sv_SE&iframe=true"
       
       if(history.state.data !== undefined && (history.state.data.iosPopup === true || history.state.data.androidPopup === true)) {
         let androidPopup = history.state.data.androidPopup 
@@ -102,10 +102,10 @@ export class BankSelectSvComponent implements OnInit, OnDestroy {
     private initializeWebSocketConnection(tinkCode: number) {
       this.connectAndReconnectSocket(this.successSocketCallback);
       
-      const socket = new SockJS(this.envService.enviornment.crawlerUrl);
+      const socket = new SockJS(this.envService.environment.crawlerUrl);
       this.stompClient = Stomp.over(socket);
   
-      if (this.envService.enviornment.production) {
+      if (this.envService.environment.production) {
         this.stompClient.debug = null;
       }
   
