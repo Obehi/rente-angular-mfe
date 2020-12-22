@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, LOCALE_ID } from '@angular/core';
+import { NgModule, LOCALE_ID, APP_INITIALIZER } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PageNotFoundComponent } from '@features/page-not-found/page-not-found.component';
@@ -34,6 +34,8 @@ import { InitConfirmationLangGenericComponent  } from './local-components/compon
 import { LandingTopLangGenericComponent  } from './local-components/components-output';
 import { EmailRedirectSVComponent } from './features/email-redirect/email-redirect-sv/email-redirect-sv.component'
 import { EmailRedirectNOComponent } from './features/email-redirect/email-redirect-no/email-redirect-no.component'
+import { EnvService } from './shared/services/env.service'
+import { HttpClient } from '@angular/common/http';
 registerLocaleData(localeNo);
 
 @NgModule({
@@ -73,7 +75,13 @@ registerLocaleData(localeNo);
     CountUpModule,
   ],
   entryComponents: [DialogInfoComponent, ProfileDialogInfoComponent],
-  providers: [{ provide: LOCALE_ID, useValue: 'nb-NO' }, { provide: Window, useValue: window}, UserService, OptimizeService],
+  providers: [
+    { provide: APP_INITIALIZER, multi: true, useFactory: (envService: EnvService) => { return () => envService.init() }, deps: [EnvService, HttpClient]}, 
+    { provide: LOCALE_ID, useValue: 'nb-NO' }, 
+    { provide: Window, useValue: window}, 
+    UserService, 
+    OptimizeService, 
+    EnvService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

@@ -38,7 +38,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
   public metaTitle: string;
   public metaDescription: string;
   public mask = Mask
-
+  private environment: any
   bank:BankVo;
 
   constructor(
@@ -48,10 +48,12 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     private metaService: MetaService,
     private titleService: TitleService,
     private userService:UserService,
-    private environment: EnvService
+    private envService: EnvService
   ) { }
 
   ngOnInit() {
+
+    this.environment = this.envService.environment
     this.routeParamsSub = this.route.params.subscribe((params: any) => {
       if (params && params.bankName) {
         const bank = BankUtils.getBankByName(params.bankName);
@@ -101,7 +103,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
           Validators.pattern(VALIDATION_PATTERN.ssnMasked),
         ]),
         // Async Validators
-        this.environment.get().production ? [this.ssnAsyncValidator()] : []
+        this.environment.production ? [this.ssnAsyncValidator()] : []
       ],
       phone: [
         '',

@@ -46,7 +46,7 @@ export class AuthSvComponent implements OnInit, OnDestroy {
   private intervalSubscription: Subscription;
   public isSuccess = false;
   public tinkUrl: SafeUrl;
-
+  public environment: any
   constructor(
     private router: Router,
     private authService: AuthService,
@@ -61,8 +61,11 @@ export class AuthSvComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    let tinkUrl = this.envService.get().tinkUrl || "https://link.tink.com/1.0/authorize/?client_id=2a14f1970f0b4b39a861a1c42b65daca&redirect_uri=http%3A%2F%2Flocalhost%3A4302%2F&scope=accounts:read,user:read,identity:read&market=SE&locale=en_US&iframe=true&test=true"
-    this.tinkUrl = this.sanitizer.bypassSecurityTrustResourceUrl(tinkUrl)
+   // let tinkUrl = this.envService.get().tinkUrl || "https://link.tink.com/1.0/authorize/?client_id=2a14f1970f0b4b39a861a1c42b65daca&redirect_uri=http%3A%2F%2Flocalhost%3A4302%2F&scope=accounts:read,user:read,identity:read&market=SE&locale=en_US&iframe=true&test=true"
+  }
+
+  async setEnv() {
+    this.environment = await this.envService.get()
   }
 
   @HostListener('window:message', ['$event'])
@@ -89,10 +92,10 @@ export class AuthSvComponent implements OnInit, OnDestroy {
   private initializeWebSocketConnection(tinkCode: number) {
     this.connectAndReconnectSocket(this.successSocketCallback);
     
-    const socket = new SockJS(this.envService.get().crawlerUrl);
+    const socket = new SockJS(this.environment.crawlerUrl);
     this.stompClient = Stomp.over(socket);
 
-    if (this.envService.get().production) {
+    if (this.environment.production) {
       this.stompClient.debug = null;
     }
 

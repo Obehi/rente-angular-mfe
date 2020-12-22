@@ -27,6 +27,7 @@ export class GenericHttpService {
     name: 'Accept',
     value: 'application/json, text/plain, */*'
   };
+  environment: any
 
   constructor(
     private http: HttpClient,
@@ -35,7 +36,7 @@ export class GenericHttpService {
     private snackBar: SnackBarService,
     private envService: EnvService
   ) {
-    this.apiUrl = this.envService.get().baseUrl;
+    this.apiUrl = this.envService.environment.baseUrl;
   }
 
   public get(path: string, searchParams: any = {}): Observable<any> {

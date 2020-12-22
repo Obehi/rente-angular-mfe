@@ -8,41 +8,42 @@ const isServe = process.argv[3] || "serve";
 const isLocal = process.env.ENV === undefined;
 
 module.exports = (clientPath) => {
-  const localEnvConfig = `export const environment = {
-    name: 'local',
-    production: 'aaaargg',
-    baseUrl: 'https://rente-gateway-dev.herokuapp.com',
-    crawlerUrl: 'https://rente-ws-dev.herokuapp.com/ws',
-    tinkUrl: '${
+  const localEnvConfig = `{
+    "name": "local",
+    "production": false,
+    "baseUrl": "https://rente-gateway-dev.herokuapp.com",
+    "crawlerUrl": "https://rente-ws-dev.herokuapp.com/ws",
+    "tinkUrl": "${
       localeForLocalDev === "no"
         ? ""
         : localeForLocalDev === "sv"
         ? "https://link.tink.com/1.0/authorize/?client_id=3973e78ee8c140edbf36e53d50132ba1&redirect_uri=https%3A%2F%2Franteradar.se&scope=accounts:read,identity:read&market=SE&locale=sv_SE&iframe=true"
         : null
-    }',
-    locale: '${
+    }",
+    "locale": "${
       localeForLocalDev === "no"
         ? "nb"
         : localeForLocalDev === "sv"
         ? "sv"
         : null
-    }'
-  };
+    }"
+  }
   `;
 
-  const envConfig = `export const environment ={
-    name: '${environment}',
-    production: '${isProd}',
-    baseUrl: '${process.env.BASE_URL}',
-    crawlerUrl: '${process.env.CRAWLER_URL}',
-    tinkUrl: 'tinkurlshouldbehere',
-    locale: '${process.env.LOCALE}',
-  };
+  const envConfig = `{
+    "name": "${environment}",
+    "production": "${isProd}",
+    "baseUrl": "${process.env.BASE_URL}",
+    "crawlerUrl": "${process.env.CRAWLER_URL}",
+    "tinkUrl": "${process.env.TINK_URL}",
+    "locale": "${process.env.LOCALE}",
+  }
   `;
 
 
   let outputFile = isLocal ? localEnvConfig : envConfig;
-  let outputPath = "../env/env.js";
+  let outputPath = "../dist/rente-front-end/assets/env-config.json";
+
 
   if(isServe) {
     console.log("is serve")
@@ -66,11 +67,7 @@ module.exports = (clientPath) => {
   }
   
  
-  console.log("outputFile");
-  console.log(outputFile);
-  console.log("outputPath");
-  console.log(outputPath);
-  console.log(process.cwd());
+
 };
 
 

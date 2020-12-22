@@ -80,6 +80,7 @@ export class AuthSvMockupComponent implements OnInit, OnDestroy {
   isAccountSelection: boolean;
   accounts: string[];
   userSessionId: string;
+  environment: any
 
   ngOnDestroy() {
     this.unsubscribeEverything();
@@ -119,12 +120,15 @@ export class AuthSvMockupComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.environment = this.envService.environment
     this.contactUsForm = this.fb.group({
       loginId: [
         ""
       ]
     });
   }
+
+  
 
   public isErrorState(
     control: AbstractControl | null,
@@ -167,10 +171,11 @@ export class AuthSvMockupComponent implements OnInit, OnDestroy {
   private initializeWebSocketConnection(loginId: number) {
     this.connectAndReconnectSocket(this.successSocketCallback);
 
-    const socket = new SockJS(this.envService.get().crawlerUrl);
+    const socket = new SockJS(environment.crawlerUrl);
     this.stompClient = Stomp.over(socket);
 
-    if (this.envService.get().production) {
+    
+    if (environment.production) {
       this.stompClient.debug = null;
     }
 

@@ -68,6 +68,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
   isAccountSelection: boolean;
   accounts: string[];
   userSessionId: string;
+  environment: any
 
   constructor(
     private router: Router,
@@ -79,6 +80,10 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
+
+    this.environment = this.envService.environment
+    console.log("this.environment")
+    console.log(this.environment)
     this.setDefaultSteps();
     this.initializeWebSocketConnection();
     window.scrollTo(0, 0);
@@ -160,11 +165,11 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
   }
 
   private connectAndReconnectSocket(successCallback) {
-    const socket = new SockJS(this.envService.get().crawlerUrl);
+    const socket = new SockJS(this.environment.crawlerUrl);
 
     this.stompClient = Stomp.over(socket);
     // Disable websocket logs for production
-    if (this.envService.get().production) {
+    if (this.environment.production) {
       this.stompClient.debug = null;
     }
     this.stompClient.connect(

@@ -40,7 +40,7 @@
               "src/favicon.ico",
               "src/assets",
               "src/sitemap.xml",
-              "src/env-config.js"
+              "src/env-config.json"
             ],
             "styles": [
               "src/styles.scss",
