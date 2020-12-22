@@ -36,6 +36,9 @@ export class EnvService {
  
 
     this.http.get("../../../assets/env-config.json", { responseType: 'text' as 'json'}).subscribe(data => {
+
+      console.log("data")
+      console.log(data)
       data.toString()
       var env = JSON.parse(data.toString()) as Environment
       console.log("setting env again")
