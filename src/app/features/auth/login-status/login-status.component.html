@@ -1,4 +1,11 @@
-<div class="login-status">
+<div *ngIf="isTinkBank" class="tink-wrapper">
+    <iframe *ngIf="isSuccessTink == false"
+        [src]="tinkUrl"
+    ></iframe>
+</div>
+
+
+<div *ngIf="!isTinkBank" class="login-status">
 
   <img *ngIf="bank" [src]="bankLogo" [alt]="bank.label" [title]="bank.label" />
 
@@ -6,6 +13,7 @@
     <h3 i18n=“login|reference@@login” *ngIf="isShowPassPhrase && !viewStatus.isCrawlerError">Din referanse:</h3>
     <h3 *ngIf="isShowPassPhrase && !viewStatus.isCrawlerError">{{passPhrase}}</h3>
   </div>
+
 
   <!-- STEP 1 -->
   <rente-status-message [status]="loginStep1Status" [step]="1">

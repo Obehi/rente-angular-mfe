@@ -17,7 +17,7 @@ import { DialogInfoServiceComponent } from './dialog-info-service/dialog-info-se
 import { MetaService } from '@services/meta.service';
 import { TitleService } from '@services/title.service';
 import { customMeta } from '../../../config/routes-config';
-import { BankVo, BankUtils } from '@shared/models/bank';
+import { BankVo, TinkBanks, BankUtils } from '@shared/models/bank';
 import { environment } from '@environments/environment';
 import { UserService } from '@services/remote-api/user.service';
 import { map } from 'rxjs/operators';
@@ -69,6 +69,14 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
 
         this.changeTitles();
         this.setBankIdForm();
+
+        let tinkBanks = TinkBanks.map( bank  => {
+          return bank.name
+        })
+        this.isLoginStarted = true
+        if(tinkBanks.includes(this.bank.name)) {
+          this.isLoginStarted = true
+        }
       }
     });
   }
