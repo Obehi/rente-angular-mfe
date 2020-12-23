@@ -100,12 +100,10 @@ export const MissingBankList: BankVo[] = [
   new BankVo('BN_BANK', 'BN Bank ASA', 'bn.png', null, false, true, true, null),
   new BankVo('BULDER', 'Bulder Bank (Sparebanken Vest)', 'bulder.png', null, false, true, true, null),
   new BankVo('CULTURA', 'Cultura Sparebank', 'cultura.png', null, false, true, true, null),
-  new BankVo('DANSKE_BANK', 'Danske Bank', 'danske.png', null, false, true, true, null),
   new BankVo('DIN_BANK', 'Din Bank (Sparebanken Øst)', 'dinbank.png', null, false, true, true, null),
   new BankVo('ETNE_SB', 'Etne Sparebank', 'etne.png', null, false, true, true, null),
   new BankVo('FANA_SB', 'Fana Sparebank', 'fana.png', null, false, true, true, null),
   new BankVo('FLEKKEFJORD_SB', 'Flekkefjord Sparebank', 'flekkefjord.png', null, false, true, true, null),
-  new BankVo('HANDELSBANKEN', 'Handelsbanken NUF', 'handelsbanken.png', null, false, true, true, null),
   new BankVo('HAUGESUND_SB', 'Haugesund Sparebank', 'haugesund.png', null, false, true, true, null),
   new BankVo('KLP', 'KLP Banken AS', 'klp.png', null, false, true, true, null),
   new BankVo('KRAFTBANK', 'Kraft Bank ASA', 'kraft.png', null, false, true, true, null),
@@ -131,8 +129,12 @@ export const MissingBankList: BankVo[] = [
   new BankVo('SB_MORE', 'Sparebanken Møre', 'more.png', null, false, true, true, null),
   new BankVo('HUSBANKEN', 'Husbanken', 'husbanken.png', null, false, true, true, null),
   new BankVo('HELGELAND_SB', 'Helgeland Sparebank', 'helgeland.png', null, false, true, true, null),
-
 ];
+
+export const TinkBanks: BankVo[] = [
+  new BankVo('HANDELSBANKEN', 'Handelsbanken NUF', 'handelsbanken.png', null, false, true, true, null),
+  new BankVo('DANSKE_BANK', 'Danske Bank', 'danske.png', null, false, true, true, null),
+]
 
 export class BankUtils {
 

@@ -3,11 +3,10 @@ var path =  require('path');
 
 const environment = process.env.ENV;
 const isProd = environment === "prod";
-const localeForLocalDev = process.argv[2] || "no";
 const isServe = process.argv[3] || "serve";
 const isLocal = process.env.ENV === undefined;
 
-module.exports = (clientPath) => {
+module.exports = (localeForLocalDev) => {
   const localEnvConfig = `{
     "name": "local",
     "production": false,
@@ -15,7 +14,7 @@ module.exports = (clientPath) => {
     "crawlerUrl": "https://rente-ws-dev.herokuapp.com/ws",
     "tinkUrl": "${
       localeForLocalDev === "no"
-        ? ""
+        ? "norskTikLink"
         : localeForLocalDev === "sv"
         ? "https://link.tink.com/1.0/authorize/?client_id=3973e78ee8c140edbf36e53d50132ba1&redirect_uri=https%3A%2F%2Franteradar.se&scope=accounts:read,identity:read&market=SE&locale=sv_SE&iframe=true"
         : null

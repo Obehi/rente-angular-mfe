@@ -30,6 +30,7 @@ import {
   MESSAGE_STATUS
 } from "../auth/login-status/login-status.config";
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { env } from 'process';
 
 
 @Component({
@@ -62,6 +63,8 @@ export class BankSelectSvComponent implements OnInit, OnDestroy {
     }
   
     ngOnInit(): void {
+      console.log("enviiiiii")
+      console.log(this.envService.environment)
       let tinkUrl = this.envService.environment.tinkUrl || "https://link.tink.com/1.0/authorize/?client_id=3973e78ee8c140edbf36e53d50132ba1&redirect_uri=https%3A%2F%2Franteradar.se&scope=accounts:read,identity:read&market=SE&locale=sv_SE&iframe=true"
       
       if(history.state.data !== undefined && (history.state.data.iosPopup === true || history.state.data.androidPopup === true)) {
@@ -183,8 +186,11 @@ export class BankSelectSvComponent implements OnInit, OnDestroy {
       const data = JSON.stringify(dataObj);
   
       this.stompClient.send(
-        API_URL_MAP.tinkSendMessageUrl + tinkCode,
-        {},
+        API_URL_MAP.tinkSendMessageUrl,
+        {
+         code:  tinkCode,
+         country: this.envService.environment.locale
+        },
         data
       );
       if (!resendData) {

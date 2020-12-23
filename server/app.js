@@ -7,6 +7,7 @@ const port = process.env.PORT || 4302;
 const baseUrl = process.env.BASE_URL;
 const buildEnvConfig = require('../src/build-env-config.js')
 https.globalAgent.options.ca = require('ssl-root-cas/latest').create();
+const localeForLocalDev = process.argv[2] || "no";
 
 const proxy = require('http-proxy').createProxyServer({
   host: 'https://blogg.renteradar.no',
@@ -46,7 +47,7 @@ const historicalRatesProxy = require('http-proxy').createProxyServer({
   }, next); 
 });
  
-buildEnvConfig()
+buildEnvConfig(localeForLocalDev)
 
 app.use(express.static(clientPath));
 
