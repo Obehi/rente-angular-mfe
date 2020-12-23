@@ -51,7 +51,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
   public loginStep3Status: string;
   public firstStepTimer = 10;
   public firstStepTimerFinished: boolean;
-  public thirdStepTimer = 30;
+  public thirdStepTimer = 20;
   public thirdStepTimerFinished: boolean;
   public isShowPassPhrase: boolean;
   private maxConnectionTime = 90;
@@ -81,8 +81,8 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
     this.setDefaultSteps();
     this.initializeWebSocketConnection();
     window.scrollTo(0, 0);
-    //Special case for
-    this.thirdStepTimer = this.bank.name === "DNB" ?  25 : 20;
+    //Special case for DNB
+    this.thirdStepTimer = this.bank.name === "DNB" ?  30 : 20;
     
   }
 
