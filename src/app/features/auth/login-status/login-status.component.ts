@@ -51,7 +51,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
   public loginStep3Status: string;
   public firstStepTimer = 10;
   public firstStepTimerFinished: boolean;
-  public thirdStepTimer = 20;
+  public thirdStepTimer = 30;
   public thirdStepTimerFinished: boolean;
   public isShowPassPhrase: boolean;
   private maxConnectionTime = 90;
