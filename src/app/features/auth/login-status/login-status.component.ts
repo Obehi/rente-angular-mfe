@@ -5,7 +5,8 @@ import {
   Input,
   OnDestroy,
   Output,
-  EventEmitter
+  EventEmitter,
+  HostListener
 } from "@angular/core";
 import * as Stomp from "stompjs";
 import * as SockJS from "sockjs-client";
@@ -26,9 +27,10 @@ import { Router } from "@angular/router";
 import { UserService } from "@services/remote-api/user.service";
 import { LoansService } from "@services/remote-api/loans.service";
 import { LocalStorageService } from "@services/local-storage.service";
-import { BankVo, BankUtils } from "@shared/models/bank";
+import { BankVo, BankUtils, TinkBanks } from "@shared/models/bank";
 import { ROUTES_MAP } from '@config/routes-config';
 import { EnvService} from '@services/env.service'
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 @Component({
   selector: "rente-login-status",
@@ -69,6 +71,11 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
   accounts: string[];
   userSessionId: string;
   environment: any
+  private tinkBanks = ['DANSKE_BANK'];
+  isTinkBank = false;
+  public tinkUrl: SafeUrl;
+  isSuccessTink = false
+  public tinkCode: number;
 
   constructor(
     private router: Router,
@@ -76,7 +83,8 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
     private userService: UserService,
     private loansService: LoansService,
     private localStorageService: LocalStorageService,
-    private envService: EnvService
+    private envService: EnvService,
+    private sanitizer: DomSanitizer
   ) {}
 
   ngOnInit() {
@@ -90,7 +98,32 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
     //Special case for
     this.thirdStepTimer = this.bank.name === "DNB" ?  25 : 20;
     
+    let tinkUrl = "https://link.tink.com/1.0/authorize/?client_id=3973e78ee8c140edbf36e53d50132ba1&redirect_uri=https%3A%2F%2Franteradar.se&scope=accounts:read,identity:read&market=SE&locale=sv_SE&iframe=true"
+    
+    this.tinkUrl = this.sanitizer.bypassSecurityTrustResourceUrl(tinkUrl)
+    let tinkBanks = TinkBanks.map( bank  => {
+      return bank.name
+    })
+    if(tinkBanks.includes(this.bank.name)) {
+      this.isTinkBank = true
+    }
   }
+
+  @HostListener('window:message', ['$event'])
+    onMessage(event) {
+      if (event.origin !== 'https://link.tink.com') {
+      return;
+      }
+  
+      let data = JSON.parse(event.data)
+      if (data.type === 'code') {
+        // This is the authorization code that should be exchanged for an access token
+        this.tinkCode = event.data.data;
+        console.log(`T response: ${data.type }`);
+
+        this.initializeWebSocketConnection(data.data)
+      }
+    }
 
   ngOnDestroy() {
     this.unsubscribeEverything();
