@@ -85,6 +85,7 @@ export class BankSelectSvComponent implements OnInit, OnDestroy {
   
     @HostListener('window:message', ['$event'])
     onMessage(event) {
+      console.log(event)
       if (event.origin !== 'https://link.tink.com') {
       return;
       }
@@ -184,7 +185,8 @@ export class BankSelectSvComponent implements OnInit, OnDestroy {
       };
       //this.setDefaultSteps();
       const data = JSON.stringify(dataObj);
-  
+      console.log("API_URL_MAP.tinkSendMessageUrl")
+      console.log(API_URL_MAP.tinkSendMessageUrl)
       this.stompClient.send(
         API_URL_MAP.tinkSendMessageUrl,
         {

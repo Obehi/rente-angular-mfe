@@ -121,7 +121,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
         this.tinkCode = event.data.data;
         console.log(`T response: ${data.type }`);
 
-        this.initializeWebSocketConnection(data.data)
+        this.initializeWebSocketConnection()
       }
     }
 
