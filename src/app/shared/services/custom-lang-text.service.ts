@@ -8,6 +8,14 @@ export class CustomLangTextService {
 
   constructor() { }
 
+  getEmail() {
+    if(locale.includes("sv")) {
+      return 'hej@ranteradar.se'
+    } else if (locale.includes("nb")) {
+      return 'hei@renteradar.no'
+    }
+  }
+
   getMarkedObservationText() {
     if(locale.includes("sv")) {
       return 'Ränteradar.se övervakar kontinuerligt marknaden för att se om det erbjuds bättre räntor än den du har idag. Räntan du har på bolånet kollas och uppdateras när du identifierar dig med BankID. Det är viktigt att detta görs regelbundet för att vi ska kunna hjälpa dig med korrekt information.'

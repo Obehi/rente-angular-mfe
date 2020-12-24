@@ -18,7 +18,7 @@ import {
   transition,
   keyframes
 } from '@angular/animations';
-
+import { CustomLangTextService } from '@services/custom-lang-text.service'
 
 @Component({
   selector: 'rente-email-preferences',
@@ -59,12 +59,13 @@ export class EmailPreferencesComponent implements OnInit {
     private preferancesService: PreferancesService, 
     private activatedRoute: ActivatedRoute,
     public location: Location,
-    private dialog: MatDialog) { }
+    private dialog: MatDialog,
+    public langService: CustomLangTextService) { }
 
   ngOnInit() {
     let currentUrl = this.location.path();
     this.guid = this.getGuIdFromUrl(currentUrl);
-    
+   
     if (this.guid) {
       this.preferancesService.getPreferancesWithGUID(this.guid).subscribe(preferances => { 
         this.checkRateReminderType = preferances.checkRateReminderType;
@@ -84,9 +85,9 @@ export class EmailPreferencesComponent implements OnInit {
     
   }
 
-  public openInfoDialog(offer: string): void {
+  public openInfoDialog(): void {
     this.dialog.open(ProfileDialogInfoComponent, {
-      data: offer
+      data: this.langService.getMarkedObservationText()
     });
   }
 

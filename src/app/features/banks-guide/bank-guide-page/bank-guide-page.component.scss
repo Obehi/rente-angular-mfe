@@ -100,6 +100,14 @@
   height: 33px;
 }
 
+.offer-rate {
+  border: 1px solid $primary;
+  border-radius: 4px;
+  background-color: $gray-300;
+  max-height: 22px;
+  align-self: center;
+}
+
 .bank-rating {
   & > div:first-child {
     font-weight: 300;
