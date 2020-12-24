@@ -49,7 +49,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
   public loginStep1Status: string;
   public loginStep2Status: string;
   public loginStep3Status: string;
-  public firstStepTimer = ;
+  public firstStepTimer = 10;
   public firstStepTimerFinished: boolean;
   public thirdStepTimer = 20;
   public thirdStepTimerFinished: boolean;
