@@ -49,7 +49,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
   public loginStep1Status: string;
   public loginStep2Status: string;
   public loginStep3Status: string;
-  public firstStepTimer = 10;
+  public firstStepTimer = ;
   public firstStepTimerFinished: boolean;
   public thirdStepTimer = 20;
   public thirdStepTimerFinished: boolean;
@@ -83,6 +83,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
     window.scrollTo(0, 0);
     //Special case for DNB
     this.thirdStepTimer = this.bank.name === "DNB" ?  30 : 20;
+    this.firstStepTimer = this.bank.name === "DNB" ?  20 : 10;
     
   }
 
