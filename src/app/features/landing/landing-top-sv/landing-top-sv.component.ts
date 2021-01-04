@@ -35,6 +35,8 @@ export class LandingTopSvComponent implements OnInit {
   }
   
   pushCTAButton() {
+    this.router.navigate(['/' + ROUTES_MAP.bankSelect]);
+    return
     this.isIos = !window.MSStream && /iPad|iPhone|iPod/.test(navigator.userAgent); 
     this.isAndroid = /Android/.test(navigator.userAgent)
     if(this.isIos) {
