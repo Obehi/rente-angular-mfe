@@ -34,7 +34,7 @@ module.exports = (localeForLocalDev) => {
     "production": "${isProd}",
     "baseUrl": "${process.env.BASE_URL}",
     "crawlerUrl": "${process.env.CRAWLER_URL}",
-    "tinkUrl": "${process.env.TINK_URL}",
+    "tinkUrl": "${process.env.TINK_LINK}",
     "locale": "${process.env.LOCALE}"
   }
   `;
