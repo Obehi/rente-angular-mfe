@@ -34,6 +34,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
   public isSsnBankLogin: boolean;
   public isConfirmed: boolean;
   public isLoginStarted = false;
+  public isTinkBank = false;
   public userData: any = {};
   private routeParamsSub: Subscription;
   public metaTitle: string;
@@ -53,7 +54,6 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-
     this.environment = this.envService.environment
     this.routeParamsSub = this.route.params.subscribe((params: any) => {
       if (params && params.bankName) {
@@ -73,11 +73,8 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
         this.changeTitles();
         this.setBankIdForm();
 
-        let tinkBanks = TinkBanks.map( bank  => {
-          return bank.name
-        })
-        this.isLoginStarted = true
-        if(tinkBanks.includes(this.bank.name)) {
+        this.isTinkBank = bank.isTinkBank
+        if(this.isTinkBank) {
           this.isLoginStarted = true
         }
       }

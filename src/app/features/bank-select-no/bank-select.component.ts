@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BankVo, BankList, MissingBankList } from '../../shared/models/bank';
+import { BankVo, BankList, MissingBankList, TinkBanks } from '../../shared/models/bank';
 import { Router } from '@angular/router';
 import { ROUTES_MAP } from '@config/routes-config';
 import {ErrorHandler, Injectable} from '@angular/core';
@@ -37,7 +37,7 @@ export class BankSelectNoComponent implements OnInit, ErrorHandler{
    }
 
   sortBanks() {
-    let sortedBanksAlphabetic = [...BankList, ...MissingBankList].sort((a,b) => (a.label > b.label) ? 1 : ((b.label > a.label) ? -1 : 0));
+    let sortedBanksAlphabetic = [...BankList, ...MissingBankList, ... TinkBanks].sort((a,b) => (a.label > b.label) ? 1 : ((b.label > a.label) ? -1 : 0));
     let dnb = 'DNB';
     let sparebank = 'SPAREBANK_1';
     let nordea = 'NORDEA';

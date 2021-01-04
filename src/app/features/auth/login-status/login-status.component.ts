@@ -27,7 +27,7 @@ import { Router } from "@angular/router";
 import { UserService } from "@services/remote-api/user.service";
 import { LoansService } from "@services/remote-api/loans.service";
 import { LocalStorageService } from "@services/local-storage.service";
-import { BankVo, BankUtils, TinkBanks } from "@shared/models/bank";
+import { BankVo, BankUtils } from "@shared/models/bank";
 import { ROUTES_MAP } from '@config/routes-config';
 import { EnvService} from '@services/env.service'
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
@@ -40,7 +40,6 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 export class LoginStatusComponent implements OnInit, OnDestroy {
   @Input() bank: BankVo;
   @Input() userData: any = {};
-
   @Output() returnToInputPage = new EventEmitter<any>();
 
   public viewStatus: ViewStatus = new ViewStatus();
@@ -71,12 +70,11 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
   accounts: string[];
   userSessionId: string;
   environment: any
-  private tinkBanks = ['DANSKE_BANK'];
-  isTinkBank = false;
+  public isTinkBank = false;
   public tinkUrl: SafeUrl;
   isSuccessTink = false
   public tinkCode: number;
-
+  
   constructor(
     private router: Router,
     private authService: AuthService,
@@ -90,23 +88,23 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
   ngOnInit() {
 
     this.environment = this.envService.environment
-    console.log("this.environment")
-    console.log(this.environment)
     this.setDefaultSteps();
     this.initializeWebSocketConnection();
     window.scrollTo(0, 0);
     //Special case for
     this.thirdStepTimer = this.bank.name === "DNB" ?  25 : 20;
     
-    let tinkUrl = "https://link.tink.com/1.0/authorize/?client_id=3973e78ee8c140edbf36e53d50132ba1&redirect_uri=https%3A%2F%2Franteradar.se&scope=accounts:read,identity:read&market=SE&locale=sv_SE&iframe=true"
-    
-    this.tinkUrl = this.sanitizer.bypassSecurityTrustResourceUrl(tinkUrl)
-    let tinkBanks = TinkBanks.map( bank  => {
-      return bank.name
-    })
-    if(tinkBanks.includes(this.bank.name)) {
-      this.isTinkBank = true
+ 
+    if(this.bank.isTinkBank) {
+      this.initiateTinkBank()
     }
+  }
+
+  initiateTinkBank() {
+    console.log("initiateTinkBank")
+    let tinkUrl = this.envService.environment.tinkUrl || "https://link.tink.com/1.0/authorize/?client_id=3973e78ee8c140edbf36e53d50132ba1&redirect_uri=https%3A%2F%2Franteradar.se&scope=accounts:read,identity:read&market=SE&locale=sv_SE&iframe=true"
+    this.tinkUrl = this.sanitizer.bypassSecurityTrustResourceUrl(tinkUrl)
+    this.isTinkBank = true
   }
 
   @HostListener('window:message', ['$event'])
