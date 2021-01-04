@@ -38,10 +38,12 @@ export class EnvService {
 
   //Used to initialize provider in module
   init() {
-    return this.http.get<Environment>("../../../assets/env-config.json", { responseType: 'text' as 'json'}).pipe(
+    return this.http.get<Environment>("../../../../assets/env-config.json", { responseType: 'text' as 'json'}).pipe(
       map( env => env)
     ).pipe(tap( env => this.environment = env)
-    )
+    ).subscribe( env => {
+      console.log(env)
+    })
   }
 }
   
