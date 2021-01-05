@@ -171,7 +171,6 @@ export class BankSelectSvComponent implements OnInit, OnDestroy {
           }
         }
       });
-  
     }
   
     private connectAndReconnectSocket(successCallback) {
