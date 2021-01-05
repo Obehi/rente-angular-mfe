@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../../../env/env.js'
 import { test } from '../../../../env/env-test.js'
 import {BehaviorSubject} from 'rxjs'
-import {map, tap} from 'rxjs/operators'
+import {map, tap,} from 'rxjs/operators'
 
 interface Environment { 
   name: string | null,
@@ -18,11 +18,13 @@ import {
   HttpClient,
 } from '@angular/common/http';
 import { threadId } from 'worker_threads';
+import { createUrlResolverWithoutPackagePrefix } from '@angular/compiler';
 
 
 @Injectable()
 export class EnvService {
   window: Window
+  test: any 
   public environment: Environment = {
     "name": "local",
     "production": false,
@@ -38,11 +40,13 @@ export class EnvService {
 
   //Used to initialize provider in module
   init() {
-    return this.http.get<Environment>("../../../../assets/env-config.json", { responseType: 'text' as 'json'}).pipe(
-      map( env => env)
-    ).pipe(tap( env => this.environment = env)
-    ).subscribe( env => {
+    
+    this.http.get("../../../../assets/env-config.json").subscribe( env => {
+      console.log("1212enc")
       console.log(env)
+      console.log(env['name'])
+      this.environment = env as Environment
+      console.log(this.environment.baseUrl)
     })
   }
 }
