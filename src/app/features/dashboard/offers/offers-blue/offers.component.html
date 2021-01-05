@@ -597,7 +597,7 @@
     </div>
   
     <div *ngIf="effRateLoweredDialogVisible">
-      <rente-dialog [title]="'Du har lavere rente enn forrige gang!'"
+      <rente-dialog  [title]="customLangTextSerice.getlowerRateTitle()"
         [message]="'Brukte du prutefunksjonen vår for å få bedre rente?'" (action)="onDialogAction($event)">
       </rente-dialog>
     </div>

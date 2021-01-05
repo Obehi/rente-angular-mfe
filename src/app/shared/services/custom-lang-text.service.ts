@@ -169,4 +169,20 @@ export class CustomLangTextService {
       return 'Navn'
     }
   }
+
+  getlowerRateTitle() {
+    if(locale.includes("sv") ) {
+      return 'Du har lägre ränta än förra gången!'
+    } else if (locale.includes("nb")) {
+      return 'Du har lavere rente enn forrige gang!'
+    }
+  }
+
+  getlowerRateBody() {
+    if(locale.includes("sv") ) {
+      return 'Prutade du genom oss för att få en bättre ränta?'
+    } else if (locale.includes("nb")) {
+      return 'Brukte du prutefunksjonen vår for å få bedre rente?'
+    }
+  }
 }

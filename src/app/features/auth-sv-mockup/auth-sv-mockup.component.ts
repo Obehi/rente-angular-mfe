@@ -14,6 +14,8 @@ import { Mask } from '@shared/constants/mask'
 import * as Stomp from "stompjs";
 import * as SockJS from "sockjs-client";
 import { environment } from "@environments/environment";
+import { locale } from '../../config/locale/locale';
+
 import { API_URL_MAP } from "@config/api-url-config";
 import { Subscription, interval, Observable, timer, forkJoin } from "rxjs";
 import {
@@ -404,22 +406,24 @@ export class AuthSvMockupComponent implements OnInit, OnDestroy {
   }
 
   sendUserData(loginId: number, resendData = false) {
-    const dataObj = {
-    };
-    //this.setDefaultSteps();
-    const data = JSON.stringify(dataObj);
 
-    console.log("loginId")
-    console.log(loginId)
-    this.stompClient.send( 
-      API_URL_MAP.tinkSendMessageUrl + loginId,
-      {},
-      data
-    );
-    if (!resendData) {
-      //this.initTimer(IDENTIFICATION_TIMEOUT_TIME);
-      //this.initConnectionTimer();
+    var country = ""
+    if(locale === 'nb') {
+      country = 'NOR'
+    } else {
+      country = 'SWE'
     }
+
+    let data = {
+      country: country,
+      code: loginId
+    }
+  
+    this.stompClient.send( 
+      API_URL_MAP.tinkMockUpSendMessageUrl,
+      {},
+      JSON.stringify(data)
+    );
   }
 
 
