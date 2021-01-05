@@ -420,7 +420,7 @@ export class AuthSvMockupComponent implements OnInit, OnDestroy {
     }
   
     this.stompClient.send( 
-      API_URL_MAP.tinkMockUpSendMessageUrl,
+      API_URL_MAP.tinkSendMessageUrl,
       {},
       JSON.stringify(data)
     );

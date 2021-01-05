@@ -4,6 +4,7 @@ import { UserService } from "@services/remote-api/user.service";
 import { LocalStorageService } from "@services/local-storage.service";
 import { MatDialog } from '@angular/material/dialog';
 import { ChangeBrowserDialogInfoComponent } from '../landing/landing-top-sv/change-browser-dialog-info/dialog-info.component';
+import { locale } from '../../config/locale/locale';
 
 import {
   Component,
@@ -177,20 +178,23 @@ export class BankSelectSvComponent implements OnInit, OnDestroy {
     
     }
   
-    sendUserData(tinkCode: number, resendData = false) {
-      const dataObj = {
-      };
-      //this.setDefaultSteps();
-      const data = JSON.stringify(dataObj);
-  
-      this.stompClient.send(
-        API_URL_MAP.tinkSendMessageUrl + tinkCode,
-        {},
-        data
-      );
-      if (!resendData) {
-        //this.initTimer(IDENTIFICATION_TIMEOUT_TIME);
-        //this.initConnectionTimer();
+    sendUserData(loginId: number, resendData = false) {
+      var country = ""
+      if(locale.includes("nb")) {
+        country = 'NOR'
+      } else {
+        country = 'SWE'
       }
+  
+      let data = {
+        country: country,
+        code: loginId
+      }
+    
+      this.stompClient.send( 
+        API_URL_MAP.tinkSendMessageUrl,
+        {},
+        JSON.stringify(data)
+      );
     }
   }
