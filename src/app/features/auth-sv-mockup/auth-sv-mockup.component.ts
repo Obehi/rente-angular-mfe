@@ -408,7 +408,7 @@ export class AuthSvMockupComponent implements OnInit, OnDestroy {
   sendUserData(loginId: number, resendData = false) {
 
     var country = ""
-    if(locale === 'nb') {
+    if(locale.includes("nb")) {
       country = 'NOR'
     } else {
       country = 'SWE'
