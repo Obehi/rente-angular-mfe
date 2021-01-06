@@ -82,7 +82,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
     this.initializeWebSocketConnection();
     window.scrollTo(0, 0);
     //Special case for DNB
-    this.thirdStepTimer = this.bank.name === "DNB" ?  30 : 20;
+    this.thirdStepTimer = this.bank.name === "DNB" ?  30 : 25;
     this.firstStepTimer = this.bank.name === "DNB" ?  20 : 10;
     
   }
