@@ -238,7 +238,9 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
       }
       this.firstStepTimer--;
       if (!this.firstStepTimer) {
-        this.logging.logger(this.logging.Level.Error, "FIRST_STEP_TIMER_FINISHED", 'LoginStatusComponent', 'initConnectionTimer', this.logging.SubSystem.Tink, "FIRST STEP TIMER FINISHED")
+        if(this.firstStepTimerFinished === false){
+          this.logging.logger(this.logging.Level.Error, "FIRST_STEP_TIMER_FINISHED", 'LoginStatusComponent', 'initConnectionTimer', this.logging.SubSystem.Tink, "FIRST STEP TIMER FINISHED")
+        }
 
         this.firstStepTimerFinished = true;
       }
@@ -429,7 +431,9 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
     this.crawlingTimerSubscription = this.crawlingTimer.subscribe(time => {
       this.thirdStepTimer--;
       if (!this.thirdStepTimer) {
-        this.logging.logger(this.logging.Level.Error, "THIRD_STEP_TIMER_FINISHED", 'LoginStatusComponent', 'startCrawlingTimer', this.logging.SubSystem.Tink, "THIRD STEP TIMER FINISHED")
+        if(this.thirdStepTimerFinished === false) {
+          this.logging.logger(this.logging.Level.Error, "THIRD_STEP_TIMER_FINISHED", 'LoginStatusComponent', 'startCrawlingTimer', this.logging.SubSystem.Tink, "THIRD STEP TIMER FINISHED")
+        }
         this.thirdStepTimerFinished = true;
       }
     });
