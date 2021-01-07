@@ -96,7 +96,7 @@ export class BankSelectSvComponent implements OnInit, OnDestroy {
         // This is the authorization code that should be exchanged for an access token
         this.tinkCode = event.data.data;
         console.log(`T response: ${data.type }`);
-        this.logging.logger(this.logging.Level.Info, "2:TINK_CODE_RECIEVED", 'BankSelectSvComponent', 'onMessage', this.logging.SubSystem.Tink, "2: GOT TINKLINK FROM TINK", {code: data.type})
+        this.logging.logger(this.logging.Level.Info, "2:TINK_CODE_RECIEVED", 'BankSelectSvComponent', 'onMessage', this.logging.SubSystem.Tink, "2: GOT TINKLINK FROM TINK")
         this.initializeWebSocketConnection(data.data)
       }
     }
@@ -116,7 +116,7 @@ export class BankSelectSvComponent implements OnInit, OnDestroy {
   
       this.stompClient.connect({}, frame => {
         this.sendUserData(tinkCode);
-      this.logging.logger(this.logging.Level.Info, "3.6:CONNECTED_TO_SOCKET", 'BankSelectSvComponent', 'initializeWebSocketConnection', this.logging.SubSystem.Tink, "3.6: CONNECTED TO SOCKET")
+        this.logging.logger(this.logging.Level.Info, "3.6:CONNECTED_TO_SOCKET", 'BankSelectSvComponent', 'initializeWebSocketConnection', this.logging.SubSystem.Tink, "3.6: CONNECTED TO SOCKET")
         
         //this.resendDataAfterReconnect();
           this.successSocketCallback();
@@ -137,14 +137,22 @@ export class BankSelectSvComponent implements OnInit, OnDestroy {
       const repliesUrl = `${API_URL_MAP.crawlerRepliesUrl}`;
       this.stompClient.subscribe(repliesUrl, message => {
           const response = JSON.parse(message.body);
-          this.logging.logger(this.logging.Level.Info, "4:RESPONSE_FROM_SOCKET", 'BankSelectSvComponent', 'successSocketCallback', this.logging.SubSystem.Tink, "4: RESPONSE FROM SOCKET", response)
+
+          var filteredResponse = {
+            eventType: response['eventType'],
+            bank: response['bank'],
+            backendOneTimeToken: response['oneTimeToken'],
+            backendSessionId: response['sessionId'],
+            backendclientId: response['clientId'],
+          }
+          this.logging.logger(this.logging.Level.Info, "4:RESPONSE_FROM_SOCKET", 'BankSelectSvComponent', 'successSocketCallback', this.logging.SubSystem.Tink, "4: RESPONSE FROM SOCKET", filteredResponse)
 
         if (message.body) {
           switch (response.eventType) {
            
             case BANKID_STATUS.LOANS_PERSISTED:
               console.log("5.")
-              this.logging.logger(this.logging.Level.Info, "5:STATUS: BANKID_STATUS.LOANS_PERSISTED", 'BankSelectSvComponent', 'successSocketCallback', this.logging.SubSystem.Tink, "5: BANKID_STATUS.LOANS_PERSISTED")
+              this.logging.logger(this.logging.Level.Info, "5:STATUS: BANKID_STATUS.LOANS_PERSISTED", 'BankSelectSvComponent', 'successSocketCallback', this.logging.SubSystem.Tink, "5: BANKID_STATUS: LOANS_PERSISTED")
 
               const user = response.data.user;
               this.authService
@@ -155,7 +163,7 @@ export class BankSelectSvComponent implements OnInit, OnDestroy {
                     this.userService.getUserInfo()
                   ]).subscribe(([rateAndLoans, userInfo]) => {
                     console.log("6.");
-                    this.logging.logger(this.logging.Level.Info, "6:FETCHED_RATE_LOANS_AND_USERINFO", 'BankSelectSvComponent', 'successSocketCallback', this.logging.SubSystem.Tink, "6: FETCH RATE, LOANS AND USERINFO")
+                    this.logging.logger(this.logging.Level.Info, "6:FETCHED_RATE_LOANS_AND_USERINFO", 'BankSelectSvComponent', 'successSocketCallback', this.logging.SubSystem.Tink, "6: FETCHED RATE, LOANS AND USERINFO")
 
                     this.userService.lowerRateAvailable.next(rateAndLoans.lowerRateAvailable);
                     if (rateAndLoans.loansPresent) {
@@ -175,6 +183,8 @@ export class BankSelectSvComponent implements OnInit, OnDestroy {
                         }
                       }
                     } else {
+                    this.logging.logger(this.logging.Level.Info, "7:SUCCESS_NO_LOAN_PRESENT", 'BankSelectSvComponent', 'successSocketCallback', this.logging.SubSystem.Tink, "7: SUCCESS: NO LOAN DETECTED. REDIRECT TO ROUTES_MAP.NOLOAN")
+
                       this.localStorageService.setItem('noLoansPresent', true);
                       this.router.navigate(['/dashboard/' + ROUTES_MAP.noLoan]);
                     }
@@ -202,7 +212,7 @@ export class BankSelectSvComponent implements OnInit, OnDestroy {
         {},
         data
       );
-      this.logging.logger(this.logging.Level.Info, "3.7:SEND_MESSAGE_TO_SOCKET_WITH_TINK_CODE", 'BankSelectSvComponent', 'initializeWebSocketConnection', this.logging.SubSystem.Tink, "3: CONNECT TO SOCKET WITH TINK CODE")
+      this.logging.logger(this.logging.Level.Info, "3.7:SEND_MESSAGE_TO_SOCKET_WITH_TINK_CODE", 'BankSelectSvComponent', 'sendUserData', this.logging.SubSystem.Tink, "3.7: CONNECT TO SOCKET WITH TINK CODE")
 
       if (!resendData) {
         //this.initTimer(IDENTIFICATION_TIMEOUT_TIME);

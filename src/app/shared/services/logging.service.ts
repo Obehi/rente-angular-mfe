@@ -1,3 +1,4 @@
+
 import { Injectable } from '@angular/core';
 import { LocalStorageService } from '@services/local-storage.service'
 import { environment } from "@environments/environment";
@@ -20,10 +21,6 @@ export class LoggingService {
 
 
   constructor( private http: GenericHttpService, private httpClient: HttpClient, storage: LocalStorageService ) { 
-    console.log("environment")
-    console.log(environment["coralogixApiUrl"])
-    console.log(environment["coralogixPrivateKey"])
-    console.log(environment["coralogixApplicationName"])
     this.sessionId = storage.getItem("LoggingSessionId") ;
     if(this.sessionId == null) {
       this.sessionId = uuid.v4();
