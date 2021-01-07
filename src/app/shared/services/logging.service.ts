@@ -12,14 +12,18 @@ import * as uuid from 'uuid';
 })
 export class LoggingService {
 
-  private apiUrl ="https://api.coralogix.com/api/v1/logs";
-  private privateKey = "bf331188-c87b-2ce5-4b72-b45e7f47b6f3";
-  private applicationName = "se-rente-frontend-dev_13164";
+  private apiUrl = environment["coralogixApiUrl"] || "https://api.coralogix.com/api/v1/logs";
+  private privateKey = environment["coralogixPrivateKey"]  || "bf331188-c87b-2ce5-4b72-b45e7f47b6f3";
+  private applicationName = environment["coralogixApplicationName"] || "se-rente-frontend-dev_13164";
   public Level = Level;
   public SubSystem = SubSystem;
 
 
   constructor( private http: GenericHttpService, private httpClient: HttpClient, storage: LocalStorageService ) { 
+    console.log("environment")
+    console.log(environment["coralogixApiUrl"])
+    console.log(environment["coralogixPrivateKey"])
+    console.log(environment["coralogixApplicationName"])
     this.sessionId = storage.getItem("LoggingSessionId") ;
     if(this.sessionId == null) {
       this.sessionId = uuid.v4();

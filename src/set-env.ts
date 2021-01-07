@@ -11,7 +11,11 @@ export const environment: Environment = {
   production: ${isProd},
   baseUrl: '${process.env.BASE_URL}',
   crawlerUrl: '${process.env.CRAWLER_URL}',
-  tinkUrl: '${process.env.TINK_LINK}'
+  tinkUrl: '${process.env.TINK_LINK}',
+  coralogixApiUrl: '${process.env.CORALOGIX_API_URL}',
+  coralogixPrivateKey: '${process.env.CORALOGIX_PRIVATE_KEY}',
+  coralogixApplicationName: '${process.env.CORALOGIX_APPLICATION_NAME}'
+  
 };
 
 interface Environment { 
@@ -19,7 +23,10 @@ interface Environment {
   production: boolean | null, 
   baseUrl: string | null,
   crawlerUrl: string | null,
-  tinkUrl: string | null
+  tinkUrl: string | null,
+  coralogixApiUrl: string | null,
+  coralogixPrivateKey: string | null,
+  coralogixApplicationName: string | null
 }
 `;
 
