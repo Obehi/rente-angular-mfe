@@ -80,13 +80,14 @@ export class BankSelectSvComponent implements OnInit, OnDestroy {
             });
       }
       console.log("2.")
-      this.logging.logger(this.logging.Level.Info, "1:INIT", 'BankSelectSvComponent', 'ngOnInit', this.logging.SubSystem.Tink, "1: INIT COMPONENT",)
+      this.logging.logger(this.logging.Level.Info, "1:INIT", 'BankSelectSvComponent', 'ngOnInit', this.logging.SubSystem.Tink, "1: INIT COMPONENT", {EnvTinkUrl: environment["tinkUrl"]})
 
       this.tinkUrl = this.sanitizer.bypassSecurityTrustResourceUrl(tinkUrl)
     }
   
     @HostListener('window:message', ['$event'])
     onMessage(event) {
+      this.logging.logger(this.logging.Level.Info, "INCOMING_EVENT", 'BankSelectSvComponent', 'HostListener', this.logging.SubSystem.Tink, "INCOMING EVENT", event)
       if (event.origin !== 'https://link.tink.com') {
       return;
       }
@@ -150,7 +151,7 @@ export class BankSelectSvComponent implements OnInit, OnDestroy {
         if (message.body) {
           switch (response.eventType) {
             case BANKID_STATUS.CRAWLER_ERROR:
-              this.logging.logger(this.logging.Level.Info, "5:STATUS: BANKID_STATUS.CRAWLER_ERROR", 'BankSelectSvComponent', 'successSocketCallback', this.logging.SubSystem.Tink, "BANKID_STATUS: CRAWLER_ERROR", response)
+              this.logging.logger(this.logging.Level.Error, "5:STATUS: BANKID_STATUS.CRAWLER_ERROR", 'BankSelectSvComponent', 'successSocketCallback', this.logging.SubSystem.Tink, "BANKID_STATUS: CRAWLER_ERROR", response)
               break;
             case BANKID_STATUS.LOANS_PERSISTED:
               console.log("5.")
