@@ -47,13 +47,15 @@ export class LoggingService {
 
     var text: any
     if(msg === undefined && object != undefined) { 
+      object['sessionId'] = this.sessionId
       text = JSON.stringify(object)
     } else
     if(msg !== undefined && object === undefined) { 
-      text = msg
+      text = msg + " -- " + this.sessionId
     }else 
     if(msg !== undefined && object !== undefined) { 
       object['message'] = msg
+      object['sessionId'] = this.sessionId
       text = JSON.stringify(object)
     }
 
