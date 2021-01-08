@@ -87,7 +87,7 @@ export class BankSelectSvComponent implements OnInit, OnDestroy {
   
     @HostListener('window:message', ['$event'])
     onMessage(event) {
-      this.logging.logger(this.logging.Level.Info, "INCOMING_EVENT", 'BankSelectSvComponent', 'HostListener', this.logging.SubSystem.Tink, "INCOMING EVENT", event)
+      this.logging.logger(this.logging.Level.Info, "INCOMING_EVENT", 'BankSelectSvComponent', 'HostListener', this.logging.SubSystem.Tink, "INCOMING EVENT", {eventOrigin: event.origin})
       if (event.origin !== 'https://link.tink.com') {
       return;
       }
