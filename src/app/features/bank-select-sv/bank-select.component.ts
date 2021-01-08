@@ -87,7 +87,6 @@ export class BankSelectSvComponent implements OnInit, OnDestroy {
   
     @HostListener('window:message', ['$event'])
     onMessage(event) {
-      this.logging.logger(this.logging.Level.Info, "INCOMING_EVENT", 'BankSelectSvComponent', 'HostListener', this.logging.SubSystem.Tink, "INCOMING EVENT", {eventOrigin: event.origin})
       if (event.origin !== 'https://link.tink.com') {
       return;
       }
@@ -98,7 +97,7 @@ export class BankSelectSvComponent implements OnInit, OnDestroy {
         // This is the authorization code that should be exchanged for an access token
         this.tinkCode = event.data.data;
         console.log(`T response: ${data.type }`);
-        this.logging.logger(this.logging.Level.Info, "2:TINK_LOGIN_SUCCESS", 'BankSelectSvComponent', 'onMessage', this.logging.SubSystem.Tink, "2: TINK LOGIN SUCCESS", data)
+        this.logging.logger(this.logging.Level.Info, "2.1:TINK_LOGIN_SUCCESS", 'BankSelectSvComponent', 'onMessage', this.logging.SubSystem.Tink, "2: TINK LOGIN SUCCESS", data)
         this.initializeWebSocketConnection(data.data)
       }
     }
