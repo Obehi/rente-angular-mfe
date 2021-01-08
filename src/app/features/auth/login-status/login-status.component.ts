@@ -29,6 +29,7 @@ import { LoansService } from "@services/remote-api/loans.service";
 import { LocalStorageService } from "@services/local-storage.service";
 import { BankVo, BankUtils } from "@shared/models/bank";
 import { ROUTES_MAP } from '@config/routes-config';
+import { LoggingService} from '@services/logging.service'
 
 @Component({
   selector: "rente-login-status",
@@ -74,10 +75,12 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
     private authService: AuthService,
     private userService: UserService,
     private loansService: LoansService,
-    private localStorageService: LocalStorageService
+    private localStorageService: LocalStorageService,
+    private logging: LoggingService
   ) {}
 
   ngOnInit() {
+    this.logging.logger(this.logging.Level.Info, "1:INIT", 'LoginStatusComponent', 'ngOnInit', this.logging.SubSystem.Tink, "1: INIT COMPONENT",)
     this.setDefaultSteps();
     this.initializeWebSocketConnection();
     window.scrollTo(0, 0);
@@ -137,6 +140,8 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
       {},
       data
     );
+    this.logging.logger(this.logging.Level.Info, "3.7:SEND_MESSAGE_TO_SOCKET_WITH_BANK_NAME", 'LoginStatusComponent', 'sendUserData', this.logging.SubSystem.Tink, "3.7: CONNECT TO SOCKET WITH BANK NAME AND INFO_JSON")
+
     if (!resendData) {
       this.initTimer(IDENTIFICATION_TIMEOUT_TIME);
       this.initConnectionTimer();
@@ -158,6 +163,8 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
       isUserDataEntered &&
       !this.viewStatus.isLoansPersisted
     ) {
+      this.logging.logger(this.logging.Level.Info, "3.8: RESEND_MESSAGE_TO_SOCKET_WITH_BANK_NAME", 'LoginStatusComponent', 'resendDataAfterReconnect', this.logging.SubSystem.Tink, "3.7: CONNECT TO SOCKET WITH BANK NAME AND INFO_JSON")
+
       this.sendUserData(true);
     }
   }
@@ -166,6 +173,8 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
     const socket = new SockJS(environment.crawlerUrl);
 
     this.stompClient = Stomp.over(socket);
+    this.logging.logger(this.logging.Level.Info, "3.5:INIT_SOCKET", 'LoginStatusComponent', 'connectAndReconnectSocket', this.logging.SubSystem.Tink, "3.5: CONNECTING TO SOCKET")
+
     // Disable websocket logs for production
     if (environment.production) {
       this.stompClient.debug = null;
@@ -175,7 +184,10 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
       frame => {
         this.viewStatus.isSocketConnectionLost = false;
         // Resend user data after reconnection
+        this.logging.logger(this.logging.Level.Info, "3.6:CONNECTED_TO_SOCKET", 'LoginStatusComponent', 'connectAndReconnectSocket', this.logging.SubSystem.Tink, "3.6: CONNECTED TO SOCKET")
+
         this.sendUserData();
+
         this.resendDataAfterReconnect();
         this.successSocketCallback();
         // Send ping to prevent socket closing
@@ -221,10 +233,15 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
     this.connectionTimer = timer(1000, 1000);
     this.connectionTimerSubscription = this.connectionTimer.subscribe(time => {
       if (time > this.maxConnectionTime) {
+        this.logging.logger(this.logging.Level.Error, "CONNECTION_TIMEOUT:" + " " + this.maxConnectionTime + " SECONDS", 'LoginStatusComponent', 'initConnectionTimer', this.logging.SubSystem.Tink, "CONNECTION TIMEOUT")
         this.viewStatus.isTimedOut = true;
       }
       this.firstStepTimer--;
       if (!this.firstStepTimer) {
+        if(this.firstStepTimerFinished === false){
+          this.logging.logger(this.logging.Level.Error, "FIRST_STEP_TIMER_FINISHED", 'LoginStatusComponent', 'initConnectionTimer', this.logging.SubSystem.Tink, "FIRST STEP TIMER FINISHED")
+        }
+
         this.firstStepTimerFinished = true;
       }
     });
@@ -234,8 +251,17 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
     const repliesUrl = `${API_URL_MAP.crawlerRepliesUrl}`;
     this.viewStatus.isSocketConnectionLost = false;
     this.stompClient.subscribe(repliesUrl, message => {
+      const response = JSON.parse(message.body);
+      var filteredResponse = {
+        eventType: response['eventType'],
+        bank: response['bank'],
+        backendOneTimeToken: response['oneTimeToken'],
+        backendSessionId: response['sessionId'],
+        backendclientId: response['clientId'],
+      }
+      this.logging.logger(this.logging.Level.Info, "4:RESPONSE_FROM_SOCKET", 'LoginStatusComponent', 'successSocketCallback', this.logging.SubSystem.Tink, "4: RESPONSE FROM SOCKET", filteredResponse)
+
       if (message.body) {
-        const response = JSON.parse(message.body);
         console.log('STATUS:', response.eventType);
         switch (response.eventType) {
 
@@ -249,6 +275,8 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
           case BANKID_STATUS.PROCESS_STARTED:
             this.initTimer(BANKID_TIMEOUT_TIME);
             this.initConnectionTimer();
+            this.logging.logger(this.logging.Level.Info, "5.1:STATUS: BANKID_STATUS.PROCESS_STARTED", 'LoginStatusComponent', 'successSocketCallback', this.logging.SubSystem.Tink, "5: BANKID_STATUS: PROCESS_STARTED")
+
             // this.loginStep1Status = MESSAGE_STATUS.SUCCESS;
             this.viewStatus.isProcessStarted = true;
             break;
@@ -351,6 +379,8 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
             this.unsubscribeEverything();
             break;
           case BANKID_STATUS.LOANS_PERSISTED:
+            this.logging.logger(this.logging.Level.Info, "5.2:STATUS: BANKID_STATUS.LOANS_PERSISTED", 'LoginStatusComponent', 'successSocketCallback', this.logging.SubSystem.Tink, "5: BANKID_STATUS: LOANS_PERSISTED")
+
             this.viewStatus.isLoansPersisted = true;
             const user = response.data.user;
             this.authService
@@ -361,21 +391,27 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
                   this.userService.getUserInfo()
                 ]).subscribe(([rateAndLoans, userInfo]) => {
                   this.loginStep3Status = MESSAGE_STATUS.SUCCESS;
+                  this.logging.logger(this.logging.Level.Info, "6:FETCHED_RATE_LOANS_AND_USERINFO", 'LoginStatusComponent', 'successSocketCallback', this.logging.SubSystem.Tink, "6: FETCHED RATE, LOANS AND USERINFO")
+
                   this.userService.lowerRateAvailable.next(rateAndLoans.lowerRateAvailable);
                   if (rateAndLoans.loansPresent) {
                     this.localStorageService.removeItem('noLoansPresent');
                     if (rateAndLoans.isAggregatedRateTypeFixed) {
                       this.localStorageService.setItem('isAggregatedRateTypeFixed', true);
+                      this.logging.logger(this.logging.Level.Info, "7:SUCCESS_RATE_TYPE_FIXED", 'LoginStatusComponent', 'successSocketCallback', this.logging.SubSystem.Tink, "7: SUCCESS: FIXED RATE DETECTED. REDIRECT TO ROUTES_MAP.FIXEDRATE")
                       this.router.navigate(['/dashboard/' + ROUTES_MAP.fixedRate]);
                     } else {
                       if (userInfo.income === null) {
+                        this.logging.logger(this.logging.Level.Info, "7:SUCCESS_NEW_USER", 'LoginStatusComponent', 'successSocketCallback', this.logging.SubSystem.Tink, "7: SUCCESS:NEW USER DETECTED. REDIRECT TO ROUTES_MAP.INITCONFIRMATION")
                         this.router.navigate(['/' + ROUTES_MAP.initConfirmation]);
                         this.localStorageService.setItem('isNewUser', true);
                       } else {
+                        this.logging.logger(this.logging.Level.Info, "7:SUCCESS_OLD_USER", 'LoginStatusComponent', 'successSocketCallback', this.logging.SubSystem.Tink, "7: SUCCESS: USER INCOME DETECTED. REDIRECT TO ROUTES_MAP.OFFERS")
                         this.router.navigate(['/dashboard/' + ROUTES_MAP.offers]);
                       }
                     }
                   } else {
+                    this.logging.logger(this.logging.Level.Info, "7:SUCCESS_NO_LOAN_PRESENT", 'LoginStatusComponent', 'successSocketCallback', this.logging.SubSystem.Tink, "7: SUCCESS: NO LOAN DETECTED. REDIRECT TO ROUTES_MAP.NOLOAN")
                     this.localStorageService.setItem('noLoansPresent', true);
                     this.router.navigate(['/dashboard/' + ROUTES_MAP.noLoan]);
                   }
@@ -395,6 +431,9 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
     this.crawlingTimerSubscription = this.crawlingTimer.subscribe(time => {
       this.thirdStepTimer--;
       if (!this.thirdStepTimer) {
+        if(this.thirdStepTimerFinished === false) {
+          this.logging.logger(this.logging.Level.Error, "THIRD_STEP_TIMER_FINISHED", 'LoginStatusComponent', 'startCrawlingTimer', this.logging.SubSystem.Tink, "THIRD STEP TIMER FINISHED")
+        }
         this.thirdStepTimerFinished = true;
       }
     });

@@ -71,6 +71,28 @@ export class GenericHttpService {
         catchError((error) => this.handleError(error))
       );
   }
+  
+  public postExternal(path: string, body: object = {}): Observable<any> {
+    const fullPath = `${path}`;
+    console.log(body)
+    const jsonBody: string = JSON.stringify(body);
+
+    let headers: HttpHeaders = new HttpHeaders()
+
+
+    headers = headers.append('Content-Type', 'application/json');
+
+    //responseType is text, json responses will not be approved
+    const httpOptions = {
+      headers: headers,
+      responseType: "text" as "json"
+    };
+
+    return this.http.post(fullPath, jsonBody, httpOptions)
+      .pipe(
+        catchError((error) => this.handleError(error))
+      );
+  }
 
   public post(path: string, body: object = {}): Observable<any> {
     const fullPath = `${this.apiUrl}${path}`;
