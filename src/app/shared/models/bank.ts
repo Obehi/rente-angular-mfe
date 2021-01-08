@@ -4,25 +4,7 @@ export class BankVo {
 }
 
 
-export const BankList: BankVo[] = [
-  new BankVo('DNB', 'DNB Bank ASA', 'dnb.png', 'dnb-color.svg', true, false, false, 'https://m.dnb.no/kundeservice/privat/bankidmobil.html'),
-  new BankVo('NORDEA', 'Nordea', 'nordea.png', 'nordea-color.svg', false, false, false, 'https://www.nordea.no/privat/kundeservice/slik-gjor-du/slik-kommer-du-i-gang-med-bankid-pa-mobil.html'),
-  new BankVo('SPAREBANK_1', 'SpareBank 1', 'sparebanken1v2.png', 'sparebank1-color.svg', false, false, false, 'https://www.sparebank1.no/nb/bank/privat/kundeservice/mobil/hvordan-bestiller-jeg-bankid-pa-mobil.html'),
-  new BankVo('SPAREBANK_1_BV', 'SpareBank 1 BV', 'sparebanken1v2.png', 'sparebank1-color.svg', false, false, false, 'https://www.sparebank1.no/nb/bank/privat/kundeservice/mobil/hvordan-bestiller-jeg-bankid-pa-mobil.html'),
-  new BankVo('SPAREBANK_1_GUDBRANDSDAL', 'SpareBank 1 Gudbrandsdal', 'sparebanken1v2.png', 'sparebank1-color.svg', false, false, false, 'https://www.sparebank1.no/nb/bank/privat/kundeservice/mobil/hvordan-bestiller-jeg-bankid-pa-mobil.html'),
-  new BankVo('SPAREBANK_1_HALLINGDAL_VALDRES', 'SpareBank 1 Hallingdal Valdres', 'sparebanken1v2.png', 'sparebank1-color.svg', false, false, false, 'https://www.sparebank1.no/nb/bank/privat/kundeservice/mobil/hvordan-bestiller-jeg-bankid-pa-mobil.html'),
-  new BankVo('SPAREBANK_1_LOM_OG_SKJAK', 'SpareBank 1 Lom og Skjåk', 'sparebanken1v2.png', 'sparebank1-color.svg', false, false, false, 'https://www.sparebank1.no/nb/bank/privat/kundeservice/mobil/hvordan-bestiller-jeg-bankid-pa-mobil.html'),
-  new BankVo('SPAREBANK_1_MODUM', 'SpareBank 1 Modum', 'sparebanken1v2.png', 'sparebank1-color.svg', false, false, false, 'https://www.sparebank1.no/nb/bank/privat/kundeservice/mobil/hvordan-bestiller-jeg-bankid-pa-mobil.html'),
-  new BankVo('SPAREBANK_1_NORD_NORGE', 'SpareBank 1 Nord-Norge', 'sparebanken1v2.png', 'sparebank1-color.svg', false, false, false, 'https://www.sparebank1.no/nb/bank/privat/kundeservice/mobil/hvordan-bestiller-jeg-bankid-pa-mobil.html'),
-  new BankVo('SPAREBANK_1_NORDVEST', 'SpareBank 1 Nordvest', 'sparebanken1v2.png', 'sparebank1-color.svg', false, false, false, 'https://www.sparebank1.no/nb/bank/privat/kundeservice/mobil/hvordan-bestiller-jeg-bankid-pa-mobil.html'),
-  new BankVo('SPAREBANK_1_RINGERIKE_HADELAND', 'SpareBank 1 Ringerike Hadeland', 'sparebanken1v2.png', 'sparebank1-color.svg', false, false, false, 'https://www.sparebank1.no/nb/bank/privat/kundeservice/mobil/hvordan-bestiller-jeg-bankid-pa-mobil.html'),
-  new BankVo('SPAREBANK_1_SMN', 'SpareBank 1 SMN', 'sparebanken1v2.png', 'sparebank1-color.svg', false, false, false, 'https://www.sparebank1.no/nb/bank/privat/kundeservice/mobil/hvordan-bestiller-jeg-bankid-pa-mobil.html'),
-  new BankVo('SPAREBANK_1_SR_BANK', 'SpareBank 1 SR-Bank', 'sparebanken1v2.png', 'sparebank1-color.svg', false, false, false, 'https://www.sparebank1.no/nb/bank/privat/kundeservice/mobil/hvordan-bestiller-jeg-bankid-pa-mobil.html'),
-  new BankVo('SPAREBANK_1_SORE_SUNNMORE', 'SpareBank 1 Søre Sunnmøre', 'sparebanken1v2.png', 'sparebank1-color.svg', false, false, false, 'https://www.sparebank1.no/nb/bank/privat/kundeservice/mobil/hvordan-bestiller-jeg-bankid-pa-mobil.html'),
-  new BankVo('SPAREBANK_1_TELEMARK', 'SpareBank 1 Telemark', 'sparebanken1v2.png', 'sparebank1-color.svg', false, false, false, 'https://www.sparebank1.no/nb/bank/privat/kundeservice/mobil/hvordan-bestiller-jeg-bankid-pa-mobil.html'),
-  new BankVo('SPAREBANK_1_OSTFOLD_AKERSHUS', 'SpareBank 1 Østfold Akershus', 'sparebanken1v2.png', 'sparebank1-color.svg', false, false, false, 'https://www.sparebank1.no/nb/bank/privat/kundeservice/mobil/hvordan-bestiller-jeg-bankid-pa-mobil.html'),
-  new BankVo('SPAREBANK_1_OSTLANDET', 'SpareBank 1 Østlandet', 'sparebanken1v2.png', 'sparebank1-color.svg', false, false, false, 'https://www.sparebank1.no/nb/bank/privat/kundeservice/mobil/hvordan-bestiller-jeg-bankid-pa-mobil.html'),
-  // EIKA banks
+export const eikaBanks: BankVo[] = [
   new BankVo('AASEN_SB', 'Aasen Sparebank', 'aasen.png', null, true, true, false, 'https://aasen-sparebank.no/aktuelt/bankid-paa-mobil'),
   new BankVo('ANDEBU_SB', 'Andebu Sparebank', 'andebu.png', null, true, true, false, 'https://andebu-sparebank.no/aktuelt/bankid-paa-mobil'),
   new BankVo('ARENDAL_SK', 'Arendal og Omegns Sparekasse', 'sparekassa_arendal.png', null, true, true, false, 'https://sparekassa.no/aktuelt/bankid-paa-mobil'),
@@ -95,6 +77,28 @@ export const BankList: BankVo[] = [
   new BankVo('SPAREBANK_68', 'Lofoten Sparebank', '68nord.png', null, true, true, false, 'https://68nord.no//aktuelt/bankid-paa-mobil')
 ];
 
+export const BankList: BankVo[] = [
+  new BankVo('DNB', 'DNB Bank ASA', 'dnb.png', 'dnb-color.svg', true, false, false, 'https://m.dnb.no/kundeservice/privat/bankidmobil.html'),
+  new BankVo('NORDEA', 'Nordea', 'nordea.png', 'nordea-color.svg', false, false, false, 'https://www.nordea.no/privat/kundeservice/slik-gjor-du/slik-kommer-du-i-gang-med-bankid-pa-mobil.html'),
+  new BankVo('SPAREBANK_1', 'SpareBank 1', 'sparebanken1v2.png', 'sparebank1-color.svg', false, false, false, 'https://www.sparebank1.no/nb/bank/privat/kundeservice/mobil/hvordan-bestiller-jeg-bankid-pa-mobil.html'),
+  new BankVo('SPAREBANK_1_BV', 'SpareBank 1 BV', 'sparebanken1v2.png', 'sparebank1-color.svg', false, false, false, 'https://www.sparebank1.no/nb/bank/privat/kundeservice/mobil/hvordan-bestiller-jeg-bankid-pa-mobil.html'),
+  new BankVo('SPAREBANK_1_GUDBRANDSDAL', 'SpareBank 1 Gudbrandsdal', 'sparebanken1v2.png', 'sparebank1-color.svg', false, false, false, 'https://www.sparebank1.no/nb/bank/privat/kundeservice/mobil/hvordan-bestiller-jeg-bankid-pa-mobil.html'),
+  new BankVo('SPAREBANK_1_HALLINGDAL_VALDRES', 'SpareBank 1 Hallingdal Valdres', 'sparebanken1v2.png', 'sparebank1-color.svg', false, false, false, 'https://www.sparebank1.no/nb/bank/privat/kundeservice/mobil/hvordan-bestiller-jeg-bankid-pa-mobil.html'),
+  new BankVo('SPAREBANK_1_LOM_OG_SKJAK', 'SpareBank 1 Lom og Skjåk', 'sparebanken1v2.png', 'sparebank1-color.svg', false, false, false, 'https://www.sparebank1.no/nb/bank/privat/kundeservice/mobil/hvordan-bestiller-jeg-bankid-pa-mobil.html'),
+  new BankVo('SPAREBANK_1_MODUM', 'SpareBank 1 Modum', 'sparebanken1v2.png', 'sparebank1-color.svg', false, false, false, 'https://www.sparebank1.no/nb/bank/privat/kundeservice/mobil/hvordan-bestiller-jeg-bankid-pa-mobil.html'),
+  new BankVo('SPAREBANK_1_NORD_NORGE', 'SpareBank 1 Nord-Norge', 'sparebanken1v2.png', 'sparebank1-color.svg', false, false, false, 'https://www.sparebank1.no/nb/bank/privat/kundeservice/mobil/hvordan-bestiller-jeg-bankid-pa-mobil.html'),
+  new BankVo('SPAREBANK_1_NORDVEST', 'SpareBank 1 Nordvest', 'sparebanken1v2.png', 'sparebank1-color.svg', false, false, false, 'https://www.sparebank1.no/nb/bank/privat/kundeservice/mobil/hvordan-bestiller-jeg-bankid-pa-mobil.html'),
+  new BankVo('SPAREBANK_1_RINGERIKE_HADELAND', 'SpareBank 1 Ringerike Hadeland', 'sparebanken1v2.png', 'sparebank1-color.svg', false, false, false, 'https://www.sparebank1.no/nb/bank/privat/kundeservice/mobil/hvordan-bestiller-jeg-bankid-pa-mobil.html'),
+  new BankVo('SPAREBANK_1_SMN', 'SpareBank 1 SMN', 'sparebanken1v2.png', 'sparebank1-color.svg', false, false, false, 'https://www.sparebank1.no/nb/bank/privat/kundeservice/mobil/hvordan-bestiller-jeg-bankid-pa-mobil.html'),
+  new BankVo('SPAREBANK_1_SR_BANK', 'SpareBank 1 SR-Bank', 'sparebanken1v2.png', 'sparebank1-color.svg', false, false, false, 'https://www.sparebank1.no/nb/bank/privat/kundeservice/mobil/hvordan-bestiller-jeg-bankid-pa-mobil.html'),
+  new BankVo('SPAREBANK_1_SORE_SUNNMORE', 'SpareBank 1 Søre Sunnmøre', 'sparebanken1v2.png', 'sparebank1-color.svg', false, false, false, 'https://www.sparebank1.no/nb/bank/privat/kundeservice/mobil/hvordan-bestiller-jeg-bankid-pa-mobil.html'),
+  new BankVo('SPAREBANK_1_TELEMARK', 'SpareBank 1 Telemark', 'sparebanken1v2.png', 'sparebank1-color.svg', false, false, false, 'https://www.sparebank1.no/nb/bank/privat/kundeservice/mobil/hvordan-bestiller-jeg-bankid-pa-mobil.html'),
+  new BankVo('SPAREBANK_1_OSTFOLD_AKERSHUS', 'SpareBank 1 Østfold Akershus', 'sparebanken1v2.png', 'sparebank1-color.svg', false, false, false, 'https://www.sparebank1.no/nb/bank/privat/kundeservice/mobil/hvordan-bestiller-jeg-bankid-pa-mobil.html'),
+  new BankVo('SPAREBANK_1_OSTLANDET', 'SpareBank 1 Østlandet', 'sparebanken1v2.png', 'sparebank1-color.svg', false, false, false, 'https://www.sparebank1.no/nb/bank/privat/kundeservice/mobil/hvordan-bestiller-jeg-bankid-pa-mobil.html'),
+  ...eikaBanks
+];
+
+
 export const MissingBankList: BankVo[] = [
   new BankVo('BOLIGKREDITT', 'Boligkreditt.no (Sparebanken Øst Boligkreditt AS)', 'boligkreditt.png', null, false, true, true, null),
   new BankVo('BN_BANK', 'BN Bank ASA', 'bn.png', null, false, true, true, null),
@@ -131,7 +135,6 @@ export const MissingBankList: BankVo[] = [
   new BankVo('SB_MORE', 'Sparebanken Møre', 'more.png', null, false, true, true, null),
   new BankVo('HUSBANKEN', 'Husbanken', 'husbanken.png', null, false, true, true, null),
   new BankVo('HELGELAND_SB', 'Helgeland Sparebank', 'helgeland.png', null, false, true, true, null),
-
 ];
 
 export class BankUtils {
@@ -163,6 +166,12 @@ export class BankUtils {
   static getBankPngIcon(bankName: string, basePath: string = '../../../assets/img/banks-logo/'): string {
     const bank = this.getBankByName(bankName);
     return basePath + 'round/' + bank.icon;
+  }
+
+  static isEikaBank(bankName: string): boolean {
+    return eikaBanks.map( bank => {
+      return bank.name
+    }).includes(bankName)
   }
 }
 
