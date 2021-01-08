@@ -87,6 +87,7 @@ export class BankSelectSvComponent implements OnInit, OnDestroy {
   
     @HostListener('window:message', ['$event'])
     onMessage(event) {
+      console.log()
       if (event.origin !== 'https://link.tink.com') {
       return;
       }
@@ -96,7 +97,7 @@ export class BankSelectSvComponent implements OnInit, OnDestroy {
         // This is the authorization code that should be exchanged for an access token
         this.tinkCode = event.data.data;
         console.log(`T response: ${data.type }`);
-        this.logging.logger(this.logging.Level.Info, "2:TINK_CODE_RECIEVED", 'BankSelectSvComponent', 'onMessage', this.logging.SubSystem.Tink, "2: GOT TINKLINK FROM TINK")
+        this.logging.logger(this.logging.Level.Info, "2:TINK_CODE_RECIEVED", 'BankSelectSvComponent', 'onMessage', this.logging.SubSystem.Tink, "2: GOT TINKLINK FROM TINK", data)
         this.initializeWebSocketConnection(data.data)
       }
     }
@@ -149,7 +150,9 @@ export class BankSelectSvComponent implements OnInit, OnDestroy {
 
         if (message.body) {
           switch (response.eventType) {
-           
+            case BANKID_STATUS.CRAWLER_ERROR:
+              this.logging.logger(this.logging.Level.Info, "5:STATUS: BANKID_STATUS.CRAWLER_ERROR", 'BankSelectSvComponent', 'successSocketCallback', this.logging.SubSystem.Tink, "BANKID_STATUS: CRAWLER_ERROR", response)
+              break;
             case BANKID_STATUS.LOANS_PERSISTED:
               console.log("5.")
               this.logging.logger(this.logging.Level.Info, "5:STATUS: BANKID_STATUS.LOANS_PERSISTED", 'BankSelectSvComponent', 'successSocketCallback', this.logging.SubSystem.Tink, "5: BANKID_STATUS: LOANS_PERSISTED")
