@@ -214,7 +214,7 @@ export class BankSelectSvComponent implements OnInit, OnDestroy {
         {},
         data
       );
-      this.logging.logger(this.logging.Level.Info, "3.7:SEND_MESSAGE_TO_SOCKET_WITH_TINK_CODE", 'BankSelectSvComponent', 'sendUserData', this.logging.SubSystem.Tink, "3.7: CONNECT TO SOCKET WITH TINK CODE", {tinkCode: tinkCode})
+      this.logging.logger(this.logging.Level.Info, "3.7:SEND_MESSAGE_TO_SOCKET_WITH_TINK_CODE", 'BankSelectSvComponent', 'sendUserData', this.logging.SubSystem.Tink, "3.7: CONNECT TO SOCKET WITH TINK CODE", {tinkCode: tinkCode, crawlerEndpoint: API_URL_MAP.tinkSendMessageUrl})
 
       if (!resendData) {
         //this.initTimer(IDENTIFICATION_TIMEOUT_TIME);
