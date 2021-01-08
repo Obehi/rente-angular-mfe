@@ -87,7 +87,6 @@ export class BankSelectSvComponent implements OnInit, OnDestroy {
   
     @HostListener('window:message', ['$event'])
     onMessage(event) {
-      console.log()
       if (event.origin !== 'https://link.tink.com') {
       return;
       }
@@ -215,7 +214,7 @@ export class BankSelectSvComponent implements OnInit, OnDestroy {
         {},
         data
       );
-      this.logging.logger(this.logging.Level.Info, "3.7:SEND_MESSAGE_TO_SOCKET_WITH_TINK_CODE", 'BankSelectSvComponent', 'sendUserData', this.logging.SubSystem.Tink, "3.7: CONNECT TO SOCKET WITH TINK CODE")
+      this.logging.logger(this.logging.Level.Info, "3.7:SEND_MESSAGE_TO_SOCKET_WITH_TINK_CODE", 'BankSelectSvComponent', 'sendUserData', this.logging.SubSystem.Tink, "3.7: CONNECT TO SOCKET WITH TINK CODE", {tinkCode: tinkCode})
 
       if (!resendData) {
         //this.initTimer(IDENTIFICATION_TIMEOUT_TIME);
