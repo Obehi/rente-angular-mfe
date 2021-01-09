@@ -182,7 +182,7 @@ export class CustomLangTextService {
     if(locale.includes("sv") ) {
       return 'Prutade du genom oss för att få en bättre ränta?'
     } else if (locale.includes("nb")) {
-      return 'Brukte du prutefunksjonen vår for å få bedre rente?'
+      return 'Fikk du lavere rente etter å ha sendt melding fra Renteradar.no?'
     }
   }
 }
