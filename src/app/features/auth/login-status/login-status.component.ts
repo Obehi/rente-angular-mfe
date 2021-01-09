@@ -233,7 +233,9 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
     this.connectionTimer = timer(1000, 1000);
     this.connectionTimerSubscription = this.connectionTimer.subscribe(time => {
       if (time > this.maxConnectionTime) {
-        this.logging.logger(this.logging.Level.Error, "CONNECTION_TIMEOUT:" + " " + this.maxConnectionTime + " SECONDS", 'LoginStatusComponent', 'initConnectionTimer', this.logging.SubSystem.Tink, "CONNECTION TIMEOUT", {bank: this.bank.name})
+        if(this.viewStatus.isTimedOut === false) {
+          this.logging.logger(this.logging.Level.Error, "CONNECTION_TIMEOUT:" + " " + this.maxConnectionTime + " SECONDS", 'LoginStatusComponent', 'initConnectionTimer', this.logging.SubSystem.Tink, "CONNECTION TIMEOUT", {bank: this.bank.name})
+        }
         this.viewStatus.isTimedOut = true;
       }
       this.firstStepTimer--;
