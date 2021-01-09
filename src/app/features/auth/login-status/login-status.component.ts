@@ -233,7 +233,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
     this.connectionTimer = timer(1000, 1000);
     this.connectionTimerSubscription = this.connectionTimer.subscribe(time => {
       if (time > this.maxConnectionTime) {
-        this.logging.logger(this.logging.Level.Error, "CONNECTION_TIMEOUT:" + " " + this.maxConnectionTime + " SECONDS", 'LoginStatusComponent', 'initConnectionTimer', this.logging.SubSystem.Tink, "CONNECTION TIMEOUT")
+        this.logging.logger(this.logging.Level.Error, "CONNECTION_TIMEOUT:" + " " + this.maxConnectionTime + " SECONDS", 'LoginStatusComponent', 'initConnectionTimer', this.logging.SubSystem.Tink, "CONNECTION TIMEOUT", {bank: this.bank.name})
         this.viewStatus.isTimedOut = true;
       }
       this.firstStepTimer--;
@@ -330,6 +330,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
             this.unsubscribeEverything();
             break;
           case BANKID_STATUS.CRAWLER_ERROR:
+            this.logging.logger(this.logging.Level.Error, "5:STATUS: BANKID_STATUS.CRAWLER_ERROR", 'LoginStatusComponent', 'successSocketCallback', this.logging.SubSystem.Tink, "BANKID_STATUS: CRAWLER_ERROR", filteredResponse)
             this.viewStatus.isCrawlerError = true;
             this.unsubscribeEverything();
             this.loginStep1Status = MESSAGE_STATUS.SUCCESS;
