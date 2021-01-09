@@ -80,7 +80,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.logging.logger(this.logging.Level.Info, "1:INIT", 'LoginStatusComponent', 'ngOnInit', this.logging.SubSystem.Tink, "1: INIT COMPONENT",)
+    this.logging.logger(this.logging.Level.Info, "1:INIT", 'LoginStatusComponent', 'ngOnInit', this.logging.SubSystem.Tink, "1: INIT COMPONENT", {bank: this.bank.name})
     this.setDefaultSteps();
     this.initializeWebSocketConnection();
     window.scrollTo(0, 0);
