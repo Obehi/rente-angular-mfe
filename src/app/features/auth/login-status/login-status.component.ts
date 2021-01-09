@@ -330,6 +330,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
             this.unsubscribeEverything();
             break;
           case BANKID_STATUS.CRAWLER_ERROR:
+            filteredResponse['bank'] = this.bank.name;
             this.logging.logger(this.logging.Level.Error, "5:STATUS: BANKID_STATUS.CRAWLER_ERROR", 'LoginStatusComponent', 'successSocketCallback', this.logging.SubSystem.Tink, "BANKID_STATUS: CRAWLER_ERROR", filteredResponse)
             this.viewStatus.isCrawlerError = true;
             this.unsubscribeEverything();
