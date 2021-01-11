@@ -95,10 +95,10 @@ export interface BankGuideInfo {
 // mellomfinansiering
   intermediateFinancing: boolean;
   medianEffectiveRate: number;
-  constructionLoansOffers: string[];
-  creditLineLoansOffers: string[];
-  fixedRateLoansOffers: string[];
-  intermediateFinancingOffers: string[];
+  constructionLoansOffers: { name: string, rate: string }[];
+  creditLineLoansOffers: { name: string, rate: string }[];
+  fixedRateLoansOffers: { name: string, rate: string }[];
+  intermediateFinancingOffers: { name: string, rate: string }[];
   regularOffers: { name: string, rate: string }[];
   addresses: { [key: string]: BankLocationAddress[] };
 }
