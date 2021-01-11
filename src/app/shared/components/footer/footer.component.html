@@ -64,6 +64,7 @@
     </div>
 
     <div class="item">
+      
       <div class="social">
         <a class="desktop" href="https://www.facebook.com/renteradar/" target="_blank">
           <img src="../../../../assets/img/facebook.svg" alt="Facebook logo" />
@@ -88,7 +89,14 @@
       <p>
         Forbrukerøkonomene AS (Org nr: 921 534 191)
         <br />
+        <a href="{{env.baseUrl}}/bankguiden" routerLinkActive="active-link">
+          Bankguiden vanilla url
+        </a> 
+          <a href="http://localhost:4913/bankguiden" routerLinkActive="active-link">
+          Bankguiden angular url
+        </a> 
     </div>
+    
   </div>
 
     <div *ngIf="isSweden" class="inner-footer">
