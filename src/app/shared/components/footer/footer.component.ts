@@ -3,6 +3,7 @@ import { Router, NavigationEnd } from "@angular/router";
 import { ROUTES_MAP } from '@config/routes-config';
 import { locale } from '../../.././config/locale/locale';
 import { environment } from '@environments/environment';
+import { env } from "process";
 
 @Component({
   selector: "rente-footer",
@@ -13,6 +14,7 @@ export class FooterComponent implements OnInit {
   public routes = ROUTES_MAP
   isSweden: boolean;
   public env = environment
+  public bankguidenLink = "/bankguiden"
   constructor(public router: Router) {}
   shouldShowFooter = true;
 
