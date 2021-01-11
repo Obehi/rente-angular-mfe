@@ -23,7 +23,8 @@ import { BankChoiceComponent } from '@features/auth/bank-choice/bank-choice.comp
 
 const commonRoutes: Routes = [
   {
-    path: '', component: LandingComponent,
+    path: '',
+    component: LandingComponent,
     data: {
       title: customMeta.landing.title,
       meta: {
@@ -33,7 +34,8 @@ const commonRoutes: Routes = [
     }
   },
   {
-    path: ROUTES_MAP.emailPreferences, component: EmailPreferencesComponent,
+    path: ROUTES_MAP.emailPreferences,
+    component: EmailPreferencesComponent,
     children: [
       {
         path: '**',
@@ -72,7 +74,8 @@ const commonRoutes: Routes = [
     }
   },
   {
-    path: ROUTES_MAP.contactUs, component: ContactUsComponent,
+    path: ROUTES_MAP.contactUs,
+    component: ContactUsComponent,
     data: {
       title: customMeta.kontakt.title,
       meta: {
@@ -82,7 +85,8 @@ const commonRoutes: Routes = [
     }
   },
   {
-    path: ROUTES_MAP.privacy, component: PrivacyComponent,
+    path: ROUTES_MAP.privacy,
+    component: PrivacyComponent,
     data: {
       title: customMeta.personvern.title,
       meta: {
@@ -92,7 +96,8 @@ const commonRoutes: Routes = [
     }
   },
   {
-    path: ROUTES_MAP.cookies, component: AboutCookiesComponent,
+    path: ROUTES_MAP.cookies,
+    component: AboutCookiesComponent,
     data: {
       title: customMeta.cookies.title,
       meta: {
@@ -102,7 +107,8 @@ const commonRoutes: Routes = [
     }
   },
   {
-    path: ROUTES_MAP.termsConditions, component: TermsConditionsComponent,
+    path: ROUTES_MAP.termsConditions,
+    component: TermsConditionsComponent,
     data: {
       title: customMeta.personvernerklaering.title,
       meta: {
@@ -112,7 +118,9 @@ const commonRoutes: Routes = [
     }
   },
   {
-    path: ROUTES_MAP.privacyPolicy, component: PrivacyPolicyComponent, data: {
+    path: ROUTES_MAP.privacyPolicy,
+    component: PrivacyPolicyComponent,
+    data: {
       title: customMeta.personvernerklaering.title,
       meta: {
         name: defaultMeta.name,
@@ -131,19 +139,11 @@ const commonRoutes: Routes = [
       }
     }
   },
+
+
   {
-    path: ROUTES_MAP_NO.banksGuide,
-    loadChildren: () => import('./features/banks-guide/banks-guide.module').then(m => m.BanksGuideModule),
-    data: {
-      title: customMeta.banksGuide.title,
-      meta: {
-        name: defaultMeta.name,
-        description: customMeta.banksGuide.description
-      }
-    }
-  },
-  {
-    path: ROUTES_MAP.initConfirmation, component: InitConfirmationLangGenericComponent,
+    path: ROUTES_MAP.initConfirmation,
+    component: InitConfirmationLangGenericComponent,
     data: {
       title: customMeta.bekreftTitle,
       meta: {
@@ -153,7 +153,8 @@ const commonRoutes: Routes = [
     }
   },
   {
-    path: ROUTES_MAP.getNotified, component: GetNotifiedComponent,
+    path: ROUTES_MAP.getNotified,
+    component: GetNotifiedComponent,
     data: {
       title: customMeta.faabeskjed.title,
       meta: {
@@ -178,17 +179,33 @@ const commonRoutes: Routes = [
     loadChildren: () => import('./features/dashboard/dashboard.module').then(m => m.DashboardModule),
     canActivate: [AuthGuard]
   },
-  {path: '**', component: PageNotFoundComponent},
+  {
+    path: '**',
+    component: PageNotFoundComponent
+  },
 ];
 
 
 const routesSV: Routes = [
   {
-    path: ROUTES_MAP_SV.tinkMockup, component: AuthSvMockupComponent,
+    path: ROUTES_MAP_SV.tinkMockup,
+    component: AuthSvMockupComponent,
   }
 ];
 
 const routesNo: Routes = [
+  {
+    path: ROUTES_MAP_NO.boliglanskalkulator,
+    loadChildren: () => import('./features/first-buyers/first-buyers.module').then(m => m.FirstBuyersModule),
+    data: {
+      // TODO: Set up correct meta
+      title: customMeta.valgBank.title,
+      meta: {
+        name: defaultMeta.name,
+        description: customMeta.valgBank.description
+      }
+    }
+  },
   {
     path: ROUTES_MAP_NO.banksGuide,
     loadChildren: () => import('./features/banks-guide/banks-guide.module').then(m => m.BanksGuideModule),
@@ -203,7 +220,11 @@ const routesNo: Routes = [
 ];
 
 
-const routes: Routes = [...routesNo, ...routesSV, ...commonRoutes];
+const routes: Routes = [
+  ...routesNo,
+  ...routesSV,
+  ...commonRoutes
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

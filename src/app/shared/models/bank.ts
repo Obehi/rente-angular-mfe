@@ -1,5 +1,5 @@
 export class BankVo {
-  constructor(public name: string, public label: string, public icon: string, public logo: string = null, public loginWithSsn: boolean = false, public isEikaBank: boolean = false, public isMissing, public mobileUrl: string = null) {
+  constructor(public name: string, public label: string, public icon: string, public logo: string = null, public loginWithSsn: boolean = false, public isEikaBank: boolean = false, public isMissing, public isTinkBank, public mobileUrl: string = null) {
   }
 }
 
@@ -137,12 +137,22 @@ export const MissingBankList: BankVo[] = [
   new BankVo('HELGELAND_SB', 'Helgeland Sparebank', 'helgeland.png', null, false, true, true, null),
 ];
 
+export const TinkBanks: BankVo[] = [
+  new BankVo('HANDELSBANKEN', 'Handelsbanken NUF', 'handelsbanken.png', null, false, true, false, true, null),
+  new BankVo('DANSKE_BANK', 'Danske Bank', 'danske.png', null, false, true, false, true, null),
+]
+
 export class BankUtils {
 
   static getBankByName(bankName: string): BankVo {
     const name = bankName.toUpperCase();
-    var banks = [...BankList, ...MissingBankList]
+    var banks = [...BankList, ...MissingBankList,...TinkBanks]
     for (const bank of banks) {
+      if (bank.name === name) {
+        return bank;
+      }
+    }
+    for (const bank of MissingBankList) {
       if (bank.name === name) {
         return bank;
       }

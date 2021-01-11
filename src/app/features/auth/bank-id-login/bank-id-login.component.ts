@@ -17,12 +17,12 @@ import { DialogInfoServiceComponent } from './dialog-info-service/dialog-info-se
 import { MetaService } from '@services/meta.service';
 import { TitleService } from '@services/title.service';
 import { customMeta } from '../../../config/routes-config';
-import { BankVo, BankUtils } from '@shared/models/bank';
+import { BankVo, TinkBanks, BankUtils } from '@shared/models/bank';
 import { environment } from '@environments/environment';
 import { UserService } from '@services/remote-api/user.service';
 import { map } from 'rxjs/operators';
 import { Mask } from '@shared/constants/mask'
-
+import {EnvService } from '@services/env.service'
 @Component({
   selector: 'rente-bank-id-login',
   templateUrl: './bank-id-login.component.html',
@@ -34,12 +34,13 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
   public isSsnBankLogin: boolean;
   public isConfirmed: boolean;
   public isLoginStarted = false;
+  public isTinkBank = false;
   public userData: any = {};
   private routeParamsSub: Subscription;
   public metaTitle: string;
   public metaDescription: string;
   public mask = Mask
-
+  private environment: any
   bank:BankVo;
 
   constructor(
@@ -48,10 +49,12 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     public dialog: MatDialog,
     private metaService: MetaService,
     private titleService: TitleService,
-    private userService:UserService
+    private userService:UserService,
+    private envService: EnvService
   ) { }
 
   ngOnInit() {
+    this.environment = this.envService.environment
     this.routeParamsSub = this.route.params.subscribe((params: any) => {
       if (params && params.bankName) {
         const bank = BankUtils.getBankByName(params.bankName);
@@ -69,6 +72,11 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
 
         this.changeTitles();
         this.setBankIdForm();
+
+        this.isTinkBank = bank.isTinkBank
+        if(this.isTinkBank) {
+          this.isLoginStarted = true
+        }
       }
     });
   }
@@ -101,7 +109,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
           Validators.pattern(VALIDATION_PATTERN.ssnMasked),
         ]),
         // Async Validators
-        environment.production ? [this.ssnAsyncValidator()] : []
+        this.environment.production ? [this.ssnAsyncValidator()] : []
       ],
       phone: [
         '',

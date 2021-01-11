@@ -1,0 +1,37 @@
+@import "../../../../../styles/theme/colors";
+
+.property-wrapper {
+  /* input color class */
+  ::ng-deep input.mat-input-element {
+    color: $white !important;
+  }
+
+  /* Change label color on focused */
+  ::ng-deep .mat-form-field-label {
+    color: $white !important;
+  }
+
+  ::ng-deep .mat-select-value {
+    color: $white !important;
+  }
+
+  ::ng-deep .mat-select-arrow {
+    color: $white !important;
+  }
+
+  /* underline border color on focused */
+  ::ng-deep .mat-form-field-underline {
+    display: none;
+  }
+
+  ::ng-deep .mat-form-field-flex {
+    border-bottom: 1px solid $white;
+    transition: .3s;
+
+    &:focus-within {
+      transition: .3s;
+      border-bottom: 1px solid $primary;
+    }
+  }
+}
+

@@ -12,6 +12,7 @@ import { environment } from '@environments/environment';
 import { storageName } from '@config/index';
 import { LocalStorageService } from '@services/local-storage.service';
 import { SnackBarService } from './snackbar.service';
+import { EnvService} from '@services/env.service'
 
 @Injectable({
   providedIn: 'root'
@@ -26,14 +27,16 @@ export class GenericHttpService {
     name: 'Accept',
     value: 'application/json, text/plain, */*'
   };
+  environment: any
 
   constructor(
     private http: HttpClient,
     private localStorageService: LocalStorageService,
     private router: Router,
-    private snackBar: SnackBarService
+    private snackBar: SnackBarService,
+    private envService: EnvService
   ) {
-    this.apiUrl = environment.baseUrl;
+    this.apiUrl = this.envService.environment.baseUrl;
   }
 
   public get(path: string, searchParams: any = {}): Observable<any> {

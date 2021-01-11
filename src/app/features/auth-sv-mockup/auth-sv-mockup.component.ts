@@ -27,6 +27,7 @@ import {
   BANKID_TIMEOUT_TIME,
   MESSAGE_STATUS
 } from "../auth/login-status/login-status.config";
+import { EnvService} from '@services/env.service'
 
 
 import { ViewStatus } from "../auth/login-status/login-view-status";
@@ -81,6 +82,7 @@ export class AuthSvMockupComponent implements OnInit, OnDestroy {
   isAccountSelection: boolean;
   accounts: string[];
   userSessionId: string;
+  environment: any
 
   ngOnDestroy() {
     this.unsubscribeEverything();
@@ -114,17 +116,21 @@ export class AuthSvMockupComponent implements OnInit, OnDestroy {
     private userService: UserService,
     private loansService: LoansService,
     private localStorageService: LocalStorageService,
-    public customLangTextService: CustomLangTextService
+    public customLangTextService: CustomLangTextService,
+    private envService: EnvService
   ) {
   }
 
   ngOnInit(): void {
+    this.environment = this.envService.environment
     this.contactUsForm = this.fb.group({
       loginId: [
         ""
       ]
     });
   }
+
+  
 
   public isErrorState(
     control: AbstractControl | null,
@@ -170,6 +176,7 @@ export class AuthSvMockupComponent implements OnInit, OnDestroy {
     const socket = new SockJS(environment.crawlerUrl);
     this.stompClient = Stomp.over(socket);
 
+    
     if (environment.production) {
       this.stompClient.debug = null;
     }

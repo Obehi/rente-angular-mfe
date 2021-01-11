@@ -40,13 +40,15 @@
               "src/favicon.ico",
               "src/assets",
               "src/sitemap.xml",
-              "src/robots.txt"
+              "src/env-config.json"
             ],
             "styles": [
               "src/styles.scss",
               "src/styles/rente-material-theme.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "./node_modules/systemjs/dist/system.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -85,7 +87,8 @@
                 "src/assets",
                 "src/favicon.ico",
                 "src/sitemap.xml",
-                "src/robots.txt"
+                "src/robots.txt",
+                "src/env-config.js"
 
               ],
               "fileReplacements": [
@@ -123,7 +126,8 @@
                 "src/assets",
                 "src/favicon.ico",
                 "src/sitemap.xml",
-                "src/robots.txt"
+                "src/robots.txt",
+                "src/env-config.js"
 
               ],
               "fileReplacements": [
@@ -164,7 +168,8 @@
                 "src/assets",
                 "src/favicon.ico",
                 "src/sitemap.xml",
-                "src/robots.txt"
+                "src/robots.txt",
+                "src/env-config.js"
 
               ],
               "fileReplacements": [
@@ -195,7 +200,8 @@
                 "src/assets",
                 "src/favicon.ico",
                 "src/sitemap.xml",
-                "src/robots.txt"
+                "src/robots.txt",
+                "src/env-config.js"
               ],
               "fileReplacements": [
                 {

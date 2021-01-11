@@ -1,12 +1,8 @@
-export const defaultTitle =
-  'Beste boliglånsrente | Sammenlign rente på boliglån | Renteradar.no';
+export const defaultTitle = 'Beste boliglånsrente | Sammenlign rente på boliglån | Renteradar.no';
 
 export const defaultMeta = {
   name: 'description',
-  description:
-    'Renteradar sammenligner renten du har med renten du kan få.' +
-    ' Se hva du kan spare på boliglån. Få beste boliglånsrente. Tjenesten er gratis! Vi henter data fra Finansportalen og viser tilbud fra alle banker.' +
-    ' Få de bedre betingelser'
+  description: 'Renteradar sammenligner renten du har med renten du kan få.' + ' Se hva du kan spare på boliglån. Få beste boliglånsrente. Tjenesten er gratis! Vi henter data fra Finansportalen og viser tilbud fra alle banker.' + ' Få de bedre betingelser'
 };
 
 export const customMeta = {
@@ -57,136 +53,103 @@ export const customMeta = {
   boligTitle: 'Bolig | Renteradar.no',
   preferanserTitle: 'Preferanser | Renteradar.no',
   profilTitle: 'Profil | Renteradar.no',
-  
+
   bankLoginTitle: 'Renteradar.no | Registrer | Logg inn',
   DNB: {
-    title:
-      'Beste boliglånsrente | Sammenlign rente på boliglån | DNB | Renteradar.no',
-    description:
-      'Renteradar henter renten du har og lånebeløp automatisk med BankID på mobil. Logg inn og registrering for deg som har boliglån i DNB',
+    title: 'Beste boliglånsrente | Sammenlign rente på boliglån | DNB | Renteradar.no',
+    description: 'Renteradar henter renten du har og lånebeløp automatisk med BankID på mobil. Logg inn og registrering for deg som har boliglån i DNB',
     bankName: 'dnb'
   },
   Nordea: {
-    title:
-      'Beste boliglånsrente | Sammenlign rente på boliglån | Nordea | Renteradar.no',
-    description:
-      'Renteradar henter renten du har og lånebeløp automatisk med BankID på mobil. Logg inn og registrering for deg som har boliglån i Nordea',
+    title: 'Beste boliglånsrente | Sammenlign rente på boliglån | Nordea | Renteradar.no',
+    description: 'Renteradar henter renten du har og lånebeløp automatisk med BankID på mobil. Logg inn og registrering for deg som har boliglån i Nordea',
     bankName: 'nordea'
   },
   Sparebank: {
-    title:
-      'Beste boliglånsrente | Sammenlign rente på boliglån | Velg din Sparebank 1 | Renteradar.no',
-    description:
-      'Renteradar henter renten du har og lånebeløp automatisk med BankID på mobil. Logg inn og registrering for deg som har boliglån i Velg din Sparebank 1',
+    title: 'Beste boliglånsrente | Sammenlign rente på boliglån | Velg din Sparebank 1 | Renteradar.no',
+    description: 'Renteradar henter renten du har og lånebeløp automatisk med BankID på mobil. Logg inn og registrering for deg som har boliglån i Velg din Sparebank 1',
     bankName: 'sparebank_1'
   },
   BVSparebank: {
-    title:
-      'Beste boliglånsrente | Sammenlign rente på boliglån | Sparebank 1 BV | Renteradar.no',
-    description:
-      'Renteradar henter renten du har og lånebeløp automatisk med BankID på mobil. Logg inn og registrering for deg som har boliglån i Sparebank 1 BV',
+    title: 'Beste boliglånsrente | Sammenlign rente på boliglån | Sparebank 1 BV | Renteradar.no',
+    description: 'Renteradar henter renten du har og lånebeløp automatisk med BankID på mobil. Logg inn og registrering for deg som har boliglån i Sparebank 1 BV',
     bankName: 'sparebank_1_bv'
   },
   GubrandsdalSparebank: {
-    title:
-      'Beste boliglånsrente | Sammenlign rente på boliglån | Sparebank 1 Gubrandsdal | Renteradar.no',
-    description:
-      'Renteradar henter renten du har og lånebeløp automatisk med BankID på mobil. Logg inn og registrering for deg som har boliglån i Sparebank 1 Gubrandsdal',
+    title: 'Beste boliglånsrente | Sammenlign rente på boliglån | Sparebank 1 Gubrandsdal | Renteradar.no',
+    description: 'Renteradar henter renten du har og lånebeløp automatisk med BankID på mobil. Logg inn og registrering for deg som har boliglån i Sparebank 1 Gubrandsdal',
     bankName: 'sparebank_1_gudbrandsdal'
   },
   HallingdalValdresSparebank: {
-    title:
-      'Beste boliglånsrente | Sammenlign rente på boliglån | Sparebank 1 Hallingdal Valdres | Renteradar.no',
-    description:
-      'Renteradar henter renten du har og lånebeløp automatisk med BankID på mobil. Logg inn og registrering for deg som har boliglån i Sparebank 1 Hallingdal Valdres',
+    title: 'Beste boliglånsrente | Sammenlign rente på boliglån | Sparebank 1 Hallingdal Valdres | Renteradar.no',
+    description: 'Renteradar henter renten du har og lånebeløp automatisk med BankID på mobil. Logg inn og registrering for deg som har boliglån i Sparebank 1 Hallingdal Valdres',
     bankName: 'sparebank_1_hallingdal_valdres'
   },
   LomogSkjakSparebank: {
-    title:
-      'Beste boliglånsrente | Sammenlign rente på boliglån | Sparebank 1 Lom og Skjåk | Renteradar.no',
-    description:
-      'Renteradar henter renten du har og lånebeløp automatisk med BankID på mobil. Logg inn og registrering for deg som har boliglån i Sparebank 1 Lom og Skjåk',
+    title: 'Beste boliglånsrente | Sammenlign rente på boliglån | Sparebank 1 Lom og Skjåk | Renteradar.no',
+    description: 'Renteradar henter renten du har og lånebeløp automatisk med BankID på mobil. Logg inn og registrering for deg som har boliglån i Sparebank 1 Lom og Skjåk',
     bankName: 'sparebank_1_lom_og_skjak'
   },
   ModumSparebank: {
-    title:
-      'Beste boliglånsrente | Sammenlign rente på boliglån | Sparebank 1 Modum | Renteradar.no',
-    description:
-      'Renteradar henter renten du har og lånebeløp automatisk med BankID på mobil. Logg inn og registrering for deg som har boliglån i Sparebank 1 Modum',
+    title: 'Beste boliglånsrente | Sammenlign rente på boliglån | Sparebank 1 Modum | Renteradar.no',
+    description: 'Renteradar henter renten du har og lånebeløp automatisk med BankID på mobil. Logg inn og registrering for deg som har boliglån i Sparebank 1 Modum',
     bankName: 'sparebank_1_modum'
   },
   NordNorgeSparebank: {
-    title:
-      'Beste boliglånsrente | Sammenlign rente på boliglån | Sparebank 1 Nord-Norge | Renteradar.no',
-    description:
-      'Renteradar henter renten du har og lånebeløp automatisk med BankID på mobil. Logg inn og registrering for deg som har boliglån i Sparebank 1 Nord-Norge',
+    title: 'Beste boliglånsrente | Sammenlign rente på boliglån | Sparebank 1 Nord-Norge | Renteradar.no',
+    description: 'Renteradar henter renten du har og lånebeløp automatisk med BankID på mobil. Logg inn og registrering for deg som har boliglån i Sparebank 1 Nord-Norge',
     bankName: 'sparebank_1_nord_norge'
   },
   NordvestSparebank: {
-    title:
-      'Beste boliglånsrente | Sammenlign rente på boliglån | Sparebank 1 Nordvest | Renteradar.no',
-    description:
-      'Renteradar henter renten du har og lånebeløp automatisk med BankID på mobil. Logg inn og registrering for deg som har boliglån i Sparebank 1 Nordvest',
+    title: 'Beste boliglånsrente | Sammenlign rente på boliglån | Sparebank 1 Nordvest | Renteradar.no',
+    description: 'Renteradar henter renten du har og lånebeløp automatisk med BankID på mobil. Logg inn og registrering for deg som har boliglån i Sparebank 1 Nordvest',
     bankName: 'sparebank_1_nordvest'
   },
   RingerikeHadelandSparebank: {
-    title:
-      'Beste boliglånsrente | Sammenlign rente på boliglån | Sparebank 1 Ringerike Hadeland | Renteradar.no',
-    description:
-      'Renteradar henter renten du har og lånebeløp automatisk med BankID på mobil. Logg inn og registrering for deg som har boliglån i Sparebank 1 Ringerike Hadeland',
+    title: 'Beste boliglånsrente | Sammenlign rente på boliglån | Sparebank 1 Ringerike Hadeland | Renteradar.no',
+    description: 'Renteradar henter renten du har og lånebeløp automatisk med BankID på mobil. Logg inn og registrering for deg som har boliglån i Sparebank 1 Ringerike Hadeland',
     bankName: 'sparebank_1_ringerike_hadeland'
   },
   SMNSparebank: {
-    title:
-      'Beste boliglånsrente | Sammenlign rente på boliglån | Sparebank 1 SMN | Renteradar.no',
-    description:
-      'Renteradar henter renten du har og lånebeløp automatisk med BankID på mobil. Logg inn og registrering for deg som har boliglån i Sparebank 1 SMN',
+    title: 'Beste boliglånsrente | Sammenlign rente på boliglån | Sparebank 1 SMN | Renteradar.no',
+    description: 'Renteradar henter renten du har og lånebeløp automatisk med BankID på mobil. Logg inn og registrering for deg som har boliglån i Sparebank 1 SMN',
     bankName: 'sparebank_1_smn'
   },
   SoreSunnmoreSparebank: {
-    title:
-      'Beste boliglånsrente | Sammenlign rente på boliglån | Sparebank 1 Søre Sunnmøre | Renteradar.no',
-    description:
-      'Renteradar henter renten du har og lånebeløp automatisk med BankID på mobil. Logg inn og registrering for deg som har boliglån i Sparebank 1 Søre Sunnmøre',
+    title: 'Beste boliglånsrente | Sammenlign rente på boliglån | Sparebank 1 Søre Sunnmøre | Renteradar.no',
+    description: 'Renteradar henter renten du har og lånebeløp automatisk med BankID på mobil. Logg inn og registrering for deg som har boliglån i Sparebank 1 Søre Sunnmøre',
     bankName: 'sparebank_1_sore_sunnmore'
   },
   TelemarkSparebank: {
-    title:
-      'Beste boliglånsrente | Sammenlign rente på boliglån | Sparebank 1 Søre Sunnmøre | Renteradar.no',
-    description:
-      'Renteradar henter renten du har og lånebeløp automatisk med BankID på mobil. Logg inn og registrering for deg som har boliglån i Sparebank 1 Søre Sunnmøre',
+    title: 'Beste boliglånsrente | Sammenlign rente på boliglån | Sparebank 1 Søre Sunnmøre | Renteradar.no',
+    description: 'Renteradar henter renten du har og lånebeløp automatisk med BankID på mobil. Logg inn og registrering for deg som har boliglån i Sparebank 1 Søre Sunnmøre',
     bankName: 'sparebank_1_sr_bank'
   },
   SRBankSparebank: {
-    title:
-      'Beste boliglånsrente | Sammenlign rente på boliglån | Sparebank 1 Telemark | Renteradar.no',
-    description:
-      'Renteradar henter renten du har og lånebeløp automatisk med BankID på mobil. Logg inn og registrering for deg som har boliglån i Sparebank 1 Telemark',
+    title: 'Beste boliglånsrente | Sammenlign rente på boliglån | Sparebank 1 Telemark | Renteradar.no',
+    description: 'Renteradar henter renten du har og lånebeløp automatisk med BankID på mobil. Logg inn og registrering for deg som har boliglån i Sparebank 1 Telemark',
     bankName: 'sparebank_1_telemark'
   },
   ostfoldAkershusTelemarkSparebank: {
-    title:
-      'Beste boliglånsrente | Sammenlign rente på boliglån | Sparebank 1 Østfold Akershus | Renteradar.no',
-    description:
-      'Renteradar henter renten du har og lånebeløp automatisk med BankID på mobil. Logg inn og registrering for deg som har boliglån i Sparebank 1 Østfold Akershus',
+    title: 'Beste boliglånsrente | Sammenlign rente på boliglån | Sparebank 1 Østfold Akershus | Renteradar.no',
+    description: 'Renteradar henter renten du har og lånebeløp automatisk med BankID på mobil. Logg inn og registrering for deg som har boliglån i Sparebank 1 Østfold Akershus',
     bankName: 'sparebank_1_ostfold_akershus'
   },
   OstlandetSparebank: {
-    title:
-      'Beste boliglånsrente | Sammenlign rente på boliglån | Sparebank 1 Østlandet | Renteradar.no',
-    description:
-      'Renteradar henter renten du har og lånebeløp automatisk med BankID på mobil. Logg inn og registrering for deg som har boliglån i Sparebank 1 Østlandet',
+    title: 'Beste boliglånsrente | Sammenlign rente på boliglån | Sparebank 1 Østlandet | Renteradar.no',
+    description: 'Renteradar henter renten du har og lånebeløp automatisk med BankID på mobil. Logg inn og registrering for deg som har boliglån i Sparebank 1 Østlandet',
     bankName: 'sparebank_1_ostlandet'
   }
 };
 
 export const ROUTES_MAP_NO = {
+  boliglanskalkulator: 'boliglanskalkulator',
   banksGuide: 'bankguiden'
-}
+};
 
 export const ROUTES_MAP_SV = {
   tinkMockup: 'tink-mockup'
-}
+};
 
 export const ROUTES_MAP = {
   aboutUs: 'om-oss',

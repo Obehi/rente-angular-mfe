@@ -37,6 +37,9 @@ function runScript(currentLocale, dev) {
     let command;
     var locale = ""
 
+    exec("mkdir env && cd env && touch env.js && cd .."); 
+    exec("cp -f ./src/env-config.js ./env/env.js "); 
+
     //These should mostly reflect filereplacements in angular.json
     if (currentLocale == "sv") {
         locale = ",sv";
@@ -59,6 +62,7 @@ function runScript(currentLocale, dev) {
         exec("cp -f ./src/sitemaps/no/sitemap.xml ./src/sitemap.xml");
         if(dev) {
             exec("cp -f ./src/index/no-dev/index-no-dev.html ./src/index.html ");
+            exec("cp -f ./src/env-config.js ./dist/index.html ");
         } else {
             exec("cp -f ./src/index/no/index-no.html ./src/index.html "); 
         }

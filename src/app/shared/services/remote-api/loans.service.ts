@@ -44,7 +44,8 @@ export class LoansService {
 
   public getAddresses(): Observable<ClientAddressDto> {
     const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.address}`;
-    return this.http.get(url).pipe(map(r => this.mapClientAddressDto(r)));
+    return this.http.get(url)
+      .pipe(map(r => this.mapClientAddressDto(r)));
   }
 
   public updateAddress(addresses: AddressDto[]): Observable<ClientAddressDto> {
@@ -142,6 +143,12 @@ export class LoansService {
     const url = `${API_URL_MAP.loan.base}/preferences`;
     return this.http.post(url, dto);
   }
+
+  updateNewOffers() {
+    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.offers}${API_URL_MAP.loan.newOffers}`;
+    return this.http.post(url);
+  }
+
 }
 
 export class LoanStateDto {

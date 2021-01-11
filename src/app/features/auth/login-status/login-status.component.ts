@@ -5,11 +5,11 @@ import {
   Input,
   OnDestroy,
   Output,
-  EventEmitter
+  EventEmitter,
+  HostListener
 } from "@angular/core";
 import * as Stomp from "stompjs";
 import * as SockJS from "sockjs-client";
-import { environment } from "@environments/environment";
 import { ViewStatus } from "./login-view-status";
 import { API_URL_MAP } from "@config/api-url-config";
 import {
@@ -30,6 +30,8 @@ import { LocalStorageService } from "@services/local-storage.service";
 import { BankVo, BankUtils } from "@shared/models/bank";
 import { ROUTES_MAP } from '@config/routes-config';
 import { LoggingService} from '@services/logging.service'
+import { EnvService} from '@services/env.service'
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 @Component({
   selector: "rente-login-status",
@@ -39,7 +41,6 @@ import { LoggingService} from '@services/logging.service'
 export class LoginStatusComponent implements OnInit, OnDestroy {
   @Input() bank: BankVo;
   @Input() userData: any = {};
-
   @Output() returnToInputPage = new EventEmitter<any>();
 
   public viewStatus: ViewStatus = new ViewStatus();
@@ -69,18 +70,27 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
   isAccountSelection: boolean;
   accounts: string[];
   userSessionId: string;
-
+  environment: any
+  public isTinkBank = false;
+  public tinkUrl: SafeUrl;
+  isSuccessTink = false
+  public tinkCode: number;
+  
   constructor(
     private router: Router,
     private authService: AuthService,
     private userService: UserService,
     private loansService: LoansService,
     private localStorageService: LocalStorageService,
-    private logging: LoggingService
+    private logging: LoggingService,
+    private envService: EnvService,
+    private sanitizer: DomSanitizer
   ) {}
 
   ngOnInit() {
+
     this.logging.logger(this.logging.Level.Info, "1:INIT", 'LoginStatusComponent', 'ngOnInit', this.logging.SubSystem.Tink, "1: INIT COMPONENT", {bank: this.bank.name})
+    this.environment = this.envService.environment
     this.setDefaultSteps();
     this.initializeWebSocketConnection();
     window.scrollTo(0, 0);
@@ -88,7 +98,36 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
     this.thirdStepTimer = this.bank.name === "DNB" || BankUtils.isEikaBank(this.bank.name)  ? 30 : 25;
     this.firstStepTimer = this.bank.name === "DNB" ?  20 : 10;
     
+ 
+    if(this.bank.isTinkBank) {
+      this.initiateTinkBank()
+    }
   }
+
+  initiateTinkBank() {
+    console.log("initiateTinkBank")
+    console.log(this.envService.environment.crawlerUrl)
+    let tinkUrl = this.envService.environment.tinkUrl || "https://link.tink.com/1.0/authorize/?client_id=3973e78ee8c140edbf36e53d50132ba1&redirect_uri=https%3A%2F%2Franteradar.se&scope=accounts:read,identity:read&market=SE&locale=sv_SE&iframe=true"
+    this.tinkUrl = this.sanitizer.bypassSecurityTrustResourceUrl(tinkUrl)
+    this.isTinkBank = true
+    console.log(this.tinkUrl)
+  }
+
+  @HostListener('window:message', ['$event'])
+    onMessage(event) {
+      if (event.origin !== 'https://link.tink.com') {
+      return;
+      }
+  
+      let data = JSON.parse(event.data)
+      if (data.type === 'code') {
+        // This is the authorization code that should be exchanged for an access token
+        this.tinkCode = event.data.data;
+        console.log(`T response: ${data.type }`);
+
+        this.initializeWebSocketConnection()
+      }
+    }
 
   ngOnDestroy() {
     this.unsubscribeEverything();
@@ -170,13 +209,13 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
   }
 
   private connectAndReconnectSocket(successCallback) {
-    const socket = new SockJS(environment.crawlerUrl);
+    const socket = new SockJS(this.environment.crawlerUrl);
 
     this.stompClient = Stomp.over(socket);
     this.logging.logger(this.logging.Level.Info, "3.5:INIT_SOCKET", 'LoginStatusComponent', 'connectAndReconnectSocket', this.logging.SubSystem.Tink, "3.5: CONNECTING TO SOCKET")
 
     // Disable websocket logs for production
-    if (environment.production) {
+    if (this.environment.production) {
       this.stompClient.debug = null;
     }
     this.stompClient.connect(

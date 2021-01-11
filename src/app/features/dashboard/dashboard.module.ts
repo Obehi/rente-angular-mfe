@@ -49,7 +49,6 @@ import { EPSIScoreComponent } from './offers/offers-blue/epsi-score/epsi-score.c
 import { OffersListLangGenericComponent } from '../../local-components/components-output';
 import { LoansLangGenericComponent } from '../../local-components/components-output';
 import { HouseFormLangGenericComponent } from '../../local-components/components-output';
-import { OfferDetailsLangGenericComponent } from '../../local-components/components-output';
 import { ChangeBankDialogLangGenericComponent } from '../../local-components/components-output';
 import { BankScoreLangGenericComponent } from '../../local-components/components-output';
 
@@ -71,8 +70,8 @@ import { BankScoreLangGenericComponent } from '../../local-components/components
     SuccessChangeBankDialogComponent,
     ShareSheetComponent,
     VirdiStatisticsComponent,
-    OffersStatisticsComponentBlue, 
-    OffersStatisticsComponent, 
+    OffersStatisticsComponentBlue,
+    OffersStatisticsComponent,
     DialogComponent,
     GetOfferFromBankDialogComponent,
     LtvTooHighDialogComponent,
@@ -87,7 +86,6 @@ import { BankScoreLangGenericComponent } from '../../local-components/components
     OffersListLangGenericComponent,
     LoansLangGenericComponent,
     HouseFormLangGenericComponent,
-    OfferDetailsLangGenericComponent,
     ChangeBankDialogLangGenericComponent,
     BankScoreLangGenericComponent,
     EPSIScoreComponent,

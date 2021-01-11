@@ -29,6 +29,7 @@ import {
   MESSAGE_STATUS
 } from "../auth/login-status/login-status.config";
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { EnvService} from '@services/env.service'
 
 @Component({
   selector: 'rente-auth-sv',
@@ -45,23 +46,25 @@ export class AuthSvComponent implements OnInit, OnDestroy {
   private intervalSubscription: Subscription;
   public isSuccess = false;
   public tinkUrl: SafeUrl;
-
+  public environment: any
   constructor(
     private router: Router,
     private authService: AuthService,
     private userService: UserService,
     private loansService: LoansService,
     private localStorageService: LocalStorageService,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private envService: EnvService
 
   ) { 
 
   }
 
   ngOnInit(): void {
-    let tinkUrl = environment["tinkUrl"] || "https://link.tink.com/1.0/authorize/?client_id=2a14f1970f0b4b39a861a1c42b65daca&redirect_uri=http%3A%2F%2Flocalhost%3A4302%2F&scope=accounts:read,user:read,identity:read&market=SE&locale=en_US&iframe=true&test=true"
-    this.tinkUrl = this.sanitizer.bypassSecurityTrustResourceUrl(tinkUrl)
+
   }
+
+ 
 
   @HostListener('window:message', ['$event'])
   onMessage(event) {
@@ -87,10 +90,10 @@ export class AuthSvComponent implements OnInit, OnDestroy {
   private initializeWebSocketConnection(tinkCode: number) {
     this.connectAndReconnectSocket(this.successSocketCallback);
     
-    const socket = new SockJS(environment.crawlerUrl);
+    const socket = new SockJS(this.environment.crawlerUrl);
     this.stompClient = Stomp.over(socket);
 
-    if (environment.production) {
+    if (this.environment.production) {
       this.stompClient.debug = null;
     }
 

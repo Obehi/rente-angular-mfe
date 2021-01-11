@@ -37,7 +37,7 @@ import { RoundPipe } from './pipes/round.pipe';
 import { ThousandsSeprator } from './pipes/thousands.pipe';
 import { ButtonSmallComponent } from './components/ui-components/button-small/button-small.component';
 import {IMaskModule} from 'angular-imask';
-import { HeaderLangGenericComponent } from '../local-components/components-output'
+import { HeaderLangGenericComponent, OfferDetailsLangGenericComponent } from '../local-components/components-output';
 import { CustomLangTextService } from '@services/custom-lang-text.service';
 
 
@@ -53,7 +53,8 @@ const components = [
   TabsComponent,
   TabComponent,
   FormMessageComponent,
-  TextAreaComponent
+  TextAreaComponent,
+  OfferDetailsLangGenericComponent
 ];
 
 const services = [
