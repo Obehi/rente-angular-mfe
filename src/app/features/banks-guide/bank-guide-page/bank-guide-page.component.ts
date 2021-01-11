@@ -1,12 +1,12 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { MetaService } from '@services/meta.service';
-import { LoansService } from '@services/remote-api/loans.service';
-import { TitleService } from '@services/title.service';
-import { BankList, BankUtils, MissingBankList } from '@shared/models/bank';
-import { BankGuideInfo, BankLocationAddress } from '@shared/models/offers';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
+import {MetaService} from '@services/meta.service';
+import {LoansService} from '@services/remote-api/loans.service';
+import {TitleService} from '@services/title.service';
+import {BankList, BankUtils, MissingBankList} from '@shared/models/bank';
+import {BankGuideInfo, BankLocationAddress} from '@shared/models/offers';
+import {Subject} from 'rxjs';
+import {takeUntil} from 'rxjs/operators';
 
 @Component({
   selector: 'rente-bank-guide-page',
@@ -19,6 +19,7 @@ export class BankGuidePageComponent implements OnInit {
     ...BankList,
     ...MissingBankList
   ];
+
   bank;
   bankGuideLoading: boolean;
   bankGuideInfo: BankGuideInfo;
@@ -47,18 +48,18 @@ export class BankGuidePageComponent implements OnInit {
       .pipe(takeUntil(this._onDestroy$))
       .subscribe(bankInfo => {
         this.bankGuideInfo = bankInfo;
-     
+
         this.banksLocations = Object.keys(this.bankGuideInfo.addresses)
           .sort();
-  
-        for(let address in this.bankGuideInfo.addresses) {
+
+        for (let address in this.bankGuideInfo.addresses) {
           this.addressesArray.push(...this.bankGuideInfo.addresses[address])
         }
 
         this.banksLocations[this.banksLocations.findIndex(location => location === 'other')] = 'Annet';
         this.titleService.setTitle(`${this.bank.label} | Bankguiden | Renteradar.no`);
         if (this.bankGuideInfo.text1) {
-          this.metaService.updateMetaTags('description', this.bankGuideInfo.text1);
+          this.metaService.updateMetaTags('description', `Sjekk hva ${this.bank.label} tilbyr på boliglån og andre banktjenester. Renteradar.no sammenlikner ${this.bank.label} med andre banker. Oversikt på kontakt, filialer og åpningstider.`);
         }
         this.bankGuideLoading = false;
       }, err => {
