@@ -38,8 +38,6 @@ export class LoggingService {
     obj['message'] = msg;
     obj['sessionID'] = this.sessionId;
     this.httpClient.post('/postlogg', obj).pipe(first()).subscribe( res => {
-      console.log("logging res")
-      console.log(res)
     })
   }
 
@@ -95,6 +93,7 @@ export enum Level {
 
 export enum SubSystem {
   Tink = "Tink",
+  CrawlerLogin = "Crawler Login",
   TinkMockup = "Tink Mockup"
 }
 
