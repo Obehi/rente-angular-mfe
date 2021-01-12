@@ -3,7 +3,6 @@ import { Router, NavigationEnd } from "@angular/router";
 import { ROUTES_MAP } from '@config/routes-config';
 import { locale } from '../../.././config/locale/locale';
 import { environment } from '@environments/environment';
-import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 @Component({
   selector: "rente-footer",
@@ -14,16 +13,12 @@ export class FooterComponent implements OnInit {
   public routes = ROUTES_MAP
   isSweden: boolean;
   public env = environment
-  public bankguidenLink : SafeUrl 
-  constructor(public router: Router, 
-    private sanitizer: DomSanitizer, 
+
+  constructor(public router: Router 
     ) {}
   shouldShowFooter = true;
 
   ngOnInit() {
-    let url = `https:/renteradar.no/bankguiden`
-    this.bankguidenLink = this.sanitizer.bypassSecurityTrustUrl(url)
-
     if(locale.includes("sv")) {
       this.isSweden = true
     } else{
