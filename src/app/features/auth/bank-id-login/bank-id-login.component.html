@@ -1,4 +1,8 @@
-<div class="front-container">
+<div class="front-container dnbError" *ngIf="isDnbBank">
+  <h3>Beklager, tjenesten fungerer for øyeblikket ikke for DNB kunder. <br> Vi håper å ha en løsning klar innen kort tid.</h3>
+</div>
+
+<div *ngIf="!isDnbBank" class="front-container">
   <section *ngIf="!isLoginStarted && bankIdForm" class="login">
     <h3 i18n=“title|bank-id@@bankId.title”>Logg inn med BankID på mobil</h3>
     <p i18n=“description|bank-id@@bankId.description”>
@@ -8,13 +12,14 @@
     <p i18n=“description|bank-id@@bankId.description2” *ngIf="isSB1Bank">
       Vi støtter kun BankID på Mobil, ikke kodebrikke eller engangskode appen.
     </p>
+    <p class="dnbInstability" *ngIf="isEikaBank">Vi opplever at enkelte brukere ikke får logget inn.<br> Vi jobber med å rette problemet</p>
     <p i18n=“issue|bank-id@@bankId.issue” *ngIf="isSB1Bank && false" class="red">
       Akkurat nå er det mange banker som setter ned renten og oppdaterer systemene sine.
       Det kan derfor være en uriktig forskjell på nominell og effektiv rente som vi henter.
       Besparelsen blir da for høy.
     </p>
 
-    <p i18n=“information|bank-id@@bankId.info” *ngIf="!isSB1Bank">
+    <p i18n=“information|bank-id@@bankId.info” *ngIf="!isSB1Bank && !isDnbBank">
       Vi støtter kun BankID på Mobil, ikke kodebrikke og passord.
     </p>
     <p i18n=“issue|bank-id@@bankId.issue2” *ngIf="isEikaBank && false" class="red">

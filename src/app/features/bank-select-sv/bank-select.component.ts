@@ -4,6 +4,8 @@ import { UserService } from "@services/remote-api/user.service";
 import { LocalStorageService } from "@services/local-storage.service";
 import { MatDialog } from '@angular/material/dialog';
 import { ChangeBrowserDialogInfoComponent } from '../landing/landing-top-sv/change-browser-dialog-info/dialog-info.component';
+import { LoggingService} from '@services/logging.service'
+import { locale } from '../../config/locale/locale';
 
 import {
   Component,
@@ -56,7 +58,8 @@ export class BankSelectSvComponent implements OnInit, OnDestroy {
       private loansService: LoansService,
       private localStorageService: LocalStorageService,
       private sanitizer: DomSanitizer, 
-      private dialog: MatDialog
+      private dialog: MatDialog,
+      private logging: LoggingService
   
     ) { 
   
@@ -78,6 +81,8 @@ export class BankSelectSvComponent implements OnInit, OnDestroy {
             });
       }
       console.log("2.")
+      this.logging.logger(this.logging.Level.Info, "1:INIT", 'BankSelectSvComponent', 'ngOnInit', this.logging.SubSystem.Tink, "1: INIT COMPONENT", {EnvTinkUrl: environment["tinkUrl"]})
+
       this.tinkUrl = this.sanitizer.bypassSecurityTrustResourceUrl(tinkUrl)
     }
   
@@ -88,11 +93,12 @@ export class BankSelectSvComponent implements OnInit, OnDestroy {
       }
   
       let data = JSON.parse(event.data)
+      this.logging.logger(this.logging.Level.Info, "2:TINK_CODE_RECIEVED", 'BankSelectSvComponent', 'onMessage', this.logging.SubSystem.Tink, "2: GOT TINKLINK FROM TINK", data)
       if (data.type === 'code') {
         // This is the authorization code that should be exchanged for an access token
         this.tinkCode = event.data.data;
         console.log(`T response: ${data.type }`);
-
+        this.logging.logger(this.logging.Level.Info, "2.1:TINK_LOGIN_SUCCESS", 'BankSelectSvComponent', 'onMessage', this.logging.SubSystem.Tink, "2: TINK LOGIN SUCCESS", data)
         this.initializeWebSocketConnection(data.data)
       }
     }
@@ -105,14 +111,15 @@ export class BankSelectSvComponent implements OnInit, OnDestroy {
       
       const socket = new SockJS(environment.crawlerUrl);
       this.stompClient = Stomp.over(socket);
-  
+      this.logging.logger(this.logging.Level.Info, "3.5:INIT_SOCKET", 'BankSelectSvComponent', 'initializeWebSocketConnection', this.logging.SubSystem.Tink, "3.5: CONNECTING TO SOCKET")
       if (environment.production) {
         this.stompClient.debug = null;
       }
   
       this.stompClient.connect({}, frame => {
         this.sendUserData(tinkCode);
-  
+        this.logging.logger(this.logging.Level.Info, "3.6:CONNECTED_TO_SOCKET", 'BankSelectSvComponent', 'initializeWebSocketConnection', this.logging.SubSystem.Tink, "3.6: CONNECTED TO SOCKET")
+        
         //this.resendDataAfterReconnect();
           this.successSocketCallback();
           // Send ping to prevent socket closing
@@ -132,11 +139,25 @@ export class BankSelectSvComponent implements OnInit, OnDestroy {
       const repliesUrl = `${API_URL_MAP.crawlerRepliesUrl}`;
       this.stompClient.subscribe(repliesUrl, message => {
           const response = JSON.parse(message.body);
+
+          var filteredResponse = {
+            eventType: response['eventType'],
+            bank: response['bank'],
+            backendOneTimeToken: response['oneTimeToken'],
+            backendSessionId: response['sessionId'],
+            backendclientId: response['clientId'],
+          }
+          this.logging.logger(this.logging.Level.Info, "4:RESPONSE_FROM_SOCKET", 'BankSelectSvComponent', 'successSocketCallback', this.logging.SubSystem.Tink, "4: RESPONSE FROM SOCKET", filteredResponse)
+
         if (message.body) {
           switch (response.eventType) {
-           
+            case BANKID_STATUS.CRAWLER_ERROR:
+              this.logging.logger(this.logging.Level.Error, "5:STATUS: BANKID_STATUS.CRAWLER_ERROR", 'BankSelectSvComponent', 'successSocketCallback', this.logging.SubSystem.Tink, "BANKID_STATUS: CRAWLER_ERROR", response)
+              break;
             case BANKID_STATUS.LOANS_PERSISTED:
               console.log("5.")
+              this.logging.logger(this.logging.Level.Info, "5:STATUS: BANKID_STATUS.LOANS_PERSISTED", 'BankSelectSvComponent', 'successSocketCallback', this.logging.SubSystem.Tink, "5: BANKID_STATUS: LOANS_PERSISTED")
+
               const user = response.data.user;
               this.authService
               .loginWithToken(user.oneTimeToken)
@@ -146,21 +167,28 @@ export class BankSelectSvComponent implements OnInit, OnDestroy {
                     this.userService.getUserInfo()
                   ]).subscribe(([rateAndLoans, userInfo]) => {
                     console.log("6.");
+                    this.logging.logger(this.logging.Level.Info, "6:FETCHED_RATE_LOANS_AND_USERINFO", 'BankSelectSvComponent', 'successSocketCallback', this.logging.SubSystem.Tink, "6: FETCHED RATE, LOANS AND USERINFO")
+
                     this.userService.lowerRateAvailable.next(rateAndLoans.lowerRateAvailable);
                     if (rateAndLoans.loansPresent) {
                       this.localStorageService.removeItem('noLoansPresent');
                       if (rateAndLoans.isAggregatedRateTypeFixed) {
                         this.localStorageService.setItem('isAggregatedRateTypeFixed', true);
+                        this.logging.logger(this.logging.Level.Info, "7:SUCCESS_RATE_TYPE_FIXED", 'BankSelectSvComponent', 'successSocketCallback', this.logging.SubSystem.Tink, "7: SUCCESS: FIXED RATE DETECTED. REDIRECT TO ROUTES_MAP.FIXEDRATE")
                         this.router.navigate(['/dashboard/' + ROUTES_MAP.fixedRate]);
                       } else {
                         if (userInfo.income === null) {
+                          this.logging.logger(this.logging.Level.Info, "7:SUCCESS_NEW_USER", 'BankSelectSvComponent', 'successSocketCallback', this.logging.SubSystem.Tink, "7: SUCCESS:NEW USER DETECTED. REDIRECT TO ROUTES_MAP.INITCONFIRMATION")                          
                           this.router.navigate(['/' + ROUTES_MAP.initConfirmation]);
                           this.localStorageService.setItem('isNewUser', true);
                         } else {
+                          this.logging.logger(this.logging.Level.Info, "7:SUCCESS_OLD_USER", 'BankSelectSvComponent', 'successSocketCallback', this.logging.SubSystem.Tink, "7: SUCCESS: USER INCOME DETECTED. REDIRECT TO ROUTES_MAP.OFFERS")
                           this.router.navigate(['/dashboard/' + ROUTES_MAP.offers]);
                         }
                       }
                     } else {
+                    this.logging.logger(this.logging.Level.Info, "7:SUCCESS_NO_LOAN_PRESENT", 'BankSelectSvComponent', 'successSocketCallback', this.logging.SubSystem.Tink, "7: SUCCESS: NO LOAN DETECTED. REDIRECT TO ROUTES_MAP.NOLOAN")
+
                       this.localStorageService.setItem('noLoansPresent', true);
                       this.router.navigate(['/dashboard/' + ROUTES_MAP.noLoan]);
                     }
@@ -170,24 +198,32 @@ export class BankSelectSvComponent implements OnInit, OnDestroy {
           }
         }
       });
-  
     }
   
     private connectAndReconnectSocket(successCallback) {
     
     }
   
-    sendUserData(tinkCode: number, resendData = false) {
-      const dataObj = {
-      };
-      //this.setDefaultSteps();
-      const data = JSON.stringify(dataObj);
+    sendUserData(loginId: number, resendData = false) {
+      var country = ""
+      if(locale.includes("nb")) {
+        country = 'NOR'
+      } else {
+        country = 'SWE'
+      }
   
-      this.stompClient.send(
-        API_URL_MAP.tinkSendMessageUrl + tinkCode,
+      let data = {
+        country: country,
+        code: loginId
+      }
+    
+      this.stompClient.send( 
+        API_URL_MAP.tinkSendMessageUrl,
         {},
-        data
+        JSON.stringify(data)
       );
+      this.logging.logger(this.logging.Level.Info, "3.7:SEND_MESSAGE_TO_SOCKET_WITH_TINK_CODE", 'BankSelectSvComponent', 'sendUserData', this.logging.SubSystem.Tink, "3.7: CONNECT TO SOCKET WITH TINK CODE", {tinkCode: tinkCode, crawlerEndpoint: API_URL_MAP.tinkSendMessageUrl})
+
       if (!resendData) {
         //this.initTimer(IDENTIFICATION_TIMEOUT_TIME);
         //this.initConnectionTimer();
