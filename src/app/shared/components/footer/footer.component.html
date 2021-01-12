@@ -89,7 +89,7 @@
       <p>
         Forbrukerøkonomene AS (Org nr: 921 534 191)
         <br />
-        <a href="{{bankguidenLink}}" routerLinkActive="active-link">
+        <a href="{{bankguidenLink}}" >
           Bankguiden vanilla url
         </a> 
           <a href="https://rente-frontend-dev.herokuapp.com/bankguiden" routerLinkActive="active-link">
@@ -99,15 +99,15 @@
     
   </div>
 
-    <div *ngIf="isSweden" class="inner-footer">
+  <div *ngIf="isSweden" class="inner-footer">
 
-      <a class="temp-swedish-policy" i18n=“privacy|footer@@footer.privacy” [routerLink]="[routes.privacy]"
-      routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">
-      Personvern
+    <a class="temp-swedish-policy" i18n=“privacy|footer@@footer.privacy” [routerLink]="[routes.privacy]"
+    routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">
+    Personvern
     </a>
-      <p class="org">
-        <a href="http://ranteradar.se/">Ränteradar.se</a>
-        ägs och drivs av Ränteradar
-        Sverige AB<br>(Org nr: 559271-9289).
-      </p>
-    </div>
+    <p class="org">
+      <a href="http://ranteradar.se/">Ränteradar.se</a>
+      ägs och drivs av Ränteradar
+      Sverige AB<br>(Org nr: 559271-9289).
+    </p>
+  </div>
