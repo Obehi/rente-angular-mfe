@@ -17,6 +17,19 @@ export class AuthService {
     private router: Router
   ) { }
 
+  public loginForDemo() {
+    const url = `${API_URL_MAP.auth.base}${API_URL_MAP.auth.demo}`;
+    console.log("url")
+    console.log(url)
+    const data = {
+      guid: 'VTHsuGIX6suHAPrnfc0'
+    }
+    this.http.post(url, data).subscribe( res => {
+      console.log("res")
+      console.log(res)
+    })
+  }
+
   public loginWithToken(token: String) {
     const url = `${API_URL_MAP.auth.base}${API_URL_MAP.auth.token}`;
     const data = {
