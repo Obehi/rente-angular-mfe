@@ -17,10 +17,10 @@ export class AuthService {
     private router: Router
   ) { }
 
-  public loginForDemo() {
+  public loginForDemo(guid: string) {
     const url = `${API_URL_MAP.auth.base}${API_URL_MAP.auth.demo}`;
     const data = {
-      guid: '56bd15f7bcd54d1f916a1c88555af5c1'
+      guid: guid
     }
     return this.http.post(url, data).pipe(
       tap(this.handleLogin.bind(this))

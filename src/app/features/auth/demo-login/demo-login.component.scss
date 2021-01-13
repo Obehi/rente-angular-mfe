@@ -1,16 +1,53 @@
-form {
-    margin-top: 40px;
-    margin-bottom: 40px;
+@import "../../../../styles/theme/_colors.scss";
+
+.container {
+    padding: 80px;
+}
+
+.h1 {
+    color: #a0a0a0;
+}
+.box-container {
+    margin-top: 20px;
+    display: grid;
+    grid-gap: 22px;
+    grid-template-columns: 1fr 1fr;
+
+    @media (min-width: 600px) {
+      min-height: 350px
+    }
+
+    @media (max-width: 600px) {
+        grid-template-columns: 1fr;
+    }
+}
+
+a.box {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    justify-content: space-between;
+    text-decoration: none;
+    padding: 20px 10px 10px 20px;
 }
 
-.button {
-    margin-top: 40px;
+.round-box {
+border-radius: 15px;
 }
 
-.button-wrapper {
-    margin-top: 20px !important;
-    
+.blue-bg {
+    background: $blue;
+    * {
+        color: white;
+    }
 }
+
+.box-icon {
+    margin: 10px auto;
+    width: 20px;
+}
+
+.arrow-big {
+    float: right;
+    margin-right: 5px;
+    align-self: flex-end;
+  }
