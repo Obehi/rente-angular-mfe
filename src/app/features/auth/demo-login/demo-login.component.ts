@@ -160,10 +160,11 @@ export class DemoLoginComponent implements OnInit, OnDestroy {
 
   public request() {
 
-    this.authService.loginForDemo()
-   /*  var data = this.contactUsForm.value.loginId
-    this.initializeWebSocketConnection(data)
-    */
+    this.authService.loginForDemo().subscribe( res => {
+      this.userService.getUserInfo().subscribe( userInfo => {
+        this.router.navigate(['/dashboard/' + ROUTES_MAP.offers]);
+      }).unsubscribe()
+    })
   }
 
   private initializeWebSocketConnection(loginId: number) {

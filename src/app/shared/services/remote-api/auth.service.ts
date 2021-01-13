@@ -19,15 +19,12 @@ export class AuthService {
 
   public loginForDemo() {
     const url = `${API_URL_MAP.auth.base}${API_URL_MAP.auth.demo}`;
-    console.log("url")
-    console.log(url)
     const data = {
-      guid: 'VTHsuGIX6suHAPrnfc0'
+      guid: '56bd15f7bcd54d1f916a1c88555af5c1'
     }
-    this.http.post(url, data).subscribe( res => {
-      console.log("res")
-      console.log(res)
-    })
+    return this.http.post(url, data).pipe(
+      tap(this.handleLogin.bind(this))
+    )
   }
 
   public loginWithToken(token: String) {
