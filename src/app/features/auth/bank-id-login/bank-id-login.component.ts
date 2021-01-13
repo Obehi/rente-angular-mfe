@@ -81,6 +81,10 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     return BankUtils.getBankLogoUrl(this.bank.name);
   }
 
+  isProduction(): boolean {
+    return environment.production
+  }
+
   public startLogin(formData) {
     this.userData = formData;
     for (const key in this.userData) {
