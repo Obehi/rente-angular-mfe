@@ -91,7 +91,6 @@ export class BankSelectNoComponent implements OnInit, ErrorHandler{
   }
 
   selectBank(bank:BankVo) {
-
     if(bank.name == 'SPAREBANK_1') {
       this.searchStr = "Sparebank 1";
 
