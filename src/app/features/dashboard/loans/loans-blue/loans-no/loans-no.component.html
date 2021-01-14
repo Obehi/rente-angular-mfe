@@ -106,6 +106,14 @@
         </div>
       </div>
     </div>
+
+    <div *ngIf="locale === 'nb'" class="center-logo">
+      <p>Få full kontroll på din bolig med:</p>
+  
+      <a target="_blank" href="https://www.defero.no/">
+        <img src="../../../../assets/img/partners/defero.png" alt="boligmappa logo" />
+      </a>
+    </div> 
   </div>
   
   <div class="loading" *ngIf="!loansData && !errorMessage">

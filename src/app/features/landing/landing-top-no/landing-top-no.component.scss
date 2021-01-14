@@ -75,15 +75,20 @@ h4 {
     }
     .finansportalen {
       grid-row: 2;
-      grid-column-start: 1;
-      grid-column-end: span 2;
       margin: auto;
+      width: 150px;
 
       img {
         width: 110px;
       }
     }
     .boligmappa {
+      img {
+        width: 110px;
+      }
+    }
+    .defero {
+      grid-row: 2;
       img {
         width: 110px;
       }
