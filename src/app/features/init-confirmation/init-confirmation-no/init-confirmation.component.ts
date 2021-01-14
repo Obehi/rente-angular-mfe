@@ -2,6 +2,8 @@ import { LoansService, ConfirmationSetDto, ConfirmationGetDto, MembershipTypeDto
 import { UserService } from '@services/remote-api/user.service';
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { TitleCasePipe} from '@angular/common';
+import { BankUtils } from '../../../shared/models/bank';
+
 import {
   Validators,
   AbstractControl,
@@ -50,6 +52,7 @@ export class InitConfirmationNoComponent implements OnInit {
   public userData:ConfirmationGetDto;
   public mask = Mask;
   public optimizeService: OptimizeService
+  public isTinkBank = false
 
   @ViewChild('membershipInput') membershipInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete: MatAutocomplete;
@@ -75,6 +78,16 @@ export class InitConfirmationNoComponent implements OnInit {
 
   ngOnInit() {
     this.loansService.getConfirmationData().subscribe(res => {
+      res = null
+      res = {
+        name: "test bruker",
+        memberships: null,
+        apartmentSize: 110,
+        email: 'test@test.com',
+        income: 500000,
+        availableMemberships: null
+      }
+
       this.allMemberships = res.availableMemberships;
       this.userData = res;
 
@@ -91,6 +104,10 @@ export class InitConfirmationNoComponent implements OnInit {
           ])
         ]
       });
+
+      let bank = BankUtils.getBankByName(this.userData.name)
+      this.isTinkBank = BankUtils.isTinkBank(bank.name)
+      this.isTinkBank && this.propertyForm.addControl('newControl', new FormControl('name', Validators.required))
     });
   }
 
@@ -112,24 +129,25 @@ export class InitConfirmationNoComponent implements OnInit {
     this.propertyForm.updateValueAndValidity();
 
     this.isLoading = true;
-    const userData = {
+
+    const data = {
       email: formData.email,
       income:
         typeof formData.income === 'string'
           ? formData.income.replace(/\s/g, '')
-          : formData.income
-    };
-
-    const confirmationData = {
+          : formData.income,
       memberships: this.memberships.map(membership => membership.name),
       apartmentSize: formData.apartmentSize
     };
 
+
     const dto:ConfirmationSetDto = new ConfirmationSetDto();
-    dto.email = userData.email;
-    dto.income = userData.income;
-    dto.memberships = confirmationData.memberships;
-    dto.apartmentSize = confirmationData.apartmentSize;
+
+    dto.name = this.userData.name 
+    dto.email = data.email;
+    dto.income = data.income;
+    dto.memberships = data.memberships;
+    dto.apartmentSize = data.apartmentSize;
 
     this.loansService.setConfirmationData(dto).subscribe(res => {
       this.isLoading = false;

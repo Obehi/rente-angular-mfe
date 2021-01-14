@@ -181,5 +181,11 @@ export class BankUtils {
       return bank.name
     }).includes(bankName)
   }
+
+  static isTinkBank(bankName: string): boolean {
+    return TinkBanks.map( bank => {
+      return bank.name
+    }).includes(bankName)
+  }
 }
 

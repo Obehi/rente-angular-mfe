@@ -185,6 +185,7 @@ export class ConfirmationGetDto {
 }
 
 export class ConfirmationSetDto {
+  name: string;
   memberships: string[];
   apartmentSize: number;
   email: string;
