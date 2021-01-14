@@ -204,25 +204,18 @@ export class BankSelectSvComponent implements OnInit, OnDestroy {
     
     }
   
-    sendUserData(loginId: number, resendData = false) {
-      var country = ""
-      if(locale.includes("nb")) {
-        country = 'NOR'
-      } else {
-        country = 'SWE'
-      }
+    sendUserData(tinkCode: number, resendData = false) {
+      const dataObj = {
+      };
+      //this.setDefaultSteps();
+      const data = JSON.stringify(dataObj);
   
-      let data = {
-        country: country,
-        code: loginId
-      }
-    
-      this.stompClient.send( 
-        API_URL_MAP.tinkSendMessageUrl,
+      this.stompClient.send(
+        API_URL_MAP.tinkSendMessageUrl + tinkCode,
         {},
-        JSON.stringify(data)
+        data
       );
-      this.logging.logger(this.logging.Level.Info, "3.7:SEND_MESSAGE_TO_SOCKET_WITH_TINK_CODE", 'BankSelectSvComponent', 'sendUserData', this.logging.SubSystem.Tink, "3.7: CONNECT TO SOCKET WITH TINK CODE", {tinkCode: this.tinkCode, crawlerEndpoint: API_URL_MAP.tinkSendMessageUrl})
+      this.logging.logger(this.logging.Level.Info, "3.7:SEND_MESSAGE_TO_SOCKET_WITH_TINK_CODE", 'BankSelectSvComponent', 'sendUserData', this.logging.SubSystem.Tink, "3.7: SEND_MESSAGE_TO_SOCKET_WITH_TINK_CODE", {tinkCode: tinkCode, crawlerEndpoint: API_URL_MAP.tinkSendMessageUrl})
 
       if (!resendData) {
         //this.initTimer(IDENTIFICATION_TIMEOUT_TIME);
