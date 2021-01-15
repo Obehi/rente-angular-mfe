@@ -13,24 +13,24 @@
     <div *ngIf="isTinkBank" class="field">
       <rente-input
         [placeholder]="'Navn'"
-        formControlName="navn"
+        formControlName="name"
         [errorStateMatcher]="
-          isErrorState(propertyForm.controls['navn'], propertyForm)
+          isErrorState(propertyForm.controls['name'], propertyForm)
         "
         [modelOptions]="{ updateOn: 'blur' }"
       >
       </rente-input>
 
-      <div *ngIf="propertyForm.controls['navn'].touched">
+      <div *ngIf="propertyForm.controls['name'].touched">
         <p i18n=“empty|info-confirmation@@info.confirmation.empty”
           class="error small"
-          *ngIf="propertyForm.controls['navn'].hasError('required')"
+          *ngIf="propertyForm.controls['name'].hasError('required')"
         >
           Kan ikke være tom
         </p>
         <p i18n=“invalid|info-confirmation@@info.confirmation.invalid”
           class="error small"
-          *ngIf="propertyForm.controls['navn'].hasError('pattern')"
+          *ngIf="propertyForm.controls['name'].hasError('pattern')"
         >
           Ugyldig e-post
         </p>

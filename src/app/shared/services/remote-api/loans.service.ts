@@ -176,6 +176,7 @@ export class ClientAddressDto {
 }
 
 export class ConfirmationGetDto {
+  bank: string;
   email: string;
   name: string;
   income: number;
