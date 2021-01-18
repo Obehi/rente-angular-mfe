@@ -18,7 +18,7 @@
           </span>
           <a [routerLink]="['/dashboard/' + routesMap.offers]" *ngIf="isLoggedIn" routerLinkActive="active-link" class="highlight">Min sida</a>
           <a [routerLink]="['/valjbank']" *ngIf="!isLoggedIn" routerLinkActive="active-link" class="highlight">Logga in</a>
-          <a [routerLink]="['/']" *ngIf="isLoggedIn" (click)="auth.logout()">logga ut</a>
+          <a [routerLink]="['/']" *ngIf="isLoggedIn" (click)="auth.logout()">Logga ut</a>
         </div>
         <div class="menu mobile" (click)="toggleNav()">
           <span></span>
