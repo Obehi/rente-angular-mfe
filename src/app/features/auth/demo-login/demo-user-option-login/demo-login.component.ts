@@ -6,16 +6,16 @@ import { SnackBarService } from "@services/snackbar.service";
 import { Mask } from '@shared/constants/mask'
 
 import { environment } from "@environments/environment";
-import { locale } from '../../../config/locale/locale';
+import { locale } from '../../../../config/locale/locale';
 
 import { API_URL_MAP } from "@config/api-url-config";
 import { Subscription, Observable } from "rxjs";
 import {
   MESSAGE_STATUS
-} from "../../auth/login-status/login-status.config";
+} from "../../../auth/login-status/login-status.config";
 
 
-import { ViewStatus } from "../../auth/login-status/login-view-status";
+import { ViewStatus } from "../../../auth/login-status/login-view-status";
 import { AuthService } from "@services/remote-api/auth.service";
 import { UserService } from "@services/remote-api/user.service";
 import { LoansService } from "@services/remote-api/loans.service";
@@ -34,6 +34,7 @@ export class DemoLoginComponent implements OnInit {
 
   userSessionId: string;
   guuids: string[] = []
+  public isLoading;
 
   constructor(
     private snackBar: SnackBarService,
@@ -53,10 +54,17 @@ export class DemoLoginComponent implements OnInit {
 
   goToChoice(optionId: number) {
     let guid = this.guuids[optionId]
-    this.authService.loginForDemo(guid).subscribe( res => {
-      this.userService.getUserInfo().subscribe( userInfo => {
-       this.router.navigate(['/dashboard/' + ROUTES_MAP.offers]);
-      })
-    })
+
+    this.isLoading = true;
+    this.authService.loginForDemo(guid).subscribe(
+      _ => {
+          this.isLoading = false;
+          this.router.navigate(['/dashboard/' + ROUTES_MAP.offers]);
+      },
+      err => {
+        this.isLoading = false;
+        this.snackBar.openFailSnackBar(this.customLangTextService.getSnackBarErrorMessage(), 2)
+      }
+    );
   }
 }

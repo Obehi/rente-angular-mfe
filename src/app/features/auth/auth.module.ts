@@ -11,7 +11,8 @@ import { DialogInfoServiceComponent } from './bank-id-login/dialog-info-service/
 import { Sparebank1SubComponent } from './sparebank1-sub/sparebank1-sub.component';
 import { MaterialModule } from '@shared/material/material.module';
 import { BankChoiceComponent } from './bank-choice/bank-choice.component';
-import { DemoLoginComponent } from './demo-login/demo-login.component';
+import { DemoLoginComponent } from './demo-login/demo-user-option-login/demo-login.component';
+import { GuidLoginComponent } from './demo-login/guid-login/guid-login.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { DemoLoginComponent } from './demo-login/demo-login.component';
     DialogInfoServiceComponent,
     Sparebank1SubComponent,
     BankChoiceComponent,
-    DemoLoginComponent
+    DemoLoginComponent,
+    GuidLoginComponent
   ],
   imports: [
     CommonModule,
