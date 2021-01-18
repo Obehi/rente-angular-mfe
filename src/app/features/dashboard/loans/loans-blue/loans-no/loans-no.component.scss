@@ -94,3 +94,26 @@ p {
     display: block;
   }
 }
+
+.center-logo {
+  margin-top: 40px;
+  background: #fff;
+  border-radius: 15px;
+  padding: 20px;
+
+  h3 {
+    color: $secondary;
+    margin-bottom: 10px;
+  }
+
+  p{
+    color: $secondary;
+    font-weight: 400;
+    margin-bottom: 15px;
+  }
+  text-align: center;
+
+  img{
+    width: 180px;
+  }
+}

@@ -168,7 +168,7 @@
                 <div class="inner-body" *ngIf="showOfferPreferences">
 
 
-                  <div i18n=“see-offers-special|profile@@profile.seeOffers.special” *ngIf="local != sv" class="field">
+                  <div i18n=“see-offers-special|profile@@profile.seeOffers.special” *ngIf="!isSweden" class="field">
                     <p class="small">
                       Ønsker du <b>kun</b> å se tilbud på rammelån/flexilån?
                     </p>
@@ -384,7 +384,7 @@
                 <div class="inner-body" *ngIf="showOfferPreferences">
 
                   <div class="formBox">
-                    <div i18n=“see-offers-special|profile@@profile.seeOffers.special” *ngIf="local != sv"  class="field">
+                    <div i18n=“see-offers-special|profile@@profile.seeOffers.special” *ngIf="!isSweden"  class="field">
                       <p class="small">
                         Ønsker du <b>kun</b> å se tilbud på rammelån/flexilån?
                       </p>

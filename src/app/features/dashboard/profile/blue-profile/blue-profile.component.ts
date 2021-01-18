@@ -84,7 +84,8 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
   public mask = Mask;
   public locale = locale
   changesMade = false;
-
+  public isSweden = false;
+  
   @ViewChild('membershipInput') membershipInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete: MatAutocomplete;
 
@@ -155,6 +156,12 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
     () => {
       this.onFormChange();
     });
+
+    if(locale.includes("sv")) {
+      this.isSweden = true
+    } else{
+      this.isSweden = false
+    }
   }
 
   

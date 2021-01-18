@@ -61,6 +61,11 @@ h4 {
         width: 130px;
       }
     }
+    .defero {
+      img {
+        width: 70px;
+      }
+    }
   }
 
   @media (max-width: 600px) {
@@ -72,12 +77,12 @@ h4 {
     a {
       grid-row: 1;
       align-self: center;
+      margin: auto;
     }
     .finansportalen {
       grid-row: 2;
-      grid-column-start: 1;
-      grid-column-end: span 2;
       margin: auto;
+      width: 150px;
 
       img {
         width: 110px;
@@ -86,6 +91,20 @@ h4 {
     .boligmappa {
       img {
         width: 110px;
+      }
+    }
+    .defero-wrapper {
+      width: 100%;
+      display: flex;
+      .defero {
+        a {
+          margin: auto;
+          grid-row: 2;
+          img {
+            width: 70px;
+          }
+        }
+        
       }
     }
   }
