@@ -1,9 +1,9 @@
-<div class="front-container dnbError" *ngIf="isDnbBank && isProduction()" >
+<div class="front-container dnbError" *ngIf="isDnbBank">
   <h3>Beklager, tjenesten fungerer for øyeblikket ikke for DNB kunder. <br> Vi håper å ha en løsning klar innen kort tid.</h3>
 </div>
 
-<div *ngIf="!isDnbBank || !isProduction()" class="front-container">
-  <section *ngIf="!isLoginpnStarted && bankIdForm" class="login">
+<div *ngIf="!isDnbBank" class="front-container">
+  <section *ngIf="!isLoginStarted && bankIdForm" class="login">
     <h3 i18n=“title|bank-id@@bankId.title”>Logg inn med BankID på mobil</h3>
     <p i18n=“description|bank-id@@bankId.description”>
       Renteradar henter lånedetaljer og renten din automatisk med BankID på
