@@ -81,7 +81,7 @@ export class BankSelectSvComponent implements OnInit, OnDestroy {
             });
       }
       console.log("2.")
-      this.logging.logger(this.logging.Level.Info, "1:INIT", 'BankSelectSvComponent', 'ngOnInit', this.logging.SubSystem.Tink, "1: INIT COMPONENT", {EnvTinkUrl: environment["tinkUrl"]})
+      this.logging.logger(this.logging.Level.Info, "1:INIT", 'BankSelectSvComponent', 'ngOnInit', this.logging.SubSystem.Tink, "1: INIT COMPONENT")
 
       this.tinkUrl = this.sanitizer.bypassSecurityTrustResourceUrl(tinkUrl)
     }
