@@ -211,7 +211,7 @@ export class BankSelectSvComponent implements OnInit, OnDestroy {
       const data = JSON.stringify(dataObj);
   
       this.stompClient.send(
-        API_URL_MAP.tinkSendMessageUrl + tinkCode,
+        API_URL_MAP.tinkSendMessageUrl + "/" + tinkCode,
         {},
         data
       );
