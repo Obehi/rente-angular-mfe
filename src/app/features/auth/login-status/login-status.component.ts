@@ -92,7 +92,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
     this.logging.logger(this.logging.Level.Info, "1:INIT", 'LoginStatusComponent', 'ngOnInit', this.logging.SubSystem.Tink, "1: INIT COMPONENT", {bank: this.bank.name})
     this.environment = this.envService.environment
     this.setDefaultSteps();
-    this.initializeWebSocketConnection();
+    
     window.scrollTo(0, 0);
     //Special case for DNB and Eika banks
     this.thirdStepTimer = this.bank.name === "DNB" || BankUtils.isEikaBank(this.bank.name)  ? 30 : 25;
@@ -101,6 +101,8 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
  
     if(this.bank.isTinkBank) {
       this.initiateTinkBank()
+    } else {
+      this.initializeWebSocketConnection();
     }
   }
 
@@ -108,7 +110,12 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
     console.log("initiateTinkBank")
     console.log(this.envService.environment.crawlerUrl)
     //let tinkUrl = this.envService.environment.tinkUrl || "https://link.tink.com/1.0/authorize/?client_id=3973e78ee8c140edbf36e53d50132ba1&redirect_uri=https%3A%2F%2Franteradar.se&scope=accounts:read,identity:read&market=SE&locale=sv_SE&iframe=true"
-    let tinkUrlUnsanitized = "https://link.tink.com/1.0/authorize/credentials/no-handelsbanken-bankid?client_id=690cbe68c3df412082d5ad8a5a2335d8&redirect_uri=https%3A%2F%2Frente-frontend-dev.herokuapp.com&scope=accounts:read,credentials:read&market=NO&locale=en_US"
+    
+    // origonal url from roman
+    //let tinkUrlUnsanitized = "https://link.tink.com/1.0/authorize/credentials/no-handelsbanken-bankid?client_id=690cbe68c3df412082d5ad8a5a2335d8&redirect_uri=https%3A%2F%2Frente-frontend-dev.herokuapp.com&scope=accounts:read,credentials:read&market=NO&locale=en_US"
+    console.log(this.envService.environment)
+    //url using locale client id 
+    let tinkUrlUnsanitized = "https://link.tink.com/1.0/authorize/?client_id=3973e78ee8c140edbf36e53d50132ba1&redirect_uri=https%3A%2F%2Franteradar.se&scope=accounts:read,identity:read&market=SE&locale=sv_SE&iframe=true"
     this.tinkUrl = this.sanitizer.bypassSecurityTrustResourceUrl(tinkUrlUnsanitized)
     this.isTinkBank = true
     console.log(this.tinkUrl)

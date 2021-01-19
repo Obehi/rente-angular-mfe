@@ -1,7 +1,4 @@
 import { Injectable } from '@angular/core';
-//import { environment } from '../../../../dist/rente-front-end/env-config'
-import { environment } from '../../../../env/env.js'
-import { test } from '../../../../env/env-test.js'
 import {BehaviorSubject} from 'rxjs'
 import {map, tap,} from 'rxjs/operators'
 
@@ -10,8 +7,8 @@ interface Environment {
   production: boolean | null, 
   baseUrl: string | null,
   crawlerUrl: string | null,
+  locale: string | null,
   tinkUrl: string | null,
-  locale: string | null
 }
 
 import {
