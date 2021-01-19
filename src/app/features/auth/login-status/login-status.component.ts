@@ -121,11 +121,13 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
       }
   
       let data = JSON.parse(event.data)
+      this.logging.logger(this.logging.Level.Info, "2:TINK_EVENT_RECIEVED", 'LoginStatusComponent', 'onMessage', this.logging.SubSystem.Tink, "2:TINK_EVENT_RECIEVED", data)
+
       if (data.type === 'code') {
         // This is the authorization code that should be exchanged for an access token
         this.tinkCode = event.data.data;
         console.log(`T response: ${data.type }`);
-
+        this.logging.logger(this.logging.Level.Info, "2.1:TINK_LOGIN_SUCCESS", 'LoginStatusComponent', 'onMessage', this.logging.SubSystem.Tink, "2: TINK LOGIN SUCCESS", data)
         this.initializeWebSocketConnection()
       }
     }
