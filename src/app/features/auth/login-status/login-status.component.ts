@@ -107,8 +107,9 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
   initiateTinkBank() {
     console.log("initiateTinkBank")
     console.log(this.envService.environment.crawlerUrl)
-    let tinkUrl = this.envService.environment.tinkUrl || "https://link.tink.com/1.0/authorize/?client_id=3973e78ee8c140edbf36e53d50132ba1&redirect_uri=https%3A%2F%2Franteradar.se&scope=accounts:read,identity:read&market=SE&locale=sv_SE&iframe=true"
-    this.tinkUrl = this.sanitizer.bypassSecurityTrustResourceUrl(tinkUrl)
+    //let tinkUrl = this.envService.environment.tinkUrl || "https://link.tink.com/1.0/authorize/?client_id=3973e78ee8c140edbf36e53d50132ba1&redirect_uri=https%3A%2F%2Franteradar.se&scope=accounts:read,identity:read&market=SE&locale=sv_SE&iframe=true"
+    let tinkUrlUnsanitized = "https://link.tink.com/1.0/authorize/credentials/no-handelsbanken-bankid?client_id=690cbe68c3df412082d5ad8a5a2335d8&redirect_uri=https%3A%2F%2Frente-frontend-dev.herokuapp.com&scope=accounts:read,credentials:read&market=NO&locale=en_US"
+    this.tinkUrl = this.sanitizer.bypassSecurityTrustResourceUrl(tinkUrlUnsanitized)
     this.isTinkBank = true
     console.log(this.tinkUrl)
   }
