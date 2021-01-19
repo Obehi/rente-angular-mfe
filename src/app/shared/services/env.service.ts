@@ -39,9 +39,7 @@ export class EnvService {
   init() {
     
     this.http.get("../../../../assets/env-config.json").subscribe( env => {
-      console.log("1212enc")
       console.log(env)
-      console.log(env['name'])
       this.environment = env as Environment
       console.log(this.environment.baseUrl)
     })
