@@ -29,7 +29,6 @@ import { LoansService } from "@services/remote-api/loans.service";
 import { LocalStorageService } from "@services/local-storage.service";
 import { BankVo, BankUtils } from "@shared/models/bank";
 import { ROUTES_MAP } from '@config/routes-config';
-import { LoggingService} from '@services/logging.service'
 
 @Component({
   selector: "rente-login-status",
@@ -76,11 +75,9 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
     private userService: UserService,
     private loansService: LoansService,
     private localStorageService: LocalStorageService,
-    private logging: LoggingService
   ) {}
 
   ngOnInit() {
-    this.logging.logger(this.logging.Level.Info, "1:INIT", 'LoginStatusComponent', 'ngOnInit', this.logging.SubSystem.CrawlerLogin, "1: INIT COMPONENT", {bank: this.bank.name})
     this.setDefaultSteps();
     this.initializeWebSocketConnection();
     window.scrollTo(0, 0);
@@ -140,7 +137,6 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
       {},
       data
     );
-    this.logging.logger(this.logging.Level.Info, "3.7:SEND_MESSAGE_TO_SOCKET_WITH_BANK_NAME", 'LoginStatusComponent', 'sendUserData', this.logging.SubSystem.CrawlerLogin, "3.7: CONNECT TO SOCKET WITH BANK NAME AND INFO_JSON")
 
     if (!resendData) {
       this.initTimer(IDENTIFICATION_TIMEOUT_TIME);
@@ -163,7 +159,6 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
       isUserDataEntered &&
       !this.viewStatus.isLoansPersisted
     ) {
-      this.logging.logger(this.logging.Level.Info, "3.8: RESEND_MESSAGE_TO_SOCKET_WITH_BANK_NAME", 'LoginStatusComponent', 'resendDataAfterReconnect', this.logging.SubSystem.CrawlerLogin, "3.7: CONNECT TO SOCKET WITH BANK NAME AND INFO_JSON")
 
       this.sendUserData(true);
     }
@@ -173,7 +168,6 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
     const socket = new SockJS(environment.crawlerUrl);
 
     this.stompClient = Stomp.over(socket);
-    this.logging.logger(this.logging.Level.Info, "3.5:INIT_SOCKET", 'LoginStatusComponent', 'connectAndReconnectSocket', this.logging.SubSystem.CrawlerLogin, "3.5: CONNECTING TO SOCKET")
 
     // Disable websocket logs for production
     if (environment.production) {
@@ -184,7 +178,6 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
       frame => {
         this.viewStatus.isSocketConnectionLost = false;
         // Resend user data after reconnection
-        this.logging.logger(this.logging.Level.Info, "3.6:CONNECTED_TO_SOCKET", 'LoginStatusComponent', 'connectAndReconnectSocket', this.logging.SubSystem.CrawlerLogin, "3.6: CONNECTED TO SOCKET")
 
         this.sendUserData();
 
@@ -233,15 +226,11 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
     this.connectionTimer = timer(1000, 1000);
     this.connectionTimerSubscription = this.connectionTimer.subscribe(time => {
       if (time > this.maxConnectionTime) {
-        if(this.viewStatus.isTimedOut === false) {
-          this.logging.logger(this.logging.Level.Error, "CONNECTION_TIMEOUT:" + " " + this.maxConnectionTime + " SECONDS", 'LoginStatusComponent', 'initConnectionTimer', this.logging.SubSystem.CrawlerLogin, "CONNECTION TIMEOUT", {bank: this.bank.name})
-        }
         this.viewStatus.isTimedOut = true;
       }
       this.firstStepTimer--;
       if (!this.firstStepTimer) {
         if(this.firstStepTimerFinished === false){
-          this.logging.logger(this.logging.Level.Error, "FIRST_STEP_TIMER_FINISHED", 'LoginStatusComponent', 'initConnectionTimer', this.logging.SubSystem.CrawlerLogin, "FIRST STEP TIMER FINISHED")
         }
 
         this.firstStepTimerFinished = true;
@@ -261,7 +250,6 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
         backendSessionId: response['sessionId'],
         backendclientId: response['clientId'],
       }
-      this.logging.logger(this.logging.Level.Info, "4:RESPONSE_FROM_SOCKET", 'LoginStatusComponent', 'successSocketCallback', this.logging.SubSystem.CrawlerLogin, "4: RESPONSE FROM SOCKET", filteredResponse)
 
       if (message.body) {
         if (environment.production) {
@@ -279,7 +267,6 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
           case BANKID_STATUS.PROCESS_STARTED:
             this.initTimer(BANKID_TIMEOUT_TIME);
             this.initConnectionTimer();
-            this.logging.logger(this.logging.Level.Info, "5.1:STATUS: BANKID_STATUS.PROCESS_STARTED", 'LoginStatusComponent', 'successSocketCallback', this.logging.SubSystem.CrawlerLogin, "5: BANKID_STATUS: PROCESS_STARTED")
 
             // this.loginStep1Status = MESSAGE_STATUS.SUCCESS;
             this.viewStatus.isProcessStarted = true;
@@ -335,7 +322,6 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
             break;
           case BANKID_STATUS.CRAWLER_ERROR:
             filteredResponse['bank'] = this.bank.name;
-            this.logging.logger(this.logging.Level.Error, "5:STATUS: BANKID_STATUS.CRAWLER_ERROR", 'LoginStatusComponent', 'successSocketCallback', this.logging.SubSystem.CrawlerLogin, "BANKID_STATUS: CRAWLER_ERROR", filteredResponse)
             this.viewStatus.isCrawlerError = true;
             this.unsubscribeEverything();
             this.loginStep1Status = MESSAGE_STATUS.SUCCESS;
@@ -385,7 +371,6 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
             this.unsubscribeEverything();
             break;
           case BANKID_STATUS.LOANS_PERSISTED:
-            this.logging.logger(this.logging.Level.Info, "5.2:STATUS: BANKID_STATUS.LOANS_PERSISTED", 'LoginStatusComponent', 'successSocketCallback', this.logging.SubSystem.CrawlerLogin, "5: BANKID_STATUS: LOANS_PERSISTED")
 
             this.viewStatus.isLoansPersisted = true;
             const user = response.data.user;
@@ -397,27 +382,22 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
                   this.userService.getUserInfo()
                 ]).subscribe(([rateAndLoans, userInfo]) => {
                   this.loginStep3Status = MESSAGE_STATUS.SUCCESS;
-                  this.logging.logger(this.logging.Level.Info, "6:FETCHED_RATE_LOANS_AND_USERINFO", 'LoginStatusComponent', 'successSocketCallback', this.logging.SubSystem.CrawlerLogin, "6: FETCHED RATE, LOANS AND USERINFO")
 
                   this.userService.lowerRateAvailable.next(rateAndLoans.lowerRateAvailable);
                   if (rateAndLoans.loansPresent) {
                     this.localStorageService.removeItem('noLoansPresent');
                     if (rateAndLoans.isAggregatedRateTypeFixed) {
                       this.localStorageService.setItem('isAggregatedRateTypeFixed', true);
-                      this.logging.logger(this.logging.Level.Info, "7:SUCCESS_RATE_TYPE_FIXED", 'LoginStatusComponent', 'successSocketCallback', this.logging.SubSystem.CrawlerLogin, "7: SUCCESS: FIXED RATE DETECTED. REDIRECT TO ROUTES_MAP.FIXEDRATE")
                       this.router.navigate(['/dashboard/' + ROUTES_MAP.fixedRate]);
                     } else {
                       if (userInfo.income === null) {
-                        this.logging.logger(this.logging.Level.Info, "7:SUCCESS_NEW_USER", 'LoginStatusComponent', 'successSocketCallback', this.logging.SubSystem.CrawlerLogin, "7: SUCCESS:NEW USER DETECTED. REDIRECT TO ROUTES_MAP.INITCONFIRMATION")
                         this.router.navigate(['/' + ROUTES_MAP.initConfirmation]);
                         this.localStorageService.setItem('isNewUser', true);
                       } else {
-                        this.logging.logger(this.logging.Level.Info, "7:SUCCESS_OLD_USER", 'LoginStatusComponent', 'successSocketCallback', this.logging.SubSystem.CrawlerLogin, "7: SUCCESS: USER INCOME DETECTED. REDIRECT TO ROUTES_MAP.OFFERS")
                         this.router.navigate(['/dashboard/' + ROUTES_MAP.offers]);
                       }
                     }
                   } else {
-                    this.logging.logger(this.logging.Level.Info, "7:SUCCESS_NO_LOAN_PRESENT", 'LoginStatusComponent', 'successSocketCallback', this.logging.SubSystem.CrawlerLogin, "7: SUCCESS: NO LOAN DETECTED. REDIRECT TO ROUTES_MAP.NOLOAN")
                     this.localStorageService.setItem('noLoansPresent', true);
                     this.router.navigate(['/dashboard/' + ROUTES_MAP.noLoan]);
                   }
@@ -438,7 +418,6 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
       this.thirdStepTimer--;
       if (!this.thirdStepTimer) {
         if(this.thirdStepTimerFinished === false) {
-          this.logging.logger(this.logging.Level.Error, "THIRD_STEP_TIMER_FINISHED", 'LoginStatusComponent', 'startCrawlingTimer', this.logging.SubSystem.CrawlerLogin, "THIRD STEP TIMER FINISHED")
         }
         this.thirdStepTimerFinished = true;
       }
