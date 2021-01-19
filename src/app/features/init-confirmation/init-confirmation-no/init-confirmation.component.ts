@@ -80,18 +80,18 @@ export class InitConfirmationNoComponent implements OnInit {
     this.loansService.getConfirmationData().subscribe(res => {
       this.allMemberships = res.availableMemberships;
       this.userData = res;
-
+      console.log("res")
+      console.log(res)
       let income = String(res.income) && null
       let apartmentSize = String(res.apartmentSize) && null
 
-      this.userData.bank = 'HANDELSBANKEN'
+      //this.userData.bank = 'HANDELSBANKEN'
       let bank = BankUtils.getBankByName(this.userData.bank)
       let isTinkBank = BankUtils.isTinkBank(bank.name)
       if (isTinkBank) {
-        this.isTinkBank = BankUtils.isTinkBank(bank.name)
-
+        this.isTinkBank = true
         this.propertyForm = this.fb.group({
-          name: [apartmentSize, Validators.required],
+          name: ['', Validators.required],
           apartmentSize: [apartmentSize, Validators.required],
           membership: [],
           income: [income, Validators.required],
@@ -103,7 +103,6 @@ export class InitConfirmationNoComponent implements OnInit {
         });
       } else {
         this.propertyForm = this.fb.group({
-          name: [apartmentSize, Validators.required],
           apartmentSize: [apartmentSize, Validators.required],
           membership: [],
           income: [income, Validators.required],
