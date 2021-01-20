@@ -1,5 +1,56 @@
 <div class="front-container dnbError" *ngIf="isDnbBank">
   <h3>Beklager, tjenesten fungerer for øyeblikket ikke for DNB kunder. <br> Vi håper å ha en løsning klar innen kort tid.</h3>
+
+  <form
+      [formGroup]="missingBankForm"
+      novalidate
+      (ngSubmit)="request(missingBankForm.value)"
+    >
+    
+      
+      <div>
+        <rente-input
+          [placeholder]="'E-post'"
+          formControlName="email"
+          [errorStateMatcher]="
+            isErrorState(missingBankForm.controls['email'], missingBankForm)
+          "
+          [textControl]="inValid()"
+          (blur)="onBlurErrorCheck($event)"
+        >
+        </rente-input>
+        <div i18n=“issue-email|get-notified@@get.notified.email”
+          *ngIf="emailError"
+          class="error-message"
+        >
+          <rente-form-message
+            class="text-left d-block"
+            [type]="'error'"
+            *ngIf="missingBankForm.controls['email'].hasError('required')"
+          >
+            Ikke gyldig email
+          </rente-form-message>
+          <rente-form-message
+            class="text-left d-block"
+            [type]="'error'"
+            *ngIf="missingBankForm.controls['email'].hasError('pattern')"
+          >
+            Ikke gyldig email
+          </rente-form-message>
+        </div>
+      </div>
+
+      <rente-button i18n=“notify-me|get-notified@@get.notified.notifyMe”
+        color="primary"
+        [disabled]="!missingBankForm.valid || isLoading"
+        >Gi meg lyd når på plass!
+      </rente-button>
+    </form>
+
+    <div class="loading" *ngIf="!missingBankForm">
+      <mat-spinner [diameter]="48" [strokeWidth]="4"></mat-spinner>
+    </div>
+
 </div>
 
 <div *ngIf="!isDnbBank" class="front-container">
@@ -15,6 +66,7 @@
 <!-- 
     <p class="dnbInstability" *ngIf="isEikaBank">Vi opplever at enkelte brukere ikke får logget inn.<br> Vi jobber med å rette problemet</p>
     -->
+
     <p i18n=“issue|bank-id@@bankId.issue” *ngIf="isSB1Bank && false" class="red">
       Akkurat nå er det mange banker som setter ned renten og oppdaterer systemene sine.
       Det kan derfor være en uriktig forskjell på nominell og effektiv rente som vi henter.

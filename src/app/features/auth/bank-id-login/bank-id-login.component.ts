@@ -1,27 +1,23 @@
-import { Subscription, timer, of, Observable } from 'rxjs';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import {
-  FormGroup,
-  FormBuilder,
-  Validators,
-  FormControl,
-  AbstractControl,
-  NgForm,
-  ValidatorFn,
-  ValidationErrors
+  AbstractControl, FormBuilder, FormControl, FormGroup, NgForm, ValidationErrors, ValidatorFn, Validators
 } from '@angular/forms';
-import { VALIDATION_PATTERN } from '@config/validation-patterns.config';
-import { ActivatedRoute} from '@angular/router';
 import { MatDialog } from '@angular/material';
-import { DialogInfoServiceComponent } from './dialog-info-service/dialog-info-service.component';
-import { MetaService } from '@services/meta.service';
-import { TitleService } from '@services/title.service';
-import { customMeta } from '../../../config/routes-config';
-import { BankVo, BankUtils } from '@shared/models/bank';
+import { ActivatedRoute, Router } from '@angular/router';
+import { VALIDATION_PATTERN } from '@config/validation-patterns.config';
 import { environment } from '@environments/environment';
+import { MetaService } from '@services/meta.service';
 import { UserService } from '@services/remote-api/user.service';
+import { TitleService } from '@services/title.service';
+import { Mask } from '@shared/constants/mask';
+import { BankUtils, BankVo } from '@shared/models/bank';
+import { EMPTY, of, Subscription, timer } from 'rxjs';
+import {  debounce } from "rxjs/operators";
 import { map } from 'rxjs/operators';
-import { Mask } from '@shared/constants/mask'
+import { customMeta } from '../../../config/routes-config';
+import { ContactService } from "../../../shared/services/remote-api/contact.service";
+import { DialogInfoServiceComponent } from './dialog-info-service/dialog-info-service.component';
+import { SnackBarService } from "@services/snackbar.service";
 
 @Component({
   selector: 'rente-bank-id-login',
@@ -39,16 +35,23 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
   public metaTitle: string;
   public metaDescription: string;
   public mask = Mask
+  public missingBankForm: FormGroup;
+  public emailError: boolean = false
+  public isLoading: boolean;
+
 
   bank:BankVo;
 
   constructor(
     private fb: FormBuilder,
     private route: ActivatedRoute,
+    private router: Router,
     public dialog: MatDialog,
     private metaService: MetaService,
     private titleService: TitleService,
-    private userService:UserService
+    private userService:UserService,
+    private contactService: ContactService,
+    private snackBar: SnackBarService,
   ) { }
 
   ngOnInit() {
@@ -58,6 +61,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
         this.bank = bank;
         this.isSsnBankLogin = bank.loginWithSsn;
 
+        
         for (const iterator in customMeta) {
           if (customMeta[iterator].title) {
             if (params.bankName === customMeta[iterator].bankName) {
@@ -67,10 +71,34 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
           }
         }
 
+        this.isDnbBank && this.setupDnbEmailForm()
         this.changeTitles();
         this.setBankIdForm();
+
+        
+
+
       }
     });
+  }
+
+  setupDnbEmailForm() {
+    this.missingBankForm = this.fb.group({
+      email: [
+        "",
+        Validators.compose([
+          Validators.required,
+          Validators.pattern(VALIDATION_PATTERN.email)
+        ])
+      ]
+    });
+
+    this.missingBankForm.get("email").valueChanges.pipe(debounce(data => {
+      this.emailError = false;
+      return this.inValid() ? timer(2000) : EMPTY
+    })).subscribe(data => 
+      this.emailError = this.inValid()
+      );
   }
 
   ngOnDestroy() {
@@ -79,6 +107,40 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
 
   get bankLogo():string {
     return BankUtils.getBankLogoUrl(this.bank.name);
+  }
+
+  inValid() {
+    return (
+      this.missingBankForm.get('email').hasError('pattern') && 
+      this.missingBankForm.get('email').dirty
+    );
+  } 
+
+  public request() {
+    this.isLoading = true;
+
+    const missingBankData = {
+      email: this.missingBankForm.value.email,
+      bank: "DNB"
+    };
+
+    if (!missingBankData.bank) {
+      missingBankData.bank = this.missingBankForm.value.bank;
+    }
+    
+    this.contactService.sendMissingBank(missingBankData).subscribe(
+      _ => {
+        this.isLoading = false;
+        this.router.navigate(["/"]);
+        this.snackBar.openSuccessSnackBar(
+          "Du får beskjed når din bank er tilgjengelig",
+          1.2
+        );
+      },
+      err => {
+        this.isLoading = false;
+      }
+    );
   }
 
   public startLogin(formData) {
