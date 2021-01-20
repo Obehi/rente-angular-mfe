@@ -7,12 +7,31 @@
 h1 {
     color: #a0a0a0;
 }
+
+.item-container {
+    margin-top: 5px;
+
+
+    .item {
+        span {
+            font-weight: 400;
+        }
+    }
+}
 .box-container {
     margin-top: 20px;
     display: grid;
     grid-gap: 22px;
     grid-template-columns: 1fr 1fr;
-
+    .top {
+        width: calc(100% + 30px);
+        background: #183A63;
+        margin-left: -20px;
+        margin-top: -20px;
+        padding: 20px 20px 10px 20px;
+        border-radius: 15px 15px 0px 0px;
+        margin-bottom: 15px;
+    }
     @media (min-width: 600px) {
       min-height: 350px
     }
