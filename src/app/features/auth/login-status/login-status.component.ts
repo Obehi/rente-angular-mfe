@@ -74,7 +74,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
   public isTinkBank = false;
   public tinkUrl: SafeUrl;
   isSuccessTink = false
-  public tinkCode: number;
+  public tinkCode: number = null;
   
   constructor(
     private router: Router,
@@ -186,11 +186,10 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
     //this.setDefaultSteps();
     const data = JSON.stringify(dataObj);
     this.stompClient.send(
-      
       API_URL_MAP.tinkSendMessageUrl,
       {
-        code:  tinkCode,
-        country: this.envService.environment.locale
+       code:  tinkCode,
+       country: this.envService.environment.locale
       },
       data
     );
@@ -257,7 +256,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
         // Resend user data after reconnection
         this.logging.logger(this.logging.Level.Info, "3.6:CONNECTED_TO_SOCKET", 'LoginStatusComponent', 'connectAndReconnectSocket', this.logging.SubSystem.Tink, "3.6: CONNECTED TO SOCKET")
 
-        this.sendUserData();
+        this.tinkCode ? this.sendUserDataTink(this.tinkCode) : this.sendUserData()
 
         this.resendDataAfterReconnect();
         this.successSocketCallback();
