@@ -366,15 +366,13 @@ export class AuthSvMockupComponent implements OnInit, OnDestroy {
             this.unsubscribeEverything();
             break;
 
-          case BANKID_STATUS.NO_LOANS: {
+          case BANKID_STATUS.NO_LOANS: 
             this.router.navigate(['/dashboard/' + ROUTES_MAP.noLoan])
-          }
+            break
           case BANKID_STATUS.LOANS_PERSISTED:
             this.viewStatus.isLoansPersisted = true;
             const user = response.data.user;
 
-            console.log("user")
-            console.log(user)
             this.authService
             .loginWithToken(user.oneTimeToken)
               .subscribe(res => {

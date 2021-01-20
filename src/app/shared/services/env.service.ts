@@ -41,8 +41,15 @@ export class EnvService {
     this.http.get("../../../../assets/env-config.json").subscribe( env => {
       console.log(env)
       this.environment = env as Environment
-      console.log(this.environment.baseUrl)
     })
+  }
+
+  isSweden(): boolean {
+    return this.environment.locale === 'sv' ? true : false
+  }
+
+  isNorway(): boolean {
+    return this.environment.locale === 'nb' ? true : false
   }
 }
   

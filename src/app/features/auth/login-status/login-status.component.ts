@@ -88,7 +88,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-
+    
     this.logging.logger(this.logging.Level.Info, "1:INIT", 'LoginStatusComponent', 'ngOnInit', this.logging.SubSystem.Tink, "1: INIT COMPONENT", {bank: this.bank.name})
     this.environment = this.envService.environment
     this.setDefaultSteps();
@@ -178,6 +178,23 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
     if (this.isNotSB1customer) {
       this.router.navigate(["/autentisering/sparebank1-sub"]);
     }
+  }
+
+  sendUserDataTink(tinkCode: number, resendData = false) {
+    const dataObj = {
+    };
+    //this.setDefaultSteps();
+    const data = JSON.stringify(dataObj);
+    this.stompClient.send(
+      
+      API_URL_MAP.tinkSendMessageUrl,
+      {
+        code:  tinkCode,
+        country: this.envService.environment.locale
+      },
+      data
+    );
+    this.logging.logger(this.logging.Level.Info, "3.7:SEND_MESSAGE_TO_SOCKET_WITH_TINK_CODE", 'BankSelectSvComponent', 'sendUserData', this.logging.SubSystem.Tink, "3.7: CONNECT TO SOCKET WITH TINK CODE", {tinkCode: tinkCode, crawlerEndpoint: API_URL_MAP.tinkSendMessageUrl})
   }
 
   sendUserData(resendData = false) {
