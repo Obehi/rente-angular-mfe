@@ -137,12 +137,11 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
 
       if (data.type === 'code') {
         // This is the authorization code that should be exchanged for an access token
-        this.tinkCode = event.data.data;
-        event.data.data && console.log("event.data.data: " + event.data.data)
+        this.tinkCode = data.data;
         var loggObject = {
-          fromTink: event.data,
-          "event.data": event.data,
-          "event.data.data": event.data.data
+          fromTink: data,
+          data: data,
+          dataData: data.data
         }
         console.log(`T response: ${data.type }`);
         this.logging.logger(this.logging.Level.Info, "2.1:TINK_LOGIN_SUCCESS", 'LoginStatusComponent', 'onMessage', this.logging.SubSystem.Tink, "2: TINK LOGIN SUCCESS", loggObject)
