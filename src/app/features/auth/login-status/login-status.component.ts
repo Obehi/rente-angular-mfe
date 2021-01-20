@@ -107,23 +107,9 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
   }
 
   initiateTinkBank() {
-    console.log("initiateTinkBank")
-    console.log(this.envService.environment.crawlerUrl)
-    //let tinkUrl = this.envService.environment.tinkUrl || "https://link.tink.com/1.0/authorize/?client_id=3973e78ee8c140edbf36e53d50132ba1&redirect_uri=https%3A%2F%2Franteradar.se&scope=accounts:read,identity:read&market=SE&locale=sv_SE&iframe=true"
-    
-    // origonal url from roman
-    //let tinkUrlUnsanitized = "https://link.tink.com/1.0/authorize/credentials/no-handelsbanken-bankid?client_id=690cbe68c3df412082d5ad8a5a2335d8&redirect_uri=https%3A%2F%2Frente-frontend-dev.herokuapp.com&scope=accounts:read,credentials:read&market=NO&locale=en_US"
-    console.log(this.envService.environment)
-    //url using locale client id 
-    //let tinkUrlUnsanitized = "https://link.tink.com/1.0/authorize/?client_id=3973e78ee8c140edbf36e53d50132ba1&redirect_uri=https%3A%2F%2Franteradar.se&scope=accounts:read,identity:read&market=SE&locale=sv_SE&iframe=true"
-   
-    console.log("this.envService.environment.tinkUrl")
-    console.log(this.envService.environment.tinkUrl)
     let tinkUrlUnsanitized = this.envService.environment.tinkUrl || "https://link.tink.com/1.0/authorize/credentials/no-handelsbanken-bankid?client_id=690cbe68c3df412082d5ad8a5a2335d8&redirect_uri=https%3A%2F%2Frente-frontend-dev.herokuapp.com&scope=accounts:read,credentials:read&market=NO&locale=en_US&iframe=true"
-   
     this.tinkUrl = this.sanitizer.bypassSecurityTrustResourceUrl(tinkUrlUnsanitized)
     this.isTinkBank = true
-    console.log(this.tinkUrl)
   }
 
   @HostListener('window:message', ['$event'])
@@ -138,14 +124,10 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
       if (data.type === 'code') {
         // This is the authorization code that should be exchanged for an access token
         this.tinkCode = data.data;
-        var loggObject = {
-          fromTink: data,
-          data: data,
-          dataData: data.data
-        }
-        console.log(`T response: ${data.type }`);
-        this.logging.logger(this.logging.Level.Info, "2.1:TINK_LOGIN_SUCCESS", 'LoginStatusComponent', 'onMessage', this.logging.SubSystem.Tink, "2: TINK LOGIN SUCCESS", loggObject)
-        this.initializeWebSocketConnection()
+  
+        console.log(`T response: ${data.data }`);
+        this.logging.logger(this.logging.Level.Info, "2.1:TINK_LOGIN_SUCCESS", 'LoginStatusComponent', 'onMessage', this.logging.SubSystem.Tink, "2: TINK LOGIN SUCCESS: " + data.data)
+        this.initializeWebSocketConnection(data.data)
       }
     }
 
@@ -226,8 +208,8 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
     }
   }
 
-  private initializeWebSocketConnection() {
-    this.connectAndReconnectSocket(this.successSocketCallback);
+  private initializeWebSocketConnection(tinkCode?: any) {
+    this.connectAndReconnectSocket(this.successSocketCallback, tinkCode);
   }
 
   private resendDataAfterReconnect() {
@@ -247,7 +229,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
     }
   }
 
-  private connectAndReconnectSocket(successCallback) {
+  private connectAndReconnectSocket(successCallback, tinkCode?: any) {
     const socket = new SockJS(this.environment.crawlerUrl);
 
     this.stompClient = Stomp.over(socket);
@@ -264,8 +246,8 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
         // Resend user data after reconnection
         this.logging.logger(this.logging.Level.Info, "3.6:CONNECTED_TO_SOCKET", 'LoginStatusComponent', 'connectAndReconnectSocket', this.logging.SubSystem.Tink, "3.6: CONNECTED TO SOCKET", {tinkCode: this.tinkCode})
 
-        this.sendUserDataTink(this.tinkCode)
-        //this.tinkCode ? this.sendUserDataTink(this.tinkCode) : this.sendUserData()
+        //this.sendUserDataTink(this.tinkCode)
+        this.tinkCode ? this.sendUserDataTink(tinkCode) : this.sendUserData()
 
         this.resendDataAfterReconnect();
         this.successSocketCallback();
