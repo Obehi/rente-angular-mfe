@@ -74,7 +74,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
   public isTinkBank = false;
   public tinkUrl: SafeUrl;
   isSuccessTink = false
-  public tinkCode: number = null;
+  public tinkCode: any = null;
   
   constructor(
     private router: Router,
@@ -138,8 +138,14 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
       if (data.type === 'code') {
         // This is the authorization code that should be exchanged for an access token
         this.tinkCode = event.data.data;
+        event.data.data && console.log("event.data.data: " + event.data.data)
+        var loggObject = {
+          fromTink: event.data,
+          "event.data": event.data,
+          "event.data.data": event.data.data
+        }
         console.log(`T response: ${data.type }`);
-        this.logging.logger(this.logging.Level.Info, "2.1:TINK_LOGIN_SUCCESS", 'LoginStatusComponent', 'onMessage', this.logging.SubSystem.Tink, "2: TINK LOGIN SUCCESS", data)
+        this.logging.logger(this.logging.Level.Info, "2.1:TINK_LOGIN_SUCCESS", 'LoginStatusComponent', 'onMessage', this.logging.SubSystem.Tink, "2: TINK LOGIN SUCCESS", loggObject)
         this.initializeWebSocketConnection()
       }
     }
@@ -180,7 +186,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
     }
   }
 
-  sendUserDataTink(tinkCode: number, resendData = false) {
+  sendUserDataTink(tinkCode: any, resendData = false) {
     const dataObj = {
     };
     //this.setDefaultSteps();
@@ -254,9 +260,10 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
       frame => {
         this.viewStatus.isSocketConnectionLost = false;
         // Resend user data after reconnection
-        this.logging.logger(this.logging.Level.Info, "3.6:CONNECTED_TO_SOCKET", 'LoginStatusComponent', 'connectAndReconnectSocket', this.logging.SubSystem.Tink, "3.6: CONNECTED TO SOCKET")
+        this.logging.logger(this.logging.Level.Info, "3.6:CONNECTED_TO_SOCKET", 'LoginStatusComponent', 'connectAndReconnectSocket', this.logging.SubSystem.Tink, "3.6: CONNECTED TO SOCKET", {tinkCode: this.tinkCode})
 
-        this.tinkCode ? this.sendUserDataTink(this.tinkCode) : this.sendUserData()
+        this.sendUserDataTink(this.tinkCode)
+        //this.tinkCode ? this.sendUserDataTink(this.tinkCode) : this.sendUserData()
 
         this.resendDataAfterReconnect();
         this.successSocketCallback();
