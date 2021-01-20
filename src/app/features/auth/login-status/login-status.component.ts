@@ -188,18 +188,21 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
 
   sendUserDataTink(tinkCode: any, resendData = false) {
     const dataObj = {
+      code:  tinkCode,
+      country: "NOR"
     };
     //this.setDefaultSteps();
     const data = JSON.stringify(dataObj);
+
     this.stompClient.send(
       API_URL_MAP.tinkSendMessageUrl,
       {
        code:  tinkCode,
-       country: this.envService.environment.locale
+       country: "NOR"
       },
       data
     );
-    this.logging.logger(this.logging.Level.Info, "3.7:SEND_MESSAGE_TO_SOCKET_WITH_TINK_CODE", 'BankSelectSvComponent', 'sendUserData', this.logging.SubSystem.Tink, "3.7: CONNECT TO SOCKET WITH TINK CODE", {tinkCode: tinkCode, crawlerEndpoint: API_URL_MAP.tinkSendMessageUrl})
+    this.logging.logger(this.logging.Level.Info, "3.7:SEND_MESSAGE_TO_SOCKET_WITH_TINK_CODE", 'BankSelectSvComponent', 'sendUserData', this.logging.SubSystem.Tink, "3.7: CONNECT TO SOCKET WITH TINK CODE", {tinkCode: tinkCode, object: dataObj, crawlerEndpoint: API_URL_MAP.tinkSendMessageUrl})
   }
 
   sendUserData(resendData = false) {
