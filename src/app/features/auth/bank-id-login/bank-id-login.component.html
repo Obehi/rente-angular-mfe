@@ -1,12 +1,19 @@
 <div class="front-container dnbError" *ngIf="isDnbBank">
-  <h3>Beklager, tjenesten fungerer for øyeblikket ikke for DNB kunder. <br> Vi håper å ha en løsning klar innen kort tid.</h3>
 
   <form
+      class="email-form"
       [formGroup]="missingBankForm"
       novalidate
       (ngSubmit)="request(missingBankForm.value)"
     >
     
+    <h3>
+      DNB kunder kan for tiden ikke logge på tjenesten grunnet tekniske problemer med DNB.
+    </h3>
+    <p>
+      Er du ny bruker av <a href="https://renteradar.no/">renteradar.no</a> 
+      eller ønsker å få beskjed når du kan bruke tjenesten igjen? Legg igjen din epost så sier vi ifra når det er klart!
+    </p>
       
       <div>
         <rente-input
@@ -43,7 +50,7 @@
       <rente-button i18n=“notify-me|get-notified@@get.notified.notifyMe”
         color="primary"
         [disabled]="!missingBankForm.valid || isLoading"
-        >Gi meg lyd når på plass!
+        >Gi meg beskjed!
       </rente-button>
     </form>
 
