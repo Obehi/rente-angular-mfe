@@ -5,8 +5,8 @@ import { LocalStorageService } from "@services/local-storage.service";
 import { MatDialog } from '@angular/material/dialog';
 import { ChangeBrowserDialogInfoComponent } from '../landing/landing-top-sv/change-browser-dialog-info/dialog-info.component';
 import { LoggingService} from '@services/logging.service'
+import { locale } from '../../config/locale/locale';
 
-import { EnvService} from '@services/env.service'
 import {
   Component,
   OnInit,
@@ -20,6 +20,7 @@ import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { ROUTES_MAP } from '@config/routes-config';
 import * as Stomp from "stompjs";
 import * as SockJS from "sockjs-client";
+import { environment } from "@environments/environment";
 import { API_URL_MAP } from "@config/api-url-config";
 import { Subscription, interval, Observable, timer, forkJoin } from "rxjs";
 import {
@@ -32,7 +33,6 @@ import {
   MESSAGE_STATUS
 } from "../auth/login-status/login-status.config";
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
-import { env } from 'process';
 
 
 @Component({
@@ -59,15 +59,15 @@ export class BankSelectSvComponent implements OnInit, OnDestroy {
       private localStorageService: LocalStorageService,
       private sanitizer: DomSanitizer, 
       private dialog: MatDialog,
-      private logging: LoggingService,
-      private envService: EnvService
-    ) { }
+      private logging: LoggingService
+  
+    ) { 
+  
+    }
   
     ngOnInit(): void {
-      console.log("enviiiiii")
-      console.log(this.envService.environment)
-      let tinkUrl = this.envService.environment.tinkUrl || "https://link.tink.com/1.0/authorize/?client_id=3973e78ee8c140edbf36e53d50132ba1&redirect_uri=https%3A%2F%2Franteradar.se&scope=accounts:read,identity:read&market=SE&locale=sv_SE&iframe=true"
-      
+      let tinkUrl = environment["tinkUrl"] || "https://link.tink.com/1.0/authorize/?client_id=3973e78ee8c140edbf36e53d50132ba1&redirect_uri=https%3A%2F%2Franteradar.se&scope=accounts:read,identity:read&market=SE&locale=sv_SE&iframe=true"
+
       if(history.state.data !== undefined && (history.state.data.iosPopup === true || history.state.data.androidPopup === true)) {
         let androidPopup = history.state.data.androidPopup 
         let app = history.state.data.app
@@ -88,7 +88,6 @@ export class BankSelectSvComponent implements OnInit, OnDestroy {
   
     @HostListener('window:message', ['$event'])
     onMessage(event) {
-      console.log(event)
       if (event.origin !== 'https://link.tink.com') {
       return;
       }
@@ -110,11 +109,10 @@ export class BankSelectSvComponent implements OnInit, OnDestroy {
     private initializeWebSocketConnection(tinkCode: number) {
       this.connectAndReconnectSocket(this.successSocketCallback);
       
-      const socket = new SockJS(this.envService.environment.crawlerUrl);
+      const socket = new SockJS(environment.crawlerUrl);
       this.stompClient = Stomp.over(socket);
       this.logging.logger(this.logging.Level.Info, "3.5:INIT_SOCKET", 'BankSelectSvComponent', 'initializeWebSocketConnection', this.logging.SubSystem.Tink, "3.5: CONNECTING TO SOCKET")
-  
-      if (this.envService.environment.production) {
+      if (environment.production) {
         this.stompClient.debug = null;
       }
   
@@ -155,6 +153,10 @@ export class BankSelectSvComponent implements OnInit, OnDestroy {
           switch (response.eventType) {
             case BANKID_STATUS.CRAWLER_ERROR:
               this.logging.logger(this.logging.Level.Error, "5:STATUS: BANKID_STATUS.CRAWLER_ERROR", 'BankSelectSvComponent', 'successSocketCallback', this.logging.SubSystem.Tink, "BANKID_STATUS: CRAWLER_ERROR", response)
+              break;
+
+            case BANKID_STATUS.NO_LOANS: 
+              this.router.navigate(['/dashboard/' + ROUTES_MAP.noLoan])
               break;
             case BANKID_STATUS.LOANS_PERSISTED:
               console.log("5.")
@@ -211,17 +213,13 @@ export class BankSelectSvComponent implements OnInit, OnDestroy {
       };
       //this.setDefaultSteps();
       const data = JSON.stringify(dataObj);
-      console.log("API_URL_MAP.tinkSendMessageUrl")
-      console.log(API_URL_MAP.tinkSendMessageUrl)
+  
       this.stompClient.send(
-        API_URL_MAP.tinkSendMessageUrl,
-        {
-         code:  tinkCode,
-         country: this.envService.environment.locale
-        },
+        API_URL_MAP.tinkSendMessageUrl + "/" + tinkCode,
+        {},
         data
       );
-      this.logging.logger(this.logging.Level.Info, "3.7:SEND_MESSAGE_TO_SOCKET_WITH_TINK_CODE", 'BankSelectSvComponent', 'sendUserData', this.logging.SubSystem.Tink, "3.7: CONNECT TO SOCKET WITH TINK CODE", {tinkCode: tinkCode, crawlerEndpoint: API_URL_MAP.tinkSendMessageUrl})
+      this.logging.logger(this.logging.Level.Info, "3.7:SEND_MESSAGE_TO_SOCKET_WITH_TINK_CODE", 'BankSelectSvComponent', 'sendUserData', this.logging.SubSystem.Tink, "3.7: SEND_MESSAGE_TO_SOCKET_WITH_TINK_CODE", {tinkCode: tinkCode, crawlerEndpoint: API_URL_MAP.tinkSendMessageUrl})
 
       if (!resendData) {
         //this.initTimer(IDENTIFICATION_TIMEOUT_TIME);
