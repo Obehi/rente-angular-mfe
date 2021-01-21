@@ -243,18 +243,12 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
     this.viewStatus.isSocketConnectionLost = false;
     this.stompClient.subscribe(repliesUrl, message => {
       const response = JSON.parse(message.body);
-      var filteredResponse = {
-        eventType: response['eventType'],
-        bank: response['bank'],
-        backendOneTimeToken: response['oneTimeToken'],
-        backendSessionId: response['sessionId'],
-        backendclientId: response['clientId'],
-      }
 
       if (message.body) {
         if (environment.production) {
           console.log('STATUS:', response.eventType);
         }
+
         switch (response.eventType) {
 
           case BANKID_STATUS.BANKID_UNSTABLE:
@@ -263,7 +257,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
             this.unsubscribeEverything();
             break;
 
-
+          
           case BANKID_STATUS.PROCESS_STARTED:
             this.initTimer(BANKID_TIMEOUT_TIME);
             this.initConnectionTimer();
@@ -321,7 +315,6 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
             this.unsubscribeEverything();
             break;
           case BANKID_STATUS.CRAWLER_ERROR:
-            filteredResponse['bank'] = this.bank.name;
             this.viewStatus.isCrawlerError = true;
             this.unsubscribeEverything();
             this.loginStep1Status = MESSAGE_STATUS.SUCCESS;
@@ -370,8 +363,11 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
             this.loginStep1Status = MESSAGE_STATUS.ERROR;
             this.unsubscribeEverything();
             break;
-          case BANKID_STATUS.LOANS_PERSISTED:
+          case BANKID_STATUS.NO_LOANS: 
+            this.router.navigate(['/dashboard/' + ROUTES_MAP.noLoan])
+            break;
 
+          case BANKID_STATUS.LOANS_PERSISTED:
             this.viewStatus.isLoansPersisted = true;
             const user = response.data.user;
             this.authService
