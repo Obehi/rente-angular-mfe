@@ -443,6 +443,10 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
             this.loginStep1Status = MESSAGE_STATUS.ERROR;
             this.unsubscribeEverything();
             break;
+          case BANKID_STATUS.NO_LOANS: 
+            this.logging.logger(this.logging.Level.Info, "5.1.5:STATUS: BANKID_STATUS.NO_LOANS", 'LoginStatusComponent', 'successSocketCallback', this.logging.SubSystem.Tink, "5: BANKID_STATUS: NO_LOANS")
+            this.router.navigate(['/dashboard/' + ROUTES_MAP.noLoan])
+            break
           case BANKID_STATUS.LOANS_PERSISTED:
             this.logging.logger(this.logging.Level.Info, "5.2:STATUS: BANKID_STATUS.LOANS_PERSISTED", 'LoginStatusComponent', 'successSocketCallback', this.logging.SubSystem.Tink, "5: BANKID_STATUS: LOANS_PERSISTED")
 
