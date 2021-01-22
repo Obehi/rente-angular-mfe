@@ -107,7 +107,9 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
   }
 
   initiateTinkBank() {
-    let tinkUrlUnsanitized = this.envService.environment.tinkUrl || "https://link.tink.com/1.0/authorize/credentials/no-handelsbanken-bankid?client_id=690cbe68c3df412082d5ad8a5a2335d8&redirect_uri=https%3A%2F%2Frente-frontend-dev.herokuapp.com&scope=accounts:read,credentials:read&market=NO&locale=en_US&iframe=true"
+    let tinkUrlUnsanitized = this.envService.getTinkLinkForBank(this.bank.name)
+    console.log("link")
+    console.log(tinkUrlUnsanitized)
     this.tinkUrl = this.sanitizer.bypassSecurityTrustResourceUrl(tinkUrlUnsanitized)
     this.isTinkBank = true
   }
@@ -117,7 +119,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
       if (event.origin !== 'https://link.tink.com') {
       return;
       }
-  
+      
       let data = JSON.parse(event.data)
       this.logging.logger(this.logging.Level.Info, "2:TINK_EVENT_RECIEVED", 'LoginStatusComponent', 'onMessage', this.logging.SubSystem.Tink, "2:TINK_EVENT_RECIEVED", data)
 
