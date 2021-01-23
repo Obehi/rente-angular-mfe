@@ -7,43 +7,43 @@ import { OfferInfo, Offers } from './../../../../../shared/models//offers';
   styleUrls: ['./offers-list-no.component.scss']
 })
 export class OffersListNoComponent implements OnInit {
-
   @Input() offer: OfferInfo;
-  @Input() offersInfo: Offers
-  public currentOfferInfo: Offers
+  @Input() offersInfo: Offers;
+  public currentOfferInfo: Offers;
 
-  get isMobile(): boolean { return window.innerWidth < 600; }
-  public currentOfferType: String;
+  get isMobile(): boolean {
+    return window.innerWidth < 600;
+  }
+  public currentOfferType: string;
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit(): void {
-
-    this.currentOfferInfo = (JSON.parse(JSON.stringify(this.offersInfo)));
-    this.currentOfferType = "all";
+    this.currentOfferInfo = JSON.parse(JSON.stringify(this.offersInfo));
+    this.currentOfferType = 'all';
 
     //REMOVE BEFORE PRODUCTION
-    var flag = false
-    this.offersInfo.offers.top5 = this.offersInfo.offers.top5.map( (offer) => {
-        offer.loanType = flag ? 'threeMonths' : 'oneYear'
-        flag = !flag
-        return offer
-    }) 
+    let flag = false;
+    this.offersInfo.offers.top5 = this.offersInfo.offers.top5.map((offer) => {
+      offer.loanType = flag ? 'threeMonths' : 'oneYear';
+      flag = !flag;
+      return offer;
+    });
   }
-  
 
-  public setOfferType(type: String) {
+  public setOfferType(type: string) {
     this.currentOfferType = type;
 
-    if(type == 'all') {
+    if (type == 'all') {
       this.currentOfferInfo.offers.top5 = this.offersInfo.offers.top5;
       return;
     }
-    let newLoanTypeSelected = this.offersInfo.offers.top5.filter( (item, index, offers) => {
-      return  item.loanType == type 
-    })
-    
-    this.currentOfferInfo.offers.top5 = newLoanTypeSelected
-  }
+    const newLoanTypeSelected = this.offersInfo.offers.top5.filter(
+      (item, index, offers) => {
+        return item.loanType == type;
+      }
+    );
 
+    this.currentOfferInfo.offers.top5 = newLoanTypeSelected;
+  }
 }

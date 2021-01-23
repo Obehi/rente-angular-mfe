@@ -1,13 +1,8 @@
-
-import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
-import { AddressDto } from "@services/remote-api/loans.service";
-import { LoansService } from "@services/remote-api/loans.service";
-import { MatTabChangeEvent } from "@angular/material";
-import {
-  EventService,
-  EmitEvent,
-  Events,
-} from "@services/event-service";
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { AddressDto } from '@services/remote-api/loans.service';
+import { LoansService } from '@services/remote-api/loans.service';
+import { MatTabChangeEvent } from '@angular/material';
+import { EventService, EmitEvent, Events } from '@services/event-service';
 
 export enum AddressFormMode {
   Editing,
@@ -15,9 +10,9 @@ export enum AddressFormMode {
 }
 
 @Component({
-  selector: "rente-blue-address",
-  templateUrl: "./house-form-sv.component.html",
-  styleUrls: ["./house-form-sv.component.scss"]
+  selector: 'rente-blue-address',
+  templateUrl: './house-form-sv.component.html',
+  styleUrls: ['./house-form-sv.component.scss']
 })
 export class HouseFormSvComponent implements OnInit {
   @Input() index: number;
@@ -31,13 +26,15 @@ export class HouseFormSvComponent implements OnInit {
 
   mode = AddressFormMode.Editing;
   changesMade = false;
-  ableTosave = false
+  ableTosave = false;
 
-  constructor(private loansService: LoansService, private eventService: EventService) {}
+  constructor(
+    private loansService: LoansService,
+    private eventService: EventService
+  ) {}
 
   ngOnInit() {
-    this.loansService.getAddresses().subscribe(r => {
-
+    this.loansService.getAddresses().subscribe((r) => {
       this.addresses = r.addresses;
 
       // Always true for swedish property
@@ -65,22 +62,21 @@ export class HouseFormSvComponent implements OnInit {
   }
 
   onRbChange(event: MatTabChangeEvent) {
-    this.ableTosave = true
+    this.ableTosave = true;
     this.address.useManualPropertyValue = true;
- 
   }
 
   //remove spaces and convert to number type
   formatThousand(event): number {
-    return Number(event.replace(/\s+/g, ''))
+    return Number(event.replace(/\s+/g, ''));
   }
 
   save() {
-    this.onSave.emit()
-    this.ableTosave = false
+    this.onSave.emit();
+    this.ableTosave = false;
   }
   countChange($event) {
-    this.ableTosave = true
+    this.ableTosave = true;
   }
 
   onDeleteAddressClick() {
@@ -89,7 +85,7 @@ export class HouseFormSvComponent implements OnInit {
 
   manualPropertyValueChanged($event) {
     if ($event && $event.target) {
-      const newValue = parseInt(String($event.target.value).replace(/\D/g, ""));
+      const newValue = parseInt(String($event.target.value).replace(/\D/g, ''));
       this.address.manualPropertyValue = newValue >= 0 ? newValue : 0;
     }
   }

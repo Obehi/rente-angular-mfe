@@ -8,9 +8,8 @@ describe('EPSIScoreComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EPSIScoreComponent ]
-    })
-    .compileComponents();
+      declarations: [EPSIScoreComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

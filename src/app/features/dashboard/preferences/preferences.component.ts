@@ -41,7 +41,7 @@ export class PreferencesComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.loansService.getLoanPreferences().subscribe(preferances => {
+    this.loansService.getLoanPreferences().subscribe((preferances) => {
       this.preferencesForm = this.fb.group({
         checkRateReminderType: [preferances.checkRateReminderType],
         fetchCreditLinesOnly: [preferances.fetchCreditLinesOnly],
@@ -60,11 +60,11 @@ export class PreferencesComponent implements OnInit {
     this.loansService
       .updateLoanPreferences(this.preferencesForm.value)
       .subscribe(
-        res => {
+        (res) => {
           this.isLoading = false;
           this.snackBar.openSuccessSnackBar('Endringene dine er lagret', 1.2);
         },
-        err => {
+        (err) => {
           this.isLoading = false;
           this.snackBar.openFailSnackBar('Oops, noe gikk galt', 1.2);
         }

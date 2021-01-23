@@ -1,7 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {BankList, BankVo, MissingBankList} from '@shared/models/bank';
-import {ROUTES_MAP_NO} from '@config/routes-config';
-import {Router} from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { BankList, BankVo, MissingBankList } from '@shared/models/bank';
+import { ROUTES_MAP_NO } from '@config/routes-config';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'rente-banks-guide',
@@ -11,17 +11,13 @@ import {Router} from '@angular/router';
 export class BanksGuideComponent implements OnInit {
   banks: BankVo[];
   allBanks: BankVo[];
-  banksData = [
-    ...BankList,
-    ...MissingBankList
-  ];
+  banksData = [...BankList, ...MissingBankList];
   searchStr = '';
   sparebankIsClicked = false;
   options: any[];
   shouldDisplayBankList = false;
 
-  constructor(private router: Router) {
-  }
+  constructor(private router: Router) {}
 
   get isMobile(): boolean {
     return window.innerWidth < 600;
@@ -33,7 +29,6 @@ export class BanksGuideComponent implements OnInit {
     // this.options = Object.values(this.banksData).map(bank => bank).filter(bank => bank.name !=== 'SPAREBANK_1');
     // this.filteredBanks$ = this.banks.valueChanges
     //   .pipe(startWith(''), map(value => this._filter(value)));
-
   }
 
   // private _filter(value: string | { name: string }): string[] {
@@ -46,9 +41,11 @@ export class BanksGuideComponent implements OnInit {
   //   return this.options.filter(option => option.label.toLowerCase().includes(filterValue)).slice(0, 10);
   // }
 
-
   sortBanks() {
-    const sortedBanksAlphabetic = [...BankList, ...MissingBankList].sort((a, b) => (a.label > b.label) ? 1 : ((b.label > a.label) ? -1 : 0));
+    const sortedBanksAlphabetic = [
+      ...BankList,
+      ...MissingBankList
+    ].sort((a, b) => (a.label > b.label ? 1 : b.label > a.label ? -1 : 0));
     const dnb = 'DNB';
     const sparebank = 'SPAREBANK_1';
     const nordea = 'NORDEA';
@@ -60,11 +57,9 @@ export class BanksGuideComponent implements OnInit {
       return x.name === nordea ? -1 : y.name === nordea ? 1 : 0;
     });
 
-
     const sortedBanksDNBFirst = sortedBanksNoredaFirst.sort((x, y) => {
       return x.name === dnb ? -1 : y.name === dnb ? 1 : 0;
     });
-
 
     this.allBanks = sortedBanksDNBFirst;
   }
@@ -78,7 +73,6 @@ export class BanksGuideComponent implements OnInit {
   }
 
   onFilterChanged() {
-
     if (this.searchStr.toLocaleLowerCase() === 'sparebank 1') {
       this.removeSparebank();
     }
@@ -100,14 +94,16 @@ export class BanksGuideComponent implements OnInit {
       filteredBanks = this.allBanks.concat();
     } else {
       const f = filter?.toLocaleLowerCase();
-      filteredBanks = this.allBanks.filter(bank => bank.label?.toLocaleLowerCase().indexOf(f) > -1);
+      filteredBanks = this.allBanks.filter(
+        (bank) => bank.label?.toLocaleLowerCase().indexOf(f) > -1
+      );
     }
 
     this.banks = filteredBanks;
   }
 
   selectBank(bank: BankVo) {
-    console.log()
+    console.log();
     if (bank.name === 'SPAREBANK_1') {
       this.searchStr = 'Sparebank 1';
 
@@ -117,8 +113,6 @@ export class BanksGuideComponent implements OnInit {
       return;
     }
 
-    this.router.navigate([ROUTES_MAP_NO.banksGuide,bank.name.toLowerCase()]);
-
+    this.router.navigate([ROUTES_MAP_NO.banksGuide, bank.name.toLowerCase()]);
   }
-
 }

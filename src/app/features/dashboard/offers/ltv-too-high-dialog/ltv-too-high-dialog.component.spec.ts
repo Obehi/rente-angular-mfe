@@ -8,9 +8,8 @@ describe('LtvTooHighDialogComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LtvTooHighDialogComponent ]
-    })
-    .compileComponents();
+      declarations: [LtvTooHighDialogComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

@@ -8,9 +8,8 @@ describe('OffersListSvComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ OffersListSvComponent ]
-    })
-    .compileComponents();
+      declarations: [OffersListSvComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

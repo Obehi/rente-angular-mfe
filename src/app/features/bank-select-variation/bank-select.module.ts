@@ -5,14 +5,8 @@ import { BankSelectRoutingModule } from './bank-select-routing.module';
 import { BankSelectComponentVariation } from './bank-select.component';
 import { MaterialModule } from '@shared/material/material.module';
 
-
 @NgModule({
   declarations: [BankSelectComponentVariation],
-  imports: [
-    CommonModule,
-    BankSelectRoutingModule,
-    FormsModule,
-    MaterialModule
-  ]
+  imports: [CommonModule, BankSelectRoutingModule, FormsModule, MaterialModule]
 })
-export class BankSelectVariationModule { }
+export class BankSelectVariationModule {}

@@ -8,9 +8,8 @@ describe('LoansBlueComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LoansBlueComponent ]
-    })
-    .compileComponents();
+      declarations: [LoansBlueComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

@@ -1,7 +1,6 @@
-
-import { Component, Inject } from "@angular/core";
-import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
-import { OfferInfo } from "@shared/models/offers";
+import { Component, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { OfferInfo } from '@shared/models/offers';
 import { Router } from '@angular/router';
 @Component({
   selector: 'rente-bank-rating-dialog-blue',
@@ -9,7 +8,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./bank-rating-dialog.component.scss']
 })
 export class BankRatingDialogNoComponent {
-
   public closeState: string;
 
   constructor(
@@ -18,25 +16,22 @@ export class BankRatingDialogNoComponent {
   ) {}
 
   public onClick() {
-    window.open("", "_blank");
+    window.open('', '_blank');
   }
 
   public onClose(): void {
-    this.closeState = "canceled"
+    this.closeState = 'canceled';
     this.dialogRef.close();
   }
 
   public close(): void {
-    this.closeState = "canceled"
+    this.closeState = 'canceled';
 
     this.dialogRef.close();
   }
 
   public onSeeMoreClick(): void {
-    this.closeState = "procced"
+    this.closeState = 'procced';
     this.dialogRef.close();
   }
-
 }
-
-

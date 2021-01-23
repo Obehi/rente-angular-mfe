@@ -1,4 +1,4 @@
-import { NgModule  } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCheckboxModule } from '@angular/material';
@@ -72,5 +72,5 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatSortModule,
     MatPaginatorModule
   ]
- })
-export class MaterialModule { }
+})
+export class MaterialModule {}

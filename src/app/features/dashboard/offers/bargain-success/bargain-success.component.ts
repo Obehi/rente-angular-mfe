@@ -10,24 +10,16 @@ import { ROUTES_MAP } from '@config/routes-config';
   styleUrls: ['./bargain-success.component.scss']
 })
 export class BargainSuccessComponent implements OnInit {
-  
-  public isErrorState = false
+  public isErrorState = false;
   private hasScrolledToTop = false;
-  
 
-  constructor(private router: Router, public dialog: MatDialog) {
+  constructor(private router: Router, public dialog: MatDialog) {}
 
-   } 
-
-  
   ngOnInit() {
     this.dialog.open(ReferralComponent);
   }
 
- 
-  
   public continue() {
-    this.router.navigate(['/dashboard/' + ROUTES_MAP.offers])
+    this.router.navigate(['/dashboard/' + ROUTES_MAP.offers]);
   }
 }
-

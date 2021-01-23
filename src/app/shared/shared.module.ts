@@ -36,10 +36,9 @@ import { EventService } from './services/event-service';
 import { RoundPipe } from './pipes/round.pipe';
 import { ThousandsSeprator } from './pipes/thousands.pipe';
 import { ButtonSmallComponent } from './components/ui-components/button-small/button-small.component';
-import {IMaskModule} from 'angular-imask';
-import { HeaderLangGenericComponent } from '../local-components/components-output'
+import { IMaskModule } from 'angular-imask';
+import { HeaderLangGenericComponent } from '../local-components/components-output';
 import { CustomLangTextService } from '@services/custom-lang-text.service';
-
 
 const components = [
   HeaderLangGenericComponent,
@@ -84,9 +83,15 @@ const services = [
     MaterialModule,
     IMaskModule
   ],
-  declarations: [...components, BigNumberPipe, ChipsAutocompleteComponent, AbsPipe, RoundPipe, ThousandsSeprator],
+  declarations: [
+    ...components,
+    BigNumberPipe,
+    ChipsAutocompleteComponent,
+    AbsPipe,
+    RoundPipe,
+    ThousandsSeprator
+  ],
   exports: [...components, AbsPipe, RoundPipe, ThousandsSeprator],
   providers: [...services]
 })
-export class SharedModule {
-}
+export class SharedModule {}

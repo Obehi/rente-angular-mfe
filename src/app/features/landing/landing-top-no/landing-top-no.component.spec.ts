@@ -8,9 +8,8 @@ describe('LandingTopNoComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LandingTopNoComponent ]
-    })
-    .compileComponents();
+      declarations: [LandingTopNoComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

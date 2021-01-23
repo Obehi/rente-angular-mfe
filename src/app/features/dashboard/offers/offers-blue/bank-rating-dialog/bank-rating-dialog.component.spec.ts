@@ -8,9 +8,8 @@ describe('BankRatingDialogComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BankRatingDialogComponent ]
-    })
-    .compileComponents();
+      declarations: [BankRatingDialogComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

@@ -10,9 +10,7 @@ export class RatingComponent implements OnInit {
   @Input() rating: number;
   // TODO: Move to configs
   public ratingNumbers = [0, 1, 2, 3, 4];
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

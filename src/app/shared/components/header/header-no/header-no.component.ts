@@ -25,7 +25,7 @@ export class HeaderNoComponent implements OnInit {
   }
 
   public goToHome() {
-    if(this.router.url === '/' || this.router.url === '/#faq' ) {
+    if (this.router.url === '/' || this.router.url === '/#faq') {
       window.scrollTo(0, 0);
     } else {
       this.router.navigateByUrl('/');
@@ -40,5 +40,4 @@ export class HeaderNoComponent implements OnInit {
   get isLoggedIn(): boolean {
     return this.auth.isLoggedIn;
   }
-
 }

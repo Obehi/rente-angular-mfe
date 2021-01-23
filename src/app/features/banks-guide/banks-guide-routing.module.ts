@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { BankGuidePageComponent } from './bank-guide-page/bank-guide-page.component';
 import { BanksGuideComponent } from './banks-guide.component';
 
-
 const routes: Routes = [
   {
     path: '',
@@ -19,6 +18,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class BanksGuideRoutingModule {
-}
-
+export class BanksGuideRoutingModule {}

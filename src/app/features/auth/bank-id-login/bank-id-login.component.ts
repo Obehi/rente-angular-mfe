@@ -1,6 +1,13 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import {
-  AbstractControl, FormBuilder, FormControl, FormGroup, NgForm, ValidationErrors, ValidatorFn, Validators
+  AbstractControl,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  NgForm,
+  ValidationErrors,
+  ValidatorFn,
+  Validators
 } from '@angular/forms';
 import { MatDialog } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -12,12 +19,12 @@ import { TitleService } from '@services/title.service';
 import { Mask } from '@shared/constants/mask';
 import { BankUtils, BankVo } from '@shared/models/bank';
 import { EMPTY, of, Subscription, timer } from 'rxjs';
-import {  debounce } from "rxjs/operators";
+import { debounce } from 'rxjs/operators';
 import { map } from 'rxjs/operators';
 import { customMeta } from '../../../config/routes-config';
-import { ContactService } from "../../../shared/services/remote-api/contact.service";
+import { ContactService } from '../../../shared/services/remote-api/contact.service';
 import { DialogInfoServiceComponent } from './dialog-info-service/dialog-info-service.component';
-import { SnackBarService } from "@services/snackbar.service";
+import { SnackBarService } from '@services/snackbar.service';
 
 @Component({
   selector: 'rente-bank-id-login',
@@ -25,7 +32,6 @@ import { SnackBarService } from "@services/snackbar.service";
   styleUrls: ['./bank-id-login.component.scss']
 })
 export class BankIdLoginComponent implements OnInit, OnDestroy {
-
   public bankIdForm: FormGroup;
   public isSsnBankLogin: boolean;
   public isConfirmed: boolean;
@@ -34,13 +40,12 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
   private routeParamsSub: Subscription;
   public metaTitle: string;
   public metaDescription: string;
-  public mask = Mask
+  public mask = Mask;
   public missingBankForm: FormGroup;
-  public emailError: boolean = false
+  public emailError = false;
   public isLoading: boolean;
 
-
-  bank:BankVo;
+  bank: BankVo;
 
   constructor(
     private fb: FormBuilder,
@@ -49,10 +54,10 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     public dialog: MatDialog,
     private metaService: MetaService,
     private titleService: TitleService,
-    private userService:UserService,
+    private userService: UserService,
     private contactService: ContactService,
-    private snackBar: SnackBarService,
-  ) { }
+    private snackBar: SnackBarService
+  ) {}
 
   ngOnInit() {
     this.routeParamsSub = this.route.params.subscribe((params: any) => {
@@ -61,7 +66,6 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
         this.bank = bank;
         this.isSsnBankLogin = bank.loginWithSsn;
 
-        
         for (const iterator in customMeta) {
           if (customMeta[iterator].title) {
             if (params.bankName === customMeta[iterator].bankName) {
@@ -71,13 +75,9 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
           }
         }
 
-        this.isDnbBank && this.setupDnbEmailForm()
+        this.isDnbBank && this.setupDnbEmailForm();
         this.changeTitles();
         this.setBankIdForm();
-
-        
-
-
       }
     });
   }
@@ -85,7 +85,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
   setupDnbEmailForm() {
     this.missingBankForm = this.fb.group({
       email: [
-        "",
+        '',
         Validators.compose([
           Validators.required,
           Validators.pattern(VALIDATION_PATTERN.email)
@@ -93,51 +93,54 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
       ]
     });
 
-    this.missingBankForm.get("email").valueChanges.pipe(debounce(data => {
-      this.emailError = false;
-      return this.inValid() ? timer(2000) : EMPTY
-    })).subscribe(data => 
-      this.emailError = this.inValid()
-      );
+    this.missingBankForm
+      .get('email')
+      .valueChanges.pipe(
+        debounce((data) => {
+          this.emailError = false;
+          return this.inValid() ? timer(2000) : EMPTY;
+        })
+      )
+      .subscribe((data) => (this.emailError = this.inValid()));
   }
 
   ngOnDestroy() {
     this.routeParamsSub.unsubscribe();
   }
 
-  get bankLogo():string {
+  get bankLogo(): string {
     return BankUtils.getBankLogoUrl(this.bank.name);
   }
 
   inValid() {
     return (
-      this.missingBankForm.get('email').hasError('pattern') && 
+      this.missingBankForm.get('email').hasError('pattern') &&
       this.missingBankForm.get('email').dirty
     );
-  } 
+  }
 
   public request() {
     this.isLoading = true;
 
     const missingBankData = {
       email: this.missingBankForm.value.email,
-      bank: "DNB"
+      bank: 'DNB'
     };
 
     if (!missingBankData.bank) {
       missingBankData.bank = this.missingBankForm.value.bank;
     }
-    
+
     this.contactService.sendMissingBank(missingBankData).subscribe(
-      _ => {
+      (_) => {
         this.isLoading = false;
-        this.router.navigate(["/"]);
+        this.router.navigate(['/']);
         this.snackBar.openSuccessSnackBar(
-          "Du får beskjed når din bank er tilgjengelig",
+          'Du får beskjed når din bank er tilgjengelig',
           1.2
         );
       },
-      err => {
+      (err) => {
         this.isLoading = false;
       }
     );
@@ -160,7 +163,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
         '',
         Validators.compose([
           Validators.required,
-          Validators.pattern(VALIDATION_PATTERN.ssnMasked),
+          Validators.pattern(VALIDATION_PATTERN.ssnMasked)
         ]),
         // Async Validators
         environment.production ? [this.ssnAsyncValidator()] : []
@@ -220,25 +223,32 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
   }
 
   get isSB1Bank(): boolean {
-    return this.bank && this.bank.name && this.bank.name.indexOf('SPAREBANK_1') > -1;
+    return (
+      this.bank && this.bank.name && this.bank.name.indexOf('SPAREBANK_1') > -1
+    );
   }
 
   get isEikaBank(): boolean {
     return this.bank && this.bank.isEikaBank;
   }
 
-  ssnAsyncValidator():ValidatorFn {
-    return (input:FormControl):ValidationErrors => {
-      let ssnToValidate:string = input.value;
+  ssnAsyncValidator(): ValidatorFn {
+    return (input: FormControl): ValidationErrors => {
+      let ssnToValidate: string = input.value;
       if (ssnToValidate && ssnToValidate.length >= 11) {
         ssnToValidate = ssnToValidate.replace(' ', '');
-        return this.userService.validateSsn(ssnToValidate).pipe(
-          map(res => res && res.ssn === ssnToValidate && res.valid ? {} : { ssnNotValid : true })
-        );
+        return this.userService
+          .validateSsn(ssnToValidate)
+          .pipe(
+            map((res) =>
+              res && res.ssn === ssnToValidate && res.valid
+                ? {}
+                : { ssnNotValid: true }
+            )
+          );
       } else {
         of({});
       }
     };
   }
-
 }

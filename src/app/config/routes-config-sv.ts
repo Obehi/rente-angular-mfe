@@ -12,27 +12,33 @@ export const defaultMeta = {
 export const customMeta = {
   landing: {
     title: 'Bolåneräntor| Vi hjälper dig hitta bästa räntan | Ränteradar.se',
-    description: 'Vi jämför olika bolåneräntor med din och hjälper dig hitta den bästa räntan på marknaden. Du kan pruta på räntan hos din befintliga bank eller byta bank – helt automatiskt och gratis.'
+    description:
+      'Vi jämför olika bolåneräntor med din och hjälper dig hitta den bästa räntan på marknaden. Du kan pruta på räntan hos din befintliga bank eller byta bank – helt automatiskt och gratis.'
   },
   personvern: {
     title: 'Om personuppgifter | Ränteradar.se',
-    description: 'Ränteradar Sweden AB som driver Ränteradar.se tar GDPR på största allvar, läs mer om behandling av personuppgifter samt användarvillkor här. '
+    description:
+      'Ränteradar Sweden AB som driver Ränteradar.se tar GDPR på största allvar, läs mer om behandling av personuppgifter samt användarvillkor här. '
   },
   valgBank: {
     title: 'Välj den bank där du har ditt bolån| Ränteradar.se',
-    description: 'Välj den bank du har ditt bolån i och logga in med mobilt BankID. Vi hämtar då automatiskt hämta din ränta och bolåneinformation.'
+    description:
+      'Välj den bank du har ditt bolån i och logga in med mobilt BankID. Vi hämtar då automatiskt hämta din ränta och bolåneinformation.'
   },
   omOss: {
     title: 'Vår vision och teamet bakom tjänsten | Ränteradar.se',
-    description: 'Vår vision är att göra det lättare för dig att alltid ha de bästa villkoren på ditt bolån. Läs mer om teamet bakom Ränteradar.se här.'
+    description:
+      'Vår vision är att göra det lättare för dig att alltid ha de bästa villkoren på ditt bolån. Läs mer om teamet bakom Ränteradar.se här.'
   },
   kontakt: {
     title: 'Kontakta oss | Ränteradar.se',
-    description: 'Kontakta oss gärna om du har frågor eller om något inte fungerar. Du kan lämna din information så kontaktar vi dig, eller använda chat-funktionen i tjänsten så återkommer vi så snabbt vi kan!'
+    description:
+      'Kontakta oss gärna om du har frågor eller om något inte fungerar. Du kan lämna din information så kontaktar vi dig, eller använda chat-funktionen i tjänsten så återkommer vi så snabbt vi kan!'
   },
   cookies: {
     title: 'Cookies | Om personuppgifter| Ränteradar.se',
-    description: 'Läs vår cookiepolicy här om varför och hur Ränteradar.se använder cookies.'
+    description:
+      'Läs vår cookiepolicy här om varför och hur Ränteradar.se använder cookies.'
   },
   faabeskjed: {
     title: 'Ränteradar.se',
@@ -40,15 +46,18 @@ export const customMeta = {
   },
   personvernerklaering: {
     title: 'Integritetspolicy | Ränteradar.se',
-    description: 'Ränteradar Sweden AB som driver Ränteradar.se tar behandling av personuppgifter samt GDPR på allvar. Läs mer om det här.'
+    description:
+      'Ränteradar Sweden AB som driver Ränteradar.se tar behandling av personuppgifter samt GDPR på allvar. Läs mer om det här.'
   },
   auth: {
     title: 'Registrera dig | Logga in | Ränteradar.se',
-    description: 'Ränteradar.se hämtar räntan du har och lånebeloppet automatiskt genom inloggning med mobilt BankID.'
+    description:
+      'Ränteradar.se hämtar räntan du har och lånebeloppet automatiskt genom inloggning med mobilt BankID.'
   },
   banksGuide: {
     title: 'Få oversikt over norske banker | Bankguiden | Renteradar.no',
-    description: 'Bankguiden: Renteradar.no sin oversikt over alle banker som tilbyr boliglån i Norge.'
+    description:
+      'Bankguiden: Renteradar.no sin oversikt over alle banker som tilbyr boliglån i Norge.'
   },
   landingTitle: defaultTitle,
   bekreftTitle: 'Ränteradar.se | Bekräfta | Kontrollera din bolåneränta gratis',
@@ -57,7 +66,7 @@ export const customMeta = {
   boligTitle: 'Bostad | Ränteradar.se',
   preferanserTitle: 'Preferanser | Ränteradar.se',
   profilTitle: 'Profil | Ränteradar.se',
-  
+
   bankLoginTitle: 'Renteradar.no | Registrer | Logg inn',
   DNB: {
     title:
@@ -182,11 +191,11 @@ export const customMeta = {
 
 export const ROUTES_MAP_SV = {
   tinkMockup: 'tink-mockup'
-}
+};
 
 export const ROUTES_MAP_NO = {
   banksGuide: 'bankguiden'
-}
+};
 
 export const ROUTES_MAP = {
   aboutUs: 'om-oss',
@@ -209,7 +218,5 @@ export const ROUTES_MAP = {
   guide: 'sa-fungerar-ranteradar',
   cookies: 'personuppgiftsbehandling/cookies',
   customerSatisfaction: 'kundnojdhet',
-  emailPreferences: 'epost/installningar',
+  emailPreferences: 'epost/installningar'
 };
-
-

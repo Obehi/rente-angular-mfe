@@ -9,8 +9,8 @@ import { ROUTES_MAP } from '@config/routes-config';
 })
 export class LtvTooHighDialogComponent {
   public routesMap = ROUTES_MAP;
-  
-  constructor(public dialogRef: MatDialogRef<LtvTooHighDialogComponent>) { }
+
+  constructor(public dialogRef: MatDialogRef<LtvTooHighDialogComponent>) {}
 
   onClose() {
     this.dialogRef.close('Pizza!');

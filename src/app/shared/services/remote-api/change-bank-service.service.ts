@@ -6,8 +6,7 @@ import { API_URL_MAP } from '@config/api-url-config';
   providedIn: 'root'
 })
 export class ChangeBankServiceService {
-
-  constructor(private http: GenericHttpService) { }
+  constructor(private http: GenericHttpService) {}
 
   public getBankOfferRequest(offerId) {
     const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.bankOfferRequest.base}${API_URL_MAP.loan.bankOfferRequest.preview}/${offerId}`;

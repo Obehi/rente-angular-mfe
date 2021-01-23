@@ -9,10 +9,7 @@ import { BanksGuideComponent } from './banks-guide.component';
 import { SharedModule } from '../../shared/shared.module';
 
 @NgModule({
-  declarations: [
-    BanksGuideComponent,
-    BankGuidePageComponent
-  ],
+  declarations: [BanksGuideComponent, BankGuidePageComponent],
   imports: [
     CommonModule,
     BanksGuideRoutingModule,
@@ -22,5 +19,4 @@ import { SharedModule } from '../../shared/shared.module';
     FormsModule
   ]
 })
-export class BanksGuideModule {
-}
+export class BanksGuideModule {}

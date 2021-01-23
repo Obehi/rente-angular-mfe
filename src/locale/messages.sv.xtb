@@ -260,8 +260,6 @@ Den exakta processen beror på din enhet och vilken webbläsare du använder. I 
         Är ett interaktionsverktyg som registrerar hur användare brukar webbplatsen. Mer information här.
         <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>här.<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph></translation>
   <translation id="email.preferences.saved”" desc="email-preferences" meaning="“saved">Sparat</translation>
-  <translation id="email.preferences.settings”" desc="email-preferences" meaning="“settings">E-post inställningar</translation>
-  <translation id="email.preferences.error”" desc="email-preferences" meaning="“error">Något gick fel, vänligen logga in eller ta kontakt med oss på <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>hej@ranteradar.se<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph></translation>
   <translation id="email.preferences.market”" desc="email-preferences" meaning="“market">Marknadsövervakning och påminnelse om att kolla räntan
 </translation>
   <translation id="email.preferences.monthEvery”" desc="email-preferences" meaning="“month-every">Varje månad</translation>
@@ -278,16 +276,13 @@ Den exakta processen beror på din enhet och vilken webbläsare du använder. I 
                 <ph name="CLOSE_TAG_MAT_RADIO_GROUP"><ex>&lt;/mat-radio-group&gt;</ex>&lt;/mat-radio-group&gt;</ph>  </translation>
   <translation id="email.preferences.saveChanges”" desc="email-preferences" meaning="“save-changes">Spara ändringar</translation>
   <translation id="aboutUs”" desc="about-us" meaning="“headline">Om oss</translation>
-  <translation id="aboutUs.intro2”" desc="about-us" meaning="“text">Nu ska vi göra samma sak i Sverige, och med oss på resan har vi Sanna som senast kommer från Stabelo. 
-
-Bolån är i grunden en enkel produkt som bankerna tjänar mycket pengar på. Det finns därför ingen anledning att som kund betala mer än nödvändigt.</translation>
+  <translation id="aboutUs.intro2”" desc="about-us" meaning="“text">Nu har vi lanserat en tjänst som är anpassad efter den svenska bolånemarknaden under namnet Ränteradar.se. Sanna, som tidigare arbetat på bolåneutmanaren Stabelo, leder den svenska satsningen. Precis som i Norge tjänar de svenska bankerna mycket pengarpå bolån. Eftersom bolån i grunden är en enkel produkt som ser likadan utoavsett vem som ger ut det, finns det ingen anledning till att du som konsument ska betala mer än nödvändigt!</translation>
   <translation id="aboutUs.goal1”" desc="about-us" meaning="“text"><ph name="START_BOLD_TEXT"><ex>&lt;b&gt;</ex>&lt;b&gt;</ph>Hjälpa dig 
- spara pengar<ph name="CLOSE_BOLD_TEXT"><ex>&lt;/b&gt;</ex>&lt;/b&gt;</ph> och alltid erbjuda de bästa räntorna på marknaden</translation>
-  <translation id="aboutUs.goal2”" desc="about-us" meaning="“text"> <ph name="START_BOLD_TEXT"><ex>&lt;b&gt;</ex>&lt;b&gt;</ph>Spara tid<ph name="CLOSE_BOLD_TEXT"><ex>&lt;/b&gt;</ex>&lt;/b&gt;</ph> då vi automatiskt, snabbt och enkelt kan kontrollera din befintliga ränta</translation>
-  <translation id="aboutUs.goal3”" desc="about-us" meaning="“text"><ph name="START_BOLD_TEXT"><ex>&lt;b&gt;</ex>&lt;b&gt;</ph>Få trygghet<ph name="CLOSE_BOLD_TEXT"><ex>&lt;/b&gt;</ex>&lt;/b&gt;</ph> i att veta att du inte längre luras av bankerna.</translation>
+ spara pengar<ph name="CLOSE_BOLD_TEXT"><ex>&lt;/b&gt;</ex>&lt;/b&gt;</ph> och alltid presentera de bästa bolåneräntorna på marknaden</translation>
+  <translation id="aboutUs.goal2”" desc="about-us" meaning="“text"> <ph name="START_BOLD_TEXT"><ex>&lt;b&gt;</ex>&lt;b&gt;</ph>Spara tid<ph name="CLOSE_BOLD_TEXT"><ex>&lt;/b&gt;</ex>&lt;/b&gt;</ph> då vi automatiskt, snabbt och enkelt granskar din nuvarande bolåneränta</translation>
+  <translation id="aboutUs.goal3”" desc="about-us" meaning="“text"><ph name="START_BOLD_TEXT"><ex>&lt;b&gt;</ex>&lt;b&gt;</ph>Känna dig trygg<ph name="CLOSE_BOLD_TEXT"><ex>&lt;/b&gt;</ex>&lt;/b&gt;</ph> i att du inte längre betalar för mycket till bankerna</translation>
   <translation id="aboutUs.governance”" desc="about-us" meaning="“text"><ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>Ränteradar.se<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph>
-    ägs och drivs av Ränteradar Sverige AB som är ett dotterbolag till Forbrukerøkonomene AS. Vi kan räntemarknaden bra och har bred erfarenhet inom bank, finans och teknologi. Tillsammans har vi satt detta i ett system som ska komma användarna av 
-    <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>Ränteradar.se<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph> till godo.</translation>
+ägs och drivs av Ränteradar Sverige AB som är ett dotterbolag till Forbrukerøkonomene AS. Tack vare den tidigare erfarenheten inom bank, finans och teknologi har vi lärt oss hur räntemarknaden fungerar. Tillsammans har vi skapat en tjänst som skall komma användarna av <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>Ränteradar.se<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph> till godo.</translation>
   <translation id="aboutUs.Finn”" desc="about-us" meaning="“title"><ph name="START_ITALIC_TEXT"><ex>&lt;i&gt;</ex>&lt;i&gt;</ph>Co-Founder<ph name="CLOSE_ITALIC_TEXT"><ex>&lt;/i&gt;</ex>&lt;/i&gt;</ph></translation>
   <translation id="aboutUs.finn.intro”" desc="about-us" meaning="“text">Finn Olav är ekonom från Cass Business School i London och har jobbat fem år med räntor i Nordea Markets. Nu har han tagit steget ut från bankvärlden för att leva entreprenörsdrömmen fullt ut. Finn Olav är vår siffernisse som älskar statistik och data. </translation>
   <translation id="aboutUs.fredrik”" desc="about-us" meaning="“title"><ph name="START_ITALIC_TEXT"><ex>&lt;i&gt;</ex>&lt;i&gt;</ph>VD/Founder<ph name="CLOSE_ITALIC_TEXT"><ex>&lt;/i&gt;</ex>&lt;/i&gt;</ph></translation>
@@ -665,8 +660,8 @@ Finansinspektionens allmänna råd säger att bankerna inte bör låna ut mer ä
   <translation id="faq.response7”" desc="faq" meaning="“response7">Ränteradar.se hämtar automatiskt räntan du har på ditt bolån. Din ränta jämförs med räntan du kan få hos andra banker, och du kan se hur mycket du kan spara.
 Du kan pruta i banken du är kund hos med ett klick, och vi arbetar med att göra bytet av bank enkelt.
 Vi följer ständigt upp om det dyker upp bättre ränteerbjudanden på marknaden. Du som användare får då besked om det</translation>
-  <translation id="aboutUs.intro1”" desc="intro" meaning="“text"><ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>Renteradar.no<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph> startade i Norge av grupp personer med erfarenhet inom finans och teknologi som såg två problem på bolånemarknaden. Det första problemet var hur konsumenterna skulle navigera sig på bolånemarknaden. Det andra problemet var att kunderna tvingades hålla ständig koll på bankerna för att få räntan de förtjänar. Resten är historia och på kort tid har norska renteradar fått över 25.000 återkommande användare på
-    <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>Renteradar.no<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph></translation>
+  <translation id="aboutUs.intro1”" desc="intro" meaning="“text"><ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>Renteradar.no<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph> startades år 2019 i Norge för att motarbeta de problem som fanns på den norska bolånemarknaden. Det första problemet var hur strukturen på bolånemarknaden såg ut. För konsumenterna var navigeringen på denna marknad både tidskrävande och utmanande. Det andra problemet var att konsumenterna tvingades att ständigt hålla sig uppdaterade kring hur marknaden förändrade sig. Om en konsument inte höll koll på förändringar var det sällan som denne betalade den lägsta möjliga ränta. Genom att samla ett team med erfarenhet inom bank, finans och teknologi kunde norska Renteradar formas. Resten är historia och idag har  <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>Renteradar.no<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph> 32 000 återkommande användare.
+   </translation>
   <translation id="faq.response10”" desc="faq" meaning="“response10">Ja, din information är helt säker och vi delar inte personlig information med tredjeparter. Läs mer om detta i vår 
           <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>integritetspolicy<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph>
           och
@@ -674,8 +669,7 @@ Vi följer ständigt upp om det dyker upp bättre ränteerbjudanden på marknade
   <translation id="footer.privacy”" desc="footer" meaning="“privacy">Behandling av personuppgifter</translation>
   <translation id="landing.automaticService" desc="landing-page" meaning="automatic-service">
             Ränteradar hämtar automatiskt räntan och dina bolånedetaljer med mobilt BankID.</translation>
-  <translation id="aboutUs.goals”" desc="about-us" meaning="“text">Vår vision är att underlätta din vardag som bolånekund genom att:
-</translation>
+  <translation id="aboutUs.goals”" desc="about-us" meaning="“text">Vår vision är att underlätta våra användares vardag genom att:</translation>
   <translation id="landing.header" desc="Describes-the-header" meaning="Our-header">Snart lanserar vi en tjänst för dig som vill jämföra bolån och få marknadens bästa ränta <ph name="LINE_BREAK"><ex>&lt;br&gt;</ex>&lt;br&gt;</ph> - Snabbt, enkelt och helt gratis!</translation>
   <translation id="close”" desc="button" meaning="“close">Stäng</translation>
   <translation id="navigate.to.house.tab" desc="button" meaning="navigate-to-house-tab"/>
@@ -754,7 +748,7 @@ Vi följer ständigt upp om det dyker upp bättre ränteerbjudanden på marknade
   <translation id="info.confirmation.hi”" desc="info-confirmation" meaning="“hi">Hej, <ph name="INTERPOLATION"><ex>{{ userData.name | titlecase }}</ex>{{ userData.name | titlecase }}</ph></translation>
   <translation id="details.component.other”" desc="details" meaning="“other-conditions"><ph name="INTERPOLATION"><ex>{{offer.otherConditions ? &quot;Krav:&quot; : &quot;Inget krav&quot;}}</ex>{{offer.otherConditions ? &quot;Krav:&quot; : &quot;Inget krav&quot;}}</ph> </translation>
   <translation id="aboutUs.sanna" desc="about-us" meaning="“title"><ph name="START_ITALIC_TEXT"><ex>&lt;i&gt;</ex>&lt;i&gt;</ph>Country manager<ph name="CLOSE_ITALIC_TEXT"><ex>&lt;/i&gt;</ex>&lt;/i&gt;</ph></translation>
-  <translation id="aboutUs.sanna.intro”" desc="about-us" meaning="“text">Sanna är civilekonom och har jobbat fem år inom finans. Hon kommer senast från bolåneutmanaren Stabelo och innan det i SEB. Nu ska hon ta <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>ränteradar.se <ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph> till Sverige. Sanna gillar tech, startups och bolånemarknaden - perfekt match för Ränteradar!</translation>
+  <translation id="aboutUs.sanna.intro”" desc="about-us" meaning="“text">Sanna är civilekonom och har jobbat fem år inom finans. Hon kommer senast från bolåneutmanaren Stabelo och innan det SEB. Nu ska hon ta <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>Ränteradar.se <ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph> till Sverige. Sanna gillar tech, startups och bolånemarknaden - perfekt match för Ränteradar!</translation>
   <translation id="aboutUs.stian" desc="about-us" meaning="“title"><ph name="START_ITALIC_TEXT"><ex>&lt;i&gt;</ex>&lt;i&gt;</ph>Front-end utvecklare<ph name="CLOSE_ITALIC_TEXT"><ex>&lt;/i&gt;</ex>&lt;/i&gt;</ph>
 </translation>
   <translation id="aboutUs.stian.intro”" desc="about-us" meaning="“text">Stian är Front-end utvecklare och har studerat Informatik på Universitet i Oslo. 
@@ -793,4 +787,30 @@ Vi följer ständigt upp om det dyker upp bättre ränteerbjudanden på marknade
   <translation id="ngb.timepicker.PM"/>
   <translation id="ngb.timepicker.AM"/>
   <translation id="ngb.toast.close-aria"/>
+  <translation id="messenger-redirect.header" desc="offers-main" meaning="interest-very-good">Hjälp en vän att sänka sin bolåneränta!</translation>
+  <translation id="messenger-redirect.explaination" desc="offers-main" meaning="interest-very-good">Tryck på knappen nedan om messenger inte öppnas automatiskt!</translation>
+  <translation id="messenger-redirect.messenger" desc="offers-main" meaning="interest-very-good"/>
+  <translation id="messenger-redirect.header" desc="offers-main" meaning="messenger-redirect-headline"/>
+  <translation id="messenger-redirect.explaination" desc="offers-main" meaning="messenger-redirect-selling-point"/>
+  <translation id="messenger-redirect.selling-point" desc="offers-main" meaning="messenger-redirect-messenger"> Hjälp dem sänka sina kostnader via <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph> Renteradar.se <ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph> 
+                        och spendera pengarna på något roligare, som en middag!</translation>
+  <translation id="header.home" desc="homepage" meaning="Headerlink"/>
+  <translation id="header.blog" desc="blog" meaning="Headerlink"/>
+  <translation id="header.contact" desc="contact" meaning="Headerlink"/>
+  <translation id="header.aboutUs" desc="about-us" meaning="Headerlink"/>
+  <translation id="header.faq" desc="faq" meaning="Headerlink"/>
+  <translation id="header.home2" desc="homepage" meaning="Headerlink"/>
+  <translation id="header.myPage2" desc="my-page" meaning="Headerlink"/>
+  <translation id="header.blog2" desc="blog" meaning="Headerlink"/>
+  <translation id="header.contact2" desc="contact" meaning="Headerlink"/>
+  <translation id="header.aboutUs2" desc="about-us" meaning="Headerlink"/>
+  <translation id="header.logOut2" desc="log-out" meaning="Headerlink"/>
+  <translation id="email.preferences.settings”" desc="email-preferences" meaning="“settings">E-post inställningar</translation>
+  <translation id="email.preferences.error”" desc="email-preferences" meaning="“error">Något gick fel, vänligen logga in eller ta kontakt med oss på <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>hej@ranteradar.se<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph>
+
+</translation>
+  <translation id="dialog.mobile.yesNo”" desc="dialog" meaning="“yes-no">
+        <ph name="START_TAG_RENTE_BUTTON"><ex>&lt;rente-button&gt;</ex>&lt;rente-button&gt;</ph>Ja<ph name="CLOSE_TAG_RENTE_BUTTON"><ex>&lt;/rente-button&gt;</ex>&lt;/rente-button&gt;</ph>
+        <ph name="START_TAG_RENTE_BUTTON_1"><ex>&lt;rente-button&gt;</ex>&lt;rente-button&gt;</ph>Nej<ph name="CLOSE_TAG_RENTE_BUTTON"><ex>&lt;/rente-button&gt;</ex>&lt;/rente-button&gt;</ph>
+      </translation>
 </translationbundle>

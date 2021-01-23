@@ -9,6 +9,4 @@ const routes: Routes = [{ path: '', component: BankSelectNoComponent }];
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class BankSelectNoRoutingModule { }
-  
-
+export class BankSelectNoRoutingModule {}

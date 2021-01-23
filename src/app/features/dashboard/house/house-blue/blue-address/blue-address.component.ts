@@ -1,13 +1,8 @@
-
-import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
-import { AddressDto } from "@services/remote-api/loans.service";
-import { LoansService } from "@services/remote-api/loans.service";
-import { MatTabChangeEvent } from "@angular/material";
-import {
-  EventService,
-  EmitEvent,
-  Events,
-} from "@services/event-service";
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { AddressDto } from '@services/remote-api/loans.service';
+import { LoansService } from '@services/remote-api/loans.service';
+import { MatTabChangeEvent } from '@angular/material';
+import { EventService, EmitEvent, Events } from '@services/event-service';
 
 export enum AddressFormMode {
   Editing,
@@ -15,9 +10,9 @@ export enum AddressFormMode {
 }
 
 @Component({
-  selector: "rente-blue-address",
-  templateUrl: "./blue-address.component.html",
-  styleUrls: ["./blue-address.component.scss"]
+  selector: 'rente-blue-address',
+  templateUrl: './blue-address.component.html',
+  styleUrls: ['./blue-address.component.scss']
 })
 export class BlueAddressComponent implements OnInit {
   @Input() index: number;
@@ -31,12 +26,15 @@ export class BlueAddressComponent implements OnInit {
 
   mode = AddressFormMode.Editing;
   changesMade = false;
-  ableTosave = false
+  ableTosave = false;
 
-  constructor(private loansService: LoansService, private eventService: EventService) {}
+  constructor(
+    private loansService: LoansService,
+    private eventService: EventService
+  ) {}
 
   ngOnInit() {
-    this.loansService.getAddresses().subscribe(r => {
+    this.loansService.getAddresses().subscribe((r) => {
       this.addresses = r.addresses;
     });
   }
@@ -63,46 +61,49 @@ export class BlueAddressComponent implements OnInit {
   onRbChange(event: MatTabChangeEvent) {
     if (event.index === 1) {
       this.address.useManualPropertyValue = true;
-
     } else {
       this.address.useManualPropertyValue = false;
     }
 
-    this.countChange()
+    this.countChange();
   }
 
   //remove spaces and convert to number type
   formatThousand(event): number {
-    return Number(event.replace(/\s+/g, ''))
+    return Number(event.replace(/\s+/g, ''));
   }
 
   save() {
-    this.onSave.emit()
-    this.ableTosave = false
+    this.onSave.emit();
+    this.ableTosave = false;
   }
-  
+
   countChange() {
-    if(this.address.street == "") {
-      this.ableTosave = false
-      return
+    if (this.address.street == '') {
+      this.ableTosave = false;
+      return;
     }
 
-    if(this.address.zip == "") {
-      this.ableTosave = false
-      return
+    if (this.address.zip == '') {
+      this.ableTosave = false;
+      return;
     }
 
-    if(this.address.apartmentSize == 0 || this.address.apartmentSize == null) {
-      this.ableTosave = false
-      return
+    if (this.address.apartmentSize == 0 || this.address.apartmentSize == null) {
+      this.ableTosave = false;
+      return;
     }
 
-    if(this.address.useManualPropertyValue && (this.address.manualPropertyValue == 0 || this.address.manualPropertyValue == null)) {
-      this.ableTosave = false
-      return
+    if (
+      this.address.useManualPropertyValue &&
+      (this.address.manualPropertyValue == 0 ||
+        this.address.manualPropertyValue == null)
+    ) {
+      this.ableTosave = false;
+      return;
     }
-    
-    this.ableTosave = true
+
+    this.ableTosave = true;
   }
 
   onDeleteAddressClick() {
@@ -111,7 +112,7 @@ export class BlueAddressComponent implements OnInit {
 
   manualPropertyValueChanged($event) {
     if ($event && $event.target) {
-      const newValue = parseInt(String($event.target.value).replace(/\D/g, ""));
+      const newValue = parseInt(String($event.target.value).replace(/\D/g, ''));
       this.address.manualPropertyValue = newValue >= 0 ? newValue : 0;
     }
   }

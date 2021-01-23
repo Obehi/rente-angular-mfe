@@ -12,7 +12,7 @@ export class SuccessChangeBankDialogComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<SuccessChangeBankDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.isErrorState = this.data.isError;

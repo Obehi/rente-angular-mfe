@@ -6,11 +6,8 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./about-us.component.scss']
 })
 export class AboutUsComponent implements OnInit {
-
   @Input() isFrontPage: boolean;
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

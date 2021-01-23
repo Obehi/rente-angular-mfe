@@ -8,9 +8,8 @@ describe('BankGuidePageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BankGuidePageComponent ]
-    })
-    .compileComponents();
+      declarations: [BankGuidePageComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

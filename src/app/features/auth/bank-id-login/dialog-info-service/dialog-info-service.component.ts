@@ -8,15 +8,14 @@ import { ROUTES_MAP } from '@config/routes-config';
   styleUrls: ['./dialog-info-service.component.scss']
 })
 export class DialogInfoServiceComponent {
-  public routes = ROUTES_MAP
+  public routes = ROUTES_MAP;
 
   constructor(
     public dialogRef: MatDialogRef<DialogInfoServiceComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
-  ) { }
+  ) {}
 
   public onClose(): void {
     this.dialogRef.close();
   }
-
 }

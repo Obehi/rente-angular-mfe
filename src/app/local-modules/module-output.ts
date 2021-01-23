@@ -1,3 +1,1 @@
-//export { BankSelectSvRoutingModule as BankSelectLangGenericRoutingModule } from '@features/bank-select-sv/bank-select-routing.module';  
-
-
+//export { BankSelectSvRoutingModule as BankSelectLangGenericRoutingModule } from '@features/bank-select-sv/bank-select-routing.module';

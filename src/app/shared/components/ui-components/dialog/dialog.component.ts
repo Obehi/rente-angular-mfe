@@ -5,16 +5,16 @@ import {
   Output,
   EventEmitter,
   HostListener
-} from "@angular/core";
+} from '@angular/core';
 
 @Component({
-  selector: "rente-dialog",
-  templateUrl: "./dialog.component.html",
-  styleUrls: ["./dialog.component.scss"]
+  selector: 'rente-dialog',
+  templateUrl: './dialog.component.html',
+  styleUrls: ['./dialog.component.scss']
 })
 export class DialogComponent implements OnInit {
-  @Input() title: string = "Title";
-  @Input() message: string = "Message text";
+  @Input() title = 'Title';
+  @Input() message = 'Message text';
   @Output() action: EventEmitter<boolean> = new EventEmitter();
 
   ngOnInit(): void {}

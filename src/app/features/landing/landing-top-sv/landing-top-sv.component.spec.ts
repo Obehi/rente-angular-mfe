@@ -8,9 +8,8 @@ describe('LandingTopSvComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LandingTopSvComponent ]
-    })
-    .compileComponents();
+      declarations: [LandingTopSvComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

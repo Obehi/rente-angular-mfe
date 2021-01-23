@@ -1,6 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ROUTES_MAP, ROUTES_MAP_NO, ROUTES_MAP_SV } from '@config/routes-config';
+import {
+  ROUTES_MAP,
+  ROUTES_MAP_NO,
+  ROUTES_MAP_SV
+} from '@config/routes-config';
 import { AuthSvMockupComponent } from '@features/auth-sv-mockup/auth-sv-mockup.component';
 import { ContactUsComponent } from '@features/contact-us/contact-us.component';
 import { AboutCookiesComponent } from '@features/cookies/cookies.component';
@@ -19,11 +23,10 @@ import { AuthGuard } from '@shared/guards/auth.guard';
 
 import { BankChoiceComponent } from '@features/auth/bank-choice/bank-choice.component';
 
-
-
 const commonRoutes: Routes = [
   {
-    path: '', component: LandingComponent,
+    path: '',
+    component: LandingComponent,
     data: {
       title: customMeta.landing.title,
       meta: {
@@ -33,36 +36,41 @@ const commonRoutes: Routes = [
     }
   },
   {
-    path: ROUTES_MAP.emailPreferences, component: EmailPreferencesComponent,
+    path: ROUTES_MAP.emailPreferences,
+    component: EmailPreferencesComponent,
     children: [
       {
         path: '**',
         component: EmailPreferencesComponent
-      },
+      }
     ]
   },
   {
-    path: "del-med-messenger", component:   EmailRedirectNOComponent,
-    children: [ 
+    path: 'del-med-messenger',
+    component: EmailRedirectNOComponent,
+    children: [
       {
-          path: '**',
-          component:   EmailRedirectNOComponent
-
-      },      
+        path: '**',
+        component: EmailRedirectNOComponent
+      }
     ]
   },
   {
-    path: "dela-pa-messenger", component:   EmailRedirectSVComponent,
-    children: [ 
+    path: 'dela-pa-messenger',
+    component: EmailRedirectSVComponent,
+    children: [
       {
-          path: '**',
-          component:   EmailRedirectSVComponent
-      },      
+        path: '**',
+        component: EmailRedirectSVComponent
+      }
     ]
   },
   {
     path: ROUTES_MAP.aboutUs,
-    loadChildren: () => import('./features/about-us/about-us.module').then(m => m.AboutUsModule),
+    loadChildren: () =>
+      import('./features/about-us/about-us.module').then(
+        (m) => m.AboutUsModule
+      ),
     data: {
       title: customMeta.omOss.title,
       meta: {
@@ -72,7 +80,8 @@ const commonRoutes: Routes = [
     }
   },
   {
-    path: ROUTES_MAP.contactUs, component: ContactUsComponent,
+    path: ROUTES_MAP.contactUs,
+    component: ContactUsComponent,
     data: {
       title: customMeta.kontakt.title,
       meta: {
@@ -82,7 +91,8 @@ const commonRoutes: Routes = [
     }
   },
   {
-    path: ROUTES_MAP.privacy, component: PrivacyComponent,
+    path: ROUTES_MAP.privacy,
+    component: PrivacyComponent,
     data: {
       title: customMeta.personvern.title,
       meta: {
@@ -92,7 +102,8 @@ const commonRoutes: Routes = [
     }
   },
   {
-    path: ROUTES_MAP.cookies, component: AboutCookiesComponent,
+    path: ROUTES_MAP.cookies,
+    component: AboutCookiesComponent,
     data: {
       title: customMeta.cookies.title,
       meta: {
@@ -102,7 +113,8 @@ const commonRoutes: Routes = [
     }
   },
   {
-    path: ROUTES_MAP.termsConditions, component: TermsConditionsComponent,
+    path: ROUTES_MAP.termsConditions,
+    component: TermsConditionsComponent,
     data: {
       title: customMeta.personvernerklaering.title,
       meta: {
@@ -112,7 +124,9 @@ const commonRoutes: Routes = [
     }
   },
   {
-    path: ROUTES_MAP.privacyPolicy, component: PrivacyPolicyComponent, data: {
+    path: ROUTES_MAP.privacyPolicy,
+    component: PrivacyPolicyComponent,
+    data: {
       title: customMeta.personvernerklaering.title,
       meta: {
         name: defaultMeta.name,
@@ -122,7 +136,10 @@ const commonRoutes: Routes = [
   },
   {
     path: ROUTES_MAP.bankSelect,
-    loadChildren: () => import('./local-components/components-output').then(m => m.BankSelectLangGenericRoutingModule),
+    loadChildren: () =>
+      import('./local-components/components-output').then(
+        (m) => m.BankSelectLangGenericRoutingModule
+      ),
     data: {
       title: customMeta.valgBank.title,
       meta: {
@@ -133,7 +150,10 @@ const commonRoutes: Routes = [
   },
   {
     path: ROUTES_MAP_NO.banksGuide,
-    loadChildren: () => import('./features/banks-guide/banks-guide.module').then(m => m.BanksGuideModule),
+    loadChildren: () =>
+      import('./features/banks-guide/banks-guide.module').then(
+        (m) => m.BanksGuideModule
+      ),
     data: {
       title: customMeta.banksGuide.title,
       meta: {
@@ -143,7 +163,8 @@ const commonRoutes: Routes = [
     }
   },
   {
-    path: ROUTES_MAP.initConfirmation, component: InitConfirmationLangGenericComponent,
+    path: ROUTES_MAP.initConfirmation,
+    component: InitConfirmationLangGenericComponent,
     data: {
       title: customMeta.bekreftTitle,
       meta: {
@@ -153,7 +174,8 @@ const commonRoutes: Routes = [
     }
   },
   {
-    path: ROUTES_MAP.getNotified, component: GetNotifiedComponent,
+    path: ROUTES_MAP.getNotified,
+    component: GetNotifiedComponent,
     data: {
       title: customMeta.faabeskjed.title,
       meta: {
@@ -164,7 +186,8 @@ const commonRoutes: Routes = [
   },
   {
     path: ROUTES_MAP.auth,
-    loadChildren: () => import('./features/auth/auth.module').then(m => m.AuthModule),
+    loadChildren: () =>
+      import('./features/auth/auth.module').then((m) => m.AuthModule),
     data: {
       title: customMeta.auth.title,
       meta: {
@@ -175,23 +198,29 @@ const commonRoutes: Routes = [
   },
   {
     path: ROUTES_MAP.dashboard,
-    loadChildren: () => import('./features/dashboard/dashboard.module').then(m => m.DashboardModule),
+    loadChildren: () =>
+      import('./features/dashboard/dashboard.module').then(
+        (m) => m.DashboardModule
+      ),
     canActivate: [AuthGuard]
   },
-  {path: '**', component: PageNotFoundComponent},
+  { path: '**', component: PageNotFoundComponent }
 ];
-
 
 const routesSV: Routes = [
   {
-    path: ROUTES_MAP_SV.tinkMockup, component: AuthSvMockupComponent,
+    path: ROUTES_MAP_SV.tinkMockup,
+    component: AuthSvMockupComponent
   }
 ];
 
 const routesNo: Routes = [
   {
     path: ROUTES_MAP_NO.banksGuide,
-    loadChildren: () => import('./features/banks-guide/banks-guide.module').then(m => m.BanksGuideModule),
+    loadChildren: () =>
+      import('./features/banks-guide/banks-guide.module').then(
+        (m) => m.BanksGuideModule
+      ),
     data: {
       title: customMeta.banksGuide.title,
       meta: {
@@ -199,9 +228,8 @@ const routesNo: Routes = [
         description: customMeta.banksGuide.description
       }
     }
-  },
+  }
 ];
-
 
 const routes: Routes = [...routesNo, ...routesSV, ...commonRoutes];
 
@@ -209,5 +237,4 @@ const routes: Routes = [...routesNo, ...routesSV, ...commonRoutes];
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule {
-}
+export class AppRoutingModule {}
