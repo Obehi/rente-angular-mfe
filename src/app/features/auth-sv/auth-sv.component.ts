@@ -12,7 +12,7 @@ import {
   EventEmitter,
   HostListener
 } from '@angular/core';
-import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { ROUTES_MAP } from '@config/routes-config';
 import * as Stomp from 'stompjs';
 import * as SockJS from 'sockjs-client';
@@ -79,11 +79,7 @@ export class AuthSvComponent implements OnInit, OnDestroy {
     }
   }
 
-  ngOnDestroy() {}
-
   private initializeWebSocketConnection(tinkCode: number) {
-    this.connectAndReconnectSocket(this.successSocketCallback);
-
     const socket = new SockJS(environment.crawlerUrl);
     this.stompClient = Stomp.over(socket);
 
@@ -171,9 +167,7 @@ export class AuthSvComponent implements OnInit, OnDestroy {
     });
   }
 
-  private connectAndReconnectSocket(successCallback) {}
-
-  sendUserData(tinkCode: number, resendData = false) {
+  sendUserData(tinkCode: number, resendData = false): void {
     const dataObj = {};
     //this.setDefaultSteps();
     const data = JSON.stringify(dataObj);

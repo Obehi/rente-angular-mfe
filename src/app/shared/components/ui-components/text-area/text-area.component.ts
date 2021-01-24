@@ -1,8 +1,6 @@
 import {
   Component,
   Input,
-  Output,
-  EventEmitter,
   forwardRef,
   HostBinding,
   SimpleChanges,
@@ -15,7 +13,6 @@ import {
   FormGroupDirective,
   NgForm
 } from '@angular/forms';
-import { FormsModule } from '@angular/forms';
 import { ViewEncapsulation } from '@angular/core';
 import { ErrorStateMatcher } from '@angular/material/core';
 

@@ -68,7 +68,7 @@ export class GenericHttpService {
       .pipe(catchError((error) => this.handleError(error)));
   }
 
-  public postExternal(path: string, body: object = {}): Observable<any> {
+  public postExternal(path: string, body: any = {}): Observable<any> {
     const fullPath = `${path}`;
     const jsonBody: string = JSON.stringify(body);
 
@@ -87,7 +87,7 @@ export class GenericHttpService {
       .pipe(catchError((error) => this.handleError(error)));
   }
 
-  public post(path: string, body: object = {}): Observable<any> {
+  public post(path: string, body: any = {}): Observable<any> {
     const fullPath = `${this.apiUrl}${path}`;
 
     const jsonBody: string = JSON.stringify(body);

@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { environment } from '../../../environments/environment.heroku';
 
 @Injectable({
   providedIn: 'root'
@@ -7,7 +6,6 @@ import { environment } from '../../../environments/environment.heroku';
 export class OptimizeService {
   private experimentID = '486O0RUlSMCPtcnEjUtFtg';
   private localeVariation = 0;
-  constructor() {}
 
   getVariation(): number {
     //const isLocale = (environment.name == 'locale' || environment.name == 'undefined' )  ? true : false;
@@ -26,10 +24,6 @@ export class OptimizeService {
     const variation = (window as any).google_optimize.get(this.experimentID);
 
     if (variation == undefined) {
-      return 0;
-    }
-
-    if (variation == null) {
       return 0;
     }
 

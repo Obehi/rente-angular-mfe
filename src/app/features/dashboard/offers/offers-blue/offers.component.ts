@@ -244,11 +244,9 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
       this.currentOfferInfo.offers.top5 = this.offersInfo.offers.top5;
       return;
     }
-    const newLoanTypeSelected = this.offersInfo.offers.top5.filter(
-      (item, index, offers) => {
-        return item.loanType == type;
-      }
-    );
+    const newLoanTypeSelected = this.offersInfo.offers.top5.filter((item) => {
+      return item.loanType == type;
+    });
 
     this.currentOfferInfo.offers.top5 = newLoanTypeSelected;
   }
@@ -259,7 +257,7 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
     });
   }
 
-  public openBankUrl(offer: OfferInfo) {
+  public openBankUrl(offer: OfferInfo): void {
     if (offer.bankInfo.url === null) return;
 
     window.open(offer.bankInfo.url, '_blank');
@@ -267,10 +265,10 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
     const trackingDto = new TrackingDto();
     trackingDto.offerId = offer.id;
     trackingDto.type = 'OFFER_HEADER_LINK';
-    this.sendOfferTrackingData(trackingDto, offer);
+    this.sendOfferTrackingData(trackingDto);
   }
 
-  public openBankUrlByButton(offer: OfferInfo) {
+  public openBankUrlByButton(offer: OfferInfo): void {
     if (offer.bankInfo.url === null || offer.bankInfo.partner == false) return;
 
     window.open(offer.bankInfo.url, '_blank');
@@ -278,7 +276,7 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
     const trackingDto = new TrackingDto();
     trackingDto.offerId = offer.id;
     trackingDto.type = 'BANK_BUTTON_1';
-    this.sendOfferTrackingData(trackingDto, offer);
+    this.sendOfferTrackingData(trackingDto);
   }
 
   public openNewOfferDialog(offer: OfferInfo): void {
@@ -289,10 +287,10 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
     const trackingDto = new TrackingDto();
     trackingDto.offerId = offer.id;
     trackingDto.type = 'BANK_BUTTON_2';
-    this.sendOfferTrackingData(trackingDto, offer);
+    this.sendOfferTrackingData(trackingDto);
   }
 
-  private sendOfferTrackingData(trackingDto: TrackingDto, offer: OfferInfo) {
+  private sendOfferTrackingData(trackingDto: TrackingDto) {
     this.trackingService.sendTrackingStats(trackingDto).subscribe(
       (res) => {},
       (err) => {
@@ -301,8 +299,6 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
       }
     );
   }
-
-  public openBottomSheet() {}
 
   public openChangeBankDialog(offer): void {
     if (

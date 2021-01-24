@@ -5,8 +5,4 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './rate-type-fixed.component.html',
   styleUrls: ['./rate-type-fixed.component.scss']
 })
-export class RateTypeFixedComponent implements OnInit {
-  constructor() {}
-
-  ngOnInit() {}
-}
+export class RateTypeFixedComponent {}

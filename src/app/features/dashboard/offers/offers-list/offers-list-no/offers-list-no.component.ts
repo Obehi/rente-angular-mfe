@@ -6,7 +6,7 @@ import { OfferInfo, Offers } from './../../../../../shared/models//offers';
   templateUrl: './offers-list-no.component.html',
   styleUrls: ['./offers-list-no.component.scss']
 })
-export class OffersListNoComponent implements OnInit {
+export class OffersListNoComponent {
   @Input() offer: OfferInfo;
   @Input() offersInfo: Offers;
   public currentOfferInfo: Offers;
@@ -15,8 +15,6 @@ export class OffersListNoComponent implements OnInit {
     return window.innerWidth < 600;
   }
   public currentOfferType: string;
-
-  constructor() {}
 
   ngOnInit(): void {
     this.currentOfferInfo = JSON.parse(JSON.stringify(this.offersInfo));

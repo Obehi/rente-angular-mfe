@@ -1,5 +1,5 @@
-const fs = require('fs');
-const path = require('path');
+import fs from 'fs';
+import path from 'path';
 const environment = process.env.ENV;
 const isProd = environment === 'prod';
 const targetPath = path.join(__dirname + `/environments/environment.heroku.ts`);
