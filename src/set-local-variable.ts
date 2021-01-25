@@ -1,4 +1,4 @@
-//File replacement did not work with language interfaces when running heroku-postbuild (it works with ng serve...). This file is the workaround
+// File replacement did not work with language interfaces when running heroku-postbuild (it works with ng serve...). This file is the workaround
 const fs = require('fs');
 const path = require('path');
 const environment = process.env.ENV;
@@ -31,7 +31,7 @@ switch (process.env.LOCALE) {
     // manually set local value
     MOCKUPLOCALVALUE = 'nb';
 }
-//nb | sv
+// nb | sv
 
 initializeLocaleFile(mainPathTs, MOCKUPLOCALVALUE),
   initializeLocaleFile(mainPathJs, MOCKUPLOCALVALUE),

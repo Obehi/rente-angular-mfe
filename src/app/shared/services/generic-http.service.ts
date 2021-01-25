@@ -76,7 +76,7 @@ export class GenericHttpService {
 
     headers = headers.append('Content-Type', 'application/json');
 
-    //responseType is text, json responses will not be approved
+    // responseType is text, json responses will not be approved
     const httpOptions = {
       headers: headers,
       responseType: 'text' as 'json'

@@ -8,7 +8,7 @@ export class OptimizeService {
   private localeVariation = 0;
 
   getVariation(): number {
-    //const isLocale = (environment.name == 'locale' || environment.name == 'undefined' )  ? true : false;
+    // const isLocale = (environment.name == 'locale' || environment.name == 'undefined' )  ? true : false;
     const isLocale = false;
 
     if (isLocale) {

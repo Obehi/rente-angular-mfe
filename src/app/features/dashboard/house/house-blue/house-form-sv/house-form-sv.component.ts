@@ -66,7 +66,7 @@ export class HouseFormSvComponent implements OnInit {
     this.address.useManualPropertyValue = true;
   }
 
-  //remove spaces and convert to number type
+  // remove spaces and convert to number type
   formatThousand(event): number {
     return Number(event.replace(/\s+/g, ''));
   }

@@ -67,7 +67,7 @@ export class HouseFormNoComponent implements OnInit {
     }
   }
 
-  //remove spaces and convert to number type
+  // remove spaces and convert to number type
   formatThousand(event): number {
     return Number(event.replace(/\s+/g, ''));
   }

@@ -81,7 +81,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
     this.setDefaultSteps();
     this.initializeWebSocketConnection();
     window.scrollTo(0, 0);
-    //Special case for DNB and Eika banks
+    // Special case for DNB and Eika banks
     this.thirdStepTimer =
       this.bank.name === 'DNB' || BankUtils.isEikaBank(this.bank.name)
         ? 30

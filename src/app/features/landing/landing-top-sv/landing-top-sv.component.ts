@@ -63,7 +63,7 @@ export class LandingTopSvComponent implements OnInit {
       }
     } else if (this.isAndroid) {
       if (this.isCustomInAppBrowser()) {
-        //window.location.assign("intent:https://ranteradar.se/" + ROUTES_MAP.bankSelect + ";end")
+        // window.location.assign("intent:https://ranteradar.se/" + ROUTES_MAP.bankSelect + ";end")
         this.router.navigate(['/' + ROUTES_MAP.bankSelect], {
           state: { data: { androidPopup: true } }
         });

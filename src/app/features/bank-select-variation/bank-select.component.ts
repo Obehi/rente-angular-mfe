@@ -30,7 +30,7 @@ export class BankSelectComponentVariation implements OnInit, ErrorHandler {
     console.log(error);
     if (chunkFailedMessage.test(error.message)) {
       console.log('error detected. Implement window.location.reload()');
-      //window.location.reload();
+      // window.location.reload();
     }
   }
 

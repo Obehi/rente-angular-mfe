@@ -170,7 +170,7 @@ export class OffersStatisticsComponentBlue implements AfterViewInit, OnInit {
       },
 
       title: {
-        text: null, //'Din rente i forhold til andre i din bank:',
+        text: null, // 'Din rente i forhold til andre i din bank:',
         align: 'left',
 
         style: {
@@ -223,7 +223,7 @@ export class OffersStatisticsComponentBlue implements AfterViewInit, OnInit {
           type: 'column' as const,
           name: 'data',
 
-          data: [], //[2.21, 2.62, 2.43],
+          data: [], // [2.21, 2.62, 2.43],
           dataLabels: {
             enabled: true,
             rotation: 0,
@@ -252,7 +252,7 @@ export class OffersStatisticsComponentBlue implements AfterViewInit, OnInit {
       },
 
       title: {
-        text: null, //'Din rente i forhold til andre i alle banker:',
+        text: null, // 'Din rente i forhold til andre i alle banker:',
         align: 'left',
         margin: this.chartTitleMargin,
         style: {
@@ -303,7 +303,7 @@ export class OffersStatisticsComponentBlue implements AfterViewInit, OnInit {
           type: 'column' as const,
           name: 'data',
 
-          data: [], //[2.21, 2.62, 2.43],
+          data: [], // [2.21, 2.62, 2.43],
           dataLabels: {
             enabled: true,
             rotation: 0,
