@@ -125,10 +125,10 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
         this.currentOfferInfo = JSON.parse(JSON.stringify(res));
 
         this.canBargain =
-          res.bank == 'SWE_AVANZA' ||
-          res.bank == 'SWE_SBAB' ||
-          res.bank == 'SWE_DANSKE_BANK' ||
-          res.bank == 'SWE_ICA_BANKEN'
+          res.bank === 'SWE_AVANZA' ||
+          res.bank === 'SWE_SBAB' ||
+          res.bank === 'SWE_DANSKE_BANK' ||
+          res.bank === 'SWE_ICA_BANKEN'
             ? false
             : true;
 
@@ -240,12 +240,12 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
   public setOfferType(type: string) {
     this.currentOfferType = type;
 
-    if (type == 'all') {
+    if (type === 'all') {
       this.currentOfferInfo.offers.top5 = this.offersInfo.offers.top5;
       return;
     }
     const newLoanTypeSelected = this.offersInfo.offers.top5.filter((item) => {
-      return item.loanType == type;
+      return item.loanType === type;
     });
 
     this.currentOfferInfo.offers.top5 = newLoanTypeSelected;
@@ -258,7 +258,9 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
   }
 
   public openBankUrl(offer: OfferInfo): void {
-    if (offer.bankInfo.url === null) return;
+    if (offer.bankInfo.url === null) {
+      return;
+    }
 
     window.open(offer.bankInfo.url, '_blank');
 
@@ -269,8 +271,9 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
   }
 
   public openBankUrlByButton(offer: OfferInfo): void {
-    if (offer.bankInfo.url === null || offer.bankInfo.partner == false) return;
-
+    if (offer.bankInfo.url === null || offer.bankInfo.partner === false) {
+      return;
+    }
     window.open(offer.bankInfo.url, '_blank');
 
     const trackingDto = new TrackingDto();
@@ -280,8 +283,9 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
   }
 
   public openNewOfferDialog(offer: OfferInfo): void {
-    if (offer.bankInfo.partner === false) return;
-
+    if (offer.bankInfo.partner === false) {
+      return;
+    }
     window.open(offer.bankInfo.transferUrl, '_blank');
 
     const trackingDto = new TrackingDto();

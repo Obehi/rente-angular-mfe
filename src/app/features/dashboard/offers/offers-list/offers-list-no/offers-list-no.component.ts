@@ -6,7 +6,7 @@ import { OfferInfo, Offers } from './../../../../../shared/models//offers';
   templateUrl: './offers-list-no.component.html',
   styleUrls: ['./offers-list-no.component.scss']
 })
-export class OffersListNoComponent {
+export class OffersListNoComponent implements OnInit {
   @Input() offer: OfferInfo;
   @Input() offersInfo: Offers;
   public currentOfferInfo: Offers;
@@ -29,18 +29,16 @@ export class OffersListNoComponent {
     });
   }
 
-  public setOfferType(type: string) {
+  public setOfferType(type: string): void {
     this.currentOfferType = type;
 
-    if (type == 'all') {
+    if (type === 'all') {
       this.currentOfferInfo.offers.top5 = this.offersInfo.offers.top5;
       return;
     }
-    const newLoanTypeSelected = this.offersInfo.offers.top5.filter(
-      (item, index, offers) => {
-        return item.loanType == type;
-      }
-    );
+    const newLoanTypeSelected = this.offersInfo.offers.top5.filter((item) => {
+      return item.loanType === type;
+    });
 
     this.currentOfferInfo.offers.top5 = newLoanTypeSelected;
   }

@@ -61,7 +61,7 @@ export class TextAreaComponent implements ControlValueAccessor, OnChanges {
     this.onTouch();
   }
 
-  ngOnChanges(changes: SimpleChanges) {
+  ngOnChanges(changes: SimpleChanges): void {
     if (changes.errorStateMatcher) {
       this.matcher = new MyErrorStateMatcher(this.errorStateMatcher);
     }

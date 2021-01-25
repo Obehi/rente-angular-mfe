@@ -4,13 +4,13 @@ import { Offers, BankStatisticItem } from '@shared/models/offers';
 import { MatTabChangeEvent } from '@angular/material';
 
 declare let require: any;
-const Boost = require('highcharts/modules/boost');
+const boost = require('highcharts/modules/boost');
 const noData = require('highcharts/modules/no-data-to-display');
-const More = require('highcharts/highcharts-more');
+const more = require('highcharts/highcharts-more');
 
-Boost(Highcharts);
+boost(Highcharts);
 noData(Highcharts);
-More(Highcharts);
+more(Highcharts);
 noData(Highcharts);
 
 @Component({
@@ -92,11 +92,11 @@ export class OffersStatisticsComponent implements AfterViewInit {
     return text;
   }
 
-  get chartTitleMargin() {
+  get chartTitleMargin(): number {
     return window.innerWidth <= 991 ? 0 : -10;
   }
 
-  ngAfterViewInit() {
+  ngAfterViewInit(): void {
     if (this.offersInfo) {
       if (this.hasClientBankData) {
         this.clientBankEffRateOptions = this.ChartOptions();
@@ -109,7 +109,9 @@ export class OffersStatisticsComponent implements AfterViewInit {
         ];
 
         // Only show clientbank graph when everything is false or true
-        if (this.clientBankData.segmentedData == this.allBankData.segmentedData)
+        if (
+          this.clientBankData.segmentedData === this.allBankData.segmentedData
+        )
           this.clientBankEffRateChart = Highcharts.chart(
             this.clientBankChartId,
             this.clientBankEffRateOptions
@@ -156,7 +158,7 @@ export class OffersStatisticsComponent implements AfterViewInit {
       },
 
       title: {
-        text: null, //'Din rente i forhold til andre i din bank:',
+        text: null, // 'Din rente i forhold til andre i din bank:',
         align: 'left',
 
         style: {
@@ -208,7 +210,7 @@ export class OffersStatisticsComponent implements AfterViewInit {
           type: 'column' as const,
           name: 'data',
 
-          data: [], //[2.21, 2.62, 2.43],
+          data: [], // [2.21, 2.62, 2.43],
           dataLabels: {
             enabled: true,
             rotation: 0,
@@ -236,7 +238,7 @@ export class OffersStatisticsComponent implements AfterViewInit {
       },
 
       title: {
-        text: null, //'Din rente i forhold til andre i alle banker:',
+        text: null, // 'Din rente i forhold til andre i alle banker:',
         align: 'left',
         margin: this.chartTitleMargin,
         style: {
@@ -287,7 +289,7 @@ export class OffersStatisticsComponent implements AfterViewInit {
           type: 'column' as const,
           name: 'data',
 
-          data: [], //[2.21, 2.62, 2.43],
+          data: [], // [2.21, 2.62, 2.43],
           dataLabels: {
             enabled: true,
             rotation: 0,

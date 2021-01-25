@@ -161,7 +161,9 @@ export class ProfileComponent implements OnInit, DeactivationGuarded {
   // Gets called every time user navigates from this page.
   // Determines if you can leave this page or if you have to wait.
   canDeactivate(): boolean | Observable<boolean> | Promise<boolean> {
-    if (this.canLeavePage) return true;
+    if (this.canLeavePage) {
+      return true;
+    }
 
     // Wait for upload info before navigating to another page
     this.isLoading = true;

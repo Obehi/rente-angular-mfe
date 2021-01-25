@@ -12,7 +12,7 @@ import { ROUTES_MAP } from '@config/routes-config';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  public static CookiesAcceptedKey = 'isCookiesAccepted';
+  public static cookiesAcceptedKey = 'isCookiesAccepted';
 
   public title = 'rente-front-end';
   public navigationSubscription: Subscription;
@@ -43,7 +43,7 @@ export class AppComponent implements OnInit {
       }
     });
 
-    if (!this.localStorageService.getItem(AppComponent.CookiesAcceptedKey)) {
+    if (!this.localStorageService.getItem(AppComponent.cookiesAcceptedKey)) {
       this.showCookieAcc = true;
     }
   }
@@ -68,7 +68,7 @@ export class AppComponent implements OnInit {
   }
 
   acceptCookies() {
-    this.localStorageService.setItem(AppComponent.CookiesAcceptedKey, true);
+    this.localStorageService.setItem(AppComponent.cookiesAcceptedKey, true);
     this.showCookieAcc = false;
   }
 

@@ -160,8 +160,6 @@ export class AuthSvMockupComponent implements OnInit, OnDestroy {
   }
 
   private initializeWebSocketConnection(loginId: number) {
-    this.connectAndReconnectSocket(this.successSocketCallback);
-
     const socket = new SockJS(environment.crawlerUrl);
     this.stompClient = Stomp.over(socket);
 
@@ -174,7 +172,7 @@ export class AuthSvMockupComponent implements OnInit, OnDestroy {
       (frame) => {
         this.sendUserData(loginId);
 
-        //this.resendDataAfterReconnect();
+        // this.resendDataAfterReconnect();
         this.successSocketCallback();
         // Send ping to prevent socket closing
         this.intervalSubscription = interval(PING_TIME).subscribe(() => {
@@ -295,7 +293,6 @@ export class AuthSvMockupComponent implements OnInit, OnDestroy {
             this.loginStep2Status = MESSAGE_STATUS.ERROR;
             this.unsubscribeEverything();
             break;
-          case BANKID_STATUS.CONFIRMATION_REQUIRED:
           case BANKID_STATUS.CONFIRMATION_REQUIRED_DNB_PORTAL_AGREEMENT:
             this.isShowPassPhrase = false;
             this.viewStatus.isConfirmationRequired = true;
@@ -358,15 +355,15 @@ export class AuthSvMockupComponent implements OnInit, OnDestroy {
             this.unsubscribeEverything();
             break;
 
-          case BANKID_STATUS.NO_LOANS: {
-            this.router.navigate(['/dashboard/' + ROUTES_MAP.noLoan]);
-          }
+          case BANKID_STATUS.NO_LOANS:
+            {
+              this.router.navigate(['/dashboard/' + ROUTES_MAP.noLoan]);
+            }
+            break;
           case BANKID_STATUS.LOANS_PERSISTED:
             this.viewStatus.isLoansPersisted = true;
             const user = response.data.user;
 
-            console.log('user');
-            console.log(user);
             this.authService
               .loginWithToken(user.oneTimeToken)
               .subscribe((res) => {
@@ -411,9 +408,8 @@ export class AuthSvMockupComponent implements OnInit, OnDestroy {
       }
     });
   }
-  private connectAndReconnectSocket(successCallback) {}
 
-  sendUserData(loginId: number, resendData = false) {
+  sendUserData(loginId: number, resendData = false): void {
     let country = '';
     if (locale.includes('nb')) {
       country = 'NOR';

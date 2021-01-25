@@ -1,4 +1,4 @@
-//File replacement did not work with language interfaces when running heroku-postbuild (it works with ng serve...). This file is the workaround
+// File replacement did not work with language interfaces when running heroku-postbuild (it works with ng serve...). This file is the workaround
 
 import fs from 'fs';
 import path from 'path';

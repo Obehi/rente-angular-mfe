@@ -92,7 +92,7 @@ export class AuthSvComponent implements OnInit {
       (frame) => {
         this.sendUserData(tinkCode);
 
-        //this.resendDataAfterReconnect();
+        // this.resendDataAfterReconnect();
         this.successSocketCallback();
         // Send ping to prevent socket closing
         this.intervalSubscription = interval(PING_TIME).subscribe(() => {
@@ -109,7 +109,7 @@ export class AuthSvComponent implements OnInit {
 
   private successSocketCallback() {
     this.tinkSuccess = true;
-    //this.router.navigate([`/${ROUTES_MAP.initConfirmation}`]);
+    // this.router.navigate([`/${ROUTES_MAP.initConfirmation}`]);
 
     const repliesUrl = `${API_URL_MAP.crawlerRepliesUrl}`;
     this.stompClient.subscribe(repliesUrl, (message) => {
@@ -169,13 +169,13 @@ export class AuthSvComponent implements OnInit {
 
   sendUserData(tinkCode: number, resendData = false): void {
     const dataObj = {};
-    //this.setDefaultSteps();
+    // this.setDefaultSteps();
     const data = JSON.stringify(dataObj);
 
     this.stompClient.send(API_URL_MAP.tinkSendMessageUrl + tinkCode, {}, data);
     if (!resendData) {
-      //this.initTimer(IDENTIFICATION_TIMEOUT_TIME);
-      //this.initConnectionTimer();
+      // this.initTimer(IDENTIFICATION_TIMEOUT_TIME);
+      // this.initConnectionTimer();
     }
   }
 }
