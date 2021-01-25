@@ -21,7 +21,7 @@ import { FirstBuyersService } from './first-buyers.service';
     InitialOffersComponent,
     InputFlowComponent,
     PropertyInputComponent,
-    InitialOfferComponent,
+    InitialOfferComponent
   ],
   imports: [
     CommonModule,
@@ -31,15 +31,14 @@ import { FirstBuyersService } from './first-buyers.service';
     MaterialModule,
     ReactiveFormsModule,
     SelectAutocompleteModule,
-    CurrencyMaskModule,
+    CurrencyMaskModule
   ],
   providers: [
     {
       provide: STEPPER_GLOBAL_OPTIONS,
-      useValue: {displayDefaultIndicatorType: false}
+      useValue: { displayDefaultIndicatorType: false }
     },
     FirstBuyersService
   ]
 })
-export class FirstBuyersModule {
-}
+export class FirstBuyersModule {}
