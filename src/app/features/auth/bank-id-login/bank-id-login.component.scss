@@ -1,5 +1,16 @@
 @import "../../../../styles/theme/_colors.scss";
 
+.email-form {
+  margin-top: 40px;
+
+  h3 {
+    font-size: 16px;
+    line-height: 1.2;
+    color: #112639;
+    font-weight: 500;
+  }
+}
+
 .login {
   text-align: center;
 }
@@ -10,6 +21,12 @@ p {
 
 .dnbError {
   text-align: center;
+}
+
+rente-button {
+  text-align: center;
+  margin-top: 40px;
+  display: block;
 }
 
 .dnbInstability {
@@ -33,6 +50,8 @@ a {
     cursor: pointer;
   }
 }
+
+
 
 mat-checkbox {
   margin-bottom: 40px;

@@ -154,10 +154,11 @@ export class BankSelectSvComponent implements OnInit, OnDestroy {
             case BANKID_STATUS.CRAWLER_ERROR:
               this.logging.logger(this.logging.Level.Error, "5:STATUS: BANKID_STATUS.CRAWLER_ERROR", 'BankSelectSvComponent', 'successSocketCallback', this.logging.SubSystem.Tink, "BANKID_STATUS: CRAWLER_ERROR", response)
               break;
-
+            
             case BANKID_STATUS.NO_LOANS: 
               this.router.navigate(['/dashboard/' + ROUTES_MAP.noLoan])
               break;
+
             case BANKID_STATUS.LOANS_PERSISTED:
               console.log("5.")
               this.logging.logger(this.logging.Level.Info, "5:STATUS: BANKID_STATUS.LOANS_PERSISTED", 'BankSelectSvComponent', 'successSocketCallback', this.logging.SubSystem.Tink, "5: BANKID_STATUS: LOANS_PERSISTED")

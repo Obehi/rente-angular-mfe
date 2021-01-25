@@ -11,7 +11,8 @@ export const API_URL_MAP = {
     logout: '/logout',
     signup: '/signup',
     me: '/me',
-    user: '/user'
+    user: '/user',
+    demo: '/login/demo'
   },
   user: {
     base: '/user',

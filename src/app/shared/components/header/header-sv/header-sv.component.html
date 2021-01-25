@@ -17,8 +17,8 @@
             <a  i18n=“Headerlink|faq@@header.faq” href="#faq">FAQ </a>
           </span>
           <a [routerLink]="['/dashboard/' + routesMap.offers]" *ngIf="isLoggedIn" routerLinkActive="active-link" class="highlight">Min sida</a>
-          <a [routerLink]="['/velgbank']" *ngIf="!isLoggedIn  && optimizeService.getBinaryVariation() == true" routerLinkActive="active-link" class="highlight">Logg inn</a>
-          <a [routerLink]="['/']" *ngIf="isLoggedIn" (click)="auth.logout()">logga ut</a>
+          <a [routerLink]="['/valjbank']" *ngIf="!isLoggedIn" routerLinkActive="active-link" class="highlight">Logga in</a>
+          <a [routerLink]="['/']" *ngIf="isLoggedIn" (click)="auth.logout()">Logga ut</a>
         </div>
         <div class="menu mobile" (click)="toggleNav()">
           <span></span>
@@ -42,10 +42,10 @@
           (click)="toggleNav()"><h3 class="highlight">Min side</h3>
         </a>
         <a
-          *ngIf="!isLoggedIn  && optimizeService.getBinaryVariation() == 1"
+          *ngIf="!isLoggedIn"
           [routerLink]="['/velgbank']"
           routerLinkActive="active-link"
-          (click)="toggleNav()"><h3 class="highlight">Logg inn</h3>
+          (click)="toggleNav()"><h3 class="highlight">Logga in</h3>
         </a>
         <a
           i18n=“Headerlink|blog@@header.blog2”

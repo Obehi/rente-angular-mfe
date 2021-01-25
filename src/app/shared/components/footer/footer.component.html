@@ -60,10 +60,21 @@
             </picture>
           </a>
         </li>
+        <li>
+          <a target="_blank" href="https://www.defero.no/">
+            <picture>
+             <!--  <source srcset="../../../assets/img-webp/partners/finansportalen.webp" type="image/webp">
+              <source srcset="../../../../assets/img/partners/finansportalen.png" type="image/jpeg"> -->
+              <img class="partner-logo defero" src="../../../../assets/img/partners/defero.png"
+                alt="finansportalen logo" />
+            </picture>
+          </a>
+        </li>
       </ul>
     </div>
 
     <div class="item">
+      
       <div class="social">
         <a class="desktop" href="https://www.facebook.com/renteradar/" target="_blank">
           <img src="../../../../assets/img/facebook.svg" alt="Facebook logo" />
@@ -88,18 +99,22 @@
       <p>
         Forbrukerøkonomene AS (Org nr: 921 534 191)
         <br />
+          <a href="https://renteradar.no/bankguiden" routerLinkActive="active-link">
+          Bankguiden
+        </a> 
     </div>
+    
   </div>
 
-    <div *ngIf="isSweden" class="inner-footer">
+  <div *ngIf="isSweden" class="inner-footer">
 
-      <a class="temp-swedish-policy" i18n=“privacy|footer@@footer.privacy” [routerLink]="[routes.privacy]"
-      routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">
-      Personvern
+    <a class="temp-swedish-policy" i18n=“privacy|footer@@footer.privacy” [routerLink]="[routes.privacy]"
+    routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">
+    Personvern
     </a>
-      <p class="org">
-        <a href="http://ranteradar.se/">Ränteradar.se</a>
-        ägs och drivs av Ränteradar
-        Sverige AB<br>(Org nr: 559271-9289).
-      </p>
-    </div>
+    <p class="org">
+      <a href="http://ranteradar.se/">Ränteradar.se</a>
+      ägs och drivs av Ränteradar
+      Sverige AB<br>(Org nr: 559271-9289).
+    </p>
+  </div>

@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { LoansService } from '@services/remote-api/loans.service';
 import { Loans } from '@shared/models/loans';
 import { trigger, transition, animate, keyframes, style } from '@angular/animations';
+import { locale } from '@config/locale/locale'
 
 @Component({
   selector: 'rente-loans',
@@ -27,10 +28,12 @@ export class LoansNoComponent implements OnInit {
   public errorMessage: string;
   public unableToCalculateTotalInterest: boolean;
   public unableToCalculateTotalInterestByRemainingYears: boolean;
-
+  public locale: string;
+  
   constructor(private loansService: LoansService) { }
 
   ngOnInit() {
+    this.locale = locale
     this.loansService.getLoans().subscribe((res: Loans) => {
       this.loansData = res;
     }, err => {

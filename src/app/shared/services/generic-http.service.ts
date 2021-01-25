@@ -77,7 +77,6 @@ export class GenericHttpService {
   
   public postExternal(path: string, body: object = {}): Observable<any> {
     const fullPath = `${path}`;
-    console.log(body)
     const jsonBody: string = JSON.stringify(body);
 
     let headers: HttpHeaders = new HttpHeaders()
