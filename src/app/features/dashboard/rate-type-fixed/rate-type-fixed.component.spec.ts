@@ -8,9 +8,8 @@ describe('RateTypeFixedComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RateTypeFixedComponent ]
-    })
-    .compileComponents();
+      declarations: [RateTypeFixedComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

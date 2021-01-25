@@ -7,10 +7,7 @@ import { MatBottomSheetRef } from '@angular/material';
   styleUrls: ['./share-sheet.component.scss']
 })
 export class ShareSheetComponent implements OnInit {
-
   constructor(private bottomSheetRef: MatBottomSheetRef<ShareSheetComponent>) {}
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

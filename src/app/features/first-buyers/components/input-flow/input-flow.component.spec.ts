@@ -8,9 +8,8 @@ describe('InputFlowComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ InputFlowComponent ]
-    })
-    .compileComponents();
+      declarations: [InputFlowComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

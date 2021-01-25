@@ -1,23 +1,23 @@
-import { Component, OnInit, Input } from "@angular/core";
-import * as Highcharts from "highcharts";
+import { Component, OnInit, Input } from '@angular/core';
+import * as Highcharts from 'highcharts';
 import {
   LoansService,
   AddressDto
-} from "../../../../shared/services/remote-api/loans.service";
+} from '../../../../shared/services/remote-api/loans.service';
 import {
   trigger,
   transition,
   keyframes,
   animate,
   style
-} from "@angular/animations";
-import { SnackBarService } from "@services/snackbar.service";
-import { MatTabChangeEvent } from "@angular/material";
+} from '@angular/animations';
+import { SnackBarService } from '@services/snackbar.service';
+import { MatTabChangeEvent } from '@angular/material';
 
-declare var require: any;
-const Boost = require("highcharts/modules/boost");
-const noData = require("highcharts/modules/no-data-to-display");
-const More = require("highcharts/highcharts-more");
+declare let require: any;
+const Boost = require('highcharts/modules/boost');
+const noData = require('highcharts/modules/no-data-to-display');
+const More = require('highcharts/highcharts-more');
 
 Boost(Highcharts);
 noData(Highcharts);
@@ -25,9 +25,9 @@ More(Highcharts);
 noData(Highcharts);
 
 @Component({
-  selector: "rente-virdi-statistics",
-  templateUrl: "./virdi-statistics.component.html",
-  styleUrls: ["./virdi-statistics.component.scss"]
+  selector: 'rente-virdi-statistics',
+  templateUrl: './virdi-statistics.component.html',
+  styleUrls: ['./virdi-statistics.component.scss']
 })
 export class VirdiStatisticsComponent implements OnInit {
   @Input() address: AddressDto;
@@ -62,20 +62,20 @@ export class VirdiStatisticsComponent implements OnInit {
     this.isLoading = true;
     this.lineChartOptions = {
       chart: {
-        type: "area",
+        type: 'area',
         height: 300
       },
 
       title: {
-        text: "",
+        text: '',
         style: {
-          fontFamily: "roboto"
+          fontFamily: 'roboto'
         }
       },
 
       xAxis: {
         title: {
-          enabled: "bottom"
+          enabled: 'bottom'
         },
         categories: []
       },
@@ -93,7 +93,7 @@ export class VirdiStatisticsComponent implements OnInit {
 
       tooltip: {
         formatter() {
-          return this.x + ": " + this.y;
+          return this.x + ': ' + this.y;
         }
       },
 
@@ -101,9 +101,9 @@ export class VirdiStatisticsComponent implements OnInit {
 
       series: [
         {
-          type: "area" as "area",
-          name: "data",
-          color: "#18BC9C",
+          type: 'area' as const,
+          name: 'data',
+          color: '#18BC9C',
           data: []
         }
       ],
@@ -116,8 +116,8 @@ export class VirdiStatisticsComponent implements OnInit {
             chartOptions: {
               title: {
                 style: {
-                  fontFamily: "roboto",
-                  fontSize: "16px"
+                  fontFamily: 'roboto',
+                  fontSize: '16px'
                 }
               }
             }
@@ -128,21 +128,21 @@ export class VirdiStatisticsComponent implements OnInit {
 
     this.columnChartOptions = {
       chart: {
-        type: "column",
+        type: 'column',
         height: 300
       },
 
       title: {
-        text: "",
+        text: '',
         style: {
-          fontFamily: "roboto"
+          fontFamily: 'roboto'
         }
       },
 
       xAxis: {
         title: {
-          enabled: "bottom",
-          text: "NOK"
+          enabled: 'bottom',
+          text: 'NOK'
         },
         categories: []
       },
@@ -160,13 +160,13 @@ export class VirdiStatisticsComponent implements OnInit {
 
       tooltip: {
         formatter() {
-          return "<b>" + this.x + "</b><br/>" + "Antall" + ": " + this.y;
+          return '<b>' + this.x + '</b><br/>' + 'Antall' + ': ' + this.y;
         }
       },
 
       plotOptions: {
         column: {
-          stacking: "normal",
+          stacking: 'normal',
           groupPadding: 0,
           colorByPoint: true,
           colors: []
@@ -175,9 +175,9 @@ export class VirdiStatisticsComponent implements OnInit {
 
       series: [
         {
-          type: "column" as "column",
-          name: "data",
-          color: "#CFD4D7",
+          type: 'column' as const,
+          name: 'data',
+          color: '#CFD4D7',
           data: []
         }
       ],
@@ -190,8 +190,8 @@ export class VirdiStatisticsComponent implements OnInit {
             chartOptions: {
               title: {
                 style: {
-                  fontFamily: "roboto",
-                  fontSize: "16px"
+                  fontFamily: 'roboto',
+                  fontSize: '16px'
                 }
               }
             }
@@ -201,7 +201,7 @@ export class VirdiStatisticsComponent implements OnInit {
     };
 
     this.loansService.getAddressStatistics(this.address.id).subscribe(
-      extendedInfo => {
+      (extendedInfo) => {
         this.isLoading = false;
         if (extendedInfo.indexHistory && extendedInfo.indexHistory.area) {
           this.indexArea = extendedInfo.indexHistory.area;
@@ -213,29 +213,32 @@ export class VirdiStatisticsComponent implements OnInit {
             extendedInfo.statistics.price_distribution_sqm &&
             extendedInfo.statistics.price_distribution_sqm.length > 0
           ) {
-            extendedInfo.statistics.price_distribution_sqm.forEach(element => {
-              this.priceDestributionSqm.push({
-                from: element.from,
-                to: element.to
-              });
-              this.columnChartOptions.series[0].data.push(element.count);
+            extendedInfo.statistics.price_distribution_sqm.forEach(
+              (element) => {
+                this.priceDestributionSqm.push({
+                  from: element.from,
+                  to: element.to
+                });
+                this.columnChartOptions.series[0].data.push(element.count);
 
-              this.averageSqmPrice = extendedInfo.statistics.average_sqm_price;
-              this.area = extendedInfo.indexHistory.area;
+                this.averageSqmPrice =
+                  extendedInfo.statistics.average_sqm_price;
+                this.area = extendedInfo.indexHistory.area;
 
-              if (
-                extendedInfo.statistics.average_sqm_price >= element.from &&
-                extendedInfo.statistics.average_sqm_price <= element.to
-              ) {
-                this.columnChartOptions.plotOptions.column.colors.push(
-                  "#18BC9C"
-                );
-              } else {
-                this.columnChartOptions.plotOptions.column.colors.push(
-                  "#CFD4D7"
-                );
+                if (
+                  extendedInfo.statistics.average_sqm_price >= element.from &&
+                  extendedInfo.statistics.average_sqm_price <= element.to
+                ) {
+                  this.columnChartOptions.plotOptions.column.colors.push(
+                    '#18BC9C'
+                  );
+                } else {
+                  this.columnChartOptions.plotOptions.column.colors.push(
+                    '#CFD4D7'
+                  );
+                }
               }
-            });
+            );
           }
         }
         this.columnChartOptions.xAxis.categories = [
@@ -248,10 +251,10 @@ export class VirdiStatisticsComponent implements OnInit {
               if (index >= 39) {
                 throw BreakException;
               } else {
-                console.log("dates", element.date.split("-", 1)[0]);
+                console.log('dates', element.date.split('-', 1)[0]);
 
                 this.lineChartOptions.xAxis.categories.unshift(
-                  element.date.split("-", 1)[0]
+                  element.date.split('-', 1)[0]
                 );
                 this.lineChartOptions.series[0].data.unshift(
                   element.index_value
@@ -274,7 +277,7 @@ export class VirdiStatisticsComponent implements OnInit {
           this.lineChartOptions
         );
       },
-      err => {
+      (err) => {
         this.notifError();
         this.isLoading = false;
       }
@@ -282,28 +285,28 @@ export class VirdiStatisticsComponent implements OnInit {
   }
 
   private convertThousands(value) {
-    return Math.floor(value / 1000) + "K";
+    return Math.floor(value / 1000) + 'K';
   }
 
   private createThousandsCategories(arr: any[]) {
-    return arr.map(item => {
+    return arr.map((item) => {
       if (item.to !== undefined) {
         if (item.from > 1000) {
           return (
             this.convertThousands(item.from) +
-            "-" +
+            '-' +
             this.convertThousands(item.to)
           );
         } else {
-          return "0" + "-" + this.convertThousands(item.to);
+          return '0' + '-' + this.convertThousands(item.to);
         }
       } else {
-        return ">" + this.convertThousands(item.from);
+        return '>' + this.convertThousands(item.from);
       }
     });
   }
 
   notifError() {
-    this.snackBar.openFailSnackBar("Feil ved lasting av statistikkdata", 2);
+    this.snackBar.openFailSnackBar('Feil ved lasting av statistikkdata', 2);
   }
 }

@@ -36,6 +36,8 @@ fs.writeFile(targetPath, envConfigFile, (err) => {
     return;
   }
 
-  console.log(`Environment config generated at ${targetPath}. Environment mode is ${process.env.APP} `);
+  console.log(
+    `Environment config generated at ${targetPath}. Environment mode is ${process.env.APP} `
+  );
   console.log(envConfigFile);
 });

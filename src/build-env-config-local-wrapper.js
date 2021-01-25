@@ -1,2 +1,2 @@
-const buildEnvConfig = require('./build-env-config.js')
-buildEnvConfig()
+const buildEnvConfig = require('./build-env-config.js');
+buildEnvConfig();

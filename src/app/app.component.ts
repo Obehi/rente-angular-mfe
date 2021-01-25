@@ -12,12 +12,11 @@ import { ROUTES_MAP } from '@config/routes-config';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-
   public static CookiesAcceptedKey = 'isCookiesAccepted';
 
   public title = 'rente-front-end';
   public navigationSubscription: Subscription;
-  public showCookieAcc:boolean;
+  public showCookieAcc: boolean;
 
   constructor(
     private router: Router,
@@ -25,14 +24,14 @@ export class AppComponent implements OnInit {
     private metaService: MetaService,
     private titleService: TitleService,
     private localStorageService: LocalStorageService
-  ) { }
+  ) {}
 
   onActivate(event: any) {
     window.scrollTo(0, 0);
   }
 
   ngOnInit() {
-    this.navigationSubscription = this.router.events.subscribe(event => {
+    this.navigationSubscription = this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.changeTitles();
         if ((window as any).dataLayer) {
@@ -51,9 +50,12 @@ export class AppComponent implements OnInit {
 
   private changeTitles(): void {
     let data = this.route.root.firstChild.snapshot.data;
-    if (!data.title && this.route.root.firstChild
-        && this.route.root.firstChild.firstChild
-        && this.route.root.firstChild.firstChild.firstChild) {
+    if (
+      !data.title &&
+      this.route.root.firstChild &&
+      this.route.root.firstChild.firstChild &&
+      this.route.root.firstChild.firstChild.firstChild
+    ) {
       data = this.route.root.firstChild.firstChild.firstChild.snapshot.data;
     }
     const title = data.title;
@@ -73,5 +75,4 @@ export class AppComponent implements OnInit {
   readMore() {
     this.router.navigate([`/${ROUTES_MAP.privacyPolicy}`]);
   }
-
 }

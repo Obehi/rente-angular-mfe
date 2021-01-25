@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit } from '@angular/core';
 import {
   FormGroup,
   FormBuilder,
@@ -7,24 +7,24 @@ import {
   FormGroupDirective,
   NgForm,
   AbstractControl
-} from "@angular/forms";
-import { VALIDATION_PATTERN } from "@config/validation-patterns.config";
-import { ContactService } from "@services/remote-api/contact.service";
-import { Router } from "@angular/router";
-import { SnackBarService } from "@services/snackbar.service";
-import { Mask } from '@shared/constants/mask'
+} from '@angular/forms';
+import { VALIDATION_PATTERN } from '@config/validation-patterns.config';
+import { ContactService } from '@services/remote-api/contact.service';
+import { Router } from '@angular/router';
+import { SnackBarService } from '@services/snackbar.service';
+import { Mask } from '@shared/constants/mask';
 import { locale } from '../../config/locale/locale';
-import { CustomLangTextService } from "@services/custom-lang-text.service";
+import { CustomLangTextService } from '@services/custom-lang-text.service';
 @Component({
-  selector: "rente-contact-us",
-  templateUrl: "./contact-us.component.html",
-  styleUrls: ["./contact-us.component.scss"]
+  selector: 'rente-contact-us',
+  templateUrl: './contact-us.component.html',
+  styleUrls: ['./contact-us.component.scss']
 })
 export class ContactUsComponent implements OnInit {
   public contactUsForm: FormGroup;
-  public mask = Mask
+  public mask = Mask;
   public isLoading: boolean;
-  private locale = locale
+  private locale = locale;
   constructor(
     private fb: FormBuilder,
     private contactService: ContactService,
@@ -35,22 +35,26 @@ export class ContactUsComponent implements OnInit {
 
   ngOnInit() {
     this.contactUsForm = this.fb.group({
-      name: ["", Validators.required],
+      name: ['', Validators.required],
       email: [
-        "",
+        '',
         Validators.compose([
           Validators.required,
           Validators.pattern(VALIDATION_PATTERN.email)
         ])
       ],
       phone: [
-        "",
+        '',
         Validators.compose([
           Validators.required,
-          Validators.pattern(locale.includes("sv") ? VALIDATION_PATTERN.phoneShortSv : VALIDATION_PATTERN.phoneShort)
+          Validators.pattern(
+            locale.includes('sv')
+              ? VALIDATION_PATTERN.phoneShortSv
+              : VALIDATION_PATTERN.phoneShort
+          )
         ])
       ],
-      message: ["", Validators.required]
+      message: ['', Validators.required]
     });
   }
 
@@ -62,24 +66,27 @@ export class ContactUsComponent implements OnInit {
   }
 
   public sendContactUsForm(formData) {
-    var formLocale
-    if(this.locale === "nb") {
-      formLocale = "NOR";
-    } else if(this.locale === "sv") {
-      formLocale = "SWE";
+    let formLocale;
+    if (this.locale === 'nb') {
+      formLocale = 'NOR';
+    } else if (this.locale === 'sv') {
+      formLocale = 'SWE';
     }
-    formData["country"] = formLocale;
+    formData['country'] = formLocale;
 
     this.isLoading = true;
     this.contactUsForm.markAllAsTouched();
     this.contactUsForm.updateValueAndValidity();
     this.contactService.sendContactForm(formData).subscribe(
-      _ => {
+      (_) => {
         this.isLoading = false;
-        this.router.navigate(["/"]);
-        this.snackBar.openSuccessSnackBar(this.customLangTextService.getSnackBarSavedMessage(), 2);
+        this.router.navigate(['/']);
+        this.snackBar.openSuccessSnackBar(
+          this.customLangTextService.getSnackBarSavedMessage(),
+          2
+        );
       },
-      err => {
+      (err) => {
         this.isLoading = false;
       }
     );

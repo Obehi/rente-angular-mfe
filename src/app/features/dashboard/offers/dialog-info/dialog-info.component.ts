@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { OfferInfo } from '@shared/models/offers';
-import { CustomLangTextService } from '@shared/services/custom-lang-text.service'
+import { CustomLangTextService } from '@shared/services/custom-lang-text.service';
 
 @Component({
   selector: 'rente-dialog-info',
@@ -9,15 +9,14 @@ import { CustomLangTextService } from '@shared/services/custom-lang-text.service
   styleUrls: ['./dialog-info.component.scss']
 })
 export class DialogInfoComponent implements OnInit {
-
   constructor(
     public dialogRef: MatDialogRef<DialogInfoComponent>,
     @Inject(MAT_DIALOG_DATA) public offer: OfferInfo,
     public customLangTextSerice: CustomLangTextService
-    ) {}
+  ) {}
 
   ngOnInit() {
-    if(this.offer.establishmentFee == undefined) {
+    if (this.offer.establishmentFee == undefined) {
       this.offer.establishmentFee = 0;
     }
   }

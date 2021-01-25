@@ -13,17 +13,15 @@ import { flatMap } from 'rxjs/operators';
 export class FirstBuyersComponent {
   formGroup: FormGroup = new FormGroup({
     outstandingDebt: new FormControl(),
-    income: new FormControl(),
+    income: new FormControl()
   });
   isLoading = false;
-
 
   constructor(
     private router: Router,
     private firstBuyersService: FirstBuyersService,
     private authService: AuthService
-  ) {
-  }
+  ) {}
 
   showOffers() {
     this.isLoading = true;
@@ -44,15 +42,18 @@ export class FirstBuyersComponent {
         income: +this.formGroup.get('income').value
       };
     }
-    this.firstBuyersService.getAuthToken({
-      outstandingDebt: this.firstBuyersService.offerValue.outstandingDebt,
-      income: this.firstBuyersService.offerValue.income,
-      country: 'NOR'
-    })
-      .pipe(flatMap(res => {
-        return this.authService.loginWithToken(res.token);
-      }))
-      .subscribe(res => {
+    this.firstBuyersService
+      .getAuthToken({
+        outstandingDebt: this.firstBuyersService.offerValue.outstandingDebt,
+        income: this.firstBuyersService.offerValue.income,
+        country: 'NOR'
+      })
+      .pipe(
+        flatMap((res) => {
+          return this.authService.loginWithToken(res.token);
+        })
+      )
+      .subscribe((res) => {
         this.router.navigate(['/boliglanskalkulator/tilbud']);
         this.isLoading = false;
       });

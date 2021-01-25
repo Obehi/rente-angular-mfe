@@ -1130,7 +1130,7 @@ Fortsett
                   <ph name="START_TAG_MAT_RADIO_BUTTON"><ex>&lt;mat-radio-button&gt;</ex>&lt;mat-radio-button&gt;</ph><ph name="START_TAG_SPAN"><ex>&lt;span&gt;</ex>&lt;span&gt;</ph>Ja<ph name="CLOSE_TAG_SPAN"><ex>&lt;/span&gt;</ex>&lt;/span&gt;</ph><ph name="CLOSE_TAG_MAT_RADIO_BUTTON"><ex>&lt;/mat-radio-button&gt;</ex>&lt;/mat-radio-button&gt;</ph>
                   <ph name="START_TAG_MAT_RADIO_BUTTON_1"><ex>&lt;mat-radio-button&gt;</ex>&lt;mat-radio-button&gt;</ph><ph name="START_TAG_SPAN"><ex>&lt;span&gt;</ex>&lt;span&gt;</ph>Nei<ph name="CLOSE_TAG_SPAN"><ex>&lt;/span&gt;</ex>&lt;/span&gt;</ph><ph name="CLOSE_TAG_MAT_RADIO_BUTTON"><ex>&lt;/mat-radio-button&gt;</ex>&lt;/mat-radio-button&gt;</ph>
                 <ph name="CLOSE_TAG_MAT_RADIO_GROUP"><ex>&lt;/mat-radio-group&gt;</ex>&lt;/mat-radio-group&gt;</ph>
-              </translation>
+               </translation>
   <translation id="profile.seeOffers.other”" desc="profile" meaning="“see-offers-other">
                 <ph name="START_PARAGRAPH"><ex>&lt;p&gt;</ex>&lt;p&gt;</ph>
                   Vil du se tilbud som krever andre produkter? (F.eks. bytte av nettbank og aktiv lønnskonto)
@@ -1562,4 +1562,8 @@ Fortsett
       </translation>
   <translation id="email.preferences.settings”" desc="email-preferences" meaning="“settings">Epost innstillinger</translation>
   <translation id="email.preferences.error”" desc="email-preferences" meaning="“error">Noe gikk galt, vennligst logg inn eller ta kontakt med oss på <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>hei@renteradar.no<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph></translation>
+  <translation id="dialog.mobile.yesNo”" desc="dialog" meaning="“yes-no">
+        <ph name="START_TAG_RENTE_BUTTON"><ex>&lt;rente-button&gt;</ex>&lt;rente-button&gt;</ph>Ja<ph name="CLOSE_TAG_RENTE_BUTTON"><ex>&lt;/rente-button&gt;</ex>&lt;/rente-button&gt;</ph>
+        <ph name="START_TAG_RENTE_BUTTON_1"><ex>&lt;rente-button&gt;</ex>&lt;rente-button&gt;</ph>Nei<ph name="CLOSE_TAG_RENTE_BUTTON"><ex>&lt;/rente-button&gt;</ex>&lt;/rente-button&gt;</ph>
+      </translation>
 </translationbundle>

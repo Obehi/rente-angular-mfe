@@ -4,7 +4,6 @@ import { ROUTES_MAP } from '../../config/routes-config';
 import { InitialOffersComponent } from './components/initial-offers/initial-offers.component';
 import { FirstBuyersComponent } from './first-buyers.component';
 
-
 const routes: Routes = [
   {
     path: '',
@@ -20,6 +19,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class FirstBuyersRoutingModule {
-}
-
+export class FirstBuyersRoutingModule {}

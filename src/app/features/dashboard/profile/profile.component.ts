@@ -17,9 +17,14 @@ import {
 import { MatDialog } from '@angular/material/dialog';
 import { ProfileDialogInfoComponent } from './dialog-info/dialog-info.component';
 import { MatChipInputEvent } from '@angular/material';
-import { LoansService, MembershipTypeDto, PreferencesUpdateDto, PreferencesDto } from '@services/remote-api/loans.service';
+import {
+  LoansService,
+  MembershipTypeDto,
+  PreferencesUpdateDto,
+  PreferencesDto
+} from '@services/remote-api/loans.service';
 import { UserService } from '@services/remote-api/user.service';
-import { Mask } from '@shared/constants/mask'
+import { Mask } from '@shared/constants/mask';
 import { VALIDATION_PATTERN } from '../../../config/validation-patterns.config';
 import { SnackBarService } from '../../../shared/services/snackbar.service';
 import { OfferInfo } from '@shared/models/offers';
@@ -41,20 +46,20 @@ import {
   animations: [
     trigger('loading', [
       // ...
-      state('false', style({
-        
-      })),
+      state('false', style({})),
       transition(':enter', []),
       transition('* => *', [
-        animate('2s', keyframes([
-          style({ opacity: 1, offset: 0.1}),
-          style({ opacity: 1, offset: 0.8}),
-          style({ opacity: 0, offset: 1}),
-        ]
-        ))
-      ]),
-    ]),
-  ],
+        animate(
+          '2s',
+          keyframes([
+            style({ opacity: 1, offset: 0.1 }),
+            style({ opacity: 1, offset: 0.8 }),
+            style({ opacity: 0, offset: 1 })
+          ])
+        )
+      ])
+    ])
+  ]
 })
 export class ProfileComponent implements OnInit, DeactivationGuarded {
   public preferencesForm: FormGroup;
@@ -73,11 +78,11 @@ export class ProfileComponent implements OnInit, DeactivationGuarded {
   public allMemberships: MembershipTypeDto[];
   public isLoading = true;
   public canLeavePage = true;
-  public updateAnimationTrigger :boolean;
-  public errorAnimationTrigger :boolean;
+  public updateAnimationTrigger: boolean;
+  public errorAnimationTrigger: boolean;
   public canNavigateBooolean$: Subject<boolean> = new Subject<boolean>();
   public username: string;
-  public mask = Mask
+  public mask = Mask;
 
   changesMade = false;
 
@@ -110,79 +115,75 @@ export class ProfileComponent implements OnInit, DeactivationGuarded {
   }
 
   ngOnInit() {
-    
-    this.loansService.getPreferencesDto().subscribe(res => {
-      this.isLoading = false;
-      let dto:PreferencesDto = res;
-      this.allMemberships = dto.availableMemberships;
-      this.memberships = this.allMemberships.filter(membership => {
-        if (dto.memberships.includes(membership.name)) {
-          return membership;
-        }
-      });
-      this.username = dto.name;
-      let income = String(dto.income)
-      this.profileForm = this.fb.group({
-        membership: [dto.memberships],
-        income: [income, Validators.required],
-        email: [
-          dto.email,
-          Validators.compose([
-            Validators.required,
-            Validators.pattern(VALIDATION_PATTERN.email)
-          ])
-        ]
-      });
-      this.preferencesForm = this.fb.group({
-        receiveNewsEmails: [dto.receiveNewsEmails],
-        checkRateReminderType: [dto.checkRateReminderType],
-        fetchCreditLinesOnly: [dto.fetchCreditLinesOnly],
-        noAdditionalProductsRequired: [
-          dto.noAdditionalProductsRequired
-        ],
-        interestedInEnvironmentMortgages: [
-          dto.interestedInEnvironmentMortgages
-        ]
-      });
-    },
-    err => {
-      console.log(err);
-    },
-    () => {
-      this.onFormChange();
-    });
+    this.loansService.getPreferencesDto().subscribe(
+      (res) => {
+        this.isLoading = false;
+        const dto: PreferencesDto = res;
+        this.allMemberships = dto.availableMemberships;
+        this.memberships = this.allMemberships.filter((membership) => {
+          if (dto.memberships.includes(membership.name)) {
+            return membership;
+          }
+        });
+        this.username = dto.name;
+        const income = String(dto.income);
+        this.profileForm = this.fb.group({
+          membership: [dto.memberships],
+          income: [income, Validators.required],
+          email: [
+            dto.email,
+            Validators.compose([
+              Validators.required,
+              Validators.pattern(VALIDATION_PATTERN.email)
+            ])
+          ]
+        });
+        this.preferencesForm = this.fb.group({
+          receiveNewsEmails: [dto.receiveNewsEmails],
+          checkRateReminderType: [dto.checkRateReminderType],
+          fetchCreditLinesOnly: [dto.fetchCreditLinesOnly],
+          noAdditionalProductsRequired: [dto.noAdditionalProductsRequired],
+          interestedInEnvironmentMortgages: [
+            dto.interestedInEnvironmentMortgages
+          ]
+        });
+      },
+      (err) => {
+        console.log(err);
+      },
+      () => {
+        this.onFormChange();
+      }
+    );
   }
 
-  
-  // DeactivationGuarded Interface method. 
+  // DeactivationGuarded Interface method.
   // Gets called every time user navigates from this page.
-  // Determines if you can leave this page or if you have to wait. 
+  // Determines if you can leave this page or if you have to wait.
   canDeactivate(): boolean | Observable<boolean> | Promise<boolean> {
-    if(this.canLeavePage)
-    return true;
-    
+    if (this.canLeavePage) return true;
+
     // Wait for upload info before navigating to another page
-    this.isLoading = true
-    return this.canNavigateBooolean$
+    this.isLoading = true;
+    return this.canNavigateBooolean$;
   }
 
   // Listen to blur updates in forms. Save  changes if the form is valid.
   onFormChange(): void {
-    this.profileForm.valueChanges.subscribe(val => {
+    this.profileForm.valueChanges.subscribe((val) => {
       if (this.profileForm.valid) {
         this.changesMade = true;
-        this.updatePreferances()
-      } 
+        this.updatePreferances();
+      }
     });
 
-    this.preferencesForm.valueChanges.subscribe(val => {
-      if(this.profileForm.valid) {
+    this.preferencesForm.valueChanges.subscribe((val) => {
+      if (this.profileForm.valid) {
         this.changesMade = true;
-        this.updatePreferances()
-      } 
+        this.updatePreferances();
+      }
     });
   }
-
 
   public openInfoDialog(offer: OfferInfo): void {
     this.dialog.open(ProfileDialogInfoComponent, {
@@ -200,28 +201,38 @@ export class ProfileComponent implements OnInit, DeactivationGuarded {
     const dto = new PreferencesUpdateDto();
     dto.email = userData.email;
     dto.income = userData.income;
-    dto.memberships = this.memberships.map(membership => membership.name);
-    dto.checkRateReminderType = this.preferencesForm.get('checkRateReminderType').value;
-    dto.fetchCreditLinesOnly = this.preferencesForm.get('fetchCreditLinesOnly').value;
-    dto.noAdditionalProductsRequired = this.preferencesForm.get('noAdditionalProductsRequired').value;
-    dto.interestedInEnvironmentMortgages = this.preferencesForm.get('interestedInEnvironmentMortgages').value;
+    dto.memberships = this.memberships.map((membership) => membership.name);
+    dto.checkRateReminderType = this.preferencesForm.get(
+      'checkRateReminderType'
+    ).value;
+    dto.fetchCreditLinesOnly = this.preferencesForm.get(
+      'fetchCreditLinesOnly'
+    ).value;
+    dto.noAdditionalProductsRequired = this.preferencesForm.get(
+      'noAdditionalProductsRequired'
+    ).value;
+    dto.interestedInEnvironmentMortgages = this.preferencesForm.get(
+      'interestedInEnvironmentMortgages'
+    ).value;
     dto.receiveNewsEmails = this.preferencesForm.get('receiveNewsEmails').value;
 
     // No one leaves the page while updating
     this.canLeavePage = false;
-   
-    this.loansService.updateUserPreferences(dto).subscribe(res => {
-      this.canNavigateBooolean$.next(true);
-      this.changesMade = false;
-      // A hack to trigger "saved" animation
-      this.updateAnimationTrigger  = !this.updateAnimationTrigger 
-      this.canLeavePage = true
-    },
-    err => {
-      this.canLeavePage = true
-      this.isLoading = false;
-      this.errorAnimationTrigger  = !this.errorAnimationTrigger 
-    });
+
+    this.loansService.updateUserPreferences(dto).subscribe(
+      (res) => {
+        this.canNavigateBooolean$.next(true);
+        this.changesMade = false;
+        // A hack to trigger "saved" animation
+        this.updateAnimationTrigger = !this.updateAnimationTrigger;
+        this.canLeavePage = true;
+      },
+      (err) => {
+        this.canLeavePage = true;
+        this.isLoading = false;
+        this.errorAnimationTrigger = !this.errorAnimationTrigger;
+      }
+    );
   }
 
   // TODO: Move to service
@@ -252,7 +263,7 @@ export class ProfileComponent implements OnInit, DeactivationGuarded {
     );
     this.memberships.splice(index, 1);
     this.changesMade = true;
-    this.updatePreferances()
+    this.updatePreferances();
   }
 
   selected(event: MatAutocompleteSelectedEvent): void {
@@ -260,7 +271,7 @@ export class ProfileComponent implements OnInit, DeactivationGuarded {
     this.membershipInput.nativeElement.value = '';
     this.membershipCtrl.setValue(null);
     this.changesMade = true;
-    this.updatePreferances()
+    this.updatePreferances();
   }
 
   private filter(value: any): any[] {
@@ -272,7 +283,7 @@ export class ProfileComponent implements OnInit, DeactivationGuarded {
       this.memberships
     );
 
-    return this.allMemberships.filter(membership =>
+    return this.allMemberships.filter((membership) =>
       membership.label.toLowerCase().includes(filterValue)
     );
   }

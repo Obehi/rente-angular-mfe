@@ -6,10 +6,7 @@ import { API_URL_MAP } from '@config/api-url-config';
   providedIn: 'root'
 })
 export class HouseService {
-
-  constructor(
-    private http: GenericHttpService
-  ) { }
+  constructor(private http: GenericHttpService) {}
 
   public getHouseInfo() {
     return this.http.get(API_URL_MAP.house);

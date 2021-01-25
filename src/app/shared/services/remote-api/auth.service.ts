@@ -10,12 +10,11 @@ import { LocalStorageService } from './../local-storage.service';
   providedIn: 'root'
 })
 export class AuthService {
-
-  constructor(private http: GenericHttpService,
+  constructor(
+    private http: GenericHttpService,
     private localStorageService: LocalStorageService,
     private router: Router
-  ) {
-  }
+  ) {}
 
   public get isLoggedIn() {
     const user = this.localStorageService.getObject(storageName.user);
@@ -26,29 +25,25 @@ export class AuthService {
     const url = `${API_URL_MAP.auth.base}${API_URL_MAP.auth.demo}`;
     const data = {
       guid: guid
-    }
-    return this.http.post(url, data).pipe(
-      tap(this.handleLogin.bind(this))
-    )
+    };
+    return this.http.post(url, data).pipe(tap(this.handleLogin.bind(this)));
   }
 
-  public loginWithToken(token: String) {
+  public loginWithToken(token: string) {
     const url = `${API_URL_MAP.auth.base}${API_URL_MAP.auth.token}`;
     const data = {
       token
     };
-    return this.http.post(url, data)
-      .pipe(tap(this.handleLogin.bind(this)));
+    return this.http.post(url, data).pipe(tap(this.handleLogin.bind(this)));
   }
 
   public logout() {
     const url = `${API_URL_MAP.auth.base}${API_URL_MAP.auth.logout}`;
 
-    this.http.post(url, {})
-      .subscribe(res => {
-        this.router.navigate(['/']);
-        this.localStorageService.clear();
-      });
+    this.http.post(url, {}).subscribe((res) => {
+      this.router.navigate(['/']);
+      this.localStorageService.clear();
+    });
   }
 
   public getFirstTimeLoanToken(debtData) {

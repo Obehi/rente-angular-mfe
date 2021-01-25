@@ -5,7 +5,6 @@ import { BankSelectNoRoutingModule } from './bank-select-routing.module';
 import { BankSelectNoComponent } from './bank-select.component';
 import { MaterialModule } from '@shared/material/material.module';
 
-
 @NgModule({
   declarations: [BankSelectNoComponent],
   imports: [
@@ -15,4 +14,4 @@ import { MaterialModule } from '@shared/material/material.module';
     MaterialModule
   ]
 })
-export class BankSelectNoModule { }
+export class BankSelectNoModule {}

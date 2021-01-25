@@ -8,10 +8,11 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class UserService {
+  public lowerRateAvailable: BehaviorSubject<boolean> = new BehaviorSubject(
+    false
+  );
 
-  public lowerRateAvailable: BehaviorSubject<boolean> = new BehaviorSubject(false);
-
-  constructor(private http: GenericHttpService) { }
+  constructor(private http: GenericHttpService) {}
 
   public getUserInfo() {
     const url = `${API_URL_MAP.user.base}${API_URL_MAP.user.me}`;
@@ -23,14 +24,13 @@ export class UserService {
     return this.http.post(url, userData);
   }
 
-  public validateSsn(ssn:string):Observable<SsnValidationDto> {
+  public validateSsn(ssn: string): Observable<SsnValidationDto> {
     const url = `${API_URL_MAP.user.base}/validate/ssn/${ssn}`;
     return this.http.get(url);
   }
-
 }
 
 export class SsnValidationDto {
-  ssn:string;
-  valid:boolean;
+  ssn: string;
+  valid: boolean;
 }

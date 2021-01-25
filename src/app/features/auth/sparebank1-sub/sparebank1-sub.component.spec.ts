@@ -8,9 +8,8 @@ describe('Sparebank1SubComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ Sparebank1SubComponent ]
-    })
-    .compileComponents();
+      declarations: [Sparebank1SubComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

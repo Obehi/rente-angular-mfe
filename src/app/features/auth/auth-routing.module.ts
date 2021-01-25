@@ -7,9 +7,9 @@ import { GuidLoginComponent } from './demo-login/guid-login/guid-login.component
 
 const routes: Routes = [
   { path: 'sparebank1-sub', component: Sparebank1SubComponent },
-  { path: 'bank/:bankName', component: BankIdLoginComponent},
-  { path: 'demo-login', component: DemoLoginComponent},
-  { path: 'guid-login', component: GuidLoginComponent},
+  { path: 'bank/:bankName', component: BankIdLoginComponent },
+  { path: 'demo-login', component: DemoLoginComponent },
+  { path: 'guid-login', component: GuidLoginComponent },
   { path: '', redirectTo: 'bank' }
 ];
 
@@ -17,4 +17,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class AuthRoutingModule { }
+export class AuthRoutingModule {}

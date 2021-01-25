@@ -45,9 +45,6 @@
             "styles": [
               "src/styles.scss",
               "src/styles/rente-material-theme.scss"
-            ],
-            "scripts": [
-              "./node_modules/systemjs/dist/system.min.js"
             ]
           },
           "configurations": {

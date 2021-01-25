@@ -5,7 +5,7 @@ import { OFFER_SAVINGS_TYPE } from '../../../config/loan-state';
   providedIn: 'root'
 })
 export class OffersService {
-  constructor() { }
+  constructor() {}
 
   getRatingNumberFromLoanState(loanState: string) {
     switch (loanState) {

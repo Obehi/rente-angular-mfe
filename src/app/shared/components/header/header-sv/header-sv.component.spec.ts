@@ -8,9 +8,8 @@ describe('HeaderSvComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ HeaderSvComponent ]
-    })
-    .compileComponents();
+      declarations: [HeaderSvComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

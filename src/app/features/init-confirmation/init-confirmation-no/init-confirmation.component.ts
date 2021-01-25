@@ -1,7 +1,12 @@
-import { LoansService, ConfirmationSetDto, ConfirmationGetDto, MembershipTypeDto } from '@services/remote-api/loans.service';
+import {
+  LoansService,
+  ConfirmationSetDto,
+  ConfirmationGetDto,
+  MembershipTypeDto
+} from '@services/remote-api/loans.service';
 import { UserService } from '@services/remote-api/user.service';
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
-import { TitleCasePipe} from '@angular/common';
+import { TitleCasePipe } from '@angular/common';
 import { BankUtils } from '../../../shared/models/bank';
 
 import {
@@ -27,10 +32,10 @@ import { SnackBarService } from '../../../shared/services/snackbar.service';
 import { OfferInfo } from '@shared/models/offers';
 import { DialogInfoComponent } from '../dialog-info/dialog-info.component';
 
-import { Mask } from '@shared/constants/mask'
-import { OptimizeService } from '@services/optimize.service'
+import { Mask } from '@shared/constants/mask';
+import { OptimizeService } from '@services/optimize.service';
 import { ROUTES_MAP } from '@config/routes-config';
-import { CustomLangTextService } from "@services/custom-lang-text.service";
+import { CustomLangTextService } from '@services/custom-lang-text.service';
 
 @Component({
   selector: 'rente-init-confirmation-sv',
@@ -49,10 +54,10 @@ export class InitConfirmationNoComponent implements OnInit {
   public filteredMemberships: Observable<MembershipTypeDto[]>;
   public memberships: any = [];
   public allMemberships: MembershipTypeDto[];
-  public userData:ConfirmationGetDto;
+  public userData: ConfirmationGetDto;
   public mask = Mask;
-  public optimizeService: OptimizeService
-  public isTinkBank = false
+  public optimizeService: OptimizeService;
+  public isTinkBank = false;
 
   @ViewChild('membershipInput') membershipInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete: MatAutocomplete;
@@ -67,7 +72,7 @@ export class InitConfirmationNoComponent implements OnInit {
     public optimize: OptimizeService,
     public customLangTextService: CustomLangTextService
   ) {
-    this.optimizeService = optimize
+    this.optimizeService = optimize;
     this.filteredMemberships = this.membershipCtrl.valueChanges.pipe(
       startWith(null),
       map((membership: string | null) =>
@@ -77,25 +82,27 @@ export class InitConfirmationNoComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.loansService.getConfirmationData().subscribe(res => {
+    this.loansService.getConfirmationData().subscribe((res) => {
       this.allMemberships = res.availableMemberships;
       this.userData = res;
-      console.log("res")
-      console.log(res)
-      let income = String(res.income) && null
-      let apartmentSize = String(res.apartmentSize) && null
+      console.log('res');
+      console.log(res);
+      const income = String(res.income) && null;
+      const apartmentSize = String(res.apartmentSize) && null;
 
-      //this.userData.bank = 'HANDELSBANKEN'
-      let bank = BankUtils.getBankByName(this.userData.bank)
-      let isTinkBank = BankUtils.isTinkBank(bank.name)
+      // this.userData.bank = 'HANDELSBANKEN'
+      const bank = BankUtils.getBankByName(this.userData.bank);
+      const isTinkBank = BankUtils.isTinkBank(bank.name);
       if (isTinkBank) {
-        this.isTinkBank = true
+        this.isTinkBank = true;
         this.propertyForm = this.fb.group({
           name: ['', Validators.required],
           apartmentSize: [apartmentSize, Validators.required],
           membership: [],
           income: [income, Validators.required],
-          email: [res.email, Validators.compose([
+          email: [
+            res.email,
+            Validators.compose([
               Validators.required,
               Validators.pattern(VALIDATION_PATTERN.email)
             ])
@@ -106,7 +113,9 @@ export class InitConfirmationNoComponent implements OnInit {
           apartmentSize: [apartmentSize, Validators.required],
           membership: [],
           income: [income, Validators.required],
-          email: [res.email, Validators.compose([
+          email: [
+            res.email,
+            Validators.compose([
               Validators.required,
               Validators.pattern(VALIDATION_PATTERN.email)
             ])
@@ -141,27 +150,32 @@ export class InitConfirmationNoComponent implements OnInit {
         typeof formData.income === 'string'
           ? formData.income.replace(/\s/g, '')
           : formData.income,
-      memberships: this.memberships.map(membership => membership.name),
+      memberships: this.memberships.map((membership) => membership.name),
       apartmentSize: formData.apartmentSize,
       name: this.isTinkBank ? formData.name : this.userData.name
     };
 
-    const dto:ConfirmationSetDto = new ConfirmationSetDto();
+    const dto: ConfirmationSetDto = new ConfirmationSetDto();
     dto.name = data.name;
     dto.email = data.email;
     dto.income = data.income;
     dto.memberships = data.memberships;
     dto.apartmentSize = data.apartmentSize;
 
-    this.loansService.setConfirmationData(dto).subscribe(res => {
-      this.isLoading = false;
-      this.router.navigate(['/dashboard/' + ROUTES_MAP.offers]);
-      this.snackBar.openSuccessSnackBar(this.customLangTextService.getSnackBarUpdatedMessage(), 1.2);
-    },
-    err => {
-      this.isLoading = false;
-      this.router.navigate(['/dashboard/' + ROUTES_MAP.property]);
-    });
+    this.loansService.setConfirmationData(dto).subscribe(
+      (res) => {
+        this.isLoading = false;
+        this.router.navigate(['/dashboard/' + ROUTES_MAP.offers]);
+        this.snackBar.openSuccessSnackBar(
+          this.customLangTextService.getSnackBarUpdatedMessage(),
+          1.2
+        );
+      },
+      (err) => {
+        this.isLoading = false;
+        this.router.navigate(['/dashboard/' + ROUTES_MAP.property]);
+      }
+    );
   }
 
   add(event: MatChipInputEvent): void {
@@ -201,7 +215,7 @@ export class InitConfirmationNoComponent implements OnInit {
       this.memberships
     );
 
-    return this.allMemberships.filter(membership =>
+    return this.allMemberships.filter((membership) =>
       membership.label.toLowerCase().includes(filterValue)
     );
   }

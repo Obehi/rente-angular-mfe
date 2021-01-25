@@ -22,7 +22,6 @@ import {
     }
   ]
 })
-
 export class SelectComponent implements ControlValueAccessor {
   @Input() rootClass: any;
   @Input() options: any = [];

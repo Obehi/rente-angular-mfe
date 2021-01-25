@@ -21,20 +21,20 @@ import { CounterComponent } from './shared/components/ui-components/counter/coun
 import { UserService } from '@services/remote-api/user.service';
 import { FormsModule } from '@angular/forms';
 import { DialogInfoComponent } from './features/init-confirmation/dialog-info/dialog-info.component';
-import {IMaskModule} from 'angular-imask';
+import { IMaskModule } from 'angular-imask';
 import { EmailPreferencesComponent } from './features/email-preferences/email-preferences.component';
-import { ProfileDialogInfoComponent } from "./features/dashboard/profile/dialog-info/dialog-info.component";
+import { ProfileDialogInfoComponent } from './features/dashboard/profile/dialog-info/dialog-info.component';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { CountUpModule } from 'ngx-countup';
 import { AuthSvComponent } from './features/auth-sv/auth-sv.component';
 import { OptimizeService } from '@services/optimize.service';
 import { AuthSvMockupComponent } from './features/auth-sv-mockup/auth-sv-mockup.component';
-import { LoginLangGenericComponent } from './local-components/components-output'
-import { InitConfirmationLangGenericComponent  } from './local-components/components-output';
-import { LandingTopLangGenericComponent  } from './local-components/components-output';
-import { EmailRedirectSVComponent } from './features/email-redirect/email-redirect-sv/email-redirect-sv.component'
-import { EmailRedirectNOComponent } from './features/email-redirect/email-redirect-no/email-redirect-no.component'
-import { EnvService } from './shared/services/env.service'
+import { LoginLangGenericComponent } from './local-components/components-output';
+import { InitConfirmationLangGenericComponent } from './local-components/components-output';
+import { LandingTopLangGenericComponent } from './local-components/components-output';
+import { EmailRedirectSVComponent } from './features/email-redirect/email-redirect-sv/email-redirect-sv.component';
+import { EmailRedirectNOComponent } from './features/email-redirect/email-redirect-no/email-redirect-no.component';
+import { EnvService } from './shared/services/env.service';
 import { HttpClient } from '@angular/common/http';
 registerLocaleData(localeNo);
 
@@ -72,16 +72,24 @@ registerLocaleData(localeNo);
     FormsModule,
     IMaskModule,
     LazyLoadImageModule,
-    CountUpModule,
+    CountUpModule
   ],
   entryComponents: [DialogInfoComponent, ProfileDialogInfoComponent],
   providers: [
-    { provide: APP_INITIALIZER, multi: true, useFactory: (envService: EnvService) => { return () => envService.init() }, deps: [EnvService, HttpClient]}, 
-    { provide: LOCALE_ID, useValue: 'nb-NO' }, 
-    { provide: Window, useValue: window}, 
-    UserService, 
-    OptimizeService, 
-    EnvService],
+    {
+      provide: APP_INITIALIZER,
+      multi: true,
+      useFactory: (envService: EnvService) => {
+        return () => envService.init();
+      },
+      deps: [EnvService, HttpClient]
+    },
+    { provide: LOCALE_ID, useValue: 'nb-NO' },
+    { provide: Window, useValue: window },
+    UserService,
+    OptimizeService,
+    EnvService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

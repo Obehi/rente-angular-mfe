@@ -1,6 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ROUTES_MAP, ROUTES_MAP_NO, ROUTES_MAP_SV } from '@config/routes-config';
+import {
+  ROUTES_MAP,
+  ROUTES_MAP_NO,
+  ROUTES_MAP_SV
+} from '@config/routes-config';
 import { AuthSvMockupComponent } from '@features/auth-sv-mockup/auth-sv-mockup.component';
 import { ContactUsComponent } from '@features/contact-us/contact-us.component';
 import { AboutCookiesComponent } from '@features/cookies/cookies.component';
@@ -18,8 +22,6 @@ import { EmailRedirectSVComponent } from '@features/email-redirect/email-redirec
 import { AuthGuard } from '@shared/guards/auth.guard';
 
 import { BankChoiceComponent } from '@features/auth/bank-choice/bank-choice.component';
-
-
 
 const commonRoutes: Routes = [
   {
@@ -40,31 +42,35 @@ const commonRoutes: Routes = [
       {
         path: '**',
         component: EmailPreferencesComponent
-      },
+      }
     ]
   },
   {
-    path: "del-med-messenger", component:   EmailRedirectNOComponent,
-    children: [ 
+    path: 'del-med-messenger',
+    component: EmailRedirectNOComponent,
+    children: [
       {
-          path: '**',
-          component:   EmailRedirectNOComponent
-
-      },      
+        path: '**',
+        component: EmailRedirectNOComponent
+      }
     ]
   },
   {
-    path: "dela-pa-messenger", component:   EmailRedirectSVComponent,
-    children: [ 
+    path: 'dela-pa-messenger',
+    component: EmailRedirectSVComponent,
+    children: [
       {
-          path: '**',
-          component:   EmailRedirectSVComponent
-      },      
+        path: '**',
+        component: EmailRedirectSVComponent
+      }
     ]
   },
   {
     path: ROUTES_MAP.aboutUs,
-    loadChildren: () => import('./features/about-us/about-us.module').then(m => m.AboutUsModule),
+    loadChildren: () =>
+      import('./features/about-us/about-us.module').then(
+        (m) => m.AboutUsModule
+      ),
     data: {
       title: customMeta.omOss.title,
       meta: {
@@ -130,7 +136,10 @@ const commonRoutes: Routes = [
   },
   {
     path: ROUTES_MAP.bankSelect,
-    loadChildren: () => import('./local-components/components-output').then(m => m.BankSelectLangGenericRoutingModule),
+    loadChildren: () =>
+      import('./local-components/components-output').then(
+        (m) => m.BankSelectLangGenericRoutingModule
+      ),
     data: {
       title: customMeta.valgBank.title,
       meta: {
@@ -139,7 +148,6 @@ const commonRoutes: Routes = [
       }
     }
   },
-
 
   {
     path: ROUTES_MAP.initConfirmation,
@@ -165,7 +173,8 @@ const commonRoutes: Routes = [
   },
   {
     path: ROUTES_MAP.auth,
-    loadChildren: () => import('./features/auth/auth.module').then(m => m.AuthModule),
+    loadChildren: () =>
+      import('./features/auth/auth.module').then((m) => m.AuthModule),
     data: {
       title: customMeta.auth.title,
       meta: {
@@ -176,27 +185,32 @@ const commonRoutes: Routes = [
   },
   {
     path: ROUTES_MAP.dashboard,
-    loadChildren: () => import('./features/dashboard/dashboard.module').then(m => m.DashboardModule),
+    loadChildren: () =>
+      import('./features/dashboard/dashboard.module').then(
+        (m) => m.DashboardModule
+      ),
     canActivate: [AuthGuard]
   },
   {
     path: '**',
     component: PageNotFoundComponent
-  },
+  }
 ];
-
 
 const routesSV: Routes = [
   {
     path: ROUTES_MAP_SV.tinkMockup,
-    component: AuthSvMockupComponent,
+    component: AuthSvMockupComponent
   }
 ];
 
 const routesNo: Routes = [
   {
     path: ROUTES_MAP_NO.boliglanskalkulator,
-    loadChildren: () => import('./features/first-buyers/first-buyers.module').then(m => m.FirstBuyersModule),
+    loadChildren: () =>
+      import('./features/first-buyers/first-buyers.module').then(
+        (m) => m.FirstBuyersModule
+      ),
     data: {
       // TODO: Set up correct meta
       title: customMeta.valgBank.title,
@@ -208,7 +222,10 @@ const routesNo: Routes = [
   },
   {
     path: ROUTES_MAP_NO.banksGuide,
-    loadChildren: () => import('./features/banks-guide/banks-guide.module').then(m => m.BanksGuideModule),
+    loadChildren: () =>
+      import('./features/banks-guide/banks-guide.module').then(
+        (m) => m.BanksGuideModule
+      ),
     data: {
       title: customMeta.banksGuide.title,
       meta: {
@@ -216,19 +233,13 @@ const routesNo: Routes = [
         description: customMeta.banksGuide.description
       }
     }
-  },
+  }
 ];
 
-
-const routes: Routes = [
-  ...routesNo,
-  ...routesSV,
-  ...commonRoutes
-];
+const routes: Routes = [...routesNo, ...routesSV, ...commonRoutes];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule {
-}
+export class AppRoutingModule {}

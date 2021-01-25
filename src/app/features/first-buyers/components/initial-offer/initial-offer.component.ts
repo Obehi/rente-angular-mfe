@@ -7,21 +7,21 @@ import { BankUtils } from '@shared/models/bank';
   styleUrls: ['./initial-offer.component.scss']
 })
 export class InitialOfferComponent implements OnInit {
-
   @Input() offer;
   bank;
   expandStatus: boolean;
 
-  constructor() {
-  }
+  constructor() {}
 
   ngOnInit(): void {
     this.bank = BankUtils.getBankByName(this.offer.bankInfo.bank);
-    this.bank.icon = BankUtils.getBankPngIcon(this.bank.name, '../../../../../assets/img/banks-logo/');
+    this.bank.icon = BankUtils.getBankPngIcon(
+      this.bank.name,
+      '../../../../../assets/img/banks-logo/'
+    );
   }
 
   public detailOpenClicked() {
     this.expandStatus = true;
   }
-
 }

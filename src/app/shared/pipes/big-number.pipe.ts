@@ -4,7 +4,6 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'bigNumber'
 })
 export class BigNumberPipe implements PipeTransform {
-
   transform(value: number): any {
     if (!value) {
       return '';
@@ -12,5 +11,4 @@ export class BigNumberPipe implements PipeTransform {
 
     return null;
   }
-
 }

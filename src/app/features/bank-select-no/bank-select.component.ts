@@ -1,24 +1,27 @@
 import { Component, OnInit } from '@angular/core';
-import { BankVo, BankList, MissingBankList, TinkBanks } from '../../shared/models/bank';
+import {
+  BankVo,
+  BankList,
+  MissingBankList,
+  TinkBanks
+} from '../../shared/models/bank';
 import { Router } from '@angular/router';
 import { ROUTES_MAP } from '@config/routes-config';
-import {ErrorHandler, Injectable} from '@angular/core';
+import { ErrorHandler, Injectable } from '@angular/core';
 
 @Component({
   selector: 'rente-bank-select-variation',
   templateUrl: './bank-select.component.html',
   styleUrls: ['./bank-select.component.scss']
 })
-export class BankSelectNoComponent implements OnInit, ErrorHandler{
+export class BankSelectNoComponent implements OnInit, ErrorHandler {
+  searchStr: string;
+  banks: BankVo[];
+  allBanks: BankVo[];
 
-  searchStr:string;
-  banks:BankVo[];
-  allBanks:BankVo[];
+  sparebankIsClicked = false;
 
-  sparebankIsClicked: boolean = false;
-
-  constructor(
-    private router: Router) { }
+  constructor(private router: Router) {}
 
   ngOnInit() {
     this.sortBanks();
@@ -28,45 +31,57 @@ export class BankSelectNoComponent implements OnInit, ErrorHandler{
   // Workaround for bug. Cant click on banks in list. console error message: ChunkLoadError: Loading chunk 6 failed.
   handleError(error: any): void {
     const chunkFailedMessage = /Loading chunk [\d]+ failed/;
-     console.log("Handeling error");
-     console.log(error)
-     if (chunkFailedMessage.test(error.message)) {
-       console.log("error detected. Implement window.location.reload()");
-       //window.location.reload();
-     }
-   }
+    console.log('Handeling error');
+    console.log(error);
+    if (chunkFailedMessage.test(error.message)) {
+      console.log('error detected. Implement window.location.reload()');
+      // window.location.reload();
+    }
+  }
 
   sortBanks() {
-    let sortedBanksAlphabetic = [...BankList, ...MissingBankList, ... TinkBanks].sort((a,b) => (a.label > b.label) ? 1 : ((b.label > a.label) ? -1 : 0));
-    let dnb = 'DNB';
-    let sparebank = 'SPAREBANK_1';
-    let nordea = 'NORDEA';
+    const sortedBanksAlphabetic = [
+      ...BankList,
+      ...MissingBankList,
+      ...TinkBanks
+    ].sort((a, b) => (a.label > b.label ? 1 : b.label > a.label ? -1 : 0));
+    const dnb = 'DNB';
+    const sparebank = 'SPAREBANK_1';
+    const nordea = 'NORDEA';
 
-    let sortedBanksSpareBankFirst = sortedBanksAlphabetic.sort(function(x,y){ return x.name == sparebank ? -1 : y.name == sparebank ? 1 : 0; });
-    let sortedBanksNoredaFirst = sortedBanksSpareBankFirst.sort(function(x,y){ return x.name == nordea ? -1 : y.name == nordea ? 1 : 0; });
+    const sortedBanksSpareBankFirst = sortedBanksAlphabetic.sort(function (
+      x,
+      y
+    ) {
+      return x.name == sparebank ? -1 : y.name == sparebank ? 1 : 0;
+    });
+    const sortedBanksNoredaFirst = sortedBanksSpareBankFirst.sort(function (
+      x,
+      y
+    ) {
+      return x.name == nordea ? -1 : y.name == nordea ? 1 : 0;
+    });
 
-    
-    let sortedBanksDNBFirst = sortedBanksNoredaFirst.sort(function(x,y){ return x.name == dnb ? -1 : y.name == dnb ? 1 : 0; });
-    
-   
+    const sortedBanksDNBFirst = sortedBanksNoredaFirst.sort(function (x, y) {
+      return x.name == dnb ? -1 : y.name == dnb ? 1 : 0;
+    });
 
     this.allBanks = sortedBanksDNBFirst;
   }
 
   removeSparebank() {
-    let sparebank = 'SPAREBANK_1';
+    const sparebank = 'SPAREBANK_1';
 
-    this.allBanks = this.allBanks.filter(function(bank) {
-      return bank.name !== sparebank
-    })
+    this.allBanks = this.allBanks.filter(function (bank) {
+      return bank.name !== sparebank;
+    });
   }
 
   onFilterChanged() {
-
-    if(this.searchStr.toLocaleLowerCase() == 'sparebank 1') {
-      this.removeSparebank()
+    if (this.searchStr.toLocaleLowerCase() == 'sparebank 1') {
+      this.removeSparebank();
     }
-    if(this.sparebankIsClicked == true) {
+    if (this.sparebankIsClicked == true) {
       this.sparebankIsClicked = false;
       this.sortBanks();
     }
@@ -78,34 +93,36 @@ export class BankSelectNoComponent implements OnInit, ErrorHandler{
     this.filterBank(this.searchStr);
   }
 
-  filterBank(filter:string) {
+  filterBank(filter: string) {
     let filteredBanks = [];
     if (filter == null || filter.length === 0) {
       filteredBanks = this.allBanks.concat();
     } else {
       const f = filter.toLocaleLowerCase();
-      filteredBanks = this.allBanks.filter(bank => bank.label.toLocaleLowerCase().indexOf(f) > -1);
+      filteredBanks = this.allBanks.filter(
+        (bank) => bank.label.toLocaleLowerCase().indexOf(f) > -1
+      );
     }
-    
+
     this.banks = filteredBanks;
   }
 
-  selectBank(bank:BankVo) {
-    if(bank.name == 'SPAREBANK_1') {
-      this.searchStr = "Sparebank 1";
+  selectBank(bank: BankVo) {
+    if (bank.name == 'SPAREBANK_1') {
+      this.searchStr = 'Sparebank 1';
 
-      this.removeSparebank()
+      this.removeSparebank();
       this.sparebankIsClicked = true;
       this.filterBank(this.searchStr);
-      return
+      return;
     }
 
     if (bank.isMissing) {
-      this.router.navigate([ROUTES_MAP.getNotified],{ state: { bank: bank } });
-    }
-    else {
-      this.router.navigate([ROUTES_MAP.auth + '/' +  bank.name.toLocaleLowerCase()]);
+      this.router.navigate([ROUTES_MAP.getNotified], { state: { bank: bank } });
+    } else {
+      this.router.navigate([
+        ROUTES_MAP.auth + '/' + bank.name.toLocaleLowerCase()
+      ]);
     }
   }
-
 }

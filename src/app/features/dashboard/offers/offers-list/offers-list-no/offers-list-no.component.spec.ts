@@ -8,9 +8,8 @@ describe('OffersListNoComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ OffersListNoComponent ]
-    })
-    .compileComponents();
+      declarations: [OffersListNoComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

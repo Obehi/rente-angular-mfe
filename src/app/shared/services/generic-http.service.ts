@@ -12,7 +12,7 @@ import { environment } from '@environments/environment';
 import { storageName } from '@config/index';
 import { LocalStorageService } from '@services/local-storage.service';
 import { SnackBarService } from './snackbar.service';
-import { EnvService} from '@services/env.service'
+import { EnvService } from '@services/env.service';
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +27,7 @@ export class GenericHttpService {
     name: 'Accept',
     value: 'application/json, text/plain, */*'
   };
-  environment: any
+  environment: any;
 
   constructor(
     private http: HttpClient,
@@ -47,20 +47,18 @@ export class GenericHttpService {
 
     const httpOptions = {
       headers: this.shapeHeaders(),
-      withCredentials: true,
+      withCredentials: true
     };
 
     return this.http
       .get(fullPath, httpOptions)
-      .pipe(
-        catchError((error) => this.handleError(error))
-      );
+      .pipe(catchError((error) => this.handleError(error)));
   }
 
   public getWithParams(path, searchParams): Observable<any> {
     const fullPath = `${this.apiUrl}${path}`;
 
-    const params: HttpParams = new HttpParams({fromObject: searchParams});
+    const params: HttpParams = new HttpParams({ fromObject: searchParams });
 
     const httpOptions = {
       headers: this.shapeHeaders(),
@@ -70,30 +68,26 @@ export class GenericHttpService {
 
     return this.http
       .get(fullPath, httpOptions)
-      .pipe(
-        catchError((error) => this.handleError(error))
-      );
+      .pipe(catchError((error) => this.handleError(error)));
   }
-  
+
   public postExternal(path: string, body: object = {}): Observable<any> {
     const fullPath = `${path}`;
     const jsonBody: string = JSON.stringify(body);
 
-    let headers: HttpHeaders = new HttpHeaders()
-
+    let headers: HttpHeaders = new HttpHeaders();
 
     headers = headers.append('Content-Type', 'application/json');
 
-    //responseType is text, json responses will not be approved
+    // responseType is text, json responses will not be approved
     const httpOptions = {
       headers: headers,
-      responseType: "text" as "json"
+      responseType: 'text' as 'json'
     };
 
-    return this.http.post(fullPath, jsonBody, httpOptions)
-      .pipe(
-        catchError((error) => this.handleError(error))
-      );
+    return this.http
+      .post(fullPath, jsonBody, httpOptions)
+      .pipe(catchError((error) => this.handleError(error)));
   }
 
   public post(path: string, body: object = {}): Observable<any> {
@@ -104,10 +98,9 @@ export class GenericHttpService {
       headers: this.shapeHeaders()
     };
 
-    return this.http.post(fullPath, jsonBody, httpOptions)
-      .pipe(
-        catchError((error) => this.handleError(error))
-      );
+    return this.http
+      .post(fullPath, jsonBody, httpOptions)
+      .pipe(catchError((error) => this.handleError(error)));
   }
 
   public del(path: string): Observable<any> {
@@ -117,10 +110,9 @@ export class GenericHttpService {
       headers: this.shapeHeaders()
     };
 
-    return this.http.delete(fullPath, httpOptions)
-      .pipe(
-        catchError((error) => this.handleError(error))
-      );
+    return this.http
+      .delete(fullPath, httpOptions)
+      .pipe(catchError((error) => this.handleError(error)));
   }
 
   public put(path: string, body: object = {}): Observable<any> {
@@ -133,9 +125,7 @@ export class GenericHttpService {
 
     return this.http
       .put(fullPath, jsonBody, httpOptions)
-      .pipe(
-        catchError((error) => this.handleError(error))
-      );
+      .pipe(catchError((error) => this.handleError(error)));
   }
 
   private shapeHeaders(): HttpHeaders {

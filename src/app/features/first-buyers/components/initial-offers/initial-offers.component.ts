@@ -4,10 +4,21 @@ import { MatAutocompleteSelectedEvent, MatStepper } from '@angular/material';
 import { Router } from '@angular/router';
 import { FirstBuyersService } from '@features/first-buyers/first-buyers.service';
 import { FirstBuyersAPIService } from '@services/remote-api/first-buyers.service';
-import { LoansService, MembershipTypeDto } from '@services/remote-api/loans.service';
+import {
+  LoansService,
+  MembershipTypeDto
+} from '@services/remote-api/loans.service';
 import { BankList, MissingBankList } from '@shared/models/bank';
 import { combineLatest, Observable } from 'rxjs';
-import { debounceTime, distinctUntilChanged, flatMap, map, startWith, switchMap, take } from 'rxjs/operators';
+import {
+  debounceTime,
+  distinctUntilChanged,
+  flatMap,
+  map,
+  startWith,
+  switchMap,
+  take
+} from 'rxjs/operators';
 
 @Component({
   selector: 'rente-initial-offers',
@@ -16,10 +27,7 @@ import { debounceTime, distinctUntilChanged, flatMap, map, startWith, switchMap,
 })
 export class InitialOffersComponent implements OnInit {
   editMode = false;
-  banksData = [
-    ...BankList,
-    ...MissingBankList
-  ];
+  banksData = [...BankList, ...MissingBankList];
   bank;
   offers;
   formGroup: FormGroup = new FormGroup({
@@ -29,7 +37,7 @@ export class InitialOffersComponent implements OnInit {
     otherDebt: new FormControl(),
     memberships: new FormControl(),
     age: new FormControl(),
-    firstLoan: new FormControl(),
+    firstLoan: new FormControl()
   });
   public allMemberships: MembershipTypeDto[] = [];
   selectedIndex = 1;
@@ -155,8 +163,7 @@ export class InitialOffersComponent implements OnInit {
     private firstBuyersService: FirstBuyersService,
     private firstBuyersAPIService: FirstBuyersAPIService,
     private router: Router
-  ) {
-  }
+  ) {}
 
   get outstandingDebtControl() {
     return this.formGroup.get('outstandingDebt');
@@ -188,28 +195,51 @@ export class InitialOffersComponent implements OnInit {
 
   subscribeToControllers() {
     combineLatest([
-      this.outstandingDebtControl.valueChanges.pipe(distinctUntilChanged(), debounceTime(500), switchMap(val => {
-        return this.firstBuyersAPIService.updateOutstandingDebt(val);
-      })),
-      this.incomeControl.valueChanges.pipe(distinctUntilChanged(), debounceTime(500), switchMap(val => {
-        return this.firstBuyersAPIService.updateIncome(val);
-      })),
-      this.savingsControl.valueChanges.pipe(distinctUntilChanged(), debounceTime(500), switchMap(val => {
-        return this.firstBuyersAPIService.updateSavings(val);
-      })),
-      this.otherDebtControl.valueChanges.pipe(distinctUntilChanged(), debounceTime(500), switchMap(val => {
-        return this.firstBuyersAPIService.updateOtherDebt(val);
-      })),
-      this.ageControl.valueChanges.pipe(distinctUntilChanged(), debounceTime(500), switchMap(val => {
-        return this.firstBuyersAPIService.updateBirthdate(val);
-      })),
-      this.firstLoanControl.valueChanges.pipe(distinctUntilChanged(), debounceTime(500), switchMap(val => {
-        return this.firstBuyersAPIService.updateQualify4Blu(val);
-      }))
-    ])
-      .subscribe(_ => {
-        this.formGroup.markAsDirty();
-      });
+      this.outstandingDebtControl.valueChanges.pipe(
+        distinctUntilChanged(),
+        debounceTime(500),
+        switchMap((val) => {
+          return this.firstBuyersAPIService.updateOutstandingDebt(val);
+        })
+      ),
+      this.incomeControl.valueChanges.pipe(
+        distinctUntilChanged(),
+        debounceTime(500),
+        switchMap((val) => {
+          return this.firstBuyersAPIService.updateIncome(val);
+        })
+      ),
+      this.savingsControl.valueChanges.pipe(
+        distinctUntilChanged(),
+        debounceTime(500),
+        switchMap((val) => {
+          return this.firstBuyersAPIService.updateSavings(val);
+        })
+      ),
+      this.otherDebtControl.valueChanges.pipe(
+        distinctUntilChanged(),
+        debounceTime(500),
+        switchMap((val) => {
+          return this.firstBuyersAPIService.updateOtherDebt(val);
+        })
+      ),
+      this.ageControl.valueChanges.pipe(
+        distinctUntilChanged(),
+        debounceTime(500),
+        switchMap((val) => {
+          return this.firstBuyersAPIService.updateBirthdate(val);
+        })
+      ),
+      this.firstLoanControl.valueChanges.pipe(
+        distinctUntilChanged(),
+        debounceTime(500),
+        switchMap((val) => {
+          return this.firstBuyersAPIService.updateQualify4Blu(val);
+        })
+      )
+    ]).subscribe((_) => {
+      this.formGroup.markAsDirty();
+    });
   }
 
   selected(event: MatAutocompleteSelectedEvent) {
@@ -225,14 +255,25 @@ export class InitialOffersComponent implements OnInit {
       ...this.memberships,
       ...this.selectedFeaturedMemberships
     ];
-    this.firstBuyersAPIService.updateMembership(this.firstBuyersService.selectedMemberships.map(item => item.name))
-      .subscribe(_ => {
+    this.firstBuyersAPIService
+      .updateMembership(
+        this.firstBuyersService.selectedMemberships.map((item) => item.name)
+      )
+      .subscribe((_) => {
         this.formGroup.markAsDirty();
       });
   }
 
   isAllDataFilled() {
-    return !!(this.outstandingDebtControl.value && this.savingsControl.value && this.incomeControl.value && this.otherDebtControl.value && this.ageFilled() && this.firstLoanFilled() && this.memberships.length);
+    return !!(
+      this.outstandingDebtControl.value &&
+      this.savingsControl.value &&
+      this.incomeControl.value &&
+      this.otherDebtControl.value &&
+      this.ageFilled() &&
+      this.firstLoanFilled() &&
+      this.memberships.length
+    );
   }
 
   selectAge(aged: boolean) {
@@ -247,7 +288,10 @@ export class InitialOffersComponent implements OnInit {
     if (this.selectedFeaturedMemberships.indexOf(membership) === -1) {
       this.selectedFeaturedMemberships.push(membership);
     } else {
-      this.selectedFeaturedMemberships.splice(this.selectedFeaturedMemberships.indexOf(membership), 1);
+      this.selectedFeaturedMemberships.splice(
+        this.selectedFeaturedMemberships.indexOf(membership),
+        1
+      );
     }
     this.updateMemberships();
   }
@@ -270,7 +314,9 @@ export class InitialOffersComponent implements OnInit {
       this.router.navigate(['boliglanskalkulator']);
       return;
     } else {
-      this.outstandingDebtControl.patchValue(this.firstBuyersService.offerValue.outstandingDebt);
+      this.outstandingDebtControl.patchValue(
+        this.firstBuyersService.offerValue.outstandingDebt
+      );
     }
 
     this.subscribeToControllers();
@@ -281,20 +327,27 @@ export class InitialOffersComponent implements OnInit {
       this.incomeControl.patchValue(this.firstBuyersService.offerValue.income);
     }
 
-    this.loansService.getConfirmationData()
-      .subscribe(dto => {
-        this.allMemberships = dto.availableMemberships;
-        this.featuredMemberships = this.allMemberships.filter(membership => {
-          return membership.name === 'AKADEMIKERNE' || membership.name === 'LO_LOFAVOR' || membership.name === 'UNIO';
-        });
+    this.loansService.getConfirmationData().subscribe((dto) => {
+      this.allMemberships = dto.availableMemberships;
+      this.featuredMemberships = this.allMemberships.filter((membership) => {
+        return (
+          membership.name === 'AKADEMIKERNE' ||
+          membership.name === 'LO_LOFAVOR' ||
+          membership.name === 'UNIO'
+        );
       });
+    });
 
-    this.filteredMemberships = this.membershipsControl.valueChanges.pipe(startWith(null),
-      map((membership: string | null) => membership ? this.filter(membership) : this.allMemberships.slice()));
+    this.filteredMemberships = this.membershipsControl.valueChanges.pipe(
+      startWith(null),
+      map((membership: string | null) =>
+        membership ? this.filter(membership) : this.allMemberships.slice()
+      )
+    );
 
-    this.formGroup.valueChanges.subscribe(val => {
+    this.formGroup.valueChanges.subscribe((val) => {
       if (this.isAllDataFilled()) {
-        this.stepper._steps.forEach(step => {
+        this.stepper._steps.forEach((step) => {
           step.state = 'done';
         });
       }
@@ -306,19 +359,26 @@ export class InitialOffersComponent implements OnInit {
   updateNewOffers() {
     this.offersLoading = true;
     this.formGroup.markAsPristine();
-    this.loansService.updateNewOffers()
-      .pipe(flatMap(res => {
-        return this.loansService.getOffers();
-      }), take(1))
-      .subscribe(dto => {
-        this.offers = [
-          ...dto.offers.top5,
-          ...dto.offers.additionalPartnersOffers
-        ];
-        this.offersLoading = false;
-      }, err => {
-        this.offersLoading = false;
-      });
+    this.loansService
+      .updateNewOffers()
+      .pipe(
+        flatMap((res) => {
+          return this.loansService.getOffers();
+        }),
+        take(1)
+      )
+      .subscribe(
+        (dto) => {
+          this.offers = [
+            ...dto.offers.top5,
+            ...dto.offers.additionalPartnersOffers
+          ];
+          this.offersLoading = false;
+        },
+        (err) => {
+          this.offersLoading = false;
+        }
+      );
   }
 
   nextStep() {
@@ -330,15 +390,20 @@ export class InitialOffersComponent implements OnInit {
   }
 
   firstLoanFilled() {
-    return this.isBoolean(this.firstLoanControl.value) && !this.firstLoanControl.value || this.isBoolean(
-      this.firstLoanControl.value) && this.firstLoanControl.value;
+    return (
+      (this.isBoolean(this.firstLoanControl.value) &&
+        !this.firstLoanControl.value) ||
+      (this.isBoolean(this.firstLoanControl.value) &&
+        this.firstLoanControl.value)
+    );
   }
 
   ageFilled() {
-    return this.isBoolean(this.ageControl.value) && !this.ageControl.value || this.isBoolean(
-      this.ageControl.value) && this.ageControl.value;
+    return (
+      (this.isBoolean(this.ageControl.value) && !this.ageControl.value) ||
+      (this.isBoolean(this.ageControl.value) && this.ageControl.value)
+    );
   }
-
 
   toggleEditMode() {
     this.editMode = false;
@@ -347,9 +412,12 @@ export class InitialOffersComponent implements OnInit {
   }
 
   private filter(value: any): any[] {
-    const filterValue = value.label ? value.label.toLowerCase() : value.toLowerCase();
+    const filterValue = value.label
+      ? value.label.toLowerCase()
+      : value.toLowerCase();
 
-    return this.allMemberships.filter(membership => membership.label.toLowerCase()
-      .includes(filterValue));
+    return this.allMemberships.filter((membership) =>
+      membership.label.toLowerCase().includes(filterValue)
+    );
   }
 }

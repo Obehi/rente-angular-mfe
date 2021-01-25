@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'rente-referral',
@@ -7,15 +7,11 @@ import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
   styleUrls: ['./referral.component.scss']
 })
 export class ReferralComponent implements OnInit {
+  constructor(public dialogRef: MatDialogRef<ReferralComponent>) {}
 
-  constructor(public dialogRef: MatDialogRef<ReferralComponent>) { }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 
   public onClose(): void {
     this.dialogRef.close();
   }
-
 }

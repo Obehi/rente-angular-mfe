@@ -4,11 +4,9 @@ import { Title } from '@angular/platform-browser';
 
 @Injectable()
 export class TitleService {
-    constructor(
-        private title: Title
-    ) { }
+  constructor(private title: Title) {}
 
-    setTitle(titleToPush: string): void {
-        this.title.setTitle(titleToPush);
-    }
+  setTitle(titleToPush: string): void {
+    this.title.setTitle(titleToPush);
+  }
 }

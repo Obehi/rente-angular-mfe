@@ -61,7 +61,7 @@ export class BankSelectSvComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    let tinkUrl =
+    const tinkUrl =
       environment['tinkUrl'] ||
       'https://link.tink.com/1.0/authorize/?client_id=3973e78ee8c140edbf36e53d50132ba1&redirect_uri=https%3A%2F%2Franteradar.se&scope=accounts:read,identity:read&market=SE&locale=sv_SE&iframe=true';
 
@@ -70,9 +70,9 @@ export class BankSelectSvComponent implements OnInit, OnDestroy {
       (history.state.data.iosPopup === true ||
         history.state.data.androidPopup === true)
     ) {
-      let androidPopup = history.state.data.androidPopup;
-      let app = history.state.data.app;
-      let type = history.state.data.type;
+      const androidPopup = history.state.data.androidPopup;
+      const app = history.state.data.app;
+      const type = history.state.data.type;
       console.log('1.');
       history.state.data = undefined;
 
@@ -100,7 +100,7 @@ export class BankSelectSvComponent implements OnInit, OnDestroy {
       return;
     }
 
-    let data = JSON.parse(event.data);
+    const data = JSON.parse(event.data);
     this.logging.logger(
       this.logging.Level.Info,
       '2:TINK_CODE_RECIEVED',
@@ -159,7 +159,7 @@ export class BankSelectSvComponent implements OnInit, OnDestroy {
           '3.6: CONNECTED TO SOCKET'
         );
 
-        //this.resendDataAfterReconnect();
+        // this.resendDataAfterReconnect();
         this.successSocketCallback();
         // Send ping to prevent socket closing
         this.intervalSubscription = interval(PING_TIME).subscribe(() => {
@@ -181,7 +181,7 @@ export class BankSelectSvComponent implements OnInit, OnDestroy {
     this.stompClient.subscribe(repliesUrl, (message) => {
       const response = JSON.parse(message.body);
 
-      var filteredResponse = {
+      const filteredResponse = {
         eventType: response['eventType'],
         bank: response['bank'],
         backendOneTimeToken: response['oneTimeToken'],
@@ -319,7 +319,7 @@ export class BankSelectSvComponent implements OnInit, OnDestroy {
 
   sendUserData(tinkCode: number, resendData = false) {
     const dataObj = {};
-    //this.setDefaultSteps();
+    // this.setDefaultSteps();
     const data = JSON.stringify(dataObj);
 
     this.stompClient.send(
@@ -338,8 +338,8 @@ export class BankSelectSvComponent implements OnInit, OnDestroy {
     );
 
     if (!resendData) {
-      //this.initTimer(IDENTIFICATION_TIMEOUT_TIME);
-      //this.initConnectionTimer();
+      // this.initTimer(IDENTIFICATION_TIMEOUT_TIME);
+      // this.initConnectionTimer();
     }
   }
 }

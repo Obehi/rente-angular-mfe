@@ -34,4 +34,4 @@ import { GuidLoginComponent } from './demo-login/guid-login/guid-login.component
   ],
   entryComponents: [DialogInfoServiceComponent]
 })
-export class AuthModule { }
+export class AuthModule {}

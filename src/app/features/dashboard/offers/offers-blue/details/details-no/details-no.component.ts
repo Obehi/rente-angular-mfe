@@ -7,20 +7,18 @@ import { OfferInfo } from '@shared/models/offers';
   styleUrls: ['./details-no.component.scss']
 })
 export class OfferDetailsNoComponent implements OnInit {
-
   @Input() offer: OfferInfo;
   @Output() closeClicked = new EventEmitter();
 
   constructor() {}
 
   ngOnInit() {
-    if(this.offer.establishmentFee == undefined) {
+    if (this.offer.establishmentFee == undefined) {
       this.offer.establishmentFee = 0;
     }
   }
 
   public onClick(bigBoolean) {
-    this.closeClicked.emit(bigBoolean)
+    this.closeClicked.emit(bigBoolean);
   }
-
 }

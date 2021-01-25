@@ -9,17 +9,16 @@ import { locale } from '../../config/locale/locale';
 })
 export class FaqComponent implements OnInit {
   @Input() isFrontPage: boolean;
-  public routes = ROUTES_MAP
+  public routes = ROUTES_MAP;
   public isSweden = false;
 
-  constructor() { }
-  
+  constructor() {}
+
   ngOnInit() {
-    if(locale.includes("sv")) {
-      this.isSweden = true
-    } else{
-      this.isSweden = false
+    if (locale.includes('sv')) {
+      this.isSweden = true;
+    } else {
+      this.isSweden = false;
     }
   }
-
 }

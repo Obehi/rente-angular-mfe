@@ -8,9 +8,8 @@ describe('VirdiStatisticsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ VirdiStatisticsComponent ]
-    })
-    .compileComponents();
+      declarations: [VirdiStatisticsComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

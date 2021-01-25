@@ -16,8 +16,8 @@ export class PropertyInputComponent implements OnInit {
   @Input() label: string;
   @Input() icon: string;
   @Input() inputType: 'tel' | 'dropdown' | 'autocomplete' = 'tel';
-  @Input() options: { name?: string, value?: string, label: string }[];
-  @Input() memberships: { name?: string, value?: string, label: string }[];
+  @Input() options: { name?: string; value?: string; label: string }[];
+  @Input() memberships: { name?: string; value?: string; label: string }[];
   @Output() selectedMemberships = new EventEmitter<MembershipTypeDto[]>();
   _selectedMemberships: string[];
   selectionDistincter = new Subject();
@@ -28,19 +28,23 @@ export class PropertyInputComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this._selectedMemberships = this.firstBuyersService.selectedMemberships.map(membership => membership.name);
+    this._selectedMemberships = this.firstBuyersService.selectedMemberships.map(
+      (membership) => membership.name
+    );
 
-    this._selectionDistincter.pipe(distinctUntilChanged((x, y) => x.length === y.length))
-      .subscribe(val => {
+    this._selectionDistincter
+      .pipe(distinctUntilChanged((x, y) => x.length === y.length))
+      .subscribe((val) => {
         this.selectedMemberships.emit(val);
       });
   }
 
   getSelectedMemberships(selected: string[]) {
     const _selectedMemberships = [];
-    selected.forEach(val => {
-      _selectedMemberships.push((this.memberships)
-        .find(option => val === option.name));
+    selected.forEach((val) => {
+      _selectedMemberships.push(
+        this.memberships.find((option) => val === option.name)
+      );
     });
     this.firstBuyersService.selectedMemberships = _selectedMemberships;
     this.selectionDistincter.next(_selectedMemberships);
@@ -50,5 +54,4 @@ export class PropertyInputComponent implements OnInit {
     val += '';
     return parseInt(val.trim(), 10);
   }
-
 }

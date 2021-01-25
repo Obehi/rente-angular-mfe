@@ -9,5 +9,4 @@ const routes: Routes = [{ path: '', component: BankSelectSvComponent }];
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class BankSelectSvRoutingModule { }
-  
+export class BankSelectSvRoutingModule {}

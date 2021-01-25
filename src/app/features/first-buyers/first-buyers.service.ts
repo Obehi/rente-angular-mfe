@@ -5,18 +5,12 @@ import { forkJoin, Observable } from 'rxjs';
 
 @Injectable()
 export class FirstBuyersService {
-
-  offerValue: { outstandingDebt: number; income: number; };
+  offerValue: { outstandingDebt: number; income: number };
   selectedMemberships: MembershipTypeDto[] = [];
 
-  constructor(private authService: AuthService) {
-
-  }
+  constructor(private authService: AuthService) {}
 
   getAuthToken(debtData) {
     return this.authService.getFirstTimeLoanToken(debtData);
   }
-
 }
-
-

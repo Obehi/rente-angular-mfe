@@ -6,18 +6,18 @@ import {
   AbstractControl,
   NgForm,
   FormControl
-} from "@angular/forms";
-import { ContactService } from "@services/remote-api/contact.service";
-import { Router } from "@angular/router";
-import { SnackBarService } from "@services/snackbar.service";
-import { Mask } from '@shared/constants/mask'
-import * as Stomp from "stompjs";
-import * as SockJS from "sockjs-client";
-import { environment } from "@environments/environment";
+} from '@angular/forms';
+import { ContactService } from '@services/remote-api/contact.service';
+import { Router } from '@angular/router';
+import { SnackBarService } from '@services/snackbar.service';
+import { Mask } from '@shared/constants/mask';
+import * as Stomp from 'stompjs';
+import * as SockJS from 'sockjs-client';
+import { environment } from '@environments/environment';
 import { locale } from '../../config/locale/locale';
 
-import { API_URL_MAP } from "@config/api-url-config";
-import { Subscription, interval, Observable, timer, forkJoin } from "rxjs";
+import { API_URL_MAP } from '@config/api-url-config';
+import { Subscription, interval, Observable, timer, forkJoin } from 'rxjs';
 import {
   IDENTIFICATION_TIMEOUT_TIME,
   PING_TIME,
@@ -26,22 +26,19 @@ import {
   BANKID_STATUS,
   BANKID_TIMEOUT_TIME,
   MESSAGE_STATUS
-} from "../auth/login-status/login-status.config";
-import { EnvService} from '@services/env.service'
+} from '../auth/login-status/login-status.config';
+import { EnvService } from '@services/env.service';
 
+import { ViewStatus } from '../auth/login-status/login-view-status';
 
-import { ViewStatus } from "../auth/login-status/login-view-status";
-
-import { take } from "rxjs/operators";
-import { AuthService } from "@services/remote-api/auth.service";
-import { UserService } from "@services/remote-api/user.service";
-import { LoansService } from "@services/remote-api/loans.service";
-import { LocalStorageService } from "@services/local-storage.service";
-import { BankVo, BankUtils } from "@shared/models/bank";
+import { take } from 'rxjs/operators';
+import { AuthService } from '@services/remote-api/auth.service';
+import { UserService } from '@services/remote-api/user.service';
+import { LoansService } from '@services/remote-api/loans.service';
+import { LocalStorageService } from '@services/local-storage.service';
+import { BankVo, BankUtils } from '@shared/models/bank';
 import { ROUTES_MAP } from '@config/routes-config';
-import { CustomLangTextService } from "@services/custom-lang-text.service";
-
-
+import { CustomLangTextService } from '@services/custom-lang-text.service';
 
 @Component({
   selector: 'rente-auth-sv-mockup',
@@ -49,17 +46,16 @@ import { CustomLangTextService } from "@services/custom-lang-text.service";
   styleUrls: ['./auth-sv-mockup.component.scss']
 })
 export class AuthSvMockupComponent implements OnInit, OnDestroy {
-
   public contactUsForm: FormGroup;
-  public mask = Mask
+  public mask = Mask;
   public isLoading: boolean;
-  public loginIdError: boolean = false
+  public loginIdError = false;
   private stompClient: any;
   private intervalSubscription: Subscription;
 
   public viewStatus: ViewStatus = new ViewStatus();
   public reconnectIterator = 0;
-  public passPhrase = "";
+  public passPhrase = '';
   public ticks: number;
   public MESSAGE_STATUS = MESSAGE_STATUS;
   public loginStep1Status: string;
@@ -82,7 +78,7 @@ export class AuthSvMockupComponent implements OnInit, OnDestroy {
   isAccountSelection: boolean;
   accounts: string[];
   userSessionId: string;
-  environment: any
+  environment: any;
 
   ngOnDestroy() {
     this.unsubscribeEverything();
@@ -118,19 +114,14 @@ export class AuthSvMockupComponent implements OnInit, OnDestroy {
     private localStorageService: LocalStorageService,
     public customLangTextService: CustomLangTextService,
     private envService: EnvService
-  ) {
-  }
+  ) {}
 
   ngOnInit(): void {
-    this.environment = this.envService.environment
+    this.environment = this.envService.environment;
     this.contactUsForm = this.fb.group({
-      loginId: [
-        ""
-      ]
+      loginId: ['']
     });
   }
-
-  
 
   public isErrorState(
     control: AbstractControl | null,
@@ -143,12 +134,15 @@ export class AuthSvMockupComponent implements OnInit, OnDestroy {
     this.contactUsForm.markAllAsTouched();
     this.contactUsForm.updateValueAndValidity();
     this.contactService.sendContactForm(formData).subscribe(
-      _ => {
+      (_) => {
         this.isLoading = false;
-        this.router.navigate(["/"]);
-        this.snackBar.openSuccessSnackBar(this.customLangTextService.getSnackBarSavedMessage(), 2);
+        this.router.navigate(['/']);
+        this.snackBar.openSuccessSnackBar(
+          this.customLangTextService.getSnackBarSavedMessage(),
+          2
+        );
       },
-      err => {
+      (err) => {
         this.isLoading = false;
       }
     );
@@ -156,18 +150,17 @@ export class AuthSvMockupComponent implements OnInit, OnDestroy {
 
   inValid() {
     return (
-      this.contactUsForm.get('loginId').hasError('pattern') && 
+      this.contactUsForm.get('loginId').hasError('pattern') &&
       this.contactUsForm.get('loginId').dirty
     );
-  } 
+  }
   onBlurErrorCheck() {
-    this.loginIdError = this.inValid()
-   }
+    this.loginIdError = this.inValid();
+  }
 
   public request() {
-    var data = this.contactUsForm.value.loginId
-    this.initializeWebSocketConnection(data)
-   
+    const data = this.contactUsForm.value.loginId;
+    this.initializeWebSocketConnection(data);
   }
 
   private initializeWebSocketConnection(loginId: number) {
@@ -176,25 +169,28 @@ export class AuthSvMockupComponent implements OnInit, OnDestroy {
     const socket = new SockJS(environment.crawlerUrl);
     this.stompClient = Stomp.over(socket);
 
-    
     if (environment.production) {
       this.stompClient.debug = null;
     }
 
-    this.stompClient.connect({}, frame => {
-      this.sendUserData(loginId);
+    this.stompClient.connect(
+      {},
+      (frame) => {
+        this.sendUserData(loginId);
 
-      //this.resendDataAfterReconnect();
+        // this.resendDataAfterReconnect();
         this.successSocketCallback();
         // Send ping to prevent socket closing
         this.intervalSubscription = interval(PING_TIME).subscribe(() => {
           this.stompClient.send(
             API_URL_MAP.crawlerComunicationUrl,
             {},
-            JSON.stringify({ message: "ping" })
+            JSON.stringify({ message: 'ping' })
           );
         });
-    }, () => {})
+      },
+      () => {}
+    );
   }
 
   private initConnectionTimer() {
@@ -202,15 +198,17 @@ export class AuthSvMockupComponent implements OnInit, OnDestroy {
       this.connectionTimerSubscription.unsubscribe();
     }
     this.connectionTimer = timer(1000, 1000);
-    this.connectionTimerSubscription = this.connectionTimer.subscribe(time => {
-      if (time > this.maxConnectionTime) {
-        this.viewStatus.isTimedOut = true;
+    this.connectionTimerSubscription = this.connectionTimer.subscribe(
+      (time) => {
+        if (time > this.maxConnectionTime) {
+          this.viewStatus.isTimedOut = true;
+        }
+        this.firstStepTimer--;
+        if (!this.firstStepTimer) {
+          this.firstStepTimerFinished = true;
+        }
       }
-      this.firstStepTimer--;
-      if (!this.firstStepTimer) {
-        this.firstStepTimerFinished = true;
-      }
-    });
+    );
   }
 
   private initTimer(timeoutTime: number) {
@@ -220,7 +218,7 @@ export class AuthSvMockupComponent implements OnInit, OnDestroy {
     this.ticks = timeoutTime;
     this.timer = timer(1000, 1000).pipe(take(timeoutTime + 1));
     this.timerSubscription = this.timer.subscribe(
-      time => (this.ticks = this.ticks > 0 ? timeoutTime - time : 0)
+      (time) => (this.ticks = this.ticks > 0 ? timeoutTime - time : 0)
     );
   }
 
@@ -229,7 +227,7 @@ export class AuthSvMockupComponent implements OnInit, OnDestroy {
       this.crawlingTimerSubscription.unsubscribe();
     }
     this.crawlingTimer = timer(1000, 1000);
-    this.crawlingTimerSubscription = this.crawlingTimer.subscribe(time => {
+    this.crawlingTimerSubscription = this.crawlingTimer.subscribe((time) => {
       this.thirdStepTimer--;
       if (!this.thirdStepTimer) {
         this.thirdStepTimerFinished = true;
@@ -247,19 +245,17 @@ export class AuthSvMockupComponent implements OnInit, OnDestroy {
   private successSocketCallback() {
     const repliesUrl = `${API_URL_MAP.crawlerRepliesUrl}`;
     this.viewStatus.isSocketConnectionLost = false;
-    console.log("subscribing to: " + API_URL_MAP.crawlerRepliesUrl)
-    this.stompClient.subscribe(repliesUrl, message => {
+    console.log('subscribing to: ' + API_URL_MAP.crawlerRepliesUrl);
+    this.stompClient.subscribe(repliesUrl, (message) => {
       if (message.body) {
         const response = JSON.parse(message.body);
         console.log('STATUS:', response.eventType);
         switch (response.eventType) {
-
           case BANKID_STATUS.BANKID_UNSTABLE:
-            this.viewStatus.isBankIdUnstable = true
+            this.viewStatus.isBankIdUnstable = true;
             this.loginStep1Status = MESSAGE_STATUS.ERROR;
             this.unsubscribeEverything();
             break;
-
 
           case BANKID_STATUS.PROCESS_STARTED:
             this.initTimer(BANKID_TIMEOUT_TIME);
@@ -361,38 +357,49 @@ export class AuthSvMockupComponent implements OnInit, OnDestroy {
             }
             break;
           case BANKID_STATUS.BID_C167:
-            this.viewStatus.isErrorBIDC167 = true
+            this.viewStatus.isErrorBIDC167 = true;
             this.loginStep1Status = MESSAGE_STATUS.ERROR;
             this.unsubscribeEverything();
             break;
 
-          case BANKID_STATUS.NO_LOANS: 
-            this.router.navigate(['/dashboard/' + ROUTES_MAP.noLoan])
-            break
+          case BANKID_STATUS.NO_LOANS:
+            this.router.navigate(['/dashboard/' + ROUTES_MAP.noLoan]);
+            break;
           case BANKID_STATUS.LOANS_PERSISTED:
             this.viewStatus.isLoansPersisted = true;
             const user = response.data.user;
 
             this.authService
-            .loginWithToken(user.oneTimeToken)
-              .subscribe(res => {
+              .loginWithToken(user.oneTimeToken)
+              .subscribe((res) => {
                 forkJoin([
                   this.loansService.getLoansAndRateType(),
                   this.userService.getUserInfo()
                 ]).subscribe(([rateAndLoans, userInfo]) => {
                   this.loginStep3Status = MESSAGE_STATUS.SUCCESS;
-                  this.userService.lowerRateAvailable.next(rateAndLoans.lowerRateAvailable);
+                  this.userService.lowerRateAvailable.next(
+                    rateAndLoans.lowerRateAvailable
+                  );
                   if (rateAndLoans.loansPresent) {
                     this.localStorageService.removeItem('noLoansPresent');
                     if (rateAndLoans.isAggregatedRateTypeFixed) {
-                      this.localStorageService.setItem('isAggregatedRateTypeFixed', true);
-                      this.router.navigate(['/dashboard/' + ROUTES_MAP.fixedRate]);
+                      this.localStorageService.setItem(
+                        'isAggregatedRateTypeFixed',
+                        true
+                      );
+                      this.router.navigate([
+                        '/dashboard/' + ROUTES_MAP.fixedRate
+                      ]);
                     } else {
                       if (userInfo.income === null) {
-                        this.router.navigate(['/' + ROUTES_MAP.initConfirmation]);
+                        this.router.navigate([
+                          '/' + ROUTES_MAP.initConfirmation
+                        ]);
                         this.localStorageService.setItem('isNewUser', true);
                       } else {
-                        this.router.navigate(['/dashboard/' + ROUTES_MAP.offers]);
+                        this.router.navigate([
+                          '/dashboard/' + ROUTES_MAP.offers
+                        ]);
                       }
                     }
                   } else {
@@ -406,30 +413,25 @@ export class AuthSvMockupComponent implements OnInit, OnDestroy {
       }
     });
   }
-  private connectAndReconnectSocket(successCallback) {
-  
-  }
+  private connectAndReconnectSocket(successCallback) {}
 
   sendUserData(loginId: number, resendData = false) {
-
-    var country = ""
-    if(locale.includes("nb")) {
-      country = 'NOR'
+    let country = '';
+    if (locale.includes('nb')) {
+      country = 'NOR';
     } else {
-      country = 'SWE'
+      country = 'SWE';
     }
 
-    let data = {
+    const data = {
       country: country,
       code: loginId
-    }
-  
-    this.stompClient.send( 
+    };
+
+    this.stompClient.send(
       API_URL_MAP.tinkSendMessageUrl,
       {},
       JSON.stringify(data)
     );
   }
-
-
 }

@@ -4,7 +4,6 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ChangeBankServiceService } from '../../../../../shared/services/remote-api/change-bank-service.service';
 import { Router } from '@angular/router';
 
-
 @Component({
   selector: 'rente-change-bank-dialog',
   templateUrl: './change-bank-dialog-sv.component.html',
@@ -30,31 +29,27 @@ export class ChangeBankDialogSvComponent implements OnInit {
       confirmation: ['', Validators.required]
     });
   }
-  
 
   public sendRequest(): void {
     this.isLoading = true;
     this.changeBankServiceService
       .sendBankOfferRequest(this.data.offerId)
       .subscribe(
-
-    _ => {
+        (_) => {
           this.isLoading = false;
-          this.closeState = "procced"
+          this.closeState = 'procced';
           this.dialogRef.close();
-
         },
-        err => {
+        (err) => {
           this.isLoading = false;
-          this.closeState = "error"
+          this.closeState = 'error';
           this.dialogRef.close();
         }
       );
   }
 
   public close(): void {
-    this.closeState = "canceled"
+    this.closeState = 'canceled';
     this.dialogRef.close();
   }
-
 }
