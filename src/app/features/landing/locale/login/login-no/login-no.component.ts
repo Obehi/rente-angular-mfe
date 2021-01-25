@@ -5,4 +5,4 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './login-no.component.html',
   styleUrls: ['./login-no.component.scss']
 })
-export class LoginNoComponent implements OnInit {}
+export class LoginNoComponent {}

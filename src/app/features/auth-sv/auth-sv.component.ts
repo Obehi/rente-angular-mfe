@@ -35,7 +35,7 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
   templateUrl: './auth-sv.component.html',
   styleUrls: ['./auth-sv.component.scss']
 })
-export class AuthSvComponent implements OnInit, OnDestroy {
+export class AuthSvComponent implements OnInit {
   public isMockTest = false;
   public isLoginStarted = false;
   public tinkCode: number;

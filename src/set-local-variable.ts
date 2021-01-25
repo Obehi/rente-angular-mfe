@@ -1,6 +1,6 @@
 //File replacement did not work with language interfaces when running heroku-postbuild (it works with ng serve...). This file is the workaround
-import fs from 'fs';
-import path from 'path';
+const fs = require('fs');
+const path = require('path');
 const environment = process.env.ENV;
 const locale = process.env.LOCALE;
 const isProd = environment === 'prod';
