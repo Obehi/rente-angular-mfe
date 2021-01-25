@@ -146,7 +146,7 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
     );
   }
 
-  public getTips() {
+  public getTips(): void {
     if (this.offersInfo.incompleteInfoLoanPresent !== true) {
       this.tips.push({
         header: 'Obs',
@@ -215,7 +215,7 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
     }
   }
 
-  public goToBestOffer() {
+  public goToBestOffer(): void {
     const element = document.getElementById('best-offers-text');
     const headerOffset = this.isMobile ? 80 : 180;
 
@@ -353,7 +353,7 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
     }
   }
 
-  openLtvTooHightDialog() {
+  openLtvTooHightDialog(): void {
     this.dialog.open(LtvTooHighDialogComponent);
   }
 
@@ -362,7 +362,7 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
     this.isSmallScreen = window.innerWidth <= 1024;
   }
 
-  onDialogAction(answer: boolean) {
+  onDialogAction(answer: boolean): void {
     this.effRateLoweredDialogVisible = false;
     if (answer === true) {
       this.userService.lowerRateAvailable.next(false);
@@ -397,7 +397,7 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
     return text;
   }
 
-  get rateBarPercentageInverted() {
+  get rateBarPercentageInverted(): number {
     return 100 - this.rateBarPercentage.percentage;
   }
 
