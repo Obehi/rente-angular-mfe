@@ -5,19 +5,15 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './epsi-score.component.html',
   styleUrls: ['./epsi-score.component.scss']
 })
-export class EPSIScoreComponent  {
-
+export class EPSIScoreComponent {
   private hasScrolledToTop = false;
 
-  constructor() { }
-
+  constructor() {}
 
   ngAfterViewChecked() {
-     if(this.hasScrolledToTop == false) {
+    if (this.hasScrolledToTop == false) {
       this.hasScrolledToTop = true;
       window.scrollTo(0, 0);
-    } 
+    }
   }
-
-
 }

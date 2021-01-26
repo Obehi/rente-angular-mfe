@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 })
 export class LocalStorageService {
   public appPrefix = storageName.appPrefix;
-  constructor() { }
+  constructor() {}
 
   public get isFixedRateType() {
     return !!this.getItem('isAggregatedRateTypeFixed');
@@ -23,7 +23,7 @@ export class LocalStorageService {
     localStorage.setItem(`${this.appPrefix}-${param}`, value);
   }
 
-  public  setObject(param: string, value: any): void {
+  public setObject(param: string, value: any): void {
     localStorage.setItem(`${this.appPrefix}-${param}`, JSON.stringify(value));
   }
 

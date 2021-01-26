@@ -9,16 +9,16 @@ import { ROUTES_MAP } from '@config/routes-config';
   styleUrls: ['./bank-select.component.scss']
 })
 export class BankSelectComponent implements OnInit {
+  searchStr: string;
+  banks: BankVo[];
+  allBanks: BankVo[];
 
-  searchStr:string;
-  banks:BankVo[];
-  allBanks:BankVo[];
-
-  constructor(
-    private router: Router) { }
+  constructor(private router: Router) {}
 
   ngOnInit() {
-    this.allBanks = [...BankList, ...MissingBankList].sort((a,b) => (a.label > b.label) ? 1 : ((b.label > a.label) ? -1 : 0));
+    this.allBanks = [...BankList, ...MissingBankList].sort((a, b) =>
+      a.label > b.label ? 1 : b.label > a.label ? -1 : 0
+    );
     this.filterBank(this.searchStr);
   }
 
@@ -31,24 +31,26 @@ export class BankSelectComponent implements OnInit {
     this.filterBank(this.searchStr);
   }
 
-  filterBank(filter:string) {
+  filterBank(filter: string) {
     let filteredBanks = [];
     if (filter == null || filter.length === 0) {
       filteredBanks = this.allBanks.concat();
     } else {
       const f = filter.toLocaleLowerCase();
-      filteredBanks = this.allBanks.filter(bank => bank.label.toLocaleLowerCase().indexOf(f) > -1);
+      filteredBanks = this.allBanks.filter(
+        (bank) => bank.label.toLocaleLowerCase().indexOf(f) > -1
+      );
     }
     this.banks = filteredBanks;
   }
 
-  selectBank(bank:BankVo) {
+  selectBank(bank: BankVo) {
     if (bank.isMissing) {
-      this.router.navigate([ROUTES_MAP.getNotified],{ state: { bank: bank } });
-    }
-    else {
-      this.router.navigate([ROUTES_MAP.auth + '/' +  bank.name.toLocaleLowerCase()]);
+      this.router.navigate([ROUTES_MAP.getNotified], { state: { bank: bank } });
+    } else {
+      this.router.navigate([
+        ROUTES_MAP.auth + '/' + bank.name.toLocaleLowerCase()
+      ]);
     }
   }
-
 }

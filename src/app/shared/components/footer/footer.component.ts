@@ -1,36 +1,33 @@
-import { Component, OnInit } from "@angular/core";
-import { Router, NavigationEnd } from "@angular/router";
+import { Component, OnInit } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
 import { ROUTES_MAP } from '@config/routes-config';
 import { locale } from '../../.././config/locale/locale';
 import { environment } from '@environments/environment';
 
 @Component({
-  selector: "rente-footer",
-  templateUrl: "./footer.component.html",
-  styleUrls: ["./footer.component.scss"]
+  selector: 'rente-footer',
+  templateUrl: './footer.component.html',
+  styleUrls: ['./footer.component.scss']
 })
 export class FooterComponent implements OnInit {
-  public routes = ROUTES_MAP
+  public routes = ROUTES_MAP;
   isSweden: boolean;
-  public env = environment
+  public env = environment;
 
-  constructor(public router: Router 
-    ) {}
+  constructor(public router: Router) {}
   shouldShowFooter = true;
 
   ngOnInit() {
-    if(locale.includes("sv")) {
-      this.isSweden = true
-    } else{
-      this.isSweden = false
+    if (locale.includes('sv')) {
+      this.isSweden = true;
+    } else {
+      this.isSweden = false;
     }
 
-    this.router.events
-    .subscribe((event) => {
+    this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
-        this.shouldShowFooter = (event.url !== '/messenger-share')
+        this.shouldShowFooter = event.url !== '/messenger-share';
       }
     });
-
   }
 }

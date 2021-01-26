@@ -16,9 +16,21 @@ export const buildDate = '${buildDate}';
 // ensure version module pulls value from package.json
 fs.writeFile(versionFilePath, src, { flat: 'w' }, function (err) {
   if (err) {
-    return console.log(colors.red('An error happened during version updating', err));
+    return console.log(
+      colors.red('An error happened during version updating', err)
+    );
   }
 
-  console.log(colors.green(`Updating application version ${colors.yellow(appVersion)} - ${colors.yellow(buildDate)}`));
-  console.log(`${colors.green('Writing version module to ')}${colors.yellow(versionFilePath)}\n`);
+  console.log(
+    colors.green(
+      `Updating application version ${colors.yellow(
+        appVersion
+      )} - ${colors.yellow(buildDate)}`
+    )
+  );
+  console.log(
+    `${colors.green('Writing version module to ')}${colors.yellow(
+      versionFilePath
+    )}\n`
+  );
 });

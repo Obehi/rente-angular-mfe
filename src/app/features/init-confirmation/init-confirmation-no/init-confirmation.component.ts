@@ -1,7 +1,12 @@
-import { LoansService, ConfirmationSetDto, ConfirmationGetDto, MembershipTypeDto } from '@services/remote-api/loans.service';
+import {
+  LoansService,
+  ConfirmationSetDto,
+  ConfirmationGetDto,
+  MembershipTypeDto
+} from '@services/remote-api/loans.service';
 import { UserService } from '@services/remote-api/user.service';
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
-import { TitleCasePipe} from '@angular/common';
+import { TitleCasePipe } from '@angular/common';
 import {
   Validators,
   AbstractControl,
@@ -25,10 +30,10 @@ import { SnackBarService } from '../../../shared/services/snackbar.service';
 import { OfferInfo } from '@shared/models/offers';
 import { DialogInfoComponent } from '../dialog-info/dialog-info.component';
 
-import { Mask } from '@shared/constants/mask'
-import { OptimizeService } from '@services/optimize.service'
+import { Mask } from '@shared/constants/mask';
+import { OptimizeService } from '@services/optimize.service';
 import { ROUTES_MAP } from '@config/routes-config';
-import { CustomLangTextService } from "@services/custom-lang-text.service";
+import { CustomLangTextService } from '@services/custom-lang-text.service';
 
 @Component({
   selector: 'rente-init-confirmation-sv',
@@ -47,9 +52,9 @@ export class InitConfirmationNoComponent implements OnInit {
   public filteredMemberships: Observable<MembershipTypeDto[]>;
   public memberships: any = [];
   public allMemberships: MembershipTypeDto[];
-  public userData:ConfirmationGetDto;
+  public userData: ConfirmationGetDto;
   public mask = Mask;
-  public optimizeService: OptimizeService
+  public optimizeService: OptimizeService;
 
   @ViewChild('membershipInput') membershipInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete: MatAutocomplete;
@@ -64,7 +69,7 @@ export class InitConfirmationNoComponent implements OnInit {
     public optimize: OptimizeService,
     public customLangTextService: CustomLangTextService
   ) {
-    this.optimizeService = optimize
+    this.optimizeService = optimize;
     this.filteredMemberships = this.membershipCtrl.valueChanges.pipe(
       startWith(null),
       map((membership: string | null) =>
@@ -74,18 +79,20 @@ export class InitConfirmationNoComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.loansService.getConfirmationData().subscribe(res => {
+    this.loansService.getConfirmationData().subscribe((res) => {
       this.allMemberships = res.availableMemberships;
       this.userData = res;
 
-      let income = String(res.income) && null
-      let apartmentSize = String(res.apartmentSize) && null
+      const income = String(res.income) && null;
+      const apartmentSize = String(res.apartmentSize) && null;
 
       this.propertyForm = this.fb.group({
         apartmentSize: [apartmentSize, Validators.required],
         membership: [],
         income: [income, Validators.required],
-        email: [res.email, Validators.compose([
+        email: [
+          res.email,
+          Validators.compose([
             Validators.required,
             Validators.pattern(VALIDATION_PATTERN.email)
           ])
@@ -121,25 +128,30 @@ export class InitConfirmationNoComponent implements OnInit {
     };
 
     const confirmationData = {
-      memberships: this.memberships.map(membership => membership.name),
+      memberships: this.memberships.map((membership) => membership.name),
       apartmentSize: formData.apartmentSize
     };
 
-    const dto:ConfirmationSetDto = new ConfirmationSetDto();
+    const dto: ConfirmationSetDto = new ConfirmationSetDto();
     dto.email = userData.email;
     dto.income = userData.income;
     dto.memberships = confirmationData.memberships;
     dto.apartmentSize = confirmationData.apartmentSize;
 
-    this.loansService.setConfirmationData(dto).subscribe(res => {
-      this.isLoading = false;
-      this.router.navigate(['/dashboard/' + ROUTES_MAP.offers]);
-      this.snackBar.openSuccessSnackBar(this.customLangTextService.getSnackBarUpdatedMessage(), 1.2);
-    },
-    err => {
-      this.isLoading = false;
-      this.router.navigate(['/dashboard/' + ROUTES_MAP.property]);
-    });
+    this.loansService.setConfirmationData(dto).subscribe(
+      (res) => {
+        this.isLoading = false;
+        this.router.navigate(['/dashboard/' + ROUTES_MAP.offers]);
+        this.snackBar.openSuccessSnackBar(
+          this.customLangTextService.getSnackBarUpdatedMessage(),
+          1.2
+        );
+      },
+      (err) => {
+        this.isLoading = false;
+        this.router.navigate(['/dashboard/' + ROUTES_MAP.property]);
+      }
+    );
   }
 
   add(event: MatChipInputEvent): void {
@@ -179,7 +191,7 @@ export class InitConfirmationNoComponent implements OnInit {
       this.memberships
     );
 
-    return this.allMemberships.filter(membership =>
+    return this.allMemberships.filter((membership) =>
       membership.label.toLowerCase().includes(filterValue)
     );
   }

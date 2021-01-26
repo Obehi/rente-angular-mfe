@@ -8,9 +8,8 @@ describe('ChangeBankDialogComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ChangeBankDialogComponent ]
-    })
-    .compileComponents();
+      declarations: [ChangeBankDialogComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

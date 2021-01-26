@@ -8,9 +8,8 @@ describe('BankIdLoginComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BankIdLoginComponent ]
-    })
-    .compileComponents();
+      declarations: [BankIdLoginComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

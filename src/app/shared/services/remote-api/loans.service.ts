@@ -3,14 +3,13 @@ import { API_URL_MAP } from '@config/api-url-config';
 import { GenericHttpService } from '@services/generic-http.service';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { locale } from '../../../config/locale/locale'
+import { locale } from '../../../config/locale/locale';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoansService {
-  constructor(private http: GenericHttpService) {
-  }
+  constructor(private http: GenericHttpService) {}
 
   public getLoans() {
     const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.loans.base}`;
@@ -44,7 +43,7 @@ export class LoansService {
 
   public getAddresses(): Observable<ClientAddressDto> {
     const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.address}`;
-    return this.http.get(url).pipe(map(r => this.mapClientAddressDto(r)));
+    return this.http.get(url).pipe(map((r) => this.mapClientAddressDto(r)));
   }
 
   public updateAddress(addresses: AddressDto[]): Observable<ClientAddressDto> {
@@ -52,14 +51,14 @@ export class LoansService {
 
     return this.http
       .post(url, addresses)
-      .pipe(map(r => this.mapClientAddressDto(r)));
+      .pipe(map((r) => this.mapClientAddressDto(r)));
   }
 
   mapClientAddressDto(r: any) {
     const dto = new ClientAddressDto();
     dto.totalPropertyValue = r.totalPropertyValue;
-    dto.addresses = r.addresses.map(item => {
-      let a: AddressDto = Object.assign(new AddressDto(), item);
+    dto.addresses = r.addresses.map((item) => {
+      const a: AddressDto = Object.assign(new AddressDto(), item);
       a.useManualPropertyValue = item.useManualPropertyValue == true;
       return a;
     });
@@ -76,7 +75,9 @@ export class LoansService {
     return this.http.get(url);
   }
 
-  public setConfirmationData(dto: ConfirmationSetDto): Observable<ConfirmationSetDto> {
+  public setConfirmationData(
+    dto: ConfirmationSetDto
+  ): Observable<ConfirmationSetDto> {
     const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.confirmation}`;
     return this.http.post(url, dto); // TODO: Object.assign()
   }
@@ -105,7 +106,7 @@ export class LoansService {
     const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.loans.base}${API_URL_MAP.loan.loans.state}`;
     return this.http
       .get(url)
-      .pipe(map(res => Object.assign(new LoanStateDto(), res)));
+      .pipe(map((res) => Object.assign(new LoanStateDto(), res)));
   }
 
   public getAddressStatistics(id: number) {
@@ -114,16 +115,16 @@ export class LoansService {
   }
 
   public getLoanStatistics() {
-    var country;
-    if(locale.includes('sv')) {
-      country = 'SWE'
-    } else if(locale.includes('nb')) {
-      country = 'NOR'
+    let country;
+    if (locale.includes('sv')) {
+      country = 'SWE';
+    } else if (locale.includes('nb')) {
+      country = 'NOR';
     }
-    let params = {'country': country}
+    const params = { country: country };
     const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.statistics}`;
 
-    return this.http.getWithParams(url, params)
+    return this.http.getWithParams(url, params);
   }
 
   public confirmLowerRate(): Observable<any> {
@@ -138,7 +139,9 @@ export class LoansService {
     return this.http.get(url);
   }
 
-  updateUserPreferences(dto: PreferencesUpdateDto): Observable<PreferencesUpdateDto> {
+  updateUserPreferences(
+    dto: PreferencesUpdateDto
+  ): Observable<PreferencesUpdateDto> {
     const url = `${API_URL_MAP.loan.base}/preferences`;
     return this.http.post(url, dto);
   }
@@ -219,4 +222,3 @@ export class EmailDto {
   checkRateReminderType: null | string;
   receiveNewsEmails: false | true;
 }
-

@@ -6,10 +6,7 @@ import { API_URL_MAP } from '@config/api-url-config';
   providedIn: 'root'
 })
 export class ProfileService {
-
-  constructor(
-    private http: GenericHttpService
-  ) { }
+  constructor(private http: GenericHttpService) {}
 
   public getProfileInfo() {
     return this.http.get(API_URL_MAP.profile);

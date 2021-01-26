@@ -1,14 +1,13 @@
-export { LoginSVComponent as LoginLangGenericComponent  } from '@features/landing/locale/login/login-sv/login-sv.component';  
-export { OffersListSvComponent as  OffersListLangGenericComponent } from '@features/dashboard/offers/offers-list/offers-list-sv/offers-list-sv.component';  
-export { HeaderSvComponent as HeaderLangGenericComponent } from '@shared/components/header/header-sv/header-sv.component'
-export { LoansSvComponent as LoansLangGenericComponent } from '@features/dashboard/loans/loans-blue/loans-sv/loans-sv.component'
-export { InitConfirmationSVComponent as InitConfirmationLangGenericComponent } from '@features/init-confirmation/init-confirmation-sv/init-confirmation.component'
-export { HouseFormSvComponent as HouseFormLangGenericComponent } from '@features/dashboard/house/house-blue/house-form-sv/house-form-sv.component'
-export { BankSelectSvRoutingModule as BankSelectLangGenericRoutingModule } from '@features/bank-select-sv/bank-select-routing.module';  
-export { LandingTopSvComponent as LandingTopLangGenericComponent } from '@features/landing/landing-top-sv/landing-top-sv.component';   
-export { BankSelectSvModule as BankSelectLangGenericModule } from '@features/bank-select-sv/bank-select.module';  
-export { BankSelectSvComponent as BankSelectLangGenericComponent } from '@features/bank-select-sv/bank-select.component';  
-export { OfferDetailsSvComponent as OfferDetailsLangGenericComponent  } from '@features/dashboard/offers/offers-blue/details/details-sv/details-sv.component';  
-export {  ChangeBankDialogSvComponent as ChangeBankDialogLangGenericComponent   } from '@features/dashboard/offers/change-bank-dialog/change-bank-dialog-sv/change-bank-dialog-sv.component';  
-export {  BankRatingDialogSvComponent as BankScoreLangGenericComponent   } from '@features/dashboard/offers/offers-blue/bank-rating-dialog/bank-rating-dialog-sv/bank-rating-dialog-sv.component';  
-
+export { LoginSVComponent as LoginLangGenericComponent } from '@features/landing/locale/login/login-sv/login-sv.component';
+export { OffersListSvComponent as OffersListLangGenericComponent } from '@features/dashboard/offers/offers-list/offers-list-sv/offers-list-sv.component';
+export { HeaderSvComponent as HeaderLangGenericComponent } from '@shared/components/header/header-sv/header-sv.component';
+export { LoansSvComponent as LoansLangGenericComponent } from '@features/dashboard/loans/loans-blue/loans-sv/loans-sv.component';
+export { InitConfirmationSVComponent as InitConfirmationLangGenericComponent } from '@features/init-confirmation/init-confirmation-sv/init-confirmation.component';
+export { HouseFormSvComponent as HouseFormLangGenericComponent } from '@features/dashboard/house/house-blue/house-form-sv/house-form-sv.component';
+export { BankSelectSvRoutingModule as BankSelectLangGenericRoutingModule } from '@features/bank-select-sv/bank-select-routing.module';
+export { LandingTopSvComponent as LandingTopLangGenericComponent } from '@features/landing/landing-top-sv/landing-top-sv.component';
+export { BankSelectSvModule as BankSelectLangGenericModule } from '@features/bank-select-sv/bank-select.module';
+export { BankSelectSvComponent as BankSelectLangGenericComponent } from '@features/bank-select-sv/bank-select.component';
+export { OfferDetailsSvComponent as OfferDetailsLangGenericComponent } from '@features/dashboard/offers/offers-blue/details/details-sv/details-sv.component';
+export { ChangeBankDialogSvComponent as ChangeBankDialogLangGenericComponent } from '@features/dashboard/offers/change-bank-dialog/change-bank-dialog-sv/change-bank-dialog-sv.component';
+export { BankRatingDialogSvComponent as BankScoreLangGenericComponent } from '@features/dashboard/offers/offers-blue/bank-rating-dialog/bank-rating-dialog-sv/bank-rating-dialog-sv.component';

@@ -6,9 +6,8 @@ import { ViewEncapsulation } from '@angular/core';
   selector: 'rente-button',
   styleUrls: ['./button.component.scss'],
   templateUrl: './button.component.html',
-  encapsulation: ViewEncapsulation.None,
+  encapsulation: ViewEncapsulation.None
 })
-
 export class ButtonComponent {
   @Input() color: string;
   @Input() type = 'raised';
@@ -21,9 +20,7 @@ export class ButtonComponent {
 
   @Output() public action = new EventEmitter();
 
-  constructor(
-    private router: Router
-  ) {}
+  constructor(private router: Router) {}
 
   clickEvent(): void {
     if (this.routerLink) {
@@ -33,8 +30,8 @@ export class ButtonComponent {
     } else if (this.href) {
       window.open(this.href);
       // location.href = this.href;
-    // } else if (this.btnBlankHref) {
-    //   window.open(this.btnBlankHref);
+      // } else if (this.btnBlankHref) {
+      //   window.open(this.btnBlankHref);
     } else {
       this.action.emit();
     }

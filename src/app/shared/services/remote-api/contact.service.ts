@@ -6,10 +6,7 @@ import { API_URL_MAP } from '@config/api-url-config';
   providedIn: 'root'
 })
 export class ContactService {
-
-  constructor(
-    private http: GenericHttpService,
-  ) { }
+  constructor(private http: GenericHttpService) {}
 
   public sendContactForm(contactForm) {
     const url = `${API_URL_MAP.user.base}${API_URL_MAP.user.communication.base}${API_URL_MAP.user.communication.contactUs}`;

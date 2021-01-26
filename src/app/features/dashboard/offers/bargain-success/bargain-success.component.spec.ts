@@ -8,9 +8,8 @@ describe('BargainSuccessComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BargainSuccessComponent ]
-    })
-    .compileComponents();
+      declarations: [BargainSuccessComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

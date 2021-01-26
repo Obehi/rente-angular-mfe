@@ -8,9 +8,8 @@ describe('AuthSvMockupComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AuthSvMockupComponent ]
-    })
-    .compileComponents();
+      declarations: [AuthSvMockupComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

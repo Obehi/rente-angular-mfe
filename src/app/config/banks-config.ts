@@ -651,7 +651,6 @@ const BANKS_DATA_NO = {
   }
 };
 
-
 const BANKS_DATA_SV = {
   SWE_AVANZA: {
     name: 'SWE_AVANZA',
@@ -672,7 +671,6 @@ const BANKS_DATA_SV = {
     name: 'SWE_HYPOTEKET',
     img: '../../assets/img/sv/banks-logo/round/hypoteket.png',
     imgCircle: '../../assets/img/sv/banks-logo/round/hypoteket.png'
-
   },
   SWE_ICA_BANKEN: {
     name: 'SWE_ICA_BANKEN',
@@ -739,8 +737,8 @@ const MISCELLANEOUS = {
   }
 };
 
-
 export const BANKS_DATA = {
-  ...BANKS_DATA_SV, ...BANKS_DATA_NO,
+  ...BANKS_DATA_SV,
+  ...BANKS_DATA_NO,
   MISCELLANEOUS
 };

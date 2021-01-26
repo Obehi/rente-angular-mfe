@@ -13,7 +13,7 @@ const proxy = require('http-proxy').createProxyServer({
   host: 'https://blogg.renteradar.no',
   changeOrigin: true,
   agent: new https.Agent({
-    port: 443,
+    port: 443
   })
 });
 
@@ -33,37 +33,39 @@ if(process.env.LOCALE == undefined || process.env.LOCALE == "no") {
 }
 */
 
-
-
 const historicalRatesProxy = require('http-proxy').createProxyServer({
   host: 'https://blogg.renteradar.no',
   changeOrigin: true
 });
 
- app.use('/api/historical-rates', function(req, res, next) {
-   historicalRatesProxy.web(req, res, {
+app.use('/api/historical-rates', function (req, res, next) {
+  historicalRatesProxy.web(
+    req,
+    res,
+    {
       target: baseUrl + '/loan/ext-services/historical-rates-statistics',
       auth: 'login:pass'
-  }, next); 
+    },
+    next
+  );
 });
- 
 
 app.use(express.static(clientPath));
 
 var renderIndex = (req, res) => {
   res.sendFile(path.resolve(__dirname, clientPath + '/index.html'));
-}
+};
 
 var renderSvIndex = (req, res) => {
-  res.sendFile(path.resolve(__dirname, clientPath + '/sv' + '/index.html'))
-}
-//app.get('/*', renderSvIndex);
+  res.sendFile(path.resolve(__dirname, clientPath + '/sv' + '/index.html'));
+};
+// app.get('/*', renderSvIndex);
 app.get('/*', renderIndex);
 
 // Start the app by listening on the default Heroku port
 const server = app.listen(port, function () {
   let host = server.address().address;
   let port = server.address().port;
-  host = (host === '::') ? 'localhost' : host;
+  host = host === '::' ? 'localhost' : host;
   console.log(`This express app is listening on: ${host}:${port}`);
 });

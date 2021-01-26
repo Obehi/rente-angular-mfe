@@ -6,10 +6,7 @@ import { API_URL_MAP } from '@config/api-url-config';
   providedIn: 'root'
 })
 export class TrackingService {
-
-  constructor(
-    private http: GenericHttpService,
-  ) { }
+  constructor(private http: GenericHttpService) {}
 
   public sendTrackingStats(trackingData: TrackingDto) {
     const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.stat.base}${API_URL_MAP.loan.stat.click}`;
@@ -18,6 +15,6 @@ export class TrackingService {
 }
 
 export class TrackingDto {
-  offerId: number
-  type: String
+  offerId: number;
+  type: string;
 }

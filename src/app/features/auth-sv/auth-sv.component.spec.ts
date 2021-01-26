@@ -8,9 +8,8 @@ describe('AuthSvComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AuthSvComponent ]
-    })
-    .compileComponents();
+      declarations: [AuthSvComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

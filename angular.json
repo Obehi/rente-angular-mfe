@@ -80,19 +80,26 @@
             "nb": {
               "localize": ["nb"],
               "assets": [
-                { "glob": "**/*", "input": "src/assets/nb", "output": "/assets/" },
-                { "glob": "sitemap.xml", "input": "src/sitemaps/no", "output": "/" },
+                {
+                  "glob": "**/*",
+                  "input": "src/assets/nb",
+                  "output": "/assets/"
+                },
+                {
+                  "glob": "sitemap.xml",
+                  "input": "src/sitemaps/no",
+                  "output": "/"
+                },
                 "src/assets",
                 "src/favicon.ico",
                 "src/sitemap.xml",
                 "src/robots.txt"
-
               ],
               "fileReplacements": [
                 {
                   "replace": "src/app/local-components/components-output.ts",
                   "with": "src/app/local-components/components-no.ts"
-                },  
+                },
                 {
                   "replace": "src/index.html",
                   "with": "src/index/no/index-no.html"
@@ -108,7 +115,7 @@
                 {
                   "replace": "src/app/shared/constants/mask.ts",
                   "with": "src/app/shared/constants/mask-no.ts"
-                },   
+                },
                 {
                   "replace": "src/environments/environment.ts",
                   "with": "src/environments/environment.heroku.ts"
@@ -118,19 +125,26 @@
             "no-local": {
               "localize": ["nb"],
               "assets": [
-                { "glob": "**/*", "input": "src/assets/nb", "output": "/assets/" },
-                { "glob": "sitemap.xml", "input": "src/sitemaps/no", "output": "/" },
+                {
+                  "glob": "**/*",
+                  "input": "src/assets/nb",
+                  "output": "/assets/"
+                },
+                {
+                  "glob": "sitemap.xml",
+                  "input": "src/sitemaps/no",
+                  "output": "/"
+                },
                 "src/assets",
                 "src/favicon.ico",
                 "src/sitemap.xml",
                 "src/robots.txt"
-
               ],
               "fileReplacements": [
                 {
                   "replace": "src/app/local-components/components-output.ts",
                   "with": "src/app/local-components/components-no.ts"
-                },  
+                },
                 {
                   "replace": "src/index.html",
                   "with": "src/index/no-dev/index-no-dev.html"
@@ -146,26 +160,36 @@
                 {
                   "replace": "src/app/shared/constants/mask.ts",
                   "with": "src/app/shared/constants/mask-no.ts"
-                },   
+                },
                 {
                   "replace": "src/environments/environment.ts",
                   "with": "src/environments/environment.heroku.ts"
                 }
               ]
-              
             },
             "sv": {
               "localize": ["sv"],
               "assets": [
-                { "glob": "**/*", "input": "src/assets/sv", "output": "/assets/" },
-                { "glob": "sitemap.xml", "input": "src/sitemaps/sv/", "output": "/" },
-                { "glob": "index.html", "input": "src/index/sv/", "output": "/" },
+                {
+                  "glob": "**/*",
+                  "input": "src/assets/sv",
+                  "output": "/assets/"
+                },
+                {
+                  "glob": "sitemap.xml",
+                  "input": "src/sitemaps/sv/",
+                  "output": "/"
+                },
+                {
+                  "glob": "index.html",
+                  "input": "src/index/sv/",
+                  "output": "/"
+                },
 
                 "src/assets",
                 "src/favicon.ico",
                 "src/sitemap.xml",
                 "src/robots.txt"
-
               ],
               "fileReplacements": [
                 {
@@ -183,15 +207,27 @@
                 {
                   "replace": "src/app/shared/constants/mask.ts",
                   "with": "src/app/shared/constants/mask-sv.ts"
-                } 
+                }
               ]
             },
             "sv-local": {
               "localize": ["sv"],
               "assets": [
-                { "glob": "**/*", "input": "src/assets/sv", "output": "/assets/" },
-                { "glob": "sitemap.xml", "input": "src/sitemaps/sv/", "output": "/" },
-                { "glob": "index.html", "input": "src/index/sv-dev/", "output": "/" },
+                {
+                  "glob": "**/*",
+                  "input": "src/assets/sv",
+                  "output": "/assets/"
+                },
+                {
+                  "glob": "sitemap.xml",
+                  "input": "src/sitemaps/sv/",
+                  "output": "/"
+                },
+                {
+                  "glob": "index.html",
+                  "input": "src/index/sv-dev/",
+                  "output": "/"
+                },
                 "src/assets",
                 "src/favicon.ico",
                 "src/sitemap.xml",
@@ -213,11 +249,11 @@
                 {
                   "replace": "src/app/config/locale/locale-js.js",
                   "with": "src/app/config/locale/locale-sv.ts"
-                },         
+                },
                 {
                   "replace": "src/app/shared/constants/mask.ts",
                   "with": "src/app/shared/constants/mask-sv.ts"
-                },        
+                },
                 {
                   "replace": "src/environments/environment.ts",
                   "with": "src/environments/environment.heroku.ts"
@@ -434,26 +470,16 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
-            "styles": [
-              "src/styles.scss"
-            ],
+            "styles": ["src/styles.scss"],
             "scripts": [],
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ]
+            "assets": ["src/favicon.ico", "src/assets"]
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "src/tsconfig.app.json",
-              "src/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "tsConfig": ["src/tsconfig.app.json", "src/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**"]
           }
         }
       }
@@ -479,9 +505,7 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": "e2e/tsconfig.e2e.json",
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         }
       }

@@ -8,9 +8,8 @@ describe('GetOfferFromBankDialogComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ GetOfferFromBankDialogComponent ]
-    })
-    .compileComponents();
+      declarations: [GetOfferFromBankDialogComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

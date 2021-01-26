@@ -1,4 +1,10 @@
-import { Component, OnInit, ContentChildren, QueryList, AfterContentInit } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ContentChildren,
+  QueryList,
+  AfterContentInit
+} from '@angular/core';
 import { TabComponent } from './tab.component';
 
 @Component({
@@ -9,10 +15,9 @@ import { TabComponent } from './tab.component';
 export class TabsComponent implements OnInit, AfterContentInit {
   @ContentChildren(TabComponent) tabs: QueryList<TabComponent>;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   ngAfterContentInit() {
     // get all active tabs
@@ -26,7 +31,7 @@ export class TabsComponent implements OnInit, AfterContentInit {
 
   selectTab(activeTab: TabComponent) {
     // deactivate all tabs
-    this.tabs.toArray().forEach(tabItem => tabItem.active = false);
+    this.tabs.toArray().forEach((tabItem) => (tabItem.active = false));
 
     // activate the tab the user has clicked on.
     activeTab.active = true;

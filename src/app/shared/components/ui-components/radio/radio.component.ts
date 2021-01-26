@@ -22,7 +22,6 @@ import {
     }
   ]
 })
-
 export class RadioComponent {
   @Input() label: string;
   @Input() type: string;

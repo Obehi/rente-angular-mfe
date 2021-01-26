@@ -6,19 +6,22 @@ import { ProfileComponent } from './profile/profile.component';
 import { RateTypeFixedComponent } from './rate-type-fixed/rate-type-fixed.component';
 import { NoLoansComponent } from './no-loans/no-loans.component';
 import { customMeta, defaultMeta, ROUTES_MAP } from '@config/routes-config';
-import {RouteGuard } from '@shared/guards/route.guard';
+import { RouteGuard } from '@shared/guards/route.guard';
 import { BargainSuccessComponent } from './offers/bargain-success/bargain-success.component';
 import { OffersComponentBlue } from './offers/offers-blue/offers.component';
-import { HouseBlueComponent }   from './house/house-blue/house-blue.component';
-import { BlueProfileComponent }   from './profile/blue-profile/blue-profile.component';
-import { EPSIScoreComponent }   from './offers/offers-blue/epsi-score/epsi-score.component';
-import { LoansLangGenericComponent } from '../../local-components/components-output'
+import { HouseBlueComponent } from './house/house-blue/house-blue.component';
+import { BlueProfileComponent } from './profile/blue-profile/blue-profile.component';
+import { EPSIScoreComponent } from './offers/offers-blue/epsi-score/epsi-score.component';
+import { LoansLangGenericComponent } from '../../local-components/components-output';
 
 const routes: Routes = [
   {
-    path: '', component: DashboardComponent, children: [
+    path: '',
+    component: DashboardComponent,
+    children: [
       {
-        path: ROUTES_MAP.offers, component: OffersComponentBlue,
+        path: ROUTES_MAP.offers,
+        component: OffersComponentBlue,
         data: {
           title: customMeta.tilbudTitle,
           meta: {
@@ -28,10 +31,12 @@ const routes: Routes = [
         }
       },
       {
-        path: 'prute-fullfort', component: BargainSuccessComponent
+        path: 'prute-fullfort',
+        component: BargainSuccessComponent
       },
       {
-        path: ROUTES_MAP.loans, component: LoansLangGenericComponent,
+        path: ROUTES_MAP.loans,
+        component: LoansLangGenericComponent,
         data: {
           title: customMeta.mineLanTitle,
           meta: {
@@ -41,7 +46,8 @@ const routes: Routes = [
         }
       },
       {
-        path: ROUTES_MAP.property, component: HouseBlueComponent,
+        path: ROUTES_MAP.property,
+        component: HouseBlueComponent,
         canDeactivate: [RouteGuard],
         data: {
           title: customMeta.boligTitle,
@@ -50,10 +56,10 @@ const routes: Routes = [
             description: defaultMeta.description
           }
         }
-
       },
       {
-        path: 'preferanser', component: PreferencesComponent,
+        path: 'preferanser',
+        component: PreferencesComponent,
         data: {
           title: customMeta.preferanserTitle,
           meta: {
@@ -63,7 +69,8 @@ const routes: Routes = [
         }
       },
       {
-        path: ROUTES_MAP.profile, component: BlueProfileComponent,
+        path: ROUTES_MAP.profile,
+        component: BlueProfileComponent,
         canDeactivate: [RouteGuard],
         data: {
           title: customMeta.profilTitle,
@@ -74,7 +81,8 @@ const routes: Routes = [
         }
       },
       {
-        path: 'epsi-kundetilfredshet', component: EPSIScoreComponent,
+        path: 'epsi-kundetilfredshet',
+        component: EPSIScoreComponent,
         canDeactivate: [RouteGuard],
         data: {
           title: customMeta.profilTitle,
@@ -83,7 +91,7 @@ const routes: Routes = [
             description: defaultMeta.description
           }
         }
-      },
+      }
     ]
   },
   { path: ROUTES_MAP.fixedRate, component: RateTypeFixedComponent },
@@ -95,5 +103,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-
-export class DashboardRoutingModule { }
+export class DashboardRoutingModule {}

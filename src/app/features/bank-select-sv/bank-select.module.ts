@@ -6,7 +6,6 @@ import { BankSelectSvComponent } from './bank-select.component';
 import { MaterialModule } from '@shared/material/material.module';
 import { ChangeBrowserDialogInfoComponent } from '../landing/landing-top-sv/change-browser-dialog-info/dialog-info.component';
 
-
 @NgModule({
   declarations: [BankSelectSvComponent, ChangeBrowserDialogInfoComponent],
   imports: [
@@ -16,4 +15,4 @@ import { ChangeBrowserDialogInfoComponent } from '../landing/landing-top-sv/chan
     MaterialModule
   ]
 })
-export class BankSelectSvModule { }
+export class BankSelectSvModule {}

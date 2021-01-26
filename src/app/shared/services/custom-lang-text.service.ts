@@ -5,184 +5,181 @@ import { locale } from '@config/locale/locale';
   providedIn: 'root'
 })
 export class CustomLangTextService {
-
-  constructor() { }
+  constructor() {}
 
   getEmail() {
-    if(locale.includes("sv")) {
-      return 'hej@ranteradar.se'
-    } else if (locale.includes("nb")) {
-      return 'hei@renteradar.no'
+    if (locale.includes('sv')) {
+      return 'hej@ranteradar.se';
+    } else if (locale.includes('nb')) {
+      return 'hei@renteradar.no';
     }
   }
 
   getMarkedObservationText() {
-    if(locale.includes("sv")) {
-      return 'Ränteradar.se övervakar kontinuerligt marknaden för att se om det erbjuds bättre räntor än den du har idag. Räntan du har på bolånet kollas och uppdateras när du identifierar dig med BankID. Det är viktigt att detta görs regelbundet för att vi ska kunna hjälpa dig med korrekt information.'
-    } else if (locale.includes("nb")) {
-      return 'Renteradar.no overvåker kontinuerlig markedet for bedre rente enn det du har på lånet ditt. Renten du har på lånet ditt sjekkes og oppdateres ved at du identifiserer deg med BankID. Det er viktig at dette gjøres fra tid til annen for at eventuelle renteendringer på lånet ditt skal fanges opp.'
+    if (locale.includes('sv')) {
+      return 'Ränteradar.se övervakar kontinuerligt marknaden för att se om det erbjuds bättre räntor än den du har idag. Räntan du har på bolånet kollas och uppdateras när du identifierar dig med BankID. Det är viktigt att detta görs regelbundet för att vi ska kunna hjälpa dig med korrekt information.';
+    } else if (locale.includes('nb')) {
+      return 'Renteradar.no overvåker kontinuerlig markedet for bedre rente enn det du har på lånet ditt. Renten du har på lånet ditt sjekkes og oppdateres ved at du identifiserer deg med BankID. Det er viktig at dette gjøres fra tid til annen for at eventuelle renteendringer på lånet ditt skal fanges opp.';
     }
   }
 
   getHouseExplainationText() {
-    if(locale.includes("sv") ) {
-      return 'Din/Hushållets totala inkomster är en viktig parameter som bankerna kollar på'
-    } else if (locale.includes("nb")) {
-      return 'Din/Husstandens inntekt er en viktig parameter for renten bankene tilbyr'
+    if (locale.includes('sv')) {
+      return 'Din/Hushållets totala inkomster är en viktig parameter som bankerna kollar på';
+    } else if (locale.includes('nb')) {
+      return 'Din/Husstandens inntekt er en viktig parameter for renten bankene tilbyr';
     }
   }
 
   getLimitedLoanInfoWarning() {
-    if(locale.includes("sv") ) {
-      return 'Vi har endast hämtat din nominella ränta och lånebeloppet. För uträkningarna har vi utgått från en återstående löptid på 20 år. Faktisk löptid och evt. månadsavgifter förändrar förväntade besparingar.'
-    } else if (locale.includes("nb")) {
-      return 'Vi får kun hentet din nominelle rente og lånebeløp. For utregninger har vi tatt utgangspunkt i en gjenværende løpetid på 20 år, månedelige betalinger og 50,- i termingebyr. Faktisk løpetid og termingebyrer vil endre forventede besparelser.'
+    if (locale.includes('sv')) {
+      return 'Vi har endast hämtat din nominella ränta och lånebeloppet. För uträkningarna har vi utgått från en återstående löptid på 20 år. Faktisk löptid och evt. månadsavgifter förändrar förväntade besparingar.';
+    } else if (locale.includes('nb')) {
+      return 'Vi får kun hentet din nominelle rente og lånebeløp. For utregninger har vi tatt utgangspunkt i en gjenværende løpetid på 20 år, månedelige betalinger og 50,- i termingebyr. Faktisk løpetid og termingebyrer vil endre forventede besparelser.';
     }
   }
 
   getMembershipWarning() {
-    if(locale.includes("sv") ) {
-      return 'Vissa banker erbjuder bättre räntor om man är medlem i ett fackförbund. Lägg in ditt medlemskap för och se fler erbjudanden.'
-    } else if (locale.includes("nb")) {
-      return 'Enkelte banker tilbyr bedre betingelser hvis du er medlem i en interesseorganisasjon eller fagforening. Hvis du har mulighet til å melde deg inn i en kan det være penger å spare. (Medlemskap koster ca 4000 i året).'
+    if (locale.includes('sv')) {
+      return 'Vissa banker erbjuder bättre räntor om man är medlem i ett fackförbund. Lägg in ditt medlemskap för och se fler erbjudanden.';
+    } else if (locale.includes('nb')) {
+      return 'Enkelte banker tilbyr bedre betingelser hvis du er medlem i en interesseorganisasjon eller fagforening. Hvis du har mulighet til å melde deg inn i en kan det være penger å spare. (Medlemskap koster ca 4000 i året).';
     }
-  } 
+  }
 
   getHouseValue() {
-    if(locale.includes("sv") ) {
-      return 'Bostadens värde och belåningsgrad är viktiga parametrar när banken erbjuder en ränta. Kontrollera gärna att bostadens värde är korrekt. Du kan även lägga till fler bolån om du har det.'
-    } else if (locale.includes("")) {
-      return 'Boligverdi/belåningsgrad er viktig for renten bankene tilbyr. Pass på at boligverdien din er riktig. Du kan også legge til flere boliger hvis du har det.'
+    if (locale.includes('sv')) {
+      return 'Bostadens värde och belåningsgrad är viktiga parametrar när banken erbjuder en ränta. Kontrollera gärna att bostadens värde är korrekt. Du kan även lägga till fler bolån om du har det.';
+    } else if (locale.includes('')) {
+      return 'Boligverdi/belåningsgrad er viktig for renten bankene tilbyr. Pass på at boligverdien din er riktig. Du kan også legge til flere boliger hvis du har det.';
     }
   }
 
   getMillionShort() {
-    if(locale.includes("sv") ) {
-      return 'milj.'
-    } else if (locale.includes("nb")) {
-      return 'mill.'
+    if (locale.includes('sv')) {
+      return 'milj.';
+    } else if (locale.includes('nb')) {
+      return 'mill.';
     }
   }
 
   getSaveSuccessSnackBar() {
-    if(locale.includes("sv") ) {
-      return 'Endringene dine er lagret'
-    } else if (locale.includes("nb")) {
-      return 'Endringene dine er lagret'
+    if (locale.includes('sv')) {
+      return 'Endringene dine er lagret';
+    } else if (locale.includes('nb')) {
+      return 'Endringene dine er lagret';
     }
   }
 
-
   getProfileIncomePlaceHolder() {
-    if(locale.includes("sv") ) {
-      return 'Din årsinkomst'
-    } else if (locale.includes("nb")) {
-      return 'Din brutto årsinntekt'
+    if (locale.includes('sv')) {
+      return 'Din årsinkomst';
+    } else if (locale.includes('nb')) {
+      return 'Din brutto årsinntekt';
     }
   }
 
   getProfileAddPlaceHolder() {
-    if(locale.includes("sv") ) {
-      return '+ Lägg till'
-    } else if (locale.includes("nb")) {
-      return '+ Legg til'
+    if (locale.includes('sv')) {
+      return '+ Lägg till';
+    } else if (locale.includes('nb')) {
+      return '+ Legg til';
     }
   }
-  
+
   getSnackBarClose() {
-    if(locale.includes("sv") ) {
-      return 'Stäng'
-    } else if (locale.includes("nb")) {
-      return 'Lukk'
+    if (locale.includes('sv')) {
+      return 'Stäng';
+    } else if (locale.includes('nb')) {
+      return 'Lukk';
     }
   }
 
   getSnackBarSavedMessage() {
-    if(locale.includes("sv") ) {
-      return 'Ditt meddelande är skickat'
-    } else if (locale.includes("nb")) {
-      return 'Din melding er sendt'
+    if (locale.includes('sv')) {
+      return 'Ditt meddelande är skickat';
+    } else if (locale.includes('nb')) {
+      return 'Din melding er sendt';
     }
   }
 
   getSnackBarUpdatedMessage() {
-    if(locale.includes("sv") ) {
-      return 'Dina ändringar är sparade'
-    } else if (locale.includes("nb")) {
-      return 'Endringene dine er lagret'
-    }
-  }
-  
-  getSnackBarErrorMessage() {
-    if(locale.includes("sv") ) {
-      return 'Oops, något gick fel'
-    } else if (locale.includes("nb")) {
-      return 'Oops, noe gikk galt'
+    if (locale.includes('sv')) {
+      return 'Dina ändringar är sparade';
+    } else if (locale.includes('nb')) {
+      return 'Endringene dine er lagret';
     }
   }
 
+  getSnackBarErrorMessage() {
+    if (locale.includes('sv')) {
+      return 'Oops, något gick fel';
+    } else if (locale.includes('nb')) {
+      return 'Oops, noe gikk galt';
+    }
+  }
 
   get18nFixForUnknown() {
-    if(locale.includes("sv") ) {
-      return 'Okänt'
-    } else if (locale.includes("nb")) {
-      return 'Ukjent'
+    if (locale.includes('sv')) {
+      return 'Okänt';
+    } else if (locale.includes('nb')) {
+      return 'Ukjent';
     }
   }
 
   get18nFixForNo() {
-    if(locale.includes("sv") ) {
-      return 'Nej'
-    } else if (locale.includes("nb")) {
-      return 'Nei'
+    if (locale.includes('sv')) {
+      return 'Nej';
+    } else if (locale.includes('nb')) {
+      return 'Nei';
     }
   }
 
   get18nFixForRequirement() {
-    if(locale.includes("sv") ) {
-      return 'Övriga krav'
-    } else if (locale.includes("nb")) {
-      return 'Forbehold'
+    if (locale.includes('sv')) {
+      return 'Övriga krav';
+    } else if (locale.includes('nb')) {
+      return 'Forbehold';
     }
   }
 
   get18nFixForNoRequirement() {
-    if(locale.includes("sv") ) {
-      return 'Inget krav'
-    } else if (locale.includes("nb")) {
-      return 'Ingen krav'
+    if (locale.includes('sv')) {
+      return 'Inget krav';
+    } else if (locale.includes('nb')) {
+      return 'Ingen krav';
     }
   }
 
   get18nFixForNoRequirement2() {
-    if(locale.includes("sv") ) {
-      return 'Inga övriga krav'
-    } else if (locale.includes("nb")) {
-      return 'Ingen forbehold'
+    if (locale.includes('sv')) {
+      return 'Inga övriga krav';
+    } else if (locale.includes('nb')) {
+      return 'Ingen forbehold';
     }
   }
-  
+
   getName() {
-    if(locale.includes("sv") ) {
-      return 'Namn'
-    } else if (locale.includes("nb")) {
-      return 'Navn'
+    if (locale.includes('sv')) {
+      return 'Namn';
+    } else if (locale.includes('nb')) {
+      return 'Navn';
     }
   }
 
   getlowerRateTitle() {
-    if(locale.includes("sv") ) {
-      return 'Du har lägre ränta än förra gången!'
-    } else if (locale.includes("nb")) {
-      return 'Du har lavere rente enn forrige gang!'
+    if (locale.includes('sv')) {
+      return 'Du har lägre ränta än förra gången!';
+    } else if (locale.includes('nb')) {
+      return 'Du har lavere rente enn forrige gang!';
     }
   }
 
   getlowerRateBody() {
-    if(locale.includes("sv") ) {
-      return 'Prutade du genom oss för att få en bättre ränta?'
-    } else if (locale.includes("nb")) {
-      return 'Fikk du lavere rente etter å ha sendt melding fra Renteradar.no?'
+    if (locale.includes('sv')) {
+      return 'Prutade du genom oss för att få en bättre ränta?';
+    } else if (locale.includes('nb')) {
+      return 'Fikk du lavere rente etter å ha sendt melding fra Renteradar.no?';
     }
   }
 }

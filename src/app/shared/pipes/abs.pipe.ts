@@ -4,7 +4,6 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'abs'
 })
 export class AbsPipe implements PipeTransform {
-
   transform(value: number): any {
     if (!value && !Number.isInteger(value)) {
       return '';
@@ -12,5 +11,4 @@ export class AbsPipe implements PipeTransform {
 
     return Math.abs(value);
   }
-
 }

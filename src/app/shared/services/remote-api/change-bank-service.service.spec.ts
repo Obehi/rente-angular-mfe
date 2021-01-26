@@ -6,7 +6,9 @@ describe('ChangeBankServiceService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: ChangeBankServiceService = TestBed.get(ChangeBankServiceService);
+    const service: ChangeBankServiceService = TestBed.get(
+      ChangeBankServiceService
+    );
     expect(service).toBeTruthy();
   });
 });

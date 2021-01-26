@@ -1,4 +1,4 @@
-import { AuthService } from "@services/remote-api/auth.service";
+import { AuthService } from '@services/remote-api/auth.service';
 import {
   Component,
   OnInit,
@@ -6,12 +6,12 @@ import {
   OnDestroy,
   Output,
   EventEmitter
-} from "@angular/core";
-import * as Stomp from "stompjs";
-import * as SockJS from "sockjs-client";
-import { environment } from "@environments/environment";
-import { ViewStatus } from "./login-view-status";
-import { API_URL_MAP } from "@config/api-url-config";
+} from '@angular/core';
+import * as Stomp from 'stompjs';
+import * as SockJS from 'sockjs-client';
+import { environment } from '@environments/environment';
+import { ViewStatus } from './login-view-status';
+import { API_URL_MAP } from '@config/api-url-config';
 import {
   IDENTIFICATION_TIMEOUT_TIME,
   PING_TIME,
@@ -20,20 +20,20 @@ import {
   BANKID_STATUS,
   BANKID_TIMEOUT_TIME,
   MESSAGE_STATUS
-} from "./login-status.config";
-import { Subscription, interval, Observable, timer, forkJoin } from "rxjs";
-import { take } from "rxjs/operators";
-import { Router } from "@angular/router";
-import { UserService } from "@services/remote-api/user.service";
-import { LoansService } from "@services/remote-api/loans.service";
-import { LocalStorageService } from "@services/local-storage.service";
-import { BankVo, BankUtils } from "@shared/models/bank";
+} from './login-status.config';
+import { Subscription, interval, Observable, timer, forkJoin } from 'rxjs';
+import { take } from 'rxjs/operators';
+import { Router } from '@angular/router';
+import { UserService } from '@services/remote-api/user.service';
+import { LoansService } from '@services/remote-api/loans.service';
+import { LocalStorageService } from '@services/local-storage.service';
+import { BankVo, BankUtils } from '@shared/models/bank';
 import { ROUTES_MAP } from '@config/routes-config';
 
 @Component({
-  selector: "rente-login-status",
-  templateUrl: "./login-status.component.html",
-  styleUrls: ["./login-status.component.scss"]
+  selector: 'rente-login-status',
+  templateUrl: './login-status.component.html',
+  styleUrls: ['./login-status.component.scss']
 })
 export class LoginStatusComponent implements OnInit, OnDestroy {
   @Input() bank: BankVo;
@@ -43,7 +43,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
 
   public viewStatus: ViewStatus = new ViewStatus();
   public reconnectIterator = 0;
-  public passPhrase = "";
+  public passPhrase = '';
   public ticks: number;
   public MESSAGE_STATUS = MESSAGE_STATUS;
   public loginStep1Status: string;
@@ -74,17 +74,19 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
     private authService: AuthService,
     private userService: UserService,
     private loansService: LoansService,
-    private localStorageService: LocalStorageService,
+    private localStorageService: LocalStorageService
   ) {}
 
   ngOnInit() {
     this.setDefaultSteps();
     this.initializeWebSocketConnection();
     window.scrollTo(0, 0);
-    //Special case for DNB and Eika banks
-    this.thirdStepTimer = this.bank.name === "DNB" || BankUtils.isEikaBank(this.bank.name)  ? 30 : 25;
-    this.firstStepTimer = this.bank.name === "DNB" ?  20 : 10;
-    
+    // Special case for DNB and Eika banks
+    this.thirdStepTimer =
+      this.bank.name === 'DNB' || BankUtils.isEikaBank(this.bank.name)
+        ? 30
+        : 25;
+    this.firstStepTimer = this.bank.name === 'DNB' ? 20 : 10;
   }
 
   ngOnDestroy() {
@@ -94,7 +96,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
   get bankLogo(): string {
     return this.bank
       ? BankUtils.getBankLogoUrl(this.bank.name)
-      : "../../../assets/img/banks-logo/round/annen.png";
+      : '../../../assets/img/banks-logo/round/annen.png';
   }
 
   unsubscribeEverything() {
@@ -119,7 +121,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
   returnToInput() {
     this.returnToInputPage.emit();
     if (this.isNotSB1customer) {
-      this.router.navigate(["/autentisering/sparebank1-sub"]);
+      this.router.navigate(['/autentisering/sparebank1-sub']);
     }
   }
 
@@ -130,7 +132,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
     };
     this.setDefaultSteps();
     const data = JSON.stringify(dataObj);
-    this.passPhrase = "";
+    this.passPhrase = '';
 
     this.stompClient.send(
       API_URL_MAP.crawlerSendMessageUrl + this.bank.name,
@@ -159,7 +161,6 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
       isUserDataEntered &&
       !this.viewStatus.isLoansPersisted
     ) {
-
       this.sendUserData(true);
     }
   }
@@ -175,7 +176,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
     }
     this.stompClient.connect(
       {},
-      frame => {
+      (frame) => {
         this.viewStatus.isSocketConnectionLost = false;
         // Resend user data after reconnection
 
@@ -188,7 +189,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
           this.stompClient.send(
             API_URL_MAP.crawlerComunicationUrl,
             {},
-            JSON.stringify({ message: "ping" })
+            JSON.stringify({ message: 'ping' })
           );
         });
       },
@@ -215,7 +216,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
     this.ticks = timeoutTime;
     this.timer = timer(1000, 1000).pipe(take(timeoutTime + 1));
     this.timerSubscription = this.timer.subscribe(
-      time => (this.ticks = this.ticks > 0 ? timeoutTime - time : 0)
+      (time) => (this.ticks = this.ticks > 0 ? timeoutTime - time : 0)
     );
   }
 
@@ -224,24 +225,26 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
       this.connectionTimerSubscription.unsubscribe();
     }
     this.connectionTimer = timer(1000, 1000);
-    this.connectionTimerSubscription = this.connectionTimer.subscribe(time => {
-      if (time > this.maxConnectionTime) {
-        this.viewStatus.isTimedOut = true;
-      }
-      this.firstStepTimer--;
-      if (!this.firstStepTimer) {
-        if(this.firstStepTimerFinished === false){
+    this.connectionTimerSubscription = this.connectionTimer.subscribe(
+      (time) => {
+        if (time > this.maxConnectionTime) {
+          this.viewStatus.isTimedOut = true;
         }
+        this.firstStepTimer--;
+        if (!this.firstStepTimer) {
+          if (this.firstStepTimerFinished === false) {
+          }
 
-        this.firstStepTimerFinished = true;
+          this.firstStepTimerFinished = true;
+        }
       }
-    });
+    );
   }
 
   private successSocketCallback() {
     const repliesUrl = `${API_URL_MAP.crawlerRepliesUrl}`;
     this.viewStatus.isSocketConnectionLost = false;
-    this.stompClient.subscribe(repliesUrl, message => {
+    this.stompClient.subscribe(repliesUrl, (message) => {
       const response = JSON.parse(message.body);
 
       if (message.body) {
@@ -250,14 +253,12 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
         }
 
         switch (response.eventType) {
-
           case BANKID_STATUS.BANKID_UNSTABLE:
-            this.viewStatus.isBankIdUnstable = true
+            this.viewStatus.isBankIdUnstable = true;
             this.loginStep1Status = MESSAGE_STATUS.ERROR;
             this.unsubscribeEverything();
             break;
 
-          
           case BANKID_STATUS.PROCESS_STARTED:
             this.initTimer(BANKID_TIMEOUT_TIME);
             this.initConnectionTimer();
@@ -359,38 +360,49 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
             }
             break;
           case BANKID_STATUS.BID_C167:
-            this.viewStatus.isErrorBIDC167 = true
+            this.viewStatus.isErrorBIDC167 = true;
             this.loginStep1Status = MESSAGE_STATUS.ERROR;
             this.unsubscribeEverything();
             break;
-          case BANKID_STATUS.NO_LOANS: 
-            this.router.navigate(['/dashboard/' + ROUTES_MAP.noLoan])
+          case BANKID_STATUS.NO_LOANS:
+            this.router.navigate(['/dashboard/' + ROUTES_MAP.noLoan]);
             break;
 
           case BANKID_STATUS.LOANS_PERSISTED:
             this.viewStatus.isLoansPersisted = true;
             const user = response.data.user;
             this.authService
-            .loginWithToken(user.oneTimeToken)
-              .subscribe(res => {
+              .loginWithToken(user.oneTimeToken)
+              .subscribe((res) => {
                 forkJoin([
                   this.loansService.getLoansAndRateType(),
                   this.userService.getUserInfo()
                 ]).subscribe(([rateAndLoans, userInfo]) => {
                   this.loginStep3Status = MESSAGE_STATUS.SUCCESS;
 
-                  this.userService.lowerRateAvailable.next(rateAndLoans.lowerRateAvailable);
+                  this.userService.lowerRateAvailable.next(
+                    rateAndLoans.lowerRateAvailable
+                  );
                   if (rateAndLoans.loansPresent) {
                     this.localStorageService.removeItem('noLoansPresent');
                     if (rateAndLoans.isAggregatedRateTypeFixed) {
-                      this.localStorageService.setItem('isAggregatedRateTypeFixed', true);
-                      this.router.navigate(['/dashboard/' + ROUTES_MAP.fixedRate]);
+                      this.localStorageService.setItem(
+                        'isAggregatedRateTypeFixed',
+                        true
+                      );
+                      this.router.navigate([
+                        '/dashboard/' + ROUTES_MAP.fixedRate
+                      ]);
                     } else {
                       if (userInfo.income === null) {
-                        this.router.navigate(['/' + ROUTES_MAP.initConfirmation]);
+                        this.router.navigate([
+                          '/' + ROUTES_MAP.initConfirmation
+                        ]);
                         this.localStorageService.setItem('isNewUser', true);
                       } else {
-                        this.router.navigate(['/dashboard/' + ROUTES_MAP.offers]);
+                        this.router.navigate([
+                          '/dashboard/' + ROUTES_MAP.offers
+                        ]);
                       }
                     }
                   } else {
@@ -410,10 +422,10 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
       this.crawlingTimerSubscription.unsubscribe();
     }
     this.crawlingTimer = timer(1000, 1000);
-    this.crawlingTimerSubscription = this.crawlingTimer.subscribe(time => {
+    this.crawlingTimerSubscription = this.crawlingTimer.subscribe((time) => {
       this.thirdStepTimer--;
       if (!this.thirdStepTimer) {
-        if(this.thirdStepTimerFinished === false) {
+        if (this.thirdStepTimerFinished === false) {
         }
         this.thirdStepTimerFinished = true;
       }

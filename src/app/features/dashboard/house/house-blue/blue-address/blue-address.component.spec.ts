@@ -8,9 +8,8 @@ describe('BlueAddressComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BlueAddressComponent ]
-    })
-    .compileComponents();
+      declarations: [BlueAddressComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

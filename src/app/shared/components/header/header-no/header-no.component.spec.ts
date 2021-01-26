@@ -8,9 +8,8 @@ describe('HeaderNoComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ HeaderNoComponent ]
-    })
-    .compileComponents();
+      declarations: [HeaderNoComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

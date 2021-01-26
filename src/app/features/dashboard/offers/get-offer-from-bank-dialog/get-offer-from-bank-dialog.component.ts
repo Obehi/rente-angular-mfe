@@ -8,10 +8,10 @@ import { OfferInfo } from '@shared/models/offers';
   styleUrls: ['./get-offer-from-bank-dialog.component.scss']
 })
 export class GetOfferFromBankDialogComponent {
-
   constructor(
     public dialogRef: MatDialogRef<GetOfferFromBankDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public offerInfo: OfferInfo) {}
+    @Inject(MAT_DIALOG_DATA) public offerInfo: OfferInfo
+  ) {}
 
   public onClose(): void {
     this.dialogRef.close();
