@@ -85,10 +85,11 @@ registerLocaleData(localeNo);
       deps: [EnvService, HttpClient]
     },
     { provide: LOCALE_ID, useValue: 'nb-NO' },
-    { provide: Window, useValue: window },
     UserService,
     OptimizeService,
-    EnvService
+    EnvService,
+    UserService,
+    OptimizeService
   ],
   bootstrap: [AppComponent]
 })

@@ -5,9 +5,7 @@ import { locale } from '@config/locale/locale';
   providedIn: 'root'
 })
 export class CustomLangTextService {
-  constructor() {}
-
-  getEmail() {
+  getEmail(): string {
     if (locale.includes('sv')) {
       return 'hej@ranteradar.se';
     } else if (locale.includes('nb')) {
@@ -15,7 +13,7 @@ export class CustomLangTextService {
     }
   }
 
-  getMarkedObservationText() {
+  getMarkedObservationText(): string {
     if (locale.includes('sv')) {
       return 'Ränteradar.se övervakar kontinuerligt marknaden för att se om det erbjuds bättre räntor än den du har idag. Räntan du har på bolånet kollas och uppdateras när du identifierar dig med BankID. Det är viktigt att detta görs regelbundet för att vi ska kunna hjälpa dig med korrekt information.';
     } else if (locale.includes('nb')) {
@@ -23,7 +21,7 @@ export class CustomLangTextService {
     }
   }
 
-  getHouseExplainationText() {
+  getHouseExplainationText(): string {
     if (locale.includes('sv')) {
       return 'Din/Hushållets totala inkomster är en viktig parameter som bankerna kollar på';
     } else if (locale.includes('nb')) {
@@ -31,7 +29,7 @@ export class CustomLangTextService {
     }
   }
 
-  getLimitedLoanInfoWarning() {
+  getLimitedLoanInfoWarning(): string {
     if (locale.includes('sv')) {
       return 'Vi har endast hämtat din nominella ränta och lånebeloppet. För uträkningarna har vi utgått från en återstående löptid på 20 år. Faktisk löptid och evt. månadsavgifter förändrar förväntade besparingar.';
     } else if (locale.includes('nb')) {
@@ -39,7 +37,7 @@ export class CustomLangTextService {
     }
   }
 
-  getMembershipWarning() {
+  getMembershipWarning(): string {
     if (locale.includes('sv')) {
       return 'Vissa banker erbjuder bättre räntor om man är medlem i ett fackförbund. Lägg in ditt medlemskap för och se fler erbjudanden.';
     } else if (locale.includes('nb')) {
@@ -47,7 +45,7 @@ export class CustomLangTextService {
     }
   }
 
-  getHouseValue() {
+  getHouseValue(): string {
     if (locale.includes('sv')) {
       return 'Bostadens värde och belåningsgrad är viktiga parametrar när banken erbjuder en ränta. Kontrollera gärna att bostadens värde är korrekt. Du kan även lägga till fler bolån om du har det.';
     } else if (locale.includes('')) {
@@ -55,7 +53,7 @@ export class CustomLangTextService {
     }
   }
 
-  getMillionShort() {
+  getMillionShort(): string {
     if (locale.includes('sv')) {
       return 'milj.';
     } else if (locale.includes('nb')) {
@@ -63,7 +61,7 @@ export class CustomLangTextService {
     }
   }
 
-  getSaveSuccessSnackBar() {
+  getSaveSuccessSnackBar(): string {
     if (locale.includes('sv')) {
       return 'Endringene dine er lagret';
     } else if (locale.includes('nb')) {
@@ -71,7 +69,7 @@ export class CustomLangTextService {
     }
   }
 
-  getProfileIncomePlaceHolder() {
+  getProfileIncomePlaceHolder(): string {
     if (locale.includes('sv')) {
       return 'Din årsinkomst';
     } else if (locale.includes('nb')) {
@@ -79,7 +77,7 @@ export class CustomLangTextService {
     }
   }
 
-  getProfileAddPlaceHolder() {
+  getProfileAddPlaceHolder(): string {
     if (locale.includes('sv')) {
       return '+ Lägg till';
     } else if (locale.includes('nb')) {
@@ -87,7 +85,7 @@ export class CustomLangTextService {
     }
   }
 
-  getSnackBarClose() {
+  getSnackBarClose(): string {
     if (locale.includes('sv')) {
       return 'Stäng';
     } else if (locale.includes('nb')) {
@@ -95,7 +93,7 @@ export class CustomLangTextService {
     }
   }
 
-  getSnackBarSavedMessage() {
+  getSnackBarSavedMessage(): string {
     if (locale.includes('sv')) {
       return 'Ditt meddelande är skickat';
     } else if (locale.includes('nb')) {
@@ -103,7 +101,7 @@ export class CustomLangTextService {
     }
   }
 
-  getSnackBarUpdatedMessage() {
+  getSnackBarUpdatedMessage(): string {
     if (locale.includes('sv')) {
       return 'Dina ändringar är sparade';
     } else if (locale.includes('nb')) {
@@ -111,7 +109,7 @@ export class CustomLangTextService {
     }
   }
 
-  getSnackBarErrorMessage() {
+  getSnackBarErrorMessage(): string {
     if (locale.includes('sv')) {
       return 'Oops, något gick fel';
     } else if (locale.includes('nb')) {
@@ -119,7 +117,7 @@ export class CustomLangTextService {
     }
   }
 
-  get18nFixForUnknown() {
+  get18nFixForUnknown(): string {
     if (locale.includes('sv')) {
       return 'Okänt';
     } else if (locale.includes('nb')) {
@@ -127,7 +125,7 @@ export class CustomLangTextService {
     }
   }
 
-  get18nFixForNo() {
+  get18nFixForNo(): string {
     if (locale.includes('sv')) {
       return 'Nej';
     } else if (locale.includes('nb')) {
@@ -135,7 +133,7 @@ export class CustomLangTextService {
     }
   }
 
-  get18nFixForRequirement() {
+  get18nFixForRequirement(): string {
     if (locale.includes('sv')) {
       return 'Övriga krav';
     } else if (locale.includes('nb')) {
@@ -143,7 +141,7 @@ export class CustomLangTextService {
     }
   }
 
-  get18nFixForNoRequirement() {
+  get18nFixForNoRequirement(): string {
     if (locale.includes('sv')) {
       return 'Inget krav';
     } else if (locale.includes('nb')) {
@@ -151,7 +149,7 @@ export class CustomLangTextService {
     }
   }
 
-  get18nFixForNoRequirement2() {
+  get18nFixForNoRequirement2(): string {
     if (locale.includes('sv')) {
       return 'Inga övriga krav';
     } else if (locale.includes('nb')) {
@@ -159,7 +157,7 @@ export class CustomLangTextService {
     }
   }
 
-  getName() {
+  getName(): string {
     if (locale.includes('sv')) {
       return 'Namn';
     } else if (locale.includes('nb')) {
@@ -167,7 +165,7 @@ export class CustomLangTextService {
     }
   }
 
-  getlowerRateTitle() {
+  getlowerRateTitle(): string {
     if (locale.includes('sv')) {
       return 'Du har lägre ränta än förra gången!';
     } else if (locale.includes('nb')) {
@@ -175,7 +173,7 @@ export class CustomLangTextService {
     }
   }
 
-  getlowerRateBody() {
+  getlowerRateBody(): string {
     if (locale.includes('sv')) {
       return 'Prutade du genom oss för att få en bättre ränta?';
     } else if (locale.includes('nb')) {

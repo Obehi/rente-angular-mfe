@@ -51,7 +51,7 @@ export class LoggingService {
     methodName: string,
     subSystem: string,
     msg?: string,
-    object?: object
+    object?: any
   ) {
     let text: any;
     if (msg === undefined && object != undefined) {

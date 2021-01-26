@@ -1,25 +1,10 @@
 {
   "extends": "../tslint.json",
   "rules": {
-    "directive-selector": [
-      true,
-      "attribute",
-      "rente",
-      "camelCase"
-    ],
-    "variable-name": [
-      true,
-      "allow-leading-underscore"
-    ],
-    "component-selector": [
-      true,
-      "element",
-      "rente",
-      "kebab-case"
-    ],
-    "max-line-length": [
-      false
-    ],
+    "directive-selector": [true, "attribute", "rente", "camelCase"],
+    "variable-name": [true, "allow-leading-underscore"],
+    "component-selector": [true, "element", "rente", "kebab-case"],
+    "max-line-length": [false],
     "whitespace": false,
     "typedef-whitespace": false
   }

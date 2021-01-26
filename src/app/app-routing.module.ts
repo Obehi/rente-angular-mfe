@@ -150,6 +150,20 @@ const commonRoutes: Routes = [
   },
 
   {
+    path: ROUTES_MAP_NO.banksGuide,
+    loadChildren: () =>
+      import('./features/banks-guide/banks-guide.module').then(
+        (m) => m.BanksGuideModule
+      ),
+    data: {
+      title: customMeta.banksGuide.title,
+      meta: {
+        name: defaultMeta.name,
+        description: customMeta.banksGuide.description
+      }
+    }
+  },
+  {
     path: ROUTES_MAP.initConfirmation,
     component: InitConfirmationLangGenericComponent,
     data: {
@@ -191,10 +205,7 @@ const commonRoutes: Routes = [
       ),
     canActivate: [AuthGuard]
   },
-  {
-    path: '**',
-    component: PageNotFoundComponent
-  }
+  { path: '**', component: PageNotFoundComponent }
 ];
 
 const routesSV: Routes = [

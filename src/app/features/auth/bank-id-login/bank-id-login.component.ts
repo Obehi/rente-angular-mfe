@@ -92,7 +92,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     });
   }
 
-  setupDnbEmailForm() {
+  setupDnbEmailForm(): void {
     this.missingBankForm = this.fb.group({
       email: [
         '',
@@ -106,15 +106,15 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     this.missingBankForm
       .get('email')
       .valueChanges.pipe(
-        debounce((data) => {
+        debounce(() => {
           this.emailError = false;
           return this.inValid() ? timer(2000) : EMPTY;
         })
       )
-      .subscribe((data) => (this.emailError = this.inValid()));
+      .subscribe(() => (this.emailError = this.inValid()));
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.routeParamsSub.unsubscribe();
   }
 
@@ -122,14 +122,14 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     return BankUtils.getBankLogoUrl(this.bank.name);
   }
 
-  inValid() {
+  inValid(): boolean {
     return (
       this.missingBankForm.get('email').hasError('pattern') &&
       this.missingBankForm.get('email').dirty
     );
   }
 
-  public request() {
+  public request(): void {
     this.isLoading = true;
 
     const missingBankData = {
@@ -156,7 +156,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     );
   }
 
-  public startLogin(formData) {
+  public startLogin(formData): void {
     this.userData = formData;
     for (const key in this.userData) {
       // remove everything except numbers

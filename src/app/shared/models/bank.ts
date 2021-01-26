@@ -208,7 +208,6 @@ export const eikaBanks: BankVo[] = [
     true,
     true,
     false,
-    false,
     'https://gildeskaal-sparebank.no/aktuelt/bankid-paa-mobil'
   ),
   new BankVo(

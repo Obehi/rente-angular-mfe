@@ -16,13 +16,10 @@ export class OffersListNoComponent implements OnInit {
   }
   public currentOfferType: string;
 
-  constructor() {}
-
   ngOnInit(): void {
     this.currentOfferInfo = JSON.parse(JSON.stringify(this.offersInfo));
     this.currentOfferType = 'all';
 
-    // REMOVE BEFORE PRODUCTION
     let flag = false;
     this.offersInfo.offers.top5 = this.offersInfo.offers.top5.map((offer) => {
       offer.loanType = flag ? 'threeMonths' : 'oneYear';
@@ -31,18 +28,16 @@ export class OffersListNoComponent implements OnInit {
     });
   }
 
-  public setOfferType(type: string) {
+  public setOfferType(type: string): void {
     this.currentOfferType = type;
 
-    if (type == 'all') {
+    if (type === 'all') {
       this.currentOfferInfo.offers.top5 = this.offersInfo.offers.top5;
       return;
     }
-    const newLoanTypeSelected = this.offersInfo.offers.top5.filter(
-      (item, index, offers) => {
-        return item.loanType == type;
-      }
-    );
+    const newLoanTypeSelected = this.offersInfo.offers.top5.filter((item) => {
+      return item.loanType === type;
+    });
 
     this.currentOfferInfo.offers.top5 = newLoanTypeSelected;
   }

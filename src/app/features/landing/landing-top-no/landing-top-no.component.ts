@@ -6,12 +6,9 @@ import { EnvService } from '@services/env.service';
   templateUrl: './landing-top-no.component.html',
   styleUrls: ['./landing-top-no.component.scss']
 })
-export class LandingTopNoComponent implements OnInit {
+export class LandingTopNoComponent {
   get isMobile(): boolean {
     return window.innerWidth < 600;
   }
-
   constructor(private envService: EnvService) {}
-
-  ngOnInit(): void {}
 }

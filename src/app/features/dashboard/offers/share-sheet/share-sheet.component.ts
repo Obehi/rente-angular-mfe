@@ -6,8 +6,6 @@ import { MatBottomSheetRef } from '@angular/material';
   templateUrl: './share-sheet.component.html',
   styleUrls: ['./share-sheet.component.scss']
 })
-export class ShareSheetComponent implements OnInit {
+export class ShareSheetComponent {
   constructor(private bottomSheetRef: MatBottomSheetRef<ShareSheetComponent>) {}
-
-  ngOnInit() {}
 }

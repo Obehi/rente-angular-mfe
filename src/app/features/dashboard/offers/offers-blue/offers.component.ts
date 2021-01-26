@@ -125,10 +125,10 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
         this.currentOfferInfo = JSON.parse(JSON.stringify(res));
 
         this.canBargain =
-          res.bank == 'SWE_AVANZA' ||
-          res.bank == 'SWE_SBAB' ||
-          res.bank == 'SWE_DANSKE_BANK' ||
-          res.bank == 'SWE_ICA_BANKEN'
+          res.bank === 'SWE_AVANZA' ||
+          res.bank === 'SWE_SBAB' ||
+          res.bank === 'SWE_DANSKE_BANK' ||
+          res.bank === 'SWE_ICA_BANKEN'
             ? false
             : true;
 
@@ -146,7 +146,7 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
     );
   }
 
-  public getTips() {
+  public getTips(): void {
     if (this.offersInfo.incompleteInfoLoanPresent !== true) {
       this.tips.push({
         header: 'Obs',
@@ -215,7 +215,7 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
     }
   }
 
-  public goToBestOffer() {
+  public goToBestOffer(): void {
     const element = document.getElementById('best-offers-text');
     const headerOffset = this.isMobile ? 80 : 180;
 
@@ -240,15 +240,13 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
   public setOfferType(type: string) {
     this.currentOfferType = type;
 
-    if (type == 'all') {
+    if (type === 'all') {
       this.currentOfferInfo.offers.top5 = this.offersInfo.offers.top5;
       return;
     }
-    const newLoanTypeSelected = this.offersInfo.offers.top5.filter(
-      (item, index, offers) => {
-        return item.loanType == type;
-      }
-    );
+    const newLoanTypeSelected = this.offersInfo.offers.top5.filter((item) => {
+      return item.loanType === type;
+    });
 
     this.currentOfferInfo.offers.top5 = newLoanTypeSelected;
   }
@@ -259,8 +257,10 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
     });
   }
 
-  public openBankUrl(offer: OfferInfo) {
-    if (offer.bankInfo.url === null) return;
+  public openBankUrl(offer: OfferInfo): void {
+    if (offer.bankInfo.url === null) {
+      return;
+    }
 
     window.open(offer.bankInfo.url, '_blank');
 
@@ -282,8 +282,9 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
   }
 
   public openNewOfferDialog(offer: OfferInfo): void {
-    if (offer.bankInfo.partner === false) return;
-
+    if (offer.bankInfo.partner === false) {
+      return;
+    }
     window.open(offer.bankInfo.transferUrl, '_blank');
 
     const trackingDto = new TrackingDto();
@@ -301,8 +302,6 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
       }
     );
   }
-
-  public openBottomSheet() {}
 
   public openChangeBankDialog(offer): void {
     if (
@@ -357,7 +356,7 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
     }
   }
 
-  openLtvTooHightDialog() {
+  openLtvTooHightDialog(): void {
     this.dialog.open(LtvTooHighDialogComponent);
   }
 
@@ -366,7 +365,7 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
     this.isSmallScreen = window.innerWidth <= 1024;
   }
 
-  onDialogAction(answer: boolean) {
+  onDialogAction(answer: boolean): void {
     this.effRateLoweredDialogVisible = false;
     if (answer === true) {
       this.userService.lowerRateAvailable.next(false);
@@ -401,7 +400,7 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
     return text;
   }
 
-  get rateBarPercentageInverted() {
+  get rateBarPercentageInverted(): number {
     return 100 - this.rateBarPercentage.percentage;
   }
 

@@ -13,16 +13,7 @@
       "@local-components/*": ["./src/app/local-components/*"]
     }
   },
-  "files": [
-    "main.ts",
-    "polyfills.ts"
-  ],
-  "include": [
-
-  ], 
-  "exclude": [
-
-  ]
+  "files": ["main.ts", "polyfills.ts"],
+  "include": [],
+  "exclude": []
 }
-
-

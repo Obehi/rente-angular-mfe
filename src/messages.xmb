@@ -828,6 +828,40 @@
         Tidligere har han jobbet i oppstartsselskapet Tillit Forsikring. 
         Stian skaper gode brukeropplevelser og står bak designet av tjenesten vår.
       </msg>
+  <msg id="ngb.alert.close"><source>../node_modules/@ng-bootstrap/ng-bootstrap/alert/alert.d.ts:3</source>Close</msg>
+  <msg id="ngb.carousel.slide-number" desc="Currently selected slide number read by screen reader"><source>../node_modules/@ng-bootstrap/ng-bootstrap/carousel/carousel.d.ts:10,12</source>
+          Slide <ph name="INTERPOLATION"><ex>{{i + 1}}</ex>{{i + 1}}</ph> of <ph name="INTERPOLATION_1"><ex>{{c}}</ex>{{c}}</ph>
+        </msg>
+  <msg id="ngb.carousel.previous"><source>../node_modules/@ng-bootstrap/ng-bootstrap/carousel/carousel.d.ts:18</source>Previous</msg>
+  <msg id="ngb.carousel.next"><source>../node_modules/@ng-bootstrap/ng-bootstrap/carousel/carousel.d.ts:22</source>Next</msg>
+  <msg id="ngb.datepicker.previous-month"><source>../node_modules/@ng-bootstrap/ng-bootstrap/datepicker/datepicker-navigation.d.ts:4</source><source>../node_modules/@ng-bootstrap/ng-bootstrap/datepicker/datepicker-navigation.d.ts:5</source>Previous month</msg>
+  <msg id="ngb.datepicker.next-month"><source>../node_modules/@ng-bootstrap/ng-bootstrap/datepicker/datepicker-navigation.d.ts:26</source><source>../node_modules/@ng-bootstrap/ng-bootstrap/datepicker/datepicker-navigation.d.ts:27</source>Next month</msg>
+  <msg id="ngb.datepicker.select-month"><source>../node_modules/@ng-bootstrap/ng-bootstrap/datepicker/datepicker-navigation-select.d.ts:5</source><source>../node_modules/@ng-bootstrap/ng-bootstrap/datepicker/datepicker-navigation-select.d.ts:6</source>Select month</msg>
+  <msg id="ngb.datepicker.select-year"><source>../node_modules/@ng-bootstrap/ng-bootstrap/datepicker/datepicker-navigation-select.d.ts:13</source><source>../node_modules/@ng-bootstrap/ng-bootstrap/datepicker/datepicker-navigation-select.d.ts:14</source>Select year</msg>
+  <msg id="ngb.pagination.first"><source>../node_modules/@ng-bootstrap/ng-bootstrap/pagination/pagination.d.ts:2</source>««</msg>
+  <msg id="ngb.pagination.previous"><source>../node_modules/@ng-bootstrap/ng-bootstrap/pagination/pagination.d.ts:3</source>«</msg>
+  <msg id="ngb.pagination.next"><source>../node_modules/@ng-bootstrap/ng-bootstrap/pagination/pagination.d.ts:4</source>»</msg>
+  <msg id="ngb.pagination.last"><source>../node_modules/@ng-bootstrap/ng-bootstrap/pagination/pagination.d.ts:5</source>»»</msg>
+  <msg id="ngb.pagination.first-aria"><source>../node_modules/@ng-bootstrap/ng-bootstrap/pagination/pagination.d.ts:14</source>First</msg>
+  <msg id="ngb.pagination.previous-aria"><source>../node_modules/@ng-bootstrap/ng-bootstrap/pagination/pagination.d.ts:24</source>Previous</msg>
+  <msg id="ngb.pagination.next-aria"><source>../node_modules/@ng-bootstrap/ng-bootstrap/pagination/pagination.d.ts:44</source>Next</msg>
+  <msg id="ngb.pagination.last-aria"><source>../node_modules/@ng-bootstrap/ng-bootstrap/pagination/pagination.d.ts:53</source>Last</msg>
+  <msg id="ngb.progressbar.value"><source>../node_modules/@ng-bootstrap/ng-bootstrap/progressbar/progressbar.d.ts:6</source><ph name="INTERPOLATION"><ex>{{getValue() / max | percent}}</ex>{{getValue() / max | percent}}</ph></msg>
+  <msg id="ngb.timepicker.increment-hours"><source>../node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts:9</source>Increment hours</msg>
+  <msg id="ngb.timepicker.HH"><source>../node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts:13</source>HH</msg>
+  <msg id="ngb.timepicker.hours"><source>../node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts:15</source>Hours</msg>
+  <msg id="ngb.timepicker.decrement-hours"><source>../node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts:23</source>Decrement hours</msg>
+  <msg id="ngb.timepicker.increment-minutes"><source>../node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts:32</source>Increment minutes</msg>
+  <msg id="ngb.timepicker.MM"><source>../node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts:35</source>MM</msg>
+  <msg id="ngb.timepicker.minutes"><source>../node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts:37</source>Minutes</msg>
+  <msg id="ngb.timepicker.decrement-minutes"><source>../node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts:45</source>Decrement minutes</msg>
+  <msg id="ngb.timepicker.increment-seconds"><source>../node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts:54</source>Increment seconds</msg>
+  <msg id="ngb.timepicker.SS"><source>../node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts:57</source>SS</msg>
+  <msg id="ngb.timepicker.seconds"><source>../node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts:59</source>Seconds</msg>
+  <msg id="ngb.timepicker.decrement-seconds"><source>../node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts:67</source>Decrement seconds</msg>
+  <msg id="ngb.timepicker.PM"><source>../node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts:76</source><ph name="INTERPOLATION"><ex>{{ i18n.getAfternoonPeriod() }}</ex>{{ i18n.getAfternoonPeriod() }}</ph></msg>
+  <msg id="ngb.timepicker.AM"><source>../node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts:77</source><ph name="INTERPOLATION"><ex>{{ i18n.getMorningPeriod() }}</ex>{{ i18n.getMorningPeriod() }}</ph></msg>
+  <msg id="ngb.toast.close-aria"><source>../node_modules/@ng-bootstrap/ng-bootstrap/toast/toast.d.ts:8</source>Close</msg>
   <msg id="bankId.title”" desc="bank-id" meaning="“title"><source>app/features/auth/bank-id-login/bank-id-login.component.html:65</source>Logg inn med BankID på mobil</msg>
   <msg id="bankId.description”" desc="bank-id" meaning="“description"><source>app/features/auth/bank-id-login/bank-id-login.component.html:66,69</source>
       Renteradar henter lånedetaljer og renten din automatisk med BankID på
@@ -1280,38 +1314,4 @@ Fortsett
                     Mine medlemskap
                   </msg>
   <msg id="profile.monthNever2“" desc="profile" meaning="“month-every"><source>app/features/dashboard/profile/blue-profile/blue-profile.component.html:354</source>Aldri</msg>
-  <msg id="ngb.alert.close"><source>../node_modules/@ng-bootstrap/ng-bootstrap/alert/alert.d.ts:3</source>Close</msg>
-  <msg id="ngb.carousel.slide-number" desc="Currently selected slide number read by screen reader"><source>../node_modules/@ng-bootstrap/ng-bootstrap/carousel/carousel.d.ts:10,12</source>
-          Slide <ph name="INTERPOLATION"><ex>{{i + 1}}</ex>{{i + 1}}</ph> of <ph name="INTERPOLATION_1"><ex>{{c}}</ex>{{c}}</ph>
-        </msg>
-  <msg id="ngb.carousel.previous"><source>../node_modules/@ng-bootstrap/ng-bootstrap/carousel/carousel.d.ts:18</source>Previous</msg>
-  <msg id="ngb.carousel.next"><source>../node_modules/@ng-bootstrap/ng-bootstrap/carousel/carousel.d.ts:22</source>Next</msg>
-  <msg id="ngb.datepicker.previous-month"><source>../node_modules/@ng-bootstrap/ng-bootstrap/datepicker/datepicker-navigation.d.ts:4</source><source>../node_modules/@ng-bootstrap/ng-bootstrap/datepicker/datepicker-navigation.d.ts:5</source>Previous month</msg>
-  <msg id="ngb.datepicker.next-month"><source>../node_modules/@ng-bootstrap/ng-bootstrap/datepicker/datepicker-navigation.d.ts:26</source><source>../node_modules/@ng-bootstrap/ng-bootstrap/datepicker/datepicker-navigation.d.ts:27</source>Next month</msg>
-  <msg id="ngb.datepicker.select-month"><source>../node_modules/@ng-bootstrap/ng-bootstrap/datepicker/datepicker-navigation-select.d.ts:5</source><source>../node_modules/@ng-bootstrap/ng-bootstrap/datepicker/datepicker-navigation-select.d.ts:6</source>Select month</msg>
-  <msg id="ngb.datepicker.select-year"><source>../node_modules/@ng-bootstrap/ng-bootstrap/datepicker/datepicker-navigation-select.d.ts:13</source><source>../node_modules/@ng-bootstrap/ng-bootstrap/datepicker/datepicker-navigation-select.d.ts:14</source>Select year</msg>
-  <msg id="ngb.pagination.first"><source>../node_modules/@ng-bootstrap/ng-bootstrap/pagination/pagination.d.ts:2</source>««</msg>
-  <msg id="ngb.pagination.previous"><source>../node_modules/@ng-bootstrap/ng-bootstrap/pagination/pagination.d.ts:3</source>«</msg>
-  <msg id="ngb.pagination.next"><source>../node_modules/@ng-bootstrap/ng-bootstrap/pagination/pagination.d.ts:4</source>»</msg>
-  <msg id="ngb.pagination.last"><source>../node_modules/@ng-bootstrap/ng-bootstrap/pagination/pagination.d.ts:5</source>»»</msg>
-  <msg id="ngb.pagination.first-aria"><source>../node_modules/@ng-bootstrap/ng-bootstrap/pagination/pagination.d.ts:14</source>First</msg>
-  <msg id="ngb.pagination.previous-aria"><source>../node_modules/@ng-bootstrap/ng-bootstrap/pagination/pagination.d.ts:24</source>Previous</msg>
-  <msg id="ngb.pagination.next-aria"><source>../node_modules/@ng-bootstrap/ng-bootstrap/pagination/pagination.d.ts:44</source>Next</msg>
-  <msg id="ngb.pagination.last-aria"><source>../node_modules/@ng-bootstrap/ng-bootstrap/pagination/pagination.d.ts:53</source>Last</msg>
-  <msg id="ngb.progressbar.value"><source>../node_modules/@ng-bootstrap/ng-bootstrap/progressbar/progressbar.d.ts:6</source><ph name="INTERPOLATION"><ex>{{getValue() / max | percent}}</ex>{{getValue() / max | percent}}</ph></msg>
-  <msg id="ngb.timepicker.increment-hours"><source>../node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts:9</source>Increment hours</msg>
-  <msg id="ngb.timepicker.HH"><source>../node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts:13</source>HH</msg>
-  <msg id="ngb.timepicker.hours"><source>../node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts:15</source>Hours</msg>
-  <msg id="ngb.timepicker.decrement-hours"><source>../node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts:23</source>Decrement hours</msg>
-  <msg id="ngb.timepicker.increment-minutes"><source>../node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts:32</source>Increment minutes</msg>
-  <msg id="ngb.timepicker.MM"><source>../node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts:35</source>MM</msg>
-  <msg id="ngb.timepicker.minutes"><source>../node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts:37</source>Minutes</msg>
-  <msg id="ngb.timepicker.decrement-minutes"><source>../node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts:45</source>Decrement minutes</msg>
-  <msg id="ngb.timepicker.increment-seconds"><source>../node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts:54</source>Increment seconds</msg>
-  <msg id="ngb.timepicker.SS"><source>../node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts:57</source>SS</msg>
-  <msg id="ngb.timepicker.seconds"><source>../node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts:59</source>Seconds</msg>
-  <msg id="ngb.timepicker.decrement-seconds"><source>../node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts:67</source>Decrement seconds</msg>
-  <msg id="ngb.timepicker.PM"><source>../node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts:76</source><ph name="INTERPOLATION"><ex>{{ i18n.getAfternoonPeriod() }}</ex>{{ i18n.getAfternoonPeriod() }}</ph></msg>
-  <msg id="ngb.timepicker.AM"><source>../node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts:77</source><ph name="INTERPOLATION"><ex>{{ i18n.getMorningPeriod() }}</ex>{{ i18n.getMorningPeriod() }}</ph></msg>
-  <msg id="ngb.toast.close-aria"><source>../node_modules/@ng-bootstrap/ng-bootstrap/toast/toast.d.ts:8</source>Close</msg>
 </messagebundle>

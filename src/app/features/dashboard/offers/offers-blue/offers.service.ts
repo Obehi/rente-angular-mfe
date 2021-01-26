@@ -5,9 +5,7 @@ import { OFFER_SAVINGS_TYPE } from '../../../../config/loan-state';
   providedIn: 'root'
 })
 export class OffersService {
-  constructor() {}
-
-  getRatingNumberFromLoanState(loanState: string) {
+  getRatingNumberFromLoanState(loanState: string): number {
     switch (loanState) {
       case OFFER_SAVINGS_TYPE.SAVINGS_FIRST_YEAR_GREATER_10000:
         return 1;

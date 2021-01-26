@@ -47,6 +47,7 @@ export class OfferCardBigComponentBlue implements OnInit {
     } else {
       this.isSweden = false;
     }
+
     if (this.offer.fixedRatePeriod === 0) {
       this.offerType = 'threeMonths';
     } else if (this.offer.fixedRatePeriod === 1) {
@@ -63,6 +64,7 @@ export class OfferCardBigComponentBlue implements OnInit {
     switch (offer.bankInfo.bank) {
       case 'SPAREBANKENOST': {
         text = 'Sparebanken Øst';
+        break;
       }
 
       case 'SBANKEN': {
@@ -94,7 +96,7 @@ export class OfferCardBigComponentBlue implements OnInit {
   public handleNybyggerProductSpecialCase(offer: OfferInfo): boolean {
     if (
       offer.productName.includes('Rammelån') &&
-      offer.bankInfo.bank == 'NYBYGGER'
+      offer.bankInfo.bank === 'NYBYGGER'
     ) {
       window.open(
         'https://www.nybygger.no/kampanje-rammelan/?utm_medium=affiliate%20&utm_source=renteradar.no&utm_campaign=rammelan110&utm_content=cta',
@@ -113,7 +115,7 @@ export class OfferCardBigComponentBlue implements OnInit {
   }
 
   public openBankUrl(offer: OfferInfo) {
-    if (this.handleNybyggerProductSpecialCase(offer) == true) {
+    if (this.handleNybyggerProductSpecialCase(offer) === true) {
       return;
     }
 
@@ -128,7 +130,7 @@ export class OfferCardBigComponentBlue implements OnInit {
   }
 
   public openBankUrlByButton(offer: OfferInfo) {
-    if (offer.bankInfo.url === null || offer.bankInfo.partner == false) return;
+    if (offer.bankInfo.url === null || offer.bankInfo.partner === false) return;
 
     window.open(offer.bankInfo.url, '_blank');
 
@@ -139,7 +141,7 @@ export class OfferCardBigComponentBlue implements OnInit {
   }
 
   public openNewOfferDialog(offer: OfferInfo): void {
-    if (this.handleNybyggerProductSpecialCase(offer) == true) {
+    if (this.handleNybyggerProductSpecialCase(offer) === true) {
       return;
     }
 

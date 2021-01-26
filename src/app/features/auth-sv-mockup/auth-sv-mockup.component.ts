@@ -28,9 +28,7 @@ import {
   MESSAGE_STATUS
 } from '../auth/login-status/login-status.config';
 import { EnvService } from '@services/env.service';
-
 import { ViewStatus } from '../auth/login-status/login-view-status';
-
 import { take } from 'rxjs/operators';
 import { AuthService } from '@services/remote-api/auth.service';
 import { UserService } from '@services/remote-api/user.service';
@@ -164,8 +162,6 @@ export class AuthSvMockupComponent implements OnInit, OnDestroy {
   }
 
   private initializeWebSocketConnection(loginId: number) {
-    this.connectAndReconnectSocket(this.successSocketCallback);
-
     const socket = new SockJS(environment.crawlerUrl);
     this.stompClient = Stomp.over(socket);
 
@@ -299,7 +295,6 @@ export class AuthSvMockupComponent implements OnInit, OnDestroy {
             this.loginStep2Status = MESSAGE_STATUS.ERROR;
             this.unsubscribeEverything();
             break;
-          case BANKID_STATUS.CONFIRMATION_REQUIRED:
           case BANKID_STATUS.CONFIRMATION_REQUIRED_DNB_PORTAL_AGREEMENT:
             this.isShowPassPhrase = false;
             this.viewStatus.isConfirmationRequired = true;
@@ -413,9 +408,8 @@ export class AuthSvMockupComponent implements OnInit, OnDestroy {
       }
     });
   }
-  private connectAndReconnectSocket(successCallback) {}
 
-  sendUserData(loginId: number, resendData = false) {
+  sendUserData(loginId: number, resendData = false): void {
     let country = '';
     if (locale.includes('nb')) {
       country = 'NOR';
