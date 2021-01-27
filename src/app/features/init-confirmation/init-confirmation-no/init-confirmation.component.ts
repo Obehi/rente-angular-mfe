@@ -2,7 +2,8 @@ import {
   LoansService,
   ConfirmationSetDto,
   ConfirmationGetDto,
-  MembershipTypeDto
+  MembershipTypeDto,
+  AddressCreationDto
 } from '@services/remote-api/loans.service';
 import { UserService } from '@services/remote-api/user.service';
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
@@ -82,26 +83,49 @@ export class InitConfirmationNoComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.loansService.getConfirmationData().subscribe((res) => {
-      this.allMemberships = res.availableMemberships;
-      this.userData = res;
-      console.log('res');
-      console.log(res);
-      const income = String(res.income) && null;
-      const apartmentSize = String(res.apartmentSize) && null;
+    this.loansService;
 
-      // this.userData.bank = 'HANDELSBANKEN'
+    forkJoin([
+      this.loansService.getLoansAndRateType(),
+      this.loansService.getConfirmationData()
+    ]).subscribe(([rateAndLoans, userInfo]) => {
+      this.allMemberships = userInfo.availableMemberships;
+      this.userData = userInfo;
+      console.log('userInfo');
+      console.log(userInfo);
+      console.log('rateAndLoans');
+      console.log(rateAndLoans);
+      const income = String(userInfo.income) || null;
+      const apartmentSize = String(userInfo.apartmentSize) || null;
+      const apartmentValue = String(userInfo.apartmentValue) || null;
+
+      // this.userData.bank = 'HANDELSBANKEN';
       const bank = BankUtils.getBankByName(this.userData.bank);
       const isTinkBank = BankUtils.isTinkBank(bank.name);
-      if (isTinkBank) {
+      this.isTinkBank = true;
+
+      const name = this.userData.name || '';
+
+      console.log('name');
+      console.log(name);
+      if (this.isTinkBank) {
         this.isTinkBank = true;
         this.propertyForm = this.fb.group({
-          name: ['', Validators.required],
+          name: [name, Validators.required],
+          address: ['', Validators.required],
+          zip: [
+            '',
+            Validators.compose([
+              Validators.required,
+              Validators.pattern(VALIDATION_PATTERN.zip)
+            ])
+          ],
+          apartmentValue: [apartmentValue, Validators.required],
           apartmentSize: [apartmentSize, Validators.required],
           membership: [],
           income: [income, Validators.required],
           email: [
-            res.email,
+            userInfo.email,
             Validators.compose([
               Validators.required,
               Validators.pattern(VALIDATION_PATTERN.email)
@@ -114,7 +138,7 @@ export class InitConfirmationNoComponent implements OnInit {
           membership: [],
           income: [income, Validators.required],
           email: [
-            res.email,
+            userInfo.email,
             Validators.compose([
               Validators.required,
               Validators.pattern(VALIDATION_PATTERN.email)
@@ -155,15 +179,25 @@ export class InitConfirmationNoComponent implements OnInit {
       name: this.isTinkBank ? formData.name : this.userData.name
     };
 
-    const dto: ConfirmationSetDto = new ConfirmationSetDto();
-    dto.name = data.name;
-    dto.email = data.email;
-    dto.income = data.income;
-    dto.memberships = data.memberships;
-    dto.apartmentSize = data.apartmentSize;
+    const confirmationDto: ConfirmationSetDto = new ConfirmationSetDto();
+    confirmationDto.addressCreationDto = new AddressCreationDto();
+    confirmationDto.name = data.name;
+    confirmationDto.email = data.email;
+    confirmationDto.income = data.income;
+    confirmationDto.memberships = data.memberships;
+    confirmationDto.addressCreationDto.apartmentSize = data.apartmentSize;
 
-    this.loansService.setConfirmationData(dto).subscribe(
-      (res) => {
+    if (this.isTinkBank) {
+      confirmationDto.addressCreationDto.apartmentValue =
+        typeof formData.apartmentValue === 'string'
+          ? formData.income.replace(/\s/g, '')
+          : formData.income;
+      confirmationDto.addressCreationDto.street = formData.address;
+      confirmationDto.addressCreationDto.zip = formData.zip;
+      confirmationDto.bank = this.userData.bank;
+    }
+    this.loansService.setConfirmationData(confirmationDto).subscribe(
+      () => {
         this.isLoading = false;
         this.router.navigate(['/dashboard/' + ROUTES_MAP.offers]);
         this.snackBar.openSuccessSnackBar(

@@ -145,14 +145,10 @@ export class LoansService {
     const url = `${API_URL_MAP.loan.base}/preferences`;
     return this.http.post(url, dto);
   }
-
-  updateNewOffers() {
-    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.offers}${API_URL_MAP.loan.newOffers}`;
-    return this.http.post(url);
-  }
 }
 
 export class LoanStateDto {
+  isAddressNeeded: boolean;
   isAggregatedRateTypeFixed: boolean;
   loansPresent: boolean;
   lowerRateAvailable: boolean;
@@ -177,22 +173,31 @@ export class ClientAddressDto {
 }
 
 export class ConfirmationGetDto {
-  bank: string;
   email: string;
   name: string;
+  bank: string;
   income: number;
   memberships: string[];
   apartmentSize: number;
+  apartmentValue: number;
   availableMemberships: MembershipTypeDto[];
 }
 
 export class ConfirmationSetDto {
-  name: string;
   memberships: string[];
   apartmentSize: number;
   email: string;
   income: number;
+  name: string;
+  bank: string;
+  addressCreationDto: AddressCreationDto;
+}
+
+export class AddressCreationDto {
+  apartmentSize: number;
   apartmentValue: number;
+  street: string;
+  zip: string;
 }
 
 export class PreferencesDto {

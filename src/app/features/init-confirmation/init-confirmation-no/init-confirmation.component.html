@@ -36,6 +36,47 @@
         </p>
       </div>
     </div>
+        <div *ngIf="isTinkBank" class="field">
+          <rente-input
+            [placeholder]="'Adresse'"
+            formControlName="address"
+            [errorStateMatcher]="
+              isErrorState(propertyForm.controls['address'], propertyForm)
+            "
+            [modelOptions]="{ updateOn: 'blur' }"
+          >
+          </rente-input>
+  
+          <div *ngIf="propertyForm.controls['address'].touched">
+            <p i18n=“empty|info-confirmation@@info.confirmation.empty”
+              class="error small"
+              *ngIf="propertyForm.controls['address'].hasError('required')"
+            >
+              Kan ikke være tom
+            </p>
+          </div>
+      </div>
+      <div *ngIf="isTinkBank" class="field">
+        <rente-input
+          [placeholder]="'Postnummer'"
+          formControlName="zip"
+          [maxLength] ="4"
+          [errorStateMatcher]="
+            isErrorState(propertyForm.controls['zip'], propertyForm)
+          "
+          [modelOptions]="{ updateOn: 'blur' }"
+        >
+        </rente-input>
+
+        <div *ngIf="propertyForm.controls['zip'].touched">
+          <p i18n=“empty|info-confirmation@@info.confirmation.empty”
+            class="error small"
+            *ngIf="propertyForm.controls['zip'].hasError('required')"
+          >
+            Kan ikke være tom
+          </p>
+        </div>
+      </div>
       <div class="field">
         <rente-input
           [placeholder]="'E-post'"
@@ -97,6 +138,28 @@
           >
             <mat-icon>help</mat-icon>
           </div>
+        </div>
+      </div>
+      <div *ngIf="isTinkBank" class="field">
+        <rente-input
+          [placeholder]="'Boligverdi'"
+          formControlName="apartmentValue"
+          [maxLength] ="10"
+          [maskType]="mask.currency"
+          [errorStateMatcher]="
+            isErrorState(propertyForm.controls['apartmentValue'], propertyForm)
+          "
+          [modelOptions]="{ updateOn: 'blur' }"
+        >
+        </rente-input>
+
+        <div *ngIf="propertyForm.controls['apartmentValue'].touched">
+          <p i18n=“empty|info-confirmation@@info.confirmation.empty”
+            class="error small"
+            *ngIf="propertyForm.controls['apartmentValue'].hasError('required')"
+          >
+            Kan ikke være tom
+          </p>
         </div>
       </div>
       <div class="field">
