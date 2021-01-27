@@ -10,7 +10,7 @@
       novalidate
       (ngSubmit)="updateProperty(propertyForm.value)"
     >
-    <div *ngIf="isTinkBank" class="field">
+    <div *ngIf="isAddressNeeded" class="field">
       <rente-input
         [placeholder]="'Navn'"
         formControlName="name"
@@ -36,7 +36,7 @@
         </p>
       </div>
     </div>
-        <div *ngIf="isTinkBank" class="field">
+        <div *ngIf="isAddressNeeded" class="field">
           <rente-input
             [placeholder]="'Adresse'"
             formControlName="address"
@@ -56,7 +56,7 @@
             </p>
           </div>
       </div>
-      <div *ngIf="isTinkBank" class="field">
+      <div *ngIf="isAddressNeeded" class="field">
         <rente-input
           [placeholder]="'Postnummer'"
           formControlName="zip"
@@ -138,28 +138,6 @@
           >
             <mat-icon>help</mat-icon>
           </div>
-        </div>
-      </div>
-      <div *ngIf="isTinkBank" class="field">
-        <rente-input
-          [placeholder]="'Boligverdi'"
-          formControlName="apartmentValue"
-          [maxLength] ="10"
-          [maskType]="mask.currency"
-          [errorStateMatcher]="
-            isErrorState(propertyForm.controls['apartmentValue'], propertyForm)
-          "
-          [modelOptions]="{ updateOn: 'blur' }"
-        >
-        </rente-input>
-
-        <div *ngIf="propertyForm.controls['apartmentValue'].touched">
-          <p i18n=“empty|info-confirmation@@info.confirmation.empty”
-            class="error small"
-            *ngIf="propertyForm.controls['apartmentValue'].hasError('required')"
-          >
-            Kan ikke være tom
-          </p>
         </div>
       </div>
       <div class="field">

@@ -26,6 +26,11 @@ export class LoansService {
     return this.http.get(url);
   }
 
+  public updateNewOffers() {
+    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.offers}${API_URL_MAP.loan.newOffers}`;
+    return this.http.get(url);
+  }
+
   public getUsersMemberships() {
     const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.membership}`;
     return this.http.get(url);
@@ -190,7 +195,7 @@ export class ConfirmationSetDto {
   income: number;
   name: string;
   bank: string;
-  addressCreationDto: AddressCreationDto;
+  address: AddressCreationDto;
 }
 
 export class AddressCreationDto {

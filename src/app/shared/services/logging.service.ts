@@ -106,5 +106,6 @@ export enum Level {
 export enum SubSystem {
   Tink = 'Tink',
   CrawlerLogin = 'Crawler Login',
-  TinkMockup = 'Tink Mockup'
+  TinkMockup = 'Tink Mockup',
+  UserConfirmation = 'UserConfirmation'
 }

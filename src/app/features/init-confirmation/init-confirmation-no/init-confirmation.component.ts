@@ -8,7 +8,7 @@ import {
 import { UserService } from '@services/remote-api/user.service';
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { TitleCasePipe } from '@angular/common';
-import { BankUtils } from '../../../shared/models/bank';
+import { LoggingService } from '@services/logging.service';
 
 import {
   Validators,
@@ -58,7 +58,7 @@ export class InitConfirmationNoComponent implements OnInit {
   public userData: ConfirmationGetDto;
   public mask = Mask;
   public optimizeService: OptimizeService;
-  public isTinkBank = false;
+  public isAddressNeeded = false;
 
   @ViewChild('membershipInput') membershipInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete: MatAutocomplete;
@@ -71,7 +71,8 @@ export class InitConfirmationNoComponent implements OnInit {
     private router: Router,
     public dialog: MatDialog,
     public optimize: OptimizeService,
-    public customLangTextService: CustomLangTextService
+    public customLangTextService: CustomLangTextService,
+    private logging: LoggingService
   ) {
     this.optimizeService = optimize;
     this.filteredMemberships = this.membershipCtrl.valueChanges.pipe(
@@ -83,33 +84,33 @@ export class InitConfirmationNoComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.loansService;
-
     forkJoin([
       this.loansService.getLoansAndRateType(),
       this.loansService.getConfirmationData()
     ]).subscribe(([rateAndLoans, userInfo]) => {
       this.allMemberships = userInfo.availableMemberships;
       this.userData = userInfo;
-      console.log('userInfo');
-      console.log(userInfo);
-      console.log('rateAndLoans');
-      console.log(rateAndLoans);
+
+      const userInfoAndRateAndLoans = { ...userInfo, ...rateAndLoans };
+      this.logging.logger(
+        this.logging.Level.Info,
+        '7:INIT_CONFIRMATION',
+        'InitConfirmationNoComponent',
+        'ngOnInit',
+        this.logging.SubSystem.UserConfirmation,
+        '7:INIT_CONFIRMATION',
+        userInfoAndRateAndLoans
+      );
       const income = String(userInfo.income) || null;
       const apartmentSize = String(userInfo.apartmentSize) || null;
-      const apartmentValue = String(userInfo.apartmentValue) || null;
-
-      // this.userData.bank = 'HANDELSBANKEN';
-      const bank = BankUtils.getBankByName(this.userData.bank);
-      const isTinkBank = BankUtils.isTinkBank(bank.name);
-      this.isTinkBank = true;
+      this.isAddressNeeded = rateAndLoans.isAddressNeeded;
 
       const name = this.userData.name || '';
 
       console.log('name');
       console.log(name);
-      if (this.isTinkBank) {
-        this.isTinkBank = true;
+      if (this.isAddressNeeded) {
+        this.isAddressNeeded = true;
         this.propertyForm = this.fb.group({
           name: [name, Validators.required],
           address: ['', Validators.required],
@@ -120,7 +121,6 @@ export class InitConfirmationNoComponent implements OnInit {
               Validators.pattern(VALIDATION_PATTERN.zip)
             ])
           ],
-          apartmentValue: [apartmentValue, Validators.required],
           apartmentSize: [apartmentSize, Validators.required],
           membership: [],
           income: [income, Validators.required],
@@ -176,30 +176,46 @@ export class InitConfirmationNoComponent implements OnInit {
           : formData.income,
       memberships: this.memberships.map((membership) => membership.name),
       apartmentSize: formData.apartmentSize,
-      name: this.isTinkBank ? formData.name : this.userData.name
+      name: this.isAddressNeeded ? formData.name : this.userData.name
     };
 
     const confirmationDto: ConfirmationSetDto = new ConfirmationSetDto();
-    confirmationDto.addressCreationDto = new AddressCreationDto();
+    confirmationDto.address = new AddressCreationDto();
     confirmationDto.name = data.name;
     confirmationDto.email = data.email;
     confirmationDto.income = data.income;
     confirmationDto.memberships = data.memberships;
-    confirmationDto.addressCreationDto.apartmentSize = data.apartmentSize;
+    confirmationDto.address.apartmentSize = data.apartmentSize;
 
-    if (this.isTinkBank) {
-      confirmationDto.addressCreationDto.apartmentValue =
-        typeof formData.apartmentValue === 'string'
-          ? formData.income.replace(/\s/g, '')
-          : formData.income;
-      confirmationDto.addressCreationDto.street = formData.address;
-      confirmationDto.addressCreationDto.zip = formData.zip;
+    if (this.isAddressNeeded) {
+      confirmationDto.address.street = formData.address;
+      confirmationDto.address.zip = formData.zip;
       confirmationDto.bank = this.userData.bank;
     }
+
+    this.logging.logger(
+      this.logging.Level.Info,
+      '8:SENDING_USER_INFO',
+      'InitConfirmationNoComponent',
+      'updateProperty',
+      this.logging.SubSystem.UserConfirmation,
+      '8:SENDING_USER_INFO',
+      confirmationDto
+    );
+
     this.loansService.setConfirmationData(confirmationDto).subscribe(
-      () => {
+      (res) => {
         this.isLoading = false;
         this.router.navigate(['/dashboard/' + ROUTES_MAP.offers]);
+        this.logging.logger(
+          this.logging.Level.Info,
+          '9:USERINFO_SENT_SUCCESSFUL_REDIRECTING_TO_OFFERS',
+          'InitConfirmationNoComponent',
+          'updateProperty',
+          this.logging.SubSystem.UserConfirmation,
+          '9:USERINFO_SENT_SUCCESSFUL_REDIRECTING_TO_OFFERS',
+          res
+        );
         this.snackBar.openSuccessSnackBar(
           this.customLangTextService.getSnackBarUpdatedMessage(),
           1.2
@@ -207,6 +223,15 @@ export class InitConfirmationNoComponent implements OnInit {
       },
       (err) => {
         this.isLoading = false;
+        this.logging.logger(
+          this.logging.Level.Info,
+          '9:USERINFO_SENT_ERROR_REDIRECTING_TO_PROPERTY',
+          'InitConfirmationNoComponent',
+          'updateProperty',
+          this.logging.SubSystem.UserConfirmation,
+          '9:USERINFO_SENT_ERROR_REDIRECTING_TO_PROPERTY',
+          err
+        );
         this.router.navigate(['/dashboard/' + ROUTES_MAP.property]);
       }
     );
