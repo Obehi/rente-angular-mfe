@@ -190,7 +190,6 @@ export class InitConfirmationNoComponent implements OnInit {
     if (this.isAddressNeeded) {
       confirmationDto.address.street = formData.address;
       confirmationDto.address.zip = formData.zip;
-      confirmationDto.bank = this.userData.bank;
     }
 
     this.logging.logger(

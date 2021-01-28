@@ -194,7 +194,6 @@ export class ConfirmationSetDto {
   email: string;
   income: number;
   name: string;
-  bank: string;
   address: AddressCreationDto;
 }
 
