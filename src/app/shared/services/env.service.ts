@@ -9,6 +9,7 @@ interface Environment {
   crawlerUrl: string | null;
   locale: string | null;
   tinkUrl: string | null;
+  shouldLog: boolean;
   tinkNorDanskebankLink: string | null;
   tinkNorHandelsbankenLink: string | null;
   coralogixApiUrl: string | null;
@@ -29,6 +30,7 @@ export class EnvService {
     production: false,
     baseUrl: 'https://rente-gateway-dev.herokuapp.com',
     crawlerUrl: 'https://rente-ws-dev.herokuapp.com/ws',
+    shouldLog: true,
     tinkUrl:
       'https://link.tink.com/1.0/authorize/?client_id=a84cfc4207574e08be2b561285e05998&redirect_uri=http%3A%2F%2Flocalhost%3A4302%2F&market=SE&locale=en_US&scope=accounts:read,user:read,identity:read&iframe=true&test=true',
     locale: 'sv',
@@ -36,9 +38,9 @@ export class EnvService {
       'https://link.tink.com/1.0/authorize/credentials/no-danskebank-password?client_id=690cbe68c3df412082d5ad8a5a2335d8&redirect_uri=https%3A%2F%2Frente-frontend-dev.herokuapp.com&scope=accounts:read,credentials:read&market=NO&locale=en_US&iframe=true',
     tinkNorHandelsbankenLink:
       'https://link.tink.com/1.0/authorize/credentials/no-handelsbanken-bankid?client_id=690cbe68c3df412082d5ad8a5a2335d8&redirect_uri=https%3A%2F%2Frente-frontend-dev.herokuapp.com&scope=accounts:read,credentials:read&market=NO&locale=en_US&iframe=true',
-    coralogixApiUrl: '',
-    coralogixPrivateKey: '',
-    coralogixApplicationName: ''
+    coralogixApiUrl: 'https://api.coralogix.com/api/v1/logs',
+    coralogixPrivateKey: '26cd19a4-0d74-8c7a-4d91-aa92b7a32bb1',
+    coralogixApplicationName: 'rente-frontend-dev_13638'
   };
 
   private tinkBanks = {
