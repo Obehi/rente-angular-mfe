@@ -63,10 +63,7 @@ export class LoggingService {
     msg?: string,
     object?: any
   ): void {
-    if (
-      this.envService.environment.production === true &&
-      subSystem === SubSystem.Tink
-    ) {
+    if (!this.envService.environment.shouldLog) {
       return;
     }
     let text: any;
