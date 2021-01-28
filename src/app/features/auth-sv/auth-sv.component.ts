@@ -2,7 +2,6 @@ import { AuthService } from '@services/remote-api/auth.service';
 import { LoansService } from '@services/remote-api/loans.service';
 import { UserService } from '@services/remote-api/user.service';
 import { LocalStorageService } from '@services/local-storage.service';
-import { EnvService } from '@services/env.service';
 import {
   Component,
   OnInit,
