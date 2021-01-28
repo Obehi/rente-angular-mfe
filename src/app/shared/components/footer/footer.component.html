@@ -51,7 +51,7 @@
           </a>
         </li>
         <li>
-          <a target="_blank" href="https://www.finansportalen.no/">
+          <a target="_blank" href="https://www.finansportalen.no/" rel="nofollow">
             <picture>
               <source srcset="../../../assets/img-webp/partners/finansportalen.webp" type="image/webp">
               <source srcset="../../../../assets/img/partners/finansportalen.png" type="image/jpeg">
@@ -74,7 +74,7 @@
     </div>
 
     <div class="item">
-      
+
       <div class="social">
         <a class="desktop" href="https://www.facebook.com/renteradar/" target="_blank">
           <img src="../../../../assets/img/facebook.svg" alt="Facebook logo" />
@@ -101,20 +101,42 @@
         <br />
           <a href="https://renteradar.no/bankguiden" routerLinkActive="active-link">
           Bankguiden
-        </a> 
+        </a>
     </div>
-    
+
   </div>
 
   <div *ngIf="isSweden" class="inner-footer">
 
-    <a class="temp-swedish-policy" i18n=“privacy|footer@@footer.privacy” [routerLink]="[routes.privacy]"
-    routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">
-    Personvern
+    <div class="item fill">
+      <div class="social">
+        <a class="desktop" href="https://www.facebook.com/ranteradar.se" target="_blank">
+          <img src="../../../../assets/img/facebook.svg" alt="Facebook logo" />
+        </a>
+
+        <a class="mobile" href="fb://profile/104419418034085" target="_blank">
+          <img src="../../../../assets/img/facebook.svg" alt="Facebook logo" />
+        </a>
+
+
+        <a href="https://www.instagram.com/ranteradar.se/?hl=en" target="_blank">
+          <img src="../../../../assets/icons/instagram.svg" alt="Facebook logo" />
+        </a>
+        <a href="https://www.linkedin.com/company/r%C3%A4nteradar/?viewAsMember=true" target="_blank">
+          <img src="../../../../assets/img/linkedin.svg" alt="LinkedIn logo" />
+        </a>
+      </div>
+      </div>
+
+    <span class="fill">
+      <a class="temp-swedish-policy" i18n=“privacy|footer@@footer.privacy” [routerLink]="[routes.privacy]"
+      routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">
+      Personvern
     </a>
-    <p class="org">
+    <p class="org fill">
       <a href="http://ranteradar.se/">Ränteradar.se</a>
       ägs och drivs av Ränteradar
       Sverige AB<br>(Org nr: 559271-9289).
     </p>
+  </span>
   </div>

@@ -1,1 +1,1 @@
-export const locale  =  "sv"
+export const locale = 'nb';

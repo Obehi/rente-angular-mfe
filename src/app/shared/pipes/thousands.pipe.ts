@@ -2,7 +2,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({ name: 'thousands' })
 export class ThousandsSeprator implements PipeTransform {
-  transform(value: number | string, unit?: string): string {
+  transform(value: number | string, unit: string): string {
     if (value != null) {
       const num = parseInt(String(value));
       const regExp = /(\d+)(\d{3})/;
