@@ -55,11 +55,18 @@ export class EnvService {
   constructor(private http: HttpClient) {}
 
   // Used to initialize provider in module
-  init() {
-    this.http.get('../../../../assets/env-config.json').subscribe((env) => {
-      console.log(env);
-      this.environment = env as Environment;
-    });
+  init(): void {
+    console.log('ENV');
+    this.http.get('../../../../assets/env-config.json').subscribe(
+      (env) => {
+        console.log('env');
+        console.log(env);
+        this.environment = env as Environment;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 
   getTinkLinkForBank(bankName: any) {

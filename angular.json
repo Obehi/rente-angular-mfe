@@ -94,7 +94,7 @@
                 "src/favicon.ico",
                 "src/sitemap.xml",
                 "src/robots.txt",
-                "src/env-config.js"
+                "src/env-config.json"
 
               ],
               "fileReplacements": [
@@ -141,7 +141,7 @@
                 "src/favicon.ico",
                 "src/sitemap.xml",
                 "src/robots.txt",
-                "src/env-config.js"
+                "src/env-config.json"
 
               ],
               "fileReplacements": [
@@ -194,7 +194,7 @@
                 "src/favicon.ico",
                 "src/sitemap.xml",
                 "src/robots.txt",
-                "src/env-config.js"
+                "src/env-config.json"
 
               ],
               "fileReplacements": [
@@ -238,7 +238,7 @@
                 "src/favicon.ico",
                 "src/sitemap.xml",
                 "src/robots.txt",
-                "src/env-config.js"
+                "src/env-config.json"
               ],
               "fileReplacements": [
                 {
