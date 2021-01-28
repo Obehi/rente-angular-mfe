@@ -17,7 +17,6 @@ import { customMeta } from '../../../config/routes-config';
 import { BankVo, BankUtils } from '@shared/models/bank';
 import { ActivatedRoute, Router } from '@angular/router';
 import { VALIDATION_PATTERN } from '@config/validation-patterns.config';
-import { environment } from '@environments/environment';
 import { UserService } from '@services/remote-api/user.service';
 import { Mask } from '@shared/constants/mask';
 import { EMPTY, of, Subscription, timer } from 'rxjs';

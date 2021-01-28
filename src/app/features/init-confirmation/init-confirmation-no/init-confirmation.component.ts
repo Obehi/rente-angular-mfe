@@ -9,7 +9,6 @@ import { UserService } from '@services/remote-api/user.service';
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { TitleCasePipe } from '@angular/common';
 import { LoggingService } from '@services/logging.service';
-
 import {
   Validators,
   AbstractControl,
@@ -107,8 +106,6 @@ export class InitConfirmationNoComponent implements OnInit {
 
       const name = this.userData.name || '';
 
-      console.log('name');
-      console.log(name);
       if (this.isAddressNeeded) {
         this.isAddressNeeded = true;
         this.propertyForm = this.fb.group({

@@ -6,7 +6,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
   templateUrl: './dialog-info.component.html',
   styleUrls: ['./dialog-info.component.scss']
 })
-export class ChangeBrowserDialogInfoComponent implements OnInit {
+export class ChangeBrowserDialogInfoComponent {
   constructor(
     public dialogRef: MatDialogRef<ChangeBrowserDialogInfoComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any

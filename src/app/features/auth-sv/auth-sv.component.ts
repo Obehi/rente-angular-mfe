@@ -2,7 +2,7 @@ import { AuthService } from '@services/remote-api/auth.service';
 import { LoansService } from '@services/remote-api/loans.service';
 import { UserService } from '@services/remote-api/user.service';
 import { LocalStorageService } from '@services/local-storage.service';
-
+import { EnvService } from '@services/env.service';
 import {
   Component,
   OnInit,
@@ -16,7 +16,6 @@ import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { ROUTES_MAP } from '@config/routes-config';
 import * as Stomp from 'stompjs';
 import * as SockJS from 'sockjs-client';
-import { environment } from '@environments/environment';
 import { API_URL_MAP } from '@config/api-url-config';
 import { Subscription, interval, Observable, timer, forkJoin } from 'rxjs';
 import {
@@ -56,7 +55,9 @@ export class AuthSvComponent implements OnInit, OnDestroy {
     private envService: EnvService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.environment = this.envService.environment;
+  }
 
   @HostListener('window:message', ['$event'])
   onMessage(event) {

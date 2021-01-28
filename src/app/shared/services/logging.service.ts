@@ -5,26 +5,36 @@ import { GenericHttpService } from '@services/generic-http.service';
 import { HttpClient } from '@angular/common/http';
 import { first } from 'rxjs/operators';
 import * as uuid from 'uuid';
-
+import { EnvService } from '@services/env.service';
 @Injectable({
   providedIn: 'root'
 })
 export class LoggingService {
-  private apiUrl =
+  /* private apiUrl =
     environment['coralogixApiUrl'] || 'https://api.coralogix.com/api/v1/logs';
   private privateKey =
     environment['coralogixPrivateKey'] ||
     'bf331188-c87b-2ce5-4b72-b45e7f47b6f3';
   private applicationName =
-    environment['coralogixApplicationName'] || 'se-rente-frontend-dev_13164';
+    environment['coralogixApplicationName'] || 'se-rente-frontend-dev_13164'; */
+
+  private apiUrl: string;
+  private privateKey: string;
+  private applicationName: string;
+
   public Level = Level;
   public SubSystem = SubSystem;
 
   constructor(
     private http: GenericHttpService,
     private httpClient: HttpClient,
-    storage: LocalStorageService
+    storage: LocalStorageService,
+    private envService: EnvService
   ) {
+    this.apiUrl = this.envService.environment.coralogixApiUrl;
+    this.privateKey = this.envService.environment.coralogixPrivateKey;
+    this.applicationName = this.envService.environment.coralogixApplicationName;
+
     this.sessionId = storage.getItem('LoggingSessionId');
     if (this.sessionId == null) {
       this.sessionId = uuid.v4();
@@ -52,7 +62,13 @@ export class LoggingService {
     subSystem: string,
     msg?: string,
     object?: any
-  ) {
+  ): void {
+    if (
+      this.envService.environment.production === true &&
+      subSystem === SubSystem.Tink
+    ) {
+      return;
+    }
     let text: any;
     if (msg === undefined && object != undefined) {
       object['sessionId'] = this.sessionId;
@@ -90,7 +106,7 @@ export class LoggingService {
     this.http
       .postExternal(this.apiUrl, logg)
       .pipe(first())
-      .subscribe((res) => {});
+      .subscribe(() => {});
   }
 }
 

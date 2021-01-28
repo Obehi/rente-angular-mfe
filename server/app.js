@@ -6,8 +6,8 @@ const clientPath = path.resolve(__dirname, '../dist/rente-front-end');
 const port = process.env.PORT || 4302;
 const baseUrl = process.env.BASE_URL;
 const buildEnvConfig = require('../src/build-env-config.js');
-https.globalAgent.options.ca = require('ssl-root-cas/latest').create();
 const localeForLocalDev = process.argv[2] || 'no';
+https.globalAgent.options.ca = require('ssl-root-cas/latest').create();
 
 const proxy = require('http-proxy').createProxyServer({
   host: 'https://blogg.renteradar.no',
@@ -16,22 +16,6 @@ const proxy = require('http-proxy').createProxyServer({
     port: 443
   })
 });
-
-/*
-if(process.env.LOCALE == undefined || process.env.LOCALE == "no") {
-  app.use('/blogg', function(req, res, next) {
-    proxy.web(req, res, {
-        target: 'https://blogg.ranteradar.se'
-    }, next);
-  });
-} else if(process.env.LOCALE == "sv") {
-  app.use('/blogg', function(req, res, next) {
-    proxy.web(req, res, {
-        target: 'https://blogg.renteradar.no'
-    }, next);
-  });
-}
-*/
 
 const historicalRatesProxy = require('http-proxy').createProxyServer({
   host: 'https://blogg.renteradar.no',
@@ -58,10 +42,6 @@ var renderIndex = (req, res) => {
   res.sendFile(path.resolve(__dirname, clientPath + '/index.html'));
 };
 
-var renderSvIndex = (req, res) => {
-  res.sendFile(path.resolve(__dirname, clientPath + '/sv' + '/index.html'));
-};
-// app.get('/*', renderSvIndex);
 app.get('/*', renderIndex);
 
 // Start the app by listening on the default Heroku port

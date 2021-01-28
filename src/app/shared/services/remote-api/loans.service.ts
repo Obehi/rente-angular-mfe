@@ -195,6 +195,7 @@ export class ConfirmationSetDto {
   income: number;
   name: string;
   address: AddressCreationDto;
+  apartmentValue: number;
 }
 
 export class AddressCreationDto {

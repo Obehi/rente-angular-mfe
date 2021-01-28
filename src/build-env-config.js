@@ -3,7 +3,6 @@ var path = require('path');
 
 const environment = process.env.ENV;
 const isProd = environment === 'prod';
-const isServe = process.argv[3] || 'serve';
 const isLocal = process.env.ENV === undefined;
 
 module.exports = (localeForLocalDev) => {
@@ -37,32 +36,24 @@ module.exports = (localeForLocalDev) => {
     "tinkUrl": "${process.env.TINK_LINK}",
     "locale": "${process.env.LOCALE}"
     "tinkNorDanskebankLink": "${process.env.TINK_NOR_DANSKEBANK_LINK}"
-    "tinkNorHandelsbankenLink": "${process.env.TINK_NOR_HANDELSBANKEN_LINK}"
+    "tinkNorHandelsbankenLink": "${process.env.TINK_NOR_HANDELSBANKEN_LINK}",
+    "coralogixApiUrl": '${process.env.CORALOGIX_API_URL}',
+    "coralogixPrivateKey": '${process.env.CORALOGIX_PRIVATE_KEY}',
+    "coralogixApplicationName": '${process.env.CORALOGIX_APPLICATION_NAME}'
   }
   `;
 
   let outputFile = isLocal ? localEnvConfig : envConfig;
   let outputPath = '../dist/rente-front-end/assets/env-config.json';
 
-  if (isServe) {
-    console.log('is serve');
-    createDirectories(outputPath, () => {
-      fs.writeFile(outputPath, outputFile, 'utf8', function (err) {
-        if (err) return console.log(err);
-      });
-      console.log(
-        `Environment config generated. Environment mode is ${process.env.APP} `
-      );
-    });
-  } else {
-    console.log('is NOT serve');
+  createDirectories(outputPath, () => {
     fs.writeFile(outputPath, outputFile, 'utf8', function (err) {
       if (err) return console.log(err);
-      console.log(
-        `Environment config generated. Environment mode is ${process.env.APP} `
-      );
     });
-  }
+    console.log(
+      `Environment config generated. Environment mode is ${process.env.APP} `
+    );
+  });
 };
 
 function createDirectories(pathname, callback) {

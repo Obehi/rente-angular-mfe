@@ -11,6 +11,9 @@ interface Environment {
   tinkUrl: string | null;
   tinkNorDanskebankLink: string | null;
   tinkNorHandelsbankenLink: string | null;
+  coralogixApiUrl: string | null;
+  coralogixPrivateKey: string | null;
+  coralogixApplicationName: string | null;
 }
 
 import { HttpClient } from '@angular/common/http';
@@ -32,7 +35,10 @@ export class EnvService {
     tinkNorDanskebankLink:
       'https://link.tink.com/1.0/authorize/credentials/no-danskebank-password?client_id=690cbe68c3df412082d5ad8a5a2335d8&redirect_uri=https%3A%2F%2Frente-frontend-dev.herokuapp.com&scope=accounts:read,credentials:read&market=NO&locale=en_US&iframe=true',
     tinkNorHandelsbankenLink:
-      'https://link.tink.com/1.0/authorize/credentials/no-handelsbanken-bankid?client_id=690cbe68c3df412082d5ad8a5a2335d8&redirect_uri=https%3A%2F%2Frente-frontend-dev.herokuapp.com&scope=accounts:read,credentials:read&market=NO&locale=en_US&iframe=true'
+      'https://link.tink.com/1.0/authorize/credentials/no-handelsbanken-bankid?client_id=690cbe68c3df412082d5ad8a5a2335d8&redirect_uri=https%3A%2F%2Frente-frontend-dev.herokuapp.com&scope=accounts:read,credentials:read&market=NO&locale=en_US&iframe=true',
+    coralogixApiUrl: '',
+    coralogixPrivateKey: '',
+    coralogixApplicationName: ''
   };
 
   private tinkBanks = {
