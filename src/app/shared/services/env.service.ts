@@ -26,7 +26,7 @@ export class EnvService {
   public environment: Environment = {
     name: 'prod',
     production: false,
-    baseUrl: 'https://rente-gateway-prod.herokuapp.com',
+    baseUrl: 'https://rente-gateway-dev.herokuapp.com',
     crawlerUrl: 'https://rente-ws-prod.herokuapp.com/ws',
     shouldLog: true,
     tinkUrl:
@@ -37,8 +37,8 @@ export class EnvService {
     tinkNorHandelsbankenLink:
       'https://link.tink.com/1.0/authorize/credentials/no-handelsbanken-bankid?client_id=690cbe68c3df412082d5ad8a5a2335d8&redirect_uri=https%3A%2F%2Frente-frontend-dev.herokuapp.com&scope=accounts:read,credentials:read&market=NO&locale=no_NO&iframe=true',
     coralogixApiUrl: 'https://api.coralogix.com/api/v1/logs',
-    coralogixPrivateKey: '92caa3a2-90d2-9f01-7d00-077afb69d8e5',
-    coralogixApplicationName: 'rente-frontend-prod_13639'
+    coralogixPrivateKey: '26cd19a4-0d74-8c7a-4d91-aa92b7a32bb1',
+    coralogixApplicationName: 'rente-frontend-dev_13638'
   };
 
   private tinkBanks = {
