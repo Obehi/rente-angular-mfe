@@ -320,7 +320,7 @@ export class BankSelectSvComponent implements OnInit, OnDestroy {
   sendUserData(tinkCode: number, resendData = false) {
     const dataObj = {
       code: tinkCode,
-      country: 'NOR'
+      country: 'SWE'
     };
     // this.setDefaultSteps();
     const data = JSON.stringify(dataObj);
@@ -329,7 +329,7 @@ export class BankSelectSvComponent implements OnInit, OnDestroy {
       API_URL_MAP.tinkSendMessageUrl,
       {
         code: tinkCode,
-        country: 'NOR'
+        country: 'SWE'
       },
       data
     );
