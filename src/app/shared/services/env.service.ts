@@ -23,8 +23,6 @@ import { createUrlResolverWithoutPackagePrefix } from '@angular/compiler';
 
 @Injectable()
 export class EnvService {
-  window: Window;
-  test: any;
   public environment: Environment = {
     name: 'local',
     production: false,
@@ -56,11 +54,8 @@ export class EnvService {
 
   // Used to initialize provider in module
   init(): void {
-    console.log('ENV');
     this.http.get('../../../../assets/env-config.json').subscribe(
       (env) => {
-        console.log('env');
-        console.log(env);
         this.environment = env as Environment;
       },
       (error) => {

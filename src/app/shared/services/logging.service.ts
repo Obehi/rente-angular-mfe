@@ -10,14 +10,14 @@ import { EnvService } from '@services/env.service';
   providedIn: 'root'
 })
 export class LoggingService {
-  /* private apiUrl =
-    environment['coralogixApiUrl'] || 'https://api.coralogix.com/api/v1/logs';
+  /*   private apiUrl =
+    environment['coralogixApiUrl'] || 'https  ://api.coralogix.com/api/v1/logs';
   private privateKey =
     environment['coralogixPrivateKey'] ||
-    'bf331188-c87b-2ce5-4b72-b45e7f47b6f3';
+    '26cd19a4-0d74-8c7a-4d91-aa92b7a32bb1';
   private applicationName =
-    environment['coralogixApplicationName'] || 'se-rente-frontend-dev_13164'; */
-
+    environment['coralogixApplicationName'] || 'rente-frontend-dev_13638';
+ */
   private apiUrl: string;
   private privateKey: string;
   private applicationName: string;
@@ -63,7 +63,7 @@ export class LoggingService {
     msg?: string,
     object?: any
   ): void {
-    if (!this.envService.environment.shouldLog) {
+    if (this.envService.environment.shouldLog === false) {
       return;
     }
     let text: any;

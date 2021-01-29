@@ -11,7 +11,6 @@ export class LandingTopNoComponent {
     return window.innerWidth < 600;
   }
   constructor(private envService: EnvService, private logging: LoggingService) {
-    console.log('loggin top');
     console.log(this.envService.environment);
     this.logging.logger(
       logging.Level.Info,

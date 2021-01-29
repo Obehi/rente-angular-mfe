@@ -62,7 +62,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     private snackBar: SnackBarService
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.environment = this.envService.environment;
     this.routeParamsSub = this.route.params.subscribe((params: any) => {
       if (params && params.bankName) {
@@ -239,6 +239,14 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
 
   get isEikaBank(): boolean {
     return this.bank && this.bank.isEikaBank;
+  }
+
+  get isHandelsbanken(): boolean {
+    return this.bank && this.bank.name == 'HANDELSBANKEN';
+  }
+
+  get isDanskebank(): boolean {
+    return this.bank && this.bank.name === 'DANSKE_BANK';
   }
 
   ssnAsyncValidator(): ValidatorFn {

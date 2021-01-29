@@ -61,6 +61,15 @@
 </div>
 
 <div *ngIf="!isDnbBank" class="front-container">
+  <p *ngIf="isHandelsbanken" class="red">
+    Vi har nylig åpnet tjenesten for Handelsbanken, og den er fortsatt under utvikling. 
+    Gi gjerne tilbakemelding via chat/epost hvis noe ikke fungerer som det skal
+  </p>
+  <p *ngIf="isDanskebank" class="red">
+    Vi har nylig åpnet tjenesten for Danske Bank, og den er fortsatt under utvikling.
+    Gi gjerne tilbakemelding via chat/epost hvis noe ikke fungerer som det skal
+  </p>
+  
   <section *ngIf="!isLoginStarted && bankIdForm" class="login">
     <h3 i18n=“title|bank-id@@bankId.title”>Logg inn med BankID på mobil</h3>
     <p i18n=“description|bank-id@@bankId.description”>

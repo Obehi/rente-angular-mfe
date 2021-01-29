@@ -103,7 +103,6 @@ export class BanksGuideComponent implements OnInit {
   }
 
   selectBank(bank: BankVo) {
-    console.log();
     if (bank.name === 'SPAREBANK_1') {
       this.searchStr = 'Sparebank 1';
 

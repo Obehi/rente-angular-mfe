@@ -119,8 +119,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
     const tinkUrlUnsanitized = this.envService.getTinkLinkForBank(
       this.bank.name
     );
-    console.log('link');
-    console.log(tinkUrlUnsanitized);
+
     this.tinkUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
       tinkUrlUnsanitized
     );
