@@ -318,13 +318,19 @@ export class BankSelectSvComponent implements OnInit, OnDestroy {
   private connectAndReconnectSocket(successCallback) {}
 
   sendUserData(tinkCode: number, resendData = false) {
-    const dataObj = {};
+    const dataObj = {
+      code: tinkCode,
+      country: 'NOR'
+    };
     // this.setDefaultSteps();
     const data = JSON.stringify(dataObj);
 
     this.stompClient.send(
-      API_URL_MAP.tinkSendMessageUrl + '/' + tinkCode,
-      {},
+      API_URL_MAP.tinkSendMessageUrl,
+      {
+        code: tinkCode,
+        country: 'NOR'
+      },
       data
     );
     this.logging.logger(
@@ -336,10 +342,5 @@ export class BankSelectSvComponent implements OnInit, OnDestroy {
       '3.7: SEND_MESSAGE_TO_SOCKET_WITH_TINK_CODE',
       { tinkCode: tinkCode, crawlerEndpoint: API_URL_MAP.tinkSendMessageUrl }
     );
-
-    if (!resendData) {
-      // this.initTimer(IDENTIFICATION_TIMEOUT_TIME);
-      // this.initConnectionTimer();
-    }
   }
 }
