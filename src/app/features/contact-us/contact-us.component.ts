@@ -36,7 +36,9 @@ export class ContactUsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    console.log('this.envService.environment contact us');
     console.log(this.envService.environment);
+
     this.contactUsForm = this.fb.group({
       name: ['', Validators.required],
       email: [

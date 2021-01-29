@@ -76,21 +76,23 @@ registerLocaleData(localeNo);
   ],
   entryComponents: [DialogInfoComponent, ProfileDialogInfoComponent],
   providers: [
+    EnvService,
     {
       provide: APP_INITIALIZER,
       multi: true,
-      useFactory: (envService: EnvService) => {
-        return () => envService.init();
-      },
+      useFactory: initializeConfig,
       deps: [EnvService, HttpClient]
     },
     { provide: LOCALE_ID, useValue: 'nb-NO' },
+    { provide: Window, useValue: window },
     UserService,
     OptimizeService,
-    EnvService,
-    UserService,
-    OptimizeService
+    EnvService
   ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
+
+export function initializeConfig(envService: EnvService) {
+  return () => envService.loadEnv();
+}

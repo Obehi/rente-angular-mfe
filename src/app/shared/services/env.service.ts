@@ -21,7 +21,9 @@ import { HttpClient } from '@angular/common/http';
 import { threadId } from 'worker_threads';
 import { createUrlResolverWithoutPackagePrefix } from '@angular/compiler';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class EnvService {
   public environment: Environment = {
     name: 'prod',
@@ -58,7 +60,7 @@ export class EnvService {
 
     this.http.get('assets/env-config.json').subscribe(
       (env) => {
-        console.log('env');
+        console.log('env write');
         console.log(env);
         this.environment = env as Environment;
       },
@@ -67,6 +69,16 @@ export class EnvService {
         console.log(error);
       }
     );
+  }
+
+  loadEnv() {
+    return this.http
+      .get('assets/env-config.json')
+      .pipe(
+        tap((returnedEnv) => (this.environment = returnedEnv as Environment)),
+        tap(console.log)
+      )
+      .toPromise();
   }
 
   getTinkLinkForBank(bankName: any) {
