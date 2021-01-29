@@ -64,8 +64,10 @@ export class LoggingService {
     object?: any
   ): void {
     if (this.envService.environment.shouldLog === false) {
+      console.log('logs are off');
       return;
     }
+    console.log('logs are on');
     let text: any;
     if (msg === undefined && object != undefined) {
       object['sessionId'] = this.sessionId;
