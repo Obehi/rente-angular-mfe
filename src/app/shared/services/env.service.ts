@@ -25,20 +25,20 @@ import { createUrlResolverWithoutPackagePrefix } from '@angular/compiler';
 export class EnvService {
   public environment: Environment = {
     name: 'local',
-    production: false,
+    production: true,
     baseUrl: 'https://rente-gateway-prod.herokuapp.com',
-    crawlerUrl: 'https://rente-ws-dev.herokuapp.com/ws',
+    crawlerUrl: 'https://rente-ws-prod.herokuapp.com/ws',
     shouldLog: true,
     tinkUrl:
-      'https://link.tink.com/1.0/authorize/?client_id=a84cfc4207574e08be2b561285e05998&redirect_uri=http%3A%2F%2Flocalhost%3A4302%2F&market=SE&locale=en_US&scope=accounts:read,user:read,identity:read&iframe=true&test=true',
+      'https://link.tink.com/1.0/authorize/?client_id=3973e78ee8c140edbf36e53d50132ba1&redirect_uri=https%3A%2F%2Franteradar.se&scope=accounts:read,identity:read&market=SE&locale=sv_SE&iframe=true',
     locale: 'sv',
     tinkNorDanskebankLink:
       'https://link.tink.com/1.0/authorize/credentials/no-danskebank-password?client_id=690cbe68c3df412082d5ad8a5a2335d8&redirect_uri=https%3A%2F%2Frente-frontend-dev.herokuapp.com&scope=accounts:read,credentials:read&market=NO&locale=no_NO&iframe=true',
     tinkNorHandelsbankenLink:
       'https://link.tink.com/1.0/authorize/credentials/no-handelsbanken-bankid?client_id=690cbe68c3df412082d5ad8a5a2335d8&redirect_uri=https%3A%2F%2Frente-frontend-dev.herokuapp.com&scope=accounts:read,credentials:read&market=NO&locale=no_NO&iframe=true',
     coralogixApiUrl: 'https://api.coralogix.com/api/v1/logs',
-    coralogixPrivateKey: '26cd19a4-0d74-8c7a-4d91-aa92b7a32bb1',
-    coralogixApplicationName: 'rente-frontend-dev_13638'
+    coralogixPrivateKey: '598e1ef2-12f6-09c9-fd46-f19329e15bd5',
+    coralogixApplicationName: 'se-rente-frontend-prod_13637'
   };
 
   private tinkBanks = {
