@@ -25,29 +25,29 @@ import { createUrlResolverWithoutPackagePrefix } from '@angular/compiler';
 export class EnvService {
   public environment: Environment = {
     name: 'prod',
-    production: false,
-    baseUrl: 'https://rente-gateway-dev.herokuapp.com',
+    production: true,
+    baseUrl: 'https://rente-gateway-prod.herokuapp.com',
     crawlerUrl: 'https://rente-ws-prod.herokuapp.com/ws',
     shouldLog: true,
     tinkUrl:
       'https://link.tink.com/1.0/authorize/?client_id=3973e78ee8c140edbf36e53d50132ba1&redirect_uri=https%3A%2F%2Franteradar.se&scope=accounts:read,identity:read&market=SE&locale=sv_SE&iframe=true',
     locale: 'nb',
     tinkNorDanskebankLink:
-      'https://link.tink.com/1.0/authorize/credentials/no-danskebank-password?client_id=690cbe68c3df412082d5ad8a5a2335d8&redirect_uri=https%3A%2F%2Frente-frontend-dev.herokuapp.com&scope=accounts:read,credentials:read&market=NO&locale=no_NO&iframe=true',
+      'https://link.tink.com/1.0/authorize/credentials/no-danskebank-password?client_id=690cbe68c3df412082d5ad8a5a2335d8&redirect_uri=https%3A%2F%2Frenteradar.no&scope=accounts:read,credentials:read&market=NO&locale=no_NO&iframe=true',
     tinkNorHandelsbankenLink:
-      'https://link.tink.com/1.0/authorize/credentials/no-handelsbanken-bankid?client_id=690cbe68c3df412082d5ad8a5a2335d8&redirect_uri=https%3A%2F%2Frente-frontend-dev.herokuapp.com&scope=accounts:read,credentials:read&market=NO&locale=no_NO&iframe=true',
+      'https://link.tink.com/1.0/authorize/credentials/no-handelsbanken-bankid?client_id=690cbe68c3df412082d5ad8a5a2335d8&redirect_uri=https%3A%2F%2Frenteradar.no&scope=accounts:read,credentials:read&market=NO&locale=no_NO&iframe=true',
     coralogixApiUrl: 'https://api.coralogix.com/api/v1/logs',
-    coralogixPrivateKey: '26cd19a4-0d74-8c7a-4d91-aa92b7a32bb1',
-    coralogixApplicationName: 'rente-frontend-dev_13638'
+    coralogixPrivateKey: '92caa3a2-90d2-9f01-7d00-077afb69d8e5',
+    coralogixApplicationName: 'rente-frontend-prod_13639'
   };
 
   private tinkBanks = {
     DANSKE_BANK:
       this.environment.tinkNorDanskebankLink ||
-      'https://link.tink.com/1.0/authorize/credentials/no-danskebank-password?client_id=690cbe68c3df412082d5ad8a5a2335d8&redirect_uri=https%3A%2F%2Frente-frontend-dev.herokuapp.com&scope=accounts:read,credentials:read&market=NO&locale=en_US&iframe=true',
+      'https://link.tink.com/1.0/authorize/credentials/no-danskebank-password?client_id=690cbe68c3df412082d5ad8a5a2335d8&redirect_uri=https%3A%2F%2Frenteradar.no&scope=accounts:read,credentials:read&market=NO&locale=en_US&iframe=true',
     HANDELSBANKEN:
       this.environment.tinkNorHandelsbankenLink ||
-      'https://link.tink.com/1.0/authorize/credentials/no-handelsbanken-bankid?client_id=690cbe68c3df412082d5ad8a5a2335d8&redirect_uri=https%3A%2F%2Frente-frontend-dev.herokuapp.com&scope=accounts:read,credentials:read&market=NO&locale=en_US&iframe=true'
+      'https://link.tink.com/1.0/authorize/credentials/no-handelsbanken-bankid?client_id=690cbe68c3df412082d5ad8a5a2335d8&redirect_uri=https%3A%2F%2Frenteradar.no&scope=accounts:read,credentials:read&market=NO&locale=en_US&iframe=true'
   };
 
   constructor(private http: HttpClient) {}
