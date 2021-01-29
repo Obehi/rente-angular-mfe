@@ -26,7 +26,7 @@ export class EnvService {
   public environment: Environment = {
     name: 'local',
     production: false,
-    baseUrl: 'https://rente-gateway-dev.herokuapp.com',
+    baseUrl: 'https://rente-gateway-prod.herokuapp.com',
     crawlerUrl: 'https://rente-ws-dev.herokuapp.com/ws',
     shouldLog: true,
     tinkUrl:
