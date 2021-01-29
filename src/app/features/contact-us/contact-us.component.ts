@@ -15,6 +15,7 @@ import { SnackBarService } from '@services/snackbar.service';
 import { Mask } from '@shared/constants/mask';
 import { locale } from '../../config/locale/locale';
 import { CustomLangTextService } from '@services/custom-lang-text.service';
+import { EnvService } from '@services/env.service';
 @Component({
   selector: 'rente-contact-us',
   templateUrl: './contact-us.component.html',
@@ -30,10 +31,12 @@ export class ContactUsComponent implements OnInit {
     private contactService: ContactService,
     private router: Router,
     private snackBar: SnackBarService,
-    public customLangTextService: CustomLangTextService
+    public customLangTextService: CustomLangTextService,
+    private envService: EnvService
   ) {}
 
   ngOnInit() {
+    console.log(this.envService.environment);
     this.contactUsForm = this.fb.group({
       name: ['', Validators.required],
       email: [
