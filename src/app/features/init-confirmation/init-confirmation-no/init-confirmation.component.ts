@@ -200,7 +200,7 @@ export class InitConfirmationNoComponent implements OnInit {
     );
 
     this.loansService.setConfirmationData(confirmationDto).subscribe(
-      (res) => {
+      () => {
         this.isLoading = false;
         this.router.navigate(['/dashboard/' + ROUTES_MAP.offers]);
         this.logging.logger(
@@ -209,8 +209,7 @@ export class InitConfirmationNoComponent implements OnInit {
           'InitConfirmationNoComponent',
           'updateProperty',
           this.logging.SubSystem.UserConfirmation,
-          '9:USERINFO_SENT_SUCCESSFUL_REDIRECTING_TO_OFFERS',
-          res
+          '9:USERINFO_SENT_SUCCESSFUL_REDIRECTING_TO_OFFERS'
         );
         this.snackBar.openSuccessSnackBar(
           this.customLangTextService.getSnackBarUpdatedMessage(),

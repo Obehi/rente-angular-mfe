@@ -977,6 +977,28 @@ export const BankList: BankVo[] = [
 
 export const MissingBankList: BankVo[] = [
   new BankVo(
+    'HANDELSBANKEN',
+    'Handelsbanken NUF',
+    'handelsbanken.png',
+    null,
+    false,
+    true,
+    false,
+    false,
+    null
+  ),
+  new BankVo(
+    'DANSKE_BANK',
+    'Danske Bank',
+    'danske.png',
+    null,
+    false,
+    true,
+    false,
+    false,
+    null
+  ),
+  new BankVo(
     'BOLIGKREDITT',
     'Boligkreditt.no (Sparebanken Øst Boligkreditt AS)',
     'boligkreditt.png',
@@ -1341,7 +1363,8 @@ export const MissingBankList: BankVo[] = [
   )
 ];
 
-export const TinkBanks: BankVo[] = [
+export const TinkBanks: BankVo[] = [];
+/* export const TinkBanks: BankVo[] = [
   new BankVo(
     'HANDELSBANKEN',
     'Handelsbanken NUF',
@@ -1364,7 +1387,7 @@ export const TinkBanks: BankVo[] = [
     true,
     null
   )
-];
+]; */
 
 export class BankUtils {
   static getBankByName(bankName: string): BankVo {
