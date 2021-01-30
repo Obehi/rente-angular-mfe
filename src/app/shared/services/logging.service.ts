@@ -70,48 +70,49 @@ export class LoggingService {
     if (this.envService.environment.shouldLog === false) {
       console.log('logs are off');
       return;
-    }
-    console.log('logs are on');
-    let text: any;
-    if (msg === undefined && object != undefined) {
-      object['sessionId'] = this.sessionId;
-      text = JSON.stringify(object);
-    } else if (msg !== undefined && object === undefined) {
-      text = msg + ' -- ' + this.sessionId;
-    } else if (msg !== undefined && object !== undefined) {
-      object['message'] = msg;
-      object['sessionId'] = this.sessionId;
-      text = JSON.stringify(object);
-    }
+    } else {
+      console.log('logs are on');
+      let text: any;
+      if (msg === undefined && object != undefined) {
+        object['sessionId'] = this.sessionId;
+        text = JSON.stringify(object);
+      } else if (msg !== undefined && object === undefined) {
+        text = msg + ' -- ' + this.sessionId;
+      } else if (msg !== undefined && object !== undefined) {
+        object['message'] = msg;
+        object['sessionId'] = this.sessionId;
+        text = JSON.stringify(object);
+      }
 
-    const tag =
-      environment['name'] === undefined || null
-        ? category
-        : environment['name'] + '_' + category;
-    const logg = {
-      privateKey: this.privateKey,
-      applicationName: this.applicationName,
-      subsystemName: subSystem,
-      computerName: this.sessionId,
-      logEntries: [
-        {
-          timestamp: Date.now(),
-          severity: level,
-          text: text,
-          category: tag,
-          className: className,
-          methodName: methodName,
-          threadId: this.sessionId
-        }
-      ]
-    };
+      const tag =
+        environment['name'] === undefined || null
+          ? category
+          : environment['name'] + '_' + category;
+      const logg = {
+        privateKey: this.privateKey,
+        applicationName: this.applicationName,
+        subsystemName: subSystem,
+        computerName: this.sessionId,
+        logEntries: [
+          {
+            timestamp: Date.now(),
+            severity: level,
+            text: text,
+            category: tag,
+            className: className,
+            methodName: methodName,
+            threadId: this.sessionId
+          }
+        ]
+      };
 
-    console.log('this is good');
-    console.log(this.envService.environment.coralogixApiUrl);
-    this.http
-      .postExternal(this.envService.environment.coralogixApiUrl, logg)
-      .pipe(first(), tap(console.log))
-      .subscribe(() => {});
+      console.log('this is good');
+      console.log(this.envService.environment.coralogixApiUrl);
+      this.http
+        .postExternal(this.envService.environment.coralogixApiUrl, logg)
+        .pipe(first(), tap(console.log))
+        .subscribe(() => {});
+    }
   }
 }
 
