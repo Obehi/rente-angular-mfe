@@ -8,7 +8,7 @@ import {
 import { Router } from '@angular/router';
 import { ROUTES_MAP } from '@config/routes-config';
 import { ErrorHandler, Injectable } from '@angular/core';
-
+import { EnvService } from '@services/env.service';
 @Component({
   selector: 'rente-bank-select-variation',
   templateUrl: './bank-select.component.html',
@@ -21,7 +21,7 @@ export class BankSelectNoComponent implements OnInit, ErrorHandler {
 
   sparebankIsClicked = false;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private envService: EnvService) {}
 
   ngOnInit() {
     this.sortBanks();
@@ -117,7 +117,7 @@ export class BankSelectNoComponent implements OnInit, ErrorHandler {
       return;
     }
 
-    if (bank.isMissing) {
+    if (bank.isMissing || this.envService.isMissing(bank)) {
       this.router.navigate([ROUTES_MAP.getNotified], { state: { bank: bank } });
     } else {
       this.router.navigate([
