@@ -67,7 +67,13 @@ export class LoggingService {
     console.log(this.envService.environment);
     console.log('this.envService.environment.shouldLog');
     console.log(this.envService.environment.shouldLog);
-    if (this.envService.environment.shouldLog == false) {
+    if (typeof this.envService.environment.shouldLog === 'boolean') {
+      console.log('this.envService.environment.shouldLog is BOOLEAN');
+    }
+    if (typeof this.envService.environment.shouldLog === 'string') {
+      console.log('this.envService.environment.shouldLog is STRING');
+    }
+    if (!this.envService.environment.shouldLog) {
       console.log('logs are off');
       return;
     } else {
