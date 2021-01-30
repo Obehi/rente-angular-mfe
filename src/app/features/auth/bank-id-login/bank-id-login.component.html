@@ -1,4 +1,4 @@
-<div class="front-container dnbError" *ngIf="isDnbBank && environment.production">
+<div class="front-container dnbError" *ngIf="isDnbBank && environment.dnbLogin === false">
 
   <form
       class="email-form"
@@ -60,7 +60,7 @@
 
 </div>
 
-<div *ngIf="!isDnbBank || !environment.production" class="front-container">
+<div *ngIf="!isDnbBank || environment.dnbLogin === true" class="front-container">
   <p *ngIf="false" class="red">
     Vi har nylig åpnet tjenesten for Handelsbanken, og den er fortsatt under utvikling. 
     Gi gjerne tilbakemelding via chat/epost hvis noe ikke fungerer som det skal

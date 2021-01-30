@@ -16,6 +16,7 @@ interface Environment {
   coralogixApiUrl: string | null;
   coralogixPrivateKey: string | null;
   coralogixApplicationName: string | null;
+  dnbLogin: boolean;
 }
 
 import { HttpClient } from '@angular/common/http';
@@ -32,6 +33,7 @@ export class EnvService {
     baseUrl: 'https://rente-gateway-prod.herokuapp.com',
     crawlerUrl: 'https://rente-ws-prod.herokuapp.com/ws',
     shouldLog: false,
+    dnbLogin: true,
     tinkUrl:
       'https://link.tink.com/1.0/authorize/?client_id=3973e78ee8c140edbf36e53d50132ba1&redirect_uri=https%3A%2F%2Franteradar.se&scope=accounts:read,identity:read&market=SE&locale=sv_SE&iframe=true',
     locale: 'nb',
@@ -61,7 +63,6 @@ export class EnvService {
       .get('assets/environment.json')
       .pipe(
         tap((returnedEnv) => this.handleEnvFile(returnedEnv as Environment)),
-        tap(console.log),
         catchError((error) => this.handleError(error))
       )
       .toPromise();
