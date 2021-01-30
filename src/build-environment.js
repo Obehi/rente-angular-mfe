@@ -6,7 +6,7 @@ const isProd = environment === 'prod';
 const isLocal = process.env.ENV === undefined;
 
 module.exports = (localeForLocalDev) => {
-  const localEnvConfig = `{
+  const nod = `{
     "name": "local",
     "production": false,
     "baseUrl": "https://rente-gateway-dev.herokuapp.com",
@@ -30,11 +30,11 @@ module.exports = (localeForLocalDev) => {
 
   const envConfig = `{
     "name": "${environment}",
-    "production": "${isProd}",
+    "production": ${isProd === true},
     "baseUrl": "${process.env.BASE_URL}",
     "crawlerUrl": "${process.env.CRAWLER_URL}",
     "locale": "${process.env.LOCALE}",
-    "shouldLog": "${process.env.SHOULD_LOG}",
+    "shouldLog": ${process.env.SHOULD_LOG === true},
     "tinkUrl": "${process.env.TINK_LINK}",
     "tinkNorDanskebankLink": "${process.env.TINK_NOR_DANSKEBANK_LINK}",
     "tinkNorHandelsbankenLink": "${process.env.TINK_NOR_HANDELSBANKEN_LINK}",
