@@ -6,7 +6,7 @@ const isProd = environment === 'prod';
 const isLocal = process.env.ENV === undefined;
 
 module.exports = (localeForLocalDev) => {
-  const nod = `{
+  const localEnvConfig = `{
     "name": "local",
     "production": false,
     "baseUrl": "https://rente-gateway-dev.herokuapp.com",
