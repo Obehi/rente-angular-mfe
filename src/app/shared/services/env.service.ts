@@ -80,8 +80,6 @@ export class EnvService {
   }
 
   handleEnvFile(returnedEnv: Environment): void {
-    console.log('returnedEnv');
-    console.log(returnedEnv);
     if (returnedEnv.name === 'prod' || returnedEnv.name === 'dev') {
       this.environment = returnedEnv;
     }

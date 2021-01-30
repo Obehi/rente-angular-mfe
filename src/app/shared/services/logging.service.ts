@@ -63,21 +63,9 @@ export class LoggingService {
     msg?: string,
     object?: any
   ): void {
-    console.log('LOGGING ENV STATE');
-    console.log(this.envService.environment);
-    console.log('this.envService.environment.shouldLog');
-    console.log(this.envService.environment.shouldLog);
-    if (typeof this.envService.environment.shouldLog === 'boolean') {
-      console.log('this.envService.environment.shouldLog is BOOLEAN');
-    }
-    if (typeof this.envService.environment.shouldLog === 'string') {
-      console.log('this.envService.environment.shouldLog is STRING');
-    }
     if (!this.envService.environment.shouldLog) {
-      console.log('logs are off');
       return;
     } else {
-      console.log('logs are on');
       let text: any;
       if (msg === undefined && object != undefined) {
         object['sessionId'] = this.sessionId;
@@ -111,12 +99,9 @@ export class LoggingService {
           }
         ]
       };
-
-      console.log('this is good');
-      console.log(this.envService.environment.coralogixApiUrl);
       this.http
         .postExternal(this.envService.environment.coralogixApiUrl, logg)
-        .pipe(first(), tap(console.log))
+        .pipe(first())
         .subscribe(() => {});
     }
   }
