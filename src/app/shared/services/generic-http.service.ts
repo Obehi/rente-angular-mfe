@@ -115,7 +115,7 @@ export class GenericHttpService {
       .pipe(catchError((error) => this.handleError(error)));
   }
 
-  public put(path: string, body: object = {}): Observable<any> {
+  public put(path: string, body: any = {}): Observable<any> {
     const fullPath = `${this.apiUrl}${path}`;
 
     const jsonBody: string = JSON.stringify(body);

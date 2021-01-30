@@ -42,7 +42,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
   public metaTitle: string;
   public metaDescription: string;
   public mask = Mask;
-  private environment: any;
+  public environment: any;
   public missingBankForm: FormGroup;
   public emailError = false;
   public isLoading: boolean;
@@ -64,6 +64,8 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.environment = this.envService.environment;
+    console.log('this.environment');
+    console.log(this.environment);
     this.routeParamsSub = this.route.params.subscribe((params: any) => {
       if (params && params.bankName) {
         const bank = BankUtils.getBankByName(params.bankName);

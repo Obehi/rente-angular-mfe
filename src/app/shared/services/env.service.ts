@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { map, tap, catchError } from 'rxjs/operators';
+import { Observable, throwError, EMPTY } from 'rxjs';
 
+import { HttpResponse, HttpHeaders, HttpParams } from '@angular/common/http';
 interface Environment {
   name: string | null;
   production: boolean | null;
@@ -26,8 +27,8 @@ import { createUrlResolverWithoutPackagePrefix } from '@angular/compiler';
 })
 export class EnvService {
   public environment: Environment = {
-    name: 'prod',
-    production: true,
+    name: 'local',
+    production: false,
     baseUrl: 'https://rente-gateway-prod.herokuapp.com',
     crawlerUrl: 'https://rente-ws-prod.herokuapp.com/ws',
     shouldLog: true,
@@ -57,15 +58,16 @@ export class EnvService {
   // Used to initialize provider in module
   loadEnv(): Promise<Environment> {
     return this.http
-      .get('assets/env-config.json')
+      .get('assets/environment.json')
       .pipe(
-        tap((returnedEnv) => (this.environment = returnedEnv as Environment)),
-        tap(console.log)
+        tap((returnedEnv) => this.handleEnvFile(returnedEnv as Environment)),
+        tap(console.log),
+        catchError((error) => this.handleError(error))
       )
       .toPromise();
   }
 
-  getTinkLinkForBank(bankName: any) {
+  getTinkLinkForBank(bankName: any): string {
     return this.tinkBanks[bankName];
   }
 
@@ -75,5 +77,19 @@ export class EnvService {
 
   isNorway(): boolean {
     return this.environment.locale === 'nb' ? true : false;
+  }
+
+  handleEnvFile(returnedEnv: Environment): void {
+    console.log('returnedEnv');
+    console.log(returnedEnv);
+    if (returnedEnv.name === 'prod' || returnedEnv.name === 'dev') {
+      this.environment = returnedEnv;
+    }
+  }
+
+  handleError(responseError: HttpResponse<any> | any): Observable<any> {
+    console.log('error');
+    console.log(responseError);
+    return EMPTY;
   }
 }

@@ -73,7 +73,6 @@ export class BankSelectSvComponent implements OnInit, OnDestroy {
       const androidPopup = history.state.data.androidPopup;
       const app = history.state.data.app;
       const type = history.state.data.type;
-      console.log('1.');
       history.state.data = undefined;
 
       this.dialog.open(ChangeBrowserDialogInfoComponent, {
@@ -81,7 +80,6 @@ export class BankSelectSvComponent implements OnInit, OnDestroy {
         data: { type: type, androidPopup: androidPopup, app: app }
       });
     }
-    console.log('2.');
     this.logging.logger(
       this.logging.Level.Info,
       '1:INIT',
@@ -176,7 +174,6 @@ export class BankSelectSvComponent implements OnInit, OnDestroy {
 
   private successSocketCallback() {
     this.tinkSuccess = true;
-    console.log('3.');
     const repliesUrl = `${API_URL_MAP.crawlerRepliesUrl}`;
     this.stompClient.subscribe(repliesUrl, (message) => {
       const response = JSON.parse(message.body);
@@ -217,7 +214,6 @@ export class BankSelectSvComponent implements OnInit, OnDestroy {
             break;
 
           case BANKID_STATUS.LOANS_PERSISTED:
-            console.log('5.');
             this.logging.logger(
               this.logging.Level.Info,
               '5:STATUS: BANKID_STATUS.LOANS_PERSISTED',
@@ -235,7 +231,6 @@ export class BankSelectSvComponent implements OnInit, OnDestroy {
                   this.loansService.getLoansAndRateType(),
                   this.userService.getUserInfo()
                 ]).subscribe(([rateAndLoans, userInfo]) => {
-                  console.log('6.');
                   this.logging.logger(
                     this.logging.Level.Info,
                     '6:FETCHED_RATE_LOANS_AND_USERINFO',

@@ -45,7 +45,7 @@ module.exports = (localeForLocalDev) => {
   `;
 
   let outputFile = envConfig;
-  let outputPath = '../dist/rente-front-end/assets/env-config.json';
+  let outputPath = '../dist/rente-front-end/assets/environment.json';
 
   createDirectories(outputPath, () => {
     fs.writeFile(outputPath, outputFile, 'utf8', function (err) {
