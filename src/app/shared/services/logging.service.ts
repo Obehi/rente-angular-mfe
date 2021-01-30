@@ -67,7 +67,7 @@ export class LoggingService {
     console.log(this.envService.environment);
     console.log('this.envService.environment.shouldLog');
     console.log(this.envService.environment.shouldLog);
-    if (this.envService.environment.shouldLog === false) {
+    if (this.envService.environment.shouldLog == false) {
       console.log('logs are off');
       return;
     } else {
