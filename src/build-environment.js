@@ -30,11 +30,11 @@ module.exports = (localeForLocalDev) => {
 
   const envConfig = `{
     "name": "${environment}",
-    "production": ${isProd === true},
+    "production": ${isProd},
     "baseUrl": "${process.env.BASE_URL}",
     "crawlerUrl": "${process.env.CRAWLER_URL}",
     "locale": "${process.env.LOCALE}",
-    "shouldLog": ${process.env.SHOULD_LOG === true},
+    "shouldLog": ${process.env.SHOULD_LOG},
     "tinkUrl": "${process.env.TINK_LINK}",
     "tinkNorDanskebankLink": "${process.env.TINK_NOR_DANSKEBANK_LINK}",
     "tinkNorHandelsbankenLink": "${process.env.TINK_NOR_HANDELSBANKEN_LINK}",
