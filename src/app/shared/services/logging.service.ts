@@ -3,7 +3,7 @@ import { LocalStorageService } from '@services/local-storage.service';
 import { environment } from '@environments/environment';
 import { GenericHttpService } from '@services/generic-http.service';
 import { HttpClient } from '@angular/common/http';
-import { first } from 'rxjs/operators';
+import { first, tap } from 'rxjs/operators';
 import * as uuid from 'uuid';
 import { EnvService } from '@services/env.service';
 @Injectable({
@@ -102,9 +102,11 @@ export class LoggingService {
       ]
     };
 
+    console.log('this is good');
+    console.log(this.envService.environment.coralogixApiUrl);
     this.http
-      .postExternal(this.apiUrl, logg)
-      .pipe(first())
+      .postExternal(this.envService.environment.coralogixApiUrl, logg)
+      .pipe(first(), tap(console.log))
       .subscribe(() => {});
   }
 }

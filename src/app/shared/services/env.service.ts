@@ -55,23 +55,7 @@ export class EnvService {
   constructor(private http: HttpClient) {}
 
   // Used to initialize provider in module
-  init(): void {
-    console.log('env init');
-
-    this.http.get('assets/env-config.json').subscribe(
-      (env) => {
-        console.log('env write');
-        console.log(env);
-        this.environment = env as Environment;
-      },
-      (error) => {
-        console.log('error');
-        console.log(error);
-      }
-    );
-  }
-
-  loadEnv() {
+  loadEnv(): Promise<Environment> {
     return this.http
       .get('assets/env-config.json')
       .pipe(
