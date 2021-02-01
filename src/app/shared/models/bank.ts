@@ -1333,6 +1333,7 @@ export const TinkBanks: BankVo[] = [
   )
 ];
 
+// These banks have merged into other banks. see RM-415 @ Jira
 export const LegacyBanks: BankVo[] = [
   new BankVo(
     'SKUE_SB',
