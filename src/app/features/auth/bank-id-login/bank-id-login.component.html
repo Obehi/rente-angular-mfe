@@ -69,6 +69,9 @@
     Vi har nylig åpnet tjenesten for Danske Bank, og den er fortsatt under utvikling.
     Gi gjerne tilbakemelding via chat/epost hvis noe ikke fungerer som det skal
   </p>
+
+  <p class="red" *ngIf="isDnbBank">Vi opplever at enkelte brukere ikke får logget inn.<br> Vi jobber med å rette problemet</p>
+
   
   <section *ngIf="!isLoginStarted && bankIdForm" class="login">
     <h3 i18n=“title|bank-id@@bankId.title”>Logg inn med BankID på mobil</h3>
