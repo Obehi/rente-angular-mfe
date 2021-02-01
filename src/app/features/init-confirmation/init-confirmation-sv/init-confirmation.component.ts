@@ -2,7 +2,7 @@ import {
   LoansService,
   ConfirmationSetDto,
   ConfirmationGetDto,
-  MembershipTypeDto
+  AddressCreationDto
 } from '@services/remote-api/loans.service';
 import { UserService } from '@services/remote-api/user.service';
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
@@ -32,7 +32,6 @@ import { DialogInfoComponent } from '../dialog-info/dialog-info.component';
 import { CustomLangTextService } from '@services/custom-lang-text.service';
 
 import { Mask } from '@shared/constants/mask';
-import { OptimizeService } from '@services/optimize.service';
 import { ROUTES_MAP } from '@config/routes-config';
 
 @Component({
@@ -48,16 +47,8 @@ export class InitConfirmationSVComponent implements OnInit {
   public removable = true;
   public addOnBlur = true;
   public separatorKeysCodes: number[] = [ENTER, COMMA];
-  public membershipCtrl = new FormControl();
-  public filteredMemberships: Observable<MembershipTypeDto[]>;
-  public memberships: any = [];
-  public allMemberships: MembershipTypeDto[];
   public userData: ConfirmationGetDto;
   public mask = Mask;
-  public optimizeService: OptimizeService;
-
-  @ViewChild('membershipInput') membershipInput: ElementRef<HTMLInputElement>;
-  @ViewChild('auto') matAutocomplete: MatAutocomplete;
 
   constructor(
     private fb: FormBuilder,
@@ -66,21 +57,11 @@ export class InitConfirmationSVComponent implements OnInit {
     private snackBar: SnackBarService,
     private router: Router,
     public dialog: MatDialog,
-    public optimize: OptimizeService,
     public customLangTextService: CustomLangTextService
-  ) {
-    this.optimizeService = optimize;
-    this.filteredMemberships = this.membershipCtrl.valueChanges.pipe(
-      startWith(null),
-      map((membership: string | null) =>
-        membership ? this.filter(membership) : this.allMemberships.slice()
-      )
-    );
-  }
+  ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.loansService.getConfirmationData().subscribe((res) => {
-      this.allMemberships = res.availableMemberships;
       this.userData = res;
 
       const income = String(res.income) && null;
@@ -88,7 +69,6 @@ export class InitConfirmationSVComponent implements OnInit {
 
       this.propertyForm = this.fb.group({
         apartmentValue: ['', Validators.required],
-        membership: [],
         email: [
           res.email,
           Validators.compose([
@@ -121,20 +101,19 @@ export class InitConfirmationSVComponent implements OnInit {
 
     const confirmationData = {
       email: formData.email,
-      memberships: this.memberships.map((membership) => membership.name),
       apartmentValue:
         typeof formData.apartmentValue === 'string'
           ? Number(formData.apartmentValue.replace(/\s/g, ''))
           : Number(formData.apartmentValue)
     };
 
-    const dto: ConfirmationSetDto = new ConfirmationSetDto();
-    dto.email = confirmationData.email;
-    dto.memberships = confirmationData.memberships;
-    dto.apartmentValue = confirmationData.apartmentValue;
+    const confirmationDto: ConfirmationSetDto = new ConfirmationSetDto();
+    confirmationDto.address = new AddressCreationDto();
+    confirmationDto.email = confirmationData.email;
+    confirmationDto.address.apartmentValue = confirmationData.apartmentValue;
 
-    this.loansService.setConfirmationData(dto).subscribe(
-      (res) => {
+    this.loansService.setConfirmationData(confirmationDto).subscribe(
+      () => {
         this.isLoading = false;
         this.router.navigate(['/dashboard/' + ROUTES_MAP.offers]);
         this.snackBar.openSuccessSnackBar(
@@ -142,65 +121,10 @@ export class InitConfirmationSVComponent implements OnInit {
           1.2
         );
       },
-      (err) => {
+      () => {
         this.isLoading = false;
         this.router.navigate(['/dashboard/' + ROUTES_MAP.property]);
       }
     );
-  }
-
-  add(event: MatChipInputEvent): void {
-    if (!this.matAutocomplete.isOpen) {
-      const input = event.input;
-      const value = event.value;
-
-      // Reset the input value
-      if (input) {
-        input.value = '';
-      }
-
-      this.membershipCtrl.setValue(null);
-    }
-  }
-
-  remove(membership, index): void {
-    this.allMemberships.push(membership);
-    this.allMemberships.sort((a, b) =>
-      a.name > b.name ? 1 : b.name > a.name ? -1 : 0
-    );
-    this.memberships.splice(index, 1);
-  }
-
-  selected(event: MatAutocompleteSelectedEvent): void {
-    this.memberships.push(event.option.value);
-    this.membershipInput.nativeElement.value = '';
-    this.membershipCtrl.setValue(null);
-  }
-
-  private filter(value: any): any[] {
-    const filterValue = value.label
-      ? value.label.toLowerCase()
-      : value.toLowerCase();
-    this.allMemberships = this.clearDuplicates(
-      this.allMemberships,
-      this.memberships
-    );
-
-    return this.allMemberships.filter((membership) =>
-      membership.label.toLowerCase().includes(filterValue)
-    );
-  }
-
-  private clearDuplicates(array: any[], toRemoveArray: any[]) {
-    for (let i = array.length - 1; i >= 0; i--) {
-      // tslint:disable-next-line:prefer-for-of
-      for (let j = 0; j < toRemoveArray.length; j++) {
-        if (array[i] && array[i].name === toRemoveArray[j].name) {
-          array.splice(i, 1);
-        }
-      }
-    }
-
-    return array;
   }
 }
