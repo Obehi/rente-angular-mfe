@@ -3,7 +3,8 @@ import {
   BankVo,
   BankList,
   MissingBankList,
-  TinkBanks
+  TinkBanks,
+  LegacyBanks
 } from '../../shared/models/bank';
 import { Router } from '@angular/router';
 import { ROUTES_MAP } from '@config/routes-config';
@@ -43,7 +44,8 @@ export class BankSelectNoComponent implements OnInit, ErrorHandler {
     const sortedBanksAlphabetic = [
       ...BankList,
       ...MissingBankList,
-      ...TinkBanks
+      ...TinkBanks,
+      ...LegacyBanks
     ].sort((a, b) => (a.label > b.label ? 1 : b.label > a.label ? -1 : 0));
     const dnb = 'DNB';
     const sparebank = 'SPAREBANK_1';
