@@ -32,12 +32,12 @@ export class EnvService {
   public environment: Environment = {
     name: 'local',
     production: false,
-    baseUrl: 'https://rente-gateway-prod.herokuapp.com',
-    crawlerUrl: 'https://rente-ws-prod.herokuapp.com/ws',
+    baseUrl: 'https://rente-gateway-dev.herokuapp.com',
+    crawlerUrl: 'https://rente-ws-dev.herokuapp.com/ws',
     shouldLog: false,
     tinkUrl:
       'https://link.tink.com/1.0/authorize/?client_id=3973e78ee8c140edbf36e53d50132ba1&redirect_uri=https%3A%2F%2Franteradar.se&scope=accounts:read,identity:read&market=SE&locale=sv_SE&iframe=true',
-    locale: 'nb',
+    locale: 'sv',
     tinkNorDanskebankLink:
       'https://link.tink.com/1.0/authorize/credentials/no-danskebank-password?client_id=690cbe68c3df412082d5ad8a5a2335d8&redirect_uri=https%3A%2F%2Frenteradar.no&scope=accounts:read,credentials:read&market=NO&locale=no_NO&iframe=true',
     tinkNorHandelsbankenLink:
