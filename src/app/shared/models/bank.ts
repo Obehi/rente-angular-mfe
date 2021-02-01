@@ -299,15 +299,15 @@ export const eikaBanks: BankVo[] = [
     'https://hsbank.no/aktuelt/bankid-paa-mobil'
   ),
   new BankVo(
-    'HONEFOSS_SB',
+    'SKUE_SB',
     'Hønefoss Sparebank',
-    'honefoss.png',
+    'skue.png',
     null,
     true,
     true,
     false,
     false,
-    'https://honefossbank.no/aktuelt/bankid-paa-mobil'
+    'https://skuesparebank.no/aktuelt/bankid-paa-mobil'
   ),
   new BankVo(
     'JERNBANEPERSONALETS',
@@ -420,15 +420,15 @@ export const eikaBanks: BankVo[] = [
     'https://odal-sparebank.no/aktuelt/bankid-paa-mobil'
   ),
   new BankVo(
-    'OFOTEN_SB',
+    'SPAREBANK_68',
     'Ofoten Sparebank',
-    'ofoten.png',
+    '68nord.png',
     null,
     true,
     true,
     false,
     false,
-    'https://ofotensparebank.no/aktuelt/bankid-paa-mobil'
+    'https://68nord.no//aktuelt/bankid-paa-mobil'
   ),
   new BankVo(
     'OPPDALSBANKEN',
