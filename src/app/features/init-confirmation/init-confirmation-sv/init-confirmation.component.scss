@@ -1,4 +1,11 @@
 @import "../../../../styles/theme/_colors.scss";
+
+@media (min-width: 600px) {
+  .front-container {
+    height: 800px;
+  }
+}
+
 .problems {
   .title {
     padding-bottom: 20px;

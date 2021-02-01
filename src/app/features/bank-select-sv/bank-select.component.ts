@@ -11,7 +11,6 @@ import {
   Component,
   OnInit,
   Input,
-  OnDestroy,
   Output,
   EventEmitter,
   HostListener
@@ -39,7 +38,7 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
   templateUrl: './bank-select.component.html',
   styleUrls: ['./bank-select.component.scss']
 })
-export class BankSelectSvComponent implements OnInit, OnDestroy {
+export class BankSelectSvComponent implements OnInit {
   public isMockTest = false;
   public isLoginStarted = false;
   public tinkCode: number;
@@ -124,8 +123,6 @@ export class BankSelectSvComponent implements OnInit, OnDestroy {
       this.initializeWebSocketConnection(data.data);
     }
   }
-
-  ngOnDestroy() {}
 
   private initializeWebSocketConnection(tinkCode: number) {
     this.connectAndReconnectSocket(this.successSocketCallback);
