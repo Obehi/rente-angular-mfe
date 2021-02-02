@@ -8,7 +8,6 @@ import {
 } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { environment } from '@environments/environment';
 import { storageName } from '@config/index';
 import { LocalStorageService } from '@services/local-storage.service';
 import { SnackBarService } from './snackbar.service';
@@ -27,7 +26,6 @@ export class GenericHttpService {
     name: 'Accept',
     value: 'application/json, text/plain, */*'
   };
-  environment: any;
 
   constructor(
     private http: HttpClient,
@@ -55,7 +53,7 @@ export class GenericHttpService {
       .pipe(catchError((error) => this.handleError(error)));
   }
 
-  public getWithParams(path, searchParams): Observable<any> {
+  public getWithParams(path: string, searchParams): Observable<any> {
     const fullPath = `${this.apiUrl}${path}`;
 
     const params: HttpParams = new HttpParams({ fromObject: searchParams });
@@ -145,21 +143,11 @@ export class GenericHttpService {
 
   private handleError(responseError: HttpResponse<any> | any): Observable<any> {
     console.log(responseError);
-
-    // this.snackBar.openFailSnackBar(responseError.error.detail);
-
     if (responseError.status === 401) {
       // TODO: Show unauthorized error
       console.log('Not logged in!');
       this.clearSession();
     }
-
-    // if (responseError.status === 500) {
-    //   this.snackBar.openFailSnackBar(responseError.error.error);
-    // } else {
-    //   this.snackBar.openFailSnackBar(responseError.error.detail);
-    // }
-
     return throwError(responseError.error);
   }
 

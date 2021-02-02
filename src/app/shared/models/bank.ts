@@ -1343,9 +1343,9 @@ export const MissingBankList: BankVo[] = [
 
 export const TinkBanks: BankVo[] = [
   new BankVo(
-    'HANDELSBANKEN',
-    'Handelsbanken NUF',
-    'handelsbanken.png',
+    'DANSKE_BANK',
+    'Danske Bank',
+    'danske.png',
     null,
     false,
     true,
@@ -1354,9 +1354,9 @@ export const TinkBanks: BankVo[] = [
     null
   ),
   new BankVo(
-    'DANSKE_BANK',
-    'Danske Bank',
-    'danske.png',
+    'HANDELSBANKEN',
+    'Handelsbanken NUF',
+    'handelsbanken.png',
     null,
     false,
     true,
