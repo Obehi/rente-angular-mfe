@@ -10,5 +10,6 @@ export const VALIDATION_PATTERN = {
   phoneShortSv: '[0-9]{10}$',
   dob: '^(0?[1-9]|[12][0-9]|3[01])(0[1-9]|1[0-2])([0-9]{2})$',
   number: '^[0-9]+$',
-  zip: '^[0-9]{4}$'
+  zip: '^[0-9]{4}$',
+  zipSWE: '[0-9 ]+'
 };

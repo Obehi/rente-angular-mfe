@@ -73,6 +73,29 @@
             </div>
           </div>
         </div>
+
+        <div class="field">
+          <rente-input
+            [placeholder]="'Postnummer'"
+            formControlName="zip"
+            [maxLength] ="4"
+            [errorStateMatcher]="
+              isErrorState(propertyForm.controls['zip'], propertyForm)
+            "
+            [modelOptions]="{ updateOn: 'blur' }"
+            [maskType]="mask.zip"
+          >
+          </rente-input>
+  
+          <div *ngIf="propertyForm.controls['zip'].touched">
+            <p i18n=“empty|info-confirmation@@info.confirmation.empty”
+              class="error small"
+              *ngIf="propertyForm.controls['zip'].hasError('required')"
+            >
+              Kan ikke være tom
+            </p>
+          </div>
+        </div>
   
         <rente-button i18n=“done|info-confirmation@@info.confirmation.done”
           color="primary"

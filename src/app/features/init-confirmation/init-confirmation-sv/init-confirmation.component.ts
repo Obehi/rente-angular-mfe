@@ -75,6 +75,13 @@ export class InitConfirmationSVComponent implements OnInit {
             Validators.required,
             Validators.pattern(VALIDATION_PATTERN.email)
           ])
+        ],
+        zip: [
+          '',
+          Validators.compose([
+            Validators.required,
+            Validators.pattern(VALIDATION_PATTERN.zipSWE)
+          ])
         ]
       });
     });
@@ -101,6 +108,10 @@ export class InitConfirmationSVComponent implements OnInit {
 
     const confirmationData = {
       email: formData.email,
+      zip:
+        typeof formData.zip === 'string'
+          ? Number(formData.zip.replace(/\s/g, ''))
+          : Number(formData.zip),
       apartmentValue:
         typeof formData.apartmentValue === 'string'
           ? Number(formData.apartmentValue.replace(/\s/g, ''))
@@ -111,6 +122,7 @@ export class InitConfirmationSVComponent implements OnInit {
     confirmationDto.address = new AddressCreationDto();
     confirmationDto.email = confirmationData.email;
     confirmationDto.address.apartmentValue = confirmationData.apartmentValue;
+    confirmationDto.address.zip = confirmationData.zip;
 
     this.loansService.setConfirmationData(confirmationDto).subscribe(
       () => {
