@@ -39,37 +39,38 @@ export class BankSelectNoComponent implements OnInit, ErrorHandler {
     }
   }
 
-  sortBanks() {
+  sortBanks(): void {
     const sortedBanksAlphabetic = [
       ...BankList,
-      ...MissingBankList,
-      ...TinkBanks
+      ...MissingBankList
     ].sort((a, b) => (a.label > b.label ? 1 : b.label > a.label ? -1 : 0));
+
     const dnb = 'DNB';
     const sparebank = 'SPAREBANK_1';
     const nordea = 'NORDEA';
+    const specialCaseBanks = {};
 
-    const sortedBanksSpareBankFirst = sortedBanksAlphabetic.sort(function (
-      x,
-      y
-    ) {
-      return x.name == sparebank ? -1 : y.name == sparebank ? 1 : 0;
-    });
-    const sortedBanksNoredaFirst = sortedBanksSpareBankFirst.sort(function (
-      x,
-      y
-    ) {
-      return x.name == nordea ? -1 : y.name == nordea ? 1 : 0;
-    });
-
-    const sortedBanksDNBFirst = sortedBanksNoredaFirst.sort(function (x, y) {
-      return x.name == dnb ? -1 : y.name == dnb ? 1 : 0;
+    sortedBanksAlphabetic.forEach((bank, index) => {
+      if (
+        bank.name === dnb ||
+        bank.name === sparebank ||
+        bank.name === nordea
+      ) {
+        specialCaseBanks[bank.name] = bank;
+        sortedBanksAlphabetic.splice(index, 1);
+      }
     });
 
-    this.allBanks = sortedBanksDNBFirst;
+    this.allBanks = [
+      specialCaseBanks[dnb],
+      specialCaseBanks[nordea],
+      specialCaseBanks[sparebank],
+      ...TinkBanks,
+      ...sortedBanksAlphabetic
+    ];
   }
 
-  removeSparebank() {
+  removeSparebank(): void {
     const sparebank = 'SPAREBANK_1';
 
     this.allBanks = this.allBanks.filter(function (bank) {
@@ -77,7 +78,7 @@ export class BankSelectNoComponent implements OnInit, ErrorHandler {
     });
   }
 
-  onFilterChanged() {
+  onFilterChanged(): void {
     if (this.searchStr.toLocaleLowerCase() == 'sparebank 1') {
       this.removeSparebank();
     }
@@ -93,7 +94,7 @@ export class BankSelectNoComponent implements OnInit, ErrorHandler {
     this.filterBank(this.searchStr);
   }
 
-  filterBank(filter: string) {
+  filterBank(filter: string): void {
     let filteredBanks = [];
     if (filter == null || filter.length === 0) {
       filteredBanks = this.allBanks.concat();
@@ -107,7 +108,7 @@ export class BankSelectNoComponent implements OnInit, ErrorHandler {
     this.banks = filteredBanks;
   }
 
-  selectBank(bank: BankVo) {
+  selectBank(bank: BankVo): void {
     if (bank.name == 'SPAREBANK_1') {
       this.searchStr = 'Sparebank 1';
 
