@@ -110,8 +110,8 @@ export class InitConfirmationSVComponent implements OnInit {
       email: formData.email,
       zip:
         typeof formData.zip === 'string'
-          ? Number(formData.zip.replace(/\s/g, ''))
-          : Number(formData.zip),
+          ? formData.zip.replace(/\s/g, '')
+          : formData.zip,
       apartmentValue:
         typeof formData.apartmentValue === 'string'
           ? Number(formData.apartmentValue.replace(/\s/g, ''))
