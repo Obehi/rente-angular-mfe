@@ -44,17 +44,36 @@ a {
 }
 
 .tink-wrapper {
-  margin: 60px auto 80px;
-  min-height: 800px;
+  @media (max-width: 600px) {
+    width: calc(100% + 40px);
+    margin-left: -20px;
+    margin-top: -20px;
+    min-height: 700px;
+  }
+  @media (min-width: 600px) {
+    margin: 60px auto 80px;
+    min-height: 600px;
+  }
+
+  iframe {
+    @media (max-width: 600px) {
+      width: 100%;
+      //box-shadow: 1px 1px 9px 0px #cdcdcd
+      box-shadow: unset !important;
+    }
+    @media (min-width: 600px) {
+      display: block;
+      margin: auto;
+    }
+  }
+  
+  
+  
   h3 {
       text-align: center;
       margin: 40px 40px 20px 40px;
   }
 
-  iframe {
-      display: block;
-      margin: auto;;
-  }
 }
 
 iframe{ 
