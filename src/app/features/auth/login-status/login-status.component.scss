@@ -48,7 +48,7 @@ a {
     width: calc(100% + 40px);
     margin-left: -20px;
     margin-top: -20px;
-    min-height: 700px;
+    min-height: 600px;
   }
   @media (min-width: 600px) {
     margin: 60px auto 80px;
@@ -60,6 +60,7 @@ a {
       width: 100%;
       //box-shadow: 1px 1px 9px 0px #cdcdcd
       box-shadow: unset !important;
+      height: 600px;
     }
     @media (min-width: 600px) {
       display: block;

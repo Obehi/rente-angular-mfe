@@ -18,7 +18,8 @@ export class LandingTopNoComponent {
       'constructor',
       'WebsiteInit',
       'Init with env',
-      this.envService.environment
+      this.envService.environment,
+      false
     );
   }
 }
