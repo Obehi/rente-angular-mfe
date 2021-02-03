@@ -95,7 +95,8 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
       'ngOnInit',
       this.logging.SubSystem.Tink,
       '1: INIT COMPONENT',
-      { bank: this.bank.name }
+      { bank: this.bank.name },
+      this.isTinkBank
     );
     this.environment = this.envService.environment;
     this.setDefaultSteps();
@@ -140,7 +141,8 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
       'onMessage',
       this.logging.SubSystem.Tink,
       '2:TINK_EVENT_RECIEVED',
-      data
+      data,
+      this.isTinkBank
     );
 
     if (data.type === 'code') {
@@ -154,7 +156,9 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
         'LoginStatusComponent',
         'onMessage',
         this.logging.SubSystem.Tink,
-        '2: TINK LOGIN SUCCESS: ' + data.data
+        '2: TINK LOGIN SUCCESS: ' + data.data,
+        undefined,
+        this.isTinkBank
       );
       this.initializeWebSocketConnection(data.data);
     }
@@ -223,7 +227,8 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
         tinkCode: tinkCode,
         object: dataObj,
         crawlerEndpoint: API_URL_MAP.tinkSendMessageUrl
-      }
+      },
+      this.isTinkBank
     );
   }
 
@@ -247,7 +252,9 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
       'LoginStatusComponent',
       'sendUserData',
       this.logging.SubSystem.Tink,
-      '3.7: CONNECT TO SOCKET WITH BANK NAME AND INFO_JSON'
+      '3.7: CONNECT TO SOCKET WITH BANK NAME AND INFO_JSON',
+      undefined,
+      this.isTinkBank
     );
 
     if (!resendData) {
@@ -277,7 +284,9 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
         'LoginStatusComponent',
         'resendDataAfterReconnect',
         this.logging.SubSystem.Tink,
-        '3.7: CONNECT TO SOCKET WITH BANK NAME AND INFO_JSON'
+        '3.7: CONNECT TO SOCKET WITH BANK NAME AND INFO_JSON',
+        undefined,
+        this.isTinkBank
       );
 
       this.sendUserData(true);
@@ -294,7 +303,9 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
       'LoginStatusComponent',
       'connectAndReconnectSocket',
       this.logging.SubSystem.Tink,
-      '3.5: CONNECTING TO SOCKET'
+      '3.5: CONNECTING TO SOCKET',
+      undefined,
+      this.isTinkBank
     );
 
     // Disable websocket logs for production
@@ -313,7 +324,8 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
           'connectAndReconnectSocket',
           this.logging.SubSystem.Tink,
           '3.6: CONNECTED TO SOCKET',
-          { tinkCode: this.tinkCode }
+          { tinkCode: this.tinkCode },
+          this.isTinkBank
         );
 
         // this.sendUserDataTink(this.tinkCode)
@@ -373,7 +385,8 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
               'initConnectionTimer',
               this.logging.SubSystem.Tink,
               'CONNECTION TIMEOUT',
-              { bank: this.bank.name }
+              { bank: this.bank.name },
+              this.isTinkBank
             );
           }
           this.viewStatus.isTimedOut = true;
@@ -387,7 +400,9 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
               'LoginStatusComponent',
               'initConnectionTimer',
               this.logging.SubSystem.Tink,
-              'FIRST STEP TIMER FINISHED'
+              'FIRST STEP TIMER FINISHED',
+              undefined,
+              this.isTinkBank
             );
           }
 
@@ -416,7 +431,8 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
         'successSocketCallback',
         this.logging.SubSystem.Tink,
         '4: RESPONSE FROM SOCKET',
-        filteredResponse
+        filteredResponse,
+        this.isTinkBank
       );
 
       if (message.body) {
@@ -437,7 +453,9 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
               'LoginStatusComponent',
               'successSocketCallback',
               this.logging.SubSystem.Tink,
-              '5: BANKID_STATUS: PROCESS_STARTED'
+              '5: BANKID_STATUS: PROCESS_STARTED',
+              undefined,
+              this.isTinkBank
             );
 
             // this.loginStep1Status = MESSAGE_STATUS.SUCCESS;
@@ -501,7 +519,8 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
               'successSocketCallback',
               this.logging.SubSystem.Tink,
               'BANKID_STATUS: CRAWLER_ERROR',
-              filteredResponse
+              filteredResponse,
+              this.isTinkBank
             );
             this.viewStatus.isCrawlerError = true;
             this.unsubscribeEverything();
@@ -558,7 +577,9 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
               'LoginStatusComponent',
               'successSocketCallback',
               this.logging.SubSystem.Tink,
-              '5: BANKID_STATUS: NO_LOANS'
+              '5: BANKID_STATUS: NO_LOANS',
+              undefined,
+              this.isTinkBank
             );
             this.router.navigate(['/dashboard/' + ROUTES_MAP.noLoan]);
             break;
@@ -569,7 +590,9 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
               'LoginStatusComponent',
               'successSocketCallback',
               this.logging.SubSystem.Tink,
-              '5: BANKID_STATUS: LOANS_PERSISTED'
+              '5: BANKID_STATUS: LOANS_PERSISTED',
+              undefined,
+              this.isTinkBank
             );
 
             this.viewStatus.isLoansPersisted = true;
@@ -588,7 +611,9 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
                     'LoginStatusComponent',
                     'successSocketCallback',
                     this.logging.SubSystem.Tink,
-                    '6: FETCHED RATE, LOANS AND USERINFO'
+                    '6: FETCHED RATE, LOANS AND USERINFO',
+                    undefined,
+                    this.isTinkBank
                   );
 
                   this.userService.lowerRateAvailable.next(
@@ -607,7 +632,9 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
                         'LoginStatusComponent',
                         'successSocketCallback',
                         this.logging.SubSystem.Tink,
-                        '7: SUCCESS: FIXED RATE DETECTED. REDIRECT TO ROUTES_MAP.FIXEDRATE'
+                        '7: SUCCESS: FIXED RATE DETECTED. REDIRECT TO ROUTES_MAP.FIXEDRATE',
+                        undefined,
+                        this.isTinkBank
                       );
                       this.router.navigate([
                         '/dashboard/' + ROUTES_MAP.fixedRate
@@ -620,7 +647,9 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
                           'LoginStatusComponent',
                           'successSocketCallback',
                           this.logging.SubSystem.Tink,
-                          '7: SUCCESS:NEW USER DETECTED. REDIRECT TO ROUTES_MAP.INITCONFIRMATION'
+                          '7: SUCCESS:NEW USER DETECTED. REDIRECT TO ROUTES_MAP.INITCONFIRMATION',
+                          undefined,
+                          this.isTinkBank
                         );
                         this.router.navigate([
                           '/' + ROUTES_MAP.initConfirmation
@@ -633,7 +662,9 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
                           'LoginStatusComponent',
                           'successSocketCallback',
                           this.logging.SubSystem.Tink,
-                          '7: SUCCESS: USER INCOME DETECTED. REDIRECT TO ROUTES_MAP.OFFERS'
+                          '7: SUCCESS: USER INCOME DETECTED. REDIRECT TO ROUTES_MAP.OFFERS',
+                          undefined,
+                          this.isTinkBank
                         );
                         this.router.navigate([
                           '/dashboard/' + ROUTES_MAP.offers
@@ -647,7 +678,9 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
                       'LoginStatusComponent',
                       'successSocketCallback',
                       this.logging.SubSystem.Tink,
-                      '7: SUCCESS: NO LOAN DETECTED. REDIRECT TO ROUTES_MAP.NOLOAN'
+                      '7: SUCCESS: NO LOAN DETECTED. REDIRECT TO ROUTES_MAP.NOLOAN',
+                      undefined,
+                      this.isTinkBank
                     );
                     this.localStorageService.setItem('noLoansPresent', true);
                     this.router.navigate(['/dashboard/' + ROUTES_MAP.noLoan]);

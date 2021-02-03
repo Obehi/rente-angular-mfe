@@ -61,9 +61,14 @@ export class LoggingService {
     methodName: string,
     subSystem: string,
     msg?: string,
-    object?: any
+    object?: any,
+    overrideShouldLog?: boolean
   ): void {
-    if (!this.envService.environment.shouldLog) {
+    if (
+      !this.envService.environment.shouldLog &&
+      overrideShouldLog !== undefined &&
+      overrideShouldLog === false
+    ) {
       return;
     } else {
       let text: any;
