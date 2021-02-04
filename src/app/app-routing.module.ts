@@ -186,7 +186,6 @@ const commonRoutes: Routes = [
     }
   },
   { path: ROUTES_MAP.noLoan, component: NoLoansComponent },
-
   {
     path: ROUTES_MAP.auth,
     loadChildren: () =>

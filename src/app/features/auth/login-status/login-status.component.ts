@@ -581,7 +581,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
               undefined,
               this.isTinkBank
             );
-            this.router.navigate(['/dashboard/' + ROUTES_MAP.noLoan]);
+            this.router.navigate(['/' + ROUTES_MAP.noLoan]);
             break;
           case BANKID_STATUS.LOANS_PERSISTED:
             this.logging.logger(
@@ -683,7 +683,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
                       this.isTinkBank
                     );
                     this.localStorageService.setItem('noLoansPresent', true);
-                    this.router.navigate(['/dashboard/' + ROUTES_MAP.noLoan]);
+                    this.router.navigate(['/' + ROUTES_MAP.noLoan]);
                   }
                 });
               });

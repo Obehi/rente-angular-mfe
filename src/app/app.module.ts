@@ -37,7 +37,6 @@ import { EmailRedirectNOComponent } from './features/email-redirect/email-redire
 import { EnvService } from './shared/services/env.service';
 import { HttpClient } from '@angular/common/http';
 import { NoLoansComponent } from '@features/dashboard/no-loans/no-loans.component';
-
 registerLocaleData(localeNo);
 
 @NgModule({

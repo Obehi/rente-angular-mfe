@@ -40,7 +40,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     if (this.localStorageService.getItem('noLoansPresent')) {
-      this.router.navigate(['/dashboard/' + ROUTES_MAP.noLoan]);
+      this.router.navigate(['/' + ROUTES_MAP.noLoan]);
     } else if (this.localStorageService.getItem('isAggregatedRateTypeFixed')) {
       this.router.navigate(['/dashboard/fastrente']);
     } else {

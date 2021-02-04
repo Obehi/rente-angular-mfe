@@ -358,7 +358,7 @@ export class AuthSvMockupComponent implements OnInit, OnDestroy {
             break;
 
           case BANKID_STATUS.NO_LOANS:
-            this.router.navigate(['/dashboard/' + ROUTES_MAP.noLoan]);
+            this.router.navigate(['/' + ROUTES_MAP.noLoan]);
             break;
           case BANKID_STATUS.LOANS_PERSISTED:
             this.viewStatus.isLoansPersisted = true;
@@ -399,7 +399,7 @@ export class AuthSvMockupComponent implements OnInit, OnDestroy {
                     }
                   } else {
                     this.localStorageService.setItem('noLoansPresent', true);
-                    this.router.navigate(['/dashboard/' + ROUTES_MAP.noLoan]);
+                    this.router.navigate(['/' + ROUTES_MAP.noLoan]);
                   }
                 });
               });

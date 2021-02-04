@@ -119,7 +119,7 @@ export class AuthSvComponent implements OnInit, OnDestroy {
 
           case BANKID_STATUS.NO_LOANS:
             {
-              this.router.navigate(['/dashboard/' + ROUTES_MAP.noLoan]);
+              this.router.navigate(['/' + ROUTES_MAP.noLoan]);
             }
             const user = response.data.user;
             this.authService
@@ -156,7 +156,7 @@ export class AuthSvComponent implements OnInit, OnDestroy {
                     }
                   } else {
                     this.localStorageService.setItem('noLoansPresent', true);
-                    this.router.navigate(['/dashboard/' + ROUTES_MAP.noLoan]);
+                    this.router.navigate(['/' + ROUTES_MAP.noLoan]);
                   }
                 });
               });
