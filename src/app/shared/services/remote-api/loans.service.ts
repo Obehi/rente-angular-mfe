@@ -28,7 +28,7 @@ export class LoansService {
 
   public updateNewOffers() {
     const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.offers}${API_URL_MAP.loan.newOffers}`;
-    return this.http.get(url);
+    return this.http.post(url);
   }
 
   public getUsersMemberships() {

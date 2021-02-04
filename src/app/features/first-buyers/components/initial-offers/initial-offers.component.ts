@@ -362,7 +362,7 @@ export class InitialOffersComponent implements OnInit {
     this.loansService
       .updateNewOffers()
       .pipe(
-        flatMap((res) => {
+        flatMap(() => {
           return this.loansService.getOffers();
         }),
         take(1)
@@ -375,7 +375,7 @@ export class InitialOffersComponent implements OnInit {
           ];
           this.offersLoading = false;
         },
-        (err) => {
+        () => {
           this.offersLoading = false;
         }
       );

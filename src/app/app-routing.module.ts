@@ -163,6 +163,21 @@ const commonRoutes: Routes = [
     }
   },
   {
+    path: ROUTES_MAP_NO.boliglanskalkulator,
+    loadChildren: () =>
+      import('./features/first-buyers/first-buyers.module').then(
+        (m) => m.FirstBuyersModule
+      ),
+    data: {
+      // TODO: Set up correct meta
+      title: customMeta.valgBank.title,
+      meta: {
+        name: defaultMeta.name,
+        description: customMeta.valgBank.description
+      }
+    }
+  },
+  {
     path: ROUTES_MAP.initConfirmation,
     component: InitConfirmationLangGenericComponent,
     data: {
