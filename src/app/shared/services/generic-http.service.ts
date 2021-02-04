@@ -12,7 +12,7 @@ import { storageName } from '@config/index';
 import { LocalStorageService } from '@services/local-storage.service';
 import { SnackBarService } from './snackbar.service';
 import { EnvService } from '@services/env.service';
-
+import { LoggingService } from '@services/logging.service';
 @Injectable({
   providedIn: 'root'
 })
@@ -32,7 +32,8 @@ export class GenericHttpService {
     private localStorageService: LocalStorageService,
     private router: Router,
     private snackBar: SnackBarService,
-    private envService: EnvService
+    private envService: EnvService,
+    private loggingService: LoggingService
   ) {
     this.apiUrl = this.envService.environment.baseUrl;
   }
@@ -146,6 +147,17 @@ export class GenericHttpService {
     if (responseError.status === 401) {
       // TODO: Show unauthorized error
       console.log('Not logged in!');
+      console.log(responseError);
+      this.loggingService.logger(
+        this.loggingService.Level.Error,
+        'not-logged-in',
+        'GenericHttpService',
+        'handleError',
+        'not-logged-in',
+        'User is not logged inn',
+        undefined,
+        true
+      );
       this.clearSession();
     }
     return throwError(responseError.error);
