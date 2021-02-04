@@ -4,7 +4,6 @@ import { DashboardComponent } from './dashboard.component';
 import { PreferencesComponent } from './preferences/preferences.component';
 import { ProfileComponent } from './profile/profile.component';
 import { RateTypeFixedComponent } from './rate-type-fixed/rate-type-fixed.component';
-import { NoLoansComponent } from './no-loans/no-loans.component';
 import { customMeta, defaultMeta, ROUTES_MAP } from '@config/routes-config';
 import { RouteGuard } from '@shared/guards/route.guard';
 import { BargainSuccessComponent } from './offers/bargain-success/bargain-success.component';
@@ -94,8 +93,7 @@ const routes: Routes = [
       }
     ]
   },
-  { path: ROUTES_MAP.fixedRate, component: RateTypeFixedComponent },
-  { path: ROUTES_MAP.noLoan, component: NoLoansComponent }
+  { path: ROUTES_MAP.fixedRate, component: RateTypeFixedComponent }
 ];
 
 @NgModule({

@@ -36,6 +36,8 @@ import { EmailRedirectSVComponent } from './features/email-redirect/email-redire
 import { EmailRedirectNOComponent } from './features/email-redirect/email-redirect-no/email-redirect-no.component';
 import { EnvService } from './shared/services/env.service';
 import { HttpClient } from '@angular/common/http';
+import { NoLoansComponent } from '@features/dashboard/no-loans/no-loans.component';
+
 registerLocaleData(localeNo);
 
 @NgModule({
@@ -60,7 +62,8 @@ registerLocaleData(localeNo);
     AuthSvMockupComponent,
     LandingTopLangGenericComponent,
     EmailRedirectSVComponent,
-    EmailRedirectNOComponent
+    EmailRedirectNOComponent,
+    NoLoansComponent
   ],
   imports: [
     BrowserModule,
