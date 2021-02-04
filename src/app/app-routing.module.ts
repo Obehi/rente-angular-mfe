@@ -20,6 +20,7 @@ import { InitConfirmationLangGenericComponent } from './local-components/compone
 import { EmailRedirectNOComponent } from '@features/email-redirect/email-redirect-no/email-redirect-no.component';
 import { EmailRedirectSVComponent } from '@features/email-redirect/email-redirect-sv/email-redirect-sv.component';
 import { AuthGuard } from '@shared/guards/auth.guard';
+import { NoLoansComponent } from '@features/dashboard/no-loans/no-loans.component';
 
 import { BankChoiceComponent } from '@features/auth/bank-choice/bank-choice.component';
 
@@ -184,6 +185,8 @@ const commonRoutes: Routes = [
       }
     }
   },
+  { path: ROUTES_MAP.noLoan, component: NoLoansComponent },
+
   {
     path: ROUTES_MAP.auth,
     loadChildren: () =>
