@@ -196,7 +196,25 @@ kan låne. Hvor mye annen gjeld har du?"
 
    <!--  <ng-container *ngIf="!editMode">
       <ng-container *ngIf="allMemberships.length;else loading">
-        <div class="top-accordion mt-3">
+
+
+          <div *ngFor="let property of properties">
+            <rente-property-input *ngIf="property.shouldDisplay()" [icon]="property.icon" [formGroup]="formGroup"
+                                  [label]="property.label"
+                                  [controlName]="property.controlName"
+                                  [inputType]="property.inputType"
+                                  [options]="property.options"
+                                  [memberships]="allMemberships"
+                                  (selectedMemberships)="applyMemberships($event)"></rente-property-input>
+          </div>
+
+          <div class="center">
+            <rente-button color="primary" 
+            [disabled]="!formGroup.dirty"
+            (click)="updateNewOffers()">Oppdater tilbud</rente-button>
+          </div>
+
+        <!-- <div class="top-accordion mt-3">
           <mat-accordion>
             <mat-expansion-panel [expanded]="!editMode">
               <mat-expansion-panel-header>
@@ -221,7 +239,7 @@ kan låne. Hvor mye annen gjeld har du?"
             </mat-expansion-panel>
 
           </mat-accordion>
-        </div>
+        </div> -->
       </ng-container>
     </ng-container> -->
 <!--     <rente-button class="d-block mt-3" color="primary-wide-landing" *ngIf="!editMode && !isAllDataFilled()"

@@ -1,185 +1,158 @@
-  <!DOCTYPE html>
-  <html lang="en">
-    <head>
-      <meta charset="utf-8" />
-      <title>Bolåneräntor| Vi hjälper dig hitta bästa räntan | Ränteradar.se</title>
-      <meta
-        name="description"
-        content="Jämför din bolåneränta mot marknadens bästa erbjudanden. 
-        Du kan pruta på räntan eller byta bank - snabbt enkelt och gratis!"
-      />
-      
-      
-      <meta name="fbAppId" property="fb:app_id" content="104419418034085" />
-      <meta name="fbUrl" property="fb:url" content="https://ranteradar.se/" />
-      <meta name="ogTitle" property="og:title" content="ranteradar.se" />
-      <meta property="og:description" content="Jämför din bolåneränta mot marknadens bästa erbjudanden. 
-      Du kan pruta på räntan eller byta bank - snabbt enkelt och gratis!" />
-      <meta name="ogType" property="og:type" content="website" />
-      <meta
-        name="ogImage"
-        property="og:image"
-        content="https://ranteradar.se/assets/img/sv/ranteradar.jpg"
-      />
-      <meta
-        name="ogDescription"
-        property="og:description"
-        content="Jämför din bolåneränta mot marknadens bästa erbjudanden. 
-        Du kan pruta på räntan eller byta bank - snabbt enkelt och gratis!"
-      />
-      <base href="/" />
-      <!-- Anti-flicker snippet (recommended)  -->
-      <!-- 
-      <style>.async-hide { opacity: 0 !important} </style>
-      <script>(function(a,s,y,n,c,h,i,d,e){s.className+=' '+y;h.start=1*new Date;
-      h.end=i=function(){s.className=s.className.replace(RegExp(' ?'+y),'')};
-      (a[n]=a[n]||[]).hide=h;setTimeout(function(){i();h.end=null},c);h.timeout=c;
-      })(window,document.documentElement,'async-hide','dataLayer',4000,
-      {'GTM-WHRLPDM':true});</script>
-      -->
-      <!-- Google Tag Manager -->
-      <script>
-        (function(w, d, s, l, i) {
-          w[l] = w[l] || [];
-          w[l].push({
-            "gtm.start": new Date().getTime(),
-            event: "gtm.js"
-          });
-          var f = d.getElementsByTagName(s)[0],
-            j = d.createElement(s),
-            dl = l != "dataLayer" ? "&l=" + l : "";
-          j.async = true;
-          j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
-          f.parentNode.insertBefore(j, f);
-        })(window, document, "script", "dataLayer", "GTM-WHRLPDM");
-      </script>
-      <!-- End Google Tag Manager -->
-
-      <!-- Global site tag (gtag.js) - Google Analytics -->
-      <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
-      <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'UA-125660730-3', { 'optimize_id': 'OPT-PSDKVPW', 'send_page_view': false }); 
-      </script>
-
-
-    <!--  <script>
-        window.dataLayer = window.dataLayer || [];
-        window.dataLayer.push({
-          originalLocation:
-            document.location.protocol +
-            "//" +
-            document.location.hostname +
-            document.location.pathname +
-            document.location.search
-        }); -->
-
-      </script>
-      <!-- Start of Async Drift Code -->
-      <script>
-        "use strict";
-
-        function loadDriftWidget() {
-          var t = (window.driftt = window.drift = window.driftt || []);
-          if (!t.init) {
-            if (t.invoked)
-              return void (
-                window.console &&
-                console.error &&
-                console.error("Drift snippet included twice.")
-              );
-            (t.invoked = !0),
-              (t.methods = [
-                "identify",
-                "config",
-                "track",
-                "reset",
-                "debug",
-                "show",
-                "ping",
-                "page",
-                "hide",
-                "off",
-                "on"
-              ]),
-              (t.factory = function(e) {
-                return function() {
-                  var n = Array.prototype.slice.call(arguments);
-                  return n.unshift(e), t.push(n), t;
-                };
-              }),
-              t.methods.forEach(function(e) {
-                t[e] = t.factory(e);
-              }),
-              (t.load = function(t) {
-                var e = 3e5,
-                  n = Math.ceil(new Date() / e) * e,
-                  o = document.createElement("script");
-                (o.type = "text/javascript"),
-                  (o.async = !0),
-                  (o.crossorigin = "anonymous"),
-                  (o.src =
-                    "https://js.driftt.com/include/" + n + "/" + t + ".js");
-                var i = document.getElementsByTagName("script")[0];
-                i.parentNode.insertBefore(o, i);
-              });
-          }
-          drift.SNIPPET_VERSION = "0.3.1";
-          drift.load("h9tu8ib8tyfd");
-        }
-
-        setTimeout(function() {
-          loadDriftWidget();
-        }, 7000);
-      </script>
-      <!-- End of Async Drift Code -->
-
-      <!-- Hotjar Tracking Code for www.ranteradar.se -->
-      <script>
-        (function(h,o,t,j,a,r){
-            h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-            h._hjSettings={hjid:2142457,hjsv:6};
-            a=o.getElementsByTagName('head')[0];
-            r=o.createElement('script');r.async=1;
-            r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-            a.appendChild(r);
-        })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
-      </script>
-
-      <meta name="viewport" content="width=device-width, initial-scale=1" />
-      <link rel="icon" type="image/x-icon" href="favicon.ico" />
-      <link
-        href="https://fonts.googleapis.com/css?family=Roboto:100,300,500,900&display=swap"
-        rel="stylesheet"
-      />
-      <link
-        href="https://fonts.googleapis.com/icon?family=Material+Icons"
-        rel="stylesheet"
-      />
-      <link
-        href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-        rel="stylesheet"
-        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
-        crossorigin="anonymous"
-      />
-
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Beste boliglånsrente | Sammenlign rente på boliglån | Renteradar.no</title>
+    <meta
+      name="description"
+      content="
+      Få beste boliglånsrente. Sammenlign renten din med andre og 
+      de beste tilbudene i markedet. Du kan prute på renten eller 
+      bytte bank- helt automatisk og gratis."
+    />
     
+    <meta name="fbPageId" property="fb:page_id" content="106212423879853" />
+    <meta name="fbUrl" property="fb:url" content="https://renteradar.no/" />
+    <meta name="ogTitle" property="og:title" content="Renteradar.no" />
+    <meta name="ogType" property="og:type" content="website" />
+    <meta
+      name="ogImage"
+      property="og:image"
+      content="https://renteradar.no/assets/img/renteradar.jpg"
+    />
+    <meta
+      name="ogDescription"
+      property="og:description"
+      content="Få beste boliglånsrente. Sammenlign renten din med andre og 
+      de beste tilbudene i markedet. Du kan prute på renten eller 
+      bytte bank- helt automatisk og gratis."
+    />
+    <base href="/" />
 
-    </head>
+    <!-- Anti-flicker snippet (recommended)  -->
+    <style>.async-hide { opacity: 0 !important} </style>
+    <script>(function(a,s,y,n,c,h,i,d,e){s.className+=' '+y;h.start=1*new Date;
+    h.end=i=function(){s.className=s.className.replace(RegExp(' ?'+y),'')};
+    (a[n]=a[n]||[]).hide=h;setTimeout(function(){i();h.end=null},c);h.timeout=c;
+    })(window,document.documentElement,'async-hide','dataLayer',4000,
+    {'GTM-PNTQPMC':true});</script>
+    <!-- Google Tag Manager -->
+    <script>
+      (function(w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({
+          "gtm.start": new Date().getTime(),
+          event: "gtm.js"
+        });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", "GTM-PNTQPMC");
+    </script>
+    <!-- End Google Tag Manager -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        originalLocation:
+          document.location.protocol +
+          "//" +
+          document.location.hostname +
+          document.location.pathname +
+          document.location.search
+      });
 
-    <body>
-      <!-- Google Tag Manager (noscript) -->
-      <noscript
-        ><iframe
-          src="https://www.googletagmanager.com/ns.html?id=GTM-WHRLPDM"
-          height="0"
-          width="0"
-          style="display:none;visibility:hidden"
-        ></iframe
-      ></noscript>
-      <!-- End Google Tag Manager (noscript) -->
-      <rente-root></rente-root>
-    </body>
-  </html>
+    </script>
+    <!-- Start of Async Drift Code -->
+    <script>
+      "use strict";
+
+      function loadDriftWidget() {
+        var t = (window.driftt = window.drift = window.driftt || []);
+        if (!t.init) {
+          if (t.invoked)
+            return void (
+              window.console &&
+              console.error &&
+              console.error("Drift snippet included twice.")
+            );
+          (t.invoked = !0),
+            (t.methods = [
+              "identify",
+              "config",
+              "track",
+              "reset",
+              "debug",
+              "show",
+              "ping",
+              "page",
+              "hide",
+              "off",
+              "on"
+            ]),
+            (t.factory = function(e) {
+              return function() {
+                var n = Array.prototype.slice.call(arguments);
+                return n.unshift(e), t.push(n), t;
+              };
+            }),
+            t.methods.forEach(function(e) {
+              t[e] = t.factory(e);
+            }),
+            (t.load = function(t) {
+              var e = 3e5,
+                n = Math.ceil(new Date() / e) * e,
+                o = document.createElement("script");
+              (o.type = "text/javascript"),
+                (o.async = !0),
+                (o.crossorigin = "anonymous"),
+                (o.src =
+                  "https://js.driftt.com/include/" + n + "/" + t + ".js");
+              var i = document.getElementsByTagName("script")[0];
+              i.parentNode.insertBefore(o, i);
+            });
+        }
+        drift.SNIPPET_VERSION = "0.3.1";
+        drift.load("yumwszidc85g");
+      }
+
+      setTimeout(function() {
+        loadDriftWidget();
+      }, 7000);
+    </script>
+    <!-- End of Async Drift Code -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:300,500,900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      rel="stylesheet"
+      integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+      crossorigin="anonymous"
+    />
+  </head>
+
+  <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript
+      ><iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-PNTQPMC"
+        height="0"
+        width="0"
+        style="display:none;visibility:hidden"
+      ></iframe
+    ></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <rente-root></rente-root>
+  </body>
+</html>

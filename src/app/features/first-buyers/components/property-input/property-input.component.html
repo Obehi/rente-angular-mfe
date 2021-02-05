@@ -11,19 +11,19 @@
     <div class="property-input">
       <form [formGroup]="formGroup" class="p-0 border-0">
         <mat-form-field class="text-white w-100" *ngIf="inputType === 'tel'">
-          <input formControlName="{{controlName}}" placeholder="Fyll inn" matInput [type]="inputType"
+          <input formControlName="{{controlName}}"  matInput [type]="inputType"
                  currencyMask
                  [options]="{prefix:'', align: 'left', thousands: ' ', precision: 0}"
                  autocomplete="off">
         </mat-form-field>
         <mat-form-field class="text-white w-100" *ngIf="inputType === 'dropdown'">
-          <mat-label>Fyll inn</mat-label>
+          <mat-label>Velg</mat-label>
           <mat-select formControlName="{{controlName}}">
             <mat-option *ngFor="let option of options" [value]="option.value">{{option.label}}</mat-option>
           </mat-select>
         </mat-form-field>
         <mat-select-autocomplete *ngIf="inputType === 'autocomplete'"
-                                 [placeholder]="'Fyll inn'"
+                                 [placeholder]="'Velg'"
                                  [options]="memberships"
                                  [display]="'label'"
                                  [value]="'name'"

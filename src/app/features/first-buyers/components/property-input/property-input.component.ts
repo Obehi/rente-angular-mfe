@@ -19,6 +19,10 @@ export class PropertyInputComponent implements OnInit {
   @Input() options: { name?: string; value?: string; label: string }[];
   @Input() memberships: { name?: string; value?: string; label: string }[];
   @Output() selectedMemberships = new EventEmitter<MembershipTypeDto[]>();
+
+  labelPosition: 'before' | 'after' = 'after';
+  after = 'after';
+  before = 'before';
   _selectedMemberships: string[];
   selectionDistincter = new Subject();
   _selectionDistincter: Observable<any>;

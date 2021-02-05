@@ -111,17 +111,16 @@
 
     ::ng-deep {
       .mat-form-field-outline {
-        background-color: white !important;
-        border-radius: 4px !important;
-
+        background-color: unset !important;
+        border-radius: 20px !important;
+        border: 1px solid #18bc9c !important;
         input {
-          color: $blue !important;
-
+          color: unset !important
         }
       }
 
       .mat-form-field-flex:hover .mat-form-field-underline {
-        background-color: #5bccb5 !important;
+        //background-color: #5bccb5 !important;
       }
     }
   }
