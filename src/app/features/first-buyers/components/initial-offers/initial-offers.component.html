@@ -1,6 +1,6 @@
 <div class="first-buyers-content-blue px-3 pt-3">
   <form [formGroup]="formGroup" class="p-0 border-0">
-    <mat-horizontal-stepper [disableRipple]="true" [selectedIndex]="editMode ? selectedIndex : null"
+   <!--  <mat-horizontal-stepper [disableRipple]="true" [selectedIndex]="editMode ? selectedIndex : null"
                             #stepper>
       <mat-step aria-labelledby="disabled" [editable]="false" [stepControl]="outstandingDebtControl"
                 [completed]="outstandingDebtControl?.value"
@@ -180,7 +180,21 @@ kan låne. Hvor mye annen gjeld har du?"
       </ng-template>
 
     </mat-horizontal-stepper>
-    <ng-container *ngIf="!editMode">
+ -->
+    <div *ngFor="let property of properties">
+      <rente-property-input *ngIf="property.shouldDisplay()" [icon]="property.icon" [formGroup]="formGroup"
+                            [label]="property.label"
+                            [controlName]="property.controlName"
+                            [inputType]="property.inputType"
+                            [options]="property.options"
+                            [memberships]="allMemberships"
+                            (selectedMemberships)="applyMemberships($event)"></rente-property-input>
+    </div>
+    <div class="w-100 d-flex justify-content-end">
+      <rente-button class="center vertical-margin" color="primary" [disabled]="formGroup.dirty" (click)="updateNewOffers()">Oppdater tilbud</rente-button>
+    </div>
+
+   <!--  <ng-container *ngIf="!editMode">
       <ng-container *ngIf="allMemberships.length;else loading">
         <div class="top-accordion mt-3">
           <mat-accordion>
@@ -201,20 +215,20 @@ kan låne. Hvor mye annen gjeld har du?"
                                       [memberships]="allMemberships"
                                       (selectedMemberships)="applyMemberships($event)"></rente-property-input>
               </div>
-              <div class="w-100 d-flex justify-content-end" *ngIf="formGroup.dirty">
-                <rente-button color="primary" (click)="updateNewOffers()">Oppdater tilbud</rente-button>
+              <div class="w-100 d-flex justify-content-end">
+                <rente-button color="primary" [disabled] (click)="updateNewOffers()">Oppdater tilbud</rente-button>
               </div>
             </mat-expansion-panel>
 
           </mat-accordion>
         </div>
       </ng-container>
-    </ng-container>
-    <rente-button class="d-block mt-3" color="primary-wide-landing" *ngIf="!editMode && !isAllDataFilled()"
+    </ng-container> -->
+<!--     <rente-button class="d-block mt-3" color="primary-wide-landing" *ngIf="!editMode && !isAllDataFilled()"
                   (click)="editMode = !editMode">
       Fullfør
       boliglånskalkulatoren
-    </rente-button>
+    </rente-button> -->
   </form>
   <ng-container *ngIf="!editMode && offers?.length">
     <ng-container *ngIf="!offersLoading;else loading">
