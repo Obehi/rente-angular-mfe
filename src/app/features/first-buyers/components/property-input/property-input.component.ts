@@ -15,6 +15,7 @@ export class PropertyInputComponent implements OnInit {
   @Input() controlName: string;
   @Input() label: string;
   @Input() icon: string;
+  @Input() iconPath: string;
   @Input() inputType: 'tel' | 'dropdown' | 'autocomplete' = 'tel';
   @Input() options: { name?: string; value?: string; label: string }[];
   @Input() memberships: { name?: string; value?: string; label: string }[];

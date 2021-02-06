@@ -77,13 +77,23 @@
   }
 
   ::ng-deep .mat-form-field-flex {
-    border-bottom: 1px solid $white;
+    border-bottom: 1px solid #478ccc;
     transition: .3s;
 
     &:focus-within {
       transition: .3s;
       border-bottom: 1px solid $primary;
     }
+  }
+
+  .box-icon {
+    margin: 10px auto;
+    width: 25px;
+    max-height: 30px;
+  }
+
+  .text-white {
+   color: #478ccc !important
   }
 }
 

@@ -55,6 +55,7 @@ export class InitialOffersComponent implements OnInit {
     },
     {
       icon: 'monetization_on',
+      iconPath: '../../../../assets/icons/money-light-blue.svg',
       label: 'Egenkapital',
       inputType: 'tel',
       controlName: 'savings',
@@ -64,6 +65,7 @@ export class InitialOffersComponent implements OnInit {
     },
     {
       icon: 'point_of_sale',
+      iconPath: '../../../../assets/icons/money-light-blue.svg',
       label: 'Inntekt',
       inputType: 'tel',
       controlName: 'income',
@@ -82,6 +84,7 @@ export class InitialOffersComponent implements OnInit {
     },
     {
       icon: 'card_membership',
+      iconPath: '../../../../assets/icons/bank-card-light-blue.svg',
       label: 'Medlemskap',
       inputType: 'autocomplete',
       controlName: 'memberships',
@@ -92,6 +95,7 @@ export class InitialOffersComponent implements OnInit {
     },
     {
       icon: 'accessibility',
+      iconPath: '../../../../assets/icons/person-light-blue.svg',
       label: 'Alder',
       inputType: 'dropdown',
       controlName: 'age',
@@ -111,6 +115,7 @@ export class InitialOffersComponent implements OnInit {
     },
     {
       icon: 'apartment',
+      iconPath: '../../../../assets/icons/house-light-blue.svg',
       label: 'Første bolig',
       inputType: 'dropdown',
       controlName: 'firstLoan',

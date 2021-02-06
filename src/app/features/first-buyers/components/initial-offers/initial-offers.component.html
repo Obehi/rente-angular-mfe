@@ -1,3 +1,4 @@
+<div class ="outer-bg">
 <div class="first-buyers-content-blue px-3 pt-3">
   <form [formGroup]="formGroup" class="p-0 border-0">
    <!--  <mat-horizontal-stepper [disableRipple]="true" [selectedIndex]="editMode ? selectedIndex : null"
@@ -187,11 +188,12 @@ kan låne. Hvor mye annen gjeld har du?"
                             [controlName]="property.controlName"
                             [inputType]="property.inputType"
                             [options]="property.options"
+                            [iconPath]="property.iconPath"
                             [memberships]="allMemberships"
                             (selectedMemberships)="applyMemberships($event)"></rente-property-input>
     </div>
     <div class="w-100 d-flex justify-content-end">
-      <rente-button class="center vertical-margin" color="primary" [disabled]="formGroup.dirty" (click)="updateNewOffers()">Oppdater tilbud</rente-button>
+      <rente-button class="center vertical-margin" color="primary" [disabled]="!formGroup.dirty" (click)="updateNewOffers()">Oppdater tilbud</rente-button>
     </div>
 
    <!--  <ng-container *ngIf="!editMode">
@@ -214,7 +216,7 @@ kan låne. Hvor mye annen gjeld har du?"
             (click)="updateNewOffers()">Oppdater tilbud</rente-button>
           </div>
 
-        <!-- <div class="top-accordion mt-3">
+        <div class="top-accordion mt-3">
           <mat-accordion>
             <mat-expansion-panel [expanded]="!editMode">
               <mat-expansion-panel-header>
@@ -239,10 +241,10 @@ kan låne. Hvor mye annen gjeld har du?"
             </mat-expansion-panel>
 
           </mat-accordion>
-        </div> -->
+        </div> 
       </ng-container>
-    </ng-container> -->
-<!--     <rente-button class="d-block mt-3" color="primary-wide-landing" *ngIf="!editMode && !isAllDataFilled()"
+    </ng-container> 
+    <rente-button class="d-block mt-3" color="primary-wide-landing" *ngIf="!editMode && !isAllDataFilled()"
                   (click)="editMode = !editMode">
       Fullfør
       boliglånskalkulatoren
@@ -261,5 +263,4 @@ kan låne. Hvor mye annen gjeld har du?"
     </div>
   </ng-template>
 </div>
-
-
+</div>

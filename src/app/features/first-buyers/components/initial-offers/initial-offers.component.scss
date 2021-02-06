@@ -1,5 +1,10 @@
 @import "../../../../../styles/theme/colors";
 
+
+.outer-bg {
+  background: linear-gradient(180deg, #162537 0%, #183a63 10.08%) !important;
+}
+
 .first-buyers-content-blue {
   background: linear-gradient(180deg, #162537 0%, #183a63 10.08%) !important;
   max-width: 1010px;

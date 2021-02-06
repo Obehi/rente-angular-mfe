@@ -2,7 +2,8 @@
   <div class="property-wrapper d-flex justify-content-between">
     <div class="d-flex align-items-center">
       <div class="text-white property-icon">
-        <mat-icon>{{icon}}</mat-icon>
+        <img *ngIf="iconPath" class="box-icon" src="{{iconPath}}" />
+        <mat-icon *ngIf="!iconPath">{{icon}}</mat-icon>
       </div>
       <div class="text-white d-block property-label ml-3">
         {{label}}
