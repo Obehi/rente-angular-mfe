@@ -3,6 +3,8 @@ import { map, tap, catchError } from 'rxjs/operators';
 import { Observable, throwError, EMPTY } from 'rxjs';
 import { BankVo } from '../../shared/models/bank';
 import { HttpResponse, HttpHeaders, HttpParams } from '@angular/common/http';
+// declare let require: any;
+
 interface Environment {
   name: string | null;
   production: boolean | null;
@@ -66,7 +68,7 @@ export class EnvService {
     return this.http
       .get('assets/environment.json')
       .pipe(
-        tap((returnedEnv) => this.handleEnvFile(returnedEnv as Environment)),
+        tap((returnedEnv) => this.handleEnvFile(returnedEnv)),
         catchError((error) => this.handleError(error))
       )
       .toPromise();
@@ -93,10 +95,30 @@ export class EnvService {
     );
   }
 
-  handleEnvFile(returnedEnv: Environment): void {
+  handleEnvFile(returnedEnv: any): void {
     if (returnedEnv.name === 'prod' || returnedEnv.name === 'dev') {
-      this.environment = returnedEnv;
+      this.environment = this.convertToEnv(returnedEnv);
     }
+  }
+
+  convertToEnv(buffer: any): Environment {
+    return {
+      name: buffer.VAR_1,
+      production: buffer.VAR_2,
+      baseUrl: buffer.VAR_3,
+      crawlerUrl: buffer.VAR_4,
+      locale: buffer.VAR_5,
+      shouldLog: buffer.VAR_6,
+      loginDnbIsOn: buffer.VAR_7,
+      loginHandelsbankenIsOn: buffer.VAR_8,
+      loginDanskeIsOn: buffer.VAR_9,
+      tinkUrl: buffer.VAR_10,
+      tinkNorDanskebankLink: buffer.VAR_11,
+      tinkNorHandelsbankenLink: buffer.VAR_12,
+      coralogixApiUrl: buffer.VAR_13,
+      coralogixPrivateKey: buffer.VAR_14,
+      coralogixApplicationName: buffer.VAR_15
+    } as Environment;
   }
 
   handleError(responseError: HttpResponse<any> | any): Observable<any> {

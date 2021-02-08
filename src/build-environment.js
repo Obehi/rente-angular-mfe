@@ -28,7 +28,7 @@ module.exports = (localeForLocalDev) => {
   }
   `;
 
-  const envConfig = `{
+  /* const envConfig = `{
     "name": "${environment}",
     "production": ${isProd},
     "baseUrl": "${process.env.BASE_URL}",
@@ -44,6 +44,25 @@ module.exports = (localeForLocalDev) => {
     "coralogixApiUrl": "${process.env.CORALOGIX_API_URL}",
     "coralogixPrivateKey": "${process.env.CORALOGIX_PRIVATE_KEY}",
     "coralogixApplicationName": "${process.env.CORALOGIX_APPLICATION_NAME}"
+  }
+  `; */
+
+  const envConfig = `{
+    "VAR_1": "${environment}",
+    "VAR_2": ${isProd},
+    "VAR_3": "${process.env.BASE_URL}",
+    "VAR_4": "${process.env.CRAWLER_URL}",
+    "VAR_5": "${process.env.LOCALE}",
+    "VAR_6": ${process.env.SHOULD_LOG},
+    "VAR_7": ${process.env.LOGIN_DNB_IS_ON},
+    "VAR_8": ${process.env.LOGIN_HANDELSBANKEN_IS_ON},
+    "VAR_9": ${process.env.LOGIN_DANSKE_IS_ON},
+    "VAR_10": "${process.env.TINK_LINK}",
+    "VAR_11": "${process.env.TINK_NOR_DANSKEBANK_LINK}",
+    "VAR_12": "${process.env.TINK_NOR_HANDELSBANKEN_LINK}",
+    "VAR_13": "${process.env.CORALOGIX_API_URL}",
+    "VAR_14": "${process.env.CORALOGIX_PRIVATE_KEY}",
+    "VAR_15": "${process.env.CORALOGIX_APPLICATION_NAME}"
   }
   `;
 
