@@ -98,10 +98,14 @@ export class EnvService {
   handleEnvFile(returnedEnv: any): void {
     if (returnedEnv.name === 'prod' || returnedEnv.name === 'dev') {
       this.environment = this.convertToEnv(returnedEnv);
+      console.log('this.environment');
+      console.log(this.environment);
     }
   }
 
   convertToEnv(buffer: any): Environment {
+    console.log('buffer');
+    console.log(buffer);
     return {
       name: buffer.VAR_1,
       production: buffer.VAR_2,
