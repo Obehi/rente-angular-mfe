@@ -3,7 +3,6 @@ import { map, tap, catchError } from 'rxjs/operators';
 import { Observable, throwError, EMPTY } from 'rxjs';
 import { BankVo } from '../../shared/models/bank';
 import { HttpResponse, HttpHeaders, HttpParams } from '@angular/common/http';
-// declare let require: any;
 
 interface Environment {
   name: string | null;
