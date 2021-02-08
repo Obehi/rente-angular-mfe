@@ -96,8 +96,14 @@ export class EnvService {
   }
 
   handleEnvFile(returnedEnv: any): void {
-    if (returnedEnv.ENV_1 === 'prod' || returnedEnv.ENV_1 === 'dev') {
+    console.log('handleEnvFile returnedEnv');
+    console.log(returnedEnv);
+    if (returnedEnv.VAR_1 === 'prod' || returnedEnv.VAR_1 === 'dev') {
+      console.log('returnedEnv.VAR_1');
+      console.log(returnedEnv.VAR_1);
       this.environment = this.convertToEnv(returnedEnv);
+      console.log('this.environment');
+      console.log(this.environment);
     }
   }
 
