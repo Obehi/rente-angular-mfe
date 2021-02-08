@@ -96,7 +96,7 @@ export class EnvService {
   }
 
   handleEnvFile(returnedEnv: any): void {
-    if (returnedEnv.name === 'prod' || returnedEnv.name === 'dev') {
+    if (returnedEnv.ENV_1 === 'prod' || returnedEnv.ENV_1 === 'dev') {
       this.environment = this.convertToEnv(returnedEnv);
       console.log('this.environment');
       console.log(this.environment);
