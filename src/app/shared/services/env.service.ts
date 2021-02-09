@@ -104,10 +104,12 @@ export class EnvService {
 
     if (returnedEnv.ENV_1 === 'prod' || returnedEnv.ENV_1 === 'dev') {
       // this.environment = this.convertToEnv(returnedEnv);
-      this.environment['shouldLog'] = returnedEnv['VAR_1'];
-      this.environment['loginDnbIsOn'] = returnedEnv['VAR_2'];
-      this.environment['loginHandelsbankenIsOn'] = returnedEnv['VAR_3'];
-      this.environment['loginDanskeIsOn'] = returnedEnv['VAR_4'];
+      console.log('VAR_1');
+      console.log(returnedEnv['VAR_1']);
+      this.environment.shouldLog = returnedEnv['VAR_1'];
+      this.environment.loginDnbIsOn = returnedEnv['VAR_2'];
+      this.environment.loginHandelsbankenIsOn = returnedEnv['VAR_3'];
+      this.environment.loginDanskeIsOn = returnedEnv['VAR_4'];
     }
     console.log('env extended');
     console.log(this.environment);

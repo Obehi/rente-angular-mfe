@@ -5,7 +5,7 @@ const isProd = environment === 'prod';
 const targetPath = path.join(__dirname + `/environments/environment.heroku.ts`);
 
 // Setup Heroku configs
-const envConfigFile = `export const environment: Environment = {
+const envConfigFile = `export const environment = {
   name: '${environment}',
   production: ${isProd},
   baseUrl: '${process.env.BASE_URL}',
@@ -18,20 +18,6 @@ const envConfigFile = `export const environment: Environment = {
   coralogixPrivateKey: '${process.env.CORALOGIX_PRIVATE_KEY}',
   coralogixApplicationName: '${process.env.CORALOGIX_APPLICATION_NAME}'
 };
-
-interface Environment {
-  name: string | null;
-  production: boolean | null;
-  baseUrl: string | null;
-  crawlerUrl: string | null;
-  tinkUrl: string | null;
-  locale: string | null;
-  tinkNorDanskebankLink: string | null;
-  tinkNorHandelsbankenLink: string | null;
-  coralogixApiUrl: string | null;
-  coralogixPrivateKey: string | null;
-  coralogixApplicationName: string | null;
-}
 `;
 
 fs.writeFile(targetPath, envConfigFile, (err) => {
