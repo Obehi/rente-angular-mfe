@@ -3,23 +3,23 @@ import { map, tap, catchError } from 'rxjs/operators';
 import { Observable, throwError, EMPTY } from 'rxjs';
 import { BankVo } from '../../shared/models/bank';
 import { HttpResponse, HttpHeaders, HttpParams } from '@angular/common/http';
-
+import { environment } from 'environments/environment';
 interface Environment {
-  name: string | null;
+  name?: string | null;
   production: boolean | null;
   baseUrl: string | null;
   crawlerUrl: string | null;
-  locale: string | null;
-  tinkUrl: string | null;
-  shouldLog: boolean;
-  tinkNorDanskebankLink: string | null;
-  tinkNorHandelsbankenLink: string | null;
-  coralogixApiUrl: string | null;
-  coralogixPrivateKey: string | null;
-  coralogixApplicationName: string | null;
-  loginDnbIsOn: boolean;
-  loginHandelsbankenIsOn: boolean;
-  loginDanskeIsOn: boolean;
+  locale?: string | null;
+  tinkUrl?: string | null;
+  shouldLog?: boolean;
+  tinkNorDanskebankLink?: string | null;
+  tinkNorHandelsbankenLink?: string | null;
+  coralogixApiUrl?: string | null;
+  coralogixPrivateKey?: string | null;
+  coralogixApplicationName?: string | null;
+  loginDnbIsOn?: boolean;
+  loginHandelsbankenIsOn?: boolean;
+  loginDanskeIsOn?: boolean;
 }
 
 import { HttpClient } from '@angular/common/http';
@@ -30,7 +30,9 @@ import { createUrlResolverWithoutPackagePrefix } from '@angular/compiler';
   providedIn: 'root'
 })
 export class EnvService {
-  public environment: Environment = {
+  public environment: Environment = environment;
+
+  /* public environment: Environment = {
     name: 'local',
     production: false,
     baseUrl: 'https://rente-gateway-dev.herokuapp.com',
@@ -49,7 +51,7 @@ export class EnvService {
     loginHandelsbankenIsOn: true,
     loginDanskeIsOn: true,
     loginDnbIsOn: true
-  };
+  }; */
 
   private tinkBanks = {
     DANSKE_BANK:
@@ -64,6 +66,8 @@ export class EnvService {
 
   // Used to initialize provider in module
   loadEnv(): Promise<Environment> {
+    console.log('env basics');
+    console.log(this.environment);
     return this.http
       .get('assets/environment.json')
       .pipe(
@@ -95,15 +99,18 @@ export class EnvService {
   }
 
   handleEnvFile(returnedEnv: any): void {
-    console.log('handleEnvFile returnedEnv');
+    console.log('returnedEnv');
     console.log(returnedEnv);
-    if (returnedEnv.VAR_1 === 'prod' || returnedEnv.VAR_1 === 'dev') {
-      console.log('returnedEnv.VAR_1');
-      console.log(returnedEnv.VAR_1);
-      this.environment = this.convertToEnv(returnedEnv);
-      console.log('this.environment');
-      console.log(this.environment);
+
+    if (returnedEnv.ENV_1 === 'prod' || returnedEnv.ENV_1 === 'dev') {
+      // this.environment = this.convertToEnv(returnedEnv);
+      this.environment['shouldLog'] = returnedEnv['VAR_1'];
+      this.environment['loginDnbIsOn'] = returnedEnv['VAR_2'];
+      this.environment['loginHandelsbankenIsOn'] = returnedEnv['VAR_3'];
+      this.environment['loginDanskeIsOn'] = returnedEnv['VAR_4'];
     }
+    console.log('env extended');
+    console.log(this.environment);
   }
 
   convertToEnv(buffer: any): Environment {
