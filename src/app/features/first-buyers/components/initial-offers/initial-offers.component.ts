@@ -60,7 +60,7 @@ export class InitialOffersComponent implements OnInit {
       inputType: 'tel',
       controlName: 'savings',
       shouldDisplay: () => {
-        return this.savingsControl.value;
+        return true;
       }
     },
     {
