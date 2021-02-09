@@ -421,7 +421,6 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
         eventType: response['eventType'],
         bank: response['bank'],
         backendOneTimeToken: response['oneTimeToken'],
-        backendSessionId: response['sessionId'],
         backendclientId: response['clientId']
       };
       this.logging.logger(

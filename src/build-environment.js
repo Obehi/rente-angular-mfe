@@ -28,7 +28,10 @@ module.exports = (localeForLocalDev) => {
   }
   `;
 
-  /* const envConfig = `{
+  /* 
+  These are the correct env variable keys used in the angular app. 
+  The variable fields used in envConfig are renamed for security reasons
+  {
     "name": "${environment}",
     "production": ${isProd},
     "baseUrl": "${process.env.BASE_URL}",
