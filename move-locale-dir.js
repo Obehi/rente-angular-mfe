@@ -4,6 +4,7 @@ const { exec } = require('child_process');
 const rimraf = (rmdir = require('rimraf'));
 var locale = process.env.LOCALE || require('./src/app/config/locale/locale-js');
 
+var localeDir = '';
 if (locale === 'sv') localeDir = '/sv';
 else if (locale === 'nb') localeDir = '/nb';
 
