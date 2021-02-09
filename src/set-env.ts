@@ -11,7 +11,7 @@ export const environment: Environment = {
   production: ${isProd},
   baseUrl: '${process.env.BASE_URL}',
   crawlerUrl: '${process.env.CRAWLER_URL}',
-  'locale": "${process.env.LOCALE}',
+  'locale": '${process.env.LOCALE}',
   tinkUrl: '${process.env.TINK_LINK}',
   "tinkNorDanskebankLink": "${process.env.TINK_NOR_DANSKEBANK_LINK}",
   "tinkNorHandelsbankenLink": "${process.env.TINK_NOR_HANDELSBANKEN_LINK}",
