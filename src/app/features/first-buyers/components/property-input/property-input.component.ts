@@ -1,10 +1,17 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ViewChild
+} from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FirstBuyersService } from '@features/first-buyers/first-buyers.service';
 import { MembershipTypeDto } from '@services/remote-api/loans.service';
 import { Observable, Subject } from 'rxjs';
 import { distinctUntilChanged } from 'rxjs/operators';
-
+import { MatAutocompleteTrigger } from '@angular/material';
 @Component({
   selector: 'rente-property-input',
   templateUrl: './property-input.component.html',
@@ -20,7 +27,7 @@ export class PropertyInputComponent implements OnInit {
   @Input() options: { name?: string; value?: string; label: string }[];
   @Input() memberships: { name?: string; value?: string; label: string }[];
   @Output() selectedMemberships = new EventEmitter<MembershipTypeDto[]>();
-
+  @ViewChild(MatAutocompleteTrigger) autocomplete: MatAutocompleteTrigger;
   labelPosition: 'before' | 'after' = 'after';
   after = 'after';
   before = 'before';
@@ -42,6 +49,8 @@ export class PropertyInputComponent implements OnInit {
       .subscribe((val) => {
         this.selectedMemberships.emit(val);
       });
+
+    this.autocomplete.openPanel();
   }
 
   getSelectedMemberships(selected: string[]) {
