@@ -1,20 +1,27 @@
-// This file can be replaced during build by using the `fileReplacements` array.
-// `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
-// The list of file replacements can be found in `angular.json`.
-
-export const environment = {
+export const environment: Environment = {
+  name: 'undefined',
   production: false,
-  // baseUrl: 'http://192.168.1.99:8000',
-  // crawlerUrl: 'http://192.168.1.99:8200/ws'
-  baseUrl: 'https://rente-gateway-dev.herokuapp.com',
-  crawlerUrl: 'https://rente-ws-dev.herokuapp.com/ws'
+  baseUrl: 'undefined',
+  crawlerUrl: 'undefined',
+  locale: 'undefined',
+  tinkUrl: 'undefined',
+  tinkNorDanskebankLink: 'undefined',
+  tinkNorHandelsbankenLink: 'undefined',
+  coralogixApiUrl: 'undefined',
+  coralogixPrivateKey: 'undefined',
+  coralogixApplicationName: 'undefined'
 };
 
-/*
- * For easier debugging in development mode, you can import the following file
- * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
- *
- * This import should be commented out in production mode because it will have a negative impact
- * on performance if an error is thrown.
- */
-// import 'zone.js/dist/zone-error';  // Included with Angular CLI.
+interface Environment {
+  name: string | null;
+  production: boolean | null;
+  baseUrl: string | null;
+  crawlerUrl: string | null;
+  tinkUrl: string | null;
+  locale: string | null;
+  tinkNorDanskebankLink: string | null;
+  tinkNorHandelsbankenLink: string | null;
+  coralogixApiUrl: string | null;
+  coralogixPrivateKey: string | null;
+  coralogixApplicationName: string | null;
+}
