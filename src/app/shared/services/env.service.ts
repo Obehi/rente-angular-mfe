@@ -45,8 +45,6 @@ export class EnvService {
 
   // Used to initialize provider in module
   loadEnv(): Promise<Environment> {
-    console.log('env basics');
-    console.log(this.environment);
     return this.http
       .get('assets/extra-environment-variables.json')
       .pipe(
@@ -78,21 +76,13 @@ export class EnvService {
   }
 
   handleEnvFile(returnedEnv: any): void {
-    console.log('returnedEnv');
-    console.log(returnedEnv);
-
     this.environment.shouldLog = returnedEnv['VAR_1'];
     this.environment.loginDnbIsOn = returnedEnv['VAR_2'];
     this.environment.loginHandelsbankenIsOn = returnedEnv['VAR_3'];
     this.environment.loginDanskeIsOn = returnedEnv['VAR_4'];
-
-    console.log('env extended');
-    console.log(this.environment);
   }
 
   handleError(responseError: HttpResponse<any> | any): Observable<any> {
-    console.log('error');
-    console.log(responseError);
     return EMPTY;
   }
 }
