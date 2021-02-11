@@ -19,6 +19,7 @@ import {
   switchMap,
   take
 } from 'rxjs/operators';
+import { SeoService } from '@services/seo.service';
 
 @Component({
   selector: 'rente-initial-offers',
@@ -162,7 +163,8 @@ export class InitialOffersComponent implements OnInit {
     private loansService: LoansService,
     private firstBuyersService: FirstBuyersService,
     private firstBuyersAPIService: FirstBuyersAPIService,
-    private router: Router
+    private router: Router,
+    private seoService: SeoService
   ) {}
 
   get outstandingDebtControl() {
@@ -310,6 +312,7 @@ export class InitialOffersComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.seoService.createLinkForCanonicalURL();
     if (!this.firstBuyersService.offerValue?.outstandingDebt) {
       this.router.navigate(['boliglanskalkulator']);
       return;

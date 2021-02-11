@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SeoService } from '@services/seo.service';
 
 @Component({
   selector: 'rente-privacy',
@@ -6,7 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./privacy.component.scss']
 })
 export class PrivacyComponent implements OnInit {
-  constructor() {}
+  constructor(private seoService: SeoService) {}
 
-  ngOnInit() {}
+  ngOnInit(): void {
+    this.seoService.createLinkForCanonicalURL();
+  }
 }
