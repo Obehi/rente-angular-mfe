@@ -13,10 +13,11 @@ export class SeoService {
 
     // remove previous canonical link elements
     links.filter((link) => {
-     return link.getAttribute('rel') === 'canonical' 
+     const element = link as HTMLElement;
+     return element.getAttribute('rel') === 'canonical' 
     }).forEach( (link) => {
-      var toBeRemoved = link as HTMLElement
-      toBeRemoved.remove()
+      var toBeRemoved = link as HTMLElement;
+      toBeRemoved.remove();
     })
 
    // Add coanonical link
