@@ -2,7 +2,10 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatAutocompleteSelectedEvent, MatStepper } from '@angular/material';
 import { Router } from '@angular/router';
-import { FirstBuyersService } from '@features/first-buyers/first-buyers.service';
+import {
+  FirstBuyersService,
+  FirstBuyersState
+} from '@features/first-buyers/first-buyers.service';
 import { FirstBuyersAPIService } from '@services/remote-api/first-buyers.service';
 import {
   LoansService,
@@ -315,7 +318,9 @@ export class InitialOffersComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (!this.firstBuyersService.offerValue?.outstandingDebt) {
+    console.log('this.firstBuyersService.getOffersValue().outstandingDebt');
+    console.log(this.firstBuyersService.getOffersValue().outstandingDebt);
+    if (!this.firstBuyersService.getOffersValue().outstandingDebt) {
       this.router.navigate(['boliglanskalkulator']);
       return;
     } else {

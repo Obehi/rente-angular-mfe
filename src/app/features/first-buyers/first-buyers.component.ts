@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { FirstBuyersService } from '@features/first-buyers/first-buyers.service';
+import {
+  FirstBuyersService,
+  FirstBuyersState
+} from '@features/first-buyers/first-buyers.service';
 import { AuthService } from '@services/remote-api/auth.service';
 import { flatMap } from 'rxjs/operators';
 
@@ -26,6 +29,11 @@ export class FirstBuyersComponent {
   showOffers() {
     this.isLoading = true;
     if (this.formGroup.get('income').value) {
+      this.firstBuyersService.setOffersValue({
+        outstandingDebt: null,
+        income: +this.formGroup.get('income').value
+      });
+
       this.firstBuyersService.offerValue = {
         outstandingDebt: null,
         income: +this.formGroup.get('income').value
@@ -37,15 +45,19 @@ export class FirstBuyersComponent {
       }
     }
     if (this.formGroup.get('outstandingDebt').value) {
-      this.firstBuyersService.offerValue = {
+      this.firstBuyersService.setOffersValue({
         outstandingDebt: +this.formGroup.get('outstandingDebt').value,
         income: +this.formGroup.get('income').value
-      };
+      });
     }
+    const {
+      income,
+      outstandingDebt
+    } = this.firstBuyersService.getOffersValue();
     this.firstBuyersService
       .getAuthToken({
-        outstandingDebt: this.firstBuyersService.offerValue.outstandingDebt,
-        income: this.firstBuyersService.offerValue.income,
+        outstandingDebt: outstandingDebt,
+        income: income,
         country: 'NOR'
       })
       .pipe(

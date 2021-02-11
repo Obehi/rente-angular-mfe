@@ -11,8 +11,6 @@ export class InitialOfferComponent implements OnInit {
   bank;
   expandStatus: boolean;
 
-  constructor() {}
-
   ngOnInit(): void {
     this.bank = BankUtils.getBankByName(this.offer.bankInfo.bank);
     this.bank.icon = BankUtils.getBankPngIcon(
