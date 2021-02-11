@@ -25,7 +25,5 @@ export class SeoService {
     this.doc.head.appendChild(link);
     link.setAttribute('href', this.doc.URL);
     var linkars = Array.from(this.doc.head.getElementsByTagName('link'));
-    console.log("linkars")
-    console.log(linkars)
   }
 }
