@@ -318,9 +318,7 @@ export class InitialOffersComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log('this.firstBuyersService.getOffersValue().outstandingDebt');
-    console.log(this.firstBuyersService.getOffersValue().outstandingDebt);
-    if (!this.firstBuyersService.getOffersValue().outstandingDebt) {
+    if (!this.firstBuyersService.offerValue.outstandingDebt) {
       this.router.navigate(['boliglanskalkulator']);
       return;
     } else {

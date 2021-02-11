@@ -31,6 +31,7 @@
     align-items: center;
     max-width: unset !important;
     .field-box {
+      position: relative;
       width: 40%;
      ::ng-deep .mat-form-field {
       width: 100% !important ;
@@ -40,9 +41,21 @@
     h1 {
       margin: 0 40px 0 40px;
     }
+
+    .special {
+      position: absolute;
+      bottom: 0px;
+    }
+
+    
   }
 }
 
+
+.special {
+  font-size: 14px;
+  font-weight: 400;
+}
 
 @media(max-width: 800px) {
   form {
@@ -52,6 +65,10 @@
       margin-bottom: 20px;
     }
   }
+  .special {
+  margin-top: -18px;
+  margin-bottom: 20px;
+}
 }
 
 

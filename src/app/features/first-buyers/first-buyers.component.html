@@ -3,15 +3,22 @@
   <h1 class="text-white heading mt-4">Finn beste tilbud for deg</h1>
   <form [formGroup]="formGroup" class="p-0 border-0">
     <div class="field-box">
-    <h4 class="text-white">
-      Hvor mye kan jeg låne?
-    </h4>
-    <mat-form-field class="white-input w-75" appearance="outline">
-      <input placeholder="Hvor mye tjener du?" matInput type="tel" autocomplete="off" formControlName="income"
-             currencyMask
-             [options]="{prefix:'', align: 'left', thousands: ' ', precision: 0}"
-      >
-    </mat-form-field>
+      <h4 class="text-white">
+        Hvor mye kan jeg låne?
+      </h4>
+      <mat-form-field class="white-input w-75" appearance="outline">
+        <input placeholder="Hvor mye tjener du?" matInput type="tel" autocomplete="off" formControlName="income"
+              currencyMask
+              [options]="{prefix:'', align: 'left', thousands: ' ', precision: 0}"
+        >
+      </mat-form-field>
+      <div *ngIf="isLowIncome">
+        <p 
+          class="error small error-big"
+        >
+          For lav inntekt
+        </p>
+      </div>
     </div>
     <h1 class="text-white">
       eller

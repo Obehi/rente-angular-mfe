@@ -13,22 +13,19 @@ export interface FirstBuyersState {
   providedIn: 'root'
 })
 export class FirstBuyersService {
-  offerValue: FirstBuyersState;
   selectedMemberships: MembershipTypeDto[] = [];
 
   constructor(
     private authService: AuthService,
     private localStorageService: LocalStorageService
-  ) {
-    console.log('FirstBuyersService');
-  }
+  ) {}
 
-  get bar(): FirstBuyersState {
+  get offerValue(): FirstBuyersState {
     return this.localStorageService.getObject(
       'firstBuyersOfferValue'
     ) as FirstBuyersState;
   }
-  set bar(offerValue: FirstBuyersState) {
+  set offerValue(offerValue: FirstBuyersState) {
     this.localStorageService.setObject('firstBuyersOfferValue', offerValue);
     const test = this.localStorageService.getItem(
       'firstBuyersOfferValue'
@@ -36,8 +33,6 @@ export class FirstBuyersService {
   }
 
   setOffersValue(offerValue: FirstBuyersState) {
-    console.log('offerValue');
-    console.log(offerValue);
     this.localStorageService.setObject('firstBuyersOfferValue', offerValue);
     const test = this.localStorageService.getItem(
       'firstBuyersOfferValue'

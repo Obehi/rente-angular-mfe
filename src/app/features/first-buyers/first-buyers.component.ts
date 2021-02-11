@@ -1,10 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import {
-  FirstBuyersService,
-  FirstBuyersState
-} from '@features/first-buyers/first-buyers.service';
+import { FirstBuyersService } from '@features/first-buyers/first-buyers.service';
 import { AuthService } from '@services/remote-api/auth.service';
 import { flatMap } from 'rxjs/operators';
 
@@ -19,6 +16,7 @@ export class FirstBuyersComponent {
     income: new FormControl()
   });
   isLoading = false;
+  isLowIncome = false;
 
   constructor(
     private router: Router,
@@ -27,13 +25,17 @@ export class FirstBuyersComponent {
   ) {}
 
   showOffers() {
-    this.isLoading = true;
-    if (this.formGroup.get('income').value) {
-      this.firstBuyersService.setOffersValue({
-        outstandingDebt: null,
-        income: +this.formGroup.get('income').value
-      });
+    if (
+      Number(this.formGroup.get('income').value) < 200000 &&
+      !this.formGroup.get('outstandingDebt').value
+    ) {
+      this.isLowIncome = true;
+      return;
+    }
 
+    this.isLoading = true;
+
+    if (this.formGroup.get('income').value) {
       this.firstBuyersService.offerValue = {
         outstandingDebt: null,
         income: +this.formGroup.get('income').value
@@ -45,19 +47,15 @@ export class FirstBuyersComponent {
       }
     }
     if (this.formGroup.get('outstandingDebt').value) {
-      this.firstBuyersService.setOffersValue({
+      this.firstBuyersService.offerValue = {
         outstandingDebt: +this.formGroup.get('outstandingDebt').value,
         income: +this.formGroup.get('income').value
-      });
+      };
     }
-    const {
-      income,
-      outstandingDebt
-    } = this.firstBuyersService.getOffersValue();
     this.firstBuyersService
       .getAuthToken({
-        outstandingDebt: outstandingDebt,
-        income: income,
+        outstandingDebt: this.firstBuyersService.offerValue.outstandingDebt,
+        income: this.firstBuyersService.offerValue.income,
         country: 'NOR'
       })
       .pipe(
