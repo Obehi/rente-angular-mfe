@@ -149,7 +149,6 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
       // This is the authorization code that should be exchanged for an access token
       this.tinkCode = data.data;
 
-      console.log(`T response: ${data.data}`);
       this.logging.logger(
         this.logging.Level.Info,
         '2.1:TINK_LOGIN_SUCCESS',
@@ -435,7 +434,6 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
       );
 
       if (message.body) {
-        console.log('STATUS:', response.eventType);
         switch (response.eventType) {
           case BANKID_STATUS.BANKID_UNSTABLE:
             this.viewStatus.isBankIdUnstable = true;
