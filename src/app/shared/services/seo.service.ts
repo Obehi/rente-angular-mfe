@@ -19,11 +19,10 @@ export class SeoService {
       toBeRemoved.remove()
     })
 
-   
+   // Add coanonical link
     const link: HTMLLinkElement = this.doc.createElement('link');
     link.setAttribute('rel', 'canonical');
     this.doc.head.appendChild(link);
     link.setAttribute('href', this.doc.URL);
-    var linkars = Array.from(this.doc.head.getElementsByTagName('link'));
   }
 }
