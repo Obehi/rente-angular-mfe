@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { timer } from 'rxjs';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { locale } from '@config/locale/locale';
+import { SeoService } from '@services/seo.service';
 
 @Component({
   selector: 'rente-landing',
@@ -27,7 +28,7 @@ export class LandingComponent implements OnInit {
     return window.innerWidth < 600;
   }
 
-  constructor() {
+  constructor(private seoService: SeoService) {
     if (locale.includes('sv')) {
       this.isSweden = true;
     } else {
@@ -36,6 +37,7 @@ export class LandingComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.seoService.createLinkForCanonicalURL();
     const subscription = timer(1000, 1000).subscribe((t) => {
       this.time = t;
       if (t === 3) {

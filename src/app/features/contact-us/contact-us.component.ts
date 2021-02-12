@@ -16,6 +16,8 @@ import { Mask } from '@shared/constants/mask';
 import { locale } from '../../config/locale/locale';
 import { CustomLangTextService } from '@services/custom-lang-text.service';
 import { EnvService } from '@services/env.service';
+import { SeoService } from '@services/seo.service';
+
 @Component({
   selector: 'rente-contact-us',
   templateUrl: './contact-us.component.html',
@@ -32,10 +34,12 @@ export class ContactUsComponent implements OnInit {
     private router: Router,
     private snackBar: SnackBarService,
     public customLangTextService: CustomLangTextService,
-    private envService: EnvService
+    private envService: EnvService,
+    private seoService: SeoService
   ) {}
 
   ngOnInit() {
+    this.seoService.createLinkForCanonicalURL();
     this.contactUsForm = this.fb.group({
       name: ['', Validators.required],
       email: [

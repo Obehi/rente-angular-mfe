@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BankList, BankVo, MissingBankList } from '@shared/models/bank';
 import { ROUTES_MAP_NO } from '@config/routes-config';
 import { Router } from '@angular/router';
+import { SeoService } from '@services/seo.service';
 
 @Component({
   selector: 'rente-banks-guide',
@@ -17,13 +18,14 @@ export class BanksGuideComponent implements OnInit {
   options: any[];
   shouldDisplayBankList = false;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private seoService: SeoService) {}
 
   get isMobile(): boolean {
     return window.innerWidth < 600;
   }
 
   ngOnInit(): void {
+    this.seoService.createLinkForCanonicalURL();
     this.sortBanks();
     this.filterBank(this.searchStr);
     // this.options = Object.values(this.banksData).map(bank => bank).filter(bank => bank.name !=== 'SPAREBANK_1');

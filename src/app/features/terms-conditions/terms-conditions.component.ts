@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SeoService } from '@services/seo.service';
 
 @Component({
   selector: 'rente-terms-conditions',
@@ -6,7 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./terms-conditions.component.scss']
 })
 export class TermsConditionsComponent implements OnInit {
-  constructor() {}
+  constructor(private seoService: SeoService) {}
 
-  ngOnInit() {}
+  ngOnInit(): void {
+    this.seoService.createLinkForCanonicalURL();
+  }
 }

@@ -7,7 +7,7 @@ import { BankList, BankUtils, MissingBankList } from '@shared/models/bank';
 import { BankGuideInfo, BankLocationAddress } from '@shared/models/offers';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-
+import { SeoService } from '@services/seo.service';
 @Component({
   selector: 'rente-bank-guide-page',
   templateUrl: './bank-guide-page.component.html',
@@ -28,7 +28,8 @@ export class BankGuidePageComponent implements OnInit {
     private loansService: LoansService,
     private route: ActivatedRoute,
     private metaService: MetaService,
-    private titleService: TitleService
+    private titleService: TitleService,
+    private seoService: SeoService
   ) {}
 
   get bankHasInShort() {
@@ -42,6 +43,7 @@ export class BankGuidePageComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.seoService.createLinkForCanonicalURL();
     this.bankGuideLoading = true;
     const bankName = this.route.snapshot.params.id.toUpperCase();
     this.bank = BankUtils.getBankByName(bankName);

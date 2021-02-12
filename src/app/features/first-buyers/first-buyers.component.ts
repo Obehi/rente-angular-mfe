@@ -1,16 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { FirstBuyersService } from '@features/first-buyers/first-buyers.service';
 import { AuthService } from '@services/remote-api/auth.service';
 import { flatMap } from 'rxjs/operators';
+import { SeoService } from '@services/seo.service';
 
 @Component({
   selector: 'rente-first-buyers',
   templateUrl: './first-buyers.component.html',
   styleUrls: ['./first-buyers.component.scss']
 })
-export class FirstBuyersComponent {
+export class FirstBuyersComponent implements OnInit {
   formGroup: FormGroup = new FormGroup({
     outstandingDebt: new FormControl(),
     income: new FormControl()
@@ -20,8 +21,13 @@ export class FirstBuyersComponent {
   constructor(
     private router: Router,
     private firstBuyersService: FirstBuyersService,
-    private authService: AuthService
+    private authService: AuthService,
+    private seoService: SeoService
   ) {}
+
+  ngOnInit(): void {
+    this.seoService.createLinkForCanonicalURL();
+  }
 
   showOffers() {
     this.isLoading = true;
