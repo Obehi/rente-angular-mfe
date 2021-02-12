@@ -8,14 +8,14 @@ import {
 } from '../../shared/models/bank';
 import { Router } from '@angular/router';
 import { ROUTES_MAP } from '@config/routes-config';
-import { ErrorHandler, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { EnvService } from '@services/env.service';
 @Component({
   selector: 'rente-bank-select-variation',
   templateUrl: './bank-select.component.html',
   styleUrls: ['./bank-select.component.scss']
 })
-export class BankSelectNoComponent implements OnInit, ErrorHandler {
+export class BankSelectNoComponent implements OnInit {
   searchStr: string;
   banks: BankVo[];
   allBanks: BankVo[];
