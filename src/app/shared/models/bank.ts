@@ -266,7 +266,7 @@ export const eikaBanks: BankVo[] = [
     'https://hemnesparebank.no/aktuelt/bankid-paa-mobil'
   ),
   new BankVo(
-    'HIMLA (FANA SPAREBANK)',
+    'HIMLA_FANA_SB',
     'Himla (Fana Sparebank)',
     'himla.png',
     null,
