@@ -29,17 +29,6 @@ export class BankSelectNoComponent implements OnInit, ErrorHandler {
     this.filterBank(this.searchStr);
   }
 
-  // Workaround for bug. Cant click on banks in list. console error message: ChunkLoadError: Loading chunk 6 failed.
-  handleError(error: any): void {
-    const chunkFailedMessage = /Loading chunk [\d]+ failed/;
-    console.log('Handeling error');
-    console.log(error);
-    if (chunkFailedMessage.test(error.message)) {
-      console.log('error detected. Implement window.location.reload()');
-      // window.location.reload();
-    }
-  }
-
   sortBanks(): void {
     const sortedBanksAlphabetic = [
       ...BankList,
