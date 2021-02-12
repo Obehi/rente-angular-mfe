@@ -8,19 +8,20 @@ export class SeoService {
   constructor(@Inject(DOCUMENT) private doc) {}
 
   createLinkForCanonicalURL() {
-
-    var links = Array.from(this.doc.head.getElementsByTagName('link'));
+    const links = Array.from(this.doc.head.getElementsByTagName('link'));
 
     // remove previous canonical link elements
-    links.filter((link) => {
-     const element = link as HTMLElement;
-     return element.getAttribute('rel') === 'canonical' 
-    }).forEach( (link) => {
-      var toBeRemoved = link as HTMLElement;
-      toBeRemoved.remove();
-    })
+    links
+      .filter((link) => {
+        const element = link as HTMLElement;
+        return element.getAttribute('rel') === 'canonical';
+      })
+      .forEach((link) => {
+        const toBeRemoved = link as HTMLElement;
+        toBeRemoved.remove();
+      });
 
-   // Add coanonical link
+    // Add coanonical link
     const link: HTMLLinkElement = this.doc.createElement('link');
     link.setAttribute('rel', 'canonical');
     this.doc.head.appendChild(link);
