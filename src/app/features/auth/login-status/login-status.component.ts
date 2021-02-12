@@ -149,7 +149,6 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
       // This is the authorization code that should be exchanged for an access token
       this.tinkCode = data.data;
 
-      console.log(`T response: ${data.data}`);
       this.logging.logger(
         this.logging.Level.Info,
         '2.1:TINK_LOGIN_SUCCESS',
@@ -328,7 +327,6 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
           this.isTinkBank
         );
 
-        // this.sendUserDataTink(this.tinkCode)
         this.tinkCode ? this.sendUserDataTink(tinkCode) : this.sendUserData();
 
         this.resendDataAfterReconnect();
@@ -421,7 +419,6 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
         eventType: response['eventType'],
         bank: response['bank'],
         backendOneTimeToken: response['oneTimeToken'],
-        backendSessionId: response['sessionId'],
         backendclientId: response['clientId']
       };
       this.logging.logger(
@@ -436,7 +433,6 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
       );
 
       if (message.body) {
-        console.log('STATUS:', response.eventType);
         switch (response.eventType) {
           case BANKID_STATUS.BANKID_UNSTABLE:
             this.viewStatus.isBankIdUnstable = true;
@@ -581,7 +577,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
               undefined,
               this.isTinkBank
             );
-            this.router.navigate(['/dashboard/' + ROUTES_MAP.noLoan]);
+            this.router.navigate(['/' + ROUTES_MAP.noLoan]);
             break;
           case BANKID_STATUS.LOANS_PERSISTED:
             this.logging.logger(
@@ -666,8 +662,10 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
                           undefined,
                           this.isTinkBank
                         );
+                        console.log('thisthisthis');
                         this.router.navigate([
-                          '/dashboard/' + ROUTES_MAP.offers
+                          '/dashboard/' + ROUTES_MAP.offers,
+                          { state: { isInterestRateSet: true } }
                         ]);
                       }
                     }
@@ -683,7 +681,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
                       this.isTinkBank
                     );
                     this.localStorageService.setItem('noLoansPresent', true);
-                    this.router.navigate(['/dashboard/' + ROUTES_MAP.noLoan]);
+                    this.router.navigate(['/' + ROUTES_MAP.noLoan]);
                   }
                 });
               });

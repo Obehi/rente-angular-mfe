@@ -15,8 +15,11 @@
           <input formControlName="{{controlName}}"  matInput [type]="inputType"
                  currencyMask
                  [options]="{prefix:'', align: 'left', thousands: ' ', precision: 0}"
-                 autocomplete="off">
-        </mat-form-field>
+                 autocomplete="off" autofocus>
+                </mat-form-field>
+                <div class="field-message" *ngIf="controlName === 'savings' && formGroup.dirty && formGroup.errors?.loanToValueRatio">
+                  Beløpet er for lavt
+              </div>
         <mat-form-field class="text-white w-100" *ngIf="inputType === 'dropdown'">
           <mat-label>Velg</mat-label>
           <mat-select formControlName="{{controlName}}">

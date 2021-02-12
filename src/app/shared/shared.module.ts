@@ -42,6 +42,7 @@ import {
   OfferDetailsLangGenericComponent
 } from '../local-components/components-output';
 import { CustomLangTextService } from '@services/custom-lang-text.service';
+import { ChildDirective } from './directives/child.directive';
 
 const components = [
   HeaderLangGenericComponent,
@@ -93,9 +94,16 @@ const services = [
     ChipsAutocompleteComponent,
     AbsPipe,
     RoundPipe,
-    ThousandsSeprator
+    ThousandsSeprator,
+    ChildDirective
   ],
-  exports: [...components, AbsPipe, RoundPipe, ThousandsSeprator],
+  exports: [
+    ...components,
+    AbsPipe,
+    RoundPipe,
+    ThousandsSeprator,
+    ChildDirective
+  ],
   providers: [...services]
 })
 export class SharedModule {}

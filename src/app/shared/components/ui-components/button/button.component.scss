@@ -108,6 +108,17 @@ button.mat-primary-wide-landing {
   }
 }
 
+button.mat-primary-wide-landing-hollow {
+  background-color: white;
+  color: black;
+  border: 1px solid $primary;
+  height: 56px;
+  width: 80%;
+  @media (min-width: 600px) {
+    width: 320px;
+  }
+}
+
 button.mat-primary-wide-hollow {
   background-color: white;
   color: black;

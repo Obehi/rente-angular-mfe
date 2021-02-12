@@ -1,5 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  AbstractControl,
+  NgForm,
+  ValidatorFn,
+  ValidationErrors
+} from '@angular/forms';
 import { MatAutocompleteSelectedEvent, MatStepper } from '@angular/material';
 import { Router } from '@angular/router';
 import {
@@ -29,41 +36,58 @@ import {
   styleUrls: ['./initial-offers.component.scss']
 })
 export class InitialOffersComponent implements OnInit {
+  loanToValueRatioValidator: ValidatorFn = (
+    control: AbstractControl
+  ): ValidationErrors | null => {
+    const outstandingDebt = control.get('outstandingDebt').value;
+    const savings = control.get('savings').value;
+    console.log(outstandingDebt / (outstandingDebt + savings));
+    const isValid = outstandingDebt / (outstandingDebt + savings) > 0.85;
+    this.aboveLoanToValueRatioTreshold = isValid;
+    return isValid ? { loanToValueRatio: isValid } : null;
+  };
+  aboveLoanToValueRatioTreshold = true;
   editMode = false;
   banksData = [...BankList, ...MissingBankList];
   bank;
   offers;
-  formGroup: FormGroup = new FormGroup({
-    outstandingDebt: new FormControl(),
-    savings: new FormControl(),
-    income: new FormControl(),
-    otherDebt: new FormControl(),
-    memberships: new FormControl(),
-    age: new FormControl(),
-    firstLoan: new FormControl()
-  });
+  formGroup: FormGroup = new FormGroup(
+    {
+      savings: new FormControl('', this.forbiddenNameValidator(/bob/i)),
+      outstandingDebt: new FormControl(),
+      income: new FormControl(),
+      otherDebt: new FormControl(),
+      memberships: new FormControl(),
+      age: new FormControl(),
+      firstLoan: new FormControl(),
+      localBanks: new FormControl()
+    },
+    { validators: this.loanToValueRatioValidator, updateOn: 'blur' }
+  );
   public allMemberships: MembershipTypeDto[] = [];
   selectedIndex = 1;
   public filteredMemberships: Observable<MembershipTypeDto[]>;
   public memberships: MembershipTypeDto[] = [];
   properties = [
     {
-      icon: 'account_balance',
-      label: 'Lånebeløp',
-      inputType: 'tel',
-      controlName: 'outstandingDebt',
-      shouldDisplay: () => {
-        return this.outstandingDebtControl.value;
-      }
-    },
-    {
       icon: 'monetization_on',
-      iconPath: '../../../../assets/icons/money-light-blue.svg',
+      iconPath: '../../../../assets/icons/wallet-light-blue.svg',
       label: 'Egenkapital',
       inputType: 'tel',
       controlName: 'savings',
       shouldDisplay: () => {
         return true;
+      }
+    },
+    {
+      icon: 'account_balance',
+      label: 'Lånebeløp',
+      inputType: 'tel',
+      controlName: 'outstandingDebt',
+      shouldDisplay: () => {
+        return (
+          this.outstandingDebtControl.value || this.outstandingDebtControl.dirty
+        );
       }
     },
     {
@@ -86,17 +110,6 @@ export class InitialOffersComponent implements OnInit {
       }
     },
     {
-      icon: 'card_membership',
-      iconPath: '../../../../assets/icons/bank-card-light-blue.svg',
-      label: 'Medlemskap',
-      inputType: 'autocomplete',
-      controlName: 'memberships',
-      shouldDisplay: () => {
-        return true;
-      },
-      options: this.allMemberships
-    },
-    {
       icon: 'accessibility',
       iconPath: '../../../../assets/icons/person-light-blue.svg',
       label: 'Alder',
@@ -115,13 +128,47 @@ export class InitialOffersComponent implements OnInit {
           label: '34 eller yngre'
         }
       ]
+    }
+  ];
+
+  extraProperties = [
+    {
+      icon: 'card_membership',
+      iconPath: '../../../../assets/icons/bank-card-light-blue.svg',
+      label: 'Medlemskap',
+      inputType: 'autocomplete',
+      controlName: 'memberships',
+      shouldDisplay: () => {
+        return true;
+      },
+      options: this.allMemberships
     },
     {
       icon: 'apartment',
       iconPath: '../../../../assets/icons/house-light-blue.svg',
-      label: 'Første bolig',
+      label: 'Første bolig?',
       inputType: 'dropdown',
       controlName: 'firstLoan',
+      shouldDisplay: () => {
+        return true;
+      },
+      options: [
+        {
+          value: true,
+          label: 'Ja'
+        },
+        {
+          value: false,
+          label: 'Nei'
+        }
+      ]
+    },
+    {
+      icon: 'apartment',
+      iconPath: '../../../../assets/icons/local-bank.png',
+      label: 'Vis lokale tilbud',
+      inputType: 'dropdown',
+      controlName: 'localBanks',
       shouldDisplay: () => {
         return true;
       },
@@ -196,12 +243,15 @@ export class InitialOffersComponent implements OnInit {
   get ageControl() {
     return this.formGroup.get('age');
   }
+  get localBanks() {
+    return this.formGroup.get('localBanks');
+  }
 
   get firstLoanControl() {
     return this.formGroup.get('firstLoan');
   }
 
-  subscribeToControllers() {
+  subscribeToControllers(): void {
     combineLatest([
       this.outstandingDebtControl.valueChanges.pipe(
         distinctUntilChanged(),
@@ -238,6 +288,13 @@ export class InitialOffersComponent implements OnInit {
           return this.firstBuyersAPIService.updateBirthdate(val);
         })
       ),
+      this.localBanks.valueChanges.pipe(
+        distinctUntilChanged(),
+        debounceTime(500),
+        switchMap((val) => {
+          return this.firstBuyersAPIService.updatelocalOffers(val);
+        })
+      ),
       this.firstLoanControl.valueChanges.pipe(
         distinctUntilChanged(),
         debounceTime(500),
@@ -245,12 +302,12 @@ export class InitialOffersComponent implements OnInit {
           return this.firstBuyersAPIService.updateQualify4Blu(val);
         })
       )
-    ]).subscribe((_) => {
+    ]).subscribe(() => {
       this.formGroup.markAsDirty();
     });
   }
 
-  selected(event: MatAutocompleteSelectedEvent) {
+  selected(event: MatAutocompleteSelectedEvent): void {
     if (this.memberships.indexOf(event.option.value) === -1) {
       this.memberships.push(event.option.value);
       this.updateMemberships();
@@ -282,6 +339,20 @@ export class InitialOffersComponent implements OnInit {
       this.firstLoanFilled() &&
       this.memberships.length
     );
+  }
+
+  isErrorState(
+    control: AbstractControl | null,
+    form: FormGroup | NgForm | null
+  ): boolean {
+    return !!(control && control.invalid && (control.dirty || control.touched));
+  }
+
+  forbiddenNameValidator(nameRe: RegExp): ValidatorFn {
+    return (control: AbstractControl): { [key: string]: any } | null => {
+      const forbidden = nameRe.test(control.value);
+      return { forbiddenName: true };
+    };
   }
 
   selectAge(aged: boolean) {

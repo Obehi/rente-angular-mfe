@@ -1,25 +1,6 @@
 @import "../../../../../styles/theme/colors";
 
 
-/* ::ng-deep .cdk-overlay-pane {
-  width: calc(100%) !important;
-  margin: auto !important;
-  transform: unset !important;
-  left: 0 !important;
-  position: relative !important;
-  top: 0 !important;
-  //min-height: 500px !important;
-} */
-
-/* ::ng-deep .mat-select-panel {
-  width: calc(100% - 40px) !important;
-  min-width: calc(100% - 40px) !important;
-  max-height: 60% !important;
-  position: absolute !important;
-  left: 20px !important;
-  margin-top: 40px !important;
-} */
-
 @media(max-width: 600px) {
   ::ng-deep .cdk-overlay-pane {
     transform: unset !important;
@@ -27,7 +8,6 @@
     top: 100px !important;
     position: absolute !important;
     min-width: 100% !important;
-    //min-height: 500px !important;
   }
 
   ::ng-deep .cdk-overlay-transparent-backdrop, .cdk-overlay-transparent-backdrop.cdk-overlay-backdrop-showing {
@@ -40,6 +20,12 @@
   ::ng-deep .mat-select-panel {
     min-width: calc(100% - 40px) !important;
   }
+}
+
+.field-message {
+  color: $red;
+  position: absolute;
+  top: 137px;
 }
 
 
@@ -55,6 +41,10 @@
   }
   .center {
     margin: auto;
+  }
+
+  ::ng-deep .mat-form-field {
+    position: relative;
   }
 
 

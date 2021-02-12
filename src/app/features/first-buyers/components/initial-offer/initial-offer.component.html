@@ -50,6 +50,7 @@
 
   <rente-button
     color="primary" type="raised"
+    [nestedClass]="bank?.name"
     [href]="offer.bankInfo.transferUrl || offer.bankInfo.url"
         >Få tilbud fra banken
   </rente-button>

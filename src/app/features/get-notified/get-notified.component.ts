@@ -2,7 +2,8 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BankVo } from '../../shared/models/bank';
 import { ROUTES_MAP } from '@config/routes-config';
-
+import { GetNotifiedDialogComponent } from './getNotifiedDialogComponent/getNotifiedDialogComponent.component';
+import { MatDialog } from '@angular/material/dialog';
 import { MatAutocomplete } from '@angular/material';
 import {
   FormGroup,
@@ -47,7 +48,8 @@ export class GetNotifiedComponent implements OnInit {
     private contactService: ContactService,
     private router: Router,
     private snackBar: SnackBarService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private dialog: MatDialog
   ) {
     // state.bank is potentially sent through routing
     if (window.history.state.bank) {
@@ -112,11 +114,7 @@ export class GetNotifiedComponent implements OnInit {
     this.contactService.sendMissingBank(missingBankData).subscribe(
       (_) => {
         this.isLoading = false;
-        this.router.navigate(['/']);
-        this.snackBar.openSuccessSnackBar(
-          'Du får beskjed når din bank er tilgjengelig',
-          1.2
-        );
+        this.openPopupDialog();
       },
       (err) => {
         this.isLoading = false;
@@ -144,5 +142,9 @@ export class GetNotifiedComponent implements OnInit {
     return this.allBanks.filter((bank) =>
       bank.name.toLowerCase().includes(filterValue)
     );
+  }
+
+  public openPopupDialog(): void {
+    this.dialog.open(GetNotifiedDialogComponent);
   }
 }

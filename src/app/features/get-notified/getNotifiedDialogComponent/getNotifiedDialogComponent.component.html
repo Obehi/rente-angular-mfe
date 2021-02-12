@@ -1,0 +1,19 @@
+<mat-icon (click)="onClose()" class="close-modal">close</mat-icon>
+
+<div class="top">
+<h3> Takk! Da gir vi deg beskjed </h3>
+
+<p>Prøv gjerne vår boliglånskalkulator i mellomtiden for å finne beste tilbud</p>
+<rente-button class="button" color="primary-wide-landing" [routerLink]="'/boliglanskalkulator'" (click)="onClose()">
+  Boligkalkulator
+</rente-button>
+
+
+</div>
+
+
+  <div class="bottom">
+    <rente-button color="primary-hollow" (click)="onClose()">
+      Lukk
+    </rente-button>
+  </div>

@@ -1,187 +1,7 @@
 <div class ="outer-bg">
 <div class="first-buyers-content-blue px-3 pt-3">
   <form [formGroup]="formGroup" class="p-0 border-0">
-   <!--  <mat-horizontal-stepper [disableRipple]="true" [selectedIndex]="editMode ? selectedIndex : null"
-                            #stepper>
-      <mat-step aria-labelledby="disabled" [editable]="false" [stepControl]="outstandingDebtControl"
-                [completed]="outstandingDebtControl?.value"
-                state="debt">
-      </mat-step>
-      <mat-step [aria-labelledby]="editMode ? '' : 'disabled'" [stepControl]="savingsControl"
-                [completed]="savingsControl?.value" state="savings">
-        <div *ngIf="editMode">
-          <rente-input-flow icon="monetization_on" title="Egenkapital" description="Det trengs egenkapital for å kjøpe bolig.
-Hvor mye egenkapital har du?"
-                            (nextStep)="nextStep()"
-                            (exitEditMode)="toggleEditMode()"
-                            [formGroup]="formGroup"
-                            [controlName]="'savings'"></rente-input-flow>
-
-        </div>
-      </mat-step>
-      <mat-step [aria-labelledby]="editMode ? '' : 'disabled'" [stepControl]="incomeControl"
-                [completed]="incomeControl?.value" state="income" *ngIf="incomeStepShown">
-        <div *ngIf="editMode">
-          <rente-input-flow icon="point_of_sale" title="Inntekt" description="Bankene kan i de fleste tilfeller
-ikke gi mer en 5x inntekt. Hva er
-din inntekt:"
-                            (nextStep)="nextStep()"
-                            (exitEditMode)="toggleEditMode()"
-                            [chips]="incomeChips"
-                            [formGroup]="formGroup"
-                            [controlName]="'income'"></rente-input-flow>
-        </div>
-      </mat-step>
-      <mat-step [aria-labelledby]="editMode ? '' : 'disabled'" [stepControl]="otherDebtControl"
-                [completed]="otherDebtControl?.value" state="otherDebt">
-        <div *ngIf="editMode">
-          <rente-input-flow icon="toll" title="Annen gjeld" description="Annen gjeld, som for eksempel
-studielån, har betydning for hvor mye du
-kan låne. Hvor mye annen gjeld har du?"
-                            (nextStep)="nextStep()"
-                            (exitEditMode)="toggleEditMode()"
-                            [chips]="otherDebtChips"
-                            [formGroup]="formGroup"
-                            [controlName]="'otherDebt'"></rente-input-flow>
-        </div>
-      </mat-step>
-
-      <mat-step [aria-labelledby]="editMode ? '' : 'disabled'" [stepControl]="membershipsControl"
-                [completed]="memberships.length >= 1" state="memberships">
-        <div *ngIf="editMode">
-          <div class="head">
-            <div>
-              <mat-icon color="primary" class="icon">card_membership</mat-icon>
-              <span class="title">Medlemskap</span>
-            </div>
-            <div class="description my-3">
-              Du kan få bedre rente med medlemskap
-              i en interesseorganisasjonen
-            </div>
-          </div>
-          <div class="chip w-100 text-center p-2 mt-2"
-               [class.active]="selectedFeaturedMemberships.indexOf(membership) !== -1"
-               (click)="toggleFeaturedMemberships(membership)" *ngFor="let membership of featuredMemberships"
-          >
-            <span *ngIf="membership">{{membership.label}}</span>
-          </div>
-          <mat-form-field class="white-input w-100 mt-2" appearance="outline">
-            <input
-              type="text"
-              placeholder="+ Legg til"
-              matInput
-              formControlName="memberships"
-              [matAutocomplete]="auto"
-            />
-            <mat-autocomplete
-              #auto="matAutocomplete"
-              (optionSelected)="selected($event)"
-            >
-              <mat-option
-                *ngFor="let membership of filteredMemberships | async"
-                [value]="membership"
-              >
-                {{ membership.label }}
-              </mat-option>
-            </mat-autocomplete>
-          </mat-form-field>
-          <ng-container *ngFor="let membership of memberships">
-            <div class="d-flex justify-content-between mb-4 small-chip-container">
-              <div class="chip chip-small text-center p-1">
-                <span *ngIf="membership">{{membership.label}}</span>
-              </div>
-              <mat-icon color="primary" (click)="deleteMembership(membership)">delete</mat-icon>
-            </div>
-
-          </ng-container>
-
-          <button mat-raised-button class="next-step w-100 py-2" matStepperNext>
-            Neste
-          </button>
-          <button mat-stroked-button class="edit-mode w-100 py-2 mt-2 mb-4" (click)="toggleEditMode()">
-            Hopp over og se tilbud
-          </button>
-        </div>
-      </mat-step>
-      <mat-step [aria-labelledby]="editMode ? '' : 'disabled'" state="age" [stepControl]="ageControl"
-                [completed]="ageFilled()">
-        <div *ngIf="editMode">
-          <div class="head">
-            <div>
-              <mat-icon color="primary" class="icon">accessibility</mat-icon>
-              <span class="title">Alder</span>
-            </div>
-            <div class="description my-3">
-              Alderen din har stor betydning for
-              hvilken rente bankene tilbyr
-            </div>
-          </div>
-          <div class="d-flex justify-content-around">
-            <div class="col-4 chip text-center p-4 mt-2"
-                 [ngClass]="{active : isBoolean(ageControl.value) && !ageControl.value}" (click)="selectAge(false)">
-              <span> 34 eller yngre </span>
-            </div>
-            <div class="col-4 chip text-center p-4 mt-2"
-                 [ngClass]="{active :  isBoolean(ageControl.value) && ageControl.value}" (click)="selectAge(true)">
-              <span> 35 eller eldre </span>
-            </div>
-          </div>
-          <div class="head mt-3">
-            <div>
-              <mat-icon color="primary" class="icon">apartment</mat-icon>
-              <span class="title">Førstegangskjøpende</span>
-            </div>
-            <div class="description my-3">
-              Mange banker gir ekstra god rente til de
-              som kjøper bolig for første gang. Skal
-              du kjøpe din første bolig?
-            </div>
-          </div>
-          <div class="d-flex justify-content-around">
-            <div class="col-4 chip text-center p-4 mt-2"
-                 [ngClass]="{active : isBoolean(firstLoanControl.value) && firstLoanControl.value}"
-                 (click)="selectFirstLoan(true)">
-              <span> Ja </span>
-            </div>
-            <div class="col-4 chip text-center p-4 mt-2"
-                 [ngClass]="{active : isBoolean(firstLoanControl.value) && !firstLoanControl.value}"
-                 (click)="selectFirstLoan(false)">
-              <span> Nei </span>
-            </div>
-          </div>
-          <button mat-raised-button class="next-step w-100 py-2 my-4" (click)="toggleEditMode()">
-            Ferdig
-          </button>
-        </div>
-      </mat-step>
-      <mat-step [aria-labelledby]="'disabled'" state="firstLoan" aria-labelledby="disabled"
-                [stepControl]="firstLoanControl"
-                [completed]="firstLoanFilled()">
-      </mat-step>
-      <ng-template matStepperIcon="debt">
-        <mat-icon>account_balance</mat-icon>
-      </ng-template>
-      <ng-template matStepperIcon="savings">
-        <mat-icon>monetization_on</mat-icon>
-      </ng-template>
-      <ng-template matStepperIcon="memberships">
-        <mat-icon>card_membership</mat-icon>
-      </ng-template>
-      <ng-template matStepperIcon="income">
-        <mat-icon>point_of_sale</mat-icon>
-      </ng-template>
-      <ng-template matStepperIcon="otherDebt">
-        <mat-icon>toll</mat-icon>
-      </ng-template>
-      <ng-template matStepperIcon="age">
-        <mat-icon>accessibility</mat-icon>
-      </ng-template>
-      <ng-template matStepperIcon="firstLoan">
-        <mat-icon>apartment</mat-icon>
-      </ng-template>
-
-    </mat-horizontal-stepper>
- -->
+  
     <div *ngFor="let property of properties">
       <rente-property-input *ngIf="property.shouldDisplay()" [icon]="property.icon" [formGroup]="formGroup"
                             [label]="property.label"
@@ -192,65 +12,40 @@ kan låne. Hvor mye annen gjeld har du?"
                             [memberships]="allMemberships"
                             (selectedMemberships)="applyMemberships($event)"></rente-property-input>
     </div>
-    <div class="w-100 d-flex justify-content-end">
-      <rente-button class="center vertical-margin" color="primary" [disabled]="!formGroup.dirty" (click)="updateNewOffers()">Oppdater tilbud</rente-button>
-    </div>
 
-   <!--  <ng-container *ngIf="!editMode">
-      <ng-container *ngIf="allMemberships.length;else loading">
-
-
-          <div *ngFor="let property of properties">
+    <div class="top-accordion mt-3">
+      <mat-accordion>
+        <mat-expansion-panel [expanded]=" editMode">
+          <mat-expansion-panel-header>
+            <p>
+              <b>
+                Flere valg
+              </b>
+            </p>
+          </mat-expansion-panel-header>
+          <div *ngFor="let property of extraProperties">
             <rente-property-input *ngIf="property.shouldDisplay()" [icon]="property.icon" [formGroup]="formGroup"
                                   [label]="property.label"
                                   [controlName]="property.controlName"
                                   [inputType]="property.inputType"
                                   [options]="property.options"
                                   [memberships]="allMemberships"
+                                  [iconPath]="property.iconPath"
                                   (selectedMemberships)="applyMemberships($event)"></rente-property-input>
           </div>
+          <div class="accordion-bottom"></div>
+        </mat-expansion-panel>
 
-          <div class="center">
-            <rente-button color="primary" 
-            [disabled]="!formGroup.dirty"
-            (click)="updateNewOffers()">Oppdater tilbud</rente-button>
-          </div>
+      </mat-accordion>
+      </div>
+      
+    <div class="w-100 d-flex justify-content-end">
+      <rente-button class="center vertical-margin" color="primary" [disabled]="!formGroup.dirty || aboveLoanToValueRatioTreshold" (click)="updateNewOffers()">Oppdater tilbud</rente-button>
+    </div>
 
-        <div class="top-accordion mt-3">
-          <mat-accordion>
-            <mat-expansion-panel [expanded]="!editMode">
-              <mat-expansion-panel-header>
-                <p>
-                  <b>
-                    Lukk:
-                  </b>
-                </p>
-              </mat-expansion-panel-header>
-              <div *ngFor="let property of properties">
-                <rente-property-input *ngIf="property.shouldDisplay()" [icon]="property.icon" [formGroup]="formGroup"
-                                      [label]="property.label"
-                                      [controlName]="property.controlName"
-                                      [inputType]="property.inputType"
-                                      [options]="property.options"
-                                      [memberships]="allMemberships"
-                                      (selectedMemberships)="applyMemberships($event)"></rente-property-input>
-              </div>
-              <div class="w-100 d-flex justify-content-end">
-                <rente-button color="primary" [disabled] (click)="updateNewOffers()">Oppdater tilbud</rente-button>
-              </div>
-            </mat-expansion-panel>
-
-          </mat-accordion>
-        </div> 
-      </ng-container>
-    </ng-container> 
-    <rente-button class="d-block mt-3" color="primary-wide-landing" *ngIf="!editMode && !isAllDataFilled()"
-                  (click)="editMode = !editMode">
-      Fullfør
-      boliglånskalkulatoren
-    </rente-button> -->
+   
   </form>
-  <ng-container *ngIf="!editMode && offers?.length">
+  <ng-container *ngIf="offers?.length">
     <ng-container *ngIf="!offersLoading;else loading">
       <div *ngFor="let offer of offers" class="mt-3">
         <rente-initial-offer [offer]="offer"></rente-initial-offer>

@@ -1,6 +1,3 @@
-@import "../../../styles/theme/_colors.scss";
-
-
 h2,
 h4 {
   text-align: center;
@@ -14,7 +11,7 @@ h4 {
 }
 rente-button {
   text-align: center;
-  margin-top: 20px;
+  margin-top: 70px;
   display: block;
 }
 
@@ -23,20 +20,4 @@ form {
   div {
     height: 70px;
   }
-}
-
-.calculator-promotion {
-  margin: auto;
-  margin-top: 30px;
-  h4 {
-    text-align: center;
-    margin-top: 20px;
-    margin-bottom: 20px;
-
-    a {
-      color: $primary;
-    }
-  }
-
-  
 }

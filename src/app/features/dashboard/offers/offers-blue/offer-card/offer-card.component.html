@@ -25,26 +25,7 @@
     </div>
     <div class="the-offer-body">
         <div class="offer-top">
-            <!--
-            <ul class="info-table">
-                <li>
-                    <p *ngIf="offer.totalSavings > 0; else noTotalSavings">
-                        {{ offer.totalSavings | abs | number }},-
-                    </p>
-                    <ng-template #noTotalSavings>
-                        <p>0,-</p>
-                    </ng-template>
-                </li>
-                <li>
-                    <p *ngIf="offer.savingsFirstYear > 0; else noTotalSavings">
-                        {{ offer.savingsFirstYear | abs | number }},-
-                    </p>
-                    <ng-template #noSavingsFirstYear>
-                        <p>0,-</p>
-                    </ng-template>
-                </li>
-            </ul>
-            -->
+
             <p i18n=“title|offer-card@@offer.card.title” class="save-text">Du sparer</p>
             <div class="split">
                
@@ -124,6 +105,7 @@
                 </rente-button>
 
                 <rente-button
+                child childClass="{{offer.bankInfo.name}}"
                 i18n=“get-offer|offer-card@@offer.card.getOffer”
                 [disabled]="offer.bankInfo.partner == false" color="primary-medium" type="raised"
                     (click)="openNewOfferDialog(offer)">Få tilbud fra {{ getbankNameOrDefault(offer) }}!

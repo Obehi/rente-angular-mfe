@@ -61,6 +61,7 @@ export const API_URL_MAP = {
     newOffers: '/new-offers',
     loanSubType: '/loanSubType',
     loanType: '/loanType',
+    localOffers: '/localOffers',
     remainingYears: '/remainingYears',
     outstandingDebt: '/outstandingDebt',
     preferences: '/preferences',
