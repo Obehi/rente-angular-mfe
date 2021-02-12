@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { BankList, BankVo, MissingBankList } from '@shared/models/bank';
+import {
+  BankList,
+  BankVo,
+  MissingBankList,
+  LegacyBanks
+} from '@shared/models/bank';
 import { ROUTES_MAP_NO } from '@config/routes-config';
 import { Router } from '@angular/router';
 import { SeoService } from '@services/seo.service';
@@ -12,7 +17,7 @@ import { SeoService } from '@services/seo.service';
 export class BanksGuideComponent implements OnInit {
   banks: BankVo[];
   allBanks: BankVo[];
-  banksData = [...BankList, ...MissingBankList];
+  banksData = [...BankList, ...MissingBankList, ...LegacyBanks];
   searchStr = '';
   sparebankIsClicked = false;
   options: any[];
@@ -46,7 +51,8 @@ export class BanksGuideComponent implements OnInit {
   sortBanks() {
     const sortedBanksAlphabetic = [
       ...BankList,
-      ...MissingBankList
+      ...MissingBankList,
+      ...LegacyBanks
     ].sort((a, b) => (a.label > b.label ? 1 : b.label > a.label ? -1 : 0));
     const dnb = 'DNB';
     const sparebank = 'SPAREBANK_1';
