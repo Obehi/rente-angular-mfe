@@ -51,7 +51,14 @@
         >Gi meg lyd når på plass!
       </rente-button>
     </form>
-  </div>
+
+    <div class="calculator-promotion">
+      <h4>eller prøv boligkalkulatoren</h4>
+      <rente-button color="primary-wide-landing" [routerLink]="'/boliglanskalkulator'">
+        Finn beste tilbud
+      </rente-button>
+    </div>
+</div>
 
   <div class="loading" *ngIf="!missingBankForm">
     <mat-spinner [diameter]="48" [strokeWidth]="4"></mat-spinner>
