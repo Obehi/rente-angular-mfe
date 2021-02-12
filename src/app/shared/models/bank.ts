@@ -299,17 +299,6 @@ export const eikaBanks: BankVo[] = [
     'https://hsbank.no/aktuelt/bankid-paa-mobil'
   ),
   new BankVo(
-    'HONEFOSS_SB',
-    'Hønefoss Sparebank',
-    'honefoss.png',
-    null,
-    true,
-    true,
-    false,
-    false,
-    'https://honefossbank.no/aktuelt/bankid-paa-mobil'
-  ),
-  new BankVo(
     'JERNBANEPERSONALETS',
     'Jernbanepersonalets Bank og Forsikring',
     'jernbane.png',
@@ -418,17 +407,6 @@ export const eikaBanks: BankVo[] = [
     false,
     false,
     'https://odal-sparebank.no/aktuelt/bankid-paa-mobil'
-  ),
-  new BankVo(
-    'OFOTEN_SB',
-    'Ofoten Sparebank',
-    'ofoten.png',
-    null,
-    true,
-    true,
-    false,
-    false,
-    'https://ofotensparebank.no/aktuelt/bankid-paa-mobil'
   ),
   new BankVo(
     'OPPDALSBANKEN',
@@ -752,17 +730,6 @@ export const eikaBanks: BankVo[] = [
   new BankVo(
     'SPAREBANK_68',
     'Sparebank 68 Grader Nord',
-    '68nord.png',
-    null,
-    true,
-    true,
-    false,
-    false,
-    'https://68nord.no//aktuelt/bankid-paa-mobil'
-  ),
-  new BankVo(
-    'SPAREBANK_68',
-    'Harstad Sparebank',
     '68nord.png',
     null,
     true,
@@ -1366,16 +1333,48 @@ export const TinkBanks: BankVo[] = [
   )
 ];
 
+// These banks have merged into other banks. see RM-415 @ Jira
+export const LegacyBanks: BankVo[] = [
+  new BankVo(
+    'SKUE_SB',
+    'Hønefoss Sparebank',
+    'skue.png',
+    null,
+    true,
+    true,
+    false,
+    false,
+    'https://skuesparebank.no/aktuelt/bankid-paa-mobil'
+  ),
+  new BankVo(
+    'SPAREBANK_68',
+    'Ofoten Sparebank',
+    '68nord.png',
+    null,
+    true,
+    true,
+    false,
+    false,
+    'https://68nord.no//aktuelt/bankid-paa-mobil'
+  ),
+  new BankVo(
+    'SPAREBANK_68',
+    'Harstad Sparebank',
+    '68nord.png',
+    null,
+    true,
+    true,
+    false,
+    false,
+    'https://68nord.no//aktuelt/bankid-paa-mobil'
+  )
+];
+
 export class BankUtils {
   static getBankByName(bankName: string): BankVo {
     const name = bankName.toUpperCase();
     const banks = [...BankList, ...MissingBankList, ...TinkBanks];
     for (const bank of banks) {
-      if (bank.name === name) {
-        return bank;
-      }
-    }
-    for (const bank of MissingBankList) {
       if (bank.name === name) {
         return bank;
       }

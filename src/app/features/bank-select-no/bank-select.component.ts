@@ -3,7 +3,8 @@ import {
   BankVo,
   BankList,
   MissingBankList,
-  TinkBanks
+  TinkBanks,
+  LegacyBanks
 } from '../../shared/models/bank';
 import { Router } from '@angular/router';
 import { ROUTES_MAP } from '@config/routes-config';
@@ -28,21 +29,12 @@ export class BankSelectNoComponent implements OnInit, ErrorHandler {
     this.filterBank(this.searchStr);
   }
 
-  // Workaround for bug. Cant click on banks in list. console error message: ChunkLoadError: Loading chunk 6 failed.
-  handleError(error: any): void {
-    const chunkFailedMessage = /Loading chunk [\d]+ failed/;
-    console.log('Handeling error');
-    console.log(error);
-    if (chunkFailedMessage.test(error.message)) {
-      console.log('error detected. Implement window.location.reload()');
-      // window.location.reload();
-    }
-  }
-
   sortBanks(): void {
     const sortedBanksAlphabetic = [
       ...BankList,
-      ...MissingBankList
+      ...MissingBankList,
+      ...TinkBanks,
+      ...LegacyBanks
     ].sort((a, b) => (a.label > b.label ? 1 : b.label > a.label ? -1 : 0));
 
     const dnb = 'DNB';
