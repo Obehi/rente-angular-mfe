@@ -15,7 +15,7 @@ import { EnvService } from '@services/env.service';
   templateUrl: './bank-select.component.html',
   styleUrls: ['./bank-select.component.scss']
 })
-export class BankSelectNoComponent implements OnInit, ErrorHandler {
+export class BankSelectNoComponent implements OnInit {
   searchStr: string;
   banks: BankVo[];
   allBanks: BankVo[];
@@ -33,7 +33,6 @@ export class BankSelectNoComponent implements OnInit, ErrorHandler {
     const sortedBanksAlphabetic = [
       ...BankList,
       ...MissingBankList,
-      ...TinkBanks,
       ...LegacyBanks
     ].sort((a, b) => (a.label > b.label ? 1 : b.label > a.label ? -1 : 0));
 
