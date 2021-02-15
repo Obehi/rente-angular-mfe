@@ -33,7 +33,6 @@ export class BankSelectNoComponent implements OnInit {
     const sortedBanksAlphabetic = [
       ...BankList,
       ...MissingBankList,
-      ...TinkBanks,
       ...LegacyBanks
     ].sort((a, b) => (a.label > b.label ? 1 : b.label > a.label ? -1 : 0));
 
