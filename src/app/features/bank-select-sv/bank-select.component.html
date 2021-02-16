@@ -3,6 +3,11 @@
         Vi gör ingen kreditupplysning - Hämtar endast dina bolånedetaljer
     </h3>
 
+    <p> Finner du ikke banken din?   <a [routerLink]="['/fabesked']">
+        Trykk her
+      </a>
+    </p>
+
     <h3 *ngIf="isSuccess == true">
         Inloggning lyckades. Stort tack!
     </h3>
