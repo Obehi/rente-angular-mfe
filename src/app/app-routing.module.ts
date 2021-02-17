@@ -9,7 +9,6 @@ import { AuthSvMockupComponent } from '@features/auth-sv-mockup/auth-sv-mockup.c
 import { ContactUsComponent } from '@features/contact-us/contact-us.component';
 import { AboutCookiesComponent } from '@features/cookies/cookies.component';
 import { EmailPreferencesComponent } from '@features/email-preferences/email-preferences.component';
-import { GetNotifiedComponent } from '@features/get-notified/get-notified.component';
 import { LandingComponent } from '@features/landing/landing.component';
 import { PageNotFoundComponent } from '@features/page-not-found/page-not-found.component';
 import { PrivacyPolicyComponent } from '@features/privacy-policy/privacy-policy.component';
@@ -17,6 +16,7 @@ import { PrivacyComponent } from '@features/privacy/privacy.component';
 import { TermsConditionsComponent } from '@features/terms-conditions/terms-conditions.component';
 import { customMeta, defaultMeta } from './config/routes-config';
 import { InitConfirmationLangGenericComponent } from './local-components/components-output';
+import { GetNotifiedLangGenericComponent } from './local-components/components-output';
 import { EmailRedirectNOComponent } from '@features/email-redirect/email-redirect-no/email-redirect-no.component';
 import { EmailRedirectSVComponent } from '@features/email-redirect/email-redirect-sv/email-redirect-sv.component';
 import { AuthGuard } from '@shared/guards/auth.guard';
@@ -176,7 +176,7 @@ const commonRoutes: Routes = [
   },
   {
     path: ROUTES_MAP.getNotified,
-    component: GetNotifiedComponent,
+    component: GetNotifiedLangGenericComponent,
     data: {
       title: customMeta.faabeskjed.title,
       meta: {

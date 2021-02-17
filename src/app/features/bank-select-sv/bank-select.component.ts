@@ -47,7 +47,7 @@ export class BankSelectSvComponent implements OnInit {
   private intervalSubscription: Subscription;
   public isSuccess = false;
   public tinkUrl: SafeUrl;
-
+  public routesMap = ROUTES_MAP;
   constructor(
     private router: Router,
     private authService: AuthService,
@@ -334,5 +334,9 @@ export class BankSelectSvComponent implements OnInit {
       '3.7: SEND_MESSAGE_TO_SOCKET_WITH_TINK_CODE',
       { tinkCode: tinkCode, crawlerEndpoint: API_URL_MAP.tinkSendMessageUrl }
     );
+  }
+
+  goToGetNotified() {
+    this.router.navigate([ROUTES_MAP.getNotified]);
   }
 }
