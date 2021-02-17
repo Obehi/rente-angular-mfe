@@ -103,7 +103,7 @@ export class GetNotifiedSvComponent implements OnInit {
         this.router.navigate(['/']);
         this.snackBar.openSuccessSnackBar(
           'Du får beskjed når din bank er tilgjengelig',
-          1.2
+          3.2
         );
       },
       (err) => {
