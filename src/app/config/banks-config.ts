@@ -16,7 +16,7 @@ const BANKS_DATA_NO = {
   },
   ARENDAL_SK: {
     name: 'ARENDAL_SK',
-    img: '../../assets/img/banks-logo/square/EikaNewGreenThree.png',
+    img: '../../assets/img/banks-logo/square/eika_new_green_three.png',
     imgCircle: '../../assets/img/banks-logo/round/eika_new_green_three.png'
   },
   ASKIM_SB: {
@@ -381,7 +381,7 @@ const BANKS_DATA_NO = {
   },
   ROROS: {
     name: 'ROROS',
-    img: '../../assets/img/banks-logo/square/EikaNewGreenThree.png',
+    img: '../../assets/img/banks-logo/square/eika_new_green_three.png',
     imgCircle: '../../assets/img/banks-logo/round/eika_new_green_three.png'
   },
   SANDNES_SB: {
