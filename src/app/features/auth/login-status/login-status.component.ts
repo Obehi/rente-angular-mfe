@@ -327,7 +327,6 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
           this.isTinkBank
         );
 
-        // this.sendUserDataTink(this.tinkCode)
         this.tinkCode ? this.sendUserDataTink(tinkCode) : this.sendUserData();
 
         this.resendDataAfterReconnect();

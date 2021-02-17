@@ -11,3 +11,4 @@ export { BankSelectNoModule as BankSelectLangGenericModule } from '@features/ban
 export { OfferDetailsNoComponent as OfferDetailsLangGenericComponent } from '@features/dashboard/offers/offers-blue/details/details-no/details-no.component';
 export { ChangeBankDialogComponent as ChangeBankDialogLangGenericComponent } from '@features/dashboard/offers/change-bank-dialog/change-bank-dialog.component';
 export { BankRatingDialogNoComponent as BankScoreLangGenericComponent } from '@features/dashboard/offers/offers-blue/bank-rating-dialog/bank-rating-dialog.component';
+export { GetNotifiedNoComponent as GetNotifiedLangGenericComponent } from '@features/get-notified/get-notified-no/get-notified-no.component';

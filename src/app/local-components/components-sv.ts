@@ -11,3 +11,4 @@ export { BankSelectSvComponent as BankSelectLangGenericComponent } from '@featur
 export { OfferDetailsSvComponent as OfferDetailsLangGenericComponent } from '@features/dashboard/offers/offers-blue/details/details-sv/details-sv.component';
 export { ChangeBankDialogSvComponent as ChangeBankDialogLangGenericComponent } from '@features/dashboard/offers/change-bank-dialog/change-bank-dialog-sv/change-bank-dialog-sv.component';
 export { BankRatingDialogSvComponent as BankScoreLangGenericComponent } from '@features/dashboard/offers/offers-blue/bank-rating-dialog/bank-rating-dialog-sv/bank-rating-dialog-sv.component';
+export { GetNotifiedSvComponent as GetNotifiedLangGenericComponent } from '@features/get-notified/get-notified-sv/get-notified-sv.component';

@@ -16,7 +16,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { registerLocaleData } from '@angular/common';
 import localeNo from '@angular/common/locales/nb';
 import { MaterialModule } from '@shared/material/material.module';
-import { GetNotifiedComponent } from '@features/get-notified/get-notified.component';
+
 import { CounterComponent } from './shared/components/ui-components/counter/counter.component';
 import { UserService } from '@services/remote-api/user.service';
 import { FormsModule } from '@angular/forms';
@@ -31,9 +31,11 @@ import { OptimizeService } from '@services/optimize.service';
 import { AuthSvMockupComponent } from './features/auth-sv-mockup/auth-sv-mockup.component';
 import { LoginLangGenericComponent } from './local-components/components-output';
 import { InitConfirmationLangGenericComponent } from './local-components/components-output';
+import { GetNotifiedLangGenericComponent } from './local-components/components-output';
 import { LandingTopLangGenericComponent } from './local-components/components-output';
 import { EmailRedirectSVComponent } from './features/email-redirect/email-redirect-sv/email-redirect-sv.component';
 import { EmailRedirectNOComponent } from './features/email-redirect/email-redirect-no/email-redirect-no.component';
+
 import { EnvService } from './shared/services/env.service';
 import { HttpClient } from '@angular/common/http';
 import { NoLoansComponent } from '@features/dashboard/no-loans/no-loans.component';
@@ -50,7 +52,7 @@ registerLocaleData(localeNo);
     PrivacyPolicyComponent,
     ContactUsComponent,
     InitConfirmationLangGenericComponent,
-    GetNotifiedComponent,
+    GetNotifiedLangGenericComponent,
     CounterComponent,
     DialogInfoComponent,
     AboutCookiesComponent,

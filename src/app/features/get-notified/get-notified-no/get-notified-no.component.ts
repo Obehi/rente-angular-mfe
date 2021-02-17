@@ -1,8 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { BankVo } from '../../shared/models/bank';
+import { BankVo } from '../../../shared/models/bank';
 import { ROUTES_MAP } from '@config/routes-config';
-
 import { MatAutocomplete } from '@angular/material';
 import {
   FormGroup,
@@ -16,16 +15,16 @@ import { VALIDATION_PATTERN } from '@config/validation-patterns.config';
 import { Observable, timer, EMPTY } from 'rxjs';
 import { ENTER, COMMA } from '@angular/cdk/keycodes';
 import { debounce } from 'rxjs/operators';
-import { ContactService } from '../../shared/services/remote-api/contact.service';
+import { ContactService } from '../../../shared/services/remote-api/contact.service';
 import { Router } from '@angular/router';
 import { SnackBarService } from '@services/snackbar.service';
 
 @Component({
   selector: 'rente-get-notified',
-  templateUrl: './get-notified.component.html',
-  styleUrls: ['./get-notified.component.scss']
+  templateUrl: './get-notified-no.component.html',
+  styleUrls: ['./get-notified-no.component.scss']
 })
-export class GetNotifiedComponent implements OnInit {
+export class GetNotifiedNoComponent implements OnInit {
   public missingBankForm: FormGroup;
   public visible = true;
   public selectable = true;
