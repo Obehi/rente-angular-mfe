@@ -17,6 +17,7 @@ export class FirstBuyersComponent implements OnInit {
     income: new FormControl()
   });
   isLoading = false;
+  isLowIncome = false;
 
   constructor(
     private router: Router,
@@ -30,7 +31,16 @@ export class FirstBuyersComponent implements OnInit {
   }
 
   showOffers() {
+    if (
+      Number(this.formGroup.get('income').value) < 200000 &&
+      !this.formGroup.get('outstandingDebt').value
+    ) {
+      this.isLowIncome = true;
+      return;
+    }
+
     this.isLoading = true;
+
     if (this.formGroup.get('income').value) {
       this.firstBuyersService.offerValue = {
         outstandingDebt: null,

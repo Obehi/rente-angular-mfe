@@ -135,6 +135,7 @@
 
         <rente-button i18n=“get-offer|offer-card-big@@offer.card.big.getOffer”
         [disabled]="offer.bankInfo.partner == false"
+          child childClass="{{offer.bankInfo.name}}"
           color="primary"
           type="raised"
           (click)="openNewOfferDialog(offer)"

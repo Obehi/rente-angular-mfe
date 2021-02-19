@@ -1,14 +1,14 @@
 <div class="initial-offer white-bg mx-auto p-3">
   <div class="d-flex justify-content-between w-100">
     <div class="bank-name justify-content-lg-center col-8 p-0">
-      <div class="logo d-inline-block mr-lg-4">
+      <div class="logo d-inline-block">
         <img [src]="bank?.icon" [alt]="bank?.label">
       </div>
-      <div class="d-flex flex-column w-100">
+      <div class="offer-product w-100">
         <div class="label d-flex text-left pl-3">
           {{bank?.label}}
         </div>
-        <div class="hint d-flex text-left pl-3">
+        <div class="product-name d-flex text-left pl-3">
           {{offer.productName}}
         </div>
       </div>
@@ -26,7 +26,7 @@
       </div>
     </div>
     <div class="d-flex flex-column text-center">
-      <div class="middle-title">Renteradars rank:</div>
+      <div class="middle-title">Historisk rente:</div>
       <div class="my-auto middle-property" *ngIf="offer.bankRating; else notPresent">
         {{offer.bankRating}}
       </div>
@@ -48,15 +48,12 @@
     </mat-expansion-panel>
   </div>
 
-  <div class="last-row d-flex justify-content-center w-100 mt-3">
-    <div class="col-6 p-0">
-      <a mat-raised-button class="bank-link w-100" [href]="offer.bankInfo.transferUrl || offer.bankInfo.url" target="_blank">
-        Få tilbud fra
-        <br>
-        <span class="bank-link-name">{{bank?.label}}</span>
-      </a>
-    </div>
-  </div>
+  <rente-button
+    color="primary" type="raised"
+    [nestedClass]="bank?.name"
+    [href]="offer.bankInfo.transferUrl || offer.bankInfo.url"
+        >Få tilbud fra banken
+  </rente-button>
 </div>
 
 <ng-template #notPresent>

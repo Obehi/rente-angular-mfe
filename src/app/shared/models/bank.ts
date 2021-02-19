@@ -266,6 +266,17 @@ export const eikaBanks: BankVo[] = [
     'https://hemnesparebank.no/aktuelt/bankid-paa-mobil'
   ),
   new BankVo(
+    'HIMLA_FANA_SB',
+    'Himla (Fana Sparebank)',
+    'himla.png',
+    null,
+    true,
+    true,
+    false,
+    false,
+    'https://www.himla.no/banktjenester/boliglan/?utm_source=renteradar.no&utm_medium=nettside&utm_campaign=ta_kontakt_for_samarbeid'
+  ),
+  new BankVo(
     'HJARTDAL_SB',
     'Hjartdal og Gransherad Sparebank',
     'hjartdal.png',

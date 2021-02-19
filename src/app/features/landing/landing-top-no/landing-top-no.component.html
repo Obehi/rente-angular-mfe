@@ -7,10 +7,18 @@
             gratis!</span>
     </h4>
 </div>
-
-<rente-button color="primary-wide-landing" [routerLink]="'/velgbank'">
-    Finn beste tilbud
-</rente-button>
+<div class="cta-container">
+    <h2>Finn beste tilbud</h2>
+    <div class="buttons">
+        <rente-button class="cta-button" color="primary-wide-landing" [routerLink]="'/velgbank'">
+            Jeg har boliglån
+        </rente-button>
+        
+        <rente-button color="primary-wide-landing-hollow" [routerLink]="'/boliglanskalkulator'">
+            Jeg skal kjøpe min første bolig
+        </rente-button>
+    </div>
+</div>
 
 <img class="showcase" src="../../../assets/img/isometric-new-optimized.png" />
 

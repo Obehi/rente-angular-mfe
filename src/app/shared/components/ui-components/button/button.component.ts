@@ -17,6 +17,8 @@ export class ButtonComponent {
   @Input() routerLink: string;
   @Input() href: string;
   @Input() isLoading: boolean;
+  // Used for google analytics to target inner span of matieral button element
+  @Input() nestedClass = '';
 
   @Output() public action = new EventEmitter();
 
