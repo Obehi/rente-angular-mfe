@@ -54,7 +54,7 @@ export class InitialOffersComponent implements OnInit {
   offers;
   formGroup: FormGroup = new FormGroup(
     {
-      savings: new FormControl('', this.forbiddenNameValidator(/bob/i)),
+      savings: new FormControl(),
       outstandingDebt: new FormControl(),
       income: new FormControl(),
       otherDebt: new FormControl(),
