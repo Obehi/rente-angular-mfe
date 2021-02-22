@@ -42,7 +42,6 @@ export class InitialOffersComponent implements OnInit {
   ): ValidationErrors | null => {
     const outstandingDebt = control.get('outstandingDebt').value;
     const savings = control.get('savings').value;
-    console.log(outstandingDebt / (outstandingDebt + savings));
     const isValid = outstandingDebt / (outstandingDebt + savings) > 0.85;
     this.aboveLoanToValueRatioTreshold = isValid;
     return isValid ? { loanToValueRatio: isValid } : null;
