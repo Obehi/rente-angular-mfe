@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { BankUtils } from '@shared/models/bank';
+import { BankVo } from '../../../../shared/models/bank';
 
 @Component({
   selector: 'rente-initial-offer',
@@ -8,10 +9,8 @@ import { BankUtils } from '@shared/models/bank';
 })
 export class InitialOfferComponent implements OnInit {
   @Input() offer;
-  bank;
+  bank: BankVo;
   expandStatus: boolean;
-
-  constructor() {}
 
   ngOnInit(): void {
     this.bank = BankUtils.getBankByName(this.offer.bankInfo.bank);

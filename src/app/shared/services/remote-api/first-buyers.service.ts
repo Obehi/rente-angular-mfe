@@ -63,4 +63,13 @@ export class FirstBuyersAPIService {
     const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.outstandingDebt}`;
     return this.http.put(url, { outstandingDebt: dto });
   }
+
+  public updatelocalOffers(dto) {
+    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.localOffers}`;
+    return this.http.put(url, { showLocalOffers: dto });
+  }
+}
+
+export class localOffersStateDto {
+  showLocalOffers: boolean;
 }

@@ -2,7 +2,7 @@ import { LoansService } from '@services/remote-api/loans.service';
 import { OffersService } from './offers.service';
 import { OfferInfo, Offers } from './../../../../shared/models/offers';
 import { Component, OnInit, HostListener, OnDestroy } from '@angular/core';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { DialogInfoComponent } from './../dialog-info/dialog-info.component';
 import { Loans } from '@shared/models/loans';
 import { BANKS_DATA } from '@config/banks-config';

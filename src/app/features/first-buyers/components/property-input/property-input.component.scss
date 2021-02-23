@@ -1,6 +1,53 @@
 @import "../../../../../styles/theme/colors";
 
+
+@media(max-width: 600px) {
+  ::ng-deep .cdk-overlay-pane {
+    transform: unset !important;
+    left: 20px !important;
+    top: 100px !important;
+    position: absolute !important;
+    min-width: 100% !important;
+  }
+
+  ::ng-deep .cdk-overlay-transparent-backdrop, .cdk-overlay-transparent-backdrop.cdk-overlay-backdrop-showing {
+    background: black !important;
+    opacity: 0.4 !important;
+  }
+}
+
+@media(max-width: 600px) {
+  ::ng-deep .mat-select-panel {
+    min-width: calc(100% - 40px) !important;
+  }
+}
+
+.field-message {
+  color: $red;
+  position: absolute;
+  top: 137px;
+}
+
+
 .property-wrapper {
+
+
+  ::ng-deep mat-select-panel {
+    transform-origin: unset !important;
+    font-size: unset !important;
+    opacity: unset !important;
+    min-width: unset !important;
+    transform: unset !important;
+  }
+  .center {
+    margin: auto;
+  }
+
+  ::ng-deep .mat-form-field {
+    position: relative;
+  }
+
+
   /* input color class */
   ::ng-deep input.mat-input-element {
     color: $white !important;
@@ -25,13 +72,23 @@
   }
 
   ::ng-deep .mat-form-field-flex {
-    border-bottom: 1px solid $white;
+    border-bottom: 1px solid #478ccc;
     transition: .3s;
 
     &:focus-within {
       transition: .3s;
       border-bottom: 1px solid $primary;
     }
+  }
+
+  .box-icon {
+    margin: 10px auto;
+    width: 25px;
+    max-height: 30px;
+  }
+
+  .text-white {
+   color: #478ccc !important
   }
 }
 

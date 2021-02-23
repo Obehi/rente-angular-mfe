@@ -38,8 +38,8 @@
         </msg>
   <msg id="header.logOut2”" desc="log-out" meaning="“Headerlink"><source>app/shared/components/header/header-sv/header-sv.component.html:77,78</source><ph name="START_HEADING_LEVEL3"><ex>&lt;h3&gt;</ex>&lt;h3&gt;</ph>Logg ut<ph name="CLOSE_HEADING_LEVEL3"><ex>&lt;/h3&gt;</ex>&lt;/h3&gt;</ph>
         </msg>
-  <msg id="footer.privacy”" desc="footer" meaning="“privacy"><source>app/shared/components/footer/footer.component.html:112,114</source>
-    Personvern
+  <msg id="footer.privacy”" desc="footer" meaning="“privacy"><source>app/shared/components/footer/footer.component.html:133,135</source>
+      Personvern
     </msg>
   <msg id="textArea.message”" desc="text-area" meaning="“message"><source>app/shared/components/ui-components/text-area/text-area.component.html:3</source>Melding</msg>
   <msg id="details.component.product”" desc="details" meaning="“product"><source>app/features/dashboard/offers/offers-blue/details/details-sv/details-sv.component.html:5</source><source>app/features/dashboard/offers/dialog-info/dialog-info.component.html:8</source>Produkt</msg>
@@ -575,7 +575,7 @@
   </msg>
   <msg id="info.confirmation.hi”" desc="info-confirmation" meaning="“hi"><source>app/features/init-confirmation/init-confirmation-sv/init-confirmation.component.html:4</source>Hei, <ph name="INTERPOLATION"><ex>{{ userData.name | titlecase }}</ex>{{ userData.name | titlecase }}</ph></msg>
   <msg id="info.confirmation.moreInfo”" desc="info-confirmation" meaning="“more-infor"><source>app/features/init-confirmation/init-confirmation-sv/init-confirmation.component.html:5</source>Vi trenger litt mer informasjon før vi kan søke etter tilbud</msg>
-  <msg id="info.confirmation.empty”" desc="info-confirmation" meaning="“empty"><source>app/features/init-confirmation/init-confirmation-sv/init-confirmation.component.html:28,30</source>
+  <msg id="info.confirmation.empty”" desc="info-confirmation" meaning="“empty"><source>app/features/init-confirmation/init-confirmation-sv/init-confirmation.component.html:28,30</source><source>app/features/init-confirmation/init-confirmation-sv/init-confirmation.component.html:94,96</source>
               Kan ikke være tom
             </msg>
   <msg id="info.confirmation.invalid”" desc="info-confirmation" meaning="“invalid"><source>app/features/init-confirmation/init-confirmation-sv/init-confirmation.component.html:34,36</source>
@@ -587,20 +587,14 @@
   <msg id="info.confirmation.help”" desc="info-confirmation" meaning="“help"><source>app/features/init-confirmation/init-confirmation-sv/init-confirmation.component.html:71,73</source>
               <ph name="START_TAG_MAT_ICON"><ex>&lt;mat-icon&gt;</ex>&lt;mat-icon&gt;</ph>help<ph name="CLOSE_TAG_MAT_ICON"><ex>&lt;/mat-icon&gt;</ex>&lt;/mat-icon&gt;</ph>
             </msg>
-  <msg id="info.confirmation.organization”" desc="info-confirmation" meaning="“organization"><source>app/features/init-confirmation/init-confirmation-sv/init-confirmation.component.html:77,79</source>
-          Bankene gir ofte bedre betingelser om du er medlem i en organisasjon
-        </msg>
-  <msg id="info.confirmation.myMemberships”" desc="info-confirmation" meaning="“my-memberships"><source>app/features/init-confirmation/init-confirmation-sv/init-confirmation.component.html:101,103</source>
-          Mine medlemskap
-        </msg>
-  <msg id="info.confirmation.done”" desc="info-confirmation" meaning="“done"><source>app/features/init-confirmation/init-confirmation-sv/init-confirmation.component.html:120,122</source>
+  <msg id="info.confirmation.done”" desc="info-confirmation" meaning="“done"><source>app/features/init-confirmation/init-confirmation-sv/init-confirmation.component.html:104,106</source>
           Ferdig!
         </msg>
   <msg id="get.notified.noSupport”" desc="get-notified" meaning="“no-support"><source>app/features/get-notified/get-notified.component.html:5,8</source>
      Vi har desverre ikke støtte for banken din enda.<ph name="LINE_BREAK"><ex>&lt;br&gt;</ex>&lt;br&gt;</ph>
      Legg igjen din epost så gir vi deg beskjed når det er klart. 
     </msg>
-  <msg id="get.notified.email”" desc="get-notified" meaning="“issue-email"><source>app/features/get-notified/get-notified.component.html:32,47</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:32,47</source>
+  <msg id="get.notified.email”" desc="get-notified" meaning="“issue-email"><source>app/features/get-notified/get-notified.component.html:30,45</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:32,47</source>
           <ph name="START_TAG_RENTE_FORM_MESSAGE"><ex>&lt;rente-form-message&gt;</ex>&lt;rente-form-message&gt;</ph>
             Ikke gyldig email
           <ph name="CLOSE_TAG_RENTE_FORM_MESSAGE"><ex>&lt;/rente-form-message&gt;</ex>&lt;/rente-form-message&gt;</ph>
@@ -608,7 +602,7 @@
             Ikke gyldig email
           <ph name="CLOSE_TAG_RENTE_FORM_MESSAGE"><ex>&lt;/rente-form-message&gt;</ex>&lt;/rente-form-message&gt;</ph>
         </msg>
-  <msg id="get.notified.notifyMe”" desc="get-notified" meaning="“notify-me"><source>app/features/get-notified/get-notified.component.html:53,54</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:53,54</source>Gi meg lyd når på plass!
+  <msg id="get.notified.notifyMe”" desc="get-notified" meaning="“notify-me"><source>app/features/get-notified/get-notified.component.html:51,52</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:53,54</source>Gi meg lyd når på plass!
       </msg>
   <msg id="cookies.mainTitle”" desc="cookies" meaning="“headline"><source>app/features/cookies/cookies.component.html:3</source>Cookiepolicy</msg>
   <msg id="cookies.description”" desc="cookies" meaning="“description"><source>app/features/cookies/cookies.component.html:4,8</source>
@@ -815,52 +809,52 @@
   <msg id="ngb.timepicker.PM"><source>../node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts:76</source><ph name="INTERPOLATION"><ex>{{ i18n.getAfternoonPeriod() }}</ex>{{ i18n.getAfternoonPeriod() }}</ph></msg>
   <msg id="ngb.timepicker.AM"><source>../node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts:77</source><ph name="INTERPOLATION"><ex>{{ i18n.getMorningPeriod() }}</ex>{{ i18n.getMorningPeriod() }}</ph></msg>
   <msg id="ngb.toast.close-aria"><source>../node_modules/@ng-bootstrap/ng-bootstrap/toast/toast.d.ts:8</source>Close</msg>
-  <msg id="bankId.title”" desc="bank-id" meaning="“title"><source>app/features/auth/bank-id-login/bank-id-login.component.html:65</source>Logg inn med BankID på mobil</msg>
-  <msg id="bankId.description”" desc="bank-id" meaning="“description"><source>app/features/auth/bank-id-login/bank-id-login.component.html:66,69</source>
+  <msg id="bankId.title”" desc="bank-id" meaning="“title"><source>app/features/auth/bank-id-login/bank-id-login.component.html:77</source>Logg inn med BankID på mobil</msg>
+  <msg id="bankId.description”" desc="bank-id" meaning="“description"><source>app/features/auth/bank-id-login/bank-id-login.component.html:78,81</source>
       Renteradar henter lånedetaljer og renten din automatisk med BankID på
       Mobil.
     </msg>
-  <msg id="bankId.description2”" desc="bank-id" meaning="“description"><source>app/features/auth/bank-id-login/bank-id-login.component.html:70,72</source>
+  <msg id="bankId.description2”" desc="bank-id" meaning="“description"><source>app/features/auth/bank-id-login/bank-id-login.component.html:82,84</source>
       Vi støtter kun BankID på Mobil, ikke kodebrikke eller engangskode appen.
     </msg>
-  <msg id="bankId.issue”" desc="bank-id" meaning="“issue"><source>app/features/auth/bank-id-login/bank-id-login.component.html:77,81</source>
+  <msg id="bankId.issue”" desc="bank-id" meaning="“issue"><source>app/features/auth/bank-id-login/bank-id-login.component.html:89,93</source>
       Akkurat nå er det mange banker som setter ned renten og oppdaterer systemene sine.
       Det kan derfor være en uriktig forskjell på nominell og effektiv rente som vi henter.
       Besparelsen blir da for høy.
     </msg>
-  <msg id="bankId.info”" desc="bank-id" meaning="“information"><source>app/features/auth/bank-id-login/bank-id-login.component.html:83,85</source>
+  <msg id="bankId.info”" desc="bank-id" meaning="“information"><source>app/features/auth/bank-id-login/bank-id-login.component.html:95,97</source>
       Vi støtter kun BankID på Mobil, ikke kodebrikke og passord.
     </msg>
-  <msg id="bankId.issue2”" desc="bank-id" meaning="“issue"><source>app/features/auth/bank-id-login/bank-id-login.component.html:86,89</source>
+  <msg id="bankId.issue2”" desc="bank-id" meaning="“issue"><source>app/features/auth/bank-id-login/bank-id-login.component.html:98,101</source>
       OBS: Vi tester fortsatt løsningen for denne banken. <ph name="LINE_BREAK"><ex>&lt;br&gt;</ex>&lt;br&gt;</ph>
       Gi gjerne beskjed hvis noe ikke fungerer optimalt.
     </msg>
-  <msg id="bankId.description.birthNumber”" desc="bank-id" meaning="“issue"><source>app/features/auth/bank-id-login/bank-id-login.component.html:121,123</source>
+  <msg id="bankId.description.birthNumber”" desc="bank-id" meaning="“issue"><source>app/features/auth/bank-id-login/bank-id-login.component.html:133,135</source>
             Fødselsnummer kan ikke være tomt
           </msg>
-  <msg id="bankId.description.birthNumber2”" desc="bank-id" meaning="“issue"><source>app/features/auth/bank-id-login/bank-id-login.component.html:128,130</source>
+  <msg id="bankId.description.birthNumber2”" desc="bank-id" meaning="“issue"><source>app/features/auth/bank-id-login/bank-id-login.component.html:140,142</source>
             Fødselsnummer ikke gyldig
           </msg>
-  <msg id="bankId.description.birthNumber3”" desc="bank-id" meaning="“issue"><source>app/features/auth/bank-id-login/bank-id-login.component.html:135,137</source>
+  <msg id="bankId.description.birthNumber3”" desc="bank-id" meaning="“issue"><source>app/features/auth/bank-id-login/bank-id-login.component.html:147,149</source>
             Fødselsnummeret er ikke gyldig
           </msg>
-  <msg id="bankId.description.birthNumber4”" desc="bank-id" meaning="“issue"><source>app/features/auth/bank-id-login/bank-id-login.component.html:162,164</source>
+  <msg id="bankId.description.birthNumber4”" desc="bank-id" meaning="“issue"><source>app/features/auth/bank-id-login/bank-id-login.component.html:174,176</source>
               Fødselsdato kan ikke være tomt
             </msg>
-  <msg id="bankId.description.birthNumber5”" desc="bank-id" meaning="“issue"><source>app/features/auth/bank-id-login/bank-id-login.component.html:169,171</source>
+  <msg id="bankId.description.birthNumber5”" desc="bank-id" meaning="“issue"><source>app/features/auth/bank-id-login/bank-id-login.component.html:181,183</source>
               Fødselsdato ikke gyldig
             </msg>
-  <msg id="bankId.description.telephoneNumber”" desc="bank-id" meaning="“issue"><source>app/features/auth/bank-id-login/bank-id-login.component.html:193,195</source>
+  <msg id="bankId.description.telephoneNumber”" desc="bank-id" meaning="“issue"><source>app/features/auth/bank-id-login/bank-id-login.component.html:205,207</source>
             Telefonnummer kan ikke være tomt
           </msg>
-  <msg id="bankId.description.telephoneNumber2”" desc="bank-id" meaning="“issue"><source>app/features/auth/bank-id-login/bank-id-login.component.html:200,202</source>
+  <msg id="bankId.description.telephoneNumber2”" desc="bank-id" meaning="“issue"><source>app/features/auth/bank-id-login/bank-id-login.component.html:212,214</source>
             Telefonnummer ikke gyldig
           </msg>
-  <msg id="bankId.policy”" desc="bank-id" meaning="“accepting"><source>app/features/auth/bank-id-login/bank-id-login.component.html:209,212</source>
+  <msg id="bankId.policy”" desc="bank-id" meaning="“accepting"><source>app/features/auth/bank-id-login/bank-id-login.component.html:221,224</source>
         Jeg aksepterer Renteradar.no&apos;s
         <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>vilkår<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph>
       </msg>
-  <msg id="bankId.logIn”" desc="bank-id" meaning="“log-in"><source>app/features/auth/bank-id-login/bank-id-login.component.html:218,220</source>
+  <msg id="bankId.logIn”" desc="bank-id" meaning="“log-in"><source>app/features/auth/bank-id-login/bank-id-login.component.html:230,232</source>
           Logg inn
         </msg>
   <msg id="login”" desc="reference" meaning="“login"><source>app/features/auth/login-status/login-status.component.html:13</source><source>app/features/auth/login-status/login-status.component.html:22,37</source>Din referanse:</msg>

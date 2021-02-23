@@ -58,6 +58,12 @@
       <mat-spinner [diameter]="48" [strokeWidth]="4"></mat-spinner>
     </div>
 
+    <div *ngIf="isDnbBank" class="calculator-promotion">
+      <h4>I mellomtid prøv gjerne vår <a [routerLink]="['/boliglanskalkulator']">
+        boliglanskalkulator
+      </a> </h4>
+    </div>
+
 </div>
 
 <div *ngIf="!isDnbBank || environment.loginDnbIsOn === true" class="front-container">
@@ -71,7 +77,6 @@
   </p>
 
   <p class="red" *ngIf="isDnbBank">Vi opplever at enkelte brukere ikke får logget inn.<br> Vi jobber med å rette problemet</p>
-
   
   <section *ngIf="!isLoginStarted && bankIdForm" class="login">
     <h3 i18n=“title|bank-id@@bankId.title”>Logg inn med BankID på mobil</h3>
@@ -241,4 +246,10 @@
     (returnToInputPage)="isLoginStarted = false"
   >
   </rente-login-status>
+
+  <div *ngIf="isDnbBank" class="calculator-promotion">
+    <h4>I mellomtid prøv gjerne vår <a [routerLink]="['/boliglanskalkulator']">
+      boliglanskalkulator
+    </a> </h4>
+  </div>
 </div>
