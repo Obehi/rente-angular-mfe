@@ -1,16 +1,15 @@
 @import "../../../../styles/theme/colors";
 
 .guide-content {
-  background: linear-gradient(180deg, #162537 0%, #183a63 10.08%) !important;
+  background: white;
   max-width: 1010px;
   margin: auto;
   min-height: calc(100vh - 60px);
   padding-top: 55px;
-  padding-bottom: 80px;
 }
 
 .guide-content-blue {
-  background: linear-gradient(180deg, #162537 0%, #183a63 10.08%) !important;
+  background: white;
   max-width: 1010px;
   margin: auto;
   min-height: calc(100vh - 60px);
@@ -18,9 +17,9 @@
   padding-bottom: 80px;
 }
 
-.blue-bg {
-  background: $blue;
-  color: white;
+.white-bg {
+  background: white;
+  color: $grey-dark;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -28,11 +27,228 @@
   min-height: 30vh;
   max-width: 100%;
   margin: 0 10px;
+  padding-bottom: 80px;
   border-radius: 16px;
   @media all and (min-width: 992px) {
     max-width: 50%;
   }
 }
+
+.blue-bg {
+  background: $blue;
+  padding-top: 80px;
+}
+
+.round-box {
+  border-radius: 15px;
+}
+
+.padding-box {
+  padding: 20px;
+}
+
+.top-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  > div:not(:first-child) {
+    margin-top: 30px;
+  }
+  .header {
+    background: $grey-light;
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+    .header-left {
+      display: flex;
+      align-items: center;
+      padding-left: 20px;
+      img {
+        width: 50px;
+        height: 50px;
+      }
+      h1 {
+        color: $grey-dark;
+        font-size: 14px;
+        font-weight: 400;
+        margin-bottom: unset !important;
+        padding-left: 10px;
+      }
+    }
+
+    .header-right {
+      background: $primary;
+      border-radius: 0 20px 20px 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+      width: 40%;
+      margin-left: 20px;
+      .header-right-inner {
+        position: relative;
+        p {
+          position: absolute;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: 100%;
+          color: #ffffff;
+          font-size: 12px;
+          top: -7px;
+        }
+        h3 {
+          color: #ffffff !important;
+        }
+      }
+    }
+  }
+
+  .small-boxes {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    .box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      p {
+        text-align: center;
+        color: $grey-dark;
+        margin-bottom: 5px;
+        font-weight: 400 !important;
+      }
+      h4 {
+        background: $grey-light;
+        color: $grey-dark;
+        font-weight: 400 !important;
+
+      }
+      div {
+        background: $grey-light;
+        border-radius: 15px;
+        color: $grey-dark;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100px;
+        height: 60px;
+
+      }
+    }
+  }
+
+  .top-main-container {
+    background: $grey-light;
+
+    .vertical-box {
+      margin-bottom: 40px;
+      .item {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        
+        &:not(:first-of-type) {
+          margin-top: 10px;
+        }
+        
+        & div:first-of-type {
+          color: $grey-dark;
+        }
+        & div:last-of-type {
+          padding: 5px 10px;
+          color: $grey-light;
+          background: $grey-dark;
+          border-radius: 20px;
+
+        }
+      }
+    }
+
+    .horizontal-box {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+
+      .customer-ranking {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .rente-ranking {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  }
+
+  
+}
+
+
+.internal-links {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  > div:not(:first-child) {
+    margin-top: 15px;
+  }
+  .icon-link {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+
+    img {
+      width: 40px;
+      height: 40px;
+      margin-right: 20px;
+    }
+    img.arrow {
+      width: 12px;
+      margin-left: auto;
+      margin-right: unset;
+    }
+    span {
+      color: $grey-dark;
+    }
+  }
+}
+
+
+
+.item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  &:not(:first-of-type) {
+    margin-top: 10px;
+  }
+  
+  & div:first-of-type {
+    color: $grey-dark;
+  }
+  & div:last-of-type {
+    padding: 5px 10px;
+    color: $grey-light;
+    background: $grey-dark;
+    border-radius: 20px;
+    min-width: 60px;
+    text-align: center; 
+
+  }
+}
+
+
+
+
+
 
 .star {
   position: relative;
@@ -73,20 +289,27 @@
 }
 
 .bank-name {
-  width: 100%;
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 30px;
 
   .logo {
     & > img {
       object-fit: contain;
-      width: 85px;
-      height: 85px;
+      width: 50px;
+      height: 50px;
       background: #ffffff;
       border-radius: 50%;
       padding: 0 1px;
+      margin: 20px 0;
     }
+  }
+
+  h2 {
+    color: $grey-dark;
+    font-weight: 400;
+    text-align: center;
   }
 
   .label {
@@ -199,16 +422,22 @@
 
 .offerings-header {
   font-size: 18px;
+  margin-top: 30px;
+  text-align: left;
+  width: 100%;
 }
 
 .checklist-item {
   display: flex;
   margin-top: 8px;
-
+  img {
+    width: 30px;
+  }
   & > span {
     font-size: 16px;
     align-self: center;
     margin-left: 8px;
+    color: $grey-dark;
   }
 }
 
@@ -218,7 +447,19 @@
   padding-left: 32px;
 }
 
+.accordion {
+  margin-top: 10px;
+}
+
+::ng-deep .mat-expansion-panel-header:hover  {
+  background: none !important;
+}
 ::ng-deep .mat-expansion-panel {
+  border-bottom: 0 !important;
+  background: $grey-light !important;
+  border-radius: 15px !important;
+  padding: 0 10px !important;
+  margin-bottom: 10px !important;
   &-header {
     padding-left: 0 !important;
     padding-right: 8px !important;
@@ -236,11 +477,10 @@
 
   &-body {
     padding: 8px !important;
+    margin-top: -12px !important;
   }
 
   box-shadow: none !important;
-  border-bottom: 1px solid $grey;
-  border-radius: unset !important;
 }
 
 ::ng-deep .mat-content {
@@ -252,3 +492,112 @@
 }
 
 
+
+
+
+
+
+
+
+
+.banks {
+  width: 100%;
+  margin: auto;
+
+
+  .banks-inner {
+    padding: 20px;
+    border: 1px solid $light;
+  }
+}
+
+.bank-select {
+  img {
+    border: 4px solid $white;
+    box-sizing: border-box;
+  }
+
+  img:hover {
+    border: 4px solid $primary;
+    border-radius: 20px;
+  }
+
+  @media (max-width: 800px) {
+    img:hover {
+      border: none;
+    }
+  }
+
+  .link {
+    &:hover {
+      a {
+        border: 4px solid $primary;
+        border-radius: 20px;
+      }
+    }
+
+    // div {
+    //   border: 2px solid $primary;
+    //   height: 100px;
+    //   width: 100px;
+    //   border-radius: 16px;
+    //   box-sizing: content-box;
+    // }
+
+
+    a {
+      display: inline-block;
+      border: 2px solid $primary;
+      height: 100px;
+      width: 100px;
+      border-radius: 16px;
+      box-sizing: border-box;
+
+      color: $primary;
+      font-size: 12px;
+      letter-spacing: 0.2px;
+      line-height: 15px;
+      text-decoration: none;
+    }
+  }
+
+  rente-button {
+    min-width: 170px;
+    display: inline-block;
+  }
+
+  .p {
+    @media (max-width: 991px) {
+      margin: 0;
+      margin-bottom: 10px;
+    }
+  }
+}
+
+mat-selection-list {
+  transition: 1s;
+  max-height: 350px;
+  overflow-y: auto;
+}
+
+.bank-list {
+  width: 100%;
+}
+
+.bank-button {
+  width: 100%;
+  text-align: left;
+  margin: 5px 0;
+  font-size: 14px;
+  font-weight: 400;
+  padding: 0;
+  border-radius: 0;
+  color: #777;
+}
+
+.bank-button-logo {
+  width: 40px;
+  height: 40px;
+  margin-right: 20px;
+  padding: 0;
+}
