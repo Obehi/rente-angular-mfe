@@ -392,6 +392,7 @@ export class InitialOffersComponent implements OnInit {
   }
 
   applyMemberships(memberships: MembershipTypeDto[]) {
+    // causing ExpressionChangedAfterItHasBeenCheckedError since commit 9aaa47db or the one before
     this.memberships = memberships;
     this.updateMemberships();
     this.formGroup.markAsDirty();
