@@ -388,10 +388,6 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
         text = 'Bulder';
         break;
       }
-      case 'LANDKREDITT': {
-        text = 'Landkreditt';
-        break;
-      }
       default: {
         text = 'banken';
         break;
