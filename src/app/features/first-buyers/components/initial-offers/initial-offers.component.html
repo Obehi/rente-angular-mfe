@@ -10,6 +10,9 @@
                             [options]="property.options"
                             [iconPath]="property.iconPath"
                             [memberships]="allMemberships"
+                            [placeholder]="property.placeholder"
+                            [isAboveLoanToValueRatioTreshold]="this.isAboveLoanToValueRatioTreshold"
+                            [loantoRatioMinimumAmount]="loantoRatioMinimumAmount()"
                             (selectedMemberships)="applyMemberships($event)"></rente-property-input>
     </div>
 
@@ -40,7 +43,7 @@
       </div>
       
     <div class="w-100 d-flex justify-content-end">
-      <rente-button class="center vertical-margin" color="primary" [disabled]="!formGroup.dirty || aboveLoanToValueRatioTreshold" (click)="updateNewOffers()">Oppdater tilbud</rente-button>
+      <rente-button class="center vertical-margin" color="primary" [disabled]="!formGroup.dirty || isAboveLoanToValueRatioTreshold" (click)="updateNewOffers()">Oppdater tilbud</rente-button>
     </div>
 
    

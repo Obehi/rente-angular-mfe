@@ -36,6 +36,17 @@ export const eikaBanks: BankVo[] = [
     'https://andebu-sparebank.no/aktuelt/bankid-paa-mobil'
   ),
   new BankVo(
+    'AKADEMIKERNE_DANSKE',
+    'Akademikerne Danske',
+    'danske.png',
+    null,
+    true,
+    true,
+    false,
+    false,
+    'https://www.danskebank.no/nb-no/Privat/Nettbank-og-Mobil/nettbank/support/Pages/ofte-stilte-sporsmal.aspx#'
+  ),
+  new BankVo(
     'ARENDAL_SK',
     'Arendal og Omegns Sparekasse',
     'sparekassa_arendal.png',
