@@ -1,5 +1,5 @@
 <div class="d-flex flex-column">
-  <div class="property-wrapper d-flex justify-content-between">
+  <div [ngClass]="{'red-underline': label === 'Egenkapital' && isAboveLoanToValueRatioTreshold}"   class="property-wrapper d-flex justify-content-between">
     <div class="d-flex align-items-center">
       <div class="text-white property-icon">
         <img *ngIf="iconPath" class="box-icon" src="{{iconPath}}" />
@@ -18,7 +18,7 @@
                  autocomplete="off" autofocus>
                 </mat-form-field>
                 <div class="field-message" *ngIf="controlName === 'savings' && formGroup.dirty && formGroup.errors?.loanToValueRatio">
-                  Beløpet er for lavt
+                  Må være minst {{loantoRatioMinimumAmount | number  }}
               </div>
         <mat-form-field class="text-white w-100" *ngIf="inputType === 'dropdown'">
           <mat-label>Velg</mat-label>

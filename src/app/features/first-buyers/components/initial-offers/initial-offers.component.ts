@@ -43,10 +43,16 @@ export class InitialOffersComponent implements OnInit {
     const outstandingDebt = control.get('outstandingDebt').value;
     const savings = control.get('savings').value;
     const isValid = outstandingDebt / (outstandingDebt + savings) > 0.85;
-    this.aboveLoanToValueRatioTreshold = isValid;
+    this.isAboveLoanToValueRatioTreshold = isValid;
     return isValid ? { loanToValueRatio: isValid } : null;
   };
-  aboveLoanToValueRatioTreshold = true;
+
+  loantoRatioMinimumAmount() {
+    const outstandingDebt = Number(this.formGroup.get('outstandingDebt').value);
+    const minimumAmount = Math.ceil(outstandingDebt * 0.176470588);
+    return Math.round(minimumAmount / 1000) * 1000;
+  }
+  isAboveLoanToValueRatioTreshold = true;
   editMode = false;
   banksData = [...BankList, ...MissingBankList];
   bank;
@@ -88,16 +94,6 @@ export class InitialOffersComponent implements OnInit {
         return (
           this.outstandingDebtControl.value || this.outstandingDebtControl.dirty
         );
-      }
-    },
-    {
-      icon: 'point_of_sale',
-      iconPath: '../../../../assets/icons/money-light-blue.svg',
-      label: 'Inntekt',
-      inputType: 'tel',
-      controlName: 'income',
-      shouldDisplay: () => {
-        return this.incomeControl.value;
       }
     },
     {
@@ -184,6 +180,18 @@ export class InitialOffersComponent implements OnInit {
       ]
     }
   ];
+
+  // Removed from property json for now
+  /*  {
+    icon: 'point_of_sale',
+    iconPath: '../../../../assets/icons/money-light-blue.svg',
+    label: 'Inntekt',
+    inputType: 'tel',
+    controlName: 'income',
+    shouldDisplay: () => {
+      return this.incomeControl.value;
+    }
+  } */
   @ViewChild('stepper') stepper: MatStepper;
   incomeStepShown = false;
   incomeChips = [
@@ -212,6 +220,7 @@ export class InitialOffersComponent implements OnInit {
   offersLoading: boolean;
   selectedFeaturedMemberships: MembershipTypeDto[] = [];
   featuredMemberships: MembershipTypeDto[] = [];
+  hasUpdatedOffers = false;
 
   constructor(
     private loansService: LoansService,
@@ -383,10 +392,8 @@ export class InitialOffersComponent implements OnInit {
 
   applyMemberships(memberships: MembershipTypeDto[]) {
     this.memberships = memberships;
-    if (this.memberships.length) {
-      this.updateMemberships();
-      this.formGroup.markAsDirty();
-    }
+    this.updateMemberships();
+    this.formGroup.markAsDirty();
   }
 
   ngOnInit(): void {
@@ -438,6 +445,14 @@ export class InitialOffersComponent implements OnInit {
   }
 
   updateNewOffers() {
+    if (
+      (!this.formGroup.dirty || this.isAboveLoanToValueRatioTreshold) &&
+      this.hasUpdatedOffers === true
+    ) {
+      return;
+    }
+
+    this.hasUpdatedOffers = true;
     this.offersLoading = true;
     this.formGroup.markAsPristine();
     this.loansService
