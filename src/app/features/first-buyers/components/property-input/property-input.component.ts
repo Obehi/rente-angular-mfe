@@ -24,6 +24,7 @@ export class PropertyInputComponent implements OnInit {
   @Input() isAboveLoanToValueRatioTreshold: boolean;
   @Input() loantoRatioMinimumAmount: number;
   @Input() controlName: string;
+  @Input() placeholder: string;
   @Input() label: string;
   @Input() icon: string;
   @Input() iconPath: string;
@@ -34,6 +35,7 @@ export class PropertyInputComponent implements OnInit {
   @ViewChild(SelectAutocompleteComponent)
   multiSelect: SelectAutocompleteComponent;
 
+  isFirstFocus = true;
   labelPosition: 'before' | 'after' = 'after';
   after = 'after';
   before = 'before';
@@ -84,5 +86,9 @@ export class PropertyInputComponent implements OnInit {
   parseFloat(val: string): number {
     val += '';
     return parseInt(val.trim(), 10);
+  }
+
+  focusOutFunction() {
+    this.isFirstFocus = false;
   }
 }

@@ -80,6 +80,7 @@ export class InitialOffersComponent implements OnInit {
       iconPath: '../../../../assets/icons/wallet-light-blue.svg',
       label: 'Egenkapital',
       inputType: 'tel',
+      placeholder: 'Fyll inn',
       controlName: 'savings',
       shouldDisplay: () => {
         return true;
