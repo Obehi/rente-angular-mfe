@@ -10,8 +10,7 @@
 
 
   .banks-inner {
-    padding: 20px;
-    border: 1px solid $light;
+
   }
 }
 
@@ -78,27 +77,65 @@
   }
 }
 
-mat-selection-list {
-  transition: 1s;
-  max-height: 350px;
-  overflow-y: auto;
+.banks {
+  width: 100%;
+  margin: auto;
+
+
+  .banks-inner {
+    
+    
+    .bank-list {
+      padding: 12px 20px;
+      border: 1px solid #18bc9c;
+      border-radius: 50px;
+      margin: 25px auto 10px;
+      width: 90%;
+      display: flex;
+      input {
+        border: none;
+      }
+
+      button {
+        padding: unset !important;
+        min-width: unset !important;
+        width: 30px !important;
+        height: 30px !important;
+        .exit {
+          width: 20px !important;
+          height: 20px !important;
+        }
+      }
+      .search {
+        width: 40px;
+        height: 30px;
+      }
+    }
+    
+  }
 }
 
-.bank-list {
-  width: 100%;
+mat-selection-list {
+  transition: 3s;
+  max-height: 350px;
+  overflow-y: auto;
+  width: 90%;
+  margin: auto;
+  box-shadow: rgb(100 100 111 / 20%) 0px 7px 29px 0px;
+  border-radius: 15px;
 }
 
 .bank-button {
   width: 100%;
-  text-align: left;
-  margin: 5px 0;
-  font-size: 14px;
-  font-weight: 400;
-  padding: 0;
-  border-radius: 0;
-  color: #777;
+    text-align: left;
+    margin: 5px 0;
+    font-size: 14px;
+    font-weight: 400;
+    padding: 0;
+    border-radius: 0;
+    color: #777;
+    padding: 0 10px;
 }
-
 .bank-button-logo {
   width: 40px;
   height: 40px;

@@ -4,6 +4,8 @@ $blue: #112639 !default;
 $green: #18bc9c !default;
 $lightgreen: #d1f2eb !default;
 $grey: #cdcdcd !default;
+$grey-light: #F4F5F6 !default;
+$grey-dark: #54606E !default;
 $light: #e7e9eb !default;
 $lesslight: #c3c9ce !default;
 $text-color: #636669 !default;
@@ -31,6 +33,8 @@ $theme-colors: map-merge(
     "ternary-red": $frolly,
     "ternary-blue": $fountainBlue,
     "grey": $grey,
+    "grey-light":grey-light,
+    "grey-dark":grey-dark,
     "orange": $orange,
     "light": $light,
     "dark": $dark,
