@@ -26,7 +26,6 @@ export class BankGuideService {
   }
 
   filterBank(filter: string) {
-    console.log('filterbanks');
     let filteredBanks = [];
     if (filter === null || filter?.length === 0) {
       filteredBanks = this.allBanks.concat();
@@ -36,8 +35,6 @@ export class BankGuideService {
         (bank) => bank.label?.toLocaleLowerCase().indexOf(f) > -1
       );
     }
-    console.log('filteredBanks');
-    console.log(filteredBanks);
     this.banks = filteredBanks;
   }
 
@@ -53,9 +50,6 @@ export class BankGuideService {
   }
 
   selectBank(bank: BankVo) {
-    console.log('selectBank');
-    console.log('this banks');
-    console.log(this.banks);
     if (bank.name === 'SPAREBANK_1') {
       this.searchStr = 'Sparebank 1';
 

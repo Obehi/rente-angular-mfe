@@ -3,16 +3,18 @@
   <div class="d-flex justify-content-center bank-search-wrapper">
     <div class="banks mb-3">
       <div class="banks-inner">
-        <mat-form-field class="bank-list">
+        <div class="bank-list">
           <input matInput type="text" placeholder="Velg bank" autocomplete="off"
             (click)="bankGuideService.shouldDisplayBankList = true" [(ngModel)]="bankGuideService.searchStr"
             (ngModelChange)="bankGuideService.onFilterChanged()" />
           <button *ngIf="bankGuideService.searchStr" mat-button matSuffix mat-icon-button aria-label="Clear"
             (click)="bankGuideService.clear()">
-            <mat-icon>close</mat-icon>
+            <img  class="exit"
+                src="../../../assets/icons/exit-green.svg" />
           </button>
-          <mat-icon matSuffix>search</mat-icon>
-        </mat-form-field>
+          <img *ngIf="!bankGuideService.searchStr" class="search"
+                src="../../../assets/icons/search-green.svg" />
+        </div>
         <mat-selection-list #banklist [class.d-none]="!bankGuideService.shouldDisplayBankList">
           <button *ngFor="let bank of bankGuideService.banks" mat-button class="bank-button"
             (click)="bankGuideService.selectBank(bank)">
@@ -92,7 +94,7 @@
 
           <div class="horizontal-box">
             <div class="customer-ranking">
-              <div>
+              <div class="ranking-header">
                 Kundetilfredshet
               </div>
               <div *ngIf="bankGuideInfo?.score;else notPresent">
@@ -103,10 +105,10 @@
 
 
             <div class="rente-ranking">
-              <div>
+              <div class="ranking-header">
                 Mobilbank
               </div>
-              <div class="mt-3" *ngIf="bankGuideInfo?.mobileAppRating;else notPresent">
+              <div class="" *ngIf="bankGuideInfo?.mobileAppRating;else notPresent">
                 <ng-template #t let-fill="fill">
                   <span class="star" [class.full]="fill === 100">
                     <span class="half" [style.width.%]="fill">&#9733;</span>&#9733;
@@ -124,9 +126,9 @@
       </div> <!-- end top-container -->
 
       <div class="internal-links p-3">
-        <div (click)="scrollTo(inShort)" class="icon-link">
-          <img  src="../../../../assets/icons/informatin-grey-circle.svg"/>
-          <span *ngIf="bankHasInShort" >Kort
+        <div *ngIf="bankHasInShort" (click)="scrollTo(inShort)" class="icon-link">
+          <img src="../../../../assets/icons/informatin-grey-circle.svg"/>
+          <span>Kort
             om {{bank.label}}</span>
           <img class="arrow" src="../../../../assets/icons/arrow-small-grey.svg"/>
             
@@ -205,24 +207,24 @@
         Boliglånstilbud:
       </div>
       <div class="offering-checklist w-100 text-left">
-        <div class="checklist-item" *ngIf="bankGuideInfo?.regularOffers">
-          <img src="../../../../assets/icons/checkbox.svg" />
+        <div class="box-in-list" *ngIf="bankGuideInfo?.regularOffers">
+
           <span>Vanlig Boliglån</span>
         </div>
-        <div class="checklist-item" *ngIf="bankGuideInfo?.creditLineLoans">
-          <img src="../../../../assets/icons/checkbox.svg" />
+        <div class="box-in-list" *ngIf="bankGuideInfo?.creditLineLoans">
+
           <span>Rammelån</span>
         </div>
-        <div class="checklist-item" *ngIf="bankGuideInfo?.fixedRateLoans">
-          <img src="../../../../assets/icons/checkbox.svg" />
+        <div class="box-in-list" *ngIf="bankGuideInfo?.fixedRateLoans">
+
           <span>Fastrentelån</span>
         </div>
-        <div class="checklist-item" *ngIf="bankGuideInfo?.intermediateFinancing">
-          <img src="../../../../assets/icons/checkbox.svg" />
+        <div class="box-in-list" *ngIf="bankGuideInfo?.intermediateFinancing">
+
           <span>Mellomfinansiering</span>
         </div>
-        <div class="checklist-item" *ngIf="bankGuideInfo?.constructionLoans">
-          <img src="../../../../assets/icons/checkbox.svg" />
+        <div class="box-in-list" *ngIf="bankGuideInfo?.constructionLoans">
+
           <span>Byggelån</span>
         </div>
       </div>
@@ -339,20 +341,21 @@
         <div class="logo d-inline-block mr-lg-4">
           <img src="../../../../assets/img/radar_seethrough.png" alt="logo">
         </div>
-        <h2 class="mb-0 font-weight-normal label d-flex text-left pl-4">
+        <h2 class="mb-0 font-weight-normal label">
           Sjekk renten din på Renteradar.no
         </h2>
       </div>
-      <div class="bank-name-subheader">
-        Se om {{bank.label}} har et godt tilbud for deg
-      </div>
+      
       <div class="smartphone-presentation d-flex justify-content-between">
-        <img src="../../../../assets/img/example-desktop-info-blue.svg">
-        <img src="../../../../assets/img/example-desktop-offers-blue.svg">
+        <img src="../../../../assets/img/rente-promotion.svg">
       </div>
-      <button mat-flat-button class="w-100 mt-3 round" color="primary" [routerLink]="'/'">
-        Klikk her for å logge inn på Renteradar.no
-      </button>
+
+      <div class="button-box">
+        <p>
+          Se om {{bank.label}} har et godt tilbud for deg
+        </p>
+        <rente-button color="primary-wide" [routerLink]="'/'">Logg inn på Renteradar.no</rente-button>
+      </div>
     </div>
     <div class="scroll-anchor" #offices>
       <div *ngIf="bank.name === 'DNB' || bank.name === 'NORDEA'" class="white-bg p-3 mx-lg-auto mt-4">
@@ -382,25 +385,38 @@
                     </b>
                   </p>
                 </mat-expansion-panel-header>
-                <div class="checklist-item font-weight-bolder mt-2">
-                  <mat-icon color="primary">location_on</mat-icon>
-                  <span>Adresse:</span>
-                </div>
-                <p class="location-content" [innerHTML]="location.address">
-                </p>
-                <div class="checklist-item font-weight-bolder mt-2">
-                  <mat-icon color="primary">watch_later</mat-icon>
-                  <span>Åpningstider:</span>
-                </div>
-                <p class="location-content" [innerHTML]="location.openingHours">
-                </p>
-                <div class="checklist-item font-weight-bolder mt-2">
-                  <mat-icon color="primary">room_service</mat-icon>
-                  <span>Tjenester:</span>
-                </div>
-                <div class="checklist-item mt-2" *ngFor="let service of location.bankLocationServiceDomains">
-                  <mat-icon color="primary">verified</mat-icon>
-                  <span>{{service}}</span>
+                <div class="location-details">
+                  <div class="location-item">
+                    <div class="checklist-item font-weight-bolder mt-2">
+                      <mat-icon [inline]="true" color="primary">location_on</mat-icon>
+                      <span>Adresse:</span>
+                    </div>
+                    <p class="location-item-content" [innerHTML]="location.address">
+                    </p>
+                  </div>
+                  <div class="location-item">
+                  <div class="checklist-item font-weight-bolder mt-2">
+                      <mat-icon [inline]="true" color="primary">watch_later</mat-icon>
+                      <span>Åpningstider:</span>
+                    </div>
+                    <p class="location-item-content" [innerHTML]="location.openingHours">
+                    </p>
+                  </div>
+                  <div class="location-item">
+                  <div class="checklist-item font-weight-bolder mt-2">
+                      <mat-icon [inline]="true" color="primary">room_service</mat-icon>
+                      <span>Tjenester:</span>
+                    </div>
+                  </div>
+                  <div *ngIf="location?.bankLocationServiceDomains" class="services">
+                    <div class="checklist-item mt-2" *ngFor="let service of location.bankLocationServiceDomains">
+                      <!--<img src="../../../../assets/icons/checkbox.svg" /> -->
+                      <span>{{service}}</span>
+                    </div>
+                  </div>
+                  <div *ngIf="!location?.bankLocationServiceDomains" class="service-not-present">
+                    -
+                  </div>
                 </div>
               </mat-expansion-panel>
             </mat-expansion-panel>
@@ -426,25 +442,38 @@
                   </b>
                 </p>
               </mat-expansion-panel-header>
-              <div class="checklist-item font-weight-bolder mt-2">
-                <mat-icon color="primary">location_on</mat-icon>
-                <span>Adresse:</span>
-              </div>
-              <p class="location-content" [innerHTML]="location.address">
-              </p>
-              <div class="checklist-item font-weight-bolder mt-2">
-                <mat-icon color="primary">watch_later</mat-icon>
-                <span>Åpningstider:</span>
-              </div>
-              <p class="location-content" [innerHTML]="location.openingHours">
-              </p>
-              <div class="checklist-item font-weight-bolder mt-2">
-                <mat-icon color="primary">room_service</mat-icon>
-                <span>Tjenester:</span>
-              </div>
-              <div class="checklist-item mt-2" *ngFor="let service of location.bankLocationServiceDomains">
-                <mat-icon color="primary">verified</mat-icon>
-                <span>{{service}}</span>
+              <div class="location-details">
+                <div class="location-item">
+                  <div class="checklist-item font-weight-bolder mt-2">
+                    <mat-icon [inline]="true" color="primary">location_on</mat-icon>
+                    <span>Adresse:</span>
+                  </div>
+                  <p class="location-item-content" [innerHTML]="location.address">
+                  </p>
+                </div>
+                <div class="location-item">
+                <div class="checklist-item font-weight-bolder mt-2">
+                    <mat-icon [inline]="true" color="primary">watch_later</mat-icon>
+                    <span>Åpningstider:</span>
+                  </div>
+                  <p class="location-item-content" [innerHTML]="location.openingHours">
+                  </p>
+                </div>
+                <div class="location-item">
+                <div class="checklist-item font-weight-bolder mt-2">
+                    <mat-icon [inline]="true" color="primary">room_service</mat-icon>
+                    <span>Tjenester:</span>
+                  </div>
+                </div>
+                <div *ngIf="location?.bankLocationServiceDomains" class="services">
+                  <div class="checklist-item mt-2" *ngFor="let service of location.bankLocationServiceDomains">
+                    <!--<img src="../../../../assets/icons/checkbox.svg" /> -->
+                    <span>{{service}}</span>
+                  </div>
+                </div>
+                <div *ngIf="!location?.bankLocationServiceDomains" class="service-not-present">
+                  -
+                </div>
               </div>
             </mat-expansion-panel>
           </mat-accordion>
@@ -459,6 +488,6 @@
   <mat-spinner [diameter]="48" [strokeWidth]="4"></mat-spinner>
 </div>
 <ng-template #notPresent>
-  <div>-</div>
+  <div class="not-present">-</div>
 </ng-template>
 

@@ -14,7 +14,6 @@
   margin: auto;
   min-height: calc(100vh - 60px);
 
-  padding-bottom: 80px;
 }
 
 .white-bg {
@@ -34,9 +33,13 @@
   }
 }
 
+div {
+  font-size: 14px;
+}
 .blue-bg {
   background: $blue;
-  padding-top: 80px;
+  padding: 80px 0;
+  border-bottom: 1px solid #112639;
 }
 
 .round-box {
@@ -170,11 +173,18 @@
       flex-direction: row;
       justify-content: space-around;
 
+      div {
+        .ranking-header {
+          margin-bottom: 5px;
+        }
+      }
       .customer-ranking {
         text-align: center;
         display: flex;
         flex-direction: column;
         align-items: center;
+
+        
       }
 
       .rente-ranking {
@@ -254,7 +264,7 @@
   position: relative;
   display: inline-block;
   font-size: 1.3rem;
-  color: $white;
+  color: $grey-dark;
 }
 
 .full {
@@ -291,7 +301,7 @@
 .bank-name {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: center !important;
   margin-bottom: 30px;
 
   .logo {
@@ -332,11 +342,33 @@
   max-width: 100%;
 
   img {
-    max-width: 45%;
+    max-width: 100%;
     max-height: 500px;
   }
 }
 
+.mat-icon.mat-primary {
+  color: $primary !important;
+}
+
+.button-box {
+  background: $grey-light;
+  width: 100%;
+  margin-top: 20px;
+  padding: 20px;
+  border-radius: 15px;
+
+  p {
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: 400;
+
+  }
+}
+
+.location-details {
+  margin-left: -12px;
+}
 .round {
   border-radius: 50px;
   height: 70px;
@@ -409,6 +441,16 @@
   }
 }
 
+.offering-checklist {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  margin-top: 10px;
+
+  > div:not(:first-child) {
+    margin-left: 10px;
+  }
+}
 .offering {
   &-value {
     font-size: 20px;
@@ -430,6 +472,7 @@
 .checklist-item {
   display: flex;
   margin-top: 8px;
+  font-size: 36px;
   img {
     width: 30px;
   }
@@ -441,14 +484,59 @@
   }
 }
 
-.location-content {
+.location-details {
+  > div:not(:first-child) {
+    margin-top: 30px;
+  }
+}
+.location-item-content {
   font-weight: 400;
   font-size: 16px;
-  padding-left: 32px;
+  padding-left: 45px;
 }
 
+.services {
+  margin-left: 37px;
+  margin-top: 0 !important;
+  display: flex;
+  flex-wrap: wrap;
+  span {
+    padding: 5px 10px;
+    color: #F4F5F6;
+    background: #54606E;
+    border-radius: 20px;
+    min-width: 60px;
+    font-size: 12px;
+    text-align: center;
+  }
+}
+
+.service-not-present {
+  margin-top: 0px;
+  padding: 5px 10px;
+  color: #F4F5F6;
+  background: #54606E;
+  border-radius: 20px;
+  min-width: 60px;
+  font-size: 12px;
+  text-align: center;
+  margin: 10px 0 0 45px !important;
+  width: 60px;
+}
+
+
+.box-in-list {
+  padding: 5px 10px;
+  color: #F4F5F6;
+  background: #54606E;
+  border-radius: 20px;
+  min-width: 60px;
+  font-size: 12px;
+  text-align: center;
+}
 .accordion {
   margin-top: 10px;
+  width: 100%;
 }
 
 ::ng-deep .mat-expansion-panel-header:hover  {
@@ -506,8 +594,35 @@
 
 
   .banks-inner {
-    padding: 20px;
-    border: 1px solid $light;
+    
+    
+    .bank-list {
+      padding: 12px 20px;
+      border: 1px solid #18bc9c;
+      border-radius: 50px;
+      margin: 25px auto 10px;
+      width: 80%;
+      display: flex;
+      input {
+        border: none;
+      }
+
+      button {
+        padding: unset !important;
+        min-width: unset !important;
+        width: 30px !important;
+        height: 30px !important;
+        .exit {
+          width: 20px !important;
+          height: 20px !important;
+        }
+      }
+      .search {
+        width: 40px;
+        height: 30px;
+      }
+    }
+    
   }
 }
 
@@ -575,9 +690,13 @@
 }
 
 mat-selection-list {
-  transition: 1s;
+  transition: 3s;
   max-height: 350px;
   overflow-y: auto;
+  width: 80%;
+  margin: auto;
+  box-shadow: rgb(100 100 111 / 20%) 0px 7px 29px 0px;
+  border-radius: 15px;
 }
 
 .bank-list {
@@ -593,6 +712,7 @@ mat-selection-list {
   padding: 0;
   border-radius: 0;
   color: #777;
+  padding: 0 10px;
 }
 
 .bank-button-logo {
@@ -600,4 +720,15 @@ mat-selection-list {
   height: 40px;
   margin-right: 20px;
   padding: 0;
+}
+
+.not-present {
+  margin-top: 0px;
+  padding: 5px 10px;
+  color: #F4F5F6;
+  background: #54606E;
+  border-radius: 20px;
+  min-width: 60px;
+  font-size: 12px;
+  text-align: center;
 }
