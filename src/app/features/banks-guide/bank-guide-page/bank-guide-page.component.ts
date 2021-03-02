@@ -78,7 +78,7 @@ export class BankGuidePageComponent implements OnInit {
               );
             }
 
-            this.bankGuideInfo.depositOffers.forEach((offer) => {
+            /* this.bankGuideInfo.depositOffers.forEach((offer) => {
               offer.name.toLowerCase().includes('bsu')
                 ? this.depositsBsu.push(offer)
                 : this.depositsGeneral.push(offer);
@@ -102,7 +102,7 @@ export class BankGuidePageComponent implements OnInit {
                 return 1;
               }
               return 0;
-            });
+            }); */
 
             this.banksLocations[
               this.banksLocations.findIndex((location) => location === 'other')
