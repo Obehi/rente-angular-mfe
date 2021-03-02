@@ -81,10 +81,8 @@
   width: 100%;
   margin: auto;
 
-
   .banks-inner {
-    
-    
+    position: relative;
     .bank-list {
       padding: 12px 20px;
       border: 1px solid #18bc9c;
@@ -92,8 +90,10 @@
       margin: 25px auto 10px;
       width: 90%;
       display: flex;
+      justify-content: space-between;
       input {
         border: none;
+        width: 100%;
       }
 
       button {
@@ -114,6 +114,29 @@
     
   }
 }
+
+.bank-search-wrapper {
+  @media(min-width: 600px) {
+    width: 600px;
+    margin: auto;
+  }
+}
+
+
+.bank-dropdown {
+  position: absolute;
+  top: 75px;
+  background: white;
+
+  @media(min-width: 600px) {
+    left: 60px;
+  }
+
+  @media(max-width: 600px) {
+    left: 10%;
+  }
+}
+
 
 mat-selection-list {
   transition: 3s;

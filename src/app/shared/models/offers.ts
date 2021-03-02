@@ -101,6 +101,7 @@ export interface BankGuideInfo {
   intermediateFinancingOffers: { name: string; rate: string }[];
   regularOffers: { name: string; rate: string }[];
   addresses: { [key: string]: BankLocationAddress[] };
+  depositOffers: { name: string; rate: string }[];
 }
 
 export interface BankStatistics {

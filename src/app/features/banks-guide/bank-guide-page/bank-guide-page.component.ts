@@ -9,7 +9,7 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { SeoService } from '@services/seo.service';
 import { BankGuideService } from '../bank-guide.service';
-
+import { ROUTES_MAP } from '@config/routes-config';
 @Component({
   selector: 'rente-bank-guide-page',
   templateUrl: './bank-guide-page.component.html',
@@ -19,12 +19,16 @@ export class BankGuidePageComponent implements OnInit {
   @ViewChild('inShort') inShort: ElementRef;
   banksData = [...BankList, ...MissingBankList];
 
+  routesMap = ROUTES_MAP;
   bank;
   icon: string;
   bankGuideLoading: boolean;
   bankGuideInfo: BankGuideInfo;
   banksLocations: string[];
   addressesArray: BankLocationAddress[] = [];
+  depositsGeneral = [];
+  depositsBsu = [];
+
   public bankUtils = BankUtils;
   private _onDestroy$ = new Subject<void>();
 
@@ -54,6 +58,8 @@ export class BankGuidePageComponent implements OnInit {
       const bankName = param.id.toUpperCase();
       this.bank = BankUtils.getBankByName(bankName);
 
+      this.depositsBsu = [];
+      this.depositsGeneral = [];
       this.loansService
         .getBankGuide(this.route.snapshot.params.id.toUpperCase())
         .pipe(takeUntil(this._onDestroy$))
@@ -71,6 +77,32 @@ export class BankGuidePageComponent implements OnInit {
                 ...this.bankGuideInfo.addresses[address]
               );
             }
+
+            this.bankGuideInfo.depositOffers.forEach((offer) => {
+              offer.name.toLowerCase().includes('bsu')
+                ? this.depositsBsu.push(offer)
+                : this.depositsGeneral.push(offer);
+            });
+
+            this.depositsGeneral = this.depositsGeneral.sort((a, b) => {
+              if (a.name < b.name) {
+                return -1;
+              }
+              if (a.name > b.name) {
+                return 1;
+              }
+              return 0;
+            });
+
+            this.depositsBsu = this.depositsBsu.sort((a, b) => {
+              if (a.name < b.name) {
+                return -1;
+              }
+              if (a.name > b.name) {
+                return 1;
+              }
+              return 0;
+            });
 
             this.banksLocations[
               this.banksLocations.findIndex((location) => location === 'other')

@@ -50,6 +50,13 @@ div {
   padding: 20px;
 }
 
+.sub-headline {
+  margin-top: 10px;
+  margin-bottom: -5px;
+  font-size: 18px;
+  font-weight: 400;
+}
+
 .top-container {
   width: 100%;
   display: flex;
@@ -144,6 +151,10 @@ div {
   .top-main-container {
     background: $grey-light;
 
+    .first {
+      margin-bottom: 40px;
+    }
+
     .vertical-box {
       margin-bottom: 40px;
       .item {
@@ -173,6 +184,17 @@ div {
       flex-direction: row;
       justify-content: space-around;
 
+     
+      
+      .item {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 47px;
+        width: 120px
+
+  
+      }
       div {
         .ranking-header {
           margin-bottom: 5px;
@@ -289,6 +311,7 @@ div {
   max-width: 100%;
   margin: 0 10px;
   border-radius: 16px;
+  padding-bottom: 36px !important;
   @media all and (min-width: 992px) {
     max-width: 50%;
   }
@@ -441,14 +464,21 @@ div {
   }
 }
 
+
+.deposit-container {
+  width: 100%;
+  
+  
+}
+
 .offering-checklist {
   display: flex;
   flex-wrap: wrap;
   width: 100%;
   margin-top: 10px;
 
-  > div:not(:first-child) {
-    margin-left: 10px;
+  > div{
+    margin-right: 10px;
   }
 }
 .offering {
@@ -533,6 +563,7 @@ div {
   min-width: 60px;
   font-size: 12px;
   text-align: center;
+  margin-bottom: 10px;
 }
 .accordion {
   margin-top: 10px;
@@ -585,16 +616,41 @@ div {
 
 
 
+.bank-search-wrapper {
+  @media(min-width: 600px) {
+    width: 600px;
+    margin: auto;
+  }
+}
 
+
+.bank-dropdown {
+  position: absolute;
+  top: 75px;
+  background: white;
+  z-index: 9999;
+  @media(min-width: 600px) {
+    left: 60px;
+  }
+
+  @media(max-width: 600px) {
+    left: 10%;
+  }
+}
 
 
 .banks {
   width: 100%;
   margin: auto;
 
+ 
+
+  .close-button {
+    margin: unset;
+  }
 
   .banks-inner {
-    
+    position: relative;
     
     .bank-list {
       padding: 12px 20px;
@@ -603,10 +659,13 @@ div {
       margin: 25px auto 10px;
       width: 80%;
       display: flex;
+      justify-content: space-between;
       input {
         border: none;
+        width: 100%;
       }
 
+   
       button {
         padding: unset !important;
         min-width: unset !important;

@@ -5,6 +5,7 @@ import {
   BankList,
   BankVo,
   MissingBankList,
+  TinkBanks,
   LegacyBanks
 } from '@shared/models/bank';
 
@@ -14,7 +15,7 @@ import {
 export class BankGuideService {
   banks: BankVo[];
   allBanks: BankVo[];
-  banksData = [...BankList, ...MissingBankList, ...LegacyBanks];
+  banksData = [...BankList, ...MissingBankList, ...LegacyBanks, ...TinkBanks];
   searchStr = '';
   sparebankIsClicked = false;
   options: any[];
@@ -50,6 +51,7 @@ export class BankGuideService {
   }
 
   selectBank(bank: BankVo) {
+    this.shouldDisplayBankList = false;
     if (bank.name === 'SPAREBANK_1') {
       this.searchStr = 'Sparebank 1';
 
@@ -58,9 +60,7 @@ export class BankGuideService {
       this.filterBank(this.searchStr);
       return;
     }
-
-    this.shouldDisplayBankList = false;
-    this.router.navigate([ROUTES_MAP_NO.banksGuide, bank.name.toLowerCase()]);
+    // this.router.navigate([ROUTES_MAP_NO.banksGuide, bank.name.toLowerCase()]);
   }
 
   sortBanks() {
@@ -69,22 +69,32 @@ export class BankGuideService {
       ...MissingBankList,
       ...LegacyBanks
     ].sort((a, b) => (a.label > b.label ? 1 : b.label > a.label ? -1 : 0));
+
     const dnb = 'DNB';
     const sparebank = 'SPAREBANK_1';
     const nordea = 'NORDEA';
+    const danskeAkademikerene = 'AKADEMIKERNE_DANSKE';
+    const specialCaseBanks = {};
 
-    const sortedBanksSpareBankFirst = sortedBanksAlphabetic.sort((x, y) => {
-      return x.name === sparebank ? -1 : y.name === sparebank ? 1 : 0;
-    });
-    const sortedBanksNoredaFirst = sortedBanksSpareBankFirst.sort((x, y) => {
-      return x.name === nordea ? -1 : y.name === nordea ? 1 : 0;
+    sortedBanksAlphabetic.forEach((bank, index) => {
+      if (
+        bank.name === dnb ||
+        bank.name === sparebank ||
+        bank.name === nordea ||
+        bank.name === danskeAkademikerene
+      ) {
+        specialCaseBanks[bank.name] = bank;
+        sortedBanksAlphabetic.splice(index, 1);
+      }
     });
 
-    const sortedBanksDNBFirst = sortedBanksNoredaFirst.sort((x, y) => {
-      return x.name === dnb ? -1 : y.name === dnb ? 1 : 0;
-    });
-
-    this.allBanks = sortedBanksDNBFirst;
+    this.allBanks = [
+      specialCaseBanks[dnb],
+      specialCaseBanks[nordea],
+      specialCaseBanks[sparebank],
+      ...TinkBanks,
+      ...sortedBanksAlphabetic
+    ];
   }
 
   clear() {
