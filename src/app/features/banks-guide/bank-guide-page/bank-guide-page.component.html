@@ -60,7 +60,7 @@
         <div class="small-boxes">
           <div class="box">
             <p>Snittrente</p>
-            <div *ngIf="bankGuideInfo?.medianEffectiveRate; else notPresent">
+            <div *ngIf="bankGuideInfo?.medianEffectiveRate; else unknown">
               <h4>{{bankGuideInfo?.medianEffectiveRate.toFixed(2)}}%</h4>
             </div>
           </div>
@@ -81,7 +81,7 @@
               <div>
                 Type bank:
               </div>
-              <div *ngIf="bankGuideInfo?.bankType;else notPresent">
+              <div class="item-value" *ngIf="bankGuideInfo?.bankType;else notPresent">
                 {{bankGuideInfo?.bankType}}
               </div>
             </div>
@@ -91,7 +91,7 @@
                 <div>
                   Geografi:
                 </div>
-                <div *ngIf="bankGuideInfo?.area;else notPresent">
+                <div class="item-value" *ngIf="bankGuideInfo?.area;else notPresent">
                   {{bankGuideInfo?.area}}
                 </div>
               </div>
@@ -144,9 +144,8 @@
           <img class="arrow" src="../../../../assets/icons/arrow-small-grey.svg"/>
 
         </div>
-        <!--    <span-->
-        <!--          (click)="scrollTo(inShort)">Bank- og kontaktinformasjon</span>-->
-        <div class="icon-link">
+       
+        <div *ngIf="banksLocations.length !== 0"  class="icon-link">
           <img (click)="scrollTo(offices)" src="../../../../assets/icons/location-grey-circle.svg"/>
           <span>Filialer</span>
           <img class="arrow" src="../../../../assets/icons/arrow-small-grey.svg"/>
@@ -238,6 +237,20 @@
       </div>
       <div class="accordion">
         <mat-accordion>
+          <mat-expansion-panel *ngFor="let membership of memberships">
+            <mat-expansion-panel-header>
+              <p>
+                <b>
+                  {{(membership | titlecase)}} medlemskapslån
+                </b>
+              </p>
+            </mat-expansion-panel-header>
+            <div class="item" *ngFor="let membership of bankGuideInfo?.membershipOffers[membership]">
+                   <div> {{membership.name}} </div>
+                   <div> {{membership.rate}} </div>
+            </div>
+          </mat-expansion-panel>
+
           <mat-expansion-panel *ngIf="bankGuideInfo?.regularOffers.length">
             <mat-expansion-panel-header>
               <p>
@@ -367,7 +380,7 @@
 
 
 
-    <div class="scroll-anchor white-bg p-3 mx-lg-auto mt-4" #bankOffering>
+    <div *ngIf="depositsBsu.length !== 0|| depositsGeneral.length !== 0" class="scroll-anchor white-bg p-3 mx-lg-auto mt-4" #bankOffering>
       <div class="bank-name justify-content-lg-center">
         <div class="logo d-inline-block mr-lg-4">
           <img src="../../../assets/img/banks-logo/round/{{ bank.icon }}" [alt]="bank.label">
@@ -379,7 +392,7 @@
 
     <div class="deposit-container">
 
-      <p class="sub-headline">
+      <p *ngIf="depositsBsu.length !== 0" class="sub-headline">
         BSU:
       </p>
       <div class="d-flex justify-content-between align-middle mt-2" *ngFor="let offer of depositsBsu">
@@ -393,7 +406,7 @@
         </div>
       </div>
 
-      <p class="sub-headline">
+      <p *ngIf="depositsGeneral.length !== 0" class="sub-headline">
         Andre produkter:
       </p>
       <div class="d-flex justify-content-between align-middle mt-2" *ngFor="let offer of depositsGeneral">
@@ -417,7 +430,7 @@
 
 
 
-    <div class="scroll-anchor" #offices>
+    <div *ngIf="banksLocations.length !== 0" class="scroll-anchor" #offices>
       <div *ngIf="bank.name === 'DNB' || bank.name === 'NORDEA'" class="white-bg p-3 mx-lg-auto mt-4">
         <div class="bank-name justify-content-lg-center">
           <div class="logo d-inline-block mr-lg-4">
@@ -549,5 +562,8 @@
 </div>
 <ng-template #notPresent>
   <div class="not-present">-</div>
+</ng-template>
+<ng-template #unknown>
+  <div class="unknown">Ukjent</div>
 </ng-template>
 

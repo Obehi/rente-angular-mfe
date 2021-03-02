@@ -27,6 +27,9 @@ export class BankGuideService {
   }
 
   filterBank(filter: string) {
+    if (filter.includes('spare')) {
+      filter = 'sparebank 1';
+    }
     let filteredBanks = [];
     if (filter === null || filter?.length === 0) {
       filteredBanks = this.allBanks.concat();
@@ -74,6 +77,7 @@ export class BankGuideService {
     const sparebank = 'SPAREBANK_1';
     const nordea = 'NORDEA';
     const danskeAkademikerene = 'AKADEMIKERNE_DANSKE';
+    const sparebankOne = 'SPAREBANK_1';
     const specialCaseBanks = {};
 
     sortedBanksAlphabetic.forEach((bank, index) => {
@@ -91,7 +95,6 @@ export class BankGuideService {
     this.allBanks = [
       specialCaseBanks[dnb],
       specialCaseBanks[nordea],
-      specialCaseBanks[sparebank],
       ...TinkBanks,
       ...sortedBanksAlphabetic
     ];

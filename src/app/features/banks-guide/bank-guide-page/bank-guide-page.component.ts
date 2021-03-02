@@ -26,6 +26,8 @@ export class BankGuidePageComponent implements OnInit {
   bankGuideInfo: BankGuideInfo;
   banksLocations: string[];
   addressesArray: BankLocationAddress[] = [];
+  memberships: any;
+  membershipOffers: any;
   depositsGeneral = [];
   depositsBsu = [];
 
@@ -71,38 +73,27 @@ export class BankGuidePageComponent implements OnInit {
               this.bankGuideInfo.addresses
             ).sort();
 
+            this.memberships = [];
+            this.addressesArray = [];
+
+            this.memberships = Object.keys(
+              this.bankGuideInfo.membershipOffers
+            ).sort();
+
+            this.bankGuideInfo.depositOffers
+              .sort(this.alphaSort)
+              .forEach((offer) => {
+                offer.name.toLowerCase().includes('bsu')
+                  ? this.depositsBsu.push(offer)
+                  : this.depositsGeneral.push(offer);
+              });
+
             this.addressesArray = [];
             for (const address in this.bankGuideInfo.addresses) {
               this.addressesArray.push(
                 ...this.bankGuideInfo.addresses[address]
               );
             }
-
-            /* this.bankGuideInfo.depositOffers.forEach((offer) => {
-              offer.name.toLowerCase().includes('bsu')
-                ? this.depositsBsu.push(offer)
-                : this.depositsGeneral.push(offer);
-            });
-
-            this.depositsGeneral = this.depositsGeneral.sort((a, b) => {
-              if (a.name < b.name) {
-                return -1;
-              }
-              if (a.name > b.name) {
-                return 1;
-              }
-              return 0;
-            });
-
-            this.depositsBsu = this.depositsBsu.sort((a, b) => {
-              if (a.name < b.name) {
-                return -1;
-              }
-              if (a.name > b.name) {
-                return 1;
-              }
-              return 0;
-            }); */
 
             this.banksLocations[
               this.banksLocations.findIndex((location) => location === 'other')
@@ -124,6 +115,16 @@ export class BankGuidePageComponent implements OnInit {
         );
     });
   }
+
+  alphaSort = (a: any, b: any): number => {
+    if (a.name < b.name) {
+      return -1;
+    }
+    if (a.name > b.name) {
+      return 1;
+    }
+    return 0;
+  };
 
   scrollTo(ref) {
     ref.scrollIntoView({
