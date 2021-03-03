@@ -11,7 +11,7 @@
             <img  class="exit"
                 src="../../../assets/icons/exit-green.svg" />
           </button>
-          <img *ngIf="!bankGuideService.searchStr" class="search"
+          <img (click)="bankGuideService.shouldDisplayBankList = true"  *ngIf="!bankGuideService.searchStr" class="search"
                 src="../../../assets/icons/search-green.svg" />
         </div>
         <span #banklist>
@@ -177,7 +177,7 @@
 
     <div class="scroll-anchor white-bg p-3 mx-lg-auto mt-4" #bankOffering>
       <div class="bank-name justify-content-lg-center">
-        <div class="logo d-inline-block mr-lg-4">
+        <div class="logo d-inline-block">
           <img src="../../../assets/img/banks-logo/round/{{ bank.icon }}" [alt]="bank.label">
         </div>
         <h2 class="mb-0">
@@ -356,7 +356,7 @@
     </div>
     <div class="white-bg p-3 mx-lg-auto mt-4">
       <div class="bank-name justify-content-lg-center">
-        <div class="logo d-inline-block mr-lg-4">
+        <div class="logo d-inline-block">
           <img src="../../../../assets/img/radar_seethrough.png" alt="logo">
         </div>
         <h2 class="mb-0 font-weight-normal label">
@@ -382,7 +382,7 @@
 
     <div *ngIf="depositsBsu.length !== 0|| depositsGeneral.length !== 0" class="scroll-anchor white-bg p-3 mx-lg-auto mt-4" #bankOffering>
       <div class="bank-name justify-content-lg-center">
-        <div class="logo d-inline-block mr-lg-4">
+        <div class="logo d-inline-block">
           <img src="../../../assets/img/banks-logo/round/{{ bank.icon }}" [alt]="bank.label">
         </div>
         <h2 class="mb-0">
@@ -426,10 +426,10 @@
     <div *ngIf="banksLocations.length !== 0" class="scroll-anchor">
       <div *ngIf="bank.name === 'DNB' || bank.name === 'NORDEA'" class="white-bg p-3 mx-lg-auto mt-4">
         <div class="bank-name justify-content-lg-center">
-          <div class="logo d-inline-block mr-lg-4">
+          <div class="logo d-inline-block">
             <img src="../../../assets/img/banks-logo/round/{{ bank.icon }}" [alt]="bank.label">
           </div>
-          <h2 class="mb-0 font-weight-normal label d-flex text-left pl-4">
+          <h2 class="mb-0 font-weight-normal label d-flex text-left">
             Filialer
           </h2>
         </div>
@@ -491,7 +491,7 @@
       </div>
       <div *ngIf="bank.name !== 'DNB' && bank.name !== 'NORDEA'" class="white-bg p-3 mx-lg-auto mt-4">
         <div class="bank-name justify-content-lg-center">
-          <div class="logo d-inline-block mr-lg-4">
+          <div class="logo d-inline-block">
             <img src="../../../assets/img/banks-logo/round/{{ bank.icon }}" [alt]="bank.label">
           </div>
           <div class="label d-flex text-left pl-4">
