@@ -11,7 +11,7 @@
             <img  class="exit"
                 src="../../../assets/icons/exit-green.svg" />
           </button>
-          <img (click)="bankGuideService.shouldDisplayBankList = true"  *ngIf="!bankGuideService.searchStr" class="search"
+          <img (click)="bankGuideService.shouldDisplayBankList = true" *ngIf="!bankGuideService.searchStr" class="search"
                 src="../../../assets/icons/search-green.svg" />
         </div>
         <span #banklist>
@@ -241,7 +241,7 @@
             <mat-expansion-panel-header>
               <p>
                 <b>
-                  {{(membership | titlecase)}} medlemskapslån
+                   medlemskapslån
                 </b>
               </p>
             </mat-expansion-panel-header>
