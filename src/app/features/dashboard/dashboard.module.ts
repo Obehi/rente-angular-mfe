@@ -50,6 +50,7 @@ import { LoansLangGenericComponent } from '../../local-components/components-out
 import { HouseFormLangGenericComponent } from '../../local-components/components-output';
 import { ChangeBankDialogLangGenericComponent } from '../../local-components/components-output';
 import { BankScoreLangGenericComponent } from '../../local-components/components-output';
+import { ChangeBankLocationComponent } from './offers/change-bank-dialog/change-bank-dialog-sv/change-bank-location/change-bank-location.component';
 
 // TODO: ADD separate module for material import
 @NgModule({
@@ -86,7 +87,8 @@ import { BankScoreLangGenericComponent } from '../../local-components/components
     ChangeBankDialogLangGenericComponent,
     BankScoreLangGenericComponent,
     EPSIScoreComponent,
-    HouseFormErrorDialogComponent
+    HouseFormErrorDialogComponent,
+    ChangeBankLocationComponent
   ],
   imports: [
     CommonModule,

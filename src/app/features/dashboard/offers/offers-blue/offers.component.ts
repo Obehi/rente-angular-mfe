@@ -21,7 +21,7 @@ import {
   TrackingService,
   TrackingDto
 } from '@services/remote-api/tracking.service';
-import { Subscription } from 'rxjs';
+import { Subscription, forkJoin } from 'rxjs';
 import { OFFERS_LTV_TYPE } from '../../../../shared/models/offers';
 import { UserService } from '@services/remote-api/user.service';
 import smoothscroll from 'smoothscroll-polyfill';
@@ -313,6 +313,43 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
     this.changeBankLoading = true;
     const offerId = offer.id;
     const currentBank = this.offersInfo.bank;
+
+    console.log('this.offersInfo.bank');
+    console.log(this.offersInfo.bank);
+
+    forkJoin([
+      this.changeBankServiceService.getBankOfferLocations('SWE_SEB'),
+      this.changeBankServiceService.getBankOfferRequest(offerId)
+    ]).subscribe(
+      ([locations, preview]) => {
+        this.changeBankLoading = false;
+
+        const data = { preview, offerId, currentBank };
+
+        if (locations !== undefined) {
+          data['locations'] = locations;
+        }
+        const changeBankRef = this.dialog.open(
+          ChangeBankDialogLangGenericComponent,
+          {
+            autoFocus: false,
+            data: data
+          }
+        );
+        changeBankRef.afterClosed().subscribe(() => {
+          this.handleChangeBankdialogOnClose(
+            changeBankRef.componentInstance.closeState
+          );
+        });
+      },
+      (err) => {
+        this.changeBankLoading = false;
+      }
+    );
+
+    /*     this.changeBankServiceService
+      .getBankOfferLocations('SWE_SEB')
+      .subscribe((locations) => {});
     this.changeBankServiceService.getBankOfferRequest(offerId).subscribe(
       (preview) => {
         this.changeBankLoading = false;
@@ -333,7 +370,7 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
       (err) => {
         this.changeBankLoading = false;
       }
-    );
+    ); */
   }
 
   public handleChangeBankdialogOnClose(state: string) {
