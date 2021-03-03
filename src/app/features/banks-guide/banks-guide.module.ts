@@ -7,6 +7,7 @@ import { BankGuidePageComponent } from './bank-guide-page/bank-guide-page.compon
 import { BanksGuideRoutingModule } from './banks-guide-routing.module';
 import { BanksGuideComponent } from './banks-guide.component';
 import { SharedModule } from '../../shared/shared.module';
+import { BankGuideService } from './bank-guide.service';
 
 @NgModule({
   declarations: [BanksGuideComponent, BankGuidePageComponent],
@@ -17,6 +18,7 @@ import { SharedModule } from '../../shared/shared.module';
     NgbRatingModule,
     SharedModule,
     FormsModule
-  ]
+  ],
+  providers: [BankGuideService]
 })
 export class BanksGuideModule {}
