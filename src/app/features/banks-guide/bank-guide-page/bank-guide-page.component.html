@@ -1,98 +1,168 @@
 <div class="guide-content-blue pt-3">
-  <ng-container *ngIf="!bankGuideLoading">
-    <div class="blue-bg p-3 mx-lg-auto">
-      <div class="bank-name justify-content-lg-center">
-        <div class="logo d-inline-block mr-lg-4">
-          <img [src]="bank.icon" [alt]="bank.label">
+  <div class="d-flex justify-content-center bank-search-wrapper">
+    <div class="banks mb-3">
+      <div class="banks-inner">
+        <div class="bank-list">
+          <input  #bankInput matInput type="text" placeholder="Velg bank" autocomplete="off"
+            (click)="bankGuideService.shouldDisplayBankList = true" [(ngModel)]="bankGuideService.searchStr"
+            (ngModelChange)="bankGuideService.onFilterChanged()" />
+          <button *ngIf="bankGuideService.searchStr" class="close-button" mat-button matSuffix mat-icon-button aria-label="Clear"
+            (click)="bankGuideService.clear()">
+            <img  class="exit"
+                src="../../../assets/icons/exit-green.svg" />
+          </button>
+          <img *ngIf="!bankGuideService.searchStr" class="search"
+                src="../../../assets/icons/search-green.svg" />
         </div>
-        <h1 class="text-white font-weight-normal mb-0 label d-flex text-left pl-4">
-          {{bank.label}}
-        </h1>
-      </div>
-      <div class="bank-rating mx-auto text-center d-flex flex-column mt-3">
-        <div>
-          Rente-ranking:
-        </div>
-        <div *ngIf="bankGuideInfo?.renteRating;else notPresent">
-          {{bankGuideInfo?.renteRating}}
-        </div>
-      </div>
-      <div class="bank-rates text-center d-flex justify-content-around w-100 mt-4">
-        <div class="effective-rate">
+        <span #banklist>
+        <mat-selection-list class="bank-dropdown"  [class.d-none]="!bankGuideService.shouldDisplayBankList">
           <div>
-            Snittrente:
-          </div>
-          <div *ngIf="bankGuideInfo?.medianEffectiveRate;else notPresent">
-            {{bankGuideInfo?.medianEffectiveRate.toFixed(2)}}%
-          </div>
-        </div>
-        <div class="best-offer">
-          <div>
-            Beste tilbud:
-          </div>
-          <div *ngIf="bankGuideInfo?.bestNomOffer;else notPresent">
-            {{bankGuideInfo?.bestNomOffer.toFixed(2)}}%
-          </div>
-        </div>
-      </div>
-      <div class="bank-rates text-center d-flex justify-content-around w-100 mt-4">
-        <div class="effective-rate">
-          <div>
-            Type bank:
-          </div>
-          <div *ngIf="bankGuideInfo?.bankType;else notPresent">
-            {{bankGuideInfo?.bankType}}
-          </div>
-        </div>
-        <div class="best-offer">
-          <div>
-            Geografi:
-          </div>
-          <div *ngIf="bankGuideInfo?.area;else notPresent">
-            {{bankGuideInfo?.area}}
-          </div>
-        </div>
-      </div>
-      <div class="bank-rates text-center d-flex justify-content-around w-100 mt-4">
-        <div class="effective-rate">
-          <div>
-            Kundetilfredshet:
-          </div>
-          <div *ngIf="bankGuideInfo?.score;else notPresent">
-            <img class="offer-score my-2" src="../../../../assets/icons/score-{{bankGuideInfo?.score}}.svg"/>
-          </div>
-        </div>
-        <div class="best-offer">
-          <div>
-            Mobilbank:
-          </div>
-          <div class="mt-3" *ngIf="bankGuideInfo?.mobileAppRating;else notPresent">
-            <ng-template #t let-fill="fill">
-              <span class="star" [class.full]="fill === 100">
-                <span class="half" [style.width.%]="fill">&#9733;</span>&#9733;
-              </span>
+            <button *ngFor="let bank of bankGuideService.banks" mat-button class="bank-button"
+            (click)="bankGuideService.selectBank(bank)"
+            [routerLink]="'/bankguiden/' + bank.name.toLowerCase()">
+            <div *ngIf="bank.icon; then hasIcon; else noIcon"></div>
+            <ng-template #hasIcon><img class="bank-button-logo"
+              src="../../../assets/img/banks-logo/round/{{ bank.icon }}" />
             </ng-template>
-            <ngb-rating [rate]="bankGuideInfo?.mobileAppRating" [starTemplate]="t" [readonly]="true"
-                        [max]="5"></ngb-rating>
+            <ng-template #noIcon><img class="bank-button-logo" src="../../../assets/img/banks-logo/round/annen.png" />
+            </ng-template>
+            {{ bank.label }}
+          </button>
+        </div>
+        </mat-selection-list>
+      </span>
+      </div>
+    </div>
+  </div>
+
+
+  <ng-container *ngIf="!bankGuideLoading">
+    <div class="white-bg mx-lg-auto">
+
+      <div class="top-container p-3">
+        <div class="header round-box">
+          <div class="header-left">
+            <img src="../../../assets/img/banks-logo/round/{{ bank.icon }}" [alt]="bank.label">
+            <h1>
+              {{bank.label}}
+            </h1>
           </div>
+          <div class="header-right" *ngIf="bankGuideInfo?.renteRating">
+            <div class="header-right-inner">
+              <p>Rente-ranking</p>
+              <h3>
+                {{bankGuideInfo?.renteRating}}
+              </h3>
+            </div>
+          </div>
+        </div>
+
+        <div class="small-boxes">
+          <div class="box">
+            <p>Snittrente</p>
+            <div *ngIf="bankGuideInfo?.medianEffectiveRate; else unknown">
+              <h4>{{bankGuideInfo?.medianEffectiveRate.toFixed(2)}}%</h4>
+            </div>
+          </div>
+
+          <div class="box">
+            <p>Beste tilbud</p>
+            <div *ngIf="bankGuideInfo?.bestNomOffer; else notPresent">
+              <h4>{{bankGuideInfo?.bestNomOffer.toFixed(2)}}%</h4>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="top-main-container round-box padding-box">
+          
+          <div class="horizontal-box first">
+            <div class="item">
+              <div>
+                Type bank:
+              </div>
+              <div class="item-value" *ngIf="bankGuideInfo?.bankType;else notPresent">
+                {{bankGuideInfo?.bankType}}
+              </div>
+            </div>
+
+            <div class="rente-ranking">
+              <div class="item">
+                <div>
+                  Geografi:
+                </div>
+                <div class="item-value" *ngIf="bankGuideInfo?.area;else notPresent">
+                  {{bankGuideInfo?.area}}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="horizontal-box">
+            <div class="customer-ranking">
+              <div class="ranking-header">
+                Kundetilfredshet
+              </div>
+              <div *ngIf="bankGuideInfo?.score;else notPresent">
+                <img class="offer-score my-2" src="../../../../assets/icons/score-{{bankGuideInfo?.score}}.svg" />
+              </div>
+            </div>
+
+            <div class="rente-ranking">
+              <div class="ranking-header">
+                Mobilbank
+              </div>
+              <div class="" *ngIf="bankGuideInfo?.mobileAppRating;else notPresent">
+                <ng-template #t let-fill="fill">
+                  <span class="star" [class.full]="fill === 100">
+                    <span class="half" [style.width.%]="fill">&#9733;</span>&#9733;
+                  </span>
+                </ng-template>
+                <ngb-rating [rate]="bankGuideInfo?.mobileAppRating" [starTemplate]="t" [readonly]="true" [max]="5">
+                </ngb-rating>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+      </div> <!-- end top-container -->
+
+      <div class="internal-links p-3">
+        <div *ngIf="bankHasInShort" (click)="scrollTo(inShort)" class="icon-link">
+          <img src="../../../../assets/icons/informatin-grey-circle.svg"/>
+          <span>Kort
+            om {{bank.label}}</span>
+          <img class="arrow" src="../../../../assets/icons/arrow-small-grey.svg"/>
+            
+        </div>
+        <div (click)="scrollTo(bankOffering)" class="icon-link">
+          <img  src="../../../../assets/icons/house-grey-circle.svg"/>
+          <span>Boliglån i
+            {{bank.label}}</span>
+          <img class="arrow" src="../../../../assets/icons/arrow-small-grey.svg"/>
+
+        </div>
+       
+        <div (click)="scrollTo(offices)" *ngIf="banksLocations.length !== 0"  class="icon-link">
+          <img  src="../../../../assets/icons/location-grey-circle.svg"/>
+          <span>Filialer</span>
+          <img class="arrow" src="../../../../assets/icons/arrow-small-grey.svg"/>
         </div>
       </div>
     </div>
-    <div class="p-3">
-      <span *ngIf="bankHasInShort" class="anchor-link mt-2 d-block text-center w-100" (click)="scrollTo(inShort)">Kort om {{bank.label}}</span>
-      <span class="anchor-link mt-2 d-block text-center w-100"
-            (click)="scrollTo(bankOffering)">Boliglån i {{bank.label}}</span>
-      <!--    <span class="anchor-link mt-2 d-block text-center w-100"-->
-      <!--          (click)="scrollTo(inShort)">Bank- og kontaktinformasjon</span>-->
-      <span class="anchor-link mt-2 d-block text-center w-100" (click)="scrollTo(offices)">Filialer</span>
-    </div>
-    <div class="scroll-anchor" #inShort>
+
+<div class="blue-bg">
+
+
+    <div class="scroll-anchor in-short" #inShort>
       <div class="white-bg p-3 mx-lg-auto mt-lg-4" *ngIf="bankHasInShort">
-        <div class="bank-name justify-content-lg-center">
-          <div class="logo d-inline-block mr-lg-4">
-            <img [src]="bank.icon" [alt]="bank.label">
+        <div class="bank-name">
+          <div class="logo">
+            <img src="../../../assets/img/banks-logo/round/{{ bank.icon }}" [alt]="bank.label">
           </div>
-          <h2 class="mb-0 font-weight-normal label d-flex text-left pl-4">
+          <h2>
             Kort om {{bank.label}}
           </h2>
         </div>
@@ -108,58 +178,79 @@
     <div class="scroll-anchor white-bg p-3 mx-lg-auto mt-4" #bankOffering>
       <div class="bank-name justify-content-lg-center">
         <div class="logo d-inline-block mr-lg-4">
-          <img [src]="bank.icon" [alt]="bank.label">
+          <img src="../../../assets/img/banks-logo/round/{{ bank.icon }}" [alt]="bank.label">
         </div>
-        <h2 class="mb-0 font-weight-normal label d-flex text-left pl-4">
-          Boliglån i {{bank.label}}
+        <h2 class="mb-0">
+          Boliglån
         </h2>
       </div>
 
       <div class="offerings w-100 d-flex flex-column">
-        <div class="offering d-flex">
-          <div class="offering-title font-weight-bolder w-75">Snittrente våre brukere:</div>
-          <div class="offering-value w-25"
-               *ngIf="bankGuideInfo?.medianEffectiveRate;else notPresent">{{bankGuideInfo?.medianEffectiveRate.toFixed(2)}}
-            %
+
+        <div class="item">
+          <div>
+            Snittrente våre brukere:
+          </div>
+          <div *ngIf="bankGuideInfo?.medianEffectiveRate;else notPresent">
+            {{bankGuideInfo?.medianEffectiveRate.toFixed(2)}}%
+            <!-- Fix til Ukjent-->
           </div>
         </div>
-        <div class="offering d-flex mt-3">
-          <div class="offering-title font-weight-bolder w-75">Beste tilbud:</div>
-          <div class="offering-value w-25"
-               *ngIf="bankGuideInfo?.bestNomOffer;else notPresent">{{bankGuideInfo?.bestNomOffer.toFixed(2)}}%
+
+        <div class="item">
+          <div>
+            Beste tilbud:
+          </div>
+          <div *ngIf="bankGuideInfo?.bestNomOffer;else notPresent">
+            {{bankGuideInfo?.bestNomOffer.toFixed(2)}}%
           </div>
         </div>
+
       </div>
-      <div class="offerings-header font-weight-bolder w-100 text-left mt-3">
+      <div class="offerings-header">
         Boliglånstilbud:
       </div>
       <div class="offering-checklist w-100 text-left">
-        <div class="checklist-item" *ngIf="bankGuideInfo?.regularOffers">
-          <mat-icon color="primary">verified</mat-icon>
+        <div class="box-in-list" *ngIf="bankGuideInfo?.regularOffers">
+
           <span>Vanlig Boliglån</span>
         </div>
-        <div class="checklist-item" *ngIf="bankGuideInfo?.creditLineLoans">
-          <mat-icon color="primary">verified</mat-icon>
+        <div class="box-in-list" *ngIf="bankGuideInfo?.creditLineLoans">
+
           <span>Rammelån</span>
         </div>
-        <div class="checklist-item" *ngIf="bankGuideInfo?.fixedRateLoans">
-          <mat-icon color="primary">verified</mat-icon>
+        <div class="box-in-list" *ngIf="bankGuideInfo?.fixedRateLoans">
+
           <span>Fastrentelån</span>
         </div>
-        <div class="checklist-item" *ngIf="bankGuideInfo?.intermediateFinancing">
-          <mat-icon color="primary">verified</mat-icon>
+        <div class="box-in-list" *ngIf="bankGuideInfo?.intermediateFinancing">
+
           <span>Mellomfinansiering</span>
         </div>
-        <div class="checklist-item" *ngIf="bankGuideInfo?.constructionLoans">
-          <mat-icon color="primary">verified</mat-icon>
+        <div class="box-in-list" *ngIf="bankGuideInfo?.constructionLoans">
+
           <span>Byggelån</span>
         </div>
       </div>
-      <div class="offerings-header font-weight-bolder w-100 text-left mt-3">
+      <div class="offerings-header">
         Produkter:
       </div>
-      <div class="accordion w-100">
+      <div class="accordion">
         <mat-accordion>
+          <mat-expansion-panel *ngFor="let membership of memberships">
+            <mat-expansion-panel-header>
+              <p>
+                <b>
+                  {{(membership | titlecase)}} medlemskapslån
+                </b>
+              </p>
+            </mat-expansion-panel-header>
+            <div class="item" *ngFor="let membership of bankGuideInfo?.membershipOffers[membership]">
+                   <div> {{membership.name}} </div>
+                   <div> {{membership.rate}} </div>
+            </div>
+          </mat-expansion-panel>
+
           <mat-expansion-panel *ngIf="bankGuideInfo?.regularOffers.length">
             <mat-expansion-panel-header>
               <p>
@@ -169,12 +260,14 @@
               </p>
             </mat-expansion-panel-header>
             <div class="d-flex justify-content-between align-middle mt-2"
-                 *ngFor="let offer of bankGuideInfo?.regularOffers">
-              <p class="d-block">
-                {{offer.name}}
-              </p>
-              <div class="offer-rate px-3 mx-2">
-                {{offer.rate | number: "1.2-2"}}%
+              *ngFor="let offer of bankGuideInfo?.regularOffers">
+              <div class="item">
+                <div>
+                  {{offer.name}}
+                </div>
+                <div >
+                  {{offer.rate | number: "1.2-2"}}%
+                </div>
               </div>
             </div>
           </mat-expansion-panel>
@@ -187,12 +280,14 @@
               </p>
             </mat-expansion-panel-header>
             <div class="d-flex justify-content-between align-middle mt-2"
-                 *ngFor="let offer of bankGuideInfo?.creditLineLoansOffers">
-              <p class="d-block">
-                {{offer.name}}
-              </p>
-              <div class="offer-rate px-3 mx-2">
-                {{offer.rate | number: '1.2-2'}}%
+              *ngFor="let offer of bankGuideInfo?.creditLineLoansOffers">
+              <div class="item">
+                <div>
+                  {{offer.name}}
+                </div>
+                <div>
+                  {{offer.rate | number: "1.2-2"}}%
+                </div>
               </div>
             </div>
           </mat-expansion-panel>
@@ -205,12 +300,14 @@
               </p>
             </mat-expansion-panel-header>
             <div class="d-flex justify-content-between align-middle mt-2"
-                 *ngFor="let offer of bankGuideInfo?.fixedRateLoansOffers">
-              <p class="d-block">
-                {{offer.name}}
-              </p>
-              <div class="offer-rate px-3 mx-2">
-                {{offer.rate | number: "1.2-2"}}%
+              *ngFor="let offer of bankGuideInfo?.fixedRateLoansOffers">
+              <div class="item">
+                <div>
+                  {{offer.name}}
+                </div>
+                <div>
+                  {{offer.rate | number: "1.2-2"}}%
+                </div>
               </div>
             </div>
           </mat-expansion-panel>
@@ -223,12 +320,14 @@
               </p>
             </mat-expansion-panel-header>
             <div class="d-flex justify-content-between align-middle mt-2"
-                 *ngFor="let offer of bankGuideInfo?.intermediateFinancingOffers">
-              <p class="d-block">
-                {{offer.name}}
-              </p>
-              <div class="offer-rate px-3 mx-2">
-                {{offer.rate | number: "1.2-2"}}%
+              *ngFor="let offer of bankGuideInfo?.intermediateFinancingOffers">
+              <div class="item">
+                <div>
+                  {{offer.name}}
+                </div>
+                <div>
+                  {{offer.rate | number: "1.2-2"}}%
+                </div>
               </div>
             </div>
           </mat-expansion-panel>
@@ -241,12 +340,14 @@
               </p>
             </mat-expansion-panel-header>
             <div class="d-flex justify-content-between align-middle mt-2"
-                 *ngFor="let offer of bankGuideInfo?.constructionLoansOffers">
-              <p class="d-block">
-                {{offer.name}}
-              </p>
-              <div class="offer-rate px-3 mx-2">
-                {{offer.rate | number: "1.2-2"}}%
+              *ngFor="let offer of bankGuideInfo?.constructionLoansOffers">
+              <div class="item">
+                <div>
+                  {{offer.name}}
+                </div>
+                <div>
+                  {{offer.rate | number: "1.2-2"}}%
+                </div>
               </div>
             </div>
           </mat-expansion-panel>
@@ -258,26 +359,75 @@
         <div class="logo d-inline-block mr-lg-4">
           <img src="../../../../assets/img/radar_seethrough.png" alt="logo">
         </div>
-        <h2 class="mb-0 font-weight-normal label d-flex text-left pl-4">
+        <h2 class="mb-0 font-weight-normal label">
           Sjekk renten din på Renteradar.no
         </h2>
       </div>
-      <div class="bank-name-subheader">
-        Se om {{bank.label}} har et godt tilbud for deg
-      </div>
+      
       <div class="smartphone-presentation d-flex justify-content-between">
-        <img src="../../../../assets/img/example-desktop-info-blue.svg">
-        <img src="../../../../assets/img/example-desktop-offers-blue.svg">
+        <img src="../../../../assets/img/rente-promotion.svg">
       </div>
-      <button mat-flat-button class="w-100 mt-3 round" color="primary" [routerLink]="'/'">
-        Klikk her for å logge inn på Renteradar.no
-      </button>
+
+      <div class="button-box">
+        <p>
+          Se om {{bank.label}} har et godt tilbud for deg
+        </p>
+        <rente-button color="primary-wide" [routerLink]="'/'">Logg inn på Renteradar.no</rente-button>
+      </div>
     </div>
-    <div class="scroll-anchor" #offices>
+
+
+
+
+
+    <div *ngIf="depositsBsu.length !== 0|| depositsGeneral.length !== 0" class="scroll-anchor white-bg p-3 mx-lg-auto mt-4" #bankOffering>
+      <div class="bank-name justify-content-lg-center">
+        <div class="logo d-inline-block mr-lg-4">
+          <img src="../../../assets/img/banks-logo/round/{{ bank.icon }}" [alt]="bank.label">
+        </div>
+        <h2 class="mb-0">
+          Innskudd
+        </h2>
+      </div>
+
+    <div class="deposit-container">
+
+      <p *ngIf="depositsBsu.length !== 0" class="sub-headline">
+        BSU:
+      </p>
+      <div class="d-flex justify-content-between align-middle mt-2" *ngFor="let offer of depositsBsu">
+        <div class="item">
+        <div>
+          {{offer.name}}
+        </div>
+        <div >
+          {{offer.rate | number: "1.2-2"}}%
+        </div>
+        </div>
+      </div>
+
+      <p *ngIf="depositsGeneral.length !== 0" class="sub-headline">
+        Andre produkter:
+      </p>
+      <div class="d-flex justify-content-between align-middle mt-2" *ngFor="let offer of depositsGeneral">
+        <div class="item">
+        <div>
+          {{offer.name}}
+        </div>
+        <div >
+          {{offer.rate | number: "1.2-2"}}%
+        </div>
+        </div>
+      </div>
+    </div>
+    </div>
+
+    <div #offices></div>
+    <div *ngIf="banksLocations.length !== 0" class="scroll-anchor">
       <div *ngIf="bank.name === 'DNB' || bank.name === 'NORDEA'" class="white-bg p-3 mx-lg-auto mt-4">
         <div class="bank-name justify-content-lg-center">
           <div class="logo d-inline-block mr-lg-4">
-            <img [src]="bank.icon" [alt]="bank.label">
+            <img src="../../../assets/img/banks-logo/round/{{ bank.icon }}" [alt]="bank.label">
           </div>
           <h2 class="mb-0 font-weight-normal label d-flex text-left pl-4">
             Filialer
@@ -301,25 +451,38 @@
                     </b>
                   </p>
                 </mat-expansion-panel-header>
-                <div class="checklist-item font-weight-bolder mt-2">
-                  <mat-icon color="primary">location_on</mat-icon>
-                  <span>Adresse:</span>
-                </div>
-                <p class="location-content" [innerHTML]="location.address">
-                </p>
-                <div class="checklist-item font-weight-bolder mt-2">
-                  <mat-icon color="primary">watch_later</mat-icon>
-                  <span>Åpningstider:</span>
-                </div>
-                <p class="location-content" [innerHTML]="location.openingHours">
-                </p>
-                <div class="checklist-item font-weight-bolder mt-2">
-                  <mat-icon color="primary">room_service</mat-icon>
-                  <span>Tjenester:</span>
-                </div>
-                <div class="checklist-item mt-2" *ngFor="let service of location.bankLocationServiceDomains">
-                  <mat-icon color="primary">verified</mat-icon>
-                  <span>{{service}}</span>
+                <div class="location-details">
+                  <div class="location-item">
+                    <div class="checklist-item font-weight-bolder mt-2">
+                      <mat-icon [inline]="true" color="primary">location_on</mat-icon>
+                      <span>Adresse:</span>
+                    </div>
+                    <p class="location-item-content" [innerHTML]="location.address">
+                    </p>
+                  </div>
+                  <div class="location-item">
+                  <div class="checklist-item font-weight-bolder mt-2">
+                      <mat-icon [inline]="true" color="primary">watch_later</mat-icon>
+                      <span>Åpningstider:</span>
+                    </div>
+                    <p class="location-item-content" [innerHTML]="location.openingHours">
+                    </p>
+                  </div>
+                  <div class="location-item">
+                  <div class="checklist-item font-weight-bolder mt-2">
+                      <mat-icon [inline]="true" color="primary">room_service</mat-icon>
+                      <span>Tjenester:</span>
+                    </div>
+                  </div>
+                  <div *ngIf="location?.bankLocationServiceDomains" class="services">
+                    <div class="checklist-item mt-2" *ngFor="let service of location.bankLocationServiceDomains">
+                      <!--<img src="../../../../assets/icons/checkbox.svg" /> -->
+                      <span>{{service}}</span>
+                    </div>
+                  </div>
+                  <div *ngIf="!location?.bankLocationServiceDomains" class="service-not-present">
+                    -
+                  </div>
                 </div>
               </mat-expansion-panel>
             </mat-expansion-panel>
@@ -329,7 +492,7 @@
       <div *ngIf="bank.name !== 'DNB' && bank.name !== 'NORDEA'" class="white-bg p-3 mx-lg-auto mt-4">
         <div class="bank-name justify-content-lg-center">
           <div class="logo d-inline-block mr-lg-4">
-            <img [src]="bank.icon" [alt]="bank.label">
+            <img src="../../../assets/img/banks-logo/round/{{ bank.icon }}" [alt]="bank.label">
           </div>
           <div class="label d-flex text-left pl-4">
             Filialer
@@ -345,38 +508,55 @@
                   </b>
                 </p>
               </mat-expansion-panel-header>
-              <div class="checklist-item font-weight-bolder mt-2">
-                <mat-icon color="primary">location_on</mat-icon>
-                <span>Adresse:</span>
-              </div>
-              <p class="location-content" [innerHTML]="location.address">
-              </p>
-              <div class="checklist-item font-weight-bolder mt-2">
-                <mat-icon color="primary">watch_later</mat-icon>
-                <span>Åpningstider:</span>
-              </div>
-              <p class="location-content" [innerHTML]="location.openingHours">
-              </p>
-              <div class="checklist-item font-weight-bolder mt-2">
-                <mat-icon color="primary">room_service</mat-icon>
-                <span>Tjenester:</span>
-              </div>
-              <div class="checklist-item mt-2" *ngFor="let service of location.bankLocationServiceDomains">
-                <mat-icon color="primary">verified</mat-icon>
-                <span>{{service}}</span>
+              <div class="location-details">
+                <div class="location-item">
+                  <div class="checklist-item font-weight-bolder mt-2">
+                    <mat-icon [inline]="true" color="primary">location_on</mat-icon>
+                    <span>Adresse:</span>
+                  </div>
+                  <p class="location-item-content" [innerHTML]="location.address">
+                  </p>
+                </div>
+                <div class="location-item">
+                <div class="checklist-item font-weight-bolder mt-2">
+                    <mat-icon [inline]="true" color="primary">watch_later</mat-icon>
+                    <span>Åpningstider:</span>
+                  </div>
+                  <p class="location-item-content" [innerHTML]="location.openingHours">
+                  </p>
+                </div>
+                <div class="location-item">
+                <div class="checklist-item font-weight-bolder mt-2">
+                    <mat-icon [inline]="true" color="primary">room_service</mat-icon>
+                    <span>Tjenester:</span>
+                  </div>
+                </div>
+                <div *ngIf="location?.bankLocationServiceDomains" class="services">
+                  <div class="checklist-item mt-2" *ngFor="let service of location.bankLocationServiceDomains">
+                    <!--<img src="../../../../assets/icons/checkbox.svg" /> -->
+                    <span>{{service}}</span>
+                  </div>
+                </div>
+                <div *ngIf="!location?.bankLocationServiceDomains" class="service-not-present">
+                  -
+                </div>
               </div>
             </mat-expansion-panel>
           </mat-accordion>
         </div>
       </div>
     </div>
-  </ng-container>
 </div>
 
+  </ng-container>
+</div>
 <div class="loading" *ngIf="bankGuideLoading">
   <mat-spinner [diameter]="48" [strokeWidth]="4"></mat-spinner>
 </div>
 <ng-template #notPresent>
-  <div>-</div>
+  <div class="not-present">-</div>
+</ng-template>
+<ng-template #unknown>
+  <div class="unknown">Ukjent</div>
 </ng-template>
 

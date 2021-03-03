@@ -420,6 +420,39 @@ export const eikaBanks: BankVo[] = [
     'https://nordirektebank.no/aktuelt/bankid-paa-mobil'
   ),
   new BankVo(
+    'MY_BANK',
+    'MYBANK ASA',
+    'mybank.png',
+    null,
+    true,
+    true,
+    true,
+    false,
+    ''
+  ),
+  new BankVo(
+    'BLUESTEP_BANK',
+    'Bluestep Bank',
+    'bluestep.png',
+    null,
+    true,
+    true,
+    true,
+    false,
+    ''
+  ),
+  new BankVo(
+    'INSTA_BANK',
+    'Instabank',
+    'instabank.png',
+    null,
+    true,
+    true,
+    true,
+    false,
+    ''
+  ),
+  new BankVo(
     'ODAL_SB',
     'Odal Sparebank',
     'odal.png',
