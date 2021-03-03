@@ -145,8 +145,8 @@
 
         </div>
        
-        <div *ngIf="banksLocations.length !== 0"  class="icon-link">
-          <img (click)="scrollTo(offices)" src="../../../../assets/icons/location-grey-circle.svg"/>
+        <div (click)="scrollTo(offices)" *ngIf="banksLocations.length !== 0"  class="icon-link">
+          <img  src="../../../../assets/icons/location-grey-circle.svg"/>
           <span>Filialer</span>
           <img class="arrow" src="../../../../assets/icons/arrow-small-grey.svg"/>
         </div>
@@ -422,15 +422,8 @@
     </div>
     </div>
 
-
-
-
-
-
-
-
-
-    <div *ngIf="banksLocations.length !== 0" class="scroll-anchor" #offices>
+    <div #offices></div>
+    <div *ngIf="banksLocations.length !== 0" class="scroll-anchor">
       <div *ngIf="bank.name === 'DNB' || bank.name === 'NORDEA'" class="white-bg p-3 mx-lg-auto mt-4">
         <div class="bank-name justify-content-lg-center">
           <div class="logo d-inline-block mr-lg-4">
