@@ -88,11 +88,8 @@ export interface BankGuideInfo {
   text3: string;
   text4: string;
   creditLineLoans: string;
-  // byggelan
   constructionLoans: boolean;
-  // fastrentelan
   fixedRateLoans: boolean;
-  // mellomfinansiering
   intermediateFinancing: boolean;
   medianEffectiveRate: number;
   constructionLoansOffers: { name: string; rate: string }[];
@@ -101,6 +98,8 @@ export interface BankGuideInfo {
   intermediateFinancingOffers: { name: string; rate: string }[];
   regularOffers: { name: string; rate: string }[];
   addresses: { [key: string]: BankLocationAddress[] };
+  depositOffers: { name: string; rate: string }[];
+  membershipOffers: { [key: string]: any[] };
 }
 
 export interface BankStatistics {

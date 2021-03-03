@@ -27,7 +27,8 @@
         </div>
         <mat-selection-list #banklist [class.d-none]="!bankGuideService.shouldDisplayBankList">
           <button *ngFor="let bank of bankGuideService.banks" mat-button class="bank-button"
-            (click)="bankGuideService.selectBank(bank)">
+            (click)="bankGuideService.selectBank(bank)"
+            [routerLink]="'/bankguiden/' + bank.name.toLowerCase()">
             <div *ngIf="bank.icon; then hasIcon; else noIcon"></div>
             <ng-template #hasIcon><img class="bank-button-logo"
                 src="../../../assets/img/banks-logo/round/{{ bank.icon }}" />

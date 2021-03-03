@@ -9,7 +9,7 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { SeoService } from '@services/seo.service';
 import { BankGuideService } from '../bank-guide.service';
-
+import { ROUTES_MAP } from '@config/routes-config';
 @Component({
   selector: 'rente-bank-guide-page',
   templateUrl: './bank-guide-page.component.html',
@@ -19,12 +19,18 @@ export class BankGuidePageComponent implements OnInit {
   @ViewChild('inShort') inShort: ElementRef;
   banksData = [...BankList, ...MissingBankList];
 
+  routesMap = ROUTES_MAP;
   bank;
   icon: string;
   bankGuideLoading: boolean;
   bankGuideInfo: BankGuideInfo;
   banksLocations: string[];
   addressesArray: BankLocationAddress[] = [];
+  memberships: any;
+  membershipOffers: any;
+  depositsGeneral = [];
+  depositsBsu = [];
+
   public bankUtils = BankUtils;
   private _onDestroy$ = new Subject<void>();
 
@@ -54,6 +60,8 @@ export class BankGuidePageComponent implements OnInit {
       const bankName = param.id.toUpperCase();
       this.bank = BankUtils.getBankByName(bankName);
 
+      this.depositsBsu = [];
+      this.depositsGeneral = [];
       this.loansService
         .getBankGuide(this.route.snapshot.params.id.toUpperCase())
         .pipe(takeUntil(this._onDestroy$))
@@ -64,6 +72,21 @@ export class BankGuidePageComponent implements OnInit {
             this.banksLocations = Object.keys(
               this.bankGuideInfo.addresses
             ).sort();
+
+            this.memberships = [];
+            this.addressesArray = [];
+
+            this.memberships = Object.keys(
+              this.bankGuideInfo.membershipOffers
+            ).sort();
+
+            this.bankGuideInfo.depositOffers
+              .sort(this.alphaSort)
+              .forEach((offer) => {
+                offer.name.toLowerCase().includes('bsu')
+                  ? this.depositsBsu.push(offer)
+                  : this.depositsGeneral.push(offer);
+              });
 
             this.addressesArray = [];
             for (const address in this.bankGuideInfo.addresses) {
@@ -92,6 +115,16 @@ export class BankGuidePageComponent implements OnInit {
         );
     });
   }
+
+  alphaSort = (a: any, b: any): number => {
+    if (a.name < b.name) {
+      return -1;
+    }
+    if (a.name > b.name) {
+      return 1;
+    }
+    return 0;
+  };
 
   scrollTo(ref) {
     ref.scrollIntoView({
