@@ -11,10 +11,11 @@
         <a i18n=“Headerlink|homepage@@header.home” [routerLink]="['/']" routerLinkActive="active-link"
            [routerLinkActiveOptions]="{exact:true}">Hjem
         </a>
-        <a i18n=“Headerlink|blog@@header.blog” href="https://blogg.renteradar.no" target="_self">Blogg</a>
-        <!-- <a i18n=“Headerlink|contact@@header.bankGuide” [routerLink]="['/bankguiden']" routerLinkActive="active-link">
+        <a i18n=“Headerlink|contact@@header.bankGuide” [routerLink]="['/bankguiden']" routerLinkActive="active-link">
           Bankguiden
-        </a>  -->
+        </a>  
+        <a i18n=“Headerlink|blog@@header.blog” href="https://blogg.renteradar.no" target="_self">Blogg</a>
+        
         <a i18n=“Headerlink|contact@@header.contact” [routerLink]="['/kontakt']" routerLinkActive="active-link">
           Kontakt
         </a>
@@ -59,17 +60,16 @@
         (click)="toggleNav()"><h3 class="highlight">Logg inn</h3>
       </a>
       <a
+        target="_blank"
+        [routerLink]="['/bankguiden']"
+        (click)="toggleNav()"><h3>Bankguiden</h3>
+      </a> 
+      <a
         i18n=“Headerlink|blog@@header.blog2”
         href="https://blogg.renteradar.no/"
         target="_blank"
         (click)="toggleNav()"><h3>Blogg</h3>
       </a>
-      <!-- <a
-        target="_blank"
-        i18n=“Headerlink|contact@@header.bankGuide”
-        [routerLink]="['/bankguiden']"
-        (click)="toggleNav()"><h3>Bankguiden</h3>
-      </a>  -->
       <a
         i18n=“Headerlink|contact@@header.contact2”
         [routerLink]="['/kontakt']"

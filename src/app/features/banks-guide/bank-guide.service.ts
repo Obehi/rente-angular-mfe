@@ -27,9 +27,6 @@ export class BankGuideService {
   }
 
   filterBank(filter: string) {
-    if (filter.includes('spare')) {
-      filter = 'sparebank 1';
-    }
     let filteredBanks = [];
     if (filter === null || filter?.length === 0) {
       filteredBanks = this.allBanks.concat();
