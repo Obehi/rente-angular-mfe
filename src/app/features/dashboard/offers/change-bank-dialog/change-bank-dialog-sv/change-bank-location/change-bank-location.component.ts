@@ -103,6 +103,7 @@ export class ChangeBankLocationComponent implements OnInit {
       this.choosenOffice === null ||
       this.offerId === null
     ) {
+      this.resetState();
       return;
     }
 
@@ -146,6 +147,7 @@ export class ChangeBankLocationComponent implements OnInit {
       this.choosenOffice === null ||
       this.offerId === null
     ) {
+      this.resetState();
       return;
     }
     const data: offerOfficeDto = {
