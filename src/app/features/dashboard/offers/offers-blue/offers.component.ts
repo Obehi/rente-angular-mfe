@@ -14,6 +14,8 @@ import {
 } from '../../../../config/loan-state';
 import { LocalStorageService } from '@services/local-storage.service';
 import { ChangeBankDialogLangGenericComponent } from '../../../../local-components/components-output';
+import { ChangeBankLocationComponent } from '@features/dashboard/offers/change-bank-dialog/change-bank-dialog-sv/change-bank-location/change-bank-location.component';
+
 import { GetOfferFromBankDialogComponent } from './../get-offer-from-bank-dialog/get-offer-from-bank-dialog.component';
 import { LtvTooHighDialogComponent } from './../ltv-too-high-dialog/ltv-too-high-dialog.component';
 import { ChangeBankServiceService } from '@services/remote-api/change-bank-service.service';
@@ -123,6 +125,8 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
       (res: Offers) => {
         this.offersInfo = Object.assign({}, res);
         this.currentOfferInfo = JSON.parse(JSON.stringify(res));
+
+        this.openChangeBankDialog(this.offersInfo.offers.top5[0]);
 
         this.canBargain =
           res.bank === 'SWE_AVANZA' ||
@@ -326,16 +330,13 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
 
         const data = { preview, offerId, currentBank };
 
-        if (locations !== undefined) {
+        if (locations.error === undefined) {
           data['locations'] = locations;
         }
-        const changeBankRef = this.dialog.open(
-          ChangeBankDialogLangGenericComponent,
-          {
-            autoFocus: false,
-            data: data
-          }
-        );
+        const changeBankRef = this.dialog.open(ChangeBankLocationComponent, {
+          autoFocus: false,
+          data: data
+        });
         changeBankRef.afterClosed().subscribe(() => {
           this.handleChangeBankdialogOnClose(
             changeBankRef.componentInstance.closeState
@@ -374,6 +375,8 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
   }
 
   public handleChangeBankdialogOnClose(state: string) {
+    console.log('state');
+    console.log(state);
     switch (state) {
       case 'canceled': {
         break;
