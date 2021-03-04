@@ -55,10 +55,11 @@ export class ChangeBankLocationComponent implements OnInit {
   step: string = this.stepStatus.region;
 
   ngOnInit() {
-    console.log(this.data);
     this.locations = this.data.locations;
     this.preview = this.data.preview;
     this.offerId = this.data.offerId;
+
+    this.step = this.stepStatus.region;
 
     this.regionsArray = Object.keys(this.locations).sort();
     this.locationsArray = [];
