@@ -3,7 +3,24 @@
 <div class="top">
 <h2>Velg din filial</h2>
 
-<mat-horizontal-stepper class="stepper" linear #stepper>
+
+<div class="stepper-header">
+    <div  [ngClass]="['stepper-header-element', 
+    stepperHeaderArray[i].state === 'done' ? 'done' : '',  
+    stepperHeaderArray[i].state === 'active' ? 'active' : '',  
+    stepperHeaderArray[i].state === 'active-touched' ? 'active-touched' : '',  
+    stepperHeaderArray[i].state === 'waiting' ? 'waiting' : '']" 
+    
+    *ngFor="let region of stepperHeaderArray; let i = index">
+        <div (click)="clickHeaderNode(i)" class="stepper-header-node">
+            {{i + 1}}
+        </div>
+        <div class="stepper-header-line" *ngIf=" stepperHeaderArray.length - 1 !== i">
+        </div>
+    </div>
+</div>
+
+<mat-horizontal-stepper class="stepper" [linear]="false"  #stepper>
     <mat-step [editable]="true">
         <h3>Region</h3>
         <div *ngFor="let region of regionsArray">
@@ -69,11 +86,7 @@
                 undrar jag om ni kan matcha erbjudandet?
               </p>
             </div>
-          
-          
-          
-          
-          
+
             <br />
             <p i18n=“info|change-bank@@change.bank.info” class="bold"><b>Opplysninger om tilbud:</b></p>
           
@@ -122,30 +135,30 @@
 </div>
 <div class="bottom">
 
-    <div [ngSwitch]="step">
-        <div *ngSwitchCase="stepStatus.region">
+    <div [ngSwitch]="stepper.selectedIndex">
+        <div *ngSwitchCase="0">
             <rente-button class="right"  color="primary-wide-hollow" (click)="closeDialog()">
                 Avbryt
             </rente-button>
         </div>
-        <div *ngSwitchCase="stepStatus.city">
-            <rente-button class="left" color="primary-wide-hollow" (click)="cityPreviousClick()">
+        <div *ngSwitchCase="1">
+            <rente-button class="left" color="primary-wide-hollow" (click)="clickBackButton()">
                 Tilbake
                 </rente-button>
             <rente-button class="right"  color="primary-wide-hollow" (click)="closeDialog()">
                 Avbryt
             </rente-button>
         </div>
-        <div *ngSwitchCase="stepStatus.office">
-            <rente-button class="left" color="primary-wide-hollow" (click)="officePreviousClick()">
+        <div *ngSwitchCase="2">
+            <rente-button class="left" color="primary-wide-hollow" (click)="clickBackButton()">
                 Tilbake
                 </rente-button>
             <rente-button class="right"  color="primary-wide-hollow"  (click)="closeDialog()">
                 Avbryt
             </rente-button>
         </div>
-        <div *ngSwitchCase="stepStatus.done">
-            <rente-button color="primary-wide-hollow" class="left" (click)="donePreviousClick()">
+        <div *ngSwitchCase="3">
+            <rente-button color="primary-wide-hollow" class="left" (click)="clickBackButton()">
                 Tilbake
                 </rente-button>
             <rente-button class="right"  color="primary" (click)="sendEmail()">
