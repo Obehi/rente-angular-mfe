@@ -1,7 +1,7 @@
 <div class="outer-container">
 
 <div class="top">
-    <mat-icon (click)="closeDialog()" class="close-modal">close</mat-icon>
+    <mat-icon *ngIf="stepper.selectedIndex === 3" (click)="closeDialog()" class="close-modal">close</mat-icon>
 <p i18n="choose-office |change-bank@@change.bank.location.header.explain" class="top-explain">Välj län så skickar vi meddelandet till ditt bankkontor åt dig.</p>
 <h2 i18n="choose-office |change-bank@@change.bank.location.header">Velg din filial</h2>
 
