@@ -1,11 +1,13 @@
 <div class="outer-container">
 
 <div class="top">
-<h2>Velg din filial</h2>
+    <mat-icon (click)="closeDialog()" class="close-modal">close</mat-icon>
+<p i18n="choose-office |change-bank@@change.bank.location.header.explain" class="top-explain">Välj län så skickar vi meddelandet till ditt bankkontor åt dig.</p>
+<h2 i18n="choose-office |change-bank@@change.bank.location.header">Velg din filial</h2>
 
 
 <div class="stepper-header">
-    <div  [ngClass]="['stepper-header-element', 
+    <div [ngClass]="['stepper-header-element', 
     stepperHeaderArray[i].state === 'done' ? 'done' : '',  
     stepperHeaderArray[i].state === 'active' ? 'active' : '',  
     stepperHeaderArray[i].state === 'active-touched' ? 'active-touched' : '',  
@@ -31,7 +33,7 @@
         </div>
     </mat-step>
     <mat-step [editable]="true">
-        <h3>By</h3>
+        <h3 i18n="choose-office |change-bank@@change.bank.location.city">By</h3>
 
         <div *ngFor="let city of cities">
             <div (click)="clickNext(city, stepper.selectedIndex)" class="choise-item">
@@ -42,7 +44,7 @@
 
     </mat-step>
     <mat-step [editable]="true">
-        <h3>Filial</h3>
+        <h3 i18n="choose-office |change-bank@@change.bank.location.office">Filial</h3>
 
         <div *ngFor="let office of offices">
             <div (click)="officeStepClick(office, stepper.selectedIndex)" class="choise-item">
@@ -53,7 +55,7 @@
 
     </mat-step>
     <mat-step  [editable]="true">
-        <h3 class="success">Du har valgt: </h3>
+        <h3 class="success" i18n="choose-office |change-bank@@change.bank.location.choosenText">Du har valgt: </h3>
 
         <div class="choosen-container">
             <div class="choosen-box">
@@ -62,12 +64,12 @@
             </div>
 
             <div class="choosen-box">
-                <p class="location">By</p>
+                <p i18n="choose-office |change-bank@@change.bank.location.city" class="location">By</p>
                 <p class="value">{{choosenCity}}</p>
             </div>
 
             <div class="choosen-box">
-                <p class="location">Filial</p>
+                <p i18n="choose-office |change-bank@@change.bank.location.office"  class="location">Filial</p>
                 <p class="value">{{choosenOffice}}</p>
             </div>
         </div>
@@ -75,10 +77,10 @@
         <div class="info-container">
             <div class="message">
           
-              <h3>Medelande til banken:</h3>
+              <h3>Meddelande till banken:</h3>
               <hr />
               <p>
-                Hejsan,
+                Hej,
                 <br />
                 <br />
                 Jag är kund i banken idag, men jag har hittat ett bättre erbjudande på
@@ -126,6 +128,27 @@
                 <p>{{ data.preview.effectiveRate | number: "1.2-2" }}%</p>
               </div>
             </div>
+
+            <p i18n=“info-me|change-bank@@change.bank.infoMe” class="bold"><b>Opplysninger om meg:</b></p>
+
+            <div class="grid-wrapper">
+                <div *ngIf="data.preview.clientInfo.name" class="item">
+                    <p i18n=“info-name|change-bank@@change.bank.infoName” class="small">Navn:</p>
+                    <p>{{ data.preview.clientInfo.name }}</p>
+                </div>
+                <div *ngIf="data.preview.clientInfo.phone" class="item">
+                    <p i18n=“info-phone|change-bank@@change.bank.infoPhone” class="small">Telefon:</p>
+                    <p>{{ data.preview.clientInfo.phone }}</p>
+                </div>
+                <div *ngIf="data.preview.clientInfo.address" class="item">
+                    <p i18n=“info-address|change-bank@@change.bank.infoAddress” class="small">Adresse:</p>
+                    <p>{{ data.preview.clientInfo.address }}</p>
+                </div>
+                <div *ngIf="data.preview.clientInfo.zip" class="item">
+                    <p i18n=“info-post|change-bank@@change.bank.infoPost” class="small">Postnr:</p>
+                    <p>{{ data.preview.clientInfo.zip }}</p>
+                </div>
+            </div>
           
           </div>
             
@@ -142,15 +165,15 @@
             </rente-button>
         </div>
         <div *ngSwitchCase="1">
-            <rente-button class="left" color="primary-wide-hollow" (click)="clickBackButton()">
+            <rente-button i18n="choose-office |change-bank@@change.bank.location.back" class="left" color="primary-wide-hollow" (click)="clickBackButton()">
                 Tilbake
                 </rente-button>
-            <rente-button class="right"  color="primary-wide-hollow" (click)="closeDialog()">
+            <rente-button  class="right"  color="primary-wide-hollow" (click)="closeDialog()">
                 Avbryt
             </rente-button>
         </div>
         <div *ngSwitchCase="2">
-            <rente-button class="left" color="primary-wide-hollow" (click)="clickBackButton()">
+            <rente-button i18n="choose-office |change-bank@@change.bank.location.back" class="left" color="primary-wide-hollow" (click)="clickBackButton()">
                 Tilbake
                 </rente-button>
             <rente-button class="right"  color="primary-wide-hollow"  (click)="closeDialog()">
@@ -158,12 +181,32 @@
             </rente-button>
         </div>
         <div *ngSwitchCase="3">
-            <rente-button color="primary-wide-hollow" class="left" (click)="clickBackButton()">
+
+      
+            <form [formGroup]="confirmForm" novalidate>
+                <mat-checkbox i18n=“age-confirmation|change-bank@@change.bank.ageConfirmation”
+                  formControlName="confirmation"
+                  (change)="isConfirmed = $event.checked"
+                >
+                  Jeg bekrefter at jeg er over 18 år og myndig eller oppnevnt som verge, samt
+                  at banken ved behov kan foreta en kredittvurdering.
+                </mat-checkbox>
+              </form>
+
+
+            <rente-button i18n="choose-office |change-bank@@change.bank.location.back" color="primary-wide-hollow" class="left" (click)="clickBackButton()">
                 Tilbake
                 </rente-button>
-            <rente-button class="right"  color="primary" (click)="sendEmail()">
+            <rente-button i18n="choose-office |change-bank@@change.bank.location.send" 
+                class="right"  
+                color="primary" 
+                (click)="sendEmail()"
+                [isLoading]="isLoading"
+                [disabled]="!isConfirmed || isLoading"
+            >
                 Send
             </rente-button>
+
         </div>
         <div *ngSwitchDefault>
 

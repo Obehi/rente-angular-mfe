@@ -10,6 +10,8 @@ import {
 } from '@angular/core';
 import { MatStepper } from '@angular/material';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+
 import {
   ChangeBankServiceService,
   offerOfficeDto
@@ -22,15 +24,17 @@ import {
 })
 export class ChangeBankLocationComponent implements OnInit, AfterViewInit {
   @ViewChild('stepper') stepper: MatStepper;
+  public confirmForm: FormGroup;
+  public isConfirmed: boolean;
+  isLoading = false;
 
   constructor(
     private changeBankServiceService: ChangeBankServiceService,
     @Inject(MAT_DIALOG_DATA) public data: any,
     public dialogRef: MatDialogRef<ChangeBankLocationComponent>,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private fb: FormBuilder
   ) {}
-
-  isLoading = false;
 
   public closeState: string;
 
@@ -65,6 +69,10 @@ export class ChangeBankLocationComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
+    this.confirmForm = this.fb.group({
+      confirmation: ['', Validators.required]
+    });
+
     this.locations = this.data.locations;
     this.preview = this.data.preview;
     this.offerId = this.data.offerId;

@@ -307,13 +307,7 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
     );
   }
 
-  public openChangeBankDialog(offer): void {
-    if (
-      this.changeBankLoading ||
-      this.offersInfo.offerSavingsType === this.offerSavingsType.NO_SAVINGS
-    ) {
-      return;
-    }
+  private openChangeBankDialogWithLocation(offer: any): void {
     this.changeBankLoading = true;
     const offerId = offer.id;
     const currentBank = this.offersInfo.bank;
@@ -322,7 +316,7 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
     console.log(this.offersInfo.bank);
 
     forkJoin([
-      this.changeBankServiceService.getBankOfferLocations('SWE_SEB'),
+      this.changeBankServiceService.getBankOfferLocations(this.offersInfo.bank),
       this.changeBankServiceService.getBankOfferRequest(offerId)
     ]).subscribe(
       ([locations, preview]) => {
@@ -347,10 +341,13 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
         this.changeBankLoading = false;
       }
     );
+  }
 
-    /*     this.changeBankServiceService
-      .getBankOfferLocations('SWE_SEB')
-      .subscribe((locations) => {});
+  private openChangeBankDialogWithOnlyPreview(offer: any): void {
+    this.changeBankLoading = true;
+    const offerId = offer.id;
+    const currentBank = this.offersInfo.bank;
+
     this.changeBankServiceService.getBankOfferRequest(offerId).subscribe(
       (preview) => {
         this.changeBankLoading = false;
@@ -371,12 +368,25 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
       (err) => {
         this.changeBankLoading = false;
       }
-    ); */
+    );
+  }
+
+  public openChangeBankDialog(offer): void {
+    if (
+      this.changeBankLoading ||
+      this.offersInfo.offerSavingsType === this.offerSavingsType.NO_SAVINGS
+    ) {
+      return;
+    }
+
+    if (this.offersInfo.bank === 'SWE_SEB') {
+      this.openChangeBankDialogWithLocation(offer);
+    } else {
+      this.openChangeBankDialogWithOnlyPreview(offer);
+    }
   }
 
   public handleChangeBankdialogOnClose(state: string) {
-    console.log('state');
-    console.log(state);
     switch (state) {
       case 'canceled': {
         break;
