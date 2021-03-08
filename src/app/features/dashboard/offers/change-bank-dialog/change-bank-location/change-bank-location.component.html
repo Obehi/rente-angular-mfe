@@ -59,16 +59,6 @@
 
         <div class="choosen-container">
             <div class="choosen-box">
-                <p class="location">Region</p>
-                <p class="value">{{choosenRegion}}</p>
-            </div>
-
-            <div class="choosen-box">
-                <p i18n="choose-office |change-bank@@change.bank.location.city" class="location">By</p>
-                <p class="value">{{choosenCity}}</p>
-            </div>
-
-            <div class="choosen-box">
                 <p i18n="choose-office |change-bank@@change.bank.location.office"  class="location">Filial</p>
                 <p class="value">{{choosenOffice}}</p>
             </div>
@@ -90,7 +80,7 @@
             </div>
 
             <br />
-            <p i18n=“info|change-bank@@change.bank.info” class="bold"><b>Opplysninger om tilbud:</b></p>
+            <h4 i18n=“info|change-bank@@change.bank.info” class="bold"><b>Opplysninger om tilbud:</b></h4>
           
             <div class="grid-wrapper">
               <div class="item">
@@ -107,10 +97,7 @@
                 <p>{{ (data.preview.ltv) * 100 | number: "1.1-1"}}%
                 </p>
               </div>
-              <div class="item">
-                <p i18n=“info-time-remaining|change-bank@@change.bank.infoTime.remaining” class="small">Nedbetalingstid:</p>
-                <p>{{ data.preview.averageRemainingYears | round }} år</p>
-              </div>
+
               <div class="item">
                 <p i18n=“info-bank|change-bank@@change.bank.infoBank” class="small">Bank:</p>
                 <p>{{ data.preview.bankName }}</p>
@@ -129,25 +116,32 @@
               </div>
             </div>
 
-            <p i18n=“info-me|change-bank@@change.bank.infoMe” class="bold"><b>Opplysninger om meg:</b></p>
+            <h4 i18n=“info-me|change-bank@@change.bank.infoMe” class="bold"><b>Opplysninger om meg:</b></h4>
 
             <div class="grid-wrapper">
                 <div *ngIf="data.preview.clientInfo.name" class="item">
                     <p i18n=“info-name|change-bank@@change.bank.infoName” class="small">Navn:</p>
                     <p>{{ data.preview.clientInfo.name }}</p>
                 </div>
-                <div *ngIf="data.preview.clientInfo.phone" class="item">
-                    <p i18n=“info-phone|change-bank@@change.bank.infoPhone” class="small">Telefon:</p>
-                    <p>{{ data.preview.clientInfo.phone }}</p>
+
+                <div *ngIf="data.preview.clientInfo.email" class="item">
+                    <p i18n=“info-post|change-bank@@change.bank.email class="small">E-post:</p>
+                    <p>{{ data.preview.clientInfo.email }}</p>
                 </div>
+
                 <div *ngIf="data.preview.clientInfo.address" class="item">
                     <p i18n=“info-address|change-bank@@change.bank.infoAddress” class="small">Adresse:</p>
                     <p>{{ data.preview.clientInfo.address }}</p>
                 </div>
+
                 <div *ngIf="data.preview.clientInfo.zip" class="item">
                     <p i18n=“info-post|change-bank@@change.bank.infoPost” class="small">Postnr:</p>
                     <p>{{ data.preview.clientInfo.zip }}</p>
                 </div>
+                <div *ngIf="data.preview.clientInfo.phone" class="item">
+                    <p i18n=“info-phone|change-bank@@change.bank.infoPhone” class="small">Telefon:</p>
+                    <p>{{ data.preview.clientInfo.phone }}</p>
+                </div>    
             </div>
           
           </div>
