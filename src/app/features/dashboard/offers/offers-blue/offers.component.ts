@@ -14,7 +14,7 @@ import {
 } from '../../../../config/loan-state';
 import { LocalStorageService } from '@services/local-storage.service';
 import { ChangeBankDialogLangGenericComponent } from '../../../../local-components/components-output';
-import { ChangeBankLocationComponent } from '@features/dashboard/offers/change-bank-dialog/change-bank-dialog-sv/change-bank-location/change-bank-location.component';
+import { ChangeBankLocationComponent } from '@features/dashboard/offers/change-bank-dialog/change-bank-location/change-bank-location.component';
 
 import { GetOfferFromBankDialogComponent } from './../get-offer-from-bank-dialog/get-offer-from-bank-dialog.component';
 import { LtvTooHighDialogComponent } from './../ltv-too-high-dialog/ltv-too-high-dialog.component';
@@ -126,7 +126,7 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
         this.offersInfo = Object.assign({}, res);
         this.currentOfferInfo = JSON.parse(JSON.stringify(res));
 
-        this.openChangeBankDialog(this.offersInfo.offers.top5[0]);
+        // this.openChangeBankDialog(this.offersInfo.offers.top5[0]);
 
         this.canBargain =
           res.bank === 'SWE_AVANZA' ||

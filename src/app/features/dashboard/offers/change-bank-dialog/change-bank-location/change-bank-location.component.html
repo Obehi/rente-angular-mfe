@@ -24,7 +24,7 @@
     <mat-step [editable]="true">
         <h3>Region</h3>
         <div *ngFor="let region of regionsArray">
-            <div (click)="regionStepClick(region)" class="choise-item">
+            <div (click)="clickNext(region, stepper.selectedIndex)" class="choise-item">
                 <div>{{region}}</div>
                 <img class="arrow" src="../../../../assets/icons/arrow-small-grey.svg" [alt]="Velg">
             </div>
@@ -34,7 +34,7 @@
         <h3>By</h3>
 
         <div *ngFor="let city of cities">
-            <div (click)="cityStepClick(city)" class="choise-item">
+            <div (click)="clickNext(city, stepper.selectedIndex)" class="choise-item">
                 <div>{{city}}</div>
                 <img class="arrow" src="../../../../assets/icons/arrow-small-grey.svg" [alt]="Velg">
             </div>
@@ -45,7 +45,7 @@
         <h3>Filial</h3>
 
         <div *ngFor="let office of offices">
-            <div (click)="officeStepClick(office)" class="choise-item">
+            <div (click)="officeStepClick(office, stepper.selectedIndex)" class="choise-item">
                 <div>{{office}}</div>
                 <img class="arrow" src="../../../../assets/icons/arrow-small-grey.svg" [alt]="Velg">
             </div>

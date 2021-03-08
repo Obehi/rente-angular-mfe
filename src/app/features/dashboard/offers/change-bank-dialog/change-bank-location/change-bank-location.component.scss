@@ -1,8 +1,10 @@
-@import "../../../../../../../styles/theme/_colors.scss";
+@import "../../../../../../styles/theme/_colors.scss";
 
 ::ng-deep .cdk-focused {
     display: none !important;
 }
+
+
 
 ::ng-deep .mat-horizontal-stepper-header-container {
     display: none !important;
@@ -27,8 +29,12 @@ h3 {
 
 .top {
     overflow: auto;
+    overflow: -moz-scrollbars-vertical; 
+    overflow-y: scroll;
     height: 50vh !important;
 }
+
+
 
 .stepper-header {
     width: 100%;
