@@ -124,9 +124,17 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
     this.loansService.getOffers().subscribe(
       (res: Offers) => {
         this.offersInfo = Object.assign({}, res);
-        this.currentOfferInfo = JSON.parse(JSON.stringify(res));
 
-        // this.openChangeBankDialog(this.offersInfo.offers.top5[0]);
+        console.log(JSON.parse(JSON.stringify(res)));
+        this.currentOfferInfo = JSON.parse(JSON.stringify(res));
+        res.offers.top5 = res.offers.top5.filter((offer) => {
+          return (
+            offer.bankInfo.bank !== 'SWE_ICA_BANKEN' &&
+            offer.bankInfo.bank !== 'SWE_DANSKE_BANK'
+          );
+        });
+
+        this.currentOfferInfo = JSON.parse(JSON.stringify(res));
 
         this.canBargain =
           res.bank === 'SWE_AVANZA' ||
