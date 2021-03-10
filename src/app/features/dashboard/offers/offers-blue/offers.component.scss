@@ -102,6 +102,10 @@
 
 .big-box {
   background: white;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   
 
   @media (min-width: 600px) {
@@ -163,6 +167,23 @@
 @media (min-width: 600px) {
   .problems {
     padding: 80px;
+  }
+}
+
+.anti-churn-box {
+
+  .top {
+    p {
+      font-weight: 400;
+    }
+  }
+  .bottom {
+    p {
+      margin-left: 67px;
+      text-align: left;
+      margin-bottom: 20px;
+      font-weight: 100;
+    }
   }
 }
 

@@ -94,6 +94,14 @@ button.mat-primary-medium {
   border-radius: 100px;
 }
 
+button.mat-secondary-medium {
+  background-color: $secondary;
+  color: white;
+  height: 56px;
+  width: 90%;
+  border-radius: 100px;
+}
+
 button.mat-primary-medium[disabled] {
   color: white !important;
 }

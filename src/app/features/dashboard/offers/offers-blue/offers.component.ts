@@ -17,6 +17,7 @@ import { ChangeBankDialogLangGenericComponent } from '../../../../local-componen
 import { ChangeBankLocationComponent } from '@features/dashboard/offers/change-bank-dialog/change-bank-location/change-bank-location.component';
 
 import { GetOfferFromBankDialogComponent } from './../get-offer-from-bank-dialog/get-offer-from-bank-dialog.component';
+import { AntiChurnDialogComponent } from '@features/dashboard/offers/anti-churn-dialog/anti-churn-dialog.component';
 import { LtvTooHighDialogComponent } from './../ltv-too-high-dialog/ltv-too-high-dialog.component';
 import { ChangeBankServiceService } from '@services/remote-api/change-bank-service.service';
 import {
@@ -60,6 +61,8 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
   public currentOfferType: string;
   public isSweden: boolean;
   public routesMap = ROUTES_MAP;
+  public antiChurnIsOn = false;
+
   get isMobile(): boolean {
     return window.innerWidth < 600;
   }
@@ -125,6 +128,10 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
       (res: Offers) => {
         this.offersInfo = Object.assign({}, res);
         this.currentOfferInfo = JSON.parse(JSON.stringify(res));
+        // REMOVE BEFORE PRODUCTION!!!!
+        this.offersInfo.bank = 'Nordea';
+        this.openAntiChurnBankDialog(this.offersInfo.offers.top5[0]);
+        this.antiChurnIsOn = this.offersInfo.bank === 'Nordea' ? true : false;
 
         this.canBargain =
           res.bank === 'SWE_AVANZA' ||
@@ -310,9 +317,6 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
     const offerId = offer.id;
     const currentBank = this.offersInfo.bank;
 
-    console.log('this.offersInfo.bank');
-    console.log(this.offersInfo.bank);
-
     forkJoin([
       this.changeBankServiceService.getBankOfferLocations(this.offersInfo.bank),
       this.changeBankServiceService.getBankOfferRequest(offerId)
@@ -369,6 +373,31 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
     );
   }
 
+  public openAntiChurnBankDialog(offer): void {
+    this.changeBankLoading = true;
+    const offerId = offer.id;
+    const currentBank = this.offersInfo.bank;
+
+    this.changeBankServiceService.getBankOfferRequest(offerId).subscribe(
+      (preview) => {
+        this.changeBankLoading = false;
+
+        const changeBankRef = this.dialog.open(AntiChurnDialogComponent, {
+          autoFocus: false,
+          data: { preview, offerId, currentBank }
+        });
+        changeBankRef.afterClosed().subscribe(() => {
+          this.handleChangeBankdialogOnClose(
+            changeBankRef.componentInstance.closeState
+          );
+        });
+      },
+      (err) => {
+        this.changeBankLoading = false;
+      }
+    );
+  }
+
   public openChangeBankDialog(offer): void {
     if (
       this.changeBankLoading ||
@@ -379,6 +408,7 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
 
     if (this.offersInfo.bank === 'SWE_SEB') {
       this.openChangeBankDialogWithLocation(offer);
+    } else if (this.antiChurnIsOn === true) {
     } else {
       this.openChangeBankDialogWithOnlyPreview(offer);
     }

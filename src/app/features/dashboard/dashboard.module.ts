@@ -53,6 +53,7 @@ import { HouseFormLangGenericComponent } from '../../local-components/components
 import { ChangeBankDialogLangGenericComponent } from '../../local-components/components-output';
 import { BankScoreLangGenericComponent } from '../../local-components/components-output';
 import { ChangeBankLocationComponent } from './offers/change-bank-dialog/change-bank-location/change-bank-location.component';
+import { AntiChurnDialogComponent } from './offers/anti-churn-dialog/anti-churn-dialog.component';
 
 // TODO: ADD separate module for material import
 @NgModule({
@@ -90,7 +91,8 @@ import { ChangeBankLocationComponent } from './offers/change-bank-dialog/change-
     BankScoreLangGenericComponent,
     EPSIScoreComponent,
     HouseFormErrorDialogComponent,
-    ChangeBankLocationComponent
+    ChangeBankLocationComponent,
+    AntiChurnDialogComponent
   ],
   imports: [
     CommonModule,

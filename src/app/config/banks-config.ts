@@ -151,13 +151,13 @@ const BANKS_DATA_NO = {
   },
   NORDEA_DIRECT: {
     name: 'NORDEA_DIRECT',
-    img: '../../assets/img/banks-logo/square/nordea.png',
-    imgCircle: '../../assets/img/banks-logo/round/nordea.png'
+    img: '../../assets/img/banks-logo/round/nordea_direct.png',
+    imgCircle: '../../assets/img/banks-logo/round/nordea_direct.png'
   },
   UNIO_NORDEA_DIRECT: {
     name: 'NORDEA_DIRECT',
-    img: '../../assets/img/banks-logo/square/nordea.png',
-    imgCircle: '../../assets/img/banks-logo/round/nordea.png'
+    img: '../../assets/img/banks-logo/round/nordea_direct.png',
+    imgCircle: '../../assets/img/banks-logo/round/nordea_direct.png'
   },
   GRONG_SB: {
     name: 'GRONG_SB',
@@ -296,8 +296,8 @@ const BANKS_DATA_NO = {
   },
   NAL_NORDEA_DIRECT: {
     name: 'NAL_NORDEA_DIRECT',
-    img: '../../assets/img/banks-logo/square/nordea.png',
-    imgCircle: '../../assets/img/banks-logo/round/nordea.png'
+    img: '../../assets/img/banks-logo/round/nordea_direct.png',
+    imgCircle: '../../assets/img/banks-logo/round/nordea_direct.png'
   },
   NORDEA: {
     name: 'NORDEA',
@@ -626,8 +626,8 @@ const BANKS_DATA_NO = {
   },
   YS_NORDEA_DIRECT: {
     name: 'YS_NORDEA_DIRECT',
-    img: '../../assets/img/banks-logo/square/nordea.png',
-    imgCircle: '../../assets/img/banks-logo/round/nordea.png'
+    img: '../../assets/img/banks-logo/round/nordea_direct.png',
+    imgCircle: '../../assets/img/banks-logo/round/nordea_direct.png'
   },
   AFJORD_SB: {
     name: 'AFJORD_SB',
