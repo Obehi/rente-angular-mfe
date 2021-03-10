@@ -830,6 +830,17 @@ export const BankList: BankVo[] = [
     'https://www.nordea.no/privat/kundeservice/slik-gjor-du/slik-kommer-du-i-gang-med-bankid-pa-mobil.html'
   ),
   new BankVo(
+    'YS_NORDEA_DIRECT',
+    'YS (Nordea Direct)',
+    'nordea_direct.png',
+    'nordea-color.svg',
+    false,
+    false,
+    false,
+    false,
+    'https://www.nordea.no/privat/kundeservice/slik-gjor-du/slik-kommer-du-i-gang-med-bankid-pa-mobil.html'
+  ),
+  new BankVo(
     'SPAREBANK_1',
     'SpareBank 1',
     'sparebanken1v2.png',
