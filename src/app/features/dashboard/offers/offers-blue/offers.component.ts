@@ -374,6 +374,13 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
   }
 
   public openAntiChurnBankDialog(offer): void {
+    if (
+      this.antiChurnIsOn === false ||
+      this.changeBankLoading ||
+      this.offersInfo.offerSavingsType === this.offerSavingsType.NO_SAVINGS
+    ) {
+      return;
+    }
     this.changeBankLoading = true;
     const offerId = offer.id;
     const currentBank = this.offersInfo.bank;

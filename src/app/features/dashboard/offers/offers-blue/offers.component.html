@@ -324,7 +324,7 @@
               <rente-button
               i18n=“help-you|offers-main@@offers.mainPage.helpYou.button” 
               [color]="antiChurnIsOn ? 'primary-wide' : 'primary-wide-hollow'"
-                [disabled]="changeBankLoading ||
+                [disabled]="changeBankLoading ||antiChurnIsOn ||
                 offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS"
                 [isLoading]="changeBankLoading"
                 (click)="openAntiChurnBankDialog(offersInfo.offers.top5[0])"
@@ -588,7 +588,7 @@
                     <rente-button
                     i18n=“help-you|offers-main@@offers.mainPage.helpYou.button” 
                       [color]="antiChurnIsOn ? 'primary-wide' : 'primary-wide-hollow'"
-                      [disabled]="changeBankLoading ||
+                      [disabled]="changeBankLoading || antiChurnIsOn ||
                       offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS"
                       [isLoading]="changeBankLoading"
                       (click)="openAntiChurnBankDialog(offersInfo.offers.top5[0])"
