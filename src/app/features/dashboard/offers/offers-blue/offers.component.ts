@@ -310,9 +310,6 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
     const offerId = offer.id;
     const currentBank = this.offersInfo.bank;
 
-    console.log('this.offersInfo.bank');
-    console.log(this.offersInfo.bank);
-
     forkJoin([
       this.changeBankServiceService.getBankOfferLocations(this.offersInfo.bank),
       this.changeBankServiceService.getBankOfferRequest(offerId)
