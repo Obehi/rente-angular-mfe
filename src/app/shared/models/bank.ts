@@ -819,6 +819,50 @@ export const BankList: BankVo[] = [
     'https://m.dnb.no/kundeservice/privat/bankidmobil.html'
   ),
   new BankVo(
+    'BATE',
+    'Bate boligbyggelag (DNB)',
+    'dnb.png',
+    'dnb-color.svg',
+    true,
+    false,
+    false,
+    false,
+    null
+  ),
+  new BankVo(
+    'SYKEPLEIERFORBUND_DNB',
+    'Norsk Sykepleierforbund (DNB)',
+    'dnb.png',
+    'dnb-color.svg',
+    true,
+    false,
+    false,
+    false,
+    null
+  ),
+  new BankVo(
+    'TOBB',
+    'TOBB (DNB)',
+    'dnb.png',
+    'dnb-color.svg',
+    true,
+    false,
+    false,
+    false,
+    null
+  ),
+  new BankVo(
+    'USBL',
+    'USBL (DNB)',
+    'dnb.png',
+    'dnb-color.svg',
+    true,
+    false,
+    false,
+    false,
+    null
+  ),
+  new BankVo(
     'NORDEA',
     'Nordea',
     'nordea.png',
@@ -1177,6 +1221,28 @@ export const MissingBankList: BankVo[] = [
   new BankVo(
     'NORDEA_DIRECT',
     'Nordea Direct',
+    'nordea_direct.png',
+    null,
+    false,
+    true,
+    true,
+    false,
+    null
+  ),
+  new BankVo(
+    'NAL_NORDEA_DIRECT',
+    'NAL (Nordea Direct)',
+    'nordea_direct.png',
+    null,
+    false,
+    true,
+    true,
+    false,
+    null
+  ),
+  new BankVo(
+    'UNIO_NORDEA_DIRECT',
+    'UNIO (Nordea Direct)',
     'nordea_direct.png',
     null,
     false,
