@@ -14,6 +14,7 @@ export class AntiChurnDialogComponent implements OnInit {
   public isConfirmed: boolean;
   public isLoading: boolean;
   public closeState: string;
+  public disableAnimation = true;
 
   constructor(
     private router: Router,
@@ -28,6 +29,11 @@ export class AntiChurnDialogComponent implements OnInit {
     this.confirmForm = this.fb.group({
       confirmation: ['', Validators.required]
     });
+  }
+
+  ngAfterViewInit(): void {
+    // timeout required to avoid the dreaded 'ExpressionChangedAfterItHasBeenCheckedError'
+    setTimeout(() => (this.disableAnimation = false));
   }
 
   public sendRequest(): void {

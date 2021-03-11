@@ -378,24 +378,15 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
     const offerId = offer.id;
     const currentBank = this.offersInfo.bank;
 
-    this.changeBankServiceService.getBankOfferRequest(offerId).subscribe(
-      (preview) => {
-        this.changeBankLoading = false;
-
-        const changeBankRef = this.dialog.open(AntiChurnDialogComponent, {
-          autoFocus: false,
-          data: { preview, offerId, currentBank }
-        });
-        changeBankRef.afterClosed().subscribe(() => {
-          this.handleChangeBankdialogOnClose(
-            changeBankRef.componentInstance.closeState
-          );
-        });
-      },
-      (err) => {
-        this.changeBankLoading = false;
-      }
-    );
+    const changeBankRef = this.dialog.open(AntiChurnDialogComponent, {
+      autoFocus: false,
+      data: {}
+    });
+    changeBankRef.afterClosed().subscribe(() => {
+      this.handleChangeBankdialogOnClose(
+        changeBankRef.componentInstance.closeState
+      );
+    });
   }
 
   public openChangeBankDialog(offer): void {

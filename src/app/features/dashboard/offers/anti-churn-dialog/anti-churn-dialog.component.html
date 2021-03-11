@@ -1,143 +1,58 @@
 <div class="top">
-
     <mat-icon (click)="close()" class="close-modal">close</mat-icon>
+    <h2>Bekreft innsending</h2>
+    <form [formGroup]="confirmForm" novalidate>
+      <mat-checkbox i18n=“age-confirmation|change-bank@@change.bank.ageConfirmation”
+        formControlName="confirmation"
+        (change)="isConfirmed = $event.checked"
+      >
+      Jeg godkjenner at min kontakt- og låneinformasjon sendes kryptert til Nordea og at Nordea kan kontakte meg.
+      </mat-checkbox>
   
-  <h3 i18n=“title|change-bank@@change.bank.title”>Melding til banken din:</h3>
-  <br />
-  <hr />
-  <br />
-  <p i18n=test|change-bank@@change.bank.intro>
-    Hei,
-    <br />
-    <br />
-    Jeg er kunde i banken i dag, men jeg har funnet et bedre tilbud på
-    <a href ="http://renteradar.no">renteradar.no</a> og vurderer å bytte. Før jeg går videre lurer jeg på om dere kan
-    matche tilbudet?
-  </p>
-  
-  
-  <p i18n=“info|change-bank@@change.bank.info” class="bold"><b>Opplysninger om tilbud:</b></p>
-  
-  <div class="grid-wrapper">
-    <div class="item">
-        <p i18n=“info-amount|change-bank@@change.bank.infoAmount” class="small">Lånebeløp:</p>
-        <p>{{ data.preview.totalOutstandingDebt | number: "0.0-0" }} kr</p>
-    </div>
-    <div class="item">
-        <p i18n=“info-value|change-bank@@change.bank.infoValue” class="small">Boligverdi:</p>
-        <p>{{ data.preview.propertyValue | number: "1.0-0" }} kr</p>
-    </div>
-    <div class="item">
-      <p i18n=“info-debt|change-bank@@change.bank.infoDebt” class="small">Fellesgjeld:</p>
-      <p>{{ (data.preview.commonDebt / 1000000 | number: "1.1-2")}} mill.</p>
+
+  </form> 
+
+  <div [@.disabled]="disableAnimation">
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Se mer info
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <h4>Følgende informasjon om deg sendes til Nordea</h4>
+        <ul>
+          <li>Navn</li>
+          <li>Adresse</li>
+          <li>Telefonnummer</li>
+          <li>Epost</li>
+          <li>Fødselsnummer</li>
+          <li>Lånedata (beløp, lånetype, løpetid, rente)</li>
+        </ul>
+      </mat-expansion-panel>
+    </mat-accordion>
   </div>
-  <div class="item">
-      <p i18n=“info-leverage|change-bank@@change.bank.infoLeverage” class="small">Est. belåningsgrad:</p>
-      <p>{{ (data.preview.ltv) * 100 | number: "1.1-1"}}%
-      </p>
+</div>
+
+
+
+<div class="bottom">
+  <div class="double">
+
+    <rente-button color="primary-wide-hollow" (click)="close()" i18n=“cancel|change-bank@@change.bank.cancel”>
+      Avbryt
+    </rente-button>
+
+    <rente-button i18n=“send-bank|change-bank@@change.bank.sendBank”
+      color="primary-wide"
+      [isLoading]="isLoading"
+      [disabled]="!isConfirmed || isLoading"
+      (click)="sendRequest()"
+      >Send til banken
+    </rente-button>
   </div>
-    <div class="item">
-        <p i18n=“info-time-remaining|change-bank@@change.bank.infoTime.remaining” class="small">Nedbetalingstid:</p>
-        <p>{{ data.preview.averageRemainingYears | round }} år</p>
-    </div>
-    <div class="item">
-        <p i18n=“info-age|change-bank@@change.bank.infoAge” class="small">Min alder:</p>
-        <p>{{ data.preview.clientInfo.age | number: "1.0-0" }} år</p>
-    </div>
-    <div class="item">
-      <p i18n=“info-bank|change-bank@@change.bank.infoBank” class="small">Bank:</p>
-      <p>{{ data.preview.bankName }}</p>
-    </div>
-    <div class="item">
-        <p i18n=“info-product|change-bank@@change.bank.infoProduct” class="small">Produktnavn:</p>
-        <p>{{ data.preview.productName }}</p>
-    </div>
-    <div class="item">
-        <p i18n=“info-nominal-interest|change-bank@@change.bank.infoNominal” class="small">Nominell rente:</p>
-        <p>{{ data.preview.nominalRate | number: "1.2-2" }}%</p>
-    </div>
-    <div class="item">
-        <p i18n=“info-effective-interest|change-bank@@change.bank.infoEffective” class="small">Effektiv rente:</p>
-        <p>{{ data.preview.effectiveRate | number: "1.2-2" }}%</p>
-    </div>
-  </div>
-  
-  <p i18n=“info-product2|change-bank@@change.bank.infoProduct2” class="small">Produkt:</p>
-  <a href="{{ data.preview.offerUrl }}" target="_blank">
-    <p i18n=“info-link|change-bank@@change.bank.infoLink”>Link til produkt på Finansportalen</p>
-  </a>
-  <br />
-  
-  
-    <p i18n=“info-me|change-bank@@change.bank.infoMe” class="bold"><b>Opplysninger om meg:</b></p>
-  
-    <div class="grid-wrapper">
-        <div class="item">
-            <p i18n=“info-name|change-bank@@change.bank.infoName” class="small">Navn:</p>
-            <p>{{ data.preview.clientInfo.name }}</p>
-        </div>
-        <div class="item">
-            <p i18n=“info-phone|change-bank@@change.bank.infoPhone” class="small">Telefon:</p>
-            <p>{{ data.preview.clientInfo.phone }}</p>
-        </div>
-        <div class="item">
-            <p i18n=“info-address|change-bank@@change.bank.infoAddress” class="small">Adresse:</p>
-            <p>{{ data.preview.clientInfo.address }}</p>
-        </div>
-        <div class="item">
-            <p i18n=“info-post|change-bank@@change.bank.infoPost” class="small">Postnr:</p>
-            <p>{{ data.preview.clientInfo.zip }}</p>
-        </div>
-  
-    </div>
-  
-  <p i18n=“info-mail|change-bank@@change.bank.infoMail” class="small">E-post:</p>
-  <p>{{ data.preview.clientInfo.email }}</p>
-  <br />
-  
-  <p i18n=“info-contact-phone|change-bank@@change.bank.infoContact.phone”>
-    Jeg ønsker at dere kontakter meg per telefon.
-  </p>
-  <p i18n=“info-confirmation|change-bank@@change.bank.infoConfirmation”>
-    Jeg bekrefter at jeg er over 18 år og myndig eller oppnevnt som verge, samt at
-    banken ved behov kan foreta en kredittvurdering.
-  </p>
-  <p i18n=“kind-regards|change-bank@@change.bank.kindRegards”>
-    Mvh,<br />
-    {{ data.preview.clientInfo.name }}
-  </p>
-    <br />
-  </div>
-  
-    <div class="bottom">
-  <p i18n=“info-sent-message|change-bank@@change.bank.infoSent”>
-    Meldingen sendes til din bank per mail med deg som avsender. Du får også en
-    kopi av meldingen i din innboks. Ønsker du å kontakte din bank direkte kan du
-    kopiere teksten og bruke den som utgangspunkt for dialog.
-  </p>
-  <br />
-  <form [formGroup]="confirmForm" novalidate>
-    <mat-checkbox i18n=“age-confirmation|change-bank@@change.bank.ageConfirmation”
-      formControlName="confirmation"
-      (change)="isConfirmed = $event.checked"
-    >
-      Jeg bekrefter at jeg er over 18 år og myndig eller oppnevnt som verge, samt
-      at banken ved behov kan foreta en kredittvurdering.
-    </mat-checkbox>
-    <div class="double">
-  
-      <rente-button color="primary-wide-hollow" (click)="close()" i18n=“cancel|change-bank@@change.bank.cancel”>
-        Avbryt
-      </rente-button>
-  
-      <rente-button i18n=“send-bank|change-bank@@change.bank.sendBank”
-        color="primary"
-        [isLoading]="isLoading"
-        [disabled]="!isConfirmed || isLoading"
-        (click)="sendRequest()"
-        >Send til banken
-      </rente-button>
-    </div>
-  </form>
-  </div>
+</div>
+
+
+
   

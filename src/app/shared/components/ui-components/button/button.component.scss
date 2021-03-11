@@ -79,6 +79,11 @@ button.mat-primary-wide {
   width: 80%
 }
 
+
+button.mat-primary-wide[disabled] {
+  color: white !important;
+}
+
 button.mat-primary-semi-wide {
   background-color: $primary;
   color: white;
