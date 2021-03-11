@@ -89,7 +89,7 @@ export class ChangeBankLocationComponent implements OnInit, AfterViewInit {
     if (this.stepper === undefined) return [];
     const regions = this.stepperHeaderArray[0].value;
     return regions
-      ? Object.keys(this.locations[this.stepperHeaderArray[0].value])
+      ? Object.keys(this.locations[this.stepperHeaderArray[0].value]).sort()
       : [];
   }
 
