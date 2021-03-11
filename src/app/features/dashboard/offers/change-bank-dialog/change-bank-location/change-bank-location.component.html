@@ -25,7 +25,7 @@
 <mat-horizontal-stepper class="stepper" [linear]="false"  #stepper>
     <mat-step [editable]="true">
         <h3>Region</h3>
-        <div *ngFor="let region of regionsArray">
+        <div *ngFor="let region of regions">
             <div (click)="clickNext(region, stepper.selectedIndex)" class="choise-item">
                 <div>{{region}}</div>
                 <img class="arrow" src="../../../../assets/icons/arrow-small-grey.svg" [alt]="Velg">

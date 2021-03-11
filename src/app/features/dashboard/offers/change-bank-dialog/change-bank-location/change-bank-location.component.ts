@@ -43,21 +43,9 @@ export class ChangeBankLocationComponent implements OnInit, AfterViewInit {
   offerId: number;
   isEditable = false;
   regionsArray = [];
-  locationsArray = [];
-  officeArray = [];
-
-  stepStatus = {
-    region: 'region',
-    city: 'city',
-    office: 'office',
-    done: 'done'
-  };
-
-  step: string = this.stepStatus.region;
   stepperHeaderArray = [];
 
-  ngAfterViewInit() {
-    console.log('ngAfterViewInit');
+  ngAfterViewInit(): void {
     this.stepperHeaderArray = this.stepper.steps.map((item, index) => {
       const node: HeaderNode = {
         state: index === 0 ? 'active' : 'waiting',
@@ -68,7 +56,7 @@ export class ChangeBankLocationComponent implements OnInit, AfterViewInit {
     });
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.confirmForm = this.fb.group({
       confirmation: ['', Validators.required]
     });
@@ -78,7 +66,6 @@ export class ChangeBankLocationComponent implements OnInit, AfterViewInit {
     this.offerId = this.data.offerId;
 
     this.regionsArray = Object.keys(this.locations).sort();
-    this.locationsArray = [];
   }
 
   get choosenRegion(): string {
@@ -91,6 +78,11 @@ export class ChangeBankLocationComponent implements OnInit, AfterViewInit {
 
   get choosenOffice(): string {
     return this.stepperHeaderArray[2] ? this.stepperHeaderArray[2].value : null;
+  }
+
+  get regions(): any {
+    if (this.stepper === undefined) return [];
+    return this.regionsArray.length ? this.regionsArray : [];
   }
 
   get cities(): any {
@@ -118,10 +110,6 @@ export class ChangeBankLocationComponent implements OnInit, AfterViewInit {
     this.stepperHeaderArray[index + 1].state = 'active';
 
     this.stepper.next();
-    console.log(this.stepperHeaderArray);
-    setTimeout(() => {
-      console.log(this.stepperHeaderArray);
-    }, 2000);
   }
 
   resetNodesAfterIndex(index) {
@@ -145,12 +133,7 @@ export class ChangeBankLocationComponent implements OnInit, AfterViewInit {
   }
 
   officeStepClick(office: string, index: number) {
-    console.log(this.stepperHeaderArray);
     this.stepperHeaderArray[index].value = office;
-
-    const values = this.stepperHeaderArray.map((node) => {
-      return node.value;
-    });
     if (
       this.stepperHeaderArray[0].value === null ||
       this.stepperHeaderArray[1].value === null ||
@@ -185,20 +168,6 @@ export class ChangeBankLocationComponent implements OnInit, AfterViewInit {
       );
   }
 
-  officePreviousClick() {
-    this.stepperHeaderArray[2].value = null;
-    this.stepperHeaderArray[2].state = 'waiting';
-    this.stepperHeaderArray[1].state = 'active';
-    this.stepper.previous();
-  }
-
-  donePreviousClick() {
-    this.stepperHeaderArray[3].value = null;
-    this.stepperHeaderArray[3].state = 'waiting';
-    this.stepperHeaderArray[2].state = 'active';
-    this.stepper.previous();
-  }
-
   clickHeaderNode(index) {
     let highestIndexWithValue = 0;
     this.stepperHeaderArray.forEach((node) => {
@@ -224,7 +193,7 @@ export class ChangeBankLocationComponent implements OnInit, AfterViewInit {
     this.stepper.selectedIndex = index;
   }
 
-  sendEmail() {
+  sendEmail(): void {
     if (
       this.choosenRegion === null ||
       this.choosenCity === null ||
@@ -256,7 +225,7 @@ export class ChangeBankLocationComponent implements OnInit, AfterViewInit {
       );
   }
 
-  resetState() {
+  resetState(): void {
     this.stepper.reset();
 
     this.stepperHeaderArray.forEach((node) => {
