@@ -129,10 +129,10 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
         this.offersInfo = Object.assign({}, res);
         this.currentOfferInfo = JSON.parse(JSON.stringify(res));
         // REMOVE BEFORE PRODUCTION!!!!
-        this.offersInfo.bank = 'Nordea';
+        /* this.offersInfo.bank = 'Nordea';
         this.openAntiChurnBankDialog(this.offersInfo.offers.top5[0]);
         this.antiChurnIsOn = this.offersInfo.bank === 'Nordea' ? true : false;
-
+        */
         this.canBargain =
           res.bank === 'SWE_AVANZA' ||
           res.bank === 'SWE_SBAB' ||
