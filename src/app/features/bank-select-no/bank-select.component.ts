@@ -57,12 +57,16 @@ export class BankSelectNoComponent implements OnInit {
       }
     });
 
+    const banksWithoutMembershipBanks = sortedBanksAlphabetic.filter((bank) => {
+      return bank.name === 'YS_NORDEA_DIRECT' ? false : true;
+    });
+
     this.allBanks = [
       specialCaseBanks[dnb],
       specialCaseBanks[nordea],
       specialCaseBanks[sparebank],
       ...TinkBanks,
-      ...sortedBanksAlphabetic
+      ...banksWithoutMembershipBanks
     ];
   }
 

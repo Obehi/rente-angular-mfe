@@ -838,7 +838,7 @@ export const BankList: BankVo[] = [
     false,
     false,
     false,
-    'https://www.nordea.no/privat/kundeservice/slik-gjor-du/slik-kommer-du-i-gang-med-bankid-pa-mobil.html'
+    null
   ),
   new BankVo(
     'SPAREBANK_1',
