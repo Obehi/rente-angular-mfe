@@ -25,3 +25,50 @@ a {
 li {
     font-weight: 300;
 }
+
+.top-accordion {
+
+    ::ng-deep .mat-expansion-panel:not([class*=mat-elevation-z]) {
+      box-shadow: unset !important;
+      background: unset im !important
+    }
+    ::ng-deep .mat-accordion .mat-expansion-panel:last-of-type {
+      border-bottom-right-radius: 15px !important;
+      border-bottom-left-radius: 15px !important;
+      background: unset !important;
+
+    }
+    ::ng-deep .mat-accordion .mat-expansion-panel:first-of-type {
+      border-top-right-radius: 15px !important;
+      border-top-left-radius: 15px;
+      background: unset !important;
+    }
+    ::ng-deep .mat-expansion-panel {
+      &-header {
+        max-height: 30px;
+        padding: 20px;
+        width: 40%;
+        margin: auto;
+        background: $white !important;
+        span {
+          p {
+            color: white !important;
+            margin: auto;
+          }
+        }
+      }
+
+      &-body {
+        background-color: #183a63;
+        //padding: 8px !important;
+        padding: 0px !important;
+      }
+    }
+
+    .mer-info-body {
+        margin-top: 10px;
+        border-top: 1px solid #fff;
+        border-bottom: 1px solid #fff;
+        padding: 10px 0;
+    }
+  }

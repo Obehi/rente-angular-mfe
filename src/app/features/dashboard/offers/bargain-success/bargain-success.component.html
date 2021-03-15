@@ -7,23 +7,44 @@
         Vi har også sendt deg en epost fra prute@renteradar.no med kopi av eposten vi har sendt
         til din bank. Hvis du ikke finner den, sjekk om eposten kan ha kommet i spam/søppelpost.
       </p> <br/>
-      <p i18n=“time|bargain@@bargain.success.time”>
-        Bankene pleier å bruke én eller to uker på å svare deg.
-        Får du ikke noe svar fra banken i løpet av to uker, anbefaler vi følgende:
-      </p>
-      <ul i18n=“instructions|bargain@@bargain.success.instructions” style="font-weight: 200; font-size: 14px; margin: 10px 0; line-height: 22px;">
-        <li>Kopier teksten vi har sendt til din bank og som ligger nederst i eposten</li>
-        <li>Logg inn på nettbanken hos banken din</li>
-        <li>Gå til din postkasse i nettbanken, eventuelt start en chat. Send en melding til banken med teksten du har kopiert</li>
-      </ul>
-      <p i18n=“no-response|bargain@@bargain.success.noResponse”>
-        Får du fortsatt ikke svar fra banken din eller banken ikke vil sette ned renten,
-        er det kanskje på tide å bytte bank. Renteradar.no viser deg hvilken bank du bør bytte til.
-      </p><br/>
-      <p i18n=“review|bargain@@bargain.success.review”>
-        Send oss gjerne en e-post på <a href = "mailto: hei@renteradar.no">hei@renteradar.no</a>  eller bruk chat-funksjonen i tjenesten
-        for å fortelle oss om du har fått lavere rente eller om du har noen spørsmål.
-      </p>
+
+
+      <div class="top-accordion mt-3">
+        <mat-accordion>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <b>
+                  Mer info
+                </b>
+            </mat-expansion-panel-header>
+            <div class="mer-info-body">
+              <p i18n=“time|bargain@@bargain.success.time”>
+                Bankene pleier å bruke én eller to uker på å svare deg.
+                Får du ikke noe svar fra banken i løpet av to uker, anbefaler vi følgende:
+              </p>
+              <ul i18n=“instructions|bargain@@bargain.success.instructions” style="font-weight: 200; font-size: 14px; margin: 10px 0; line-height: 22px;">
+                <li>Kopier teksten vi har sendt til din bank og som ligger nederst i eposten</li>
+                <li>Logg inn på nettbanken hos banken din</li>
+                <li>Gå til din postkasse i nettbanken, eventuelt start en chat. Send en melding til banken med teksten du har kopiert</li>
+              </ul>
+              <p i18n=“no-response|bargain@@bargain.success.noResponse”>
+                Får du fortsatt ikke svar fra banken din eller banken ikke vil sette ned renten,
+                er det kanskje på tide å bytte bank. Renteradar.no viser deg hvilken bank du bør bytte til.
+              </p><br/>
+              <p i18n=“review|bargain@@bargain.success.review”>
+                Send oss gjerne en e-post på <a href = "mailto: hei@renteradar.no">hei@renteradar.no</a>  eller bruk chat-funksjonen i tjenesten
+                for å fortelle oss om du har fått lavere rente eller om du har noen spørsmål.
+              </p>
+            </div>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </div>
+
+
+      <div class="Tibber-promo">
+      </div>
+      
+      
     </div>
   
     <ng-template #errorState>
