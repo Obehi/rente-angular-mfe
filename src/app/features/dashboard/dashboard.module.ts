@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { OffersComponentBlue } from './offers/offers-blue/offers.component';
 import { DashboardComponent } from './dashboard.component';
@@ -14,6 +15,7 @@ import { DialogInfoComponent } from './offers/dialog-info/dialog-info.component'
 import { RatingComponent } from './offers/rating/rating.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatSelectModule } from '@angular/material/select';
+import { MatStepperModule } from '@angular/material';
 import {
   MatInputModule,
   MatChipsModule,
@@ -50,6 +52,7 @@ import { LoansLangGenericComponent } from '../../local-components/components-out
 import { HouseFormLangGenericComponent } from '../../local-components/components-output';
 import { ChangeBankDialogLangGenericComponent } from '../../local-components/components-output';
 import { BankScoreLangGenericComponent } from '../../local-components/components-output';
+import { ChangeBankLocationComponent } from './offers/change-bank-dialog/change-bank-location/change-bank-location.component';
 
 // TODO: ADD separate module for material import
 @NgModule({
@@ -86,7 +89,8 @@ import { BankScoreLangGenericComponent } from '../../local-components/components
     ChangeBankDialogLangGenericComponent,
     BankScoreLangGenericComponent,
     EPSIScoreComponent,
-    HouseFormErrorDialogComponent
+    HouseFormErrorDialogComponent,
+    ChangeBankLocationComponent
   ],
   imports: [
     CommonModule,
@@ -108,7 +112,8 @@ import { BankScoreLangGenericComponent } from '../../local-components/components
     MatProgressSpinnerModule,
     MatCheckboxModule,
     MatBottomSheetModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatStepperModule
     // ShareButtonModule
   ],
   entryComponents: [
@@ -118,6 +123,12 @@ import { BankScoreLangGenericComponent } from '../../local-components/components
     ShareSheetComponent,
     GetOfferFromBankDialogComponent,
     LtvTooHighDialogComponent
+  ],
+  providers: [
+    {
+      provide: STEPPER_GLOBAL_OPTIONS,
+      useValue: { displayDefaultIndicatorType: false }
+    }
   ]
 })
 export class DashboardModule {}
