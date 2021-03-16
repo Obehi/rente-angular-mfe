@@ -16,7 +16,6 @@ import { EnvService } from '@services/env.service';
   styleUrls: ['./bank-select.component.scss']
 })
 export class BankSelectNoComponent implements OnInit {
-  @ViewChild('searchElement') searchElement;
   searchStr: string;
   banks: BankVo[];
   allBanks: BankVo[];
@@ -28,10 +27,6 @@ export class BankSelectNoComponent implements OnInit {
   ngOnInit() {
     this.sortBanks();
     this.filterBank(this.searchStr);
-  }
-
-  ngAfterViewInit() {
-    this.searchElement.nativeElement.focus();
   }
 
   sortBanks(): void {
