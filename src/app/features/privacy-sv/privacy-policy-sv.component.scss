@@ -1,0 +1,26 @@
+@import "../../../styles/theme/_colors.scss";
+
+
+p {
+  margin-bottom: 20px;
+}
+
+a {
+  color: $primary
+}
+
+li {
+  font-weight: 300;
+  font-size: 14px;
+  margin-top: 5px;
+  margin-bottom: 7px;
+  line-height: 20px;
+}
+
+ol {
+  list-style-type: lower-latin;
+}
+
+ol.numeric {
+  list-style-type: decimal;
+}
