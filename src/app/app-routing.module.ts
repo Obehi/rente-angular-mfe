@@ -11,12 +11,12 @@ import { AboutCookiesComponent } from '@features/cookies/cookies.component';
 import { EmailPreferencesComponent } from '@features/email-preferences/email-preferences.component';
 import { LandingComponent } from '@features/landing/landing.component';
 import { PageNotFoundComponent } from '@features/page-not-found/page-not-found.component';
-import { PrivacyPolicyComponent } from '@features/privacy-policy/privacy-policy.component';
 import { PrivacyComponent } from '@features/privacy/privacy.component';
 import { TermsConditionsComponent } from '@features/terms-conditions/terms-conditions.component';
 import { customMeta, defaultMeta } from './config/routes-config';
 import { InitConfirmationLangGenericComponent } from './local-components/components-output';
 import { GetNotifiedLangGenericComponent } from './local-components/components-output';
+import { PrivacyPolicyLangGenericComponent } from './local-components/components-output';
 import { EmailRedirectNOComponent } from '@features/email-redirect/email-redirect-no/email-redirect-no.component';
 import { EmailRedirectSVComponent } from '@features/email-redirect/email-redirect-sv/email-redirect-sv.component';
 import { AuthGuard } from '@shared/guards/auth.guard';
@@ -141,7 +141,7 @@ const commonRoutes: Routes = [
   },
   {
     path: ROUTES_MAP.privacyPolicy,
-    component: PrivacyPolicyComponent,
+    component: PrivacyPolicyLangGenericComponent,
     data: {
       title: customMeta.personvernerklaering.title,
       meta: {
