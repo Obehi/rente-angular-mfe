@@ -1,5 +1,12 @@
+@import "../../../styles/theme/_colors.scss";
+
+
 p {
   margin-bottom: 20px;
+}
+
+a {
+  color: $primary
 }
 
 li {
@@ -14,3 +21,6 @@ ol {
   list-style-type: lower-latin;
 }
 
+ol.numeric {
+  list-style-type: decimal;
+}
