@@ -15,11 +15,10 @@ export class PrivacyComponent implements OnInit {
     console.log('this.envService.isNorway');
     console.log(this.envService.isNorway());
     console.log(this.envService.isSweden());
-    if (this.envService.isNorway) {
+    if (this.envService.isNorway()) {
       this.privacyPolicyLink = 'personvernerklaering';
     }
-
-    if (this.envService.isSweden) {
+    if (this.envService.isSweden()) {
       this.privacyPolicyLink = 'integritypolicy';
     }
     this.seoService.createLinkForCanonicalURL();
