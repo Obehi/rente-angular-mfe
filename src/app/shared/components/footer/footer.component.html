@@ -99,9 +99,13 @@
       <p>
         Forbrukerøkonomene AS (Org nr: 921 534 191)
         <br />
-          <a href="https://renteradar.no/bankguiden" routerLinkActive="active-link">
-          Bankguiden
-        </a>
+        <a
+        [routerLink]="['/personvern']"
+        routerLinkActive="active-link"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+    Personvern
+  </a>
     </div>
 
   </div>
@@ -140,3 +144,6 @@
     </p>
   </span>
   </div>
+
+
+ 
