@@ -175,16 +175,15 @@
           <!-- end desktop rente-info-grid-->
   
   
-          <div *ngIf="!isMobile && !isSweden" class="compared">
+          <div *ngIf="!isMobile" class="compared">
             <rente-offers-statistics-blue [offersInfo]="offersInfo" [userRateColor]="rateBarPercentage.hex">
             </rente-offers-statistics-blue>
 
             
           </div>
           
-          <div *ngIf="isSweden">
-            
-            <div class="big-box round-box left">
+       
+            <div *ngIf="isSweden" class="big-box round-box left">
               <div class="top">
                 <p i18n=“found-offers|offers-main@@offers.mainPage.foundOffers”>
                   Vi har funnet de beste tilbudene for deg
@@ -221,7 +220,7 @@
                 > 
               </div>
             </div>
-          </div>
+         
   
           <div class="tipsAccordion round-box clickable" (click)="isShowTips = !isShowTips" *ngIf="tips.length > 0">
             <p>
@@ -558,7 +557,7 @@
               </div>
             </div>
           </div>
-          <div *ngIf="isMobile && !isSweden" class="compared">
+          <div *ngIf="isMobile" class="compared">
             <rente-offers-statistics-blue [offersInfo]="offersInfo" [userRateColor]="rateBarPercentage.hex">
             </rente-offers-statistics-blue>
           </div>
