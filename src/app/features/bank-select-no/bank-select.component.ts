@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import {
   BankVo,
   BankList,
@@ -52,12 +52,25 @@ export class BankSelectNoComponent implements OnInit {
       }
     });
 
+    const nonMembershipBanks = sortedBanksAlphabetic.filter((bank) => {
+      return bank.name === 'TOBB' ||
+        bank.name === 'USBL' ||
+        bank.name === 'BATE' ||
+        bank.name === 'SYKEPLEIERFORBUND_DNB' ||
+        bank.name === 'YS_NORDEA_DIRECT' ||
+        bank.name === 'NAL_NORDEA_DIRECT' ||
+        bank.name === 'UNIO_NORDEA_DIRECT' ||
+        bank.name === 'AKADEMIKERNE_DANSKE'
+        ? false
+        : true;
+    });
+
     this.allBanks = [
       specialCaseBanks[dnb],
       specialCaseBanks[nordea],
       specialCaseBanks[sparebank],
       ...TinkBanks,
-      ...sortedBanksAlphabetic
+      ...nonMembershipBanks
     ];
   }
 

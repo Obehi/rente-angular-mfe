@@ -9,6 +9,7 @@ const routes: Routes = [
   { path: 'sparebank1-sub', component: Sparebank1SubComponent },
   { path: 'bank/:bankName', component: BankIdLoginComponent },
   { path: 'demo-login', component: DemoLoginComponent },
+  { path: 'demo', component: DemoLoginComponent },
   { path: 'guid-login', component: GuidLoginComponent },
   { path: '', redirectTo: 'bank' }
 ];

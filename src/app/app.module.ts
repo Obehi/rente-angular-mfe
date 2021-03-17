@@ -9,7 +9,7 @@ import { FaqComponent } from '@features/faq/faq.component';
 import { PrivacyComponent } from '@features/privacy/privacy.component';
 import { AboutCookiesComponent } from '@features/cookies/cookies.component';
 import { TermsConditionsComponent } from '@features/terms-conditions/terms-conditions.component';
-import { PrivacyPolicyComponent } from '@features/privacy-policy/privacy-policy.component';
+import { PrivacyPolicyLangGenericComponent } from './local-components/components-output';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ContactUsComponent } from './features/contact-us/contact-us.component';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -50,7 +50,7 @@ registerLocaleData(localeNo);
     FaqComponent,
     PrivacyComponent,
     TermsConditionsComponent,
-    PrivacyPolicyComponent,
+    PrivacyPolicyLangGenericComponent,
     ContactUsComponent,
     InitConfirmationLangGenericComponent,
     GetNotifiedLangGenericComponent,

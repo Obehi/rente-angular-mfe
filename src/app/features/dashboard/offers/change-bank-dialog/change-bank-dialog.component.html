@@ -61,27 +61,27 @@
 <br />
 
 
-<p i18n=“info-me|change-bank@@change.bank.infoMe” class="bold"><b>Opplysninger om meg:</b></p>
+  <p i18n=“info-me|change-bank@@change.bank.infoMe” class="bold"><b>Opplysninger om meg:</b></p>
 
-<div class="grid-wrapper">
-    <div class="item">
-        <p i18n=“info-name|change-bank@@change.bank.infoName” class="small">Navn:</p>
-        <p>{{ data.preview.clientInfo.name }}</p>
-    </div>
-    <div class="item">
-        <p i18n=“info-phone|change-bank@@change.bank.infoPhone” class="small">Telefon:</p>
-        <p>{{ data.preview.clientInfo.phone }}</p>
-    </div>
-    <div class="item">
-        <p i18n=“info-address|change-bank@@change.bank.infoAddress” class="small">Adresse:</p>
-        <p>{{ data.preview.clientInfo.address }}</p>
-    </div>
-    <div class="item">
-        <p i18n=“info-post|change-bank@@change.bank.infoPost” class="small">Postnr:</p>
-        <p>{{ data.preview.clientInfo.zip }}</p>
-    </div>
+  <div class="grid-wrapper">
+      <div class="item">
+          <p i18n=“info-name|change-bank@@change.bank.infoName” class="small">Navn:</p>
+          <p>{{ data.preview.clientInfo.name }}</p>
+      </div>
+      <div class="item">
+          <p i18n=“info-phone|change-bank@@change.bank.infoPhone” class="small">Telefon:</p>
+          <p>{{ data.preview.clientInfo.phone }}</p>
+      </div>
+      <div class="item">
+          <p i18n=“info-address|change-bank@@change.bank.infoAddress” class="small">Adresse:</p>
+          <p>{{ data.preview.clientInfo.address }}</p>
+      </div>
+      <div class="item">
+          <p i18n=“info-post|change-bank@@change.bank.infoPost” class="small">Postnr:</p>
+          <p>{{ data.preview.clientInfo.zip }}</p>
+      </div>
 
-</div>
+  </div>
 
 <p i18n=“info-mail|change-bank@@change.bank.infoMail” class="small">E-post:</p>
 <p>{{ data.preview.clientInfo.email }}</p>
@@ -117,16 +117,17 @@
     at banken ved behov kan foreta en kredittvurdering.
   </mat-checkbox>
   <div class="double">
+
+    <rente-button color="primary-wide-hollow" (click)="close()" i18n=“cancel|change-bank@@change.bank.cancel”>
+      Avbryt
+    </rente-button>
+
     <rente-button i18n=“send-bank|change-bank@@change.bank.sendBank”
       color="primary"
       [isLoading]="isLoading"
       [disabled]="!isConfirmed || isLoading"
       (click)="sendRequest()"
       >Send til banken
-    </rente-button>
-
-    <rente-button color="primary" (click)="close()" i18n=“cancel|change-bank@@change.bank.cancel”>
-      Avbryt
     </rente-button>
   </div>
 </form>
