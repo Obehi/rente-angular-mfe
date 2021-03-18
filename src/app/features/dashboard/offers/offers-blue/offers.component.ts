@@ -143,11 +143,6 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
             ? false
             : true;
 
-        this.canBargain = false;
-        console.log('this.isSweden');
-        console.log(this.isSweden);
-        console.log('this.canBargain');
-        console.log(this.canBargain);
         this.isLoading = false;
         this.localStorageService.removeItem('isNewUser');
         this.getTips();
@@ -410,8 +405,6 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
   }
 
   public handleChangeBankdialogOnClose(state: string) {
-    console.log(state);
-    console.log(state);
     switch (state) {
       case 'canceled': {
         break;
