@@ -16,7 +16,7 @@ export class BargainSuccessComponent implements OnInit {
   constructor(
     private router: Router,
     public dialog: MatDialog,
-    private envService: EnvService
+    public envService: EnvService
   ) {}
 
   ngOnInit() {
