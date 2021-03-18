@@ -2,7 +2,7 @@ import { Component, Input, AfterViewInit, OnInit } from '@angular/core';
 import * as Highcharts from 'highcharts';
 import { Offers, BankStatisticItem } from '@shared/models/offers';
 import { MatTabChangeEvent } from '@angular/material';
-
+import { EnvService } from '@services/env.service';
 declare let require: any;
 const Boost = require('highcharts/modules/boost');
 const noData = require('highcharts/modules/no-data-to-display');
@@ -24,6 +24,9 @@ export class OffersStatisticsComponentBlue implements AfterViewInit, OnInit {
   public get offersInfo(): Offers {
     return this._offersInfo;
   }
+
+  constructor(private envService: EnvService) {}
+
   public set offersInfo(value: Offers) {
     this._offersInfo = value;
     this.hasClientBankData = false;
@@ -59,7 +62,9 @@ export class OffersStatisticsComponentBlue implements AfterViewInit, OnInit {
 
   get ageSegment() {
     return this.offersInfo.bankStatistics.age >= 34
-      ? 'over 34 år'
+      ? this.envService.isNorway()
+        ? 'over 34 år'
+        : 'över 34 år'
       : 'under 34 år';
   }
 
@@ -69,14 +74,20 @@ export class OffersStatisticsComponentBlue implements AfterViewInit, OnInit {
       .totalOutstandingDebt;
 
     if (totalOutstandingDebt < 2000000) {
-      text = 'mindre enn 2 mill. i lån';
+      text = this.envService.isNorway()
+        ? 'mindre enn 2 mill. i lån'
+        : 'mindre enn 2 milj. i lån';
     } else if (
       totalOutstandingDebt >= 2000000 &&
       totalOutstandingDebt < 4000000
     ) {
-      text = ' 2-4 mill. i lån';
+      text = this.envService.isNorway()
+        ? ' 2-4 mill. i lån'
+        : ' 2-4 milj. i lån';
     } else if (totalOutstandingDebt >= 4000000) {
-      text = 'over 4 mill. i lån';
+      text = this.envService.isNorway()
+        ? 'over 4 mill. i lån'
+        : 'över 4 milj. i lån';
     }
     return text;
   }
@@ -89,7 +100,7 @@ export class OffersStatisticsComponentBlue implements AfterViewInit, OnInit {
     } else if (ltv > 0.6 && ltv <= 0.75) {
       text = '60-75%';
     } else if (ltv > 0.75) {
-      text = 'over 75%';
+      text = this.envService.isNorway() ? 'over 75%' : 'över 75%';
     }
     return text;
   }
@@ -125,8 +136,6 @@ export class OffersStatisticsComponentBlue implements AfterViewInit, OnInit {
             this.clientBankChartId,
             this.clientBankEffRateOptions
           );
-
-        /* this.clientBankEffRateChart.setSize(null, 200); */
       }
 
       if (this.hasOthersBankData) {
@@ -179,7 +188,13 @@ export class OffersStatisticsComponentBlue implements AfterViewInit, OnInit {
       },
 
       xAxis: {
-        categories: ['Du har', 'Snitt-kunden', 'De med lavest rente'],
+        categories: [
+          'Du har',
+          this.envService.isNorway() ? 'Snitt-kunden' : 'Snittanvändare',
+          this.envService.isNorway()
+            ? 'De med lavest rente'
+            : 'De med lägst ränta'
+        ],
         labels: {
           style: {
             fontSize: '12px',
@@ -261,7 +276,13 @@ export class OffersStatisticsComponentBlue implements AfterViewInit, OnInit {
       },
 
       xAxis: {
-        categories: ['Du har', 'Snitt-kunden', 'De med lavest rente'],
+        categories: [
+          'Du har',
+          this.envService.isNorway() ? 'Snitt-kunden' : 'Snittanvändare',
+          this.envService.isNorway()
+            ? 'De med lavest rente'
+            : 'De med lägst ränta'
+        ],
         labels: {
           style: {
             fontSize: '14px',
