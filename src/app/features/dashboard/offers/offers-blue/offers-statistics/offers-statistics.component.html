@@ -1,10 +1,10 @@
 <div *ngIf="!hasOthersBankData && clientBankData.segmentedData === true && !allBankData.segmentedData">
-  <h3>Din rente i forhold til andre i din bank</h3>
+  <h3 i18n=“mortage-relation|offers-statistics@@offers.statistics.mortgageRelation”>Din rente i forhold til andre i din bank</h3>
 </div>
 
 <!--<div *ngIf="!hasClientBankData"> -->
 <div *ngIf="allBankData.segmentedData && !clientBankData.segmentedData">
-  <h3>Din rente i forhold til andre i alle banker</h3>
+  <h3 i18n=“banks-relation|offers-statistics@@offers.statistics.banksRelation”>Din rente i forhold til andre i alle banker</h3>
   
 </div>
 
@@ -49,17 +49,17 @@
       
       <div class="bottomBox">
         <div *ngIf="allBankData.segmentedData || clientBankData.segmentedData">
-          <p *ngIf="hasOthersBankData || hasClientBankData" class="segmentText">
+          <p i18n=“graph|offers-statistics@@offers.statistics.graph” *ngIf="hasOthersBankData || hasClientBankData" class="segmentText">
             Grafen sammenligner renten din med andre som er <strong>{{ageSegment}}</strong>, har <strong>{{totalOutstandingDebtSegment}}</strong> 
             og <strong>belåningsgrad {{ltvSegment}}</strong>
           </p>
     
-          <p *ngIf="hasOthersBankData || hasClientBankData" class="small">
+          <p i18n=“no-show-graph|offers-statistics@@offers.statistics.noShow.graph” *ngIf="hasOthersBankData || hasClientBankData" class="small">
             *Grafen tar ikke hensyn til geografi og medlemskap
           </p>
         </div>
     
-        <p i18n=“number-details|offer-card@@offer.statistics.disclaimer” *ngIf="(!allBankData.segmentedData && !clientBankData.segmentedData)" class="small" id="the-offers" >
+        <p i18n=“no-show2-graph|offers-statistics@@offers.statistics.noShow2.graph” *ngIf="(!allBankData.segmentedData && !clientBankData.segmentedData)" class="small" id="the-offers" >
           *Grafen tar ikke hensyn til alder, belåninsgrad, fordeler av
           medlemskap, etc. da vi ikke har nok data for din brukergruppe
         </p>

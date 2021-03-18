@@ -2,7 +2,7 @@ import { Component, Input, AfterViewInit, OnInit } from '@angular/core';
 import * as Highcharts from 'highcharts';
 import { Offers, BankStatisticItem } from '@shared/models/offers';
 import { MatTabChangeEvent } from '@angular/material';
-
+import { EnvService } from '@services/env.service';
 declare let require: any;
 const Boost = require('highcharts/modules/boost');
 const noData = require('highcharts/modules/no-data-to-display');
@@ -24,6 +24,9 @@ export class OffersStatisticsComponentBlue implements AfterViewInit, OnInit {
   public get offersInfo(): Offers {
     return this._offersInfo;
   }
+
+  constructor(private envService: EnvService) {}
+
   public set offersInfo(value: Offers) {
     this._offersInfo = value;
     this.hasClientBankData = false;
@@ -179,7 +182,13 @@ export class OffersStatisticsComponentBlue implements AfterViewInit, OnInit {
       },
 
       xAxis: {
-        categories: ['Du har', 'Snitt-kunden', 'De med lavest rente'],
+        categories: [
+          'Du har',
+          'Snitt-kunden',
+          this.envService.isNorway()
+            ? 'De med lavest rente'
+            : 'De med lägst ränta'
+        ],
         labels: {
           style: {
             fontSize: '12px',
