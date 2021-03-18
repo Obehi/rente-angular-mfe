@@ -295,7 +295,6 @@
               </p>
             </div>
             <div class="bottom">
-              
               <rente-button 
                 i18n=“found-best-offers|offers-main@@offers.mainPage.found.bestOffers.button”
                 [disabled]="changeBankLoading ||
@@ -305,27 +304,9 @@
                 (click)="goToBestOffer()"
                 >Se beste tilbud</rente-button
               >
-  
             </div>
           </div>
 
-          <div  *ngIf="!isSweden"  class="big-box round-box right">
-            <div class="top">
-              <div class="circleIconWrapper"><img class="" src="../../../../assets/icons/mail-green.svg" /></div>
-              <p i18n=“help-you|offers-main@@offers.mainPage.helpYou”>Be banken min om lavere rente</p>
-            </div>
-            <div class="bottom">
-              <rente-button
-              i18n=“help-you|offers-main@@offers.mainPage.helpYou.button” 
-                color="primary-wide-hollow"
-                [disabled]="changeBankLoading ||
-                offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS"
-                [isLoading]="changeBankLoading"
-                (click)="openChangeBankDialog(offersInfo.offers.top5[0])"
-                >Be banken matche tilbud</rente-button
-              > 
-            </div>
-          </div>
   
           <div  *ngIf="canBargain && !isSweden"  class="big-box round-box right">
             <div class="top">
@@ -567,24 +548,6 @@
                       (click)="goToBestOffer()"
                       >Se beste tilbud</rente-button
                     >
-                  </div>
-                </div>
-
-                <div  *ngIf="!isSweden"  class="big-box round-box right">
-                  <div class="top">
-                    <div class="circleIconWrapper"><img class="" src="../../../../assets/icons/mail-green.svg" /></div>
-                    <p i18n=“help-you|offers-main@@offers.mainPage.helpYou”>Be banken min om lavere rente</p>
-                  </div>
-                  <div class="bottom">
-                    <rente-button
-                    i18n=“help-you|offers-main@@offers.mainPage.helpYou.button” 
-                      color="primary-wide-hollow"
-                      [disabled]="changeBankLoading ||
-                      offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS"
-                      [isLoading]="changeBankLoading"
-                      (click)="openChangeBankDialog(offersInfo.offers.top5[0])"
-                      >Be banken matche tilbud</rente-button
-                    > 
                   </div>
                 </div>
 
