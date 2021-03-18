@@ -16,7 +16,7 @@ export class BargainSuccessComponent implements OnInit {
   constructor(private router: Router, public dialog: MatDialog) {}
 
   ngOnInit() {
-    this.dialog.open(ReferralComponent);
+    // this.dialog.open(ReferralComponent);
   }
 
   public continue() {
