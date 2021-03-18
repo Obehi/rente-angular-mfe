@@ -128,8 +128,6 @@ export class OffersStatisticsComponentBlue implements AfterViewInit, OnInit {
             this.clientBankChartId,
             this.clientBankEffRateOptions
           );
-
-        /* this.clientBankEffRateChart.setSize(null, 200); */
       }
 
       if (this.hasOthersBankData) {
@@ -184,7 +182,7 @@ export class OffersStatisticsComponentBlue implements AfterViewInit, OnInit {
       xAxis: {
         categories: [
           'Du har',
-          'Snitt-kunden',
+          this.envService.isNorway() ? 'Snitt-kunden' : 'Snittanvändare',
           this.envService.isNorway()
             ? 'De med lavest rente'
             : 'De med lägst ränta'
@@ -270,7 +268,13 @@ export class OffersStatisticsComponentBlue implements AfterViewInit, OnInit {
       },
 
       xAxis: {
-        categories: ['Du har', 'Snitt-kunden', 'De med lavest rente'],
+        categories: [
+          'Du har',
+          this.envService.isNorway() ? 'Snitt-kunden' : 'Snittanvändare',
+          this.envService.isNorway()
+            ? 'De med lavest rente'
+            : 'De med lägst ränta'
+        ],
         labels: {
           style: {
             fontSize: '14px',
