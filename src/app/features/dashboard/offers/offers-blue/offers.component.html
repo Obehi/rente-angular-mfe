@@ -185,6 +185,7 @@
        
             <div *ngIf="isSweden" class="big-box round-box left">
               <div class="top">
+                <div class="circleIconWrapper"><img class="" src="../../../../assets/icons/rente-green-big.svg" /></div>
                 <p i18n=“found-offers|offers-main@@offers.mainPage.foundOffers”>
                   Vi har funnet de beste tilbudene for deg
                 </p>
@@ -203,7 +204,40 @@
     
               </div>
             </div>
-
+            <div *ngIf="canBargain && isSweden"  class="big-box round-box right teeeeeeeeeeeeest desktop">
+              <div class="top">
+                <div class="circleIconWrapper"><img class="" src="../../../../assets/icons/mail-green.svg" /></div>
+                <p i18n=“help-you|offers-main@@offers.mainPage.helpYou”>Be banken min om lavere rente</p>
+              </div>
+              <div class="bottom">
+                <rente-button
+                i18n=“help-you|offers-main@@offers.mainPage.helpYou.button” 
+                  color="primary-wide-hollow"
+                  [disabled]="changeBankLoading ||
+                  offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS"
+                  [isLoading]="changeBankLoading"
+                  (click)="openChangeBankDialog(offersInfo.offers.top5[0])"
+                  >Be banken matche tilbud</rente-button
+                > 
+              </div>
+            </div>
+            <div *ngIf="!canBargain && isSweden"  class="big-box round-box right teeeeeeeeeeeeest desktop">
+              <div class="top">
+                <div class="circleIconWrapper"><img class="" src="../../../../assets/icons/mail-green.svg" /></div>
+                <p>Pruta-funktionen är inte tillgänglig för dig</p>
+              </div>
+              <div class="bottom">
+                <rente-button
+                  color="primary-wide-hollow"
+                  [disabled]="changeBankLoading ||
+                  offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS"
+                  [isLoading]="changeBankLoading"
+                  (click)="openBargainMoreInfoDialog()"
+                  >Läs mer här</rente-button
+                > 
+              </div>
+            </div>
+           
           <div class="tipsAccordion round-box clickable" (click)="isShowTips = !isShowTips" *ngIf="tips.length > 0">
             <p>
               <mat-icon *ngIf="!isShowTips">expand_more</mat-icon>
@@ -515,6 +549,23 @@
                       (click)="goToBestOffer()"
                       >Se beste tilbud</rente-button
                     >
+                  </div>
+                </div>
+
+                <div *ngIf="!canBargain && isSweden"  class="big-box round-box right teeeeeeeeeeeeest mobile">
+                  <div class="top">
+                    <div class="circleIconWrapper"><img class="" src="../../../../assets/icons/mail-green.svg" /></div>
+                    <p>Pruta-funktionen är inte tillgänglig för dig</p>
+                  </div>
+                  <div class="bottom">
+                    <rente-button
+                      color="primary-wide-hollow"
+                      [disabled]="changeBankLoading ||
+                      offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS"
+                      [isLoading]="changeBankLoading"
+                      (click)="openBargainMoreInfoDialog()"
+                      >Läs mer här</rente-button
+                    > 
                   </div>
                 </div>
   
