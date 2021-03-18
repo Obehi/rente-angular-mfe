@@ -127,14 +127,6 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
         this.offersInfo = Object.assign({}, res);
         this.currentOfferInfo = JSON.parse(JSON.stringify(res));
 
-        /*   this.offersInfo.bankStatistics.allBanksStatistics.bestPercentileEffectiveRate = 1.3;
-        this.offersInfo.bankStatistics.allBanksStatistics.medianEffectiveRate = 2.3;
-        this.offersInfo.bankStatistics.allBanksStatistics.segmentedData = true;
-
-        this.offersInfo.bankStatistics.clientBankStatistics.bestPercentileEffectiveRate = 2.4;
-        this.offersInfo.bankStatistics.clientBankStatistics.medianEffectiveRate = 2.0;
-        this.offersInfo.bankStatistics.clientBankStatistics.segmentedData = true; */
-
         this.canBargain =
           res.bank === 'SWE_AVANZA' ||
           res.bank === 'SWE_SBAB' ||
