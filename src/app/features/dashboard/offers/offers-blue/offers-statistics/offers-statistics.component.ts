@@ -62,7 +62,9 @@ export class OffersStatisticsComponentBlue implements AfterViewInit, OnInit {
 
   get ageSegment() {
     return this.offersInfo.bankStatistics.age >= 34
-      ? 'over 34 år'
+      ? this.envService.isNorway()
+        ? 'over 34 år'
+        : 'över 34 år'
       : 'under 34 år';
   }
 
@@ -98,7 +100,7 @@ export class OffersStatisticsComponentBlue implements AfterViewInit, OnInit {
     } else if (ltv > 0.6 && ltv <= 0.75) {
       text = '60-75%';
     } else if (ltv > 0.75) {
-      text = 'over 75%';
+      text = this.envService.isNorway() ? 'over 75%' : 'över 75%';
     }
     return text;
   }
