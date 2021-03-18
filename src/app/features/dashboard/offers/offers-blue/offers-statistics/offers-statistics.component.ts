@@ -72,14 +72,20 @@ export class OffersStatisticsComponentBlue implements AfterViewInit, OnInit {
       .totalOutstandingDebt;
 
     if (totalOutstandingDebt < 2000000) {
-      text = 'mindre enn 2 mill. i lån';
+      text = this.envService.isNorway()
+        ? 'mindre enn 2 mill. i lån'
+        : 'mindre enn 2 milj. i lån';
     } else if (
       totalOutstandingDebt >= 2000000 &&
       totalOutstandingDebt < 4000000
     ) {
-      text = ' 2-4 mill. i lån';
+      text = this.envService.isNorway()
+        ? ' 2-4 mill. i lån'
+        : ' 2-4 milj. i lån';
     } else if (totalOutstandingDebt >= 4000000) {
-      text = 'over 4 mill. i lån';
+      text = this.envService.isNorway()
+        ? 'over 4 mill. i lån'
+        : 'över 4 milj. i lån';
     }
     return text;
   }

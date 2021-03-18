@@ -20,7 +20,7 @@
 
       <mat-tab-group (selectedTabChange)="onRbChange($event)">
         <mat-tab label="din bank"> </mat-tab>
-        <mat-tab label="alle banker"> </mat-tab>
+        <mat-tab label="{{ envService.isNorway() ? 'alle banker' : 'alla banker'}}"> </mat-tab>
       </mat-tab-group>
     </div>
 
