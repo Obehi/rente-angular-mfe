@@ -169,6 +169,10 @@ li {
         p {
             font-weight: 400;
             font-size: 16px;
+
+            &:first-of-type {
+                margin-top: 20px;
+            }
         }
 
         ul {
