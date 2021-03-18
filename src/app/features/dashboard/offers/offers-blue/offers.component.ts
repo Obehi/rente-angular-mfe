@@ -15,6 +15,7 @@ import {
 import { LocalStorageService } from '@services/local-storage.service';
 import { ChangeBankDialogLangGenericComponent } from '../../../../local-components/components-output';
 import { ChangeBankLocationComponent } from '@features/dashboard/offers/change-bank-dialog/change-bank-location/change-bank-location.component';
+import { CanNotBargainDialogComponent } from '@features/dashboard/offers/can-not-bargain-dialog/can-not-bargain-dialog.component';
 
 import { GetOfferFromBankDialogComponent } from './../get-offer-from-bank-dialog/get-offer-from-bank-dialog.component';
 import { LtvTooHighDialogComponent } from './../ltv-too-high-dialog/ltv-too-high-dialog.component';
@@ -381,9 +382,26 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
     }
   }
 
+  public openBargainMoreInfoDialog(): void {
+    if (this.canBargain || !this.isSweden) {
+      return;
+    }
+    const changeBankRef = this.dialog.open(CanNotBargainDialogComponent, {
+      autoFocus: false
+    });
+    changeBankRef.afterClosed().subscribe(() => {
+      this.handleChangeBankdialogOnClose(
+        changeBankRef.componentInstance.closeState
+      );
+    });
+  }
+
   public handleChangeBankdialogOnClose(state: string) {
     switch (state) {
       case 'canceled': {
+        break;
+      }
+      case 'do-nothing': {
         break;
       }
       case 'procced': {
