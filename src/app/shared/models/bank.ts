@@ -929,6 +929,17 @@ export const BankList: BankVo[] = [
     'https://www.sparebank1.no/nb/bank/privat/kundeservice/mobil/hvordan-bestiller-jeg-bankid-pa-mobil.html'
   ),
   new BankVo(
+    'SPAREBANK_1_HELGELAND',
+    'Sparebank 1 Helgeland',
+    'sparebanken1v2.png',
+    'sparebank1-color.svg',
+    false,
+    false,
+    false,
+    false,
+    'https://www.sparebank1.no/nb/bank/privat/kundeservice/mobil/hvordan-bestiller-jeg-bankid-pa-mobil.html'
+  ),
+  new BankVo(
     'SPAREBANK_1_LOM_OG_SKJAK',
     'SpareBank 1 Lom og Skjåk',
     'sparebanken1v2.png',
