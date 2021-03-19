@@ -35,7 +35,7 @@ export class OfferCardComponentBlue implements OnInit {
     public customLangTextSerice: CustomLangTextService
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     if (locale.includes('sv')) {
       this.isSweden = true;
     } else {
@@ -47,6 +47,8 @@ export class OfferCardComponentBlue implements OnInit {
     } else if (this.offer.fixedRatePeriod === 1) {
       this.offerType = 'oneYear';
     }
+
+    if (this.offer.bankInfo.score === null) this.offer.bankInfo.score = 3;
   }
 
   get isMobile(): boolean {

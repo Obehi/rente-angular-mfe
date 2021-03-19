@@ -52,6 +52,8 @@ export class OfferCardBigComponentBlue implements OnInit {
     } else if (this.offer.fixedRatePeriod === 1) {
       this.offerType = 'oneYear';
     }
+
+    if (this.offer.bankInfo.score === null) this.offer.bankInfo.score = 3;
   }
 
   get isMobile(): boolean {
