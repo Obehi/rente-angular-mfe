@@ -60,6 +60,7 @@ export class OfferCardComponentBlue implements OnInit {
     switch (offer.bankInfo.bank) {
       case 'SPAREBANKENOST': {
         text = 'Sparebanken Øst';
+        break;
       }
 
       case 'SBANKEN': {
@@ -78,9 +79,9 @@ export class OfferCardComponentBlue implements OnInit {
     return text;
   }
 
-  private sendOfferTrackingData(trackingDto: TrackingDto, offer: OfferInfo) {
+  private sendOfferTrackingData(trackingDto: TrackingDto) {
     this.trackingService.sendTrackingStats(trackingDto).subscribe(
-      (res) => {},
+      () => {},
       (err) => {
         console.log('err');
         console.log(err);
@@ -88,10 +89,10 @@ export class OfferCardComponentBlue implements OnInit {
     );
   }
 
-  public openBankUrl(offer: OfferInfo) {
+  public openBankUrl(offer: OfferInfo): void {
     if (offer.bankInfo.url === null) return;
 
-    if (this.handleNybyggerProductSpecialCase(offer) == true) {
+    if (this.handleNybyggerProductSpecialCase(offer) === true) {
       return;
     }
     window.open(offer.bankInfo.url, '_blank');
@@ -99,24 +100,24 @@ export class OfferCardComponentBlue implements OnInit {
     const trackingDto = new TrackingDto();
     trackingDto.offerId = offer.id;
     trackingDto.type = 'OFFER_HEADER_LINK';
-    this.sendOfferTrackingData(trackingDto, offer);
+    this.sendOfferTrackingData(trackingDto);
   }
 
-  public openBankUrlByButton(offer: OfferInfo) {
-    if (offer.bankInfo.url === null || offer.bankInfo.partner == false) return;
+  public openBankUrlByButton(offer: OfferInfo): void {
+    if (offer.bankInfo.url === null || offer.bankInfo.partner === false) return;
 
     window.open(offer.bankInfo.url, '_blank');
 
     const trackingDto = new TrackingDto();
     trackingDto.offerId = offer.id;
     trackingDto.type = 'BANK_BUTTON_1';
-    this.sendOfferTrackingData(trackingDto, offer);
+    this.sendOfferTrackingData(trackingDto);
   }
 
   public handleNybyggerProductSpecialCase(offer: OfferInfo): boolean {
     if (
       offer.productName.includes('Rammelån') &&
-      offer.bankInfo.bank == 'NYBYGGER'
+      offer.bankInfo.bank === 'NYBYGGER'
     ) {
       window.open(
         'https://www.nybygger.no/kampanje-rammelan/?utm_medium=affiliate%20&utm_source=renteradar.no&utm_campaign=rammelan110&utm_content=cta',
@@ -130,7 +131,7 @@ export class OfferCardComponentBlue implements OnInit {
   public openNewOfferDialog(offer: OfferInfo): void {
     if (offer.bankInfo.partner === false) return;
 
-    if (this.handleNybyggerProductSpecialCase(offer) == true) {
+    if (this.handleNybyggerProductSpecialCase(offer) === true) {
       return;
     }
 
@@ -139,14 +140,14 @@ export class OfferCardComponentBlue implements OnInit {
     const trackingDto = new TrackingDto();
     trackingDto.offerId = offer.id;
     trackingDto.type = 'BANK_BUTTON_2';
-    this.sendOfferTrackingData(trackingDto, offer);
+    this.sendOfferTrackingData(trackingDto);
   }
 
-  public detailOpenClicked() {
+  public detailOpenClicked(): void {
     this.xpandStatus = true;
   }
 
-  public openInfoDialog(text: string): void {
+  public openInfoDialog(): void {
     const bankRatingDialogRef = this.dialog.open(
       BankScoreLangGenericComponent,
       {
@@ -161,7 +162,7 @@ export class OfferCardComponentBlue implements OnInit {
     });
   }
 
-  public handlebankRatingdialogOnClose(state: string) {
+  public handlebankRatingdialogOnClose(state: string): void {
     switch (state) {
       case 'canceled': {
         break;

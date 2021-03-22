@@ -197,7 +197,7 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
     });
   }
 
-  public openInfoDialog(offer: OfferInfo): void {
+  public openInfoDialog(offer: OfferInfo | string): void {
     this.dialog.open(ProfileDialogInfoComponent, {
       data: offer
     });

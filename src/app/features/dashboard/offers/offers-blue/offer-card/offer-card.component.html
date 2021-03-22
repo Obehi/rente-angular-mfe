@@ -73,11 +73,7 @@
                     <img class="offer-score" src="../../../../assets/icons/score-{{offer.bankInfo.score }}.svg" />
                 </div>
                 <span 
-                      (click)="
-                        openInfoDialog(
-                          'Renteradar.no overvåker kontinuerlig markedet for bedre rente enn det du har på lånet ditt. Renten du har på lånet ditt sjekkes og oppdateres ved at du identifiserer deg med BankID. Det er viktig at dette gjøres fra tid til annen for at eventuelle renteendringer på lånet ditt skal fanges opp.'
-                        )
-                      "
+                      (click)="openInfoDialog()"
                       class="clickable bank-rating-info-button"
                     >
                       <mat-icon class="material-icons secondary">help</mat-icon>

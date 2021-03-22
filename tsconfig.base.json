@@ -24,7 +24,8 @@
     }
   },
   "angularCompilerOptions": {
-    "enableIvy": true
+    "enableIvy": true,
+    "fullTemplateTypeCheck": true
   },
   "exclude": ["src/**/*.ts"]
 }

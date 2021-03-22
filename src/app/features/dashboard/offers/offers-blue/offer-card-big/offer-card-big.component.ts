@@ -84,7 +84,7 @@ export class OfferCardBigComponentBlue implements OnInit {
     return text;
   }
 
-  private sendOfferTrackingData(trackingDto: TrackingDto, offer: OfferInfo) {
+  private sendOfferTrackingData(trackingDto: TrackingDto) {
     this.trackingService.sendTrackingStats(trackingDto).subscribe(
       (res) => {},
       (err) => {
@@ -127,7 +127,7 @@ export class OfferCardBigComponentBlue implements OnInit {
     const trackingDto = new TrackingDto();
     trackingDto.offerId = offer.id;
     trackingDto.type = 'OFFER_HEADER_LINK';
-    this.sendOfferTrackingData(trackingDto, offer);
+    this.sendOfferTrackingData(trackingDto);
   }
 
   public openBankUrlByButton(offer: OfferInfo) {
@@ -138,7 +138,7 @@ export class OfferCardBigComponentBlue implements OnInit {
     const trackingDto = new TrackingDto();
     trackingDto.offerId = offer.id;
     trackingDto.type = 'BANK_BUTTON_1';
-    this.sendOfferTrackingData(trackingDto, offer);
+    this.sendOfferTrackingData(trackingDto);
   }
 
   public openNewOfferDialog(offer: OfferInfo): void {
@@ -153,7 +153,7 @@ export class OfferCardBigComponentBlue implements OnInit {
     const trackingDto = new TrackingDto();
     trackingDto.offerId = offer.id;
     trackingDto.type = 'BANK_BUTTON_2';
-    this.sendOfferTrackingData(trackingDto, offer);
+    this.sendOfferTrackingData(trackingDto);
   }
 
   public openInfoDialog(text: string): void {

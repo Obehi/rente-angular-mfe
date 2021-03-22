@@ -7,7 +7,6 @@ import { OfferInfo, Offers } from './../../../../../shared/models//offers';
   styleUrls: ['./offers-list-sv.component.scss']
 })
 export class OffersListSvComponent implements OnInit {
-  @Input() offer: OfferInfo;
   @Input() offersInfo: Offers;
   public currentOfferInfo: Offers;
 

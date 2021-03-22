@@ -25,8 +25,6 @@ export class OffersStatisticsComponentBlue implements AfterViewInit, OnInit {
     return this._offersInfo;
   }
 
-  constructor(private envService: EnvService) {}
-
   public set offersInfo(value: Offers) {
     this._offersInfo = value;
     this.hasClientBankData = false;
@@ -109,7 +107,9 @@ export class OffersStatisticsComponentBlue implements AfterViewInit, OnInit {
     return window.innerWidth <= 991 ? 0 : -10;
   }
 
-  ngOnInit() {
+  constructor(private envService: EnvService) {}
+
+  ngOnInit(): void {
     this.haveAllBankData =
       this.hasOthersBankData &&
       this.hasClientBankData &&
@@ -118,7 +118,7 @@ export class OffersStatisticsComponentBlue implements AfterViewInit, OnInit {
           !this.clientBankData.segmentedData));
   }
 
-  ngAfterViewInit() {
+  ngAfterViewInit(): void {
     if (this.offersInfo) {
       if (this.hasClientBankData) {
         this.clientBankEffRateOptions = this.ChartOptions();
@@ -153,6 +153,9 @@ export class OffersStatisticsComponentBlue implements AfterViewInit, OnInit {
           this.allBanksEffRateOptions
         );
 
+        setTimeout(() => {
+          this.allBankEffRateCharts.inverted = false;
+        }, 1000);
         /* this.allBankEffRateCharts.setSize(null, 200); */
       }
     }
@@ -164,6 +167,99 @@ export class OffersStatisticsComponentBlue implements AfterViewInit, OnInit {
     } else {
       this.showAllBanks = true;
     }
+  }
+
+  testChartOptions() {
+    const opt = {
+      chart: {
+        type: 'column',
+        spacingLeft: 0,
+        spacingRight: 0,
+        margin: [0, 0, 25, 0],
+        height: this.haveAllBankData ? 200 : 230,
+        borderRadius: 20,
+        backgroundColor: '#162537'
+      },
+
+      title: {
+        text: null, // 'Din rente i forhold til andre i din bank:',
+        align: 'left',
+
+        style: {
+          fontWeight: 'bold'
+        }
+      },
+
+      xAxis: {
+        categories: [
+          'Du har',
+          this.envService.isNorway() ? 'Snitt-kunden' : 'Snittanvändare',
+          this.envService.isNorway()
+            ? 'De med lavest rente'
+            : 'De med lägst ränta'
+        ],
+        labels: {
+          style: {
+            fontSize: '12px',
+            color: 'white'
+          }
+        },
+        lineWidth: 0
+      },
+      yAxis: {
+        visible: false,
+        title: {
+          text: null
+        },
+        allowDecimals: false
+        // min: 0,
+      },
+      legend: {
+        enabled: false
+      },
+
+      tooltip: {
+        enabled: false,
+        formatter() {
+          return '<b>' + this.x + '</b><br/>' + this.y + '%';
+        }
+      },
+
+      plotOptions: {
+        column: {
+          stacking: 'normal',
+          groupPadding: 0,
+          colorByPoint: true,
+          colors: [this.userRateColor, '#183A63', '#183A63'],
+          borderRadius: 5,
+          borderWidth: 0
+        }
+      },
+
+      series: [
+        {
+          type: 'column' as const,
+          name: 'data',
+
+          data: [2.21, 2.62, 2.43],
+          dataLabels: {
+            enabled: true,
+            rotation: 0,
+
+            align: 'center',
+            verticalAlign: 'bottom',
+            format: '{point.y:.2f}%', // one decimal
+            y: 0, // 10 pixels down from the top
+            style: {
+              fontSize: '26px',
+              textOutline: false,
+              color: 'contrast'
+            }
+          }
+        }
+      ]
+    };
+    return opt;
   }
 
   ChartOptions() {
@@ -263,7 +359,8 @@ export class OffersStatisticsComponentBlue implements AfterViewInit, OnInit {
     const opt = {
       chart: {
         type: 'column',
-        backgroundColor: '#162537'
+        backgroundColor: '#162537',
+        animation: true
       },
 
       title: {
