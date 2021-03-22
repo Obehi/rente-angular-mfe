@@ -189,16 +189,6 @@ export class InitConfirmationNoComponent implements OnInit {
       confirmationDto.address.zip = formData.zip;
     }
 
-    this.logging.logger(
-      this.logging.Level.Info,
-      '8:SENDING_USER_INFO',
-      'InitConfirmationNoComponent',
-      'updateProperty',
-      this.logging.SubSystem.UserConfirmation,
-      '8:SENDING_USER_INFO',
-      confirmationDto
-    );
-
     this.loansService.setConfirmationData(confirmationDto).subscribe(
       () => {
         this.isLoading = false;
