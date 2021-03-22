@@ -208,7 +208,7 @@
         </p>
       </mat-expansion-panel-header>
       <p i18n=“response15|faq@@faq.response15” class="expansion-content">
-          Ja, selvfølgelig! Send en mail til <a href = "mailto: tabortmig@ranteradar.se">slettmeg@renteradar.no</a> og 
+          Ja, selvfølgelig! Send en mail til <a href = "{{envService.isNorway() ? 'slettmeg@renteradar.no' :  'mailto: tabortmig@ranteradar.se'}}">slettmeg@renteradar.no</a> og 
           vi sletter alle dine data. Du får bekreftelse på dette på mail.
       </p>
     </mat-expansion-panel>
