@@ -107,7 +107,7 @@ export class OffersStatisticsComponentBlue implements AfterViewInit, OnInit {
     return window.innerWidth <= 991 ? 0 : -10;
   }
 
-  constructor(private envService: EnvService) {}
+  constructor(public envService: EnvService) {}
 
   ngOnInit(): void {
     this.haveAllBankData =

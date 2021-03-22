@@ -26,7 +26,7 @@ export class LandingTopSvComponent implements OnInit {
     this.agentTest = window.navigator.userAgent;
   }
 
-  isCustomInAppBrowser() {
+  isCustomInAppBrowser(): boolean {
     const isSnapchat = /snapchat/i.test(window.navigator.userAgent);
     const isFacebook =
       /FBAN/i.test(window.navigator.userAgent) ||

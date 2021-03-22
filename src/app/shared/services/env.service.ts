@@ -4,7 +4,7 @@ import { Observable, throwError, EMPTY } from 'rxjs';
 import { BankVo } from '../../shared/models/bank';
 import { HttpResponse, HttpHeaders, HttpParams } from '@angular/common/http';
 import { environment } from 'environments/environment';
-interface Environment {
+export interface Environment {
   name?: string | null;
   production: boolean | null;
   baseUrl: string | null;

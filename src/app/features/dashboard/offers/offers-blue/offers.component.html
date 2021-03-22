@@ -142,7 +142,7 @@
                   mill.
                 </p>
     
-                <p *ngIf="locale === 'nb'" i18n=“virdi-estimate|offers-main@@offers.mainPage.virdiEstimate”  class="extra-small-virdi">
+                <p *ngIf="envService.isNorway()" i18n=“virdi-estimate|offers-main@@offers.mainPage.virdiEstimate”  class="extra-small-virdi">
                   Estimat levert av
                   <a href="https://virdi.no/" target="_blank">virdi.no</a>
                 </p>
@@ -195,7 +195,7 @@
                 <rente-button 
                   i18n=“found-best-offers|offers-main@@offers.mainPage.found.bestOffers.button”
                   [disabled]="changeBankLoading ||
-                  offersInfo.offerSavingsType === offerSavingsType.NO_SAVING"
+                  offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS"
                   [isLoading]="changeBankLoading"
                   color="primary-wide"
                   (click)="goToBestOffer()"
@@ -298,7 +298,7 @@
               <rente-button 
                 i18n=“found-best-offers|offers-main@@offers.mainPage.found.bestOffers.button”
                 [disabled]="changeBankLoading ||
-                offersInfo.offerSavingsType === offerSavingsType.NO_SAVING"
+                offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS"
                 [isLoading]="changeBankLoading"
                 color="primary-wide"
                 (click)="goToBestOffer()"
