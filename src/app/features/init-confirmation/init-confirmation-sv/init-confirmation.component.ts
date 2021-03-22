@@ -94,7 +94,7 @@ export class InitConfirmationSVComponent implements OnInit {
     return !!(control && control.invalid && (control.dirty || control.touched));
   }
 
-  public openInfoDialog(offer: OfferInfo): void {
+  public openInfoDialog(offer: OfferInfo | string): void {
     this.dialog.open(DialogInfoComponent, {
       data: offer
     });
