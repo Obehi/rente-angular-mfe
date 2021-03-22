@@ -15,7 +15,7 @@
             [placeholder]="'E-post'"
             formControlName="email"
             [errorStateMatcher]="
-              isErrorState(propertyForm.controls['email'], propertyForm)
+              isErrorState(propertyForm.controls['email'])
             "
             [modelOptions]="{ updateOn: 'blur' }"
           >
@@ -46,8 +46,7 @@
                 matSuffix="kr"
                 [errorStateMatcher]="
                   isErrorState(
-                    propertyForm.controls['apartmentValue'],
-                    propertyForm
+                    propertyForm.controls['apartmentValue']
                   )
                 "
                 [maskType]="mask.currency"
@@ -80,7 +79,7 @@
             formControlName="zip"
             [maxLength] ="4"
             [errorStateMatcher]="
-              isErrorState(propertyForm.controls['zip'], propertyForm)
+              isErrorState(propertyForm.controls['zip'])
             "
             [modelOptions]="{ updateOn: 'blur' }"
             [maskType]="mask.zip"

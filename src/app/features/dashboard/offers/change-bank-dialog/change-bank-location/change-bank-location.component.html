@@ -28,7 +28,7 @@
         <div *ngFor="let region of regions">
             <div (click)="clickNext(region, stepper.selectedIndex)" class="choise-item">
                 <div>{{region}}</div>
-                <img class="arrow" src="../../../../assets/icons/arrow-small-grey.svg" [alt]="Velg">
+                <img class="arrow" src="../../../../assets/icons/arrow-small-grey.svg" alt="Velg">
             </div>
         </div>
     </mat-step>
@@ -38,7 +38,7 @@
         <div *ngFor="let city of cities">
             <div (click)="clickNext(city, stepper.selectedIndex)" class="choise-item">
                 <div>{{city}}</div>
-                <img class="arrow" src="../../../../assets/icons/arrow-small-grey.svg" [alt]="Velg">
+                <img class="arrow" src="../../../../assets/icons/arrow-small-grey.svg" alt="Velg">
             </div>
         </div>
 
@@ -49,7 +49,7 @@
         <div *ngFor="let office of offices">
             <div (click)="officeStepClick(office, stepper.selectedIndex)" class="choise-item">
                 <div>{{office}}</div>
-                <img class="arrow" src="../../../../assets/icons/arrow-small-grey.svg" [alt]="Velg">
+                <img class="arrow" src="../../../../assets/icons/arrow-small-grey.svg" alt="Velg">
             </div>
         </div>
 

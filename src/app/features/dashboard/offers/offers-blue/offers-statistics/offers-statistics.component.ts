@@ -25,8 +25,6 @@ export class OffersStatisticsComponentBlue implements AfterViewInit, OnInit {
     return this._offersInfo;
   }
 
-  constructor(private envService: EnvService) {}
-
   public set offersInfo(value: Offers) {
     this._offersInfo = value;
     this.hasClientBankData = false;
@@ -60,7 +58,7 @@ export class OffersStatisticsComponentBlue implements AfterViewInit, OnInit {
   allBankData: BankStatisticItem;
   haveAllBankData = false;
 
-  get ageSegment() {
+  get ageSegment(): string {
     return this.offersInfo.bankStatistics.age >= 34
       ? this.envService.isNorway()
         ? 'over 34 år'
@@ -68,7 +66,7 @@ export class OffersStatisticsComponentBlue implements AfterViewInit, OnInit {
       : 'under 34 år';
   }
 
-  get totalOutstandingDebtSegment() {
+  get totalOutstandingDebtSegment(): string {
     let text = '';
     const totalOutstandingDebt = this.offersInfo.bankStatistics
       .totalOutstandingDebt;
@@ -92,7 +90,7 @@ export class OffersStatisticsComponentBlue implements AfterViewInit, OnInit {
     return text;
   }
 
-  get ltvSegment() {
+  get ltvSegment(): string {
     let text = '';
     const ltv = this.offersInfo.bankStatistics.ltv;
     if (ltv <= 0.6) {
@@ -105,11 +103,13 @@ export class OffersStatisticsComponentBlue implements AfterViewInit, OnInit {
     return text;
   }
 
-  get chartTitleMargin() {
+  get chartTitleMargin(): number {
     return window.innerWidth <= 991 ? 0 : -10;
   }
 
-  ngOnInit() {
+  constructor(public envService: EnvService) {}
+
+  ngOnInit(): void {
     this.haveAllBankData =
       this.hasOthersBankData &&
       this.hasClientBankData &&
@@ -118,7 +118,7 @@ export class OffersStatisticsComponentBlue implements AfterViewInit, OnInit {
           !this.clientBankData.segmentedData));
   }
 
-  ngAfterViewInit() {
+  ngAfterViewInit(): void {
     if (this.offersInfo) {
       if (this.hasClientBankData) {
         this.clientBankEffRateOptions = this.ChartOptions();
@@ -131,7 +131,9 @@ export class OffersStatisticsComponentBlue implements AfterViewInit, OnInit {
         ];
 
         // Only show clientbank graph when everything is false or true
-        if (this.clientBankData.segmentedData == this.allBankData.segmentedData)
+        if (
+          this.clientBankData.segmentedData === this.allBankData.segmentedData
+        )
           this.clientBankEffRateChart = Highcharts.chart(
             this.clientBankChartId,
             this.clientBankEffRateOptions
@@ -153,12 +155,15 @@ export class OffersStatisticsComponentBlue implements AfterViewInit, OnInit {
           this.allBanksEffRateOptions
         );
 
+        setTimeout(() => {
+          this.allBankEffRateCharts.inverted = false;
+        }, 1000);
         /* this.allBankEffRateCharts.setSize(null, 200); */
       }
     }
   }
 
-  onRbChange(event: MatTabChangeEvent) {
+  onRbChange(event: MatTabChangeEvent): void {
     if (event.index === 0) {
       this.showAllBanks = false;
     } else {
@@ -166,7 +171,7 @@ export class OffersStatisticsComponentBlue implements AfterViewInit, OnInit {
     }
   }
 
-  ChartOptions() {
+  ChartOptions(): any {
     const opt = {
       chart: {
         type: 'column',
@@ -259,11 +264,12 @@ export class OffersStatisticsComponentBlue implements AfterViewInit, OnInit {
     return opt;
   }
 
-  getOtherBanksChartOptions() {
+  getOtherBanksChartOptions(): any {
     const opt = {
       chart: {
         type: 'column',
-        backgroundColor: '#162537'
+        backgroundColor: '#162537',
+        animation: true
       },
 
       title: {

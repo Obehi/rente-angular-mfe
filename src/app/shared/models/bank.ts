@@ -6,8 +6,8 @@ export class BankVo {
     public logo: string = null,
     public loginWithSsn: boolean = false,
     public isEikaBank: boolean = false,
-    public isMissing,
-    public isTinkBank,
+    public isMissing: boolean = false,
+    public isTinkBank: boolean = false,
     public mobileUrl: string = null
   ) {}
 }
@@ -218,6 +218,7 @@ export const eikaBanks: BankVo[] = [
     null,
     true,
     true,
+    false,
     false,
     'https://gildeskaal-sparebank.no/aktuelt/bankid-paa-mobil'
   ),

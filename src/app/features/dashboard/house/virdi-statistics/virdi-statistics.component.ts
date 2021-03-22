@@ -4,13 +4,6 @@ import {
   LoansService,
   AddressDto
 } from '../../../../shared/services/remote-api/loans.service';
-import {
-  trigger,
-  transition,
-  keyframes,
-  animate,
-  style
-} from '@angular/animations';
 import { SnackBarService } from '@services/snackbar.service';
 import { MatTabChangeEvent } from '@angular/material';
 
@@ -49,16 +42,15 @@ export class VirdiStatisticsComponent implements OnInit {
     this.showPriceDevelopment = false;
   }
 
-  onRbChange(event: MatTabChangeEvent) {
+  onRbChange(event: MatTabChangeEvent): void {
     if (event.index === 1) {
       this.showPriceDevelopment = true;
     } else {
       this.showPriceDevelopment = false;
     }
-    /* this.address.useManualPropertyValue = event; */
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.isLoading = true;
     this.lineChartOptions = {
       chart: {
@@ -277,7 +269,7 @@ export class VirdiStatisticsComponent implements OnInit {
           this.lineChartOptions
         );
       },
-      (err) => {
+      () => {
         this.notifError();
         this.isLoading = false;
       }
@@ -306,7 +298,7 @@ export class VirdiStatisticsComponent implements OnInit {
     });
   }
 
-  notifError() {
+  notifError(): void {
     this.snackBar.openFailSnackBar('Feil ved lasting av statistikkdata', 2);
   }
 }

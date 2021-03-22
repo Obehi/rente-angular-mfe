@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, LOCALE_ID, APP_INITIALIZER } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { Environment } from '@services/env.service';
 import { PageNotFoundComponent } from '@features/page-not-found/page-not-found.component';
 import { LandingComponent } from '@features/landing/landing.component';
 import { SharedModule } from '@shared/shared.module';
@@ -99,6 +100,8 @@ registerLocaleData(localeNo);
 })
 export class AppModule {}
 
-export function initializeConfig(envService: EnvService) {
+export function initializeConfig(
+  envService: EnvService
+): () => Promise<Environment> {
   return () => envService.loadEnv();
 }

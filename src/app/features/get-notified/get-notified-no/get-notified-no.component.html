@@ -11,7 +11,7 @@
     <form
       [formGroup]="missingBankForm"
       novalidate
-      (ngSubmit)="request(missingBankForm.value)"
+      (ngSubmit)="request()"
     >
       <div>
         <rente-input
@@ -21,7 +21,7 @@
             isErrorState(missingBankForm.controls['email'], missingBankForm)
           "
           [textControl]="inValid()"
-          (blur)="onBlurErrorCheck($event)"
+          (blur)="onBlurErrorCheck()"
         >
         </rente-input>
         <div i18n=“issue-email|get-notified@@get.notified.email”

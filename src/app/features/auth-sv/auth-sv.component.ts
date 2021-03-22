@@ -2,29 +2,16 @@ import { AuthService } from '@services/remote-api/auth.service';
 import { LoansService } from '@services/remote-api/loans.service';
 import { UserService } from '@services/remote-api/user.service';
 import { LocalStorageService } from '@services/local-storage.service';
-import {
-  Component,
-  OnInit,
-  Input,
-  OnDestroy,
-  Output,
-  EventEmitter,
-  HostListener
-} from '@angular/core';
-import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
+import { Component, OnInit, HostListener } from '@angular/core';
+import { Router } from '@angular/router';
 import { ROUTES_MAP } from '@config/routes-config';
 import * as Stomp from 'stompjs';
 import * as SockJS from 'sockjs-client';
 import { API_URL_MAP } from '@config/api-url-config';
-import { Subscription, interval, Observable, timer, forkJoin } from 'rxjs';
+import { Subscription, interval, forkJoin } from 'rxjs';
 import {
-  IDENTIFICATION_TIMEOUT_TIME,
   PING_TIME,
-  RECONNECTION_TRIES,
-  RECONNECTION_TIME,
-  BANKID_STATUS,
-  BANKID_TIMEOUT_TIME,
-  MESSAGE_STATUS
+  BANKID_STATUS
 } from '../auth/login-status/login-status.config';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { EnvService } from '@services/env.service';
@@ -34,7 +21,7 @@ import { EnvService } from '@services/env.service';
   templateUrl: './auth-sv.component.html',
   styleUrls: ['./auth-sv.component.scss']
 })
-export class AuthSvComponent implements OnInit, OnDestroy {
+export class AuthSvComponent implements OnInit {
   public isMockTest = false;
   public isLoginStarted = false;
   public tinkCode: number;
@@ -59,7 +46,7 @@ export class AuthSvComponent implements OnInit, OnDestroy {
   }
 
   @HostListener('window:message', ['$event'])
-  onMessage(event) {
+  onMessage(event): void {
     if (event.origin !== 'https://link.tink.com') {
       return;
     }
@@ -74,11 +61,7 @@ export class AuthSvComponent implements OnInit, OnDestroy {
     }
   }
 
-  ngOnDestroy() {}
-
   private initializeWebSocketConnection(tinkCode: number) {
-    this.connectAndReconnectSocket(this.successSocketCallback);
-
     const socket = new SockJS(this.environment.crawlerUrl);
     this.stompClient = Stomp.over(socket);
 
@@ -88,7 +71,7 @@ export class AuthSvComponent implements OnInit, OnDestroy {
 
     this.stompClient.connect(
       {},
-      (frame) => {
+      () => {
         this.sendUserData(tinkCode);
 
         // this.resendDataAfterReconnect();
@@ -122,53 +105,45 @@ export class AuthSvComponent implements OnInit, OnDestroy {
               this.router.navigate(['/' + ROUTES_MAP.noLoan]);
             }
             const user = response.data.user;
-            this.authService
-              .loginWithToken(user.oneTimeToken)
-              .subscribe((res) => {
-                forkJoin([
-                  this.loansService.getLoansAndRateType(),
-                  this.userService.getUserInfo()
-                ]).subscribe(([rateAndLoans, userInfo]) => {
-                  this.userService.lowerRateAvailable.next(
-                    rateAndLoans.lowerRateAvailable
-                  );
-                  if (rateAndLoans.loansPresent) {
-                    this.localStorageService.removeItem('noLoansPresent');
-                    if (rateAndLoans.isAggregatedRateTypeFixed) {
-                      this.localStorageService.setItem(
-                        'isAggregatedRateTypeFixed',
-                        true
-                      );
-                      this.router.navigate([
-                        '/dashboard/' + ROUTES_MAP.fixedRate
-                      ]);
-                    } else {
-                      if (userInfo.income === null) {
-                        this.router.navigate([
-                          '/' + ROUTES_MAP.initConfirmation
-                        ]);
-                        this.localStorageService.setItem('isNewUser', true);
-                      } else {
-                        this.router.navigate([
-                          '/dashboard/' + ROUTES_MAP.offers
-                        ]);
-                      }
-                    }
+            this.authService.loginWithToken(user.oneTimeToken).subscribe(() => {
+              forkJoin([
+                this.loansService.getLoansAndRateType(),
+                this.userService.getUserInfo()
+              ]).subscribe(([rateAndLoans, userInfo]) => {
+                this.userService.lowerRateAvailable.next(
+                  rateAndLoans.lowerRateAvailable
+                );
+                if (rateAndLoans.loansPresent) {
+                  this.localStorageService.removeItem('noLoansPresent');
+                  if (rateAndLoans.isAggregatedRateTypeFixed) {
+                    this.localStorageService.setItem(
+                      'isAggregatedRateTypeFixed',
+                      true
+                    );
+                    this.router.navigate([
+                      '/dashboard/' + ROUTES_MAP.fixedRate
+                    ]);
                   } else {
-                    this.localStorageService.setItem('noLoansPresent', true);
-                    this.router.navigate(['/' + ROUTES_MAP.noLoan]);
+                    if (userInfo.income === null) {
+                      this.router.navigate(['/' + ROUTES_MAP.initConfirmation]);
+                      this.localStorageService.setItem('isNewUser', true);
+                    } else {
+                      this.router.navigate(['/dashboard/' + ROUTES_MAP.offers]);
+                    }
                   }
-                });
+                } else {
+                  this.localStorageService.setItem('noLoansPresent', true);
+                  this.router.navigate(['/' + ROUTES_MAP.noLoan]);
+                }
               });
+            });
             break;
         }
       }
     });
   }
 
-  private connectAndReconnectSocket(successCallback) {}
-
-  sendUserData(tinkCode: number, resendData = false) {
+  sendUserData(tinkCode: number, resendData = false): void {
     const dataObj = {};
     // this.setDefaultSteps();
     const data = JSON.stringify(dataObj);

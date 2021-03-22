@@ -30,7 +30,7 @@ export class FirstBuyersComponent implements OnInit {
     this.seoService.createLinkForCanonicalURL();
   }
 
-  showOffers() {
+  showOffers(): void {
     if (
       Number(this.formGroup.get('income').value) < 200000 &&
       !this.formGroup.get('outstandingDebt').value
@@ -69,7 +69,7 @@ export class FirstBuyersComponent implements OnInit {
           return this.authService.loginWithToken(res.token);
         })
       )
-      .subscribe((res) => {
+      .subscribe(() => {
         this.router.navigate(['/boliglanskalkulator/tilbud']);
         this.isLoading = false;
       });

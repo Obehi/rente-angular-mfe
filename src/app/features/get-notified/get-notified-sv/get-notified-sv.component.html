@@ -10,17 +10,17 @@
     <form
       [formGroup]="missingBankForm"
       
-      (ngSubmit)="request(missingBankForm.value)"
+      (ngSubmit)="request()"
     >
       <div>
         <rente-input
           [placeholder]="'E-post'"
           formControlName="email"
           [errorStateMatcher]="
-            isErrorState(missingBankForm.controls['email'], missingBankForm)
+            isErrorState(missingBankForm.controls['email'])
           "
           [textControl]="inValid()"
-          (blur)="onBlurErrorCheck($event)"
+          (blur)="onBlurErrorCheck()"
         >
         </rente-input>
         <div i18n=“issue-email|get-notified@@get.notified.email”
