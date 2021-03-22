@@ -22,8 +22,6 @@ import { EmailRedirectSVComponent } from '@features/email-redirect/email-redirec
 import { AuthGuard } from '@shared/guards/auth.guard';
 import { NoLoansComponent } from '@features/dashboard/no-loans/no-loans.component';
 
-import { BankChoiceComponent } from '@features/auth/bank-choice/bank-choice.component';
-
 const commonRoutes: Routes = [
   {
     path: '',
