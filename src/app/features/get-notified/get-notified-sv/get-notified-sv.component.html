@@ -17,7 +17,7 @@
           [placeholder]="'E-post'"
           formControlName="email"
           [errorStateMatcher]="
-            isErrorState(missingBankForm.controls['email'], missingBankForm)
+            isErrorState(missingBankForm.controls['email'])
           "
           [textControl]="inValid()"
           (blur)="onBlurErrorCheck()"

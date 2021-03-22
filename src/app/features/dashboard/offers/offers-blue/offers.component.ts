@@ -382,7 +382,7 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
     });
   }
 
-  public handleChangeBankdialogOnClose(state: string) {
+  public handleChangeBankdialogOnClose(state: string): void {
     switch (state) {
       case 'canceled': {
         break;
@@ -410,7 +410,7 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
   }
 
   @HostListener('window:resize', ['$event'])
-  onResize(event: any = null) {
+  onResize(event: any = null): void {
     this.isSmallScreen = window.innerWidth <= 1024;
   }
 
