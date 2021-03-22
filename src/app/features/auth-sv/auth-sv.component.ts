@@ -77,8 +77,6 @@ export class AuthSvComponent implements OnInit, OnDestroy {
   ngOnDestroy() {}
 
   private initializeWebSocketConnection(tinkCode: number) {
-    this.connectAndReconnectSocket(this.successSocketCallback);
-
     const socket = new SockJS(this.environment.crawlerUrl);
     this.stompClient = Stomp.over(socket);
 
@@ -122,51 +120,43 @@ export class AuthSvComponent implements OnInit, OnDestroy {
               this.router.navigate(['/' + ROUTES_MAP.noLoan]);
             }
             const user = response.data.user;
-            this.authService
-              .loginWithToken(user.oneTimeToken)
-              .subscribe((res) => {
-                forkJoin([
-                  this.loansService.getLoansAndRateType(),
-                  this.userService.getUserInfo()
-                ]).subscribe(([rateAndLoans, userInfo]) => {
-                  this.userService.lowerRateAvailable.next(
-                    rateAndLoans.lowerRateAvailable
-                  );
-                  if (rateAndLoans.loansPresent) {
-                    this.localStorageService.removeItem('noLoansPresent');
-                    if (rateAndLoans.isAggregatedRateTypeFixed) {
-                      this.localStorageService.setItem(
-                        'isAggregatedRateTypeFixed',
-                        true
-                      );
-                      this.router.navigate([
-                        '/dashboard/' + ROUTES_MAP.fixedRate
-                      ]);
-                    } else {
-                      if (userInfo.income === null) {
-                        this.router.navigate([
-                          '/' + ROUTES_MAP.initConfirmation
-                        ]);
-                        this.localStorageService.setItem('isNewUser', true);
-                      } else {
-                        this.router.navigate([
-                          '/dashboard/' + ROUTES_MAP.offers
-                        ]);
-                      }
-                    }
+            this.authService.loginWithToken(user.oneTimeToken).subscribe(() => {
+              forkJoin([
+                this.loansService.getLoansAndRateType(),
+                this.userService.getUserInfo()
+              ]).subscribe(([rateAndLoans, userInfo]) => {
+                this.userService.lowerRateAvailable.next(
+                  rateAndLoans.lowerRateAvailable
+                );
+                if (rateAndLoans.loansPresent) {
+                  this.localStorageService.removeItem('noLoansPresent');
+                  if (rateAndLoans.isAggregatedRateTypeFixed) {
+                    this.localStorageService.setItem(
+                      'isAggregatedRateTypeFixed',
+                      true
+                    );
+                    this.router.navigate([
+                      '/dashboard/' + ROUTES_MAP.fixedRate
+                    ]);
                   } else {
-                    this.localStorageService.setItem('noLoansPresent', true);
-                    this.router.navigate(['/' + ROUTES_MAP.noLoan]);
+                    if (userInfo.income === null) {
+                      this.router.navigate(['/' + ROUTES_MAP.initConfirmation]);
+                      this.localStorageService.setItem('isNewUser', true);
+                    } else {
+                      this.router.navigate(['/dashboard/' + ROUTES_MAP.offers]);
+                    }
                   }
-                });
+                } else {
+                  this.localStorageService.setItem('noLoansPresent', true);
+                  this.router.navigate(['/' + ROUTES_MAP.noLoan]);
+                }
               });
+            });
             break;
         }
       }
     });
   }
-
-  private connectAndReconnectSocket(successCallback) {}
 
   sendUserData(tinkCode: number, resendData = false) {
     const dataObj = {};

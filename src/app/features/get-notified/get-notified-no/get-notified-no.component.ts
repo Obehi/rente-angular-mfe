@@ -87,7 +87,7 @@ export class GetNotifiedNoComponent implements OnInit {
     );
   }
 
-  onBlurErrorCheck() {
+  onBlurErrorCheck(): void {
     this.emailError = this.inValid();
   }
 

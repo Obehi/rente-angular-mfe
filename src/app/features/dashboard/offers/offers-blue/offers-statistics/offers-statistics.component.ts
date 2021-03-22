@@ -58,7 +58,7 @@ export class OffersStatisticsComponentBlue implements AfterViewInit, OnInit {
   allBankData: BankStatisticItem;
   haveAllBankData = false;
 
-  get ageSegment() {
+  get ageSegment(): string {
     return this.offersInfo.bankStatistics.age >= 34
       ? this.envService.isNorway()
         ? 'over 34 år'
@@ -66,7 +66,7 @@ export class OffersStatisticsComponentBlue implements AfterViewInit, OnInit {
       : 'under 34 år';
   }
 
-  get totalOutstandingDebtSegment() {
+  get totalOutstandingDebtSegment(): string {
     let text = '';
     const totalOutstandingDebt = this.offersInfo.bankStatistics
       .totalOutstandingDebt;
@@ -90,7 +90,7 @@ export class OffersStatisticsComponentBlue implements AfterViewInit, OnInit {
     return text;
   }
 
-  get ltvSegment() {
+  get ltvSegment(): string {
     let text = '';
     const ltv = this.offersInfo.bankStatistics.ltv;
     if (ltv <= 0.6) {
@@ -103,7 +103,7 @@ export class OffersStatisticsComponentBlue implements AfterViewInit, OnInit {
     return text;
   }
 
-  get chartTitleMargin() {
+  get chartTitleMargin(): number {
     return window.innerWidth <= 991 ? 0 : -10;
   }
 
@@ -131,7 +131,9 @@ export class OffersStatisticsComponentBlue implements AfterViewInit, OnInit {
         ];
 
         // Only show clientbank graph when everything is false or true
-        if (this.clientBankData.segmentedData == this.allBankData.segmentedData)
+        if (
+          this.clientBankData.segmentedData === this.allBankData.segmentedData
+        )
           this.clientBankEffRateChart = Highcharts.chart(
             this.clientBankChartId,
             this.clientBankEffRateOptions
@@ -161,7 +163,7 @@ export class OffersStatisticsComponentBlue implements AfterViewInit, OnInit {
     }
   }
 
-  onRbChange(event: MatTabChangeEvent) {
+  onRbChange(event: MatTabChangeEvent): void {
     if (event.index === 0) {
       this.showAllBanks = false;
     } else {
@@ -169,100 +171,7 @@ export class OffersStatisticsComponentBlue implements AfterViewInit, OnInit {
     }
   }
 
-  testChartOptions() {
-    const opt = {
-      chart: {
-        type: 'column',
-        spacingLeft: 0,
-        spacingRight: 0,
-        margin: [0, 0, 25, 0],
-        height: this.haveAllBankData ? 200 : 230,
-        borderRadius: 20,
-        backgroundColor: '#162537'
-      },
-
-      title: {
-        text: null, // 'Din rente i forhold til andre i din bank:',
-        align: 'left',
-
-        style: {
-          fontWeight: 'bold'
-        }
-      },
-
-      xAxis: {
-        categories: [
-          'Du har',
-          this.envService.isNorway() ? 'Snitt-kunden' : 'Snittanvändare',
-          this.envService.isNorway()
-            ? 'De med lavest rente'
-            : 'De med lägst ränta'
-        ],
-        labels: {
-          style: {
-            fontSize: '12px',
-            color: 'white'
-          }
-        },
-        lineWidth: 0
-      },
-      yAxis: {
-        visible: false,
-        title: {
-          text: null
-        },
-        allowDecimals: false
-        // min: 0,
-      },
-      legend: {
-        enabled: false
-      },
-
-      tooltip: {
-        enabled: false,
-        formatter() {
-          return '<b>' + this.x + '</b><br/>' + this.y + '%';
-        }
-      },
-
-      plotOptions: {
-        column: {
-          stacking: 'normal',
-          groupPadding: 0,
-          colorByPoint: true,
-          colors: [this.userRateColor, '#183A63', '#183A63'],
-          borderRadius: 5,
-          borderWidth: 0
-        }
-      },
-
-      series: [
-        {
-          type: 'column' as const,
-          name: 'data',
-
-          data: [2.21, 2.62, 2.43],
-          dataLabels: {
-            enabled: true,
-            rotation: 0,
-
-            align: 'center',
-            verticalAlign: 'bottom',
-            format: '{point.y:.2f}%', // one decimal
-            y: 0, // 10 pixels down from the top
-            style: {
-              fontSize: '26px',
-              textOutline: false,
-              color: 'contrast'
-            }
-          }
-        }
-      ]
-    };
-    return opt;
-  }
-
-  ChartOptions() {
+  ChartOptions(): any {
     const opt = {
       chart: {
         type: 'column',
@@ -355,7 +264,7 @@ export class OffersStatisticsComponentBlue implements AfterViewInit, OnInit {
     return opt;
   }
 
-  getOtherBanksChartOptions() {
+  getOtherBanksChartOptions(): any {
     const opt = {
       chart: {
         type: 'column',

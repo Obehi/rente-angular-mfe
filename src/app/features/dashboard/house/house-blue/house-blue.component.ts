@@ -1,5 +1,5 @@
 import { LoansService, AddressDto } from '@services/remote-api/loans.service';
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { SnackBarService } from '../../../../shared/services/snackbar.service';
 import { Observable, Subject } from 'rxjs';
 import { DeactivationGuarded } from '@shared/guards/route.guard';
@@ -7,7 +7,7 @@ import { locale } from '../../../../config/locale/locale';
 
 import { HouseFormErrorDialogComponent } from './error-dialog/error-dialog.component';
 import { MatDialog } from '@angular/material';
-import { EventService, EmitEvent, Events } from '@services/event-service';
+import { EventService, Events } from '@services/event-service';
 
 import {
   trigger,
@@ -63,12 +63,12 @@ export class HouseBlueComponent implements OnInit, DeactivationGuarded {
   ) {
     this.dialog = dialog;
 
-    eventService.on(Events.INPUT_CHANGE, (_) => {
+    eventService.on(Events.INPUT_CHANGE, () => {
       this.saveAddresses();
     });
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.locale = locale;
     this.isLoading = true;
     this.loansService.getAddresses().subscribe((r) => {
@@ -89,7 +89,7 @@ export class HouseBlueComponent implements OnInit, DeactivationGuarded {
     return this.canNavigateBooolean$;
   }
 
-  addAddress() {
+  addAddress(): void {
     if (this.addresses.length < 4) {
       const addr = new AddressDto();
       if (locale.includes('nb')) {
@@ -99,7 +99,7 @@ export class HouseBlueComponent implements OnInit, DeactivationGuarded {
     }
   }
 
-  deleteAddress(address: AddressDto) {
+  deleteAddress(address: AddressDto): void {
     this.changesMade = true;
     const i: number = this.addresses.indexOf(address);
     if (i > -1) {
@@ -125,10 +125,10 @@ export class HouseBlueComponent implements OnInit, DeactivationGuarded {
     }
     return res;
   }
-  countChange() {
+  countChange(): void {
     this.changesMade = true;
   }
-  saveAddresses() {
+  saveAddresses(): void {
     if (this.ableToSave) {
       this.isLoading = true;
       this.canLeavePage = false;
@@ -137,7 +137,7 @@ export class HouseBlueComponent implements OnInit, DeactivationGuarded {
         (r) => {
           this.addresses = r.addresses;
           for (const address of r.addresses) {
-            if (address.error == true) {
+            if (address.error === true) {
               this.isLoading = false;
               this.changesMade = false;
               this.dialog.open(HouseFormErrorDialogComponent);
@@ -151,7 +151,7 @@ export class HouseBlueComponent implements OnInit, DeactivationGuarded {
 
           this.canNavigateBooolean$.next(true);
         },
-        (err) => {
+        () => {
           this.errorMessage = 'Oops, noe gikk galt';
           this.isLoading = false;
           this.changesMade = false;
@@ -161,7 +161,7 @@ export class HouseBlueComponent implements OnInit, DeactivationGuarded {
         () => {
           if (this.isError) {
             this.isError = false;
-            this.errorMessage == null;
+            this.errorMessage === null;
             return;
           }
 
@@ -178,7 +178,7 @@ export class HouseBlueComponent implements OnInit, DeactivationGuarded {
     let res = true;
     if (this.isLoading) {
       res = false;
-    } else if (this.addresses != null) {
+    } else if (this.addresses !== null) {
       let isCorrect = true;
       for (const a of this.addresses) {
         if (!this.isCorrectAddress(a)) {
@@ -193,7 +193,7 @@ export class HouseBlueComponent implements OnInit, DeactivationGuarded {
     return res;
   }
 
-  isCorrectAddress(a: AddressDto) {
+  isCorrectAddress(a: AddressDto): boolean {
     if (a.useManualPropertyValue) {
       return a.manualPropertyValue > 0;
     } else {
@@ -203,7 +203,7 @@ export class HouseBlueComponent implements OnInit, DeactivationGuarded {
     }
   }
 
-  notEmpty(s: string) {
-    return s != null && String(s).length > 0;
+  notEmpty(s: string): boolean {
+    return s !== null && String(s).length > 0;
   }
 }

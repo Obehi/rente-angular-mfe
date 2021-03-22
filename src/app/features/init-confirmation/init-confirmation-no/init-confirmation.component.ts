@@ -7,13 +7,11 @@ import {
 } from '@services/remote-api/loans.service';
 import { UserService } from '@services/remote-api/user.service';
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
-import { TitleCasePipe } from '@angular/common';
 import { LoggingService } from '@services/logging.service';
 import {
   Validators,
   AbstractControl,
   FormGroup,
-  NgForm,
   FormBuilder,
   FormControl
 } from '@angular/forms';
@@ -82,7 +80,7 @@ export class InitConfirmationNoComponent implements OnInit {
     );
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     forkJoin([
       this.loansService.getLoansAndRateType(),
       this.loansService.getConfirmationData()
@@ -146,10 +144,7 @@ export class InitConfirmationNoComponent implements OnInit {
     });
   }
 
-  isErrorState(
-    control: AbstractControl | null,
-    form: FormGroup | NgForm | null
-  ): boolean {
+  isErrorState(control: AbstractControl | null): boolean {
     return !!(control && control.invalid && (control.dirty || control.touched));
   }
 
@@ -159,7 +154,7 @@ export class InitConfirmationNoComponent implements OnInit {
     });
   }
 
-  public updateProperty(formData) {
+  public updateProperty(formData): void {
     this.propertyForm.markAllAsTouched();
     this.propertyForm.updateValueAndValidity();
 
@@ -235,13 +230,10 @@ export class InitConfirmationNoComponent implements OnInit {
   add(event: MatChipInputEvent): void {
     if (!this.matAutocomplete.isOpen) {
       const input = event.input;
-      const value = event.value;
-
       // Reset the input value
       if (input) {
         input.value = '';
       }
-
       this.membershipCtrl.setValue(null);
     }
   }

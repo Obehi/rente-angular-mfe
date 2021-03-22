@@ -14,7 +14,7 @@ export class FaqComponent implements OnInit {
 
   constructor(public envService: EnvService) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     if (locale.includes('sv')) {
       this.isSweden = true;
     } else {

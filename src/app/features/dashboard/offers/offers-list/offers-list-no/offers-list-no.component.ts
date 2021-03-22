@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { OfferInfo, Offers } from './../../../../../shared/models//offers';
+import { Offers } from './../../../../../shared/models//offers';
 
 @Component({
   selector: 'rente-offers-list',
