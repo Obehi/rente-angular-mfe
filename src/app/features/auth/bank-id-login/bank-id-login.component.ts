@@ -64,9 +64,6 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.environment = this.envService.environment;
-    console.log('environment.loginDnbIsOn');
-    console.log(this.environment.loginDnbIsOn);
-
     this.routeParamsSub = this.route.params.subscribe((params: any) => {
       if (params && params.bankName) {
         const bank = BankUtils.getBankByName(params.bankName);
