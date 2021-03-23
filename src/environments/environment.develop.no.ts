@@ -13,5 +13,5 @@ export const environment = {
   coralogixApiUrl: 'https://api.coralogix.com/api/v1/logs',
   coralogixPrivateKey: '92caa3a2-90d2-9f01-7d00-077afb69d8e5',
   coralogixApplicationName: 'rente-frontend-prod_13639',
-  loginDnbIsOn: false
+  loginDnbIsOn: true
 };
