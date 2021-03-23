@@ -93,7 +93,7 @@
     Gi gjerne tilbakemelding via chat/epost hvis noe ikke fungerer som det skal
   </p>
 
-  <p class="red" >Vi opplever at DNB sperrer enkelte kunder fra å innhente sine lånedata. Se nederst på siden for mer informasjon.
+  <p class="red" *ngIf="isDnbBank">Vi opplever at DNB sperrer enkelte kunder fra å innhente sine lånedata. Se nederst på siden for mer informasjon.
   
   
   <section *ngIf="!isLoginStarted && bankIdForm" class="login">
