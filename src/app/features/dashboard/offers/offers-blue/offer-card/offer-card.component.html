@@ -5,6 +5,8 @@
     <div *ngIf="isSweden" class="nr" [ngClass]="{'threeMonths': offerType == 'threeMonths', 'oneYear': offerType == 'oneYear', 'all': offerType == 'all'}">
         {{ index }}
     </div>
+    <h4 class="test-promo">Norges mest fornøyde bankkunder</h4>
+
     <div class="the-offer-header">
         <div class="logo" [ngStyle]="{
                 'background-image': 'url(' + banksMap[offer.bankInfo.bank].img + ')'
@@ -22,6 +24,7 @@
             </h3>
         </div>
         <p>{{ offer.effectiveRate | number: "1.2-2" }} %</p>
+
     </div>
     <div class="the-offer-body">
         <div class="offer-top">

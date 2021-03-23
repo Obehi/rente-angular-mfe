@@ -10,14 +10,6 @@ import { EnvService } from '@services/env.service';
   providedIn: 'root'
 })
 export class LoggingService {
-  /*   private apiUrl =
-    environment['coralogixApiUrl'] || 'https  ://api.coralogix.com/api/v1/logs';
-  private privateKey =
-    environment['coralogixPrivateKey'] ||
-    '26cd19a4-0d74-8c7a-4d91-aa92b7a32bb1';
-  private applicationName =
-    environment['coralogixApplicationName'] || 'rente-frontend-dev_13638';
- */
   private apiUrl: string;
   private privateKey: string;
   private applicationName: string;
