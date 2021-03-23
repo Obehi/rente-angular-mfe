@@ -268,7 +268,7 @@
 
 
   <!-- <div *ngIf="isDnbBank && environment.loginDnbIsOn === false"> -->
-<div>
+<div *ngIf="isDnbBank && environment.loginDnbIsOn">
     <form
       class="email-form"
       [formGroup]="missingBankForm"
