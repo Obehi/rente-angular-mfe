@@ -75,7 +75,8 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
   public tinkUrl: SafeUrl;
   isSuccessTink = false;
   public tinkCode: any = null;
-
+  BANKID_TIMEOUT_TIME;
+  bankIdTimeoutTime = BANKID_TIMEOUT_TIME;
   constructor(
     private router: Router,
     private authService: AuthService,
@@ -105,10 +106,12 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
     // Special case for DNB and Eika banks
     this.thirdStepTimer =
       this.bank.name === 'DNB' || BankUtils.isEikaBank(this.bank.name)
-        ? 30
+        ? 34
         : 25;
-    this.firstStepTimer = this.bank.name === 'DNB' ? 20 : 10;
-
+    this.firstStepTimer = this.bank.name === 'DNB' ? 28 : 10;
+    if (this.bank.name === 'DNB') {
+      this.bankIdTimeoutTime = 120;
+    }
     if (this.bank.isTinkBank) {
       this.initiateTinkBank();
     } else {
@@ -116,7 +119,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
     }
   }
 
-  initiateTinkBank() {
+  initiateTinkBank(): void {
     const tinkUrlUnsanitized = this.envService.getTinkLinkForBank(
       this.bank.name
     );
@@ -441,7 +444,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
             break;
 
           case BANKID_STATUS.PROCESS_STARTED:
-            this.initTimer(BANKID_TIMEOUT_TIME);
+            this.initTimer(this.bankIdTimeoutTime);
             this.initConnectionTimer();
             this.logging.logger(
               this.logging.Level.Info,
