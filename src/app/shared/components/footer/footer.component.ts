@@ -17,7 +17,7 @@ export class FooterComponent implements OnInit {
   constructor(public router: Router) {}
   shouldShowFooter = true;
 
-  ngOnInit() {
+  ngOnInit(): void {
     if (locale.includes('sv')) {
       this.isSweden = true;
     } else {

@@ -95,7 +95,6 @@
                 "src/sitemap.xml",
                 "src/robots.txt",
                 "src/environment.json"
-
               ],
               "fileReplacements": [
                 {
@@ -142,7 +141,6 @@
                 "src/sitemap.xml",
                 "src/robots.txt",
                 "src/environment.json"
-
               ],
               "fileReplacements": [
                 {
@@ -195,7 +193,6 @@
                 "src/sitemap.xml",
                 "src/robots.txt",
                 "src/environment.json"
-
               ],
               "fileReplacements": [
                 {
