@@ -54,6 +54,7 @@ export class HouseBlueComponent implements OnInit, DeactivationGuarded {
   public errorMessage: string;
   public isError = false;
   public dialog: MatDialog;
+  public showExplainText: boolean;
 
   constructor(
     private loansService: LoansService,
@@ -69,6 +70,12 @@ export class HouseBlueComponent implements OnInit, DeactivationGuarded {
   }
 
   ngOnInit(): void {
+    if (
+      history.state.data !== undefined &&
+      history.state.data.fromConfirmProperty === true
+    ) {
+      this.showExplainText = true;
+    }
     this.locale = locale;
     this.isLoading = true;
     this.loansService.getAddresses().subscribe((r) => {

@@ -132,6 +132,14 @@ button.mat-primary-wide-hollow {
   white-space: break-spaces;
 }
 
+button.mat-primary-wide-white {
+  background-color: white;
+  color: black;
+  height: 56px;
+  width: 80%;
+  white-space: break-spaces;
+}
+
 button.mat-primary-wide-hollow[disabled] {
   opacity: 1;
   height: 56px;

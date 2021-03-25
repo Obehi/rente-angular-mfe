@@ -22,7 +22,7 @@ import { DialogInfoComponent } from '../dialog-info/dialog-info.component';
 import { CustomLangTextService } from '@services/custom-lang-text.service';
 
 import { Mask } from '@shared/constants/mask';
-import { ROUTES_MAP } from '@config/routes-config';
+import { ROUTES_MAP, ROUTES_MAP_SV } from '@config/routes-config';
 
 @Component({
   selector: 'rente-init-confirmation-sv',
@@ -55,7 +55,7 @@ export class InitConfirmationSVComponent implements OnInit {
       this.userData = res;
 
       this.propertyForm = this.fb.group({
-        apartmentValue: ['', Validators.required],
+        apartmentSize: ['', Validators.required],
         email: [
           res.email,
           Validators.compose([
@@ -96,22 +96,22 @@ export class InitConfirmationSVComponent implements OnInit {
         typeof formData.zip === 'string'
           ? formData.zip.replace(/\s/g, '')
           : formData.zip,
-      apartmentValue:
-        typeof formData.apartmentValue === 'string'
-          ? Number(formData.apartmentValue.replace(/\s/g, ''))
-          : Number(formData.apartmentValue)
+      apartmentSize:
+        typeof formData.apartmentSize === 'string'
+          ? Number(formData.apartmentSize.replace(/\s/g, ''))
+          : Number(formData.apartmentSize)
     };
 
     const confirmationDto: ConfirmationSetDto = new ConfirmationSetDto();
     confirmationDto.address = new AddressCreationDto();
     confirmationDto.email = confirmationData.email;
-    confirmationDto.address.apartmentValue = confirmationData.apartmentValue;
+    confirmationDto.address.apartmentSize = confirmationData.apartmentSize;
     confirmationDto.address.zip = confirmationData.zip;
 
     this.loansService.setConfirmationData(confirmationDto).subscribe(
       () => {
         this.isLoading = false;
-        this.router.navigate(['/dashboard/' + ROUTES_MAP.offers]);
+        this.router.navigate(['/' + ROUTES_MAP_SV.confirmationProperty]);
         this.snackBar.openSuccessSnackBar(
           this.customLangTextService.getSnackBarUpdatedMessage(),
           1.2
@@ -119,7 +119,7 @@ export class InitConfirmationSVComponent implements OnInit {
       },
       () => {
         this.isLoading = false;
-        this.router.navigate(['/dashboard/' + ROUTES_MAP.property]);
+        this.router.navigate(['/' + ROUTES_MAP_SV.confirmationProperty]);
       }
     );
   }
