@@ -20,10 +20,9 @@ import { SnackBarService } from '../../../shared/services/snackbar.service';
 import { OfferInfo } from '@shared/models/offers';
 import { DialogInfoComponent } from '../dialog-info/dialog-info.component';
 import { CustomLangTextService } from '@services/custom-lang-text.service';
-
 import { Mask } from '@shared/constants/mask';
-import { ROUTES_MAP, ROUTES_MAP_SV } from '@config/routes-config';
-
+import { ROUTES_MAP_SV } from '@config/routes-config';
+import { CheckBoxItem } from '@shared/components/ui-components/checkbox-container/checkbox-container.component';
 @Component({
   selector: 'rente-init-confirmation-sv',
   templateUrl: './init-confirmation.component.html',
@@ -39,6 +38,7 @@ export class InitConfirmationSVComponent implements OnInit {
   public separatorKeysCodes: number[] = [ENTER, COMMA];
   public userData: ConfirmationGetDto;
   public mask = Mask;
+  public checkBoxItems: CheckBoxItem[];
 
   constructor(
     private fb: FormBuilder,
@@ -51,6 +51,7 @@ export class InitConfirmationSVComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.initCheckboxes();
     this.loansService.getConfirmationData().subscribe((res) => {
       this.userData = res;
 
@@ -69,9 +70,30 @@ export class InitConfirmationSVComponent implements OnInit {
             Validators.required,
             Validators.pattern(VALIDATION_PATTERN.zipSWE)
           ])
-        ]
+        ],
+        propertyType: ['', Validators.required]
       });
     });
+  }
+
+  initCheckboxes(): void {
+    const house = new CheckBoxItem();
+    const apartment = new CheckBoxItem();
+    const cabin = new CheckBoxItem();
+
+    house.name = 'Villa';
+    apartment.name = 'Bostadsrätter';
+    cabin.name = 'Fritidshus';
+
+    house.iconActive = 'round-house-green.svg';
+    house.iconDeactivated = 'round-house-grey.svg';
+
+    apartment.iconActive = 'round-apartment-green.svg';
+    apartment.iconDeactivated = 'round-apartment-grey.svg';
+
+    cabin.iconActive = 'round-cabin-green.svg';
+    cabin.iconDeactivated = 'round-cabin-grey.svg';
+    this.checkBoxItems = [house, apartment, cabin];
   }
 
   isErrorState(control: AbstractControl | null): boolean {

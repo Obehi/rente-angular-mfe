@@ -1,0 +1,11 @@
+<div>
+    <form [formGroup]="formGroup">
+        <div class="item" *ngFor="let checkboxItem of checkBoxItems; let i = index">
+            <div class="input-wrapper">
+                <img [@enabledStateChange]="getBoxState(i)" src="{{getIcon(i)}}">
+                <input (click)="boxClicked(i)" formControlName="propertyType" type="radio" name="propertyType" value="{{checkboxItem.name}}" >
+            </div>
+            <span>{{ checkboxItem.name }}</span>
+        </div>
+    </form>
+</div>  

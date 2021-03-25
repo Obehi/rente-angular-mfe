@@ -36,7 +36,7 @@
             </p>
           </div>
         </div>
-        <div class="field">
+        <div class="field"> 
           <div class="withinfo">
             <div>
               <rente-input
@@ -79,9 +79,19 @@
             [maskType]="mask.zip"
           >
           </rente-input>
-  
-          <div *ngIf="propertyForm.controls['zip'].touched">
-            <p i18n=“empty|info-confirmation@@info.confirmation.empty”
+
+          <div class="checkbox-wrapper">
+            <p>
+              Välj typ av hem
+            </p>
+            <rente-checkbox-container   
+              [formGroup]="propertyForm" 
+              [controlName]="'propertyType'"
+              [checkBoxItems]="checkBoxItems">
+            </rente-checkbox-container>
+          </div>
+        <div *ngIf="propertyForm.controls['zip'].touched">
+          <p i18n=“empty|info-confirmation@@info.confirmation.empty”
               class="error small"
               *ngIf="propertyForm.controls['zip'].hasError('required')"
             >
@@ -89,27 +99,6 @@
             </p>
           </div>
 
-          <div class="property-type-container">
-            <div class="property-type">
-              <p>Villa</p>
-              <div class="icon-box">
-                <img src="../../../assets/icons/house-light-blue.svg"/>
-                
-              </div>
-            </div>
-            <div class="property-type">
-              <p>Bostadsrätter</p>
-              <div class="icon-box">
-                <img src="../../../assets/icons/house-light-blue.svg"/>
-              </div>
-            </div>
-            <div class="property-type">
-              <p>Fritidshus</p>
-              <div class="icon-box">
-                <img src="../../../assets/icons/house-light-blue.svg"/>
-              </div>
-            </div>
-          </div>
         </div>
 
       <!--   <mat-checkbox i18n=“age-confirmation|change-bank@@change.bank.ageConfirmation”
