@@ -36,6 +36,29 @@
             </p>
           </div>
         </div>
+
+        <div class="field">
+          <rente-input
+            [placeholder]="'Postnummer'"
+            formControlName="zip"
+            [maxLength] ="5"
+            [type]="'tel'"
+            [errorStateMatcher]="isErrorState(propertyForm.controls['zip'])"
+            [maskType]="mask.zip"
+          >
+          </rente-input>
+
+          <div *ngIf="propertyForm.controls['zip'].touched">
+            <p i18n=“empty|info-confirmation@@info.confirmation.empty”
+                class="error small"
+                *ngIf="propertyForm.controls['zip'].hasError('required')"
+              >
+                Kan ikke være tom
+            </p>
+          </div>
+        </div>
+
+
         <div class="field"> 
           <div class="withinfo">
             <div>
@@ -43,7 +66,7 @@
                 [placeholder]="'Storlek på bostaden'"
                 formControlName="apartmentSize"
                 [type]="'tel'"
-                matSuffix="km"
+                matSuffix="kvadratmeter"
                 [errorStateMatcher]="
                   isErrorState(
                     propertyForm.controls['apartmentSize']
@@ -67,38 +90,17 @@
           </div>
         </div>
 
-        <div class="field">
-          <rente-input
-            [placeholder]="'Postnummer'"
-            formControlName="zip"
-            [maxLength] ="4"
-            [errorStateMatcher]="
-              isErrorState(propertyForm.controls['zip'])
-            "
-            [modelOptions]="{ updateOn: 'blur' }"
-            [maskType]="mask.zip"
-          >
-          </rente-input>
+        
 
-          <div class="checkbox-wrapper">
-            <p>
-              Välj typ av hem
-            </p>
-            <rente-checkbox-container   
-              [formGroup]="propertyForm" 
-              [controlName]="'propertyType'"
-              [checkBoxItems]="checkBoxItems">
-            </rente-checkbox-container>
-          </div>
-        <div *ngIf="propertyForm.controls['zip'].touched">
-          <p i18n=“empty|info-confirmation@@info.confirmation.empty”
-              class="error small"
-              *ngIf="propertyForm.controls['zip'].hasError('required')"
-            >
-              Kan ikke være tom
-            </p>
-          </div>
-
+        <div class="checkbox-wrapper">
+          <p>
+            Välj typ av hem
+          </p>
+          <rente-checkbox-container   
+            [formGroup]="propertyForm" 
+            [controlName]="'propertyType'"
+            [checkBoxItems]="checkBoxItems">
+          </rente-checkbox-container>
         </div>
 
       <!--   <mat-checkbox i18n=“age-confirmation|change-bank@@change.bank.ageConfirmation”

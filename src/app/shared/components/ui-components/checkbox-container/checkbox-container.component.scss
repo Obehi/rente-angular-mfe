@@ -13,13 +13,13 @@ form {
 
 .item {
     width: 85px;
-    height: 110px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-
+    height: 130px;
     span {
+        font-size: 12px;
         color: $grey-dark
     }
     .input-wrapper {
@@ -32,7 +32,7 @@ form {
         align-items: center;
         border-radius: 15px;
         background: $grey-light;
-        
+
         p {
             text-align: center;
             font-weight: 400;

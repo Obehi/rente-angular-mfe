@@ -68,6 +68,7 @@ export class InitConfirmationSVComponent implements OnInit {
           '',
           Validators.compose([
             Validators.required,
+            Validators.minLength(5),
             Validators.pattern(VALIDATION_PATTERN.zipSWE)
           ])
         ],
@@ -82,7 +83,7 @@ export class InitConfirmationSVComponent implements OnInit {
     const cabin = new CheckBoxItem();
 
     house.name = 'Villa';
-    apartment.name = 'Bostadsrätter';
+    apartment.name = 'Bostadsrätter/</br>lägenhet';
     cabin.name = 'Fritidshus';
 
     house.iconActive = 'round-house-green.svg';
@@ -93,7 +94,7 @@ export class InitConfirmationSVComponent implements OnInit {
 
     cabin.iconActive = 'round-cabin-green.svg';
     cabin.iconDeactivated = 'round-cabin-grey.svg';
-    this.checkBoxItems = [house, apartment, cabin];
+    this.checkBoxItems = [house, apartment];
   }
 
   isErrorState(control: AbstractControl | null): boolean {
