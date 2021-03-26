@@ -15,36 +15,38 @@ export class BankSelectComponent implements OnInit {
 
   constructor(private router: Router) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.allBanks = [...BankList, ...MissingBankList].sort((a, b) =>
       a.label > b.label ? 1 : b.label > a.label ? -1 : 0
     );
     this.filterBank(this.searchStr);
   }
 
-  onFilterChanged() {
+  onFilterChanged(): void {
     this.filterBank(this.searchStr);
   }
 
-  clear() {
+  clear(): void {
     this.searchStr = '';
     this.filterBank(this.searchStr);
   }
 
-  filterBank(filter: string) {
+  filterBank(filter: string): void {
     let filteredBanks = [];
-    if (filter == null || filter.length === 0) {
+    if (filter === null || filter.length === 0) {
       filteredBanks = this.allBanks.concat();
     } else {
       const f = filter.toLocaleLowerCase();
       filteredBanks = this.allBanks.filter(
-        (bank) => bank.label.toLocaleLowerCase().indexOf(f) > -1
+        (bank) =>
+          bank.label.toLocaleLowerCase().indexOf(f) > -1 &&
+          bank.name !== 'HANDELSBANKEN'
       );
     }
     this.banks = filteredBanks;
   }
 
-  selectBank(bank: BankVo) {
+  selectBank(bank: BankVo): void {
     if (bank.isMissing) {
       this.router.navigate([ROUTES_MAP.getNotified], { state: { bank: bank } });
     } else {
