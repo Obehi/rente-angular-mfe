@@ -8,7 +8,6 @@ import {
 } from '../../shared/models/bank';
 import { Router } from '@angular/router';
 import { ROUTES_MAP } from '@config/routes-config';
-import { Injectable } from '@angular/core';
 import { EnvService } from '@services/env.service';
 @Component({
   selector: 'rente-bank-select-variation',
@@ -65,11 +64,15 @@ export class BankSelectNoComponent implements OnInit {
         : true;
     });
 
+    const tinkBanksWithoutHandelsbanken = TinkBanks.filter((bank) => {
+      return bank.name !== 'HANDELSBANKEN';
+    });
+
     this.allBanks = [
       specialCaseBanks[dnb],
       specialCaseBanks[nordea],
       specialCaseBanks[sparebank],
-      ...TinkBanks,
+      ...tinkBanksWithoutHandelsbanken,
       ...nonMembershipBanks
     ];
   }
