@@ -11,7 +11,7 @@
       <mat-spinner [diameter]="48" [strokeWidth]="4"></mat-spinner>
   </div>
 
-  <div class="confirm-property-container" *ngIf="showExplainText">
+  <div class="confirm-property-container" *ngIf="showExplainText && !isLoading">
     <img src="../../../../assets/icons/house-light-blue.svg"/>
     <h3 class="explain-text">
       Her kan du endre opplysninger og verdi på din bolig
@@ -22,7 +22,7 @@
     <div class="title">
       <h3 i18n=“title|my-houses@@house.component.houses”>Mine boliger</h3>
       <p i18n=“house|value@@house.component.value” class="small">Total verdi: {{ totalPropertyValue | thousands }}</p>
-      
+
     </div>
     <div class="houses">
       <rente-blue-address

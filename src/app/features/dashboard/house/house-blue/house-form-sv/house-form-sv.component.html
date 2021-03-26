@@ -69,8 +69,12 @@
               [matSuffix]="address.estimatedPropertyValue ? 'kr' : ''"
             ></rente-input>
   
-            <p *ngIf="address.estimatedPropertyValue" class="small">
+            <p *ngIf="address.estimatedPropertyValue && envService.isNorway()" class="small">
               Estimert av Virdi
+            </p>
+
+            <p *ngIf="address.estimatedPropertyValue && !envService.isNorway()" class="small">
+              Estimert av Stas
             </p>
   
             

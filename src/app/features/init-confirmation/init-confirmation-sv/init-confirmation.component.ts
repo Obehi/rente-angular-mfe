@@ -137,10 +137,6 @@ export class InitConfirmationSVComponent implements OnInit {
       () => {
         this.isLoading = false;
         this.router.navigate(['/' + ROUTES_MAP_SV.confirmationProperty]);
-        this.snackBar.openSuccessSnackBar(
-          this.customLangTextService.getSnackBarUpdatedMessage(),
-          1.2
-        );
       },
       () => {
         this.isLoading = false;
