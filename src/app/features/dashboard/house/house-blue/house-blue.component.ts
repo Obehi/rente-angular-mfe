@@ -4,8 +4,9 @@ import { SnackBarService } from '../../../../shared/services/snackbar.service';
 import { Observable, Subject } from 'rxjs';
 import { DeactivationGuarded } from '@shared/guards/route.guard';
 import { locale } from '../../../../config/locale/locale';
-
+ManualInputDialogComponent;
 import { HouseFormErrorDialogComponent } from './error-dialog/error-dialog.component';
+import { ManualInputDialogComponent } from './manual-input-dialog/manual-input-dialog.component';
 import { MatDialog } from '@angular/material';
 import { EventService, Events } from '@services/event-service';
 
@@ -141,9 +142,9 @@ export class HouseBlueComponent implements OnInit, DeactivationGuarded {
       this.canLeavePage = false;
 
       this.loansService.updateAddress(this.addresses).subscribe(
-        (r) => {
-          this.addresses = r.addresses;
-          for (const address of r.addresses) {
+        (res) => {
+          this.addresses = res.addresses;
+          for (const address of res.addresses) {
             if (address.error === true) {
               this.isLoading = false;
               this.changesMade = false;
@@ -153,6 +154,17 @@ export class HouseBlueComponent implements OnInit, DeactivationGuarded {
               this.errorMessage = address.message;
               this.isError = true;
               return;
+            }
+
+            if (
+              address.useManualPropertyValue === false &&
+              address.estimatedPropertyValue === 0
+            ) {
+              this.isLoading = false;
+              this.changesMade = false;
+              this.dialog.open(HouseFormErrorDialogComponent);
+
+              this.canLeavePage = true;
             }
           }
 

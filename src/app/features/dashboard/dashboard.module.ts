@@ -31,6 +31,8 @@ import {
 import { RateTypeFixedComponent } from './rate-type-fixed/rate-type-fixed.component';
 import { ChangeBankDialogComponent } from './offers/change-bank-dialog/change-bank-dialog.component';
 import { HouseFormErrorDialogComponent } from './house/house-blue/error-dialog/error-dialog.component';
+import { ManualInputDialogComponent } from './house/house-blue/manual-input-dialog/manual-input-dialog.component';
+
 import { SuccessChangeBankDialogComponent } from './offers/change-bank-dialog/success-change-bank-dialog/success-change-bank-dialog.component';
 import { ShareSheetComponent } from './offers/share-sheet/share-sheet.component';
 import { VirdiStatisticsComponent } from './house/virdi-statistics/virdi-statistics.component';
@@ -91,6 +93,7 @@ import { CanNotBargainDialogComponent } from './offers/can-not-bargain-dialog/ca
     BankScoreLangGenericComponent,
     EPSIScoreComponent,
     HouseFormErrorDialogComponent,
+    ManualInputDialogComponent,
     ChangeBankLocationComponent,
     CanNotBargainDialogComponent
   ],

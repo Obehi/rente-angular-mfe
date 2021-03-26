@@ -596,97 +596,93 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
 
             this.viewStatus.isLoansPersisted = true;
             const user = response.data.user;
-            this.authService
-              .loginWithToken(user.oneTimeToken)
-              .subscribe((res) => {
-                forkJoin([
-                  this.loansService.getLoansAndRateType(),
-                  this.userService.getUserInfo()
-                ]).subscribe(([rateAndLoans, userInfo]) => {
-                  this.loginStep3Status = MESSAGE_STATUS.SUCCESS;
-                  this.logging.logger(
-                    this.logging.Level.Info,
-                    '6:FETCHED_RATE_LOANS_AND_USERINFO',
-                    'LoginStatusComponent',
-                    'successSocketCallback',
-                    this.logging.SubSystem.Tink,
-                    '6: FETCHED RATE, LOANS AND USERINFO',
-                    undefined,
-                    this.isTinkBank
-                  );
+            this.authService.loginWithToken(user.oneTimeToken).subscribe(() => {
+              forkJoin([
+                this.loansService.getLoansAndRateType(),
+                this.userService.getUserInfo()
+              ]).subscribe(([rateAndLoans, userInfo]) => {
+                this.loginStep3Status = MESSAGE_STATUS.SUCCESS;
+                this.logging.logger(
+                  this.logging.Level.Info,
+                  '6:FETCHED_RATE_LOANS_AND_USERINFO',
+                  'LoginStatusComponent',
+                  'successSocketCallback',
+                  this.logging.SubSystem.Tink,
+                  '6: FETCHED RATE, LOANS AND USERINFO',
+                  undefined,
+                  this.isTinkBank
+                );
 
-                  this.userService.lowerRateAvailable.next(
-                    rateAndLoans.lowerRateAvailable
-                  );
-                  if (rateAndLoans.loansPresent) {
-                    this.localStorageService.removeItem('noLoansPresent');
-                    if (rateAndLoans.isAggregatedRateTypeFixed) {
-                      this.localStorageService.setItem(
-                        'isAggregatedRateTypeFixed',
-                        true
-                      );
+                this.userService.lowerRateAvailable.next(
+                  rateAndLoans.lowerRateAvailable
+                );
+                if (rateAndLoans.loansPresent) {
+                  this.localStorageService.removeItem('noLoansPresent');
+                  if (rateAndLoans.isAggregatedRateTypeFixed) {
+                    this.localStorageService.setItem(
+                      'isAggregatedRateTypeFixed',
+                      true
+                    );
+                    this.logging.logger(
+                      this.logging.Level.Info,
+                      '7:SUCCESS_RATE_TYPE_FIXED',
+                      'LoginStatusComponent',
+                      'successSocketCallback',
+                      this.logging.SubSystem.Tink,
+                      '7: SUCCESS: FIXED RATE DETECTED. REDIRECT TO ROUTES_MAP.FIXEDRATE',
+                      undefined,
+                      this.isTinkBank
+                    );
+                    this.router.navigate([
+                      '/dashboard/' + ROUTES_MAP.fixedRate
+                    ]);
+                  } else {
+                    if (userInfo.income === null) {
                       this.logging.logger(
                         this.logging.Level.Info,
-                        '7:SUCCESS_RATE_TYPE_FIXED',
+                        '7:SUCCESS_NEW_USER',
                         'LoginStatusComponent',
                         'successSocketCallback',
                         this.logging.SubSystem.Tink,
-                        '7: SUCCESS: FIXED RATE DETECTED. REDIRECT TO ROUTES_MAP.FIXEDRATE',
+                        '7: SUCCESS:NEW USER DETECTED. REDIRECT TO ROUTES_MAP.INITCONFIRMATION',
+                        undefined,
+                        this.isTinkBank
+                      );
+                      this.router.navigate(['/' + ROUTES_MAP.initConfirmation]);
+                      this.localStorageService.setItem('isNewUser', true);
+                    } else {
+                      this.logging.logger(
+                        this.logging.Level.Info,
+                        '7:SUCCESS_OLD_USER',
+                        'LoginStatusComponent',
+                        'successSocketCallback',
+                        this.logging.SubSystem.Tink,
+                        '7: SUCCESS: USER INCOME DETECTED. REDIRECT TO ROUTES_MAP.OFFERS',
                         undefined,
                         this.isTinkBank
                       );
                       this.router.navigate([
-                        '/dashboard/' + ROUTES_MAP.fixedRate
+                        '/dashboard/' + ROUTES_MAP.offers,
+                        { state: { isInterestRateSet: true } }
                       ]);
-                    } else {
-                      if (userInfo.income === null) {
-                        this.logging.logger(
-                          this.logging.Level.Info,
-                          '7:SUCCESS_NEW_USER',
-                          'LoginStatusComponent',
-                          'successSocketCallback',
-                          this.logging.SubSystem.Tink,
-                          '7: SUCCESS:NEW USER DETECTED. REDIRECT TO ROUTES_MAP.INITCONFIRMATION',
-                          undefined,
-                          this.isTinkBank
-                        );
-                        this.router.navigate([
-                          '/' + ROUTES_MAP.initConfirmation
-                        ]);
-                        this.localStorageService.setItem('isNewUser', true);
-                      } else {
-                        this.logging.logger(
-                          this.logging.Level.Info,
-                          '7:SUCCESS_OLD_USER',
-                          'LoginStatusComponent',
-                          'successSocketCallback',
-                          this.logging.SubSystem.Tink,
-                          '7: SUCCESS: USER INCOME DETECTED. REDIRECT TO ROUTES_MAP.OFFERS',
-                          undefined,
-                          this.isTinkBank
-                        );
-                        this.router.navigate([
-                          '/dashboard/' + ROUTES_MAP.offers,
-                          { state: { isInterestRateSet: true } }
-                        ]);
-                      }
                     }
-                  } else {
-                    this.logging.logger(
-                      this.logging.Level.Info,
-                      '7:SUCCESS_NO_LOAN_PRESENT',
-                      'LoginStatusComponent',
-                      'successSocketCallback',
-                      this.logging.SubSystem.Tink,
-                      '7: SUCCESS: NO LOAN DETECTED. REDIRECT TO ROUTES_MAP.NOLOAN',
-                      undefined,
-                      this.isTinkBank
-                    );
-                    this.localStorageService.setItem('noLoansPresent', true);
-                    this.router.navigate(['/' + ROUTES_MAP.noLoan]);
                   }
-                });
+                } else {
+                  this.logging.logger(
+                    this.logging.Level.Info,
+                    '7:SUCCESS_NO_LOAN_PRESENT',
+                    'LoginStatusComponent',
+                    'successSocketCallback',
+                    this.logging.SubSystem.Tink,
+                    '7: SUCCESS: NO LOAN DETECTED. REDIRECT TO ROUTES_MAP.NOLOAN',
+                    undefined,
+                    this.isTinkBank
+                  );
+                  this.localStorageService.setItem('noLoansPresent', true);
+                  this.router.navigate(['/' + ROUTES_MAP.noLoan]);
+                }
               });
+            });
             break;
         }
       }
