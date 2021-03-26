@@ -71,14 +71,9 @@
   
             <p *ngIf="address.estimatedPropertyValue && envService.isNorway()" class="small">
               Estimert av Virdi
-            </p>
-
-            <p *ngIf="address.estimatedPropertyValue && !envService.isNorway()" class="small">
-              Estimert av Stas
-            </p>
-  
-            
+            </p> 
           </div>
+          
           <rente-input
             matInput
             [disabled]="!address.useManualPropertyValue"

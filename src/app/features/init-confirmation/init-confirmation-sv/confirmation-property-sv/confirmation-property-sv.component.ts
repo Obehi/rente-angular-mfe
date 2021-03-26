@@ -13,12 +13,20 @@ export class ConfirmationProperty implements OnInit {
   public isLoading: boolean;
   public mask = Mask;
   public estimatedPropertyValue: number;
+  public propertyIconPath: string;
 
   constructor(private loansService: LoansService, private router: Router) {}
 
   ngOnInit(): void {
     this.isLoading = true;
     this.loansService.getAddresses().subscribe((res) => {
+      const propertyType = res.addresses[0].propertyType;
+      this.propertyIconPath =
+        propertyType === 'HOUSE'
+          ? '../../../../assets/icons/round-house-primary-blue.svg'
+          : propertyType === 'APARTMENT'
+          ? '../../../../assets/icons/round-apartment-primary-blue.svg'
+          : null;
       this.isLoading = false;
       this.estimatedPropertyValue = res.addresses[0].estimatedPropertyValue;
     });

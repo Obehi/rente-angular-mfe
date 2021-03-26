@@ -1,12 +1,12 @@
 <div class="front-container blue">
   <div *ngIf="!isLoading" class="top">
-      <img src="../../../../assets/icons/house-light-blue.svg"/>
+      <img *ngIf="propertyIconPath !== null" src="{{propertyIconPath}}"/>
       <div class="title">
       <h3>Vi har estimerat din bostad til</h3>
       <h1>{{ estimatedPropertyValue | number }} kr</h1>
     </div>
   </div>
-  <div *ngIf="!isLoading"  class="bottom">
+  <div *ngIf="!isLoading" class="bottom">
     <div>
         <rente-button class="left" color="primary-wide-white" (click)="clickChangeButton()">
           Ändra / lägg till fler hem

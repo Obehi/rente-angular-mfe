@@ -16,7 +16,6 @@ import { ENTER, COMMA } from '@angular/cdk/keycodes';
 import { MatDialog } from '@angular/material';
 import { Router } from '@angular/router';
 import { VALIDATION_PATTERN } from '@config/validation-patterns.config';
-import { SnackBarService } from '../../../shared/services/snackbar.service';
 import { OfferInfo } from '@shared/models/offers';
 import { DialogInfoComponent } from '../dialog-info/dialog-info.component';
 import { CustomLangTextService } from '@services/custom-lang-text.service';
@@ -44,7 +43,6 @@ export class InitConfirmationSVComponent implements OnInit {
     private fb: FormBuilder,
     private userService: UserService,
     private loansService: LoansService,
-    private snackBar: SnackBarService,
     private router: Router,
     public dialog: MatDialog,
     public customLangTextService: CustomLangTextService
