@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { AddressDto } from '@services/remote-api/loans.service';
 import { LoansService } from '@services/remote-api/loans.service';
 import { MatTabChangeEvent } from '@angular/material';
-import { EventService, EmitEvent, Events } from '@services/event-service';
+import { CheckBoxItem } from '@shared/components/ui-components/checkbox-container/checkbox-container.component';
 
 export enum AddressFormMode {
   Editing,
@@ -23,17 +23,15 @@ export class HouseFormSvComponent implements OnInit {
   @Output() onSave: EventEmitter<any> = new EventEmitter();
 
   addresses: AddressDto[];
-
+  public checkBoxItems: CheckBoxItem[];
   mode = AddressFormMode.Editing;
   changesMade = false;
   ableTosave = false;
 
-  constructor(
-    private loansService: LoansService,
-    private eventService: EventService
-  ) {}
+  constructor(private loansService: LoansService) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
+    this.initCheckboxes();
     this.loansService.getAddresses().subscribe((r) => {
       this.addresses = r.addresses;
 
@@ -42,26 +40,57 @@ export class HouseFormSvComponent implements OnInit {
     });
   }
 
+  initCheckboxes(): void {
+    const house = new CheckBoxItem();
+    const apartment = new CheckBoxItem();
+    const cabin = new CheckBoxItem();
+
+    house.name = 'Villa';
+    apartment.name = 'Bostadsrätter/</br>lägenhet';
+    cabin.name = 'Fritidshus';
+
+    house.value = 'HOUSE';
+    apartment.value = 'APARTMENT';
+    cabin.value = 'HOLIDAY_HOUSE';
+
+    house.iconActive = 'round-house-green.svg';
+    house.iconDeactivated = 'round-house-grey.svg';
+
+    apartment.iconActive = 'round-apartment-green.svg';
+    apartment.iconDeactivated = 'round-apartment-grey.svg';
+
+    cabin.iconActive = 'round-cabin-green.svg';
+    cabin.iconDeactivated = 'round-cabin-grey.svg';
+    this.checkBoxItems = [house, apartment, cabin];
+  }
+
   get isAbleToDelete(): boolean {
     return this.index > 0;
   }
-  get isEditMode() {
+  get isEditMode(): boolean {
     return this.mode === AddressFormMode.Editing;
   }
-  get isStatMode() {
+  get isStatMode(): boolean {
     return this.mode === AddressFormMode.Statistics;
   }
   get isAddressValid(): boolean {
     return (
-      this.address != null &&
+      this.address !== null &&
       this.address.id > 0 &&
       this.address.zip &&
       this.address.zip.length === 4 &&
-      this.address.street.length > 0
+      this.address.street.length > 0 &&
+      this.address.propertyType !== null
     );
   }
 
-  onRbChange(event: MatTabChangeEvent) {
+  onPropertyTypeChange($event): void {
+    console.log($event);
+    this.address.propertyType = $event;
+    this.countChange('');
+  }
+
+  onRbChange(event: MatTabChangeEvent): void {
     this.ableTosave = true;
     this.address.useManualPropertyValue = true;
   }
@@ -71,26 +100,26 @@ export class HouseFormSvComponent implements OnInit {
     return Number(event.replace(/\s+/g, ''));
   }
 
-  save() {
+  save(): void {
     this.onSave.emit();
     this.ableTosave = false;
   }
-  countChange($event) {
+  countChange($event): void {
     this.ableTosave = true;
   }
 
-  onDeleteAddressClick() {
+  onDeleteAddressClick(): void {
     this.deleteAddress.emit(this.address);
   }
 
-  manualPropertyValueChanged($event) {
+  manualPropertyValueChanged($event): void {
     if ($event && $event.target) {
       const newValue = parseInt(String($event.target.value).replace(/\D/g, ''));
       this.address.manualPropertyValue = newValue >= 0 ? newValue : 0;
     }
   }
 
-  toggleMode() {
+  toggleMode(): void {
     this.mode =
       this.mode === AddressFormMode.Editing
         ? AddressFormMode.Statistics

@@ -58,6 +58,16 @@
           ></rente-input>
         </div>
       </div>
+
+      <div class="checkbox-wrapper">
+        <rente-checkbox-container 
+          defaultValue="{{address.propertyType}}"
+          [controlName]="'propertyType'"
+          [checkBoxItems]="checkBoxItems"
+          (selectedValue)="onPropertyTypeChange($event)"
+        >
+        </rente-checkbox-container>
+      </div>
       
       
       <div class="center-button">

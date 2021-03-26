@@ -80,20 +80,18 @@ export class InitConfirmationSVComponent implements OnInit {
   initCheckboxes(): void {
     const house = new CheckBoxItem();
     const apartment = new CheckBoxItem();
-    const cabin = new CheckBoxItem();
 
     house.name = 'Villa';
     apartment.name = 'Bostadsrätter/</br>lägenhet';
-    cabin.name = 'Fritidshus';
+
+    house.value = 'HOUSE';
+    apartment.value = 'APARTMENT';
 
     house.iconActive = 'round-house-green.svg';
     house.iconDeactivated = 'round-house-grey.svg';
 
     apartment.iconActive = 'round-apartment-green.svg';
     apartment.iconDeactivated = 'round-apartment-grey.svg';
-
-    cabin.iconActive = 'round-cabin-green.svg';
-    cabin.iconDeactivated = 'round-cabin-grey.svg';
     this.checkBoxItems = [house, apartment];
   }
 
@@ -111,6 +109,8 @@ export class InitConfirmationSVComponent implements OnInit {
     this.propertyForm.markAllAsTouched();
     this.propertyForm.updateValueAndValidity();
 
+    console.log('formData.propertyType');
+    console.log(formData.propertyType);
     this.isLoading = true;
 
     const confirmationData = {
@@ -122,7 +122,8 @@ export class InitConfirmationSVComponent implements OnInit {
       apartmentSize:
         typeof formData.apartmentSize === 'string'
           ? Number(formData.apartmentSize.replace(/\s/g, ''))
-          : Number(formData.apartmentSize)
+          : Number(formData.apartmentSize),
+      propertyType: formData.propertyType
     };
 
     const confirmationDto: ConfirmationSetDto = new ConfirmationSetDto();
@@ -130,6 +131,7 @@ export class InitConfirmationSVComponent implements OnInit {
     confirmationDto.email = confirmationData.email;
     confirmationDto.address.apartmentSize = confirmationData.apartmentSize;
     confirmationDto.address.zip = confirmationData.zip;
+    confirmationDto.address.propertyType = confirmationData.propertyType;
 
     this.loansService.setConfirmationData(confirmationDto).subscribe(
       () => {

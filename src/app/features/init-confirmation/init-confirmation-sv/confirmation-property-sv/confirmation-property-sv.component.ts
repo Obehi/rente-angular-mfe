@@ -21,7 +21,6 @@ export class ConfirmationProperty implements OnInit {
     this.loansService.getAddresses().subscribe((res) => {
       this.isLoading = false;
       this.estimatedPropertyValue = res.addresses[0].estimatedPropertyValue;
-      this.estimatedPropertyValue = 4000000;
     });
   }
 
