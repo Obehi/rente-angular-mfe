@@ -1,7 +1,4 @@
-import {
-  LoansService,
-  ConfirmationGetDto
-} from '@services/remote-api/loans.service';
+import { LoansService } from '@services/remote-api/loans.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Mask } from '@shared/constants/mask';
