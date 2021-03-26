@@ -34,9 +34,6 @@ export class HouseFormSvComponent implements OnInit {
     this.initCheckboxes();
     this.loansService.getAddresses().subscribe((r) => {
       this.addresses = r.addresses;
-
-      // Always true for swedish property
-      this.address.useManualPropertyValue = true;
     });
   }
 
@@ -85,14 +82,17 @@ export class HouseFormSvComponent implements OnInit {
   }
 
   onPropertyTypeChange($event): void {
-    console.log($event);
     this.address.propertyType = $event;
     this.countChange('');
   }
 
   onRbChange(event: MatTabChangeEvent): void {
     this.ableTosave = true;
-    this.address.useManualPropertyValue = true;
+    if (event.index === 1) {
+      this.address.useManualPropertyValue = true;
+    } else {
+      this.address.useManualPropertyValue = false;
+    }
   }
 
   // remove spaces and convert to number type
@@ -101,6 +101,7 @@ export class HouseFormSvComponent implements OnInit {
   }
 
   save(): void {
+    console.log('save');
     this.onSave.emit();
     this.ableTosave = false;
   }
