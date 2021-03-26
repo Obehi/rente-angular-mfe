@@ -231,34 +231,34 @@ export class InitialOffersComponent implements OnInit {
     private seoService: SeoService
   ) {}
 
-  get outstandingDebtControl() {
+  get outstandingDebtControl(): AbstractControl {
     return this.formGroup.get('outstandingDebt');
   }
 
-  get savingsControl() {
+  get savingsControl(): AbstractControl {
     return this.formGroup.get('savings');
   }
 
-  get incomeControl() {
+  get incomeControl(): AbstractControl {
     return this.formGroup.get('income');
   }
 
-  get otherDebtControl() {
+  get otherDebtControl(): AbstractControl {
     return this.formGroup.get('otherDebt');
   }
 
-  get membershipsControl() {
+  get membershipsControl(): AbstractControl {
     return this.formGroup.get('memberships');
   }
 
-  get ageControl() {
+  get ageControl(): AbstractControl {
     return this.formGroup.get('age');
   }
-  get localBanks() {
+  get localBanks(): AbstractControl {
     return this.formGroup.get('localBanks');
   }
 
-  get firstLoanControl() {
+  get firstLoanControl(): AbstractControl {
     return this.formGroup.get('firstLoan');
   }
 
@@ -366,15 +366,15 @@ export class InitialOffersComponent implements OnInit {
     };
   }
 
-  selectAge(aged: boolean) {
+  selectAge(aged: boolean): void {
     this.ageControl.patchValue(aged);
   }
 
-  selectFirstLoan(firstLoan: boolean) {
+  selectFirstLoan(firstLoan: boolean): void {
     this.firstLoanControl.patchValue(firstLoan);
   }
 
-  toggleFeaturedMemberships(membership) {
+  toggleFeaturedMemberships(membership: MembershipTypeDto): void {
     if (this.selectedFeaturedMemberships.indexOf(membership) === -1) {
       this.selectedFeaturedMemberships.push(membership);
     } else {
@@ -386,7 +386,7 @@ export class InitialOffersComponent implements OnInit {
     this.updateMemberships();
   }
 
-  deleteMembership(membership) {
+  deleteMembership(membership): void {
     this.memberships.splice(this.memberships.indexOf(membership), 1);
     this.updateMemberships();
   }
@@ -435,7 +435,7 @@ export class InitialOffersComponent implements OnInit {
       )
     );
 
-    this.formGroup.valueChanges.subscribe((val) => {
+    this.formGroup.valueChanges.subscribe(() => {
       if (this.isAllDataFilled()) {
         this.stepper._steps.forEach((step) => {
           step.state = 'done';
@@ -479,11 +479,11 @@ export class InitialOffersComponent implements OnInit {
       );
   }
 
-  nextStep() {
+  nextStep(): void {
     this.stepper.next();
   }
 
-  isBoolean(val) {
+  isBoolean(val: any): boolean {
     return val !== null;
   }
 
@@ -496,14 +496,14 @@ export class InitialOffersComponent implements OnInit {
     );
   }
 
-  ageFilled() {
+  ageFilled(): boolean {
     return (
       (this.isBoolean(this.ageControl.value) && !this.ageControl.value) ||
       (this.isBoolean(this.ageControl.value) && this.ageControl.value)
     );
   }
 
-  toggleEditMode() {
+  toggleEditMode(): void {
     this.editMode = false;
     this.selectedIndex = null;
     this.updateNewOffers();

@@ -107,7 +107,7 @@ export class InitConfirmationSVComponent implements OnInit {
     });
   }
 
-  public updateProperty(formData): void {
+  public updateProperty(formData: any): void {
     this.propertyForm.markAllAsTouched();
     this.propertyForm.updateValueAndValidity();
 

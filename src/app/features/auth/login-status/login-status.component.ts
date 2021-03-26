@@ -88,7 +88,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
     private sanitizer: DomSanitizer
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.logging.logger(
       this.logging.Level.Info,
       '1:INIT',
@@ -166,7 +166,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
     }
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.unsubscribeEverything();
   }
 
@@ -176,7 +176,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
       : '../../../assets/img/banks-logo/round/annen.png';
   }
 
-  unsubscribeEverything() {
+  unsubscribeEverything(): void {
     if (this.stompClient && this.stompClient.connected) {
       this.stompClient.disconnect();
       this.stompClient.unsubscribe();
@@ -195,14 +195,14 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
     }
   }
 
-  returnToInput() {
+  returnToInput(): void {
     this.returnToInputPage.emit();
     if (this.isNotSB1customer) {
       this.router.navigate(['/autentisering/sparebank1-sub']);
     }
   }
 
-  sendUserDataTink(tinkCode: any, resendData = false) {
+  sendUserDataTink(tinkCode: any, resendData = false): void {
     const dataObj = {
       code: tinkCode,
       country: 'NOR'
@@ -234,7 +234,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
     );
   }
 
-  sendUserData(resendData = false) {
+  sendUserData(resendData = false): void {
     const dataObj = {
       birthdateOrSsn: this.userData.ssn || this.userData.birthdate,
       mobile: this.userData.phone
@@ -716,7 +716,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
     });
   }
 
-  stopCrawlerTimer() {
+  stopCrawlerTimer(): void {
     if (this.crawlingTimerSubscription) {
       this.crawlingTimerSubscription.unsubscribe();
       this.crawlingTimerSubscription = null;
@@ -767,7 +767,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
     return this.thirdStepTimer <= 0;
   }
 
-  selectAccount(name: string) {
+  selectAccount(name: string): void {
     const data = `{"eventType":"EIKA_CHOOSE_ACCOUNT_TO_PROCESS_RESPONSE", "sessionId":"${this.userSessionId}", "accountToProcess":"${name}"}`;
     this.stompClient.send(API_URL_MAP.crawlerAccountSelectEikaUrl, {}, data);
     this.isAccountSelection = false;

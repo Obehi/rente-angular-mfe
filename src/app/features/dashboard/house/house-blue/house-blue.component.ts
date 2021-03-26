@@ -168,7 +168,7 @@ export class HouseBlueComponent implements OnInit, DeactivationGuarded {
         () => {
           if (this.isError) {
             this.isError = false;
-            this.errorMessage === null;
+            this.errorMessage = null;
             return;
           }
 
