@@ -1460,7 +1460,7 @@ export const TinkBanks: BankVo[] = [
     null,
     false,
     true,
-    false,
+    true,
     true,
     null
   )

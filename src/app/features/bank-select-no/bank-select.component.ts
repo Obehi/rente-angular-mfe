@@ -64,15 +64,11 @@ export class BankSelectNoComponent implements OnInit {
         : true;
     });
 
-    const tinkBanksWithoutHandelsbanken = TinkBanks.filter((bank) => {
-      return bank.name !== 'HANDELSBANKEN';
-    });
-
     this.allBanks = [
       specialCaseBanks[dnb],
       specialCaseBanks[nordea],
       specialCaseBanks[sparebank],
-      ...tinkBanksWithoutHandelsbanken,
+      ...TinkBanks,
       ...nonMembershipBanks
     ];
   }
