@@ -38,9 +38,7 @@ export class BankSelectComponent implements OnInit {
     } else {
       const f = filter.toLocaleLowerCase();
       filteredBanks = this.allBanks.filter(
-        (bank) =>
-          bank.label.toLocaleLowerCase().indexOf(f) > -1 &&
-          bank.name !== 'HANDELSBANKEN'
+        (bank) => bank.label.toLocaleLowerCase().indexOf(f) > -1
       );
     }
     this.banks = filteredBanks;
