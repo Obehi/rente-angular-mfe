@@ -4,6 +4,7 @@ import { LoansService } from '@services/remote-api/loans.service';
 import { MatTabChangeEvent } from '@angular/material';
 import { CheckBoxItem } from '@shared/components/ui-components/checkbox-container/checkbox-container.component';
 import { EnvService } from '@services/env.service';
+
 export enum AddressFormMode {
   Editing,
   Statistics
@@ -27,7 +28,7 @@ export class HouseFormSvComponent implements OnInit {
   mode = AddressFormMode.Editing;
   changesMade = false;
   ableTosave = false;
-
+  tabAutomatic = 'Automatisk estimat';
   constructor(
     private loansService: LoansService,
     public envService: EnvService
