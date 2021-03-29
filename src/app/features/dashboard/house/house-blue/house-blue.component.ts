@@ -168,8 +168,8 @@ export class HouseBlueComponent implements OnInit, DeactivationGuarded {
               this.changesMade = false;
               this.isError = true;
               this.dialog.open(ManualInputDialogComponent);
-
               this.canLeavePage = true;
+              return;
             }
           }
         }
