@@ -1,6 +1,5 @@
 import { LoansService, AddressDto } from '@services/remote-api/loans.service';
 import { Component, OnInit } from '@angular/core';
-import { SnackBarService } from '../../../../shared/services/snackbar.service';
 import { Observable, Subject } from 'rxjs';
 import { DeactivationGuarded } from '@shared/guards/route.guard';
 import { locale } from '../../../../config/locale/locale';
@@ -8,7 +7,7 @@ import { HouseFormErrorDialogComponent } from './error-dialog/error-dialog.compo
 import { ManualInputDialogComponent } from './manual-input-dialog/manual-input-dialog.component';
 import { MatDialog } from '@angular/material';
 import { EventService, Events } from '@services/event-service';
-
+import { EnvService } from '@services/env.service';
 import {
   trigger,
   state,
@@ -58,9 +57,9 @@ export class HouseBlueComponent implements OnInit, DeactivationGuarded {
 
   constructor(
     private loansService: LoansService,
-    private snackBar: SnackBarService,
     eventService: EventService,
-    dialog: MatDialog
+    dialog: MatDialog,
+    private envService: EnvService
   ) {
     this.dialog = dialog;
 
@@ -144,10 +143,15 @@ export class HouseBlueComponent implements OnInit, DeactivationGuarded {
         (res) => {
           this.addresses = res.addresses;
           for (const address of res.addresses) {
+            address.error = true;
             if (address.error === true) {
               this.isLoading = false;
               this.changesMade = false;
-              this.dialog.open(HouseFormErrorDialogComponent);
+              if (this.envService.isSweden()) {
+                this.dialog.open(ManualInputDialogComponent);
+              } else {
+                this.dialog.open(HouseFormErrorDialogComponent);
+              }
 
               this.canLeavePage = true;
               this.errorMessage = address.message;
@@ -155,6 +159,8 @@ export class HouseBlueComponent implements OnInit, DeactivationGuarded {
               return;
             }
 
+            address.useManualPropertyValue = false;
+            address.estimatedPropertyValue = 0;
             if (
               address.useManualPropertyValue === false &&
               address.estimatedPropertyValue === 0
