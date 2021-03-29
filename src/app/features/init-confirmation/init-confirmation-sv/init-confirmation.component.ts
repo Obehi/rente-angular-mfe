@@ -107,8 +107,6 @@ export class InitConfirmationSVComponent implements OnInit {
     this.propertyForm.markAllAsTouched();
     this.propertyForm.updateValueAndValidity();
 
-    console.log('formData.propertyType');
-    console.log(formData.propertyType);
     this.isLoading = true;
 
     const confirmationData = {
