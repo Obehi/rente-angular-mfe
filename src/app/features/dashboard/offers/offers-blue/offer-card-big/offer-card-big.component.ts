@@ -45,7 +45,7 @@ export class OfferCardBigComponentBlue implements OnInit {
       this.isSweden = false;
     }
 
-    this.isNordea = false;
+    this.isNordea = true;
 
     if (this.offer.fixedRatePeriod === 0) {
       this.offerType = 'threeMonths';

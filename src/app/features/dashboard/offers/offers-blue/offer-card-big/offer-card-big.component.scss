@@ -183,9 +183,20 @@
 }
 
 .triple {
-  display: flex;
   flex-direction: row;
   justify-content: space-around;
+  margin-bottom: 10px;
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: 1fr 1fr 1fr;
+
+  @media(min-width: 600px) and (max-width: 790px) {
+    grid-template-columns: 1fr;
+
+    .first {
+      display: none;
+    }
+  }
 }
 
 .bgHack {
