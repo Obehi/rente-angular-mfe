@@ -143,7 +143,6 @@ export class HouseBlueComponent implements OnInit, DeactivationGuarded {
         (res) => {
           this.addresses = res.addresses;
           for (const address of res.addresses) {
-            address.error = true;
             if (address.error === true) {
               this.isLoading = false;
               this.changesMade = false;
@@ -159,8 +158,7 @@ export class HouseBlueComponent implements OnInit, DeactivationGuarded {
               return;
             }
 
-            address.useManualPropertyValue = false;
-            address.estimatedPropertyValue = 0;
+            // address.estimatedPropertyValue === 0 is also an error
             if (
               address.useManualPropertyValue === false &&
               address.estimatedPropertyValue === 0
