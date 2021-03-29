@@ -34,10 +34,11 @@ export class HouseFormSvComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    // Do checks to make sure the checkbox component doesnt invalid values
     this.address.estimatedPropertyValue =
       this.address.estimatedPropertyValue || null;
-
     this.address.manualPropertyValue = this.address.manualPropertyValue || null;
+
     this.initCheckboxes();
 
     this.loansService.getAddresses().subscribe((r) => {
