@@ -54,6 +54,7 @@ export class HouseBlueComponent implements OnInit, DeactivationGuarded {
   public isError = false;
   public dialog: MatDialog;
   public showExplainText: boolean;
+  public propertyIconPath: string;
 
   constructor(
     private loansService: LoansService,
@@ -69,18 +70,31 @@ export class HouseBlueComponent implements OnInit, DeactivationGuarded {
   }
 
   ngOnInit(): void {
-    if (
-      history.state.data !== undefined &&
-      history.state.data.fromConfirmProperty === true
-    ) {
-      this.showExplainText = true;
-    }
     this.locale = locale;
     this.isLoading = true;
     this.loansService.getAddresses().subscribe((r) => {
       this.isLoading = false;
       this.addresses = r.addresses;
       this.showAddresses = true;
+
+      if (
+        history.state.data !== undefined &&
+        history.state.data.fromConfirmProperty === true
+      ) {
+        this.showExplainText = true;
+
+        const propertyType = r.addresses[0].propertyType;
+        console.log('propertyType');
+        console.log(propertyType);
+        this.propertyIconPath =
+          propertyType === 'HOUSE'
+            ? '../../../../assets/icons/round-house-primary-blue.svg'
+            : propertyType === 'APARTMENT'
+            ? '../../../../assets/icons/round-apartment-primary-blue.svg'
+            : null;
+
+        console.log(this.propertyIconPath);
+      }
     });
   }
 
