@@ -4,7 +4,6 @@ import { SnackBarService } from '../../../../shared/services/snackbar.service';
 import { Observable, Subject } from 'rxjs';
 import { DeactivationGuarded } from '@shared/guards/route.guard';
 import { locale } from '../../../../config/locale/locale';
-ManualInputDialogComponent;
 import { HouseFormErrorDialogComponent } from './error-dialog/error-dialog.component';
 import { ManualInputDialogComponent } from './manual-input-dialog/manual-input-dialog.component';
 import { MatDialog } from '@angular/material';
@@ -162,7 +161,7 @@ export class HouseBlueComponent implements OnInit, DeactivationGuarded {
             ) {
               this.isLoading = false;
               this.changesMade = false;
-              this.dialog.open(HouseFormErrorDialogComponent);
+              this.dialog.open(ManualInputDialogComponent);
 
               this.canLeavePage = true;
             }
