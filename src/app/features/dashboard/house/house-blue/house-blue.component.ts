@@ -9,7 +9,7 @@ import { HouseFormErrorDialogComponent } from './error-dialog/error-dialog.compo
 import { ManualInputDialogComponent } from './manual-input-dialog/manual-input-dialog.component';
 import { MatDialog } from '@angular/material';
 import { EventService, Events } from '@services/event-service';
-
+import { EnvService } from '@services/env.service';
 import {
   trigger,
   state,
@@ -61,7 +61,8 @@ export class HouseBlueComponent implements OnInit, DeactivationGuarded {
     private loansService: LoansService,
     private snackBar: SnackBarService,
     eventService: EventService,
-    dialog: MatDialog
+    dialog: MatDialog,
+    private envService: EnvService
   ) {
     this.dialog = dialog;
 
@@ -137,60 +138,66 @@ export class HouseBlueComponent implements OnInit, DeactivationGuarded {
     this.changesMade = true;
   }
   saveAddresses(): void {
-    if (this.ableToSave) {
-      this.isLoading = true;
-      this.canLeavePage = false;
+    this.isLoading = true;
+    this.canLeavePage = false;
 
-      this.loansService.updateAddress(this.addresses).subscribe(
-        (res) => {
-          this.addresses = res.addresses;
-          for (const address of res.addresses) {
-            if (address.error === true) {
+    this.loansService.updateAddress(this.addresses).subscribe(
+      (res) => {
+        this.addresses = res.addresses;
+        for (const address of res.addresses) {
+          if (this.envService.isNorway() === true) {
+            if (
+              address.error === true ||
+              (address.useManualPropertyValue === false &&
+                address.estimatedPropertyValue === null)
+            ) {
               this.isLoading = false;
               this.changesMade = false;
               this.dialog.open(HouseFormErrorDialogComponent);
-
               this.canLeavePage = true;
               this.errorMessage = address.message;
               this.isError = true;
               return;
             }
+          }
 
+          if (this.envService.isSweden() === true) {
             if (
-              address.useManualPropertyValue === false &&
-              address.estimatedPropertyValue === 0
+              address.error === true ||
+              (address.useManualPropertyValue === false &&
+                address.estimatedPropertyValue === 0)
             ) {
               this.isLoading = false;
               this.changesMade = false;
               this.dialog.open(HouseFormErrorDialogComponent);
-
+              this.isError = true;
               this.canLeavePage = true;
             }
           }
-
-          this.canNavigateBooolean$.next(true);
-        },
-        () => {
-          this.errorMessage = 'Oops, noe gikk galt';
-          this.isLoading = false;
-          this.changesMade = false;
-          this.errorAnimationTrigger = !this.errorAnimationTrigger;
-          this.canLeavePage = true;
-        },
-        () => {
-          if (this.isError) {
-            this.isError = false;
-            this.errorMessage = null;
-            return;
-          }
-
-          this.changesMade = false;
-          this.isLoading = false;
-          this.updateAnimationTrigger = !this.updateAnimationTrigger;
-          this.canLeavePage = true;
         }
-      );
-    }
+
+        this.canNavigateBooolean$.next(true);
+      },
+      () => {
+        this.errorMessage = 'Oops, noe gikk galt';
+        this.isLoading = false;
+        this.changesMade = false;
+        this.errorAnimationTrigger = !this.errorAnimationTrigger;
+        this.canLeavePage = true;
+      },
+      () => {
+        if (this.isError) {
+          this.isError = false;
+          this.errorMessage = null;
+          return;
+        }
+
+        this.changesMade = false;
+        this.isLoading = false;
+        this.updateAnimationTrigger = !this.updateAnimationTrigger;
+        this.canLeavePage = true;
+      }
+    );
   }
 
   get ableToSave(): boolean {

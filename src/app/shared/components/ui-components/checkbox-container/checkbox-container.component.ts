@@ -46,7 +46,11 @@ export class CheckboxContainerComponent implements OnInit {
       item.isSelected = false;
     });
 
-    if (this.defaultValue !== undefined) {
+    if (
+      this.defaultValue !== undefined &&
+      this.defaultValue !== null &&
+      this.defaultValue !== ''
+    ) {
       const defaultItem = this.checkBoxItems.filter((item) => {
         return item.value === this.defaultValue;
       })[0];
@@ -58,7 +62,7 @@ export class CheckboxContainerComponent implements OnInit {
   getIcon(item: CheckBoxItem): string {
     const currentItemValue = this.formGroup
       ? this.formGroup.get(this.controlName).value
-      : this._selectedItem.value;
+      : this._selectedItem?.value;
 
     const iconName =
       currentItemValue === item.value ? item.iconActive : item.iconDeactivated;

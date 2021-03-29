@@ -34,7 +34,12 @@ export class HouseFormSvComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.address.estimatedPropertyValue =
+      this.address.estimatedPropertyValue || null;
+
+    this.address.manualPropertyValue = this.address.manualPropertyValue || null;
     this.initCheckboxes();
+
     this.loansService.getAddresses().subscribe((r) => {
       this.addresses = r.addresses;
     });
@@ -104,7 +109,6 @@ export class HouseFormSvComponent implements OnInit {
   }
 
   save(): void {
-    console.log('save');
     this.onSave.emit();
     this.ableTosave = false;
   }
