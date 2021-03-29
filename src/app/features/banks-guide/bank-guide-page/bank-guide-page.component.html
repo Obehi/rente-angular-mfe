@@ -241,13 +241,13 @@
             <mat-expansion-panel-header>
               <p>
                 <b>
-                   medlemskapslån
+                  {{(membership | titlecase)}} medlemskapslån
                 </b>
               </p>
             </mat-expansion-panel-header>
             <div class="item" *ngFor="let membership of bankGuideInfo?.membershipOffers[membership]">
                    <div> {{membership.name}} </div>
-                   <div> {{membership.rate}} </div>
+                   <div> {{membership.rate | number: "1.2-2"}}% </div>
             </div>
           </mat-expansion-panel>
 

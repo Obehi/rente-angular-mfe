@@ -5,25 +5,15 @@ import {
   AddressCreationDto
 } from '@services/remote-api/loans.service';
 import { UserService } from '@services/remote-api/user.service';
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
-import { TitleCasePipe } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
 import {
   Validators,
   AbstractControl,
   FormGroup,
-  NgForm,
-  FormBuilder,
-  FormControl
+  FormBuilder
 } from '@angular/forms';
-import { forkJoin, Observable } from 'rxjs';
-import { startWith, map } from 'rxjs/operators';
 import { ENTER, COMMA } from '@angular/cdk/keycodes';
-import {
-  MatAutocomplete,
-  MatAutocompleteSelectedEvent,
-  MatChipInputEvent,
-  MatDialog
-} from '@angular/material';
+import { MatDialog } from '@angular/material';
 import { Router } from '@angular/router';
 import { VALIDATION_PATTERN } from '@config/validation-patterns.config';
 import { SnackBarService } from '../../../shared/services/snackbar.service';
@@ -64,9 +54,6 @@ export class InitConfirmationSVComponent implements OnInit {
     this.loansService.getConfirmationData().subscribe((res) => {
       this.userData = res;
 
-      const income = String(res.income) && null;
-      const apartmentSize = String(res.apartmentSize) && null;
-
       this.propertyForm = this.fb.group({
         apartmentValue: ['', Validators.required],
         email: [
@@ -87,20 +74,17 @@ export class InitConfirmationSVComponent implements OnInit {
     });
   }
 
-  isErrorState(
-    control: AbstractControl | null,
-    form: FormGroup | NgForm | null
-  ): boolean {
+  isErrorState(control: AbstractControl | null): boolean {
     return !!(control && control.invalid && (control.dirty || control.touched));
   }
 
-  public openInfoDialog(offer: OfferInfo): void {
+  public openInfoDialog(offer: OfferInfo | string): void {
     this.dialog.open(DialogInfoComponent, {
       data: offer
     });
   }
 
-  public updateProperty(formData) {
+  public updateProperty(formData): void {
     this.propertyForm.markAllAsTouched();
     this.propertyForm.updateValueAndValidity();
 

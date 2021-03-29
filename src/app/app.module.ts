@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, LOCALE_ID, APP_INITIALIZER } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { Environment } from '@services/env.service';
 import { PageNotFoundComponent } from '@features/page-not-found/page-not-found.component';
 import { LandingComponent } from '@features/landing/landing.component';
 import { SharedModule } from '@shared/shared.module';
@@ -9,7 +10,7 @@ import { FaqComponent } from '@features/faq/faq.component';
 import { PrivacyComponent } from '@features/privacy/privacy.component';
 import { AboutCookiesComponent } from '@features/cookies/cookies.component';
 import { TermsConditionsComponent } from '@features/terms-conditions/terms-conditions.component';
-import { PrivacyPolicyComponent } from '@features/privacy-policy/privacy-policy.component';
+import { PrivacyPolicyLangGenericComponent } from './local-components/components-output';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ContactUsComponent } from './features/contact-us/contact-us.component';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -50,7 +51,7 @@ registerLocaleData(localeNo);
     FaqComponent,
     PrivacyComponent,
     TermsConditionsComponent,
-    PrivacyPolicyComponent,
+    PrivacyPolicyLangGenericComponent,
     ContactUsComponent,
     InitConfirmationLangGenericComponent,
     GetNotifiedLangGenericComponent,
@@ -99,6 +100,8 @@ registerLocaleData(localeNo);
 })
 export class AppModule {}
 
-export function initializeConfig(envService: EnvService) {
+export function initializeConfig(
+  envService: EnvService
+): () => Promise<Environment> {
   return () => envService.loadEnv();
 }

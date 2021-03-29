@@ -22,7 +22,7 @@
           [placeholder]="'E-post'"
           formControlName="email"
           [errorStateMatcher]="
-            isErrorState(profileForm.controls['email'], profileForm)
+            isErrorState(profileForm.controls['email'])
           "
           [modelOptions]="{ updateOn: 'blur'}"
         >
@@ -51,7 +51,7 @@
           [placeholder]="'Din brutto årsinntekt'"
           formControlName="income"
           [errorStateMatcher]="
-            isErrorState(profileForm.controls['income'], profileForm)
+            isErrorState(profileForm.controls['income'])
           "
           [maskType]="mask.currency"
           [modelOptions]="{ updateOn: 'blur'}"
@@ -157,11 +157,6 @@
                 <div class="withinfo">
                   <p i18n=“market-check|profile@@profile.marketCheck” class="small">Markedsovervåkning / Rentesjekk av dine lån</p>
                   <div
-                    (click)="
-                      openInfoDialog(
-                        localeTextService.getMarkedObservationText
-                      )
-                    "
                     class="clickable"
                   >
                     <mat-icon>help</mat-icon>

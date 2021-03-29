@@ -18,9 +18,11 @@ export class InitialOfferComponent implements OnInit {
       this.bank.name,
       '../../../../../assets/img/banks-logo/'
     );
+
+    if (this.offer.bankInfo.score === null) this.offer.bankInfo.score = 3;
   }
 
-  public detailOpenClicked() {
+  public detailOpenClicked(): void {
     this.expandStatus = true;
   }
 }

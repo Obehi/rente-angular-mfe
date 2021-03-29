@@ -18,6 +18,7 @@ import { ChangeBankLocationComponent } from '@features/dashboard/offers/change-b
 
 import { GetOfferFromBankDialogComponent } from './../get-offer-from-bank-dialog/get-offer-from-bank-dialog.component';
 import { AntiChurnDialogComponent } from '@features/dashboard/offers/anti-churn-dialog/anti-churn-dialog.component';
+import { CanNotBargainDialogComponent } from '@features/dashboard/offers/can-not-bargain-dialog/can-not-bargain-dialog.component';
 import { LtvTooHighDialogComponent } from './../ltv-too-high-dialog/ltv-too-high-dialog.component';
 import { ChangeBankServiceService } from '@services/remote-api/change-bank-service.service';
 import {
@@ -32,6 +33,7 @@ import { BankUtils } from '@shared/models/bank';
 import { CustomLangTextService } from '@shared/services/custom-lang-text.service';
 import { locale } from '../../../../config/locale/locale';
 import { ROUTES_MAP } from '@config/routes-config';
+import { EnvService } from '@services/env.service';
 
 @Component({
   selector: 'rente-offers-blue',
@@ -56,7 +58,7 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
   public subscribeShareLinkTimer: Subscription;
   public effRateLoweredDialogVisible: boolean;
   public banksMap = BANKS_DATA;
-  public tips: object[];
+  public tips: any[];
   public offerTypes: string[];
   public currentOfferType: string;
   public isSweden: boolean;
@@ -98,7 +100,8 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
     private localStorageService: LocalStorageService,
     private userService: UserService,
     private trackingService: TrackingService,
-    public customLangTextSerice: CustomLangTextService
+    public customLangTextSerice: CustomLangTextService,
+    public envService: EnvService
   ) {
     this.onResize();
 
@@ -238,26 +241,12 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
     });
   }
 
-  public goToProperty() {
+  public goToProperty(): void {
     this.router.navigate(['/dashboard/' + ROUTES_MAP.property]);
   }
 
-  public goToLoans() {
+  public goToLoans(): void {
     this.router.navigate(['/dashboard/' + ROUTES_MAP.loans]);
-  }
-
-  public setOfferType(type: string) {
-    this.currentOfferType = type;
-
-    if (type === 'all') {
-      this.currentOfferInfo.offers.top5 = this.offersInfo.offers.top5;
-      return;
-    }
-    const newLoanTypeSelected = this.offersInfo.offers.top5.filter((item) => {
-      return item.loanType === type;
-    });
-
-    this.currentOfferInfo.offers.top5 = newLoanTypeSelected;
   }
 
   public openOfferDialog(offer: OfferInfo): void {
@@ -276,18 +265,18 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
     const trackingDto = new TrackingDto();
     trackingDto.offerId = offer.id;
     trackingDto.type = 'OFFER_HEADER_LINK';
-    this.sendOfferTrackingData(trackingDto, offer);
+    this.sendOfferTrackingData(trackingDto);
   }
 
-  public openBankUrlByButton(offer: OfferInfo) {
-    if (offer.bankInfo.url === null || offer.bankInfo.partner == false) return;
+  public openBankUrlByButton(offer: OfferInfo): void {
+    if (offer.bankInfo.url === null || offer.bankInfo.partner === false) return;
 
     window.open(offer.bankInfo.url, '_blank');
 
     const trackingDto = new TrackingDto();
     trackingDto.offerId = offer.id;
     trackingDto.type = 'BANK_BUTTON_1';
-    this.sendOfferTrackingData(trackingDto, offer);
+    this.sendOfferTrackingData(trackingDto);
   }
 
   public openNewOfferDialog(offer: OfferInfo): void {
@@ -299,12 +288,12 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
     const trackingDto = new TrackingDto();
     trackingDto.offerId = offer.id;
     trackingDto.type = 'BANK_BUTTON_2';
-    this.sendOfferTrackingData(trackingDto, offer);
+    this.sendOfferTrackingData(trackingDto);
   }
 
-  private sendOfferTrackingData(trackingDto: TrackingDto, offer: OfferInfo) {
+  private sendOfferTrackingData(trackingDto: TrackingDto) {
     this.trackingService.sendTrackingStats(trackingDto).subscribe(
-      (res) => {},
+      () => {},
       (err) => {
         console.log('err');
         console.log(err);
@@ -339,7 +328,7 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
           );
         });
       },
-      (err) => {
+      () => {
         this.changeBankLoading = false;
       }
     );
@@ -412,9 +401,26 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
     }
   }
 
-  public handleChangeBankdialogOnClose(state: string) {
+  public openBargainMoreInfoDialog(): void {
+    if (this.canBargain || !this.isSweden) {
+      return;
+    }
+    const changeBankRef = this.dialog.open(CanNotBargainDialogComponent, {
+      autoFocus: false
+    });
+    changeBankRef.afterClosed().subscribe(() => {
+      this.handleChangeBankdialogOnClose(
+        changeBankRef.componentInstance.closeState
+      );
+    });
+  }
+
+  public handleChangeBankdialogOnClose(state: string): void {
     switch (state) {
       case 'canceled': {
+        break;
+      }
+      case 'do-nothing': {
         break;
       }
       case 'procced': {
@@ -437,7 +443,7 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
   }
 
   @HostListener('window:resize', ['$event'])
-  onResize(event: any = null) {
+  onResize(event: any = null): void {
     this.isSmallScreen = window.innerWidth <= 1024;
   }
 

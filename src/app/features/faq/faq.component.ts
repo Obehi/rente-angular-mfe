@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ROUTES_MAP } from '@config/routes-config';
 import { locale } from '../../config/locale/locale';
-
+import { EnvService } from '@services/env.service';
 @Component({
   selector: 'rente-faq',
   templateUrl: './faq.component.html',
@@ -12,9 +12,9 @@ export class FaqComponent implements OnInit {
   public routes = ROUTES_MAP;
   public isSweden = false;
 
-  constructor() {}
+  constructor(public envService: EnvService) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     if (locale.includes('sv')) {
       this.isSweden = true;
     } else {

@@ -8,7 +8,6 @@ import {
 } from '../../shared/models/bank';
 import { Router } from '@angular/router';
 import { ROUTES_MAP } from '@config/routes-config';
-import { Injectable } from '@angular/core';
 import { EnvService } from '@services/env.service';
 @Component({
   selector: 'rente-bank-select-variation',
@@ -16,7 +15,6 @@ import { EnvService } from '@services/env.service';
   styleUrls: ['./bank-select.component.scss']
 })
 export class BankSelectNoComponent implements OnInit {
-  @ViewChild('searchElement') searchElement;
   searchStr: string;
   banks: BankVo[];
   allBanks: BankVo[];
@@ -28,10 +26,6 @@ export class BankSelectNoComponent implements OnInit {
   ngOnInit() {
     this.sortBanks();
     this.filterBank(this.searchStr);
-  }
-
-  ngAfterViewInit() {
-    this.searchElement.nativeElement.focus();
   }
 
   sortBanks(): void {
@@ -57,12 +51,25 @@ export class BankSelectNoComponent implements OnInit {
       }
     });
 
+    const nonMembershipBanks = sortedBanksAlphabetic.filter((bank) => {
+      return bank.name === 'TOBB' ||
+        bank.name === 'USBL' ||
+        bank.name === 'BATE' ||
+        bank.name === 'SYKEPLEIERFORBUND_DNB' ||
+        bank.name === 'YS_NORDEA_DIRECT' ||
+        bank.name === 'NAL_NORDEA_DIRECT' ||
+        bank.name === 'UNIO_NORDEA_DIRECT' ||
+        bank.name === 'AKADEMIKERNE_DANSKE'
+        ? false
+        : true;
+    });
+
     this.allBanks = [
       specialCaseBanks[dnb],
       specialCaseBanks[nordea],
       specialCaseBanks[sparebank],
       ...TinkBanks,
-      ...sortedBanksAlphabetic
+      ...nonMembershipBanks
     ];
   }
 

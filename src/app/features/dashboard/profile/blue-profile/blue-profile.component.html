@@ -27,7 +27,7 @@
           <div class="topForm">
             <div class="field">
               <rente-input [placeholder]="'E-post'" formControlName="email" [errorStateMatcher]="
-                isErrorState(profileForm.controls['email'], profileForm)
+                isErrorState(profileForm.controls['email'])
                 " [modelOptions]="{ updateOn: 'blur'}">
               </rente-input>
               <div *ngIf="profileForm.controls['email'].touched" class="error-message">
@@ -42,7 +42,7 @@
 
             <div class="field withinfo">
               <rente-input [placeholder]="textLangService.getProfileIncomePlaceHolder()" formControlName="income" [errorStateMatcher]="
-                isErrorState(profileForm.controls['income'], profileForm)
+                isErrorState(profileForm.controls['income'])
                 " [maskType]="mask.currency" [modelOptions]="{ updateOn: 'blur'}" [type]="'tel'" matSuffix="kr">
               </rente-input>
               <div (click)="
@@ -248,7 +248,7 @@
           <div class="formBox">
             <div class="field">
               <rente-input [placeholder]="'E-post'" formControlName="email" [errorStateMatcher]="
-                    isErrorState(profileForm.controls['email'], profileForm)
+                    isErrorState(profileForm.controls['email'])
                     " [modelOptions]="{ updateOn: 'blur'}">
               </rente-input>
               <div *ngIf="profileForm.controls['email'].touched" class="error-message">
@@ -263,7 +263,7 @@
 
             <div class="field withinfo">
               <rente-input i18n=“income-per-year|profile@@profile.income  [placeholder]="textLangService.getProfileIncomePlaceHolder()" formControlName="income" [errorStateMatcher]="
-                    isErrorState(profileForm.controls['income'], profileForm)
+                    isErrorState(profileForm.controls['income'])
                     " [maskType]="mask.currency" [modelOptions]="{ updateOn: 'blur'}" [type]="'tel'" matSuffix="kr">
               </rente-input>
               <div (click)="

@@ -1,18 +1,36 @@
-<div class="front-container dnbError" *ngIf="isDnbBank && environment.loginDnbIsOn === false">
+ <div class="front-container dnbError" *ngIf="isDnbBank && environment.loginDnbIsOn === false">
 
   <form
       class="email-form"
       [formGroup]="missingBankForm"
       novalidate
-      (ngSubmit)="request(missingBankForm.value)"
+      (ngSubmit)="request()"
     >
-    
+
     <h3>
-      DNB kunder kan for tiden ikke logge på tjenesten grunnet tekniske problemer med DNB.
+      DNB sperrer at du kan hente dine lånedata
     </h3>
+
     <p>
-      Er du ny bruker av renteradar.no
-      eller ønsker å få beskjed når du kan bruke tjenesten igjen? Legg igjen din epost så sier vi ifra når det er klart!
+      DNB ønsker ikke at du som kunde skal sammenligne betingelsene på boliglånet ditt. 
+      Siden nyttår har de derfor aktivt sperret sine kunder å dele lånedata med Renteradar.no. 
+      Vi synes det er både trist og umoralsk at DNB aktivt motarbeider åpenhet og transparens i 
+      boliglånsmarkedet på denne måten.
+    </p>
+
+    <p>
+      Vi har derfor laget en digital underskriftskampanje der vi ber DNB åpne for å dele låneinformasjon.
+    </p>
+    <br>
+    <a href = "https://www.underskrift.no/vis.asp?kampanje=8447" class="temp-button">
+      <p>
+          Signer på kampanjen her
+      </p>
+    </a>
+    <br>
+    <br>
+    <p>
+      Ønsker du beskjed i fremtiden når Renteradar.no igjen fungerer for DNB kunder kan du også legge igjen epostadressen din her:
     </p>
       
       <div>
@@ -23,7 +41,6 @@
             isErrorState(missingBankForm.controls['email'], missingBankForm)
           "
           [textControl]="inValid()"
-          (blur)="onBlurErrorCheck($event)"
         >
         </rente-input>
         <div i18n=“issue-email|get-notified@@get.notified.email”
@@ -64,7 +81,7 @@
       </a> </h4>
     </div>
 
-</div>
+</div> 
 
 <div *ngIf="!isDnbBank || environment.loginDnbIsOn === true" class="front-container">
   <p *ngIf="false" class="red">
@@ -76,7 +93,8 @@
     Gi gjerne tilbakemelding via chat/epost hvis noe ikke fungerer som det skal
   </p>
 
-  <p class="red" *ngIf="isDnbBank">Vi opplever at enkelte brukere ikke får logget inn.<br> Vi jobber med å rette problemet</p>
+  <p class="red" *ngIf="isDnbBank">Vi opplever at DNB sperrer enkelte kunder fra å innhente sine lånedata. Se nederst på siden for mer informasjon.
+  
   
   <section *ngIf="!isLoginStarted && bankIdForm" class="login">
     <h3 i18n=“title|bank-id@@bankId.title”>Logg inn med BankID på mobil</h3>
@@ -246,6 +264,92 @@
     (returnToInputPage)="isLoginStarted = false"
   >
   </rente-login-status>
+
+
+
+  <!-- <div *ngIf="isDnbBank && environment.loginDnbIsOn === false"> -->
+<div *ngIf="isDnbBank && environment.loginDnbIsOn === true">
+    <form
+      class="email-form"
+      [formGroup]="missingBankForm"
+      novalidate
+      (ngSubmit)="request()"
+    >
+
+    <h3>
+      Angående DNBs sperring av innhenting av lånedata
+    </h3>
+
+    <p>
+      DNB ønsker ikke at du som kunde skal sammenligne betingelsene på boliglånet ditt. 
+      Siden nyttår har de derfor aktivt sperret sine kunder å dele lånedata med Renteradar.no. 
+      Vi synes det er både trist og umoralsk at DNB aktivt motarbeider åpenhet og transparens i 
+      boliglånsmarkedet på denne måten, og jobber aktivt for å løse problemet.
+    </p>
+
+    <p>
+      Vi har også laget en digital underskriftskampanje der vi ber DNB åpne for å dele låneinformasjon.
+    </p>
+    <br>
+    <a href = "https://www.underskrift.no/vis.asp?kampanje=8447" class="temp-button">
+      <p>
+          Signer på kampanjen her
+      </p>
+    </a>
+    <br>
+    <br>
+    <p>
+      Ønsker du beskjed i fremtiden når Renteradar.no igjen fungerer for DNB kunder kan du også 
+      legge igjen epostadressen din her:
+    </p>
+      
+      <div>
+        <rente-input
+          [placeholder]="'E-post'"
+          formControlName="email"
+          [errorStateMatcher]="
+            isErrorState(missingBankForm.controls['email'], missingBankForm)
+          "
+          [textControl]="inValid()"
+        >
+        </rente-input>
+        <div i18n=“issue-email|get-notified@@get.notified.email”
+          *ngIf="emailError"
+          class="error-message"
+        >
+          <rente-form-message
+            class="text-left d-block"
+            [type]="'error'"
+            *ngIf="missingBankForm.controls['email'].hasError('required')"
+          >
+            Ikke gyldig email
+          </rente-form-message>
+          <rente-form-message
+            class="text-left d-block"
+            [type]="'error'"
+            *ngIf="missingBankForm.controls['email'].hasError('pattern')"
+          >
+            Ikke gyldig email
+          </rente-form-message>
+        </div>
+      </div>
+
+      <rente-button i18n=“notify-me|get-notified@@get.notified.notifyMe”
+        color="primary"
+        [disabled]="!missingBankForm.valid || isLoading"
+        >Gi meg beskjed!
+      </rente-button>
+    </form>
+  </div>
+
+
+
+
+
+
+
+
+
 
   <div *ngIf="isDnbBank" class="calculator-promotion">
     <h4>I mellomtiden prøv gjerne vår <a [routerLink]="['/boliglanskalkulator']">

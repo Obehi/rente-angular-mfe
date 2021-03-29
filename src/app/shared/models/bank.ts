@@ -6,8 +6,8 @@ export class BankVo {
     public logo: string = null,
     public loginWithSsn: boolean = false,
     public isEikaBank: boolean = false,
-    public isMissing,
-    public isTinkBank,
+    public isMissing: boolean = false,
+    public isTinkBank: boolean = false,
     public mobileUrl: string = null
   ) {}
 }
@@ -218,6 +218,7 @@ export const eikaBanks: BankVo[] = [
     null,
     true,
     true,
+    false,
     false,
     'https://gildeskaal-sparebank.no/aktuelt/bankid-paa-mobil'
   ),
@@ -819,6 +820,50 @@ export const BankList: BankVo[] = [
     'https://m.dnb.no/kundeservice/privat/bankidmobil.html'
   ),
   new BankVo(
+    'BATE',
+    'Bate boligbyggelag (DNB)',
+    'dnb.png',
+    'dnb-color.svg',
+    true,
+    false,
+    false,
+    false,
+    null
+  ),
+  new BankVo(
+    'SYKEPLEIERFORBUND_DNB',
+    'Norsk Sykepleierforbund (DNB)',
+    'dnb.png',
+    'dnb-color.svg',
+    true,
+    false,
+    false,
+    false,
+    null
+  ),
+  new BankVo(
+    'TOBB',
+    'TOBB (DNB)',
+    'dnb.png',
+    'dnb-color.svg',
+    true,
+    false,
+    false,
+    false,
+    null
+  ),
+  new BankVo(
+    'USBL',
+    'USBL (DNB)',
+    'dnb.png',
+    'dnb-color.svg',
+    true,
+    false,
+    false,
+    false,
+    null
+  ),
+  new BankVo(
     'NORDEA',
     'Nordea',
     'nordea.png',
@@ -828,6 +873,17 @@ export const BankList: BankVo[] = [
     false,
     false,
     'https://www.nordea.no/privat/kundeservice/slik-gjor-du/slik-kommer-du-i-gang-med-bankid-pa-mobil.html'
+  ),
+  new BankVo(
+    'YS_NORDEA_DIRECT',
+    'YS (Nordea Direct)',
+    'nordea_direct.png',
+    'nordea-color.svg',
+    false,
+    false,
+    false,
+    false,
+    null
   ),
   new BankVo(
     'SPAREBANK_1',
@@ -1175,6 +1231,28 @@ export const MissingBankList: BankVo[] = [
     null
   ),
   new BankVo(
+    'NAL_NORDEA_DIRECT',
+    'NAL (Nordea Direct)',
+    'nordea_direct.png',
+    null,
+    false,
+    true,
+    true,
+    false,
+    null
+  ),
+  new BankVo(
+    'UNIO_NORDEA_DIRECT',
+    'UNIO (Nordea Direct)',
+    'nordea_direct.png',
+    null,
+    false,
+    true,
+    true,
+    false,
+    null
+  ),
+  new BankVo(
     'NYBYGGER',
     'Nybygger.no (Sparebanken Øst)',
     'nybygger.png',
@@ -1382,7 +1460,7 @@ export const TinkBanks: BankVo[] = [
     null,
     false,
     true,
-    false,
+    true,
     true,
     null
   )

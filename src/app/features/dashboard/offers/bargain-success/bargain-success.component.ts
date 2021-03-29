@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { ReferralComponent } from './referral/referral.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ROUTES_MAP } from '@config/routes-config';
-
+import { EnvService } from '@services/env.service';
 @Component({
   selector: 'rente-bargain-success',
   templateUrl: './bargain-success.component.html',
@@ -13,7 +13,11 @@ export class BargainSuccessComponent implements OnInit {
   public isErrorState = false;
   private hasScrolledToTop = false;
 
-  constructor(private router: Router, public dialog: MatDialog) {}
+  constructor(
+    private router: Router,
+    public dialog: MatDialog,
+    public envService: EnvService
+  ) {}
 
   ngOnInit() {
     this.dialog.open(ReferralComponent);

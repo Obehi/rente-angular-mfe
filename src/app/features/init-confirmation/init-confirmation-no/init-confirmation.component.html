@@ -15,7 +15,7 @@
         [placeholder]="'Navn'"
         formControlName="name"
         [errorStateMatcher]="
-          isErrorState(propertyForm.controls['name'], propertyForm)
+          isErrorState(propertyForm.controls['name'])
         "
         [modelOptions]="{ updateOn: 'blur' }"
       >
@@ -41,7 +41,7 @@
             [placeholder]="'Adresse'"
             formControlName="address"
             [errorStateMatcher]="
-              isErrorState(propertyForm.controls['address'], propertyForm)
+              isErrorState(propertyForm.controls['address'])
             "
             [modelOptions]="{ updateOn: 'blur' }"
           >
@@ -62,7 +62,7 @@
           formControlName="zip"
           [maxLength] ="4"
           [errorStateMatcher]="
-            isErrorState(propertyForm.controls['zip'], propertyForm)
+            isErrorState(propertyForm.controls['zip'])
           "
           [modelOptions]="{ updateOn: 'blur' }"
         >
@@ -82,7 +82,7 @@
           [placeholder]="'E-post'"
           formControlName="email"
           [errorStateMatcher]="
-            isErrorState(propertyForm.controls['email'], propertyForm)
+            isErrorState(propertyForm.controls['email'])
           "
           [modelOptions]="{ updateOn: 'blur' }"
         >
@@ -112,8 +112,7 @@
               matSuffix="kvm"
               [errorStateMatcher]="
                 isErrorState(
-                  propertyForm.controls['apartmentSize'],
-                  propertyForm
+                  propertyForm.controls['apartmentSize']
                 )
               "
               [type]="'tel'"
@@ -149,7 +148,7 @@
               formControlName="income"
               matSuffix="kr"
               [errorStateMatcher]="
-                isErrorState(propertyForm.controls['income'], propertyForm)
+                isErrorState(propertyForm.controls['income'])
               "
               [type]="'tel'"
               [maskType]="mask.currency"
