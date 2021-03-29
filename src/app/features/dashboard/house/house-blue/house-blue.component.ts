@@ -84,16 +84,12 @@ export class HouseBlueComponent implements OnInit, DeactivationGuarded {
         this.showExplainText = true;
 
         const propertyType = r.addresses[0].propertyType;
-        console.log('propertyType');
-        console.log(propertyType);
         this.propertyIconPath =
           propertyType === 'HOUSE'
             ? '../../../../assets/icons/round-house-primary-blue.svg'
             : propertyType === 'APARTMENT'
             ? '../../../../assets/icons/round-apartment-primary-blue.svg'
             : null;
-
-        console.log(this.propertyIconPath);
       }
     });
   }
