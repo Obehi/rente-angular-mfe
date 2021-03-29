@@ -38,20 +38,19 @@ export class AntiChurnDialogComponent implements OnInit {
 
   public sendRequest(): void {
     this.isLoading = true;
-    this.changeBankServiceService
-      .sendBankOfferRequest(this.data.offerId)
-      .subscribe(
-        (_) => {
-          this.isLoading = false;
-          this.closeState = 'procced';
-          this.dialogRef.close();
-        },
-        (err) => {
-          this.isLoading = false;
-          this.closeState = 'error';
-          this.dialogRef.close();
-        }
-      );
+    const offerId = Number(this.data.offerId);
+    this.changeBankServiceService.sendBankOfferRequest(offerId).subscribe(
+      (_) => {
+        this.isLoading = false;
+        this.closeState = 'procced';
+        this.dialogRef.close();
+      },
+      () => {
+        this.isLoading = false;
+        this.closeState = 'error';
+        this.dialogRef.close();
+      }
+    );
   }
 
   public close(): void {

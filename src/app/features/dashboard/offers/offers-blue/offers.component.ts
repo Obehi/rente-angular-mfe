@@ -131,11 +131,9 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
       (res: Offers) => {
         this.offersInfo = Object.assign({}, res);
         this.currentOfferInfo = JSON.parse(JSON.stringify(res));
-        // REMOVE BEFORE PRODUCTION!!!!
-        /* this.offersInfo.bank = 'Nordea';
-        this.openAntiChurnBankDialog(this.offersInfo.offers.top5[0]);
-        this.antiChurnIsOn = this.offersInfo.bank === 'Nordea' ? true : false;
-        */
+
+        this.antiChurnIsOn = this.offersInfo.bank === 'NORDEA' ? true : false;
+
         this.canBargain =
           res.bank === 'SWE_AVANZA' ||
           res.bank === 'SWE_SBAB' ||
@@ -372,11 +370,10 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
     }
     this.changeBankLoading = true;
     const offerId = offer.id;
-    const currentBank = this.offersInfo.bank;
 
     const changeBankRef = this.dialog.open(AntiChurnDialogComponent, {
       autoFocus: false,
-      data: {}
+      data: { offerId: offerId }
     });
     changeBankRef.afterClosed().subscribe(() => {
       this.handleChangeBankdialogOnClose(
@@ -395,7 +392,6 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
 
     if (this.offersInfo.bank === 'SWE_SEB') {
       this.openChangeBankDialogWithLocation(offer);
-    } else if (this.antiChurnIsOn === true) {
     } else {
       this.openChangeBankDialogWithOnlyPreview(offer);
     }
@@ -416,6 +412,7 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
   }
 
   public handleChangeBankdialogOnClose(state: string): void {
+    this.changeBankLoading = false;
     switch (state) {
       case 'canceled': {
         break;
