@@ -43,7 +43,7 @@
       </div>
 
       <div [class]="isStatMode ? 'hidden' : 'estimate'">
-        <p class="small">Boligverdi</p>
+        <p  class="small">Bostadsvärde</p>
   
         <mat-tab-group
           class="radio"
@@ -51,7 +51,7 @@
         
           [selectedIndex]="!address.useManualPropertyValue ? 0 : 1"
         >
-          <mat-tab label="Automatisk estimat" (click)="onRbChange($event)">
+          <mat-tab label="Automatiskt estimat" (click)="onRbChange($event)">
           </mat-tab>
           <mat-tab label="Eget estimat" (click)="onRbChange($event)"> </mat-tab>
         </mat-tab-group>
