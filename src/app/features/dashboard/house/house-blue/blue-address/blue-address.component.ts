@@ -2,7 +2,6 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { AddressDto } from '@services/remote-api/loans.service';
 import { LoansService } from '@services/remote-api/loans.service';
 import { MatTabChangeEvent } from '@angular/material';
-import { EventService, EmitEvent, Events } from '@services/event-service';
 
 export enum AddressFormMode {
   Editing,
@@ -28,10 +27,7 @@ export class BlueAddressComponent implements OnInit {
   changesMade = false;
   ableTosave = false;
 
-  constructor(
-    private loansService: LoansService,
-    private eventService: EventService
-  ) {}
+  constructor(private loansService: LoansService) {}
 
   ngOnInit() {
     this.loansService.getAddresses().subscribe((r) => {
@@ -42,10 +38,10 @@ export class BlueAddressComponent implements OnInit {
   get isAbleToDelete(): boolean {
     return this.index > 0;
   }
-  get isEditMode() {
+  get isEditMode(): boolean {
     return this.mode === AddressFormMode.Editing;
   }
-  get isStatMode() {
+  get isStatMode(): boolean {
     return this.mode === AddressFormMode.Statistics;
   }
   get isAddressValid(): boolean {
@@ -58,7 +54,7 @@ export class BlueAddressComponent implements OnInit {
     );
   }
 
-  onRbChange(event: MatTabChangeEvent) {
+  onRbChange(event: MatTabChangeEvent): void {
     if (event.index === 1) {
       this.address.useManualPropertyValue = true;
     } else {
@@ -73,12 +69,12 @@ export class BlueAddressComponent implements OnInit {
     return Number(event.replace(/\s+/g, ''));
   }
 
-  save() {
+  save(): void {
     this.onSave.emit();
     this.ableTosave = false;
   }
 
-  countChange() {
+  countChange(): void {
     if (this.address.street == '') {
       this.ableTosave = false;
       return;
@@ -106,18 +102,18 @@ export class BlueAddressComponent implements OnInit {
     this.ableTosave = true;
   }
 
-  onDeleteAddressClick() {
+  onDeleteAddressClick(): void {
     this.deleteAddress.emit(this.address);
   }
 
-  manualPropertyValueChanged($event) {
+  manualPropertyValueChanged($event): void {
     if ($event && $event.target) {
       const newValue = parseInt(String($event.target.value).replace(/\D/g, ''));
       this.address.manualPropertyValue = newValue >= 0 ? newValue : 0;
     }
   }
 
-  toggleMode() {
+  toggleMode(): void {
     this.mode =
       this.mode === AddressFormMode.Editing
         ? AddressFormMode.Statistics

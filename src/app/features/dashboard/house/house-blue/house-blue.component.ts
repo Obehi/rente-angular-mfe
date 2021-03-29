@@ -1,14 +1,13 @@
 import { LoansService, AddressDto } from '@services/remote-api/loans.service';
 import { Component, OnInit } from '@angular/core';
-import { SnackBarService } from '../../../../shared/services/snackbar.service';
 import { Observable, Subject } from 'rxjs';
 import { DeactivationGuarded } from '@shared/guards/route.guard';
 import { locale } from '../../../../config/locale/locale';
-
 import { HouseFormErrorDialogComponent } from './error-dialog/error-dialog.component';
+import { ManualInputDialogComponent } from './manual-input-dialog/manual-input-dialog.component';
 import { MatDialog } from '@angular/material';
 import { EventService, Events } from '@services/event-service';
-
+import { EnvService } from '@services/env.service';
 import {
   trigger,
   state,
@@ -54,12 +53,14 @@ export class HouseBlueComponent implements OnInit, DeactivationGuarded {
   public errorMessage: string;
   public isError = false;
   public dialog: MatDialog;
+  public showExplainText: boolean;
+  public propertyIconPath: string;
 
   constructor(
     private loansService: LoansService,
-    private snackBar: SnackBarService,
     eventService: EventService,
-    dialog: MatDialog
+    dialog: MatDialog,
+    private envService: EnvService
   ) {
     this.dialog = dialog;
 
@@ -75,6 +76,21 @@ export class HouseBlueComponent implements OnInit, DeactivationGuarded {
       this.isLoading = false;
       this.addresses = r.addresses;
       this.showAddresses = true;
+
+      if (
+        history.state.data !== undefined &&
+        history.state.data.fromConfirmProperty === true
+      ) {
+        this.showExplainText = true;
+
+        const propertyType = r.addresses[0].propertyType;
+        this.propertyIconPath =
+          propertyType === 'HOUSE'
+            ? '../../../../assets/icons/round-house-primary-blue.svg'
+            : propertyType === 'APARTMENT'
+            ? '../../../../assets/icons/round-apartment-primary-blue.svg'
+            : null;
+      }
     });
   }
 
@@ -129,19 +145,22 @@ export class HouseBlueComponent implements OnInit, DeactivationGuarded {
     this.changesMade = true;
   }
   saveAddresses(): void {
-    if (this.ableToSave) {
-      this.isLoading = true;
-      this.canLeavePage = false;
+    this.isLoading = true;
+    this.canLeavePage = false;
 
-      this.loansService.updateAddress(this.addresses).subscribe(
-        (r) => {
-          this.addresses = r.addresses;
-          for (const address of r.addresses) {
-            if (address.error === true) {
+    this.loansService.updateAddress(this.addresses).subscribe(
+      (res) => {
+        this.addresses = res.addresses;
+        for (const address of res.addresses) {
+          if (this.envService.isNorway() === true) {
+            if (
+              address.error === true ||
+              (address.useManualPropertyValue === false &&
+                address.estimatedPropertyValue === null)
+            ) {
               this.isLoading = false;
               this.changesMade = false;
               this.dialog.open(HouseFormErrorDialogComponent);
-
               this.canLeavePage = true;
               this.errorMessage = address.message;
               this.isError = true;
@@ -149,29 +168,44 @@ export class HouseBlueComponent implements OnInit, DeactivationGuarded {
             }
           }
 
-          this.canNavigateBooolean$.next(true);
-        },
-        () => {
-          this.errorMessage = 'Oops, noe gikk galt';
-          this.isLoading = false;
-          this.changesMade = false;
-          this.errorAnimationTrigger = !this.errorAnimationTrigger;
-          this.canLeavePage = true;
-        },
-        () => {
-          if (this.isError) {
-            this.isError = false;
-            this.errorMessage === null;
-            return;
+          if (this.envService.isSweden() === true) {
+            if (
+              address.error === true ||
+              (address.useManualPropertyValue === false &&
+                address.estimatedPropertyValue === 0)
+            ) {
+              this.isLoading = false;
+              this.changesMade = false;
+              this.isError = true;
+              this.dialog.open(ManualInputDialogComponent);
+              this.canLeavePage = true;
+              return;
+            }
           }
-
-          this.changesMade = false;
-          this.isLoading = false;
-          this.updateAnimationTrigger = !this.updateAnimationTrigger;
-          this.canLeavePage = true;
         }
-      );
-    }
+
+        this.canNavigateBooolean$.next(true);
+      },
+      () => {
+        this.errorMessage = 'Oops, noe gikk galt';
+        this.isLoading = false;
+        this.changesMade = false;
+        this.errorAnimationTrigger = !this.errorAnimationTrigger;
+        this.canLeavePage = true;
+      },
+      () => {
+        if (this.isError) {
+          this.isError = false;
+          this.errorMessage = null;
+          return;
+        }
+
+        this.changesMade = false;
+        this.isLoading = false;
+        this.updateAnimationTrigger = !this.updateAnimationTrigger;
+        this.canLeavePage = true;
+      }
+    );
   }
 
   get ableToSave(): boolean {

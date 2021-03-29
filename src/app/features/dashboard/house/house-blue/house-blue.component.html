@@ -10,6 +10,15 @@
   <div class="loading" *ngIf="isLoading">
       <mat-spinner [diameter]="48" [strokeWidth]="4"></mat-spinner>
   </div>
+
+  <div class="confirm-property-container" *ngIf="showExplainText && !isLoading">
+    <img *ngIf="propertyIconPath !== null" src="{{propertyIconPath}}"/>
+    
+    <h3 class="explain-text">
+      Här kan du ändra information och värdet på din bostad/bostäder
+    </h3>
+  </div>
+
   <div class="house" *ngIf="showAddresses">
     <div class="title">
       <h3 i18n=“title|my-houses@@house.component.houses”>Mine boliger</h3>

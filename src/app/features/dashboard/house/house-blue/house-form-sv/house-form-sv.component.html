@@ -41,36 +41,71 @@
           matSuffix="kvm"
         ></rente-input>
       </div>
+
       <div [class]="isStatMode ? 'hidden' : 'estimate'">
-        <p class="small">Bostadens värde</p>
+        <p class="small">Boligverdi</p>
   
-        <div class="estimated">
+        <mat-tab-group
+          class="radio"
+          (selectedTabChange)="onRbChange($event)"
+        
+          [selectedIndex]="!address.useManualPropertyValue ? 0 : 1"
+        >
+          <mat-tab label="Automatisk estimat" (click)="onRbChange($event)">
+          </mat-tab>
+          <mat-tab label="Eget estimat" (click)="onRbChange($event)"> </mat-tab>
+        </mat-tab-group>
+        <div class="double estimated">
+          <div>
+            <rente-input
+              matInput
+              class="automatic"
+              [type]="'tel'"
+              [ngModel]="address.estimatedPropertyValue | thousands"
+              (change)="countChange($event)"
+              (focus)="countChange($event)"
+              [disabled]="address.useManualPropertyValue"
+              style="pointer-events: none; text-align: center !important;"
+              [matSuffix]="address.estimatedPropertyValue ? 'kr' : ''"
+            ></rente-input>
+  
+            <p *ngIf="address.estimatedPropertyValue && envService.isNorway()" class="small">
+              Estimert av Virdi
+            </p> 
+          </div>
+          
           <rente-input
             matInput
-           
+            [disabled]="!address.useManualPropertyValue"
             [type]="'tel'"
             [ngModel]="address.manualPropertyValue | thousands"
             (change)="countChange($event)"
             (focus)="countChange($event)"
-            style="text-align: left !important;"
+            style="text-align: center !important;"
             (keyup)="manualPropertyValueChanged($event)"
             matSuffix="kr"
           ></rente-input>
         </div>
-      </div>
-      
-      
-      <div class="center-button">
-        <rente-button
-        color="primary"
-        [disabled]="!ableTosave"
-        (click)="save()"
-        class="save-changes-local"
-        >Spara ändringar
-      </rente-button>
-
-
     </div>
+
+    <div class="checkbox-wrapper">
+      <rente-checkbox-container 
+        defaultValue="{{address.propertyType}}"
+        [controlName]="'propertyType'"
+        [checkBoxItems]="checkBoxItems"
+        (selectedValue)="onPropertyTypeChange($event)"
+      >
+      </rente-checkbox-container>
     </div>
-   
+    
+    
+    <div class="center-button">
+      <rente-button
+      color="primary"
+      [disabled]="!ableTosave"
+      (click)="save()"
+      class="save-changes-local"
+      >Uppdatera 
+    </rente-button>
   </div>
+</div>

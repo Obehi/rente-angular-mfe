@@ -21,6 +21,7 @@ import { EmailRedirectNOComponent } from '@features/email-redirect/email-redirec
 import { EmailRedirectSVComponent } from '@features/email-redirect/email-redirect-sv/email-redirect-sv.component';
 import { AuthGuard } from '@shared/guards/auth.guard';
 import { NoLoansComponent } from '@features/dashboard/no-loans/no-loans.component';
+import { ConfirmationProperty } from './features/init-confirmation/init-confirmation-sv/confirmation-property-sv/confirmation-property-sv.component';
 
 const commonRoutes: Routes = [
   {
@@ -194,6 +195,18 @@ const commonRoutes: Routes = [
   {
     path: ROUTES_MAP.initConfirmation,
     component: InitConfirmationLangGenericComponent,
+    data: {
+      title: customMeta.bekreftTitle,
+      meta: {
+        name: defaultMeta.name,
+        description: defaultMeta.description
+      }
+    }
+  },
+
+  {
+    path: ROUTES_MAP_SV.confirmationProperty,
+    component: ConfirmationProperty,
     data: {
       title: customMeta.bekreftTitle,
       meta: {
