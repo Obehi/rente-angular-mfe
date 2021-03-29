@@ -26,6 +26,7 @@ export class OfferCardBigComponentBlue implements OnInit {
   public offerSavingsType = OFFER_SAVINGS_TYPE;
   public offerType: string;
   public isSweden: boolean;
+  public isNordea = false;
 
   @Input() offer: OfferInfo;
   @Input() offersInfo: Offers;
@@ -43,6 +44,9 @@ export class OfferCardBigComponentBlue implements OnInit {
     } else {
       this.isSweden = false;
     }
+
+    this.isNordea = false;
+
     if (this.offer.fixedRatePeriod === 0) {
       this.offerType = 'threeMonths';
     } else if (this.offer.fixedRatePeriod === 1) {

@@ -182,6 +182,12 @@
   }
 }
 
+.triple {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
 .bgHack {
   background: white;
 }

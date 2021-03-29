@@ -391,6 +391,18 @@
           display: block !important;
         }
 
+        .buttons {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          grid-column-start: 1;
+          grid-column-end: span 2;
+
+          > * {
+            margin-bottom: 10px;
+          }
+        }
+
         .buttons.item {
 
           display: flex;

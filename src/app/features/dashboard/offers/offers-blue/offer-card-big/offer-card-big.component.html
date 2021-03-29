@@ -114,7 +114,7 @@
 
     <div class="the-offer-footer">
 
-    <div class="double buttons">
+    <div [ngClass]="{'double': isNordea === false, 'triple': isNordea === true }" class="buttons">
 
       <div class="full-width">
 
@@ -143,6 +143,15 @@
           <p class="small" *ngIf=" offer.bankInfo.partner === false" i18n=“no-deal|offer-card-big@@offer.card.big.noDeal”> (Ingen avtale med banken enda)</p>
 
       </div>
+
+      <div *ngIf="isNordea === true">
+        <rente-button
+        child childClass="{{offer.bankInfo.name}}"
+        color="secondary-medium" type="raised"
+        (click)="openNewOfferDialog(offer)">
+        Be Nordea om et bedre tilbud
+      </rente-button>
+    </div>
     </div>
 
     <p i18n=“offer-info|offer-card-big@@offer.card.big.offerInfo” class="insignificant"><span>Tilbud:

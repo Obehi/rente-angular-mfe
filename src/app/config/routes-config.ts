@@ -197,7 +197,8 @@ export const ROUTES_MAP_NO = {
 };
 
 export const ROUTES_MAP_SV = {
-  tinkMockup: 'tink-mockup'
+  tinkMockup: 'tink-mockup',
+  confirmationProperty: 'bekraftat-bostad'
 };
 
 export const ROUTES_MAP = {

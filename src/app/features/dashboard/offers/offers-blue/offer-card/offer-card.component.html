@@ -92,18 +92,32 @@
                       </mat-expansion-panel>
               
             </div>
-
-            
         </div>
+
+        <div class="buttons">
+            <rente-button class="firstButton" [disabled]="offer.bankInfo.partner == false"  
+                i18n=“see-more|offer-card-big@@offer.card.big.seeMore”
+                [color]="'primary-wide-hollow-card'" type="raised"
+                (click)="openBankUrlByButton(offer)">Se mer på {{getbankNameOrDefault(offer)}}s <br/> hjemmeside
+            </rente-button>
+
+            <div *ngIf="isNordea === true">
+                <rente-button
+                child childClass="{{offer.bankInfo.name}}"
+                color="secondary-medium" type="raised"
+                (click)="openNewOfferDialog(offer)">
+                Be Nordea om et bedre tilbud
+              </rente-button>
+            </div>
+
+            <rente-button
+            child childClass="{{offer.bankInfo.name}}"
+            i18n=“get-offer|offer-card@@offer.card.getOffer”
+            [disabled]="offer.bankInfo.partner == false" color="primary-medium" type="raised"
+            (click)="openNewOfferDialog(offer)">Få tilbud fra {{ getbankNameOrDefault(offer) }}!
+            </rente-button>
+
       </div>
-
-
-      <div class="item buttons">
-        <rente-button class="button firstButton" [disabled]="offer.bankInfo.partner == false"  
-            i18n=“see-more|offer-card-big@@offer.card.big.seeMore”
-            [color]="'primary-wide-hollow-card'" type="raised"
-            (click)="openBankUrlByButton(offer)">Se mer på {{getbankNameOrDefault(offer)}}s <br/> hjemmeside
-        </rente-button>
 
         <rente-button
         class="button"

@@ -111,6 +111,13 @@ button.mat-primary-medium[disabled] {
   color: white !important;
 }
 
+button.mat-secondary-medium {
+  background-color: $secondary;
+  color: white;
+  height: 56px;
+  border-radius: 100px;
+}
+
 button.mat-primary-wide-landing {
   background-color: $primary;
   color: white;
@@ -144,7 +151,6 @@ button.mat-primary-wide-hollow {
 button.mat-primary-wide-hollow[disabled] {
   opacity: 1;
   height: 56px;
-  width: 80%;
   background-color: unset;
   color: #A9A9A9;
   border: 1px solid #C9EAE3;
