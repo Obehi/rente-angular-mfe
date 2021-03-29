@@ -12,7 +12,8 @@
   </div>
 
   <div class="confirm-property-container" *ngIf="showExplainText && !isLoading">
-    <img src="../../../../assets/icons/house-light-blue.svg"/>
+    <img *ngIf="propertyIconPath !== null" src="{{propertyIconPath}}"/>
+    
     <h3 class="explain-text">
       Här kan du ändra information och värdet på din bostad/bostäder
     </h3>
