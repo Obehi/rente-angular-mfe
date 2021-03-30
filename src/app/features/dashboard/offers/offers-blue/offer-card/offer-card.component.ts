@@ -43,7 +43,8 @@ export class OfferCardComponentBlue implements OnInit {
       this.isSweden = false;
     }
 
-    this.isNordea = this.offersInfo.bank !== 'NORDEA';
+    console.log(this.offer.bankInfo.bank);
+    this.isNordea = this.offer.bankInfo.bank === 'NORDEA';
 
     if (this.offer.fixedRatePeriod === 0) {
       this.offerType = 'threeMonths';

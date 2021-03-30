@@ -13,7 +13,7 @@ button.mat-button {
   outline: none;
   display: inline-block;
   opacity: 1;
-  padding: 20px 20px;
+  height: 56px;
   font-weight: 500;
   p {
     color: white;
@@ -82,7 +82,7 @@ button.mat-primary-wide {
 button.mat-primary-wide-break {
   background-color: $primary;
   color: white;
-  padding: 18px 20px;
+  height: 56px;
   width: 80%;
   white-space: break-spaces;
 }
@@ -151,8 +151,8 @@ button.mat-primary-wide-hollow {
   background-color: white;
   color: black;
   border: 1px solid $primary;
-  padding: 18px 20px;
-  width: 80%;
+  height: 56px;
+  width: 100%;
   white-space: break-spaces;
 }
 
@@ -169,7 +169,7 @@ button.mat-primary-wide-hollow-card {
   color: black;
   border: 1px solid $primary;
   height: 56px;
-  width: 90%;
+  width: 100%;
   white-space: break-spaces;
   border-radius: 100px;
 }
