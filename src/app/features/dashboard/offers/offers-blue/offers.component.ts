@@ -1,5 +1,4 @@
 import { LoansService } from '@services/remote-api/loans.service';
-import { OffersService } from './offers.service';
 import { OfferInfo, Offers } from './../../../../shared/models/offers';
 import { Component, OnInit, HostListener, OnDestroy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
@@ -34,7 +33,10 @@ import { CustomLangTextService } from '@shared/services/custom-lang-text.service
 import { locale } from '../../../../config/locale/locale';
 import { ROUTES_MAP } from '@config/routes-config';
 import { EnvService } from '@services/env.service';
-
+import {
+  OffersService,
+  OfferMessage
+} from '@features/dashboard/offers/offers.service';
 @Component({
   selector: 'rente-offers-blue',
   templateUrl: './offers.component.html',
@@ -93,7 +95,6 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
 
   constructor(
     public dialog: MatDialog,
-    public offersService: OffersService,
     public loansService: LoansService,
     private changeBankServiceService: ChangeBankServiceService,
     private router: Router,
@@ -101,7 +102,8 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
     private userService: UserService,
     private trackingService: TrackingService,
     public customLangTextSerice: CustomLangTextService,
-    public envService: EnvService
+    public envService: EnvService,
+    private offersService: OffersService
   ) {
     this.onResize();
 
@@ -154,6 +156,15 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
         console.log(err);
       }
     );
+
+    this.offersService.messages().subscribe((message: OfferMessage) => {
+      switch (message) {
+        case OfferMessage.antiChurn: {
+          this.openAntiChurnBankDialog(this.offersInfo.offers.top5[0]);
+          break;
+        }
+      }
+    });
   }
 
   public getTips(): void {

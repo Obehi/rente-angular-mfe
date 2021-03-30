@@ -9,6 +9,10 @@ import { MatDialog } from '@angular/material/dialog';
 import { DialogInfoComponent } from '../../dialog-info/dialog-info.component';
 
 import { BankScoreLangGenericComponent } from '../../../../../local-components/components-output';
+import {
+  OffersService,
+  OfferMessage
+} from '@features/dashboard/offers/offers.service';
 
 import { Router } from '@angular/router';
 import { CustomLangTextService } from '@shared/services/custom-lang-text.service';
@@ -35,7 +39,8 @@ export class OfferCardBigComponentBlue implements OnInit {
     private trackingService: TrackingService,
     public dialog: MatDialog,
     private router: Router,
-    public customLangTextSerice: CustomLangTextService
+    public customLangTextSerice: CustomLangTextService,
+    private offersService: OffersService
   ) {}
 
   ngOnInit(): void {
@@ -46,7 +51,7 @@ export class OfferCardBigComponentBlue implements OnInit {
     }
 
     console.log(this.offer.bankInfo.bank);
-    this.isNordea = this.offer.bankInfo.bank === 'NORDEA';
+    this.isNordea = this.offer.bankInfo.bank !== 'NORDEA';
 
     if (this.offer.fixedRatePeriod === 0) {
       this.offerType = 'threeMonths';
@@ -177,5 +182,9 @@ export class OfferCardBigComponentBlue implements OnInit {
         break;
       }
     }
+  }
+
+  public clickNordea(): void {
+    this.offersService.pushMessage(OfferMessage.antiChurn);
   }
 }
