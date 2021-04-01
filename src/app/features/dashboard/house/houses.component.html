@@ -2,7 +2,7 @@
     <img src="../../../../assets/icons/ic_done.svg" alt="success-icon" />
     <p i18n=“house|save@@house.component.save”>Lagret</p>
   </div>
-  
+
   <div class="update-error" [@loading]="errorAnimationTrigger ? 'true' : 'false'">
     <p i18n=“house|error@@house.component.error”>Oops, noe gikk galt</p>
   </div>
@@ -26,7 +26,7 @@
 
     </div>
     <div class="houses">
-      <rente-blue-address
+      <rente-house-form
         class="addressform"
         *ngFor="let address of addresses; let i = index"
         [index]="i"
@@ -36,7 +36,7 @@
         (change)="countChange()"
         [ngClass]="{'disabled':isLoading}"
       >
-      </rente-blue-address>
+      </rente-house-form>
       <rente-button class="add" color="blue" (click)="addAddress()" i18n=“house|additional@@house.component.addMore”>
           Legg til flere boliger
       </rente-button>

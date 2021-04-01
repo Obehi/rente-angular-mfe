@@ -1,4 +1,4 @@
-@import "../../../../../../styles/theme/_colors.scss";
+@import "../../../../../styles/theme/_colors.scss";
 
 .housecontainer {
     background: white;
@@ -29,7 +29,8 @@
 .saveForEstimate {
   position: absolute;
   bottom: 10px;
-  left: 25%;
+  left: 0;
+  right: 0;
 }
 .heading {
   border-radius: 15px 15px 0 0;
@@ -83,7 +84,7 @@ rente-button {
   }
   .address {
     display: grid;
-    grid-template-columns: 4fr 1fr;
+
     position: relative;
 
     button {
@@ -112,7 +113,7 @@ rente-button {
 @media (min-width: 600px) {
   .housecontainer {
     border: 1px solid $lesslight;
-    min-height: 627px;
+    min-height: 502px;
     
     .heading {
       border-top: none;
@@ -122,4 +123,8 @@ rente-button {
       border-bottom: 0;
     }
   }
+}
+
+.checkbox-wrapper {
+  margin-top: 20px;
 }

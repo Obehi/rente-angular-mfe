@@ -15,8 +15,7 @@
           type="text"
           [placeholder]="'Adress'"
           [(ngModel)]="address.street"
-          (change)="countChange($event)"
-          (focus)="countChange($event)"
+          (change)="countChange()"
         ></rente-input>
 
       </div>
@@ -26,8 +25,7 @@
           [placeholder]="'Postnummer'"
           [(ngModel)]="address.zip"
           [maxLength] ="5"
-          (change)="countChange($event)"
-          (focus)="countChange($event)"
+          (change)="countChange()"
         ></rente-input>
   
         <rente-input
@@ -36,8 +34,7 @@
           [placeholder]="'Storlek på bostaden'"
           [(ngModel)]="address.apartmentSize"
           [maxLength] ="3"
-          (change)="countChange($event)"
-          (focus)="countChange($event)"
+          (change)="countChange()"
           matSuffix="kvm"
         ></rente-input>
       </div>
@@ -62,8 +59,8 @@
               class="automatic"
               [type]="'tel'"
               [ngModel]="address.estimatedPropertyValue | thousands"
-              (change)="countChange($event)"
-              (focus)="countChange($event)"
+              (change)="countChange()"
+              (focus)="countChange()"
               [disabled]="address.useManualPropertyValue"
               style="pointer-events: none; text-align: center !important;"
               [matSuffix]="address.estimatedPropertyValue ? 'kr' : ''"
@@ -79,8 +76,8 @@
             [disabled]="!address.useManualPropertyValue"
             [type]="'tel'"
             [ngModel]="address.manualPropertyValue | thousands"
-            (change)="countChange($event)"
-            (focus)="countChange($event)"
+            (change)="countChange()"
+
             style="text-align: center !important;"
             (keyup)="manualPropertyValueChanged($event)"
             matSuffix="kr"

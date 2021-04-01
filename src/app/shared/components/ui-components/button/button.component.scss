@@ -53,6 +53,17 @@ button.mat-primary {
   background-color: $primary;
 }
 
+button.mat-primary-80 {
+  width: 80%;
+  color: white;
+  white-space: break-spaces;
+  background-color: $primary;
+}
+
+button.mat-primary-80[disabled] {
+  color: white !important;
+}
+
 button.mat-secondary {
   background-color: $secondary;
   color: white;

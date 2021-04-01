@@ -1,6 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { AddressDto } from '@services/remote-api/loans.service';
-import { LoansService } from '@services/remote-api/loans.service';
 import { MatTabChangeEvent } from '@angular/material';
 import { CheckBoxItem } from '@shared/components/ui-components/checkbox-container/checkbox-container.component';
 import { EnvService } from '@services/env.service';
@@ -11,7 +10,7 @@ export enum AddressFormMode {
 }
 
 @Component({
-  selector: 'rente-blue-address',
+  selector: 'rente-house-form',
   templateUrl: './house-form-sv.component.html',
   styleUrls: ['./house-form-sv.component.scss']
 })
@@ -23,16 +22,15 @@ export class HouseFormSvComponent implements OnInit {
   @Output() change: EventEmitter<any> = new EventEmitter();
   @Output() onSave: EventEmitter<any> = new EventEmitter();
 
-  addresses: AddressDto[];
   public checkBoxItems: CheckBoxItem[];
   mode = AddressFormMode.Editing;
   changesMade = false;
-  ableTosave = false;
+
+  get ableTosave(): boolean {
+    return this.isAddressValid && this.changesMade;
+  }
   tabAutomatic = 'Automatisk estimat';
-  constructor(
-    private loansService: LoansService,
-    public envService: EnvService
-  ) {}
+  constructor(public envService: EnvService) {}
 
   ngOnInit(): void {
     // Do checks to make sure the checkbox component doesnt invalid values
@@ -41,10 +39,6 @@ export class HouseFormSvComponent implements OnInit {
     this.address.manualPropertyValue = this.address.manualPropertyValue || null;
 
     this.initCheckboxes();
-
-    this.loansService.getAddresses().subscribe((r) => {
-      this.addresses = r.addresses;
-    });
   }
 
   initCheckboxes(): void {
@@ -84,20 +78,19 @@ export class HouseFormSvComponent implements OnInit {
     return (
       this.address !== null &&
       this.address.id > 0 &&
-      this.address.zip &&
-      this.address.zip.length === 4 &&
-      this.address.street.length > 0 &&
-      this.address.propertyType !== null
+      !!this.address.zip &&
+      this.address.zip.length === 5 &&
+      this.address.street.length > 0
     );
   }
 
   onPropertyTypeChange($event): void {
+    this.changesMade = true;
     this.address.propertyType = $event;
-    this.countChange('');
   }
 
   onRbChange(event: MatTabChangeEvent): void {
-    this.ableTosave = true;
+    this.changesMade = true;
     if (event.index === 1) {
       this.address.useManualPropertyValue = true;
     } else {
@@ -112,10 +105,11 @@ export class HouseFormSvComponent implements OnInit {
 
   save(): void {
     this.onSave.emit();
-    this.ableTosave = false;
+    this.changesMade = false;
   }
-  countChange($event): void {
-    this.ableTosave = true;
+
+  countChange(): void {
+    this.changesMade = true;
   }
 
   onDeleteAddressClick(): void {

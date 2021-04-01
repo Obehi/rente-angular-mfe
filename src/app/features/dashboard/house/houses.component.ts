@@ -2,7 +2,7 @@ import { LoansService, AddressDto } from '@services/remote-api/loans.service';
 import { Component, OnInit } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { DeactivationGuarded } from '@shared/guards/route.guard';
-import { locale } from '../../../../config/locale/locale';
+import { locale } from '../../../config/locale/locale';
 import { HouseFormErrorDialogComponent } from './error-dialog/error-dialog.component';
 import { ManualInputDialogComponent } from './manual-input-dialog/manual-input-dialog.component';
 import { MatDialog } from '@angular/material';
@@ -19,9 +19,9 @@ import {
 } from '@angular/animations';
 
 @Component({
-  selector: 'rente-house-blue',
-  templateUrl: './house-blue.component.html',
-  styleUrls: ['./house-blue.component.scss'],
+  selector: 'rente-houses',
+  templateUrl: './houses.component.html',
+  styleUrls: ['./houses.component.scss'],
   animations: [
     trigger('loading', [
       // ...
@@ -40,7 +40,7 @@ import {
     ])
   ]
 })
-export class HouseBlueComponent implements OnInit, DeactivationGuarded {
+export class HousesComponent implements OnInit, DeactivationGuarded {
   isLoading: boolean;
   addresses: AddressDto[];
   showAddresses: boolean;
@@ -151,6 +151,7 @@ export class HouseBlueComponent implements OnInit, DeactivationGuarded {
     this.loansService.updateAddress(this.addresses).subscribe(
       (res) => {
         this.addresses = res.addresses;
+
         for (const address of res.addresses) {
           if (this.envService.isNorway() === true) {
             if (
@@ -158,27 +159,22 @@ export class HouseBlueComponent implements OnInit, DeactivationGuarded {
               (address.useManualPropertyValue === false &&
                 address.estimatedPropertyValue === null)
             ) {
-              this.isLoading = false;
-              this.changesMade = false;
+              this.handleErrorState();
               this.dialog.open(HouseFormErrorDialogComponent);
-              this.canLeavePage = true;
-              this.errorMessage = address.message;
-              this.isError = true;
               return;
             }
           }
 
           if (this.envService.isSweden() === true) {
-            if (
-              address.error === true ||
-              (address.useManualPropertyValue === false &&
-                address.estimatedPropertyValue === 0)
+            if (address.error === true) {
+              this.handleErrorState();
+              this.dialog.open(HouseFormErrorDialogComponent);
+              return;
+            } else if (
+              address.useManualPropertyValue === false &&
+              address.estimatedPropertyValue === 0
             ) {
-              this.isLoading = false;
-              this.changesMade = false;
-              this.isError = true;
-              this.dialog.open(ManualInputDialogComponent);
-              this.canLeavePage = true;
+              this.openManualInputDialog(address);
               return;
             }
           }
@@ -208,6 +204,34 @@ export class HouseBlueComponent implements OnInit, DeactivationGuarded {
     );
   }
 
+  private openManualInputDialog(address: AddressDto) {
+    this.handleErrorState();
+
+    const changeBankRef = this.dialog.open(ManualInputDialogComponent, {});
+
+    changeBankRef.afterClosed().subscribe(() => {
+      const state = changeBankRef.componentInstance.closeState;
+      switch (state.state) {
+        case '': {
+          break;
+        }
+        case 'resend-request': {
+          address.useManualPropertyValue = true;
+          address.manualPropertyValue = state.value;
+          this.saveAddresses();
+          this.canLeavePage = true;
+          break;
+        }
+      }
+    });
+  }
+
+  handleErrorState(): void {
+    this.isLoading = false;
+    this.changesMade = false;
+    this.canLeavePage = true;
+    this.isError = true;
+  }
   get ableToSave(): boolean {
     let res = true;
     if (this.isLoading) {

@@ -306,7 +306,7 @@
                 grid-row: 4;
                 grid-column-start: 1;
                 grid-column-end: span 2;
-
+          
                 //Hack to position details next to smiley
                 @media (max-width: 600px) { 
                   position: relative;
@@ -316,7 +316,7 @@
                   border-radius: 0px;
                   box-shadow: unset;
                   width: 100%;
-                  background: transparent;
+                  background: transparent !important;
                   z-index: 5;
                   margin-bottom: 10px;
 
