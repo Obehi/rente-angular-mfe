@@ -26,8 +26,6 @@ export class AntiChurnDialogComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log('ngOnInit');
-
     this.confirmForm = this.fb.group({
       confirmation: ['', Validators.required]
     });
@@ -40,17 +38,13 @@ export class AntiChurnDialogComponent implements OnInit {
 
   public sendRequest(): void {
     this.isLoading = true;
-    const offerId = Number(this.data.offerId);
-    this.changeBankServiceService.sendBankOfferRequest(offerId).subscribe(
-      (_) => {
-        console.log('sendRequest closed procced');
-
+    this.changeBankServiceService.sendAntiChurnRequest().subscribe(
+      () => {
         this.isLoading = false;
         this.closeState = 'procced';
         this.dialogRef.close();
       },
       () => {
-        console.log('sendRequest closed error');
         this.isLoading = false;
         this.closeState = 'error';
         this.dialogRef.close();

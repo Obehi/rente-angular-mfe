@@ -389,7 +389,7 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
 
     const changeBankRef = this.dialog.open(AntiChurnDialogComponent, {
       autoFocus: false,
-      data: { offerId: offerId }
+      data: offer
     });
     changeBankRef.afterClosed().subscribe(() => {
       this.handleChangeBankdialogOnClose(
