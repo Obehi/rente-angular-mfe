@@ -24,7 +24,8 @@ import {
   TrackingService,
   TrackingDto
 } from '@services/remote-api/tracking.service';
-import { Subscription, forkJoin } from 'rxjs';
+import { Subscription, forkJoin, pipe } from 'rxjs';
+import { debounce, take, debounceTime } from 'rxjs/operators';
 import { OFFERS_LTV_TYPE } from '../../../../shared/models/offers';
 import { UserService } from '@services/remote-api/user.service';
 import smoothscroll from 'smoothscroll-polyfill';
@@ -157,15 +158,18 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
       }
     );
 
-    this.offersService.messages().subscribe((message: OfferMessage) => {
-      console.log('offersService.messages()');
-      switch (message) {
-        case OfferMessage.antiChurn: {
-          this.openAntiChurnBankDialog(this.offersInfo.offers.top5[0]);
-          break;
+    this.offersService
+      .messages()
+      .pipe(debounceTime(500))
+      .subscribe((message: OfferMessage) => {
+        console.log('offersService.messages()');
+        switch (message) {
+          case OfferMessage.antiChurn: {
+            this.openAntiChurnBankDialog(this.offersInfo.offers.top5[0]);
+            break;
+          }
         }
-      }
-    });
+      });
   }
 
   public getTips(): void {
