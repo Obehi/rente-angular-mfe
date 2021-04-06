@@ -158,6 +158,7 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
     );
 
     this.offersService.messages().subscribe((message: OfferMessage) => {
+      console.log('offersService.messages()');
       switch (message) {
         case OfferMessage.antiChurn: {
           this.openAntiChurnBankDialog(this.offersInfo.offers.top5[0]);
@@ -432,6 +433,7 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
         break;
       }
       case 'procced': {
+        console.log('procced');
         this.router.navigate(['/dashboard/prute-fullfort'], {
           state: { isError: false, fromChangeBankDialog: true }
         });

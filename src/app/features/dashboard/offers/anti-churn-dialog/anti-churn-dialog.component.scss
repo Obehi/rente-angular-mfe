@@ -16,6 +16,10 @@
   background: $grey-light !important;
 }
 
+::ng-deep .mat-expansion-panel-header-title {
+  font-weight: 100;
+}
+
 ::ng-deep .mat-expansion-panel:not(.mat-expanded):not([aria-disabled=true]) .mat-expansion-panel-header:hover {
   background: $grey-light !important;
 }
@@ -26,6 +30,10 @@
 }
 h2 {
   text-align: center;
+}
+
+h4 {
+  font-size: 14px;
 }
 
 p {
@@ -67,3 +75,7 @@ form {
   background: white;
 }
 
+li {
+  font-size: 12px;
+  font-weight: 100;
+}
