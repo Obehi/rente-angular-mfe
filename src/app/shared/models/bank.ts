@@ -3,7 +3,7 @@ export class BankVo {
     public name: string,
     public label: string,
     public icon: string,
-    public logo: string = null,
+    public logo: string | null = null,
     public loginWithSsn: boolean = false,
     public isEikaBank: boolean = false,
     public isMissing: boolean = false,

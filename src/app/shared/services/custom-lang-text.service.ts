@@ -11,6 +11,7 @@ export class CustomLangTextService {
     } else if (locale.includes('nb')) {
       return 'hei@renteradar.no';
     }
+    throw new Error('Should be either SV or NB');
   }
 
   getMarkedObservationText(): string {
@@ -19,6 +20,7 @@ export class CustomLangTextService {
     } else if (locale.includes('nb')) {
       return 'Renteradar.no overvåker kontinuerlig markedet for bedre rente enn det du har på lånet ditt. Renten du har på lånet ditt sjekkes og oppdateres ved at du identifiserer deg med BankID. Det er viktig at dette gjøres fra tid til annen for at eventuelle renteendringer på lånet ditt skal fanges opp.';
     }
+    throw new Error('Should include either SV or NB');
   }
 
   getHouseExplainationText(): string {
@@ -27,6 +29,7 @@ export class CustomLangTextService {
     } else if (locale.includes('nb')) {
       return 'Din/Husstandens inntekt er en viktig parameter for renten bankene tilbyr';
     }
+    throw new Error('Should include either SV or NB');
   }
 
   getLimitedLoanInfoWarning(): string {
@@ -35,6 +38,7 @@ export class CustomLangTextService {
     } else if (locale.includes('nb')) {
       return 'Vi får kun hentet din nominelle rente og lånebeløp. For utregninger har vi tatt utgangspunkt i en gjenværende løpetid på 20 år, månedelige betalinger og 50,- i termingebyr. Faktisk løpetid og termingebyrer vil endre forventede besparelser.';
     }
+    throw new Error('Should include either SV or NB');
   }
 
   getMembershipWarning(): string {
@@ -43,6 +47,7 @@ export class CustomLangTextService {
     } else if (locale.includes('nb')) {
       return 'Enkelte banker tilbyr bedre betingelser hvis du er medlem i en interesseorganisasjon eller fagforening. Hvis du har mulighet til å melde deg inn i en kan det være penger å spare. (Medlemskap koster ca 4000 i året).';
     }
+    throw new Error('Should include either SV or NB');
   }
 
   getHouseValue(): string {
@@ -51,6 +56,7 @@ export class CustomLangTextService {
     } else if (locale.includes('')) {
       return 'Boligverdi/belåningsgrad er viktig for renten bankene tilbyr. Pass på at boligverdien din er riktig. Du kan også legge til flere boliger hvis du har det.';
     }
+    throw new Error('Should include either SV or NB');
   }
 
   getMillionShort(): string {
