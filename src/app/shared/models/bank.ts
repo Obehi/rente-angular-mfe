@@ -8,7 +8,7 @@ export class BankVo {
     public isEikaBank: boolean = false,
     public isMissing: boolean = false,
     public isTinkBank: boolean = false,
-    public mobileUrl: string = null
+    public mobileUrl: string | null = null
   ) {}
 }
 
@@ -1504,7 +1504,7 @@ export const LegacyBanks: BankVo[] = [
 ];
 
 export class BankUtils {
-  static getBankByName(bankName: string): BankVo {
+  static getBankByName(bankName: string): BankVo | null {
     const name = bankName.toUpperCase();
     const banks = [...BankList, ...MissingBankList, ...TinkBanks];
     for (const bank of banks) {

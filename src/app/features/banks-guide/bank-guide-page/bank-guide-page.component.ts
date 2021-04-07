@@ -98,9 +98,10 @@ export class BankGuidePageComponent implements OnInit {
             this.banksLocations[
               this.banksLocations.findIndex((location) => location === 'other')
             ] = 'Annet';
-            this.titleService.setTitle(
-              `${this.bank.label} | Bankguiden | Renteradar.no`
-            );
+            if (!!this.bank)
+              this.titleService.setTitle(
+                `${this.bank.label} | Bankguiden | Renteradar.no`
+              );
             if (this.bankGuideInfo.text1) {
               this.metaService.updateMetaTags(
                 'description',

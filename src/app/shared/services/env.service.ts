@@ -7,7 +7,7 @@ import { environment } from 'environments/environment';
 export interface Environment {
   name?: string | null;
   production: boolean | null;
-  baseUrl: string | null;
+  baseUrl: string;
   crawlerUrl: string | null;
   locale?: string | null;
   tinkUrl?: string | null;
@@ -37,7 +37,9 @@ export class EnvService {
       'https://link.tink.com/1.0/authorize/credentials/no-handelsbanken-bankid?client_id=690cbe68c3df412082d5ad8a5a2335d8&redirect_uri=https%3A%2F%2Frenteradar.no&scope=accounts:read,credentials:read&market=NO&locale=en_US&iframe=true'
   };
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    console.log(this.environment);
+  }
 
   // Used to initialize provider in module
   loadEnv(): Promise<Environment> {
