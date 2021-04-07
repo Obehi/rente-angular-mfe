@@ -168,7 +168,8 @@ export class InitConfirmationNoComponent implements OnInit {
           : formData.income,
       memberships: this.memberships.map((membership) => membership.name),
       apartmentSize: formData.apartmentSize,
-      name: this.isAddressNeeded ? formData.name : this.userData.name
+      name: this.isAddressNeeded ? formData.name : this.userData.name,
+      propertyType: formData.propertyType
     };
 
     const confirmationDto: ConfirmationSetDto = new ConfirmationSetDto();
@@ -178,7 +179,7 @@ export class InitConfirmationNoComponent implements OnInit {
     confirmationDto.income = data.income;
     confirmationDto.memberships = data.memberships;
     confirmationDto.address.apartmentSize = data.apartmentSize;
-
+    confirmationDto.address.propertyType = data.propertyType;
     if (this.isAddressNeeded) {
       confirmationDto.address.street = formData.address;
       confirmationDto.address.zip = formData.zip;

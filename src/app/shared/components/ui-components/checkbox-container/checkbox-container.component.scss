@@ -1,0 +1,52 @@
+
+@import "../../../../../styles/theme/_colors.scss";
+
+form {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 0;
+    border: none;
+}
+
+.item {
+    width: 85px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 130px;
+    margin: 5px;
+    span {
+        margin-top: 10px;
+        font-size: 12px;
+        color: $grey-dark
+    }
+    .input-wrapper {
+        width: 85px;
+        height: 85px;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border-radius: 15px;
+        background: $grey-light;
+
+        p {
+            text-align: center;
+            font-weight: 400;
+            color: $grey-dark;
+        }
+        
+        input {
+            position: absolute;
+            width: 75px;
+            height: 80px; 
+            opacity: 0; 
+            cursor: pointer;
+
+        }
+    }
+}

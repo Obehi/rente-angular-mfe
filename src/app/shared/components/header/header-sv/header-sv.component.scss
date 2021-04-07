@@ -128,20 +128,18 @@ nav {
   }
 }
 
-
-
-
-.variation-1 {
-
+.mobile {
+  display: block;
+}
+.desktop {
+  display: none;
 }
 
-.variation-2 {
-  background: white;  
-  .menu-container {
-    .menu {
-      span {
-        background-color: $blue;
-      }
-    }
+@media (min-width: 850px) {
+  .mobile {
+    display: none;
+  }
+  .desktop {
+    display: block;
   }
 }

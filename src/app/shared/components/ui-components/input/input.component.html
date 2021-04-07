@@ -10,6 +10,7 @@
         [ngModelOptions]="modelOptions"
         [(ngModel)]="value"
         (blur)="onBlur()"
+        (ngModelChange)="onChangeEmit()"
         [imask]="getMask()"
       />
     </div>
@@ -21,6 +22,7 @@
         [placeholder]="placeholder"
         [errorStateMatcher]="matcher"
         [ngModelOptions]="modelOptions"
+        (ngModelChange)="onChangeEmit()"
         (focus)="onFocus()"
         [(ngModel)]="value"
         [maxlength]="maxLength"

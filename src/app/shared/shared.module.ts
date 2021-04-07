@@ -1,4 +1,4 @@
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AuthGuard } from './guards/auth.guard';
@@ -43,6 +43,7 @@ import {
 } from '../local-components/components-output';
 import { CustomLangTextService } from '@services/custom-lang-text.service';
 import { ChildDirective } from './directives/child.directive';
+import { CheckboxContainerComponent } from './components/ui-components/checkbox-container/checkbox-container.component';
 
 const components = [
   HeaderLangGenericComponent,
@@ -53,6 +54,7 @@ const components = [
   SelectComponent,
   CheckboxComponent,
   RadioComponent,
+  CheckboxContainerComponent,
   TabsComponent,
   TabComponent,
   FormMessageComponent,
@@ -85,6 +87,7 @@ const services = [
     HttpClientModule,
     RouterModule,
     FormsModule,
+    ReactiveFormsModule,
     MaterialModule,
     IMaskModule
   ],
@@ -102,7 +105,8 @@ const services = [
     AbsPipe,
     RoundPipe,
     ThousandsSeprator,
-    ChildDirective
+    ChildDirective,
+    ReactiveFormsModule
   ],
   providers: [...services]
 })

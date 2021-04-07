@@ -1,0 +1,37 @@
+
+<div class="top">
+  <mat-icon (click)="onCancel()" class="close-modal">close</mat-icon>
+
+  <h3>Vi lyckades inte att estimera ditt bostadsvärde</h3>
+
+  <p>Lägg in bostadsvärdet för att få korrekt värde på din bostad.</p>
+
+  <form [formGroup]="valueForm" novalidate>
+    <rente-input
+        [placeholder]="'Bostadsvärdet'"
+        formControlName="value"
+        [maskType]="mask.currency"
+        [errorStateMatcher]="
+          isErrorState(valueForm.controls['value'])
+        "
+      >
+      </rente-input>
+
+
+  </form>
+</div>
+<div class="bottom">
+  <div class="double">
+    <rente-button color="primary-wide-hollow" (click)="onCancel()" i18n=“cancel|change-bank@@change.bank.cancel”>
+        Avbryt
+    </rente-button>
+
+    <rente-button
+        color="primary-80"
+        [isLoading]="isLoading"
+        [disabled]="valueForm.invalid || isLoading"
+        (click)="onClick()"
+        >Uppdatera
+    </rente-button>
+    </div>
+</div>

@@ -30,7 +30,10 @@ import {
 } from '@angular/material';
 import { RateTypeFixedComponent } from './rate-type-fixed/rate-type-fixed.component';
 import { ChangeBankDialogComponent } from './offers/change-bank-dialog/change-bank-dialog.component';
-import { HouseFormErrorDialogComponent } from './house/house-blue/error-dialog/error-dialog.component';
+import { HouseFormErrorDialogComponent } from './house/error-dialog/error-dialog.component';
+import { ManualInputDialogComponent } from './house/manual-input-dialog/manual-input-dialog.component';
+import { HouseErrorDialogSv } from './house/error-dialog-sv/house-error-dialog-sv.component';
+
 import { SuccessChangeBankDialogComponent } from './offers/change-bank-dialog/success-change-bank-dialog/success-change-bank-dialog.component';
 import { ShareSheetComponent } from './offers/share-sheet/share-sheet.component';
 import { VirdiStatisticsComponent } from './house/virdi-statistics/virdi-statistics.component';
@@ -43,8 +46,8 @@ import { OfferCardComponentBlue } from './offers/offers-blue/offer-card/offer-ca
 import { OfferCardBigComponentBlue } from './offers/offers-blue/offer-card-big/offer-card-big.component';
 import { BargainSuccessComponent } from './offers/bargain-success/bargain-success.component';
 import { ReferralComponent } from './offers/bargain-success/referral/referral.component';
-import { LoansBlueComponent } from './loans/loans-blue/loans-blue.component';
-import { HouseBlueComponent } from './house/house-blue/house-blue.component';
+
+import { HousesComponent } from './house/houses.component';
 import { BlueProfileComponent } from './profile/blue-profile/blue-profile.component';
 import { EPSIScoreComponent } from './offers/offers-blue/epsi-score/epsi-score.component';
 import { OffersListLangGenericComponent } from '../../local-components/components-output';
@@ -81,8 +84,7 @@ import { CanNotBargainDialogComponent } from './offers/can-not-bargain-dialog/ca
     OfferCardBigComponentBlue,
     BargainSuccessComponent,
     ReferralComponent,
-    LoansBlueComponent,
-    HouseBlueComponent,
+    HousesComponent,
     BlueProfileComponent,
     EPSIScoreComponent,
     OffersListLangGenericComponent,
@@ -92,6 +94,8 @@ import { CanNotBargainDialogComponent } from './offers/can-not-bargain-dialog/ca
     BankScoreLangGenericComponent,
     EPSIScoreComponent,
     HouseFormErrorDialogComponent,
+    ManualInputDialogComponent,
+    HouseErrorDialogSv,
     ChangeBankLocationComponent,
     AntiChurnDialogComponent,
     CanNotBargainDialogComponent

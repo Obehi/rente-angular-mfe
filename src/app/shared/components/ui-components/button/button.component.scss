@@ -53,6 +53,17 @@ button.mat-primary {
   background-color: $primary;
 }
 
+button.mat-primary-80 {
+  width: 80%;
+  color: white;
+  white-space: break-spaces;
+  background-color: $primary;
+}
+
+button.mat-primary-80[disabled] {
+  color: white !important;
+}
+
 button.mat-secondary {
   background-color: $secondary;
   color: white;
@@ -153,6 +164,14 @@ button.mat-primary-wide-hollow {
   border: 1px solid $primary;
   height: 56px;
   width: 100%;
+  white-space: break-spaces;
+}
+
+button.mat-primary-wide-white {
+  background-color: white;
+  color: black;
+  height: 56px;
+  width: 80%;
   white-space: break-spaces;
 }
 

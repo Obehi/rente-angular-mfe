@@ -8,7 +8,7 @@ import { customMeta, defaultMeta, ROUTES_MAP } from '@config/routes-config';
 import { RouteGuard } from '@shared/guards/route.guard';
 import { BargainSuccessComponent } from './offers/bargain-success/bargain-success.component';
 import { OffersComponentBlue } from './offers/offers-blue/offers.component';
-import { HouseBlueComponent } from './house/house-blue/house-blue.component';
+import { HousesComponent } from './house/houses.component';
 import { BlueProfileComponent } from './profile/blue-profile/blue-profile.component';
 import { EPSIScoreComponent } from './offers/offers-blue/epsi-score/epsi-score.component';
 import { LoansLangGenericComponent } from '../../local-components/components-output';
@@ -46,7 +46,7 @@ const routes: Routes = [
       },
       {
         path: ROUTES_MAP.property,
-        component: HouseBlueComponent,
+        component: HousesComponent,
         canDeactivate: [RouteGuard],
         data: {
           title: customMeta.boligTitle,

@@ -1,0 +1,126 @@
+@import "../../../../../styles/theme/_colors.scss";
+
+.housecontainer {
+    background: white;
+    border-radius: 15px;
+    margin: 10px;
+    position: relative;
+}
+.mat-form-field {
+  text-align: center;
+}
+.double {
+  grid-gap: 40px;
+}
+
+ .estimated{
+ min-height: 74px;
+}
+.mat-form-field-disabled * {
+  color: rgba(0, 0, 0, 0.38) !important;
+}
+.estimated .small {
+  text-align: center;
+  top: -10px;
+  position: relative;
+}
+
+
+.saveForEstimate {
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  right: 0;
+}
+.heading {
+  border-radius: 15px 15px 0 0;
+  background-color: $lightgreen;
+  display: block;
+  padding: 20px 20px;
+  font-weight: 500;
+  font-size: 14px;
+  position: relative;
+  b {
+    display: inline-block;
+    margin-left: 10px;
+  }
+  mat-icon {
+    color: $blue;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 20px;
+  }
+}
+.center-button {
+  margin-top: 40px;
+  text-align: center;
+}
+
+rente-button {
+  text-align: center;
+  display: inline-block;
+
+  .save-changes-local button {
+    margin: auto;
+    display: block;
+    text-align: center;
+    width: calc(100% - 40px);
+    @media (min-width: 600px) {
+      top: unset;
+      bottom: 40px;
+      max-width: 400px;
+    }
+  }
+}
+
+
+
+.body {
+  padding: 20px;
+  margin-bottom: 40px;
+  > div {
+    margin-bottom: 20px;
+  }
+  .address {
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+    position: relative;
+
+    button {
+      color: white;
+      background-color: $blue;
+      border-radius: 100px;
+      height: 36px;
+      width: 36px;
+      position: absolute;
+      right: 0px;
+      transform: translateY(-50%);
+      top: 50%;
+      text-align: center;
+      .mat-icon {
+        transform: translateY(-50%);
+        top: 50%;
+        left: 0;
+        right: 0;
+        margin: auto;
+        position: absolute;
+      }
+    }
+  }
+}
+
+@media (min-width: 600px) {
+  .housecontainer {
+    border: 1px solid $lesslight;
+    min-height: 627px;
+    
+    .heading {
+      border-top: none;
+      border-bottom: 1px solid $green;
+    }
+    .body {
+      border-bottom: 0;
+    }
+  }
+}

@@ -164,8 +164,9 @@ export class AddressDto {
   street: string;
   zip: string;
   apartmentSize: number;
-  manualPropertyValue: number;
-  estimatedPropertyValue: number;
+  manualPropertyValue?: number = null;
+  propertyType?: string;
+  estimatedPropertyValue?: number = null;
   useManualPropertyValue: boolean;
   commonDebt: number;
   message: string;
@@ -201,6 +202,7 @@ export class ConfirmationSetDto {
 export class AddressCreationDto {
   apartmentSize: number;
   apartmentValue: number;
+  propertyType: string;
   street: string;
   zip: string;
 }

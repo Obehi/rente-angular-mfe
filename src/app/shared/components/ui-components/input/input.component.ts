@@ -46,6 +46,7 @@ export class InputComponent implements ControlValueAccessor, OnChanges {
   @Input() label: string;
   @Input() name: string;
   @Input() type: string;
+  @Output() change?: EventEmitter<any> = new EventEmitter();
   @Input() disabled: boolean;
   @Input() maxLength: number;
   @Input() matSuffix: string;
@@ -75,6 +76,10 @@ export class InputComponent implements ControlValueAccessor, OnChanges {
     this.inputValue = val;
     this.onChange(val);
     this.onTouch();
+  }
+
+  onChangeEmit(): void {
+    this.change?.emit();
   }
 
   ngOnChanges(changes: SimpleChanges) {

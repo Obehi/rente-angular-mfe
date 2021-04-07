@@ -24,7 +24,7 @@ export class HeaderNoComponent implements OnInit {
     window.scrollTo(0, 0);
   }
 
-  public goToHome() {
+  public goToHome(): void {
     if (this.router.url === '/' || this.router.url === '/#faq') {
       window.scrollTo(0, 0);
     } else {
@@ -33,7 +33,7 @@ export class HeaderNoComponent implements OnInit {
 
     this.toggleNav();
   }
-  public toggleNav() {
+  public toggleNav(): void {
     this.toggleNavbar = !this.toggleNavbar;
   }
 

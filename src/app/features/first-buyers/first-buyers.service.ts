@@ -38,7 +38,7 @@ export class FirstBuyersService {
     ) as FirstBuyersState;
   }
 
-  getAuthToken(debtData): Observable<any> {
+  getAuthToken(debtData: any): Observable<any> {
     return this.authService.getFirstTimeLoanToken(debtData);
   }
 }
