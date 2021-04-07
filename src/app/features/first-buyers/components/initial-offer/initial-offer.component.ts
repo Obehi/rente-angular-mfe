@@ -9,15 +9,18 @@ import { BankVo } from '../../../../shared/models/bank';
 })
 export class InitialOfferComponent implements OnInit {
   @Input() offer;
-  bank: BankVo;
+  bank: BankVo | null;
   expandStatus: boolean;
 
   ngOnInit(): void {
-    this.bank = BankUtils.getBankByName(this.offer.bankInfo.bank);
+    if (this.bank !== null && this.bank !== undefined) {
+      this.bank = BankUtils.getBankByName(this.offer.bankInfo.bank);
+    
     this.bank.icon = BankUtils.getBankPngIcon(
       this.bank.name,
       '../../../../../assets/img/banks-logo/'
     );
+    }
 
     if (this.offer.bankInfo.score === null) this.offer.bankInfo.score = 3;
   }
