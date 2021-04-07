@@ -3,7 +3,7 @@ export class BankVo {
     public name: string,
     public label: string,
     public icon: string,
-    public logo: string | null = null,
+    public logo: string | null,
     public loginWithSsn: boolean = false,
     public isEikaBank: boolean = false,
     public isMissing: boolean = false,
@@ -1520,14 +1520,14 @@ export class BankUtils {
     basePath = '../../../assets/img/banks-logo/'
   ): string {
     const bank = this.getBankByName(bankName);
-    if (bank.logo) {
+    if (bank?.logo) {
       if (bank.logo.indexOf('.svg') > -1) {
         return basePath + 'svg/' + bank.logo;
       } else {
         return basePath + 'round/' + bank.logo;
       }
     } else {
-      return basePath + 'wide/' + bank.icon;
+      return basePath + 'wide/' + bank?.icon;
     }
   }
 
@@ -1536,7 +1536,13 @@ export class BankUtils {
     basePath = '../../../assets/img/banks-logo/'
   ): string {
     const bank = this.getBankByName(bankName);
-    return basePath + 'round/' + bank.icon;
+    if (bank !== null) {
+      return basePath + 'round/' + bank.icon;
+    } else {
+      return (
+        basePath + '../../../assets/img/banks-logo/round/default-bank-icon'
+      );
+    }
   }
 
   static isEikaBank(bankName: string): boolean {
