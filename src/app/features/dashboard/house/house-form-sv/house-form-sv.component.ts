@@ -64,9 +64,6 @@ export class HouseFormSvComponent implements OnInit {
     this.checkBoxItems = [house, apartment, cabin];
   }
 
-  get isNewAddress(): boolean {
-    return this.address.id === null;
-  }
   get isAbleToDelete(): boolean {
     return this.index > 0;
   }
