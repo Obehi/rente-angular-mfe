@@ -75,7 +75,7 @@
             matInput
             [disabled]="!address.useManualPropertyValue"
             [type]="'tel'"
-            [ngModel]="address.manualPropertyValue | thousands"
+            [ngModel]="address.manualPropertyValue !== null ? address.manualPropertyValue : 0 | thousands"
             (change)="countChange()"
 
             style="text-align: center !important;"
