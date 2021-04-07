@@ -54,7 +54,7 @@ export class HousesComponent implements OnInit, DeactivationGuarded {
   public isError = false;
   public dialog: MatDialog;
   public showExplainText: boolean;
-  public propertyIconPath: string;
+  public propertyIconPath: string | null;
 
   constructor(
     private loansService: LoansService,
@@ -192,7 +192,7 @@ export class HousesComponent implements OnInit, DeactivationGuarded {
       () => {
         if (this.isError) {
           this.isError = false;
-          this.errorMessage = null;
+          this.errorMessage = '';
           return;
         }
 
