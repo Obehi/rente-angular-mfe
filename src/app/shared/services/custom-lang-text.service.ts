@@ -65,6 +65,7 @@ export class CustomLangTextService {
     } else if (locale.includes('nb')) {
       return 'mill.';
     }
+    throw new Error('Should include either SV or NB');
   }
 
   getSaveSuccessSnackBar(): string {
@@ -73,6 +74,7 @@ export class CustomLangTextService {
     } else if (locale.includes('nb')) {
       return 'Endringene dine er lagret';
     }
+    throw new Error('Should include either SV or NB');
   }
 
   getProfileIncomePlaceHolder(): string {
@@ -81,6 +83,7 @@ export class CustomLangTextService {
     } else if (locale.includes('nb')) {
       return 'Din brutto årsinntekt';
     }
+    throw new Error('Should include either SV or NB');
   }
 
   getProfileAddPlaceHolder(): string {
@@ -89,6 +92,7 @@ export class CustomLangTextService {
     } else if (locale.includes('nb')) {
       return '+ Legg til';
     }
+    throw new Error('Should include either SV or NB');
   }
 
   getSnackBarClose(): string {
@@ -97,6 +101,7 @@ export class CustomLangTextService {
     } else if (locale.includes('nb')) {
       return 'Lukk';
     }
+    throw new Error('Should include either SV or NB');
   }
 
   getSnackBarSavedMessage(): string {
@@ -105,6 +110,7 @@ export class CustomLangTextService {
     } else if (locale.includes('nb')) {
       return 'Din melding er sendt';
     }
+    throw new Error('Should include either SV or NB');
   }
 
   getSnackBarUpdatedMessage(): string {
@@ -113,6 +119,7 @@ export class CustomLangTextService {
     } else if (locale.includes('nb')) {
       return 'Endringene dine er lagret';
     }
+    throw new Error('Should include either SV or NB');
   }
 
   getSnackBarErrorMessage(): string {
@@ -121,6 +128,7 @@ export class CustomLangTextService {
     } else if (locale.includes('nb')) {
       return 'Oops, noe gikk galt';
     }
+    throw new Error('Should include either SV or NB');
   }
 
   get18nFixForUnknown(): string {
@@ -129,6 +137,7 @@ export class CustomLangTextService {
     } else if (locale.includes('nb')) {
       return 'Ukjent';
     }
+    throw new Error('Should include either SV or NB');
   }
 
   get18nFixForNo(): string {
@@ -137,6 +146,7 @@ export class CustomLangTextService {
     } else if (locale.includes('nb')) {
       return 'Nei';
     }
+    throw new Error('Should include either SV or NB');
   }
 
   get18nFixForRequirement(): string {
@@ -145,6 +155,7 @@ export class CustomLangTextService {
     } else if (locale.includes('nb')) {
       return 'Forbehold';
     }
+    throw new Error('Should include either SV or NB');
   }
 
   get18nFixForNoRequirement(): string {
@@ -153,6 +164,7 @@ export class CustomLangTextService {
     } else if (locale.includes('nb')) {
       return 'Ingen krav';
     }
+    throw new Error('Should include either SV or NB');
   }
 
   get18nFixForNoRequirement2(): string {
@@ -161,6 +173,7 @@ export class CustomLangTextService {
     } else if (locale.includes('nb')) {
       return 'Ingen forbehold';
     }
+    throw new Error('Should include either SV or NB');
   }
 
   getName(): string {
@@ -169,6 +182,7 @@ export class CustomLangTextService {
     } else if (locale.includes('nb')) {
       return 'Navn';
     }
+    throw new Error('Should include either SV or NB');
   }
 
   getlowerRateTitle(): string {
@@ -177,6 +191,7 @@ export class CustomLangTextService {
     } else if (locale.includes('nb')) {
       return 'Du har lavere rente enn forrige gang!';
     }
+    throw new Error('Should include either SV or NB');
   }
 
   getlowerRateBody(): string {
@@ -185,5 +200,6 @@ export class CustomLangTextService {
     } else if (locale.includes('nb')) {
       return 'Fikk du lavere rente etter å ha sendt melding fra Renteradar.no?';
     }
+    throw new Error('Should include either SV or NB');
   }
 }
