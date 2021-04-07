@@ -25,7 +25,6 @@ export class HouseFormSvComponent implements OnInit {
   public checkBoxItems: CheckBoxItem[];
   mode = AddressFormMode.Editing;
   changesMade = false;
-
   get ableTosave(): boolean {
     return this.isAddressValid && this.changesMade;
   }
@@ -77,11 +76,23 @@ export class HouseFormSvComponent implements OnInit {
   get isAddressValid(): boolean {
     return (
       this.address !== null &&
-      this.address.id > 0 &&
       !!this.address.zip &&
       this.address.zip.length === 5 &&
-      this.address.street.length > 0
+      !!this.address.apartmentSize &&
+      this.address.apartmentSize > 5 &&
+      this.address.street.length > 0 &&
+      this.propertyValueIsSet &&
+      this.address.propertyType !== null &&
+      this.address.propertyType !== undefined
     );
+  }
+
+  get propertyValueIsSet(): boolean {
+    if (this.address.useManualPropertyValue) {
+      return !!this.address.manualPropertyValue;
+    } else {
+      return true;
+    }
   }
 
   onPropertyTypeChange($event): void {
@@ -104,6 +115,7 @@ export class HouseFormSvComponent implements OnInit {
   }
 
   save(): void {
+    if (this.ableTosave !== true) return;
     this.onSave.emit();
     this.changesMade = false;
   }
@@ -118,6 +130,7 @@ export class HouseFormSvComponent implements OnInit {
 
   manualPropertyValueChanged($event): void {
     if ($event && $event.target) {
+      this.countChange();
       const newValue = parseInt(String($event.target.value).replace(/\D/g, ''));
       this.address.manualPropertyValue = newValue >= 0 ? newValue : 0;
     }

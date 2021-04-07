@@ -165,7 +165,7 @@ export class AddressDto {
   zip: string;
   apartmentSize: number;
   manualPropertyValue?: number = null;
-  propertyType: string;
+  propertyType?: string;
   estimatedPropertyValue?: number = null;
   useManualPropertyValue: boolean;
   commonDebt: number;
