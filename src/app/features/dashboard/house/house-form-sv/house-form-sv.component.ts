@@ -93,9 +93,6 @@ export class HouseFormSvComponent implements OnInit {
     } else {
       return true;
     }
-    /*  return this.address.useManualPropertyValue
-      ? this.address.manualPropertyValue
-      : this.address.estimatedPropertyValue; */
   }
 
   onPropertyTypeChange($event): void {
