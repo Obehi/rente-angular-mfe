@@ -1516,9 +1516,14 @@ export class BankUtils {
   }
 
   static getBankLogoUrl(
-    bankName: string,
+    bankName: string | null,
     basePath = '../../../assets/img/banks-logo/'
   ): string {
+    if (bankName === null) {
+      return (
+        basePath + '../../../assets/img/banks-logo/round/default-bank-icon'
+      );
+    }
     const bank = this.getBankByName(bankName);
     if (bank?.logo) {
       if (bank.logo.indexOf('.svg') > -1) {
