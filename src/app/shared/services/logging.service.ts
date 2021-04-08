@@ -18,9 +18,9 @@ export class LoggingService {
   private applicationName =
     environment['coralogixApplicationName'] || 'rente-frontend-dev_13638';
  */
-  private apiUrl: string;
-  private privateKey: string;
-  private applicationName: string;
+  private apiUrl: string | null;
+  private privateKey: string | null;
+  private applicationName: string | null;
 
   public Level = Level;
   public SubSystem = SubSystem;
