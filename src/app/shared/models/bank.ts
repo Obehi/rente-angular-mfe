@@ -3,12 +3,12 @@ export class BankVo {
     public name: string,
     public label: string,
     public icon: string,
-    public logo: string = null,
+    public logo: string | null = null,
     public loginWithSsn: boolean = false,
     public isEikaBank: boolean = false,
     public isMissing: boolean = false,
     public isTinkBank: boolean = false,
-    public mobileUrl: string = null
+    public mobileUrl: string | null = null
   ) {}
 }
 
@@ -930,17 +930,6 @@ export const BankList: BankVo[] = [
     'https://www.sparebank1.no/nb/bank/privat/kundeservice/mobil/hvordan-bestiller-jeg-bankid-pa-mobil.html'
   ),
   new BankVo(
-    'SPAREBANK_1_HELGELAND',
-    'Sparebank 1 Helgeland',
-    'sparebanken1v2.png',
-    'sparebank1-color.svg',
-    false,
-    false,
-    false,
-    false,
-    'https://www.sparebank1.no/nb/bank/privat/kundeservice/mobil/hvordan-bestiller-jeg-bankid-pa-mobil.html'
-  ),
-  new BankVo(
     'SPAREBANK_1_LOM_OG_SKJAK',
     'SpareBank 1 Lom og Skjåk',
     'sparebanken1v2.png',
@@ -1053,6 +1042,17 @@ export const BankList: BankVo[] = [
   new BankVo(
     'SPAREBANK_1_OSTLANDET',
     'SpareBank 1 Østlandet',
+    'sparebanken1v2.png',
+    'sparebank1-color.svg',
+    false,
+    false,
+    false,
+    false,
+    'https://www.sparebank1.no/nb/bank/privat/kundeservice/mobil/hvordan-bestiller-jeg-bankid-pa-mobil.html'
+  ),
+  new BankVo(
+    'SPAREBANK_1_HELGELAND',
+    'SpareBank 1 Helgeland',
     'sparebanken1v2.png',
     'sparebank1-color.svg',
     false,
@@ -1438,17 +1438,6 @@ export const MissingBankList: BankVo[] = [
     true,
     false,
     null
-  ),
-  new BankVo(
-    'HELGELAND_SB',
-    'Helgeland Sparebank',
-    'helgeland.png',
-    null,
-    false,
-    true,
-    true,
-    false,
-    null
   )
 ];
 
@@ -1515,7 +1504,7 @@ export const LegacyBanks: BankVo[] = [
 ];
 
 export class BankUtils {
-  static getBankByName(bankName: string): BankVo {
+  static getBankByName(bankName: string): BankVo | null {
     const name = bankName.toUpperCase();
     const banks = [...BankList, ...MissingBankList, ...TinkBanks];
     for (const bank of banks) {
