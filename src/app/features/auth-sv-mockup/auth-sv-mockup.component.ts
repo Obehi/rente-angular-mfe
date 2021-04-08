@@ -148,8 +148,8 @@ export class AuthSvMockupComponent implements OnInit, OnDestroy {
 
   inValid() {
     return (
-      this.contactUsForm.get('loginId').hasError('pattern') &&
-      this.contactUsForm.get('loginId').dirty
+      this.contactUsForm.get('loginId')!.hasError('pattern') &&
+      this.contactUsForm.get('loginId')!.dirty
     );
   }
   onBlurErrorCheck() {
