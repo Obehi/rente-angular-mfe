@@ -164,7 +164,7 @@ export class AddressDto {
   street: string;
   zip: string;
   apartmentSize: number;
-  manualPropertyValue?: number;
+  manualPropertyValue: number | null;
   propertyType: string;
   estimatedPropertyValue?: number;
   useManualPropertyValue: boolean;

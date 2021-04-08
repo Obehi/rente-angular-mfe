@@ -252,7 +252,11 @@ export class HousesComponent implements OnInit, DeactivationGuarded {
   }
 
   isCorrectAddress(a: AddressDto): boolean {
-    if (a.useManualPropertyValue) {
+    if (
+      a.useManualPropertyValue &&
+      a.manualPropertyValue !== null &&
+      a.manualPropertyValue !== undefined
+    ) {
       return a.manualPropertyValue > 0;
     } else {
       return (
