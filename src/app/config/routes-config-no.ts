@@ -112,6 +112,13 @@ export const customMeta = {
       'Renteradar henter renten du har og lånebeløp automatisk med BankID på mobil. Logg inn og registrering for deg som har boliglån i Sparebank 1 Hallingdal Valdres',
     bankName: 'sparebank_1_hallingdal_valdres'
   },
+  HelgelandSparebank: {
+    title:
+      'Beste boliglånsrente | Sammenlign rente på boliglån | Sparebank 1 Hallingdal Valdres | Renteradar.no',
+    description:
+      'Renteradar henter renten du har og lånebeløp automatisk med BankID på mobil. Logg inn og registrering for deg som har boliglån i Sparebank 1 Hallingdal Valdres',
+    bankName: 'sparebank_1_hallingdal_valdres'
+  },
   LomogSkjakSparebank: {
     title:
       'Beste boliglånsrente | Sammenlign rente på boliglån | Sparebank 1 Lom og Skjåk | Renteradar.no',
