@@ -27,7 +27,7 @@ export class BankGuideService {
   }
 
   filterBank(filter: string) {
-    let filteredBanks = [];
+    let filteredBanks: BankVo[] = [];
     if (filter === null || filter?.length === 0) {
       filteredBanks = this.allBanks.concat();
     } else {
