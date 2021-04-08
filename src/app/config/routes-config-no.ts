@@ -193,7 +193,8 @@ export const customMeta = {
 
 export const ROUTES_MAP_NO = {
   boliglanskalkulator: 'boliglanskalkulator',
-  banksGuide: 'bankguiden'
+  banksGuide: 'bankguiden',
+  bargainNordea: 'prute-fullfort-nordea'
 };
 
 export const ROUTES_MAP_SV = {
