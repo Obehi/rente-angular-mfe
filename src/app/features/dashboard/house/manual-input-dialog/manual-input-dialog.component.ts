@@ -41,7 +41,7 @@ export class ManualInputDialogComponent implements OnInit {
   }
 
   public onClick(): void {
-    const valueFromForm = this.valueForm.get('value').value;
+    const valueFromForm = this.valueForm.get('value')?.value;
 
     const value =
       typeof valueFromForm === 'string'
@@ -70,5 +70,5 @@ export class ManualInputDialogComponent implements OnInit {
 
 export interface manualHouseValueState {
   state: string;
-  value?: number;
+  value?: number | null;
 }

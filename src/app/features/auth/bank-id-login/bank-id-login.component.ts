@@ -264,7 +264,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
             )
           );
       } else {
-        of({});
+        return of({});
       }
     };
   }

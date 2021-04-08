@@ -63,7 +63,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
   private connectionTimer: Observable<number>;
   private crawlingTimer: Observable<number>;
   private connectionTimerSubscription: Subscription;
-  private crawlingTimerSubscription: Subscription;
+  private crawlingTimerSubscription: Subscription | null;
   private intervalSubscription: Subscription;
   public isShowTimer: boolean;
   isNotSB1customer: boolean;

@@ -211,13 +211,13 @@ export class HousesComponent implements OnInit, DeactivationGuarded {
 
     changeBankRef.afterClosed().subscribe(() => {
       const state = changeBankRef.componentInstance.closeState;
-      switch (state.state) {
+      switch (state?.state) {
         case '': {
           break;
         }
         case 'resend-request': {
           address.useManualPropertyValue = true;
-          address.manualPropertyValue = state.value;
+          address.manualPropertyValue = state?.value;
           this.saveAddresses();
           this.canLeavePage = true;
           break;
