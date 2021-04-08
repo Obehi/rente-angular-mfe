@@ -40,15 +40,17 @@ export class InitialOffersComponent implements OnInit {
   loanToValueRatioValidator: ValidatorFn = (
     control: AbstractControl
   ): ValidationErrors | null => {
-    const outstandingDebt = control.get('outstandingDebt').value;
-    const savings = control.get('savings').value;
+    const outstandingDebt = control.get('outstandingDebt')?.value;
+    const savings = control.get('savings')?.value;
     const isValid = outstandingDebt / (outstandingDebt + savings) > 0.85;
     this.isAboveLoanToValueRatioTreshold = isValid;
     return isValid ? { loanToValueRatio: isValid } : null;
   };
 
   loantoRatioMinimumAmount() {
-    const outstandingDebt = Number(this.formGroup.get('outstandingDebt').value);
+    const outstandingDebt = Number(
+      this.formGroup.get('outstandingDebt')?.value
+    );
     const minimumAmount = Math.ceil(outstandingDebt * 0.176470588);
     return Math.round(minimumAmount / 1000) * 1000;
   }

@@ -26,12 +26,12 @@ export class InputFlowComponent implements OnInit {
   ];
   @Output() nextStep: EventEmitter<void> = new EventEmitter<void>();
   @Output() exitEditMode: EventEmitter<void> = new EventEmitter<void>();
-  selectedChip: number;
+  selectedChip: number | null;
 
   constructor() {}
 
   ngOnInit(): void {
-    this.formGroup.get(this.controlName).valueChanges.subscribe((val) => {
+    this.formGroup.get(this.controlName)?.valueChanges.subscribe((val) => {
       if (this.chips.indexOf(val) === -1) {
         this.selectedChip = null;
       }

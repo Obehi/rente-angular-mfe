@@ -82,8 +82,10 @@ export class GetNotifiedNoComponent implements OnInit {
 
   inValid() {
     return (
-      this.missingBankForm.get('email').hasError('pattern') &&
-      this.missingBankForm.get('email').dirty
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      this.missingBankForm.get('email')!.hasError('pattern') &&
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      this.missingBankForm.get('email')!.dirty
     );
   }
 
