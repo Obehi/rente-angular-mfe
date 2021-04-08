@@ -32,7 +32,7 @@ import smoothscroll from 'smoothscroll-polyfill';
 import { BankUtils } from '@shared/models/bank';
 import { CustomLangTextService } from '@shared/services/custom-lang-text.service';
 import { locale } from '../../../../config/locale/locale';
-import { ROUTES_MAP } from '@config/routes-config';
+import { ROUTES_MAP, ROUTES_MAP_NO } from '@config/routes-config';
 import { EnvService } from '@services/env.service';
 import {
   OffersService,
@@ -437,8 +437,13 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
         break;
       }
       case 'procced': {
-        console.log('procced');
         this.router.navigate(['/dashboard/prute-fullfort'], {
+          state: { isError: false, fromChangeBankDialog: true }
+        });
+        break;
+      }
+      case 'procced-nordea': {
+        this.router.navigate(['/dashboard/' + ROUTES_MAP_NO.bargainNordea], {
           state: { isError: false, fromChangeBankDialog: true }
         });
         break;

@@ -41,7 +41,7 @@ export class AntiChurnDialogComponent implements OnInit {
     this.changeBankServiceService.sendAntiChurnRequest().subscribe(
       () => {
         this.isLoading = false;
-        this.closeState = 'procced';
+        this.closeState = 'procced-nordea';
         this.dialogRef.close();
       },
       () => {
