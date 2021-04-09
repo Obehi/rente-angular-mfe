@@ -71,7 +71,7 @@ export class GetNotifiedNoComponent implements OnInit {
     });
     this.missingBankForm
       .get('email')
-      .valueChanges.pipe(
+      ?.valueChanges.pipe(
         debounce((data) => {
           this.emailError = false;
           return this.inValid() ? timer(2000) : EMPTY;
