@@ -166,7 +166,6 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
       .messages()
       .pipe(debounceTime(500))
       .subscribe((message: OfferMessage) => {
-        console.log('offersService.messages()');
         switch (message) {
           case OfferMessage.antiChurn: {
             this.openAntiChurnBankDialog(this.offersInfo.offers.top5[0]);
