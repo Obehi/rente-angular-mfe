@@ -96,8 +96,15 @@
   margin-top: 22px;
 }
 
-.big-box:first-of-type {
-  margin-bottom: 20px;
+
+@media (max-width: 600px) {
+  .cta-boxes {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  .big-box:last-of-type {
+    margin-bottom: 20px;
+  }
 }
 
 .big-box {
