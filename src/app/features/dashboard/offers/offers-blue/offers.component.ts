@@ -67,7 +67,7 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
   public isSweden: boolean;
   public routesMap = ROUTES_MAP;
   public antiChurnIsOn = false;
-
+  public nordeaClickSubscription: Subscription;
   get isMobile(): boolean {
     return window.innerWidth < 600;
   }
@@ -119,6 +119,10 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
     if (this.subscribeShareLinkTimer) {
       this.subscribeShareLinkTimer.unsubscribe();
     }
+
+    if (this.nordeaClickSubscription) {
+      this.nordeaClickSubscription.unsubscribe();
+    }
   }
 
   public ngOnInit(): void {
@@ -158,7 +162,7 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
       }
     );
 
-    this.offersService
+    this.nordeaClickSubscription = this.offersService
       .messages()
       .pipe(debounceTime(500))
       .subscribe((message: OfferMessage) => {
