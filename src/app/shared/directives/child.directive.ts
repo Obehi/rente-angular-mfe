@@ -10,7 +10,6 @@ export class ChildDirective {
 
   ngAfterViewInit(): void {
     if (this.childClass !== '') {
-      const span = this.el.nativeElement.querySelector('div');
       const wrapper = this.el.nativeElement.children[0];
       const trimmedChildClass = this.childClass.replace(/\s/g, '');
       this.renderer.addClass(wrapper, trimmedChildClass);
