@@ -142,9 +142,12 @@
       }
     }
     .the-offer-body {
+      .the-offer-body-grid {
         display: grid;
         grid-gap: 10px;
         grid-template-columns:3fr 2fr;
+      
+        
 
 
         .offer-top  {
@@ -183,15 +186,7 @@
             grid-column-end: span 2;
             
         }
-        .obligatory-info {
-          text-align: left;
-          grid-row: 4;
-          margin-bottom: 10px;
-          p {
-            font-size: 9px;
-            text-align: center;
-          }
-        }
+        
         .info-table { 
             display: flex;
             justify-content: space-evenly;
@@ -396,6 +391,18 @@
           display: block !important;
         }
 
+        .buttons {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          grid-column-start: 1;
+          grid-column-end: span 2;
+          margin: 0 20px 0;
+          > * {
+            margin-bottom: 10px;
+          }
+        }
+
         .buttons.item {
 
           display: flex;
@@ -404,7 +411,7 @@
           align-items: unset;
           grid-column-start: 1;
           grid-column-end: span 2;
-          grid-row: 5;
+          grid-row: 3;
 
           
           
@@ -441,9 +448,6 @@
               margin-right: 10px;
             }
           }
-
-         
-
           p {
             font-weight: 100;
           }
@@ -509,10 +513,31 @@
         }
       }
     }
+  }
+    .buttons {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 10px;
+      & > .button {
+        &:not(:first-child) { 
+          margin-top: 15px;
+        }
+      }
+    }
     .the-offer-footer {
       p{
         text-align: start;
         font-size: 12px
+      }
+    }
+
+    .obligatory-info {
+      text-align: left;
+      grid-row: 4;
+      margin-bottom: 10px;
+      p {
+        font-size: 9px;
+        text-align: center;
       }
     }
   }

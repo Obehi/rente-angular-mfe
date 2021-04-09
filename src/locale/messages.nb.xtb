@@ -1566,4 +1566,24 @@ Fortsett
         <ph name="START_TAG_RENTE_BUTTON"><ex>&lt;rente-button&gt;</ex>&lt;rente-button&gt;</ph>Ja<ph name="CLOSE_TAG_RENTE_BUTTON"><ex>&lt;/rente-button&gt;</ex>&lt;/rente-button&gt;</ph>
         <ph name="START_TAG_RENTE_BUTTON_1"><ex>&lt;rente-button&gt;</ex>&lt;rente-button&gt;</ph>Nei<ph name="CLOSE_TAG_RENTE_BUTTON"><ex>&lt;/rente-button&gt;</ex>&lt;/rente-button&gt;</ph>
       </translation>
+  <translation id="change.bank.success-header" desc="change-bank" meaning="info">Hjelp en venn!</translation>
+  <translation id="change.bank.success-body" desc="change-bank" meaning="info">Fortell noen du kjenner om Renteradar.no og kanskje de spanderer en middag med alle pengene de
+                        sparer. Del med knappene under</translation>
+  <translation id="change.bank.location.header" desc="change-bank" meaning="choose-office ">Velg din filial</translation>
+  <translation id="change.bank.location.city" desc="change-bank" meaning="choose-office ">By</translation>
+  <translation id="change.bank.location.choosenText" desc="change-bank" meaning="choose-office ">Du har valgt: </translation>
+  <translation id="change.bank.location.cancel" desc="change-bank" meaning="choose-office ">
+                Tilbake
+                </translation>
+  <translation id="change.bank.location.send" desc="change-bank" meaning="choose-office ">
+                Send
+            </translation>
+  <translation id="change.bank.location.back" desc="change-bank" meaning="choose-office ">
+                Tilbake
+                </translation>
+  <translation id="change.bank.location.office" desc="change-bank" meaning="choose-office ">Filial</translation>
+  <translation id="change.bank.location.header.explain" desc="change-bank" meaning="choose-office ">Välj län så skickar vi meddelandet till ditt bankkontor åt dig.</translation>
+  <translation id="change.bank.email" desc="change-bank" meaning="“info-post">E-post:</translation>
+  <translation id="offers.statistics.tab1" desc="offers-statistics" meaning="graph"> </translation>
+  <translation id="offers.statistics.tab2" desc="offers-statistics" meaning="graph"> </translation>
 </translationbundle>
