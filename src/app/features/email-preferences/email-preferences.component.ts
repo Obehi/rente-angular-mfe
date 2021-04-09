@@ -105,9 +105,9 @@ export class EmailPreferencesComponent implements OnInit {
         this.updateAnimationTrigger = !this.updateAnimationTrigger;
       },
       (err) => {
-        if (err.status == 404) {
+        if (err.status === 404) {
           this.errorMessage = 'Du har oppgitt feil url.';
-        } else if (err.status == 400) {
+        } else if (err.status === 400) {
           this.errorMessage = 'Oops, noe gikk galt';
         }
 

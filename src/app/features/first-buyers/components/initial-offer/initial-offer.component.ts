@@ -14,10 +14,12 @@ export class InitialOfferComponent implements OnInit {
 
   ngOnInit(): void {
     this.bank = BankUtils.getBankByName(this.offer.bankInfo.bank);
-    this.bank.icon = BankUtils.getBankPngIcon(
-      this.bank.name,
-      '../../../../../assets/img/banks-logo/'
-    );
+    if (this.bank !== null) {
+      this.bank.icon = BankUtils.getBankPngIcon(
+        this.bank.name,
+        '../../../../../assets/img/banks-logo/'
+      );
+    }
 
     if (this.offer.bankInfo.score === null) this.offer.bankInfo.score = 3;
   }

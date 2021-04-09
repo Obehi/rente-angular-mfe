@@ -61,7 +61,7 @@ export class CheckboxContainerComponent implements OnInit {
 
   getIcon(item: CheckBoxItem): string {
     const currentItemValue = this.formGroup
-      ? this.formGroup.get(this.controlName).value
+      ? this.formGroup.get(this.controlName)?.value
       : this._selectedItem?.value;
 
     const iconName =
@@ -84,7 +84,7 @@ export class CheckboxContainerComponent implements OnInit {
 
     this.checkBoxItems[index].isSelected = true;
     this._selectedItem = this.checkBoxItems[index];
-    this.selectedValue.emit(this._selectedItem.value);
+    this.selectedValue.emit(this._selectedItem?.value);
   }
 }
 

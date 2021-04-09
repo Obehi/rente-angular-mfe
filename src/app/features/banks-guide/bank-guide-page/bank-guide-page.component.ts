@@ -28,8 +28,8 @@ export class BankGuidePageComponent implements OnInit {
   addressesArray: BankLocationAddress[] = [];
   memberships: any;
   membershipOffers: any;
-  depositsGeneral = [];
-  depositsBsu = [];
+  depositsGeneral: { name: string; rate: string }[] = [];
+  depositsBsu: { name: string; rate: string }[] = [];
 
   public bankUtils = BankUtils;
   private _onDestroy$ = new Subject<void>();

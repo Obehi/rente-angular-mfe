@@ -234,34 +234,42 @@ export class InitialOffersComponent implements OnInit {
   ) {}
 
   get outstandingDebtControl(): AbstractControl {
-    return this.formGroup.get('outstandingDebt');
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    return this.formGroup.get('outstandingDebt')!;
   }
 
   get savingsControl(): AbstractControl {
-    return this.formGroup.get('savings');
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    return this.formGroup.get('savings')!;
   }
 
   get incomeControl(): AbstractControl {
-    return this.formGroup.get('income');
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    return this.formGroup.get('income')!;
   }
 
   get otherDebtControl(): AbstractControl {
-    return this.formGroup.get('otherDebt');
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    return this.formGroup.get('otherDebt')!;
   }
 
   get membershipsControl(): AbstractControl {
-    return this.formGroup.get('memberships');
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    return this.formGroup.get('memberships')!;
   }
 
   get ageControl(): AbstractControl {
-    return this.formGroup.get('age');
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    return this.formGroup.get('age')!;
   }
   get localBanks(): AbstractControl {
-    return this.formGroup.get('localBanks');
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    return this.formGroup.get('localBanks')!;
   }
 
   get firstLoanControl(): AbstractControl {
-    return this.formGroup.get('firstLoan');
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    return this.formGroup.get('firstLoan')!;
   }
 
   subscribeToControllers(): void {
