@@ -23,7 +23,7 @@ export class BankSelectNoComponent implements OnInit {
 
   constructor(private router: Router, private envService: EnvService) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.sortBanks();
     this.filterBank(this.searchStr);
   }
