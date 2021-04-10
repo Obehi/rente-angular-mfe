@@ -146,7 +146,7 @@
 
       <div *ngIf="isNordea === true">
         <rente-button
-        child childClass="{{offer.bankInfo.name}}"
+        child childClass="{{this.offersInfo.offers.top5[0].bankInfo.name}}"
         color="secondary-medium" type="raised"
         (click)="clickNordea()">
         Be Nordea om et bedre tilbud
