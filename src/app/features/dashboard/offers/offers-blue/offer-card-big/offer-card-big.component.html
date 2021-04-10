@@ -119,6 +119,7 @@
       <div class="full-width">
 
         <rente-button i18n=“see-more|offer-card-big@@offer.card.big.seeMore”
+          child childClass="{{offer.bankInfo.name}}"
           [disabled]="offer.bankInfo.partner == false"
           [color]="'primary-wide-hollow'"
           type="raised"
@@ -133,7 +134,7 @@
 
         <rente-button i18n=“get-offer|offer-card-big@@offer.card.big.getOffer”
         [disabled]="offer.bankInfo.partner == false"
-          child childClass="{{offer.bankInfo.name}}"
+          child childClass="{{offer.bankInfo.name}}" 
           color="primary"
           type="raised"
           (click)="openNewOfferDialog(offer)"

@@ -96,6 +96,7 @@
 
         <div class="buttons">
           <rente-button class="firstButton" [disabled]="offer.bankInfo.partner == false"  
+              child childClass="{{offer.bankInfo.name}}"
               i18n=“see-more|offer-card-big@@offer.card.big.seeMore”
               [color]="'primary-wide-hollow-card'" type="raised"
               (click)="openBankUrlByButton(offer)">Se mer på {{getbankNameOrDefault(offer)}}s hjemmeside
