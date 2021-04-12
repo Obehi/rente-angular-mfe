@@ -44,6 +44,14 @@ export class AntiChurnDialogComponent implements OnInit {
         this.dialogRef.close();
 
         return; */
+
+        (window as any).dataLayer.push({
+          event: 'NordeaAntiChurn',
+          category: 'NordeaAntiChurn',
+          action: 'anti-churn success',
+          label: 'test label',
+          value: 'test value'
+        });
         this.isLoading = false;
         this.closeState = 'procced-nordea';
         this.dialogRef.close();
