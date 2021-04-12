@@ -17,6 +17,7 @@ import { ChangeBankLocationComponent } from '@features/dashboard/offers/change-b
 
 import { GetOfferFromBankDialogComponent } from './../get-offer-from-bank-dialog/get-offer-from-bank-dialog.component';
 import { AntiChurnDialogComponent } from '@features/dashboard/offers/anti-churn-dialog/anti-churn-dialog.component';
+import { AntiChurnErrorDialogComponent } from '@features/dashboard/offers/anti-churn-dialog/anti-churn-error-dialog/anti-churn-error-dialog.component';
 import { CanNotBargainDialogComponent } from '@features/dashboard/offers/can-not-bargain-dialog/can-not-bargain-dialog.component';
 import { LtvTooHighDialogComponent } from './../ltv-too-high-dialog/ltv-too-high-dialog.component';
 import { ChangeBankServiceService } from '@services/remote-api/change-bank-service.service';
@@ -455,6 +456,10 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
         this.router.navigate(['/dashboard/prute-fullfort'], {
           state: { isError: false, fromChangeBankDialog: true }
         });
+        break;
+      }
+      case 'error-to-many-bargains': {
+        this.dialog.open(AntiChurnErrorDialogComponent);
         break;
       }
     }

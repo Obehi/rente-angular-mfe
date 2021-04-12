@@ -40,11 +40,19 @@ export class AntiChurnDialogComponent implements OnInit {
     this.isLoading = true;
     this.changeBankServiceService.sendAntiChurnRequest().subscribe(
       () => {
+        /*  this.closeState = 'error-to-many-bargains';
+        this.dialogRef.close();
+
+        return; */
         this.isLoading = false;
         this.closeState = 'procced-nordea';
         this.dialogRef.close();
       },
       () => {
+        if (true) {
+          this.closeState = 'error-to-many-bargains';
+          this.dialogRef.close();
+        }
         this.isLoading = false;
         this.closeState = 'error';
         this.dialogRef.close();
