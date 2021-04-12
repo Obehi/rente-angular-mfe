@@ -49,7 +49,7 @@ export class AntiChurnDialogComponent implements OnInit {
           event: 'NordeaAntiChurn',
           category: 'NordeaAntiChurn',
           action: 'anti-churn success',
-          label: 'test label',
+          label: `$top offer: ${this.data.bankInfo.bank}`,
           value: 'test value'
         });
         this.isLoading = false;
