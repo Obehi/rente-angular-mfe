@@ -38,7 +38,8 @@ export class OfferCardComponentBlue implements OnInit {
     public dialog: MatDialog,
     private router: Router,
     public customLangTextSerice: CustomLangTextService,
-    private offersService: OffersService
+    private offersService: OffersService,
+    private window: Window
   ) {}
 
   ngOnInit(): void {
@@ -184,6 +185,12 @@ export class OfferCardComponentBlue implements OnInit {
 
   public clickNordea(event): void {
     console.log(event);
+
+    console.log(window);
+    this.window.dataLayer.push({
+      'anti-churn-best-offer': this.offersInfo.offers.top5[0].bankInfo.name
+    });
+    console.log(this.window.dataLayer);
     this.offersService.pushMessage(OfferMessage.antiChurn);
   }
 }
