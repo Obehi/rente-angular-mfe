@@ -182,7 +182,8 @@ export class OfferCardComponentBlue implements OnInit {
     }
   }
 
-  public clickNordea(): void {
+  public clickNordea(event): void {
+    console.log(event);
     this.offersService.pushMessage(OfferMessage.antiChurn);
   }
 }
