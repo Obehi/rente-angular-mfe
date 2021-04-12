@@ -99,7 +99,8 @@ export class EmailPreferencesComponent implements OnInit {
     )?.value;
     dto.receiveNewsEmails = this.emailForm.get('receiveNewsEmails')?.value;
 
-    this.preferancesService.postPreferancesWithGUID(this.guid, dto).subscribe(
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    this.preferancesService.postPreferancesWithGUID(this.guid!, dto).subscribe(
       (response) => {
         this.isLoading = false;
         this.updateAnimationTrigger = !this.updateAnimationTrigger;

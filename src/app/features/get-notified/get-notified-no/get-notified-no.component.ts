@@ -38,7 +38,7 @@ export class GetNotifiedNoComponent implements OnInit {
   public banks: any = [];
   public allBanks: any[];
   public isLoading: boolean;
-  public missingBank: BankVo | null;
+  public missingBank: BankVo;
   public emailError = false;
 
   @ViewChild('auto') matAutocomplete: MatAutocomplete;

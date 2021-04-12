@@ -104,10 +104,12 @@ export class LoggingService {
           }
         ]
       };
-      this.http
-        .postExternal(this.envService.environment.coralogixApiUrl, logg)
-        .pipe(first())
-        .subscribe(() => {});
+      if (this.envService.environment.coralogixApiUrl !== undefined) {
+        this.http
+          .postExternal(this.envService.environment.coralogixApiUrl, logg)
+          .pipe(first())
+          .subscribe(() => {});
+      }
     }
   }
 }

@@ -14,7 +14,7 @@ export interface Environment {
   shouldLog?: boolean;
   tinkNorDanskebankLink?: string | null;
   tinkNorHandelsbankenLink?: string | null;
-  coralogixApiUrl?: string | null;
+  coralogixApiUrl?: string;
   coralogixPrivateKey?: string | null;
   coralogixApplicationName?: string | null;
   loginDnbIsOn?: boolean;

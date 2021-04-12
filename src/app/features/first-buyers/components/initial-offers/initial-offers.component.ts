@@ -73,7 +73,7 @@ export class InitialOffersComponent implements OnInit {
     { validators: this.loanToValueRatioValidator, updateOn: 'blur' }
   );
   public allMemberships: MembershipTypeDto[] = [];
-  selectedIndex = 1;
+  selectedIndex: number | null = 1;
   public filteredMemberships: Observable<MembershipTypeDto[]>;
   public memberships: MembershipTypeDto[] = [];
   properties = [
