@@ -1,8 +1,11 @@
 @import "../../../../../styles/theme/_colors.scss";
 .button-wrapper {
   display: block;
-  text-align: center;
-  pointer-events: none;
+  text-align: center
+  
+  span {
+    pointer-events: none;
+  }
 }
 button.mat-button {
   min-width: 150px;
