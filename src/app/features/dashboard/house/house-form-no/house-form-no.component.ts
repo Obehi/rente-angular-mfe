@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { AddressDto } from '@services/remote-api/loans.service';
 import { LoansService } from '@services/remote-api/loans.service';
 import { MatTabChangeEvent } from '@angular/material';
+import { EnvService } from '@services/env.service';
 
 export enum AddressFormMode {
   Editing,
@@ -21,10 +22,6 @@ export class HouseFormNoComponent implements OnInit {
   @Output() change: EventEmitter<any> = new EventEmitter();
   @Output() onSave: EventEmitter<any> = new EventEmitter();
 
-  addresses: AddressDto[];
-
-  test: string;
-
   mode = AddressFormMode.Editing;
   changesMade = false;
 
@@ -32,12 +29,12 @@ export class HouseFormNoComponent implements OnInit {
     return this.isAddressValid && this.changesMade;
   }
 
-  constructor(private loansService: LoansService) {}
+  constructor(public envService: EnvService) {}
 
   ngOnInit(): void {
-    this.loansService.getAddresses().subscribe((r) => {
-      this.addresses = r.addresses;
-    });
+    this.address.estimatedPropertyValue =
+      this.address.estimatedPropertyValue || null;
+    this.address.manualPropertyValue = this.address.manualPropertyValue || null;
   }
 
   get isAbleToDelete(): boolean {
