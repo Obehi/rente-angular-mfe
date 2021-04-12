@@ -23,6 +23,8 @@ export class HouseFormNoComponent implements OnInit {
 
   addresses: AddressDto[];
 
+  test: string;
+
   mode = AddressFormMode.Editing;
   changesMade = false;
 
@@ -51,7 +53,7 @@ export class HouseFormNoComponent implements OnInit {
     return (
       this.address !== null &&
       this.address.id > 0 &&
-      this.address.zip &&
+      !!this.address.zip &&
       this.address.zip.length === 4 &&
       this.address.apartmentSize > 5 &&
       this.address.street.length > 0

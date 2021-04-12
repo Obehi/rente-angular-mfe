@@ -58,7 +58,7 @@
               matInput
               class="automatic"
               [type]="'tel'"
-              [ngModel]="address.estimatedPropertyValue | thousands"
+              [ngModel]="address?.estimatedPropertyValue | thousands"
               (change)="countChange()"
               (focus)="countChange()"
               [disabled]="address.useManualPropertyValue"
@@ -75,7 +75,7 @@
             matInput
             [disabled]="!address.useManualPropertyValue"
             [type]="'tel'"
-            [ngModel]="address.manualPropertyValue | thousands"
+            [ngModel]="address?.manualPropertyValue | thousands"
             (change)="countChange()"
 
             style="text-align: center !important;"

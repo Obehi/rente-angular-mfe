@@ -90,8 +90,8 @@
   
             <div class="save-info">
               <p i18n=“save|offers-main@@offers.mainPage.save”>Du kan spare</p>
-              <h2 *ngIf="offersInfo.bestOfferTotalSaving > 0; else noBestOffer">
-                {{ offersInfo.bestOfferTotalSaving | abs | number }},-
+              <h2 *ngIf="offersInfo?.bestOfferTotalSaving > 0; else noBestOffer">
+                {{ offersInfo?.bestOfferTotalSaving | abs | number }},-
               </h2>
               <ng-template #noBestOffer>
                 <h2> 0,- </h2>
@@ -131,7 +131,7 @@
                   Boligverdi
                 </p>
                 <h2 i18n=“millions|offers-main@@offers.mainPage.millions”>
-                  {{ offersInfo.propertyValue / 1000000 | number: "1.1-3" }}
+                  {{ offersInfo?.propertyValue / 1000000 | number: "1.1-3" }}
                   mill.
                 </h2>
                 <p *ngIf="!isSweden" i18n=“debt|offers-main@@offers.mainPage.debt” class="small">
@@ -156,7 +156,7 @@
               </p>
               <h2 i18n=“millions|offers-main@@offers.mainPage.millions”>
                 {{
-                offersInfo.totalOutstandingDebt / 1000000 | number: "1.1-3"
+                offersInfo?.totalOutstandingDebt / 1000000 | number: "1.1-3"
               }}
                 mill.
               </h2>
@@ -386,8 +386,8 @@
   
               <div class="save-info">
                 <p i18n=“save|offers-main@@offers.mainPage.save”>Du kan spare</p>
-                <h2 *ngIf="offersInfo.bestOfferTotalSaving > 0; else noBestOffer">
-                  {{ offersInfo.bestOfferTotalSaving | abs | number }},-
+                <h2 *ngIf="offersInfo?.bestOfferTotalSaving > 0; else noBestOffer">
+                  {{ offersInfo?.bestOfferTotalSaving | abs | number }},-
                 </h2>
                 <ng-template #noBestOffer>
                   <h2> 0,- </h2>
@@ -426,7 +426,7 @@
                   Boligverdi
                 </p>
                 <h2 i18n=“millions|offers-main@@offers.mainPage.millions”>
-                  {{ offersInfo.propertyValue / 1000000 | number: "1.1-3" }}
+                  {{ offersInfo?.propertyValue / 1000000 | number: "1.1-3" }}
                   mill.
                 </h2>
                 <p *ngIf="!isSweden" i18n=“debt|offers-main@@offers.mainPage.debt” class="small">
@@ -451,7 +451,7 @@
               </p>
               <h2 i18n=“millions|offers-main@@offers.mainPage.millions”>
                 {{
-                offersInfo.totalOutstandingDebt / 1000000 | number: "1.1-3"
+                offersInfo?.totalOutstandingDebt / 1000000 | number: "1.1-3"
               }}
                 mill.
               </h2>

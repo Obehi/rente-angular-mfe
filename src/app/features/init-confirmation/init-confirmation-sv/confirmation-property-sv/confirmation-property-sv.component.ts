@@ -12,7 +12,7 @@ import { ROUTES_MAP } from '@config/routes-config';
 export class ConfirmationProperty implements OnInit {
   public isLoading: boolean;
   public mask = Mask;
-  public estimatedPropertyValue?: number;
+  public estimatedPropertyValue?: number | null;
   public propertyIconPath: string | null;
 
   constructor(private loansService: LoansService, private router: Router) {}

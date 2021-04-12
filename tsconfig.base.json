@@ -7,7 +7,7 @@
     "declaration": false,
     "module": "esnext",
     "moduleResolution": "node",
-    //"strictNullChecks": true,
+    "strictNullChecks": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "importHelpers": true,
