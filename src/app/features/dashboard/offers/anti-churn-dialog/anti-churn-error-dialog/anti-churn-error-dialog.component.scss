@@ -28,8 +28,9 @@
 ::ng-deep .mat-expansion-panel:not([class*=mat-elevation-z]) {
   box-shadow: unset !important
 }
-h2 {
+h3 {
   text-align: center;
+  margin-bottom: 20px;
 }
 
 h4 {
@@ -60,8 +61,10 @@ a {
   margin-top: 40px !important;
 }
 .bottom {
+  display: flex;
+  justify-content: center;
   border-top: 1px solid #ECECEC;
-  padding: 0px 20px 20px 20px;
+  padding: 20px 20px 20px 20px;
   border-radius: 0 0 10px 10px;
   background: white;
 

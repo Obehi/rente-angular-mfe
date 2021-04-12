@@ -184,6 +184,13 @@ export class OfferCardBigComponentBlue implements OnInit {
   }
 
   public clickNordea(): void {
+    (window as any).dataLayer.push({
+      event: 'eventTracking',
+      category: 'NordeaAntiChurn',
+      action: 'Click offer card anti-churn',
+      label: `top offer: ${this.offersInfo.offers.top5[0].bankInfo.name}`,
+      value: this.offersInfo.offers.top5[0].bankInfo.name
+    });
     this.offersService.pushMessage(OfferMessage.antiChurn);
   }
 }

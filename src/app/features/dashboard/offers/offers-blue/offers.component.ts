@@ -389,8 +389,6 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
       return;
     }
     this.changeBankLoading = true;
-    const offerId = offer.id;
-
     const changeBankRef = this.dialog.open(AntiChurnDialogComponent, {
       autoFocus: false,
       data: offer
@@ -453,9 +451,6 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
         break;
       }
       case 'error': {
-        this.router.navigate(['/dashboard/prute-fullfort'], {
-          state: { isError: false, fromChangeBankDialog: true }
-        });
         break;
       }
       case 'error-to-many-bargains': {

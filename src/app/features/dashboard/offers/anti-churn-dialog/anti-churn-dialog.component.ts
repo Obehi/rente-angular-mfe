@@ -40,13 +40,8 @@ export class AntiChurnDialogComponent implements OnInit {
     this.isLoading = true;
     this.changeBankServiceService.sendAntiChurnRequest().subscribe(
       () => {
-        /*  this.closeState = 'error-to-many-bargains';
-        this.dialogRef.close();
-
-        return; */
-
         (window as any).dataLayer.push({
-          event: 'NordeaAntiChurn',
+          event: 'eventTracking',
           category: 'NordeaAntiChurn',
           action: 'anti-churn success',
           label: `$top offer: ${this.data.bankInfo.bank}`,
@@ -56,14 +51,16 @@ export class AntiChurnDialogComponent implements OnInit {
         this.closeState = 'procced-nordea';
         this.dialogRef.close();
       },
-      () => {
-        if (true) {
+      (error) => {
+        this.isLoading = false;
+        if (error.detail === 'Less than week since last email') {
           this.closeState = 'error-to-many-bargains';
           this.dialogRef.close();
+        } else {
+          this.isLoading = false;
+          this.closeState = 'error';
+          this.dialogRef.close();
         }
-        this.isLoading = false;
-        this.closeState = 'error';
-        this.dialogRef.close();
       }
     );
   }
