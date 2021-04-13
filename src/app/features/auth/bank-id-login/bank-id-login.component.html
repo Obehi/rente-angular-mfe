@@ -128,7 +128,7 @@
       novalidate
       (ngSubmit)="startLogin(bankIdForm.value)"
     >
-      <img ngIf*="bank.label !== null"
+      <img
         class="bank-logo"
         [src]="bankLogo"
         [alt]="bank?.label"

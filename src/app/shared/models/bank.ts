@@ -1520,9 +1520,7 @@ export class BankUtils {
     basePath = '../../../assets/img/banks-logo/'
   ): string {
     if (bankName === null) {
-      return (
-        basePath + '../../../assets/img/banks-logo/round/default-bank-icon'
-      );
+      return basePath + 'round/default-bank-icon.png';
     }
     const bank = this.getBankByName(bankName);
     if (bank?.logo) {
@@ -1544,9 +1542,7 @@ export class BankUtils {
     if (bank !== null) {
       return basePath + 'round/' + bank.icon;
     } else {
-      return (
-        basePath + '../../../assets/img/banks-logo/round/default-bank-icon'
-      );
+      return basePath + 'round/default-bank-icon.png';
     }
   }
 
