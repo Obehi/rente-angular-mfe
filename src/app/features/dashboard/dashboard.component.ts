@@ -72,11 +72,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   public getActiveIndex(): number | null {
     if (this.navLinks !== undefined) {
-      const test = this.navLinks.find(
+      const setIndex = this.navLinks.find(
         (link) => `/dashboard/${link}` === this.router.url.split('?')[0]
       );
-      if (test !== undefined) {
-        return this.navLinks.indexOf(test);
+      if (setIndex !== undefined) {
+        return this.navLinks.indexOf(setIndex);
       }
     }
     return null;
