@@ -11,6 +11,10 @@ import { CustomLangTextService } from '@shared/services/custom-lang-text.service
 import { OFFER_SAVINGS_TYPE } from '../../../../../config/loan-state';
 import { BankScoreLangGenericComponent } from '../../../../../local-components/components-output';
 import { OfferInfo, Offers } from './../../../../../shared/models/offers';
+import {
+  OffersService,
+  OfferMessage
+} from '@features/dashboard/offers/offers.service';
 import { locale } from '../../../../../config/locale/locale';
 
 @Component({
@@ -24,6 +28,7 @@ export class OfferCardComponentBlue implements OnInit {
   public xpandStatus = false;
   public offerType: string;
   public isSweden: boolean;
+  public isNordea = false;
 
   @Input() offer: OfferInfo;
   @Input() offersInfo: Offers;
@@ -32,7 +37,8 @@ export class OfferCardComponentBlue implements OnInit {
     private trackingService: TrackingService,
     public dialog: MatDialog,
     private router: Router,
-    public customLangTextSerice: CustomLangTextService
+    public customLangTextSerice: CustomLangTextService,
+    private offersService: OffersService
   ) {}
 
   ngOnInit(): void {
@@ -41,6 +47,8 @@ export class OfferCardComponentBlue implements OnInit {
     } else {
       this.isSweden = false;
     }
+
+    this.isNordea = this.offersInfo.bank === 'NORDEA';
 
     if (this.offer.fixedRatePeriod === 0) {
       this.offerType = 'threeMonths';
@@ -172,5 +180,9 @@ export class OfferCardComponentBlue implements OnInit {
         break;
       }
     }
+  }
+
+  public clickNordea(): void {
+    this.offersService.pushMessage(OfferMessage.antiChurn);
   }
 }

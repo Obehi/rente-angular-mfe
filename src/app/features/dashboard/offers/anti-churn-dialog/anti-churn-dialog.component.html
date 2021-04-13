@@ -1,0 +1,59 @@
+<div class="top">
+    <mat-icon (click)="close()" class="close-modal">close</mat-icon>
+    <h2>Bekreft innsending</h2>
+    <form [formGroup]="confirmForm" novalidate>
+      <mat-checkbox i18n=“age-confirmation|change-bank@@change.bank.ageConfirmation”
+        formControlName="confirmation"
+        (change)="isConfirmed = $event.checked"
+      >
+      Jeg godkjenner at min kontakt-, medlemskaps- og låneinformasjon sendes kryptert til Nordea og at Nordea kan kontakte meg.
+      </mat-checkbox>
+  
+
+  </form> 
+
+  <div [@.disabled]="disableAnimation">
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Se mer info
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <h4>Følgende informasjon om deg sendes til Nordea.</h4>
+        <ul>
+          <li>Navn</li>
+          <li>Adresse</li>
+          <li>Telefonnummer</li>
+          <li>Epost</li>
+          <li>Fødselsnummer</li>
+          <li>Lånedata (beløp, lånetype, løpetid, rente)</li>
+          <li>Medlemskap</li>
+        </ul>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+</div>
+
+
+
+<div class="bottom">
+  <div class="double">
+
+    <rente-button color="primary-wide-hollow" (click)="close()" i18n=“cancel|change-bank@@change.bank.cancel”>
+      Avbryt
+    </rente-button>
+
+    <rente-button i18n=“send-bank|change-bank@@change.bank.sendBank”
+      color="primary-wide"
+      [isLoading]="isLoading"
+      [disabled]="!isConfirmed || isLoading"
+      (click)="sendRequest()"
+      >Send til Nordea
+    </rente-button>
+  </div>
+</div>
+
+
+
+  

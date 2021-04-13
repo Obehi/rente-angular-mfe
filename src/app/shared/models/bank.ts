@@ -1050,6 +1050,17 @@ export const BankList: BankVo[] = [
     false,
     'https://www.sparebank1.no/nb/bank/privat/kundeservice/mobil/hvordan-bestiller-jeg-bankid-pa-mobil.html'
   ),
+  new BankVo(
+    'SPAREBANK_1_HELGELAND',
+    'SpareBank 1 Helgeland',
+    'sparebanken1v2.png',
+    'sparebank1-color.svg',
+    false,
+    false,
+    false,
+    false,
+    'https://www.sparebank1.no/nb/bank/privat/kundeservice/mobil/hvordan-bestiller-jeg-bankid-pa-mobil.html'
+  ),
   ...eikaBanks
 ];
 
@@ -1421,17 +1432,6 @@ export const MissingBankList: BankVo[] = [
     'HUSBANKEN',
     'Husbanken',
     'husbanken.png',
-    null,
-    false,
-    true,
-    true,
-    false,
-    null
-  ),
-  new BankVo(
-    'HELGELAND_SB',
-    'Helgeland Sparebank',
-    'helgeland.png',
     null,
     false,
     true,

@@ -114,7 +114,7 @@
 
     <div class="the-offer-footer">
 
-    <div class="double buttons">
+    <div [ngClass]="{'double': isNordea === false, 'triple': isNordea === true }" class="buttons">
 
       <div class="full-width">
 
@@ -123,9 +123,9 @@
           [color]="'primary-wide-hollow'"
           type="raised"
           (click)="openBankUrlByButton(offer)"
-          >Se mer på {{getbankNameOrDefault(offer)}}s <br/> hjemmeside</rente-button
+          >Se mer på {{getbankNameOrDefault(offer)}}s hjemmeside</rente-button
         >
-        <p i18n=“no-deal|offer-card-big@@offer.card.big.noDeal” class="small" *ngIf=" offer.bankInfo.partner === false && isMobile === false"> (Ingen avtale med banken enda)</p>
+        <p i18n=“no-deal|offer-card-big@@offer.card.big.noDeal” class="small first" *ngIf=" offer.bankInfo.partner === false && isMobile === false"> (Ingen avtale med banken enda)</p>
       </div>
 
 
@@ -143,6 +143,15 @@
           <p class="small" *ngIf=" offer.bankInfo.partner === false" i18n=“no-deal|offer-card-big@@offer.card.big.noDeal”> (Ingen avtale med banken enda)</p>
 
       </div>
+
+      <div *ngIf="isNordea === true">
+        <rente-button
+        child childClass="{{offer.bankInfo.name}}"
+        color="secondary-medium" type="raised"
+        (click)="clickNordea()">
+        Be Nordea om et bedre tilbud
+      </rente-button>
+    </div>
     </div>
 
     <p i18n=“offer-info|offer-card-big@@offer.card.big.offerInfo” class="insignificant"><span>Tilbud:
