@@ -25,7 +25,6 @@ export class HouseFormSvComponent implements OnInit {
   public checkBoxItems: CheckBoxItem[];
   mode = AddressFormMode.Editing;
   changesMade = false;
-
   get ableTosave(): boolean {
     return this.isAddressValid && this.changesMade;
   }
@@ -77,11 +76,22 @@ export class HouseFormSvComponent implements OnInit {
   get isAddressValid(): boolean {
     return (
       this.address !== null &&
-      this.address.id > 0 &&
       !!this.address.zip &&
       this.address.zip.length === 5 &&
-      this.address.street.length > 0
+      !!this.address.apartmentSize &&
+      this.address.apartmentSize > 5 &&
+      this.address.street.length > 0 &&
+      this.propertyValueIsSet &&
+      this.address.propertyType !== null
     );
+  }
+
+  get propertyValueIsSet(): boolean {
+    if (this.address.useManualPropertyValue) {
+      return !!this.address.manualPropertyValue;
+    } else {
+      return true;
+    }
   }
 
   onPropertyTypeChange($event): void {
@@ -104,6 +114,7 @@ export class HouseFormSvComponent implements OnInit {
   }
 
   save(): void {
+    if (this.ableTosave !== true) return;
     this.onSave.emit();
     this.changesMade = false;
   }
@@ -118,6 +129,7 @@ export class HouseFormSvComponent implements OnInit {
 
   manualPropertyValueChanged($event): void {
     if ($event && $event.target) {
+      this.countChange();
       const newValue = parseInt(String($event.target.value).replace(/\D/g, ''));
       this.address.manualPropertyValue = newValue >= 0 ? newValue : 0;
     }
@@ -128,5 +140,26 @@ export class HouseFormSvComponent implements OnInit {
       this.mode === AddressFormMode.Editing
         ? AddressFormMode.Statistics
         : AddressFormMode.Editing;
+  }
+
+  propertyValueIsValid(address: AddressDto): boolean {
+    if (
+      address.useManualPropertyValue &&
+      address.manualPropertyValue !== null &&
+      address.manualPropertyValue !== undefined
+    ) {
+      return address.manualPropertyValue > 0;
+    } else if (address.useManualPropertyValue === false) {
+      return (
+        this.notEmpty(address.street) &&
+        this.notEmpty(address.zip) &&
+        address.apartmentSize > 0
+      );
+    }
+    return false;
+  }
+
+  notEmpty(text: string | null): boolean {
+    return text !== null && String(text).length > 0;
   }
 }

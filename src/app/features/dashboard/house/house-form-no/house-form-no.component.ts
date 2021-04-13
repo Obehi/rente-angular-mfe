@@ -49,15 +49,14 @@ export class HouseFormNoComponent implements OnInit {
   get isAddressValid(): boolean {
     return (
       this.address !== null &&
-      this.address.id > 0 &&
-      !!this.address.zip &&
-      this.address.zip.length === 4 &&
+      this.address.zip?.length === 4 &&
       this.address.apartmentSize > 5 &&
-      this.address.street.length > 0
+      this.address.street.length > 0 &&
+      this.propertyValueIsValid(this.address)
     );
   }
 
-  onRbChange(event: MatTabChangeEvent) {
+  onRbChange(event: MatTabChangeEvent): void {
     this.changesMade = true;
     if (event.index === 1) {
       this.address.useManualPropertyValue = true;
@@ -95,5 +94,25 @@ export class HouseFormNoComponent implements OnInit {
       this.mode === AddressFormMode.Editing
         ? AddressFormMode.Statistics
         : AddressFormMode.Editing;
+  }
+
+  propertyValueIsValid(address: AddressDto): boolean {
+    if (
+      address.useManualPropertyValue &&
+      address.manualPropertyValue !== null &&
+      address.manualPropertyValue !== undefined
+    ) {
+      return address.manualPropertyValue > 0;
+    } else if (address.useManualPropertyValue === false) {
+      return (
+        this.notEmpty(address.street) &&
+        this.notEmpty(address.zip) &&
+        address.apartmentSize > 0
+      );
+    }
+  }
+
+  notEmpty(text: string | null): boolean {
+    return text !== null && String(text).length > 0;
   }
 }

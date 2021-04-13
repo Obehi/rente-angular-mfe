@@ -265,7 +265,7 @@ export class HousesComponent implements OnInit, DeactivationGuarded {
     }
   }
 
-  notEmpty(s: string): boolean {
+  notEmpty(s: string | null): boolean {
     return s !== null && String(s).length > 0;
   }
 }
