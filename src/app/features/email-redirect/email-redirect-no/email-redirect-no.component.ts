@@ -14,8 +14,8 @@ export class EmailRedirectNOComponent implements OnInit {
   constructor(private activeRoute: ActivatedRoute) {}
 
   ngOnInit(): void {
-    if (this.isMobile) {
-      const element = document.getElementById('mobil-fb');
+    const element = document.getElementById('mobil-fb');
+    if (this.isMobile && element !== null) {
       element.setAttribute(
         'href',
         'fb-messenger://share?link=https://renteradar.no/&amp;&amp;app_id=326133992135942'

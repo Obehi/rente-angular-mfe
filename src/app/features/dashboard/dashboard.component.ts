@@ -21,8 +21,14 @@ export class DashboardComponent implements OnInit, OnDestroy {
     private localStorageService: LocalStorageService
   ) {}
 
-  public navLinks = ['tilbud', 'mine-lan', 'bolig', 'preferanser', 'profil'];
-  public activeLinkIndex = -1;
+  public navLinks: string[] | undefined = [
+    'tilbud',
+    'mine-lan',
+    'bolig',
+    'preferanser',
+    'profil'
+  ];
+  public activeLinkIndex: number | null = -1;
   public isMobile: boolean;
   public imgLink = {
     tilbud: '../../../assets/icons/ic_offer.svg',
@@ -44,13 +50,17 @@ export class DashboardComponent implements OnInit, OnDestroy {
     } else if (this.localStorageService.getItem('isAggregatedRateTypeFixed')) {
       this.router.navigate(['/dashboard/fastrente']);
     } else {
-      this.activeLinkIndex = this.getActiveIndex();
-      this.setActiveIcon(this.activeLinkIndex);
-      this.subscription = this.router.events.subscribe((res) => {
+      if (this.getActiveIndex() !== null) {
         this.activeLinkIndex = this.getActiveIndex();
-        this.setActiveIcon(this.activeLinkIndex);
-      });
-      this.checkmobileVersion();
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        this.setActiveIcon(this.activeLinkIndex!);
+        this.subscription = this.router.events.subscribe((res) => {
+          this.activeLinkIndex = this.getActiveIndex();
+          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+          this.setActiveIcon(this.activeLinkIndex!);
+        });
+        this.checkmobileVersion();
+      }
     }
   }
 
@@ -60,27 +70,36 @@ export class DashboardComponent implements OnInit, OnDestroy {
     }
   }
 
-  public getActiveIndex(): number {
-    return this.navLinks.indexOf(
-      this.navLinks.find(
+  public getActiveIndex(): number | null {
+    if (this.navLinks !== undefined) {
+      const setIndex = this.navLinks.find(
         (link) => `/dashboard/${link}` === this.router.url.split('?')[0]
-      )
-    );
+      );
+      if (setIndex !== undefined) {
+        return this.navLinks.indexOf(setIndex);
+      }
+    }
+    return null;
   }
 
   private setActiveIcon(activeIndex: number) {
-    this.navLinks.forEach((link: string, index: number) => {
-      if (index === activeIndex) {
-        if (!this.imgLink[link].includes('active')) {
+    if (this.navLinks !== undefined) {
+      this.navLinks.forEach((link: string, index: number) => {
+        if (index === activeIndex) {
+          if (!this.imgLink[link].includes('active')) {
+            this.imgLink[link] = this.imgLink[link].replace(
+              '.svg',
+              '_active.svg'
+            );
+          }
+        } else {
           this.imgLink[link] = this.imgLink[link].replace(
-            '.svg',
-            '_active.svg'
+            '_active.svg',
+            '.svg'
           );
         }
-      } else {
-        this.imgLink[link] = this.imgLink[link].replace('_active.svg', '.svg');
-      }
-    });
+      });
+    }
   }
 
   private checkmobileVersion() {

@@ -248,14 +248,16 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
     const element = document.getElementById('best-offers-text');
     const headerOffset = this.isMobile ? 80 : 180;
 
-    const elementPosition =
-      element.getBoundingClientRect().top + window.pageYOffset;
-    const offsetPosition = elementPosition - headerOffset;
+    if (element !== null) {
+      const elementPosition =
+        element.getBoundingClientRect().top + window.pageYOffset;
+      const offsetPosition = elementPosition - headerOffset;
 
-    window.scrollTo({
-      top: offsetPosition,
-      behavior: 'smooth'
-    });
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
   }
 
   public goToProperty(): void {
