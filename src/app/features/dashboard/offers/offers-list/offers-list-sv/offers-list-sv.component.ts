@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { OfferInfo, Offers } from './../../../../../shared/models//offers';
+import { Offers } from './../../../../../shared/models//offers';
 
 @Component({
   selector: 'rente-offers-list',
@@ -7,7 +7,6 @@ import { OfferInfo, Offers } from './../../../../../shared/models//offers';
   styleUrls: ['./offers-list-sv.component.scss']
 })
 export class OffersListSvComponent implements OnInit {
-  @Input() offer: OfferInfo;
   @Input() offersInfo: Offers;
   public currentOfferInfo: Offers;
 
@@ -30,26 +29,26 @@ export class OffersListSvComponent implements OnInit {
     );
   }
 
-  public setOfferType(type: string) {
+  public setOfferType(type: string): void {
     this.currentOfferType = type;
 
-    if (type == 'all') {
-      this.currentOfferInfo.offers.top5 = this.offersInfo.offers.top5 = this.offersInfo.offers.top5;
+    if (type === 'all') {
+      this.currentOfferInfo.offers.top5 = this.offersInfo.offers.top5;
       return;
     }
 
-    if (type == 'threeMonths') {
+    if (type === 'threeMonths') {
       this.currentOfferInfo.offers.top5 = this.offersInfo.offers.top5.filter(
         (offer) => {
-          return offer.fixedRatePeriod == 0 ? true : false;
+          return offer.fixedRatePeriod === 0 ? true : false;
         }
       );
     }
 
-    if (type == 'oneYear') {
+    if (type === 'oneYear') {
       this.currentOfferInfo.offers.top5 = this.offersInfo.offers.top5.filter(
         (offer) => {
-          return offer.fixedRatePeriod == 1 ? true : false;
+          return offer.fixedRatePeriod === 1 ? true : false;
         }
       );
     }

@@ -95,7 +95,6 @@
                 "src/sitemap.xml",
                 "src/robots.txt",
                 "src/environment.json"
-
               ],
               "fileReplacements": [
                 {
@@ -142,7 +141,6 @@
                 "src/sitemap.xml",
                 "src/robots.txt",
                 "src/environment.json"
-
               ],
               "fileReplacements": [
                 {
@@ -167,7 +165,7 @@
                 },
                 {
                   "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.heroku.ts"
+                  "with": "src/environments/environment.develop.no.ts"
                 }
               ]
             },
@@ -195,7 +193,6 @@
                 "src/sitemap.xml",
                 "src/robots.txt",
                 "src/environment.json"
-
               ],
               "fileReplacements": [
                 {
@@ -263,7 +260,7 @@
                 },
                 {
                   "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.heroku.ts"
+                  "with": "src/environments/environment.develop.se.ts"
                 }
               ]
             },

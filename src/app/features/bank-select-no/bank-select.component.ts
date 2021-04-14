@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   BankVo,
   BankList,
@@ -8,7 +8,6 @@ import {
 } from '../../shared/models/bank';
 import { Router } from '@angular/router';
 import { ROUTES_MAP } from '@config/routes-config';
-import { Injectable } from '@angular/core';
 import { EnvService } from '@services/env.service';
 @Component({
   selector: 'rente-bank-select-variation',
@@ -24,7 +23,7 @@ export class BankSelectNoComponent implements OnInit {
 
   constructor(private router: Router, private envService: EnvService) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.sortBanks();
     this.filterBank(this.searchStr);
   }
@@ -83,23 +82,23 @@ export class BankSelectNoComponent implements OnInit {
   }
 
   onFilterChanged(): void {
-    if (this.searchStr.toLocaleLowerCase() == 'sparebank 1') {
+    if (this.searchStr.toLocaleLowerCase() === 'sparebank 1') {
       this.removeSparebank();
     }
-    if (this.sparebankIsClicked == true) {
+    if (this.sparebankIsClicked === true) {
       this.sparebankIsClicked = false;
       this.sortBanks();
     }
     this.filterBank(this.searchStr);
   }
 
-  clear() {
+  clear(): void {
     this.searchStr = '';
     this.filterBank(this.searchStr);
   }
 
   filterBank(filter: string): void {
-    let filteredBanks = [];
+    let filteredBanks: BankVo[] = [];
     if (filter == null || filter.length === 0) {
       filteredBanks = this.allBanks.concat();
     } else {
@@ -113,7 +112,7 @@ export class BankSelectNoComponent implements OnInit {
   }
 
   selectBank(bank: BankVo): void {
-    if (bank.name == 'SPAREBANK_1') {
+    if (bank.name === 'SPAREBANK_1') {
       this.searchStr = 'Sparebank 1';
 
       this.removeSparebank();

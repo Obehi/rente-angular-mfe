@@ -15,7 +15,7 @@
             [placeholder]="'E-post'"
             formControlName="email"
             [errorStateMatcher]="
-              isErrorState(propertyForm.controls['email'], propertyForm)
+              isErrorState(propertyForm.controls['email'])
             "
             [modelOptions]="{ updateOn: 'blur' }"
           >
@@ -36,69 +36,80 @@
             </p>
           </div>
         </div>
+
         <div class="field">
+          <rente-input
+            [placeholder]="'Postnummer'"
+            formControlName="zip"
+            [maxLength] ="5"
+            [type]="'tel'"
+            [errorStateMatcher]="isErrorState(propertyForm.controls['zip'])"
+            [maskType]="mask.zip"
+          >
+          </rente-input>
+
+          <div *ngIf="propertyForm.controls['zip'].touched">
+            <p i18n=“empty|info-confirmation@@info.confirmation.empty”
+                class="error small"
+                *ngIf="propertyForm.controls['zip'].hasError('required')"
+              >
+                Kan ikke være tom
+            </p>
+          </div>
+        </div>
+
+
+        <div class="field"> 
           <div class="withinfo">
             <div>
               <rente-input
-                [placeholder]="'Bostadens uppskattade värde'"
-                formControlName="apartmentValue"
+                [placeholder]="'Storlek på bostaden'"
+                formControlName="apartmentSize"
                 [type]="'tel'"
-                matSuffix="kr"
+                matSuffix="kvadratmeter"
                 [errorStateMatcher]="
                   isErrorState(
-                    propertyForm.controls['apartmentValue'],
-                    propertyForm
+                    propertyForm.controls['apartmentSize']
                   )
                 "
                 [maskType]="mask.currency"
               >
               </rente-input>
   
-              <div *ngIf="propertyForm.controls['apartmentValue'].touched">
+              <div *ngIf="propertyForm.controls['apartmentSize'].touched">
                 <p i18n=“empty2|info-confirmation@@info.confirmation.empty2”
                   class="error small"
                   *ngIf="
-                    propertyForm.controls['apartmentValue'].hasError('required')
+                    propertyForm.controls['apartmentSize'].hasError('required')
                   "
                 >
                   Kan ikke være tom
                 </p>
               </div>
             </div>
-            <div i18n=“help|info-confirmation@@info.confirmation.help”
-              class="clickable"
-              (click)="openInfoDialog('Bostadens värde och belåningsgrad är viktiga parametrar som bankerna tar hänsyn till vid ett ränteerbjudande.')"
-            >
-              <mat-icon>help</mat-icon>
-            </div>
           </div>
         </div>
 
-        <div class="field">
-          <rente-input
-            [placeholder]="'Postnummer'"
-            formControlName="zip"
-            [maxLength] ="4"
-            [errorStateMatcher]="
-              isErrorState(propertyForm.controls['zip'], propertyForm)
-            "
-            [modelOptions]="{ updateOn: 'blur' }"
-            [maskType]="mask.zip"
-          >
-          </rente-input>
-  
-          <div *ngIf="propertyForm.controls['zip'].touched">
-            <p i18n=“empty|info-confirmation@@info.confirmation.empty”
-              class="error small"
-              *ngIf="propertyForm.controls['zip'].hasError('required')"
-            >
-              Kan ikke være tom
-            </p>
-          </div>
+        
+
+        <div class="checkbox-wrapper">
+          <p>
+            Välj typ av hem
+          </p>
+          <rente-checkbox-container   
+            [formGroup]="propertyForm" 
+            [controlName]="'propertyType'"
+            [checkBoxItems]="checkBoxItems">
+          </rente-checkbox-container>
         </div>
+
+      <!--   <mat-checkbox i18n=“age-confirmation|change-bank@@change.bank.ageConfirmation”
+    formControlName="confirmation"
+    (change)="isConfirmed = $event.checked"
+  > -->
   
         <rente-button i18n=“done|info-confirmation@@info.confirmation.done”
-          color="primary"
+          color="primary-wide"
           [isLoading]="isLoading"
           [disabled]="propertyForm.invalid || isLoading"
         >

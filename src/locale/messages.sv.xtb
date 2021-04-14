@@ -49,7 +49,7 @@
  det kommer
               bättre erbjudanden.</translation>
   <translation id="landing.function" desc="landing-page" meaning="how-it-functions">Så här fungerar det</translation>
-  <translation id="landing.comparingService" desc="landing-page" meaning="comparing-service">Vi jämför bolåneräntan du betalar med bolåneräntor du kan få hos andra banker och visar dig hur mycket du kan spara. Du kan också pruta i banken du är kund i med ett klick.</translation>
+  <translation id="landing.comparingService" desc="landing-page" meaning="comparing-service">Vi jämför bolåneräntan du betalar med bolåneräntor du kan få hos andra banker och visar dig hur mycket du kan spara.</translation>
   <translation id="landing.surveillanceService" desc="landing-page" meaning="surveillance-service">Vi övervakar marknaden och ger dig besked när nya och bättre erbjudanden är tillgängliga i framtiden!</translation>
   <translation id="landing.title.explanation" desc="landing-page" meaning="title-explanation">Så här fungerar det</translation>
   <translation id="landing.step1.explanation" desc="landing-page" meaning="step1-explanation">Ränteradar hämtar räntan och dina bolånedetaljer automatiskt med mobilt BankID.</translation>
@@ -276,7 +276,7 @@ Den exakta processen beror på din enhet och vilken webbläsare du använder. I 
                 <ph name="CLOSE_TAG_MAT_RADIO_GROUP"><ex>&lt;/mat-radio-group&gt;</ex>&lt;/mat-radio-group&gt;</ph>  </translation>
   <translation id="email.preferences.saveChanges”" desc="email-preferences" meaning="“save-changes">Spara ändringar</translation>
   <translation id="aboutUs”" desc="about-us" meaning="“headline">Om oss</translation>
-  <translation id="aboutUs.intro2”" desc="about-us" meaning="“text">Nu har vi lanserat en tjänst som är anpassad efter den svenska bolånemarknaden under namnet Ränteradar.se. Sanna, som tidigare arbetat på bolåneutmanaren Stabelo, leder den svenska satsningen. Precis som i Norge tjänar de svenska bankerna mycket pengarpå bolån. Eftersom bolån i grunden är en enkel produkt som ser likadan utoavsett vem som ger ut det, finns det ingen anledning till att du som konsument ska betala mer än nödvändigt!</translation>
+  <translation id="aboutUs.intro2”" desc="about-us" meaning="“text">Nu har vi lanserat en tjänst som är anpassad efter den svenska bolånemarknaden under namnet Ränteradar.se. Sanna, som tidigare arbetat på bolåneutmanaren Stabelo, leder den svenska satsningen. Precis som i Norge tjänar de svenska bankerna mycket pengar på bolån. Eftersom bolån i grunden är en enkel produkt som ser likadan ut oavsett vem som ger ut det, finns det ingen anledning till att du som konsument ska betala mer än nödvändigt!</translation>
   <translation id="aboutUs.goal1”" desc="about-us" meaning="“text"><ph name="START_BOLD_TEXT"><ex>&lt;b&gt;</ex>&lt;b&gt;</ph>Hjälpa dig 
  spara pengar<ph name="CLOSE_BOLD_TEXT"><ex>&lt;/b&gt;</ex>&lt;/b&gt;</ph> och alltid presentera de bästa bolåneräntorna på marknaden</translation>
   <translation id="aboutUs.goal2”" desc="about-us" meaning="“text"> <ph name="START_BOLD_TEXT"><ex>&lt;b&gt;</ex>&lt;b&gt;</ph>Spara tid<ph name="CLOSE_BOLD_TEXT"><ex>&lt;/b&gt;</ex>&lt;/b&gt;</ph> då vi automatiskt, snabbt och enkelt granskar din nuvarande bolåneränta</translation>
@@ -387,7 +387,7 @@ Den exakta processen beror på din enhet och vilken webbläsare du använder. I 
   <translation id="change.bank.kindRegards”" desc="change-bank" meaning="“kind-regards">Med vänlig hälsning,<ph name="LINE_BREAK"><ex>&lt;br&gt;</ex>&lt;br&gt;</ph>
   <ph name="INTERPOLATION"><ex>{{ data.preview.clientInfo.name }}</ex>{{ data.preview.clientInfo.name }}</ph></translation>
   <translation id="change.bank.infoSent”" desc="change-bank" meaning="“info-sent-message">Meddelandet skickas till din bank via e-mail med dig som avsändare. Du får också en kopia av meddelandet i din inbox. Önskar du att kontakta din bank direkt kan du kopiera texten och använda den som utgångspunkt för dialog.</translation>
-  <translation id="change.bank.ageConfirmation”" desc="change-bank" meaning="“age-confirmation">Jag bekräftar att jag är över 18 år och myndig eller utsedd förmyndare, samt att banken vid behov kan göra en kreditupplysning.</translation>
+  <translation id="change.bank.ageConfirmation”" desc="change-bank" meaning="“age-confirmation">Jag godkänner att min kontakt- och låneinformation skickas till min bank och att de kan kontakta mig.</translation>
   <translation id="change.bank.sendBank”" desc="change-bank" meaning="“send-bank">Skicka till banken</translation>
   <translation id="change.bank.cancel”" desc="change-bank" meaning="“cancel">Avbryt</translation>
   <translation id="get.offer.from.bank.good”" desc="get-offer-from-bank" meaning="“good">Bra val!</translation>
@@ -572,7 +572,7 @@ Den exakta processen beror på din enhet och vilken webbläsare du använder. I 
   <translation id="virdi.statistics.data”" desc="statistics" meaning="“data">Data levererat av<ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>virdi.no<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph>
 </translation>
   <translation id="offers.statistics.mortgageRelation”" desc="offers-statistics" meaning="“mortage-relation">Din ränta i förhållande till andra i din bank</translation>
-  <translation id="offers.statistics.banksRelation”" desc="offers-statistics" meaning="“banks-relation">Din ränta i förhållande till andra i alla banker</translation>
+  <translation id="offers.statistics.banksRelation”" desc="offers-statistics" meaning="“banks-relation">Din ränta i förhållande till  andras räntor</translation>
   <translation id="offers.statistics.othersRelation”" desc="offers-statistics" meaning="“others-relation">Din ränta i förhållande till andra i:</translation>
   <translation id="offers.statistics.graph”" desc="offers-statistics" meaning="“graph">Grafen jämför din ränta med andra som är <ph name="START_TAG_STRONG"><ex>&lt;strong&gt;</ex>&lt;strong&gt;</ph><ph name="INTERPOLATION"><ex>{{ageSegment}}</ex>{{ageSegment}}</ph><ph name="CLOSE_TAG_STRONG"><ex>&lt;/strong&gt;</ex>&lt;/strong&gt;</ph>, har <ph name="START_TAG_STRONG"><ex>&lt;strong&gt;</ex>&lt;strong&gt;</ph><ph name="INTERPOLATION_1"><ex>{{totalOutstandingDebtSegment}}</ex>{{totalOutstandingDebtSegment}}</ph><ph name="CLOSE_TAG_STRONG"><ex>&lt;/strong&gt;</ex>&lt;/strong&gt;</ph> 
      och <ph name="START_TAG_STRONG"><ex>&lt;strong&gt;</ex>&lt;strong&gt;</ph>belåningsgrad <ph name="INTERPOLATION_2"><ex>{{ltvSegment}}</ex>{{ltvSegment}}</ph><ph name="CLOSE_TAG_STRONG"><ex>&lt;/strong&gt;</ex>&lt;/strong&gt;</ph></translation>
@@ -813,4 +813,17 @@ Vi följer ständigt upp om det dyker upp bättre ränteerbjudanden på marknade
         <ph name="START_TAG_RENTE_BUTTON"><ex>&lt;rente-button&gt;</ex>&lt;rente-button&gt;</ph>Ja<ph name="CLOSE_TAG_RENTE_BUTTON"><ex>&lt;/rente-button&gt;</ex>&lt;/rente-button&gt;</ph>
         <ph name="START_TAG_RENTE_BUTTON_1"><ex>&lt;rente-button&gt;</ex>&lt;rente-button&gt;</ph>Nej<ph name="CLOSE_TAG_RENTE_BUTTON"><ex>&lt;/rente-button&gt;</ex>&lt;/rente-button&gt;</ph>
       </translation>
+  <translation id="change.bank.success-header" desc="change-bank" meaning="info">Hjälp en vän!</translation>
+  <translation id="change.bank.success-body" desc="change-bank" meaning="info">Berätta om Ränteradar.se för någon du känner så kan de få möjligheten att spendera pengarna på något roligt istället:) Dela med hjälp av knapparna nedan!</translation>
+  <translation id="change.bank.location.header" desc="change-bank" meaning="choose-office ">Välj bankkontor</translation>
+  <translation id="change.bank.location.city" desc="change-bank" meaning="choose-office ">Kommun</translation>
+  <translation id="change.bank.location.choosenText" desc="change-bank" meaning="choose-office "/>
+  <translation id="change.bank.location.cancel" desc="change-bank" meaning="choose-office "/>
+  <translation id="change.bank.location.send" desc="change-bank" meaning="choose-office ">Skicka</translation>
+  <translation id="change.bank.location.back" desc="change-bank" meaning="choose-office ">Tillbaka</translation>
+  <translation id="change.bank.location.office" desc="change-bank" meaning="choose-office ">Bankkontor</translation>
+  <translation id="change.bank.location.header.explain" desc="change-bank" meaning="choose-office ">Välj län så skickar vi meddelandet till ditt bankkontor åt dig.</translation>
+  <translation id="change.bank.email" desc="change-bank" meaning="“info-post"/>
+  <translation id="offers.statistics.tab1" desc="offers-statistics" meaning="graph">din bank</translation>
+  <translation id="offers.statistics.tab2" desc="offers-statistics" meaning="graph">alla banker</translation>
 </translationbundle>

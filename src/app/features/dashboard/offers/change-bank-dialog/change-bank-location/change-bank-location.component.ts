@@ -2,10 +2,7 @@ import {
   Component,
   OnInit,
   AfterViewInit,
-  Input,
-  Output,
   ViewChild,
-  EventEmitter,
   Inject
 } from '@angular/core';
 import { MatStepper } from '@angular/material';
@@ -42,8 +39,8 @@ export class ChangeBankLocationComponent implements OnInit, AfterViewInit {
   locations: any;
   offerId: number;
   isEditable = false;
-  regionsArray = [];
-  stepperHeaderArray = [];
+  regionsArray: string[] = [];
+  stepperHeaderArray: HeaderNode[] = [];
 
   ngAfterViewInit(): void {
     this.stepperHeaderArray = this.stepper.steps.map((item, index) => {
@@ -103,7 +100,7 @@ export class ChangeBankLocationComponent implements OnInit, AfterViewInit {
       : [];
   }
 
-  clickNext(region: any, index: number) {
+  clickNext(region: any, index: number): void {
     this.resetNodesAfterIndex(index);
     this.stepperHeaderArray[index].value = region;
     this.stepperHeaderArray[index].state = 'done';
@@ -112,7 +109,7 @@ export class ChangeBankLocationComponent implements OnInit, AfterViewInit {
     this.stepper.next();
   }
 
-  resetNodesAfterIndex(index) {
+  resetNodesAfterIndex(index): void {
     this.stepperHeaderArray
       .filter((node) => {
         return node.index > index;
@@ -123,7 +120,7 @@ export class ChangeBankLocationComponent implements OnInit, AfterViewInit {
       });
   }
 
-  clickBackButton() {
+  clickBackButton(): void {
     this.stepperHeaderArray[this.stepper.selectedIndex - 1].state = 'waiting';
     this.stepperHeaderArray[this.stepper.selectedIndex - 1].value = null;
     this.resetNodesAfterIndex(this.stepper.selectedIndex - 1);
@@ -132,7 +129,7 @@ export class ChangeBankLocationComponent implements OnInit, AfterViewInit {
     this.stepperHeaderArray[this.stepper.selectedIndex].state = 'active';
   }
 
-  officeStepClick(office: string, index: number) {
+  officeStepClick(office: string, index: number): void {
     this.stepperHeaderArray[index].value = office;
     if (
       this.stepperHeaderArray[0].value === null ||
@@ -153,7 +150,7 @@ export class ChangeBankLocationComponent implements OnInit, AfterViewInit {
     this.changeBankServiceService
       .getBankOfferPreviewWithOffice(this.offerId, data)
       .subscribe(
-        (result) => {
+        () => {
           this.stepperHeaderArray[3].value = '_';
           this.stepperHeaderArray[2].value = office;
           this.stepperHeaderArray[index].state = 'done';
@@ -161,14 +158,14 @@ export class ChangeBankLocationComponent implements OnInit, AfterViewInit {
           this.isLoading = false;
           this.stepper.next();
         },
-        (error) => {
+        () => {
           this.isLoading = false;
-          // this.resetState();
+          this.resetState();
         }
       );
   }
 
-  clickHeaderNode(index) {
+  clickHeaderNode(index): void {
     let highestIndexWithValue = 0;
     this.stepperHeaderArray.forEach((node) => {
       if (node.value !== null) {
@@ -213,12 +210,12 @@ export class ChangeBankLocationComponent implements OnInit, AfterViewInit {
     this.changeBankServiceService
       .sendBankOfferRequestWithOffice(this.offerId, data)
       .subscribe(
-        (result) => {
+        () => {
           this.isLoading = false;
           this.closeState = 'procced';
           this.dialogRef.close();
         },
-        (error) => {
+        () => {
           this.isLoading = false;
           this.resetState();
         }

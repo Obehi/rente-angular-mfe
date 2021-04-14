@@ -5,14 +5,12 @@ import {
   FormGroup,
   FormBuilder,
   AbstractControl,
-  NgForm,
   FormControl,
   Validators
 } from '@angular/forms';
-import { CurrencyPipe } from '@angular/common';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { Observable, Subject } from 'rxjs';
-import { map, startWith, mergeMap } from 'rxjs/operators';
+import { map, startWith } from 'rxjs/operators';
 import {
   MatAutocomplete,
   MatAutocompleteSelectedEvent
@@ -29,7 +27,6 @@ import {
 import { UserService } from '@services/remote-api/user.service';
 import { Mask } from '@shared/constants/mask';
 import { VALIDATION_PATTERN } from '../../../../config/validation-patterns.config';
-import { ThousandsSeprator } from '@shared/pipes/thousands.pipe';
 import { SnackBarService } from '../../../../shared/services/snackbar.service';
 import { OfferInfo } from '@shared/models/offers';
 import { DeactivationGuarded } from '@shared/guards/route.guard';
@@ -119,7 +116,7 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
     );
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.loansService.getPreferencesDto().subscribe(
       (res) => {
         this.isLoading = false;
@@ -131,7 +128,6 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
           }
         });
 
-        const income = String(dto.income);
         this.username = dto.name;
         this.profileForm = this.fb.group({
           membership: [dto.memberships],
@@ -182,14 +178,14 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
 
   // Listen to blur updates in forms. Save  changes if the form is valid.
   onFormChange(): void {
-    this.profileForm.valueChanges.subscribe((val) => {
+    this.profileForm.valueChanges.subscribe(() => {
       if (this.profileForm.valid) {
         this.changesMade = true;
         this.updatePreferances();
       }
     });
 
-    this.preferencesForm.valueChanges.subscribe((val) => {
+    this.preferencesForm.valueChanges.subscribe(() => {
       if (this.profileForm.valid) {
         this.changesMade = true;
         this.updatePreferances();
@@ -197,13 +193,13 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
     });
   }
 
-  public openInfoDialog(offer: OfferInfo): void {
+  public openInfoDialog(offer: OfferInfo | string): void {
     this.dialog.open(ProfileDialogInfoComponent, {
       data: offer
     });
   }
 
-  public updatePreferances() {
+  public updatePreferances(): void {
     this.isLoading = true;
     const income = this.profileForm.value.income;
     const userData = {
@@ -217,23 +213,25 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
     dto.memberships = this.memberships.map((membership) => membership.name);
     dto.checkRateReminderType = this.preferencesForm.get(
       'checkRateReminderType'
-    ).value;
+    )?.value;
     dto.fetchCreditLinesOnly = this.preferencesForm.get(
       'fetchCreditLinesOnly'
-    ).value;
+    )?.value;
     dto.noAdditionalProductsRequired = this.preferencesForm.get(
       'noAdditionalProductsRequired'
-    ).value;
+    )?.value;
     dto.interestedInEnvironmentMortgages = this.preferencesForm.get(
       'interestedInEnvironmentMortgages'
-    ).value;
-    dto.receiveNewsEmails = this.preferencesForm.get('receiveNewsEmails').value;
+    )?.value;
+    dto.receiveNewsEmails = this.preferencesForm.get(
+      'receiveNewsEmails'
+    )?.value;
 
     // No one leaves the page while updating
     this.canLeavePage = false;
 
     this.loansService.updateUserPreferences(dto).subscribe(
-      (res) => {
+      () => {
         this.canNavigateBooolean$.next(true);
         this.changesMade = false;
         this.isLoading = false;
@@ -242,7 +240,7 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
         this.updateAnimationTrigger = !this.updateAnimationTrigger;
         this.canLeavePage = true;
       },
-      (err) => {
+      () => {
         this.canLeavePage = true;
         this.isLoading = false;
         this.errorAnimationTrigger = !this.errorAnimationTrigger;
@@ -251,17 +249,13 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
   }
 
   // TODO: Move to service
-  public isErrorState(
-    control: AbstractControl | null,
-    form: FormGroup | NgForm | null
-  ): boolean {
+  public isErrorState(control: AbstractControl | null): boolean {
     return !!(control && control.invalid && (control.dirty || control.touched));
   }
 
   add(event: MatChipInputEvent): void {
     if (!this.matAutocomplete.isOpen) {
       const input = event.input;
-      const value = event.value;
       // Reset the input value
       if (input) {
         input.value = '';

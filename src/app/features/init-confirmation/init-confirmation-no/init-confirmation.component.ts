@@ -7,13 +7,11 @@ import {
 } from '@services/remote-api/loans.service';
 import { UserService } from '@services/remote-api/user.service';
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
-import { TitleCasePipe } from '@angular/common';
 import { LoggingService } from '@services/logging.service';
 import {
   Validators,
   AbstractControl,
   FormGroup,
-  NgForm,
   FormBuilder,
   FormControl
 } from '@angular/forms';
@@ -82,7 +80,7 @@ export class InitConfirmationNoComponent implements OnInit {
     );
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     forkJoin([
       this.loansService.getLoansAndRateType(),
       this.loansService.getConfirmationData()
@@ -146,20 +144,17 @@ export class InitConfirmationNoComponent implements OnInit {
     });
   }
 
-  isErrorState(
-    control: AbstractControl | null,
-    form: FormGroup | NgForm | null
-  ): boolean {
+  isErrorState(control: AbstractControl | null): boolean {
     return !!(control && control.invalid && (control.dirty || control.touched));
   }
 
-  public openInfoDialog(offer: OfferInfo): void {
+  public openInfoDialog(offer: OfferInfo | string): void {
     this.dialog.open(DialogInfoComponent, {
       data: offer
     });
   }
 
-  public updateProperty(formData) {
+  public updateProperty(formData): void {
     this.propertyForm.markAllAsTouched();
     this.propertyForm.updateValueAndValidity();
 
@@ -173,7 +168,8 @@ export class InitConfirmationNoComponent implements OnInit {
           : formData.income,
       memberships: this.memberships.map((membership) => membership.name),
       apartmentSize: formData.apartmentSize,
-      name: this.isAddressNeeded ? formData.name : this.userData.name
+      name: this.isAddressNeeded ? formData.name : this.userData.name,
+      propertyType: formData.propertyType
     };
 
     const confirmationDto: ConfirmationSetDto = new ConfirmationSetDto();
@@ -183,7 +179,7 @@ export class InitConfirmationNoComponent implements OnInit {
     confirmationDto.income = data.income;
     confirmationDto.memberships = data.memberships;
     confirmationDto.address.apartmentSize = data.apartmentSize;
-
+    confirmationDto.address.propertyType = data.propertyType;
     if (this.isAddressNeeded) {
       confirmationDto.address.street = formData.address;
       confirmationDto.address.zip = formData.zip;
@@ -225,13 +221,10 @@ export class InitConfirmationNoComponent implements OnInit {
   add(event: MatChipInputEvent): void {
     if (!this.matAutocomplete.isOpen) {
       const input = event.input;
-      const value = event.value;
-
       // Reset the input value
       if (input) {
         input.value = '';
       }
-
       this.membershipCtrl.setValue(null);
     }
   }

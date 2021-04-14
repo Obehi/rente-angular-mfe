@@ -38,7 +38,7 @@ export class GetNotifiedNoComponent implements OnInit {
   public banks: any = [];
   public allBanks: any[];
   public isLoading: boolean;
-  public missingBank: BankVo | null;
+  public missingBank: BankVo;
   public emailError = false;
 
   @ViewChild('auto') matAutocomplete: MatAutocomplete;
@@ -71,7 +71,7 @@ export class GetNotifiedNoComponent implements OnInit {
     });
     this.missingBankForm
       .get('email')
-      .valueChanges.pipe(
+      ?.valueChanges.pipe(
         debounce((data) => {
           this.emailError = false;
           return this.inValid() ? timer(2000) : EMPTY;
@@ -82,12 +82,14 @@ export class GetNotifiedNoComponent implements OnInit {
 
   inValid() {
     return (
-      this.missingBankForm.get('email').hasError('pattern') &&
-      this.missingBankForm.get('email').dirty
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      this.missingBankForm.get('email')!.hasError('pattern') &&
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      this.missingBankForm.get('email')!.dirty
     );
   }
 
-  onBlurErrorCheck() {
+  onBlurErrorCheck(): void {
     this.emailError = this.inValid();
   }
 

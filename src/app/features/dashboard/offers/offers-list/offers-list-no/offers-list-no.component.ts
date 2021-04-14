@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { OfferInfo, Offers } from './../../../../../shared/models//offers';
+import { Offers } from './../../../../../shared/models//offers';
 
 @Component({
   selector: 'rente-offers-list',
@@ -7,7 +7,6 @@ import { OfferInfo, Offers } from './../../../../../shared/models//offers';
   styleUrls: ['./offers-list-no.component.scss']
 })
 export class OffersListNoComponent implements OnInit {
-  @Input() offer: OfferInfo;
   @Input() offersInfo: Offers;
   public currentOfferInfo: Offers;
 

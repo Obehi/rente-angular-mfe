@@ -9,11 +9,11 @@ button.mat-button {
   margin: auto;
   font-size: 16px;
   line-height: 19px;
-  height: 56px;
+
   outline: none;
   display: inline-block;
   opacity: 1;
-  padding: 0 20px;
+  height: 56px;
   font-weight: 500;
   p {
     color: white;
@@ -53,6 +53,17 @@ button.mat-primary {
   background-color: $primary;
 }
 
+button.mat-primary-80 {
+  width: 80%;
+  color: white;
+  white-space: break-spaces;
+  background-color: $primary;
+}
+
+button.mat-primary-80[disabled] {
+  color: white !important;
+}
+
 button.mat-secondary {
   background-color: $secondary;
   color: white;
@@ -79,6 +90,15 @@ button.mat-primary-wide {
   width: 80%
 }
 
+button.mat-primary-wide-break {
+  background-color: $primary;
+  color: white;
+  height: 56px;
+  width: 80%;
+  white-space: break-spaces;
+}
+
+
 button.mat-primary-wide[disabled] {
   color: white !important;
 }
@@ -94,12 +114,27 @@ button.mat-primary-medium {
   background-color: $primary;
   color: white;
   height: 56px;
-  width: 90%;
+  width: 100%;
+  border-radius: 100px;
+}
+
+button.mat-secondary-medium {
+  background-color: $secondary;
+  color: white;
+  height: 56px;
+  width: 100%;
   border-radius: 100px;
 }
 
 button.mat-primary-medium[disabled] {
   color: white !important;
+}
+
+button.mat-secondary-medium {
+  background-color: $secondary;
+  color: white;
+  height: 56px;
+  border-radius: 100px;
 }
 
 button.mat-primary-wide-landing {
@@ -128,6 +163,14 @@ button.mat-primary-wide-hollow {
   color: black;
   border: 1px solid $primary;
   height: 56px;
+  width: 100%;
+  white-space: break-spaces;
+}
+
+button.mat-primary-wide-white {
+  background-color: white;
+  color: black;
+  height: 56px;
   width: 80%;
   white-space: break-spaces;
 }
@@ -135,7 +178,6 @@ button.mat-primary-wide-hollow {
 button.mat-primary-wide-hollow[disabled] {
   opacity: 1;
   height: 56px;
-  width: 80%;
   background-color: unset;
   color: #A9A9A9;
   border: 1px solid #C9EAE3;
@@ -146,7 +188,7 @@ button.mat-primary-wide-hollow-card {
   color: black;
   border: 1px solid $primary;
   height: 56px;
-  width: 90%;
+  width: 100%;
   white-space: break-spaces;
   border-radius: 100px;
 }
@@ -154,7 +196,7 @@ button.mat-primary-wide-hollow-card {
 button.mat-primary-wide-hollow-card[disabled] {
   opacity: 1;
   height: 56px;
-  width: 90%;
+  width: 100%;
   background-color: unset;
   color: #A9A9A9;
   border: 1px solid #C9EAE3;

@@ -162,12 +162,13 @@ export class LoanStateDto {
 export class AddressDto {
   id: number;
   street: string;
-  zip: string;
+  zip: string | null = null;
   apartmentSize: number;
-  manualPropertyValue: number;
-  estimatedPropertyValue: number;
+  manualPropertyValue?: number | null = null;
+  propertyType: string | null = null;
+  estimatedPropertyValue?: number | null = null;
   useManualPropertyValue: boolean;
-  commonDebt: number;
+  commonDebt: number | null = null;
   message: string;
   error: boolean;
 }
@@ -201,6 +202,7 @@ export class ConfirmationSetDto {
 export class AddressCreationDto {
   apartmentSize: number;
   apartmentValue: number;
+  propertyType: string;
   street: string;
   zip: string;
 }

@@ -459,6 +459,11 @@ const BANKS_DATA_NO = {
     img: '../../assets/img/banks-logo/square/sparebank1v2.png',
     imgCircle: '../../assets/img/banks-logo/round/sparebanken1v2.png'
   },
+  SPAREBANK_1_HELGELAND: {
+    name: 'SPAREBANK_1_HELGELAND',
+    img: '../../assets/img/banks-logo/square/sparebank1v2.png',
+    imgCircle: '../../assets/img/banks-logo/round/sparebanken1v2.png'
+  },
   SPAREBANK_1_LOM_OG_SKJAK: {
     name: 'SPAREBANK_1_LOM_OG_SKJAK',
     img: '../../assets/img/banks-logo/square/sparebank1v2.png',

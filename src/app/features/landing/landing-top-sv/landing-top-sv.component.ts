@@ -26,7 +26,7 @@ export class LandingTopSvComponent implements OnInit {
     this.agentTest = window.navigator.userAgent;
   }
 
-  isCustomInAppBrowser() {
+  isCustomInAppBrowser(): boolean {
     const isSnapchat = /snapchat/i.test(window.navigator.userAgent);
     const isFacebook =
       /FBAN/i.test(window.navigator.userAgent) ||
@@ -37,7 +37,7 @@ export class LandingTopSvComponent implements OnInit {
     return isSnapchat || isFacebook || isInstagram || linkedIn;
   }
 
-  pushCTAButton() {
+  pushCTAButton(): void {
     this.isIos =
       !window.MSStream && /iPad|iPhone|iPod/.test(navigator.userAgent);
     this.isAndroid = /Android/.test(navigator.userAgent);
@@ -73,7 +73,7 @@ export class LandingTopSvComponent implements OnInit {
     this.router.navigate(['/' + ROUTES_MAP.bankSelect]);
   }
 
-  getType() {
+  getType(): string {
     const isInstagram = /Instagram/i.test(window.navigator.userAgent);
     const linkedIn = /LinkedInApp/i.test(window.navigator.userAgent);
 

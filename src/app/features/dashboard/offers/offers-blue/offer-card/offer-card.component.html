@@ -27,6 +27,7 @@
 
     </div>
     <div class="the-offer-body">
+      <div class="the-offer-body-grid">
         <div class="offer-top">
 
             <p i18n=“title|offer-card@@offer.card.title” class="save-text">Du sparer</p>
@@ -76,11 +77,7 @@
                     <img class="offer-score" src="../../../../assets/icons/score-{{offer.bankInfo.score }}.svg" />
                 </div>
                 <span 
-                      (click)="
-                        openInfoDialog(
-                          'Renteradar.no overvåker kontinuerlig markedet for bedre rente enn det du har på lånet ditt. Renten du har på lånet ditt sjekkes og oppdateres ved at du identifiserer deg med BankID. Det er viktig at dette gjøres fra tid til annen for at eventuelle renteendringer på lånet ditt skal fanges opp.'
-                        )
-                      "
+                      (click)="openInfoDialog()"
                       class="clickable bank-rating-info-button"
                     >
                       <mat-icon class="material-icons secondary">help</mat-icon>
@@ -98,35 +95,54 @@
                       </mat-expansion-panel>
               
             </div>
-
-            <div class="item buttons">
-
-                <rente-button class="firstButton" [disabled]="offer.bankInfo.partner == false"  
-                    i18n=“see-more|offer-card-big@@offer.card.big.seeMore”
-                    [color]="'primary-wide-hollow-card'" type="raised"
-                    (click)="openBankUrlByButton(offer)">Se mer på {{getbankNameOrDefault(offer)}}s <br/> hjemmeside
-                </rente-button>
-
-                <rente-button
-                child childClass="{{offer.bankInfo.name}}"
-                i18n=“get-offer|offer-card@@offer.card.getOffer”
-                [disabled]="offer.bankInfo.partner == false" color="primary-medium" type="raised"
-                    (click)="openNewOfferDialog(offer)">Få tilbud fra {{ getbankNameOrDefault(offer) }}!
-                </rente-button>
-                <p class="small" *ngIf=" offer.bankInfo.partner === false"> (Ingen avtale med banken)</p>
-                
-            </div>
         </div>
 
-        <div class="obligatory-info offer-bottom full-row">
-            
-            <p i18n=“number-details|offer-card@@offer.card.numberDetails” class="insignificant"><span>
-                </span> Eff.rente {{offer.effectiveRate | number: "1.2-2"}} %,
-                Lånebeløp {{offer.outstandingDebt | number: "1.0" }},
-                {{offer.loanPeriodYears | number: "1.1-1" }} år,
-                Kostnad: {{offer.cost | number: "1.0" }},
-                Totalt: {{offer.totalCost | number: "1.0" }}
-            </p>
-        </div>
+        <div class="buttons">
+          <rente-button class="firstButton" [disabled]="offer.bankInfo.partner == false"  
+              i18n=“see-more|offer-card-big@@offer.card.big.seeMore”
+              [color]="'primary-wide-hollow-card'" type="raised"
+              (click)="openBankUrlByButton(offer)">Se mer på {{getbankNameOrDefault(offer)}}s hjemmeside
+          </rente-button>
+
+          <div>
+            <rente-button
+            class="button"
+            child childClass="{{offer.bankInfo.name}}"
+            i18n=“get-offer|offer-card@@offer.card.getOffer”
+            [disabled]="offer.bankInfo.partner == false" color="primary-medium" type="raised"
+            (click)="openNewOfferDialog(offer)">Få tilbud fra {{ getbankNameOrDefault(offer) }}!
+            </rente-button>
+            <p class="small" *ngIf=" offer.bankInfo.partner === false"> (Ingen avtale med banken)</p>
+          </div>
+          
+          <div *ngIf="isNordea">
+            <rente-button
+            child childClass="{{offer.bankInfo.name}}"
+            color="secondary-medium" type="raised"
+            (click)="clickNordea()">
+            Be Nordea om et bedre tilbud
+          </rente-button>
+          </div>
+
+      </div>
+
+        <rente-button *ngIf="offer.bankInfo.bank === 'NORDEA'"
+        class="button"
+        child childClass="{{offer.bankInfo.name}}"
+            color="secondary-medium" type="raised"
+            (click)="openNewOfferDialog(offer)">Spørr Nordea om bedre rente
+        </rente-button>
+    </div>
+
+    <div class="obligatory-info offer-bottom full-row">
+        
+        <p i18n=“number-details|offer-card@@offer.card.numberDetails” class="insignificant"><span>
+            </span> Eff.rente {{offer.effectiveRate | number: "1.2-2"}} %,
+            Lånebeløp {{offer.outstandingDebt | number: "1.0" }},
+            {{offer.loanPeriodYears | number: "1.1-1" }} år,
+            Kostnad: {{offer.cost | number: "1.0" }},
+            Totalt: {{offer.totalCost | number: "1.0" }}
+        </p>
+    </div>
 
 </div>

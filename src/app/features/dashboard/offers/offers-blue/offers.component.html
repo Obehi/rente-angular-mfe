@@ -90,8 +90,8 @@
   
             <div class="save-info">
               <p i18n=“save|offers-main@@offers.mainPage.save”>Du kan spare</p>
-              <h2 *ngIf="offersInfo.bestOfferTotalSaving > 0; else noBestOffer">
-                {{ offersInfo.bestOfferTotalSaving | abs | number }},-
+              <h2 *ngIf="offersInfo?.bestOfferTotalSaving > 0; else noBestOffer">
+                {{ offersInfo?.bestOfferTotalSaving | abs | number }},-
               </h2>
               <ng-template #noBestOffer>
                 <h2> 0,- </h2>
@@ -131,7 +131,7 @@
                   Boligverdi
                 </p>
                 <h2 i18n=“millions|offers-main@@offers.mainPage.millions”>
-                  {{ offersInfo.propertyValue / 1000000 | number: "1.1-3" }}
+                  {{ offersInfo?.propertyValue / 1000000 | number: "1.1-3" }}
                   mill.
                 </h2>
                 <p *ngIf="!isSweden" i18n=“debt|offers-main@@offers.mainPage.debt” class="small">
@@ -142,7 +142,7 @@
                   mill.
                 </p>
     
-                <p *ngIf="locale === 'nb'" i18n=“virdi-estimate|offers-main@@offers.mainPage.virdiEstimate”  class="extra-small-virdi">
+                <p *ngIf="envService.isNorway()" i18n=“virdi-estimate|offers-main@@offers.mainPage.virdiEstimate”  class="extra-small-virdi">
                   Estimat levert av
                   <a href="https://virdi.no/" target="_blank">virdi.no</a>
                 </p>
@@ -156,7 +156,7 @@
               </p>
               <h2 i18n=“millions|offers-main@@offers.mainPage.millions”>
                 {{
-                offersInfo.totalOutstandingDebt / 1000000 | number: "1.1-3"
+                offersInfo?.totalOutstandingDebt / 1000000 | number: "1.1-3"
               }}
                 mill.
               </h2>
@@ -195,7 +195,7 @@
                 <rente-button 
                   i18n=“found-best-offers|offers-main@@offers.mainPage.found.bestOffers.button”
                   [disabled]="changeBankLoading ||
-                  offersInfo.offerSavingsType === offerSavingsType.NO_SAVING"
+                  offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS"
                   [isLoading]="changeBankLoading"
                   color="primary-wide"
                   (click)="goToBestOffer()"
@@ -298,9 +298,9 @@
               <rente-button 
                 i18n=“found-best-offers|offers-main@@offers.mainPage.found.bestOffers.button”
                 [disabled]="changeBankLoading ||
-                offersInfo.offerSavingsType === offerSavingsType.NO_SAVING"
+                offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS"
                 [isLoading]="changeBankLoading"
-                color="primary-wide"
+                [color]="antiChurnIsOn ? 'primary-wide-hollow' : 'primary-wide'"
                 (click)="goToBestOffer()"
                 >Se beste tilbud</rente-button
               >
@@ -308,7 +308,7 @@
           </div>
 
   
-          <div  *ngIf="canBargain && !isSweden"  class="big-box round-box right">
+          <div  *ngIf="canBargain && !isSweden && !antiChurnIsOn"  class="big-box round-box right">
             <div class="top">
               <div class="circleIconWrapper"><img class="" src="../../../../assets/icons/mail-green.svg" /></div>
               <p i18n=“help-you|offers-main@@offers.mainPage.helpYou”>Be banken min om lavere rente</p>
@@ -320,8 +320,29 @@
                 [disabled]="changeBankLoading ||
                 offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS"
                 [isLoading]="changeBankLoading"
+                [color]="antiChurnIsOn ? 'primary-wide' : 'primary-wide-hollow'"
                 (click)="openChangeBankDialog(offersInfo.offers.top5[0])"
                 >Be banken matche tilbud</rente-button
+              > 
+            </div>
+          </div>
+
+          <div  *ngIf="antiChurnIsOn"  class="big-box round-box right anti-churn-box">
+            <div class="top">
+              <div class="circleIconWrapper"><img src="{{banksMap['NORDEA'].imgCircle}}"  /></div>
+              <p i18n=“help-you|offers-main@@offers.mainPage.helpYou”>Nordea ønsker å beholde deg som kunde</p>
+            </div>
+            <div class="bottom">
+
+              <p>Gi Nordea anledningen til å sette ned renten din før du eventuelt bytter bank</p>
+              <rente-button
+              i18n=“help-you|offers-main@@offers.mainPage.helpYou.button” 
+              [color]="antiChurnIsOn ? 'primary-wide-break' : 'primary-wide-hollow'"
+                [disabled]="changeBankLoading || !antiChurnIsOn ||
+                offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS"
+                [isLoading]="changeBankLoading"
+                (click)="openAntiChurnBankDialog(offersInfo.offers.top5[0])"
+                >Be Nordea om et bedre tilbud</rente-button
               > 
             </div>
           </div>
@@ -386,8 +407,8 @@
   
               <div class="save-info">
                 <p i18n=“save|offers-main@@offers.mainPage.save”>Du kan spare</p>
-                <h2 *ngIf="offersInfo.bestOfferTotalSaving > 0; else noBestOffer">
-                  {{ offersInfo.bestOfferTotalSaving | abs | number }},-
+                <h2 *ngIf="offersInfo?.bestOfferTotalSaving > 0; else noBestOffer">
+                  {{ offersInfo?.bestOfferTotalSaving | abs | number }},-
                 </h2>
                 <ng-template #noBestOffer>
                   <h2> 0,- </h2>
@@ -426,7 +447,7 @@
                   Boligverdi
                 </p>
                 <h2 i18n=“millions|offers-main@@offers.mainPage.millions”>
-                  {{ offersInfo.propertyValue / 1000000 | number: "1.1-3" }}
+                  {{ offersInfo?.propertyValue / 1000000 | number: "1.1-3" }}
                   mill.
                 </h2>
                 <p *ngIf="!isSweden" i18n=“debt|offers-main@@offers.mainPage.debt” class="small">
@@ -437,7 +458,7 @@
                   mill.
                 </p>
   
-                <p *ngIf="locale === 'nb'" i18n=“virdi-estimate|offers-main@@offers.mainPage.virdiEstimate” class="extra-small-virdi">
+                <p *ngIf="envService.isNorway()" i18n=“virdi-estimate|offers-main@@offers.mainPage.virdiEstimate” class="extra-small-virdi">
                   Estimat levert av
                   <a href="https://virdi.no/" target="_blank">virdi.no</a>
                 </p>
@@ -451,7 +472,7 @@
               </p>
               <h2 i18n=“millions|offers-main@@offers.mainPage.millions”>
                 {{
-                offersInfo.totalOutstandingDebt / 1000000 | number: "1.1-3"
+                offersInfo?.totalOutstandingDebt / 1000000 | number: "1.1-3"
               }}
                 mill.
               </h2>
@@ -529,7 +550,7 @@
   
           <div class="split-sections mobile">
             <div class="split-section">
-              <div class="mobile">
+              <div class="mobile cta-boxes">
                 <div class="big-box round-box">
                   <div class="top">
                     <div class="circleIconWrapper"><img class="" src="../../../../assets/icons/rente-green-big.svg" />
@@ -542,9 +563,9 @@
                     <rente-button 
                       i18n=“found-best-offers|offers-main@@offers.mainPage.found.bestOffers.button”
                       [disabled]="changeBankLoading ||
-                      offersInfo.offerSavingsType === offerSavingsType.NO_SAVING"
+                      offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS"
                       [isLoading]="changeBankLoading"
-                      color="primary-wide"
+                      [color]="antiChurnIsOn ? 'primary-wide-hollow' : 'primary-wide'"
                       (click)="goToBestOffer()"
                       >Se beste tilbud</rente-button
                     >
@@ -568,7 +589,7 @@
                   </div>
                 </div>
   
-                <div *ngIf="canBargain" class="big-box round-box">
+                <div *ngIf="canBargain && !antiChurnIsOn" class="big-box round-box">
                   <div class="top">
                     <div class="circleIconWrapper"><img class="" src="../../../../assets/icons/mail-green.svg" /></div>
                     <p i18n=“help-you|offers-main@@offers.mainPage.helpYou”>Be banken min om lavere rente</p>
@@ -576,7 +597,7 @@
                   <div class="bottom">
                     <rente-button
                       i18n=“help-you|offers-main@@offers.mainPage.helpYou.button” 
-                      color="primary-wide-hollow"
+                      [color]="antiChurnIsOn ? 'primary-wide' : 'primary-wide-hollow'"
                       [disabled]="
                       changeBankLoading ||
                       offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS"
@@ -586,6 +607,27 @@
                     > 
                   </div>
                 </div>
+
+                <div *ngIf="canBargain && antiChurnIsOn"  class="big-box round-box right anti-churn-box">
+                  <div class="top">
+                    <div class="circleIconWrapper"><img src="{{banksMap['NORDEA'].imgCircle}}"  /></div>
+                    <p i18n=“help-you|offers-main@@offers.mainPage.helpYou”>Nordea ønsker å beholde deg som kunde</p>
+                  </div>
+                  <div class="bottom">
+      
+                    <p>Gi Nordea anledningen til å sette ned renten din før du eventuelt bytter bank</p>
+                    <rente-button
+                    i18n=“help-you|offers-main@@offers.mainPage.helpYou.button” 
+                      [color]="antiChurnIsOn ? 'primary-wide-break' : 'primary-wide-hollow'"
+                      [disabled]="changeBankLoading || !antiChurnIsOn ||
+                      offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS"
+                      [isLoading]="changeBankLoading"
+                      (click)="openAntiChurnBankDialog(offersInfo.offers.top5[0])"
+                      >Be Nordea om et bedre tilbud</rente-button
+                    > 
+                  </div>
+                </div>
+
               </div>
             </div>
           </div>
@@ -597,7 +639,7 @@
         </div>
   
         
-        <rente-offers-list [offer]="offer" [offersInfo]="currentOfferInfo" ></rente-offers-list>
+        <rente-offers-list [offersInfo]="currentOfferInfo" ></rente-offers-list>
   
       </div>
       <!-- Mobile boxes -->

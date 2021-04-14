@@ -63,7 +63,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
   private connectionTimer: Observable<number>;
   private crawlingTimer: Observable<number>;
   private connectionTimerSubscription: Subscription;
-  private crawlingTimerSubscription: Subscription;
+  private crawlingTimerSubscription: Subscription | null;
   private intervalSubscription: Subscription;
   public isShowTimer: boolean;
   isNotSB1customer: boolean;
@@ -75,7 +75,8 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
   public tinkUrl: SafeUrl;
   isSuccessTink = false;
   public tinkCode: any = null;
-
+  BANKID_TIMEOUT_TIME;
+  bankIdTimeoutTime = BANKID_TIMEOUT_TIME;
   constructor(
     private router: Router,
     private authService: AuthService,
@@ -87,7 +88,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
     private sanitizer: DomSanitizer
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.logging.logger(
       this.logging.Level.Info,
       '1:INIT',
@@ -105,10 +106,12 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
     // Special case for DNB and Eika banks
     this.thirdStepTimer =
       this.bank.name === 'DNB' || BankUtils.isEikaBank(this.bank.name)
-        ? 30
+        ? 34
         : 25;
-    this.firstStepTimer = this.bank.name === 'DNB' ? 20 : 10;
-
+    this.firstStepTimer = this.bank.name === 'DNB' ? 28 : 10;
+    if (this.bank.name === 'DNB') {
+      this.bankIdTimeoutTime = 120;
+    }
     if (this.bank.isTinkBank) {
       this.initiateTinkBank();
     } else {
@@ -116,7 +119,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
     }
   }
 
-  initiateTinkBank() {
+  initiateTinkBank(): void {
     const tinkUrlUnsanitized = this.envService.getTinkLinkForBank(
       this.bank.name
     );
@@ -163,7 +166,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
     }
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.unsubscribeEverything();
   }
 
@@ -173,7 +176,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
       : '../../../assets/img/banks-logo/round/annen.png';
   }
 
-  unsubscribeEverything() {
+  unsubscribeEverything(): void {
     if (this.stompClient && this.stompClient.connected) {
       this.stompClient.disconnect();
       this.stompClient.unsubscribe();
@@ -192,14 +195,14 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
     }
   }
 
-  returnToInput() {
+  returnToInput(): void {
     this.returnToInputPage.emit();
     if (this.isNotSB1customer) {
       this.router.navigate(['/autentisering/sparebank1-sub']);
     }
   }
 
-  sendUserDataTink(tinkCode: any, resendData = false) {
+  sendUserDataTink(tinkCode: any, resendData = false): void {
     const dataObj = {
       code: tinkCode,
       country: 'NOR'
@@ -231,7 +234,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
     );
   }
 
-  sendUserData(resendData = false) {
+  sendUserData(resendData = false): void {
     const dataObj = {
       birthdateOrSsn: this.userData.ssn || this.userData.birthdate,
       mobile: this.userData.phone
@@ -441,7 +444,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
             break;
 
           case BANKID_STATUS.PROCESS_STARTED:
-            this.initTimer(BANKID_TIMEOUT_TIME);
+            this.initTimer(this.bankIdTimeoutTime);
             this.initConnectionTimer();
             this.logging.logger(
               this.logging.Level.Info,
@@ -593,97 +596,93 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
 
             this.viewStatus.isLoansPersisted = true;
             const user = response.data.user;
-            this.authService
-              .loginWithToken(user.oneTimeToken)
-              .subscribe((res) => {
-                forkJoin([
-                  this.loansService.getLoansAndRateType(),
-                  this.userService.getUserInfo()
-                ]).subscribe(([rateAndLoans, userInfo]) => {
-                  this.loginStep3Status = MESSAGE_STATUS.SUCCESS;
-                  this.logging.logger(
-                    this.logging.Level.Info,
-                    '6:FETCHED_RATE_LOANS_AND_USERINFO',
-                    'LoginStatusComponent',
-                    'successSocketCallback',
-                    this.logging.SubSystem.Tink,
-                    '6: FETCHED RATE, LOANS AND USERINFO',
-                    undefined,
-                    this.isTinkBank
-                  );
+            this.authService.loginWithToken(user.oneTimeToken).subscribe(() => {
+              forkJoin([
+                this.loansService.getLoansAndRateType(),
+                this.userService.getUserInfo()
+              ]).subscribe(([rateAndLoans, userInfo]) => {
+                this.loginStep3Status = MESSAGE_STATUS.SUCCESS;
+                this.logging.logger(
+                  this.logging.Level.Info,
+                  '6:FETCHED_RATE_LOANS_AND_USERINFO',
+                  'LoginStatusComponent',
+                  'successSocketCallback',
+                  this.logging.SubSystem.Tink,
+                  '6: FETCHED RATE, LOANS AND USERINFO',
+                  undefined,
+                  this.isTinkBank
+                );
 
-                  this.userService.lowerRateAvailable.next(
-                    rateAndLoans.lowerRateAvailable
-                  );
-                  if (rateAndLoans.loansPresent) {
-                    this.localStorageService.removeItem('noLoansPresent');
-                    if (rateAndLoans.isAggregatedRateTypeFixed) {
-                      this.localStorageService.setItem(
-                        'isAggregatedRateTypeFixed',
-                        true
-                      );
+                this.userService.lowerRateAvailable.next(
+                  rateAndLoans.lowerRateAvailable
+                );
+                if (rateAndLoans.loansPresent) {
+                  this.localStorageService.removeItem('noLoansPresent');
+                  if (rateAndLoans.isAggregatedRateTypeFixed) {
+                    this.localStorageService.setItem(
+                      'isAggregatedRateTypeFixed',
+                      true
+                    );
+                    this.logging.logger(
+                      this.logging.Level.Info,
+                      '7:SUCCESS_RATE_TYPE_FIXED',
+                      'LoginStatusComponent',
+                      'successSocketCallback',
+                      this.logging.SubSystem.Tink,
+                      '7: SUCCESS: FIXED RATE DETECTED. REDIRECT TO ROUTES_MAP.FIXEDRATE',
+                      undefined,
+                      this.isTinkBank
+                    );
+                    this.router.navigate([
+                      '/dashboard/' + ROUTES_MAP.fixedRate
+                    ]);
+                  } else {
+                    if (userInfo.income === null) {
                       this.logging.logger(
                         this.logging.Level.Info,
-                        '7:SUCCESS_RATE_TYPE_FIXED',
+                        '7:SUCCESS_NEW_USER',
                         'LoginStatusComponent',
                         'successSocketCallback',
                         this.logging.SubSystem.Tink,
-                        '7: SUCCESS: FIXED RATE DETECTED. REDIRECT TO ROUTES_MAP.FIXEDRATE',
+                        '7: SUCCESS:NEW USER DETECTED. REDIRECT TO ROUTES_MAP.INITCONFIRMATION',
+                        undefined,
+                        this.isTinkBank
+                      );
+                      this.router.navigate(['/' + ROUTES_MAP.initConfirmation]);
+                      this.localStorageService.setItem('isNewUser', true);
+                    } else {
+                      this.logging.logger(
+                        this.logging.Level.Info,
+                        '7:SUCCESS_OLD_USER',
+                        'LoginStatusComponent',
+                        'successSocketCallback',
+                        this.logging.SubSystem.Tink,
+                        '7: SUCCESS: USER INCOME DETECTED. REDIRECT TO ROUTES_MAP.OFFERS',
                         undefined,
                         this.isTinkBank
                       );
                       this.router.navigate([
-                        '/dashboard/' + ROUTES_MAP.fixedRate
+                        '/dashboard/' + ROUTES_MAP.offers,
+                        { state: { isInterestRateSet: true } }
                       ]);
-                    } else {
-                      if (userInfo.income === null) {
-                        this.logging.logger(
-                          this.logging.Level.Info,
-                          '7:SUCCESS_NEW_USER',
-                          'LoginStatusComponent',
-                          'successSocketCallback',
-                          this.logging.SubSystem.Tink,
-                          '7: SUCCESS:NEW USER DETECTED. REDIRECT TO ROUTES_MAP.INITCONFIRMATION',
-                          undefined,
-                          this.isTinkBank
-                        );
-                        this.router.navigate([
-                          '/' + ROUTES_MAP.initConfirmation
-                        ]);
-                        this.localStorageService.setItem('isNewUser', true);
-                      } else {
-                        this.logging.logger(
-                          this.logging.Level.Info,
-                          '7:SUCCESS_OLD_USER',
-                          'LoginStatusComponent',
-                          'successSocketCallback',
-                          this.logging.SubSystem.Tink,
-                          '7: SUCCESS: USER INCOME DETECTED. REDIRECT TO ROUTES_MAP.OFFERS',
-                          undefined,
-                          this.isTinkBank
-                        );
-                        this.router.navigate([
-                          '/dashboard/' + ROUTES_MAP.offers,
-                          { state: { isInterestRateSet: true } }
-                        ]);
-                      }
                     }
-                  } else {
-                    this.logging.logger(
-                      this.logging.Level.Info,
-                      '7:SUCCESS_NO_LOAN_PRESENT',
-                      'LoginStatusComponent',
-                      'successSocketCallback',
-                      this.logging.SubSystem.Tink,
-                      '7: SUCCESS: NO LOAN DETECTED. REDIRECT TO ROUTES_MAP.NOLOAN',
-                      undefined,
-                      this.isTinkBank
-                    );
-                    this.localStorageService.setItem('noLoansPresent', true);
-                    this.router.navigate(['/' + ROUTES_MAP.noLoan]);
                   }
-                });
+                } else {
+                  this.logging.logger(
+                    this.logging.Level.Info,
+                    '7:SUCCESS_NO_LOAN_PRESENT',
+                    'LoginStatusComponent',
+                    'successSocketCallback',
+                    this.logging.SubSystem.Tink,
+                    '7: SUCCESS: NO LOAN DETECTED. REDIRECT TO ROUTES_MAP.NOLOAN',
+                    undefined,
+                    this.isTinkBank
+                  );
+                  this.localStorageService.setItem('noLoansPresent', true);
+                  this.router.navigate(['/' + ROUTES_MAP.noLoan]);
+                }
               });
+            });
             break;
         }
       }
@@ -713,7 +712,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
     });
   }
 
-  stopCrawlerTimer() {
+  stopCrawlerTimer(): void {
     if (this.crawlingTimerSubscription) {
       this.crawlingTimerSubscription.unsubscribe();
       this.crawlingTimerSubscription = null;
@@ -764,7 +763,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
     return this.thirdStepTimer <= 0;
   }
 
-  selectAccount(name: string) {
+  selectAccount(name: string): void {
     const data = `{"eventType":"EIKA_CHOOSE_ACCOUNT_TO_PROCESS_RESPONSE", "sessionId":"${this.userSessionId}", "accountToProcess":"${name}"}`;
     this.stompClient.send(API_URL_MAP.crawlerAccountSelectEikaUrl, {}, data);
     this.isAccountSelection = false;

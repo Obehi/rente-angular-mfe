@@ -1,30 +1,26 @@
 import { Injectable } from '@angular/core';
-import { map, tap, catchError } from 'rxjs/operators';
-import { Observable, throwError, EMPTY } from 'rxjs';
+import { tap, catchError } from 'rxjs/operators';
+import { Observable, EMPTY } from 'rxjs';
 import { BankVo } from '../../shared/models/bank';
-import { HttpResponse, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { environment } from 'environments/environment';
-interface Environment {
+export interface Environment {
   name?: string | null;
   production: boolean | null;
-  baseUrl: string | null;
+  baseUrl: string;
   crawlerUrl: string | null;
   locale?: string | null;
   tinkUrl?: string | null;
   shouldLog?: boolean;
   tinkNorDanskebankLink?: string | null;
   tinkNorHandelsbankenLink?: string | null;
-  coralogixApiUrl?: string | null;
+  coralogixApiUrl?: string;
   coralogixPrivateKey?: string | null;
   coralogixApplicationName?: string | null;
   loginDnbIsOn?: boolean;
   loginHandelsbankenIsOn?: boolean;
   loginDanskeIsOn?: boolean;
 }
-
-import { HttpClient } from '@angular/common/http';
-import { threadId } from 'worker_threads';
-import { createUrlResolverWithoutPackagePrefix } from '@angular/compiler';
 
 @Injectable({
   providedIn: 'root'
@@ -49,7 +45,7 @@ export class EnvService {
       .get('assets/extra-environment-variables.json')
       .pipe(
         tap((returnedEnv) => this.handleEnvFile(returnedEnv)),
-        catchError((error) => this.handleError(error))
+        catchError(() => this.handleError())
       )
       .toPromise();
   }
@@ -82,7 +78,7 @@ export class EnvService {
     this.environment.loginDanskeIsOn = returnedEnv['VAR_4'];
   }
 
-  handleError(responseError: HttpResponse<any> | any): Observable<any> {
+  handleError(): Observable<any> {
     return EMPTY;
   }
 }

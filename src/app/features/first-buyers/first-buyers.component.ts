@@ -30,10 +30,10 @@ export class FirstBuyersComponent implements OnInit {
     this.seoService.createLinkForCanonicalURL();
   }
 
-  showOffers() {
+  showOffers(): void {
     if (
-      Number(this.formGroup.get('income').value) < 200000 &&
-      !this.formGroup.get('outstandingDebt').value
+      Number(this.formGroup.get('income')?.value) < 200000 &&
+      !this.formGroup.get('outstandingDebt')?.value
     ) {
       this.isLowIncome = true;
       return;
@@ -41,21 +41,21 @@ export class FirstBuyersComponent implements OnInit {
 
     this.isLoading = true;
 
-    if (this.formGroup.get('income').value) {
+    if (this.formGroup.get('income')?.value) {
       this.firstBuyersService.offerValue = {
         outstandingDebt: null,
-        income: +this.formGroup.get('income').value
+        income: +this.formGroup.get('income')?.value
       };
-      if (!this.formGroup.get('outstandingDebt').value) {
+      if (!this.formGroup.get('outstandingDebt')?.value) {
         this.formGroup.patchValue({
-          outstandingDebt: +(this.formGroup.get('income').value * 5)
+          outstandingDebt: +(this.formGroup.get('income')?.value * 5)
         });
       }
     }
-    if (this.formGroup.get('outstandingDebt').value) {
+    if (this.formGroup.get('outstandingDebt')?.value) {
       this.firstBuyersService.offerValue = {
-        outstandingDebt: +this.formGroup.get('outstandingDebt').value,
-        income: +this.formGroup.get('income').value
+        outstandingDebt: +this.formGroup.get('outstandingDebt')?.value,
+        income: +this.formGroup.get('income')?.value
       };
     }
     this.firstBuyersService
@@ -69,7 +69,7 @@ export class FirstBuyersComponent implements OnInit {
           return this.authService.loginWithToken(res.token);
         })
       )
-      .subscribe((res) => {
+      .subscribe(() => {
         this.router.navigate(['/boliglanskalkulator/tilbud']);
         this.isLoading = false;
       });

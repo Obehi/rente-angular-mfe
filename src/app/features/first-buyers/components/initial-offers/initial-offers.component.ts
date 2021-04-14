@@ -40,15 +40,17 @@ export class InitialOffersComponent implements OnInit {
   loanToValueRatioValidator: ValidatorFn = (
     control: AbstractControl
   ): ValidationErrors | null => {
-    const outstandingDebt = control.get('outstandingDebt').value;
-    const savings = control.get('savings').value;
+    const outstandingDebt = control.get('outstandingDebt')?.value;
+    const savings = control.get('savings')?.value;
     const isValid = outstandingDebt / (outstandingDebt + savings) > 0.85;
     this.isAboveLoanToValueRatioTreshold = isValid;
     return isValid ? { loanToValueRatio: isValid } : null;
   };
 
   loantoRatioMinimumAmount() {
-    const outstandingDebt = Number(this.formGroup.get('outstandingDebt').value);
+    const outstandingDebt = Number(
+      this.formGroup.get('outstandingDebt')?.value
+    );
     const minimumAmount = Math.ceil(outstandingDebt * 0.176470588);
     return Math.round(minimumAmount / 1000) * 1000;
   }
@@ -71,7 +73,7 @@ export class InitialOffersComponent implements OnInit {
     { validators: this.loanToValueRatioValidator, updateOn: 'blur' }
   );
   public allMemberships: MembershipTypeDto[] = [];
-  selectedIndex = 1;
+  selectedIndex: number | null = 1;
   public filteredMemberships: Observable<MembershipTypeDto[]>;
   public memberships: MembershipTypeDto[] = [];
   properties = [
@@ -231,35 +233,43 @@ export class InitialOffersComponent implements OnInit {
     private seoService: SeoService
   ) {}
 
-  get outstandingDebtControl() {
-    return this.formGroup.get('outstandingDebt');
+  get outstandingDebtControl(): AbstractControl {
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    return this.formGroup.get('outstandingDebt')!;
   }
 
-  get savingsControl() {
-    return this.formGroup.get('savings');
+  get savingsControl(): AbstractControl {
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    return this.formGroup.get('savings')!;
   }
 
-  get incomeControl() {
-    return this.formGroup.get('income');
+  get incomeControl(): AbstractControl {
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    return this.formGroup.get('income')!;
   }
 
-  get otherDebtControl() {
-    return this.formGroup.get('otherDebt');
+  get otherDebtControl(): AbstractControl {
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    return this.formGroup.get('otherDebt')!;
   }
 
-  get membershipsControl() {
-    return this.formGroup.get('memberships');
+  get membershipsControl(): AbstractControl {
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    return this.formGroup.get('memberships')!;
   }
 
-  get ageControl() {
-    return this.formGroup.get('age');
+  get ageControl(): AbstractControl {
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    return this.formGroup.get('age')!;
   }
-  get localBanks() {
-    return this.formGroup.get('localBanks');
+  get localBanks(): AbstractControl {
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    return this.formGroup.get('localBanks')!;
   }
 
-  get firstLoanControl() {
-    return this.formGroup.get('firstLoan');
+  get firstLoanControl(): AbstractControl {
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    return this.formGroup.get('firstLoan')!;
   }
 
   subscribeToControllers(): void {
@@ -366,15 +376,15 @@ export class InitialOffersComponent implements OnInit {
     };
   }
 
-  selectAge(aged: boolean) {
+  selectAge(aged: boolean): void {
     this.ageControl.patchValue(aged);
   }
 
-  selectFirstLoan(firstLoan: boolean) {
+  selectFirstLoan(firstLoan: boolean): void {
     this.firstLoanControl.patchValue(firstLoan);
   }
 
-  toggleFeaturedMemberships(membership) {
+  toggleFeaturedMemberships(membership: MembershipTypeDto): void {
     if (this.selectedFeaturedMemberships.indexOf(membership) === -1) {
       this.selectedFeaturedMemberships.push(membership);
     } else {
@@ -386,7 +396,7 @@ export class InitialOffersComponent implements OnInit {
     this.updateMemberships();
   }
 
-  deleteMembership(membership) {
+  deleteMembership(membership): void {
     this.memberships.splice(this.memberships.indexOf(membership), 1);
     this.updateMemberships();
   }
@@ -435,7 +445,7 @@ export class InitialOffersComponent implements OnInit {
       )
     );
 
-    this.formGroup.valueChanges.subscribe((val) => {
+    this.formGroup.valueChanges.subscribe(() => {
       if (this.isAllDataFilled()) {
         this.stepper._steps.forEach((step) => {
           step.state = 'done';
@@ -479,11 +489,11 @@ export class InitialOffersComponent implements OnInit {
       );
   }
 
-  nextStep() {
+  nextStep(): void {
     this.stepper.next();
   }
 
-  isBoolean(val) {
+  isBoolean(val: any): boolean {
     return val !== null;
   }
 
@@ -496,14 +506,14 @@ export class InitialOffersComponent implements OnInit {
     );
   }
 
-  ageFilled() {
+  ageFilled(): boolean {
     return (
       (this.isBoolean(this.ageControl.value) && !this.ageControl.value) ||
       (this.isBoolean(this.ageControl.value) && this.ageControl.value)
     );
   }
 
-  toggleEditMode() {
+  toggleEditMode(): void {
     this.editMode = false;
     this.selectedIndex = null;
     this.updateNewOffers();

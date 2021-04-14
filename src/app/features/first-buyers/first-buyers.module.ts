@@ -14,7 +14,6 @@ import { FirstBuyersRoutingModule } from './first-buyers-routing.module';
 import { FirstBuyersComponent } from './first-buyers.component';
 import { FirstBuyersService } from './first-buyers.service';
 
-// @ts-ignore
 @NgModule({
   declarations: [
     FirstBuyersComponent,

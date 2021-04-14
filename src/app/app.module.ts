@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, LOCALE_ID, APP_INITIALIZER } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { Environment } from '@services/env.service';
 import { PageNotFoundComponent } from '@features/page-not-found/page-not-found.component';
 import { LandingComponent } from '@features/landing/landing.component';
 import { SharedModule } from '@shared/shared.module';
@@ -40,6 +41,7 @@ import { EmailRedirectNOComponent } from './features/email-redirect/email-redire
 import { EnvService } from './shared/services/env.service';
 import { HttpClient } from '@angular/common/http';
 import { NoLoansComponent } from '@features/dashboard/no-loans/no-loans.component';
+import { ConfirmationProperty } from './features/init-confirmation/init-confirmation-sv/confirmation-property-sv/confirmation-property-sv.component';
 registerLocaleData(localeNo);
 
 @NgModule({
@@ -66,7 +68,8 @@ registerLocaleData(localeNo);
     LandingTopLangGenericComponent,
     EmailRedirectSVComponent,
     EmailRedirectNOComponent,
-    NoLoansComponent
+    NoLoansComponent,
+    ConfirmationProperty
   ],
   imports: [
     BrowserModule,
@@ -99,6 +102,8 @@ registerLocaleData(localeNo);
 })
 export class AppModule {}
 
-export function initializeConfig(envService: EnvService) {
+export function initializeConfig(
+  envService: EnvService
+): () => Promise<Environment> {
   return () => envService.loadEnv();
 }

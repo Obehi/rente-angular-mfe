@@ -9,16 +9,16 @@ import { MatDialog } from '@angular/material/dialog';
 import { DialogInfoComponent } from '../../dialog-info/dialog-info.component';
 
 import { BankScoreLangGenericComponent } from '../../../../../local-components/components-output';
+import {
+  OffersService,
+  OfferMessage
+} from '@features/dashboard/offers/offers.service';
 
 import { Router } from '@angular/router';
 import { CustomLangTextService } from '@shared/services/custom-lang-text.service';
 import { locale } from '../../../../../config/locale/locale';
 
-import {
-  OFFER_SAVINGS_TYPE,
-  AGGREGATED_RATE_TYPE,
-  AGGREGATED_LOAN_TYPE
-} from '../../../../../config/loan-state';
+import { OFFER_SAVINGS_TYPE } from '../../../../../config/loan-state';
 
 @Component({
   selector: 'rente-offer-card-big-blue',
@@ -30,6 +30,7 @@ export class OfferCardBigComponentBlue implements OnInit {
   public offerSavingsType = OFFER_SAVINGS_TYPE;
   public offerType: string;
   public isSweden: boolean;
+  public isNordea = false;
 
   @Input() offer: OfferInfo;
   @Input() offersInfo: Offers;
@@ -38,15 +39,19 @@ export class OfferCardBigComponentBlue implements OnInit {
     private trackingService: TrackingService,
     public dialog: MatDialog,
     private router: Router,
-    public customLangTextSerice: CustomLangTextService
+    public customLangTextSerice: CustomLangTextService,
+    private offersService: OffersService
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     if (locale.includes('sv')) {
       this.isSweden = true;
     } else {
       this.isSweden = false;
     }
+
+    this.isNordea = this.offersInfo.bank === 'NORDEA';
+
     if (this.offer.fixedRatePeriod === 0) {
       this.offerType = 'threeMonths';
     } else if (this.offer.fixedRatePeriod === 1) {
@@ -84,9 +89,9 @@ export class OfferCardBigComponentBlue implements OnInit {
     return text;
   }
 
-  private sendOfferTrackingData(trackingDto: TrackingDto, offer: OfferInfo) {
+  private sendOfferTrackingData(trackingDto: TrackingDto) {
     this.trackingService.sendTrackingStats(trackingDto).subscribe(
-      (res) => {},
+      () => {},
       (err) => {
         console.log('err');
         console.log(err);
@@ -115,7 +120,7 @@ export class OfferCardBigComponentBlue implements OnInit {
     });
   }
 
-  public openBankUrl(offer: OfferInfo) {
+  public openBankUrl(offer: OfferInfo): void {
     if (this.handleNybyggerProductSpecialCase(offer) === true) {
       return;
     }
@@ -127,10 +132,10 @@ export class OfferCardBigComponentBlue implements OnInit {
     const trackingDto = new TrackingDto();
     trackingDto.offerId = offer.id;
     trackingDto.type = 'OFFER_HEADER_LINK';
-    this.sendOfferTrackingData(trackingDto, offer);
+    this.sendOfferTrackingData(trackingDto);
   }
 
-  public openBankUrlByButton(offer: OfferInfo) {
+  public openBankUrlByButton(offer: OfferInfo): void {
     if (offer.bankInfo.url === null || offer.bankInfo.partner === false) return;
 
     window.open(offer.bankInfo.url, '_blank');
@@ -138,7 +143,7 @@ export class OfferCardBigComponentBlue implements OnInit {
     const trackingDto = new TrackingDto();
     trackingDto.offerId = offer.id;
     trackingDto.type = 'BANK_BUTTON_1';
-    this.sendOfferTrackingData(trackingDto, offer);
+    this.sendOfferTrackingData(trackingDto);
   }
 
   public openNewOfferDialog(offer: OfferInfo): void {
@@ -153,10 +158,10 @@ export class OfferCardBigComponentBlue implements OnInit {
     const trackingDto = new TrackingDto();
     trackingDto.offerId = offer.id;
     trackingDto.type = 'BANK_BUTTON_2';
-    this.sendOfferTrackingData(trackingDto, offer);
+    this.sendOfferTrackingData(trackingDto);
   }
 
-  public openInfoDialog(text: string): void {
+  public openInfoDialog(): void {
     const bankRatingDialogRef = this.dialog.open(BankScoreLangGenericComponent);
 
     bankRatingDialogRef.afterClosed().subscribe(() => {
@@ -166,7 +171,7 @@ export class OfferCardBigComponentBlue implements OnInit {
     });
   }
 
-  public handlebankRatingdialogOnClose(state: string) {
+  public handlebankRatingdialogOnClose(state: string): void {
     switch (state) {
       case 'canceled': {
         break;
@@ -176,5 +181,9 @@ export class OfferCardBigComponentBlue implements OnInit {
         break;
       }
     }
+  }
+
+  public clickNordea(): void {
+    this.offersService.pushMessage(OfferMessage.antiChurn);
   }
 }

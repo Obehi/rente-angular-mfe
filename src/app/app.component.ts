@@ -26,11 +26,11 @@ export class AppComponent implements OnInit {
     private localStorageService: LocalStorageService
   ) {}
 
-  onActivate(event: any) {
+  onActivate(): void {
     window.scrollTo(0, 0);
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.navigationSubscription = this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.changeTitles();
@@ -49,17 +49,17 @@ export class AppComponent implements OnInit {
   }
 
   private changeTitles(): void {
-    let data = this.route.root.firstChild.snapshot.data;
+    let data = this.route.root.firstChild?.snapshot.data;
     if (
-      !data.title &&
+      !data?.title &&
       this.route.root.firstChild &&
       this.route.root.firstChild.firstChild &&
       this.route.root.firstChild.firstChild.firstChild
     ) {
       data = this.route.root.firstChild.firstChild.firstChild.snapshot.data;
     }
-    const title = data.title;
-    const metaData = data.meta;
+    const title = data?.title;
+    const metaData = data?.meta;
 
     this.titleService.setTitle(title);
     if (metaData) {
@@ -67,12 +67,12 @@ export class AppComponent implements OnInit {
     }
   }
 
-  acceptCookies() {
+  acceptCookies(): void {
     this.localStorageService.setItem(AppComponent.CookiesAcceptedKey, true);
     this.showCookieAcc = false;
   }
 
-  readMore() {
+  readMore(): void {
     this.router.navigate([`/${ROUTES_MAP.privacyPolicy}`]);
   }
 }
