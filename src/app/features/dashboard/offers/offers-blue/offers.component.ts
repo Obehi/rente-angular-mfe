@@ -394,7 +394,11 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
     }
     this.changeBankLoading = true;
 
+    console.log('shouldLog');
+    console.log(shouldLog);
     if (shouldLog) {
+      console.log('is logging');
+
       this.logginService.googleAnalyticsLog({
         category: 'NordeaAntiChurn',
         action: 'Click top button anti-churn',
