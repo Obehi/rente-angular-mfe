@@ -7,23 +7,34 @@
     {{ index }}
   </div>
   <div class="the-offer-header">
-    <div class="logo" [ngStyle]="{
+    <div class="top">
+      <div class="logo" [ngStyle]="{
                 'background-image': 'url(' + banksMap[offer.bankInfo.bank].img + ')'
               }">
 
-    </div>
-    <div class="offer-product">
-      <a class="clickable" target="_blank" (click)="openBankUrl(offer)">{{ offer.bankInfo.name }}
-        <!--<mat-icon>
+      </div>
+      <div class="offer-product">
+        <a class="clickable" target="_blank" (click)="openBankUrl(offer)">{{ offer.bankInfo.name }}
+          <!--<mat-icon>
                     open_in_new</mat-icon>
                 -->
-      </a>
-      <h3>
-        {{ offer.productName }}
-      </h3>
+        </a>
+        <h3>
+          {{ offer.productName }}
+        </h3>
+
+
+      </div>
+      <p class="interest-rate">{{ offer.effectiveRate | number: "1.2-2" }} %</p>
     </div>
-    <p>{{ offer.effectiveRate | number: "1.2-2" }} %</p>
+    <div class="top-bank-info">
+      <p>
+        {{offer.marketArea}}
+      </p>
+    </div>
   </div>
+
+
   <div class="the-offer-body">
     <div class="the-offer-body-grid">
       <div class="offer-top">
@@ -32,28 +43,29 @@
         <div class="split">
 
           <div class="offer-inner save">
+            <p i18n=“over-time|offer-card@@offer.card.over.time”>over lånets løpetid</p>
             <h2 *ngIf="offer.totalSavings > 0; else noTotalSavings">
               {{ offer.totalSavings | abs | number }},-
             </h2>
             <ng-template #noTotalSavings>
               <h2>0,-</h2>
             </ng-template>
-            <p i18n=“over-time|offer-card@@offer.card.over.time”>over lånets løpetid</p>
+
           </div>
           <div class="offer-inner save">
+            <p i18n=“first-year|offer-card@@offer.card.firstYear”>første år</p>
             <h2 *ngIf="offer.savingsFirstYear > 0; else noTotalSavings">
               {{ offer.savingsFirstYear | abs | number }},-
             </h2>
             <ng-template #noSavingsFirstYear>
               <h2>0,-</h2>
             </ng-template>
-            <p i18n=“first-year|offer-card@@offer.card.firstYear”>første år</p>
           </div>
         </div>
       </div>
 
       <div class="offer-properties">
-        <div class="item left first">
+        <div class="item">
           <p i18n=“application-time|offer-card@@offer.card.applicationTime” class="left">Hvor lang tid tar det å søke:
           </p>
 
@@ -62,6 +74,28 @@
             offer.bankInfo.applicationTime + " min"}}
           </p>
         </div>
+
+        <div class="item">
+          <p i18n=“demand-change|offer-card@@offer.card.demandChange” class="left">Krever bytte av nettbank</p>
+          <p i18n=“no-yes|offer-card@@offer.card.noYes” class="box">{{ offer.requiredProductPackage == null ?
+            customLangTextSerice.get18nFixForNo() : "Ja" }}</p>
+        </div>
+
+        <div class="item">
+          <p i18n=“demand-change|offer-card@@offer.card.bankType class="left">Type bank</p>
+          <p class="box">{{ offer.marketArea}}</p>
+        </div>
+
+        <div class="item">
+          <p i18n=“demand-change|offer-card@@offer.card.bankType class="left">Geografi</p>
+          <p class="box">{{ offer.marketArea}}</p>
+        </div>
+
+        <div class="item">
+          <p i18n=“demand-change|offer-card@@offer.card.historicRate class="left">Historisk plassering</p>
+          <p class="box">{{ offer.bankRating }}</p>
+        </div>
+        <!-- 
 
         <div class="item left">
           <p i18n=“demand-change|offer-card@@offer.card.demandChange” class="left">Krever bytte av nettbank:</p>
@@ -93,7 +127,7 @@
             </rente-offer-card-details>
           </mat-expansion-panel>
 
-        </div>
+        </div> -->
       </div>
 
       <div class="buttons">
@@ -121,8 +155,7 @@
       </div>
 
       <rente-button *ngIf="offer.bankInfo.bank === 'NORDEA'" class="button" child childClass="{{offer.bankInfo.name}}"
-        i18n=“get-offer|offer-card@@offer.card.getOffer” color="secondary-medium" type="raised"
-        (click)="openNewOfferDialog(offer)">Spørr Nordea om bedre rente
+        color="secondary-medium" type="raised" (click)="openNewOfferDialog(offer)">Spørr Nordea om bedre rente
       </rente-button>
     </div>
 
@@ -136,5 +169,4 @@
         Totalt: {{offer.totalCost | number: "1.0" }}
       </p>
     </div>
-
   </div>

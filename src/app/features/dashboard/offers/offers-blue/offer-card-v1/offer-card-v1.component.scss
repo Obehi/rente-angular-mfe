@@ -9,20 +9,6 @@
     background-color: $lightgreen;
   }
 
-  .test-promo {
-    position: absolute;
-    top: 5px;
-    right: 5px;
-  }
-
-  .threeMonths {
-    background: #5eb1bf !important;
-  }
-
-  .oneYear {
-    background: #ef767a !important;
-  }
-
   .all {
     background: white;
   }
@@ -51,25 +37,6 @@
     font-size: 11px;
   }
 
-  .time {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 50px;
-    .center {
-      img {
-        width: 40px;
-        margin-right: 10px;
-        display: inline-block;
-        vertical-align: middle;
-      }
-      h3 {
-        display: inline-block;
-        vertical-align: middle;
-      }
-    }
-  }
-
   .the-offer-header {
     display: flex;
     justify-content: space-evenly;
@@ -80,6 +47,11 @@
     border-bottom: 1px solid #ececec;
     padding-top: 0px;
     margin-top: -10px;
+    flex-direction: column;
+
+    .top {
+      display: flex;
+    }
     p {
       display: inline;
       font-size: 14px;
@@ -87,6 +59,17 @@
       margin-left: auto;
       min-width: 41px;
     }
+
+    .interest-rate {
+      background-color: $grey-dark;
+      border-radius: 16px;
+      background-color: #54606e;
+      padding: 12px;
+      color: white;
+      font-size: 14px;
+      line-height: unset;
+    }
+
     .logo {
       width: 3em;
       height: 3em;
@@ -145,6 +128,19 @@
       font-size: 14px;
     }
   }
+  .top-bank-info {
+    margin-left: 48px;
+    align-self: start;
+    p {
+      display: inline-block;
+      padding: 6px 12px;
+      box-shadow: rgb(100 100 111 / 20%) 0px 7px 29px 0px;
+      border-radius: 16px;
+      font-size: 12px;
+      font-weight: 400;
+      color: $grey-dark;
+    }
+  }
   .the-offer-body {
     .the-offer-body-grid {
       display: grid;
@@ -176,6 +172,7 @@
           font-weight: 400;
           margin-left: 10px;
           align-self: center;
+          color: $grey-dark;
         }
       }
 
@@ -187,37 +184,12 @@
         grid-column-end: span 2;
       }
 
-      .info-table {
-        display: flex;
-        justify-content: space-evenly;
-        list-style: none;
-        width: 240px;
-        padding: 0;
-
-        p {
-          font-weight: bold;
-        }
-      }
-
-      .property {
-        &.left {
-          grid-column: 1;
-        }
-        &.right {
-          grid-column: 2;
-        }
-      }
-
       .offer-properties {
-        grid-row: 2;
-        display: grid;
-        grid-gap: 0px;
-        grid-column-gap: 10px;
-        grid-row-gap: 5px;
-        grid-template-columns: 3fr 2fr;
+        display: flex;
+        flex-direction: column;
+        border-top: 1px solid #ececec;
         grid-column-start: 1;
         grid-column-end: span 2;
-        border-top: 1px solid #ececec;
 
         .item {
           display: flex;
@@ -262,14 +234,6 @@
               display: flex;
               flex-direction: column;
               align-items: center;
-
-              .bank-rating-text {
-                display: flex;
-                align-items: center;
-                span {
-                  margin-top: 4px;
-                }
-              }
 
               @media (min-width: 600px) {
                 grid-row: 3;
@@ -486,13 +450,19 @@
         padding: 15px 10px;
       }
       .save {
-        padding-top: 0px;
-        padding-bottom: 0px;
+        padding: 15px 5px;
         h2 {
           font-size: 14px;
+          color: $primary;
+          background: $grey-light;
+          padding: 15px;
+          border-radius: 16px;
         }
         p {
           font-size: 12px;
+          font-weight: 400;
+          color: $grey-dark;
+          margin-bottom: 5px;
         }
         h3 {
           color: $primary;
