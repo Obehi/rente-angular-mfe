@@ -58,6 +58,7 @@ import { BankScoreLangGenericComponent } from '../../local-components/components
 import { ChangeBankLocationComponent } from './offers/change-bank-dialog/change-bank-location/change-bank-location.component';
 import { AntiChurnDialogComponent } from './offers/anti-churn-dialog/anti-churn-dialog.component';
 import { CanNotBargainDialogComponent } from './offers/can-not-bargain-dialog/can-not-bargain-dialog.component';
+import { BarometerComponent } from './offers/offers-blue/barometer/barometer.component';
 
 // TODO: ADD separate module for material import
 @NgModule({
@@ -98,7 +99,8 @@ import { CanNotBargainDialogComponent } from './offers/can-not-bargain-dialog/ca
     HouseErrorDialogSv,
     ChangeBankLocationComponent,
     AntiChurnDialogComponent,
-    CanNotBargainDialogComponent
+    CanNotBargainDialogComponent,
+    BarometerComponent
   ],
   imports: [
     CommonModule,

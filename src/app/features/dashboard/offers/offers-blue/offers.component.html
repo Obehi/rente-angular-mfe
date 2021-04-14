@@ -1,15 +1,17 @@
 <div class="dashboard-wrapper">
+  <div class="loading" *ngIf="isLoading && !errorMessage">
+    <mat-spinner [diameter]="48" [strokeWidth]="4"></mat-spinner>
+  </div>
 
-    <div class="loading" *ngIf="isLoading && !errorMessage">
-      <mat-spinner [diameter]="48" [strokeWidth]="4"></mat-spinner>
-    </div>
-  
-    <div class="offers" *ngIf="
+  <div
+    class="offers"
+    *ngIf="
       offersInfo?.ltvType === offersLtvType.LTV_OK ||
-      offersInfo?.ltvType === offersLtvType.LTV_TOO_HIGH_85">
-  
-      <div class="desktop">
-        <!-- 
+      offersInfo?.ltvType === offersLtvType.LTV_TOO_HIGH_85
+    "
+  >
+    <div class="desktop">
+      <!-- 
           <a *ngIf="offersInfo?.ltvType === offersLtvType.LTV_TOO_HIGH_85" class="obs clickable"
           (click)="openLtvTooHightDialog()">
   
@@ -21,8 +23,8 @@
           </p>
         </a> 
         -->
-  
-        <!-- <div *ngIf="
+
+      <!-- <div *ngIf="
           offersInfo?.incompleteInfoLoanPresent === true
         " class="obs">
           <p>
@@ -32,509 +34,528 @@
             termingebyrer vil endre forventede besparelser.
           </p>
         </div> -->
-      </div>
-  
-      <div class="dashboard-inner-wrapper">
-        <div class="rente-boxes desktop-main-box-grid desktop">
-  
-          <!-- barometer -->
-          <div class="barometer round-box">
-            <div class="rente-status" [ngSwitch]="offersInfo.offerSavingsType">
-              <p i18n=“interest-very-good|offers-main@@offers.mainPage.interest.veryGood” *ngSwitchCase="offerSavingsType.NO_SAVINGS">
-                Renten din er <b>svært god</b>
-              </p>
-              <p i18n=“interest-good|offers-main@@offers.mainPage.interest.good”
-                 *ngSwitchCase="
-                  offerSavingsType.SAVINGS_FIRST_YEAR_BETWEEN_0_AND_2000
-                "
+    </div>
+
+    <div class="dashboard-inner-wrapper">
+      <div class="rente-boxes desktop-main-box-grid desktop">
+        <!-- barometer -->
+        <barometer
+          [offersInfo]="offersInfo"
+          [offerSavingsType]="offerSavingsType"
+        >
+        </barometer>
+
+        <div class="info-box-grid">
+          <div class="box round-box blue-bg">
+            <div>
+              <img class="box-icon" src="../../../../assets/icons/rate.svg" />
+              <p
+                i18n="“your-interest|offers-main@@offers.mainPage.yourInterest”"
               >
-                Renten din er <b>god</b>, men ikke best
+                Min effektive rente
               </p>
-              <p i18n=“interest-ok|offers-main@@offers.mainPage.interest.ok”
-                 *ngSwitchCase="
-                  offerSavingsType.SAVINGS_FIRST_YEAR_BETWEEN_2000_AND_6000
-                "
-              >
-                Renten din er <b>OK</b>, men du kan få bedre
-              </p>
-              <p i18n=“interest-bad|offers-main@@offers.mainPage.interest.bad”
-                 *ngSwitchCase="
-                  offerSavingsType.SAVINGS_FIRST_YEAR_BETWEEN_6000_AND_10000
-                "
-              >
-                Renten din er <b>dårlig</b> og du kan spare en del
-              </p>
-              <p i18n=“interest-very-bad|offers-main@@offers.mainPage.interest.veryBad” *ngSwitchCase="offerSavingsType.SAVINGS_FIRST_YEAR_GREATER_10000">
-                Renten din er <b>svært  dårlig</b>
-              </p>
-              <div *ngSwitchDefault>-</div>
-            </div>
-  
-            <div class="rente-bar-container center-horizontal">
-              <div class="bar-ticks">
-                <p i18n=“interest-bad2|offers-main@@offers.mainPage.interest.bad2”>Dårlig rente</p>
-                <p i18n=“interest-good2|offers-main@@offers.mainPage.interest.good2”>Bra rente</p>
-              </div>
-              <div class="bar-wrap">
-                <span class="bar-fill-left" [ngClass]="[rateBarPercentage.class]"
-                  [ngStyle]="{'width': rateBarPercentage.percentage + '%'}"></span>
-                <span class="bar-fill-right" [ngStyle]="{'width': rateBarPercentageInverted + '%'}"></span>
-              </div>
-  
-              <!--
-            <div class="arrow-box center-align" [ngStyle]="{'left': barBoxPosition}">
-              <p>Din rente</p>
-            </div>
-            -->
-            </div>
-  
-            <div class="save-info">
-              <p i18n=“save|offers-main@@offers.mainPage.save”>Du kan spare</p>
-              <h2 *ngIf="offersInfo.bestOfferTotalSaving > 0; else noBestOffer">
-                {{ offersInfo.bestOfferTotalSaving | abs | number }},-
-              </h2>
-              <ng-template #noBestOffer>
-                <h2> 0,- </h2>
-              </ng-template>
-              <p i18n=“time|offers-main@@offers.mainPage.time”>over lånets løpetid</p>
+              <h2>{{ offersInfo.totalEffectiveRate | number: '1.2-2' }} %</h2>
             </div>
           </div>
-          <!-- End barometer -->
-  
-          <div class="info-box-grid">
-  
-            <div class="box round-box blue-bg">
-              <div>
-                <img class="box-icon" src="../../../../assets/icons/rate.svg" />
-                <p i18n=“your-interest|offers-main@@offers.mainPage.yourInterest”>Min effektive rente</p>
-                <h2>{{ offersInfo.totalEffectiveRate | number: "1.2-2" }} %</h2>
-              </div>
-            </div>
-            <a class="box round-box primary-bg positive clickable" (click)="goToBestOffer()">
-              <div>
-                <img class="box-icon" src="../../../../assets/icons/rente-icon-white.svg" />
-                <p i18n=“best-offer|offers-main@@offers.mainPage.bestOffer”>
-                  Beste tilbud
-                </p>
-                <h2>
-                  {{ offersInfo.bestOfferEffectiveRate | number: "1.2-2" }} %
-                </h2>
-            </div>
-              <img class="arrow-big" src="../../../../assets/icons/arrow-big.svg" />
-  
-            </a>
-  
-            <a class="box round-box blue-bg clickable" (click)="goToProperty()">
-              <div>
-                <img class="box-icon" src="../../../../assets/icons/house.svg" />
-                <p i18n=“value|offers-main@@offers.mainPage.value”>
-                  Boligverdi
-                </p>
-                <h2 i18n=“millions|offers-main@@offers.mainPage.millions”>
-                  {{ offersInfo.propertyValue / 1000000 | number: "1.1-3" }}
-                  mill.
-                </h2>
-                <p *ngIf="!isSweden" i18n=“debt|offers-main@@offers.mainPage.debt” class="small">
-                  Fellesgjeld
-                  {{
-                  (offersInfo.commonDebt / 1000000 | number: "1.1-2")
-                }}
-                  mill.
-                </p>
-    
-                <p *ngIf="envService.isNorway()" i18n=“virdi-estimate|offers-main@@offers.mainPage.virdiEstimate”  class="extra-small-virdi">
-                  Estimat levert av
-                  <a href="https://virdi.no/" target="_blank">virdi.no</a>
-                </p>
-              </div>
-              <img class="arrow-big" src="../../../../assets/icons/arrow-big.svg" />
-            </a>
-            <a class="box round-box blue-bg clickable" (click)="goToLoans()">
-              <img class="box-icon" src="../../../../assets/icons/graph-icon-white-small.svg" />
-              <p i18n=“loan-remaining|offers-main@@offers.mainPage.loanRemaining”>
-                Gjenværende lån 
+          <a
+            class="box round-box primary-bg positive clickable"
+            (click)="goToBestOffer()"
+          >
+            <div>
+              <img
+                class="box-icon"
+                src="../../../../assets/icons/rente-icon-white.svg"
+              />
+              <p i18n="“best-offer|offers-main@@offers.mainPage.bestOffer”">
+                Beste tilbud
               </p>
-              <h2 i18n=“millions|offers-main@@offers.mainPage.millions”>
-                {{
-                offersInfo.totalOutstandingDebt / 1000000 | number: "1.1-3"
-              }}
+              <h2>
+                {{ offersInfo.bestOfferEffectiveRate | number: '1.2-2' }} %
+              </h2>
+            </div>
+            <img
+              class="arrow-big"
+              src="../../../../assets/icons/arrow-big.svg"
+            />
+          </a>
+
+          <a class="box round-box blue-bg clickable" (click)="goToProperty()">
+            <div>
+              <img class="box-icon" src="../../../../assets/icons/house.svg" />
+              <p i18n="“value|offers-main@@offers.mainPage.value”">
+                Boligverdi
+              </p>
+              <h2 i18n="“millions|offers-main@@offers.mainPage.millions”">
+                {{ offersInfo.propertyValue / 1000000 | number: '1.1-3' }}
                 mill.
               </h2>
-              <p i18n=“leverage2|offers-main@@offers.mainPage.leverage2” class="small">
-                Belåningsgrad
-                {{
-                (offersInfo.ltv) *
-                  100 | number: "1.1-1"
-              }} %
+              <p
+                *ngIf="!isSweden"
+                i18n="“debt|offers-main@@offers.mainPage.debt”"
+                class="small"
+              >
+                Fellesgjeld
+                {{ offersInfo.commonDebt / 1000000 | number: '1.1-2' }}
+                mill.
               </p>
-              <img class="arrow-big margin-top-extra" src="../../../../assets/icons/arrow-big.svg" />
-            </a>
-  
-  
-          </div>
-          <!-- end desktop rente-info-grid-->
-  
-  
-          <div *ngIf="!isMobile" class="compared">
-            <rente-offers-statistics-blue [offersInfo]="offersInfo" [userRateColor]="rateBarPercentage.hex">
-            </rente-offers-statistics-blue>
 
-            
-          </div>
-          
-       
-            <div *ngIf="isSweden" class="big-box round-box left">
-              <div class="top">
-                <div class="circleIconWrapper"><img class="" src="../../../../assets/icons/rente-green-big.svg" /></div>
-                <p i18n=“found-offers|offers-main@@offers.mainPage.foundOffers”>
-                  Vi har funnet de beste tilbudene for deg
-                </p>
-              </div>
-              <div class="bottom">
-    
-                <rente-button 
-                  i18n=“found-best-offers|offers-main@@offers.mainPage.found.bestOffers.button”
-                  [disabled]="changeBankLoading ||
-                  offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS"
-                  [isLoading]="changeBankLoading"
-                  color="primary-wide"
-                  (click)="goToBestOffer()"
-                  >Se beste tilbud</rente-button
-                >
-    
-              </div>
+              <p
+                *ngIf="envService.isNorway()"
+                i18n="
+                  “virdi-estimate|offers-main@@offers.mainPage.virdiEstimate”"
+                class="extra-small-virdi"
+              >
+                Estimat levert av
+                <a href="https://virdi.no/" target="_blank">virdi.no</a>
+              </p>
             </div>
-            <div *ngIf="canBargain && isSweden"  class="big-box round-box right desktop">
-              <div class="top">
-                <div class="circleIconWrapper"><img class="" src="../../../../assets/icons/mail-green.svg" /></div>
-                <p i18n=“help-you|offers-main@@offers.mainPage.helpYou”>Be banken min om lavere rente</p>
-              </div>
-              <div class="bottom">
-                <rente-button
-                i18n=“help-you|offers-main@@offers.mainPage.helpYou.button” 
-                  color="primary-wide-hollow"
-                  [disabled]="changeBankLoading ||
-                  offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS"
-                  [isLoading]="changeBankLoading"
-                  (click)="openChangeBankDialog(offersInfo.offers.top5[0])"
-                  >Be banken matche tilbud</rente-button
-                > 
-              </div>
+            <img
+              class="arrow-big"
+              src="../../../../assets/icons/arrow-big.svg"
+            />
+          </a>
+          <a class="box round-box blue-bg clickable" (click)="goToLoans()">
+            <img
+              class="box-icon"
+              src="../../../../assets/icons/graph-icon-white-small.svg"
+            />
+            <p
+              i18n="“loan-remaining|offers-main@@offers.mainPage.loanRemaining”"
+            >
+              Gjenværende lån
+            </p>
+            <h2 i18n="“millions|offers-main@@offers.mainPage.millions”">
+              {{ offersInfo.totalOutstandingDebt / 1000000 | number: '1.1-3' }}
+              mill.
+            </h2>
+            <p
+              i18n="“leverage2|offers-main@@offers.mainPage.leverage2”"
+              class="small"
+            >
+              Belåningsgrad
+              {{ offersInfo.ltv * 100 | number: '1.1-1' }} %
+            </p>
+            <img
+              class="arrow-big margin-top-extra"
+              src="../../../../assets/icons/arrow-big.svg"
+            />
+          </a>
+        </div>
+        <!-- end desktop rente-info-grid-->
+
+        <div *ngIf="!isMobile" class="compared">
+          <rente-offers-statistics-blue
+            [offersInfo]="offersInfo"
+            [userRateColor]="rateBarPercentage.hex"
+          >
+          </rente-offers-statistics-blue>
+        </div>
+
+        <div *ngIf="isSweden" class="big-box round-box left">
+          <div class="top">
+            <div class="circleIconWrapper">
+              <img
+                class=""
+                src="../../../../assets/icons/rente-green-big.svg"
+              />
             </div>
-            <div *ngIf="!canBargain && isSweden"  class="big-box round-box right desktop">
-              <div class="top">
-                <div class="circleIconWrapper"><img class="" src="../../../../assets/icons/mail-green.svg" /></div>
-                <p>Pruta-funktionen är inte tillgänglig för dig</p>
-              </div>
-              <div class="bottom">
-                <rente-button
-                  color="primary-wide-hollow"
-                  [disabled]="changeBankLoading ||
-                  offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS"
-                  [isLoading]="changeBankLoading"
-                  (click)="openBargainMoreInfoDialog()"
-                  >Läs mer</rente-button
-                > 
-              </div>
-            </div>
-           
-          <div class="tipsAccordion round-box clickable" (click)="isShowTips = !isShowTips" *ngIf="tips.length > 0">
-            <p>
-              <mat-icon *ngIf="!isShowTips">expand_more</mat-icon>
-              <mat-icon *ngIf="isShowTips">expand_less</mat-icon>
-              <span class="nr">{{ tips.length }}</span> Tips
+            <p i18n="“found-offers|offers-main@@offers.mainPage.foundOffers”">
+              Vi har funnet de beste tilbudene for deg
             </p>
           </div>
-  
-          <div class="tips round-box" *ngIf="isShowTips && tips.length > 0">
-            <div *ngFor="let tip of tips; let i = index"
-              [ngClass]="{'obs': tip.obs, 'clickable': tip.buttonLink === './', 'tip-wrapper': true}"
+          <div class="bottom">
+            <rente-button
+              i18n="
+                “found-best-offers|offers-main@@offers.mainPage.found.bestOffers.button”"
+              [disabled]="
+                changeBankLoading ||
+                offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS
+              "
+              [isLoading]="changeBankLoading"
+              color="primary-wide"
+              (click)="goToBestOffer()"
+              >Se beste tilbud</rente-button
+            >
+          </div>
+        </div>
+        <div
+          *ngIf="canBargain && isSweden"
+          class="big-box round-box right desktop"
+        >
+          <div class="top">
+            <div class="circleIconWrapper">
+              <img class="" src="../../../../assets/icons/mail-green.svg" />
+            </div>
+            <p i18n="“help-you|offers-main@@offers.mainPage.helpYou”">
+              Be banken min om lavere rente
+            </p>
+          </div>
+          <div class="bottom">
+            <rente-button
+              i18n="“help-you|offers-main@@offers.mainPage.helpYou.button”"
+              color="primary-wide-hollow"
+              [disabled]="
+                changeBankLoading ||
+                offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS
+              "
+              [isLoading]="changeBankLoading"
+              (click)="openChangeBankDialog(offersInfo.offers.top5[0])"
+              >Be banken matche tilbud</rente-button
+            >
+          </div>
+        </div>
+        <div
+          *ngIf="!canBargain && isSweden"
+          class="big-box round-box right desktop"
+        >
+          <div class="top">
+            <div class="circleIconWrapper">
+              <img class="" src="../../../../assets/icons/mail-green.svg" />
+            </div>
+            <p>Pruta-funktionen är inte tillgänglig för dig</p>
+          </div>
+          <div class="bottom">
+            <rente-button
+              color="primary-wide-hollow"
+              [disabled]="
+                changeBankLoading ||
+                offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS
+              "
+              [isLoading]="changeBankLoading"
+              (click)="openBargainMoreInfoDialog()"
+              >Läs mer</rente-button
+            >
+          </div>
+        </div>
+
+        <div
+          class="tipsAccordion round-box clickable"
+          (click)="isShowTips = !isShowTips"
+          *ngIf="tips.length > 0"
+        >
+          <p>
+            <mat-icon *ngIf="!isShowTips">expand_more</mat-icon>
+            <mat-icon *ngIf="isShowTips">expand_less</mat-icon>
+            <span class="nr">{{ tips.length }}</span> Tips
+          </p>
+        </div>
+
+        <div class="tips round-box" *ngIf="isShowTips && tips.length > 0">
+          <div
+            *ngFor="let tip of tips; let i = index"
+            [ngClass]="{
+              obs: tip.obs,
+              clickable: tip.buttonLink === './',
+              'tip-wrapper': true
+            }"
+          >
+            <div *ngIf="tip.buttonLink == null" class="tip">
+              <div class="tipTop">
+                <img src="../../../../assets/icons/{{ tip.icon }}.svg" />
+                <h4>{{ tip.header }}</h4>
+              </div>
+              <p>
+                {{ tip.text }}
+              </p>
+            </div>
+
+            <div
+              *ngIf="!tip.external && tip.buttonLink != null"
+              routerLink="{{ tip.buttonLink }}"
+              class="tip"
+            >
+              <div class="tipTop">
+                <img src="../../../../assets/icons/{{ tip.icon }}.svg" />
+                <h4>{{ tip.header }}</h4>
+              </div>
+              <p>
+                {{ tip.text }}
+              </p>
+
+              <mat-icon *ngIf="tip.buttonLink !== './'">chevron_right</mat-icon>
+            </div>
+
+            <a
+              *ngIf="tip.external && tip.buttonLink != null"
+              href="{{ tip.buttonLink }}"
+              target="_blank"
+              class="tip"
+            >
+              <img src="../../../../assets/icons/{{ tip.icon }}.svg" />
+              <p>
+                {{ tip.text }}
+              </p>
+
+              <mat-icon>chevron_right</mat-icon>
+            </a>
+          </div>
+        </div>
+        <!-- end tips -->
+
+        <div *ngIf="!isSweden" class="big-box round-box left">
+          <div class="top">
+            <div class="circleIconWrapper">
+              <img
+                class=""
+                src="../../../../assets/icons/rente-green-big.svg"
+              />
+            </div>
+            <p i18n="“found-offers|offers-main@@offers.mainPage.foundOffers”">
+              Vi har funnet de beste tilbudene for deg
+            </p>
+          </div>
+          <div class="bottom">
+            <rente-button
+              i18n="
+                “found-best-offers|offers-main@@offers.mainPage.found.bestOffers.button”"
+              [disabled]="
+                changeBankLoading ||
+                offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS
+              "
+              [isLoading]="changeBankLoading"
+              [color]="antiChurnIsOn ? 'primary-wide-hollow' : 'primary-wide'"
+              (click)="goToBestOffer()"
+              >Se beste tilbud</rente-button
+            >
+          </div>
+        </div>
+
+        <div
+          *ngIf="canBargain && !isSweden && !antiChurnIsOn"
+          class="big-box round-box right"
+        >
+          <div class="top">
+            <div class="circleIconWrapper">
+              <img class="" src="../../../../assets/icons/mail-green.svg" />
+            </div>
+            <p i18n="“help-you|offers-main@@offers.mainPage.helpYou”">
+              Be banken min om lavere rente
+            </p>
+          </div>
+          <div class="bottom">
+            <rente-button
+              i18n="“help-you|offers-main@@offers.mainPage.helpYou.button”"
+              color="primary-wide-hollow"
+              [disabled]="
+                changeBankLoading ||
+                offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS
+              "
+              [isLoading]="changeBankLoading"
+              [color]="antiChurnIsOn ? 'primary-wide' : 'primary-wide-hollow'"
+              (click)="openChangeBankDialog(offersInfo.offers.top5[0])"
+              >Be banken matche tilbud</rente-button
+            >
+          </div>
+        </div>
+
+        <div
+          *ngIf="antiChurnIsOn"
+          class="big-box round-box right anti-churn-box"
+        >
+          <div class="top">
+            <div class="circleIconWrapper">
+              <img src="{{ banksMap['NORDEA'].imgCircle }}" />
+            </div>
+            <p i18n="“help-you|offers-main@@offers.mainPage.helpYou”">
+              Nordea ønsker å beholde deg som kunde
+            </p>
+          </div>
+          <div class="bottom">
+            <p>
+              Gi Nordea anledningen til å sette ned renten din før du eventuelt
+              bytter bank
+            </p>
+            <rente-button
+              i18n="“help-you|offers-main@@offers.mainPage.helpYou.button”"
+              [color]="
+                antiChurnIsOn ? 'primary-wide-break' : 'primary-wide-hollow'
+              "
+              [disabled]="
+                changeBankLoading ||
+                !antiChurnIsOn ||
+                offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS
+              "
+              [isLoading]="changeBankLoading"
+              (click)="openAntiChurnBankDialog(offersInfo.offers.top5[0])"
+              >Be Nordea om et bedre tilbud</rente-button
+            >
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile boxes -->
+      <div class="rente-boxes mobile">
+        <div class="info-box-grid">
+          <barometer
+            [offersInfo]="offersInfo"
+            [offerSavingsType]="offerSavingsType"
+          ></barometer>
+
+          <div class="box round-box blue-bg">
+            <div>
+              <img class="box-icon" src="../../../../assets/icons/rate.svg" />
+              <p
+                i18n="“your-interest|offers-main@@offers.mainPage.yourInterest”"
               >
-              <div *ngIf="tip.buttonLink == null" class="tip">
-                
-                <div class="tipTop">
-                  <img src="../../../../assets/icons/{{tip.icon}}.svg" />
-                  <h4>{{tip.header}}</h4>
-                </div>
+                Min effektive rente
+              </p>
+              <h2>{{ offersInfo.totalEffectiveRate | number: '1.2-2' }} %</h2>
+            </div>
+          </div>
+          <a
+            class="box round-box primary-bg positive clickable"
+            (click)="goToBestOffer()"
+          >
+            <div>
+              <img
+                class="box-icon"
+                src="../../../../assets/icons/rente-icon-white.svg"
+              />
+              <p i18n="“best-offer|offers-main@@offers.mainPage.bestOffer”">
+                Beste tilbud
+              </p>
+              <h2>
+                {{ offersInfo.bestOfferEffectiveRate | number: '1.2-2' }} %
+              </h2>
+              <img
+                class="arrow-big"
+                src="../../../../assets/icons/arrow-big.svg"
+              />
+            </div>
+          </a>
+
+          <a class="box round-box blue-bg clickable" (click)="goToProperty()">
+            <div>
+              <img class="box-icon" src="../../../../assets/icons/house.svg" />
+              <p i18n="“value|offers-main@@offers.mainPage.value”">
+                Boligverdi
+              </p>
+              <h2 i18n="“millions|offers-main@@offers.mainPage.millions”">
+                {{ offersInfo.propertyValue / 1000000 | number: '1.1-3' }}
+                mill.
+              </h2>
+              <p
+                *ngIf="!isSweden"
+                i18n="“debt|offers-main@@offers.mainPage.debt”"
+                class="small"
+              >
+                Fellesgjeld
+                {{ offersInfo.commonDebt / 1000000 | number: '1.1-2' }}
+                mill.
+              </p>
+
+              <p
+                *ngIf="envService.isNorway()"
+                i18n="
+                  “virdi-estimate|offers-main@@offers.mainPage.virdiEstimate”"
+                class="extra-small-virdi"
+              >
+                Estimat levert av
+                <a href="https://virdi.no/" target="_blank">virdi.no</a>
+              </p>
+            </div>
+            <img
+              class="arrow-big"
+              src="../../../../assets/icons/arrow-big.svg"
+            />
+          </a>
+          <a class="box round-box blue-bg clickable" (click)="goToLoans()">
+            <img
+              class="box-icon"
+              src="../../../../assets/icons/graph-icon-white-small.svg"
+            />
+            <p
+              i18n="“loan-remaining|offers-main@@offers.mainPage.loanRemaining”"
+            >
+              Gjenværende lån
+            </p>
+            <h2 i18n="“millions|offers-main@@offers.mainPage.millions”">
+              {{ offersInfo.totalOutstandingDebt / 1000000 | number: '1.1-3' }}
+              mill.
+            </h2>
+            <p class="small">
+              Belåningsgrad
+              {{ offersInfo.ltv * 100 | number: '1.1-1' }} %
+            </p>
+            <img
+              class="arrow-big margin-top-extra"
+              src="../../../../assets/icons/arrow-big.svg"
+            />
+          </a>
+
+          <!-- Mobile Tips -->
+          <div class="tipsWrapper round-box">
+            <div
+              class="tipsAccordion mobile round-box"
+              (click)="isShowTips = !isShowTips"
+              *ngIf="tips.length > 0"
+            >
+              <p>
+                <mat-icon *ngIf="!isShowTips">expand_more</mat-icon>
+                <mat-icon *ngIf="isShowTips">expand_less</mat-icon>
+                <span class="nr">{{ tips.length }}</span> tips
+              </p>
+            </div>
+            <div
+              class="tips"
+              style="border-bottom: none"
+              *ngIf="tips.length > 0 && !isShowTips"
+            ></div>
+            <div class="tips" *ngIf="isShowTips && tips.length > 0">
+              <div
+                *ngFor="let tip of tips; let i = index"
+                [ngClass]="{
+                  obs: tip.obs,
+                  clickable: tip.buttonLink !== 'undefined',
+                  'tip-wrapper': true
+                }"
+              >
+                <div *ngIf="tip.buttonLink == null" class="tip">
+                  <div class="tips-img-wrapper">
+                    <img
+                      class="tipIcon"
+                      src="../../../../assets/icons/{{ tip.icon }}.svg"
+                    />
+                  </div>
                   <p>
                     {{ tip.text }}
                   </p>
-              </div>
-              
-              <div *ngIf="!tip.external && tip.buttonLink != null" routerLink="{{ tip.buttonLink }}"  class="tip">
-  
-                <div class="tipTop">
-                  <img src="../../../../assets/icons/{{tip.icon}}.svg" />
-                  <h4>{{tip.header}}</h4>
                 </div>
-                <p>
-                  {{ tip.text }}
-                </p>
-  
-                <mat-icon *ngIf="tip.buttonLink !== './'">chevron_right</mat-icon>
-              </div>
-  
-              <a *ngIf="tip.external && tip.buttonLink != null" href="{{ tip.buttonLink }}" target="_blank" class="tip">
-                <img src="../../../../assets/icons/{{tip.icon}}.svg" />
-                <p>
-                  {{ tip.text }}
-                </p>
-  
-                <mat-icon>chevron_right</mat-icon>
-              </a>
-            </div>
-          </div>
-          <!-- end tips -->
-  
-  
-          <div *ngIf="!isSweden" class="big-box round-box left">
-            <div class="top">
-              <div class="circleIconWrapper"><img class="" src="../../../../assets/icons/rente-green-big.svg" /></div>
-              <p i18n=“found-offers|offers-main@@offers.mainPage.foundOffers”>
-                Vi har funnet de beste tilbudene for deg
-              </p>
-            </div>
-            <div class="bottom">
-              <rente-button 
-                i18n=“found-best-offers|offers-main@@offers.mainPage.found.bestOffers.button”
-                [disabled]="changeBankLoading ||
-                offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS"
-                [isLoading]="changeBankLoading"
-                [color]="antiChurnIsOn ? 'primary-wide-hollow' : 'primary-wide'"
-                (click)="goToBestOffer()"
-                >Se beste tilbud</rente-button
-              >
-            </div>
-          </div>
 
-  
-          <div  *ngIf="canBargain && !isSweden && !antiChurnIsOn"  class="big-box round-box right">
-            <div class="top">
-              <div class="circleIconWrapper"><img class="" src="../../../../assets/icons/mail-green.svg" /></div>
-              <p i18n=“help-you|offers-main@@offers.mainPage.helpYou”>Be banken min om lavere rente</p>
-            </div>
-            <div class="bottom">
-              <rente-button
-              i18n=“help-you|offers-main@@offers.mainPage.helpYou.button” 
-                color="primary-wide-hollow"
-                [disabled]="changeBankLoading ||
-                offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS"
-                [isLoading]="changeBankLoading"
-                [color]="antiChurnIsOn ? 'primary-wide' : 'primary-wide-hollow'"
-                (click)="openChangeBankDialog(offersInfo.offers.top5[0])"
-                >Be banken matche tilbud</rente-button
-              > 
-            </div>
-          </div>
-
-          <div  *ngIf="antiChurnIsOn"  class="big-box round-box right anti-churn-box">
-            <div class="top">
-              <div class="circleIconWrapper"><img src="{{banksMap['NORDEA'].imgCircle}}"  /></div>
-              <p i18n=“help-you|offers-main@@offers.mainPage.helpYou”>Nordea ønsker å beholde deg som kunde</p>
-            </div>
-            <div class="bottom">
-
-              <p>Gi Nordea anledningen til å sette ned renten din før du eventuelt bytter bank</p>
-              <rente-button
-              i18n=“help-you|offers-main@@offers.mainPage.helpYou.button” 
-              [color]="antiChurnIsOn ? 'primary-wide-break' : 'primary-wide-hollow'"
-                [disabled]="changeBankLoading || !antiChurnIsOn ||
-                offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS"
-                [isLoading]="changeBankLoading"
-                (click)="openAntiChurnBankDialog(offersInfo.offers.top5[0])"
-                >Be Nordea om et bedre tilbud</rente-button
-              > 
-            </div>
-          </div>
-  
-        </div>
-  
-        <!-- Mobile boxes -->
-        <div class="rente-boxes mobile">
-          <div class="info-box-grid">
-  
-            <!-- barometer -->
-            <div class="barometer round-box">
-              <div class="rente-status" [ngSwitch]="offersInfo.offerSavingsType">
-                <p i18n=“interest-very-good|offers-main@@offers.mainPage.interest.veryGood” *ngSwitchCase="offerSavingsType.NO_SAVINGS">
-                  Renten din er <b>svært god</b>
-                </p>
-                <p i18n=“interest-good|offers-main@@offers.mainPage.interest.good”
-                   *ngSwitchCase="
-                    offerSavingsType.SAVINGS_FIRST_YEAR_BETWEEN_0_AND_2000
-                  "
+                <div
+                  *ngIf="!tip.external && tip.buttonLink != null"
+                  routerLink="{{ tip.buttonLink }}"
+                  class="tip"
                 >
-                  Renten din er <b>god</b>, men ikke best
-                </p>
-                <p i18n=“interest-ok|offers-main@@offers.mainPage.interest.ok”
-                   *ngSwitchCase="
-                    offerSavingsType.SAVINGS_FIRST_YEAR_BETWEEN_2000_AND_6000
-                  "
-                >
-                  Renten din er <b>OK</b>, men du kan få bedre
-                </p>
-                <p i18n=“interest-bad|offers-main@@offers.mainPage.interest.bad”
-                   *ngSwitchCase="
-                    offerSavingsType.SAVINGS_FIRST_YEAR_BETWEEN_6000_AND_10000
-                  "
-                >
-                  Renten din er <b>dårlig</b> og du kan spare en del
-                </p>
-                <p i18n=“interest-very-bad|offers-main@@offers.mainPage.interest.veryBad” *ngSwitchCase="offerSavingsType.SAVINGS_FIRST_YEAR_GREATER_10000">
-                  Renten din er <b>svært  dårlig</b>
-                </p>
-                <div *ngSwitchDefault>-</div>
-              </div>
-  
-              <div class="rente-bar-container center-horizontal">
-                <div class="bar-ticks">
-                  <p i18n=“interest-bad2|offers-main@@offers.mainPage.interest.bad2”>Dårlig rente</p>
-                  <p i18n=“interest-good2|offers-main@@offers.mainPage.interest.good2”>Bra rente</p>
-                </div>
-  
-                <div class="bar-wrap">
-                  <span class="bar-fill-left" [ngClass]="[rateBarPercentage.class]"
-                    [ngStyle]="{'width': rateBarPercentage.percentage + '%'}"></span>
-                  <span class="bar-fill-right" [ngStyle]="{'width': rateBarPercentageInverted + '%'}"></span>
-                </div>
-  
-                <!--
-              <div class="arrow-box center-align" [ngStyle]="{'left': barBoxPosition}">
-                <p>Din rente</p>
-              </div>
-              -->
-              </div>
-  
-              <div class="save-info">
-                <p i18n=“save|offers-main@@offers.mainPage.save”>Du kan spare</p>
-                <h2 *ngIf="offersInfo.bestOfferTotalSaving > 0; else noBestOffer">
-                  {{ offersInfo.bestOfferTotalSaving | abs | number }},-
-                </h2>
-                <ng-template #noBestOffer>
-                  <h2> 0,- </h2>
-                </ng-template>
-                <p i18n=“time|offers-main@@offers.mainPage.time”>over lånets løpetid</p>
-              </div>
-            </div>
-            <!-- End barometer -->
-  
-  
-  
-            <div class="box round-box blue-bg">
-              <div>
-                <img class="box-icon" src="../../../../assets/icons/rate.svg" />
-                <p i18n=“your-interest|offers-main@@offers.mainPage.yourInterest”>Min effektive rente</p>
-                <h2>{{ offersInfo.totalEffectiveRate | number: "1.2-2" }} %</h2>
-              </div>
-            </div>
-            <a class="box round-box primary-bg positive clickable" (click)="goToBestOffer()">
-              <div>
-                <img class="box-icon" src="../../../../assets/icons/rente-icon-white.svg" />
-                <p i18n=“best-offer|offers-main@@offers.mainPage.bestOffer”>
-                  Beste tilbud
-                </p>
-                <h2>
-                  {{ offersInfo.bestOfferEffectiveRate | number: "1.2-2" }} %
-                </h2>
-                <img class="arrow-big" src="../../../../assets/icons/arrow-big.svg" />
-              </div>
-            </a>
-  
-            <a class="box round-box blue-bg clickable" (click)="goToProperty()">
-              <div>
-                <img class="box-icon" src="../../../../assets/icons/house.svg" />
-                <p i18n=“value|offers-main@@offers.mainPage.value”>
-                  Boligverdi
-                </p>
-                <h2 i18n=“millions|offers-main@@offers.mainPage.millions”>
-                  {{ offersInfo.propertyValue / 1000000 | number: "1.1-3" }}
-                  mill.
-                </h2>
-                <p *ngIf="!isSweden" i18n=“debt|offers-main@@offers.mainPage.debt” class="small">
-                  Fellesgjeld
-                  {{
-                  (offersInfo.commonDebt / 1000000 | number: "1.1-2")
-                }}
-                  mill.
-                </p>
-  
-                <p *ngIf="envService.isNorway()" i18n=“virdi-estimate|offers-main@@offers.mainPage.virdiEstimate” class="extra-small-virdi">
-                  Estimat levert av
-                  <a href="https://virdi.no/" target="_blank">virdi.no</a>
-                </p>
-              </div>
-              <img class="arrow-big" src="../../../../assets/icons/arrow-big.svg" />
-            </a>
-            <a class="box round-box blue-bg clickable" (click)="goToLoans()">
-              <img class="box-icon" src="../../../../assets/icons/graph-icon-white-small.svg" />
-              <p i18n=“loan-remaining|offers-main@@offers.mainPage.loanRemaining”>
-                Gjenværende lån 
-              </p>
-              <h2 i18n=“millions|offers-main@@offers.mainPage.millions”>
-                {{
-                offersInfo.totalOutstandingDebt / 1000000 | number: "1.1-3"
-              }}
-                mill.
-              </h2>
-              <p class="small">
-                Belåningsgrad
-                {{
-                (offersInfo.ltv) *
-                  100 | number: "1.1-1"
-              }} %
-              </p>
-              <img class="arrow-big margin-top-extra" src="../../../../assets/icons/arrow-big.svg" />
-            </a>
-  
-            <!-- Mobile Tips -->
-            <div class="tipsWrapper round-box">
-              <div class="tipsAccordion mobile round-box" (click)="isShowTips = !isShowTips" *ngIf="tips.length > 0">
-                <p>
-                  <mat-icon *ngIf="!isShowTips">expand_more</mat-icon>
-                  <mat-icon *ngIf="isShowTips">expand_less</mat-icon>
-                  <span class="nr">{{ tips.length }}</span> tips
-                </p>
-  
-  
-              </div>
-              <div class="tips" style="border-bottom: none;" *ngIf="tips.length > 0 && !isShowTips"></div>
-              <div class="tips" *ngIf="isShowTips && tips.length > 0">
-                <div *ngFor="let tip of tips; let i = index"   
-                  [ngClass]="{'obs': tip.obs, 'clickable': tip.buttonLink !== 'undefined', 'tip-wrapper': true}"
-                > 
-                  <div *ngIf="tip.buttonLink == null" class="tip">
-  
-                    <div class="tips-img-wrapper">
-                      <img class="tipIcon" src="../../../../assets/icons/{{tip.icon}}.svg" />
-                      </div>
-                      <p>
-                        {{ tip.text }}
-                      </p>
+                  <div class="tips-img-wrapper">
+                    <img
+                      class="tipIcon"
+                      src="../../../../assets/icons/{{ tip.icon }}.svg"
+                    />
                   </div>
-  
-                  
-                  <div *ngIf="!tip.external && tip.buttonLink != null" routerLink="{{ tip.buttonLink }}" class="tip">
-                    <div class="tips-img-wrapper">
-                    <img class="tipIcon" src="../../../../assets/icons/{{tip.icon}}.svg" />
-                    </div>
-                    <p>
-                      {{ tip.text }}
-                    </p>
-                    <mat-icon *ngIf="tip.buttonLink !== './'">chevron_right</mat-icon>
-                  </div>
-  
-                  <a *ngIf="tip.external  && tip.buttonLink != null" href="{{ tip.buttonLink }}" target="_blank" class="tip">
-                    <p>
-                      {{ tip.text }}
-                    </p>
-  
-                    <mat-icon>chevron_right</mat-icon>
-                  </a>
+                  <p>
+                    {{ tip.text }}
+                  </p>
+                  <mat-icon *ngIf="tip.buttonLink !== './'"
+                    >chevron_right</mat-icon
+                  >
                 </div>
-  
-                
+
+                <a
+                  *ngIf="tip.external && tip.buttonLink != null"
+                  href="{{ tip.buttonLink }}"
+                  target="_blank"
+                  class="tip"
+                >
+                  <p>
+                    {{ tip.text }}
+                  </p>
+
+                  <mat-icon>chevron_right</mat-icon>
+                </a>
               </div>
-              <!-- <a *ngIf="offersInfo?.ltvType === offersLtvType.LTV_TOO_HIGH_85" class="obs clickable"
+            </div>
+            <!-- <a *ngIf="offersInfo?.ltvType === offersLtvType.LTV_TOO_HIGH_85" class="obs clickable"
                 (click)="openLtvTooHightDialog()">
   
                 <p>
@@ -544,134 +565,192 @@
   
                 </p>
               </a> -->
-            </div>
-            <!-- Mobile Tips -->
           </div>
-  
-          <div class="split-sections mobile">
-            <div class="split-section">
-              <div class="mobile cta-boxes">
-                <div class="big-box round-box">
-                  <div class="top">
-                    <div class="circleIconWrapper"><img class="" src="../../../../assets/icons/rente-green-big.svg" />
-                    </div>
-                    <p i18n=“found-offers|offers-main@@offers.mainPage.foundOffers”>
-                      Vi har funnet de beste tilbudene for deg
-                    </p>
-                  </div>
-                  <div class="bottom">
-                    <rente-button 
-                      i18n=“found-best-offers|offers-main@@offers.mainPage.found.bestOffers.button”
-                      [disabled]="changeBankLoading ||
-                      offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS"
-                      [isLoading]="changeBankLoading"
-                      [color]="antiChurnIsOn ? 'primary-wide-hollow' : 'primary-wide'"
-                      (click)="goToBestOffer()"
-                      >Se beste tilbud</rente-button
-                    >
-                  </div>
-                </div>
+          <!-- Mobile Tips -->
+        </div>
 
-                <div *ngIf="!canBargain && isSweden"  class="big-box round-box right mobile">
-                  <div class="top">
-                    <div class="circleIconWrapper"><img class="" src="../../../../assets/icons/mail-green.svg" /></div>
-                    <p>Pruta-funktionen är inte tillgänglig för dig</p>
+        <div class="split-sections mobile">
+          <div class="split-section">
+            <div class="mobile cta-boxes">
+              <div class="big-box round-box">
+                <div class="top">
+                  <div class="circleIconWrapper">
+                    <img
+                      class=""
+                      src="../../../../assets/icons/rente-green-big.svg"
+                    />
                   </div>
-                  <div class="bottom">
-                    <rente-button
-                      color="primary-wide-hollow"
-                      [disabled]="changeBankLoading ||
-                      offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS"
-                      [isLoading]="changeBankLoading"
-                      (click)="openBargainMoreInfoDialog()"
-                      >Läs mer</rente-button
-                    > 
-                  </div>
+                  <p
+                    i18n="
+                      “found-offers|offers-main@@offers.mainPage.foundOffers”"
+                  >
+                    Vi har funnet de beste tilbudene for deg
+                  </p>
                 </div>
-  
-                <div *ngIf="canBargain && !antiChurnIsOn" class="big-box round-box">
-                  <div class="top">
-                    <div class="circleIconWrapper"><img class="" src="../../../../assets/icons/mail-green.svg" /></div>
-                    <p i18n=“help-you|offers-main@@offers.mainPage.helpYou”>Be banken min om lavere rente</p>
-                  </div>
-                  <div class="bottom">
-                    <rente-button
-                      i18n=“help-you|offers-main@@offers.mainPage.helpYou.button” 
-                      [color]="antiChurnIsOn ? 'primary-wide' : 'primary-wide-hollow'"
-                      [disabled]="
+                <div class="bottom">
+                  <rente-button
+                    i18n="
+                      “found-best-offers|offers-main@@offers.mainPage.found.bestOffers.button”"
+                    [disabled]="
                       changeBankLoading ||
-                      offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS"
-                      [isLoading]="changeBankLoading"
-                      (click)="openChangeBankDialog(offersInfo.offers.top5[0])"
-                      >Be banken matche tilbud</rente-button
-                    > 
-                  </div>
+                      offersInfo.offerSavingsType ===
+                        offerSavingsType.NO_SAVINGS
+                    "
+                    [isLoading]="changeBankLoading"
+                    [color]="
+                      antiChurnIsOn ? 'primary-wide-hollow' : 'primary-wide'
+                    "
+                    (click)="goToBestOffer()"
+                    >Se beste tilbud</rente-button
+                  >
                 </div>
+              </div>
 
-                <div *ngIf="canBargain && antiChurnIsOn"  class="big-box round-box right anti-churn-box">
-                  <div class="top">
-                    <div class="circleIconWrapper"><img src="{{banksMap['NORDEA'].imgCircle}}"  /></div>
-                    <p i18n=“help-you|offers-main@@offers.mainPage.helpYou”>Nordea ønsker å beholde deg som kunde</p>
+              <div
+                *ngIf="!canBargain && isSweden"
+                class="big-box round-box right mobile"
+              >
+                <div class="top">
+                  <div class="circleIconWrapper">
+                    <img
+                      class=""
+                      src="../../../../assets/icons/mail-green.svg"
+                    />
                   </div>
-                  <div class="bottom">
-      
-                    <p>Gi Nordea anledningen til å sette ned renten din før du eventuelt bytter bank</p>
-                    <rente-button
-                    i18n=“help-you|offers-main@@offers.mainPage.helpYou.button” 
-                      [color]="antiChurnIsOn ? 'primary-wide-break' : 'primary-wide-hollow'"
-                      [disabled]="changeBankLoading || !antiChurnIsOn ||
-                      offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS"
-                      [isLoading]="changeBankLoading"
-                      (click)="openAntiChurnBankDialog(offersInfo.offers.top5[0])"
-                      >Be Nordea om et bedre tilbud</rente-button
-                    > 
-                  </div>
+                  <p>Pruta-funktionen är inte tillgänglig för dig</p>
                 </div>
+                <div class="bottom">
+                  <rente-button
+                    color="primary-wide-hollow"
+                    [disabled]="
+                      changeBankLoading ||
+                      offersInfo.offerSavingsType ===
+                        offerSavingsType.NO_SAVINGS
+                    "
+                    [isLoading]="changeBankLoading"
+                    (click)="openBargainMoreInfoDialog()"
+                    >Läs mer</rente-button
+                  >
+                </div>
+              </div>
 
+              <div
+                *ngIf="canBargain && !antiChurnIsOn"
+                class="big-box round-box"
+              >
+                <div class="top">
+                  <div class="circleIconWrapper">
+                    <img
+                      class=""
+                      src="../../../../assets/icons/mail-green.svg"
+                    />
+                  </div>
+                  <p i18n="“help-you|offers-main@@offers.mainPage.helpYou”">
+                    Be banken min om lavere rente
+                  </p>
+                </div>
+                <div class="bottom">
+                  <rente-button
+                    i18n="
+                      “help-you|offers-main@@offers.mainPage.helpYou.button”"
+                    [color]="
+                      antiChurnIsOn ? 'primary-wide' : 'primary-wide-hollow'
+                    "
+                    [disabled]="
+                      changeBankLoading ||
+                      offersInfo.offerSavingsType ===
+                        offerSavingsType.NO_SAVINGS
+                    "
+                    [isLoading]="changeBankLoading"
+                    (click)="openChangeBankDialog(offersInfo.offers.top5[0])"
+                    >Be banken matche tilbud</rente-button
+                  >
+                </div>
+              </div>
+
+              <div
+                *ngIf="canBargain && antiChurnIsOn"
+                class="big-box round-box right anti-churn-box"
+              >
+                <div class="top">
+                  <div class="circleIconWrapper">
+                    <img src="{{ banksMap['NORDEA'].imgCircle }}" />
+                  </div>
+                  <p i18n="“help-you|offers-main@@offers.mainPage.helpYou”">
+                    Nordea ønsker å beholde deg som kunde
+                  </p>
+                </div>
+                <div class="bottom">
+                  <p>
+                    Gi Nordea anledningen til å sette ned renten din før du
+                    eventuelt bytter bank
+                  </p>
+                  <rente-button
+                    i18n="
+                      “help-you|offers-main@@offers.mainPage.helpYou.button”"
+                    [color]="
+                      antiChurnIsOn
+                        ? 'primary-wide-break'
+                        : 'primary-wide-hollow'
+                    "
+                    [disabled]="
+                      changeBankLoading ||
+                      !antiChurnIsOn ||
+                      offersInfo.offerSavingsType ===
+                        offerSavingsType.NO_SAVINGS
+                    "
+                    [isLoading]="changeBankLoading"
+                    (click)="openAntiChurnBankDialog(offersInfo.offers.top5[0])"
+                    >Be Nordea om et bedre tilbud</rente-button
+                  >
+                </div>
               </div>
             </div>
           </div>
-          <div *ngIf="isMobile" class="compared">
-            <rente-offers-statistics-blue [offersInfo]="offersInfo" [userRateColor]="rateBarPercentage.hex">
-            </rente-offers-statistics-blue>
-          </div>
-  
         </div>
-  
-        
-        <rente-offers-list [offersInfo]="currentOfferInfo" ></rente-offers-list>
-  
+        <div *ngIf="isMobile" class="compared">
+          <rente-offers-statistics-blue
+            [offersInfo]="offersInfo"
+            [userRateColor]="rateBarPercentage.hex"
+          >
+          </rente-offers-statistics-blue>
+        </div>
       </div>
-      <!-- Mobile boxes -->
-  
+
+      <rente-offers-list [offersInfo]="currentOfferInfo"></rente-offers-list>
     </div>
-  
-    <div class="problems" style="max-width: 780px;">
-  
-      <div class="title" *ngIf="
-        offersInfo?.ltvType === offersLtvType.LTV_CREDIT_LINE_TOO_HIGH_60
-      ">
-        <h3>
-          Rammelån/boligkreditt er kun tilgjengelig for lavere belåningsgrad enn
-          60%.
-        </h3>
-        <p>
-          Din belåningsgrad er høyere enn dette, vennligst endre din belåningsgrad
-          i<a [routerLink]="['/dashboard/' + routesMap.property]"> boligfanen</a>
-        </p>
-      </div>
-      <div class="title" *ngIf="!offersInfo && !isLoading && !errorMessage">
-        <h3>Ingen bedre tilbud enda...</h3>
-      </div>
-  
-      <div class="title" *ngIf="errorMessage">
-        <h3>{{ errorMessage }}</h3>
-      </div>
+    <!-- Mobile boxes -->
+  </div>
+
+  <div class="problems" style="max-width: 780px">
+    <div
+      class="title"
+      *ngIf="offersInfo?.ltvType === offersLtvType.LTV_CREDIT_LINE_TOO_HIGH_60"
+    >
+      <h3>
+        Rammelån/boligkreditt er kun tilgjengelig for lavere belåningsgrad enn
+        60%.
+      </h3>
+      <p>
+        Din belåningsgrad er høyere enn dette, vennligst endre din belåningsgrad
+        i<a [routerLink]="['/dashboard/' + routesMap.property]"> boligfanen</a>
+      </p>
     </div>
-  
-    <div *ngIf="effRateLoweredDialogVisible">
-      <rente-dialog  [title]="customLangTextSerice.getlowerRateTitle()"
-        [message]="customLangTextSerice.getlowerRateBody()" (action)="onDialogAction($event)">
-      </rente-dialog>
+    <div class="title" *ngIf="!offersInfo && !isLoading && !errorMessage">
+      <h3>Ingen bedre tilbud enda...</h3>
+    </div>
+
+    <div class="title" *ngIf="errorMessage">
+      <h3>{{ errorMessage }}</h3>
     </div>
   </div>
+
+  <div *ngIf="effRateLoweredDialogVisible">
+    <rente-dialog
+      [title]="customLangTextSerice.getlowerRateTitle()"
+      [message]="customLangTextSerice.getlowerRateBody()"
+      (action)="onDialogAction($event)"
+    >
+    </rente-dialog>
+  </div>
+</div>
