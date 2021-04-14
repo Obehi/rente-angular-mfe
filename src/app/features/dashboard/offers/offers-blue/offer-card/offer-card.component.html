@@ -96,6 +96,7 @@
 
         <div class="buttons">
           <rente-button class="firstButton" [disabled]="offer.bankInfo.partner == false"  
+              child childClass="{{offer.bankInfo.name}}"
               i18n=“see-more|offer-card-big@@offer.card.big.seeMore”
               [color]="'primary-wide-hollow-card'" type="raised"
               (click)="openBankUrlByButton(offer)">Se mer på {{getbankNameOrDefault(offer)}}s hjemmeside
@@ -114,9 +115,9 @@
           
           <div *ngIf="isNordea">
             <rente-button
-            child childClass="{{offer.bankInfo.name}}"
+            child childClass="{{this.offersInfo.offers.top5[0].bankInfo.name}}"
             color="secondary-medium" type="raised"
-            (click)="clickNordea()">
+            (click)="clickNordea($event)">
             Be Nordea om et bedre tilbud
           </rente-button>
           </div>

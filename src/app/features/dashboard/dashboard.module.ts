@@ -57,6 +57,8 @@ import { ChangeBankDialogLangGenericComponent } from '../../local-components/com
 import { BankScoreLangGenericComponent } from '../../local-components/components-output';
 import { ChangeBankLocationComponent } from './offers/change-bank-dialog/change-bank-location/change-bank-location.component';
 import { AntiChurnDialogComponent } from './offers/anti-churn-dialog/anti-churn-dialog.component';
+import { AntiChurnErrorDialogComponent } from './offers/anti-churn-dialog/anti-churn-error-dialog/anti-churn-error-dialog.component';
+
 import { CanNotBargainDialogComponent } from './offers/can-not-bargain-dialog/can-not-bargain-dialog.component';
 
 // TODO: ADD separate module for material import
@@ -98,6 +100,7 @@ import { CanNotBargainDialogComponent } from './offers/can-not-bargain-dialog/ca
     HouseErrorDialogSv,
     ChangeBankLocationComponent,
     AntiChurnDialogComponent,
+    AntiChurnErrorDialogComponent,
     CanNotBargainDialogComponent
   ],
   imports: [

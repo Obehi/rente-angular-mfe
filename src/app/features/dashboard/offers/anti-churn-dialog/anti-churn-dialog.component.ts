@@ -3,7 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ChangeBankServiceService } from '../../../../shared/services/remote-api/change-bank-service.service';
-
+import { LoggingService } from '@services/logging.service';
 @Component({
   selector: 'rente-anti-churn-dialog',
   templateUrl: './anti-churn-dialog.component.html',
@@ -22,7 +22,8 @@ export class AntiChurnDialogComponent implements OnInit {
     public dialogRef: MatDialogRef<AntiChurnDialogComponent>,
     private changeBankServiceService: ChangeBankServiceService,
     public dialog: MatDialog,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private loggingService: LoggingService
   ) {}
 
   ngOnInit(): void {
@@ -40,14 +41,25 @@ export class AntiChurnDialogComponent implements OnInit {
     this.isLoading = true;
     this.changeBankServiceService.sendAntiChurnRequest().subscribe(
       () => {
+        this.loggingService.googleAnalyticsLog({
+          category: 'NordeaAntiChurn',
+          action: 'anti-churn success',
+          label: `$top offer: ${this.data.bankInfo.bank}`
+        });
         this.isLoading = false;
         this.closeState = 'procced-nordea';
         this.dialogRef.close();
       },
-      () => {
+      (error) => {
         this.isLoading = false;
-        this.closeState = 'error';
-        this.dialogRef.close();
+        if (error.detail === 'Less than week since last email') {
+          this.closeState = 'error-to-many-bargains';
+          this.dialogRef.close();
+        } else {
+          this.isLoading = false;
+          this.closeState = 'error';
+          this.dialogRef.close();
+        }
       }
     );
   }
