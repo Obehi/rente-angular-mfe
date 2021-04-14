@@ -7,12 +7,15 @@ import {
 } from '@services/remote-api/tracking.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogInfoComponent } from '../../dialog-info/dialog-info.component';
-
 import { BankScoreLangGenericComponent } from '../../../../../local-components/components-output';
-
+import {
+  OffersService,
+  OfferMessage
+} from '@features/dashboard/offers/offers.service';
 import { Router } from '@angular/router';
 import { CustomLangTextService } from '@shared/services/custom-lang-text.service';
 import { locale } from '../../../../../config/locale/locale';
+import { LoggingService } from '@services/logging.service';
 
 import { OFFER_SAVINGS_TYPE } from '../../../../../config/loan-state';
 
@@ -26,6 +29,7 @@ export class OfferCardBigComponentBlue implements OnInit {
   public offerSavingsType = OFFER_SAVINGS_TYPE;
   public offerType: string;
   public isSweden: boolean;
+  public isNordea = false;
 
   @Input() offer: OfferInfo;
   @Input() offersInfo: Offers;
@@ -34,7 +38,9 @@ export class OfferCardBigComponentBlue implements OnInit {
     private trackingService: TrackingService,
     public dialog: MatDialog,
     private router: Router,
-    public customLangTextSerice: CustomLangTextService
+    public customLangTextSerice: CustomLangTextService,
+    private offersService: OffersService,
+    private logginService: LoggingService
   ) {}
 
   ngOnInit(): void {
@@ -43,6 +49,9 @@ export class OfferCardBigComponentBlue implements OnInit {
     } else {
       this.isSweden = false;
     }
+
+    this.isNordea = this.offersInfo.bank === 'NORDEA';
+
     if (this.offer.fixedRatePeriod === 0) {
       this.offerType = 'threeMonths';
     } else if (this.offer.fixedRatePeriod === 1) {
@@ -172,5 +181,14 @@ export class OfferCardBigComponentBlue implements OnInit {
         break;
       }
     }
+  }
+
+  public clickNordea(): void {
+    this.logginService.googleAnalyticsLog({
+      category: 'NordeaAntiChurn',
+      action: 'Click offer card anti-churn',
+      label: `top offer: ${this.offersInfo.offers.top5[0].bankInfo.name}`
+    });
+    this.offersService.pushMessage(OfferMessage.antiChurn);
   }
 }

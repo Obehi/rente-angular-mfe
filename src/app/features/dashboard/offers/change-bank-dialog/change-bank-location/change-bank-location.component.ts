@@ -39,8 +39,8 @@ export class ChangeBankLocationComponent implements OnInit, AfterViewInit {
   locations: any;
   offerId: number;
   isEditable = false;
-  regionsArray = [];
-  stepperHeaderArray = [];
+  regionsArray: string[] = [];
+  stepperHeaderArray: HeaderNode[] = [];
 
   ngAfterViewInit(): void {
     this.stepperHeaderArray = this.stepper.steps.map((item, index) => {

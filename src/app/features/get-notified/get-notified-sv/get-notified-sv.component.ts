@@ -59,7 +59,7 @@ export class GetNotifiedSvComponent implements OnInit {
     });
     this.missingBankForm
       .get('email')
-      .valueChanges.pipe(
+      ?.valueChanges.pipe(
         debounce(() => {
           this.emailError = false;
           return this.inValid() ? timer(2000) : EMPTY;
@@ -70,8 +70,10 @@ export class GetNotifiedSvComponent implements OnInit {
 
   inValid(): boolean {
     return (
-      this.missingBankForm.get('email').hasError('pattern') &&
-      this.missingBankForm.get('email').dirty
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      this.missingBankForm.get('email')!.hasError('pattern') &&
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      this.missingBankForm.get('email')!.dirty
     );
   }
 

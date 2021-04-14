@@ -37,6 +37,10 @@ export class HouseFormSvComponent implements OnInit {
       this.address.estimatedPropertyValue || null;
     this.address.manualPropertyValue = this.address.manualPropertyValue || null;
 
+    if (this.address.useManualPropertyValue === undefined) {
+      this.address.useManualPropertyValue = false;
+    }
+
     this.initCheckboxes();
   }
 
@@ -76,14 +80,13 @@ export class HouseFormSvComponent implements OnInit {
   get isAddressValid(): boolean {
     return (
       this.address !== null &&
-      !!this.address.zip &&
-      this.address.zip.length === 5 &&
+      this.address.zip?.length === 5 &&
       !!this.address.apartmentSize &&
       this.address.apartmentSize > 5 &&
       this.address.street.length > 0 &&
-      this.propertyValueIsSet &&
       this.address.propertyType !== null &&
-      this.address.propertyType !== undefined
+      this.propertyValueIsSet &&
+      this.propertyValueIsValid(this.address)
     );
   }
 
@@ -141,5 +144,26 @@ export class HouseFormSvComponent implements OnInit {
       this.mode === AddressFormMode.Editing
         ? AddressFormMode.Statistics
         : AddressFormMode.Editing;
+  }
+
+  propertyValueIsValid(address: AddressDto): boolean {
+    if (
+      address.useManualPropertyValue &&
+      address.manualPropertyValue !== null &&
+      address.manualPropertyValue !== undefined
+    ) {
+      return address.manualPropertyValue > 0;
+    } else if (address.useManualPropertyValue === false) {
+      return (
+        this.notEmpty(address.street) &&
+        this.notEmpty(address.zip) &&
+        address.apartmentSize > 0
+      );
+    }
+    return false;
+  }
+
+  notEmpty(text: string | null): boolean {
+    return text !== null && String(text).length > 0;
   }
 }

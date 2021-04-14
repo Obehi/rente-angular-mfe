@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   BankVo,
   BankList,
@@ -82,10 +82,10 @@ export class BankSelectNoComponent implements OnInit {
   }
 
   onFilterChanged(): void {
-    if (this.searchStr.toLocaleLowerCase() == 'sparebank 1') {
+    if (this.searchStr.toLocaleLowerCase() === 'sparebank 1') {
       this.removeSparebank();
     }
-    if (this.sparebankIsClicked == true) {
+    if (this.sparebankIsClicked === true) {
       this.sparebankIsClicked = false;
       this.sortBanks();
     }
@@ -98,7 +98,7 @@ export class BankSelectNoComponent implements OnInit {
   }
 
   filterBank(filter: string): void {
-    let filteredBanks = [];
+    let filteredBanks: BankVo[] = [];
     if (filter == null || filter.length === 0) {
       filteredBanks = this.allBanks.concat();
     } else {
@@ -112,7 +112,7 @@ export class BankSelectNoComponent implements OnInit {
   }
 
   selectBank(bank: BankVo): void {
-    if (bank.name == 'SPAREBANK_1') {
+    if (bank.name === 'SPAREBANK_1') {
       this.searchStr = 'Sparebank 1';
 
       this.removeSparebank();

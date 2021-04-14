@@ -18,9 +18,9 @@ export class LoggingService {
   private applicationName =
     environment['coralogixApplicationName'] || 'rente-frontend-dev_13638';
  */
-  private apiUrl: string;
-  private privateKey: string;
-  private applicationName: string;
+  private apiUrl?: string | null;
+  private privateKey?: string | null;
+  private applicationName?: string | null;
 
   public Level = Level;
   public SubSystem = SubSystem;
@@ -52,6 +52,15 @@ export class LoggingService {
     obj['message'] = msg;
     obj['sessionID'] = this.sessionId;
     this.httpClient.post('/postlogg', obj).pipe(first()).subscribe();
+  }
+
+  public googleAnalyticsLog(item: GoogleAnalyticsDto): void {
+    (window as any).dataLayer.push({
+      event: 'eventTracking',
+      category: item.category,
+      action: item.action,
+      label: item.label
+    });
   }
 
   public logger(
@@ -104,10 +113,12 @@ export class LoggingService {
           }
         ]
       };
-      this.http
-        .postExternal(this.envService.environment.coralogixApiUrl, logg)
-        .pipe(first())
-        .subscribe(() => {});
+      if (this.envService.environment.coralogixApiUrl !== undefined) {
+        this.http
+          .postExternal(this.envService.environment.coralogixApiUrl, logg)
+          .pipe(first())
+          .subscribe(() => {});
+      }
     }
   }
 }
@@ -126,4 +137,10 @@ export enum SubSystem {
   CrawlerLogin = 'Crawler Login',
   TinkMockup = 'Tink Mockup',
   UserConfirmation = 'UserConfirmation'
+}
+
+export interface GoogleAnalyticsDto {
+  category: string;
+  label: string;
+  action: string;
 }

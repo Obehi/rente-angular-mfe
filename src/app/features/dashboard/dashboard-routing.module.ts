@@ -4,7 +4,12 @@ import { DashboardComponent } from './dashboard.component';
 import { PreferencesComponent } from './preferences/preferences.component';
 import { ProfileComponent } from './profile/profile.component';
 import { RateTypeFixedComponent } from './rate-type-fixed/rate-type-fixed.component';
-import { customMeta, defaultMeta, ROUTES_MAP } from '@config/routes-config';
+import {
+  customMeta,
+  defaultMeta,
+  ROUTES_MAP,
+  ROUTES_MAP_NO
+} from '@config/routes-config';
 import { RouteGuard } from '@shared/guards/route.guard';
 import { BargainSuccessComponent } from './offers/bargain-success/bargain-success.component';
 import { OffersComponentBlue } from './offers/offers-blue/offers.component';
@@ -33,6 +38,11 @@ const routes: Routes = [
         path: 'prute-fullfort',
         component: BargainSuccessComponent
       },
+      {
+        path: ROUTES_MAP_NO.bargainNordea,
+        component: BargainSuccessComponent
+      },
+
       {
         path: ROUTES_MAP.loans,
         component: LoansLangGenericComponent,
