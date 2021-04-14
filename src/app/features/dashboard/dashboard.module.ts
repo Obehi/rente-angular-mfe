@@ -59,6 +59,8 @@ import { ChangeBankLocationComponent } from './offers/change-bank-dialog/change-
 import { AntiChurnDialogComponent } from './offers/anti-churn-dialog/anti-churn-dialog.component';
 import { CanNotBargainDialogComponent } from './offers/can-not-bargain-dialog/can-not-bargain-dialog.component';
 import { BarometerComponent } from './offers/offers-blue/barometer/barometer.component';
+import { BoxGridComponent } from './offers/offers-blue/box-grid/box-grid.component';
+import { TipsComponent } from './offers/offers-blue/tips/tips.component';
 
 // TODO: ADD separate module for material import
 @NgModule({
@@ -100,7 +102,9 @@ import { BarometerComponent } from './offers/offers-blue/barometer/barometer.com
     ChangeBankLocationComponent,
     AntiChurnDialogComponent,
     CanNotBargainDialogComponent,
-    BarometerComponent
+    BarometerComponent,
+    BoxGridComponent,
+    TipsComponent
   ],
   imports: [
     CommonModule,

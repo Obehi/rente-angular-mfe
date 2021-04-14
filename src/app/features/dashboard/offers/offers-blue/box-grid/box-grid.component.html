@@ -1,45 +1,53 @@
 <div class="info-box-grid">
-  
   <div class="box round-box blue-bg">
     <div>
       <img class="box-icon" src="../../../../assets/icons/rate.svg" />
-      <p i18n=“your-interest|offers-main@@offers.mainPage.yourInterest”>Min effektive rente</p>
-      <h2>{{ offersInfo.totalEffectiveRate | number: "1.2-2" }} %</h2>
+      <p i18n="“your-interest|offers-main@@offers.mainPage.yourInterest”">
+        Min effektive rente
+      </p>
+      <h2>{{ offersInfo.totalEffectiveRate | number: '1.2-2' }} %</h2>
     </div>
   </div>
-  <a class="box round-box primary-bg positive clickable" (click)="goToBestOffer()">
+  <a
+    class="box round-box primary-bg positive clickable"
+    (click)="goToBestOffer()"
+  >
     <div>
-      <img class="box-icon" src="../../../../assets/icons/rente-icon-white.svg" />
-      <p i18n=“best-offer|offers-main@@offers.mainPage.bestOffer”>
+      <img
+        class="box-icon"
+        src="../../../../assets/icons/rente-icon-white.svg"
+      />
+      <p i18n="“best-offer|offers-main@@offers.mainPage.bestOffer”">
         Beste tilbud
       </p>
-      <h2>
-        {{ offersInfo.bestOfferEffectiveRate | number: "1.2-2" }} %
-      </h2>
-  </div>
+      <h2>{{ offersInfo.bestOfferEffectiveRate | number: '1.2-2' }} %</h2>
+    </div>
     <img class="arrow-big" src="../../../../assets/icons/arrow-big.svg" />
-
   </a>
 
   <a class="box round-box blue-bg clickable" (click)="goToProperty()">
     <div>
       <img class="box-icon" src="../../../../assets/icons/house.svg" />
-      <p i18n=“value|offers-main@@offers.mainPage.value”>
-        Boligverdi
-      </p>
-      <h2 i18n=“millions|offers-main@@offers.mainPage.millions”>
-        {{ offersInfo.propertyValue / 1000000 | number: "1.1-3" }}
+      <p i18n="“value|offers-main@@offers.mainPage.value”">Boligverdi</p>
+      <h2 i18n="“millions|offers-main@@offers.mainPage.millions”">
+        {{ offersInfo.propertyValue / 1000000 | number: '1.1-3' }}
         mill.
       </h2>
-      <p *ngIf="!isSweden" i18n=“debt|offers-main@@offers.mainPage.debt” class="small">
+      <p
+        *ngIf="!isSweden"
+        i18n="“debt|offers-main@@offers.mainPage.debt”"
+        class="small"
+      >
         Fellesgjeld
-        {{
-        (offersInfo.commonDebt / 1000000 | number: "1.1-2")
-      }}
+        {{ offersInfo.commonDebt / 1000000 | number: '1.1-2' }}
         mill.
       </p>
-
-      <p *ngIf="envService.isNorway()" i18n=“virdi-estimate|offers-main@@offers.mainPage.virdiEstimate”  class="extra-small-virdi">
+      <!-- må *ngIf="envService.isNorway() være her?"-->
+      <p
+        *ngIf="!isSweden"
+        i18n="“virdi-estimate|offers-main@@offers.mainPage.virdiEstimate”"
+        class="extra-small-virdi"
+      >
         Estimat levert av
         <a href="https://virdi.no/" target="_blank">virdi.no</a>
       </p>
@@ -47,25 +55,24 @@
     <img class="arrow-big" src="../../../../assets/icons/arrow-big.svg" />
   </a>
   <a class="box round-box blue-bg clickable" (click)="goToLoans()">
-    <img class="box-icon" src="../../../../assets/icons/graph-icon-white-small.svg" />
-    <p i18n=“loan-remaining|offers-main@@offers.mainPage.loanRemaining”>
-      Gjenværende lån 
+    <img
+      class="box-icon"
+      src="../../../../assets/icons/graph-icon-white-small.svg"
+    />
+    <p i18n="“loan-remaining|offers-main@@offers.mainPage.loanRemaining”">
+      Gjenværende lån
     </p>
-    <h2 i18n=“millions|offers-main@@offers.mainPage.millions”>
-      {{
-      offersInfo.totalOutstandingDebt / 1000000 | number: "1.1-3"
-    }}
+    <h2 i18n="“millions|offers-main@@offers.mainPage.millions”">
+      {{ offersInfo.totalOutstandingDebt / 1000000 | number: '1.1-3' }}
       mill.
     </h2>
-    <p i18n=“leverage2|offers-main@@offers.mainPage.leverage2” class="small">
+    <p i18n="“leverage2|offers-main@@offers.mainPage.leverage2”" class="small">
       Belåningsgrad
-      {{
-      (offersInfo.ltv) *
-        100 | number: "1.1-1"
-    }} %
+      {{ offersInfo.ltv * 100 | number: '1.1-1' }} %
     </p>
-    <img class="arrow-big margin-top-extra" src="../../../../assets/icons/arrow-big.svg" />
+    <img
+      class="arrow-big margin-top-extra"
+      src="../../../../assets/icons/arrow-big.svg"
+    />
   </a>
-
-
 </div>
