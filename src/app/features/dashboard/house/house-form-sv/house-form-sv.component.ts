@@ -37,6 +37,10 @@ export class HouseFormSvComponent implements OnInit {
       this.address.estimatedPropertyValue || null;
     this.address.manualPropertyValue = this.address.manualPropertyValue || null;
 
+    if (this.address.useManualPropertyValue === undefined) {
+      this.address.useManualPropertyValue = false;
+    }
+
     this.initCheckboxes();
   }
 
@@ -76,13 +80,13 @@ export class HouseFormSvComponent implements OnInit {
   get isAddressValid(): boolean {
     return (
       this.address !== null &&
-      !!this.address.zip &&
-      this.address.zip.length === 5 &&
+      this.address.zip?.length === 5 &&
       !!this.address.apartmentSize &&
       this.address.apartmentSize > 5 &&
       this.address.street.length > 0 &&
+      this.address.propertyType !== null &&
       this.propertyValueIsSet &&
-      this.address.propertyType !== null
+      this.propertyValueIsValid(this.address)
     );
   }
 
