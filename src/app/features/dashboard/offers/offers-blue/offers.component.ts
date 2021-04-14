@@ -171,7 +171,7 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
       .subscribe((message: OfferMessage) => {
         switch (message) {
           case OfferMessage.antiChurn: {
-            this.openAntiChurnBankDialog(this.offersInfo.offers.top5[0]);
+            this.openAntiChurnBankDialog(this.offersInfo.offers.top5[0], false);
             break;
           }
         }
@@ -384,7 +384,7 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
     );
   }
 
-  public openAntiChurnBankDialog(offer): void {
+  public openAntiChurnBankDialog(offer, shouldLog: boolean): void {
     if (
       this.antiChurnIsOn === false ||
       this.changeBankLoading ||
@@ -394,11 +394,13 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
     }
     this.changeBankLoading = true;
 
-    this.logginService.googleAnalyticsLog({
-      category: 'NordeaAntiChurn',
-      action: 'Click top button anti-churn',
-      label: `top offer: ${this.offersInfo.offers.top5[0].bankInfo.name}`
-    });
+    if (shouldLog) {
+      this.logginService.googleAnalyticsLog({
+        category: 'NordeaAntiChurn',
+        action: 'Click top button anti-churn',
+        label: `top offer: ${this.offersInfo.offers.top5[0].bankInfo.name}`
+      });
+    }
     const changeBankRef = this.dialog.open(AntiChurnDialogComponent, {
       autoFocus: false,
       data: offer
