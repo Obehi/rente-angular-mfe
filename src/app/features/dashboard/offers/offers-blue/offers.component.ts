@@ -35,6 +35,7 @@ import { CustomLangTextService } from '@shared/services/custom-lang-text.service
 import { locale } from '../../../../config/locale/locale';
 import { ROUTES_MAP, ROUTES_MAP_NO } from '@config/routes-config';
 import { EnvService } from '@services/env.service';
+import { LoggingService } from '@services/logging.service';
 import {
   OffersService,
   OfferMessage
@@ -105,7 +106,8 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
     private trackingService: TrackingService,
     public customLangTextSerice: CustomLangTextService,
     public envService: EnvService,
-    private offersService: OffersService
+    private offersService: OffersService,
+    private logginService: LoggingService
   ) {
     this.onResize();
 
@@ -391,6 +393,12 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
       return;
     }
     this.changeBankLoading = true;
+
+    this.logginService.googleAnalyticsLog({
+      category: 'NordeaAntiChurn',
+      action: 'Click top button anti-churn',
+      label: `top offer: ${this.offersInfo.offers.top5[0].bankInfo.name}`
+    });
     const changeBankRef = this.dialog.open(AntiChurnDialogComponent, {
       autoFocus: false,
       data: offer
