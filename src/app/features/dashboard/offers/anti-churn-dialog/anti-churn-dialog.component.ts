@@ -3,7 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ChangeBankServiceService } from '../../../../shared/services/remote-api/change-bank-service.service';
-
+import { LoggingService } from '@services/logging.service';
 @Component({
   selector: 'rente-anti-churn-dialog',
   templateUrl: './anti-churn-dialog.component.html',
@@ -22,7 +22,8 @@ export class AntiChurnDialogComponent implements OnInit {
     public dialogRef: MatDialogRef<AntiChurnDialogComponent>,
     private changeBankServiceService: ChangeBankServiceService,
     public dialog: MatDialog,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private loggingService: LoggingService
   ) {}
 
   ngOnInit(): void {
@@ -40,12 +41,10 @@ export class AntiChurnDialogComponent implements OnInit {
     this.isLoading = true;
     this.changeBankServiceService.sendAntiChurnRequest().subscribe(
       () => {
-        (window as any).dataLayer.push({
-          event: 'eventTracking',
+        this.loggingService.googleAnalyticsLog({
           category: 'NordeaAntiChurn',
           action: 'anti-churn success',
-          label: `$top offer: ${this.data.bankInfo.bank}`,
-          value: 'test value'
+          label: `$top offer: ${this.data.bankInfo.bank}`
         });
         this.isLoading = false;
         this.closeState = 'procced-nordea';
