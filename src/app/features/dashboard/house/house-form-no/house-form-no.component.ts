@@ -110,6 +110,7 @@ export class HouseFormNoComponent implements OnInit {
         address.apartmentSize > 0
       );
     }
+    return false;
   }
 
   notEmpty(text: string | null): boolean {

@@ -100,7 +100,7 @@
         <rente-input
           [type]="'tel'"
           [placeholder]="'Fellesgjeld'"
-          [ngModel]="address.commonDebt | thousands"
+            [ngModel]="address?.commonDebt | thousands"
           (ngModelChange)="address.commonDebt = formatThousand($event)"
           matSuffix="kr"
         ></rente-input>
@@ -122,5 +122,4 @@
       </p>
     </div>
     </div>
-   
   </div>
