@@ -131,8 +131,8 @@
       <img
         class="bank-logo"
         [src]="bankLogo"
-        [alt]="bank.label"
-        [title]="bank.label"
+        [alt]="bank?.label"
+        [title]="bank?.label"
       />
 
       <div *ngIf="isSsnBankLogin; else birthdateInput" class="form-group">

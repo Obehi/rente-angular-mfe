@@ -82,8 +82,7 @@ export class HouseFormSvComponent implements OnInit {
       this.address.apartmentSize > 5 &&
       this.address.street.length > 0 &&
       this.propertyValueIsSet &&
-      this.address.propertyType !== null &&
-      this.address.propertyType !== undefined
+      this.address.propertyType !== null
     );
   }
 
@@ -141,5 +140,26 @@ export class HouseFormSvComponent implements OnInit {
       this.mode === AddressFormMode.Editing
         ? AddressFormMode.Statistics
         : AddressFormMode.Editing;
+  }
+
+  propertyValueIsValid(address: AddressDto): boolean {
+    if (
+      address.useManualPropertyValue &&
+      address.manualPropertyValue !== null &&
+      address.manualPropertyValue !== undefined
+    ) {
+      return address.manualPropertyValue > 0;
+    } else if (address.useManualPropertyValue === false) {
+      return (
+        this.notEmpty(address.street) &&
+        this.notEmpty(address.zip) &&
+        address.apartmentSize > 0
+      );
+    }
+    return false;
+  }
+
+  notEmpty(text: string | null): boolean {
+    return text !== null && String(text).length > 0;
   }
 }

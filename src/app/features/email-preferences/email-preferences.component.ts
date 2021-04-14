@@ -42,7 +42,7 @@ import { CustomLangTextService } from '@services/custom-lang-text.service';
 export class EmailPreferencesComponent implements OnInit {
   private guid: string | null;
   public emailForm: FormGroup;
-  private checkRateReminderType: string;
+  private checkRateReminderType: string | null;
   private receiveNewsEmails: boolean;
   public canNavigateBooolean$: Subject<boolean> = new Subject<boolean>();
   public isLoading = false;
@@ -96,18 +96,19 @@ export class EmailPreferencesComponent implements OnInit {
     const dto = new EmailDto();
     dto.checkRateReminderType = this.emailForm.get(
       'checkRateReminderType'
-    ).value;
-    dto.receiveNewsEmails = this.emailForm.get('receiveNewsEmails').value;
+    )?.value;
+    dto.receiveNewsEmails = this.emailForm.get('receiveNewsEmails')?.value;
 
-    this.preferancesService.postPreferancesWithGUID(this.guid, dto).subscribe(
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    this.preferancesService.postPreferancesWithGUID(this.guid!, dto).subscribe(
       (response) => {
         this.isLoading = false;
         this.updateAnimationTrigger = !this.updateAnimationTrigger;
       },
       (err) => {
-        if (err.status == 404) {
+        if (err.status === 404) {
           this.errorMessage = 'Du har oppgitt feil url.';
-        } else if (err.status == 400) {
+        } else if (err.status === 400) {
           this.errorMessage = 'Oops, noe gikk galt';
         }
 

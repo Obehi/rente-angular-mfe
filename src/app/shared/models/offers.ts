@@ -60,7 +60,7 @@ export interface BankInfo {
   bank: string;
   name: string;
   url: string;
-  transferUrl: string | null;
+  transferUrl: string | undefined;
   partner: boolean;
   score: number;
   applicationTime: number;

@@ -213,17 +213,19 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
     dto.memberships = this.memberships.map((membership) => membership.name);
     dto.checkRateReminderType = this.preferencesForm.get(
       'checkRateReminderType'
-    ).value;
+    )?.value;
     dto.fetchCreditLinesOnly = this.preferencesForm.get(
       'fetchCreditLinesOnly'
-    ).value;
+    )?.value;
     dto.noAdditionalProductsRequired = this.preferencesForm.get(
       'noAdditionalProductsRequired'
-    ).value;
+    )?.value;
     dto.interestedInEnvironmentMortgages = this.preferencesForm.get(
       'interestedInEnvironmentMortgages'
-    ).value;
-    dto.receiveNewsEmails = this.preferencesForm.get('receiveNewsEmails').value;
+    )?.value;
+    dto.receiveNewsEmails = this.preferencesForm.get(
+      'receiveNewsEmails'
+    )?.value;
 
     // No one leaves the page while updating
     this.canLeavePage = false;

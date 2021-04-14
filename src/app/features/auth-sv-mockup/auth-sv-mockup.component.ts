@@ -70,7 +70,7 @@ export class AuthSvMockupComponent implements OnInit, OnDestroy {
   private connectionTimer: Observable<number>;
   private crawlingTimer: Observable<number>;
   private connectionTimerSubscription: Subscription;
-  private crawlingTimerSubscription: Subscription;
+  private crawlingTimerSubscription: Subscription | null;
   public isShowTimer: boolean;
   isNotSB1customer: boolean;
   isAccountSelection: boolean;
@@ -148,8 +148,8 @@ export class AuthSvMockupComponent implements OnInit, OnDestroy {
 
   inValid() {
     return (
-      this.contactUsForm.get('loginId').hasError('pattern') &&
-      this.contactUsForm.get('loginId').dirty
+      this.contactUsForm.get('loginId')!.hasError('pattern') &&
+      this.contactUsForm.get('loginId')!.dirty
     );
   }
   onBlurErrorCheck() {

@@ -50,8 +50,10 @@ export class GuidLoginComponent implements OnInit {
 
   inValid(): boolean {
     return (
-      this.contactUsForm.get('loginId').hasError('pattern') &&
-      this.contactUsForm.get('loginId').dirty
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      this.contactUsForm.get('loginId')!.hasError('pattern') &&
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      this.contactUsForm.get('loginId')!.dirty
     );
   }
   onBlurErrorCheck(): void {

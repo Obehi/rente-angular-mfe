@@ -5,7 +5,7 @@ import { LocalStorageService } from '@services/local-storage.service';
 import { Observable } from 'rxjs';
 
 export interface FirstBuyersState {
-  outstandingDebt?: number;
+  outstandingDebt: number | null;
   income?: number;
 }
 @Injectable({

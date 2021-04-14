@@ -54,7 +54,7 @@ export class HousesComponent implements OnInit, DeactivationGuarded {
   public isError = false;
   public dialog: MatDialog;
   public showExplainText: boolean;
-  public propertyIconPath: string;
+  public propertyIconPath: string | null;
 
   constructor(
     private loansService: LoansService,
@@ -192,7 +192,7 @@ export class HousesComponent implements OnInit, DeactivationGuarded {
       () => {
         if (this.isError) {
           this.isError = false;
-          this.errorMessage = null;
+          this.errorMessage = '';
           return;
         }
 
@@ -211,13 +211,13 @@ export class HousesComponent implements OnInit, DeactivationGuarded {
 
     changeBankRef.afterClosed().subscribe(() => {
       const state = changeBankRef.componentInstance.closeState;
-      switch (state.state) {
+      switch (state?.state) {
         case '': {
           break;
         }
         case 'resend-request': {
           address.useManualPropertyValue = true;
-          address.manualPropertyValue = state.value;
+          address.manualPropertyValue = state?.value;
           this.saveAddresses();
           this.canLeavePage = true;
           break;
@@ -252,7 +252,11 @@ export class HousesComponent implements OnInit, DeactivationGuarded {
   }
 
   isCorrectAddress(a: AddressDto): boolean {
-    if (a.useManualPropertyValue) {
+    if (
+      a.useManualPropertyValue &&
+      a.manualPropertyValue !== null &&
+      a.manualPropertyValue !== undefined
+    ) {
       return a.manualPropertyValue > 0;
     } else {
       return (
@@ -261,7 +265,7 @@ export class HousesComponent implements OnInit, DeactivationGuarded {
     }
   }
 
-  notEmpty(s: string): boolean {
+  notEmpty(s: string | null): boolean {
     return s !== null && String(s).length > 0;
   }
 }
