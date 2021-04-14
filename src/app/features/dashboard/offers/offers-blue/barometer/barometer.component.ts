@@ -13,9 +13,7 @@ export class BarometerComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit() {
-    console.log(this.offerSavingsType);
-  }
+  ngOnInit(): void {}
 
   get rateBarPercentageInverted(): number {
     return 100 - this.rateBarPercentage.percentage;
