@@ -1,146 +1,140 @@
 <div class="the-offer">
-    <div *ngIf="!isSweden" class="nr all">
-        {{ index }}
-      </div>
-    <div *ngIf="isSweden" class="nr" [ngClass]="{'threeMonths': offerType == 'threeMonths', 'oneYear': offerType == 'oneYear', 'all': offerType == 'all'}">
-        {{ index }}
-    </div>
-    <div class="the-offer-header">
-        <div class="logo" [ngStyle]="{
+  <div *ngIf="!isSweden" class="nr all">
+    {{ index }}
+  </div>
+  <div *ngIf="isSweden" class="nr"
+    [ngClass]="{'threeMonths': offerType == 'threeMonths', 'oneYear': offerType == 'oneYear', 'all': offerType == 'all'}">
+    {{ index }}
+  </div>
+  <div class="the-offer-header">
+    <div class="logo" [ngStyle]="{
                 'background-image': 'url(' + banksMap[offer.bankInfo.bank].img + ')'
               }">
-            
-        </div>
-        <div class="offer-product">
-            <a class="clickable" target="_blank" (click)="openBankUrl(offer)">{{ offer.bankInfo.name }}
-                <!--<mat-icon>
+
+    </div>
+    <div class="offer-product">
+      <a class="clickable" target="_blank" (click)="openBankUrl(offer)">{{ offer.bankInfo.name }}
+        <!--<mat-icon>
                     open_in_new</mat-icon>
                 -->
-                </a>
-            <h3>
-                {{ offer.productName }} 
-            </h3>
-        </div>
-        <p>{{ offer.effectiveRate | number: "1.2-2" }} %</p>
+      </a>
+      <h3>
+        {{ offer.productName }}
+      </h3>
     </div>
-    <div class="the-offer-body">
-      <div class="the-offer-body-grid">
-        <div class="offer-top">
+    <p>{{ offer.effectiveRate | number: "1.2-2" }} %</p>
+  </div>
+  <div class="the-offer-body">
+    <div class="the-offer-body-grid">
+      <div class="offer-top">
 
-            <p i18n=“title|offer-card@@offer.card.title” class="save-text">Du sparer</p>
-            <div class="split">
-               
-                <div class="offer-inner save">
-                  <h2 *ngIf="offer.totalSavings > 0; else noTotalSavings">
-                    {{ offer.totalSavings | abs | number }},-
-                  </h2>
-                  <ng-template #noTotalSavings>
-                    <h2>0,-</h2>
-                  </ng-template>
-                  <p i18n=“over-time|offer-card@@offer.card.over.time”>over lånets løpetid</p>
-                </div>
-                <div class="offer-inner save">
-                  <h2 *ngIf="offer.savingsFirstYear > 0; else noTotalSavings">
-                    {{ offer.savingsFirstYear | abs | number }},-
-                  </h2>
-                  <ng-template #noSavingsFirstYear>
-                    <h2>0,-</h2>
-                  </ng-template>
-                  <p i18n=“first-year|offer-card@@offer.card.firstYear”>første år</p>
-                </div>
-              </div>
-        </div>
+        <p i18n=“title|offer-card@@offer.card.title” class="save-text">Du sparer</p>
+        <div class="split">
 
-        <div class="offer-properties">
-            <div class="item left first">
-                <p i18n=“application-time|offer-card@@offer.card.applicationTime” class="left">Hvor lang tid tar det å søke:</p>
-
-                <p i18n=“demand-change|offer-card@@offer.card.timeApply.value” class="box">
-                    {{offer.bankInfo.applicationTime  === null ? customLangTextSerice.get18nFixForUnknown() : offer.bankInfo.applicationTime + " min"}}
-                </p>
-            </div>
-
-            <div class="item left">
-                <p i18n=“demand-change|offer-card@@offer.card.demandChange” class="left">Krever bytte av nettbank:</p>
-                <p i18n=“no-yes|offer-card@@offer.card.noYes” class="box">{{ offer.requiredProductPackage == null ? customLangTextSerice.get18nFixForNo() : "Ja" }}</p>
-            </div>
-
-            <div class="item right first satisfaction-wrapper">
-                <div class="satisfaction">
-                    <div class ="bank-rating-text">
-                        <p i18n=“customer-satisfied|offer-card@@offer.card.customerSatisfied” class="left">Kundetilfredshet:</p>
-                        
-                    </div>
-                    <img class="offer-score" src="../../../../assets/icons/score-{{offer.bankInfo.score }}.svg" />
-                </div>
-                <span 
-                      (click)="openInfoDialog()"
-                      class="clickable bank-rating-info-button"
-                    >
-                      <mat-icon class="material-icons secondary">help</mat-icon>
-                </span>
-            </div>
-
-            <div class="item left details" i18n=“details|offer-card@@offer.card.details”>
-               
-                    <mat-expansion-panel (opened)="detailOpenClicked()" [expanded]="xpandStatus">
-                        <mat-expansion-panel-header [collapsedHeight]="'20px'" [expandedHeight]="'20px'">
-                          Detaljer
-                        </mat-expansion-panel-header>
-                        
-                        <rente-offer-card-details [offer]="offer" (closeClicked)="xpandStatus=xpandStatus?false:true" ></rente-offer-card-details>
-                      </mat-expansion-panel>
-              
-            </div>
-        </div>
-
-        <div class="buttons">
-          <rente-button class="firstButton" [disabled]="offer.bankInfo.partner == false"  
-              child childClass="{{offer.bankInfo.name}}"
-              i18n=“see-more|offer-card-big@@offer.card.big.seeMore”
-              [color]="'primary-wide-hollow-card'" type="raised"
-              (click)="openBankUrlByButton(offer)">Se mer på {{getbankNameOrDefault(offer)}}s hjemmeside
-          </rente-button>
-
-          <div>
-            <rente-button
-            class="button"
-            child childClass="{{offer.bankInfo.name}}"
-            i18n=“get-offer|offer-card@@offer.card.getOffer”
-            [disabled]="offer.bankInfo.partner == false" color="primary-medium" type="raised"
-            (click)="openNewOfferDialog(offer)">Få tilbud fra {{ getbankNameOrDefault(offer) }}!
-            </rente-button>
-            <p class="small" *ngIf=" offer.bankInfo.partner === false"> (Ingen avtale med banken)</p>
+          <div class="offer-inner save">
+            <h2 *ngIf="offer.totalSavings > 0; else noTotalSavings">
+              {{ offer.totalSavings | abs | number }},-
+            </h2>
+            <ng-template #noTotalSavings>
+              <h2>0,-</h2>
+            </ng-template>
+            <p i18n=“over-time|offer-card@@offer.card.over.time”>over lånets løpetid</p>
           </div>
-          
-          <div *ngIf="isNordea">
-            <rente-button
-            child childClass="{{this.offersInfo.offers.top5[0].bankInfo.name}}"
-            color="secondary-medium" type="raised"
-            (click)="clickNordea($event)">
+          <div class="offer-inner save">
+            <h2 *ngIf="offer.savingsFirstYear > 0; else noTotalSavings">
+              {{ offer.savingsFirstYear | abs | number }},-
+            </h2>
+            <ng-template #noSavingsFirstYear>
+              <h2>0,-</h2>
+            </ng-template>
+            <p i18n=“first-year|offer-card@@offer.card.firstYear”>første år</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="offer-properties">
+        <div class="item left first">
+          <p i18n=“application-time|offer-card@@offer.card.applicationTime” class="left">Hvor lang tid tar det å søke:
+          </p>
+
+          <p i18n=“demand-change|offer-card@@offer.card.timeApply.value” class="box">
+            {{offer.bankInfo.applicationTime === null ? customLangTextSerice.get18nFixForUnknown() :
+            offer.bankInfo.applicationTime + " min"}}
+          </p>
+        </div>
+
+        <div class="item left">
+          <p i18n=“demand-change|offer-card@@offer.card.demandChange” class="left">Krever bytte av nettbank:</p>
+          <p i18n=“no-yes|offer-card@@offer.card.noYes” class="box">{{ offer.requiredProductPackage == null ?
+            customLangTextSerice.get18nFixForNo() : "Ja" }}</p>
+        </div>
+
+        <div class="item right first satisfaction-wrapper">
+          <div class="satisfaction">
+            <div class="bank-rating-text">
+              <p i18n=“customer-satisfied|offer-card@@offer.card.customerSatisfied” class="left">Kundetilfredshet:</p>
+
+            </div>
+            <img class="offer-score" src="../../../../assets/icons/score-{{offer.bankInfo.score }}.svg" />
+          </div>
+          <span (click)="openInfoDialog()" class="clickable bank-rating-info-button">
+            <mat-icon class="material-icons secondary">help</mat-icon>
+          </span>
+        </div>
+
+        <div class="item left details" i18n=“details|offer-card@@offer.card.details”>
+
+          <mat-expansion-panel (opened)="detailOpenClicked()" [expanded]="xpandStatus">
+            <mat-expansion-panel-header [collapsedHeight]="'20px'" [expandedHeight]="'20px'">
+              Detaljer
+            </mat-expansion-panel-header>
+
+            <rente-offer-card-details [offer]="offer" (closeClicked)="xpandStatus=xpandStatus?false:true">
+            </rente-offer-card-details>
+          </mat-expansion-panel>
+
+        </div>
+      </div>
+
+      <div class="buttons">
+        <rente-button class="firstButton" [disabled]="offer.bankInfo.partner == false" child
+          childClass="{{offer.bankInfo.name}}" i18n=“see-more|offer-card-big@@offer.card.big.seeMore”
+          [color]="'primary-wide-hollow-card'" type="raised" (click)="openBankUrlByButton(offer)">Se mer på
+          {{getbankNameOrDefault(offer)}}s hjemmeside
+        </rente-button>
+
+        <div>
+          <rente-button class="button" child childClass="{{offer.bankInfo.name}}"
+            i18n=“get-offer|offer-card@@offer.card.getOffer” [disabled]="offer.bankInfo.partner == false"
+            color="primary-medium" type="raised" (click)="openNewOfferDialog(offer)">Få tilbud fra {{
+            getbankNameOrDefault(offer) }}!
+          </rente-button>
+          <p class="small" *ngIf=" offer.bankInfo.partner === false"> (Ingen avtale med banken)</p>
+        </div>
+
+        <div *ngIf="isNordea">
+          <rente-button child childClass="{{this.offersInfo.offers.top5[0].bankInfo.name}}" color="secondary-medium"
+            type="raised" (click)="clickNordea($event)">
             Be Nordea om et bedre tilbud
           </rente-button>
-          </div>
+        </div>
 
       </div>
 
-        <rente-button *ngIf="offer.bankInfo.bank === 'NORDEA'"
-        class="button"
-        child childClass="{{offer.bankInfo.name}}"
-            color="secondary-medium" type="raised"
-            (click)="openNewOfferDialog(offer)">Spørr Nordea om bedre rente
-        </rente-button>
+      <rente-button *ngIf="offer.bankInfo.bank === 'NORDEA'" class="button" child childClass="{{offer.bankInfo.name}}"
+        color="secondary-medium" type="raised" (click)="openNewOfferDialog(offer)">Spørr Nordea om bedre rente
+      </rente-button>
     </div>
 
     <div class="obligatory-info offer-bottom full-row">
-        
-        <p i18n=“number-details|offer-card@@offer.card.numberDetails” class="insignificant"><span>
-            </span> Eff.rente {{offer.effectiveRate | number: "1.2-2"}} %,
-            Lånebeløp {{offer.outstandingDebt | number: "1.0" }},
-            {{offer.loanPeriodYears | number: "1.1-1" }} år,
-            Kostnad: {{offer.cost | number: "1.0" }},
-            Totalt: {{offer.totalCost | number: "1.0" }}
-        </p>
+
+      <p i18n=“number-details|offer-card@@offer.card.numberDetails” class="insignificant"><span>
+        </span> Eff.rente {{offer.effectiveRate | number: "1.2-2"}} %,
+        Lånebeløp {{offer.outstandingDebt | number: "1.0" }},
+        {{offer.loanPeriodYears | number: "1.1-1" }} år,
+        Kostnad: {{offer.cost | number: "1.0" }},
+        Totalt: {{offer.totalCost | number: "1.0" }}
+      </p>
     </div>
 
-</div>
+  </div>
