@@ -17,7 +17,7 @@ import { HousesComponent } from './house/houses.component';
 import { BlueProfileComponent } from './profile/blue-profile/blue-profile.component';
 import { EPSIScoreComponent } from './offers/offers-blue/epsi-score/epsi-score.component';
 import { LoansLangGenericComponent } from '../../local-components/components-output';
-
+import { NordeaBargainSuccessComponent } from './offers/bargain-success/bargain-nordea/nordea-bargain-success.component';
 const routes: Routes = [
   {
     path: '',
@@ -40,7 +40,7 @@ const routes: Routes = [
       },
       {
         path: ROUTES_MAP_NO.bargainNordea,
-        component: BargainSuccessComponent
+        component: NordeaBargainSuccessComponent
       },
 
       {

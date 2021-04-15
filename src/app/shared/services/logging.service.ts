@@ -46,6 +46,15 @@ export class LoggingService {
     this.httpClient.post('/postlogg', obj).pipe(first()).subscribe();
   }
 
+  public googleAnalyticsLog(item: GoogleAnalyticsDto): void {
+    (window as any).dataLayer.push({
+      event: 'eventTracking',
+      category: item.category,
+      action: item.action,
+      label: item.label
+    });
+  }
+
   public logger(
     level: number,
     category: string,
@@ -120,4 +129,10 @@ export enum SubSystem {
   CrawlerLogin = 'Crawler Login',
   TinkMockup = 'Tink Mockup',
   UserConfirmation = 'UserConfirmation'
+}
+
+export interface GoogleAnalyticsDto {
+  category: string;
+  label: string;
+  action: string;
 }

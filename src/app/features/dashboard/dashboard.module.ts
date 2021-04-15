@@ -57,6 +57,8 @@ import { ChangeBankDialogLangGenericComponent } from '../../local-components/com
 import { BankScoreLangGenericComponent } from '../../local-components/components-output';
 import { ChangeBankLocationComponent } from './offers/change-bank-dialog/change-bank-location/change-bank-location.component';
 import { AntiChurnDialogComponent } from './offers/anti-churn-dialog/anti-churn-dialog.component';
+import { AntiChurnErrorDialogComponent } from './offers/anti-churn-dialog/anti-churn-error-dialog/anti-churn-error-dialog.component';
+import { NordeaBargainSuccessComponent } from './offers/bargain-success/bargain-nordea/nordea-bargain-success.component';
 import { CanNotBargainDialogComponent } from './offers/can-not-bargain-dialog/can-not-bargain-dialog.component';
 import { OfferCardV1Component } from './offers/offers-blue/offer-card-v1/offer-card-v1.component';
 
@@ -100,7 +102,10 @@ import { OfferCardV1Component } from './offers/offers-blue/offer-card-v1/offer-c
     ChangeBankLocationComponent,
     AntiChurnDialogComponent,
     CanNotBargainDialogComponent,
-    OfferCardV1Component
+    OfferCardV1Component,
+    AntiChurnErrorDialogComponent,
+    CanNotBargainDialogComponent,
+    NordeaBargainSuccessComponent
   ],
   imports: [
     CommonModule,

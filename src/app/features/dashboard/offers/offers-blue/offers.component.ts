@@ -17,6 +17,7 @@ import { ChangeBankLocationComponent } from '@features/dashboard/offers/change-b
 
 import { GetOfferFromBankDialogComponent } from './../get-offer-from-bank-dialog/get-offer-from-bank-dialog.component';
 import { AntiChurnDialogComponent } from '@features/dashboard/offers/anti-churn-dialog/anti-churn-dialog.component';
+import { AntiChurnErrorDialogComponent } from '@features/dashboard/offers/anti-churn-dialog/anti-churn-error-dialog/anti-churn-error-dialog.component';
 import { CanNotBargainDialogComponent } from '@features/dashboard/offers/can-not-bargain-dialog/can-not-bargain-dialog.component';
 import { LtvTooHighDialogComponent } from './../ltv-too-high-dialog/ltv-too-high-dialog.component';
 import { ChangeBankServiceService } from '@services/remote-api/change-bank-service.service';
@@ -34,6 +35,7 @@ import { CustomLangTextService } from '@shared/services/custom-lang-text.service
 import { locale } from '../../../../config/locale/locale';
 import { ROUTES_MAP, ROUTES_MAP_NO } from '@config/routes-config';
 import { EnvService } from '@services/env.service';
+import { LoggingService } from '@services/logging.service';
 import {
   OffersService,
   OfferMessage
@@ -104,7 +106,8 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
     private trackingService: TrackingService,
     public customLangTextSerice: CustomLangTextService,
     public envService: EnvService,
-    private offersService: OffersService
+    private offersService: OffersService,
+    private logginService: LoggingService
   ) {
     this.onResize();
 
@@ -168,7 +171,7 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
       .subscribe((message: OfferMessage) => {
         switch (message) {
           case OfferMessage.antiChurn: {
-            this.openAntiChurnBankDialog(this.offersInfo.offers.top5[0]);
+            this.openAntiChurnBankDialog(this.offersInfo.offers.top5[0], false);
             break;
           }
         }
@@ -381,7 +384,7 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
     );
   }
 
-  public openAntiChurnBankDialog(offer): void {
+  public openAntiChurnBankDialog(offer, shouldLog: boolean): void {
     if (
       this.antiChurnIsOn === false ||
       this.changeBankLoading ||
@@ -390,8 +393,14 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
       return;
     }
     this.changeBankLoading = true;
-    const offerId = offer.id;
 
+    if (shouldLog) {
+      this.logginService.googleAnalyticsLog({
+        category: 'NordeaAntiChurn',
+        action: 'Click top button anti-churn',
+        label: `top offer: ${this.offersInfo.offers.top5[0].bankInfo.name}`
+      });
+    }
     const changeBankRef = this.dialog.open(AntiChurnDialogComponent, {
       autoFocus: false,
       data: offer
@@ -454,9 +463,10 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
         break;
       }
       case 'error': {
-        this.router.navigate(['/dashboard/prute-fullfort'], {
-          state: { isError: false, fromChangeBankDialog: true }
-        });
+        break;
+      }
+      case 'error-to-many-bargains': {
+        this.dialog.open(AntiChurnErrorDialogComponent);
         break;
       }
     }

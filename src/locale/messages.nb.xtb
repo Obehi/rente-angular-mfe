@@ -1586,4 +1586,18 @@ Fortsett
   <translation id="change.bank.email" desc="change-bank" meaning="“info-post">E-post:</translation>
   <translation id="offers.statistics.tab1" desc="offers-statistics" meaning="graph"> </translation>
   <translation id="offers.statistics.tab2" desc="offers-statistics" meaning="graph"> </translation>
+  <translation id="bargain.success.backToOffers“" desc="bargain" meaning="“confirmation">Tilbake til tilbudssiden
+        </translation>
+  <translation id="add.rate.title”" desc="add-rate" meaning="“title">Fyll ut boligrenten din</translation>
+  <translation id="bargainNordeaNordea.success.sent”" desc="bargain" meaning="“confirmation"> Meldingen er sendt til Nordea</translation>
+  <translation id="bargainNordea.success.sent.you”" desc="bargain" meaning="“confirmation-you">
+        Nordea vil kontakte deg i løpet av 5 virkedager. Du har også mottatt en epost 
+        bekreftelse fra oss på at meldingen er sendt.
+      </translation>
+  <translation id="bargainNordea.success.backToOffers“" desc="bargain" meaning="“confirmation">Tilbake til tilbudssiden
+        </translation>
+  <translation id="bargainNordea.success.error”" desc="bargain" meaning="“error">Noe gikk galt…</translation>
+  <translation id="bargainNordea.success.error2”" desc="bargain" meaning="“error2">
+          Beklager, noe gikk galt og vi vil rette opp feilen så fort som mulig. Vennligst prøv igjen senere.
+        </translation>
 </translationbundle>
