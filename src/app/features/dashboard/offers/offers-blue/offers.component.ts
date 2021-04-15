@@ -496,10 +496,6 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
   getbankNameOrDefault(offer: OfferInfo): string {
     let text = '';
     switch (offer.bankInfo.bank) {
-      case 'SBANKEN': {
-        text = 'Sbanken';
-        break;
-      }
       case 'BULDER': {
         text = 'Bulder';
         break;
