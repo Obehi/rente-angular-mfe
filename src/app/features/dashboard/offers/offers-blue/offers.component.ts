@@ -351,7 +351,7 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
     );
   }
 
-  private openChangeBankDialogWithOnlyPreview(offer: any): void {
+  public openChangeBankDialogWithOnlyPreview(offer: any): void {
     this.changeBankLoading = true;
     const offerId = offer.id;
     const currentBank = this.offersInfo.bank;

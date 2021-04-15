@@ -11,14 +11,13 @@ import { Offers } from '@shared/models/offers';
 })
 export class TipsComponent implements OnInit {
   @Input() offersInfo: Offers;
-  @Input() aggregatedLoanType = AGGREGATED_LOAN_TYPE;
-  @Input() aggregatedRateType = AGGREGATED_RATE_TYPE;
-  @Input() incompleteInfoLoanPresent: Offers;
+  public incompleteInfoLoanPresent: Offers;
+  public aggregatedLoanType = AGGREGATED_LOAN_TYPE;
+  public aggregatedRateType = AGGREGATED_RATE_TYPE;
   public tips: any[];
   public isShowTips: boolean;
-  public customLangTextSerice: CustomLangTextService;
 
-  constructor() {
+  constructor(public customLangTextSerice: CustomLangTextService) {
     this.isShowTips = false;
     this.tips = [];
   }

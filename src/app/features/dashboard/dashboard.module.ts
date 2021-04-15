@@ -61,6 +61,7 @@ import { CanNotBargainDialogComponent } from './offers/can-not-bargain-dialog/ca
 import { BarometerComponent } from './offers/offers-blue/barometer/barometer.component';
 import { BoxGridComponent } from './offers/offers-blue/box-grid/box-grid.component';
 import { TipsComponent } from './offers/offers-blue/tips/tips.component';
+import { ActionBoxesComponent } from './offers/offers-blue/action-boxes/action-boxes.component';
 
 // TODO: ADD separate module for material import
 @NgModule({
@@ -104,7 +105,8 @@ import { TipsComponent } from './offers/offers-blue/tips/tips.component';
     CanNotBargainDialogComponent,
     BarometerComponent,
     BoxGridComponent,
-    TipsComponent
+    TipsComponent,
+    ActionBoxesComponent
   ],
   imports: [
     CommonModule,

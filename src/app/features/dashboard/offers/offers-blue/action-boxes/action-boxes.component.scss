@@ -1,0 +1,51 @@
+@import '../../../../../../styles/theme/_colors.scss';
+
+.big-box {
+  background: white;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  @media (min-width: 600px) {
+    width: 90%;
+    margin: 0 auto;
+    grid-row: 5;
+  }
+}
+
+.top {
+  position: relative;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  padding: 20px;
+  //TEMP FOR SWEDISH VERSION
+  height: 90px;
+  // REAL VERSION!!
+  //height: 120px;
+  border-bottom: 1px solid $grey;
+
+  @media (max-width: 600px) {
+    height: 80px;
+  }
+}
+
+.circleIconWrapper {
+  width: 50px;
+  height: 50px;
+  box-shadow: 1px 1px 8px -4px;
+  border-radius: 25px;
+}
+
+img {
+  width: 50px;
+}
+p {
+  text-align: left;
+  margin-left: 20px;
+}
+
+.bottom {
+  padding: 20px;
+}

@@ -1,17 +1,13 @@
 @import '../../../../../../styles/theme/_colors.scss';
 
-:host {
-  position: relative;
-  top: 7px;
-
-  padding: 6px 10px !important;
-}
-
 .tipsAccordion {
   position: relative;
   top: 7px;
 
   padding: 6px 10px !important;
+  cursor: pointer;
+  background-color: #112639;
+  text-align: left;
 }
 
 .round-box {
@@ -19,25 +15,20 @@
 }
 
 .nr {
-  text-align: center;
-  color: $primary;
-  border: 1px solid;
-  background-color: white;
-  position: absolute;
-  left: 0;
-  top: 0;
+  background-color: #18bc9c;
+  height: 22px;
   border-radius: 100%;
-  width: 20px;
-  height: 20px;
-  p {
-    font-weight: 500;
-    position: absolute;
-    left: 0;
-    right: 0;
-    margin: auto;
-    top: 50%;
-    transform: translateY(-50%);
-  }
+  color: #fff;
+  padding: 0 8px;
+  font-size: 14px;
+  font-weight: 400;
+  float: right;
+  margin-top: 2px;
+}
+
+p {
+  color: white;
+  font-size: 16px;
 }
 
 .tips {
@@ -62,10 +53,6 @@
   flex-wrap: wrap;
   margin-top: 0px;
   background: $secondary;
-
-  p {
-    color: white;
-  }
 
   .tip-wrapper {
     @media (min-width: 600px) {
@@ -135,6 +122,12 @@
   }
 }
 
+mat-icon {
+  vertical-align: top;
+  margin-right: 5px;
+  color: #18bc9c;
+}
+
 .tip {
   padding: 20px 10px;
   position: relative;
@@ -149,13 +142,6 @@
     @media (max-width: 600px) {
       width: 80%;
     }
-  }
-  mat-icon {
-    color: $green;
-    position: absolute;
-    right: 15px;
-    top: 50%;
-    transform: translateY(-50%);
   }
 
   .tips-img-wrapper {
@@ -173,87 +159,3 @@
     }
   }
 }
-
-/* <div class="tipsWrapper round-box">
-            <div
-              class="tipsAccordion mobile round-box"
-              (click)="isShowTips = !isShowTips"
-              *ngIf="tips.length > 0"
-            >
-              <p>
-                <mat-icon *ngIf="!isShowTips">expand_more</mat-icon>
-                <mat-icon *ngIf="isShowTips">expand_less</mat-icon>
-                <span class="nr">{{ tips.length }}</span> tips
-              </p>
-            </div>
-            <div
-              class="tips"
-              style="border-bottom: none"
-              *ngIf="tips.length > 0 && !isShowTips"
-            ></div>
-            <div class="tips" *ngIf="isShowTips && tips.length > 0">
-              <div
-                *ngFor="let tip of tips; let i = index"
-                [ngClass]="{
-                  obs: tip.obs,
-                  clickable: tip.buttonLink !== 'undefined',
-                  'tip-wrapper': true
-                }"
-              >
-                <div *ngIf="tip.buttonLink == null" class="tip">
-                  <div class="tips-img-wrapper">
-                    <img
-                      class="tipIcon"
-                      src="../../../../assets/icons/{{ tip.icon }}.svg"
-                    />
-                  </div>
-                  <p>
-                    {{ tip.text }}
-                  </p>
-                </div>
-
-                <div
-                  *ngIf="!tip.external && tip.buttonLink != null"
-                  routerLink="{{ tip.buttonLink }}"
-                  class="tip"
-                >
-                  <div class="tips-img-wrapper">
-                    <img
-                      class="tipIcon"
-                      src="../../../../assets/icons/{{ tip.icon }}.svg"
-                    />
-                  </div>
-                  <p>
-                    {{ tip.text }}
-                  </p>
-                  <mat-icon *ngIf="tip.buttonLink !== './'"
-                    >chevron_right</mat-icon
-                  >
-                </div>
-
-                <a
-                  *ngIf="tip.external && tip.buttonLink != null"
-                  href="{{ tip.buttonLink }}"
-                  target="_blank"
-                  class="tip"
-                >
-                  <p>
-                    {{ tip.text }}
-                  </p>
-
-                  <mat-icon>chevron_right</mat-icon>
-                </a>
-              </div>
-            </div>
-            <!-- <a *ngIf="offersInfo?.ltvType === offersLtvType.LTV_TOO_HIGH_85" class="obs clickable"
-                (click)="openLtvTooHightDialog()">
-  
-                <p>
-                  <b>OBS:</b> Vi har beregnet belåningsgraden din til over 85%.
-                  Vennligst kontroller boligverdien i boligfanen. Du kan også lese
-                  mer om dette ved å <a (click)="openLtvTooHightDialog()">klikke her</a>.
-  
-                </p>
-              </a> -->
-          </div>
-          */
