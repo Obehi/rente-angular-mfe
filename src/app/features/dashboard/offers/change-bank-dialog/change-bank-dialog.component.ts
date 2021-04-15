@@ -24,7 +24,7 @@ export class ChangeBankDialogComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.confirmForm = this.fb.group({
       confirmation: ['', Validators.required]
     });

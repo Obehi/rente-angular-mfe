@@ -50,6 +50,7 @@ export class HouseFormNoComponent implements OnInit {
     return (
       this.address !== null &&
       this.address.zip?.length === 4 &&
+      !!this.address.apartmentSize &&
       this.address.apartmentSize > 5 &&
       this.address.street.length > 0 &&
       this.propertyValueIsValid(this.address)
