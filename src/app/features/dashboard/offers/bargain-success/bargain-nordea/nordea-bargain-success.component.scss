@@ -1,0 +1,217 @@
+@import '../../../../../../styles/theme/colors';
+
+.box {
+  //margin: 0 140px;
+  padding-top: 20px;
+  @media (max-width: 600px) {
+  }
+}
+
+h3 {
+  @media (min-width: 600px) {
+    margin-top: 30px;
+  }
+}
+
+h3,
+p,
+li {
+  color: white;
+}
+
+a {
+  color: $primary;
+}
+
+li {
+  font-weight: 300;
+}
+
+.button-container {
+  margin-top: 40px;
+}
+
+.top-box {
+  width: calc(100% + -20px);
+  max-width: 627px;
+  margin: auto;
+  margin-top: 40px;
+  padding: 0 20px;
+}
+
+.top-accordion {
+  ::ng-deep .mat-expansion-panel:not([class*='mat-elevation-z']) {
+    box-shadow: unset !important;
+    background: unset im !important;
+  }
+  ::ng-deep .mat-accordion .mat-expansion-panel:last-of-type {
+    border-bottom-right-radius: 15px !important;
+    border-bottom-left-radius: 15px !important;
+    background: unset !important;
+  }
+  ::ng-deep .mat-accordion .mat-expansion-panel:first-of-type {
+    border-top-right-radius: 15px !important;
+    border-top-left-radius: 15px;
+    background: unset !important;
+  }
+  ::ng-deep .mat-expansion-panel {
+    &-header {
+      max-height: 30px;
+      padding: 20px;
+      width: 40%;
+      max-width: 120px;
+      margin: auto;
+      color: #fff;
+      background: unset !important;
+      span {
+        p {
+          color: white !important;
+          margin: auto;
+        }
+      }
+    }
+
+    &-body {
+      background-color: #183a63;
+      //padding: 8px !important;
+      padding: 0px !important;
+    }
+  }
+
+  .mer-info-body {
+    margin-top: 10px;
+    border-top: 1px solid #fff;
+    border-bottom: 1px solid #fff;
+    padding: 10px 0;
+  }
+}
+
+.tibber-promo-container {
+  width: 100%;
+  margin-top: 40px;
+  background-size: 300px 100px;
+  //background-image: url("../../../../../assets/img/tibber-promo-top-1.png");
+  background-repeat: no-repeat;
+  background-size: 200px 200px;
+  background-position: right top;
+  position: relative;
+
+  .top {
+    background-image: url('../../../../../../assets/img/tibber-promo-top-2.svg');
+    background-repeat: no-repeat;
+    background-size: 134px 134px;
+    position: absolute;
+    width: 134px;
+    height: 134px;
+    top: 154px;
+    z-index: 10;
+    width: calc(100% + -20px);
+    max-width: 627px;
+
+    @media (max-width: 600px) {
+      width: 100%;
+      top: 65px;
+      background-position: calc(100% - 173px) calc(100% - 0px);
+      margin: auto;
+      position: absolute;
+    }
+
+    @media (min-width: 600px) {
+      top: 65px;
+      width: 600px;
+      position: absolute;
+      left: 50%;
+      margin-left: -300px;
+      right: 155px;
+      background-position: calc(100% - 155px) calc(100% - 0px);
+    }
+  }
+
+  .top-2 {
+    width: calc(100% + -20px);
+    max-width: 627px;
+    height: 200px;
+
+    margin: auto;
+    background-size: 300px 100px;
+    background-image: url('../../../../../../assets/img/tibber-promo-top-1.png');
+    background-repeat: no-repeat;
+    background-size: 200px 200px;
+    background-position: right top;
+    background-position: calc(100%) calc(100% - 0px);
+  }
+
+  .box {
+    background: #fff;
+    border-radius: 15px;
+    padding: 20px;
+    max-width: 627px;
+    margin: auto;
+    margin-top: -50px !important;
+    width: calc(100% + -20px);
+    margin-top: 44px;
+    margin-bottom: 40px;
+    text-align: center;
+    position: relative;
+    box-shadow: rgb(100 100 111 / 20%) 0px 7px 29px 0px;
+
+    h2 {
+      margin-top: 60px;
+    }
+
+    img {
+      margin-top: 30px;
+      margin-bottom: 20px;
+    }
+
+    p,
+    ul,
+    li {
+      color: #000000;
+    }
+
+    p {
+      font-weight: 400;
+      font-size: 16px;
+
+      &:first-of-type {
+        margin-top: 20px;
+      }
+    }
+
+    ul {
+      margin-top: 10px;
+    }
+
+    li {
+      text-align: left;
+      margin-bottom: 20px;
+    }
+
+    .external-button-link {
+      min-width: 150px;
+      border-radius: 100px;
+      margin: 10px auto;
+      font-size: 16px;
+      line-height: 19px;
+      height: 56px;
+      outline: none;
+      display: inline-block;
+      opacity: 1;
+      padding: 0 20px;
+      font-weight: 500;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background-color: $primary;
+      p {
+        color: white;
+        font-size: 16px;
+        line-height: 19px;
+        font-weight: 500;
+        margin: unset !important;
+      }
+    }
+  }
+}
