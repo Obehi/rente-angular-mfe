@@ -32,6 +32,10 @@
         {{offer.marketArea}}
       </p>
     </div>
+    <div *ngIf="true" class="special-promo">
+      <img class="box-icon" src="../../../../../assets/icons/badge.svg" />
+      <p>Gir kundeutbytte</p>
+    </div>
   </div>
 
 
@@ -95,6 +99,15 @@
           <p i18n=“demand-change|offer-card@@offer.card.historicRate class="left">Historisk plassering</p>
           <p class="box">{{ offer.bankRating }}</p>
         </div>
+
+        <div class="item">
+          <p i18n=“customer-satisfied|offer-card@@offer.card.customerSatisfied” class="left">Kundetilfredshet:</p>
+          <rente-bar class="bar" highestValue="5" currentValue="{{offer.bankInfo.score}}"></rente-bar>
+        </div>
+        <div class="item">
+          <p i18n=“customer-satisfied|offer-card@@offer.card.customerSatisfied” class="left">Mobilbank:</p>
+          <rente-bar class="bar" highestValue="5" currentValue="3"></rente-bar>
+        </div>
         <!-- 
 
         <div class="item left">
@@ -128,7 +141,23 @@
           </mat-expansion-panel>
 
         </div> -->
+
+        <div class="item middle details" i18n=“details|offer-card@@offer.card.details”>
+
+          <mat-expansion-panel (opened)="detailOpenClicked()" [expanded]="xpandStatus">
+            <mat-expansion-panel-header [collapsedHeight]="'20px'" [expandedHeight]="'20px'">
+              Mer info
+            </mat-expansion-panel-header>
+
+            <rente-offer-card-details [offer]="offer" (closeClicked)="xpandStatus=xpandStatus?false:true">
+            </rente-offer-card-details>
+          </mat-expansion-panel>
+
+        </div>
       </div>
+
+
+
 
       <div class="buttons">
         <rente-button class="firstButton" [disabled]="offer.bankInfo.partner == false"

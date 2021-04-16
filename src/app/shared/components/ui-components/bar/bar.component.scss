@@ -1,0 +1,36 @@
+@import '../../../../../styles/theme/_colors.scss';
+
+:host {
+  width: 100%;
+  background: $grey-light;
+  height: 20px;
+  border-radius: 20px;
+}
+
+.progress {
+  height: 100%;
+  border-radius: 20px;
+}
+
+.round {
+  border-radius: 20px;
+}
+
+.mixed {
+  border-radius: 20px 0px 0px 20px;
+}
+
+.green {
+  background: $primary;
+}
+.green-light {
+  background: #82c6b4;
+}
+
+.orange {
+  background: #e45a2a;
+}
+
+.red {
+  background: red;
+}

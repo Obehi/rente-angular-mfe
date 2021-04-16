@@ -165,8 +165,15 @@
       grid-gap: 10px;
       grid-template-columns: 3fr 2fr;
 
+      .details {
+        margin-top: -15px;
+        grid-column-start: 1;
+        grid-column-end: span 2;
+      }
+
       .offer-top {
         display: flex;
+        flex-direction: column;
         justify-content: flex-end;
         grid-row: 1;
         grid-column-start: 1;
@@ -186,11 +193,10 @@
         }
 
         p.save-text {
-          margin-right: auto;
-          font-weight: 400;
-          margin-left: 10px;
-          align-self: center;
           color: $grey-dark;
+          font-weight: 400;
+          margin-bottom: 10px;
+          font-size: 16px;
         }
       }
 
@@ -200,6 +206,51 @@
       .full-row {
         grid-column-start: 1;
         grid-column-end: span 2;
+      }
+
+      .top-details {
+        satisfaction-wrapper {
+          grid-row: 1;
+          grid-row-start: 1;
+          grid-row-end: span 3;
+          padding-top: 8px;
+          z-index: 10;
+          margin-right: 10px;
+          display: flex;
+          align-items: flex-start;
+          margin-top: 7px;
+          justify-content: flex-end;
+
+          .bank-rating-info-button {
+            margin-top: -3px;
+            margin-left: 3px;
+          }
+          .satisfaction {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            @media (min-width: 600px) {
+              grid-row: 3;
+              grid-column: 1;
+              flex-direction: row;
+              justify-content: space-between;
+              padding-top: 0;
+              border-left: unset;
+            }
+            img {
+              width: 35px;
+              margin-top: 5px;
+
+              @media (min-width: 600px) {
+                width: 30px;
+                margin-top: 0;
+                //align img to boxes above
+                margin-right: 8px;
+              }
+            }
+          }
+        }
       }
 
       .offer-properties {
@@ -242,6 +293,8 @@
 
           &.middle {
             margin-top: 20px;
+            grid-column-start: 1;
+            grid-column-end: span 2;
           }
 
           &.satisfaction-wrapper {
@@ -296,49 +349,6 @@
             @media (max-width: 600px) {
               position: relative;
               top: -20px;
-            }
-            .mat-expansion-panel {
-              border-radius: 0px;
-              box-shadow: unset;
-              width: 100%;
-              background: transparent !important;
-              z-index: 5;
-              margin-bottom: 10px;
-              display: flex;
-              flex-direction: column;
-              .mat-expansion-panel-header {
-                font-size: 12px;
-                margin-left: 0px;
-                margin-top: 13px;
-                width: 70px;
-                height: 20px;
-                padding: 0px;
-                background: transparent;
-                align-self: center;
-                .mat-expansion-indicator {
-                  display: none;
-                }
-
-                //selector doesnt work
-                .mat-expansion-indicator::after {
-                  //color: red !important;
-                }
-              }
-
-              .mat-expansion-panel-content {
-                display: none;
-              }
-
-              ::ng-deep .mat-expansion-panel-body {
-                margin: 0 !important;
-                padding: 0 !important;
-              }
-
-              .mat-expansion-panel-body {
-                padding: 0 !important;
-                padding-top: 0 !important;
-                padding-bottom: 0 !important;
-              }
             }
           }
 
@@ -481,13 +491,14 @@
         padding: 15px 10px;
       }
       .save {
-        padding: 15px 5px;
+        padding: 0;
         h2 {
           font-size: 14px;
           color: $primary;
           background: $grey-light;
-          padding: 15px;
+          padding: 20px 20px;
           border-radius: 16px;
+          display: inline-block;
         }
         p {
           font-size: 12px;
@@ -527,4 +538,66 @@
       text-align: center;
     }
   }
+}
+
+.mat-expansion-panel {
+  border-radius: 0px;
+  box-shadow: unset;
+  width: 100%;
+  background: transparent !important;
+  z-index: 5;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  .mat-expansion-panel-header {
+    font-size: 12px;
+    margin-left: 0px;
+    margin-top: 13px;
+    width: 70px;
+    height: 20px;
+    padding: 0px;
+    background: transparent;
+    align-self: center;
+    .mat-expansion-indicator {
+      display: none;
+    }
+
+    //selector doesnt work
+    .mat-expansion-indicator::after {
+      //color: red !important;
+    }
+  }
+
+  .mat-expansion-panel-content {
+    display: none;
+  }
+
+  ::ng-deep .mat-expansion-panel-body {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .mat-expansion-panel-body {
+    padding: 0 !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+}
+
+.star {
+  position: relative;
+  display: inline-block;
+  font-size: 1.3rem;
+  color: $grey-dark;
+}
+
+.full {
+  color: $primary;
+}
+
+.half {
+  position: absolute;
+  display: inline-block;
+  overflow: hidden;
+  color: $primary;
 }

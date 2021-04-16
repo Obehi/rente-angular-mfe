@@ -3,34 +3,33 @@
     <div class="banks mb-3">
       <div class="banks-inner">
         <div class="bank-list">
-          <input  #bankInput matInput type="text" placeholder="Velg bank" autocomplete="off"
+          <input #bankInput matInput type="text" placeholder="Velg bank" autocomplete="off"
             (click)="bankGuideService.shouldDisplayBankList = true" [(ngModel)]="bankGuideService.searchStr"
             (ngModelChange)="bankGuideService.onFilterChanged()" />
-          <button *ngIf="bankGuideService.searchStr" class="close-button" mat-button matSuffix mat-icon-button aria-label="Clear"
-            (click)="bankGuideService.clear()">
-            <img  class="exit"
-                src="../../../assets/icons/exit-green.svg" />
+          <button *ngIf="bankGuideService.searchStr" class="close-button" mat-button matSuffix mat-icon-button
+            aria-label="Clear" (click)="bankGuideService.clear()">
+            <img class="exit" src="../../../assets/icons/exit-green.svg" />
           </button>
-          <img (click)="bankGuideService.shouldDisplayBankList = true" *ngIf="!bankGuideService.searchStr" class="search"
-                src="../../../assets/icons/search-green.svg" />
+          <img (click)="bankGuideService.shouldDisplayBankList = true" *ngIf="!bankGuideService.searchStr"
+            class="search" src="../../../assets/icons/search-green.svg" />
         </div>
         <span #banklist>
-        <mat-selection-list class="bank-dropdown"  [class.d-none]="!bankGuideService.shouldDisplayBankList">
-          <div>
-            <button *ngFor="let bank of bankGuideService.banks" mat-button class="bank-button"
-            (click)="bankGuideService.selectBank(bank)"
-            [routerLink]="'/bankguiden/' + bank.name.toLowerCase()">
-            <div *ngIf="bank.icon; then hasIcon; else noIcon"></div>
-            <ng-template #hasIcon><img class="bank-button-logo"
-              src="../../../assets/img/banks-logo/round/{{ bank.icon }}" />
-            </ng-template>
-            <ng-template #noIcon><img class="bank-button-logo" src="../../../assets/img/banks-logo/round/annen.png" />
-            </ng-template>
-            {{ bank.label }}
-          </button>
-        </div>
-        </mat-selection-list>
-      </span>
+          <mat-selection-list class="bank-dropdown" [class.d-none]="!bankGuideService.shouldDisplayBankList">
+            <div>
+              <button *ngFor="let bank of bankGuideService.banks" mat-button class="bank-button"
+                (click)="bankGuideService.selectBank(bank)" [routerLink]="'/bankguiden/' + bank.name.toLowerCase()">
+                <div *ngIf="bank.icon; then hasIcon; else noIcon"></div>
+                <ng-template #hasIcon><img class="bank-button-logo"
+                    src="../../../assets/img/banks-logo/round/{{ bank.icon }}" />
+                </ng-template>
+                <ng-template #noIcon><img class="bank-button-logo"
+                    src="../../../assets/img/banks-logo/round/annen.png" />
+                </ng-template>
+                {{ bank.label }}
+              </button>
+            </div>
+          </mat-selection-list>
+        </span>
       </div>
     </div>
   </div>
@@ -75,7 +74,7 @@
 
 
         <div class="top-main-container round-box padding-box">
-          
+
           <div class="horizontal-box first">
             <div class="item">
               <div>
@@ -118,7 +117,7 @@
                     <span class="half" [style.width.%]="fill">&#9733;</span>&#9733;
                   </span>
                 </ng-template>
-                <ngb-rating [rate]="bankGuideInfo?.mobileAppRating" [starTemplate]="t" [readonly]="true" [max]="5">
+                <ngb-rating [rate]="3.8" [starTemplate]="t" [readonly]="true" [max]="5">
                 </ngb-rating>
               </div>
             </div>
@@ -131,319 +130,377 @@
 
       <div class="internal-links p-3">
         <div *ngIf="bankHasInShort" (click)="scrollTo(inShort)" class="icon-link">
-          <img src="../../../../assets/icons/informatin-grey-circle.svg"/>
+          <img src="../../../../assets/icons/informatin-grey-circle.svg" />
           <span>Kort
             om {{bank.label}}</span>
-          <img class="arrow" src="../../../../assets/icons/arrow-small-grey.svg"/>
-            
+          <img class="arrow" src="../../../../assets/icons/arrow-small-grey.svg" />
+
         </div>
         <div (click)="scrollTo(bankOffering)" class="icon-link">
-          <img  src="../../../../assets/icons/house-grey-circle.svg"/>
+          <img src="../../../../assets/icons/house-grey-circle.svg" />
           <span>Boliglån i
             {{bank.label}}</span>
-          <img class="arrow" src="../../../../assets/icons/arrow-small-grey.svg"/>
+          <img class="arrow" src="../../../../assets/icons/arrow-small-grey.svg" />
 
         </div>
-       
-        <div (click)="scrollTo(offices)" *ngIf="banksLocations.length !== 0"  class="icon-link">
-          <img  src="../../../../assets/icons/location-grey-circle.svg"/>
+
+        <div (click)="scrollTo(offices)" *ngIf="banksLocations.length !== 0" class="icon-link">
+          <img src="../../../../assets/icons/location-grey-circle.svg" />
           <span>Filialer</span>
-          <img class="arrow" src="../../../../assets/icons/arrow-small-grey.svg"/>
+          <img class="arrow" src="../../../../assets/icons/arrow-small-grey.svg" />
         </div>
       </div>
     </div>
 
-<div class="blue-bg">
+    <div class="blue-bg">
 
 
-    <div class="scroll-anchor in-short" #inShort>
-      <div class="white-bg p-3 mx-lg-auto mt-lg-4" *ngIf="bankHasInShort">
-        <div class="bank-name">
-          <div class="logo">
-            <img src="../../../assets/img/banks-logo/round/{{ bank.icon }}" [alt]="bank.label">
+      <div class="scroll-anchor in-short" #inShort>
+        <div class="white-bg p-3 mx-lg-auto mt-lg-4" *ngIf="bankHasInShort">
+          <div class="bank-name">
+            <div class="logo">
+              <img src="../../../assets/img/banks-logo/round/{{ bank.icon }}" [alt]="bank.label">
+            </div>
+            <h2>
+              Kort om {{bank.label}}
+            </h2>
           </div>
-          <h2>
-            Kort om {{bank.label}}
-          </h2>
-        </div>
-        <div class="text">
-          <p class="my-3" *ngIf="bankGuideInfo?.text1">{{bankGuideInfo?.text1}}</p>
-          <p class="my-3" *ngIf="bankGuideInfo?.text2">{{bankGuideInfo?.text2}}</p>
-          <p class="my-3" *ngIf="bankGuideInfo?.text3">{{bankGuideInfo?.text3}}</p>
-          <p class="my-3" *ngIf="bankGuideInfo?.text4">{{bankGuideInfo?.text4}}</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="scroll-anchor white-bg p-3 mx-lg-auto mt-4" #bankOffering>
-      <div class="bank-name justify-content-lg-center">
-        <div class="logo d-inline-block">
-          <img src="../../../assets/img/banks-logo/round/{{ bank.icon }}" [alt]="bank.label">
-        </div>
-        <h2 class="mb-0">
-          Boliglån
-        </h2>
-      </div>
-
-      <div class="offerings w-100 d-flex flex-column">
-
-        <div class="item">
-          <div>
-            Snittrente våre brukere:
-          </div>
-          <div *ngIf="bankGuideInfo?.medianEffectiveRate;else notPresent">
-            {{bankGuideInfo?.medianEffectiveRate.toFixed(2)}}%
-            <!-- Fix til Ukjent-->
+          <div class="text">
+            <p class="my-3" *ngIf="bankGuideInfo?.text1">{{bankGuideInfo?.text1}}</p>
+            <p class="my-3" *ngIf="bankGuideInfo?.text2">{{bankGuideInfo?.text2}}</p>
+            <p class="my-3" *ngIf="bankGuideInfo?.text3">{{bankGuideInfo?.text3}}</p>
+            <p class="my-3" *ngIf="bankGuideInfo?.text4">{{bankGuideInfo?.text4}}</p>
           </div>
         </div>
-
-        <div class="item">
-          <div>
-            Beste tilbud:
-          </div>
-          <div *ngIf="bankGuideInfo?.bestNomOffer;else notPresent">
-            {{bankGuideInfo?.bestNomOffer.toFixed(2)}}%
-          </div>
-        </div>
-
-      </div>
-      <div class="offerings-header">
-        Boliglånstilbud:
-      </div>
-      <div class="offering-checklist w-100 text-left">
-        <div class="box-in-list" *ngIf="bankGuideInfo?.regularOffers">
-
-          <span>Vanlig Boliglån</span>
-        </div>
-        <div class="box-in-list" *ngIf="bankGuideInfo?.creditLineLoans">
-
-          <span>Rammelån</span>
-        </div>
-        <div class="box-in-list" *ngIf="bankGuideInfo?.fixedRateLoans">
-
-          <span>Fastrentelån</span>
-        </div>
-        <div class="box-in-list" *ngIf="bankGuideInfo?.intermediateFinancing">
-
-          <span>Mellomfinansiering</span>
-        </div>
-        <div class="box-in-list" *ngIf="bankGuideInfo?.constructionLoans">
-
-          <span>Byggelån</span>
-        </div>
-      </div>
-      <div class="offerings-header">
-        Produkter:
-      </div>
-      <div class="accordion">
-        <mat-accordion>
-          <mat-expansion-panel *ngFor="let membership of memberships">
-            <mat-expansion-panel-header>
-              <p>
-                <b>
-                  {{(membership | titlecase)}} medlemskapslån
-                </b>
-              </p>
-            </mat-expansion-panel-header>
-            <div class="item" *ngFor="let membership of bankGuideInfo?.membershipOffers[membership]">
-                   <div> {{membership.name}} </div>
-                   <div> {{membership.rate | number: "1.2-2"}}% </div>
-            </div>
-          </mat-expansion-panel>
-
-          <mat-expansion-panel *ngIf="bankGuideInfo?.regularOffers.length">
-            <mat-expansion-panel-header>
-              <p>
-                <b>
-                  Boliglån:
-                </b>
-              </p>
-            </mat-expansion-panel-header>
-            <div class="d-flex justify-content-between align-middle mt-2"
-              *ngFor="let offer of bankGuideInfo?.regularOffers">
-              <div class="item">
-                <div>
-                  {{offer.name}}
-                </div>
-                <div >
-                  {{offer.rate | number: "1.2-2"}}%
-                </div>
-              </div>
-            </div>
-          </mat-expansion-panel>
-          <mat-expansion-panel *ngIf="bankGuideInfo?.creditLineLoansOffers.length">
-            <mat-expansion-panel-header>
-              <p>
-                <b>
-                  Rammelån:
-                </b>
-              </p>
-            </mat-expansion-panel-header>
-            <div class="d-flex justify-content-between align-middle mt-2"
-              *ngFor="let offer of bankGuideInfo?.creditLineLoansOffers">
-              <div class="item">
-                <div>
-                  {{offer.name}}
-                </div>
-                <div>
-                  {{offer.rate | number: "1.2-2"}}%
-                </div>
-              </div>
-            </div>
-          </mat-expansion-panel>
-          <mat-expansion-panel *ngIf="bankGuideInfo?.fixedRateLoansOffers.length">
-            <mat-expansion-panel-header>
-              <p>
-                <b>
-                  Fastrentelån:
-                </b>
-              </p>
-            </mat-expansion-panel-header>
-            <div class="d-flex justify-content-between align-middle mt-2"
-              *ngFor="let offer of bankGuideInfo?.fixedRateLoansOffers">
-              <div class="item">
-                <div>
-                  {{offer.name}}
-                </div>
-                <div>
-                  {{offer.rate | number: "1.2-2"}}%
-                </div>
-              </div>
-            </div>
-          </mat-expansion-panel>
-          <mat-expansion-panel *ngIf="bankGuideInfo?.intermediateFinancingOffers.length">
-            <mat-expansion-panel-header>
-              <p>
-                <b>
-                  Mellomfinansiering:
-                </b>
-              </p>
-            </mat-expansion-panel-header>
-            <div class="d-flex justify-content-between align-middle mt-2"
-              *ngFor="let offer of bankGuideInfo?.intermediateFinancingOffers">
-              <div class="item">
-                <div>
-                  {{offer.name}}
-                </div>
-                <div>
-                  {{offer.rate | number: "1.2-2"}}%
-                </div>
-              </div>
-            </div>
-          </mat-expansion-panel>
-          <mat-expansion-panel *ngIf="bankGuideInfo?.constructionLoansOffers.length">
-            <mat-expansion-panel-header>
-              <p>
-                <b>
-                  Byggelån:
-                </b>
-              </p>
-            </mat-expansion-panel-header>
-            <div class="d-flex justify-content-between align-middle mt-2"
-              *ngFor="let offer of bankGuideInfo?.constructionLoansOffers">
-              <div class="item">
-                <div>
-                  {{offer.name}}
-                </div>
-                <div>
-                  {{offer.rate | number: "1.2-2"}}%
-                </div>
-              </div>
-            </div>
-          </mat-expansion-panel>
-        </mat-accordion>
-      </div>
-    </div>
-    <div class="white-bg p-3 mx-lg-auto mt-4">
-      <div class="bank-name justify-content-lg-center">
-        <div class="logo d-inline-block">
-          <img src="../../../../assets/img/radar_seethrough.png" alt="logo">
-        </div>
-        <h2 class="mb-0 font-weight-normal label">
-          Sjekk renten din på Renteradar.no
-        </h2>
-      </div>
-      
-      <div class="smartphone-presentation d-flex justify-content-between">
-        <img src="../../../../assets/img/rente-promotion.svg">
       </div>
 
-      <div class="button-box">
-        <p>
-          Se om {{bank.label}} har et godt tilbud for deg
-        </p>
-        <rente-button color="primary-wide" [routerLink]="'/'">Logg inn på Renteradar.no</rente-button>
-      </div>
-    </div>
-
-
-
-
-
-    <div *ngIf="depositsBsu.length !== 0|| depositsGeneral.length !== 0" class="scroll-anchor white-bg p-3 mx-lg-auto mt-4" #bankOffering>
-      <div class="bank-name justify-content-lg-center">
-        <div class="logo d-inline-block">
-          <img src="../../../assets/img/banks-logo/round/{{ bank.icon }}" [alt]="bank.label">
-        </div>
-        <h2 class="mb-0">
-          Innskudd
-        </h2>
-      </div>
-
-    <div class="deposit-container">
-
-      <p *ngIf="depositsBsu.length !== 0" class="sub-headline">
-        BSU:
-      </p>
-      <div class="d-flex justify-content-between align-middle mt-2" *ngFor="let offer of depositsBsu">
-        <div class="item">
-        <div>
-          {{offer.name}}
-        </div>
-        <div >
-          {{offer.rate | number: "1.2-2"}}%
-        </div>
-        </div>
-      </div>
-
-      <p *ngIf="depositsGeneral.length !== 0" class="sub-headline">
-        Andre produkter:
-      </p>
-      <div class="d-flex justify-content-between align-middle mt-2" *ngFor="let offer of depositsGeneral">
-        <div class="item">
-        <div>
-          {{offer.name}}
-        </div>
-        <div >
-          {{offer.rate | number: "1.2-2"}}%
-        </div>
-        </div>
-      </div>
-    </div>
-    </div>
-
-    <div #offices></div>
-    <div *ngIf="banksLocations.length !== 0" class="scroll-anchor">
-      <div *ngIf="bank.name === 'DNB' || bank.name === 'NORDEA'" class="white-bg p-3 mx-lg-auto mt-4">
+      <div class="scroll-anchor white-bg p-3 mx-lg-auto mt-4" #bankOffering>
         <div class="bank-name justify-content-lg-center">
           <div class="logo d-inline-block">
             <img src="../../../assets/img/banks-logo/round/{{ bank.icon }}" [alt]="bank.label">
           </div>
-          <h2 class="mb-0 font-weight-normal label d-flex text-left">
-            Filialer
+          <h2 class="mb-0">
+            Boliglån
           </h2>
         </div>
-        <div class="accordion mt-2 w-100">
+
+        <div class="offerings w-100 d-flex flex-column">
+
+          <div class="item">
+            <div>
+              Snittrente våre brukere:
+            </div>
+            <div *ngIf="bankGuideInfo?.medianEffectiveRate;else notPresent">
+              {{bankGuideInfo?.medianEffectiveRate.toFixed(2)}}%
+              <!-- Fix til Ukjent-->
+            </div>
+          </div>
+
+          <div class="item">
+            <div>
+              Beste tilbud:
+            </div>
+            <div *ngIf="bankGuideInfo?.bestNomOffer;else notPresent">
+              {{bankGuideInfo?.bestNomOffer.toFixed(2)}}%
+            </div>
+          </div>
+
+        </div>
+        <div class="offerings-header">
+          Boliglånstilbud:
+        </div>
+        <div class="offering-checklist w-100 text-left">
+          <div class="box-in-list" *ngIf="bankGuideInfo?.regularOffers">
+
+            <span>Vanlig Boliglån</span>
+          </div>
+          <div class="box-in-list" *ngIf="bankGuideInfo?.creditLineLoans">
+
+            <span>Rammelån</span>
+          </div>
+          <div class="box-in-list" *ngIf="bankGuideInfo?.fixedRateLoans">
+
+            <span>Fastrentelån</span>
+          </div>
+          <div class="box-in-list" *ngIf="bankGuideInfo?.intermediateFinancing">
+
+            <span>Mellomfinansiering</span>
+          </div>
+          <div class="box-in-list" *ngIf="bankGuideInfo?.constructionLoans">
+
+            <span>Byggelån</span>
+          </div>
+        </div>
+        <div class="offerings-header">
+          Produkter:
+        </div>
+        <div class="accordion">
           <mat-accordion>
-            <mat-expansion-panel *ngFor="let address of banksLocations">
+            <mat-expansion-panel *ngFor="let membership of memberships">
               <mat-expansion-panel-header>
                 <p>
                   <b>
-                    {{(address | titlecase).replace('Og', 'og')}}
+                    {{(membership | titlecase)}} medlemskapslån
                   </b>
                 </p>
               </mat-expansion-panel-header>
-              <mat-expansion-panel *ngFor="let location of bankGuideInfo?.addresses[address]">
+              <div class="item" *ngFor="let membership of bankGuideInfo?.membershipOffers[membership]">
+                <div> {{membership.name}} </div>
+                <div> {{membership.rate | number: "1.2-2"}}% </div>
+              </div>
+            </mat-expansion-panel>
+
+            <mat-expansion-panel *ngIf="bankGuideInfo?.regularOffers.length">
+              <mat-expansion-panel-header>
+                <p>
+                  <b>
+                    Boliglån:
+                  </b>
+                </p>
+              </mat-expansion-panel-header>
+              <div class="d-flex justify-content-between align-middle mt-2"
+                *ngFor="let offer of bankGuideInfo?.regularOffers">
+                <div class="item">
+                  <div>
+                    {{offer.name}}
+                  </div>
+                  <div>
+                    {{offer.rate | number: "1.2-2"}}%
+                  </div>
+                </div>
+              </div>
+            </mat-expansion-panel>
+            <mat-expansion-panel *ngIf="bankGuideInfo?.creditLineLoansOffers.length">
+              <mat-expansion-panel-header>
+                <p>
+                  <b>
+                    Rammelån:
+                  </b>
+                </p>
+              </mat-expansion-panel-header>
+              <div class="d-flex justify-content-between align-middle mt-2"
+                *ngFor="let offer of bankGuideInfo?.creditLineLoansOffers">
+                <div class="item">
+                  <div>
+                    {{offer.name}}
+                  </div>
+                  <div>
+                    {{offer.rate | number: "1.2-2"}}%
+                  </div>
+                </div>
+              </div>
+            </mat-expansion-panel>
+            <mat-expansion-panel *ngIf="bankGuideInfo?.fixedRateLoansOffers.length">
+              <mat-expansion-panel-header>
+                <p>
+                  <b>
+                    Fastrentelån:
+                  </b>
+                </p>
+              </mat-expansion-panel-header>
+              <div class="d-flex justify-content-between align-middle mt-2"
+                *ngFor="let offer of bankGuideInfo?.fixedRateLoansOffers">
+                <div class="item">
+                  <div>
+                    {{offer.name}}
+                  </div>
+                  <div>
+                    {{offer.rate | number: "1.2-2"}}%
+                  </div>
+                </div>
+              </div>
+            </mat-expansion-panel>
+            <mat-expansion-panel *ngIf="bankGuideInfo?.intermediateFinancingOffers.length">
+              <mat-expansion-panel-header>
+                <p>
+                  <b>
+                    Mellomfinansiering:
+                  </b>
+                </p>
+              </mat-expansion-panel-header>
+              <div class="d-flex justify-content-between align-middle mt-2"
+                *ngFor="let offer of bankGuideInfo?.intermediateFinancingOffers">
+                <div class="item">
+                  <div>
+                    {{offer.name}}
+                  </div>
+                  <div>
+                    {{offer.rate | number: "1.2-2"}}%
+                  </div>
+                </div>
+              </div>
+            </mat-expansion-panel>
+            <mat-expansion-panel *ngIf="bankGuideInfo?.constructionLoansOffers.length">
+              <mat-expansion-panel-header>
+                <p>
+                  <b>
+                    Byggelån:
+                  </b>
+                </p>
+              </mat-expansion-panel-header>
+              <div class="d-flex justify-content-between align-middle mt-2"
+                *ngFor="let offer of bankGuideInfo?.constructionLoansOffers">
+                <div class="item">
+                  <div>
+                    {{offer.name}}
+                  </div>
+                  <div>
+                    {{offer.rate | number: "1.2-2"}}%
+                  </div>
+                </div>
+              </div>
+            </mat-expansion-panel>
+          </mat-accordion>
+        </div>
+      </div>
+      <div class="white-bg p-3 mx-lg-auto mt-4">
+        <div class="bank-name justify-content-lg-center">
+          <div class="logo d-inline-block">
+            <img src="../../../../assets/img/radar_seethrough.png" alt="logo">
+          </div>
+          <h2 class="mb-0 font-weight-normal label">
+            Sjekk renten din på Renteradar.no
+          </h2>
+        </div>
+
+        <div class="smartphone-presentation d-flex justify-content-between">
+          <img src="../../../../assets/img/rente-promotion.svg">
+        </div>
+
+        <div class="button-box">
+          <p>
+            Se om {{bank.label}} har et godt tilbud for deg
+          </p>
+          <rente-button color="primary-wide" [routerLink]="'/'">Logg inn på Renteradar.no</rente-button>
+        </div>
+      </div>
+
+
+
+
+
+      <div *ngIf="depositsBsu.length !== 0|| depositsGeneral.length !== 0"
+        class="scroll-anchor white-bg p-3 mx-lg-auto mt-4" #bankOffering>
+        <div class="bank-name justify-content-lg-center">
+          <div class="logo d-inline-block">
+            <img src="../../../assets/img/banks-logo/round/{{ bank.icon }}" [alt]="bank.label">
+          </div>
+          <h2 class="mb-0">
+            Innskudd
+          </h2>
+        </div>
+
+        <div class="deposit-container">
+
+          <p *ngIf="depositsBsu.length !== 0" class="sub-headline">
+            BSU:
+          </p>
+          <div class="d-flex justify-content-between align-middle mt-2" *ngFor="let offer of depositsBsu">
+            <div class="item">
+              <div>
+                {{offer.name}}
+              </div>
+              <div>
+                {{offer.rate | number: "1.2-2"}}%
+              </div>
+            </div>
+          </div>
+
+          <p *ngIf="depositsGeneral.length !== 0" class="sub-headline">
+            Andre produkter:
+          </p>
+          <div class="d-flex justify-content-between align-middle mt-2" *ngFor="let offer of depositsGeneral">
+            <div class="item">
+              <div>
+                {{offer.name}}
+              </div>
+              <div>
+                {{offer.rate | number: "1.2-2"}}%
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div #offices></div>
+      <div *ngIf="banksLocations.length !== 0" class="scroll-anchor">
+        <div *ngIf="bank.name === 'DNB' || bank.name === 'NORDEA'" class="white-bg p-3 mx-lg-auto mt-4">
+          <div class="bank-name justify-content-lg-center">
+            <div class="logo d-inline-block">
+              <img src="../../../assets/img/banks-logo/round/{{ bank.icon }}" [alt]="bank.label">
+            </div>
+            <h2 class="mb-0 font-weight-normal label d-flex text-left">
+              Filialer
+            </h2>
+          </div>
+          <div class="accordion mt-2 w-100">
+            <mat-accordion>
+              <mat-expansion-panel *ngFor="let address of banksLocations">
+                <mat-expansion-panel-header>
+                  <p>
+                    <b>
+                      {{(address | titlecase).replace('Og', 'og')}}
+                    </b>
+                  </p>
+                </mat-expansion-panel-header>
+                <mat-expansion-panel *ngFor="let location of bankGuideInfo?.addresses[address]">
+                  <mat-expansion-panel-header>
+                    <p>
+                      <b>
+                        {{location.name}}
+                      </b>
+                    </p>
+                  </mat-expansion-panel-header>
+                  <div class="location-details">
+                    <div class="location-item">
+                      <div class="checklist-item font-weight-bolder mt-2">
+                        <mat-icon [inline]="true" color="primary">location_on</mat-icon>
+                        <span>Adresse:</span>
+                      </div>
+                      <p class="location-item-content" [innerHTML]="location.address">
+                      </p>
+                    </div>
+                    <div class="location-item">
+                      <div class="checklist-item font-weight-bolder mt-2">
+                        <mat-icon [inline]="true" color="primary">watch_later</mat-icon>
+                        <span>Åpningstider:</span>
+                      </div>
+                      <p class="location-item-content" [innerHTML]="location.openingHours">
+                      </p>
+                    </div>
+                    <div class="location-item">
+                      <div class="checklist-item font-weight-bolder mt-2">
+                        <mat-icon [inline]="true" color="primary">room_service</mat-icon>
+                        <span>Tjenester:</span>
+                      </div>
+                    </div>
+                    <div *ngIf="location?.bankLocationServiceDomains" class="services">
+                      <div class="checklist-item mt-2" *ngFor="let service of location.bankLocationServiceDomains">
+                        <!--<img src="../../../../assets/icons/checkbox.svg" /> -->
+                        <span>{{service}}</span>
+                      </div>
+                    </div>
+                    <div *ngIf="!location?.bankLocationServiceDomains" class="service-not-present">
+                      -
+                    </div>
+                  </div>
+                </mat-expansion-panel>
+              </mat-expansion-panel>
+            </mat-accordion>
+          </div>
+        </div>
+        <div *ngIf="bank.name !== 'DNB' && bank.name !== 'NORDEA'" class="white-bg p-3 mx-lg-auto mt-4">
+          <div class="bank-name justify-content-lg-center">
+            <div class="logo d-inline-block">
+              <img src="../../../assets/img/banks-logo/round/{{ bank.icon }}" [alt]="bank.label">
+            </div>
+            <div class="label d-flex text-left pl-4">
+              Filialer
+            </div>
+          </div>
+          <div class="accordion mt-2 w-100">
+            <mat-accordion>
+              <mat-expansion-panel *ngFor="let location of addressesArray">
                 <mat-expansion-panel-header>
                   <p>
                     <b>
@@ -461,7 +518,7 @@
                     </p>
                   </div>
                   <div class="location-item">
-                  <div class="checklist-item font-weight-bolder mt-2">
+                    <div class="checklist-item font-weight-bolder mt-2">
                       <mat-icon [inline]="true" color="primary">watch_later</mat-icon>
                       <span>Åpningstider:</span>
                     </div>
@@ -469,7 +526,7 @@
                     </p>
                   </div>
                   <div class="location-item">
-                  <div class="checklist-item font-weight-bolder mt-2">
+                    <div class="checklist-item font-weight-bolder mt-2">
                       <mat-icon [inline]="true" color="primary">room_service</mat-icon>
                       <span>Tjenester:</span>
                     </div>
@@ -485,68 +542,11 @@
                   </div>
                 </div>
               </mat-expansion-panel>
-            </mat-expansion-panel>
-          </mat-accordion>
-        </div>
-      </div>
-      <div *ngIf="bank.name !== 'DNB' && bank.name !== 'NORDEA'" class="white-bg p-3 mx-lg-auto mt-4">
-        <div class="bank-name justify-content-lg-center">
-          <div class="logo d-inline-block">
-            <img src="../../../assets/img/banks-logo/round/{{ bank.icon }}" [alt]="bank.label">
+            </mat-accordion>
           </div>
-          <div class="label d-flex text-left pl-4">
-            Filialer
-          </div>
-        </div>
-        <div class="accordion mt-2 w-100">
-          <mat-accordion>
-            <mat-expansion-panel *ngFor="let location of addressesArray">
-              <mat-expansion-panel-header>
-                <p>
-                  <b>
-                    {{location.name}}
-                  </b>
-                </p>
-              </mat-expansion-panel-header>
-              <div class="location-details">
-                <div class="location-item">
-                  <div class="checklist-item font-weight-bolder mt-2">
-                    <mat-icon [inline]="true" color="primary">location_on</mat-icon>
-                    <span>Adresse:</span>
-                  </div>
-                  <p class="location-item-content" [innerHTML]="location.address">
-                  </p>
-                </div>
-                <div class="location-item">
-                <div class="checklist-item font-weight-bolder mt-2">
-                    <mat-icon [inline]="true" color="primary">watch_later</mat-icon>
-                    <span>Åpningstider:</span>
-                  </div>
-                  <p class="location-item-content" [innerHTML]="location.openingHours">
-                  </p>
-                </div>
-                <div class="location-item">
-                <div class="checklist-item font-weight-bolder mt-2">
-                    <mat-icon [inline]="true" color="primary">room_service</mat-icon>
-                    <span>Tjenester:</span>
-                  </div>
-                </div>
-                <div *ngIf="location?.bankLocationServiceDomains" class="services">
-                  <div class="checklist-item mt-2" *ngFor="let service of location.bankLocationServiceDomains">
-                    <!--<img src="../../../../assets/icons/checkbox.svg" /> -->
-                    <span>{{service}}</span>
-                  </div>
-                </div>
-                <div *ngIf="!location?.bankLocationServiceDomains" class="service-not-present">
-                  -
-                </div>
-              </div>
-            </mat-expansion-panel>
-          </mat-accordion>
         </div>
       </div>
     </div>
-</div>
 
   </ng-container>
 </div>
@@ -559,4 +559,3 @@
 <ng-template #unknown>
   <div class="unknown">Ukjent</div>
 </ng-template>
-

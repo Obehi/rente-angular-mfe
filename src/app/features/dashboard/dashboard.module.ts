@@ -28,6 +28,8 @@ import {
   MatTooltipModule,
   MatExpansionModule
 } from '@angular/material';
+import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
+
 import { RateTypeFixedComponent } from './rate-type-fixed/rate-type-fixed.component';
 import { ChangeBankDialogComponent } from './offers/change-bank-dialog/change-bank-dialog.component';
 import { HouseFormErrorDialogComponent } from './house/error-dialog/error-dialog.component';
@@ -61,6 +63,7 @@ import { AntiChurnErrorDialogComponent } from './offers/anti-churn-dialog/anti-c
 import { NordeaBargainSuccessComponent } from './offers/bargain-success/bargain-nordea/nordea-bargain-success.component';
 import { CanNotBargainDialogComponent } from './offers/can-not-bargain-dialog/can-not-bargain-dialog.component';
 import { OfferCardV1Component } from './offers/offers-blue/offer-card-v1/offer-card-v1.component';
+import { OfferCardV2Component } from './offers/offers-blue/offer-card-v2/offer-card-v2.component';
 
 // TODO: ADD separate module for material import
 @NgModule({
@@ -105,7 +108,8 @@ import { OfferCardV1Component } from './offers/offers-blue/offer-card-v1/offer-c
     OfferCardV1Component,
     AntiChurnErrorDialogComponent,
     CanNotBargainDialogComponent,
-    NordeaBargainSuccessComponent
+    NordeaBargainSuccessComponent,
+    OfferCardV2Component
   ],
   imports: [
     CommonModule,
@@ -128,7 +132,9 @@ import { OfferCardV1Component } from './offers/offers-blue/offer-card-v1/offer-c
     MatCheckboxModule,
     MatBottomSheetModule,
     MatExpansionModule,
-    MatStepperModule
+    MatStepperModule,
+    NgbRatingModule
+
     // ShareButtonModule
   ],
   entryComponents: [
