@@ -210,6 +210,16 @@
         grid-column-end: span 2;
         padding: 10px;
         .item {
+          .icon {
+            background: $grey-light;
+            justify-self: start;
+            background: #f4f5f6;
+            border-radius: 6px;
+            width: 30px;
+            height: 30px;
+            padding: 6px;
+            // padding: 10px;
+          }
           display: flex;
           flex-direction: row;
           text-align: left;
@@ -349,6 +359,9 @@
             min-width: 45px;
             text-align: center;
             z-index: 10;
+          }
+          .right {
+            margin-left: auto;
           }
         }
         .right {

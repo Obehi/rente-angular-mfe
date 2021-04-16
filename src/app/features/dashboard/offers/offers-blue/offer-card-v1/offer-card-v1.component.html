@@ -70,34 +70,40 @@
 
       <div class="offer-properties">
         <div class="item">
+          <img class="icon" src="../../../../assets/icons/clock-grey.svg" />
+
           <p i18n=“application-time|offer-card@@offer.card.applicationTime” class="left">Hvor lang tid tar det å søke:
           </p>
 
-          <p i18n=“demand-change|offer-card@@offer.card.timeApply.value” class="box">
+          <p i18n=“demand-change|offer-card@@offer.card.timeApply.value” class="box right">
             {{offer.bankInfo.applicationTime === null ? customLangTextSerice.get18nFixForUnknown() :
             offer.bankInfo.applicationTime + " min"}}
           </p>
         </div>
 
         <div class="item">
+          <img class="icon" src="../../../../assets/icons/swap-grey.svg" />
           <p i18n=“demand-change|offer-card@@offer.card.demandChange” class="left">Krever bytte av nettbank</p>
-          <p i18n=“no-yes|offer-card@@offer.card.noYes” class="box">{{ offer.requiredProductPackage == null ?
+          <p i18n=“no-yes|offer-card@@offer.card.noYes” class="box right">{{ offer.requiredProductPackage == null ?
             customLangTextSerice.get18nFixForNo() : "Ja" }}</p>
         </div>
 
         <div class="item">
+          <img class="icon" src="../../../../assets/icons/bank-grey.svg" />
           <p i18n=“demand-change|offer-card@@offer.card.bankType class="left">Type bank</p>
-          <p class="box">{{ offer.marketArea}}</p>
+          <p class="box right">{{ offer.marketArea}}</p>
         </div>
 
         <div class="item">
+          <img class="icon" src="../../../../assets/icons/bank-grey.svg" />
           <p i18n=“demand-change|offer-card@@offer.card.bankType class="left">Geografi</p>
-          <p class="box">{{ offer.marketArea}}</p>
+          <p class="box right">{{ offer.marketArea}}</p>
         </div>
 
         <div class="item">
+          <img class="icon" src="../../../../assets/icons/graph-grey.svg" />
           <p i18n=“demand-change|offer-card@@offer.card.historicRate class="left">Historisk plassering</p>
-          <p class="box">{{ offer.bankRating }}</p>
+          <p class="box right">{{ offer.bankRating }}</p>
         </div>
 
         <div class="item">
@@ -112,7 +118,7 @@
 
         <div class="item left">
           <p i18n=“demand-change|offer-card@@offer.card.demandChange” class="left">Krever bytte av nettbank:</p>
-          <p i18n=“no-yes|offer-card@@offer.card.noYes” class="box">{{ offer.requiredProductPackage == null ?
+          <p i18n=“no-yes|offer-card@@offer.card.noYes” class="box right">{{ offer.requiredProductPackage == null ?
             customLangTextSerice.get18nFixForNo() : "Ja" }}</p>
         </div>
 
