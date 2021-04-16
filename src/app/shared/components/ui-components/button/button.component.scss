@@ -1,8 +1,8 @@
-@import "../../../../../styles/theme/_colors.scss";
+@import '../../../../../styles/theme/_colors.scss';
 .button-wrapper {
   display: block;
   text-align: center;
-  
+
   span {
     pointer-events: none;
   }
@@ -34,7 +34,6 @@ button.mat-primary-hollow {
   white-space: break-spaces;
 }
 
-
 button.mat-button:hover:not([disabled]) {
   opacity: 0.8;
 }
@@ -43,13 +42,13 @@ button[disabled] {
 }
 
 button.mat-secondary[disabled][disabled] {
-  background: #ECECEC;
-  color: #B5B4B4;
+  background: #ececec;
+  color: #b5b4b4;
   opacity: 1;
 }
 
 button.mat-grey[disabled] {
-  opacity: 1.0  ;
+  opacity: 1;
   color: white;
 }
 
@@ -81,7 +80,7 @@ button.mat-blue {
   color: white;
 }
 
-button.mat-blue-bank{
+button.mat-blue-bank {
   background-color: $blue;
   color: white;
   width: 135px;
@@ -91,7 +90,7 @@ button.mat-primary-wide {
   background-color: $primary;
   color: white;
   height: 56px;
-  width: 80%
+  width: 80%;
 }
 
 button.mat-primary-wide-break {
@@ -101,7 +100,6 @@ button.mat-primary-wide-break {
   width: 100%;
   white-space: break-spaces;
 }
-
 
 button.mat-primary-wide[disabled] {
   color: white !important;
@@ -183,31 +181,10 @@ button.mat-primary-wide-hollow[disabled] {
   opacity: 1;
   height: 56px;
   background-color: unset;
-  color: #A9A9A9;
-  border: 1px solid #C9EAE3;
+  color: #a9a9a9;
+  border: 1px solid #c9eae3;
 }
 
-button.mat-primary-wide-hollow-card {
-  background-color: white;
-  color: black;
-  border: 1px solid $primary;
-  height: 56px;
-  width: 100%;
-  white-space: break-spaces;
-  border-radius: 100px;
-}
-
-button.mat-primary-wide-hollow-card[disabled] {
-  opacity: 1;
-  height: 56px;
-  width: 100%;
-  background-color: unset;
-  color: #A9A9A9;
-  border: 1px solid #C9EAE3;
-  border-radius: 100px;
-}
-  
-  
 button.mat-blue-wide {
   background-color: $blue;
   color: white;
@@ -231,11 +208,6 @@ button.mat-orange {
   display: inline-block;
 }
 
-
-
-
-
-
 @keyframes spin {
   from {
     transform: rotate(0deg);
@@ -246,4 +218,58 @@ button.mat-orange {
   }
 }
 
+button.mat-primary-wide-hollow-card {
+  background-color: white;
+  color: black;
+  border: 1px solid $primary;
+  height: 45px;
+  font-size: 14px;
+  width: 100%;
+  white-space: break-spaces;
+  border-radius: 100px;
+}
 
+button.mat-primary-wide-hollow-card[disabled] {
+  opacity: 1;
+  height: 45px;
+  font-size: 14px;
+  width: 100%;
+  background-color: unset;
+  color: #a9a9a9;
+  border: 1px solid #c9eae3;
+  border-radius: 100px;
+}
+
+button.mat-primary-medium-card {
+  background-color: $primary;
+  color: white;
+  height: 45px;
+  font-size: 14px;
+  width: 100%;
+  border-radius: 100px;
+}
+
+button.mat-primary-medium-card[disabled] {
+  color: white !important;
+}
+
+button.mat-secondary-medium-card {
+  background-color: $secondary;
+  color: white;
+  height: 45px;
+  font-size: 14px;
+  width: 100%;
+  border-radius: 100px;
+}
+
+button.mat-primary-medium[disabled] {
+  color: white !important;
+}
+
+button.mat-secondary-medium {
+  background-color: $secondary;
+  color: white;
+  height: 45px;
+  font-size: 14px;
+  border-radius: 100px;
+}

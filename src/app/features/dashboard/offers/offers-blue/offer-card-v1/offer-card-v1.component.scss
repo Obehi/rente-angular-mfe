@@ -218,6 +218,7 @@
             width: 30px;
             height: 30px;
             padding: 6px;
+            margin-right: 10px;
             // padding: 10px;
           }
           display: flex;
@@ -248,10 +249,6 @@
           &.right {
             margin-right: 10px;
             grid-column: 2;
-          }
-
-          &.middle {
-            margin-top: 20px;
           }
 
           &.satisfaction-wrapper {
@@ -305,7 +302,6 @@
             //Hack to position details next to smiley
             @media (max-width: 600px) {
               position: relative;
-              top: -20px;
             }
             .mat-expansion-panel {
               border-radius: 0px;
@@ -398,6 +394,7 @@
         justify-content: space-between;
         grid-column-start: 1;
         grid-column-end: span 2;
+        margin-top: -25px;
         margin: 0 20px 0;
         > * {
           margin-bottom: 10px;
