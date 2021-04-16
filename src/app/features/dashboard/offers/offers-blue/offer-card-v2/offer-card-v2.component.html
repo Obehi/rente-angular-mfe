@@ -79,26 +79,28 @@
                         <div class="satisfaction-wrapper">
                             <div class="satisfaction">
                                 <div class="bank-rating-text">
-                                    <p i18n=“customer-satisfied|offer-card@@offer.card.customerSatisfied” class="left">
+                                    <p i18n=“customer-satisfied|offer-card@@offer.card.customerSatisfied” class="small">
                                         Kundetilfredshet:
                                     </p>
                                 </div>
                                 <img class="offer-score"
                                     src="../../../../assets/icons/score-{{offer.bankInfo.score }}.svg" />
                             </div>
+                            <span (click)="openInfoDialog()" class="clickable bank-rating-info-button">
+                                <mat-icon class="material-icons secondary">help</mat-icon>
+                            </span>
                         </div>
-                        <span (click)="openInfoDialog()" class="clickable bank-rating-info-button">
-                            <mat-icon class="material-icons secondary">help</mat-icon>
-                        </span>
+
 
                         <div class="historical-rating">
-                            <p i18n=“demand-change|offer-card@@offer.card.historicRate class="left">Historisk
+                            <p i18n=“demand-change|offer-card@@offer.card.historicRate class="small">
+                                Historisk
                                 plassering
                             </p>
                             <p class="box">{{ offer.bankRating }}</p>
                         </div>
                         <div class="mobile-rating" *ngIf="true">
-                            <p>Mobilbank</p>
+                            <p class="small">Mobilbank</p>
 
                             <ng-template #t let-fill="fill">
                                 <span class="star" [class.full]="fill === 100">
