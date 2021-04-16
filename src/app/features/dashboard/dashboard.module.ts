@@ -60,6 +60,7 @@ import { AntiChurnDialogComponent } from './offers/anti-churn-dialog/anti-churn-
 import { AntiChurnErrorDialogComponent } from './offers/anti-churn-dialog/anti-churn-error-dialog/anti-churn-error-dialog.component';
 import { NordeaBargainSuccessComponent } from './offers/bargain-success/bargain-nordea/nordea-bargain-success.component';
 import { CanNotBargainDialogComponent } from './offers/can-not-bargain-dialog/can-not-bargain-dialog.component';
+import { ChangeBankTooManyTriesDialogError } from './offers/change-bank-dialog/change-bank-too-many-tries-dialog-error/change-bank-too-many-tries-dialog-error.component';
 
 // TODO: ADD separate module for material import
 @NgModule({
@@ -102,7 +103,8 @@ import { CanNotBargainDialogComponent } from './offers/can-not-bargain-dialog/ca
     AntiChurnDialogComponent,
     AntiChurnErrorDialogComponent,
     CanNotBargainDialogComponent,
-    NordeaBargainSuccessComponent
+    NordeaBargainSuccessComponent,
+    ChangeBankTooManyTriesDialogError
   ],
   imports: [
     CommonModule,

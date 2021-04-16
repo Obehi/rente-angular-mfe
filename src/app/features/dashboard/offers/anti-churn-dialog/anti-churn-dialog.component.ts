@@ -53,7 +53,7 @@ export class AntiChurnDialogComponent implements OnInit {
       (error) => {
         this.isLoading = false;
         if (error.detail === 'Less than week since last email') {
-          this.closeState = 'error-to-many-bargains';
+          this.closeState = 'error-to-many-bargains-nordea';
           this.dialogRef.close();
         } else {
           this.isLoading = false;
