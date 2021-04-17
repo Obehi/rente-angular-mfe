@@ -40,6 +40,7 @@ import {
   OffersService,
   OfferMessage
 } from '@features/dashboard/offers/offers.service';
+import { OptimizeService } from '@services/optimize.service';
 @Component({
   selector: 'rente-offers-blue',
   templateUrl: './offers.component.html',
@@ -107,7 +108,8 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
     public customLangTextSerice: CustomLangTextService,
     public envService: EnvService,
     private offersService: OffersService,
-    private logginService: LoggingService
+    private logginService: LoggingService,
+    private optimizeService: OptimizeService
   ) {
     this.onResize();
 
@@ -129,6 +131,7 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
   }
 
   public ngOnInit(): void {
+    this.optimizeService.getVariation();
     if (locale.includes('sv')) {
       this.isSweden = true;
     } else {
