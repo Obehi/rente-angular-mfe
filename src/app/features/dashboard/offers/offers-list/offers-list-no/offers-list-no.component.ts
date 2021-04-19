@@ -10,6 +10,15 @@ export class OffersListNoComponent implements OnInit {
   @Input() offersInfo: Offers;
   public currentOfferInfo: Offers;
 
+  isV1 = true;
+
+  public setV1(): void {
+    this.isV1 = true;
+  }
+
+  public setV2(): void {
+    this.isV1 = false;
+  }
   get isMobile(): boolean {
     return window.innerWidth < 600;
   }
