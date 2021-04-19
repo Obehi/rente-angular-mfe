@@ -15,19 +15,23 @@ export class BarComponent implements OnInit {
   }
 
   get widthPercentage(): string {
+    console.log(this.currentValue);
+    console.log(this.percentage);
+    console.log(`${String(this.percentage * 100)}%`);
     return `${String(this.percentage * 100)}%`;
   }
 
   get colorClass(): string {
     let color = '';
+
     if (this.percentage > 0.8) {
       color = 'green';
     } else if (this.percentage > 0.6) {
       color = 'green-light';
     } else if (this.percentage > 0.4) {
-      color = 'orange';
-    } else if (this.percentage > 0.2) {
       color = 'yellow';
+    } else if (this.percentage > 0.2) {
+      color = 'orange';
     } else {
       color = 'red';
     }
