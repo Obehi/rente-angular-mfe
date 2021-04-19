@@ -8,11 +8,14 @@ import { OfferInfo } from '@shared/models/offers';
 })
 export class OfferDetailsNoComponent implements OnInit {
   @Input() offer: OfferInfo;
+  @Input() align: string;
   @Output() closeClicked = new EventEmitter();
 
   constructor() {}
 
   ngOnInit() {
+    console.log('this.align');
+    console.log(this.align);
     if (this.offer.establishmentFee == undefined) {
       this.offer.establishmentFee = 0;
     }

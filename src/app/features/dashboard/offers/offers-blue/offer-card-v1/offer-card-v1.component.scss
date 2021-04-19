@@ -66,11 +66,16 @@
       background-color: $grey-dark;
       border-radius: 16px;
       background-color: #54606e;
-      padding: 17px;
+
       color: white;
+
       font-size: 14px;
       line-height: unset;
-      min-width: 75px;
+      text-align: center;
+      padding: 8px;
+      min-width: 58px;
+      padding-top: 16px;
+      max-height: 48px;
     }
 
     .logo {
@@ -368,6 +373,7 @@
                 padding: 0px;
                 background: transparent;
                 align-self: center;
+                width: 60px;
                 .mat-expansion-indicator {
                   display: none;
                 }

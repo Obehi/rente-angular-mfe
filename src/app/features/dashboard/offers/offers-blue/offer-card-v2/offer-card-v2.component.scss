@@ -78,10 +78,26 @@
       font-size: 14px;
       line-height: unset;
       min-width: 75px;
+      max-height: 50px;
     }
+
+    /* .interest-rate {
+      background-color: $grey-dark;
+      border-radius: 16px;
+      background-color: #54606e;
+      color: white;
+      font-size: 14px;
+      line-height: unset;
+      text-align: center;
+      padding: 8px;
+      min-width: 58px;
+      padding-top: 16px;
+      max-height: 48px;
+    } */
 
     .logo {
       width: 3em;
+      min-width: 3em;
       height: 3em;
       font-size: 16px;
       background-position: center;
@@ -140,6 +156,7 @@
   }
   .top-bank-info {
     margin-left: 48px;
+    margin-top: 7px;
     align-self: start;
     p {
       display: inline-block;
@@ -149,6 +166,11 @@
       font-size: 12px;
       font-weight: 400;
       color: $grey-dark;
+
+      &:first-of-type {
+        margin-right: 10px;
+        margin-bottom: 10px;
+      }
     }
   }
 
@@ -237,6 +259,16 @@
 
         .small {
           margin-bottom: 5px;
+          position: relative;
+
+          span {
+            position: relative;
+
+            * {
+              position: absolute;
+              left: -5px;
+            }
+          }
         }
         .historical-rating {
           p {
@@ -296,6 +328,7 @@
         grid-column-start: 1;
         grid-column-end: span 2;
         padding: 10px;
+        margin: 10px;
         .item {
           display: flex;
           flex-direction: row;
@@ -582,6 +615,7 @@
   display: flex;
   flex-direction: column;
   .mat-expansion-panel-header {
+    color: $grey-dark;
     font-size: 12px;
     margin-left: 0px;
     margin-top: 13px;
@@ -590,6 +624,7 @@
     padding: 0px;
     background: transparent;
     align-self: center;
+    width: 60px;
     .mat-expansion-indicator {
       display: none;
     }
@@ -640,4 +675,8 @@
   .mat-icon {
     font-size: 18px;
   }
+}
+
+::ng-deep .mat-expansion-panel-header:hover {
+  background: unset !important;
 }

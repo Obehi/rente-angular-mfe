@@ -31,6 +31,9 @@
             <p>
                 {{offer.marketArea}}
             </p>
+            <p>
+                Lokal sparebank
+            </p>
         </div>
         <div *ngIf="true" class="special-promo">
             <img class="box-icon" src="../../../../../assets/icons/badge.svg" />
@@ -141,22 +144,13 @@
                         </div>
 
                         <div class="item">
-                            <p i18n=“demand-change|offer-card@@offer.card.bankType class="left">Type bank</p>
-                            <p class="box">{{ offer.marketArea}}</p>
-                        </div>
-
-                        <div class="item">
-                            <p i18n=“demand-change|offer-card@@offer.card.bankType class="left">Geografi</p>
-                            <p class="box">{{ offer.marketArea}}</p>
-                        </div>
-
-                        <div class="item">
                             <p i18n=“demand-change|offer-card@@offer.card.historicRate class="left">Historisk plassering
                             </p>
                             <p class="box">{{ offer.bankRating }}</p>
                         </div>
                     </div>
-                    <rente-offer-card-details [offer]="offer" (closeClicked)="xpandStatus=xpandStatus?false:true">
+                    <rente-offer-card-details class="details-wrapper" [offer]="offer" [align]="'center'"
+                        (closeClicked)="xpandStatus=xpandStatus?false:true">
                     </rente-offer-card-details>
                 </mat-expansion-panel>
 
@@ -172,16 +166,16 @@
                 </rente-button>
 
                 <div>
-                    <rente-button class="button" child childClass="{{offer.bankInfo.name}}"
-                        i18n=“get-offer|offer-card@@offer.card.getOffer” [disabled]="offer.bankInfo.partner == false"
-                        color="primary-medium" type="raised" (click)="openNewOfferDialog(offer)">Få tilbud fra {{
+                    <rente-button class="button" i18n=“get-offer|offer-card@@offer.card.getOffer”
+                        [disabled]="offer.bankInfo.partner == false" color="primary-medium-card" type="raised"
+                        (click)="openNewOfferDialog(offer)">Få tilbud fra {{
                         getbankNameOrDefault(offer) }}!
                     </rente-button>
                     <p class="small" *ngIf=" offer.bankInfo.partner === false"> (Ingen avtale med banken)</p>
                 </div>
 
                 <div *ngIf="isNordea">
-                    <rente-button child childClass="{{offer.bankInfo.name}}" color="secondary-medium" type="raised"
+                    <rente-button child childClass="{{offer.bankInfo.name}}" color="secondary-medium-card" type="raised"
                         (click)="clickNordea()">
                         Be Nordea om et bedre tilbud
                     </rente-button>
