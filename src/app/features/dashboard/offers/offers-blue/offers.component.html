@@ -10,32 +10,7 @@
       offersInfo?.ltvType === offersLtvType.LTV_TOO_HIGH_85
     "
   >
-    <div class="desktop">
-      <!-- 
-          <a *ngIf="offersInfo?.ltvType === offersLtvType.LTV_TOO_HIGH_85" class="obs clickable"
-          (click)="openLtvTooHightDialog()">
-  
-          <p>
-            <b>OBS:</b> Vi har beregnet belåningsgraden din til over 85%.
-            Vennligst kontroller boligverdien i boligfanen. Du kan også lese
-            mer om dette ved å <a>klikke her</a>.
-            ng
-          </p>
-        </a> 
-        -->
-
-      <!-- <div *ngIf="
-          offersInfo?.incompleteInfoLoanPresent === true
-        " class="obs">
-          <p>
-            <b>OBS:</b> Vi får kun hentet din nominelle rente og lånebeløp. For
-            utregninger har vi tatt utgangspunkt i en gjenværende løpetid på 20 år,
-            månedlige betalinger og 50,- i termingebyr. Faktisk løpetid og
-            termingebyrer vil endre forventede besparelser.
-          </p>
-        </div> -->
-    </div>
-
+    <!--- <div class="desktop"> -->
     <div class="dashboard-inner-wrapper">
       <div class="rente-boxes desktop-main-box-grid desktop">
         <!-- barometer -->
@@ -58,122 +33,50 @@
           </rente-offers-statistics-blue>
         </div>
 
-        <div *ngIf="isSweden" class="big-box round-box left">
-          <div class="top">
-            <div class="circleIconWrapper">
-              <img
-                class=""
-                src="../../../../assets/icons/rente-green-big.svg"
-              />
-            </div>
-            <p i18n="“found-offers|offers-main@@offers.mainPage.foundOffers”">
-              Vi har funnet de beste tilbudene for deg
-            </p>
-          </div>
-          <div class="bottom">
-            <rente-button
-              i18n="
-                “found-best-offers|offers-main@@offers.mainPage.found.bestOffers.button”"
-              [disabled]="
-                changeBankLoading ||
-                offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS
-              "
-              [isLoading]="changeBankLoading"
-              color="primary-wide"
-              (click)="goToBestOffer()"
-              >Se beste tilbud</rente-button
-            >
-          </div>
-        </div>
-        <div
-          *ngIf="canBargain && isSweden"
-          class="big-box round-box right desktop"
-        >
-          <div class="top">
-            <div class="circleIconWrapper">
-              <img class="" src="../../../../assets/icons/mail-green.svg" />
-            </div>
-            <p i18n="“help-you|offers-main@@offers.mainPage.helpYou”">
-              Be banken min om lavere rente
-            </p>
-          </div>
-          <div class="bottom">
-            <rente-button
-              i18n="“help-you|offers-main@@offers.mainPage.helpYou.button”"
-              color="primary-wide-hollow"
-              [disabled]="
-                changeBankLoading ||
-                offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS
-              "
-              [isLoading]="changeBankLoading"
-              (click)="openChangeBankDialog(offersInfo.offers.top5[0])"
-              >Be banken matche tilbud</rente-button
-            >
-          </div>
-        </div>
-        <div
-          *ngIf="!canBargain && isSweden"
-          class="big-box round-box right desktop"
-        >
-          <div class="top">
-            <div class="circleIconWrapper">
-              <img class="" src="../../../../assets/icons/mail-green.svg" />
-            </div>
-            <p>Pruta-funktionen är inte tillgänglig för dig</p>
-          </div>
-          <div class="bottom">
-            <rente-button
-              color="primary-wide-hollow"
-              [disabled]="
-                changeBankLoading ||
-                offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS
-              "
-              [isLoading]="changeBankLoading"
-              (click)="openBargainMoreInfoDialog()"
-              >Läs mer</rente-button
-            >
-          </div>
-        </div>
-
         <tips-component [offersInfo]="offersInfo"></tips-component>
 
         <action-boxes
+          [canBargain]="canBargain"
+          [isSweden]="isSweden"
+          [antiChurnIsOn]="antiChurnIsOn"
+          [offersInfo]="offersInfo"
+          [offerSavingsType]="offerSavingsType"
+        ></action-boxes>
+      </div>
+
+      <!-- Mobile boxes -->
+      <div class="rente-boxes mobile">
+        <barometer
+          [offersInfo]="offersInfo"
+          [offerSavingsType]="offerSavingsType"
+        ></barometer>
+
+        <box-grid [offersInfo]="offersInfo"></box-grid>
+
+        <!-- Mobile Tips -->
+        <tips-component [offersInfo]="offersInfo"></tips-component>
+        <!-- Mobile Tips -->
+
+        <action-boxes
+          [canBargain]="canBargain"
+          [isSweden]="isSweden"
+          [antiChurnIsOn]="antiChurnIsOn"
           [offersInfo]="offersInfo"
           [offerSavingsType]="offerSavingsType"
         ></action-boxes>
 
-        <!-- Mobile boxes -->
-        <div class="rente-boxes mobile">
-          <div class="info-box-grid">
-            <barometer
-              [offersInfo]="offersInfo"
-              [offerSavingsType]="offerSavingsType"
-            ></barometer>
-
-            <box-grid [offersInfo]="offersInfo"></box-grid>
-
-            <!-- Mobile Tips -->
-            <tips-component [offersInfo]="offersInfo"></tips-component>
-            <!-- Mobile Tips -->
-          </div>
-          <action-boxes
+        <div *ngIf="isMobile" class="compared">
+          <rente-offers-statistics-blue
             [offersInfo]="offersInfo"
-            [offerSavingsType]="offerSavingsType"
-          ></action-boxes>
-
-          <div *ngIf="isMobile" class="compared">
-            <rente-offers-statistics-blue
-              [offersInfo]="offersInfo"
-              [userRateColor]="rateBarPercentage.hex"
-            >
-            </rente-offers-statistics-blue>
-          </div>
+            [userRateColor]="rateBarPercentage.hex"
+          >
+          </rente-offers-statistics-blue>
         </div>
-
-        <rente-offers-list [offersInfo]="currentOfferInfo"></rente-offers-list>
       </div>
-      <!-- Mobile boxes -->
+
+      <rente-offers-list [offersInfo]="currentOfferInfo"></rente-offers-list>
     </div>
+    <!-- Mobile boxes -->
 
     <div class="problems" style="max-width: 780px">
       <div

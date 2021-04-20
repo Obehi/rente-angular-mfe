@@ -1,6 +1,27 @@
 @import '../../../../../../styles/theme/_colors.scss';
 
+:host {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-start: 1;
+  grid-column-end: span 2;
+  column-gap: 22px;
+}
+
 .tipsAccordion {
+  @media (max-width: 600px) {
+    grid-row: 3;
+    grid-column-start: 1;
+    grid-column-end: span 2;
+    position: relative;
+    top: 7px;
+    margin-top: 15px;
+
+    padding: 10px 10px !important;
+    cursor: pointer;
+    background-color: #112639;
+    text-align: left;
+  }
   position: relative;
   top: 7px;
 
@@ -8,6 +29,23 @@
   cursor: pointer;
   background-color: #112639;
   text-align: left;
+  p {
+    font-size: 16px;
+    color: $white;
+  }
+}
+
+.info-accordion {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-row: 2;
+  grid-column-end: span 2;
+  //grid-row-gap: 100px;
+  @media (max-width: 600px) {
+    display: grid;
+    grid-row: 4;
+    padding: 0px;
+  }
 }
 
 .round-box {
@@ -26,29 +64,46 @@
   margin-top: 2px;
 }
 
+.tipText {
+  width: 80%;
+  color: #112639 !important;
+  @media (min-width: 600px) {
+    width: 100%;
+  }
+}
+
 p {
   color: white;
-  font-size: 16px;
+  font-size: 14px;
+  text-align: left;
 }
 
 .tips {
-  @media (min-width: 850px) {
+  @media (min-width: 600px) and (min-width: 850px) {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
+    margin-top: 22px;
     //grid-auto-rows: 1fr; //Same height for all boxes across all rows
   }
 
   @media (min-width: 768px) and (max-width: 849px) {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    margin-top: 22px;
   }
 
   @media (min-width: 601) and (max-width: 768px) {
     display: grid;
     grid-template-columns: 1fr;
+    margin-top: 22px;
   }
 
-  padding: 5px !important;
+  @media (max-width: 600px) {
+    padding: 0px;
+    margin-top: 5px;
+  }
+
+  padding: 5px;
   display: flex;
   flex-wrap: wrap;
   margin-top: 0px;
@@ -63,7 +118,7 @@ p {
       .tip {
         display: grid;
         margin: 15px;
-        grid-template-columns: 6fr 1fr;
+        grid-template-columns: 1fr; /////////
         padding: 5px 0px 15px 5px;
         .tipTop {
           display: flex;
@@ -101,6 +156,30 @@ p {
   }
 }
 
+// .obs {
+//   display: block;
+//   background-color: #fff4ed !important;
+//   @media (max-width: 600px) {
+//     display: block;
+//     border-radius: 0px;
+//   }
+// }
+
+.obs {
+  display: block;
+
+  //border-bottom: 1px solid $warning;
+  background-color: $lightwarning !important;
+  @media (max-width: 600px) {
+    //padding: 10px 20px;
+    div {
+      p {
+        color: $secondary !important;
+      }
+    }
+  }
+}
+
 .tipTop {
   display: flex;
   grid-row: 1;
@@ -109,15 +188,19 @@ p {
   align-items: baseline;
 
   img {
-    grid-row: 1;
-    grid-column-start: 1;
-    grid-column-end: span 2;
+    @media (max-width: 600px) {
+      width: 20px;
+      height: 30px;
+    }
     width: 20px;
     height: 20px;
     margin: 0 10px 10px 0;
   }
 
   h4 {
+    @media (max-width: 600px) {
+      display: none;
+    }
     font-weight: 400;
   }
 }

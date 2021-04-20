@@ -21,6 +21,13 @@
     margin-bottom: 40px;
     margin-top: 40px;
   }
+  @media (max-width: 600px) {
+    background: $white;
+    border-radius: 15px;
+    padding: 20px 10px;
+    margin-bottom: 0px;
+    border-bottom: 1px solid $light;
+  }
 
   h3 {
     color: black;
@@ -51,6 +58,9 @@
 
 .rente-bar-container {
   width: 77%;
+  @media (max-width: 600px) {
+    width: 100%;
+  }
 }
 
 .bar-ticks {

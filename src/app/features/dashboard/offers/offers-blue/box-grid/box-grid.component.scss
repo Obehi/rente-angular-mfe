@@ -1,5 +1,13 @@
 @import '../../../../../../styles/theme/_colors.scss';
 
+:host {
+  @media (max-width: 600px) {
+    grid-row: 2;
+    grid-column-start: 1;
+    grid-column-end: span 2;
+  }
+}
+
 .info-box-grid {
   display: grid;
   grid-gap: 22px;
@@ -7,6 +15,11 @@
 
   @media (min-width: 600px) {
     min-height: 350px;
+  }
+
+  @media (max-width: 600px) {
+    display: grid;
+    margin-top: 22px;
   }
 }
 

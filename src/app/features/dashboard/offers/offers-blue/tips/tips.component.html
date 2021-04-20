@@ -10,7 +10,10 @@
   </p>
 </div>
 
-<div class="tips round-box" *ngIf="isShowTips && tips.length > 0">
+<div
+  class="tips info-accordion round-box"
+  *ngIf="isShowTips && tips.length > 0"
+>
   <div
     *ngFor="let tip of tips; let i = index"
     [ngClass]="{
@@ -24,7 +27,7 @@
         <img src="../../../../assets/icons/{{ tip.icon }}.svg" />
         <h4>{{ tip.header }}</h4>
       </div>
-      <p>
+      <p class="tipText">
         {{ tip.text }}
       </p>
     </div>
