@@ -10,6 +10,8 @@ export class OffersListSvComponent implements OnInit {
   @Input() offersInfo: Offers;
   public currentOfferInfo: Offers;
 
+  isV1 = true;
+
   get isMobile(): boolean {
     return window.innerWidth < 600;
   }
@@ -27,6 +29,14 @@ export class OffersListSvComponent implements OnInit {
         return offer;
       }
     );
+  }
+
+  public setV1(): void {
+    this.isV1 = true;
+  }
+
+  public setV2(): void {
+    this.isV1 = false;
   }
 
   public setOfferType(type: string): void {

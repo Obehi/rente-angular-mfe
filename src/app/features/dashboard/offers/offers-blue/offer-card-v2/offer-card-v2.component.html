@@ -87,7 +87,8 @@
                         Mer info
                     </mat-expansion-panel-header>
 
-                    <div class="top-details">
+                    <div class="top-details"
+                        [style.grid-template-columns]="offer.bankRating ? '1fr 1fr 1fr' : '1fr 1fr'">
                         <p i18n=“customer-satisfied|offer-card@@offer.card.customerSatisfied”
                             class="small top-details-top">
                             Kundetilfredshet
@@ -96,11 +97,13 @@
                             </span>
                         </p>
 
-                        <p i18n=“demand-change|offer-card@@offer.card.historicRate class="small top-details-top">
+                        <p *ngIf="offer.bankRating" i18n=“demand-change|offer-card@@offer.card.historicRate
+                            class="small top-details-top">
                             Historisk
                             plassering
                         </p>
-                        <p class="small top-details-top">Mobilbank</p>
+                        <p i18n=“customer-satisfied|offer-card@@offer.card.details.appRating”
+                            class="small top-details-top">Mobilbank</p>
 
                         <div class="satisfaction-wrapper top-details-bottom">
                             <div class="satisfaction">
@@ -114,7 +117,7 @@
                         </div>
 
 
-                        <div class="historical-rating top-details-bottom">
+                        <div *ngIf="offer.bankRating" class="historical-rating top-details-bottom">
                             <p class="box">{{ offer.bankRating }}</p>
                         </div>
                         <div *ngIf="offer.bankInfo.mobileAppRating" class="mobile-rating top-details-bottom">

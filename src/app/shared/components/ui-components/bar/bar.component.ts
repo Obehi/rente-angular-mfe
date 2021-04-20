@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Interface } from 'readline';
 
 @Component({
   selector: 'rente-bar',
