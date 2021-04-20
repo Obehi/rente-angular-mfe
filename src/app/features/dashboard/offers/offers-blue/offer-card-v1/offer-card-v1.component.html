@@ -39,7 +39,7 @@
       <div class="offer-top">
 
         <div class="savings-grid">
-          <p i18n=“title|offer-card@@offer.card.title” class="save-text bottom">Du sparer</p>
+          <p i18n=“title|offer-card@@offer.card.title” class="save-text bottom">Du sparer:</p>
 
           <p class="top second-row" i18n=“first-year|offer-card@@offer.card.firstYear”>første år</p>
           <h2 class="bottom" *ngIf="offer.savingsFirstYear > 0; else noTotalSavings">
@@ -74,26 +74,33 @@
           </p>
         </div>
 
-        <div class="item">
+        <div *ngIf="offer.requiredProductPackage" class="item">
           <img class="icon" src="../../../../assets/icons/swap-grey.svg" />
           <p i18n=“demand-change|offer-card@@offer.card.demandChange” class="left">Krever bytte av nettbank</p>
           <p i18n=“no-yes|offer-card@@offer.card.noYes” class="box right">{{ offer.requiredProductPackage == null ?
             customLangTextSerice.get18nFixForNo() : "Ja" }}</p>
         </div>
 
-        <div class="item">
+        <div *ngIf="offer.bankInfo.bankType" class="item">
           <img class="icon" src="../../../../assets/icons/bank-grey.svg" />
           <p i18n=“demand-change|offer-card@@offer.card.bankType class="left">Type bank</p>
-          <p class="box right">{{ offer.marketArea}}</p>
+          <p class="box right">{{offer.bankInfo.bankType}}</p>
         </div>
 
-        <div class="item">
+        <div *ngIf="!isSweden && offer.bankInfo.area" class="item">
           <img class="icon location" src="../../../../assets/icons/location-grey-circle.svg" />
           <p i18n=“demand-change|offer-card@@offer.card.bankType class="left">Geografi</p>
-          <p class="box right">{{ offer.marketArea}}</p>
+          <p class="box right">{{offer.bankInfo.area}}</p>
         </div>
 
-        <div class="item">
+        <div *ngIf="offer.bankInfo.area === null && offer.marketArea" class="item">
+          <img class="icon location" src="../../../../assets/icons/location-grey-circle.svg" />
+          <p i18n=“demand-change|offer-card@@offer.card.bankType class="left">Geografi</p>
+          <p class="box right">{{offer.marketArea}}</p>
+        </div>
+
+
+        <div *ngIf="offer.bankRating" class="item">
           <img class="icon" src="../../../../assets/icons/graph-grey.svg" />
           <p i18n=“demand-change|offer-card@@offer.card.historicRate class="left">Historisk plassering</p>
           <p class="box right">{{ offer.bankRating }}</p>

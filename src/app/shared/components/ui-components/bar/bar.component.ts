@@ -10,14 +10,14 @@ export class BarComponent implements OnInit {
   @Input() highestValue: number;
   @Input() currentValue: number;
 
+  constructor() {}
+  ngOnInit(): void {}
+
   get percentage(): number {
     return this.currentValue / this.highestValue;
   }
 
   get widthPercentage(): string {
-    console.log(this.currentValue);
-    console.log(this.percentage);
-    console.log(`${String(this.percentage * 100)}%`);
     return `${String(this.percentage * 100)}%`;
   }
 
@@ -40,10 +40,5 @@ export class BarComponent implements OnInit {
 
   get shapeClass(): string {
     return this.percentage > 0.99 ? 'round' : 'mixed';
-  }
-  constructor() {}
-  ngOnInit(): void {
-    console.log(this.highestValue);
-    console.log(this.currentValue);
   }
 }

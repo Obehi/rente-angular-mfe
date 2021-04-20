@@ -28,14 +28,21 @@
             <p class="interest-rate">{{ offer.effectiveRate | number: "1.2-2" }} %</p>
         </div>
         <div class="top-bank-info">
-            <p>
-                {{offer.marketArea}}
+
+            <div *ngIf="!isSweden && offer.bankInfo.area; else noMarketArea">
+                <p>{{offer.bankInfo.area}}</p>
+            </div>
+
+            <ng-template #noMarketArea>
+                <p *ngIf="!isSweden"> {{offer.marketArea}}</p>
+            </ng-template>
+
+            <p *ngIf="offer.bankInfo.bankType">
+                {{offer.bankInfo.bankType}}
             </p>
-            <p>
-                Lokal sparebank
-            </p>
+
         </div>
-        <div *ngIf="true" class="special-promo">
+        <div *ngIf=" true" class="special-promo">
             <img class="box-icon" src="../../../../../assets/icons/badge.svg" />
             <p>Gir kundeutbytte</p>
         </div>
@@ -50,6 +57,16 @@
                 <div class="split">
 
                     <div class="offer-inner save">
+                        <p i18n=“first-year|offer-card@@offer.card.firstYear”>første år</p>
+                        <h2 *ngIf="offer.savingsFirstYear > 0; else noTotalSavings">
+                            {{ offer.savingsFirstYear | abs | number }},-
+                        </h2>
+                        <ng-template #noSavingsFirstYear>
+                            <h2>0,-</h2>
+                        </ng-template>
+                    </div>
+
+                    <div class="offer-inner save">
                         <p i18n=“over-time|offer-card@@offer.card.over.time”>over lånets løpetid</p>
                         <h2 *ngIf="offer.totalSavings > 0; else noTotalSavings">
                             {{ offer.totalSavings | abs | number }},-
@@ -59,15 +76,7 @@
                         </ng-template>
 
                     </div>
-                    <div class="offer-inner save">
-                        <p i18n=“first-year|offer-card@@offer.card.firstYear”>første år</p>
-                        <h2 *ngIf="offer.savingsFirstYear > 0; else noTotalSavings">
-                            {{ offer.savingsFirstYear | abs | number }},-
-                        </h2>
-                        <ng-template #noSavingsFirstYear>
-                            <h2>0,-</h2>
-                        </ng-template>
-                    </div>
+
                 </div>
             </div>
 
@@ -108,14 +117,15 @@
                         <div class="historical-rating top-details-bottom">
                             <p class="box">{{ offer.bankRating }}</p>
                         </div>
-                        <div class="mobile-rating top-details-bottom" *ngIf="true">
+                        <div *ngIf="offer.bankInfo.mobileAppRating" class="mobile-rating top-details-bottom">
 
                             <ng-template #t let-fill="fill">
                                 <span class="star" [class.full]="fill === 100">
                                     <span class="half" [style.width.%]="fill">&#9733;</span>&#9733;
                                 </span>
                             </ng-template>
-                            <ngb-rating [rate]="3.8" [starTemplate]="t" [readonly]="true" [max]="5">
+                            <ngb-rating [rate]="offer.bankInfo.mobileAppRating" [starTemplate]="t" [readonly]="true"
+                                [max]="5">
                             </ngb-rating>
                         </div>
 
@@ -123,13 +133,15 @@
 
                     <div class="offer-properties">
                         <div class="item">
-                            <p i18n=“application-time|offer-card@@offer.card.applicationTime” class="left">Hvor lang tid
+                            <p i18n=“application-time|offer-card@@offer.card.applicationTime” class="left">Hvor lang
+                                tid
                                 tar det
                                 å søke:
                             </p>
 
                             <p i18n=“demand-change|offer-card@@offer.card.timeApply.value” class="box">
-                                {{offer.bankInfo.applicationTime === null ? customLangTextSerice.get18nFixForUnknown() :
+                                {{offer.bankInfo.applicationTime === null ?
+                                customLangTextSerice.get18nFixForUnknown() :
                                 offer.bankInfo.applicationTime + " min"}}
                             </p>
                         </div>
@@ -138,16 +150,12 @@
                             <p i18n=“demand-change|offer-card@@offer.card.demandChange” class="left">Krever bytte av
                                 nettbank
                             </p>
-                            <p i18n=“no-yes|offer-card@@offer.card.noYes” class="box">{{ offer.requiredProductPackage ==
+                            <p i18n=“no-yes|offer-card@@offer.card.noYes” class="box">{{
+                                offer.requiredProductPackage ==
                                 null ?
                                 customLangTextSerice.get18nFixForNo() : "Ja" }}</p>
                         </div>
 
-                        <div class="item">
-                            <p i18n=“demand-change|offer-card@@offer.card.historicRate class="left">Historisk plassering
-                            </p>
-                            <p class="box">{{ offer.bankRating }}</p>
-                        </div>
                     </div>
                     <rente-offer-card-details class="details-wrapper" [offer]="offer" [align]="'center'"
                         (closeClicked)="xpandStatus=xpandStatus?false:true">

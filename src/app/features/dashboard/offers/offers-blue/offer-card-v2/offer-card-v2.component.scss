@@ -155,7 +155,8 @@
     }
   }
   .top-bank-info {
-    margin-left: 48px;
+    display: flex;
+    margin-left: 57px;
     margin-top: 7px;
     align-self: start;
     p {
@@ -558,7 +559,7 @@
       .save {
         padding: 0;
         h2 {
-          font-size: 14px;
+          font-size: 16px;
           color: $primary;
           background: $grey-light;
           padding: 20px 20px;
@@ -566,7 +567,7 @@
           display: inline-block;
         }
         p {
-          font-size: 12px;
+          font-size: 14px;
           font-weight: 400;
           color: $grey-dark;
           margin-bottom: 5px;

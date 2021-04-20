@@ -13,15 +13,13 @@ export class OfferDetailsNoComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit() {
-    console.log('this.align');
-    console.log(this.align);
+  ngOnInit(): void {
     if (this.offer.establishmentFee == undefined) {
       this.offer.establishmentFee = 0;
     }
   }
 
-  public onClick(bigBoolean) {
+  public onClick(bigBoolean): void {
     this.closeClicked.emit(bigBoolean);
   }
 }

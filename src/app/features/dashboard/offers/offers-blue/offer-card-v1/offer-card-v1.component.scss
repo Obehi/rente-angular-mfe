@@ -66,16 +66,12 @@
       background-color: $grey-dark;
       border-radius: 16px;
       background-color: #54606e;
-
+      padding: 17px;
       color: white;
-
       font-size: 14px;
       line-height: unset;
-      text-align: center;
-      padding: 8px;
-      min-width: 58px;
-      padding-top: 16px;
-      max-height: 48px;
+      min-width: 75px;
+      max-height: 50px;
     }
 
     .logo {
@@ -192,11 +188,13 @@
 
         .savings-grid {
           display: grid;
-          grid-template-columns: 1fr 1fr 1fr;
+          grid-template-columns: 2fr 3fr 3fr;
           grid-template-rows: 20px 40px;
-          column-gap: 15px;
+          column-gap: 0px;
           row-gap: 5px;
           align-items: center;
+          justify-items: center;
+          margin-bottom: 10px;
           width: 100%;
           .top {
             grid-row: 1;
@@ -215,14 +213,14 @@
           }
 
           h2 {
-            font-size: 14px;
+            font-size: 16px;
             color: $primary;
             background: $grey-light;
             padding: 15px;
             border-radius: 16px;
           }
           p {
-            font-size: 12px;
+            font-size: 14px;
             font-weight: 400;
             color: $grey-dark;
             margin-bottom: 5px;
@@ -422,7 +420,7 @@
         }
 
         p {
-          font-size: 12px;
+          font-size: 14px;
           font-weight: 400;
         }
 
