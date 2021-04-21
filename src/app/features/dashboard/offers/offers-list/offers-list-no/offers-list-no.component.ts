@@ -1,4 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  ApplicationRef,
+  NgZone
+} from '@angular/core';
 import { Offers } from './../../../../../shared/models/offers';
 import { OptimizeService } from '@services/optimize.service';
 
@@ -11,13 +17,18 @@ export class OffersListNoComponent implements OnInit {
   @Input() offersInfo: Offers;
   public currentOfferInfo: Offers;
   isV1 = true;
-
-  constructor(public optimizeService: OptimizeService) {}
+  tickIsDone = false;
+  constructor(
+    public optimizeService: OptimizeService,
+    public app: ApplicationRef,
+    private _ngZone: NgZone
+  ) {}
   public setV1(): void {
     this.isV1 = true;
   }
 
   variation: number | null = null;
+  variationTest: number | null = 1;
 
   public setV2(): void {
     this.isV1 = false;
@@ -29,9 +40,14 @@ export class OffersListNoComponent implements OnInit {
 
   ngOnInit(): void {
     this.variation = this.optimizeService.getVariation();
+
     console.log('list no ');
     console.log(this.variation);
-
+    this._ngZone.runOutsideAngular(() => {
+      this._ngZone.run(() => {
+        console.log('Outside Done!');
+      });
+    });
     if (typeof this.variation === 'number') {
       console.log('is number');
     }
