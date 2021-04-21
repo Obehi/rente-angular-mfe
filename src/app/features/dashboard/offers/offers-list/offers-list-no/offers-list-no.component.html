@@ -20,7 +20,7 @@
         <ng-container *ngIf="isMobile; else desktop">
 
           <rente-offer-card-blue *ngIf="variation === 0" [offer]="offer" [offersInfo]="currentOfferInfo"
-            [index]="i + 1">
+            [index]="offer.offerPosition">
           </rente-offer-card-blue>
 
           <rente-offer-card-v1 *ngIf="variation === 1" [offer]="offer" [offersInfo]="currentOfferInfo"

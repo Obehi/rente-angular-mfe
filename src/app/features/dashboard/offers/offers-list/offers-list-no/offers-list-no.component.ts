@@ -31,6 +31,10 @@ export class OffersListNoComponent implements OnInit {
     this.variation = this.optimizeService.getVariation();
     console.log('list no ');
     console.log(this.variation);
+
+    if (typeof this.variation === 'number') {
+      console.log('is number');
+    }
     this.currentOfferInfo = JSON.parse(JSON.stringify(this.offersInfo));
     this.currentOfferType = 'all';
 
