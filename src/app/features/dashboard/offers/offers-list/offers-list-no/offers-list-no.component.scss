@@ -116,16 +116,3 @@ p {
     }
   }
 }
-
-.version {
-  width: 100%;
-  display: flex;
-  justify-content: space-around;
-  margin-bottom: 20px;
-  .versionButton {
-    border-radius: 15px;
-    padding: 10px 20px;
-    background: $grey-light;
-    color: $grey-dark;
-  }
-}

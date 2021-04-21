@@ -1,12 +1,8 @@
 <div class="the-offers">
   <h3 id="best-offers-text" i18n=“best-offers3|offers-main@@offers.mainPage.bestOffers3” style="margin-bottom: 20px;">
-    Tilbudskort Test:
+    Beste tilbud:
   </h3>
 
-  <div class="version">
-    <div (click)="setV1()" class="versionButton">Versjon 1</div>
-    <div (click)="setV2()" class="versionButton">Versjon 2</div>
-  </div>
 
   <div *ngIf="isMobile" class="sticky-table-header">
     <p i18n=“your-interest|offers-main@@offers.mainPage.yourInterestStickyBox”>Min effektive rente: </p>
@@ -18,6 +14,10 @@
       <div *ngFor="let offer of currentOfferInfo.offers.top5; let i = index" class="the-offer">
 
         <ng-container *ngIf="isMobile; else desktop">
+
+          <p *ngIf="variation === 0">11111111</p>
+          <p *ngIf="variation === 1">11111111</p>
+          <p *ngIf="variation === 2">11111111</p>
 
           <rente-offer-card-blue *ngIf="variation === 0" [offer]="offer" [offersInfo]="currentOfferInfo"
             [index]="offer.offerPosition">

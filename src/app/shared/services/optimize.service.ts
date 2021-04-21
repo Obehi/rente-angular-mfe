@@ -16,9 +16,6 @@ export class OptimizeService {
 
     const googleOptimize = (window as any).google_optimize;
 
-    console.log('googleOptimize');
-    console.log(googleOptimize);
-
     if (googleOptimize === undefined) {
       return 0;
     }
