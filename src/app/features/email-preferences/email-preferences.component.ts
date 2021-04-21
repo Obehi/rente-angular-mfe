@@ -76,11 +76,7 @@ export class EmailPreferencesComponent implements OnInit {
           });
         },
         () => {
-          this.showErrorMessage = false;
-          this.emailForm = this.fb.group({
-            receiveNewsEmails: [''],
-            checkRateReminderType: ['this.checkRateReminderType']
-          });
+          this.showErrorMessage = true;
         }
       );
     } else {
