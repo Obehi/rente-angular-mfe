@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class OptimizeService {
-  private experimentID = 'xV_v0ABdSQuZIsJEHiDgow';
+  private experimentID = '9d84Epc8T3amY5DsACFhVA';
   private localeVariation = 0;
 
   getVariation(): number {
@@ -27,12 +27,12 @@ export class OptimizeService {
 
     console.log('variation');
     console.log(variation);
-    console.log('exp1');
+    console.log('exp variable');
     console.log(
       ((window as any).google_optimize as any) &&
-        (window as any).google_optimize.get('xV_v0ABdSQuZIsJEHiDgow')
+        (window as any).google_optimize.get(this.experimentID)
     );
-    console.log('exp2');
+    console.log('exp hardcode');
 
     console.log(
       ((window as any).google_optimize as any) &&
