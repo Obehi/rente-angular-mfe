@@ -19,16 +19,16 @@
 
         <ng-container *ngIf="isMobile; else desktop">
 
-          <rente-offer-card-blue *ngIf="optimizeService.getVariation() === 0" [offer]="offer"
-            [offersInfo]="currentOfferInfo" [index]="i + 1">
+          <rente-offer-card-blue *ngIf="variation === 0" [offer]="offer" [offersInfo]="currentOfferInfo"
+            [index]="i + 1">
           </rente-offer-card-blue>
 
-          <rente-offer-card-v1 *ngIf="optimizeService.getVariation() === 1" [offer]="offer"
-            [offersInfo]="currentOfferInfo" [index]=offer.offerPosition>
+          <rente-offer-card-v1 *ngIf="variation === 1" [offer]="offer" [offersInfo]="currentOfferInfo"
+            [index]=offer.offerPosition>
           </rente-offer-card-v1>
 
-          <rente-offer-card-v2 *ngIf="optimizeService.getVariation() === 2" [offer]="offer"
-            [offersInfo]="currentOfferInfo" [index]=offer.offerPosition>
+          <rente-offer-card-v2 *ngIf="variation === 2" [offer]="offer" [offersInfo]="currentOfferInfo"
+            [index]=offer.offerPosition>
           </rente-offer-card-v2>
         </ng-container>
 
@@ -46,16 +46,16 @@
     <ng-container *ngIf="offersInfo">
       <div *ngFor="let offer of offersInfo.offers.additionalPartnersOffers; let i = index" class="the-offer">
         <ng-container *ngIf="isMobile; else desktop">
-          <rente-offer-card-blue *ngIf="optimizeService.getVariation() === 0" [offer]="offer"
-            [offersInfo]="currentOfferInfo" [index]="offer.offerPosition">
+          <rente-offer-card-blue *ngIf="variation === 0" [offer]="offer" [offersInfo]="currentOfferInfo"
+            [index]="offer.offerPosition">
           </rente-offer-card-blue>
 
-          <rente-offer-card-v1 *ngIf="optimizeService.getVariation() === 1" [offer]="offer"
-            [offersInfo]="currentOfferInfo" [index]=offer.offerPosition>
+          <rente-offer-card-v1 *ngIf="variation === 1" [offer]="offer" [offersInfo]="currentOfferInfo"
+            [index]=offer.offerPosition>
           </rente-offer-card-v1>
 
-          <rente-offer-card-v2 *ngIf="optimizeService.getVariation() === 2" [offer]="offer"
-            [offersInfo]="currentOfferInfo" [index]=offer.offerPosition>
+          <rente-offer-card-v2 *ngIf="variation === 2" [offer]="offer" [offersInfo]="currentOfferInfo"
+            [index]=offer.offerPosition>
           </rente-offer-card-v2>
         </ng-container>
 

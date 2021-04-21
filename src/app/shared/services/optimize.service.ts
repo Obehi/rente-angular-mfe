@@ -45,7 +45,6 @@ export class OptimizeService {
     if (variation === null) {
       return 0;
     }
-
     return variation;
   }
 

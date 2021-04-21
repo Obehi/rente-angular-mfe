@@ -17,6 +17,8 @@ export class OffersListNoComponent implements OnInit {
     this.isV1 = true;
   }
 
+  variation: number | null = null;
+
   public setV2(): void {
     this.isV1 = false;
   }
@@ -26,8 +28,9 @@ export class OffersListNoComponent implements OnInit {
   public currentOfferType: string;
 
   ngOnInit(): void {
+    this.variation = this.optimizeService.getVariation();
     console.log('list no ');
-    console.log(this.optimizeService.getVariation());
+    console.log(this.variation);
     this.currentOfferInfo = JSON.parse(JSON.stringify(this.offersInfo));
     this.currentOfferType = 'all';
 
