@@ -50,6 +50,28 @@ export class ActionBoxesComponent implements OnInit {
     return window.innerWidth < 600;
   }
 
+  public openAntiChurnBankDialog(offer): void {
+    if (
+      this.antiChurnIsOn === false ||
+      this.changeBankLoading ||
+      this.offersInfo.offerSavingsType === this.offerSavingsType.NO_SAVINGS
+    ) {
+      return;
+    }
+    this.changeBankLoading = true;
+    const offerId = offer.id;
+
+    const changeBankRef = this.dialog.open(AntiChurnDialogComponent, {
+      autoFocus: false,
+      data: offer
+    });
+    changeBankRef.afterClosed().subscribe(() => {
+      this.handleChangeBankdialogOnClose(
+        changeBankRef.componentInstance.closeState
+      );
+    });
+  }
+
   public goToBestOffer(): void {
     const element = document.getElementById('best-offers-text');
     const headerOffset = this.isMobile ? 80 : 180;
@@ -152,28 +174,6 @@ export class ActionBoxesComponent implements OnInit {
         this.changeBankLoading = false;
       }
     );
-  }
-
-  public openAntiChurnBankDialog(offer): void {
-    if (
-      this.antiChurnIsOn === false ||
-      this.changeBankLoading ||
-      this.offersInfo.offerSavingsType === this.offerSavingsType.NO_SAVINGS
-    ) {
-      return;
-    }
-    this.changeBankLoading = true;
-    const offerId = offer.id;
-
-    const changeBankRef = this.dialog.open(AntiChurnDialogComponent, {
-      autoFocus: false,
-      data: offer
-    });
-    changeBankRef.afterClosed().subscribe(() => {
-      this.handleChangeBankdialogOnClose(
-        changeBankRef.componentInstance.closeState
-      );
-    });
   }
 
   public handleChangeBankdialogOnClose(state: string): void {

@@ -6,6 +6,11 @@
   grid-column-start: 1;
   grid-column-end: span 2;
   column-gap: 22px;
+  @media (max-width: 600px) {
+    background: $secondary;
+    margin-top: 22px;
+    border-radius: 15px;
+  }
 }
 
 .tipsAccordion {
@@ -14,24 +19,36 @@
     grid-column-start: 1;
     grid-column-end: span 2;
     position: relative;
-    top: 7px;
-    margin-top: 15px;
+    //margin-top: 15px;
 
     padding: 10px 10px !important;
     cursor: pointer;
     background-color: #112639;
     text-align: left;
+    p {
+      font-size: 16px;
+      color: $white;
+    }
   }
-  position: relative;
-  top: 7px;
+  @media (min-width: 600px) {
+    position: relative;
+    top: 7px;
 
-  padding: 6px 10px !important;
-  cursor: pointer;
-  background-color: #112639;
-  text-align: left;
-  p {
-    font-size: 16px;
-    color: $white;
+    padding: 6px 10px !important;
+    cursor: pointer;
+    background-color: #112639;
+    text-align: left;
+    p {
+      font-size: 16px;
+      color: $white;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .tipsAccordion:focus {
+    background: $white;
+    border-radius: 15px 15px 0px 0px;
   }
 }
 
@@ -100,7 +117,7 @@ p {
 
   @media (max-width: 600px) {
     padding: 0px;
-    margin-top: 5px;
+    margin-top: 8px;
   }
 
   padding: 5px;

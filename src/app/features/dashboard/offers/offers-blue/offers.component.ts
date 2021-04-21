@@ -151,7 +151,6 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
 
         this.isLoading = false;
         this.localStorageService.removeItem('isNewUser');
-        this.getTips();
       },
       (err) => {
         if (err.errorType === 'PROPERTY_VALUE_MISSING') {
@@ -175,95 +174,26 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
       });
   }
 
-  public getTips(): void {
-    if (this.offersInfo.incompleteInfoLoanPresent !== true) {
-      this.tips.push({
-        header: 'Obs',
-        text: this.customLangTextSerice.getLimitedLoanInfoWarning(),
-        icon: 'warning',
-        obs: true
-      });
-    }
-
+  public openAntiChurnBankDialog(offer): void {
     if (
-      this.offersInfo.aggregatedLoanType ===
-        this.aggregatedLoanType.CREDIT_LINE ||
-      this.offersInfo.aggregatedLoanType === this.aggregatedLoanType.MIX_D_C
+      this.antiChurnIsOn === false ||
+      this.changeBankLoading ||
+      this.offersInfo.offerSavingsType === this.offerSavingsType.NO_SAVINGS
     ) {
-      this.tips.push({
-        header: 'Belåningsgrad',
-        text: this.customLangTextSerice.getHouseValue(),
-        buttonLink: '/dashboard/' + ROUTES_MAP.property,
-        icon: this.isMobile ? 'house' : 'house-blue'
-      });
+      return;
     }
+    this.changeBankLoading = true;
+    const offerId = offer.id;
 
-    if (!this.offersInfo.memberships.length) {
-      this.tips.push({
-        header: 'Medlemskap',
-        text: this.customLangTextSerice.getMembershipWarning(),
-        buttonLink: '/dashboard/' + ROUTES_MAP.profile,
-        icon: this.isMobile ? 'profile-icon-white' : 'profile-icon-blue'
-      });
-    }
-    if (
-      this.offersInfo.aggregatedRateType ===
-      this.aggregatedRateType.MIX_FIXED_FLOATING
-    ) {
-      this.tips.push({
-        header: 'Fastrentelån',
-        text:
-          'Vi ser du har ett eller flere fastrentelån. Renteradar viser besparelsespotensialet kun for lånet/lånene med flytende rente. Beste rente viser også kun beste rente for lånet/lånene med flytende rente.',
-        buttonLink: './',
-        icon: 'rate'
-      });
-    }
-    if (
-      this.offersInfo.aggregatedLoanType ===
-        this.aggregatedLoanType.CREDIT_LINE ||
-      this.offersInfo.aggregatedLoanType === this.aggregatedLoanType.MIX_D_C
-    ) {
-      this.tips.push({
-        header: 'Rammelån/boligkreditt',
-        text:
-          'Du har rammelån/boligkreditt. Ønsker du å se tilbud kun for denne typen lån?',
-        buttonLink: '/dashboard/' + ROUTES_MAP.profile,
-        icon: this.isMobile ? 'profile-icon-white' : 'profile-icon-blue'
-      });
-    }
-
-    if (this.hasStatensPensjonskasseMembership) {
-      this.tips.push({
-        header: 'Statens pensjonskasse',
-        text:
-          'Medlemmer i Statens Pensjonskasse kan finansiere opptil 2 millioner hos Statens Pensjonskasse. Klikk her for mer info om tilbudet.',
-        buttonLink: 'https://www.finansportalen.no/bank/boliglan/',
-        external: true,
-        icon: this.isMobile ? 'profile-icon-white' : 'profile-icon-blue'
-      });
-    }
-  }
-
-  public goToBestOffer(): void {
-    const element = document.getElementById('best-offers-text');
-    const headerOffset = this.isMobile ? 80 : 180;
-
-    const elementPosition =
-      element.getBoundingClientRect().top + window.pageYOffset;
-    const offsetPosition = elementPosition - headerOffset;
-
-    window.scrollTo({
-      top: offsetPosition,
-      behavior: 'smooth'
+    const changeBankRef = this.dialog.open(AntiChurnDialogComponent, {
+      autoFocus: false,
+      data: offer
     });
-  }
-
-  public goToProperty(): void {
-    this.router.navigate(['/dashboard/' + ROUTES_MAP.property]);
-  }
-
-  public goToLoans(): void {
-    this.router.navigate(['/dashboard/' + ROUTES_MAP.loans]);
+    changeBankRef.afterClosed().subscribe(() => {
+      this.handleChangeBankdialogOnClose(
+        changeBankRef.componentInstance.closeState
+      );
+    });
   }
 
   public openOfferDialog(offer: OfferInfo): void {
@@ -316,104 +246,6 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
         console.log(err);
       }
     );
-  }
-
-  private openChangeBankDialogWithLocation(offer: any): void {
-    this.changeBankLoading = true;
-    const offerId = offer.id;
-    const currentBank = this.offersInfo.bank;
-
-    forkJoin([
-      this.changeBankServiceService.getBankOfferLocations(this.offersInfo.bank),
-      this.changeBankServiceService.getBankOfferRequest(offerId)
-    ]).subscribe(
-      ([locations, preview]) => {
-        this.changeBankLoading = false;
-
-        const data = { preview, offerId, currentBank };
-
-        if (locations.error === undefined) {
-          data['locations'] = locations;
-        }
-        const changeBankRef = this.dialog.open(ChangeBankLocationComponent, {
-          autoFocus: false,
-          data: data
-        });
-        changeBankRef.afterClosed().subscribe(() => {
-          this.handleChangeBankdialogOnClose(
-            changeBankRef.componentInstance.closeState
-          );
-        });
-      },
-      () => {
-        this.changeBankLoading = false;
-      }
-    );
-  }
-
-  public openChangeBankDialogWithOnlyPreview(offer: any): void {
-    this.changeBankLoading = true;
-    const offerId = offer.id;
-    const currentBank = this.offersInfo.bank;
-
-    this.changeBankServiceService.getBankOfferRequest(offerId).subscribe(
-      (preview) => {
-        this.changeBankLoading = false;
-
-        const changeBankRef = this.dialog.open(
-          ChangeBankDialogLangGenericComponent,
-          {
-            autoFocus: false,
-            data: { preview, offerId, currentBank }
-          }
-        );
-        changeBankRef.afterClosed().subscribe(() => {
-          this.handleChangeBankdialogOnClose(
-            changeBankRef.componentInstance.closeState
-          );
-        });
-      },
-      (err) => {
-        this.changeBankLoading = false;
-      }
-    );
-  }
-
-  public openAntiChurnBankDialog(offer): void {
-    if (
-      this.antiChurnIsOn === false ||
-      this.changeBankLoading ||
-      this.offersInfo.offerSavingsType === this.offerSavingsType.NO_SAVINGS
-    ) {
-      return;
-    }
-    this.changeBankLoading = true;
-    const offerId = offer.id;
-
-    const changeBankRef = this.dialog.open(AntiChurnDialogComponent, {
-      autoFocus: false,
-      data: offer
-    });
-    changeBankRef.afterClosed().subscribe(() => {
-      this.handleChangeBankdialogOnClose(
-        changeBankRef.componentInstance.closeState
-      );
-    });
-  }
-
-  public openChangeBankDialog(offer): void {
-    if (
-      this.changeBankLoading ||
-      this.offersInfo.offerSavingsType === this.offerSavingsType.NO_SAVINGS
-    ) {
-      return;
-    }
-
-    if (this.offersInfo.bank === 'SWE_SEB') {
-      this.openChangeBankDialogWithLocation(offer);
-    } else {
-      this.openChangeBankDialogWithOnlyPreview(offer);
-    }
   }
 
   public openBargainMoreInfoDialog(): void {
@@ -498,10 +330,6 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
       }
     }
     return text;
-  }
-
-  get rateBarPercentageInverted(): number {
-    return 100 - this.rateBarPercentage.percentage;
   }
 
   get rateBarPercentage(): RateBar {
