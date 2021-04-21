@@ -46,6 +46,8 @@
     <ng-container *ngIf="offersInfo">
       <div *ngFor="let offer of offersInfo.offers.additionalPartnersOffers; let i = index" class="the-offer">
         <ng-container *ngIf="isMobile; else desktop">
+          <rente-offer-card-v1 [offer]="offer" [offersInfo]="currentOfferInfo" [index]=offer.offerPosition>
+          </rente-offer-card-v1>
           <rente-offer-card-blue *ngIf="variation === 0" [offer]="offer" [offersInfo]="currentOfferInfo"
             [index]="offer.offerPosition">
           </rente-offer-card-blue>
