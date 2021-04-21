@@ -28,7 +28,7 @@ export class OffersListNoComponent implements OnInit {
   }
 
   variation: number | null = null;
-  variationTest: number | null = 1;
+  variationTest: number | null = 0;
 
   public setV2(): void {
     this.isV1 = false;
@@ -40,7 +40,7 @@ export class OffersListNoComponent implements OnInit {
 
   ngOnInit(): void {
     this.variation = this.optimizeService.getVariation();
-
+    this.variationTest = this.optimizeService.getVariation();
     console.log('list no ');
     console.log(this.variation);
     this._ngZone.runOutsideAngular(() => {
