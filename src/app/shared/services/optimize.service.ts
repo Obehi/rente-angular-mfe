@@ -9,7 +9,7 @@ export class OptimizeService {
 
   getVariation(): number {
     const isLocale = false;
-
+    return 2;
     if (isLocale) {
       return this.localeVariation;
     }
@@ -29,6 +29,7 @@ export class OptimizeService {
       ((window as any).google_optimize as any) &&
         (window as any).google_optimize.get(this.experimentID)
     );
+
     console.log('exp hardcode');
 
     console.log(
@@ -42,7 +43,7 @@ export class OptimizeService {
     if (variation === null) {
       return 0;
     }
-    return variation;
+    return variation as number;
   }
 
   getBinaryVariation = (): boolean => {
