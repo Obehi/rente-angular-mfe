@@ -2,10 +2,6 @@
 .button-wrapper {
   display: block;
   text-align: center;
-
-  span {
-    pointer-events: none;
-  }
 }
 button.mat-button {
   min-width: 150px;
@@ -262,14 +258,6 @@ button.mat-secondary-medium-card {
   border-radius: 100px;
 }
 
-button.mat-primary-medium[disabled] {
+button.mat-secondary-medium-card[disabled] {
   color: white !important;
-}
-
-button.mat-secondary-medium {
-  background-color: $secondary;
-  color: white;
-  height: 45px;
-  font-size: 14px;
-  border-radius: 100px;
 }

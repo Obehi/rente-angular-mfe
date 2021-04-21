@@ -376,11 +376,6 @@
                 .mat-expansion-indicator {
                   display: none;
                 }
-
-                //selector doesnt work
-                .mat-expansion-indicator::after {
-                  //color: red !important;
-                }
               }
 
               .mat-expansion-panel-content {

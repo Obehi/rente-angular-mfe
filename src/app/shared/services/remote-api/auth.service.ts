@@ -16,7 +16,7 @@ export class AuthService {
     private router: Router
   ) {}
 
-  public get isLoggedIn() {
+  public get isLoggedIn(): boolean {
     const user = this.localStorageService.getObject(storageName.user);
     return !!(user && user.token);
   }
@@ -37,10 +37,10 @@ export class AuthService {
     return this.http.post(url, data).pipe(tap(this.handleLogin.bind(this)));
   }
 
-  public logout() {
+  public logout(): void {
     const url = `${API_URL_MAP.auth.base}${API_URL_MAP.auth.logout}`;
 
-    this.http.post(url, {}).subscribe((res) => {
+    this.http.post(url, {}).subscribe(() => {
       this.router.navigate(['/']);
       this.localStorageService.clear();
     });

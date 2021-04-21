@@ -41,11 +41,11 @@ export class DemoLoginComponent implements OnInit {
 
     this.isLoading = true;
     this.authService.loginForDemo(guid).subscribe(
-      (_) => {
+      () => {
         this.isLoading = false;
         this.router.navigate(['/dashboard/' + ROUTES_MAP.offers]);
       },
-      (err) => {
+      () => {
         this.isLoading = false;
         this.snackBar.openFailSnackBar(
           this.customLangTextService.getSnackBarErrorMessage(),

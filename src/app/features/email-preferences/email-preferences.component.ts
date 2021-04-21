@@ -60,7 +60,7 @@ export class EmailPreferencesComponent implements OnInit {
     public langService: CustomLangTextService
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     const currentUrl = this.location.path();
     this.guid = this.getGuIdFromUrl(currentUrl);
 
@@ -75,8 +75,12 @@ export class EmailPreferencesComponent implements OnInit {
             checkRateReminderType: [this.checkRateReminderType]
           });
         },
-        (err) => {
-          this.showErrorMessage = true;
+        () => {
+          this.showErrorMessage = false;
+          this.emailForm = this.fb.group({
+            receiveNewsEmails: [''],
+            checkRateReminderType: ['this.checkRateReminderType']
+          });
         }
       );
     } else {
@@ -90,7 +94,7 @@ export class EmailPreferencesComponent implements OnInit {
     });
   }
 
-  sendForm() {
+  sendForm(): void {
     this.isLoading = true;
 
     const dto = new EmailDto();
@@ -101,7 +105,7 @@ export class EmailPreferencesComponent implements OnInit {
 
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     this.preferancesService.postPreferancesWithGUID(this.guid!, dto).subscribe(
-      (response) => {
+      () => {
         this.isLoading = false;
         this.updateAnimationTrigger = !this.updateAnimationTrigger;
       },
@@ -120,7 +124,7 @@ export class EmailPreferencesComponent implements OnInit {
 
   getGuIdFromUrl(url: string): string | null {
     const urlChunks = url.split('/');
-    if (urlChunks.length != 4) return null;
+    if (urlChunks.length !== 4) return null;
     const guid = urlChunks[3];
 
     return guid;

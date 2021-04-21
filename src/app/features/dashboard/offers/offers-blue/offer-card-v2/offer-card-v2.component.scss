@@ -273,9 +273,6 @@
           }
         }
         .historical-rating {
-          p {
-          }
-
           .box {
             font-size: 14px;
             font-weight: 400;
@@ -286,8 +283,7 @@
             display: inline-block;
           }
         }
-        .mobile-rating {
-        }
+
         .satisfaction-wrapper {
           .bank-rating-info-button {
             margin-top: -3px;
@@ -563,7 +559,7 @@
           font-size: 16px;
           color: $primary;
           background: $grey-light;
-          padding: 20px 20px;
+          padding: 15px 20px;
           border-radius: 16px;
           display: inline-block;
         }
@@ -629,11 +625,6 @@
     width: 60px;
     .mat-expansion-indicator {
       display: none;
-    }
-
-    //selector doesnt work
-    .mat-expansion-indicator::after {
-      //color: red !important;
     }
   }
 

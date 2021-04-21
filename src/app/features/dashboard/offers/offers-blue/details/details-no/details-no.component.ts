@@ -14,7 +14,7 @@ export class OfferDetailsNoComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    if (this.offer.establishmentFee == undefined) {
+    if (this.offer.establishmentFee === undefined) {
       this.offer.establishmentFee = 0;
     }
   }

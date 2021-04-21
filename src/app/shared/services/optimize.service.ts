@@ -39,7 +39,7 @@ export class OptimizeService {
     return variation;
   }
 
-  getBinaryVariation = () => {
+  getBinaryVariation = (): boolean => {
     const variation = this.getVariation();
 
     if (variation === null || variation === 0) {

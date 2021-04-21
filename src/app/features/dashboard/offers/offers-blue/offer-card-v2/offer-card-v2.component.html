@@ -42,9 +42,9 @@
             </p>
 
         </div>
-        <div *ngIf=" true" class="special-promo">
+        <div *ngIf="bankSpecialPromoText !== null" class="special-promo">
             <img class="box-icon" src="../../../../../assets/icons/badge.svg" />
-            <p>Gir kundeutbytte</p>
+            <p>{{bankSpecialPromoText}}</p>
         </div>
     </div>
 
@@ -88,7 +88,8 @@
                     </mat-expansion-panel-header>
 
                     <div class="top-details"
-                        [style.grid-template-columns]="offer.bankRating ? '1fr 1fr 1fr' : '1fr 1fr'">
+                        [style.grid-template-columns]="offer.bankRating && !isSweden ? '1fr 1fr 1fr' : '1fr 1fr'"
+                        [style.grid-template-rows]="offer.bankRating && !isSweden ? '20px 40px' : '15px 25px'">
                         <p i18n=“customer-satisfied|offer-card@@offer.card.customerSatisfied”
                             class="small top-details-top">
                             Kundetilfredshet
@@ -97,13 +98,12 @@
                             </span>
                         </p>
 
-                        <p *ngIf="offer.bankRating" i18n=“demand-change|offer-card@@offer.card.historicRate
+                        <p *ngIf="offer.bankRating && !isSweden" i18n=“demand-change|offer-card@@offer.card.historicRate
                             class="small top-details-top">
                             Historisk
                             plassering
                         </p>
-                        <p i18n=“customer-satisfied|offer-card@@offer.card.details.appRating”
-                            class="small top-details-top">Mobilbank</p>
+                        <p *ngIf="offer.bankInfo.mobileAppRating" class="small top-details-top">Mobilbank</p>
 
                         <div class="satisfaction-wrapper top-details-bottom">
                             <div class="satisfaction">
@@ -113,11 +113,9 @@
                                 <img class="offer-score"
                                     src="../../../../assets/icons/score-{{offer.bankInfo.score }}.svg" />
                             </div>
-
                         </div>
 
-
-                        <div *ngIf="offer.bankRating" class="historical-rating top-details-bottom">
+                        <div *ngIf="offer.bankRating && !isSweden" class="historical-rating top-details-bottom">
                             <p class="box">{{ offer.bankRating }}</p>
                         </div>
                         <div *ngIf="offer.bankInfo.mobileAppRating" class="mobile-rating top-details-bottom">
@@ -195,7 +193,7 @@
             </div>
 
             <rente-button *ngIf="offer.bankInfo.bank === 'NORDEA'" class="button" child
-                childClass="{{offer.bankInfo.name}}" color="secondary-medium" type="raised"
+                childClass="{{offer.bankInfo.name}}" color="secondary-medium-card" type="raised"
                 (click)="openNewOfferDialog(offer)">Spørr Nordea om bedre rente
             </rente-button>
         </div>

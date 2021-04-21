@@ -27,9 +27,9 @@
       </div>
       <p class="interest-rate">{{ offer.effectiveRate | number: "1.2-2" }} %</p>
     </div>
-    <div *ngIf="true" class="special-promo">
+    <div *ngIf="bankSpecialPromoText !== null" class="special-promo">
       <img class="box-icon" src="../../../../../assets/icons/badge.svg" />
-      <p>Gir kundeutbytte</p>
+      <p>{{bankSpecialPromoText}}</p>
     </div>
   </div>
 
