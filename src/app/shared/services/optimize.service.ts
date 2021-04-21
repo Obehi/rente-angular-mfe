@@ -27,7 +27,17 @@ export class OptimizeService {
 
     console.log('variation');
     console.log(variation);
+    console.log('exp1');
+    console.log(
+      ((window as any).google_optimize as any) &&
+        (window as any).google_optimize.get('xV_v0ABdSQuZIsJEHiDgow')
+    );
+    console.log('exp2');
 
+    console.log(
+      ((window as any).google_optimize as any) &&
+        (window as any).google_optimize.get('9d84Epc8T3amY5DsACFhVA')
+    );
     if (variation === undefined) {
       return 0;
     }
