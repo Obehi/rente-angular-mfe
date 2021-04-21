@@ -236,6 +236,17 @@ button.mat-primary-wide-hollow-card[disabled] {
   border-radius: 100px;
 }
 
+button.mat-primary-wide-hollow-card-big {
+  background-color: white;
+  color: black;
+  border: 1px solid $primary;
+  height: 56px;
+  font-size: 14px;
+  width: 100%;
+  white-space: break-spaces;
+  border-radius: 100px;
+}
+
 button.mat-primary-medium-card {
   background-color: $primary;
   color: white;
