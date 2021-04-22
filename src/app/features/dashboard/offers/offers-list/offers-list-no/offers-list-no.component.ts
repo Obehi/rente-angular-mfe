@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Offers } from './../../../../../shared/models//offers';
+import { Offers } from './../../../../../shared/models/offers';
+import { OptimizeService } from '@services/optimize.service';
 
 @Component({
   selector: 'rente-offers-list',
@@ -9,12 +10,22 @@ import { Offers } from './../../../../../shared/models//offers';
 export class OffersListNoComponent implements OnInit {
   @Input() offersInfo: Offers;
   public currentOfferInfo: Offers;
-
   isV1 = true;
-
+  tickIsDone = false;
+  constructor(public optimizeService: OptimizeService) {}
   public setV1(): void {
     this.isV1 = true;
   }
+
+  public getVariation() {
+    const variation = (window as any).google_optimize.get(
+      '9d84Epc8T3amY5DsACFhVA'
+    );
+    return variation || 0;
+  }
+
+  variation: number | null = null;
+  variationTest: number | null = 0;
 
   public setV2(): void {
     this.isV1 = false;
@@ -25,6 +36,9 @@ export class OffersListNoComponent implements OnInit {
   public currentOfferType: string;
 
   ngOnInit(): void {
+    this.variation = this.getVariation();
+    this.variationTest = this.getVariation();
+
     this.currentOfferInfo = JSON.parse(JSON.stringify(this.offersInfo));
     this.currentOfferType = 'all';
 
