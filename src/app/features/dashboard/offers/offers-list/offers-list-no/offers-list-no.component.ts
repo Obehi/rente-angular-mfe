@@ -1,12 +1,5 @@
-import {
-  Component,
-  OnInit,
-  Input,
-  ApplicationRef,
-  NgZone
-} from '@angular/core';
-import { Offers } from './../../../../../shared/models/offers';
-import { OptimizeService } from '@services/optimize.service';
+import { Component, OnInit, Input } from '@angular/core';
+import { Offers } from './../../../../../shared/models//offers';
 
 @Component({
   selector: 'rente-offers-list',
@@ -16,26 +9,12 @@ import { OptimizeService } from '@services/optimize.service';
 export class OffersListNoComponent implements OnInit {
   @Input() offersInfo: Offers;
   public currentOfferInfo: Offers;
+
   isV1 = true;
-  tickIsDone = false;
-  constructor(
-    public optimizeService: OptimizeService,
-    public app: ApplicationRef,
-    private _ngZone: NgZone
-  ) {}
+
   public setV1(): void {
     this.isV1 = true;
   }
-
-  public getVariation() {
-    const variation = (window as any).google_optimize.get(
-      '9d84Epc8T3amY5DsACFhVA'
-    );
-    return variation;
-  }
-
-  variation: number | null = null;
-  variationTest: number | null = 0;
 
   public setV2(): void {
     this.isV1 = false;
@@ -46,18 +25,6 @@ export class OffersListNoComponent implements OnInit {
   public currentOfferType: string;
 
   ngOnInit(): void {
-    this.variation = this.getVariation();
-    this.variationTest = this.getVariation();
-    console.log('list no ');
-    console.log(this.variation);
-    this._ngZone.runOutsideAngular(() => {
-      this._ngZone.run(() => {
-        console.log('Outside Done!');
-      });
-    });
-    if (typeof this.variation === 'number') {
-      console.log('is number');
-    }
     this.currentOfferInfo = JSON.parse(JSON.stringify(this.offersInfo));
     this.currentOfferType = 'all';
 

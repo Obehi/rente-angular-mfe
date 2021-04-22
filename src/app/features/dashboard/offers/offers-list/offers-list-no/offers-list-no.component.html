@@ -1,46 +1,34 @@
 <div class="the-offers">
   <h3 id="best-offers-text" i18n=“best-offers3|offers-main@@offers.mainPage.bestOffers3” style="margin-bottom: 20px;">
-    Beste tilbud:
+    Tilbudskort Test:
   </h3>
 
+  <div class="version">
+    <div (click)="setV1()" class="versionButton">Versjon 1</div>
+    <div (click)="setV2()" class="versionButton">Versjon 2</div>
+  </div>
 
   <div *ngIf="isMobile" class="sticky-table-header">
     <p i18n=“your-interest|offers-main@@offers.mainPage.yourInterestStickyBox”>Min effektive rente: </p>
     <span>{{ offersInfo.totalEffectiveRate | number: "1.2-2" }} %</span>
   </div>
 
-  <p>getVariationTest start</p>
-  <p>{{getVariation()}}</p>
-  <p>getVariationTest end</p>
-
   <div class="offers-grid">
     <ng-container *ngIf="currentOfferInfo">
       <div *ngFor="let offer of currentOfferInfo.offers.top5; let i = index" class="the-offer">
 
         <ng-container *ngIf="isMobile; else desktop">
-
-          <rente-offer-card-v1 *ngIf="variationTest === 1" [offer]="offer" [offersInfo]="currentOfferInfo"
-            [index]=offer.offerPosition>
-          </rente-offer-card-v1>
-          <p *ngIf="variation === 0">11111111</p>
-          <p *ngIf="variation === 1">22222222</p>
-          <p *ngIf="variation === 2">33333333</p>
-
-          <rente-offer-card-blue *ngIf="variation == 0" [offer]="offer" [offersInfo]="currentOfferInfo"
-            [index]="offer.offerPosition">
-          </rente-offer-card-blue>
-
-          <rente-offer-card-v1 *ngIf="variation == 1" [offer]="offer" [offersInfo]="currentOfferInfo"
-            [index]=offer.offerPosition>
-          </rente-offer-card-v1>
-
-          <rente-offer-card-v2 *ngIf="variation == 2" [offer]="offer" [offersInfo]="currentOfferInfo"
+          <rente-offer-card-v2 *ngIf="isV1 === false" [offer]="offer" [offersInfo]="currentOfferInfo"
             [index]=offer.offerPosition>
           </rente-offer-card-v2>
+
+          <rente-offer-card-v1 *ngIf="isV1 === true" [offer]="offer" [offersInfo]="currentOfferInfo"
+            [index]=offer.offerPosition>
+          </rente-offer-card-v1>
         </ng-container>
 
         <ng-template #desktop>
-          <rente-offer-card-big-blue [offer]="offer" [offersInfo]="currentOfferInfo" [index]="offer.offerPosition">
+          <rente-offer-card-big-blue [offer]="offer" [offersInfo]="currentOfferInfo" [index]="i + 1">
           </rente-offer-card-big-blue>
         </ng-template>
 
@@ -53,19 +41,13 @@
     <ng-container *ngIf="offersInfo">
       <div *ngFor="let offer of offersInfo.offers.additionalPartnersOffers; let i = index" class="the-offer">
         <ng-container *ngIf="isMobile; else desktop">
-          <rente-offer-card-v1 [offer]="offer" [offersInfo]="currentOfferInfo" [index]=offer.offerPosition>
-          </rente-offer-card-v1>
-          <rente-offer-card-blue *ngIf="variation == 0" [offer]="offer" [offersInfo]="currentOfferInfo"
-            [index]="offer.offerPosition">
-          </rente-offer-card-blue>
-
-          <rente-offer-card-v1 *ngIf="variation == 1" [offer]="offer" [offersInfo]="currentOfferInfo"
-            [index]=offer.offerPosition>
-          </rente-offer-card-v1>
-
-          <rente-offer-card-v2 *ngIf="variation == 2" [offer]="offer" [offersInfo]="currentOfferInfo"
+          <rente-offer-card-v2 *ngIf="isV1 === false" [offer]="offer" [offersInfo]="currentOfferInfo"
             [index]=offer.offerPosition>
           </rente-offer-card-v2>
+
+          <rente-offer-card-v1 *ngIf="isV1 === true" [offer]="offer" [offersInfo]="currentOfferInfo"
+            [index]=offer.offerPosition>
+          </rente-offer-card-v1>
         </ng-container>
 
         <ng-template #desktop>
