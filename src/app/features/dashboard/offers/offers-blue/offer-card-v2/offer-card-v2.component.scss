@@ -243,6 +243,7 @@
         margin-top: 20px;
         display: flex;
         justify-content: space-around;
+        justify-items: center;
         display: grid;
         grid-gap: 5px;
         grid-template-columns: 1fr 1fr 1fr;
@@ -668,6 +669,21 @@
   .mat-icon {
     font-size: 18px;
   }
+}
+
+.box {
+  padding: 5px 10px;
+  border-radius: 16px;
+  background: #ececec;
+  min-width: 45px;
+  text-align: center;
+  z-index: 10;
+}
+
+.na {
+  font-size: 14px;
+  font-weight: 400;
+  color: #54606e;
 }
 
 ::ng-deep .mat-expansion-panel-header:hover {

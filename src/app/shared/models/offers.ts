@@ -67,7 +67,7 @@ export interface BankInfo {
   applicationTime: number;
   area: string;
   bankType: string;
-  mobileAppRating: string;
+  mobileAppRating: number | undefined;
 }
 
 export interface BankLocationAddress {

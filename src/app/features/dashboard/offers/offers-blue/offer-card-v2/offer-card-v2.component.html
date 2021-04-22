@@ -103,7 +103,7 @@
                             Historisk
                             plassering
                         </p>
-                        <p *ngIf="offer.bankInfo.mobileAppRating !== null" class="small top-details-top">Mobilbank</p>
+                        <p class="small top-details-top">Mobilbank</p>
 
                         <div class="satisfaction-wrapper top-details-bottom">
                             <div class="satisfaction">
@@ -130,6 +130,8 @@
                             </ngb-rating>
                         </div>
 
+                        <p *ngIf="offer.bankInfo.mobileAppRating === undefined" class="top-details-bottom box na">N/A
+                        </p>
                     </div>
 
                     <div class="offer-properties">

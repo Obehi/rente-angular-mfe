@@ -109,9 +109,13 @@
           <p i18n=“customer-satisfied|offer-card@@offer.card.customerSatisfied” class="left">Kundetilfredshet:</p>
           <rente-bar class="bar" highestValue="5" currentValue="{{offer.bankInfo.score}}"></rente-bar>
         </div>
-        <div *ngIf="offer.bankInfo.mobileAppRating" class="item">
+        <div class="item">
           <p i18n=“customer-satisfied|offer-card@@offer.card.appRating” class="left">Mobilbank:</p>
-          <rente-bar class="bar" highestValue="5" currentValue="{{offer.bankInfo.mobileAppRating}}"></rente-bar>
+          <rente-bar *ngIf="offer.bankInfo.mobileAppRating" class="bar" highestValue="10"
+            currentValue="{{offer.bankInfo.mobileAppRating}}"></rente-bar>
+          <p *ngIf="offer.bankInfo.mobileAppRating === null || offer.bankInfo.mobileAppRating === undefined "
+            class="box right">N/A</p>
+
         </div>
 
         <div class="item middle details">
