@@ -27,6 +27,13 @@ export class OffersListNoComponent implements OnInit {
     this.isV1 = true;
   }
 
+  public getVariationTest() {
+    const variation = (window as any).google_optimize.get(
+      '9d84Epc8T3amY5DsACFhVA'
+    );
+    return variation;
+  }
+
   variation: number | null = null;
   variationTest: number | null = 0;
 

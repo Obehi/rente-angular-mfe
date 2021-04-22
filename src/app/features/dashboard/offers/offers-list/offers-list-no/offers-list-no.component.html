@@ -9,6 +9,10 @@
     <span>{{ offersInfo.totalEffectiveRate | number: "1.2-2" }} %</span>
   </div>
 
+  <p>getVariationTest start</p>
+  <p>{{getVariationTest()}}</p>
+  <p>getVariationTest end</p>
+
   <div class="offers-grid">
     <ng-container *ngIf="currentOfferInfo">
       <div *ngFor="let offer of currentOfferInfo.offers.top5; let i = index" class="the-offer">
