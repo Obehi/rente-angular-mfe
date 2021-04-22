@@ -27,7 +27,7 @@
             </div>
             <p class="interest-rate">{{ offer.effectiveRate | number: "1.2-2" }} %</p>
         </div>
-        <div class="top-bank-info">
+        <!-- <div class="top-bank-info">
 
             <div *ngIf="!isSweden && offer.bankInfo.area; else noMarketArea">
                 <p>{{offer.bankInfo.area}}</p>
@@ -41,7 +41,7 @@
                 {{offer.bankInfo.bankType}}
             </p>
 
-        </div>
+        </div> -->
         <div *ngIf="bankSpecialPromoText !== null" class="special-promo">
             <img class="box-icon" src="../../../../../assets/icons/badge.svg" />
             <p>{{bankSpecialPromoText}}</p>
@@ -132,7 +132,7 @@
 
                         <p *ngIf="offer.bankInfo.mobileAppRating === null || offer.bankInfo.mobileAppRating === undefined "
                             class="box right na" i18n=“application-time|offer-card@@offer.card.mobileRatingNotAvailable>
-                            Endast webbsida</p>
+                            Webbsida</p>
                     </div>
 
                     <div class="offer-properties">
@@ -159,6 +159,24 @@
                                 null ?
                                 customLangTextSerice.get18nFixForNo() : "Ja" }}</p>
                         </div>
+
+                        <div *ngIf="offer.bankInfo.bankType" class="item">
+                            <p i18n=“demand-change|offer-card@@offer.card.bankType class="left">Type bank</p>
+                            <p class="box right">{{offer.bankInfo.bankType}}</p>
+                        </div>
+
+                        <div *ngIf="!isSweden && offer.bankInfo.area" class="item">
+                            <p i18n=“demand-change|offer-card@@offer.card.geografi class="left">Geografi</p>
+                            <p class="box right">{{offer.bankInfo.area}}</p>
+                        </div>
+
+                        <div *ngIf="!isSweden && offer.bankInfo.area === null && offer.marketArea" class="item">
+                            <p i18n=“demand-change|offer-card@@offer.card.geografi class="left">Geografi</p>
+                            <p class="box right">{{offer.marketArea}}</p>
+                        </div>
+
+
+
 
                     </div>
                     <rente-offer-card-details class="details-wrapper" [offer]="offer" [align]="'center'"

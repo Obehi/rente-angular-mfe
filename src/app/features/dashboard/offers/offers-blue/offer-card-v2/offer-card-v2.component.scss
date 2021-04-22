@@ -686,6 +686,18 @@
   color: #54606e;
 }
 
+.threeMonths {
+  background: #5eb1bf !important;
+}
+
+.oneYear {
+  background: #ef767a !important;
+}
+
+.all {
+  background: white;
+}
+
 ::ng-deep .mat-expansion-panel-header:hover {
   background: unset !important;
 }
