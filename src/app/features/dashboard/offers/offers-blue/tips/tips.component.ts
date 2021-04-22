@@ -9,7 +9,9 @@ import {
   state,
   style,
   animate,
-  transition
+  transition,
+  animateChild,
+  query
 } from '@angular/animations';
 
 @Component({
@@ -37,6 +39,23 @@ import {
         animate('0.123s ease-in', style({ height: 0, opacity: 0 }))
       ])
     ]),
+    trigger('stretchAccordionDesktop', [
+      state(
+        'close',
+        style({
+          width: '908px'
+        })
+      ),
+      state(
+        'open',
+        style({
+          width: '454px'
+        })
+      ),
+      transition('* => close', [animate('0.2s')]),
+      transition('* => open', [animate('0.1s')])
+    ]),
+    // TODO: add query for parent/child animations
     trigger('openClose', [
       state(
         'open',

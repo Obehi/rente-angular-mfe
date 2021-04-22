@@ -3,6 +3,7 @@
   class="tipsAccordion round-box clickable"
   (click)="isShowTips = !isShowTips"
   *ngIf="!isMobile && tips.length > 0"
+  [@stretchAccordionDesktop]="!isShowTips ? 'open' : 'close'"
 >
   <p>
     <mat-icon *ngIf="!isShowTips" [@openClose]="!isShowTips ? 'open' : 'close'"
