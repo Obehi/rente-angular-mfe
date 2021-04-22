@@ -13,6 +13,24 @@
   }
 }
 
+.mat-accordion {
+  width: 100%;
+  .mat-expansion-panel {
+    .mat-panel-title {
+      color: $white;
+      font-weight: 300;
+      font-size: 16px;
+    }
+    .mat-card {
+      width: 100;
+      color: $black;
+    }
+    background: $secondary;
+    border-radius: 15px;
+  }
+  border-radius: 15px;
+}
+
 .tipsAccordion {
   @media (max-width: 600px) {
     grid-row: 3;
