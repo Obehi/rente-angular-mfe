@@ -16,10 +16,13 @@ export class OffersListSvComponent implements OnInit {
     return window.innerWidth < 600;
   }
   public currentOfferType: string;
+  variation: number | null = null;
 
   constructor() {}
 
   ngOnInit(): void {
+    this.variation = this.getVariation();
+
     this.currentOfferInfo = JSON.parse(JSON.stringify(this.offersInfo));
     this.currentOfferType = 'all';
     this.setOfferType(this.currentOfferType);
@@ -29,6 +32,13 @@ export class OffersListSvComponent implements OnInit {
         return offer;
       }
     );
+  }
+
+  public getVariation() {
+    const variation = (window as any).google_optimize?.get(
+      '9d84Epc8T3amY5DsACFhVA'
+    );
+    return variation || 0;
   }
 
   public setV1(): void {

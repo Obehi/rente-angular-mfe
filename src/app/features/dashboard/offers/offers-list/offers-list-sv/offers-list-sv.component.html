@@ -3,10 +3,7 @@
     Tilbudskort Test:
   </h3>
 
-  <div class="version">
-    <div (click)="setV1()" class="versionButton">Versjon 1</div>
-    <div (click)="setV2()" class="versionButton">Versjon 2</div>
-  </div>
+
 
   <div class="offers-type-container">
     <a class=" clickable" [ngClass]="currentOfferType == 'all' ? 'active' : 'deactive'" (click)="setOfferType('all')">
@@ -27,11 +24,14 @@
       <div *ngFor="let offer of currentOfferInfo.offers.top5; let i = index" class="the-offer">
 
         <ng-container *ngIf="isMobile; else desktop">
-          <rente-offer-card-v2 *ngIf="isV1 === false" [offer]="offer" [offersInfo]="currentOfferInfo" [index]="i + 1">
-          </rente-offer-card-v2>
+          <rente-offer-card-blue *ngIf="variation == 0" [offer]="offer" [offersInfo]="currentOfferInfo" [index]="i + 1">
+          </rente-offer-card-blue>
 
-          <rente-offer-card-v1 *ngIf="isV1 === true" [offer]="offer" [offersInfo]="currentOfferInfo" [index]="i + 1">
+          <rente-offer-card-v1 *ngIf="variation == 1" [offer]="offer" [offersInfo]="currentOfferInfo" [index]="i + 1">
           </rente-offer-card-v1>
+
+          <rente-offer-card-v2 *ngIf="variation == 2" [offer]="offer" [offersInfo]="currentOfferInfo" [index]="i + 1">
+          </rente-offer-card-v2>
         </ng-container>
 
         <ng-template #desktop>
@@ -49,13 +49,20 @@
       <div *ngFor="let offer of offersInfo.offers.additionalPartnersOffers; let i = index" class="the-offer">
 
         <ng-container *ngIf="isMobile; else desktop">
-          <rente-offer-card-v2 *ngIf="isV1 === false" [offer]="offer" [offersInfo]="currentOfferInfo"
+
+          <rente-offer-card-blue *ngIf="variation == 0" [offer]="offer" [offersInfo]="currentOfferInfo"
+            [index]=offer.offerPosition>
+          </rente-offer-card-blue>
+
+          <rente-offer-card-v1 *ngIf="variation == 1" [offer]="offer" [offersInfo]="currentOfferInfo"
+            [index]=offer.offerPosition>
+          </rente-offer-card-v1>
+
+          <rente-offer-card-v2 *ngIf="variation == 2" [offer]="offer" [offersInfo]="currentOfferInfo"
             [index]=offer.offerPosition>
           </rente-offer-card-v2>
 
-          <rente-offer-card-v1 *ngIf="isV1 === true" [offer]="offer" [offersInfo]="currentOfferInfo"
-            [index]=offer.offerPosition>
-          </rente-offer-card-v1>
+
         </ng-container>
 
         <ng-template #desktop>

@@ -10,12 +10,8 @@ import { OptimizeService } from '@services/optimize.service';
 export class OffersListNoComponent implements OnInit {
   @Input() offersInfo: Offers;
   public currentOfferInfo: Offers;
-  isV1 = true;
-  tickIsDone = false;
+
   constructor(public optimizeService: OptimizeService) {}
-  public setV1(): void {
-    this.isV1 = true;
-  }
 
   public getVariation() {
     const variation = (window as any).google_optimize.get(
@@ -25,11 +21,7 @@ export class OffersListNoComponent implements OnInit {
   }
 
   variation: number | null = null;
-  variationTest: number | null = 0;
 
-  public setV2(): void {
-    this.isV1 = false;
-  }
   get isMobile(): boolean {
     return window.innerWidth < 600;
   }
@@ -37,7 +29,6 @@ export class OffersListNoComponent implements OnInit {
 
   ngOnInit(): void {
     this.variation = this.getVariation();
-    this.variationTest = this.getVariation();
 
     this.currentOfferInfo = JSON.parse(JSON.stringify(this.offersInfo));
     this.currentOfferType = 'all';
