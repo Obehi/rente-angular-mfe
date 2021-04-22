@@ -27,7 +27,7 @@ export class OffersListNoComponent implements OnInit {
     this.isV1 = true;
   }
 
-  public getVariationTest() {
+  public getVariation() {
     const variation = (window as any).google_optimize.get(
       '9d84Epc8T3amY5DsACFhVA'
     );
@@ -46,8 +46,8 @@ export class OffersListNoComponent implements OnInit {
   public currentOfferType: string;
 
   ngOnInit(): void {
-    this.variation = this.optimizeService.getVariation();
-    this.variationTest = this.optimizeService.getVariation();
+    this.variation = this.getVariation();
+    this.variationTest = this.getVariation();
     console.log('list no ');
     console.log(this.variation);
     this._ngZone.runOutsideAngular(() => {

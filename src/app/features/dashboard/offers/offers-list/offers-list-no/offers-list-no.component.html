@@ -26,15 +26,15 @@
           <p *ngIf="variation === 1">22222222</p>
           <p *ngIf="variation === 2">33333333</p>
 
-          <rente-offer-card-blue *ngIf="variation === 0" [offer]="offer" [offersInfo]="currentOfferInfo"
+          <rente-offer-card-blue *ngIf="variation == 0" [offer]="offer" [offersInfo]="currentOfferInfo"
             [index]="offer.offerPosition">
           </rente-offer-card-blue>
 
-          <rente-offer-card-v1 *ngIf="variation === 1" [offer]="offer" [offersInfo]="currentOfferInfo"
+          <rente-offer-card-v1 *ngIf="variation == 1" [offer]="offer" [offersInfo]="currentOfferInfo"
             [index]=offer.offerPosition>
           </rente-offer-card-v1>
 
-          <rente-offer-card-v2 *ngIf="variation === 2" [offer]="offer" [offersInfo]="currentOfferInfo"
+          <rente-offer-card-v2 *ngIf="variation == 2" [offer]="offer" [offersInfo]="currentOfferInfo"
             [index]=offer.offerPosition>
           </rente-offer-card-v2>
         </ng-container>
@@ -55,15 +55,15 @@
         <ng-container *ngIf="isMobile; else desktop">
           <rente-offer-card-v1 [offer]="offer" [offersInfo]="currentOfferInfo" [index]=offer.offerPosition>
           </rente-offer-card-v1>
-          <rente-offer-card-blue *ngIf="variation === 0" [offer]="offer" [offersInfo]="currentOfferInfo"
+          <rente-offer-card-blue *ngIf="variation == 0" [offer]="offer" [offersInfo]="currentOfferInfo"
             [index]="offer.offerPosition">
           </rente-offer-card-blue>
 
-          <rente-offer-card-v1 *ngIf="variation === 1" [offer]="offer" [offersInfo]="currentOfferInfo"
+          <rente-offer-card-v1 *ngIf="variation == 1" [offer]="offer" [offersInfo]="currentOfferInfo"
             [index]=offer.offerPosition>
           </rente-offer-card-v1>
 
-          <rente-offer-card-v2 *ngIf="variation === 2" [offer]="offer" [offersInfo]="currentOfferInfo"
+          <rente-offer-card-v2 *ngIf="variation == 2" [offer]="offer" [offersInfo]="currentOfferInfo"
             [index]=offer.offerPosition>
           </rente-offer-card-v2>
         </ng-container>
