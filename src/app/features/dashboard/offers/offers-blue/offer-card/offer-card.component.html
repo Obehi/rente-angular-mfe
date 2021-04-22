@@ -102,9 +102,7 @@
           [color]="'primary-wide-hollow-card-big'" type="raised" (click)="openBankUrlByButton(offer)">Se mer på
           {{getbankNameOrDefault(offer)}}s hjemmeside
         </rente-button>
-        <!--  <p class="small" *ngIf=" offer.bankInfo.partner === false"> (Ingen avtale med banken)</p>
 
- -->
         <div>
           <rente-button class="button" child childClass="{{offer.bankInfo.name}}"
             i18n=“get-offer|offer-card@@offer.card.getOffer” [disabled]="offer.bankInfo.partner == false"
@@ -120,12 +118,9 @@
             Be Nordea om et bedre tilbud
           </rente-button>
         </div>
+
       </div>
     </div>
-
-    <rente-button *ngIf="offer.bankInfo.bank === 'NORDEA'" class="button" child childClass="{{offer.bankInfo.name}}"
-      color="secondary-medium" type="raised" (click)="openNewOfferDialog(offer)">Spørr Nordea om bedre rente
-    </rente-button>
   </div>
 
   <div class="obligatory-info offer-bottom full-row">

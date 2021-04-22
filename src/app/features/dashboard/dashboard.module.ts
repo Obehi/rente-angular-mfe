@@ -64,6 +64,7 @@ import { NordeaBargainSuccessComponent } from './offers/bargain-success/bargain-
 import { CanNotBargainDialogComponent } from './offers/can-not-bargain-dialog/can-not-bargain-dialog.component';
 import { OfferCardV1Component } from './offers/offers-blue/offer-card-v1/offer-card-v1.component';
 import { OfferCardV2Component } from './offers/offers-blue/offer-card-v2/offer-card-v2.component';
+import { ChangeBankTooManyTriesDialogError } from './offers/change-bank-dialog/change-bank-too-many-tries-dialog-error/change-bank-too-many-tries-dialog-error.component';
 
 // TODO: ADD separate module for material import
 @NgModule({
@@ -109,7 +110,8 @@ import { OfferCardV2Component } from './offers/offers-blue/offer-card-v2/offer-c
     AntiChurnErrorDialogComponent,
     CanNotBargainDialogComponent,
     NordeaBargainSuccessComponent,
-    OfferCardV2Component
+    OfferCardV2Component,
+    ChangeBankTooManyTriesDialogError
   ],
   imports: [
     CommonModule,

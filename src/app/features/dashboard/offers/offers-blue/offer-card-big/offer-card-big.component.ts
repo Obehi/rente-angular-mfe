@@ -72,11 +72,6 @@ export class OfferCardBigComponentBlue implements OnInit {
         text = 'Sparebanken Øst';
         break;
       }
-
-      case 'SBANKEN': {
-        text = 'Sbanken';
-        break;
-      }
       case 'BULDER': {
         text = 'Bulder';
         break;

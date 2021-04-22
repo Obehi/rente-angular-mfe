@@ -18,8 +18,11 @@ import { ChangeBankLocationComponent } from '@features/dashboard/offers/change-b
 import { GetOfferFromBankDialogComponent } from './../get-offer-from-bank-dialog/get-offer-from-bank-dialog.component';
 import { AntiChurnDialogComponent } from '@features/dashboard/offers/anti-churn-dialog/anti-churn-dialog.component';
 import { AntiChurnErrorDialogComponent } from '@features/dashboard/offers/anti-churn-dialog/anti-churn-error-dialog/anti-churn-error-dialog.component';
+import { ChangeBankTooManyTriesDialogError } from '@features/dashboard/offers/change-bank-dialog/change-bank-too-many-tries-dialog-error/change-bank-too-many-tries-dialog-error.component';
+
 import { CanNotBargainDialogComponent } from '@features/dashboard/offers/can-not-bargain-dialog/can-not-bargain-dialog.component';
 import { LtvTooHighDialogComponent } from './../ltv-too-high-dialog/ltv-too-high-dialog.component';
+
 import { ChangeBankServiceService } from '@services/remote-api/change-bank-service.service';
 import {
   TrackingService,
@@ -469,6 +472,11 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
         break;
       }
       case 'error-to-many-bargains': {
+        this.dialog.open(ChangeBankTooManyTriesDialogError);
+        break;
+      }
+
+      case 'error-to-many-bargains-nordea': {
         this.dialog.open(AntiChurnErrorDialogComponent);
         break;
       }
@@ -499,10 +507,6 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
   getbankNameOrDefault(offer: OfferInfo): string {
     let text = '';
     switch (offer.bankInfo.bank) {
-      case 'SBANKEN': {
-        text = 'Sbanken';
-        break;
-      }
       case 'BULDER': {
         text = 'Bulder';
         break;
