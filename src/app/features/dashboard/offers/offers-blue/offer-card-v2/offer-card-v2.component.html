@@ -130,8 +130,9 @@
                             </ngb-rating>
                         </div>
 
-                        <p *ngIf="offer.bankInfo.mobileAppRating === undefined" class="top-details-bottom box na">N/A
-                        </p>
+                        <p *ngIf="offer.bankInfo.mobileAppRating === null || offer.bankInfo.mobileAppRating === undefined "
+                            class="box right na" i18n=“application-time|offer-card@@offer.card.mobileRatingNotAvailable>
+                            Endast webbsida</p>
                     </div>
 
                     <div class="offer-properties">
