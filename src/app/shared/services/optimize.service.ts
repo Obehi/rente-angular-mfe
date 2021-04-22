@@ -9,7 +9,6 @@ export class OptimizeService {
 
   getVariation(): number {
     const isLocale = false;
-    return 2;
     if (isLocale) {
       return this.localeVariation;
     }
