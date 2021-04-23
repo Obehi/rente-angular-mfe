@@ -11,7 +11,8 @@ import {
   animate,
   transition,
   animateChild,
-  query
+  query,
+  group
 } from '@angular/animations';
 
 @Component({
@@ -21,8 +22,11 @@ import {
   animations: [
     trigger('inOutAnimationDesktop', [
       transition(':enter', [
-        style({ height: 0, opacity: 0 }),
-        animate('0.2s ease-out', style({ height: 245, opacity: 1 }))
+        style({ height: 0, opacity: 0, borderRadius: '15px' }),
+        animate(
+          '0.2s ease-out',
+          style({ height: 245, opacity: 1, borderRadius: '0px 0px 15px 15px' })
+        )
       ]),
       transition(':leave', [
         // style({ height: '100', opacity: 1 }),
@@ -43,20 +47,49 @@ import {
       state(
         'close',
         style({
-          width: '908px'
+          width: '908px',
+          borderRadius: '15px 15px 0px 0px'
         })
       ),
       state(
         'open',
         style({
-          width: '454px'
+          width: '454px',
+          borderRadius: '15px'
         })
       ),
-      transition('* => close', [animate('0.2s')]),
-      transition('* => open', [animate('0.1s')])
+      transition('* => close', [
+        group([query('@openCloseDesktop', [animateChild()])]),
+
+        animate('0.2s')
+      ]),
+      transition('* => open', [
+        group([query('@openCloseDesktop', [animateChild()])]),
+        animate('0.1s')
+      ])
+    ]),
+    trigger('openCloseDesktop', [
+      state(
+        'open',
+        style({
+          transform: 'rotate(180deg)'
+        })
+      ),
+      state(
+        'close',
+        style({
+          transform: 'rotate(180deg)'
+        })
+      ),
+      transition('* => close', [
+        animate('0.04s', style({ transform: 'rotate(-180deg)' }))
+      ]),
+      transition('* => open', [
+        animate('0.04s', style({ transform: 'rotate(180deg)' }))
+      ])
     ]),
     // TODO: add query for parent/child animations
-    trigger('openClose', [
+    trigger('openCloseMobile', [
       state(
         'open',
         style({
@@ -73,7 +106,7 @@ import {
         animate('0.09s', style({ transform: 'rotate(180deg)' }))
       ]),
       transition('* => open', [
-        animate('0.09s', style({ transform: 'rotate(180deg)' }))
+        animate('0.09s', style({ transform: 'rotate(-180deg)' }))
       ])
     ])
   ]

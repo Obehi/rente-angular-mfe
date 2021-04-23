@@ -6,10 +6,14 @@
   [@stretchAccordionDesktop]="!isShowTips ? 'open' : 'close'"
 >
   <p>
-    <mat-icon *ngIf="!isShowTips" [@openClose]="!isShowTips ? 'open' : 'close'"
+    <mat-icon
+      *ngIf="!isShowTips"
+      [@openCloseDesktop]="!isShowTips ? 'open' : 'close'"
       >expand_more</mat-icon
     >
-    <mat-icon *ngIf="isShowTips" [@openClose]="isShowTips ? 'close' : 'open'"
+    <mat-icon
+      *ngIf="isShowTips"
+      [@openCloseDesktop]="isShowTips ? 'close' : 'open'"
       >expand_less</mat-icon
     >
     <span class="nr">{{ tips.length }}</span> Tips
@@ -24,10 +28,14 @@
   *ngIf="isMobile && tips.length > 0"
 >
   <p>
-    <mat-icon *ngIf="!isShowTips" [@openClose]="!isShowTips ? 'open' : 'close'"
+    <mat-icon
+      *ngIf="!isShowTips"
+      [@openCloseMobile]="!isShowTips ? 'open' : 'close'"
       >expand_more</mat-icon
     >
-    <mat-icon *ngIf="isShowTips" [@openClose]="isShowTips ? 'close' : 'open'"
+    <mat-icon
+      *ngIf="isShowTips"
+      [@openCloseMobile]="isShowTips ? 'close' : 'open'"
       >expand_less</mat-icon
     >
     <span class="nr">{{ tips.length }}</span> Tips
