@@ -132,11 +132,6 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
   }
 
   public ngOnInit(): void {
-    this.logginService.googleAnalyticsLog({
-      category: 'category test',
-      label: 'label test',
-      action: 'action teset'
-    });
     if (locale.includes('sv')) {
       this.isSweden = true;
     } else {
