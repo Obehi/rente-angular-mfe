@@ -1,12 +1,16 @@
 <div class="the-offer">
-  <div *ngIf="!isSweden" class="nr all">
-    {{ index }}
-  </div>
-  <div *ngIf="isSweden" class="nr"
-    [ngClass]="{'threeMonths': offerType == 'threeMonths', 'oneYear': offerType == 'oneYear', 'all': offerType == 'all'}">
-    {{ index }}
-  </div>
+
   <div class="the-offer-header">
+
+    <div *ngIf="!isSweden" class="nr all">
+      {{ index }}
+    </div>
+    <div *ngIf="isSweden" class="nr"
+      [ngClass]="{'threeMonths': offerType == 'threeMonths', 'oneYear': offerType == 'oneYear', 'all': offerType == 'all'}">
+      {{ index }}
+    </div>
+
+
     <div class="top">
       <div class="logo" [ngStyle]="{
                 'background-image': 'url(' + banksMap[offer.bankInfo.bank].img + ')'

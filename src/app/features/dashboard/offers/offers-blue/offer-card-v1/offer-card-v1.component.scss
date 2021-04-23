@@ -24,8 +24,8 @@
     box-shadow: 1px 1px 8px -4px;
     line-height: 3em;
     margin: auto;
+    margin-bottom: 10px;
     position: relative;
-    top: -2em;
 
     p {
       font-weight: 500;
@@ -47,11 +47,12 @@
     align-items: center;
     border-bottom: 1px solid #ececec;
     padding-top: 0px;
-    margin-top: -10px;
+    margin-top: -30px;
     flex-direction: column;
 
     .top {
       display: flex;
+      align-items: center;
       width: 100%;
     }
     p {

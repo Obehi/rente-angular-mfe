@@ -65,7 +65,7 @@ export interface BankInfo {
   partner: boolean;
   score: number;
   applicationTime: number;
-  area: string;
+  area: string | null;
   bankType: string;
   mobileAppRating: number | undefined;
 }
