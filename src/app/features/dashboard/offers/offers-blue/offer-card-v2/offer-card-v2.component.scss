@@ -56,6 +56,7 @@
     padding-top: 0px;
     margin-top: -30px;
     flex-direction: column;
+    padding-bottom: 20px;
 
     .top {
       display: flex;
@@ -81,20 +82,6 @@
       min-width: 75px;
       max-height: 50px;
     }
-
-    /* .interest-rate {
-      background-color: $grey-dark;
-      border-radius: 16px;
-      background-color: #54606e;
-      color: white;
-      font-size: 14px;
-      line-height: unset;
-      text-align: center;
-      padding: 8px;
-      min-width: 58px;
-      padding-top: 16px;
-      max-height: 48px;
-    } */
 
     .logo {
       width: 3em;
@@ -181,6 +168,7 @@
     background: $grey-light;
     width: 100%;
     margin: 20px;
+    margin-bottom: 10px;
     padding: 10px;
     border-radius: 16px;
     display: flex;

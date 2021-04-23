@@ -46,14 +46,6 @@ export class OffersListSvComponent implements OnInit {
     return variation || 0;
   }
 
-  public setV1(): void {
-    this.isV1 = true;
-  }
-
-  public setV2(): void {
-    this.isV1 = false;
-  }
-
   public setOfferType(type: string): void {
     this.currentOfferType = type;
 
