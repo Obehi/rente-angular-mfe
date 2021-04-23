@@ -40,9 +40,9 @@ export class OffersListSvComponent implements OnInit {
 
     let experimentId: string | null;
     if (this.envService.environment.production === true) {
-      experimentId = 'ltS3-bOLQ6S2DjHISLjZJw';
+      experimentId = 'R4XzZ2zoREWkM1sqUDv5YQ';
     } else {
-      experimentId = 'A6Fvld2GTAG3VE95NWV1Hw';
+      experimentId = 'none';
     }
     const variation = (window as any).google_optimize?.get(experimentId);
     console.log('variation');
