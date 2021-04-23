@@ -15,7 +15,7 @@ export class OffersListNoComponent implements OnInit {
 
   public getVariation() {
     const variation = (window as any).google_optimize.get(
-      'xV_v0ABdSQuZIsJEHiDgow'
+      'A6Fvld2GTAG3VE95NWV1Hw'
     );
     return variation || 0;
   }
