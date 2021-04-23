@@ -47,7 +47,7 @@ import {
       state(
         'close',
         style({
-          width: '908px',
+          width: '100%',
           borderRadius: '15px 15px 0px 0px'
         })
       ),
@@ -61,7 +61,7 @@ import {
       transition('* => close', [
         group([query('@openCloseDesktop', [animateChild()])]),
 
-        animate('0.2s')
+        animate('0.1s')
       ]),
       transition('* => open', [
         group([query('@openCloseDesktop', [animateChild()])]),
