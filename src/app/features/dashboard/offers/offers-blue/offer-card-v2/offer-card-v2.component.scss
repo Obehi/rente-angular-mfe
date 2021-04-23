@@ -252,6 +252,10 @@
         border-top: 1px solid #ececec;
         padding-top: 20px;
 
+        p {
+          font-size: 14px;
+        }
+
         .top-details-top {
           grid-row: 1;
         }
@@ -337,6 +341,7 @@
           color: $grey-dark;
           p {
             color: $grey-dark;
+            font-weight: 14px;
           }
           .bar {
             width: 50%;
@@ -433,12 +438,12 @@
         }
 
         p {
-          font-size: 12px;
+          font-size: 14px;
           font-weight: 400;
         }
 
         .details {
-          font-size: 12px;
+          font-size: 14px;
           font-weight: bold;
         }
       }

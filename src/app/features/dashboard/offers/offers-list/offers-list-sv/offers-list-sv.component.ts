@@ -38,6 +38,8 @@ export class OffersListSvComponent implements OnInit {
     const variation = (window as any).google_optimize?.get(
       '9d84Epc8T3amY5DsACFhVA'
     );
+    console.log('variation');
+    console.log(variation);
     return variation || 0;
   }
 
