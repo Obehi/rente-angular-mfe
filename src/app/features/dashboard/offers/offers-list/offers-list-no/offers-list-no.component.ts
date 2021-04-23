@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Offers } from './../../../../../shared/models/offers';
 import { OptimizeService } from '@services/optimize.service';
-
+import { EnvService } from '@services/env.service';
 @Component({
   selector: 'rente-offers-list',
   templateUrl: './offers-list-no.component.html',
@@ -11,15 +11,23 @@ export class OffersListNoComponent implements OnInit {
   @Input() offersInfo: Offers;
   public currentOfferInfo: Offers;
 
-  constructor(public optimizeService: OptimizeService) {}
+  constructor(
+    public optimizeService: OptimizeService,
+    private envService: EnvService
+  ) {}
 
   public getVariation() {
     if ((window as any).google_optimize === undefined) {
       return 0;
     }
-    const variation = (window as any).google_optimize.get(
-      'A6Fvld2GTAG3VE95NWV1Hw'
-    );
+    let experimentId: string | null;
+    if (this.envService.environment.production === true) {
+      experimentId = 'ltS3-bOLQ6S2DjHISLjZJw';
+    } else {
+      experimentId = 'A6Fvld2GTAG3VE95NWV1Hw';
+    }
+
+    const variation = (window as any).google_optimize.get(experimentId);
     console.log('variation');
     console.log(variation);
     return variation || 0;

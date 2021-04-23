@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Offers } from './../../../../../shared/models//offers';
+import { EnvService } from '@services/env.service';
 
 @Component({
   selector: 'rente-offers-list',
@@ -10,15 +11,13 @@ export class OffersListSvComponent implements OnInit {
   @Input() offersInfo: Offers;
   public currentOfferInfo: Offers;
 
-  isV1 = true;
-
   get isMobile(): boolean {
     return window.innerWidth < 600;
   }
   public currentOfferType: string;
   variation: number | null = null;
 
-  constructor() {}
+  constructor(private envService: EnvService) {}
 
   ngOnInit(): void {
     this.variation = this.getVariation();
@@ -38,9 +37,14 @@ export class OffersListSvComponent implements OnInit {
     if ((window as any).google_optimize === undefined) {
       return 0;
     }
-    const variation = (window as any).google_optimize?.get(
-      '9d84Epc8T3amY5DsACFhVA'
-    );
+
+    let experimentId: string | null;
+    if (this.envService.environment.production === true) {
+      experimentId = 'ltS3-bOLQ6S2DjHISLjZJw';
+    } else {
+      experimentId = 'A6Fvld2GTAG3VE95NWV1Hw';
+    }
+    const variation = (window as any).google_optimize?.get(experimentId);
     console.log('variation');
     console.log(variation);
     return variation || 0;
