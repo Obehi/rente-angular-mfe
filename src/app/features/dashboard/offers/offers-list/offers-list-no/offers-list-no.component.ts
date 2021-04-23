@@ -26,6 +26,8 @@ export class OffersListNoComponent implements OnInit {
     } else {
       experimentId = 'A6Fvld2GTAG3VE95NWV1Hw';
     }
+    console.log('experimentId');
+    console.log(experimentId);
 
     const variation = (window as any).google_optimize.get(experimentId);
     console.log('variation');
