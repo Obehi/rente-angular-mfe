@@ -99,7 +99,7 @@
       <div class="buttons">
         <rente-button class="firstButton" [disabled]="offer.bankInfo.partner == false" child
           childClass="{{offer.bankInfo.name}}" i18n=“see-more|offer-card-big@@offer.card.big.seeMore”
-          [color]="'primary-wide-hollow-card'" type="raised" (click)="openBankUrlByButton(offer)">Se mer på
+          [color]="'primary-wide-hollow-card-big'" type="raised" (click)="openBankUrlByButton(offer)">Se mer på
           {{getbankNameOrDefault(offer)}}s hjemmeside
         </rente-button>
 
@@ -121,16 +121,17 @@
 
       </div>
     </div>
-
-    <div class="obligatory-info offer-bottom full-row">
-
-      <p i18n=“number-details|offer-card@@offer.card.numberDetails” class="insignificant"><span>
-        </span> Eff.rente {{offer.effectiveRate | number: "1.2-2"}} %,
-        Lånebeløp {{offer.outstandingDebt | number: "1.0" }},
-        {{offer.loanPeriodYears | number: "1.1-1" }} år,
-        Kostnad: {{offer.cost | number: "1.0" }},
-        Totalt: {{offer.totalCost | number: "1.0" }}
-      </p>
-    </div>
-
   </div>
+
+  <div class="obligatory-info offer-bottom full-row">
+
+    <p i18n=“number-details|offer-card@@offer.card.numberDetails” class="insignificant"><span>
+      </span> Eff.rente {{offer.effectiveRate | number: "1.2-2"}} %,
+      Lånebeløp {{offer.outstandingDebt | number: "1.0" }},
+      {{offer.loanPeriodYears | number: "1.1-1" }} år,
+      Kostnad: {{offer.cost | number: "1.0" }},
+      Totalt: {{offer.totalCost | number: "1.0" }}
+    </p>
+  </div>
+
+</div>

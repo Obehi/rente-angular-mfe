@@ -28,6 +28,8 @@ import {
   MatTooltipModule,
   MatExpansionModule
 } from '@angular/material';
+import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
+
 import { RateTypeFixedComponent } from './rate-type-fixed/rate-type-fixed.component';
 import { ChangeBankDialogComponent } from './offers/change-bank-dialog/change-bank-dialog.component';
 import { HouseFormErrorDialogComponent } from './house/error-dialog/error-dialog.component';
@@ -60,6 +62,8 @@ import { AntiChurnDialogComponent } from './offers/anti-churn-dialog/anti-churn-
 import { AntiChurnErrorDialogComponent } from './offers/anti-churn-dialog/anti-churn-error-dialog/anti-churn-error-dialog.component';
 import { NordeaBargainSuccessComponent } from './offers/bargain-success/bargain-nordea/nordea-bargain-success.component';
 import { CanNotBargainDialogComponent } from './offers/can-not-bargain-dialog/can-not-bargain-dialog.component';
+import { OfferCardV1Component } from './offers/offers-blue/offer-card-v1/offer-card-v1.component';
+import { OfferCardV2Component } from './offers/offers-blue/offer-card-v2/offer-card-v2.component';
 import { ChangeBankTooManyTriesDialogError } from './offers/change-bank-dialog/change-bank-too-many-tries-dialog-error/change-bank-too-many-tries-dialog-error.component';
 
 // TODO: ADD separate module for material import
@@ -101,9 +105,12 @@ import { ChangeBankTooManyTriesDialogError } from './offers/change-bank-dialog/c
     HouseErrorDialogSv,
     ChangeBankLocationComponent,
     AntiChurnDialogComponent,
+    CanNotBargainDialogComponent,
+    OfferCardV1Component,
     AntiChurnErrorDialogComponent,
     CanNotBargainDialogComponent,
     NordeaBargainSuccessComponent,
+    OfferCardV2Component,
     ChangeBankTooManyTriesDialogError
   ],
   imports: [
@@ -127,7 +134,9 @@ import { ChangeBankTooManyTriesDialogError } from './offers/change-bank-dialog/c
     MatCheckboxModule,
     MatBottomSheetModule,
     MatExpansionModule,
-    MatStepperModule
+    MatStepperModule,
+    NgbRatingModule
+
     // ShareButtonModule
   ],
   entryComponents: [

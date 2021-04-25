@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material';
+import { MatDialogRef } from '@angular/material';
 
 @Component({
   selector: 'rente-anti-churn-error-dialog',

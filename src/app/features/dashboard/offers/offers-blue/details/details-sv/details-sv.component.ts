@@ -8,6 +8,7 @@ import { OfferInfo } from '@shared/models/offers';
 })
 export class OfferDetailsSvComponent implements OnInit {
   @Input() offer: OfferInfo;
+  @Input() align: string;
   @Output() closeClicked = new EventEmitter();
 
   constructor() {}

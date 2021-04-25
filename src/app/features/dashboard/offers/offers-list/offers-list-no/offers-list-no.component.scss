@@ -1,117 +1,131 @@
-h3,p {
-    color: #fff;
-  }
-
-@media (min-width: 600px) {
-    h3 {
-        font-size: 38px;
-    }
+@import '../../../../../../styles/theme/_colors.scss';
+h3,
+p {
+  color: #fff;
 }
 
-.sticky-table-header{
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-      position: sticky;
-      z-index: 20;
-      top: 55px;
+@media (min-width: 600px) {
+  h3 {
+    font-size: 38px;
+  }
+}
+
+.sticky-table-header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  position: sticky;
+  z-index: 20;
+  top: 55px;
+  font-size: 14px;
+  color: #fff;
+  background-color: #6c7580;
+  height: 4em;
+  width: 100%;
+  padding: 10px;
+
+  span {
+    margin-right: 29px;
+  }
+
+  @media (min-width: 600px) {
+    top: 114px;
+  }
+  p {
+    color: white;
+    font-weight: 400;
+
+    span {
+      margin-left: 20px;
       font-size: 14px;
-      color: #fff;
-      background-color: #6c7580;
-      height: 4em;
-      width: 100%;
-      padding: 10px;
-
-
-      @media (min-width: 600px) {
-        top: 114px;
-      }
-      p {
-        color: white;
-        font-weight: 400;
-
-        span {
-          margin-left: 20px;
-          font-size: 14px;
-        }
-      }
-      p:first-of-type {
-        margin-right: auto;
-      }
-      ul {
-        display: flex;
-        justify-content: end;
-        list-style: none;
-        width: 240px;
-        padding-top: 0.5em;
-        padding-bottom: 0.5em;
-        padding-left: 10px;
-        padding-right: 10px;
-        margin-top: 15px;
-
-        li:first-child {
-          font-size: 5.5em;
-        }
-      }
-      li:first-child {
-        display: none;
-      }
     }
+  }
+  p:first-of-type {
+    margin-right: auto;
+  }
+  ul {
+    display: flex;
+    justify-content: end;
+    list-style: none;
+    width: 240px;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-top: 15px;
+
+    li:first-child {
+      font-size: 5.5em;
+    }
+  }
+  li:first-child {
+    display: none;
+  }
+}
 
 .offers-type-container {
+  background: white;
+  width: 370px;
+  margin: auto;
+  height: 60px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  border-radius: 30px;
 
+  @media (max-width: 600px) {
+    width: 100%;
+    margin: 40px auto;
+  }
+
+  a {
+    color: black;
     background: white;
-    width: 370px;
-    margin: auto;
-    height: 60px;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    border-radius: 30px;
-  
-    @media (max-width: 600px) {
-      width: 100%;
-      margin: 40px auto
+    font-weight: 400;
+    flex: 1;
+    height: 100%;
+    line-height: 60px;
+
+    &.active {
+      background: none;
     }
-  
-    a {
-      color: black;
-      background: white;
-      font-weight: 400;
-      flex: 1;
-      height: 100%;
-      line-height: 60px;
-  
+
+    &:first-of-type {
+      border-radius: 30px 0 0 30px;
+
       &.active {
-        background: none;
+        color: white !important;
+        background: #5eb1bf;
       }
-  
-      &:first-of-type {
-        border-radius: 30px 0 0 30px;
-  
-        &.active {
-          color: white !important;
-          background: #5EB1BF;
-        }  
+    }
+
+    &:nth-child(2) {
+      &.active {
+        color: white !important;
+        background: #ef767a;
       }
-  
-      &:nth-child(2) {
-  
-        &.active {
-          color: white !important;
-          background: #EF767A;
-        }  
-        
-      }
-  
-      &:last-of-type {
-        border-radius: 0 30px 30px 0;
-  
-        &.active {
-          color: black !important;
-          background: #d1d1d1;
-        }
+    }
+
+    &:last-of-type {
+      border-radius: 0 30px 30px 0;
+
+      &.active {
+        color: black !important;
+        background: #d1d1d1;
       }
     }
   }
-  
+}
+
+.version {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+  .versionButton {
+    border-radius: 15px;
+    padding: 10px 20px;
+    background: $grey-light;
+    color: $grey-dark;
+  }
+}

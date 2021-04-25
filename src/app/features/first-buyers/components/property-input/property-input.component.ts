@@ -11,8 +11,7 @@ import { FormGroup } from '@angular/forms';
 import { FirstBuyersService } from '@features/first-buyers/first-buyers.service';
 import { MembershipTypeDto } from '@services/remote-api/loans.service';
 import { Observable, Subject } from 'rxjs';
-import { distinctUntilChanged, timeout } from 'rxjs/operators';
-import { MatAutocompleteTrigger, MatAutocomplete } from '@angular/material';
+import { distinctUntilChanged } from 'rxjs/operators';
 import { SelectAutocompleteComponent } from 'mat-select-autocomplete';
 
 interface Membership {
@@ -97,7 +96,7 @@ export class PropertyInputComponent implements OnInit {
     return parseInt(val.trim(), 10);
   }
 
-  focusOutFunction() {
+  focusOutFunction(): void {
     this.isFirstFocus = false;
   }
 }

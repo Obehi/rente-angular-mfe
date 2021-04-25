@@ -96,8 +96,7 @@ registerLocaleData(localeNo);
     { provide: Window, useValue: window },
     UserService,
     OptimizeService,
-    EnvService,
-    { provide: Window, useValue: window }
+    EnvService
   ],
   bootstrap: [AppComponent]
 })
