@@ -632,7 +632,7 @@ Den exakta processen beror på din enhet och vilken webbläsare du använder. I 
         Kostnad: <ph name="INTERPOLATION_3"><ex>{{offer.cost | number: &quot;1.0&quot; }}</ex>{{offer.cost | number: &quot;1.0&quot; }}</ph>, 
         Totalt: <ph name="INTERPOLATION_4"><ex>{{offer.totalCost | number: &quot;1.0&quot; }}</ex>{{offer.totalCost | number: &quot;1.0&quot; }}</ph></translation>
   <translation id="offer.card.big.details”" desc="offer-card-big" meaning="“details">Detaljer</translation>
-  <translation id="offer.card.big.seeMore”" desc="offer-card-big" meaning="“see-more">Se mer på <ph name="INTERPOLATION"><ex>{{getbankNameOrDefault(offer)}}</ex>{{getbankNameOrDefault(offer)}}</ph>s  hemsida</translation>
+  <translation id="offer.card.big.seeMore”" desc="offer-card-big" meaning="“see-more">Se mer på <ph name="INTERPOLATION"><ex>{{getbankNameOrDefault(offer)}}</ex>{{getbankNameOrDefault(offer)}}</ph>s hemsida</translation>
   <translation id="offer.card.big.noDeal”" desc="offer-card-big" meaning="“no-deal">( Inget avtal med banken)</translation>
   <translation id="offer.card.big.getOffer”" desc="offer-card-big" meaning="“get-offer">Få erbjudande från <ph name="INTERPOLATION"><ex>{{getbankNameOrDefault(offer)}}</ex>{{getbankNameOrDefault(offer)}}</ph>!</translation>
   <translation id="offer.card.big.noDeal2”" desc="offer-card-big" meaning="“no-deal2">(Inget avtal med banken)</translation>
@@ -826,4 +826,11 @@ Vi följer ständigt upp om det dyker upp bättre ränteerbjudanden på marknade
   <translation id="change.bank.email" desc="change-bank" meaning="“info-post"/>
   <translation id="offers.statistics.tab1" desc="offers-statistics" meaning="graph">din bank</translation>
   <translation id="offers.statistics.tab2" desc="offers-statistics" meaning="graph">alla banker</translation>
+  <translation id="bargain.success.backToOffers“" desc="bargain" meaning="“confirmation">Tillbaka till erbjudanden</translation>
+  <translation id="add.rate.title”" desc="add-rate" meaning="“title"/>
+  <translation id="bargainNordeaNordea.success.sent”" desc="bargain" meaning="“confirmation"/>
+  <translation id="bargainNordea.success.sent.you”" desc="bargain" meaning="“confirmation-you"/>
+  <translation id="bargainNordea.success.backToOffers“" desc="bargain" meaning="“confirmation"/>
+  <translation id="bargainNordea.success.error”" desc="bargain" meaning="“error"/>
+  <translation id="bargainNordea.success.error2”" desc="bargain" meaning="“error2"/>
 </translationbundle>

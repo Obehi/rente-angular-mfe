@@ -44,6 +44,7 @@ import {
 import { CustomLangTextService } from '@services/custom-lang-text.service';
 import { ChildDirective } from './directives/child.directive';
 import { CheckboxContainerComponent } from './components/ui-components/checkbox-container/checkbox-container.component';
+import { BarComponent } from './components/ui-components/bar/bar.component';
 
 const components = [
   HeaderLangGenericComponent,
@@ -98,7 +99,8 @@ const services = [
     AbsPipe,
     RoundPipe,
     ThousandsSeprator,
-    ChildDirective
+    ChildDirective,
+    BarComponent
   ],
   exports: [
     ...components,
@@ -106,7 +108,8 @@ const services = [
     RoundPipe,
     ThousandsSeprator,
     ChildDirective,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BarComponent
   ],
   providers: [...services]
 })
