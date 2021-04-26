@@ -56,7 +56,7 @@ export class InitConfirmationNoComponent implements OnInit {
   public mask = Mask;
   public optimizeService: OptimizeService;
   public isAddressNeeded = false;
-
+  public isNameNeeded = true;
   @ViewChild('membershipInput') membershipInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete: MatAutocomplete;
 
@@ -101,13 +101,11 @@ export class InitConfirmationNoComponent implements OnInit {
       const income = String(userInfo.income) || null;
       const apartmentSize = String(userInfo.apartmentSize) || null;
       this.isAddressNeeded = rateAndLoans.isAddressNeeded;
-
-      const name = this.userData.name || '';
+      this.isNameNeeded = this.userData.name !== null;
 
       if (this.isAddressNeeded) {
         this.isAddressNeeded = true;
         this.propertyForm = this.fb.group({
-          name: [name, Validators.required],
           address: ['', Validators.required],
           zip: [
             '',
@@ -141,6 +139,13 @@ export class InitConfirmationNoComponent implements OnInit {
           ]
         });
       }
+
+      if (this.isNameNeeded) {
+        this.propertyForm.addControl(
+          'name',
+          new FormControl('', Validators.required)
+        );
+      }
     });
   }
 
@@ -168,7 +173,7 @@ export class InitConfirmationNoComponent implements OnInit {
           : formData.income,
       memberships: this.memberships.map((membership) => membership.name),
       apartmentSize: formData.apartmentSize,
-      name: this.isAddressNeeded ? formData.name : this.userData.name,
+      name: this.isNameNeeded ? formData.name : this.userData.name,
       propertyType: formData.propertyType
     };
 
