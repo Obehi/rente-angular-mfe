@@ -3,21 +3,127 @@ import { AGGREGATED_LOAN_TYPE, AGGREGATED_RATE_TYPE } from '@config/loan-state';
 import { ROUTES_MAP } from '@config/routes-config';
 import { CustomLangTextService } from '@services/custom-lang-text.service';
 import { Offers } from '@shared/models/offers';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition,
+  animateChild,
+  query,
+  group
+} from '@angular/animations';
 
 @Component({
   selector: 'tips-component',
   templateUrl: './tips.component.html',
-  styleUrls: ['./tips.component.scss']
+  styleUrls: ['./tips.component.scss'],
+  animations: [
+    trigger('inOutAnimationDesktop', [
+      transition(':enter', [
+        style({ height: 0, opacity: 0, borderRadius: '15px' }),
+        animate(
+          '0.2s ease-out',
+          style({ height: 245, opacity: 1, borderRadius: '0px 0px 15px 15px' })
+        )
+      ]),
+      transition(':leave', [
+        // style({ height: '100', opacity: 1 }),
+        animate('0.1s ease-in', style({ height: 0, opacity: 0 }))
+      ])
+    ]),
+    trigger('inOutAnimationMobile', [
+      transition(':enter', [
+        style({ height: 0, opacity: 0 }),
+        animate('0.123s ease-out', style({ height: 245, opacity: 1 }))
+      ]),
+      transition(':leave', [
+        // style({ height: '100', opacity: 1 }),
+        animate('0.123s ease-in', style({ height: 0, opacity: 0 }))
+      ])
+    ]),
+    trigger('stretchAccordionDesktop', [
+      state(
+        'close',
+        style({
+          width: '100%',
+          borderRadius: '15px 15px 0px 0px'
+        })
+      ),
+      state(
+        'open',
+        style({
+          width: '454px',
+          borderRadius: '15px'
+        })
+      ),
+      transition('* => close', [
+        group([query('@openCloseDesktop', [animateChild()])]),
+
+        animate('0.1s')
+      ]),
+      transition('* => open', [
+        group([query('@openCloseDesktop', [animateChild()])]),
+        animate('0.1s')
+      ])
+    ]),
+    trigger('openCloseDesktop', [
+      state(
+        'open',
+        style({
+          transform: 'rotate(180deg)'
+        })
+      ),
+      state(
+        'close',
+        style({
+          transform: 'rotate(180deg)'
+        })
+      ),
+      transition('* => close', [
+        animate('0.04s', style({ transform: 'rotate(-180deg)' }))
+      ]),
+      transition('* => open', [
+        animate('0.04s', style({ transform: 'rotate(180deg)' }))
+      ])
+    ]),
+    // TODO: add query for parent/child animations
+    trigger('openCloseMobile', [
+      state(
+        'open',
+        style({
+          transform: 'rotate(0deg)'
+        })
+      ),
+      state(
+        'close',
+        style({
+          transform: 'rotate(0deg)'
+        })
+      ),
+      transition('* => close', [
+        animate('0.09s', style({ transform: 'rotate(180deg)' }))
+      ]),
+      transition('* => open', [
+        animate('0.09s', style({ transform: 'rotate(-180deg)' }))
+      ])
+    ])
+  ]
 })
 export class TipsComponent implements OnInit {
   @Input() offersInfo: Offers;
+  @Input() togglePosition;
   public incompleteInfoLoanPresent: Offers;
   public aggregatedLoanType = AGGREGATED_LOAN_TYPE;
   public aggregatedRateType = AGGREGATED_RATE_TYPE;
   public tips: any[];
   public isShowTips: boolean;
 
-  constructor(public customLangTextSerice: CustomLangTextService) {
+  constructor(
+    public customLangTextSerice: CustomLangTextService,
+    public breakpointObserver: BreakpointObserver
+  ) {
     this.isShowTips = false;
     this.tips = [];
   }
