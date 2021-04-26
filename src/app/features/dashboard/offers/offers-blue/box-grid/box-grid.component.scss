@@ -1,0 +1,83 @@
+@import '../../../../../../styles/theme/_colors.scss';
+
+:host {
+  @media (max-width: 600px) {
+    grid-row: 2;
+    grid-column-start: 1;
+    grid-column-end: span 2;
+  }
+}
+
+.info-box-grid {
+  display: grid;
+  grid-gap: 22px;
+  grid-template-columns: 1fr 1fr;
+
+  @media (min-width: 600px) {
+    min-height: 350px;
+  }
+
+  @media (max-width: 600px) {
+    display: grid;
+    margin-top: 22px;
+  }
+}
+
+.box {
+  padding: 20px 10px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  p img {
+    position: relative;
+    top: 2px;
+    margin-left: 5px;
+    height: 16px;
+  }
+}
+
+.round-box {
+  border-radius: 15px;
+}
+
+.blue-bg {
+  background: $blue;
+  * {
+    color: white;
+  }
+}
+
+.box-icon {
+  margin: 10px auto;
+  width: 20px;
+}
+
+.primary-bg {
+  background: #57b99d;
+  * {
+    color: white;
+  }
+}
+
+.arrow-big {
+  float: right;
+  margin-bottom: -5px;
+  margin-right: 5px;
+  margin-top: 22px;
+  align-self: flex-end;
+}
+
+.margin-top-extra {
+  margin-top: 22px;
+}
+
+.extra-small-virdi {
+  font-size: 9px;
+  margin-bottom: 10px;
+}
+
+a {
+  color: $green !important;
+}

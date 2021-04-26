@@ -1,0 +1,261 @@
+@import '../../../../../../styles/theme/_colors.scss';
+
+:host {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-start: 1;
+  grid-column-end: span 2;
+  column-gap: 22px;
+  @media (max-width: 600px) {
+    background: $secondary;
+    margin-top: 22px;
+    border-radius: 15px;
+  }
+}
+
+.tipsAccordion {
+  @media (max-width: 600px) {
+    grid-row: 3;
+    grid-column-start: 1;
+    grid-column-end: span 2;
+    position: relative;
+    //margin-top: 15px;
+
+    padding: 10px 10px !important;
+    cursor: pointer;
+    background-color: #112639;
+    text-align: left;
+    p {
+      font-size: 16px;
+      color: $white;
+    }
+  }
+  @media (min-width: 600px) {
+    position: relative;
+    top: 7px;
+
+    padding: 6px 10px !important;
+    cursor: pointer;
+    background-color: #112639;
+    text-align: left;
+    p {
+      font-size: 16px;
+      color: $white;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .tipsAccordion:focus {
+    background: $white;
+    border-radius: 15px 15px 0px 0px;
+  }
+}
+
+.info-accordion {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-row: 2;
+  grid-column-end: span 2;
+  //grid-row-gap: 100px;
+  @media (max-width: 600px) {
+    display: grid;
+    grid-row: 4;
+    padding: 0px;
+  }
+}
+
+.round-box {
+  border-radius: 15px;
+}
+
+.nr {
+  background-color: #18bc9c;
+  height: 22px;
+  border-radius: 100%;
+  color: #fff;
+  padding: 0 8px;
+  font-size: 14px;
+  font-weight: 400;
+  float: right;
+  margin-top: 2px;
+}
+
+.tipText {
+  width: 80%;
+  color: #112639 !important;
+  @media (min-width: 600px) {
+    width: 100%;
+  }
+}
+
+p {
+  color: white;
+  font-size: 14px;
+  text-align: left;
+}
+
+.tips {
+  @media (min-width: 600px) and (min-width: 850px) {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin-top: 22px;
+    //grid-auto-rows: 1fr; //Same height for all boxes across all rows
+  }
+
+  @media (min-width: 768px) and (max-width: 849px) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 22px;
+  }
+
+  @media (min-width: 601) and (max-width: 768px) {
+    display: grid;
+    grid-template-columns: 1fr;
+    margin-top: 22px;
+  }
+
+  @media (max-width: 600px) {
+    padding: 0px;
+    margin-top: 8px;
+  }
+
+  padding: 5px;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 0px;
+  background: $secondary;
+
+  .tip-wrapper {
+    @media (min-width: 600px) {
+      background: white;
+      margin: 5px;
+      border-radius: 5px;
+
+      .tip {
+        display: grid;
+        margin: 15px;
+        grid-template-columns: 1fr; /////////
+        padding: 5px 0px 15px 5px;
+        .tipTop {
+          display: flex;
+          grid-row: 1;
+          grid-column-start: 1;
+          grid-column-end: span 2;
+          align-items: baseline;
+
+          img {
+            grid-row: 1;
+            grid-column-start: 1;
+            grid-column-end: span 2;
+            width: 20px;
+            height: 20px;
+            margin: 0 10px 10px 0;
+          }
+
+          h4 {
+            font-weight: 400;
+          }
+        }
+
+        p {
+          color: $secondary;
+        }
+      }
+    }
+    @media (min-width: 600) and (max-width: 768px) {
+      width: 100%;
+    }
+
+    @media (min-width: 768px) {
+      max-width: 300px;
+    }
+  }
+}
+
+// .obs {
+//   display: block;
+//   background-color: #fff4ed !important;
+//   @media (max-width: 600px) {
+//     display: block;
+//     border-radius: 0px;
+//   }
+// }
+
+.obs {
+  display: block;
+
+  //border-bottom: 1px solid $warning;
+  background-color: $lightwarning !important;
+  @media (max-width: 600px) {
+    //padding: 10px 20px;
+    div {
+      p {
+        color: $secondary !important;
+      }
+    }
+  }
+}
+
+.tipTop {
+  display: flex;
+  grid-row: 1;
+  grid-column-start: 1;
+  grid-column-end: span 2;
+  align-items: baseline;
+
+  img {
+    @media (max-width: 600px) {
+      width: 20px;
+      height: 30px;
+    }
+    width: 20px;
+    height: 20px;
+    margin: 0 10px 10px 0;
+  }
+
+  h4 {
+    @media (max-width: 600px) {
+      display: none;
+    }
+    font-weight: 400;
+  }
+}
+
+mat-icon {
+  vertical-align: top;
+  margin-right: 5px;
+  color: #18bc9c;
+}
+
+.tip {
+  padding: 20px 10px;
+  position: relative;
+  display: block;
+  text-decoration: none;
+  padding-right: 40px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  p {
+    @media (max-width: 600px) {
+      width: 80%;
+    }
+  }
+
+  .tips-img-wrapper {
+    display: flex;
+    border: none;
+    //margin-right: 15px;
+    width: 20px;
+    justify-content: center;
+    .tipIcon {
+      display: block;
+      margin: auto;
+      width: 20px;
+      //margin-right: 15px;
+      height: 30px;
+    }
+  }
+}

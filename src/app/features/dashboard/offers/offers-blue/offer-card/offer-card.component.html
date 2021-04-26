@@ -82,6 +82,7 @@
           </span>
         </div>
 
+
         <div class="item left details" i18n=“details|offer-card@@offer.card.details”>
 
           <mat-expansion-panel (opened)="detailOpenClicked()" [expanded]="xpandStatus">
@@ -113,8 +114,8 @@
         </div>
 
         <div *ngIf="isNordea">
-          <rente-button child childClass="{{this.offersInfo.offers.top5[0].bankInfo.name}}" color="secondary-medium"
-            type="raised" (click)="clickNordea($event)">
+          <rente-button child childClass="{{ offer.bankInfo.name }}" color="secondary-medium" type="raised"
+            (click)="clickNordea()">
             Be Nordea om et bedre tilbud
           </rente-button>
         </div>

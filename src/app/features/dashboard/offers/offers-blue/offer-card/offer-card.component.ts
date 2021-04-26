@@ -111,7 +111,6 @@ export class OfferCardComponentBlue implements OnInit {
     if (offer.bankInfo.url === null || offer.bankInfo.partner === false) return;
 
     window.open(offer.bankInfo.url, '_blank');
-
     const trackingDto = new TrackingDto();
     trackingDto.offerId = offer.id;
     trackingDto.type = 'BANK_BUTTON_1';
@@ -178,13 +177,12 @@ export class OfferCardComponentBlue implements OnInit {
     }
   }
 
-  public clickNordea(event): void {
+  public clickNordea(): void {
     this.logginService.googleAnalyticsLog({
       category: 'NordeaAntiChurn',
       action: 'Click offer card anti-churn',
       label: `top offer: ${this.offersInfo.offers.top5[0].bankInfo.name}`
     });
-    console.log(event);
     this.offersService.pushMessage(OfferMessage.antiChurn);
   }
 }
