@@ -15,7 +15,6 @@ import { LocalStorageService } from '@services/local-storage.service';
 import { ChangeBankDialogLangGenericComponent } from '../../../../local-components/components-output';
 import { ChangeBankLocationComponent } from '@features/dashboard/offers/change-bank-dialog/change-bank-location/change-bank-location.component';
 
-import { GetOfferFromBankDialogComponent } from './../get-offer-from-bank-dialog/get-offer-from-bank-dialog.component';
 import { AntiChurnDialogComponent } from '@features/dashboard/offers/anti-churn-dialog/anti-churn-dialog.component';
 import { AntiChurnErrorDialogComponent } from '@features/dashboard/offers/anti-churn-dialog/anti-churn-error-dialog/anti-churn-error-dialog.component';
 import { ChangeBankTooManyTriesDialogError } from '@features/dashboard/offers/change-bank-dialog/change-bank-too-many-tries-dialog-error/change-bank-too-many-tries-dialog-error.component';
@@ -28,8 +27,8 @@ import {
   TrackingService,
   TrackingDto
 } from '@services/remote-api/tracking.service';
-import { Subscription, forkJoin, pipe } from 'rxjs';
-import { debounce, take, debounceTime } from 'rxjs/operators';
+import { Subscription, forkJoin } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
 import { OFFERS_LTV_TYPE } from '../../../../shared/models/offers';
 import { UserService } from '@services/remote-api/user.service';
 import smoothscroll from 'smoothscroll-polyfill';
@@ -43,6 +42,7 @@ import {
   OffersService,
   OfferMessage
 } from '@features/dashboard/offers/offers.service';
+import { OptimizeService } from '@services/optimize.service';
 @Component({
   selector: 'rente-offers-blue',
   templateUrl: './offers.component.html',
@@ -110,7 +110,8 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
     public customLangTextSerice: CustomLangTextService,
     public envService: EnvService,
     private offersService: OffersService,
-    private logginService: LoggingService
+    private logginService: LoggingService,
+    private optimizeService: OptimizeService
   ) {
     this.onResize();
 
@@ -132,6 +133,7 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
   }
 
   public ngOnInit(): void {
+    this.optimizeService.getVariation();
     if (locale.includes('sv')) {
       this.isSweden = true;
     } else {
@@ -182,7 +184,7 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
   }
 
   public getTips(): void {
-    if (this.offersInfo.incompleteInfoLoanPresent !== true) {
+    if (this.offersInfo.incompleteInfoLoanPresent === true) {
       this.tips.push({
         header: 'Obs',
         text: this.customLangTextSerice.getLimitedLoanInfoWarning(),

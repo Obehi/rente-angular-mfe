@@ -4,12 +4,11 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class OptimizeService {
-  private experimentID = '486O0RUlSMCPtcnEjUtFtg';
+  private experimentID = '9d84Epc8T3amY5DsACFhVA';
   private localeVariation = 0;
 
   getVariation(): number {
     const isLocale = false;
-
     if (isLocale) {
       return this.localeVariation;
     }
@@ -29,11 +28,10 @@ export class OptimizeService {
     if (variation === null) {
       return 0;
     }
-
-    return variation;
+    return variation as number;
   }
 
-  getBinaryVariation = () => {
+  getBinaryVariation = (): boolean => {
     const variation = this.getVariation();
 
     if (variation === null || variation === 0) {

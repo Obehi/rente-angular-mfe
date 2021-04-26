@@ -54,6 +54,7 @@ export interface OfferInfo {
   totalCost: number | null;
   loanType: string | null;
   fixedRatePeriod: number | null;
+  bankRating: string | null;
 }
 
 export interface BankInfo {
@@ -64,6 +65,9 @@ export interface BankInfo {
   partner: boolean;
   score: number;
   applicationTime: number;
+  area: string | null;
+  bankType: string;
+  mobileAppRating: number | undefined;
 }
 
 export interface BankLocationAddress {
