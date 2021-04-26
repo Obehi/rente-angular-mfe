@@ -42,9 +42,7 @@ export class ActionBoxesComponent implements OnInit {
     public loansService: LoansService
   ) {}
 
-  ngOnInit() {
-    // console.log(this.antiChurnIsOn);
-  }
+  ngOnInit() {}
 
   get isMobile(): boolean {
     return window.innerWidth < 600;
