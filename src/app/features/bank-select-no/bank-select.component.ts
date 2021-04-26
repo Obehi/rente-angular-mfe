@@ -9,6 +9,8 @@ import {
 import { Router } from '@angular/router';
 import { ROUTES_MAP } from '@config/routes-config';
 import { EnvService } from '@services/env.service';
+import { AuthService } from '@services/remote-api/auth.service';
+import { LocalStorageService } from '@services/local-storage.service';
 @Component({
   selector: 'rente-bank-select-variation',
   templateUrl: './bank-select.component.html',
@@ -21,7 +23,12 @@ export class BankSelectNoComponent implements OnInit {
 
   sparebankIsClicked = false;
 
-  constructor(private router: Router, private envService: EnvService) {}
+  constructor(
+    private router: Router,
+    private envService: EnvService,
+    private authService: AuthService,
+    private localStorageService: LocalStorageService
+  ) {}
 
   ngOnInit(): void {
     this.sortBanks();
@@ -122,6 +129,13 @@ export class BankSelectNoComponent implements OnInit {
     }
 
     if (bank.isMissing || this.envService.isMissing(bank)) {
+      this.authService.loginBankIdStep1().subscribe((response) => {
+        // this.router.navigate([response.url]);
+        this.localStorageService.setItem('bankIdLoginBank', bank.name);
+        window.location.href = response.url;
+      });
+
+      return;
       this.router.navigate([ROUTES_MAP.getNotified], { state: { bank: bank } });
     } else {
       this.router.navigate([

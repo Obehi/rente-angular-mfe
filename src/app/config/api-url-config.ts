@@ -12,7 +12,8 @@ export const API_URL_MAP = {
     signup: '/signup',
     me: '/me',
     user: '/user',
-    demo: '/login/demo'
+    demo: '/login/demo',
+    bankidLogin: '/bank-id/login'
   },
   user: {
     base: '/user',
