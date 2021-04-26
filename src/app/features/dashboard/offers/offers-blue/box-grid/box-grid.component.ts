@@ -26,6 +26,10 @@ export class BoxGridComponent implements OnInit {
     const element = document.getElementById('best-offers-text');
     const headerOffset = this.isMobile ? 80 : 180;
 
+    if (element === null) {
+      return;
+    }
+
     const elementPosition =
       element.getBoundingClientRect().top + window.pageYOffset;
     const offsetPosition = elementPosition - headerOffset;

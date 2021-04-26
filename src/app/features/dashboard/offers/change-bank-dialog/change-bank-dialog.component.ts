@@ -24,7 +24,7 @@ export class ChangeBankDialogComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.confirmForm = this.fb.group({
       confirmation: ['', Validators.required]
     });
@@ -40,10 +40,16 @@ export class ChangeBankDialogComponent implements OnInit {
           this.closeState = 'procced';
           this.dialogRef.close();
         },
-        (err) => {
+        (error) => {
           this.isLoading = false;
-          this.closeState = 'error';
-          this.dialogRef.close();
+          if (error.detail === 'Less than week since last email') {
+            this.closeState = 'error-to-many-bargains';
+            this.dialogRef.close();
+          } else {
+            this.isLoading = false;
+            this.closeState = 'error';
+            this.dialogRef.close();
+          }
         }
       );
   }

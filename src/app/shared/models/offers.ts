@@ -54,16 +54,20 @@ export interface OfferInfo {
   totalCost: number | null;
   loanType: string | null;
   fixedRatePeriod: number | null;
+  bankRating: string | null;
 }
 
 export interface BankInfo {
   bank: string;
   name: string;
   url: string;
-  transferUrl: string | null;
+  transferUrl: string | undefined;
   partner: boolean;
   score: number;
   applicationTime: number;
+  area: string | null;
+  bankType: string;
+  mobileAppRating: number | undefined;
 }
 
 export interface BankLocationAddress {

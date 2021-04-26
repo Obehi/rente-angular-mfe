@@ -1,5 +1,4 @@
-
-@import "../../../../../../styles/theme/colors.scss";
+@import '../../../../../../styles/theme/colors.scss';
 
 :host {
   display: flex;
@@ -8,10 +7,11 @@
   height: 100%;
   background: #112639;
   border-radius: 15px;
+  z-index: 0;
 }
 
 p {
-  color: "#fffffff" !important;
+  color: '#fffffff' !important;
 }
 
 .wrapper {
@@ -19,19 +19,18 @@ p {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  z-index: 0;
 }
 rect {
   rx: 0 !important;
 }
 h3 {
-
   @media (min-width: 600px) {
     position: relative;
   }
   color: white;
- 
+
   padding: 20px;
- 
 }
 
 .both-graph-container {
@@ -52,11 +51,10 @@ h3 {
   z-index: -10;
 }
 
-
 .bottomBox {
   border-radius: 0 0 15px 15px;
   padding: 10px;
-  background: #6C7580;
+  background: #6c7580;
 }
 
 .segmentText {
@@ -72,10 +70,9 @@ h3 {
 }
 
 .details {
-  .mat-expansion-panel{
-  background: unset;
-  border-radius: 0 0 15px 15px;
-
+  .mat-expansion-panel {
+    background: unset;
+    border-radius: 0 0 15px 15px;
   }
 
   ::ng-deep .mat-expansion-panel-body {
@@ -87,7 +84,7 @@ h3 {
   }
 
   ::ng-deep .mat-expansion-indicator {
-    margin: auto
+    margin: auto;
   }
   ::ng-deep .mat-expansion-panel-header:hover {
     background: $secondary !important;
@@ -97,17 +94,14 @@ h3 {
   }
 }
 
-.mat-tab-group{
+.mat-tab-group {
   @media (min-width: 600px) {
     position: absolute;
-  margin-top: 15px;
-  width: 100%;
-  color: white;
+    margin-top: 15px;
+    width: 100%;
+    color: white;
   }
-  
-
-} 
-
+}
 
 /* ::ng-deep {
   color: white;
@@ -115,8 +109,7 @@ h3 {
 }
  */
 
-
- .both-graph-container {
+.both-graph-container {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -127,9 +120,9 @@ h3 {
     color: $primary;
     opacity: 1;
   }
-  
-  ::ng-deep .mat-tab-list .mat-tab-labels .mat-tab-label  {
-    color:white !important;
+
+  ::ng-deep .mat-tab-list .mat-tab-labels .mat-tab-label {
+    color: white !important;
     opacity: 1;
     border-radius: 0 5px 5px 0;
   }

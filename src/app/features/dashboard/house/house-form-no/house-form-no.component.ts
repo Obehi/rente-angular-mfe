@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { AddressDto } from '@services/remote-api/loans.service';
-import { LoansService } from '@services/remote-api/loans.service';
 import { MatTabChangeEvent } from '@angular/material';
+import { EnvService } from '@services/env.service';
 
 export enum AddressFormMode {
   Editing,
@@ -21,8 +21,6 @@ export class HouseFormNoComponent implements OnInit {
   @Output() change: EventEmitter<any> = new EventEmitter();
   @Output() onSave: EventEmitter<any> = new EventEmitter();
 
-  addresses: AddressDto[];
-
   mode = AddressFormMode.Editing;
   changesMade = false;
 
@@ -30,12 +28,12 @@ export class HouseFormNoComponent implements OnInit {
     return this.isAddressValid && this.changesMade;
   }
 
-  constructor(private loansService: LoansService) {}
+  constructor(public envService: EnvService) {}
 
   ngOnInit(): void {
-    this.loansService.getAddresses().subscribe((r) => {
-      this.addresses = r.addresses;
-    });
+    this.address.estimatedPropertyValue =
+      this.address.estimatedPropertyValue || null;
+    this.address.manualPropertyValue = this.address.manualPropertyValue || null;
   }
 
   get isAbleToDelete(): boolean {
@@ -50,15 +48,15 @@ export class HouseFormNoComponent implements OnInit {
   get isAddressValid(): boolean {
     return (
       this.address !== null &&
-      this.address.id > 0 &&
-      this.address.zip &&
-      this.address.zip.length === 4 &&
+      this.address.zip?.length === 4 &&
+      !!this.address.apartmentSize &&
       this.address.apartmentSize > 5 &&
-      this.address.street.length > 0
+      this.address.street.length > 0 &&
+      this.propertyValueIsValid(this.address)
     );
   }
 
-  onRbChange(event: MatTabChangeEvent) {
+  onRbChange(event: MatTabChangeEvent): void {
     this.changesMade = true;
     if (event.index === 1) {
       this.address.useManualPropertyValue = true;
@@ -96,5 +94,26 @@ export class HouseFormNoComponent implements OnInit {
       this.mode === AddressFormMode.Editing
         ? AddressFormMode.Statistics
         : AddressFormMode.Editing;
+  }
+
+  propertyValueIsValid(address: AddressDto): boolean {
+    if (
+      address.useManualPropertyValue &&
+      address.manualPropertyValue !== null &&
+      address.manualPropertyValue !== undefined
+    ) {
+      return address.manualPropertyValue > 0;
+    } else if (address.useManualPropertyValue === false) {
+      return (
+        this.notEmpty(address.street) &&
+        this.notEmpty(address.zip) &&
+        address.apartmentSize > 0
+      );
+    }
+    return false;
+  }
+
+  notEmpty(text: string | null): boolean {
+    return text !== null && String(text).length > 0;
   }
 }

@@ -119,6 +119,7 @@
       <div class="full-width">
 
         <rente-button i18n=“see-more|offer-card-big@@offer.card.big.seeMore”
+          child childClass="{{offer.bankInfo.name}}"
           [disabled]="offer.bankInfo.partner == false"
           [color]="'primary-wide-hollow'"
           type="raised"
@@ -131,9 +132,9 @@
 
       <div class="full-width">
 
-        <rente-button i18n=“get-offer|offer-card-big@@offer.card.big.getOffer”
+        <rente-button childClass="{{offer.bankInfo.name}}" i18n=“get-offer|offer-card-big@@offer.card.big.getOffer”
         [disabled]="offer.bankInfo.partner == false"
-          child childClass="{{offer.bankInfo.name}}"
+          child childClass="{{offer.bankInfo.name}}" 
           color="primary"
           type="raised"
           (click)="openNewOfferDialog(offer)"
@@ -146,7 +147,7 @@
 
       <div *ngIf="isNordea === true">
         <rente-button
-        child childClass="{{offer.bankInfo.name}}"
+        child childClass="{{this.offersInfo.offers.top5[0].bankInfo.name}}"
         color="secondary-medium" type="raised"
         (click)="clickNordea()">
         Be Nordea om et bedre tilbud

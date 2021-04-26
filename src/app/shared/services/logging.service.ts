@@ -10,17 +10,9 @@ import { EnvService } from '@services/env.service';
   providedIn: 'root'
 })
 export class LoggingService {
-  /*   private apiUrl =
-    environment['coralogixApiUrl'] || 'https  ://api.coralogix.com/api/v1/logs';
-  private privateKey =
-    environment['coralogixPrivateKey'] ||
-    '26cd19a4-0d74-8c7a-4d91-aa92b7a32bb1';
-  private applicationName =
-    environment['coralogixApplicationName'] || 'rente-frontend-dev_13638';
- */
-  private apiUrl: string;
-  private privateKey: string;
-  private applicationName: string;
+  private apiUrl?: string | null;
+  private privateKey?: string | null;
+  private applicationName?: string | null;
 
   public Level = Level;
   public SubSystem = SubSystem;
@@ -52,6 +44,15 @@ export class LoggingService {
     obj['message'] = msg;
     obj['sessionID'] = this.sessionId;
     this.httpClient.post('/postlogg', obj).pipe(first()).subscribe();
+  }
+
+  public googleAnalyticsLog(item: GoogleAnalyticsDto): void {
+    (window as any).dataLayer.push({
+      event: 'eventTracking',
+      category: item.category,
+      action: item.action,
+      label: item.label
+    });
   }
 
   public logger(
@@ -104,10 +105,12 @@ export class LoggingService {
           }
         ]
       };
-      this.http
-        .postExternal(this.envService.environment.coralogixApiUrl, logg)
-        .pipe(first())
-        .subscribe(() => {});
+      if (this.envService.environment.coralogixApiUrl !== undefined) {
+        this.http
+          .postExternal(this.envService.environment.coralogixApiUrl, logg)
+          .pipe(first())
+          .subscribe(() => {});
+      }
     }
   }
 }
@@ -126,4 +129,10 @@ export enum SubSystem {
   CrawlerLogin = 'Crawler Login',
   TinkMockup = 'Tink Mockup',
   UserConfirmation = 'UserConfirmation'
+}
+
+export interface GoogleAnalyticsDto {
+  category: string;
+  label: string;
+  action: string;
 }

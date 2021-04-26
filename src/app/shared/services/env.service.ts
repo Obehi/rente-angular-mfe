@@ -7,14 +7,14 @@ import { environment } from 'environments/environment';
 export interface Environment {
   name?: string | null;
   production: boolean | null;
-  baseUrl: string | null;
+  baseUrl: string;
   crawlerUrl: string | null;
   locale?: string | null;
   tinkUrl?: string | null;
   shouldLog?: boolean;
   tinkNorDanskebankLink?: string | null;
   tinkNorHandelsbankenLink?: string | null;
-  coralogixApiUrl?: string | null;
+  coralogixApiUrl?: string;
   coralogixPrivateKey?: string | null;
   coralogixApplicationName?: string | null;
   loginDnbIsOn?: boolean;

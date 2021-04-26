@@ -17,8 +17,8 @@ export class EmailRedirectSVComponent implements OnInit {
     this.localeBaseUrl = locale.includes('sv')
       ? 'http://ranteradar.se/'
       : 'http://renteradar.no/';
-    if (this.isMobile) {
-      const element = document.getElementById('mobil-fb');
+    const element = document.getElementById('mobil-fb');
+    if (this.isMobile && element !== null) {
       element.setAttribute(
         'href',
         'fb-messenger://share?link=https://ranteradar.se/&amp;&amp;app_id=326133992135942'

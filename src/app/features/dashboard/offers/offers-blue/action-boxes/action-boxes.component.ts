@@ -14,6 +14,7 @@ import { CanNotBargainDialogComponent } from '@features/dashboard/offers/can-not
 import { locale } from '@config/locale/locale';
 import smoothscroll from 'smoothscroll-polyfill';
 import { LoansService } from '@services/remote-api/loans.service';
+import { AntiChurnErrorDialogComponent } from '../../anti-churn-dialog/anti-churn-error-dialog/anti-churn-error-dialog.component';
 
 @Component({
   selector: 'action-boxes',
@@ -42,7 +43,7 @@ export class ActionBoxesComponent implements OnInit {
     public loansService: LoansService
   ) {}
 
-  ngOnInit() {}
+  ngOnInit(): void {}
 
   get isMobile(): boolean {
     return window.innerWidth < 600;
@@ -57,7 +58,6 @@ export class ActionBoxesComponent implements OnInit {
       return;
     }
     this.changeBankLoading = true;
-    const offerId = offer.id;
 
     const changeBankRef = this.dialog.open(AntiChurnDialogComponent, {
       autoFocus: false,
@@ -67,20 +67,6 @@ export class ActionBoxesComponent implements OnInit {
       this.handleChangeBankdialogOnClose(
         changeBankRef.componentInstance.closeState
       );
-    });
-  }
-
-  public goToBestOffer(): void {
-    const element = document.getElementById('best-offers-text');
-    const headerOffset = this.isMobile ? 80 : 180;
-
-    const elementPosition =
-      element.getBoundingClientRect().top + window.pageYOffset;
-    const offsetPosition = elementPosition - headerOffset;
-
-    window.scrollTo({
-      top: offsetPosition,
-      behavior: 'smooth'
     });
   }
 
@@ -195,6 +181,10 @@ export class ActionBoxesComponent implements OnInit {
         });
         break;
       }
+      case 'error-to-many-bargains-nordea': {
+        this.dialog.open(AntiChurnErrorDialogComponent);
+        break;
+      }
       case 'error': {
         this.router.navigate(['/dashboard/prute-fullfort'], {
           state: { isError: false, fromChangeBankDialog: true }
@@ -202,5 +192,23 @@ export class ActionBoxesComponent implements OnInit {
         break;
       }
     }
+  }
+
+  public goToBestOffer(): void {
+    const element = document.getElementById('best-offers-text');
+    const headerOffset = this.isMobile ? 80 : 180;
+
+    if (element === null) {
+      return;
+    }
+
+    const elementPosition =
+      element.getBoundingClientRect().top + window.pageYOffset;
+    const offsetPosition = elementPosition - headerOffset;
+
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: 'smooth'
+    });
   }
 }

@@ -47,7 +47,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
   public emailError = false;
   public isLoading: boolean;
 
-  bank: BankVo;
+  bank: BankVo | null;
 
   constructor(
     private fb: FormBuilder,
@@ -68,7 +68,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
       if (params && params.bankName) {
         const bank = BankUtils.getBankByName(params.bankName);
         this.bank = bank;
-        this.isSsnBankLogin = bank.loginWithSsn;
+        this.isSsnBankLogin = bank?.loginWithSsn || false;
 
         for (const iterator in customMeta) {
           if (customMeta[iterator].title) {
@@ -83,7 +83,9 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
         this.changeTitles();
         this.setBankIdForm();
 
-        this.isTinkBank = bank.isTinkBank;
+        if (bank !== null) {
+          this.isTinkBank = bank.isTinkBank;
+        }
         if (this.isTinkBank) {
           this.isLoginStarted = true;
         }
@@ -104,7 +106,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
 
     this.missingBankForm
       .get('email')
-      .valueChanges.pipe(
+      ?.valueChanges.pipe(
         debounce(() => {
           this.emailError = false;
           return this.inValid() ? timer(2000) : EMPTY;
@@ -118,13 +120,15 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
   }
 
   get bankLogo(): string {
-    return BankUtils.getBankLogoUrl(this.bank.name);
+    return BankUtils.getBankLogoUrl(this.bank?.name || null);
   }
 
   inValid(): boolean {
     return (
-      this.missingBankForm.get('email').hasError('pattern') &&
-      this.missingBankForm.get('email').dirty
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      this.missingBankForm.get('email')!.hasError('pattern') &&
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      this.missingBankForm.get('email')!.dirty
     );
   }
 
@@ -224,29 +228,32 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
   }
 
   get isDnbBank(): boolean {
-    return this.bank && this.bank.name === 'DNB';
+    return (this.bank && this.bank.name === 'DNB') || false;
   }
 
   get isNordeaBank(): boolean {
-    return this.bank && this.bank.name === 'NORDEA';
+    return (this.bank && this.bank.name === 'NORDEA') || false;
   }
 
   get isSB1Bank(): boolean {
     return (
-      this.bank && this.bank.name && this.bank.name.indexOf('SPAREBANK_1') > -1
+      (this.bank &&
+        this.bank.name &&
+        this.bank.name.indexOf('SPAREBANK_1') > -1) ||
+      false
     );
   }
 
   get isEikaBank(): boolean {
-    return this.bank && this.bank.isEikaBank;
+    return (this.bank && this.bank.isEikaBank) || false;
   }
 
   get isHandelsbanken(): boolean {
-    return this.bank && this.bank.name == 'HANDELSBANKEN';
+    return (this.bank && this.bank.name === 'HANDELSBANKEN') || false;
   }
 
   get isDanskebank(): boolean {
-    return this.bank && this.bank.name === 'DANSKE_BANK';
+    return (this.bank && this.bank.name === 'DANSKE_BANK') || false;
   }
 
   ssnAsyncValidator(): ValidatorFn {
@@ -264,7 +271,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
             )
           );
       } else {
-        of({});
+        return of({});
       }
     };
   }

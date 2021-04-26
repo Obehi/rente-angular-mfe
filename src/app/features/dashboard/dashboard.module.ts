@@ -28,6 +28,8 @@ import {
   MatTooltipModule,
   MatExpansionModule
 } from '@angular/material';
+import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
+
 import { RateTypeFixedComponent } from './rate-type-fixed/rate-type-fixed.component';
 import { ChangeBankDialogComponent } from './offers/change-bank-dialog/change-bank-dialog.component';
 import { HouseFormErrorDialogComponent } from './house/error-dialog/error-dialog.component';
@@ -57,7 +59,12 @@ import { ChangeBankDialogLangGenericComponent } from '../../local-components/com
 import { BankScoreLangGenericComponent } from '../../local-components/components-output';
 import { ChangeBankLocationComponent } from './offers/change-bank-dialog/change-bank-location/change-bank-location.component';
 import { AntiChurnDialogComponent } from './offers/anti-churn-dialog/anti-churn-dialog.component';
+import { AntiChurnErrorDialogComponent } from './offers/anti-churn-dialog/anti-churn-error-dialog/anti-churn-error-dialog.component';
+import { NordeaBargainSuccessComponent } from './offers/bargain-success/bargain-nordea/nordea-bargain-success.component';
 import { CanNotBargainDialogComponent } from './offers/can-not-bargain-dialog/can-not-bargain-dialog.component';
+import { OfferCardV1Component } from './offers/offers-blue/offer-card-v1/offer-card-v1.component';
+import { OfferCardV2Component } from './offers/offers-blue/offer-card-v2/offer-card-v2.component';
+import { ChangeBankTooManyTriesDialogError } from './offers/change-bank-dialog/change-bank-too-many-tries-dialog-error/change-bank-too-many-tries-dialog-error.component';
 import { BarometerComponent } from './offers/offers-blue/barometer/barometer.component';
 import { BoxGridComponent } from './offers/offers-blue/box-grid/box-grid.component';
 import { TipsComponent } from './offers/offers-blue/tips/tips.component';
@@ -103,6 +110,12 @@ import { ActionBoxesComponent } from './offers/offers-blue/action-boxes/action-b
     ChangeBankLocationComponent,
     AntiChurnDialogComponent,
     CanNotBargainDialogComponent,
+    OfferCardV1Component,
+    AntiChurnErrorDialogComponent,
+    CanNotBargainDialogComponent,
+    NordeaBargainSuccessComponent,
+    OfferCardV2Component,
+    ChangeBankTooManyTriesDialogError,
     BarometerComponent,
     BoxGridComponent,
     TipsComponent,
@@ -129,7 +142,9 @@ import { ActionBoxesComponent } from './offers/offers-blue/action-boxes/action-b
     MatCheckboxModule,
     MatBottomSheetModule,
     MatExpansionModule,
-    MatStepperModule
+    MatStepperModule,
+    NgbRatingModule
+
     // ShareButtonModule
   ],
   entryComponents: [

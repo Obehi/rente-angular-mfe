@@ -63,7 +63,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
   private connectionTimer: Observable<number>;
   private crawlingTimer: Observable<number>;
   private connectionTimerSubscription: Subscription;
-  private crawlingTimerSubscription: Subscription;
+  private crawlingTimerSubscription: Subscription | null;
   private intervalSubscription: Subscription;
   public isShowTimer: boolean;
   isNotSB1customer: boolean;
@@ -316,7 +316,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
     }
     this.stompClient.connect(
       {},
-      (frame) => {
+      () => {
         this.viewStatus.isSocketConnectionLost = false;
         // Resend user data after reconnection
         this.logging.logger(
@@ -689,12 +689,12 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
     });
   }
 
-  startCrawlingTimer() {
+  startCrawlingTimer(): void {
     if (this.crawlingTimerSubscription) {
       this.crawlingTimerSubscription.unsubscribe();
     }
     this.crawlingTimer = timer(1000, 1000);
-    this.crawlingTimerSubscription = this.crawlingTimer.subscribe((time) => {
+    this.crawlingTimerSubscription = this.crawlingTimer.subscribe(() => {
       this.thirdStepTimer--;
       if (!this.thirdStepTimer) {
         if (this.thirdStepTimerFinished === false) {

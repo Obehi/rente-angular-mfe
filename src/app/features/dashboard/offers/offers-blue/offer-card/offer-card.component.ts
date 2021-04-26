@@ -16,7 +16,7 @@ import {
   OfferMessage
 } from '@features/dashboard/offers/offers.service';
 import { locale } from '../../../../../config/locale/locale';
-
+import { LoggingService } from '@services/logging.service';
 @Component({
   selector: 'rente-offer-card-blue',
   templateUrl: './offer-card.component.html',
@@ -38,7 +38,8 @@ export class OfferCardComponentBlue implements OnInit {
     public dialog: MatDialog,
     private router: Router,
     public customLangTextSerice: CustomLangTextService,
-    private offersService: OffersService
+    private offersService: OffersService,
+    private logginService: LoggingService
   ) {}
 
   ngOnInit(): void {
@@ -68,11 +69,6 @@ export class OfferCardComponentBlue implements OnInit {
     switch (offer.bankInfo.bank) {
       case 'SPAREBANKENOST': {
         text = 'Sparebanken Øst';
-        break;
-      }
-
-      case 'SBANKEN': {
-        text = 'Sbanken';
         break;
       }
       case 'BULDER': {
@@ -115,7 +111,6 @@ export class OfferCardComponentBlue implements OnInit {
     if (offer.bankInfo.url === null || offer.bankInfo.partner === false) return;
 
     window.open(offer.bankInfo.url, '_blank');
-
     const trackingDto = new TrackingDto();
     trackingDto.offerId = offer.id;
     trackingDto.type = 'BANK_BUTTON_1';
@@ -183,6 +178,11 @@ export class OfferCardComponentBlue implements OnInit {
   }
 
   public clickNordea(): void {
+    this.logginService.googleAnalyticsLog({
+      category: 'NordeaAntiChurn',
+      action: 'Click offer card anti-churn',
+      label: `top offer: ${this.offersInfo.offers.top5[0].bankInfo.name}`
+    });
     this.offersService.pushMessage(OfferMessage.antiChurn);
   }
 }

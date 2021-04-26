@@ -28,8 +28,8 @@ export class BankGuidePageComponent implements OnInit {
   addressesArray: BankLocationAddress[] = [];
   memberships: any;
   membershipOffers: any;
-  depositsGeneral = [];
-  depositsBsu = [];
+  depositsGeneral: { name: string; rate: string }[] = [];
+  depositsBsu: { name: string; rate: string }[] = [];
 
   public bankUtils = BankUtils;
   private _onDestroy$ = new Subject<void>();
@@ -98,9 +98,10 @@ export class BankGuidePageComponent implements OnInit {
             this.banksLocations[
               this.banksLocations.findIndex((location) => location === 'other')
             ] = 'Annet';
-            this.titleService.setTitle(
-              `${this.bank.label} | Bankguiden | Renteradar.no`
-            );
+            if (!!this.bank)
+              this.titleService.setTitle(
+                `${this.bank.label} | Bankguiden | Renteradar.no`
+              );
             if (this.bankGuideInfo.text1) {
               this.metaService.updateMetaTags(
                 'description',

@@ -42,7 +42,7 @@ import { CustomLangTextService } from '@services/custom-lang-text.service';
 export class EmailPreferencesComponent implements OnInit {
   private guid: string | null;
   public emailForm: FormGroup;
-  private checkRateReminderType: string;
+  private checkRateReminderType: string | null;
   private receiveNewsEmails: boolean;
   public canNavigateBooolean$: Subject<boolean> = new Subject<boolean>();
   public isLoading = false;
@@ -60,7 +60,7 @@ export class EmailPreferencesComponent implements OnInit {
     public langService: CustomLangTextService
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     const currentUrl = this.location.path();
     this.guid = this.getGuIdFromUrl(currentUrl);
 
@@ -75,7 +75,7 @@ export class EmailPreferencesComponent implements OnInit {
             checkRateReminderType: [this.checkRateReminderType]
           });
         },
-        (err) => {
+        () => {
           this.showErrorMessage = true;
         }
       );
@@ -90,24 +90,25 @@ export class EmailPreferencesComponent implements OnInit {
     });
   }
 
-  sendForm() {
+  sendForm(): void {
     this.isLoading = true;
 
     const dto = new EmailDto();
     dto.checkRateReminderType = this.emailForm.get(
       'checkRateReminderType'
-    ).value;
-    dto.receiveNewsEmails = this.emailForm.get('receiveNewsEmails').value;
+    )?.value;
+    dto.receiveNewsEmails = this.emailForm.get('receiveNewsEmails')?.value;
 
-    this.preferancesService.postPreferancesWithGUID(this.guid, dto).subscribe(
-      (response) => {
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    this.preferancesService.postPreferancesWithGUID(this.guid!, dto).subscribe(
+      () => {
         this.isLoading = false;
         this.updateAnimationTrigger = !this.updateAnimationTrigger;
       },
       (err) => {
-        if (err.status == 404) {
+        if (err.status === 404) {
           this.errorMessage = 'Du har oppgitt feil url.';
-        } else if (err.status == 400) {
+        } else if (err.status === 400) {
           this.errorMessage = 'Oops, noe gikk galt';
         }
 
@@ -119,7 +120,7 @@ export class EmailPreferencesComponent implements OnInit {
 
   getGuIdFromUrl(url: string): string | null {
     const urlChunks = url.split('/');
-    if (urlChunks.length != 4) return null;
+    if (urlChunks.length !== 4) return null;
     const guid = urlChunks[3];
 
     return guid;

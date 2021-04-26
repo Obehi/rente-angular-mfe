@@ -1,6 +1,5 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { OfferInfo } from '@shared/models/offers';
+import { Component, OnInit } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
 import { VALIDATION_PATTERN } from '@config/validation-patterns.config';
 import { Mask } from '@shared/constants/mask';
 
@@ -41,7 +40,7 @@ export class ManualInputDialogComponent implements OnInit {
   }
 
   public onClick(): void {
-    const valueFromForm = this.valueForm.get('value').value;
+    const valueFromForm = this.valueForm.get('value')?.value;
 
     const value =
       typeof valueFromForm === 'string'
@@ -70,5 +69,5 @@ export class ManualInputDialogComponent implements OnInit {
 
 export interface manualHouseValueState {
   state: string;
-  value?: number;
+  value?: number | null;
 }

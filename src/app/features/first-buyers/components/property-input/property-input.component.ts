@@ -11,9 +11,14 @@ import { FormGroup } from '@angular/forms';
 import { FirstBuyersService } from '@features/first-buyers/first-buyers.service';
 import { MembershipTypeDto } from '@services/remote-api/loans.service';
 import { Observable, Subject } from 'rxjs';
-import { distinctUntilChanged, timeout } from 'rxjs/operators';
-import { MatAutocompleteTrigger, MatAutocomplete } from '@angular/material';
+import { distinctUntilChanged } from 'rxjs/operators';
 import { SelectAutocompleteComponent } from 'mat-select-autocomplete';
+
+interface Membership {
+  name?: string;
+  value?: string;
+  label: string;
+}
 @Component({
   selector: 'rente-property-input',
   templateUrl: './property-input.component.html',
@@ -30,7 +35,7 @@ export class PropertyInputComponent implements OnInit {
   @Input() iconPath: string;
   @Input() inputType: 'tel' | 'dropdown' | 'autocomplete' = 'tel';
   @Input() options: { name?: string; value?: string; label: string }[];
-  @Input() memberships: { name?: string; value?: string; label: string }[];
+  @Input() memberships: MembershipTypeDto[];
   @Output() selectedMemberships = new EventEmitter<MembershipTypeDto[]>();
   @ViewChild(SelectAutocompleteComponent)
   multiSelect: SelectAutocompleteComponent;
@@ -73,11 +78,14 @@ export class PropertyInputComponent implements OnInit {
     if (exitButton !== undefined && this.inputType === 'autocomplete') {
       exitButton.addEventListener('click', this.exitHandler);
     }
-    const _selectedMemberships = [];
+    const _selectedMemberships: MembershipTypeDto[] | undefined = [];
     selected.forEach((val) => {
-      _selectedMemberships.push(
-        this.memberships.find((option) => val === option.name)
+      const membership: MembershipTypeDto | undefined = this.memberships.find(
+        (option) => val === option.name
       );
+      if (membership !== undefined) {
+        _selectedMemberships.push(membership);
+      }
     });
     this.firstBuyersService.selectedMemberships = _selectedMemberships;
     this.selectionDistincter.next(_selectedMemberships);
@@ -88,7 +96,7 @@ export class PropertyInputComponent implements OnInit {
     return parseInt(val.trim(), 10);
   }
 
-  focusOutFunction() {
+  focusOutFunction(): void {
     this.isFirstFocus = false;
   }
 }

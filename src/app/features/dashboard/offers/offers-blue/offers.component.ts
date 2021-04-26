@@ -15,17 +15,20 @@ import { LocalStorageService } from '@services/local-storage.service';
 import { ChangeBankDialogLangGenericComponent } from '../../../../local-components/components-output';
 import { ChangeBankLocationComponent } from '@features/dashboard/offers/change-bank-dialog/change-bank-location/change-bank-location.component';
 
-import { GetOfferFromBankDialogComponent } from './../get-offer-from-bank-dialog/get-offer-from-bank-dialog.component';
 import { AntiChurnDialogComponent } from '@features/dashboard/offers/anti-churn-dialog/anti-churn-dialog.component';
+import { AntiChurnErrorDialogComponent } from '@features/dashboard/offers/anti-churn-dialog/anti-churn-error-dialog/anti-churn-error-dialog.component';
+import { ChangeBankTooManyTriesDialogError } from '@features/dashboard/offers/change-bank-dialog/change-bank-too-many-tries-dialog-error/change-bank-too-many-tries-dialog-error.component';
+
 import { CanNotBargainDialogComponent } from '@features/dashboard/offers/can-not-bargain-dialog/can-not-bargain-dialog.component';
 import { LtvTooHighDialogComponent } from './../ltv-too-high-dialog/ltv-too-high-dialog.component';
+
 import { ChangeBankServiceService } from '@services/remote-api/change-bank-service.service';
 import {
   TrackingService,
   TrackingDto
 } from '@services/remote-api/tracking.service';
-import { Subscription, forkJoin, pipe } from 'rxjs';
-import { debounce, take, debounceTime } from 'rxjs/operators';
+import { Subscription, forkJoin } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
 import { OFFERS_LTV_TYPE } from '../../../../shared/models/offers';
 import { UserService } from '@services/remote-api/user.service';
 import smoothscroll from 'smoothscroll-polyfill';
@@ -34,10 +37,12 @@ import { CustomLangTextService } from '@shared/services/custom-lang-text.service
 import { locale } from '../../../../config/locale/locale';
 import { ROUTES_MAP, ROUTES_MAP_NO } from '@config/routes-config';
 import { EnvService } from '@services/env.service';
+import { LoggingService } from '@services/logging.service';
 import {
   OffersService,
   OfferMessage
 } from '@features/dashboard/offers/offers.service';
+import { OptimizeService } from '@services/optimize.service';
 @Component({
   selector: 'rente-offers-blue',
   templateUrl: './offers.component.html',
@@ -68,30 +73,9 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
   public routesMap = ROUTES_MAP;
   public antiChurnIsOn = false;
   public nordeaClickSubscription: Subscription;
+
   get isMobile(): boolean {
     return window.innerWidth < 600;
-  }
-
-  get hasStatensPensjonskasseMembership(): boolean {
-    return (
-      this.offersInfo &&
-      this.offersInfo.memberships &&
-      this.offersInfo.memberships.indexOf(
-        'STATENS_PENSJONSKASSE_STATLIG_ANSATT'
-      ) > -1
-    );
-  }
-
-  getBankLogo(bankName: string): string {
-    const b = BANKS_DATA[bankName];
-    if (b && b.img) {
-      return b.img;
-    } else {
-      const bank = BankUtils.getBankByName(bankName);
-      return bank && bank.icon
-        ? '../../assets/img/banks-logo/round/' + bank.icon
-        : '../../assets/img/banks-logo/round/annen.png';
-    }
   }
 
   constructor(
@@ -104,7 +88,9 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
     private trackingService: TrackingService,
     public customLangTextSerice: CustomLangTextService,
     public envService: EnvService,
-    private offersService: OffersService
+    private offersService: OffersService,
+    private logginService: LoggingService,
+    private optimizeService: OptimizeService
   ) {
     this.onResize();
 
@@ -126,6 +112,7 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
   }
 
   public ngOnInit(): void {
+    this.optimizeService.getVariation();
     if (locale.includes('sv')) {
       this.isSweden = true;
     } else {
@@ -167,14 +154,14 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
       .subscribe((message: OfferMessage) => {
         switch (message) {
           case OfferMessage.antiChurn: {
-            this.openAntiChurnBankDialog(this.offersInfo.offers.top5[0]);
+            this.openAntiChurnBankDialog(this.offersInfo.offers.top5[0], false);
             break;
           }
         }
       });
   }
 
-  public openAntiChurnBankDialog(offer): void {
+  public openAntiChurnBankDialog(offer, shouldLog: boolean): void {
     if (
       this.antiChurnIsOn === false ||
       this.changeBankLoading ||
@@ -183,77 +170,17 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
       return;
     }
     this.changeBankLoading = true;
-    const offerId = offer.id;
 
+    if (shouldLog) {
+      this.logginService.googleAnalyticsLog({
+        category: 'NordeaAntiChurn',
+        action: 'Click top button anti-churn',
+        label: `top offer: ${this.offersInfo.offers.top5[0].bankInfo.name}`
+      });
+    }
     const changeBankRef = this.dialog.open(AntiChurnDialogComponent, {
       autoFocus: false,
       data: offer
-    });
-    changeBankRef.afterClosed().subscribe(() => {
-      this.handleChangeBankdialogOnClose(
-        changeBankRef.componentInstance.closeState
-      );
-    });
-  }
-
-  public openOfferDialog(offer: OfferInfo): void {
-    this.dialog.open(DialogInfoComponent, {
-      data: offer
-    });
-  }
-
-  public openBankUrl(offer: OfferInfo): void {
-    if (offer.bankInfo.url === null) {
-      return;
-    }
-
-    window.open(offer.bankInfo.url, '_blank');
-
-    const trackingDto = new TrackingDto();
-    trackingDto.offerId = offer.id;
-    trackingDto.type = 'OFFER_HEADER_LINK';
-    this.sendOfferTrackingData(trackingDto);
-  }
-
-  public openBankUrlByButton(offer: OfferInfo): void {
-    if (offer.bankInfo.url === null || offer.bankInfo.partner === false) return;
-
-    window.open(offer.bankInfo.url, '_blank');
-
-    const trackingDto = new TrackingDto();
-    trackingDto.offerId = offer.id;
-    trackingDto.type = 'BANK_BUTTON_1';
-    this.sendOfferTrackingData(trackingDto);
-  }
-
-  public openNewOfferDialog(offer: OfferInfo): void {
-    if (offer.bankInfo.partner === false) {
-      return;
-    }
-    window.open(offer.bankInfo.transferUrl, '_blank');
-
-    const trackingDto = new TrackingDto();
-    trackingDto.offerId = offer.id;
-    trackingDto.type = 'BANK_BUTTON_2';
-    this.sendOfferTrackingData(trackingDto);
-  }
-
-  private sendOfferTrackingData(trackingDto: TrackingDto) {
-    this.trackingService.sendTrackingStats(trackingDto).subscribe(
-      () => {},
-      (err) => {
-        console.log('err');
-        console.log(err);
-      }
-    );
-  }
-
-  public openBargainMoreInfoDialog(): void {
-    if (this.canBargain || !this.isSweden) {
-      return;
-    }
-    const changeBankRef = this.dialog.open(CanNotBargainDialogComponent, {
-      autoFocus: false
     });
     changeBankRef.afterClosed().subscribe(() => {
       this.handleChangeBankdialogOnClose(
@@ -284,16 +211,18 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
         break;
       }
       case 'error': {
-        this.router.navigate(['/dashboard/prute-fullfort'], {
-          state: { isError: false, fromChangeBankDialog: true }
-        });
+        break;
+      }
+      case 'error-to-many-bargains': {
+        this.dialog.open(ChangeBankTooManyTriesDialogError);
+        break;
+      }
+
+      case 'error-to-many-bargains-nordea': {
+        this.dialog.open(AntiChurnErrorDialogComponent);
         break;
       }
     }
-  }
-
-  openLtvTooHightDialog(): void {
-    this.dialog.open(LtvTooHighDialogComponent);
   }
 
   @HostListener('window:resize', ['$event'])
@@ -307,29 +236,6 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
       this.userService.lowerRateAvailable.next(false);
       this.loansService.confirmLowerRate().subscribe((res) => {});
     }
-  }
-
-  get isDialogVisble(): boolean {
-    return this.effRateLoweredDialogVisible;
-  }
-
-  getbankNameOrDefault(offer: OfferInfo): string {
-    let text = '';
-    switch (offer.bankInfo.bank) {
-      case 'SBANKEN': {
-        text = 'Sbanken';
-        break;
-      }
-      case 'BULDER': {
-        text = 'Bulder';
-        break;
-      }
-      default: {
-        text = 'banken';
-        break;
-      }
-    }
-    return text;
   }
 
   get rateBarPercentage(): RateBar {
