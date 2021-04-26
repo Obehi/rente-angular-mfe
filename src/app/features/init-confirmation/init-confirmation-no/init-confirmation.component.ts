@@ -102,7 +102,7 @@ export class InitConfirmationNoComponent implements OnInit {
       const apartmentSize = String(userInfo.apartmentSize) || null;
       this.isAddressNeeded = rateAndLoans.isAddressNeeded;
       this.isNameNeeded =
-        this.userData.name !== null && this.userData.name !== undefined;
+        this.userData.name !== null || this.userData.name !== undefined;
 
       if (this.isAddressNeeded) {
         this.isAddressNeeded = true;
