@@ -1,4 +1,10 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  OnInit,
+  OnDestroy,
+  ViewChild
+} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MetaService } from '@services/meta.service';
 import { LoansService } from '@services/remote-api/loans.service';
@@ -15,7 +21,7 @@ import { ROUTES_MAP } from '@config/routes-config';
   templateUrl: './bank-guide-page.component.html',
   styleUrls: ['./bank-guide-page.component.scss']
 })
-export class BankGuidePageComponent implements OnInit {
+export class BankGuidePageComponent implements OnInit, OnDestroy {
   @ViewChild('inShort') inShort: ElementRef;
   banksData = [...BankList, ...MissingBankList];
 
@@ -115,6 +121,10 @@ export class BankGuidePageComponent implements OnInit {
           }
         );
     });
+  }
+
+  ngOnDestroy(): void {
+    this._onDestroy$.next();
   }
 
   alphaSort = (a: any, b: any): number => {

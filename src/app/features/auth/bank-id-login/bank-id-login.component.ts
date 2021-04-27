@@ -18,6 +18,8 @@ import {
 import { VALIDATION_PATTERN } from '@config/validation-patterns.config';
 import { Mask } from '@shared/constants/mask';
 import {
+  AddressCreationDto,
+  ClientUpdateInfo,
   ConfirmationGetDto,
   LoansService,
   MembershipTypeDto
@@ -33,6 +35,8 @@ import {
 } from '@angular/forms';
 import { forkJoin } from 'rxjs';
 import { LoanUpdateInfoDto } from '@shared/models/loans';
+import { LoginService } from '@services/login.service';
+import { BankUtils, BankVo } from '@shared/models/bank';
 
 @Component({
   selector: 'rente-bank-id-login',
@@ -59,7 +63,11 @@ export class BankIdLoginComponent implements OnInit {
   public showForms = false;
   public mask = Mask;
   public isLoading = true;
-
+  public selectOptions: any;
+  public selectedOffer: string;
+  private sessionId: string | null;
+  private oneTimeToken: string | null;
+  private bank: BankVo | null;
   constructor(
     private route: ActivatedRoute,
     private authService: AuthService,
@@ -68,7 +76,8 @@ export class BankIdLoginComponent implements OnInit {
     location: PlatformLocation,
     private navigationInterceptionService: NavigationInterceptionService,
     private fb: FormBuilder,
-    private loanService: LoansService
+    private loanService: LoansService,
+    private loginService: LoginService
   ) {
     window.onpopstate = function (event) {
       event.preventDefault();
@@ -95,29 +104,41 @@ export class BankIdLoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    forkJoin([
-      this.loanService.getConfirmationData(),
-      this.loanService.getOffersBanks()
-    ]).subscribe(([userInfo, offerBanks]) => {
-      this.initMemberships(userInfo);
-      this.initForms();
-      this.showForms = true;
-      this.isLoading = false;
-      console.log('offerBanks');
-      console.log(offerBanks);
-    });
-
     this.route.queryParams.subscribe((routeParams) => {
       const status = routeParams['status'];
       const sessionId = routeParams['sessionId'];
 
-      const bank = this.localStorageService.getItem('bankIdLoginBank');
+      console.log(status);
+      console.log(sessionId);
+      const bankName = this.localStorageService.getItem('bankIdLoginBank');
+      this.bank = BankUtils.getBankByName(bankName);
+      this.bank &&
+        sessionId &&
+        this.authService
+          .loginBankIdStep2(sessionId, this.bank.name)
+          .subscribe((response) => {
+            console.log('response');
+            console.log(response);
+            this.oneTimeToken = response;
+            forkJoin([
+              this.loanService.getConfirmationData(),
+              this.loanService.getOffersBanks()
+            ]).subscribe(([userInfo, offerBanks]) => {
+              // this.initMemberships(userInfo);
+              this.initForms();
+              this.showForms = true;
+              this.isLoading = false;
 
-      this.authService
-        .loginBankIdStep2('1e85f172698745a99148ad1600bd5e03', bank)
-        .subscribe((response) => {
-          console.log(response);
-        });
+              this.selectOptions = (offerBanks.offers as any[]).map((offer) => {
+                const test = {
+                  name: offer.name,
+                  value: offer.id
+                };
+                return test;
+              });
+              console.log(this.selectOptions);
+            });
+          });
     });
 
     /*  window.history.pushState({}, '', '/newpage'); */
@@ -143,9 +164,6 @@ export class BankIdLoginComponent implements OnInit {
     console.log('control?.touched');
     console.log(control?.touched); */
 
-    console.log(
-      !!(control && control.invalid && (control.dirty || control.touched))
-    );
     return !!(control && control.invalid && (control.dirty || control.touched));
   }
 
@@ -213,6 +231,11 @@ export class BankIdLoginComponent implements OnInit {
     );
   }
 
+  public offerSelected(event: any): void {
+    this.selectedOffer = event;
+    console.log(this.selectedOffer);
+  }
+
   initForms(): void {
     this.userFormGroup = this.fb.group({
       email: [
@@ -240,9 +263,57 @@ export class BankIdLoginComponent implements OnInit {
 
     this.loanFormGroup = this.fb.group({
       outstandingDebt: ['', Validators.required],
-      remainingYears: ['', Validators.required, Validators.max(100)]
+      remainingYears: ['', [Validators.required, Validators.max(100)]]
     });
   }
 
-  update() {}
+  public doneClicked(): void {
+    const addressDto = new AddressCreationDto();
+    const clientDto = new ClientUpdateInfo();
+
+    addressDto.apartmentSize = this.userFormGroup.get('apartmentSize')?.value;
+    addressDto.zip = this.userFormGroup.get('zip')?.value;
+    addressDto.zip = this.userFormGroup.get('zip')?.value;
+    addressDto.address = this.userFormGroup.get('address')?.value;
+
+    clientDto.address = addressDto;
+    clientDto.email = this.userFormGroup.get('email')?.value;
+    (clientDto.income =
+      typeof this.userFormGroup.get('income')?.value === 'string'
+        ? this.userFormGroup.get('income')?.value.replace(/\s/g, '')
+        : this.userFormGroup.get('income')?.value),
+      (clientDto.memberships = this.memberships.map(
+        (membership) => membership.name
+      ));
+
+    const loanUpdateInfoDto = new LoanUpdateInfoDto();
+    loanUpdateInfoDto.outstandingDebt = this.loanFormGroup.get(
+      'outstandingDebt'
+    )?.value;
+    loanUpdateInfoDto.remainingYears = this.loanFormGroup.get(
+      'remainingYears'
+    )?.value;
+    loanUpdateInfoDto.productId = this.selectedOffer;
+    console.log(loanUpdateInfoDto);
+    console.log(clientDto);
+
+    forkJoin([
+      this.loanService.updateClientInfo(clientDto),
+      this.loanService.updateLoanUserInfo(loanUpdateInfoDto)
+    ]).subscribe(([clientInfoResponse, loanInfoResponse]) => {
+      console.log(clientInfoResponse);
+      console.log(loanInfoResponse);
+
+      if (this.bank !== null && this.oneTimeToken) {
+        this.bank &&
+          this.loginService.loginWithBankAndToken(this.bank, this.oneTimeToken);
+      }
+    });
+    // this.loanService.updateLoanUserInfo().subscribe;
+    // this.loanService.updateClientInfo().subscribe;
+  }
+
+  goToLoansForm(): void {
+    this.stepper.next();
+  }
 }

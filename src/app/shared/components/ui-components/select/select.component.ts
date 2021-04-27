@@ -1,4 +1,3 @@
-import { OnInit } from '@angular/core';
 import {
   Component,
   Input,
@@ -9,11 +8,8 @@ import {
 import {
   FormControl,
   ControlValueAccessor,
-  NG_VALUE_ACCESSOR,
-  FormGroup,
-  FormBuilder
+  NG_VALUE_ACCESSOR
 } from '@angular/forms';
-import { startWith } from 'rxjs/operators';
 
 @Component({
   selector: 'rente-select',
@@ -26,7 +22,7 @@ import { startWith } from 'rxjs/operators';
     }
   ]
 })
-export class SelectComponent implements ControlValueAccessor, OnInit {
+export class SelectComponent implements ControlValueAccessor {
   @Input() rootClass: any;
   @Input() options: any = [];
   @Input() name: string;
@@ -34,27 +30,9 @@ export class SelectComponent implements ControlValueAccessor, OnInit {
 
   @Output() public selected = new EventEmitter();
 
-  selectForm: FormGroup;
   selectedItem: any;
-  public selectControl = new FormControl();
+
   propagateChange: any = () => {};
-
-  constructor(private fb: FormBuilder) {}
-  ngOnInit(): void {
-    console.log(this.options);
-    this.selectControl.valueChanges.pipe(startWith(null)).subscribe((value) => {
-      console.log('value');
-      console.log(value);
-      this.selected.emit(value);
-    });
-  }
-
-  public onChange(event): void {
-    // event will give you full breif of action
-    const newVal = event.target.value;
-    console.log('newVal');
-    console.log(newVal);
-  }
 
   writeValue(value) {
     if (value) {
@@ -69,16 +47,8 @@ export class SelectComponent implements ControlValueAccessor, OnInit {
   registerOnTouched() {}
 
   valueChange(event: any): void {
-    console.log(this.selectedItem);
-    // this.selectedItem = event;
-    console.log('event');
-    console.log(event);
-
-    this.selected.emit('test');
+    this.selectedItem = event;
+    this.selected.emit(event);
     this.propagateChange(this.selectedItem);
-
-    const formTest = this.selectForm.get('selectControl')?.value;
-    console.log('formTest');
-    console.log(formTest);
   }
 }
