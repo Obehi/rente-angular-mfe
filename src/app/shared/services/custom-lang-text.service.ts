@@ -196,7 +196,7 @@ export class CustomLangTextService {
 
   getlowerRateBody(): string {
     if (locale.includes('sv')) {
-      return 'Prutade du genom oss för att få en bättre ränta?';
+      return 'Var vi till hjälp för att sänka din bolåneränta?';
     } else if (locale.includes('nb')) {
       return 'Fikk du lavere rente etter å ha sendt melding fra Renteradar.no?';
     }
