@@ -5,6 +5,8 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { locale } from '../../../config/locale/locale';
 
+import { LoanUpdateInfoDto } from '@shared/models/loans';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -22,12 +24,17 @@ export class LoansService {
   }
 
   public getOffers() {
-    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.offers}`;
+    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.offers.base}`;
+    return this.http.get(url);
+  }
+
+  public getOffersBanks() {
+    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.offers.base}${API_URL_MAP.loan.offers.bank}`;
     return this.http.get(url);
   }
 
   public updateNewOffers() {
-    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.offers}${API_URL_MAP.loan.newOffers}`;
+    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.offers.base}${API_URL_MAP.loan.newOffers}`;
     return this.http.post(url);
   }
 
@@ -95,6 +102,16 @@ export class LoansService {
   public updateLoanPreferences(loanData) {
     const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.preferences}`;
     return this.http.put(url, loanData);
+  }
+
+  public updateLoanUserInfo(loanUpdateInfoDto: LoanUpdateInfoDto) {
+    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.loan.base}${API_URL_MAP.loan.loan.info}`;
+    return this.http.put(url, loanUpdateInfoDto);
+  }
+
+  public updateClientInfo(clientUpdateInfo: ClientUpdateInfo) {
+    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.user.base}${API_URL_MAP.loan.user.info}`;
+    return this.http.put(url, clientUpdateInfo);
   }
 
   public getPropertyValue(): Observable<any> {
@@ -207,6 +224,12 @@ export class AddressCreationDto {
   zip: string;
 }
 
+export class ClientUpdateInfo {
+  address: AddressCreationDto;
+  email: string;
+  income: number;
+  memberships: string[];
+}
 export class PreferencesDto {
   email: string;
   name: string;

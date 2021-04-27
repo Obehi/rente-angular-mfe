@@ -173,7 +173,7 @@ export class LoginService {
     });
   }
 
-  private init(bank: BankVo): void {
+  /*  private init(bank: BankVo): void {
     this.logging.logger(
       this.logging.Level.Info,
       '1:INIT',
@@ -814,5 +814,5 @@ export class LoginService {
     this.stompClient.send(API_URL_MAP.crawlerAccountSelectEikaUrl, {}, data);
     this.isAccountSelection = false;
     this.startCrawlingTimer();
-  }
+  } */
 }

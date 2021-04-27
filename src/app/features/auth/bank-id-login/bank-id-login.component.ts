@@ -274,7 +274,7 @@ export class BankIdLoginComponent implements OnInit {
     addressDto.apartmentSize = this.userFormGroup.get('apartmentSize')?.value;
     addressDto.zip = this.userFormGroup.get('zip')?.value;
     addressDto.zip = this.userFormGroup.get('zip')?.value;
-    addressDto.address = this.userFormGroup.get('address')?.value;
+    addressDto.street = this.userFormGroup.get('address')?.value;
 
     clientDto.address = addressDto;
     clientDto.email = this.userFormGroup.get('email')?.value;
