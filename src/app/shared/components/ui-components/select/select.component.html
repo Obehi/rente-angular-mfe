@@ -1,20 +1,27 @@
 <div class="input-block">
   <div [class]="'select ' + rootClass">
-    <label class="input-block-placeholder"
-      [ngClass]="{'input-block-placeholder--active': selectedItem && placeholder}"
+    <label class="input-block-placeholder" [ngClass]="{'input-block-placeholder--active': selectedItem && placeholder}"
       for="{{'select-' + name}}">
       {{placeholder}}
     </label>
-    <select
-      [name]="name"
-      [ngClass]="{'input-block--full input-block--valid': selectedItem && placeholder}"
-      [id]="'select-' + name"
-      [ngModel]="selectedItem"
-      (ngModelChange)="valueChange($event)">
-        <option *ngFor="let option of options"
-          [value]="option.value">
-          {{option.name}}
-        </option>
+
+
+    <!-- <select class="form-control" [formControl]="selectControl" #t (change)="valueChange(t.value)">
+        <option value=""></option>
+        <option value="val1">label val 1</option>
+        <option value="val2">label val 2</option>
+        <option value="val3">label val 3</option>
+      </select>
+ -->
+
+    <select [name]="name" [formControl]="selectControl" [id]="'select-' + name" #t (change)="onChange($event)">
+      <option *ngFor=" let option of options" [value]="option.value">
+        {{option.name}}
+      </option>
+
+      <option value="val1">label val 1</option>
+      <option value="val2">label val 2</option>
+      <option value="val3">label val 3</option>
     </select>
   </div>
 </div>
