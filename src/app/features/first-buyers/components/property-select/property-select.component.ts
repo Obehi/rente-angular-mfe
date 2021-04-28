@@ -17,6 +17,7 @@ import { debounceTime, filter, takeUntil } from 'rxjs/operators';
 import { FormControl } from '@angular/forms';
 import { fromEvent, Subject } from 'rxjs';
 import { MembershipTypeDto } from '@services/remote-api/loans.service';
+import { InitialOffersComponent } from '../initial-offers/initial-offers.component';
 
 @Component({
   selector: 'property-select',
@@ -28,7 +29,7 @@ export class PropertySelectComponent implements OnInit, OnDestroy {
   @Input() model;
   @Input() labelKey = 'label';
   @Input() idKey = 'id';
-  @Input() options: string[];
+  @Input() options: any[];
   @Input() optionTpl: TemplateRef<any>;
   @Output() selectChange = new EventEmitter();
   @Output() closed = new EventEmitter();
@@ -46,7 +47,8 @@ export class PropertySelectComponent implements OnInit, OnDestroy {
   constructor(
     private vcr: ViewContainerRef,
     private zone: NgZone,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    public iOffers: InitialOffersComponent
   ) {}
 
   get isOpen() {
@@ -54,9 +56,13 @@ export class PropertySelectComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.options = ['a', 'b'];
+    // this.options = [
+    //   { id: '1', label: 'a' },
+    //   { id: '2', label: 'b' },
+    //   { id: '3', label: 'c' },
+    //   { id: '4', label: 'd' }
+    // ];
     console.log(this.options);
-    console.log();
 
     this.originalOptions = [...this.options];
     if (this.model !== undefined) {
@@ -71,7 +77,7 @@ export class PropertySelectComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.untilDestroyed.next();
+    // this.untilDestroyed.next();
   }
 
   get label() {

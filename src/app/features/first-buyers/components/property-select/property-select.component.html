@@ -14,15 +14,7 @@
     </ng-template>
   </button>
 
-  <ng-template
-    #dropdown
-    [placeholder]="'Velg'"
-    [options]="memberships"
-    [display]="'label'"
-    [value]="'name'"
-    [multiple]="true"
-    [labelCount]="2"
-  >
+  <ng-template #dropdown>
     <div class="select-menu">
       <cdk-virtual-scroll-viewport
         itemSize="32"

@@ -429,6 +429,8 @@ export class InitialOffersComponent implements OnInit {
 
     this.loansService.getConfirmationData().subscribe((dto) => {
       this.allMemberships = dto.availableMemberships;
+      // this.extraProperties[0].options = dto.availableMemberships;
+      console.log(this.extraProperties[0].options);
       this.featuredMemberships = this.allMemberships.filter((membership) => {
         return (
           membership.name === 'AKADEMIKERNE' ||
@@ -454,6 +456,7 @@ export class InitialOffersComponent implements OnInit {
     });
 
     this.updateNewOffers();
+    console.log(this.allMemberships);
   }
 
   updateNewOffers() {
