@@ -1,26 +1,55 @@
 <mat-horizontal-stepper class="stepper" [linear]="false" #stepper>
-    <mat-step [stepControl]="userFormGroup" [editable]="true">
+
+
+
+
+
+
+
+    <mat-step [stepControl]="emailFormGroup" [editable]="true">
         <h3>step 1</h3>
 
-        <form *ngIf="showForms" [formGroup]="userFormGroup" novalidate (ngSubmit)="goToLoansForm()">
+        <form *ngIf="showForms" [formGroup]="emailFormGroup" novalidate (ngSubmit)="goToLoansForm()">
 
             <div class=" field">
                 <rente-input [placeholder]="'E-post'" formControlName="email" [errorStateMatcher]="
-                    isErrorState(userFormGroup.controls['email'])
+                    isErrorState(emailFormGroup.controls['email'])
                   " [modelOptions]="{ updateOn: 'blur' }">
                 </rente-input>
 
-                <div *ngIf="userFormGroup.controls['email'].touched">
-                    <p class="error small" *ngIf="userFormGroup.controls['email'].hasError('required')">
+                <div *ngIf="emailFormGroup.controls['email'].touched">
+                    <p class="error small" *ngIf="emailFormGroup.controls['email'].hasError('required')">
                         Kan ikke være tom
                     </p>
-                    <p class="error small" *ngIf="userFormGroup.controls['email'].hasError('pattern')">
+                    <p class="error small" *ngIf="emailFormGroup.controls['email'].hasError('pattern')">
                         Ugyldig e-post
                     </p>
                 </div>
             </div>
 
+            <div>
+                <button mat-button matStepperNext>Next</button>
 
+                <rente-button matStepperNext color="primary" [isLoading]="isLoading"
+                    [disabled]="emailFormGroup.invalid || isLoading">
+                    Neste
+                </rente-button>
+            </div>
+
+        </form>
+
+    </mat-step>
+
+
+
+
+
+
+
+    <mat-step [stepControl]="userFormGroup" [editable]="true">
+        <h3>step 1</h3>
+
+        <form *ngIf="showForms" [formGroup]="userFormGroup" novalidate (ngSubmit)="goToLoansForm()">
 
             <div class="address-grid">
                 <div class="field">
@@ -69,32 +98,6 @@
             </div>
 
             <div class="field">
-                <p i18n=“organization|info-confirmation@@info.confirmation.organization” class="small">
-                    Bankene gir ofte bedre betingelser om du er medlem i en organisasjon
-                </p>
-                <mat-form-field>
-                    <input type="text" placeholder="+ Legg til medlemskap (valgfritt)" matInput
-                        [formControl]="membershipCtrl" formControlName="membership" #membershipInput
-                        [matAutocomplete]="auto" />
-                    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
-                        <mat-option *ngFor="let membership of filteredMemberships | async" [value]="membership">
-                            {{ membership.label }}
-                        </mat-option>
-                    </mat-autocomplete>
-                </mat-form-field>
-                <p i18n=“my-memberships|info-confirmation@@info.confirmation.myMemberships” class="small"
-                    *ngIf="memberships.length">
-                    Mine medlemskap
-                </p>
-                <p class="memberlist" *ngFor="let membership of memberships; let i = index">
-                    {{ membership.label }}
-                    <mat-icon class="clickable" (click)="remove(membership, i)" *ngIf="removable">delete_forever
-                    </mat-icon>
-                </p>
-            </div>
-
-
-            <div class="field">
                 <div class="withinfo">
                     <div>
 
@@ -121,13 +124,12 @@
                     Neste
                 </rente-button>
             </div>
-
         </form>
 
     </mat-step>
     <mat-step [editable]="true">
         <h3>step 2</h3>
-        <form *ngIf="showForms" [formGroup]="loanFormGroup" novalidate (ngSubmit)="doneClicked()">
+        <form *ngIf="showForms" [formGroup]="loanFormGroup" novalidate (ngSubmit)="goToMembershipForm()">
 
 
             <div class=" field">
@@ -166,10 +168,65 @@
 
             <rente-button click matStepperNext color="primary" [isLoading]="isLoading"
                 [disabled]="loanFormGroup.invalid || isLoading">
-                Ferdig
+                Neste
             </rente-button>
 
         </form>
+    </mat-step>
+
+
+
+
+    <mat-step [stepControl]="membershipFormGroup" [editable]="true">
+        <h3>step 1</h3>
+
+        <form *ngIf="showForms" [formGroup]="membershipFormGroup" novalidate (ngSubmit)="doneClicked()">
+
+
+
+
+            <div class="field">
+                <p i18n=“organization|info-confirmation@@info.confirmation.organization” class="small">
+                    Bankene gir ofte bedre betingelser om du er medlem i en organisasjon
+                </p>
+                <mat-form-field>
+                    <input type="text" placeholder="+ Legg til medlemskap (valgfritt)" matInput
+                        [formControl]="membershipCtrl" formControlName="membership" #membershipInput
+                        [matAutocomplete]="auto" />
+                    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+                        <mat-option *ngFor="let membership of filteredMemberships | async" [value]="membership">
+                            {{ membership.label }}
+                        </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+                <p i18n=“my-memberships|info-confirmation@@info.confirmation.myMemberships” class="small"
+                    *ngIf="memberships.length">
+                    Mine medlemskap
+                </p>
+                <p class="memberlist" *ngFor="let membership of memberships; let i = index">
+                    {{ membership.label }}
+                    <mat-icon class="clickable" (click)="remove(membership, i)" *ngIf="removable">delete_forever
+                    </mat-icon>
+                </p>
+            </div>
+
+
+            <div>
+                <button mat-button matStepperNext>Next</button>
+
+                <rente-button *ngIf="memberships.length === 0" click matStepperNext color="primary"
+                    [isLoading]="isLoading" [disabled]="loanFormGroup.invalid || isLoading">
+                    Jeg har ingen medlemskap
+                </rente-button>
+
+                <rente-button *ngIf="memberships.length !== 0" click matStepperNext color="primary"
+                    [isLoading]="isLoading" [disabled]="loanFormGroup.invalid || isLoading">
+                    Ferdig
+                </rente-button>
+            </div>
+
+        </form>
+
     </mat-step>
 
 

@@ -52,9 +52,10 @@ export class BankIdLoginComponent implements OnInit {
   @ViewChild('auto') matAutocomplete: MatAutocomplete;
   @ViewChild('membershipInput') membershipInput: ElementRef<HTMLInputElement>;
   eventSubscription;
+  emailFormGroup: FormGroup;
   userFormGroup: FormGroup;
   loanFormGroup: FormGroup;
-
+  membershipFormGroup: FormGroup;
   public removable = true;
   public membershipCtrl = new FormControl();
   public filteredMemberships: Observable<void | MembershipTypeDto[]>;
@@ -117,14 +118,13 @@ export class BankIdLoginComponent implements OnInit {
         this.authService
           .loginBankIdStep2(sessionId, this.bank.name)
           .subscribe((response) => {
-            console.log('response');
-            console.log(response);
-            this.oneTimeToken = response;
+            this.oneTimeToken = response.token;
+
             forkJoin([
               this.loanService.getConfirmationData(),
               this.loanService.getOffersBanks()
             ]).subscribe(([userInfo, offerBanks]) => {
-              // this.initMemberships(userInfo);
+              this.initMemberships(userInfo);
               this.initForms();
               this.showForms = true;
               this.isLoading = false;
@@ -221,14 +221,6 @@ export class BankIdLoginComponent implements OnInit {
         membership ? this.filter(membership) : this.allMemberships.slice()
       )
     );
-    this.allMemberships = userInfo.availableMemberships;
-
-    this.filteredMemberships = this.membershipCtrl.valueChanges.pipe(
-      startWith(null),
-      map((membership: string | null) =>
-        membership ? this.filter(membership) : this.allMemberships.slice()
-      )
-    );
   }
 
   public offerSelected(event: any): void {
@@ -237,14 +229,16 @@ export class BankIdLoginComponent implements OnInit {
   }
 
   initForms(): void {
-    this.userFormGroup = this.fb.group({
+    this.emailFormGroup = this.fb.group({
       email: [
         '',
         Validators.compose([
           Validators.required,
           Validators.pattern(VALIDATION_PATTERN.email)
         ])
-      ],
+      ]
+    });
+    this.userFormGroup = this.fb.group({
       address: ['', Validators.required],
       zip: [
         '',
@@ -257,7 +251,6 @@ export class BankIdLoginComponent implements OnInit {
         '',
         [Validators.required, Validators.min(5), Validators.max(999)]
       ],
-      membership: [],
       income: ['', Validators.required]
     });
 
@@ -265,9 +258,19 @@ export class BankIdLoginComponent implements OnInit {
       outstandingDebt: ['', Validators.required],
       remainingYears: ['', [Validators.required, Validators.max(100)]]
     });
+
+    this.membershipFormGroup = this.fb.group({
+      membership: []
+    });
   }
 
   public doneClicked(): void {
+    console.log(this.bank);
+    console.log(this.oneTimeToken);
+    if (this.bank !== null && this.oneTimeToken) {
+      this.bank &&
+        this.loginService.loginWithBankAndToken(this.bank, this.oneTimeToken);
+    }
     const addressDto = new AddressCreationDto();
     const clientDto = new ClientUpdateInfo();
 
@@ -294,10 +297,8 @@ export class BankIdLoginComponent implements OnInit {
       'remainingYears'
     )?.value;
     loanUpdateInfoDto.productId = this.selectedOffer;
-    console.log(loanUpdateInfoDto);
-    console.log(clientDto);
 
-    forkJoin([
+    /* forkJoin([
       this.loanService.updateClientInfo(clientDto),
       this.loanService.updateLoanUserInfo(loanUpdateInfoDto)
     ]).subscribe(([clientInfoResponse, loanInfoResponse]) => {
@@ -308,12 +309,18 @@ export class BankIdLoginComponent implements OnInit {
         this.bank &&
           this.loginService.loginWithBankAndToken(this.bank, this.oneTimeToken);
       }
-    });
-    // this.loanService.updateLoanUserInfo().subscribe;
-    // this.loanService.updateClientInfo().subscribe;
+    }); */
   }
 
   goToLoansForm(): void {
+    this.stepper.next();
+  }
+
+  goToUserForm(): void {
+    this.stepper.next();
+  }
+
+  goToMembershipForm(): void {
     this.stepper.next();
   }
 }
