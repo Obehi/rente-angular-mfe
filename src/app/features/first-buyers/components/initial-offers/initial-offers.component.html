@@ -1,65 +1,94 @@
-<div class ="outer-bg">
-<div class="first-buyers-content-blue px-3 pt-3">
-  <form [formGroup]="formGroup" class="p-0 border-0">
-  
-    <div *ngFor="let property of properties">
-      <rente-property-input *ngIf="property.shouldDisplay()" [icon]="property.icon" [formGroup]="formGroup"
-                            [label]="property.label"
-                            [controlName]="property.controlName"
-                            [inputType]="property.inputType"
-                            [options]="property.options"
-                            [iconPath]="property.iconPath"
-                            [memberships]="allMemberships"
-                            [placeholder]="property.placeholder"
-                            [isAboveLoanToValueRatioTreshold]="this.isAboveLoanToValueRatioTreshold"
-                            [loantoRatioMinimumAmount]="loantoRatioMinimumAmount()"
-                            (selectedMemberships)="applyMemberships($event)">
-      </rente-property-input>
-    </div>
-
-    <div class="top-accordion mt-3">
-      <mat-accordion>
-        <mat-expansion-panel [expanded]=" editMode">
-          <mat-expansion-panel-header>
-            <p>
-              <b>
-                Flere valg
-              </b>
-            </p>
-          </mat-expansion-panel-header>
-          <div *ngFor="let property of extraProperties">
-            <rente-property-input *ngIf="property.shouldDisplay()" [icon]="property.icon" [formGroup]="formGroup"
-                                  [label]="property.label"
-                                  [controlName]="property.controlName"
-                                  [inputType]="property.inputType"
-                                  [options]="property.options"
-                                  [memberships]="allMemberships"
-                                  [iconPath]="property.iconPath"
-                                  (selectedMemberships)="applyMemberships($event)"></rente-property-input>
-          </div>
-          <div class="accordion-bottom"></div>
-        </mat-expansion-panel>
-
-      </mat-accordion>
+<div class="outer-bg">
+  <div class="first-buyers-content-blue px-3 pt-3">
+    <form [formGroup]="formGroup" class="p-0 border-0">
+      <div *ngFor="let property of properties">
+        <rente-property-input
+          *ngIf="property.shouldDisplay()"
+          [icon]="property.icon"
+          [formGroup]="formGroup"
+          [label]="property.label"
+          [controlName]="property.controlName"
+          [inputType]="property.inputType"
+          [options]="property.options"
+          [iconPath]="property.iconPath"
+          [memberships]="allMemberships"
+          [placeholder]="property.placeholder"
+          [isAboveLoanToValueRatioTreshold]="
+            this.isAboveLoanToValueRatioTreshold
+          "
+          [loantoRatioMinimumAmount]="loantoRatioMinimumAmount()"
+          (selectedMemberships)="applyMemberships($event)"
+        >
+        </rente-property-input>
       </div>
-      
-    <div class="w-100 d-flex justify-content-end">
-      <rente-button class="center vertical-margin" color="primary" [disabled]="!formGroup.dirty || isAboveLoanToValueRatioTreshold" (click)="updateNewOffers()">Oppdater tilbud</rente-button>
-    </div>
 
-   
-  </form>
-  <ng-container *ngIf="offers?.length">
-    <ng-container *ngIf="!offersLoading;else loading">
-      <div *ngFor="let offer of offers" class="mt-3">
-        <rente-initial-offer [offer]="offer"></rente-initial-offer>
+      <div class="top-accordion mt-3">
+        <mat-accordion>
+          <mat-expansion-panel [expanded]="editMode">
+            <mat-expansion-panel-header>
+              <p>
+                <b> Flere valg </b>
+              </p>
+            </mat-expansion-panel-header>
+            <div *ngFor="let property of extraProperties">
+              <rente-property-input
+                *ngIf="
+                  property.shouldDisplay() &&
+                  property.inputType !== 'autocomplete'
+                "
+                [icon]="property.icon"
+                [formGroup]="formGroup"
+                [label]="property.label"
+                [controlName]="property.controlName"
+                [inputType]="property.inputType"
+                [options]="property.options"
+                [memberships]="allMemberships"
+                [iconPath]="property.iconPath"
+                (selectedMemberships)="applyMemberships($event)"
+              ></rente-property-input>
+              <property-select
+                *ngIf="
+                  property.shouldDisplay() &&
+                  property.inputType === 'autocomplete'
+                "
+                [icon]="property.icon"
+                [formGroup]="formGroup"
+                [label]="property.label"
+                [controlName]="property.controlName"
+                [inputType]="property.inputType"
+                [options]="property.options"
+                [memberships]="allMemberships"
+                [iconPath]="property.iconPath"
+                (selectedMemberships)="applyMemberships($event)"
+                (selectChange)="change($event)"
+              ></property-select>
+            </div>
+            <div class="accordion-bottom"></div>
+          </mat-expansion-panel>
+        </mat-accordion>
       </div>
+
+      <div class="w-100 d-flex justify-content-end">
+        <rente-button
+          class="center vertical-margin"
+          color="primary"
+          [disabled]="!formGroup.dirty || isAboveLoanToValueRatioTreshold"
+          (click)="updateNewOffers()"
+          >Oppdater tilbud</rente-button
+        >
+      </div>
+    </form>
+    <ng-container *ngIf="offers?.length">
+      <ng-container *ngIf="!offersLoading; else loading">
+        <div *ngFor="let offer of offers" class="mt-3">
+          <rente-initial-offer [offer]="offer"></rente-initial-offer>
+        </div>
+      </ng-container>
     </ng-container>
-  </ng-container>
-  <ng-template #loading>
-    <div class="loading">
-      <mat-spinner [diameter]="48" [strokeWidth]="4"></mat-spinner>
-    </div>
-  </ng-template>
-</div>
+    <ng-template #loading>
+      <div class="loading">
+        <mat-spinner [diameter]="48" [strokeWidth]="4"></mat-spinner>
+      </div>
+    </ng-template>
+  </div>
 </div>
