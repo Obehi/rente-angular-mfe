@@ -37,7 +37,7 @@ import { forkJoin } from 'rxjs';
 import { LoanUpdateInfoDto } from '@shared/models/loans';
 import { LoginService } from '@services/login.service';
 import { BankUtils, BankVo } from '@shared/models/bank';
-
+import { FlowHeaderNode } from '@shared/components/ui-components/flow-header/flow-header.component';
 @Component({
   selector: 'rente-bank-id-login',
   templateUrl: './bank-id-login.component.html',
@@ -69,6 +69,15 @@ export class BankIdLoginComponent implements OnInit {
   private sessionId: string | null;
   private oneTimeToken: string | null;
   private bank: BankVo | null;
+  public currentStepperValue = 0;
+
+  public flowHeaderNodes: FlowHeaderNode[] = [
+    { index: 0, state: 'active', value: null },
+    { index: 1, state: 'waiting', value: null },
+    { index: 2, state: 'waiting', value: null },
+    { index: 3, state: 'waiting', value: null }
+  ];
+
   constructor(
     private route: ActivatedRoute,
     private authService: AuthService,
@@ -312,12 +321,27 @@ export class BankIdLoginComponent implements OnInit {
     }); */
   }
 
+  updateStepperIndex(index: number): void {
+    console.log('updateStepperIndex');
+    if (index !== this.stepper.selectedIndex) {
+      this.stepper.selectedIndex = index;
+    }
+  }
+
+  next(): void {
+    this.stepper.next();
+    this.currentStepperValue = this.stepper.selectedIndex;
+    console.log(this.stepper.selectedIndex);
+  }
+
   goToLoansForm(): void {
     this.stepper.next();
   }
 
   goToUserForm(): void {
     this.stepper.next();
+    this.currentStepperValue = this.stepper.selectedIndex;
+    console.log(this.stepper.selectedIndex);
   }
 
   goToMembershipForm(): void {

@@ -33,7 +33,7 @@ export class AuthService {
   public loginBankIdStep1(): Observable<any> {
     const url = `${API_URL_MAP.auth.base}${API_URL_MAP.auth.bankidLogin}`;
 
-    return this.http.post(url).pipe(tap(this.handleLogin.bind(this)));
+    return this.http.post(url);
   }
 
   public loginBankIdStep2(sessionId: string, bank: string): Observable<any> {
