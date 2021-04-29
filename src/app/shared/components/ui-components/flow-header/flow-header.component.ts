@@ -27,22 +27,21 @@ export class FlowHeaderComponent implements OnInit {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.currentIndex && changes.currentIndex.currentValue) {
-      console.log(changes.currentIndex);
       const currentIndex = changes.currentIndex.currentValue;
-
-      this.nodes.forEach((node, index) => {
-        if (index < currentIndex) {
-          node.state = 'done';
-        }
-
-        if (index === currentIndex) {
-          node.state = 'active';
-        }
-      });
-      this.clickHeaderNode(changes.currentIndex.currentValue);
+      this.nodes[currentIndex].state = 'active';
+      this.handleNodeChange(currentIndex);
     }
   }
-  clickHeaderNode(index: number): void {
+
+  clickHeaderNode(currentIndex: number): void {
+    if (this.nodes[currentIndex].state === 'waiting') {
+      return;
+    }
+    this.handleNodeChange(currentIndex);
+    this.indexChange.emit(currentIndex);
+  }
+
+  handleNodeChange(currentIndex: number): void {
     let highestIndexWithValue = 0;
     this.nodes.forEach((node) => {
       if (node.state !== 'waiting') {
@@ -50,22 +49,23 @@ export class FlowHeaderComponent implements OnInit {
       }
     });
 
-    if (index > highestIndexWithValue) {
+    if (currentIndex > highestIndexWithValue) {
       return;
     }
+    this.nodes.forEach((node, itemIndex) => {
+      if (itemIndex < currentIndex) {
+        node.state = 'done';
+      } else if (itemIndex === currentIndex) {
+        node.state = 'active';
+      }
+      if (itemIndex <= highestIndexWithValue - 1) {
+        node.state = 'active-touched';
+      }
 
-    this.nodes
-      .filter((node) => {
-        return node.state === 'active' || node.state === 'active-touched';
-      })
-      .forEach((activeNode) => {
-        activeNode.state = activeNode.value === null ? 'waiting' : 'done';
-      });
-
-    // this.nodes[index].state = 'active-touched';
-    console.log('clickHeaderNode');
-
-    this.indexChange.emit(index);
+      if (itemIndex === highestIndexWithValue + 1 && node.state !== 'waiting') {
+        node.state = 'active';
+      }
+    });
   }
 }
 

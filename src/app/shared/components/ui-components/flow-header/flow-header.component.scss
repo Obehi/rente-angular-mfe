@@ -9,9 +9,16 @@
     display: flex;
     align-items: center;
 
+    .stepper-header-node {
+    }
+
     &.done {
       .stepper-header-node {
+        width: 40px;
+        height: 40px;
         background: $primary;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        cursor: pointer;
       }
 
       .stepper-header-line {
@@ -25,6 +32,7 @@
         height: 40px;
         background: $primary;
         box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        cursor: pointer;
       }
 
       .stepper-header-line {
@@ -38,6 +46,7 @@
         height: 40px;
         background: $primary;
         box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        cursor: pointer;
       }
 
       .stepper-header-line {
@@ -85,7 +94,11 @@
 
   &.done {
     .stepper-header-node {
+      width: 40px;
+      height: 40px;
       background: $primary;
+      box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+      cursor: pointer;
     }
 
     .stepper-header-line {
@@ -99,6 +112,7 @@
       height: 40px;
       background: $primary;
       box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+      cursor: pointer;
     }
 
     .stepper-header-line {
@@ -112,6 +126,7 @@
       height: 40px;
       background: $primary;
       box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+      cursor: pointer;
     }
 
     .stepper-header-line {
@@ -136,9 +151,24 @@
     height: 40px;
     background: $primary;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    cursor: pointer;
   }
 
   .stepper-header-line {
     background: $primary !important;
+  }
+}
+
+.big {
+  .stepper-header-node {
+    width: 40px !important;
+    height: 40px !important;
+  }
+}
+
+.small {
+  .stepper-header-node {
+    width: 25px !important;
+    height: 25px !important;
   }
 }

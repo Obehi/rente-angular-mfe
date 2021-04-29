@@ -98,7 +98,8 @@ export class BankIdLoginComponent implements OnInit {
 
     // history.back(); // alerts "location: http://example.com/example.html?page=1, state: {"page":1}"
     location.onPopState(() => {
-      alert(window.location);
+      // this.alert(window.location);
+      this.back();
     });
     router.events.subscribe((event: NavigationStart) => {
       console.log('any state');
@@ -124,11 +125,9 @@ export class BankIdLoginComponent implements OnInit {
       this.bank = BankUtils.getBankByName(bankName);
       this.bank &&
         sessionId &&
-        this.authService
-          .loginBankIdStep2(sessionId, this.bank.name)
-          .subscribe((response) => {
+        this.authService.loginBankIdStep2(sessionId, this.bank.name).subscribe(
+          (response) => {
             this.oneTimeToken = response.token;
-
             forkJoin([
               this.loanService.getConfirmationData(),
               this.loanService.getOffersBanks()
@@ -147,7 +146,13 @@ export class BankIdLoginComponent implements OnInit {
               });
               console.log(this.selectOptions);
             });
-          });
+          },
+          (error) => {
+            this.showForms = false;
+            console.log('error handling');
+            console.log(error);
+          }
+        );
     });
 
     /*  window.history.pushState({}, '', '/newpage'); */
@@ -325,11 +330,20 @@ export class BankIdLoginComponent implements OnInit {
     console.log('updateStepperIndex');
     if (index !== this.stepper.selectedIndex) {
       this.stepper.selectedIndex = index;
+      this.currentStepperValue = index;
     }
+    // this.currentStepperValue = 0;
+    console.log(this.currentStepperValue);
   }
 
   next(): void {
     this.stepper.next();
+    this.currentStepperValue = this.stepper.selectedIndex;
+    console.log(this.stepper.selectedIndex);
+  }
+
+  back(): void {
+    this.stepper.previous();
     this.currentStepperValue = this.stepper.selectedIndex;
     console.log(this.stepper.selectedIndex);
   }

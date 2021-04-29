@@ -2,18 +2,48 @@
   display: grid;
   grid-template-columns: 3fr 1fr;
   column-gap: 20px;
+  row-gap: 35px;
   grid-template-rows: 40px;
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.loan-grid {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  column-gap: 20px;
+  row-gap: 35px;
+  grid-template-rows: 40px;
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+  }
 }
 
 ::ng-deep .mat-horizontal-stepper-header-container {
   display: none !important;
 }
 
-form {
-  border: none !important;
-}
-.stepper {
+.wrapper {
   border-radius: 15px;
   box-shadow: rgb(100 100 111 / 20%) 0px 7px 29px 0px;
   margin: 40px;
+  .flow-header {
+    margin: 40px;
+  }
+  .stepper {
+    min-height: 378px;
+    border-radius: 0 0 15px 15px;
+
+    form {
+      border: none !important;
+      padding: 15px;
+    }
+
+    .buttons {
+      margin-top: 20px;
+    }
+  }
 }
