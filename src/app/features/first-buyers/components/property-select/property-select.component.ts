@@ -14,10 +14,11 @@ import {
 } from '@angular/core';
 import Popper from 'popper.js';
 import { debounceTime, filter, takeUntil } from 'rxjs/operators';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { fromEvent, Subject } from 'rxjs';
 import { MembershipTypeDto } from '@services/remote-api/loans.service';
 import { InitialOffersComponent } from '../initial-offers/initial-offers.component';
+import { FirstBuyersService } from '@features/first-buyers/first-buyers.service';
 
 @Component({
   selector: 'property-select',
@@ -26,6 +27,7 @@ import { InitialOffersComponent } from '../initial-offers/initial-offers.compone
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PropertySelectComponent implements OnInit, OnDestroy {
+  @Input() exampleArray: any[];
   @Input() model;
   @Input() labelKey = 'label';
   @Input() idKey = 'id';
@@ -48,7 +50,8 @@ export class PropertySelectComponent implements OnInit, OnDestroy {
     private vcr: ViewContainerRef,
     private zone: NgZone,
     private cdr: ChangeDetectorRef,
-    public iOffers: InitialOffersComponent
+    public iOffers: InitialOffersComponent,
+    public fbService: FirstBuyersService
   ) {}
 
   get isOpen() {
@@ -56,13 +59,8 @@ export class PropertySelectComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    // this.options = [
-    //   { id: '1', label: 'a' },
-    //   { id: '2', label: 'b' },
-    //   { id: '3', label: 'c' },
-    //   { id: '4', label: 'd' }
-    // ];
-    console.log(this.options);
+    this.options = this.exampleArray;
+    console.log(this.fbService.getSelectedMemberships());
 
     this.originalOptions = [...this.options];
     if (this.model !== undefined) {

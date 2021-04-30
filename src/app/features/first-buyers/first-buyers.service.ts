@@ -1,8 +1,12 @@
 import { Injectable } from '@angular/core';
 import { AuthService } from '@services/remote-api/auth.service';
-import { MembershipTypeDto } from '@services/remote-api/loans.service';
+import {
+  LoansService,
+  MembershipTypeDto
+} from '@services/remote-api/loans.service';
 import { LocalStorageService } from '@services/local-storage.service';
 import { Observable } from 'rxjs';
+import { InitialOffersComponent } from './components/initial-offers/initial-offers.component';
 
 export interface FirstBuyersState {
   outstandingDebt: number | null;
@@ -16,7 +20,8 @@ export class FirstBuyersService {
 
   constructor(
     private authService: AuthService,
-    private localStorageService: LocalStorageService
+    private localStorageService: LocalStorageService,
+    private iOffers: InitialOffersComponent
   ) {}
 
   get offerValue(): FirstBuyersState {
@@ -40,5 +45,9 @@ export class FirstBuyersService {
 
   getAuthToken(debtData: any): Observable<any> {
     return this.authService.getFirstTimeLoanToken(debtData);
+  }
+
+  getSelectedMemberships(): Observable<any> {
+    return this.iOffers.getSelectMemberships();
   }
 }

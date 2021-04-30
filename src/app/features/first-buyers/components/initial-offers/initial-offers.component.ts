@@ -76,6 +76,14 @@ export class InitialOffersComponent implements OnInit {
   selectedIndex: number | null = 1;
   public filteredMemberships: Observable<MembershipTypeDto[]>;
   public memberships: MembershipTypeDto[] = [];
+  public exampleArray = [
+    { id: 1, label: 'a' },
+    { id: 2, label: 'b' },
+    { id: 3, label: 'c' },
+    { id: 4, label: 'd' },
+    { id: 5, label: 'e' },
+    { id: 6, label: 'f' }
+  ];
   properties = [
     {
       icon: 'monetization_on',
@@ -409,6 +417,7 @@ export class InitialOffersComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log(this.extraProperties[0].options);
     this.seoService.createLinkForCanonicalURL();
     if (!this.firstBuyersService.offerValue?.outstandingDebt) {
       this.router.navigate(['boliglanskalkulator']);
@@ -457,6 +466,13 @@ export class InitialOffersComponent implements OnInit {
 
     this.updateNewOffers();
     console.log(this.allMemberships);
+  }
+
+  getSelectMemberships() {
+    this.loansService.getConfirmationData().subscribe((dto) => {
+      this.extraProperties[0].options = dto.availableMemberships;
+      return this.extraProperties[0].options;
+    });
   }
 
   updateNewOffers() {
