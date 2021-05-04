@@ -78,11 +78,10 @@ export class HouseFormSvComponent implements OnInit {
     return this.mode === AddressFormMode.Statistics;
   }
   get isAddressValid(): boolean {
-    if (this.address.street === null) {
+    if (this.address === null || this.address.street === null) {
       return false;
     }
     return (
-      this.address !== null &&
       this.address.zip?.length === 5 &&
       !!this.address.apartmentSize &&
       this.address.apartmentSize > 5 &&
