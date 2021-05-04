@@ -5,6 +5,22 @@ import { locale } from '@config/locale/locale';
   providedIn: 'root'
 })
 export class CustomLangTextService {
+  getRenteradarLinkText(): string {
+    if (locale.includes('sv')) {
+      return 'Ranteradar.se';
+    } else if (locale.includes('nb')) {
+      return 'Renteradar.no';
+    }
+    throw new Error('Should be either SV or NB');
+  }
+  getRenteradarUrl(): string {
+    if (locale.includes('sv')) {
+      return 'https://ranteradar.se';
+    } else if (locale.includes('nb')) {
+      return 'https://ranteradar.no/';
+    }
+    throw new Error('Should be either SV or NB');
+  }
   getEmail(): string {
     if (locale.includes('sv')) {
       return 'hej@ranteradar.se';
