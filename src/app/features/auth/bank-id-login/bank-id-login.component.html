@@ -1,23 +1,28 @@
 <div class="wrapper">
+    <div class=" loading" *ngIf="isLoading">
+        <mat-spinner [diameter]="48" [strokeWidth]="4"></mat-spinner>
+    </div>
     <div *ngIf="showForms" class="forms-wrapper">
-        <rente-flow-header class="flow-header" [nodes]="flowHeaderNodes" [currentIndex]="currentStepperValue"
+        <rente-flow-header class="flow-header" [count]="4" [currentIndex]="currentStepperValue"
             (indexChange)="updateStepperIndex($event)">
-
         </rente-flow-header>
 
         <mat-horizontal-stepper class="stepper" [linear]="false" #stepper>
-
-
-
-
             <mat-step [stepControl]="emailFormGroup" [editable]="true">
 
-                <form *ngIf="showForms" [formGroup]="emailFormGroup" novalidate (ngSubmit)="next()">
+                <div class="text-box">
+                    <h2>Takk!</h2>
+                    <h4> Vi trenger bare noen få detaljer om deg og lånet ditt før alt er klart. Fyll inn boksene og
+                        trykk på Neste under.</h4>
+                </div>
 
-                    <div class=" field">
-                        <rente-input [placeholder]="'E-post'" formControlName="email" [errorStateMatcher]="
+                <form *ngIf="showForms" [formGroup]="emailFormGroup" novalidate (ngSubmit)="next()">
+                    <div autofocus class=" field">
+
+                        <rente-input [placeholder]="'E-post'" formControlName="email"
+                            [modelOptions]="{ updateOn: 'blur' }" [errorStateMatcher]="
                     isErrorState(emailFormGroup.controls['email'])
-                  " [modelOptions]="{ updateOn: 'blur' }">
+                  ">
                         </rente-input>
 
                         <div *ngIf="emailFormGroup.controls['email'].touched">
@@ -32,10 +37,10 @@
 
                     <div class="buttons">
 
-                        <rente-button matStepperNext color="primary" [isLoading]="isLoading"
+                        <!--                         <rente-button matStepperNext color="primary" [isLoading]="isLoading"
                             [disabled]="emailFormGroup.invalid || isLoading">
                             Neste
-                        </rente-button>
+                        </rente-button> -->
                     </div>
                 </form>
             </mat-step>
@@ -48,7 +53,7 @@
                         <div class="field">
                             <rente-input [placeholder]="'Adresse'" formControlName="address" [errorStateMatcher]="
                         isErrorState(userFormGroup.controls['address'])
-                      " [modelOptions]="{ updateOn: 'blur' }">
+                      ">
                             </rente-input>
 
                             <div *ngIf="userFormGroup.controls['address'].touched">
@@ -63,7 +68,7 @@
                             <rente-input [placeholder]="'Postnummer'" formControlName="zip" [maxLength]="4"
                                 [errorStateMatcher]="
                         isErrorState(userFormGroup.controls['zip'])
-                      " [modelOptions]="{ updateOn: 'blur' }">
+                      ">
                             </rente-input>
 
                             <div *ngIf="userFormGroup.controls['zip'].touched">
@@ -74,7 +79,7 @@
                             </div>
                         </div>
 
-                        <div class="field">
+                        <div class="field-with-info fill">
                             <rente-input [placeholder]="'Størrelse på boligen din'" formControlName="apartmentSize"
                                 matSuffix="kvm" [errorStateMatcher]="
                 isErrorState(
@@ -88,34 +93,31 @@
                   userFormGroup.controls['apartmentSize'].hasError('required')">Kan ikke være tom
                                 </p>
                             </div>
-                        </div>
-                    </div>
-
-                    <div class="field">
-                        <div class="withinfo">
-                            <div>
-
-                                <rente-input [placeholder]="'Din brutto årsinntekt'" formControlName="income"
-                                    matSuffix="kr" [errorStateMatcher]="
-            isErrorState(userFormGroup.controls['income'])
-          " [type]="'tel'" [maskType]="mask.currency">
-                                </rente-input>
-                                <div *ngIf="userFormGroup.controls['income'].touched">
-                                    <p i18n=“empty3|info-confirmation@@info.confirmation.empty3” class="error small"
-                                        *ngIf="userFormGroup.controls['income'].hasError('required')">
-                                        Kan ikke være tom
-                                    </p>
-                                </div>
+                            <div i18n=“help|info-confirmation@@info.confirmation.help” class="clickable"
+                                (click)="openInfoDialog({text: 'Brukes til å estimere din boligverdi'})">
+                                <mat-icon>help</mat-icon>
                             </div>
                         </div>
                     </div>
 
-                    <div class="buttons">
+                    <div class="field-with-info">
 
-                        <rente-button matStepperNext color="primary" [isLoading]="isLoading"
-                            [disabled]="userFormGroup.invalid || isLoading">
-                            Neste
-                        </rente-button>
+
+                        <rente-input [placeholder]="'Din brutto årsinntekt'" formControlName="income" matSuffix="kr"
+                            [errorStateMatcher]="
+            isErrorState(userFormGroup.controls['income'])
+          " [type]="'tel'" [maskType]="mask.currency">
+                        </rente-input>
+                        <div *ngIf="userFormGroup.controls['income'].touched">
+                            <p i18n=“empty3|info-confirmation@@info.confirmation.empty3” class="error small"
+                                *ngIf="userFormGroup.controls['income'].hasError('required')">
+                                Kan ikke være tom
+                            </p>
+                        </div>
+                        <div i18n=“help|info-confirmation@@info.confirmation.help” class="clickable"
+                            (click)="openInfoDialog({ text: 'Din/Husstandens inntekt er en viktig parameter for renten bankene tilbyr'})">
+                            <mat-icon>help</mat-icon>
+                        </div>
                     </div>
                 </form>
 
@@ -124,14 +126,21 @@
                 <form *ngIf="showForms" [formGroup]="loanFormGroup" novalidate (ngSubmit)="next()">
 
                     <div class="loan-grid">
+                        <div class="field">
+                            <div class="with-info">
 
-
-                        <div class=" field">
-                            <rente-input [placeholder]="'Estimert totalbetaling'" formControlName="outstandingDebt"
-                                [errorStateMatcher]="
-                    isErrorState(loanFormGroup.controls['outstandingDebt'])
-                  " [modelOptions]="{ updateOn: 'blur' }">
-                            </rente-input>
+                                <rente-input [placeholder]="'Gjenværende lånestørrelse'" [type]="'tel'"
+                                    [maskType]="mask.currency" matSuffix="kr" formControlName="outstandingDebt"
+                                    [errorStateMatcher]="
+                                isErrorState(loanFormGroup.controls['outstandingDebt'])
+                                ">
+                                </rente-input>
+                                <div i18n=“help|info-confirmation@@info.confirmation.help” class="clickable" (click)="openInfoDialog({header: ' Hvor mye er lånet ditt på i dag?',
+                                    text: 'Om du er usikker kan du gi oss omtrentlig lånestørrelse. Vit da at evt. beregnet besparelse vil bli høyere eller lavere ut i fra blant annet størrelsen på lånet ditt'
+                                    })">
+                                    <mat-icon>help</mat-icon>
+                                </div>
+                            </div>
 
                             <div *ngIf="loanFormGroup.controls['outstandingDebt'].touched">
                                 <p class="error small"
@@ -142,10 +151,10 @@
                         </div>
 
                         <div class="field">
-                            <rente-input [placeholder]="'Max løpetid'" formControlName="remainingYears"
-                                [errorStateMatcher]="
+                            <rente-input [placeholder]="'Gjenværende år igjen på lånet'" matSuffix="år" [maxLength]="2"
+                                formControlName="remainingYears" [errorStateMatcher]="
                     isErrorState(loanFormGroup.controls['remainingYears'])
-                  " [modelOptions]="{ updateOn: 'blur' }">
+                  ">
                             </rente-input>
 
                             <div *ngIf="loanFormGroup.controls['remainingYears'].touched">
@@ -156,25 +165,20 @@
                             </div>
                         </div>
 
-
-                        <div class="field">
-                            <rente-select [options]="selectOptions" [name]="'test'" placeholder="'Lånetype"
-                                (selected)="offerSelected($event)">
-                            </rente-select>
+                        <div class="field fill">
+                            <mat-form-field appearance="fill">
+                                <mat-label>Lånetype</mat-label>
+                                <mat-select formControlName="loanType">
+                                    <mat-option *ngFor="let option of selectOptions" value="{{option.value}}">
+                                        {{option.name}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
                         </div>
-                    </div>
 
-                    <div class="buttons">
-                        <rente-button click matStepperNext color="primary" [isLoading]="isLoading"
-                            [disabled]="loanFormGroup.invalid || isLoading">
-                            Neste
-                        </rente-button>
                     </div>
-
                 </form>
             </mat-step>
-
-
 
 
             <mat-step [stepControl]="membershipFormGroup" [editable]="true">
@@ -185,9 +189,11 @@
 
 
                     <div class="field">
-                        <p i18n=“organization|info-confirmation@@info.confirmation.organization” class="small">
+                        <h4 class="small info-box">
+                            <img src="../../../../assets/icons/info-blue-white.svg">
+
                             Bankene gir ofte bedre betingelser om du er medlem i en organisasjon
-                        </p>
+                        </h4>
                         <mat-form-field>
                             <input type="text" placeholder="+ Legg til medlemskap (valgfritt)" matInput
                                 [formControl]="membershipCtrl" formControlName="membership" #membershipInput
@@ -208,30 +214,61 @@
                             </mat-icon>
                         </p>
                     </div>
-
-
-                    <div class="buttons">
-
-                        <rente-button *ngIf="memberships.length === 0" click matStepperNext color="primary"
-                            [isLoading]="isLoading" [disabled]="loanFormGroup.invalid || isLoading">
-                            Jeg har ingen medlemskap
-                        </rente-button>
-
-                        <rente-button *ngIf="memberships.length !== 0" click matStepperNext color="primary"
-                            [isLoading]="isLoading" [disabled]="loanFormGroup.invalid || isLoading">
-                            Ferdig
-                        </rente-button>
-                    </div>
-
                 </form>
 
             </mat-step>
 
 
         </mat-horizontal-stepper>
-    </div>
-</div>
 
-<div class=" loading" *ngIf="isLoading">
-    <mat-spinner [diameter]="48" [strokeWidth]="4"></mat-spinner>
+        <div class="bottom">
+
+            <div [ngSwitch]="stepper.selectedIndex">
+                <div *ngSwitchCase="0">
+                    <!--               <rente-button class="left" color="mat-primar-hollow-medium">
+                        Avbryt
+                    </rente-button> -->
+
+                    <rente-button class="right" (click)="next()" color="primary" [isLoading]="isLoading"
+                        [disabled]="emailFormGroup.invalid || isLoading">
+                        Neste
+                    </rente-button>
+                </div>
+                <div *ngSwitchCase="1">
+                    <rente-button (click)="back()" i18n="choose-office |change-bank@@change.bank.location.back"
+                        class="left" color="mat-primar-hollow-medium">
+                        Tilbake
+                    </rente-button>
+                    <rente-button class="right" (click)="goToLoansForm()" color="primary" [isLoading]="isLoading"
+                        [disabled]="userFormGroup.invalid || isLoading">
+                        Neste
+                    </rente-button>
+                </div>
+                <div *ngSwitchCase="2">
+                    <rente-button (click)="back()" i18n="choose-office |change-bank@@change.bank.location.back"
+                        class="left" color="mat-primar-hollow-medium">
+                        Tilbake
+                    </rente-button>
+                    <rente-button class="right" (click)="next()" color="primary" [isLoading]="isLoading"
+                        [disabled]="loanFormGroup.invalid || isLoading">
+                        Neste
+                    </rente-button>
+                </div>
+                <div *ngSwitchCase="3">
+
+                    <rente-button (click)="back()" i18n="choose-office |change-bank@@change.bank.location.back"
+                        class="left" color="mat-primar-hollow-medium">
+                        Tilbake
+                    </rente-button>
+                    <rente-button class="right" (click)="doneClicked()" color="primary" [isLoading]="isLoading"
+                        [disabled]="membershipFormGroup.invalid || isLoading">
+                        Ferdig
+                    </rente-button>
+                </div>
+                <div *ngSwitchDefault>
+
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

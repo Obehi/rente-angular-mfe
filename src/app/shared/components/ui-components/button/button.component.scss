@@ -165,6 +165,25 @@ button.mat-primary-wide-hollow {
   white-space: break-spaces;
 }
 
+button.mat-primary-wide-hollow {
+  background-color: white;
+  color: black;
+  border: 1px solid $primary;
+  height: 56px;
+  width: 100%;
+  white-space: break-spaces;
+}
+
+button.mat-primar-hollow-medium {
+  min-width: 150px;
+  background-color: white;
+  color: black;
+  border: 1px solid $primary;
+  height: 56px;
+  width: 100%;
+  white-space: break-spaces;
+}
+
 button.mat-primary-wide-white {
   background-color: white;
   color: black;

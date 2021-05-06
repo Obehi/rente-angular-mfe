@@ -22,4 +22,5 @@ export class LoanUpdateInfoDto {
   outstandingDebt: number;
   productId: string;
   remainingYears: number;
+  loanSubType: string;
 }

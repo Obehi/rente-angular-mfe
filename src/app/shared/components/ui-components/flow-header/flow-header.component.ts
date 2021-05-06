@@ -15,15 +15,24 @@ import { Subject } from 'rxjs';
   styleUrls: ['./flow-header.component.scss']
 })
 export class FlowHeaderComponent implements OnInit {
-  @Input() nodes: FlowHeaderNode[];
+  nodes: FlowHeaderNode[];
   @Input() currentIndex: number;
+  @Input() count: number;
   @Output() indexChange: EventEmitter<any> = new EventEmitter();
 
   currentNode: number;
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    const flowHeaderNodes: FlowHeaderNode[] = [];
+
+    for (let index = 0; index < this.count; index++) {
+      const state = index === 0 ? 'active' : 'waiting';
+      flowHeaderNodes.push({ index: index, state: state, value: null });
+    }
+    this.nodes = flowHeaderNodes;
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.currentIndex && changes.currentIndex.currentValue) {

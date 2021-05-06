@@ -46,6 +46,8 @@ import { ChildDirective } from './directives/child.directive';
 import { CheckboxContainerComponent } from './components/ui-components/checkbox-container/checkbox-container.component';
 import { BarComponent } from './components/ui-components/bar/bar.component';
 import { FlowHeaderComponent } from './components/ui-components/flow-header/flow-header.component';
+import { GenericInfoDialogComponent } from './components/ui-components/dialogs/generic-info-dialog/generic-info-dialog.component';
+import { GenericErrorDialogComponent } from './components/ui-components/dialogs/generic-error-dialog/generic-error-dialog.component';
 
 const components = [
   HeaderLangGenericComponent,
@@ -102,7 +104,9 @@ const services = [
     ThousandsSeprator,
     ChildDirective,
     BarComponent,
-    FlowHeaderComponent
+    FlowHeaderComponent,
+    GenericInfoDialogComponent,
+    GenericErrorDialogComponent
   ],
   exports: [
     ...components,
