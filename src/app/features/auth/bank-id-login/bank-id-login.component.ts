@@ -134,7 +134,7 @@ export class BankIdLoginComponent implements OnInit {
     this.route.queryParams.subscribe((routeParams) => {
       const status = routeParams['status'];
       const sessionId = routeParams['sessionId'];
-      this.isLoading = false;
+
       console.log('status');
       console.log(status);
       // status = 'error';
@@ -345,9 +345,9 @@ export class BankIdLoginComponent implements OnInit {
       ));
 
     const loanUpdateInfoDto = new LoanUpdateInfoDto();
-    loanUpdateInfoDto.outstandingDebt = this.loanFormGroup.get(
+    /*  loanUpdateInfoDto.outstandingDebt = this.loanFormGroup.get(
       'outstandingDebt'
-    )?.value;
+    )?.value; */
     loanUpdateInfoDto.remainingYears = this.loanFormGroup.get(
       'remainingYears'
     )?.value;
@@ -355,8 +355,12 @@ export class BankIdLoginComponent implements OnInit {
       this.loanFormGroup.get('loanType')?.value
     );
 
-    // default value is
-    loanUpdateInfoDto.loanSubType = 'AMORTISING_LOAN';
+    (loanUpdateInfoDto.outstandingDebt =
+      typeof this.loanFormGroup.get('outstandingDebt')?.value === 'string'
+        ? this.loanFormGroup.get('outstandingDebt')?.value.replace(/\s/g, '')
+        : this.loanFormGroup.get('outstandingDebt')?.value),
+      // default value is
+      (loanUpdateInfoDto.loanSubType = 'AMORTISING_LOAN');
 
     concat(
       this.loanService.updateClientInfo(clientDto),

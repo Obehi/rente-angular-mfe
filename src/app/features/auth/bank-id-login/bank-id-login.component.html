@@ -47,7 +47,7 @@
 
             <mat-step [stepControl]="userFormGroup" [editable]="true">
 
-                <form *ngIf="showForms" [formGroup]="userFormGroup" novalidate (ngSubmit)="next()">
+                <form *ngIf="showForms" [formGroup]="userFormGroup" novalidate (ngSubmit)="next()" class="center">
 
                     <div class="address-grid">
                         <div class="field">
@@ -123,7 +123,8 @@
 
             </mat-step>
             <mat-step [editable]="true">
-                <form *ngIf="showForms" [formGroup]="loanFormGroup" novalidate (ngSubmit)="next()">
+                <form *ngIf="showForms" [formGroup]="loanFormGroup" novalidate (ngSubmit)="next()"
+                    class="center  loan-form">
 
                     <div class="loan-grid">
                         <div class="field">
@@ -165,7 +166,7 @@
                             </div>
                         </div>
 
-                        <div class="field fill">
+                        <div class="field left">
                             <mat-form-field appearance="fill">
                                 <mat-label>Lånetype</mat-label>
                                 <mat-select formControlName="loanType">
@@ -183,36 +184,44 @@
 
             <mat-step [stepControl]="membershipFormGroup" [editable]="true">
 
-                <form *ngIf="showForms" [formGroup]="membershipFormGroup" novalidate (ngSubmit)="doneClicked()">
+                <form *ngIf="showForms" [formGroup]="membershipFormGroup" novalidate (ngSubmit)="doneClicked()"
+                    class="center">
 
 
 
 
                     <div class="field">
-                        <h4 class="small info-box">
+                        <div class="info-box">
                             <img src="../../../../assets/icons/info-blue-white.svg">
+                            <h4 class="small info-box">
+                                Bankene gir ofte bedre betingelser om du er medlem i en organisasjon
+                            </h4>
+                        </div>
+                        <div class="membership-wrapper">
 
-                            Bankene gir ofte bedre betingelser om du er medlem i en organisasjon
-                        </h4>
-                        <mat-form-field>
-                            <input type="text" placeholder="+ Legg til medlemskap (valgfritt)" matInput
-                                [formControl]="membershipCtrl" formControlName="membership" #membershipInput
-                                [matAutocomplete]="auto" />
-                            <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
-                                <mat-option *ngFor="let membership of filteredMemberships | async" [value]="membership">
-                                    {{ membership.label }}
-                                </mat-option>
-                            </mat-autocomplete>
-                        </mat-form-field>
-                        <p i18n=“my-memberships|info-confirmation@@info.confirmation.myMemberships” class="small"
-                            *ngIf="memberships.length">
-                            Mine medlemskap
-                        </p>
-                        <p class="memberlist" *ngFor="let membership of memberships; let i = index">
-                            {{ membership.label }}
-                            <mat-icon class="clickable" (click)="remove(membership, i)" *ngIf="removable">delete_forever
-                            </mat-icon>
-                        </p>
+                            <mat-form-field>
+                                <input type="text" placeholder="+ Legg til medlemskap (valgfritt)" matInput
+                                    [formControl]="membershipCtrl" formControlName="membership" #membershipInput
+                                    [matAutocomplete]="auto" />
+                                <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+                                    <mat-option *ngFor="let membership of filteredMemberships | async"
+                                        [value]="membership">
+                                        {{ membership.label }}
+                                    </mat-option>
+                                </mat-autocomplete>
+                            </mat-form-field>
+                            <p i18n=“my-memberships|info-confirmation@@info.confirmation.myMemberships” class="small"
+                                *ngIf="memberships.length">
+                                Mine medlemskap
+                            </p>
+                            <p class="memberlist" *ngFor="let membership of memberships; let i = index">
+                                {{ membership.label }}
+                                <mat-icon class="clickable" (click)="remove(membership, i)" *ngIf="removable">
+                                    delete_forever
+                                </mat-icon>
+                            </p>
+                        </div>
+
                     </div>
                 </form>
 
