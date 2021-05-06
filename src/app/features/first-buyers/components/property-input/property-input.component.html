@@ -61,13 +61,7 @@
         <mat-select-autocomplete
           *ngIf="inputType === 'autocomplete'"
           [placeholder]="'Velg'"
-          [options]="memberships"
-          [display]="'label'"
-          [value]="'name'"
-          [multiple]="true"
-          [labelCount]="2"
-          [selectedOptions]="_selectedMemberships"
-          (selectionChange)="getSelectedMemberships($event)"
+          (click)="openPropertySelectDialog()"
         >
         </mat-select-autocomplete>
       </form>

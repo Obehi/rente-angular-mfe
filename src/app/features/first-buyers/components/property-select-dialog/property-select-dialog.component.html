@@ -1,0 +1,6 @@
+<property-select
+  (selectedItemsEmitter)="sendMemberships($event)"
+  [options]="data"
+  [autocompleteOptions]="data"
+  *ngIf="data !== null && data !== undefined"
+></property-select>

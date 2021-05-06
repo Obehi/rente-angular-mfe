@@ -46,10 +46,10 @@
                 [iconPath]="property.iconPath"
                 (selectedMemberships)="applyMemberships($event)"
               ></rente-property-input>
-              <property-select
+              <rente-property-input
                 *ngIf="
-                  property.shouldDisplay() &&
-                  property.inputType === 'autocomplete'
+                  property.inputType === 'autocomplete' &&
+                  property.shouldDisplay()
                 "
                 [icon]="property.icon"
                 [formGroup]="formGroup"
@@ -59,10 +59,24 @@
                 [options]="property.options"
                 [memberships]="allMemberships"
                 [iconPath]="property.iconPath"
-                [exampleArray]="exampleArray"
+                [autocompleteOptions]="property.options"
+              >
+              </rente-property-input>
+              <!-- <property-select
+                *ngIf="
+                  property.shouldDisplay() &&
+                  property.inputType === 'autocomplete'
+                "
+                [icon]="property.icon"
+                [formGroup]="formGroup"
+                [label]="property.label"
+                [controlName]="property.controlName"
+                [inputType]="property.inputType"
+                [options]="allMemberships"
+                [memberships]="allMemberships"
+                [iconPath]="property.iconPath"
                 (selectedMemberships)="applyMemberships($event)"
-                (selectChange)="change($event)"
-              ></property-select>
+              ></property-select> -->
             </div>
             <div class="accordion-bottom"></div>
           </mat-expansion-panel>

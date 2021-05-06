@@ -7,7 +7,11 @@ import {
   ValidatorFn,
   ValidationErrors
 } from '@angular/forms';
-import { MatAutocompleteSelectedEvent, MatStepper } from '@angular/material';
+import {
+  MatAutocompleteSelectedEvent,
+  MatDialog,
+  MatStepper
+} from '@angular/material';
 import { Router } from '@angular/router';
 import {
   FirstBuyersService,
@@ -30,6 +34,7 @@ import {
   take
 } from 'rxjs/operators';
 import { SeoService } from '@services/seo.service';
+import { PropertySelectDialogComponent } from '../property-select-dialog/property-select-dialog.component';
 
 @Component({
   selector: 'rente-initial-offers',
@@ -72,18 +77,12 @@ export class InitialOffersComponent implements OnInit {
     },
     { validators: this.loanToValueRatioValidator, updateOn: 'blur' }
   );
-  public allMemberships: MembershipTypeDto[] = [];
+  public allMemberships: any[] = [];
   selectedIndex: number | null = 1;
   public filteredMemberships: Observable<MembershipTypeDto[]>;
   public memberships: MembershipTypeDto[] = [];
-  public exampleArray = [
-    { id: 1, label: 'a' },
-    { id: 2, label: 'b' },
-    { id: 3, label: 'c' },
-    { id: 4, label: 'd' },
-    { id: 5, label: 'e' },
-    { id: 6, label: 'f' }
-  ];
+  public changeBankLoading: boolean;
+  public exampleArray = [{ id: 1, label: 'DNB' }];
   properties = [
     {
       icon: 'monetization_on',
@@ -238,7 +237,8 @@ export class InitialOffersComponent implements OnInit {
     private firstBuyersService: FirstBuyersService,
     private firstBuyersAPIService: FirstBuyersAPIService,
     private router: Router,
-    private seoService: SeoService
+    private seoService: SeoService,
+    public dialog: MatDialog
   ) {}
 
   get outstandingDebtControl(): AbstractControl {
@@ -417,7 +417,6 @@ export class InitialOffersComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.extraProperties[0].options);
     this.seoService.createLinkForCanonicalURL();
     if (!this.firstBuyersService.offerValue?.outstandingDebt) {
       this.router.navigate(['boliglanskalkulator']);
@@ -430,6 +429,10 @@ export class InitialOffersComponent implements OnInit {
 
     this.subscribeToControllers();
 
+    this.firstBuyersService.messages().subscribe(() => {
+      this.formGroup.markAsDirty();
+    });
+
     if (!this.firstBuyersService.offerValue?.income) {
       this.incomeStepShown = true;
     } else {
@@ -439,7 +442,8 @@ export class InitialOffersComponent implements OnInit {
     this.loansService.getConfirmationData().subscribe((dto) => {
       this.allMemberships = dto.availableMemberships;
       // this.extraProperties[0].options = dto.availableMemberships;
-      console.log(this.extraProperties[0].options);
+      // console.log(this.allMemberships);
+      this.extraProperties[0].options = this.allMemberships;
       this.featuredMemberships = this.allMemberships.filter((membership) => {
         return (
           membership.name === 'AKADEMIKERNE' ||
@@ -466,13 +470,6 @@ export class InitialOffersComponent implements OnInit {
 
     this.updateNewOffers();
     console.log(this.allMemberships);
-  }
-
-  getSelectMemberships() {
-    this.loansService.getConfirmationData().subscribe((dto) => {
-      this.extraProperties[0].options = dto.availableMemberships;
-      return this.extraProperties[0].options;
-    });
   }
 
   updateNewOffers() {

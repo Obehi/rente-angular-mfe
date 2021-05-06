@@ -1,22 +1,22 @@
-@import "../../../../../styles/theme/colors";
+@import '../../../../../styles/theme/colors';
 
+// @media (max-width: 600px) {
+//   ::ng-deep .cdk-overlay-pane {
+//     transform: unset !important;
+//     left: 20px !important;
+//     top: 100px !important;
+//     position: absolute !important;
+//     min-width: 100% !important;
+//   }
 
-@media(max-width: 600px) {
-  ::ng-deep .cdk-overlay-pane {
-    transform: unset !important;
-    left: 20px !important;
-    top: 100px !important;
-    position: absolute !important;
-    min-width: 100% !important;
-  }
+//   ::ng-deep .cdk-overlay-transparent-backdrop,
+//   .cdk-overlay-transparent-backdrop.cdk-overlay-backdrop-showing {
+//     background: black !important;
+//     opacity: 0.4 !important;
+//   }
+// }
 
-  ::ng-deep .cdk-overlay-transparent-backdrop, .cdk-overlay-transparent-backdrop.cdk-overlay-backdrop-showing {
-    background: black !important;
-    opacity: 0.4 !important;
-  }
-}
-
-@media(max-width: 600px) {
+@media (max-width: 600px) {
   ::ng-deep .mat-select-panel {
     min-width: calc(100% - 40px) !important;
   }
@@ -26,28 +26,24 @@
   color: $red;
   position: absolute;
   top: 137px;
-  font-size: 0.9em !important
+  font-size: 0.9em !important;
 }
 
 .field-message-white {
   color: $primary;
   position: absolute;
   top: 137px;
-  font-size: 0.9em !important
+  font-size: 0.9em !important;
 }
 
-
 .property-wrapper.red-underline {
-
   ::ng-deep .mat-form-field-flex {
     border-bottom: 1px solid $red !important;
-    transition: .3s;
+    transition: 0.3s;
   }
 }
 
 .property-wrapper {
-
-
   ::ng-deep mat-select-panel {
     transform-origin: unset !important;
     font-size: unset !important;
@@ -62,7 +58,6 @@
   ::ng-deep .mat-form-field {
     position: relative;
   }
-
 
   /* input color class */
   ::ng-deep input.mat-input-element {
@@ -89,10 +84,10 @@
 
   ::ng-deep .mat-form-field-flex {
     border-bottom: 1px solid #478ccc;
-    transition: .3s;
+    transition: 0.3s;
 
     &:focus-within {
-      transition: .3s;
+      transition: 0.3s;
       border-bottom: 1px solid $primary;
     }
   }
@@ -104,7 +99,6 @@
   }
 
   .text-white {
-   color: #478ccc !important
+    color: #478ccc !important;
   }
 }
-

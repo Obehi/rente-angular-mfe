@@ -1,146 +1,61 @@
 import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
-  EmbeddedViewRef,
   EventEmitter,
   Input,
   OnDestroy,
   OnInit,
-  Output,
-  TemplateRef,
-  ViewContainerRef,
-  NgZone
+  Output
 } from '@angular/core';
-import Popper from 'popper.js';
-import { debounceTime, filter, takeUntil } from 'rxjs/operators';
-import { FormControl, FormGroup } from '@angular/forms';
-import { fromEvent, Subject } from 'rxjs';
-import { MembershipTypeDto } from '@services/remote-api/loans.service';
-import { InitialOffersComponent } from '../initial-offers/initial-offers.component';
-import { FirstBuyersService } from '@features/first-buyers/first-buyers.service';
+import { FilterPipe } from '@shared/pipes/filter.pipe';
 
 @Component({
   selector: 'property-select',
   templateUrl: './property-select.component.html',
-  styleUrls: ['./property-select.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./property-select.component.scss']
 })
 export class PropertySelectComponent implements OnInit, OnDestroy {
-  @Input() exampleArray: any[];
-  @Input() model;
-  @Input() labelKey = 'label';
-  @Input() idKey = 'id';
-  @Input() options: any[];
-  @Input() optionTpl: TemplateRef<any>;
-  @Output() selectChange = new EventEmitter();
-  @Output() closed = new EventEmitter();
-  @Input() memberships: MembershipTypeDto[];
-  @Output() selectedMemberships = new EventEmitter<MembershipTypeDto[]>();
+  @Input() options: any;
+  @Input() searchText;
+  @Input() closeState: string;
 
-  visibleOptions = 4;
-  searchControl = new FormControl();
+  @Input() placeholder: string;
+  @Input() label;
 
-  private view: EmbeddedViewRef<any> | null;
-  private popperRef: Popper | null;
-  private originalOptions: string[];
-  private untilDestroyed = new Subject<void>();
+  @Output() selectedItemsEmitter = new EventEmitter<any>();
 
-  constructor(
-    private vcr: ViewContainerRef,
-    private zone: NgZone,
-    private cdr: ChangeDetectorRef,
-    public iOffers: InitialOffersComponent,
-    public fbService: FirstBuyersService
-  ) {}
+  public selectedMemberships: string = [];
 
-  get isOpen() {
-    return !!this.popperRef;
-  }
+  constructor() {}
 
-  ngOnInit(): void {
-    this.options = this.exampleArray;
-    console.log(this.fbService.getSelectedMemberships());
-
-    this.originalOptions = [...this.options];
-    if (this.model !== undefined) {
-      this.model = this.options.find(
-        (currentOption) => currentOption[this.idKey] === this.model
-      );
-    }
-
-    this.searchControl.valueChanges
-      .pipe(debounceTime(300), takeUntil(this.untilDestroyed))
-      .subscribe((term) => this.search(term));
-  }
+  ngOnInit(): void {}
 
   ngOnDestroy() {
     // this.untilDestroyed.next();
   }
 
-  get label() {
-    return this.model ? this.model[this.labelKey] : 'Select...';
-  }
-
-  open(dropdownTpl: TemplateRef<any>, origin: HTMLElement): void {
-    this.view = this.vcr.createEmbeddedView(dropdownTpl);
-    const dropdown = this.view.rootNodes[0];
-
-    document.body.appendChild(dropdown);
-    dropdown.style.width = `${origin.offsetWidth}px`;
-
-    this.zone.runOutsideAngular(() => {
-      this.popperRef = new Popper(origin, dropdown, {
-        removeOnDestroy: true
-      });
+  get membershipNames(): string {
+    return this.options?.map((membership) => {
+      return membership.label;
     });
-
-    this.handleClickOutside();
   }
 
-  close(): void {
-    this.closed.emit();
-    this.popperRef?.destroy();
-    this.view?.destroy();
-    this.searchControl.patchValue('');
-    this.view = null;
-    this.popperRef = null;
-  }
-
-  select(option): void {
-    this.model = option;
-    this.selectChange.emit(option[this.idKey]);
-    // the handleClickOutside function will close the dropdown
-  }
-
-  isActive(option): boolean {
-    if (!this.model) {
-      return false;
+  chooseMembership(membership: string): void {
+    if (!this.selectedMemberships.includes(membership)) {
+      this.selectedMemberships.push(membership);
+      console.log(this.selectedMemberships);
+    } else {
+      console.log(membership + ' Already exists in the list');
     }
-    return option[this.idKey] === this.model[this.idKey];
   }
 
-  search(value: string): void {
-    this.options = this.originalOptions.filter((option) =>
-      option[this.labelKey].includes(value)
+  removeMembership(membership: string): void {
+    this.selectedMemberships = this.selectedMemberships.filter(
+      (option) => option !== membership
     );
-    requestAnimationFrame(
-      () => (this.visibleOptions = this.options.length || 1)
-    );
+    console.log(this.selectedMemberships);
   }
 
-  private handleClickOutside() {
-    fromEvent(document, 'click')
-      .pipe(
-        filter(({ target }) => {
-          const origin = this.popperRef?.reference as HTMLElement;
-          return origin.contains(target as HTMLElement) === false;
-        }),
-        takeUntil(this.closed)
-      )
-      .subscribe(() => {
-        this.close();
-        this.cdr.detectChanges();
-      });
+  test() {
+    this.selectedItemsEmitter.emit(this.selectedMemberships);
   }
 }

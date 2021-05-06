@@ -1,11 +1,11 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Input } from '@angular/core';
 import { AuthService } from '@services/remote-api/auth.service';
 import {
   LoansService,
   MembershipTypeDto
 } from '@services/remote-api/loans.service';
 import { LocalStorageService } from '@services/local-storage.service';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { InitialOffersComponent } from './components/initial-offers/initial-offers.component';
 
 export interface FirstBuyersState {
@@ -17,12 +17,14 @@ export interface FirstBuyersState {
 })
 export class FirstBuyersService {
   selectedMemberships: MembershipTypeDto[] = [];
+  private messageHandler: Subject<any>;
 
   constructor(
     private authService: AuthService,
-    private localStorageService: LocalStorageService,
-    private iOffers: InitialOffersComponent
-  ) {}
+    private localStorageService: LocalStorageService
+  ) {
+    this.messageHandler = new Subject<any>();
+  }
 
   get offerValue(): FirstBuyersState {
     return this.localStorageService.getObject(
@@ -47,7 +49,12 @@ export class FirstBuyersService {
     return this.authService.getFirstTimeLoanToken(debtData);
   }
 
-  getSelectedMemberships(): Observable<any> {
-    return this.iOffers.getSelectMemberships();
+  pushMessage(): void {
+    this.messageHandler.next('');
+    console.log('pushed');
+  }
+
+  messages(): Subject<any> {
+    return this.messageHandler;
   }
 }

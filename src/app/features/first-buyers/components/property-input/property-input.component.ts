@@ -13,6 +13,8 @@ import { MembershipTypeDto } from '@services/remote-api/loans.service';
 import { Observable, Subject } from 'rxjs';
 import { distinctUntilChanged } from 'rxjs/operators';
 import { SelectAutocompleteComponent } from 'mat-select-autocomplete';
+import { PropertySelectDialogComponent } from '../property-select-dialog/property-select-dialog.component';
+import { MatDialog } from '@angular/material';
 
 interface Membership {
   name?: string;
@@ -35,10 +37,13 @@ export class PropertyInputComponent implements OnInit {
   @Input() iconPath: string;
   @Input() inputType: 'tel' | 'dropdown' | 'autocomplete' = 'tel';
   @Input() options: { name?: string; value?: string; label: string }[];
+  @Input() autocompleteOptions: any;
   @Input() memberships: MembershipTypeDto[];
   @Output() selectedMemberships = new EventEmitter<MembershipTypeDto[]>();
   @ViewChild(SelectAutocompleteComponent)
   multiSelect: SelectAutocompleteComponent;
+
+  public changeBankLoading: any;
 
   isFirstFocus = true;
   labelPosition: 'before' | 'after' = 'after';
@@ -51,12 +56,14 @@ export class PropertyInputComponent implements OnInit {
   exitHandler: any;
   constructor(
     private firstBuyersService: FirstBuyersService,
-    private closeInputElement: ElementRef
+    private closeInputElement: ElementRef,
+    public dialog: MatDialog
   ) {
     this._selectionDistincter = this.selectionDistincter.asObservable();
   }
 
   ngOnInit(): void {
+    console.log(this.autocompleteOptions);
     if (this.inputType === 'autocomplete') {
       this.exitHandler = () => {
         this.multiSelect.toggleDropdown();
@@ -98,5 +105,31 @@ export class PropertyInputComponent implements OnInit {
 
   focusOutFunction(): void {
     this.isFirstFocus = false;
+  }
+
+  public openPropertySelectDialog(): void {
+    console.log(this.autocompleteOptions);
+    const openDialog = this.dialog.open(PropertySelectDialogComponent, {
+      autoFocus: false,
+      data: this.autocompleteOptions
+    });
+    openDialog.afterClosed().subscribe(() => {
+      this.propertySelectDialogClose(openDialog.componentInstance.closeState);
+    });
+  }
+
+  public propertySelectDialogClose(state: string): void {
+    this.changeBankLoading = false;
+    switch (state) {
+      case 'canceled': {
+        break;
+      }
+      case 'do-nothing': {
+        break;
+      }
+      case 'error': {
+        break;
+      }
+    }
   }
 }
