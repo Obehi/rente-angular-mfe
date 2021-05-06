@@ -22,7 +22,7 @@ export class OffersListNoComponent implements OnInit {
     }
     let experimentId: string | null;
     if (this.envService.environment.production === true) {
-      experimentId = 'ltS3-bOLQ6S2DjHISLjZJw';
+      experimentId = 'CZzJbFYIQEa_tvn-UeQ2RQ';
     } else {
       experimentId = 'A6Fvld2GTAG3VE95NWV1Hw';
     }
