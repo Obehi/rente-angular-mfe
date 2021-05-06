@@ -142,7 +142,7 @@ export class BankIdLoginComponent implements OnInit {
         case 'success':
           const bankName = this.localStorageService.getItem('bankIdLoginBank');
           this.bank = BankUtils.getBankByName(bankName);
-          this.bank && this.statusSuccess(sessionId, this.bank.name);
+          this.bank && this.statusSuccess(sessionId, bankName);
           break;
 
         case 'abort':
@@ -387,6 +387,7 @@ export class BankIdLoginComponent implements OnInit {
               text: 'test',
               confirmText: 'Prøv igjen',
               cancelText: 'Avbryt',
+
               onConfirm: () => {
                 console.log('ITS HAPPENING BUNKER');
                 this.loanFormGroup.reset();
