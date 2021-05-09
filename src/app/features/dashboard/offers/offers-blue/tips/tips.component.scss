@@ -3,30 +3,6 @@
 :host {
   grid-column-start: 1;
   grid-column-end: span 2;
-
-  @media (max-width: 600px) {
-    background: $secondary;
-    margin-top: 22px;
-    border-radius: 15px;
-  }
-}
-
-.mat-accordion {
-  width: 100%;
-  .mat-expansion-panel {
-    .mat-panel-title {
-      color: $white;
-      font-weight: 300;
-      font-size: 16px;
-    }
-    .mat-card {
-      width: 100;
-      color: $black;
-    }
-    background: $secondary;
-    border-radius: 15px;
-  }
-  border-radius: 15px;
 }
 
 .tipsAccordion {
@@ -154,7 +130,7 @@ p {
       .tip {
         display: grid;
         margin: 15px;
-        grid-template-columns: 1fr; /////////
+        grid-template-columns: 6fr 1fr; /////////
         padding: 5px 0px 15px 5px;
         .tipTop {
           display: flex;

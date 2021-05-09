@@ -72,20 +72,20 @@ import {
       state(
         'open',
         style({
-          transform: 'rotate(180deg)'
+          transform: 'rotate(0deg)'
         })
       ),
       state(
         'close',
         style({
-          transform: 'rotate(180deg)'
+          transform: 'rotate(0deg)'
         })
       ),
       transition('* => close', [
-        animate('0.04s', style({ transform: 'rotate(-180deg)' }))
+        animate('0.04s', style({ transform: 'rotate(0deg)' }))
       ]),
       transition('* => open', [
-        animate('0.04s', style({ transform: 'rotate(180deg)' }))
+        animate('0.04s', style({ transform: 'rotate(0deg)' }))
       ])
     ]),
     // TODO: add query for parent/child animations
