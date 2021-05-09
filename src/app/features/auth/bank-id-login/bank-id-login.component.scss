@@ -1,32 +1,16 @@
 @import '../../../../styles/theme/_colors.scss';
 
 .address-grid {
-  display: grid;
-  grid-template-columns: 5fr 2fr;
-  column-gap: 20px;
-  row-gap: 35px;
-  grid-template-rows: 40px;
-
   @media (max-width: 600px) {
-    grid-template-columns: 1fr;
   }
 }
 
 .loan-form {
   @media (min-width: 600px) {
-    max-width: 700px;
+    max-width: 400px;
   }
 
   .loan-grid {
-    display: grid;
-    grid-template-columns: 3fr 2fr;
-    column-gap: 20px;
-    row-gap: 35px;
-    grid-template-rows: 40px;
-
-    @media (max-width: 600px) {
-      grid-template-columns: 1fr;
-    }
   }
 }
 
@@ -40,7 +24,7 @@
 
 .info-box {
   background: $grey-light;
-  padding: 20px;
+  padding: 10px 20px;
   border-radius: 15px;
   display: flex;
   align-items: center;
@@ -49,11 +33,17 @@
     width: 40px;
     height: 40px;
   }
+  P {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #112639;
+    font-weight: 300;
+  }
 }
 
 form {
   @media (min-width: 600px) {
-    width: 700px !important;
+    width: 400 !important;
   }
 
   &.center {
@@ -73,6 +63,7 @@ form {
     box-shadow: rgb(100 100 111 / 20%) 0px 7px 29px 0px;
     border-radius: 15px;
     max-width: 800px;
+    min-height: 420px;
     margin: auto;
   }
   .flow-header {

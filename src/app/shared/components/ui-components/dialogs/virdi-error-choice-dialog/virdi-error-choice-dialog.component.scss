@@ -1,13 +1,16 @@
+@import '../../../../../../styles/theme/_colors.scss';
+
 :host {
   z-index: 999999;
 }
+
 ::ng-deep .mat-dialog-container {
   margin-top: 40px !important;
 }
-
 h2 {
   text-align: center;
 }
+
 h3,
 h4,
 p {
@@ -33,22 +36,31 @@ rente-button {
   display: flex;
   flex-direction: column;
   position: relative;
-  padding: 0 20px;
-  //padding: 20px;
-
-  h4 {
-    font-weight: 400 !important;
-    text-align: center;
-    margin-bottom: 0;
-  }
-
-  p {
-    text-align: center;
-  }
+  padding: 20px;
+  min-height: 400px;
   img {
     width: 75px;
     align-self: center;
     margin-bottom: 20px;
+  }
+
+  .address-grid {
+    display: grid;
+    background: $grey-light;
+    padding: 10px 20px;
+    border-radius: 15px;
+    align-items: center;
+    grid-template-columns: 1fr 1fr;
+
+    p {
+      margin: 0;
+    }
+    .left {
+      grid-column-start: 1;
+    }
+    .right {
+      grid-column-start: 2;
+    }
   }
 }
 .bottom {

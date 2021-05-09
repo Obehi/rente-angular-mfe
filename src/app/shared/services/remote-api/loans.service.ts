@@ -114,6 +114,11 @@ export class LoansService {
     return this.http.put(url, clientUpdateInfo);
   }
 
+  public getClientInfo() {
+    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.user.base}${API_URL_MAP.loan.user.info}`;
+    return this.http.get(url);
+  }
+
   public getPropertyValue(): Observable<any> {
     const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.property}${API_URL_MAP.loan.value}`;
     return this.http.get(url);

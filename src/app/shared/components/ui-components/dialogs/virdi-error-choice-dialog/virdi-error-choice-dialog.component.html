@@ -1,0 +1,24 @@
+<div class="top">
+    <!--  <img src="../../../../../../assets/icons/warning-round-yellow.svg"> -->
+    <h2>{{ data.header }}</h2>
+    <p>{{ data.text }}</p>
+
+    <div class="address-grid">
+        <p class="left">Adresse:</p>
+        <p class="right">{{data.address.street}}</p>
+        <p class="left">Postnummer:</p>
+        <p class="right">{{data.address.zip}}</p>
+        <p class="left">Adresse:</p>
+        <p class="right">{{data.address.apartmentSize}}</p>
+    </div>
+</div>
+
+<div class="bottom double">
+    <rente-button i18n=“close|button@@close” cdkFocusInitial color="primary-hollow" (click)="onClose()">
+        {{data.cancelText}}
+    </rente-button>
+
+    <rente-button i18n=“close|button@@close” cdkFocusInitial color="primary" (click)="onConfirm()">
+        {{data.confirmText}}
+    </rente-button>
+</div>
