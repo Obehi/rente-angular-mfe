@@ -317,7 +317,7 @@
             </mat-horizontal-stepper>
         </div>
 
-        <div *ngIf="!isLoading" class="bottom">
+        <div class="bottom">
 
             <rente-button *ngIf="!newClient" class="right" (click)="oldUserFinished()" color="primary"
                 [isLoading]="isLoading" [disabled]="loanFormGroup.invalid || isLoading">
