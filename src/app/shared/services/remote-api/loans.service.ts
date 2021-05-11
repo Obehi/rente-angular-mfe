@@ -115,7 +115,7 @@ export class LoansService {
   }
 
   public getClientInfo() {
-    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.user.base}${API_URL_MAP.loan.user.info}`;
+    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.base}${API_URL_MAP.loan.user.info}`;
     return this.http.get(url);
   }
 

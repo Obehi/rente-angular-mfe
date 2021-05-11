@@ -3,6 +3,8 @@ import { Router, NavigationEnd } from '@angular/router';
 import { ROUTES_MAP } from '@config/routes-config';
 import { locale } from '../../.././config/locale/locale';
 import { environment } from '@environments/environment';
+import { GlobalStateService } from '@services/global-state.service';
+import { startWith, take } from 'rxjs/operators';
 
 @Component({
   selector: 'rente-footer',
@@ -14,7 +16,10 @@ export class FooterComponent implements OnInit {
   isSweden: boolean;
   public env = environment;
 
-  constructor(public router: Router) {}
+  constructor(
+    public router: Router,
+    private globalStateService: GlobalStateService
+  ) {}
   shouldShowFooter = true;
 
   ngOnInit(): void {
@@ -23,6 +28,13 @@ export class FooterComponent implements OnInit {
     } else {
       this.isSweden = false;
     }
+
+    this.globalStateService
+      .getFooterState()
+      .pipe(take(1), startWith(true))
+      .subscribe((state) => {
+        this.shouldShowFooter = state;
+      });
 
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {

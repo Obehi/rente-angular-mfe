@@ -5,7 +5,7 @@
 ::ng-deep .mat-dialog-container {
   margin-top: 40px !important;
 }
-h2 {
+h3 {
   text-align: center;
 }
 
@@ -35,9 +35,8 @@ rente-button {
   flex-direction: column;
   position: relative;
   padding: 20px;
-  min-height: 400px;
   img {
-    width: 75px;
+    width: 40px;
     align-self: center;
     margin-bottom: 20px;
   }

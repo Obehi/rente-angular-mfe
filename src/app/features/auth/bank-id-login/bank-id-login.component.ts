@@ -59,9 +59,13 @@ import { BankUtils, BankVo } from '@shared/models/bank';
 import { GenericInfoDialogComponent } from '@shared/components/ui-components/dialogs/generic-info-dialog/generic-info-dialog.component';
 import { VirdiErrorChoiceDialogComponent } from '@shared/components/ui-components/dialogs/virdi-error-choice-dialog/virdi-error-choice-dialog.component';
 import { ROUTES_MAP } from '@config/routes-config';
-import { GenericErrorDialogComponent } from '@shared/components/ui-components/dialogs/generic-error-dialog/generic-error-dialog.component';
+import {
+  ErrorDialogData,
+  GenericErrorDialogComponent
+} from '@shared/components/ui-components/dialogs/generic-error-dialog/generic-error-dialog.component';
 import { ApiError } from '@shared/constants/api-error';
 import { ProfileService } from '@services/remote-api/profile.service';
+import { GlobalStateService } from '@services/global-state.service';
 @Component({
   selector: 'rente-bank-id-login',
   templateUrl: './bank-id-login.component.html',
@@ -95,7 +99,7 @@ export class BankIdLoginComponent implements OnInit {
   private oneTimeToken: string | null;
   private bank: BankVo | null;
   public currentStepperValue = 0;
-  public newClient = false;
+  public newClient = true;
   public showManualInputForm = false;
 
   constructor(
@@ -109,7 +113,8 @@ export class BankIdLoginComponent implements OnInit {
     private fb: FormBuilder,
     private loanService: LoansService,
     private loginService: LoginService,
-    private profileService: ProfileService
+    private profileService: ProfileService,
+    private globalStateService: GlobalStateService
   ) {
     window.onpopstate = function (event) {
       event.preventDefault();
@@ -137,6 +142,7 @@ export class BankIdLoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.globalStateService.setFooterState(false);
     this.route.queryParams.subscribe((routeParams) => {
       const status = routeParams['status'];
       const sessionId = routeParams['sessionId'];
@@ -213,9 +219,8 @@ export class BankIdLoginComponent implements OnInit {
             response.newClient = true;
             if (response.newClient === false) {
               console.log('test');
+              // return;
               this.initLoansForm(response);
-              this.newClient = false;
-              this.isLoading = false;
             } else {
               this.loanService.getConfirmationData().subscribe((userInfo) => {
                 this.initMemberships(userInfo);
@@ -231,6 +236,21 @@ export class BankIdLoginComponent implements OnInit {
             this.showForms = false;
             console.log('error handling');
             console.log(error);
+            const dialogData: ErrorDialogData = {
+              header: 'Ops, noe gikk visst galt',
+              confirmText: 'Prøv igjen',
+              cancelText: 'Avbryt',
+              onConfirm: () => {
+                this.router.navigate(['/' + ROUTES_MAP.bankSelect]);
+              },
+              onClose: () => {
+                this.router.navigate(['/'], { replaceUrl: true });
+              }
+            };
+
+            this.dialog.open(GenericErrorDialogComponent, {
+              data: dialogData
+            });
           }
         );
   }
@@ -353,6 +373,7 @@ export class BankIdLoginComponent implements OnInit {
           ],
           loanType: [response.loanType, Validators.required]
         });
+        this.newClient = false;
       });
     } else {
       this.loanFormGroup = this.fb.group({
@@ -360,6 +381,7 @@ export class BankIdLoginComponent implements OnInit {
         remainingYears: ['', [Validators.required, Validators.max(100)]],
         loanType: ['', Validators.required]
       });
+      this.newClient = false;
     }
 
     this.isLoading = true;
@@ -404,6 +426,7 @@ export class BankIdLoginComponent implements OnInit {
 
     const loanUpdateInfoDto = this.loanUpdateInfoDto;
 
+    this.isLoading = true;
     concat(
       this.loanService.updateClientInfo(clientDto),
       this.loanService.updateLoanUserInfo(loanUpdateInfoDto)
@@ -420,6 +443,22 @@ export class BankIdLoginComponent implements OnInit {
               );
           } else {
             // handle state as error
+
+            const dialogData: ErrorDialogData = {
+              header: 'Ops, noe gikk visst galt',
+              confirmText: 'Prøv igjen',
+              cancelText: 'Avbryt',
+              onConfirm: () => {
+                this.router.navigate(['/' + ROUTES_MAP.bankSelect]);
+              },
+              onClose: () => {
+                this.router.navigate(['/'], { replaceUrl: true });
+              }
+            };
+            this.dialog.open(GenericErrorDialogComponent, {
+              data: dialogData
+            });
+            this.isLoading = false;
           }
         },
         (error) => {
@@ -458,6 +497,7 @@ export class BankIdLoginComponent implements OnInit {
               this.currentStepperValue = 0;
             }
           };
+
           this.dialog.open(GenericErrorDialogComponent, {
             data: dialogData
           });
@@ -603,6 +643,7 @@ export class BankIdLoginComponent implements OnInit {
           error.errorType === ApiError.virdiSerachNotFound ||
           error.errorType === ApiError.propertyCantFindZip
         ) {
+          this.isLoading = false;
           this.dialog.open(VirdiErrorChoiceDialogComponent, {
             data: {
               address: this.clientUpdateInfo.address,
@@ -610,12 +651,22 @@ export class BankIdLoginComponent implements OnInit {
               cancelText: 'Prøv ny adresse',
               onConfirm: () => {
                 this.showManualInputForm = true;
-                this.isLoading = false;
               },
               onClose: () => {
-                this.isLoading = false;
+                this.resetForms();
               }
             }
+          });
+        } else {
+          const dialogData: ErrorDialogData = {
+            header: 'Ops, noe gikk visst galt',
+            text: 'test',
+            confirmText: 'Prøv igjen',
+            cancelText: 'Avbryt'
+          };
+
+          this.dialog.open(GenericErrorDialogComponent, {
+            data: dialogData
           });
         }
       }
@@ -653,5 +704,14 @@ export class BankIdLoginComponent implements OnInit {
     this.dialog.open(GenericInfoDialogComponent, {
       data: message
     });
+  }
+
+  public resetForms(): void {
+    this.loanFormGroup.reset();
+    this.userFormGroup.reset();
+    this.membershipFormGroup.reset();
+    this.membershipFormGroup.reset();
+    this.stepper.selectedIndex = 0;
+    this.currentStepperValue = 0;
   }
 }

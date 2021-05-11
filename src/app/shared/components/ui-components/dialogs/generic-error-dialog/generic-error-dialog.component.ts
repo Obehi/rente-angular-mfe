@@ -10,7 +10,7 @@ import { OfferInfo } from '@shared/models/offers';
 export class GenericErrorDialogComponent {
   constructor(
     public dialogRef: MatDialogRef<GenericErrorDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    @Inject(MAT_DIALOG_DATA) public data: ErrorDialogData
   ) {}
 
   public onClose(): void {
@@ -21,6 +21,15 @@ export class GenericErrorDialogComponent {
   public onConfirm(): void {
     this.dialogRef.close();
 
-    this.data.onConfirm();
+    this.data.onConfirm && this.data.onConfirm();
   }
+}
+
+export interface ErrorDialogData {
+  header?: string;
+  text?: string;
+  confirmText: string;
+  cancelText?: string;
+  onConfirm?: () => void;
+  onClose?: () => void;
 }
