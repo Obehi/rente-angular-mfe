@@ -40,13 +40,13 @@
   </div>
 
   <div class="save-info">
-    <p i18n="“save|offers-main@@offers.mainPage.save”">Du kan spare</p>
+    <p i18n="“save|offers-main@@offers.mainPage.save”">Du kan spare </p>
     <h2 *ngIf="offersInfo !== null && offersInfo?.bestOfferTotalSaving > 0; else noBestOffer">
       {{ offersInfo.bestOfferTotalSaving | abs | number }},-
     </h2>
     <ng-template #noBestOffer>
       <h2>0,-</h2>
     </ng-template>
-    <p i18n="“time|offers-main@@offers.mainPage.time”">over lånets løpetid</p>
+    <p i18n="“time|offers-main@@offers.mainPage.time”"> over lånets løpetid</p>
   </div>
 </div>
