@@ -23,6 +23,7 @@
 <!-- Mobile tips accordion element -->
 
 <div
+  [class]="isShowTips ? 'tipsAccordionOpen' : ''"
   class="tipsAccordion round-box clickable"
   (click)="isShowTips = !isShowTips"
   *ngIf="isMobile && tips.length > 0"

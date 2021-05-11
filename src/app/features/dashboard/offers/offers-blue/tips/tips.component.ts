@@ -54,7 +54,7 @@ import {
       state(
         'open',
         style({
-          width: '454px',
+          width: '48.9%',
           borderRadius: '15px'
         })
       ),
