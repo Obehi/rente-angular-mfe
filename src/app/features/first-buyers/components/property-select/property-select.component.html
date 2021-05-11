@@ -1,8 +1,14 @@
 <div class="main-div">
-  <div class="chosen-memberships-div">
+  <div *ngIf="!isMobile">
     <h2 class="selected-membership-top">
       Valgte medlemskap ({{ memberships }})
     </h2>
+  </div>
+  <div *ngIf="isMobile" class="chosen-memberships-div">
+    <h2 class="selected-membership-top">
+      Valgte medlemskap ({{ memberships }})
+    </h2>
+
     <div
       *ngFor="let option of selectedMemberships"
       class="item-list"

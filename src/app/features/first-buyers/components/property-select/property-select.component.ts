@@ -65,13 +65,11 @@ export class PropertySelectComponent implements OnInit, OnDestroy {
 
   public selectedMemberships: string | undefined = [];
 
-  constructor(private propertySelectDialog: PropertySelectDialogComponent) {}
+  constructor() {}
 
   ngOnInit(): void {}
 
-  ngOnDestroy() {
-    // this.untilDestroyed.next();
-  }
+  ngOnDestroy() {}
 
   get membershipNames(): string {
     return this.options?.map((membership) => {
@@ -79,12 +77,14 @@ export class PropertySelectComponent implements OnInit, OnDestroy {
     });
   }
 
+  get isMobile(): boolean {
+    return window.innerWidth < 600;
+  }
+
   chooseMembership(membership: string): void {
     if (!this.selectedMemberships.includes(membership)) {
       this.selectedMemberships.push(membership);
       this.memberships++;
-    } else {
-      console.log(membership + ' Already exists in the list');
     }
   }
 
@@ -104,7 +104,12 @@ export class PropertySelectComponent implements OnInit, OnDestroy {
   }
 
   save(): void {
-    this.selectedItemsEmitter.emit(this.selectedMemberships);
+    if (this.memberships > 0) {
+      this.selectedItemsEmitter.emit(this.selectedMemberships);
+    } else {
+      this.cancel();
+      console.log('saved without sending new information');
+    }
   }
 
   cancel(): void {

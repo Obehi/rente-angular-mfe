@@ -165,8 +165,6 @@
     font-size: 1.1rem;
   }
 
-  // SCROLL-BAR
-
   ::-webkit-scrollbar {
     width: 8px;
     background: inherit;
@@ -187,3 +185,107 @@
 }
 
 //////// DESKTOP STYLING ////////
+
+@media (min-width: 601px) {
+  ::ng-deep .cdk-overlay-container,
+  .cdk-global-overlay-wrapper {
+    width: 100%;
+    height: 100%;
+  }
+
+  ::ng-deep .cdk-overlay-pane {
+    height: 100% !important;
+    max-height: unset !important ;
+  }
+
+  ::ng-deep .mat-dialog-container {
+    margin: unset !important;
+    height: 35vh !important;
+    top: 15vh;
+  }
+
+  .main-div {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .list-div {
+    background: $white;
+    p {
+      font-size: 1rem;
+      margin-top: 10px;
+      margin-left: 15px;
+      width: 90%;
+      padding: 15px;
+      font-weight: 400;
+    }
+
+    .p-selected {
+      background: $green;
+      font-size: 1rem;
+      margin-top: 10px;
+      margin-left: 15px;
+      width: 90%;
+      padding: 15px;
+      font-weight: 400;
+    }
+  }
+
+  .search-div {
+    background-color: white;
+    width: 96%;
+    padding: 10px;
+    display: flex;
+
+    input {
+      border: 0;
+      border-bottom: 2px solid black;
+      width: 84%;
+      left: 26px;
+      position: relative;
+    }
+    ::placeholder {
+      color: black;
+      position: relative;
+      font-weight: 400;
+      font-size: 1.1rem;
+    }
+    .search-div-input {
+      width: 100%;
+    }
+
+    .search-icon {
+      width: 6%;
+      z-index: 2;
+      margin-right: 30px;
+      margin-bottom: 3px;
+    }
+  }
+  .buttons {
+    display: flex;
+    position: fixed;
+    top: 57vh;
+    left: 40vh;
+    background: $white;
+    padding: 10px;
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+    background: inherit;
+  }
+
+  ::-webkit-scrollbar-track {
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: grey;
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(54, 56, 58);
+  }
+}
