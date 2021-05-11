@@ -66,6 +66,8 @@
       >Avbryt</rente-button
     >
 
-    <rente-button color="primary" (click)="save()">Lagre</rente-button>
+    <rente-button color="primary" [disabled]="!saveEnabled" (click)="save()"
+      >Lagre</rente-button
+    >
   </div>
 </div>

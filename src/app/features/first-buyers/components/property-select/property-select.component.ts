@@ -81,22 +81,30 @@ export class PropertySelectComponent implements OnInit, OnDestroy {
     return window.innerWidth < 600;
   }
 
+  get saveEnabled(): boolean {
+    if (this.memberships > 0) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   chooseMembership(membership: string): void {
-    if (!this.selectedMemberships.includes(membership)) {
-      this.selectedMemberships.push(membership);
+    if (!this.selectedMemberships?.includes(membership)) {
+      this.selectedMemberships?.push(membership);
       this.memberships++;
     }
   }
 
   removeMembership(membership: string): void {
-    this.selectedMemberships = this.selectedMemberships.filter(
+    this.selectedMemberships = this.selectedMemberships?.filter(
       (option) => option !== membership
     );
     this.memberships--;
   }
 
   chosenMemberships(membership: string): boolean {
-    if (this.selectedMemberships.includes(membership)) {
+    if (this.selectedMemberships?.includes(membership)) {
       return true;
     } else {
       return false;
@@ -104,11 +112,8 @@ export class PropertySelectComponent implements OnInit, OnDestroy {
   }
 
   save(): void {
-    if (this.memberships > 0) {
+    if (this.saveEnabled) {
       this.selectedItemsEmitter.emit(this.selectedMemberships);
-    } else {
-      this.cancel();
-      console.log('saved without sending new information');
     }
   }
 
