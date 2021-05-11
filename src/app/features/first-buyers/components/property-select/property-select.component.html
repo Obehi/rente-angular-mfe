@@ -1,39 +1,65 @@
 <div class="main-div">
   <div class="chosen-memberships-div">
-    <div *ngFor="let option of selectedMemberships" class="item-list">
-      <p>
-        {{ option }}
-      </p>
-      <span (click)="removeMembership(option)" class="material-icons">
-        close
-      </span>
-    </div>
-  </div>
-  <div class="dropdown-div">
-    <div class="dropdown-scroll">
-      <div class="search-div">
-        <input
-          class="search-div-input"
-          type="search"
-          [(ngModel)]="searchText"
-          placeholder="Søk"
+    <h2 class="selected-membership-top">
+      Valgte medlemskap ({{ memberships }})
+    </h2>
+    <div
+      *ngFor="let option of selectedMemberships"
+      class="item-list"
+      [@inOutAnimation]
+    >
+      <div class="selected-membership">
+        <p>
+          {{ option }}
+        </p>
+        <img
+          class="remove-icon"
+          src="{{ icon }}"
+          (click)="removeMembership(option)"
         />
       </div>
+    </div>
+  </div>
+  <div class="search-div">
+    <input
+      class="search-div-input"
+      [(ngModel)]="searchText"
+      placeholder="Finn dine medlemskap"
+    />
+    <img class="search-icon" src="{{ searchIconDark }}" />
+  </div>
+  <div class="dropdown-scroll">
+    <div class="dropdown-div">
       <div
         *ngFor="let option of membershipNames | filter: searchText"
         class="list-div"
       >
-        <p class="membership-name" (click)="chooseMembership(option)">
+        <p
+          *ngIf="!chosenMemberships(option)"
+          (click)="chooseMembership(option)"
+        >
           {{ option }}
+        </p>
+        <p
+          class="p-selected"
+          *ngIf="chosenMemberships(option)"
+          (click)="removeMembership(option)"
+        >
+          {{ option }}
+          <img
+            class="remove-icon-list"
+            src="{{ icon }}"
+            (click)="removeMembership(option)"
+          />
         </p>
       </div>
     </div>
-    <div class="buttons">
-      <rente-button color="primary-hollow" (click)="abort()"
-        >Avbryt</rente-button
-      >
+  </div>
+  <div class="buttons">
+    <rente-button color="primary-hollow" (click)="cancel()"
+      >Avbryt</rente-button
+    >
 
-      <rente-button color="primary" (click)="test()">Lagre</rente-button>
-    </div>
+    <rente-button color="primary" (click)="save()">Lagre</rente-button>
   </div>
 </div>

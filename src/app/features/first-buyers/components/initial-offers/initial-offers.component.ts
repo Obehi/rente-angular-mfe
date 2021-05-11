@@ -82,7 +82,25 @@ export class InitialOffersComponent implements OnInit {
   public filteredMemberships: Observable<MembershipTypeDto[]>;
   public memberships: MembershipTypeDto[] = [];
   public changeBankLoading: boolean;
-  public exampleArray = [{ id: 1, label: 'DNB' }];
+  public exampleArray = [
+    { id: 1, label: 'DNB' },
+    { id: 1, label: 'asd' },
+    { id: 1, label: 'sad' },
+    { id: 1, label: 'DaNB' },
+    { id: 1, label: 'DdNB' },
+    { id: 1, label: 'DNB' },
+    { id: 1, label: 'DzNB' },
+    { id: 1, label: 'D3NB' },
+
+    { id: 1, label: 'DNB' },
+    { id: 1, label: 'DN1B' },
+    { id: 1, label: 'D23NB' },
+    { id: 1, label: 'DNB' },
+    { id: 1, label: 'D3NB' },
+    { id: 1, label: 'DN3B' },
+    { id: 1, label: 'DNB' },
+    { id: 1, label: 'D2NB' }
+  ];
   properties = [
     {
       icon: 'monetization_on',

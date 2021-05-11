@@ -1,5 +1,7 @@
 @import '../../../../../styles/theme/colors';
 
+//////// MOBILE STYLING ////////
+
 @media (max-width: 600px) {
   ::ng-deep .cdk-overlay-container,
   .cdk-global-overlay-wrapper {
@@ -19,66 +21,158 @@
 
   .main-div {
     height: 100%;
+    display: flex;
+    flex-direction: column;
   }
 
   .list-div {
-    background: white;
+    background: $white;
+    p {
+      background: $grey-light;
+      font-size: 1rem;
+      margin-top: 10px;
+      position: relative;
+      left: 35px;
+      width: 80%;
+      border-radius: 9px;
+      padding: 15px;
+      font-weight: 400;
+    }
+    .p-selected {
+      color: $green;
+      background: $grey-light;
+      font-size: 1rem;
+      margin-top: 10px;
+      position: relative;
+      left: 35px;
+      width: 80%;
+      border-radius: 9px;
+      padding: 15px;
+      font-weight: 400;
+    }
+
+    .remove-icon-list {
+      width: 8%;
+      margin-left: 1rem;
+      position: absolute;
+    }
   }
 
   .dropdown-div {
-    // height: 100%;
+    // margin-top: 65%;
   }
 
   .dropdown-scroll {
-    height: 533px;
     overflow-y: scroll;
+    height: 39vh;
+    @media (min-height: 800px) {
+      height: 43vh;
+    }
+    @media (max-height: 568px) {
+      height: 34vh;
+    }
   }
 
   .search-div {
     background-color: white;
-  }
+    width: 96%;
+    padding: 10px;
+    z-index: 1;
+    margin-top: 34vh;
+    display: flex;
 
-  .search-div-input {
-    width: 100%;
+    input {
+      border: 0;
+      border-bottom: 2px solid $grey-dark;
+      width: 84%;
+      left: 26px;
+      position: relative;
+    }
+    ::placeholder {
+      color: $grey-dark;
+      position: relative;
+      font-weight: 400;
+      font-size: 1.1rem;
+    }
+    .search-div-input {
+      width: 100%;
+    }
+
+    .search-icon {
+      width: 6%;
+      z-index: 2;
+      margin-right: 30px;
+      margin-bottom: 3px;
+    }
   }
 
   .chosen-memberships-div {
-    height: 20%;
-    overflow-x: scroll;
-    background: $secondary;
+    display: flex;
+    flex-direction: column;
+    height: 33%;
+    overflow-y: scroll;
+    background: linear-gradient(180deg, #162537, #183a63);
+    position: fixed;
+    z-index: 2;
+    width: 100%;
+    h2 {
+      font-size: 18px;
+      font-weight: 500;
+      line-height: 1.2;
+      color: white;
+      padding: 10px;
+    }
     p {
-      color: black;
-      background: $white;
-      font-size: 13px;
-      border-radius: 15px;
-      text-align: center;
+      background: $grey-light;
+      font-size: 1rem;
+      margin-top: 20px;
+
+      left: 35px;
+      width: 80%;
+      border-radius: 9px;
+      padding: 15px;
+      margin: 10px;
+    }
+    .p-selected {
+      background: $green;
     }
     .item-list {
-      width: 80%;
     }
-  }
+    .remove-icon {
+      width: 6%;
+    }
 
-  .membership-name {
-    font-size: 1rem;
-  }
-
-  .membership-name:hover {
-    background: grey;
-    cursor: pointer;
+    .selected-membership {
+      display: flex;
+    }
   }
 
   .buttons {
+    position: fixed;
+    background: $white;
     display: grid;
     grid-template-columns: 1fr 1fr;
+    bottom: 0;
+    width: 100%;
+    padding: 10px;
   }
 
+  .seleced-membership-top {
+    color: $white;
+    position: relative;
+    left: 20px;
+    font-weight: 400;
+    font-size: 1.1rem;
+  }
+
+  // SCROLL-BAR
+
   ::-webkit-scrollbar {
-    width: 15px;
-    background: white;
+    width: 8px;
+    background: inherit;
   }
 
   ::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 5px grey;
     border-radius: 10px;
   }
 
@@ -91,3 +185,5 @@
     background: rgb(54, 56, 58);
   }
 }
+
+//////// DESKTOP STYLING ////////
