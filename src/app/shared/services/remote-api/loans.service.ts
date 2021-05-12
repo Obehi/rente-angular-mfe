@@ -1,6 +1,17 @@
 import { Injectable } from '@angular/core';
 import { API_URL_MAP } from '@config/api-url-config';
 import { GenericHttpService } from '@services/generic-http.service';
+import {
+  AddressDto,
+  ClientAddressDto,
+  ConfirmationGetDto,
+  ConfirmationSetDto,
+  Loans,
+  LoanStateDto,
+  PreferencesDto,
+  PreferencesUpdateDto
+} from '@shared/models/loans';
+import { BankGuideInfo, Offers } from '@shared/models/offers';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { locale } from '../../../config/locale/locale';
@@ -11,37 +22,37 @@ import { locale } from '../../../config/locale/locale';
 export class LoansService {
   constructor(private http: GenericHttpService) {}
 
-  public getLoans() {
+  public getLoans(): Observable<Loans> {
     const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.loans.base}`;
     return this.http.get(url);
   }
 
-  public getBankGuide(id: string) {
+  public getBankGuide(id: string): Observable<BankGuideInfo> {
     const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.bankInfo}/${id}`;
     return this.http.get(url);
   }
 
-  public getOffers() {
+  public getOffers(): Observable<Offers> {
     const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.offers}`;
     return this.http.get(url);
   }
 
-  public updateNewOffers() {
+  public updateNewOffers(): Observable<Offers> {
     const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.offers}${API_URL_MAP.loan.newOffers}`;
     return this.http.post(url);
   }
 
-  public getUsersMemberships() {
+  public getUsersMemberships(): Observable<string[]> {
     const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.membership}`;
     return this.http.get(url);
   }
 
-  public setUsersMemberships(membershipsArray) {
+  public setUsersMemberships(membershipsArray): Observable<string[]> {
     const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.membership}`;
     return this.http.post(url, membershipsArray);
   }
 
-  public getMembershipTypes() {
+  public getMembershipTypes(): Observable<any> {
     const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.membershipTypes}`;
     return this.http.get(url);
   }
@@ -59,18 +70,20 @@ export class LoansService {
       .pipe(map((r) => this.mapClientAddressDto(r)));
   }
 
-  mapClientAddressDto(r: any) {
+  mapClientAddressDto(r: any): ClientAddressDto {
     const dto = new ClientAddressDto();
     dto.totalPropertyValue = r.totalPropertyValue;
     dto.addresses = r.addresses.map((item) => {
       const a: AddressDto = Object.assign(new AddressDto(), item);
-      a.useManualPropertyValue = item.useManualPropertyValue == true;
+      a.useManualPropertyValue = item.useManualPropertyValue === true;
       return a;
     });
     return dto;
   }
 
-  public updateApartmentSize(appartmentData) {
+  public updateApartmentSize(
+    appartmentData: AddressDto
+  ): Observable<AddressDto> {
     const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.address}${API_URL_MAP.loan.size}`;
     return this.http.put(url, appartmentData);
   }
@@ -87,12 +100,13 @@ export class LoansService {
     return this.http.post(url, dto); // TODO: Object.assign()
   }
 
-  public getLoanPreferences() {
+  // TODO: create a loanPreference?
+  public getLoanPreferences(): Observable<any> {
     const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.preferences}`;
     return this.http.get(url);
   }
 
-  public updateLoanPreferences(loanData) {
+  public updateLoanPreferences(loanData): Observable<any> {
     const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.preferences}`;
     return this.http.put(url, loanData);
   }
@@ -114,12 +128,12 @@ export class LoansService {
       .pipe(map((res) => Object.assign(new LoanStateDto(), res)));
   }
 
-  public getAddressStatistics(id: number) {
+  public getAddressStatistics(id: number): Observable<any> {
     const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.address}${API_URL_MAP.loan.statistics}/${id}`;
     return this.http.get(url);
   }
 
-  public getLoanStatistics() {
+  public getLoanStatistics(): Observable<any> {
     let country;
     if (locale.includes('sv')) {
       country = 'SWE';
@@ -150,94 +164,4 @@ export class LoansService {
     const url = `${API_URL_MAP.loan.base}/preferences`;
     return this.http.post(url, dto);
   }
-}
-
-export class LoanStateDto {
-  isAddressNeeded: boolean;
-  isAggregatedRateTypeFixed: boolean;
-  loansPresent: boolean;
-  lowerRateAvailable: boolean;
-}
-
-export class AddressDto {
-  id: number;
-  street: string;
-  zip: string | null = null;
-  apartmentSize: number;
-  manualPropertyValue?: number | null = null;
-  propertyType: string | null = null;
-  estimatedPropertyValue?: number | null = null;
-  useManualPropertyValue: boolean;
-  commonDebt: number | null = null;
-  message: string;
-  error: boolean;
-}
-
-export class ClientAddressDto {
-  addresses: AddressDto[];
-  totalPropertyValue: number;
-}
-
-export class ConfirmationGetDto {
-  email: string;
-  name: string | null;
-  bank: string;
-  income: number;
-  memberships: string[];
-  apartmentSize: number;
-  apartmentValue: number;
-  availableMemberships: MembershipTypeDto[];
-}
-
-export class ConfirmationSetDto {
-  memberships: string[];
-  apartmentSize: number;
-  email: string;
-  income: number;
-  name: string;
-  address: AddressCreationDto;
-  apartmentValue: number;
-}
-
-export class AddressCreationDto {
-  apartmentSize: number;
-  apartmentValue: number;
-  propertyType: string;
-  street: string;
-  zip: string;
-}
-
-export class PreferencesDto {
-  email: string;
-  name: string;
-  income: number;
-  availableMemberships: MembershipTypeDto[];
-  memberships: string[];
-  communicationChannelType: string;
-  receiveNewsEmails: boolean;
-  checkRateReminderType: string;
-  fetchCreditLinesOnly: boolean;
-  noAdditionalProductsRequired: boolean;
-  interestedInEnvironmentMortgages: boolean;
-}
-
-export class PreferencesUpdateDto {
-  memberships: string[];
-  checkRateReminderType: string;
-  fetchCreditLinesOnly: boolean;
-  noAdditionalProductsRequired: boolean;
-  interestedInEnvironmentMortgages: boolean;
-  email: string;
-  income: string;
-  receiveNewsEmails: boolean;
-}
-
-export class MembershipTypeDto {
-  name: string;
-  label: string;
-}
-
-export class EmailDto {
-  checkRateReminderType: null | string;
-  receiveNewsEmails: false | true;
 }

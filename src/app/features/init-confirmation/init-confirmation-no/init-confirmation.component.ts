@@ -1,39 +1,40 @@
 import {
-  LoansService,
-  ConfirmationSetDto,
-  ConfirmationGetDto,
-  MembershipTypeDto,
-  AddressCreationDto
-} from '@services/remote-api/loans.service';
-import { UserService } from '@services/remote-api/user.service';
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
-import { LoggingService } from '@services/logging.service';
-import {
   Validators,
   AbstractControl,
   FormGroup,
   FormBuilder,
   FormControl
 } from '@angular/forms';
-import { forkJoin, Observable } from 'rxjs';
-import { startWith, map } from 'rxjs/operators';
-import { ENTER, COMMA } from '@angular/cdk/keycodes';
 import {
   MatAutocomplete,
   MatAutocompleteSelectedEvent,
   MatChipInputEvent,
   MatDialog
 } from '@angular/material';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { ENTER, COMMA } from '@angular/cdk/keycodes';
 import { Router } from '@angular/router';
-import { VALIDATION_PATTERN } from '@config/validation-patterns.config';
-import { SnackBarService } from '../../../shared/services/snackbar.service';
-import { OfferInfo } from '@shared/models/offers';
-import { DialogInfoComponent } from '../dialog-info/dialog-info.component';
 
-import { Mask } from '@shared/constants/mask';
+import { forkJoin, Observable } from 'rxjs';
+import { startWith, map } from 'rxjs/operators';
+
+import { LoansService } from '@services/remote-api/loans.service';
+import {
+  ConfirmationSetDto,
+  ConfirmationGetDto,
+  MembershipTypeDto,
+  AddressCreationDto
+} from '@shared/models/loans';
+import { LoggingService } from '@services/logging.service';
 import { OptimizeService } from '@services/optimize.service';
-import { ROUTES_MAP } from '@config/routes-config';
 import { CustomLangTextService } from '@services/custom-lang-text.service';
+
+import { VALIDATION_PATTERN } from '@config/validation-patterns.config';
+import { ROUTES_MAP } from '@config/routes-config';
+import { SnackBarService } from '../../../shared/services/snackbar.service';
+import { DialogInfoComponent } from '../dialog-info/dialog-info.component';
+import { OfferInfo } from '@shared/models/offers';
+import { Mask } from '@shared/constants/mask';
 
 @Component({
   selector: 'rente-init-confirmation-sv',
@@ -62,7 +63,6 @@ export class InitConfirmationNoComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private userService: UserService,
     private loansService: LoansService,
     private snackBar: SnackBarService,
     private router: Router,
@@ -160,7 +160,7 @@ export class InitConfirmationNoComponent implements OnInit {
     });
   }
 
-  public updateProperty(formData): void {
+  public updateProperty(formData: any): void {
     this.propertyForm.markAllAsTouched();
     this.propertyForm.updateValueAndValidity();
 
@@ -235,7 +235,7 @@ export class InitConfirmationNoComponent implements OnInit {
     }
   }
 
-  remove(membership, index): void {
+  remove(membership: MembershipTypeDto, index: number): void {
     this.allMemberships.push(membership);
     this.allMemberships.sort((a, b) =>
       a.name > b.name ? 1 : b.name > a.name ? -1 : 0

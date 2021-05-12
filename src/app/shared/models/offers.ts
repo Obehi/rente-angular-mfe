@@ -1,109 +1,109 @@
 export interface Offers {
+  additionalPartnersOffers: OfferInfo[];
   aggregatedRateType: string;
   aggregatedLoanType: string;
   bank: string;
+  bankStatistics: BankStatistics;
   bestOfferEffectiveRate: number | null;
   bestOfferTotalSaving: number | null;
   bestSavingsFirstYear: number | null;
-  offerSavingsType: string;
+  commonDebt: number;
+  incompleteInfoLoanPresent: boolean;
+  ltv: number;
+  ltvType: string;
   memberships: string[];
+  nullInterest: boolean;
+  offerSavingsType: string;
   offers: AllOffers;
   propertyValue: number | null;
+  resultType: string;
+  tips: string;
   totalEffectiveRate: number | null;
   totalOutstandingDebt: number | null;
-  resultType: string;
-  ltvType: string;
-  incompleteInfoLoanPresent: boolean;
-  tips: string;
-  commonDebt: number;
-  ltv: number;
-  bankStatistics: BankStatistics;
-  top5: OfferInfo[];
-  additionalPartnersOffers: OfferInfo[];
 }
 
 export interface AllOffers {
-  top5: OfferInfo[];
   additionalPartnersOffers: OfferInfo[];
+  top5: OfferInfo[];
 }
 
 export interface OfferInfo {
   bankInfo: BankInfo;
+  bankRating: string | null;
+  cost: number | null;
   depotFee: number;
+  effectiveInterest: number | null;
   effectiveRate: number;
   establishmentFee: number;
-  nominalRate: number;
-  monthlyFee: number;
+  fixedRatePeriod: number | null;
+  haveSpecialDealWithBank: boolean;
   id: number;
+  loanPeriodYears: number | null;
+  loanType: string | null;
+  monthlyFee: number;
   marketArea: string;
   maxInstallmentFreePeriod: number;
   maxLTV: number;
   maxLoanPeriod: number;
+  nominalRate: number;
   otherConditions: string | null;
+  outstandingDebt: number | null;
   productName: string;
   requiredMembership: string;
   requiredProductPackage: string;
   savingsFirstYear: number;
   selectedRate: number;
   totalSavings: number;
-  haveSpecialDealWithBank: boolean;
-  effectiveInterest: number | null;
-  outstandingDebt: number | null;
-  loanPeriodYears: number | null;
-  cost: number | null;
   totalCost: number | null;
-  loanType: string | null;
-  fixedRatePeriod: number | null;
-  bankRating: string | null;
 }
 
 export interface BankInfo {
-  bank: string;
-  name: string;
-  url: string;
-  transferUrl: string | undefined;
-  partner: boolean;
-  score: number;
   applicationTime: number;
   area: string | null;
+  bank: string;
   bankType: string;
   mobileAppRating: number | undefined;
+  name: string;
+  partner: boolean;
+  score: number;
+  transferUrl: string | undefined;
+  url: string;
 }
 
 export interface BankLocationAddress {
   address: string;
+  bankLocationServiceDomains: string[];
   name: string;
   openingHours: string;
-  bankLocationServiceDomains: string[];
   relevant: boolean;
 }
 
 export interface BankGuideInfo {
-  renteRating: string;
+  addresses: { [key: string]: BankLocationAddress[] };
   applicationTime: number;
-  score: number;
-  mobileAppRating: number;
-  bankType: string;
-  url: string;
   area: string;
+  bankType: string;
   bestNomOffer: number;
+  constructionLoans: boolean;
+  constructionLoansOffers: { name: string; rate: string }[];
+  creditLineLoans: string;
+  creditLineLoansOffers: { name: string; rate: string }[];
+  depositOffers: { name: string; rate: string }[];
+  fixedRateLoans: boolean;
+  fixedRateLoansOffers: { name: string; rate: string }[];
+  intermediateFinancing: boolean;
+  intermediateFinancingOffers: { name: string; rate: string }[];
+  medianEffectiveRate: number;
+  membershipOffers: { [key: string]: any[] };
+  mobileAppRating: number;
+  regularOffers: { name: string; rate: string }[];
+  renteRating: string;
+  score: number;
   text1: string;
   text2: string;
   text3: string;
   text4: string;
-  creditLineLoans: string;
-  constructionLoans: boolean;
-  fixedRateLoans: boolean;
-  intermediateFinancing: boolean;
-  medianEffectiveRate: number;
-  constructionLoansOffers: { name: string; rate: string }[];
-  creditLineLoansOffers: { name: string; rate: string }[];
-  fixedRateLoansOffers: { name: string; rate: string }[];
-  intermediateFinancingOffers: { name: string; rate: string }[];
-  regularOffers: { name: string; rate: string }[];
-  addresses: { [key: string]: BankLocationAddress[] };
-  depositOffers: { name: string; rate: string }[];
-  membershipOffers: { [key: string]: any[] };
+  url: string;
 }
 
 export interface BankStatistics {

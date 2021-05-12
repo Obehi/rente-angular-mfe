@@ -13,7 +13,6 @@ import {
   ControlValueAccessor,
   NG_VALUE_ACCESSOR,
   FormGroupDirective,
-  FormsModule,
   NgForm
 } from '@angular/forms';
 import { ViewEncapsulation } from '@angular/core';
@@ -68,11 +67,11 @@ export class InputComponent implements ControlValueAccessor, OnChanges {
   onChange: any = () => {};
   onTouch: any = () => {};
 
-  get value() {
+  get value(): any {
     return this.inputValue;
   }
 
-  set value(val) {
+  set value(val: any) {
     this.inputValue = val;
     this.onChange(val);
     this.onTouch();
@@ -82,7 +81,7 @@ export class InputComponent implements ControlValueAccessor, OnChanges {
     this.change?.emit();
   }
 
-  ngOnChanges(changes: SimpleChanges) {
+  ngOnChanges(changes: SimpleChanges): void {
     if (changes.errorStateMatcher) {
       this.matcher = new MyErrorStateMatcher(this.errorStateMatcher);
     }
@@ -96,25 +95,25 @@ export class InputComponent implements ControlValueAccessor, OnChanges {
     return this.maskType;
   }
 
-  onFocus() {
+  onFocus(): void {
     this.focus.emit();
   }
 
-  onBlur() {
+  onBlur(): void {
     this.blur.emit();
   }
 
-  writeValue(value) {
+  writeValue(value: any): void {
     if (value) {
       this.value = value;
     }
   }
 
-  registerOnChange(fn: any) {
+  registerOnChange(fn: any): void {
     this.onChange = fn;
   }
 
-  registerOnTouched(fn: any) {
+  registerOnTouched(fn: any): void {
     this.onTouch = fn;
   }
 }

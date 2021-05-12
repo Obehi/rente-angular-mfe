@@ -51,11 +51,11 @@ export class TextAreaComponent implements ControlValueAccessor, OnChanges {
   onChange: any = () => {};
   onTouch: any = () => {};
 
-  get value() {
+  get value(): any {
     return this.inputValue;
   }
 
-  set value(val) {
+  set value(val: any) {
     this.inputValue = val;
     this.onChange(val);
     this.onTouch();
@@ -67,17 +67,17 @@ export class TextAreaComponent implements ControlValueAccessor, OnChanges {
     }
   }
 
-  writeValue(value) {
+  writeValue(value: any): void {
     if (value) {
       this.value = value;
     }
   }
 
-  registerOnChange(fn) {
+  registerOnChange(fn: any): void {
     this.onChange = fn;
   }
 
-  registerOnTouched(fn: any) {
+  registerOnTouched(fn: any): void {
     this.onTouch = fn;
   }
 }

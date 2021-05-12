@@ -220,10 +220,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     }
   }
 
-  isErrorState(
-    control: AbstractControl | null,
-    form: FormGroup | NgForm | null
-  ): boolean {
+  isErrorState(control: AbstractControl | null): boolean {
     return !!(control && control.invalid && (control.dirty || control.touched));
   }
 

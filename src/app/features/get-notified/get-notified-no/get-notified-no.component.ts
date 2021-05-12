@@ -1,8 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { BankVo } from '../../../shared/models/bank';
-import { ROUTES_MAP } from '@config/routes-config';
-import { GetNotifiedDialogComponent } from '../getNotifiedDialogComponent/getNotifiedDialogComponent.component';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatAutocomplete } from '@angular/material';
 import {
@@ -10,16 +6,19 @@ import {
   FormBuilder,
   Validators,
   AbstractControl,
-  NgForm,
   FormControl
 } from '@angular/forms';
-import { VALIDATION_PATTERN } from '@config/validation-patterns.config';
-import { Observable, timer, EMPTY } from 'rxjs';
 import { ENTER, COMMA } from '@angular/cdk/keycodes';
-import { debounce } from 'rxjs/operators';
-import { ContactService } from '../../../shared/services/remote-api/contact.service';
 import { Router } from '@angular/router';
-import { SnackBarService } from '@services/snackbar.service';
+
+import { debounce } from 'rxjs/operators';
+import { Observable, timer, EMPTY } from 'rxjs';
+
+import { ROUTES_MAP } from '@config/routes-config';
+import { VALIDATION_PATTERN } from '@config/validation-patterns.config';
+import { GetNotifiedDialogComponent } from '../getNotifiedDialogComponent/getNotifiedDialogComponent.component';
+import { BankVo } from '../../../shared/models/bank';
+import { ContactService } from '../../../shared/services/remote-api/contact.service';
 
 @Component({
   selector: 'rente-get-notified',
@@ -33,7 +32,6 @@ export class GetNotifiedNoComponent implements OnInit {
   public removable = true;
   public addOnBlur = true;
   public separatorKeysCodes: number[] = [ENTER, COMMA];
-  // public bankCtrl = new FormControl();
   public filteredBanks: Observable<string[]>;
   public banks: any = [];
   public allBanks: any[];
@@ -47,8 +45,6 @@ export class GetNotifiedNoComponent implements OnInit {
     private fb: FormBuilder,
     private contactService: ContactService,
     private router: Router,
-    private snackBar: SnackBarService,
-    private route: ActivatedRoute,
     private dialog: MatDialog
   ) {
     // state.bank is potentially sent through routing
@@ -59,7 +55,7 @@ export class GetNotifiedNoComponent implements OnInit {
     }
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.missingBankForm = this.fb.group({
       email: [
         '',
@@ -72,20 +68,18 @@ export class GetNotifiedNoComponent implements OnInit {
     this.missingBankForm
       .get('email')
       ?.valueChanges.pipe(
-        debounce((data) => {
+        debounce(() => {
           this.emailError = false;
           return this.inValid() ? timer(2000) : EMPTY;
         })
       )
-      .subscribe((data) => (this.emailError = this.inValid()));
+      .subscribe(() => (this.emailError = this.inValid()));
   }
 
-  inValid() {
-    return (
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      this.missingBankForm.get('email')!.hasError('pattern') &&
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      this.missingBankForm.get('email')!.dirty
+  inValid(): boolean {
+    return !!(
+      this.missingBankForm.get('email')?.hasError('pattern') &&
+      this.missingBankForm.get('email')?.dirty
     );
   }
 
@@ -94,14 +88,11 @@ export class GetNotifiedNoComponent implements OnInit {
   }
 
   // TODO: Move to service
-  public isErrorState(
-    control: AbstractControl | null,
-    form: FormGroup | NgForm | null
-  ): boolean {
+  public isErrorState(control: AbstractControl | null): boolean {
     return !!(control && control.invalid && (control.dirty || control.touched));
   }
 
-  public request() {
+  public request(): void {
     this.isLoading = true;
 
     const missingBankData = {
@@ -118,14 +109,14 @@ export class GetNotifiedNoComponent implements OnInit {
         this.isLoading = false;
         this.openPopupDialog();
       },
-      (err) => {
+      () => {
         this.isLoading = false;
       }
     );
   }
 
-  public noWhitespaceValidator(control: FormControl) {
-    if (control == null) return null;
+  public noWhitespaceValidator(control: FormControl): null | any {
+    if (control === null) return null;
 
     const isWhitespace =
       (control.value.name || control.value || '').trim().length === 0;
@@ -133,17 +124,9 @@ export class GetNotifiedNoComponent implements OnInit {
     return isValid ? null : { whitespace: true };
   }
 
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   public displayFn(bank: any): string | undefined {
     return bank ? bank.name : undefined;
-  }
-
-  private filter(value: any): any[] {
-    const filterValue = value.name
-      ? value.name.toLowerCase()
-      : value.toLowerCase();
-    return this.allBanks.filter((bank) =>
-      bank.name.toLowerCase().includes(filterValue)
-    );
   }
 
   public openPopupDialog(): void {

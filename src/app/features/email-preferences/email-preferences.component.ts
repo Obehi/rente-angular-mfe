@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PreferancesService } from '@shared/services/remote-api/preferances.service';
-import { EmailDto } from '@services/remote-api/loans.service';
+import { EmailDto } from '@shared/models/loans';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { ProfileDialogInfoComponent } from '../dashboard/profile/dialog-info/dialog-info.component';

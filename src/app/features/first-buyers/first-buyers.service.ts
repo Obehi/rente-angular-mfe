@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AuthService } from '@services/remote-api/auth.service';
-import { MembershipTypeDto } from '@services/remote-api/loans.service';
+import { MembershipTypeDto } from '@shared/models/loans';
 import { LocalStorageService } from '@services/local-storage.service';
 import { Observable } from 'rxjs';
 

@@ -18,16 +18,14 @@ import {
 import { MatDialog } from '@angular/material/dialog';
 import { ProfileDialogInfoComponent } from '../dialog-info/dialog-info.component';
 import { MatChipInputEvent } from '@angular/material';
+import { LoansService } from '@services/remote-api/loans.service';
 import {
-  LoansService,
   MembershipTypeDto,
   PreferencesUpdateDto,
   PreferencesDto
-} from '@services/remote-api/loans.service';
-import { UserService } from '@services/remote-api/user.service';
+} from '@shared/models/loans';
 import { Mask } from '@shared/constants/mask';
 import { VALIDATION_PATTERN } from '../../../../config/validation-patterns.config';
-import { SnackBarService } from '../../../../shared/services/snackbar.service';
 import { OfferInfo } from '@shared/models/offers';
 import { DeactivationGuarded } from '@shared/guards/route.guard';
 import {
@@ -94,8 +92,6 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
   constructor(
     private fb: FormBuilder,
     private loansService: LoansService,
-    private userService: UserService,
-    private snackBar: SnackBarService,
     public dialog: MatDialog,
     public textLangService: CustomLangTextService
   ) {
@@ -265,7 +261,7 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
     }
   }
 
-  remove(membership, index): void {
+  remove(membership: MembershipTypeDto, index: number): void {
     this.allMemberships.push(membership);
     this.allMemberships.sort((a, b) =>
       a.name > b.name ? 1 : b.name > a.name ? -1 : 0
