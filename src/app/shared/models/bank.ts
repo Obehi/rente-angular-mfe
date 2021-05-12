@@ -1438,10 +1438,7 @@ export const MissingBankList: BankVo[] = [
     true,
     false,
     null
-  )
-];
-
-export const TinkBanks: BankVo[] = [
+  ),
   new BankVo(
     'DANSKE_BANK',
     'Danske Bank',
@@ -1449,10 +1446,13 @@ export const TinkBanks: BankVo[] = [
     null,
     false,
     true,
-    false,
     true,
+    false,
     null
-  ),
+  )
+];
+
+export const TinkBanks: BankVo[] = [
   new BankVo(
     'HANDELSBANKEN',
     'Handelsbanken NUF',
