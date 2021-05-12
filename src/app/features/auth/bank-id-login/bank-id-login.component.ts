@@ -116,18 +116,18 @@ export class BankIdLoginComponent implements OnInit {
     private loginService: LoginService,
     private profileService: ProfileService,
     private globalStateService: GlobalStateService,
+
     private routeEventsService: RouteEventsService
   ) {}
-
   ngOnInit(): void {
     console.log(this.routeEventsService.previousRoutePath);
     console.log(this.routeEventsService.previousRoutePath);
     console.log(this.routeEventsService.previousRoutePath.subscribe);
 
     this.routeEventsService.previousRoutePath.subscribe((previousRoutePath) => {
-      if (!previousRoutePath.includes('bankid-login?status=')) {
+      /*  if (!previousRoutePath.includes('bankid-login?status=')) {
         this.router.navigate(['/']);
-      }
+      } */
     });
     this.navigationInterceptionService.setBackButtonCallback(() => {
       if (this.currentStepperValue !== 0) {
@@ -335,6 +335,35 @@ export class BankIdLoginComponent implements OnInit {
   private initLoansForm(loanInfo): void {
     this.isLoading = true;
     if (loanInfo.newLoan === false) {
+      forkJoin(
+        this.loanService.getClientInfo(),
+        this.loanService.getOffersBanks()
+      ).subscribe(([clientInfo, offerBanks]) => {
+        const outstandingDebt = String(clientInfo.outstandingDebt);
+        this.loanFormGroup = this.fb.group({
+          outstandingDebt: [outstandingDebt, Validators.required],
+          remainingYears: [
+            clientInfo.remainingYears,
+            [Validators.required, Validators.max(100)]
+          ],
+          loanType: [clientInfo.loanType, Validators.required]
+        });
+
+        this.selectOptions = (offerBanks.offers as any[]).map((offer) => {
+          return {
+            name: offer.name,
+            value: offer.id
+          };
+        });
+
+        const selectedOption = this.selectOptions.filter((item) => {
+          item.id = clientInfo.loanType;
+        });
+        selectedOption &&
+          this.loanFormGroup.get('loanType')?.setValue(selectedOption);
+
+        this.newClient = false;
+      });
       this.loanService.getClientInfo().subscribe((response) => {
         const outstandingDebt = String(response.outstandingDebt);
         this.loanFormGroup = this.fb.group({
@@ -364,6 +393,7 @@ export class BankIdLoginComponent implements OnInit {
           value: offer.id
         };
       });
+
       this.isLoading = false;
     });
   }
