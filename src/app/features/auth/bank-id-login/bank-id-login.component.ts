@@ -116,18 +116,18 @@ export class BankIdLoginComponent implements OnInit {
     private loginService: LoginService,
     private profileService: ProfileService,
     private globalStateService: GlobalStateService,
-
     private routeEventsService: RouteEventsService
   ) {}
+
   ngOnInit(): void {
     console.log(this.routeEventsService.previousRoutePath);
     console.log(this.routeEventsService.previousRoutePath);
     console.log(this.routeEventsService.previousRoutePath.subscribe);
 
     this.routeEventsService.previousRoutePath.subscribe((previousRoutePath) => {
-      /*  if (!previousRoutePath.includes('bankid-login?status=')) {
+      if (!previousRoutePath.includes('bankid-login?status=')) {
         this.router.navigate(['/']);
-      } */
+      }
     });
     this.navigationInterceptionService.setBackButtonCallback(() => {
       if (this.currentStepperValue !== 0) {
@@ -173,6 +173,7 @@ export class BankIdLoginComponent implements OnInit {
 
         default: {
           const dialogData = {
+            header: 'Ops, noe gikk visst galt',
             confirmText: 'Prøv igjen',
             cancelText: 'Avbryt',
             onConfirm: () => {
@@ -180,6 +181,9 @@ export class BankIdLoginComponent implements OnInit {
               this.router.navigate(['/' + ROUTES_MAP.bankSelect]);
             }
           };
+          this.dialog.open(GenericErrorDialogComponent, {
+            data: dialogData
+          });
           break;
         }
       }
