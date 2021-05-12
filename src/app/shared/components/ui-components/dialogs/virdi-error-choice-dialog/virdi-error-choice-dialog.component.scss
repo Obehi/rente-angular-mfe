@@ -7,23 +7,30 @@
 ::ng-deep .mat-dialog-container {
   margin-top: 40px !important;
 }
-h2 {
-  text-align: center;
-}
 
 h3,
 h4,
 p {
   margin: 20px 0;
 }
+h4 {
+  text-align: center;
+  font-weight: 400;
+  color: $secondary;
+  margin-bottom: 20px;
+  font-size: 16px;
+}
+
+li {
+  font-weight: 100;
+}
+
 .small {
   margin-bottom: 0;
 }
 
-h4 {
-  margin-bottom: 20px;
-  font-weight: 400px;
-  font-size: 16px;
+.no-margin {
+  margin: none;
 }
 
 rente-button {
@@ -45,21 +52,18 @@ rente-button {
   }
 
   .address-grid {
-    display: grid;
+    display: flex;
+    justify-content: space-between;
     background: $grey-light;
     padding: 10px 20px;
     border-radius: 15px;
-    align-items: center;
-    grid-template-columns: 1fr 1fr;
-
+    min-width: 250px;
     p {
       margin: 0;
     }
-    .left {
-      grid-column-start: 1;
-    }
+
     .right {
-      grid-column-start: 2;
+      margin-left: 40px;
     }
   }
 }

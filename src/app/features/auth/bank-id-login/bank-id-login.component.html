@@ -241,11 +241,21 @@
                                 </div>
 
                                 <div class="field">
-                                    <rente-input [placeholder]="'Gjenværende år igjen på lånet'" matSuffix="år"
-                                        [maxLength]="2" formControlName="remainingYears" [errorStateMatcher]="
+                                    <div class="with-info">
+
+                                        <rente-input [placeholder]="'Gjenværende år igjen på lånet'" matSuffix="år"
+                                            [maxLength]="2" formControlName="remainingYears" [errorStateMatcher]="
                     isErrorState(loanFormGroup.controls['remainingYears'])
                   ">
-                                    </rente-input>
+                                        </rente-input>
+
+                                        <div i18n=“help|info-confirmation@@info.confirmation.help” class="clickable"
+                                            (click)="openInfoDialog({header: ' Hvor mange år har du igjen å til lånet er nedbetalt?',
+                                        text: 'Om du er usikker så kan du legge inn sånn omtrentlig hvor mange år du har. Hvis du lar feltet stå tomt antar vi at lånet har 20 år igjen.'
+                                        })">
+                                            <mat-icon>help</mat-icon>
+                                        </div>
+                                    </div>
 
                                     <div *ngIf="loanFormGroup.controls['remainingYears'].touched">
                                         <p class="error small"

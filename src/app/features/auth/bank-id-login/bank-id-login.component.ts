@@ -66,6 +66,7 @@ import {
 import { ApiError } from '@shared/constants/api-error';
 import { ProfileService } from '@services/remote-api/profile.service';
 import { GlobalStateService } from '@services/global-state.service';
+import { RouteEventsService } from '@services/route-events.service';
 @Component({
   selector: 'rente-bank-id-login',
   templateUrl: './bank-id-login.component.html',
@@ -114,34 +115,28 @@ export class BankIdLoginComponent implements OnInit {
     private loanService: LoansService,
     private loginService: LoginService,
     private profileService: ProfileService,
-    private globalStateService: GlobalStateService
-  ) {
-    window.onpopstate = function (event) {
-      event.preventDefault();
-      alert(
-        `location: ${document.location}, state: ${JSON.stringify(event.state)}`
-      );
-    };
-
-    // history.back(); // alerts "location: http://example.com/example.html?page=1, state: {"page":1}"
-    location.onPopState(() => {
-      // this.alert(window.location);
-      this.back();
-    });
-    router.events.subscribe((event: NavigationStart) => {
-      console.log('any state');
-
-      console.log(event);
-
-      if (event.navigationTrigger === 'popstate') {
-        console.log('popstate');
-        alert('popstate');
-        // Perform actions
-      }
-    });
-  }
+    private globalStateService: GlobalStateService,
+    private routeEventsService: RouteEventsService
+  ) {}
 
   ngOnInit(): void {
+    console.log(this.routeEventsService.previousRoutePath);
+    console.log(this.routeEventsService.previousRoutePath);
+    console.log(this.routeEventsService.previousRoutePath.subscribe);
+
+    this.routeEventsService.previousRoutePath.subscribe((previousRoutePath) => {
+      if (!previousRoutePath.includes('bankid-login?status=')) {
+        this.router.navigate(['/']);
+      }
+    });
+    this.navigationInterceptionService.setBackButtonCallback(() => {
+      if (this.currentStepperValue !== 0) {
+        this.back();
+      } else {
+        this.router.navigate(['/' + ROUTES_MAP.bankSelect]);
+      }
+    });
+
     this.globalStateService.setFooterState(false);
     this.route.queryParams.subscribe((routeParams) => {
       const status = routeParams['status'];
@@ -154,7 +149,7 @@ export class BankIdLoginComponent implements OnInit {
         case 'success':
           const bankName = this.localStorageService.getItem('bankIdLoginBank');
           this.bank = BankUtils.getBankByName(bankName);
-          this.bank && this.statusSuccess(sessionId, bankName);
+          this.bank && this.statusSuccess(sessionId);
           break;
 
         case 'abort':
@@ -164,7 +159,6 @@ export class BankIdLoginComponent implements OnInit {
         case 'error':
           const dialogData = {
             header: 'Ops, noe gikk visst galt',
-            text: 'test',
             confirmText: 'Prøv igjen',
             cancelText: 'Avbryt',
             onConfirm: () => {
@@ -179,7 +173,6 @@ export class BankIdLoginComponent implements OnInit {
 
         default: {
           const dialogData = {
-            text: 'test',
             confirmText: 'Prøv igjen',
             cancelText: 'Avbryt',
             onConfirm: () => {
@@ -191,22 +184,9 @@ export class BankIdLoginComponent implements OnInit {
         }
       }
     });
-
-    /*  window.history.pushState({}, '', '/newpage'); */
-    /*    history.pushState('{ page: 1 }', 'title 1', '?page=1');
-    history.pushState('{ page: 2 }', 'title 2', '?page=2');
-    window.history.pushState({}, '', '/oldpage'); */
-    // history.back(); // alerts "location: http://example.com/example.html?page=1, state: {"page":1}"
-    /* 
-    
-
-    this.eventSubscription = fromEvent(window, 'popstate').subscribe((e) => {
-      console.log(e, 'back button');
-      alert('eventSubscription');
-    }); */
   }
 
-  public statusSuccess(sessionId: string, bankName: string): void {
+  public statusSuccess(sessionId: string): void {
     this.bank &&
       sessionId &&
       this.authService
@@ -218,8 +198,6 @@ export class BankIdLoginComponent implements OnInit {
 
             response.newClient = true;
             if (response.newClient === false) {
-              console.log('test');
-              // return;
               this.initLoansForm(response);
             } else {
               this.loanService.getConfirmationData().subscribe((userInfo) => {
@@ -297,12 +275,6 @@ export class BankIdLoginComponent implements OnInit {
     }
     return array;
   }
-  /* @HostListener('window:popstate', ['$event'])
-  onBrowserBackBtnClose(event: Event) {
-    console.log('back button pressed');
-    event.preventDefault();
-    this.router.navigate(['/home'], { replaceUrl: true });
-  } */
 
   initMemberships(userInfo: ConfirmationGetDto): void {
     this.allMemberships = userInfo.availableMemberships;
@@ -396,35 +368,30 @@ export class BankIdLoginComponent implements OnInit {
     });
   }
 
-  get manualPropertyValue(): ClientUpdateInfo {
+  get manualPropertyValue(): number {
     const addressDto = new AddressCreationDto();
 
     const clientDto = new ClientUpdateInfo();
     clientDto.address = new AddressCreationDto();
 
-    console.log(clientDto);
-    (addressDto.apartmentValue =
+    const apartmentValue =
       typeof this.manualPropertyValueFormGroup.get('manualPropertyValue')
         ?.value === 'string'
         ? this.manualPropertyValueFormGroup
             .get('manualPropertyValue')
             ?.value.replace(/\s/g, '')
-        : this.manualPropertyValueFormGroup.get('manualPropertyValue')?.value),
-      (clientDto.memberships = this.memberships.map(
-        (membership) => membership.name
-      ));
-    clientDto.address = addressDto;
-    return clientDto;
+        : this.manualPropertyValueFormGroup.get('manualPropertyValue')?.value;
+
+    return apartmentValue;
   }
 
   public doneClicked(): void {
-    const clientDto =
-      this.showManualInputForm === true
-        ? this.manualPropertyValue
-        : this.clientUpdateInfo;
-    console.log(clientDto);
-
     const loanUpdateInfoDto = this.loanUpdateInfoDto;
+    const clientDto = this.clientUpdateInfo;
+
+    if (this.showManualInputForm) {
+      clientDto.address.apartmentValue = this.manualPropertyValue;
+    }
 
     this.isLoading = true;
     concat(
@@ -467,7 +434,6 @@ export class BankIdLoginComponent implements OnInit {
           if (error.errorType === ApiError.virdiSerachNotFound) {
             const dialogData = {
               header: 'Ops, noe gikk visst galt',
-              text: 'test',
               confirmText: 'Prøv igjen',
               cancelText: 'Avbryt',
 
@@ -484,7 +450,6 @@ export class BankIdLoginComponent implements OnInit {
           }
           const dialogData = {
             header: 'Ops, noe gikk visst galt',
-            text: 'test',
             confirmText: 'Prøv igjen',
             cancelText: 'Avbryt',
             onConfirm: () => {
@@ -515,13 +480,10 @@ export class BankIdLoginComponent implements OnInit {
 
     clientDto.address = addressDto;
     clientDto.email = this.userFormGroup.get('email')?.value;
-    (clientDto.income =
+    clientDto.income =
       typeof this.userFormGroup.get('income')?.value === 'string'
         ? this.userFormGroup.get('income')?.value.replace(/\s/g, '')
-        : this.userFormGroup.get('income')?.value),
-      (clientDto.memberships = this.memberships.map(
-        (membership) => membership.name
-      ));
+        : this.userFormGroup.get('income')?.value;
     return clientDto;
   }
 
@@ -660,7 +622,6 @@ export class BankIdLoginComponent implements OnInit {
         } else {
           const dialogData: ErrorDialogData = {
             header: 'Ops, noe gikk visst galt',
-            text: 'test',
             confirmText: 'Prøv igjen',
             cancelText: 'Avbryt'
           };

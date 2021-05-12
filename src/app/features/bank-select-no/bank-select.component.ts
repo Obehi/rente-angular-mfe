@@ -128,14 +128,16 @@ export class BankSelectNoComponent implements OnInit {
       return;
     }
 
-    if (bank.isMissing || this.envService.isMissing(bank)) {
+    if (bank.isSigniCat) {
       this.authService.loginBankIdStep1().subscribe((response) => {
         // this.router.navigate([response.url]);
         this.localStorageService.setItem('bankIdLoginBank', bank.name);
         window.location.href = response.url;
       });
-
       return;
+    }
+
+    if (bank.isMissing || this.envService.isMissing(bank)) {
       this.router.navigate([ROUTES_MAP.getNotified], { state: { bank: bank } });
     } else {
       this.router.navigate([
