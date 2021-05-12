@@ -60,10 +60,13 @@ export class BankGuidePageComponent implements OnInit {
       const bankName = param.id.toUpperCase();
       this.bank = BankUtils.getBankByName(bankName);
 
+      // Special case for SPAREBANK_1_NORDMORE
+      const bankNameForRequest =
+        bankName === 'SPAREBANK_1_NORDMORE' ? 'SPAREBANK_1_NORDVEST' : bankName;
       this.depositsBsu = [];
       this.depositsGeneral = [];
       this.loansService
-        .getBankGuide(this.route.snapshot.params.id.toUpperCase())
+        .getBankGuide(bankNameForRequest)
         .pipe(takeUntil(this._onDestroy$))
         .subscribe(
           (bankInfo) => {
