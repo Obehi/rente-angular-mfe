@@ -100,10 +100,10 @@ export class InitConfirmationNoComponent implements OnInit {
       );
       const income = String(userInfo.income) || null;
       const apartmentSize = String(userInfo.apartmentSize) || null;
-      this.isAddressNeeded = rateAndLoans.isAddressNeeded;
+      this.isAddressNeeded =
+        rateAndLoans.isAddressNeeded || userInfo.bank === 'DNB';
       this.isNameNeeded =
         this.userData.name === null || this.userData.name === undefined;
-
       if (this.isAddressNeeded) {
         this.isAddressNeeded = true;
         this.propertyForm = this.fb.group({
