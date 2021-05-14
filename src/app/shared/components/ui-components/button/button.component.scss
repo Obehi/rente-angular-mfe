@@ -7,7 +7,6 @@ button.mat-button {
   min-width: 150px;
   border-radius: 100px;
   margin: auto;
-  font-size: 16px;
   line-height: 19px;
 
   outline: none;
@@ -20,6 +19,10 @@ button.mat-button {
   }
   img {
     height: 20px;
+  }
+
+  @media (min-width: 360px) {
+    font-size: 16px;
   }
 }
 
@@ -157,6 +160,25 @@ button.mat-primary-wide-landing-hollow {
 }
 
 button.mat-primary-wide-hollow {
+  background-color: white;
+  color: black;
+  border: 1px solid $primary;
+  height: 56px;
+  width: 100%;
+  white-space: break-spaces;
+}
+
+button.mat-primary-wide-hollow {
+  background-color: white;
+  color: black;
+  border: 1px solid $primary;
+  height: 56px;
+  width: 100%;
+  white-space: break-spaces;
+}
+
+button.mat-primar-hollow-medium {
+  min-width: 150px;
   background-color: white;
   color: black;
   border: 1px solid $primary;

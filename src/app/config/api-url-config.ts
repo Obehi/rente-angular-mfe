@@ -12,7 +12,8 @@ export const API_URL_MAP = {
     signup: '/signup',
     me: '/me',
     user: '/user',
-    demo: '/login/demo'
+    demo: '/login/demo',
+    bankidLogin: '/bank-id/login'
   },
   user: {
     base: '/user',
@@ -51,13 +52,26 @@ export const API_URL_MAP = {
       base: '/loans',
       state: '/state'
     },
+
+    loan: {
+      base: '/loan',
+      state: '/state',
+      info: '/info'
+    },
+    user: {
+      base: '/user',
+      info: '/info'
+    },
     bankOfferRequest: {
       base: '/bank-offer-request',
       preview: '/preview',
       send: '/send'
     },
     bankInfo: '/bank-info',
-    offers: '/offers',
+    offers: {
+      base: '/offers',
+      bank: '/bank'
+    },
     newOffers: '/new-offers',
     loanSubType: '/loanSubType',
     loanType: '/loanType',

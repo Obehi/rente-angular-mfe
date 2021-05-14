@@ -107,3 +107,16 @@ export class PreferencesUpdateDto {
   noAdditionalProductsRequired: boolean;
   receiveNewsEmails: boolean;
 }
+export class LoanUpdateInfoDto {
+  outstandingDebt: number;
+  productId: string;
+  remainingYears: number;
+  loanSubType: string;
+}
+
+export class ClientUpdateInfo {
+  address: AddressCreationDto;
+  email: string;
+  income: number;
+  memberships: string[];
+}

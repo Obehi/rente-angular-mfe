@@ -1,6 +1,7 @@
 <div class="front-container" [ngClass]="{'blue': optimizeService.getBinaryVariation()}">
   <div *ngIf="propertyForm">
     <div class="title">
+<<<<<<< HEAD
       <h3 *ngIf="userData.name !== null" i18n=“hi|info-confirmation@@info.confirmation.hi”>Hei, {{ userData.name |
         titlecase }}</h3>
       <p i18n=“more-infor|info-confirmation@@info.confirmation.moreInfo”>Vi trenger litt mer informasjon før vi kan søke
@@ -8,6 +9,15 @@
     </div>
     <form [formGroup]="propertyForm" novalidate (ngSubmit)="updateProperty(propertyForm.value)">
       <div *ngIf="isNameNeeded" class="field">
+=======
+      <h3 i18n=“hi|info-confirmation@@info.confirmation.hi”>Hei, {{ userData.name | titlecase }}</h3>
+      <p i18n=“more-infor|info-confirmation@@info.confirmation.moreInfo”>Vi trenger litt mer informasjon før vi kan søke
+        etter tilbud</p>
+    </div>
+
+    <form [formGroup]="propertyForm" novalidate (ngSubmit)="updateProperty(propertyForm.value)">
+      <div *ngIf="isAddressNeeded" class="field">
+>>>>>>> rm-451
         <rente-input [placeholder]="'Navn'" formControlName="name" [errorStateMatcher]="
           isErrorState(propertyForm.controls['name'])
         " [modelOptions]="{ updateOn: 'blur' }">
@@ -140,7 +150,11 @@
       </p>
       <rente-button i18n=“done|info-confirmation@@info.confirmation.done” color="primary" [isLoading]="isLoading"
         [disabled]="propertyForm.invalid || isLoading">
+<<<<<<< HEAD
         Ferdig!
+=======
+        Sjekk besparelse
+>>>>>>> rm-451
       </rente-button>
     </form>
   </div>

@@ -10,13 +10,10 @@
     <div class="logo" [ngStyle]="{
                 'background-image': 'url(' + banksMap[offer.bankInfo.bank].img + ')'
               }">
-
     </div>
     <div class="offer-product">
       <a class="clickable" target="_blank" (click)="openBankUrl(offer)">{{ offer.bankInfo.name }}
-        <!--<mat-icon>
-                    open_in_new</mat-icon>
-                -->
+
       </a>
       <h3>
         {{ offer.productName }}

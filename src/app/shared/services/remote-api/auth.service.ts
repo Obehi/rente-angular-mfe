@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { API_URL_MAP } from '@config/api-url-config';
 import { storageName } from '@config/index';
 import { GenericHttpService } from '@services/generic-http.service';
+import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { LocalStorageService } from './../local-storage.service';
 
@@ -27,6 +28,24 @@ export class AuthService {
       guid: guid
     };
     return this.http.post(url, data).pipe(tap(this.handleLogin.bind(this)));
+  }
+
+  public loginBankIdStep1(): Observable<any> {
+    const url = `${API_URL_MAP.auth.base}${API_URL_MAP.auth.bankidLogin}`;
+
+    return this.http.post(url);
+  }
+
+  public loginBankIdStep2(sessionId: string, bank: string): Observable<any> {
+    const url = `${API_URL_MAP.auth.base}${API_URL_MAP.auth.bankidLogin}/${sessionId}`;
+
+    const data = {
+      bank: bank
+    };
+
+    return this.http
+      .postWithParams(url, data)
+      .pipe(tap(this.handleLogin.bind(this)));
   }
 
   public loginWithToken(token: string) {

@@ -4,6 +4,7 @@ import { GenericHttpService } from '@services/generic-http.service';
 import {
   AddressDto,
   ClientAddressDto,
+  ClientUpdateInfo,
   ConfirmationGetDto,
   ConfirmationSetDto,
   Loans,
@@ -15,6 +16,8 @@ import { BankGuideInfo, Offers } from '@shared/models/offers';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { locale } from '../../../config/locale/locale';
+
+import { LoanUpdateInfoDto } from '@shared/models/loans';
 
 @Injectable({
   providedIn: 'root'
@@ -34,6 +37,11 @@ export class LoansService {
 
   public getOffers(): Observable<Offers> {
     const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.offers}`;
+    return this.http.get(url);
+  }
+
+  public getOffersBanks() {
+    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.offers.base}${API_URL_MAP.loan.offers.bank}`;
     return this.http.get(url);
   }
 
@@ -109,6 +117,21 @@ export class LoansService {
   public updateLoanPreferences(loanData): Observable<any> {
     const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.preferences}`;
     return this.http.put(url, loanData);
+  }
+
+  public updateLoanUserInfo(loanUpdateInfoDto: LoanUpdateInfoDto) {
+    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.loan.base}${API_URL_MAP.loan.loan.info}`;
+    return this.http.put(url, loanUpdateInfoDto);
+  }
+
+  public updateClientInfo(clientUpdateInfo: ClientUpdateInfo) {
+    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.user.base}${API_URL_MAP.loan.user.info}`;
+    return this.http.put(url, clientUpdateInfo);
+  }
+
+  public getClientInfo() {
+    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.base}${API_URL_MAP.loan.user.info}`;
+    return this.http.get(url);
   }
 
   public getPropertyValue(): Observable<any> {
