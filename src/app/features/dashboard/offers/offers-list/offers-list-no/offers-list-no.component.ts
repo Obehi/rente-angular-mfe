@@ -16,7 +16,8 @@ export class OffersListNoComponent implements OnInit {
     private envService: EnvService
   ) {}
 
-  public getVariation() {
+  // It looks like it returns a number
+  public getVariation(): any {
     if ((window as any).google_optimize === undefined) {
       return 0;
     }

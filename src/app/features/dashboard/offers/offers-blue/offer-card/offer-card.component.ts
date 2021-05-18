@@ -178,7 +178,8 @@ export class OfferCardComponentBlue implements OnInit {
     }
   }
 
-  public clickNordea(event): void {
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+  public clickNordea(event: any): void {
     this.logginService.googleAnalyticsLog({
       category: 'NordeaAntiChurn',
       action: 'Click offer card anti-churn',

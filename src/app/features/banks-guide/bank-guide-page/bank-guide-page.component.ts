@@ -49,7 +49,7 @@ export class BankGuidePageComponent implements OnInit, OnDestroy {
     public bankGuideService: BankGuideService
   ) {}
 
-  get bankHasInShort() {
+  get bankHasInShort(): boolean {
     return !!(
       this.bankGuideInfo &&
       (this.bankGuideInfo.text1 ||
@@ -127,6 +127,7 @@ export class BankGuidePageComponent implements OnInit, OnDestroy {
     this._onDestroy$.next();
   }
 
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   alphaSort = (a: any, b: any): number => {
     if (a.name < b.name) {
       return -1;
@@ -137,7 +138,8 @@ export class BankGuidePageComponent implements OnInit, OnDestroy {
     return 0;
   };
 
-  scrollTo(ref) {
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+  scrollTo(ref: any): void {
     ref.scrollIntoView({
       behavior: 'smooth',
       block: 'start',

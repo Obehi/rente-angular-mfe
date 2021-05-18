@@ -1,7 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { ChangeBankServiceService } from '../../../../shared/services/remote-api/change-bank-service.service';
 import { LoggingService } from '@services/logging.service';
 @Component({
@@ -17,11 +16,11 @@ export class AntiChurnDialogComponent implements OnInit {
   public disableAnimation = true;
 
   constructor(
-    private router: Router,
     private fb: FormBuilder,
     public dialogRef: MatDialogRef<AntiChurnDialogComponent>,
     private changeBankServiceService: ChangeBankServiceService,
     public dialog: MatDialog,
+    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
     @Inject(MAT_DIALOG_DATA) public data: any,
     private loggingService: LoggingService
   ) {}

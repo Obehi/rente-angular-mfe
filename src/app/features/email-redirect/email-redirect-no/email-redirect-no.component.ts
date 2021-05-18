@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-
 @Component({
   selector: 'rente-email-redirect',
   templateUrl: './email-redirect-no.component.html',
@@ -11,7 +9,7 @@ export class EmailRedirectNOComponent implements OnInit {
     return window.innerWidth < 600;
   }
 
-  constructor(private activeRoute: ActivatedRoute) {}
+  constructor() {}
 
   ngOnInit(): void {
     const element = document.getElementById('mobil-fb');
@@ -28,7 +26,8 @@ export class EmailRedirectNOComponent implements OnInit {
     }
   }
 
-  triggerEvent(elem, event) {
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+  triggerEvent(elem, event): void {
     const clickEvent = new Event(event);
     elem.dispatchEvent(clickEvent);
   }

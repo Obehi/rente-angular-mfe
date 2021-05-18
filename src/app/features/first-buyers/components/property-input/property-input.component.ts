@@ -14,11 +14,6 @@ import { Observable, Subject } from 'rxjs';
 import { distinctUntilChanged } from 'rxjs/operators';
 import { SelectAutocompleteComponent } from 'mat-select-autocomplete';
 
-interface Membership {
-  name?: string;
-  value?: string;
-  label: string;
-}
 @Component({
   selector: 'rente-property-input',
   templateUrl: './property-input.component.html',

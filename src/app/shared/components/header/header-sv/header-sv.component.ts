@@ -25,13 +25,13 @@ export class HeaderSvComponent implements OnInit {
     this.optimizeService = optimize;
   }
 
-  ngOnInit() {}
+  ngOnInit(): void {}
 
-  public goToTop() {
+  public goToTop(): void {
     window.scrollTo(0, 0);
   }
 
-  public goToHome() {
+  public goToHome(): void {
     if (this.router.url === '/' || this.router.url === '/#faq') {
       window.scrollTo(0, 0);
     } else {
@@ -40,7 +40,7 @@ export class HeaderSvComponent implements OnInit {
 
     this.toggleNav();
   }
-  public toggleNav() {
+  public toggleNav(): void {
     this.toggleNavbar = !this.toggleNavbar;
   }
 

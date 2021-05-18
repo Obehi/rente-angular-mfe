@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PreferancesService } from '@shared/services/remote-api/preferances.service';
 import { EmailDto } from '@shared/models/loans';
-import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { ProfileDialogInfoComponent } from '../dashboard/profile/dialog-info/dialog-info.component';
 import { MatDialog } from '@angular/material/dialog';
@@ -54,7 +53,6 @@ export class EmailPreferencesComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private preferancesService: PreferancesService,
-    private activatedRoute: ActivatedRoute,
     public location: Location,
     private dialog: MatDialog,
     public langService: CustomLangTextService

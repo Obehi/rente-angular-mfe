@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation, OnDestroy } from '@angular/core';
-import { Routes, RouterModule, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
 import { LocalStorageService } from '@services/local-storage.service';
 import { OptimizeService } from '@services/optimize.service';
@@ -40,7 +40,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   private subscription: any;
 
-  onActivate(event: any) {
+  onActivate(): void {
     window.scrollTo(0, 0);
   }
 

@@ -40,7 +40,7 @@ export class LoansService {
     return this.http.get(url);
   }
 
-  public getOffersBanks() {
+  public getOffersBanks(): Observable<any> {
     const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.offers.base}${API_URL_MAP.loan.offers.bank}`;
     return this.http.get(url);
   }
@@ -55,6 +55,7 @@ export class LoansService {
     return this.http.get(url);
   }
 
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   public setUsersMemberships(membershipsArray): Observable<string[]> {
     const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.membership}`;
     return this.http.post(url, membershipsArray);
@@ -78,6 +79,7 @@ export class LoansService {
       .pipe(map((r) => this.mapClientAddressDto(r)));
   }
 
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   mapClientAddressDto(r: any): ClientAddressDto {
     const dto = new ClientAddressDto();
     dto.totalPropertyValue = r.totalPropertyValue;
@@ -114,22 +116,25 @@ export class LoansService {
     return this.http.get(url);
   }
 
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   public updateLoanPreferences(loanData): Observable<any> {
     const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.preferences}`;
     return this.http.put(url, loanData);
   }
 
-  public updateLoanUserInfo(loanUpdateInfoDto: LoanUpdateInfoDto) {
+  public updateLoanUserInfo(
+    loanUpdateInfoDto: LoanUpdateInfoDto
+  ): Observable<any> {
     const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.loan.base}${API_URL_MAP.loan.loan.info}`;
     return this.http.put(url, loanUpdateInfoDto);
   }
 
-  public updateClientInfo(clientUpdateInfo: ClientUpdateInfo) {
+  public updateClientInfo(clientUpdateInfo: ClientUpdateInfo): Observable<any> {
     const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.user.base}${API_URL_MAP.loan.user.info}`;
     return this.http.put(url, clientUpdateInfo);
   }
 
-  public getClientInfo() {
+  public getClientInfo(): Observable<any> {
     const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.base}${API_URL_MAP.loan.user.info}`;
     return this.http.get(url);
   }

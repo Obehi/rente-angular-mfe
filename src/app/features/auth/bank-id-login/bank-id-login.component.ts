@@ -74,7 +74,8 @@ import { RouteEventsService } from '@services/route-events.service';
 })
 export class BankIdLoginComponent implements OnInit {
   @HostListener('window:popstate', ['$event'])
-  onPopState(event) {
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+  onPopState(event): void {
     console.log('Back button pressed');
   }
   @ViewChild('stepper') stepper: MatStepper;

@@ -9,12 +9,14 @@ import { Observable } from 'rxjs';
 export class ChangeBankServiceService {
   constructor(private http: GenericHttpService) {}
 
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   public getBankOfferRequest(offerId): Observable<any> {
     const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.bankOfferRequest.base}${API_URL_MAP.loan.bankOfferRequest.preview}/${offerId}`;
     return this.http.get(url);
   }
 
   public getBankOfferPreviewWithOffice(
+    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
     offerId,
     offerOffice: offerOfficeDto
   ): Observable<any> {
@@ -38,13 +40,14 @@ export class ChangeBankServiceService {
     return this.http.post(url);
   }
 
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   public getBankOfferLocations(bank): Observable<any> {
     const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.bankOfferRequest.base}/${bank}`;
     return this.http.get(url);
   }
 
   public sendBankOfferRequestWithOffice(
-    offerId,
+    offerId: number,
     offerOffice: offerOfficeDto
   ): Observable<any> {
     const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.bankOfferRequest.base}${API_URL_MAP.loan.bankOfferRequest.send}/${offerId}`;

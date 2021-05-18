@@ -1,6 +1,4 @@
 import { Injectable } from '@angular/core';
-import { ROUTES_MAP_NO } from '@config/routes-config';
-import { Router } from '@angular/router';
 import {
   BankList,
   BankVo,
@@ -21,12 +19,12 @@ export class BankGuideService {
   options: any[];
   public shouldDisplayBankList = false;
 
-  constructor(private router: Router) {
+  constructor() {
     this.sortBanks();
     this.filterBank(this.searchStr);
   }
 
-  filterBank(filter: string) {
+  filterBank(filter: string): void {
     let filteredBanks: BankVo[] = [];
     if (filter === null || filter?.length === 0) {
       filteredBanks = this.allBanks.concat();
@@ -39,7 +37,7 @@ export class BankGuideService {
     this.banks = filteredBanks;
   }
 
-  onFilterChanged() {
+  onFilterChanged(): void {
     if (this.searchStr.toLocaleLowerCase() === 'sparebank 1') {
       this.removeSparebank();
     }
@@ -50,7 +48,7 @@ export class BankGuideService {
     this.filterBank(this.searchStr);
   }
 
-  selectBank(bank: BankVo) {
+  selectBank(bank: BankVo): void {
     this.shouldDisplayBankList = false;
     if (bank.name === 'SPAREBANK_1') {
       this.searchStr = 'Sparebank 1';
@@ -60,10 +58,9 @@ export class BankGuideService {
       this.filterBank(this.searchStr);
       return;
     }
-    // this.router.navigate([ROUTES_MAP_NO.banksGuide, bank.name.toLowerCase()]);
   }
 
-  sortBanks() {
+  sortBanks(): void {
     const sortedBanksAlphabetic = [
       ...BankList,
       ...MissingBankList,
@@ -97,12 +94,12 @@ export class BankGuideService {
     ];
   }
 
-  clear() {
+  clear(): void {
     this.searchStr = '';
     this.filterBank(this.searchStr);
   }
 
-  removeSparebank() {
+  removeSparebank(): void {
     const sparebank = 'SPAREBANK_1';
 
     this.allBanks = this.allBanks.filter((bank) => {

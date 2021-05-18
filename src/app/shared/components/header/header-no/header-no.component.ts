@@ -18,9 +18,9 @@ export class HeaderNoComponent implements OnInit {
     private router: Router
   ) {}
 
-  ngOnInit() {}
+  ngOnInit(): void {}
 
-  public goToTop() {
+  public goToTop(): void {
     window.scrollTo(0, 0);
   }
 

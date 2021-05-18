@@ -45,24 +45,13 @@ export class PropertySelectComponent implements OnInit, OnDestroy {
   private originalOptions: string[];
   private untilDestroyed = new Subject<void>();
 
-  constructor(
-    private vcr: ViewContainerRef,
-    private zone: NgZone,
-    private cdr: ChangeDetectorRef
-  ) {}
+  constructor(private vcr: ViewContainerRef, private zone: NgZone) {}
 
-  get isOpen() {
+  get isOpen(): boolean {
     return !!this.popperRef;
   }
 
   ngOnInit(): void {
-    // this.options = [
-    //   { id: '1', label: 'a' },
-    //   { id: '2', label: 'b' },
-    //   { id: '3', label: 'c' },
-    //   { id: '4', label: 'd' }
-    // ];
-
     this.originalOptions = [
       ...(this.memberships as MembershipTypeDto[]).map((item) => {
         return item.name;
@@ -83,11 +72,9 @@ export class PropertySelectComponent implements OnInit, OnDestroy {
       .subscribe((term) => this.search(term));
   }
 
-  ngOnDestroy() {
-    // this.untilDestroyed.next();
-  }
+  ngOnDestroy(): void {}
 
-  get label() {
+  get label(): any {
     return this.model ? this.model[this.labelKey] : 'Select...';
   }
 
@@ -118,12 +105,14 @@ export class PropertySelectComponent implements OnInit, OnDestroy {
     this.popperRef = null;
   }
 
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   select(option): void {
     this.model = option;
     this.selectChange.emit(option[this.idKey]);
     // the handleClickOutside function will close the dropdown
   }
 
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   isActive(option): boolean {
     if (!this.model) {
       return false;
@@ -151,7 +140,6 @@ export class PropertySelectComponent implements OnInit, OnDestroy {
       )
       .subscribe(() => {
         this.close();
-        // this.cdr.detectChanges();
       });
   }
 }

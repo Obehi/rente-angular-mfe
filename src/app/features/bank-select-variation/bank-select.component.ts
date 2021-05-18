@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BankVo, BankList, MissingBankList } from '../../shared/models/bank';
 import { Router } from '@angular/router';
 import { ROUTES_MAP } from '@config/routes-config';
-import { ErrorHandler, Injectable } from '@angular/core';
+import { ErrorHandler } from '@angular/core';
 
 @Component({
   selector: 'rente-bank-select-variation',
@@ -18,12 +18,13 @@ export class BankSelectComponentVariation implements OnInit, ErrorHandler {
 
   constructor(private router: Router) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.sortBanks();
     this.filterBank(this.searchStr);
   }
 
   // Workaround for bug. Cant click on banks in list. console error message: ChunkLoadError: Loading chunk 6 failed.
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   handleError(error: any): void {
     const chunkFailedMessage = /Loading chunk [\d]+ failed/;
     console.log('Handeling error');
@@ -34,7 +35,7 @@ export class BankSelectComponentVariation implements OnInit, ErrorHandler {
     }
   }
 
-  sortBanks() {
+  sortBanks(): void {
     const sortedBanksAlphabetic = [
       ...BankList,
       ...MissingBankList
@@ -47,23 +48,23 @@ export class BankSelectComponentVariation implements OnInit, ErrorHandler {
       x,
       y
     ) {
-      return x.name == sparebank ? -1 : y.name == sparebank ? 1 : 0;
+      return x.name === sparebank ? -1 : y.name === sparebank ? 1 : 0;
     });
     const sortedBanksNoredaFirst = sortedBanksSpareBankFirst.sort(function (
       x,
       y
     ) {
-      return x.name == nordea ? -1 : y.name == nordea ? 1 : 0;
+      return x.name === nordea ? -1 : y.name === nordea ? 1 : 0;
     });
 
     const sortedBanksDNBFirst = sortedBanksNoredaFirst.sort(function (x, y) {
-      return x.name == dnb ? -1 : y.name == dnb ? 1 : 0;
+      return x.name === dnb ? -1 : y.name === dnb ? 1 : 0;
     });
 
     this.allBanks = sortedBanksDNBFirst;
   }
 
-  removeSparebank() {
+  removeSparebank(): void {
     const sparebank = 'SPAREBANK_1';
 
     this.allBanks = this.allBanks.filter(function (bank) {
@@ -71,24 +72,25 @@ export class BankSelectComponentVariation implements OnInit, ErrorHandler {
     });
   }
 
-  onFilterChanged() {
-    if (this.searchStr.toLocaleLowerCase() == 'sparebank 1') {
+  onFilterChanged(): void {
+    if (this.searchStr.toLocaleLowerCase() === 'sparebank 1') {
       this.removeSparebank();
     }
-    if (this.sparebankIsClicked == true) {
+    if (this.sparebankIsClicked === true) {
       this.sparebankIsClicked = false;
       this.sortBanks();
     }
     this.filterBank(this.searchStr);
   }
 
-  clear() {
+  clear(): void {
     this.searchStr = '';
     this.filterBank(this.searchStr);
   }
 
-  filterBank(filter: string) {
+  filterBank(filter: string): void {
     let filteredBanks = [];
+    // eslint-disable-next-line eqeqeq
     if (filter == null || filter.length === 0) {
       filteredBanks = this.allBanks.concat();
     } else {
@@ -101,8 +103,8 @@ export class BankSelectComponentVariation implements OnInit, ErrorHandler {
     this.banks = filteredBanks;
   }
 
-  selectBank(bank: BankVo) {
-    if (bank.name == 'SPAREBANK_1') {
+  selectBank(bank: BankVo): void {
+    if (bank.name === 'SPAREBANK_1') {
       this.searchStr = 'Sparebank 1';
 
       this.removeSparebank();

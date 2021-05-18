@@ -38,6 +38,7 @@ export class FirstBuyersService {
     ) as FirstBuyersState;
   }
 
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   getAuthToken(debtData: any): Observable<any> {
     return this.authService.getFirstTimeLoanToken(debtData);
   }

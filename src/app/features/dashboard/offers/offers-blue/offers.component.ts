@@ -42,7 +42,6 @@ import {
   OffersService,
   OfferMessage
 } from '@features/dashboard/offers/offers.service';
-import { OptimizeService } from '@services/optimize.service';
 @Component({
   selector: 'rente-offers-blue',
   templateUrl: './offers.component.html',
@@ -110,8 +109,7 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
     public customLangTextSerice: CustomLangTextService,
     public envService: EnvService,
     private offersService: OffersService,
-    private logginService: LoggingService,
-    private optimizeService: OptimizeService
+    private logginService: LoggingService
   ) {
     this.onResize();
 
@@ -327,7 +325,7 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
     );
   }
 
-  private openChangeBankDialogWithLocation(offer: any): void {
+  private openChangeBankDialogWithLocation(offer: OfferInfo): void {
     this.changeBankLoading = true;
     const offerId = offer.id;
     const currentBank = this.offersInfo.bank;
@@ -360,7 +358,7 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
     );
   }
 
-  private openChangeBankDialogWithOnlyPreview(offer: any): void {
+  private openChangeBankDialogWithOnlyPreview(offer: OfferInfo): void {
     this.changeBankLoading = true;
     const offerId = offer.id;
     const currentBank = this.offersInfo.bank;
@@ -382,13 +380,13 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
           );
         });
       },
-      (err) => {
+      () => {
         this.changeBankLoading = false;
       }
     );
   }
 
-  public openAntiChurnBankDialog(offer, shouldLog: boolean): void {
+  public openAntiChurnBankDialog(offer: OfferInfo, shouldLog: boolean): void {
     if (
       this.antiChurnIsOn === false ||
       this.changeBankLoading ||
@@ -416,7 +414,7 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
     });
   }
 
-  public openChangeBankDialog(offer): void {
+  public openChangeBankDialog(offer: OfferInfo): void {
     if (
       this.changeBankLoading ||
       this.offersInfo.offerSavingsType === this.offerSavingsType.NO_SAVINGS

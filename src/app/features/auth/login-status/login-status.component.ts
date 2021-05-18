@@ -131,7 +131,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
   }
 
   @HostListener('window:message', ['$event'])
-  onMessage(event) {
+  onMessage(event): void {
     if (event.origin !== 'https://link.tink.com') {
       return;
     }

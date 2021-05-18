@@ -160,6 +160,7 @@ export class InitConfirmationNoComponent implements OnInit {
     });
   }
 
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   public updateProperty(formData: any): void {
     this.propertyForm.markAllAsTouched();
     this.propertyForm.updateValueAndValidity();

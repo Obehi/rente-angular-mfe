@@ -22,7 +22,7 @@ export class AuthService {
     return !!(user && user.token);
   }
 
-  public loginForDemo(guid: string) {
+  public loginForDemo(guid: string): Observable<any> {
     const url = `${API_URL_MAP.auth.base}${API_URL_MAP.auth.demo}`;
     const data = {
       guid: guid
@@ -48,7 +48,7 @@ export class AuthService {
       .pipe(tap(this.handleLogin.bind(this)));
   }
 
-  public loginWithToken(token: string) {
+  public loginWithToken(token: string): Observable<any> {
     const url = `${API_URL_MAP.auth.base}${API_URL_MAP.auth.token}`;
     const data = {
       token
@@ -65,7 +65,8 @@ export class AuthService {
     });
   }
 
-  public getFirstTimeLoanToken(debtData) {
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+  public getFirstTimeLoanToken(debtData): Observable<any> {
     const url = `${API_URL_MAP.user.base}${API_URL_MAP.user.firstLoan}`;
     return this.http.post(url, debtData);
   }

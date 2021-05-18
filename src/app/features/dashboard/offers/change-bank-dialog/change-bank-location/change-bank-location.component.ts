@@ -27,6 +27,7 @@ export class ChangeBankLocationComponent implements OnInit, AfterViewInit {
 
   constructor(
     private changeBankServiceService: ChangeBankServiceService,
+    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
     @Inject(MAT_DIALOG_DATA) public data: any,
     public dialogRef: MatDialogRef<ChangeBankLocationComponent>,
     public dialog: MatDialog,
@@ -100,6 +101,7 @@ export class ChangeBankLocationComponent implements OnInit, AfterViewInit {
       : [];
   }
 
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   clickNext(region: any, index: number): void {
     this.resetNodesAfterIndex(index);
     this.stepperHeaderArray[index].value = region;
@@ -109,7 +111,7 @@ export class ChangeBankLocationComponent implements OnInit, AfterViewInit {
     this.stepper.next();
   }
 
-  resetNodesAfterIndex(index): void {
+  resetNodesAfterIndex(index: number): void {
     this.stepperHeaderArray
       .filter((node) => {
         return node.index > index;
@@ -165,7 +167,7 @@ export class ChangeBankLocationComponent implements OnInit, AfterViewInit {
       );
   }
 
-  clickHeaderNode(index): void {
+  clickHeaderNode(index: number): void {
     let highestIndexWithValue = 0;
     this.stepperHeaderArray.forEach((node) => {
       if (node.value !== null) {

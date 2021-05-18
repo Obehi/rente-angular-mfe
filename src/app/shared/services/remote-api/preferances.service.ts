@@ -15,10 +15,12 @@ export class PreferancesService {
   }
 
   // Assuming it will be preferenceDto but have to check!
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   public updatePreferances(preferancesData): Observable<any> {
     return this.http.post(API_URL_MAP.preferances, preferancesData);
   }
 
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   public getPreferancesWithGUID(guId): Observable<EmailDto> {
     const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.public.base}${API_URL_MAP.loan.public.email.base}${API_URL_MAP.loan.public.email.preferences}${guId}`;
     return this.http.get(url);

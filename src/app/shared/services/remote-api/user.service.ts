@@ -13,12 +13,13 @@ export class UserService {
 
   constructor(private http: GenericHttpService) {}
 
-  public getUserInfo() {
+  public getUserInfo(): Observable<any> {
     const url = `${API_URL_MAP.user.base}${API_URL_MAP.user.me}`;
     return this.http.get(url);
   }
 
-  public updateUserInfo(userData): any {
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+  public updateUserInfo(userData): Observable<any> {
     const url = `${API_URL_MAP.user.base}${API_URL_MAP.user.me}`;
     return this.http.post(url, userData);
   }

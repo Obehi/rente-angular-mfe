@@ -37,7 +37,6 @@ import { ManualInputDialogComponent } from './house/manual-input-dialog/manual-i
 import { HouseErrorDialogSv } from './house/error-dialog-sv/house-error-dialog-sv.component';
 
 import { SuccessChangeBankDialogComponent } from './offers/change-bank-dialog/success-change-bank-dialog/success-change-bank-dialog.component';
-import { ShareSheetComponent } from './offers/share-sheet/share-sheet.component';
 import { VirdiStatisticsComponent } from './house/virdi-statistics/virdi-statistics.component';
 import { OffersStatisticsComponentBlue } from './offers/offers-blue/offers-statistics/offers-statistics.component';
 import { OffersStatisticsComponent } from './offers/offers-statistics/offers-statistics.component';
@@ -80,7 +79,6 @@ import { ChangeBankTooManyTriesDialogError } from './offers/change-bank-dialog/c
     RateTypeFixedComponent,
     ChangeBankDialogComponent,
     SuccessChangeBankDialogComponent,
-    ShareSheetComponent,
     VirdiStatisticsComponent,
     OffersStatisticsComponentBlue,
     OffersStatisticsComponent,
@@ -143,7 +141,6 @@ import { ChangeBankTooManyTriesDialogError } from './offers/change-bank-dialog/c
     DialogInfoComponent,
     ChangeBankDialogComponent,
     SuccessChangeBankDialogComponent,
-    ShareSheetComponent,
     GetOfferFromBankDialogComponent,
     LtvTooHighDialogComponent
   ],
