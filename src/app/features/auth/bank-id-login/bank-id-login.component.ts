@@ -144,7 +144,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
         !previousRoutePath.includes('velgbank') &&
         !previousRoutePath.includes('bankid-login')
       ) {
-        // this.router.navigate(['/']);
+        this.router.navigate(['/']);
       }
     });
     this.navigationInterceptionService.setBackButtonCallback(() => {
@@ -211,57 +211,50 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
       this.authService
         .loginBankIdStep2(sessionId, this.bank)
         .pipe(retry(2))
-        .subscribe(
-          (response) => {
-            this.signicatIframeUrl = null;
+        .subscribe((response) => {
+          this.signicatIframeUrl = null;
 
-            response.newClient = true;
-            const NewUserInLoginProccess =
-              this.localStorageService.getItem('NewUserInLoginProccess') ||
-              false;
+          // response.newClient = true;
+          const NewUserInLoginProccess =
+            this.localStorageService.getItem('NewUserInLoginProccess') || false;
 
-            if (
-              response.newClient === true ||
-              NewUserInLoginProccess === true
-            ) {
-              if (NewUserInLoginProccess !== true) {
-                this.localStorageService.setItem(
-                  'NewUserInLoginProccess',
-                  true
-                );
-              }
+          if (response.newClient === true || NewUserInLoginProccess === true) {
+            if (NewUserInLoginProccess !== true) {
+              this.localStorageService.setItem('NewUserInLoginProccess', true);
+            }
 
-              /*    forkJoin([
-                this.loanService.getClientInfo(),
-                this.loanService.getOffersBanks()
-              ]).subscribe(([clientInfo, offerBanks]) => {
- */
-              /*   forkJoin([
+            forkJoin([
+              this.loanService.getClientInfo(),
+              this.loanService.getOffersBanks()
+            ]).subscribe(
+              ([clientInfo, offerBanks]) => {
+                /*   forkJoin([
                 this.loanService.getConfirmationData(),
                 this.loanService.getAllMemberships()
               ]).subscribe(([userInfo, onlyMemberships]) => {
                 console.log(userInfo.availableMemberships);
                 console.log(onlyMemberships.membership);
               }); */
-              this.loanService
-                .getAllMemberships()
-                .subscribe((onlyMemberships) => {
-                  this.initMemberships(onlyMemberships.memberships);
-                  this.initNewUserForms();
-                  // this.handlePublic();
-                  this.isLoading = false;
-                  this.showForms = true;
-                  this.newClient = true;
-                });
-            } else {
-              this.initLoansForm(response);
-            }
-          },
-          (error) => {
-            this.showForms = false;
-            this.showGenericDialog();
+                this.loanService
+                  .getAllMemberships()
+                  .subscribe((onlyMemberships) => {
+                    this.initMemberships(onlyMemberships.memberships);
+                    this.initNewUserForms();
+                    // this.handlePublic();
+                    this.isLoading = false;
+                    this.showForms = true;
+                    this.newClient = true;
+                  });
+              },
+              (error) => {
+                this.showForms = false;
+                this.showGenericDialog();
+              }
+            );
+          } else {
+            this.initLoansForm(response);
           }
-        );
+        });
   }
 
   public isErrorState(control: AbstractControl | null): boolean {
