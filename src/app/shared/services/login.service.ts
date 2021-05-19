@@ -86,7 +86,7 @@ export class LoginService {
     private sanitizer: DomSanitizer
   ) {}
 
-  public loginWithBankAndToken(bank: BankVo, oneTimeToken: string): void {
+  public loginWithBankAndToken(): void {
     forkJoin([
       this.loansService.getLoansAndRateType(),
       this.userService.getUserInfo()

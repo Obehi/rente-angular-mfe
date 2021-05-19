@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import {
   BankVo,
   BankList,
@@ -7,10 +7,11 @@ import {
   LegacyBanks
 } from '../../shared/models/bank';
 import { Router } from '@angular/router';
-import { ROUTES_MAP } from '@config/routes-config';
+import { ROUTES_MAP, ROUTES_MAP_NO } from '@config/routes-config';
 import { EnvService } from '@services/env.service';
-import { AuthService } from '@services/remote-api/auth.service';
+
 import { LocalStorageService } from '@services/local-storage.service';
+
 @Component({
   selector: 'rente-bank-select-variation',
   templateUrl: './bank-select.component.html',
@@ -20,13 +21,11 @@ export class BankSelectNoComponent implements OnInit {
   searchStr: string;
   banks: BankVo[];
   allBanks: BankVo[];
-
   sparebankIsClicked = false;
 
   constructor(
     private router: Router,
     private envService: EnvService,
-    private authService: AuthService,
     private localStorageService: LocalStorageService
   ) {}
 
@@ -129,11 +128,11 @@ export class BankSelectNoComponent implements OnInit {
     }
 
     if (bank.isSigniCat) {
-      this.authService.loginBankIdStep1().subscribe((response) => {
-        // this.router.navigate([response.url]);
-        this.localStorageService.setItem('bankIdLoginBank', bank.name);
-        window.location.href = response.url;
+      this.setBankIdInfo(null, bank.name);
+      this.router.navigate(['/autentisering/' + ROUTES_MAP_NO.bankIdLogin], {
+        state: { bank: bank.name }
       });
+
       return;
     }
 
@@ -144,5 +143,11 @@ export class BankSelectNoComponent implements OnInit {
         ROUTES_MAP.auth + '/' + bank.name.toLocaleLowerCase()
       ]);
     }
+  }
+
+  setBankIdInfo(response: any, bank: string): void {
+    bank && this.localStorageService.setItem('bankIdLoginBank', bank);
+    response &&
+      this.localStorageService.setItem('bankIdLoginBankCode', response.code);
   }
 }

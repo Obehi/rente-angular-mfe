@@ -62,6 +62,11 @@ export const API_URL_MAP = {
       base: '/user',
       info: '/info'
     },
+    membership: {
+      base: '/membership',
+      all: '/all',
+      membershipTypes: '/membership-types'
+    },
     bankOfferRequest: {
       base: '/bank-offer-request',
       preview: '/preview',
@@ -79,7 +84,6 @@ export const API_URL_MAP = {
     remainingYears: '/remainingYears',
     outstandingDebt: '/outstandingDebt',
     preferences: '/preferences',
-    membership: '/membership',
     membershipTypes: '/membership-types',
     address: '/address',
     size: '/size',

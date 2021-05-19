@@ -14,7 +14,7 @@ export class GenericErrorDialogComponent {
   ) {}
 
   public onClose(): void {
-    this.data.onClose && this.data.onClose;
+    this.data.onClose && this.data.onClose();
     this.dialogRef.close();
   }
 

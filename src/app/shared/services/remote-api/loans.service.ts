@@ -39,17 +39,22 @@ export class LoansService {
   }
 
   public getUsersMemberships() {
-    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.membership}`;
+    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.membership.base}`;
+    return this.http.get(url);
+  }
+
+  public getAllMemberships() {
+    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.membership.base}${API_URL_MAP.loan.membership.all}`;
     return this.http.get(url);
   }
 
   public setUsersMemberships(membershipsArray) {
-    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.membership}`;
-    return this.http.post(url, membershipsArray);
+    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.membership.base}`;
+    return this.http.put(url, membershipsArray);
   }
 
   public getMembershipTypes() {
-    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.membershipTypes}`;
+    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.membership.membershipTypes}`;
     return this.http.get(url);
   }
 

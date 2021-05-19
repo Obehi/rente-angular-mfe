@@ -1,20 +1,15 @@
- <div class="front-container dnbError" *ngIf="isDnbBank && environment.loginDnbIsOn === false">
+<div class="front-container dnbError" *ngIf="isDnbBank && environment.loginDnbIsOn === false">
 
-  <form
-      class="email-form"
-      [formGroup]="missingBankForm"
-      novalidate
-      (ngSubmit)="request()"
-    >
+  <form class="email-form" [formGroup]="missingBankForm" novalidate (ngSubmit)="request()">
 
     <h3>
       DNB sperrer at du kan hente dine lånedata
     </h3>
 
     <p>
-      DNB ønsker ikke at du som kunde skal sammenligne betingelsene på boliglånet ditt. 
-      Siden nyttår har de derfor aktivt sperret sine kunder å dele lånedata med Renteradar.no. 
-      Vi synes det er både trist og umoralsk at DNB aktivt motarbeider åpenhet og transparens i 
+      DNB ønsker ikke at du som kunde skal sammenligne betingelsene på boliglånet ditt.
+      Siden nyttår har de derfor aktivt sperret sine kunder å dele lånedata med Renteradar.no.
+      Vi synes det er både trist og umoralsk at DNB aktivt motarbeider åpenhet og transparens i
       boliglånsmarkedet på denne måten.
     </p>
 
@@ -22,70 +17,56 @@
       Vi har derfor laget en digital underskriftskampanje der vi ber DNB åpne for å dele låneinformasjon.
     </p>
     <br>
-    <a href = "https://www.underskrift.no/vis.asp?kampanje=8447" class="temp-button">
+    <a href="https://www.underskrift.no/vis.asp?kampanje=8447" class="temp-button">
       <p>
-          Signer på kampanjen her
+        Signer på kampanjen her
       </p>
     </a>
     <br>
     <br>
     <p>
-      Ønsker du beskjed i fremtiden når Renteradar.no igjen fungerer for DNB kunder kan du også legge igjen epostadressen din her:
+      Ønsker du beskjed i fremtiden når Renteradar.no igjen fungerer for DNB kunder kan du også legge igjen
+      epostadressen din her:
     </p>
-      
-      <div>
-        <rente-input
-          [placeholder]="'E-post'"
-          formControlName="email"
-          [errorStateMatcher]="
+
+    <div>
+      <rente-input [placeholder]="'E-post'" formControlName="email" [errorStateMatcher]="
             isErrorState(missingBankForm.controls['email'], missingBankForm)
-          "
-          [textControl]="inValid()"
-        >
-        </rente-input>
-        <div i18n=“issue-email|get-notified@@get.notified.email”
-          *ngIf="emailError"
-          class="error-message"
-        >
-          <rente-form-message
-            class="text-left d-block"
-            [type]="'error'"
-            *ngIf="missingBankForm.controls['email'].hasError('required')"
-          >
-            Ikke gyldig email
-          </rente-form-message>
-          <rente-form-message
-            class="text-left d-block"
-            [type]="'error'"
-            *ngIf="missingBankForm.controls['email'].hasError('pattern')"
-          >
-            Ikke gyldig email
-          </rente-form-message>
-        </div>
+          " [textControl]="inValid()">
+      </rente-input>
+      <div i18n=“issue-email|get-notified@@get.notified.email” *ngIf="emailError" class="error-message">
+        <rente-form-message class="text-left d-block" [type]="'error'"
+          *ngIf="missingBankForm.controls['email'].hasError('required')">
+          Ikke gyldig email
+        </rente-form-message>
+        <rente-form-message class="text-left d-block" [type]="'error'"
+          *ngIf="missingBankForm.controls['email'].hasError('pattern')">
+          Ikke gyldig email
+        </rente-form-message>
       </div>
-
-      <rente-button i18n=“notify-me|get-notified@@get.notified.notifyMe”
-        color="primary"
-        [disabled]="!missingBankForm.valid || isLoading"
-        >Gi meg beskjed!
-      </rente-button>
-    </form>
-
-    <div class="loading" *ngIf="!missingBankForm">
-      <mat-spinner [diameter]="48" [strokeWidth]="4"></mat-spinner>
     </div>
 
-    <div *ngIf="isDnbBank" class="calculator-promotion">
-      <h4>I mellomtiden prøv gjerne vår <a [routerLink]="['/boliglanskalkulator']">
+    <rente-button i18n=“notify-me|get-notified@@get.notified.notifyMe” color="primary"
+      [disabled]="!missingBankForm.valid || isLoading">Gi meg beskjed!
+    </rente-button>
+  </form>
+
+  <div class="loading" *ngIf="!missingBankForm">
+    <mat-spinner [diameter]="48" [strokeWidth]="4"></mat-spinner>
+  </div>
+
+  <div *ngIf="isDnbBank" class="calculator-promotion">
+    <h4>I mellomtiden prøv gjerne vår <a [routerLink]="['/boliglanskalkulator']">
         boliglånskalkulator
       </a> </h4>
-    </div>
+  </div>
 
-</div> 
+</div>
+
 
 <div *ngIf="!isDnbBank || environment.loginDnbIsOn === true" class="front-container">
   <p *ngIf="false" class="red">
-    Vi har nylig åpnet tjenesten for Handelsbanken, og den er fortsatt under utvikling. 
+    Vi har nylig åpnet tjenesten for Handelsbanken, og den er fortsatt under utvikling.
     Gi gjerne tilbakemelding via chat/epost hvis noe ikke fungerer som det skal
   </p>
   <p *ngIf="false" class="red">
@@ -93,9 +74,10 @@
     Gi gjerne tilbakemelding via chat/epost hvis noe ikke fungerer som det skal
   </p>
 
-  <p class="red" *ngIf="isDnbBank">Vi opplever at DNB sperrer enkelte kunder fra å innhente sine lånedata. Se nederst på siden for mer informasjon.
-  
-  
+  <p class="red" *ngIf="isDnbBank">Vi opplever at DNB sperrer enkelte kunder fra å innhente sine lånedata. Se nederst på
+    siden for mer informasjon.
+
+
   <section *ngIf="!isLoginStarted && bankIdForm" class="login">
     <h3 i18n=“title|bank-id@@bankId.title”>Logg inn med BankID på mobil</h3>
     <p i18n=“description|bank-id@@bankId.description”>
@@ -105,7 +87,7 @@
     <p i18n=“description|bank-id@@bankId.description2” *ngIf="isSB1Bank">
       Vi støtter kun BankID på Mobil, ikke kodebrikke eller engangskode appen.
     </p>
-<!-- 
+    <!-- 
     <p class="dnbInstability" *ngIf="isEikaBank">Vi opplever at enkelte brukere ikke får logget inn.<br> Vi jobber med å rette problemet</p>
     -->
 
@@ -122,52 +104,27 @@
       OBS: Vi tester fortsatt løsningen for denne banken. <br />
       Gi gjerne beskjed hvis noe ikke fungerer optimalt.
     </p>
-    
-    <form
-      [formGroup]="bankIdForm"
-      novalidate
-      (ngSubmit)="startLogin(bankIdForm.value)"
-    >
-      <img
-        class="bank-logo"
-        [src]="bankLogo"
-        [alt]="bank?.label"
-        [title]="bank?.label"
-      />
+
+    <form [formGroup]="bankIdForm" novalidate (ngSubmit)="startLogin(bankIdForm.value)">
+      <img class="bank-logo" [src]="bankLogo" [alt]="bank?.label" [title]="bank?.label" />
 
       <div *ngIf="isSsnBankLogin; else birthdateInput" class="form-group">
-        <rente-input
-          [errorStateMatcher]="
+        <rente-input [errorStateMatcher]="
             isErrorState(bankIdForm.controls['ssn'], bankIdForm)
-          "
-          [placeholder]="'Ditt fødselsnummer (11 siffer)'"
-          formControlName="ssn"
-          [type]="'tel'"
-          [maskType]="mask.ssn"
-          [modelOptions]="{ updateOn: 'blur' }"
-
-        >
+          " [placeholder]="'Ditt fødselsnummer (11 siffer)'" formControlName="ssn" [type]="'tel'" [maskType]="mask.ssn"
+          [modelOptions]="{ updateOn: 'blur' }">
         </rente-input>
         <div class="error-message" *ngIf="bankIdForm.controls['ssn'].touched">
-          <rente-form-message
-            class="text-left d-block"
-            *ngIf="bankIdForm.controls['ssn'].hasError('required')"
-            [type]="'error'"
-            i18n=“issue|bank-id@@bankId.description.birthNumber”>
+          <rente-form-message class="text-left d-block" *ngIf="bankIdForm.controls['ssn'].hasError('required')"
+            [type]="'error'" i18n=“issue|bank-id@@bankId.description.birthNumber”>
             Fødselsnummer kan ikke være tomt
           </rente-form-message>
-          <rente-form-message
-            class="text-left d-block"
-            *ngIf="bankIdForm.controls['ssn'].hasError('pattern')"
-            [type]="'error'"
-            i18n=“issue|bank-id@@bankId.description.birthNumber2”>
+          <rente-form-message class="text-left d-block" *ngIf="bankIdForm.controls['ssn'].hasError('pattern')"
+            [type]="'error'" i18n=“issue|bank-id@@bankId.description.birthNumber2”>
             Fødselsnummer ikke gyldig
           </rente-form-message>
-          <rente-form-message
-            class="text-left d-block"
-            *ngIf="bankIdForm.controls['ssn'].hasError('ssnNotValid')"
-            [type]="'error'"
-            i18n=“issue|bank-id@@bankId.description.birthNumber3”>
+          <rente-form-message class="text-left d-block" *ngIf="bankIdForm.controls['ssn'].hasError('ssnNotValid')"
+            [type]="'error'" i18n=“issue|bank-id@@bankId.description.birthNumber3”>
             Fødselsnummeret er ikke gyldig
           </rente-form-message>
         </div>
@@ -175,33 +132,18 @@
 
       <ng-template #birthdateInput>
         <div class="form-group">
-          <rente-input
-            [errorStateMatcher]="
+          <rente-input [errorStateMatcher]="
               isErrorState(bankIdForm.controls['birthdate'], bankIdForm)
-            "
-            [placeholder]="'Din fødselsdato (ddmmåå)'"
-            formControlName="birthdate"
-            [maskType]="mask.birthDate"
-            [type]="'tel'"
-            [modelOptions]="{ updateOn: 'blur' }"
-          >
+            " [placeholder]="'Din fødselsdato (ddmmåå)'" formControlName="birthdate" [maskType]="mask.birthDate"
+            [type]="'tel'" [modelOptions]="{ updateOn: 'blur' }">
           </rente-input>
-          <div
-            class="error-message"
-            *ngIf="bankIdForm.controls['birthdate'].touched"
-          >
-            <rente-form-message
-              class="text-left d-block"
-              *ngIf="bankIdForm.controls['birthdate'].hasError('required')"
-              [type]="'error'"
-              i18n=“issue|bank-id@@bankId.description.birthNumber4”>
+          <div class="error-message" *ngIf="bankIdForm.controls['birthdate'].touched">
+            <rente-form-message class="text-left d-block" *ngIf="bankIdForm.controls['birthdate'].hasError('required')"
+              [type]="'error'" i18n=“issue|bank-id@@bankId.description.birthNumber4”>
               Fødselsdato kan ikke være tomt
             </rente-form-message>
-            <rente-form-message
-              class="text-left d-block"
-              *ngIf="bankIdForm.controls['birthdate'].hasError('pattern')"
-              [type]="'error'"
-              i18n=“issue|bank-id@@bankId.description.birthNumber5”>
+            <rente-form-message class="text-left d-block" *ngIf="bankIdForm.controls['birthdate'].hasError('pattern')"
+              [type]="'error'" i18n=“issue|bank-id@@bankId.description.birthNumber5”>
               Fødselsdato ikke gyldig
             </rente-form-message>
           </div>
@@ -209,135 +151,94 @@
       </ng-template>
 
       <div class="form-group">
-        <rente-input
-          [errorStateMatcher]="
+        <rente-input [errorStateMatcher]="
             isErrorState(bankIdForm.controls['phone'], bankIdForm)
-          "
-          [placeholder]="'Ditt mobilnummer (8 siffer)'"
-          formControlName="phone"
-          [maskType]="mask.phone"
-          [type]="'tel'"
-          [modelOptions]="{ updateOn: 'blur' }"
-        >
+          " [placeholder]="'Ditt mobilnummer (8 siffer)'" formControlName="phone" [maskType]="mask.phone"
+          [type]="'tel'" [modelOptions]="{ updateOn: 'blur' }">
         </rente-input>
         <div class="error-message" *ngIf="bankIdForm.controls['phone'].touched">
-          <rente-form-message
-            class="text-left d-block"
-            *ngIf="bankIdForm.controls['phone'].hasError('required')"
-            [type]="'error'"
-            i18n=“issue|bank-id@@bankId.description.telephoneNumber”>
+          <rente-form-message class="text-left d-block" *ngIf="bankIdForm.controls['phone'].hasError('required')"
+            [type]="'error'" i18n=“issue|bank-id@@bankId.description.telephoneNumber”>
             Telefonnummer kan ikke være tomt
           </rente-form-message>
-          <rente-form-message
-            class="text-left d-block"
-            *ngIf="bankIdForm.controls['phone'].hasError('pattern')"
-            [type]="'error'"
-            i18n=“issue|bank-id@@bankId.description.telephoneNumber2”>
+          <rente-form-message class="text-left d-block" *ngIf="bankIdForm.controls['phone'].hasError('pattern')"
+            [type]="'error'" i18n=“issue|bank-id@@bankId.description.telephoneNumber2”>
             Telefonnummer ikke gyldig
           </rente-form-message>
         </div>
       </div>
 
-      <mat-checkbox
-        formControlName="confirmation"
-        (change)="isConfirmed = $event.checked"
-        i18n=“accepting|bank-id@@bankId.policy” >
+      <mat-checkbox formControlName="confirmation" (change)="isConfirmed = $event.checked"
+        i18n=“accepting|bank-id@@bankId.policy”>
         Jeg aksepterer Renteradar.no's
         <a class="link" (click)="openServiceDialog()">vilkår</a>
       </mat-checkbox>
 
       <div class="register-btn">
-        <rente-button
-          color="primary"
-          [disabled]="!bankIdForm.valid || !isConfirmed"
-          i18n=“log-in|bank-id@@bankId.logIn” >
+        <rente-button color="primary" [disabled]="!bankIdForm.valid || !isConfirmed"
+          i18n=“log-in|bank-id@@bankId.logIn”>
           Logg inn
         </rente-button>
       </div>
     </form>
   </section>
 
-  <rente-login-status
-    *ngIf="isLoginStarted"
-    [userData]="userData"
-    [bank]="bank"
-    (returnToInputPage)="isLoginStarted = false"
-  >
+  <rente-login-status *ngIf="isLoginStarted" [userData]="userData" [bank]="bank"
+    (returnToInputPage)="isLoginStarted = false">
   </rente-login-status>
 
 
 
   <!-- <div *ngIf="isDnbBank && environment.loginDnbIsOn === false"> -->
-<div *ngIf="isDnbBank && environment.loginDnbIsOn === true">
-    <form
-      class="email-form"
-      [formGroup]="missingBankForm"
-      novalidate
-      (ngSubmit)="request()"
-    >
+  <div *ngIf="isDnbBank && environment.loginDnbIsOn === true">
+    <form class="email-form" [formGroup]="missingBankForm" novalidate (ngSubmit)="request()">
 
-    <h3>
-      Angående DNBs sperring av innhenting av lånedata
-    </h3>
+      <h3>
+        Angående DNBs sperring av innhenting av lånedata
+      </h3>
 
-    <p>
-      DNB ønsker ikke at du som kunde skal sammenligne betingelsene på boliglånet ditt. 
-      Siden nyttår har de derfor aktivt sperret sine kunder å dele lånedata med Renteradar.no. 
-      Vi synes det er både trist og umoralsk at DNB aktivt motarbeider åpenhet og transparens i 
-      boliglånsmarkedet på denne måten, og jobber aktivt for å løse problemet.
-    </p>
-
-    <p>
-      Vi har også laget en digital underskriftskampanje der vi ber DNB åpne for å dele låneinformasjon.
-    </p>
-    <br>
-    <a href = "https://www.underskrift.no/vis.asp?kampanje=8447" class="temp-button">
       <p>
-          Signer på kampanjen her
+        DNB ønsker ikke at du som kunde skal sammenligne betingelsene på boliglånet ditt.
+        Siden nyttår har de derfor aktivt sperret sine kunder å dele lånedata med Renteradar.no.
+        Vi synes det er både trist og umoralsk at DNB aktivt motarbeider åpenhet og transparens i
+        boliglånsmarkedet på denne måten, og jobber aktivt for å løse problemet.
       </p>
-    </a>
-    <br>
-    <br>
-    <p>
-      Ønsker du beskjed i fremtiden når Renteradar.no igjen fungerer for DNB kunder kan du også 
-      legge igjen epostadressen din her:
-    </p>
-      
+
+      <p>
+        Vi har også laget en digital underskriftskampanje der vi ber DNB åpne for å dele låneinformasjon.
+      </p>
+      <br>
+      <a href="https://www.underskrift.no/vis.asp?kampanje=8447" class="temp-button">
+        <p>
+          Signer på kampanjen her
+        </p>
+      </a>
+      <br>
+      <br>
+      <p>
+        Ønsker du beskjed i fremtiden når Renteradar.no igjen fungerer for DNB kunder kan du også
+        legge igjen epostadressen din her:
+      </p>
+
       <div>
-        <rente-input
-          [placeholder]="'E-post'"
-          formControlName="email"
-          [errorStateMatcher]="
+        <rente-input [placeholder]="'E-post'" formControlName="email" [errorStateMatcher]="
             isErrorState(missingBankForm.controls['email'], missingBankForm)
-          "
-          [textControl]="inValid()"
-        >
+          " [textControl]="inValid()">
         </rente-input>
-        <div i18n=“issue-email|get-notified@@get.notified.email”
-          *ngIf="emailError"
-          class="error-message"
-        >
-          <rente-form-message
-            class="text-left d-block"
-            [type]="'error'"
-            *ngIf="missingBankForm.controls['email'].hasError('required')"
-          >
+        <div i18n=“issue-email|get-notified@@get.notified.email” *ngIf="emailError" class="error-message">
+          <rente-form-message class="text-left d-block" [type]="'error'"
+            *ngIf="missingBankForm.controls['email'].hasError('required')">
             Ikke gyldig email
           </rente-form-message>
-          <rente-form-message
-            class="text-left d-block"
-            [type]="'error'"
-            *ngIf="missingBankForm.controls['email'].hasError('pattern')"
-          >
+          <rente-form-message class="text-left d-block" [type]="'error'"
+            *ngIf="missingBankForm.controls['email'].hasError('pattern')">
             Ikke gyldig email
           </rente-form-message>
         </div>
       </div>
 
-      <rente-button i18n=“notify-me|get-notified@@get.notified.notifyMe”
-        color="primary"
-        [disabled]="!missingBankForm.valid || isLoading"
-        >Gi meg beskjed!
+      <rente-button i18n=“notify-me|get-notified@@get.notified.notifyMe” color="primary"
+        [disabled]="!missingBankForm.valid || isLoading">Gi meg beskjed!
       </rente-button>
     </form>
   </div>
@@ -353,7 +254,7 @@
 
   <div *ngIf="isDnbBank" class="calculator-promotion">
     <h4>I mellomtiden prøv gjerne vår <a [routerLink]="['/boliglanskalkulator']">
-      boliglånskalkulator
-    </a> </h4>
+        boliglånskalkulator
+      </a> </h4>
   </div>
 </div>
