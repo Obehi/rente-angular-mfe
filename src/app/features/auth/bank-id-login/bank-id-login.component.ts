@@ -177,7 +177,6 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
       )
       .subscribe(
         (response) => {
-          // this.router.navigate([response.url]);
           console.log(response);
           this.localStorageService.setItem('bankIdLoginBank', bankName);
           this.localStorageService.setItem(
@@ -228,13 +227,6 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
               this.loanService.getOffersBanks()
             ]).subscribe(
               ([clientInfo, offerBanks]) => {
-                /*   forkJoin([
-                this.loanService.getConfirmationData(),
-                this.loanService.getAllMemberships()
-              ]).subscribe(([userInfo, onlyMemberships]) => {
-                console.log(userInfo.availableMemberships);
-                console.log(onlyMemberships.membership);
-              }); */
                 this.loanService
                   .getAllMemberships()
                   .subscribe((onlyMemberships) => {
@@ -371,10 +363,13 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
             value: offer.id
           };
         });
-
+        console.log('selectOptions');
+        console.log(this.selectOptions);
         const selectedOption = this.selectOptions.filter((item) => {
           return item.value === clientInfo.productId;
         })[0];
+        console.log('selectedOption');
+        console.log(selectedOption);
         const outstandingDebt = String(clientInfo.outstandingDebt);
         this.loanFormGroup = this.fb.group({
           outstandingDebt: [outstandingDebt, Validators.required],
@@ -421,9 +416,14 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     }
     this.isLoading = true;
 
+    const userMemberships = {
+      memberships: clientDto.memberships
+    };
+    clientDto.memberships = [];
     concat(
       this.loanService.updateClientInfo(clientDto),
-      this.loanService.updateLoanUserInfo(loanUpdateInfoDto)
+      this.loanService.updateLoanUserInfo(loanUpdateInfoDto),
+      this.loanService.setUsersMemberships(userMemberships)
     )
       .pipe(toArray())
       .subscribe(
@@ -512,7 +512,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
         : this.userFormGroup?.get('income')?.value;
 
     clientDto.memberships = this.memberships.map((membership) => {
-      return membership.label;
+      return membership.name;
     });
 
     return clientDto;
