@@ -346,8 +346,6 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
         const selectedOption = this.selectOptions.filter((item) => {
           return item.value === clientInfo.productId;
         })[0];
-        console.log('selectedOption');
-        console.log(selectedOption);
         const outstandingDebt = String(clientInfo.outstandingDebt);
         this.loanFormGroup = this.fb.group({
           outstandingDebt: [outstandingDebt, Validators.required],
@@ -363,13 +361,27 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
         this.isLoading = false;
       });
     } else {
-      this.loanFormGroup = this.fb.group({
-        outstandingDebt: ['', Validators.required],
-        remainingYears: ['', [Validators.required, Validators.max(100)]],
-        loanType: ['', Validators.required]
-      });
-      this.newClient = false;
-      this.isLoading = false;
+      this.loanService.getOffersBanks().subscribe(
+        (offerBanks) => {
+          this.selectOptions = (offerBanks.offers as any[]).map((offer) => {
+            return {
+              name: offer.name,
+              value: offer.id
+            };
+          });
+
+          this.loanFormGroup = this.fb.group({
+            outstandingDebt: ['', Validators.required],
+            remainingYears: ['', [Validators.required, Validators.max(100)]],
+            loanType: ['', Validators.required]
+          });
+          this.newClient = false;
+          this.isLoading = false;
+        },
+        (_) => {
+          this.showGenericDialog();
+        }
+      );
     }
   }
 
