@@ -378,7 +378,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
           this.newClient = false;
           this.isLoading = false;
         },
-        (_) => {
+        (error) => {
           this.showGenericDialog();
         }
       );
