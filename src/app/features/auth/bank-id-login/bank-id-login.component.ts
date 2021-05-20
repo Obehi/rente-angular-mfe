@@ -1,4 +1,3 @@
-import { PlatformLocation } from '@angular/common';
 import {
   Component,
   ViewChild,
@@ -12,16 +11,7 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 import { LocalStorageService } from '@services/local-storage.service';
 import { AuthService } from '@services/remote-api/auth.service';
-import {
-  Observable,
-  of,
-  from,
-  fromEvent,
-  timer,
-  EMPTY,
-  concat,
-  scheduled
-} from 'rxjs';
+import { Observable, concat, Subscription } from 'rxjs';
 import {
   startWith,
   map,
@@ -101,6 +91,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
   public newClient = true;
   public showManualInputForm = false;
   private loginState: any;
+  private routeSubscription: Subscription;
   signicatIframeUrl?: SafeResourceUrl | null;
 
   constructor(
@@ -108,20 +99,18 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     private authService: AuthService,
     private localStorageService: LocalStorageService,
     private router: Router,
-    location: PlatformLocation,
     public dialog: MatDialog,
     private navigationInterceptionService: NavigationInterceptionService,
     private fb: FormBuilder,
     private loanService: LoansService,
     private loginService: LoginService,
-    private profileService: ProfileService,
     private globalStateService: GlobalStateService,
     private routeEventsService: RouteEventsService,
     private sanitizer: DomSanitizer
   ) {}
 
   ngOnDestroy(): void {
-    this.routeEventsService.previousRoutePath.unsubscribe();
+    this.routeSubscription.unsubscribe();
   }
   ngOnInit(): void {
     this.loginState = this.localStorageService.getObject('loginState');
@@ -138,15 +127,17 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
   }
 
   private setRoutingListeners() {
-    this.routeEventsService.previousRoutePath.subscribe((previousRoutePath) => {
-      if (
-        !previousRoutePath.includes('bankid-login?status=') &&
-        !previousRoutePath.includes('velgbank') &&
-        !previousRoutePath.includes('bankid-login')
-      ) {
-        this.router.navigate(['/']);
+    this.routeSubscription = this.routeEventsService.previousRoutePath.subscribe(
+      (previousRoutePath) => {
+        if (
+          !previousRoutePath.includes('bankid-login?status=') &&
+          !previousRoutePath.includes('velgbank') &&
+          !previousRoutePath.includes('bankid-login')
+        ) {
+          this.router.navigate(['/']);
+        }
       }
-    });
+    );
     this.navigationInterceptionService.setBackButtonCallback(() => {
       if (this.currentStepperValue !== 0) {
         this.back();
