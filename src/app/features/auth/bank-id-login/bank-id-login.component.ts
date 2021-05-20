@@ -152,8 +152,6 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
   }
 
   setBankIdInfo(response, bank): void {
-    console.log('setBankIdInfo success');
-
     this.localStorageService.setItem('bankIdLoginBank', bank.name);
     this.localStorageService.setItem('bankIdLoginBankCode', response.code);
   }
@@ -168,7 +166,6 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
       )
       .subscribe(
         (response) => {
-          console.log(response);
           this.localStorageService.setItem('bankIdLoginBank', bankName);
           this.localStorageService.setItem(
             'bankIdLoginBankCode',
@@ -188,7 +185,6 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     if (event.origin === 'https://id.idfy.io') {
       const data = JSON.parse(event.data);
       if (data.status === 'success') {
-        console.log('tsssss');
         this.statusSuccess(data.sessionId);
       }
     }
@@ -279,7 +275,6 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
 
   public offerSelected(event: any): void {
     this.selectedOffer = event;
-    console.log(this.selectedOffer);
   }
 
   initNewUserForms(): void {
@@ -323,7 +318,6 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
   }
 
   matSelectLoanTypeCompare(o1: any, o2: any): boolean {
-    console.log('IN COMPARE');
     if (o1.name === o2.name && o1.value === o2.value) return true;
     else return false;
   }
@@ -341,8 +335,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
             value: offer.id
           };
         });
-        console.log('selectOptions');
-        console.log(this.selectOptions);
+
         const selectedOption = this.selectOptions.filter((item) => {
           return item.value === clientInfo.productId;
         })[0];
@@ -355,7 +348,6 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
           ],
           loanType: [selectedOption ?? null, Validators.required]
         });
-        console.log(this.loanFormGroup.get('loanType'));
 
         this.newClient = false;
         this.isLoading = false;
@@ -419,7 +411,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
       .subscribe(
         (_) => {
           this.isLoading = false;
-          console.log('clientInfoResponse & loanInfoResponse');
+
           if (this.bank !== null) {
             this.bank && this.loginService.loginWithBankAndToken();
           } else {
@@ -443,8 +435,6 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
           }
         },
         (error) => {
-          console.log(error);
-
           if (error.errorType === ApiError.virdiSerachNotFound) {
             const dialogData = {
               header: 'Ops, noe gikk visst galt',
@@ -452,7 +442,6 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
               cancelText: 'Avbryt',
 
               onConfirm: () => {
-                console.log('ITS HAPPENING BUNKER');
                 this.loanFormGroup?.reset();
                 this.userFormGroup?.reset();
                 this.membershipFormGroup?.reset();
@@ -463,24 +452,6 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
             };
           } else {
             this.showGenericDialog();
-            /* const dialogData = {
-              header: 'Ops, noe gikk visst galt',
-              confirmText: 'Prøv igjen',
-              cancelText: 'Avbryt',
-              onConfirm: () => {
-                console.log('ITS HAPPENING BUNKER');
-                this.loanFormGroup?.reset();
-                this.userFormGroup?.reset();
-                this.membershipFormGroup?.reset();
-                this.membershipFormGroup?.reset();
-                this.stepper.selectedIndex = 0;
-                this.currentStepperValue = 0;
-              }
-            };
-
-            this.dialog.open(GenericErrorDialogComponent, {
-              data: dialogData
-            }); */
           }
         }
       );
@@ -527,7 +498,6 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
   }
 
   updateStepperIndex(index: number): void {
-    console.log('updateStepperIndex');
     if (index !== this.stepper.selectedIndex) {
       this.stepper.selectedIndex = index;
       this.currentStepperValue = index;
@@ -561,15 +531,8 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
   }
 
   public isInvalid(formGroup: FormGroup, valueName: string): boolean {
-    console.log('formGroup.get(valueName)');
-    console.log(formGroup.get(valueName));
-    console.log('error');
-
     this.emailFormGroup?.get('email')?.updateValueAndValidity();
-    console.log(formGroup.get(valueName)?.invalid);
-    console.log(formGroup.get(valueName)?.invalid);
 
-    console.log(this.emailFormGroup?.get('email')?.invalid);
     return (
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       formGroup.get(valueName)!.hasError('pattern') &&
@@ -579,7 +542,6 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
   }
 
   next(): void {
-    console.log(this.memberships);
     this.stepper.next();
     this.currentStepperValue = this.stepper.selectedIndex;
   }
@@ -621,8 +583,6 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
         });
       },
       (error) => {
-        console.log(error);
-
         if (
           error.errorType === ApiError.virdiSerachNotFound ||
           error.errorType === ApiError.propertyCantFindZip
@@ -657,7 +617,6 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
   goToUserForm(): void {
     this.stepper.next();
     this.currentStepperValue = this.stepper.selectedIndex;
-    console.log(this.stepper.selectedIndex);
   }
 
   goToMembershipForm(): void {
