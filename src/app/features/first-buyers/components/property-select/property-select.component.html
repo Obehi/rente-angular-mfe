@@ -1,9 +1,5 @@
-<div class="main-div">
-  <div *ngIf="!isMobile">
-    <h2 class="selected-membership-top">
-      Valgte medlemskap ({{ memberships }})
-    </h2>
-  </div>
+<!-- MOBILE VERSION -->
+<div *ngIf="isMobile" class="main-div">
   <div *ngIf="isMobile" class="chosen-memberships-div">
     <h2 class="selected-membership-top">
       Valgte medlemskap ({{ memberships }})
@@ -16,7 +12,7 @@
     >
       <div class="selected-membership">
         <p>
-          {{ option }}
+          {{ option | truncate: 25 }}
         </p>
         <img
           class="remove-icon"
@@ -69,5 +65,81 @@
     <rente-button color="primary" [disabled]="!saveEnabled" (click)="save()"
       >Lagre</rente-button
     >
+  </div>
+</div>
+
+<!-- DESKTOP VERSION -->
+<div *ngIf="!isMobile" class="main-div">
+  <div class="desktop-column-one">
+    <div class="desktop-flex-part-one">
+      <h2 class="selected-membership-top">
+        Valgte medlemskap ({{ memberships }})
+      </h2>
+      <div
+        *ngFor="let option of selectedMemberships"
+        class="item-list"
+        [@inOutAnimation]
+      >
+        <div class="selected-membership">
+          <p>
+            {{ option | truncate: 19 }}
+          </p>
+          <img
+            class="remove-icon"
+            src="{{ icon }}"
+            (click)="removeMembership(option)"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="desktop-flex-part-two">
+      <div class="search-div">
+        <input
+          class="search-div-input"
+          [(ngModel)]="searchText"
+          placeholder="Finn dine medlemskap"
+        />
+        <img class="search-icon" src="{{ searchIconDark }}" />
+      </div>
+      <div class="dropdown-scroll">
+        <div class="dropdown-div">
+          <div
+            *ngFor="let option of membershipNames | filter: searchText"
+            class="list-div"
+          >
+            <p
+              *ngIf="!chosenMemberships(option)"
+              (click)="chooseMembership(option)"
+            >
+              {{ option }}
+            </p>
+            <p
+              class="p-selected"
+              *ngIf="chosenMemberships(option)"
+              (click)="removeMembership(option)"
+            >
+              {{ option }}
+            </p>
+            <img
+              *ngIf="chosenMemberships(option)"
+              class="remove-icon-list"
+              src="{{ icon }}"
+              (click)="removeMembership(option)"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="desktop-column-two">
+    <div class="buttons">
+      <rente-button color="primary-hollow" (click)="cancel()"
+        >Avbryt</rente-button
+      >
+
+      <rente-button color="primary" [disabled]="!saveEnabled" (click)="save()"
+        >Lagre</rente-button
+      >
+    </div>
   </div>
 </div>

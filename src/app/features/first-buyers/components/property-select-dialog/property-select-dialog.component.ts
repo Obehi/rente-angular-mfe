@@ -22,6 +22,7 @@ export class PropertySelectDialogComponent implements OnInit {
   @Output() dataSent: EventEmitter<any> = new EventEmitter();
   public closeState: string;
 
+  selectedMemberships: string[];
   constructor(
     public dialogRef: MatDialogRef<PropertySelectDialogComponent>,
     public dialog: MatDialog,
@@ -34,14 +35,25 @@ export class PropertySelectDialogComponent implements OnInit {
 
   public onClose(): void {
     this.dialogRef.close();
+    this.test();
   }
 
+  // public addMembership(memberships): void  {
+  //   this.selectedMemberships = memberships
+  // }
+
   public sendMemberships(event: string[]): void {
+    // this.isDirty = true
     this.firstBuyersAPIService.updateMembership(event).subscribe((res) => {
       console.log(res);
+      // this.data.onClose(memberships);
       this.onClose();
       this.dataSent.emit();
     });
     this.firstBuyersService.pushMessage();
+  }
+
+  public test() {
+    console.log(this.selectedMemberships);
   }
 }

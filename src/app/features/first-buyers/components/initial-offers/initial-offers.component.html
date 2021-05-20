@@ -59,7 +59,9 @@
                 [options]="property.options"
                 [memberships]="allMemberships"
                 [iconPath]="property.iconPath"
+                [placeholder]="ASD"
                 [autocompleteOptions]="property.options"
+                (selectedMemberships)="updateMemberships2($event)"
               >
               </rente-property-input>
               <!-- <property-select

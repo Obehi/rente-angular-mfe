@@ -376,6 +376,16 @@ export class InitialOffersComponent implements OnInit {
       });
   }
 
+  updateMemberships2(memberships: string[]) {
+    this.firstBuyersService.selectedMemberships = [
+      ...this.memberships,
+      ...this.selectedFeaturedMemberships
+    ];
+    this.firstBuyersAPIService.updateMembership(memberships).subscribe((_) => {
+      this.formGroup.markAsDirty();
+    });
+  }
+
   isAllDataFilled() {
     return !!(
       this.outstandingDebtControl.value &&
@@ -427,11 +437,12 @@ export class InitialOffersComponent implements OnInit {
     this.updateMemberships();
   }
 
-  applyMemberships(memberships: MembershipTypeDto[]) {
+  applyMemberships(memberships: MembershipTypeDto[]): void {
     // causing ExpressionChangedAfterItHasBeenCheckedError since commit 9aaa47db or the one before
     this.memberships = memberships;
     this.updateMemberships();
     this.formGroup.markAsDirty();
+    console.log(memberships);
   }
 
   ngOnInit(): void {

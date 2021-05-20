@@ -17,6 +17,9 @@ import {
 import { FilterPipe } from '@shared/pipes/filter.pipe';
 import { group } from 'console';
 import { PropertySelectDialogComponent } from '../property-select-dialog/property-select-dialog.component';
+import { TruncatePipe } from '@shared/pipes/truncate.pipe';
+import { PropertyInputComponent } from '../property-input/property-input.component';
+import { MembershipTypeDto } from '@services/remote-api/loans.service';
 
 @Component({
   selector: 'property-select',
@@ -60,7 +63,7 @@ export class PropertySelectComponent implements OnInit, OnDestroy {
   searchIconLight = '../../../../assets/icons/search-grey-light.svg';
   searchIconDark = '../../../../assets/icons/search-grey-dark.svg';
 
-  @Output() selectedItemsEmitter = new EventEmitter<any>();
+  @Output() selectedItemsEmitter = new EventEmitter<MembershipTypeDto[]>();
   @Output() closeEmitter = new EventEmitter<any>();
 
   public selectedMemberships: string | undefined = [];
@@ -87,6 +90,10 @@ export class PropertySelectComponent implements OnInit, OnDestroy {
     } else {
       return false;
     }
+  }
+
+  get allMemberships(): string[] {
+    return;
   }
 
   chooseMembership(membership: string): void {

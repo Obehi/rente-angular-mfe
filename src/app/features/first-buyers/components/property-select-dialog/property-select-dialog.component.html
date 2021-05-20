@@ -1,6 +1,7 @@
 <property-select
   (selectedItemsEmitter)="sendMemberships($event)"
   (closeEmitter)="onClose()"
+  (selectedMemberships)="test($event)"
   [options]="data"
   *ngIf="data !== null && data !== undefined"
 ></property-select>

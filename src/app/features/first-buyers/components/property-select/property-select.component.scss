@@ -17,6 +17,11 @@
   ::ng-deep .mat-dialog-container {
     border-radius: 100px;
     margin: unset !important;
+    @media (min-width: 601px) {
+      margin: unset !important;
+      height: 44vh !important;
+      top: 15vh;
+    }
   }
 
   .main-div {
@@ -59,7 +64,6 @@
   }
 
   .dropdown-div {
-    // margin-top: 65%;
   }
 
   .dropdown-scroll {
@@ -200,7 +204,7 @@
 
   ::ng-deep .mat-dialog-container {
     margin: unset !important;
-    height: 35vh !important;
+    height: 420px !important;
     top: 15vh;
   }
 
@@ -208,33 +212,110 @@
     height: 100%;
     display: flex;
     flex-direction: column;
+    overflow: hidden;
+  }
+
+  .desktop-column-one {
+    display: flex;
+    height: 83%;
+  }
+  .desktop-column-two {
+    padding: 10px;
+  }
+
+  .desktop-flex-part-one {
+    order: 1;
+    width: 55%;
+    overflow-y: hidden;
+    // background: linear-gradient(180deg, #009688, #ffffff);
+    background: linear-gradient(180deg, #264f80, #183a63);
+    border-radius: 0px 0px 15px 0px;
+
+    h2 {
+      font-size: 18px;
+      font-weight: 500;
+      line-height: 1.2;
+      color: white;
+      padding: 10px;
+      font-weight: 400;
+    }
+    p {
+      background: $white;
+      font-size: 1rem;
+      margin-top: 20px;
+      font-weight: 400;
+
+      width: 80%;
+      max-width: 80%;
+      border-radius: 9px;
+      padding: 10px;
+      margin: 10px;
+    }
+    .p-selected {
+      background: $green;
+    }
+    .item-list {
+    }
+    .remove-icon {
+      width: 6%;
+    }
+
+    .selected-membership {
+      display: flex;
+    }
+  }
+
+  // .desktop-flex-part-one {
+  //   order: 1;
+  //   width: 55%;
+  // }
+  .desktop-flex-part-two {
+    order: 2;
+    max-width: 62%;
+    min-width: 62%;
+  }
+  .dropdown-scroll {
+    overflow-y: scroll;
+    height: 86%;
+    .dropdown-div {
+    }
   }
 
   .list-div {
-    background: $white;
+    background: $grey-light;
+    width: 85%;
+    margin-left: 30px;
+    border-radius: 8px;
+    display: flex;
+    margin-top: 10px;
     p {
       font-size: 1rem;
       margin-top: 10px;
       margin-left: 15px;
       width: 90%;
-      padding: 15px;
+      padding: 10px;
       font-weight: 400;
     }
 
     .p-selected {
-      background: $green;
+      color: $green;
       font-size: 1rem;
       margin-top: 10px;
       margin-left: 15px;
       width: 90%;
-      padding: 15px;
+      padding: 10px;
       font-weight: 400;
+    }
+
+    .remove-icon-list {
+      width: 1.5rem;
+      margin-right: 1rem;
     }
   }
 
   .search-div {
     background-color: white;
-    width: 96%;
+
     padding: 10px;
     display: flex;
 
@@ -264,28 +345,6 @@
   }
   .buttons {
     display: flex;
-    position: fixed;
-    top: 57vh;
-    left: 40vh;
-    background: $white;
-    padding: 10px;
-  }
-
-  ::-webkit-scrollbar {
-    width: 8px;
-    background: inherit;
-  }
-
-  ::-webkit-scrollbar-track {
-    border-radius: 10px;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background: grey;
-    border-radius: 10px;
-  }
-
-  ::-webkit-scrollbar-thumb:hover {
-    background: rgb(54, 56, 58);
+    justify-content: space-evenly;
   }
 }

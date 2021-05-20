@@ -81,10 +81,6 @@ export class PropertyInputComponent implements OnInit {
   }
 
   getSelectedMemberships(selected: string[]): void {
-    const exitButton = document.querySelectorAll('.box-search-icon')[0];
-    if (exitButton !== undefined && this.inputType === 'autocomplete') {
-      exitButton.addEventListener('click', this.exitHandler);
-    }
     const _selectedMemberships: MembershipTypeDto[] | undefined = [];
     selected.forEach((val) => {
       const membership: MembershipTypeDto | undefined = this.memberships.find(
@@ -96,6 +92,7 @@ export class PropertyInputComponent implements OnInit {
     });
     this.firstBuyersService.selectedMemberships = _selectedMemberships;
     this.selectionDistincter.next(_selectedMemberships);
+    // console.log(_selectedMemberships);
   }
 
   parseFloat(val: string): number {
@@ -108,10 +105,13 @@ export class PropertyInputComponent implements OnInit {
   }
 
   public openPropertySelectDialog(): void {
-    console.log(this.autocompleteOptions);
     const openDialog = this.dialog.open(PropertySelectDialogComponent, {
       autoFocus: false,
       data: this.autocompleteOptions
+      // data: {allOptions: this.autocompleteOptions,
+      // preChoosenMemberships: this.choosenMemberships},
+      // onClose(memberships) => {
+      //  this.choosenMemberships = memberships
     });
     openDialog.afterClosed().subscribe(() => {
       this.propertySelectDialogClose(openDialog.componentInstance.closeState);
@@ -120,6 +120,7 @@ export class PropertyInputComponent implements OnInit {
 
   public propertySelectDialogClose(state: string): void {
     this.changeBankLoading = false;
+
     switch (state) {
       case 'canceled': {
         break;

@@ -36,6 +36,7 @@ import { EventService } from './services/event-service';
 import { RoundPipe } from './pipes/round.pipe';
 import { ThousandsSeprator } from './pipes/thousands.pipe';
 import { FilterPipe } from './pipes/filter.pipe';
+import { TruncatePipe } from './pipes/truncate.pipe';
 import { ButtonSmallComponent } from './components/ui-components/button-small/button-small.component';
 import { IMaskModule } from 'angular-imask';
 import {
@@ -101,6 +102,7 @@ const services = [
     RoundPipe,
     ThousandsSeprator,
     FilterPipe,
+    TruncatePipe,
     ChildDirective,
     BarComponent
   ],
@@ -110,6 +112,7 @@ const services = [
     RoundPipe,
     ThousandsSeprator,
     FilterPipe,
+    TruncatePipe,
     ChildDirective,
     ReactiveFormsModule,
     BarComponent
