@@ -163,7 +163,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
       .loginBankIdStep1()
       .pipe(
         tap((res) => {
-          this.setBankIdInfo(res, bankName);
+          // this.setBankIdInfo(res, bankName);
         })
       )
       .subscribe(
@@ -205,29 +205,16 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
           this.signicatIframeUrl = null;
 
           // response.newClient = true;
-          const NewUserInLoginProccess =
-            this.localStorageService.getItem('NewUserInLoginProccess') || false;
 
-          if (response.newClient === true || NewUserInLoginProccess === true) {
-            if (NewUserInLoginProccess !== true) {
-              this.localStorageService.setItem('NewUserInLoginProccess', true);
-            }
-
-            forkJoin([
-              this.loanService.getClientInfo(),
-              this.loanService.getOffersBanks()
-            ]).subscribe(
-              ([clientInfo, offerBanks]) => {
-                this.loanService
-                  .getAllMemberships()
-                  .subscribe((onlyMemberships) => {
-                    this.initMemberships(onlyMemberships.memberships);
-                    this.initNewUserForms();
-                    // this.handlePublic();
-                    this.isLoading = false;
-                    this.showForms = true;
-                    this.newClient = true;
-                  });
+          if (response.newClient === true) {
+            this.loanService.getAllMemberships().subscribe(
+              (onlyMemberships) => {
+                this.initMemberships(onlyMemberships.memberships);
+                this.initNewUserForms();
+                // this.handlePublic();
+                this.isLoading = false;
+                this.showForms = true;
+                this.newClient = true;
               },
               (error) => {
                 this.showForms = false;
@@ -422,7 +409,6 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
           this.isLoading = false;
           console.log('clientInfoResponse & loanInfoResponse');
           if (this.bank !== null) {
-            this.localStorageService.setItem('NewUserInLoginProccess', false);
             this.bank && this.loginService.loginWithBankAndToken();
           } else {
             // handle state as error
