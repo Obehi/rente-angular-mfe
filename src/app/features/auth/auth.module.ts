@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { AuthRoutingModule } from './auth-routing.module';
 import { BankIdLoginComponent } from './bank-id-login/bank-id-login.component';
+import { BankIdLoginSecretComponent } from './bank-id-login-secret/bank-id-login.component';
+
 import { LoginStatusComponent } from './login-status/login-status.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '@shared/shared.module';
@@ -17,6 +19,7 @@ import { GuidLoginComponent } from './demo-login/guid-login/guid-login.component
 @NgModule({
   declarations: [
     BankIdLoginComponent,
+    BankIdLoginSecretComponent,
     LoginStatusComponent,
     StatusMessageComponent,
     DialogInfoServiceComponent,
