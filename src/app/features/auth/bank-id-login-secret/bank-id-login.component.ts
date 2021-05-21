@@ -64,14 +64,10 @@ export class BankIdLoginSecretComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    console.log('japppp');
     this.environment = this.envService.environment;
     this.routeParamsSub = this.route.params.subscribe((params: any) => {
       const bank = BankUtils.getBankByName('DNB');
-      console.log('bank');
-      console.log(bank);
       this.bank = BankUtils.getBankByName('DNB');
-      console.log(this.bank);
       this.isSsnBankLogin = bank?.loginWithSsn || false;
 
       for (const iterator in customMeta) {
