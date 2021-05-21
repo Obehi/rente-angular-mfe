@@ -1,93 +1,149 @@
-<div class="front-container" [ngClass]="{'blue': optimizeService.getBinaryVariation()}">
+<div
+  class="front-container"
+  [ngClass]="{ blue: optimizeService.getBinaryVariation() }"
+>
   <div *ngIf="propertyForm">
     <div class="title">
-      <h3 *ngIf="userData.name !== null" i18n=“hi|info-confirmation@@info.confirmation.hi”>Hei, {{ userData.name |
-        titlecase }}</h3>
-      <p i18n=“more-infor|info-confirmation@@info.confirmation.moreInfo”>Vi trenger litt mer informasjon før vi kan søke
-        etter tilbud</p>
+      <h3
+        *ngIf="userData.name !== null"
+        i18n="“hi|info-confirmation@@info.confirmation.hi”"
+      >
+        Hei, {{ userData.name | titlecase }}
+      </h3>
+      <p i18n="“more-infor|info-confirmation@@info.confirmation.moreInfo”">
+        Vi trenger litt mer informasjon før vi kan søke etter tilbud
+      </p>
     </div>
-    <form [formGroup]="propertyForm" novalidate (ngSubmit)="updateProperty(propertyForm.value)">
+    <form
+      [formGroup]="propertyForm"
+      novalidate
+      (ngSubmit)="updateProperty(propertyForm.value)"
+    >
       <div *ngIf="isNameNeeded" class="field">
-        <rente-input [placeholder]="'Navn'" formControlName="name" [errorStateMatcher]="
-          isErrorState(propertyForm.controls['name'])
-        " [modelOptions]="{ updateOn: 'blur' }">
+        <rente-input
+          [placeholder]="'Navn'"
+          formControlName="name"
+          [errorStateMatcher]="isErrorState(propertyForm.controls['name'])"
+          [modelOptions]="{ updateOn: 'blur' }"
+        >
         </rente-input>
 
         <div *ngIf="propertyForm.controls['name'].touched">
-          <p i18n=“empty|info-confirmation@@info.confirmation.empty” class="error small"
-            *ngIf="propertyForm.controls['name'].hasError('required')">
+          <p
+            i18n="“empty|info-confirmation@@info.confirmation.empty”"
+            class="error small"
+            *ngIf="propertyForm.controls['name'].hasError('required')"
+          >
             Kan ikke være tom
           </p>
-          <p i18n=“invalid|info-confirmation@@info.confirmation.invalid” class="error small"
-            *ngIf="propertyForm.controls['name'].hasError('pattern')">
+          <p
+            i18n="“invalid|info-confirmation@@info.confirmation.invalid”"
+            class="error small"
+            *ngIf="propertyForm.controls['name'].hasError('pattern')"
+          >
             Ugyldig e-post
           </p>
         </div>
       </div>
-      <div *ngIf="isAddressNeeded" class="field">
-        <rente-input [placeholder]="'Adresse'" formControlName="address" [errorStateMatcher]="
-              isErrorState(propertyForm.controls['address'])
-            " [modelOptions]="{ updateOn: 'blur' }">
-        </rente-input>
 
-        <div *ngIf="propertyForm.controls['address'].touched">
-          <p i18n=“empty|info-confirmation@@info.confirmation.empty” class="error small"
-            *ngIf="propertyForm.controls['address'].hasError('required')">
-            Kan ikke være tom
-          </p>
-        </div>
-      </div>
-      <div *ngIf="isAddressNeeded" class="field">
-        <rente-input [placeholder]="'Postnummer'" formControlName="zip" [maxLength]="4" [errorStateMatcher]="
-            isErrorState(propertyForm.controls['zip'])
-          " [modelOptions]="{ updateOn: 'blur' }">
-        </rente-input>
-
-        <div *ngIf="propertyForm.controls['zip'].touched">
-          <p i18n=“empty|info-confirmation@@info.confirmation.empty” class="error small"
-            *ngIf="propertyForm.controls['zip'].hasError('required')">
-            Kan ikke være tom
-          </p>
-        </div>
-      </div>
       <div class="field">
-        <rente-input [placeholder]="'E-post'" formControlName="email" [errorStateMatcher]="
-            isErrorState(propertyForm.controls['email'])
-          " [modelOptions]="{ updateOn: 'blur' }">
+        <rente-input
+          [placeholder]="'E-post'"
+          formControlName="email"
+          [errorStateMatcher]="isErrorState(propertyForm.controls['email'])"
+          [modelOptions]="{ updateOn: 'blur' }"
+        >
         </rente-input>
 
         <div *ngIf="propertyForm.controls['email'].touched">
-          <p i18n=“empty|info-confirmation@@info.confirmation.empty” class="error small"
-            *ngIf="propertyForm.controls['email'].hasError('required')">
+          <p
+            i18n="“empty|info-confirmation@@info.confirmation.empty”"
+            class="error small"
+            *ngIf="propertyForm.controls['email'].hasError('required')"
+          >
             Kan ikke være tom
           </p>
-          <p i18n=“invalid|info-confirmation@@info.confirmation.invalid” class="error small"
-            *ngIf="propertyForm.controls['email'].hasError('pattern')">
+          <p
+            i18n="“invalid|info-confirmation@@info.confirmation.invalid”"
+            class="error small"
+            *ngIf="propertyForm.controls['email'].hasError('pattern')"
+          >
             Ugyldig e-post
           </p>
         </div>
       </div>
+      <div *ngIf="isAddressNeeded" class="field">
+        <rente-input
+          [placeholder]="'Adresse'"
+          formControlName="address"
+          [errorStateMatcher]="isErrorState(propertyForm.controls['address'])"
+          [modelOptions]="{ updateOn: 'blur' }"
+        >
+        </rente-input>
+
+        <div *ngIf="propertyForm.controls['address'].touched">
+          <p
+            i18n="“empty|info-confirmation@@info.confirmation.empty”"
+            class="error small"
+            *ngIf="propertyForm.controls['address'].hasError('required')"
+          >
+            Kan ikke være tom
+          </p>
+        </div>
+      </div>
+      <div *ngIf="isAddressNeeded" class="field">
+        <rente-input
+          [placeholder]="'Postnummer'"
+          formControlName="zip"
+          [maxLength]="4"
+          [errorStateMatcher]="isErrorState(propertyForm.controls['zip'])"
+          [modelOptions]="{ updateOn: 'blur' }"
+        >
+        </rente-input>
+
+        <div *ngIf="propertyForm.controls['zip'].touched">
+          <p
+            i18n="“empty|info-confirmation@@info.confirmation.empty”"
+            class="error small"
+            *ngIf="propertyForm.controls['zip'].hasError('required')"
+          >
+            Kan ikke være tom
+          </p>
+        </div>
+      </div>
+
       <div class="field">
         <div class="withinfo">
           <div>
-            <rente-input [placeholder]="'Størrelse på boligen din'" formControlName="apartmentSize" matSuffix="kvm"
+            <rente-input
+              [placeholder]="'Størrelse på boligen din'"
+              formControlName="apartmentSize"
+              matSuffix="kvm"
               [errorStateMatcher]="
-                isErrorState(
-                  propertyForm.controls['apartmentSize']
-                )
-              " [type]="'tel'" [maskType]="mask.squareMeter">
+                isErrorState(propertyForm.controls['apartmentSize'])
+              "
+              [type]="'tel'"
+              [maskType]="mask.squareMeter"
+            >
             </rente-input>
 
             <div *ngIf="propertyForm.controls['apartmentSize'].touched">
-              <p i18n=“empty2|info-confirmation@@info.confirmation.empty2” class="error small" *ngIf="
+              <p
+                i18n="“empty2|info-confirmation@@info.confirmation.empty2”"
+                class="error small"
+                *ngIf="
                   propertyForm.controls['apartmentSize'].hasError('required')
-                ">
+                "
+              >
                 Kan ikke være tom
               </p>
             </div>
           </div>
-          <div i18n=“help|info-confirmation@@info.confirmation.help” class="clickable"
-            (click)="openInfoDialog('Brukes til å estimere din boligverdi')">
+          <div
+            i18n="“help|info-confirmation@@info.confirmation.help”"
+            class="clickable"
+            (click)="openInfoDialog('Brukes til å estimere din boligverdi')"
+          >
             <mat-icon>help</mat-icon>
           </div>
         </div>
@@ -95,51 +151,95 @@
       <div class="field">
         <div class="withinfo">
           <div>
-
-            <rente-input [placeholder]="'Din brutto årsinntekt'" formControlName="income" matSuffix="kr"
+            <rente-input
+              [placeholder]="'Din brutto årsinntekt'"
+              formControlName="income"
+              matSuffix="kr"
               [errorStateMatcher]="
                 isErrorState(propertyForm.controls['income'])
-              " [type]="'tel'" [maskType]="mask.currency">
+              "
+              [type]="'tel'"
+              [maskType]="mask.currency"
+            >
             </rente-input>
             <div *ngIf="propertyForm.controls['income'].touched">
-              <p i18n=“empty3|info-confirmation@@info.confirmation.empty3” class="error small"
-                *ngIf="propertyForm.controls['income'].hasError('required')">
+              <p
+                i18n="“empty3|info-confirmation@@info.confirmation.empty3”"
+                class="error small"
+                *ngIf="propertyForm.controls['income'].hasError('required')"
+              >
                 Kan ikke være tom
               </p>
             </div>
           </div>
-          <div i18n=“help2|info-confirmation@@info.confirmation.help2” (click)="
+          <div
+            i18n="“help2|info-confirmation@@info.confirmation.help2”"
+            (click)="
               openInfoDialog(
                 ' Din/Husstandens inntekt er en viktig parameter for renten bankene tilbyr '
               )
-            " class="clickable">
+            "
+            class="clickable"
+          >
             <mat-icon>help</mat-icon>
           </div>
         </div>
       </div>
 
-      <p i18n=“organization|info-confirmation@@info.confirmation.organization” class="small">
+      <p
+        i18n="“organization|info-confirmation@@info.confirmation.organization”"
+        class="small"
+      >
         Bankene gir ofte bedre betingelser om du er medlem i en organisasjon
       </p>
       <mat-form-field>
-        <input type="text" placeholder="+ Legg til medlemskap (valgfritt)" matInput [formControl]="membershipCtrl"
-          formControlName="membership" #membershipInput [matAutocomplete]="auto" />
-        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
-          <mat-option *ngFor="let membership of filteredMemberships | async" [value]="membership">
+        <input
+          type="text"
+          placeholder="+ Legg til medlemskap (valgfritt)"
+          matInput
+          [formControl]="membershipCtrl"
+          formControlName="membership"
+          #membershipInput
+          [matAutocomplete]="auto"
+        />
+        <mat-autocomplete
+          #auto="matAutocomplete"
+          (optionSelected)="selected($event)"
+        >
+          <mat-option
+            *ngFor="let membership of filteredMemberships | async"
+            [value]="membership"
+          >
             {{ membership.label }}
           </mat-option>
         </mat-autocomplete>
       </mat-form-field>
-      <p i18n=“my-memberships|info-confirmation@@info.confirmation.myMemberships” class="small"
-        *ngIf="memberships.length">
+      <p
+        i18n="
+          “my-memberships|info-confirmation@@info.confirmation.myMemberships”"
+        class="small"
+        *ngIf="memberships.length"
+      >
         Mine medlemskap
       </p>
-      <p class="memberlist" *ngFor="let membership of memberships; let i = index">
+      <p
+        class="memberlist"
+        *ngFor="let membership of memberships; let i = index"
+      >
         {{ membership.label }}
-        <mat-icon class="clickable" (click)="remove(membership, i)" *ngIf="removable">delete_forever</mat-icon>
+        <mat-icon
+          class="clickable"
+          (click)="remove(membership, i)"
+          *ngIf="removable"
+          >delete_forever</mat-icon
+        >
       </p>
-      <rente-button i18n=“done|info-confirmation@@info.confirmation.done” color="primary" [isLoading]="isLoading"
-        [disabled]="propertyForm.invalid || isLoading">
+      <rente-button
+        i18n="“done|info-confirmation@@info.confirmation.done”"
+        color="primary"
+        [isLoading]="isLoading"
+        [disabled]="propertyForm.invalid || isLoading"
+      >
         Ferdig!
       </rente-button>
     </form>
