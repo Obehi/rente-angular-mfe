@@ -66,10 +66,10 @@ export class PropertySelectComponent implements OnInit, OnDestroy {
   searchIconDark = '../../../../assets/icons/search-grey-dark.svg';
 
   @Input() selectedOptions;
-  @Output() selectedItemsEmitter = new EventEmitter<string[]>();
+  @Output() selectedItemsEmitter = new EventEmitter<string[] | undefined>();
   @Output() closeEmitter = new EventEmitter<any>();
 
-  public selectedMemberships: string | undefined = [];
+  public selectedMemberships: string[] | undefined = [];
   _selectedMemberships: string[];
   selectionDistincter = new Subject();
   _selectionDistincter: Observable<any>;
@@ -82,7 +82,7 @@ export class PropertySelectComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {}
 
-  get membershipNames(): string {
+  get membershipNames(): string[] {
     return this.options?.map((membership) => {
       return membership.label;
     });

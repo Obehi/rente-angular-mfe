@@ -110,12 +110,10 @@ export class PropertyInputComponent implements OnInit {
   }
 
   public openPropertySelectDialog(): void {
-    console.log('this.test');
-    console.log(this.test);
     const openDialog = this.dialog.open(PropertySelectDialogComponent, {
       autoFocus: false,
       data: {
-        previousState: this.test,
+        previousState: [...this.test],
         allMemberships: this.autocompleteOptions
       }
 
