@@ -18,12 +18,22 @@ export interface FirstBuyersState {
 export class FirstBuyersService {
   selectedMemberships: MembershipTypeDto[] = [];
   private messageHandler: Subject<any>;
+  private selectedMembershipsHandler: Subject<any>;
 
   constructor(
     private authService: AuthService,
     private localStorageService: LocalStorageService
   ) {
     this.messageHandler = new Subject<any>();
+    this.selectedMembershipsHandler = new Subject<any>();
+  }
+
+  getSelectedMemberships(): Subject<any> {
+    return this.selectedMembershipsHandler;
+  }
+
+  setSelectedMemberships(memberships): any {
+    this.selectedMembershipsHandler.next(memberships);
   }
 
   get offerValue(): FirstBuyersState {
@@ -51,7 +61,6 @@ export class FirstBuyersService {
 
   pushMessage(): void {
     this.messageHandler.next('');
-    console.log('pushed');
   }
 
   messages(): Subject<any> {

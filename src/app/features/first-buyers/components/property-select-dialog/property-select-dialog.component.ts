@@ -20,8 +20,12 @@ import { PropertySelectComponent } from '../property-select/property-select.comp
 export class PropertySelectDialogComponent implements OnInit {
   // Updates the green button to be available to click on
   @Output() dataSent: EventEmitter<any> = new EventEmitter();
+  @Output() optionsEmitter = new EventEmitter<any[]>();
   public closeState: string;
+  public memberships: any;
 
+  public allMemberships = [];
+  public previousState = [];
   selectedMemberships: string[];
   constructor(
     public dialogRef: MatDialogRef<PropertySelectDialogComponent>,
@@ -31,29 +35,30 @@ export class PropertySelectDialogComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.allMemberships = this.data.allMemberships;
+    this.previousState = this.data.previousState;
+  }
 
   public onClose(): void {
     this.dialogRef.close();
-    this.test();
   }
 
-  // public addMembership(memberships): void  {
-  //   this.selectedMemberships = memberships
-  // }
-
-  public sendMemberships(event: string[]): void {
-    // this.isDirty = true
-    this.firstBuyersAPIService.updateMembership(event).subscribe((res) => {
-      console.log(res);
-      // this.data.onClose(memberships);
-      this.onClose();
-      this.dataSent.emit();
-    });
-    this.firstBuyersService.pushMessage();
+  saveMemberships(memberships) {
+    this.memberships = memberships;
+    console.log(memberships);
   }
 
-  public test() {
-    console.log(this.selectedMemberships);
+  save(): void {
+    console.log('save');
+    console.log(this.memberships);
+    this.firstBuyersService.setSelectedMemberships(this.memberships);
+    this.onClose();
+  }
+
+  cancel(): void {
+    console.log('cancel');
+    console.log(this.memberships);
+    this.onClose();
   }
 }

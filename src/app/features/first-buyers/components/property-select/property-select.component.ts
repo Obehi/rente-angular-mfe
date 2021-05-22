@@ -20,6 +20,8 @@ import { PropertySelectDialogComponent } from '../property-select-dialog/propert
 import { TruncatePipe } from '@shared/pipes/truncate.pipe';
 import { PropertyInputComponent } from '../property-input/property-input.component';
 import { MembershipTypeDto } from '@services/remote-api/loans.service';
+import { FirstBuyersService } from '@features/first-buyers/first-buyers.service';
+import { Observable, Subject } from 'rxjs';
 
 @Component({
   selector: 'property-select',
@@ -63,14 +65,20 @@ export class PropertySelectComponent implements OnInit, OnDestroy {
   searchIconLight = '../../../../assets/icons/search-grey-light.svg';
   searchIconDark = '../../../../assets/icons/search-grey-dark.svg';
 
-  @Output() selectedItemsEmitter = new EventEmitter<MembershipTypeDto[]>();
+  @Input() selectedOptions;
+  @Output() selectedItemsEmitter = new EventEmitter<string[]>();
   @Output() closeEmitter = new EventEmitter<any>();
 
   public selectedMemberships: string | undefined = [];
+  _selectedMemberships: string[];
+  selectionDistincter = new Subject();
+  _selectionDistincter: Observable<any>;
 
-  constructor() {}
+  constructor(public firstBuyersService: FirstBuyersService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.selectedMemberships = this.selectedOptions;
+  }
 
   ngOnDestroy() {}
 
@@ -92,22 +100,29 @@ export class PropertySelectComponent implements OnInit, OnDestroy {
     }
   }
 
-  get allMemberships(): string[] {
-    return;
-  }
-
   chooseMembership(membership: string): void {
     if (!this.selectedMemberships?.includes(membership)) {
       this.selectedMemberships?.push(membership);
       this.memberships++;
+      this.selectedItemsEmitter.emit(this.selectedMemberships);
     }
+
+    // if (!this.selectedMemberships?.includes(membership)) {
+    //   this.selectedMemberships?.push(membership);
+    //   this.memberships++;
+    // }
   }
 
   removeMembership(membership: string): void {
-    this.selectedMemberships = this.selectedMemberships?.filter(
-      (option) => option !== membership
-    );
-    this.memberships--;
+    if (this.selectedMemberships?.includes(membership)) {
+      this.selectedMemberships = this.selectedMemberships?.filter(
+        (option) => option !== membership
+      );
+      this.memberships--;
+      console.log('removeMembership');
+      console.log(this.selectedMemberships);
+      this.selectedItemsEmitter.emit(this.selectedMemberships);
+    }
   }
 
   chosenMemberships(membership: string): boolean {
@@ -118,13 +133,13 @@ export class PropertySelectComponent implements OnInit, OnDestroy {
     }
   }
 
-  save(): void {
-    if (this.saveEnabled) {
-      this.selectedItemsEmitter.emit(this.selectedMemberships);
-    }
-  }
+  // save(): void {
+  //   if (this.saveEnabled) {
+  //     this.selectedItemsEmitter.emit(this.selectedMemberships);
+  //   }
+  // }
 
-  cancel(): void {
-    this.closeEmitter.emit();
-  }
+  // cancel(): void {
+  //   this.closeEmitter.emit();
+  // }
 }

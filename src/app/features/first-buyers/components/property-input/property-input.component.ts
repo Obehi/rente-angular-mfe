@@ -11,7 +11,7 @@ import { FormGroup } from '@angular/forms';
 import { FirstBuyersService } from '@features/first-buyers/first-buyers.service';
 import { MembershipTypeDto } from '@services/remote-api/loans.service';
 import { Observable, Subject } from 'rxjs';
-import { distinctUntilChanged } from 'rxjs/operators';
+import { distinctUntilChanged, take } from 'rxjs/operators';
 import { SelectAutocompleteComponent } from 'mat-select-autocomplete';
 import { PropertySelectDialogComponent } from '../property-select-dialog/property-select-dialog.component';
 import { MatDialog } from '@angular/material';
@@ -39,6 +39,7 @@ export class PropertyInputComponent implements OnInit {
   @Input() options: { name?: string; value?: string; label: string }[];
   @Input() autocompleteOptions: any;
   @Input() memberships: MembershipTypeDto[];
+  public test: string[] = [];
   @Output() selectedMemberships = new EventEmitter<MembershipTypeDto[]>();
   @ViewChild(SelectAutocompleteComponent)
   multiSelect: SelectAutocompleteComponent;
@@ -63,6 +64,10 @@ export class PropertyInputComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.firstBuyersService.getSelectedMemberships().subscribe((args) => {
+      console.log(args);
+      this.test = args;
+    });
     console.log(this.autocompleteOptions);
     if (this.inputType === 'autocomplete') {
       this.exitHandler = () => {
@@ -105,16 +110,24 @@ export class PropertyInputComponent implements OnInit {
   }
 
   public openPropertySelectDialog(): void {
+    console.log('this.test');
+    console.log(this.test);
     const openDialog = this.dialog.open(PropertySelectDialogComponent, {
       autoFocus: false,
-      data: this.autocompleteOptions
+      data: {
+        previousState: this.test,
+        allMemberships: this.autocompleteOptions
+      }
+
       // data: {allOptions: this.autocompleteOptions,
       // preChoosenMemberships: this.choosenMemberships},
       // onClose(memberships) => {
       //  this.choosenMemberships = memberships
     });
     openDialog.afterClosed().subscribe(() => {
-      this.propertySelectDialogClose(openDialog.componentInstance.closeState);
+      console.log('afterClosed');
+      console.log(this.test);
+      // this.propertySelectDialogClose(openDialog.componentInstance.closeState);
     });
   }
 

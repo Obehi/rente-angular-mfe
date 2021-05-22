@@ -376,7 +376,7 @@ export class InitialOffersComponent implements OnInit {
       });
   }
 
-  updateMemberships2(memberships: string[]) {
+  updateMemberships2(memberships) {
     this.firstBuyersService.selectedMemberships = [
       ...this.memberships,
       ...this.selectedFeaturedMemberships

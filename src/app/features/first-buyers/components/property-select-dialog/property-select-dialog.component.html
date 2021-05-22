@@ -1,7 +1,11 @@
 <property-select
-  (selectedItemsEmitter)="sendMemberships($event)"
-  (closeEmitter)="onClose()"
-  (selectedMemberships)="test($event)"
-  [options]="data"
+  (selectedItemsEmitter)="saveMemberships($event)"
+  [options]="allMemberships"
+  [selectedOptions]="previousState"
   *ngIf="data !== null && data !== undefined"
 ></property-select>
+<div class="buttons">
+  <rente-button color="primary-hollow" (click)="cancel()">Avbryt</rente-button>
+
+  <rente-button color="primary" (click)="save()">Lagre</rente-button>
+</div>
