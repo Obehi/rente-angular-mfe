@@ -1695,3 +1695,57 @@ export class BankUtils {
     }).includes(bankName);
   }
 }
+
+// Interface for Swedish site
+export interface BankOfferPreview {
+  averageRemainingYears: number;
+  bankEmail: string | null;
+  bankName: string;
+  clientInfo: ClientInfo;
+  commonDebt: number;
+  effectiveRate: number;
+  ltv: number;
+  nominalRate: number;
+  offerUrl: string | null;
+  productName: string;
+  propertyValue: number;
+  totalOutstandingDebt: number;
+}
+
+export interface ClientInfo {
+  address: string | null;
+  age: number;
+  email: string;
+  name: string;
+  phone: string;
+  ssn: string;
+  zip: string;
+}
+
+export interface OffersBank {
+  offers: {
+    id: string;
+    name: string;
+    rate: number;
+  }[];
+}
+
+export interface NewOffers {
+  bankName: string;
+  clientId: number;
+  effectiveRate: number;
+  savingsFirstYear: number;
+  totalSavings: number;
+}
+
+export interface BankOfferLocations {
+  [region: string]: {
+    [city: string]: string[];
+  };
+}
+
+export interface offerOfficeDto {
+  region: string;
+  city: string;
+  officeAddress: string;
+}

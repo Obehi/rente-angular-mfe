@@ -3,6 +3,7 @@ import { AuthService } from '@services/remote-api/auth.service';
 import { MembershipTypeDto } from '@shared/models/loans';
 import { LocalStorageService } from '@services/local-storage.service';
 import { Observable } from 'rxjs';
+import { FirstTimeLoanDebtData } from '@shared/models/user';
 
 export interface FirstBuyersState {
   outstandingDebt: number | null;
@@ -38,8 +39,7 @@ export class FirstBuyersService {
     ) as FirstBuyersState;
   }
 
-  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-  getAuthToken(debtData: any): Observable<any> {
+  getAuthToken(debtData: FirstTimeLoanDebtData): Observable<{ token: string }> {
     return this.authService.getFirstTimeLoanToken(debtData);
   }
 }

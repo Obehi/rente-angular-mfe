@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PreferancesService } from '@shared/services/remote-api/preferances.service';
+import { ProfileService } from '@shared/services/remote-api/profile.service';
 import { EmailDto } from '@shared/models/loans';
 import { Location } from '@angular/common';
 import { ProfileDialogInfoComponent } from '../dashboard/profile/dialog-info/dialog-info.component';
@@ -52,7 +52,7 @@ export class EmailPreferencesComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private preferancesService: PreferancesService,
+    private profileService: ProfileService,
     public location: Location,
     private dialog: MatDialog,
     public langService: CustomLangTextService
@@ -63,10 +63,10 @@ export class EmailPreferencesComponent implements OnInit {
     this.guid = this.getGuIdFromUrl(currentUrl);
 
     if (this.guid) {
-      this.preferancesService.getPreferancesWithGUID(this.guid).subscribe(
-        (preferances) => {
-          this.checkRateReminderType = preferances.checkRateReminderType;
-          this.receiveNewsEmails = preferances.receiveNewsEmails;
+      this.profileService.getPreferancesWithGUID(this.guid).subscribe(
+        (preferences) => {
+          this.checkRateReminderType = preferences.checkRateReminderType;
+          this.receiveNewsEmails = preferences.receiveNewsEmails;
 
           this.emailForm = this.fb.group({
             receiveNewsEmails: [this.receiveNewsEmails],
@@ -98,7 +98,7 @@ export class EmailPreferencesComponent implements OnInit {
     dto.receiveNewsEmails = this.emailForm.get('receiveNewsEmails')?.value;
 
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    this.preferancesService.postPreferancesWithGUID(this.guid!, dto).subscribe(
+    this.profileService.postPreferancesWithGUID(this.guid!, dto).subscribe(
       () => {
         this.isLoading = false;
         this.updateAnimationTrigger = !this.updateAnimationTrigger;

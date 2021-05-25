@@ -20,7 +20,7 @@ export interface LoanInfo {
 
 export class EmailDto {
   checkRateReminderType: null | string;
-  receiveNewsEmails: false | true;
+  receiveNewsEmails: boolean;
 }
 
 export class MembershipTypeDto {
@@ -55,14 +55,13 @@ export class ClientAddressDto {
 }
 
 export class ConfirmationGetDto {
-  email: string;
-  name: string | null;
-  bank: string;
-  income: number;
-  memberships: string[];
   apartmentSize: number;
   apartmentValue: number;
   availableMemberships: MembershipTypeDto[];
+  bank: string;
+  email: string;
+  income: number;
+  name: string | null;
 }
 
 export class ConfirmationSetDto {
@@ -86,11 +85,13 @@ export class AddressCreationDto {
 export class PreferencesDto {
   availableMemberships: MembershipTypeDto[];
   checkRateReminderType: string;
+  coBorrowerBelow34: boolean;
   communicationChannelType: string;
   email: string;
   fetchCreditLinesOnly: boolean;
   income: number;
   interestedInEnvironmentMortgages: boolean;
+  interestedInFixRate: boolean;
   memberships: string[];
   name: string;
   noAdditionalProductsRequired: boolean;
@@ -108,10 +109,10 @@ export class PreferencesUpdateDto {
   receiveNewsEmails: boolean;
 }
 export class LoanUpdateInfoDto {
+  loanSubType: string;
   outstandingDebt: number;
   productId: string;
   remainingYears: number;
-  loanSubType: string;
 }
 
 export class ClientUpdateInfo {
@@ -119,4 +120,14 @@ export class ClientUpdateInfo {
   email: string;
   income: number;
   memberships: string[];
+}
+
+export interface AddressStatisticsDto {
+  indexHistory: any;
+  statistics: any;
+}
+
+export interface LoanStatisticsDto {
+  combinedSavingsPotential: number;
+  totalOutstandingDebt: number;
 }

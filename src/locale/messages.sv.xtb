@@ -735,7 +735,7 @@ Vi följer ständigt upp om det dyker upp bättre ränteerbjudanden på marknade
             </translation>
   <translation id="details.component.offerHeader" desc="details" meaning="“other-conditions">Erbjudande</translation>
   <translation id="profile.monthNever1“" desc="profile" meaning="“month-every">Aldrig</translation>
-  <translation id="profile.monthNever2“" desc="profile" meaning="“month-every"/>
+  <translation id="profile.monthNever2“" desc="profile" meaning="“month-every">Aldrig</translation>
   <translation id="profile.myMemberships”" desc="profile" meaning="“my-memberships"/>
   <translation id="profile.myMemberships2”" desc="profile" meaning="“my-memberships">Medlemskap</translation>
   <translation id="details.component.offer“" desc="details" meaning="“other-conditions">Effektiv ränta: <ph name="INTERPOLATION"><ex>{{offer.effectiveRate | number: &quot;1.1-2&quot;}}</ex>{{offer.effectiveRate | number: &quot;1.1-2&quot;}}</ph>%,
@@ -849,4 +849,6 @@ Vi följer ständigt upp om det dyker upp bättre ränteerbjudanden på marknade
   <translation id="offers.mainPage.interest.good2”" desc="offers-main" meaning="                   “interest-good2"/>
   <translation id="offers.mainPage.virdiEstimate”" desc="offers-main" meaning="                   “virdi-estimate"/>
   <translation id="offers.mainPage.found.bestOffers.button”" desc="offers-main" meaning="                 “found-best-offers"/>
+  <translation id="info.confirmation.myMemberships”" desc="info-confirmation" meaning="           “my-memberships"/>
+  <translation id="info.confirmation.myMemberships”" desc="info-confirmation" meaning="                       “my-memberships"/>
 </translationbundle>

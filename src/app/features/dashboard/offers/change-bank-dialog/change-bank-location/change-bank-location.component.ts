@@ -9,10 +9,8 @@ import { MatStepper } from '@angular/material';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
-import {
-  ChangeBankServiceService,
-  offerOfficeDto
-} from '@services/remote-api/change-bank-service.service';
+import { ChangeBankServiceService } from '@services/remote-api/change-bank-service.service';
+import { offerOfficeDto } from '@shared/models/bank';
 
 @Component({
   selector: 'rente-change-bank-location',

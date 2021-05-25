@@ -1,51 +1,79 @@
 <div>
-
   <div class="dash-tabs-blue-wrapper">
     <div class="dash-tabs-blue">
-
       <div class="inner">
-      <nav mat-tab-nav-bar class="dash-tab">
-        <a mat-tab-link [active]="activeLinkIndex == 0" [routerLink]="'./' +  routesMap.offers">
-          <div class="inside-btn">
-            <img class="rente-icon" src="../../../assets/icons/rente-logo-icon-white.svg" alt="Banktilbud" />
-            <p i18n=“title|offer@@dashboard.loggedIn.offer”>Tilbud</p>
-          </div>
-        </a>
-      </nav>
-      <nav mat-tab-nav-bar class="dash-tab">
-        <a mat-tab-link [active]="activeLinkIndex == 1" [routerLink]="'./' +  routesMap.loans">
-          <div class="inside-btn">
-            <img class="graph-icon"  src="../../../assets/icons/graph-icon-white.svg" alt="Mine lån" />
-            <p i18n=“title2|my-loans@@dashboard.loggedIn.myLoans”>Mine lån</p>
-          </div>
-        </a>
-      </nav>
-      <nav mat-tab-nav-bar class="dash-tab">
-        <a mat-tab-link [active]="activeLinkIndex == 2" [routerLink]="'./' +  routesMap.property">
-          <div class="inside-btn">
-            <img class="house-icon"  src="../../../assets/icons/house-icon-white.svg" alt="Bolig" />
-            <p i18n=“title3|house@@dashboard.loggedIn.house”>Bolig</p>
-          </div>
-        </a>
-      </nav>
-      <nav mat-tab-nav-bar class="dash-tab">
-        <a mat-tab-link [active]="activeLinkIndex == 4" [routerLink]="'./' +  routesMap.profile">
-          <div class="inside-btn">
-            <img class="profile-icon"  src="../../../assets/icons/profile-icon-white.svg" alt="Profil" />
-            <p i18n=“title4|profile@@dashboard.loggedIn.profile”>Profil</p>
-          </div>
-        </a>
-      </nav>
-
+        <nav mat-tab-nav-bar class="dash-tab">
+          <a
+            mat-tab-link
+            [active]="activeLinkIndex == 0"
+            [routerLink]="'./' + routesMap.offers"
+          >
+            <div class="inside-btn">
+              <img
+                class="rente-icon"
+                src="../../../assets/icons/rente-logo-icon-white.svg"
+                alt="Banktilbud"
+              />
+              <p i18n="“title|offer@@dashboard.loggedIn.offer”">Tilbud</p>
+            </div>
+          </a>
+        </nav>
+        <nav mat-tab-nav-bar class="dash-tab">
+          <a
+            mat-tab-link
+            [active]="activeLinkIndex == 1"
+            [routerLink]="'./' + routesMap.loans"
+          >
+            <div class="inside-btn">
+              <img
+                class="graph-icon"
+                src="../../../assets/icons/graph-icon-white.svg"
+                alt="Mine lån"
+              />
+              <p i18n="“title2|my-loans@@dashboard.loggedIn.myLoans”">
+                Mine lån
+              </p>
+            </div>
+          </a>
+        </nav>
+        <nav mat-tab-nav-bar class="dash-tab">
+          <a
+            mat-tab-link
+            [active]="activeLinkIndex == 2"
+            [routerLink]="'./' + routesMap.property"
+          >
+            <div class="inside-btn">
+              <img
+                class="house-icon"
+                src="../../../assets/icons/house-icon-white.svg"
+                alt="Bolig"
+              />
+              <p i18n="“title3|house@@dashboard.loggedIn.house”">Bolig</p>
+            </div>
+          </a>
+        </nav>
+        <nav mat-tab-nav-bar class="dash-tab">
+          <a
+            mat-tab-link
+            [active]="activeLinkIndex == 4"
+            [routerLink]="'./' + routesMap.profile"
+          >
+            <div class="inside-btn">
+              <img
+                class="profile-icon"
+                src="../../../assets/icons/profile-icon-white.svg"
+                alt="Profil"
+              />
+              <p i18n="“title4|profile@@dashboard.loggedIn.profile”">Profil</p>
+            </div>
+          </a>
+        </nav>
+      </div>
     </div>
   </div>
-  </div>
-
-
 
   <div [ngClass]="'dashboard-content-blue'">
     <!-- <div class="dashboard-content"> -->
-    <router-outlet (activate)="onActivate($event)"></router-outlet>
+    <router-outlet (activate)="onActivate()"></router-outlet>
   </div>
 </div>
-

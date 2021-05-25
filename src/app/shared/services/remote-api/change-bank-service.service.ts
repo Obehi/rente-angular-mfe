@@ -2,6 +2,11 @@ import { Injectable } from '@angular/core';
 import { GenericHttpService } from '@services/generic-http.service';
 import { API_URL_MAP } from '@config/api-url-config';
 import { Observable } from 'rxjs';
+import {
+  BankOfferLocations,
+  BankOfferPreview,
+  offerOfficeDto
+} from '@shared/models/bank';
 
 @Injectable({
   providedIn: 'root'
@@ -9,39 +14,35 @@ import { Observable } from 'rxjs';
 export class ChangeBankServiceService {
   constructor(private http: GenericHttpService) {}
 
-  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-  public getBankOfferRequest(offerId): Observable<any> {
+  public getBankOfferRequest(offerId: number): Observable<BankOfferPreview> {
     const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.bankOfferRequest.base}${API_URL_MAP.loan.bankOfferRequest.preview}/${offerId}`;
     return this.http.get(url);
   }
 
   public getBankOfferPreviewWithOffice(
-    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-    offerId,
+    offerId: number,
     offerOffice: offerOfficeDto
-  ): Observable<any> {
+  ): Observable<BankOfferPreview> {
     const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.bankOfferRequest.base}${API_URL_MAP.loan.bankOfferRequest.preview}/${offerId}`;
     return this.http.getWithParams(url, offerOffice);
   }
 
-  public sendBankOfferRequest(offerId: number): Observable<any> {
+  public sendBankOfferRequest(offerId: number): Observable<void> {
     const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.bankOfferRequest.base}${API_URL_MAP.loan.bankOfferRequest.send}/${offerId}`;
     return this.http.post(url);
   }
 
-  public sendAntiChurnRequest(): Observable<any> {
+  public sendBankOfferRequestV2(): Observable<void> {
     const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.bankOfferRequest.base}${API_URL_MAP.loan.bankOfferRequest.send}`;
     return this.http.post(url);
   }
 
-  public sendBankOfferRequestV2(offerId: number): Observable<any> {
+  public sendAntiChurnRequest(): Observable<void> {
     const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.bankOfferRequest.base}${API_URL_MAP.loan.bankOfferRequest.send}`;
-
     return this.http.post(url);
   }
 
-  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-  public getBankOfferLocations(bank): Observable<any> {
+  public getBankOfferLocations(bank: string): Observable<BankOfferLocations> {
     const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.bankOfferRequest.base}/${bank}`;
     return this.http.get(url);
   }
@@ -49,14 +50,8 @@ export class ChangeBankServiceService {
   public sendBankOfferRequestWithOffice(
     offerId: number,
     offerOffice: offerOfficeDto
-  ): Observable<any> {
+  ): Observable<void> {
     const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.bankOfferRequest.base}${API_URL_MAP.loan.bankOfferRequest.send}/${offerId}`;
     return this.http.post(url, offerOffice);
   }
-}
-
-export interface offerOfficeDto {
-  region: string;
-  city: string;
-  officeAddress: string;
 }

@@ -336,7 +336,6 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
     ]).subscribe(
       ([locations, preview]) => {
         this.changeBankLoading = false;
-
         const data = { preview, offerId, currentBank };
 
         if (locations.error === undefined) {

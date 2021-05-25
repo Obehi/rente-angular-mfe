@@ -14,6 +14,7 @@ import { Mask } from '@shared/constants/mask';
 import { locale } from '../../config/locale/locale';
 import { CustomLangTextService } from '@services/custom-lang-text.service';
 import { SeoService } from '@services/seo.service';
+import { UserContactUsForm } from '@shared/models/user';
 
 @Component({
   selector: 'rente-contact-us',
@@ -64,8 +65,8 @@ export class ContactUsComponent implements OnInit {
     return !!(control && control.invalid && (control.dirty || control.touched));
   }
 
-  public sendContactUsForm(formData): void {
-    let formLocale;
+  public sendContactUsForm(formData: UserContactUsForm): void {
+    let formLocale = '';
     if (this.locale === 'nb') {
       formLocale = 'NOR';
     } else if (this.locale === 'sv') {

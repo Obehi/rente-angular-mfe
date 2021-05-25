@@ -5,7 +5,6 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
 import { OffersComponentBlue } from './offers/offers-blue/offers.component';
 import { DashboardComponent } from './dashboard.component';
 import { MatTabsModule } from '@angular/material/tabs';
-import { PreferencesComponent } from './preferences/preferences.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { SharedModule } from '@shared/shared.module';
@@ -71,7 +70,6 @@ import { ChangeBankTooManyTriesDialogError } from './offers/change-bank-dialog/c
     OffersComponentBlue,
     DashboardComponent,
     LoansLangGenericComponent,
-    PreferencesComponent,
     ProfileComponent,
     DialogInfoComponent,
     LtvTooHighDialogComponent,

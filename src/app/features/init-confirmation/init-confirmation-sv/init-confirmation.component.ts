@@ -9,12 +9,12 @@ import { ENTER, COMMA } from '@angular/cdk/keycodes';
 import { MatDialog } from '@angular/material';
 import { Router } from '@angular/router';
 
+import { LoansService } from '@services/remote-api/loans.service';
 import {
-  LoansService,
   ConfirmationSetDto,
   ConfirmationGetDto,
   AddressCreationDto
-} from '@services/remote-api/loans.service';
+} from '@shared/models/loans';
 import { CustomLangTextService } from '@services/custom-lang-text.service';
 import { VALIDATION_PATTERN } from '@config/validation-patterns.config';
 import { ROUTES_MAP_SV } from '@config/routes-config';

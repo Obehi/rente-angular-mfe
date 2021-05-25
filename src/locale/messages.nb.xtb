@@ -1628,4 +1628,10 @@ Fortsett
                 <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>virdi.no<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph>
               </translation>
   <translation id="offers.mainPage.found.bestOffers.button”" desc="offers-main" meaning="                 “found-best-offers">Se beste tilbud</translation>
+  <translation id="info.confirmation.myMemberships”" desc="info-confirmation" meaning="           “my-memberships">
+        Mine medlemskap
+      </translation>
+  <translation id="info.confirmation.myMemberships”" desc="info-confirmation" meaning="                       “my-memberships">
+                    Mine medlemskap
+                  </translation>
 </translationbundle>

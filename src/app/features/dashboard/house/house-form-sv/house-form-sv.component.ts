@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { AddressDto } from '@services/remote-api/loans.service';
+import { AddressDto } from '@shared/models/loans';
 import { MatTabChangeEvent } from '@angular/material';
 import { CheckBoxItem } from '@shared/components/ui-components/checkbox-container/checkbox-container.component';
 import { EnvService } from '@services/env.service';

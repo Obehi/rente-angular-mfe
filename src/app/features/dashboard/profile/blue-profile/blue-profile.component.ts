@@ -18,12 +18,12 @@ import {
 import { MatDialog } from '@angular/material/dialog';
 import { ProfileDialogInfoComponent } from '../dialog-info/dialog-info.component';
 import { MatChipInputEvent } from '@angular/material';
-import { LoansService } from '@services/remote-api/loans.service';
 import {
   MembershipTypeDto,
-  PreferencesUpdateDto,
-  PreferencesDto
+  PreferencesDto,
+  PreferencesUpdateDto
 } from '@shared/models/loans';
+import { ProfileService } from '@services/remote-api/profile.service';
 import { Mask } from '@shared/constants/mask';
 import { VALIDATION_PATTERN } from '../../../../config/validation-patterns.config';
 import { OfferInfo } from '@shared/models/offers';
@@ -91,7 +91,7 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
 
   constructor(
     private fb: FormBuilder,
-    private loansService: LoansService,
+    private profileService: ProfileService,
     public dialog: MatDialog,
     public textLangService: CustomLangTextService
   ) {
@@ -113,7 +113,7 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
   }
 
   ngOnInit(): void {
-    this.loansService.getPreferencesDto().subscribe(
+    this.profileService.getPreferencesDto().subscribe(
       (res) => {
         this.isLoading = false;
         const dto: PreferencesDto = res;
@@ -226,7 +226,7 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
     // No one leaves the page while updating
     this.canLeavePage = false;
 
-    this.loansService.updateUserPreferences(dto).subscribe(
+    this.profileService.updateUserPreferences(dto).subscribe(
       () => {
         this.canNavigateBooolean$.next(true);
         this.changesMade = false;

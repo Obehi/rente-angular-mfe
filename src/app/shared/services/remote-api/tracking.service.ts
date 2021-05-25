@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 export class TrackingService {
   constructor(private http: GenericHttpService) {}
 
-  public sendTrackingStats(trackingData: TrackingDto): Observable<any> {
+  public sendTrackingStats(trackingData: TrackingDto): Observable<void> {
     const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.stat.base}${API_URL_MAP.loan.stat.click}`;
     return this.http.post(url, trackingData);
   }

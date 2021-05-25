@@ -16,6 +16,7 @@ export class LoggingService {
 
   public Level = Level;
   public SubSystem = SubSystem;
+  sessionId: string;
 
   constructor(
     private http: GenericHttpService,
@@ -33,19 +34,6 @@ export class LoggingService {
       this.sessionId = uuid.v4();
       storage.setItem('LoggingSessionId', this.sessionId);
     }
-  }
-
-  sessionId: string;
-
-  // eslint-disable-next-line @typescript-eslint/ban-types
-  public logg(level: string, msg: string, obj: object): void {
-    if (obj === undefined || obj === null) {
-      obj = {};
-    }
-
-    obj['message'] = msg;
-    obj['sessionID'] = this.sessionId;
-    this.httpClient.post('/postlogg', obj).pipe(first()).subscribe();
   }
 
   public googleAnalyticsLog(item: GoogleAnalyticsDto): void {

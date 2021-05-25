@@ -661,6 +661,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
                         undefined,
                         this.isTinkBank
                       );
+
                       this.router.navigate([
                         '/dashboard/' + ROUTES_MAP.offers,
                         { state: { isInterestRateSet: true } }

@@ -6,6 +6,7 @@ import { GenericHttpService } from '@services/generic-http.service';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { LocalStorageService } from './../local-storage.service';
+import { DemoUserInfo, FirstTimeLoanDebtData } from '@shared/models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +23,7 @@ export class AuthService {
     return !!(user && user.token);
   }
 
-  public loginForDemo(guid: string): Observable<any> {
+  public loginForDemo(guid: string): Observable<DemoUserInfo> {
     const url = `${API_URL_MAP.auth.base}${API_URL_MAP.auth.demo}`;
     const data = {
       guid: guid
@@ -32,7 +33,6 @@ export class AuthService {
 
   public loginBankIdStep1(): Observable<any> {
     const url = `${API_URL_MAP.auth.base}${API_URL_MAP.auth.bankidLogin}`;
-
     return this.http.post(url);
   }
 
@@ -48,7 +48,7 @@ export class AuthService {
       .pipe(tap(this.handleLogin.bind(this)));
   }
 
-  public loginWithToken(token: string): Observable<any> {
+  public loginWithToken(token: string): Observable<DemoUserInfo> {
     const url = `${API_URL_MAP.auth.base}${API_URL_MAP.auth.token}`;
     const data = {
       token
@@ -65,8 +65,9 @@ export class AuthService {
     });
   }
 
-  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-  public getFirstTimeLoanToken(debtData): Observable<any> {
+  public getFirstTimeLoanToken(
+    debtData: FirstTimeLoanDebtData
+  ): Observable<{ token: string }> {
     const url = `${API_URL_MAP.user.base}${API_URL_MAP.user.firstLoan}`;
     return this.http.post(url, debtData);
   }
