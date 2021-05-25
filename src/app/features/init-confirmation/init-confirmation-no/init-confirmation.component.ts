@@ -104,6 +104,7 @@ export class InitConfirmationNoComponent implements OnInit {
         rateAndLoans.isAddressNeeded || userInfo.bank === 'DNB';
       this.isNameNeeded =
         this.userData.name === null || this.userData.name === undefined;
+
       if (this.isAddressNeeded) {
         this.isAddressNeeded = true;
         this.propertyForm = this.fb.group({
