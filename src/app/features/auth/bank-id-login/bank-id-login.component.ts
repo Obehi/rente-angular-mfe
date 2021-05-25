@@ -199,7 +199,6 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
         .pipe(retry(2))
         .subscribe((response) => {
           this.signicatIframeUrl = null;
-
           // response.newClient = true;
           if (response.newClient === true) {
             this.loanService.getAllMemberships().subscribe(
@@ -624,11 +623,16 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
 
   public oldUserFinished(): void {
     const loanUpdateInfoDto = this.loanUpdateInfoDto;
-    this.loanService
-      .updateLoanUserInfo(loanUpdateInfoDto)
-      .subscribe((result) => {
+    this.isLoading = true;
+    this.loanService.updateLoanUserInfo(loanUpdateInfoDto).subscribe(
+      (result) => {
+        this.isLoading = false;
         this.bank && this.loginService.loginWithBankAndToken();
-      });
+      },
+      (error) => {
+        this.showGenericDialog();
+      }
+    );
   }
 
   public resetLoginState(): void {
