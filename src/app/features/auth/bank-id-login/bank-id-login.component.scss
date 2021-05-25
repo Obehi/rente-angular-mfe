@@ -55,17 +55,17 @@ iframe {
   }
 }
 
+.center {
+  //height: 325px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 form {
   border: none;
   @media (min-width: 600px) {
     width: 400 !important;
-  }
-
-  &.center {
-    //height: 325px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
   }
 }
 .wrapper {
@@ -86,7 +86,8 @@ form {
     background: white;
 
     @media (max-width: 600px) {
-      height: calc(100vh - 60px);
+      // height: calc(100vh - 60px);
+      height: calc(100vh - 155px);
       border-radius: 0;
     }
   }
@@ -147,6 +148,10 @@ form {
   h4 {
     max-width: 460px;
     margin: 20px auto 0;
+  }
+
+  p {
+    margin-top: 10px;
   }
 }
 

@@ -13,18 +13,17 @@
 
     <!--  <div></div> -->
 
+    <div *ngIf="!newClient" class="text-box">
+      <h2>velkommen tilbake</h2>
+      <h4>Du er allerede registrert</h4>
+    </div>
     <form
       *ngIf="!newClient"
       [formGroup]="loanFormGroup"
       novalidate
-      class="center loan-form"
+      class="loan-form"
     >
-      <div class="text-box">
-        <h4 class="registered-welcome">
-          Du er allerede registrert - velkommen tilbake
-        </h4>
-      </div>
-      <div class="loan-grid">
+      <div class="center loan-grid">
         <div class="field">
           <div class="with-info">
             <rente-input
