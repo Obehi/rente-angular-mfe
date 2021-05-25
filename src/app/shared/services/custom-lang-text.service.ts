@@ -218,4 +218,13 @@ export class CustomLangTextService {
     }
     throw new Error('Should include either SV or NB');
   }
+
+  logout(): string {
+    if (locale.includes('sv')) {
+      return 'Du är nu utloggad!';
+    } else if (locale.includes('nb')) {
+      return 'Du er nå logget ut!';
+    }
+    throw new Error('Should be either SV or NB');
+  }
 }
