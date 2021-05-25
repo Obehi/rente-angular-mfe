@@ -30,6 +30,7 @@ export interface ErrorDialogData {
   text?: string;
   confirmText: string;
   cancelText?: string;
+  error?: any;
   onConfirm?: () => void;
   onClose?: () => void;
 }

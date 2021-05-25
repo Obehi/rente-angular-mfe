@@ -11,6 +11,15 @@
   }
 
   .loan-grid {
+    display: grid;
+    grid-template-columns: 5fr 1fr;
+    row-gap: 10px;
+
+    .grid-right {
+      align-self: center;
+      justify-self: center;
+      margin-top: 20px;
+    }
   }
 }
 

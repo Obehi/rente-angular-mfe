@@ -1,16 +1,30 @@
 <div class="top">
-    <img src="../../../../../../assets/icons/warning-round-yellow.svg">
-    <h3>{{ data.header }}</h3>
-    <p>{{ data.text }}</p>
+  <img src="../../../../../../assets/icons/warning-round-yellow.svg" />
+  <h3>{{ data.header }}</h3>
+  <p>{{ data.text }}</p>
+
+  <p *ngIf="data.error">
+    {{ data.error }}
+  </p>
 </div>
 
 <div class="bottom" [class]="data.confirmText ? 'double' : 'single'">
-    <rente-button i18n=“close|button@@close” cdkFocusInitial color="primary-hollow" (click)="onClose()">
-        {{data.cancelText}}
-    </rente-button>
+  <rente-button
+    i18n="“close|button@@close”"
+    cdkFocusInitial
+    color="primary-hollow"
+    (click)="onClose()"
+  >
+    {{ data.cancelText }}
+  </rente-button>
 
-    <rente-button *ngIf="data.confirmText !== undefined" i18n=“close|button@@close” cdkFocusInitial color="primary"
-        (click)="onConfirm()">
-        {{data.confirmText}}
-    </rente-button>
+  <rente-button
+    *ngIf="data.confirmText !== undefined"
+    i18n="“close|button@@close”"
+    cdkFocusInitial
+    color="primary"
+    (click)="onConfirm()"
+  >
+    {{ data.confirmText }}
+  </rente-button>
 </div>

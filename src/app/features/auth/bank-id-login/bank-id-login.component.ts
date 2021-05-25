@@ -157,27 +157,15 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
   }
 
   private loginBankIdStep1(bankName: string): void {
-    this.authService
-      .loginBankIdStep1()
-      .pipe(
-        tap((res) => {
-          // this.setBankIdInfo(res, bankName);
-        })
-      )
-      .subscribe(
-        (response) => {
-          this.localStorageService.setItem('bankIdLoginBank', bankName);
-          this.localStorageService.setItem(
-            'bankIdLoginBankCode',
-            response.code
-          );
-          this.signicatIframeUrl = this.getSanatizeIframUrl(response.url);
-          this.isLoading = false;
-        },
-        (_) => {
-          this.showGenericDialog();
-        }
-      );
+    this.authService.loginBankIdStep1().subscribe(
+      (response) => {
+        this.signicatIframeUrl = this.getSanatizeIframUrl(response.url);
+        this.isLoading = false;
+      },
+      (error) => {
+        this.showGenericDialog(error);
+      }
+    );
   }
 
   @HostListener('window:message', ['$event'])
@@ -197,28 +185,33 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
       this.authService
         .loginBankIdStep2(sessionId, this.bank)
         .pipe(retry(2))
-        .subscribe((response) => {
-          this.signicatIframeUrl = null;
+        .subscribe(
+          (response) => {
+            this.signicatIframeUrl = null;
 
-          if (response.newClient === true) {
-            this.loanService.getAllMemberships().subscribe(
-              (onlyMemberships) => {
-                this.initMemberships(onlyMemberships.memberships);
-                this.initNewUserForms();
-                // this.handlePublic();
-                this.isLoading = false;
-                this.showForms = true;
-                this.newClient = true;
-              },
-              (error) => {
-                this.showForms = false;
-                this.showGenericDialog();
-              }
-            );
-          } else {
-            this.initLoansForm(response);
+            if (response.newClient === true) {
+              this.loanService.getAllMemberships().subscribe(
+                (onlyMemberships) => {
+                  this.initMemberships(onlyMemberships.memberships);
+                  this.initNewUserForms();
+                  // this.handlePublic();
+                  this.isLoading = false;
+                  this.showForms = true;
+                  this.newClient = true;
+                },
+                (error) => {
+                  this.showForms = false;
+                  this.showGenericDialog(error);
+                }
+              );
+            } else {
+              this.initLoansForm(response);
+            }
+          },
+          (error) => {
+            this.showGenericDialog(error);
           }
-        });
+        );
   }
 
   public isErrorState(control: AbstractControl | null): boolean {
@@ -415,20 +408,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
           } else {
             // handle state as error
 
-            const dialogData: ErrorDialogData = {
-              header: 'Ops, noe gikk visst galt',
-              confirmText: 'Prøv igjen',
-              cancelText: 'Avbryt',
-              onConfirm: () => {
-                this.router.navigate(['/' + ROUTES_MAP.bankSelect]);
-              },
-              onClose: () => {
-                this.router.navigate(['/'], { replaceUrl: true });
-              }
-            };
-            this.dialog.open(GenericErrorDialogComponent, {
-              data: dialogData
-            });
+            this.showGenericDialog();
             this.isLoading = false;
           }
         },
@@ -598,15 +578,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
             }
           });
         } else {
-          const dialogData: ErrorDialogData = {
-            header: 'Ops, noe gikk visst galt',
-            confirmText: 'Prøv igjen',
-            cancelText: 'Avbryt'
-          };
-
-          this.dialog.open(GenericErrorDialogComponent, {
-            data: dialogData
-          });
+          this.showGenericDialog();
         }
       }
     );
@@ -657,11 +629,14 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     this.currentStepperValue = 0;
   }
 
-  public showGenericDialog(): void {
-    const dialogData = {
+  public showGenericDialog(error?: any): void {
+    console.log('showGenericDialog');
+    console.log(error);
+    const dialogData: ErrorDialogData = {
       header: 'Ops, noe gikk visst galt',
       confirmText: 'Prøv igjen',
       cancelText: 'Avbryt',
+      error: error,
       onConfirm: () => {
         this.resetLoginState();
         this.router.navigate(['/' + ROUTES_MAP.bankSelect]);

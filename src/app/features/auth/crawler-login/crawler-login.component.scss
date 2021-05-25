@@ -1,6 +1,4 @@
-@import "../../../../styles/theme/_colors.scss";
-
-
+@import '../../../../styles/theme/_colors.scss';
 
 .email-form {
   display: flex;
@@ -37,13 +35,15 @@ rente-button {
   color: $red;
 }
 
-
 .bank-logo {
   margin-bottom: 20px;
-  max-width: 140px;
-  max-height: 80px;
+  max-width: 80px;
+  max-height: 140px;
   width: 100%;
   height: 100%;
+  display: block;
+  width: auto;
+  height: auto;
 }
 a {
   color: $primary;
