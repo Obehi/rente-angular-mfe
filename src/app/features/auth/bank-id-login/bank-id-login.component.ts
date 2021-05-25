@@ -199,7 +199,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
         .pipe(retry(2))
         .subscribe((response) => {
           this.signicatIframeUrl = null;
-          response.newClient = false;
+
           if (response.newClient === true) {
             this.loanService.getAllMemberships().subscribe(
               (onlyMemberships) => {
