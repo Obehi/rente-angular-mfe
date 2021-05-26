@@ -9,7 +9,6 @@ import {
 import { Router } from '@angular/router';
 import { ROUTES_MAP, ROUTES_MAP_NO } from '@config/routes-config';
 import { EnvService } from '@services/env.service';
-
 import { LocalStorageService } from '@services/local-storage.service';
 
 @Component({
@@ -44,13 +43,15 @@ export class BankSelectNoComponent implements OnInit {
     const dnb = 'DNB';
     const sparebank = 'SPAREBANK_1';
     const nordea = 'NORDEA';
+    const sbanken = 'SBANKEN';
     const specialCaseBanks = {};
 
     sortedBanksAlphabetic.forEach((bank, index) => {
       if (
         bank.name === dnb ||
         bank.name === sparebank ||
-        bank.name === nordea
+        bank.name === nordea ||
+        bank.name === sbanken
       ) {
         specialCaseBanks[bank.name] = bank;
         sortedBanksAlphabetic.splice(index, 1);
@@ -74,6 +75,7 @@ export class BankSelectNoComponent implements OnInit {
       specialCaseBanks[dnb],
       specialCaseBanks[nordea],
       specialCaseBanks[sparebank],
+      specialCaseBanks[sbanken],
       ...TinkBanks,
       ...nonMembershipBanks
     ];
@@ -113,7 +115,6 @@ export class BankSelectNoComponent implements OnInit {
         (bank) => bank.label.toLocaleLowerCase().indexOf(f) > -1
       );
     }
-
     this.banks = filteredBanks;
   }
 
