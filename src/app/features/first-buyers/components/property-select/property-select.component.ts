@@ -39,14 +39,6 @@ import { Observable, Subject } from 'rxjs';
     ]),
     trigger('outInAnimation', [
       transition(':leave', [
-        // style({
-        //   position: 'relative',
-        //   left: '35px',
-        //   width: '80%',
-        //   padding: '15px',
-        //   opacity: 1,
-        //   'z-index': 193913913
-        // }),
         animate('0.1s ease-out', style({ height: 0, opacity: 0 }))
       ])
     ])
@@ -59,15 +51,13 @@ export class PropertySelectComponent implements OnInit, OnDestroy {
   @Input() placeholder: string;
   @Input() label;
 
-  public memberships = 0;
-
   icon = '../../../../assets/icons/reject-icon.svg';
   searchIconLight = '../../../../assets/icons/search-grey-light.svg';
   searchIconDark = '../../../../assets/icons/search-grey-dark.svg';
 
   @Input() selectedOptions;
   @Output() selectedItemsEmitter = new EventEmitter<string[] | undefined>();
-  @Output() closeEmitter = new EventEmitter<any>();
+  @Output() hasChangedEmitter = new EventEmitter<any>();
 
   public selectedMemberships: string[] | undefined = [];
   _selectedMemberships: string[];
@@ -92,25 +82,11 @@ export class PropertySelectComponent implements OnInit, OnDestroy {
     return window.innerWidth < 600;
   }
 
-  get saveEnabled(): boolean {
-    if (this.memberships > 0) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
   chooseMembership(membership: string): void {
     if (!this.selectedMemberships?.includes(membership)) {
       this.selectedMemberships?.push(membership);
-      this.memberships++;
       this.selectedItemsEmitter.emit(this.selectedMemberships);
     }
-
-    // if (!this.selectedMemberships?.includes(membership)) {
-    //   this.selectedMemberships?.push(membership);
-    //   this.memberships++;
-    // }
   }
 
   removeMembership(membership: string): void {
@@ -118,9 +94,6 @@ export class PropertySelectComponent implements OnInit, OnDestroy {
       this.selectedMemberships = this.selectedMemberships?.filter(
         (option) => option !== membership
       );
-      this.memberships--;
-      console.log('removeMembership');
-      console.log(this.selectedMemberships);
       this.selectedItemsEmitter.emit(this.selectedMemberships);
     }
   }
@@ -132,14 +105,4 @@ export class PropertySelectComponent implements OnInit, OnDestroy {
       return false;
     }
   }
-
-  // save(): void {
-  //   if (this.saveEnabled) {
-  //     this.selectedItemsEmitter.emit(this.selectedMemberships);
-  //   }
-  // }
-
-  // cancel(): void {
-  //   this.closeEmitter.emit();
-  // }
 }

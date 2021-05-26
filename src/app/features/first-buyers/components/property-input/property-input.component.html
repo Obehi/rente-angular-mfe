@@ -60,7 +60,11 @@
         </mat-form-field>
         <mat-select-autocomplete
           *ngIf="inputType === 'autocomplete'"
-          [placeholder]="'Velg'"
+          [placeholder]="
+            previousStateMemberships?.length !== 0
+              ? previousStateMemberships?.length + ' Medlemskap valgt'
+              : 'Velg'
+          "
           (click)="openPropertySelectDialog()"
         >
         </mat-select-autocomplete>

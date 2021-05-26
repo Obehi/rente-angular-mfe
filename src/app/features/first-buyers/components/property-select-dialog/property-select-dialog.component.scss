@@ -3,4 +3,9 @@ property-select {
 .buttons {
   display: flex;
   justify-content: space-evenly;
+  @media (max-width: 600px) {
+    position: fixed;
+    bottom: 15px;
+    width: 100%;
+  }
 }

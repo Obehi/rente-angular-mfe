@@ -39,7 +39,7 @@ export class PropertyInputComponent implements OnInit {
   @Input() options: { name?: string; value?: string; label: string }[];
   @Input() autocompleteOptions: any;
   @Input() memberships: MembershipTypeDto[];
-  public test: string[] = [];
+  public previousStateMemberships: string[] = [];
   @Output() selectedMemberships = new EventEmitter<MembershipTypeDto[]>();
   @ViewChild(SelectAutocompleteComponent)
   multiSelect: SelectAutocompleteComponent;
@@ -66,7 +66,7 @@ export class PropertyInputComponent implements OnInit {
   ngOnInit(): void {
     this.firstBuyersService.getSelectedMemberships().subscribe((args) => {
       console.log(args);
-      this.test = args;
+      this.previousStateMemberships = args;
     });
     console.log(this.autocompleteOptions);
     if (this.inputType === 'autocomplete') {
@@ -97,7 +97,6 @@ export class PropertyInputComponent implements OnInit {
     });
     this.firstBuyersService.selectedMemberships = _selectedMemberships;
     this.selectionDistincter.next(_selectedMemberships);
-    // console.log(_selectedMemberships);
   }
 
   parseFloat(val: string): number {
@@ -113,20 +112,11 @@ export class PropertyInputComponent implements OnInit {
     const openDialog = this.dialog.open(PropertySelectDialogComponent, {
       autoFocus: false,
       data: {
-        previousState: [...this.test],
+        previousState: [...this.previousStateMemberships],
         allMemberships: this.autocompleteOptions
       }
-
-      // data: {allOptions: this.autocompleteOptions,
-      // preChoosenMemberships: this.choosenMemberships},
-      // onClose(memberships) => {
-      //  this.choosenMemberships = memberships
     });
-    openDialog.afterClosed().subscribe(() => {
-      console.log('afterClosed');
-      console.log(this.test);
-      // this.propertySelectDialogClose(openDialog.componentInstance.closeState);
-    });
+    openDialog.afterClosed().subscribe(() => {});
   }
 
   public propertySelectDialogClose(state: string): void {

@@ -32,6 +32,7 @@
 
   .list-div {
     background: $white;
+    display: flex;
     p {
       background: $grey-light;
       font-size: 1rem;
@@ -57,9 +58,9 @@
     }
 
     .remove-icon-list {
-      width: 8%;
-      margin-left: 1rem;
-      position: absolute;
+      width: 1.5rem;
+      z-index: 1;
+      margin-top: 10px;
     }
   }
 
@@ -68,12 +69,19 @@
 
   .dropdown-scroll {
     overflow-y: scroll;
-    height: 39vh;
-    @media (min-height: 800px) {
-      height: 43vh;
+    height: 31vh;
+    border-bottom: 1px solid lightgrey;
+    @media (min-height: 600px) and (min-width: 360px) {
+      height: 37vh;
     }
-    @media (max-height: 568px) {
-      height: 34vh;
+    @media (min-height: 600px) and (max-width: 360px) {
+      height: 35vh;
+    }
+    @media (min-height: 700px) {
+      height: 39vh;
+    }
+    @media (min-height: 800px) {
+      height: 42vh;
     }
   }
 
@@ -226,8 +234,6 @@
   .desktop-flex-part-one {
     order: 1;
     width: 55%;
-    overflow-y: hidden;
-    // background: linear-gradient(180deg, #009688, #ffffff);
     background: linear-gradient(180deg, #264f80, #183a63);
     border-radius: 0px 0px 15px 0px;
 
@@ -263,12 +269,12 @@
     .selected-membership {
       display: flex;
     }
-  }
 
-  // .desktop-flex-part-one {
-  //   order: 1;
-  //   width: 55%;
-  // }
+    .selected-memberships {
+      overflow-y: scroll;
+      height: 88%;
+    }
+  }
   .desktop-flex-part-two {
     order: 2;
     max-width: 62%;
@@ -343,8 +349,22 @@
       margin-bottom: 3px;
     }
   }
-  // .buttons {
-  //   display: flex;
-  //   justify-content: space-evenly;
-  // }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+    background: inherit;
+  }
+
+  ::-webkit-scrollbar-track {
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: grey;
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(54, 56, 58);
+  }
 }

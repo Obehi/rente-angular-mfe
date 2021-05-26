@@ -2,7 +2,7 @@
 <div *ngIf="isMobile" class="main-div">
   <div *ngIf="isMobile" class="chosen-memberships-div">
     <h2 class="selected-membership-top">
-      Valgte medlemskap ({{ memberships }})
+      Valgte medlemskap ({{ selectedMemberships?.length || 0 }})
     </h2>
 
     <div
@@ -48,12 +48,13 @@
           (click)="removeMembership(option)"
         >
           {{ option }}
-          <img
-            class="remove-icon-list"
-            src="{{ icon }}"
-            (click)="removeMembership(option)"
-          />
         </p>
+        <img
+          *ngIf="chosenMemberships(option)"
+          class="remove-icon-list"
+          src="{{ icon }}"
+          (click)="removeMembership(option)"
+        />
       </div>
     </div>
   </div>
@@ -63,22 +64,24 @@
   <div class="desktop-column-one">
     <div class="desktop-flex-part-one">
       <h2 class="selected-membership-top">
-        Valgte medlemskap ({{ memberships }})
+        Valgte medlemskap ({{ selectedMemberships?.length || 0 }})
       </h2>
-      <div
-        *ngFor="let option of selectedMemberships"
-        class="item-list"
-        [@inOutAnimation]
-      >
-        <div class="selected-membership">
-          <p>
-            {{ option | truncate: 19 }}
-          </p>
-          <img
-            class="remove-icon"
-            src="{{ icon }}"
-            (click)="removeMembership(option)"
-          />
+      <div class="selected-memberships">
+        <div
+          *ngFor="let option of selectedMemberships"
+          class="item-list"
+          [@inOutAnimation]
+        >
+          <div class="selected-membership">
+            <p>
+              {{ option | truncate: 19 }}
+            </p>
+            <img
+              class="remove-icon"
+              src="{{ icon }}"
+              (click)="removeMembership(option)"
+            />
+          </div>
         </div>
       </div>
     </div>
