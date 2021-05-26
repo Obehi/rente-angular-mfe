@@ -84,15 +84,13 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
   public isLoading = true;
   public selectOptions: any;
   public selectedOffer: string;
-  private sessionId: string | null;
-  private oneTimeToken: string | null;
   private bank: string | null;
   public currentStepperValue = 0;
   public newClient = true;
   public showManualInputForm = false;
-  private loginState: any;
   private routeSubscription: Subscription;
   signicatIframeUrl?: SafeResourceUrl | null;
+  public oldUserNewLoan = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -107,23 +105,20 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     private globalStateService: GlobalStateService,
     private routeEventsService: RouteEventsService,
     private sanitizer: DomSanitizer
-  ) {}
+  ) {
+    this.setRoutingListeners();
+  }
+
+  ngOnInit(): void {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+    this.globalStateService.setFooterState(false);
+  }
 
   ngOnDestroy(): void {
     this.routeSubscription.unsubscribe();
-  }
-  ngOnInit(): void {
-    this.loginState = this.localStorageService.getObject('loginState');
-    this.bank = this.localStorageService.getItem('bankIdLoginBank');
-
-    if (this.bank === null) {
-      this.showGenericDialog();
-      return;
-    }
-
-    this.setRoutingListeners();
-    this.globalStateService.setFooterState(false);
-    this.loginBankIdStep1(this.bank);
   }
 
   private setRoutingListeners() {
@@ -138,6 +133,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
         }
       }
     );
+
     this.navigationInterceptionService.setBackButtonCallback(() => {
       if (this.currentStepperValue !== 0) {
         this.back();
@@ -145,6 +141,16 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
         this.router.navigate(['/' + ROUTES_MAP.bankSelect]);
       }
     });
+
+    const bankParam = this.router?.getCurrentNavigation()?.extras?.state?.data;
+
+    if (bankParam == null) {
+      this.router.navigate(['/' + ROUTES_MAP.bankSelect]);
+      return;
+    } else {
+      this.bank = bankParam;
+      this.loginBankIdStep1(bankParam);
+    }
   }
 
   getSanatizeIframUrl(url: string): SafeResourceUrl {
@@ -157,6 +163,10 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
   }
 
   private loginBankIdStep1(bankName: string): void {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
     this.authService.loginBankIdStep1().subscribe(
       (response) => {
         this.signicatIframeUrl = this.getSanatizeIframUrl(response.url);
@@ -188,6 +198,11 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
         .subscribe(
           (response) => {
             this.signicatIframeUrl = null;
+
+            window.scrollTo({
+              top: 0,
+              behavior: 'smooth'
+            });
 
             if (response.newClient === true) {
               this.loanService.getAllMemberships().subscribe(
@@ -353,6 +368,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
             };
           });
 
+          this.oldUserNewLoan = true;
           this.loanFormGroup = this.fb.group({
             outstandingDebt: ['', Validators.required],
             remainingYears: ['', [Validators.required, Validators.max(100)]],
@@ -520,11 +536,13 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
   }
 
   next(): void {
+    this.scrollToTop();
     this.stepper.next();
     this.currentStepperValue = this.stepper.selectedIndex;
   }
 
   back(): void {
+    this.scrollToTop();
     this.stepper.previous();
     this.currentStepperValue = this.stepper.selectedIndex;
   }
@@ -540,6 +558,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
       });
       this.isLoading = false;
       this.stepper.next();
+      this.scrollToTop();
       this.currentStepperValue = this.stepper.selectedIndex;
     });
   }
@@ -557,6 +576,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
           });
           this.isLoading = false;
           this.stepper.next();
+          this.scrollToTop();
           this.currentStepperValue = this.stepper.selectedIndex;
         });
       },
@@ -585,11 +605,13 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
   }
 
   goToUserForm(): void {
+    this.scrollToTop();
     this.stepper.next();
     this.currentStepperValue = this.stepper.selectedIndex;
   }
 
   goToMembershipForm(): void {
+    this.scrollToTop();
     this.stepper.next();
   }
 
@@ -649,6 +671,13 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     };
     this.dialog.open(GenericErrorDialogComponent, {
       data: dialogData
+    });
+  }
+
+  private scrollToTop(): void {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
     });
   }
 }

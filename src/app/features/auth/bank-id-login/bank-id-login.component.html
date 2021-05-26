@@ -11,11 +11,15 @@
       width="400"
     ></iframe>
 
-    <!--  <div></div> -->
+    <div></div>
 
     <div *ngIf="!newClient" class="text-box">
       <h2>Velkommen tilbake</h2>
-      <p>Du er allerede registrert</p>
+      <p *ngIf="!oldUserNewLoan">Du er allerede registrert</p>
+      <p class="wide-text" *ngIf="oldUserNewLoan">
+        Du er allerede registrert med en annen bank tidligere, derfor trenger vi
+        bare oppdaterte lånedetaljer før alt er klart
+      </p>
     </div>
 
     <form
@@ -65,18 +69,17 @@
         </div>
 
         <div class="field">
-            <rente-input
-              [placeholder]="'Antall år igjen på lånet?'"
-              [type]="'tel'"
-              matSuffix="år"
-              [maxLength]="2"
-              formControlName="remainingYears"
-              [errorStateMatcher]="
-                isErrorState(loanFormGroup?.controls['remainingYears'])
-              "
-            >
-            </rente-input>
-
+          <rente-input
+            [placeholder]="'Antall år igjen på lånet?'"
+            [type]="'tel'"
+            matSuffix="år"
+            [maxLength]="2"
+            formControlName="remainingYears"
+            [errorStateMatcher]="
+              isErrorState(loanFormGroup?.controls['remainingYears'])
+            "
+          >
+          </rente-input>
 
           <div *ngIf="loanFormGroup?.controls['remainingYears'].touched">
             <p
@@ -142,17 +145,11 @@
               </h4>
             </div>
 
-            <form
-              *ngIf="showForms"
-              [formGroup]="emailFormGroup"
-              novalidate
-              (ngSubmit)="next()"
-            >
+            <form [formGroup]="emailFormGroup" novalidate (ngSubmit)="next()">
               <div autofocus class="field">
                 <rente-input
                   [placeholder]="'E-post'"
                   formControlName="email"
-                  [modelOptions]="{ updateOn: 'blur' }"
                   [errorStateMatcher]="
                     isErrorState(emailFormGroup?.controls['email'])
                   "
@@ -392,32 +389,17 @@
             >
               <div class="loan-grid">
                 <div class="field">
-                  <div class="with-info">
-                    <rente-input
-                      [placeholder]="'Hvor mye har du i boliglån?'"
-                      [type]="'tel'"
-                      [maskType]="mask.currency"
-                      matSuffix="kr"
-                      formControlName="outstandingDebt"
-                      [errorStateMatcher]="
-                        isErrorState(loanFormGroup?.controls['outstandingDebt'])
-                      "
-                    >
-                    </rente-input>
-                    <div
-                      i18n="“help|info-confirmation@@info.confirmation.help”"
-                      class="clickable"
-                      (click)="
-                        openInfoDialog({
-                          header: ' Hvor mye er lånet ditt på i dag?',
-                          text:
-                            'Om du er usikker kan du gi oss omtrentlig lånestørrelse. Vit da at evt. beregnet besparelse vil bli høyere eller lavere ut i fra blant annet størrelsen på lånet ditt'
-                        })
-                      "
-                    >
-                      <mat-icon>help</mat-icon>
-                    </div>
-                  </div>
+                  <rente-input
+                    [placeholder]="'Hvor mye har du i boliglån?'"
+                    [type]="'tel'"
+                    [maskType]="mask.currency"
+                    matSuffix="kr"
+                    formControlName="outstandingDebt"
+                    [errorStateMatcher]="
+                      isErrorState(loanFormGroup?.controls['outstandingDebt'])
+                    "
+                  >
+                  </rente-input>
 
                   <div
                     *ngIf="loanFormGroup?.controls['outstandingDebt'].touched"
@@ -435,35 +417,32 @@
                   </div>
                 </div>
 
-                <div class="field">
-                  <div class="with-info">
-                    <rente-input
-                      [placeholder]="'Antall år igjen på lånet?'"
-                      [type]="'tel'"
-                      matSuffix="år"
-                      [maxLength]="2"
-                      formControlName="remainingYears"
-                      [errorStateMatcher]="
-                        isErrorState(loanFormGroup?.controls['remainingYears'])
-                      "
-                    >
-                    </rente-input>
+                <div
+                  i18n="“help|info-confirmation@@info.confirmation.help”"
+                  class="grid-right"
+                  (click)="
+                    openInfoDialog({
+                      header: ' Hvor mye er lånet ditt på i dag?',
+                      text:
+                        'Om du er usikker kan du gi oss omtrentlig lånestørrelse. Vit da at evt. beregnet besparelse vil bli høyere eller lavere ut i fra blant annet størrelsen på lånet ditt'
+                    })
+                  "
+                >
+                  <mat-icon>help</mat-icon>
+                </div>
 
-                    <div
-                      i18n="“help|info-confirmation@@info.confirmation.help”"
-                      class="clickable"
-                      (click)="
-                        openInfoDialog({
-                          header:
-                            ' Hvor mange år har du igjen å til lånet er nedbetalt?',
-                          text:
-                            'Om du er usikker så kan du legge inn sånn omtrentlig hvor mange år du har. Hvis du lar feltet stå tomt antar vi at lånet har 20 år igjen.'
-                        })
-                      "
-                    >
-                      <mat-icon>help</mat-icon>
-                    </div>
-                  </div>
+                <div class="field">
+                  <rente-input
+                    [placeholder]="'Antall år igjen på lånet?'"
+                    [type]="'tel'"
+                    matSuffix="år"
+                    [maxLength]="2"
+                    formControlName="remainingYears"
+                    [errorStateMatcher]="
+                      isErrorState(loanFormGroup?.controls['remainingYears'])
+                    "
+                  >
+                  </rente-input>
 
                   <div
                     *ngIf="loanFormGroup?.controls['remainingYears'].touched"
@@ -479,6 +458,21 @@
                       Kan ikke være tom
                     </p>
                   </div>
+                </div>
+
+                <div
+                  i18n="“help|info-confirmation@@info.confirmation.help”"
+                  class="grid-right"
+                  (click)="
+                    openInfoDialog({
+                      header:
+                        ' Hvor mange år har du igjen å til lånet er nedbetalt?',
+                      text:
+                        'Om du er usikker så kan du legge inn sånn omtrentlig hvor mange år du har. Hvis du lar feltet stå tomt antar vi at lånet har 20 år igjen.'
+                    })
+                  "
+                >
+                  <mat-icon>help</mat-icon>
                 </div>
 
                 <div class="field left">
