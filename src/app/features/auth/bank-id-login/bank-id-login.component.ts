@@ -314,7 +314,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
 
     this.loanFormGroup = this.fb.group({
       outstandingDebt: ['', Validators.required],
-      remainingYears: ['', [Validators.required, Validators.max(100)]],
+      remainingYears: ['', [Validators.max(100)]],
       loanType: ['', Validators.required]
     });
 
@@ -348,10 +348,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
         const outstandingDebt = String(clientInfo.outstandingDebt);
         this.loanFormGroup = this.fb.group({
           outstandingDebt: [outstandingDebt, Validators.required],
-          remainingYears: [
-            clientInfo.remainingYears,
-            [Validators.required, Validators.max(100)]
-          ],
+          remainingYears: [clientInfo.remainingYears, [Validators.max(100)]],
           loanType: [selectedOption ?? null, Validators.required]
         });
 
@@ -474,9 +471,8 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
 
   get loanUpdateInfoDto(): LoanUpdateInfoDto {
     const loanUpdateInfoDto = new LoanUpdateInfoDto();
-    loanUpdateInfoDto.remainingYears = this.loanFormGroup?.get(
-      'remainingYears'
-    )?.value;
+    loanUpdateInfoDto.remainingYears =
+      this.loanFormGroup?.get('remainingYears')?.value ?? 20;
 
     loanUpdateInfoDto.productId = String(
       this.loanFormGroup?.get('loanType')?.value.value
