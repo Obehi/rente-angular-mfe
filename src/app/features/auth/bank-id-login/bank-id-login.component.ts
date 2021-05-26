@@ -472,7 +472,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
   get loanUpdateInfoDto(): LoanUpdateInfoDto {
     const loanUpdateInfoDto = new LoanUpdateInfoDto();
     loanUpdateInfoDto.remainingYears =
-      this.loanFormGroup?.get('remainingYears')?.value ?? 20;
+      this.loanFormGroup?.get('remainingYears')?.value || 20;
 
     loanUpdateInfoDto.productId = String(
       this.loanFormGroup?.get('loanType')?.value.value
