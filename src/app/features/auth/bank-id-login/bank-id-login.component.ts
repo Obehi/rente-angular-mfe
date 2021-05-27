@@ -112,6 +112,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     console.log('test');
 
+    console.log(window);
     window.addEventListener('message', function (event) {
       console.log('window.addEventListener event');
       console.log(event);
