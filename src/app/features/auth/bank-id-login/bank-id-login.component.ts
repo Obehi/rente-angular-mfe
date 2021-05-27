@@ -110,6 +110,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    console.log('test');
     window.scrollTo({
       top: 0,
       behavior: 'smooth'
@@ -181,8 +182,10 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
   @HostListener('window:message', ['$event'])
   onMessage(event) {
     if (event.origin === 'https://id.idfy.io') {
+      console.log(event.status);
       const data = JSON.parse(event.data);
       if (data.status === 'success') {
+        console.log('event success');
         this.statusSuccess(data.sessionId);
       }
     }
