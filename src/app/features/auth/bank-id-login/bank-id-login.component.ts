@@ -111,6 +111,16 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     console.log('test');
+
+    window.addEventListener('message', function (event) {
+      console.log('window.addEventListener event');
+      console.log(event);
+      if (event.origin !== 'https://id.idfy.io') return;
+
+      console.log('signicat event');
+      const data = JSON.parse(event.data);
+      console.log(data.status); // => 'success/aborted/error'
+    });
     window.scrollTo({
       top: 0,
       behavior: 'smooth'
