@@ -181,6 +181,8 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
 
   @HostListener('window:message', ['$event'])
   onMessage(event) {
+    console.log('eny event');
+    console.log(event);
     if (event.origin === 'https://id.idfy.io') {
       console.log(event.status);
       const data = JSON.parse(event.data);
