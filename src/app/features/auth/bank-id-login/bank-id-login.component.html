@@ -15,7 +15,10 @@
 
     <div *ngIf="!newClient" class="text-box">
       <h2>Velkommen tilbake</h2>
-      <p *ngIf="!oldUserNewLoan">Du er allerede registrert</p>
+      <p class="wide-text" *ngIf="!oldUserNewLoan">
+        Du er allerede registrert. Sjekk om lånedetaljene dine fortsatt stemmer
+        før du går videre.
+      </p>
       <p class="wide-text" *ngIf="oldUserNewLoan">
         Du er allerede registrert med en annen bank tidligere, derfor trenger vi
         bare oppdaterte lånedetaljer før alt er klart
