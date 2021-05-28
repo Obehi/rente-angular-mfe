@@ -48,16 +48,14 @@ import {
 import { forkJoin } from 'rxjs';
 import { LoanUpdateInfoDto } from '@shared/models/loans';
 import { LoginService } from '@services/login.service';
-import { BankUtils, BankVo } from '@shared/models/bank';
 import { GenericInfoDialogComponent } from '@shared/components/ui-components/dialogs/generic-info-dialog/generic-info-dialog.component';
 import { VirdiErrorChoiceDialogComponent } from '@shared/components/ui-components/dialogs/virdi-error-choice-dialog/virdi-error-choice-dialog.component';
-import { ROUTES_MAP, ROUTES_MAP_NO } from '@config/routes-config';
+import { ROUTES_MAP } from '@config/routes-config';
 import {
   ErrorDialogData,
   GenericErrorDialogComponent
 } from '@shared/components/ui-components/dialogs/generic-error-dialog/generic-error-dialog.component';
 import { ApiError } from '@shared/constants/api-error';
-import { ProfileService } from '@services/remote-api/profile.service';
 import { GlobalStateService } from '@services/global-state.service';
 import { RouteEventsService } from '@services/route-events.service';
 @Component({
@@ -110,30 +108,28 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    console.log('test');
-
-    console.log(window);
-    window.addEventListener('message', function (event) {
-      console.log('window.addEventListener event');
-      console.log(event);
-      if (event.origin !== 'https://id.idfy.io') return;
-
-      console.log('signicat event');
-      const data = JSON.parse(event.data);
-      console.log(data.status); // => 'success/aborted/error'
-    });
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
+    this.scrollToTop();
     this.globalStateService.setFooterState(false);
+    this.init();
   }
 
   ngOnDestroy(): void {
     this.routeSubscription.unsubscribe();
   }
 
+  private init(): void {
+    const bankParam = this.router?.getCurrentNavigation()?.extras?.state?.data;
+    if (bankParam == null) {
+      this.router.navigate(['/' + ROUTES_MAP.bankSelect]);
+      return;
+    } else {
+      this.bank = bankParam;
+      this.loginBankIdStep1();
+    }
+  }
+
   private setRoutingListeners() {
+    // make sure you cant return to this form from the dashboard
     this.routeSubscription = this.routeEventsService.previousRoutePath.subscribe(
       (previousRoutePath) => {
         if (
@@ -146,6 +142,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
       }
     );
 
+    // map back button to the steppers back functionality
     this.navigationInterceptionService.setBackButtonCallback(() => {
       if (this.currentStepperValue !== 0) {
         this.back();
@@ -153,32 +150,14 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
         this.router.navigate(['/' + ROUTES_MAP.bankSelect]);
       }
     });
-
-    const bankParam = this.router?.getCurrentNavigation()?.extras?.state?.data;
-
-    if (bankParam == null) {
-      this.router.navigate(['/' + ROUTES_MAP.bankSelect]);
-      return;
-    } else {
-      this.bank = bankParam;
-      this.loginBankIdStep1(bankParam);
-    }
   }
 
   getSanatizeIframUrl(url: string): SafeResourceUrl {
     return this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }
 
-  setBankIdInfo(response, bank): void {
-    this.localStorageService.setItem('bankIdLoginBank', bank.name);
-    this.localStorageService.setItem('bankIdLoginBankCode', response.code);
-  }
-
-  private loginBankIdStep1(bankName: string): void {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
+  private loginBankIdStep1(): void {
+    this.scrollToTop();
     this.authService.loginBankIdStep1().subscribe(
       (response) => {
         this.signicatIframeUrl = this.getSanatizeIframUrl(response.url);
@@ -192,13 +171,9 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
 
   @HostListener('window:message', ['$event'])
   onMessage(event) {
-    console.log('eny event');
-    console.log(event);
     if (event.origin === 'https://id.idfy.io') {
-      console.log(event.status);
       const data = JSON.parse(event.data);
       if (data.status === 'success') {
-        console.log('event success');
         this.statusSuccess(data.sessionId);
       }
     }
@@ -215,10 +190,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
           (response) => {
             this.signicatIframeUrl = null;
 
-            window.scrollTo({
-              top: 0,
-              behavior: 'smooth'
-            });
+            this.scrollToTop();
 
             if (response.newClient === true) {
               this.loanService.getAllMemberships().subscribe(
