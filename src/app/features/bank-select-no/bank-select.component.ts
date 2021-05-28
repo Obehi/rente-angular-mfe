@@ -26,6 +26,10 @@ export class BankSelectNoComponent implements OnInit {
   ngOnInit(): void {
     this.sortBanks();
     this.filterBank(this.searchStr);
+
+    console.log('this.envService.environment.shouldLog');
+    console.log(this.envService.environment.shouldLog);
+    console.log(this.envService.environment);
   }
 
   sortBanks(): void {
