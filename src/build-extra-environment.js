@@ -33,7 +33,6 @@ module.exports = (localeForLocalDev) => {
     "VAR_2": ${process.env.LOGIN_DNB_IS_ON},
     "VAR_3": ${process.env.LOGIN_HANDELSBANKEN_IS_ON},
     "VAR_4": ${process.env.LOGIN_DANSKE_IS_ON}
-    "VAR_5": ${process.env.SB1TRY_AGAIN_DOWNTIME}
   }
   `;
 
