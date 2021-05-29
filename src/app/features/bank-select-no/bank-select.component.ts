@@ -129,7 +129,8 @@ export class BankSelectNoComponent implements OnInit {
     }
 
     if (bank.isSigniCat) {
-      this.setBankIdInfo(null, bank.name);
+      console.log('issignicat');
+      console.log(bank.name);
       this.router.navigate(['/autentisering/' + ROUTES_MAP_NO.bankIdLogin], {
         state: { data: bank.name }
       });
@@ -143,11 +144,5 @@ export class BankSelectNoComponent implements OnInit {
         ROUTES_MAP.auth + '/' + bank.name.toLocaleLowerCase()
       ]);
     }
-  }
-
-  setBankIdInfo(response: any, bank: string): void {
-    bank && this.localStorageService.setItem('bankIdLoginBank', bank);
-    response &&
-      this.localStorageService.setItem('bankIdLoginBankCode', response.code);
   }
 }

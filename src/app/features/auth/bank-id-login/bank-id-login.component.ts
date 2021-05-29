@@ -48,14 +48,16 @@ import {
 import { forkJoin } from 'rxjs';
 import { LoanUpdateInfoDto } from '@shared/models/loans';
 import { LoginService } from '@services/login.service';
+import { BankUtils, BankVo } from '@shared/models/bank';
 import { GenericInfoDialogComponent } from '@shared/components/ui-components/dialogs/generic-info-dialog/generic-info-dialog.component';
 import { VirdiErrorChoiceDialogComponent } from '@shared/components/ui-components/dialogs/virdi-error-choice-dialog/virdi-error-choice-dialog.component';
-import { ROUTES_MAP } from '@config/routes-config';
+import { ROUTES_MAP, ROUTES_MAP_NO } from '@config/routes-config';
 import {
   ErrorDialogData,
   GenericErrorDialogComponent
 } from '@shared/components/ui-components/dialogs/generic-error-dialog/generic-error-dialog.component';
 import { ApiError } from '@shared/constants/api-error';
+import { ProfileService } from '@services/remote-api/profile.service';
 import { GlobalStateService } from '@services/global-state.service';
 import { RouteEventsService } from '@services/route-events.service';
 @Component({
@@ -110,26 +112,13 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.scrollToTop();
     this.globalStateService.setFooterState(false);
-    this.init();
   }
 
   ngOnDestroy(): void {
     this.routeSubscription.unsubscribe();
   }
 
-  private init(): void {
-    const bankParam = this.router?.getCurrentNavigation()?.extras?.state?.data;
-    if (bankParam == null) {
-      this.router.navigate(['/' + ROUTES_MAP.bankSelect]);
-      return;
-    } else {
-      this.bank = bankParam;
-      this.loginBankIdStep1();
-    }
-  }
-
   private setRoutingListeners() {
-    // make sure you cant return to this form from the dashboard
     this.routeSubscription = this.routeEventsService.previousRoutePath.subscribe(
       (previousRoutePath) => {
         if (
@@ -142,7 +131,6 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
       }
     );
 
-    // map back button to the steppers back functionality
     this.navigationInterceptionService.setBackButtonCallback(() => {
       if (this.currentStepperValue !== 0) {
         this.back();
@@ -150,6 +138,16 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
         this.router.navigate(['/' + ROUTES_MAP.bankSelect]);
       }
     });
+
+    const bankParam = this.router?.getCurrentNavigation()?.extras?.state?.data;
+
+    if (bankParam == null) {
+      this.router.navigate(['/' + ROUTES_MAP.bankSelect]);
+      return;
+    } else {
+      this.bank = bankParam;
+      this.loginBankIdStep1();
+    }
   }
 
   getSanatizeIframUrl(url: string): SafeResourceUrl {
@@ -157,7 +155,10 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
   }
 
   private loginBankIdStep1(): void {
-    this.scrollToTop();
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
     this.authService.loginBankIdStep1().subscribe(
       (response) => {
         this.signicatIframeUrl = this.getSanatizeIframUrl(response.url);
