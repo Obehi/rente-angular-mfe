@@ -20,8 +20,8 @@ export interface Environment {
   loginDnbIsOn?: boolean;
   loginHandelsbankenIsOn?: boolean;
   loginDanskeIsOn?: any;
-  sb1TryAgainDownTime?: string;
-  sb1DisabledBanks?: string;
+  sb1TryAgainDownTime?: any;
+  sb1DisabledBanks?: any;
 }
 
 @Injectable({
@@ -77,7 +77,9 @@ export class EnvService {
     this.environment.shouldLog = returnedEnv['VAR_1'];
     this.environment.loginDnbIsOn = returnedEnv['VAR_2'];
     this.environment.loginHandelsbankenIsOn = returnedEnv['VAR_3'];
-    this.environment.loginDanskeIsOn = returnedEnv['VAR_5'];
+    this.environment.loginDanskeIsOn = returnedEnv['VAR_4'];
+    this.environment.sb1DisabledBanks = returnedEnv['VAR_5'];
+    this.environment.sb1TryAgainDownTime = returnedEnv['VAR_6'];
   }
 
   handleError(): Observable<any> {
