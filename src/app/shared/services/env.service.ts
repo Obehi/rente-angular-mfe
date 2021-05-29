@@ -21,7 +21,7 @@ export interface Environment {
   loginHandelsbankenIsOn?: boolean;
   loginDanskeIsOn?: any;
   sb1TryAgainDownTime?: any;
-  sb1DisabledBanks?: any;
+  sb1DisabledBanks?: string[];
 }
 
 @Injectable({
@@ -78,7 +78,9 @@ export class EnvService {
     this.environment.loginDnbIsOn = returnedEnv['VAR_2'];
     this.environment.loginHandelsbankenIsOn = returnedEnv['VAR_3'];
     this.environment.loginDanskeIsOn = returnedEnv['VAR_4'];
-    this.environment.sb1DisabledBanks = returnedEnv['VAR_5'];
+    this.environment.sb1DisabledBanks = (returnedEnv['VAR_5'] as string).split(
+      ','
+    );
     this.environment.sb1TryAgainDownTime = returnedEnv['VAR_6'];
   }
 
