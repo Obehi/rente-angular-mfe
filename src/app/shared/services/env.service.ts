@@ -20,7 +20,7 @@ export interface Environment {
   loginDnbIsOn?: boolean;
   loginHandelsbankenIsOn?: boolean;
   loginDanskeIsOn?: any;
-  sb1TryAgainDownTime?: any;
+  sb1TryAgainDowntime?: any;
   sb1DisabledBanks?: string[];
 }
 
@@ -81,7 +81,7 @@ export class EnvService {
     this.environment.sb1DisabledBanks = (returnedEnv['VAR_5'] as string).split(
       ','
     );
-    this.environment.sb1TryAgainDownTime = returnedEnv['VAR_6'];
+    this.environment.sb1TryAgainDowntime = returnedEnv['VAR_6'];
   }
 
   handleError(): Observable<any> {
