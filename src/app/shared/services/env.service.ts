@@ -19,7 +19,7 @@ export interface Environment {
   coralogixApplicationName?: string | null;
   loginDnbIsOn?: boolean;
   loginHandelsbankenIsOn?: boolean;
-  loginDanskeIsOn?: boolean;
+  loginDanskeIsOn?: any;
   sb1TryAgainDownTime?: string;
   sb1DisabledBanks?: string;
 }
