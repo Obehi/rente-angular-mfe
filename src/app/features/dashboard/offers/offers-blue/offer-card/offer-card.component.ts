@@ -184,7 +184,6 @@ export class OfferCardComponentBlue implements OnInit {
       action: 'Click offer card anti-churn',
       label: `top offer: ${this.offersInfo.offers.top5[0].bankInfo.name}`
     });
-    console.log(event);
     this.offersService.pushMessage(OfferMessage.antiChurn);
   }
 }

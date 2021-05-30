@@ -19,7 +19,7 @@ export interface Environment {
   coralogixApplicationName?: string | null;
   loginDnbIsOn?: boolean;
   loginHandelsbankenIsOn?: boolean;
-  loginDanskeIsOn?: any;
+  loginDanskeIsOn?: boolean;
   sb1TryAgainDowntime?: any;
   sb1DisabledBanks?: string[];
 }
@@ -81,7 +81,7 @@ export class EnvService {
     this.environment.sb1DisabledBanks = (returnedEnv['VAR_5'] as string).split(
       ','
     );
-    this.environment.sb1TryAgainDowntime = returnedEnv['VAR_6'].slice(1, -1);
+    this.environment.sb1TryAgainDowntime = returnedEnv['VAR_6'];
   }
 
   handleError(): Observable<any> {

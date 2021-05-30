@@ -122,8 +122,6 @@ export class BankSelectNoComponent implements OnInit {
     }
 
     if (this.envService.environment.sb1DisabledBanks?.includes(bank.name)) {
-      console.log('sparebank1Error');
-      console.log(bank.name);
       this.router.navigate([ROUTES_MAP_NO.sparebank1Error], {
         state: { bank: bank }
       });

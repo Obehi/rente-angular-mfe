@@ -13,8 +13,6 @@ export class Sb1DisabledComponent implements OnInit {
   public missingBank: BankVo;
 
   constructor(private router: Router, public envService: EnvService) {
-    console.log('this.envService.environment');
-    console.log(this.envService.environment);
     if (window.history.state.bank) {
       this.missingBank = window.history.state.bank;
     } else {
