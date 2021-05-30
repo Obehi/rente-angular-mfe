@@ -81,7 +81,7 @@ export class EnvService {
     this.environment.sb1DisabledBanks = (returnedEnv['VAR_5'] as string).split(
       ','
     );
-    this.environment.sb1TryAgainDowntime = returnedEnv['VAR_6'];
+    this.environment.sb1TryAgainDowntime = returnedEnv['VAR_6'].slice(1, -1);
   }
 
   handleError(): Observable<any> {
