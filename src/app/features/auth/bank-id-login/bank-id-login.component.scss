@@ -53,9 +53,12 @@ iframe {
 }
 
 .wide-text {
-  max-width: 80%;
   margin: auto;
   margin-top: 10px;
+
+  @media (min-width: 600px) {
+    max-width: 70%;
+  }
 }
 
 .info-box {
