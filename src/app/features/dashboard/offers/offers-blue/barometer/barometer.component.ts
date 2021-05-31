@@ -35,27 +35,34 @@ export class BarometerComponent implements OnInit {
   }
 
   calcState(): void {
-    const avg = this.offersInfo.bankStatistics.allBanksStatistics
+    const median = this.offersInfo.bankStatistics.allBanksStatistics
       .medianEffectiveRate;
     const totalEffectiveRate = this.offersInfo.totalEffectiveRate;
     const z = this.calcZ;
 
-    if (totalEffectiveRate !== null) {
-      if (avg + 2 * z < totalEffectiveRate) {
-        this.state = 0;
-      }
-      if (avg + z < totalEffectiveRate && totalEffectiveRate <= avg + 2 * z) {
-        this.state = 1;
-      }
-      if (avg - z < totalEffectiveRate && totalEffectiveRate <= avg + z) {
-        this.state = 2;
-      }
-      if (avg - 2 * z < totalEffectiveRate && totalEffectiveRate <= avg - z) {
-        this.state = 3;
-      }
-      if (totalEffectiveRate <= avg - 2 * z) {
-        this.state = 4;
-      }
+    if (totalEffectiveRate === null) {
+      return;
+    }
+    if (median + 2 * z < totalEffectiveRate) {
+      this.state = 0;
+    }
+    if (
+      median + z < totalEffectiveRate &&
+      totalEffectiveRate <= median + 2 * z
+    ) {
+      this.state = 1;
+    }
+    if (median - z < totalEffectiveRate && totalEffectiveRate <= median + z) {
+      this.state = 2;
+    }
+    if (
+      median - 2 * z < totalEffectiveRate &&
+      totalEffectiveRate <= median - z
+    ) {
+      this.state = 3;
+    }
+    if (totalEffectiveRate <= median - 2 * z) {
+      this.state = 4;
     }
   }
 
