@@ -1,28 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { timer } from 'rxjs';
-import { trigger, transition, style, animate } from '@angular/animations';
+
 import { locale } from '@config/locale/locale';
 import { SeoService } from '@services/seo.service';
+
 @Component({
   selector: 'rente-landing',
   templateUrl: './landing.component.html',
-  styleUrls: ['./landing.component.scss'],
-  animations: [
-    trigger('inOutAnimation', [
-      transition(':enter', [
-        style({ height: 0, opacity: 0 }),
-        animate('0.5s ease-out', style({ height: 300, opacity: 1 }))
-      ]),
-      transition(':leave', [
-        style({ height: 300, opacity: 1 }),
-        animate('0.5s ease-in', style({ height: 0, opacity: 0 }))
-      ])
-    ])
-  ]
+  styleUrls: ['./landing.component.scss']
 })
-export class LandingComponent implements OnInit {
+export class LandingComponent implements OnInit, AfterViewInit {
   time = 0;
   isSweden = false;
+
   get isMobile(): boolean {
     return window.innerWidth < 600;
   }
@@ -43,5 +33,16 @@ export class LandingComponent implements OnInit {
         subscription.unsubscribe();
       }
     });
+  }
+
+  ngAfterViewInit(): void {
+    // const componentFactory = this.componentFactoryResolver.resolveComponentFactory(
+    //   DropdownBannerComponent
+    // );
+    // this.dropdownbanner.clear();
+    // const ddownComponent = <DropdownBannerComponent>(
+    //   this.dropdownbanner.createComponent(componentFactory).instance
+    // );
+    // ddownComponent.someProp = 'Hellow World!';
   }
 }

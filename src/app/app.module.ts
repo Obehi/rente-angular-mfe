@@ -42,6 +42,8 @@ import { EnvService } from './shared/services/env.service';
 import { HttpClient } from '@angular/common/http';
 import { NoLoansComponent } from '@features/dashboard/no-loans/no-loans.component';
 import { ConfirmationProperty } from './features/init-confirmation/init-confirmation-sv/confirmation-property-sv/confirmation-property-sv.component';
+import { DynamicComponentService } from '@shared/services/dynamic-component.service';
+import { DropdownBannerComponent } from '@shared/components/ui-components/dropdown-banner/dropdown-banner.component';
 registerLocaleData(localeNo);
 
 @NgModule({
@@ -83,7 +85,11 @@ registerLocaleData(localeNo);
     LazyLoadImageModule,
     CountUpModule
   ],
-  entryComponents: [DialogInfoComponent, ProfileDialogInfoComponent],
+  entryComponents: [
+    DialogInfoComponent,
+    ProfileDialogInfoComponent,
+    DropdownBannerComponent
+  ],
   providers: [
     EnvService,
     {
@@ -96,7 +102,9 @@ registerLocaleData(localeNo);
     { provide: Window, useValue: window },
     UserService,
     OptimizeService,
-    EnvService
+    EnvService,
+    DynamicComponentService,
+    DropdownBannerComponent
   ],
   bootstrap: [AppComponent]
 })

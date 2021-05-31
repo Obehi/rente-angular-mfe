@@ -5,6 +5,10 @@ import { MetaService } from '@shared/services/meta.service';
 import { TitleService } from '@services/title.service';
 import { LocalStorageService } from '@services/local-storage.service';
 import { ROUTES_MAP } from '@config/routes-config';
+import { DynamicComponentService } from '@shared/services/dynamic-component.service';
+
+import { AuthService } from '@services/remote-api/auth.service';
+import { timeout } from 'rxjs/operators';
 
 @Component({
   selector: 'rente-root',
@@ -23,7 +27,9 @@ export class AppComponent implements OnInit {
     private route: ActivatedRoute,
     private metaService: MetaService,
     private titleService: TitleService,
-    private localStorageService: LocalStorageService
+    private localStorageService: LocalStorageService,
+    private dynamicService: DynamicComponentService,
+    private auth: AuthService
   ) {}
 
   onActivate(): void {
@@ -46,6 +52,13 @@ export class AppComponent implements OnInit {
     if (!this.localStorageService.getItem(AppComponent.CookiesAcceptedKey)) {
       this.showCookieAcc = true;
     }
+
+    this.auth.logoutSubject.subscribe((val) => {
+      if (val === 'LoggedOut') {
+        this.dynamicService.setView();
+        this.dynamicService.removeComponent();
+      }
+    });
   }
 
   private changeTitles(): void {
