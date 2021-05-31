@@ -13,8 +13,8 @@ export class BarometerComponent implements OnInit {
 
   baseTextArray = [
     'Renten din er godt over gjennomsnittet',
-    'Renten din er over gjennomsnitt',
-    'Renten din er gjennomsnittnlig',
+    'Renten din er over gjennomsnittet',
+    'Renten din er gjennomsnittlig',
     'Renten din er god',
     'Renten din er svært god'
   ];
@@ -30,14 +30,15 @@ export class BarometerComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    this.calcState();
+    // this.calcState();
+    this.state = 0;
   }
 
-  calcState(): any {
+  calcState(): void {
     const avg = this.offersInfo.bankStatistics.allBanksStatistics
       .medianEffectiveRate;
     const totalEffectiveRate = this.offersInfo.totalEffectiveRate;
-    const z = this.effectiveInterest;
+    const z = this.calcZ;
 
     if (totalEffectiveRate !== null) {
       if (avg + 2 * z < totalEffectiveRate) {
@@ -62,38 +63,30 @@ export class BarometerComponent implements OnInit {
     return 100 - this.rateBarPercentage.percentage;
   }
 
-  get effectiveInterest(): any {
-    const x = this.offersInfo.bankStatistics.allBanksStatistics
-      .medianEffectiveRate;
-    const y = this.offersInfo.bankStatistics.allBanksStatistics
-      .bestPercentileEffectiveRate;
+  get calcZ(): any {
+    const medianEffectiveRate = this.offersInfo.bankStatistics
+      .allBanksStatistics.medianEffectiveRate;
+    const bestPercentileEffectiveRate = this.offersInfo.bankStatistics
+      .allBanksStatistics.bestPercentileEffectiveRate;
 
-    return (x - y) / 3;
+    return (medianEffectiveRate - bestPercentileEffectiveRate) / 3;
   }
 
-  get shouldShowAdditionalText(): boolean | undefined {
-    if (
+  get shouldShowAdditionalText(): boolean {
+    return (
       this.offersInfo.offerSavingsType ===
         'SAVINGS_FIRST_YEAR_BETWEEN_0_AND_2000' ||
       this.offersInfo.offerSavingsType ===
         'SAVINGS_FIRST_YEAR_BETWEEN_2000_AND_6000'
-    ) {
-      return true;
-    } else {
-      return false;
-    }
+    );
   }
 
   get text(): string | undefined {
-    if (this.shouldShowAdditionalText) {
-      return (
-        this.baseTextArray[this.state] +
-        ', ' +
-        this.additionalTextArray[this.state]
-      );
-    } else {
-      return this.baseTextArray[this.state];
-    }
+    const baseText = this.baseTextArray[this.state];
+    const fullText = `${this.baseTextArray[this.state]}, ${
+      this.additionalTextArray[this.state]
+    }`;
+    return this.shouldShowAdditionalText ? fullText : baseText;
   }
 
   get rateBarPercentage(): RateBar {

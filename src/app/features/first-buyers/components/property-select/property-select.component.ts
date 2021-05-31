@@ -12,7 +12,6 @@ import {
   ViewContainerRef,
   NgZone
 } from '@angular/core';
-import Popper from 'popper.js';
 import { debounceTime, filter, takeUntil } from 'rxjs/operators';
 import { FormControl } from '@angular/forms';
 import { fromEvent, Subject } from 'rxjs';
