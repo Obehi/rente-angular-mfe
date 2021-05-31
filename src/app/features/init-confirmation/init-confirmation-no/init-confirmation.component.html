@@ -1,20 +1,22 @@
 <div class="front-container" [ngClass]="{ blue: true }">
   <div *ngIf="propertyForm">
     <div class="title">
-      <h3 i18n="“hi|info-confirmation@@info.confirmation.hi”">
+      <h3
+        *ngIf="userData.name !== null"
+        i18n="“hi|info-confirmation@@info.confirmation.hi”"
+      >
         Hei, {{ userData.name | titlecase }}
       </h3>
       <p i18n="“more-infor|info-confirmation@@info.confirmation.moreInfo”">
         Vi trenger litt mer informasjon før vi kan søke etter tilbud
       </p>
     </div>
-
     <form
       [formGroup]="propertyForm"
       novalidate
       (ngSubmit)="updateProperty(propertyForm.value)"
     >
-      <div *ngIf="isAddressNeeded" class="field">
+      <div *ngIf="isNameNeeded" class="field">
         <rente-input
           [placeholder]="'Navn'"
           formControlName="name"
@@ -35,6 +37,33 @@
             i18n="“invalid|info-confirmation@@info.confirmation.invalid”"
             class="error small"
             *ngIf="propertyForm.controls['name'].hasError('pattern')"
+          >
+            Ugyldig e-post
+          </p>
+        </div>
+      </div>
+
+      <div class="field">
+        <rente-input
+          [placeholder]="'E-post'"
+          formControlName="email"
+          [errorStateMatcher]="isErrorState(propertyForm.controls['email'])"
+          [modelOptions]="{ updateOn: 'blur' }"
+        >
+        </rente-input>
+
+        <div *ngIf="propertyForm.controls['email'].touched">
+          <p
+            i18n="“empty|info-confirmation@@info.confirmation.empty”"
+            class="error small"
+            *ngIf="propertyForm.controls['email'].hasError('required')"
+          >
+            Kan ikke være tom
+          </p>
+          <p
+            i18n="“invalid|info-confirmation@@info.confirmation.invalid”"
+            class="error small"
+            *ngIf="propertyForm.controls['email'].hasError('pattern')"
           >
             Ugyldig e-post
           </p>
@@ -79,32 +108,7 @@
           </p>
         </div>
       </div>
-      <div class="field">
-        <rente-input
-          [placeholder]="'E-post'"
-          formControlName="email"
-          [errorStateMatcher]="isErrorState(propertyForm.controls['email'])"
-          [modelOptions]="{ updateOn: 'blur' }"
-        >
-        </rente-input>
 
-        <div *ngIf="propertyForm.controls['email'].touched">
-          <p
-            i18n="“empty|info-confirmation@@info.confirmation.empty”"
-            class="error small"
-            *ngIf="propertyForm.controls['email'].hasError('required')"
-          >
-            Kan ikke være tom
-          </p>
-          <p
-            i18n="“invalid|info-confirmation@@info.confirmation.invalid”"
-            class="error small"
-            *ngIf="propertyForm.controls['email'].hasError('pattern')"
-          >
-            Ugyldig e-post
-          </p>
-        </div>
-      </div>
       <div class="field">
         <div class="withinfo">
           <div>

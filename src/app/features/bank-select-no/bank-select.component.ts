@@ -137,6 +137,13 @@ export class BankSelectNoComponent implements OnInit {
       return;
     }
 
+    if (this.envService.environment.sb1DisabledBanks?.includes(bank.name)) {
+      this.router.navigate([ROUTES_MAP_NO.sparebank1Error], {
+        state: { bank: bank }
+      });
+      return;
+    }
+
     if (bank.isMissing || this.envService.isMissing(bank)) {
       this.router.navigate([ROUTES_MAP.getNotified], { state: { bank: bank } });
     } else {

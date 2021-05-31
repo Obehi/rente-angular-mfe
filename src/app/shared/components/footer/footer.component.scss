@@ -1,5 +1,4 @@
-@import "../../../../styles/theme/_colors.scss";
-
+@import '../../../../styles/theme/_colors.scss';
 
 footer {
   padding: 20px;
@@ -8,13 +7,14 @@ footer {
   &.visible {
     display: block;
   }
-  
+
   a {
     color: white;
     line-height: 1.5;
   }
 
-  ul {list-style-type: none;
+  ul {
+    list-style-type: none;
     margin: 0px;
     padding: 0;
   }
@@ -30,7 +30,7 @@ footer {
       margin-left: -27px;
     }
   }
-  
+
   .inner-footer {
     margin: auto;
     @media (max-width: 600px) {
@@ -40,8 +40,6 @@ footer {
     .temp-swedish-policy {
       grid-column-start: 1;
       grid-column-end: span 2;
-
-
     }
 
     .fill {
@@ -51,67 +49,64 @@ footer {
 
     .org {
       color: white;
-
     }
 
-    .item:nth-child(3) { 
+    .item:nth-child(3) {
       grid-column-end: span 3;
       margin-top: 20px;
     }
 
     @media (min-width: 600px) {
       max-width: 1010px;
-      grid-template-columns:  1fr 1fr;
+      grid-template-columns: 1fr 1fr;
       display: grid;
       grid-column-end: span 3;
       grid-gap: 40px;
       text-align: center;
       font-size: 14px;
       padding: 2rem 2rem 1rem;
-  
-    
-    .item{ 
-      ul.adjust-margin {
-        margin-top: -5px;
 
-        .sbanken {
-          margin-bottom: 5px;
-        }
-        .nybygger {
-          max-width: 182px;
-        }
-        img.partner-logo.defero {
-          width: 120px;
-        }
-        img.partner-logo.tibber {
-          width: 100px;
+      .item {
+        ul.adjust-margin {
+          margin-top: -5px;
+
+          .sbanken {
+            margin-bottom: 5px;
+          }
+          .nybygger {
+            max-width: 182px;
+          }
+          img.partner-logo.defero {
+            width: 120px;
+          }
+          img.partner-logo.tibber {
+            width: 100px;
+          }
         }
       }
     }
-  }
 
     @media (max-width: 600px) {
-      grid-template-columns:  1fr 1fr;
+      grid-template-columns: 1fr 1fr;
       display: grid;
       grid-gap: 15px;
       text-align: center;
       font-size: 14px;
-      .item { 
+      .item {
         p {
           font-size: 13px;
         }
       }
-   
+
       .item {
         h4 {
-          font-size: 13px
+          font-size: 13px;
         }
         ul {
-          li{
-            
-            a{
-              img{
-                width: 100px
+          li {
+            a {
+              img {
+                width: 100px;
               }
 
               img.virdi {
@@ -122,40 +117,35 @@ footer {
           }
         }
       }
-
-     
     }
 
-    .item{
-
-      H4, p,
+    .item {
+      H4,
+      p,
       a {
         color: white;
         text-align: center;
       }
-    
-    img {
-      margin: 10px
-    }
 
-    img.virdi {
-      width: 130px;
-    }
-
-    img.partner-logo.defero {
-      width: 85px !important;
-    }
-    .social {
-      display: table;
-      margin: auto;
-      margin-bottom: 10px;
-      display: flex;
-      justify-content: center;
       img {
-        margin: 20px 20px;
-        height: 40px;
+        margin: 10px;
       }
-    }
+
+      img.virdi {
+        width: 130px;
+      }
+
+      .social {
+        display: table;
+        margin: auto;
+        margin-bottom: 10px;
+        display: flex;
+        justify-content: center;
+        img {
+          margin: 20px 20px;
+          height: 40px;
+        }
+      }
     }
   }
 }

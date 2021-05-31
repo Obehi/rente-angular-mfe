@@ -207,7 +207,7 @@ export class ClientAddressDto {
 
 export class ConfirmationGetDto {
   email: string;
-  name: string;
+  name: string | null;
   bank: string;
   income: number;
   memberships: string[];

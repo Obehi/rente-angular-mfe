@@ -5,6 +5,22 @@ import { locale } from '@config/locale/locale';
   providedIn: 'root'
 })
 export class CustomLangTextService {
+  getRenteradarLinkText(): string {
+    if (locale.includes('sv')) {
+      return 'Ranteradar.se';
+    } else if (locale.includes('nb')) {
+      return 'Renteradar.no';
+    }
+    throw new Error('Should be either SV or NB');
+  }
+  getRenteradarUrl(): string {
+    if (locale.includes('sv')) {
+      return 'https://ranteradar.se';
+    } else if (locale.includes('nb')) {
+      return 'https://ranteradar.no/';
+    }
+    throw new Error('Should be either SV or NB');
+  }
   getEmail(): string {
     if (locale.includes('sv')) {
       return 'hej@ranteradar.se';
@@ -196,7 +212,7 @@ export class CustomLangTextService {
 
   getlowerRateBody(): string {
     if (locale.includes('sv')) {
-      return 'Prutade du genom oss för att få en bättre ränta?';
+      return 'Var vi till hjälp för att sänka din bolåneränta?';
     } else if (locale.includes('nb')) {
       return 'Fikk du lavere rente etter å ha sendt melding fra Renteradar.no?';
     }
