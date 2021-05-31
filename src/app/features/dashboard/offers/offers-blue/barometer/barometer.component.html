@@ -1,26 +1,6 @@
 <div class="barometer">
-  <div class="rente-status" [ngSwitch]="offersInfo.offerSavingsType">
-    <p i18n="“interest-very-good|offers-main@@offers.mainPage.interest.veryGood”"
-      *ngSwitchCase="offerSavingsType.NO_SAVINGS">
-      Renten din er <b>svært god</b>
-    </p>
-    <p i18n="“interest-good|offers-main@@offers.mainPage.interest.good”"
-      *ngSwitchCase="offerSavingsType.SAVINGS_FIRST_YEAR_BETWEEN_0_AND_2000">
-      Renten din er <b>god</b>, men ikke best
-    </p>
-    <p i18n="“interest-ok|offers-main@@offers.mainPage.interest.ok”"
-      *ngSwitchCase="offerSavingsType.SAVINGS_FIRST_YEAR_BETWEEN_2000_AND_6000">
-      Renten din er <b>OK</b>, men du kan få bedre
-    </p>
-    <p i18n="“interest-bad|offers-main@@offers.mainPage.interest.bad”"
-      *ngSwitchCase="offerSavingsType.SAVINGS_FIRST_YEAR_BETWEEN_6000_AND_10000">
-      Renten din er <b>dårlig</b> og du kan spare en del
-    </p>
-    <p i18n="“interest-very-bad|offers-main@@offers.mainPage.interest.veryBad”"
-      *ngSwitchCase="offerSavingsType.SAVINGS_FIRST_YEAR_GREATER_10000">
-      Renten din er <b>svært dårlig</b>
-    </p>
-    <div *ngSwitchDefault>-</div>
+  <div class="rente-status">
+    <p>{{ text }}</p>
   </div>
 
   <div class="rente-bar-container center-horizontal">
@@ -33,20 +13,31 @@
       </p>
     </div>
     <div class="bar-wrap">
-      <span class="bar-fill-left" [ngClass]="[rateBarPercentage.class]"
-        [ngStyle]="{ width: rateBarPercentage.percentage + '%' }"></span>
-      <span class="bar-fill-right" [ngStyle]="{ width: rateBarPercentageInverted + '%' }"></span>
+      <span
+        class="bar-fill-left"
+        [ngClass]="[rateBarPercentage.class]"
+        [ngStyle]="{ width: rateBarPercentage.percentage + '%' }"
+      ></span>
+      <span
+        class="bar-fill-right"
+        [ngStyle]="{ width: rateBarPercentageInverted + '%' }"
+      ></span>
     </div>
   </div>
 
   <div class="save-info">
-    <p i18n="“save|offers-main@@offers.mainPage.save”">Du kan spare </p>
-    <h2 *ngIf="offersInfo !== null && offersInfo?.bestOfferTotalSaving > 0; else noBestOffer">
+    <p i18n="“save|offers-main@@offers.mainPage.save”">Du kan spare</p>
+    <h2
+      *ngIf="
+        offersInfo !== null && offersInfo?.bestOfferTotalSaving > 0;
+        else noBestOffer
+      "
+    >
       {{ offersInfo.bestOfferTotalSaving | abs | number }},-
     </h2>
     <ng-template #noBestOffer>
       <h2>0,-</h2>
     </ng-template>
-    <p i18n="“time|offers-main@@offers.mainPage.time”"> over lånets løpetid</p>
+    <p i18n="“time|offers-main@@offers.mainPage.time”">over lånets løpetid</p>
   </div>
 </div>

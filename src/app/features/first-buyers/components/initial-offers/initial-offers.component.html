@@ -46,7 +46,7 @@
                 [iconPath]="property.iconPath"
                 (selectedMemberships)="applyMemberships($event)"
               ></rente-property-input>
-              <property-select
+              <rente-property-input
                 *ngIf="
                   property.shouldDisplay() &&
                   property.inputType === 'autocomplete'
@@ -60,7 +60,7 @@
                 [memberships]="allMemberships"
                 [iconPath]="property.iconPath"
                 (selectedMemberships)="applyMemberships($event)"
-              ></property-select>
+              ></rente-property-input>
             </div>
             <div class="accordion-bottom"></div>
           </mat-expansion-panel>
