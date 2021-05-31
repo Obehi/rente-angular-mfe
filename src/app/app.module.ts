@@ -42,6 +42,7 @@ import { EnvService } from './shared/services/env.service';
 import { HttpClient } from '@angular/common/http';
 import { NoLoansComponent } from '@features/dashboard/no-loans/no-loans.component';
 import { ConfirmationProperty } from './features/init-confirmation/init-confirmation-sv/confirmation-property-sv/confirmation-property-sv.component';
+import { Sb1DisabledComponent } from './features/sb1-disabled/sb1-disabled.component';
 registerLocaleData(localeNo);
 
 @NgModule({
@@ -69,7 +70,8 @@ registerLocaleData(localeNo);
     EmailRedirectSVComponent,
     EmailRedirectNOComponent,
     NoLoansComponent,
-    ConfirmationProperty
+    ConfirmationProperty,
+    Sb1DisabledComponent
   ],
   imports: [
     BrowserModule,

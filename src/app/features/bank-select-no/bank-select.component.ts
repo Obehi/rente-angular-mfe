@@ -7,7 +7,7 @@ import {
   LegacyBanks
 } from '../../shared/models/bank';
 import { Router } from '@angular/router';
-import { ROUTES_MAP } from '@config/routes-config';
+import { ROUTES_MAP, ROUTES_MAP_NO } from '@config/routes-config';
 import { EnvService } from '@services/env.service';
 @Component({
   selector: 'rente-bank-select-variation',
@@ -118,6 +118,13 @@ export class BankSelectNoComponent implements OnInit {
       this.removeSparebank();
       this.sparebankIsClicked = true;
       this.filterBank(this.searchStr);
+      return;
+    }
+
+    if (this.envService.environment.sb1DisabledBanks?.includes(bank.name)) {
+      this.router.navigate([ROUTES_MAP_NO.sparebank1Error], {
+        state: { bank: bank }
+      });
       return;
     }
 

@@ -284,7 +284,7 @@ export const eikaBanks: BankVo[] = [
     null,
     true,
     true,
-    false,
+    true,
     false,
     'https://www.himla.no/banktjenester/boliglan/?utm_source=renteradar.no&utm_medium=nettside&utm_campaign=ta_kontakt_for_samarbeid'
   ),
@@ -1024,7 +1024,7 @@ export const BankList: BankVo[] = [
     'sparebank1-color.svg',
     false,
     false,
-    false,
+    true,
     false,
     'https://www.sparebank1.no/nb/bank/privat/kundeservice/mobil/hvordan-bestiller-jeg-bankid-pa-mobil.html'
   ),
