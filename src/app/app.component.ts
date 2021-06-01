@@ -8,7 +8,6 @@ import { ROUTES_MAP } from '@config/routes-config';
 import { DynamicComponentService } from '@shared/services/dynamic-component.service';
 
 import { AuthService } from '@services/remote-api/auth.service';
-import { timeout } from 'rxjs/operators';
 
 @Component({
   selector: 'rente-root',

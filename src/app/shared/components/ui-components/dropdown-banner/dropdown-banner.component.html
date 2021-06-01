@@ -1,2 +1,8 @@
-<div class="dropdownbanner" [@banner]>Du er nå logget ut</div>
-<!-- <div class="dropdownbanner">{{ variable }}</div> -->
+<div
+  class="dropdownbanner"
+  [@slideLeftRight]="animationState ? 'visible' : 'hidden'"
+>
+  <div [@textDelay]="animationState ? 'visible' : 'hidden'">
+    Du er nå logget ut
+  </div>
+</div>

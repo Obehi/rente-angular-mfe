@@ -61,7 +61,8 @@ const components = [
   TabComponent,
   FormMessageComponent,
   TextAreaComponent,
-  OfferDetailsLangGenericComponent
+  OfferDetailsLangGenericComponent,
+  DropdownBannerComponent
 ];
 
 const services = [
@@ -101,8 +102,7 @@ const services = [
     RoundPipe,
     ThousandsSeprator,
     ChildDirective,
-    BarComponent,
-    DropdownBannerComponent
+    BarComponent
   ],
   exports: [
     ...components,

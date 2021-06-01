@@ -34,22 +34,13 @@ export class DynamicComponentService {
     this._componentRef = factory.create(this.injector, [], newNode);
     this.appRef.attachView(this._componentRef.hostView);
 
-    // this.dropDownComponent.setTrigger('visible');
     this.dropDownComponent.setTrigger(true);
   }
 
   removeComponent(): void {
-    // this.dropDownComponent.setTrigger('hidden');
-
     setTimeout(() => {
       this.dropDownComponent.setTrigger(false);
-      this.appRef.detachView(this._componentRef.hostView);
+      // this.appRef.detachView(this._componentRef.hostView);
     }, 5000);
   }
-
-  // This works, a backup!!!
-  //   setComponent(vcr: ViewContainerRef): void {
-  //     this.rootViewContainer = vcr;
-  //     this.rootViewContainer.insert(this._componentRef.hostView);
-  //   }
 }

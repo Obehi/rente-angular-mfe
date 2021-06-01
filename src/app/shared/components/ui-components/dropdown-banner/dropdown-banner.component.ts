@@ -1,13 +1,12 @@
-import { Component, OnInit, OnDestroy, HostBinding } from '@angular/core';
-import { from, of } from 'rxjs';
-import { timeout } from 'rxjs/operators';
+import { Component, OnInit } from '@angular/core';
 import {
   trigger,
   state,
   transition,
   style,
   animate,
-  keyframes
+  query,
+  animateChild
 } from '@angular/animations';
 
 @Component({
@@ -15,56 +14,41 @@ import {
   templateUrl: './dropdown-banner.component.html',
   styleUrls: ['./dropdown-banner.component.scss'],
   animations: [
-    trigger('banner', [
+    trigger('textDelay', [
       // V1
-      // state('hidden', style({ opacity: 0 })),
-      // state('visible', style({ opacity: 1 })),
-      // transition('hidden => visible', [animate('3s ease-in-out')]),
-      // transition('visible => hidden', [animate('5s ease-in-out')])
-      // V2
+      state('hidden', style({ opacity: 0 })),
+      state('visible', style({ opacity: 1 })),
       transition(':enter', [
-        style({ transform: 'translateY(-100%)' }),
-        animate('500ms ease-in', style({ transform: 'translateY(0%)' }))
+        style({ transform: 'translateX(100%)' }),
+        animate('100ms ease-in-out', style({ transform: 'translateX(0%)' }))
       ]),
-      transition(':leave', [
-        style({ transform: 'translateY(0%)' }),
-        animate('500ms ease-in', style({ transform: 'translateY(-100%)' }))
+      transition('visible => hidden', [
+        animate('650ms ease-in-out', style({ transform: 'translateX(100%)' }))
       ])
-      // V3
-      // transition(':enter', [
-      //   style({ height: 0, opacity: 0 }),
-      //   animate('300ms ease-in', style({ height: 60, opacity: 1 }))
-      // ]),
-      // transition(':leave', [
-      //   // style({ height: '100', opacity: 1 }),
-      //   animate('0.123s ease-in', style({ height: 0, opacity: 0 }))
-      // ])
-      // V4
-      // state('in', style({ transform: 'translateY(0)' })),
-      // transition('void => *', [
-      //   style({ transform: 'translateY(-100%)' }),
-      //   animate(100)
-      // ]),
-      // transition('* => void', [
-      //   animate(100, style({ transform: 'translateY(100%)' }))
-      // ])
-    ]) // Trigger end
+    ]), // Trigger 1 end
+
+    trigger('slideLeftRight', [
+      // V2
+      state('hidden', style({ opacity: 0 })),
+      state('visible', style({ opacity: 1 })),
+      transition(':enter', [
+        style({ transform: 'translateX(100%)' }),
+        animate('400ms ease-in-out', style({ transform: 'translateX(0%)' })),
+        query('@*', animateChild(), { optional: true })
+      ]),
+      transition('visible => hidden', [
+        animate('450ms ease-in-out', style({ transform: 'translateX(100%)' }))
+      ])
+    ]) // Trigger 2 end
   ]
 })
-@HostBinding('@banner')
-export class DropdownBannerComponent implements OnInit, OnDestroy {
+export class DropdownBannerComponent implements OnInit {
   public animationState: boolean;
-  // public animationTrigger: boolean;
-  // variable = 'Test her';
-  // public updateAnimationTrigger: boolean;
+  public textDelay: boolean;
 
-  constructor() {
-    // of('text')
-    //   .pipe(timeout())
-    //   .subscribe((response) => {
-    //     this.variable = response;
-    //   });
-  }
+  constructor() {}
+
+  close(): void {}
 
   public setTrigger(v: boolean): void {
     this.animationState = v;
@@ -73,10 +57,12 @@ export class DropdownBannerComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    // this.updateAnimationTrigger = false;
-  }
+    this.setTrigger(true);
+    this.textDelay = true;
 
-  ngOnDestroy(): void {
-    // this.setTrigger('hidden');
+    setTimeout(() => {
+      this.setTrigger(false);
+      this.textDelay = false;
+    }, 5000);
   }
 }
