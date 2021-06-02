@@ -1276,7 +1276,7 @@ export const MissingBankList: BankVo[] = [
     null,
     false,
     true,
-    false,
+    true,
     false,
     true,
     null
@@ -1396,7 +1396,7 @@ export const MissingBankList: BankVo[] = [
     null,
     false,
     true,
-    false,
+    true,
     false,
     true,
     null
@@ -1420,7 +1420,7 @@ export const MissingBankList: BankVo[] = [
     null,
     false,
     true,
-    false,
+    true,
     false,
     true,
     null
