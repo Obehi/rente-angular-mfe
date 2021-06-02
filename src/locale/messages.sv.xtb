@@ -212,8 +212,8 @@ Om begäran gäller kommunikation eller annan information som inte är registrer
   <translation id="info.confirmation.organization”" desc="info-confirmation" meaning="“organization">Bankerna ger ibland bättre erbjudanden om du är medlem i ett fackförbund</translation>
   <translation id="info.confirmation.myMemberships”" desc="info-confirmation" meaning="“my-memberships">Mina medlemskap</translation>
   <translation id="info.confirmation.done”" desc="info-confirmation" meaning="“done">Färdig!</translation>
-  <translation id="get.notified.noSupport”" desc="get-notified" meaning="“no-support">Vi har dessvärre inte stöd för din bank ännu.<ph name="LINE_BREAK"><ex>&lt;br&gt;</ex>&lt;br&gt;</ph>
-     Lägg till din e-post så ger vi dig besked när det är klart.</translation>
+  <translation id="get.notified.noSupport”" desc="get-notified" meaning="“no-support">     Vi har desverre ikke støtte for banken din enda.
+     Legg igjen din e-post så gir vi deg beskjed når det er klart.</translation>
   <translation id="get.notified.email”" desc="get-notified" meaning="“issue-email"><ph name="START_TAG_RENTE_FORM_MESSAGE"><ex>&lt;rente-form-message&gt;</ex>&lt;rente-form-message&gt;</ph>
             Ogiltig email
           <ph name="CLOSE_TAG_RENTE_FORM_MESSAGE"><ex>&lt;/rente-form-message&gt;</ex>&lt;/rente-form-message&gt;</ph>

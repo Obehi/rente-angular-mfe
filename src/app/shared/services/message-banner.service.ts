@@ -7,13 +7,13 @@ import {
   ViewContainerRef
 } from '@angular/core';
 
-import { DropdownBannerComponent } from '../components/ui-components/dropdown-banner/dropdown-banner.component';
+import { TopAnimationBannerComponent } from '../components/ui-components/top-animation-banner/top-animation-banner.component';
 
 @Injectable()
 export class MessageBannerService {
   rootViewContainer: ViewContainerRef;
 
-  private _componentRef: ComponentRef<DropdownBannerComponent>;
+  private _componentRef: ComponentRef<TopAnimationBannerComponent>;
 
   constructor(
     private factoryResolver: ComponentFactoryResolver,
@@ -23,7 +23,7 @@ export class MessageBannerService {
 
   setView(_newtext: string, _newtime: number): void {
     const factory = this.factoryResolver.resolveComponentFactory(
-      DropdownBannerComponent
+      TopAnimationBannerComponent
     );
 
     const newNode = document.createElement('div');

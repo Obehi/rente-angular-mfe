@@ -36,7 +36,7 @@ import { SharedModule } from '@shared/shared.module';
 import { MaterialModule } from '@shared/material/material.module';
 import { CounterComponent } from './shared/components/ui-components/counter/counter.component';
 import { EnvService } from './shared/services/env.service';
-import { DropdownBannerComponent } from '@shared/components/ui-components/dropdown-banner/dropdown-banner.component';
+import { TopAnimationBannerComponent } from '@shared/components/ui-components/top-animation-banner/top-animation-banner.component';
 
 import { IMaskModule } from 'angular-imask';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
@@ -91,11 +91,10 @@ registerLocaleData(localeNo);
   ],
   entryComponents: [
     DialogInfoComponent,
-    DropdownBannerComponent,
-    ProfileDialogInfoComponent
+    ProfileDialogInfoComponent,
+    TopAnimationBannerComponent
   ],
   providers: [
-    DropdownBannerComponent,
     EnvService,
     {
       provide: APP_INITIALIZER,
@@ -106,6 +105,7 @@ registerLocaleData(localeNo);
     { provide: LOCALE_ID, useValue: 'nb-NO' },
     { provide: Window, useValue: window },
     OptimizeService,
+    TopAnimationBannerComponent,
     UserService
   ],
   bootstrap: [AppComponent]

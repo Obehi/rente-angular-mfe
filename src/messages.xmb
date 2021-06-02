@@ -21,6 +21,9 @@
 <!ELEMENT ex (#PCDATA)>
 ]>
 <messagebundle>
+  <msg id="footer.privacy”" desc="footer" meaning="“privacy"><source>app/shared/components/footer/footer.component.html:132,134</source>
+        Personvern
+      </msg>
   <msg id="header.home”" desc="homepage" meaning="“Headerlink"><source>app/shared/components/header/header-no/header-no.component.html:16,17</source>Hjem
         </msg>
   <msg id="header.bankGuide”" desc="contact" meaning="“Headerlink"><source>app/shared/components/header/header-no/header-no.component.html:22,24</source>
@@ -45,10 +48,6 @@
       </msg>
   <msg id="header.logOut2”" desc="log-out" meaning="“Headerlink"><source>app/shared/components/header/header-no/header-no.component.html:129,130</source><ph name="START_HEADING_LEVEL3"><ex>&lt;h3&gt;</ex>&lt;h3&gt;</ph>Logg ut<ph name="CLOSE_HEADING_LEVEL3"><ex>&lt;/h3&gt;</ex>&lt;/h3&gt;</ph>
       </msg>
-  <msg id="footer.privacy”" desc="footer" meaning="“privacy"><source>app/shared/components/footer/footer.component.html:132,134</source>
-        Personvern
-      </msg>
-  <msg id="textArea.message”" desc="text-area" meaning="“message"><source>app/shared/components/ui-components/text-area/text-area.component.html:3</source>Melding</msg>
   <msg id="details.component.product”" desc="details" meaning="“product"><source>app/features/dashboard/offers/offers-blue/details/details-no/details-no.component.html:7</source><source>app/features/dashboard/offers/dialog-info/dialog-info.component.html:8</source>Produkt</msg>
   <msg id="details.component.maxLeverage”" desc="details" meaning="“max-leverage"><source>app/features/dashboard/offers/offers-blue/details/details-no/details-no.component.html:11</source><source>app/features/dashboard/offers/dialog-info/dialog-info.component.html:12</source>Max belåningsgrad</msg>
   <msg id="details.component.nominalInterest”" desc="details" meaning="“nominal-interest"><source>app/features/dashboard/offers/offers-blue/details/details-no/details-no.component.html:15</source><source>app/features/dashboard/offers/dialog-info/dialog-info.component.html:16</source>Nominell rente</msg>
@@ -73,66 +72,125 @@
   <msg id="details.component.other”" desc="details" meaning="“other-conditions"><source>app/features/dashboard/offers/offers-blue/details/details-no/details-no.component.html:68,69</source><ph name="INTERPOLATION"><ex>{{offer.otherConditions ?
     &quot;Forbehold:&quot; : &quot;Ingen forbehold&quot;}}</ex>{{offer.otherConditions ?
     &quot;Forbehold:&quot; : &quot;Ingen forbehold&quot;}}</ph> </msg>
-  <msg id="popup.privacy.header”" desc="intro" meaning="“header"><source>app/app.component.html:11,13</source>
+  <msg id="textArea.message”" desc="text-area" meaning="“message"><source>app/shared/components/ui-components/text-area/text-area.component.html:3</source>Melding</msg>
+  <msg id="cookies.mainTitle”" desc="cookies" meaning="“headline"><source>app/features/cookies/cookies.component.html:3</source>Cookiepolicy</msg>
+  <msg id="cookies.description”" desc="cookies" meaning="“description"><source>app/features/cookies/cookies.component.html:4,8</source>
+    Renteradar.no benytter seg av cookies (informasjonskapsler).
+    Cookies er tekstfiler som lagres på din data eller enhet via din nettleser når du besøker en webside.
+    Informasjonen i en cookie kan blant annet beskrive:
+  </msg>
+  <msg id="cookies.explanation”" desc="cookies" meaning="“explanation"><source>app/features/cookies/cookies.component.html:11</source>om du tidligere har besøkt websiden</msg>
+  <msg id="cookies.explanation2”" desc="cookies" meaning="“explanation"><source>app/features/cookies/cookies.component.html:14</source>om du har en konto som du har valgt å være innlogget på</msg>
+  <msg id="cookies.explanation3”" desc="cookies" meaning="“explanation"><source>app/features/cookies/cookies.component.html:17</source>data du har skrevet inn på nettsiden</msg>
+  <msg id="cookies.title1”" desc="cookies" meaning="“why-and-how-cookies-work"><source>app/features/cookies/cookies.component.html:21</source>Hvorfor og hvordan bruker vi cookies?</msg>
+  <msg id="cookies.text.whyHow”" desc="cookies" meaning="“text-why-how"><source>app/features/cookies/cookies.component.html:22,28</source>
+    Renteradar.no bruker cookies for analytiske, tekniske og markedsføringsmessige formål.
+    Det vil si at cookies brukes for å gi våre brukere god opplevelse når bruker tjenesten,
+    og gir oss mulighet til å utvikle og forbedre tjenesten. Det gir også anledning til å analysere
+    trafikken på våre nettsider for blant annet å oppnå bedre målrettet markedsføring. Nærmere
+    informasjon om de ulike bruksområdene følger lenger ned.
+  </msg>
+  <msg id="cookies.title2”" desc="cookies" meaning="“what-info"><source>app/features/cookies/cookies.component.html:30</source>Hvilken informasjon registreres om deg som bruker</msg>
+  <msg id="cookies.text.what”" desc="cookies" meaning="“info"><source>app/features/cookies/cookies.component.html:31,33</source>
+    Når du besøker renteradar.no kan vi registrere ulik informasjon om deg og enheten. Det inkluderer blant annet:
+  </msg>
+  <msg id="cookies.text.position”" desc="cookies" meaning="“info-position"><source>app/features/cookies/cookies.component.html:36</source>Posisjonsdata</msg>
+  <msg id="cookies.text.adferd”" desc="cookies" meaning="“info-adferd"><source>app/features/cookies/cookies.component.html:39</source>Adferd på siden. Det inkluderer blant annet hvilke sider du er inne på og tidsbruk på hver side.</msg>
+  <msg id="cookies.text.tech”" desc="cookies" meaning="“info-tech"><source>app/features/cookies/cookies.component.html:42</source>Teknisk informasjon om nettleser og operativsystem</msg>
+  <msg id="cookies.title3”" desc="cookies" meaning="“erase"><source>app/features/cookies/cookies.component.html:46</source>Sletting informasjonskapsler i ulike nettlesere</msg>
+  <msg id="cookies.text.erase”" desc="cookies" meaning="“info-erase"><source>app/features/cookies/cookies.component.html:47,52</source>
+    Du kan i nettleseren få en oversikt over alle informasjonskapsler som er lagret.
+    Der kan du slette informasjonskapsler og angi om du aksepterer lagring av informasjonskapsler
+    fra nettsider du besøker. Den nøyaktige fremgangsmåten avhenger av enheten din og hvilken
+    nettleser du bruker. I linkene under kan du lese mer:
+  </msg>
+  <msg id="cookies.title4”" desc="cookies" meaning="“which"><source>app/features/cookies/cookies.component.html:71</source>Hvilke cookies benytter vi?</msg>
+  <msg id="cookies.googleAnalytics”" desc="cookies" meaning="“google-analytics"><source>app/features/cookies/cookies.component.html:74,77</source>
+        <ph name="START_TAG_STRONG"><ex>&lt;strong&gt;</ex>&lt;strong&gt;</ph>Google Analytics:<ph name="CLOSE_TAG_STRONG"><ex>&lt;/strong&gt;</ex>&lt;/strong&gt;</ph>
+        Er et verktøy som måler all trafikk på nettsiden og kan benyttes for analyseformål. Mer informasjon
+        <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>her.<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph></msg>
+  <msg id="cookies.googleAds”" desc="cookies" meaning="“google-ads"><source>app/features/cookies/cookies.component.html:80,83</source>
+        <ph name="START_TAG_STRONG"><ex>&lt;strong&gt;</ex>&lt;strong&gt;</ph>Google Ads:<ph name="CLOSE_TAG_STRONG"><ex>&lt;/strong&gt;</ex>&lt;/strong&gt;</ph>
+        Brukes for måling av betalt reklame av søkeord og Google annonsering. Mer informasjon
+        <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>her.<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph></msg>
+  <msg id="cookies.googleTag”" desc="cookies" meaning="“google-tag"><source>app/features/cookies/cookies.component.html:86,89</source>
+        <ph name="START_TAG_STRONG"><ex>&lt;strong&gt;</ex>&lt;strong&gt;</ph>Google Tag Manager:<ph name="CLOSE_TAG_STRONG"><ex>&lt;/strong&gt;</ex>&lt;/strong&gt;</ph>
+        Styrer tags for tracking og analyse. Mer info
+        <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>her.<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph></msg>
+  <msg id="cookies.facebook”" desc="cookies" meaning="“facebook"><source>app/features/cookies/cookies.component.html:92,95</source>
+        <ph name="START_TAG_STRONG"><ex>&lt;strong&gt;</ex>&lt;strong&gt;</ph>Facebook Pixel:<ph name="CLOSE_TAG_STRONG"><ex>&lt;/strong&gt;</ex>&lt;/strong&gt;</ph>
+        Interaksjonsverktøy som Facebook bruker mot nettsteder for å bruke data til mer målrettet reklame. Mer informasjon
+        <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>her.<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph></msg>
+  <msg id="cookies.hotjar”" desc="cookies" meaning="“hotjar"><source>app/features/cookies/cookies.component.html:98,101</source>
+        <ph name="START_TAG_STRONG"><ex>&lt;strong&gt;</ex>&lt;strong&gt;</ph>Hotjar:<ph name="CLOSE_TAG_STRONG"><ex>&lt;/strong&gt;</ex>&lt;/strong&gt;</ph>
+        Er et interaksjonsverktøy som registrerer hvordan brukere bruker nettsiden. Mer informasjon
+        <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>her.<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph></msg>
+  <msg id="popup.privacy.header”" desc="intro" meaning="“header"><source>app/app.component.html:10,12</source>
       Dine data, dine valg
     </msg>
-  <msg id="popup.privacy.text”" desc="text" meaning="“description"><source>app/app.component.html:17,22</source>
+  <msg id="popup.privacy.text”" desc="text" meaning="“description"><source>app/app.component.html:16,21</source>
       Renteradar.no eies av Forbrukerøkonomene AS som er ansvarlig for dine
       data.<ph name="LINE_BREAK"><ex>&lt;br&gt;</ex>&lt;br&gt;</ph>
       Vi bryr oss om ditt personvern. Vi bruker dine data til å forbedre og
       tilpasse tjenestene ser og bruker.
     </msg>
-  <msg id="popup.privacy.option1”" desc="more" meaning="“button"><source>app/app.component.html:26</source>Vis meg mer</msg>
-  <msg id="popup.privacy.option2”" desc="accept" meaning="“button"><source>app/app.component.html:31</source>JEG FORSTÅR</msg>
-  <msg id="landing.encouragement" desc="landing-page" meaning="encouragement"><source>app/features/landing/landing.component.html:21,23</source>
-              Renteradar finner den beste boliglånsrenten helt gratis.
-            </msg>
-  <msg id="landing.description" desc="landing-page" meaning="description"><source>app/features/landing/landing.component.html:27,31</source>
-              Ingen utfylling av skjema.
-              <ph name="LINE_BREAK"><ex>&lt;br&gt;</ex>&lt;br&gt;</ph>
-              Logg inn med BankID på mobil.
-            </msg>
-  <msg id="landing.explanationService" desc="landing-page" meaning="
-                explanation-service"><source>app/features/landing/landing.component.html:38,40</source>
-              Få oversikt og spar penger med et klikk.
-            </msg>
-  <msg id="landing.descriptionService" desc="landing-page" meaning="
-                description-service"><source>app/features/landing/landing.component.html:47,50</source>
-              Renteradar overvåker markedet og gir deg beskjed når det kommer
-              bedre tilbud.
-            </msg>
-  <msg id="landing.function" desc="landing-page" meaning="how-it-functions"><source>app/features/landing/landing.component.html:58,60</source>
-          Slik fungerer det
-        </msg>
-  <msg id="landing.automaticService" desc="landing-page" meaning="automatic-service"><source>app/features/landing/landing.component.html:62,65</source>
-            Renteradar henter renten og dine lånedetaljer automatisk med BankID
-            på mobil.
-          </msg>
-  <msg id="landing.comparingService" desc="landing-page" meaning="comparing-service"><source>app/features/landing/landing.component.html:67,71</source>
-            Vi sammenligner renten du betaler med renten du kan få i andre
-            banker og viser deg hvor mye du kan spare. Du kan også prute i
-            banken du er kunde med et klikk.
-          </msg>
-  <msg id="landing.surveillanceService" desc="landing-page" meaning="surveillance-service"><source>app/features/landing/landing.component.html:106,109</source>
-          Vi overvåker markedet og gir deg beskjed når nye og bedre tilbud er
-          tilgjengelig i fremtiden!
-        </msg>
-  <msg id="landing.title.explanation" desc="landing-page" meaning="title-explanation"><source>app/features/landing/landing.component.html:116,118</source>
-            Slik fungerer det
-          </msg>
-  <msg id="landing.step1.explanation" desc="landing-page" meaning="step1-explanation"><source>app/features/landing/landing.component.html:119,122</source>
-            Renteradar henter renten og dine lånedetaljer automatisk med BankID
-            på mobil.
-          </msg>
-  <msg id="landing.step2.explanation" desc="landing-page" meaning="step2-explanation"><source>app/features/landing/landing.component.html:123,127</source>
-            Vi sammenligner renten du betaler med renten du kan få i andre
-            banker og viser deg hvor mye du kan spare. Du kan også prute i
-            banken du er kunde med et klikk.
-          </msg>
-  <msg id="landing.step3.explanation" desc="landing-page" meaning="step3-explanation"><source>app/features/landing/landing.component.html:142,145</source>
-            Vi overvåker markedet og gir deg beskjed når nye og bedre tilbud er
-            tilgjengelig i fremtiden!
-          </msg>
+  <msg id="popup.privacy.option1”" desc="more" meaning="“button"><source>app/app.component.html:25</source>Vis meg mer</msg>
+  <msg id="popup.privacy.option2”" desc="accept" meaning="“button"><source>app/app.component.html:30</source>JEG FORSTÅR</msg>
+  <msg id="contactUs.title”" desc="title" meaning="“top"><source>app/features/contact-us/contact-us.component.html:2</source>Kontakt oss</msg>
+  <msg id="contactUs.navn.placeholder”" desc="navn" meaning="“navn"><source>app/features/contact-us/contact-us.component.html:15,16</source>
+    </msg>
+  <msg id="contactUs.name”" desc="name" meaning="“text"><source>app/features/contact-us/contact-us.component.html:26,28</source>
+        Vennligst fyll inn navn
+      </msg>
+  <msg id="contactUs.email.issue”" desc="e-mail" meaning="“issue"><source>app/features/contact-us/contact-us.component.html:45,47</source>
+        Ikke gyldig email
+      </msg>
+  <msg id="contactUs.email.issue2”" desc="e-mail" meaning="“issue"><source>app/features/contact-us/contact-us.component.html:52,54</source>
+        Ikke gyldig email
+      </msg>
+  <msg id="contactUs.phone”" desc="telephone" meaning="“number"><source>app/features/contact-us/contact-us.component.html:68,70</source>
+      8 siffer
+    </msg>
+  <msg id="contactUs.phone.missing”" desc="missing" meaning="“number"><source>app/features/contact-us/contact-us.component.html:79,81</source>
+        Telefonnummer kan ikke være tomt
+      </msg>
+  <msg id="contactUs.message”" desc="missing" meaning="“message"><source>app/features/contact-us/contact-us.component.html:100,102</source>
+        Meldingen kan ikke være tom
+      </msg>
+  <msg id="contactUs.send”" desc="send" meaning="“message"><source>app/features/contact-us/contact-us.component.html:109,110</source>Send
+    </msg>
+  <msg id="close”" desc="button" meaning="“close"><source>app/features/init-confirmation/dialog-info/dialog-info.component.html:5,7</source><source>app/features/dashboard/profile/dialog-info/dialog-info.component.html:8,10</source><source>app/features/dashboard/offers/offers-blue/bank-rating-dialog/bank-rating-dialog.component.html:23,25</source><source>app/features/auth/bank-id-login/dialog-info-service/dialog-info-service.component.html:47</source><source>app/features/dashboard/offers/ltv-too-high-dialog/ltv-too-high-dialog.component.html:27</source><source>app/features/dashboard/offers/bargain-success/referral/referral.component.html:74,76</source>
+    Lukk
+  </msg>
+  <msg id="email.preferences.saved”" desc="email-preferences" meaning="“saved"><source>app/features/email-preferences/email-preferences.component.html:6</source>Lagret</msg>
+  <msg id="email.preferences.settings”" desc="email-preferences" meaning="“settings"><source>app/features/email-preferences/email-preferences.component.html:15</source>Epost innstillinger</msg>
+  <msg id="email.preferences.error”" desc="email-preferences" meaning="“error"><source>app/features/email-preferences/email-preferences.component.html:17,18</source>Noe gikk galt, vennligst logg inn
+            eller ta kontakt med oss på <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>hei@renteradar.no<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph></msg>
+  <msg id="email.preferences.market”" desc="email-preferences" meaning="“market"><source>app/features/email-preferences/email-preferences.component.html:28,29</source>Markedsovervåkning /
+                            Rentesjekk av dine lån</msg>
+  <msg id="email.preferences.monthEvery”" desc="email-preferences" meaning="“month-every"><source>app/features/email-preferences/email-preferences.component.html:38</source>Hver måned</msg>
+  <msg id="email.preferences.monthTwo”" desc="email-preferences" meaning="“month-two"><source>app/features/email-preferences/email-preferences.component.html:41</source>Hver 2. måned</msg>
+  <msg id="email.preferences.monthThree”" desc="email-preferences" meaning="“month-three"><source>app/features/email-preferences/email-preferences.component.html:44</source>Hver 3. måned</msg>
+  <msg id="email.preferences.monthFour”" desc="email-preferences" meaning="“month-four"><source>app/features/email-preferences/email-preferences.component.html:47</source>Hver 4. måned</msg>
+  <msg id="email.preferences.monthNever”" desc="email-preferences" meaning="“month-never"><source>app/features/email-preferences/email-preferences.component.html:50</source>Aldri</msg>
+  <msg id="email.preferences.marketUpdate”" desc="email-preferences" meaning="“market-update"><source>app/features/email-preferences/email-preferences.component.html:55,63</source>
+                    <ph name="START_PARAGRAPH"><ex>&lt;p&gt;</ex>&lt;p&gt;</ph>
+                        Få markedsoppdateringer, nyheter og annen informasjon på epost
+                    <ph name="CLOSE_PARAGRAPH"><ex>&lt;/p&gt;</ex>&lt;/p&gt;</ph>
+                    <ph name="START_TAG_MAT_RADIO_GROUP"><ex>&lt;mat-radio-group&gt;</ex>&lt;mat-radio-group&gt;</ph>
+                        <ph name="START_TAG_MAT_RADIO_BUTTON"><ex>&lt;mat-radio-button&gt;</ex>&lt;mat-radio-button&gt;</ph><ph name="START_TAG_SPAN"><ex>&lt;span&gt;</ex>&lt;span&gt;</ph>Ja<ph name="CLOSE_TAG_SPAN"><ex>&lt;/span&gt;</ex>&lt;/span&gt;</ph><ph name="CLOSE_TAG_MAT_RADIO_BUTTON"><ex>&lt;/mat-radio-button&gt;</ex>&lt;/mat-radio-button&gt;</ph>
+                        <ph name="START_TAG_MAT_RADIO_BUTTON_1"><ex>&lt;mat-radio-button&gt;</ex>&lt;mat-radio-button&gt;</ph><ph name="START_TAG_SPAN"><ex>&lt;span&gt;</ex>&lt;span&gt;</ph>Nei<ph name="CLOSE_TAG_SPAN"><ex>&lt;/span&gt;</ex>&lt;/span&gt;</ph><ph name="CLOSE_TAG_MAT_RADIO_BUTTON"><ex>&lt;/mat-radio-button&gt;</ex>&lt;/mat-radio-button&gt;</ph>
+                    <ph name="CLOSE_TAG_MAT_RADIO_GROUP"><ex>&lt;/mat-radio-group&gt;</ex>&lt;/mat-radio-group&gt;</ph>
+                </msg>
+  <msg id="email.preferences.saveChanges”" desc="email-preferences" meaning="“save-changes"><source>app/features/email-preferences/email-preferences.component.html:68,70</source>
+                    Lagre endringer
+                </msg>
+  <msg id="messenger-redirect.header" desc="offers-main" meaning="messenger-redirect-headline"><source>app/features/email-redirect/email-redirect-sv/email-redirect-sv.component.html:16</source><source>app/features/email-redirect/email-redirect-sv/email-redirect-sv.component.html:43</source>Hjelp en venn til bedre rente!</msg>
+  <msg id="messenger-redirect.explaination" desc="offers-main" meaning="messenger-redirect-selling-point"><source>app/features/email-redirect/email-redirect-sv/email-redirect-sv.component.html:17</source><source>app/features/email-redirect/email-redirect-sv/email-redirect-sv.component.html:44</source>Trykk på knappen hvis messenger ikke åpnet seg automatisk.</msg>
+  <msg id="messenger-redirect.selling-point" desc="offers-main" meaning="messenger-redirect-messenger"><source>app/features/email-redirect/email-redirect-sv/email-redirect-sv.component.html:19,22</source><source>app/features/email-redirect/email-redirect-sv/email-redirect-sv.component.html:45,48</source>
+                        På den måten kan du fortelle noen du kjenner om <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph> Renteradar.se <ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph> 
+                        og kanskje de spanderer en middag med alle pengene de sparer.
+                    </msg>
   <msg id="faq.title”" desc="faq" meaning="“faq-title"><source>app/features/faq/faq.component.html:2</source>Vanlig stilte spørsmål om boliglån</msg>
   <msg id="faq.question1”" desc="faq" meaning="“question1"><source>app/features/faq/faq.component.html:7,9</source>
             Hvor mye kan jeg spare på boliglånet?
@@ -267,6 +325,104 @@
           Renteradar.no eies og drives av Forbrukerøkonomene AS. 
          Se <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>om oss<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph> for mer informasjon.
       </msg>
+  <msg id="get.notified.noSupport”" desc="get-notified" meaning="“no-support"><source>app/features/get-notified/get-notified-no/get-notified-no.component.html:5,8</source>
+     Vi har desverre ikke støtte for banken din enda.<ph name="LINE_BREAK"><ex>&lt;br&gt;</ex>&lt;br&gt;</ph>
+     Legg igjen din epost så gir vi deg beskjed når det er klart. 
+    </msg>
+  <msg id="get.notified.email”" desc="get-notified" meaning="“issue-email"><source>app/features/get-notified/get-notified-no/get-notified-no.component.html:30,45</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:49,64</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:319,334</source><source>app/features/auth/bank-id-login-secret/bank-id-login.component.html:245,260</source>
+          <ph name="START_TAG_RENTE_FORM_MESSAGE"><ex>&lt;rente-form-message&gt;</ex>&lt;rente-form-message&gt;</ph>
+            Ikke gyldig email
+          <ph name="CLOSE_TAG_RENTE_FORM_MESSAGE"><ex>&lt;/rente-form-message&gt;</ex>&lt;/rente-form-message&gt;</ph>
+          <ph name="START_TAG_RENTE_FORM_MESSAGE_1"><ex>&lt;rente-form-message&gt;</ex>&lt;rente-form-message&gt;</ph>
+            Ikke gyldig email
+          <ph name="CLOSE_TAG_RENTE_FORM_MESSAGE"><ex>&lt;/rente-form-message&gt;</ex>&lt;/rente-form-message&gt;</ph>
+        </msg>
+  <msg id="get.notified.notifyMe”" desc="get-notified" meaning="“notify-me"><source>app/features/get-notified/get-notified-no/get-notified-no.component.html:51,52</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:70,71</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:340,341</source><source>app/features/auth/bank-id-login-secret/bank-id-login.component.html:267,268</source>Gi meg lyd når på plass!
+      </msg>
+  <msg id="info.confirmation.hi”" desc="info-confirmation" meaning="“hi"><source>app/features/init-confirmation/init-confirmation-no/init-confirmation.component.html:10,12</source>
+        Hei, <ph name="INTERPOLATION"><ex>{{ userData.name | titlecase }}</ex>{{ userData.name | titlecase }}</ph>
+      </msg>
+  <msg id="info.confirmation.moreInfo”" desc="info-confirmation" meaning="“more-infor"><source>app/features/init-confirmation/init-confirmation-no/init-confirmation.component.html:13,15</source>
+        Vi trenger litt mer informasjon før vi kan søke etter tilbud
+      </msg>
+  <msg id="info.confirmation.empty”" desc="info-confirmation" meaning="“empty"><source>app/features/init-confirmation/init-confirmation-no/init-confirmation.component.html:36,38</source><source>app/features/init-confirmation/init-confirmation-no/init-confirmation.component.html:63,65</source><source>app/features/init-confirmation/init-confirmation-no/init-confirmation.component.html:89,91</source><source>app/features/init-confirmation/init-confirmation-no/init-confirmation.component.html:109,111</source>
+            Kan ikke være tom
+          </msg>
+  <msg id="info.confirmation.invalid”" desc="info-confirmation" meaning="“invalid"><source>app/features/init-confirmation/init-confirmation-no/init-confirmation.component.html:43,45</source><source>app/features/init-confirmation/init-confirmation-no/init-confirmation.component.html:70,72</source>
+            Ugyldig e-post
+          </msg>
+  <msg id="info.confirmation.empty2”" desc="info-confirmation" meaning="“empty2"><source>app/features/init-confirmation/init-confirmation-no/init-confirmation.component.html:137,139</source>
+                Kan ikke være tom
+              </msg>
+  <msg id="info.confirmation.help”" desc="info-confirmation" meaning="“help"><source>app/features/init-confirmation/init-confirmation-no/init-confirmation.component.html:146,148</source>
+            <ph name="START_TAG_MAT_ICON"><ex>&lt;mat-icon&gt;</ex>&lt;mat-icon&gt;</ph>help<ph name="CLOSE_TAG_MAT_ICON"><ex>&lt;/mat-icon&gt;</ex>&lt;/mat-icon&gt;</ph>
+          </msg>
+  <msg id="info.confirmation.empty3”" desc="info-confirmation" meaning="“empty3"><source>app/features/init-confirmation/init-confirmation-no/init-confirmation.component.html:170,172</source>
+                Kan ikke være tom
+              </msg>
+  <msg id="info.confirmation.help2”" desc="info-confirmation" meaning="“help2"><source>app/features/init-confirmation/init-confirmation-no/init-confirmation.component.html:183,185</source>
+            <ph name="START_TAG_MAT_ICON"><ex>&lt;mat-icon&gt;</ex>&lt;mat-icon&gt;</ph>help<ph name="CLOSE_TAG_MAT_ICON"><ex>&lt;/mat-icon&gt;</ex>&lt;/mat-icon&gt;</ph>
+          </msg>
+  <msg id="info.confirmation.organization”" desc="info-confirmation" meaning="“organization"><source>app/features/init-confirmation/init-confirmation-no/init-confirmation.component.html:192,194</source>
+        Bankene gir ofte bedre betingelser om du er medlem i en organisasjon
+      </msg>
+  <msg id="info.confirmation.myMemberships”" desc="info-confirmation" meaning="
+          “my-memberships"><source>app/features/init-confirmation/init-confirmation-no/init-confirmation.component.html:222,224</source>
+        Mine medlemskap
+      </msg>
+  <msg id="info.confirmation.done”" desc="info-confirmation" meaning="“done"><source>app/features/init-confirmation/init-confirmation-no/init-confirmation.component.html:242,244</source>
+        Ferdig!
+      </msg>
+  <msg id="landing.encouragement" desc="landing-page" meaning="encouragement"><source>app/features/landing/landing.component.html:11,13</source>
+              Renteradar finner den beste boliglånsrenten helt gratis.
+            </msg>
+  <msg id="landing.description" desc="landing-page" meaning="description"><source>app/features/landing/landing.component.html:17,21</source>
+              Ingen utfylling av skjema.
+              <ph name="LINE_BREAK"><ex>&lt;br&gt;</ex>&lt;br&gt;</ph>
+              Logg inn med BankID på mobil.
+            </msg>
+  <msg id="landing.explanationService" desc="landing-page" meaning="
+                explanation-service"><source>app/features/landing/landing.component.html:28,30</source>
+              Få oversikt og spar penger med et klikk.
+            </msg>
+  <msg id="landing.descriptionService" desc="landing-page" meaning="
+                description-service"><source>app/features/landing/landing.component.html:37,40</source>
+              Renteradar overvåker markedet og gir deg beskjed når det kommer
+              bedre tilbud.
+            </msg>
+  <msg id="landing.function" desc="landing-page" meaning="how-it-functions"><source>app/features/landing/landing.component.html:48,50</source>
+          Slik fungerer det
+        </msg>
+  <msg id="landing.automaticService" desc="landing-page" meaning="automatic-service"><source>app/features/landing/landing.component.html:52,55</source>
+            Renteradar henter renten og dine lånedetaljer automatisk med BankID
+            på mobil.
+          </msg>
+  <msg id="landing.comparingService" desc="landing-page" meaning="comparing-service"><source>app/features/landing/landing.component.html:57,61</source>
+            Vi sammenligner renten du betaler med renten du kan få i andre
+            banker og viser deg hvor mye du kan spare. Du kan også prute i
+            banken du er kunde med et klikk.
+          </msg>
+  <msg id="landing.surveillanceService" desc="landing-page" meaning="surveillance-service"><source>app/features/landing/landing.component.html:96,99</source>
+          Vi overvåker markedet og gir deg beskjed når nye og bedre tilbud er
+          tilgjengelig i fremtiden!
+        </msg>
+  <msg id="landing.title.explanation" desc="landing-page" meaning="title-explanation"><source>app/features/landing/landing.component.html:106,108</source>
+            Slik fungerer det
+          </msg>
+  <msg id="landing.step1.explanation" desc="landing-page" meaning="step1-explanation"><source>app/features/landing/landing.component.html:109,112</source>
+            Renteradar henter renten og dine lånedetaljer automatisk med BankID
+            på mobil.
+          </msg>
+  <msg id="landing.step2.explanation" desc="landing-page" meaning="step2-explanation"><source>app/features/landing/landing.component.html:113,117</source>
+            Vi sammenligner renten du betaler med renten du kan få i andre
+            banker og viser deg hvor mye du kan spare. Du kan også prute i
+            banken du er kunde med et klikk.
+          </msg>
+  <msg id="landing.step3.explanation" desc="landing-page" meaning="step3-explanation"><source>app/features/landing/landing.component.html:132,135</source>
+            Vi overvåker markedet og gir deg beskjed når nye og bedre tilbud er
+            tilgjengelig i fremtiden!
+          </msg>
+  <msg id="noLoans”" desc="no-loans" meaning="“error"><source>app/features/dashboard/no-loans/no-loans.component.html:4</source>Vi fant ingen lån, er du sikker på at du har valgt riktig bank?</msg>
   <msg id="privacy.component.title.integrity" desc="privacy-component" meaning="title-integrity"><source>app/features/privacy/privacy.component.html:3</source>Personvern er viktig for oss</msg>
   <msg id="privacy.component.text.integrity" desc="privacy-component" meaning="text-integrity"><source>app/features/privacy/privacy.component.html:5,12</source>
       Vi tar GDPR på alvor og ditt personvern er viktig for oss i Renteradar.no.
@@ -280,6 +436,38 @@
   <msg id="privacy.component.cookies.link" desc="privacy-component" meaning="cookies-link"><source>app/features/privacy/privacy.component.html:25,27</source>
       Vår cookiepolicy og informasjon finner du <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>her<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph>.
     </msg>
+  <msg id="privacy.policy.first.title”" desc="privacy-policy" meaning="“first-title"><source>app/features/privacy-no/privacy-policy-no.component.html:2</source><ph name="START_TAG_STRONG"><ex>&lt;strong&gt;</ex>&lt;strong&gt;</ph>Personvernerklæring<ph name="CLOSE_TAG_STRONG"><ex>&lt;/strong&gt;</ex>&lt;/strong&gt;</ph></msg>
+  <msg id="privacy.policy.first.paragraph”" desc="privacy-title" meaning="“first-paragraph"><source>app/features/privacy-no/privacy-policy-no.component.html:3,7</source>
+    Renteradar.no er en tjeneste levert av Forbrukerøkonomene AS (org. nr: 921 534 191). 
+    Her vil dufinne en orientering om hvordan vi forholder oss til personopplysninger 
+    om brukerne i vår tjeneste.
+  </msg>
+  <msg id="privacy.policy.second.paragraph”" desc="privacy-policy" meaning="“second-paragraph"><source>app/features/privacy-no/privacy-policy-no.component.html:8,12</source>
+    Forbrukerøkonomene AS er et norsk selskap underlagt norsk lov. Vi behandler 
+    personopplysninger i samsvar med den til enhver tid gjeldende personvernlovgivning, 
+    herunder personopplysningsloven og personvernforordningen (GDPR). 
+  </msg>
+  <msg id="privacy.policy.second.title”" desc="privacy-policy" meaning="“second-title"><source>app/features/privacy-no/privacy-policy-no.component.html:22,24</source>
+    Hva er personopplysninger?
+  </msg>
+  <msg id="privacy.policy.first2.paragraph”" desc="privacy-policy" meaning="“first2-paragraph"><source>app/features/privacy-no/privacy-policy-no.component.html:25,34</source>
+    En personopplysning er informasjon som direkte eller indirekte kan knyttes 
+    til en fysisk person. Eksempel på personopplysninger er navn, adresse, 
+    telefonnummer og e-postadresse, men også IP-nummer og hvordan du bruker 
+    tjenesten betegnes som personopplysninger. Behandling av personopplysninger 
+    inkluderer all håndtering av personopplysninger, feks innsamling, analysering,
+     registrering og lagring.Opplysningene vil kunne bli supplert med tilgjengelig 
+     informasjon fra tredjepartsaktører, e.g. informasjon om boligverdi eller 
+     kredittopplysningsselskap.
+  </msg>
+  <msg id="privacy.policy.second2.paragraph”" desc="privacy-policy" meaning="“second2-paragraph"><source>app/features/privacy-no/privacy-policy-no.component.html:35,42</source>
+    Behandling av personopplysninger er enhver bruk av personopplysninger, 
+    som for eksempel innsamling, registrering, sammenstilling, lagring og 
+    utlevering eller en kombinasjon av slike bruksmåter. All behandling av 
+    personopplysninger er underlagt personopplysningsloven, og Datatilsynet 
+    fører tilsyn med loven og medvirker til at personvernet til hver enkelt 
+    ikke blir krenket gjennom bruken av personopplysninger.
+  </msg>
   <msg id="terms.conditions”" desc="terms" meaning="“title"><source>app/features/terms-conditions/terms-conditions.component.html:2</source>Vilkår for bruk av Renteradar.no</msg>
   <msg id="terms.conditions.titleService”" desc="terms" meaning="“title-service"><source>app/features/terms-conditions/terms-conditions.component.html:4</source>1. Beskrivelse av tjenesten</msg>
   <msg id="terms.conditions.descriptionDocument”" desc="terms" meaning="“description-document"><source>app/features/terms-conditions/terms-conditions.component.html:5,9</source>
@@ -324,194 +512,6 @@
       har innhentet fra deg. Dette gjøres ved å sende email til <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>slettmeg@renteradar.no<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph> og be om 
       å bli glemt.
     </msg>
-  <msg id="privacy.policy.first.title”" desc="privacy-policy" meaning="“first-title"><source>app/features/privacy-no/privacy-policy-no.component.html:2</source><ph name="START_TAG_STRONG"><ex>&lt;strong&gt;</ex>&lt;strong&gt;</ph>Personvernerklæring<ph name="CLOSE_TAG_STRONG"><ex>&lt;/strong&gt;</ex>&lt;/strong&gt;</ph></msg>
-  <msg id="privacy.policy.first.paragraph”" desc="privacy-title" meaning="“first-paragraph"><source>app/features/privacy-no/privacy-policy-no.component.html:3,7</source>
-    Renteradar.no er en tjeneste levert av Forbrukerøkonomene AS (org. nr: 921 534 191). 
-    Her vil dufinne en orientering om hvordan vi forholder oss til personopplysninger 
-    om brukerne i vår tjeneste.
-  </msg>
-  <msg id="privacy.policy.second.paragraph”" desc="privacy-policy" meaning="“second-paragraph"><source>app/features/privacy-no/privacy-policy-no.component.html:8,12</source>
-    Forbrukerøkonomene AS er et norsk selskap underlagt norsk lov. Vi behandler 
-    personopplysninger i samsvar med den til enhver tid gjeldende personvernlovgivning, 
-    herunder personopplysningsloven og personvernforordningen (GDPR). 
-  </msg>
-  <msg id="privacy.policy.second.title”" desc="privacy-policy" meaning="“second-title"><source>app/features/privacy-no/privacy-policy-no.component.html:22,24</source>
-    Hva er personopplysninger?
-  </msg>
-  <msg id="privacy.policy.first2.paragraph”" desc="privacy-policy" meaning="“first2-paragraph"><source>app/features/privacy-no/privacy-policy-no.component.html:25,34</source>
-    En personopplysning er informasjon som direkte eller indirekte kan knyttes 
-    til en fysisk person. Eksempel på personopplysninger er navn, adresse, 
-    telefonnummer og e-postadresse, men også IP-nummer og hvordan du bruker 
-    tjenesten betegnes som personopplysninger. Behandling av personopplysninger 
-    inkluderer all håndtering av personopplysninger, feks innsamling, analysering,
-     registrering og lagring.Opplysningene vil kunne bli supplert med tilgjengelig 
-     informasjon fra tredjepartsaktører, e.g. informasjon om boligverdi eller 
-     kredittopplysningsselskap.
-  </msg>
-  <msg id="privacy.policy.second2.paragraph”" desc="privacy-policy" meaning="“second2-paragraph"><source>app/features/privacy-no/privacy-policy-no.component.html:35,42</source>
-    Behandling av personopplysninger er enhver bruk av personopplysninger, 
-    som for eksempel innsamling, registrering, sammenstilling, lagring og 
-    utlevering eller en kombinasjon av slike bruksmåter. All behandling av 
-    personopplysninger er underlagt personopplysningsloven, og Datatilsynet 
-    fører tilsyn med loven og medvirker til at personvernet til hver enkelt 
-    ikke blir krenket gjennom bruken av personopplysninger.
-  </msg>
-  <msg id="contactUs.title”" desc="title" meaning="“top"><source>app/features/contact-us/contact-us.component.html:2</source>Kontakt oss</msg>
-  <msg id="contactUs.navn.placeholder”" desc="navn" meaning="“navn"><source>app/features/contact-us/contact-us.component.html:15,16</source>
-    </msg>
-  <msg id="contactUs.name”" desc="name" meaning="“text"><source>app/features/contact-us/contact-us.component.html:26,28</source>
-        Vennligst fyll inn navn
-      </msg>
-  <msg id="contactUs.email.issue”" desc="e-mail" meaning="“issue"><source>app/features/contact-us/contact-us.component.html:45,47</source>
-        Ikke gyldig email
-      </msg>
-  <msg id="contactUs.email.issue2”" desc="e-mail" meaning="“issue"><source>app/features/contact-us/contact-us.component.html:52,54</source>
-        Ikke gyldig email
-      </msg>
-  <msg id="contactUs.phone”" desc="telephone" meaning="“number"><source>app/features/contact-us/contact-us.component.html:68,70</source>
-      8 siffer
-    </msg>
-  <msg id="contactUs.phone.missing”" desc="missing" meaning="“number"><source>app/features/contact-us/contact-us.component.html:79,81</source>
-        Telefonnummer kan ikke være tomt
-      </msg>
-  <msg id="contactUs.message”" desc="missing" meaning="“message"><source>app/features/contact-us/contact-us.component.html:100,102</source>
-        Meldingen kan ikke være tom
-      </msg>
-  <msg id="contactUs.send”" desc="send" meaning="“message"><source>app/features/contact-us/contact-us.component.html:109,110</source>Send
-    </msg>
-  <msg id="close”" desc="button" meaning="“close"><source>app/features/init-confirmation/dialog-info/dialog-info.component.html:5,7</source><source>app/features/dashboard/profile/dialog-info/dialog-info.component.html:8,10</source><source>app/features/dashboard/offers/offers-blue/bank-rating-dialog/bank-rating-dialog.component.html:23,25</source><source>app/features/auth/bank-id-login/dialog-info-service/dialog-info-service.component.html:47</source><source>app/features/dashboard/offers/ltv-too-high-dialog/ltv-too-high-dialog.component.html:27</source><source>app/features/dashboard/offers/bargain-success/referral/referral.component.html:74,76</source>
-    Lukk
-  </msg>
-  <msg id="info.confirmation.hi”" desc="info-confirmation" meaning="“hi"><source>app/features/init-confirmation/init-confirmation-no/init-confirmation.component.html:10,12</source>
-        Hei, <ph name="INTERPOLATION"><ex>{{ userData.name | titlecase }}</ex>{{ userData.name | titlecase }}</ph>
-      </msg>
-  <msg id="info.confirmation.moreInfo”" desc="info-confirmation" meaning="“more-infor"><source>app/features/init-confirmation/init-confirmation-no/init-confirmation.component.html:13,15</source>
-        Vi trenger litt mer informasjon før vi kan søke etter tilbud
-      </msg>
-  <msg id="info.confirmation.empty”" desc="info-confirmation" meaning="“empty"><source>app/features/init-confirmation/init-confirmation-no/init-confirmation.component.html:36,38</source><source>app/features/init-confirmation/init-confirmation-no/init-confirmation.component.html:63,65</source><source>app/features/init-confirmation/init-confirmation-no/init-confirmation.component.html:89,91</source><source>app/features/init-confirmation/init-confirmation-no/init-confirmation.component.html:109,111</source>
-            Kan ikke være tom
-          </msg>
-  <msg id="info.confirmation.invalid”" desc="info-confirmation" meaning="“invalid"><source>app/features/init-confirmation/init-confirmation-no/init-confirmation.component.html:43,45</source><source>app/features/init-confirmation/init-confirmation-no/init-confirmation.component.html:70,72</source>
-            Ugyldig e-post
-          </msg>
-  <msg id="info.confirmation.empty2”" desc="info-confirmation" meaning="“empty2"><source>app/features/init-confirmation/init-confirmation-no/init-confirmation.component.html:137,139</source>
-                Kan ikke være tom
-              </msg>
-  <msg id="info.confirmation.help”" desc="info-confirmation" meaning="“help"><source>app/features/init-confirmation/init-confirmation-no/init-confirmation.component.html:146,148</source>
-            <ph name="START_TAG_MAT_ICON"><ex>&lt;mat-icon&gt;</ex>&lt;mat-icon&gt;</ph>help<ph name="CLOSE_TAG_MAT_ICON"><ex>&lt;/mat-icon&gt;</ex>&lt;/mat-icon&gt;</ph>
-          </msg>
-  <msg id="info.confirmation.empty3”" desc="info-confirmation" meaning="“empty3"><source>app/features/init-confirmation/init-confirmation-no/init-confirmation.component.html:170,172</source>
-                Kan ikke være tom
-              </msg>
-  <msg id="info.confirmation.help2”" desc="info-confirmation" meaning="“help2"><source>app/features/init-confirmation/init-confirmation-no/init-confirmation.component.html:183,185</source>
-            <ph name="START_TAG_MAT_ICON"><ex>&lt;mat-icon&gt;</ex>&lt;mat-icon&gt;</ph>help<ph name="CLOSE_TAG_MAT_ICON"><ex>&lt;/mat-icon&gt;</ex>&lt;/mat-icon&gt;</ph>
-          </msg>
-  <msg id="info.confirmation.organization”" desc="info-confirmation" meaning="“organization"><source>app/features/init-confirmation/init-confirmation-no/init-confirmation.component.html:192,194</source>
-        Bankene gir ofte bedre betingelser om du er medlem i en organisasjon
-      </msg>
-  <msg id="info.confirmation.myMemberships”" desc="info-confirmation" meaning="
-          “my-memberships"><source>app/features/init-confirmation/init-confirmation-no/init-confirmation.component.html:222,224</source>
-        Mine medlemskap
-      </msg>
-  <msg id="info.confirmation.done”" desc="info-confirmation" meaning="“done"><source>app/features/init-confirmation/init-confirmation-no/init-confirmation.component.html:242,244</source>
-        Ferdig!
-      </msg>
-  <msg id="get.notified.noSupport”" desc="get-notified" meaning="“no-support"><source>app/features/get-notified/get-notified-no/get-notified-no.component.html:5,8</source>
-     Vi har desverre ikke støtte for banken din enda.<ph name="LINE_BREAK"><ex>&lt;br&gt;</ex>&lt;br&gt;</ph>
-     Legg igjen din epost så gir vi deg beskjed når det er klart. 
-    </msg>
-  <msg id="get.notified.email”" desc="get-notified" meaning="“issue-email"><source>app/features/get-notified/get-notified-no/get-notified-no.component.html:30,45</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:49,64</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:319,334</source><source>app/features/auth/bank-id-login-secret/bank-id-login.component.html:245,260</source>
-          <ph name="START_TAG_RENTE_FORM_MESSAGE"><ex>&lt;rente-form-message&gt;</ex>&lt;rente-form-message&gt;</ph>
-            Ikke gyldig email
-          <ph name="CLOSE_TAG_RENTE_FORM_MESSAGE"><ex>&lt;/rente-form-message&gt;</ex>&lt;/rente-form-message&gt;</ph>
-          <ph name="START_TAG_RENTE_FORM_MESSAGE_1"><ex>&lt;rente-form-message&gt;</ex>&lt;rente-form-message&gt;</ph>
-            Ikke gyldig email
-          <ph name="CLOSE_TAG_RENTE_FORM_MESSAGE"><ex>&lt;/rente-form-message&gt;</ex>&lt;/rente-form-message&gt;</ph>
-        </msg>
-  <msg id="get.notified.notifyMe”" desc="get-notified" meaning="“notify-me"><source>app/features/get-notified/get-notified-no/get-notified-no.component.html:51,52</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:70,71</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:340,341</source><source>app/features/auth/bank-id-login-secret/bank-id-login.component.html:267,268</source>Gi meg lyd når på plass!
-      </msg>
-  <msg id="cookies.mainTitle”" desc="cookies" meaning="“headline"><source>app/features/cookies/cookies.component.html:3</source>Cookiepolicy</msg>
-  <msg id="cookies.description”" desc="cookies" meaning="“description"><source>app/features/cookies/cookies.component.html:4,8</source>
-    Renteradar.no benytter seg av cookies (informasjonskapsler).
-    Cookies er tekstfiler som lagres på din data eller enhet via din nettleser når du besøker en webside.
-    Informasjonen i en cookie kan blant annet beskrive:
-  </msg>
-  <msg id="cookies.explanation”" desc="cookies" meaning="“explanation"><source>app/features/cookies/cookies.component.html:11</source>om du tidligere har besøkt websiden</msg>
-  <msg id="cookies.explanation2”" desc="cookies" meaning="“explanation"><source>app/features/cookies/cookies.component.html:14</source>om du har en konto som du har valgt å være innlogget på</msg>
-  <msg id="cookies.explanation3”" desc="cookies" meaning="“explanation"><source>app/features/cookies/cookies.component.html:17</source>data du har skrevet inn på nettsiden</msg>
-  <msg id="cookies.title1”" desc="cookies" meaning="“why-and-how-cookies-work"><source>app/features/cookies/cookies.component.html:21</source>Hvorfor og hvordan bruker vi cookies?</msg>
-  <msg id="cookies.text.whyHow”" desc="cookies" meaning="“text-why-how"><source>app/features/cookies/cookies.component.html:22,28</source>
-    Renteradar.no bruker cookies for analytiske, tekniske og markedsføringsmessige formål.
-    Det vil si at cookies brukes for å gi våre brukere god opplevelse når bruker tjenesten,
-    og gir oss mulighet til å utvikle og forbedre tjenesten. Det gir også anledning til å analysere
-    trafikken på våre nettsider for blant annet å oppnå bedre målrettet markedsføring. Nærmere
-    informasjon om de ulike bruksområdene følger lenger ned.
-  </msg>
-  <msg id="cookies.title2”" desc="cookies" meaning="“what-info"><source>app/features/cookies/cookies.component.html:30</source>Hvilken informasjon registreres om deg som bruker</msg>
-  <msg id="cookies.text.what”" desc="cookies" meaning="“info"><source>app/features/cookies/cookies.component.html:31,33</source>
-    Når du besøker renteradar.no kan vi registrere ulik informasjon om deg og enheten. Det inkluderer blant annet:
-  </msg>
-  <msg id="cookies.text.position”" desc="cookies" meaning="“info-position"><source>app/features/cookies/cookies.component.html:36</source>Posisjonsdata</msg>
-  <msg id="cookies.text.adferd”" desc="cookies" meaning="“info-adferd"><source>app/features/cookies/cookies.component.html:39</source>Adferd på siden. Det inkluderer blant annet hvilke sider du er inne på og tidsbruk på hver side.</msg>
-  <msg id="cookies.text.tech”" desc="cookies" meaning="“info-tech"><source>app/features/cookies/cookies.component.html:42</source>Teknisk informasjon om nettleser og operativsystem</msg>
-  <msg id="cookies.title3”" desc="cookies" meaning="“erase"><source>app/features/cookies/cookies.component.html:46</source>Sletting informasjonskapsler i ulike nettlesere</msg>
-  <msg id="cookies.text.erase”" desc="cookies" meaning="“info-erase"><source>app/features/cookies/cookies.component.html:47,52</source>
-    Du kan i nettleseren få en oversikt over alle informasjonskapsler som er lagret.
-    Der kan du slette informasjonskapsler og angi om du aksepterer lagring av informasjonskapsler
-    fra nettsider du besøker. Den nøyaktige fremgangsmåten avhenger av enheten din og hvilken
-    nettleser du bruker. I linkene under kan du lese mer:
-  </msg>
-  <msg id="cookies.title4”" desc="cookies" meaning="“which"><source>app/features/cookies/cookies.component.html:71</source>Hvilke cookies benytter vi?</msg>
-  <msg id="cookies.googleAnalytics”" desc="cookies" meaning="“google-analytics"><source>app/features/cookies/cookies.component.html:74,77</source>
-        <ph name="START_TAG_STRONG"><ex>&lt;strong&gt;</ex>&lt;strong&gt;</ph>Google Analytics:<ph name="CLOSE_TAG_STRONG"><ex>&lt;/strong&gt;</ex>&lt;/strong&gt;</ph>
-        Er et verktøy som måler all trafikk på nettsiden og kan benyttes for analyseformål. Mer informasjon
-        <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>her.<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph></msg>
-  <msg id="cookies.googleAds”" desc="cookies" meaning="“google-ads"><source>app/features/cookies/cookies.component.html:80,83</source>
-        <ph name="START_TAG_STRONG"><ex>&lt;strong&gt;</ex>&lt;strong&gt;</ph>Google Ads:<ph name="CLOSE_TAG_STRONG"><ex>&lt;/strong&gt;</ex>&lt;/strong&gt;</ph>
-        Brukes for måling av betalt reklame av søkeord og Google annonsering. Mer informasjon
-        <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>her.<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph></msg>
-  <msg id="cookies.googleTag”" desc="cookies" meaning="“google-tag"><source>app/features/cookies/cookies.component.html:86,89</source>
-        <ph name="START_TAG_STRONG"><ex>&lt;strong&gt;</ex>&lt;strong&gt;</ph>Google Tag Manager:<ph name="CLOSE_TAG_STRONG"><ex>&lt;/strong&gt;</ex>&lt;/strong&gt;</ph>
-        Styrer tags for tracking og analyse. Mer info
-        <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>her.<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph></msg>
-  <msg id="cookies.facebook”" desc="cookies" meaning="“facebook"><source>app/features/cookies/cookies.component.html:92,95</source>
-        <ph name="START_TAG_STRONG"><ex>&lt;strong&gt;</ex>&lt;strong&gt;</ph>Facebook Pixel:<ph name="CLOSE_TAG_STRONG"><ex>&lt;/strong&gt;</ex>&lt;/strong&gt;</ph>
-        Interaksjonsverktøy som Facebook bruker mot nettsteder for å bruke data til mer målrettet reklame. Mer informasjon
-        <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>her.<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph></msg>
-  <msg id="cookies.hotjar”" desc="cookies" meaning="“hotjar"><source>app/features/cookies/cookies.component.html:98,101</source>
-        <ph name="START_TAG_STRONG"><ex>&lt;strong&gt;</ex>&lt;strong&gt;</ph>Hotjar:<ph name="CLOSE_TAG_STRONG"><ex>&lt;/strong&gt;</ex>&lt;/strong&gt;</ph>
-        Er et interaksjonsverktøy som registrerer hvordan brukere bruker nettsiden. Mer informasjon
-        <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>her.<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph></msg>
-  <msg id="email.preferences.saved”" desc="email-preferences" meaning="“saved"><source>app/features/email-preferences/email-preferences.component.html:6</source>Lagret</msg>
-  <msg id="email.preferences.settings”" desc="email-preferences" meaning="“settings"><source>app/features/email-preferences/email-preferences.component.html:15</source>Epost innstillinger</msg>
-  <msg id="email.preferences.error”" desc="email-preferences" meaning="“error"><source>app/features/email-preferences/email-preferences.component.html:17,18</source>Noe gikk galt, vennligst logg inn
-            eller ta kontakt med oss på <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>hei@renteradar.no<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph></msg>
-  <msg id="email.preferences.market”" desc="email-preferences" meaning="“market"><source>app/features/email-preferences/email-preferences.component.html:28,29</source>Markedsovervåkning /
-                            Rentesjekk av dine lån</msg>
-  <msg id="email.preferences.monthEvery”" desc="email-preferences" meaning="“month-every"><source>app/features/email-preferences/email-preferences.component.html:38</source>Hver måned</msg>
-  <msg id="email.preferences.monthTwo”" desc="email-preferences" meaning="“month-two"><source>app/features/email-preferences/email-preferences.component.html:41</source>Hver 2. måned</msg>
-  <msg id="email.preferences.monthThree”" desc="email-preferences" meaning="“month-three"><source>app/features/email-preferences/email-preferences.component.html:44</source>Hver 3. måned</msg>
-  <msg id="email.preferences.monthFour”" desc="email-preferences" meaning="“month-four"><source>app/features/email-preferences/email-preferences.component.html:47</source>Hver 4. måned</msg>
-  <msg id="email.preferences.monthNever”" desc="email-preferences" meaning="“month-never"><source>app/features/email-preferences/email-preferences.component.html:50</source>Aldri</msg>
-  <msg id="email.preferences.marketUpdate”" desc="email-preferences" meaning="“market-update"><source>app/features/email-preferences/email-preferences.component.html:55,63</source>
-                    <ph name="START_PARAGRAPH"><ex>&lt;p&gt;</ex>&lt;p&gt;</ph>
-                        Få markedsoppdateringer, nyheter og annen informasjon på epost
-                    <ph name="CLOSE_PARAGRAPH"><ex>&lt;/p&gt;</ex>&lt;/p&gt;</ph>
-                    <ph name="START_TAG_MAT_RADIO_GROUP"><ex>&lt;mat-radio-group&gt;</ex>&lt;mat-radio-group&gt;</ph>
-                        <ph name="START_TAG_MAT_RADIO_BUTTON"><ex>&lt;mat-radio-button&gt;</ex>&lt;mat-radio-button&gt;</ph><ph name="START_TAG_SPAN"><ex>&lt;span&gt;</ex>&lt;span&gt;</ph>Ja<ph name="CLOSE_TAG_SPAN"><ex>&lt;/span&gt;</ex>&lt;/span&gt;</ph><ph name="CLOSE_TAG_MAT_RADIO_BUTTON"><ex>&lt;/mat-radio-button&gt;</ex>&lt;/mat-radio-button&gt;</ph>
-                        <ph name="START_TAG_MAT_RADIO_BUTTON_1"><ex>&lt;mat-radio-button&gt;</ex>&lt;mat-radio-button&gt;</ph><ph name="START_TAG_SPAN"><ex>&lt;span&gt;</ex>&lt;span&gt;</ph>Nei<ph name="CLOSE_TAG_SPAN"><ex>&lt;/span&gt;</ex>&lt;/span&gt;</ph><ph name="CLOSE_TAG_MAT_RADIO_BUTTON"><ex>&lt;/mat-radio-button&gt;</ex>&lt;/mat-radio-button&gt;</ph>
-                    <ph name="CLOSE_TAG_MAT_RADIO_GROUP"><ex>&lt;/mat-radio-group&gt;</ex>&lt;/mat-radio-group&gt;</ph>
-                </msg>
-  <msg id="email.preferences.saveChanges”" desc="email-preferences" meaning="“save-changes"><source>app/features/email-preferences/email-preferences.component.html:68,70</source>
-                    Lagre endringer
-                </msg>
-  <msg id="messenger-redirect.header" desc="offers-main" meaning="messenger-redirect-headline"><source>app/features/email-redirect/email-redirect-sv/email-redirect-sv.component.html:16</source><source>app/features/email-redirect/email-redirect-sv/email-redirect-sv.component.html:43</source>Hjelp en venn til bedre rente!</msg>
-  <msg id="messenger-redirect.explaination" desc="offers-main" meaning="messenger-redirect-selling-point"><source>app/features/email-redirect/email-redirect-sv/email-redirect-sv.component.html:17</source><source>app/features/email-redirect/email-redirect-sv/email-redirect-sv.component.html:44</source>Trykk på knappen hvis messenger ikke åpnet seg automatisk.</msg>
-  <msg id="messenger-redirect.selling-point" desc="offers-main" meaning="messenger-redirect-messenger"><source>app/features/email-redirect/email-redirect-sv/email-redirect-sv.component.html:19,22</source><source>app/features/email-redirect/email-redirect-sv/email-redirect-sv.component.html:45,48</source>
-                        På den måten kan du fortelle noen du kjenner om <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph> Renteradar.se <ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph> 
-                        og kanskje de spanderer en middag med alle pengene de sparer.
-                    </msg>
-  <msg id="noLoans”" desc="no-loans" meaning="“error"><source>app/features/dashboard/no-loans/no-loans.component.html:4</source>Vi fant ingen lån, er du sikker på at du har valgt riktig bank?</msg>
   <msg id="offers.mainPage.bestOffers3”" desc="offers-main" meaning="“best-offers3"><source>app/features/dashboard/offers/offers-list/offers-list-no/offers-list-no.component.html:2,4</source>
     Beste tilbud:
   </msg>

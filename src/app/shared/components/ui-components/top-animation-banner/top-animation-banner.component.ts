@@ -8,9 +8,9 @@ import {
 } from '@angular/animations';
 
 @Component({
-  selector: 'rente-dropdown-banner',
-  templateUrl: './dropdown-banner.component.html',
-  styleUrls: ['./dropdown-banner.component.scss'],
+  selector: 'rente-top-animation-banner',
+  templateUrl: './top-animation-banner.component.html',
+  styleUrls: ['./top-animation-banner.component.scss'],
   animations: [
     trigger('slideLeftRight', [
       state('hidden', style({ opacity: 0 })),
@@ -29,7 +29,7 @@ import {
     ]) // Trigger end
   ]
 })
-export class DropdownBannerComponent implements OnInit {
+export class TopAnimationBannerComponent implements OnInit {
   public animationState: boolean;
   public displayText = 'Fortnite';
   time: number;

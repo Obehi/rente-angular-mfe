@@ -20,7 +20,7 @@ import { TextAreaComponent } from './components/ui-components/text-area/text-are
 import { ChipsAutocompleteComponent } from './components/ui-components/chips-autocomplete/chips-autocomplete.component';
 import { CheckboxContainerComponent } from './components/ui-components/checkbox-container/checkbox-container.component';
 import { BarComponent } from './components/ui-components/bar/bar.component';
-import { DropdownBannerComponent } from './components/ui-components/dropdown-banner/dropdown-banner.component';
+import { TopAnimationBannerComponent } from './components/ui-components/top-animation-banner/top-animation-banner.component';
 import { ButtonSmallComponent } from './components/ui-components/button-small/button-small.component';
 import {
   HeaderLangGenericComponent,
@@ -57,7 +57,6 @@ const components = [
   ButtonSmallComponent,
   CheckboxComponent,
   CheckboxContainerComponent,
-  DropdownBannerComponent,
   FooterComponent,
   FormMessageComponent,
   HeaderLangGenericComponent,
@@ -67,7 +66,8 @@ const components = [
   SelectComponent,
   TabsComponent,
   TabComponent,
-  TextAreaComponent
+  TextAreaComponent,
+  TopAnimationBannerComponent
 ];
 
 const services = [
