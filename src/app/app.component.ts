@@ -54,7 +54,7 @@ export class AppComponent implements OnInit {
 
     this.auth.logoutSubject.subscribe((val) => {
       if (val === 'LoggedOut') {
-        this.messageService.setView('Du er nå logget ut', 3000);
+        this.messageService.setView('Du er nå logget ut', 4000);
       }
     });
   }

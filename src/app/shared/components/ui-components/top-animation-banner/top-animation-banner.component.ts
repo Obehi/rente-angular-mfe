@@ -1,33 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  trigger,
-  state,
-  transition,
-  style,
-  animate
-} from '@angular/animations';
+import { slideLeftRight } from '@shared/animations/slide-left-right';
 
 @Component({
   selector: 'rente-top-animation-banner',
   templateUrl: './top-animation-banner.component.html',
   styleUrls: ['./top-animation-banner.component.scss'],
-  animations: [
-    trigger('slideLeftRight', [
-      state('hidden', style({ opacity: 0 })),
-      state('visible', style({ opacity: 1 })),
-      transition(':enter', [
-        style({ opacity: 0, transform: 'translateX(100%)' }),
-        animate('200ms ease-in-out')
-      ]),
-      transition('visible => hidden', [
-        style({ opacity: 1 }),
-        animate(
-          '400ms ease-out',
-          style({ opacity: 0, transform: 'translateX(100%)' }) // Define the style when it goes to state hidden
-        )
-      ])
-    ]) // Trigger end
-  ]
+  animations: [slideLeftRight]
 })
 export class TopAnimationBannerComponent implements OnInit {
   public animationState: boolean;
