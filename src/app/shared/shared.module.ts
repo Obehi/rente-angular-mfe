@@ -47,6 +47,9 @@ import { CustomLangTextService } from '@services/custom-lang-text.service';
 import { ChildDirective } from './directives/child.directive';
 import { CheckboxContainerComponent } from './components/ui-components/checkbox-container/checkbox-container.component';
 import { BarComponent } from './components/ui-components/bar/bar.component';
+import { PropertySelectComponent } from '@features/first-buyers/components/property-select/property-select.component';
+import { PropertySelectDialogComponent } from '@features/first-buyers/components/property-select-dialog/property-select-dialog.component';
+import { PropertyInputComponent } from '@features/first-buyers/components/property-input/property-input.component';
 
 const components = [
   HeaderLangGenericComponent,
@@ -62,7 +65,9 @@ const components = [
   TabComponent,
   FormMessageComponent,
   TextAreaComponent,
-  OfferDetailsLangGenericComponent
+  OfferDetailsLangGenericComponent,
+  PropertySelectComponent,
+  PropertySelectDialogComponent
 ];
 
 const services = [

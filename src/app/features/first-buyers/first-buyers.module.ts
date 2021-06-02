@@ -23,9 +23,7 @@ import { PropertySelectDialogComponent } from './components/property-select-dial
     InitialOffersComponent,
     InputFlowComponent,
     PropertyInputComponent,
-    InitialOfferComponent,
-    PropertySelectComponent,
-    PropertySelectDialogComponent
+    InitialOfferComponent
   ],
   imports: [
     CommonModule,

@@ -58,16 +58,21 @@
             }}</mat-option>
           </mat-select>
         </mat-form-field>
-        <mat-select-autocomplete
+        <mat-form-field
+          class="text-white w-100"
           *ngIf="inputType === 'autocomplete'"
-          [placeholder]="
-            previousStateMemberships?.length !== 0
-              ? previousStateMemberships?.length + ' medlemskap valgt'
-              : 'Velg'
-          "
-          (click)="openPropertySelectDialog()"
         >
-        </mat-select-autocomplete>
+          <mat-select
+            *ngIf="inputType === 'autocomplete'"
+            [placeholder]="
+              previousStateMemberships?.length !== 0
+                ? previousStateMemberships?.length + ' medlemskap valgt'
+                : 'Velg'
+            "
+            (click)="openPropertySelectDialog()"
+          >
+          </mat-select>
+        </mat-form-field>
       </form>
     </div>
   </div>
