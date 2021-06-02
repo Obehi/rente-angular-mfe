@@ -27,15 +27,41 @@
   }
 }
 
-iframe {
+.iframe-wrapper {
   margin: 40px auto;
-
+  text-align: center;
   @media (max-width: 600px) {
     width: 100%;
   }
-  border: unset;
-  @media (min-width: 600px) {
-    min-height: 410px;
+
+  p {
+    text-align: center;
+    margin: auto;
+    @media (min-width: 600px) {
+      max-width: 60%;
+    }
+
+    @media (max-width: 600px) {
+      max-width: 80%;
+    }
+  }
+  .link {
+    color: $primary;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  iframe {
+    text-align: center;
+    margin: auto;
+    border: unset;
+    @media (min-width: 600px) {
+      min-height: 410px;
+    }
+
+    @media (max-width: 600px) {
+      width: 100%;
+    }
   }
 }
 

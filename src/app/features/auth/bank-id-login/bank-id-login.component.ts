@@ -60,6 +60,8 @@ import { ApiError } from '@shared/constants/api-error';
 import { ProfileService } from '@services/remote-api/profile.service';
 import { GlobalStateService } from '@services/global-state.service';
 import { RouteEventsService } from '@services/route-events.service';
+
+import { LoginTermsDialogV2Component } from '@shared/components/ui-components/dialogs/login-terms-dialog-v2/login-terms-dialog-v2.component';
 @Component({
   selector: 'rente-bank-id-login',
   templateUrl: './bank-id-login.component.html',
@@ -93,7 +95,6 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
   public oldUserNewLoan = false;
 
   constructor(
-    private route: ActivatedRoute,
     private authService: AuthService,
     private localStorageService: LocalStorageService,
     private router: Router,
@@ -119,6 +120,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
   }
 
   private setRoutingListeners() {
+    // Prevent user from going back to this form from the dashboard
     this.routeSubscription = this.routeEventsService.previousRoutePath.subscribe(
       (previousRoutePath) => {
         if (
@@ -131,6 +133,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
       }
     );
 
+    // Make back button synch with form
     this.navigationInterceptionService.setBackButtonCallback(() => {
       if (this.currentStepperValue !== 0) {
         this.back();
@@ -139,8 +142,9 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
       }
     });
 
+    // Getting bank name from the bank-select component
     const bankParam = this.router?.getCurrentNavigation()?.extras?.state?.data;
-
+    // Checking for null or undefined
     if (bankParam == null) {
       this.router.navigate(['/' + ROUTES_MAP.bankSelect]);
       return;
@@ -154,6 +158,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     return this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }
 
+  // initialize signicat iframe
   private loginBankIdStep1(): void {
     window.scrollTo({
       top: 0,
@@ -170,6 +175,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     );
   }
 
+  // Wait for signicat successfull login with iframe repsonse
   @HostListener('window:message', ['$event'])
   onMessage(event) {
     if (event.origin === 'https://id.idfy.io') {
@@ -180,6 +186,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     }
   }
 
+  // Send sessionId to backend and initialize the correct form based on client info
   private statusSuccess(sessionId: string): void {
     this.localStorageService;
     this.bank &&
@@ -198,7 +205,6 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
                 (onlyMemberships) => {
                   this.initMemberships(onlyMemberships.memberships);
                   this.initNewUserForms();
-                  // this.handlePublic();
                   this.isLoading = false;
                   this.showForms = true;
                   this.newClient = true;
@@ -218,44 +224,73 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
         );
   }
 
-  public isErrorState(control: AbstractControl | null): boolean {
-    return !!(control && control.invalid && (control.dirty || control.touched));
-  }
+  public newUserFinished(): void {
+    const loanUpdateInfoDto = this.loanUpdateInfoDto;
+    const clientDto = this.clientUpdateInfo;
 
-  private filter(value: any): void {
-    this.allMemberships = this.clearDuplicates(
-      this.allMemberships,
-      this.memberships
-    );
-  }
-
-  remove(membership, index): void {
-    this.allMemberships.push(membership);
-    this.allMemberships.sort((a, b) =>
-      a.name > b.name ? 1 : b.name > a.name ? -1 : 0
-    );
-    this.memberships.splice(index, 1);
-  }
-
-  selected(event: MatAutocompleteSelectedEvent): void {
-    this.memberships.push(event.option.value);
-    this.membershipInput.nativeElement.value = '';
-    this.membershipCtrl.setValue(null);
-  }
-
-  private clearDuplicates(
-    array: MembershipTypeDto[],
-    toRemoveArray: MembershipTypeDto[]
-  ): MembershipTypeDto[] {
-    for (let i = array.length - 1; i >= 0; i--) {
-      // tslint:disable-next-line:prefer-for-of
-      for (let j = 0; j < toRemoveArray.length; j++) {
-        if (array[i] && array[i].name === toRemoveArray[j].name) {
-          array.splice(i, 1);
-        }
-      }
+    if (this.showManualInputForm) {
+      clientDto.address.apartmentValue = this.manualPropertyValue;
     }
-    return array;
+    this.isLoading = true;
+
+    const userMemberships = {
+      memberships: clientDto.memberships
+    };
+    clientDto.memberships = [];
+    concat(
+      this.loanService.updateClientInfo(clientDto),
+      this.loanService.updateLoanUserInfo(loanUpdateInfoDto),
+      this.loanService.setUsersMemberships(userMemberships)
+    )
+      .pipe(toArray())
+      .subscribe(
+        (_) => {
+          this.isLoading = false;
+
+          if (this.bank !== null) {
+            this.bank && this.loginService.loginWithBankAndToken();
+          } else {
+            // handle state as error
+
+            this.showGenericDialog();
+            this.isLoading = false;
+          }
+        },
+        (error) => {
+          if (error.errorType === ApiError.virdiSerachNotFound) {
+            const dialogData = {
+              header: 'Ops, noe gikk visst galt',
+              confirmText: 'Prøv igjen',
+              cancelText: 'Avbryt',
+
+              onConfirm: () => {
+                this.loanFormGroup?.reset();
+                this.userFormGroup?.reset();
+                this.membershipFormGroup?.reset();
+                this.membershipFormGroup?.reset();
+                this.stepper.selectedIndex = 0;
+                this.currentStepperValue = 0;
+              }
+            };
+          } else {
+            this.showGenericDialog();
+          }
+        }
+      );
+  }
+
+  public oldUserFinished(): void {
+    const loanUpdateInfoDto = this.loanUpdateInfoDto;
+    this.isLoading = true;
+    this.loanService.updateLoanUserInfo(loanUpdateInfoDto).subscribe(
+      (result) => {
+        this.isLoading = false;
+        this.bank && this.loginService.loginWithBankAndToken();
+      },
+      (error) => {
+        this.showGenericDialog();
+      }
+    );
   }
 
   initMemberships(memberships): void {
@@ -266,10 +301,6 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
         membership ? this.filter(membership) : this.allMemberships.slice()
       )
     );
-  }
-
-  public offerSelected(event: any): void {
-    this.selectedOffer = event;
   }
 
   initNewUserForms(): void {
@@ -310,11 +341,6 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     this.membershipFormGroup = this.fb.group({
       membership: []
     });
-  }
-
-  matSelectLoanTypeCompare(o1: any, o2: any): boolean {
-    if (o1.name === o2.name && o1.value === o2.value) return true;
-    else return false;
   }
 
   private initLoansForm(loanInfo): void {
@@ -382,61 +408,6 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     return apartmentValue;
   }
 
-  public doneClicked(): void {
-    const loanUpdateInfoDto = this.loanUpdateInfoDto;
-    const clientDto = this.clientUpdateInfo;
-
-    if (this.showManualInputForm) {
-      clientDto.address.apartmentValue = this.manualPropertyValue;
-    }
-    this.isLoading = true;
-
-    const userMemberships = {
-      memberships: clientDto.memberships
-    };
-    clientDto.memberships = [];
-    concat(
-      this.loanService.updateClientInfo(clientDto),
-      this.loanService.updateLoanUserInfo(loanUpdateInfoDto),
-      this.loanService.setUsersMemberships(userMemberships)
-    )
-      .pipe(toArray())
-      .subscribe(
-        (_) => {
-          this.isLoading = false;
-
-          if (this.bank !== null) {
-            this.bank && this.loginService.loginWithBankAndToken();
-          } else {
-            // handle state as error
-
-            this.showGenericDialog();
-            this.isLoading = false;
-          }
-        },
-        (error) => {
-          if (error.errorType === ApiError.virdiSerachNotFound) {
-            const dialogData = {
-              header: 'Ops, noe gikk visst galt',
-              confirmText: 'Prøv igjen',
-              cancelText: 'Avbryt',
-
-              onConfirm: () => {
-                this.loanFormGroup?.reset();
-                this.userFormGroup?.reset();
-                this.membershipFormGroup?.reset();
-                this.membershipFormGroup?.reset();
-                this.stepper.selectedIndex = 0;
-                this.currentStepperValue = 0;
-              }
-            };
-          } else {
-            this.showGenericDialog();
-          }
-        }
-      );
-  }
-
   get clientUpdateInfo(): ClientUpdateInfo {
     const addressDto = new AddressCreationDto();
     const clientDto = new ClientUpdateInfo();
@@ -483,32 +454,6 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     }
   }
 
-  private handlePublic() {
-    /* this.emailFormGroup
-      .get('email')
-      ?.valueChanges.pipe(
-        tap(() => {
-          this.emailFormGroup.get('email')?.setErrors(null);
-        }),
-        debounceTime(1000),
-        switchMap((value) => {
-          return of(this.isInvalid(this.emailFormGroup, 'email'));
-        }),
-        tap(() => {
-          console.log('tapped');
-          this.emailFormGroup.get('email')?.updateValueAndValidity();
-        })
-      )
-      .subscribe((state) => {
-        console.log('loggs');
-        console.log(state);
-
-         state
-          ? this.emailFormGroup.get('email')?.setErrors(null)
-          : this.emailFormGroup.get('email')?.setErrors({ incorrect: true });
-      }); */
-  }
-
   public isInvalid(formGroup: FormGroup, valueName: string): boolean {
     this.emailFormGroup?.get('email')?.updateValueAndValidity();
 
@@ -518,6 +463,101 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       formGroup.get(valueName)!.dirty
     );
+  }
+
+  public openInfoDialog(message: any): void {
+    this.dialog.open(GenericInfoDialogComponent, {
+      data: message
+    });
+  }
+
+  public openTermsDialog(): void {
+    this.dialog.open(LoginTermsDialogV2Component);
+  }
+
+  public openTermsInfoDialog(): void {
+    const message = '';
+    this.dialog.open(GenericInfoDialogComponent, {
+      data: message
+    });
+  }
+
+  public resetForms(): void {
+    this.loanFormGroup?.reset();
+    this.userFormGroup?.reset();
+    this.membershipFormGroup?.reset();
+    this.stepper.selectedIndex = 0;
+    this.currentStepperValue = 0;
+  }
+
+  public showGenericDialog(error?: any): void {
+    const dialogData: ErrorDialogData = {
+      header: 'Ops, noe gikk visst galt',
+      confirmText: 'Prøv igjen',
+      cancelText: 'Avbryt',
+      error: error,
+      onConfirm: () => {
+        this.router.navigate(['/' + ROUTES_MAP.bankSelect]);
+      },
+      onClose: () => {
+        this.router.navigate(['/']);
+      }
+    };
+    this.dialog.open(GenericErrorDialogComponent, {
+      data: dialogData
+    });
+  }
+
+  matSelectLoanTypeCompare(o1: any, o2: any): boolean {
+    if (o1.name === o2.name && o1.value === o2.value) return true;
+    else return false;
+  }
+
+  public isErrorState(control: AbstractControl | null): boolean {
+    return !!(control && control.invalid && (control.dirty || control.touched));
+  }
+
+  private filter(value: any): void {
+    this.allMemberships = this.clearDuplicates(
+      this.allMemberships,
+      this.memberships
+    );
+  }
+
+  remove(membership, index): void {
+    this.allMemberships.push(membership);
+    this.allMemberships.sort((a, b) =>
+      a.name > b.name ? 1 : b.name > a.name ? -1 : 0
+    );
+    this.memberships.splice(index, 1);
+  }
+
+  selected(event: MatAutocompleteSelectedEvent): void {
+    this.memberships.push(event.option.value);
+    this.membershipInput.nativeElement.value = '';
+    this.membershipCtrl.setValue(null);
+  }
+
+  private clearDuplicates(
+    array: MembershipTypeDto[],
+    toRemoveArray: MembershipTypeDto[]
+  ): MembershipTypeDto[] {
+    for (let i = array.length - 1; i >= 0; i--) {
+      // tslint:disable-next-line:prefer-for-of
+      for (let j = 0; j < toRemoveArray.length; j++) {
+        if (array[i] && array[i].name === toRemoveArray[j].name) {
+          array.splice(i, 1);
+        }
+      }
+    }
+    return array;
+  }
+
+  private scrollToTop(): void {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
   }
 
   next(): void {
@@ -598,71 +638,5 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
   goToMembershipForm(): void {
     this.scrollToTop();
     this.stepper.next();
-  }
-
-  public oldUserFinished(): void {
-    const loanUpdateInfoDto = this.loanUpdateInfoDto;
-    this.isLoading = true;
-    this.loanService.updateLoanUserInfo(loanUpdateInfoDto).subscribe(
-      (result) => {
-        this.isLoading = false;
-        this.bank && this.loginService.loginWithBankAndToken();
-      },
-      (error) => {
-        this.showGenericDialog();
-      }
-    );
-  }
-
-  public resetLoginState(): void {
-    this.localStorageService.removeItem('bankIdLoginBank');
-    this.localStorageService.removeItem('bankIdLoginBankCode');
-    this.localStorageService.removeItem('NewUserInLoginProccess');
-    this.localStorageService.removeItem('loginState');
-    this.localStorageService.removeItem('LoggingSessionId');
-  }
-
-  public openInfoDialog(message: any): void {
-    this.dialog.open(GenericInfoDialogComponent, {
-      data: message
-    });
-  }
-
-  public resetForms(): void {
-    this.loanFormGroup?.reset();
-    this.userFormGroup?.reset();
-    this.membershipFormGroup?.reset();
-    this.stepper.selectedIndex = 0;
-    this.currentStepperValue = 0;
-  }
-
-  public showGenericDialog(error?: any): void {
-    console.log('showGenericDialog');
-    console.log(error);
-    const dialogData: ErrorDialogData = {
-      header: 'Ops, noe gikk visst galt',
-      confirmText: 'Prøv igjen',
-      cancelText: 'Avbryt',
-      error: error,
-      onConfirm: () => {
-        this.resetLoginState();
-        this.router.navigate(['/' + ROUTES_MAP.bankSelect]);
-      },
-      onClose: () => {
-        this.resetLoginState();
-
-        this.router.navigate(['/']);
-      }
-    };
-    this.dialog.open(GenericErrorDialogComponent, {
-      data: dialogData
-    });
-  }
-
-  private scrollToTop(): void {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
   }
 }

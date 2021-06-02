@@ -129,8 +129,6 @@ export class BankSelectNoComponent implements OnInit {
     }
 
     if (bank.isSigniCat) {
-      console.log('issignicat');
-      console.log(bank.name);
       this.router.navigate(['/autentisering/' + ROUTES_MAP_NO.bankIdLogin], {
         state: { data: bank.name }
       });

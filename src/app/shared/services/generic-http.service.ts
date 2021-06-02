@@ -103,9 +103,6 @@ export class GenericHttpService {
 
   public postWithParams(path: string, searchParams: any): Observable<any> {
     const fullPath = `${this.apiUrl}${path}`;
-
-    console.log('searchParams');
-    console.log(searchParams);
     const params: HttpParams = new HttpParams({ fromObject: searchParams });
 
     const httpOptions = {

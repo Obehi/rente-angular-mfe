@@ -4,12 +4,20 @@
   </div>
 
   <div class="forms-wrapper">
-    <iframe
-      *ngIf="signicatIframeUrl !== null"
-      [src]="signicatIframeUrl"
-      height="400"
-      width="400"
-    ></iframe>
+    <div *ngIf="signicatIframeUrl !== null" class="iframe-wrapper">
+      <p>
+        Ved å logge inn samtykker til at Renteradar.no henter og behandler dine
+        personopplysninger.
+        <a class="link" (click)="openTermsDialog()">Les mer</a>
+      </p>
+
+      <iframe
+        *ngIf="signicatIframeUrl !== null"
+        [src]="signicatIframeUrl"
+        height="400"
+        width="400"
+      ></iframe>
+    </div>
 
     <div></div>
 
@@ -502,7 +510,7 @@
               *ngIf="showForms"
               [formGroup]="membershipFormGroup"
               novalidate
-              (ngSubmit)="doneClicked()"
+              (ngSubmit)="newUserFinished()"
               class="center"
             >
               <div class="field full-height">
@@ -650,7 +658,7 @@
           </rente-button>
           <rente-button
             class="right"
-            (click)="doneClicked()"
+            (click)="newUserFinished()"
             color="primary"
             [isLoading]="isLoading"
             [disabled]="membershipFormGroup?.invalid || isLoading"
