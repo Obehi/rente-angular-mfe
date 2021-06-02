@@ -29,6 +29,7 @@ import {
   MatExpansionModule
 } from '@angular/material';
 import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 import { RateTypeFixedComponent } from './rate-type-fixed/rate-type-fixed.component';
 import { ChangeBankDialogComponent } from './offers/change-bank-dialog/change-bank-dialog.component';
@@ -69,6 +70,7 @@ import { BarometerComponent } from './offers/offers-blue/barometer/barometer.com
 import { BoxGridComponent } from './offers/offers-blue/box-grid/box-grid.component';
 import { TipsComponent } from './offers/offers-blue/tips/tips.component';
 import { ActionBoxesComponent } from './offers/offers-blue/action-boxes/action-boxes.component';
+import { PropertyInputComponent } from '../first-buyers/components/property-input/property-input.component';
 
 // TODO: ADD separate module for material import
 @NgModule({
@@ -143,6 +145,7 @@ import { ActionBoxesComponent } from './offers/offers-blue/action-boxes/action-b
     MatBottomSheetModule,
     MatExpansionModule,
     MatStepperModule,
+    MatSlideToggleModule,
     NgbRatingModule
 
     // ShareButtonModule

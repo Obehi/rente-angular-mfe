@@ -1,4 +1,12 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  ElementRef,
+  EventEmitter,
+  Output,
+  Input
+} from '@angular/core';
 import { locale } from '../../../../config/locale/locale';
 import { CustomLangTextService } from '@shared/services/custom-lang-text.service';
 import {
@@ -18,6 +26,7 @@ import {
 import { MatDialog } from '@angular/material/dialog';
 import { ProfileDialogInfoComponent } from '../dialog-info/dialog-info.component';
 import { MatChipInputEvent } from '@angular/material';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import {
   LoansService,
   MembershipTypeDto,
@@ -72,7 +81,7 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
   public separatorKeysCodes: number[] = [ENTER, COMMA];
   public membershipCtrl = new FormControl();
   public filteredMemberships: Observable<MembershipTypeDto[]>;
-  public memberships: any = [];
+  // public memberships: any = [];
   public showMemberships: boolean;
   public showPreferences: boolean;
   public showOfferPreferences: boolean;
@@ -87,6 +96,18 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
   public locale = locale;
   changesMade = false;
   public isSweden = false;
+
+  //////////////////////////////
+  public toggleOneText = 'AV';
+  public toggleTwoText = 'AV';
+  public toggleThreeText = 'AV';
+  public toggleFourText = 'AV';
+  @Input() autocompleteOptions: any;
+  @Input() memberships: MembershipTypeDto[];
+  public previousStateMemberships: string[] = [];
+  @Output() selectedMemberships = new EventEmitter<MembershipTypeDto[]>();
+
+  profileIcon = '../../../../../assets/icons/profile-icon-white.svg';
 
   @ViewChild('membershipInput') membershipInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete: MatAutocomplete;
@@ -308,5 +329,34 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
     }
 
     return array;
+  }
+
+  toggleOneOnChange(): void {
+    if (this.toggleOneText === 'AV') {
+      this.toggleOneText = 'PÅ';
+    } else {
+      this.toggleOneText = 'AV';
+    }
+  }
+  toggleTwoOnChange(): void {
+    if (this.toggleTwoText === 'AV') {
+      this.toggleTwoText = 'PÅ';
+    } else {
+      this.toggleTwoText = 'AV';
+    }
+  }
+  toggleThreeOnChange(): void {
+    if (this.toggleThreeText === 'AV') {
+      this.toggleThreeText = 'PÅ';
+    } else {
+      this.toggleThreeText = 'AV';
+    }
+  }
+  toggleFourOnChange(): void {
+    if (this.toggleFourText === 'AV') {
+      this.toggleFourText = 'PÅ';
+    } else {
+      this.toggleFourText = 'AV';
+    }
   }
 }
