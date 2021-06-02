@@ -4,9 +4,7 @@ import {
   state,
   transition,
   style,
-  animate,
-  query,
-  animateChild
+  animate
 } from '@angular/animations';
 
 @Component({
@@ -14,55 +12,37 @@ import {
   templateUrl: './dropdown-banner.component.html',
   styleUrls: ['./dropdown-banner.component.scss'],
   animations: [
-    trigger('textDelay', [
-      // V1
-      state('hidden', style({ opacity: 0 })),
-      state('visible', style({ opacity: 1 })),
-      transition(':enter', [
-        style({ transform: 'translateX(100%)' }),
-        animate('100ms ease-in-out', style({ transform: 'translateX(0%)' }))
-      ]),
-      transition('visible => hidden', [
-        animate('650ms ease-in-out', style({ transform: 'translateX(100%)' }))
-      ])
-    ]), // Trigger 1 end
-
     trigger('slideLeftRight', [
-      // V2
       state('hidden', style({ opacity: 0 })),
       state('visible', style({ opacity: 1 })),
       transition(':enter', [
-        style({ transform: 'translateX(100%)' }),
-        animate('400ms ease-in-out', style({ transform: 'translateX(0%)' })),
-        query('@*', animateChild(), { optional: true })
+        style({ opacity: 0, transform: 'translateX(100%)' }),
+        animate('200ms ease-in-out')
       ]),
       transition('visible => hidden', [
-        animate('450ms ease-in-out', style({ transform: 'translateX(100%)' }))
+        style({ opacity: 1 }),
+        animate(
+          '400ms ease-out',
+          style({ opacity: 0, transform: 'translateX(100%)' }) // Define the style when it goes to state hidden
+        )
       ])
-    ]) // Trigger 2 end
+    ]) // Trigger end
   ]
 })
 export class DropdownBannerComponent implements OnInit {
   public animationState: boolean;
-  public textDelay: boolean;
+  public displayText = 'Fortnite';
+  time: number;
 
   constructor() {}
 
-  close(): void {}
-
-  public setTrigger(v: boolean): void {
-    this.animationState = v;
-    console.log('Function trigger is called');
-    console.log('Animation state: ' + this.animationState);
+  public changeTimer(_time: number): void {
+    setTimeout(() => {
+      this.animationState = false;
+    }, _time);
   }
 
   ngOnInit(): void {
-    this.setTrigger(true);
-    this.textDelay = true;
-
-    setTimeout(() => {
-      this.setTrigger(false);
-      this.textDelay = false;
-    }, 5000);
+    this.animationState = true;
   }
 }

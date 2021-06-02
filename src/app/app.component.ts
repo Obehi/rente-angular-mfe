@@ -5,7 +5,7 @@ import { MetaService } from '@shared/services/meta.service';
 import { TitleService } from '@services/title.service';
 import { LocalStorageService } from '@services/local-storage.service';
 import { ROUTES_MAP } from '@config/routes-config';
-import { DynamicComponentService } from '@shared/services/dynamic-component.service';
+import { MessageBannerService } from '@shared/services/message-banner.service';
 
 import { AuthService } from '@services/remote-api/auth.service';
 
@@ -27,7 +27,7 @@ export class AppComponent implements OnInit {
     private metaService: MetaService,
     private titleService: TitleService,
     private localStorageService: LocalStorageService,
-    private dynamicService: DynamicComponentService,
+    private messageService: MessageBannerService,
     private auth: AuthService
   ) {}
 
@@ -54,8 +54,7 @@ export class AppComponent implements OnInit {
 
     this.auth.logoutSubject.subscribe((val) => {
       if (val === 'LoggedOut') {
-        this.dynamicService.setView();
-        this.dynamicService.removeComponent();
+        this.messageService.setView('Du er nå logget ut', 3000);
       }
     });
   }

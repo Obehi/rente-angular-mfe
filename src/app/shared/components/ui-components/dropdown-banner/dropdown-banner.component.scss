@@ -1,10 +1,14 @@
+@import '../../../../../styles/theme/_colors.scss';
+
 .dropdownbanner {
   position: absolute;
+  // margin-bottom: 20;
   // top: 0px;
   font: bold;
   text-align: center;
   width: 100%;
-  background-color: seagreen;
+  // background-color: lightpink;
+  background: linear-gradient(180deg, #162537, #183a63 10.08%) !important;
   color: azure;
   margin: auto;
   padding: 20px;

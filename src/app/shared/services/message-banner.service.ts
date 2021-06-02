@@ -10,7 +10,7 @@ import {
 import { DropdownBannerComponent } from '../components/ui-components/dropdown-banner/dropdown-banner.component';
 
 @Injectable()
-export class DynamicComponentService {
+export class MessageBannerService {
   rootViewContainer: ViewContainerRef;
 
   private _componentRef: ComponentRef<DropdownBannerComponent>;
@@ -18,11 +18,10 @@ export class DynamicComponentService {
   constructor(
     private factoryResolver: ComponentFactoryResolver,
     private injector: Injector,
-    private appRef: ApplicationRef,
-    public dropDownComponent: DropdownBannerComponent
+    private appRef: ApplicationRef
   ) {}
 
-  setView(): void {
+  setView(_newtext: string, _newtime: number): void {
     const factory = this.factoryResolver.resolveComponentFactory(
       DropdownBannerComponent
     );
@@ -32,15 +31,12 @@ export class DynamicComponentService {
     document.getElementsByClassName('content')[0].prepend(newNode);
 
     this._componentRef = factory.create(this.injector, [], newNode);
+    this._componentRef.instance.displayText = _newtext;
+    this._componentRef.instance.changeTimer(_newtime);
     this.appRef.attachView(this._componentRef.hostView);
 
-    this.dropDownComponent.setTrigger(true);
-  }
-
-  removeComponent(): void {
     setTimeout(() => {
-      this.dropDownComponent.setTrigger(false);
-      // this.appRef.detachView(this._componentRef.hostView);
-    }, 5000);
+      this.appRef.detachView(this._componentRef.hostView);
+    }, _newtime + 2000);
   }
 }
