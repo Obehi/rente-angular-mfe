@@ -14,13 +14,7 @@ import {
   OnInit,
   Output
 } from '@angular/core';
-import { FilterPipe } from '@shared/pipes/filter.pipe';
-import { group } from 'console';
-import { PropertySelectDialogComponent } from '../property-select-dialog/property-select-dialog.component';
-import { TruncatePipe } from '@shared/pipes/truncate.pipe';
-import { PropertyInputComponent } from '../property-input/property-input.component';
-import { MembershipTypeDto } from '@services/remote-api/loans.service';
-import { FirstBuyersService } from '@features/first-buyers/first-buyers.service';
+
 import { Observable, Subject } from 'rxjs';
 
 @Component({
@@ -64,7 +58,7 @@ export class PropertySelectComponent implements OnInit, OnDestroy {
   selectionDistincter = new Subject();
   _selectionDistincter: Observable<any>;
 
-  constructor(public firstBuyersService: FirstBuyersService) {}
+  constructor() {}
 
   ngOnInit(): void {
     this.selectedMemberships = this.selectedOptions;

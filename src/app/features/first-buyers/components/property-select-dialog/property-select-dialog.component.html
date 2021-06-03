@@ -4,10 +4,14 @@
   [selectedOptions]="previousState"
   *ngIf="data !== null && data !== undefined"
 ></property-select>
-<div class="buttons">
-  <rente-button color="primary-hollow" (click)="cancel()">Avbryt</rente-button>
+<div class="cdk-fix">
+  <div class="buttons">
+    <rente-button color="primary-hollow" (click)="cancel()"
+      >Avbryt</rente-button
+    >
 
-  <rente-button color="primary" [disabled]="!hasChanged" (click)="save()"
-    >Lagre</rente-button
-  >
+    <rente-button color="primary" [disabled]="!hasChanged" (click)="save()"
+      >Lagre</rente-button
+    >
+  </div>
 </div>

@@ -335,29 +335,35 @@ form {
 }
 
 .preferences-tab {
-  margin-top: 50px;
-  display: flex;
-  justify-content: space-evenly;
+  display: grid;
 
-  .elements {
-    display: flex;
-    flex-direction: column;
-    width: 50%;
-
-    row-gap: 5rem;
-    align-items: flex-start;
-    .element {
-      display: flex;
-      justify-content: space-around;
-      color: white;
-    }
+  .element {
+    grid-column: 1;
+    margin-top: 5rem;
+    color: white;
+    width: 60%;
+    text-align: center;
   }
 
-  .buttons {
-    display: flex;
-    flex-direction: column;
-    row-gap: 5rem;
-    width: 25%;
-    align-items: center;
+  .button {
+    grid-column: 2;
+    margin-top: 5rem;
+    color: white;
+  }
+
+  ::ng-deep .mat-form-field-label {
+    color: $white !important;
+  }
+
+  ::ng-deep .mat-select-value {
+    color: $white !important;
+  }
+
+  ::ng-deep .mat-select-arrow {
+    color: $white !important;
+  }
+
+  ::ng-deep .mat-form-field-underline {
+    display: none;
   }
 }

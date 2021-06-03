@@ -48,6 +48,8 @@ import {
   keyframes
   // ...
 } from '@angular/animations';
+import { PropertySelectDialogComponent } from '@features/first-buyers/components/property-select-dialog/property-select-dialog.component';
+import { MembershipService } from '@services/membership.service';
 
 @Component({
   selector: 'rente-blue-profile',
@@ -97,7 +99,7 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
   changesMade = false;
   public isSweden = false;
 
-  //////////////////////////////
+  // //////////////////////////// NEW /////////////////////////// ///
   public toggleOneText = 'AV';
   public toggleTwoText = 'AV';
   public toggleThreeText = 'AV';
@@ -106,6 +108,13 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
   @Input() memberships: MembershipTypeDto[];
   public previousStateMemberships: string[] = [];
   @Output() selectedMemberships = new EventEmitter<MembershipTypeDto[]>();
+  public marketOptions = [
+    this.textLangService.getProfileMarketOption1(),
+    this.textLangService.getProfileMarketOption2(),
+    this.textLangService.getProfileMarketOption3(),
+    this.textLangService.getProfileMarketOption4(),
+    this.textLangService.getProfileMarketOption5()
+  ];
 
   profileIcon = '../../../../../assets/icons/profile-icon-white.svg';
 
@@ -117,6 +126,7 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
     private loansService: LoansService,
     private userService: UserService,
     private snackBar: SnackBarService,
+    private membershipService: MembershipService,
     public dialog: MatDialog,
     public textLangService: CustomLangTextService
   ) {
@@ -138,6 +148,11 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
   }
 
   ngOnInit(): void {
+    this.membershipService.getSelectedMemberships().subscribe((args) => {
+      console.log(args);
+      this.previousStateMemberships = args;
+    });
+
     this.loansService.getPreferencesDto().subscribe(
       (res) => {
         this.isLoading = false;
@@ -148,7 +163,7 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
             return membership;
           }
         });
-
+        console.log(this.allMemberships);
         this.username = dto.name;
         this.profileForm = this.fb.group({
           membership: [dto.memberships],
@@ -358,5 +373,25 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
     } else {
       this.toggleFourText = 'AV';
     }
+  }
+
+  public openPropertySelectDialog(): void {
+    const openDialog = this.dialog.open(PropertySelectDialogComponent, {
+      autoFocus: false,
+      data: {
+        previousState: [...this.previousStateMemberships],
+        allMemberships: this.allMemberships
+      }
+    });
+    openDialog.afterClosed().subscribe(() => {});
+    console.log(this.autocompleteOptions);
+  }
+
+  test(): any {
+    // setTimeout(() => {
+    //   const elm = document.querySelector<HTMLElement>('.cdk-overlay-pane')!;
+    //   elm.style.cssText = 'height: 40% !important';
+    //   console.log(elm.style.height);
+    // }, 2000);
   }
 }

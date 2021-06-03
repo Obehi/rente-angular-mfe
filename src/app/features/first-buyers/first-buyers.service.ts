@@ -16,25 +16,10 @@ export interface FirstBuyersState {
   providedIn: 'root'
 })
 export class FirstBuyersService {
-  selectedMemberships: MembershipTypeDto[] = [];
-  private messageHandler: Subject<any>;
-  private selectedMembershipsHandler: Subject<any>;
-
   constructor(
     private authService: AuthService,
     private localStorageService: LocalStorageService
-  ) {
-    this.messageHandler = new Subject<any>();
-    this.selectedMembershipsHandler = new Subject<any>();
-  }
-
-  getSelectedMemberships(): Subject<any> {
-    return this.selectedMembershipsHandler;
-  }
-
-  setSelectedMemberships(memberships): any {
-    this.selectedMembershipsHandler.next(memberships);
-  }
+  ) {}
 
   get offerValue(): FirstBuyersState {
     return this.localStorageService.getObject(
@@ -57,13 +42,5 @@ export class FirstBuyersService {
 
   getAuthToken(debtData: any): Observable<any> {
     return this.authService.getFirstTimeLoanToken(debtData);
-  }
-
-  pushMessage(): void {
-    this.messageHandler.next('');
-  }
-
-  messages(): Subject<any> {
-    return this.messageHandler;
   }
 }

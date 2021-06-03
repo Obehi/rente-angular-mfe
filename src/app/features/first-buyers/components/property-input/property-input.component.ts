@@ -15,6 +15,7 @@ import { distinctUntilChanged, take } from 'rxjs/operators';
 import { SelectAutocompleteComponent } from 'mat-select-autocomplete';
 import { PropertySelectDialogComponent } from '../property-select-dialog/property-select-dialog.component';
 import { MatDialog } from '@angular/material';
+import { MembershipService } from '@services/membership.service';
 
 interface Membership {
   name?: string;
@@ -57,6 +58,7 @@ export class PropertyInputComponent implements OnInit {
   exitHandler: any;
   constructor(
     private firstBuyersService: FirstBuyersService,
+    private membershipService: MembershipService,
     private closeInputElement: ElementRef,
     public dialog: MatDialog
   ) {
@@ -64,7 +66,7 @@ export class PropertyInputComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.firstBuyersService.getSelectedMemberships().subscribe((args) => {
+    this.membershipService.getSelectedMemberships().subscribe((args) => {
       console.log(args);
       this.previousStateMemberships = args;
     });
@@ -74,7 +76,7 @@ export class PropertyInputComponent implements OnInit {
         this.multiSelect.toggleDropdown();
       };
     }
-    this._selectedMemberships = this.firstBuyersService.selectedMemberships.map(
+    this._selectedMemberships = this.membershipService.selectedMemberships.map(
       (membership) => membership.name
     );
 
@@ -83,20 +85,6 @@ export class PropertyInputComponent implements OnInit {
       .subscribe((val) => {
         this.selectedMemberships.emit(val);
       });
-  }
-
-  getSelectedMemberships(selected: string[]): void {
-    const _selectedMemberships: MembershipTypeDto[] | undefined = [];
-    selected.forEach((val) => {
-      const membership: MembershipTypeDto | undefined = this.memberships.find(
-        (option) => val === option.name
-      );
-      if (membership !== undefined) {
-        _selectedMemberships.push(membership);
-      }
-    });
-    this.firstBuyersService.selectedMemberships = _selectedMemberships;
-    this.selectionDistincter.next(_selectedMemberships);
   }
 
   parseFloat(val: string): number {
@@ -117,6 +105,7 @@ export class PropertyInputComponent implements OnInit {
       }
     });
     openDialog.afterClosed().subscribe(() => {});
+    console.log(this.autocompleteOptions);
   }
 
   public propertySelectDialogClose(state: string): void {

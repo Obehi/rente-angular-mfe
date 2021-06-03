@@ -35,6 +35,7 @@ import {
 } from 'rxjs/operators';
 import { SeoService } from '@services/seo.service';
 import { PropertySelectDialogComponent } from '../property-select-dialog/property-select-dialog.component';
+import { MembershipService } from '@services/membership.service';
 
 @Component({
   selector: 'rente-initial-offers',
@@ -254,6 +255,7 @@ export class InitialOffersComponent implements OnInit {
     private loansService: LoansService,
     private firstBuyersService: FirstBuyersService,
     private firstBuyersAPIService: FirstBuyersAPIService,
+    private membershipService: MembershipService,
     private router: Router,
     private seoService: SeoService,
     public dialog: MatDialog
@@ -363,13 +365,13 @@ export class InitialOffersComponent implements OnInit {
   }
 
   updateMemberships() {
-    this.firstBuyersService.selectedMemberships = [
+    this.membershipService.selectedMemberships = [
       ...this.memberships,
       ...this.selectedFeaturedMemberships
     ];
     this.firstBuyersAPIService
       .updateMembership(
-        this.firstBuyersService.selectedMemberships.map((item) => item.name)
+        this.membershipService.selectedMemberships.map((item) => item.name)
       )
       .subscribe((_) => {
         this.formGroup.markAsDirty();
@@ -377,7 +379,7 @@ export class InitialOffersComponent implements OnInit {
   }
 
   updateMemberships2(memberships) {
-    this.firstBuyersService.selectedMemberships = [
+    this.membershipService.selectedMemberships = [
       ...this.memberships,
       ...this.selectedFeaturedMemberships
     ];
@@ -458,7 +460,7 @@ export class InitialOffersComponent implements OnInit {
 
     this.subscribeToControllers();
 
-    this.firstBuyersService.messages().subscribe(() => {
+    this.membershipService.messages().subscribe(() => {
       this.formGroup.markAsDirty();
     });
 

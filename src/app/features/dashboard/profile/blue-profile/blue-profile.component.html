@@ -32,37 +32,51 @@
     </div>
   </div>
   <div class="preferences-tab">
-    <div class="elements">
-      <div class="element">Medlemskap</div>
-      <div class="element">Markedsovervåkning / Rentesjekk av dine lån</div>
-      <div class="element">
-        Få markedsoppdateringer, nyheter og annen informasjon på epost
-      </div>
-      <div class="element">Ønsker du kun å se tilbud på rammelån/flexilån?</div>
-      <div class="element">
-        Vil du se tilbud som krever andre produkter? (F.eks. bytte av nettbank
-        og aktiv lønnskonto)
-      </div>
-      <div class="element">
-        Er du interessert i lån som forutsetter energiklasse A eller B, nullhus,
-        Svanemerket, tiltak for energimerking, etc.
-      </div>
+    <div class="element">Medlemskap</div>
+    <mat-form-field class="button text-white w-100">
+      <mat-select
+        [placeholder]="
+          previousStateMemberships?.length !== 0
+            ? previousStateMemberships?.length + ' medlemskap valgt'
+            : 'Velg'
+        "
+        (click)="openPropertySelectDialog()"
+      >
+      </mat-select>
+    </mat-form-field>
+    <div class="element">Markedsovervåkning / Rentesjekk av dine lån</div>
+    <mat-form-field (click)="test()" class="button text-white w-100">
+      <mat-select [placeholder]="'Velg'">
+        <mat-option
+          *ngFor="let option of marketOptions"
+          [value]="option.value"
+          >{{ option }}</mat-option
+        >
+      </mat-select>
+    </mat-form-field>
+    <div class="element">
+      Få markedsoppdateringer, nyheter og annen informasjon på epost
     </div>
-    <div class="buttons">
-      <button>velg</button>
-      <button>VELG</button>
-      <mat-slide-toggle (click)="toggleOneOnChange()">{{
-        toggleOneText
-      }}</mat-slide-toggle>
-      <mat-slide-toggle (click)="toggleTwoOnChange()">{{
-        toggleTwoText
-      }}</mat-slide-toggle>
-      <mat-slide-toggle (click)="toggleThreeOnChange()">{{
-        toggleThreeText
-      }}</mat-slide-toggle>
-      <mat-slide-toggle (click)="toggleFourOnChange()">{{
-        toggleFourText
-      }}</mat-slide-toggle>
+    <mat-slide-toggle class="button" (click)="toggleOneOnChange()">{{
+      toggleOneText
+    }}</mat-slide-toggle>
+    <div class="element">Ønsker du kun å se tilbud på rammelån/flexilån?</div>
+    <mat-slide-toggle class="button" (click)="toggleTwoOnChange()">{{
+      toggleTwoText
+    }}</mat-slide-toggle>
+    <div class="element">
+      Vil du se tilbud som krever andre produkter? (F.eks. bytte av nettbank og
+      aktiv lønnskonto)
     </div>
+    <mat-slide-toggle class="button" (click)="toggleThreeOnChange()">{{
+      toggleThreeText
+    }}</mat-slide-toggle>
+    <div class="element">
+      Er du interessert i lån som forutsetter energiklasse A eller B, nullhus,
+      Svanemerket, tiltak for energimerking, etc.
+    </div>
+    <mat-slide-toggle class="button" (click)="toggleFourOnChange()">{{
+      toggleFourText
+    }}</mat-slide-toggle>
   </div>
 </div>

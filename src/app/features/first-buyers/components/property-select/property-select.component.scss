@@ -10,7 +10,7 @@
   }
 
   ::ng-deep .cdk-overlay-pane {
-    height: 100% !important;
+    // height: 100% !important;
     max-height: unset !important ;
   }
 
@@ -68,6 +68,7 @@
   }
 
   .dropdown-scroll {
+    z-index: 1337;
     overflow-y: scroll;
     height: 31vh;
     border-bottom: 1px solid lightgrey;
@@ -206,7 +207,7 @@
   }
 
   ::ng-deep .cdk-overlay-pane {
-    height: 100% !important;
+    // height: 100% !important;
     max-height: unset !important ;
   }
 

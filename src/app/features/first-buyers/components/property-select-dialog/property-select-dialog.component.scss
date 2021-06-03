@@ -1,5 +1,16 @@
 property-select {
 }
+
+@media (max-width: 600px) {
+  .cdk-fix {
+    position: fixed;
+    background: white;
+    bottom: 0px;
+    width: 100%;
+    height: 25%;
+  }
+}
+
 .buttons {
   display: flex;
   justify-content: space-evenly;

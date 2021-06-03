@@ -1,3 +1,4 @@
+import { ElementRef, OnDestroy } from '@angular/core';
 import {
   Component,
   EventEmitter,
@@ -8,16 +9,15 @@ import {
   TemplateRef
 } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material';
-import { FirstBuyersService } from '@features/first-buyers/first-buyers.service';
 import { FirstBuyersAPIService } from '@services/remote-api/first-buyers.service';
-import { PropertySelectComponent } from '../property-select/property-select.component';
+import { MembershipService } from '../../../../shared/services/membership.service';
 
 @Component({
   selector: 'app-property-select-dialog',
   templateUrl: './property-select-dialog.component.html',
   styleUrls: ['./property-select-dialog.component.scss']
 })
-export class PropertySelectDialogComponent implements OnInit {
+export class PropertySelectDialogComponent implements OnInit, OnDestroy {
   @Output() dataSent: EventEmitter<any> = new EventEmitter();
   @Output() optionsEmitter = new EventEmitter<any[]>();
   public closeState: string;
@@ -31,7 +31,8 @@ export class PropertySelectDialogComponent implements OnInit {
     public dialogRef: MatDialogRef<PropertySelectDialogComponent>,
     public dialog: MatDialog,
     public firstBuyersAPIService: FirstBuyersAPIService,
-    public firstBuyersService: FirstBuyersService,
+    public membershipService: MembershipService,
+    private elRef: ElementRef,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
 
@@ -40,6 +41,8 @@ export class PropertySelectDialogComponent implements OnInit {
     this.previousState = this.data.previousState;
     console.log(this.memberships);
   }
+
+  ngOnDestroy(): void {}
 
   public onClose(): void {
     this.dialogRef.close();
@@ -52,7 +55,7 @@ export class PropertySelectDialogComponent implements OnInit {
 
   save(): void {
     if (this.hasChanged === true) {
-      this.firstBuyersService.setSelectedMemberships(this.memberships);
+      this.membershipService.setSelectedMemberships(this.memberships);
       this.onClose();
     }
   }
