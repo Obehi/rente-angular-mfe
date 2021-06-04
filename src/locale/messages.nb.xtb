@@ -1641,4 +1641,7 @@ Fortsett
               Renteradar overvåker markedet og gir deg beskjed når det kommer
               bedre tilbud.
             </translation>
+  <translation id="offer.card.mobileRatingNotAvailable" desc="offer-card" meaning="               “application-time">
+            Webbsida
+          </translation>
 </translationbundle>

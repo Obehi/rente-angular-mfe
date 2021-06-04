@@ -853,4 +853,5 @@ Vi följer ständigt upp om det dyker upp bättre ränteerbjudanden på marknade
   <translation id="info.confirmation.myMemberships”" desc="info-confirmation" meaning="                       “my-memberships"/>
   <translation id="landing.explanationService" desc="landing-page" meaning="                 explanation-service"/>
   <translation id="landing.descriptionService" desc="landing-page" meaning="                 description-service"/>
+  <translation id="offer.card.mobileRatingNotAvailable" desc="offer-card" meaning="               “application-time"/>
 </translationbundle>
