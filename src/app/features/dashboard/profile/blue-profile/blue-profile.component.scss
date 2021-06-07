@@ -396,17 +396,6 @@ form {
     grid-template-columns: 4fr 1fr;
     row-gap: 3.2rem;
     align-items: center;
-    ::ng-deep
-      .mat-slide-toggle.mat-checked:not(.mat-disabled)
-      .mat-slide-toggle-bar {
-      background-color: $grey-light;
-    }
-
-    ::ng-deep
-      .mat-slide-toggle.mat-checked:not(.mat-disabled)
-      .mat-slide-toggle-thumb {
-      background-color: $primary;
-    }
   }
 
   .grid-2 {
@@ -446,31 +435,27 @@ form {
     place-self: baseline flex-end;
   }
 
-  hr {
-    background: #478ccc;
-  }
-
-  ::ng-deep .mat-form-field-label {
-    color: $white !important;
-  }
-
-  ::ng-deep .mat-select-value {
-    color: $white !important;
+  ::ng-deep .mat-select-placeholder {
+    color: white;
   }
 
   ::ng-deep .mat-select-arrow {
-    color: $white !important;
+    border: none;
   }
 
-  ::ng-deep .mat-form-field-underline {
-    background: lightgrey !important;
+  ::ng-deep
+    .mat-slide-toggle.mat-checked:not(.mat-disabled)
+    .mat-slide-toggle-bar {
+    background-color: $secondary;
   }
 
-  ::ng-deep .mat-form-field-infix {
-    display: block;
-    position: relative;
-    flex: auto;
-    min-width: 0;
-    width: 130px;
+  ::ng-deep
+    .mat-slide-toggle.mat-checked:not(.mat-disabled)
+    .mat-slide-toggle-thumb {
+    background-color: $primary;
+  }
+
+  hr {
+    background: #478ccc;
   }
 }

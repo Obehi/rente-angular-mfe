@@ -68,21 +68,21 @@
         Medlemskap:
         <p>Velg dine medlemskap</p>
       </h5>
-      <mat-form-field class="button text-white w-100">
+
+      <rente-button color="blue-select">
         <mat-select
           [placeholder]="getMembershipPlaceholder()"
           (click)="openPropertySelectDialog()"
         >
         </mat-select>
-      </mat-form-field>
-
+      </rente-button>
       <h5 class="element">
         Markedsovervåkning:
         <p>
           Velg hvor ofte din rente skal sjekkes og du vil ha påminnelse på epost
         </p>
       </h5>
-      <mat-form-field class="button text-white w-100">
+      <rente-button color="blue-select">
         <mat-select [placeholder]="'Velg'">
           <mat-option
             *ngFor="let option of marketOptions"
@@ -90,7 +90,7 @@
             >{{ option }}</mat-option
           >
         </mat-select>
-      </mat-form-field>
+      </rente-button>
       <hr />
       <hr />
       <h5 class="element">
