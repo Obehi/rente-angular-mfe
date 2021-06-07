@@ -309,8 +309,10 @@ form {
 }
 
 .profile-icon {
-  width: 4rem;
+  width: 7rem;
   margin-top: 30px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px,
+    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
 }
 
 .username {
@@ -347,6 +349,11 @@ form {
   ::placeholder {
     color: white;
     font-size: 1.1rem;
+  }
+
+  h4 {
+    color: white;
+    font-size: 15px;
   }
 
   ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
@@ -391,11 +398,18 @@ form {
   .icon {
   }
 
+  .flex-1 {
+    display: flex;
+    flex-direction: column;
+    row-gap: 2rem;
+  }
+
   .grid-1 {
     display: grid;
     grid-template-columns: 4fr 1fr;
     row-gap: 3.2rem;
     align-items: center;
+    margin-top: 3.2rem;
   }
 
   .grid-2 {
@@ -433,6 +447,10 @@ form {
     color: white;
     display: flex;
     place-self: baseline flex-end;
+  }
+
+  .rente-button {
+    align-self: flex-end;
   }
 
   ::ng-deep .mat-select-placeholder {

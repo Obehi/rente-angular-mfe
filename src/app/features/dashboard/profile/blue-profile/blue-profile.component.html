@@ -63,26 +63,27 @@
     </div> -->
   </div>
   <div class="preferences-tab">
-    <div class="grid-1">
+    <div class="flex-1">
       <h5 class="element">
         Medlemskap:
         <p>Velg dine medlemskap</p>
       </h5>
 
-      <rente-button color="blue-select">
+      <rente-button class="rente-button" color="blue-select">
         <mat-select
           [placeholder]="getMembershipPlaceholder()"
           (click)="openPropertySelectDialog()"
         >
         </mat-select>
       </rente-button>
+      <hr />
       <h5 class="element">
         Markedsovervåkning:
         <p>
           Velg hvor ofte din rente skal sjekkes og du vil ha påminnelse på epost
         </p>
       </h5>
-      <rente-button color="blue-select">
+      <rente-button class="rente-button" color="blue-select">
         <mat-select [placeholder]="'Velg'">
           <mat-option
             *ngFor="let option of marketOptions"
@@ -92,7 +93,9 @@
         </mat-select>
       </rente-button>
       <hr />
-      <hr />
+    </div>
+
+    <div class="grid-1">
       <h5 class="element">
         Markedsoppdateringer:
         <p>

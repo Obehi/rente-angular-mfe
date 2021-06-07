@@ -116,7 +116,7 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
     this.textLangService.getProfileMarketOption5()
   ];
 
-  profileIcon = '../../../../../assets/icons/profile-icon-white.svg';
+  profileIcon = '../../../../../assets/icons/profile-icon-page.svg';
   membershipIcon = '../../../../../assets/icons/bank-card-light-blue.svg';
   marketUpdatesIcon = '../../../../../assets/icons/ic_bank_id.svg';
 
