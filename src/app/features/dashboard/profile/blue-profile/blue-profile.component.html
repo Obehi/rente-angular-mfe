@@ -10,7 +10,38 @@
     </h3>
   </div>
   <div class="forms">
-    <div class="email-form">
+    <form class="p-0 border-0">
+      <div class="field-box">
+        <h4 class="text-white">E-mail</h4>
+        <mat-form-field class="white-input w-75" appearance="outline">
+          <input
+            placeholder="Skriv inn din e-mail"
+            matInput
+            type="tel"
+            autocomplete="off"
+            formControlName="income"
+            currencyMask
+          />
+        </mat-form-field>
+        <!-- <div *ngIf="isLowIncome">
+          <p class="error small error-big">For lav inntekt</p>
+        </div> -->
+      </div>
+      <div class="field-box">
+        <h4 class="text-white">Din bruto årsinntekt</h4>
+        <mat-form-field class="white-input w-75" appearance="outline">
+          <input
+            placeholder="Skriv inn din brutto årsinntekt"
+            matInput
+            type="tel"
+            autocomplete="off"
+            formControlName="outstandingDebt"
+            currencyMask
+          />
+        </mat-form-field>
+      </div>
+    </form>
+    <!-- <div class="email-form">
       <rente-input
         [placeholder]="'E-post'"
         formControlName="email"
@@ -29,54 +60,66 @@
         matSuffix="kr"
       >
       </rente-input>
-    </div>
+    </div> -->
   </div>
   <div class="preferences-tab">
-    <div class="element">Medlemskap</div>
-    <mat-form-field class="button text-white w-100">
-      <mat-select
-        [placeholder]="
-          previousStateMemberships?.length !== 0
-            ? previousStateMemberships?.length + ' medlemskap valgt'
-            : 'Velg'
-        "
-        (click)="openPropertySelectDialog()"
-      >
-      </mat-select>
-    </mat-form-field>
-    <div class="element">Markedsovervåkning / Rentesjekk av dine lån</div>
-    <mat-form-field (click)="test()" class="button text-white w-100">
-      <mat-select [placeholder]="'Velg'">
-        <mat-option
-          *ngFor="let option of marketOptions"
-          [value]="option.value"
-          >{{ option }}</mat-option
+    <div class="grid-1">
+      <h5 class="element">
+        Medlemskap:
+        <p>Velg dine medlemskap</p>
+      </h5>
+      <mat-form-field class="button text-white w-100">
+        <mat-select
+          [placeholder]="getMembershipPlaceholder()"
+          (click)="openPropertySelectDialog()"
         >
-      </mat-select>
-    </mat-form-field>
-    <div class="element">
-      Få markedsoppdateringer, nyheter og annen informasjon på epost
+        </mat-select>
+      </mat-form-field>
+
+      <h5 class="element">
+        Markedsovervåkning:
+        <p>
+          Velg hvor ofte din rente skal sjekkes og du vil ha påminnelse på epost
+        </p>
+      </h5>
+      <mat-form-field class="button text-white w-100">
+        <mat-select [placeholder]="'Velg'">
+          <mat-option
+            *ngFor="let option of marketOptions"
+            [value]="option.value"
+            >{{ option }}</mat-option
+          >
+        </mat-select>
+      </mat-form-field>
+      <hr />
+      <hr />
+      <h5 class="element">
+        Markedsoppdateringer:
+        <p>
+          Send meg markedsoppdateringer, nyheter og annen informasjon på epost
+        </p>
+      </h5>
+
+      <mat-slide-toggle class="button"></mat-slide-toggle>
+      <hr />
+      <hr />
     </div>
-    <mat-slide-toggle class="button" (click)="toggleOneOnChange()">{{
-      toggleOneText
-    }}</mat-slide-toggle>
-    <div class="element">Ønsker du kun å se tilbud på rammelån/flexilån?</div>
-    <mat-slide-toggle class="button" (click)="toggleTwoOnChange()">{{
-      toggleTwoText
-    }}</mat-slide-toggle>
-    <div class="element">
-      Vil du se tilbud som krever andre produkter? (F.eks. bytte av nettbank og
-      aktiv lønnskonto)
+    <h3>HVILKE TILBUD VIL DU SE:</h3>
+    <div class="grid-2">
+      <p class="element-subtitle">Vis kun tilbud på rammelån/flexilån</p>
+      <mat-slide-toggle class="button"></mat-slide-toggle>
+      <p class="element-subtitle">
+        Vis tilbud som krever andre produkter eller har sækrav: feks. bytte av
+        nettbank og aktiv lønnskonto
+      </p>
+      <mat-slide-toggle class="button"></mat-slide-toggle>
+      <p class="element-subtitle">
+        Vis tilbud som forutsetter bolig med energiklasse A/B, nullhus,
+        Svanemerket, tiltak for energimerking, etc.
+      </p>
+      <mat-slide-toggle class="button"></mat-slide-toggle>
+      <hr />
+      <hr />
     </div>
-    <mat-slide-toggle class="button" (click)="toggleThreeOnChange()">{{
-      toggleThreeText
-    }}</mat-slide-toggle>
-    <div class="element">
-      Er du interessert i lån som forutsetter energiklasse A eller B, nullhus,
-      Svanemerket, tiltak for energimerking, etc.
-    </div>
-    <mat-slide-toggle class="button" (click)="toggleFourOnChange()">{{
-      toggleFourText
-    }}</mat-slide-toggle>
   </div>
 </div>

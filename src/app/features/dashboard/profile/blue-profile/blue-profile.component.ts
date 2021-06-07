@@ -117,6 +117,8 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
   ];
 
   profileIcon = '../../../../../assets/icons/profile-icon-white.svg';
+  membershipIcon = '../../../../../assets/icons/bank-card-light-blue.svg';
+  marketUpdatesIcon = '../../../../../assets/icons/ic_bank_id.svg';
 
   @ViewChild('membershipInput') membershipInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete: MatAutocomplete;
@@ -346,35 +348,6 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
     return array;
   }
 
-  toggleOneOnChange(): void {
-    if (this.toggleOneText === 'AV') {
-      this.toggleOneText = 'PÅ';
-    } else {
-      this.toggleOneText = 'AV';
-    }
-  }
-  toggleTwoOnChange(): void {
-    if (this.toggleTwoText === 'AV') {
-      this.toggleTwoText = 'PÅ';
-    } else {
-      this.toggleTwoText = 'AV';
-    }
-  }
-  toggleThreeOnChange(): void {
-    if (this.toggleThreeText === 'AV') {
-      this.toggleThreeText = 'PÅ';
-    } else {
-      this.toggleThreeText = 'AV';
-    }
-  }
-  toggleFourOnChange(): void {
-    if (this.toggleFourText === 'AV') {
-      this.toggleFourText = 'PÅ';
-    } else {
-      this.toggleFourText = 'AV';
-    }
-  }
-
   public openPropertySelectDialog(): void {
     const openDialog = this.dialog.open(PropertySelectDialogComponent, {
       autoFocus: false,
@@ -387,11 +360,13 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
     console.log(this.autocompleteOptions);
   }
 
-  test(): any {
-    // setTimeout(() => {
-    //   const elm = document.querySelector<HTMLElement>('.cdk-overlay-pane')!;
-    //   elm.style.cssText = 'height: 40% !important';
-    //   console.log(elm.style.height);
-    // }, 2000);
+  getMembershipPlaceholder(): string | undefined {
+    if (this.previousStateMemberships?.length === 0) {
+      return 'Velg';
+    } else if (this.previousStateMemberships?.length === 1) {
+      return `${this.previousStateMemberships}`;
+    } else if (this.previousStateMemberships?.length > 1) {
+      return `${this.previousStateMemberships?.length} valgt`;
+    }
   }
 }
