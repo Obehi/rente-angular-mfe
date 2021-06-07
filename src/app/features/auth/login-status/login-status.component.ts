@@ -77,6 +77,16 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
   public tinkCode: any = null;
   BANKID_TIMEOUT_TIME;
   bankIdTimeoutTime = BANKID_TIMEOUT_TIME;
+
+  get isSB1Bank(): boolean {
+    return (
+      (this.bank &&
+        this.bank.name &&
+        this.bank.name.indexOf('SPAREBANK_1') > -1) ||
+      false
+    );
+  }
+
   constructor(
     private router: Router,
     private authService: AuthService,
@@ -109,6 +119,10 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
         ? 34
         : 25;
     this.firstStepTimer = this.bank.name === 'DNB' ? 28 : 10;
+
+    if (this.isSB1Bank) {
+      this.firstStepTimer = 15;
+    }
     if (this.bank.name === 'DNB') {
       this.bankIdTimeoutTime = 120;
     }
