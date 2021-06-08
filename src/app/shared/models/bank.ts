@@ -984,7 +984,7 @@ export const BankList: BankVo[] = [
     'sparebank1-color.svg',
     false,
     false,
-    true,
+    false,
     false,
     false,
     'https://www.sparebank1.no/nb/bank/privat/kundeservice/mobil/hvordan-bestiller-jeg-bankid-pa-mobil.html'
@@ -996,7 +996,7 @@ export const BankList: BankVo[] = [
     'sparebank1-color.svg',
     false,
     false,
-    true,
+    false,
     false,
     false,
     'https://www.sparebank1.no/nb/bank/privat/kundeservice/mobil/hvordan-bestiller-jeg-bankid-pa-mobil.html'
@@ -1032,7 +1032,7 @@ export const BankList: BankVo[] = [
     'sparebank1-color.svg',
     false,
     false,
-    true,
+    false,
     false,
     false,
     'https://www.sparebank1.no/nb/bank/privat/kundeservice/mobil/hvordan-bestiller-jeg-bankid-pa-mobil.html'
@@ -1068,7 +1068,7 @@ export const BankList: BankVo[] = [
     'sparebank1-color.svg',
     false,
     false,
-    true,
+    false,
     false,
     false,
     'https://www.sparebank1.no/nb/bank/privat/kundeservice/mobil/hvordan-bestiller-jeg-bankid-pa-mobil.html'
@@ -1092,7 +1092,7 @@ export const BankList: BankVo[] = [
     'sparebank1-color.svg',
     false,
     false,
-    true,
+    false,
     false,
     false,
     'https://www.sparebank1.no/nb/bank/privat/kundeservice/mobil/hvordan-bestiller-jeg-bankid-pa-mobil.html'
@@ -1116,7 +1116,7 @@ export const BankList: BankVo[] = [
     'sparebank1-color.svg',
     false,
     false,
-    true,
+    false,
     false,
     false,
     'https://www.sparebank1.no/nb/bank/privat/kundeservice/mobil/hvordan-bestiller-jeg-bankid-pa-mobil.html'
@@ -1128,7 +1128,7 @@ export const BankList: BankVo[] = [
     'sparebank1-color.svg',
     false,
     false,
-    true,
+    false,
     false,
     false,
     'https://www.sparebank1.no/nb/bank/privat/kundeservice/mobil/hvordan-bestiller-jeg-bankid-pa-mobil.html'
