@@ -14,6 +14,7 @@ import {
   OnInit,
   Output
 } from '@angular/core';
+import { MembershipTypeDto } from '@services/remote-api/loans.service';
 
 import { Observable, Subject } from 'rxjs';
 
@@ -53,7 +54,7 @@ export class PropertySelectComponent implements OnInit, OnDestroy {
   @Output() selectedItemsEmitter = new EventEmitter<string[] | undefined>();
   @Output() hasChangedEmitter = new EventEmitter<any>();
 
-  public selectedMemberships: string[] | undefined = [];
+  public selectedMemberships: MembershipTypeDto[];
   _selectedMemberships: string[];
   selectionDistincter = new Subject();
   _selectionDistincter: Observable<any>;
@@ -66,9 +67,9 @@ export class PropertySelectComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {}
 
-  get membershipNames(): string[] {
+  get membershipNames(): any[] {
     return this.options?.map((membership) => {
-      return membership.label;
+      return membership;
     });
   }
 
@@ -76,15 +77,31 @@ export class PropertySelectComponent implements OnInit, OnDestroy {
     return window.innerWidth < 600;
   }
 
-  chooseMembership(membership: string): void {
-    if (!this.selectedMemberships?.includes(membership)) {
+  chooseMembership(membership: MembershipTypeDto): void {
+    if (
+      !this.selectedMemberships
+        .map((selectedMembership) => {
+          return selectedMembership.name;
+        })
+        .includes(membership.name)
+    ) {
       this.selectedMemberships?.push(membership);
-      this.selectedItemsEmitter.emit(this.selectedMemberships);
+      this.selectedItemsEmitter.emit(
+        this.selectedMemberships.map((selectedMembership) => {
+          return selectedMembership.name;
+        })
+      );
     }
   }
 
-  removeMembership(membership: string): void {
-    if (this.selectedMemberships?.includes(membership)) {
+  removeMembership(membership: MembershipTypeDto): void {
+    if (
+      this.selectedMemberships
+        .map((selectedMembership) => {
+          return selectedMembership.name;
+        })
+        .includes(membership.name)
+    ) {
       this.selectedMemberships = this.selectedMemberships?.filter(
         (option) => option !== membership
       );
@@ -93,7 +110,13 @@ export class PropertySelectComponent implements OnInit, OnDestroy {
   }
 
   chosenMemberships(membership: string): boolean {
-    if (this.selectedMemberships?.includes(membership)) {
+    if (
+      this.selectedMemberships
+        ?.map((membership) => {
+          return membership.name;
+        })
+        .includes(membership)
+    ) {
       return true;
     } else {
       return false;

@@ -100,10 +100,7 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
   public isSweden = false;
 
   // //////////////////////////// NEW /////////////////////////// ///
-  public toggleOneText = 'AV';
-  public toggleTwoText = 'AV';
-  public toggleThreeText = 'AV';
-  public toggleFourText = 'AV';
+  public isChecked = false;
   @Input() autocompleteOptions: any;
   @Input() memberships: MembershipTypeDto[];
   public previousStateMemberships: string[] = [];
@@ -151,9 +148,9 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
 
   ngOnInit(): void {
     this.membershipService.getSelectedMemberships().subscribe((args) => {
-      console.log(args);
       this.previousStateMemberships = args;
     });
+    console.log(this.previousStateMemberships);
 
     this.loansService.getPreferencesDto().subscribe(
       (res) => {
@@ -165,7 +162,10 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
             return membership;
           }
         });
-        console.log(this.allMemberships);
+        console.log(dto.checkRateReminderType);
+        console.log(dto.checkRateReminderType);
+        console.log(dto.memberships);
+
         this.username = dto.name;
         this.profileForm = this.fb.group({
           membership: [dto.memberships],
@@ -251,19 +251,48 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
     dto.memberships = this.memberships.map((membership) => membership.name);
     dto.checkRateReminderType = this.preferencesForm.get(
       'checkRateReminderType'
-    )?.value;
-    dto.fetchCreditLinesOnly = this.preferencesForm.get(
-      'fetchCreditLinesOnly'
-    )?.value;
+    );
+    dto.fetchCreditLinesOnly = this.preferencesForm.get('fetchCreditLinesOnly');
     dto.noAdditionalProductsRequired = this.preferencesForm.get(
       'noAdditionalProductsRequired'
-    )?.value;
+    );
     dto.interestedInEnvironmentMortgages = this.preferencesForm.get(
       'interestedInEnvironmentMortgages'
+    );
+    dto.receiveNewsEmails = this.preferencesForm.get('receiveNewsEmails');
+
+    // No one leaves the page while updating
+    this.canLeavePage = false;
+
+    this.loansService.updateUserPreferences(dto).subscribe(
+      () => {
+        this.canNavigateBooolean$.next(true);
+        this.changesMade = false;
+        this.isLoading = false;
+
+        // A hack to trigger "saved" animation
+        this.updateAnimationTrigger = !this.updateAnimationTrigger;
+        this.canLeavePage = true;
+      },
+      () => {
+        this.canLeavePage = true;
+        this.isLoading = false;
+        this.errorAnimationTrigger = !this.errorAnimationTrigger;
+      }
+    );
+  }
+
+  public updatePreferances2(): void {
+    const dto = new PreferencesUpdateDto();
+    dto.memberships = this.previousStateMemberships;
+    dto.checkRateReminderType = this.preferencesForm.get(
+      'checkRateReminderType'
     )?.value;
     dto.receiveNewsEmails = this.preferencesForm.get(
       'receiveNewsEmails'
     )?.value;
+
+    console.log(this.preferencesForm.get('receiveNewsEmails')?.value);
 
     // No one leaves the page while updating
     this.canLeavePage = false;
@@ -291,63 +320,6 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
     return !!(control && control.invalid && (control.dirty || control.touched));
   }
 
-  add(event: MatChipInputEvent): void {
-    if (!this.matAutocomplete.isOpen) {
-      const input = event.input;
-      // Reset the input value
-      if (input) {
-        input.value = '';
-      }
-
-      this.membershipCtrl.setValue(null);
-    }
-  }
-
-  remove(membership, index): void {
-    this.allMemberships.push(membership);
-    this.allMemberships.sort((a, b) =>
-      a.name > b.name ? 1 : b.name > a.name ? -1 : 0
-    );
-    this.memberships.splice(index, 1);
-    this.changesMade = true;
-    this.updatePreferances();
-  }
-
-  selected(event: MatAutocompleteSelectedEvent): void {
-    this.memberships.push(event.option.value);
-    this.membershipInput.nativeElement.value = '';
-    this.membershipCtrl.setValue(null);
-    this.changesMade = true;
-    this.updatePreferances();
-  }
-
-  private filter(value: any): any[] {
-    const filterValue = value.label
-      ? value.label.toLowerCase()
-      : value.toLowerCase();
-    this.allMemberships = this.clearDuplicates(
-      this.allMemberships,
-      this.memberships
-    );
-
-    return this.allMemberships.filter((membership) =>
-      membership.label.toLowerCase().includes(filterValue)
-    );
-  }
-
-  private clearDuplicates(array: any[], toRemoveArray: any[]) {
-    for (let i = array.length - 1; i >= 0; i--) {
-      // tslint:disable-next-line:prefer-for-of
-      for (let j = 0; j < toRemoveArray.length; j++) {
-        if (array[i] && array[i].name === toRemoveArray[j].name) {
-          array.splice(i, 1);
-        }
-      }
-    }
-
-    return array;
-  }
-
   public openPropertySelectDialog(): void {
     const openDialog = this.dialog.open(PropertySelectDialogComponent, {
       autoFocus: false,
@@ -356,8 +328,10 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
         allMemberships: this.allMemberships
       }
     });
-    openDialog.afterClosed().subscribe(() => {});
-    console.log(this.autocompleteOptions);
+    openDialog.afterClosed().subscribe(() => {
+      this.membershipCtrl.setValue(this.previousStateMemberships);
+      this.updatePreferances2();
+    });
   }
 
   getMembershipPlaceholder(): string | undefined {
@@ -368,5 +342,9 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
     } else if (this.previousStateMemberships?.length > 1) {
       return `${this.previousStateMemberships?.length} valgt`;
     }
+  }
+
+  getToggleValue(): void {
+    this.isChecked === false ? true : false;
   }
 }

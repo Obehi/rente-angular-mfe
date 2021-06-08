@@ -62,7 +62,7 @@
       </rente-input>
     </div> -->
   </div>
-  <div class="preferences-tab">
+  <div [formGroup]="preferencesForm" class="preferences-tab">
     <div class="flex-1">
       <h5 class="element">
         Medlemskap:
@@ -71,6 +71,7 @@
 
       <rente-button class="rente-button" color="blue-select">
         <mat-select
+          [formControl]="membershipCtrl"
           [placeholder]="getMembershipPlaceholder()"
           (click)="openPropertySelectDialog()"
         >
@@ -84,12 +85,13 @@
         </p>
       </h5>
       <rente-button class="rente-button" color="blue-select">
-        <mat-select [placeholder]="'Velg'">
-          <mat-option
-            *ngFor="let option of marketOptions"
-            [value]="option.value"
-            >{{ option }}</mat-option
-          >
+        <mat-select
+          formControlName="checkRateReminderType"
+          [placeholder]="'Velg'"
+        >
+          <mat-option *ngFor="let option of marketOptions" [value]="option">{{
+            option
+          }}</mat-option>
         </mat-select>
       </rente-button>
       <hr />
@@ -103,7 +105,14 @@
         </p>
       </h5>
 
-      <mat-slide-toggle class="button"></mat-slide-toggle>
+      <mat-slide-toggle
+        class="button"
+        (change)="isChecked = !isChecked"
+        formControlName="receiveNewsEmails"
+        [value]="isChecked"
+        >{{ isChecked }}</mat-slide-toggle
+      >
+
       <hr />
       <hr />
     </div>
