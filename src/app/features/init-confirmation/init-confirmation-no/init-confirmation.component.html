@@ -235,7 +235,7 @@
         i18n="“done|info-confirmation@@info.confirmation.done”"
         color="primary"
         [isLoading]="isLoading"
-        [disabled]="propertyForm.invalid || isLoading"
+        [disabled]="propertyForm.invalid || !propertyForm.valid || isLoading"
       >
         Sjekk besparelse
       </rente-button>
