@@ -46,7 +46,7 @@ import {
   FormControl
 } from '@angular/forms';
 import { forkJoin } from 'rxjs';
-import { LoanUpdateInfoDto } from '@shared/models/loans';
+import { SignicatLoanInfoDto } from '@shared/models/loans';
 import { LoginService } from '@services/login.service';
 import { BankUtils, BankVo } from '@shared/models/bank';
 import { GenericInfoDialogComponent } from '@shared/components/ui-components/dialogs/generic-info-dialog/generic-info-dialog.component';
@@ -84,9 +84,20 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
   public showForms = false;
   public mask = Mask;
   public isLoading = true;
-  public selectOptions: any;
+  public productIdOptions: any[];
+  public loanTypeOptions = [
+    {
+      name: 'Nedbetalingslån',
+      value: 'DOWNPAYMENT_REGULAR_LOAN'
+    },
+    {
+      name: 'Rammelån/boligkreditt',
+      value: 'CREDIT_LINE'
+    }
+  ];
   public selectedOffer: string;
-  private bank: string | null;
+  public bank: BankVo | null;
+  private loanId: number | null;
   public currentStepperValue = 0;
   public newClient = true;
   public showManualInputForm = false;
@@ -143,13 +154,15 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     });
 
     // Getting bank name from the bank-select component
-    const bankParam = this.router?.getCurrentNavigation()?.extras?.state?.data;
+    const stateData = this.router?.getCurrentNavigation()?.extras?.state?.data;
+    console.log(stateData);
     // Checking for null or undefined
-    if (bankParam == null) {
+    if (stateData == null) {
       this.router.navigate(['/' + ROUTES_MAP.bankSelect]);
       return;
     } else {
-      this.bank = bankParam;
+      this.bank = stateData.bank;
+      console.log(this.bank);
       this.loginBankIdStep1();
     }
   }
@@ -192,7 +205,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     this.bank &&
       sessionId &&
       this.authService
-        .loginBankIdStep2(sessionId, this.bank)
+        .loginBankIdStep2(sessionId, this.bank.name)
         .pipe(retry(2))
         .subscribe(
           (response) => {
@@ -215,7 +228,9 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
                 }
               );
             } else {
-              this.initLoansForm(response);
+              // this.initLoansForm(response);
+              this.initNonFixedLoanBankLoansForm(response);
+              // this.initFixedLoanBankLoansForm(response);
             }
           },
           (error) => {
@@ -225,7 +240,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
   }
 
   public newUserFinished(): void {
-    const loanUpdateInfoDto = this.loanUpdateInfoDto;
+    const signicatLoanInfoDto = this.signicatLoanInfoDto;
     const clientDto = this.clientUpdateInfo;
 
     if (this.showManualInputForm) {
@@ -239,7 +254,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     clientDto.memberships = [];
     concat(
       this.loanService.updateClientInfo(clientDto),
-      this.loanService.updateLoanUserInfo(loanUpdateInfoDto),
+      this.loanService.UpdateSignicatLoansInfo([signicatLoanInfoDto]),
       this.loanService.setUsersMemberships(userMemberships)
     )
       .pipe(toArray())
@@ -280,9 +295,13 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
   }
 
   public oldUserFinished(): void {
-    const loanUpdateInfoDto = this.loanUpdateInfoDto;
+    const SignicatLoanInfoDto = this.nonFixedBankLoanInfo;
+    if (SignicatLoanInfoDto === null) {
+      this.showGenericDialog();
+      return;
+    }
     this.isLoading = true;
-    this.loanService.updateLoanUserInfo(loanUpdateInfoDto).subscribe(
+    this.loanService.UpdateSignicatLoansInfo([SignicatLoanInfoDto]).subscribe(
       (result) => {
         this.isLoading = false;
         this.bank && this.loginService.loginWithBankAndToken();
@@ -348,16 +367,19 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     if (loanInfo.newLoan === false) {
       forkJoin([
         this.loanService.getClientInfo(),
-        this.loanService.getOffersBanks()
-      ]).subscribe(([clientInfo, offerBanks]) => {
-        this.selectOptions = (offerBanks.offers as any[]).map((offer) => {
+        this.loanService.getOffersBanks(),
+        this.loanService.getSignicatLoansInfo()
+      ]).subscribe(([clientInfo, offerBanks, signicatLoansInfo]) => {
+        console.log(signicatLoansInfo);
+
+        this.productIdOptions = (offerBanks.offers as any[]).map((offer) => {
           return {
             name: offer.name,
             value: offer.id
           };
         });
 
-        const selectedOption = this.selectOptions.filter((item) => {
+        const selectedOption = this.productIdOptions.filter((item) => {
           return item.value === clientInfo.productId;
         })[0];
         const outstandingDebt = String(clientInfo.outstandingDebt);
@@ -373,7 +395,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     } else {
       this.loanService.getOffersBanks().subscribe(
         (offerBanks) => {
-          this.selectOptions = (offerBanks.offers as any[]).map((offer) => {
+          this.productIdOptions = (offerBanks.offers as any[]).map((offer) => {
             return {
               name: offer.name,
               value: offer.id
@@ -394,6 +416,163 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
         }
       );
     }
+  }
+
+  private initNonFixedLoanBankLoansForm(loanInfo): void {
+    this.isLoading = true;
+    if (loanInfo.newLoan === false) {
+      forkJoin([
+        this.loanService.getClientInfo(),
+        this.loanService.getOffersBanks(),
+        this.loanService.getSignicatLoansInfo()
+      ]).subscribe(([clientInfo, offerBanks, signicatLoansInfo]) => {
+        console.log(signicatLoansInfo);
+
+        if (signicatLoansInfo?.length === 0) {
+          this.initNewLoanLoanForm();
+          return;
+        }
+
+        const firstLoan = signicatLoansInfo[0];
+
+        this.loanId = firstLoan.id;
+        this.productIdOptions = (offerBanks.offers as any[]).map((offer) => {
+          return {
+            name: offer.name,
+            value: offer.id
+          };
+        });
+
+        const selectedOption = this.productIdOptions.filter((item) => {
+          return item.value === firstLoan.productId;
+        })[0];
+
+        const selectedloanTypeOption = this.loanTypeOptions.filter((item) => {
+          return item.value === firstLoan.loanType;
+        })[0];
+        const outstandingDebt = String(firstLoan.outstandingDebt);
+        this.loanFormGroup = this.fb.group({
+          outstandingDebt: [outstandingDebt, Validators.required],
+          remainingYears: [
+            firstLoan.remainingYears as number,
+            [Validators.max(100)]
+          ],
+          loanType: [selectedOption ?? null, Validators.required],
+          loanTypeOption: [selectedloanTypeOption ?? null, Validators.required]
+        });
+
+        if (true) {
+          this.loanFormGroup?.addControl(
+            'interestRate',
+            new FormControl(
+              firstLoan.nominalInterestRate,
+              Validators.compose([
+                Validators.required,
+                Validators.pattern(VALIDATION_PATTERN.rate)
+              ])
+            )
+          );
+
+          this.loanFormGroup?.addControl(
+            'fee',
+            new FormControl(firstLoan.fee, Validators.required)
+          );
+
+          /*   this.loanFormGroup?.addControl(
+            'fee',
+            new FormControl(firstLoan.loanSubType, Validators.required)
+          ); */
+
+          // outstandingDebt: number;
+          // productId: string;
+          /*       remainingYears: number;
+          loanSubType: string;
+          loanType: string;
+          //fee?: number;
+          nominalInterestRate?: number; */
+        }
+
+        this.newClient = false;
+        this.isLoading = false;
+      });
+    } else {
+      this.initNewLoanLoanForm();
+    }
+  }
+
+  private initFixedLoanBankLoansForm(loanInfo): void {
+    this.isLoading = true;
+    if (loanInfo.newLoan === false) {
+      forkJoin([
+        this.loanService.getClientInfo(),
+        this.loanService.getOffersBanks(),
+        this.loanService.getSignicatLoansInfo()
+      ]).subscribe(([clientInfo, offerBanks, signicatLoansInfo]) => {
+        console.log(signicatLoansInfo);
+
+        if (signicatLoansInfo?.length === 0) {
+          this.initNewLoanLoanForm();
+          return;
+        }
+
+        const firstLoan = signicatLoansInfo[0];
+
+        this.productIdOptions = (offerBanks.offers as any[]).map((offer) => {
+          return {
+            name: offer.name,
+            value: offer.id
+          };
+        });
+
+        const selectedOption = this.productIdOptions.filter((item) => {
+          return item.value === firstLoan.productId;
+        })[0];
+
+        const selectedLoanTypeOption = this.loanTypeOptions.filter((item) => {
+          return item.value === firstLoan.loanType;
+        })[0];
+        const outstandingDebt = String(firstLoan.outstandingDebt);
+        this.loanFormGroup = this.fb.group({
+          outstandingDebt: [outstandingDebt, Validators.required],
+          remainingYears: [
+            Math.round(firstLoan.remainingYears),
+            [Validators.max(100)]
+          ],
+          loanType: [selectedOption ?? null, Validators.required],
+          loanTypeOptions: [selectedLoanTypeOption ?? null, Validators.required]
+        });
+
+        this.newClient = false;
+        this.isLoading = false;
+      });
+    } else {
+      this.initNewLoanLoanForm();
+    }
+  }
+
+  initNewLoanLoanForm(): void {
+    this.loanService.getOffersBanks().subscribe(
+      (offerBanks) => {
+        this.productIdOptions = (offerBanks.offers as any[]).map((offer) => {
+          return {
+            name: offer.name,
+            value: offer.id
+          };
+        });
+
+        this.oldUserNewLoan = true;
+        this.loanFormGroup = this.fb.group({
+          outstandingDebt: ['', Validators.required],
+          remainingYears: ['', [Validators.required, Validators.max(100)]],
+          loanType: ['', Validators.required]
+        });
+        this.newClient = false;
+        this.isLoading = false;
+      },
+      (error) => {
+        this.showGenericDialog();
+      }
+    );
   }
 
   get manualPropertyValue(): number {
@@ -429,22 +608,61 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     return clientDto;
   }
 
-  get loanUpdateInfoDto(): LoanUpdateInfoDto {
-    const loanUpdateInfoDto = new LoanUpdateInfoDto();
-    loanUpdateInfoDto.remainingYears =
+  get signicatLoanInfoDto(): SignicatLoanInfoDto {
+    const signicatLoanInfoDto = new SignicatLoanInfoDto();
+    signicatLoanInfoDto.remainingYears =
       this.loanFormGroup?.get('remainingYears')?.value || 20;
 
-    loanUpdateInfoDto.productId = String(
+    signicatLoanInfoDto.productId = String(
       this.loanFormGroup?.get('loanType')?.value.value
     );
 
-    (loanUpdateInfoDto.outstandingDebt =
+    (signicatLoanInfoDto.outstandingDebt =
       typeof this.loanFormGroup?.get('outstandingDebt')?.value === 'string'
         ? this.loanFormGroup?.get('outstandingDebt')?.value.replace(/\s/g, '')
         : this.loanFormGroup?.get('outstandingDebt')?.value),
       // default value is
-      (loanUpdateInfoDto.loanSubType = 'AMORTISING_LOAN');
-    return loanUpdateInfoDto;
+      (signicatLoanInfoDto.loanSubType = 'AMORTISING_LOAN');
+    return signicatLoanInfoDto;
+  }
+
+  get nonFixedBankLoanInfo(): SignicatLoanInfoDto | null {
+    if (this.loanId === null) {
+      return null;
+    }
+    const signicatLoanInfoDto = new SignicatLoanInfoDto();
+    signicatLoanInfoDto.id = this.loanId;
+    signicatLoanInfoDto.remainingYears =
+      this.loanFormGroup?.get('remainingYears')?.value || 20;
+
+    signicatLoanInfoDto.loanType = String(
+      this.loanFormGroup?.get('loanTypeOption')?.value.value
+    );
+
+    signicatLoanInfoDto.productId = String(
+      this.loanFormGroup?.get('loanType')?.value.value
+    );
+
+    if (signicatLoanInfoDto.loanType === 'DOWNPAYMENT_REGULAR_LOAN') {
+      signicatLoanInfoDto.loanSubType = 'AMORTISING_LOAN';
+    }
+
+    if (signicatLoanInfoDto.loanType === 'CREDIT_LINE') {
+      signicatLoanInfoDto.loanSubType = 'SERIES_LOAN';
+    }
+
+    signicatLoanInfoDto.fee = this.loanFormGroup?.get('fee')?.value;
+    signicatLoanInfoDto.nominalInterestRate = this.loanFormGroup?.get(
+      'interestRate'
+    )?.value;
+
+    (signicatLoanInfoDto.outstandingDebt =
+      typeof this.loanFormGroup?.get('outstandingDebt')?.value === 'string'
+        ? this.loanFormGroup?.get('outstandingDebt')?.value.replace(/\s/g, '')
+        : this.loanFormGroup?.get('outstandingDebt')?.value),
+      // default value is
+      (signicatLoanInfoDto.loanSubType = 'AMORTISING_LOAN');
+    return signicatLoanInfoDto;
   }
 
   updateStepperIndex(index: number): void {
@@ -575,7 +793,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
   public goToLoansFormFromManulPropertyValue(): void {
     this.isLoading = true;
     this.loanService.getOffersBanks().subscribe((offerBanks) => {
-      this.selectOptions = (offerBanks.offers as any[]).map((offer) => {
+      this.productIdOptions = (offerBanks.offers as any[]).map((offer) => {
         return {
           name: offer.name,
           value: offer.id
@@ -593,7 +811,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     this.loanService.updateClientInfo(this.clientUpdateInfo).subscribe(
       (_) => {
         this.loanService.getOffersBanks().subscribe((offerBanks) => {
-          this.selectOptions = (offerBanks.offers as any[]).map((offer) => {
+          this.productIdOptions = (offerBanks.offers as any[]).map((offer) => {
             return {
               name: offer.name,
               value: offer.id

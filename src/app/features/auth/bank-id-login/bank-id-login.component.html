@@ -40,7 +40,7 @@
       class="loan-form"
     >
       <div class="center loan-grid">
-        <div class="field">
+        <div class="field left">
           <rente-input
             [placeholder]="'Hvor mye har du i boliglån?'"
             [type]="'tel'"
@@ -118,6 +118,54 @@
           <mat-icon>help</mat-icon>
         </div>
 
+        <div *ngIf="bank?.isSigniCat" class="field left">
+          <rente-input
+            [placeholder]="'Faste gebyrer'"
+            [type]="'tel'"
+            [maskType]="mask.currency"
+            matSuffix="kr"
+            formControlName="fee"
+            [errorStateMatcher]="isErrorState(loanFormGroup?.controls['fee'])"
+          >
+          </rente-input>
+
+          <div *ngIf="loanFormGroup?.controls['outstandingDebt'].touched">
+            <p
+              class="error small"
+              *ngIf="
+                loanFormGroup?.controls['outstandingDebt'].hasError('required')
+              "
+            >
+              Kan ikke være tom
+            </p>
+          </div>
+        </div>
+
+        <div *ngIf="bank?.isSigniCat" class="field left">
+          <rente-input
+            [placeholder]="'Nominell rente'"
+            [type]="'tel'"
+            matSuffix="%"
+            [maxLength]="3"
+            formControlName="interestRate"
+            [errorStateMatcher]="
+              isErrorState(loanFormGroup?.controls['remainingYears'])
+            "
+          >
+          </rente-input>
+
+          <div *ngIf="loanFormGroup?.controls['remainingYears'].touched">
+            <p
+              class="error small"
+              *ngIf="
+                loanFormGroup?.controls['remainingYears'].hasError('required')
+              "
+            >
+              Kan ikke være tom
+            </p>
+          </div>
+        </div>
+
         <div class="field left">
           <mat-form-field appearance="fill">
             <mat-label>Lånetype</mat-label>
@@ -125,7 +173,27 @@
               [compareWith]="matSelectLoanTypeCompare"
               formControlName="loanType"
             >
-              <mat-option *ngFor="let option of selectOptions" [value]="option">
+              <mat-option
+                *ngFor="let option of productIdOptions"
+                [value]="option"
+              >
+                {{ option.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="field left">
+          <mat-form-field appearance="fill">
+            <mat-label>Lånetype</mat-label>
+            <mat-select
+              [compareWith]="matSelectLoanTypeCompare"
+              formControlName="loanTypeOption"
+            >
+              <mat-option
+                *ngFor="let option of loanTypeOptions"
+                [value]="option"
+              >
                 {{ option.name }}
               </mat-option>
             </mat-select>
@@ -494,7 +562,7 @@
                       formControlName="loanType"
                     >
                       <mat-option
-                        *ngFor="let option of selectOptions"
+                        *ngFor="let option of productIdOptions"
                         [value]="option"
                       >
                         {{ option.name }}

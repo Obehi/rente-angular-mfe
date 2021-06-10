@@ -50,7 +50,8 @@ export const API_URL_MAP = {
     },
     loans: {
       base: '/loans',
-      state: '/state'
+      state: '/state',
+      info: '/info'
     },
 
     loan: {

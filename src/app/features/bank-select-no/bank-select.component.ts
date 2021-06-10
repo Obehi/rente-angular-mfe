@@ -130,7 +130,7 @@ export class BankSelectNoComponent implements OnInit {
 
     if (bank.isSigniCat && bank.isMissing === false) {
       this.router.navigate(['/autentisering/' + ROUTES_MAP_NO.bankIdLogin], {
-        state: { data: bank.name }
+        state: { data: { bank: bank } }
       });
       return;
     }

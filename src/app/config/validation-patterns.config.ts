@@ -12,5 +12,6 @@ export const VALIDATION_PATTERN = {
   number: '^[0-9]+$',
   thousandsAsString: '^([0-9]|\\s)+$',
   zip: '^[0-9]{4}$',
-  zipSWE: '[0-9 ]+'
+  zipSWE: '[0-9 ]+',
+  rate: '^\\d(\\,|\\.)\\d{1,2}$'
 };
