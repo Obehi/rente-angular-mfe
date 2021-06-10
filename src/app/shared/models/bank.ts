@@ -8,6 +8,7 @@ export class BankVo {
     public isEikaBank: boolean = false,
     public isMissing: boolean = false,
     public isTinkBank: boolean = false,
+    public hasFixedLoans: boolean = false,
     public isSigniCat: boolean = false,
     public mobileUrl: string | null = null
   ) {}
@@ -24,6 +25,7 @@ export const eikaBanks: BankVo[] = [
     false,
     false,
     false,
+    false,
     'https://aasen-sparebank.no/aktuelt/bankid-paa-mobil'
   ),
   new BankVo(
@@ -33,6 +35,7 @@ export const eikaBanks: BankVo[] = [
     null,
     true,
     true,
+    false,
     false,
     false,
     false,
@@ -48,6 +51,7 @@ export const eikaBanks: BankVo[] = [
     false,
     false,
     false,
+    false,
     'https://www.danskebank.no/nb-no/Privat/Nettbank-og-Mobil/nettbank/support/Pages/ofte-stilte-sporsmal.aspx#'
   ),
   new BankVo(
@@ -57,6 +61,7 @@ export const eikaBanks: BankVo[] = [
     null,
     true,
     true,
+    false,
     false,
     false,
     false,
@@ -72,6 +77,7 @@ export const eikaBanks: BankVo[] = [
     false,
     false,
     false,
+    false,
     'https://sparekassa.no/aktuelt/bankid-paa-mobil'
   ),
   new BankVo(
@@ -81,6 +87,7 @@ export const eikaBanks: BankVo[] = [
     null,
     true,
     true,
+    false,
     false,
     false,
     false,
@@ -96,6 +103,7 @@ export const eikaBanks: BankVo[] = [
     false,
     false,
     false,
+    false,
     'https://aurskog-sparebank.no/aktuelt/bankid-paa-mobil'
   ),
   new BankVo(
@@ -105,6 +113,7 @@ export const eikaBanks: BankVo[] = [
     null,
     true,
     true,
+    false,
     false,
     false,
     false,
@@ -120,6 +129,7 @@ export const eikaBanks: BankVo[] = [
     false,
     false,
     false,
+    false,
     'https://berg-sparebank.no/aktuelt/bankid-paa-mobil'
   ),
   new BankVo(
@@ -129,6 +139,7 @@ export const eikaBanks: BankVo[] = [
     null,
     true,
     true,
+    false,
     false,
     false,
     false,
@@ -144,6 +155,7 @@ export const eikaBanks: BankVo[] = [
     false,
     false,
     false,
+    false,
     'https://birkenes-sparebank.no/aktuelt/bankid-paa-mobil'
   ),
   new BankVo(
@@ -153,6 +165,7 @@ export const eikaBanks: BankVo[] = [
     null,
     true,
     true,
+    false,
     false,
     false,
     false,
@@ -168,6 +181,7 @@ export const eikaBanks: BankVo[] = [
     false,
     false,
     false,
+    false,
     'https://blakersparebank.no/aktuelt/bankid-paa-mobil'
   ),
   new BankVo(
@@ -177,6 +191,7 @@ export const eikaBanks: BankVo[] = [
     null,
     true,
     true,
+    false,
     false,
     false,
     false,
@@ -192,6 +207,7 @@ export const eikaBanks: BankVo[] = [
     false,
     false,
     false,
+    false,
     'https://esbank.no/aktuelt/bankid-paa-mobil'
   ),
   new BankVo(
@@ -201,6 +217,7 @@ export const eikaBanks: BankVo[] = [
     null,
     true,
     true,
+    false,
     false,
     false,
     false,
@@ -216,6 +233,7 @@ export const eikaBanks: BankVo[] = [
     false,
     false,
     false,
+    false,
     'https://eh-sparebank.no/aktuelt/bankid-paa-mobil'
   ),
   new BankVo(
@@ -225,6 +243,7 @@ export const eikaBanks: BankVo[] = [
     null,
     true,
     true,
+    false,
     false,
     false,
     false,
@@ -240,6 +259,7 @@ export const eikaBanks: BankVo[] = [
     false,
     false,
     false,
+    false,
     'https://gildeskaal-sparebank.no/aktuelt/bankid-paa-mobil'
   ),
   new BankVo(
@@ -249,6 +269,7 @@ export const eikaBanks: BankVo[] = [
     null,
     true,
     true,
+    false,
     false,
     false,
     false,
@@ -264,6 +285,7 @@ export const eikaBanks: BankVo[] = [
     false,
     false,
     false,
+    false,
     'https://gruesparebank.no/aktuelt/bankid-paa-mobil'
   ),
   new BankVo(
@@ -273,6 +295,7 @@ export const eikaBanks: BankVo[] = [
     null,
     true,
     true,
+    false,
     false,
     false,
     false,
@@ -288,6 +311,7 @@ export const eikaBanks: BankVo[] = [
     false,
     false,
     false,
+    false,
     'https://hegrasparebank.no/aktuelt/bankid-paa-mobil'
   ),
   new BankVo(
@@ -297,6 +321,7 @@ export const eikaBanks: BankVo[] = [
     null,
     true,
     true,
+    false,
     false,
     false,
     false,
@@ -312,6 +337,7 @@ export const eikaBanks: BankVo[] = [
     false,
     false,
     true,
+    true,
     'https://www.himla.no/banktjenester/boliglan/?utm_source=renteradar.no&utm_medium=nettside&utm_campaign=ta_kontakt_for_samarbeid'
   ),
   new BankVo(
@@ -321,6 +347,7 @@ export const eikaBanks: BankVo[] = [
     null,
     true,
     true,
+    false,
     false,
     false,
     false,
@@ -336,6 +363,7 @@ export const eikaBanks: BankVo[] = [
     false,
     false,
     false,
+    false,
     'https://hjelmeland-sparebank.no/aktuelt/bankid-paa-mobil'
   ),
   new BankVo(
@@ -345,6 +373,7 @@ export const eikaBanks: BankVo[] = [
     null,
     true,
     true,
+    false,
     false,
     false,
     false,
@@ -360,6 +389,7 @@ export const eikaBanks: BankVo[] = [
     false,
     false,
     false,
+    false,
     'https://jbf.no/aktuelt/bankid-paa-mobil'
   ),
   new BankVo(
@@ -369,6 +399,7 @@ export const eikaBanks: BankVo[] = [
     null,
     true,
     true,
+    false,
     false,
     false,
     false,
@@ -384,6 +415,7 @@ export const eikaBanks: BankVo[] = [
     false,
     false,
     false,
+    false,
     'https://kvinesdalsparebank.no/aktuelt/bankid-paa-mobil'
   ),
   new BankVo(
@@ -393,6 +425,7 @@ export const eikaBanks: BankVo[] = [
     null,
     true,
     true,
+    false,
     false,
     false,
     false,
@@ -408,6 +441,7 @@ export const eikaBanks: BankVo[] = [
     false,
     false,
     false,
+    false,
     'https://lillestrombanken.no/aktuelt/bankid-paa-mobil'
   ),
   new BankVo(
@@ -417,6 +451,7 @@ export const eikaBanks: BankVo[] = [
     null,
     true,
     true,
+    false,
     false,
     false,
     false,
@@ -432,6 +467,7 @@ export const eikaBanks: BankVo[] = [
     false,
     false,
     false,
+    false,
     'https://melhusbanken.no/aktuelt/bankid-paa-mobil'
   ),
   new BankVo(
@@ -441,6 +477,7 @@ export const eikaBanks: BankVo[] = [
     null,
     true,
     true,
+    false,
     false,
     false,
     false,
@@ -456,6 +493,7 @@ export const eikaBanks: BankVo[] = [
     false,
     false,
     false,
+    false,
     'https://nordirektebank.no/aktuelt/bankid-paa-mobil'
   ),
   new BankVo(
@@ -466,6 +504,7 @@ export const eikaBanks: BankVo[] = [
     true,
     true,
     true,
+    false,
     false,
     false,
     ''
@@ -480,6 +519,7 @@ export const eikaBanks: BankVo[] = [
     true,
     false,
     false,
+    false,
     ''
   ),
   new BankVo(
@@ -492,6 +532,7 @@ export const eikaBanks: BankVo[] = [
     true,
     false,
     false,
+    false,
     ''
   ),
   new BankVo(
@@ -501,6 +542,7 @@ export const eikaBanks: BankVo[] = [
     null,
     true,
     true,
+    false,
     false,
     false,
     false,
@@ -516,6 +558,7 @@ export const eikaBanks: BankVo[] = [
     false,
     false,
     false,
+    false,
     'https://oppdalsbanken.no/aktuelt/bankid-paa-mobil'
   ),
   new BankVo(
@@ -525,6 +568,7 @@ export const eikaBanks: BankVo[] = [
     null,
     true,
     true,
+    false,
     false,
     false,
     false,
@@ -540,6 +584,7 @@ export const eikaBanks: BankVo[] = [
     false,
     false,
     false,
+    false,
     'https://rindalsbanken.no/aktuelt/bankid-paa-mobil'
   ),
   new BankVo(
@@ -549,6 +594,7 @@ export const eikaBanks: BankVo[] = [
     null,
     true,
     true,
+    false,
     false,
     false,
     false,
@@ -564,6 +610,7 @@ export const eikaBanks: BankVo[] = [
     false,
     false,
     false,
+    false,
     'https://rorosbanken.no/aktuelt/bankid-paa-mobil'
   ),
   new BankVo(
@@ -573,6 +620,7 @@ export const eikaBanks: BankVo[] = [
     null,
     true,
     true,
+    false,
     false,
     false,
     false,
@@ -588,6 +636,7 @@ export const eikaBanks: BankVo[] = [
     false,
     false,
     false,
+    false,
     'https://selbusparebank.no/aktuelt/bankid-paa-mobil'
   ),
   new BankVo(
@@ -597,6 +646,7 @@ export const eikaBanks: BankVo[] = [
     null,
     true,
     true,
+    false,
     false,
     false,
     false,
@@ -612,6 +662,7 @@ export const eikaBanks: BankVo[] = [
     false,
     false,
     false,
+    false,
     'https://skuesparebank.no/aktuelt/bankid-paa-mobil'
   ),
   new BankVo(
@@ -621,6 +672,7 @@ export const eikaBanks: BankVo[] = [
     null,
     true,
     true,
+    false,
     false,
     false,
     false,
@@ -636,6 +688,7 @@ export const eikaBanks: BankVo[] = [
     false,
     false,
     false,
+    false,
     'https://soknedal-sparebank.no/aktuelt/bankid-paa-mobil'
   ),
   new BankVo(
@@ -645,6 +698,7 @@ export const eikaBanks: BankVo[] = [
     null,
     true,
     true,
+    false,
     false,
     false,
     false,
@@ -660,6 +714,7 @@ export const eikaBanks: BankVo[] = [
     false,
     false,
     false,
+    false,
     'https://sn.no/aktuelt/bankid-paa-mobil'
   ),
   new BankVo(
@@ -669,6 +724,7 @@ export const eikaBanks: BankVo[] = [
     null,
     true,
     true,
+    false,
     false,
     false,
     false,
@@ -684,6 +740,7 @@ export const eikaBanks: BankVo[] = [
     false,
     false,
     false,
+    false,
     'https://strommensparebank.no/aktuelt/bankid-paa-mobil'
   ),
   new BankVo(
@@ -693,6 +750,7 @@ export const eikaBanks: BankVo[] = [
     null,
     true,
     true,
+    false,
     false,
     false,
     false,
@@ -708,6 +766,7 @@ export const eikaBanks: BankVo[] = [
     false,
     false,
     false,
+    false,
     'https://bank.no/aktuelt/bankid-paa-mobil'
   ),
   new BankVo(
@@ -717,6 +776,7 @@ export const eikaBanks: BankVo[] = [
     null,
     true,
     true,
+    false,
     false,
     false,
     false,
@@ -732,6 +792,7 @@ export const eikaBanks: BankVo[] = [
     false,
     false,
     false,
+    false,
     'https://tos.no/aktuelt/bankid-paa-mobil'
   ),
   new BankVo(
@@ -741,6 +802,7 @@ export const eikaBanks: BankVo[] = [
     null,
     true,
     true,
+    false,
     false,
     false,
     false,
@@ -756,6 +818,7 @@ export const eikaBanks: BankVo[] = [
     false,
     false,
     false,
+    false,
     'https://tsbank.no/aktuelt/bankid-paa-mobil'
   ),
   new BankVo(
@@ -765,6 +828,7 @@ export const eikaBanks: BankVo[] = [
     null,
     true,
     true,
+    false,
     false,
     false,
     false,
@@ -780,6 +844,7 @@ export const eikaBanks: BankVo[] = [
     false,
     false,
     false,
+    false,
     'https://valdressparebank.no/aktuelt/bankid-paa-mobil'
   ),
   new BankVo(
@@ -789,6 +854,7 @@ export const eikaBanks: BankVo[] = [
     null,
     true,
     true,
+    false,
     false,
     false,
     false,
@@ -804,6 +870,7 @@ export const eikaBanks: BankVo[] = [
     false,
     false,
     false,
+    false,
     'https://vekselbanken.no/aktuelt/bankid-paa-mobil'
   ),
   new BankVo(
@@ -813,6 +880,7 @@ export const eikaBanks: BankVo[] = [
     null,
     true,
     true,
+    false,
     false,
     false,
     false,
@@ -828,6 +896,7 @@ export const eikaBanks: BankVo[] = [
     false,
     false,
     false,
+    false,
     'https://orskogsparebank.no/aktuelt/bankid-paa-mobil'
   ),
   new BankVo(
@@ -837,6 +906,7 @@ export const eikaBanks: BankVo[] = [
     null,
     true,
     true,
+    false,
     false,
     false,
     false,
@@ -852,6 +922,7 @@ export const eikaBanks: BankVo[] = [
     false,
     false,
     false,
+    false,
     'https://afjord-sparebank.no/aktuelt/bankid-paa-mobil'
   ),
   new BankVo(
@@ -864,6 +935,7 @@ export const eikaBanks: BankVo[] = [
     false,
     false,
     false,
+    false,
     'https://68nord.no//aktuelt/bankid-paa-mobil'
   ),
   new BankVo(
@@ -873,6 +945,7 @@ export const eikaBanks: BankVo[] = [
     null,
     true,
     true,
+    false,
     false,
     false,
     false,
@@ -891,6 +964,7 @@ export const BankList: BankVo[] = [
     false,
     false,
     false,
+    true,
     'https://m.dnb.no/kundeservice/privat/bankidmobil.html'
   ),
   new BankVo(
@@ -899,6 +973,7 @@ export const BankList: BankVo[] = [
     'dnb.png',
     'dnb-color.svg',
     true,
+    false,
     false,
     false,
     false,
@@ -915,6 +990,7 @@ export const BankList: BankVo[] = [
     false,
     false,
     false,
+    false,
     null
   ),
   new BankVo(
@@ -923,6 +999,7 @@ export const BankList: BankVo[] = [
     'dnb.png',
     'dnb-color.svg',
     true,
+    false,
     false,
     false,
     false,
@@ -939,6 +1016,7 @@ export const BankList: BankVo[] = [
     false,
     false,
     false,
+    false,
     null
   ),
   new BankVo(
@@ -946,6 +1024,7 @@ export const BankList: BankVo[] = [
     'Nordea',
     'nordea.png',
     'nordea-color.svg',
+    false,
     false,
     false,
     false,
@@ -963,6 +1042,7 @@ export const BankList: BankVo[] = [
     false,
     false,
     false,
+    false,
     null
   ),
   new BankVo(
@@ -970,6 +1050,7 @@ export const BankList: BankVo[] = [
     'SpareBank 1',
     'sparebanken1v2.png',
     'sparebank1-color.svg',
+    false,
     false,
     false,
     false,
@@ -987,6 +1068,7 @@ export const BankList: BankVo[] = [
     false,
     false,
     false,
+    false,
     'https://www.sparebank1.no/nb/bank/privat/kundeservice/mobil/hvordan-bestiller-jeg-bankid-pa-mobil.html'
   ),
   new BankVo(
@@ -994,6 +1076,7 @@ export const BankList: BankVo[] = [
     'SpareBank 1 Gudbrandsdal',
     'sparebanken1v2.png',
     'sparebank1-color.svg',
+    false,
     false,
     false,
     false,
@@ -1011,6 +1094,7 @@ export const BankList: BankVo[] = [
     false,
     false,
     false,
+    false,
     'https://www.sparebank1.no/nb/bank/privat/kundeservice/mobil/hvordan-bestiller-jeg-bankid-pa-mobil.html'
   ),
   new BankVo(
@@ -1018,6 +1102,7 @@ export const BankList: BankVo[] = [
     'SpareBank 1 Lom og Skjåk',
     'sparebanken1v2.png',
     'sparebank1-color.svg',
+    false,
     false,
     false,
     false,
@@ -1035,6 +1120,7 @@ export const BankList: BankVo[] = [
     false,
     false,
     false,
+    false,
     'https://www.sparebank1.no/nb/bank/privat/kundeservice/mobil/hvordan-bestiller-jeg-bankid-pa-mobil.html'
   ),
   new BankVo(
@@ -1042,6 +1128,7 @@ export const BankList: BankVo[] = [
     'SpareBank 1 Nord-Norge',
     'sparebanken1v2.png',
     'sparebank1-color.svg',
+    false,
     false,
     false,
     false,
@@ -1059,6 +1146,7 @@ export const BankList: BankVo[] = [
     false,
     false,
     false,
+    false,
     'https://www.sparebank1.no/nb/bank/privat/kundeservice/mobil/hvordan-bestiller-jeg-bankid-pa-mobil.html'
   ),
   new BankVo(
@@ -1066,6 +1154,7 @@ export const BankList: BankVo[] = [
     'SpareBank 1 Ringerike Hadeland',
     'sparebanken1v2.png',
     'sparebank1-color.svg',
+    false,
     false,
     false,
     false,
@@ -1083,6 +1172,7 @@ export const BankList: BankVo[] = [
     false,
     false,
     false,
+    false,
     'https://www.sparebank1.no/nb/bank/privat/kundeservice/mobil/hvordan-bestiller-jeg-bankid-pa-mobil.html'
   ),
   new BankVo(
@@ -1090,6 +1180,7 @@ export const BankList: BankVo[] = [
     'SpareBank 1 SR-Bank',
     'sparebanken1v2.png',
     'sparebank1-color.svg',
+    false,
     false,
     false,
     false,
@@ -1107,6 +1198,7 @@ export const BankList: BankVo[] = [
     false,
     false,
     false,
+    false,
     'https://www.sparebank1.no/nb/bank/privat/kundeservice/mobil/hvordan-bestiller-jeg-bankid-pa-mobil.html'
   ),
   new BankVo(
@@ -1114,6 +1206,7 @@ export const BankList: BankVo[] = [
     'SpareBank 1 Telemark',
     'sparebanken1v2.png',
     'sparebank1-color.svg',
+    false,
     false,
     false,
     false,
@@ -1131,6 +1224,7 @@ export const BankList: BankVo[] = [
     false,
     false,
     false,
+    false,
     'https://www.sparebank1.no/nb/bank/privat/kundeservice/mobil/hvordan-bestiller-jeg-bankid-pa-mobil.html'
   ),
   new BankVo(
@@ -1143,6 +1237,7 @@ export const BankList: BankVo[] = [
     false,
     false,
     false,
+    false,
     'https://www.sparebank1.no/nb/bank/privat/kundeservice/mobil/hvordan-bestiller-jeg-bankid-pa-mobil.html'
   ),
   new BankVo(
@@ -1150,6 +1245,7 @@ export const BankList: BankVo[] = [
     'SpareBank 1 Helgeland',
     'sparebanken1v2.png',
     'sparebank1-color.svg',
+    false,
     false,
     false,
     false,
@@ -1171,6 +1267,7 @@ export const MissingBankList: BankVo[] = [
     true,
     false,
     false,
+    false,
     null
   ),
   new BankVo(
@@ -1181,6 +1278,7 @@ export const MissingBankList: BankVo[] = [
     false,
     true,
     true,
+    false,
     false,
     false,
     null
@@ -1195,6 +1293,7 @@ export const MissingBankList: BankVo[] = [
     true,
     false,
     false,
+    false,
     null
   ),
   new BankVo(
@@ -1205,6 +1304,7 @@ export const MissingBankList: BankVo[] = [
     false,
     true,
     true,
+    false,
     false,
     false,
     null
@@ -1219,6 +1319,7 @@ export const MissingBankList: BankVo[] = [
     true,
     false,
     false,
+    false,
     null
   ),
   new BankVo(
@@ -1229,6 +1330,7 @@ export const MissingBankList: BankVo[] = [
     false,
     true,
     true,
+    false,
     false,
     false,
     null
@@ -1243,6 +1345,7 @@ export const MissingBankList: BankVo[] = [
     true,
     false,
     false,
+    false,
     null
   ),
   new BankVo(
@@ -1253,6 +1356,7 @@ export const MissingBankList: BankVo[] = [
     false,
     true,
     true,
+    false,
     false,
     false,
     null
@@ -1267,6 +1371,7 @@ export const MissingBankList: BankVo[] = [
     true,
     false,
     false,
+    false,
     null
   ),
   new BankVo(
@@ -1279,6 +1384,7 @@ export const MissingBankList: BankVo[] = [
     false,
     false,
     true,
+    true,
     null
   ),
   new BankVo(
@@ -1289,6 +1395,7 @@ export const MissingBankList: BankVo[] = [
     false,
     true,
     true,
+    false,
     false,
     false,
     null
@@ -1303,6 +1410,7 @@ export const MissingBankList: BankVo[] = [
     true,
     false,
     false,
+    false,
     null
   ),
   new BankVo(
@@ -1313,6 +1421,7 @@ export const MissingBankList: BankVo[] = [
     false,
     true,
     true,
+    false,
     false,
     false,
     null
@@ -1327,6 +1436,7 @@ export const MissingBankList: BankVo[] = [
     true,
     false,
     false,
+    false,
     null
   ),
   new BankVo(
@@ -1337,6 +1447,7 @@ export const MissingBankList: BankVo[] = [
     false,
     true,
     true,
+    false,
     false,
     false,
     null
@@ -1351,6 +1462,7 @@ export const MissingBankList: BankVo[] = [
     true,
     false,
     false,
+    false,
     null
   ),
   new BankVo(
@@ -1361,6 +1473,7 @@ export const MissingBankList: BankVo[] = [
     false,
     true,
     true,
+    false,
     false,
     false,
     null
@@ -1375,6 +1488,7 @@ export const MissingBankList: BankVo[] = [
     true,
     false,
     false,
+    false,
     null
   ),
   new BankVo(
@@ -1385,6 +1499,7 @@ export const MissingBankList: BankVo[] = [
     false,
     true,
     true,
+    false,
     false,
     false,
     null
@@ -1399,6 +1514,7 @@ export const MissingBankList: BankVo[] = [
     false,
     false,
     true,
+    true,
     null
   ),
   new BankVo(
@@ -1409,6 +1525,7 @@ export const MissingBankList: BankVo[] = [
     false,
     true,
     true,
+    false,
     false,
     false,
     null
@@ -1423,6 +1540,7 @@ export const MissingBankList: BankVo[] = [
     false,
     false,
     true,
+    true,
     null
   ),
   new BankVo(
@@ -1433,6 +1551,7 @@ export const MissingBankList: BankVo[] = [
     false,
     true,
     true,
+    false,
     false,
     false,
     null
@@ -1447,6 +1566,7 @@ export const MissingBankList: BankVo[] = [
     true,
     false,
     false,
+    false,
     null
   ),
   new BankVo(
@@ -1457,6 +1577,7 @@ export const MissingBankList: BankVo[] = [
     false,
     true,
     true,
+    false,
     false,
     false,
     null
@@ -1471,6 +1592,7 @@ export const MissingBankList: BankVo[] = [
     true,
     false,
     false,
+    false,
     null
   ),
   new BankVo(
@@ -1481,6 +1603,7 @@ export const MissingBankList: BankVo[] = [
     false,
     true,
     true,
+    false,
     false,
     false,
     null
@@ -1495,6 +1618,7 @@ export const MissingBankList: BankVo[] = [
     true,
     false,
     false,
+    false,
     null
   ),
   new BankVo(
@@ -1505,6 +1629,7 @@ export const MissingBankList: BankVo[] = [
     false,
     true,
     true,
+    false,
     false,
     false,
     null
@@ -1519,6 +1644,7 @@ export const MissingBankList: BankVo[] = [
     true,
     false,
     false,
+    false,
     null
   ),
   new BankVo(
@@ -1529,6 +1655,7 @@ export const MissingBankList: BankVo[] = [
     false,
     true,
     true,
+    false,
     false,
     false,
     null
@@ -1543,6 +1670,7 @@ export const MissingBankList: BankVo[] = [
     true,
     false,
     false,
+    false,
     null
   ),
   new BankVo(
@@ -1553,6 +1681,7 @@ export const MissingBankList: BankVo[] = [
     false,
     true,
     true,
+    false,
     false,
     false,
     null
@@ -1567,6 +1696,7 @@ export const MissingBankList: BankVo[] = [
     true,
     false,
     false,
+    false,
     null
   ),
   new BankVo(
@@ -1577,6 +1707,7 @@ export const MissingBankList: BankVo[] = [
     false,
     true,
     true,
+    false,
     false,
     false,
     null
@@ -1591,6 +1722,7 @@ export const TinkBanks: BankVo[] = [
     null,
     false,
     true,
+    false,
     false,
     false,
     false,
@@ -1610,6 +1742,7 @@ export const LegacyBanks: BankVo[] = [
     false,
     false,
     false,
+    false,
     'https://skuesparebank.no/aktuelt/bankid-paa-mobil'
   ),
   new BankVo(
@@ -1622,6 +1755,7 @@ export const LegacyBanks: BankVo[] = [
     false,
     false,
     false,
+    false,
     'https://68nord.no//aktuelt/bankid-paa-mobil'
   ),
   new BankVo(
@@ -1631,6 +1765,7 @@ export const LegacyBanks: BankVo[] = [
     null,
     true,
     true,
+    false,
     false,
     false,
     false,

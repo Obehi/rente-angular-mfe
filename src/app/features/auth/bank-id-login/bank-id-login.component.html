@@ -21,7 +21,7 @@
 
     <div></div>
 
-    <div *ngIf="!newClient" class="text-box">
+    <div *ngIf="newClient === false" class="text-box">
       <h2>Velkommen tilbake</h2>
       <p class="wide-text" *ngIf="!oldUserNewLoan">
         Du er allerede registrert. Sjekk om lånedetaljene dine fortsatt stemmer
@@ -33,8 +33,9 @@
       </p>
     </div>
 
+    <!-- OldUsers has loan form only-->
     <form
-      *ngIf="!newClient"
+      *ngIf="newClient === false"
       [formGroup]="loanFormGroup"
       novalidate
       class="loan-form"
@@ -118,7 +119,7 @@
           <mat-icon>help</mat-icon>
         </div>
 
-        <div *ngIf="bank?.isSigniCat" class="field left">
+        <div *ngIf="bank?.hasFixedLoans === false" class="field left">
           <rente-input
             [placeholder]="'Faste gebyrer'"
             [type]="'tel'"
@@ -141,7 +142,7 @@
           </div>
         </div>
 
-        <div *ngIf="bank?.isSigniCat" class="field left">
+        <div *ngIf="bank?.hasFixedLoans === false" class="field left">
           <rente-input
             [placeholder]="'Nominell rente'"
             [type]="'tel'"
@@ -183,7 +184,7 @@
           </mat-form-field>
         </div>
 
-        <div class="field left">
+        <div *ngIf="bank?.hasFixedLoans === false" class="field left">
           <mat-form-field appearance="fill">
             <mat-label>Lånetype</mat-label>
             <mat-select
@@ -201,8 +202,10 @@
         </div>
       </div>
     </form>
+    <!-- End OldUsers loan form -->
 
-    <div class="new-client-form" *ngIf="showForms">
+    <!-- New users has many forms-->
+    <div class="new-client-form" *ngIf="newClient === true">
       <div class="header-wrapper">
         <rente-flow-header
           class="flow-header"
@@ -215,6 +218,7 @@
 
       <div class="stepper-wrapper">
         <mat-horizontal-stepper class="stepper" [linear]="false" #stepper>
+          <!-- New users emailFormGroup-->
           <mat-step [stepControl]="emailFormGroup" [editable]="true">
             <div class="text-box">
               <h2>Velkommen!</h2>
@@ -255,15 +259,10 @@
                 </div>
               </div>
 
-              <div class="buttons">
-                <!--                         <rente-button matStepperNext color="primary" [isLoading]="isLoading"
-                            [disabled]="emailFormGroup?.invalid || isLoading">
-                            Neste
-                        </rente-button> -->
-              </div>
+              <div class="buttons"></div>
             </form>
           </mat-step>
-
+          <!-- New users userFormGroup-->
           <mat-step [stepControl]="userFormGroup" [editable]="true">
             <form
               *ngIf="showManualInputForm === true"
@@ -458,9 +457,10 @@
               </div>
             </form>
           </mat-step>
+          <!-- New users loanFormGroup-->
           <mat-step [editable]="true">
             <form
-              *ngIf="showForms"
+              *ngIf="newClient === true"
               [formGroup]="loanFormGroup"
               novalidate
               (ngSubmit)="next()"
@@ -554,6 +554,64 @@
                   <mat-icon>help</mat-icon>
                 </div>
 
+                <div *ngIf="bank?.hasFixedLoans === false" class="field left">
+                  <rente-input
+                    [placeholder]="'Faste gebyrer'"
+                    [type]="'tel'"
+                    [maskType]="mask.currency"
+                    matSuffix="kr"
+                    formControlName="fee"
+                    [errorStateMatcher]="
+                      isErrorState(loanFormGroup?.controls['fee'])
+                    "
+                  >
+                  </rente-input>
+
+                  <div
+                    *ngIf="loanFormGroup?.controls['outstandingDebt'].touched"
+                  >
+                    <p
+                      class="error small"
+                      *ngIf="
+                        loanFormGroup?.controls['outstandingDebt'].hasError(
+                          'required'
+                        )
+                      "
+                    >
+                      Kan ikke være tom
+                    </p>
+                  </div>
+                </div>
+
+                <div *ngIf="bank?.hasFixedLoans === false" class="field left">
+                  <rente-input
+                    [placeholder]="'Nominell rente'"
+                    [type]="'tel'"
+                    matSuffix="%"
+                    [maxLength]="3"
+                    formControlName="interestRate"
+                    [errorStateMatcher]="
+                      isErrorState(loanFormGroup?.controls['remainingYears'])
+                    "
+                  >
+                  </rente-input>
+
+                  <div
+                    *ngIf="loanFormGroup?.controls['remainingYears'].touched"
+                  >
+                    <p
+                      class="error small"
+                      *ngIf="
+                        loanFormGroup?.controls['remainingYears'].hasError(
+                          'required'
+                        )
+                      "
+                    >
+                      Kan ikke være tom
+                    </p>
+                  </div>
+                </div>
+
                 <div class="field left">
                   <mat-form-field appearance="fill">
                     <mat-label>Lånetype</mat-label>
@@ -570,12 +628,30 @@
                     </mat-select>
                   </mat-form-field>
                 </div>
+
+                <div *ngIf="bank?.hasFixedLoans === false" class="field left">
+                  <mat-form-field appearance="fill">
+                    <mat-label>Lånetype</mat-label>
+                    <mat-select
+                      [compareWith]="matSelectLoanTypeCompare"
+                      formControlName="loanTypeOption"
+                    >
+                      <mat-option
+                        *ngFor="let option of loanTypeOptions"
+                        [value]="option"
+                      >
+                        {{ option.name }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
               </div>
             </form>
           </mat-step>
+          <!-- New users membershipFormGroup-->
           <mat-step [stepControl]="membershipFormGroup" [editable]="true">
             <form
-              *ngIf="showForms"
+              *ngIf="newClient === true"
               [formGroup]="membershipFormGroup"
               novalidate
               (ngSubmit)="newUserFinished()"
@@ -638,7 +714,7 @@
 
     <div class="bottom">
       <rente-button
-        *ngIf="!newClient"
+        *ngIf="newClient === false"
         class="right"
         (click)="oldUserFinished()"
         color="primary"
@@ -649,9 +725,7 @@
       </rente-button>
 
       <div
-        *ngIf="
-          showForms === true && newClient === true && stepper !== undefined
-        "
+        *ngIf="newClient === true && stepper !== undefined"
         [ngSwitch]="stepper.selectedIndex"
       >
         <div *ngSwitchCase="0">
