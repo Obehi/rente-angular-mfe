@@ -315,7 +315,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     this.isLoading = true;
 
     const request =
-      this.newClient === true
+      this.responseStatus.newLoan === true
         ? this.loanService.CreateSignicatLoansInfo([SignicatLoanInfoDto])
         : this.loanService.UpdateSignicatLoansInfo([SignicatLoanInfoDto]);
 
@@ -470,10 +470,6 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
         };
       });
 
-      const selectedOption = this.productIdOptions.filter((item) => {
-        return item.value === firstLoan.productId;
-      })[0];
-
       const selectedloanTypeOption = this.loanTypeOptions.filter((item) => {
         return item.value === firstLoan.loanType;
       })[0];
@@ -484,7 +480,6 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
           firstLoan.remainingYears as number,
           [Validators.max(100)]
         ],
-        loanType: [selectedOption ?? null, Validators.required],
         loanTypeOption: [selectedloanTypeOption ?? null, Validators.required]
       });
 
@@ -502,7 +497,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
 
         this.loanFormGroup?.addControl(
           'fee',
-          new FormControl(firstLoan.fee, Validators.required)
+          new FormControl(firstLoan.fee ?? '50', Validators.required)
         );
       }
 
@@ -532,7 +527,6 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
       this.loanFormGroup = this.fb.group({
         outstandingDebt: ['', Validators.required],
         remainingYears: ['', [Validators.max(100)]],
-        loanType: [null, Validators.required],
         loanTypeOption: [null, Validators.required]
       });
       this.loanFormGroup?.addControl(
@@ -548,7 +542,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
 
       this.loanFormGroup?.addControl(
         'fee',
-        new FormControl('', Validators.required)
+        new FormControl('50', Validators.required)
       );
 
       this.newClient = this.responseStatus.newClient;
@@ -578,10 +572,6 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
           };
         });
 
-        const selectedOption = this.productIdOptions.filter((item) => {
-          return item.value === firstLoan.productId;
-        })[0];
-
         const selectedLoanTypeOption = this.loanTypeOptions.filter((item) => {
           return item.value === firstLoan.loanType;
         })[0];
@@ -592,7 +582,6 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
             Math.round(firstLoan.remainingYears),
             [Validators.max(100)]
           ],
-          loanType: [selectedOption ?? null, Validators.required],
           loanTypeOptions: [selectedLoanTypeOption ?? null, Validators.required]
         });
 
@@ -700,10 +689,6 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
 
     signicatLoanInfoDto.loanType = String(
       this.loanFormGroup?.get('loanTypeOption')?.value.value
-    );
-
-    signicatLoanInfoDto.productId = String(
-      this.loanFormGroup?.get('loanType')?.value.value
     );
 
     if (signicatLoanInfoDto.loanType === 'DOWNPAYMENT_REGULAR_LOAN') {

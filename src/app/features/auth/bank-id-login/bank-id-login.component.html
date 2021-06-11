@@ -19,7 +19,7 @@
       ></iframe>
     </div>
 
-    <div></div>
+    <!--  <div></div> -->
 
     <div *ngIf="newClient === false" class="text-box">
       <h2>Velkommen tilbake</h2>
@@ -145,7 +145,6 @@
         <div *ngIf="bank?.hasFixedLoans === false" class="field left">
           <rente-input
             [placeholder]="'Nominell rente'"
-            [type]="'tel'"
             matSuffix="%"
             [maxLength]="3"
             formControlName="interestRate"
@@ -167,7 +166,7 @@
           </div>
         </div>
 
-        <div class="field left">
+        <div *ngIf="bank?.hasFixedLoans === true" class="field left">
           <mat-form-field appearance="fill">
             <mat-label>Lånetype</mat-label>
             <mat-select
@@ -586,7 +585,6 @@
                 <div *ngIf="bank?.hasFixedLoans === false" class="field left">
                   <rente-input
                     [placeholder]="'Nominell rente'"
-                    [type]="'tel'"
                     matSuffix="%"
                     [maxLength]="3"
                     formControlName="interestRate"
@@ -612,7 +610,7 @@
                   </div>
                 </div>
 
-                <div class="field left">
+                <div *ngIf="bank?.hasFixedLoans === true" class="field left">
                   <mat-form-field appearance="fill">
                     <mat-label>Lånetype</mat-label>
                     <mat-select
