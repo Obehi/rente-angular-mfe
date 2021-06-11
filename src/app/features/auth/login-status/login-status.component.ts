@@ -584,6 +584,12 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
             this.loginStep1Status = MESSAGE_STATUS.ERROR;
             this.unsubscribeEverything();
             break;
+          case BANKID_STATUS.BID_C325:
+            this.viewStatus.isErrorBIDC325 = true;
+            this.loginStep1Status = MESSAGE_STATUS.ERROR;
+            this.unsubscribeEverything();
+            break;
+
           case BANKID_STATUS.NO_LOANS:
             this.logging.logger(
               this.logging.Level.Info,

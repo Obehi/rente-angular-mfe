@@ -2,33 +2,47 @@
   <iframe [src]="tinkUrl"></iframe>
 </div>
 
-
 <div *ngIf="!isTinkBank" class="login-status">
-
   <img *ngIf="bank" [src]="bankLogo" [alt]="bank.label" [title]="bank.label" />
 
-  <div style="height: 42px; margin: 10px 0;">
-    <h3 i18n=“login|reference@@login” *ngIf="isShowPassPhrase && !viewStatus.isCrawlerError">Din referanse:</h3>
-    <h3 *ngIf="isShowPassPhrase && !viewStatus.isCrawlerError">{{passPhrase}}</h3>
+  <div style="height: 42px; margin: 10px 0">
+    <h3
+      i18n="“login|reference@@login”"
+      *ngIf="isShowPassPhrase && !viewStatus.isCrawlerError"
+    >
+      Din referanse:
+    </h3>
+    <h3 *ngIf="isShowPassPhrase && !viewStatus.isCrawlerError">
+      {{ passPhrase }}
+    </h3>
   </div>
-
 
   <!-- STEP 1 -->
   <rente-status-message [status]="loginStep1Status" [step]="1">
-
     <!-- STEP 1: PROCESSING -->
-    <span i18n=“pre-login|reference@@login” *ngIf="isStep1InProgress || isStep1Success">
+    <span
+      i18n="“pre-login|reference@@login”"
+      *ngIf="isStep1InProgress || isStep1Success"
+    >
       Forbereder identifisering <br />
-      <span *ngIf="viewStatus.isProcessStarted &&
+      <span
+        *ngIf="
+          viewStatus.isProcessStarted &&
           !viewStatus.isCrawlerError &&
           isShowTimer &&
-          !firstStepTimerFinished">
+          !firstStepTimerFinished
+        "
+      >
         (tar cirka {{ firstStepTimer }} sekunder)
       </span>
-      <span *ngIf="viewStatus.isProcessStarted &&
+      <span
+        *ngIf="
+          viewStatus.isProcessStarted &&
           !viewStatus.isCrawlerError &&
           isShowTimer &&
-          firstStepTimerFinished">
+          firstStepTimerFinished
+        "
+      >
         (Litt til, straks ferdig)
       </span>
     </span>
@@ -37,124 +51,204 @@
     <div *ngIf="isStep1Error">
       <!-- NOT VALID DATA PROVIDED ERROR -->
       <div *ngIf="viewStatus.isNotValidDataProvided">
-        <span i18n=“control|login@@login.control” *ngIf="bank.loginWithSsn">
-          Kontroller at du har oppgitt riktig fødselsnummer og mobilnummer.
-          Du må ha bestilt og aktivert BankID på Mobil for å logge inn.
-          Les hvordan du <a href="{{bank.mobileUrl}}" target="_blank">aktiverer BankID på Mobil her</a>.
+        <span i18n="“control|login@@login.control”" *ngIf="bank.loginWithSsn">
+          Kontroller at du har oppgitt riktig fødselsnummer og mobilnummer. Du
+          må ha bestilt og aktivert BankID på Mobil for å logge inn. Les hvordan
+          du
+          <a href="{{ bank.mobileUrl }}" target="_blank"
+            >aktiverer BankID på Mobil her</a
+          >.
         </span>
-        <span i18n=“control2|login@@login.control2” *ngIf="!bank.loginWithSsn">
-          Kontroller at du har oppgitt riktig fødselsdato og mobilnummer.
-          Du må ha bestilt og aktivert BankID på Mobil for å logge inn.
-          Les hvordan du <a href="{{bank.mobileUrl}}" target="_blank">aktiverer BankID på Mobil her</a>.
+        <span
+          i18n="“control2|login@@login.control2”"
+          *ngIf="!bank.loginWithSsn && !viewStatus.isErrorBIDC325"
+        >
+          Kontroller at du har oppgitt riktig fødselsdato og mobilnummer. Du må
+          ha bestilt og aktivert BankID på Mobil for å logge inn. Les hvordan du
+          <a href="{{ bank.mobileUrl }}" target="_blank"
+            >aktiverer BankID på Mobil her</a
+          >.
         </span>
       </div>
       <!-- BANK ERROR -->
-      <span i18n=“tech-error|login@@login.error” *ngIf="viewStatus.isBankError">
-        Banken din har dessverre tekniske problemer. Vennligst prøv igjen senere.
+      <span
+        i18n="“tech-error|login@@login.error”"
+        *ngIf="viewStatus.isBankError"
+      >
+        Banken din har dessverre tekniske problemer. Vennligst prøv igjen
+        senere.
       </span>
-      <span i18n=“control-error|login@@login.error3” *ngIf="viewStatus.isErrorBIDC167">
-        Feilkode BID-C167: Det kan skje hvis du for eksempel har endret abonnementet,
-        byttet SIM-kort eller mobiltelefon. Du løser det ved å logge deg inn i nettbanken
-        bestille BankID på mobil på nytt.
+      <span
+        i18n="“control-error|login@@login.error3”"
+        *ngIf="viewStatus.isErrorBIDC167"
+      >
+        Feilkode BID-C167: Det kan skje hvis du for eksempel har endret
+        abonnementet, byttet SIM-kort eller mobiltelefon. Du løser det ved å
+        logge deg inn i nettbanken bestille BankID på mobil på nytt.
       </span>
 
-      <span i18n=“bank-id|login@@login.error.bankId” *ngIf="viewStatus.isBankIdUnstable">
+      <span
+        i18n="“control-error|login@@login.error4”"
+        *ngIf="viewStatus.isErrorBIDC325"
+      >
+        Det har skjedd en feil i tilkobling mellom teleoperatøren og din
+        telefon. Vent litt og prøv igjen senere.
+      </span>
+
+      <span
+        i18n="“bank-id|login@@login.error.bankId”"
+        *ngIf="viewStatus.isBankIdUnstable"
+      >
         BankID på Mobil er for tiden ustabil. Vennligst prøv igjen senere
       </span>
-
-
     </div>
-
   </rente-status-message>
 
   <!-- STEP 2 -->
   <rente-status-message [status]="loginStep2Status" [step]="2">
-
     <!-- STEP 1: NOT STARTED -->
-    <span i18n=“control-confirm|login@@login.confirmation” *ngIf="!passPhrase">
+    <span
+      i18n="“control-confirm|login@@login.confirmation”"
+      *ngIf="!passPhrase"
+    >
       Bekreft BankID på mobil
     </span>
 
     <!-- STEP 2: IN PROGRESS -->
     <div *ngIf="isStep2InProgress">
-      <span i18n=“instructions|login@@login.instructions”
-        *ngIf="passPhrase && !viewStatus.isPassphraseConfirmFail && !viewStatus.isPassphraseConfirmSuccess">
+      <span
+        i18n="“instructions|login@@login.instructions”"
+        *ngIf="
+          passPhrase &&
+          !viewStatus.isPassphraseConfirmFail &&
+          !viewStatus.isPassphraseConfirmSuccess
+        "
+      >
         Vennligst følg instruksjonen på mobilen
       </span>
     </div>
 
     <!-- STEP 2: ERROR -->
     <div *ngIf="isStep2Error">
-      <span i18n=“fault-attempt|login@@login.fault” *ngIf="viewStatus.isPassphraseConfirmFail">
-        Vi fikk ikke bekreftet BankID referansen fra din mobiltelefon. Vennligst prøv igjen.
+      <span
+        i18n="“fault-attempt|login@@login.fault”"
+        *ngIf="viewStatus.isPassphraseConfirmFail"
+      >
+        Vi fikk ikke bekreftet BankID referansen fra din mobiltelefon. Vennligst
+        prøv igjen.
       </span>
-      <span i18n=“fault-bank|login@@login.fault.bank” *ngIf="viewStatus.isBankError">
-        Banken din har dessverre tekniske problemer. Vennligst prøv igjen senere.
+      <span
+        i18n="“fault-bank|login@@login.fault.bank”"
+        *ngIf="viewStatus.isBankError"
+      >
+        Banken din har dessverre tekniske problemer. Vennligst prøv igjen
+        senere.
       </span>
     </div>
 
     <!-- STEP 2: SUCCESS -->
     <div *ngIf="isStep2Success">
-      <span i18n=“confirm|login@@login.confirmation.bankId” *ngIf="viewStatus.isPassphraseConfirmSuccess">
+      <span
+        i18n="“confirm|login@@login.confirmation.bankId”"
+        *ngIf="viewStatus.isPassphraseConfirmSuccess"
+      >
         BankID bekreftet
       </span>
     </div>
-
   </rente-status-message>
 
   <!-- STEP 3 -->
   <rente-status-message [status]="loginStep3Status" [step]="3">
-
     <!-- STEP 3: NOT STARTED -->
-    <span i18n=“title-gather|login@@login.title.step3”
-      *ngIf="!viewStatus.isPassphraseConfirmSuccess && !viewStatus.isCrawlerError">
+    <span
+      i18n="“title-gather|login@@login.title.step3”"
+      *ngIf="
+        !viewStatus.isPassphraseConfirmSuccess && !viewStatus.isCrawlerError
+      "
+    >
       Hent rente og lånedata
     </span>
 
     <!-- STEP 3: IN PROGRESS -->
     <div *ngIf="isStep3InProgress">
       <div *ngIf="!isAccountSelection">
-        <div i18n=“on-going-gather|login@@login.title.step.onGoing”>Vi henter din rente og låneinformasjon</div>
-        <div i18n=“timer|login@@login.timer” *ngIf="!timerExceeded">
+        <div i18n="“on-going-gather|login@@login.title.step.onGoing”">
+          Vi henter din rente og låneinformasjon
+        </div>
+        <div i18n="“timer|login@@login.timer”" *ngIf="!timerExceeded">
           (tar cirka {{ thirdStepTimer }} sekunder)
         </div>
-        <div i18n=“timer-done|login@@login.timer2” *ngIf="timerExceeded">(Litt til, straks ferdig)</div>
+        <div i18n="“timer-done|login@@login.timer2”" *ngIf="timerExceeded">
+          (Litt til, straks ferdig)
+        </div>
       </div>
       <!-- SHOW ACCOUNT SELECTION -->
       <div *ngIf="isAccountSelection">
-        <div i18n=“account-pick|login@@login.account”>Vennligst velg konto:</div>
-        <div *ngFor="let accountName of accounts" class="account-select-item" (click)="selectAccount(accountName)">
-          {{accountName}}
+        <div i18n="“account-pick|login@@login.account”">
+          Vennligst velg konto:
+        </div>
+        <div
+          *ngFor="let accountName of accounts"
+          class="account-select-item"
+          (click)="selectAccount(accountName)"
+        >
+          {{ accountName }}
         </div>
       </div>
     </div>
 
     <!-- STEP 3: ERROR -->
     <div *ngIf="isStep3Error">
-      <span i18n=“error-bank|login@@login.error.missingCustomer” *ngIf="viewStatus.isNotBankCustomer">
-        Vi får beskjed om at du ikke er kunde i banken. Har du valgt riktig bank?
+      <span
+        i18n="“error-bank|login@@login.error.missingCustomer”"
+        *ngIf="viewStatus.isNotBankCustomer"
+      >
+        Vi får beskjed om at du ikke er kunde i banken. Har du valgt riktig
+        bank?
       </span>
-      <span i18n=“error-bank|login@@login.error.missingUpdate” *ngIf="viewStatus.isConfirmationRequired">
-        Banken din krever at du oppdaterer informasjon i nettbanken din.
-        Du må logge inn i nettbanken din og oppdatere/bekrefte informasjon før du kan benytte Renteradar.
+      <span
+        i18n="“error-bank|login@@login.error.missingUpdate”"
+        *ngIf="viewStatus.isConfirmationRequired"
+      >
+        Banken din krever at du oppdaterer informasjon i nettbanken din. Du må
+        logge inn i nettbanken din og oppdatere/bekrefte informasjon før du kan
+        benytte Renteradar.
       </span>
-      <span i18n=“error-bank|login@@login.error.missingBankId” *ngIf="viewStatus.isRenewBankIdRequired">
-        Du må fornye din BankID. Du kan gjøre dette ved å logge inn i din nettbank fra PC (ikke mobil)
+      <span
+        i18n="“error-bank|login@@login.error.missingBankId”"
+        *ngIf="viewStatus.isRenewBankIdRequired"
+      >
+        Du må fornye din BankID. Du kan gjøre dette ved å logge inn i din
+        nettbank fra PC (ikke mobil)
       </span>
-      <span i18n=“error-collection|login@@login.error.wrongCollection” *ngIf="viewStatus.isCrawlerError">
-        Det oppstod en feil under henting av dine lånedetaljer, vennligst prøv igjen senere.
+      <span
+        i18n="“error-collection|login@@login.error.wrongCollection”"
+        *ngIf="viewStatus.isCrawlerError"
+      >
+        Det oppstod en feil under henting av dine lånedetaljer, vennligst prøv
+        igjen senere.
       </span>
-      <span i18n=“error-account|login@@login.error.slow” *ngIf="viewStatus.isSelectUserAccountTimeout">
+      <span
+        i18n="“error-account|login@@login.error.slow”"
+        *ngIf="viewStatus.isSelectUserAccountTimeout"
+      >
         Du valgte ikke konto innen 60 sekunder. Du må logge inn igjen.
       </span>
-      <span i18n=“error-tech|login@@login.error.technological” *ngIf="viewStatus.isBankError">
-        Banken din har dessverre tekniske problemer. Vennligst prøv igjen senere.
+      <span
+        i18n="“error-tech|login@@login.error.technological”"
+        *ngIf="viewStatus.isBankError"
+      >
+        Banken din har dessverre tekniske problemer. Vennligst prøv igjen
+        senere.
       </span>
     </div>
-
   </rente-status-message>
 
-  <rente-button i18n=“try-again|login@@login.error.tryAgain” color="primary" [type]="'stroked'" *ngIf="
+  <rente-button
+    i18n="“try-again|login@@login.error.tryAgain”"
+    color="primary"
+    [type]="'stroked'"
+    *ngIf="
       viewStatus.isRenewBankId ||
       viewStatus.isConfirmationRequired ||
       viewStatus.isNotValidDataProvided ||
@@ -163,8 +257,10 @@
       viewStatus.isTimedOut ||
       viewStatus.isSelectUserAccountTimeout ||
       viewStatus.isBankError ||
-      isNotSB1customer" (click)="returnToInput()">
+      isNotSB1customer
+    "
+    (click)="returnToInput()"
+  >
     Prøv igjen
   </rente-button>
-
 </div>
