@@ -146,7 +146,7 @@
           <rente-input
             [placeholder]="'Nominell rente'"
             matSuffix="%"
-            [maxLength]="3"
+            [maxLength]="5"
             formControlName="interestRate"
             [errorStateMatcher]="
               isErrorState(loanFormGroup?.controls['remainingYears'])
@@ -586,7 +586,7 @@
                   <rente-input
                     [placeholder]="'Nominell rente'"
                     matSuffix="%"
-                    [maxLength]="3"
+                    [maxLength]="5"
                     formControlName="interestRate"
                     [errorStateMatcher]="
                       isErrorState(loanFormGroup?.controls['remainingYears'])
