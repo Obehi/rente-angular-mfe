@@ -102,8 +102,12 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
   public newClient: boolean | null;
   public showManualInputForm = false;
   private routeSubscription: Subscription;
-  signicatIframeUrl?: SafeResourceUrl | null;
+  public signicatIframeUrl?: SafeResourceUrl | null;
   public oldUserNewLoan = false;
+  
+  get isMobile(): boolean {
+    return window.innerWidth < 600;
+  }
 
   constructor(
     private authService: AuthService,
@@ -463,7 +467,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
       const firstLoan = signicatLoansInfo[0];
 
       this.loanId = firstLoan.id;
-      this.productIdOptions = (offerBanks.offers as any[]).map((offer) => {
+      this.productIdOptions = (offerBanks.offers as any[]).map((offer) => {˜
         return {
           name: offer.name,
           value: offer.id
@@ -715,7 +719,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     }
 
     signicatLoanInfoDto.nominalInterestRate = Number(
-      parseFloat(rateString).toFixed(2)
+      parseFloat(rateString).toFixed(3)
     );
 
     signicatLoanInfoDto.outstandingDebt =
