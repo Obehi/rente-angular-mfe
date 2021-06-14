@@ -243,8 +243,6 @@ export class VirdiStatisticsComponent implements OnInit {
               if (index >= 39) {
                 throw BreakException;
               } else {
-                console.log('dates', element.date.split('-', 1)[0]);
-
                 this.lineChartOptions.xAxis.categories.unshift(
                   element.date.split('-', 1)[0]
                 );

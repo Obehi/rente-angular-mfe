@@ -101,6 +101,21 @@ export class GenericHttpService {
       .pipe(catchError((error) => this.handleError(error)));
   }
 
+  public postWithParams(path: string, searchParams: any): Observable<any> {
+    const fullPath = `${this.apiUrl}${path}`;
+    const params: HttpParams = new HttpParams({ fromObject: searchParams });
+
+    const httpOptions = {
+      headers: this.shapeHeaders(),
+      withCredentials: true,
+      params: params
+    };
+
+    return this.http
+      .post(fullPath, null, httpOptions)
+      .pipe(catchError((error) => this.handleError(error)));
+  }
+
   public del(path: string): Observable<any> {
     const fullPath = `${this.apiUrl}${path}`;
 

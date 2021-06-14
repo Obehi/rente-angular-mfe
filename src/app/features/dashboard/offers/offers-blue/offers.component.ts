@@ -133,7 +133,6 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
   }
 
   public ngOnInit(): void {
-    this.optimizeService.getVariation();
     if (locale.includes('sv')) {
       this.isSweden = true;
     } else {

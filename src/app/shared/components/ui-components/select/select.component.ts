@@ -48,6 +48,7 @@ export class SelectComponent implements ControlValueAccessor {
 
   valueChange(event: any): void {
     this.selectedItem = event;
+    this.selected.emit(event);
     this.propagateChange(this.selectedItem);
   }
 }

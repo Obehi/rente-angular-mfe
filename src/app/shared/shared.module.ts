@@ -45,6 +45,11 @@ import { CustomLangTextService } from '@services/custom-lang-text.service';
 import { ChildDirective } from './directives/child.directive';
 import { CheckboxContainerComponent } from './components/ui-components/checkbox-container/checkbox-container.component';
 import { BarComponent } from './components/ui-components/bar/bar.component';
+import { FlowHeaderComponent } from './components/ui-components/flow-header/flow-header.component';
+import { GenericInfoDialogComponent } from './components/ui-components/dialogs/generic-info-dialog/generic-info-dialog.component';
+import { GenericErrorDialogComponent } from './components/ui-components/dialogs/generic-error-dialog/generic-error-dialog.component';
+import { VirdiErrorChoiceDialogComponent } from './components/ui-components/dialogs/virdi-error-choice-dialog/virdi-error-choice-dialog.component';
+import { LoginTermsDialogV2Component } from './components/ui-components/dialogs/login-terms-dialog-v2/login-terms-dialog-v2.component';
 
 const components = [
   HeaderLangGenericComponent,
@@ -100,7 +105,12 @@ const services = [
     RoundPipe,
     ThousandsSeprator,
     ChildDirective,
-    BarComponent
+    BarComponent,
+    FlowHeaderComponent,
+    GenericInfoDialogComponent,
+    GenericErrorDialogComponent,
+    VirdiErrorChoiceDialogComponent,
+    LoginTermsDialogV2Component
   ],
   exports: [
     ...components,
@@ -109,7 +119,8 @@ const services = [
     ThousandsSeprator,
     ChildDirective,
     ReactiveFormsModule,
-    BarComponent
+    BarComponent,
+    FlowHeaderComponent
   ],
   providers: [...services]
 })

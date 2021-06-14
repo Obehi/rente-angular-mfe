@@ -1,100 +1,313 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
 import {
-  AbstractControl,
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  NgForm,
-  ValidationErrors,
-  ValidatorFn,
-  Validators
-} from '@angular/forms';
-import { MatDialog } from '@angular/material';
-import { DialogInfoServiceComponent } from './dialog-info-service/dialog-info-service.component';
-import { MetaService } from '@services/meta.service';
-import { TitleService } from '@services/title.service';
-import { customMeta } from '../../../config/routes-config';
-import { BankVo, BankUtils } from '@shared/models/bank';
-import { ActivatedRoute, Router } from '@angular/router';
-import { VALIDATION_PATTERN } from '@config/validation-patterns.config';
-import { UserService } from '@services/remote-api/user.service';
-import { Mask } from '@shared/constants/mask';
-import { EMPTY, of, Subscription, timer } from 'rxjs';
-import { debounce } from 'rxjs/operators';
-import { map } from 'rxjs/operators';
-import { EnvService } from '@services/env.service';
-import { ContactService } from '../../../shared/services/remote-api/contact.service';
-import { SnackBarService } from '@services/snackbar.service';
+  Component,
+  ViewChild,
+  OnInit,
+  OnDestroy,
+  HostListener,
+  ElementRef
+} from '@angular/core';
+import { ActivatedRoute, Router, NavigationStart } from '@angular/router';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
+import { LocalStorageService } from '@services/local-storage.service';
+import { AuthService } from '@services/remote-api/auth.service';
+import { Observable, concat, Subscription } from 'rxjs';
+import {
+  startWith,
+  map,
+  tap,
+  retry,
+  debounce,
+  toArray,
+  switchMap,
+  debounceTime
+} from 'rxjs/operators';
+import {
+  MatAutocomplete,
+  MatAutocompleteSelectedEvent,
+  MatDialog
+} from '@angular/material';
+import { VALIDATION_PATTERN } from '@config/validation-patterns.config';
+import { Mask } from '@shared/constants/mask';
+import {
+  AddressCreationDto,
+  ClientUpdateInfo,
+  ConfirmationGetDto,
+  LoansService,
+  MembershipTypeDto
+} from '@services/remote-api/loans.service';
+import { NavigationInterceptionService } from '@services/navigation-interception.service';
+import { MatStepper } from '@angular/material';
+import {
+  FormGroup,
+  FormBuilder,
+  Validators,
+  AbstractControl,
+  FormControl
+} from '@angular/forms';
+import { forkJoin } from 'rxjs';
+import { LoanUpdateInfoDto } from '@shared/models/loans';
+import { LoginService } from '@services/login.service';
+import { BankUtils, BankVo } from '@shared/models/bank';
+import { GenericInfoDialogComponent } from '@shared/components/ui-components/dialogs/generic-info-dialog/generic-info-dialog.component';
+import { VirdiErrorChoiceDialogComponent } from '@shared/components/ui-components/dialogs/virdi-error-choice-dialog/virdi-error-choice-dialog.component';
+import { ROUTES_MAP, ROUTES_MAP_NO } from '@config/routes-config';
+import {
+  ErrorDialogData,
+  GenericErrorDialogComponent
+} from '@shared/components/ui-components/dialogs/generic-error-dialog/generic-error-dialog.component';
+import { ApiError } from '@shared/constants/api-error';
+import { ProfileService } from '@services/remote-api/profile.service';
+import { GlobalStateService } from '@services/global-state.service';
+import { RouteEventsService } from '@services/route-events.service';
+
+import { LoginTermsDialogV2Component } from '@shared/components/ui-components/dialogs/login-terms-dialog-v2/login-terms-dialog-v2.component';
 @Component({
   selector: 'rente-bank-id-login',
   templateUrl: './bank-id-login.component.html',
   styleUrls: ['./bank-id-login.component.scss']
 })
 export class BankIdLoginComponent implements OnInit, OnDestroy {
-  public bankIdForm: FormGroup;
-  public isSsnBankLogin: boolean;
-  public isConfirmed: boolean;
-  public isLoginStarted = false;
-  public isTinkBank = false;
-  public userData: any = {};
-  private routeParamsSub: Subscription;
-  public metaTitle: string;
-  public metaDescription: string;
+  @ViewChild('stepper') stepper: MatStepper;
+  @ViewChild('auto') matAutocomplete: MatAutocomplete;
+  @ViewChild('membershipInput') membershipInput: ElementRef<HTMLInputElement>;
+  eventSubscription;
+  emailFormGroup?: FormGroup;
+  userFormGroup?: FormGroup;
+  loanFormGroup?: FormGroup;
+  membershipFormGroup?: FormGroup;
+  manualPropertyValueFormGroup?: FormGroup;
+  public membershipCtrl = new FormControl();
+  public filteredMemberships: Observable<void | MembershipTypeDto[]>;
+  public memberships: any = [];
+  public allMemberships: MembershipTypeDto[];
+  public showForms = false;
   public mask = Mask;
-  public environment: any;
-  public missingBankForm: FormGroup;
-  public emailError = false;
-  public isLoading: boolean;
-
-  bank: BankVo | null;
+  public isLoading = true;
+  public selectOptions: any;
+  public selectedOffer: string;
+  private bank: string | null;
+  public currentStepperValue = 0;
+  public newClient = true;
+  public showManualInputForm = false;
+  private routeSubscription: Subscription;
+  signicatIframeUrl?: SafeResourceUrl | null;
+  public oldUserNewLoan = false;
 
   constructor(
-    private fb: FormBuilder,
-    private route: ActivatedRoute,
+    private authService: AuthService,
+    private localStorageService: LocalStorageService,
     private router: Router,
     public dialog: MatDialog,
-    private metaService: MetaService,
-    private titleService: TitleService,
-    private userService: UserService,
-    private envService: EnvService,
-    private contactService: ContactService,
-    private snackBar: SnackBarService
-  ) {}
-
-  ngOnInit(): void {
-    this.environment = this.envService.environment;
-    this.routeParamsSub = this.route.params.subscribe((params: any) => {
-      if (params && params.bankName) {
-        const bank = BankUtils.getBankByName(params.bankName);
-        this.bank = bank;
-        this.isSsnBankLogin = bank?.loginWithSsn || false;
-
-        for (const iterator in customMeta) {
-          if (customMeta[iterator].title) {
-            if (params.bankName === customMeta[iterator].bankName) {
-              this.metaTitle = customMeta[iterator].title;
-              this.metaDescription = customMeta[iterator].description;
-            }
-          }
-        }
-
-        this.isDnbBank && this.setupDnbEmailForm();
-        this.changeTitles();
-        this.setBankIdForm();
-
-        if (bank !== null) {
-          this.isTinkBank = bank.isTinkBank;
-        }
-        if (this.isTinkBank) {
-          this.isLoginStarted = true;
-        }
-      }
-    });
+    private navigationInterceptionService: NavigationInterceptionService,
+    private fb: FormBuilder,
+    private loanService: LoansService,
+    private loginService: LoginService,
+    private globalStateService: GlobalStateService,
+    private routeEventsService: RouteEventsService,
+    private sanitizer: DomSanitizer
+  ) {
+    this.setRoutingListeners();
   }
 
-  setupDnbEmailForm(): void {
-    this.missingBankForm = this.fb.group({
+  ngOnInit(): void {
+    this.scrollToTop();
+    this.globalStateService.setFooterState(false);
+  }
+
+  ngOnDestroy(): void {
+    this.routeSubscription.unsubscribe();
+  }
+
+  private setRoutingListeners() {
+    // Prevent user from going back to this form from the dashboard
+    this.routeSubscription = this.routeEventsService.previousRoutePath.subscribe(
+      (previousRoutePath) => {
+        if (
+          !previousRoutePath.includes('bankid-login?status=') &&
+          !previousRoutePath.includes('velgbank') &&
+          !previousRoutePath.includes('bankid-login')
+        ) {
+          this.router.navigate(['/']);
+        }
+      }
+    );
+
+    // Make back button synch with form
+    this.navigationInterceptionService.setBackButtonCallback(() => {
+      if (this.currentStepperValue !== 0) {
+        this.back();
+      } else {
+        this.router.navigate(['/' + ROUTES_MAP.bankSelect]);
+      }
+    });
+
+    // Getting bank name from the bank-select component
+    const bankParam = this.router?.getCurrentNavigation()?.extras?.state?.data;
+    // Checking for null or undefined
+    if (bankParam == null) {
+      this.router.navigate(['/' + ROUTES_MAP.bankSelect]);
+      return;
+    } else {
+      this.bank = bankParam;
+      this.loginBankIdStep1();
+    }
+  }
+
+  getSanatizeIframUrl(url: string): SafeResourceUrl {
+    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
+  }
+
+  // initialize signicat iframe
+  private loginBankIdStep1(): void {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+    this.authService.loginBankIdStep1().subscribe(
+      (response) => {
+        this.signicatIframeUrl = this.getSanatizeIframUrl(response.url);
+        this.isLoading = false;
+      },
+      (error) => {
+        this.showGenericDialog(error);
+      }
+    );
+  }
+
+  // Wait for signicat successfull login with iframe repsonse
+  @HostListener('window:message', ['$event'])
+  onMessage(event) {
+    if (event.origin === 'https://id.idfy.io') {
+      const data = JSON.parse(event.data);
+      if (data.status === 'success') {
+        this.statusSuccess(data.sessionId);
+      }
+    }
+  }
+
+  // Send sessionId to backend and initialize the correct form based on client info
+  private statusSuccess(sessionId: string): void {
+    this.localStorageService;
+    this.bank &&
+      sessionId &&
+      this.authService
+        .loginBankIdStep2(sessionId, this.bank)
+        .pipe(retry(2))
+        .subscribe(
+          (response) => {
+            this.signicatIframeUrl = null;
+
+            this.scrollToTop();
+
+            if (response.newClient === true) {
+              this.loanService.getAllMemberships().subscribe(
+                (onlyMemberships) => {
+                  this.initMemberships(onlyMemberships.memberships);
+                  this.initNewUserForms();
+                  this.isLoading = false;
+                  this.showForms = true;
+                  this.newClient = true;
+                },
+                (error) => {
+                  this.showForms = false;
+                  this.showGenericDialog(error);
+                }
+              );
+            } else {
+              this.initLoansForm(response);
+            }
+          },
+          (error) => {
+            this.showGenericDialog(error);
+          }
+        );
+  }
+
+  public newUserFinished(): void {
+    const loanUpdateInfoDto = this.loanUpdateInfoDto;
+    const clientDto = this.clientUpdateInfo;
+
+    if (this.showManualInputForm) {
+      clientDto.address.apartmentValue = this.manualPropertyValue;
+    }
+    this.isLoading = true;
+
+    const userMemberships = {
+      memberships: clientDto.memberships
+    };
+    clientDto.memberships = [];
+    concat(
+      this.loanService.updateClientInfo(clientDto),
+      this.loanService.updateLoanUserInfo(loanUpdateInfoDto),
+      this.loanService.setUsersMemberships(userMemberships)
+    )
+      .pipe(toArray())
+      .subscribe(
+        (_) => {
+          this.isLoading = false;
+
+          if (this.bank !== null) {
+            this.bank && this.loginService.loginWithBankAndToken();
+          } else {
+            // handle state as error
+
+            this.showGenericDialog();
+            this.isLoading = false;
+          }
+        },
+        (error) => {
+          if (error.errorType === ApiError.virdiSerachNotFound) {
+            const dialogData = {
+              header: 'Ops, noe gikk visst galt',
+              confirmText: 'Prøv igjen',
+              cancelText: 'Avbryt',
+
+              onConfirm: () => {
+                this.loanFormGroup?.reset();
+                this.userFormGroup?.reset();
+                this.membershipFormGroup?.reset();
+                this.membershipFormGroup?.reset();
+                this.stepper.selectedIndex = 0;
+                this.currentStepperValue = 0;
+              }
+            };
+          } else {
+            this.showGenericDialog();
+          }
+        }
+      );
+  }
+
+  public oldUserFinished(): void {
+    const loanUpdateInfoDto = this.loanUpdateInfoDto;
+    this.isLoading = true;
+    this.loanService.updateLoanUserInfo(loanUpdateInfoDto).subscribe(
+      (result) => {
+        this.isLoading = false;
+        this.bank && this.loginService.loginWithBankAndToken();
+      },
+      (error) => {
+        this.showGenericDialog();
+      }
+    );
+  }
+
+  initMemberships(memberships): void {
+    this.allMemberships = memberships;
+    this.filteredMemberships = this.membershipCtrl.valueChanges.pipe(
+      startWith(null),
+      map((membership: string | null) =>
+        membership ? this.filter(membership) : this.allMemberships.slice()
+      )
+    );
+  }
+
+  initNewUserForms(): void {
+    this.manualPropertyValueFormGroup = this.fb.group({
+      manualPropertyValue: ['', Validators.compose([Validators.required])]
+    });
+    this.emailFormGroup = this.fb.group({
       email: [
         '',
         Validators.compose([
@@ -103,176 +316,327 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
         ])
       ]
     });
-
-    this.missingBankForm
-      .get('email')
-      ?.valueChanges.pipe(
-        debounce(() => {
-          this.emailError = false;
-          return this.inValid() ? timer(2000) : EMPTY;
-        })
-      )
-      .subscribe(() => (this.emailError = this.inValid()));
-  }
-
-  ngOnDestroy(): void {
-    this.routeParamsSub.unsubscribe();
-  }
-
-  get bankLogo(): string {
-    return BankUtils.getBankLogoUrl(this.bank?.name || null);
-  }
-
-  inValid(): boolean {
-    return (
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      this.missingBankForm.get('email')!.hasError('pattern') &&
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      this.missingBankForm.get('email')!.dirty
-    );
-  }
-
-  public request(): void {
-    this.isLoading = true;
-
-    const missingBankData = {
-      email: this.missingBankForm.value.email,
-      bank: 'DNB'
-    };
-
-    if (!missingBankData.bank) {
-      missingBankData.bank = this.missingBankForm.value.bank;
-    }
-
-    this.contactService.sendMissingBank(missingBankData).subscribe(
-      (_) => {
-        this.isLoading = false;
-        this.router.navigate(['/']);
-        this.snackBar.openSuccessSnackBar(
-          'Du får beskjed når din bank er tilgjengelig',
-          1.2
-        );
-      },
-      (err) => {
-        this.isLoading = false;
-      }
-    );
-  }
-
-  public startLogin(formData): void {
-    this.userData = formData;
-    for (const key in this.userData) {
-      // remove everything except numbers
-      if (typeof this.userData[key] === 'string') {
-        this.userData[key] = this.userData[key].replace(/\s/g, '');
-      }
-    }
-    this.isLoginStarted = true;
-  }
-
-  private initForm() {
-    return this.fb.group({
-      ssn: [
+    this.userFormGroup = this.fb.group({
+      address: ['', Validators.required],
+      zip: [
         '',
         Validators.compose([
           Validators.required,
-          Validators.pattern(VALIDATION_PATTERN.ssnMasked)
-        ]),
-        // Async Validators
-        this.environment.production ? [this.ssnAsyncValidator()] : []
-      ],
-      phone: [
-        '',
-        Validators.compose([
-          Validators.required,
-          Validators.pattern(VALIDATION_PATTERN.phoneShort)
+          Validators.pattern(VALIDATION_PATTERN.zip)
         ])
       ],
-      confirmation: ['', Validators.required]
+      apartmentSize: [
+        '',
+        [Validators.required, Validators.min(5), Validators.max(999)]
+      ],
+      income: ['', Validators.required]
+    });
+
+    this.loanFormGroup = this.fb.group({
+      outstandingDebt: ['', Validators.required],
+      remainingYears: ['', [Validators.max(100)]],
+      loanType: ['', Validators.required]
+    });
+
+    this.membershipFormGroup = this.fb.group({
+      membership: []
     });
   }
 
-  public openServiceDialog(): void {
-    this.dialog.open(DialogInfoServiceComponent, {});
-  }
+  private initLoansForm(loanInfo): void {
+    this.isLoading = true;
+    if (loanInfo.newLoan === false) {
+      forkJoin([
+        this.loanService.getClientInfo(),
+        this.loanService.getOffersBanks()
+      ]).subscribe(([clientInfo, offerBanks]) => {
+        this.selectOptions = (offerBanks.offers as any[]).map((offer) => {
+          return {
+            name: offer.name,
+            value: offer.id
+          };
+        });
 
-  private changeTitles(): void {
-    if (this.metaTitle && this.metaDescription) {
-      this.titleService.setTitle(this.metaTitle);
-      this.metaService.updateMetaTags('description', this.metaDescription);
-    }
-  }
+        const selectedOption = this.selectOptions.filter((item) => {
+          return item.value === clientInfo.productId;
+        })[0];
+        const outstandingDebt = String(clientInfo.outstandingDebt);
+        this.loanFormGroup = this.fb.group({
+          outstandingDebt: [outstandingDebt, Validators.required],
+          remainingYears: [clientInfo.remainingYears, [Validators.max(100)]],
+          loanType: [selectedOption ?? null, Validators.required]
+        });
 
-  private setBankIdForm() {
-    this.bankIdForm = this.initForm();
-    if (!this.isSsnBankLogin) {
-      this.bankIdForm.addControl(
-        'birthdate',
-        new FormControl(
-          '',
-          Validators.compose([
-            Validators.required,
-            Validators.pattern(VALIDATION_PATTERN.dob)
-          ])
-        )
+        this.newClient = false;
+        this.isLoading = false;
+      });
+    } else {
+      this.loanService.getOffersBanks().subscribe(
+        (offerBanks) => {
+          this.selectOptions = (offerBanks.offers as any[]).map((offer) => {
+            return {
+              name: offer.name,
+              value: offer.id
+            };
+          });
+
+          this.oldUserNewLoan = true;
+          this.loanFormGroup = this.fb.group({
+            outstandingDebt: ['', Validators.required],
+            remainingYears: ['', [Validators.required, Validators.max(100)]],
+            loanType: ['', Validators.required]
+          });
+          this.newClient = false;
+          this.isLoading = false;
+        },
+        (error) => {
+          this.showGenericDialog();
+        }
       );
-      this.bankIdForm.removeControl('ssn');
     }
   }
 
-  isErrorState(
-    control: AbstractControl | null,
-    form: FormGroup | NgForm | null
-  ): boolean {
-    return !!(control && control.invalid && (control.dirty || control.touched));
+  get manualPropertyValue(): number {
+    const apartmentValue =
+      typeof this.manualPropertyValueFormGroup?.get('manualPropertyValue')
+        ?.value === 'string'
+        ? this.manualPropertyValueFormGroup
+            .get('manualPropertyValue')
+            ?.value.replace(/\s/g, '')
+        : this.manualPropertyValueFormGroup?.get('manualPropertyValue')?.value;
+
+    return apartmentValue;
   }
 
-  get isDnbBank(): boolean {
-    return (this.bank && this.bank.name === 'DNB') || false;
+  get clientUpdateInfo(): ClientUpdateInfo {
+    const addressDto = new AddressCreationDto();
+    const clientDto = new ClientUpdateInfo();
+
+    addressDto.apartmentSize = this.userFormGroup?.get('apartmentSize')?.value;
+    addressDto.zip = this.userFormGroup?.get('zip')?.value;
+    addressDto.street = this.userFormGroup?.get('address')?.value;
+    clientDto.address = addressDto;
+    clientDto.email = this.emailFormGroup?.get('email')?.value;
+    clientDto.income =
+      typeof this.userFormGroup?.get('income')?.value === 'string'
+        ? this.userFormGroup.get('income')?.value.replace(/\s/g, '')
+        : this.userFormGroup?.get('income')?.value;
+
+    clientDto.memberships = this.memberships.map((membership) => {
+      return membership.name;
+    });
+
+    return clientDto;
   }
 
-  get isNordeaBank(): boolean {
-    return (this.bank && this.bank.name === 'NORDEA') || false;
+  get loanUpdateInfoDto(): LoanUpdateInfoDto {
+    const loanUpdateInfoDto = new LoanUpdateInfoDto();
+    loanUpdateInfoDto.remainingYears =
+      this.loanFormGroup?.get('remainingYears')?.value || 20;
+
+    loanUpdateInfoDto.productId = String(
+      this.loanFormGroup?.get('loanType')?.value.value
+    );
+
+    (loanUpdateInfoDto.outstandingDebt =
+      typeof this.loanFormGroup?.get('outstandingDebt')?.value === 'string'
+        ? this.loanFormGroup?.get('outstandingDebt')?.value.replace(/\s/g, '')
+        : this.loanFormGroup?.get('outstandingDebt')?.value),
+      // default value is
+      (loanUpdateInfoDto.loanSubType = 'AMORTISING_LOAN');
+    return loanUpdateInfoDto;
   }
 
-  get isSB1Bank(): boolean {
+  updateStepperIndex(index: number): void {
+    if (index !== this.stepper.selectedIndex) {
+      this.stepper.selectedIndex = index;
+      this.currentStepperValue = index;
+    }
+  }
+
+  public isInvalid(formGroup: FormGroup, valueName: string): boolean {
+    this.emailFormGroup?.get('email')?.updateValueAndValidity();
+
     return (
-      (this.bank &&
-        this.bank.name &&
-        this.bank.name.indexOf('SPAREBANK_1') > -1) ||
-      false
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      formGroup.get(valueName)!.hasError('pattern') &&
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      formGroup.get(valueName)!.dirty
     );
   }
 
-  get isEikaBank(): boolean {
-    return (this.bank && this.bank.isEikaBank) || false;
+  public openInfoDialog(message: any): void {
+    this.dialog.open(GenericInfoDialogComponent, {
+      data: message
+    });
   }
 
-  get isHandelsbanken(): boolean {
-    return (this.bank && this.bank.name === 'HANDELSBANKEN') || false;
+  public openTermsDialog(): void {
+    this.dialog.open(LoginTermsDialogV2Component);
   }
 
-  get isDanskebank(): boolean {
-    return (this.bank && this.bank.name === 'DANSKE_BANK') || false;
+  public openTermsInfoDialog(): void {
+    const message = '';
+    this.dialog.open(GenericInfoDialogComponent, {
+      data: message
+    });
   }
 
-  ssnAsyncValidator(): ValidatorFn {
-    return (input: FormControl): ValidationErrors => {
-      let ssnToValidate: string = input.value;
-      if (ssnToValidate && ssnToValidate.length >= 11) {
-        ssnToValidate = ssnToValidate.replace(' ', '');
-        return this.userService
-          .validateSsn(ssnToValidate)
-          .pipe(
-            map((res) =>
-              res && res.ssn === ssnToValidate && res.valid
-                ? {}
-                : { ssnNotValid: true }
-            )
-          );
-      } else {
-        return of({});
+  public resetForms(): void {
+    this.loanFormGroup?.reset();
+    this.userFormGroup?.reset();
+    this.membershipFormGroup?.reset();
+    this.stepper.selectedIndex = 0;
+    this.currentStepperValue = 0;
+  }
+
+  public showGenericDialog(error?: any): void {
+    const dialogData: ErrorDialogData = {
+      header: 'Ops, noe gikk visst galt',
+      confirmText: 'Prøv igjen',
+      cancelText: 'Avbryt',
+      error: error,
+      onConfirm: () => {
+        this.router.navigate(['/' + ROUTES_MAP.bankSelect]);
+      },
+      onClose: () => {
+        this.router.navigate(['/']);
       }
     };
+    this.dialog.open(GenericErrorDialogComponent, {
+      data: dialogData
+    });
+  }
+
+  matSelectLoanTypeCompare(o1: any, o2: any): boolean {
+    if (o1.name === o2.name && o1.value === o2.value) return true;
+    else return false;
+  }
+
+  public isErrorState(control: AbstractControl | null): boolean {
+    return !!(control && control.invalid && (control.dirty || control.touched));
+  }
+
+  private filter(value: any): void {
+    this.allMemberships = this.clearDuplicates(
+      this.allMemberships,
+      this.memberships
+    );
+  }
+
+  remove(membership, index): void {
+    this.allMemberships.push(membership);
+    this.allMemberships.sort((a, b) =>
+      a.name > b.name ? 1 : b.name > a.name ? -1 : 0
+    );
+    this.memberships.splice(index, 1);
+  }
+
+  selected(event: MatAutocompleteSelectedEvent): void {
+    this.memberships.push(event.option.value);
+    this.membershipInput.nativeElement.value = '';
+    this.membershipCtrl.setValue(null);
+  }
+
+  private clearDuplicates(
+    array: MembershipTypeDto[],
+    toRemoveArray: MembershipTypeDto[]
+  ): MembershipTypeDto[] {
+    for (let i = array.length - 1; i >= 0; i--) {
+      // tslint:disable-next-line:prefer-for-of
+      for (let j = 0; j < toRemoveArray.length; j++) {
+        if (array[i] && array[i].name === toRemoveArray[j].name) {
+          array.splice(i, 1);
+        }
+      }
+    }
+    return array;
+  }
+
+  private scrollToTop(): void {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  }
+
+  next(): void {
+    this.scrollToTop();
+    this.stepper.next();
+    this.currentStepperValue = this.stepper.selectedIndex;
+  }
+
+  back(): void {
+    this.scrollToTop();
+    this.stepper.previous();
+    this.currentStepperValue = this.stepper.selectedIndex;
+  }
+
+  public goToLoansFormFromManulPropertyValue(): void {
+    this.isLoading = true;
+    this.loanService.getOffersBanks().subscribe((offerBanks) => {
+      this.selectOptions = (offerBanks.offers as any[]).map((offer) => {
+        return {
+          name: offer.name,
+          value: offer.id
+        };
+      });
+      this.isLoading = false;
+      this.stepper.next();
+      this.scrollToTop();
+      this.currentStepperValue = this.stepper.selectedIndex;
+    });
+  }
+
+  goToLoansForm(): void {
+    this.isLoading = true;
+    this.loanService.updateClientInfo(this.clientUpdateInfo).subscribe(
+      (_) => {
+        this.loanService.getOffersBanks().subscribe((offerBanks) => {
+          this.selectOptions = (offerBanks.offers as any[]).map((offer) => {
+            return {
+              name: offer.name,
+              value: offer.id
+            };
+          });
+          this.isLoading = false;
+          this.stepper.next();
+          this.scrollToTop();
+          this.currentStepperValue = this.stepper.selectedIndex;
+        });
+      },
+      (error) => {
+        if (
+          error.errorType === ApiError.virdiSerachNotFound ||
+          error.errorType === ApiError.propertyCantFindZip
+        ) {
+          this.isLoading = false;
+          this.dialog.open(VirdiErrorChoiceDialogComponent, {
+            data: {
+              address: this.clientUpdateInfo.address,
+              confirmText: 'Legg til boligverdi',
+              cancelText: 'Prøv ny adresse',
+              onConfirm: () => {
+                this.showManualInputForm = true;
+              },
+              onClose: () => {}
+            }
+          });
+        } else {
+          this.showGenericDialog();
+        }
+      }
+    );
+  }
+
+  goToUserForm(): void {
+    this.scrollToTop();
+    this.stepper.next();
+    this.currentStepperValue = this.stepper.selectedIndex;
+  }
+
+  goToMembershipForm(): void {
+    this.scrollToTop();
+    this.stepper.next();
   }
 }

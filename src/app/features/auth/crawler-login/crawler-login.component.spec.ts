@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DialogInfoServiceComponent } from './dialog-info-service.component';
+import { CrawlerLoginComponent } from './bank-id-login.component';
 
-describe('DialogInfoServiceComponent', () => {
-  let component: DialogInfoServiceComponent;
-  let fixture: ComponentFixture<DialogInfoServiceComponent>;
+describe('CrawlerLoginComponent', () => {
+  let component: CrawlerLoginComponent;
+  let fixture: ComponentFixture<CrawlerLoginComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [DialogInfoServiceComponent]
+      declarations: [CrawlerLoginComponent]
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DialogInfoServiceComponent);
+    fixture = TestBed.createComponent(CrawlerLoginComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -54,7 +54,6 @@ export class InitConfirmationNoComponent implements OnInit {
   public allMemberships: MembershipTypeDto[];
   public userData: ConfirmationGetDto;
   public mask = Mask;
-  public optimizeService: OptimizeService;
   public isAddressNeeded = false;
   public isNameNeeded = true;
   @ViewChild('membershipInput') membershipInput: ElementRef<HTMLInputElement>;
@@ -67,11 +66,9 @@ export class InitConfirmationNoComponent implements OnInit {
     private snackBar: SnackBarService,
     private router: Router,
     public dialog: MatDialog,
-    public optimize: OptimizeService,
     public customLangTextService: CustomLangTextService,
     private logging: LoggingService
   ) {
-    this.optimizeService = optimize;
     this.filteredMemberships = this.membershipCtrl.valueChanges.pipe(
       startWith(null),
       map((membership: string | null) =>

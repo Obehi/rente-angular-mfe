@@ -77,6 +77,16 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
   public tinkCode: any = null;
   BANKID_TIMEOUT_TIME;
   bankIdTimeoutTime = BANKID_TIMEOUT_TIME;
+
+  get isSB1Bank(): boolean {
+    return (
+      (this.bank &&
+        this.bank.name &&
+        this.bank.name.indexOf('SPAREBANK_1') > -1) ||
+      false
+    );
+  }
+
   constructor(
     private router: Router,
     private authService: AuthService,
@@ -109,6 +119,11 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
         ? 34
         : 25;
     this.firstStepTimer = this.bank.name === 'DNB' ? 28 : 10;
+
+    if (this.isSB1Bank) {
+      this.firstStepTimer = 30;
+      this.bankIdTimeoutTime = 120;
+    }
     if (this.bank.name === 'DNB') {
       this.bankIdTimeoutTime = 120;
     }
@@ -569,6 +584,12 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
             this.loginStep1Status = MESSAGE_STATUS.ERROR;
             this.unsubscribeEverything();
             break;
+          case BANKID_STATUS.BID_C325:
+            this.viewStatus.isErrorBIDC325 = true;
+            this.loginStep1Status = MESSAGE_STATUS.ERROR;
+            this.unsubscribeEverything();
+            break;
+
           case BANKID_STATUS.NO_LOANS:
             this.logging.logger(
               this.logging.Level.Info,

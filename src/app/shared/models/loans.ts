@@ -17,3 +17,10 @@ export interface LoanInfo {
   totalInterestAndTotalFee: number;
   totalInterestAndTotalFeeByRemainingYears: number;
 }
+
+export class LoanUpdateInfoDto {
+  outstandingDebt: number;
+  productId: string;
+  remainingYears: number;
+  loanSubType: string;
+}
