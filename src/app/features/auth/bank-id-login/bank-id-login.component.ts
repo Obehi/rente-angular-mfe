@@ -104,7 +104,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
   private routeSubscription: Subscription;
   public signicatIframeUrl?: SafeResourceUrl | null;
   public oldUserNewLoan = false;
-  
+
   get isMobile(): boolean {
     return window.innerWidth < 600;
   }
@@ -467,7 +467,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
       const firstLoan = signicatLoansInfo[0];
 
       this.loanId = firstLoan.id;
-      this.productIdOptions = (offerBanks.offers as any[]).map((offer) => {˜
+      this.productIdOptions = (offerBanks.offers as any[]).map((offer) => {
         return {
           name: offer.name,
           value: offer.id
@@ -487,23 +487,21 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
         loanTypeOption: [selectedloanTypeOption ?? null, Validators.required]
       });
 
-      if (true) {
-        this.loanFormGroup?.addControl(
-          'interestRate',
-          new FormControl(
-            firstLoan.nominalInterestRate,
-            Validators.compose([
-              Validators.required,
-              Validators.pattern(VALIDATION_PATTERN.rate)
-            ])
-          )
-        );
+      this.loanFormGroup?.addControl(
+        'interestRate',
+        new FormControl(
+          firstLoan.nominalInterestRate,
+          Validators.compose([
+            Validators.required,
+            Validators.pattern(VALIDATION_PATTERN.rate)
+          ])
+        )
+      );
 
-        this.loanFormGroup?.addControl(
-          'fee',
-          new FormControl(firstLoan.fee ?? '50', Validators.required)
-        );
-      }
+      this.loanFormGroup?.addControl(
+        'fee',
+        new FormControl(firstLoan.fee ?? '50', Validators.required)
+      );
 
       this.newClient = this.responseStatus.newClient;
       this.isLoading = false;
