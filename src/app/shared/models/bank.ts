@@ -335,7 +335,7 @@ export const eikaBanks: BankVo[] = [
     true,
     true,
     false,
-    true,
+    false,
     false,
     true,
     'https://www.himla.no/banktjenester/boliglan/?utm_source=renteradar.no&utm_medium=nettside&utm_campaign=ta_kontakt_for_samarbeid'
