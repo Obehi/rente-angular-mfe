@@ -184,9 +184,8 @@ export class CrawlerLoginComponent implements OnInit, OnDestroy {
 
   public setSb1AppForm(): void {
     this.sb1LoginIsAppSolution = true;
-    // this.isSsnBankLogin = true;
-
     this.stepper.selectedIndex = 1;
+
     this.bankIdForm = this.fb.group({
       ssn: [
         '',
