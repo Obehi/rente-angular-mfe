@@ -70,8 +70,6 @@ export class PropertySelectComponent implements OnInit, OnDestroy {
     ];
 
     this.options = this.originalOptions;
-    console.log('oninit options');
-    console.log(this.options);
     if (this.model !== undefined) {
       this.model = this.options.find(
         (currentOption) => currentOption[this.idKey] === this.model
@@ -92,8 +90,6 @@ export class PropertySelectComponent implements OnInit, OnDestroy {
   }
 
   open(dropdownTpl: TemplateRef<any>, origin: HTMLElement): void {
-    console.log('open');
-    console.log(this.membershipNames);
     this.view = this.vcr.createEmbeddedView(dropdownTpl);
     const dropdown = this.view.rootNodes[0];
 
