@@ -18,9 +18,9 @@ export class HeaderNoComponent implements OnInit {
     private router: Router
   ) {}
 
-  ngOnInit() {}
+  ngOnInit(): void {}
 
-  public goToTop() {
+  public goToTop(): void {
     window.scrollTo(0, 0);
   }
 
@@ -39,5 +39,10 @@ export class HeaderNoComponent implements OnInit {
 
   get isLoggedIn(): boolean {
     return this.auth.isLoggedIn;
+  }
+
+  public logout(): void {
+    this.auth.logout();
+    this.toggleNav();
   }
 }

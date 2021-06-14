@@ -40,11 +40,16 @@ export class HeaderSvComponent implements OnInit {
 
     this.toggleNav();
   }
-  public toggleNav() {
+  public toggleNav(): void {
     this.toggleNavbar = !this.toggleNavbar;
   }
 
   get isLoggedIn(): boolean {
     return this.auth.isLoggedIn;
+  }
+
+  public logout(): void {
+    this.auth.logout();
+    this.toggleNav();
   }
 }

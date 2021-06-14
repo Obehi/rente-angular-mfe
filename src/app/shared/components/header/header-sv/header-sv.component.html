@@ -1,83 +1,121 @@
-
 <nav class="variation-3">
-    <div class="inner-nav">
-      <a (click)="goToTop()" [routerLink]="['/']">
-        <img
-          src="../../../../assets/img/renteradar_white_logo-sv.svg"
-          alt="Renteradar logo"
-        />
-      </a>
-      <div class="menu-container">
-        <div class="desktop-menu desktop">
-          <a i18n=“Headerlink|homepage@@header.home” [routerLink]="['/']" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:true}">Hjem</a>
-          <a i18n=“Headerlink|blog@@header.blog” href="https://blogg.ranteradar.se/" target="_self">Blogg</a>
-          <a i18n=“Headerlink|contact@@header.contact” [routerLink]="['/kontakt']" routerLinkActive="active-link">Kontakt</a>
-          <a i18n=“Headerlink|about-us@@header.aboutUs” [routerLink]="['/om-oss']" routerLinkActive="active-link">Om oss</a>
-          <span [routerLink]="['/']" fragment="faq">
-            <a  i18n=“Headerlink|faq@@header.faq” href="#faq">FAQ </a>
-          </span>
-          <a [routerLink]="['/dashboard/' + routesMap.offers]" *ngIf="isLoggedIn" routerLinkActive="active-link" class="highlight">Min sida</a>
-          <a [routerLink]="['/valjbank']" *ngIf="!isLoggedIn" routerLinkActive="active-link" class="highlight">Logga in</a>
-          <a [routerLink]="['/']" *ngIf="isLoggedIn" (click)="auth.logout()">Logga ut</a>
-        </div>
-        <div class="menu mobile" (click)="toggleNav()">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-      </div>
-      <div class="mobile-menu mobile" *ngIf="toggleNavbar">
+  <div class="inner-nav">
+    <a (click)="goToTop()" [routerLink]="['/']">
+      <img
+        src="../../../../assets/img/renteradar_white_logo-sv.svg"
+        alt="Renteradar logo"
+      />
+    </a>
+    <div class="menu-container">
+      <div class="desktop-menu desktop">
         <a
-          i18n=“Headerlink|homepage@@header.home2”
+          i18n="“Headerlink|homepage@@header.home”"
           [routerLink]="['/']"
           routerLinkActive="active-link"
           [routerLinkActiveOptions]="{ exact: true }"
-          (click)="goToHome()"><h3>Hjem</h3>
-        </a>
+          >Hjem</a
+        >
         <a
-          i18n=“Headerlink|my-page@@header.myPage2”
-          *ngIf="isLoggedIn"
-          [routerLink]="['/dashboard/' + routesMap.offers]"
-          routerLinkActive="active-link"
-          (click)="toggleNav()"><h3 class="highlight">Min side</h3>
-        </a>
-        <a
-          *ngIf="!isLoggedIn"
-          [routerLink]="['/valjbank']"
-          routerLinkActive="active-link"
-          (click)="toggleNav()"><h3 class="highlight">Logga in</h3>
-        </a>
-        <a
-          i18n=“Headerlink|blog@@header.blog2”
+          i18n="“Headerlink|blog@@header.blog”"
           href="https://blogg.ranteradar.se/"
-          target="_blank"
-          (click)="toggleNav()"><h3>Blogg</h3>
-        </a>
+          target="_self"
+          >Blogg</a
+        >
         <a
-          i18n=“Headerlink|contact@@header.contact2”
+          i18n="“Headerlink|contact@@header.contact”"
           [routerLink]="['/kontakt']"
           routerLinkActive="active-link"
-          (click)="toggleNav()"><h3>Kontakt</h3>
-        </a>
+          >Kontakt</a
+        >
         <a
-          i18n=“Headerlink|about-us@@header.aboutUs2”
+          i18n="“Headerlink|about-us@@header.aboutUs”"
           [routerLink]="['/om-oss']"
           routerLinkActive="active-link"
-          (click)="toggleNav()"><h3>Om oss</h3>
-        </a>
+          >Om oss</a
+        >
         <span [routerLink]="['/']" fragment="faq">
-          <a href="#faq"
-             (click)="toggleNav()"> <h3>FAQ</h3>
-          </a>
+          <a i18n="“Headerlink|faq@@header.faq”" href="#faq">FAQ </a>
         </span>
         <a
-          i18n=“Headerlink|log-out@@header.logOut2”
-          [routerLink]="['/']"
+          [routerLink]="['/dashboard/' + routesMap.offers]"
           *ngIf="isLoggedIn"
-          (click)="auth.logout()"><h3>Logg ut</h3>
-        </a>
+          routerLinkActive="active-link"
+          class="highlight"
+          >Min sida</a
+        >
+        <a
+          [routerLink]="['/valjbank']"
+          *ngIf="!isLoggedIn"
+          routerLinkActive="active-link"
+          class="highlight"
+          >Logga in</a
+        >
+        <a [routerLink]="['/']" *ngIf="isLoggedIn" (click)="auth.logout()"
+          >Logga ut</a
+        >
+      </div>
+      <div class="menu mobile" (click)="toggleNav()">
+        <span></span>
+        <span></span>
+        <span></span>
       </div>
     </div>
-  </nav>
-  <div class="nav-space"></div>
-  
+    <div class="mobile-menu mobile" *ngIf="toggleNavbar">
+      <a
+        i18n="“Headerlink|homepage@@header.home2”"
+        [routerLink]="['/']"
+        routerLinkActive="active-link"
+        [routerLinkActiveOptions]="{ exact: true }"
+        (click)="goToHome()"
+        ><h3>Hjem</h3>
+      </a>
+      <a
+        i18n="“Headerlink|my-page@@header.myPage2”"
+        *ngIf="isLoggedIn"
+        [routerLink]="['/dashboard/' + routesMap.offers]"
+        routerLinkActive="active-link"
+        (click)="toggleNav()"
+        ><h3 class="highlight">Min side</h3>
+      </a>
+      <a
+        *ngIf="!isLoggedIn"
+        [routerLink]="['/valjbank']"
+        routerLinkActive="active-link"
+        (click)="toggleNav()"
+        ><h3 class="highlight">Logga in</h3>
+      </a>
+      <a
+        i18n="“Headerlink|blog@@header.blog2”"
+        href="https://blogg.ranteradar.se/"
+        target="_blank"
+        (click)="toggleNav()"
+        ><h3>Blogg</h3>
+      </a>
+      <a
+        i18n="“Headerlink|contact@@header.contact2”"
+        [routerLink]="['/kontakt']"
+        routerLinkActive="active-link"
+        (click)="toggleNav()"
+        ><h3>Kontakt</h3>
+      </a>
+      <a
+        i18n="“Headerlink|about-us@@header.aboutUs2”"
+        [routerLink]="['/om-oss']"
+        routerLinkActive="active-link"
+        (click)="toggleNav()"
+        ><h3>Om oss</h3>
+      </a>
+      <span [routerLink]="['/']" fragment="faq">
+        <a href="#faq" (click)="toggleNav()"> <h3>FAQ</h3> </a>
+      </span>
+      <a
+        i18n="“Headerlink|log-out@@header.logOut2”"
+        [routerLink]="['/']"
+        *ngIf="isLoggedIn"
+        (click)="logout()"
+        ><h3>Logg ut</h3>
+      </a>
+    </div>
+  </div>
+</nav>
+<div class="nav-space"></div>

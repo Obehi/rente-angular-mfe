@@ -212,8 +212,8 @@ Om begäran gäller kommunikation eller annan information som inte är registrer
   <translation id="info.confirmation.organization”" desc="info-confirmation" meaning="“organization">Bankerna ger ibland bättre erbjudanden om du är medlem i ett fackförbund</translation>
   <translation id="info.confirmation.myMemberships”" desc="info-confirmation" meaning="“my-memberships">Mina medlemskap</translation>
   <translation id="info.confirmation.done”" desc="info-confirmation" meaning="“done">Färdig!</translation>
-  <translation id="get.notified.noSupport”" desc="get-notified" meaning="“no-support">Vi har dessvärre inte stöd för din bank ännu.<ph name="LINE_BREAK"><ex>&lt;br&gt;</ex>&lt;br&gt;</ph>
-     Lägg till din e-post så ger vi dig besked när det är klart.</translation>
+  <translation id="get.notified.noSupport”" desc="get-notified" meaning="“no-support">     Vi har desverre ikke støtte for banken din enda.
+     Legg igjen din e-post så gir vi deg beskjed når det er klart.</translation>
   <translation id="get.notified.email”" desc="get-notified" meaning="“issue-email"><ph name="START_TAG_RENTE_FORM_MESSAGE"><ex>&lt;rente-form-message&gt;</ex>&lt;rente-form-message&gt;</ph>
             Ogiltig email
           <ph name="CLOSE_TAG_RENTE_FORM_MESSAGE"><ex>&lt;/rente-form-message&gt;</ex>&lt;/rente-form-message&gt;</ph>
@@ -281,8 +281,9 @@ Den exakta processen beror på din enhet och vilken webbläsare du använder. I 
  spara pengar<ph name="CLOSE_BOLD_TEXT"><ex>&lt;/b&gt;</ex>&lt;/b&gt;</ph> och alltid presentera de bästa bolåneräntorna på marknaden</translation>
   <translation id="aboutUs.goal2”" desc="about-us" meaning="“text"> <ph name="START_BOLD_TEXT"><ex>&lt;b&gt;</ex>&lt;b&gt;</ph>Spara tid<ph name="CLOSE_BOLD_TEXT"><ex>&lt;/b&gt;</ex>&lt;/b&gt;</ph> då vi automatiskt, snabbt och enkelt granskar din nuvarande bolåneränta</translation>
   <translation id="aboutUs.goal3”" desc="about-us" meaning="“text"><ph name="START_BOLD_TEXT"><ex>&lt;b&gt;</ex>&lt;b&gt;</ph>Känna dig trygg<ph name="CLOSE_BOLD_TEXT"><ex>&lt;/b&gt;</ex>&lt;/b&gt;</ph> i att du inte längre betalar för mycket till bankerna</translation>
-  <translation id="aboutUs.governance”" desc="about-us" meaning="“text"><ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>Ränteradar.se<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph>
-ägs och drivs av Ränteradar Sverige AB som är ett dotterbolag till Forbrukerøkonomene AS. Tack vare den tidigare erfarenheten inom bank, finans och teknologi har vi lärt oss hur räntemarknaden fungerar. Tillsammans har vi skapat en tjänst som skall komma användarna av <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>Ränteradar.se<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph> till godo.</translation>
+  <translation id="aboutUs.governance”" desc="about-us" meaning="“text"> <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>Ränteradar.se<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph>
+    ägs och drivs av Ränteradar Sverige AB som är ett dotterbolag till Forbrukerøkonomene AS. Tack vare den tidigare erfarenheten inom bank, finans och teknologi har vi lärt oss hur räntemarknaden fungerar. Tillsammans har vi skapat en tjänst som skall komma användarna av
+    <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>Ränteradar.se<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph> til gode.</translation>
   <translation id="aboutUs.Finn”" desc="about-us" meaning="“title"><ph name="START_ITALIC_TEXT"><ex>&lt;i&gt;</ex>&lt;i&gt;</ph>Co-Founder<ph name="CLOSE_ITALIC_TEXT"><ex>&lt;/i&gt;</ex>&lt;/i&gt;</ph></translation>
   <translation id="aboutUs.finn.intro”" desc="about-us" meaning="“text">Finn Olav är ekonom från Cass Business School i London och har jobbat fem år med räntor i Nordea Markets. Nu har han tagit steget ut från bankvärlden för att leva entreprenörsdrömmen fullt ut. Finn Olav är vår siffernisse som älskar statistik och data. </translation>
   <translation id="aboutUs.fredrik”" desc="about-us" meaning="“title"><ph name="START_ITALIC_TEXT"><ex>&lt;i&gt;</ex>&lt;i&gt;</ph>VD/Founder<ph name="CLOSE_ITALIC_TEXT"><ex>&lt;/i&gt;</ex>&lt;/i&gt;</ph></translation>
@@ -605,7 +606,7 @@ Den exakta processen beror på din enhet och vilken webbläsare du använder. I 
   <translation id="details.component.demandMembership”" desc="details" meaning="“demand-membership">Förutsätter medlemskap</translation>
   <translation id="details.component.membership”" desc="details" meaning="“membership">Medlemskap</translation>
   <translation id="offer.card.title”" desc="offer-card" meaning="“title">Du sparar</translation>
-  <translation id="offer.card.over.time”" desc="offer-card" meaning="“over-time">över lånets löptid</translation>
+  <translation id="offer.card.over.time”" desc="offer-card" meaning="“over-time">Över lånets löptid</translation>
   <translation id="offer.card.firstYear”" desc="offer-card" meaning="“first-year">Första året</translation>
   <translation id="offer.card.applicationTime”" desc="offer-card" meaning="“application-time">Hur lång tid tar det att söka:</translation>
   <translation id="offer.card.demandChange”" desc="offer-card" meaning="“demand-change">Kräver att du byter bank:</translation>
@@ -734,7 +735,7 @@ Vi följer ständigt upp om det dyker upp bättre ränteerbjudanden på marknade
             </translation>
   <translation id="details.component.offerHeader" desc="details" meaning="“other-conditions">Erbjudande</translation>
   <translation id="profile.monthNever1“" desc="profile" meaning="“month-every">Aldrig</translation>
-  <translation id="profile.monthNever2“" desc="profile" meaning="“month-every"/>
+  <translation id="profile.monthNever2“" desc="profile" meaning="“month-every">Aldrig</translation>
   <translation id="profile.myMemberships”" desc="profile" meaning="“my-memberships"/>
   <translation id="profile.myMemberships2”" desc="profile" meaning="“my-memberships">Medlemskap</translation>
   <translation id="details.component.offer“" desc="details" meaning="“other-conditions">Effektiv ränta: <ph name="INTERPOLATION"><ex>{{offer.effectiveRate | number: &quot;1.1-2&quot;}}</ex>{{offer.effectiveRate | number: &quot;1.1-2&quot;}}</ph>%,
@@ -833,4 +834,24 @@ Vi följer ständigt upp om det dyker upp bättre ränteerbjudanden på marknade
   <translation id="bargainNordea.success.backToOffers“" desc="bargain" meaning="“confirmation"/>
   <translation id="bargainNordea.success.error”" desc="bargain" meaning="“error"/>
   <translation id="bargainNordea.success.error2”" desc="bargain" meaning="“error2"/>
+  <translation id="offer.card.bankType" desc="offer-card" meaning="“demand-change">Typ av bank
+</translation>
+  <translation id="offer.card.historicRate" desc="offer-card" meaning="“demand-change"/>
+  <translation id="offers.mainPage.found.bestOffers.button”" desc="offers-main" meaning="         “found-best-offers"/>
+  <translation id="offer.card.customerSatisfied”" desc="offer-card" meaning="                   “customer-satisfied"/>
+  <translation id="offer.card.appRating”" desc="offer-card" meaning="“customer-satisfied">Mobilbank</translation>
+  <translation id="offer.card.details.appRating”" desc="offer-card" meaning="“customer-satisfied"/>
+  <translation id="offer.card.mobileRatingNotAvailable" desc="offer-card" meaning="“application-time">Webbsida</translation>
+  <translation id="offer.card.geografi" desc="offer-card" meaning="“demand-change"/>
+  <translation id="offers.mainPage.interest.veryGood”" desc="offers-main" meaning="                 “interest-very-good"/>
+  <translation id="offers.mainPage.interest.veryBad”" desc="offers-main" meaning="                 “interest-very-bad"/>
+  <translation id="offers.mainPage.interest.bad2”" desc="offers-main" meaning="                   “interest-bad2"/>
+  <translation id="offers.mainPage.interest.good2”" desc="offers-main" meaning="                   “interest-good2"/>
+  <translation id="offers.mainPage.virdiEstimate”" desc="offers-main" meaning="                   “virdi-estimate"/>
+  <translation id="offers.mainPage.found.bestOffers.button”" desc="offers-main" meaning="                 “found-best-offers"/>
+  <translation id="info.confirmation.myMemberships”" desc="info-confirmation" meaning="           “my-memberships"/>
+  <translation id="info.confirmation.myMemberships”" desc="info-confirmation" meaning="                       “my-memberships"/>
+  <translation id="landing.explanationService" desc="landing-page" meaning="                 explanation-service"/>
+  <translation id="landing.descriptionService" desc="landing-page" meaning="                 description-service"/>
+  <translation id="offer.card.mobileRatingNotAvailable" desc="offer-card" meaning="               “application-time"/>
 </translationbundle>
