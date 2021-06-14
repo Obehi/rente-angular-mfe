@@ -411,7 +411,11 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
         const outstandingDebt = String(firstLoan.outstandingDebt);
         this.loanFormGroup = this.fb.group({
           outstandingDebt: [outstandingDebt, Validators.required],
-          remainingYears: [firstLoan.remainingYears, [Validators.max(100)]],
+          remainingYears: [
+            Math.round(firstLoan.remainingYears),
+            ,
+            [Validators.max(100)]
+          ],
           loanType: [selectedOption ?? null, Validators.required]
         });
 
@@ -477,14 +481,18 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
       const selectedloanTypeOption = this.loanTypeOptions.filter((item) => {
         return item.value === firstLoan.loanType;
       })[0];
+
       const outstandingDebt = String(firstLoan.outstandingDebt);
+      const fee = String(firstLoan.fee || '50');
+
       this.loanFormGroup = this.fb.group({
         outstandingDebt: [outstandingDebt, Validators.required],
         remainingYears: [
-          firstLoan.remainingYears as number,
+          Math.round(firstLoan.remainingYears),
           [Validators.max(100)]
         ],
-        loanTypeOption: [selectedloanTypeOption ?? null, Validators.required]
+        loanTypeOption: [selectedloanTypeOption ?? null, Validators.required],
+        fee: [fee, Validators.required]
       });
 
       this.loanFormGroup?.addControl(
@@ -496,11 +504,6 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
             Validators.pattern(VALIDATION_PATTERN.rate)
           ])
         )
-      );
-
-      this.loanFormGroup?.addControl(
-        'fee',
-        new FormControl(firstLoan.fee ?? '50', Validators.required)
       );
 
       this.newClient = this.responseStatus.newClient;
