@@ -6,6 +6,8 @@ import { GenericHttpService } from '@services/generic-http.service';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { LocalStorageService } from './../local-storage.service';
+import { SnackBarService } from '@services/snackbar.service';
+import { CustomLangTextService } from '@services/custom-lang-text.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +16,9 @@ export class AuthService {
   constructor(
     private http: GenericHttpService,
     private localStorageService: LocalStorageService,
-    private router: Router
+    private router: Router,
+    private snackBar: SnackBarService,
+    public customLangTextService: CustomLangTextService
   ) {}
 
   public get isLoggedIn(): boolean {
@@ -62,6 +66,7 @@ export class AuthService {
     this.http.post(url, {}).subscribe(() => {
       this.router.navigate(['/']);
       this.localStorageService.clear();
+      this.snackBar.openSuccessSnackBar(this.customLangTextService.logout(), 2);
     });
   }
 
