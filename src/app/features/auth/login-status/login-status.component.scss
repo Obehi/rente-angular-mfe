@@ -1,4 +1,4 @@
-@import "../../../../styles/theme/_colors.scss";
+@import '../../../../styles/theme/_colors.scss';
 
 .login-status {
   margin: auto;
@@ -67,17 +67,14 @@ a {
       height: 670px;
     }
   }
-  
-  
-  
-  h3 {
-      text-align: center;
-      margin: 40px 40px 20px 40px;
-  }
 
+  h3 {
+    text-align: center;
+    margin: 40px 40px 20px 40px;
+  }
 }
 
-iframe{ 
+iframe {
   height: 900px;
   box-shadow: 1px 1px 7px 2px #cdcdcd;
   border: 0;

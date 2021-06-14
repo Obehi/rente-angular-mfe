@@ -131,11 +131,223 @@
       effektiv rente som vi henter. Besparelsen blir da for høy.
     </p>
 
-    <!-- <p *ngIf="isSB1Bank || false" class="red">
-      Problemer med innlogging for enkelte brukere, vi jobber med å utbedre
-      feilen.
-    </p> -->
+    <div *ngIf="isSB1Bank">
+      <div class="sb1-buttons">
+        <a
+          class="sb1-app-button"
+          [class]="sb1LoginIsAppSolution ? 'selected' : 'normal'"
+          (click)="setSb1AppForm()"
+          *ngIf="isSB1Bank"
+        >
+          <img [src]="'../../../assets/icons/key-icon-green.svg'" />
+          <p>Engangskode-appen</p>
+        </a>
 
+        <a
+          class="sb1-app-button"
+          [class]="sb1LoginIsAppSolution === false ? 'selected' : 'normal'"
+          (click)="setSb1bankIdForm()"
+          *ngIf="isSB1Bank && sb1LoginIsAppSolution !== true"
+        >
+          <img [src]="'../../../assets/icons/mobile-login-green.svg'" />
+          <p>BankId på mobil</p>
+        </a>
+      </div>
+      <mat-horizontal-stepper class="stepper" [linear]="false" #stepper>
+        <mat-step [editable]="true"> </mat-step>
+        <mat-step [editable]="true">
+          <form
+            [formGroup]="bankIdForm"
+            novalidate
+            (ngSubmit)="startLogin(bankIdForm.value)"
+          >
+            <img
+              class="bank-logo"
+              [src]="bankLogo"
+              [alt]="bank?.label"
+              [title]="bank?.label"
+            />
+
+            <div *ngIf="sb1LoginIsAppSolution === true" class="form-group">
+              <rente-input
+                [errorStateMatcher]="
+                  isErrorState(bankIdForm.controls['ssn'], bankIdForm)
+                "
+                [placeholder]="'Ditt fødselsnummer (11 siffer)'"
+                formControlName="ssn"
+                [type]="'tel'"
+                [maskType]="mask.ssn"
+                [modelOptions]="{ updateOn: 'blur' }"
+              >
+              </rente-input>
+              <div
+                class="error-message"
+                *ngIf="bankIdForm.controls['ssn'].touched"
+              >
+                <rente-form-message
+                  class="text-left d-block"
+                  *ngIf="bankIdForm.controls['ssn'].hasError('required')"
+                  [type]="'error'"
+                  i18n="“issue|bank-id@@bankId.description.birthNumber”"
+                >
+                  Fødselsnummer kan ikke være tomt
+                </rente-form-message>
+                <rente-form-message
+                  class="text-left d-block"
+                  *ngIf="bankIdForm.controls['ssn'].hasError('pattern')"
+                  [type]="'error'"
+                  i18n="“issue|bank-id@@bankId.description.birthNumber2”"
+                >
+                  Fødselsnummer ikke gyldig
+                </rente-form-message>
+                <rente-form-message
+                  class="text-left d-block"
+                  *ngIf="bankIdForm.controls['ssn'].hasError('ssnNotValid')"
+                  [type]="'error'"
+                  i18n="“issue|bank-id@@bankId.description.birthNumber3”"
+                >
+                  Fødselsnummeret er ikke gyldig
+                </rente-form-message>
+              </div>
+            </div>
+
+            <mat-checkbox
+              formControlName="confirmation"
+              (change)="isConfirmed = $event.checked"
+              i18n="“accepting|bank-id@@bankId.policy”"
+            >
+              Jeg aksepterer Renteradar.no's
+              <a class="link" (click)="openServiceDialog()">vilkår</a>
+            </mat-checkbox>
+
+            <div class="register-btn">
+              <rente-button
+                color="primary"
+                [disabled]="!bankIdForm.valid || !isConfirmed"
+                i18n="“log-in|bank-id@@bankId.logIn”"
+              >
+                Logg inn
+              </rente-button>
+            </div>
+          </form>
+        </mat-step>
+
+        <mat-step [editable]="true">
+          <form
+            *ngIf="sb1LoginIsAppSolution === false"
+            [formGroup]="bankIdForm"
+            novalidate
+            (ngSubmit)="startLogin(bankIdForm.value)"
+          >
+            <img
+              class="bank-logo"
+              [src]="bankLogo"
+              [alt]="bank?.label"
+              [title]="bank?.label"
+            />
+
+            <div class="form-group">
+              <rente-input
+                [errorStateMatcher]="
+                  isErrorState(bankIdForm.controls['birthdate'], bankIdForm)
+                "
+                [placeholder]="'Din fødselsdato (ddmmåå)'"
+                formControlName="birthdate"
+                [type]="'tel'"
+                [maskType]="mask.birthDate"
+                [modelOptions]="{ updateOn: 'blur' }"
+              >
+              </rente-input>
+              <div
+                class="error-message"
+                *ngIf="bankIdForm.controls['birthdate'].touched"
+              >
+                <rente-form-message
+                  class="text-left d-block"
+                  *ngIf="bankIdForm.controls['birthdate'].hasError('required')"
+                  [type]="'error'"
+                  i18n="“issue|bank-id@@bankId.description.birthNumber4”"
+                >
+                  Fødselsdato kan ikke være tomt
+                </rente-form-message>
+                <rente-form-message
+                  class="text-left d-block"
+                  *ngIf="bankIdForm.controls['birthdate'].hasError('pattern')"
+                  [type]="'error'"
+                  i18n="“issue|bank-id@@bankId.description.birthNumber5”"
+                >
+                  Fødselsdato ikke gyldig
+                </rente-form-message>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <rente-input
+                [errorStateMatcher]="
+                  isErrorState(bankIdForm.controls['phone'], bankIdForm)
+                "
+                [placeholder]="'Ditt mobilnummer (8 siffer)'"
+                formControlName="phone"
+                [maskType]="mask.phone"
+                [type]="'tel'"
+                [modelOptions]="{ updateOn: 'blur' }"
+              >
+              </rente-input>
+              <div
+                class="error-message"
+                *ngIf="bankIdForm.controls['phone'].touched"
+              >
+                <rente-form-message
+                  class="text-left d-block"
+                  *ngIf="bankIdForm.controls['phone'].hasError('required')"
+                  [type]="'error'"
+                  i18n="“issue|bank-id@@bankId.description.telephoneNumber”"
+                >
+                  Telefonnummer kan ikke være tomt
+                </rente-form-message>
+                <rente-form-message
+                  class="text-left d-block"
+                  *ngIf="bankIdForm.controls['phone'].hasError('pattern')"
+                  [type]="'error'"
+                  i18n="“issue|bank-id@@bankId.description.telephoneNumber2”"
+                >
+                  Telefonnummer ikke gyldig
+                </rente-form-message>
+              </div>
+            </div>
+
+            <mat-checkbox
+              formControlName="confirmation"
+              (change)="isConfirmed = $event.checked"
+              i18n="“accepting|bank-id@@bankId.policy”"
+            >
+              Jeg aksepterer Renteradar.no's
+              <a class="link" (click)="openServiceDialog()">vilkår</a>
+            </mat-checkbox>
+
+            <div class="register-btn">
+              <rente-button
+                color="primary"
+                [disabled]="!bankIdForm.valid || !isConfirmed"
+                i18n="“log-in|bank-id@@bankId.logIn”"
+              >
+                Logg inn
+              </rente-button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step [editable]="true"> stepper test 3 </mat-step>
+      </mat-horizontal-stepper>
+    </div>
+
+    <a
+      class="sb1-app-button top-margin"
+      (click)="setSb1bankIdForm()"
+      *ngIf="isSB1Bank && sb1LoginIsAppSolution === true"
+    >
+      <img [src]="'../../../assets/icons/mobile-login-green.svg'" />
+      <p>BankId på mobil</p>
+    </a>
     <p
       i18n="“information|bank-id@@bankId.info”"
       *ngIf="!isSB1Bank && !isDnbBank"
@@ -152,6 +364,7 @@
     </p>
 
     <form
+      *ngIf="!isSB1Bank"
       [formGroup]="bankIdForm"
       novalidate
       (ngSubmit)="startLogin(bankIdForm.value)"
@@ -240,7 +453,7 @@
         </div>
       </ng-template>
 
-      <div class="form-group">
+      <div *ngIf="sb1LoginIsAppSolution !== true" class="form-group">
         <rente-input
           [errorStateMatcher]="
             isErrorState(bankIdForm.controls['phone'], bankIdForm)

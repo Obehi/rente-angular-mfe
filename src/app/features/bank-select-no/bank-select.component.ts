@@ -22,11 +22,7 @@ export class BankSelectNoComponent implements OnInit {
   allBanks: BankVo[];
   sparebankIsClicked = false;
 
-  constructor(
-    private router: Router,
-    private envService: EnvService,
-    private localStorageService: LocalStorageService
-  ) {}
+  constructor(private router: Router, private envService: EnvService) {}
 
   ngOnInit(): void {
     this.sortBanks();

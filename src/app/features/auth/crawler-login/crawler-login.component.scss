@@ -1,5 +1,55 @@
 @import '../../../../styles/theme/_colors.scss';
 
+::ng-deep .mat-horizontal-stepper-header-container {
+  display: none !important;
+}
+
+::ng-deep .mat-horizontal-content-container {
+  padding: unset !important;
+}
+
+.sb1-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.sb1-app-button {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  border-radius: 15px;
+  box-shadow: 0 7px 56px 0 rgb(100 100 111 / 20%);
+  transition: box-shadow 0.3s;
+  height: 70px;
+  margin: auto;
+  margin-bottom: 20px;
+
+  @media (max-width: 600px) {
+    width: 100%;
+  }
+
+  @media (min-width: 600px) {
+    width: 400px;
+  }
+
+  &.selected {
+    box-shadow: 0 7px 8px 0 rgb(24 188 156 / 40%);
+  }
+
+  &.top-margin {
+    margin-top: 20px;
+  }
+  img {
+    width: 40px;
+    margin: 20px;
+  }
+
+  p {
+    margin: 0 20px 0 0;
+    font-weight: 400;
+  }
+}
+
 .email-form {
   display: flex;
   flex-direction: column;

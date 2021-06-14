@@ -251,9 +251,17 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
 
   sendUserData(resendData = false): void {
     const dataObj = {
-      birthdateOrSsn: this.userData.ssn || this.userData.birthdate,
-      mobile: this.userData.phone
+      birthdateOrSsn: this.userData.ssn || this.userData.birthdate
     };
+
+    if (this.userData.phone) {
+      dataObj['mobile'] = this.userData.phone;
+    }
+
+    if (this.userData.loginType) {
+      dataObj['loginType'] = '1';
+    }
+
     this.setDefaultSteps();
     const data = JSON.stringify(dataObj);
     this.passPhrase = '';
@@ -476,6 +484,14 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
             this.viewStatus.isProcessStarted = true;
             break;
           case BANKID_STATUS.PASSPHRASE_CONFIRM:
+            this.isShowPassPhrase = true;
+            this.isShowTimer = false;
+            this.passPhrase = response.passphrase;
+            this.loginStep1Status = MESSAGE_STATUS.SUCCESS;
+            this.loginStep2Status = MESSAGE_STATUS.LOADING;
+            break;
+
+          case BANKID_STATUS.BANK_ID_CONFIRM:
             this.isShowPassPhrase = true;
             this.isShowTimer = false;
             this.passPhrase = response.passphrase;
