@@ -9,6 +9,7 @@ export class BankVo {
     public isSb1Bank: boolean = false,
     public isMissing: boolean = false,
     public isTinkBank: boolean = false,
+    public hasFixedLoans: boolean = false,
     public isSigniCat: boolean = false,
     public mobileUrl: string | null = null
   ) {}
@@ -216,6 +217,7 @@ export const eikaBanks: BankVo[] = [
     'etnedal.png',
     null,
     true,
+    false,
     true,
     false,
     false,
@@ -337,6 +339,7 @@ export const eikaBanks: BankVo[] = [
     false,
     false,
     false,
+    true,
     true,
     'https://www.himla.no/banktjenester/boliglan/?utm_source=renteradar.no&utm_medium=nettside&utm_campaign=ta_kontakt_for_samarbeid'
   ),
@@ -507,6 +510,7 @@ export const eikaBanks: BankVo[] = [
     true,
     false,
     false,
+    false,
     ''
   ),
   new BankVo(
@@ -520,6 +524,7 @@ export const eikaBanks: BankVo[] = [
     true,
     false,
     false,
+    false,
     ''
   ),
   new BankVo(
@@ -531,6 +536,7 @@ export const eikaBanks: BankVo[] = [
     true,
     false,
     true,
+    false,
     false,
     false,
     ''
@@ -670,6 +676,7 @@ export const eikaBanks: BankVo[] = [
     'Sogn Sparebank',
     'sogn.png',
     null,
+    true,
     true,
     true,
     false,
@@ -1056,6 +1063,7 @@ export const BankList: BankVo[] = [
     false,
     false,
     false,
+    false,
     'https://www.sparebank1.no/nb/bank/privat/kundeservice/mobil/hvordan-bestiller-jeg-bankid-pa-mobil.html'
   ),
   new BankVo(
@@ -1066,6 +1074,7 @@ export const BankList: BankVo[] = [
     false,
     false,
     true,
+    false,
     false,
     false,
     false,
@@ -1082,6 +1091,7 @@ export const BankList: BankVo[] = [
     false,
     false,
     false,
+    false,
     'https://www.sparebank1.no/nb/bank/privat/kundeservice/mobil/hvordan-bestiller-jeg-bankid-pa-mobil.html'
   ),
   new BankVo(
@@ -1092,6 +1102,7 @@ export const BankList: BankVo[] = [
     false,
     false,
     true,
+    false,
     false,
     false,
     false,
@@ -1108,6 +1119,7 @@ export const BankList: BankVo[] = [
     false,
     false,
     false,
+    false,
     'https://www.sparebank1.no/nb/bank/privat/kundeservice/mobil/hvordan-bestiller-jeg-bankid-pa-mobil.html'
   ),
   new BankVo(
@@ -1118,6 +1130,7 @@ export const BankList: BankVo[] = [
     false,
     false,
     true,
+    false,
     false,
     false,
     false,
@@ -1134,6 +1147,7 @@ export const BankList: BankVo[] = [
     false,
     false,
     false,
+    false,
     'https://www.sparebank1.no/nb/bank/privat/kundeservice/mobil/hvordan-bestiller-jeg-bankid-pa-mobil.html'
   ),
   new BankVo(
@@ -1144,6 +1158,7 @@ export const BankList: BankVo[] = [
     false,
     false,
     true,
+    false,
     false,
     false,
     false,
@@ -1160,6 +1175,7 @@ export const BankList: BankVo[] = [
     false,
     false,
     false,
+    false,
     'https://www.sparebank1.no/nb/bank/privat/kundeservice/mobil/hvordan-bestiller-jeg-bankid-pa-mobil.html'
   ),
   new BankVo(
@@ -1170,6 +1186,7 @@ export const BankList: BankVo[] = [
     false,
     false,
     true,
+    false,
     false,
     false,
     false,
@@ -1186,6 +1203,7 @@ export const BankList: BankVo[] = [
     false,
     false,
     false,
+    false,
     'https://www.sparebank1.no/nb/bank/privat/kundeservice/mobil/hvordan-bestiller-jeg-bankid-pa-mobil.html'
   ),
   new BankVo(
@@ -1196,6 +1214,7 @@ export const BankList: BankVo[] = [
     false,
     false,
     true,
+    false,
     false,
     false,
     false,
@@ -1212,6 +1231,7 @@ export const BankList: BankVo[] = [
     false,
     false,
     false,
+    false,
     'https://www.sparebank1.no/nb/bank/privat/kundeservice/mobil/hvordan-bestiller-jeg-bankid-pa-mobil.html'
   ),
   new BankVo(
@@ -1222,6 +1242,7 @@ export const BankList: BankVo[] = [
     false,
     false,
     true,
+    false,
     false,
     false,
     false,
@@ -1238,6 +1259,7 @@ export const BankList: BankVo[] = [
     false,
     false,
     false,
+    false,
     'https://www.sparebank1.no/nb/bank/privat/kundeservice/mobil/hvordan-bestiller-jeg-bankid-pa-mobil.html'
   ),
   new BankVo(
@@ -1248,6 +1270,7 @@ export const BankList: BankVo[] = [
     false,
     false,
     true,
+    false,
     false,
     false,
     false,
@@ -1265,9 +1288,9 @@ export const MissingBankList: BankVo[] = [
     false,
     true,
     false,
+    false,
+    false,
     true,
-    false,
-    false,
     null
   ),
   new BankVo(
@@ -1278,9 +1301,9 @@ export const MissingBankList: BankVo[] = [
     false,
     true,
     false,
+    false,
+    false,
     true,
-    false,
-    false,
     null
   ),
   new BankVo(
@@ -1292,6 +1315,7 @@ export const MissingBankList: BankVo[] = [
     true,
     false,
     true,
+    false,
     false,
     false,
     null
@@ -1307,6 +1331,7 @@ export const MissingBankList: BankVo[] = [
     true,
     false,
     false,
+    false,
     null
   ),
   new BankVo(
@@ -1317,9 +1342,9 @@ export const MissingBankList: BankVo[] = [
     false,
     true,
     false,
+    false,
+    false,
     true,
-    false,
-    false,
     null
   ),
   new BankVo(
@@ -1330,9 +1355,9 @@ export const MissingBankList: BankVo[] = [
     false,
     true,
     false,
+    false,
+    false,
     true,
-    false,
-    false,
     null
   ),
   new BankVo(
@@ -1343,9 +1368,9 @@ export const MissingBankList: BankVo[] = [
     false,
     true,
     false,
+    false,
+    false,
     true,
-    false,
-    false,
     null
   ),
   new BankVo(
@@ -1356,9 +1381,9 @@ export const MissingBankList: BankVo[] = [
     false,
     true,
     false,
+    false,
+    false,
     true,
-    false,
-    false,
     null
   ),
   new BankVo(
@@ -1369,9 +1394,9 @@ export const MissingBankList: BankVo[] = [
     false,
     true,
     false,
+    false,
+    false,
     true,
-    false,
-    false,
     null
   ),
   new BankVo(
@@ -1384,6 +1409,7 @@ export const MissingBankList: BankVo[] = [
     false,
     false,
     false,
+    true,
     true,
     null
   ),
@@ -1398,6 +1424,7 @@ export const MissingBankList: BankVo[] = [
     true,
     false,
     false,
+    false,
     null
   ),
   new BankVo(
@@ -1408,9 +1435,9 @@ export const MissingBankList: BankVo[] = [
     false,
     true,
     false,
+    false,
+    false,
     true,
-    false,
-    false,
     null
   ),
   new BankVo(
@@ -1421,9 +1448,9 @@ export const MissingBankList: BankVo[] = [
     false,
     true,
     false,
+    false,
+    false,
     true,
-    false,
-    false,
     null
   ),
   new BankVo(
@@ -1434,9 +1461,9 @@ export const MissingBankList: BankVo[] = [
     false,
     true,
     false,
+    false,
+    false,
     true,
-    false,
-    false,
     null
   ),
   new BankVo(
@@ -1450,6 +1477,7 @@ export const MissingBankList: BankVo[] = [
     true,
     false,
     false,
+    false,
     null
   ),
   new BankVo(
@@ -1460,9 +1488,9 @@ export const MissingBankList: BankVo[] = [
     false,
     true,
     false,
+    false,
+    false,
     true,
-    false,
-    false,
     null
   ),
   new BankVo(
@@ -1474,6 +1502,7 @@ export const MissingBankList: BankVo[] = [
     true,
     false,
     true,
+    false,
     false,
     false,
     null
@@ -1489,6 +1518,7 @@ export const MissingBankList: BankVo[] = [
     true,
     false,
     false,
+    false,
     null
   ),
   new BankVo(
@@ -1499,9 +1529,9 @@ export const MissingBankList: BankVo[] = [
     false,
     true,
     false,
+    false,
+    false,
     true,
-    false,
-    false,
     null
   ),
   new BankVo(
@@ -1515,6 +1545,7 @@ export const MissingBankList: BankVo[] = [
     false,
     false,
     true,
+    true,
     null
   ),
   new BankVo(
@@ -1525,9 +1556,9 @@ export const MissingBankList: BankVo[] = [
     false,
     true,
     false,
+    false,
+    false,
     true,
-    false,
-    false,
     null
   ),
   new BankVo(
@@ -1541,6 +1572,7 @@ export const MissingBankList: BankVo[] = [
     false,
     false,
     true,
+    true,
     null
   ),
   new BankVo(
@@ -1551,9 +1583,9 @@ export const MissingBankList: BankVo[] = [
     false,
     true,
     false,
+    false,
+    false,
     true,
-    false,
-    false,
     null
   ),
   new BankVo(
@@ -1564,9 +1596,9 @@ export const MissingBankList: BankVo[] = [
     false,
     true,
     false,
+    false,
+    false,
     true,
-    false,
-    false,
     null
   ),
   new BankVo(
@@ -1577,9 +1609,9 @@ export const MissingBankList: BankVo[] = [
     false,
     true,
     false,
+    false,
+    false,
     true,
-    false,
-    false,
     null
   ),
   new BankVo(
@@ -1590,9 +1622,9 @@ export const MissingBankList: BankVo[] = [
     false,
     true,
     false,
+    false,
+    false,
     true,
-    false,
-    false,
     null
   ),
   new BankVo(
@@ -1603,9 +1635,9 @@ export const MissingBankList: BankVo[] = [
     false,
     true,
     false,
+    false,
+    false,
     true,
-    false,
-    false,
     null
   ),
   new BankVo(
@@ -1616,9 +1648,9 @@ export const MissingBankList: BankVo[] = [
     false,
     true,
     false,
+    false,
+    false,
     true,
-    false,
-    false,
     null
   ),
   new BankVo(
@@ -1629,9 +1661,9 @@ export const MissingBankList: BankVo[] = [
     false,
     true,
     false,
+    false,
+    false,
     true,
-    false,
-    false,
     null
   ),
   new BankVo(
@@ -1642,9 +1674,9 @@ export const MissingBankList: BankVo[] = [
     false,
     true,
     false,
+    false,
+    false,
     true,
-    false,
-    false,
     null
   ),
   new BankVo(
@@ -1655,9 +1687,9 @@ export const MissingBankList: BankVo[] = [
     false,
     true,
     false,
+    false,
+    false,
     true,
-    false,
-    false,
     null
   ),
   new BankVo(
@@ -1668,9 +1700,9 @@ export const MissingBankList: BankVo[] = [
     false,
     true,
     false,
+    false,
+    false,
     true,
-    false,
-    false,
     null
   ),
   new BankVo(
@@ -1681,9 +1713,9 @@ export const MissingBankList: BankVo[] = [
     false,
     true,
     false,
+    false,
+    false,
     true,
-    false,
-    false,
     null
   ),
   new BankVo(
@@ -1694,9 +1726,9 @@ export const MissingBankList: BankVo[] = [
     false,
     true,
     false,
+    false,
+    false,
     true,
-    false,
-    false,
     null
   ),
   new BankVo(
@@ -1707,9 +1739,9 @@ export const MissingBankList: BankVo[] = [
     false,
     true,
     false,
+    false,
+    false,
     true,
-    false,
-    false,
     null
   )
 ];

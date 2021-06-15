@@ -5,7 +5,10 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { locale } from '../../../config/locale/locale';
 
-import { LoanUpdateInfoDto } from '@shared/models/loans';
+import {
+  LoanUpdateInfoDto,
+  SignicatLoanInfoDtoArray
+} from '@shared/models/loans';
 
 @Injectable({
   providedIn: 'root'
@@ -109,9 +112,23 @@ export class LoansService {
     return this.http.put(url, loanData);
   }
 
-  public updateLoanUserInfo(loanUpdateInfoDto: LoanUpdateInfoDto) {
-    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.loan.base}${API_URL_MAP.loan.loan.info}`;
-    return this.http.put(url, loanUpdateInfoDto);
+  public UpdateSignicatLoansInfo(
+    signicatLoanInfoDtoArray: SignicatLoanInfoDtoArray
+  ): Observable<any> {
+    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.loans.base}${API_URL_MAP.loan.loans.info}`;
+    return this.http.put(url, signicatLoanInfoDtoArray);
+  }
+
+  public CreateSignicatLoansInfo(
+    signicatLoanInfoDtoArray: SignicatLoanInfoDtoArray
+  ): Observable<any> {
+    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.loans.base}${API_URL_MAP.loan.loans.info}`;
+    return this.http.post(url, signicatLoanInfoDtoArray);
+  }
+
+  public getSignicatLoansInfo(): Observable<SignicatLoanInfoDtoArray> {
+    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.loans.base}${API_URL_MAP.loan.loans.info}`;
+    return this.http.get(url);
   }
 
   public updateClientInfo(clientUpdateInfo: ClientUpdateInfo) {
@@ -120,7 +137,7 @@ export class LoansService {
   }
 
   public getClientInfo() {
-    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.base}${API_URL_MAP.loan.user.info}`;
+    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.loans.base}${API_URL_MAP.loan.user.info}`;
     return this.http.get(url);
   }
 
