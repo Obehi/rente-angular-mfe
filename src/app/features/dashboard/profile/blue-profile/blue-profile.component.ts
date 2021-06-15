@@ -18,13 +18,15 @@ import {
   Validators
 } from '@angular/forms';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { combineLatest, Observable, Subject } from 'rxjs';
+import { combineLatest, Observable, of, Subject } from 'rxjs';
 import {
+  debounce,
   debounceTime,
   distinctUntilChanged,
   map,
   startWith,
-  switchMap
+  switchMap,
+  tap
 } from 'rxjs/operators';
 import {
   MatAutocomplete,
@@ -105,7 +107,13 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
   public locale = locale;
   changesMade = false;
   public isSweden = false;
-
+  public loadingStates = {
+    email: false,
+    income: false,
+    fetchCreditLinesOnly: false,
+    noAdditionalProductsRequired: false,
+    interestedInEnvironmentMortgages: false
+  };
   // //////////////////////////// NEW /////////////////////////// ///
 
   public offerOneIsChecked = true;
@@ -199,6 +207,7 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
         console.log(err);
       },
       () => {
+        this.subscribeToControllers();
         this.onFormChange();
       }
     );
@@ -227,12 +236,12 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
 
   // Listen to blur updates in forms. Save  changes if the form is valid.
   onFormChange(): void {
-    this.profileForm.valueChanges.subscribe(() => {
+    /*  this.profileForm.valueChanges.subscribe(() => {
       console.log('changed');
       this.changesMade = true;
       this.updatePreferances2();
     });
-
+ */
     this.preferencesForm.valueChanges.subscribe((test) => {
       console.log(test);
       if (this.profileForm.valid) {
@@ -248,29 +257,57 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
     });
   }
 
+  getPreferencesDto(): PreferencesUpdateDto {
+    const income = this.profileForm.value.income;
+    const userData = {
+      email: this.profileForm.value.email,
+      income: typeof income === 'string' ? income.replace(/\s/g, '') : income
+    };
+    const dto = new PreferencesUpdateDto();
+    dto.email = userData.email;
+    dto.income = userData.income;
+    dto.memberships = this.memberships.map((membership) => membership.name);
+    dto.checkRateReminderType = this.preferencesForm?.get(
+      'checkRateReminderType'
+    )?.value;
+    dto.fetchCreditLinesOnly = this.preferencesForm?.get(
+      'fetchCreditLinesOnly'
+    )?.value;
+    dto.noAdditionalProductsRequired = this.preferencesForm?.get(
+      'noAdditionalProductsRequired'
+    )?.value;
+    dto.interestedInEnvironmentMortgages = this.preferencesForm?.get(
+      'interestedInEnvironmentMortgages'
+    )?.value;
+    dto.receiveNewsEmails = this.preferencesForm?.get(
+      'receiveNewsEmails'
+    )?.value;
+    return dto;
+  }
+
   public updatePreferances(): void {
-    // this.isLoading = true;
-    // const income = this.profileForm.value.income;
-    // const userData = {
-    //   email: this.profileForm.value.email,
-    //   income: typeof income === 'string' ? income.replace(/\s/g, '') : income
-    // };
-    // const dto = new PreferencesUpdateDto();
-    // dto.email = userData.email;
-    // dto.income = userData.income;
-    // dto.memberships = this.memberships.map((membership) => membership.name);
-    // dto.checkRateReminderType = this.preferencesForm.get(
-    //   'checkRateReminderType'
-    // );
-    // dto.fetchCreditLinesOnly = this.preferencesForm.get('fetchCreditLinesOnly');
-    // dto.noAdditionalProductsRequired = this.preferencesForm.get(
-    //   'noAdditionalProductsRequired'
-    // );
-    // dto.interestedInEnvironmentMortgages = this.preferencesForm.get(
-    //   'interestedInEnvironmentMortgages'
-    // );
-    // dto.receiveNewsEmails = this.preferencesForm.get('receiveNewsEmails');
-    // No one leaves the page while updating
+    this.isLoading = true;
+    const income = this.profileForm.value.income;
+    const userData = {
+      email: this.profileForm.value.email,
+      income: typeof income === 'string' ? income.replace(/\s/g, '') : income
+    };
+    const dto = new PreferencesUpdateDto();
+    dto.email = userData.email;
+    dto.income = userData.income;
+    dto.memberships = this.memberships.map((membership) => membership.name);
+    dto.checkRateReminderType = this.preferencesForm.get(
+      'checkRateReminderType'
+    );
+    dto.fetchCreditLinesOnly = this.preferencesForm.get('fetchCreditLinesOnly');
+    dto.noAdditionalProductsRequired = this.preferencesForm.get(
+      'noAdditionalProductsRequired'
+    );
+    dto.interestedInEnvironmentMortgages = this.preferencesForm.get(
+      'interestedInEnvironmentMortgages'
+    );
+    dto.receiveNewsEmails = this.preferencesForm.get('receiveNewsEmails');
+
     /*   this.canLeavePage = false;
 
     this.loansService.updateUserPreferences(dto).subscribe(
@@ -435,12 +472,101 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
       this.profileForm.get('email')?.valueChanges.pipe(
         distinctUntilChanged(),
         debounceTime(500),
-        switchMap((val) => {
-          this.updatePreferances2();
+        tap(() => {
+          this.loadingStates['email'] = true;
+        }),
+        switchMap(() => {
+          return this.loansService.updateUserPreferences(
+            this.getPreferencesDto()
+          );
+        }),
+        tap(() => {
+          this.loadingStates['email'] = false;
         })
-      )
-    ]).subscribe(() => {
-      this.formGroup.markAsDirty();
+      ),
+      this.profileForm.get('income')?.valueChanges.pipe(
+        distinctUntilChanged(),
+        debounceTime(500),
+        tap(() => {
+          this.loadingStates['income'] = true;
+        }),
+        switchMap(() => {
+          return this.loansService.updateUserPreferences(
+            this.getPreferencesDto()
+          );
+        }),
+        tap(() => {
+          this.loadingStates['income'] = false;
+        })
+      ),
+      this.preferencesForm.get('fetchCreditLinesOnly')?.valueChanges.pipe(
+        distinctUntilChanged(),
+        debounceTime(500),
+        tap(() => {
+          this.loadingStates['fetchCreditLinesOnly'] = true;
+        }),
+        switchMap(() => {
+          return this.loansService.updateUserPreferences(
+            this.getPreferencesDto()
+          );
+        }),
+        tap(() => {
+          this.loadingStates['fetchCreditLinesOnly'] = false;
+        })
+      ),
+      this.preferencesForm
+        .get('noAdditionalProductsRequired')
+        ?.valueChanges.pipe(
+          distinctUntilChanged(),
+          debounceTime(500),
+          tap(() => {
+            this.loadingStates['noAdditionalProductsRequired'] = true;
+          }),
+          switchMap(() => {
+            return this.loansService.updateUserPreferences(
+              this.getPreferencesDto()
+            );
+          }),
+          tap(() => {
+            this.loadingStates['noAdditionalProductsRequired'] = false;
+          })
+        ),
+      this.preferencesForm
+        .get('interestedInEnvironmentMortgages')
+        ?.valueChanges.pipe(
+          distinctUntilChanged(),
+          debounceTime(500),
+          tap(() => {
+            this.loadingStates['interestedInEnvironmentMortgages'] = true;
+          }),
+          switchMap(() => {
+            return this.loansService.updateUserPreferences(
+              this.getPreferencesDto()
+            );
+          }),
+          tap(() => {
+            this.loadingStates['interestedInEnvironmentMortgages'] = false;
+          })
+        ),
+      this.preferencesForm
+        .get('interestedInEnvironmentMortgages')
+        ?.valueChanges.pipe(
+          distinctUntilChanged(),
+          debounceTime(500),
+          tap(() => {
+            this.loadingStates['interestedInEnvironmentMortgages'] = true;
+          }),
+          switchMap(() => {
+            return this.loansService.updateUserPreferences(
+              this.getPreferencesDto()
+            );
+          }),
+          tap(() => {
+            this.loadingStates['interestedInEnvironmentMortgages'] = false;
+          })
+        )
+    ]).subscribe((value) => {
+      this.canNavigateBooolean$.next(true);
     });
   }
 }
