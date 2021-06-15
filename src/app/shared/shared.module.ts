@@ -49,8 +49,7 @@ import { CheckboxContainerComponent } from './components/ui-components/checkbox-
 import { BarComponent } from './components/ui-components/bar/bar.component';
 import { PropertySelectComponent } from '@features/first-buyers/components/property-select/property-select.component';
 import { PropertySelectDialogComponent } from '@features/first-buyers/components/property-select-dialog/property-select-dialog.component';
-import { PropertyInputComponent } from '@features/first-buyers/components/property-input/property-input.component';
-
+import { SpinnerComponent } from '@shared/components/ui-components/spinner/spinner.component';
 const components = [
   HeaderLangGenericComponent,
   FooterComponent,
@@ -67,7 +66,8 @@ const components = [
   TextAreaComponent,
   OfferDetailsLangGenericComponent,
   PropertySelectComponent,
-  PropertySelectDialogComponent
+  PropertySelectDialogComponent,
+  SpinnerComponent
 ];
 
 const services = [
