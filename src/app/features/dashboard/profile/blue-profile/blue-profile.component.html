@@ -12,7 +12,7 @@
   <div class="forms" *ngIf="profileForm">
     <form class="p-0 border-0" [formGroup]="profileForm" novalidate change>
       <div class="field-box">
-        <h4 class="text-white">E-mail</h4>
+        <h4 class="text-white center">E-mail</h4>
         <div
           *ngIf="profileForm.controls['email'].touched"
           class="error-message"
@@ -27,7 +27,10 @@
           <rente-form-message
             i18n="“issue-mail2|profile@@profile.issueMail2”"
             [type]="'error'"
-            *ngIf="profileForm.controls['email'].hasError('pattern')"
+            *ngIf="
+              profileForm.controls['email'].hasError('pattern') ||
+              profileForm.controls['email'].hasError('required')
+            "
           >
             Ikke gyldig email
           </rente-form-message>
@@ -39,9 +42,20 @@
             formControlName="email"
           />
         </mat-form-field>
+        <rente-form-message
+          i18n="“issue-mail2|profile@@profile.issueMail2”"
+          class="center"
+          [type]="'error'"
+          *ngIf="
+            profileForm.controls['email'].hasError('pattern') ||
+            profileForm.controls['email'].hasError('required')
+          "
+        >
+          Ikke gyldig email
+        </rente-form-message>
       </div>
       <div class="field-box">
-        <h4 class="text-white">Din bruto årsinntekt</h4>
+        <h4 class="text-white center">Din bruto årsinntekt</h4>
         <div
           *ngIf="profileForm.controls['income'].touched"
           class="error-message"

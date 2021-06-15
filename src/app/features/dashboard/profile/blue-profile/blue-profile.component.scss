@@ -4,6 +4,10 @@
   background: red !important;
 }
 
+.center {
+  text-align: center;
+}
+
 .desktop {
   .formBox {
     background: white;
@@ -299,12 +303,16 @@ form {
 
 /////////////////////////////////////////////////// NEW //////////////////////////////////////////////////
 
+::ng-deep .mat-form-field-wrapper {
+  margin: 0 !important;
+  padding: 0 !important;
+}
 ::ng-deep .mat-form-field-outline-start {
   display: none !important;
 }
 ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-end {
-  // border-radius: 50px !important;
-  border: none;
+  border-radius: 50px !important;
+  border-width: 5px;
   border-left: none;
 }
 ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-start {
@@ -317,8 +325,16 @@ form {
   border-bottom: none;
 }
 ::ng-deep.mat-form-field-appearance-outline .mat-form-field-outline {
-  box-shadow: -5px -5px 20px #fff, 5px 5px 20px #babecc;
-  border-radius: 15px;
+  border: 1px solid #478ccc;
+  border-radius: 50px;
+}
+
+::ng-deep .mat-form-field-infix input {
+  text-align: center !important;
+}
+
+::ng-deep.mat-form-field-appearance-outline .mat-form-field-outline-end {
+  border: none !important;
 }
 
 .main {
@@ -426,6 +442,7 @@ form {
 .preferences-tab {
   width: 90%;
   margin: auto;
+  margin-top: 40px;
 
   .icon {
   }

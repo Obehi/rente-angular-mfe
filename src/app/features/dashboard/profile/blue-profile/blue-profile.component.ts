@@ -249,7 +249,6 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
     //   email: this.profileForm.value.email,
     //   income: typeof income === 'string' ? income.replace(/\s/g, '') : income
     // };
-
     // const dto = new PreferencesUpdateDto();
     // dto.email = userData.email;
     // dto.income = userData.income;
@@ -265,9 +264,8 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
     //   'interestedInEnvironmentMortgages'
     // );
     // dto.receiveNewsEmails = this.preferencesForm.get('receiveNewsEmails');
-
     // No one leaves the page while updating
-    this.canLeavePage = false;
+    /*   this.canLeavePage = false;
 
     this.loansService.updateUserPreferences(dto).subscribe(
       () => {
@@ -284,7 +282,7 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
         this.isLoading = false;
         this.errorAnimationTrigger = !this.errorAnimationTrigger;
       }
-    );
+    ); */
   }
 
   public updatePreferances2(): void {
