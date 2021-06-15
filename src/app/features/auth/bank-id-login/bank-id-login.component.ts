@@ -91,7 +91,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
       value: 'DOWNPAYMENT_REGULAR_LOAN'
     },
     {
-      name: 'Rammelån/boligkreditt',
+      name: 'Rammelån/Boligkreditt',
       value: 'CREDIT_LINE'
     }
   ];
