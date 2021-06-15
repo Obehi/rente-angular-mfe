@@ -1,4 +1,4 @@
-@import "../../../styles/theme/_colors.scss";
+@import '../../../styles/theme/_colors.scss';
 
 .tabs-wrapper {
   background-color: $secondary;
@@ -6,107 +6,115 @@
 }
 
 .dash-tabs-blue-wrapper {
+  .dash-tabs-blue {
+    .inner {
+      @media (max-width: 600px) {
+        width: 100%;
+      }
 
-.dash-tabs-blue {
-  .inner {
-    @media (max-width: 600px) {
       width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: $secondary;
     }
 
-    width: 900px;
+    position: fixed;
+    margin: auto;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 70px;
+    width: 100%;
+    //max-width: 1010px;
+    z-index: 100;
+    background-color: $secondary;
+
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: $secondary;
-  }
-
-  position: fixed;
-  margin: auto;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 70px;
-  width: 100%;
-  //max-width: 1010px;
-  z-index: 100;
-  background-color: $secondary;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  .dash-tab {
-    text-align: center;
-    width: 25%;
-    display: block;
-    border: none;
-    height: 100%;
-    .mat-tab-link-container {
-      height: 100%;
-    }
-    .mat-tab-header-pagination {
-      display: none;
-    }
-
-    .mat-tab-label-active p {
-      color: $green !important;
-    }
-
-    .mat-tab-label-active .rente-icon {
-      content: url("../../../assets/icons/rente-logo-icon-green.svg");
-    }
-
-    .mat-tab-label-active .graph-icon {
-      content: url("../../../assets/icons/graph-icon-green.svg");
-    }
-
-    .mat-tab-label-active .house-icon {
-      content: url("../../../assets/icons/house-icon-green.svg");
-    }
-
-    .mat-tab-label-active .profile-icon {
-      content: url("../../../assets/icons/profile-icon-green.svg");
-    }
-    .mat-tab-links {
+    .dash-tab {
+      text-align: center;
+      width: 25%;
       display: block;
-      transform: unset !important;
+      border: none;
       height: 100%;
+      .mat-tab-link-container {
+        height: 100%;
+      }
+      .mat-tab-header-pagination {
+        display: none;
+      }
 
-      .mat-tab-link {
-        opacity: 1;
-        width: 100%;
-        height: 100% !important;
-        padding: 0;
-        text-decoration: none;
+      .mat-tab-label-active p {
+        color: $green !important;
+      }
 
-        img {
-          width: 20px;
-          margin-top: 3px;
+      .mat-tab-label-active .rente-icon {
+        content: url('../../../assets/icons/rente-logo-icon-green.svg');
+      }
 
-          &.rente-icon {
-            width: 26px;
-            margin-bottom: -2px;
+      .mat-tab-label-active .graph-icon {
+        content: url('../../../assets/icons/graph-icon-green.svg');
+      }
+
+      .mat-tab-label-active .house-icon {
+        content: url('../../../assets/icons/house-icon-green.svg');
+      }
+
+      .mat-tab-label-active .profile-icon {
+        content: url('../../../assets/icons/profile-icon-green.svg');
+      }
+      .mat-tab-links {
+        display: block;
+        transform: unset !important;
+        height: 100%;
+
+        .mat-tab-link {
+          opacity: 1;
+          width: 100%;
+          height: 100% !important;
+          padding: 0;
+          text-decoration: none;
+
+          img {
+            width: 20px;
+            margin-top: 3px;
+
+            &.rente-icon {
+              width: 26px;
+              margin-bottom: -2px;
+            }
+          }
+
+          p {
+            color: white;
           }
         }
-
-        p {
-          color: white;
-        }
+      }
+      .mat-ink-bar {
+        display: none;
       }
     }
-    .mat-ink-bar {
-      display: none;
-    }
-  }
-  @media (min-width: 600px) {
-    top: 60px;
-    bottom: unset;
-    background-color: $secondary;
+    @media (min-width: 600px) {
+      top: 0px;
+      bottom: unset;
+      background-color: $secondary;
 
-    .dash-tab {
-      width: 18%;
+      .dash-logo-tab {
+        margin-left: 1%;
+      }
+
+      .dash-all-tabs {
+        display: flex;
+      }
+
+      .dash-logout-tab {
+        align-self: center;
+        width: 90px;
+      }
     }
   }
-}
 }
 
 .dash-tabs-normal {
@@ -175,7 +183,6 @@
 }
 
 .dashboard-content-blue {
-  background: linear-gradient(180deg, #162537 0%, #183a63 10.08%) !important;
   max-width: 1010px;
   margin: auto;
   min-height: calc(100vh - 60px);
@@ -185,4 +192,12 @@
   @media (min-width: 600px) {
     margin-top: 55px;
   }
+}
+
+.highlight {
+  background: #183a63;
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+  text-decoration: none;
 }

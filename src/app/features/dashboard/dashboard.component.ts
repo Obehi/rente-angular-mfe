@@ -4,6 +4,8 @@ import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
 import { LocalStorageService } from '@services/local-storage.service';
 import { OptimizeService } from '@services/optimize.service';
 import { ROUTES_MAP } from '@config/routes-config';
+import { GlobalStateService } from '@services/global-state.service';
+import { AuthService } from '@services/remote-api/auth.service';
 
 @Component({
   selector: 'rente-dashboard',
@@ -18,7 +20,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
   constructor(
     private router: Router,
     public breakpointObserver: BreakpointObserver,
-    private localStorageService: LocalStorageService
+    private localStorageService: LocalStorageService,
+    private globalStateService: GlobalStateService,
+    private auth: AuthService
   ) {}
 
   public navLinks: string[] | undefined = [
@@ -45,6 +49,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.globalStateService.setHeaderState(false);
+
     if (this.localStorageService.getItem('noLoansPresent')) {
       this.router.navigate(['/' + ROUTES_MAP.noLoan]);
     } else if (this.localStorageService.getItem('isAggregatedRateTypeFixed')) {
@@ -112,5 +118,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
           this.isMobile = true;
         }
       });
+  }
+
+  public logout(): void {
+    this.auth.logout();
   }
 }

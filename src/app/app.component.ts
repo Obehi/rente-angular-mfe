@@ -5,6 +5,7 @@ import { MetaService } from '@shared/services/meta.service';
 import { TitleService } from '@services/title.service';
 import { LocalStorageService } from '@services/local-storage.service';
 import { ROUTES_MAP } from '@config/routes-config';
+import { GlobalStateService } from '@services/global-state.service';
 
 @Component({
   selector: 'rente-root',
@@ -17,13 +18,15 @@ export class AppComponent implements OnInit {
   public title = 'rente-front-end';
   public navigationSubscription: Subscription;
   public showCookieAcc: boolean;
+  public showHeader: boolean;
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private metaService: MetaService,
     private titleService: TitleService,
-    private localStorageService: LocalStorageService
+    private localStorageService: LocalStorageService,
+    private globalStateService: GlobalStateService
   ) {}
 
   onActivate(): void {
@@ -46,6 +49,11 @@ export class AppComponent implements OnInit {
     if (!this.localStorageService.getItem(AppComponent.CookiesAcceptedKey)) {
       this.showCookieAcc = true;
     }
+
+    // Set global state for header
+    this.globalStateService
+      .getHeaderState()
+      .subscribe((state) => (this.showHeader = state));
   }
 
   private changeTitles(): void {
