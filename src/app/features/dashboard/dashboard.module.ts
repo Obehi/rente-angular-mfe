@@ -71,6 +71,7 @@ import { BoxGridComponent } from './offers/offers-blue/box-grid/box-grid.compone
 import { TipsComponent } from './offers/offers-blue/tips/tips.component';
 import { ActionBoxesComponent } from './offers/offers-blue/action-boxes/action-boxes.component';
 import { PropertyInputComponent } from '../first-buyers/components/property-input/property-input.component';
+import { CurrencyMaskModule } from 'ng2-currency-mask';
 
 // TODO: ADD separate module for material import
 @NgModule({
@@ -146,7 +147,8 @@ import { PropertyInputComponent } from '../first-buyers/components/property-inpu
     MatExpansionModule,
     MatStepperModule,
     MatSlideToggleModule,
-    NgbRatingModule
+    NgbRatingModule,
+    CurrencyMaskModule
 
     // ShareButtonModule
   ],

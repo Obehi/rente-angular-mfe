@@ -276,4 +276,6 @@ button.mat-secondary-medium-card[disabled] {
 button.mat-blue-select {
   background: $secondary;
   height: 5ch;
+  display: inline;
+  max-width: 300px;
 }

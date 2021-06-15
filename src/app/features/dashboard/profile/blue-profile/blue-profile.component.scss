@@ -299,6 +299,28 @@ form {
 
 /////////////////////////////////////////////////// NEW //////////////////////////////////////////////////
 
+::ng-deep .mat-form-field-outline-start {
+  display: none !important;
+}
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-end {
+  // border-radius: 50px !important;
+  border: none;
+  border-left: none;
+}
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-start {
+  border-radius: 1px !important;
+  border: none;
+  border-right: none;
+}
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-gap {
+  border-radius: 1px !important;
+  border-bottom: none;
+}
+::ng-deep.mat-form-field-appearance-outline .mat-form-field-outline {
+  box-shadow: -5px -5px 20px #fff, 5px 5px 20px #babecc;
+  border-radius: 15px;
+}
+
 .main {
 }
 
@@ -316,6 +338,7 @@ form {
 }
 
 .username {
+  margin-top: 15px;
 }
 
 .forms {
@@ -356,20 +379,20 @@ form {
     font-size: 15px;
   }
 
-  ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
-    color: darkgrey;
-    /* background: repeating-linear-gradient(
-      176deg,
-      rgb(0 0 0 / 0%),
-      rgb(0 0 0 / 42%) 100px
-    );*/
+  // ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+  //   color: darkgrey;
+  //   /* background: repeating-linear-gradient(
+  //     176deg,
+  //     rgb(0 0 0 / 0%),
+  //     rgb(0 0 0 / 42%) 100px
+  //   );*/
 
-    background: repeating-linear-gradient(
-      176deg,
-      rgb(0 0 0 / 0%),
-      rgb(0 0 0 / 42%) 100px
-    );
-  }
+  //   background: repeating-linear-gradient(
+  //     176deg,
+  //     rgb(0 0 0 / 0%),
+  //     rgb(0 0 0 / 42%) 100px
+  //   );
+  // }
 }
 
 .email-form {
@@ -389,6 +412,15 @@ form {
     width: 75%;
     margin: 5%;
   }
+}
+
+::ng-deep .mat-select-value {
+  display: inline !important;
+  max-width: 100%;
+}
+
+::ng-deep .mat-select-value-text {
+  color: white !important;
 }
 
 .preferences-tab {
@@ -474,6 +506,6 @@ form {
   }
 
   hr {
-    background: #478ccc;
+    border-bottom: 1px solid #478ccc;
   }
 }

@@ -39,7 +39,7 @@ export class PropertySelectDialogComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.allMemberships = this.data.allMemberships;
     this.previousState = this.data.previousState;
-    console.log(this.memberships);
+    console.log(this.previousState);
   }
 
   ngOnDestroy(): void {}
@@ -56,11 +56,13 @@ export class PropertySelectDialogComponent implements OnInit, OnDestroy {
   save(): void {
     if (this.hasChanged === true) {
       this.membershipService.setSelectedMemberships(this.memberships);
+      this.closeState = 'saved';
       this.onClose();
     }
   }
 
   cancel(): void {
+    this.closeState = 'cancelled';
     this.onClose();
   }
 }

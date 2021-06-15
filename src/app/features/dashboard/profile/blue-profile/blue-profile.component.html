@@ -9,34 +9,68 @@
       {{ username }}
     </h3>
   </div>
-  <div class="forms">
-    <form class="p-0 border-0">
+  <div class="forms" *ngIf="profileForm">
+    <form class="p-0 border-0" [formGroup]="profileForm" novalidate change>
       <div class="field-box">
         <h4 class="text-white">E-mail</h4>
+        <div
+          *ngIf="profileForm.controls['email'].touched"
+          class="error-message"
+        >
+          <rente-form-message
+            i18n="“issue-mail|profile@@profile.issueMail”"
+            [type]="'error'"
+            *ngIf="profileForm.controls['email'].hasError('required')"
+          >
+            Ikke gyldig email
+          </rente-form-message>
+          <rente-form-message
+            i18n="“issue-mail2|profile@@profile.issueMail2”"
+            [type]="'error'"
+            *ngIf="profileForm.controls['email'].hasError('pattern')"
+          >
+            Ikke gyldig email
+          </rente-form-message>
+        </div>
         <mat-form-field class="white-input w-75" appearance="outline">
           <input
             placeholder="Skriv inn din e-mail"
+            matInput
+            formControlName="email"
+          />
+        </mat-form-field>
+      </div>
+      <div class="field-box">
+        <h4 class="text-white">Din bruto årsinntekt</h4>
+        <div
+          *ngIf="profileForm.controls['income'].touched"
+          class="error-message"
+        >
+          <rente-form-message
+            class="text-left d-block"
+            [type]="'error'"
+            i18n="“issue-empty|profile@@profile.issueEmpty”"
+            *ngIf="profileForm.controls['income'].hasError('required')"
+          >
+            Kan ikke være tom
+          </rente-form-message>
+        </div>
+        <mat-form-field class="white-input w-75" appearance="outline">
+          <input
+            i18n="“income-per-year|profile@@profile.income"
+            placeholder="Skriv inn din brutto årsinntekt"
             matInput
             type="tel"
             autocomplete="off"
             formControlName="income"
             currencyMask
-          />
-        </mat-form-field>
-        <!-- <div *ngIf="isLowIncome">
-          <p class="error small error-big">For lav inntekt</p>
-        </div> -->
-      </div>
-      <div class="field-box">
-        <h4 class="text-white">Din bruto årsinntekt</h4>
-        <mat-form-field class="white-input w-75" appearance="outline">
-          <input
-            placeholder="Skriv inn din brutto årsinntekt"
-            matInput
-            type="tel"
-            autocomplete="off"
-            formControlName="outstandingDebt"
-            currencyMask
+            [options]="{
+              prefix: '',
+              suffix: 'kr ',
+              align: 'left',
+              thousands: ' ',
+              precision: 0
+            }"
           />
         </mat-form-field>
       </div>
@@ -62,7 +96,11 @@
       </rente-input>
     </div> -->
   </div>
-  <div [formGroup]="preferencesForm" class="preferences-tab">
+  <div
+    *ngIf="preferencesForm"
+    [formGroup]="preferencesForm"
+    class="preferences-tab"
+  >
     <div class="flex-1">
       <h5 class="element">
         Medlemskap:
@@ -89,9 +127,11 @@
           formControlName="checkRateReminderType"
           [placeholder]="'Velg'"
         >
-          <mat-option *ngFor="let option of marketOptions" [value]="option">{{
-            option
-          }}</mat-option>
+          <mat-option
+            *ngFor="let option of marketOptions"
+            [value]="getMarketString(option)"
+            >{{ option }}</mat-option
+          >
         </mat-select>
       </rente-button>
       <hr />
@@ -107,11 +147,10 @@
 
       <mat-slide-toggle
         class="button"
-        (change)="isChecked = !isChecked"
+        (change)="markedIsChecked = !markedIsChecked"
         formControlName="receiveNewsEmails"
-        [value]="isChecked"
-        >{{ isChecked }}</mat-slide-toggle
-      >
+        [value]="markedIsChecked"
+      ></mat-slide-toggle>
 
       <hr />
       <hr />
@@ -119,17 +158,32 @@
     <h3>HVILKE TILBUD VIL DU SE:</h3>
     <div class="grid-2">
       <p class="element-subtitle">Vis kun tilbud på rammelån/flexilån</p>
-      <mat-slide-toggle class="button"></mat-slide-toggle>
+      <mat-slide-toggle
+        class="button"
+        (change)="offerOneIsChecked = !offerOneIsChecked"
+        formControlName="fetchCreditLinesOnly"
+        [value]="offerOneIsChecked"
+      ></mat-slide-toggle>
       <p class="element-subtitle">
         Vis tilbud som krever andre produkter eller har sækrav: feks. bytte av
         nettbank og aktiv lønnskonto
       </p>
-      <mat-slide-toggle class="button"></mat-slide-toggle>
+      <mat-slide-toggle
+        class="button"
+        (change)="offerTwoIsChecked = !offerTwoIsChecked"
+        formControlName="noAdditionalProductsRequired"
+        [value]="offerTwoIsChecked"
+      ></mat-slide-toggle>
       <p class="element-subtitle">
         Vis tilbud som forutsetter bolig med energiklasse A/B, nullhus,
         Svanemerket, tiltak for energimerking, etc.
       </p>
-      <mat-slide-toggle class="button"></mat-slide-toggle>
+      <mat-slide-toggle
+        class="button"
+        (change)="offerThreeIsChecked = !offerThreeIsChecked"
+        formControlName="interestedInEnvironmentMortgages"
+        [value]="offerThreeIsChecked"
+      ></mat-slide-toggle>
       <hr />
       <hr />
     </div>

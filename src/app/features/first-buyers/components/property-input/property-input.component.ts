@@ -70,7 +70,7 @@ export class PropertyInputComponent implements OnInit {
       console.log(args);
       this.previousStateMemberships = args;
     });
-    console.log(this.autocompleteOptions);
+    console.log(this.previousStateMemberships);
     if (this.inputType === 'autocomplete') {
       this.exitHandler = () => {
         this.multiSelect.toggleDropdown();

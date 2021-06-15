@@ -14,6 +14,7 @@ import {
   OnInit,
   Output
 } from '@angular/core';
+import { MembershipService } from '@services/membership.service';
 import { MembershipTypeDto } from '@services/remote-api/loans.service';
 
 import { Observable, Subject } from 'rxjs';
@@ -51,7 +52,9 @@ export class PropertySelectComponent implements OnInit, OnDestroy {
   searchIconDark = '../../../../assets/icons/search-grey-dark.svg';
 
   @Input() selectedOptions;
-  @Output() selectedItemsEmitter = new EventEmitter<string[] | undefined>();
+  @Output() selectedItemsEmitter = new EventEmitter<
+    MembershipTypeDto[] | undefined
+  >();
   @Output() hasChangedEmitter = new EventEmitter<any>();
 
   public selectedMemberships: MembershipTypeDto[];
@@ -59,9 +62,10 @@ export class PropertySelectComponent implements OnInit, OnDestroy {
   selectionDistincter = new Subject();
   _selectionDistincter: Observable<any>;
 
-  constructor() {}
+  constructor(private membershipService: MembershipService) {}
 
   ngOnInit(): void {
+    console.log(this.selectedOptions);
     this.selectedMemberships = this.selectedOptions;
   }
 
@@ -86,11 +90,7 @@ export class PropertySelectComponent implements OnInit, OnDestroy {
         .includes(membership.name)
     ) {
       this.selectedMemberships?.push(membership);
-      this.selectedItemsEmitter.emit(
-        this.selectedMemberships.map((selectedMembership) => {
-          return selectedMembership.name;
-        })
-      );
+      this.selectedItemsEmitter.emit(this.selectedMemberships);
     }
   }
 
@@ -109,13 +109,13 @@ export class PropertySelectComponent implements OnInit, OnDestroy {
     }
   }
 
-  chosenMemberships(membership: string): boolean {
+  chosenMemberships(membership: MembershipTypeDto): boolean {
     if (
       this.selectedMemberships
         ?.map((membership) => {
           return membership.name;
         })
-        .includes(membership)
+        .includes(membership.name)
     ) {
       return true;
     } else {

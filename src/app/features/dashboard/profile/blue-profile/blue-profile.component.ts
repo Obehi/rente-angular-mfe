@@ -5,7 +5,8 @@ import {
   ElementRef,
   EventEmitter,
   Output,
-  Input
+  Input,
+  OnChanges
 } from '@angular/core';
 import { locale } from '../../../../config/locale/locale';
 import { CustomLangTextService } from '@shared/services/custom-lang-text.service';
@@ -100,10 +101,15 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
   public isSweden = false;
 
   // //////////////////////////// NEW /////////////////////////// ///
-  public isChecked = false;
+
+  public offerOneIsChecked = true;
+  public offerTwoIsChecked = true;
+  public offerThreeIsChecked = true;
+  public markedIsChecked = true;
+
   @Input() autocompleteOptions: any;
   @Input() memberships: MembershipTypeDto[];
-  public previousStateMemberships: string[] = [];
+  public previousStateMemberships: MembershipTypeDto[] = [];
   @Output() selectedMemberships = new EventEmitter<MembershipTypeDto[]>();
   public marketOptions = [
     this.textLangService.getProfileMarketOption1(),
@@ -138,19 +144,11 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
       this.showPreferences = false;
       this.showOfferPreferences = false;
     }
-    this.filteredMemberships = this.membershipCtrl.valueChanges.pipe(
-      startWith(null),
-      map((membership: string | null) =>
-        membership ? this.filter(membership) : this.allMemberships.slice()
-      )
-    );
   }
 
   ngOnInit(): void {
-    this.membershipService.getSelectedMemberships().subscribe((args) => {
-      this.previousStateMemberships = args;
-    });
-    console.log(this.previousStateMemberships);
+    console.log(this.profileForm);
+    console.log();
 
     this.loansService.getPreferencesDto().subscribe(
       (res) => {
@@ -162,9 +160,12 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
             return membership;
           }
         });
-        console.log(dto.checkRateReminderType);
-        console.log(dto.checkRateReminderType);
-        console.log(dto.memberships);
+
+        this.membershipService.setSelectedMemberships(dto.memberships);
+        // We are getting strings and not objects from the Back-end and therefore we should map them into Objects.
+        this.previousStateMemberships = dto.memberships.map((args) => {
+          return { name: args, label: '' };
+        });
 
         this.username = dto.name;
         this.profileForm = this.fb.group({
@@ -196,6 +197,10 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
       }
     );
 
+    this.membershipService.getSelectedMemberships().subscribe((args) => {
+      this.previousStateMemberships = args;
+    });
+
     if (locale.includes('sv')) {
       this.isSweden = true;
     } else {
@@ -217,16 +222,16 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
   // Listen to blur updates in forms. Save  changes if the form is valid.
   onFormChange(): void {
     this.profileForm.valueChanges.subscribe(() => {
-      if (this.profileForm.valid) {
-        this.changesMade = true;
-        this.updatePreferances();
-      }
+      console.log('changed');
+      this.changesMade = true;
+      this.updatePreferances2();
     });
 
     this.preferencesForm.valueChanges.subscribe(() => {
+      console.log(this.preferencesForm);
       if (this.profileForm.valid) {
         this.changesMade = true;
-        this.updatePreferances();
+        this.updatePreferances2();
       }
     });
   }
@@ -238,28 +243,28 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
   }
 
   public updatePreferances(): void {
-    this.isLoading = true;
-    const income = this.profileForm.value.income;
-    const userData = {
-      email: this.profileForm.value.email,
-      income: typeof income === 'string' ? income.replace(/\s/g, '') : income
-    };
+    // this.isLoading = true;
+    // const income = this.profileForm.value.income;
+    // const userData = {
+    //   email: this.profileForm.value.email,
+    //   income: typeof income === 'string' ? income.replace(/\s/g, '') : income
+    // };
 
-    const dto = new PreferencesUpdateDto();
-    dto.email = userData.email;
-    dto.income = userData.income;
-    dto.memberships = this.memberships.map((membership) => membership.name);
-    dto.checkRateReminderType = this.preferencesForm.get(
-      'checkRateReminderType'
-    );
-    dto.fetchCreditLinesOnly = this.preferencesForm.get('fetchCreditLinesOnly');
-    dto.noAdditionalProductsRequired = this.preferencesForm.get(
-      'noAdditionalProductsRequired'
-    );
-    dto.interestedInEnvironmentMortgages = this.preferencesForm.get(
-      'interestedInEnvironmentMortgages'
-    );
-    dto.receiveNewsEmails = this.preferencesForm.get('receiveNewsEmails');
+    // const dto = new PreferencesUpdateDto();
+    // dto.email = userData.email;
+    // dto.income = userData.income;
+    // dto.memberships = this.memberships.map((membership) => membership.name);
+    // dto.checkRateReminderType = this.preferencesForm.get(
+    //   'checkRateReminderType'
+    // );
+    // dto.fetchCreditLinesOnly = this.preferencesForm.get('fetchCreditLinesOnly');
+    // dto.noAdditionalProductsRequired = this.preferencesForm.get(
+    //   'noAdditionalProductsRequired'
+    // );
+    // dto.interestedInEnvironmentMortgages = this.preferencesForm.get(
+    //   'interestedInEnvironmentMortgages'
+    // );
+    // dto.receiveNewsEmails = this.preferencesForm.get('receiveNewsEmails');
 
     // No one leaves the page while updating
     this.canLeavePage = false;
@@ -283,16 +288,37 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
   }
 
   public updatePreferances2(): void {
+    const income = this.profileForm.value.income;
+    const userData = {
+      email: this.profileForm.value.email,
+      income: typeof income === 'string' ? income.replace(/\s/g, '') : income
+    };
+
+    console.log(income, userData);
+
     const dto = new PreferencesUpdateDto();
-    dto.memberships = this.previousStateMemberships;
+    dto.email = userData.email;
+    dto.income = userData.income;
+    dto.memberships = this.previousStateMemberships.map((m) => {
+      return m.name;
+    });
     dto.checkRateReminderType = this.preferencesForm.get(
       'checkRateReminderType'
     )?.value;
     dto.receiveNewsEmails = this.preferencesForm.get(
       'receiveNewsEmails'
     )?.value;
+    dto.fetchCreditLinesOnly = this.preferencesForm.get(
+      'fetchCreditLinesOnly'
+    )?.value;
+    dto.noAdditionalProductsRequired = this.preferencesForm.get(
+      'noAdditionalProductsRequired'
+    )?.value;
+    dto.interestedInEnvironmentMortgages = this.preferencesForm.get(
+      'interestedInEnvironmentMortgages'
+    )?.value;
 
-    console.log(this.preferencesForm.get('receiveNewsEmails')?.value);
+    console.log(dto.checkRateReminderType);
 
     // No one leaves the page while updating
     this.canLeavePage = false;
@@ -321,30 +347,81 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
   }
 
   public openPropertySelectDialog(): void {
+    const memberships = this.getMembershipNameString(
+      this.previousStateMemberships?.map((args) => {
+        return args.name;
+      })
+    );
     const openDialog = this.dialog.open(PropertySelectDialogComponent, {
       autoFocus: false,
       data: {
-        previousState: [...this.previousStateMemberships],
+        previousState: memberships,
         allMemberships: this.allMemberships
       }
     });
     openDialog.afterClosed().subscribe(() => {
-      this.membershipCtrl.setValue(this.previousStateMemberships);
-      this.updatePreferances2();
+      this.handleMembershipDialogOnClose(
+        openDialog.componentInstance.closeState
+      );
     });
+  }
+
+  public handleMembershipDialogOnClose(state: string): void {
+    switch (state) {
+      case 'cancelled': {
+        break;
+      }
+      case 'saved': {
+        this.membershipCtrl.setValue(
+          this.previousStateMemberships.map((membership) => {
+            return membership.name;
+          })
+        );
+        this.updatePreferances2();
+
+        break;
+      }
+    }
   }
 
   getMembershipPlaceholder(): string | undefined {
     if (this.previousStateMemberships?.length === 0) {
       return 'Velg';
     } else if (this.previousStateMemberships?.length === 1) {
-      return `${this.previousStateMemberships}`;
+      const oneMembershipPlaceholder = this.getMembershipNameString(
+        this.previousStateMemberships.map((m) => {
+          return m.name;
+        })
+      )[0].label;
+      return oneMembershipPlaceholder;
     } else if (this.previousStateMemberships?.length > 1) {
       return `${this.previousStateMemberships?.length} valgt`;
     }
   }
 
-  getToggleValue(): void {
-    this.isChecked === false ? true : false;
+  getMembershipNameString(membership: string[]): any {
+    return this.allMemberships.filter((m) => {
+      return membership.includes(m.name);
+    });
+  }
+
+  getMarketString(option: string): any {
+    switch (option) {
+      case 'Hver måned': {
+        return 'HVER_MANED_1';
+      }
+      case 'Hver 2. måned': {
+        return 'HVER_MANED_2';
+      }
+      case 'Hver 3. måned': {
+        return 'HVER_MANED_3';
+      }
+      case 'Hver 4. måned': {
+        return 'HVER_MANED_4';
+      }
+      case 'Hver 5. måned': {
+        return 'HVER_MANED_5';
+      }
+    }
   }
 }
