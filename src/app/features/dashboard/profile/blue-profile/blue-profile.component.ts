@@ -18,8 +18,14 @@ import {
   Validators
 } from '@angular/forms';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { Observable, Subject } from 'rxjs';
-import { map, startWith } from 'rxjs/operators';
+import { combineLatest, Observable, Subject } from 'rxjs';
+import {
+  debounceTime,
+  distinctUntilChanged,
+  map,
+  startWith,
+  switchMap
+} from 'rxjs/operators';
 import {
   MatAutocomplete,
   MatAutocompleteSelectedEvent
@@ -227,8 +233,8 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
       this.updatePreferances2();
     });
 
-    this.preferencesForm.valueChanges.subscribe(() => {
-      console.log(this.preferencesForm);
+    this.preferencesForm.valueChanges.subscribe((test) => {
+      console.log(test);
       if (this.profileForm.valid) {
         this.changesMade = true;
         this.updatePreferances2();
@@ -288,6 +294,7 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
   }
 
   public updatePreferances2(): void {
+    this.isLoading = true;
     const income = this.profileForm.value.income;
     const userData = {
       email: this.profileForm.value.email,
@@ -423,5 +430,19 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
         return 'HVER_MANED_5';
       }
     }
+  }
+
+  subscribeToControllers(): void {
+    combineLatest([
+      this.profileForm.get('email')?.valueChanges.pipe(
+        distinctUntilChanged(),
+        debounceTime(500),
+        switchMap((val) => {
+          this.updatePreferances2();
+        })
+      )
+    ]).subscribe(() => {
+      this.formGroup.markAsDirty();
+    });
   }
 }
