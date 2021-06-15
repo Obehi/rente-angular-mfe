@@ -229,7 +229,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
               );
             } else {
               if (this.bank?.hasFixedLoans === true) {
-                this.initLoansForm(response);
+                this.initFixedLoansLoansForm(response);
               } else {
                 if (response.newLoan === true) {
                   this.initNonFixedLoanBankNewLoanForm();
@@ -389,7 +389,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     });
   }
 
-  private initLoansForm(loanInfo): void {
+  private initFixedLoansLoansForm(loanInfo): void {
     this.isLoading = true;
     if (loanInfo.newLoan === false) {
       forkJoin([
