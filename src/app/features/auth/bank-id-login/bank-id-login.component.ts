@@ -413,7 +413,6 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
           outstandingDebt: [outstandingDebt, Validators.required],
           remainingYears: [
             Math.round(firstLoan.remainingYears),
-            ,
             [Validators.max(100)]
           ],
           loanType: [selectedOption ?? null, Validators.required]
