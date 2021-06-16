@@ -203,9 +203,9 @@ export class CustomLangTextService {
 
   getlowerRateTitle(): string {
     if (locale.includes('sv')) {
-      return 'Du har lägre ränta än förra gången!';
+      return 'Grattis, du har en lägre ränta än förra gången! ';
     } else if (locale.includes('nb')) {
-      return 'Du har lavere rente enn forrige gang!';
+      return 'Hjälpte vår information dig att sänka bolåneräntan?';
     }
     throw new Error('Should include either SV or NB');
   }
