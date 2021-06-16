@@ -85,6 +85,15 @@ export class InitConfirmationNoComponent implements OnInit {
       this.allMemberships = userInfo.availableMemberships;
       this.userData = userInfo;
 
+      const income = userInfo.income === null ? null : String(userInfo.income);
+      const apartmentSize =
+        userInfo.apartmentSize === null ? null : String(userInfo.apartmentSize);
+
+      this.isAddressNeeded =
+        rateAndLoans.isAddressNeeded || userInfo.bank === 'DNB';
+      this.isNameNeeded =
+        this.userData.name === null || this.userData.name === undefined;
+
       const userInfoAndRateAndLoans = { ...userInfo, ...rateAndLoans };
       this.logging.logger(
         this.logging.Level.Info,
@@ -95,8 +104,8 @@ export class InitConfirmationNoComponent implements OnInit {
         '7:INIT_CONFIRMATION',
         userInfoAndRateAndLoans
       );
-      const income = String(userInfo.income) || null;
-      const apartmentSize = String(userInfo.apartmentSize) || null;
+      /*       const income = String(userInfo.income) || null;
+      const apartmentSize = String(userInfo.apartmentSize) || null; */
       this.isAddressNeeded =
         rateAndLoans.isAddressNeeded || userInfo.bank === 'DNB';
       this.isNameNeeded =
