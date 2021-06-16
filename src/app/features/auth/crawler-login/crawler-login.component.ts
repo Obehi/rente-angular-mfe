@@ -198,10 +198,6 @@ export class CrawlerLoginComponent implements OnInit, OnDestroy {
   }
 
   public setSb1bankIdForm(): void {
-    console.log('this.isConfirmed');
-    console.log(this.isConfirmed);
-    console.log('this.bankIdForm.valid');
-    console.log(this.bankIdForm.valid);
     this.bankIdForm = this.fb.group({
       birthdate: [
         '',
