@@ -24,6 +24,10 @@
       justify-self: center;
       margin-top: 20px;
     }
+
+    .left {
+      grid-column: 1;
+    }
   }
 }
 

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
+import { repeat } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class GlobalStateService {
     this.showFooter.next(show);
   }
 
-  public getFooterState(): Subject<boolean> {
+  public getFooterState(): Observable<boolean> {
     return this.showFooter;
   }
   constructor() {
