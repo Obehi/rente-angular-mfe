@@ -7,20 +7,27 @@
 
 <div class="absolute-pos" *ngIf="showCookieAcc">
   <div class="cookie-acc-panel">
-    <div i18n=“header|intro@@popup.privacy.header” class="cookie-acc-title">Dine data, dine valg</div>
-    <div i18n=“description|text@@popup.privacy.text” class="cookie-acc-message">
-      Renteradar.no eies av Forbrukerøkonomene AS som er ansvarlig for dine data.<br/>
-      Vi bryr oss om ditt personvern. Vi bruker dine data til å forbedre og tilpasse tjenestene ser og bruker.
+    <div i18n="“header|intro@@popup.privacy.header”" class="cookie-acc-title">
+      Dine data, dine valg
+    </div>
+    <div
+      i18n="“description|text@@popup.privacy.text”"
+      class="cookie-acc-message"
+    >
+      Renteradar.no eies av Forbrukerøkonomene AS som er ansvarlig for dine
+      data.<br />
+      Vi bryr oss om ditt personvern. Vi bruker dine data til å forbedre og
+      tilpasse tjenestene du ser og bruker.
     </div>
     <div class="cookie-acc-btn">
-      <div style="opacity:0.4">
+      <div style="opacity: 0.4">
         <rente-button color="blue" (action)="readMore()">
-          <p i18n=“button|more@@popup.privacy.option1”>Vis meg mer</p>
+          <p i18n="“button|more@@popup.privacy.option1”">Vis meg mer</p>
         </rente-button>
       </div>
       <div>
         <rente-button color="primary" (action)="acceptCookies()">
-          <p i18n=“button|accept@@popup.privacy.option2”>JEG FORSTÅR</p>
+          <p i18n="“button|accept@@popup.privacy.option2”">JEG FORSTÅR</p>
         </rente-button>
       </div>
     </div>
