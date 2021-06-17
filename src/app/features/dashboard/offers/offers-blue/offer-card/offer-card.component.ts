@@ -51,6 +51,9 @@ export class OfferCardComponentBlue implements OnInit {
 
     this.isNordea = this.offersInfo.bank === 'NORDEA';
 
+    if (this.offer.bankInfo.bank === 'NYBYGGER') {
+      this.offer.bankInfo.partner = true;
+    }
     if (this.offer.fixedRatePeriod === 0) {
       this.offerType = 'threeMonths';
     } else if (this.offer.fixedRatePeriod === 1) {
@@ -64,11 +67,15 @@ export class OfferCardComponentBlue implements OnInit {
     return window.innerWidth < 600;
   }
 
-  getbankNameOrDefault(offer: OfferInfo): string {
+  getbankNameOrDefault(offer: OfferInfo, isHompepageLink: boolean): string {
     let text = '';
     switch (offer.bankInfo.bank) {
       case 'SPAREBANKENOST': {
         text = 'Sparebanken Øst';
+        break;
+      }
+      case 'NYBYGGER': {
+        text = isHompepageLink ? "Nybygger.no'" : 'Nybygger.no';
         break;
       }
       case 'BULDER': {
@@ -94,27 +101,33 @@ export class OfferCardComponentBlue implements OnInit {
   }
 
   public openBankUrl(offer: OfferInfo): void {
-    if (offer.bankInfo.url === null) return;
-
-    if (this.handleNybyggerProductSpecialCase(offer) === true) {
-      return;
-    }
-    window.open(offer.bankInfo.url, '_blank');
-
     const trackingDto = new TrackingDto();
     trackingDto.offerId = offer.id;
     trackingDto.type = 'OFFER_HEADER_LINK';
+
+    if (this.handleNybyggerProductSpecialCase(offer) === true) {
+      this.sendOfferTrackingData(trackingDto);
+      return;
+    }
+    if (offer.bankInfo.url === null) return;
+
+    window.open(offer.bankInfo.url, '_blank');
+
     this.sendOfferTrackingData(trackingDto);
   }
 
   public openBankUrlByButton(offer: OfferInfo): void {
     if (offer.bankInfo.url === null || offer.bankInfo.partner === false) return;
 
-    window.open(offer.bankInfo.url, '_blank');
-
     const trackingDto = new TrackingDto();
     trackingDto.offerId = offer.id;
     trackingDto.type = 'BANK_BUTTON_1';
+    if (this.handleNybyggerProductSpecialCase(offer) === true) {
+      this.sendOfferTrackingData(trackingDto);
+      return;
+    }
+
+    window.open(offer.bankInfo.url, '_blank');
     this.sendOfferTrackingData(trackingDto);
   }
 
@@ -129,21 +142,32 @@ export class OfferCardComponentBlue implements OnInit {
       );
       return true;
     }
+
+    if (
+      !offer.productName.includes('Rammelån') &&
+      offer.bankInfo.bank === 'NYBYGGER'
+    ) {
+      window.open(
+        'https://www.nybygger.no/kampanje-boliglan/?utm_medium=affiliate%20&utm_source=renteradar.no&utm_campaign=boliglan120&utm_content=cta'
+      );
+      return true;
+    }
     return false;
   }
 
   public openNewOfferDialog(offer: OfferInfo): void {
     if (offer.bankInfo.partner === false) return;
 
+    const trackingDto = new TrackingDto();
+    trackingDto.offerId = offer.id;
+    trackingDto.type = 'BANK_BUTTON_2';
+
     if (this.handleNybyggerProductSpecialCase(offer) === true) {
+      this.sendOfferTrackingData(trackingDto);
       return;
     }
 
     window.open(offer.bankInfo.transferUrl, '_blank');
-
-    const trackingDto = new TrackingDto();
-    trackingDto.offerId = offer.id;
-    trackingDto.type = 'BANK_BUTTON_2';
     this.sendOfferTrackingData(trackingDto);
   }
 
