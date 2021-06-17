@@ -271,6 +271,8 @@
       viewStatus.isTimedOut ||
       viewStatus.isSelectUserAccountTimeout ||
       viewStatus.isBankError ||
+      viewStatus.isSb1NotValidDataProvidedV2Error ||
+      viewStatus.isSb1appConfirmFailError ||
       isNotSB1customer
     "
     (click)="returnToInput()"
