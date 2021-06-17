@@ -18,6 +18,7 @@ import { locale } from '../../../../../config/locale/locale';
 import { LoggingService } from '@services/logging.service';
 
 import { OFFER_SAVINGS_TYPE } from '../../../../../config/loan-state';
+import { OfferCardService } from '../offer-card.service';
 
 @Component({
   selector: 'rente-offer-card-big-blue',
@@ -30,6 +31,7 @@ export class OfferCardBigComponentBlue implements OnInit {
   public offerType: string;
   public isSweden: boolean;
   public isNordea = false;
+  public isNybygger = false;
 
   @Input() offer: OfferInfo;
   @Input() offersInfo: Offers;
@@ -40,7 +42,8 @@ export class OfferCardBigComponentBlue implements OnInit {
     private router: Router,
     public customLangTextSerice: CustomLangTextService,
     private offersService: OffersService,
-    private logginService: LoggingService
+    private logginService: LoggingService,
+    private offerCardService: OfferCardService
   ) {}
 
   ngOnInit(): void {
@@ -51,6 +54,7 @@ export class OfferCardBigComponentBlue implements OnInit {
     }
 
     this.isNordea = this.offersInfo.bank === 'NORDEA';
+    this.isNybygger = this.offer.bankInfo.bank === 'NYBYGGER';
 
     if (this.offer.bankInfo.bank === 'NYBYGGER') {
       this.offer.bankInfo.partner = true;
@@ -102,51 +106,14 @@ export class OfferCardBigComponentBlue implements OnInit {
     );
   }
 
-  public handleNybyggerProductSpecialCase(offer: OfferInfo): boolean {
-    if (
-      offer.productName.includes('Rammelån') &&
-      offer.bankInfo.bank === 'NYBYGGER'
-    ) {
-      window.open(
-        'https://www.nybygger.no/kampanje-rammelan/?utm_medium=affiliate%20&utm_source=renteradar.no&utm_campaign=rammelan110&utm_content=cta',
-        '_blank'
-      );
-      return true;
-    }
-
-    if (
-      !offer.productName.includes('Rammelån') &&
-      offer.bankInfo.bank === 'NYBYGGER'
-    ) {
-      window.open(
-        'https://www.nybygger.no/kampanje-boliglan/?utm_medium=affiliate%20&utm_source=renteradar.no&utm_campaign=boliglan120&utm_content=cta'
-      );
-      return true;
-    }
-
-    return false;
-  }
-
   public openOfferDialog(offer: OfferInfo): void {
     this.dialog.open(DialogInfoComponent, {
       data: offer
     });
   }
 
-  public openBankUrl(offer: OfferInfo): void {
-    const trackingDto = new TrackingDto();
-    trackingDto.offerId = offer.id;
-    trackingDto.type = 'OFFER_HEADER_LINK';
-
-    if (this.handleNybyggerProductSpecialCase(offer) === true) {
-      this.sendOfferTrackingData(trackingDto);
-      return;
-    }
-
-    if (offer.bankInfo.url === null) return;
-
-    window.open(offer.bankInfo.url, '_blank');
-    this.sendOfferTrackingData(trackingDto);
+  public clickHeaderBankUrl(offer: OfferInfo): void {
+    this.offerCardService.clickHeaderBankUrl(offer);
   }
 
   public openBankUrlByButton(offer: OfferInfo): void {
@@ -156,7 +123,9 @@ export class OfferCardBigComponentBlue implements OnInit {
     trackingDto.offerId = offer.id;
     trackingDto.type = 'BANK_BUTTON_1';
 
-    if (this.handleNybyggerProductSpecialCase(offer) === true) {
+    if (
+      this.offerCardService.handleNybyggerProductSpecialCase(offer) === true
+    ) {
       this.sendOfferTrackingData(trackingDto);
       return;
     }
@@ -173,7 +142,9 @@ export class OfferCardBigComponentBlue implements OnInit {
     trackingDto.offerId = offer.id;
     trackingDto.type = 'BANK_BUTTON_2';
 
-    if (this.handleNybyggerProductSpecialCase(offer) === true) {
+    if (
+      this.offerCardService.handleNybyggerProductSpecialCase(offer) === true
+    ) {
       this.sendOfferTrackingData(trackingDto);
       return;
     }

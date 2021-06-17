@@ -21,7 +21,7 @@
       }"
     ></div>
     <div class="offer-product">
-      <a class="clickable" target="_blank" (click)="openBankUrl(offer)"
+      <a class="clickable" target="_blank" (click)="clickHeaderBankUrl(offer)"
         >{{ offer.bankInfo.name }}
       </a>
       <h3>
@@ -151,6 +151,7 @@
 
       <div class="buttons">
         <rente-button
+          *ngIf="offer.bankInfo.bank !== 'NYBYGGER'"
           class="firstButton"
           [disabled]="offer.bankInfo.partner == false"
           child
