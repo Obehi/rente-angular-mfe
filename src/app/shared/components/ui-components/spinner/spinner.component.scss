@@ -3,6 +3,7 @@
 $spinner-container-size: 20px;
 $spinner-size: $spinner-container-size * 0.75;
 $spinner-margin: $spinner-size / 6;
+
 .lds-ring {
   display: inline-block;
   position: relative;
@@ -21,7 +22,7 @@ $spinner-margin: $spinner-size / 6;
   border-color: $secondary;
   border-radius: 50%;
   animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-  border-color: $secondary transparent transparent transparent;
+  border-color: $primary transparent transparent transparent;
 }
 
 .lds-ring div:nth-child(1) {

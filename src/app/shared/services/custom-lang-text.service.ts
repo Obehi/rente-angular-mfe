@@ -241,9 +241,9 @@ export class CustomLangTextService {
 
   getProfileMarketOption5(): string {
     if (locale.includes('sv')) {
-      return 'Var 5. månad';
+      return 'Aldrig';
     } else if (locale.includes('nb')) {
-      return 'Hver 5. måned';
+      return 'Aldri';
     }
     throw new Error('Should include either SV or NB');
   }

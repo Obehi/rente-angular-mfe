@@ -303,40 +303,6 @@ form {
 
 /////////////////////////////////////////////////// NEW //////////////////////////////////////////////////
 
-::ng-deep .mat-form-field-wrapper {
-  margin: 0 !important;
-  padding: 0 !important;
-}
-::ng-deep .mat-form-field-outline-start {
-  display: none !important;
-}
-::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-end {
-  border-radius: 50px !important;
-  border-width: 5px;
-  border-left: none;
-}
-::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-start {
-  border-radius: 1px !important;
-  border: none;
-  border-right: none;
-}
-::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-gap {
-  border-radius: 1px !important;
-  border-bottom: none;
-}
-::ng-deep.mat-form-field-appearance-outline .mat-form-field-outline {
-  border: 1px solid #478ccc;
-  border-radius: 50px;
-}
-
-::ng-deep .mat-form-field-infix input {
-  text-align: center !important;
-}
-
-::ng-deep.mat-form-field-appearance-outline .mat-form-field-outline-end {
-  border: none !important;
-}
-
 .main {
 }
 
@@ -358,6 +324,50 @@ form {
 }
 
 .forms {
+  ::ng-deep .mat-form-field-wrapper {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  ::ng-deep .mat-form-field-outline-start {
+    display: none !important;
+  }
+  ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-end {
+    border-radius: 50px !important;
+    border-width: 5px;
+    border-left: none;
+  }
+  ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-start {
+    border-radius: 1px !important;
+    border: none;
+    border-right: none;
+  }
+  ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-gap {
+    border-radius: 1px !important;
+    border-bottom: none;
+  }
+  ::ng-deep.mat-form-field-appearance-outline .mat-form-field-outline {
+    border: 1px solid #478ccc;
+    border-radius: 50px;
+  }
+
+  ::ng-deep .mat-form-field-infix input {
+    text-align: center !important;
+  }
+
+  ::ng-deep.mat-form-field-appearance-outline .mat-form-field-outline-end {
+    border: none !important;
+  }
+
+  ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+    background: #004465a6;
+    bottom: -0.25em !important;
+  }
+  @media (min-width: 600px) {
+    form {
+      min-width: 100%;
+      display: flex;
+    }
+  }
   margin-top: 30px;
 
   ::ng-deep input.mat-input-element {
@@ -380,8 +390,18 @@ form {
     position: relative;
     width: 80%;
     margin: auto;
+    margin-top: 2rem;
+    text-align: center;
+    @media (min-width: 600px) {
+      width: 40%;
+    }
     ::ng-deep .mat-form-field {
       width: 100% !important ;
+    }
+
+    .email-income-spinner {
+      position: absolute;
+      right: 1rem;
     }
   }
 
@@ -451,6 +471,12 @@ form {
     display: flex;
     flex-direction: column;
     row-gap: 2rem;
+    @media (min-width: 600px) {
+      margin-top: 5rem;
+      display: grid;
+      grid-template-columns: 3fr 0fr;
+      row-gap: 5rem;
+    }
   }
 
   .grid-1 {
@@ -500,6 +526,12 @@ form {
 
   .rente-button {
     align-self: flex-end;
+    .membership-marked-spinner {
+      line-height: 0px !important;
+    }
+    ::ng-deep .button-wrapper {
+      text-align: right !important;
+    }
   }
 
   ::ng-deep .mat-select-placeholder {
@@ -524,5 +556,6 @@ form {
 
   hr {
     border-bottom: 1px solid #478ccc;
+    grid-column: span 2;
   }
 }

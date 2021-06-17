@@ -1,10 +1,11 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { MembershipTypeDto } from '@services/remote-api/loans.service';
 
 @Pipe({
   name: 'filter'
 })
 export class FilterPipe implements PipeTransform {
-  transform(items: any[], searchText: string): any[] {
+  transform(items: any[], searchText: string): any[] | undefined {
     if (!items) {
       return [];
     }
@@ -13,8 +14,17 @@ export class FilterPipe implements PipeTransform {
     }
     searchText = searchText.toLocaleLowerCase();
 
-    return items.filter((item) => {
-      return item.toLocaleLowerCase().includes(searchText);
-    });
+    if (typeof items[0] === 'string') {
+      return items.filter((item) => {
+        return item.toLocaleLowerCase().includes(searchText);
+      });
+    }
+
+    // Works only for MembershipTypeDto OR any other Object with the label parameter
+    if (typeof items[0] === 'object') {
+      return items.filter((item) => {
+        return item.label.toLocaleLowerCase().includes(searchText);
+      });
+    }
   }
 }

@@ -110,6 +110,8 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
   public loadingStates = {
     email: false,
     income: false,
+    memberships: false,
+    checkRateReminderType: false,
     fetchCreditLinesOnly: false,
     noAdditionalProductsRequired: false,
     interestedInEnvironmentMortgages: false
@@ -134,6 +136,7 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
   ];
 
   profileIcon = '../../../../../assets/icons/profile-icon-page.svg';
+  // profileIcon = '../../../../../assets/icons/profile-icon-white.svg';
   membershipIcon = '../../../../../assets/icons/bank-card-light-blue.svg';
   marketUpdatesIcon = '../../../../../assets/icons/ic_bank_id.svg';
 
@@ -161,9 +164,6 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
   }
 
   ngOnInit(): void {
-    console.log(this.profileForm);
-    console.log();
-
     this.loansService.getPreferencesDto().subscribe(
       (res) => {
         this.isLoading = false;
@@ -221,6 +221,8 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
     } else {
       this.isSweden = false;
     }
+
+    console.log(this.profileForm);
   }
 
   // DeactivationGuarded Interface method.
@@ -266,7 +268,9 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
     const dto = new PreferencesUpdateDto();
     dto.email = userData.email;
     dto.income = userData.income;
-    dto.memberships = this.memberships.map((membership) => membership.name);
+    dto.memberships = this.previousStateMemberships.map((m) => {
+      return m.name;
+    });
     dto.checkRateReminderType = this.preferencesForm?.get(
       'checkRateReminderType'
     )?.value;
@@ -282,32 +286,32 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
     dto.receiveNewsEmails = this.preferencesForm?.get(
       'receiveNewsEmails'
     )?.value;
+    console.log(dto);
     return dto;
   }
 
   public updatePreferances(): void {
-    this.isLoading = true;
-    const income = this.profileForm.value.income;
-    const userData = {
-      email: this.profileForm.value.email,
-      income: typeof income === 'string' ? income.replace(/\s/g, '') : income
-    };
-    const dto = new PreferencesUpdateDto();
-    dto.email = userData.email;
-    dto.income = userData.income;
-    dto.memberships = this.memberships.map((membership) => membership.name);
-    dto.checkRateReminderType = this.preferencesForm.get(
-      'checkRateReminderType'
-    );
-    dto.fetchCreditLinesOnly = this.preferencesForm.get('fetchCreditLinesOnly');
-    dto.noAdditionalProductsRequired = this.preferencesForm.get(
-      'noAdditionalProductsRequired'
-    );
-    dto.interestedInEnvironmentMortgages = this.preferencesForm.get(
-      'interestedInEnvironmentMortgages'
-    );
-    dto.receiveNewsEmails = this.preferencesForm.get('receiveNewsEmails');
-
+    // this.isLoading = true;
+    // const income = this.profileForm.value.income;
+    // const userData = {
+    //   email: this.profileForm.value.email,
+    //   income: typeof income === 'string' ? income.replace(/\s/g, '') : income
+    // };
+    // const dto = new PreferencesUpdateDto();
+    // dto.email = userData.email;
+    // dto.income = userData.income;
+    // dto.memberships = this.memberships.map((membership) => membership.name);
+    // dto.checkRateReminderType = this.preferencesForm.get(
+    //   'checkRateReminderType'
+    // );
+    // dto.fetchCreditLinesOnly = this.preferencesForm.get('fetchCreditLinesOnly');
+    // dto.noAdditionalProductsRequired = this.preferencesForm.get(
+    //   'noAdditionalProductsRequired'
+    // );
+    // dto.interestedInEnvironmentMortgages = this.preferencesForm.get(
+    //   'interestedInEnvironmentMortgages'
+    // );
+    // dto.receiveNewsEmails = this.preferencesForm.get('receiveNewsEmails');
     /*   this.canLeavePage = false;
 
     this.loansService.updateUserPreferences(dto).subscribe(
@@ -414,12 +418,13 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
         break;
       }
       case 'saved': {
+        console.log('4');
         this.membershipCtrl.setValue(
           this.previousStateMemberships.map((membership) => {
             return membership.name;
           })
         );
-        this.updatePreferances2();
+        // this.updatePreferances2();
 
         break;
       }
@@ -461,8 +466,8 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
       case 'Hver 4. måned': {
         return 'HVER_MANED_4';
       }
-      case 'Hver 5. måned': {
-        return 'HVER_MANED_5';
+      case 'Aldri': {
+        return 'NONE';
       }
     }
   }
@@ -471,7 +476,7 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
     combineLatest([
       this.profileForm.get('email')?.valueChanges.pipe(
         distinctUntilChanged(),
-        debounceTime(500),
+        debounceTime(1000),
         tap(() => {
           this.loadingStates['email'] = true;
         }),
@@ -481,12 +486,13 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
           );
         }),
         tap(() => {
+          console.log(this.getPreferencesDto());
           this.loadingStates['email'] = false;
         })
       ),
       this.profileForm.get('income')?.valueChanges.pipe(
         distinctUntilChanged(),
-        debounceTime(500),
+        debounceTime(1000),
         tap(() => {
           this.loadingStates['income'] = true;
         }),
@@ -497,6 +503,42 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
         }),
         tap(() => {
           this.loadingStates['income'] = false;
+        })
+      ),
+      this.membershipCtrl.valueChanges.pipe(
+        distinctUntilChanged(),
+        debounceTime(500),
+        tap(() => {
+          console.log('1');
+          this.loadingStates['memberships'] = true;
+        }),
+        switchMap(() => {
+          console.log('2');
+
+          return this.loansService.updateUserPreferences(
+            this.getPreferencesDto()
+          );
+        }),
+        tap(() => {
+          console.log('3');
+
+          this.loadingStates['memberships'] = false;
+          console.log(this.loadingStates.memberships);
+        })
+      ),
+      this.preferencesForm.get('checkRateReminderType')?.valueChanges.pipe(
+        distinctUntilChanged(),
+        debounceTime(100),
+        tap(() => {
+          this.loadingStates['checkRateReminderType'] = true;
+        }),
+        switchMap(() => {
+          return this.loansService.updateUserPreferences(
+            this.getPreferencesDto()
+          );
+        }),
+        tap(() => {
+          this.loadingStates['checkRateReminderType'] = false;
         })
       ),
       this.preferencesForm.get('fetchCreditLinesOnly')?.valueChanges.pipe(

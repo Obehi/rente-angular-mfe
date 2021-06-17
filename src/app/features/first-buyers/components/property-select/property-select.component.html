@@ -74,7 +74,7 @@
         >
           <div class="selected-membership">
             <p>
-              {{ option | truncate: 19 }}
+              {{ option.label | truncate: 19 }}
             </p>
             <img
               class="remove-icon"
@@ -104,14 +104,14 @@
               *ngIf="!chosenMemberships(option)"
               (click)="chooseMembership(option)"
             >
-              {{ option }}
+              {{ option.label }}
             </p>
             <p
               class="p-selected"
               *ngIf="chosenMemberships(option)"
               (click)="removeMembership(option)"
             >
-              {{ option }}
+              {{ option.label }}
             </p>
             <img
               *ngIf="chosenMemberships(option)"

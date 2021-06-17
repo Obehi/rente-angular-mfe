@@ -1,6 +1,6 @@
-<div class="loading" *ngIf="isLoading">
+<!-- <div class="loading" *ngIf="isLoading">
   <mat-spinner [diameter]="48" [strokeWidth]="4"></mat-spinner>
-</div>
+</div> -->
 
 <div class="main">
   <div class="top">
@@ -9,10 +9,11 @@
       {{ username }}
     </h3>
   </div>
+
   <div class="forms" *ngIf="profileForm">
     <form class="p-0 border-0" [formGroup]="profileForm" novalidate change>
       <div class="field-box">
-        <h4 class="text-white center">E-mail</h4>
+        <h4 class="text-white">E-mail</h4>
         <div
           *ngIf="profileForm.controls['email'].touched"
           class="error-message"
@@ -27,10 +28,7 @@
           <rente-form-message
             i18n="“issue-mail2|profile@@profile.issueMail2”"
             [type]="'error'"
-            *ngIf="
-              profileForm.controls['email'].hasError('pattern') ||
-              profileForm.controls['email'].hasError('required')
-            "
+            *ngIf="profileForm.controls['email'].hasError('pattern')"
           >
             Ikke gyldig email
           </rente-form-message>
@@ -41,21 +39,14 @@
             matInput
             formControlName="email"
           />
+          <rente-spinner
+            class="email-income-spinner"
+            *ngIf="loadingStates.email"
+          ></rente-spinner>
         </mat-form-field>
-        <rente-form-message
-          i18n="“issue-mail2|profile@@profile.issueMail2”"
-          class="center"
-          [type]="'error'"
-          *ngIf="
-            profileForm.controls['email'].hasError('pattern') ||
-            profileForm.controls['email'].hasError('required')
-          "
-        >
-          Ikke gyldig email
-        </rente-form-message>
       </div>
       <div class="field-box">
-        <h4 class="text-white center">Din bruto årsinntekt</h4>
+        <h4 class="text-white">Din bruto årsinntekt</h4>
         <div
           *ngIf="profileForm.controls['income'].touched"
           class="error-message"
@@ -86,6 +77,10 @@
               precision: 0
             }"
           />
+          <rente-spinner
+            class="email-income-spinner"
+            *ngIf="loadingStates.income"
+          ></rente-spinner>
         </mat-form-field>
       </div>
     </form>
@@ -123,11 +118,16 @@
 
       <rente-button class="rente-button" color="blue-select">
         <mat-select
+          *ngIf="!loadingStates.memberships"
           [formControl]="membershipCtrl"
-          [placeholder]="getMembershipPlaceholder()"
+          [placeholder]="getMembershipPlaceholder() | truncate: 35"
           (click)="openPropertySelectDialog()"
         >
         </mat-select>
+        <rente-spinner
+          class="membership-marked-spinner"
+          *ngIf="loadingStates.memberships"
+        ></rente-spinner>
       </rente-button>
       <hr />
       <h5 class="element">
@@ -138,6 +138,7 @@
       </h5>
       <rente-button class="rente-button" color="blue-select">
         <mat-select
+          *ngIf="!loadingStates.checkRateReminderType"
           formControlName="checkRateReminderType"
           [placeholder]="'Velg'"
         >
@@ -147,6 +148,10 @@
             >{{ option }}</mat-option
           >
         </mat-select>
+        <rente-spinner
+          class="membership-marked-spinner"
+          *ngIf="loadingStates.checkRateReminderType"
+        ></rente-spinner>
       </rente-button>
       <hr />
     </div>
@@ -166,7 +171,6 @@
         [value]="markedIsChecked"
       ></mat-slide-toggle>
 
-      <hr />
       <hr />
     </div>
     <h3>HVILKE TILBUD VIL DU SE:</h3>
@@ -198,7 +202,6 @@
         formControlName="interestedInEnvironmentMortgages"
         [value]="offerThreeIsChecked"
       ></mat-slide-toggle>
-      <hr />
       <hr />
     </div>
   </div>
