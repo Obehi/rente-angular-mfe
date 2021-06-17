@@ -50,6 +50,13 @@
     <!-- STEP 1: ERROR -->
     <div *ngIf="isStep1Error">
       <!-- NOT VALID DATA PROVIDED ERROR -->
+
+      <span *ngIf="viewStatus.isSb1NotValidDataProvidedV2Error">
+        Det har skjedd en feil. Vent litt og prøv igjen, eller ta kontakt med
+        oss. Du må installere og aktivere Engangskodeappen for å kunne bruke
+        denne innloggingen.
+      </span>
+
       <div *ngIf="viewStatus.isNotValidDataProvided">
         <span i18n="“control|login@@login.control”" *ngIf="bank.loginWithSsn">
           Kontroller at du har oppgitt riktig fødselsnummer og mobilnummer. Du

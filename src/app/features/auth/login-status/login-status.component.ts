@@ -527,6 +527,11 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
             this.loginStep2Status = MESSAGE_STATUS.ERROR;
             this.unsubscribeEverything();
             break;
+          case BANKID_STATUS.NOT_VALID_DATA_PROVIDED_V2:
+            this.viewStatus.isSb1NotValidDataProvidedV2Error = true;
+            this.loginStep1Status = MESSAGE_STATUS.ERROR;
+            this.unsubscribeEverything();
+            break;
           case BANKID_STATUS.CONFIRMATION_REQUIRED:
           case BANKID_STATUS.CONFIRMATION_REQUIRED_DNB_PORTAL_AGREEMENT:
             this.isShowPassPhrase = false;
@@ -605,7 +610,6 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
             this.loginStep1Status = MESSAGE_STATUS.ERROR;
             this.unsubscribeEverything();
             break;
-
           case BANKID_STATUS.NO_LOANS:
             this.logging.logger(
               this.logging.Level.Info,
