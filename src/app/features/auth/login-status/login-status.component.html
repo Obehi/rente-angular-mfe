@@ -116,7 +116,7 @@
     <!-- STEP 1: NOT STARTED -->
     <span
       i18n="“control-confirm|login@@login.confirmation”"
-      *ngIf="!passPhrase"
+      *ngIf="!passPhrase && loginStep2Status !== MESSAGE_STATUS.ERROR"
     >
       {{
         isSb1App ? 'Bekreft med Engangspassordappen' : 'Bekreft BankID på mobil'
@@ -152,6 +152,11 @@
       >
         Banken din har dessverre tekniske problemer. Vennligst prøv igjen
         senere.
+      </span>
+
+      <span *ngIf="viewStatus.isSb1appConfirmFailError">
+        Det har skjedd en feil. Vent litt og prøv igjen, eller velg en annen
+        innloggingsmetode.
       </span>
     </div>
 

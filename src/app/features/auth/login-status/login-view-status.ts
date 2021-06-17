@@ -21,6 +21,7 @@ export interface ViewStatus {
   isErrorBIDC325: boolean;
   isBankIdUnstable: boolean;
   isSb1NotValidDataProvidedV2Error: boolean;
+  isSb1appConfirmFailError: boolean;
 }
 
 export class ViewStatus {

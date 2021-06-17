@@ -499,7 +499,21 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
             this.loginStep1Status = MESSAGE_STATUS.SUCCESS;
             this.loginStep2Status = MESSAGE_STATUS.LOADING;
             break;
+          case BANKID_STATUS.APP_CONFIRM:
+            this.isShowPassPhrase = true;
+            this.isShowTimer = false;
+            this.passPhrase = response.passphrase;
+            this.loginStep1Status = MESSAGE_STATUS.SUCCESS;
+            this.loginStep2Status = MESSAGE_STATUS.LOADING;
+            break;
           case BANKID_STATUS.PASSPHRASE_CONFIRM_SUCCESS:
+            this.startCrawlingTimer();
+            this.isShowPassPhrase = false;
+            this.viewStatus.isPassphraseConfirmSuccess = true;
+            this.loginStep2Status = MESSAGE_STATUS.SUCCESS;
+            this.loginStep3Status = MESSAGE_STATUS.LOADING;
+            break;
+          case BANKID_STATUS.APP_CONFIRM_SUCCESS:
             this.startCrawlingTimer();
             this.isShowPassPhrase = false;
             this.viewStatus.isPassphraseConfirmSuccess = true;
@@ -525,6 +539,12 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
           case BANKID_STATUS.PASSPHRASE_CONFIRM_FAIL:
             this.isShowPassPhrase = false;
             this.viewStatus.isPassphraseConfirmFail = true;
+            this.loginStep2Status = MESSAGE_STATUS.ERROR;
+            this.unsubscribeEverything();
+            break;
+          case BANKID_STATUS.APP_CONFIRM_FAIL:
+            this.isShowPassPhrase = false;
+            this.viewStatus.isSb1appConfirmFailError = true;
             this.loginStep2Status = MESSAGE_STATUS.ERROR;
             this.unsubscribeEverything();
             break;
