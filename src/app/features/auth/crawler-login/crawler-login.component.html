@@ -135,7 +135,7 @@
       <div class="sb1-buttons">
         <a
           class="sb1-app-button"
-          [class]="sb1LoginIsAppSolution ? 'selected' : 'normal'"
+          [class]="isSb1App ? 'selected' : 'normal'"
           (click)="setSb1AppForm()"
           *ngIf="isSB1Bank"
         >
@@ -145,9 +145,9 @@
 
         <a
           class="sb1-app-button"
-          [class]="sb1LoginIsAppSolution === false ? 'selected' : 'normal'"
+          [class]="isSb1App === false ? 'selected' : 'normal'"
           (click)="setSb1bankIdForm()"
-          *ngIf="isSB1Bank && sb1LoginIsAppSolution !== true"
+          *ngIf="isSB1Bank && isSb1App !== true"
         >
           <img [src]="'../../../assets/icons/mobile-login-green.svg'" />
           <p>BankId på mobil</p>
@@ -168,7 +168,7 @@
               [title]="bank?.label"
             />
 
-            <div *ngIf="sb1LoginIsAppSolution === true" class="form-group">
+            <div *ngIf="isSb1App === true" class="form-group">
               <rente-input
                 [errorStateMatcher]="
                   isErrorState(bankIdForm.controls['ssn'], bankIdForm)
@@ -234,7 +234,7 @@
 
         <mat-step [editable]="true">
           <form
-            *ngIf="sb1LoginIsAppSolution === false"
+            *ngIf="isSb1App === false"
             [formGroup]="bankIdForm"
             novalidate
             (ngSubmit)="startLogin(bankIdForm.value)"
@@ -343,7 +343,7 @@
     <a
       class="sb1-app-button top-margin"
       (click)="setSb1bankIdForm()"
-      *ngIf="isSB1Bank && sb1LoginIsAppSolution === true"
+      *ngIf="isSB1Bank && isSb1App === true"
     >
       <img [src]="'../../../assets/icons/mobile-login-green.svg'" />
       <p>BankId på mobil</p>
@@ -453,7 +453,7 @@
         </div>
       </ng-template>
 
-      <div *ngIf="sb1LoginIsAppSolution !== true" class="form-group">
+      <div *ngIf="isSb1App !== true" class="form-group">
         <rente-input
           [errorStateMatcher]="
             isErrorState(bankIdForm.controls['phone'], bankIdForm)
@@ -510,6 +510,7 @@
     *ngIf="isLoginStarted"
     [userData]="userData"
     [bank]="bank"
+    [isSb1App]="isSb1App"
     (returnToInputPage)="isLoginStarted = false"
   >
   </rente-login-status>

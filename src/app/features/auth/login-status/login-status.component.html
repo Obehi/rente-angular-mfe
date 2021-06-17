@@ -8,11 +8,11 @@
   <div style="height: 42px; margin: 10px 0">
     <h3
       i18n="“login|reference@@login”"
-      *ngIf="isShowPassPhrase && !viewStatus.isCrawlerError"
+      *ngIf="isShowPassPhrase && !viewStatus.isCrawlerError && !isSb1App"
     >
       Din referanse:
     </h3>
-    <h3 *ngIf="isShowPassPhrase && !viewStatus.isCrawlerError">
+    <h3 *ngIf="isShowPassPhrase && !viewStatus.isCrawlerError && !isSb1App">
       {{ passPhrase }}
     </h3>
   </div>
@@ -118,7 +118,9 @@
       i18n="“control-confirm|login@@login.confirmation”"
       *ngIf="!passPhrase"
     >
-      Bekreft BankID på mobil
+      {{
+        isSb1App ? 'Bekreft med Engangspassordappen' : 'Bekreft BankID på mobil'
+      }}
     </span>
 
     <!-- STEP 2: IN PROGRESS -->

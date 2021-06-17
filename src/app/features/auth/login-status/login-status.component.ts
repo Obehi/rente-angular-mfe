@@ -41,6 +41,7 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 export class LoginStatusComponent implements OnInit, OnDestroy {
   @Input() bank: BankVo;
   @Input() userData: any = {};
+  @Input() isSb1App = false;
   @Output() returnToInputPage = new EventEmitter<any>();
 
   public viewStatus: ViewStatus = new ViewStatus();
@@ -530,6 +531,8 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
           case BANKID_STATUS.NOT_VALID_DATA_PROVIDED_V2:
             this.viewStatus.isSb1NotValidDataProvidedV2Error = true;
             this.loginStep1Status = MESSAGE_STATUS.ERROR;
+            this.loginStep2Status = MESSAGE_STATUS.INFO;
+
             this.unsubscribeEverything();
             break;
           case BANKID_STATUS.CONFIRMATION_REQUIRED:
