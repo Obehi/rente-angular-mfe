@@ -41,7 +41,7 @@ export class OfferCardComponentBlue implements OnInit {
     public customLangTextSerice: CustomLangTextService,
     private offersService: OffersService,
     private logginService: LoggingService,
-    private offerCardService: OfferCardService
+    public offerCardService: OfferCardService
   ) {}
 
   ngOnInit(): void {

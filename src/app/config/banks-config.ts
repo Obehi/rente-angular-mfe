@@ -460,7 +460,7 @@ const BANKS_DATA_NO = {
     imgCircle: '../../assets/img/banks-logo/round/sparebanken1v2.png'
   },
   SPAREBANK_1_SOROST_NORGE: {
-    name: 'SPAREBANK_1_HALLINGDAL_VALDRES',
+    name: 'SPAREBANK_1_SOROST_NORGE',
     img: '../../assets/img/banks-logo/square/sparebank1v2.png',
     imgCircle: '../../assets/img/banks-logo/round/sparebanken1v2.png'
   },
