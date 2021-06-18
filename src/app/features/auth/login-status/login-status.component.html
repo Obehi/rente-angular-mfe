@@ -8,11 +8,11 @@
   <div style="height: 42px; margin: 10px 0">
     <h3
       i18n="“login|reference@@login”"
-      *ngIf="isShowPassPhrase && !viewStatus.isCrawlerError"
+      *ngIf="isShowPassPhrase && !viewStatus.isCrawlerError && !isSb1App"
     >
       Din referanse:
     </h3>
-    <h3 *ngIf="isShowPassPhrase && !viewStatus.isCrawlerError">
+    <h3 *ngIf="isShowPassPhrase && !viewStatus.isCrawlerError && !isSb1App">
       {{ passPhrase }}
     </h3>
   </div>
@@ -50,6 +50,12 @@
     <!-- STEP 1: ERROR -->
     <div *ngIf="isStep1Error">
       <!-- NOT VALID DATA PROVIDED ERROR -->
+
+      <span *ngIf="viewStatus.isSb1NotValidDataProvidedV2Error">
+        Det har skjedd en feil. Du må ha installert og aktivert Engangskodeappen
+        for å bruke denne innloggingen. Eventuelt vent litt og prøv igjen.
+      </span>
+
       <div *ngIf="viewStatus.isNotValidDataProvided">
         <span i18n="“control|login@@login.control”" *ngIf="bank.loginWithSsn">
           Kontroller at du har oppgitt riktig fødselsnummer og mobilnummer. Du
@@ -109,9 +115,11 @@
     <!-- STEP 1: NOT STARTED -->
     <span
       i18n="“control-confirm|login@@login.confirmation”"
-      *ngIf="!passPhrase"
+      *ngIf="!passPhrase && loginStep2Status !== MESSAGE_STATUS.ERROR"
     >
-      Bekreft BankID på mobil
+      {{
+        isSb1App ? 'Bekreft med Engangspassordappen' : 'Bekreft BankID på mobil'
+      }}
     </span>
 
     <!-- STEP 2: IN PROGRESS -->
@@ -144,13 +152,18 @@
         Banken din har dessverre tekniske problemer. Vennligst prøv igjen
         senere.
       </span>
+
+      <span *ngIf="viewStatus.isSb1appConfirmFailError">
+        Det har skjedd en feil. Vent litt og prøv igjen, eller velg en annen
+        innloggingsmetode.
+      </span>
     </div>
 
     <!-- STEP 2: SUCCESS -->
     <div *ngIf="isStep2Success">
       <span
         i18n="“confirm|login@@login.confirmation.bankId”"
-        *ngIf="viewStatus.isPassphraseConfirmSuccess"
+        *ngIf="viewStatus.isPassphraseConfirmSuccess && !isSb1App"
       >
         BankID bekreftet
       </span>
@@ -257,6 +270,8 @@
       viewStatus.isTimedOut ||
       viewStatus.isSelectUserAccountTimeout ||
       viewStatus.isBankError ||
+      viewStatus.isSb1NotValidDataProvidedV2Error ||
+      viewStatus.isSb1appConfirmFailError ||
       isNotSB1customer
     "
     (click)="returnToInput()"

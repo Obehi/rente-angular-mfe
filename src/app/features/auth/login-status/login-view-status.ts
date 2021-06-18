@@ -20,6 +20,8 @@ export interface ViewStatus {
   isErrorBIDC167: boolean;
   isErrorBIDC325: boolean;
   isBankIdUnstable: boolean;
+  isSb1NotValidDataProvidedV2Error: boolean;
+  isSb1appConfirmFailError: boolean;
 }
 
 export class ViewStatus {
@@ -41,5 +43,7 @@ export class ViewStatus {
     this.isErrorBIDC167 = false;
     this.isErrorBIDC325 = false;
     this.isBankIdUnstable = false;
+    this.isSb1NotValidDataProvidedV2Error = false;
+    this.isSb1appConfirmFailError = false;
   }
 }

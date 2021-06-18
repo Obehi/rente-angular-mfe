@@ -22,7 +22,7 @@
     }"
   ></div>
   <div class="offer-product">
-    <a class="clickable" target="_blank" (click)="openBankUrl(offer)">{{
+    <a class="clickable" target="_blank" (click)="clickHeaderBankUrl(offer)">{{
       offer.bankInfo.name
     }}</a>
     <h3 (click)="openOfferDialog(offer)" class="clickable">
@@ -145,11 +145,16 @@
 
   <div class="the-offer-footer">
     <div
-      [ngClass]="{ double: isNordea === false, triple: isNordea === true }"
+      [ngClass]="{
+        double: isNordea === false,
+        triple: isNordea === true,
+        single: isNybygger === true
+      }"
       class="buttons"
     >
       <div class="full-width">
         <rente-button
+          *ngIf="offer.bankInfo.bank !== 'NYBYGGER'"
           i18n="“see-more|offer-card-big@@offer.card.big.seeMore”"
           child
           childClass="{{ offer.bankInfo.name }}"
@@ -169,14 +174,14 @@
         </p>
       </div>
 
-      <div class="full-width">
+      <div [ngClass]="isNybygger === true ? '' : 'full-width'">
         <rente-button
           childClass="{{ offer.bankInfo.name }}"
           i18n="“get-offer|offer-card-big@@offer.card.big.getOffer”"
           [disabled]="offer.bankInfo.partner == false"
           child
           childClass="{{ offer.bankInfo.name }}"
-          color="primary"
+          color="{{ isNybygger === true ? 'primary-semi-wide' : 'primary' }}"
           type="raised"
           (click)="openNewOfferDialog(offer)"
           >Få tilbud fra {{ getbankNameOrDefault(offer, false) }}!</rente-button

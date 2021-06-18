@@ -41,6 +41,7 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 export class LoginStatusComponent implements OnInit, OnDestroy {
   @Input() bank: BankVo;
   @Input() userData: any = {};
+  @Input() isSb1App = false;
   @Output() returnToInputPage = new EventEmitter<any>();
 
   public viewStatus: ViewStatus = new ViewStatus();
@@ -498,7 +499,21 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
             this.loginStep1Status = MESSAGE_STATUS.SUCCESS;
             this.loginStep2Status = MESSAGE_STATUS.LOADING;
             break;
+          case BANKID_STATUS.APP_CONFIRM:
+            this.isShowPassPhrase = true;
+            this.isShowTimer = false;
+            this.passPhrase = response.passphrase;
+            this.loginStep1Status = MESSAGE_STATUS.SUCCESS;
+            this.loginStep2Status = MESSAGE_STATUS.LOADING;
+            break;
           case BANKID_STATUS.PASSPHRASE_CONFIRM_SUCCESS:
+            this.startCrawlingTimer();
+            this.isShowPassPhrase = false;
+            this.viewStatus.isPassphraseConfirmSuccess = true;
+            this.loginStep2Status = MESSAGE_STATUS.SUCCESS;
+            this.loginStep3Status = MESSAGE_STATUS.LOADING;
+            break;
+          case BANKID_STATUS.APP_CONFIRM_SUCCESS:
             this.startCrawlingTimer();
             this.isShowPassPhrase = false;
             this.viewStatus.isPassphraseConfirmSuccess = true;
@@ -525,6 +540,19 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
             this.isShowPassPhrase = false;
             this.viewStatus.isPassphraseConfirmFail = true;
             this.loginStep2Status = MESSAGE_STATUS.ERROR;
+            this.unsubscribeEverything();
+            break;
+          case BANKID_STATUS.APP_CONFIRM_FAIL:
+            this.isShowPassPhrase = false;
+            this.viewStatus.isSb1appConfirmFailError = true;
+            this.loginStep2Status = MESSAGE_STATUS.ERROR;
+            this.unsubscribeEverything();
+            break;
+          case BANKID_STATUS.NOT_VALID_DATA_PROVIDED_V2:
+            this.viewStatus.isSb1NotValidDataProvidedV2Error = true;
+            this.loginStep1Status = MESSAGE_STATUS.ERROR;
+            this.loginStep2Status = MESSAGE_STATUS.INFO;
+
             this.unsubscribeEverything();
             break;
           case BANKID_STATUS.CONFIRMATION_REQUIRED:
@@ -605,7 +633,6 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
             this.loginStep1Status = MESSAGE_STATUS.ERROR;
             this.unsubscribeEverything();
             break;
-
           case BANKID_STATUS.NO_LOANS:
             this.logging.logger(
               this.logging.Level.Info,

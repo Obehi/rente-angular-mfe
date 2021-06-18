@@ -49,7 +49,7 @@ export class CrawlerLoginComponent implements OnInit, OnDestroy {
   public missingBankForm: FormGroup;
   public emailError = false;
   public isLoading: boolean;
-  public sb1LoginIsAppSolution: boolean;
+  public isSb1App: boolean;
   public isSB1Bank = false;
   bank: BankVo | null;
 
@@ -169,7 +169,7 @@ export class CrawlerLoginComponent implements OnInit, OnDestroy {
   }
 
   public startLogin(formData): void {
-    if (this.sb1LoginIsAppSolution) {
+    if (this.isSb1App) {
       formData.loginType = '1';
     }
     this.userData = formData;
@@ -183,7 +183,7 @@ export class CrawlerLoginComponent implements OnInit, OnDestroy {
   }
 
   public setSb1AppForm(): void {
-    this.sb1LoginIsAppSolution = true;
+    this.isSb1App = true;
     this.stepper.selectedIndex = 1;
 
     this.bankIdForm = this.fb.group({
@@ -220,7 +220,7 @@ export class CrawlerLoginComponent implements OnInit, OnDestroy {
 
     // this.bankIdForm = this.initForm();
     // this.isSsnBankLogin = false;
-    this.sb1LoginIsAppSolution = false;
+    this.isSb1App = false;
     this.stepper.selectedIndex = 2;
   }
 
