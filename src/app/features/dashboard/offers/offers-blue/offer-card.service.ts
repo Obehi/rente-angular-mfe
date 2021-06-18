@@ -64,4 +64,27 @@ export class OfferCardService {
     window.open(offer.bankInfo.url, '_blank');
     this.sendOfferTrackingData(trackingDto);
   }
+
+  public getOfferButtonText(offer: OfferInfo): string {
+    let text = '';
+    switch (offer.bankInfo.bank) {
+      case 'SPAREBANKENOST': {
+        text = 'Få tilbud fra Sparebanken Øst!';
+        break;
+      }
+      case 'NYBYGGER': {
+        text = 'Les mer og søk om lån';
+        break;
+      }
+      case 'BULDER': {
+        text = 'Få tilbud fra Bulder!';
+        break;
+      }
+      default: {
+        text = 'Få tilbud fra banken!';
+        break;
+      }
+    }
+    return text;
+  }
 }

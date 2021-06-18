@@ -41,7 +41,7 @@ export class OfferCardV1Component implements OnInit {
     private router: Router,
     public customLangTextSerice: CustomLangTextService,
     private offersService: OffersService,
-    private offerCardService: OfferCardService
+    public offerCardService: OfferCardService
   ) {}
 
   ngOnInit(): void {

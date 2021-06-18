@@ -184,7 +184,7 @@
           color="{{ isNybygger === true ? 'primary-semi-wide' : 'primary' }}"
           type="raised"
           (click)="openNewOfferDialog(offer)"
-          >Få tilbud fra {{ getbankNameOrDefault(offer, false) }}!</rente-button
+          >{{ offerCardService.getOfferButtonText(offer) }}</rente-button
         >
 
         <p
