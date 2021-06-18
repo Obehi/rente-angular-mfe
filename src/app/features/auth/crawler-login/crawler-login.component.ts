@@ -49,7 +49,8 @@ export class CrawlerLoginComponent implements OnInit, OnDestroy {
   public missingBankForm: FormGroup;
   public emailError = false;
   public isLoading: boolean;
-  public isSb1App: boolean;
+  public isSb1App = false;
+  public isSb1BankId = false;
   public isSB1Bank = false;
   bank: BankVo | null;
 
@@ -98,6 +99,8 @@ export class CrawlerLoginComponent implements OnInit, OnDestroy {
         if (this.isTinkBank) {
           this.isLoginStarted = true;
         }
+
+        // this.setSb1AppForm();
       }
     });
   }
@@ -183,9 +186,6 @@ export class CrawlerLoginComponent implements OnInit, OnDestroy {
   }
 
   public setSb1AppForm(): void {
-    this.isSb1App = true;
-    this.stepper.selectedIndex = 1;
-
     this.bankIdForm = this.fb.group({
       ssn: [
         '',
@@ -195,6 +195,9 @@ export class CrawlerLoginComponent implements OnInit, OnDestroy {
       ],
       confirmation: ['', Validators.required]
     });
+    this.isSb1App = true;
+    this.isSb1BankId = false;
+    this.stepper.selectedIndex = 0;
   }
 
   public setSb1bankIdForm(): void {
@@ -218,10 +221,9 @@ export class CrawlerLoginComponent implements OnInit, OnDestroy {
       confirmation: ['', Validators.required]
     });
 
-    // this.bankIdForm = this.initForm();
-    // this.isSsnBankLogin = false;
+    this.isSb1BankId = true;
     this.isSb1App = false;
-    this.stepper.selectedIndex = 2;
+    this.stepper.selectedIndex = 1;
   }
 
   private initForm() {
@@ -272,6 +274,16 @@ export class CrawlerLoginComponent implements OnInit, OnDestroy {
       );
       this.bankIdForm.removeControl('ssn');
     }
+  }
+
+  returnFromLoginAttempt(): void {
+    if (this.isSb1BankId) {
+      // Wait for stepper to initiated
+      setTimeout(() => {
+        this.stepper.selectedIndex = 1;
+      }, 10);
+    }
+    this.isLoginStarted = false;
   }
 
   isErrorState(

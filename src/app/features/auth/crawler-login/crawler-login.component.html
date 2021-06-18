@@ -153,10 +153,16 @@
           <p>BankId på mobil</p>
         </a>
       </div>
-      <mat-horizontal-stepper class="stepper" [linear]="false" #stepper>
-        <mat-step [editable]="true"> </mat-step>
-        <mat-step [editable]="true">
-          <form
+
+      <mat-horizontal-stepper
+        *ngIf="isSb1App === true || isSB1Bank === true"
+        class="stepper"
+        [linear]="false"
+        #stepper
+      >
+        <mat-step [editable]="true"
+          ><form
+            *ngIf="isSb1App === true"
             [formGroup]="bankIdForm"
             novalidate
             (ngSubmit)="startLogin(bankIdForm.value)"
@@ -234,7 +240,7 @@
 
         <mat-step [editable]="true">
           <form
-            *ngIf="isSb1App === false"
+            *ngIf="isSb1BankId === true"
             [formGroup]="bankIdForm"
             novalidate
             (ngSubmit)="startLogin(bankIdForm.value)"
@@ -336,7 +342,6 @@
             </div>
           </form>
         </mat-step>
-        <mat-step [editable]="true"> stepper test 3 </mat-step>
       </mat-horizontal-stepper>
     </div>
 
@@ -511,7 +516,7 @@
     [userData]="userData"
     [bank]="bank"
     [isSb1App]="isSb1App"
-    (returnToInputPage)="isLoginStarted = false"
+    (returnToInputPage)="returnFromLoginAttempt()"
   >
   </rente-login-status>
 
