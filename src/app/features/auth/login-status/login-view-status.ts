@@ -44,5 +44,6 @@ export class ViewStatus {
     this.isErrorBIDC325 = false;
     this.isBankIdUnstable = false;
     this.isSb1NotValidDataProvidedV2Error = false;
+    this.isSb1appConfirmFailError = false;
   }
 }
