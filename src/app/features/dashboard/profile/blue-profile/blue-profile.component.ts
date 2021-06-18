@@ -92,7 +92,6 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
   public separatorKeysCodes: number[] = [ENTER, COMMA];
   public membershipCtrl = new FormControl();
   public filteredMemberships: Observable<MembershipTypeDto[]>;
-  // public memberships: any = [];
   public showMemberships: boolean;
   public showPreferences: boolean;
   public showOfferPreferences: boolean;
@@ -136,7 +135,6 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
   ];
 
   profileIcon = '../../../../../assets/icons/profile-icon-page.svg';
-  // profileIcon = '../../../../../assets/icons/profile-icon-white.svg';
   membershipIcon = '../../../../../assets/icons/bank-card-light-blue.svg';
   marketUpdatesIcon = '../../../../../assets/icons/ic_bank_id.svg';
 
@@ -146,8 +144,6 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
   constructor(
     private fb: FormBuilder,
     private loansService: LoansService,
-    private userService: UserService,
-    private snackBar: SnackBarService,
     private membershipService: MembershipService,
     public dialog: MatDialog,
     public textLangService: CustomLangTextService
@@ -221,8 +217,6 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
     } else {
       this.isSweden = false;
     }
-
-    console.log(this.profileForm);
   }
 
   // DeactivationGuarded Interface method.
@@ -238,12 +232,6 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
 
   // Listen to blur updates in forms. Save  changes if the form is valid.
   onFormChange(): void {
-    /*  this.profileForm.valueChanges.subscribe(() => {
-      console.log('changed');
-      this.changesMade = true;
-      this.updatePreferances2();
-    });
- */
     this.preferencesForm.valueChanges.subscribe((test) => {
       console.log(test);
       if (this.profileForm.valid) {
@@ -288,48 +276,6 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
     )?.value;
     console.log(dto);
     return dto;
-  }
-
-  public updatePreferances(): void {
-    // this.isLoading = true;
-    // const income = this.profileForm.value.income;
-    // const userData = {
-    //   email: this.profileForm.value.email,
-    //   income: typeof income === 'string' ? income.replace(/\s/g, '') : income
-    // };
-    // const dto = new PreferencesUpdateDto();
-    // dto.email = userData.email;
-    // dto.income = userData.income;
-    // dto.memberships = this.memberships.map((membership) => membership.name);
-    // dto.checkRateReminderType = this.preferencesForm.get(
-    //   'checkRateReminderType'
-    // );
-    // dto.fetchCreditLinesOnly = this.preferencesForm.get('fetchCreditLinesOnly');
-    // dto.noAdditionalProductsRequired = this.preferencesForm.get(
-    //   'noAdditionalProductsRequired'
-    // );
-    // dto.interestedInEnvironmentMortgages = this.preferencesForm.get(
-    //   'interestedInEnvironmentMortgages'
-    // );
-    // dto.receiveNewsEmails = this.preferencesForm.get('receiveNewsEmails');
-    /*   this.canLeavePage = false;
-
-    this.loansService.updateUserPreferences(dto).subscribe(
-      () => {
-        this.canNavigateBooolean$.next(true);
-        this.changesMade = false;
-        this.isLoading = false;
-
-        // A hack to trigger "saved" animation
-        this.updateAnimationTrigger = !this.updateAnimationTrigger;
-        this.canLeavePage = true;
-      },
-      () => {
-        this.canLeavePage = true;
-        this.isLoading = false;
-        this.errorAnimationTrigger = !this.errorAnimationTrigger;
-      }
-    ); */
   }
 
   public updatePreferances2(): void {
@@ -507,21 +453,16 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
       ),
       this.membershipCtrl.valueChanges.pipe(
         distinctUntilChanged(),
-        debounceTime(500),
+        debounceTime(100),
         tap(() => {
-          console.log('1');
           this.loadingStates['memberships'] = true;
         }),
         switchMap(() => {
-          console.log('2');
-
           return this.loansService.updateUserPreferences(
             this.getPreferencesDto()
           );
         }),
         tap(() => {
-          console.log('3');
-
           this.loadingStates['memberships'] = false;
           console.log(this.loadingStates.memberships);
         })
