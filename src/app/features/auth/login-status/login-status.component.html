@@ -163,7 +163,7 @@
     <div *ngIf="isStep2Success">
       <span
         i18n="“confirm|login@@login.confirmation.bankId”"
-        *ngIf="viewStatus.isPassphraseConfirmSuccess"
+        *ngIf="viewStatus.isPassphraseConfirmSuccess && !isSb1App"
       >
         BankID bekreftet
       </span>
