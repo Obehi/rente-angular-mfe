@@ -1,17 +1,15 @@
-@import "../theme/colors";
+@import '../theme/colors';
 .front-container {
-  padding: 40px 20px;
+  padding: 110px 20px;
   max-width: 1010px;
   margin: auto;
   background-color: white;
   min-height: calc(100vh - 60px);
 }
 
-
-
 @media (min-width: 600px) {
   .front-container {
-    padding: 80px;
+    padding: 140px;
   }
   .dashboard-content {
     margin-top: 55px;
@@ -54,7 +52,7 @@
   margin-left: 0;
 
   > .col,
-  > [class*="col-"] {
+  > [class*='col-'] {
     padding-right: 0;
     padding-left: 0;
   }

@@ -1,19 +1,18 @@
-import { Component, OnInit, ViewEncapsulation, OnDestroy } from '@angular/core';
-import { Routes, RouterModule, Router } from '@angular/router';
 import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
-import { LocalStorageService } from '@services/local-storage.service';
-import { OptimizeService } from '@services/optimize.service';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ROUTES_MAP } from '@config/routes-config';
 import { GlobalStateService } from '@services/global-state.service';
+import { LocalStorageService } from '@services/local-storage.service';
+import { OptimizeService } from '@services/optimize.service';
 import { AuthService } from '@services/remote-api/auth.service';
 
 @Component({
-  selector: 'rente-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  selector: 'rente-dashboard-tabs-desktop',
+  templateUrl: './dashboard-tabs-desktop.component.html',
+  styleUrls: ['./dashboard-tabs-desktop.component.scss']
 })
-export class DashboardComponent implements OnInit, OnDestroy {
+export class DashboardTabsDesktopComponent implements OnInit {
   public optimize: OptimizeService;
   public routesMap = ROUTES_MAP;
 
@@ -49,9 +48,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.globalStateService.setDashboardState(true);
-
-    this.globalStateService.setContentClassName('content', 'content-dashboard');
+    // this.globalStateService.setHeaderState(false);
 
     if (this.localStorageService.getItem('noLoansPresent')) {
       this.router.navigate(['/' + ROUTES_MAP.noLoan]);
@@ -76,8 +73,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
     if (this.subscription) {
       this.subscription.unsubscribe();
     }
-    this.globalStateService.setDashboardState(false);
-    this.globalStateService.setContentClassName('content-dashboard', 'content');
   }
 
   public getActiveIndex(): number | null {

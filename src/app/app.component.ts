@@ -49,11 +49,6 @@ export class AppComponent implements OnInit {
     if (!this.localStorageService.getItem(AppComponent.CookiesAcceptedKey)) {
       this.showCookieAcc = true;
     }
-
-    // Set global state for header
-    this.globalStateService
-      .getHeaderState()
-      .subscribe((state) => (this.showHeader = state));
   }
 
   private changeTitles(): void {

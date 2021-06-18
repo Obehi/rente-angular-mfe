@@ -1,5 +1,5 @@
-<div [ngClass]="{ content: showHeader, 'content-dashboard': !showHeader }">
-  <rente-header *ngIf="showHeader"></rente-header>
+<div class="content">
+  <rente-header></rente-header>
   <router-outlet (activate)="onActivate()"></router-outlet>
 </div>
 

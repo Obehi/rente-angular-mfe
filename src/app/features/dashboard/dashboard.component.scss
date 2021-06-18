@@ -1,203 +1,206 @@
-@import '../../../styles/theme/_colors.scss';
+// @import '../../../styles/theme/_colors.scss';
 
-.tabs-wrapper {
-  background-color: $secondary;
-  width: 100%;
-}
+// .tabs-wrapper {
+//   background-color: $secondary;
+//   width: 100%;
+// }
 
-.dash-tabs-blue-wrapper {
-  .dash-tabs-blue {
-    .inner {
-      @media (max-width: 600px) {
-        width: 100%;
-      }
+// .dash-tabs-blue-wrapper {
+//   .dash-tabs-blue {
+//     .inner {
+//       @media (max-width: 600px) {
+//         width: 100%;
+//       }
 
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background-color: $secondary;
-    }
+//       width: 100%;
+//       display: flex;
+//       justify-content: space-between;
+//       align-items: center;
+//       background-color: $secondary;
+//     }
 
-    position: fixed;
-    margin: auto;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 70px;
-    width: 100%;
-    //max-width: 1010px;
-    z-index: 100;
-    background-color: $secondary;
+//     position: fixed;
+//     margin: auto;
+//     bottom: 0;
+//     left: 0;
+//     right: 0;
+//     height: 70px;
+//     width: 100%;
+//     //max-width: 1010px;
+//     z-index: 100;
+//     background-color: $secondary;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    .dash-tab {
-      text-align: center;
-      width: 25%;
-      display: block;
-      border: none;
-      height: 100%;
-      .mat-tab-link-container {
-        height: 100%;
-      }
-      .mat-tab-header-pagination {
-        display: none;
-      }
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     .dash-tab {
+//       text-align: center;
+//       width: 25%;
+//       display: block;
+//       border: none;
+//       height: 100%;
+//       .mat-tab-link-container {
+//         height: 100%;
+//       }
+//       .mat-tab-header-pagination {
+//         display: none;
+//       }
 
-      .mat-tab-label-active p {
-        color: $green !important;
-      }
+//       .mat-tab-label-active p {
+//         color: $green !important;
+//       }
 
-      .mat-tab-label-active .rente-icon {
-        content: url('../../../assets/icons/rente-logo-icon-green.svg');
-      }
+//       .mat-tab-label-active .rente-icon {
+//         content: url('../../../assets/icons/rente-logo-icon-green.svg');
+//       }
 
-      .mat-tab-label-active .graph-icon {
-        content: url('../../../assets/icons/graph-icon-green.svg');
-      }
+//       .mat-tab-label-active .graph-icon {
+//         content: url('../../../assets/icons/graph-icon-green.svg');
+//       }
 
-      .mat-tab-label-active .house-icon {
-        content: url('../../../assets/icons/house-icon-green.svg');
-      }
+//       .mat-tab-label-active .house-icon {
+//         content: url('../../../assets/icons/house-icon-green.svg');
+//       }
 
-      .mat-tab-label-active .profile-icon {
-        content: url('../../../assets/icons/profile-icon-green.svg');
-      }
-      .mat-tab-links {
-        display: block;
-        transform: unset !important;
-        height: 100%;
+//       .mat-tab-label-active .profile-icon {
+//         content: url('../../../assets/icons/profile-icon-green.svg');
+//       }
+//       .mat-tab-links {
+//         display: block;
+//         transform: unset !important;
+//         height: 100%;
 
-        .mat-tab-link {
-          opacity: 1;
-          width: 100%;
-          height: 100% !important;
-          padding: 0;
-          text-decoration: none;
+//         .mat-tab-link {
+//           opacity: 1;
+//           width: 100%;
+//           height: 100% !important;
+//           padding: 0;
+//           text-decoration: none;
 
-          img {
-            width: 20px;
-            margin-top: 3px;
+//           img {
+//             width: 20px;
+//             margin-top: 3px;
 
-            &.rente-icon {
-              width: 26px;
-              margin-bottom: -2px;
-            }
-          }
+//             &.rente-icon {
+//               width: 26px;
+//               margin-bottom: -2px;
+//             }
+//           }
 
-          p {
-            color: white;
-          }
-        }
-      }
-      .mat-ink-bar {
-        display: none;
-      }
-    }
-    @media (min-width: 600px) {
-      top: 0px;
-      bottom: unset;
-      background-color: $secondary;
+//           p {
+//             color: white;
+//           }
+//         }
+//       }
+//       .mat-ink-bar {
+//         display: none;
+//       }
+//     }
+//     @media (min-width: 600px) {
+//       top: 0px;
+//       bottom: unset;
+//       background-color: $secondary;
 
-      .dash-logo-tab {
-        margin-left: 1%;
-      }
+//       .dash-logo-tab {
+//         margin-left: 1%;
+//       }
 
-      .dash-all-tabs {
-        display: flex;
-      }
+//       .dash-all-tabs {
+//         display: flex;
+//       }
 
-      .dash-logout-tab {
-        align-self: center;
-        width: 90px;
-      }
-    }
-  }
-}
+//       .dash-logout-tab {
+//         align-self: center;
+//         width: 90px;
+//       }
+//     }
+//   }
+// }
 
-.dash-tabs-normal {
-  position: fixed;
-  margin: auto;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 55px;
-  width: 100%;
-  max-width: 1010px;
-  z-index: 100;
-  background-color: white;
-  border-top: 1px solid $light;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  .dash-tab {
-    text-align: center;
-    width: 25%;
-    display: block;
-    border: none;
-    height: 100%;
-    .mat-tab-link-container {
-      height: 100%;
-    }
-    .mat-tab-header-pagination {
-      display: none;
-    }
-    .mat-tab-label-active p {
-      color: $green !important;
-    }
-    .mat-tab-links {
-      display: block;
-      transform: unset !important;
-      height: 100%;
+// .dash-tabs-normal {
+//   position: fixed;
+//   margin: auto;
+//   bottom: 0;
+//   left: 0;
+//   right: 0;
+//   height: 55px;
+//   width: 100%;
+//   max-width: 1010px;
+//   z-index: 100;
+//   background-color: white;
+//   border-top: 1px solid $light;
+//   display: flex;
+//   justify-content: space-between;
+//   align-items: center;
+//   .dash-tab {
+//     text-align: center;
+//     width: 25%;
+//     display: block;
+//     border: none;
+//     height: 100%;
+//     .mat-tab-link-container {
+//       height: 100%;
+//     }
+//     .mat-tab-header-pagination {
+//       display: none;
+//     }
+//     .mat-tab-label-active p {
+//       color: $green !important;
+//     }
+//     .mat-tab-links {
+//       display: block;
+//       transform: unset !important;
+//       height: 100%;
 
-      .mat-tab-link {
-        opacity: 1;
-        width: 100%;
-        height: 100% !important;
-        padding: 0;
-        text-decoration: none;
-      }
-    }
-    .mat-ink-bar {
-      display: none;
-    }
-  }
-  @media (min-width: 600px) {
-    top: 60px;
-    bottom: unset;
-    background-color: $light;
-    //border-bottom: 1px solid $lesslight;
-  }
-}
+//       .mat-tab-link {
+//         opacity: 1;
+//         width: 100%;
+//         height: 100% !important;
+//         padding: 0;
+//         text-decoration: none;
+//       }
+//     }
+//     .mat-ink-bar {
+//       display: none;
+//     }
+//   }
+//   @media (min-width: 600px) {
+//     top: 60px;
+//     bottom: unset;
+//     background-color: $light;
+//     //border-bottom: 1px solid $lesslight;
+//   }
+// }
 
-.dashboard-content {
-  width: 100% !important;
-  background: linear-gradient(180deg, #162537 0%, #183a63 10.08%) !important;
-  max-width: 1010px;
-  margin: auto;
-  min-height: calc(100vh - 60px);
-  padding-top: 55px;
-  padding-bottom: 80px;
-}
+// .dashboard-content {
+//   width: 100% !important;
+//   background: linear-gradient(180deg, #162537 0%, #183a63 10.08%) !important;
+//   max-width: 1010px;
+//   margin: auto;
+//   min-height: calc(100vh - 60px);
+//   padding-top: 55px;
+//   padding-bottom: 80px;
+// }
 
 .dashboard-content-blue {
+  background: transparent;
+
   max-width: 1010px;
   margin: auto;
   min-height: calc(100vh - 60px);
 
   padding-bottom: 80px;
+  margin-top: 60px;
 
   @media (min-width: 600px) {
     margin-top: 55px;
   }
 }
 
-.highlight {
-  background: #183a63;
-  color: white;
-  padding: 10px;
-  border-radius: 10px;
-  text-decoration: none;
-}
+// .highlight {
+//   background: #183a63;
+//   color: white;
+//   padding: 10px;
+//   border-radius: 10px;
+//   text-decoration: none;
+// }

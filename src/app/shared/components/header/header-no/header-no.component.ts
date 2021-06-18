@@ -1,48 +1,42 @@
-import { AuthService } from '@services/remote-api/auth.service';
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { LocalStorageService } from '@services/local-storage.service';
-
+import { Component, HostListener, OnInit } from '@angular/core';
+import { GlobalStateService } from '@services/global-state.service';
 @Component({
   selector: 'rente-header',
   templateUrl: './header-no.component.html',
   styleUrls: ['./header-no.component.scss']
 })
 export class HeaderNoComponent implements OnInit {
+  @HostListener('window:resize', ['$event'])
+  onresize(event): void {
+    this.innerWidth = event.target.innerWidth;
+    if (this.innerWidth < 992) {
+      this.isSmallScreen = true;
+    } else {
+      this.isSmallScreen = false;
+    }
+  }
+
   public toggleNavbar: boolean;
   public isSmallScreen: boolean;
+  public innerWidth: any;
+  public isDashboard: boolean;
 
-  constructor(
-    public auth: AuthService,
-    public localStorageService: LocalStorageService,
-    private router: Router
-  ) {}
+  constructor(private globalStateService: GlobalStateService) {}
 
-  ngOnInit(): void {}
-
-  public goToTop(): void {
-    window.scrollTo(0, 0);
-  }
-
-  public goToHome(): void {
-    if (this.router.url === '/' || this.router.url === '/#faq') {
-      window.scrollTo(0, 0);
+  ngOnInit(): void {
+    this.globalStateService.getDashboardState().subscribe((state) => {
+      console.log('state change: ' + state);
+      if (state) {
+        this.isDashboard = true;
+      } else {
+        this.isDashboard = false;
+      }
+    });
+    this.innerWidth = window.innerWidth;
+    if (this.innerWidth < 992) {
+      this.isSmallScreen = true;
     } else {
-      this.router.navigateByUrl('/');
+      this.isSmallScreen = false;
     }
-
-    this.toggleNav();
-  }
-  public toggleNav(): void {
-    this.toggleNavbar = !this.toggleNavbar;
-  }
-
-  get isLoggedIn(): boolean {
-    return this.auth.isLoggedIn;
-  }
-
-  public logout(): void {
-    this.auth.logout();
-    this.toggleNav();
   }
 }

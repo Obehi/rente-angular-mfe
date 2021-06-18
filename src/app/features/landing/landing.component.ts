@@ -40,7 +40,7 @@ export class LandingComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.globalStateService.setHeaderState(true);
+    // this.globalStateService.setHeaderState(true);
     this.seoService.createLinkForCanonicalURL();
     const subscription = timer(1000, 1000).subscribe((t) => {
       this.time = t;

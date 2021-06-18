@@ -1,45 +1,66 @@
 <div class="intro" [style.margin-bottom.px]="isMobile ? 20 : 80">
-    <h1 [style.margin-bottom.px]="isMobile ? 20 : 40">
-        Få beste <br> <a [routerLink]="'/velgbank'">boliglånsrente</a>
-    </h1>
-    <h4>
-        Sammenlign boliglånet ditt mot markedets beste tilbud - <span class="green">kjapt, enkelt og
-            gratis!</span>
-    </h4>
+  <h1 [style.margin-bottom.px]="isMobile ? 20 : 40">
+    Få beste <br />
+    <a [routerLink]="'/velgbank'">boliglånsrente</a>
+  </h1>
+  <h4>
+    Sammenlign boliglånet ditt mot markedets beste tilbud -
+    <span class="green">kjapt, enkelt og gratis!</span>
+  </h4>
 </div>
 
-
 <div class="cta-container">
-    <h2>Finn beste tilbud</h2>
-    <div class="buttons">
-        <rente-button class="cta-button" color="primary-wide-landing" [routerLink]="'/velgbank'">
-            Jeg har boliglån
-        </rente-button>
-        <div class="gap"></div>
-        <rente-button color="primary-wide-landing-hollow" [routerLink]="'/boliglanskalkulator'">
-            Jeg skal kjøpe min første bolig
-        </rente-button>
-    </div>
+  <h2>Finn beste tilbud</h2>
+  <div class="buttons">
+    <rente-button
+      class="cta-button"
+      color="primary-wide-landing"
+      [routerLink]="'/velgbank'"
+    >
+      Jeg har boliglån
+    </rente-button>
+    <div class="gap"></div>
+    <rente-button
+      color="primary-wide-landing-hollow"
+      [routerLink]="'/boliglanskalkulator'"
+    >
+      Jeg skal kjøpe min første bolig
+    </rente-button>
+  </div>
 </div>
 
 <img class="showcase" src="../../../assets/img/isometric-new-optimized.png" />
 
 <div class="data-logos">
-    <a class="finansportalen" target="_blank" href="https://www.finansportalen.no" rel="nofollow">
-        <img src="../../../assets/img/banks-logo/svg/finansportalen.svg" alt="Finansportalen logo" />
-    </a>
-    <a target="_blank" href="https://virdi.no/">
-        <img src="../../../assets/img/banks-logo/svg/virdi.svg" alt="Virdi logo" />
-    </a>
-    <a class="boligmappa" target="_blank" href="https://www.boligmappa.no/">
-        <img src="../../../../assets/img/partners/boligmappa-color.png" alt="boligmappa logo" />
-    </a>
+  <a
+    class="finansportalen"
+    target="_blank"
+    href="https://www.finansportalen.no"
+    rel="nofollow"
+  >
+    <img
+      src="../../../assets/img/banks-logo/svg/finansportalen.svg"
+      alt="Finansportalen logo"
+    />
+  </a>
+  <a target="_blank" href="https://virdi.no/">
+    <img src="../../../assets/img/banks-logo/svg/virdi.svg" alt="Virdi logo" />
+  </a>
+  <a class="boligmappa" target="_blank" href="https://www.boligmappa.no/">
+    <img
+      src="../../../../assets/img/partners/boligmappa-color.png"
+      alt="boligmappa logo"
+    />
+  </a>
 
-    <div class="defero-wrapper">
-        <a class="defero" target="_blank" href="https://www.defero.no/">
-            <img src="../../../../assets/img/partners/defero-light-mode.png" alt="boligmappa logo" />
-        </a>
-    </div>
+  <div class="defero-wrapper">
+    <a class="defero" target="_blank" href="https://www.defero.no/">
+      <img
+        src="../../../../assets/img/partners/defero-light-mode.png"
+        alt="boligmappa logo"
+      />
+    </a>
+  </div>
 </div>
 
 <rente-counter></rente-counter>

@@ -7,10 +7,13 @@ import { Subject } from 'rxjs';
 export class GlobalStateService {
   private showFooter: Subject<boolean>;
   private showHeader: Subject<boolean>;
+  private isDashboard: Subject<boolean>;
+  private contentClassName: string;
 
   constructor() {
     this.showHeader = new Subject<true>();
     this.showFooter = new Subject<boolean>();
+    this.isDashboard = new Subject<false>();
   }
 
   public setHeaderState(show: boolean): void {
@@ -27,5 +30,17 @@ export class GlobalStateService {
 
   public getFooterState(): Subject<boolean> {
     return this.showFooter;
+  }
+
+  public setDashboardState(state: boolean): void {
+    this.isDashboard.next(state);
+  }
+
+  public getDashboardState(): Subject<boolean> {
+    return this.isDashboard;
+  }
+
+  public setContentClassName(currentName: string, newName: string): void {
+    document.getElementsByClassName(currentName)[0].className = newName;
   }
 }
