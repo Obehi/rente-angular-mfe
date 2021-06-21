@@ -19,6 +19,10 @@ img {
   }
 }
 
+::ng-deep .mat-ink-bar {
+  visibility: hidden !important;
+}
+
 .mat-tab-link {
   opacity: 1;
   height: 80px;
@@ -105,15 +109,12 @@ img {
           }
         }
       }
-      .mat-ink-bar {
-        display: none;
-      }
     }
     @media (min-width: 600px) {
       top: 0px;
       bottom: unset;
       background-color: $secondary;
-      height: 75px;
+      height: 90px;
 
       .dash-logo-tab {
         margin-left: 1%;
@@ -167,6 +168,12 @@ img {
       transform: unset !important;
       height: 100%;
 
+      @media (max-width: 992px) {
+        mat-ink-bar {
+          visibility: hidden;
+        }
+      }
+
       .mat-tab-link {
         opacity: 1;
         width: 100%;
@@ -174,9 +181,6 @@ img {
         padding: 0;
         text-decoration: none;
       }
-    }
-    .mat-ink-bar {
-      display: none;
     }
   }
   @media (min-width: 600px) {
