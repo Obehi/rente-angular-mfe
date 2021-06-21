@@ -661,9 +661,10 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
       this.showGenericDialog();
       return null;
     }
+    const remainingYears = this.loanFormGroup?.get('remainingYears')?.value;
     signicatLoanInfoDto.id = this.loanId;
     signicatLoanInfoDto.remainingYears =
-      this.loanFormGroup?.get('remainingYears')?.value || 20;
+      remainingYears != null && remainingYears !== 0 ? remainingYears : 20;
 
     signicatLoanInfoDto.productId = String(
       this.loanFormGroup?.get('loanType')?.value.value
@@ -688,8 +689,9 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     if (this.loanId) {
       signicatLoanInfoDto.id = this.loanId;
     }
+    const remainingYears = this.loanFormGroup?.get('remainingYears')?.value;
     signicatLoanInfoDto.remainingYears =
-      this.loanFormGroup?.get('remainingYears')?.value || 20;
+      remainingYears != null && remainingYears !== 0 ? remainingYears : 20;
 
     signicatLoanInfoDto.loanType = String(
       this.loanFormGroup?.get('loanTypeOption')?.value.value

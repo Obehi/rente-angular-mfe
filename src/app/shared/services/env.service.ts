@@ -22,6 +22,7 @@ export interface Environment {
   loginDanskeIsOn?: boolean;
   sb1TryAgainDowntime?: any;
   sb1DisabledBanks?: string[];
+  dnbSignicatIsOn?: boolean;
 }
 
 @Injectable({
@@ -82,6 +83,7 @@ export class EnvService {
       .replace(/\s/g, '')
       .split(',');
     this.environment.sb1TryAgainDowntime = returnedEnv['VAR_6'];
+    this.environment.dnbSignicatIsOn = returnedEnv['VAR_7'];
   }
 
   handleError(): Observable<any> {

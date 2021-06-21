@@ -115,6 +115,7 @@ export class BankSelectNoComponent implements OnInit {
   }
 
   selectBank(bank: BankVo): void {
+    console.log(this.envService.environment);
     if (bank.name === 'SPAREBANK_1') {
       this.searchStr = 'Sparebank 1';
 
@@ -135,6 +136,16 @@ export class BankSelectNoComponent implements OnInit {
       return;
     }
 
+    if (
+      bank.name === 'DNB' &&
+      this.envService.environment.dnbSignicatIsOn === true
+    ) {
+      this.router.navigate(['/autentisering/' + ROUTES_MAP_NO.bankIdLogin], {
+        state: { data: { bank: bank } }
+      });
+      return;
+    }
+
     if (this.envService.environment.sb1DisabledBanks?.includes(bank.name)) {
       this.router.navigate([ROUTES_MAP_NO.sparebank1Error], {
         state: { bank: bank }
@@ -144,10 +155,11 @@ export class BankSelectNoComponent implements OnInit {
 
     if (bank.isMissing || this.envService.isMissing(bank)) {
       this.router.navigate([ROUTES_MAP.getNotified], { state: { bank: bank } });
-    } else {
-      this.router.navigate([
-        ROUTES_MAP.auth + '/' + bank.name.toLocaleLowerCase()
-      ]);
+      return;
     }
+
+    this.router.navigate([
+      ROUTES_MAP.auth + '/' + bank.name.toLocaleLowerCase()
+    ]);
   }
 }
