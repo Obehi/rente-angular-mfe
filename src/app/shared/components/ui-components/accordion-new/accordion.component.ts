@@ -30,7 +30,7 @@ export class AccordionComponent implements AfterContentInit {
         // Open the group
         this.openGroup(t);
       });
-      /*t.toggle.subscribe((group) => {
+      /* t.toggle.subscribe((group) => {
         // Open the group
         this.openGroup(group);
       });*/
@@ -41,7 +41,7 @@ export class AccordionComponent implements AfterContentInit {
    * Open an accordion group
    * @param group   Group instance
    */
-  openGroup(group: Group): void {
+  openGroup(group: AccordionGroupComponent): void {
     // close other groups
     this.groups.toArray().forEach((t) => (t.opened = false));
     // open current group
