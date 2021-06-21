@@ -5,7 +5,7 @@
 
   <div class="forms-wrapper">
     <div *ngIf="signicatIframeUrl !== null" class="iframe-wrapper">
-      <p class="warning" *ngIf="bank.name === 'DNB'">
+      <p class="warning" *ngIf="bank?.name === 'DNB'">
         Vi opplever at DNB sperrer sine kunder fra å innhente egne lånedata.
         Derfor har vi inntil videre laget en løsning hvor du selv fyller inn
         boliglånsrenten din og noe lånedata.
