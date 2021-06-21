@@ -6,10 +6,10 @@ import { LocalStorageService } from '@services/local-storage.service';
 
 @Component({
   selector: 'rente-header-desktop',
-  templateUrl: './header-desktop.component.html',
-  styleUrls: ['./header-desktop.component.scss']
+  templateUrl: './header-desktop-no.component.html',
+  styleUrls: ['./header-desktop-no.component.scss']
 })
-export class HeaderDesktopComponent implements OnInit {
+export class HeaderDesktopNoComponent implements OnInit {
   public toggleNavbar: boolean;
   public isSmallScreen: boolean;
 

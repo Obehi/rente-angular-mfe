@@ -13,3 +13,4 @@ export { ChangeBankDialogSvComponent as ChangeBankDialogLangGenericComponent } f
 export { BankRatingDialogSvComponent as BankScoreLangGenericComponent } from '@features/dashboard/offers/offers-blue/bank-rating-dialog/bank-rating-dialog-sv/bank-rating-dialog-sv.component';
 export { GetNotifiedSvComponent as GetNotifiedLangGenericComponent } from '@features/get-notified/get-notified-sv/get-notified-sv.component';
 export { PrivacyPolicySvComponent as PrivacyPolicyLangGenericComponent } from '@features/privacy-sv/privacy-policy-sv.component';
+export { HeaderDesktopSvComponent as HeaderDesktopLangGenericComponent } from '@shared/components/header/header-desktop-sv/header-desktop-sv.component';

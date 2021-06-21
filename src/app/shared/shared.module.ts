@@ -50,10 +50,10 @@ import { GenericInfoDialogComponent } from './components/ui-components/dialogs/g
 import { GenericErrorDialogComponent } from './components/ui-components/dialogs/generic-error-dialog/generic-error-dialog.component';
 import { VirdiErrorChoiceDialogComponent } from './components/ui-components/dialogs/virdi-error-choice-dialog/virdi-error-choice-dialog.component';
 import { LoginTermsDialogV2Component } from './components/ui-components/dialogs/login-terms-dialog-v2/login-terms-dialog-v2.component';
-import { HeaderDesktopComponent } from './components/header/header-desktop/header-desktop.component';
 import { HeaderMobileComponent } from './components/header/header-mobile/header-mobile.component';
 import { DashboardTabsDesktopComponent } from './components/header/dashboard-tabs-desktop/dashboard-tabs-desktop.component';
 import { DashboardTabsMobileComponent } from './components/header/dashboard-tabs-mobile/dashboard-tabs-mobile.component';
+// import { HeaderDesktopLangGenericComponent } from '../local-components/components-output';
 
 const components = [
   HeaderLangGenericComponent,
@@ -71,9 +71,9 @@ const components = [
   TextAreaComponent,
   OfferDetailsLangGenericComponent,
   DashboardTabsDesktopComponent,
-  HeaderDesktopComponent,
   HeaderMobileComponent,
   DashboardTabsMobileComponent
+  // HeaderDesktopLangGenericComponent
 ];
 
 const services = [

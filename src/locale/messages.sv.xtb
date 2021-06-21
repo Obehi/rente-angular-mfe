@@ -854,4 +854,6 @@ Vi följer ständigt upp om det dyker upp bättre ränteerbjudanden på marknade
   <translation id="landing.explanationService" desc="landing-page" meaning="                 explanation-service"/>
   <translation id="landing.descriptionService" desc="landing-page" meaning="                 description-service"/>
   <translation id="offer.card.mobileRatingNotAvailable" desc="offer-card" meaning="               “application-time"/>
+  <translation id="login.error4”" desc="login" meaning="“control-error"/>
+  <translation id="offer.card.big.customerSatisfaction”" desc="offer-card-big" meaning="             “customer-satisfaction"/>
 </translationbundle>
