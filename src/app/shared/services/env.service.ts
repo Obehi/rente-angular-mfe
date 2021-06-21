@@ -76,7 +76,6 @@ export class EnvService {
   }
 
   handleEnvFile(returnedEnv: any): void {
-    console.log('returnedEnv');
     this.environment.shouldLog = returnedEnv['VAR_1'];
     this.environment.loginDnbIsOn = returnedEnv['VAR_2'];
     this.environment.loginHandelsbankenIsOn = returnedEnv['VAR_3'];
@@ -86,8 +85,6 @@ export class EnvService {
       .replace(/\s/g, '')
       .split(',');
     this.environment.sb1TryAgainDowntime = returnedEnv['VAR_6'];
-
-    console.log(this.environment);
   }
 
   handleError(): Observable<any> {

@@ -25,7 +25,6 @@ export class BankSelectNoComponent implements OnInit {
   constructor(private router: Router, private envService: EnvService) {}
 
   ngOnInit(): void {
-    console.log(this.envService.environment);
     this.sortBanks();
     this.filterBank(this.searchStr);
   }
@@ -116,7 +115,6 @@ export class BankSelectNoComponent implements OnInit {
   }
 
   selectBank(bank: BankVo): void {
-    console.log(this.envService.environment);
     if (bank.name === 'SPAREBANK_1') {
       this.searchStr = 'Sparebank 1';
 
