@@ -25,7 +25,6 @@ export class HeaderNoComponent implements OnInit {
 
   ngOnInit(): void {
     this.globalStateService.getDashboardState().subscribe((state) => {
-      console.log('state change: ' + state);
       if (state) {
         this.isDashboard = true;
       } else {

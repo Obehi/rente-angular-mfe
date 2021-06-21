@@ -37,7 +37,6 @@ export class DashboardTabsMobileComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // Dashboard tabs functions
     if (this.localStorageService.getItem('noLoansPresent')) {
       this.router.navigate(['/' + ROUTES_MAP.noLoan]);
     } else if (this.localStorageService.getItem('isAggregatedRateTypeFixed')) {

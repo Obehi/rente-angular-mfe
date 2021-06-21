@@ -2,7 +2,6 @@ import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ROUTES_MAP } from '@config/routes-config';
-import { GlobalStateService } from '@services/global-state.service';
 import { LocalStorageService } from '@services/local-storage.service';
 import { OptimizeService } from '@services/optimize.service';
 import { AuthService } from '@services/remote-api/auth.service';
@@ -20,7 +19,6 @@ export class DashboardTabsDesktopComponent implements OnInit {
     private router: Router,
     public breakpointObserver: BreakpointObserver,
     private localStorageService: LocalStorageService,
-    private globalStateService: GlobalStateService,
     private auth: AuthService
   ) {}
 
@@ -48,8 +46,6 @@ export class DashboardTabsDesktopComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.globalStateService.setHeaderState(false);
-
     if (this.localStorageService.getItem('noLoansPresent')) {
       this.router.navigate(['/' + ROUTES_MAP.noLoan]);
     } else if (this.localStorageService.getItem('isAggregatedRateTypeFixed')) {
