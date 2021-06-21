@@ -5,8 +5,8 @@ import { LoansService } from '@services/remote-api/loans.service';
 import { TitleService } from '@services/title.service';
 import { BankList, BankUtils, MissingBankList } from '@shared/models/bank';
 import { BankGuideInfo, BankLocationAddress } from '@shared/models/offers';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { Observable, Subject } from 'rxjs';
+import { map, takeUntil } from 'rxjs/operators';
 import { SeoService } from '@services/seo.service';
 import { BankGuideService } from '../bank-guide.service';
 import { ROUTES_MAP } from '@config/routes-config';
@@ -31,6 +31,7 @@ export class BankGuidePageComponent implements OnInit {
   depositsGeneral: { name: string; rate: string }[] = [];
   depositsBsu: { name: string; rate: string }[] = [];
 
+  $memberships: Observable<any>;
   public bankUtils = BankUtils;
   private _onDestroy$ = new Subject<void>();
 
@@ -54,6 +55,13 @@ export class BankGuidePageComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.$memberships = this.loansService
+      .getBankGuide(this.route.snapshot.params.id.toUpperCase())
+      .pipe(
+        map((bankInfo) => {
+          return Object.keys(bankInfo.membershipOffers).sort();
+        })
+      );
     this.route.params.subscribe((param) => {
       this.seoService.createLinkForCanonicalURL();
       this.bankGuideLoading = true;

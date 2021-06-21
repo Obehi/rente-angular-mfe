@@ -282,6 +282,14 @@
         </div>
         <div class="offerings-header">Produkter:</div>
         <div class="accordion">
+          <!--           <li *ngFor="let pizza of pizzas$ | async; index as i"></li> -->
+          <accordion>
+            <group
+              [title]="membership"
+              *ngFor="let membership of memberships$ | async"
+              >this is the content</group
+            >
+          </accordion>
           <accordion>
             <group [title]="membership" *ngFor="let membership of memberships"
               >this is the content</group
