@@ -140,6 +140,7 @@ export class BankSelectNoComponent implements OnInit {
       bank.name === 'DNB' &&
       this.envService.environment.dnbSignicatIsOn === true
     ) {
+      bank.isSb1Bank = true;
       this.router.navigate(['/autentisering/' + ROUTES_MAP_NO.bankIdLogin], {
         state: { data: { bank: bank } }
       });
