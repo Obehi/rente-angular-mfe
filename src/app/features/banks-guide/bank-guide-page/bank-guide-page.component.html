@@ -283,14 +283,10 @@
         <div class="offerings-header">Produkter:</div>
         <div class="accordion">
           <accordion>
-            <group *ngFor="let membership of memberships" title="First Group"
+            <test *ngFor="let membership of memberships">¨</test>
+            <group [title]="membership" *ngFor="let membership of memberships"
               >this is the content</group
             >
-            <group [title]="u.label" *ngFor="let u of users">
-              <gmap [city]="u.label"></gmap>
-              <hr />
-              {{ u.lat }} - {{ u.lng }}
-            </group>
           </accordion>
           <mat-accordion>
             <!-- <mat-expansion-panel *ngFor="let membership of memberships">
