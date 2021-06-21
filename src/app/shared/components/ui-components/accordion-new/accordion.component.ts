@@ -21,7 +21,7 @@ export class AccordionComponent implements AfterContentInit {
   ngAfterContentInit(): void {
     // console.log (this.groups);
     // Set active to first element
-    this.groups.toArray()[0].opened = false;
+    // this.groups.toArray()[0].opened = false;
     // Loop through all Groups
     this.groups.toArray().forEach((t) => {
       // when title bar is clicked
@@ -41,11 +41,13 @@ export class AccordionComponent implements AfterContentInit {
    * Open an accordion group
    * @param group   Group instance
    */
-  openGroup(group: AccordionGroupComponent): void {
+  openGroup(group?: AccordionGroupComponent): void {
     // close other groups
     this.groups.toArray().forEach((t) => (t.opened = false));
     // open current group
 
-    group.opened = !group.opened;
+    if (group !== undefined) {
+      group.opened = !group.opened;
+    }
   }
 }

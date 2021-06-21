@@ -73,7 +73,7 @@ export class BankGuidePageComponent implements OnInit {
               this.bankGuideInfo.addresses
             ).sort();
 
-            this.memberships = [];
+            // this.memberships = [];
             this.addressesArray = [];
 
             this.memberships = Object.keys(
