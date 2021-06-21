@@ -90,6 +90,16 @@
   }
 }
 
+.warning {
+  margin-bottom: 20px;
+  background: $grey-light;
+  border-radius: 15px;
+  padding: 1em;
+  border: 1px solid #cccccc;
+  text-align: center;
+  color: black;
+}
+
 .info-box {
   background: $grey-light;
   padding: 10px 20px;
