@@ -34,7 +34,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
     'profil'
   ];
   public activeLinkIndex: number | null = -1;
-  public isMobile: boolean;
   public imgLink = {
     tilbud: '../../../assets/icons/ic_offer.svg',
     'mine-lan': '../../../assets/icons/ic_loan.svg',
@@ -42,6 +41,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
     preferanser: '../../../assets/icons/ic_preferanses.svg',
     profil: '../../../assets/icons/ic_profile.svg'
   };
+
+  get isMobile(): boolean {
+    return window.innerWidth < 992;
+  }
 
   private subscription: any;
 
@@ -69,7 +72,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
           // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
           this.setActiveIcon(this.activeLinkIndex!);
         });
-        this.checkmobileVersion();
       }
     }
   }
@@ -113,18 +115,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
         }
       });
     }
-  }
-
-  private checkmobileVersion() {
-    this.breakpointObserver
-      .observe(['(min-width: 992px)'])
-      .subscribe((state: BreakpointState) => {
-        if (state.matches) {
-          this.isMobile = false;
-        } else {
-          this.isMobile = true;
-        }
-      });
   }
 
   public logout(): void {
