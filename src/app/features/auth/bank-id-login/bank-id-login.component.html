@@ -5,11 +5,16 @@
 
   <div class="forms-wrapper">
     <div *ngIf="signicatIframeUrl !== null" class="iframe-wrapper">
-      <p class="warning" *ngIf="bank?.name === 'DNB'">
-        Vi opplever at DNB sperrer sine kunder fra å innhente egne lånedata.
-        Derfor har vi inntil videre laget en løsning hvor du selv fyller inn
-        boliglånsrenten din og noe lånedata.
+      <p class="warning" *ngIf="shouldShowBankWarningMessage">
+        Vi opplever at {{ bank?.name }} sperrer sine kunder fra å innhente egne
+        lånedata. Derfor har vi laget en løsning hvor du selv fyller inn dine
+        lånedata. Lese mer om hvor du finner disse dataene
+        <a href="https://blogg.renteradar.no/">her</a>.
+        <br />
+        <br />
+        Velg identifikasjonsmetode nedenfor for å bruke denne løsningen.
       </p>
+
       <p>
         Ved å logge inn samtykker til at Renteradar.no henter og behandler dine
         personopplysninger.

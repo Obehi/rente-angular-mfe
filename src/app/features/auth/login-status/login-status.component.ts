@@ -28,7 +28,7 @@ import { UserService } from '@services/remote-api/user.service';
 import { LoansService } from '@services/remote-api/loans.service';
 import { LocalStorageService } from '@services/local-storage.service';
 import { BankVo, BankUtils } from '@shared/models/bank';
-import { ROUTES_MAP } from '@config/routes-config';
+import { ROUTES_MAP, ROUTES_MAP_NO } from '@config/routes-config';
 import { LoggingService } from '@services/logging.service';
 import { EnvService } from '@services/env.service';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
@@ -465,6 +465,16 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
             this.viewStatus.isBankIdUnstable = true;
             this.loginStep1Status = MESSAGE_STATUS.ERROR;
             this.unsubscribeEverything();
+            break;
+
+          case BANKID_STATUS.FAIL_REDIRECT:
+            this.unsubscribeEverything();
+            this.router.navigate(
+              ['/autentisering/' + ROUTES_MAP_NO.bankIdLogin],
+              {
+                state: { data: { bank: this.bank, redirect: true } }
+              }
+            );
             break;
 
           case BANKID_STATUS.PROCESS_STARTED:
