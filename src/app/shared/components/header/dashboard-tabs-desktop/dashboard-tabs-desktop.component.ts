@@ -5,6 +5,7 @@ import { ROUTES_MAP } from '@config/routes-config';
 import { LocalStorageService } from '@services/local-storage.service';
 import { OptimizeService } from '@services/optimize.service';
 import { AuthService } from '@services/remote-api/auth.service';
+import { EnvService } from '@services/env.service';
 
 @Component({
   selector: 'rente-dashboard-tabs-desktop',
@@ -14,24 +15,32 @@ import { AuthService } from '@services/remote-api/auth.service';
 export class DashboardTabsDesktopComponent implements OnInit {
   public optimize: OptimizeService;
   public routesMap = ROUTES_MAP;
+  private subscription: any;
+  public isMobile: boolean;
+  public activeLinkIndex: number | null = -1;
+  public imgLink: any;
 
-  constructor(
-    private router: Router,
-    public breakpointObserver: BreakpointObserver,
-    private localStorageService: LocalStorageService,
-    private auth: AuthService
-  ) {}
+  // General navLinks to switch between norwegian and  swedish version
+  public navLinks: string[] | undefined;
 
-  public navLinks: string[] | undefined = [
+  public navLinksNo: string[] | undefined = [
     'tilbud',
     'mine-lan',
     'bolig',
     'preferanser',
     'profil'
   ];
-  public activeLinkIndex: number | null = -1;
-  public isMobile: boolean;
-  public imgLink = {
+
+  // Change preferanser to swedish translation
+  public navLinksSv: string[] | undefined = [
+    'erbjudande',
+    'mina-lan',
+    'bostad',
+    'preferanser',
+    'profil'
+  ];
+
+  public imgLinkNo = {
     tilbud: '../../../assets/icons/ic_offer.svg',
     'mine-lan': '../../../assets/icons/ic_loan.svg',
     bolig: '../../../assets/icons/ic_house.svg',
@@ -39,10 +48,32 @@ export class DashboardTabsDesktopComponent implements OnInit {
     profil: '../../../assets/icons/ic_profile.svg'
   };
 
-  private subscription: any;
+  public imgLinkSv = {
+    erbjudande: '../../../assets/icons/ic_offer.svg',
+    'mina-lan': '../../../assets/icons/ic_loan.svg',
+    bostad: '../../../assets/icons/ic_house.svg',
+    preferanser: '../../../assets/icons/ic_preferanses.svg',
+    profil: '../../../assets/icons/ic_profile.svg'
+  };
 
-  onActivate(event: any) {
-    window.scrollTo(0, 0);
+  constructor(
+    private router: Router,
+    public breakpointObserver: BreakpointObserver,
+    private localStorageService: LocalStorageService,
+    private auth: AuthService,
+    private envService: EnvService
+  ) {
+    if (this.envService.isNorway()) {
+      this.navLinks = this.navLinksNo;
+      this.imgLink = this.imgLinkNo;
+      console.log('is NO');
+    } else if (this.envService.isSweden()) {
+      this.navLinks = this.navLinksSv;
+      this.imgLink = this.imgLinkSv;
+      console.log('is SV');
+    }
+
+    console.log(this.navLinks);
   }
 
   ngOnInit(): void {
@@ -60,15 +91,17 @@ export class DashboardTabsDesktopComponent implements OnInit {
           // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
           this.setActiveIcon(this.activeLinkIndex!);
         });
-        this.checkmobileVersion();
       }
     }
   }
 
-  ngOnDestroy(): void {
-    if (this.subscription) {
-      this.subscription.unsubscribe();
-    }
+  test(): void {
+    console.log('active link index');
+    console.log(this.activeLinkIndex);
+  }
+
+  onActivate(event: any) {
+    window.scrollTo(0, 0);
   }
 
   public getActiveIndex(): number | null {
@@ -84,9 +117,11 @@ export class DashboardTabsDesktopComponent implements OnInit {
   }
 
   private setActiveIcon(activeIndex: number) {
+    console.log('Set active icon function');
     if (this.navLinks !== undefined) {
       this.navLinks.forEach((link: string, index: number) => {
         if (index === activeIndex) {
+          console.log(this.imgLink[link].includes('active'));
           if (!this.imgLink[link].includes('active')) {
             this.imgLink[link] = this.imgLink[link].replace(
               '.svg',
@@ -103,19 +138,13 @@ export class DashboardTabsDesktopComponent implements OnInit {
     }
   }
 
-  private checkmobileVersion() {
-    this.breakpointObserver
-      .observe(['(min-width: 992px)'])
-      .subscribe((state: BreakpointState) => {
-        if (state.matches) {
-          this.isMobile = false;
-        } else {
-          this.isMobile = true;
-        }
-      });
-  }
-
   public logout(): void {
     this.auth.logout();
+  }
+
+  ngOnDestroy(): void {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 }

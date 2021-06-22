@@ -49,12 +49,12 @@
   <msg id="details.component.other”" desc="details" meaning="“other-conditions"><source>app/features/dashboard/offers/offers-blue/details/details-no/details-no.component.html:68,69</source><ph name="INTERPOLATION"><ex>{{offer.otherConditions ?
     &quot;Forbehold:&quot; : &quot;Ingen forbehold&quot;}}</ex>{{offer.otherConditions ?
     &quot;Forbehold:&quot; : &quot;Ingen forbehold&quot;}}</ph> </msg>
-  <msg id="dashboard.loggedIn.offer”" desc="offer" meaning="“title"><source>app/shared/components/header/dashboard-tabs-desktop/dashboard-tabs-desktop.component.html:29</source><source>app/shared/components/header/dashboard-tabs-mobile/dashboard-tabs-mobile.component.html:17</source>Tilbud</msg>
-  <msg id="dashboard.loggedIn.myLoans”" desc="my-loans" meaning="“title2"><source>app/shared/components/header/dashboard-tabs-desktop/dashboard-tabs-desktop.component.html:45,47</source><source>app/shared/components/header/dashboard-tabs-mobile/dashboard-tabs-mobile.component.html:33</source>
+  <msg id="dashboard.loggedIn.offer”" desc="offer" meaning="“title"><source>app/shared/components/header/dashboard-tabs-desktop/dashboard-tabs-desktop.component.html:30</source><source>app/shared/components/header/dashboard-tabs-mobile/dashboard-tabs-mobile.component.html:17</source>Tilbud</msg>
+  <msg id="dashboard.loggedIn.myLoans”" desc="my-loans" meaning="“title2"><source>app/shared/components/header/dashboard-tabs-desktop/dashboard-tabs-desktop.component.html:47,49</source><source>app/shared/components/header/dashboard-tabs-mobile/dashboard-tabs-mobile.component.html:33</source>
                 Mine lån
               </msg>
-  <msg id="dashboard.loggedIn.house”" desc="house" meaning="“title3"><source>app/shared/components/header/dashboard-tabs-desktop/dashboard-tabs-desktop.component.html:63</source><source>app/shared/components/header/dashboard-tabs-mobile/dashboard-tabs-mobile.component.html:49</source>Bolig</msg>
-  <msg id="dashboard.loggedIn.profile”" desc="profile" meaning="“title4"><source>app/shared/components/header/dashboard-tabs-desktop/dashboard-tabs-desktop.component.html:79</source><source>app/shared/components/header/dashboard-tabs-mobile/dashboard-tabs-mobile.component.html:65</source>Profil</msg>
+  <msg id="dashboard.loggedIn.house”" desc="house" meaning="“title3"><source>app/shared/components/header/dashboard-tabs-desktop/dashboard-tabs-desktop.component.html:66</source><source>app/shared/components/header/dashboard-tabs-mobile/dashboard-tabs-mobile.component.html:49</source>Bolig</msg>
+  <msg id="dashboard.loggedIn.profile”" desc="profile" meaning="“title4"><source>app/shared/components/header/dashboard-tabs-desktop/dashboard-tabs-desktop.component.html:83</source><source>app/shared/components/header/dashboard-tabs-mobile/dashboard-tabs-mobile.component.html:65</source>Profil</msg>
   <msg id="header.home”" desc="homepage" meaning="“Headerlink"><source>app/shared/components/header/header-desktop-sv/header-desktop-sv.component.html:16,17</source>Hjem
         </msg>
   <msg id="header.blog”" desc="blog" meaning="“Headerlink"><source>app/shared/components/header/header-desktop-sv/header-desktop-sv.component.html:23</source>Blogg</msg>
