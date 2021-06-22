@@ -22,6 +22,7 @@ export interface ViewStatus {
   isBankIdUnstable: boolean;
   isSb1NotValidDataProvidedV2Error: boolean;
   isSb1appConfirmFailError: boolean;
+  passPhraseConfirmIsSet: boolean;
 }
 
 export class ViewStatus {
@@ -45,5 +46,6 @@ export class ViewStatus {
     this.isBankIdUnstable = false;
     this.isSb1NotValidDataProvidedV2Error = false;
     this.isSb1appConfirmFailError = false;
+    this.passPhraseConfirmIsSet = false;
   }
 }

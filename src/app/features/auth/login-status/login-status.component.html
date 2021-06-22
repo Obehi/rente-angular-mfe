@@ -157,6 +157,14 @@
         Det har skjedd en feil. Vent litt og prøv igjen, eller velg en annen
         innloggingsmetode.
       </span>
+
+      <span
+        i18n="“control-error|login@@login.error4”"
+        *ngIf="viewStatus.isErrorBIDC325"
+      >
+        Det har skjedd en feil i tilkobling mellom teleoperatøren og din
+        telefon. Vent litt og prøv igjen senere.
+      </span>
     </div>
 
     <!-- STEP 2: SUCCESS -->
