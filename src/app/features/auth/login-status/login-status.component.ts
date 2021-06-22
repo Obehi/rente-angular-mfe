@@ -467,7 +467,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
             this.unsubscribeEverything();
             break;
 
-          case BANKID_STATUS.FAIL_REDIRECT:
+          case BANKID_STATUS.ERROR_4:
             this.unsubscribeEverything();
             this.router.navigate(
               ['/autentisering/' + ROUTES_MAP_NO.bankIdLogin],
