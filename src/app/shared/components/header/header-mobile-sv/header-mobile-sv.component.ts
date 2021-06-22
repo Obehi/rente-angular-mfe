@@ -1,25 +1,37 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ROUTES_MAP } from '@config/routes-config';
+import { LocalStorageService } from '@services/local-storage.service';
+import { OptimizeService } from '@services/optimize.service';
 import { AuthService } from '@services/remote-api/auth.service';
 
 @Component({
   selector: 'rente-header-mobile',
-  templateUrl: './header-mobile.component.html',
-  styleUrls: ['./header-mobile.component.scss']
+  templateUrl: './header-mobile-sv.component.html',
+  styleUrls: ['./header-mobile-sv.component.scss']
 })
-export class HeaderMobileComponent implements OnInit {
+export class HeaderMobileSvComponent implements OnInit {
   public toggleNavbar: boolean;
   public isSmallScreen: boolean;
+  public optimizeService: OptimizeService;
+  public routesMap = ROUTES_MAP;
 
-  constructor(public auth: AuthService, private router: Router) {}
+  constructor(
+    public auth: AuthService,
+    public localStorageService: LocalStorageService,
+    private router: Router,
+    private optimize: OptimizeService
+  ) {
+    this.optimizeService = optimize;
+  }
 
-  ngOnInit(): void {}
+  ngOnInit() {}
 
-  public goToTop(): void {
+  public goToTop() {
     window.scrollTo(0, 0);
   }
 
-  public goToHome(): void {
+  public goToHome() {
     if (this.router.url === '/' || this.router.url === '/#faq') {
       window.scrollTo(0, 0);
     } else {

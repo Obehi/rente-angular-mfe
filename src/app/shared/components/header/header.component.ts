@@ -2,10 +2,10 @@ import { Component, HostListener, OnInit } from '@angular/core';
 import { GlobalStateService } from '@services/global-state.service';
 @Component({
   selector: 'rente-header',
-  templateUrl: './header-no.component.html',
-  styleUrls: ['./header-no.component.scss']
+  templateUrl: './header.component.html',
+  styleUrls: ['./header.component.scss']
 })
-export class HeaderNoComponent implements OnInit {
+export class HeaderComponent implements OnInit {
   @HostListener('window:resize', ['$event'])
   onresize(event): void {
     this.innerWidth = event.target.innerWidth;

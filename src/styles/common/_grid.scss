@@ -1,6 +1,6 @@
 @import '../theme/colors';
 .front-container {
-  padding: 110px 20px;
+  padding: 70px 20px;
   max-width: 1010px;
   margin: auto;
   background-color: white;
@@ -9,7 +9,7 @@
 
 @media (min-width: 600px) {
   .front-container {
-    padding: 140px;
+    padding: 80px;
   }
   .dashboard-content {
     margin-top: 55px;

@@ -16,6 +16,7 @@ import { AuthService } from '@services/remote-api/auth.service';
 export class DashboardComponent implements OnInit, OnDestroy {
   public optimize: OptimizeService;
   public routesMap = ROUTES_MAP;
+  public isDashboard: boolean;
 
   constructor(
     private router: Router,
@@ -50,6 +51,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.globalStateService.setDashboardState(true);
+    this.isDashboard = true;
 
     this.globalStateService.setContentClassName('content', 'content-dashboard');
 
@@ -77,6 +79,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       this.subscription.unsubscribe();
     }
     this.globalStateService.setDashboardState(false);
+    this.isDashboard = false;
     this.globalStateService.setContentClassName('content-dashboard', 'content');
   }
 

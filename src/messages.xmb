@@ -55,17 +55,26 @@
               </msg>
   <msg id="dashboard.loggedIn.house”" desc="house" meaning="“title3"><source>app/shared/components/header/dashboard-tabs-desktop/dashboard-tabs-desktop.component.html:63</source><source>app/shared/components/header/dashboard-tabs-mobile/dashboard-tabs-mobile.component.html:49</source>Bolig</msg>
   <msg id="dashboard.loggedIn.profile”" desc="profile" meaning="“title4"><source>app/shared/components/header/dashboard-tabs-desktop/dashboard-tabs-desktop.component.html:79</source><source>app/shared/components/header/dashboard-tabs-mobile/dashboard-tabs-mobile.component.html:65</source>Profil</msg>
-  <msg id="header.home2”" desc="homepage" meaning="“Headerlink"><source>app/shared/components/header/header-mobile/header-mobile.component.html:23,24</source><ph name="START_HEADING_LEVEL3"><ex>&lt;h3&gt;</ex>&lt;h3&gt;</ph>Hjem<ph name="CLOSE_HEADING_LEVEL3"><ex>&lt;/h3&gt;</ex>&lt;/h3&gt;</ph>
+  <msg id="header.home”" desc="homepage" meaning="“Headerlink"><source>app/shared/components/header/header-desktop-sv/header-desktop-sv.component.html:16,17</source>Hjem
+        </msg>
+  <msg id="header.blog”" desc="blog" meaning="“Headerlink"><source>app/shared/components/header/header-desktop-sv/header-desktop-sv.component.html:23</source>Blogg</msg>
+  <msg id="header.contact”" desc="contact" meaning="“Headerlink"><source>app/shared/components/header/header-desktop-sv/header-desktop-sv.component.html:30,32</source>
+          Kontakt
+        </msg>
+  <msg id="header.aboutUs”" desc="about-us" meaning="“Headerlink"><source>app/shared/components/header/header-desktop-sv/header-desktop-sv.component.html:37,38</source>Om oss
+        </msg>
+  <msg id="header.faq”" desc="faq" meaning="“Headerlink"><source>app/shared/components/header/header-desktop-sv/header-desktop-sv.component.html:40</source>FAQ </msg>
+  <msg id="header.home2”" desc="homepage" meaning="“Headerlink"><source>app/shared/components/header/header-mobile-sv/header-mobile-sv.component.html:23,24</source><ph name="START_HEADING_LEVEL3"><ex>&lt;h3&gt;</ex>&lt;h3&gt;</ph>Hjem<ph name="CLOSE_HEADING_LEVEL3"><ex>&lt;/h3&gt;</ex>&lt;/h3&gt;</ph>
       </msg>
-  <msg id="header.myPage2”" desc="my-page" meaning="“Headerlink"><source>app/shared/components/header/header-mobile/header-mobile.component.html:31,32</source><ph name="START_HEADING_LEVEL3"><ex>&lt;h3&gt;</ex>&lt;h3&gt;</ph>Min side<ph name="CLOSE_HEADING_LEVEL3"><ex>&lt;/h3&gt;</ex>&lt;/h3&gt;</ph>
+  <msg id="header.myPage2”" desc="my-page" meaning="“Headerlink"><source>app/shared/components/header/header-mobile-sv/header-mobile-sv.component.html:31,32</source><ph name="START_HEADING_LEVEL3"><ex>&lt;h3&gt;</ex>&lt;h3&gt;</ph>Min side<ph name="CLOSE_HEADING_LEVEL3"><ex>&lt;/h3&gt;</ex>&lt;/h3&gt;</ph>
       </msg>
-  <msg id="header.blog2”" desc="blog" meaning="“Headerlink"><source>app/shared/components/header/header-mobile/header-mobile.component.html:48,49</source><ph name="START_HEADING_LEVEL3"><ex>&lt;h3&gt;</ex>&lt;h3&gt;</ph>Blogg<ph name="CLOSE_HEADING_LEVEL3"><ex>&lt;/h3&gt;</ex>&lt;/h3&gt;</ph>
+  <msg id="header.blog2”" desc="blog" meaning="“Headerlink"><source>app/shared/components/header/header-mobile-sv/header-mobile-sv.component.html:45,46</source><ph name="START_HEADING_LEVEL3"><ex>&lt;h3&gt;</ex>&lt;h3&gt;</ph>Blogg<ph name="CLOSE_HEADING_LEVEL3"><ex>&lt;/h3&gt;</ex>&lt;/h3&gt;</ph>
       </msg>
-  <msg id="header.contact2”" desc="contact" meaning="“Headerlink"><source>app/shared/components/header/header-mobile/header-mobile.component.html:55,56</source><ph name="START_HEADING_LEVEL3"><ex>&lt;h3&gt;</ex>&lt;h3&gt;</ph>Kontakt<ph name="CLOSE_HEADING_LEVEL3"><ex>&lt;/h3&gt;</ex>&lt;/h3&gt;</ph>
+  <msg id="header.contact2”" desc="contact" meaning="“Headerlink"><source>app/shared/components/header/header-mobile-sv/header-mobile-sv.component.html:52,53</source><ph name="START_HEADING_LEVEL3"><ex>&lt;h3&gt;</ex>&lt;h3&gt;</ph>Kontakt<ph name="CLOSE_HEADING_LEVEL3"><ex>&lt;/h3&gt;</ex>&lt;/h3&gt;</ph>
       </msg>
-  <msg id="header.aboutUs2”" desc="about-us" meaning="“Headerlink"><source>app/shared/components/header/header-mobile/header-mobile.component.html:62,63</source><ph name="START_HEADING_LEVEL3"><ex>&lt;h3&gt;</ex>&lt;h3&gt;</ph>Om oss<ph name="CLOSE_HEADING_LEVEL3"><ex>&lt;/h3&gt;</ex>&lt;/h3&gt;</ph>
+  <msg id="header.aboutUs2”" desc="about-us" meaning="“Headerlink"><source>app/shared/components/header/header-mobile-sv/header-mobile-sv.component.html:59,60</source><ph name="START_HEADING_LEVEL3"><ex>&lt;h3&gt;</ex>&lt;h3&gt;</ph>Om oss<ph name="CLOSE_HEADING_LEVEL3"><ex>&lt;/h3&gt;</ex>&lt;/h3&gt;</ph>
       </msg>
-  <msg id="header.logOut2”" desc="log-out" meaning="“Headerlink"><source>app/shared/components/header/header-mobile/header-mobile.component.html:72,73</source><ph name="START_HEADING_LEVEL3"><ex>&lt;h3&gt;</ex>&lt;h3&gt;</ph>Logg ut<ph name="CLOSE_HEADING_LEVEL3"><ex>&lt;/h3&gt;</ex>&lt;/h3&gt;</ph>
+  <msg id="header.logOut2”" desc="log-out" meaning="“Headerlink"><source>app/shared/components/header/header-mobile-sv/header-mobile-sv.component.html:69,70</source><ph name="START_HEADING_LEVEL3"><ex>&lt;h3&gt;</ex>&lt;h3&gt;</ph>Logg ut<ph name="CLOSE_HEADING_LEVEL3"><ex>&lt;/h3&gt;</ex>&lt;/h3&gt;</ph>
       </msg>
   <msg id="popup.privacy.header”" desc="intro" meaning="“header"><source>app/app.component.html:10,12</source>
       Dine data, dine valg

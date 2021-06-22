@@ -1,4 +1,4 @@
-<nav class="variation-3">
+<nav>
   <div class="inner-nav">
     <a (click)="goToTop()" [routerLink]="['/']">
       <img
@@ -7,53 +7,6 @@
       />
     </a>
     <div class="menu-container">
-      <div class="desktop-menu desktop">
-        <a
-          i18n="“Headerlink|homepage@@header.home”"
-          [routerLink]="['/']"
-          routerLinkActive="active-link"
-          [routerLinkActiveOptions]="{ exact: true }"
-          >Hjem</a
-        >
-        <a
-          i18n="“Headerlink|blog@@header.blog”"
-          href="https://blogg.ranteradar.se/"
-          target="_self"
-          >Blogg</a
-        >
-        <a
-          i18n="“Headerlink|contact@@header.contact”"
-          [routerLink]="['/kontakt']"
-          routerLinkActive="active-link"
-          >Kontakt</a
-        >
-        <a
-          i18n="“Headerlink|about-us@@header.aboutUs”"
-          [routerLink]="['/om-oss']"
-          routerLinkActive="active-link"
-          >Om oss</a
-        >
-        <span [routerLink]="['/']" fragment="faq">
-          <a i18n="“Headerlink|faq@@header.faq”" href="#faq">FAQ </a>
-        </span>
-        <a
-          [routerLink]="['/dashboard/' + routesMap.offers]"
-          *ngIf="isLoggedIn"
-          routerLinkActive="active-link"
-          class="highlight"
-          >Min sida</a
-        >
-        <a
-          [routerLink]="['/valjbank']"
-          *ngIf="!isLoggedIn"
-          routerLinkActive="active-link"
-          class="highlight"
-          >Logga in</a
-        >
-        <a [routerLink]="['/']" *ngIf="isLoggedIn" (click)="auth.logout()"
-          >Logga ut</a
-        >
-      </div>
       <div class="menu mobile" (click)="toggleNav()">
         <span></span>
         <span></span>
@@ -118,4 +71,3 @@
     </div>
   </div>
 </nav>
-<div class="nav-space"></div>
