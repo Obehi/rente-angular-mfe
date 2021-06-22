@@ -55,6 +55,7 @@ export class BankGuidePageComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // comment made just for commit
     this.$memberships = this.loansService
       .getBankGuide(this.route.snapshot.params.id.toUpperCase())
       .pipe(
