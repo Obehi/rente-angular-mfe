@@ -111,11 +111,11 @@
   <section *ngIf="!isLoginStarted && bankIdForm" class="login">
     <h3 i18n="“title|bank-id@@bankId.title”">Logg inn med BankID på mobil</h3>
     <p i18n="“description|bank-id@@bankId.description”">
-      Renteradar henter lånedetaljer og renten din automatisk med BankID på
-      Mobil.
+      Renteradar henter lånedetaljer og renten din automatisk.
     </p>
     <p i18n="“description|bank-id@@bankId.description2”" *ngIf="isSB1Bank">
-      Vi støtter kun BankID på Mobil, ikke kodebrikke eller engangskode appen.
+      Vi støtter kun BankID på Mobil og Engangskode-appen, ikke BankID med
+      kodebrikke.
     </p>
     <!-- 
     <p class="dnbInstability" *ngIf="isEikaBank">Vi opplever at enkelte brukere ikke får logget inn.<br> Vi jobber med å rette problemet</p>
