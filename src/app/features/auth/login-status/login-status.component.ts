@@ -485,6 +485,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
             this.viewStatus.isProcessStarted = true;
             break;
           case BANKID_STATUS.PASSPHRASE_CONFIRM:
+            this.viewStatus.passPhraseConfirmIsSet = true;
             this.isShowPassPhrase = true;
             this.isShowTimer = false;
             this.passPhrase = response.passphrase;
@@ -630,7 +631,12 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
             break;
           case BANKID_STATUS.BID_C325:
             this.viewStatus.isErrorBIDC325 = true;
-            this.loginStep1Status = MESSAGE_STATUS.ERROR;
+            if (this.viewStatus.passPhraseConfirmIsSet) {
+              this.loginStep2Status = MESSAGE_STATUS.ERROR;
+            } else {
+              this.loginStep1Status = MESSAGE_STATUS.ERROR;
+            }
+
             this.unsubscribeEverything();
             break;
           case BANKID_STATUS.NO_LOANS:

@@ -13,7 +13,11 @@ import { MatDialog } from '@angular/material';
 import { DialogInfoServiceComponent } from './dialog-info-service/dialog-info-service.component';
 import { MetaService } from '@services/meta.service';
 import { TitleService } from '@services/title.service';
-import { customMeta, ROUTES_MAP } from '../../../config/routes-config';
+import {
+  customMeta,
+  ROUTES_MAP,
+  ROUTES_MAP_NO
+} from '../../../config/routes-config';
 import { BankVo, BankUtils } from '@shared/models/bank';
 import { ActivatedRoute, Router } from '@angular/router';
 import { VALIDATION_PATTERN } from '@config/validation-patterns.config';
@@ -22,7 +26,7 @@ import { Mask } from '@shared/constants/mask';
 import { EMPTY, of, Subscription, timer } from 'rxjs';
 import { debounce } from 'rxjs/operators';
 import { map } from 'rxjs/operators';
-import { EnvService } from '@services/env.service';
+import { Environment, EnvService } from '@services/env.service';
 import { ContactService } from '../../../shared/services/remote-api/contact.service';
 import { SnackBarService } from '@services/snackbar.service';
 import { MatStepper } from '@angular/material';
@@ -45,7 +49,7 @@ export class CrawlerLoginComponent implements OnInit, OnDestroy {
   public metaTitle: string;
   public metaDescription: string;
   public mask = Mask;
-  public environment: any;
+  public environment: Environment;
   public missingBankForm: FormGroup;
   public emailError = false;
   public isLoading: boolean;
@@ -80,6 +84,20 @@ export class CrawlerLoginComponent implements OnInit, OnDestroy {
         }
         this.isSsnBankLogin = bank?.loginWithSsn || false;
         this.isSB1Bank = bank?.isSb1Bank || false;
+
+        // Redirect if anyone tries to access crawler login when not available to the public
+        if (
+          bank?.name === 'DNB' &&
+          this.environment.dnbSignicatIsOn === true &&
+          this.router.url.includes('autentisering/bank/dnb')
+        ) {
+          this.router.navigate(
+            ['/autentisering/' + ROUTES_MAP_NO.bankIdLogin],
+            {
+              state: { data: { bank: bank } }
+            }
+          );
+        }
         for (const iterator in customMeta) {
           if (customMeta[iterator].title) {
             if (params.bankName === customMeta[iterator].bankName) {
