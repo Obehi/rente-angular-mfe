@@ -104,7 +104,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
   private routeSubscription: Subscription;
   public signicatIframeUrl?: SafeResourceUrl | null;
   public oldUserNewLoan = false;
-
+  public shouldShowBankWarningMessage = false;
   get isMobile(): boolean {
     return window.innerWidth < 600;
   }
@@ -141,7 +141,8 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
         if (
           !previousRoutePath.includes('bankid-login?status=') &&
           !previousRoutePath.includes('velgbank') &&
-          !previousRoutePath.includes('bankid-login')
+          !previousRoutePath.includes('bankid-login') &&
+          !previousRoutePath.includes('autentisering')
         ) {
           this.router.navigate(['/']);
         }
@@ -165,6 +166,8 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
       return;
     } else {
       this.bank = stateData.bank;
+
+      if (stateData.redirect === true) this.shouldShowBankWarningMessage = true;
       this.loginBankIdStep1();
     }
   }
