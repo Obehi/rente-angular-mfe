@@ -84,7 +84,7 @@
 .wide-text {
   margin: auto;
   margin-top: 10px;
-
+  padding: 0 20px;
   @media (min-width: 600px) {
     max-width: 70%;
   }
@@ -152,6 +152,7 @@ form {
 
     @media (max-width: 600px) {
       // height: calc(100vh - 60px);
+      overflow: scroll;
       height: calc(100vh - 100px);
       border-radius: 0;
     }
