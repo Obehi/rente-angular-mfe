@@ -1,6 +1,5 @@
 export { LoginNoComponent as LoginLangGenericComponent } from '@features/landing/locale/login/login-no/login-no.component';
 export { OffersListNoComponent as OffersListLangGenericComponent } from '@features/dashboard/offers/offers-list/offers-list-no/offers-list-no.component';
-export { HeaderComponent as HeaderLangGenericComponent } from '@shared/components/header/header.component';
 export { LoansNoComponent as LoansLangGenericComponent } from '@features/dashboard/loans/loans-no/loans-no.component';
 export { InitConfirmationNoComponent as InitConfirmationLangGenericComponent } from '@features/init-confirmation/init-confirmation-no/init-confirmation.component';
 export { HouseFormNoComponent as HouseFormLangGenericComponent } from '@features/dashboard/house/house-form-no/house-form-no.component';

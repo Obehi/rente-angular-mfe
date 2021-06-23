@@ -37,10 +37,9 @@ import { RoundPipe } from './pipes/round.pipe';
 import { ThousandsSeprator } from './pipes/thousands.pipe';
 import { ButtonSmallComponent } from './components/ui-components/button-small/button-small.component';
 import { IMaskModule } from 'angular-imask';
-import {
-  HeaderLangGenericComponent,
-  OfferDetailsLangGenericComponent
-} from '../local-components/components-output';
+import { OfferDetailsLangGenericComponent } from '../local-components/components-output';
+
+import { HeaderComponent } from '@shared/components/header/header.component';
 import { CustomLangTextService } from '@services/custom-lang-text.service';
 import { ChildDirective } from './directives/child.directive';
 import { CheckboxContainerComponent } from './components/ui-components/checkbox-container/checkbox-container.component';
@@ -50,16 +49,13 @@ import { GenericInfoDialogComponent } from './components/ui-components/dialogs/g
 import { GenericErrorDialogComponent } from './components/ui-components/dialogs/generic-error-dialog/generic-error-dialog.component';
 import { VirdiErrorChoiceDialogComponent } from './components/ui-components/dialogs/virdi-error-choice-dialog/virdi-error-choice-dialog.component';
 import { LoginTermsDialogV2Component } from './components/ui-components/dialogs/login-terms-dialog-v2/login-terms-dialog-v2.component';
-// import { HeaderMobileComponent } from './components/header/header-mobile/header-mobile.component';
 import { DashboardTabsDesktopComponent } from './components/header/dashboard-tabs-desktop/dashboard-tabs-desktop.component';
 import { DashboardTabsMobileComponent } from './components/header/dashboard-tabs-mobile/dashboard-tabs-mobile.component';
 import { HeaderDesktopLangGenericComponent } from '../local-components/components-output';
 import { HeaderMobileLangGenericComponent } from '../local-components/components-output';
 
-// import { HeaderMobileSvComponent } from './components/header/header-mobile-sv/header-mobile-sv.component';
-
 const components = [
-  HeaderLangGenericComponent,
+  HeaderComponent,
   FooterComponent,
   ButtonComponent,
   ButtonSmallComponent,

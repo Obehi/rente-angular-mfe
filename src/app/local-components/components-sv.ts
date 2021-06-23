@@ -1,6 +1,5 @@
 export { LoginSVComponent as LoginLangGenericComponent } from '@features/landing/locale/login/login-sv/login-sv.component';
 export { OffersListSvComponent as OffersListLangGenericComponent } from '@features/dashboard/offers/offers-list/offers-list-sv/offers-list-sv.component';
-export { HeaderComponent as HeaderLangGenericComponent } from '@shared/components/header/header.component';
 export { LoansSvComponent as LoansLangGenericComponent } from '@features/dashboard/loans/loans-sv/loans-sv.component';
 export { InitConfirmationSVComponent as InitConfirmationLangGenericComponent } from '@features/init-confirmation/init-confirmation-sv/init-confirmation.component';
 export { HouseFormSvComponent as HouseFormLangGenericComponent } from '@features/dashboard/house/house-form-sv/house-form-sv.component';

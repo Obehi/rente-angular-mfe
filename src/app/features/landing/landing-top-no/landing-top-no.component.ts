@@ -7,19 +7,6 @@ import { LoggingService } from '@services/logging.service';
   styleUrls: ['./landing-top-no.component.scss']
 })
 export class LandingTopNoComponent {
-  // @HostListener('window:resize', ['$event'])
-  // onresize(event): void {
-  //   this.innerWidth = event.target.innerWidth;
-  //   // console.log('Resized: ' + this.innerWidth.toString());
-  //   if (window.innerWidth > 600) {
-  //     this.setMargin = 'margin-desktop';
-  //   } else {
-  //     this.setMargin = 'margin-mobile';
-  //   }
-  // }
-
-  // innerWidth: any;
-  // public setMargin: string;
   get isMobile(): boolean {
     return window.innerWidth < 600;
   }
@@ -34,11 +21,5 @@ export class LandingTopNoComponent {
       this.envService.environment,
       false
     );
-
-    // if (window.innerWidth > 600) {
-    //   this.setMargin = 'margin-desktop';
-    // } else {
-    //   this.setMargin = 'margin-mobile';
-    // }
   }
 }
