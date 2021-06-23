@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { OFFER_SAVINGS_TYPE } from '@config/loan-state';
+import { CustomLangTextService } from '@services/custom-lang-text.service';
 import { Offers } from '../../../../../shared/models/offers';
 
 @Component({
@@ -12,26 +13,25 @@ export class BarometerComponent implements OnInit {
   @Input() offerSavingsType = OFFER_SAVINGS_TYPE;
 
   baseTextArray = [
-    'Renten din er godt over gjennomsnittet',
-    'Renten din er over gjennomsnittet',
-    'Renten din er gjennomsnittlig',
-    'Renten din er god',
-    'Renten din er svært god'
+    this.customLangService.getBarometerTextState0(),
+    this.customLangService.getBarometerTextState1(),
+    this.customLangService.getBarometerTextState2(),
+    this.customLangService.getBarometerTextState3(),
+    this.customLangService.getBarometerTextState4()
   ];
   additionalTextArray = [
-    'og du har mye å spare',
-    'og du har mye å spare',
-    'men du kan spare en del',
-    'men du kan spare en del',
-    'men du kan spare en del'
+    this.customLangService.getBarometerAdditionalTextState0(),
+    this.customLangService.getBarometerAdditionalTextState1(),
+    this.customLangService.getBarometerAdditionalTextState2(),
+    this.customLangService.getBarometerAdditionalTextState3(),
+    this.customLangService.getBarometerAdditionalTextState4()
   ];
   state = 0;
 
-  constructor() {}
+  constructor(public customLangService: CustomLangTextService) {}
 
   ngOnInit(): void {
-    // this.calcState();
-    this.state = 0;
+    this.calcState();
   }
 
   calcState(): void {
@@ -70,7 +70,7 @@ export class BarometerComponent implements OnInit {
     return 100 - this.rateBarPercentage.percentage;
   }
 
-  get calcZ(): any {
+  get calcZ(): number {
     const medianEffectiveRate = this.offersInfo.bankStatistics
       .allBanksStatistics.medianEffectiveRate;
     const bestPercentileEffectiveRate = this.offersInfo.bankStatistics
