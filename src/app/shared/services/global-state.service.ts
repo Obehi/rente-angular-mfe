@@ -6,22 +6,11 @@ import { Subject } from 'rxjs';
 })
 export class GlobalStateService {
   private showFooter: Subject<boolean>;
-  private showHeader: Subject<boolean>;
   private isDashboard: Subject<boolean>;
-  private contentClassName: string;
 
   constructor() {
-    this.showHeader = new Subject<true>();
     this.showFooter = new Subject<boolean>();
     this.isDashboard = new Subject<false>();
-  }
-
-  public setHeaderState(show: boolean): void {
-    this.showHeader.next(show);
-  }
-
-  public getHeaderState(): Subject<boolean> {
-    return this.showHeader;
   }
 
   public setFooterState(show: boolean): void {
