@@ -18,15 +18,13 @@ export class AppComponent implements OnInit {
   public title = 'rente-front-end';
   public navigationSubscription: Subscription;
   public showCookieAcc: boolean;
-  public showHeader: boolean;
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private metaService: MetaService,
     private titleService: TitleService,
-    private localStorageService: LocalStorageService,
-    private globalStateService: GlobalStateService
+    private localStorageService: LocalStorageService
   ) {}
 
   onActivate(): void {
