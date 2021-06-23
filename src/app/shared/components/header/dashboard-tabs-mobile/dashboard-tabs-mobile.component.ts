@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ROUTES_MAP } from '@config/routes-config';
-import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
 import { LocalStorageService } from '@services/local-storage.service';
 import { Router } from '@angular/router';
+import { EnvService } from '@services/env.service';
 
 @Component({
   selector: 'rente-dashboard-tabs-mobile',
@@ -14,27 +14,57 @@ export class DashboardTabsMobileComponent implements OnInit {
   public activeLinkIndex: number | null = -1;
   public isMobile: boolean;
   private subscription: any;
+  public imgLink: any;
 
-  public imgLink = {
-    tilbud: '../../../../../assets/icons/ic_offer.svg',
-    'mine-lan': '../../../../../assets/icons/ic_loan.svg',
-    bolig: '../../../../../assets/icons/ic_house.svg',
-    preferanser: '../../../../../assets/icons/ic_preferanses.svg',
-    profil: '../../../../../assets/icons/ic_profile.svg'
-  };
+  // General navLinks to switch between norwegian and  swedish version
+  public navLinks: string[] | undefined;
 
-  public navLinks: string[] | undefined = [
+  public navLinksNo: string[] | undefined = [
     'tilbud',
     'mine-lan',
     'bolig',
     'preferanser',
     'profil'
   ];
+
+  // Change preferanser to swedish translation
+  public navLinksSv: string[] | undefined = [
+    'erbjudande',
+    'mina-lan',
+    'bostad',
+    'preferanser',
+    'profil'
+  ];
+
+  public imgLinkNo = {
+    tilbud: '../../../assets/icons/ic_offer.svg',
+    'mine-lan': '../../../assets/icons/ic_loan.svg',
+    bolig: '../../../assets/icons/ic_house.svg',
+    preferanser: '../../../assets/icons/ic_preferanses.svg',
+    profil: '../../../assets/icons/ic_profile.svg'
+  };
+
+  public imgLinkSv = {
+    erbjudande: '../../../assets/icons/ic_offer.svg',
+    'mina-lan': '../../../assets/icons/ic_loan.svg',
+    bostad: '../../../assets/icons/ic_house.svg',
+    preferanser: '../../../assets/icons/ic_preferanses.svg',
+    profil: '../../../assets/icons/ic_profile.svg'
+  };
+
   constructor(
-    public breakpointObserver: BreakpointObserver,
     public localStorageService: LocalStorageService,
-    private router: Router
-  ) {}
+    private router: Router,
+    private envService: EnvService
+  ) {
+    if (this.envService.isNorway()) {
+      this.navLinks = this.navLinksNo;
+      this.imgLink = this.imgLinkNo;
+    } else if (this.envService.isSweden()) {
+      this.navLinks = this.navLinksSv;
+      this.imgLink = this.imgLinkSv;
+    }
+  }
 
   ngOnInit(): void {
     if (this.localStorageService.getItem('noLoansPresent')) {
@@ -51,7 +81,6 @@ export class DashboardTabsMobileComponent implements OnInit {
           // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
           this.setActiveIcon(this.activeLinkIndex!);
         });
-        this.checkmobileVersion();
       }
     }
   }
@@ -86,18 +115,6 @@ export class DashboardTabsMobileComponent implements OnInit {
         }
       });
     }
-  }
-
-  private checkmobileVersion() {
-    this.breakpointObserver
-      .observe(['(min-width: 992px)'])
-      .subscribe((state: BreakpointState) => {
-        if (state.matches) {
-          this.isMobile = false;
-        } else {
-          this.isMobile = true;
-        }
-      });
   }
 
   ngOnDestroy(): void {

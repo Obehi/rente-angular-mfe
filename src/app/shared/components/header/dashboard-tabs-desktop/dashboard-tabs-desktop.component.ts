@@ -1,4 +1,3 @@
-import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ROUTES_MAP } from '@config/routes-config';
@@ -58,7 +57,6 @@ export class DashboardTabsDesktopComponent implements OnInit {
 
   constructor(
     private router: Router,
-    public breakpointObserver: BreakpointObserver,
     private localStorageService: LocalStorageService,
     private auth: AuthService,
     private envService: EnvService
@@ -66,14 +64,10 @@ export class DashboardTabsDesktopComponent implements OnInit {
     if (this.envService.isNorway()) {
       this.navLinks = this.navLinksNo;
       this.imgLink = this.imgLinkNo;
-      console.log('is NO');
     } else if (this.envService.isSweden()) {
       this.navLinks = this.navLinksSv;
       this.imgLink = this.imgLinkSv;
-      console.log('is SV');
     }
-
-    console.log(this.navLinks);
   }
 
   ngOnInit(): void {
@@ -95,11 +89,6 @@ export class DashboardTabsDesktopComponent implements OnInit {
     }
   }
 
-  test(): void {
-    console.log('active link index');
-    console.log(this.activeLinkIndex);
-  }
-
   onActivate(event: any) {
     window.scrollTo(0, 0);
   }
@@ -117,11 +106,9 @@ export class DashboardTabsDesktopComponent implements OnInit {
   }
 
   private setActiveIcon(activeIndex: number) {
-    console.log('Set active icon function');
     if (this.navLinks !== undefined) {
       this.navLinks.forEach((link: string, index: number) => {
         if (index === activeIndex) {
-          console.log(this.imgLink[link].includes('active'));
           if (!this.imgLink[link].includes('active')) {
             this.imgLink[link] = this.imgLink[link].replace(
               '.svg',
