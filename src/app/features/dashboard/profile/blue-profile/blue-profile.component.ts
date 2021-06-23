@@ -377,7 +377,7 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
     }
   }
 
-  getMembershipPlaceholder(): string | undefined {
+  getMembershipPlaceholder(): string {
     if (this.previousStateMemberships?.length === 0) {
       return 'Velg';
     } else if (this.previousStateMemberships?.length === 1) {
@@ -390,6 +390,7 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
     } else if (this.previousStateMemberships?.length > 1) {
       return `${this.previousStateMemberships?.length} valgt`;
     }
+    return `${this.previousStateMemberships?.length} valgt`;
   }
 
   getMembershipNameString(membership: string[]): any {

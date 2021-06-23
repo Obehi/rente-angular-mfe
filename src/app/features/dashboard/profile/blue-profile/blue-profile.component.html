@@ -168,7 +168,7 @@
         class="button"
         (change)="markedIsChecked = !markedIsChecked"
         formControlName="receiveNewsEmails"
-        [value]="markedIsChecked"
+        value="markedIsChecked"
       ></mat-slide-toggle>
 
       <hr />
@@ -180,7 +180,7 @@
         class="button"
         (change)="offerOneIsChecked = !offerOneIsChecked"
         formControlName="fetchCreditLinesOnly"
-        [value]="offerOneIsChecked"
+        value="offerOneIsChecked"
       ></mat-slide-toggle>
       <p class="element-subtitle">
         Vis tilbud som krever andre produkter eller har sækrav: feks. bytte av
@@ -190,7 +190,7 @@
         class="button"
         (change)="offerTwoIsChecked = !offerTwoIsChecked"
         formControlName="noAdditionalProductsRequired"
-        [value]="offerTwoIsChecked"
+        value="offerTwoIsChecked"
       ></mat-slide-toggle>
       <p class="element-subtitle">
         Vis tilbud som forutsetter bolig med energiklasse A/B, nullhus,
@@ -200,7 +200,7 @@
         class="button"
         (change)="offerThreeIsChecked = !offerThreeIsChecked"
         formControlName="interestedInEnvironmentMortgages"
-        [value]="offerThreeIsChecked"
+        value="offerThreeIsChecked"
       ></mat-slide-toggle>
       <hr />
     </div>
