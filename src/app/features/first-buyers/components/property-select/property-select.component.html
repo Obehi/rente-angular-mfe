@@ -31,31 +31,26 @@
     <img class="search-icon" src="{{ searchIconDark }}" />
   </div>
   <div class="dropdown-scroll">
-    <div class="dropdown-div">
-      <div
-        *ngFor="let option of membershipNames | filter: searchText"
-        class="list-div"
+    <div
+      *ngFor="let option of membershipNames | filter: searchText"
+      class="list-div"
+    >
+      <p *ngIf="!chosenMemberships(option)" (click)="chooseMembership(option)">
+        {{ option.label }}
+      </p>
+      <p
+        class="p-selected"
+        *ngIf="chosenMemberships(option)"
+        (click)="removeMembership(option)"
       >
-        <p
-          *ngIf="!chosenMemberships(option)"
-          (click)="chooseMembership(option)"
-        >
-          {{ option.label }}
-        </p>
-        <p
-          class="p-selected"
-          *ngIf="chosenMemberships(option)"
-          (click)="removeMembership(option)"
-        >
-          {{ option.label }}
-        </p>
-        <img
-          *ngIf="chosenMemberships(option)"
-          class="remove-icon-list"
-          src="{{ icon }}"
-          (click)="removeMembership(option)"
-        />
-      </div>
+        {{ option.label }}
+      </p>
+      <img
+        *ngIf="chosenMemberships(option)"
+        class="remove-icon-list"
+        src="{{ icon }}"
+        (click)="removeMembership(option)"
+      />
     </div>
   </div>
 </div>

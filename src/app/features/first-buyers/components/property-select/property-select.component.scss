@@ -68,7 +68,8 @@
   }
 
   .dropdown-scroll {
-    z-index: 1337;
+    padding-bottom: 5vh;
+    z-index: 0;
     overflow-y: scroll;
     height: 31vh;
     border-bottom: 1px solid lightgrey;
@@ -82,7 +83,7 @@
       height: 39vh;
     }
     @media (min-height: 800px) {
-      height: 42vh;
+      height: 35vh;
     }
   }
 
@@ -91,7 +92,7 @@
     width: 96%;
     padding: 10px;
     z-index: 1;
-    margin-top: 34vh;
+    // margin-top: 34vh;
     display: flex;
 
     input {
@@ -122,10 +123,11 @@
   .chosen-memberships-div {
     display: flex;
     flex-direction: column;
-    height: 33%;
+    height: 23vh;
+    max-height: 23vh;
     overflow-y: scroll;
     background: linear-gradient(180deg, #162537, #183a63);
-    position: fixed;
+    // position: fixed;
     z-index: 2;
     width: 100%;
     h2 {
