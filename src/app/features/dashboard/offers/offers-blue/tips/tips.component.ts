@@ -47,14 +47,16 @@ import {
       state(
         'close',
         style({
-          width: '908px',
+          // width: '908px',
+          width: '200%',
           borderRadius: '15px 15px 0px 0px'
         })
       ),
       state(
         'open',
         style({
-          width: '454px',
+          // width: '454px',
+          width: '100%',
           borderRadius: '15px'
         })
       ),
