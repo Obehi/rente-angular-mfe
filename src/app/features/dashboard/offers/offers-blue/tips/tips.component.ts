@@ -48,7 +48,7 @@ import {
         'close',
         style({
           // width: '908px',
-          width: '200%',
+          width: '100%',
           borderRadius: '15px 15px 0px 0px'
         })
       ),
@@ -56,7 +56,7 @@ import {
         'open',
         style({
           // width: '454px',
-          width: '100%',
+          width: '48.5%',
           borderRadius: '15px'
         })
       ),
