@@ -1,16 +1,16 @@
-import { AuthService } from '@services/remote-api/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ROUTES_MAP } from '@config/routes-config';
 import { LocalStorageService } from '@services/local-storage.service';
 import { OptimizeService } from '@services/optimize.service';
-import { ROUTES_MAP } from '@config/routes-config';
+import { AuthService } from '@services/remote-api/auth.service';
 
 @Component({
-  selector: 'rente-header',
-  templateUrl: './header-sv.component.html',
-  styleUrls: ['./header-sv.component.scss']
+  selector: 'rente-header-mobile',
+  templateUrl: './header-mobile-sv.component.html',
+  styleUrls: ['./header-mobile-sv.component.scss']
 })
-export class HeaderSvComponent implements OnInit {
+export class HeaderMobileSvComponent implements OnInit {
   public toggleNavbar: boolean;
   public isSmallScreen: boolean;
   public optimizeService: OptimizeService;

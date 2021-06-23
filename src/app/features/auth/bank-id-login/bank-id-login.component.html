@@ -37,11 +37,11 @@
 
     <div *ngIf="newClient === false" class="text-box">
       <h2>Velkommen tilbake</h2>
-      <p class="medium-text" *ngIf="!oldUserNewLoan">
+      <p class="wide-text" *ngIf="!oldUserNewLoan">
         Du er allerede registrert. Sjekk om lånedetaljene dine fortsatt stemmer
         før du går videre.
       </p>
-      <p class="medium-text" *ngIf="oldUserNewLoan">
+      <p class="wide-text" *ngIf="oldUserNewLoan">
         Du er allerede registrert med en annen bank tidligere, derfor trenger vi
         bare oppdaterte lånedetaljer før alt er klart
       </p>
@@ -733,7 +733,7 @@
         [isLoading]="isLoading"
         [disabled]="loanFormGroup?.invalid || isLoading"
       >
-        Se besparelse
+        Finn beste rente
       </rente-button>
 
       <div
@@ -817,7 +817,7 @@
             [isLoading]="isLoading"
             [disabled]="membershipFormGroup?.invalid || isLoading"
           >
-            Sjekk besparelse
+            Finn beste rente!
           </rente-button>
         </div>
         <div *ngSwitchDefault></div>
