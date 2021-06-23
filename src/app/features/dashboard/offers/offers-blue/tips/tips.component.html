@@ -1,0 +1,158 @@
+<!-- Desktop tips accordion element -->
+<div
+  class="tipsAccordion round-box clickable"
+  (click)="isShowTips = !isShowTips"
+  *ngIf="!isMobile && tips.length > 0"
+  [@stretchAccordionDesktop]="!isShowTips ? 'open' : 'close'"
+>
+  <p>
+    <mat-icon
+      *ngIf="!isShowTips"
+      [@openCloseDesktop]="!isShowTips ? 'open' : 'close'"
+      >expand_more</mat-icon
+    >
+    <mat-icon
+      *ngIf="isShowTips"
+      [@openCloseDesktop]="isShowTips ? 'close' : 'open'"
+      >expand_less</mat-icon
+    >
+    <span class="nr">{{ tips.length }}</span> Tips
+  </p>
+</div>
+
+<!-- Mobile tips accordion element -->
+
+<div
+  [class]="isShowTips ? 'tipsAccordionOpen' : ''"
+  class="tipsAccordion round-box clickable"
+  (click)="isShowTips = !isShowTips"
+  *ngIf="isMobile && tips.length > 0"
+>
+  <p>
+    <mat-icon
+      *ngIf="!isShowTips"
+      [@openCloseMobile]="!isShowTips ? 'open' : 'close'"
+      >expand_more</mat-icon
+    >
+    <mat-icon
+      *ngIf="isShowTips"
+      [@openCloseMobile]="isShowTips ? 'close' : 'open'"
+      >expand_less</mat-icon
+    >
+    <span class="nr">{{ tips.length }}</span> Tips
+  </p>
+</div>
+
+<!-- Desktop version ease-in animation-->
+
+<div
+  class="tips info-accordion round-box"
+  *ngIf="!isMobile && isShowTips && tips.length > 0"
+  [@inOutAnimationDesktop]
+>
+  <div
+    *ngFor="let tip of tips; let i = index"
+    [ngClass]="{
+      obs: tip.obs,
+      clickable: tip.buttonLink === './',
+      'tip-wrapper': true
+    }"
+  >
+    <div *ngIf="tip.buttonLink == null" class="tip">
+      <div class="tipTop">
+        <img src="../../../../assets/icons/{{ tip.icon }}.svg" />
+        <h4>{{ tip.header }}</h4>
+      </div>
+      <p class="tipText">
+        {{ tip.text }}
+      </p>
+    </div>
+
+    <div
+      *ngIf="!tip.external && tip.buttonLink != null"
+      routerLink="{{ tip.buttonLink }}"
+      class="tip"
+    >
+      <div class="tipTop">
+        <img src="../../../../assets/icons/{{ tip.icon }}.svg" />
+        <h4>{{ tip.header }}</h4>
+      </div>
+      <p>
+        {{ tip.text }}
+      </p>
+
+      <mat-icon *ngIf="tip.buttonLink !== './'">chevron_right</mat-icon>
+    </div>
+
+    <a
+      *ngIf="tip.external && tip.buttonLink != null"
+      href="{{ tip.buttonLink }}"
+      target="_blank"
+      class="tip"
+    >
+      <img src="../../../../assets/icons/{{ tip.icon }}.svg" />
+      <p>
+        {{ tip.text }}
+      </p>
+
+      <mat-icon>chevron_right</mat-icon>
+    </a>
+  </div>
+</div>
+
+<!-- mobile version EASE-IN animation-->
+
+<div
+  class="tips info-accordion round-box"
+  *ngIf="isMobile && isShowTips && tips.length > 0"
+  [@inOutAnimationMobile]
+>
+  <div
+    *ngFor="let tip of tips; let i = index"
+    [ngClass]="{
+      obs: tip.obs,
+      clickable: tip.buttonLink === './',
+      'tip-wrapper': true
+    }"
+  >
+    <div *ngIf="tip.buttonLink == null" class="tip">
+      <div class="tipTop">
+        <img src="../../../../assets/icons/{{ tip.icon }}.svg" />
+        <h4>{{ tip.header }}</h4>
+      </div>
+      <p class="tipText">
+        {{ tip.text }}
+      </p>
+    </div>
+
+    <div
+      *ngIf="!tip.external && tip.buttonLink != null"
+      routerLink="{{ tip.buttonLink }}"
+      class="tip"
+    >
+      <div class="tipTop">
+        <img src="../../../../assets/icons/{{ tip.icon }}.svg" />
+        <h4>{{ tip.header }}</h4>
+      </div>
+      <p>
+        {{ tip.text }}
+      </p>
+
+      <mat-icon *ngIf="tip.buttonLink !== './'">chevron_right</mat-icon>
+    </div>
+
+    <a
+      *ngIf="tip.external && tip.buttonLink != null"
+      href="{{ tip.buttonLink }}"
+      target="_blank"
+      class="tip"
+    >
+      <img src="../../../../assets/icons/{{ tip.icon }}.svg" />
+      <p>
+        {{ tip.text }}
+      </p>
+
+      <mat-icon>chevron_right</mat-icon>
+    </a>
+  </div>
+</div>

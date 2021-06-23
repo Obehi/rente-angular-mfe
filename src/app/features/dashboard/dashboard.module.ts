@@ -65,6 +65,10 @@ import { CanNotBargainDialogComponent } from './offers/can-not-bargain-dialog/ca
 import { OfferCardV1Component } from './offers/offers-blue/offer-card-v1/offer-card-v1.component';
 import { OfferCardV2Component } from './offers/offers-blue/offer-card-v2/offer-card-v2.component';
 import { ChangeBankTooManyTriesDialogError } from './offers/change-bank-dialog/change-bank-too-many-tries-dialog-error/change-bank-too-many-tries-dialog-error.component';
+import { BarometerComponent } from './offers/offers-blue/barometer/barometer.component';
+import { BoxGridComponent } from './offers/offers-blue/box-grid/box-grid.component';
+import { TipsComponent } from './offers/offers-blue/tips/tips.component';
+import { ActionBoxesComponent } from './offers/offers-blue/action-boxes/action-boxes.component';
 
 // TODO: ADD separate module for material import
 @NgModule({
@@ -111,7 +115,11 @@ import { ChangeBankTooManyTriesDialogError } from './offers/change-bank-dialog/c
     CanNotBargainDialogComponent,
     NordeaBargainSuccessComponent,
     OfferCardV2Component,
-    ChangeBankTooManyTriesDialogError
+    ChangeBankTooManyTriesDialogError,
+    BarometerComponent,
+    BoxGridComponent,
+    TipsComponent,
+    ActionBoxesComponent
   ],
   imports: [
     CommonModule,

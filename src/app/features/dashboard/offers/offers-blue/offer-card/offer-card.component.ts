@@ -173,7 +173,7 @@ export class OfferCardComponentBlue implements OnInit {
     }
   }
 
-  public clickNordea(event): void {
+  public clickNordea(): void {
     this.logginService.googleAnalyticsLog({
       category: 'NordeaAntiChurn',
       action: 'Click offer card anti-churn',

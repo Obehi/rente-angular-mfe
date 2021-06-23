@@ -1,0 +1,176 @@
+<div *ngIf="antiChurnIsOn" class="big-box round-box right anti-churn-box">
+  <div class="top">
+    <div class="circleIconWrapper">
+      <img src="{{ banksMap['NORDEA'].imgCircle }}" />
+    </div>
+    <p i18n="“help-you|offers-main@@offers.mainPage.helpYou”">
+      Nordea ønsker å beholde deg som kunde
+    </p>
+  </div>
+  <div class="bottom">
+    <p>
+      Gi Nordea anledningen til å sette ned renten din før du eventuelt bytter
+      bank
+    </p>
+    <rente-button
+      i18n="“help-you|offers-main@@offers.mainPage.helpYou.button”"
+      [color]="antiChurnIsOn ? 'primary-wide-break' : 'primary-wide-hollow'"
+      [disabled]="
+        changeBankLoading ||
+        !antiChurnIsOn ||
+        offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS
+      "
+      [isLoading]="changeBankLoading"
+      (click)="openAntiChurnBankDialog(offersInfo.offers.top5[0])"
+      >Be Nordea om et bedre tilbud</rente-button
+    >
+  </div>
+</div>
+
+<div
+  *ngIf="canBargain && !isSweden && !antiChurnIsOn"
+  class="big-box round-box right"
+>
+  <div class="top">
+    <div class="circleIconWrapper">
+      <img class="" src="../../../../assets/icons/mail-green.svg" />
+    </div>
+    <p i18n="“help-you|offers-main@@offers.mainPage.helpYou”">
+      Be banken min om lavere rente
+    </p>
+  </div>
+  <div class="bottom">
+    <rente-button
+      i18n="“help-you|offers-main@@offers.mainPage.helpYou.button”"
+      color="primary-wide-hollow"
+      [disabled]="
+        changeBankLoading ||
+        offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS
+      "
+      [isLoading]="changeBankLoading"
+      [color]="antiChurnIsOn ? 'primary-wide' : 'primary-wide-hollow'"
+      (click)="openChangeBankDialog(offersInfo.offers.top5[0])"
+      >Be banken matche tilbud</rente-button
+    >
+  </div>
+</div>
+
+<div *ngIf="isSweden" class="big-box round-box left">
+  <div class="top">
+    <div class="circleIconWrapper">
+      <img class="" src="../../../../assets/icons/rente-green-big.svg" />
+    </div>
+    <p i18n="“found-offers|offers-main@@offers.mainPage.foundOffers”">
+      Vi har funnet de beste tilbudene for deg
+    </p>
+  </div>
+  <div class="bottom">
+    <rente-button
+      i18n="
+        “found-best-offers|offers-main@@offers.mainPage.found.bestOffers.button”"
+      [disabled]="
+        changeBankLoading ||
+        offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS
+      "
+      [isLoading]="changeBankLoading"
+      color="primary-wide"
+      (click)="goToBestOffer()"
+      >Se beste tilbud</rente-button
+    >
+  </div>
+</div>
+
+<div *ngIf="!isSweden" class="big-box round-box left">
+  <div class="top">
+    <div class="circleIconWrapper">
+      <img class="" src="../../../../assets/icons/rente-green-big.svg" />
+    </div>
+    <p i18n="“found-offers|offers-main@@offers.mainPage.foundOffers”">
+      Vi har funnet de beste tilbudene for deg
+    </p>
+  </div>
+  <div class="bottom">
+    <rente-button
+      i18n="
+        “found-best-offers|offers-main@@offers.mainPage.found.bestOffers.button”"
+      [disabled]="
+        changeBankLoading ||
+        offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS
+      "
+      [isLoading]="changeBankLoading"
+      [color]="antiChurnIsOn ? 'primary-wide-hollow' : 'primary-wide'"
+      (click)="goToBestOffer()"
+      >Se beste tilbud</rente-button
+    >
+  </div>
+</div>
+
+<div *ngIf="canBargain && isSweden" class="big-box round-box right desktop">
+  <div class="top">
+    <div class="circleIconWrapper">
+      <img class="" src="../../../../assets/icons/mail-green.svg" />
+    </div>
+    <p i18n="“help-you|offers-main@@offers.mainPage.helpYou”">
+      Be banken min om lavere rente
+    </p>
+  </div>
+  <div class="bottom">
+    <rente-button
+      i18n="“help-you|offers-main@@offers.mainPage.helpYou.button”"
+      color="primary-wide-hollow"
+      [disabled]="
+        changeBankLoading ||
+        offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS
+      "
+      [isLoading]="changeBankLoading"
+      (click)="openChangeBankDialog(offersInfo.offers.top5[0])"
+      >Be banken matche tilbud</rente-button
+    >
+  </div>
+</div>
+
+<div *ngIf="!canBargain && isSweden" class="big-box round-box right desktop">
+  <div class="top">
+    <div class="circleIconWrapper">
+      <img class="" src="../../../../assets/icons/rente-green-big.svg" />
+    </div>
+    <p i18n="“found-offers|offers-main@@offers.mainPage.foundOffers”">
+      Vi har funnet de beste tilbudene for deg
+    </p>
+  </div>
+  <div class="bottom">
+    <rente-button
+      i18n="
+        “found-best-offers|offers-main@@offers.mainPage.found.bestOffers.button”"
+      [disabled]="
+        changeBankLoading ||
+        offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS
+      "
+      [isLoading]="changeBankLoading"
+      [color]="antiChurnIsOn ? 'primary-wide-hollow' : 'primary-wide'"
+      (click)="goToBestOffer()"
+      >Se beste tilbud</rente-button
+    >
+  </div>
+</div>
+
+<div *ngIf="!canBargain && isSweden" class="big-box round-box right desktop">
+  <div class="top">
+    <div class="circleIconWrapper">
+      <img class="" src="../../../../assets/icons/mail-green.svg" />
+    </div>
+    <p>Pruta-funktionen är inte tillgänglig för dig</p>
+  </div>
+  <div class="bottom">
+    <rente-button
+      color="primary-wide-hollow"
+      [disabled]="
+        changeBankLoading ||
+        offersInfo.offerSavingsType === offerSavingsType.NO_SAVINGS
+      "
+      [isLoading]="changeBankLoading"
+      (click)="openBargainMoreInfoDialog()"
+      >Läs mer</rente-button
+    >
+  </div>
+</div>

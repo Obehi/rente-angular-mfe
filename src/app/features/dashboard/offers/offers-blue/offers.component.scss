@@ -198,9 +198,6 @@
     color: $green;
   }
 }
-.vertical {
-  margin-bottom: 10px;
-}
 
 .vertical-20 {
   margin-bottom: 20px;
@@ -621,12 +618,6 @@ a.box {
 }
 
 @media (max-width: 600px) {
-  .barometer {
-    padding: 20px 10px;
-    padding-bottom: 40px;
-    margin-bottom: 0px;
-    border-bottom: 1px solid $light;
-  }
   .compared {
     grid-column-start: 1;
     grid-column-end: span 2;
@@ -656,12 +647,13 @@ a.box {
     min-width: 300px;
   }
 
-  .offers {
-    .tipsAccordion {
-      position: relative;
-      top: 7px;
-
-      padding: 6px 10px !important;
+  @media (min-width: 600px) {
+    .barometer,
+    .compared {
+      text-align: left;
+      color: white;
+      grid-row: 2;
+      grid-column-start: 2;
     }
     .tips {
       @media (min-width: 850px) {
@@ -730,9 +722,8 @@ a.box {
         @media (min-width: 600) and (max-width: 768px) {
           width: 100%;
         }
-
-        @media (min-width: 768px) {
-          max-width: 300px;
+        .the-offer-body {
+          border-radius: 0 0 15px 15px;
         }
       }
     }
