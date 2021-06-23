@@ -205,7 +205,7 @@ export class CustomLangTextService {
     if (locale.includes('sv')) {
       return 'Grattis, du har en lägre ränta än förra gången! ';
     } else if (locale.includes('nb')) {
-      return 'Hjälpte vår information dig att sänka bolåneräntan?';
+      return 'Du har lavere rente enn forrige gang!';
     }
     throw new Error('Should include either SV or NB');
   }
