@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { EnvService } from '@services/env.service';
 import { LoggingService } from '@services/logging.service';
 @Component({

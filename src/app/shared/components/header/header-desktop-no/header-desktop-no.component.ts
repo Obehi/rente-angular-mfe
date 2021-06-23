@@ -1,14 +1,15 @@
-import { AuthService } from '@services/remote-api/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+
+import { AuthService } from '@services/remote-api/auth.service';
 import { LocalStorageService } from '@services/local-storage.service';
 
 @Component({
-  selector: 'rente-header',
-  templateUrl: './header-no.component.html',
-  styleUrls: ['./header-no.component.scss']
+  selector: 'rente-header-desktop',
+  templateUrl: './header-desktop-no.component.html',
+  styleUrls: ['./header-desktop-no.component.scss']
 })
-export class HeaderNoComponent implements OnInit {
+export class HeaderDesktopNoComponent implements OnInit {
   public toggleNavbar: boolean;
   public isSmallScreen: boolean;
 

@@ -1,4 +1,4 @@
-@import "../../../../../styles/theme/_colors.scss";
+@import '../../../../../styles/theme/_colors.scss';
 .nav-space {
   height: 60px;
 }
@@ -84,7 +84,7 @@ nav {
   }
 
   // Special case for FAQ link
-  span { 
+  span {
     a {
       h3 {
         color: white;
@@ -96,7 +96,6 @@ nav {
   a.active-link h3 {
     color: $primary;
   }
-
 }
 
 @media (min-width: 600px) {
@@ -131,16 +130,16 @@ nav {
 .mobile {
   display: block;
 }
+
 .desktop {
   display: none;
 }
 
-@media (min-width: 980px) {
-  .mobile {
-    display: none;
-  }
+@media (min-width: 992px) {
   .desktop {
     display: block;
   }
+  .mobile {
+    display: none;
+  }
 }
-
