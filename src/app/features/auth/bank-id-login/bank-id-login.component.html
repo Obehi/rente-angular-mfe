@@ -6,10 +6,11 @@
   <div class="forms-wrapper">
     <div *ngIf="signicatIframeUrl !== null" class="iframe-wrapper">
       <p class="warning" *ngIf="shouldShowBankWarningMessage">
-        Vi opplever at {{ bank?.name }} sperrer sine kunder fra å innhente egne
+        Vi opplever at {{ bank?.label }} sperrer sine kunder fra å innhente egne
         lånedata. Derfor har vi laget en løsning hvor du selv fyller inn dine
         lånedata. Lese mer om hvor du finner disse dataene
         <a
+          class="link"
           href="https://blogg.renteradar.no/slik-finner-du-din-rente-og-lanedata-i-dnbs-mobil-og-nettbank/"
           >her</a
         >.
@@ -36,11 +37,11 @@
 
     <div *ngIf="newClient === false" class="text-box">
       <h2>Velkommen tilbake</h2>
-      <p class="wide-text" *ngIf="!oldUserNewLoan">
+      <p class="medium-text" *ngIf="!oldUserNewLoan">
         Du er allerede registrert. Sjekk om lånedetaljene dine fortsatt stemmer
         før du går videre.
       </p>
-      <p class="wide-text" *ngIf="oldUserNewLoan">
+      <p class="medium-text" *ngIf="oldUserNewLoan">
         Du er allerede registrert med en annen bank tidligere, derfor trenger vi
         bare oppdaterte lånedetaljer før alt er klart
       </p>
