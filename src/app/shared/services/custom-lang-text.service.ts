@@ -219,6 +219,51 @@ export class CustomLangTextService {
     throw new Error('Should include either SV or NB');
   }
 
+  getProfileMarketOption1(): string {
+    if (locale.includes('sv')) {
+      return 'Varje månad';
+    } else if (locale.includes('nb')) {
+      return 'Hver måned';
+    }
+    throw new Error('Should include either SV or NB');
+  }
+
+  getProfileMarketOption2(): string {
+    if (locale.includes('sv')) {
+      return 'Var 2. månad';
+    } else if (locale.includes('nb')) {
+      return 'Hver 2. måned';
+    }
+    throw new Error('Should include either SV or NB');
+  }
+
+  getProfileMarketOption3(): string {
+    if (locale.includes('sv')) {
+      return 'Var 3. månad';
+    } else if (locale.includes('nb')) {
+      return 'Hver 3. måned';
+    }
+    throw new Error('Should include either SV or NB');
+  }
+
+  getProfileMarketOption4(): string {
+    if (locale.includes('sv')) {
+      return 'Var 4. månad';
+    } else if (locale.includes('nb')) {
+      return 'Hver 4. måned';
+    }
+    throw new Error('Should include either SV or NB');
+  }
+
+  getProfileMarketOption5(): string {
+    if (locale.includes('sv')) {
+      return 'Aldrig';
+    } else if (locale.includes('nb')) {
+      return 'Aldri';
+    }
+    throw new Error('Should include either SV or NB');
+  }
+
   getBarometerTextState0(): string {
     if (locale.includes('sv')) {
       return 'Din ränta är mycket högre än genomsnittet';
@@ -254,6 +299,7 @@ export class CustomLangTextService {
     }
     throw new Error('Should include either SV or NB');
   }
+
   getBarometerTextState4(): string {
     if (locale.includes('sv')) {
       return 'Din ränta är mycket bra';

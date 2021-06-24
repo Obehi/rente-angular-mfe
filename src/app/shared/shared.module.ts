@@ -35,6 +35,8 @@ import { TitleService } from './services/title.service';
 import { EventService } from './services/event-service';
 import { RoundPipe } from './pipes/round.pipe';
 import { ThousandsSeprator } from './pipes/thousands.pipe';
+import { FilterPipe } from './pipes/filter.pipe';
+import { TruncatePipe } from './pipes/truncate.pipe';
 import { ButtonSmallComponent } from './components/ui-components/button-small/button-small.component';
 import { IMaskModule } from 'angular-imask';
 import { OfferDetailsLangGenericComponent } from '../local-components/components-output';
@@ -54,6 +56,9 @@ import { DashboardTabsMobileComponent } from './components/header/dashboard-tabs
 import { HeaderDesktopLangGenericComponent } from '../local-components/components-output';
 import { HeaderMobileLangGenericComponent } from '../local-components/components-output';
 
+import { PropertySelectComponent } from '@features/first-buyers/components/property-select/property-select.component';
+import { PropertySelectDialogComponent } from '@features/first-buyers/components/property-select-dialog/property-select-dialog.component';
+import { SpinnerComponent } from '@shared/components/ui-components/spinner/spinner.component';
 const components = [
   HeaderComponent,
   FooterComponent,
@@ -72,7 +77,10 @@ const components = [
   DashboardTabsDesktopComponent,
   DashboardTabsMobileComponent,
   HeaderDesktopLangGenericComponent,
-  HeaderMobileLangGenericComponent
+  HeaderMobileLangGenericComponent,
+  PropertySelectComponent,
+  PropertySelectDialogComponent,
+  SpinnerComponent
 ];
 
 const services = [
@@ -111,6 +119,8 @@ const services = [
     AbsPipe,
     RoundPipe,
     ThousandsSeprator,
+    FilterPipe,
+    TruncatePipe,
     ChildDirective,
     BarComponent,
     FlowHeaderComponent,
@@ -124,6 +134,8 @@ const services = [
     AbsPipe,
     RoundPipe,
     ThousandsSeprator,
+    FilterPipe,
+    TruncatePipe,
     ChildDirective,
     ReactiveFormsModule,
     BarComponent,
