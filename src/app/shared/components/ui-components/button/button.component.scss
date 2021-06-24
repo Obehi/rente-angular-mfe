@@ -26,25 +26,6 @@ button.mat-button {
   }
 }
 
-button.mat-button:hover:not([disabled]) {
-  opacity: 0.8;
-}
-
-button:disabled,
-button[disabled] {
-  opacity: 0.3;
-  color: white !important;
-}
-
-button.mat-primary-wide-break,
-button.mat-primary-medium,
-button.mat-primary-wide-landing,
-button.mat-primary-wide,
-button.mat-primary {
-  background-color: $primary;
-  color: white !important;
-}
-
 button.mat-primary-hollow {
   background-color: white;
   color: black;
@@ -52,39 +33,126 @@ button.mat-primary-hollow {
   white-space: break-spaces;
 }
 
-button.mat-primary,
+button.mat-button:hover:not([disabled]) {
+  opacity: 0.8;
+}
+button[disabled] {
+  opacity: 0.3;
+}
+
+button.mat-secondary[disabled][disabled] {
+  background: #ececec;
+  color: #b5b4b4;
+  opacity: 1;
+}
+
+button.mat-grey[disabled] {
+  opacity: 1;
+  color: white;
+}
+
+button.mat-primary {
+  background-color: $primary;
+}
+
+button.mat-primary-80 {
+  width: 80%;
+  color: white;
+  white-space: break-spaces;
+  background-color: $primary;
+}
+
+button.mat-primary-80[disabled] {
+  color: white !important;
+}
+
+button.mat-secondary {
+  background-color: $secondary;
+  color: white;
+}
+
+.mat-button.mat-primary {
+  color: white !important;
+}
+button.mat-blue {
+  background-color: $blue;
+  color: white;
+}
+
+button.mat-blue-bank {
+  background-color: $blue;
+  color: white;
+  width: 135px;
+}
+
 button.mat-primary-wide {
+  background-color: $primary;
+  color: white;
+  height: 56px;
   width: 80%;
 }
 
 button.mat-primary-wide-break {
+  background-color: $primary;
+  color: white;
+  height: 56px;
   width: 100%;
   white-space: break-spaces;
 }
 
+button.mat-primary-wide[disabled] {
+  color: white !important;
+}
+
+button.mat-primary-semi-wide {
+  background-color: $primary;
+  color: white;
+  height: 56px;
+  width: 325px;
+}
+
 button.mat-primary-medium {
+  background-color: $primary;
+  color: white;
+  height: 56px;
   width: 100%;
   border-radius: 100px;
 }
 
+button.mat-secondary-medium {
+  background-color: $secondary;
+  color: white;
+  height: 56px;
+  width: 100%;
+  border-radius: 100px;
+}
+
+button.mat-primary-medium[disabled] {
+  color: white !important;
+}
+
+button.mat-secondary-medium {
+  background-color: $secondary;
+  color: white;
+  height: 56px;
+  border-radius: 100px;
+}
+
 button.mat-primary-wide-landing {
+  background-color: $primary;
+  color: white;
+  height: 56px;
   width: 80%;
   @media (min-width: 600px) {
     width: 320px;
   }
 }
 
-button.mat-primary-wide-landing-hollow,
-button.mat-primary-wide-hollow,
-button.mat-primary-wide-white,
-button.mat-primary-wide-hollow-base {
+button.mat-primary-wide-landing-hollow {
   background-color: white;
   color: black;
-  height: 56px;
-}
-
-button.mat-primary-wide-landing-hollow {
   border: 1px solid $primary;
+  height: 56px;
   width: 80%;
   @media (min-width: 600px) {
     width: 320px;
@@ -92,7 +160,10 @@ button.mat-primary-wide-landing-hollow {
 }
 
 button.mat-primary-wide-hollow {
+  background-color: white;
+  color: black;
   border: 1px solid $primary;
+  height: 56px;
   width: 100%;
   white-space: break-spaces;
 }
@@ -117,6 +188,9 @@ button.mat-primar-hollow-medium {
 }
 
 button.mat-primary-wide-white {
+  background-color: white;
+  color: black;
+  height: 56px;
   width: 80%;
   white-space: break-spaces;
 }
@@ -125,7 +199,7 @@ button.mat-primary-wide-hollow[disabled] {
   opacity: 1;
   height: 56px;
   background-color: unset;
-  color: #000000 !important;
+  color: #a9a9a9;
   border: 1px solid #c9eae3;
 }
 
@@ -136,6 +210,17 @@ button.mat-blue-wide {
   width: 80%;
 }
 
+button.mat-grey {
+  background-color: $grey;
+  color: white;
+  width: 100%;
+}
+
+button.mat-orange {
+  background-color: $orange;
+  color: white;
+  width: 100%;
+}
 .loading-icon {
   animation: spin 2s infinite linear;
   display: inline-block;
@@ -193,25 +278,13 @@ button.mat-primary-medium-card {
   border-radius: 100px;
 }
 
-button.mat-secondary-medium,
-button.mat-secondary-medium-card,
-button.mat-secondary {
-  background-color: $secondary;
-  color: white;
-}
-
-button.mat-secondary-medium {
-  height: 56px;
-  width: 100%;
-  border-radius: 100px;
-}
-
-button.mat-secondary-medium {
-  height: 56px;
-  border-radius: 100px;
+button.mat-primary-medium-card[disabled] {
+  color: white !important;
 }
 
 button.mat-secondary-medium-card {
+  background-color: $secondary;
+  color: white;
   height: 45px;
   font-size: 14px;
   width: 100%;
@@ -220,11 +293,4 @@ button.mat-secondary-medium-card {
 
 button.mat-secondary-medium-card[disabled] {
   color: white !important;
-}
-
-// Cookies popup
-button.mat-grey {
-  background-color: $grey-dark;
-  color: white;
-  width: 100%;
 }
