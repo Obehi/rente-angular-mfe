@@ -1,13 +1,11 @@
-@import "../theme/colors";
+@import '../theme/colors';
 .front-container {
-  padding: 40px 20px;
+  padding: 70px 20px;
   max-width: 1010px;
   margin: auto;
   background-color: white;
   min-height: calc(100vh - 60px);
 }
-
-
 
 @media (min-width: 600px) {
   .front-container {
@@ -54,7 +52,7 @@
   margin-left: 0;
 
   > .col,
-  > [class*="col-"] {
+  > [class*='col-'] {
     padding-right: 0;
     padding-left: 0;
   }

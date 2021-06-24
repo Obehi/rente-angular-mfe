@@ -23,7 +23,7 @@
         }"
       ></div>
       <div class="offer-product">
-        <a class="clickable" target="_blank" (click)="openBankUrl(offer)"
+        <a class="clickable" target="_blank" (click)="clickHeaderBankUrl(offer)"
           >{{ offer.bankInfo.name }}
           <!--<mat-icon>
                     open_in_new</mat-icon>
@@ -193,7 +193,7 @@
           <rente-bar
             *ngIf="offer.bankInfo.mobileAppRating"
             class="bar"
-            highestValue="10"
+            highestValue="5"
             currentValue="{{ offer.bankInfo.mobileAppRating }}"
           ></rente-bar>
           <p
@@ -232,13 +232,14 @@
 
       <div class="buttons">
         <rente-button
+          *ngIf="offer.bankInfo.bank !== 'NYBYGGER'"
           class="firstButton"
           [disabled]="offer.bankInfo.partner == false"
           i18n="“see-more|offer-card-big@@offer.card.big.seeMore”"
           [color]="'primary-wide-hollow-card'"
           type="raised"
           (click)="openBankUrlByButton(offer)"
-          >Se mer på {{ getbankNameOrDefault(offer) }}s hjemmeside
+          >Se mer på {{ getbankNameOrDefault(offer, true) }}s hjemmeside
         </rente-button>
 
         <div>
@@ -249,7 +250,7 @@
             color="primary-medium-card"
             type="raised"
             (click)="openNewOfferDialog(offer)"
-            >Få tilbud fra {{ getbankNameOrDefault(offer) }}!
+            >{{ offerCardService.getOfferButtonText(offer) }}
           </rente-button>
           <p class="small" *ngIf="offer.bankInfo.partner === false">
             (Ingen avtale med banken)

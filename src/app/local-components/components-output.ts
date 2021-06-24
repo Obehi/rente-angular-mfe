@@ -1,6 +1,6 @@
 export { LoginNoComponent as LoginLangGenericComponent } from '@features/landing/locale/login/login-no/login-no.component';
 export { OffersListNoComponent as OffersListLangGenericComponent } from '@features/dashboard/offers/offers-list/offers-list-no/offers-list-no.component';
-export { HeaderNoComponent as HeaderLangGenericComponent } from '@shared/components/header/header-no/header-no.component';
+export { HeaderComponent as HeaderLangGenericComponent } from '@shared/components/header/header.component';
 export { LoansNoComponent as LoansLangGenericComponent } from '@features/dashboard/loans/loans-no/loans-no.component';
 export { InitConfirmationNoComponent as InitConfirmationLangGenericComponent } from '@features/init-confirmation/init-confirmation-no/init-confirmation.component';
 export { HouseFormNoComponent as HouseFormLangGenericComponent } from '@features/dashboard/house/house-form-no/house-form-no.component';
@@ -13,3 +13,5 @@ export { ChangeBankDialogComponent as ChangeBankDialogLangGenericComponent } fro
 export { BankRatingDialogNoComponent as BankScoreLangGenericComponent } from '@features/dashboard/offers/offers-blue/bank-rating-dialog/bank-rating-dialog.component';
 export { GetNotifiedNoComponent as GetNotifiedLangGenericComponent } from '@features/get-notified/get-notified-no/get-notified-no.component';
 export { PrivacyPolicyNoComponent as PrivacyPolicyLangGenericComponent } from '@features/privacy-no/privacy-policy-no.component';
+export { HeaderDesktopSvComponent as HeaderDesktopLangGenericComponent } from '@shared/components/header/header-desktop-sv/header-desktop-sv.component';
+export { HeaderMobileSvComponent as HeaderMobileLangGenericComponent } from '@shared/components/header/header-mobile-sv/header-mobile-sv.component';

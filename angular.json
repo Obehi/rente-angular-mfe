@@ -140,7 +140,8 @@
                 "src/favicon.ico",
                 "src/sitemap.xml",
                 "src/robots.txt",
-                "src/environment.json"
+                "src/environment.json",
+                "src/extra-environment-variables.json"
               ],
               "fileReplacements": [
                 {

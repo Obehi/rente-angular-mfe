@@ -3,10 +3,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
-
 import { AuthGuard } from './guards/auth.guard';
 import { RouteGuard } from './guards/route.guard';
-
 import { FooterComponent } from './components/footer/footer.component';
 import { ButtonComponent } from './components/ui-components/button/button.component';
 import { InputComponent } from './components/ui-components/input/input.component';
@@ -19,7 +17,6 @@ import { FormMessageComponent } from './components/ui-components/form-message/fo
 import { TextAreaComponent } from './components/ui-components/text-area/text-area.component';
 import { ChipsAutocompleteComponent } from './components/ui-components/chips-autocomplete/chips-autocomplete.component';
 import { CheckboxContainerComponent } from './components/ui-components/checkbox-container/checkbox-container.component';
-import { BarComponent } from './components/ui-components/bar/bar.component';
 import { TopAnimationBannerComponent } from './components/ui-components/top-animation-banner/top-animation-banner.component';
 import { ButtonSmallComponent } from './components/ui-components/button-small/button-small.component';
 import {
@@ -40,19 +37,30 @@ import { SnackBarService } from './services/snackbar.service';
 import { MetaService } from './services/meta.service';
 import { TitleService } from './services/title.service';
 import { EventService } from './services/event-service';
-import { CustomLangTextService } from '@services/custom-lang-text.service';
 import { MessageBannerService } from '@services/message-banner.service';
-
 import { BigNumberPipe } from './pipes/big-number.pipe';
 import { AbsPipe } from './pipes/abs.pipe';
 import { RoundPipe } from './pipes/round.pipe';
 import { ThousandsSeprator } from './pipes/thousands.pipe';
-import { ChildDirective } from './directives/child.directive';
-
 import { IMaskModule } from 'angular-imask';
+import { HeaderComponent } from '@shared/components/header/header.component';
+import { CustomLangTextService } from '@services/custom-lang-text.service';
+import { ChildDirective } from './directives/child.directive';
+import { BarComponent } from './components/ui-components/bar/bar.component';
+import { FlowHeaderComponent } from './components/ui-components/flow-header/flow-header.component';
+import { GenericInfoDialogComponent } from './components/ui-components/dialogs/generic-info-dialog/generic-info-dialog.component';
+import { GenericErrorDialogComponent } from './components/ui-components/dialogs/generic-error-dialog/generic-error-dialog.component';
+import { VirdiErrorChoiceDialogComponent } from './components/ui-components/dialogs/virdi-error-choice-dialog/virdi-error-choice-dialog.component';
+import { LoginTermsDialogV2Component } from './components/ui-components/dialogs/login-terms-dialog-v2/login-terms-dialog-v2.component';
+import { DashboardTabsDesktopComponent } from './components/header/dashboard-tabs-desktop/dashboard-tabs-desktop.component';
+import { DashboardTabsMobileComponent } from './components/header/dashboard-tabs-mobile/dashboard-tabs-mobile.component';
+import { HeaderDesktopLangGenericComponent } from '../local-components/components-output';
+import { HeaderMobileLangGenericComponent } from '../local-components/components-output';
 import { MaterialModule } from './material/material.module';
 
 const components = [
+  HeaderComponent,
+  FooterComponent,
   ButtonComponent,
   ButtonSmallComponent,
   CheckboxComponent,
@@ -67,7 +75,11 @@ const components = [
   TabsComponent,
   TabComponent,
   TextAreaComponent,
-  TopAnimationBannerComponent
+  TopAnimationBannerComponent,
+  DashboardTabsDesktopComponent,
+  DashboardTabsMobileComponent,
+  HeaderDesktopLangGenericComponent,
+  HeaderMobileLangGenericComponent
 ];
 
 const services = [
@@ -108,7 +120,14 @@ const services = [
     ChildDirective,
     ChipsAutocompleteComponent,
     RoundPipe,
-    ThousandsSeprator
+    ThousandsSeprator,
+    ChildDirective,
+    BarComponent,
+    FlowHeaderComponent,
+    GenericInfoDialogComponent,
+    GenericErrorDialogComponent,
+    VirdiErrorChoiceDialogComponent,
+    LoginTermsDialogV2Component
   ],
   exports: [
     ...components,
@@ -117,7 +136,9 @@ const services = [
     ChildDirective,
     ReactiveFormsModule,
     RoundPipe,
-    ThousandsSeprator
+    ThousandsSeprator,
+    BarComponent,
+    FlowHeaderComponent
   ],
   providers: [...services]
 })

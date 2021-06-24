@@ -1,3 +1,4 @@
+// Angular
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, LOCALE_ID, APP_INITIALIZER } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -7,9 +8,11 @@ import localeNo from '@angular/common/locales/nb';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 
+// App
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
+// Features
 import { ContactUsComponent } from './features/contact-us/contact-us.component';
 import { PageNotFoundComponent } from '@features/page-not-found/page-not-found.component';
 import { LandingComponent } from '@features/landing/landing.component';
@@ -27,21 +30,26 @@ import { EmailRedirectSVComponent } from './features/email-redirect/email-redire
 import { EmailRedirectNOComponent } from './features/email-redirect/email-redirect-no/email-redirect-no.component';
 import { ConfirmationProperty } from './features/init-confirmation/init-confirmation-sv/confirmation-property-sv/confirmation-property-sv.component';
 import { NoLoansComponent } from '@features/dashboard/no-loans/no-loans.component';
+import { Sb1DisabledComponent } from './features/sb1-disabled/sb1-disabled.component';
 
+// Services
 import { Environment } from '@services/env.service';
 import { UserService } from '@services/remote-api/user.service';
 import { OptimizeService } from '@services/optimize.service';
 
+// Shared
 import { SharedModule } from '@shared/shared.module';
 import { MaterialModule } from '@shared/material/material.module';
 import { CounterComponent } from './shared/components/ui-components/counter/counter.component';
 import { EnvService } from './shared/services/env.service';
 import { TopAnimationBannerComponent } from '@shared/components/ui-components/top-animation-banner/top-animation-banner.component';
 
+// Package
 import { IMaskModule } from 'angular-imask';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { CountUpModule } from 'ngx-countup';
 
+// Local-components
 import { PrivacyPolicyLangGenericComponent } from './local-components/components-output';
 import { LoginLangGenericComponent } from './local-components/components-output';
 import { InitConfirmationLangGenericComponent } from './local-components/components-output';
@@ -56,6 +64,7 @@ registerLocaleData(localeNo);
     AppComponent,
     AuthSvComponent,
     AuthSvMockupComponent,
+    ConfirmationProperty,
     ConfirmationProperty,
     ContactUsComponent,
     CounterComponent,
@@ -75,6 +84,7 @@ registerLocaleData(localeNo);
     PrivacyComponent,
     PrivacyPolicyLangGenericComponent,
     ProfileDialogInfoComponent,
+    Sb1DisabledComponent,
     TermsConditionsComponent
   ],
   imports: [

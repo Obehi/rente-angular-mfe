@@ -5,6 +5,7 @@
     "baseUrl": "./",
     "paths": {
       "@services/*": ["./app/shared/services/*"],
+      "@models/*": ["./app/shared/models/*"],
       "@features/*": ["./app/features/*"],
       "@shared/*": ["./app/shared/*"],
       "@environments/*": ["./environments/*"],

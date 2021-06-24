@@ -3,6 +3,6 @@ export const Mask = {
   phone: '00000000',
   squareMeter: '000',
   birthDate: '000000',
-
+  zip: '0000',
   currency: { mask: 0o0, thousandsSeparator: ' ' }
 };
