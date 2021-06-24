@@ -20,9 +20,11 @@ import {
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { combineLatest, Observable, of, Subject } from 'rxjs';
 import {
+  catchError,
   debounce,
   debounceTime,
   distinctUntilChanged,
+  filter,
   map,
   startWith,
   switchMap,
@@ -232,13 +234,12 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
 
   // Listen to blur updates in forms. Save  changes if the form is valid.
   onFormChange(): void {
-    this.preferencesForm.valueChanges.subscribe((test) => {
-      console.log(test);
+    /*  this.preferencesForm.valueChanges.subscribe((test) => {
       if (this.profileForm.valid) {
         this.changesMade = true;
         this.updatePreferances2();
       }
-    });
+    }); */
   }
 
   public openInfoDialog(offer: OfferInfo | string): void {
@@ -276,61 +277,6 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
     )?.value;
     console.log(dto);
     return dto;
-  }
-
-  public updatePreferances2(): void {
-    this.isLoading = true;
-    const income = this.profileForm.value.income;
-    const userData = {
-      email: this.profileForm.value.email,
-      income: typeof income === 'string' ? income.replace(/\s/g, '') : income
-    };
-
-    console.log(income, userData);
-
-    const dto = new PreferencesUpdateDto();
-    dto.email = userData.email;
-    dto.income = userData.income;
-    dto.memberships = this.previousStateMemberships.map((m) => {
-      return m.name;
-    });
-    dto.checkRateReminderType = this.preferencesForm.get(
-      'checkRateReminderType'
-    )?.value;
-    dto.receiveNewsEmails = this.preferencesForm.get(
-      'receiveNewsEmails'
-    )?.value;
-    dto.fetchCreditLinesOnly = this.preferencesForm.get(
-      'fetchCreditLinesOnly'
-    )?.value;
-    dto.noAdditionalProductsRequired = this.preferencesForm.get(
-      'noAdditionalProductsRequired'
-    )?.value;
-    dto.interestedInEnvironmentMortgages = this.preferencesForm.get(
-      'interestedInEnvironmentMortgages'
-    )?.value;
-
-    console.log(dto.checkRateReminderType);
-
-    // No one leaves the page while updating
-    this.canLeavePage = false;
-
-    this.loansService.updateUserPreferences(dto).subscribe(
-      () => {
-        this.canNavigateBooolean$.next(true);
-        this.changesMade = false;
-        this.isLoading = false;
-
-        // A hack to trigger "saved" animation
-        this.updateAnimationTrigger = !this.updateAnimationTrigger;
-        this.canLeavePage = true;
-      },
-      () => {
-        this.canLeavePage = true;
-        this.isLoading = false;
-        this.errorAnimationTrigger = !this.errorAnimationTrigger;
-      }
-    );
   }
 
   // TODO: Move to service
@@ -424,7 +370,9 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
       this.profileForm.get('email')?.valueChanges.pipe(
         distinctUntilChanged(),
         debounceTime(1000),
+        filter(() => this.profileForm.get('email')?.valid || false),
         tap(() => {
+          this.canLeavePage = false;
           this.loadingStates['email'] = true;
         }),
         switchMap(() => {
@@ -433,7 +381,6 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
           );
         }),
         tap(() => {
-          console.log(this.getPreferencesDto());
           this.loadingStates['email'] = false;
         })
       ),
@@ -441,6 +388,7 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
         distinctUntilChanged(),
         debounceTime(1000),
         tap(() => {
+          this.canLeavePage = false;
           this.loadingStates['income'] = true;
         }),
         switchMap(() => {
@@ -456,6 +404,7 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
         distinctUntilChanged(),
         debounceTime(100),
         tap(() => {
+          this.canLeavePage = false;
           this.loadingStates['memberships'] = true;
         }),
         switchMap(() => {
@@ -549,8 +498,16 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
             this.loadingStates['interestedInEnvironmentMortgages'] = false;
           })
         )
-    ]).subscribe((value) => {
-      this.canNavigateBooolean$.next(true);
-    });
+    ]).subscribe(
+      (value) => {
+        console.log('subscribe canNavigateBooolean');
+        this.canNavigateBooolean$.next(true);
+      },
+      (error) => {
+        console.log('error canNavigateBooolean');
+
+        this.canNavigateBooolean$.next(true);
+      }
+    );
   }
 }
