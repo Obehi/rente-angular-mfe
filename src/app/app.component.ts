@@ -20,7 +20,6 @@ export class AppComponent implements OnInit {
   public title = 'rente-front-end';
   public navigationSubscription: Subscription;
   public showCookieAcc: boolean;
-
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -51,12 +50,6 @@ export class AppComponent implements OnInit {
     if (!this.localStorageService.getItem(AppComponent.CookiesAcceptedKey)) {
       this.showCookieAcc = true;
     }
-
-    this.auth.logoutSubject.subscribe((val) => {
-      if (val === 'LoggedOut') {
-        this.messageService.setView('Du er nå logget ut', 4000);
-      }
-    });
   }
 
   private changeTitles(): void {

@@ -13,7 +13,6 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
-  private loggedOutSubject = new BehaviorSubject<boolean>(false);
   constructor(
     private http: GenericHttpService,
     private localStorageService: LocalStorageService,
@@ -64,17 +63,11 @@ export class AuthService {
     const url = `${API_URL_MAP.auth.base}${API_URL_MAP.auth.logout}`;
 
     this.http.post(url, {}).subscribe(() => {
-      console.log('loggedOutSubject');
-      this.loggedOutSubject.next(true);
       this.router.navigate(['/']);
       console.log('etter navigate');
 
       this.localStorageService.clear();
     });
-  }
-
-  public get logoutSubject(): BehaviorSubject<boolean> {
-    return this.loggedOutSubject;
   }
 
   public getFirstTimeLoanToken(debtData) {

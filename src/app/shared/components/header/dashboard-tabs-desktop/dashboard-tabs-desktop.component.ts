@@ -5,6 +5,7 @@ import { LocalStorageService } from '@services/local-storage.service';
 import { OptimizeService } from '@services/optimize.service';
 import { AuthService } from '@services/remote-api/auth.service';
 import { EnvService } from '@services/env.service';
+import { MessageBannerService } from '@services/message-banner.service';
 
 @Component({
   selector: 'rente-dashboard-tabs-desktop',
@@ -59,7 +60,8 @@ export class DashboardTabsDesktopComponent implements OnInit {
     private router: Router,
     private localStorageService: LocalStorageService,
     private auth: AuthService,
-    private envService: EnvService
+    private envService: EnvService,
+    private messageService: MessageBannerService
   ) {
     if (this.envService.isNorway()) {
       this.navLinks = this.navLinksNo;
@@ -127,6 +129,10 @@ export class DashboardTabsDesktopComponent implements OnInit {
 
   public logout(): void {
     this.auth.logout();
+    // Tried to use a stream to do this in app.component, didnt work but it works with 0ms timeout righ here
+    setTimeout(() => {
+      this.messageService.setView('Du er nå logget ut', 4000);
+    }, 0);
   }
 
   ngOnDestroy(): void {
