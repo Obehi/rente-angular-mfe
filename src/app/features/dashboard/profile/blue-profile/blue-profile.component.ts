@@ -20,9 +20,11 @@ import {
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { combineLatest, Observable, of, Subject } from 'rxjs';
 import {
+  catchError,
   debounce,
   debounceTime,
   distinctUntilChanged,
+  filter,
   map,
   startWith,
   switchMap,
@@ -423,6 +425,7 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
     combineLatest([
       this.profileForm.get('email')?.valueChanges.pipe(
         distinctUntilChanged(),
+        filter(() => this.profileForm.get('email')!.valid),
         debounceTime(1000),
         tap(() => {
           this.loadingStates['email'] = true;
@@ -432,6 +435,10 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
             this.getPreferencesDto()
           );
         }),
+        catchError(() => {
+          this.loadingStates['email'] = false;
+          return of('email');
+        }),
         tap(() => {
           console.log(this.getPreferencesDto());
           this.loadingStates['email'] = false;
@@ -440,6 +447,7 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
       this.profileForm.get('income')?.valueChanges.pipe(
         distinctUntilChanged(),
         debounceTime(1000),
+        filter(() => this.profileForm.get('income')!.valid),
         tap(() => {
           this.loadingStates['income'] = true;
         }),
