@@ -6,6 +6,7 @@ import {
   Injector,
   ViewContainerRef
 } from '@angular/core';
+import { AnimationStylesEnum } from '@shared/animations/animationEnums';
 
 import { TopAnimationBannerComponent } from '../components/ui-components/top-animation-banner/top-animation-banner.component';
 
@@ -21,7 +22,11 @@ export class MessageBannerService {
     private appRef: ApplicationRef
   ) {}
 
-  setView(_newtext: string, _newtime: number): void {
+  setView(
+    _newtext: string,
+    _newtime: number,
+    _animationType: AnimationStylesEnum
+  ): void {
     const factory = this.factoryResolver.resolveComponentFactory(
       TopAnimationBannerComponent
     );
@@ -31,6 +36,7 @@ export class MessageBannerService {
     document.getElementsByClassName('content')[0].prepend(newNode);
 
     this._componentRef = factory.create(this.injector, [], newNode);
+    this._componentRef.instance.animationType = _animationType;
     this._componentRef.instance.displayText = _newtext;
     this._componentRef.instance.changeTimer(_newtime);
     this.appRef.attachView(this._componentRef.hostView);

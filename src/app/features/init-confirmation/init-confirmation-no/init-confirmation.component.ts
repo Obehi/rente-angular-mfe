@@ -34,6 +34,8 @@ import { Mask } from '@shared/constants/mask';
 import { OptimizeService } from '@services/optimize.service';
 import { ROUTES_MAP } from '@config/routes-config';
 import { CustomLangTextService } from '@services/custom-lang-text.service';
+import { MessageBannerService } from '@services/message-banner.service';
+import { getAnimationStyles } from '@shared/animations/animationEnums';
 
 @Component({
   selector: 'rente-init-confirmation-sv',
@@ -57,6 +59,7 @@ export class InitConfirmationNoComponent implements OnInit {
   public optimizeService: OptimizeService;
   public isAddressNeeded = false;
   public isNameNeeded = true;
+  public animationType = getAnimationStyles();
   @ViewChild('membershipInput') membershipInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete: MatAutocomplete;
 
@@ -69,7 +72,8 @@ export class InitConfirmationNoComponent implements OnInit {
     public dialog: MatDialog,
     public optimize: OptimizeService,
     public customLangTextService: CustomLangTextService,
-    private logging: LoggingService
+    private logging: LoggingService,
+    private messageBanner: MessageBannerService
   ) {
     this.optimizeService = optimize;
     this.filteredMemberships = this.membershipCtrl.valueChanges.pipe(
@@ -204,9 +208,14 @@ export class InitConfirmationNoComponent implements OnInit {
           this.logging.SubSystem.UserConfirmation,
           '9:USERINFO_SENT_SUCCESSFUL_REDIRECTING_TO_OFFERS'
         );
-        this.snackBar.openSuccessSnackBar(
+        // this.snackBar.openSuccessSnackBar(
+        //   this.customLangTextService.getSnackBarUpdatedMessage(),
+        //   1.2
+        // );
+        this.messageBanner.setView(
           this.customLangTextService.getSnackBarUpdatedMessage(),
-          1.2
+          3000,
+          this.animationType.DROP_DOWN_UP
         );
       },
       (err) => {

@@ -8,6 +8,7 @@ import { ROUTES_MAP } from '@config/routes-config';
 import { MessageBannerService } from '@shared/services/message-banner.service';
 
 import { AuthService } from '@services/remote-api/auth.service';
+import { getAnimationStyles } from '@shared/animations/animationEnums';
 
 @Component({
   selector: 'rente-root',
@@ -20,6 +21,7 @@ export class AppComponent implements OnInit {
   public title = 'rente-front-end';
   public navigationSubscription: Subscription;
   public showCookieAcc: boolean;
+  public animStyle = getAnimationStyles();
 
   constructor(
     private router: Router,
@@ -54,7 +56,11 @@ export class AppComponent implements OnInit {
 
     this.auth.logoutSubject.subscribe((val) => {
       if (val === 'LoggedOut') {
-        this.messageService.setView('Du er nå logget ut', 4000);
+        this.messageService.setView(
+          'Du er nå logget ut',
+          3000,
+          this.animStyle.SLIDE_LEFT_RIGHT
+        );
       }
     });
   }

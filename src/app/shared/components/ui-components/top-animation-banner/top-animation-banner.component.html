@@ -1,6 +1,17 @@
+<!-- NB! The [@animationTriggerName] has to be the same name as the trigger name from the xported animation style -->
+
 <div
-  class="dropdownbanner"
+  *ngIf="animationType == checkAnimationStyle.SLIDE_LEFT_RIGHT"
+  class="slideleftright"
   [@slideLeftRight]="animationState ? 'visible' : 'hidden'"
+>
+  {{ displayText }}
+</div>
+
+<div
+  *ngIf="animationType === checkAnimationStyle.DROP_DOWN_UP"
+  class="dropdownup"
+  [@dropDownUp]="animationState ? 'visible' : 'hidden'"
 >
   {{ displayText }}
 </div>
