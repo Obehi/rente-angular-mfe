@@ -19,11 +19,9 @@ import { ChipsAutocompleteComponent } from './components/ui-components/chips-aut
 import { CheckboxContainerComponent } from './components/ui-components/checkbox-container/checkbox-container.component';
 import { TopAnimationBannerComponent } from './components/ui-components/top-animation-banner/top-animation-banner.component';
 import { ButtonSmallComponent } from './components/ui-components/button-small/button-small.component';
-import {
-  HeaderLangGenericComponent,
-  OfferDetailsLangGenericComponent
-} from '../local-components/components-output';
+import { OfferDetailsLangGenericComponent } from '../local-components/components-output';
 
+import { HeaderComponent } from '@shared/components/header/header.component';
 import { LocalStorageService } from '@services/local-storage.service';
 import { GenericHttpService } from '@services/generic-http.service';
 import { AuthService } from '@services/remote-api/auth.service';
@@ -43,7 +41,6 @@ import { AbsPipe } from './pipes/abs.pipe';
 import { RoundPipe } from './pipes/round.pipe';
 import { ThousandsSeprator } from './pipes/thousands.pipe';
 import { IMaskModule } from 'angular-imask';
-import { HeaderComponent } from '@shared/components/header/header.component';
 import { CustomLangTextService } from '@services/custom-lang-text.service';
 import { ChildDirective } from './directives/child.directive';
 import { BarComponent } from './components/ui-components/bar/bar.component';
@@ -67,7 +64,6 @@ const components = [
   CheckboxContainerComponent,
   FooterComponent,
   FormMessageComponent,
-  HeaderLangGenericComponent,
   InputComponent,
   OfferDetailsLangGenericComponent,
   RadioComponent,
