@@ -182,7 +182,6 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
   }
 
   ngOnInit(): void {
-    console.log(FormControlId.email);
     this.loansService.getPreferencesDto().subscribe(
       (res) => {
         this.isLoading = false;
@@ -284,7 +283,6 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
     dto.receiveNewsEmails = this.preferencesForm?.get(
       'receiveNewsEmails'
     )?.value;
-    console.log(dto);
     return dto;
   }
 
@@ -319,7 +317,6 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
         break;
       }
       case 'saved': {
-        console.log('4');
         this.membershipCtrl.setValue(
           this.previousStateMemberships.map((membership) => {
             return membership.name;
@@ -435,8 +432,6 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
             .pipe(
               catchError((e) => {
                 this.onError(FormControlId.income);
-                console.log('f');
-                // return of(FormControlId.income);
                 return of(null);
               })
             );
