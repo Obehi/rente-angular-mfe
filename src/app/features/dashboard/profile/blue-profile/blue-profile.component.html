@@ -172,7 +172,10 @@
         ></rente-spinner>
         <rente-success
           class="membership-marked-success"
-          *ngIf="loadingStates.checkRateReminderType.success"
+          *ngIf="
+            loadingStates.checkRateReminderType.success &&
+            !loadingStates.checkRateReminderType.loading
+          "
         ></rente-success>
       </rente-button>
       <hr />

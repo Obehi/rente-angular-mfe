@@ -401,7 +401,7 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
       this.profileForm.get(FormControlId.email)?.valueChanges.pipe(
         distinctUntilChanged(),
         filter(() => this.profileForm.get(FormControlId.email)?.valid || false),
-        debounceTime(1000),
+        debounceTime(2000),
         filter(() => this.profileForm.get('email')?.valid || false),
         tap(() => {
           this.beforeUpdate(FormControlId.email);
@@ -422,7 +422,7 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
       ),
       this.profileForm.get(FormControlId.income)?.valueChanges.pipe(
         distinctUntilChanged(),
-        debounceTime(1000),
+        debounceTime(2000),
         filter(
           () => this.profileForm.get(FormControlId.income)?.valid || false
         ),
