@@ -221,8 +221,7 @@ export class InitConfirmationNoComponent implements OnInit {
         this.messageBanner.setView(
           this.customLangTextService.getSnackBarUpdatedMessage(),
           3000,
-          this.animationType.DROP_DOWN_UP,
-          true
+          this.animationType.DROP_DOWN_UP
         );
       },
       (err) => {
@@ -240,8 +239,7 @@ export class InitConfirmationNoComponent implements OnInit {
         this.messageBanner.setView(
           this.customLangTextService.getSnackBarErrorMessage(),
           3000,
-          this.animationType.DROP_DOWN_UP,
-          true
+          this.animationType.DROP_DOWN_UP
         );
       }
     );

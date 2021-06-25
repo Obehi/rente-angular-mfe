@@ -8,6 +8,8 @@ import { LoansService } from '@services/remote-api/loans.service';
 import { LocalStorageService } from '@services/local-storage.service';
 import { ROUTES_MAP } from '@config/routes-config';
 import { CustomLangTextService } from '@services/custom-lang-text.service';
+import { MessageBannerService } from '@services/message-banner.service';
+import { getAnimationStyles } from '@shared/animations/animationEnums';
 
 @Component({
   selector: 'rente-demo-login',
@@ -18,6 +20,7 @@ export class DemoLoginComponent implements OnInit {
   userSessionId: string;
   guuids: string[] = [];
   public isLoading;
+  public animationType = getAnimationStyles();
 
   constructor(
     private snackBar: SnackBarService,
@@ -26,7 +29,8 @@ export class DemoLoginComponent implements OnInit {
     private userService: UserService,
     private loansService: LoansService,
     private localStorageService: LocalStorageService,
-    public customLangTextService: CustomLangTextService
+    public customLangTextService: CustomLangTextService,
+    private messageService: MessageBannerService
   ) {}
 
   ngOnInit(): void {
@@ -46,9 +50,15 @@ export class DemoLoginComponent implements OnInit {
       },
       () => {
         this.isLoading = false;
-        this.snackBar.openFailSnackBar(
+        // this.snackBar.openFailSnackBar(
+        //   this.customLangTextService.getSnackBarErrorMessage(),
+        //   2
+        // );
+
+        this.messageService.setView(
           this.customLangTextService.getSnackBarErrorMessage(),
-          2
+          5000,
+          this.animationType.DROP_DOWN_UP
         );
       }
     );

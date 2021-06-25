@@ -136,8 +136,7 @@ export class DashboardTabsDesktopComponent implements OnInit {
       this.messageService.setView(
         'Du er nå logget ut',
         4000,
-        this.animationType.SLIDE_LEFT_RIGHT,
-        false
+        this.animationType.DROP_DOWN_UP
       );
     }, 0);
   }
