@@ -27,8 +27,8 @@ import {
   TrackingService,
   TrackingDto
 } from '@services/remote-api/tracking.service';
-import { Subscription, forkJoin } from 'rxjs';
-import { debounceTime } from 'rxjs/operators';
+import { Subscription, forkJoin, fromEvent } from 'rxjs';
+import { debounceTime, map, sampleTime } from 'rxjs/operators';
 import { OFFERS_LTV_TYPE } from '../../../../shared/models/offers';
 import { UserService } from '@services/remote-api/user.service';
 import smoothscroll from 'smoothscroll-polyfill';
@@ -43,6 +43,7 @@ import {
   OfferMessage
 } from '@features/dashboard/offers/offers.service';
 import { OptimizeService } from '@services/optimize.service';
+import { BreakpointState } from '@angular/cdk/layout';
 @Component({
   selector: 'rente-offers-blue',
   templateUrl: './offers.component.html',
@@ -73,6 +74,7 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
   public routesMap = ROUTES_MAP;
   public antiChurnIsOn = false;
   public nordeaClickSubscription: Subscription;
+  breakpointObserver: any;
   get isMobile(): boolean {
     return window.innerWidth < 600;
   }
@@ -249,6 +251,44 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
         icon: this.isMobile ? 'profile-icon-white' : 'profile-icon-blue'
       });
     }
+  }
+
+  @HostListener('window:scroll', []) onScroll() {
+    // do some stuff here when the window is scrolled
+    const verticalOffset =
+      window.pageYOffset ||
+      document.documentElement.scrollTop ||
+      document.body.scrollTop ||
+      0;
+
+    console.log(verticalOffset);
+  }
+
+  public getBestOffersPlacement(): any {
+    const bestOffersElement = document.querySelector('.best-offers');
+
+    window.onscroll = function () {
+      if (bestOffersElement!.getBoundingClientRect().top <= 0) {
+        console.log('TRIGGER: top of div reached.');
+      }
+
+      if (bestOffersElement!.getBoundingClientRect().bottom <= 0) {
+        console.log('TRIGGER: bottom of div reached.');
+      }
+    };
+  }
+
+  public getEffectiveRateTab(): void {
+    this.breakpointObserver
+      .observe(['(min-width: 992px)'])
+      .subscribe((state: BreakpointState) => {
+        if (state.matches) {
+          // this.isMobile = false;
+          console.log();
+        } else {
+          // this.isMobile = true;
+        }
+      });
   }
 
   public goToBestOffer(): void {
