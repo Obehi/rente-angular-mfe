@@ -206,7 +206,6 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
       },
       () => {
         this.subscribeToControllers();
-        this.onFormChange();
       }
     );
 
@@ -228,19 +227,7 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
     if (this.canLeavePage) return true;
 
     // Wait for upload info before navigating to another page
-    this.isLoading = true;
     return this.canNavigateBooolean$;
-  }
-
-  // Listen to blur updates in forms. Save  changes if the form is valid.
-  onFormChange(): void {
-    this.preferencesForm.valueChanges.subscribe((test) => {
-      console.log(test);
-      if (this.profileForm.valid) {
-        this.changesMade = true;
-        this.updatePreferances2();
-      }
-    });
   }
 
   public openInfoDialog(offer: OfferInfo | string): void {
@@ -280,61 +267,6 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
     return dto;
   }
 
-  public updatePreferances2(): void {
-    this.isLoading = true;
-    const income = this.profileForm.value.income;
-    const userData = {
-      email: this.profileForm.value.email,
-      income: typeof income === 'string' ? income.replace(/\s/g, '') : income
-    };
-
-    console.log(income, userData);
-
-    const dto = new PreferencesUpdateDto();
-    dto.email = userData.email;
-    dto.income = userData.income;
-    dto.memberships = this.previousStateMemberships.map((m) => {
-      return m.name;
-    });
-    dto.checkRateReminderType = this.preferencesForm.get(
-      'checkRateReminderType'
-    )?.value;
-    dto.receiveNewsEmails = this.preferencesForm.get(
-      'receiveNewsEmails'
-    )?.value;
-    dto.fetchCreditLinesOnly = this.preferencesForm.get(
-      'fetchCreditLinesOnly'
-    )?.value;
-    dto.noAdditionalProductsRequired = this.preferencesForm.get(
-      'noAdditionalProductsRequired'
-    )?.value;
-    dto.interestedInEnvironmentMortgages = this.preferencesForm.get(
-      'interestedInEnvironmentMortgages'
-    )?.value;
-
-    console.log(dto.checkRateReminderType);
-
-    // No one leaves the page while updating
-    this.canLeavePage = false;
-
-    this.loansService.updateUserPreferences(dto).subscribe(
-      () => {
-        this.canNavigateBooolean$.next(true);
-        this.changesMade = false;
-        this.isLoading = false;
-
-        // A hack to trigger "saved" animation
-        this.updateAnimationTrigger = !this.updateAnimationTrigger;
-        this.canLeavePage = true;
-      },
-      () => {
-        this.canLeavePage = true;
-        this.isLoading = false;
-        this.errorAnimationTrigger = !this.errorAnimationTrigger;
-      }
-    );
-  }
-
   // TODO: Move to service
   public isErrorState(control: AbstractControl | null): boolean {
     return !!(control && control.invalid && (control.dirty || control.touched));
@@ -372,7 +304,6 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
             return membership.name;
           })
         );
-        // this.updatePreferances2();
 
         break;
       }
@@ -428,6 +359,7 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
         filter(() => this.profileForm.get('email')!.valid),
         debounceTime(1000),
         tap(() => {
+          this.canLeavePage = false;
           this.loadingStates['email'] = true;
         }),
         switchMap(() => {
@@ -442,6 +374,8 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
         tap(() => {
           console.log(this.getPreferencesDto());
           this.loadingStates['email'] = false;
+          this.canNavigateBooolean$.next(true);
+          this.canLeavePage = true;
         })
       ),
       this.profileForm.get('income')?.valueChanges.pipe(
@@ -449,6 +383,7 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
         debounceTime(1000),
         filter(() => this.profileForm.get('income')!.valid),
         tap(() => {
+          this.canLeavePage = false;
           this.loadingStates['income'] = true;
         }),
         switchMap(() => {
@@ -458,12 +393,15 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
         }),
         tap(() => {
           this.loadingStates['income'] = false;
+          this.canNavigateBooolean$.next(true);
+          this.canLeavePage = true;
         })
       ),
       this.membershipCtrl.valueChanges.pipe(
         distinctUntilChanged(),
         debounceTime(100),
         tap(() => {
+          this.canLeavePage = false;
           this.loadingStates['memberships'] = true;
         }),
         switchMap(() => {
@@ -474,12 +412,15 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
         tap(() => {
           this.loadingStates['memberships'] = false;
           console.log(this.loadingStates.memberships);
+          this.canNavigateBooolean$.next(true);
+          this.canLeavePage = true;
         })
       ),
       this.preferencesForm.get('checkRateReminderType')?.valueChanges.pipe(
         distinctUntilChanged(),
         debounceTime(100),
         tap(() => {
+          this.canLeavePage = false;
           this.loadingStates['checkRateReminderType'] = true;
         }),
         switchMap(() => {
@@ -489,12 +430,15 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
         }),
         tap(() => {
           this.loadingStates['checkRateReminderType'] = false;
+          this.canNavigateBooolean$.next(true);
+          this.canLeavePage = true;
         })
       ),
       this.preferencesForm.get('fetchCreditLinesOnly')?.valueChanges.pipe(
         distinctUntilChanged(),
         debounceTime(500),
         tap(() => {
+          this.canLeavePage = false;
           this.loadingStates['fetchCreditLinesOnly'] = true;
         }),
         switchMap(() => {
@@ -504,6 +448,8 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
         }),
         tap(() => {
           this.loadingStates['fetchCreditLinesOnly'] = false;
+          this.canNavigateBooolean$.next(true);
+          this.canLeavePage = true;
         })
       ),
       this.preferencesForm
@@ -512,6 +458,7 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
           distinctUntilChanged(),
           debounceTime(500),
           tap(() => {
+            this.canLeavePage = false;
             this.loadingStates['noAdditionalProductsRequired'] = true;
           }),
           switchMap(() => {
@@ -521,6 +468,8 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
           }),
           tap(() => {
             this.loadingStates['noAdditionalProductsRequired'] = false;
+            this.canNavigateBooolean$.next(true);
+            this.canLeavePage = true;
           })
         ),
       this.preferencesForm
@@ -529,6 +478,7 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
           distinctUntilChanged(),
           debounceTime(500),
           tap(() => {
+            this.canLeavePage = false;
             this.loadingStates['interestedInEnvironmentMortgages'] = true;
           }),
           switchMap(() => {
@@ -538,6 +488,8 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
           }),
           tap(() => {
             this.loadingStates['interestedInEnvironmentMortgages'] = false;
+            this.canNavigateBooolean$.next(true);
+            this.canLeavePage = true;
           })
         ),
       this.preferencesForm
@@ -546,6 +498,7 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
           distinctUntilChanged(),
           debounceTime(500),
           tap(() => {
+            this.canLeavePage = false;
             this.loadingStates['interestedInEnvironmentMortgages'] = true;
           }),
           switchMap(() => {
@@ -555,10 +508,10 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
           }),
           tap(() => {
             this.loadingStates['interestedInEnvironmentMortgages'] = false;
+            this.canNavigateBooolean$.next(true);
+            this.canLeavePage = true;
           })
         )
-    ]).subscribe((value) => {
-      this.canNavigateBooolean$.next(true);
-    });
+    ]).subscribe(() => {});
   }
 }
