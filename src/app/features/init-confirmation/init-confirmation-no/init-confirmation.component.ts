@@ -220,7 +220,7 @@ export class InitConfirmationNoComponent implements OnInit {
         // );
         this.messageBanner.setView(
           this.customLangTextService.getSnackBarUpdatedMessage(),
-          3000,
+          100000,
           this.animationType.DROP_DOWN_UP
         );
       },
@@ -236,6 +236,11 @@ export class InitConfirmationNoComponent implements OnInit {
           err
         );
         this.router.navigate(['/dashboard/' + ROUTES_MAP.property]);
+        this.messageBanner.setView(
+          this.customLangTextService.getSnackBarErrorMessage(),
+          3000,
+          this.animationType.DROP_DOWN_UP
+        );
       }
     );
   }

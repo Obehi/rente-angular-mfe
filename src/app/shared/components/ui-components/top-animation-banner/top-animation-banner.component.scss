@@ -17,13 +17,20 @@
 .dropdownup {
   position: absolute;
   width: 40%;
-  background: #af50e0db;
+  background: $white;
   text-align: center;
-  border-radius: 50px;
+  border-radius: 10px;
   padding: 10px;
   margin: auto;
-  color: #000000;
-  box-shadow: rgba(40, 216, 159, 0.35) 0px 5px 15px;
-  top: 15%;
+  color: #383838;
+  box-shadow: rgba(67, 70, 69, 0.63) 0px 5px 15px;
+  top: 125px;
   left: 30%;
+  z-index: 1;
+
+  @media (max-width: 600px) {
+    width: 70%;
+    left: 15%;
+    top: 66px;
+  }
 }
