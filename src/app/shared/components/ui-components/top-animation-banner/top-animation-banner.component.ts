@@ -17,7 +17,7 @@ export class TopAnimationBannerComponent implements OnInit {
   public displayText = 'Hello!';
   public animationType: AnimationStylesEnum;
   public checkAnimationStyle = getAnimationStyles();
-  time: number;
+  public isDashboard: boolean;
 
   constructor() {}
 

@@ -10,7 +10,7 @@
 
 <div
   *ngIf="animationType === checkAnimationStyle.DROP_DOWN_UP"
-  class="dropdownup"
+  [ngClass]="isDashboard ? 'dropdownupdash' : 'dropdownup'"
   [@dropDownUp]="animationState ? 'visible' : 'hidden'"
 >
   {{ displayText }}

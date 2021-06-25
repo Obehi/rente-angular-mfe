@@ -25,7 +25,8 @@ export class MessageBannerService {
   setView(
     _newtext: string,
     _newtime: number,
-    _animationType: AnimationStylesEnum
+    _animationType: AnimationStylesEnum,
+    _isDashboard: boolean
   ): void {
     const factory = this.factoryResolver.resolveComponentFactory(
       TopAnimationBannerComponent
@@ -36,6 +37,7 @@ export class MessageBannerService {
     document.getElementsByClassName('content')[0].prepend(newNode);
 
     this._componentRef = factory.create(this.injector, [], newNode);
+    this._componentRef.instance.isDashboard = _isDashboard;
     this._componentRef.instance.animationType = _animationType;
     this._componentRef.instance.displayText = _newtext;
     this._componentRef.instance.changeTimer(_newtime);

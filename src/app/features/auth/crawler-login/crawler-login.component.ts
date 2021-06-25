@@ -30,6 +30,8 @@ import { Environment, EnvService } from '@services/env.service';
 import { ContactService } from '../../../shared/services/remote-api/contact.service';
 import { SnackBarService } from '@services/snackbar.service';
 import { MatStepper } from '@angular/material';
+import { MessageBannerService } from '@services/message-banner.service';
+import { getAnimationStyles } from '@shared/animations/animationEnums';
 
 @Component({
   selector: 'crawler-login',
@@ -57,6 +59,7 @@ export class CrawlerLoginComponent implements OnInit, OnDestroy {
   public isSb1BankId = false;
   public isSB1Bank = false;
   bank: BankVo | null;
+  animationType = getAnimationStyles();
 
   constructor(
     private fb: FormBuilder,
@@ -68,7 +71,8 @@ export class CrawlerLoginComponent implements OnInit, OnDestroy {
     private userService: UserService,
     private envService: EnvService,
     private contactService: ContactService,
-    private snackBar: SnackBarService
+    private snackBar: SnackBarService,
+    private messageService: MessageBannerService
   ) {}
 
   ngOnInit(): void {
@@ -178,9 +182,16 @@ export class CrawlerLoginComponent implements OnInit, OnDestroy {
       (_) => {
         this.isLoading = false;
         this.router.navigate(['/']);
-        this.snackBar.openSuccessSnackBar(
+        // this.snackBar.openSuccessSnackBar(
+        //   'Du får beskjed når din bank er tilgjengelig',
+        //   1.2
+        // );
+
+        this.messageService.setView(
           'Du får beskjed når din bank er tilgjengelig',
-          1.2
+          4000,
+          this.animationType.DROP_DOWN_UP,
+          false
         );
       },
       (err) => {
