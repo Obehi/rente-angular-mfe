@@ -8,12 +8,15 @@
       <p class="warning" *ngIf="shouldShowBankWarningMessage">
         Vi opplever at {{ bank?.label }} sperrer sine kunder fra å innhente egne
         lånedata. Derfor har vi laget en løsning hvor du selv fyller inn dine
-        lånedata. Lese mer om hvor du finner disse dataene
-        <a
-          class="link"
-          href="https://blogg.renteradar.no/slik-finner-du-din-rente-og-lanedata-i-dnbs-mobil-og-nettbank/"
-          >her</a
-        >.
+        lånedata.
+        <span *ngIf="bank?.name === 'DNB'">
+          Les mer om hvor du finner disse dataene
+          <a
+            class="link"
+            href="https://blogg.renteradar.no/slik-finner-du-din-rente-og-lanedata-i-dnbs-mobil-og-nettbank/"
+            >her</a
+          >.
+        </span>
         <br />
         <br />
         Velg identifikasjonsmetode nedenfor for å bruke denne løsningen.
