@@ -17,7 +17,7 @@ import {
   FormControl,
   Validators
 } from '@angular/forms';
-import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { COMMA, ENTER, S } from '@angular/cdk/keycodes';
 import { combineLatest, Observable, of, Subject } from 'rxjs';
 import {
   catchError,
@@ -61,6 +61,16 @@ import {
 } from '@angular/animations';
 import { PropertySelectDialogComponent } from '@features/first-buyers/components/property-select-dialog/property-select-dialog.component';
 import { MembershipService } from '@services/membership.service';
+
+export enum SubscriberString {
+  email = 'email',
+  income = 'income',
+  memberships = 'memberships',
+  checkRateReminderType = 'checkRateReminderType',
+  fetchCreditLinesOnly = 'fetchCreditLinesOnly',
+  noAdditionalProductsRequired = 'noAdditionalProductsRequired',
+  interestedInEnvironmentMortgages = 'interestedInEnvironmentMortgages'
+}
 
 @Component({
   selector: 'rente-blue-profile',
@@ -162,6 +172,7 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
   }
 
   ngOnInit(): void {
+    console.log(SubscriberString.email);
     this.loansService.getPreferencesDto().subscribe(
       (res) => {
         this.isLoading = false;
@@ -352,15 +363,34 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
     }
   }
 
+  beforeUpdate(args: SubscriberString): void {
+    this.canLeavePage = false;
+    this.loadingStates[args] = true;
+  }
+
+  afterUpdate(args: SubscriberString): void {
+    this.loadingStates[args] = false;
+    this.canNavigateBooolean$.next(true);
+    this.canLeavePage = true;
+  }
+
   subscribeToControllers(): void {
+    const s = SubscriberString;
+    const email = s.email;
+    const income = s.income;
+    const memberships = s.memberships;
+    const checkRateReminderType = s.checkRateReminderType;
+    const fetchCreditLinesOnly = s.fetchCreditLinesOnly;
+    const noAdditionalProductsRequired = s.noAdditionalProductsRequired;
+    const interestedInEnvironmentMortgages = s.interestedInEnvironmentMortgages;
+
     combineLatest([
-      this.profileForm.get('email')?.valueChanges.pipe(
+      this.profileForm.get(email)?.valueChanges.pipe(
         distinctUntilChanged(),
-        filter(() => this.profileForm.get('email')!.valid),
+        filter(() => this.profileForm.get(email)!.valid),
         debounceTime(1000),
         tap(() => {
-          this.canLeavePage = false;
-          this.loadingStates['email'] = true;
+          this.beforeUpdate(email);
         }),
         switchMap(() => {
           return this.loansService.updateUserPreferences(
@@ -368,23 +398,19 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
           );
         }),
         catchError(() => {
-          this.loadingStates['email'] = false;
-          return of('email');
+          this.loadingStates[email] = false;
+          return of(email);
         }),
         tap(() => {
-          console.log(this.getPreferencesDto());
-          this.loadingStates['email'] = false;
-          this.canNavigateBooolean$.next(true);
-          this.canLeavePage = true;
+          this.afterUpdate(email);
         })
       ),
-      this.profileForm.get('income')?.valueChanges.pipe(
+      this.profileForm.get(income)?.valueChanges.pipe(
         distinctUntilChanged(),
         debounceTime(1000),
-        filter(() => this.profileForm.get('income')!.valid),
+        filter(() => this.profileForm.get(income)!.valid),
         tap(() => {
-          this.canLeavePage = false;
-          this.loadingStates['income'] = true;
+          this.beforeUpdate(income);
         }),
         switchMap(() => {
           return this.loansService.updateUserPreferences(
@@ -392,17 +418,14 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
           );
         }),
         tap(() => {
-          this.loadingStates['income'] = false;
-          this.canNavigateBooolean$.next(true);
-          this.canLeavePage = true;
+          this.afterUpdate(income);
         })
       ),
       this.membershipCtrl.valueChanges.pipe(
         distinctUntilChanged(),
         debounceTime(100),
         tap(() => {
-          this.canLeavePage = false;
-          this.loadingStates['memberships'] = true;
+          this.beforeUpdate(memberships);
         }),
         switchMap(() => {
           return this.loansService.updateUserPreferences(
@@ -410,18 +433,14 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
           );
         }),
         tap(() => {
-          this.loadingStates['memberships'] = false;
-          console.log(this.loadingStates.memberships);
-          this.canNavigateBooolean$.next(true);
-          this.canLeavePage = true;
+          this.afterUpdate(memberships);
         })
       ),
-      this.preferencesForm.get('checkRateReminderType')?.valueChanges.pipe(
+      this.preferencesForm.get(checkRateReminderType)?.valueChanges.pipe(
         distinctUntilChanged(),
         debounceTime(100),
         tap(() => {
-          this.canLeavePage = false;
-          this.loadingStates['checkRateReminderType'] = true;
+          this.beforeUpdate(checkRateReminderType);
         }),
         switchMap(() => {
           return this.loansService.updateUserPreferences(
@@ -429,17 +448,14 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
           );
         }),
         tap(() => {
-          this.loadingStates['checkRateReminderType'] = false;
-          this.canNavigateBooolean$.next(true);
-          this.canLeavePage = true;
+          this.afterUpdate(checkRateReminderType);
         })
       ),
-      this.preferencesForm.get('fetchCreditLinesOnly')?.valueChanges.pipe(
+      this.preferencesForm.get(fetchCreditLinesOnly)?.valueChanges.pipe(
         distinctUntilChanged(),
         debounceTime(500),
         tap(() => {
-          this.canLeavePage = false;
-          this.loadingStates['fetchCreditLinesOnly'] = true;
+          this.beforeUpdate(fetchCreditLinesOnly);
         }),
         switchMap(() => {
           return this.loansService.updateUserPreferences(
@@ -447,19 +463,31 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
           );
         }),
         tap(() => {
-          this.loadingStates['fetchCreditLinesOnly'] = false;
-          this.canNavigateBooolean$.next(true);
-          this.canLeavePage = true;
+          this.afterUpdate(fetchCreditLinesOnly);
+        })
+      ),
+      this.preferencesForm.get(noAdditionalProductsRequired)?.valueChanges.pipe(
+        distinctUntilChanged(),
+        debounceTime(500),
+        tap(() => {
+          this.beforeUpdate(noAdditionalProductsRequired);
+        }),
+        switchMap(() => {
+          return this.loansService.updateUserPreferences(
+            this.getPreferencesDto()
+          );
+        }),
+        tap(() => {
+          this.afterUpdate(noAdditionalProductsRequired);
         })
       ),
       this.preferencesForm
-        .get('noAdditionalProductsRequired')
+        .get(interestedInEnvironmentMortgages)
         ?.valueChanges.pipe(
           distinctUntilChanged(),
           debounceTime(500),
           tap(() => {
-            this.canLeavePage = false;
-            this.loadingStates['noAdditionalProductsRequired'] = true;
+            this.beforeUpdate(interestedInEnvironmentMortgages);
           }),
           switchMap(() => {
             return this.loansService.updateUserPreferences(
@@ -467,29 +495,7 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
             );
           }),
           tap(() => {
-            this.loadingStates['noAdditionalProductsRequired'] = false;
-            this.canNavigateBooolean$.next(true);
-            this.canLeavePage = true;
-          })
-        ),
-      this.preferencesForm
-        .get('interestedInEnvironmentMortgages')
-        ?.valueChanges.pipe(
-          distinctUntilChanged(),
-          debounceTime(500),
-          tap(() => {
-            this.canLeavePage = false;
-            this.loadingStates['interestedInEnvironmentMortgages'] = true;
-          }),
-          switchMap(() => {
-            return this.loansService.updateUserPreferences(
-              this.getPreferencesDto()
-            );
-          }),
-          tap(() => {
-            this.loadingStates['interestedInEnvironmentMortgages'] = false;
-            this.canNavigateBooolean$.next(true);
-            this.canLeavePage = true;
+            this.afterUpdate(interestedInEnvironmentMortgages);
           })
         ),
       this.preferencesForm
