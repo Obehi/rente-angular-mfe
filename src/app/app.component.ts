@@ -5,9 +5,6 @@ import { MetaService } from '@shared/services/meta.service';
 import { TitleService } from '@services/title.service';
 import { LocalStorageService } from '@services/local-storage.service';
 import { ROUTES_MAP } from '@config/routes-config';
-import { MessageBannerService } from '@shared/services/message-banner.service';
-
-import { AuthService } from '@services/remote-api/auth.service';
 
 @Component({
   selector: 'rente-root',
@@ -25,9 +22,7 @@ export class AppComponent implements OnInit {
     private route: ActivatedRoute,
     private metaService: MetaService,
     private titleService: TitleService,
-    private localStorageService: LocalStorageService,
-    private messageService: MessageBannerService,
-    private auth: AuthService
+    private localStorageService: LocalStorageService
   ) {}
 
   onActivate(): void {

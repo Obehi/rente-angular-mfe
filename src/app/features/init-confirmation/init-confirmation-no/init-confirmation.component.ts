@@ -34,6 +34,8 @@ import { Mask } from '@shared/constants/mask';
 import { OptimizeService } from '@services/optimize.service';
 import { ROUTES_MAP } from '@config/routes-config';
 import { CustomLangTextService } from '@services/custom-lang-text.service';
+import { MessageBannerService } from '@services/message-banner.service';
+import { getAnimationStyles } from '@shared/animations/animationEnums';
 
 @Component({
   selector: 'rente-init-confirmation-sv',
@@ -56,6 +58,7 @@ export class InitConfirmationNoComponent implements OnInit {
   public mask = Mask;
   public isAddressNeeded = false;
   public isNameNeeded = true;
+  public animationType = getAnimationStyles();
   @ViewChild('membershipInput') membershipInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete: MatAutocomplete;
 
@@ -67,7 +70,8 @@ export class InitConfirmationNoComponent implements OnInit {
     private router: Router,
     public dialog: MatDialog,
     public customLangTextService: CustomLangTextService,
-    private logging: LoggingService
+    private logging: LoggingService,
+    private messageBanner: MessageBannerService
   ) {
     this.filteredMemberships = this.membershipCtrl.valueChanges.pipe(
       startWith(null),
@@ -210,9 +214,15 @@ export class InitConfirmationNoComponent implements OnInit {
           this.logging.SubSystem.UserConfirmation,
           '9:USERINFO_SENT_SUCCESSFUL_REDIRECTING_TO_OFFERS'
         );
-        this.snackBar.openSuccessSnackBar(
+        // this.snackBar.openSuccessSnackBar(
+        //   this.customLangTextService.getSnackBarUpdatedMessage(),
+        //   1.2
+        // );
+        this.messageBanner.setView(
           this.customLangTextService.getSnackBarUpdatedMessage(),
-          1.2
+          3000,
+          this.animationType.DROP_DOWN_UP,
+          'success'
         );
       },
       (err) => {
@@ -227,6 +237,12 @@ export class InitConfirmationNoComponent implements OnInit {
           err
         );
         this.router.navigate(['/dashboard/' + ROUTES_MAP.property]);
+        this.messageBanner.setView(
+          this.customLangTextService.getSnackBarErrorMessage(),
+          3000,
+          this.animationType.DROP_DOWN_UP,
+          'error'
+        );
       }
     );
   }

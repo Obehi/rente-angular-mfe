@@ -1,15 +1,60 @@
 @import '../../../../../styles/theme/_colors.scss';
 
-.dropdownbanner {
+.slideleftright {
   position: absolute;
-  // margin-bottom: 20;
-  // top: 0px;
   font: bold;
   text-align: center;
   width: 100%;
-  // background-color: lightpink;
   background: linear-gradient(180deg, #162537, #183a63 10.08%) !important;
   color: azure;
   margin: auto;
   padding: 20px;
+}
+
+.dropdownupdash,
+.dropdownup {
+  position: absolute;
+  width: 40%;
+  text-align: center;
+  border-radius: 10px;
+  padding: 10px;
+  margin: auto;
+  top: 65px;
+  left: 30%;
+  z-index: 1;
+
+  @media (max-width: 600px) {
+    width: 90%;
+    left: 18px;
+    top: 66px;
+  }
+}
+
+.dropdownupdash {
+  top: 125px;
+  left: 30%;
+
+  @media (max-width: 600px) {
+    width: 70%;
+    left: 15%;
+    top: 66px;
+  }
+}
+
+.success {
+  background: $primary;
+  color: #ffffff;
+  box-shadow: rgba(67, 70, 69, 0.63) 0px 5px 15px;
+}
+
+.error {
+  background: $red;
+  color: #000000;
+  box-shadow: rgba(70, 67, 67, 0.63) 0px 5px 15px;
+}
+
+.general {
+  background: black;
+  color: $fountainBlue;
+  box-shadow: rgba(13, 38, 48, 0.63) 0px 5px 15px;
 }

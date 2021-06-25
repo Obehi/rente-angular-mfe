@@ -6,6 +6,7 @@ import { OptimizeService } from '@services/optimize.service';
 import { AuthService } from '@services/remote-api/auth.service';
 import { EnvService } from '@services/env.service';
 import { MessageBannerService } from '@services/message-banner.service';
+import { getAnimationStyles } from '@shared/animations/animationEnums';
 
 @Component({
   selector: 'rente-dashboard-tabs-desktop',
@@ -19,6 +20,7 @@ export class DashboardTabsDesktopComponent implements OnInit {
   public isMobile: boolean;
   public activeLinkIndex: number | null = -1;
   public imgLink: any;
+  public animationType = getAnimationStyles();
 
   // General navLinks to switch between norwegian and  swedish version
   public navLinks: string[] | undefined;
@@ -131,7 +133,12 @@ export class DashboardTabsDesktopComponent implements OnInit {
     this.auth.logout();
     // Tried to use a stream to do this in app.component, didnt work but it works with 0ms timeout righ here
     setTimeout(() => {
-      this.messageService.setView('Du er nå logget ut', 4000);
+      this.messageService.setView(
+        'Du er nå logget ut',
+        4000,
+        this.animationType.DROP_DOWN_UP,
+        'success'
+      );
     }, 0);
   }
 
