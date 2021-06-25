@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { API_URL_MAP } from '@config/api-url-config';
 import { storageName } from '@config/index';
 import { GenericHttpService } from '@services/generic-http.service';
+import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { LocalStorageService } from './../local-storage.service';
 import { CustomLangTextService } from '@services/custom-lang-text.service';
@@ -12,7 +13,6 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
-  private loggedOutSubject = new BehaviorSubject<string>('LoggedIn');
   constructor(
     private http: GenericHttpService,
     private localStorageService: LocalStorageService,
@@ -33,6 +33,24 @@ export class AuthService {
     return this.http.post(url, data).pipe(tap(this.handleLogin.bind(this)));
   }
 
+  public loginBankIdStep1(): Observable<any> {
+    const url = `${API_URL_MAP.auth.base}${API_URL_MAP.auth.bankidLogin}`;
+
+    return this.http.post(url);
+  }
+
+  public loginBankIdStep2(sessionId: string, bank: string): Observable<any> {
+    const url = `${API_URL_MAP.auth.base}${API_URL_MAP.auth.bankidLogin}/${sessionId}`;
+
+    const data = {
+      bank: bank
+    };
+
+    return this.http
+      .postWithParams(url, data)
+      .pipe(tap(this.handleLogin.bind(this)));
+  }
+
   public loginWithToken(token: string) {
     const url = `${API_URL_MAP.auth.base}${API_URL_MAP.auth.token}`;
     const data = {
@@ -45,14 +63,11 @@ export class AuthService {
     const url = `${API_URL_MAP.auth.base}${API_URL_MAP.auth.logout}`;
 
     this.http.post(url, {}).subscribe(() => {
-      this.loggedOutSubject.next('LoggedOut');
       this.router.navigate(['/']);
+      console.log('etter navigate');
+
       this.localStorageService.clear();
     });
-  }
-
-  public get logoutSubject(): BehaviorSubject<string> {
-    return this.loggedOutSubject;
   }
 
   public getFirstTimeLoanToken(debtData) {

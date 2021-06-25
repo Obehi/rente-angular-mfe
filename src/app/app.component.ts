@@ -5,10 +5,6 @@ import { MetaService } from '@shared/services/meta.service';
 import { TitleService } from '@services/title.service';
 import { LocalStorageService } from '@services/local-storage.service';
 import { ROUTES_MAP } from '@config/routes-config';
-import { MessageBannerService } from '@shared/services/message-banner.service';
-
-import { AuthService } from '@services/remote-api/auth.service';
-import { getAnimationStyles } from '@shared/animations/animationEnums';
 
 @Component({
   selector: 'rente-root',
@@ -21,16 +17,12 @@ export class AppComponent implements OnInit {
   public title = 'rente-front-end';
   public navigationSubscription: Subscription;
   public showCookieAcc: boolean;
-  public animStyle = getAnimationStyles();
-
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private metaService: MetaService,
     private titleService: TitleService,
-    private localStorageService: LocalStorageService,
-    private messageService: MessageBannerService,
-    private auth: AuthService
+    private localStorageService: LocalStorageService
   ) {}
 
   onActivate(): void {
@@ -53,16 +45,6 @@ export class AppComponent implements OnInit {
     if (!this.localStorageService.getItem(AppComponent.CookiesAcceptedKey)) {
       this.showCookieAcc = true;
     }
-
-    this.auth.logoutSubject.subscribe((val) => {
-      if (val === 'LoggedOut') {
-        this.messageService.setView(
-          'Du er nå logget ut',
-          3000,
-          this.animStyle.SLIDE_LEFT_RIGHT
-        );
-      }
-    });
   }
 
   private changeTitles(): void {

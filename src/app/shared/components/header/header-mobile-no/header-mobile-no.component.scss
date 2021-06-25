@@ -1,0 +1,145 @@
+@import '../../../../../styles/theme/_colors.scss';
+.nav-space {
+  height: 60px;
+}
+
+.highlight {
+  background: #183a63;
+  padding: 10px;
+  border-radius: 10px;
+}
+nav {
+  top: 0;
+  z-index: 10;
+  position: fixed;
+  height: 60px;
+  width: 100%;
+  background-color: $blue;
+
+  .inner-nav {
+    max-width: 1010px;
+    padding: 20px;
+    margin: auto;
+    position: relative;
+    height: 100%;
+  }
+  img {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 20px;
+  }
+
+  .menu-container {
+    float: right;
+    height: 60px;
+    top: -20px;
+    position: relative;
+    width: 60px;
+    right: -20px;
+    .menu {
+      position: relative;
+      width: 18px;
+      height: 14px;
+      float: right;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      span {
+        position: absolute;
+        background-color: white;
+        height: 2px;
+        width: 100%;
+        &:first-of-type {
+          top: 0;
+        }
+        &:nth-of-type(2) {
+          top: 50%;
+          transform: translateY(-50%);
+        }
+        &:last-of-type {
+          bottom: 0;
+        }
+      }
+    }
+  }
+}
+
+.mobile-menu {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 60px;
+  min-height: calc(100vh - 60px);
+  background-color: $blue;
+  text-align: center;
+  padding: 40px;
+  a {
+    text-decoration: none;
+    h3 {
+      color: white;
+      display: block;
+      margin-bottom: 40px;
+    }
+  }
+
+  // Special case for FAQ link
+  span {
+    a {
+      h3 {
+        color: white;
+        display: block;
+        margin-bottom: 40px;
+      }
+    }
+  }
+  a.active-link h3 {
+    color: $primary;
+  }
+}
+
+@media (min-width: 600px) {
+  nav {
+    .menu-container {
+      width: unset;
+      top: 0;
+      position: absolute;
+      right: 20px;
+      float: unset;
+      .desktop-menu {
+        top: 50%;
+        transform: translateY(-50%);
+        position: relative;
+        a.active-link {
+          color: $primary;
+        }
+        a {
+          color: white;
+          text-decoration: none;
+          font-size: 14px;
+          margin-left: 40px;
+          &:hover {
+            color: $primary;
+          }
+        }
+      }
+    }
+  }
+}
+
+.mobile {
+  display: block;
+}
+
+.desktop {
+  display: none;
+}
+
+@media (min-width: 992px) {
+  .desktop {
+    display: block;
+  }
+  .mobile {
+    display: none;
+  }
+}

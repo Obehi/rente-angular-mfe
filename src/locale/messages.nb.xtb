@@ -1644,4 +1644,11 @@ Fortsett
   <translation id="offer.card.mobileRatingNotAvailable" desc="offer-card" meaning="               “application-time">
             Webbsida
           </translation>
+  <translation id="login.error4”" desc="login" meaning="“control-error">
+        Det har skjedd en feil i tilkobling mellom teleoperatøren og din
+        telefon. Vent litt og prøv igjen senere.
+      </translation>
+  <translation id="offer.card.big.customerSatisfaction”" desc="offer-card-big" meaning="             “customer-satisfaction">
+          Kundetilfredshet
+        </translation>
 </translationbundle>

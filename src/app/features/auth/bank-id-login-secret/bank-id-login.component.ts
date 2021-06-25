@@ -10,7 +10,7 @@ import {
   Validators
 } from '@angular/forms';
 import { MatDialog } from '@angular/material';
-import { DialogInfoServiceComponent } from '../bank-id-login/dialog-info-service/dialog-info-service.component';
+import { DialogInfoServiceComponent } from '../crawler-login/dialog-info-service/dialog-info-service.component';
 import { MetaService } from '@services/meta.service';
 import { TitleService } from '@services/title.service';
 import { customMeta } from '../../../config/routes-config';

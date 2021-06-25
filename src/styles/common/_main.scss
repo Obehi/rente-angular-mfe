@@ -43,6 +43,17 @@ hr {
   padding-top: 60px;
 }
 
+.content-dashboard {
+  background: linear-gradient(180deg, #162537 135px, #183a63 450px) !important;
+  @media (min-width: 992px) {
+    padding-top: 30px !important;
+  }
+
+  @media (max-width: 992px) {
+    padding-top: 0px !important;
+  }
+}
+
 .mobile {
   display: block;
 }

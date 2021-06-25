@@ -22,6 +22,7 @@ import { EmailRedirectSVComponent } from '@features/email-redirect/email-redirec
 import { AuthGuard } from '@shared/guards/auth.guard';
 import { NoLoansComponent } from '@features/dashboard/no-loans/no-loans.component';
 import { ConfirmationProperty } from './features/init-confirmation/init-confirmation-sv/confirmation-property-sv/confirmation-property-sv.component';
+import { Sb1DisabledComponent } from '@features/sb1-disabled/sb1-disabled.component';
 
 const commonRoutes: Routes = [
   {
@@ -218,6 +219,17 @@ const commonRoutes: Routes = [
   {
     path: ROUTES_MAP.getNotified,
     component: GetNotifiedLangGenericComponent,
+    data: {
+      title: customMeta.faabeskjed.title,
+      meta: {
+        name: defaultMeta.name,
+        description: customMeta.faabeskjed.description
+      }
+    }
+  },
+  {
+    path: 'sparebank1',
+    component: Sb1DisabledComponent,
     data: {
       title: customMeta.faabeskjed.title,
       meta: {

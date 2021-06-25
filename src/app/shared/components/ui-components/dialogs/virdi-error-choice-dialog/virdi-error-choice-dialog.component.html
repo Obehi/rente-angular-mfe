@@ -1,0 +1,53 @@
+<div class="top">
+  <!--  <img src="../../../../../../assets/icons/warning-round-yellow.svg"> -->
+  <h2>{{ data.header }}</h2>
+  <p>{{ data.text }}</p>
+
+  <h4>Vi klarte dessverre ikke estimere din boligverdi</h4>
+
+  <p class="no-margin">Det kan være flere grunner til dette:</p>
+  <ul>
+    <li>Feil adresse eller postnummer</li>
+    <li>Vi greier ikke estimere verdi på fritidsboliger</li>
+  </ul>
+
+  <div class="info-box">
+    <p>
+      Sjekk at adressen er riktig, eller velg <b>"Legg til boligverdi"</b> og
+      legg inn verdien manuelt
+    </p>
+    <div class="address-grid">
+      <div class="left">
+        <p>Adresse:</p>
+        <p>Postnummer:</p>
+        <p>Adresse:</p>
+      </div>
+
+      <div class="right">
+        <p>{{ data.address.street }}</p>
+        <p>{{ data.address.zip }}</p>
+        <p>{{ data.address.apartmentSize }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="bottom double">
+  <rente-button
+    i18n="“close|button@@close”"
+    cdkFocusInitial
+    color="primary-hollow"
+    (click)="onClose()"
+  >
+    {{ data.cancelText }}
+  </rente-button>
+
+  <rente-button
+    i18n="“close|button@@close”"
+    cdkFocusInitial
+    color="primary"
+    (click)="onConfirm()"
+  >
+    {{ data.confirmText }}
+  </rente-button>
+</div>

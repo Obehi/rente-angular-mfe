@@ -28,7 +28,7 @@ import { UserService } from '@services/remote-api/user.service';
 import { LoansService } from '@services/remote-api/loans.service';
 import { LocalStorageService } from '@services/local-storage.service';
 import { BankVo, BankUtils } from '@shared/models/bank';
-import { ROUTES_MAP } from '@config/routes-config';
+import { ROUTES_MAP, ROUTES_MAP_NO } from '@config/routes-config';
 import { LoggingService } from '@services/logging.service';
 import { EnvService } from '@services/env.service';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
@@ -41,6 +41,7 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 export class LoginStatusComponent implements OnInit, OnDestroy {
   @Input() bank: BankVo;
   @Input() userData: any = {};
+  @Input() isSb1App = false;
   @Output() returnToInputPage = new EventEmitter<any>();
 
   public viewStatus: ViewStatus = new ViewStatus();
@@ -77,6 +78,16 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
   public tinkCode: any = null;
   BANKID_TIMEOUT_TIME;
   bankIdTimeoutTime = BANKID_TIMEOUT_TIME;
+
+  get isSB1Bank(): boolean {
+    return (
+      (this.bank &&
+        this.bank.name &&
+        this.bank.name.indexOf('SPAREBANK_1') > -1) ||
+      false
+    );
+  }
+
   constructor(
     private router: Router,
     private authService: AuthService,
@@ -109,6 +120,11 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
         ? 34
         : 25;
     this.firstStepTimer = this.bank.name === 'DNB' ? 28 : 10;
+
+    if (this.isSB1Bank) {
+      this.firstStepTimer = 30;
+      this.bankIdTimeoutTime = 120;
+    }
     if (this.bank.name === 'DNB') {
       this.bankIdTimeoutTime = 120;
     }
@@ -236,9 +252,17 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
 
   sendUserData(resendData = false): void {
     const dataObj = {
-      birthdateOrSsn: this.userData.ssn || this.userData.birthdate,
-      mobile: this.userData.phone
+      birthdateOrSsn: this.userData.ssn || this.userData.birthdate
     };
+
+    if (this.userData.phone) {
+      dataObj['mobile'] = this.userData.phone;
+    }
+
+    if (this.userData.loginType) {
+      dataObj['loginType'] = '1';
+    }
+
     this.setDefaultSteps();
     const data = JSON.stringify(dataObj);
     this.passPhrase = '';
@@ -443,6 +467,16 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
             this.unsubscribeEverything();
             break;
 
+          case BANKID_STATUS.ERROR_4:
+            this.unsubscribeEverything();
+            this.router.navigate(
+              ['/autentisering/' + ROUTES_MAP_NO.bankIdLogin],
+              {
+                state: { data: { bank: this.bank, redirect: true } }
+              }
+            );
+            break;
+
           case BANKID_STATUS.PROCESS_STARTED:
             this.initTimer(this.bankIdTimeoutTime);
             this.initConnectionTimer();
@@ -461,6 +495,22 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
             this.viewStatus.isProcessStarted = true;
             break;
           case BANKID_STATUS.PASSPHRASE_CONFIRM:
+            this.viewStatus.passPhraseConfirmIsSet = true;
+            this.isShowPassPhrase = true;
+            this.isShowTimer = false;
+            this.passPhrase = response.passphrase;
+            this.loginStep1Status = MESSAGE_STATUS.SUCCESS;
+            this.loginStep2Status = MESSAGE_STATUS.LOADING;
+            break;
+
+          case BANKID_STATUS.BANK_ID_CONFIRM:
+            this.isShowPassPhrase = true;
+            this.isShowTimer = false;
+            this.passPhrase = response.passphrase;
+            this.loginStep1Status = MESSAGE_STATUS.SUCCESS;
+            this.loginStep2Status = MESSAGE_STATUS.LOADING;
+            break;
+          case BANKID_STATUS.APP_CONFIRM:
             this.isShowPassPhrase = true;
             this.isShowTimer = false;
             this.passPhrase = response.passphrase;
@@ -468,6 +518,13 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
             this.loginStep2Status = MESSAGE_STATUS.LOADING;
             break;
           case BANKID_STATUS.PASSPHRASE_CONFIRM_SUCCESS:
+            this.startCrawlingTimer();
+            this.isShowPassPhrase = false;
+            this.viewStatus.isPassphraseConfirmSuccess = true;
+            this.loginStep2Status = MESSAGE_STATUS.SUCCESS;
+            this.loginStep3Status = MESSAGE_STATUS.LOADING;
+            break;
+          case BANKID_STATUS.APP_CONFIRM_SUCCESS:
             this.startCrawlingTimer();
             this.isShowPassPhrase = false;
             this.viewStatus.isPassphraseConfirmSuccess = true;
@@ -494,6 +551,19 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
             this.isShowPassPhrase = false;
             this.viewStatus.isPassphraseConfirmFail = true;
             this.loginStep2Status = MESSAGE_STATUS.ERROR;
+            this.unsubscribeEverything();
+            break;
+          case BANKID_STATUS.APP_CONFIRM_FAIL:
+            this.isShowPassPhrase = false;
+            this.viewStatus.isSb1appConfirmFailError = true;
+            this.loginStep2Status = MESSAGE_STATUS.ERROR;
+            this.unsubscribeEverything();
+            break;
+          case BANKID_STATUS.NOT_VALID_DATA_PROVIDED_V2:
+            this.viewStatus.isSb1NotValidDataProvidedV2Error = true;
+            this.loginStep1Status = MESSAGE_STATUS.ERROR;
+            this.loginStep2Status = MESSAGE_STATUS.INFO;
+
             this.unsubscribeEverything();
             break;
           case BANKID_STATUS.CONFIRMATION_REQUIRED:
@@ -567,6 +637,16 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
           case BANKID_STATUS.BID_C167:
             this.viewStatus.isErrorBIDC167 = true;
             this.loginStep1Status = MESSAGE_STATUS.ERROR;
+            this.unsubscribeEverything();
+            break;
+          case BANKID_STATUS.BID_C325:
+            this.viewStatus.isErrorBIDC325 = true;
+            if (this.viewStatus.passPhraseConfirmIsSet) {
+              this.loginStep2Status = MESSAGE_STATUS.ERROR;
+            } else {
+              this.loginStep1Status = MESSAGE_STATUS.ERROR;
+            }
+
             this.unsubscribeEverything();
             break;
           case BANKID_STATUS.NO_LOANS:
