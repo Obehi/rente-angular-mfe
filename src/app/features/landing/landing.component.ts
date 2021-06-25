@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { timer } from 'rxjs';
 
 import { locale } from '@config/locale/locale';
@@ -9,7 +9,7 @@ import { SeoService } from '@services/seo.service';
   templateUrl: './landing.component.html',
   styleUrls: ['./landing.component.scss']
 })
-export class LandingComponent implements OnInit, AfterViewInit {
+export class LandingComponent implements OnInit {
   time = 0;
   isSweden = false;
 
@@ -33,16 +33,5 @@ export class LandingComponent implements OnInit, AfterViewInit {
         subscription.unsubscribe();
       }
     });
-  }
-
-  ngAfterViewInit(): void {
-    // const componentFactory = this.componentFactoryResolver.resolveComponentFactory(
-    //   DropdownBannerComponent
-    // );
-    // this.dropdownbanner.clear();
-    // const ddownComponent = <DropdownBannerComponent>(
-    //   this.dropdownbanner.createComponent(componentFactory).instance
-    // );
-    // ddownComponent.someProp = 'Hellow World!';
   }
 }
