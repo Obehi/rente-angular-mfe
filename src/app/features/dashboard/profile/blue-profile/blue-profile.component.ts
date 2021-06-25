@@ -62,7 +62,7 @@ import {
 import { PropertySelectDialogComponent } from '@features/first-buyers/components/property-select-dialog/property-select-dialog.component';
 import { MembershipService } from '@services/membership.service';
 
-export enum SubscriberString {
+export enum FormControlId {
   email = 'email',
   income = 'income',
   memberships = 'memberships',
@@ -172,7 +172,7 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
   }
 
   ngOnInit(): void {
-    console.log(SubscriberString.email);
+    console.log(FormControlId.email);
     this.loansService.getPreferencesDto().subscribe(
       (res) => {
         this.isLoading = false;
@@ -363,19 +363,19 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
     }
   }
 
-  beforeUpdate(args: SubscriberString): void {
+  beforeUpdate(args: FormControlId): void {
     this.canLeavePage = false;
     this.loadingStates[args] = true;
   }
 
-  afterUpdate(args: SubscriberString): void {
+  afterUpdate(args: FormControlId): void {
     this.loadingStates[args] = false;
     this.canNavigateBooolean$.next(true);
     this.canLeavePage = true;
   }
 
   subscribeToControllers(): void {
-    const s = SubscriberString;
+    const s = FormControlId;
     const email = s.email;
     const income = s.income;
     const memberships = s.memberships;
@@ -387,7 +387,7 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
     combineLatest([
       this.profileForm.get(email)?.valueChanges.pipe(
         distinctUntilChanged(),
-        filter(() => this.profileForm.get(email)!.valid),
+        filter(() => this.profileForm.get(FormControlId.email)?.valid || false),
         debounceTime(1000),
         tap(() => {
           this.beforeUpdate(email);
