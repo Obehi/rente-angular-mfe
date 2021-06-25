@@ -50,6 +50,7 @@ import { BarComponent } from './components/ui-components/bar/bar.component';
 import { PropertySelectComponent } from '@features/first-buyers/components/property-select/property-select.component';
 import { PropertySelectDialogComponent } from '@features/first-buyers/components/property-select-dialog/property-select-dialog.component';
 import { SpinnerComponent } from '@shared/components/ui-components/spinner/spinner.component';
+import { CheckmarkSuccessComponent } from '@shared/components/ui-components/checkmark-success/checkmark-success.component';
 const components = [
   HeaderLangGenericComponent,
   FooterComponent,
@@ -67,7 +68,8 @@ const components = [
   OfferDetailsLangGenericComponent,
   PropertySelectComponent,
   PropertySelectDialogComponent,
-  SpinnerComponent
+  SpinnerComponent,
+  CheckmarkSuccessComponent
 ];
 
 const services = [

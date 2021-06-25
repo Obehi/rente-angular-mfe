@@ -23,8 +23,13 @@
           />
           <rente-spinner
             class="email-income-spinner"
-            *ngIf="loadingStates.email"
+            *ngIf="loadingStates.email.loading"
           ></rente-spinner>
+          <rente-success
+            class="email-income-spinner"
+            *ngIf="loadingStates.email.success"
+          >
+          </rente-success>
         </mat-form-field>
         <div
           *ngIf="profileForm.controls['email'].touched"
@@ -68,9 +73,15 @@
           />
           <rente-spinner
             class="email-income-spinner"
-            *ngIf="loadingStates.income"
+            *ngIf="loadingStates.income.loading"
           ></rente-spinner>
+          <rente-success
+            class="email-income-spinner"
+            *ngIf="loadingStates.income.success"
+          >
+          </rente-success>
         </mat-form-field>
+
         <div
           *ngIf="profileForm.controls['income'].touched"
           class="error-message"
@@ -120,7 +131,7 @@
 
       <rente-button class="rente-button" color="blue-select">
         <mat-select
-          *ngIf="!loadingStates.memberships"
+          *ngIf="loadingStates.memberships.normal"
           [formControl]="membershipCtrl"
           [placeholder]="getMembershipPlaceholder() | truncate: 35"
           (click)="openPropertySelectDialog()"
@@ -128,8 +139,13 @@
         </mat-select>
         <rente-spinner
           class="membership-marked-spinner"
-          *ngIf="loadingStates.memberships"
+          *ngIf="loadingStates.memberships.loading"
         ></rente-spinner>
+        <rente-success
+          class="membership-marked-success"
+          *ngIf="loadingStates.memberships.success"
+        >
+        </rente-success>
       </rente-button>
       <hr />
       <h5 class="element">
@@ -140,7 +156,7 @@
       </h5>
       <rente-button class="rente-button" color="blue-select">
         <mat-select
-          *ngIf="!loadingStates.checkRateReminderType"
+          *ngIf="loadingStates.checkRateReminderType.normal"
           formControlName="checkRateReminderType"
           [placeholder]="'Velg'"
         >
@@ -152,8 +168,12 @@
         </mat-select>
         <rente-spinner
           class="membership-marked-spinner"
-          *ngIf="loadingStates.checkRateReminderType"
+          *ngIf="loadingStates.checkRateReminderType.loading"
         ></rente-spinner>
+        <rente-success
+          class="membership-marked-success"
+          *ngIf="loadingStates.checkRateReminderType.success"
+        ></rente-success>
       </rente-button>
       <hr />
     </div>
