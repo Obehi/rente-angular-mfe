@@ -17,6 +17,8 @@ import { locale } from '../../config/locale/locale';
 import { CustomLangTextService } from '@services/custom-lang-text.service';
 import { EnvService } from '@services/env.service';
 import { SeoService } from '@services/seo.service';
+import { MessageBannerService } from '@services/message-banner.service';
+import { getAnimationStyles } from '@shared/animations/animationEnums';
 
 @Component({
   selector: 'rente-contact-us',
@@ -28,6 +30,8 @@ export class ContactUsComponent implements OnInit {
   public mask = Mask;
   public isLoading: boolean;
   private locale = locale;
+  public animationType = getAnimationStyles();
+
   constructor(
     private fb: FormBuilder,
     private contactService: ContactService,
@@ -35,7 +39,8 @@ export class ContactUsComponent implements OnInit {
     private snackBar: SnackBarService,
     public customLangTextService: CustomLangTextService,
     private envService: EnvService,
-    private seoService: SeoService
+    private seoService: SeoService,
+    private messageService: MessageBannerService
   ) {}
 
   ngOnInit() {
@@ -87,9 +92,15 @@ export class ContactUsComponent implements OnInit {
       (_) => {
         this.isLoading = false;
         this.router.navigate(['/']);
-        this.snackBar.openSuccessSnackBar(
+        // this.snackBar.openSuccessSnackBar(
+        //   this.customLangTextService.getSnackBarSavedMessage(),
+        //   2
+        // );
+        this.messageService.setView(
           this.customLangTextService.getSnackBarSavedMessage(),
-          2
+          5000,
+          this.animationType.DROP_DOWN_UP,
+          'success'
         );
       },
       (err) => {

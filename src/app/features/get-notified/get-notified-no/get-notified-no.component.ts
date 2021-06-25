@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { BankVo } from '../../../shared/models/bank';
 import { ROUTES_MAP } from '@config/routes-config';
 import { GetNotifiedDialogComponent } from '../getNotifiedDialogComponent/getNotifiedDialogComponent.component';
@@ -19,7 +18,6 @@ import { ENTER, COMMA } from '@angular/cdk/keycodes';
 import { debounce } from 'rxjs/operators';
 import { ContactService } from '../../../shared/services/remote-api/contact.service';
 import { Router } from '@angular/router';
-import { SnackBarService } from '@services/snackbar.service';
 
 @Component({
   selector: 'rente-get-notified',
@@ -47,8 +45,6 @@ export class GetNotifiedNoComponent implements OnInit {
     private fb: FormBuilder,
     private contactService: ContactService,
     private router: Router,
-    private snackBar: SnackBarService,
-    private route: ActivatedRoute,
     private dialog: MatDialog
   ) {
     // state.bank is potentially sent through routing

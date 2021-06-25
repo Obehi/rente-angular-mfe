@@ -18,6 +18,7 @@ export class TopAnimationBannerComponent implements OnInit {
   public animationType: AnimationStylesEnum;
   public checkAnimationStyle = getAnimationStyles();
   public isDashboard: boolean;
+  public status: string;
 
   constructor() {}
 

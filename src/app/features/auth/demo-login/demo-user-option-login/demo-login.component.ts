@@ -58,7 +58,8 @@ export class DemoLoginComponent implements OnInit {
         this.messageService.setView(
           this.customLangTextService.getSnackBarErrorMessage(),
           5000,
-          this.animationType.DROP_DOWN_UP
+          this.animationType.DROP_DOWN_UP,
+          'error'
         );
       }
     );

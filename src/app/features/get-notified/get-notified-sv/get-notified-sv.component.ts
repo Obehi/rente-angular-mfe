@@ -16,6 +16,8 @@ import { debounce } from 'rxjs/operators';
 import { ContactService } from '../../../shared/services/remote-api/contact.service';
 import { Router } from '@angular/router';
 import { SnackBarService } from '@services/snackbar.service';
+import { MessageBannerService } from '@services/message-banner.service';
+import { getAnimationStyles } from '@shared/animations/animationEnums';
 
 @Component({
   selector: 'rente-get-notified',
@@ -35,6 +37,7 @@ export class GetNotifiedSvComponent implements OnInit {
   public allBanks: any[];
   public isLoading: boolean;
   public emailError = false;
+  public animationType = getAnimationStyles();
 
   @ViewChild('auto') matAutocomplete: MatAutocomplete;
 
@@ -43,6 +46,7 @@ export class GetNotifiedSvComponent implements OnInit {
     private contactService: ContactService,
     private router: Router,
     private snackBar: SnackBarService,
+    private messageService: MessageBannerService,
     private route: ActivatedRoute
   ) {}
 
@@ -98,9 +102,15 @@ export class GetNotifiedSvComponent implements OnInit {
       () => {
         this.isLoading = false;
         this.router.navigate(['/']);
-        this.snackBar.openSuccessSnackBar(
+        // this.snackBar.openSuccessSnackBar(
+        //   'Du får besked när din bank är tillgänglig',
+        //   3.2
+        // );
+        this.messageService.setView(
           'Du får besked när din bank är tillgänglig',
-          3.2
+          5000,
+          this.animationType.DROP_DOWN_UP,
+          'success'
         );
       },
       () => {

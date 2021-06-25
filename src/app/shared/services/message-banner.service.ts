@@ -27,7 +27,8 @@ export class MessageBannerService {
   setView(
     _newtext: string,
     _newtime: number,
-    _animationType: AnimationStylesEnum
+    _animationType: AnimationStylesEnum,
+    _status: string
   ): void {
     const factory = this.factoryResolver.resolveComponentFactory(
       TopAnimationBannerComponent
@@ -41,6 +42,7 @@ export class MessageBannerService {
     this.isDashboard.getDashboardState().subscribe((state) => {
       this._componentRef.instance.isDashboard = state;
     });
+    this._componentRef.instance.status = _status;
     this._componentRef.instance.animationType = _animationType;
     this._componentRef.instance.changeTimer(_newtime);
     this._componentRef.instance.displayText = _newtext;
