@@ -14,6 +14,18 @@
     <form class="p-0 border-0" [formGroup]="profileForm" novalidate change>
       <div class="field-box">
         <h4 class="text-white">E-mail</h4>
+
+        <mat-form-field class="white-input w-75" appearance="outline">
+          <input
+            placeholder="Skriv inn din e-mail"
+            matInput
+            formControlName="email"
+          />
+          <rente-spinner
+            class="email-income-spinner"
+            *ngIf="loadingStates.email"
+          ></rente-spinner>
+        </mat-form-field>
         <div
           *ngIf="profileForm.controls['email'].touched"
           class="error-message"
@@ -33,33 +45,10 @@
             Ikke gyldig email
           </rente-form-message>
         </div>
-        <mat-form-field class="white-input w-75" appearance="outline">
-          <input
-            placeholder="Skriv inn din e-mail"
-            matInput
-            formControlName="email"
-          />
-          <rente-spinner
-            class="email-income-spinner"
-            *ngIf="loadingStates.email"
-          ></rente-spinner>
-        </mat-form-field>
       </div>
       <div class="field-box">
         <h4 class="text-white">Din bruto årsinntekt</h4>
-        <div
-          *ngIf="profileForm.controls['income'].touched"
-          class="error-message"
-        >
-          <rente-form-message
-            class="text-left d-block"
-            [type]="'error'"
-            i18n="“issue-empty|profile@@profile.issueEmpty”"
-            *ngIf="profileForm.controls['income'].hasError('required')"
-          >
-            Kan ikke være tom
-          </rente-form-message>
-        </div>
+
         <mat-form-field class="white-input w-75" appearance="outline">
           <input
             i18n="“income-per-year|profile@@profile.income"
@@ -82,6 +71,19 @@
             *ngIf="loadingStates.income"
           ></rente-spinner>
         </mat-form-field>
+        <div
+          *ngIf="profileForm.controls['income'].touched"
+          class="error-message"
+        >
+          <rente-form-message
+            class="d-block"
+            [type]="'error'"
+            i18n="“issue-empty|profile@@profile.issueEmpty”"
+            *ngIf="profileForm.controls['income'].hasError('required')"
+          >
+            Kan ikke være tom
+          </rente-form-message>
+        </div>
       </div>
     </form>
     <!-- <div class="email-form">
@@ -186,6 +188,7 @@
         Vis tilbud som krever andre produkter eller har sækrav: feks. bytte av
         nettbank og aktiv lønnskonto
       </p>
+
       <mat-slide-toggle
         class="button"
         (change)="offerTwoIsChecked = !offerTwoIsChecked"
