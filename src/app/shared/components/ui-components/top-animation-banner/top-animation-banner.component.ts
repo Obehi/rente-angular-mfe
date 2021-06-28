@@ -14,7 +14,7 @@ import { DropDownUp } from '@shared/animations/drop-down-up';
 })
 export class TopAnimationBannerComponent implements OnInit {
   public animationState: boolean;
-  public displayText = 'Hello!';
+  public displayText = '';
   public animationType: AnimationStylesEnum;
   public checkAnimationStyle = getAnimationStyles();
   public isDashboard: boolean;
