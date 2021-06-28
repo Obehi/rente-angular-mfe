@@ -7,7 +7,11 @@
     Beste tilbud:
   </h3>
 
-  <div *ngIf="isMobile && onScroll" class="sticky-table-header">
+  <div
+    *ngIf="isMobile"
+    class="sticky-table-header"
+    [@onScroll]="onScroll ? true : false"
+  >
     <p
       i18n="“your-interest|offers-main@@offers.mainPage.yourInterestStickyBox”"
     >

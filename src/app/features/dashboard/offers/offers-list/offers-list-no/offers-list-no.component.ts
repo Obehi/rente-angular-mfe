@@ -3,10 +3,24 @@ import { Offers } from './../../../../../shared/models/offers';
 import { OptimizeService } from '@services/optimize.service';
 import { EnvService } from '@services/env.service';
 import { fromEvent } from 'rxjs';
+import {
+  animate,
+  state,
+  style,
+  transition,
+  trigger
+} from '@angular/animations';
 @Component({
   selector: 'rente-offers-list',
   templateUrl: './offers-list-no.component.html',
-  styleUrls: ['./offers-list-no.component.scss']
+  styleUrls: ['./offers-list-no.component.scss'],
+  animations: [
+    trigger('onScroll', [
+      state('true', style({ opacity: 1 })),
+      state('false', style({ opacity: 0, marginTop: '-80px' })),
+      transition('false <=> true', animate('200ms ease-out'))
+    ])
+  ]
 })
 export class OffersListNoComponent implements OnInit {
   @Input() offersInfo: Offers;
@@ -48,8 +62,6 @@ export class OffersListNoComponent implements OnInit {
         this.onScroll = false;
       }
     });
-
-    console.log(this.onScroll);
 
     this.variation = this.getVariation();
 
