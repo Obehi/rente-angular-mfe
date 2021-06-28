@@ -5,7 +5,7 @@ import {
   AddressCreationDto
 } from '@services/remote-api/loans.service';
 import { UserService } from '@services/remote-api/user.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import {
   Validators,
   AbstractControl,
@@ -22,12 +22,14 @@ import { CustomLangTextService } from '@services/custom-lang-text.service';
 import { Mask } from '@shared/constants/mask';
 import { ROUTES_MAP_SV } from '@config/routes-config';
 import { CheckBoxItem } from '@shared/components/ui-components/checkbox-container/checkbox-container.component';
+import { GlobalStateService } from '@services/global-state.service';
+
 @Component({
   selector: 'rente-init-confirmation-sv',
   templateUrl: './init-confirmation.component.html',
   styleUrls: ['./init-confirmation.component.scss']
 })
-export class InitConfirmationSVComponent implements OnInit {
+export class InitConfirmationSVComponent implements OnInit, OnDestroy {
   public propertyForm: FormGroup;
   public isLoading: boolean;
   public visible = true;
@@ -44,7 +46,8 @@ export class InitConfirmationSVComponent implements OnInit {
     private loansService: LoansService,
     private router: Router,
     public dialog: MatDialog,
-    public customLangTextService: CustomLangTextService
+    public customLangTextService: CustomLangTextService,
+    private globalStateService: GlobalStateService
   ) {}
 
   ngOnInit(): void {
@@ -71,6 +74,9 @@ export class InitConfirmationSVComponent implements OnInit {
         propertyType: ['', Validators.required]
       });
     });
+
+    // Set content background
+    this.globalStateService.setContentClassName('content', 'content-blue');
   }
 
   initCheckboxes(): void {
@@ -137,5 +143,9 @@ export class InitConfirmationSVComponent implements OnInit {
         this.router.navigate(['/' + ROUTES_MAP_SV.confirmationProperty]);
       }
     );
+  }
+
+  ngOnDestroy(): void {
+    this.globalStateService.setContentClassName('content-blue', 'content');
   }
 }

@@ -1,21 +1,26 @@
 import { LoansService } from '@services/remote-api/loans.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Mask } from '@shared/constants/mask';
 import { ROUTES_MAP } from '@config/routes-config';
+import { GlobalStateService } from '@services/global-state.service';
 
 @Component({
   selector: 'confirmation-property-sv.component',
   templateUrl: './confirmation-property-sv.component.html',
   styleUrls: ['./confirmation-property-sv.component.scss']
 })
-export class ConfirmationProperty implements OnInit {
+export class ConfirmationProperty implements OnInit, OnDestroy {
   public isLoading: boolean;
   public mask = Mask;
   public estimatedPropertyValue?: number | null;
   public propertyIconPath: string | null;
 
-  constructor(private loansService: LoansService, private router: Router) {}
+  constructor(
+    private loansService: LoansService,
+    private router: Router,
+    private globalStateService: GlobalStateService
+  ) {}
 
   ngOnInit(): void {
     this.isLoading = true;
@@ -30,6 +35,9 @@ export class ConfirmationProperty implements OnInit {
       this.isLoading = false;
       this.estimatedPropertyValue = res.addresses[0].estimatedPropertyValue;
     });
+
+    // Set content background
+    this.globalStateService.setContentClassName('content', 'content-blue');
   }
 
   clickChangeButton(): void {
@@ -40,5 +48,9 @@ export class ConfirmationProperty implements OnInit {
 
   clickConfirmButton(): void {
     this.router.navigate(['/dashboard/' + ROUTES_MAP.offers]);
+  }
+
+  ngOnDestroy(): void {
+    this.globalStateService.setContentClassName('content-blue', 'content');
   }
 }
