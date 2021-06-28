@@ -7,6 +7,7 @@ import { AuthService } from '@services/remote-api/auth.service';
 import { EnvService } from '@services/env.service';
 import { MessageBannerService } from '@services/message-banner.service';
 import { getAnimationStyles } from '@shared/animations/animationEnums';
+import { CustomLangTextService } from '@shared/services/custom-lang-text.service';
 
 @Component({
   selector: 'rente-dashboard-tabs-desktop',
@@ -63,7 +64,8 @@ export class DashboardTabsDesktopComponent implements OnInit {
     private localStorageService: LocalStorageService,
     private auth: AuthService,
     private envService: EnvService,
-    private messageService: MessageBannerService
+    private messageService: MessageBannerService,
+    private customLangService: CustomLangTextService
   ) {
     if (this.envService.isNorway()) {
       this.navLinks = this.navLinksNo;
@@ -134,7 +136,7 @@ export class DashboardTabsDesktopComponent implements OnInit {
     // Tried to use a stream to do this in app.component, didnt work but it works with 0ms timeout righ here
     setTimeout(() => {
       this.messageService.setView(
-        'Du er nå logget ut',
+        this.customLangService.logout(),
         4000,
         this.animationType.DROP_DOWN_UP,
         'success',

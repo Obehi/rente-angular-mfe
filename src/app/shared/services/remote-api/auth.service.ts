@@ -64,8 +64,6 @@ export class AuthService {
 
     this.http.post(url, {}).subscribe(() => {
       this.router.navigate(['/']);
-      console.log('etter navigate');
-
       this.localStorageService.clear();
     });
   }
