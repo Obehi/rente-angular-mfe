@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Offers } from './../../../../../shared/models/offers';
 import { OptimizeService } from '@services/optimize.service';
 import { EnvService } from '@services/env.service';
+import { fromEvent } from 'rxjs';
 @Component({
   selector: 'rente-offers-list',
   templateUrl: './offers-list-no.component.html',
@@ -10,6 +11,7 @@ import { EnvService } from '@services/env.service';
 export class OffersListNoComponent implements OnInit {
   @Input() offersInfo: Offers;
   public currentOfferInfo: Offers;
+  public onScroll: boolean;
 
   constructor(
     public optimizeService: OptimizeService,
@@ -38,6 +40,17 @@ export class OffersListNoComponent implements OnInit {
   public currentOfferType: string;
 
   ngOnInit(): void {
+    const obj = document.getElementsByClassName('the-offers')[0];
+    fromEvent(window, 'scroll').subscribe(() => {
+      if (obj?.getBoundingClientRect().top <= 0) {
+        this.onScroll = true;
+      } else {
+        this.onScroll = false;
+      }
+    });
+
+    console.log(this.onScroll);
+
     this.variation = this.getVariation();
 
     this.currentOfferInfo = JSON.parse(JSON.stringify(this.offersInfo));

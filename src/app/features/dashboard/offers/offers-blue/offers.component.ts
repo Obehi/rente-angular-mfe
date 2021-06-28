@@ -1,6 +1,12 @@
 import { LoansService } from '@services/remote-api/loans.service';
 import { OfferInfo, Offers } from './../../../../shared/models/offers';
-import { Component, OnInit, HostListener, OnDestroy } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  HostListener,
+  OnDestroy,
+  AfterViewInit
+} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogInfoComponent } from './../dialog-info/dialog-info.component';
 import { Loans } from '@shared/models/loans';
@@ -49,7 +55,8 @@ import { BreakpointState } from '@angular/cdk/layout';
   templateUrl: './offers.component.html',
   styleUrls: ['./offers.component.scss']
 })
-export class OffersComponentBlue implements OnInit, OnDestroy {
+export class OffersComponentBlue implements OnInit, OnDestroy, AfterViewInit {
+  public header_variable: boolean;
   public offersInfo: Offers;
   public currentOfferInfo: Offers;
   public loansInfo: any;
@@ -251,31 +258,45 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
         icon: this.isMobile ? 'profile-icon-white' : 'profile-icon-blue'
       });
     }
+
+    this.getBestOffersPlacement();
   }
 
-  @HostListener('window:scroll', []) onScroll() {
-    // do some stuff here when the window is scrolled
-    const verticalOffset =
-      window.pageYOffset ||
-      document.documentElement.scrollTop ||
-      document.body.scrollTop ||
-      0;
+  // @HostListener('window:scroll', []) onScroll() {
+  //   // do some stuff here when the window is scrolled
+  //   const verticalOffset =
+  //     window.pageYOffset ||
+  //     document.documentElement.scrollTop ||
+  //     document.body.scrollTop ||
+  //     0;
+  // }
 
-    console.log(verticalOffset);
+  @HostListener('window:scroll', ['$event']) onScroll() {
+    //In chrome and some browser scroll is given to body tag
+    // if (document.body.scrollTop > 200) {
+    //   this.header_variable = true;
+    //   console.log('a');
+    // } else {
+    //   console.log('b');
+    //   this.header_variable = false;
+    // }
+    // // pos/max will give you the distance between scroll bottom and and bottom of screen in percentage.
   }
 
   public getBestOffersPlacement(): any {
-    const bestOffersElement = document.querySelector('.best-offers');
-
-    window.onscroll = function () {
-      if (bestOffersElement!.getBoundingClientRect().top <= 0) {
-        console.log('TRIGGER: top of div reached.');
-      }
-
-      if (bestOffersElement!.getBoundingClientRect().bottom <= 0) {
-        console.log('TRIGGER: bottom of div reached.');
-      }
-    };
+    // const bestOffersElement = document.querySelector('.best-offers');
+    // window.onscroll = function () {
+    //   if (bestOffersElement.getBoundingClientRect().top <= 0) {
+    //     console.log('TRIGGER: top of div reached.');
+    //   }
+    //   if (bestOffersElement.getBoundingClientRect().bottom <= 0) {
+    //     console.log('TRIGGER: bottom of div reached.');
+    //   }
+    // };
+    console.log(document.getElementsByClassName('content-dashboard')[0]);
+    const div = document.querySelectorAll('.the-offers');
+    // const rect = div?.getBoundingClientRect();
+    console.log(div);
   }
 
   public getEffectiveRateTab(): void {
