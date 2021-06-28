@@ -51,7 +51,7 @@ export class OffersStatisticsComponent implements AfterViewInit {
   hasOthersBankData = true;
   clientBankChartId = 'clientBankChartId';
   allBanksChartChartId = 'allBanksChartChartId';
-  showAllBanks = false;
+  showAllBanks = true;
   clientBankData: BankStatisticItem;
   allBankData: BankStatisticItem;
 
