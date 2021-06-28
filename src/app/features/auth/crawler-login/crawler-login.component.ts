@@ -182,16 +182,13 @@ export class CrawlerLoginComponent implements OnInit, OnDestroy {
       (_) => {
         this.isLoading = false;
         this.router.navigate(['/']);
-        // this.snackBar.openSuccessSnackBar(
-        //   'Du får beskjed når din bank er tilgjengelig',
-        //   1.2
-        // );
 
         this.messageService.setView(
           'Du får beskjed når din bank er tilgjengelig',
-          5000,
+          6000,
           this.animationType.DROP_DOWN_UP,
-          'success'
+          'success',
+          window
         );
       },
       (err) => {

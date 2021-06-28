@@ -214,15 +214,13 @@ export class InitConfirmationNoComponent implements OnInit {
           this.logging.SubSystem.UserConfirmation,
           '9:USERINFO_SENT_SUCCESSFUL_REDIRECTING_TO_OFFERS'
         );
-        // this.snackBar.openSuccessSnackBar(
-        //   this.customLangTextService.getSnackBarUpdatedMessage(),
-        //   1.2
-        // );
+
         this.messageBanner.setView(
           this.customLangTextService.getSnackBarUpdatedMessage(),
           3000,
           this.animationType.DROP_DOWN_UP,
-          'success'
+          'success',
+          window
         );
       },
       (err) => {
@@ -241,7 +239,8 @@ export class InitConfirmationNoComponent implements OnInit {
           this.customLangTextService.getSnackBarErrorMessage(),
           3000,
           this.animationType.DROP_DOWN_UP,
-          'error'
+          'error',
+          window
         );
       }
     );

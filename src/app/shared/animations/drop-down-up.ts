@@ -16,7 +16,7 @@ export const DropDownUp = trigger('dropDownUp', [
   transition('visible => hidden', [
     style({ opacity: 1 }),
     animate(
-      '400ms ease-out',
+      '200ms ease-out',
       style({ opacity: 0, transform: 'translateY(-100%)' }) // Define the style when it goes to state hidden
     )
   ])
