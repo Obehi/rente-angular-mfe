@@ -301,7 +301,6 @@ export class VirdiStatisticsComponent implements OnInit {
   }
 
   notifError(): void {
-    // this.snackBar.openFailSnackBar('Feil ved lasting av statistikkdata', 2);
     this.messageService.setView(
       'Feil ved lasting av statistikkdata',
       5000,

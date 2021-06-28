@@ -74,10 +74,6 @@ export class GuidLoginComponent implements OnInit {
       },
       () => {
         this.isLoading = false;
-        // this.snackBar.openFailSnackBar(
-        //   this.customLangTextService.getSnackBarErrorMessage(),
-        //   2
-        // );
         this.messageService.setView(
           this.customLangTextService.getSnackBarErrorMessage(),
           5000,

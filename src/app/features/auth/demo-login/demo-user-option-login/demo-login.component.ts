@@ -50,10 +50,6 @@ export class DemoLoginComponent implements OnInit {
       },
       () => {
         this.isLoading = false;
-        // this.snackBar.openFailSnackBar(
-        //   this.customLangTextService.getSnackBarErrorMessage(),
-        //   2
-        // );
 
         this.messageService.setView(
           this.customLangTextService.getSnackBarErrorMessage(),

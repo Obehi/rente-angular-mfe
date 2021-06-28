@@ -13,9 +13,6 @@ import { GlobalStateService } from './global-state.service';
 
 @Injectable()
 export class MessageBannerService {
-  rootViewContainer: ViewContainerRef;
-  // viewWidth: Window;
-
   private _componentRef: ComponentRef<TopAnimationBannerComponent>;
 
   constructor(
@@ -62,12 +59,12 @@ export class MessageBannerService {
     });
     this._componentRef.instance.status = _status;
     this._componentRef.instance.animationType = _animationType;
-    this._componentRef.instance.changeTimer(100000);
+    this._componentRef.instance.changeTimer(_newtime);
     this._componentRef.instance.displayText = _newtext;
     this.appRef.attachView(this._componentRef.hostView);
 
     setTimeout(() => {
       this.appRef.detachView(this._componentRef.hostView);
-    }, 100000 + 2000);
+    }, _newtime + 2000);
   }
 }
