@@ -139,10 +139,7 @@ export class AuthSvMockupComponent implements OnInit, OnDestroy {
       (_) => {
         this.isLoading = false;
         this.router.navigate(['/']);
-        // this.snackBar.openSuccessSnackBar(
-        //   this.customLangTextService.getSnackBarSavedMessage(),
-        //   2
-        // );
+
         this.messageService.setView(
           this.customLangTextService.getSnackBarSavedMessage(),
           5000,
