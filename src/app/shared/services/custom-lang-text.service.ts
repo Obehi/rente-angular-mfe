@@ -21,6 +21,16 @@ export class CustomLangTextService {
     }
     throw new Error('Should be either SV or NB');
   }
+
+  getOfferCardButtonDefaultCTAText(): string {
+    if (locale.includes('sv')) {
+      return 'Få erbjudande ifrån banken';
+    } else if (locale.includes('nb')) {
+      return 'Få tilbud fra banken!';
+    }
+    throw new Error('Should be either SV or NB');
+  }
+
   getEmail(): string {
     if (locale.includes('sv')) {
       return 'hej@ranteradar.se';
@@ -221,9 +231,9 @@ export class CustomLangTextService {
 
   logout(): string {
     if (locale.includes('sv')) {
-      return 'Du är nu utloggad!';
+      return 'Du är nu utloggad';
     } else if (locale.includes('nb')) {
-      return 'Du er nå logget ut!';
+      return 'Du er nå logget ut';
     }
     throw new Error('Should be either SV or NB');
   }

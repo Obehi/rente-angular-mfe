@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { CustomLangTextService } from '@services/custom-lang-text.service';
 import {
   TrackingDto,
   TrackingService
@@ -9,7 +10,10 @@ import { OfferInfo } from '../../../../shared/models/offers';
   providedIn: 'root'
 })
 export class OfferCardService {
-  constructor(private trackingService: TrackingService) {}
+  constructor(
+    private trackingService: TrackingService,
+    private langService: CustomLangTextService
+  ) {}
 
   public handleNybyggerProductSpecialCase(offer: OfferInfo): boolean {
     if (
@@ -66,6 +70,7 @@ export class OfferCardService {
   }
 
   public getOfferButtonText(offer: OfferInfo): string {
+    console.log(offer.bankInfo.bank);
     let text = '';
     switch (offer.bankInfo.bank) {
       case 'SPAREBANKENOST': {
@@ -80,8 +85,14 @@ export class OfferCardService {
         text = 'Få tilbud fra Bulder!';
         break;
       }
+
+      case 'SWE_HYPOTEKET': {
+        text = 'Få erbjudande ifrån Hypoteket!';
+        break;
+      }
+
       default: {
-        text = 'Få tilbud fra banken!';
+        text = this.langService.getOfferCardButtonDefaultCTAText();
         break;
       }
     }
