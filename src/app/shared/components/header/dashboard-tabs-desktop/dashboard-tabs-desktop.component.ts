@@ -22,6 +22,7 @@ export class DashboardTabsDesktopComponent implements OnInit {
   public activeLinkIndex: number | null = -1;
   public imgLink: any;
   public animationType = getAnimationStyles();
+  public dashLogo: string;
 
   // General navLinks to switch between norwegian and  swedish version
   public navLinks: string[] | undefined;
@@ -70,9 +71,11 @@ export class DashboardTabsDesktopComponent implements OnInit {
     if (this.envService.isNorway()) {
       this.navLinks = this.navLinksNo;
       this.imgLink = this.imgLinkNo;
+      this.dashLogo = '../../../../../assets/img/renteradar_white_logo-no.svg';
     } else if (this.envService.isSweden()) {
       this.navLinks = this.navLinksSv;
       this.imgLink = this.imgLinkSv;
+      this.dashLogo = '../../../../../assets/img/renteradar_white_logo-sv.svg';
     }
   }
 
