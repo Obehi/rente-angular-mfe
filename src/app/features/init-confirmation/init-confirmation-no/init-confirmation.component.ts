@@ -6,7 +6,13 @@ import {
   AddressCreationDto
 } from '@services/remote-api/loans.service';
 import { UserService } from '@services/remote-api/user.service';
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ElementRef,
+  ViewChild,
+  OnDestroy
+} from '@angular/core';
 import { LoggingService } from '@services/logging.service';
 import {
   Validators,
@@ -36,13 +42,14 @@ import { ROUTES_MAP } from '@config/routes-config';
 import { CustomLangTextService } from '@services/custom-lang-text.service';
 import { MessageBannerService } from '@services/message-banner.service';
 import { getAnimationStyles } from '@shared/animations/animationEnums';
+import { GlobalStateService } from '@services/global-state.service';
 
 @Component({
   selector: 'rente-init-confirmation-sv',
   templateUrl: './init-confirmation.component.html',
   styleUrls: ['./init-confirmation.component.scss']
 })
-export class InitConfirmationNoComponent implements OnInit {
+export class InitConfirmationNoComponent implements OnInit, OnDestroy {
   public propertyForm: FormGroup;
   public isLoading: boolean;
   public visible = true;
@@ -71,7 +78,8 @@ export class InitConfirmationNoComponent implements OnInit {
     public dialog: MatDialog,
     public customLangTextService: CustomLangTextService,
     private logging: LoggingService,
-    private messageBanner: MessageBannerService
+    private messageBanner: MessageBannerService,
+    private globalStateService: GlobalStateService
   ) {
     this.filteredMemberships = this.membershipCtrl.valueChanges.pipe(
       startWith(null),
@@ -159,6 +167,10 @@ export class InitConfirmationNoComponent implements OnInit {
         );
       }
     });
+
+    // Set content background
+    this.globalStateService.setContentClassName('content', 'content-blue');
+    this.globalStateService.setFooterState(false);
   }
 
   isErrorState(control: AbstractControl | null): boolean {
@@ -296,5 +308,10 @@ export class InitConfirmationNoComponent implements OnInit {
     }
 
     return array;
+  }
+
+  ngOnDestroy(): void {
+    this.globalStateService.setContentClassName('content-blue', 'content');
+    this.globalStateService.setFooterState(true);
   }
 }
