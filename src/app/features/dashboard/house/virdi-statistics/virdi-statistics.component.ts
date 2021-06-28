@@ -306,7 +306,8 @@ export class VirdiStatisticsComponent implements OnInit {
       'Feil ved lasting av statistikkdata',
       5000,
       this.animationType.DROP_DOWN_UP,
-      'error'
+      'error',
+      window
     );
   }
 }

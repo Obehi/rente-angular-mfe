@@ -100,7 +100,8 @@ export class ContactUsComponent implements OnInit {
           this.customLangTextService.getSnackBarSavedMessage(),
           5000,
           this.animationType.DROP_DOWN_UP,
-          'success'
+          'success',
+          window
         );
       },
       (err) => {

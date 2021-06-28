@@ -189,9 +189,10 @@ export class CrawlerLoginComponent implements OnInit, OnDestroy {
 
         this.messageService.setView(
           'Du får beskjed når din bank er tilgjengelig',
-          5000,
+          6000,
           this.animationType.DROP_DOWN_UP,
-          'success'
+          'success',
+          window
         );
       },
       (err) => {

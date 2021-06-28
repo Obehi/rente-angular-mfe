@@ -13,31 +13,26 @@
 
 .dropdownupdash,
 .dropdownup {
-  position: absolute;
-  width: 40%;
+  width: 30%;
   text-align: center;
   border-radius: 10px;
   padding: 10px;
   margin: auto;
-  top: 65px;
-  left: 30%;
+  // top: 65px;
   z-index: 1;
 
   @media (max-width: 600px) {
-    width: 90%;
-    left: 18px;
-    top: 66px;
+    width: 180px;
+    // top: 66px;
   }
 }
 
 .dropdownupdash {
-  top: 125px;
-  left: 30%;
+  // top: 125px;
 
   @media (max-width: 600px) {
     width: 70%;
-    left: 15%;
-    top: 66px;
+    // top: 66px;
   }
 }
 

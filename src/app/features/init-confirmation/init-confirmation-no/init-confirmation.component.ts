@@ -222,7 +222,8 @@ export class InitConfirmationNoComponent implements OnInit {
           this.customLangTextService.getSnackBarUpdatedMessage(),
           3000,
           this.animationType.DROP_DOWN_UP,
-          'success'
+          'success',
+          window
         );
       },
       (err) => {
@@ -241,7 +242,8 @@ export class InitConfirmationNoComponent implements OnInit {
           this.customLangTextService.getSnackBarErrorMessage(),
           3000,
           this.animationType.DROP_DOWN_UP,
-          'error'
+          'error',
+          window
         );
       }
     );

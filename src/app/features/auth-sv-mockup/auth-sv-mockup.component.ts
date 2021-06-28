@@ -147,7 +147,8 @@ export class AuthSvMockupComponent implements OnInit, OnDestroy {
           this.customLangTextService.getSnackBarSavedMessage(),
           5000,
           this.animationType.DROP_DOWN_UP,
-          'success'
+          'success',
+          window
         );
       },
       (err) => {
