@@ -1,11 +1,10 @@
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 import { AuthGuard } from './guards/auth.guard';
 import { RouteGuard } from './guards/route.guard';
-import { LocalStorageService } from '@services/local-storage.service';
-import { GenericHttpService } from '@services/generic-http.service';
-import { RouterModule } from '@angular/router';
 import { FooterComponent } from './components/footer/footer.component';
 import { ButtonComponent } from './components/ui-components/button/button.component';
 import { InputComponent } from './components/ui-components/input/input.component';
@@ -16,6 +15,15 @@ import { TabsComponent } from './components/ui-components/tabs/tabs.component';
 import { TabComponent } from './components/ui-components/tabs/tab.component';
 import { FormMessageComponent } from './components/ui-components/form-message/form-message.component';
 import { TextAreaComponent } from './components/ui-components/text-area/text-area.component';
+import { ChipsAutocompleteComponent } from './components/ui-components/chips-autocomplete/chips-autocomplete.component';
+import { CheckboxContainerComponent } from './components/ui-components/checkbox-container/checkbox-container.component';
+import { TopAnimationBannerComponent } from './components/ui-components/top-animation-banner/top-animation-banner.component';
+import { ButtonSmallComponent } from './components/ui-components/button-small/button-small.component';
+import { OfferDetailsLangGenericComponent } from '../local-components/components-output';
+
+import { HeaderComponent } from '@shared/components/header/header.component';
+import { LocalStorageService } from '@services/local-storage.service';
+import { GenericHttpService } from '@services/generic-http.service';
 import { AuthService } from '@services/remote-api/auth.service';
 import { ContactService } from '@services/remote-api/contact.service';
 import { TrackingService } from '@services/remote-api/tracking.service';
@@ -23,28 +31,20 @@ import { HouseService } from '@services/remote-api/house.service';
 import { LoansService } from '@services/remote-api/loans.service';
 import { PreferancesService } from '@services/remote-api/preferances.service';
 import { ProfileService } from '@services/remote-api/profile.service';
-import { HttpClientModule } from '@angular/common/http';
-import { BigNumberPipe } from './pipes/big-number.pipe';
-import { ChipsAutocompleteComponent } from './components/ui-components/chips-autocomplete/chips-autocomplete.component';
-
-import { AbsPipe } from './pipes/abs.pipe';
-import { MaterialModule } from './material/material.module';
 import { SnackBarService } from './services/snackbar.service';
 import { MetaService } from './services/meta.service';
 import { TitleService } from './services/title.service';
 import { EventService } from './services/event-service';
+import { MessageBannerService } from '@services/message-banner.service';
+import { BigNumberPipe } from './pipes/big-number.pipe';
+import { AbsPipe } from './pipes/abs.pipe';
 import { RoundPipe } from './pipes/round.pipe';
 import { ThousandsSeprator } from './pipes/thousands.pipe';
 import { FilterPipe } from './pipes/filter.pipe';
 import { TruncatePipe } from './pipes/truncate.pipe';
-import { ButtonSmallComponent } from './components/ui-components/button-small/button-small.component';
 import { IMaskModule } from 'angular-imask';
-import { OfferDetailsLangGenericComponent } from '../local-components/components-output';
-
-import { HeaderComponent } from '@shared/components/header/header.component';
 import { CustomLangTextService } from '@services/custom-lang-text.service';
 import { ChildDirective } from './directives/child.directive';
-import { CheckboxContainerComponent } from './components/ui-components/checkbox-container/checkbox-container.component';
 import { BarComponent } from './components/ui-components/bar/bar.component';
 import { FlowHeaderComponent } from './components/ui-components/flow-header/flow-header.component';
 import { GenericInfoDialogComponent } from './components/ui-components/dialogs/generic-info-dialog/generic-info-dialog.component';
@@ -55,6 +55,7 @@ import { DashboardTabsDesktopComponent } from './components/header/dashboard-tab
 import { DashboardTabsMobileComponent } from './components/header/dashboard-tabs-mobile/dashboard-tabs-mobile.component';
 import { HeaderDesktopLangGenericComponent } from '../local-components/components-output';
 import { HeaderMobileLangGenericComponent } from '../local-components/components-output';
+import { MaterialModule } from './material/material.module';
 
 import { PropertySelectComponent } from '@features/first-buyers/components/property-select/property-select.component';
 import { PropertySelectDialogComponent } from '@features/first-buyers/components/property-select-dialog/property-select-dialog.component';
@@ -65,16 +66,18 @@ const components = [
   FooterComponent,
   ButtonComponent,
   ButtonSmallComponent,
-  InputComponent,
-  SelectComponent,
   CheckboxComponent,
-  RadioComponent,
   CheckboxContainerComponent,
+  FooterComponent,
+  FormMessageComponent,
+  InputComponent,
+  OfferDetailsLangGenericComponent,
+  RadioComponent,
+  SelectComponent,
   TabsComponent,
   TabComponent,
-  FormMessageComponent,
   TextAreaComponent,
-  OfferDetailsLangGenericComponent,
+  TopAnimationBannerComponent,
   DashboardTabsDesktopComponent,
   DashboardTabsMobileComponent,
   HeaderDesktopLangGenericComponent,
@@ -87,38 +90,41 @@ const components = [
 
 const services = [
   AuthGuard,
-  RouteGuard,
-  GenericHttpService,
-  SnackBarService,
-  LocalStorageService,
   AuthService,
   ContactService,
-  TrackingService,
+  CustomLangTextService,
+  EventService,
+  GenericHttpService,
   HouseService,
+  LocalStorageService,
   LoansService,
+  MessageBannerService,
+  MetaService,
   PreferancesService,
   ProfileService,
-  MetaService,
+  RouteGuard,
+  SnackBarService,
   TitleService,
-  EventService,
-  CustomLangTextService
+  TrackingService
 ];
 
 @NgModule({
   imports: [
     CommonModule,
-    HttpClientModule,
-    RouterModule,
     FormsModule,
-    ReactiveFormsModule,
+    HttpClientModule,
+    IMaskModule,
     MaterialModule,
-    IMaskModule
+    ReactiveFormsModule,
+    RouterModule
   ],
   declarations: [
     ...components,
-    BigNumberPipe,
-    ChipsAutocompleteComponent,
     AbsPipe,
+    BarComponent,
+    BigNumberPipe,
+    ChildDirective,
+    ChipsAutocompleteComponent,
     RoundPipe,
     ThousandsSeprator,
     FilterPipe,
@@ -138,8 +144,11 @@ const services = [
     ThousandsSeprator,
     FilterPipe,
     TruncatePipe,
+    BarComponent,
     ChildDirective,
     ReactiveFormsModule,
+    RoundPipe,
+    ThousandsSeprator,
     BarComponent,
     FlowHeaderComponent
   ],

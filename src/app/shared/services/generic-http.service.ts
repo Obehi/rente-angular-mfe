@@ -10,7 +10,6 @@ import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { storageName } from '@config/index';
 import { LocalStorageService } from '@services/local-storage.service';
-import { SnackBarService } from './snackbar.service';
 import { EnvService } from '@services/env.service';
 
 @Injectable({
@@ -31,7 +30,6 @@ export class GenericHttpService {
     private http: HttpClient,
     private localStorageService: LocalStorageService,
     private router: Router,
-    private snackBar: SnackBarService,
     private envService: EnvService
   ) {
     this.apiUrl = this.envService.environment.baseUrl;

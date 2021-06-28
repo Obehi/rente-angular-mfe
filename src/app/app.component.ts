@@ -17,7 +17,6 @@ export class AppComponent implements OnInit {
   public title = 'rente-front-end';
   public navigationSubscription: Subscription;
   public showCookieAcc: boolean;
-
   constructor(
     private router: Router,
     private route: ActivatedRoute,

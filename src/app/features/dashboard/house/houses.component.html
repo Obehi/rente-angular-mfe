@@ -1,54 +1,64 @@
-<div class="update-complete" [@loading]="updateAnimationTrigger? 'true' : 'false'">
-    <img src="../../../../assets/icons/ic_done.svg" alt="success-icon" />
-    <p i18n=“house|save@@house.component.save”>Lagret</p>
+<div
+  class="update-complete"
+  [@loading]="updateAnimationTrigger ? 'true' : 'false'"
+>
+  <img src="../../../../assets/icons/ic_done.svg" alt="success-icon" />
+  <p i18n="“house|save@@house.component.save”">Lagret</p>
+</div>
+
+<div class="update-error" [@loading]="errorAnimationTrigger ? 'true' : 'false'">
+  <p i18n="“house|error@@house.component.error”">Oops, noe gikk galt</p>
+</div>
+
+<div class="loading" *ngIf="isLoading">
+  <mat-spinner [diameter]="48" [strokeWidth]="4"></mat-spinner>
+</div>
+
+<div class="confirm-property-container" *ngIf="showExplainText && !isLoading">
+  <img *ngIf="propertyIconPath !== null" src="{{ propertyIconPath }}" />
+
+  <h3 class="explain-text">
+    Här kan du ändra information och värdet på din bostad/bostäder
+  </h3>
+</div>
+
+<div class="house" *ngIf="showAddresses">
+  <div class="title">
+    <h3 i18n="“title|my-houses@@house.component.houses”">Mine boliger</h3>
+    <p i18n="“house|value@@house.component.value”" class="small">
+      Total verdi: {{ totalPropertyValue | thousands }}
+    </p>
+  </div>
+  <div class="houses">
+    <rente-house-form
+      class="addressform"
+      *ngFor="let address of addresses; let i = index"
+      [index]="i"
+      [address]="address"
+      (deleteAddress)="deleteAddress($event)"
+      (onSave)="saveAddresses()"
+      (change)="countChange()"
+      [ngClass]="{ disabled: isLoading }"
+    >
+    </rente-house-form>
+    <rente-button
+      class="add"
+      color="secondary"
+      (click)="addAddress()"
+      i18n="“house|additional@@house.component.addMore”"
+    >
+      Legg til flere boliger
+    </rente-button>
   </div>
 
-  <div class="update-error" [@loading]="errorAnimationTrigger ? 'true' : 'false'">
-    <p i18n=“house|error@@house.component.error”>Oops, noe gikk galt</p>
-  </div>
-  
-  <div class="loading" *ngIf="isLoading">
-      <mat-spinner [diameter]="48" [strokeWidth]="4"></mat-spinner>
-  </div>
+  <div *ngIf="locale === 'nb'" class="center-logo">
+    <p>Få full kontroll på din bolig med:</p>
 
-  <div class="confirm-property-container" *ngIf="showExplainText && !isLoading">
-    <img *ngIf="propertyIconPath !== null" src="{{propertyIconPath}}"/>
-    
-    <h3 class="explain-text">
-      Här kan du ändra information och värdet på din bostad/bostäder
-    </h3>
+    <a target="_blank" href="https://www.boligmappa.no/">
+      <img
+        src="../../../../assets/img/partners/boligmappa-white.png"
+        alt="boligmappa logo"
+      />
+    </a>
   </div>
-
-  <div class="house" *ngIf="showAddresses">
-    <div class="title">
-      <h3 i18n=“title|my-houses@@house.component.houses”>Mine boliger</h3>
-      <p i18n=“house|value@@house.component.value” class="small">Total verdi: {{ totalPropertyValue | thousands }}</p>
-
-    </div>
-    <div class="houses">
-      <rente-house-form
-        class="addressform"
-        *ngFor="let address of addresses; let i = index"
-        [index]="i"
-        [address]="address"
-        (deleteAddress)="deleteAddress($event)"
-        (onSave)="saveAddresses()"
-        (change)="countChange()"
-        [ngClass]="{'disabled':isLoading}"
-      >
-      </rente-house-form>
-      <rente-button class="add" color="blue" (click)="addAddress()" i18n=“house|additional@@house.component.addMore”>
-          Legg til flere boliger
-      </rente-button>
-    </div>
-  
-
-    <div *ngIf="locale === 'nb'" class="center-logo">
-      <p>Få full kontroll på din bolig med:</p>
-  
-      <a target="_blank" href="https://www.boligmappa.no/">
-        <img src="../../../../assets/img/partners/boligmappa-white.png" alt="boligmappa logo" />
-      </a>
-    </div>  
-  </div>
-  
+</div>
