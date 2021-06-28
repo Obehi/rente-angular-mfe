@@ -102,15 +102,13 @@ export class GetNotifiedSvComponent implements OnInit {
       () => {
         this.isLoading = false;
         this.router.navigate(['/']);
-        // this.snackBar.openSuccessSnackBar(
-        //   'Du får besked när din bank är tillgänglig',
-        //   3.2
-        // );
+
         this.messageService.setView(
           'Du får besked när din bank är tillgänglig',
           5000,
           this.animationType.DROP_DOWN_UP,
-          'success'
+          'success',
+          window
         );
       },
       () => {
