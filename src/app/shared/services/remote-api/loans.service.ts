@@ -226,7 +226,7 @@ export class ConfirmationGetDto {
   email: string;
   name: string | null;
   bank: string;
-  income: number;
+  income: number | null;
   memberships: string[];
   apartmentSize: number;
   apartmentValue: number;

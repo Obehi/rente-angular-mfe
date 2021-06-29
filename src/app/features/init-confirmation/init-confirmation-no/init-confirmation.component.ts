@@ -88,7 +88,7 @@ export class InitConfirmationNoComponent implements OnInit {
     ]).subscribe(([rateAndLoans, userInfo]) => {
       this.allMemberships = userInfo.availableMemberships;
       this.userData = userInfo;
-
+      this.userData.income = null;
       const income = userInfo.income === null ? null : String(userInfo.income);
       const apartmentSize =
         userInfo.apartmentSize === null ? null : String(userInfo.apartmentSize);
@@ -115,42 +115,28 @@ export class InitConfirmationNoComponent implements OnInit {
       this.isNameNeeded =
         this.userData.name === null || this.userData.name === undefined;
 
-      if (this.isAddressNeeded) {
-        this.isAddressNeeded = true;
-        this.propertyForm = this.fb.group({
-          address: ['', Validators.required],
-          zip: [
-            '',
-            Validators.compose([
-              Validators.required,
-              Validators.pattern(VALIDATION_PATTERN.zip)
-            ])
-          ],
-          apartmentSize: [apartmentSize, Validators.required],
-          membership: [],
-          income: [income, Validators.required],
-          email: [
-            userInfo.email,
-            Validators.compose([
-              Validators.required,
-              Validators.pattern(VALIDATION_PATTERN.email)
-            ])
-          ]
-        });
-      } else {
-        this.propertyForm = this.fb.group({
-          apartmentSize: [apartmentSize, Validators.required],
-          membership: [],
-          income: [income, Validators.required],
-          email: [
-            userInfo.email,
-            Validators.compose([
-              Validators.required,
-              Validators.pattern(VALIDATION_PATTERN.email)
-            ])
-          ]
-        });
-      }
+      this.isAddressNeeded = true;
+      this.propertyForm = this.fb.group({
+        name: [this.userData.name, Validators.required],
+        address: ['', Validators.required],
+        zip: [
+          '',
+          Validators.compose([
+            Validators.required,
+            Validators.pattern(VALIDATION_PATTERN.zip)
+          ])
+        ],
+        apartmentSize: [apartmentSize, Validators.required],
+        membership: [],
+        income: [income, Validators.required],
+        email: [
+          userInfo.email,
+          Validators.compose([
+            Validators.required,
+            Validators.pattern(VALIDATION_PATTERN.email)
+          ])
+        ]
+      });
 
       if (this.isNameNeeded) {
         this.propertyForm.addControl(
