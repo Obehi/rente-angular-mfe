@@ -119,10 +119,10 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
       this.bank.name === 'DNB' || BankUtils.isEikaBank(this.bank.name)
         ? 34
         : 25;
-    this.firstStepTimer = this.bank.name === 'DNB' ? 28 : 10;
+    this.firstStepTimer = this.bank.name === 'DNB' ? 38 : 10;
 
     if (this.isSB1Bank) {
-      this.firstStepTimer = 30;
+      this.firstStepTimer = 40;
       this.bankIdTimeoutTime = 120;
     }
     if (this.bank.name === 'DNB') {
