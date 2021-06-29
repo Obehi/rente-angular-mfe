@@ -19,18 +19,19 @@ export class BarometerComponent implements OnInit {
     this.customLangService.getBarometerTextState3(),
     this.customLangService.getBarometerTextState4()
   ];
-  additionalTextArray = [
-    this.customLangService.getBarometerAdditionalTextState0(),
-    this.customLangService.getBarometerAdditionalTextState1(),
-    this.customLangService.getBarometerAdditionalTextState2(),
-    this.customLangService.getBarometerAdditionalTextState3()
+
+  additionalTextLowSavingsArray = [
+    this.customLangService.getBarometerAdditionalTextLowSavingsState0(),
+    this.customLangService.getBarometerAdditionalTextLowSavingsState1(),
+    this.customLangService.getBarometerAdditionalTextLowSavingsState2(),
+    this.customLangService.getBarometerAdditionalTextLowSavingsState3()
   ];
 
-  additionalTextArrayState2 = [
-    this.customLangService.getBarometerAdditionalStateTextState0(),
-    this.customLangService.getBarometerAdditionalStateTextState1(),
-    this.customLangService.getBarometerAdditionalStateTextState2(),
-    this.customLangService.getBarometerAdditionalStateTextState3()
+  additionalTextLowHighSavingsArray = [
+    this.customLangService.getBarometerAdditionalTextHighSavingsState0(),
+    this.customLangService.getBarometerAdditionalTextHighSavingsState1(),
+    this.customLangService.getBarometerAdditionalTextHighSavingsState2(),
+    this.customLangService.getBarometerAdditionalTextHighSavingsState3()
   ];
 
   state = 0;
@@ -120,58 +121,65 @@ export class BarometerComponent implements OnInit {
   get text(): string | undefined {
     let additionalTextArray: any = [];
 
-    if (this.state <= 3) {
-      additionalTextArray = this.additionalTextArray;
+    if (this.state <= 2) {
+      additionalTextArray = this.additionalTextLowSavingsArray;
     } else {
-      additionalTextArray = this.additionalTextArrayState2;
+      additionalTextArray = this.additionalTextLowHighSavingsArray;
     }
     const baseText = this.baseTextArray[this.state];
     const fullText = `${this.baseTextArray[this.state]}, ${
       additionalTextArray[this.additionalState]
     }`;
 
+    console.log(this.state);
+    console.log(this.offersInfo.offerSavingsType);
     return this.shouldShowAdditionalText ? fullText : baseText;
   }
 
   get rateBarPercentage(): RateBar {
     switch (this.state) {
       case 4: {
+        let percentage = 95;
+        if (
+          this.offersInfo.offerSavingsType ===
+            'SAVINGS_FIRST_YEAR_BETWEEN_6000_AND_10000' ||
+          this.offersInfo.offerSavingsType ===
+            'SAVINGS_FIRST_YEAR_GREATER_10000'
+        ) {
+          percentage = 85;
+        }
+
         return {
-          percentage: 95,
-          class: 'level-5',
-          hex: '#18bc9c'
+          percentage: percentage,
+          class: 'level-5'
         };
         break;
       }
       case 3: {
         return {
           percentage: 75,
-          class: 'level-4',
-          hex: '#82C6B4'
+          class: 'level-4'
         };
         break;
       }
       case 2: {
         return {
           percentage: 50,
-          class: 'level-3',
-          hex: '#ff5a00 '
+          class: 'level-3'
         };
         break;
       }
       case 1: {
         return {
           percentage: 30,
-          class: 'level-2',
-          hex: '#E45A2A'
+          class: 'level-2'
         };
         break;
       }
       case 0: {
         return {
           percentage: 12,
-          class: 'level-1',
-          hex: '#f41515'
+          class: 'level-1'
         };
         break;
       }
@@ -179,8 +187,7 @@ export class BarometerComponent implements OnInit {
       default: {
         return {
           percentage: 80,
-          class: 'level-3',
-          hex: '#'
+          class: 'level-3'
         };
         break;
       }
@@ -191,5 +198,4 @@ export class BarometerComponent implements OnInit {
 interface RateBar {
   percentage: number;
   class: string;
-  hex: string;
 }
