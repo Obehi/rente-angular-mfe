@@ -224,11 +224,13 @@
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    background: #183a63;
   }
 
   .desktop-column-one {
     display: flex;
     height: 97%;
+    border-bottom: 2px solid #006ea5a6;
   }
   .desktop-column-two {
     padding: 10px;
@@ -237,8 +239,10 @@
   .desktop-flex-part-one {
     order: 1;
     width: 55%;
-    background: linear-gradient(180deg, #264f80, #183a63);
+    // background: linear-gradient(180deg, #264f80, #183a63);
+    background: #183a63;
     border-radius: 0px 0px 15px 0px;
+    border-right: 1px solid #006ea5a6;
 
     h2 {
       font-size: 18px;
@@ -249,7 +253,8 @@
       font-weight: 400;
     }
     p {
-      background: $white;
+      color: $grey-light;
+      background: $blue;
       font-size: 1rem;
       margin-top: 20px;
       font-weight: 400;
@@ -289,18 +294,20 @@
   .dropdown-scroll {
     overflow-y: scroll;
     height: 86%;
+    background: #183a63;
     .dropdown-div {
     }
   }
 
   .list-div {
-    background: $grey-light;
+    background: $blue;
     width: 85%;
     margin-left: 30px;
     border-radius: 8px;
     display: flex;
     margin-top: 10px;
     p {
+      color: $white;
       font-size: 1rem;
       margin-top: 10px;
       margin-left: 15px;
@@ -326,20 +333,22 @@
   }
 
   .search-div {
-    background-color: white;
+    background-color: #183a63;
 
     padding: 10px;
     display: flex;
 
     input {
       border: 0;
-      border-bottom: 2px solid black;
+      border-bottom: 1px solid #006ea5a6;
+      background: #183a63;
       width: 84%;
       left: 26px;
       position: relative;
     }
     ::placeholder {
-      color: black;
+      background: #183a63;
+      color: white;
       position: relative;
       font-weight: 400;
       font-size: 1.1rem;
