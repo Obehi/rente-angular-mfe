@@ -324,6 +324,9 @@ form {
 }
 
 .forms {
+  ::ng-deep .mat-form-field-infix {
+    height: 70px !important;
+  }
   ::ng-deep .mat-form-field-wrapper {
     margin: 0 !important;
     padding: 0 !important;
@@ -470,7 +473,6 @@ form {
   .flex-1 {
     display: flex;
     flex-direction: column;
-    row-gap: 2rem;
     @media (min-width: 600px) {
       margin-top: 5rem;
       display: grid;
@@ -495,6 +497,13 @@ form {
     row-gap: 4.2rem;
   }
 
+  .flex-box-margin {
+    margin: 2em 0 2em;
+  }
+
+  .margin-bottom {
+    margin-bottom: 2em;
+  }
   h3 {
     padding: 3rem 0 0.5rem;
     color: white;

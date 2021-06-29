@@ -1,9 +1,9 @@
-<!-- <div class="loading" *ngIf="isLoading">
+<div class="loading" *ngIf="isLoading">
   <mat-spinner [diameter]="48" [strokeWidth]="4"></mat-spinner>
-</div> -->
+</div>
 
 <div class="main">
-  <div class="top">
+  <div *ngIf="!isLoading" class="top">
     <img class="profile-icon" src="{{ profileIcon }}" />
     <h3 class="username">
       {{ username }}
@@ -52,7 +52,7 @@
         </div>
       </div>
       <div class="field-box">
-        <h4 class="text-white">Din bruto årsinntekt</h4>
+        <h4 class="text-white">Din brutto årsinntekt</h4>
 
         <mat-form-field class="white-input w-75" appearance="outline">
           <input
@@ -129,7 +129,7 @@
         <p>Velg dine medlemskap</p>
       </h5>
 
-      <rente-button class="rente-button" color="blue-select">
+      <rente-button class="rente-button flex-box-margin" color="blue-select">
         <mat-select
           *ngIf="loadingStates.memberships.normal"
           [formControl]="membershipCtrl"
@@ -147,14 +147,15 @@
         >
         </rente-success>
       </rente-button>
-      <hr />
+
+      <hr class="margin-bottom" />
       <h5 class="element">
         Markedsovervåkning:
         <p>
           Velg hvor ofte din rente skal sjekkes og du vil ha påminnelse på epost
         </p>
       </h5>
-      <rente-button class="rente-button" color="blue-select">
+      <rente-button class="rente-button flex-box-margin" color="blue-select">
         <mat-select
           *ngIf="loadingStates.checkRateReminderType.normal"
           formControlName="checkRateReminderType"
