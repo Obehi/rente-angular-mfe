@@ -23,15 +23,24 @@ export class BarometerComponent implements OnInit {
     this.customLangService.getBarometerAdditionalTextState0(),
     this.customLangService.getBarometerAdditionalTextState1(),
     this.customLangService.getBarometerAdditionalTextState2(),
-    this.customLangService.getBarometerAdditionalTextState3(),
-    this.customLangService.getBarometerAdditionalTextState4()
+    this.customLangService.getBarometerAdditionalTextState3()
   ];
+
+  additionalTextArrayState2 = [
+    this.customLangService.getBarometerAdditionalStateTextState0(),
+    this.customLangService.getBarometerAdditionalStateTextState1(),
+    this.customLangService.getBarometerAdditionalStateTextState2(),
+    this.customLangService.getBarometerAdditionalStateTextState3()
+  ];
+
   state = 0;
+  additionalState = 0;
 
   constructor(public customLangService: CustomLangTextService) {}
 
   ngOnInit(): void {
     this.calcState();
+    this.calcAdditionalState();
   }
 
   calcState(): void {
@@ -66,6 +75,31 @@ export class BarometerComponent implements OnInit {
     }
   }
 
+  calcAdditionalState(): void {
+    switch (this.offersInfo.offerSavingsType) {
+      case 'SAVINGS_FIRST_YEAR_BETWEEN_0_AND_2000': {
+        this.additionalState = 0;
+        break;
+      }
+      case 'SAVINGS_FIRST_YEAR_BETWEEN_2000_AND_6000': {
+        this.additionalState = 1;
+        break;
+      }
+      case 'SAVINGS_FIRST_YEAR_BETWEEN_6000_AND_10000': {
+        this.additionalState = 2;
+        break;
+      }
+      case 'SAVINGS_FIRST_YEAR_GREATER_10000': {
+        this.additionalState = 3;
+        break;
+      }
+      default: {
+        return;
+        break;
+      }
+    }
+  }
+
   get rateBarPercentageInverted(): number {
     return 100 - this.rateBarPercentage.percentage;
   }
@@ -80,19 +114,22 @@ export class BarometerComponent implements OnInit {
   }
 
   get shouldShowAdditionalText(): boolean {
-    return (
-      this.offersInfo.offerSavingsType ===
-        'SAVINGS_FIRST_YEAR_BETWEEN_0_AND_2000' ||
-      this.offersInfo.offerSavingsType ===
-        'SAVINGS_FIRST_YEAR_BETWEEN_2000_AND_6000'
-    );
+    return this.offersInfo.offerSavingsType !== 'NO_SAVINGS';
   }
 
   get text(): string | undefined {
+    let additionalTextArray: any = [];
+
+    if (this.state <= 3) {
+      additionalTextArray = this.additionalTextArray;
+    } else {
+      additionalTextArray = this.additionalTextArrayState2;
+    }
     const baseText = this.baseTextArray[this.state];
     const fullText = `${this.baseTextArray[this.state]}, ${
-      this.additionalTextArray[this.state]
+      additionalTextArray[this.additionalState]
     }`;
+
     return this.shouldShowAdditionalText ? fullText : baseText;
   }
 

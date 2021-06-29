@@ -321,18 +321,18 @@ export class CustomLangTextService {
 
   getBarometerAdditionalTextState0(): string {
     if (locale.includes('sv')) {
-      return 'du har mycket att spara';
+      return 'och du kan spara lite';
     } else if (locale.includes('nb')) {
-      return 'og du har mye å spare';
+      return 'og du kan spare litt';
     }
     throw new Error('Should include either SV or NB');
   }
 
   getBarometerAdditionalTextState1(): string {
     if (locale.includes('sv')) {
-      return 'du har mycket att spara';
+      return 'och du kan spara en del';
     } else if (locale.includes('nb')) {
-      return 'og du har mye å spare';
+      return 'og du kan spare en del';
     }
     throw new Error('Should include either SV or NB');
   }
@@ -341,12 +341,30 @@ export class CustomLangTextService {
     if (locale.includes('sv')) {
       return 'men du kan spara en del';
     } else if (locale.includes('nb')) {
-      return 'men du kan spare en del';
+      return 'og du kan spare en del';
     }
     throw new Error('Should include either SV or NB');
   }
 
   getBarometerAdditionalTextState3(): string {
+    if (locale.includes('sv')) {
+      return 'och du kan spara mycket';
+    } else if (locale.includes('nb')) {
+      return 'og du kan spare mye';
+    }
+    throw new Error('Should include either SV or NB');
+  }
+
+  getBarometerAdditionalStateTextState0(): string {
+    if (locale.includes('sv')) {
+      return 'men du kan spara lite';
+    } else if (locale.includes('nb')) {
+      return 'men du kan spare litt';
+    }
+    throw new Error('Should include either SV or NB');
+  }
+
+  getBarometerAdditionalStateTextState1(): string {
     if (locale.includes('sv')) {
       return 'men du kan spara en del';
     } else if (locale.includes('nb')) {
@@ -354,7 +372,8 @@ export class CustomLangTextService {
     }
     throw new Error('Should include either SV or NB');
   }
-  getBarometerAdditionalTextState4(): string {
+
+  getBarometerAdditionalStateTextState2(): string {
     if (locale.includes('sv')) {
       return 'men du kan spara en del';
     } else if (locale.includes('nb')) {
@@ -371,4 +390,21 @@ export class CustomLangTextService {
     }
     throw new Error('Should be either SV or NB');
   }
+  getBarometerAdditionalStateTextState3(): string {
+    if (locale.includes('sv')) {
+      return 'men du kan spara mycket';
+    } else if (locale.includes('nb')) {
+      return 'men du kan allikevel spare mye';
+    }
+    throw new Error('Should include either SV or NB');
+  }
+
+  // getBarometerAdditionalTextState4(): string {
+  //   if (locale.includes('sv')) {
+  //     return 'men du kan spara en del';
+  //   } else if (locale.includes('nb')) {
+  //     return 'men du kan spare en del';
+  //   }
+  //   throw new Error('Should include either SV or NB');
+  // }
 }
