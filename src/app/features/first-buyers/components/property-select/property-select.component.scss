@@ -230,7 +230,7 @@
   .desktop-column-one {
     display: flex;
     height: 97%;
-    border-bottom: 2px solid #006ea5a6;
+    border-bottom: 1px solid #478ccc;
   }
   .desktop-column-two {
     padding: 10px;
@@ -241,8 +241,8 @@
     width: 55%;
     // background: linear-gradient(180deg, #264f80, #183a63);
     background: #183a63;
-    border-radius: 0px 0px 15px 0px;
-    border-right: 1px solid #006ea5a6;
+    // border-radius: 0px 0px 15px 0px;
+    border-right: 1px solid #478ccc;
 
     h2 {
       font-size: 18px;
@@ -254,7 +254,7 @@
     }
     p {
       color: $grey-light;
-      background: $blue;
+      background: #004465a6;
       font-size: 1rem;
       margin-top: 20px;
       font-weight: 400;
@@ -278,6 +278,7 @@
       display: flex;
       p {
         font-weight: 500;
+        border: 1px solid #478ccc;
       }
     }
 
@@ -317,7 +318,8 @@
     }
 
     .p-selected {
-      color: $green;
+      background: #004465a6;
+      color: $white;
       font-size: 1rem;
       margin-top: 10px;
       margin-left: 15px;
@@ -332,6 +334,11 @@
     }
   }
 
+  .displayselected {
+    background: #004465a6;
+    border: 1px solid #478ccc;
+  }
+
   .search-div {
     background-color: #183a63;
 
@@ -340,7 +347,7 @@
 
     input {
       border: 0;
-      border-bottom: 1px solid #006ea5a6;
+      border-bottom: 1px solid $white;
       background: #183a63;
       width: 84%;
       left: 26px;

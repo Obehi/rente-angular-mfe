@@ -48,6 +48,7 @@ export class PropertySelectComponent implements OnInit, OnDestroy {
   @Input() label;
 
   icon = '../../../../assets/icons/reject-icon.svg';
+  iconLight = '../../../../assets/icons/reject-icon-light.svg';
   searchIconLight = '../../../../assets/icons/search-grey-light.svg';
   searchIconDark = '../../../../assets/icons/search-grey-dark.svg';
 
