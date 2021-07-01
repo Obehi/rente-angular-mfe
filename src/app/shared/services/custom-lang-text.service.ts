@@ -399,6 +399,24 @@ export class CustomLangTextService {
     throw new Error('Should include either SV or NB');
   }
 
+  getChooseText(): string {
+    if (locale.includes('sv')) {
+      return 'Välj';
+    } else if (locale.includes('nb')) {
+      return 'Velg';
+    }
+    throw new Error('Should include either SV or NB');
+  }
+
+  getChoosenText(): string {
+    if (locale.includes('sv')) {
+      return 'valt';
+    } else if (locale.includes('nb')) {
+      return 'valgt';
+    }
+    throw new Error('Should include either SV or NB');
+  }
+
   // getBarometerAdditionalTextLowSavingsState4(): string {
   //   if (locale.includes('sv')) {
   //     return 'men du kan spara en del';

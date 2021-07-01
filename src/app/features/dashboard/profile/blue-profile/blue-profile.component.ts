@@ -214,12 +214,17 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
         this.preferencesForm = this.fb.group({
           receiveNewsEmails: [dto.receiveNewsEmails],
           checkRateReminderType: [dto.checkRateReminderType],
-          fetchCreditLinesOnly: [dto.fetchCreditLinesOnly],
           noAdditionalProductsRequired: [dto.noAdditionalProductsRequired],
           interestedInEnvironmentMortgages: [
             dto.interestedInEnvironmentMortgages
           ]
         });
+
+        this.isSweden &&
+          this.preferencesForm.addControl(
+            'fetchCreditLinesOnly',
+            this.fb.control('', [])
+          );
       },
       (err) => {
         console.log(err);
@@ -330,7 +335,7 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
 
   getMembershipPlaceholder(): string {
     if (this.previousStateMemberships?.length === 0) {
-      return 'Velg';
+      return this.textLangService.getChooseText();
     } else if (this.previousStateMemberships?.length === 1) {
       const oneMembershipPlaceholder = this.getMembershipNameString(
         this.previousStateMemberships.map((m) => {
@@ -339,9 +344,13 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
       )[0].label;
       return oneMembershipPlaceholder;
     } else if (this.previousStateMemberships?.length > 1) {
-      return `${this.previousStateMemberships?.length} valgt`;
+      return `${
+        this.previousStateMemberships?.length
+      } ${this.textLangService.getChoosenText()}`;
     }
-    return `${this.previousStateMemberships?.length} valgt`;
+    return `${
+      this.previousStateMemberships?.length
+    } ${this.textLangService.getChoosenText()}`;
   }
 
   getMembershipNameString(membership: string[]): any {
