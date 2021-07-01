@@ -329,7 +329,8 @@ form {
 
 .forms {
   ::ng-deep .mat-form-field-infix {
-    height: 57px !important;
+    top: -8px !important;
+    height: 55px !important;
   }
   ::ng-deep .mat-form-field-wrapper {
     margin: 0 !important;
@@ -367,7 +368,8 @@ form {
 
   ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
     background: #004465a6;
-    bottom: -0.25em !important;
+    //height: 55px !important;
+    // bottom: -0.25em !important;
   }
   @media (min-width: 600px) {
     form {
