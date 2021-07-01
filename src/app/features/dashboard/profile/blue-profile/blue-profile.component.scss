@@ -459,12 +459,12 @@ form {
   }
 }
 
-::ng-deep .mat-select-value {
+.preferences-tab ::ng-deep .mat-select-value {
   display: inline !important;
   max-width: 100%;
 }
 
-::ng-deep .mat-select-value-text {
+.preferences-tab ::ng-deep .mat-select-value-text {
   color: white !important;
 }
 
