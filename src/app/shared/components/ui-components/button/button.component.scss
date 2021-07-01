@@ -71,9 +71,23 @@ button.mat-secondary {
   color: white;
 }
 
+button.mat-secondary-small {
+  background-color: $secondary;
+  height: 45px;
+  // min-width: 125px;
+  color: white;
+}
+
 .mat-button.mat-primary {
   color: white !important;
 }
+
+.mat-button.mat-primary-small {
+  background-color: $primary;
+  color: white !important;
+  height: 45px;
+}
+
 button.mat-blue {
   background-color: $blue;
   color: white;

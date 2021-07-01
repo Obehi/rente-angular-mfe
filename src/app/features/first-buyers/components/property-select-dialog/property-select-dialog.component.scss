@@ -3,7 +3,7 @@
 @media (max-width: 600px) {
   .cdk-fix {
     position: fixed;
-    background: white;
+    background: $blue-medium;
     bottom: 0px;
     width: 100%;
     height: 14%;
@@ -11,16 +11,26 @@
 }
 
 .cdk-fix {
-  background: #183a63;
-  padding-bottom: 7px;
+  @media (min-width: 600px) {
+    background: #183a63;
+    padding-bottom: 13px;
+    padding-top: 5px;
+  }
 }
 
 .buttons {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: flex-end;
+  margin-inline-end: 30px;
   @media (max-width: 600px) {
     position: fixed;
     bottom: 15px;
     width: 100%;
+    justify-content: space-evenly;
+  }
+  @media (min-width: 600px) {
+    .abort-btn {
+      margin-right: 15px;
+    }
   }
 }

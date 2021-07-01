@@ -16,7 +16,7 @@
         </p>
         <img
           class="remove-icon"
-          src="{{ icon }}"
+          src="{{ rejectBlue }}"
           (click)="removeMembership(option)"
         />
       </div>
@@ -26,9 +26,9 @@
     <input
       class="search-div-input"
       [(ngModel)]="searchText"
-      placeholder="Søk medlemskap"
+      [placeholder]="'Søk medlemskap'"
     />
-    <img class="search-icon" src="{{ searchIconDark }}" />
+    <img class="search-icon" src="{{ searchIconLight }}" />
   </div>
   <div class="dropdown-scroll">
     <div
@@ -48,7 +48,7 @@
       <img
         *ngIf="chosenMemberships(option)"
         class="remove-icon-list"
-        src="{{ icon }}"
+        src="{{ rejectBlue }}"
         (click)="removeMembership(option)"
       />
     </div>
@@ -73,7 +73,7 @@
             </p>
             <img
               class="remove-icon"
-              src="{{ iconLight }}"
+              src="{{ rejectBlue }}"
               (click)="removeMembership(option)"
             />
           </div>
@@ -85,7 +85,7 @@
         <input
           class="search-div-input"
           [(ngModel)]="searchText"
-          placeholder="Søk medlemskap"
+          [placeholder]="'Søk medlemskap'"
         />
         <img class="search-icon" src="{{ searchIconLight }}" />
       </div>
@@ -112,7 +112,7 @@
             <img
               *ngIf="chosenMemberships(option)"
               class="remove-icon-list"
-              src="{{ iconLight }}"
+              src="{{ rejectBlue }}"
               (click)="removeMembership(option)"
             />
           </div>
