@@ -36,6 +36,8 @@ import { ROUTES_MAP } from '@config/routes-config';
 import { CustomLangTextService } from '@services/custom-lang-text.service';
 import { MessageBannerService } from '@services/message-banner.service';
 import { getAnimationStyles } from '@shared/animations/animationEnums';
+import { ApiError } from '@shared/constants/api-error';
+import { VirdiManualValueDialogComponent } from '@shared/components/ui-components/dialogs/virdi-manual-value-dialog/virdi-manual-value-dialog.component';
 
 @Component({
   selector: 'rente-init-confirmation-sv',
@@ -57,7 +59,7 @@ export class InitConfirmationNoComponent implements OnInit {
   public userData: ConfirmationGetDto;
   public mask = Mask;
   public isAddressNeeded = false;
-  public isNameNeeded = true;
+  // public isNameNeeded = true;
   public animationType = getAnimationStyles();
   @ViewChild('membershipInput') membershipInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete: MatAutocomplete;
@@ -88,15 +90,31 @@ export class InitConfirmationNoComponent implements OnInit {
     ]).subscribe(([rateAndLoans, userInfo]) => {
       this.allMemberships = userInfo.availableMemberships;
       this.userData = userInfo;
-      this.userData.income = null;
-      const income = userInfo.income === null ? null : String(userInfo.income);
-      const apartmentSize =
-        userInfo.apartmentSize === null ? null : String(userInfo.apartmentSize);
 
-      this.isAddressNeeded =
-        rateAndLoans.isAddressNeeded || userInfo.bank === 'DNB';
-      this.isNameNeeded =
-        this.userData.name === null || this.userData.name === undefined;
+      // Test case if anything returns null
+      // this.userData.name = null;
+      // this.userData.email = null;
+      // this.userData.address.street = null;
+      // this.userData.address.zip = null;
+      // this.userData.address.apartmentSize = null;
+      // this.userData.income = null;
+
+      const userEmail =
+        this.userData.email === null ? null : String(userInfo.email);
+      const streetName =
+        this.userData.address.street === null
+          ? null
+          : String(userInfo.address.street);
+      const streetZip =
+        this.userData.address.zip === null
+          ? null
+          : String(userInfo.address.zip);
+      const income =
+        this.userData.income === null ? null : String(userInfo.income);
+      const apartmentSize =
+        this.userData.address.apartmentSize === null
+          ? null
+          : String(userInfo.address.apartmentSize);
 
       const userInfoAndRateAndLoans = { ...userInfo, ...rateAndLoans };
       this.logging.logger(
@@ -110,40 +128,35 @@ export class InitConfirmationNoComponent implements OnInit {
       );
       /*       const income = String(userInfo.income) || null;
       const apartmentSize = String(userInfo.apartmentSize) || null; */
-      this.isAddressNeeded =
-        rateAndLoans.isAddressNeeded || userInfo.bank === 'DNB';
-      this.isNameNeeded =
-        this.userData.name === null || this.userData.name === undefined;
 
       this.isAddressNeeded = true;
       this.propertyForm = this.fb.group({
-        name: [this.userData.name, Validators.required],
-        address: ['', Validators.required],
+        email: [
+          userEmail,
+          Validators.compose([
+            Validators.required,
+            Validators.pattern(VALIDATION_PATTERN.email)
+          ])
+        ],
+        address: [streetName, Validators.required],
         zip: [
-          '',
+          streetZip,
           Validators.compose([
             Validators.required,
             Validators.pattern(VALIDATION_PATTERN.zip)
           ])
         ],
         apartmentSize: [apartmentSize, Validators.required],
-        membership: [],
         income: [income, Validators.required],
-        email: [
-          userInfo.email,
-          Validators.compose([
-            Validators.required,
-            Validators.pattern(VALIDATION_PATTERN.email)
-          ])
-        ]
+        membership: []
       });
 
-      if (this.isNameNeeded) {
-        this.propertyForm.addControl(
-          'name',
-          new FormControl('', Validators.required)
-        );
-      }
+      // if (this.isNameNeeded) {
+      //   this.propertyForm.addControl(
+      //     'name',
+      //     new FormControl('', Validators.required)
+      //   );
+      // }
     });
   }
 
@@ -157,12 +170,7 @@ export class InitConfirmationNoComponent implements OnInit {
     });
   }
 
-  public updateProperty(formData): void {
-    this.propertyForm.markAllAsTouched();
-    this.propertyForm.updateValueAndValidity();
-
-    this.isLoading = true;
-
+  public getConfirmationDtoFromForm(formData): ConfirmationSetDto {
     const data = {
       email: formData.email,
       income:
@@ -171,24 +179,78 @@ export class InitConfirmationNoComponent implements OnInit {
           : formData.income,
       memberships: this.memberships.map((membership) => membership.name),
       apartmentSize: formData.apartmentSize,
-      name: this.isNameNeeded ? formData.name : this.userData.name,
       propertyType: formData.propertyType
     };
 
     const confirmationDto: ConfirmationSetDto = new ConfirmationSetDto();
     confirmationDto.address = new AddressCreationDto();
-    confirmationDto.name = data.name;
+    // confirmationDto.name = data.name;
     confirmationDto.email = data.email;
     confirmationDto.income = data.income;
     confirmationDto.memberships = data.memberships;
     confirmationDto.address.apartmentSize = data.apartmentSize;
     confirmationDto.address.propertyType = data.propertyType;
-    if (this.isAddressNeeded) {
-      confirmationDto.address.street = formData.address;
-      confirmationDto.address.zip = formData.zip;
+    confirmationDto.address.street = formData.address;
+    confirmationDto.address.zip = formData.zip;
+
+    return confirmationDto;
+  }
+
+  public getFormValue(): ConfirmationSetDto {
+    const form = this.propertyForm.value;
+
+    const aptmSize = Number(form.apartmentSize);
+
+    const address = {
+      apartmentSize: aptmSize,
+      apartmentValue: this.userData.address.apartmentValue,
+      propertyType: null,
+      street: form.address,
+      zip: form.zip
+    };
+
+    const val = this.propertyForm.get('income')?.value;
+    const incomeNumber = val.replace(/\s/g, '');
+
+    const sendFormDto = {
+      address: address,
+      email: form.email,
+      income: incomeNumber,
+      memberships: this.memberships.map((membership) => membership.name)
+    };
+
+    return sendFormDto;
+  }
+
+  public convertDto(): ConfirmationSetDto {
+    /* 
+    Use this function to send api post request with ConfirmationSetDto interface. 
+    Is used because the the post api expects a different dto than the get api
+    */
+    const confDtoWithAprtmentValue: ConfirmationSetDto = new ConfirmationSetDto();
+    confDtoWithAprtmentValue.address = this.getFormValue().address;
+    confDtoWithAprtmentValue.email = this.getFormValue().email;
+    confDtoWithAprtmentValue.income = this.getFormValue().income;
+    confDtoWithAprtmentValue.memberships = this.getFormValue().memberships;
+
+    return confDtoWithAprtmentValue;
+  }
+
+  public updateProperty(formData): void {
+    let data: ConfirmationSetDto;
+
+    if (formData === null || formData === undefined) {
+      data = this.convertDto();
+    } else {
+      data = this.getConfirmationDtoFromForm(formData);
     }
 
-    this.loansService.setConfirmationData(confirmationDto).subscribe(
+    this.propertyForm.markAllAsTouched();
+    this.propertyForm.updateValueAndValidity();
+
+    this.isLoading = true;
+
+    this.loansService.setConfirmationData(data).subscribe(
       () => {
         this.isLoading = false;
         this.router.navigate(['/dashboard/' + ROUTES_MAP.offers]);
@@ -220,14 +282,46 @@ export class InitConfirmationNoComponent implements OnInit {
           '9:USERINFO_SENT_ERROR_REDIRECTING_TO_PROPERTY',
           err
         );
-        this.router.navigate(['/dashboard/' + ROUTES_MAP.property]);
-        this.messageBanner.setView(
-          this.customLangTextService.getSnackBarErrorMessage(),
-          3000,
-          this.animationType.DROP_DOWN_UP,
-          'error',
-          window
-        );
+
+        console.log(err.errorType);
+        if (
+          err.errorType === ApiError.virdiSerachNotFound ||
+          err.errorType === ApiError.propertyCantFindZip
+        ) {
+          this.isLoading = false;
+          this.dialog.open(VirdiManualValueDialogComponent, {
+            data: {
+              address: data.address,
+              email: data.email,
+              income: data.income,
+              memberships: data.memberships,
+              confirmText: 'Legg til boligverdi',
+              cancelText: 'Prøv ny adresse',
+              onConfirm: () => {},
+              onClose: () => {},
+              onSendForm: (apartmentValue) => {
+                // Remove the whitespace
+                const value = apartmentValue.replace(/\s/g, '');
+
+                // Send the dataForm with apartment value
+                this.userData.address.apartmentValue = Number(value);
+                this.updateProperty(undefined);
+              }
+            }
+          });
+        }
+        // else {
+        //   this.showGenericDialog();
+        // }
+
+        // this.router.navigate(['/dashboard/' + ROUTES_MAP.property]);
+        // this.messageBanner.setView(
+        //   this.customLangTextService.getSnackBarErrorMessage(),
+        //   3000,
+        //   this.animationType.DROP_DOWN_UP,
+        //   'error',
+        //   window
+        // );
       }
     );
   }

@@ -16,33 +16,6 @@
       novalidate
       (ngSubmit)="updateProperty(propertyForm.value)"
     >
-      <div *ngIf="isNameNeeded" class="field">
-        <rente-input
-          [placeholder]="'Navn'"
-          formControlName="name"
-          [errorStateMatcher]="isErrorState(propertyForm.controls['name'])"
-          [modelOptions]="{ updateOn: 'blur' }"
-        >
-        </rente-input>
-
-        <div *ngIf="propertyForm.controls['name'].touched">
-          <p
-            i18n="“empty|info-confirmation@@info.confirmation.empty”"
-            class="error small"
-            *ngIf="propertyForm.controls['name'].hasError('required')"
-          >
-            Kan ikke være tom
-          </p>
-          <p
-            i18n="“invalid|info-confirmation@@info.confirmation.invalid”"
-            class="error small"
-            *ngIf="propertyForm.controls['name'].hasError('pattern')"
-          >
-            Ugyldig e-post
-          </p>
-        </div>
-      </div>
-
       <div class="field">
         <rente-input
           [placeholder]="'E-post'"

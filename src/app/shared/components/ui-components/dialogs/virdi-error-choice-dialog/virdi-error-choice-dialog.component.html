@@ -18,15 +18,19 @@
     </p>
     <div class="address-grid">
       <div class="left">
-        <p>Adresse:</p>
-        <p>Postnummer:</p>
-        <p>Adresse:</p>
+        <p *ngIf="data.address.street">Adresse:</p>
+        <p *ngIf="data.address.zip">Postnummer:</p>
+        <p *ngIf="data.address.apartmentSize">Boligstørrelse:</p>
+        <p *ngIf="data.income">Din brutto årsinntekt:</p>
       </div>
 
       <div class="right">
-        <p>{{ data.address.street }}</p>
-        <p>{{ data.address.zip }}</p>
-        <p>{{ data.address.apartmentSize }}</p>
+        <p *ngIf="data.address.street">{{ data.address.street }}</p>
+        <p *ngIf="data.address.zip">{{ data.address.zip }}</p>
+        <p *ngIf="data.address.apartmentSize">
+          {{ data.address.apartmentSize }}
+        </p>
+        <p *ngIf="data.income">{{ data.income }}</p>
       </div>
     </div>
   </div>

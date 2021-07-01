@@ -6,7 +6,11 @@ import {
   forwardRef,
   HostBinding,
   SimpleChanges,
-  OnChanges
+  OnChanges,
+  ViewChild,
+  ElementRef,
+  AfterViewInit,
+  OnInit
 } from '@angular/core';
 import {
   FormControl,
@@ -18,6 +22,7 @@ import {
 } from '@angular/forms';
 import { ViewEncapsulation } from '@angular/core';
 import { ErrorStateMatcher } from '@angular/material/core';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   constructor(public state: boolean) {}
@@ -42,7 +47,8 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   ],
   encapsulation: ViewEncapsulation.None
 })
-export class InputComponent implements ControlValueAccessor, OnChanges {
+export class InputComponent
+  implements OnInit, ControlValueAccessor, OnChanges, AfterViewInit {
   @Input() label: string;
   @Input() name: string;
   @Input() type: string;
@@ -55,6 +61,9 @@ export class InputComponent implements ControlValueAccessor, OnChanges {
   @Input() modelOptions?: { updateOn: string };
   @Input() textControl: boolean;
   @Input() maskType: any;
+  @Input() isFocused?: boolean;
+  @ViewChild('inputRef') inputRef: ElementRef;
+  @Input() focusListener?: BehaviorSubject<boolean>;
 
   // tslint:disable-next-line:no-input-rename
   @Input('value') inputValue: any = '';
@@ -68,6 +77,10 @@ export class InputComponent implements ControlValueAccessor, OnChanges {
   onChange: any = () => {};
   onTouch: any = () => {};
 
+  constructor() {}
+
+  ngOnInit(): void {}
+
   get value() {
     return this.inputValue;
   }
@@ -80,6 +93,10 @@ export class InputComponent implements ControlValueAccessor, OnChanges {
 
   onChangeEmit(): void {
     this.change?.emit();
+  }
+
+  ngAfterViewInit(): void {
+    this.setFocused();
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -116,5 +133,17 @@ export class InputComponent implements ControlValueAccessor, OnChanges {
 
   registerOnTouched(fn: any) {
     this.onTouch = fn;
+  }
+
+  public setFocused(): void {
+    this.focusListener?.subscribe((state) => {
+      if (state) {
+        setTimeout(() => {
+          this.inputRef.nativeElement.focus();
+        }, 0);
+      } else {
+        this.inputRef.nativeElement.blur();
+      }
+    });
   }
 }

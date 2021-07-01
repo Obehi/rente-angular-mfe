@@ -223,32 +223,28 @@ export class ClientAddressDto {
 }
 
 export class ConfirmationGetDto {
-  email: string;
-  name: string | null;
-  bank: string;
-  income: number | null;
-  memberships: string[];
-  apartmentSize: number;
-  apartmentValue: number;
+  address: AddressCreationDto;
   availableMemberships: MembershipTypeDto[];
+  bank: string;
+  email: string;
+  income: number | null;
+  name: string | null;
 }
 
 export class ConfirmationSetDto {
-  memberships: string[];
-  apartmentSize: number;
+  address: AddressCreationDto;
   email: string;
   income: number;
-  name: string;
-  address: AddressCreationDto;
-  apartmentValue: number;
+  memberships: string[];
+  name?: string;
 }
 
 export class AddressCreationDto {
-  apartmentSize: number;
-  apartmentValue: number;
-  propertyType: string;
-  street: string;
-  zip: string;
+  apartmentSize: number | null;
+  apartmentValue: number | null;
+  propertyType: string | null;
+  street: string | null;
+  zip: string | null;
 }
 
 export class ClientUpdateInfo {
