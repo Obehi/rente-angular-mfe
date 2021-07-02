@@ -43,7 +43,7 @@
         *ngIf="chosenMemberships(option)"
         (click)="removeMembership(option)"
       >
-        {{ option.label }}
+        {{ option.label | truncate: 30 }}
       </p>
       <img
         *ngIf="chosenMemberships(option)"

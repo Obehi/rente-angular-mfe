@@ -17,7 +17,7 @@
   ::ng-deep .mat-dialog-container {
     border-radius: 100px;
     margin: unset !important;
-    background: none;
+    background: $blue-medium;
     @media (min-width: 601px) {
       margin: unset !important;
       height: 44vh !important;
@@ -65,7 +65,7 @@
     z-index: 0;
     overflow-y: scroll;
     height: 31vh;
-    border-bottom: 1px solid lightgrey;
+    //border-bottom: 1px solid #478ccc;
     @media (min-height: 600px) and (min-width: 360px) {
       height: 37vh;
     }
@@ -82,25 +82,25 @@
 
   .search-div {
     background-color: $blue-medium;
-    width: 96%;
-    padding: 10px;
+    width: 100%;
+    padding: 10px 0;
     z-index: 1;
     display: flex;
+    border-bottom: 1px solid #fff;
 
     input {
       color: $white;
       background: $blue-medium;
-      border: 0;
-      border-bottom: 1px solid $white;
-      width: 84%;
-      left: 26px;
+      border: none;
+      margin-left: 10px;
       position: relative;
     }
     ::placeholder {
+      font-size: 16px;
+      font-style: italic;
       color: $white;
       position: relative;
-      font-weight: 400;
-      font-size: 1.1rem;
+      font-weight: 300;
     }
 
     input:focus::placeholder {
@@ -115,8 +115,7 @@
     .search-icon {
       width: 6%;
       z-index: 2;
-      margin-right: 30px;
-      margin-bottom: 3px;
+      margin-right: 10px;
     }
   }
 
@@ -132,8 +131,8 @@
     width: 100%;
     border-bottom: 1px solid #478ccc;
     h2 {
-      font-size: 18px;
-      font-weight: 500;
+      font-size: 16px;
+      font-weight: 300;
       line-height: 1.2;
       color: white;
       padding: 10px;
