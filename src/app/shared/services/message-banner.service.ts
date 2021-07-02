@@ -22,6 +22,19 @@ export class MessageBannerService {
     private isDashboard: GlobalStateService
   ) {}
 
+  getContentClass(): string {
+    // If its inside dashboard or not, or init connfirmation state. Add here if there are more states
+    // return content as default
+    if (document.getElementsByClassName('content')[0]) {
+      return 'content';
+    } else if (document.getElementsByClassName('content-dashboard')[0]) {
+      return 'content-dashboard';
+    } else if (document.getElementsByClassName('content-blue')[0]) {
+      return 'content-blue';
+    }
+    return 'content';
+  }
+
   setView(
     _newtext: string,
     _newtime: number,
@@ -43,7 +56,8 @@ export class MessageBannerService {
     } else {
       newNode.style.top = '75px';
     }
-    document.getElementsByClassName('content')[0].prepend(newNode);
+
+    document.getElementsByClassName(this.getContentClass())[0].prepend(newNode);
 
     this._componentRef = factory.create(this.injector, [], newNode);
     this.isDashboard.getDashboardState().subscribe((state) => {
