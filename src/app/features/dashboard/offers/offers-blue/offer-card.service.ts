@@ -70,7 +70,6 @@ export class OfferCardService {
   }
 
   public getOfferButtonText(offer: OfferInfo): string {
-    console.log(offer.bankInfo.bank);
     let text = '';
     switch (offer.bankInfo.bank) {
       case 'SPAREBANKENOST': {

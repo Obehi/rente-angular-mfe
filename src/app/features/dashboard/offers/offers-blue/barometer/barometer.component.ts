@@ -130,9 +130,6 @@ export class BarometerComponent implements OnInit {
     const fullText = `${this.baseTextArray[this.state]}, ${
       additionalTextArray[this.additionalState]
     }`;
-
-    console.log(this.state);
-    console.log(this.offersInfo.offerSavingsType);
     return this.shouldShowAdditionalText ? fullText : baseText;
   }
 
