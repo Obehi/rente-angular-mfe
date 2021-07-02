@@ -34,7 +34,7 @@
   <div class="manualvaluebox" *ngIf="isManualValue">
     <form
       class="manualvalueform"
-      [formGroup]="isManualPropertyValueForm"
+      [formGroup]="manualPropertyValueForm"
       novalidate
     >
       <div class="field">
@@ -46,9 +46,7 @@
               formControlName="apartmentValue"
               matSuffix="kr"
               [errorStateMatcher]="
-                isErrorState(
-                  isManualPropertyValueForm.controls['apartmentValue']
-                )
+                isErrorState(manualPropertyValueForm.controls['apartmentValue'])
               "
               [type]="'tel'"
               [maskType]="mask.currency"
@@ -56,15 +54,13 @@
             >
             </rente-input>
             <div
-              *ngIf="
-                isManualPropertyValueForm.controls['apartmentValue'].touched
-              "
+              *ngIf="manualPropertyValueForm.controls['apartmentValue'].touched"
             >
               <p
                 i18n="“empty3|info-confirmation@@info.confirmation.empty3”"
                 class="error small"
                 *ngIf="
-                  isManualPropertyValueForm.controls['apartmentValue'].hasError(
+                  manualPropertyValueForm.controls['apartmentValue'].hasError(
                     'required'
                   )
                 "
@@ -73,17 +69,6 @@
               </p>
             </div>
           </div>
-          <!-- <div
-          i18n="“help2|info-confirmation@@info.confirmation.help2”"
-          (click)="
-            openInfoDialog(
-              ' Din/Husstandens inntekt er en viktig parameter for renten bankene tilbyr '
-            )
-          "
-          class="clickable"
-        >
-          <mat-icon>help</mat-icon>
-        </div> -->
         </div>
       </div>
       <!-- Field end -->
@@ -116,7 +101,7 @@
   <rente-button
     *ngIf="secondStep"
     [disabled]="
-      isManualPropertyValueForm.invalid || !isManualPropertyValueForm.valid
+      manualPropertyValueForm.invalid || !manualPropertyValueForm.valid
     "
     i18n="“close|button@@close”"
     cdkFocusInitial

@@ -17,12 +17,11 @@ import {
   ControlValueAccessor,
   NG_VALUE_ACCESSOR,
   FormGroupDirective,
-  FormsModule,
   NgForm
 } from '@angular/forms';
 import { ViewEncapsulation } from '@angular/core';
 import { ErrorStateMatcher } from '@angular/material/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   constructor(public state: boolean) {}
@@ -61,7 +60,6 @@ export class InputComponent
   @Input() modelOptions?: { updateOn: string };
   @Input() textControl: boolean;
   @Input() maskType: any;
-  @Input() isFocused?: boolean;
   @ViewChild('inputRef') inputRef: ElementRef;
   @Input() focusListener?: BehaviorSubject<boolean>;
 
@@ -96,10 +94,10 @@ export class InputComponent
   }
 
   ngAfterViewInit(): void {
-    this.setFocused();
+    this.setFocusedListener();
   }
 
-  ngOnChanges(changes: SimpleChanges) {
+  ngOnChanges(changes: SimpleChanges): void {
     if (changes.errorStateMatcher) {
       this.matcher = new MyErrorStateMatcher(this.errorStateMatcher);
     }
@@ -135,7 +133,7 @@ export class InputComponent
     this.onTouch = fn;
   }
 
-  public setFocused(): void {
+  public setFocusedListener(): void {
     this.focusListener?.subscribe((state) => {
       if (state) {
         setTimeout(() => {

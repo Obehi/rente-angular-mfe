@@ -16,7 +16,7 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class VirdiManualValueDialogComponent {
   public isManualValue: boolean;
-  public isManualPropertyValueForm: FormGroup;
+  public manualPropertyValueForm: FormGroup;
   public mask = Mask;
   public showInfoBox: boolean;
   public firstStep: boolean;
@@ -51,12 +51,12 @@ export class VirdiManualValueDialogComponent {
   }
 
   public onSendForm(): void {
-    if (this.isManualPropertyValueForm.get('apartmentValue')?.value === null) {
+    if (this.manualPropertyValueForm.get('apartmentValue')?.value === null) {
       alert('Apartment value is null');
     } else {
       this.data.onSendForm &&
         this.data.onSendForm(
-          this.isManualPropertyValueForm.get('apartmentValue')?.value
+          this.manualPropertyValueForm.get('apartmentValue')?.value
         );
     }
 
@@ -64,7 +64,7 @@ export class VirdiManualValueDialogComponent {
   }
 
   initPropertyValueForm(): void {
-    this.isManualPropertyValueForm = this.fb.group({
+    this.manualPropertyValueForm = this.fb.group({
       apartmentValue: [0, Validators.required]
     });
   }

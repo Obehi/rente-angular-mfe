@@ -5,7 +5,6 @@ import {
   MembershipTypeDto,
   AddressCreationDto
 } from '@services/remote-api/loans.service';
-import { UserService } from '@services/remote-api/user.service';
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { LoggingService } from '@services/logging.service';
 import {
@@ -26,12 +25,10 @@ import {
 } from '@angular/material';
 import { Router } from '@angular/router';
 import { VALIDATION_PATTERN } from '@config/validation-patterns.config';
-import { SnackBarService } from '../../../shared/services/snackbar.service';
 import { OfferInfo } from '@shared/models/offers';
 import { DialogInfoComponent } from '../dialog-info/dialog-info.component';
 
 import { Mask } from '@shared/constants/mask';
-import { OptimizeService } from '@services/optimize.service';
 import { ROUTES_MAP } from '@config/routes-config';
 import { CustomLangTextService } from '@services/custom-lang-text.service';
 import { MessageBannerService } from '@services/message-banner.service';
@@ -59,16 +56,13 @@ export class InitConfirmationNoComponent implements OnInit {
   public userData: ConfirmationGetDto;
   public mask = Mask;
   public isAddressNeeded = false;
-  // public isNameNeeded = true;
   public animationType = getAnimationStyles();
   @ViewChild('membershipInput') membershipInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete: MatAutocomplete;
 
   constructor(
     private fb: FormBuilder,
-    private userService: UserService,
     private loansService: LoansService,
-    private snackBar: SnackBarService,
     private router: Router,
     public dialog: MatDialog,
     public customLangTextService: CustomLangTextService,
@@ -90,14 +84,6 @@ export class InitConfirmationNoComponent implements OnInit {
     ]).subscribe(([rateAndLoans, userInfo]) => {
       this.allMemberships = userInfo.availableMemberships;
       this.userData = userInfo;
-
-      // Test case if anything returns null
-      // this.userData.name = null;
-      // this.userData.email = null;
-      // this.userData.address.street = null;
-      // this.userData.address.zip = null;
-      // this.userData.address.apartmentSize = null;
-      // this.userData.income = null;
 
       const userEmail =
         this.userData.email === null ? null : String(userInfo.email);
@@ -126,8 +112,6 @@ export class InitConfirmationNoComponent implements OnInit {
         '7:INIT_CONFIRMATION',
         userInfoAndRateAndLoans
       );
-      /*       const income = String(userInfo.income) || null;
-      const apartmentSize = String(userInfo.apartmentSize) || null; */
 
       this.isAddressNeeded = true;
       this.propertyForm = this.fb.group({
@@ -150,13 +134,6 @@ export class InitConfirmationNoComponent implements OnInit {
         income: [income, Validators.required],
         membership: []
       });
-
-      // if (this.isNameNeeded) {
-      //   this.propertyForm.addControl(
-      //     'name',
-      //     new FormControl('', Validators.required)
-      //   );
-      // }
     });
   }
 
@@ -184,7 +161,6 @@ export class InitConfirmationNoComponent implements OnInit {
 
     const confirmationDto: ConfirmationSetDto = new ConfirmationSetDto();
     confirmationDto.address = new AddressCreationDto();
-    // confirmationDto.name = data.name;
     confirmationDto.email = data.email;
     confirmationDto.income = data.income;
     confirmationDto.memberships = data.memberships;
@@ -310,18 +286,6 @@ export class InitConfirmationNoComponent implements OnInit {
             }
           });
         }
-        // else {
-        //   this.showGenericDialog();
-        // }
-
-        // this.router.navigate(['/dashboard/' + ROUTES_MAP.property]);
-        // this.messageBanner.setView(
-        //   this.customLangTextService.getSnackBarErrorMessage(),
-        //   3000,
-        //   this.animationType.DROP_DOWN_UP,
-        //   'error',
-        //   window
-        // );
       }
     );
   }
