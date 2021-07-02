@@ -20,11 +20,11 @@ import {
 import { locale } from '../../../../../config/locale/locale';
 
 @Component({
-  selector: 'rente-offer-card-v2',
-  templateUrl: './offer-card-v2.component.html',
-  styleUrls: ['./offer-card-v2.component.scss']
+  selector: 'rente-offer-card',
+  templateUrl: './offer-card.component.html',
+  styleUrls: ['./offer-card.component.scss']
 })
-export class OfferCardV2Component implements OnInit {
+export class OfferCardComponent implements OnInit {
   public banksMap = BANKS_DATA;
   public offerSavingsType = OFFER_SAVINGS_TYPE;
   public xpandStatus = false;

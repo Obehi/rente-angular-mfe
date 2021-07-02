@@ -75,6 +75,15 @@ export class CustomLangTextService {
     throw new Error('Should include either SV or NB');
   }
 
+  getMembershipSearchText(): string {
+    if (locale.includes('sv')) {
+      return 'Sök medlemskap';
+    } else if (locale.includes('nb')) {
+      return 'Søk medlemskap';
+    }
+    throw new Error('Should include either SV or NB');
+  }
+
   getHouseValue(): string {
     if (locale.includes('sv')) {
       return 'Bostadens värde och belåningsgrad är viktiga parametrar när banken erbjuder en ränta. Kontrollera gärna att bostadens värde är korrekt. Du kan även lägga till fler bolån om du har det.';

@@ -64,7 +64,7 @@ import { AntiChurnErrorDialogComponent } from './offers/anti-churn-dialog/anti-c
 import { NordeaBargainSuccessComponent } from './offers/bargain-success/bargain-nordea/nordea-bargain-success.component';
 import { CanNotBargainDialogComponent } from './offers/can-not-bargain-dialog/can-not-bargain-dialog.component';
 import { OfferCardV1Component } from './offers/offers-blue/offer-card-v1/offer-card-v1.component';
-import { OfferCardV2Component } from './offers/offers-blue/offer-card-v2/offer-card-v2.component';
+import { OfferCardComponent } from './offers/offers-blue/offer-card-v2/offer-card.component';
 import { ChangeBankTooManyTriesDialogError } from './offers/change-bank-dialog/change-bank-too-many-tries-dialog-error/change-bank-too-many-tries-dialog-error.component';
 import { BarometerComponent } from './offers/offers-blue/barometer/barometer.component';
 import { BoxGridComponent } from './offers/offers-blue/box-grid/box-grid.component';
@@ -117,7 +117,7 @@ import { CurrencyMaskModule } from 'ng2-currency-mask';
     AntiChurnErrorDialogComponent,
     CanNotBargainDialogComponent,
     NordeaBargainSuccessComponent,
-    OfferCardV2Component,
+    OfferCardComponent,
     ChangeBankTooManyTriesDialogError,
     BarometerComponent,
     BoxGridComponent,

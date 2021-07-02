@@ -54,6 +54,7 @@
     </div>
   </div>
 </div>
+
 <!-- DESKTOP VERSION -->
 <div *ngIf="!isMobile" class="main-div">
   <div class="desktop-column-one">
@@ -85,7 +86,7 @@
         <input
           class="search-div-input"
           [(ngModel)]="searchText"
-          [placeholder]="'Søk medlemskap'"
+          [placeholder]="langService.getMembershipSearchText()"
         />
         <img class="search-icon" src="{{ searchIconLight }}" />
       </div>
