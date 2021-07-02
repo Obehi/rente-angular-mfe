@@ -16,7 +16,14 @@ import {
   styleUrls: ['./offers-list-no.component.scss'],
   animations: [
     trigger('onScroll', [
-      state('true', style({ opacity: 1 })),
+      state(
+        'true',
+        style({
+          opacity: 1,
+          top: '68px',
+          borderRadius: '9px'
+        })
+      ),
       state('false', style({ opacity: 0, marginTop: '-80px' })),
       transition('false <=> true', animate('200ms ease-out'))
     ])

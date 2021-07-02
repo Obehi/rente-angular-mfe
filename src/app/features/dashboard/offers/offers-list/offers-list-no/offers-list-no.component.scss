@@ -18,11 +18,13 @@ p {
   z-index: 9;
   top: 55px;
   font-size: 14px;
-  color: #fff;
-  background-color: #6c7580;
+  color: #000;
+  background-color: aquamarine;
+  box-shadow: rgb(100 100 111 / 20%) 0px 7px 29px 0px;
   height: 4em;
-  width: 100%;
+  width: 90%;
   padding: 10px;
+  margin-left: 2vh;
 
   span {
     margin-right: 29px;
@@ -32,7 +34,7 @@ p {
     top: 114px;
   }
   p {
-    color: white;
+    color: #000;
     font-weight: 400;
 
     span {
