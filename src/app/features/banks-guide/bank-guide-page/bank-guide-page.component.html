@@ -203,6 +203,19 @@
             src="../../../../assets/icons/arrow-small-grey.svg"
           />
         </div>
+
+        <div
+          (click)="scrollTo(offices)"
+          *ngIf="banksLocations.length !== 0"
+          class="icon-link"
+        >
+          <img src="../../../../assets/icons/location-grey-circle.svg" />
+          <span>Kontakt informasjon</span>
+          <img
+            class="arrow"
+            src="../../../../assets/icons/arrow-small-grey.svg"
+          />
+        </div>
       </div>
     </div>
 
@@ -609,6 +622,22 @@
                 </div>
               </mat-expansion-panel>
             </mat-accordion>
+          </div>
+        </div>
+
+        <div class="white-bg p-3 mx-lg-auto mt-4">
+          <div class="bank-name justify-content-lg-center">
+            <div class="logo d-inline-block">
+              <img
+                src="../../../assets/img/banks-logo/round/{{ bank.icon }}"
+                [alt]="bank.label"
+              />
+            </div>
+            <div class="label d-flex text-left pl-4">Kontakt informasjon</div>
+          </div>
+          <div class="contact-subdiv">
+            <h3 class="contact-subheader">Nettside:</h3>
+            <p>Besøk nettsiden</p>
           </div>
         </div>
       </div>
