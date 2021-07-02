@@ -125,7 +125,9 @@
     height: 23vh;
     max-height: 23vh;
     overflow-y: scroll;
-    background: linear-gradient(180deg, #162537, #183a63);
+    //background: linear-gradient(180deg, #162537, #183a63);
+    background: #162537;
+
     // position: fixed;
     z-index: 2;
     width: 100%;
@@ -163,6 +165,7 @@
       display: flex;
       p {
         font-weight: 500;
+        margin-left: 35px;
       }
     }
   }
