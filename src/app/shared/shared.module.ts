@@ -61,6 +61,8 @@ import { PropertySelectComponent } from '@features/first-buyers/components/prope
 import { PropertySelectDialogComponent } from '@features/first-buyers/components/property-select-dialog/property-select-dialog.component';
 import { SpinnerComponent } from '@shared/components/ui-components/spinner/spinner.component';
 import { CheckmarkSuccessComponent } from '@shared/components/ui-components/checkmark-success/checkmark-success.component';
+import { VirdiManualValueDialogComponent } from './components/ui-components/dialogs/virdi-manual-value-dialog/virdi-manual-value-dialog.component';
+
 const components = [
   HeaderComponent,
   FooterComponent,
@@ -135,7 +137,8 @@ const services = [
     GenericInfoDialogComponent,
     GenericErrorDialogComponent,
     VirdiErrorChoiceDialogComponent,
-    LoginTermsDialogV2Component
+    LoginTermsDialogV2Component,
+    VirdiManualValueDialogComponent
   ],
   exports: [
     ...components,
