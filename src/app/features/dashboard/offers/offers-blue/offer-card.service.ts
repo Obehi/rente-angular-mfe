@@ -86,12 +86,11 @@ export class OfferCardService {
       }
 
       case 'SWE_HYPOTEKET': {
-        text = 'Få erbjudande ifrån Hypoteket!';
+        text = 'Få erbjudande från Hypoteket';
         break;
       }
-
       default: {
-        text = this.langService.getOfferCardButtonDefaultCTAText();
+        text = this.langService.getOffeCardCTAButtonText();
         break;
       }
     }

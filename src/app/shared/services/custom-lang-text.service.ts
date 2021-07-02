@@ -22,15 +22,14 @@ export class CustomLangTextService {
     throw new Error('Should be either SV or NB');
   }
 
-  getOfferCardButtonDefaultCTAText(): string {
+  getOffeCardCTAButtonText(): string {
     if (locale.includes('sv')) {
-      return 'Få erbjudande ifrån banken';
+      return 'Få erbjudande från banken';
     } else if (locale.includes('nb')) {
       return 'Få tilbud fra banken!';
     }
     throw new Error('Should be either SV or NB');
   }
-
   getEmail(): string {
     if (locale.includes('sv')) {
       return 'hej@ranteradar.se';
