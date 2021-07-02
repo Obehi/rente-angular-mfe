@@ -1,12 +1,34 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  ContentChildren,
+  QueryList,
+  AfterContentInit
+} from '@angular/core';
+import { AccordionGroupComponent } from './accordion-group.component';
 
 @Component({
-  selector: 'app-accordion',
-  templateUrl: './accordion.component.html',
+  selector: 'accordion',
+  template: ` <ng-content></ng-content> `,
   styleUrls: ['./accordion.component.scss']
 })
-export class AccordionComponent implements OnInit {
-  constructor() {}
+export class AccordionComponent implements AfterContentInit {
+  @ContentChildren(AccordionGroupComponent)
+  groups: QueryList<AccordionGroupComponent>;
 
-  ngOnInit() {}
+  ngAfterContentInit(): void {
+    this.groups.toArray().forEach((t) => {
+      t.toggle.subscribe(() => {
+        this.openGroup(t);
+      });
+    });
+  }
+
+  openGroup(group?: AccordionGroupComponent): void {
+    if (group !== undefined && !group.opened) {
+      this.groups.toArray().forEach((t) => (t.opened = false));
+      group.opened = true;
+    } else if (group?.opened) {
+      group.opened = false;
+    }
+  }
 }

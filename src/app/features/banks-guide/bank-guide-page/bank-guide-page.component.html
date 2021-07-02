@@ -283,40 +283,23 @@
         <div class="offerings-header">Produkter:</div>
         <div class="accordion">
           <!--           <li *ngFor="let pizza of pizzas$ | async; index as i"></li> -->
+
           <accordion>
             <group
-              [title]="membership"
-              *ngFor="let membership of memberships$ | async"
-              >this is the content</group
+              [title]="membership + ' medlemskapslån'"
+              *ngFor="let membership of memberships"
+              ><div
+                class="item"
+                *ngFor="
+                  let membership of bankGuideInfo?.membershipOffers[membership]
+                "
+              >
+                <div>{{ membership.name }}</div>
+                <div>{{ membership.rate | number: '1.2-2' }}%</div>
+              </div></group
             >
-          </accordion>
-          <accordion>
-            <group [title]="membership" *ngFor="let membership of memberships"
-              >this is the content</group
-            >
-          </accordion>
-          <mat-accordion>
-            <!-- <mat-expansion-panel *ngFor="let membership of memberships">
-              <mat-expansion-panel-header>
-                <p>
-                  <b>
-                    {{(membership | titlecase)}} medlemskapslån
-                  </b>
-                </p>
-              </mat-expansion-panel-header>
-              <div class="item" *ngFor="let membership of bankGuideInfo?.membershipOffers[membership]">
-                <div> {{membership.name}} </div>
-                <div> {{membership.rate | number: "1.2-2"}}% </div>
-              </div>
-            </mat-expansion-panel> -->
-
-            <mat-expansion-panel *ngIf="bankGuideInfo?.regularOffers.length">
-              <mat-expansion-panel-header>
-                <p>
-                  <b> Boliglån: </b>
-                </p>
-              </mat-expansion-panel-header>
-              <div
+            <group title="Boliglån:" *ngIf="bankGuideInfo?.regularOffers.length"
+              ><div
                 class="d-flex justify-content-between align-middle mt-2"
                 *ngFor="let offer of bankGuideInfo?.regularOffers"
               >
@@ -326,17 +309,13 @@
                   </div>
                   <div>{{ offer.rate | number: '1.2-2' }}%</div>
                 </div>
-              </div>
-            </mat-expansion-panel>
-            <mat-expansion-panel
-              *ngIf="bankGuideInfo?.creditLineLoansOffers.length"
+              </div></group
             >
-              <mat-expansion-panel-header>
-                <p>
-                  <b> Rammelån: </b>
-                </p>
-              </mat-expansion-panel-header>
-              <div
+
+            <group
+              title="Rammelån:"
+              *ngIf="bankGuideInfo?.creditLineLoansOffers.length"
+              ><div
                 class="d-flex justify-content-between align-middle mt-2"
                 *ngFor="let offer of bankGuideInfo?.creditLineLoansOffers"
               >
@@ -346,17 +325,13 @@
                   </div>
                   <div>{{ offer.rate | number: '1.2-2' }}%</div>
                 </div>
-              </div>
-            </mat-expansion-panel>
-            <mat-expansion-panel
-              *ngIf="bankGuideInfo?.fixedRateLoansOffers.length"
+              </div></group
             >
-              <mat-expansion-panel-header>
-                <p>
-                  <b> Fastrentelån: </b>
-                </p>
-              </mat-expansion-panel-header>
-              <div
+
+            <group
+              title="Fastrentelån:"
+              *ngIf="bankGuideInfo?.fixedRateLoansOffers.length"
+              ><div
                 class="d-flex justify-content-between align-middle mt-2"
                 *ngFor="let offer of bankGuideInfo?.fixedRateLoansOffers"
               >
@@ -366,17 +341,13 @@
                   </div>
                   <div>{{ offer.rate | number: '1.2-2' }}%</div>
                 </div>
-              </div>
-            </mat-expansion-panel>
-            <mat-expansion-panel
-              *ngIf="bankGuideInfo?.intermediateFinancingOffers.length"
+              </div></group
             >
-              <mat-expansion-panel-header>
-                <p>
-                  <b> Mellomfinansiering: </b>
-                </p>
-              </mat-expansion-panel-header>
-              <div
+
+            <group
+              title="Mellomfinansiering:"
+              *ngIf="bankGuideInfo?.intermediateFinancingOffers.length"
+              ><div
                 class="d-flex justify-content-between align-middle mt-2"
                 *ngFor="let offer of bankGuideInfo?.intermediateFinancingOffers"
               >
@@ -386,17 +357,13 @@
                   </div>
                   <div>{{ offer.rate | number: '1.2-2' }}%</div>
                 </div>
-              </div>
-            </mat-expansion-panel>
-            <mat-expansion-panel
-              *ngIf="bankGuideInfo?.constructionLoansOffers.length"
+              </div></group
             >
-              <mat-expansion-panel-header>
-                <p>
-                  <b> Byggelån: </b>
-                </p>
-              </mat-expansion-panel-header>
-              <div
+
+            <group
+              title="Byggelån:"
+              *ngIf="bankGuideInfo?.constructionLoansOffers.length"
+              ><div
                 class="d-flex justify-content-between align-middle mt-2"
                 *ngFor="let offer of bankGuideInfo?.constructionLoansOffers"
               >
@@ -406,9 +373,9 @@
                   </div>
                   <div>{{ offer.rate | number: '1.2-2' }}%</div>
                 </div>
-              </div>
-            </mat-expansion-panel>
-          </mat-accordion>
+              </div></group
+            >
+          </accordion>
         </div>
       </div>
       <div class="white-bg p-3 mx-lg-auto mt-4">
@@ -497,82 +464,70 @@
             </h2>
           </div>
           <div class="accordion mt-2 w-100">
-            <mat-accordion>
-              <mat-expansion-panel *ngFor="let address of banksLocations">
-                <mat-expansion-panel-header>
-                  <p>
-                    <b>
-                      {{ (address | titlecase).replace('Og', 'og') }}
-                    </b>
-                  </p>
-                </mat-expansion-panel-header>
-                <mat-expansion-panel
-                  *ngFor="let location of bankGuideInfo?.addresses[address]"
-                >
-                  <mat-expansion-panel-header>
-                    <p>
-                      <b>
-                        {{ location.name }}
-                      </b>
-                    </p>
-                  </mat-expansion-panel-header>
-                  <div class="location-details">
-                    <div class="location-item">
-                      <div class="checklist-item font-weight-bolder mt-2">
-                        <mat-icon [inline]="true" color="primary"
-                          >location_on</mat-icon
-                        >
-                        <span>Adresse:</span>
+            <accordion>
+              <group [title]="address" *ngFor="let address of banksLocations">
+                <accordion>
+                  <group
+                    [title]="location.name"
+                    *ngFor="let location of bankGuideInfo?.addresses[address]"
+                    ><div class="location-details">
+                      <div class="location-item">
+                        <div class="checklist-item font-weight-bolder mt-2">
+                          <mat-icon [inline]="true" color="primary"
+                            >location_on</mat-icon
+                          >
+                          <span>Adresse:</span>
+                        </div>
+                        <p
+                          class="location-item-content"
+                          [innerHTML]="location.address"
+                        ></p>
                       </div>
-                      <p
-                        class="location-item-content"
-                        [innerHTML]="location.address"
-                      ></p>
-                    </div>
-                    <div class="location-item">
-                      <div class="checklist-item font-weight-bolder mt-2">
-                        <mat-icon [inline]="true" color="primary"
-                          >watch_later</mat-icon
-                        >
-                        <span>Åpningstider:</span>
+                      <div class="location-item">
+                        <div class="checklist-item font-weight-bolder mt-2">
+                          <mat-icon [inline]="true" color="primary"
+                            >watch_later</mat-icon
+                          >
+                          <span>Åpningstider:</span>
+                        </div>
+                        <p
+                          class="location-item-content"
+                          [innerHTML]="location.openingHours"
+                        ></p>
                       </div>
-                      <p
-                        class="location-item-content"
-                        [innerHTML]="location.openingHours"
-                      ></p>
-                    </div>
-                    <div class="location-item">
-                      <div class="checklist-item font-weight-bolder mt-2">
-                        <mat-icon [inline]="true" color="primary"
-                          >room_service</mat-icon
-                        >
-                        <span>Tjenester:</span>
+                      <div class="location-item">
+                        <div class="checklist-item font-weight-bolder mt-2">
+                          <mat-icon [inline]="true" color="primary"
+                            >room_service</mat-icon
+                          >
+                          <span>Tjenester:</span>
+                        </div>
                       </div>
-                    </div>
-                    <div
-                      *ngIf="location?.bankLocationServiceDomains"
-                      class="services"
-                    >
                       <div
-                        class="checklist-item mt-2"
-                        *ngFor="
-                          let service of location.bankLocationServiceDomains
-                        "
+                        *ngIf="location?.bankLocationServiceDomains"
+                        class="services"
                       >
-                        <!--<img src="../../../../assets/icons/checkbox.svg" /> -->
-                        <span>{{ service }}</span>
+                        <div
+                          class="checklist-item mt-2"
+                          *ngFor="
+                            let service of location.bankLocationServiceDomains
+                          "
+                        >
+                          <!--<img src="../../../../assets/icons/checkbox.svg" /> -->
+                          <span>{{ service }}</span>
+                        </div>
                       </div>
-                    </div>
-                    <div
-                      *ngIf="!location?.bankLocationServiceDomains"
-                      class="service-not-present"
-                    >
-                      -
-                    </div>
-                  </div>
-                </mat-expansion-panel>
-              </mat-expansion-panel>
-            </mat-accordion>
+                      <div
+                        *ngIf="!location?.bankLocationServiceDomains"
+                        class="service-not-present"
+                      >
+                        -
+                      </div>
+                    </div></group
+                  >
+                </accordion>
+              </group>
+            </accordion>
           </div>
         </div>
         <div

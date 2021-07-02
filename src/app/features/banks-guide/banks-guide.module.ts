@@ -8,8 +8,8 @@ import { BanksGuideRoutingModule } from './banks-guide-routing.module';
 import { BanksGuideComponent } from './banks-guide.component';
 import { SharedModule } from '../../shared/shared.module';
 import { BankGuideService } from './bank-guide.service';
-import { AccordionGroupComponent } from '../../shared/components/ui-components/accordion-new/accordion-group.component';
-import { AccordionComponent } from '../../shared/components/ui-components/accordion-new/accordion.component';
+import { AccordionGroupComponent } from '../../shared/components/ui-components/accordion/accordion-group.component';
+import { AccordionComponent } from '../../shared/components/ui-components/accordion/accordion.component';
 
 @NgModule({
   declarations: [

@@ -1,0 +1,33 @@
+@import '../../../../../styles/theme/_colors.scss';
+
+.mypanel {
+  background-color: $grey-light;
+  color: #222;
+  border-radius: 10px;
+}
+
+.mypanel .title {
+  display: grid;
+  grid-template-columns: 1fr 0fr;
+  background-color: $grey-light;
+  width: 100%;
+  padding: 15px;
+  cursor: pointer;
+  border-radius: 10px;
+  font-size: 18px;
+  font-weight: 400;
+  color: #54606e !important;
+}
+
+.mypanel .body {
+  margin-bottom: 10px;
+  border-top: 1px solid $grey-medium-light;
+}
+
+.mypanel .body.hidden {
+  display: none;
+}
+
+.mat-icon {
+  color: $primary;
+}
