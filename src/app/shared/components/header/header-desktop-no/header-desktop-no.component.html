@@ -1,0 +1,70 @@
+<nav>
+  <div class="inner-nav">
+    <a (click)="goToTop()" [routerLink]="['/']">
+      <img
+        src="../../../../assets/img/renteradar_white_logo-no.svg"
+        alt="Renteradar logo"
+      />
+    </a>
+    <div class="menu-container">
+      <div class="desktop-menu desktop">
+        <a
+          i18n="“Headerlink|homepage@@header.home”"
+          [routerLink]="['/']"
+          routerLinkActive="active-link"
+          [routerLinkActiveOptions]="{ exact: true }"
+          >Hjem
+        </a>
+        <a
+          i18n="“Headerlink|contact@@header.bankGuide”"
+          [routerLink]="['/bankguiden']"
+          routerLinkActive="active-link"
+        >
+          Bankguiden
+        </a>
+        <a
+          i18n="“Headerlink|blog@@header.blog”"
+          href="https://blogg.renteradar.no"
+          target="_self"
+          >Blogg</a
+        >
+
+        <a
+          i18n="“Headerlink|contact@@header.contact”"
+          [routerLink]="['/kontakt']"
+          routerLinkActive="active-link"
+        >
+          Kontakt
+        </a>
+        <a
+          i18n="“Headerlink|about-us@@header.aboutUs”"
+          [routerLink]="['/om-oss']"
+          routerLinkActive="active-link"
+          >Om oss
+        </a>
+        <span [routerLink]="['/']" fragment="faq">
+          <a i18n="“Headerlink|faq@@header.faq”" href="#faq">FAQ </a>
+        </span>
+        <a
+          [routerLink]="['/dashboard/tilbud']"
+          *ngIf="isLoggedIn"
+          routerLinkActive="active-link"
+          class="highlight"
+          >Min side
+        </a>
+        <a
+          i18n="“Headerlink|log-in@@header.login”"
+          [routerLink]="['/velgbank']"
+          *ngIf="!isLoggedIn"
+          routerLinkActive="active-link"
+          class="highlight"
+          >Logg inn
+        </a>
+        <a [routerLink]="['/']" *ngIf="isLoggedIn" (click)="auth.logout()"
+          >Logg ut</a
+        >
+      </div>
+    </div>
+  </div>
+</nav>
+<div class="nav-space"></div>

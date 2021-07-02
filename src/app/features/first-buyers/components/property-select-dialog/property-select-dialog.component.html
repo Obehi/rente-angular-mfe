@@ -6,11 +6,14 @@
 ></property-select>
 <div class="cdk-fix">
   <div class="buttons">
-    <rente-button color="primary-hollow" (click)="cancel()"
+    <rente-button class="abort-btn" color="secondary-small" (click)="cancel()"
       >Avbryt</rente-button
     >
 
-    <rente-button color="primary" [disabled]="!hasChanged" (click)="save()"
+    <rente-button
+      color="primary-small"
+      [disabled]="!hasChanged"
+      (click)="save()"
       >Lagre</rente-button
     >
   </div>

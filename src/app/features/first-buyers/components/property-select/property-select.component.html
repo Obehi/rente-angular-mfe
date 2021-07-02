@@ -16,7 +16,7 @@
         </p>
         <img
           class="remove-icon"
-          src="{{ icon }}"
+          src="{{ rejectBlue }}"
           (click)="removeMembership(option)"
         />
       </div>
@@ -26,36 +26,31 @@
     <input
       class="search-div-input"
       [(ngModel)]="searchText"
-      placeholder="Søk medlemskap"
+      [placeholder]="'Søk medlemskap'"
     />
-    <img class="search-icon" src="{{ searchIconDark }}" />
+    <img class="search-icon" src="{{ searchIconLight }}" />
   </div>
   <div class="dropdown-scroll">
-    <div class="dropdown-div">
-      <div
-        *ngFor="let option of membershipNames | filter: searchText"
-        class="list-div"
+    <div
+      *ngFor="let option of membershipNames | filter: searchText"
+      class="list-div"
+    >
+      <p *ngIf="!chosenMemberships(option)" (click)="chooseMembership(option)">
+        {{ option.label }}
+      </p>
+      <p
+        class="p-selected"
+        *ngIf="chosenMemberships(option)"
+        (click)="removeMembership(option)"
       >
-        <p
-          *ngIf="!chosenMemberships(option)"
-          (click)="chooseMembership(option)"
-        >
-          {{ option.label }}
-        </p>
-        <p
-          class="p-selected"
-          *ngIf="chosenMemberships(option)"
-          (click)="removeMembership(option)"
-        >
-          {{ option.label }}
-        </p>
-        <img
-          *ngIf="chosenMemberships(option)"
-          class="remove-icon-list"
-          src="{{ icon }}"
-          (click)="removeMembership(option)"
-        />
-      </div>
+        {{ option.label | truncate: 30 }}
+      </p>
+      <img
+        *ngIf="chosenMemberships(option)"
+        class="remove-icon-list"
+        src="{{ rejectBlue }}"
+        (click)="removeMembership(option)"
+      />
     </div>
   </div>
 </div>
@@ -78,7 +73,7 @@
             </p>
             <img
               class="remove-icon"
-              src="{{ icon }}"
+              src="{{ rejectBlue }}"
               (click)="removeMembership(option)"
             />
           </div>
@@ -90,15 +85,16 @@
         <input
           class="search-div-input"
           [(ngModel)]="searchText"
-          placeholder="Søk medlemskap"
+          [placeholder]="'Søk medlemskap'"
         />
-        <img class="search-icon" src="{{ searchIconDark }}" />
+        <img class="search-icon" src="{{ searchIconLight }}" />
       </div>
       <div class="dropdown-scroll">
         <div class="dropdown-div">
           <div
             *ngFor="let option of membershipNames | filter: searchText"
             class="list-div"
+            [ngClass]="{ displayselected: chosenMemberships(option) }"
           >
             <p
               *ngIf="!chosenMemberships(option)"
@@ -116,7 +112,7 @@
             <img
               *ngIf="chosenMemberships(option)"
               class="remove-icon-list"
-              src="{{ icon }}"
+              src="{{ rejectBlue }}"
               (click)="removeMembership(option)"
             />
           </div>

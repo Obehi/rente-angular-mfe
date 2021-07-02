@@ -38,7 +38,6 @@ export class InitConfirmationSVComponent implements OnInit {
   public userData: ConfirmationGetDto;
   public mask = Mask;
   public checkBoxItems: CheckBoxItem[];
-
   constructor(
     private fb: FormBuilder,
     private userService: UserService,
@@ -52,7 +51,6 @@ export class InitConfirmationSVComponent implements OnInit {
     this.initCheckboxes();
     this.loansService.getConfirmationData().subscribe((res) => {
       this.userData = res;
-
       this.propertyForm = this.fb.group({
         apartmentSize: ['', Validators.required],
         email: [

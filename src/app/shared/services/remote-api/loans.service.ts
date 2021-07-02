@@ -5,6 +5,11 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { locale } from '../../../config/locale/locale';
 
+import {
+  LoanUpdateInfoDto,
+  SignicatLoanInfoDtoArray
+} from '@shared/models/loans';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -22,27 +27,37 @@ export class LoansService {
   }
 
   public getOffers() {
-    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.offers}`;
+    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.offers.base}`;
+    return this.http.get(url);
+  }
+
+  public getOffersBanks() {
+    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.offers.base}${API_URL_MAP.loan.offers.bank}`;
     return this.http.get(url);
   }
 
   public updateNewOffers() {
-    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.offers}${API_URL_MAP.loan.newOffers}`;
+    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.offers.base}${API_URL_MAP.loan.newOffers}`;
     return this.http.post(url);
   }
 
   public getUsersMemberships() {
-    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.membership}`;
+    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.membership.base}`;
+    return this.http.get(url);
+  }
+
+  public getAllMemberships() {
+    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.membership.base}${API_URL_MAP.loan.membership.all}`;
     return this.http.get(url);
   }
 
   public setUsersMemberships(membershipsArray) {
-    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.membership}`;
-    return this.http.post(url, membershipsArray);
+    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.membership.base}`;
+    return this.http.put(url, membershipsArray);
   }
 
   public getMembershipTypes() {
-    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.membershipTypes}`;
+    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.membership.membershipTypes}`;
     return this.http.get(url);
   }
 
@@ -95,6 +110,35 @@ export class LoansService {
   public updateLoanPreferences(loanData) {
     const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.preferences}`;
     return this.http.put(url, loanData);
+  }
+
+  public UpdateSignicatLoansInfo(
+    signicatLoanInfoDtoArray: SignicatLoanInfoDtoArray
+  ): Observable<any> {
+    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.loans.base}${API_URL_MAP.loan.loans.info}`;
+    return this.http.put(url, signicatLoanInfoDtoArray);
+  }
+
+  public CreateSignicatLoansInfo(
+    signicatLoanInfoDtoArray: SignicatLoanInfoDtoArray
+  ): Observable<any> {
+    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.loans.base}${API_URL_MAP.loan.loans.info}`;
+    return this.http.post(url, signicatLoanInfoDtoArray);
+  }
+
+  public getSignicatLoansInfo(): Observable<SignicatLoanInfoDtoArray> {
+    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.loans.base}${API_URL_MAP.loan.loans.info}`;
+    return this.http.get(url);
+  }
+
+  public updateClientInfo(clientUpdateInfo: ClientUpdateInfo) {
+    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.user.base}${API_URL_MAP.loan.user.info}`;
+    return this.http.put(url, clientUpdateInfo);
+  }
+
+  public getClientInfo() {
+    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.loans.base}${API_URL_MAP.loan.user.info}`;
+    return this.http.get(url);
   }
 
   public getPropertyValue(): Observable<any> {
@@ -179,34 +223,36 @@ export class ClientAddressDto {
 }
 
 export class ConfirmationGetDto {
-  email: string;
-  name: string;
-  bank: string;
-  income: number;
-  memberships: string[];
-  apartmentSize: number;
-  apartmentValue: number;
+  address: AddressCreationDto;
   availableMemberships: MembershipTypeDto[];
+  bank: string;
+  email: string;
+  income: number | null;
+  name: string | null;
 }
 
 export class ConfirmationSetDto {
-  memberships: string[];
-  apartmentSize: number;
+  address: AddressCreationDto;
   email: string;
   income: number;
-  name: string;
-  address: AddressCreationDto;
-  apartmentValue: number;
+  memberships: string[];
+  name?: string;
 }
 
 export class AddressCreationDto {
-  apartmentSize: number;
-  apartmentValue: number;
-  propertyType: string;
-  street: string;
-  zip: string;
+  apartmentSize: number | null;
+  apartmentValue: number | null;
+  propertyType: string | null;
+  street: string | null;
+  zip: string | null;
 }
 
+export class ClientUpdateInfo {
+  address: AddressCreationDto;
+  email: string;
+  income: number;
+  memberships: string[];
+}
 export class PreferencesDto {
   email: string;
   name: string;

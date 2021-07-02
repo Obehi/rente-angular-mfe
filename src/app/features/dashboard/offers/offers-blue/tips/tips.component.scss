@@ -38,9 +38,9 @@
 }
 
 @media (max-width: 600px) {
-  .tipsAccordion:focus {
-    background: $white;
-    border-radius: 15px 15px 0px 0px;
+  .tipsAccordionOpen {
+    background: $blue;
+    border-radius: 15px 15px 0px 0px !important;
   }
 }
 
@@ -112,7 +112,6 @@ p {
 
   @media (max-width: 600px) {
     padding: 0px;
-    margin-top: 8px;
   }
 
   padding: 5px;

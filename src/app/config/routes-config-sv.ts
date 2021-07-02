@@ -189,15 +189,17 @@ export const customMeta = {
   }
 };
 
-export const ROUTES_MAP_SV = {
-  tinkMockup: 'tink-mockup',
-  confirmationProperty: 'bekraftat-bostad'
-};
-
 export const ROUTES_MAP_NO = {
   boliglanskalkulator: 'boliglanskalkulator',
   banksGuide: 'bankguiden',
-  bargainNordea: 'prute-fullfort-nordea'
+  bargainNordea: 'prute-fullfort-nordea',
+  bankIdLogin: 'bankid-login',
+  sparebank1Error: 'sparebank1'
+};
+
+export const ROUTES_MAP_SV = {
+  tinkMockup: 'tink-mockup',
+  confirmationProperty: 'bekraftat-bostad'
 };
 
 export const ROUTES_MAP = {

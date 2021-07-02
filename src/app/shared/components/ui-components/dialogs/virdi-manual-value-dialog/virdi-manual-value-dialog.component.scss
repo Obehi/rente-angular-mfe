@@ -1,0 +1,122 @@
+@import '../../../../../../styles/theme/_colors.scss';
+
+:host {
+  z-index: 999999;
+}
+
+::ng-deep .mat-dialog-container {
+  margin-top: 1px !important;
+}
+
+h3,
+h4,
+p {
+  margin: 10px 0;
+}
+h4 {
+  text-align: center;
+  font-weight: 400;
+  color: $secondary;
+  margin-bottom: 20px;
+  font-size: 16px;
+}
+
+ul {
+  padding-left: 33px;
+}
+li {
+  font-weight: 100;
+  font-size: 14px;
+}
+
+.small {
+  margin-bottom: 0;
+}
+
+.no-margin {
+  margin: 5px !important;
+}
+
+rente-button {
+  display: block;
+  margin: auto;
+  text-align: center;
+}
+
+.top {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding: 20px;
+  min-height: 400px;
+
+  @media (max-width: 600px) {
+    min-height: 384px;
+  }
+  img {
+    width: 75px;
+    align-self: center;
+    margin-bottom: 20px;
+  }
+
+  .info-box {
+    background: $grey-light;
+    padding: 10px 20px;
+    border-radius: 15px;
+    margin-top: 15px;
+
+    .address-grid {
+      display: flex;
+      justify-content: space-between;
+      min-width: 230px;
+      max-width: 300px;
+      margin-bottom: 20px;
+      p {
+        margin: 0;
+      }
+    }
+  }
+
+  .manualvaluebox {
+    // background: lightblue;
+    padding: 10px 20px;
+    border-radius: 15px;
+    margin: 0;
+    margin-top: 30px;
+
+    .manualvalueform {
+      padding: 5px;
+      border: none !important;
+      margin-top: -10px;
+    }
+  }
+}
+.bottom {
+  border-top: 1px solid #ececec;
+  padding: 20px;
+  border-radius: 0 0 10px 10px;
+
+  &.single {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &.double {
+    display: grid;
+    grid-column-gap: 15px;
+    grid-template-columns: 1fr 1fr;
+
+    @media (max-width: 370px) {
+      display: flex;
+      flex-direction: column-reverse;
+    }
+  }
+}
+
+.withinfo {
+  width: 100%;
+  position: relative;
+  grid-template-columns: none !important;
+  margin: auto;
+}

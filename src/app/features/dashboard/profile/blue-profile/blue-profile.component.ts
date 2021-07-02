@@ -17,12 +17,14 @@ import {
   FormControl,
   Validators
 } from '@angular/forms';
-import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { combineLatest, Observable, of, Subject } from 'rxjs';
+import { COMMA, ENTER, S } from '@angular/cdk/keycodes';
+import { combineLatest, Observable, of, Subject, throwError } from 'rxjs';
 import {
+  catchError,
   debounce,
   debounceTime,
   distinctUntilChanged,
+  filter,
   map,
   startWith,
   switchMap,
@@ -60,6 +62,17 @@ import {
 import { PropertySelectDialogComponent } from '@features/first-buyers/components/property-select-dialog/property-select-dialog.component';
 import { MembershipService } from '@services/membership.service';
 
+export enum FormControlId {
+  email = 'email',
+  income = 'income',
+  memberships = 'memberships',
+  checkRateReminderType = 'checkRateReminderType',
+  receiveNewsEmails = 'receiveNewsEmails',
+  fetchCreditLinesOnly = 'fetchCreditLinesOnly',
+  noAdditionalProductsRequired = 'noAdditionalProductsRequired',
+  interestedInEnvironmentMortgages = 'interestedInEnvironmentMortgages'
+}
+
 @Component({
   selector: 'rente-blue-profile',
   templateUrl: './blue-profile.component.html',
@@ -92,7 +105,6 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
   public separatorKeysCodes: number[] = [ENTER, COMMA];
   public membershipCtrl = new FormControl();
   public filteredMemberships: Observable<MembershipTypeDto[]>;
-  // public memberships: any = [];
   public showMemberships: boolean;
   public showPreferences: boolean;
   public showOfferPreferences: boolean;
@@ -108,13 +120,22 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
   changesMade = false;
   public isSweden = false;
   public loadingStates = {
-    email: false,
-    income: false,
-    memberships: false,
-    checkRateReminderType: false,
-    fetchCreditLinesOnly: false,
-    noAdditionalProductsRequired: false,
-    interestedInEnvironmentMortgages: false
+    email: { normal: true, loading: false, success: false },
+    income: { normal: true, loading: false, success: false },
+    memberships: { normal: true, loading: false, success: false },
+    checkRateReminderType: { normal: true, loading: false, success: false },
+    receiveNewsEmails: { normal: true, loading: false, success: false },
+    fetchCreditLinesOnly: { normal: true, loading: false, success: false },
+    noAdditionalProductsRequired: {
+      normal: true,
+      loading: false,
+      success: false
+    },
+    interestedInEnvironmentMortgages: {
+      normal: true,
+      loading: false,
+      success: false
+    }
   };
   // //////////////////////////// NEW /////////////////////////// ///
 
@@ -136,7 +157,6 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
   ];
 
   profileIcon = '../../../../../assets/icons/profile-icon-page.svg';
-  // profileIcon = '../../../../../assets/icons/profile-icon-white.svg';
   membershipIcon = '../../../../../assets/icons/bank-card-light-blue.svg';
   marketUpdatesIcon = '../../../../../assets/icons/ic_bank_id.svg';
 
@@ -146,8 +166,6 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
   constructor(
     private fb: FormBuilder,
     private loansService: LoansService,
-    private userService: UserService,
-    private snackBar: SnackBarService,
     private membershipService: MembershipService,
     public dialog: MatDialog,
     public textLangService: CustomLangTextService
@@ -196,19 +214,23 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
         this.preferencesForm = this.fb.group({
           receiveNewsEmails: [dto.receiveNewsEmails],
           checkRateReminderType: [dto.checkRateReminderType],
-          fetchCreditLinesOnly: [dto.fetchCreditLinesOnly],
           noAdditionalProductsRequired: [dto.noAdditionalProductsRequired],
           interestedInEnvironmentMortgages: [
             dto.interestedInEnvironmentMortgages
           ]
         });
+
+        this.isSweden &&
+          this.preferencesForm.addControl(
+            'fetchCreditLinesOnly',
+            this.fb.control('', [])
+          );
       },
       (err) => {
         console.log(err);
       },
       () => {
         this.subscribeToControllers();
-        this.onFormChange();
       }
     );
 
@@ -221,8 +243,6 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
     } else {
       this.isSweden = false;
     }
-
-    console.log(this.profileForm);
   }
 
   // DeactivationGuarded Interface method.
@@ -232,25 +252,7 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
     if (this.canLeavePage) return true;
 
     // Wait for upload info before navigating to another page
-    this.isLoading = true;
     return this.canNavigateBooolean$;
-  }
-
-  // Listen to blur updates in forms. Save  changes if the form is valid.
-  onFormChange(): void {
-    /*  this.profileForm.valueChanges.subscribe(() => {
-      console.log('changed');
-      this.changesMade = true;
-      this.updatePreferances2();
-    });
- */
-    this.preferencesForm.valueChanges.subscribe((test) => {
-      console.log(test);
-      if (this.profileForm.valid) {
-        this.changesMade = true;
-        this.updatePreferances2();
-      }
-    });
   }
 
   public openInfoDialog(offer: OfferInfo | string): void {
@@ -286,105 +288,7 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
     dto.receiveNewsEmails = this.preferencesForm?.get(
       'receiveNewsEmails'
     )?.value;
-    console.log(dto);
     return dto;
-  }
-
-  public updatePreferances(): void {
-    // this.isLoading = true;
-    // const income = this.profileForm.value.income;
-    // const userData = {
-    //   email: this.profileForm.value.email,
-    //   income: typeof income === 'string' ? income.replace(/\s/g, '') : income
-    // };
-    // const dto = new PreferencesUpdateDto();
-    // dto.email = userData.email;
-    // dto.income = userData.income;
-    // dto.memberships = this.memberships.map((membership) => membership.name);
-    // dto.checkRateReminderType = this.preferencesForm.get(
-    //   'checkRateReminderType'
-    // );
-    // dto.fetchCreditLinesOnly = this.preferencesForm.get('fetchCreditLinesOnly');
-    // dto.noAdditionalProductsRequired = this.preferencesForm.get(
-    //   'noAdditionalProductsRequired'
-    // );
-    // dto.interestedInEnvironmentMortgages = this.preferencesForm.get(
-    //   'interestedInEnvironmentMortgages'
-    // );
-    // dto.receiveNewsEmails = this.preferencesForm.get('receiveNewsEmails');
-    /*   this.canLeavePage = false;
-
-    this.loansService.updateUserPreferences(dto).subscribe(
-      () => {
-        this.canNavigateBooolean$.next(true);
-        this.changesMade = false;
-        this.isLoading = false;
-
-        // A hack to trigger "saved" animation
-        this.updateAnimationTrigger = !this.updateAnimationTrigger;
-        this.canLeavePage = true;
-      },
-      () => {
-        this.canLeavePage = true;
-        this.isLoading = false;
-        this.errorAnimationTrigger = !this.errorAnimationTrigger;
-      }
-    ); */
-  }
-
-  public updatePreferances2(): void {
-    this.isLoading = true;
-    const income = this.profileForm.value.income;
-    const userData = {
-      email: this.profileForm.value.email,
-      income: typeof income === 'string' ? income.replace(/\s/g, '') : income
-    };
-
-    console.log(income, userData);
-
-    const dto = new PreferencesUpdateDto();
-    dto.email = userData.email;
-    dto.income = userData.income;
-    dto.memberships = this.previousStateMemberships.map((m) => {
-      return m.name;
-    });
-    dto.checkRateReminderType = this.preferencesForm.get(
-      'checkRateReminderType'
-    )?.value;
-    dto.receiveNewsEmails = this.preferencesForm.get(
-      'receiveNewsEmails'
-    )?.value;
-    dto.fetchCreditLinesOnly = this.preferencesForm.get(
-      'fetchCreditLinesOnly'
-    )?.value;
-    dto.noAdditionalProductsRequired = this.preferencesForm.get(
-      'noAdditionalProductsRequired'
-    )?.value;
-    dto.interestedInEnvironmentMortgages = this.preferencesForm.get(
-      'interestedInEnvironmentMortgages'
-    )?.value;
-
-    console.log(dto.checkRateReminderType);
-
-    // No one leaves the page while updating
-    this.canLeavePage = false;
-
-    this.loansService.updateUserPreferences(dto).subscribe(
-      () => {
-        this.canNavigateBooolean$.next(true);
-        this.changesMade = false;
-        this.isLoading = false;
-
-        // A hack to trigger "saved" animation
-        this.updateAnimationTrigger = !this.updateAnimationTrigger;
-        this.canLeavePage = true;
-      },
-      () => {
-        this.canLeavePage = true;
-        this.isLoading = false;
-        this.errorAnimationTrigger = !this.errorAnimationTrigger;
-      }
-    );
   }
 
   // TODO: Move to service
@@ -418,22 +322,20 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
         break;
       }
       case 'saved': {
-        console.log('4');
         this.membershipCtrl.setValue(
           this.previousStateMemberships.map((membership) => {
             return membership.name;
           })
         );
-        // this.updatePreferances2();
 
         break;
       }
     }
   }
 
-  getMembershipPlaceholder(): string | undefined {
+  getMembershipPlaceholder(): string {
     if (this.previousStateMemberships?.length === 0) {
-      return 'Velg';
+      return this.textLangService.getChooseText();
     } else if (this.previousStateMemberships?.length === 1) {
       const oneMembershipPlaceholder = this.getMembershipNameString(
         this.previousStateMemberships.map((m) => {
@@ -442,8 +344,13 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
       )[0].label;
       return oneMembershipPlaceholder;
     } else if (this.previousStateMemberships?.length > 1) {
-      return `${this.previousStateMemberships?.length} valgt`;
+      return `${
+        this.previousStateMemberships?.length
+      } ${this.textLangService.getChoosenText()}`;
     }
+    return `${
+      this.previousStateMemberships?.length
+    } ${this.textLangService.getChoosenText()}`;
   }
 
   getMembershipNameString(membership: string[]): any {
@@ -472,143 +379,206 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
     }
   }
 
+  beforeUpdate(args: FormControlId): void {
+    this.canLeavePage = false;
+    this.loadingStates[args].normal = false;
+    this.loadingStates[args].loading = true;
+  }
+
+  afterUpdate(args: FormControlId): void {
+    this.loadingStates[args].loading = false;
+    this.loadingStates[args].success = true;
+    this.canNavigateBooolean$.next(true);
+    this.canLeavePage = true;
+    setTimeout(() => {
+      this.loadingStates[args].success = false;
+      this.loadingStates[args].normal = true;
+    }, 2000);
+  }
+
+  onError(args: FormControlId): void {
+    this.canNavigateBooolean$.next(true);
+    this.canLeavePage = true;
+    this.loadingStates[args].loading = false;
+  }
+
   subscribeToControllers(): void {
     combineLatest([
-      this.profileForm.get('email')?.valueChanges.pipe(
+      this.profileForm.get(FormControlId.email)?.valueChanges.pipe(
         distinctUntilChanged(),
-        debounceTime(1000),
+        filter(() => this.profileForm.get(FormControlId.email)?.valid || false),
+        debounceTime(2000),
+        filter(() => this.profileForm.get('email')?.valid || false),
         tap(() => {
-          this.loadingStates['email'] = true;
+          this.beforeUpdate(FormControlId.email);
         }),
         switchMap(() => {
-          return this.loansService.updateUserPreferences(
-            this.getPreferencesDto()
-          );
+          return this.loansService
+            .updateUserPreferences(this.getPreferencesDto())
+            .pipe(
+              catchError(() => {
+                this.onError(FormControlId.email);
+                return of(FormControlId.email);
+              })
+            );
         }),
         tap(() => {
-          console.log(this.getPreferencesDto());
-          this.loadingStates['email'] = false;
+          this.afterUpdate(FormControlId.email);
         })
       ),
-      this.profileForm.get('income')?.valueChanges.pipe(
+      this.profileForm.get(FormControlId.income)?.valueChanges.pipe(
         distinctUntilChanged(),
-        debounceTime(1000),
+        debounceTime(2000),
+        filter(
+          () => this.profileForm.get(FormControlId.income)?.valid || false
+        ),
         tap(() => {
-          this.loadingStates['income'] = true;
+          this.beforeUpdate(FormControlId.income);
         }),
         switchMap(() => {
-          return this.loansService.updateUserPreferences(
-            this.getPreferencesDto()
-          );
+          return this.loansService
+            .updateUserPreferences(this.getPreferencesDto())
+            .pipe(
+              catchError((e) => {
+                this.onError(FormControlId.income);
+                return of(null);
+              })
+            );
         }),
-        tap(() => {
-          this.loadingStates['income'] = false;
+        tap((value) => {
+          value && this.afterUpdate(FormControlId.income);
         })
       ),
       this.membershipCtrl.valueChanges.pipe(
         distinctUntilChanged(),
-        debounceTime(500),
-        tap(() => {
-          console.log('1');
-          this.loadingStates['memberships'] = true;
-        }),
-        switchMap(() => {
-          console.log('2');
-
-          return this.loansService.updateUserPreferences(
-            this.getPreferencesDto()
-          );
-        }),
-        tap(() => {
-          console.log('3');
-
-          this.loadingStates['memberships'] = false;
-          console.log(this.loadingStates.memberships);
-        })
-      ),
-      this.preferencesForm.get('checkRateReminderType')?.valueChanges.pipe(
-        distinctUntilChanged(),
         debounceTime(100),
         tap(() => {
-          this.loadingStates['checkRateReminderType'] = true;
+          this.beforeUpdate(FormControlId.memberships);
         }),
         switchMap(() => {
-          return this.loansService.updateUserPreferences(
-            this.getPreferencesDto()
-          );
+          return this.loansService
+            .updateUserPreferences(this.getPreferencesDto())
+            .pipe(
+              catchError(() => {
+                this.onError(FormControlId.memberships);
+                return of(FormControlId.memberships);
+              })
+            );
         }),
         tap(() => {
-          this.loadingStates['checkRateReminderType'] = false;
-        })
-      ),
-      this.preferencesForm.get('fetchCreditLinesOnly')?.valueChanges.pipe(
-        distinctUntilChanged(),
-        debounceTime(500),
-        tap(() => {
-          this.loadingStates['fetchCreditLinesOnly'] = true;
-        }),
-        switchMap(() => {
-          return this.loansService.updateUserPreferences(
-            this.getPreferencesDto()
-          );
-        }),
-        tap(() => {
-          this.loadingStates['fetchCreditLinesOnly'] = false;
+          this.afterUpdate(FormControlId.memberships);
         })
       ),
       this.preferencesForm
-        .get('noAdditionalProductsRequired')
+        .get(FormControlId.checkRateReminderType)
         ?.valueChanges.pipe(
           distinctUntilChanged(),
-          debounceTime(500),
+          debounceTime(100),
           tap(() => {
-            this.loadingStates['noAdditionalProductsRequired'] = true;
+            this.beforeUpdate(FormControlId.checkRateReminderType);
           }),
           switchMap(() => {
-            return this.loansService.updateUserPreferences(
-              this.getPreferencesDto()
-            );
+            return this.loansService
+              .updateUserPreferences(this.getPreferencesDto())
+              .pipe(
+                catchError(() => {
+                  this.onError(FormControlId.checkRateReminderType);
+                  return of(FormControlId.checkRateReminderType);
+                })
+              );
           }),
           tap(() => {
-            this.loadingStates['noAdditionalProductsRequired'] = false;
+            this.afterUpdate(FormControlId.checkRateReminderType);
           })
         ),
       this.preferencesForm
-        .get('interestedInEnvironmentMortgages')
+        .get(FormControlId.receiveNewsEmails)
         ?.valueChanges.pipe(
           distinctUntilChanged(),
-          debounceTime(500),
+          debounceTime(100),
           tap(() => {
-            this.loadingStates['interestedInEnvironmentMortgages'] = true;
+            this.beforeUpdate(FormControlId.receiveNewsEmails);
           }),
           switchMap(() => {
-            return this.loansService.updateUserPreferences(
-              this.getPreferencesDto()
-            );
+            return this.loansService
+              .updateUserPreferences(this.getPreferencesDto())
+              .pipe(
+                catchError(() => {
+                  this.onError(FormControlId.receiveNewsEmails);
+                  return of(FormControlId.receiveNewsEmails);
+                })
+              );
           }),
           tap(() => {
-            this.loadingStates['interestedInEnvironmentMortgages'] = false;
+            this.afterUpdate(FormControlId.receiveNewsEmails);
           })
         ),
       this.preferencesForm
-        .get('interestedInEnvironmentMortgages')
+        .get(FormControlId.fetchCreditLinesOnly)
         ?.valueChanges.pipe(
           distinctUntilChanged(),
           debounceTime(500),
           tap(() => {
-            this.loadingStates['interestedInEnvironmentMortgages'] = true;
+            this.beforeUpdate(FormControlId.fetchCreditLinesOnly);
           }),
           switchMap(() => {
-            return this.loansService.updateUserPreferences(
-              this.getPreferencesDto()
-            );
+            return this.loansService
+              .updateUserPreferences(this.getPreferencesDto())
+              .pipe(
+                catchError(() => {
+                  this.onError(FormControlId.fetchCreditLinesOnly);
+                  return of(FormControlId.fetchCreditLinesOnly);
+                })
+              );
           }),
           tap(() => {
-            this.loadingStates['interestedInEnvironmentMortgages'] = false;
+            this.afterUpdate(FormControlId.fetchCreditLinesOnly);
+          })
+        ),
+      this.preferencesForm
+        .get(FormControlId.noAdditionalProductsRequired)
+        ?.valueChanges.pipe(
+          distinctUntilChanged(),
+          debounceTime(500),
+          tap(() => {
+            this.beforeUpdate(FormControlId.noAdditionalProductsRequired);
+          }),
+          switchMap(() => {
+            return this.loansService
+              .updateUserPreferences(this.getPreferencesDto())
+              .pipe(
+                catchError(() => {
+                  this.onError(FormControlId.noAdditionalProductsRequired);
+                  return of(FormControlId.noAdditionalProductsRequired);
+                })
+              );
+          }),
+          tap(() => {
+            this.afterUpdate(FormControlId.noAdditionalProductsRequired);
+          })
+        ),
+      this.preferencesForm
+        .get(FormControlId.interestedInEnvironmentMortgages)
+        ?.valueChanges.pipe(
+          distinctUntilChanged(),
+          debounceTime(500),
+          tap(() => {
+            this.beforeUpdate(FormControlId.interestedInEnvironmentMortgages);
+          }),
+          switchMap(() => {
+            return this.loansService
+              .updateUserPreferences(this.getPreferencesDto())
+              .pipe(
+                catchError(() => {
+                  this.onError(FormControlId.interestedInEnvironmentMortgages);
+                  return of(FormControlId.interestedInEnvironmentMortgages);
+                })
+              );
+          }),
+          tap(() => {
+            this.afterUpdate(FormControlId.interestedInEnvironmentMortgages);
           })
         )
-    ]).subscribe((value) => {
-      this.canNavigateBooolean$.next(true);
-    });
+    ]).subscribe(() => {});
   }
 }

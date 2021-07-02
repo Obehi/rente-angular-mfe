@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BankIdLoginComponent } from './bank-id-login.component';
 
@@ -6,11 +6,12 @@ describe('BankIdLoginComponent', () => {
   let component: BankIdLoginComponent;
   let fixture: ComponentFixture<BankIdLoginComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [BankIdLoginComponent]
-    }).compileComponents();
-  }));
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      declarations: [ BankIdLoginComponent ]
+    })
+    .compileComponents();
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(BankIdLoginComponent);

@@ -1,4 +1,10 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  OnInit,
+  OnDestroy,
+  ViewChild
+} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MetaService } from '@services/meta.service';
 import { LoansService } from '@services/remote-api/loans.service';
@@ -15,7 +21,7 @@ import { ROUTES_MAP } from '@config/routes-config';
   templateUrl: './bank-guide-page.component.html',
   styleUrls: ['./bank-guide-page.component.scss']
 })
-export class BankGuidePageComponent implements OnInit {
+export class BankGuidePageComponent implements OnInit, OnDestroy {
   @ViewChild('inShort') inShort: ElementRef;
   banksData = [...BankList, ...MissingBankList];
 
@@ -69,10 +75,13 @@ export class BankGuidePageComponent implements OnInit {
       const bankName = param.id.toUpperCase();
       this.bank = BankUtils.getBankByName(bankName);
 
+      // Special case for SPAREBANK_1_NORDMORE
+      const bankNameForRequest =
+        bankName === 'SPAREBANK_1_NORDMORE' ? 'SPAREBANK_1_NORDVEST' : bankName;
       this.depositsBsu = [];
       this.depositsGeneral = [];
       this.loansService
-        .getBankGuide(this.route.snapshot.params.id.toUpperCase())
+        .getBankGuide(bankNameForRequest)
         .pipe(takeUntil(this._onDestroy$))
         .subscribe(
           (bankInfo) => {
@@ -125,6 +134,10 @@ export class BankGuidePageComponent implements OnInit {
           }
         );
     });
+  }
+
+  ngOnDestroy(): void {
+    this._onDestroy$.next();
   }
 
   alphaSort = (a: any, b: any): number => {

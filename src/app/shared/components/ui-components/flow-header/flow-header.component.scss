@@ -1,0 +1,176 @@
+@import '../../../../../styles/theme/colors';
+
+.stepper-header {
+  z-index: 0;
+  position: relative;
+  width: 100%;
+  margin: 20px auto;
+  display: flex;
+  justify-content: center;
+  .stepper-header-element {
+    display: flex;
+    align-items: center;
+
+    .stepper-header-node {
+    }
+
+    &.done {
+      .stepper-header-node {
+        width: 40px;
+        height: 40px;
+        background: $primary;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        cursor: pointer;
+      }
+
+      .stepper-header-line {
+        background: $primary;
+      }
+    }
+
+    &.active {
+      .stepper-header-node {
+        width: 40px;
+        height: 40px;
+        background: $primary;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        cursor: pointer;
+      }
+
+      .stepper-header-line {
+        background: $grey-dark;
+      }
+    }
+
+    &.active-touched {
+      .stepper-header-node {
+        width: 40px;
+        height: 40px;
+        background: $primary;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        cursor: pointer;
+      }
+
+      .stepper-header-line {
+        background: $primary;
+      }
+    }
+
+    &.waiting {
+      .stepper-header-node {
+        background: $grey-dark;
+      }
+
+      .stepper-header-line {
+        background: $grey-dark;
+      }
+    }
+
+    .stepper-header-node {
+      background: $grey-dark;
+      color: white;
+      width: 25px;
+      height: 25px;
+      border-radius: 50px;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 99999;
+    }
+
+    .stepper-header-line {
+      width: 60px;
+      height: 10px;
+      border-radius: 15px;
+      background: #54606e;
+      margin: 0 -5px;
+      z-index: 88888;
+    }
+  }
+}
+
+.stepper-header-element {
+  display: flex;
+  align-items: center;
+
+  &.done {
+    .stepper-header-node {
+      width: 40px;
+      height: 40px;
+      background: $primary;
+      box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+      cursor: pointer;
+    }
+
+    .stepper-header-line {
+      background: $primary;
+    }
+  }
+
+  &.active {
+    .stepper-header-node {
+      width: 40px;
+      height: 40px;
+      background: $primary;
+      box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+      cursor: pointer;
+    }
+
+    .stepper-header-line {
+      background: $grey-dark;
+    }
+  }
+
+  &.active-touched {
+    .stepper-header-node {
+      width: 40px;
+      height: 40px;
+      background: $primary;
+      box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+      cursor: pointer;
+    }
+
+    .stepper-header-line {
+      background: $primary;
+    }
+  }
+
+  &.waiting {
+    .stepper-header-node {
+      background: $grey-dark;
+    }
+
+    .stepper-header-line {
+      background: $grey-dark;
+    }
+  }
+}
+
+.active-touched {
+  .stepper-header-node {
+    width: 40px;
+    height: 40px;
+    background: $primary;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    cursor: pointer;
+  }
+
+  .stepper-header-line {
+    background: $primary !important;
+  }
+}
+
+.big {
+  .stepper-header-node {
+    width: 40px !important;
+    height: 40px !important;
+  }
+}
+
+.small {
+  .stepper-header-node {
+    width: 25px !important;
+    height: 25px !important;
+  }
+}

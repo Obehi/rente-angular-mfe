@@ -11,11 +11,8 @@ import { FormGroup } from '@angular/forms';
 import { FirstBuyersService } from '@features/first-buyers/first-buyers.service';
 import { MembershipTypeDto } from '@services/remote-api/loans.service';
 import { Observable, Subject } from 'rxjs';
-import { distinctUntilChanged, take } from 'rxjs/operators';
+import { distinctUntilChanged } from 'rxjs/operators';
 import { SelectAutocompleteComponent } from 'mat-select-autocomplete';
-import { PropertySelectDialogComponent } from '../property-select-dialog/property-select-dialog.component';
-import { MatDialog } from '@angular/material';
-import { MembershipService } from '@services/membership.service';
 
 interface Membership {
   name?: string;
@@ -38,14 +35,10 @@ export class PropertyInputComponent implements OnInit {
   @Input() iconPath: string;
   @Input() inputType: 'tel' | 'dropdown' | 'autocomplete' = 'tel';
   @Input() options: { name?: string; value?: string; label: string }[];
-  @Input() autocompleteOptions: any;
   @Input() memberships: MembershipTypeDto[];
-  public previousStateMemberships: string[] = [];
   @Output() selectedMemberships = new EventEmitter<MembershipTypeDto[]>();
   @ViewChild(SelectAutocompleteComponent)
   multiSelect: SelectAutocompleteComponent;
-
-  public changeBankLoading: any;
 
   isFirstFocus = true;
   labelPosition: 'before' | 'after' = 'after';
@@ -58,25 +51,18 @@ export class PropertyInputComponent implements OnInit {
   exitHandler: any;
   constructor(
     private firstBuyersService: FirstBuyersService,
-    private membershipService: MembershipService,
-    private closeInputElement: ElementRef,
-    public dialog: MatDialog
+    private closeInputElement: ElementRef
   ) {
     this._selectionDistincter = this.selectionDistincter.asObservable();
   }
 
   ngOnInit(): void {
-    this.membershipService.getSelectedMemberships().subscribe((args) => {
-      console.log(args);
-      this.previousStateMemberships = args;
-    });
-    console.log(this.previousStateMemberships);
     if (this.inputType === 'autocomplete') {
       this.exitHandler = () => {
         this.multiSelect.toggleDropdown();
       };
     }
-    this._selectedMemberships = this.membershipService.selectedMemberships.map(
+    this._selectedMemberships = this.firstBuyersService.selectedMemberships.map(
       (membership) => membership.name
     );
 
@@ -87,6 +73,24 @@ export class PropertyInputComponent implements OnInit {
       });
   }
 
+  getSelectedMemberships(selected: string[]): void {
+    const exitButton = document.querySelectorAll('.box-search-icon')[0];
+    if (exitButton !== undefined && this.inputType === 'autocomplete') {
+      exitButton.addEventListener('click', this.exitHandler);
+    }
+    const _selectedMemberships: MembershipTypeDto[] | undefined = [];
+    selected.forEach((val) => {
+      const membership: MembershipTypeDto | undefined = this.memberships.find(
+        (option) => val === option.name
+      );
+      if (membership !== undefined) {
+        _selectedMemberships.push(membership);
+      }
+    });
+    this.firstBuyersService.selectedMemberships = _selectedMemberships;
+    this.selectionDistincter.next(_selectedMemberships);
+  }
+
   parseFloat(val: string): number {
     val += '';
     return parseInt(val.trim(), 10);
@@ -94,33 +98,5 @@ export class PropertyInputComponent implements OnInit {
 
   focusOutFunction(): void {
     this.isFirstFocus = false;
-  }
-
-  public openPropertySelectDialog(): void {
-    const openDialog = this.dialog.open(PropertySelectDialogComponent, {
-      autoFocus: false,
-      data: {
-        previousState: [...this.previousStateMemberships],
-        allMemberships: this.autocompleteOptions
-      }
-    });
-    openDialog.afterClosed().subscribe(() => {});
-    console.log(this.autocompleteOptions);
-  }
-
-  public propertySelectDialogClose(state: string): void {
-    this.changeBankLoading = false;
-
-    switch (state) {
-      case 'canceled': {
-        break;
-      }
-      case 'do-nothing': {
-        break;
-      }
-      case 'error': {
-        break;
-      }
-    }
   }
 }

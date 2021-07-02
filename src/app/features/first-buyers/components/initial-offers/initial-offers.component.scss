@@ -1,9 +1,5 @@
 @import '../../../../../styles/theme/colors';
 
-::ng-deep .mat-autocomplete-panel {
-  background: brown;
-}
-
 .outer-bg {
   background: linear-gradient(180deg, #162537 0%, #183a63 10.08%) !important;
 }
@@ -174,9 +170,4 @@
     display: block;
     margin: auto;
   }
-}
-
-property-select-dialog {
-  position: absolute;
-  left: 200px;
 }

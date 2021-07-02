@@ -22,10 +22,8 @@ import {
   PreferencesUpdateDto,
   PreferencesDto
 } from '@services/remote-api/loans.service';
-import { UserService } from '@services/remote-api/user.service';
 import { Mask } from '@shared/constants/mask';
 import { VALIDATION_PATTERN } from '../../../config/validation-patterns.config';
-import { SnackBarService } from '../../../shared/services/snackbar.service';
 import { OfferInfo } from '@shared/models/offers';
 import { DeactivationGuarded } from '@shared/guards/route.guard';
 import {
@@ -91,8 +89,6 @@ export class ProfileComponent implements OnInit, DeactivationGuarded {
   constructor(
     private fb: FormBuilder,
     private loansService: LoansService,
-    private userService: UserService,
-    private snackBar: SnackBarService,
     public dialog: MatDialog
   ) {
     if (window.innerWidth > 600) {

@@ -32,10 +32,7 @@
             </mat-expansion-panel-header>
             <div *ngFor="let property of extraProperties">
               <rente-property-input
-                *ngIf="
-                  property.shouldDisplay() &&
-                  property.inputType !== 'autocomplete'
-                "
+                *ngIf="property.shouldDisplay()"
                 [icon]="property.icon"
                 [formGroup]="formGroup"
                 [label]="property.label"
@@ -46,39 +43,6 @@
                 [iconPath]="property.iconPath"
                 (selectedMemberships)="applyMemberships($event)"
               ></rente-property-input>
-              <rente-property-input
-                *ngIf="
-                  property.inputType === 'autocomplete' &&
-                  property.shouldDisplay()
-                "
-                [icon]="property.icon"
-                [formGroup]="formGroup"
-                [label]="property.label"
-                [controlName]="property.controlName"
-                [inputType]="property.inputType"
-                [options]="property.options"
-                [memberships]="allMemberships"
-                [iconPath]="property.iconPath"
-                [placeholder]="'ASD'"
-                [autocompleteOptions]="property.options"
-                (selectedMemberships)="applyMemberships($event)"
-              >
-              </rente-property-input>
-              <!-- <property-select
-                *ngIf="
-                  property.shouldDisplay() &&
-                  property.inputType === 'autocomplete'
-                "
-                [icon]="property.icon"
-                [formGroup]="formGroup"
-                [label]="property.label"
-                [controlName]="property.controlName"
-                [inputType]="property.inputType"
-                [options]="allMemberships"
-                [memberships]="allMemberships"
-                [iconPath]="property.iconPath"
-                (selectedMemberships)="applyMemberships($event)"
-              ></property-select> -->
             </div>
             <div class="accordion-bottom"></div>
           </mat-expansion-panel>

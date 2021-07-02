@@ -1,5 +1,4 @@
-@import "../../../../styles/theme/_colors.scss";
-
+@import '../../../../styles/theme/_colors.scss';
 
 h1 {
   color: black;
@@ -29,7 +28,7 @@ h4 {
 
 .intro {
   margin-bottom: 40px;
-  @media(min-width: 800px) {
+  @media (min-width: 800px) {
     margin-bottom: 60px;
   }
   h4 {
@@ -38,32 +37,28 @@ h4 {
   }
 }
 
-@media(max-width: 800px) {
+@media (max-width: 800px) {
   .cta-container {
     display: flex;
     flex-direction: column;
     margin: auto;
-  h2 {
-    text-align: center;
-    margin-bottom: 30px;
-  }
-  .buttons {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 135px;
-
-    
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .buttons {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 135px;
+    }
   }
 }
-
-
-}
-@media(min-width: 800px) {
+@media (min-width: 800px) {
   .cta-container {
-      margin: auto;
-      max-width: 740px;
-      min-width: 600px;
+    margin: auto;
+    max-width: 740px;
+    min-width: 600px;
     h2 {
       text-align: center;
       margin-bottom: 40px;
@@ -87,8 +82,6 @@ h4 {
 }
 
 .data-logos {
-
-
   @media (min-width: 800px) {
     display: flex;
     justify-content: center;
@@ -98,11 +91,6 @@ h4 {
     .boligmappa {
       img {
         width: 130px;
-      }
-    }
-    .defero {
-      img {
-        width: 70px;
       }
     }
   }
@@ -140,10 +128,9 @@ h4 {
           margin: auto;
           grid-row: 2;
           img {
-            width: 70px;
+            width: 80px;
           }
         }
-        
       }
     }
   }
@@ -152,10 +139,22 @@ h4 {
     margin: 0 35px;
     width: 80px;
   }
-
-
 }
 
 .gap {
   flex: 1 0 40px;
+}
+
+.imb {
+  @media (max-width: 600px) {
+    margin-bottom: 20px;
+  }
+  margin-bottom: 80px;
+}
+
+h1 {
+  @media (max-width: 600px) {
+    margin-bottom: 20px;
+  }
+  margin-bottom: 40px;
 }

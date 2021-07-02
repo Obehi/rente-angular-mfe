@@ -1,9 +1,9 @@
-<!-- <div class="loading" *ngIf="isLoading">
+<div class="loading" *ngIf="isLoading">
   <mat-spinner [diameter]="48" [strokeWidth]="4"></mat-spinner>
-</div> -->
+</div>
 
 <div class="main">
-  <div class="top">
+  <div *ngIf="!isLoading" class="top">
     <img class="profile-icon" src="{{ profileIcon }}" />
     <h3 class="username">
       {{ username }}
@@ -13,7 +13,26 @@
   <div class="forms" *ngIf="profileForm">
     <form class="p-0 border-0" [formGroup]="profileForm" novalidate change>
       <div class="field-box">
-        <h4 class="text-white">E-mail</h4>
+        <h4 i18n="“issue-mail|profile@@profile.email" class="text-white">
+          E-mail
+        </h4>
+
+        <mat-form-field class="white-input w-75" appearance="outline">
+          <input
+            placeholder="Skriv inn din e-mail"
+            matInput
+            formControlName="email"
+          />
+          <rente-spinner
+            class="email-income-spinner"
+            *ngIf="loadingStates.email.loading"
+          ></rente-spinner>
+          <rente-success
+            class="email-income-spinner"
+            *ngIf="loadingStates.email.success"
+          >
+          </rente-success>
+        </mat-form-field>
         <div
           *ngIf="profileForm.controls['email'].touched"
           class="error-message"
@@ -33,33 +52,15 @@
             Ikke gyldig email
           </rente-form-message>
         </div>
-        <mat-form-field class="white-input w-75" appearance="outline">
-          <input
-            placeholder="Skriv inn din e-mail"
-            matInput
-            formControlName="email"
-          />
-          <rente-spinner
-            class="email-income-spinner"
-            *ngIf="loadingStates.email"
-          ></rente-spinner>
-        </mat-form-field>
       </div>
       <div class="field-box">
-        <h4 class="text-white">Din bruto årsinntekt</h4>
-        <div
-          *ngIf="profileForm.controls['income'].touched"
-          class="error-message"
+        <h4
+          i18n="“income-per-year|profile@@profile.income.label"
+          class="text-white"
         >
-          <rente-form-message
-            class="text-left d-block"
-            [type]="'error'"
-            i18n="“issue-empty|profile@@profile.issueEmpty”"
-            *ngIf="profileForm.controls['income'].hasError('required')"
-          >
-            Kan ikke være tom
-          </rente-form-message>
-        </div>
+          Din brutto årsinntekt
+        </h4>
+
         <mat-form-field class="white-input w-75" appearance="outline">
           <input
             i18n="“income-per-year|profile@@profile.income"
@@ -79,9 +80,28 @@
           />
           <rente-spinner
             class="email-income-spinner"
-            *ngIf="loadingStates.income"
+            *ngIf="loadingStates.income.loading"
           ></rente-spinner>
+          <rente-success
+            class="email-income-spinner"
+            *ngIf="loadingStates.income.success"
+          >
+          </rente-success>
         </mat-form-field>
+
+        <div
+          *ngIf="profileForm.controls['income'].touched"
+          class="error-message"
+        >
+          <rente-form-message
+            class="d-block"
+            [type]="'error'"
+            i18n="“issue-empty|profile@@profile.issueEmpty”"
+            *ngIf="profileForm.controls['income'].hasError('required')"
+          >
+            Kan ikke være tom
+          </rente-form-message>
+        </div>
       </div>
     </form>
     <!-- <div class="email-form">
@@ -111,14 +131,24 @@
     class="preferences-tab"
   >
     <div class="flex-1">
-      <h5 class="element">
-        Medlemskap:
-        <p>Velg dine medlemskap</p>
-      </h5>
+      <div class="align-center">
+        <h5
+          i18n="“income-per-year|profile@@profile.membership.header"
+          class="element"
+        >
+          Medlemskap:
+        </h5>
+        <p
+          i18n="“income-per-year|profile@@profile.membership.label"
+          class="white"
+        >
+          Velg dine medlemskap
+        </p>
+      </div>
 
-      <rente-button class="rente-button" color="blue-select">
+      <rente-button class="rente-button flex-box-margin" color="blue-select">
         <mat-select
-          *ngIf="!loadingStates.memberships"
+          *ngIf="loadingStates.memberships.normal"
           [formControl]="membershipCtrl"
           [placeholder]="getMembershipPlaceholder() | truncate: 35"
           (click)="openPropertySelectDialog()"
@@ -126,21 +156,35 @@
         </mat-select>
         <rente-spinner
           class="membership-marked-spinner"
-          *ngIf="loadingStates.memberships"
+          *ngIf="loadingStates.memberships.loading"
         ></rente-spinner>
+        <rente-success
+          class="membership-marked-success"
+          *ngIf="loadingStates.memberships.success"
+        >
+        </rente-success>
       </rente-button>
-      <hr />
-      <h5 class="element">
-        Markedsovervåkning:
-        <p>
+
+      <hr class="margin-bottom" />
+      <div class="align-center">
+        <h5
+          i18n="“income-per-year|profile@@profile.markedMonitoring.header"
+          class="element"
+        >
+          Markedsovervåkning:
+        </h5>
+        <p
+          class="white"
+          i18n="“income-per-year|profile@@profile.markedMonitoring.label"
+        >
           Velg hvor ofte din rente skal sjekkes og du vil ha påminnelse på epost
         </p>
-      </h5>
-      <rente-button class="rente-button" color="blue-select">
+      </div>
+      <rente-button class="rente-button flex-box-margin" color="blue-select">
         <mat-select
-          *ngIf="!loadingStates.checkRateReminderType"
+          *ngIf="loadingStates.checkRateReminderType.normal"
           formControlName="checkRateReminderType"
-          [placeholder]="'Velg'"
+          [placeholder]="textLangService.getChooseText()"
         >
           <mat-option
             *ngFor="let option of marketOptions"
@@ -150,49 +194,75 @@
         </mat-select>
         <rente-spinner
           class="membership-marked-spinner"
-          *ngIf="loadingStates.checkRateReminderType"
+          *ngIf="loadingStates.checkRateReminderType.loading"
         ></rente-spinner>
+        <rente-success
+          class="membership-marked-success"
+          *ngIf="
+            loadingStates.checkRateReminderType.success &&
+            !loadingStates.checkRateReminderType.loading
+          "
+        ></rente-success>
       </rente-button>
       <hr />
     </div>
 
     <div class="grid-1">
-      <h5 class="element">
-        Markedsoppdateringer:
-        <p>
+      <div class="align-center">
+        <h5
+          i18n="“income-per-year|profile@@profile.markedUpdates.header"
+          class="element"
+        >
+          Markedsoppdateringer:
+        </h5>
+        <p
+          class="white grid-left"
+          i18n="“income-per-year|profile@@profile.markedUpdates.label"
+        >
           Send meg markedsoppdateringer, nyheter og annen informasjon på epost
         </p>
-      </h5>
-
+      </div>
       <mat-slide-toggle
         class="button"
         (change)="markedIsChecked = !markedIsChecked"
         formControlName="receiveNewsEmails"
-        [value]="markedIsChecked"
+        value="markedIsChecked"
       ></mat-slide-toggle>
 
       <hr />
     </div>
-    <h3>HVILKE TILBUD VIL DU SE:</h3>
+    <h3 i18n="“income-per-year|profile@@profile.offerOptions.header">
+      HVILKE TILBUD VIL DU SE:
+    </h3>
     <div class="grid-2">
-      <p class="element-subtitle">Vis kun tilbud på rammelån/flexilån</p>
+      <p *ngIf="!isSweden" class="element-subtitle">
+        Vis kun tilbud på rammelån/flexilån
+      </p>
       <mat-slide-toggle
+        *ngIf="!isSweden"
         class="button"
         (change)="offerOneIsChecked = !offerOneIsChecked"
         formControlName="fetchCreditLinesOnly"
-        [value]="offerOneIsChecked"
+        value="offerOneIsChecked"
       ></mat-slide-toggle>
-      <p class="element-subtitle">
+      <p
+        i18n="“income-per-year|profile@@profile.offerOptions.option2"
+        class="element-subtitle"
+      >
         Vis tilbud som krever andre produkter eller har sækrav: feks. bytte av
         nettbank og aktiv lønnskonto
       </p>
+
       <mat-slide-toggle
         class="button"
         (change)="offerTwoIsChecked = !offerTwoIsChecked"
         formControlName="noAdditionalProductsRequired"
-        [value]="offerTwoIsChecked"
+        value="offerTwoIsChecked"
       ></mat-slide-toggle>
-      <p class="element-subtitle">
+      <p
+        i18n="“income-per-year|profile@@profile.offerOptions.option3"
+        class="element-subtitle"
+      >
         Vis tilbud som forutsetter bolig med energiklasse A/B, nullhus,
         Svanemerket, tiltak for energimerking, etc.
       </p>
@@ -200,7 +270,7 @@
         class="button"
         (change)="offerThreeIsChecked = !offerThreeIsChecked"
         formControlName="interestedInEnvironmentMortgages"
-        [value]="offerThreeIsChecked"
+        value="offerThreeIsChecked"
       ></mat-slide-toggle>
       <hr />
     </div>

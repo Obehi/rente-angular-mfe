@@ -17,6 +17,7 @@
   ::ng-deep .mat-dialog-container {
     border-radius: 100px;
     margin: unset !important;
+    background: $blue-medium;
     @media (min-width: 601px) {
       margin: unset !important;
       height: 44vh !important;
@@ -28,13 +29,15 @@
     height: 100%;
     display: flex;
     flex-direction: column;
+    background: $blue-medium;
   }
 
   .list-div {
-    background: $white;
+    background: $blue-medium;
     display: flex;
     p {
-      background: $grey-light;
+      color: $white;
+      background: $blue;
       font-size: 1rem;
       margin-top: 10px;
       position: relative;
@@ -45,16 +48,8 @@
       font-weight: 400;
     }
     .p-selected {
-      color: $green;
-      background: $grey-light;
-      font-size: 1rem;
-      margin-top: 10px;
-      position: relative;
-      left: 35px;
-      width: 80%;
-      border-radius: 9px;
-      padding: 15px;
-      font-weight: 400;
+      background: $karl-blue;
+      border: 1px solid #478ccc;
     }
 
     .remove-icon-list {
@@ -64,14 +59,13 @@
     }
   }
 
-  .dropdown-div {
-  }
-
   .dropdown-scroll {
-    z-index: 1337;
+    background: $blue-medium;
+    padding-bottom: 5vh;
+    z-index: 0;
     overflow-y: scroll;
     height: 31vh;
-    border-bottom: 1px solid lightgrey;
+    //border-bottom: 1px solid #478ccc;
     @media (min-height: 600px) and (min-width: 360px) {
       height: 37vh;
     }
@@ -82,31 +76,38 @@
       height: 39vh;
     }
     @media (min-height: 800px) {
-      height: 42vh;
+      height: 35vh;
     }
   }
 
   .search-div {
-    background-color: white;
-    width: 96%;
-    padding: 10px;
+    background-color: $blue-medium;
+    width: 100%;
+    padding: 10px 0;
     z-index: 1;
-    margin-top: 34vh;
     display: flex;
+    border-bottom: 1px solid #fff;
 
     input {
-      border: 0;
-      border-bottom: 2px solid $grey-dark;
-      width: 84%;
-      left: 26px;
+      color: $white;
+      background: $blue-medium;
+      border: none;
+      margin-left: 10px;
       position: relative;
     }
     ::placeholder {
-      color: $grey-dark;
+      font-size: 16px;
+      font-style: italic;
+      color: $white;
       position: relative;
-      font-weight: 400;
-      font-size: 1.1rem;
+      font-weight: 300;
     }
+
+    input:focus::placeholder {
+      //color: transparent;
+      visibility: hidden;
+    }
+
     .search-div-input {
       width: 100%;
     }
@@ -114,31 +115,36 @@
     .search-icon {
       width: 6%;
       z-index: 2;
-      margin-right: 30px;
-      margin-bottom: 3px;
+      margin-right: 10px;
     }
   }
 
   .chosen-memberships-div {
     display: flex;
     flex-direction: column;
-    height: 33%;
+    height: 23vh;
+    max-height: 23vh;
     overflow-y: scroll;
-    background: linear-gradient(180deg, #162537, #183a63);
-    position: fixed;
+    background: #162537;
+
+    // position: fixed;
     z-index: 2;
     width: 100%;
+    border-bottom: 1px solid #478ccc;
     h2 {
-      font-size: 18px;
-      font-weight: 500;
+      text-align: center;
+      font-size: 16px;
+      font-weight: 300;
       line-height: 1.2;
       color: white;
       padding: 10px;
     }
     p {
-      background: $grey-light;
+      color: $white;
+      background: $karl-blue;
       font-size: 1rem;
       margin-top: 20px;
+      border: 1px solid #478ccc;
 
       left: 35px;
       width: 80%;
@@ -147,7 +153,7 @@
       margin: 10px;
     }
     .p-selected {
-      background: $green;
+      background: $blue-medium;
     }
     .item-list {
     }
@@ -159,6 +165,7 @@
       display: flex;
       p {
         font-weight: 500;
+        margin-left: 35px;
       }
     }
   }
@@ -225,11 +232,13 @@
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    background: #183a63;
   }
 
   .desktop-column-one {
     display: flex;
     height: 97%;
+    border-bottom: 1px solid #478ccc;
   }
   .desktop-column-two {
     padding: 10px;
@@ -238,19 +247,20 @@
   .desktop-flex-part-one {
     order: 1;
     width: 55%;
-    background: linear-gradient(180deg, #264f80, #183a63);
-    border-radius: 0px 0px 15px 0px;
+    background: #183a63;
+    border-right: 1px solid #478ccc;
 
     h2 {
-      font-size: 18px;
+      font-size: 15px;
       font-weight: 500;
       line-height: 1.2;
       color: white;
       padding: 10px;
-      font-weight: 400;
+      font-weight: 300;
     }
     p {
-      background: $white;
+      color: $grey-light;
+      background: #004465a6;
       font-size: 1rem;
       margin-top: 20px;
       font-weight: 400;
@@ -274,6 +284,7 @@
       display: flex;
       p {
         font-weight: 500;
+        border: 1px solid #478ccc;
       }
     }
 
@@ -290,20 +301,21 @@
   .dropdown-scroll {
     overflow-y: scroll;
     height: 86%;
+    background: #183a63;
     .dropdown-div {
     }
   }
 
   .list-div {
-    background: $grey-light;
+    background: $blue;
     width: 85%;
     margin-left: 30px;
     border-radius: 8px;
     display: flex;
     margin-top: 10px;
     p {
+      color: $white;
       font-size: 1rem;
-      margin-top: 10px;
       margin-left: 15px;
       width: 90%;
       padding: 10px;
@@ -311,13 +323,8 @@
     }
 
     .p-selected {
-      color: $green;
-      font-size: 1rem;
-      margin-top: 10px;
-      margin-left: 15px;
-      width: 90%;
-      padding: 10px;
-      font-weight: 400;
+      background: $karl-blue;
+      color: $white;
     }
 
     .remove-icon-list {
@@ -326,25 +333,39 @@
     }
   }
 
+  .displayselected {
+    background: #004465a6;
+    border: 1px solid #478ccc;
+  }
+
   .search-div {
-    background-color: white;
+    background-color: #183a63;
 
     padding: 10px;
     display: flex;
 
     input {
+      font-style: italic;
+      color: $white;
       border: 0;
-      border-bottom: 2px solid black;
+      border-bottom: 1px solid $white;
+      background: #183a63;
       width: 84%;
       left: 26px;
       position: relative;
     }
     ::placeholder {
-      color: black;
+      background: #183a63;
+      color: white;
       position: relative;
-      font-weight: 400;
-      font-size: 1.1rem;
+      font-weight: 300;
+      font-size: 16px;
     }
+    input:focus::placeholder {
+      //color: transparent;
+      visibility: hidden;
+    }
+
     .search-div-input {
       width: 100%;
     }

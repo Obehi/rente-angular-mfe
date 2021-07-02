@@ -3,8 +3,11 @@ import { Router } from '@angular/router';
 import { API_URL_MAP } from '@config/api-url-config';
 import { storageName } from '@config/index';
 import { GenericHttpService } from '@services/generic-http.service';
+import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { LocalStorageService } from './../local-storage.service';
+import { CustomLangTextService } from '@services/custom-lang-text.service';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +16,8 @@ export class AuthService {
   constructor(
     private http: GenericHttpService,
     private localStorageService: LocalStorageService,
-    private router: Router
+    private router: Router,
+    public customLangTextService: CustomLangTextService
   ) {}
 
   public get isLoggedIn(): boolean {
@@ -29,6 +33,24 @@ export class AuthService {
     return this.http.post(url, data).pipe(tap(this.handleLogin.bind(this)));
   }
 
+  public loginBankIdStep1(): Observable<any> {
+    const url = `${API_URL_MAP.auth.base}${API_URL_MAP.auth.bankidLogin}`;
+
+    return this.http.post(url);
+  }
+
+  public loginBankIdStep2(sessionId: string, bank: string): Observable<any> {
+    const url = `${API_URL_MAP.auth.base}${API_URL_MAP.auth.bankidLogin}/${sessionId}`;
+
+    const data = {
+      bank: bank
+    };
+
+    return this.http
+      .postWithParams(url, data)
+      .pipe(tap(this.handleLogin.bind(this)));
+  }
+
   public loginWithToken(token: string) {
     const url = `${API_URL_MAP.auth.base}${API_URL_MAP.auth.token}`;
     const data = {
@@ -37,7 +59,7 @@ export class AuthService {
     return this.http.post(url, data).pipe(tap(this.handleLogin.bind(this)));
   }
 
-  public logout(): void {
+  public logout() {
     const url = `${API_URL_MAP.auth.base}${API_URL_MAP.auth.logout}`;
 
     this.http.post(url, {}).subscribe(() => {

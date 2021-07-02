@@ -7,7 +7,6 @@ button.mat-button {
   min-width: 150px;
   border-radius: 100px;
   margin: auto;
-  font-size: 16px;
   line-height: 19px;
 
   outline: none;
@@ -20,6 +19,10 @@ button.mat-button {
   }
   img {
     height: 20px;
+  }
+
+  @media (min-width: 360px) {
+    font-size: 16px;
   }
 }
 
@@ -68,9 +71,23 @@ button.mat-secondary {
   color: white;
 }
 
+button.mat-secondary-small {
+  background-color: $secondary;
+  height: 45px;
+  // min-width: 125px;
+  color: white;
+}
+
 .mat-button.mat-primary {
   color: white !important;
 }
+
+.mat-button.mat-primary-small {
+  background-color: $primary;
+  color: white !important;
+  height: 45px;
+}
+
 button.mat-blue {
   background-color: $blue;
   color: white;
@@ -86,7 +103,7 @@ button.mat-primary-wide {
   background-color: $primary;
   color: white;
   height: 56px;
-  width: 80%;
+  width: 100%;
 }
 
 button.mat-primary-wide-break {
@@ -157,6 +174,25 @@ button.mat-primary-wide-landing-hollow {
 }
 
 button.mat-primary-wide-hollow {
+  background-color: white;
+  color: black;
+  border: 1px solid $primary;
+  height: 56px;
+  width: 100%;
+  white-space: break-spaces;
+}
+
+button.mat-primary-wide-hollow {
+  background-color: white;
+  color: black;
+  border: 1px solid $primary;
+  height: 56px;
+  width: 100%;
+  white-space: break-spaces;
+}
+
+button.mat-primar-hollow-medium {
+  min-width: 150px;
   background-color: white;
   color: black;
   border: 1px solid $primary;

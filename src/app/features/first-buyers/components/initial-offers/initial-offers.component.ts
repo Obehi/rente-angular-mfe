@@ -7,11 +7,7 @@ import {
   ValidatorFn,
   ValidationErrors
 } from '@angular/forms';
-import {
-  MatAutocompleteSelectedEvent,
-  MatDialog,
-  MatStepper
-} from '@angular/material';
+import { MatAutocompleteSelectedEvent, MatStepper } from '@angular/material';
 import { Router } from '@angular/router';
 import {
   FirstBuyersService,
@@ -34,8 +30,6 @@ import {
   take
 } from 'rxjs/operators';
 import { SeoService } from '@services/seo.service';
-import { PropertySelectDialogComponent } from '../property-select-dialog/property-select-dialog.component';
-import { MembershipService } from '@services/membership.service';
 
 @Component({
   selector: 'rente-initial-offers',
@@ -78,30 +72,10 @@ export class InitialOffersComponent implements OnInit {
     },
     { validators: this.loanToValueRatioValidator, updateOn: 'blur' }
   );
-  public allMemberships: any[] = [];
+  public allMemberships: MembershipTypeDto[] = [];
   selectedIndex: number | null = 1;
   public filteredMemberships: Observable<MembershipTypeDto[]>;
   public memberships: MembershipTypeDto[] = [];
-  public changeBankLoading: boolean;
-  public exampleArray = [
-    { id: 1, label: 'DNB' },
-    { id: 1, label: 'asd' },
-    { id: 1, label: 'sad' },
-    { id: 1, label: 'DaNB' },
-    { id: 1, label: 'DdNB' },
-    { id: 1, label: 'DNB' },
-    { id: 1, label: 'DzNB' },
-    { id: 1, label: 'D3NB' },
-
-    { id: 1, label: 'DNB' },
-    { id: 1, label: 'DN1B' },
-    { id: 1, label: 'D23NB' },
-    { id: 1, label: 'DNB' },
-    { id: 1, label: 'D3NB' },
-    { id: 1, label: 'DN3B' },
-    { id: 1, label: 'DNB' },
-    { id: 1, label: 'D2NB' }
-  ];
   properties = [
     {
       icon: 'monetization_on',
@@ -255,10 +229,8 @@ export class InitialOffersComponent implements OnInit {
     private loansService: LoansService,
     private firstBuyersService: FirstBuyersService,
     private firstBuyersAPIService: FirstBuyersAPIService,
-    private membershipService: MembershipService,
     private router: Router,
-    private seoService: SeoService,
-    public dialog: MatDialog
+    private seoService: SeoService
   ) {}
 
   get outstandingDebtControl(): AbstractControl {
@@ -365,27 +337,17 @@ export class InitialOffersComponent implements OnInit {
   }
 
   updateMemberships() {
-    this.membershipService.selectedMemberships = [
+    this.firstBuyersService.selectedMemberships = [
       ...this.memberships,
       ...this.selectedFeaturedMemberships
     ];
     this.firstBuyersAPIService
       .updateMembership(
-        this.membershipService.selectedMemberships.map((item) => item.name)
+        this.firstBuyersService.selectedMemberships.map((item) => item.name)
       )
       .subscribe((_) => {
         this.formGroup.markAsDirty();
       });
-  }
-
-  updateMemberships2(memberships) {
-    this.membershipService.selectedMemberships = [
-      ...this.memberships,
-      ...this.selectedFeaturedMemberships
-    ];
-    this.firstBuyersAPIService.updateMembership(memberships).subscribe((_) => {
-      this.formGroup.markAsDirty();
-    });
   }
 
   isAllDataFilled() {
@@ -439,12 +401,11 @@ export class InitialOffersComponent implements OnInit {
     this.updateMemberships();
   }
 
-  applyMemberships(memberships: MembershipTypeDto[]): void {
+  applyMemberships(memberships: MembershipTypeDto[]) {
     // causing ExpressionChangedAfterItHasBeenCheckedError since commit 9aaa47db or the one before
     this.memberships = memberships;
     this.updateMemberships();
     this.formGroup.markAsDirty();
-    console.log(memberships);
   }
 
   ngOnInit(): void {
@@ -460,10 +421,6 @@ export class InitialOffersComponent implements OnInit {
 
     this.subscribeToControllers();
 
-    this.membershipService.messages().subscribe(() => {
-      this.formGroup.markAsDirty();
-    });
-
     if (!this.firstBuyersService.offerValue?.income) {
       this.incomeStepShown = true;
     } else {
@@ -472,9 +429,6 @@ export class InitialOffersComponent implements OnInit {
 
     this.loansService.getConfirmationData().subscribe((dto) => {
       this.allMemberships = dto.availableMemberships;
-      // this.extraProperties[0].options = dto.availableMemberships;
-      // console.log(this.allMemberships);
-      this.extraProperties[0].options = this.allMemberships;
       this.featuredMemberships = this.allMemberships.filter((membership) => {
         return (
           membership.name === 'AKADEMIKERNE' ||
@@ -500,7 +454,6 @@ export class InitialOffersComponent implements OnInit {
     });
 
     this.updateNewOffers();
-    console.log(this.allMemberships);
   }
 
   updateNewOffers() {

@@ -8,6 +8,10 @@
   text-align: center;
 }
 
+.white {
+  color: #ffffff;
+}
+
 .desktop {
   .formBox {
     background: white;
@@ -324,6 +328,10 @@ form {
 }
 
 .forms {
+  ::ng-deep .mat-form-field-infix {
+    top: -8px !important;
+    height: 55px !important;
+  }
   ::ng-deep .mat-form-field-wrapper {
     margin: 0 !important;
     padding: 0 !important;
@@ -360,7 +368,8 @@ form {
 
   ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
     background: #004465a6;
-    bottom: -0.25em !important;
+    //height: 55px !important;
+    // bottom: -0.25em !important;
   }
   @media (min-width: 600px) {
     form {
@@ -450,19 +459,28 @@ form {
   }
 }
 
-::ng-deep .mat-select-value {
+.preferences-tab ::ng-deep .mat-select-value {
   display: inline !important;
   max-width: 100%;
 }
 
-::ng-deep .mat-select-value-text {
+.preferences-tab ::ng-deep .mat-select-value-text {
   color: white !important;
 }
 
+.grid-left {
+  grid-column-start: 1;
+}
+
+.align-center {
+  @media (min-width: 600px) {
+    align-self: center;
+  }
+}
 .preferences-tab {
   width: 90%;
   margin: auto;
-  margin-top: 40px;
+  margin-top: 4rem;
 
   .icon {
   }
@@ -470,12 +488,11 @@ form {
   .flex-1 {
     display: flex;
     flex-direction: column;
-    row-gap: 2rem;
     @media (min-width: 600px) {
       margin-top: 5rem;
       display: grid;
       grid-template-columns: 3fr 0fr;
-      row-gap: 5rem;
+      row-gap: 1rem;
     }
   }
 
@@ -495,6 +512,15 @@ form {
     row-gap: 4.2rem;
   }
 
+  .flex-box-margin {
+    margin: 2em 0 2em;
+  }
+
+  .margin-bottom {
+    @media (max-width: 600px) {
+      margin-bottom: 2em;
+    }
+  }
   h3 {
     padding: 3rem 0 0.5rem;
     color: white;
@@ -529,6 +555,11 @@ form {
     .membership-marked-spinner {
       line-height: 0px !important;
     }
+
+    .membership-marked-success {
+      line-height: 0px !important;
+    }
+
     ::ng-deep .button-wrapper {
       text-align: right !important;
     }

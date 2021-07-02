@@ -12,7 +12,8 @@ export const API_URL_MAP = {
     signup: '/signup',
     me: '/me',
     user: '/user',
-    demo: '/login/demo'
+    demo: '/login/demo',
+    bankidLogin: '/bank-id/login'
   },
   user: {
     base: '/user',
@@ -49,7 +50,23 @@ export const API_URL_MAP = {
     },
     loans: {
       base: '/loans',
-      state: '/state'
+      state: '/state',
+      info: '/info'
+    },
+
+    loan: {
+      base: '/loan',
+      state: '/state',
+      info: '/info'
+    },
+    user: {
+      base: '/user',
+      info: '/info'
+    },
+    membership: {
+      base: '/membership',
+      all: '/all',
+      membershipTypes: '/membership-types'
     },
     bankOfferRequest: {
       base: '/bank-offer-request',
@@ -57,7 +74,10 @@ export const API_URL_MAP = {
       send: '/send'
     },
     bankInfo: '/bank-info',
-    offers: '/offers',
+    offers: {
+      base: '/offers',
+      bank: '/bank'
+    },
     newOffers: '/new-offers',
     loanSubType: '/loanSubType',
     loanType: '/loanType',
@@ -65,7 +85,6 @@ export const API_URL_MAP = {
     remainingYears: '/remainingYears',
     outstandingDebt: '/outstandingDebt',
     preferences: '/preferences',
-    membership: '/membership',
     membershipTypes: '/membership-types',
     address: '/address',
     size: '/size',

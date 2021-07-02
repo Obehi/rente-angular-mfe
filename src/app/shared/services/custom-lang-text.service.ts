@@ -5,6 +5,32 @@ import { locale } from '@config/locale/locale';
   providedIn: 'root'
 })
 export class CustomLangTextService {
+  getRenteradarLinkText(): string {
+    if (locale.includes('sv')) {
+      return 'Ranteradar.se';
+    } else if (locale.includes('nb')) {
+      return 'Renteradar.no';
+    }
+    throw new Error('Should be either SV or NB');
+  }
+  getRenteradarUrl(): string {
+    if (locale.includes('sv')) {
+      return 'https://ranteradar.se';
+    } else if (locale.includes('nb')) {
+      return 'https://ranteradar.no/';
+    }
+    throw new Error('Should be either SV or NB');
+  }
+
+  getOfferCardButtonDefaultCTAText(): string {
+    if (locale.includes('sv')) {
+      return 'Få erbjudande ifrån banken';
+    } else if (locale.includes('nb')) {
+      return 'Få tilbud fra banken!';
+    }
+    throw new Error('Should be either SV or NB');
+  }
+
   getEmail(): string {
     if (locale.includes('sv')) {
       return 'hej@ranteradar.se';
@@ -187,7 +213,7 @@ export class CustomLangTextService {
 
   getlowerRateTitle(): string {
     if (locale.includes('sv')) {
-      return 'Du har lägre ränta än förra gången!';
+      return 'Grattis, du har en lägre ränta än förra gången! ';
     } else if (locale.includes('nb')) {
       return 'Du har lavere rente enn forrige gang!';
     }
@@ -196,7 +222,7 @@ export class CustomLangTextService {
 
   getlowerRateBody(): string {
     if (locale.includes('sv')) {
-      return 'Prutade du genom oss för att få en bättre ränta?';
+      return 'Var vi till hjälp för att sänka din bolåneränta?';
     } else if (locale.includes('nb')) {
       return 'Fikk du lavere rente etter å ha sendt melding fra Renteradar.no?';
     }
@@ -247,4 +273,156 @@ export class CustomLangTextService {
     }
     throw new Error('Should include either SV or NB');
   }
+
+  getBarometerTextState0(): string {
+    if (locale.includes('sv')) {
+      return 'Din ränta är mycket högre än genomsnittet';
+    } else if (locale.includes('nb')) {
+      return 'Renten din er mye dårligere enn gjennomsnittet';
+    }
+    throw new Error('Should include either SV or NB');
+  }
+
+  getBarometerTextState1(): string {
+    if (locale.includes('sv')) {
+      return 'Din ränta är högre än genomsnittet';
+    } else if (locale.includes('nb')) {
+      return 'Renten din er dårligere enn gjennomsnittet';
+    }
+    throw new Error('Should include either SV or NB');
+  }
+
+  getBarometerTextState2(): string {
+    if (locale.includes('sv')) {
+      return 'Din ränta är ok';
+    } else if (locale.includes('nb')) {
+      return 'Renten din er gjennomsnittlig';
+    }
+    throw new Error('Should include either SV or NB');
+  }
+
+  getBarometerTextState3(): string {
+    if (locale.includes('sv')) {
+      return 'Din ränta är bra';
+    } else if (locale.includes('nb')) {
+      return 'Renten din er god';
+    }
+    throw new Error('Should include either SV or NB');
+  }
+
+  getBarometerTextState4(): string {
+    if (locale.includes('sv')) {
+      return 'Din ränta är mycket bra';
+    } else if (locale.includes('nb')) {
+      return 'Renten din er svært god';
+    }
+    throw new Error('Should include either SV or NB');
+  }
+
+  getBarometerAdditionalTextLowSavingsState0(): string {
+    if (locale.includes('sv')) {
+      return 'och du kan spara lite';
+    } else if (locale.includes('nb')) {
+      return 'og du kan spare litt';
+    }
+    throw new Error('Should include either SV or NB');
+  }
+
+  getBarometerAdditionalTextLowSavingsState1(): string {
+    if (locale.includes('sv')) {
+      return 'och du kan spara en del';
+    } else if (locale.includes('nb')) {
+      return 'og du kan spare en del';
+    }
+    throw new Error('Should include either SV or NB');
+  }
+
+  getBarometerAdditionalTextLowSavingsState2(): string {
+    if (locale.includes('sv')) {
+      return 'men du kan spara en del';
+    } else if (locale.includes('nb')) {
+      return 'og du kan spare en del';
+    }
+    throw new Error('Should include either SV or NB');
+  }
+
+  getBarometerAdditionalTextLowSavingsState3(): string {
+    if (locale.includes('sv')) {
+      return 'och du kan spara mycket';
+    } else if (locale.includes('nb')) {
+      return 'og du kan spare mye';
+    }
+    throw new Error('Should include either SV or NB');
+  }
+
+  getBarometerAdditionalTextHighSavingsState0(): string {
+    if (locale.includes('sv')) {
+      return 'men du kan spara lite';
+    } else if (locale.includes('nb')) {
+      return 'men du kan spare litt';
+    }
+    throw new Error('Should include either SV or NB');
+  }
+
+  getBarometerAdditionalTextHighSavingsState1(): string {
+    if (locale.includes('sv')) {
+      return 'men du kan spara en del';
+    } else if (locale.includes('nb')) {
+      return 'men du kan spare en del';
+    }
+    throw new Error('Should include either SV or NB');
+  }
+
+  getBarometerAdditionalTextHighSavingsState2(): string {
+    if (locale.includes('sv')) {
+      return 'men du kan spara en del';
+    } else if (locale.includes('nb')) {
+      return 'men du kan spare en del';
+    }
+    throw new Error('Should include either SV or NB');
+  }
+
+  logout(): string {
+    if (locale.includes('sv')) {
+      return 'Du är nu utloggad';
+    } else if (locale.includes('nb')) {
+      return 'Du er nå logget ut';
+    }
+    throw new Error('Should be either SV or NB');
+  }
+  getBarometerAdditionalTextHighSavingsState3(): string {
+    if (locale.includes('sv')) {
+      return 'men du kan spara mycket';
+    } else if (locale.includes('nb')) {
+      return 'men du kan allikevel spare mye';
+    }
+    throw new Error('Should include either SV or NB');
+  }
+
+  getChooseText(): string {
+    if (locale.includes('sv')) {
+      return 'Välj';
+    } else if (locale.includes('nb')) {
+      return 'Velg';
+    }
+    throw new Error('Should include either SV or NB');
+  }
+
+  getChoosenText(): string {
+    if (locale.includes('sv')) {
+      return 'valt';
+    } else if (locale.includes('nb')) {
+      return 'valgt';
+    }
+    throw new Error('Should include either SV or NB');
+  }
+
+  // getBarometerAdditionalTextLowSavingsState4(): string {
+  //   if (locale.includes('sv')) {
+  //     return 'men du kan spara en del';
+  //   } else if (locale.includes('nb')) {
+  //     return 'men du kan spare en del';
+  //   }
+  //   throw new Error('Should include either SV or NB');
+  // }
 }
