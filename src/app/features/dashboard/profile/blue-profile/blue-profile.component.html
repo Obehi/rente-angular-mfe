@@ -21,7 +21,7 @@
           <input
             placeholder="Skriv inn din e-mail"
             matInput
-            formControlName="email"
+            [formControlName]="formControlId.email"
           />
           <rente-spinner
             class="email-income-spinner"
@@ -68,7 +68,7 @@
             matInput
             type="tel"
             autocomplete="off"
-            formControlName="income"
+            [formControlName]="formControlId.income"
             currencyMask
             [options]="{
               prefix: '',
@@ -107,7 +107,7 @@
     <!-- <div class="email-form">
       <rente-input
         [placeholder]="'E-post'"
-        formControlName="email"
+        [formControlName]="formControlId.email"
         [modelOptions]="{ updateOn: 'blur' }"
       >
       </rente-input>
@@ -116,7 +116,7 @@
       <rente-input
         i18n="“income-per-year|profile@@profile.income"
         [placeholder]="textLangService.getProfileIncomePlaceHolder()"
-        formControlName="income"
+        [formControlName]="formControlId.income"
         [maskType]="mask.currency"
         [modelOptions]="{ updateOn: 'blur' }"
         [type]="'tel'"
@@ -133,7 +133,7 @@
     <div class="flex-1">
       <div class="align-center">
         <h5
-          i18n="“income-per-year|profile@@profile.membership.header"
+          i18n="“income-per-year|profile@@profile.members¬hip.header"
           class="element"
         >
           Medlemskap:
@@ -183,7 +183,7 @@
       <rente-button class="rente-button flex-box-margin" color="blue-select">
         <mat-select
           *ngIf="loadingStates.checkRateReminderType.normal"
-          formControlName="checkRateReminderType"
+          [formControlName]="formControlId.checkRateReminderType"
           [placeholder]="textLangService.getChooseText()"
         >
           <mat-option
@@ -225,7 +225,7 @@
       <mat-slide-toggle
         class="button"
         (change)="markedIsChecked = !markedIsChecked"
-        formControlName="receiveNewsEmails"
+        [formControlName]="formControlId.receiveNewsEmails"
         value="markedIsChecked"
       ></mat-slide-toggle>
 
@@ -242,7 +242,7 @@
         *ngIf="!isSweden"
         class="button"
         (change)="offerOneIsChecked = !offerOneIsChecked"
-        formControlName="fetchCreditLinesOnly"
+        [formControlName]="formControlId.fetchCreditLinesOnly"
         value="offerOneIsChecked"
       ></mat-slide-toggle>
       <p
@@ -256,7 +256,7 @@
       <mat-slide-toggle
         class="button"
         (change)="offerTwoIsChecked = !offerTwoIsChecked"
-        formControlName="noAdditionalProductsRequired"
+        [formControlName]="formControlId.noAdditionalProductsRequired"
         value="offerTwoIsChecked"
       ></mat-slide-toggle>
       <p
@@ -269,7 +269,7 @@
       <mat-slide-toggle
         class="button"
         (change)="offerThreeIsChecked = !offerThreeIsChecked"
-        formControlName="interestedInEnvironmentMortgages"
+        [formControlName]="formControlId.interestedInEnvironmentMortgages"
         value="offerThreeIsChecked"
       ></mat-slide-toggle>
       <hr />

@@ -137,6 +137,8 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
       success: false
     }
   };
+
+  public formControlId = FormControlId;
   // //////////////////////////// NEW /////////////////////////// ///
 
   public offerOneIsChecked = true;
@@ -220,7 +222,7 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
           ]
         });
 
-        this.isSweden &&
+        !this.isSweden &&
           this.preferencesForm.addControl(
             'fetchCreditLinesOnly',
             this.fb.control('', [])
@@ -379,27 +381,28 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
     }
   }
 
-  beforeUpdate(args: FormControlId): void {
+  beforeUpdate(formControlId: FormControlId): void {
     this.canLeavePage = false;
-    this.loadingStates[args].normal = false;
-    this.loadingStates[args].loading = true;
+    this.loadingStates[formControlId].normal = false;
+    this.loadingStates[formControlId].loading = true;
   }
 
-  afterUpdate(args: FormControlId): void {
-    this.loadingStates[args].loading = false;
-    this.loadingStates[args].success = true;
+  afterUpdate(formControlId: FormControlId): void {
+    this.loadingStates[formControlId].loading = false;
+    this.loadingStates[formControlId].success = true;
     this.canNavigateBooolean$.next(true);
     this.canLeavePage = true;
+
     setTimeout(() => {
-      this.loadingStates[args].success = false;
-      this.loadingStates[args].normal = true;
+      this.loadingStates[formControlId].success = false;
+      this.loadingStates[formControlId].normal = true;
     }, 2000);
   }
 
-  onError(args: FormControlId): void {
+  onError(formControlId: FormControlId): void {
     this.canNavigateBooolean$.next(true);
     this.canLeavePage = true;
-    this.loadingStates[args].loading = false;
+    this.loadingStates[formControlId].loading = false;
   }
 
   subscribeToControllers(): void {
@@ -514,28 +517,6 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
           })
         ),
       this.preferencesForm
-        .get(FormControlId.fetchCreditLinesOnly)
-        ?.valueChanges.pipe(
-          distinctUntilChanged(),
-          debounceTime(500),
-          tap(() => {
-            this.beforeUpdate(FormControlId.fetchCreditLinesOnly);
-          }),
-          switchMap(() => {
-            return this.loansService
-              .updateUserPreferences(this.getPreferencesDto())
-              .pipe(
-                catchError(() => {
-                  this.onError(FormControlId.fetchCreditLinesOnly);
-                  return of(FormControlId.fetchCreditLinesOnly);
-                })
-              );
-          }),
-          tap(() => {
-            this.afterUpdate(FormControlId.fetchCreditLinesOnly);
-          })
-        ),
-      this.preferencesForm
         .get(FormControlId.noAdditionalProductsRequired)
         ?.valueChanges.pipe(
           distinctUntilChanged(),
@@ -577,6 +558,28 @@ export class BlueProfileComponent implements OnInit, DeactivationGuarded {
           }),
           tap(() => {
             this.afterUpdate(FormControlId.interestedInEnvironmentMortgages);
+          })
+        ),
+      this.preferencesForm
+        .get(FormControlId.fetchCreditLinesOnly)
+        ?.valueChanges.pipe(
+          distinctUntilChanged(),
+          debounceTime(500),
+          tap(() => {
+            this.beforeUpdate(FormControlId.fetchCreditLinesOnly);
+          }),
+          switchMap(() => {
+            return this.loansService
+              .updateUserPreferences(this.getPreferencesDto())
+              .pipe(
+                catchError(() => {
+                  this.onError(FormControlId.fetchCreditLinesOnly);
+                  return of(FormControlId.fetchCreditLinesOnly);
+                })
+              );
+          }),
+          tap(() => {
+            this.afterUpdate(FormControlId.fetchCreditLinesOnly);
           })
         )
     ]).subscribe(() => {});
