@@ -50,7 +50,6 @@ import { BargainSuccessComponent } from './offers/bargain-success/bargain-succes
 import { ReferralComponent } from './offers/bargain-success/referral/referral.component';
 
 import { HousesComponent } from './house/houses.component';
-import { BlueProfileComponent } from './profile/blue-profile/blue-profile.component';
 import { EPSIScoreComponent } from './offers/offers-blue/epsi-score/epsi-score.component';
 import { OffersListLangGenericComponent } from '../../local-components/components-output';
 import { LoansLangGenericComponent } from '../../local-components/components-output';
@@ -96,7 +95,7 @@ import { CurrencyMaskModule } from 'ng2-currency-mask';
     BargainSuccessComponent,
     ReferralComponent,
     HousesComponent,
-    BlueProfileComponent,
+    ProfileComponent,
     EPSIScoreComponent,
     OffersListLangGenericComponent,
     LoansLangGenericComponent,

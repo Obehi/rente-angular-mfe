@@ -1651,4 +1651,62 @@ Fortsett
   <translation id="offer.card.big.customerSatisfaction”" desc="offer-card-big" meaning="             “customer-satisfaction">
           Kundetilfredshet
         </translation>
+  <translation id="header.logOut3”" desc="log-out" meaning="“Headerlink">Logg inn
+        </translation>
+  <translation id="header.logOut4”" desc="log-out" meaning="“Headerlink"><ph name="START_HEADING_LEVEL3"><ex>&lt;h3&gt;</ex>&lt;h3&gt;</ph>Logg ut<ph name="CLOSE_HEADING_LEVEL3"><ex>&lt;/h3&gt;</ex>&lt;/h3&gt;</ph>
+      </translation>
+  <translation id="profile.income.label" desc="profile" meaning="“income-per-year">
+          Din brutto årsinntekt
+        </translation>
+  <translation id="profile.membership.header" desc="profile" meaning="“income-per-year">
+        Medlemskap:
+      </translation>
+  <translation id="profile.membership.label" desc="profile" meaning="“income-per-year">
+        Velg dine medlemskap
+      </translation>
+  <translation id="profile.markedMonitoring.header" desc="profile" meaning="“income-per-year">
+        Markedsovervåkning:
+      </translation>
+  <translation id="profile.markedMonitoring.label" desc="profile" meaning="“income-per-year">
+        Velg hvor ofte din rente skal sjekkes og du vil ha påminnelse på epost
+      </translation>
+  <translation id="profile.offerOptions.header" desc="profile" meaning="“income-per-year">
+      HVILKE TILBUD VIL DU SE:
+    </translation>
+  <translation id="profile.offerOptions.option1" desc="profile" meaning="“income-per-year">
+        Vis kun tilbud på rammelån/flexilån
+      </translation>
+  <translation id="profile.offerOptions.option2" desc="profile" meaning="“income-per-year">
+        Vis tilbud som krever andre produkter eller har sækrav: feks. bytte av
+        nettbank og aktiv lønnskonto
+      </translation>
+  <translation id="profile.offerOptions.option3" desc="profile" meaning="“income-per-year">
+        Vis tilbud som forutsetter bolig med energiklasse A/B, nullhus,
+        Svanemerket, tiltak for energimerking, etc.
+      </translation>
+  <translation id="header.login”" desc="log-out" meaning="“Headerlink">Logg inn
+        </translation>
+  <translation id="header.logOut5”" desc="log-out" meaning="“Headerlink">Logg ut
+          </translation>
+  <translation id="profile.email" desc="profile" meaning="“issue-mail">
+          E-mail
+        </translation>
+  <translation id="profile.markedUpdates.header" desc="profile" meaning="“income-per-year">
+        Markedsoppdateringer:
+      </translation>
+  <translation id="profile.markedUpdates.label" desc="profile" meaning="“income-per-year">
+        Send meg markedsoppdateringer, nyheter og annen informasjon på epost
+      </translation>
+  <translation id="offer.card.customerSatisfied”" desc="offer-card" meaning="                 “customer-satisfied">
+              Kundetilfredshet
+              <ph name="START_TAG_SPAN"><ex>&lt;span&gt;</ex>&lt;span&gt;</ph>
+                <ph name="START_TAG_MAT_ICON"><ex>&lt;mat-icon&gt;</ex>&lt;mat-icon&gt;</ph>help<ph name="CLOSE_TAG_MAT_ICON"><ex>&lt;/mat-icon&gt;</ex>&lt;/mat-icon&gt;</ph>
+              <ph name="CLOSE_TAG_SPAN"><ex>&lt;/span&gt;</ex>&lt;/span&gt;</ph>
+            </translation>
+  <translation id="offer.card.mobileRatingNotAvailable" desc="offer-card" meaning="                 “application-time">
+              Webbsida
+            </translation>
+  <translation id="profile.members¬hip.header" desc="profile" meaning="“income-per-year">
+          Medlemskap:
+        </translation>
 </translationbundle>
