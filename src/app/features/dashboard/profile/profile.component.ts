@@ -221,11 +221,12 @@ export class ProfileComponent implements OnInit, DeactivationGuarded {
             dto.interestedInEnvironmentMortgages
           ]
         });
+        this.fb.control(dto.fetchCreditLinesOnly, []);
 
         !this.isSweden &&
           this.preferencesForm.addControl(
             'fetchCreditLinesOnly',
-            this.fb.control('', [])
+            this.fb.control(dto.fetchCreditLinesOnly, [])
           );
       },
       (err) => {
