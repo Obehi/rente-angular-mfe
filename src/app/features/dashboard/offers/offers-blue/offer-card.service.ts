@@ -80,6 +80,10 @@ export class OfferCardService {
         text = 'Les mer og søk om lån';
         break;
       }
+      case 'DIN_BANK': {
+        text = 'Les mer og søk om lån';
+        break;
+      }
       case 'BULDER': {
         text = 'Få tilbud fra Bulder!';
         break;
