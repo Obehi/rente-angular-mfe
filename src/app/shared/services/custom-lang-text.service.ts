@@ -77,7 +77,7 @@ export class CustomLangTextService {
 
   getMembershipSearchText(): string {
     if (locale.includes('sv')) {
-      return 'Sök medlemskap';
+      return 'Sök fackförbund';
     } else if (locale.includes('nb')) {
       return 'Søk medlemskap';
     }

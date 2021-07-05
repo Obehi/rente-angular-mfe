@@ -1,7 +1,10 @@
 <!-- MOBILE VERSION -->
 <div *ngIf="isMobile" class="main-div">
   <div *ngIf="isMobile" class="chosen-memberships-div">
-    <h2 class="selected-membership-top">
+    <h2
+      i18n="“issue-mail|membership@@membership.choosenMembershipMobile"
+      class="selected-membership-top"
+    >
       Valgte medlemskap ({{ selectedMemberships?.length || 0 }})
     </h2>
 
@@ -59,7 +62,10 @@
 <div *ngIf="!isMobile" class="main-div">
   <div class="desktop-column-one">
     <div class="desktop-flex-part-one">
-      <h2 class="selected-membership-top">
+      <h2
+        i18n="“issue-mail|membership@@membership.choosenMembershipDesktop"
+        class="selected-membership-top"
+      >
         Valgte medlemskap ({{ selectedMemberships?.length || 0 }})
       </h2>
       <div class="selected-memberships">

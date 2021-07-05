@@ -11,10 +11,9 @@ import { Offers } from '@shared/models/offers';
 })
 export class BoxGridComponent implements OnInit {
   @Input() offersInfo: Offers;
-  public envService: EnvService;
   public isSweden: boolean;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, public envService: EnvService) {}
 
   ngOnInit() {}
 
