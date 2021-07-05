@@ -1,13 +1,16 @@
 <div class="top">
-  <h4>Vi klarte dessverre ikke estimere din boligverdi</h4>
+  <h4 *ngIf="firstStep">Vi klarte dessverre ikke estimere din boligverdi</h4>
+  <h4 *ngIf="secondStep">Legg inn boligverdien din</h4>
 
-  <p class="no-margin">Det kan være flere grunner til dette:</p>
-  <ul>
+  <p class="no-margin" *ngIf="firstStep">
+    Det kan være flere grunner til dette:
+  </p>
+  <ul *ngIf="firstStep">
     <li>Feil adresse eller postnummer</li>
     <li>Vi greier ikke estimere verdi på fritidsboliger</li>
   </ul>
 
-  <div class="info-box" *ngIf="showInfoBox">
+  <div class="info-box" *ngIf="firstStep">
     <p>
       Sjekk at adressen er riktig, eller velg <b>"Legg til boligverdi"</b> og
       legg inn verdien manuelt
@@ -17,7 +20,6 @@
         <p *ngIf="data.address.street">Adresse:</p>
         <p *ngIf="data.address.zip">Postnummer:</p>
         <p *ngIf="data.address.apartmentSize">Boligstørrelse:</p>
-        <p *ngIf="data.income">Din brutto årsinntekt:</p>
       </div>
 
       <div class="right">
@@ -26,9 +28,18 @@
         <p *ngIf="data.address.apartmentSize">
           {{ data.address.apartmentSize }}
         </p>
-        <p *ngIf="data.income">{{ data.income }}</p>
       </div>
     </div>
+  </div>
+
+  <div class="info-box" *ngIf="secondStep">
+    <p>
+      Fyll inn ditt beste estimat på hva du mener primærboligen din er verdt og
+      trykk på den grønne knappen
+    </p>
+    <p>
+      Har du flere boliger kan du legge til disse i boligfanen etter innlogging.
+    </p>
   </div>
 
   <div class="manualvaluebox" *ngIf="isManualValue">
@@ -42,7 +53,7 @@
           <div>
             <rente-input
               #aptValue
-              [placeholder]="'Estimert verdi på din bolig'"
+              [placeholder]="'Legg inn boligverdien din'"
               formControlName="apartmentValue"
               matSuffix="kr"
               [errorStateMatcher]="
@@ -108,6 +119,6 @@
     color="primary"
     (click)="onSendForm()"
   >
-    Ferdig
+    Finn beste rente!
   </rente-button>
 </div>

@@ -289,12 +289,16 @@ export class InitConfirmationNoComponent implements OnInit, OnDestroy {
               onConfirm: () => {},
               onClose: () => {},
               onSendForm: (apartmentValue) => {
-                // Remove the whitespace
-                const value = apartmentValue.replace(/\s/g, '');
-
-                // Send the dataForm with apartment value
-                this.userData.address.apartmentValue = Number(value);
-                this.updateProperty(undefined);
+                if (apartmentValue) {
+                  // Remove the whitespace
+                  const value = apartmentValue.replace(/\s/g, '');
+                  // Send the dataForm with apartment value
+                  this.userData.address.apartmentValue = Number(value);
+                  this.updateProperty(undefined);
+                } else {
+                  alert('apartmentValue: ');
+                  alert(apartmentValue);
+                }
               }
             }
           });

@@ -76,7 +76,7 @@ export class GuidLoginComponent implements OnInit {
         this.isLoading = false;
         this.messageService.setView(
           this.customLangTextService.getSnackBarErrorMessage(),
-          5000,
+          4000,
           this.animationType.DROP_DOWN_UP,
           'error',
           window
