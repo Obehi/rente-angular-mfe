@@ -31,7 +31,7 @@ export class OfferCardBigComponentBlue implements OnInit {
   public offerType: string;
   public isSweden: boolean;
   public isNordea = false;
-  public isNybygger = false;
+  public isSingleButtonLayout = false;
 
   @Input() offer: OfferInfo;
   @Input() offersInfo: Offers;
@@ -54,9 +54,14 @@ export class OfferCardBigComponentBlue implements OnInit {
     }
 
     this.isNordea = this.offersInfo.bank === 'NORDEA';
-    this.isNybygger = this.offer.bankInfo.bank === 'NYBYGGER';
+    this.isSingleButtonLayout = this.offerCardService.isSingleButtonLayout(
+      this.offer.bankInfo.bank
+    );
 
-    if (this.offer.bankInfo.bank === 'NYBYGGER') {
+    if (
+      this.offer.bankInfo.bank === 'NYBYGGER' ||
+      this.offer.bankInfo.bank === 'DIN_BANK'
+    ) {
       this.offer.bankInfo.partner = true;
     }
 

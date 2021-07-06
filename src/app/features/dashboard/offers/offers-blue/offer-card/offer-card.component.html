@@ -266,7 +266,7 @@
 
       <div class="buttons">
         <rente-button
-          *ngIf="offer.bankInfo.bank !== 'NYBYGGER'"
+          *ngIf="!isSingleButtonLayout"
           class="firstButton"
           [disabled]="offer.bankInfo.partner == false"
           i18n="“see-more|offer-card-big@@offer.card.big.seeMore”"

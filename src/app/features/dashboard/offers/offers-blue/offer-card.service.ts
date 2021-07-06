@@ -69,6 +69,10 @@ export class OfferCardService {
     this.sendOfferTrackingData(trackingDto);
   }
 
+  public isSingleButtonLayout(bank: string): boolean {
+    return bank === 'NYBYGGER' || bank === 'DIN_BANK';
+  }
+
   public getOfferButtonText(offer: OfferInfo): string {
     let text = '';
     switch (offer.bankInfo.bank) {

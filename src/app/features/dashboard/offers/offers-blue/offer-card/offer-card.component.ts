@@ -32,6 +32,7 @@ export class OfferCardComponent implements OnInit {
   public isSweden: boolean;
   public isNordea = false;
   public bankSpecialPromoText: string | null = null;
+  public isSingleButtonLayout = false;
 
   @Input() offer: OfferInfo;
   @Input() offersInfo: Offers;
@@ -55,9 +56,16 @@ export class OfferCardComponent implements OnInit {
     this.bankSpecialPromoText = this.getBankSpecialPromoText();
     this.isNordea = this.offersInfo.bank === 'NORDEA';
 
-    if (this.offer.bankInfo.bank === 'NYBYGGER') {
+    if (
+      this.offer.bankInfo.bank === 'NYBYGGER' ||
+      this.offer.bankInfo.bank === 'DIN_BANK'
+    ) {
       this.offer.bankInfo.partner = true;
     }
+
+    this.isSingleButtonLayout = this.offerCardService.isSingleButtonLayout(
+      this.offer.bankInfo.bank
+    );
 
     if (this.offer.fixedRatePeriod === 0) {
       this.offerType = 'threeMonths';
