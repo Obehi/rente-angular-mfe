@@ -364,19 +364,19 @@ export class ProfileComponent implements OnInit, DeactivationGuarded {
 
   getMarketString(option: string): any {
     switch (option) {
-      case 'Hver måned': {
+      case this.textLangService.getProfileMarketOption1(): {
         return 'HVER_MANED_1';
       }
-      case 'Hver 2. måned': {
+      case this.textLangService.getProfileMarketOption2(): {
         return 'HVER_MANED_2';
       }
-      case 'Hver 3. måned': {
+      case this.textLangService.getProfileMarketOption3(): {
         return 'HVER_MANED_3';
       }
-      case 'Hver 4. måned': {
+      case this.textLangService.getProfileMarketOption4(): {
         return 'HVER_MANED_4';
       }
-      case 'Aldri': {
+      case this.textLangService.getProfileMarketOption5(): {
         return 'NONE';
       }
     }

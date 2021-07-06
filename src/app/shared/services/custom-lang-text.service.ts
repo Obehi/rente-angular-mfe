@@ -284,7 +284,7 @@ export class CustomLangTextService {
 
   getBarometerTextState0(): string {
     if (locale.includes('sv')) {
-      return 'Din ränta är mycket högre än genomsnittet';
+      return 'Din ränta är mycket dåligare än genomsnittet';
     } else if (locale.includes('nb')) {
       return 'Renten din er mye dårligere enn gjennomsnittet';
     }
@@ -293,7 +293,7 @@ export class CustomLangTextService {
 
   getBarometerTextState1(): string {
     if (locale.includes('sv')) {
-      return 'Din ränta är högre än genomsnittet';
+      return 'Din ränta är dåligare än genomsnittet';
     } else if (locale.includes('nb')) {
       return 'Renten din er dårligere enn gjennomsnittet';
     }
@@ -302,7 +302,7 @@ export class CustomLangTextService {
 
   getBarometerTextState2(): string {
     if (locale.includes('sv')) {
-      return 'Din ränta är ok';
+      return 'Din ränta är genomsnittlig';
     } else if (locale.includes('nb')) {
       return 'Renten din er gjennomsnittlig';
     }
@@ -338,7 +338,7 @@ export class CustomLangTextService {
 
   getBarometerAdditionalTextLowSavingsState1(): string {
     if (locale.includes('sv')) {
-      return 'och du kan spara en del';
+      return 'men du kan spara en del';
     } else if (locale.includes('nb')) {
       return 'og du kan spare en del';
     }
@@ -347,7 +347,7 @@ export class CustomLangTextService {
 
   getBarometerAdditionalTextLowSavingsState2(): string {
     if (locale.includes('sv')) {
-      return 'men du kan spara en del';
+      return 'och du kan spara mycket';
     } else if (locale.includes('nb')) {
       return 'og du kan spare en del';
     }
@@ -383,7 +383,7 @@ export class CustomLangTextService {
 
   getBarometerAdditionalTextHighSavingsState2(): string {
     if (locale.includes('sv')) {
-      return 'men du kan spara en del';
+      return 'men du kan spara mycket';
     } else if (locale.includes('nb')) {
       return 'men du kan spare en del';
     }
@@ -418,7 +418,7 @@ export class CustomLangTextService {
 
   getChoosenText(): string {
     if (locale.includes('sv')) {
-      return 'valt';
+      return 'valda';
     } else if (locale.includes('nb')) {
       return 'valgt';
     }
