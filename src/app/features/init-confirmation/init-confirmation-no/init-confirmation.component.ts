@@ -65,6 +65,10 @@ export class InitConfirmationNoComponent implements OnInit, OnDestroy {
   public mask = Mask;
   public isAddressNeeded = false;
   public animationType = getAnimationStyles();
+  public virdiSuccess = false;
+  public estimatedPropertyValueFromVirdi: number;
+  public stepFillOutForm: boolean;
+
   @ViewChild('membershipInput') membershipInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete: MatAutocomplete;
 
@@ -84,6 +88,8 @@ export class InitConfirmationNoComponent implements OnInit, OnDestroy {
         membership ? this.filter(membership) : this.allMemberships.slice()
       )
     );
+    this.stepFillOutForm = true;
+    this.userData = new ConfirmationGetDto();
   }
 
   ngOnInit(): void {
@@ -242,7 +248,20 @@ export class InitConfirmationNoComponent implements OnInit, OnDestroy {
     this.loansService.setConfirmationData(data).subscribe(
       () => {
         this.isLoading = false;
-        this.router.navigate(['/dashboard/' + ROUTES_MAP.offers]);
+        this.stepFillOutForm = false;
+        this.virdiSuccess = true;
+
+        // Send get request to fetch the estimated propertyValue
+        this.loansService.getAddresses().subscribe((res) => {
+          const estimatedValue = res.addresses[0].estimatedPropertyValue;
+          if (estimatedValue) {
+            this.estimatedPropertyValueFromVirdi = estimatedValue;
+          } else {
+            this.estimatedPropertyValueFromVirdi = 0;
+          }
+        });
+
+        // this.router.navigate(['/' + ROUTES_MAP_NO.confirmationProperty]);
         this.logging.logger(
           this.logging.Level.Info,
           '9:USERINFO_SENT_SUCCESSFUL_REDIRECTING_TO_OFFERS',
@@ -280,12 +299,13 @@ export class InitConfirmationNoComponent implements OnInit, OnDestroy {
           this.isLoading = false;
           this.dialog.open(VirdiManualValueDialogComponent, {
             data: {
+              step: 1,
               address: data.address,
               email: data.email,
               income: data.income,
               memberships: data.memberships,
               confirmText: 'Legg til boligverdi',
-              cancelText: 'Prøv ny adresse',
+              cancelText: 'Gå tilbake',
               onConfirm: () => {},
               onClose: () => {},
               onSendForm: (apartmentValue) => {
@@ -353,6 +373,30 @@ export class InitConfirmationNoComponent implements OnInit, OnDestroy {
     }
 
     return array;
+  }
+
+  redirectOffers(): void {
+    this.router.navigate(['/dashboard/' + ROUTES_MAP.offers]);
+  }
+
+  setManualPropertyValue(): void {
+    this.dialog.open(VirdiManualValueDialogComponent, {
+      data: {
+        step: 2,
+        confirmText: 'Legg til boligverdi',
+        cancelText: 'Gå tilbake',
+        onConfirm: () => {},
+        onClose: () => {},
+        onSendForm: (apartmentValue) => {
+          // Remove the whitespace
+          const value = apartmentValue.replace(/\s/g, '');
+
+          // Send the dataForm with apartment value
+          this.userData.address.apartmentValue = Number(value);
+          this.updateProperty(undefined);
+        }
+      }
+    });
   }
 
   ngOnDestroy(): void {

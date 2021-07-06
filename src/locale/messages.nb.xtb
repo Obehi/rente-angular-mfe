@@ -1709,4 +1709,22 @@ Fortsett
   <translation id="profile.members¬hip.header" desc="profile" meaning="“income-per-year">
           Medlemskap:
         </translation>
+  <translation id="membership.choosenMembershipMobile" desc="membership" meaning="“issue-mail">
+      Valgte medlemskap (<ph name="INTERPOLATION"><ex>{{ selectedMemberships?.length || 0 }}</ex>{{ selectedMemberships?.length || 0 }}</ph>)
+    </translation>
+  <translation id="membership.choosenMembershipDesktop" desc="membership" meaning="“issue-mail">
+        Valgte medlemskap (<ph name="INTERPOLATION"><ex>{{ selectedMemberships?.length || 0 }}</ex>{{ selectedMemberships?.length || 0 }}</ph>)
+      </translation>
+  <translation id="confirmation.property-value”" desc="“confirmation-property-value"/>
+  <translation id="confirmation.property-houses”" desc="“change or add more houses"/>
+  <translation id="confirmation.property-offers" desc="“go to offers"/>
+  <translation id="property-offers-button" desc="“go to offers">
+        Ta meg til tilbudene
+      </translation>
+  <translation id="confirmation.property-value" desc="“confirmation-property-value">
+        Vi har estimert din bolig til
+      </translation>
+  <translation id="confirmation.property-houses" desc="“change or add more houses">
+        Endre / legg til flere bolig
+      </translation>
 </translationbundle>

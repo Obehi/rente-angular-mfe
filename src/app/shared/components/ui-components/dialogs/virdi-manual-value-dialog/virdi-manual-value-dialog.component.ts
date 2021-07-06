@@ -6,6 +6,8 @@ import {
   Validators
 } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Router } from '@angular/router';
+import { ROUTES_MAP } from '@config/routes-config';
 import { Mask } from '@shared/constants/mask';
 import { BehaviorSubject } from 'rxjs';
 
@@ -26,13 +28,21 @@ export class VirdiManualValueDialogComponent {
 
   constructor(
     private fb: FormBuilder,
+    private router: Router,
     public dialogRef: MatDialogRef<VirdiManualValueDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
-    this.isManualValue = false;
-    this.showInfoBox = true;
-    this.firstStep = true;
-    this.secondStep = false;
+    if (data.step === 1) {
+      this.showInfoBox = true;
+      this.isManualValue = false;
+      this.firstStep = true;
+      this.secondStep = false;
+    } else if (data.step === 2) {
+      this.showInfoBox = false;
+      this.isManualValue = true;
+      this.firstStep = false;
+      this.secondStep = true;
+    }
     this.initPropertyValueForm();
   }
 
@@ -61,6 +71,7 @@ export class VirdiManualValueDialogComponent {
     }
 
     this.dialogRef.close();
+    this.router.navigate(['/dashboard/' + ROUTES_MAP.offers]);
   }
 
   initPropertyValueForm(): void {
