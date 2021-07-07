@@ -1,4 +1,4 @@
-@import "../../../../styles/theme/_colors.scss";
+@import '../../../../styles/theme/_colors.scss';
 
 @media (min-width: 600px) {
   .front-container {
@@ -59,17 +59,18 @@ mat-form-field {
   margin-bottom: 20px;
 }
 
-
 .blue {
   background: $secondary;
 
-  h3, p {
+  h3,
+  p {
     color: white;
   }
 
   form {
-    h3, p {
-      color: #000
+    h3,
+    p {
+      color: #000;
     }
     background: white;
     border-radius: 15px;
@@ -84,7 +85,7 @@ mat-form-field {
     margin-top: 30px;
     margin-bottom: 10px;
     font-size: 16px;
-    color: #54606E !important;
+    color: #54606e !important;
     text-align: center;
     font-weight: 400;
   }
@@ -117,7 +118,7 @@ mat-form-field {
       margin: 10px;
       border-radius: 15px;
       background: $grey-light;
-      
+
       img {
         width: 80%;
         padding: 10px;
@@ -126,5 +127,62 @@ mat-form-field {
         background: $secondary;
       }
     }
+  }
+}
+
+.propertyBox {
+  width: 100%;
+  font-size: 110%;
+}
+
+.propertyValueTitle {
+  text-align: center;
+
+  margin-top: 50px !important;
+
+  @media (max-width: 600px) {
+    margin-top: 80px !important;
+  }
+}
+
+.estimatedValueNumber {
+  font-size: 200%;
+  margin-top: 8px;
+  margin-bottom: -8px;
+}
+
+.correctValueTitle {
+  color: white;
+  font-size: larger;
+  text-align: center;
+  margin-bottom: 0px;
+}
+
+.bottom {
+  padding: 20px;
+  border-radius: 0 0 10px 10px;
+
+  // &.single {
+  //   display: flex;
+  //   justify-content: center;
+  //   align-items: center;
+  // }
+
+  &.double {
+    display: grid;
+    grid-column-gap: 15px;
+    grid-template-columns: 1fr 1fr;
+
+    @media (max-width: 700px) {
+      display: block;
+      flex-direction: column-reverse;
+    }
+  }
+}
+
+.buttonwidth {
+  width: 100%;
+  @media (max-width: 600px) {
+    width: 75%;
   }
 }

@@ -8,6 +8,7 @@ import {
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ROUTES_MAP } from '@config/routes-config';
+import { EnvService } from '@services/env.service';
 import { Mask } from '@shared/constants/mask';
 import { BehaviorSubject } from 'rxjs';
 
@@ -25,10 +26,12 @@ export class VirdiManualValueDialogComponent {
   public secondStep: boolean;
   @ViewChild('aptValue') aptVal: ElementRef;
   public sendFocusVal$: BehaviorSubject<boolean>;
+  public inputPlaceHolder: string;
 
   constructor(
     private fb: FormBuilder,
     private router: Router,
+    private envService: EnvService,
     public dialogRef: MatDialogRef<VirdiManualValueDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
@@ -44,6 +47,11 @@ export class VirdiManualValueDialogComponent {
       this.secondStep = true;
     }
     this.initPropertyValueForm();
+    if (this.envService.isNorway()) {
+      this.inputPlaceHolder = 'Estimert verdi på din bolig';
+    } else if (this.envService.isSweden()) {
+      this.inputPlaceHolder = 'Uppskattat värde på din bostad';
+    }
   }
 
   public onClose(): void {
