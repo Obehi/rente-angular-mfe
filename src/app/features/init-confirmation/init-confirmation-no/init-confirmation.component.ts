@@ -270,14 +270,6 @@ export class InitConfirmationNoComponent implements OnInit, OnDestroy {
           this.logging.SubSystem.UserConfirmation,
           '9:USERINFO_SENT_SUCCESSFUL_REDIRECTING_TO_OFFERS'
         );
-
-        this.messageBanner.setView(
-          this.customLangTextService.getSnackBarUpdatedMessage(),
-          3000,
-          this.animationType.DROP_DOWN_UP,
-          'success',
-          window
-        );
       },
       (err) => {
         this.isLoading = false;
