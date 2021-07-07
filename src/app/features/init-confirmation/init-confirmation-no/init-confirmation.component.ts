@@ -272,14 +272,6 @@ export class InitConfirmationNoComponent implements OnInit, OnDestroy {
           this.logging.SubSystem.UserConfirmation,
           '9:USERINFO_SENT_SUCCESSFUL_REDIRECTING_TO_OFFERS'
         );
-
-        this.messageBanner.setView(
-          this.customLangTextService.getSnackBarUpdatedMessage(),
-          3000,
-          this.animationType.DROP_DOWN_UP,
-          'success',
-          window
-        );
       },
       (err) => {
         this.isLoading = false;
@@ -308,6 +300,7 @@ export class InitConfirmationNoComponent implements OnInit, OnDestroy {
               memberships: data.memberships,
               confirmText: 'Legg til boligverdi',
               cancelText: 'Gå tilbake',
+              finishText: 'Finn beste rente!',
               onConfirm: () => {},
               onClose: () => {},
               onSendForm: (apartmentValue) => {
@@ -386,7 +379,8 @@ export class InitConfirmationNoComponent implements OnInit, OnDestroy {
       data: {
         step: 2,
         confirmText: 'Legg til boligverdi',
-        cancelText: 'Gå tilbake',
+        cancelText: 'Lukk',
+        finishText: 'Finn beste rente!',
         onConfirm: () => {},
         onClose: () => {},
         onSendForm: (apartmentValue) => {
