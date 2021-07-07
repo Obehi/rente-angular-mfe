@@ -93,10 +93,12 @@ export class InitConfirmationNoComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.isLoading = true;
     forkJoin([
       this.loansService.getLoansAndRateType(),
       this.loansService.getConfirmationData()
     ]).subscribe(([rateAndLoans, userInfo]) => {
+      this.isLoading = false;
       this.allMemberships = userInfo.availableMemberships;
       this.userData = userInfo;
 

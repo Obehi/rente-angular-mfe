@@ -2,12 +2,15 @@
   <div *ngIf="stepFillOutForm">
     <div class="title">
       <h3
-        *ngIf="userData.name !== null"
+        *ngIf="userData.name !== null && !isLoading"
         i18n="“hi|info-confirmation@@info.confirmation.hi”"
       >
         Hei, {{ userData.name | titlecase }}
       </h3>
-      <p i18n="“more-infor|info-confirmation@@info.confirmation.moreInfo”">
+      <p
+        *ngIf="!isLoading"
+        i18n="“more-infor|info-confirmation@@info.confirmation.moreInfo”"
+      >
         Vi trenger litt mer informasjon før vi kan søke etter tilbud
       </p>
     </div>
