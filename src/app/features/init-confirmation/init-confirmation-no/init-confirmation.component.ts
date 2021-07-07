@@ -306,6 +306,7 @@ export class InitConfirmationNoComponent implements OnInit, OnDestroy {
               memberships: data.memberships,
               confirmText: 'Legg til boligverdi',
               cancelText: 'Gå tilbake',
+              finishText: 'Finn beste rente!',
               onConfirm: () => {},
               onClose: () => {},
               onSendForm: (apartmentValue) => {
@@ -384,7 +385,8 @@ export class InitConfirmationNoComponent implements OnInit, OnDestroy {
       data: {
         step: 2,
         confirmText: 'Legg til boligverdi',
-        cancelText: 'Gå tilbake',
+        cancelText: 'Lukk',
+        finishText: 'Finn beste rente!',
         onConfirm: () => {},
         onClose: () => {},
         onSendForm: (apartmentValue) => {
