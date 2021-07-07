@@ -42,7 +42,7 @@
           <div>
             <rente-input
               #aptValue
-              [placeholder]="'Estimert verdi på din bolig'"
+              [placeholder]="inputPlaceHolder"
               formControlName="apartmentValue"
               matSuffix="kr"
               [errorStateMatcher]="
@@ -79,18 +79,12 @@
 <!-- Top end -->
 
 <div class="bottom double">
-  <rente-button
-    i18n="“close|button@@close”"
-    cdkFocusInitial
-    color="primary-hollow"
-    (click)="onClose()"
-  >
+  <rente-button cdkFocusInitial color="primary-hollow" (click)="onClose()">
     {{ data.cancelText }}
   </rente-button>
 
   <rente-button
     *ngIf="firstStep"
-    i18n="“close|button@@close”"
     cdkFocusInitial
     color="primary"
     (click)="onConfirm()"
@@ -103,11 +97,10 @@
     [disabled]="
       manualPropertyValueForm.invalid || !manualPropertyValueForm.valid
     "
-    i18n="“close|button@@close”"
     cdkFocusInitial
     color="primary"
     (click)="onSendForm()"
   >
-    Ferdig
+    {{ data.finishText }}
   </rente-button>
 </div>
