@@ -1697,6 +1697,7 @@ Fortsett
   <translation id="profile.markedUpdates.label" desc="profile" meaning="“income-per-year">
         Send meg markedsoppdateringer, nyheter og annen informasjon på epost
       </translation>
+<<<<<<< HEAD
   <translation id="offer.card.customerSatisfied”" desc="offer-card" meaning="                 “customer-satisfied">
               Kundetilfredshet
               <ph name="START_TAG_SPAN"><ex>&lt;span&gt;</ex>&lt;span&gt;</ph>
@@ -1743,4 +1744,6 @@ Fortsett
       Sjekk at adressen er riktig, eller velg <ph name="START_BOLD_TEXT"><ex>&lt;b&gt;</ex>&lt;b&gt;</ph>&quot;Legg til boligverdi&quot;<ph name="CLOSE_BOLD_TEXT"><ex>&lt;/b&gt;</ex>&lt;/b&gt;</ph> og
       legg inn verdien manuelt
     </translation>
+=======
+>>>>>>> origin/changeSavedInBolig
 </translationbundle>
