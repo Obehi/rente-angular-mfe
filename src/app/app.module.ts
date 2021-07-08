@@ -28,7 +28,7 @@ import { ProfileDialogInfoComponent } from './features/dashboard/profile/dialog-
 import { AuthSvMockupComponent } from './features/auth-sv-mockup/auth-sv-mockup.component';
 import { EmailRedirectSVComponent } from './features/email-redirect/email-redirect-sv/email-redirect-sv.component';
 import { EmailRedirectNOComponent } from './features/email-redirect/email-redirect-no/email-redirect-no.component';
-import { ConfirmationProperty } from './features/init-confirmation/init-confirmation-sv/confirmation-property-sv/confirmation-property-sv.component';
+import { ConfirmationProperty } from './features/init-confirmation/confirmation-property/confirmation-property.component';
 import { NoLoansComponent } from '@features/dashboard/no-loans/no-loans.component';
 import { Sb1DisabledComponent } from './features/sb1-disabled/sb1-disabled.component';
 
@@ -64,7 +64,6 @@ registerLocaleData(localeNo);
     AppComponent,
     AuthSvComponent,
     AuthSvMockupComponent,
-    ConfirmationProperty,
     ConfirmationProperty,
     ContactUsComponent,
     CounterComponent,

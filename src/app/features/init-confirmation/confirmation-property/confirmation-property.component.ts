@@ -6,9 +6,9 @@ import { ROUTES_MAP } from '@config/routes-config';
 import { GlobalStateService } from '@services/global-state.service';
 
 @Component({
-  selector: 'confirmation-property-sv.component',
-  templateUrl: './confirmation-property-sv.component.html',
-  styleUrls: ['./confirmation-property-sv.component.scss']
+  selector: 'confirmation-property.component',
+  templateUrl: './confirmation-property.component.html',
+  styleUrls: ['./confirmation-property.component.scss']
 })
 export class ConfirmationProperty implements OnInit, OnDestroy {
   public isLoading: boolean;
@@ -33,7 +33,12 @@ export class ConfirmationProperty implements OnInit, OnDestroy {
           ? '../../../../assets/icons/round-apartment-primary-blue.svg'
           : null;
       this.isLoading = false;
-      this.estimatedPropertyValue = res.addresses[0].estimatedPropertyValue;
+      const estimatedValue = res.addresses[0].estimatedPropertyValue;
+      if (estimatedValue) {
+        this.estimatedPropertyValue = estimatedValue;
+      } else {
+        this.estimatedPropertyValue = 0;
+      }
     });
 
     // Set content background

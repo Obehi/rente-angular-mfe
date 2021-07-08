@@ -1,59 +1,94 @@
 <div class="front-container blue">
-  <div *ngIf="propertyForm">
+  <div *ngIf="stepFillOutForm && propertyForm">
     <div class="title">
-      <h3 *ngIf="userData.name" i18n=“hi|info-confirmation@@info.confirmation.hi”>Hei, {{ userData.name | titlecase }}
+      <h3
+        *ngIf="userData.name"
+        i18n="“hi|info-confirmation@@info.confirmation.hi”"
+      >
+        Hei, {{ userData.name | titlecase }}
       </h3>
-      <p i18n=“more-infor|info-confirmation@@info.confirmation.moreInfo”>Vi trenger litt mer informasjon før vi kan søke
-        etter tilbud</p>
+      <p i18n="“more-infor|info-confirmation@@info.confirmation.moreInfo”">
+        Vi trenger litt mer informasjon før vi kan søke etter tilbud
+      </p>
     </div>
-    <form [formGroup]="propertyForm" novalidate (ngSubmit)="updateProperty(propertyForm.value)">
+    <form
+      [formGroup]="propertyForm"
+      novalidate
+      (ngSubmit)="updateProperty(propertyForm.value)"
+    >
       <div class="field">
-        <rente-input type="email" [placeholder]="'E-post'" formControlName="email" [errorStateMatcher]="
-              isErrorState(propertyForm.controls['email'])
-            " [modelOptions]="{ updateOn: 'blur' }">
+        <rente-input
+          type="email"
+          [placeholder]="'E-post'"
+          formControlName="email"
+          [errorStateMatcher]="isErrorState(propertyForm.controls['email'])"
+          [modelOptions]="{ updateOn: 'blur' }"
+        >
         </rente-input>
 
         <div *ngIf="propertyForm.controls['email'].touched">
-          <p i18n=“empty|info-confirmation@@info.confirmation.empty” class="error small"
-            *ngIf="propertyForm.controls['email'].hasError('required')">
+          <p
+            i18n="“empty|info-confirmation@@info.confirmation.empty”"
+            class="error small"
+            *ngIf="propertyForm.controls['email'].hasError('required')"
+          >
             Kan ikke være tom
           </p>
-          <p i18n=“invalid|info-confirmation@@info.confirmation.invalid” class="error small"
-            *ngIf="propertyForm.controls['email'].hasError('pattern')">
+          <p
+            i18n="“invalid|info-confirmation@@info.confirmation.invalid”"
+            class="error small"
+            *ngIf="propertyForm.controls['email'].hasError('pattern')"
+          >
             Ugyldig e-post
           </p>
         </div>
       </div>
 
       <div class="field">
-        <rente-input [placeholder]="'Postnummer'" formControlName="zip" [maxLength]="5" [type]="'tel'"
-          [errorStateMatcher]="isErrorState(propertyForm.controls['zip'])" [maskType]="mask.zip">
+        <rente-input
+          [placeholder]="'Postnummer'"
+          formControlName="zip"
+          [maxLength]="5"
+          [type]="'tel'"
+          [errorStateMatcher]="isErrorState(propertyForm.controls['zip'])"
+          [maskType]="mask.zip"
+        >
         </rente-input>
 
         <div *ngIf="propertyForm.controls['zip'].touched">
-          <p i18n=“empty|info-confirmation@@info.confirmation.empty” class="error small"
-            *ngIf="propertyForm.controls['zip'].hasError('required')">
+          <p
+            i18n="“empty|info-confirmation@@info.confirmation.empty”"
+            class="error small"
+            *ngIf="propertyForm.controls['zip'].hasError('required')"
+          >
             Kan ikke være tom
           </p>
         </div>
       </div>
 
-
       <div class="field">
         <div class="withinfo">
           <div>
-            <rente-input [placeholder]="'Storlek på bostaden'" formControlName="apartmentSize" [type]="'tel'"
-              matSuffix="kvadratmeter" [errorStateMatcher]="
-                  isErrorState(
-                    propertyForm.controls['apartmentSize']
-                  )
-                " [maskType]="mask.currency">
+            <rente-input
+              [placeholder]="'Storlek på bostaden'"
+              formControlName="apartmentSize"
+              [type]="'tel'"
+              matSuffix="kvadratmeter"
+              [errorStateMatcher]="
+                isErrorState(propertyForm.controls['apartmentSize'])
+              "
+              [maskType]="mask.currency"
+            >
             </rente-input>
 
             <div *ngIf="propertyForm.controls['apartmentSize'].touched">
-              <p i18n=“empty2|info-confirmation@@info.confirmation.empty2” class="error small" *ngIf="
-                    propertyForm.controls['apartmentSize'].hasError('required')
-                  ">
+              <p
+                i18n="“empty2|info-confirmation@@info.confirmation.empty2”"
+                class="error small"
+                *ngIf="
+                  propertyForm.controls['apartmentSize'].hasError('required')
+                "
+              >
                 Kan ikke være tom
               </p>
             </div>
@@ -61,14 +96,13 @@
         </div>
       </div>
 
-
-
       <div class="checkbox-wrapper">
-        <p>
-          Välj typ av hem
-        </p>
-        <rente-checkbox-container [formGroup]="propertyForm" [controlName]="'propertyType'"
-          [checkBoxItems]="checkBoxItems">
+        <p>Välj typ av hem</p>
+        <rente-checkbox-container
+          [formGroup]="propertyForm"
+          [controlName]="'propertyType'"
+          [checkBoxItems]="checkBoxItems"
+        >
         </rente-checkbox-container>
       </div>
 
@@ -77,11 +111,49 @@
     (change)="isConfirmed = $event.checked"
   > -->
 
-      <rente-button i18n=“done|info-confirmation@@info.confirmation.done” color="primary-wide" [isLoading]="isLoading"
-        [disabled]="propertyForm.invalid || isLoading">
+      <rente-button
+        i18n="“done|info-confirmation@@info.confirmation.done”"
+        color="primary-wide"
+        [isLoading]="isLoading"
+        [disabled]="propertyForm.invalid || isLoading"
+      >
         Ferdig!
       </rente-button>
     </form>
+  </div>
+
+  <div *ngIf="virdiSuccess">
+    <div
+      class="propertyValueTitle"
+      *ngIf="estimatedPropertyValueFromVirdi !== null"
+    >
+      <p class="propertyBox">Uppskattat bostadsvärde:</p>
+      <h3 class="estimatedValueNumber">
+        {{ estimatedPropertyValueFromVirdi | number }} kr
+      </h3>
+      <br /><br />
+      <h1 class="correctValueTitle">Stämmer detta?</h1>
+    </div>
+
+    <div class="bottom double">
+      <rente-button
+        class="buttonwidth"
+        cdkFocusInitial
+        color="primary-hollow"
+        (click)="setManualPropertyValue()"
+      >
+        Nej, ändra manuellt
+      </rente-button>
+
+      <rente-button
+        class="buttonwidth"
+        cdkFocusInitial
+        color="primary"
+        (click)="redirectOffers()"
+      >
+        Ja, hitta bästa räntan!
+      </rente-button>
+    </div>
   </div>
 </div>
 
