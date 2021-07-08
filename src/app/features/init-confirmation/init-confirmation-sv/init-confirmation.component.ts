@@ -212,7 +212,28 @@ export class InitConfirmationSVComponent implements OnInit, OnDestroy {
         if (estimatedValue) {
           this.estimatedPropertyValueFromVirdi = estimatedValue;
         } else {
-          this.estimatedPropertyValueFromVirdi = 0;
+          this.dialog.open(VirdiManualValueDialogComponent, {
+            data: {
+              step: 1,
+              address: data.address,
+              email: data.email,
+              income: data.income,
+              memberships: data.memberships,
+              finishText: 'Hitta bästa räntan!',
+              confirmText: 'Lägg till bostadsvärde',
+              cancelText: 'Stäng',
+              onConfirm: () => {},
+              onClose: () => {},
+              onSendForm: (apartmentValue) => {
+                // Remove the whitespace
+                const value = apartmentValue.replace(/\s/g, '');
+
+                // Send the dataForm with apartment value
+                this.userData.address.apartmentValue = Number(value);
+                this.updateProperty(undefined);
+              }
+            }
+          });
         }
       },
       () => {

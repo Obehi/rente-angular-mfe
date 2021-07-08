@@ -162,6 +162,10 @@ mat-form-field {
   padding: 20px;
   border-radius: 0 0 10px 10px;
 
+  @media (max-width: 600px) {
+    padding: 10px;
+  }
+
   &.double {
     display: grid;
     grid-column-gap: 15px;
@@ -176,13 +180,11 @@ mat-form-field {
 
 .buttonwidth {
   width: 100%;
-  @media (max-width: 600px) {
-    width: 75%;
-  }
 }
 
 ::ng-deep button.mat-primary-hollow {
   width: 260px !important;
+  border: none !important;
 }
 
 ::ng-deep button.mat-primary {
