@@ -13,7 +13,10 @@
     <li i18n="wrong-address-or-zip@@wrong.address.or.zip">
       Feil adresse eller postnummer
     </li>
-    <li i18n="cannot-estimate-home-value@@cannot.estimate.home.value">
+    <li
+      *ngIf="isNorway"
+      i18n="cannot-estimate-home-value@@cannot.estimate.home.value"
+    >
       Vi greier ikke estimere verdi på fritidsboliger
     </li>
   </ul>

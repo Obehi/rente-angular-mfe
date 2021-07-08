@@ -27,6 +27,7 @@ export class VirdiManualValueDialogComponent {
   @ViewChild('aptValue') aptVal: ElementRef;
   public sendFocusVal$: BehaviorSubject<boolean>;
   public inputPlaceHolder: string;
+  public isNorway: boolean;
 
   constructor(
     private fb: FormBuilder,
@@ -48,8 +49,10 @@ export class VirdiManualValueDialogComponent {
     }
     this.initPropertyValueForm();
     if (this.envService.isNorway()) {
+      this.isNorway = true;
       this.inputPlaceHolder = 'Estimert verdi på din bolig';
     } else if (this.envService.isSweden()) {
+      this.isNorway = false;
       this.inputPlaceHolder = 'Uppskattat värde på din bostad';
     }
   }
