@@ -246,7 +246,6 @@ export class InitConfirmationSVComponent implements OnInit, OnDestroy {
             }
           });
         }
-        // this.router.navigate(['/' + ROUTES_MAP_SV.confirmationProperty]);
       }
     );
   }
