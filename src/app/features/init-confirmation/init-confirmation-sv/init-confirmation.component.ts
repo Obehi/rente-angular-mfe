@@ -209,7 +209,7 @@ export class InitConfirmationSVComponent implements OnInit, OnDestroy {
 
         const estimatedValue =
           getAddressesResponse.addresses[0].estimatedPropertyValue;
-        if (estimatedValue) {
+        if (estimatedValue && estimatedValue > 0) {
           this.estimatedPropertyValueFromVirdi = estimatedValue;
         } else {
           this.dialog.open(VirdiManualValueDialogComponent, {
