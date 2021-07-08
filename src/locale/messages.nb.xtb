@@ -1727,4 +1727,20 @@ Fortsett
   <translation id="confirmation.property-houses" desc="“change or add more houses">
         Endre / legg til flere bolig
       </translation>
+  <translation id="could-not-estimate.value" desc="could-not-estimate-value">
+    Vi klarte dessverre ikke estimere din boligverdi
+  </translation>
+  <translation id="several.reasons.for.this" desc="several-reasons-for-this">
+    Det kan være flere grunner til dette:
+  </translation>
+  <translation id="wrong.address.or.zip" desc="wrong-address-or-zip">
+      Feil adresse eller postnummer
+    </translation>
+  <translation id="cannot.estimate.home.value" desc="cannot-estimate-home-value">
+      Vi greier ikke estimere verdi på fritidsboliger
+    </translation>
+  <translation id="check.address.or.set.value.manually" desc="check-address-or-choose-manually">
+      Sjekk at adressen er riktig, eller velg <ph name="START_BOLD_TEXT"><ex>&lt;b&gt;</ex>&lt;b&gt;</ph>&quot;Legg til boligverdi&quot;<ph name="CLOSE_BOLD_TEXT"><ex>&lt;/b&gt;</ex>&lt;/b&gt;</ph> og
+      legg inn verdien manuelt
+    </translation>
 </translationbundle>

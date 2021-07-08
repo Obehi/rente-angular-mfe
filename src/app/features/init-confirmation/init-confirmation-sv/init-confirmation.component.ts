@@ -26,6 +26,7 @@ import { GlobalStateService } from '@services/global-state.service';
 import { VirdiManualValueDialogComponent } from '@shared/components/ui-components/dialogs/virdi-manual-value-dialog/virdi-manual-value-dialog.component';
 import { ROUTES_MAP } from '@config/routes-config';
 import { ApiError } from '@shared/constants/api-error';
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'rente-init-confirmation-sv',
@@ -157,9 +158,6 @@ export class InitConfirmationSVComponent implements OnInit, OnDestroy {
       zip: typeof form.zip === 'string' ? form.zip.replace(/\s/g, '') : form.zip
     };
 
-    // const val = this.propertyForm.get('income')?.value;
-    // const incomeNumber = val.replace(/\s/g, '');
-
     const sendFormDto = {
       address: address,
       email: form.email
@@ -196,8 +194,11 @@ export class InitConfirmationSVComponent implements OnInit, OnDestroy {
 
     this.isLoading = true;
 
-    this.loansService.setConfirmationData(data).subscribe(
-      () => {
+    forkJoin([
+      this.loansService.setConfirmationData(data),
+      this.loansService.getAddresses()
+    ]).subscribe(
+      ([_, getAddressesResponse]) => {
         this.isLoading = false;
 
         this.stepFillOutForm = false;
@@ -205,47 +206,40 @@ export class InitConfirmationSVComponent implements OnInit, OnDestroy {
         // this.router.navigate(['/' + ROUTES_MAP_SV.confirmationProperty]);
 
         // Send get request to fetch the estimated propertyValue
-        this.loansService.getAddresses().subscribe((res) => {
-          const estimatedValue = res.addresses[0].estimatedPropertyValue;
-          if (estimatedValue) {
-            this.estimatedPropertyValueFromVirdi = estimatedValue;
-          } else {
-            this.estimatedPropertyValueFromVirdi = 0;
-          }
-        });
+
+        const estimatedValue =
+          getAddressesResponse.addresses[0].estimatedPropertyValue;
+        if (estimatedValue) {
+          this.estimatedPropertyValueFromVirdi = estimatedValue;
+        } else {
+          this.estimatedPropertyValueFromVirdi = 0;
+        }
       },
-      (err) => {
+      () => {
         this.isLoading = false;
         this.virdiSuccess = false;
+        this.dialog.open(VirdiManualValueDialogComponent, {
+          data: {
+            step: 1,
+            address: data.address,
+            email: data.email,
+            income: data.income,
+            memberships: data.memberships,
+            finishText: 'Hitta bästa räntan!',
+            confirmText: 'Lägg till bostadsvärde',
+            cancelText: 'Stäng',
+            onConfirm: () => {},
+            onClose: () => {},
+            onSendForm: (apartmentValue) => {
+              // Remove the whitespace
+              const value = apartmentValue.replace(/\s/g, '');
 
-        if (
-          err.errorType === ApiError.virdiSerachNotFound ||
-          err.errorType === ApiError.propertyCantFindZip
-        ) {
-          this.isLoading = false;
-          this.dialog.open(VirdiManualValueDialogComponent, {
-            data: {
-              step: 1,
-              address: data.address,
-              email: data.email,
-              income: data.income,
-              memberships: data.memberships,
-              finishText: 'Hitta bästa räntan!',
-              confirmText: 'Lägg till bostadsvärde',
-              cancelText: 'Stäng',
-              onConfirm: () => {},
-              onClose: () => {},
-              onSendForm: (apartmentValue) => {
-                // Remove the whitespace
-                const value = apartmentValue.replace(/\s/g, '');
-
-                // Send the dataForm with apartment value
-                this.userData.address.apartmentValue = Number(value);
-                this.updateProperty(undefined);
-              }
+              // Send the dataForm with apartment value
+              this.userData.address.apartmentValue = Number(value);
+              this.updateProperty(undefined);
             }
-          });
-        }
+          }
+        });
       }
     );
   }

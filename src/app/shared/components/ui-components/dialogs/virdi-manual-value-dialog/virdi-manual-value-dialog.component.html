@@ -1,14 +1,28 @@
 <div class="top">
-  <h4>Vi klarte dessverre ikke estimere din boligverdi</h4>
+  <h4 i18n="could-not-estimate-value@@could-not-estimate.value">
+    Vi klarte dessverre ikke å estimere din boligverdi
+  </h4>
 
-  <p class="no-margin">Det kan være flere grunner til dette:</p>
+  <p
+    class="no-margin"
+    i18n="several-reasons-for-this@@several.reasons.for.this"
+  >
+    Det kan være flere grunner til dette:
+  </p>
   <ul>
-    <li>Feil adresse eller postnummer</li>
-    <li>Vi greier ikke estimere verdi på fritidsboliger</li>
+    <li i18n="wrong-address-or-zip@@wrong.address.or.zip">
+      Feil adresse eller postnummer
+    </li>
+    <li i18n="cannot-estimate-home-value@@cannot.estimate.home.value">
+      Vi greier ikke estimere verdi på fritidsboliger
+    </li>
   </ul>
 
   <div class="info-box" *ngIf="showInfoBox">
-    <p>
+    <p
+      i18n="
+        check-address-or-choose-manually@@check.address.or.set.value.manually"
+    >
       Sjekk at adressen er riktig, eller velg <b>"Legg til boligverdi"</b> og
       legg inn verdien manuelt
     </p>

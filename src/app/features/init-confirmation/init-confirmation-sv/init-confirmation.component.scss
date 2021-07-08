@@ -162,12 +162,6 @@ mat-form-field {
   padding: 20px;
   border-radius: 0 0 10px 10px;
 
-  // &.single {
-  //   display: flex;
-  //   justify-content: center;
-  //   align-items: center;
-  // }
-
   &.double {
     display: grid;
     grid-column-gap: 15px;
@@ -185,4 +179,12 @@ mat-form-field {
   @media (max-width: 600px) {
     width: 75%;
   }
+}
+
+::ng-deep button.mat-primary-hollow {
+  width: 260px !important;
+}
+
+::ng-deep button.mat-primary {
+  width: 260px !important;
 }
