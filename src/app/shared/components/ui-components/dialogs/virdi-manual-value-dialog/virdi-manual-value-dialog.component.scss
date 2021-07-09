@@ -92,12 +92,12 @@ rente-button {
   }
 }
 .bottom {
-  border-top: 1px solid #ececec;
+  // border-top: 1px solid #ececec;
   padding: 20px;
   border-radius: 0 0 10px 10px;
 
   @media (max-width: 600px) {
-    padding: 10px;
+    padding: 0px;
   }
 
   &.single {
@@ -108,7 +108,7 @@ rente-button {
 
   &.double {
     display: grid;
-    grid-column-gap: 15px;
+    grid-column-gap: 5px;
     grid-template-columns: 1fr 1fr;
 
     @media (max-width: 370px) {
