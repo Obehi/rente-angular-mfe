@@ -113,7 +113,7 @@ rente-button {
 
     @media (max-width: 370px) {
       display: flex;
-      flex-direction: column-reverse;
+      flex-direction: column;
     }
   }
 }
@@ -130,11 +130,20 @@ rente-button {
   @media (max-width: 600px) {
     width: 100% !important;
   }
+
+  @media (max-width: 370px) {
+    width: 190px !important;
+  }
 }
 
 ::ng-deep button.mat-primary {
   width: 260px !important;
+
   @media (max-width: 600px) {
     width: 100% !important;
+  }
+
+  @media (max-width: 370px) {
+    width: 190px !important;
   }
 }

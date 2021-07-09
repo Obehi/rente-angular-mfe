@@ -40,7 +40,12 @@
       <div class="left">
         <p *ngIf="data.address.street">Adresse:</p>
         <p *ngIf="data.address.zip">Postnummer:</p>
-        <p *ngIf="data.address.apartmentSize">Boligstørrelse:</p>
+        <p
+          *ngIf="data.address.apartmentSize"
+          i18n="property-size@@property.size"
+        >
+          Boligstørrelse:
+        </p>
       </div>
 
       <div class="right">

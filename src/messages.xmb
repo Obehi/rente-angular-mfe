@@ -375,14 +375,17 @@
       Sjekk at adressen er riktig, eller velg <ph name="START_BOLD_TEXT"><ex>&lt;b&gt;</ex>&lt;b&gt;</ph>&quot;Legg til boligverdi&quot;<ph name="CLOSE_BOLD_TEXT"><ex>&lt;/b&gt;</ex>&lt;/b&gt;</ph> og
       legg inn verdien manuelt
     </msg>
-  <msg id="fill.your.best.estimated.value" desc="fill-your-best-estimated-value"><source>app/shared/components/ui-components/dialogs/virdi-manual-value-dialog/virdi-manual-value-dialog.component.html:57,60</source>
+  <msg id="property.size" desc="property-size"><source>app/shared/components/ui-components/dialogs/virdi-manual-value-dialog/virdi-manual-value-dialog.component.html:46,48</source>
+          Boligstørrelse:
+        </msg>
+  <msg id="fill.your.best.estimated.value" desc="fill-your-best-estimated-value"><source>app/shared/components/ui-components/dialogs/virdi-manual-value-dialog/virdi-manual-value-dialog.component.html:62,65</source>
       Fyll inn ditt beste estimat på hva du mener primærboligen din er verdt og
       trykk på den grønne knappen
     </msg>
-  <msg id="add.more.houses.after.login" desc="add-more-houses-after-login"><source>app/shared/components/ui-components/dialogs/virdi-manual-value-dialog/virdi-manual-value-dialog.component.html:61,63</source>
+  <msg id="add.more.houses.after.login" desc="add-more-houses-after-login"><source>app/shared/components/ui-components/dialogs/virdi-manual-value-dialog/virdi-manual-value-dialog.component.html:66,68</source>
       Har du flere boliger kan du legge til disse i boligfanen etter innlogging.
     </msg>
-  <msg id="info.confirmation.empty3”" desc="info-confirmation" meaning="“empty3"><source>app/shared/components/ui-components/dialogs/virdi-manual-value-dialog/virdi-manual-value-dialog.component.html:99,101</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:321,323</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:457,459</source>
+  <msg id="info.confirmation.empty3”" desc="info-confirmation" meaning="“empty3"><source>app/shared/components/ui-components/dialogs/virdi-manual-value-dialog/virdi-manual-value-dialog.component.html:104,106</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:321,323</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:457,459</source>
                 Kan ikke være tom
               </msg>
   <msg id="info.confirmation.hi”" desc="info-confirmation" meaning="“hi"><source>app/features/init-confirmation/init-confirmation-sv/init-confirmation.component.html:8,10</source>

@@ -1753,4 +1753,7 @@ Fortsett
   <translation id="add.more.houses.after.login" desc="add-more-houses-after-login">
       Har du flere boliger kan du legge til disse i boligfanen etter innlogging.
     </translation>
+  <translation id="property.size" desc="property-size">
+          Boligstørrelse:
+        </translation>
 </translationbundle>

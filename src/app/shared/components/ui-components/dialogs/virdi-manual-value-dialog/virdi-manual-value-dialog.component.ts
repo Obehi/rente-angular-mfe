@@ -6,8 +6,6 @@ import {
   Validators
 } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { Router } from '@angular/router';
-import { ROUTES_MAP } from '@config/routes-config';
 import { EnvService } from '@services/env.service';
 import { Mask } from '@shared/constants/mask';
 import { BehaviorSubject } from 'rxjs';
@@ -31,7 +29,6 @@ export class VirdiManualValueDialogComponent {
 
   constructor(
     private fb: FormBuilder,
-    private router: Router,
     private envService: EnvService,
     public dialogRef: MatDialogRef<VirdiManualValueDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
@@ -53,7 +50,7 @@ export class VirdiManualValueDialogComponent {
       this.inputPlaceHolder = 'Estimert verdi på din bolig';
     } else if (this.envService.isSweden()) {
       this.isNorway = false;
-      this.inputPlaceHolder = 'Uppskattat värde på din bostad';
+      this.inputPlaceHolder = 'Fyll i bostadens uppskattade värde';
     }
   }
 
@@ -82,7 +79,6 @@ export class VirdiManualValueDialogComponent {
     }
 
     this.dialogRef.close();
-    this.router.navigate(['/dashboard/' + ROUTES_MAP.offers]);
   }
 
   initPropertyValueForm(): void {

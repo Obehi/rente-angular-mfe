@@ -20,13 +20,13 @@ import { OfferInfo } from '@shared/models/offers';
 import { DialogInfoComponent } from '../dialog-info/dialog-info.component';
 import { CustomLangTextService } from '@services/custom-lang-text.service';
 import { Mask } from '@shared/constants/mask';
-import { ROUTES_MAP_SV } from '@config/routes-config';
 import { CheckBoxItem } from '@shared/components/ui-components/checkbox-container/checkbox-container.component';
 import { GlobalStateService } from '@services/global-state.service';
 import { VirdiManualValueDialogComponent } from '@shared/components/ui-components/dialogs/virdi-manual-value-dialog/virdi-manual-value-dialog.component';
 import { ROUTES_MAP } from '@config/routes-config';
 import { ApiError } from '@shared/constants/api-error';
-import { forkJoin } from 'rxjs';
+import { concat } from 'rxjs';
+import { toArray } from 'rxjs/operators';
 
 @Component({
   selector: 'rente-init-confirmation-sv',
@@ -190,56 +190,58 @@ export class InitConfirmationSVComponent implements OnInit, OnDestroy {
 
     this.isLoading = true;
 
-    this.loansService.setConfirmationData(data).subscribe(
-      () => {
-        this.isLoading = false;
+    concat(
+      this.loansService.setConfirmationData(data),
+      this.loansService.getAddresses()
+    )
+      .pipe(toArray())
+      .subscribe(
+        (res: any) => {
+          const clientAddressDto = res[1];
+          const estimatedValue =
+            clientAddressDto.addresses[0].estimatedPropertyValue;
 
-        // Send get request to fetch the estimated propertyValue
-        this.loansService.getAddresses().subscribe(
-          (res) => {
-            const estimatedValue = res.addresses[0].estimatedPropertyValue;
-            if (estimatedValue && estimatedValue > 0) {
-              this.virdiSuccess = true;
-              this.stepFillOutForm = false;
-              this.estimatedPropertyValueFromVirdi = estimatedValue;
-            }
-          },
-          (err) => {
-            alert(err);
+          if (estimatedValue && estimatedValue > 0 && formData !== undefined) {
+            this.virdiSuccess = true;
+            this.stepFillOutForm = false;
+            this.estimatedPropertyValueFromVirdi = estimatedValue;
           }
-        );
-      },
-      (err) => {
-        this.stepFillOutForm = true;
-        this.isLoading = false;
-        this.virdiSuccess = false;
+          if (formData === undefined) {
+            this.router.navigate(['/dashboard/' + ROUTES_MAP.offers]);
+          }
+          this.isLoading = false;
+        },
+        (err) => {
+          this.stepFillOutForm = true;
+          this.isLoading = false;
+          this.virdiSuccess = false;
 
-        if (err.errorType === ApiError.propertyCantFindZip) {
-          this.dialog.open(VirdiManualValueDialogComponent, {
-            data: {
-              step: 1,
-              address: data.address,
-              email: data.email,
-              income: data.income,
-              memberships: data.memberships,
-              finishText: 'Hitta bästa räntan!',
-              confirmText: 'Lägg till bostadsvärde',
-              cancelText: 'Testa ny adress',
-              onConfirm: () => {},
-              onClose: () => {},
-              onSendForm: (apartmentValue) => {
-                // Remove the whitespace
-                const value = apartmentValue.replace(/\s/g, '');
+          if (err.errorType === ApiError.propertyCantFindZip) {
+            this.dialog.open(VirdiManualValueDialogComponent, {
+              data: {
+                step: 1,
+                address: data.address,
+                email: data.email,
+                income: data.income,
+                memberships: data.memberships,
+                finishText: 'Hitta bästa räntan!',
+                confirmText: 'Lägg till bostadsvärde',
+                cancelText: 'Lägg in ny adress',
+                onConfirm: () => {},
+                onClose: () => {},
+                onSendForm: (apartmentValue) => {
+                  // Remove the whitespace
+                  const value = apartmentValue.replace(/\s/g, '');
 
-                // Send the dataForm with apartment value
-                this.userData.address.apartmentValue = Number(value);
-                this.updateProperty(undefined);
+                  // Send the dataForm with apartment value
+                  this.userData.address.apartmentValue = Number(value);
+                  this.updateProperty(undefined);
+                }
               }
-            }
-          });
+            });
+          }
         }
-      }
-    );
+      );
   }
 
   redirectOffers(): void {

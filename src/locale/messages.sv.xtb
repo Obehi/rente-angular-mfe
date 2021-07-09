@@ -883,13 +883,14 @@ Vi följer ständigt upp om det dyker upp bättre ränteerbjudanden på marknade
   <translation id="property-offers-button" desc="“go to offers">Ta mig till erbjudanden</translation>
   <translation id="confirmation.property-value" desc="“confirmation-property-value">Vi har estimerat din bostad til</translation>
   <translation id="confirmation.property-houses" desc="“change or add more houses">Ändra / lägg till fler hem</translation>
-  <translation id="could-not-estimate.value" desc="could-not-estimate-value">Vi lyckades dessvärre inte uppskatta bostadsvärdet</translation>
+  <translation id="could-not-estimate.value" desc="could-not-estimate-value">Vi lyckades inte uppskatta bostadens värde</translation>
   <translation id="several.reasons.for.this" desc="several-reasons-for-this">Detta kan bero på:</translation>
   <translation id="wrong.address.or.zip" desc="wrong-address-or-zip">Fel adress eller postnummer</translation>
   <translation id="cannot.estimate.home.value" desc="cannot-estimate-home-value">Vi kan inte uppskatta värdet på fritidshus</translation>
   <translation id="check.address.or.set.value.manually" desc="check-address-or-choose-manually">
-Dubbelkolla gärna att adressen är korrekt, eller välj <ph name="START_BOLD_TEXT"><ex>&lt;b&gt;</ex>&lt;b&gt;</ph>&quot;Lägg till bostadsvärde&quot;<ph name="CLOSE_BOLD_TEXT"><ex>&lt;/b&gt;</ex>&lt;/b&gt;</ph> och lägg till värdet manuellt</translation>
+Kolla gärna att adressen är korrekt eller välj <ph name="START_BOLD_TEXT"><ex>&lt;b&gt;</ex>&lt;b&gt;</ph>&quot;Lägg till bostadsvärde&quot;<ph name="CLOSE_BOLD_TEXT"><ex>&lt;/b&gt;</ex>&lt;/b&gt;</ph> och lägg till bostadens värde manuellt.</translation>
   <translation id="add.manual.value" desc="add-manual-value">Lägg in bostadens värde</translation>
   <translation id="fill.your.best.estimated.value" desc="fill-your-best-estimated-value">Fyll i det senaste uppskattade värdet på din bostad och tryck sedan på den gröna knappen!</translation>
   <translation id="add.more.houses.after.login" desc="add-more-houses-after-login">Har du fler bostäder kan du lägga till dessa efter att du loggat in.</translation>
+  <translation id="property.size" desc="property-size">Bostadens storlek</translation>
 </translationbundle>
