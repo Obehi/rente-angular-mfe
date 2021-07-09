@@ -735,13 +735,8 @@ Vi följer ständigt upp om det dyker upp bättre ränteerbjudanden på marknade
   <translation id="details.component.offerHeader" desc="details" meaning="“other-conditions">Erbjudande</translation>
   <translation id="profile.monthNever1“" desc="profile" meaning="“month-every">Aldrig</translation>
   <translation id="profile.monthNever2“" desc="profile" meaning="“month-every">Aldrig</translation>
-<<<<<<< HEAD
   <translation id="profile.myMemberships”" desc="profile" meaning="“my-memberships">Mine fackförbund</translation>
   <translation id="profile.myMemberships2”" desc="profile" meaning="“my-memberships"> Mine fackförbund</translation>
-=======
-  <translation id="profile.myMemberships”" desc="profile" meaning="“my-memberships">Mine medlemskap</translation>
-  <translation id="profile.myMemberships2”" desc="profile" meaning="“my-memberships"> Mine medlemskap</translation>
->>>>>>> origin/changeSavedInBolig
   <translation id="details.component.offer“" desc="details" meaning="“other-conditions">Effektiv ränta: <ph name="INTERPOLATION"><ex>{{offer.effectiveRate | number: &quot;1.1-2&quot;}}</ex>{{offer.effectiveRate | number: &quot;1.1-2&quot;}}</ph>%,
   Lånebelopp: <ph name="INTERPOLATION_1"><ex>{{offer.outstandingDebt | number: &quot;1.0&quot; }}</ex>{{offer.outstandingDebt | number: &quot;1.0&quot; }}</ph>,
   <ph name="INTERPOLATION_2"><ex>{{offer.loanPeriodYears | number: &quot;1.0&quot; }}</ex>{{offer.loanPeriodYears | number: &quot;1.0&quot; }}</ph> år,
@@ -862,16 +857,9 @@ Vi följer ständigt upp om det dyker upp bättre ränteerbjudanden på marknade
   <translation id="offer.card.big.customerSatisfaction”" desc="offer-card-big" meaning="             “customer-satisfaction"/>
   <translation id="header.logOut3”" desc="log-out" meaning="“Headerlink">Logga in</translation>
   <translation id="header.logOut4”" desc="log-out" meaning="“Headerlink"><ph name="START_HEADING_LEVEL3"><ex>&lt;h3&gt;</ex>&lt;h3&gt;</ph>Logga ut<ph name="CLOSE_HEADING_LEVEL3"><ex>&lt;/h3&gt;</ex>&lt;/h3&gt;</ph></translation>
-<<<<<<< HEAD
   <translation id="profile.income.label" desc="profile" meaning="“income-per-year">Din årsinkomst</translation>
   <translation id="profile.membership.header" desc="profile" meaning="“income-per-year">Fackförbund:</translation>
   <translation id="profile.membership.label" desc="profile" meaning="“income-per-year">Välj fackförbund</translation>
-=======
-  <translation id="profile.income.label" desc="profile" meaning="“income-per-year">Din brutto årsinkomst</translation>
-  <translation id="profile.membership.header" desc="profile" meaning="“income-per-year">Medlemskap:
-</translation>
-  <translation id="profile.membership.label" desc="profile" meaning="“income-per-year">Välj medlemskap</translation>
->>>>>>> origin/changeSavedInBolig
   <translation id="profile.markedMonitoring.header" desc="profile" meaning="“income-per-year">Marknadsövervakning</translation>
   <translation id="profile.markedMonitoring.label" desc="profile" meaning="“income-per-year">Välj hur ofta din ränta ska jämföras och du vill ha påminnelsemail</translation>
   <translation id="profile.offerOptions.header" desc="profile" meaning="“income-per-year">Vilka erbjudanden vill du se:</translation>
@@ -884,7 +872,6 @@ Vi följer ständigt upp om det dyker upp bättre ränteerbjudanden på marknade
   <translation id="profile.email" desc="profile" meaning="“issue-mail">E-post</translation>
   <translation id="profile.markedUpdates.header" desc="profile" meaning="“income-per-year">Marknadsövervakning</translation>
   <translation id="profile.markedUpdates.label" desc="profile" meaning="“income-per-year">Skicka marknadsuppdateringar, nyheter och annan information på e-post</translation>
-<<<<<<< HEAD
   <translation id="offer.card.customerSatisfied”" desc="offer-card" meaning="                 “customer-satisfied"/>
   <translation id="offer.card.mobileRatingNotAvailable" desc="offer-card" meaning="                 “application-time"/>
   <translation id="profile.members¬hip.header" desc="profile" meaning="“income-per-year">Fackförbund:</translation>
@@ -896,12 +883,13 @@ Vi följer ständigt upp om det dyker upp bättre ränteerbjudanden på marknade
   <translation id="property-offers-button" desc="“go to offers">Ta mig till erbjudanden</translation>
   <translation id="confirmation.property-value" desc="“confirmation-property-value">Vi har estimerat din bostad til</translation>
   <translation id="confirmation.property-houses" desc="“change or add more houses">Ändra / lägg till fler hem</translation>
-  <translation id="could-not-estimate.value" desc="could-not-estimate-value">Tyvärr kunde vi inte uppskatta ditt hemvärde</translation>
-  <translation id="several.reasons.for.this" desc="several-reasons-for-this">Det kan finnas flera orsaker till detta:</translation>
+  <translation id="could-not-estimate.value" desc="could-not-estimate-value">Vi lyckades dessvärre inte uppskatta bostadsvärdet</translation>
+  <translation id="several.reasons.for.this" desc="several-reasons-for-this">Detta kan bero på:</translation>
   <translation id="wrong.address.or.zip" desc="wrong-address-or-zip">Fel adress eller postnummer</translation>
   <translation id="cannot.estimate.home.value" desc="cannot-estimate-home-value">Vi kan inte uppskatta värdet på fritidshus</translation>
   <translation id="check.address.or.set.value.manually" desc="check-address-or-choose-manually">
-Kontrollera att adressen är korrekt eller välj <ph name="START_BOLD_TEXT"><ex>&lt;b&gt;</ex>&lt;b&gt;</ph>&quot;Lägg till bostadsvärde&quot;<ph name="CLOSE_BOLD_TEXT"><ex>&lt;/b&gt;</ex>&lt;/b&gt;</ph> och ange värdet manuellt</translation>
-=======
->>>>>>> origin/changeSavedInBolig
+Dubbelkolla gärna att adressen är korrekt, eller välj <ph name="START_BOLD_TEXT"><ex>&lt;b&gt;</ex>&lt;b&gt;</ph>&quot;Lägg till bostadsvärde&quot;<ph name="CLOSE_BOLD_TEXT"><ex>&lt;/b&gt;</ex>&lt;/b&gt;</ph> och lägg till värdet manuellt</translation>
+  <translation id="add.manual.value" desc="add-manual-value">Lägg in bostadens värde</translation>
+  <translation id="fill.your.best.estimated.value" desc="fill-your-best-estimated-value">Fyll i det senaste uppskattade värdet på din bostad och tryck sedan på den gröna knappen!</translation>
+  <translation id="add.more.houses.after.login" desc="add-more-houses-after-login">Har du fler bostäder kan du lägga till dessa efter att du loggat in.</translation>
 </translationbundle>

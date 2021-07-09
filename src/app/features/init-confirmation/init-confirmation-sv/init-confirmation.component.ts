@@ -146,8 +146,6 @@ export class InitConfirmationSVComponent implements OnInit, OnDestroy {
   public getFormValue(): any {
     const form = this.propertyForm.value;
 
-    console.log(form);
-
     const aptmSize = Number(form.apartmentSize);
 
     const address = {
@@ -174,8 +172,6 @@ export class InitConfirmationSVComponent implements OnInit, OnDestroy {
     const confDtoWithAprtmentValue: ConfirmationSetDto = new ConfirmationSetDto();
     confDtoWithAprtmentValue.address = this.getFormValue().address;
     confDtoWithAprtmentValue.email = this.getFormValue().email;
-    // confDtoWithAprtmentValue.income = this.getFormValue().income;
-    // confDtoWithAprtmentValue.memberships = this.getFormValue().memberships;
 
     return confDtoWithAprtmentValue;
   }
@@ -194,24 +190,31 @@ export class InitConfirmationSVComponent implements OnInit, OnDestroy {
 
     this.isLoading = true;
 
-    forkJoin([
-      this.loansService.setConfirmationData(data),
-      this.loansService.getAddresses()
-    ]).subscribe(
-      ([_, getAddressesResponse]) => {
+    this.loansService.setConfirmationData(data).subscribe(
+      () => {
         this.isLoading = false;
 
-        this.stepFillOutForm = false;
-        this.virdiSuccess = true;
-        // this.router.navigate(['/' + ROUTES_MAP_SV.confirmationProperty]);
-
         // Send get request to fetch the estimated propertyValue
+        this.loansService.getAddresses().subscribe(
+          (res) => {
+            const estimatedValue = res.addresses[0].estimatedPropertyValue;
+            if (estimatedValue && estimatedValue > 0) {
+              this.virdiSuccess = true;
+              this.stepFillOutForm = false;
+              this.estimatedPropertyValueFromVirdi = estimatedValue;
+            }
+          },
+          (err) => {
+            alert(err);
+          }
+        );
+      },
+      (err) => {
+        this.stepFillOutForm = true;
+        this.isLoading = false;
+        this.virdiSuccess = false;
 
-        const estimatedValue =
-          getAddressesResponse.addresses[0].estimatedPropertyValue;
-        if (estimatedValue && estimatedValue > 0) {
-          this.estimatedPropertyValueFromVirdi = estimatedValue;
-        } else {
+        if (err.errorType === ApiError.propertyCantFindZip) {
           this.dialog.open(VirdiManualValueDialogComponent, {
             data: {
               step: 1,
@@ -221,7 +224,7 @@ export class InitConfirmationSVComponent implements OnInit, OnDestroy {
               memberships: data.memberships,
               finishText: 'Hitta bästa räntan!',
               confirmText: 'Lägg till bostadsvärde',
-              cancelText: 'Stäng',
+              cancelText: 'Testa ny adress',
               onConfirm: () => {},
               onClose: () => {},
               onSendForm: (apartmentValue) => {
@@ -235,32 +238,6 @@ export class InitConfirmationSVComponent implements OnInit, OnDestroy {
             }
           });
         }
-      },
-      () => {
-        this.isLoading = false;
-        this.virdiSuccess = false;
-        this.dialog.open(VirdiManualValueDialogComponent, {
-          data: {
-            step: 1,
-            address: data.address,
-            email: data.email,
-            income: data.income,
-            memberships: data.memberships,
-            finishText: 'Hitta bästa räntan!',
-            confirmText: 'Lägg till bostadsvärde',
-            cancelText: 'Stäng',
-            onConfirm: () => {},
-            onClose: () => {},
-            onSendForm: (apartmentValue) => {
-              // Remove the whitespace
-              const value = apartmentValue.replace(/\s/g, '');
-
-              // Send the dataForm with apartment value
-              this.userData.address.apartmentValue = Number(value);
-              this.updateProperty(undefined);
-            }
-          }
-        });
       }
     );
   }
