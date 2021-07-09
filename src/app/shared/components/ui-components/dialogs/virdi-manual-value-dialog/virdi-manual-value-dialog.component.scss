@@ -126,10 +126,15 @@ rente-button {
 }
 
 ::ng-deep button.mat-primary-hollow {
-  width: 100% !important;
-  border: 1px solid $primary !important;
+  width: 260px !important;
+  @media (max-width: 600px) {
+    width: 100% !important;
+  }
 }
 
 ::ng-deep button.mat-primary {
-  width: 100% !important;
+  width: 260px !important;
+  @media (max-width: 600px) {
+    width: 100% !important;
+  }
 }

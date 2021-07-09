@@ -137,20 +137,14 @@
 
     <div class="bottom double">
       <rente-button
-        class="buttonwidth"
         cdkFocusInitial
-        color="primary-hollow"
+        color="primary-hollow-no-border"
         (click)="setManualPropertyValue()"
       >
         Nej, ändra manuellt
       </rente-button>
 
-      <rente-button
-        class="buttonwidth"
-        cdkFocusInitial
-        color="primary"
-        (click)="redirectOffers()"
-      >
+      <rente-button cdkFocusInitial color="primary" (click)="redirectOffers()">
         Ja, hitta bästa räntan!
       </rente-button>
     </div>

@@ -126,3 +126,17 @@ mat-form-field {
     width: 75%;
   }
 }
+
+::ng-deep button.mat-primary-hollow-no-border {
+  width: 260px !important;
+  @media (max-width: 600px) {
+    width: 100% !important;
+  }
+}
+
+::ng-deep button.mat-primary {
+  width: 260px !important;
+  @media (max-width: 600px) {
+    width: 100% !important;
+  }
+}
