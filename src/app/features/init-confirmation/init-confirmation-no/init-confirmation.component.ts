@@ -287,7 +287,6 @@ export class InitConfirmationNoComponent implements OnInit, OnDestroy {
           err
         );
 
-        console.log(err.errorType);
         if (
           err.errorType === ApiError.virdiSerachNotFound ||
           err.errorType === ApiError.propertyCantFindZip
