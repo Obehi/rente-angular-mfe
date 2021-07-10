@@ -272,6 +272,8 @@ export class InitConfirmationNoComponent implements OnInit, OnDestroy {
           this.logging.SubSystem.UserConfirmation,
           '9:USERINFO_SENT_SUCCESSFUL_REDIRECTING_TO_OFFERS'
         );
+
+        !formData && this.router.navigate(['/dashboard/' + ROUTES_MAP.offers]);
       },
       (err) => {
         this.isLoading = false;
