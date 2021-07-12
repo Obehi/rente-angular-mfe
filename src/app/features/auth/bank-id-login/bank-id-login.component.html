@@ -225,7 +225,7 @@
       <div class="header-wrapper">
         <rente-flow-header
           class="flow-header"
-          [count]="4"
+          [count]="5"
           [currentIndex]="currentStepperValue"
           (indexChange)="updateStepperIndex($event)"
         >
@@ -472,6 +472,32 @@
                 </div>
               </div>
             </form>
+          </mat-step>
+          <!--  Confirm estimated value on house -->
+          <mat-step [editable]="true">
+            <div>
+              <div
+                class="propertyValueTitle"
+                *ngIf="estimatedPropertyValueFromVirdi !== null"
+              >
+                <p class="propertyBox">Estimert boligverdi</p>
+                <h3 class="estimatedValueNumber">
+                  {{ estimatedPropertyValueFromVirdi | number }} kr
+                </h3>
+                <br /><br />
+                <!-- <h1 class="correctValueTitle"></h1> -->
+
+                <div class="setmanualbutton">
+                  <rente-button
+                    cdkFocusInitial
+                    color="primary-hollow"
+                    (click)="setManualPropertyValue()"
+                  >
+                    Endre boligverdi
+                  </rente-button>
+                </div>
+              </div>
+            </div>
           </mat-step>
           <!-- New users loanFormGroup-->
           <mat-step [editable]="true">
@@ -785,7 +811,26 @@
             Neste
           </rente-button>
         </div>
+        <!-- The switch case for confirming estimated value -->
         <div *ngSwitchCase="2">
+          <rente-button
+            (click)="back()"
+            class="left"
+            color="mat-primar-hollow-medium"
+          >
+            Tilbake
+          </rente-button>
+          <rente-button
+            class="right"
+            (click)="next()"
+            color="primary"
+            [isLoading]="isLoading"
+          >
+            Fortsett
+          </rente-button>
+        </div>
+        <!-- Conf end -->
+        <div *ngSwitchCase="3">
           <rente-button
             (click)="back()"
             i18n="choose-office |change-bank@@change.bank.location.back"
@@ -804,7 +849,7 @@
             Neste
           </rente-button>
         </div>
-        <div *ngSwitchCase="3">
+        <div *ngSwitchCase="4">
           <rente-button
             (click)="back()"
             i18n="choose-office |change-bank@@change.bank.location.back"
