@@ -110,6 +110,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
   public shouldShowBankWarningMessage = false;
   public estimatedPropertyValueFromVirdi: number;
   public manualEstimatedPropertyValueFromUser: number;
+  public isManualPropertyValue = false;
   get isMobile(): boolean {
     return window.innerWidth < 600;
   }
@@ -901,6 +902,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
         });
 
         this.loanService.getAddresses().subscribe((res) => {
+          this.isManualPropertyValue = false;
           const estimatedValue = res.addresses[0].estimatedPropertyValue;
           if (estimatedValue && estimatedValue > 0) {
             this.estimatedPropertyValueFromVirdi = estimatedValue;
@@ -995,6 +997,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
           this.loanService.setConfirmationData(confDto).subscribe(
             () => {
               this.isLoading = false;
+              this.isManualPropertyValue = true;
               this.next();
             },
             (err) => {

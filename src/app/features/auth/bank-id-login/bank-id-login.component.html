@@ -478,7 +478,10 @@
             <div>
               <div
                 class="propertyValueTitle"
-                *ngIf="estimatedPropertyValueFromVirdi !== null"
+                *ngIf="
+                  estimatedPropertyValueFromVirdi !== null &&
+                  !isManualPropertyValue
+                "
               >
                 <p class="propertyBox">Estimert boligverdi</p>
                 <h3 class="estimatedValueNumber">
@@ -487,6 +490,22 @@
                 <br /><br />
                 <!-- <h1 class="correctValueTitle"></h1> -->
 
+                <div class="setmanualbutton">
+                  <rente-button
+                    cdkFocusInitial
+                    color="primary-hollow"
+                    (click)="setManualPropertyValue()"
+                  >
+                    Endre boligverdi
+                  </rente-button>
+                </div>
+              </div>
+              <div class="propertyValueTitle" *ngIf="isManualPropertyValue">
+                <p class="propertyBox">Egen boligverdi estimat</p>
+                <h3 class="estimatedValueNumber">
+                  {{ manualEstimatedPropertyValueFromUser | number }} kr
+                </h3>
+                <br /><br />
                 <div class="setmanualbutton">
                   <rente-button
                     cdkFocusInitial

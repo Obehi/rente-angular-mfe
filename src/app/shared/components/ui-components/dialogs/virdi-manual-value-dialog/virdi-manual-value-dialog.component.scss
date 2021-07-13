@@ -113,7 +113,7 @@ rente-button {
 
     @media (max-width: 370px) {
       display: flex;
-      flex-direction: column;
+      flex-direction: column-reverse;
     }
   }
 }
