@@ -63,8 +63,7 @@ import { RouteEventsService } from '@services/route-events.service';
 
 import { LoginTermsDialogV2Component } from '@shared/components/ui-components/dialogs/login-terms-dialog-v2/login-terms-dialog-v2.component';
 import { VirdiManualValueDialogComponent } from '@shared/components/ui-components/dialogs/virdi-manual-value-dialog/virdi-manual-value-dialog.component';
-import { MessageBannerService } from '@services/message-banner.service';
-import { getAnimationStyles } from '@shared/animations/animationEnums';
+
 @Component({
   selector: 'rente-bank-id-login',
   templateUrl: './bank-id-login.component.html',
@@ -111,8 +110,6 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
   public shouldShowBankWarningMessage = false;
   public estimatedPropertyValueFromVirdi: number;
   public manualEstimatedPropertyValueFromUser: number;
-  public messageService: MessageBannerService;
-  public animationStyles = getAnimationStyles();
   get isMobile(): boolean {
     return window.innerWidth < 600;
   }
@@ -947,26 +944,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     this.stepper.next();
   }
 
-  setManualPropertyValue(): void {
-    this.dialog.open(VirdiManualValueDialogComponent, {
-      data: {
-        step: 2,
-        confirmText: 'Legg til boligverdi',
-        cancelText: 'Lukk',
-        finishText: 'Neste steg',
-        onConfirm: () => {},
-        onClose: () => {},
-        onSendForm: (apartmentValue) => {
-          // Remove the whitespace
-          const value = apartmentValue.replace(/\s/g, '');
-
-          // Send the dataForm with apartment value
-          this.manualEstimatedPropertyValueFromUser = Number(value);
-          // this.updateProperty(undefined);
-        }
-      }
-    });
-
+  getFormValues(): ConfirmationSetDto {
     const _emailForm = this.emailFormGroup?.value;
 
     const form = this.userFormGroup?.value;
@@ -986,30 +964,45 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     confDtoWithAprtmentValue.address = _address;
     confDtoWithAprtmentValue.email = _emailForm.email;
     confDtoWithAprtmentValue.income = incomeNumber;
-
-    console.log(_emailForm);
-    console.log(form);
-    console.log(_address);
-    console.log('ConfirmationSetDto');
-    console.log(confDtoWithAprtmentValue);
+    confDtoWithAprtmentValue.memberships = [];
 
     if (!_address.apartmentValue) {
       alert('apartmentValue null!');
-      return;
     }
 
-    this.isLoading = true;
-    this.loanService
-      .setConfirmationData(confDtoWithAprtmentValue)
-      .subscribe(() => {
-        this.isLoading = false;
-        this.messageService.setView(
-          'Eget boligverdi estimat lagret',
-          2500,
-          this.animationStyles.DROP_DOWN_UP,
-          'success',
-          window
-        );
-      });
+    return confDtoWithAprtmentValue;
+  }
+
+  setManualPropertyValue(): void {
+    this.dialog.open(VirdiManualValueDialogComponent, {
+      data: {
+        step: 2,
+        confirmText: 'Legg til boligverdi',
+        cancelText: 'Lukk',
+        finishText: 'Neste steg',
+        onConfirm: () => {},
+        onClose: () => {},
+        onSendForm: (apartmentValue: string) => {
+          // Remove the whitespace
+          const value = apartmentValue.replace(/\s/g, '');
+
+          // Send the dataForm with apartment value
+          this.manualEstimatedPropertyValueFromUser = Number(value);
+          // this.updateProperty(undefined);
+          const confDto = this.getFormValues();
+
+          this.isLoading = true;
+          this.loanService.setConfirmationData(confDto).subscribe(
+            () => {
+              this.isLoading = false;
+              this.next();
+            },
+            (err) => {
+              console.log(err.type);
+            }
+          );
+        }
+      }
+    });
   }
 }
