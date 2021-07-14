@@ -281,64 +281,6 @@
           <!-- New users userFormGroup-->
           <mat-step [stepControl]="userFormGroup" [editable]="true">
             <form
-              *ngIf="showManualInputForm === true"
-              [formGroup]="manualPropertyValueFormGroup"
-              novalidate
-              (ngSubmit)="next()"
-              class="center"
-            >
-              <div class="field-with-info">
-                <rente-input
-                  [placeholder]="'Din boligverdi'"
-                  formControlName="manualPropertyValue"
-                  matSuffix="kr"
-                  [errorStateMatcher]="
-                    isErrorState(
-                      manualPropertyValueFormGroup?.controls[
-                        'manualPropertyValue'
-                      ]
-                    )
-                  "
-                  [type]="'tel'"
-                  [maskType]="mask.currency"
-                >
-                </rente-input>
-                <div
-                  *ngIf="
-                    manualPropertyValueFormGroup?.controls[
-                      'manualPropertyValue'
-                    ].touched
-                  "
-                >
-                  <p
-                    i18n="“empty3|info-confirmation@@info.confirmation.empty3”"
-                    class="error small"
-                    *ngIf="
-                      manualPropertyValueFormGroup?.controls[
-                        'manualPropertyValue'
-                      ].hasError('required')
-                    "
-                  >
-                    Kan ikke være tom
-                  </p>
-                </div>
-                <div
-                  i18n="“help|info-confirmation@@info.confirmation.help”"
-                  class="clickable"
-                  (click)="
-                    openInfoDialog({
-                      text:
-                        'Din/Husstandens inntekt er en viktig parameter for renten bankene tilbyr'
-                    })
-                  "
-                >
-                  <mat-icon>help</mat-icon>
-                </div>
-              </div>
-            </form>
-
-            <form
-              *ngIf="showManualInputForm === false"
               [formGroup]="userFormGroup"
               novalidate
               (ngSubmit)="next()"
@@ -809,23 +751,11 @@
             Tilbake
           </rente-button>
           <rente-button
-            *ngIf="!showManualInputForm"
             class="right"
             (click)="goToLoansForm()"
             color="primary"
             [isLoading]="isLoading"
             [disabled]="userFormGroup?.invalid || isLoading"
-          >
-            Neste
-          </rente-button>
-
-          <rente-button
-            *ngIf="showManualInputForm"
-            class="right"
-            (click)="goToLoansFormFromManulPropertyValue()"
-            color="primary"
-            [isLoading]="isLoading"
-            [disabled]="manualPropertyValueFormGroup?.invalid || isLoading"
           >
             Neste
           </rente-button>

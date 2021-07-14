@@ -103,7 +103,6 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
   private loanId: number | null;
   public currentStepperValue = 0;
   public newClient: boolean | null;
-  public showManualInputForm = false;
   private routeSubscription: Subscription;
   public signicatIframeUrl?: SafeResourceUrl | null;
   public oldUserNewLoan = false;
@@ -267,9 +266,6 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     }
     const clientDto = this.clientUpdateInfo;
 
-    if (this.showManualInputForm) {
-      clientDto.address.apartmentValue = this.manualPropertyValue;
-    }
     this.isLoading = true;
 
     const userMemberships = {
@@ -277,7 +273,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     };
     clientDto.memberships = [];
     concat(
-      this.loanService.updateClientInfo(clientDto),
+      this.loanService.updateClientInfo(this.getFormValues()),
       this.loanService.CreateSignicatLoansInfo([signicatLoanInfoDto]),
       this.loanService.setUsersMemberships(userMemberships)
     )
@@ -868,21 +864,21 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     this.currentStepperValue = this.stepper.selectedIndex;
   }
 
-  public goToLoansFormFromManulPropertyValue(): void {
-    this.isLoading = true;
-    this.loanService.getOffersBanks().subscribe((offerBanks) => {
-      this.productIdOptions = (offerBanks.offers as any[]).map((offer) => {
-        return {
-          name: offer.name,
-          value: offer.id
-        };
-      });
-      this.isLoading = false;
-      this.stepper.next();
-      this.scrollToTop();
-      this.currentStepperValue = this.stepper.selectedIndex;
-    });
-  }
+  // public goToLoansFormFromManulPropertyValue(): void {
+  //   this.isLoading = true;
+  //   this.loanService.getOffersBanks().subscribe((offerBanks) => {
+  //     this.productIdOptions = (offerBanks.offers as any[]).map((offer) => {
+  //       return {
+  //         name: offer.name,
+  //         value: offer.id
+  //       };
+  //     });
+  //     this.isLoading = false;
+  //     this.stepper.next();
+  //     this.scrollToTop();
+  //     this.currentStepperValue = this.stepper.selectedIndex;
+  //   });
+  // }
 
   goToLoansForm(): void {
     this.isLoading = true;
@@ -917,15 +913,54 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
           error.errorType === ApiError.propertyCantFindZip
         ) {
           this.isLoading = false;
-          this.dialog.open(VirdiErrorChoiceDialogComponent, {
+          this.dialog.open(VirdiManualValueDialogComponent, {
             data: {
-              address: this.clientUpdateInfo.address,
-              confirmText: 'Legg til boligverdi',
+              step: 1,
+              address: this.getFormValues().address,
               cancelText: 'Prøv ny adresse',
-              onConfirm: () => {
-                this.showManualInputForm = true;
-              },
-              onClose: () => {}
+              confirmText: 'Legg til boligverdi',
+              finishText: 'Neste steg',
+              onConfirm: () => {},
+              onClose: () => {},
+              onSendForm: (apartmentValue: string) => {
+                // Remove the whitespace
+                const value = apartmentValue.replace(/\s/g, '');
+
+                // Send the dataForm with apartment value
+                this.manualEstimatedPropertyValueFromUser = Number(value);
+                // this.updateProperty(undefined);
+                const confDto = this.getFormValues();
+
+                this.isLoading = true;
+                this.loanService.setConfirmationData(confDto).subscribe(
+                  () => {
+                    this.loanService
+                      .getOffersBanks()
+                      .subscribe((offerBanks) => {
+                        this.productIdOptions = (offerBanks.offers as any[]).map(
+                          (offer) => {
+                            console.log(offer);
+                            return {
+                              name: offer.name,
+                              value: offer.id
+                            };
+                          }
+                        );
+                        this.isLoading = false;
+                        this.isManualPropertyValue = true;
+                        this.stepper.next();
+                        this.scrollToTop();
+                        this.currentStepperValue = this.stepper.selectedIndex;
+                      });
+
+                    // this.isLoading = false;
+                    // this.next();
+                  },
+                  (err) => {
+                    console.log(err.type);
+                  }
+                );
+              }
             }
           });
         } else {
