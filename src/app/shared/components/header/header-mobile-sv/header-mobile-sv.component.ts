@@ -37,6 +37,15 @@ export class HeaderMobileSvComponent implements OnInit {
     window.scrollTo(0, 0);
   }
 
+  public logoClicked() {
+    this.auth.isLoggedIn
+      ? this.router.navigate([
+          './' + this.routesMap.dashboard + '/' + this.routesMap.offers
+        ])
+      : this.router.navigate(['./']);
+    this.goToTop();
+  }
+
   public goToHome() {
     if (this.router.url === '/' || this.router.url === '/#faq') {
       window.scrollTo(0, 0);
