@@ -1003,10 +1003,6 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     confDtoWithAprtmentValue.income = incomeNumber;
     confDtoWithAprtmentValue.memberships = [];
 
-    if (!_address.apartmentValue) {
-      alert('apartmentValue null!');
-    }
-
     return confDtoWithAprtmentValue;
   }
 
