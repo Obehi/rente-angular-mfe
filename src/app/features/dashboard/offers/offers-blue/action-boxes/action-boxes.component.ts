@@ -5,16 +5,15 @@ import { BANKS_DATA } from '@config/banks-config';
 import { OFFER_SAVINGS_TYPE } from '@config/loan-state';
 import { ROUTES_MAP, ROUTES_MAP_NO } from '@config/routes-config';
 import { ChangeBankServiceService } from '@services/remote-api/change-bank-service.service';
-import { Offers, OFFERS_LTV_TYPE } from '@shared/models/offers';
+import { Offers } from '@shared/models/offers';
 import { ChangeBankDialogLangGenericComponent } from 'app/local-components/components-output';
 import { forkJoin, Subscription } from 'rxjs';
 import { AntiChurnDialogComponent } from '../../anti-churn-dialog/anti-churn-dialog.component';
 import { ChangeBankLocationComponent } from '../../change-bank-dialog/change-bank-location/change-bank-location.component';
 import { CanNotBargainDialogComponent } from '@features/dashboard/offers/can-not-bargain-dialog/can-not-bargain-dialog.component';
-import { locale } from '@config/locale/locale';
-import smoothscroll from 'smoothscroll-polyfill';
 import { LoansService } from '@services/remote-api/loans.service';
 import { AntiChurnErrorDialogComponent } from '../../anti-churn-dialog/anti-churn-error-dialog/anti-churn-error-dialog.component';
+import { BankUtils } from '@models/bank';
 
 @Component({
   selector: 'action-boxes',
@@ -35,6 +34,8 @@ export class ActionBoxesComponent implements OnInit {
   public isLoading = true;
   public errorMessage: string;
   public nordeaClickSubscription: Subscription;
+  public isSigniCat: boolean;
+  public allSigniCatBanks = BankUtils.getSigniCatBanks();
 
   constructor(
     private changeBankServiceService: ChangeBankServiceService,
@@ -43,7 +44,25 @@ export class ActionBoxesComponent implements OnInit {
     public loansService: LoansService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.loansService.getOffers().subscribe(
+      (res: Offers) => {
+        this.offersInfo = Object.assign({}, res);
+        this.currentOfferInfo = JSON.parse(JSON.stringify(res));
+
+        this.isSigniCat = this.allSigniCatBanks.some((bank) => {
+          if (bank.name === this.offersInfo.bank) {
+            return true;
+          } else {
+            return false;
+          }
+        });
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  }
 
   get isMobile(): boolean {
     return window.innerWidth < 600;
@@ -73,7 +92,8 @@ export class ActionBoxesComponent implements OnInit {
   public openChangeBankDialog(offer): void {
     if (
       this.changeBankLoading ||
-      this.offersInfo.offerSavingsType === this.offerSavingsType.NO_SAVINGS
+      this.offersInfo.offerSavingsType === this.offerSavingsType.NO_SAVINGS ||
+      this.isSigniCat
     ) {
       return;
     }
@@ -210,5 +230,17 @@ export class ActionBoxesComponent implements OnInit {
       top: offsetPosition,
       behavior: 'smooth'
     });
+  }
+
+  disableButton(): boolean {
+    if (
+      this.changeBankLoading ||
+      this.offersInfo.offerSavingsType === this.offerSavingsType.NO_SAVINGS ||
+      this.isSigniCat
+    ) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }
