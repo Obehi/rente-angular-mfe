@@ -69,9 +69,7 @@ import {
   // changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AccordionGroupComponent implements OnInit, OnDestroy {
-  ngOnInit(): void {
-    console.log(this.opened);
-  }
+  ngOnInit(): void {}
 
   ngOnDestroy(): void {
     console.log('destroyed');

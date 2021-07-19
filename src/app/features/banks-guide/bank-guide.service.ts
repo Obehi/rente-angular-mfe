@@ -24,6 +24,7 @@ export class BankGuideService {
   constructor(private router: Router) {
     this.sortBanks();
     this.filterBank(this.searchStr);
+    console.log(this.banksData);
   }
 
   filterBank(filter: string) {
