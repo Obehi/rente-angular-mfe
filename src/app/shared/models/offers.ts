@@ -104,6 +104,12 @@ export interface BankGuideInfo {
   addresses: { [key: string]: BankLocationAddress[] };
   depositOffers: { name: string; rate: string }[];
   membershipOffers: { [key: string]: any[] };
+  bankInfo: {
+    email: string;
+    contactLink: string;
+    phoneNumber: number;
+    swift: string;
+  };
 }
 
 export interface BankStatistics {

@@ -86,6 +86,12 @@ export class BankGuidePageComponent implements OnInit, OnDestroy {
         .subscribe(
           (bankInfo) => {
             this.bankGuideInfo = bankInfo;
+            this.bankGuideInfo.bankInfo = {
+              email: 'mock@mock.com',
+              contactLink: 'https://www.url.com',
+              phoneNumber: 95138122,
+              swift: 'DNBXAAAAAA'
+            };
 
             this.banksLocations = Object.keys(
               this.bankGuideInfo.addresses

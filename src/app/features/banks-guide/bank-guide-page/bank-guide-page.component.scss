@@ -775,3 +775,35 @@ mat-selection-list {
   width: 100%;
   height: 100%;
 }
+
+.contact-image {
+  width: 4%;
+}
+
+.mortgage {
+  display: flex;
+  column-gap: 7px;
+}
+
+.email {
+  column-gap: 7px;
+  display: flex;
+  margin-top: 10px;
+}
+
+.contact-phone {
+  column-gap: 7px;
+  display: flex;
+  margin-top: 10px;
+}
+
+.swift {
+  display: flex;
+  column-gap: 7px;
+  margin-top: 10px;
+}
+
+.url {
+  color: $primary;
+  text-decoration: none;
+}

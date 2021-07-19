@@ -210,7 +210,7 @@
           class="icon-link"
         >
           <img src="../../../../assets/icons/contact-icon-grey.svg" />
-          <span>Kontakt informasjon</span>
+          <span>Kontaktinformasjon</span>
           <img
             class="arrow"
             src="../../../../assets/icons/arrow-small-grey.svg"
@@ -543,6 +543,57 @@
             </accordion>
           </div>
         </div>
+
+        <div class="white-bg p-3 mx-lg-auto mt-4">
+          <div class="bank-name justify-content-lg-center">
+            <div class="logo d-inline-block">
+              <img
+                src="../../../assets/img/banks-logo/round/{{ bank.icon }}"
+                [alt]="bank.label"
+              />
+            </div>
+            <div class="label d-flex text-left" #kontaktInfo>Kontakt</div>
+          </div>
+          <div class="contact-subdiv">
+            <div class="mortgage">
+              <img
+                class="contact-image"
+                src="../../../../assets/icons/www-icon-grey.svg"
+              />
+              <h3 class="contact-subheader">Nettbank boliglån:</h3>
+              <a
+                href="
+              {{ bankGuideInfo?.bankInfo.contactLink }}"
+                class="url"
+                >Besøk nettsiden
+              </a>
+            </div>
+            <div class="email">
+              <img
+                class="contact-image"
+                src="../../../../assets/icons/email-icon-grey.svg"
+              />
+              <h3 class="contact-subheader">Mail:</h3>
+              <p>{{ bankGuideInfo?.bankInfo.email }}</p>
+            </div>
+            <div class="contact-phone">
+              <img
+                class="contact-image"
+                src="../../../../assets/icons/contact-icon-grey.svg"
+              />
+              <h3 class="contact-subheader">Telefon Kundeservice:</h3>
+              <p>{{ bankGuideInfo?.bankInfo.phoneNumber }}</p>
+            </div>
+            <div class="swift">
+              <img
+                class="contact-image"
+                src="../../../../assets/icons/swift-icon-grey.svg"
+              />
+              <h3 class="contact-subheader">Swift:</h3>
+              <p>{{ bankGuideInfo?.bankInfo.swift }}</p>
+            </div>
+          </div>
+        </div>
         <div
           *ngIf="bank.name !== 'DNB' && bank.name !== 'NORDEA'"
           class="white-bg p-3 mx-lg-auto mt-4"
@@ -622,32 +673,6 @@
                 </div>
               </mat-expansion-panel>
             </mat-accordion>
-          </div>
-        </div>
-
-        <div #test></div>
-        <div class="white-bg p-3 mx-lg-auto mt-4">
-          <div class="bank-name justify-content-lg-center">
-            <div class="logo d-inline-block">
-              <img
-                src="../../../assets/img/banks-logo/round/{{ bank.icon }}"
-                [alt]="bank.label"
-              />
-            </div>
-            <div class="label d-flex text-left" #kontaktInfo>Kontakt</div>
-          </div>
-          <div class="contact-subdiv">
-            <h3 class="contact-subheader">Nettbank boliglån:</h3>
-            <p>Besøk nettsiden</p>
-
-            <h3 class="contact-subheader">Mail:</h3>
-            <p>mailadresse</p>
-
-            <h3 class="contact-subheader">Telefon Kundeservice:</h3>
-            <p>+47 462 65 904</p>
-
-            <h3 class="contact-subheader">Swift:</h3>
-            <p>XXXXXXXXXX</p>
           </div>
         </div>
       </div>
