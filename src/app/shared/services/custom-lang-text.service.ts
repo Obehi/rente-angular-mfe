@@ -48,6 +48,15 @@ export class CustomLangTextService {
     throw new Error('Should include either SV or NB');
   }
 
+  getHasFixedRateLoan(): string {
+    if (locale.includes('sv')) {
+      return 'Vi ser att du även har fasta bolåneräntor. Ränteradar  jämför endast din rörliga ränta mot marknadens bästa erbjudanden.';
+    } else if (locale.includes('nb')) {
+      return 'Vi ser du har ett eller flere fastrentelån. Renteradar viser besparelsespotensialet kun for lånet/lånene med flytende rente. Beste rente viser også kun beste rente for lånet/lånene med flytende rente.';
+    }
+    throw new Error('Should include either SV or NB');
+  }
+
   getHouseExplainationText(): string {
     if (locale.includes('sv')) {
       return 'Din/Hushållets totala inkomster är en viktig parameter som bankerna kollar på';
@@ -194,7 +203,7 @@ export class CustomLangTextService {
 
   get18nFixForNoRequirement(): string {
     if (locale.includes('sv')) {
-      return 'Inget krav';
+      return 'Inga merkrav';
     } else if (locale.includes('nb')) {
       return 'Ingen krav';
     }
