@@ -770,6 +770,7 @@ mat-selection-list {
 
 .contact-subheader {
   align-self: center;
+  font-size: 12px;
 }
 
 .contact-subdiv {
@@ -778,29 +779,32 @@ mat-selection-list {
 }
 
 .contact-image {
-  width: 15%;
+  width: 10%;
 }
 
 .mortgage {
   display: flex;
-  column-gap: 7px;
+  margin: 16px;
 }
 
 .email {
-  column-gap: 7px;
+  margin: 16px;
+
   display: flex;
   margin-top: 10px;
 }
 
 .contact-phone {
-  column-gap: 7px;
+  margin: 16px;
+
   display: flex;
   margin-top: 10px;
 }
 
 .swift {
   display: flex;
-  column-gap: 7px;
+  margin: 16px;
+
   margin-top: 10px;
 }
 
@@ -808,12 +812,16 @@ mat-selection-list {
   color: $primary;
   text-decoration: none;
   align-self: center;
-  font-weight: 400;
-  font-size: 16px;
+  font-weight: 300;
+  font-size: 12px;
+  margin-left: auto;
+  margin-right: 16px;
 }
 
 .content-text {
-  font-size: 16px;
+  font-size: 12px;
   font-weight: 400;
   align-self: center;
+  margin-left: auto;
+  margin-right: 16px;
 }
