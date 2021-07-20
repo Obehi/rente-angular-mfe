@@ -54,7 +54,7 @@ import {
       state(
         'open',
         style({
-          width: '454px',
+          width: '48.5%',
           borderRadius: '15px'
         })
       ),
@@ -183,7 +183,8 @@ export class TipsComponent implements OnInit {
     ) {
       this.tips.push({
         header: 'Fastrentelån',
-        text: this.customLangTextSerice.getHasFixedRateLoan(),
+        text:
+          'Vi ser du har ett eller flere fastrentelån. Renteradar viser besparelsespotensialet kun for lånet/lånene med flytende rente. Beste rente viser også kun beste rente for lånet/lånene med flytende rente.',
         buttonLink: './',
         icon: 'rate'
       });
