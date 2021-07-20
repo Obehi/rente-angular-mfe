@@ -205,7 +205,7 @@
         </div>
 
         <div
-          (click)="scrollTo(test)"
+          (click)="scrollTo(offices)"
           *ngIf="banksLocations.length !== 0"
           class="icon-link"
         >
@@ -545,7 +545,6 @@
           </div>
         </div>
 
-        <div #test></div>
         <div class="white-bg p-3 mx-lg-auto mt-4">
           <div class="bank-name justify-content-lg-center">
             <div class="logo d-inline-block">
@@ -563,10 +562,7 @@
                 src="../../../../assets/icons/www-icon-green.svg"
               />
               <h3 class="contact-subheader">Nettbank boliglån:</h3>
-              <a
-                href="
-              {{ bankGuideInfo?.bankInfo.contactLink }}"
-                class="url"
+              <a target="_blank" class="url" (click)="openBankUrlByButton()"
                 >Besøk nettsiden
               </a>
             </div>
@@ -576,7 +572,7 @@
                 src="../../../../assets/icons/email-icon-green.svg"
               />
               <h3 class="contact-subheader">Mail:</h3>
-              <p class="content-text">{{ bankGuideInfo?.bankInfo.email }}</p>
+              <p class="content-text">{{ bankGuideInfo?.email }}</p>
             </div>
             <div class="contact-phone">
               <img
@@ -585,7 +581,7 @@
               />
               <h3 class="contact-subheader">Telefon Kundeservice:</h3>
               <p class="content-text">
-                {{ bankGuideInfo?.bankInfo.phoneNumber }}
+                {{ bankGuideInfo?.phone }}
               </p>
             </div>
             <div class="swift">
@@ -594,7 +590,7 @@
                 src="../../../../assets/icons/swift-icon-green.svg"
               />
               <h3 class="contact-subheader">Swift:</h3>
-              <p class="content-text">{{ bankGuideInfo?.bankInfo.swift }}</p>
+              <p class="content-text">{{ bankGuideInfo?.swift }}</p>
             </div>
           </div>
         </div>

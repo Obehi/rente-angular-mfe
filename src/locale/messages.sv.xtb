@@ -28,8 +28,7 @@
   <translation id="header.contact2”" desc="contact" meaning="“Headerlink"><ph name="START_HEADING_LEVEL3"><ex>&lt;h3&gt;</ex>&lt;h3&gt;</ph>Kontakt<ph name="CLOSE_HEADING_LEVEL3"><ex>&lt;/h3&gt;</ex>&lt;/h3&gt;</ph></translation>
   <translation id="header.aboutUs2”" desc="about-us" meaning="“Headerlink"><ph name="START_HEADING_LEVEL3"><ex>&lt;h3&gt;</ex>&lt;h3&gt;</ph>Om oss<ph name="CLOSE_HEADING_LEVEL3"><ex>&lt;/h3&gt;</ex>&lt;/h3&gt;</ph></translation>
   <translation id="header.faq2”" desc="faq" meaning="“Headerlink"><ph name="START_HEADING_LEVEL3"><ex>&lt;h3&gt;</ex>&lt;h3&gt;</ph>FAQ<ph name="CLOSE_HEADING_LEVEL3"><ex>&lt;/h3&gt;</ex>&lt;/h3&gt;</ph> </translation>
-  <translation id="header.logOut2”" desc="log-out" meaning="“Headerlink">
-<ph name="START_HEADING_LEVEL3"><ex>&lt;h3&gt;</ex>&lt;h3&gt;</ph>Logga ut<ph name="CLOSE_HEADING_LEVEL3"><ex>&lt;/h3&gt;</ex>&lt;/h3&gt;</ph></translation>
+  <translation id="header.logOut2”" desc="log-out" meaning="“Headerlink"/>
   <translation id="textArea.message”" desc="text-area" meaning="“message">Meddelande</translation>
   <translation id="popup.privacy.header”" desc="intro" meaning="“header">Din data, dina val</translation>
   <translation id="popup.privacy.text”" desc="text" meaning="“description">
@@ -210,7 +209,7 @@ Om begäran gäller kommunikation eller annan information som inte är registrer
   <translation id="info.confirmation.empty3”" desc="info-confirmation" meaning="“empty3">Kan inte lämnas tom</translation>
   <translation id="info.confirmation.help2”" desc="info-confirmation" meaning="“help2"><ph name="START_TAG_MAT_ICON"><ex>&lt;mat-icon&gt;</ex>&lt;mat-icon&gt;</ph>help<ph name="CLOSE_TAG_MAT_ICON"><ex>&lt;/mat-icon&gt;</ex>&lt;/mat-icon&gt;</ph></translation>
   <translation id="info.confirmation.organization”" desc="info-confirmation" meaning="“organization">Bankerna ger ibland bättre erbjudanden om du är medlem i ett fackförbund</translation>
-  <translation id="info.confirmation.myMemberships”" desc="info-confirmation" meaning="“my-memberships">Mina medlemskap</translation>
+  <translation id="info.confirmation.myMemberships”" desc="info-confirmation" meaning="“my-memberships">Mina fackförbund</translation>
   <translation id="info.confirmation.done”" desc="info-confirmation" meaning="“done">Färdig!</translation>
   <translation id="get.notified.noSupport”" desc="get-notified" meaning="“no-support">     Vi har desverre ikke støtte for banken din enda.
      Legg igjen din e-post så gir vi deg beskjed når det er klart.</translation>
@@ -353,8 +352,8 @@ Den exakta processen beror på din enhet och vilken webbläsare du använder. I 
   <translation id="dialog.component.establishmentFee”" desc="dialog" meaning="“establishment-fee">Uppläggningsavgift</translation>
   <translation id="dialog.component.depotFee”" desc="dialog" meaning="“depot-fee">Behandlingsavgift</translation>
   <translation id="dialog.component.market”" desc="dialog" meaning="“market">Geografiskt giltigt</translation>
-  <translation id="dialog.component.requiredMembership”" desc="dialog" meaning="“required-membership">Förutsätter medlemskap</translation>
-  <translation id="dialog.component.membership”" desc="dialog" meaning="“membership">Medlemskap</translation>
+  <translation id="dialog.component.requiredMembership”" desc="dialog" meaning="“required-membership">Förutsätter fackförbund</translation>
+  <translation id="dialog.component.membership”" desc="dialog" meaning="“membership">Fackförbund</translation>
   <translation id="dialog.component.conditions”" desc="dialog" meaning="“conditions">Förbehåll:</translation>
   <translation id="dialog.component.offer”" desc="dialog" meaning="“offer">Erbjudande:</translation>
   <translation id="dialog.component.effcientInterest”" desc="dialog" meaning="“efficient-interest">Effektiv ränta <ph name="INTERPOLATION"><ex>{{data.effectiveRate | number: &quot;1.1-2&quot;}}</ex>{{data.effectiveRate | number: &quot;1.1-2&quot;}}</ph>%, 
@@ -505,8 +504,8 @@ Den exakta processen beror på din enhet och vilken webbläsare du använder. I 
   <translation id="profile.issueMail”" desc="profile" meaning="“issue-mail">Ogiltig e-mail</translation>
   <translation id="profile.issueMail2”" desc="profile" meaning="“issue-mail2">Ogiltig e-mail</translation>
   <translation id="profile.issueEmpty”" desc="profile" meaning="“issue-empty">Kan inte lämnas tom</translation>
-  <translation id="profile.membership”" desc="profile" meaning="“membership">Medlemskap</translation>
-  <translation id="profile.membershipLength”" desc="profile" meaning="“membership-length">Medlemskap (<ph name="INTERPOLATION"><ex>{{ memberships.length }}</ex>{{ memberships.length }}</ph>)</translation>
+  <translation id="profile.membership”" desc="profile" meaning="“membership">Fackförbund</translation>
+  <translation id="profile.membershipLength”" desc="profile" meaning="“membership-length">Fackförbund (<ph name="INTERPOLATION"><ex>{{ memberships.length }}</ex>{{ memberships.length }}</ph>)</translation>
   <translation id="profile.settingsMail”" desc="profile" meaning="“settings-mail">E-post inställningar</translation>
   <translation id="profile.settingsMail2”" desc="profile" meaning="“settings-mail2">E-post inställningar</translation>
   <translation id="profile.marketCheck”" desc="profile" meaning="“market-check">Marknadsövervakning och påminnelse om att kolla räntan
@@ -577,8 +576,8 @@ Den exakta processen beror på din enhet och vilken webbläsare du använder. I 
   <translation id="offers.statistics.othersRelation”" desc="offers-statistics" meaning="“others-relation">Din ränta i förhållande till andra i:</translation>
   <translation id="offers.statistics.graph”" desc="offers-statistics" meaning="“graph">Grafen jämför din ränta med andra som är <ph name="START_TAG_STRONG"><ex>&lt;strong&gt;</ex>&lt;strong&gt;</ph><ph name="INTERPOLATION"><ex>{{ageSegment}}</ex>{{ageSegment}}</ph><ph name="CLOSE_TAG_STRONG"><ex>&lt;/strong&gt;</ex>&lt;/strong&gt;</ph>, har <ph name="START_TAG_STRONG"><ex>&lt;strong&gt;</ex>&lt;strong&gt;</ph><ph name="INTERPOLATION_1"><ex>{{totalOutstandingDebtSegment}}</ex>{{totalOutstandingDebtSegment}}</ph><ph name="CLOSE_TAG_STRONG"><ex>&lt;/strong&gt;</ex>&lt;/strong&gt;</ph> 
      och <ph name="START_TAG_STRONG"><ex>&lt;strong&gt;</ex>&lt;strong&gt;</ph>belåningsgrad <ph name="INTERPOLATION_2"><ex>{{ltvSegment}}</ex>{{ltvSegment}}</ph><ph name="CLOSE_TAG_STRONG"><ex>&lt;/strong&gt;</ex>&lt;/strong&gt;</ph></translation>
-  <translation id="offers.statistics.noShow.graph”" desc="offers-statistics" meaning="“no-show-graph">*Grafen tar inte hänsyn till geografi eller medlemskap</translation>
-  <translation id="offers.statistics.noShow2.graph”" desc="offers-statistics" meaning="“no-show2-graph">*Grafen tar inte hänsyn till ålder, belåningsgrad, förmåner från medlemskap etc. då vi inte har tillräckligt med data från din användargrupp</translation>
+  <translation id="offers.statistics.noShow.graph”" desc="offers-statistics" meaning="“no-show-graph">*Grafen tar inte hänsyn till geografi eller fackförbund</translation>
+  <translation id="offers.statistics.noShow2.graph”" desc="offers-statistics" meaning="“no-show2-graph">*Grafen tar inte hänsyn till ålder, belåningsgrad, förmåner från fackförbund etc. då vi inte har tillräckligt med data från din användargrupp</translation>
   <translation id="dialog.yesNo”" desc="dialog" meaning="“yes-no"> <ph name="START_TAG_RENTE_BUTTON"><ex>&lt;rente-button&gt;</ex>&lt;rente-button&gt;</ph>Ja<ph name="CLOSE_TAG_RENTE_BUTTON"><ex>&lt;/rente-button&gt;</ex>&lt;/rente-button&gt;</ph>
       <ph name="START_TAG_RENTE_BUTTON_1"><ex>&lt;rente-button&gt;</ex>&lt;rente-button&gt;</ph>Nej<ph name="CLOSE_TAG_RENTE_BUTTON"><ex>&lt;/rente-button&gt;</ex>&lt;/rente-button&gt;</ph></translation>
   <translation id="address.component”" desc="house" meaning="“title">Bostad <ph name="INTERPOLATION"><ex>{{ index + 1 }}</ex>{{ index + 1 }}</ph></translation>
@@ -603,8 +602,8 @@ Den exakta processen beror på din enhet och vilken webbläsare du använder. I 
   <translation id="details.component.feeEstablish”" desc="details" meaning="“fee-establish">Upplägningsavgift</translation>
   <translation id="details.component.feeStart”" desc="details" meaning="“fee-start">Behandlingsavgift</translation>
   <translation id="details.component.market”" desc="details" meaning="“market">Marknadsområde</translation>
-  <translation id="details.component.demandMembership”" desc="details" meaning="“demand-membership">Förutsätter medlemskap</translation>
-  <translation id="details.component.membership”" desc="details" meaning="“membership">Medlemskap</translation>
+  <translation id="details.component.demandMembership”" desc="details" meaning="“demand-membership">Förutsätter fackförbund</translation>
+  <translation id="details.component.membership”" desc="details" meaning="“membership">fackförbund</translation>
   <translation id="offer.card.title”" desc="offer-card" meaning="“title">Du sparar</translation>
   <translation id="offer.card.over.time”" desc="offer-card" meaning="“over-time">Över lånets löptid</translation>
   <translation id="offer.card.firstYear”" desc="offer-card" meaning="“first-year">Första året</translation>
@@ -689,7 +688,7 @@ Vi följer ständigt upp om det dyker upp bättre ränteerbjudanden på marknade
   <translation id="offer.card.timeApply”" desc="offer-card" meaning="“demand-change"/>
   <translation id="offer.card.noDeal”" desc="offer-card" meaning="“get-offer"/>
   <translation id="offer.card.noDeal.mobile”" desc="offer-card" meaning="“get-offer">(Inget avtal med banken)</translation>
-  <translation id="offer.statistics.disclaimer”" desc="offer-card" meaning="“number-details">*Grafen tar inte hänsyns till ålder,  belåningsgrad, medlemskap etc då vi inte har tillräcklig data för din användargrupp</translation>
+  <translation id="offer.statistics.disclaimer”" desc="offer-card" meaning="“number-details">*Grafen tar inte hänsyns till ålder,  belåningsgrad, fackförbund etc då vi inte har tillräcklig data för din användargrupp</translation>
   <translation id="landing.bestOffer" desc="Call-to-action-button" meaning="CTA button">Hitta bästa erbjudandet</translation>
   <translation id="offer.card.noYes”" desc="offer-card" meaning="“no-yes">
     <ph name="INTERPOLATION"><ex>{{ offer.requiredProductPackage == null ? &quot;Nej&quot; : &quot;Ja&quot; }}</ex>{{ offer.requiredProductPackage == null ? &quot;Nej&quot; : &quot;Ja&quot; }}</ph>
@@ -736,8 +735,8 @@ Vi följer ständigt upp om det dyker upp bättre ränteerbjudanden på marknade
   <translation id="details.component.offerHeader" desc="details" meaning="“other-conditions">Erbjudande</translation>
   <translation id="profile.monthNever1“" desc="profile" meaning="“month-every">Aldrig</translation>
   <translation id="profile.monthNever2“" desc="profile" meaning="“month-every">Aldrig</translation>
-  <translation id="profile.myMemberships”" desc="profile" meaning="“my-memberships"/>
-  <translation id="profile.myMemberships2”" desc="profile" meaning="“my-memberships">Medlemskap</translation>
+  <translation id="profile.myMemberships”" desc="profile" meaning="“my-memberships">Mine fackförbund</translation>
+  <translation id="profile.myMemberships2”" desc="profile" meaning="“my-memberships"> Mine fackförbund</translation>
   <translation id="details.component.offer“" desc="details" meaning="“other-conditions">Effektiv ränta: <ph name="INTERPOLATION"><ex>{{offer.effectiveRate | number: &quot;1.1-2&quot;}}</ex>{{offer.effectiveRate | number: &quot;1.1-2&quot;}}</ph>%,
   Lånebelopp: <ph name="INTERPOLATION_1"><ex>{{offer.outstandingDebt | number: &quot;1.0&quot; }}</ex>{{offer.outstandingDebt | number: &quot;1.0&quot; }}</ph>,
   <ph name="INTERPOLATION_2"><ex>{{offer.loanPeriodYears | number: &quot;1.0&quot; }}</ex>{{offer.loanPeriodYears | number: &quot;1.0&quot; }}</ph> år,
@@ -791,7 +790,7 @@ Vi följer ständigt upp om det dyker upp bättre ränteerbjudanden på marknade
   <translation id="messenger-redirect.header" desc="offers-main" meaning="interest-very-good">Hjälp en vän att sänka sin bolåneränta!</translation>
   <translation id="messenger-redirect.explaination" desc="offers-main" meaning="interest-very-good">Tryck på knappen nedan om messenger inte öppnas automatiskt!</translation>
   <translation id="messenger-redirect.messenger" desc="offers-main" meaning="interest-very-good"/>
-  <translation id="messenger-redirect.header" desc="offers-main" meaning="messenger-redirect-headline"/>
+  <translation id="messenger-redirect.header" desc="offers-main" meaning="messenger-redirect-headline">Hjälp en vän att sänka sin bolåneränta!</translation>
   <translation id="messenger-redirect.explaination" desc="offers-main" meaning="messenger-redirect-selling-point"/>
   <translation id="messenger-redirect.selling-point" desc="offers-main" meaning="messenger-redirect-messenger"> Hjälp dem sänka sina kostnader via <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph> Renteradar.se <ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph> 
                         och spendera pengarna på något roligare, som en middag!</translation>
@@ -805,7 +804,7 @@ Vi följer ständigt upp om det dyker upp bättre ränteerbjudanden på marknade
   <translation id="header.blog2" desc="blog" meaning="Headerlink"/>
   <translation id="header.contact2" desc="contact" meaning="Headerlink"/>
   <translation id="header.aboutUs2" desc="about-us" meaning="Headerlink"/>
-  <translation id="header.logOut2" desc="log-out" meaning="Headerlink"/>
+  <translation id="header.logOut2" desc="log-out" meaning="Headerlink"><ph name="START_HEADING_LEVEL3"><ex>&lt;h3&gt;</ex>&lt;h3&gt;</ph>Logg ut<ph name="CLOSE_HEADING_LEVEL3"><ex>&lt;/h3&gt;</ex>&lt;/h3&gt;</ph></translation>
   <translation id="email.preferences.settings”" desc="email-preferences" meaning="“settings">E-post inställningar</translation>
   <translation id="email.preferences.error”" desc="email-preferences" meaning="“error">Något gick fel, vänligen logga in eller ta kontakt med oss på <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>hej@ranteradar.se<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph>
 
@@ -849,11 +848,51 @@ Vi följer ständigt upp om det dyker upp bättre ränteerbjudanden på marknade
   <translation id="offers.mainPage.interest.good2”" desc="offers-main" meaning="                   “interest-good2"/>
   <translation id="offers.mainPage.virdiEstimate”" desc="offers-main" meaning="                   “virdi-estimate"/>
   <translation id="offers.mainPage.found.bestOffers.button”" desc="offers-main" meaning="                 “found-best-offers"/>
-  <translation id="info.confirmation.myMemberships”" desc="info-confirmation" meaning="           “my-memberships"/>
-  <translation id="info.confirmation.myMemberships”" desc="info-confirmation" meaning="                       “my-memberships"/>
+  <translation id="info.confirmation.myMemberships”" desc="info-confirmation" meaning="           “my-memberships">Mine fackförbund</translation>
+  <translation id="info.confirmation.myMemberships”" desc="info-confirmation" meaning="                       “my-memberships">Mine fackförbund</translation>
   <translation id="landing.explanationService" desc="landing-page" meaning="                 explanation-service"/>
   <translation id="landing.descriptionService" desc="landing-page" meaning="                 description-service"/>
   <translation id="offer.card.mobileRatingNotAvailable" desc="offer-card" meaning="               “application-time"/>
   <translation id="login.error4”" desc="login" meaning="“control-error"/>
   <translation id="offer.card.big.customerSatisfaction”" desc="offer-card-big" meaning="             “customer-satisfaction"/>
+  <translation id="header.logOut3”" desc="log-out" meaning="“Headerlink">Logga in</translation>
+  <translation id="header.logOut4”" desc="log-out" meaning="“Headerlink"><ph name="START_HEADING_LEVEL3"><ex>&lt;h3&gt;</ex>&lt;h3&gt;</ph>Logga ut<ph name="CLOSE_HEADING_LEVEL3"><ex>&lt;/h3&gt;</ex>&lt;/h3&gt;</ph></translation>
+  <translation id="profile.income.label" desc="profile" meaning="“income-per-year">Din årsinkomst</translation>
+  <translation id="profile.membership.header" desc="profile" meaning="“income-per-year">Fackförbund:</translation>
+  <translation id="profile.membership.label" desc="profile" meaning="“income-per-year">Välj fackförbund</translation>
+  <translation id="profile.markedMonitoring.header" desc="profile" meaning="“income-per-year">Marknadsövervakning</translation>
+  <translation id="profile.markedMonitoring.label" desc="profile" meaning="“income-per-year">Välj hur ofta din ränta ska jämföras och du vill ha påminnelsemail</translation>
+  <translation id="profile.offerOptions.header" desc="profile" meaning="“income-per-year">Vilka erbjudanden vill du se:</translation>
+  <translation id="profile.offerOptions.option1" desc="profile" meaning="“income-per-year"/>
+  <translation id="profile.offerOptions.option2" desc="profile" meaning="“income-per-year">Visa erbjudanden som har andra produkter, exempelvis: lönekonto
+</translation>
+  <translation id="profile.offerOptions.option3" desc="profile" meaning="“income-per-year">Visa erbjudanden för gröna bolån</translation>
+  <translation id="header.login”" desc="log-out" meaning="“Headerlink">Logga in</translation>
+  <translation id="header.logOut5”" desc="log-out" meaning="“Headerlink">Logga ut</translation>
+  <translation id="profile.email" desc="profile" meaning="“issue-mail">E-post</translation>
+  <translation id="profile.markedUpdates.header" desc="profile" meaning="“income-per-year">Marknadsövervakning</translation>
+  <translation id="profile.markedUpdates.label" desc="profile" meaning="“income-per-year">Skicka marknadsuppdateringar, nyheter och annan information på e-post</translation>
+  <translation id="offer.card.customerSatisfied”" desc="offer-card" meaning="                 “customer-satisfied"/>
+  <translation id="offer.card.mobileRatingNotAvailable" desc="offer-card" meaning="                 “application-time"/>
+  <translation id="profile.members¬hip.header" desc="profile" meaning="“income-per-year">Fackförbund:</translation>
+  <translation id="membership.choosenMembershipMobile" desc="membership" meaning="“issue-mail">Valda fackförbund (<ph name="INTERPOLATION"><ex>{{ selectedMemberships?.length || 0 }}</ex>{{ selectedMemberships?.length || 0 }}</ph>)</translation>
+  <translation id="membership.choosenMembershipDesktop" desc="membership" meaning="“issue-mail">  Valda fackförbund (<ph name="INTERPOLATION"><ex>{{ selectedMemberships?.length || 0 }}</ex>{{ selectedMemberships?.length || 0 }}</ph>)</translation>
+  <translation id="confirmation.property-value”" desc="“confirmation-property-value"/>
+  <translation id="confirmation.property-houses”" desc="“change or add more houses"/>
+  <translation id="confirmation.property-offers" desc="“go to offers"/>
+  <translation id="property-offers-button" desc="“go to offers">Ta mig till erbjudanden</translation>
+  <translation id="confirmation.property-value" desc="“confirmation-property-value">Vi har estimerat din bostad til</translation>
+  <translation id="confirmation.property-houses" desc="“change or add more houses">Ändra / lägg till fler hem</translation>
+  <translation id="could-not-estimate.value" desc="could-not-estimate-value">Vi lyckades inte uppskatta bostadens värde</translation>
+  <translation id="several.reasons.for.this" desc="several-reasons-for-this">Detta kan bero på:</translation>
+  <translation id="wrong.address.or.zip" desc="wrong-address-or-zip">Fel adress eller postnummer</translation>
+  <translation id="cannot.estimate.home.value" desc="cannot-estimate-home-value">Vi kan inte uppskatta värdet på fritidshus</translation>
+  <translation id="check.address.or.set.value.manually" desc="check-address-or-choose-manually">
+Kolla gärna att adressen är korrekt eller välj <ph name="START_BOLD_TEXT"><ex>&lt;b&gt;</ex>&lt;b&gt;</ph>&quot;Lägg till bostadsvärde&quot;<ph name="CLOSE_BOLD_TEXT"><ex>&lt;/b&gt;</ex>&lt;/b&gt;</ph> och lägg till bostadens värde manuellt.</translation>
+  <translation id="add.manual.value" desc="add-manual-value">Lägg in bostadens värde</translation>
+  <translation id="fill.your.best.estimated.value" desc="fill-your-best-estimated-value">Fyll i det senaste uppskattade värdet på din bostad och tryck sedan på den gröna knappen!</translation>
+  <translation id="add.more.houses.after.login" desc="add-more-houses-after-login">Har du fler bostäder kan du lägga till dessa efter att du loggat in.</translation>
+  <translation id="property.size" desc="property-size">Bostadens storlek</translation>
+  <translation id="offer.card.noDeal”" desc="offer-card" meaning="“no-deal"/>
+  <translation id="select.save" desc="property-select" meaning="“issue-mail"/>
 </translationbundle>
