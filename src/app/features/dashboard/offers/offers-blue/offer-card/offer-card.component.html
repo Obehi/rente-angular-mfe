@@ -285,7 +285,11 @@
             (click)="openNewOfferDialog(offer)"
             >{{ offerCardService.getOfferButtonText(offer) }}
           </rente-button>
-          <p class="small" *ngIf="offer.bankInfo.partner === false">
+          <p
+            i18n="“no-deal|offer-card@@offer.card.noDeal”"
+            class="small"
+            *ngIf="offer.bankInfo.partner === false"
+          >
             (Ingen avtale med banken)
           </p>
         </div>
