@@ -68,8 +68,7 @@
   }
 
   .dropdown-scroll {
-    padding-bottom: 5vh;
-    z-index: 0;
+    z-index: 1337;
     overflow-y: scroll;
     height: 31vh;
     border-bottom: 1px solid lightgrey;
@@ -83,7 +82,7 @@
       height: 39vh;
     }
     @media (min-height: 800px) {
-      height: 35vh;
+      height: 42vh;
     }
   }
 
@@ -92,7 +91,7 @@
     width: 96%;
     padding: 10px;
     z-index: 1;
-    // margin-top: 34vh;
+    margin-top: 34vh;
     display: flex;
 
     input {
@@ -123,11 +122,10 @@
   .chosen-memberships-div {
     display: flex;
     flex-direction: column;
-    height: 23vh;
-    max-height: 23vh;
+    height: 33%;
     overflow-y: scroll;
     background: linear-gradient(180deg, #162537, #183a63);
-    // position: fixed;
+    position: fixed;
     z-index: 2;
     width: 100%;
     h2 {
@@ -159,9 +157,6 @@
 
     .selected-membership {
       display: flex;
-      p {
-        font-weight: 500;
-      }
     }
   }
 
@@ -256,7 +251,7 @@
       font-size: 1rem;
       margin-top: 20px;
       font-weight: 400;
-
+      white-space: nowrap;
       width: 80%;
       max-width: 80%;
       border-radius: 9px;
@@ -274,9 +269,6 @@
 
     .selected-membership {
       display: flex;
-      p {
-        font-weight: 500;
-      }
     }
 
     .selected-memberships {

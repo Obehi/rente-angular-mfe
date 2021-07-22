@@ -16,6 +16,7 @@ import { SelectAutocompleteComponent } from 'mat-select-autocomplete';
 import { PropertySelectDialogComponent } from '../property-select-dialog/property-select-dialog.component';
 import { MatDialog } from '@angular/material';
 import { MembershipService } from '@services/membership.service';
+import { CustomLangTextService } from '@services/custom-lang-text.service';
 
 interface Membership {
   name?: string;
@@ -42,7 +43,6 @@ export class PropertyInputComponent implements OnInit {
   @Input() memberships: MembershipTypeDto[];
   public previousStateMemberships: string[] = [];
   @Output() selectedMemberships = new EventEmitter<MembershipTypeDto[]>();
-  @Output() updateOffersEmitter = new EventEmitter<any>();
   @ViewChild(SelectAutocompleteComponent)
   multiSelect: SelectAutocompleteComponent;
 
@@ -59,18 +59,20 @@ export class PropertyInputComponent implements OnInit {
   exitHandler: any;
   constructor(
     private firstBuyersService: FirstBuyersService,
-    private membershipService: MembershipService,
     private closeInputElement: ElementRef,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private membershipService: MembershipService,
+    public textLangService: CustomLangTextService
   ) {
     this._selectionDistincter = this.selectionDistincter.asObservable();
   }
 
   ngOnInit(): void {
     this.membershipService.getSelectedMemberships().subscribe((args) => {
+      console.log(args);
       this.previousStateMemberships = args;
     });
-    console.log(this.previousStateMemberships);
+    console.log(this.autocompleteOptions);
     if (this.inputType === 'autocomplete') {
       this.exitHandler = () => {
         this.multiSelect.toggleDropdown();
@@ -104,20 +106,14 @@ export class PropertyInputComponent implements OnInit {
         allMemberships: this.autocompleteOptions
       }
     });
-    openDialog.afterClosed().subscribe(() => {
-      this.propertySelectDialogClose(openDialog.componentInstance.closeState);
-    });
+    openDialog.afterClosed().subscribe(() => {});
   }
 
   public propertySelectDialogClose(state: string): void {
     this.changeBankLoading = false;
 
     switch (state) {
-      case 'saved': {
-        console.log('saved');
-      }
-      case 'cancelled': {
-        console.log('cancelled');
+      case 'canceled': {
         break;
       }
       case 'do-nothing': {

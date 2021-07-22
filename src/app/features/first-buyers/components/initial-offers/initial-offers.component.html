@@ -61,7 +61,7 @@
                 [iconPath]="property.iconPath"
                 [placeholder]="'ASD'"
                 [autocompleteOptions]="property.options"
-                (updateOffersEmitter)="applyMemberships($event)"
+                (selectedMemberships)="applyMemberships($event)"
               >
               </rente-property-input>
               <!-- <property-select

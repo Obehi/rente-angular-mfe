@@ -354,6 +354,15 @@ export class InitialOffersComponent implements OnInit {
     ]).subscribe(() => {
       this.formGroup.markAsDirty();
     });
+
+    this.membershipService.getSelectedMemberships().subscribe((memberships) => {
+      this.formGroup.markAsDirty();
+      this.firstBuyersAPIService
+        .updateMembership(memberships)
+        .subscribe((_) => {
+          console.log('getSelectedMemberships');
+        });
+    });
   }
 
   selected(event: MatAutocompleteSelectedEvent): void {
@@ -444,6 +453,7 @@ export class InitialOffersComponent implements OnInit {
     this.memberships = memberships;
     this.updateMemberships();
     this.formGroup.markAsDirty();
+    console.log(memberships);
   }
 
   ngOnInit(): void {

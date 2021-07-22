@@ -12,7 +12,7 @@
     >
       <div class="selected-membership">
         <p>
-          {{ option.label | truncate: 25 }}
+          {{ option | truncate: 25 }}
         </p>
         <img
           class="remove-icon"
@@ -31,26 +31,31 @@
     <img class="search-icon" src="{{ searchIconDark }}" />
   </div>
   <div class="dropdown-scroll">
-    <div
-      *ngFor="let option of membershipNames | filter: searchText"
-      class="list-div"
-    >
-      <p *ngIf="!chosenMemberships(option)" (click)="chooseMembership(option)">
-        {{ option.label }}
-      </p>
-      <p
-        class="p-selected"
-        *ngIf="chosenMemberships(option)"
-        (click)="removeMembership(option)"
+    <div class="dropdown-div">
+      <div
+        *ngFor="let option of membershipNames | filter: searchText"
+        class="list-div"
       >
-        {{ option.label }}
-      </p>
-      <img
-        *ngIf="chosenMemberships(option)"
-        class="remove-icon-list"
-        src="{{ icon }}"
-        (click)="removeMembership(option)"
-      />
+        <p
+          *ngIf="!chosenMemberships(option)"
+          (click)="chooseMembership(option)"
+        >
+          {{ option }}
+        </p>
+        <p
+          class="p-selected"
+          *ngIf="chosenMemberships(option)"
+          (click)="removeMembership(option)"
+        >
+          {{ option }}
+        </p>
+        <img
+          *ngIf="chosenMemberships(option)"
+          class="remove-icon-list"
+          src="{{ icon }}"
+          (click)="removeMembership(option)"
+        />
+      </div>
     </div>
   </div>
 </div>
@@ -69,7 +74,7 @@
         >
           <div class="selected-membership">
             <p>
-              {{ option.label | truncate: 19 }}
+              {{ option | truncate: 19 }}
             </p>
             <img
               class="remove-icon"
@@ -99,14 +104,14 @@
               *ngIf="!chosenMemberships(option)"
               (click)="chooseMembership(option)"
             >
-              {{ option.label }}
+              {{ option }}
             </p>
             <p
               class="p-selected"
               *ngIf="chosenMemberships(option)"
               (click)="removeMembership(option)"
             >
-              {{ option.label }}
+              {{ option }}
             </p>
             <img
               *ngIf="chosenMemberships(option)"
