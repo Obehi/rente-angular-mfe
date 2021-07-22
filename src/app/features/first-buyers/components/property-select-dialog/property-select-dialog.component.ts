@@ -59,7 +59,6 @@ export class PropertySelectDialogComponent implements OnInit, OnDestroy {
       this.onClose();
     }
   }
-
   cancel(): void {
     this.closeState = 'cancelled';
     this.onClose();

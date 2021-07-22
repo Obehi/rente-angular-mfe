@@ -110,7 +110,11 @@ export class PropertyInputComponent implements OnInit {
     this.changeBankLoading = false;
 
     switch (state) {
-      case 'canceled': {
+      case 'saved': {
+        console.log('saved');
+      }
+      case 'cancelled': {
+        console.log('cancelled');
         break;
       }
       case 'do-nothing': {

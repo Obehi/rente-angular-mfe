@@ -65,7 +65,6 @@ export class PropertySelectComponent implements OnInit, OnDestroy {
   constructor(private membershipService: MembershipService) {}
 
   ngOnInit(): void {
-    console.log(this.selectedOptions);
     this.selectedMemberships = this.selectedOptions;
   }
 
