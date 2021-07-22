@@ -14,7 +14,6 @@ import {
   OnInit,
   Output
 } from '@angular/core';
-import { CustomLangTextService } from '@services/custom-lang-text.service';
 import { MembershipService } from '@services/membership.service';
 import { MembershipTypeDto } from '@services/remote-api/loans.service';
 
@@ -49,8 +48,6 @@ export class PropertySelectComponent implements OnInit, OnDestroy {
   @Input() label;
 
   icon = '../../../../assets/icons/reject-icon.svg';
-  iconLight = '../../../../assets/icons/reject-icon-light.svg';
-  rejectBlue = '../../../../assets/icons/reject-icon-blue.svg';
   searchIconLight = '../../../../assets/icons/search-grey-light.svg';
   searchIconDark = '../../../../assets/icons/search-grey-dark.svg';
 
@@ -65,12 +62,10 @@ export class PropertySelectComponent implements OnInit, OnDestroy {
   selectionDistincter = new Subject();
   _selectionDistincter: Observable<any>;
 
-  constructor(
-    private membershipService: MembershipService,
-    public langService: CustomLangTextService
-  ) {}
+  constructor(private membershipService: MembershipService) {}
 
   ngOnInit(): void {
+    console.log(this.selectedOptions);
     this.selectedMemberships = this.selectedOptions;
   }
 

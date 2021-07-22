@@ -13,6 +13,9 @@ import { PropertyInputComponent } from './components/property-input/property-inp
 import { FirstBuyersRoutingModule } from './first-buyers-routing.module';
 import { FirstBuyersComponent } from './first-buyers.component';
 import { FirstBuyersService } from './first-buyers.service';
+import { PropertySelectComponent } from './components/property-select/property-select.component';
+import { ScrollingModule } from '@angular/cdk/scrolling';
+import { PropertySelectDialogComponent } from './components/property-select-dialog/property-select-dialog.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +33,8 @@ import { FirstBuyersService } from './first-buyers.service';
     MaterialModule,
     ReactiveFormsModule,
     SelectAutocompleteModule,
-    CurrencyMaskModule
+    CurrencyMaskModule,
+    ScrollingModule
   ],
   providers: [
     {
