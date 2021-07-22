@@ -69,10 +69,8 @@ export class PropertyInputComponent implements OnInit {
 
   ngOnInit(): void {
     this.membershipService.getSelectedMemberships().subscribe((args) => {
-      console.log(args);
       this.previousStateMemberships = args;
     });
-    console.log(this.autocompleteOptions);
     if (this.inputType === 'autocomplete') {
       this.exitHandler = () => {
         this.multiSelect.toggleDropdown();
@@ -122,6 +120,16 @@ export class PropertyInputComponent implements OnInit {
       case 'error': {
         break;
       }
+    }
+  }
+
+  getMembershipPlaceholder(): string | undefined {
+    if (this.previousStateMemberships?.length === 0) {
+      return 'Velg';
+    } else if (this.previousStateMemberships?.length === 1) {
+      return `${this.previousStateMemberships}`;
+    } else if (this.previousStateMemberships?.length > 1) {
+      return `${this.previousStateMemberships?.length} medlemskap valgt`;
     }
   }
 }

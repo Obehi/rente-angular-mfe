@@ -359,9 +359,7 @@ export class InitialOffersComponent implements OnInit {
       this.formGroup.markAsDirty();
       this.firstBuyersAPIService
         .updateMembership(memberships)
-        .subscribe((_) => {
-          console.log('getSelectedMemberships');
-        });
+        .subscribe((_) => {});
     });
   }
 
@@ -453,7 +451,6 @@ export class InitialOffersComponent implements OnInit {
     this.memberships = memberships;
     this.updateMemberships();
     this.formGroup.markAsDirty();
-    console.log(memberships);
   }
 
   ngOnInit(): void {
@@ -509,7 +506,6 @@ export class InitialOffersComponent implements OnInit {
     });
 
     this.updateNewOffers();
-    console.log(this.allMemberships);
   }
 
   updateNewOffers() {

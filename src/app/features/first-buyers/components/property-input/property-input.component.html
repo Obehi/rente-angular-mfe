@@ -64,11 +64,7 @@
         >
           <mat-select
             *ngIf="inputType === 'autocomplete'"
-            [placeholder]="
-              previousStateMemberships?.length !== 0
-                ? previousStateMemberships?.length + ' medlemskap valgt'
-                : 'Velg'
-            "
+            [placeholder]="getMembershipPlaceholder()"
             (click)="openPropertySelectDialog()"
           >
           </mat-select>
