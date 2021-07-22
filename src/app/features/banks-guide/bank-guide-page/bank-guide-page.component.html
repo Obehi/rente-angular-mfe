@@ -205,7 +205,7 @@
         </div>
 
         <div
-          (click)="scrollTo(offices)"
+          (click)="scrollTo(contact)"
           *ngIf="banksLocations.length !== 0"
           class="icon-link"
         >
@@ -545,56 +545,6 @@
           </div>
         </div>
 
-        <div class="white-bg p-3 mx-lg-auto mt-4">
-          <div class="bank-name justify-content-lg-center">
-            <div class="logo d-inline-block">
-              <img
-                src="../../../assets/img/banks-logo/round/{{ bank.icon }}"
-                [alt]="bank.label"
-              />
-            </div>
-            <div class="label d-flex text-left" #kontaktInfo>Kontakt</div>
-          </div>
-          <div class="contact-subdiv">
-            <div class="mortgage">
-              <img
-                class="contact-image"
-                src="../../../../assets/icons/www-icon-green.svg"
-              />
-              <h3 class="contact-subheader">Nettbank boliglån:</h3>
-              <a target="_blank" class="url" (click)="openBankUrlByButton()"
-                >Besøk nettsiden
-              </a>
-            </div>
-            <div class="email">
-              <img
-                class="contact-image"
-                src="../../../../assets/icons/email-icon-green.svg"
-              />
-              <h3 class="contact-subheader">Mail:</h3>
-              <p class="content-text">{{ bankGuideInfo?.email }}</p>
-            </div>
-            <div class="contact-phone">
-              <img
-                class="contact-image"
-                src="../../../../assets/icons/contact-icon-green.svg"
-              />
-              <h3 class="contact-subheader">Telefon Kundeservice:</h3>
-              <p class="content-text">
-                {{ bankGuideInfo?.phone }}
-              </p>
-            </div>
-            <div class="swift">
-              <img
-                class="contact-image"
-                src="../../../../assets/icons/swift-icon-green.svg"
-              />
-              <h3 class="contact-subheader">Swift:</h3>
-              <p class="content-text">{{ bankGuideInfo?.swift }}</p>
-            </div>
-          </div>
-        </div>
-
         <div
           *ngIf="bank.name !== 'DNB' && bank.name !== 'NORDEA'"
           class="white-bg p-3 mx-lg-auto mt-4"
@@ -674,6 +624,56 @@
                 </div>
               </mat-expansion-panel>
             </mat-accordion>
+          </div>
+        </div>
+      </div>
+      <div #contact></div>
+      <div class="white-bg p-3 mx-lg-auto mt-4">
+        <div class="bank-name justify-content-lg-center">
+          <div class="logo d-inline-block">
+            <img
+              src="../../../assets/img/banks-logo/round/{{ bank.icon }}"
+              [alt]="bank.label"
+            />
+          </div>
+          <div class="label d-flex text-left" #kontaktInfo>Kontakt</div>
+        </div>
+        <div class="contact-subdiv">
+          <div class="mortgage">
+            <img
+              class="contact-image"
+              src="../../../../assets/icons/www-icon-green.svg"
+            />
+            <h3 class="contact-subheader">Nettbank boliglån:</h3>
+            <a target="_blank" class="url" (click)="openBankUrlByButton()"
+              >Besøk nettsiden
+            </a>
+          </div>
+          <div class="email">
+            <img
+              class="contact-image"
+              src="../../../../assets/icons/email-icon-green.svg"
+            />
+            <h3 class="contact-subheader">Mail:</h3>
+            <p class="content-text">{{ bankGuideInfo?.email }}</p>
+          </div>
+          <div class="contact-phone">
+            <img
+              class="contact-image"
+              src="../../../../assets/icons/contact-icon-green.svg"
+            />
+            <h3 class="contact-subheader">Telefon Kundeservice:</h3>
+            <p class="content-text">
+              {{ bankGuideInfo?.phone }}
+            </p>
+          </div>
+          <div class="swift">
+            <img
+              class="contact-image"
+              src="../../../../assets/icons/swift-icon-green.svg"
+            />
+            <h3 class="contact-subheader">Swift:</h3>
+            <p class="content-text">{{ bankGuideInfo?.swift }}</p>
           </div>
         </div>
       </div>
