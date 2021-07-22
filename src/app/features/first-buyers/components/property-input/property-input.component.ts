@@ -42,6 +42,7 @@ export class PropertyInputComponent implements OnInit {
   @Input() memberships: MembershipTypeDto[];
   public previousStateMemberships: string[] = [];
   @Output() selectedMemberships = new EventEmitter<MembershipTypeDto[]>();
+  @Output() updateOffersEmitter = new EventEmitter<any>();
   @ViewChild(SelectAutocompleteComponent)
   multiSelect: SelectAutocompleteComponent;
 
@@ -103,7 +104,9 @@ export class PropertyInputComponent implements OnInit {
         allMemberships: this.autocompleteOptions
       }
     });
-    openDialog.afterClosed().subscribe(() => {});
+    openDialog.afterClosed().subscribe(() => {
+      this.propertySelectDialogClose(openDialog.componentInstance.closeState);
+    });
   }
 
   public propertySelectDialogClose(state: string): void {
