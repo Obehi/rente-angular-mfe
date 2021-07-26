@@ -903,7 +903,8 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
           if (estimatedValue && estimatedValue > 0) {
             this.estimatedPropertyValueFromVirdi = estimatedValue;
           } else {
-            alert(estimatedValue);
+            this.showGenericDialog();
+            // alert(estimatedValue);
           }
         });
       },
@@ -982,24 +983,24 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
   }
 
   getFormValues(): ConfirmationSetDto {
-    const _emailForm = this.emailFormGroup?.value;
+    const emailForm = this.emailFormGroup?.value;
 
-    const form = this.userFormGroup?.value;
+    const userForm = this.userFormGroup?.value;
 
     const _address = {
-      apartmentSize: form.apartmentSize,
+      apartmentSize: userForm.apartmentSize,
       apartmentValue: this.manualEstimatedPropertyValueFromUser,
       propertyType: null,
-      street: form.address,
-      zip: form.zip
+      street: userForm.address,
+      zip: userForm.zip
     };
 
-    const val = form.income;
+    const val = userForm.income;
     const incomeNumber = val.replace(/\s/g, '');
 
     const confDtoWithAprtmentValue: ConfirmationSetDto = new ConfirmationSetDto();
     confDtoWithAprtmentValue.address = _address;
-    confDtoWithAprtmentValue.email = _emailForm.email;
+    confDtoWithAprtmentValue.email = emailForm.email;
     confDtoWithAprtmentValue.income = incomeNumber;
     confDtoWithAprtmentValue.memberships = [];
 
