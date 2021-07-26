@@ -34,7 +34,7 @@ export class ActionBoxesComponent implements OnInit {
   public isLoading = true;
   public errorMessage: string;
   public nordeaClickSubscription: Subscription;
-  public isSigniCat: boolean;
+  public bankHasFixedLoans: boolean;
   public allSigniCatBanks = BankUtils.getSigniCatBanks();
 
   constructor(
@@ -45,23 +45,8 @@ export class ActionBoxesComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.loansService.getOffers().subscribe(
-      (res: Offers) => {
-        this.offersInfo = Object.assign({}, res);
-        this.currentOfferInfo = JSON.parse(JSON.stringify(res));
-
-        this.isSigniCat = this.allSigniCatBanks.some((bank) => {
-          if (bank.name === this.offersInfo.bank) {
-            return true;
-          } else {
-            return false;
-          }
-        });
-      },
-      (err) => {
-        console.log(err);
-      }
-    );
+    const bankVo = BankUtils.getBankByName(this.offersInfo.bank);
+    this.bankHasFixedLoans = bankVo?.hasFixedLoans === true;
   }
 
   get isMobile(): boolean {
@@ -93,7 +78,7 @@ export class ActionBoxesComponent implements OnInit {
     if (
       this.changeBankLoading ||
       this.offersInfo.offerSavingsType === this.offerSavingsType.NO_SAVINGS ||
-      this.isSigniCat
+      this.bankHasFixedLoans
     ) {
       return;
     }
@@ -232,11 +217,11 @@ export class ActionBoxesComponent implements OnInit {
     });
   }
 
-  disableButton(): boolean {
+  shouldDisableButton(): boolean {
     if (
       this.changeBankLoading ||
       this.offersInfo.offerSavingsType === this.offerSavingsType.NO_SAVINGS ||
-      this.isSigniCat
+      this.bankHasFixedLoans
     ) {
       return true;
     } else {
