@@ -54,7 +54,7 @@ import {
       state(
         'open',
         style({
-          width: '454px',
+          width: '48.5%',
           borderRadius: '15px'
         })
       ),
@@ -185,7 +185,7 @@ export class TipsComponent implements OnInit {
         header: 'Fastrentelån',
         text: this.customLangTextSerice.getHasFixedRateLoan(),
         buttonLink: './',
-        icon: 'rate'
+        icon: 'rate-blue'
       });
     }
     if (
