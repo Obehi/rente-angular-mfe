@@ -48,6 +48,15 @@ export class CustomLangTextService {
     throw new Error('Should include either SV or NB');
   }
 
+  getHasFixedRateLoanTipsHeader(): string {
+    if (locale.includes('sv')) {
+      return 'Fast bolåneränta';
+    } else if (locale.includes('nb')) {
+      return 'Fastrentelån';
+    }
+    throw new Error('Should include either SV or NB');
+  }
+
   getHasFixedRateLoan(): string {
     if (locale.includes('sv')) {
       return 'Vi ser att du även har fasta bolåneräntor. Ränteradar  jämför endast din rörliga ränta mot marknadens bästa erbjudanden.';

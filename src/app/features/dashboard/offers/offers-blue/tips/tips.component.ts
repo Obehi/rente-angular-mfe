@@ -182,7 +182,7 @@ export class TipsComponent implements OnInit {
       this.aggregatedRateType.MIX_FIXED_FLOATING
     ) {
       this.tips.push({
-        header: 'Fastrentelån',
+        header: this.customLangTextSerice.getHasFixedRateLoanTipsHeader(),
         text: this.customLangTextSerice.getHasFixedRateLoan(),
         buttonLink: './',
         icon: 'rate-blue'
