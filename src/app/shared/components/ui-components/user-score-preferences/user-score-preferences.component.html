@@ -1,0 +1,41 @@
+<ngx-slider
+  (userChangeEnd)="advisorScoreChanged($event)"
+  [options]="options"
+></ngx-slider>
+
+<ngx-slider
+  (userChangeEnd)="changeProcessScoreChanged($event)"
+  [options]="options"
+></ngx-slider>
+
+<ngx-slider
+  (userChangeEnd)="complicatedEconomyScoreChanged($event)"
+  [options]="options"
+></ngx-slider>
+
+<ngx-slider
+  (userChangeEnd)="insuranceScoreChanged($event)"
+  [options]="options"
+></ngx-slider>
+
+<ngx-slider
+  (userChangeEnd)="stockScoreChanged($event)"
+  [options]="options"
+></ngx-slider>
+
+<ngx-slider
+  (userChangeEnd)="savingScoreChanged($event)"
+  [options]="options"
+></ngx-slider>
+
+<ngx-slider
+  (userChangeEnd)="priceSensitivityChanged($event)"
+  [options]="options"
+></ngx-slider>
+
+<ngx-slider
+  (userChangeEnd)="localPresenceScoreChanged($event)"
+  [options]="options"
+></ngx-slider>
+
+<ngx-slider [(value)]="minValue2" [options]="options2"></ngx-slider>

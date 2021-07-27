@@ -56,12 +56,14 @@ import { DashboardTabsMobileComponent } from './components/header/dashboard-tabs
 import { HeaderDesktopLangGenericComponent } from '../local-components/components-output';
 import { HeaderMobileLangGenericComponent } from '../local-components/components-output';
 import { MaterialModule } from './material/material.module';
+import { NgxSliderModule } from '@angular-slider/ngx-slider';
 
 import { PropertySelectComponent } from '@features/first-buyers/components/property-select/property-select.component';
 import { PropertySelectDialogComponent } from '@features/first-buyers/components/property-select-dialog/property-select-dialog.component';
 import { SpinnerComponent } from '@shared/components/ui-components/spinner/spinner.component';
 import { CheckmarkSuccessComponent } from '@shared/components/ui-components/checkmark-success/checkmark-success.component';
 import { VirdiManualValueDialogComponent } from './components/ui-components/dialogs/virdi-manual-value-dialog/virdi-manual-value-dialog.component';
+import { UserScorePreferencesComponent } from './components/ui-components/user-score-preferences/user-score-preferences.component';
 
 const components = [
   HeaderComponent,
@@ -87,7 +89,8 @@ const components = [
   PropertySelectComponent,
   PropertySelectDialogComponent,
   SpinnerComponent,
-  CheckmarkSuccessComponent
+  CheckmarkSuccessComponent,
+  UserScorePreferencesComponent
 ];
 
 const services = [
@@ -118,7 +121,8 @@ const services = [
     IMaskModule,
     MaterialModule,
     ReactiveFormsModule,
-    RouterModule
+    RouterModule,
+    NgxSliderModule
   ],
   declarations: [
     ...components,

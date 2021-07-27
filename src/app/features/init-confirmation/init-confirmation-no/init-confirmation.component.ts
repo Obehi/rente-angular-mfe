@@ -5,13 +5,17 @@ import {
   MembershipTypeDto,
   AddressCreationDto
 } from '@services/remote-api/loans.service';
+
+import { UserScorePreferences } from '@shared/models/user';
 import { UserService } from '@services/remote-api/user.service';
 import {
   Component,
   OnInit,
+  AfterViewInit,
   ElementRef,
   ViewChild,
-  OnDestroy
+  OnDestroy,
+  Input
 } from '@angular/core';
 import { LoggingService } from '@services/logging.service';
 import {
@@ -21,8 +25,14 @@ import {
   FormBuilder,
   FormControl
 } from '@angular/forms';
-import { forkJoin, Observable } from 'rxjs';
-import { startWith, map } from 'rxjs/operators';
+import {
+  BehaviorSubject,
+  forkJoin,
+  fromEvent,
+  Observable,
+  Subject
+} from 'rxjs';
+import { startWith, map, switchMap } from 'rxjs/operators';
 import { ENTER, COMMA } from '@angular/cdk/keycodes';
 import {
   MatAutocomplete,
@@ -49,7 +59,8 @@ import { GlobalStateService } from '@services/global-state.service';
   templateUrl: './init-confirmation.component.html',
   styleUrls: ['./init-confirmation.component.scss']
 })
-export class InitConfirmationNoComponent implements OnInit, OnDestroy {
+export class InitConfirmationNoComponent
+  implements OnInit, AfterViewInit, OnDestroy {
   public propertyForm: FormGroup;
   public isLoading: boolean;
   public visible = true;
@@ -68,6 +79,10 @@ export class InitConfirmationNoComponent implements OnInit, OnDestroy {
   public virdiSuccess = false;
   public estimatedPropertyValueFromVirdi: number;
   public stepFillOutForm: boolean;
+
+  @Input() scoreListener$ = new BehaviorSubject<UserScorePreferences>({});
+  scoreObservable$ = new Observable<any>();
+  @Input() submit$ = new Subject<any>();
 
   @ViewChild('membershipInput') membershipInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete: MatAutocomplete;
@@ -93,6 +108,11 @@ export class InitConfirmationNoComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.submit$
+      .pipe(switchMap(() => this.scoreListener$))
+      .subscribe((scores) => {
+        console.log(scores);
+      });
     this.isLoading = true;
     forkJoin([
       this.loansService.getLoansAndRateType(),
@@ -156,6 +176,12 @@ export class InitConfirmationNoComponent implements OnInit, OnDestroy {
     // Set content background
     this.globalStateService.setContentClassName('content', 'content-blue');
     this.globalStateService.setFooterState(false);
+  }
+
+  ngAfterViewInit(): void {
+    this.scoreListener$.pipe(startWith({ test: 2 })).subscribe((value) => {
+      console.log(value);
+    });
   }
 
   isErrorState(control: AbstractControl | null): boolean {
@@ -234,6 +260,7 @@ export class InitConfirmationNoComponent implements OnInit, OnDestroy {
   }
 
   public updateProperty(formData): void {
+    return;
     let data: ConfirmationSetDto;
 
     if (formData === null || formData === undefined) {

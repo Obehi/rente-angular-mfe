@@ -20,6 +20,11 @@
       novalidate
       (ngSubmit)="updateProperty(propertyForm.value)"
     >
+      <rente-user-score-preferences
+        [scoreListener]="scoreListener$"
+        [scoreObservable]="scoreObservable$"
+      ></rente-user-score-preferences>
+
       <div class="field">
         <rente-input
           [placeholder]="'E-post'"
@@ -208,7 +213,9 @@
           >delete_forever</mat-icon
         >
       </p>
+      <p #button class="button"></p>
       <rente-button
+        (click)="submit$.next()"
         i18n="“done|info-confirmation@@info.confirmation.done”"
         color="primary"
         [isLoading]="isLoading"
