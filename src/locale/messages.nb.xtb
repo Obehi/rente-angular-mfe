@@ -1756,4 +1756,8 @@ Fortsett
   <translation id="property.size" desc="property-size">
           Boligstørrelse:
         </translation>
+  <translation id="offer.card.noDeal”" desc="offer-card" meaning="“no-deal">
+            (Ingen avtale med banken)
+          </translation>
+  <translation id="select.save" desc="property-select" meaning="“issue-mail">Lagre</translation>
 </translationbundle>

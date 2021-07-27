@@ -152,7 +152,6 @@ export class InitConfirmationSVComponent implements OnInit, OnDestroy {
       apartmentSize: aptmSize,
       apartmentValue: this.userData.address.apartmentValue,
       propertyType: form.propertyType,
-      // street: form.address,
       zip: typeof form.zip === 'string' ? form.zip.replace(/\s/g, '') : form.zip
     };
 

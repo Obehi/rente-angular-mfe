@@ -1,6 +1,9 @@
 <nav>
   <div class="inner-nav">
-    <a (click)="goToTop()" [routerLink]="['/']">
+    <a
+      (click)="logoClicked()"
+      [routerLink]="['./' + routesMap.dashboard + '/' + routesMap.offers]"
+    >
       <img
         src="../../../../assets/img/renteradar_white_logo-sv.svg"
         alt="Renteradar logo"

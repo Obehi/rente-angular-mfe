@@ -893,4 +893,6 @@ Kolla gärna att adressen är korrekt eller välj <ph name="START_BOLD_TEXT"><ex
   <translation id="fill.your.best.estimated.value" desc="fill-your-best-estimated-value">Fyll i det senaste uppskattade värdet på din bostad och tryck sedan på den gröna knappen!</translation>
   <translation id="add.more.houses.after.login" desc="add-more-houses-after-login">Har du fler bostäder kan du lägga till dessa efter att du loggat in.</translation>
   <translation id="property.size" desc="property-size">Bostadens storlek</translation>
+  <translation id="offer.card.noDeal”" desc="offer-card" meaning="“no-deal"/>
+  <translation id="select.save" desc="property-select" meaning="“issue-mail"/>
 </translationbundle>
