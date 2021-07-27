@@ -36,17 +36,17 @@ export class LoanStateDto {
 }
 
 export class AddressDto {
-  apartmentSize: number;
-  commonDebt: number | null = null;
-  error: boolean;
-  estimatedPropertyValue?: number | null = null;
   id: number;
-  manualPropertyValue?: number | null = null;
-  message: string;
-  propertyType: string | null = null;
+  apartmentSize: number;
   street: string;
-  useManualPropertyValue: boolean;
   zip: string | null = null;
+  manualPropertyValue?: number | null = null;
+  propertyType: string | null = null;
+  estimatedPropertyValue?: number | null = null;
+  useManualPropertyValue: boolean;
+  commonDebt: number | null = null;
+  message: string;
+  error: boolean;
 }
 
 export class ClientAddressDto {
@@ -55,31 +55,27 @@ export class ClientAddressDto {
 }
 
 export class ConfirmationGetDto {
-  apartmentSize: number;
-  apartmentValue: number;
+  address: AddressCreationDto;
   availableMemberships: MembershipTypeDto[];
   bank: string;
   email: string;
-  income: number;
+  income: number | null;
   name: string | null;
 }
 
 export class ConfirmationSetDto {
-  memberships: string[];
-  apartmentSize: number;
+  address: AddressCreationDto;
   email: string;
   income: number;
-  name: string;
-  address: AddressCreationDto;
-  apartmentValue: number;
+  memberships: string[];
 }
 
 export class AddressCreationDto {
-  apartmentSize: number;
-  apartmentValue: number;
-  propertyType: string;
-  street: string;
-  zip: string;
+  apartmentSize: number | null;
+  apartmentValue: number | null;
+  propertyType: string | null;
+  street: string | null;
+  zip: string | null;
 }
 
 export class PreferencesDto {
@@ -99,13 +95,13 @@ export class PreferencesDto {
 }
 
 export class PreferencesUpdateDto {
-  checkRateReminderType: string;
-  email: string;
-  fetchCreditLinesOnly: boolean;
-  income: string;
-  interestedInEnvironmentMortgages: boolean;
   memberships: string[];
+  checkRateReminderType: string;
+  fetchCreditLinesOnly: boolean;
   noAdditionalProductsRequired: boolean;
+  interestedInEnvironmentMortgages: boolean;
+  email: string;
+  income: string;
   receiveNewsEmails: boolean;
 }
 export class LoanUpdateInfoDto {
