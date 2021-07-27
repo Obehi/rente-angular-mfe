@@ -1,3 +1,5 @@
+import { UserService } from '@services/remote-api/user.service';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import {
   Validators,
   AbstractControl,
@@ -21,13 +23,19 @@ import { ROUTES_MAP_SV } from '@config/routes-config';
 import { OfferInfo } from '@shared/models/offers';
 import { Mask } from '@shared/constants/mask';
 import { CheckBoxItem } from '@shared/components/ui-components/checkbox-container/checkbox-container.component';
-import { DialogInfoComponent } from '../dialog-info/dialog-info.component';
+import { GlobalStateService } from '@services/global-state.service';
+import { VirdiManualValueDialogComponent } from '@shared/components/ui-components/dialogs/virdi-manual-value-dialog/virdi-manual-value-dialog.component';
+import { ROUTES_MAP } from '@config/routes-config';
+import { ApiError } from '@shared/constants/api-error';
+import { concat } from 'rxjs';
+import { toArray } from 'rxjs/operators';
+
 @Component({
   selector: 'rente-init-confirmation-sv',
   templateUrl: './init-confirmation.component.html',
   styleUrls: ['./init-confirmation.component.scss']
 })
-export class InitConfirmationSVComponent implements OnInit {
+export class InitConfirmationSVComponent implements OnInit, OnDestroy {
   public propertyForm: FormGroup;
   public isLoading: boolean;
   public visible = true;
@@ -38,20 +46,29 @@ export class InitConfirmationSVComponent implements OnInit {
   public userData: ConfirmationGetDto;
   public mask = Mask;
   public checkBoxItems: CheckBoxItem[];
+
+  // Virdi check
+  public virdiSuccess = false;
+  public estimatedPropertyValueFromVirdi: number;
+  public stepFillOutForm: boolean;
+
   constructor(
     private fb: FormBuilder,
     private loansService: LoansService,
     private router: Router,
     public dialog: MatDialog,
-    public customLangTextService: CustomLangTextService
-  ) {}
+    public customLangTextService: CustomLangTextService,
+    private globalStateService: GlobalStateService
+  ) {
+    this.stepFillOutForm = true;
+  }
 
   ngOnInit(): void {
     this.initCheckboxes();
     this.loansService.getConfirmationData().subscribe((res) => {
       this.userData = res;
       this.propertyForm = this.fb.group({
-        apartmentSize: ['', Validators.required],
+        apartmentSize: [String(res.address.apartmentSize), Validators.required],
         email: [
           res.email,
           Validators.compose([
@@ -60,16 +77,19 @@ export class InitConfirmationSVComponent implements OnInit {
           ])
         ],
         zip: [
-          '',
+          res.address.zip,
           Validators.compose([
             Validators.required,
             Validators.minLength(5),
             Validators.pattern(VALIDATION_PATTERN.zipSWE)
           ])
         ],
-        propertyType: ['', Validators.required]
+        propertyType: [res.address.propertyType, Validators.required]
       });
     });
+
+    // Set content background
+    this.globalStateService.setContentClassName('content', 'content-blue');
   }
 
   initCheckboxes(): void {
@@ -100,12 +120,7 @@ export class InitConfirmationSVComponent implements OnInit {
     });
   }
 
-  public updateProperty(formData: any): void {
-    this.propertyForm.markAllAsTouched();
-    this.propertyForm.updateValueAndValidity();
-
-    this.isLoading = true;
-
+  public getConfirmationDtoFromForm(formData): ConfirmationSetDto {
     const confirmationData = {
       email: formData.email,
       zip:
@@ -126,15 +141,135 @@ export class InitConfirmationSVComponent implements OnInit {
     confirmationDto.address.zip = confirmationData.zip;
     confirmationDto.address.propertyType = confirmationData.propertyType;
 
-    this.loansService.setConfirmationData(confirmationDto).subscribe(
-      () => {
-        this.isLoading = false;
-        this.router.navigate(['/' + ROUTES_MAP_SV.confirmationProperty]);
-      },
-      () => {
-        this.isLoading = false;
-        this.router.navigate(['/' + ROUTES_MAP_SV.confirmationProperty]);
+    return confirmationDto;
+  }
+
+  public getFormValue(): any {
+    const form = this.propertyForm.value;
+
+    const aptmSize = Number(form.apartmentSize);
+
+    const address = {
+      apartmentSize: aptmSize,
+      apartmentValue: this.userData.address.apartmentValue,
+      propertyType: form.propertyType,
+      zip: typeof form.zip === 'string' ? form.zip.replace(/\s/g, '') : form.zip
+    };
+
+    const sendFormDto = {
+      address: address,
+      email: form.email
+    };
+
+    return sendFormDto;
+  }
+
+  public convertDto(): ConfirmationSetDto {
+    /* 
+    Use this function to send api post request with ConfirmationSetDto interface. 
+    Is used because the the post api expects a different dto than the get api
+    */
+    const confDtoWithAprtmentValue: ConfirmationSetDto = new ConfirmationSetDto();
+    confDtoWithAprtmentValue.address = this.getFormValue().address;
+    confDtoWithAprtmentValue.email = this.getFormValue().email;
+
+    return confDtoWithAprtmentValue;
+  }
+
+  public updateProperty(formData: any): void {
+    let data: ConfirmationSetDto;
+
+    if (formData === null || formData === undefined) {
+      data = this.convertDto();
+    } else {
+      data = this.getConfirmationDtoFromForm(formData);
+    }
+
+    this.propertyForm.markAllAsTouched();
+    this.propertyForm.updateValueAndValidity();
+
+    this.isLoading = true;
+
+    concat(
+      this.loansService.setConfirmationData(data),
+      this.loansService.getAddresses()
+    )
+      .pipe(toArray())
+      .subscribe(
+        (res: any) => {
+          const clientAddressDto = res[1];
+          const estimatedValue =
+            clientAddressDto.addresses[0].estimatedPropertyValue;
+
+          if (estimatedValue && estimatedValue > 0 && formData !== undefined) {
+            this.virdiSuccess = true;
+            this.stepFillOutForm = false;
+            this.estimatedPropertyValueFromVirdi = estimatedValue;
+          }
+          if (formData === undefined) {
+            this.router.navigate(['/dashboard/' + ROUTES_MAP.offers]);
+          }
+          this.isLoading = false;
+        },
+        (err) => {
+          this.stepFillOutForm = true;
+          this.isLoading = false;
+          this.virdiSuccess = false;
+
+          if (err.errorType === ApiError.propertyCantFindZip) {
+            this.dialog.open(VirdiManualValueDialogComponent, {
+              data: {
+                step: 1,
+                address: data.address,
+                email: data.email,
+                income: data.income,
+                memberships: data.memberships,
+                finishText: 'Hitta bästa räntan!',
+                confirmText: 'Lägg till bostadsvärde',
+                cancelText: 'Lägg in ny adress',
+                onConfirm: () => {},
+                onClose: () => {},
+                onSendForm: (apartmentValue) => {
+                  // Remove the whitespace
+                  const value = apartmentValue.replace(/\s/g, '');
+
+                  // Send the dataForm with apartment value
+                  this.userData.address.apartmentValue = Number(value);
+                  this.updateProperty(undefined);
+                }
+              }
+            });
+          }
+        }
+      );
+  }
+
+  redirectOffers(): void {
+    this.router.navigate(['/dashboard/' + ROUTES_MAP.offers]);
+  }
+
+  setManualPropertyValue(): void {
+    this.dialog.open(VirdiManualValueDialogComponent, {
+      data: {
+        step: 2,
+        finishText: 'Hitta bästa räntan!',
+        confirmText: 'Lägg till bostadsvärde',
+        cancelText: 'Stäng',
+        onConfirm: () => {},
+        onClose: () => {},
+        onSendForm: (apartmentValue) => {
+          // Remove the whitespace
+          const value = apartmentValue.replace(/\s/g, '');
+
+          // Send the dataForm with apartment value
+          this.userData.address.apartmentValue = Number(value);
+          this.updateProperty(undefined);
+        }
       }
-    );
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.globalStateService.setContentClassName('content-blue', 'content');
   }
 }

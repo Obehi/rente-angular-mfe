@@ -6,6 +6,8 @@ import { SnackBarService } from '@services/snackbar.service';
 import { AuthService } from '@services/remote-api/auth.service';
 import { ROUTES_MAP } from '@config/routes-config';
 import { CustomLangTextService } from '@services/custom-lang-text.service';
+import { MessageBannerService } from '@services/message-banner.service';
+import { getAnimationStyles } from '@shared/animations/animationEnums';
 
 @Component({
   selector: 'guid-login',
@@ -16,6 +18,7 @@ export class GuidLoginComponent implements OnInit {
   public contactUsForm: FormGroup;
   public isLoading: boolean;
   public loginIdError = false;
+  public animationType = getAnimationStyles();
   p;
 
   constructor(
@@ -23,7 +26,8 @@ export class GuidLoginComponent implements OnInit {
     private snackBar: SnackBarService,
     private router: Router,
     private authService: AuthService,
-    public customLangTextService: CustomLangTextService
+    public customLangTextService: CustomLangTextService,
+    private messageService: MessageBannerService
   ) {}
 
   ngOnInit(): void {
@@ -58,9 +62,12 @@ export class GuidLoginComponent implements OnInit {
       },
       () => {
         this.isLoading = false;
-        this.snackBar.openFailSnackBar(
+        this.messageService.setView(
           this.customLangTextService.getSnackBarErrorMessage(),
-          2
+          4000,
+          this.animationType.DROP_DOWN_UP,
+          'error',
+          window
         );
       }
     );

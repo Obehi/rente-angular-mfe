@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { LocalStorageService } from './../local-storage.service';
 import { DemoUserInfo, FirstTimeLoanDebtData } from '@shared/models/user';
+import { CustomLangTextService } from '@services/custom-lang-text.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,8 @@ export class AuthService {
   constructor(
     private http: GenericHttpService,
     private localStorageService: LocalStorageService,
-    private router: Router
+    private router: Router,
+    public customLangTextService: CustomLangTextService
   ) {}
 
   public get isLoggedIn(): boolean {
@@ -56,7 +58,7 @@ export class AuthService {
     return this.http.post(url, data).pipe(tap(this.handleLogin.bind(this)));
   }
 
-  public logout(): void {
+  public logout() {
     const url = `${API_URL_MAP.auth.base}${API_URL_MAP.auth.logout}`;
 
     this.http.post(url, {}).subscribe(() => {

@@ -31,6 +31,7 @@ export class HouseFormNoComponent implements OnInit {
   constructor(public envService: EnvService) {}
 
   ngOnInit(): void {
+    this.changesMade = false;
     this.address.estimatedPropertyValue =
       this.address.estimatedPropertyValue || null;
     this.address.manualPropertyValue = this.address.manualPropertyValue || null;
@@ -72,8 +73,12 @@ export class HouseFormNoComponent implements OnInit {
   }
 
   save(): void {
-    this.onSave.emit();
-    this.changesMade = false;
+    if (this.ableTosave) {
+      this.onSave.emit();
+      this.changesMade = false;
+    } else {
+      return;
+    }
   }
   countChange(): void {
     this.changesMade = true;

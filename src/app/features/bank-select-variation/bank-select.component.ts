@@ -27,8 +27,6 @@ export class BankSelectComponentVariation implements OnInit, ErrorHandler {
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   handleError(error: any): void {
     const chunkFailedMessage = /Loading chunk [\d]+ failed/;
-    console.log('Handeling error');
-    console.log(error);
     if (chunkFailedMessage.test(error.message)) {
       console.log('error detected. Implement window.location.reload()');
       // window.location.reload();

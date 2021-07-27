@@ -1,0 +1,21 @@
+<property-select
+  (selectedItemsEmitter)="saveMemberships($event)"
+  [options]="allMemberships"
+  [selectedOptions]="previousState"
+  *ngIf="data !== null && data !== undefined"
+></property-select>
+<div class="cdk-fix">
+  <div class="buttons">
+    <rente-button class="abort-btn" color="secondary-small" (click)="cancel()"
+      >Avbryt</rente-button
+    >
+
+    <rente-button
+      i18n="“issue-mail|property-select@@select.save"
+      color="primary-small"
+      [disabled]="!hasChanged"
+      (click)="save()"
+      >Lagre</rente-button
+    >
+  </div>
+</div>

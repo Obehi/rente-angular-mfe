@@ -15,7 +15,7 @@ p {
   justify-content: flex-end;
   align-items: center;
   position: sticky;
-  z-index: 20;
+  z-index: 9;
   top: 55px;
   font-size: 14px;
   color: #fff;
@@ -27,6 +27,37 @@ p {
   span {
     margin-right: 29px;
   }
+}
+:host {
+  grid-row: 5;
+  grid-column-start: 1;
+  grid-column-end: span 2;
+}
+
+h3,
+p {
+  color: #fff;
+}
+
+@media (min-width: 600px) {
+  h3 {
+    font-size: 38px;
+  }
+}
+
+.sticky-table-header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  position: sticky;
+  z-index: 20;
+  top: 55px;
+  font-size: 14px;
+  color: #fff;
+  background-color: #6c7580;
+  height: 4em;
+  width: 100%;
+  padding: 10px;
 
   @media (min-width: 600px) {
     top: 114px;

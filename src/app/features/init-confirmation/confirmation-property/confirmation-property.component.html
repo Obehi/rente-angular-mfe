@@ -1,0 +1,35 @@
+<div class="front-container blue">
+  <div *ngIf="!isLoading" class="top">
+    <img *ngIf="propertyIconPath !== null" src="{{ propertyIconPath }}" />
+    <div class="title">
+      <h3 i18n="“confirmation-property-value@@confirmation.property-value">
+        Vi har estimert din bolig til
+      </h3>
+      <h1>{{ estimatedPropertyValue | number }} kr</h1>
+    </div>
+  </div>
+  <div *ngIf="!isLoading" class="bottom">
+    <div>
+      <rente-button
+        i18n="“change or add more houses@@confirmation.property-houses"
+        class="left"
+        color="primary-wide-white"
+        (click)="clickChangeButton()"
+      >
+        Endre / legg til flere bolig
+      </rente-button>
+      <rente-button
+        i18n="“go to offers@@property-offers-button"
+        class="right"
+        color="primary-wide"
+        (click)="clickConfirmButton()"
+      >
+        Ta meg til tilbudene
+      </rente-button>
+    </div>
+  </div>
+</div>
+
+<div class="loading" *ngIf="isLoading">
+  <mat-spinner [diameter]="48" [strokeWidth]="4"></mat-spinner>
+</div>

@@ -28,7 +28,7 @@ export class LocalStorageService {
     localStorage.setItem(`${this.appPrefix}-${param}`, JSON.stringify(value));
   }
 
-  public getItem(param: string): any {
+  public getItem(param: string): any | null {
     return localStorage.getItem(`${this.appPrefix}-${param}`);
   }
 
@@ -36,7 +36,21 @@ export class LocalStorageService {
     const parseObject = localStorage.getItem(`${this.appPrefix}-${param}`);
     if (parseObject !== null) {
       return JSON.parse(parseObject);
+    } else {
+      return null;
     }
+  }
+
+  public getBoolean(param: string): boolean | null {
+    const item = localStorage.getItem(`${this.appPrefix}-${param}`);
+
+    if (item === 'true') {
+      return true;
+    } else if (item === 'false') {
+      return false;
+    }
+
+    return null;
   }
 
   public removeItem(param: string): any {

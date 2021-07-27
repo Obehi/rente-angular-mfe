@@ -1,24 +1,17 @@
-import { PlatformLocation } from '@angular/common';
 import {
   Component,
   ViewChild,
   OnInit,
+  OnDestroy,
   HostListener,
   ElementRef
 } from '@angular/core';
 import { ActivatedRoute, Router, NavigationStart } from '@angular/router';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+
 import { LocalStorageService } from '@services/local-storage.service';
 import { AuthService } from '@services/remote-api/auth.service';
-import {
-  Observable,
-  of,
-  from,
-  fromEvent,
-  timer,
-  EMPTY,
-  concat,
-  scheduled
-} from 'rxjs';
+import { Observable, concat, Subscription } from 'rxjs';
 import {
   startWith,
   map,
@@ -27,7 +20,8 @@ import {
   debounce,
   toArray,
   switchMap,
-  debounceTime
+  debounceTime,
+  first
 } from 'rxjs/operators';
 import {
   MatAutocomplete,
@@ -39,7 +33,8 @@ import { Mask } from '@shared/constants/mask';
 import {
   AddressCreationDto,
   ClientUpdateInfo,
-  ConfirmationGetDto,
+  ConfirmationSetDto,
+  LoansService,
   MembershipTypeDto
 } from '@shared/models/loans';
 import { LoansService } from '@services/remote-api/loans.service';
@@ -53,9 +48,9 @@ import {
   FormControl
 } from '@angular/forms';
 import { forkJoin } from 'rxjs';
-import { LoanUpdateInfoDto } from '@shared/models/loans';
+import { SignicatLoanInfoDto } from '@shared/models/loans';
 import { LoginService } from '@services/login.service';
-import { BankUtils, BankVo } from '@shared/models/bank';
+import { BankVo } from '@shared/models/bank';
 import { GenericInfoDialogComponent } from '@shared/components/ui-components/dialogs/generic-info-dialog/generic-info-dialog.component';
 import { VirdiErrorChoiceDialogComponent } from '@shared/components/ui-components/dialogs/virdi-error-choice-dialog/virdi-error-choice-dialog.component';
 import { ROUTES_MAP } from '@config/routes-config';
@@ -64,72 +59,103 @@ import {
   GenericErrorDialogComponent
 } from '@shared/components/ui-components/dialogs/generic-error-dialog/generic-error-dialog.component';
 import { ApiError } from '@shared/constants/api-error';
-import { ProfileService } from '@services/remote-api/profile.service';
 import { GlobalStateService } from '@services/global-state.service';
 import { RouteEventsService } from '@services/route-events.service';
+
+import { LoginTermsDialogV2Component } from '@shared/components/ui-components/dialogs/login-terms-dialog-v2/login-terms-dialog-v2.component';
+import { VirdiManualValueDialogComponent } from '@shared/components/ui-components/dialogs/virdi-manual-value-dialog/virdi-manual-value-dialog.component';
+
 @Component({
   selector: 'rente-bank-id-login',
   templateUrl: './bank-id-login.component.html',
   styleUrls: ['./bank-id-login.component.scss']
 })
-export class BankIdLoginComponent implements OnInit {
-  @HostListener('window:popstate', ['$event'])
-  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-  onPopState(event): void {
-    console.log('Back button pressed');
-  }
+export class BankIdLoginComponent implements OnInit, OnDestroy {
   @ViewChild('stepper') stepper: MatStepper;
   @ViewChild('auto') matAutocomplete: MatAutocomplete;
   @ViewChild('membershipInput') membershipInput: ElementRef<HTMLInputElement>;
   eventSubscription;
-  emailFormGroup: FormGroup;
-  userFormGroup: FormGroup;
-  loanFormGroup: FormGroup;
-  membershipFormGroup: FormGroup;
-  manualPropertyValueFormGroup: FormGroup;
-  public removable = true;
+  emailFormGroup?: FormGroup;
+  userFormGroup?: FormGroup;
+  loanFormGroup?: FormGroup;
+  membershipFormGroup?: FormGroup;
+  manualPropertyValueFormGroup?: FormGroup;
   public membershipCtrl = new FormControl();
   public filteredMemberships: Observable<void | MembershipTypeDto[]>;
   public memberships: any = [];
   public allMemberships: MembershipTypeDto[];
   public showForms = false;
+  private responseStatus: any;
   public mask = Mask;
   public isLoading = true;
-  public selectOptions: any;
+  public productIdOptions: any[];
+  public loanTypeOptions = [
+    {
+      name: 'Nedbetalingslån',
+      value: 'DOWNPAYMENT_REGULAR_LOAN'
+    },
+    {
+      name: 'Rammelån/Boligkreditt',
+      value: 'CREDIT_LINE'
+    }
+  ];
   public selectedOffer: string;
-  private sessionId: string | null;
-  private oneTimeToken: string | null;
-  private bank: BankVo | null;
+  public bank: BankVo | null;
+  private loanId: number | null;
   public currentStepperValue = 0;
-  public newClient = true;
-  public showManualInputForm = false;
+  public newClient: boolean | null;
+  private routeSubscription: Subscription;
+  public signicatIframeUrl?: SafeResourceUrl | null;
+  public oldUserNewLoan = false;
+  public shouldShowBankWarningMessage = false;
+  public estimatedPropertyValueFromVirdi: number;
+  public manualEstimatedPropertyValueFromUser: number;
+  public isManualPropertyValue = false;
+  get isMobile(): boolean {
+    return window.innerWidth < 600;
+  }
 
   constructor(
-    private route: ActivatedRoute,
     private authService: AuthService,
     private localStorageService: LocalStorageService,
     private router: Router,
-    location: PlatformLocation,
     public dialog: MatDialog,
     private navigationInterceptionService: NavigationInterceptionService,
     private fb: FormBuilder,
     private loanService: LoansService,
     private loginService: LoginService,
-    private profileService: ProfileService,
     private globalStateService: GlobalStateService,
-    private routeEventsService: RouteEventsService
-  ) {}
+    private routeEventsService: RouteEventsService,
+    private sanitizer: DomSanitizer
+  ) {
+    this.setRoutingListeners();
+  }
 
   ngOnInit(): void {
-    console.log(this.routeEventsService.previousRoutePath);
-    console.log(this.routeEventsService.previousRoutePath);
-    console.log(this.routeEventsService.previousRoutePath.subscribe);
+    this.scrollToTop();
+    this.globalStateService.setFooterState(false);
+  }
 
-    this.routeEventsService.previousRoutePath.subscribe((previousRoutePath) => {
-      if (!previousRoutePath.includes('bankid-login?status=')) {
-        this.router.navigate(['/']);
+  ngOnDestroy(): void {
+    this.routeSubscription.unsubscribe();
+  }
+
+  private setRoutingListeners() {
+    // Prevent user from going back to this form from the dashboard
+    this.routeSubscription = this.routeEventsService.previousRoutePath.subscribe(
+      (previousRoutePath) => {
+        if (
+          !previousRoutePath.includes('bankid-login?status=') &&
+          !previousRoutePath.includes('velgbank') &&
+          !previousRoutePath.includes('bankid-login') &&
+          !previousRoutePath.includes('autentisering')
+        ) {
+          this.router.navigate(['/']);
+        }
       }
-    });
+    );
+
+    // Make back button synch with form
     this.navigationInterceptionService.setBackButtonCallback(() => {
       if (this.currentStepperValue !== 0) {
         this.back();
@@ -138,60 +164,56 @@ export class BankIdLoginComponent implements OnInit {
       }
     });
 
-    this.globalStateService.setFooterState(false);
-    this.route.queryParams.subscribe((routeParams) => {
-      const status = routeParams['status'];
-      const sessionId = routeParams['sessionId'];
+    // Getting bank name from the bank-select component
+    const stateData = this.router?.getCurrentNavigation()?.extras?.state?.data;
+    // Checking for null or undefined
+    if (stateData == null) {
+      this.router.navigate(['/' + ROUTES_MAP.bankSelect]);
+      return;
+    } else {
+      this.bank = stateData.bank;
 
-      console.log('status');
-      console.log(status);
-      // status = 'error';
-      switch (status) {
-        case 'success':
-          const bankName = this.localStorageService.getItem('bankIdLoginBank');
-          this.bank = BankUtils.getBankByName(bankName);
-          this.bank && this.statusSuccess(sessionId);
-          break;
-
-        case 'abort':
-          this.router.navigate(['/' + ROUTES_MAP.bankSelect]);
-          break;
-
-        case 'error':
-          const dialogData = {
-            header: 'Ops, noe gikk visst galt',
-            confirmText: 'Prøv igjen',
-            cancelText: 'Avbryt',
-            onConfirm: () => {
-              console.log('its happenigns bunker ');
-              this.router.navigate(['/' + ROUTES_MAP.bankSelect]);
-            }
-          };
-          this.dialog.open(GenericErrorDialogComponent, {
-            data: dialogData
-          });
-          break;
-
-        default: {
-          const dialogData = {
-            header: 'Ops, noe gikk visst galt',
-            confirmText: 'Prøv igjen',
-            cancelText: 'Avbryt',
-            onConfirm: () => {
-              console.log('its happenigns bunker ');
-              this.router.navigate(['/' + ROUTES_MAP.bankSelect]);
-            }
-          };
-          this.dialog.open(GenericErrorDialogComponent, {
-            data: dialogData
-          });
-          break;
-        }
-      }
-    });
+      if (stateData.redirect === true || this.bank?.name === 'DNB')
+        this.shouldShowBankWarningMessage = true;
+      this.loginBankIdStep1();
+    }
   }
 
-  public statusSuccess(sessionId: string): void {
+  getSanatizeIframUrl(url: string): SafeResourceUrl {
+    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
+  }
+
+  // initialize signicat iframe
+  private loginBankIdStep1(): void {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+    this.authService.loginBankIdStep1().subscribe(
+      (response) => {
+        this.signicatIframeUrl = this.getSanatizeIframUrl(response.url);
+        this.isLoading = false;
+      },
+      (error) => {
+        this.showGenericDialog(error);
+      }
+    );
+  }
+
+  // Wait for signicat successfull login with iframe repsonse
+  @HostListener('window:message', ['$event'])
+  onMessage(event) {
+    if (event.origin === 'https://id.idfy.io') {
+      const data = JSON.parse(event.data);
+      if (data.status === 'success') {
+        this.statusSuccess(data.sessionId);
+      }
+    }
+  }
+
+  // Send sessionId to backend and initialize the correct form based on client info
+  private statusSuccess(sessionId: string): void {
+    this.localStorageService;
     this.bank &&
       sessionId &&
       this.authService
@@ -199,43 +221,589 @@ export class BankIdLoginComponent implements OnInit {
         .pipe(retry(2))
         .subscribe(
           (response) => {
-            this.oneTimeToken = response.token;
+            this.signicatIframeUrl = null;
+            this.responseStatus = response;
+            this.scrollToTop();
 
-            response.newClient = true;
-            if (response.newClient === false) {
-              this.initLoansForm(response);
+            if (response.newClient === true) {
+              this.loanService.getAllMemberships().subscribe(
+                (onlyMemberships) => {
+                  this.initMemberships(onlyMemberships.memberships);
+                  this.initNewUserForms();
+                  this.isLoading = false;
+                },
+                (error) => {
+                  this.newClient = null;
+                  this.showGenericDialog(error);
+                }
+              );
             } else {
-              this.loanService.getConfirmationData().subscribe((userInfo) => {
-                this.initMemberships(userInfo);
-                this.initNewUserForms();
-                this.handlePublic();
-                this.isLoading = false;
-                this.showForms = true;
-                this.newClient = true;
-              });
+              if (this.bank?.hasFixedLoans === true) {
+                this.initFixedLoansLoansForm(response);
+              } else {
+                if (response.newLoan === true) {
+                  this.initNonFixedLoanBankNewLoanForm();
+                } else {
+                  this.initNonFixedLoanBankOldLoanForm();
+                }
+              }
             }
           },
           (error) => {
-            this.showForms = false;
-            console.log('error handling');
-            console.log(error);
-            const dialogData: ErrorDialogData = {
+            this.showGenericDialog(error);
+          }
+        );
+  }
+
+  public newUserFinished(): void {
+    const signicatLoanInfoDto =
+      this.bank?.hasFixedLoans === true
+        ? this.fixedBankLoanInfo
+        : this.nonFixedBankLoanInfo;
+
+    if (signicatLoanInfoDto === null) {
+      this.showGenericDialog();
+      return;
+    }
+    const clientDto = this.clientUpdateInfo;
+
+    this.isLoading = true;
+
+    const userMemberships = {
+      memberships: clientDto.memberships
+    };
+    clientDto.memberships = [];
+    concat(
+      this.loanService.updateClientInfo(this.getFormValues()),
+      this.loanService.CreateSignicatLoansInfo([signicatLoanInfoDto]),
+      this.loanService.setUsersMemberships(userMemberships)
+    )
+      .pipe(toArray())
+      .subscribe(
+        (_) => {
+          this.isLoading = false;
+
+          if (this.bank !== null) {
+            this.bank && this.loginService.loginWithBankAndToken();
+          } else {
+            // handle state as error
+
+            this.showGenericDialog();
+            this.isLoading = false;
+          }
+        },
+        (error) => {
+          if (error.errorType === ApiError.virdiSerachNotFound) {
+            const dialogData = {
               header: 'Ops, noe gikk visst galt',
               confirmText: 'Prøv igjen',
               cancelText: 'Avbryt',
+
               onConfirm: () => {
-                this.router.navigate(['/' + ROUTES_MAP.bankSelect]);
-              },
-              onClose: () => {
-                this.router.navigate(['/'], { replaceUrl: true });
+                this.loanFormGroup?.reset();
+                this.userFormGroup?.reset();
+                this.membershipFormGroup?.reset();
+                this.membershipFormGroup?.reset();
+                this.stepper.selectedIndex = 0;
+                this.currentStepperValue = 0;
               }
             };
-
-            this.dialog.open(GenericErrorDialogComponent, {
-              data: dialogData
-            });
+          } else {
+            this.showGenericDialog();
           }
-        );
+        }
+      );
+  }
+
+  public oldUserFinished(): void {
+    const SignicatLoanInfoDto = this.bank?.hasFixedLoans
+      ? this.fixedBankLoanInfo
+      : this.nonFixedBankLoanInfo;
+    if (SignicatLoanInfoDto === null) {
+      this.showGenericDialog();
+      return;
+    }
+    this.isLoading = true;
+
+    const request =
+      this.responseStatus.newLoan === true
+        ? this.loanService.CreateSignicatLoansInfo([SignicatLoanInfoDto])
+        : this.loanService.UpdateSignicatLoansInfo([SignicatLoanInfoDto]);
+
+    request.subscribe(
+      (result) => {
+        this.isLoading = false;
+        this.bank && this.loginService.loginWithBankAndToken();
+      },
+      (error) => {
+        this.showGenericDialog();
+      }
+    );
+  }
+
+  initMemberships(memberships): void {
+    this.allMemberships = memberships;
+    this.filteredMemberships = this.membershipCtrl.valueChanges.pipe(
+      startWith(null),
+      map((membership: string | null) =>
+        membership ? this.filter(membership) : this.allMemberships.slice()
+      )
+    );
+  }
+
+  initNewUserForms(): void {
+    this.manualPropertyValueFormGroup = this.fb.group({
+      manualPropertyValue: ['', Validators.compose([Validators.required])]
+    });
+    this.emailFormGroup = this.fb.group({
+      email: [
+        '',
+        Validators.compose([
+          Validators.required,
+          Validators.pattern(VALIDATION_PATTERN.email)
+        ])
+      ]
+    });
+    this.userFormGroup = this.fb.group({
+      address: ['', Validators.required],
+      zip: [
+        '',
+        Validators.compose([
+          Validators.required,
+          Validators.pattern(VALIDATION_PATTERN.zip)
+        ])
+      ],
+      apartmentSize: [
+        '',
+        [Validators.required, Validators.min(5), Validators.max(999)]
+      ],
+      income: ['', Validators.required]
+    });
+
+    if (this.bank?.hasFixedLoans === true) {
+      this.loanFormGroup = this.fb.group({
+        outstandingDebt: ['', Validators.required],
+        remainingYears: ['', [Validators.max(100)]],
+        loanType: ['', Validators.required]
+      });
+      this.newClient = this.responseStatus.newClient;
+    } else {
+      this.initNonFixedLoanBankNewLoanForm();
+    }
+
+    this.membershipFormGroup = this.fb.group({
+      membership: []
+    });
+  }
+
+  private initFixedLoansLoansForm(loanInfo): void {
+    this.isLoading = true;
+    if (loanInfo.newLoan === false) {
+      forkJoin([
+        this.loanService.getOffersBanks(),
+        this.loanService.getSignicatLoansInfo()
+      ]).subscribe(([offerBanks, signicatLoansInfo]) => {
+        const firstLoan = signicatLoansInfo[0];
+        this.loanId = firstLoan.id;
+        this.productIdOptions = (offerBanks.offers as any[]).map((offer) => {
+          return {
+            name: offer.name,
+            value: offer.id
+          };
+        });
+
+        const selectedOption = this.productIdOptions.filter((item) => {
+          return item.value === firstLoan.productId;
+        })[0];
+        const outstandingDebt = String(firstLoan.outstandingDebt);
+        this.loanFormGroup = this.fb.group({
+          outstandingDebt: [outstandingDebt, Validators.required],
+          remainingYears: [
+            Math.round(firstLoan.remainingYears),
+            [Validators.max(100)]
+          ],
+          loanType: [selectedOption ?? null, Validators.required]
+        });
+
+        this.newClient = this.responseStatus.newClient;
+        this.isLoading = false;
+      });
+    } else {
+      forkJoin([
+        this.loanService.getSignicatLoansInfo(),
+        this.loanService.getOffersBanks()
+      ]).subscribe(
+        ([loanInfo, offerBanks]) => {
+          this.productIdOptions = (offerBanks.offers as any[]).map((offer) => {
+            return {
+              name: offer.name,
+              value: offer.id
+            };
+          });
+
+          if (loanInfo.length !== 0) {
+            this.loanId = loanInfo[0].id;
+          }
+
+          this.loanFormGroup = this.fb.group({
+            outstandingDebt: ['', Validators.required],
+            remainingYears: ['', [Validators.required, Validators.max(100)]],
+            loanType: ['', Validators.required]
+          });
+
+          this.newClient = this.responseStatus.newClient;
+
+          this.isLoading = false;
+          this.oldUserNewLoan = true;
+        },
+        (error) => {
+          this.showGenericDialog();
+        }
+      );
+    }
+  }
+
+  private initNonFixedLoanBankOldLoanForm(): void {
+    this.isLoading = true;
+    forkJoin([
+      this.loanService.getOffersBanks(),
+      this.loanService.getSignicatLoansInfo()
+    ]).subscribe(([offerBanks, signicatLoansInfo]) => {
+      if (signicatLoansInfo?.length === 0) {
+        this.initNonFixedLoanBankNewLoanForm();
+        return;
+      }
+
+      const firstLoan = signicatLoansInfo[0];
+
+      this.loanId = firstLoan.id;
+      this.productIdOptions = (offerBanks.offers as any[]).map((offer) => {
+        return {
+          name: offer.name,
+          value: offer.id
+        };
+      });
+
+      const selectedloanTypeOption = this.loanTypeOptions.filter((item) => {
+        return item.value === firstLoan.loanType;
+      })[0];
+
+      const outstandingDebt = String(firstLoan.outstandingDebt);
+      const fee = String(firstLoan.fee || '50');
+
+      this.loanFormGroup = this.fb.group({
+        outstandingDebt: [outstandingDebt, Validators.required],
+        remainingYears: [
+          Math.round(firstLoan.remainingYears),
+          [Validators.max(100)]
+        ],
+        loanTypeOption: [selectedloanTypeOption ?? null, Validators.required],
+        fee: [fee, Validators.required]
+      });
+
+      this.loanFormGroup?.addControl(
+        'interestRate',
+        new FormControl(
+          firstLoan.nominalInterestRate,
+          Validators.compose([
+            Validators.required,
+            Validators.pattern(VALIDATION_PATTERN.rate)
+          ])
+        )
+      );
+
+      this.newClient = this.responseStatus.newClient;
+      this.isLoading = false;
+    });
+  }
+
+  private initNonFixedLoanBankNewLoanForm(): void {
+    this.isLoading = true;
+
+    forkJoin([
+      this.loanService.getOffersBanks(),
+      this.loanService.getSignicatLoansInfo()
+    ]).subscribe(([offerBanks, signicatLoansInfo]) => {
+      this.productIdOptions = (offerBanks.offers as any[]).map((offer) => {
+        return {
+          name: offer.name,
+          value: offer.id
+        };
+      });
+
+      if (signicatLoansInfo.length !== 0) {
+        this.loanId = signicatLoansInfo[0].id;
+      }
+
+      this.loanFormGroup = this.fb.group({
+        outstandingDebt: ['', Validators.required],
+        remainingYears: ['', [Validators.max(100)]],
+        loanTypeOption: [null, Validators.required]
+      });
+      this.loanFormGroup?.addControl(
+        'interestRate',
+        new FormControl(
+          '',
+          Validators.compose([
+            Validators.required,
+            Validators.pattern(VALIDATION_PATTERN.rate)
+          ])
+        )
+      );
+
+      this.loanFormGroup?.addControl(
+        'fee',
+        new FormControl('50', Validators.required)
+      );
+
+      this.newClient = this.responseStatus.newClient;
+      this.isLoading = false;
+    });
+  }
+
+  private initFixedLoanBankLoansForm(loanInfo): void {
+    this.isLoading = true;
+    if (loanInfo.newLoan === false) {
+      forkJoin([
+        this.loanService.getClientInfo(),
+        this.loanService.getOffersBanks(),
+        this.loanService.getSignicatLoansInfo()
+      ]).subscribe(([clientInfo, offerBanks, signicatLoansInfo]) => {
+        if (signicatLoansInfo?.length === 0) {
+          this.initNewLoanLoanForm();
+          return;
+        }
+
+        const firstLoan = signicatLoansInfo[0];
+
+        this.productIdOptions = (offerBanks.offers as any[]).map((offer) => {
+          return {
+            name: offer.name,
+            value: offer.id
+          };
+        });
+
+        const selectedLoanTypeOption = this.loanTypeOptions.filter((item) => {
+          return item.value === firstLoan.loanType;
+        })[0];
+        const outstandingDebt = String(firstLoan.outstandingDebt);
+        this.loanFormGroup = this.fb.group({
+          outstandingDebt: [outstandingDebt, Validators.required],
+          remainingYears: [
+            Math.round(firstLoan.remainingYears),
+            [Validators.max(100)]
+          ],
+          loanTypeOptions: [selectedLoanTypeOption ?? null, Validators.required]
+        });
+
+        this.newClient = false;
+        this.isLoading = false;
+      });
+    } else {
+      this.initNewLoanLoanForm();
+    }
+  }
+
+  initNewLoanLoanForm(): void {
+    this.loanService.getOffersBanks().subscribe(
+      (offerBanks) => {
+        this.productIdOptions = (offerBanks.offers as any[]).map((offer) => {
+          return {
+            name: offer.name,
+            value: offer.id
+          };
+        });
+
+        this.oldUserNewLoan = true;
+        this.loanFormGroup = this.fb.group({
+          outstandingDebt: ['', Validators.required],
+          remainingYears: ['', [Validators.required, Validators.max(100)]],
+          loanType: ['', Validators.required]
+        });
+        this.newClient = this.responseStatus.newClient;
+        this.isLoading = false;
+      },
+      (error) => {
+        this.showGenericDialog();
+      }
+    );
+  }
+
+  get manualPropertyValue(): number {
+    const apartmentValue =
+      typeof this.manualPropertyValueFormGroup?.get('manualPropertyValue')
+        ?.value === 'string'
+        ? this.manualPropertyValueFormGroup
+            .get('manualPropertyValue')
+            ?.value.replace(/\s/g, '')
+        : this.manualPropertyValueFormGroup?.get('manualPropertyValue')?.value;
+
+    return apartmentValue;
+  }
+
+  get clientUpdateInfo(): ClientUpdateInfo {
+    const addressDto = new AddressCreationDto();
+    const clientDto = new ClientUpdateInfo();
+
+    addressDto.apartmentSize = this.userFormGroup?.get('apartmentSize')?.value;
+    addressDto.zip = this.userFormGroup?.get('zip')?.value;
+    addressDto.street = this.userFormGroup?.get('address')?.value;
+    clientDto.address = addressDto;
+    clientDto.email = this.emailFormGroup?.get('email')?.value;
+    clientDto.income =
+      typeof this.userFormGroup?.get('income')?.value === 'string'
+        ? this.userFormGroup.get('income')?.value.replace(/\s/g, '')
+        : this.userFormGroup?.get('income')?.value;
+
+    clientDto.memberships = this.memberships.map((membership) => {
+      return membership.name;
+    });
+
+    return clientDto;
+  }
+
+  get fixedBankLoanInfo(): SignicatLoanInfoDto | null {
+    const signicatLoanInfoDto = new SignicatLoanInfoDto();
+    if (this.loanId === null) {
+      this.showGenericDialog();
+      return null;
+    }
+    const remainingYears = this.loanFormGroup?.get('remainingYears')?.value;
+    signicatLoanInfoDto.id = this.loanId;
+    signicatLoanInfoDto.remainingYears =
+      remainingYears != null && remainingYears !== '0' ? remainingYears : 20;
+
+    signicatLoanInfoDto.productId = String(
+      this.loanFormGroup?.get('loanType')?.value.value
+    );
+
+    signicatLoanInfoDto.outstandingDebt =
+      typeof this.loanFormGroup?.get('outstandingDebt')?.value === 'string'
+        ? this.loanFormGroup?.get('outstandingDebt')?.value.replace(/\s/g, '')
+        : this.loanFormGroup?.get('outstandingDebt')?.value;
+    // default value is
+    signicatLoanInfoDto.loanSubType = 'AMORTISING_LOAN';
+    signicatLoanInfoDto.loanType = 'DOWNPAYMENT_REGULAR_LOAN';
+    return signicatLoanInfoDto;
+  }
+
+  get nonFixedBankLoanInfo(): SignicatLoanInfoDto | null {
+    if (this.loanId === null && this.newClient === false) {
+      this.showGenericDialog();
+      return null;
+    }
+    const signicatLoanInfoDto = new SignicatLoanInfoDto();
+    if (this.loanId) {
+      signicatLoanInfoDto.id = this.loanId;
+    }
+    const remainingYears = this.loanFormGroup?.get('remainingYears')?.value;
+    signicatLoanInfoDto.remainingYears =
+      remainingYears != null && remainingYears !== '0' ? remainingYears : 20;
+
+    signicatLoanInfoDto.loanType = String(
+      this.loanFormGroup?.get('loanTypeOption')?.value.value
+    );
+
+    if (signicatLoanInfoDto.loanType === 'DOWNPAYMENT_REGULAR_LOAN') {
+      signicatLoanInfoDto.loanSubType = 'AMORTISING_LOAN';
+    }
+
+    if (signicatLoanInfoDto.loanType === 'CREDIT_LINE') {
+      signicatLoanInfoDto.loanSubType = 'SERIES_LOAN';
+    }
+
+    signicatLoanInfoDto.fee = this.loanFormGroup
+      ?.get('fee')
+      ?.value.replace(/\s/g, '');
+
+    let rateString = this.loanFormGroup?.get('interestRate')?.value as string;
+
+    if (rateString === null || rateString === undefined) {
+      this.showGenericDialog();
+      return null;
+    }
+
+    if (typeof rateString === 'string') {
+      rateString = rateString.replace(',', '.');
+    }
+
+    signicatLoanInfoDto.nominalInterestRate = Number(
+      parseFloat(rateString).toFixed(3)
+    );
+
+    signicatLoanInfoDto.outstandingDebt =
+      typeof this.loanFormGroup?.get('outstandingDebt')?.value === 'string'
+        ? this.loanFormGroup?.get('outstandingDebt')?.value.replace(/\s/g, '')
+        : this.loanFormGroup?.get('outstandingDebt')?.value;
+    // default value is
+    signicatLoanInfoDto.loanSubType = 'AMORTISING_LOAN';
+    return signicatLoanInfoDto;
+  }
+
+  updateStepperIndex(index: number): void {
+    if (index !== this.stepper.selectedIndex) {
+      this.stepper.selectedIndex = index;
+      this.currentStepperValue = index;
+    }
+  }
+
+  public isInvalid(formGroup: FormGroup, valueName: string): boolean {
+    this.emailFormGroup?.get('email')?.updateValueAndValidity();
+
+    return (
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      formGroup.get(valueName)!.hasError('pattern') &&
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      formGroup.get(valueName)!.dirty
+    );
+  }
+
+  public openInfoDialog(message: any): void {
+    this.dialog.open(GenericInfoDialogComponent, {
+      data: message
+    });
+  }
+
+  public openTermsDialog(): void {
+    this.dialog.open(LoginTermsDialogV2Component);
+  }
+
+  public openTermsInfoDialog(): void {
+    const message = '';
+    this.dialog.open(GenericInfoDialogComponent, {
+      data: message
+    });
+  }
+
+  public resetForms(): void {
+    this.loanFormGroup?.reset();
+    this.userFormGroup?.reset();
+    this.membershipFormGroup?.reset();
+    this.stepper.selectedIndex = 0;
+    this.currentStepperValue = 0;
+  }
+
+  public showGenericDialog(error?: any): void {
+    const dialogData: ErrorDialogData = {
+      header: 'Ops, noe gikk visst galt',
+      confirmText: 'Prøv igjen',
+      cancelText: 'Avbryt',
+      error: error,
+      onConfirm: () => {
+        this.router.navigate(['/' + ROUTES_MAP.bankSelect]);
+      },
+      onClose: () => {
+        this.router.navigate(['/']);
+      }
+    };
+    this.dialog.open(GenericErrorDialogComponent, {
+      data: dialogData
+    });
+  }
+
+  matSelectLoanTypeCompare(o1: any, o2: any): boolean {
+    if (o1.name === o2.name && o1.value === o2.value) return true;
+    else return false;
   }
 
   public isErrorState(control: AbstractControl | null): boolean {
@@ -243,9 +811,6 @@ export class BankIdLoginComponent implements OnInit {
   }
 
   private filter(value: any): void {
-    const filterValue = value.label
-      ? value.label.toLowerCase()
-      : value.toLowerCase();
     this.allMemberships = this.clearDuplicates(
       this.allMemberships,
       this.memberships
@@ -281,348 +846,31 @@ export class BankIdLoginComponent implements OnInit {
     return array;
   }
 
-  initMemberships(userInfo: ConfirmationGetDto): void {
-    this.allMemberships = userInfo.availableMemberships;
-
-    this.filteredMemberships = this.membershipCtrl.valueChanges.pipe(
-      startWith(null),
-      map((membership: string | null) =>
-        membership ? this.filter(membership) : this.allMemberships.slice()
-      )
-    );
-  }
-
-  public offerSelected(event: any): void {
-    this.selectedOffer = event;
-    console.log(this.selectedOffer);
-  }
-
-  initNewUserForms(): void {
-    this.manualPropertyValueFormGroup = this.fb.group({
-      manualPropertyValue: ['', Validators.compose([Validators.required])]
+  private scrollToTop(): void {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
     });
-    this.emailFormGroup = this.fb.group({
-      email: [
-        '',
-        Validators.compose([
-          Validators.required,
-          Validators.pattern(VALIDATION_PATTERN.email)
-        ])
-      ]
-    });
-    this.userFormGroup = this.fb.group({
-      address: ['', Validators.required],
-      zip: [
-        '',
-        Validators.compose([
-          Validators.required,
-          Validators.pattern(VALIDATION_PATTERN.zip)
-        ])
-      ],
-      apartmentSize: [
-        '',
-        [Validators.required, Validators.min(5), Validators.max(999)]
-      ],
-      income: ['', Validators.required]
-    });
-
-    this.loanFormGroup = this.fb.group({
-      outstandingDebt: ['', Validators.required],
-      remainingYears: ['', [Validators.required, Validators.max(100)]],
-      loanType: ['', Validators.required]
-    });
-
-    this.membershipFormGroup = this.fb.group({
-      membership: []
-    });
-  }
-
-  private initLoansForm(loanInfo): void {
-    this.isLoading = true;
-    if (loanInfo.newLoan === false) {
-      forkJoin(
-        this.loanService.getClientInfo(),
-        this.loanService.getOffersBanks()
-      ).subscribe(([clientInfo, offerBanks]) => {
-        const outstandingDebt = String(clientInfo.outstandingDebt);
-        this.loanFormGroup = this.fb.group({
-          outstandingDebt: [outstandingDebt, Validators.required],
-          remainingYears: [
-            clientInfo.remainingYears,
-            [Validators.required, Validators.max(100)]
-          ],
-          loanType: [clientInfo.loanType, Validators.required]
-        });
-
-        this.selectOptions = (offerBanks.offers as any[]).map((offer) => {
-          return {
-            name: offer.name,
-            value: offer.id
-          };
-        });
-
-        const selectedOption = this.selectOptions.filter((item) => {
-          item.id = clientInfo.loanType;
-        });
-        selectedOption &&
-          this.loanFormGroup.get('loanType')?.setValue(selectedOption);
-
-        this.newClient = false;
-      });
-      this.loanService.getClientInfo().subscribe((response) => {
-        const outstandingDebt = String(response.outstandingDebt);
-        this.loanFormGroup = this.fb.group({
-          outstandingDebt: [outstandingDebt, Validators.required],
-          remainingYears: [
-            response.remainingYears,
-            [Validators.required, Validators.max(100)]
-          ],
-          loanType: [response.loanType, Validators.required]
-        });
-        this.newClient = false;
-      });
-    } else {
-      this.loanFormGroup = this.fb.group({
-        outstandingDebt: ['', Validators.required],
-        remainingYears: ['', [Validators.required, Validators.max(100)]],
-        loanType: ['', Validators.required]
-      });
-      this.newClient = false;
-    }
-
-    this.isLoading = true;
-    this.loanService.getOffersBanks().subscribe((offerBanks) => {
-      this.selectOptions = (offerBanks.offers as any[]).map((offer) => {
-        return {
-          name: offer.name,
-          value: offer.id
-        };
-      });
-
-      this.isLoading = false;
-    });
-  }
-
-  get manualPropertyValue(): number {
-    const addressDto = new AddressCreationDto();
-
-    const clientDto = new ClientUpdateInfo();
-    clientDto.address = new AddressCreationDto();
-
-    const apartmentValue =
-      typeof this.manualPropertyValueFormGroup.get('manualPropertyValue')
-        ?.value === 'string'
-        ? this.manualPropertyValueFormGroup
-            .get('manualPropertyValue')
-            ?.value.replace(/\s/g, '')
-        : this.manualPropertyValueFormGroup.get('manualPropertyValue')?.value;
-
-    return apartmentValue;
-  }
-
-  public doneClicked(): void {
-    const loanUpdateInfoDto = this.loanUpdateInfoDto;
-    const clientDto = this.clientUpdateInfo;
-
-    if (this.showManualInputForm) {
-      clientDto.address.apartmentValue = this.manualPropertyValue;
-    }
-
-    this.isLoading = true;
-    concat(
-      this.loanService.updateClientInfo(clientDto),
-      this.loanService.updateLoanUserInfo(loanUpdateInfoDto)
-    )
-      .pipe(toArray())
-      .subscribe(
-        (results) => {
-          console.log('clientInfoResponse & loanInfoResponse');
-          if (this.bank !== null && this.oneTimeToken) {
-            this.bank &&
-              this.loginService.loginWithBankAndToken(
-                this.bank,
-                this.oneTimeToken
-              );
-          } else {
-            // handle state as error
-
-            const dialogData: ErrorDialogData = {
-              header: 'Ops, noe gikk visst galt',
-              confirmText: 'Prøv igjen',
-              cancelText: 'Avbryt',
-              onConfirm: () => {
-                this.router.navigate(['/' + ROUTES_MAP.bankSelect]);
-              },
-              onClose: () => {
-                this.router.navigate(['/'], { replaceUrl: true });
-              }
-            };
-            this.dialog.open(GenericErrorDialogComponent, {
-              data: dialogData
-            });
-            this.isLoading = false;
-          }
-        },
-        (error) => {
-          console.log(error);
-
-          if (error.errorType === ApiError.virdiSerachNotFound) {
-            const dialogData = {
-              header: 'Ops, noe gikk visst galt',
-              confirmText: 'Prøv igjen',
-              cancelText: 'Avbryt',
-
-              onConfirm: () => {
-                console.log('ITS HAPPENING BUNKER');
-                this.loanFormGroup.reset();
-                this.userFormGroup.reset();
-                this.membershipFormGroup.reset();
-                this.membershipFormGroup.reset();
-                this.stepper.selectedIndex = 0;
-                this.currentStepperValue = 0;
-              }
-            };
-          }
-          const dialogData = {
-            header: 'Ops, noe gikk visst galt',
-            confirmText: 'Prøv igjen',
-            cancelText: 'Avbryt',
-            onConfirm: () => {
-              console.log('ITS HAPPENING BUNKER');
-              this.loanFormGroup.reset();
-              this.userFormGroup.reset();
-              this.membershipFormGroup.reset();
-              this.membershipFormGroup.reset();
-              this.stepper.selectedIndex = 0;
-              this.currentStepperValue = 0;
-            }
-          };
-
-          this.dialog.open(GenericErrorDialogComponent, {
-            data: dialogData
-          });
-        }
-      );
-  }
-
-  get clientUpdateInfo(): ClientUpdateInfo {
-    const addressDto = new AddressCreationDto();
-    const clientDto = new ClientUpdateInfo();
-
-    addressDto.apartmentSize = this.userFormGroup.get('apartmentSize')?.value;
-    addressDto.zip = this.userFormGroup.get('zip')?.value;
-    addressDto.street = this.userFormGroup.get('address')?.value;
-
-    clientDto.address = addressDto;
-    clientDto.email = this.userFormGroup.get('email')?.value;
-    clientDto.income =
-      typeof this.userFormGroup.get('income')?.value === 'string'
-        ? this.userFormGroup.get('income')?.value.replace(/\s/g, '')
-        : this.userFormGroup.get('income')?.value;
-    return clientDto;
-  }
-
-  get loanUpdateInfoDto(): LoanUpdateInfoDto {
-    const loanUpdateInfoDto = new LoanUpdateInfoDto();
-    loanUpdateInfoDto.remainingYears = this.loanFormGroup.get(
-      'remainingYears'
-    )?.value;
-    loanUpdateInfoDto.productId = String(
-      this.loanFormGroup.get('loanType')?.value
-    );
-
-    (loanUpdateInfoDto.outstandingDebt =
-      typeof this.loanFormGroup.get('outstandingDebt')?.value === 'string'
-        ? this.loanFormGroup.get('outstandingDebt')?.value.replace(/\s/g, '')
-        : this.loanFormGroup.get('outstandingDebt')?.value),
-      // default value is
-      (loanUpdateInfoDto.loanSubType = 'AMORTISING_LOAN');
-    return loanUpdateInfoDto;
-  }
-
-  updateStepperIndex(index: number): void {
-    console.log('updateStepperIndex');
-    if (index !== this.stepper.selectedIndex) {
-      this.stepper.selectedIndex = index;
-      this.currentStepperValue = index;
-    }
-  }
-
-  private handlePublic() {
-    /* this.emailFormGroup
-      .get('email')
-      ?.valueChanges.pipe(
-        tap(() => {
-          this.emailFormGroup.get('email')?.setErrors(null);
-        }),
-        debounceTime(1000),
-        switchMap((value) => {
-          return of(this.isInvalid(this.emailFormGroup, 'email'));
-        }),
-        tap(() => {
-          console.log('tapped');
-          this.emailFormGroup.get('email')?.updateValueAndValidity();
-        })
-      )
-      .subscribe((state) => {
-        console.log('loggs');
-        console.log(state);
-
-         state
-          ? this.emailFormGroup.get('email')?.setErrors(null)
-          : this.emailFormGroup.get('email')?.setErrors({ incorrect: true });
-      }); */
-  }
-
-  public isInvalid(formGroup: FormGroup, valueName: string): boolean {
-    console.log('formGroup.get(valueName)');
-    console.log(formGroup.get(valueName));
-    console.log('error');
-
-    this.emailFormGroup.get('email')?.updateValueAndValidity();
-    console.log(formGroup.get(valueName)?.invalid);
-    console.log(formGroup.get(valueName)?.invalid);
-
-    console.log(this.emailFormGroup.get('email')?.invalid);
-    return (
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      formGroup.get(valueName)!.hasError('pattern') &&
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      formGroup.get(valueName)!.dirty
-    );
   }
 
   next(): void {
+    this.scrollToTop();
     this.stepper.next();
     this.currentStepperValue = this.stepper.selectedIndex;
   }
 
   back(): void {
+    this.scrollToTop();
     this.stepper.previous();
     this.currentStepperValue = this.stepper.selectedIndex;
-  }
-
-  public goToLoansFormFromManulPropertyValue(): void {
-    this.isLoading = true;
-    this.loanService.getOffersBanks().subscribe((offerBanks) => {
-      this.selectOptions = (offerBanks.offers as any[]).map((offer) => {
-        return {
-          name: offer.name,
-          value: offer.id
-        };
-      });
-      this.isLoading = false;
-      this.stepper.next();
-      this.currentStepperValue = this.stepper.selectedIndex;
-    });
   }
 
   goToLoansForm(): void {
     this.isLoading = true;
     this.loanService.updateClientInfo(this.clientUpdateInfo).subscribe(
-      (result) => {
+      (_) => {
         this.loanService.getOffersBanks().subscribe((offerBanks) => {
-          this.selectOptions = (offerBanks.offers as any[]).map((offer) => {
+          this.productIdOptions = (offerBanks.offers as any[]).map((offer) => {
             return {
               name: offer.name,
               value: offer.id
@@ -630,84 +878,151 @@ export class BankIdLoginComponent implements OnInit {
           });
           this.isLoading = false;
           this.stepper.next();
+          this.scrollToTop();
           this.currentStepperValue = this.stepper.selectedIndex;
+        });
+
+        this.loanService.getAddresses().subscribe((res) => {
+          this.isManualPropertyValue = false;
+          const estimatedValue = res.addresses[0].estimatedPropertyValue;
+          if (estimatedValue && estimatedValue > 0) {
+            this.estimatedPropertyValueFromVirdi = estimatedValue;
+          } else {
+            this.showGenericDialog();
+            // alert(estimatedValue);
+          }
         });
       },
       (error) => {
-        console.log(error);
-
         if (
           error.errorType === ApiError.virdiSerachNotFound ||
           error.errorType === ApiError.propertyCantFindZip
         ) {
           this.isLoading = false;
-          this.dialog.open(VirdiErrorChoiceDialogComponent, {
+          this.dialog.open(VirdiManualValueDialogComponent, {
             data: {
-              address: this.clientUpdateInfo.address,
-              confirmText: 'Legg til boligverdi',
+              step: 1,
+              address: this.getFormValues().address,
               cancelText: 'Prøv ny adresse',
-              onConfirm: () => {
-                this.showManualInputForm = true;
-              },
-              onClose: () => {
-                this.resetForms();
+              confirmText: 'Legg til boligverdi',
+              finishText: 'Neste steg',
+              onConfirm: () => {},
+              onClose: () => {},
+              onSendForm: (apartmentValue: string) => {
+                // Remove the whitespace
+                const value = apartmentValue.replace(/\s/g, '');
+
+                // Send the dataForm with apartment value
+                this.manualEstimatedPropertyValueFromUser = Number(value);
+                // this.updateProperty(undefined);
+                const confDto = this.getFormValues();
+
+                this.isLoading = true;
+                this.loanService.setConfirmationData(confDto).subscribe(
+                  () => {
+                    this.loanService
+                      .getOffersBanks()
+                      .subscribe((offerBanks) => {
+                        this.productIdOptions = (offerBanks.offers as any[]).map(
+                          (offer) => {
+                            console.log(offer);
+                            return {
+                              name: offer.name,
+                              value: offer.id
+                            };
+                          }
+                        );
+                        this.isLoading = false;
+                        this.isManualPropertyValue = true;
+                        this.stepper.next();
+                        this.scrollToTop();
+                        this.currentStepperValue = this.stepper.selectedIndex;
+                      });
+
+                    // this.isLoading = false;
+                    // this.next();
+                  },
+                  (err) => {
+                    console.log(err.type);
+                  }
+                );
               }
             }
           });
         } else {
-          const dialogData: ErrorDialogData = {
-            header: 'Ops, noe gikk visst galt',
-            confirmText: 'Prøv igjen',
-            cancelText: 'Avbryt'
-          };
-
-          this.dialog.open(GenericErrorDialogComponent, {
-            data: dialogData
-          });
+          this.showGenericDialog();
         }
       }
     );
   }
 
   goToUserForm(): void {
+    this.scrollToTop();
     this.stepper.next();
     this.currentStepperValue = this.stepper.selectedIndex;
-    console.log(this.stepper.selectedIndex);
   }
 
   goToMembershipForm(): void {
+    this.scrollToTop();
     this.stepper.next();
   }
 
-  public oldUserFinished(): void {
-    const loanUpdateInfoDto = this.loanUpdateInfoDto;
-    this.loanService
-      .updateLoanUserInfo(loanUpdateInfoDto)
-      .subscribe((result) => {
-        if (this.bank !== null && this.oneTimeToken !== null) {
-          this.bank &&
-            this.loginService.loginWithBankAndToken(
-              this.bank,
-              this.oneTimeToken
-            );
-        } else {
-          // handle state as error
+  getFormValues(): ConfirmationSetDto {
+    const emailForm = this.emailFormGroup?.value;
+
+    const userForm = this.userFormGroup?.value;
+
+    const _address = {
+      apartmentSize: userForm.apartmentSize,
+      apartmentValue: this.manualEstimatedPropertyValueFromUser,
+      propertyType: null,
+      street: userForm.address,
+      zip: userForm.zip
+    };
+
+    const val = userForm.income;
+    const incomeNumber = val.replace(/\s/g, '');
+
+    const confDtoWithAprtmentValue: ConfirmationSetDto = new ConfirmationSetDto();
+    confDtoWithAprtmentValue.address = _address;
+    confDtoWithAprtmentValue.email = emailForm.email;
+    confDtoWithAprtmentValue.income = incomeNumber;
+    confDtoWithAprtmentValue.memberships = [];
+
+    return confDtoWithAprtmentValue;
+  }
+
+  setManualPropertyValue(): void {
+    this.dialog.open(VirdiManualValueDialogComponent, {
+      data: {
+        step: 2,
+        confirmText: 'Legg til boligverdi',
+        cancelText: 'Lukk',
+        finishText: 'Neste steg',
+        onConfirm: () => {},
+        onClose: () => {},
+        onSendForm: (apartmentValue: string) => {
+          // Remove the whitespace
+          const value = apartmentValue.replace(/\s/g, '');
+
+          // Send the dataForm with apartment value
+          this.manualEstimatedPropertyValueFromUser = Number(value);
+          // this.updateProperty(undefined);
+          const confDto = this.getFormValues();
+
+          this.isLoading = true;
+          this.loanService.setConfirmationData(confDto).subscribe(
+            () => {
+              this.isLoading = false;
+              this.isManualPropertyValue = true;
+              this.next();
+            },
+            (err) => {
+              console.log(err.type);
+            }
+          );
         }
-      });
-  }
-
-  public openInfoDialog(message: any): void {
-    this.dialog.open(GenericInfoDialogComponent, {
-      data: message
+      }
     });
-  }
-
-  public resetForms(): void {
-    this.loanFormGroup.reset();
-    this.userFormGroup.reset();
-    this.membershipFormGroup.reset();
-    this.membershipFormGroup.reset();
-    this.stepper.selectedIndex = 0;
-    this.currentStepperValue = 0;
   }
 }

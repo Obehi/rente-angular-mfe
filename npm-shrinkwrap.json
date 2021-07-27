@@ -2761,6 +2761,21 @@
         }
       }
     },
+    "angular-popper": {
+      "version": "2.0.1",
+      "resolved": "https://registry.npmjs.org/angular-popper/-/angular-popper-2.0.1.tgz",
+      "integrity": "sha512-6eWT+xQ486tbqEsiqytOJDFA2IntifzbdPo4z7QzdmZ7ySrG37eOZipDRKSJwI6S/NwLpwmnfDID4guecukZZg==",
+      "requires": {
+        "tslib": "^1.9.0"
+      },
+      "dependencies": {
+        "tslib": {
+          "version": "1.14.1",
+          "resolved": "https://registry.npmjs.org/tslib/-/tslib-1.14.1.tgz",
+          "integrity": "sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg=="
+        }
+      }
+    },
     "ansi-colors": {
       "version": "3.2.4",
       "resolved": "https://registry.npmjs.org/ansi-colors/-/ansi-colors-3.2.4.tgz",
@@ -8981,14 +8996,6 @@
         }
       }
     },
-    "ngx-videogular": {
-      "version": "10.1.0-0",
-      "resolved": "https://registry.npmjs.org/ngx-videogular/-/ngx-videogular-10.1.0-0.tgz",
-      "integrity": "sha512-DqXSIaDLsSZwflo+KCbxH2WgSiBqfq6fk2PGD9CFxpanXkvV7H8O7xyutxeEoHktWo3eET7x5F60U3k/8mIeMw==",
-      "requires": {
-        "tslib": "^2.0.0"
-      }
-    },
     "nice-try": {
       "version": "1.0.5",
       "resolved": "https://registry.npmjs.org/nice-try/-/nice-try-1.0.5.tgz",
@@ -10004,6 +10011,11 @@
         "require-promise": "1.0.1",
         "rimraf": "^3.0.2"
       }
+    },
+    "popper.js": {
+      "version": "1.16.1",
+      "resolved": "https://registry.npmjs.org/popper.js/-/popper.js-1.16.1.tgz",
+      "integrity": "sha512-Wb4p1J4zyFTbM+u6WuO4XstYx4Ky9Cewe4DWrel7B0w6VVICvPwdOpotjzcf6eD8TsckVnIMNONQyPIUFOUbCQ=="
     },
     "portfinder": {
       "version": "1.0.28",

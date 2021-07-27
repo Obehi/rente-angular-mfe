@@ -2,166 +2,224 @@
   {{ index }}
 </div>
 
-<div *ngIf="isSweden" class="nr" [ngClass]="{'threeMonths': offerType == 'threeMonths', 'oneYear': offerType == 'oneYear', 'all': offerType == 'all'}">
+<div
+  *ngIf="isSweden"
+  class="nr"
+  [ngClass]="{
+    threeMonths: offerType == 'threeMonths',
+    oneYear: offerType == 'oneYear',
+    all: offerType == 'all'
+  }"
+>
   {{ index }}
 </div>
 
 <div class="the-offer-header">
-    <div
-      class="logo"
-      [ngStyle]="{
-        'background-image': 'url(' + banksMap[offer.bankInfo.bank].img + ')'
-      }"
-    >
+  <div
+    class="logo"
+    [ngStyle]="{
+      'background-image': 'url(' + banksMap[offer.bankInfo.bank].img + ')'
+    }"
+  ></div>
+  <div class="offer-product">
+    <a class="clickable" target="_blank" (click)="clickHeaderBankUrl(offer)">{{
+      offer.bankInfo.name
+    }}</a>
+    <h3 (click)="openOfferDialog(offer)" class="clickable">
+      {{ offer.productName }}
+    </h3>
+  </div>
+</div>
+<div class="the-offer-body">
+  <div i18n="“title|offer-card-big@@offer.card.big.title”" class="small-header">
+    <p>Rentebesparelse</p>
+  </div>
+  <div class="split">
+    <div class="offer-inner save">
+      <h2 *ngIf="offer.totalSavings > 0; else noTotalSavings">
+        {{ offer.totalSavings | abs | number }},-
+      </h2>
+      <ng-template #noTotalSavings>
+        <h2>0,-</h2>
+      </ng-template>
+      <p i18n="“time|offer-card-big@@offer.card.big.time”">
+        over lånets løpetid
+      </p>
     </div>
-    <div class="offer-product">
-
-      <a class="clickable" target="_blank"
-      (click)="openBankUrl(offer)"
-        >{{ offer.bankInfo.name }}</a
-      >
-      <h3 (click)="openOfferDialog(offer)" class="clickable">
-        {{ offer.productName }}
-      </h3>
+    <div class="offer-inner save">
+      <h2 *ngIf="offer.savingsFirstYear > 0; else noTotalSavings">
+        {{ offer.savingsFirstYear | abs | number }},-
+      </h2>
+      <ng-template #noSavingsFirstYear>
+        <h2>0,-</h2>
+      </ng-template>
+      <p i18n="“first-year|offer-card-big@@offer.card.big.firstYear”">
+        første år
+      </p>
     </div>
   </div>
-  <div class="the-offer-body">
-    <div i18n=“title|offer-card-big@@offer.card.big.title” class="small-header"><p>Rentebesparelse</p></div>
-    <div class="split">
-      <div class="offer-inner save">
-        <h2 *ngIf="offer.totalSavings > 0; else noTotalSavings">
-          {{ offer.totalSavings | abs | number }},-
-        </h2>
-        <ng-template #noTotalSavings>
-          <h2>0,-</h2>
-        </ng-template>
-        <p i18n=“time|offer-card-big@@offer.card.big.time”>over lånets løpetid</p>
+  <div class="split">
+    <div class="offer-info">
+      <div class="small-header">
+        <p i18n="“efficient|offer-card-big@@offer.card.big.efficient”">
+          Effektiv rente
+        </p>
       </div>
-      <div class="offer-inner save">
-        <h2 *ngIf="offer.savingsFirstYear > 0; else noTotalSavings">
-          {{ offer.savingsFirstYear | abs | number }},-
-        </h2>
-        <ng-template #noSavingsFirstYear>
-          <h2>0,-</h2>
-        </ng-template>
-        <p i18n=“first-year|offer-card-big@@offer.card.big.firstYear”>første år</p>
+      <div class="offer-inner">
+        <h2>{{ offer.effectiveRate | number: '1.2-2' }} %</h2>
       </div>
     </div>
-    <div class="split">
-      <div class="offer-info">
-        <div class="small-header">
-          <p i18n=“efficient|offer-card-big@@offer.card.big.efficient”>Effektiv rente</p>
-        </div>
-        <div class="offer-inner">
-          <h2>{{ offer.effectiveRate | number: "1.2-2" }} %</h2>
-        </div>
+    <div class="offer-info">
+      <div class="small-header">
+        <p i18n="“demand-change|offer-card-big@@offer.card.big.demandChange”">
+          Krever bytte av nettbank
+        </p>
       </div>
-      <div class="offer-info">
-        <div class="small-header">
-          <p i18n=“demand-change|offer-card-big@@offer.card.big.demandChange”>Krever bytte av nettbank</p>
-        </div>
-        <div class="offer-inner">
-          <div>
-            <h2 i18n=“no-yes|offer-card-big@@offer.card.big.noYes”>
-              {{ offer.requiredProductPackage == null ? customLangTextSerice.get18nFixForNo()  : "Ja" }}
-            </h2>
-        </div>
+      <div class="offer-inner">
+        <div>
+          <h2 i18n="“no-yes|offer-card-big@@offer.card.big.noYes”">
+            {{
+              offer.requiredProductPackage == null
+                ? customLangTextSerice.get18nFixForNo()
+                : 'Ja'
+            }}
+          </h2>
         </div>
       </div>
     </div>
+  </div>
 
-    <div class="split">
-      <div class="offer-info">
-        <div class="small-header">
-          <p i18n=“customer-satisfaction|offer-card-big@@offer.card.big.customerSatisfaction”>Kundetilfredshet</p>
-          <span
-            (click)="
-              openInfoDialog()
-            "
-            class="clickable bank-rating-info-button">
-
-            <mat-icon class="material-icons secondary">help</mat-icon>
-          </span>
-
-
-        </div>
-        <div class="offer-inner center-align">
-          <img class="offer-score" src="../../../../assets/icons/score-{{offer.bankInfo.score }}.svg"/>
-        </div>
+  <div class="split">
+    <div class="offer-info">
+      <div class="small-header">
+        <p
+          i18n="
+            “customer-satisfaction|offer-card-big@@offer.card.big.customerSatisfaction”"
+        >
+          Kundetilfredshet
+        </p>
+        <span
+          (click)="openInfoDialog()"
+          class="clickable bank-rating-info-button"
+        >
+          <mat-icon class="material-icons secondary">help</mat-icon>
+        </span>
       </div>
-      <div class="offer-info bgHack">
-        <div class="small-header">
-          <p i18n=“time-apply|offer-card-big@@offer.card.big.timeApply”>Hvor lang tid tar det å søke</p>
-        </div>
-        <div class="offer-inner time">
-          <div class="center">
-            <img src="../../../../assets/icons/clock.svg"/>
-            <h3 i18n=“unknown|offer-card-big@@offer.card.big.unknown”>
-              {{offer.bankInfo.applicationTime  === null ? customLangTextSerice.get18nFixForUnknown() : offer.bankInfo.applicationTime + " min"}}
-            </h3>
-        </div>
+      <div class="offer-inner center-align">
+        <img
+          class="offer-score"
+          src="../../../../assets/icons/score-{{ offer.bankInfo.score }}.svg"
+        />
+      </div>
+    </div>
+    <div class="offer-info bgHack">
+      <div class="small-header">
+        <p i18n="“time-apply|offer-card-big@@offer.card.big.timeApply”">
+          Hvor lang tid tar det å søke
+        </p>
+      </div>
+      <div class="offer-inner time">
+        <div class="center">
+          <img src="../../../../assets/icons/clock.svg" />
+          <h3 i18n="“unknown|offer-card-big@@offer.card.big.unknown”">
+            {{
+              offer.bankInfo.applicationTime === null
+                ? customLangTextSerice.get18nFixForUnknown()
+                : offer.bankInfo.applicationTime + ' min'
+            }}
+          </h3>
         </div>
       </div>
     </div>
+  </div>
 
-    <div class="small-header bottom">
+  <div class="small-header bottom">
+    <a (click)="openOfferDialog(offer)" class="clickable details">
+      <p i18n="“details|offer-card-big@@offer.card.big.details”">Detaljer</p>
+      <img
+        class="offer-score"
+        src="../../../../assets/icons/arrow-down-green.svg"
+      />
+    </a>
+  </div>
 
-      <a (click)="openOfferDialog(offer)" class="clickable details">
-        <p i18n=“details|offer-card-big@@offer.card.big.details”>Detaljer</p>
-        <img class="offer-score" src="../../../../assets/icons/arrow-down-green.svg"/>
-      </a>
-    </div>
-
-    <div class="the-offer-footer">
-
-    <div [ngClass]="{'double': isNordea === false, 'triple': isNordea === true }" class="buttons">
-
+  <div class="the-offer-footer">
+    <div
+      [ngClass]="{
+        double: isNordea === false,
+        triple: isNordea === true,
+        single: isSingleButtonLayout === true
+      }"
+      class="buttons"
+    >
       <div class="full-width">
-
-        <rente-button i18n=“see-more|offer-card-big@@offer.card.big.seeMore”
-          child childClass="{{offer.bankInfo.name}}"
+        <rente-button
+          *ngIf="!isSingleButtonLayout"
+          i18n="“see-more|offer-card-big@@offer.card.big.seeMore”"
+          child
+          childClass="{{ offer.bankInfo.name }}"
           [disabled]="offer.bankInfo.partner == false"
           [color]="'primary-wide-hollow'"
           type="raised"
           (click)="openBankUrlByButton(offer)"
-          >Se mer på {{getbankNameOrDefault(offer)}}s hjemmeside</rente-button
+          >Se mer på {{ getbankNameOrDefault(offer, true) }}s
+          hjemmeside</rente-button
         >
-        <p i18n=“no-deal|offer-card-big@@offer.card.big.noDeal” class="small first" *ngIf=" offer.bankInfo.partner === false && isMobile === false"> (Ingen avtale med banken enda)</p>
+        <p
+          i18n="“no-deal|offer-card-big@@offer.card.big.noDeal”"
+          class="small first"
+          *ngIf="offer.bankInfo.partner === false && isMobile === false"
+        >
+          (Ingen avtale med banken enda)
+        </p>
       </div>
 
-
-      <div class="full-width">
-
-        <rente-button childClass="{{offer.bankInfo.name}}" i18n=“get-offer|offer-card-big@@offer.card.big.getOffer”
-        [disabled]="offer.bankInfo.partner == false"
-          child childClass="{{offer.bankInfo.name}}" 
-          color="primary"
+      <div [ngClass]="isSingleButtonLayout === true ? '' : 'full-width'">
+        <rente-button
+          childClass="{{ offer.bankInfo.name }}"
+          [disabled]="offer.bankInfo.partner == false"
+          child
+          childClass="{{ offer.bankInfo.name }}"
+          color="{{
+            isSingleButtonLayout === true ? 'primary-semi-wide' : 'primary'
+          }}"
           type="raised"
           (click)="openNewOfferDialog(offer)"
-          >Få tilbud fra {{getbankNameOrDefault(offer)}}!</rente-button
+          >{{ offerCardService.getOfferButtonText(offer) }}</rente-button
         >
 
-          <p class="small" *ngIf=" offer.bankInfo.partner === false" i18n=“no-deal|offer-card-big@@offer.card.big.noDeal”> (Ingen avtale med banken enda)</p>
-
+        <p
+          class="small"
+          *ngIf="offer.bankInfo.partner === false"
+          i18n="“no-deal|offer-card-big@@offer.card.big.noDeal”"
+        >
+          (Ingen avtale med banken enda)
+        </p>
       </div>
 
       <div *ngIf="isNordea === true">
         <rente-button
-        child childClass="{{this.offersInfo.offers.top5[0].bankInfo.name}}"
-        color="secondary-medium" type="raised"
-        (click)="clickNordea()">
-        Be Nordea om et bedre tilbud
-      </rente-button>
-    </div>
+          child
+          childClass="{{ this.offersInfo.offers.top5[0].bankInfo.name }}"
+          color="secondary-medium"
+          type="raised"
+          (click)="clickNordea()"
+        >
+          Be Nordea om et bedre tilbud
+        </rente-button>
+      </div>
     </div>
 
-    <p i18n=“offer-info|offer-card-big@@offer.card.big.offerInfo” class="insignificant"><span>Tilbud:
-    </span> Eff.rente {{offer.effectiveRate | number: "1.2-2"}} %,
-      Lånebeløp {{offer.outstandingDebt | number: "1.0" }},
-      {{offer.loanPeriodYears | number: "1.1-1" }} år,
-      Kostnad: {{offer.cost | number: "1.0" }},
-      Totalt: {{offer.totalCost | number: "1.0" }}
+    <p
+      i18n="“offer-info|offer-card-big@@offer.card.big.offerInfo”"
+      class="insignificant"
+    >
+      <span>Tilbud: </span> Eff.rente
+      {{ offer.effectiveRate | number: '1.2-2' }} %, Lånebeløp
+      {{ offer.outstandingDebt | number: '1.0' }},
+      {{ offer.loanPeriodYears | number: '1.1-1' }} år, Kostnad:
+      {{ offer.cost | number: '1.0' }}, Totalt:
+      {{ offer.totalCost | number: '1.0' }}
     </p>
-
-    </div>
   </div>
+</div>

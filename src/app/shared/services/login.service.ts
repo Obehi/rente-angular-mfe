@@ -55,7 +55,7 @@ export class LoginService {
     private logging: LoggingService
   ) {}
 
-  public loginWithBankAndToken(bank: BankVo, oneTimeToken: string): void {
+  public loginWithBankAndToken(): void {
     forkJoin([
       this.loansService.getLoansAndRateType(),
       this.userService.getUserInfo()

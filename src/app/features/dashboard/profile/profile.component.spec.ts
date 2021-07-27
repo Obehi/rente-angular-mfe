@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ProfileComponent } from './profile.component';
+import { BlueProfileComponent } from './blue-profile.component';
 
-describe('ProfileComponent', () => {
-  let component: ProfileComponent;
-  let fixture: ComponentFixture<ProfileComponent>;
+describe('BlueProfileComponent', () => {
+  let component: BlueProfileComponent;
+  let fixture: ComponentFixture<BlueProfileComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ProfileComponent]
+      declarations: [BlueProfileComponent]
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ProfileComponent);
+    fixture = TestBed.createComponent(BlueProfileComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

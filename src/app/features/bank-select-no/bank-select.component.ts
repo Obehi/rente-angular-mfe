@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import {
   BankVo,
   BankList,
@@ -7,10 +7,10 @@ import {
   LegacyBanks
 } from '../../shared/models/bank';
 import { Router } from '@angular/router';
-import { ROUTES_MAP } from '@config/routes-config';
+import { ROUTES_MAP, ROUTES_MAP_NO } from '@config/routes-config';
 import { EnvService } from '@services/env.service';
-import { AuthService } from '@services/remote-api/auth.service';
 import { LocalStorageService } from '@services/local-storage.service';
+
 @Component({
   selector: 'rente-bank-select-variation',
   templateUrl: './bank-select.component.html',
@@ -20,15 +20,9 @@ export class BankSelectNoComponent implements OnInit {
   searchStr: string;
   banks: BankVo[];
   allBanks: BankVo[];
-
   sparebankIsClicked = false;
 
-  constructor(
-    private router: Router,
-    private envService: EnvService,
-    private authService: AuthService,
-    private localStorageService: LocalStorageService
-  ) {}
+  constructor(private router: Router, private envService: EnvService) {}
 
   ngOnInit(): void {
     this.sortBanks();
@@ -45,13 +39,15 @@ export class BankSelectNoComponent implements OnInit {
     const dnb = 'DNB';
     const sparebank = 'SPAREBANK_1';
     const nordea = 'NORDEA';
+    const sbanken = 'SBANKEN';
     const specialCaseBanks = {};
 
     sortedBanksAlphabetic.forEach((bank, index) => {
       if (
         bank.name === dnb ||
         bank.name === sparebank ||
-        bank.name === nordea
+        bank.name === nordea ||
+        bank.name === sbanken
       ) {
         specialCaseBanks[bank.name] = bank;
         sortedBanksAlphabetic.splice(index, 1);
@@ -75,6 +71,7 @@ export class BankSelectNoComponent implements OnInit {
       specialCaseBanks[dnb],
       specialCaseBanks[nordea],
       specialCaseBanks[sparebank],
+      specialCaseBanks[sbanken],
       ...TinkBanks,
       ...nonMembershipBanks
     ];
@@ -114,7 +111,6 @@ export class BankSelectNoComponent implements OnInit {
         (bank) => bank.label.toLocaleLowerCase().indexOf(f) > -1
       );
     }
-
     this.banks = filteredBanks;
   }
 
@@ -128,21 +124,41 @@ export class BankSelectNoComponent implements OnInit {
       return;
     }
 
-    if (bank.isSigniCat) {
-      this.authService.loginBankIdStep1().subscribe((response) => {
-        // this.router.navigate([response.url]);
-        this.localStorageService.setItem('bankIdLoginBank', bank.name);
-        window.location.href = response.url;
+    if (bank.name === 'SPAREBANK_1_NORDMORE') {
+      bank.name = 'SPAREBANK_1_NORDVEST';
+    }
+
+    if (bank.isSigniCat && bank.isMissing === false) {
+      this.router.navigate(['/autentisering/' + ROUTES_MAP_NO.bankIdLogin], {
+        state: { data: { bank: bank } }
+      });
+      return;
+    }
+
+    if (
+      bank.name === 'DNB' &&
+      this.envService.environment.dnbSignicatIsOn === true
+    ) {
+      this.router.navigate(['/autentisering/' + ROUTES_MAP_NO.bankIdLogin], {
+        state: { data: { bank: bank } }
+      });
+      return;
+    }
+
+    if (this.envService.environment.sb1DisabledBanks?.includes(bank.name)) {
+      this.router.navigate([ROUTES_MAP_NO.sparebank1Error], {
+        state: { bank: bank }
       });
       return;
     }
 
     if (bank.isMissing || this.envService.isMissing(bank)) {
       this.router.navigate([ROUTES_MAP.getNotified], { state: { bank: bank } });
-    } else {
-      this.router.navigate([
-        ROUTES_MAP.auth + '/' + bank.name.toLocaleLowerCase()
-      ]);
+      return;
     }
+
+    this.router.navigate([
+      ROUTES_MAP.auth + '/' + bank.name.toLocaleLowerCase()
+    ]);
   }
 }

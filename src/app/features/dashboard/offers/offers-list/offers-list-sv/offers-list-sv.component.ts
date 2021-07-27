@@ -46,11 +46,7 @@ export class OffersListSvComponent implements OnInit {
       experimentId = 'none';
     }
 
-    console.log('experimentId');
-    console.log(experimentId);
     const variation = (window as any).google_optimize?.get(experimentId);
-    console.log('variation');
-    console.log(variation);
     return variation || 0;
   }
 

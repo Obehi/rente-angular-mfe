@@ -1,11 +1,17 @@
 $white: #fff !default;
 $black: #112639 !default;
 $blue: #112639 !default;
+$karl-blue: #004465a6 !default;
+$blue-medium: #183a63 !default;
 $green: #18bc9c !default;
 $lightgreen: #d1f2eb !default;
 $grey: #cdcdcd !default;
-$grey-light: #F4F5F6 !default;
-$grey-dark: #54606E !default;
+$grey-medium-light: #d3d3d3 !default;
+$grey-light: #f4f5f6 !default;
+$grey-dark: #54606e !default;
+$grey-light: #f4f5f6 !default;
+$grey-dark: #54606e !default;
+$grey-medium: #6c7580 !default;
 $light: #e7e9eb !default;
 $lesslight: #c3c9ce !default;
 $text-color: #636669 !default;
@@ -13,8 +19,8 @@ $warning: #ff8834 !default;
 $lightwarning: #fff4ed !default;
 $red: #f41515 !default;
 $orange: #ff5a00 !default;
-$fountainBlue: #5EB1BF !default;
-$frolly: #EF767A !default;
+$fountainBlue: #5eb1bf !default;
+$frolly: #ef767a !default;
 
 $primary: $green !default;
 $secondary: $blue !default;
@@ -28,21 +34,21 @@ $theme-colors: () !default;
 // stylelint-disable-next-line scss/dollar-variable-default
 $theme-colors: map-merge(
   (
-    "primary": $primary,
-    "secondary": $secondary,
-    "ternary-red": $frolly,
-    "ternary-blue": $fountainBlue,
-    "grey": $grey,
-    "grey-light":grey-light,
-    "grey-dark":grey-dark,
-    "orange": $orange,
-    "light": $light,
-    "dark": $dark,
-    "white": $white,
-    "black": $black,
-    "error": $error,
-    "warning": $warning,
-    "lightwarning": $lightwarning
+    'primary': $primary,
+    'secondary': $secondary,
+    'ternary-red': $frolly,
+    'ternary-blue': $fountainBlue,
+    'grey': $grey,
+    'grey-light': grey-light,
+    'grey-dark': grey-dark,
+    'orange': $orange,
+    'light': $light,
+    'dark': $dark,
+    'white': $white,
+    'black': $black,
+    'error': $error,
+    'warning': $warning,
+    'lightwarning': $lightwarning
   ),
   $theme-colors
 );
@@ -61,19 +67,18 @@ $grays: () !default;
 // stylelint-disable-next-line scss/dollar-variable-default
 $grays: map-merge(
   (
-    "100": $gray-100,
-    "200": $gray-200,
-    "300": $gray-300,
-    "400": $gray-400,
-    "500": $gray-500,
-    "600": $gray-600,
-    "700": $gray-700,
-    "800": $gray-800,
-    "900": $gray-900
+    '100': $gray-100,
+    '200': $gray-200,
+    '300': $gray-300,
+    '400': $gray-400,
+    '500': $gray-500,
+    '600': $gray-600,
+    '700': $gray-700,
+    '800': $gray-800,
+    '900': $gray-900
   ),
   $grays
 );
-
 
 $body-bg: $white !default;
 $body-color: $gray-900 !default;

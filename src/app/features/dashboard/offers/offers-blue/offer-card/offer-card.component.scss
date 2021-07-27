@@ -3,28 +3,21 @@
 .the-offer {
   margin: 40px 0px 15px 0px;
   border-radius: 15px;
+  padding: 10px;
   background: white;
   position: relative;
   &:first-of-type .split:last-of-type .offer-info:first-of-type .offer-inner {
     background-color: $lightgreen;
   }
 
-  .test-promo {
-    position: absolute;
-    top: 5px;
-    right: 5px;
-  }
-
-  .threeMonths {
-    background: #5eb1bf !important;
-  }
-
-  .oneYear {
-    background: #ef767a !important;
-  }
-
   .all {
     background: white;
+  }
+
+  .small {
+    font-size: 12px;
+    font-weight: 400;
+    color: #54606e;
   }
 
   .nr {
@@ -33,12 +26,13 @@
     background-color: white;
     border-radius: 100%;
     width: 3em;
+    min-width: 3em;
     height: 3em;
     box-shadow: 1px 1px 8px -4px;
     line-height: 3em;
     margin: auto;
+    margin-bottom: 10px;
     position: relative;
-    top: -1em;
 
     p {
       font-weight: 500;
@@ -51,35 +45,24 @@
     font-size: 11px;
   }
 
-  .time {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 50px;
-    .center {
-      img {
-        width: 40px;
-        margin-right: 10px;
-        display: inline-block;
-        vertical-align: middle;
-      }
-      h3 {
-        display: inline-block;
-        vertical-align: middle;
-      }
-    }
-  }
-
   .the-offer-header {
     display: flex;
     justify-content: space-evenly;
-    padding: 10px;
+    padding: 0 10px 10px;
     font-size: 15px;
     text-align: left;
     align-items: center;
     border-bottom: 1px solid #ececec;
     padding-top: 0px;
-    margin-top: -10px;
+    margin-top: -30px;
+    flex-direction: column;
+    padding-bottom: 20px;
+
+    .top {
+      display: flex;
+      align-items: center;
+      width: 100%;
+    }
     p {
       display: inline;
       font-size: 14px;
@@ -87,8 +70,22 @@
       margin-left: auto;
       min-width: 41px;
     }
+
+    .interest-rate {
+      background-color: $grey-dark;
+      border-radius: 16px;
+      background-color: #54606e;
+      padding: 17px;
+      color: white;
+      font-size: 14px;
+      line-height: unset;
+      min-width: 75px;
+      max-height: 50px;
+    }
+
     .logo {
       width: 3em;
+      min-width: 3em;
       height: 3em;
       font-size: 16px;
       background-position: center;
@@ -133,6 +130,7 @@
       h3 {
         font-size: 12px;
         font-weight: 100;
+        margin-right: 8px;
       }
       .mat-icon {
         font-size: 18px;
@@ -145,14 +143,57 @@
       font-size: 14px;
     }
   }
+  .top-bank-info {
+    display: flex;
+    margin-left: 57px;
+    margin-top: 7px;
+    align-self: start;
+    p {
+      display: inline-block;
+      padding: 6px 12px;
+      box-shadow: rgb(100 100 111 / 20%) 0px 7px 29px 0px;
+      border-radius: 16px;
+      font-size: 12px;
+      font-weight: 400;
+      color: $grey-dark;
+
+      &:first-of-type {
+        margin-right: 10px;
+        margin-bottom: 10px;
+      }
+    }
+  }
+
+  .special-promo {
+    background: $grey-light;
+    width: 100%;
+    margin: 20px;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    p {
+      color: $primary;
+      margin: 0 20px;
+    }
+  }
+
   .the-offer-body {
     .the-offer-body-grid {
       display: grid;
       grid-gap: 10px;
       grid-template-columns: 3fr 2fr;
 
+      .details {
+        margin-top: -15px;
+        grid-column-start: 1;
+        grid-column-end: span 2;
+      }
+
       .offer-top {
         display: flex;
+        flex-direction: column;
         justify-content: flex-end;
         grid-row: 1;
         grid-column-start: 1;
@@ -172,10 +213,10 @@
         }
 
         p.save-text {
-          margin-right: auto;
+          color: $grey-dark;
           font-weight: 400;
-          margin-left: 10px;
-          align-self: center;
+          margin-bottom: 10px;
+          font-size: 16px;
         }
       }
 
@@ -187,45 +228,114 @@
         grid-column-end: span 2;
       }
 
-      .info-table {
+      .top-details {
+        margin-top: 20px;
         display: flex;
-        justify-content: space-evenly;
-        list-style: none;
-        width: 240px;
-        padding: 0;
+        justify-content: space-around;
+        justify-items: center;
+        display: grid;
+        grid-gap: 5px;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 20px 40px;
+        align-items: center;
+        border-top: 1px solid #ececec;
+        padding-top: 20px;
 
         p {
-          font-weight: bold;
+          font-size: 14px;
         }
-      }
 
-      .property {
-        &.left {
-          grid-column: 1;
+        .top-details-top {
+          grid-row: 1;
         }
-        &.right {
-          grid-column: 2;
+
+        .top-details-bottom {
+          grid-row: 2;
+        }
+
+        .small {
+          margin-bottom: 5px;
+          position: relative;
+
+          span {
+            position: relative;
+
+            * {
+              position: absolute;
+              left: -5px;
+            }
+          }
+        }
+        .historical-rating {
+          .box {
+            font-size: 14px;
+            font-weight: 400;
+            color: $grey-dark;
+            background: #f4f5f6;
+            padding: 10px 10px;
+            border-radius: 16px;
+            display: inline-block;
+          }
+        }
+
+        .satisfaction-wrapper {
+          .bank-rating-info-button {
+            margin-top: -3px;
+            margin-left: 3px;
+          }
+          .satisfaction {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            .mat-icon {
+              display: none;
+            }
+
+            @media (min-width: 600px) {
+              grid-row: 3;
+              grid-column: 1;
+              flex-direction: row;
+              justify-content: space-between;
+              padding-top: 0;
+              border-left: unset;
+            }
+            img {
+              width: 25px;
+
+              @media (min-width: 600px) {
+                width: 30px;
+                margin-top: 0;
+                //align img to boxes above
+                margin-right: 8px;
+              }
+            }
+          }
         }
       }
 
       .offer-properties {
-        grid-row: 2;
-        display: grid;
-        grid-gap: 0px;
-        grid-column-gap: 10px;
-        grid-row-gap: 5px;
-        grid-template-columns: 3fr 2fr;
+        display: flex;
+        flex-direction: column;
         grid-column-start: 1;
         grid-column-end: span 2;
-        border-top: 1px solid #ececec;
-
+        padding: 10px;
         .item {
           display: flex;
           flex-direction: row;
           text-align: left;
           justify-content: space-between;
           align-items: center;
-
+          margin-bottom: 7px;
+          color: $grey-dark;
+          p {
+            color: $grey-dark;
+            font-weight: 14px;
+          }
+          .bar {
+            width: 50%;
+            height: 10px;
+          }
           &.first {
             padding-top: 10px;
             @media (min-width: 600px) {
@@ -242,34 +352,28 @@
             grid-column: 2;
           }
 
+          &.middle {
+            margin-top: 20px;
+            grid-column-start: 1;
+            grid-column-end: span 2;
+          }
+
           &.satisfaction-wrapper {
             grid-row: 1;
             grid-row-start: 1;
             grid-row-end: span 3;
             padding-top: 8px;
-            z-index: 10;
+            z-index: 8;
             margin-right: 10px;
             display: flex;
             align-items: flex-start;
             margin-top: 7px;
             justify-content: flex-end;
 
-            .bank-rating-info-button {
-              margin-top: -3px;
-              margin-left: 3px;
-            }
             .satisfaction {
               display: flex;
               flex-direction: column;
               align-items: center;
-
-              .bank-rating-text {
-                display: flex;
-                align-items: center;
-                span {
-                  margin-top: 4px;
-                }
-              }
 
               @media (min-width: 600px) {
                 grid-row: 3;
@@ -303,57 +407,15 @@
               position: relative;
               top: -20px;
             }
-            .mat-expansion-panel {
-              border-radius: 0px;
-              box-shadow: unset;
-              width: 100%;
-              background: transparent !important;
-              z-index: 5;
-              margin-bottom: 10px;
-
-              .mat-expansion-panel-header {
-                font-size: 12px;
-                margin-left: 0px;
-                margin-top: 13px;
-                width: 70px;
-                height: 20px;
-                padding: 0px;
-                background: transparent;
-
-                .mat-expansion-indicator {
-                  display: none;
-                }
-
-                //selector doesnt work
-                .mat-expansion-indicator::after {
-                  //color: red !important;
-                }
-              }
-
-              .mat-expansion-panel-content {
-                display: none;
-              }
-
-              ::ng-deep .mat-expansion-panel-body {
-                margin: 0 !important;
-                padding: 0 !important;
-              }
-
-              .mat-expansion-panel-body {
-                padding: 0 !important;
-                padding-top: 0 !important;
-                padding-bottom: 0 !important;
-              }
-            }
           }
 
           .box {
-            padding: 5px;
-            border-radius: 5px;
+            padding: 5px 10px;
+            border-radius: 16px;
             background: #ececec;
             min-width: 45px;
             text-align: center;
-            z-index: 10;
+            z-index: 8;
           }
         }
         .right {
@@ -365,12 +427,12 @@
         }
 
         p {
-          font-size: 12px;
+          font-size: 14px;
           font-weight: 400;
         }
 
         .details {
-          font-size: 12px;
+          font-size: 14px;
           font-weight: bold;
         }
       }
@@ -486,13 +548,20 @@
         padding: 15px 10px;
       }
       .save {
-        padding-top: 0px;
-        padding-bottom: 0px;
+        padding: 0;
         h2 {
-          font-size: 14px;
+          font-size: 16px;
+          color: $primary;
+          background: $grey-light;
+          padding: 15px 20px;
+          border-radius: 16px;
+          display: inline-block;
         }
         p {
-          font-size: 12px;
+          font-size: 14px;
+          font-weight: 400;
+          color: $grey-dark;
+          margin-bottom: 5px;
         }
         h3 {
           color: $primary;
@@ -526,4 +595,102 @@
       text-align: center;
     }
   }
+}
+
+.mat-expansion-panel {
+  border-radius: 0px;
+  box-shadow: unset;
+  width: 100%;
+  background: transparent !important;
+  z-index: 5;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  .mat-expansion-panel-header {
+    color: $grey-dark;
+    font-size: 12px;
+    margin-left: 0px;
+    margin-top: 13px;
+    width: 70px;
+    height: 20px;
+    padding: 0px;
+    background: transparent;
+    align-self: center;
+    width: 60px;
+    .mat-expansion-indicator {
+      display: none;
+    }
+  }
+
+  .mat-expansion-panel-content {
+    display: none;
+  }
+
+  ::ng-deep .mat-expansion-panel-body {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .mat-expansion-panel-body {
+    padding: 0 !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+}
+
+.star {
+  position: relative;
+  display: inline-block;
+  font-size: 1rem;
+  color: $grey-dark;
+}
+
+.full {
+  color: $primary;
+}
+
+.half {
+  position: absolute;
+  display: inline-block;
+  overflow: hidden;
+  color: $primary;
+}
+
+.bank-rating-info-button {
+  margin-left: 3px;
+
+  .mat-icon {
+    font-size: 18px;
+  }
+}
+
+.box {
+  padding: 5px 10px;
+  border-radius: 16px;
+  background: #ececec;
+  min-width: 45px;
+  text-align: center;
+  z-index: 10;
+}
+
+.na {
+  font-size: 12px;
+  font-weight: 400;
+  color: #54606e;
+}
+
+.threeMonths {
+  background: #5eb1bf !important;
+}
+
+.oneYear {
+  background: #ef767a !important;
+}
+
+.all {
+  background: white;
+}
+
+::ng-deep .mat-expansion-panel-header:hover {
+  background: unset !important;
 }

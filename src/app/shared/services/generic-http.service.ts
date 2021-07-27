@@ -100,9 +100,6 @@ export class GenericHttpService {
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   public postWithParams(path: string, searchParams: any): Observable<any> {
     const fullPath = `${this.apiUrl}${path}`;
-
-    console.log('searchParams');
-    console.log(searchParams);
     const params: HttpParams = new HttpParams({ fromObject: searchParams });
 
     const httpOptions = {
@@ -157,7 +154,6 @@ export class GenericHttpService {
   }
 
   private handleError(responseError: HttpResponse<any> | any): Observable<any> {
-    console.log(responseError);
     if (responseError.status === 401) {
       // TODO: Show unauthorized error
       console.log('Not logged in!');

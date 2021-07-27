@@ -144,3 +144,17 @@ h4 {
 .gap {
   flex: 1 0 40px;
 }
+
+.imb {
+  @media (max-width: 600px) {
+    margin-bottom: 20px;
+  }
+  margin-bottom: 80px;
+}
+
+h1 {
+  @media (max-width: 600px) {
+    margin-bottom: 20px;
+  }
+  margin-bottom: 40px;
+}

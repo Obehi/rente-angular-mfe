@@ -1,8 +1,7 @@
 import { LoansService } from '@services/remote-api/loans.service';
-import { OfferInfo, Offers } from './../../../../shared/models/offers';
+import { Offers } from './../../../../shared/models/offers';
 import { Component, OnInit, HostListener, OnDestroy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { DialogInfoComponent } from './../dialog-info/dialog-info.component';
 import { Loans } from '@shared/models/loans';
 import { BANKS_DATA } from '@config/banks-config';
 import { Router } from '@angular/router';
@@ -12,27 +11,18 @@ import {
   AGGREGATED_LOAN_TYPE
 } from '../../../../config/loan-state';
 import { LocalStorageService } from '@services/local-storage.service';
-import { ChangeBankDialogLangGenericComponent } from '../../../../local-components/components-output';
-import { ChangeBankLocationComponent } from '@features/dashboard/offers/change-bank-dialog/change-bank-location/change-bank-location.component';
 
 import { AntiChurnDialogComponent } from '@features/dashboard/offers/anti-churn-dialog/anti-churn-dialog.component';
 import { AntiChurnErrorDialogComponent } from '@features/dashboard/offers/anti-churn-dialog/anti-churn-error-dialog/anti-churn-error-dialog.component';
 import { ChangeBankTooManyTriesDialogError } from '@features/dashboard/offers/change-bank-dialog/change-bank-too-many-tries-dialog-error/change-bank-too-many-tries-dialog-error.component';
 
-import { CanNotBargainDialogComponent } from '@features/dashboard/offers/can-not-bargain-dialog/can-not-bargain-dialog.component';
-import { LtvTooHighDialogComponent } from './../ltv-too-high-dialog/ltv-too-high-dialog.component';
-
 import { ChangeBankServiceService } from '@services/remote-api/change-bank-service.service';
-import {
-  TrackingService,
-  TrackingDto
-} from '@services/remote-api/tracking.service';
-import { Subscription, forkJoin } from 'rxjs';
+import { TrackingService } from '@services/remote-api/tracking.service';
+import { Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { OFFERS_LTV_TYPE } from '../../../../shared/models/offers';
 import { UserService } from '@services/remote-api/user.service';
 import smoothscroll from 'smoothscroll-polyfill';
-import { BankUtils } from '@shared/models/bank';
 import { CustomLangTextService } from '@shared/services/custom-lang-text.service';
 import { locale } from '../../../../config/locale/locale';
 import { ROUTES_MAP, ROUTES_MAP_NO } from '@config/routes-config';
@@ -72,40 +62,17 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
   public routesMap = ROUTES_MAP;
   public antiChurnIsOn = false;
   public nordeaClickSubscription: Subscription;
+
   get isMobile(): boolean {
     return window.innerWidth < 600;
-  }
-
-  get hasStatensPensjonskasseMembership(): boolean {
-    return (
-      this.offersInfo &&
-      this.offersInfo.memberships &&
-      this.offersInfo.memberships.indexOf(
-        'STATENS_PENSJONSKASSE_STATLIG_ANSATT'
-      ) > -1
-    );
-  }
-
-  getBankLogo(bankName: string): string {
-    const b = BANKS_DATA[bankName];
-    if (b && b.img) {
-      return b.img;
-    } else {
-      const bank = BankUtils.getBankByName(bankName);
-      return bank && bank.icon
-        ? '../../assets/img/banks-logo/round/' + bank.icon
-        : '../../assets/img/banks-logo/round/annen.png';
-    }
   }
 
   constructor(
     public dialog: MatDialog,
     public loansService: LoansService,
-    private changeBankServiceService: ChangeBankServiceService,
     private router: Router,
     private localStorageService: LocalStorageService,
     private userService: UserService,
-    private trackingService: TrackingService,
     public customLangTextSerice: CustomLangTextService,
     public envService: EnvService,
     private offersService: OffersService,
@@ -156,7 +123,6 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
 
         this.isLoading = false;
         this.localStorageService.removeItem('isNewUser');
-        this.getTips();
       },
       (err) => {
         if (err.errorType === 'PROPERTY_VALUE_MISSING') {
@@ -180,212 +146,7 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
       });
   }
 
-  public getTips(): void {
-    if (this.offersInfo.incompleteInfoLoanPresent === true) {
-      this.tips.push({
-        header: 'Obs',
-        text: this.customLangTextSerice.getLimitedLoanInfoWarning(),
-        icon: 'warning',
-        obs: true
-      });
-    }
-
-    if (
-      this.offersInfo.aggregatedLoanType ===
-        this.aggregatedLoanType.CREDIT_LINE ||
-      this.offersInfo.aggregatedLoanType === this.aggregatedLoanType.MIX_D_C
-    ) {
-      this.tips.push({
-        header: 'Belåningsgrad',
-        text: this.customLangTextSerice.getHouseValue(),
-        buttonLink: '/dashboard/' + ROUTES_MAP.property,
-        icon: this.isMobile ? 'house' : 'house-blue'
-      });
-    }
-
-    if (!this.offersInfo.memberships.length) {
-      this.tips.push({
-        header: 'Medlemskap',
-        text: this.customLangTextSerice.getMembershipWarning(),
-        buttonLink: '/dashboard/' + ROUTES_MAP.profile,
-        icon: this.isMobile ? 'profile-icon-white' : 'profile-icon-blue'
-      });
-    }
-    if (
-      this.offersInfo.aggregatedRateType ===
-      this.aggregatedRateType.MIX_FIXED_FLOATING
-    ) {
-      this.tips.push({
-        header: 'Fastrentelån',
-        text:
-          'Vi ser du har ett eller flere fastrentelån. Renteradar viser besparelsespotensialet kun for lånet/lånene med flytende rente. Beste rente viser også kun beste rente for lånet/lånene med flytende rente.',
-        buttonLink: './',
-        icon: 'rate'
-      });
-    }
-    if (
-      this.offersInfo.aggregatedLoanType ===
-        this.aggregatedLoanType.CREDIT_LINE ||
-      this.offersInfo.aggregatedLoanType === this.aggregatedLoanType.MIX_D_C
-    ) {
-      this.tips.push({
-        header: 'Rammelån/boligkreditt',
-        text:
-          'Du har rammelån/boligkreditt. Ønsker du å se tilbud kun for denne typen lån?',
-        buttonLink: '/dashboard/' + ROUTES_MAP.profile,
-        icon: this.isMobile ? 'profile-icon-white' : 'profile-icon-blue'
-      });
-    }
-
-    if (this.hasStatensPensjonskasseMembership) {
-      this.tips.push({
-        header: 'Statens pensjonskasse',
-        text:
-          'Medlemmer i Statens Pensjonskasse kan finansiere opptil 2 millioner hos Statens Pensjonskasse. Klikk her for mer info om tilbudet.',
-        buttonLink: 'https://www.finansportalen.no/bank/boliglan/',
-        external: true,
-        icon: this.isMobile ? 'profile-icon-white' : 'profile-icon-blue'
-      });
-    }
-  }
-
-  public goToBestOffer(): void {
-    const element = document.getElementById('best-offers-text');
-    const headerOffset = this.isMobile ? 80 : 180;
-
-    if (element !== null) {
-      const elementPosition =
-        element.getBoundingClientRect().top + window.pageYOffset;
-      const offsetPosition = elementPosition - headerOffset;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
-    }
-  }
-
-  public goToProperty(): void {
-    this.router.navigate(['/dashboard/' + ROUTES_MAP.property]);
-  }
-
-  public goToLoans(): void {
-    this.router.navigate(['/dashboard/' + ROUTES_MAP.loans]);
-  }
-
-  public openOfferDialog(offer: OfferInfo): void {
-    this.dialog.open(DialogInfoComponent, {
-      data: offer
-    });
-  }
-
-  public openBankUrl(offer: OfferInfo): void {
-    if (offer.bankInfo.url === null) {
-      return;
-    }
-
-    window.open(offer.bankInfo.url, '_blank');
-
-    const trackingDto = new TrackingDto();
-    trackingDto.offerId = offer.id;
-    trackingDto.type = 'OFFER_HEADER_LINK';
-    this.sendOfferTrackingData(trackingDto);
-  }
-
-  public openBankUrlByButton(offer: OfferInfo): void {
-    if (offer.bankInfo.url === null || offer.bankInfo.partner === false) return;
-
-    window.open(offer.bankInfo.url, '_blank');
-
-    const trackingDto = new TrackingDto();
-    trackingDto.offerId = offer.id;
-    trackingDto.type = 'BANK_BUTTON_1';
-    this.sendOfferTrackingData(trackingDto);
-  }
-
-  public openNewOfferDialog(offer: OfferInfo): void {
-    if (offer.bankInfo.partner === false) {
-      return;
-    }
-    window.open(offer.bankInfo.transferUrl, '_blank');
-
-    const trackingDto = new TrackingDto();
-    trackingDto.offerId = offer.id;
-    trackingDto.type = 'BANK_BUTTON_2';
-    this.sendOfferTrackingData(trackingDto);
-  }
-
-  private sendOfferTrackingData(trackingDto: TrackingDto) {
-    this.trackingService.sendTrackingStats(trackingDto).subscribe(
-      () => {},
-      (err) => {
-        console.log('err');
-        console.log(err);
-      }
-    );
-  }
-
-  private openChangeBankDialogWithLocation(offer: OfferInfo): void {
-    this.changeBankLoading = true;
-    const offerId = offer.id;
-    const currentBank = this.offersInfo.bank;
-
-    forkJoin([
-      this.changeBankServiceService.getBankOfferLocations(this.offersInfo.bank),
-      this.changeBankServiceService.getBankOfferRequest(offerId)
-    ]).subscribe(
-      ([locations, preview]) => {
-        this.changeBankLoading = false;
-        const data = { preview, offerId, currentBank };
-
-        if (locations.error === undefined) {
-          data['locations'] = locations;
-        }
-        const changeBankRef = this.dialog.open(ChangeBankLocationComponent, {
-          autoFocus: false,
-          data: data
-        });
-        changeBankRef.afterClosed().subscribe(() => {
-          this.handleChangeBankdialogOnClose(
-            changeBankRef.componentInstance.closeState
-          );
-        });
-      },
-      () => {
-        this.changeBankLoading = false;
-      }
-    );
-  }
-
-  private openChangeBankDialogWithOnlyPreview(offer: OfferInfo): void {
-    this.changeBankLoading = true;
-    const offerId = offer.id;
-    const currentBank = this.offersInfo.bank;
-
-    this.changeBankServiceService.getBankOfferRequest(offerId).subscribe(
-      (preview) => {
-        this.changeBankLoading = false;
-
-        const changeBankRef = this.dialog.open(
-          ChangeBankDialogLangGenericComponent,
-          {
-            autoFocus: false,
-            data: { preview, offerId, currentBank }
-          }
-        );
-        changeBankRef.afterClosed().subscribe(() => {
-          this.handleChangeBankdialogOnClose(
-            changeBankRef.componentInstance.closeState
-          );
-        });
-      },
-      () => {
-        this.changeBankLoading = false;
-      }
-    );
-  }
-
-  public openAntiChurnBankDialog(offer: OfferInfo, shouldLog: boolean): void {
+  public openAntiChurnBankDialog(offer, shouldLog: boolean): void {
     if (
       this.antiChurnIsOn === false ||
       this.changeBankLoading ||
@@ -405,35 +166,6 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
     const changeBankRef = this.dialog.open(AntiChurnDialogComponent, {
       autoFocus: false,
       data: offer
-    });
-    changeBankRef.afterClosed().subscribe(() => {
-      this.handleChangeBankdialogOnClose(
-        changeBankRef.componentInstance.closeState
-      );
-    });
-  }
-
-  public openChangeBankDialog(offer: OfferInfo): void {
-    if (
-      this.changeBankLoading ||
-      this.offersInfo.offerSavingsType === this.offerSavingsType.NO_SAVINGS
-    ) {
-      return;
-    }
-
-    if (this.offersInfo.bank === 'SWE_SEB') {
-      this.openChangeBankDialogWithLocation(offer);
-    } else {
-      this.openChangeBankDialogWithOnlyPreview(offer);
-    }
-  }
-
-  public openBargainMoreInfoDialog(): void {
-    if (this.canBargain || !this.isSweden) {
-      return;
-    }
-    const changeBankRef = this.dialog.open(CanNotBargainDialogComponent, {
-      autoFocus: false
     });
     changeBankRef.afterClosed().subscribe(() => {
       this.handleChangeBankdialogOnClose(
@@ -478,10 +210,6 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
     }
   }
 
-  openLtvTooHightDialog(): void {
-    this.dialog.open(LtvTooHighDialogComponent);
-  }
-
   @HostListener('window:resize', ['$event'])
   onResize(event: any = null): void {
     this.isSmallScreen = window.innerWidth <= 1024;
@@ -493,29 +221,6 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
       this.userService.lowerRateAvailable.next(false);
       this.loansService.confirmLowerRate().subscribe((res) => {});
     }
-  }
-
-  get isDialogVisble(): boolean {
-    return this.effRateLoweredDialogVisible;
-  }
-
-  getbankNameOrDefault(offer: OfferInfo): string {
-    let text = '';
-    switch (offer.bankInfo.bank) {
-      case 'BULDER': {
-        text = 'Bulder';
-        break;
-      }
-      default: {
-        text = 'banken';
-        break;
-      }
-    }
-    return text;
-  }
-
-  get rateBarPercentageInverted(): number {
-    return 100 - this.rateBarPercentage.percentage;
   }
 
   get rateBarPercentage(): RateBar {

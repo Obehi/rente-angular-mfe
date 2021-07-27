@@ -31,7 +31,7 @@ export class FooterComponent implements OnInit {
 
     this.globalStateService
       .getFooterState()
-      .pipe(take(1), startWith(true))
+      .pipe(startWith(true))
       .subscribe((state) => {
         this.shouldShowFooter = state;
       });

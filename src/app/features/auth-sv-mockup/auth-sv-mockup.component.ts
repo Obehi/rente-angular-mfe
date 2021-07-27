@@ -25,6 +25,8 @@ import { LoansService } from '@services/remote-api/loans.service';
 import { LocalStorageService } from '@services/local-storage.service';
 import { ROUTES_MAP } from '@config/routes-config';
 import { CustomLangTextService } from '@services/custom-lang-text.service';
+import { MessageBannerService } from '@services/message-banner.service';
+import { getAnimationStyles } from '@shared/animations/animationEnums';
 
 @Component({
   selector: 'rente-auth-sv-mockup',
@@ -65,6 +67,7 @@ export class AuthSvMockupComponent implements OnInit, OnDestroy {
   accounts: string[];
   userSessionId: string;
   environment: any;
+  public animationType = getAnimationStyles();
 
   ngOnDestroy(): void {
     this.unsubscribeEverything();
@@ -99,7 +102,8 @@ export class AuthSvMockupComponent implements OnInit, OnDestroy {
     private loansService: LoansService,
     private localStorageService: LocalStorageService,
     public customLangTextService: CustomLangTextService,
-    private envService: EnvService
+    private envService: EnvService,
+    private messageService: MessageBannerService
   ) {}
 
   ngOnInit(): void {
@@ -122,9 +126,13 @@ export class AuthSvMockupComponent implements OnInit, OnDestroy {
       (_) => {
         this.isLoading = false;
         this.router.navigate(['/']);
-        this.snackBar.openSuccessSnackBar(
+
+        this.messageService.setView(
           this.customLangTextService.getSnackBarSavedMessage(),
-          2
+          5000,
+          this.animationType.DROP_DOWN_UP,
+          'success',
+          window
         );
       },
       // Error handling

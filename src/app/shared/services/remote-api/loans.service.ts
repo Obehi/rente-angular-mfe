@@ -10,15 +10,19 @@ import {
   ConfirmationSetDto,
   Loans,
   LoanStateDto,
-  LoanStatisticsDto
+  LoanStatisticsDto,
+  PreferencesDto,
+  PreferencesUpdateDto
 } from '@shared/models/loans';
 import { BankGuideInfo, Offers } from '@shared/models/offers';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { locale } from '../../../config/locale/locale';
 
-import { LoanUpdateInfoDto } from '@shared/models/loans';
-import { NewOffers, OffersBank } from '@models/bank';
+import {
+  LoanUpdateInfoDto,
+  SignicatLoanInfoDtoArray
+} from '@shared/models/loans';
 
 @Injectable({
   providedIn: 'root'
@@ -53,20 +57,25 @@ export class LoansService {
 
   // Not used yet!
   public getUsersMemberships(): Observable<{ memberships: string[] }> {
-    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.membership}`;
+    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.membership.base}`;
+    return this.http.get(url);
+  }
+
+  public getAllMemberships() {
+    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.membership.base}${API_URL_MAP.loan.membership.all}`;
     return this.http.get(url);
   }
 
   // Also not used!
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   public setUsersMemberships(membershipsArray): Observable<any> {
-    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.membership}`;
-    return this.http.post(url, membershipsArray);
+    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.membership.base}`;
+    return this.http.put(url, membershipsArray);
   }
 
   // Also not used!
   public getMembershipTypes(): Observable<any> {
-    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.membershipTypes}`;
+    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.membership.membershipTypes}`;
     return this.http.get(url);
   }
 
@@ -115,11 +124,33 @@ export class LoansService {
     return this.http.post(url, dto); // TODO: Object.assign()
   }
 
-  public updateLoanUserInfo(
-    loanUpdateInfoDto: LoanUpdateInfoDto
-  ): Observable<void> {
-    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.loan.base}${API_URL_MAP.loan.loan.info}`;
-    return this.http.put(url, loanUpdateInfoDto);
+  public getLoanPreferences() {
+    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.preferences}`;
+    return this.http.get(url);
+  }
+
+  public updateLoanPreferences(loanData): Observable<void> {
+    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.preferences}`;
+    return this.http.put(url, loanData);
+  }
+
+  public UpdateSignicatLoansInfo(
+    signicatLoanInfoDtoArray: SignicatLoanInfoDtoArray
+  ): Observable<any> {
+    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.loans.base}${API_URL_MAP.loan.loans.info}`;
+    return this.http.put(url, signicatLoanInfoDtoArray);
+  }
+
+  public CreateSignicatLoansInfo(
+    signicatLoanInfoDtoArray: SignicatLoanInfoDtoArray
+  ): Observable<any> {
+    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.loans.base}${API_URL_MAP.loan.loans.info}`;
+    return this.http.post(url, signicatLoanInfoDtoArray);
+  }
+
+  public getSignicatLoansInfo(): Observable<SignicatLoanInfoDtoArray> {
+    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.loans.base}${API_URL_MAP.loan.loans.info}`;
+    return this.http.get(url);
   }
 
   public updateClientInfo(
@@ -129,9 +160,8 @@ export class LoansService {
     return this.http.put(url, clientUpdateInfo);
   }
 
-  // Change this after merging
   public getClientInfo(): Observable<any> {
-    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.base}${API_URL_MAP.loan.user.info}`;
+    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.loans.base}${API_URL_MAP.loan.user.info}`;
     return this.http.get(url);
   }
 
@@ -176,5 +206,19 @@ export class LoansService {
   public confirmLowerRate(): Observable<void> {
     const url = `${API_URL_MAP.loan.base}/lower-rate/confirm`;
     return this.http.post(url, null);
+  }
+
+  // Preferences
+
+  getPreferencesDto(): Observable<PreferencesDto> {
+    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.preferences}`;
+    return this.http.get(url);
+  }
+
+  updateUserPreferences(
+    dto: PreferencesUpdateDto
+  ): Observable<PreferencesUpdateDto> {
+    const url = `${API_URL_MAP.loan.base}/preferences`;
+    return this.http.post(url, dto);
   }
 }

@@ -6,11 +6,22 @@ import {
   forwardRef,
   HostBinding,
   SimpleChanges,
-  OnChanges
+  OnChanges,
+  ViewChild,
+  ElementRef,
+  AfterViewInit,
+  OnInit
 } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import {
+  FormControl,
+  ControlValueAccessor,
+  NG_VALUE_ACCESSOR,
+  FormGroupDirective,
+  NgForm
+} from '@angular/forms';
 import { ViewEncapsulation } from '@angular/core';
 import { ErrorStateMatcher } from '@angular/material/core';
+import { BehaviorSubject } from 'rxjs';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   constructor(public state: boolean) {}
@@ -32,7 +43,8 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   ],
   encapsulation: ViewEncapsulation.None
 })
-export class InputComponent implements ControlValueAccessor, OnChanges {
+export class InputComponent
+  implements OnInit, ControlValueAccessor, OnChanges, AfterViewInit {
   @Input() label: string;
   @Input() name: string;
   @Input() type: string;
@@ -45,6 +57,8 @@ export class InputComponent implements ControlValueAccessor, OnChanges {
   @Input() modelOptions?: { updateOn: string };
   @Input() textControl: boolean;
   @Input() maskType: any;
+  @ViewChild('inputRef') inputRef: ElementRef;
+  @Input() focusListener?: BehaviorSubject<boolean>;
 
   // tslint:disable-next-line:no-input-rename
   @Input('value') inputValue: any = '';
@@ -57,6 +71,10 @@ export class InputComponent implements ControlValueAccessor, OnChanges {
   propagateChange: any = () => {};
   onChange: any = () => {};
   onTouch: any = () => {};
+
+  constructor() {}
+
+  ngOnInit(): void {}
 
   get value(): any {
     return this.inputValue;
@@ -71,6 +89,10 @@ export class InputComponent implements ControlValueAccessor, OnChanges {
 
   onChangeEmit(): void {
     this.change?.emit();
+  }
+
+  ngAfterViewInit(): void {
+    this.setFocusedListener();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -110,5 +132,17 @@ export class InputComponent implements ControlValueAccessor, OnChanges {
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   registerOnTouched(fn: any): void {
     this.onTouch = fn;
+  }
+
+  public setFocusedListener(): void {
+    this.focusListener?.subscribe((state) => {
+      if (state) {
+        setTimeout(() => {
+          this.inputRef.nativeElement.focus();
+        }, 0);
+      } else {
+        this.inputRef.nativeElement.blur();
+      }
+    });
   }
 }

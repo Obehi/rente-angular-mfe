@@ -13,7 +13,7 @@ export class GenericErrorDialogComponent {
   ) {}
 
   public onClose(): void {
-    this.data.onClose && this.data.onClose;
+    this.data.onClose && this.data.onClose();
     this.dialogRef.close();
   }
 
@@ -29,6 +29,7 @@ export interface ErrorDialogData {
   text?: string;
   confirmText: string;
   cancelText?: string;
+  error?: any;
   onConfirm?: () => void;
   onClose?: () => void;
 }

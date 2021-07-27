@@ -1,0 +1,81 @@
+@import '../../../../styles/theme/_colors.scss';
+
+@media (min-width: 600px) {
+  .front-container {
+    height: 800px;
+  }
+}
+
+.problems {
+  .title {
+    padding-bottom: 20px;
+    text-align: center;
+    h3 {
+      margin-bottom: 20px;
+    }
+  }
+}
+
+.title {
+  text-align: center;
+  h3 {
+    margin-bottom: 10px;
+  }
+}
+
+rente-button {
+  margin: auto;
+  display: block;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.blue {
+  background: $secondary;
+
+  h1,
+  h3,
+  p {
+    color: white;
+  }
+
+  form {
+    h3,
+    p {
+      color: #000;
+    }
+    background: white;
+    border-radius: 15px;
+  }
+}
+
+.top {
+  display: flex;
+  flex-direction: column;
+  img {
+    margin: auto;
+    width: 60px;
+    margin: 0 auto 20px;
+  }
+}
+
+.bottom {
+  & > div > div {
+    display: grid;
+    grid-column-gap: 15px;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  //border-top: 1px solid #ECECEC;
+  padding: 20px;
+  border-radius: 0 0 10px 10px;
+  width: 60%;
+  margin: auto;
+  @media (max-width: 600px) {
+    width: 100%;
+  }
+
+  @media (min-width: 600px) {
+    width: 60%;
+  }
+}

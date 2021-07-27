@@ -1,0 +1,130 @@
+<!-- MOBILE VERSION -->
+<div *ngIf="isMobile" class="main-div">
+  <div *ngIf="isMobile" class="chosen-memberships-div">
+    <h2
+      i18n="“issue-mail|membership@@membership.choosenMembershipMobile"
+      class="selected-membership-top"
+    >
+      Valgte medlemskap ({{ selectedMemberships?.length || 0 }})
+    </h2>
+
+    <div
+      *ngFor="let option of selectedMemberships"
+      class="item-list"
+      [@inOutAnimation]
+    >
+      <div class="selected-membership">
+        <p>
+          {{ option.label | truncate: 25 }}
+        </p>
+        <img
+          class="remove-icon"
+          src="{{ rejectBlue }}"
+          (click)="removeMembership(option)"
+        />
+      </div>
+    </div>
+  </div>
+  <div class="search-div">
+    <input
+      class="search-div-input"
+      [(ngModel)]="searchText"
+      [placeholder]="langService.getMembershipSearchText()"
+    />
+    <img class="search-icon" src="{{ searchIconLight }}" />
+  </div>
+  <div class="dropdown-scroll">
+    <div
+      *ngFor="let option of membershipNames | filter: searchText"
+      class="list-div"
+    >
+      <p *ngIf="!chosenMemberships(option)" (click)="chooseMembership(option)">
+        {{ option.label }}
+      </p>
+      <p
+        class="p-selected"
+        *ngIf="chosenMemberships(option)"
+        (click)="removeMembership(option)"
+      >
+        {{ option.label | truncate: 30 }}
+      </p>
+      <img
+        *ngIf="chosenMemberships(option)"
+        class="remove-icon-list"
+        src="{{ rejectBlue }}"
+        (click)="removeMembership(option)"
+      />
+    </div>
+  </div>
+</div>
+
+<!-- DESKTOP VERSION -->
+<div *ngIf="!isMobile" class="main-div">
+  <div class="desktop-column-one">
+    <div class="desktop-flex-part-one">
+      <h2
+        i18n="“issue-mail|membership@@membership.choosenMembershipDesktop"
+        class="selected-membership-top"
+      >
+        Valgte medlemskap ({{ selectedMemberships?.length || 0 }})
+      </h2>
+      <div class="selected-memberships">
+        <div
+          *ngFor="let option of selectedMemberships"
+          class="item-list"
+          [@inOutAnimation]
+        >
+          <div class="selected-membership">
+            <p>
+              {{ option.label | truncate: 19 }}
+            </p>
+            <img
+              class="remove-icon"
+              src="{{ rejectBlue }}"
+              (click)="removeMembership(option)"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="desktop-flex-part-two">
+      <div class="search-div">
+        <input
+          class="search-div-input"
+          [(ngModel)]="searchText"
+          [placeholder]="langService.getMembershipSearchText()"
+        />
+        <img class="search-icon" src="{{ searchIconLight }}" />
+      </div>
+      <div class="dropdown-scroll">
+        <div class="dropdown-div">
+          <div
+            *ngFor="let option of membershipNames | filter: searchText"
+            class="list-div"
+            [ngClass]="{ displayselected: chosenMemberships(option) }"
+          >
+            <p
+              *ngIf="!chosenMemberships(option)"
+              (click)="chooseMembership(option)"
+            >
+              {{ option.label }}
+            </p>
+            <p
+              class="p-selected"
+              *ngIf="chosenMemberships(option)"
+              (click)="removeMembership(option)"
+            >
+              {{ option.label }}
+            </p>
+            <img
+              *ngIf="chosenMemberships(option)"
+              class="remove-icon-list"
+              src="{{ rejectBlue }}"
+              (click)="removeMembership(option)"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

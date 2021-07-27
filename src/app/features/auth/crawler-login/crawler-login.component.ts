@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import {
   AbstractControl,
   FormBuilder,
@@ -13,7 +13,11 @@ import { MatDialog } from '@angular/material';
 import { DialogInfoServiceComponent } from './dialog-info-service/dialog-info-service.component';
 import { MetaService } from '@services/meta.service';
 import { TitleService } from '@services/title.service';
-import { customMeta } from '../../../config/routes-config';
+import {
+  customMeta,
+  ROUTES_MAP,
+  ROUTES_MAP_NO
+} from '../../../config/routes-config';
 import { BankVo, BankUtils } from '@shared/models/bank';
 import { ActivatedRoute, Router } from '@angular/router';
 import { VALIDATION_PATTERN } from '@config/validation-patterns.config';
@@ -22,9 +26,12 @@ import { Mask } from '@shared/constants/mask';
 import { EMPTY, of, Subscription, timer } from 'rxjs';
 import { debounce } from 'rxjs/operators';
 import { map } from 'rxjs/operators';
-import { EnvService } from '@services/env.service';
+import { Environment, EnvService } from '@services/env.service';
 import { ContactService } from '../../../shared/services/remote-api/contact.service';
 import { SnackBarService } from '@services/snackbar.service';
+import { MatStepper } from '@angular/material';
+import { MessageBannerService } from '@services/message-banner.service';
+import { getAnimationStyles } from '@shared/animations/animationEnums';
 
 @Component({
   selector: 'crawler-login',
@@ -32,6 +39,8 @@ import { SnackBarService } from '@services/snackbar.service';
   styleUrls: ['./crawler-login.component.scss']
 })
 export class CrawlerLoginComponent implements OnInit, OnDestroy {
+  @ViewChild('stepper') stepper: MatStepper;
+
   public bankIdForm: FormGroup;
   public isSsnBankLogin: boolean;
   public isConfirmed: boolean;
@@ -42,12 +51,15 @@ export class CrawlerLoginComponent implements OnInit, OnDestroy {
   public metaTitle: string;
   public metaDescription: string;
   public mask = Mask;
-  public environment: any;
+  public environment: Environment;
   public missingBankForm: FormGroup;
   public emailError = false;
   public isLoading: boolean;
-
+  public isSb1App = false;
+  public isSb1BankId = false;
+  public isSB1Bank = false;
   bank: BankVo | null;
+  animationType = getAnimationStyles();
 
   constructor(
     private fb: FormBuilder,
@@ -59,7 +71,8 @@ export class CrawlerLoginComponent implements OnInit, OnDestroy {
     private userService: UserService,
     private envService: EnvService,
     private contactService: ContactService,
-    private snackBar: SnackBarService
+    private snackBar: SnackBarService,
+    private messageService: MessageBannerService
   ) {}
 
   ngOnInit(): void {
@@ -67,9 +80,28 @@ export class CrawlerLoginComponent implements OnInit, OnDestroy {
     this.routeParamsSub = this.route.params.subscribe((params: any) => {
       if (params && params.bankName) {
         const bank = BankUtils.getBankByName(params.bankName);
-        this.bank = bank;
-        this.isSsnBankLogin = bank?.loginWithSsn || false;
 
+        this.bank = bank;
+        if (!this.bank) {
+          this.router.navigate(['/' + ROUTES_MAP.bankSelect]);
+          return;
+        }
+        this.isSsnBankLogin = bank?.loginWithSsn || false;
+        this.isSB1Bank = bank?.isSb1Bank || false;
+
+        // Redirect if anyone tries to access crawler login when not available to the public
+        if (
+          bank?.name === 'DNB' &&
+          this.environment.dnbSignicatIsOn === true &&
+          this.router.url.includes('autentisering/bank/dnb')
+        ) {
+          this.router.navigate(
+            ['/autentisering/' + ROUTES_MAP_NO.bankIdLogin],
+            {
+              state: { data: { bank: bank } }
+            }
+          );
+        }
         for (const iterator in customMeta) {
           if (customMeta[iterator].title) {
             if (params.bankName === customMeta[iterator].bankName) {
@@ -89,6 +121,8 @@ export class CrawlerLoginComponent implements OnInit, OnDestroy {
         if (this.isTinkBank) {
           this.isLoginStarted = true;
         }
+
+        // this.setSb1AppForm();
       }
     });
   }
@@ -148,9 +182,13 @@ export class CrawlerLoginComponent implements OnInit, OnDestroy {
       (_) => {
         this.isLoading = false;
         this.router.navigate(['/']);
-        this.snackBar.openSuccessSnackBar(
+
+        this.messageService.setView(
           'Du får beskjed når din bank er tilgjengelig',
-          1.2
+          6000,
+          this.animationType.DROP_DOWN_UP,
+          'success',
+          window
         );
       },
       (err) => {
@@ -160,6 +198,9 @@ export class CrawlerLoginComponent implements OnInit, OnDestroy {
   }
 
   public startLogin(formData): void {
+    if (this.isSb1App) {
+      formData.loginType = '1';
+    }
     this.userData = formData;
     for (const key in this.userData) {
       // remove everything except numbers
@@ -168,6 +209,47 @@ export class CrawlerLoginComponent implements OnInit, OnDestroy {
       }
     }
     this.isLoginStarted = true;
+  }
+
+  public setSb1AppForm(): void {
+    this.bankIdForm = this.fb.group({
+      ssn: [
+        '',
+        Validators.compose([Validators.required]),
+        // Async Validators
+        this.environment.production ? [this.ssnAsyncValidator()] : []
+      ],
+      confirmation: ['', Validators.required]
+    });
+    this.isSb1App = true;
+    this.isSb1BankId = false;
+    this.stepper.selectedIndex = 0;
+  }
+
+  public setSb1bankIdForm(): void {
+    this.bankIdForm = this.fb.group({
+      birthdate: [
+        '',
+        Validators.compose([
+          Validators.required,
+          Validators.pattern(VALIDATION_PATTERN.dob)
+        ]),
+        // Async Validators
+        this.environment.production ? [this.ssnAsyncValidator()] : []
+      ],
+      phone: [
+        '',
+        Validators.compose([
+          Validators.required,
+          Validators.pattern(VALIDATION_PATTERN.phoneShort)
+        ])
+      ],
+      confirmation: ['', Validators.required]
+    });
+
+    this.isSb1BankId = true;
+    this.isSb1App = false;
+    this.stepper.selectedIndex = 1;
   }
 
   private initForm() {
@@ -220,6 +302,16 @@ export class CrawlerLoginComponent implements OnInit, OnDestroy {
     }
   }
 
+  returnFromLoginAttempt(): void {
+    if (this.isSb1BankId) {
+      // Wait for stepper to initiated
+      setTimeout(() => {
+        this.stepper.selectedIndex = 1;
+      }, 10);
+    }
+    this.isLoginStarted = false;
+  }
+
   isErrorState(
     control: AbstractControl | null,
     form: FormGroup | NgForm | null
@@ -234,7 +326,7 @@ export class CrawlerLoginComponent implements OnInit, OnDestroy {
   get isNordeaBank(): boolean {
     return (this.bank && this.bank.name === 'NORDEA') || false;
   }
-
+  /* 
   get isSB1Bank(): boolean {
     return (
       (this.bank &&
@@ -242,7 +334,7 @@ export class CrawlerLoginComponent implements OnInit, OnDestroy {
         this.bank.name.indexOf('SPAREBANK_1') > -1) ||
       false
     );
-  }
+  } */
 
   get isEikaBank(): boolean {
     return (this.bank && this.bank.isEikaBank) || false;

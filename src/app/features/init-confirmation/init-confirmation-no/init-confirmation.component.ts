@@ -1,3 +1,4 @@
+import { OnDestroy } from '@angular/core';
 import {
   Validators,
   AbstractControl,
@@ -27,21 +28,25 @@ import {
 } from '@shared/models/loans';
 import { LoggingService } from '@services/logging.service';
 import { OptimizeService } from '@services/optimize.service';
-import { CustomLangTextService } from '@services/custom-lang-text.service';
 
 import { VALIDATION_PATTERN } from '@config/validation-patterns.config';
-import { ROUTES_MAP } from '@config/routes-config';
-import { SnackBarService } from '../../../shared/services/snackbar.service';
 import { DialogInfoComponent } from '../dialog-info/dialog-info.component';
 import { OfferInfo } from '@shared/models/offers';
 import { Mask } from '@shared/constants/mask';
+import { ROUTES_MAP } from '@config/routes-config';
+import { CustomLangTextService } from '@services/custom-lang-text.service';
+import { MessageBannerService } from '@services/message-banner.service';
+import { getAnimationStyles } from '@shared/animations/animationEnums';
+import { ApiError } from '@shared/constants/api-error';
+import { VirdiManualValueDialogComponent } from '@shared/components/ui-components/dialogs/virdi-manual-value-dialog/virdi-manual-value-dialog.component';
+import { GlobalStateService } from '@services/global-state.service';
 
 @Component({
   selector: 'rente-init-confirmation-sv',
   templateUrl: './init-confirmation.component.html',
   styleUrls: ['./init-confirmation.component.scss']
 })
-export class InitConfirmationNoComponent implements OnInit {
+export class InitConfirmationNoComponent implements OnInit, OnDestroy {
   public propertyForm: FormGroup;
   public isLoading: boolean;
   public visible = true;
@@ -55,38 +60,61 @@ export class InitConfirmationNoComponent implements OnInit {
   public allMemberships: MembershipTypeDto[];
   public userData: ConfirmationGetDto;
   public mask = Mask;
-  public optimizeService: OptimizeService;
   public isAddressNeeded = false;
-  public isNameNeeded = true;
+  public animationType = getAnimationStyles();
+  public virdiSuccess = false;
+  public estimatedPropertyValueFromVirdi: number;
+  public stepFillOutForm: boolean;
+
   @ViewChild('membershipInput') membershipInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete: MatAutocomplete;
 
   constructor(
     private fb: FormBuilder,
     private loansService: LoansService,
-    private snackBar: SnackBarService,
     private router: Router,
     public dialog: MatDialog,
-    public optimize: OptimizeService,
     public customLangTextService: CustomLangTextService,
-    private logging: LoggingService
+    private logging: LoggingService,
+    private messageBanner: MessageBannerService,
+    private globalStateService: GlobalStateService
   ) {
-    this.optimizeService = optimize;
     this.filteredMemberships = this.membershipCtrl.valueChanges.pipe(
       startWith(null),
       map((membership: string | null) =>
         membership ? this.filter(membership) : this.allMemberships.slice()
       )
     );
+    this.stepFillOutForm = true;
+    this.userData = new ConfirmationGetDto();
   }
 
   ngOnInit(): void {
+    this.isLoading = true;
     forkJoin([
       this.loansService.getLoansAndRateType(),
       this.loansService.getConfirmationData()
     ]).subscribe(([rateAndLoans, userInfo]) => {
+      this.isLoading = false;
       this.allMemberships = userInfo.availableMemberships;
       this.userData = userInfo;
+
+      const userEmail =
+        this.userData.email === null ? null : String(userInfo.email);
+      const streetName =
+        this.userData.address.street === null
+          ? null
+          : String(userInfo.address.street);
+      const streetZip =
+        this.userData.address.zip === null
+          ? null
+          : String(userInfo.address.zip);
+      const income =
+        this.userData.income === null ? null : String(userInfo.income);
+      const apartmentSize =
+        this.userData.address.apartmentSize === null
+          ? null
+          : String(userInfo.address.apartmentSize);
 
       const userInfoAndRateAndLoans = { ...userInfo, ...rateAndLoans };
       this.logging.logger(
@@ -98,56 +126,33 @@ export class InitConfirmationNoComponent implements OnInit {
         '7:INIT_CONFIRMATION',
         userInfoAndRateAndLoans
       );
-      const income = String(userInfo.income) || null;
-      const apartmentSize = String(userInfo.apartmentSize) || null;
-      this.isAddressNeeded = rateAndLoans.isAddressNeeded;
-      this.isNameNeeded =
-        this.userData.name === null || this.userData.name === undefined;
 
-      if (this.isAddressNeeded) {
-        this.isAddressNeeded = true;
-        this.propertyForm = this.fb.group({
-          address: ['', Validators.required],
-          zip: [
-            '',
-            Validators.compose([
-              Validators.required,
-              Validators.pattern(VALIDATION_PATTERN.zip)
-            ])
-          ],
-          apartmentSize: [apartmentSize, Validators.required],
-          membership: [],
-          income: [income, Validators.required],
-          email: [
-            userInfo.email,
-            Validators.compose([
-              Validators.required,
-              Validators.pattern(VALIDATION_PATTERN.email)
-            ])
-          ]
-        });
-      } else {
-        this.propertyForm = this.fb.group({
-          apartmentSize: [apartmentSize, Validators.required],
-          membership: [],
-          income: [income, Validators.required],
-          email: [
-            userInfo.email,
-            Validators.compose([
-              Validators.required,
-              Validators.pattern(VALIDATION_PATTERN.email)
-            ])
-          ]
-        });
-      }
-
-      if (this.isNameNeeded) {
-        this.propertyForm.addControl(
-          'name',
-          new FormControl('', Validators.required)
-        );
-      }
+      this.isAddressNeeded = true;
+      this.propertyForm = this.fb.group({
+        email: [
+          userEmail,
+          Validators.compose([
+            Validators.required,
+            Validators.pattern(VALIDATION_PATTERN.email)
+          ])
+        ],
+        address: [streetName, Validators.required],
+        zip: [
+          streetZip,
+          Validators.compose([
+            Validators.required,
+            Validators.pattern(VALIDATION_PATTERN.zip)
+          ])
+        ],
+        apartmentSize: [apartmentSize, Validators.required],
+        income: [income, Validators.required],
+        membership: []
+      });
     });
+
+    // Set content background
+    this.globalStateService.setContentClassName('content', 'content-blue');
+    this.globalStateService.setFooterState(false);
   }
 
   isErrorState(control: AbstractControl | null): boolean {
@@ -160,13 +165,7 @@ export class InitConfirmationNoComponent implements OnInit {
     });
   }
 
-  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-  public updateProperty(formData: any): void {
-    this.propertyForm.markAllAsTouched();
-    this.propertyForm.updateValueAndValidity();
-
-    this.isLoading = true;
-
+  public getConfirmationDtoFromForm(formData): ConfirmationSetDto {
     const data = {
       email: formData.email,
       income:
@@ -175,27 +174,93 @@ export class InitConfirmationNoComponent implements OnInit {
           : formData.income,
       memberships: this.memberships.map((membership) => membership.name),
       apartmentSize: formData.apartmentSize,
-      name: this.isNameNeeded ? formData.name : this.userData.name,
       propertyType: formData.propertyType
     };
 
     const confirmationDto: ConfirmationSetDto = new ConfirmationSetDto();
     confirmationDto.address = new AddressCreationDto();
-    confirmationDto.name = data.name;
     confirmationDto.email = data.email;
     confirmationDto.income = data.income;
     confirmationDto.memberships = data.memberships;
     confirmationDto.address.apartmentSize = data.apartmentSize;
     confirmationDto.address.propertyType = data.propertyType;
-    if (this.isAddressNeeded) {
-      confirmationDto.address.street = formData.address;
-      confirmationDto.address.zip = formData.zip;
+    confirmationDto.address.street = formData.address;
+    confirmationDto.address.zip = formData.zip;
+
+    return confirmationDto;
+  }
+
+  public getFormValue(): ConfirmationSetDto {
+    const form = this.propertyForm.value;
+
+    const aptmSize = Number(form.apartmentSize);
+
+    const address = {
+      apartmentSize: aptmSize,
+      apartmentValue: this.userData.address.apartmentValue,
+      propertyType: null,
+      street: form.address,
+      zip: form.zip
+    };
+
+    const val = this.propertyForm.get('income')?.value;
+    const incomeNumber = val.replace(/\s/g, '');
+
+    const sendFormDto = {
+      address: address,
+      email: form.email,
+      income: incomeNumber,
+      memberships: this.memberships.map((membership) => membership.name)
+    };
+
+    return sendFormDto;
+  }
+
+  public convertDto(): ConfirmationSetDto {
+    /* 
+    Use this function to send api post request with ConfirmationSetDto interface. 
+    Is used because the the post api expects a different dto than the get api
+    */
+    const confDtoWithAprtmentValue: ConfirmationSetDto = new ConfirmationSetDto();
+    confDtoWithAprtmentValue.address = this.getFormValue().address;
+    confDtoWithAprtmentValue.email = this.getFormValue().email;
+    confDtoWithAprtmentValue.income = this.getFormValue().income;
+    confDtoWithAprtmentValue.memberships = this.getFormValue().memberships;
+
+    return confDtoWithAprtmentValue;
+  }
+
+  public updateProperty(formData): void {
+    let data: ConfirmationSetDto;
+
+    if (formData === null || formData === undefined) {
+      data = this.convertDto();
+    } else {
+      data = this.getConfirmationDtoFromForm(formData);
     }
 
-    this.loansService.setConfirmationData(confirmationDto).subscribe(
+    this.propertyForm.markAllAsTouched();
+    this.propertyForm.updateValueAndValidity();
+
+    this.isLoading = true;
+
+    this.loansService.setConfirmationData(data).subscribe(
       () => {
         this.isLoading = false;
-        this.router.navigate(['/dashboard/' + ROUTES_MAP.offers]);
+        this.stepFillOutForm = false;
+        this.virdiSuccess = true;
+
+        // Send get request to fetch the estimated propertyValue
+        this.loansService.getAddresses().subscribe((res) => {
+          const estimatedValue = res.addresses[0].estimatedPropertyValue;
+          if (estimatedValue) {
+            this.estimatedPropertyValueFromVirdi = estimatedValue;
+          } else {
+            this.estimatedPropertyValueFromVirdi = 0;
+          }
+        });
+
+        // this.router.navigate(['/' + ROUTES_MAP_NO.confirmationProperty]);
         this.logging.logger(
           this.logging.Level.Info,
           '9:USERINFO_SENT_SUCCESSFUL_REDIRECTING_TO_OFFERS',
@@ -204,10 +269,8 @@ export class InitConfirmationNoComponent implements OnInit {
           this.logging.SubSystem.UserConfirmation,
           '9:USERINFO_SENT_SUCCESSFUL_REDIRECTING_TO_OFFERS'
         );
-        this.snackBar.openSuccessSnackBar(
-          this.customLangTextService.getSnackBarUpdatedMessage(),
-          1.2
-        );
+
+        !formData && this.router.navigate(['/dashboard/' + ROUTES_MAP.offers]);
       },
       (err) => {
         this.isLoading = false;
@@ -220,7 +283,39 @@ export class InitConfirmationNoComponent implements OnInit {
           '9:USERINFO_SENT_ERROR_REDIRECTING_TO_PROPERTY',
           err
         );
-        this.router.navigate(['/dashboard/' + ROUTES_MAP.property]);
+
+        if (
+          err.errorType === ApiError.virdiSerachNotFound ||
+          err.errorType === ApiError.propertyCantFindZip
+        ) {
+          this.isLoading = false;
+          this.dialog.open(VirdiManualValueDialogComponent, {
+            data: {
+              step: 1,
+              address: data.address,
+              email: data.email,
+              income: data.income,
+              memberships: data.memberships,
+              confirmText: 'Legg til boligverdi',
+              cancelText: 'Gå tilbake',
+              finishText: 'Finn beste rente!',
+              onConfirm: () => {},
+              onClose: () => {},
+              onSendForm: (apartmentValue) => {
+                if (apartmentValue) {
+                  // Remove the whitespace
+                  const value = apartmentValue.replace(/\s/g, '');
+                  // Send the dataForm with apartment value
+                  this.userData.address.apartmentValue = Number(value);
+                  this.updateProperty(undefined);
+                } else {
+                  alert('apartmentValue: ');
+                  alert(apartmentValue);
+                }
+              }
+            }
+          });
+        }
       }
     );
   }
@@ -275,5 +370,35 @@ export class InitConfirmationNoComponent implements OnInit {
     }
 
     return array;
+  }
+
+  redirectOffers(): void {
+    this.router.navigate(['/dashboard/' + ROUTES_MAP.offers]);
+  }
+
+  setManualPropertyValue(): void {
+    this.dialog.open(VirdiManualValueDialogComponent, {
+      data: {
+        step: 2,
+        confirmText: 'Legg til boligverdi',
+        cancelText: 'Lukk',
+        finishText: 'Finn beste rente!',
+        onConfirm: () => {},
+        onClose: () => {},
+        onSendForm: (apartmentValue) => {
+          // Remove the whitespace
+          const value = apartmentValue.replace(/\s/g, '');
+
+          // Send the dataForm with apartment value
+          this.userData.address.apartmentValue = Number(value);
+          this.updateProperty(undefined);
+        }
+      }
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.globalStateService.setContentClassName('content-blue', 'content');
+    this.globalStateService.setFooterState(true);
   }
 }

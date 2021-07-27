@@ -21,8 +21,12 @@ h4 {
   font-size: 16px;
 }
 
+ul {
+  padding-left: 33px;
+}
 li {
   font-weight: 100;
+  font-size: 14px;
 }
 
 .small {
@@ -30,7 +34,7 @@ li {
 }
 
 .no-margin {
-  margin: none;
+  margin: 5px !important;
 }
 
 rente-button {
@@ -51,19 +55,21 @@ rente-button {
     margin-bottom: 20px;
   }
 
-  .address-grid {
-    display: flex;
-    justify-content: space-between;
+  .info-box {
     background: $grey-light;
     padding: 10px 20px;
     border-radius: 15px;
-    min-width: 250px;
-    p {
-      margin: 0;
-    }
+    margin: 20px 0;
 
-    .right {
-      margin-left: 40px;
+    .address-grid {
+      display: flex;
+      justify-content: space-between;
+      min-width: 230px;
+      max-width: 300px;
+      margin-bottom: 20px;
+      p {
+        margin: 0;
+      }
     }
   }
 }

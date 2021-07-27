@@ -1634,4 +1634,130 @@ Fortsett
   <translation id="info.confirmation.myMemberships”" desc="info-confirmation" meaning="                       “my-memberships">
                     Mine medlemskap
                   </translation>
+  <translation id="landing.explanationService" desc="landing-page" meaning="                 explanation-service">
+              Få oversikt og spar penger med et klikk.
+            </translation>
+  <translation id="landing.descriptionService" desc="landing-page" meaning="                 description-service">
+              Renteradar overvåker markedet og gir deg beskjed når det kommer
+              bedre tilbud.
+            </translation>
+  <translation id="offer.card.mobileRatingNotAvailable" desc="offer-card" meaning="               “application-time">
+            Webbsida
+          </translation>
+  <translation id="login.error4”" desc="login" meaning="“control-error">
+        Det har skjedd en feil i tilkobling mellom teleoperatøren og din
+        telefon. Vent litt og prøv igjen senere.
+      </translation>
+  <translation id="offer.card.big.customerSatisfaction”" desc="offer-card-big" meaning="             “customer-satisfaction">
+          Kundetilfredshet
+        </translation>
+  <translation id="header.logOut3”" desc="log-out" meaning="“Headerlink">Logg inn
+        </translation>
+  <translation id="header.logOut4”" desc="log-out" meaning="“Headerlink"><ph name="START_HEADING_LEVEL3"><ex>&lt;h3&gt;</ex>&lt;h3&gt;</ph>Logg ut<ph name="CLOSE_HEADING_LEVEL3"><ex>&lt;/h3&gt;</ex>&lt;/h3&gt;</ph>
+      </translation>
+  <translation id="profile.income.label" desc="profile" meaning="“income-per-year">
+          Din brutto årsinntekt
+        </translation>
+  <translation id="profile.membership.header" desc="profile" meaning="“income-per-year">
+        Medlemskap:
+      </translation>
+  <translation id="profile.membership.label" desc="profile" meaning="“income-per-year">
+        Velg dine medlemskap
+      </translation>
+  <translation id="profile.markedMonitoring.header" desc="profile" meaning="“income-per-year">
+        Markedsovervåkning:
+      </translation>
+  <translation id="profile.markedMonitoring.label" desc="profile" meaning="“income-per-year">
+        Velg hvor ofte din rente skal sjekkes og du vil ha påminnelse på epost
+      </translation>
+  <translation id="profile.offerOptions.header" desc="profile" meaning="“income-per-year">
+      HVILKE TILBUD VIL DU SE:
+    </translation>
+  <translation id="profile.offerOptions.option1" desc="profile" meaning="“income-per-year">
+        Vis kun tilbud på rammelån/flexilån
+      </translation>
+  <translation id="profile.offerOptions.option2" desc="profile" meaning="“income-per-year">
+        Vis tilbud som krever andre produkter eller har sækrav: feks. bytte av
+        nettbank og aktiv lønnskonto
+      </translation>
+  <translation id="profile.offerOptions.option3" desc="profile" meaning="“income-per-year">
+        Vis tilbud som forutsetter bolig med energiklasse A/B, nullhus,
+        Svanemerket, tiltak for energimerking, etc.
+      </translation>
+  <translation id="header.login”" desc="log-out" meaning="“Headerlink">Logg inn
+        </translation>
+  <translation id="header.logOut5”" desc="log-out" meaning="“Headerlink">Logg ut
+          </translation>
+  <translation id="profile.email" desc="profile" meaning="“issue-mail">
+          E-mail
+        </translation>
+  <translation id="profile.markedUpdates.header" desc="profile" meaning="“income-per-year">
+        Markedsoppdateringer:
+      </translation>
+  <translation id="profile.markedUpdates.label" desc="profile" meaning="“income-per-year">
+        Send meg markedsoppdateringer, nyheter og annen informasjon på epost
+      </translation>
+  <translation id="offer.card.customerSatisfied”" desc="offer-card" meaning="                 “customer-satisfied">
+              Kundetilfredshet
+              <ph name="START_TAG_SPAN"><ex>&lt;span&gt;</ex>&lt;span&gt;</ph>
+                <ph name="START_TAG_MAT_ICON"><ex>&lt;mat-icon&gt;</ex>&lt;mat-icon&gt;</ph>help<ph name="CLOSE_TAG_MAT_ICON"><ex>&lt;/mat-icon&gt;</ex>&lt;/mat-icon&gt;</ph>
+              <ph name="CLOSE_TAG_SPAN"><ex>&lt;/span&gt;</ex>&lt;/span&gt;</ph>
+            </translation>
+  <translation id="offer.card.mobileRatingNotAvailable" desc="offer-card" meaning="                 “application-time">
+              Webbsida
+            </translation>
+  <translation id="profile.members¬hip.header" desc="profile" meaning="“income-per-year">
+          Medlemskap:
+        </translation>
+  <translation id="membership.choosenMembershipMobile" desc="membership" meaning="“issue-mail">
+      Valgte medlemskap (<ph name="INTERPOLATION"><ex>{{ selectedMemberships?.length || 0 }}</ex>{{ selectedMemberships?.length || 0 }}</ph>)
+    </translation>
+  <translation id="membership.choosenMembershipDesktop" desc="membership" meaning="“issue-mail">
+        Valgte medlemskap (<ph name="INTERPOLATION"><ex>{{ selectedMemberships?.length || 0 }}</ex>{{ selectedMemberships?.length || 0 }}</ph>)
+      </translation>
+  <translation id="confirmation.property-value”" desc="“confirmation-property-value"/>
+  <translation id="confirmation.property-houses”" desc="“change or add more houses"/>
+  <translation id="confirmation.property-offers" desc="“go to offers"/>
+  <translation id="property-offers-button" desc="“go to offers">
+        Ta meg til tilbudene
+      </translation>
+  <translation id="confirmation.property-value" desc="“confirmation-property-value">
+        Vi har estimert din bolig til
+      </translation>
+  <translation id="confirmation.property-houses" desc="“change or add more houses">
+        Endre / legg til flere bolig
+      </translation>
+  <translation id="could-not-estimate.value" desc="could-not-estimate-value">
+    Vi klarte dessverre ikke estimere din boligverdi
+  </translation>
+  <translation id="several.reasons.for.this" desc="several-reasons-for-this">
+    Det kan være flere grunner til dette:
+  </translation>
+  <translation id="wrong.address.or.zip" desc="wrong-address-or-zip">
+      Feil adresse eller postnummer
+    </translation>
+  <translation id="cannot.estimate.home.value" desc="cannot-estimate-home-value">
+      Vi greier ikke estimere verdi på fritidsboliger
+    </translation>
+  <translation id="check.address.or.set.value.manually" desc="check-address-or-choose-manually">
+      Sjekk at adressen er riktig, eller velg <ph name="START_BOLD_TEXT"><ex>&lt;b&gt;</ex>&lt;b&gt;</ph>&quot;Legg til boligverdi&quot;<ph name="CLOSE_BOLD_TEXT"><ex>&lt;/b&gt;</ex>&lt;/b&gt;</ph> og
+      legg inn verdien manuelt
+    </translation>
+  <translation id="add.manual.value" desc="add-manual-value">
+    Legg inn boligverdien din
+  </translation>
+  <translation id="fill.your.best.estimated.value" desc="fill-your-best-estimated-value">
+      Fyll inn ditt beste estimat på hva du mener primærboligen din er verdt og
+      trykk på den grønne knappen
+    </translation>
+  <translation id="add.more.houses.after.login" desc="add-more-houses-after-login">
+      Har du flere boliger kan du legge til disse i boligfanen etter innlogging.
+    </translation>
+  <translation id="property.size" desc="property-size">
+          Boligstørrelse:
+        </translation>
+  <translation id="offer.card.noDeal”" desc="offer-card" meaning="“no-deal">
+            (Ingen avtale med banken)
+          </translation>
+  <translation id="select.save" desc="property-select" meaning="“issue-mail">Lagre</translation>
 </translationbundle>

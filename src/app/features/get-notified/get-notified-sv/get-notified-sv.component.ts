@@ -7,7 +7,7 @@ import {
   AbstractControl,
   FormControl
 } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ENTER, COMMA } from '@angular/cdk/keycodes';
 
 import { Observable, timer, EMPTY } from 'rxjs';
@@ -17,6 +17,8 @@ import { VALIDATION_PATTERN } from '@config/validation-patterns.config';
 import { SnackBarService } from '@services/snackbar.service';
 import { ContactService } from '../../../shared/services/remote-api/contact.service';
 import { BankVo } from '../../../shared/models/bank';
+import { MessageBannerService } from '@services/message-banner.service';
+import { getAnimationStyles } from '@shared/animations/animationEnums';
 
 @Component({
   selector: 'rente-get-notified',
@@ -35,6 +37,7 @@ export class GetNotifiedSvComponent implements OnInit {
   public allBanks: any[];
   public isLoading: boolean;
   public emailError = false;
+  public animationType = getAnimationStyles();
 
   @ViewChild('auto') matAutocomplete: MatAutocomplete;
 
@@ -42,7 +45,9 @@ export class GetNotifiedSvComponent implements OnInit {
     private fb: FormBuilder,
     private contactService: ContactService,
     private router: Router,
-    private snackBar: SnackBarService
+    private snackBar: SnackBarService,
+    private messageService: MessageBannerService,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
@@ -95,9 +100,13 @@ export class GetNotifiedSvComponent implements OnInit {
       () => {
         this.isLoading = false;
         this.router.navigate(['/']);
-        this.snackBar.openSuccessSnackBar(
+
+        this.messageService.setView(
           'Du får besked när din bank är tillgänglig',
-          3.2
+          5000,
+          this.animationType.DROP_DOWN_UP,
+          'success',
+          window
         );
       },
       () => {

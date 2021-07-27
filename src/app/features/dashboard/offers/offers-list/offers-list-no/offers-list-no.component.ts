@@ -16,27 +16,20 @@ export class OffersListNoComponent implements OnInit {
     private envService: EnvService
   ) {}
 
-  // It looks like it returns a number
-  public getVariation(): any {
+  // Save for later use
+  /* public getVariation(): number {
     if ((window as any).google_optimize === undefined) {
       return 0;
     }
     let experimentId: string | null;
     if (this.envService.environment.production === true) {
-      experimentId = 'ltS3-bOLQ6S2DjHISLjZJw';
+      experimentId = 'CZzJbFYIQEa_tvn-UeQ2RQ';
     } else {
       experimentId = 'A6Fvld2GTAG3VE95NWV1Hw';
     }
-    console.log('experimentId');
-    console.log(experimentId);
-
     const variation = (window as any).google_optimize.get(experimentId);
-    console.log('variation');
-    console.log(variation);
     return variation || 0;
-  }
-
-  variation: number | null = null;
+  } */
 
   get isMobile(): boolean {
     return window.innerWidth < 600;
@@ -44,8 +37,6 @@ export class OffersListNoComponent implements OnInit {
   public currentOfferType: string;
 
   ngOnInit(): void {
-    this.variation = this.getVariation();
-
     this.currentOfferInfo = JSON.parse(JSON.stringify(this.offersInfo));
     this.currentOfferType = 'all';
 

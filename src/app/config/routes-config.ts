@@ -1,5 +1,5 @@
 export const defaultTitle =
-  'Beste boliglånsrente | Sammenlign rente på boliglån | Renteradar.no';
+  'Bolåneräntor| Vi hjälper dig hitta bästa räntan | Ränteradar.se';
 
 export const defaultMeta = {
   name: 'description',
@@ -11,50 +11,48 @@ export const defaultMeta = {
 
 export const customMeta = {
   landing: {
-    title:
-      'Beste boliglånsrente | Sammenlign rente på boliglån | Renteradar.no',
+    title: 'Bolåneräntor| Vi hjälper dig hitta bästa räntan | Ränteradar.se',
     description:
-      'Få beste boliglånsrente. Sammenlign renten din med andre og de beste tilbudene i markedet. Du kan prute på renten eller bytte bank- helt automatisk og gratis.'
+      'Vi jämför olika bolåneräntor med din och hjälper dig hitta den bästa räntan på marknaden. Du kan pruta på räntan hos din befintliga bank eller byta bank – helt automatiskt och gratis.'
   },
   personvern: {
-    title: 'Personvern | Renteradar.no',
+    title: 'Om personuppgifter | Ränteradar.se',
     description:
-      'Forbrukerøkonomene AS som driver Renteradar.no, tar personvern og GDPR på alvor. Les mer i vår personvernerklæring og brukervilkår her.'
+      'Ränteradar Sweden AB som driver Ränteradar.se tar GDPR på största allvar, läs mer om behandling av personuppgifter samt användarvillkor här. '
   },
   valgBank: {
-    title: 'Velg banken hvor du har boliglån | Renteradar.no',
+    title: 'Välj den bank där du har ditt bolån| Ränteradar.se',
     description:
-      'Velg banken hvor du har boliglån og logg inn med BankID på mobil. Da henter vi automatisk inn din rente og låneinformasjon.'
+      'Välj den bank du har ditt bolån i och logga in med mobilt BankID. Vi hämtar då automatiskt hämta din ränta och bolåneinformation.'
   },
   omOss: {
-    title: 'Vår visjon og teamet bak tjenesten | Renteradar.no',
+    title: 'Vår vision och teamet bakom tjänsten | Ränteradar.se',
     description:
-      'Vår visjon er å gjøre det lettere for deg å alltid ha de beste betingelsene på boliglånet. Les mer om teamet bak Renteradar.no her.'
+      'Vår vision är att göra det lättare för dig att alltid ha de bästa villkoren på ditt bolån. Läs mer om teamet bakom Ränteradar.se här.'
   },
   kontakt: {
-    title: 'Kontakt oss | Renteradar.no',
+    title: 'Kontakta oss | Ränteradar.se',
     description:
-      'Ta gjerne kontakt om du har spørsmål eller om noe ikke fungerer. Bruk dette kontaktskjemaet eller chat-funksjonen i tjenesten så kommer vi raskt tilbake til deg.'
+      'Kontakta oss gärna om du har frågor eller om något inte fungerar. Du kan lämna din information så kontaktar vi dig, eller använda chat-funktionen i tjänsten så återkommer vi så snabbt vi kan!'
   },
   cookies: {
-    title: 'Cookies | Personvern | Renteradar.no',
+    title: 'Cookies | Om personuppgifter| Ränteradar.se',
     description:
-      'Les vår Cookiepolicy her om hvorfor og hvordan Renteradar.no bruker cookies.'
+      'Läs vår cookiepolicy här om varför och hur Ränteradar.se använder cookies.'
   },
   faabeskjed: {
-    title: 'Flere banker kommer | Få beskjed | Renteradar.no',
-    description:
-      'Tjenesten støtter i dag kun kunder av DNB, Nordea, Sparebank 1- eller Eika-bankene. Legg igjen din email og få beskjed når din bank er på plass.'
+    title: 'Ränteradar.se',
+    description: ''
   },
   personvernerklaering: {
-    title: 'Personvernserklæring | Personvern | Renteradar.no',
+    title: 'Integritetspolicy | Ränteradar.se',
     description:
-      'Forbrukerøkonomene AS som driver Renteradar.no, tar personvern  og GDPR på alvor. Les mer i vår personvernerklæring her.'
+      'Ränteradar Sweden AB som driver Ränteradar.se tar behandling av personuppgifter samt GDPR på allvar. Läs mer om det här.'
   },
   auth: {
-    title: 'Registrer | Logg inn | Renteradar.no',
+    title: 'Registrera dig | Logga in | Ränteradar.se',
     description:
-      'Renteradar.no henter renten du har og lånebeløp automatisk gjennom innlogging med BankID på mobil'
+      'Ränteradar.se hämtar räntan du har och lånebeloppet automatiskt genom inloggning med mobilt BankID.'
   },
   banksGuide: {
     title: 'Få oversikt over norske banker | Bankguiden | Renteradar.no',
@@ -62,12 +60,12 @@ export const customMeta = {
       'Bankguiden: Renteradar.no sin oversikt over alle banker som tilbyr boliglån i Norge.'
   },
   landingTitle: defaultTitle,
-  bekreftTitle: 'Renteradar.no | Bekreft  | Overvåk boliglånsrenten din gratis',
-  tilbudTitle: 'Oversikt beste tilbud | Renteradar.no',
-  mineLanTitle: 'Mine Lån | Renteradar.no',
-  boligTitle: 'Bolig | Renteradar.no',
-  preferanserTitle: 'Preferanser | Renteradar.no',
-  profilTitle: 'Profil | Renteradar.no',
+  bekreftTitle: 'Ränteradar.se | Bekräfta | Kontrollera din bolåneränta gratis',
+  tilbudTitle: 'Översikt bäst erbjudanden | Ränteradar.se',
+  mineLanTitle: 'Min Lån | Ränteradar.se',
+  boligTitle: 'Bostad | Ränteradar.se',
+  preferanserTitle: 'Preferanser | Ränteradar.se',
+  profilTitle: 'Profil | Ränteradar.se',
 
   bankLoginTitle: 'Renteradar.no | Registrer | Logg inn',
   DNB: {
@@ -106,13 +104,6 @@ export const customMeta = {
     bankName: 'sparebank_1_gudbrandsdal'
   },
   HallingdalValdresSparebank: {
-    title:
-      'Beste boliglånsrente | Sammenlign rente på boliglån | Sparebank 1 Hallingdal Valdres | Renteradar.no',
-    description:
-      'Renteradar henter renten du har og lånebeløp automatisk med BankID på mobil. Logg inn og registrering for deg som har boliglån i Sparebank 1 Hallingdal Valdres',
-    bankName: 'sparebank_1_hallingdal_valdres'
-  },
-  HelgelandSparebank: {
     title:
       'Beste boliglånsrente | Sammenlign rente på boliglån | Sparebank 1 Hallingdal Valdres | Renteradar.no',
     description:
@@ -201,7 +192,9 @@ export const customMeta = {
 export const ROUTES_MAP_NO = {
   boliglanskalkulator: 'boliglanskalkulator',
   banksGuide: 'bankguiden',
-  bargainNordea: 'prute-fullfort-nordea'
+  bargainNordea: 'prute-fullfort-nordea',
+  bankIdLogin: 'bankid-login',
+  sparebank1Error: 'sparebank1'
 };
 
 export const ROUTES_MAP_SV = {
@@ -213,22 +206,22 @@ export const ROUTES_MAP = {
   aboutUs: 'om-oss',
   faq: 'faq',
   contactUs: 'kontakt',
-  privacy: 'personvern',
-  privacyPolicy: 'personvern/personvernerklaering',
-  termsConditions: 'personvern/brukervilkar',
-  bankSelect: 'velgbank',
+  privacy: 'personuppgiftsbehandling',
+  privacyPolicy: 'personuppgiftsbehandling/integritypolicy',
+  termsConditions: 'personuppgiftsbehandling/anvandarvillkor',
+  bankSelect: 'valjbank',
   auth: 'autentisering',
   dashboard: 'dashboard',
-  offers: 'tilbud',
-  loans: 'mine-lan',
-  property: 'bolig',
+  offers: 'erbjudande',
+  loans: 'mina-lan',
+  property: 'bostad',
   profile: 'profil',
-  initConfirmation: 'bekreft',
-  noLoan: 'ingenlaan',
-  fixedRate: 'fastrente',
-  getNotified: 'faabeskjed',
-  guide: 'slik-funger-renteradar',
-  cookies: 'personvern/cookies',
-  customerSatisfaction: 'epsi-kundetilfredshet',
-  emailPreferences: 'epost/innstillinger'
+  initConfirmation: 'bekraftat',
+  noLoan: 'Ingetlan',
+  fixedRate: 'fastranta',
+  getNotified: 'fabesked',
+  guide: 'sa-fungerar-ranteradar',
+  cookies: 'personuppgiftsbehandling/cookies',
+  customerSatisfaction: 'kundnojdhet',
+  emailPreferences: 'epost/installningar'
 };

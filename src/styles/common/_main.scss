@@ -1,4 +1,4 @@
-@import "../theme/_colors.scss";
+@import '../theme/_colors.scss';
 html {
   height: 100%;
   overflow: auto;
@@ -21,8 +21,6 @@ body {
   margin: auto;
   cursor: pointer;
   @media (min-width: 600px) {
-
-
   }
 }
 *,
@@ -39,12 +37,25 @@ hr {
   background-color: $light;
 }
 
-
 //CHECK COMPATIBILITY BEFORE PRODUCTION
 .content {
   background-color: $light;
   padding-top: 60px;
-  
+}
+
+.content-dashboard {
+  background: linear-gradient(180deg, #162537 135px, #183a63 450px) !important;
+  @media (min-width: 992px) {
+    padding-top: 30px !important;
+  }
+
+  @media (max-width: 992px) {
+    padding-top: 0px !important;
+  }
+}
+
+.content-blue {
+  background: $blue;
 }
 
 .mobile {
@@ -64,7 +75,7 @@ hr {
 }
 
 .center-horizontal {
-  margin: auto
+  margin: auto;
 }
 .bank-buttons .button-wrapper {
   display: block;
@@ -76,7 +87,9 @@ hr {
   }
 }
 
-*:focus {outline:none !important}
+*:focus {
+  outline: none !important;
+}
 
 //Hack to get iphone with smaller screens to not zoom in on inputs and there after stay zoomed in
 input {
@@ -132,7 +145,7 @@ mat-radio-button.mat-accent {
   background: none !important;
 }
 .cdk-global-overlay-wrapper {
-    background: rgba(17, 38, 57, 0.8) !important;
+  background: rgba(17, 38, 57, 0.8) !important;
   top: 60px !important;
   align-items: unset !important;
   width: calc(100% + 40px);
@@ -149,7 +162,7 @@ mat-radio-button.mat-accent {
   max-width: 600px;
   //border: 1px solid #c1c1c1 !important;
   margin: auto 10px auto;
-} 
+}
 rente-header {
   z-index: 99999999999;
   position: fixed;
@@ -173,7 +186,7 @@ rente-header {
   display: grid;
   grid-gap: 10px;
   grid-template-columns: 1fr 1fr;
-  
+
   &.buttons {
     padding: 10px;
     @media (max-width: 600px) {
@@ -190,7 +203,7 @@ rente-header {
   display: grid;
   grid-gap: 10px;
   grid-template-columns: 2fr 4fr;
-  
+
   &.buttons {
     padding: 10px;
     @media (max-width: 600px) {
@@ -249,7 +262,7 @@ button#widgetButton {
       font-weight: 300;
     }
     :after {
-      content: "";
+      content: '';
       position: absolute;
       left: 0;
       right: 0;
@@ -327,15 +340,15 @@ button#widgetButton {
 }
 
 .loading {
-  position:fixed;
-    top:50%;
-    left:50%;
-    transform:translate(-50%, -50%);
-    color: white; 
-    background: #cccccc; 
-    opacity:0.6;
-    border-radius: 50%;
-    z-index: 1000;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  background: #cccccc;
+  opacity: 0.6;
+  border-radius: 50%;
+  z-index: 1000;
 }
 
 .update-error {
@@ -348,7 +361,7 @@ button#widgetButton {
   background: $red;
   border-radius: 5%;
   padding: 1em;
-  p{
+  p {
     text-align: center;
     font-weight: 400;
     color: white;
@@ -365,22 +378,21 @@ button#widgetButton {
   background: $primary;
   border-radius: 10%;
   padding: 1em;
-  box-shadow: 1px 1px 3px 0px rgba(0,0,0,0.12);
+  box-shadow: 1px 1px 3px 0px rgba(0, 0, 0, 0.12);
 
-  p{
+  p {
     text-align: center;
     font-weight: 400;
     color: white !important;
   }
-  img{
+  img {
     border-radius: 50%;
     margin: auto;
     display: block;
   }
 }
 
-.disabled
-{
+.disabled {
   pointer-events: none;
   /* for "disabled" effect */
   opacity: 0.6;
@@ -400,7 +412,7 @@ button#widgetButton {
 }
 
 .radio .mat-tab-label:after {
-  content: "";
+  content: '';
   position: absolute;
   border: 1px solid #5bccb5;
   height: 10px;
@@ -412,14 +424,12 @@ button#widgetButton {
   background-color: #5bccb5;
 }
 
-
 iframe#drift-widget.drift-widget-welcome-online {
   bottom: 60px !important;
   right: 20px !important;
 }
 
 div.drift-frame-controller {
-
   @media (max-width: 600px) {
     bottom: 70px !important;
   }

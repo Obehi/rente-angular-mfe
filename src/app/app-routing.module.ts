@@ -1,10 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {
-  ROUTES_MAP,
-  ROUTES_MAP_NO,
-  ROUTES_MAP_SV
-} from '@config/routes-config';
+
 import { AuthSvMockupComponent } from '@features/auth-sv-mockup/auth-sv-mockup.component';
 import { ContactUsComponent } from '@features/contact-us/contact-us.component';
 import { AboutCookiesComponent } from '@features/cookies/cookies.component';
@@ -13,7 +9,13 @@ import { LandingComponent } from '@features/landing/landing.component';
 import { PageNotFoundComponent } from '@features/page-not-found/page-not-found.component';
 import { PrivacyComponent } from '@features/privacy/privacy.component';
 import { TermsConditionsComponent } from '@features/terms-conditions/terms-conditions.component';
-import { customMeta, defaultMeta } from './config/routes-config';
+import {
+  customMeta,
+  defaultMeta,
+  ROUTES_MAP,
+  ROUTES_MAP_NO,
+  ROUTES_MAP_SV
+} from './config/routes-config';
 import { InitConfirmationLangGenericComponent } from './local-components/components-output';
 import { GetNotifiedLangGenericComponent } from './local-components/components-output';
 import { PrivacyPolicyLangGenericComponent } from './local-components/components-output';
@@ -21,7 +23,8 @@ import { EmailRedirectNOComponent } from '@features/email-redirect/email-redirec
 import { EmailRedirectSVComponent } from '@features/email-redirect/email-redirect-sv/email-redirect-sv.component';
 import { AuthGuard } from '@shared/guards/auth.guard';
 import { NoLoansComponent } from '@features/dashboard/no-loans/no-loans.component';
-import { ConfirmationProperty } from './features/init-confirmation/init-confirmation-sv/confirmation-property-sv/confirmation-property-sv.component';
+import { ConfirmationProperty } from './features/init-confirmation/confirmation-property/confirmation-property.component';
+import { Sb1DisabledComponent } from '@features/sb1-disabled/sb1-disabled.component';
 
 const commonRoutes: Routes = [
   {
@@ -203,7 +206,17 @@ const commonRoutes: Routes = [
       }
     }
   },
-
+  // {
+  //   path: ROUTES_MAP_NO.confirmationProperty,
+  //   component: ConfirmationProperty,
+  //   data: {
+  //     title: customMeta.bekreftTitle,
+  //     meta: {
+  //       name: defaultMeta.name,
+  //       description: defaultMeta.description
+  //     }
+  //   }
+  // },
   {
     path: ROUTES_MAP_SV.confirmationProperty,
     component: ConfirmationProperty,
@@ -218,6 +231,17 @@ const commonRoutes: Routes = [
   {
     path: ROUTES_MAP.getNotified,
     component: GetNotifiedLangGenericComponent,
+    data: {
+      title: customMeta.faabeskjed.title,
+      meta: {
+        name: defaultMeta.name,
+        description: customMeta.faabeskjed.description
+      }
+    }
+  },
+  {
+    path: 'sparebank1',
+    component: Sb1DisabledComponent,
     data: {
       title: customMeta.faabeskjed.title,
       meta: {
