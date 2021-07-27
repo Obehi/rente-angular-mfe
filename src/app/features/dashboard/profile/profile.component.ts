@@ -169,7 +169,8 @@ export class ProfileComponent implements OnInit, DeactivationGuarded {
     private loansService: LoansService,
     private membershipService: MembershipService,
     public dialog: MatDialog,
-    public textLangService: CustomLangTextService
+    public textLangService: CustomLangTextService,
+    private profileService: ProfileService
   ) {
     if (window.innerWidth > 600) {
       this.showMemberships = true;

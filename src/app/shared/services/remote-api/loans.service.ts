@@ -24,6 +24,7 @@ import {
   SignicatLoanInfoDtoArray
 } from '@shared/models/loans';
 
+import { NewOffers, OffersBank } from '@shared/models/bank';
 @Injectable({
   providedIn: 'root'
 })

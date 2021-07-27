@@ -31,6 +31,7 @@ import { OptimizeService } from '@services/optimize.service';
 
 import { VALIDATION_PATTERN } from '@config/validation-patterns.config';
 import { DialogInfoComponent } from '../dialog-info/dialog-info.component';
+
 import { OfferInfo } from '@shared/models/offers';
 import { Mask } from '@shared/constants/mask';
 import { ROUTES_MAP } from '@config/routes-config';

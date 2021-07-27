@@ -120,8 +120,6 @@ export class AuthSvMockupComponent implements OnInit, OnDestroy {
     this.isLoading = true;
     this.contactUsForm.markAllAsTouched();
     this.contactUsForm.updateValueAndValidity();
-    // console.log('formData check');
-    // console.log(formData);
     this.contactService.sendContactForm(formData).subscribe(
       (_) => {
         this.isLoading = false;

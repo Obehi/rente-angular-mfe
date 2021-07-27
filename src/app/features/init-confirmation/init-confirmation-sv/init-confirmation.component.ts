@@ -6,11 +6,10 @@ import {
   FormGroup,
   FormBuilder
 } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
 import { ENTER, COMMA } from '@angular/cdk/keycodes';
 import { MatDialog } from '@angular/material';
 import { Router } from '@angular/router';
-
+import { DialogInfoComponent } from '../dialog-info/dialog-info.component';
 import { LoansService } from '@services/remote-api/loans.service';
 import {
   ConfirmationSetDto,

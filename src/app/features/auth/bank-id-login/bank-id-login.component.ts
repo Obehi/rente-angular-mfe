@@ -34,7 +34,6 @@ import {
   AddressCreationDto,
   ClientUpdateInfo,
   ConfirmationSetDto,
-  LoansService,
   MembershipTypeDto
 } from '@shared/models/loans';
 import { LoansService } from '@services/remote-api/loans.service';
