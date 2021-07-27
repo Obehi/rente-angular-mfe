@@ -864,22 +864,6 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     this.currentStepperValue = this.stepper.selectedIndex;
   }
 
-  // public goToLoansFormFromManulPropertyValue(): void {
-  //   this.isLoading = true;
-  //   this.loanService.getOffersBanks().subscribe((offerBanks) => {
-  //     this.productIdOptions = (offerBanks.offers as any[]).map((offer) => {
-  //       return {
-  //         name: offer.name,
-  //         value: offer.id
-  //       };
-  //     });
-  //     this.isLoading = false;
-  //     this.stepper.next();
-  //     this.scrollToTop();
-  //     this.currentStepperValue = this.stepper.selectedIndex;
-  //   });
-  // }
-
   goToLoansForm(): void {
     this.isLoading = true;
     this.loanService.updateClientInfo(this.clientUpdateInfo).subscribe(
