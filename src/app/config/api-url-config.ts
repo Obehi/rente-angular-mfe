@@ -95,6 +95,10 @@ export const API_URL_MAP = {
     statistics: '/statistics'
   },
   profile: '/profil',
-  preferances: '/preferanser',
+
+  preferances: {
+    base: '/preferanser',
+    score: '/score'
+  },
   house: '/bolig'
 };

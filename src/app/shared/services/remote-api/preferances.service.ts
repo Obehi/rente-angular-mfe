@@ -11,11 +11,11 @@ export class PreferancesService {
   constructor(private http: GenericHttpService) {}
 
   public getPreferances() {
-    return this.http.get(API_URL_MAP.preferances);
+    return this.http.get(API_URL_MAP.preferances.base);
   }
 
   public updatePreferances(preferancesData) {
-    return this.http.post(API_URL_MAP.preferances, preferancesData);
+    return this.http.post(API_URL_MAP.preferances.base, preferancesData);
   }
 
   public getPreferancesWithGUID(guId): Observable<EmailDto> {
