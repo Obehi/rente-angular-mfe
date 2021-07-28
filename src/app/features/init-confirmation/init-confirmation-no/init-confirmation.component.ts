@@ -111,7 +111,8 @@ export class InitConfirmationNoComponent
     this.submit$
       .pipe(switchMap(() => this.scoreListener$))
       .subscribe((scores) => {
-        console.log(scores);
+        console.log('this.scoreListener$');
+        console.log(this.scoreListener$.value);
       });
     this.isLoading = true;
     forkJoin([

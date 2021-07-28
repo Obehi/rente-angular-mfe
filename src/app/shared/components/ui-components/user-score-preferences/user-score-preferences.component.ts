@@ -25,7 +25,7 @@ import {
   styleUrls: ['./user-score-preferences.component.scss']
 })
 export class UserScorePreferencesComponent implements OnInit {
-  @Input() scoreListener: Subject<UserScorePreferences>;
+  @Input() scoreListener: BehaviorSubject<UserScorePreferences>;
   @Input() scoreObservable: Observable<any>;
 
   @Output()
