@@ -1,41 +1,51 @@
-<ngx-slider
-  (userChangeEnd)="advisorScoreChanged($event)"
-  [options]="options"
-></ngx-slider>
+<div *ngIf="initialScores | async as score">
+  <ngx-slider
+    [value]="score.advisorScore"
+    (userChangeEnd)="advisorScoreChanged($event)"
+    [options]="options"
+  ></ngx-slider>
 
-<ngx-slider
-  (userChangeEnd)="changeProcessScoreChanged($event)"
-  [options]="options"
-></ngx-slider>
+  <ngx-slider
+    [value]="score.changeProcessScore"
+    (userChangeEnd)="changeProcessScoreChanged($event)"
+    [options]="options"
+  ></ngx-slider>
 
-<ngx-slider
-  (userChangeEnd)="complicatedEconomyScoreChanged($event)"
-  [options]="options"
-></ngx-slider>
+  <ngx-slider
+    [value]="score.complicatedEconomyScore"
+    (userChangeEnd)="complicatedEconomyScoreChanged($event)"
+    [options]="options"
+  ></ngx-slider>
 
-<ngx-slider
-  (userChangeEnd)="insuranceScoreChanged($event)"
-  [options]="options"
-></ngx-slider>
+  <ngx-slider
+    [value]="score.insuranceScore"
+    (userChangeEnd)="insuranceScoreChanged($event)"
+    [options]="options"
+  ></ngx-slider>
 
-<ngx-slider
-  (userChangeEnd)="stockScoreChanged($event)"
-  [options]="options"
-></ngx-slider>
+  <ngx-slider
+    [value]="score.localPresenceScore"
+    (userChangeEnd)="localPresenceScoreChanged($event)"
+    [options]="options"
+  ></ngx-slider>
 
-<ngx-slider
-  (userChangeEnd)="savingScoreChanged($event)"
-  [options]="options"
-></ngx-slider>
+  <ngx-slider
+    [value]="score.priceSensitivity"
+    (userChangeEnd)="priceSensitivityChanged($event)"
+    [options]="options"
+  ></ngx-slider>
 
-<ngx-slider
-  (userChangeEnd)="priceSensitivityChanged($event)"
-  [options]="options"
-></ngx-slider>
+  <ngx-slider
+    [value]="score.savingScore"
+    (userChangeEnd)="savingScoreChanged($event)"
+    [options]="options"
+  ></ngx-slider>
 
-<ngx-slider
-  (userChangeEnd)="localPresenceScoreChanged($event)"
-  [options]="options"
-></ngx-slider>
+  <ngx-slider
+    [value]="score.stockScore"
+    (userChangeEnd)="stockScoreChanged($event)"
+    [options]="options"
+  ></ngx-slider>
 
-<ngx-slider [(value)]="minValue2" [options]="options2"></ngx-slider>
+  <ngx-slider [(value)]="minValue2" [options]="options2"></ngx-slider>
+</div>

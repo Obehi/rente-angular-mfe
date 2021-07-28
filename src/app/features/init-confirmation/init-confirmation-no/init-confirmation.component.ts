@@ -80,6 +80,8 @@ export class InitConfirmationNoComponent implements OnInit, OnDestroy {
   public stepFillOutForm: boolean;
 
   scoreListener$ = new BehaviorSubject<UserScorePreferences>({});
+  initialScores$: Observable<UserScorePreferences>;
+
   submit$ = new Subject<any>();
 
   @ViewChild('membershipInput') membershipInput: ElementRef<HTMLInputElement>;
@@ -117,10 +119,20 @@ export class InitConfirmationNoComponent implements OnInit, OnDestroy {
         console.log(this.scoreListener$.value);
       });
 
+    this.initialScores$ = this.userService.getUserScorePreferences().pipe();
+
+    this.initialScores$.subscribe(() => {
+      console.log('initial scores!!');
+    });
     this.isLoading = true;
     forkJoin([
       this.loansService.getLoansAndRateType(),
-      this.loansService.getConfirmationData()
+      this.loansService.getConfirmationData(),
+      this.userService.getUserScorePreferences().pipe(
+        map(() => {
+          return { advisorScore: 4 };
+        })
+      )
     ]).subscribe(([rateAndLoans, userInfo]) => {
       this.isLoading = false;
       this.allMemberships = userInfo.availableMemberships;
