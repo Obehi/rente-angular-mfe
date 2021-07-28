@@ -26,7 +26,6 @@ import {
 })
 export class UserScorePreferencesComponent implements OnInit {
   @Input() scoreListener: BehaviorSubject<UserScorePreferences>;
-  @Input() scoreObservable: Observable<any>;
 
   @Output()
   scoreEmitter: EventEmitter<UserScorePreferences> = new EventEmitter();
@@ -73,6 +72,7 @@ export class UserScorePreferencesComponent implements OnInit {
 
   defaultFilter = {};
   inputSubject$ = new Subject();
+  inputObservable$ = new Observable();
 
   filterChanges$ = new Subject();
 
@@ -128,7 +128,7 @@ export class UserScorePreferencesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.scoreObservable = this.filterChanges$.pipe(
+    this.inputObservable$ = this.filterChanges$.pipe(
       scan((acc, mergeFilter) => {
         return {
           ...acc,
@@ -138,10 +138,9 @@ export class UserScorePreferencesComponent implements OnInit {
       tap((scores) => {
         //  this.scoreListener.next(scores);
         this.scoreListener?.next(scores);
-      }),
-      share()
+      })
     );
-    this.scoreObservable.subscribe(() => {
+    this.inputObservable$.subscribe(() => {
       console.log('print');
     });
   }

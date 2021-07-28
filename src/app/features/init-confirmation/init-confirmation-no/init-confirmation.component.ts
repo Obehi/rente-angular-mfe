@@ -59,8 +59,7 @@ import { GlobalStateService } from '@services/global-state.service';
   templateUrl: './init-confirmation.component.html',
   styleUrls: ['./init-confirmation.component.scss']
 })
-export class InitConfirmationNoComponent
-  implements OnInit, AfterViewInit, OnDestroy {
+export class InitConfirmationNoComponent implements OnInit, OnDestroy {
   public propertyForm: FormGroup;
   public isLoading: boolean;
   public visible = true;
@@ -80,9 +79,8 @@ export class InitConfirmationNoComponent
   public estimatedPropertyValueFromVirdi: number;
   public stepFillOutForm: boolean;
 
-  @Input() scoreListener$ = new BehaviorSubject<UserScorePreferences>({});
-  scoreObservable$ = new Observable<any>();
-  @Input() submit$ = new Subject<any>();
+  scoreListener$ = new BehaviorSubject<UserScorePreferences>({});
+  submit$ = new Subject<any>();
 
   @ViewChild('membershipInput') membershipInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete: MatAutocomplete;
@@ -95,7 +93,8 @@ export class InitConfirmationNoComponent
     public customLangTextService: CustomLangTextService,
     private logging: LoggingService,
     private messageBanner: MessageBannerService,
-    private globalStateService: GlobalStateService
+    private globalStateService: GlobalStateService,
+    private userService: UserService
   ) {
     this.filteredMemberships = this.membershipCtrl.valueChanges.pipe(
       startWith(null),
@@ -109,11 +108,15 @@ export class InitConfirmationNoComponent
 
   ngOnInit(): void {
     this.submit$
-      .pipe(switchMap(() => this.scoreListener$))
+      .pipe(
+        switchMap(() => this.scoreListener$),
+        switchMap((score) => this.userService.updateUserScorePreferences(score))
+      )
       .subscribe((scores) => {
         console.log('this.scoreListener$');
         console.log(this.scoreListener$.value);
       });
+
     this.isLoading = true;
     forkJoin([
       this.loansService.getLoansAndRateType(),
@@ -177,12 +180,6 @@ export class InitConfirmationNoComponent
     // Set content background
     this.globalStateService.setContentClassName('content', 'content-blue');
     this.globalStateService.setFooterState(false);
-  }
-
-  ngAfterViewInit(): void {
-    this.scoreListener$.pipe(startWith({ test: 2 })).subscribe((value) => {
-      console.log(value);
-    });
   }
 
   isErrorState(control: AbstractControl | null): boolean {

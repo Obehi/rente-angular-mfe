@@ -63,6 +63,10 @@ export const API_URL_MAP = {
       base: '/user',
       info: '/info'
     },
+    preferances: {
+      base: '/preferences',
+      score: '/score'
+    },
     membership: {
       base: '/membership',
       all: '/all',
@@ -95,10 +99,6 @@ export const API_URL_MAP = {
     statistics: '/statistics'
   },
   profile: '/profil',
-
-  preferances: {
-    base: '/preferanser',
-    score: '/score'
-  },
+  preferances: '/preferanser',
   house: '/bolig'
 };
