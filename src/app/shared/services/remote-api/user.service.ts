@@ -25,7 +25,7 @@ export class UserService {
   }
 
   public getUserScorePreferences(): Observable<UserScorePreferences> {
-    const url = `${API_URL_MAP.loan.preferances.base}${API_URL_MAP.loan.preferances.score}`;
+    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.preferances.base}${API_URL_MAP.loan.preferances.score}`;
     return this.http.get(url);
   }
 

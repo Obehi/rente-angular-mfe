@@ -1,23 +1,8 @@
-import {
-  Component,
-  OnInit,
-  Input,
-  EventEmitter,
-  Output,
-  ViewChild,
-  ElementRef
-} from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { Options, LabelType } from '@angular-slider/ngx-slider';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { UserScorePreferences } from '@models/user';
-import {
-  multicast,
-  refCount,
-  scan,
-  share,
-  switchMap,
-  tap
-} from 'rxjs/operators';
+import { scan, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'rente-user-score-preferences',
@@ -26,9 +11,10 @@ import {
 })
 export class UserScorePreferencesComponent implements OnInit {
   @Input() scoreListener: BehaviorSubject<UserScorePreferences>;
+  @Input() initialScores: Observable<UserScorePreferences>;
 
-  @Output()
-  scoreEmitter: EventEmitter<UserScorePreferences> = new EventEmitter();
+  scoreObserveTrigger$ = new Observable();
+  collectScore$ = new Subject();
 
   minValue = 0;
   maxValue = 5;
@@ -70,78 +56,54 @@ export class UserScorePreferencesComponent implements OnInit {
     }
   };
 
-  defaultFilter = {};
-  inputSubject$ = new Subject();
-  inputObservable$ = new Observable();
-
-  filterChanges$ = new Subject();
-
-  advisorScoreChanged(event: any): any {
-    this.filterChanges$.next({ advisorScore: event.value });
-  }
-
-  changeProcessScoreChanged(event: any): any {
-    this.filterChanges$.next({ changeProcessScore: event.value });
-  }
-
-  complicatedEconomyScoreChanged(event: any): any {
-    this.filterChanges$.next({ complicatedEconomyScore: event.value });
-  }
-
-  insuranceScoreChanged(event: any): any {
-    this.filterChanges$.next({ insuranceScore: event.value });
-  }
-
-  stockScoreChanged(event: any): any {
-    this.filterChanges$.next({ stockScore: event.value });
-  }
-
-  savingScoreChanged(event: any): any {
-    this.filterChanges$.next({ savingScore: event.value });
-  }
-
-  priceSensitivityChanged(event: any): any {
-    this.filterChanges$.next({ priceSensitivity: event.value });
-  }
-
-  localPresenceScoreChanged(event: any): any {
-    this.filterChanges$.next({ localPresenceScore: event.value });
-  }
-
-  constructor() {
-    /* this.inputSubject.subscribe((value) => {
-      console.log('value');
-      console.log(value);
-    }); */
-    /*  this.scoreListener = this.filterChanges$.pipe(
-      scan((acc, mergeFilter) => {
-        return {
-          ...acc,
-          ...(mergeFilter as any)
-        };
-      }, this.defaultFilter),
-      tap((scores) => {
-        this.scoreListener.next(scores);
-      }),
-      share()
-    ); */
-  }
+  constructor() {}
 
   ngOnInit(): void {
-    this.inputObservable$ = this.filterChanges$.pipe(
+    this.scoreObserveTrigger$ = this.collectScore$.pipe(
       scan((acc, mergeFilter) => {
         return {
           ...acc,
           ...(mergeFilter as any)
         };
-      }, this.defaultFilter),
+      }, {}),
       tap((scores) => {
-        //  this.scoreListener.next(scores);
         this.scoreListener?.next(scores);
       })
     );
-    this.inputObservable$.subscribe(() => {
+    this.scoreObserveTrigger$.subscribe(() => {
       console.log('print');
     });
+  }
+
+  advisorScoreChanged(event: any): any {
+    this.collectScore$.next({ advisorScore: event.value });
+  }
+
+  changeProcessScoreChanged(event: any): any {
+    this.collectScore$.next({ changeProcessScore: event.value });
+  }
+
+  complicatedEconomyScoreChanged(event: any): any {
+    this.collectScore$.next({ complicatedEconomyScore: event.value });
+  }
+
+  insuranceScoreChanged(event: any): any {
+    this.collectScore$.next({ insuranceScore: event.value });
+  }
+
+  stockScoreChanged(event: any): any {
+    this.collectScore$.next({ stockScore: event.value });
+  }
+
+  savingScoreChanged(event: any): any {
+    this.collectScore$.next({ savingScore: event.value });
+  }
+
+  priceSensitivityChanged(event: any): any {
+    this.collectScore$.next({ priceSensitivity: event.value });
+  }
+
+  localPresenceScoreChanged(event: any): any {
+    this.collectScore$.next({ localPresenceScore: event.value });
   }
 }
