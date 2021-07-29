@@ -159,6 +159,20 @@
           </div>
         </div>
 
+        <div
+          *ngIf="bank?.hasFixedLoans === false"
+          i18n="“help|info-confirmation@@info.confirmation.help”"
+          class="grid-right"
+          (click)="
+            openInfoDialog({
+              header: 'Faste gebyrer',
+              text: 'Her fyller du inn det månedlige termingebyret'
+            })
+          "
+        >
+          <mat-icon>help</mat-icon>
+        </div>
+
         <div *ngIf="bank?.hasFixedLoans === false" class="field left">
           <rente-input
             [placeholder]="'Nominell rente'"
@@ -198,6 +212,23 @@
               </mat-option>
             </mat-select>
           </mat-form-field>
+        </div>
+
+        <div
+          *ngIf="bank?.hasFixedLoans === true"
+          i18n="“help|info-confirmation@@info.confirmation.help”"
+          class="grid-right-dropdown"
+          (click)="
+            openInfoDialog({
+              header: 'Lånetype',
+              text:
+                'Lånetype er navnet på lånet ditt og er ofte en kombinasjon av «Boliglån», «Rammelån» e.l. og belåningsgraden din. Eksempel: «Boliglån 50%».',
+              text2:
+                'Merk, listen inkluderer ikke fastrentelån siden tjenesten vår dessverre ikke har støtte for dette enda.'
+            })
+          "
+        >
+          <mat-icon>help</mat-icon>
         </div>
 
         <div *ngIf="bank?.hasFixedLoans === false" class="field left">
@@ -586,6 +617,20 @@
                   </div>
                 </div>
 
+                <div
+                  *ngIf="bank?.hasFixedLoans === false"
+                  i18n="“help|info-confirmation@@info.confirmation.help”"
+                  class="grid-right"
+                  (click)="
+                    openInfoDialog({
+                      header: 'Faste gebyrer',
+                      text: 'Her fyller du inn det månedlige termingebyret'
+                    })
+                  "
+                >
+                  <mat-icon>help</mat-icon>
+                </div>
+
                 <div *ngIf="bank?.hasFixedLoans === false" class="field left">
                   <rente-input
                     [placeholder]="'Nominell rente'"
@@ -629,6 +674,23 @@
                       </mat-option>
                     </mat-select>
                   </mat-form-field>
+                </div>
+
+                <div
+                  *ngIf="bank?.hasFixedLoans === true"
+                  i18n="“help|info-confirmation@@info.confirmation.help”"
+                  class="grid-right-dropdown"
+                  (click)="
+                    openInfoDialog({
+                      header: 'Lånetype',
+                      text:
+                        'Lånetype er navnet på lånet ditt og er ofte en kombinasjon av «Boliglån», «Rammelån» e.l. og belåningsgraden din. Eksempel: «Boliglån 50%».',
+                      text2:
+                        'Merk, listen inkluderer ikke fastrentelån siden tjenesten vår dessverre ikke har støtte for dette enda.'
+                    })
+                  "
+                >
+                  <mat-icon>help</mat-icon>
                 </div>
 
                 <div *ngIf="bank?.hasFixedLoans === false" class="field left">
@@ -814,7 +876,7 @@
             [isLoading]="isLoading"
             [disabled]="membershipFormGroup?.invalid || isLoading"
           >
-            Finn beste rente!
+            Ferdig
           </rente-button>
         </div>
         <div *ngSwitchDefault></div>

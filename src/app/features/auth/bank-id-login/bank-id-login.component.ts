@@ -171,7 +171,6 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
       return;
     } else {
       this.bank = stateData.bank;
-
       if (stateData.redirect === true || this.bank?.name === 'DNB')
         this.shouldShowBankWarningMessage = true;
       this.loginBankIdStep1();
@@ -904,7 +903,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
               address: this.getFormValues().address,
               cancelText: 'Prøv ny adresse',
               confirmText: 'Legg til boligverdi',
-              finishText: 'Neste steg',
+              finishText: 'Neste',
               onConfirm: () => {},
               onClose: () => {},
               onSendForm: (apartmentValue: string) => {
@@ -997,7 +996,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
         step: 2,
         confirmText: 'Legg til boligverdi',
         cancelText: 'Lukk',
-        finishText: 'Neste steg',
+        finishText: 'Neste',
         onConfirm: () => {},
         onClose: () => {},
         onSendForm: (apartmentValue: string) => {
