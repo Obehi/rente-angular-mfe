@@ -1,16 +1,24 @@
 <div class="top">
-  <!--  <img src="../../../../../../assets/icons/info-grey.svg"> -->
   <h4>{{ data.header }}</h4>
   <p *ngIf="data.text">{{ data.text }}</p>
   <div>{{ data.html }}</div>
 </div>
-<div class="bottom">
+<div class="bottom double">
+  <rente-button
+    i18n="“close|button@@close”"
+    cdkFocusInitial
+    color="primary-hollow"
+    (click)="onClose()"
+  >
+    {{ data.cancelText }}
+  </rente-button>
+
   <rente-button
     i18n="“close|button@@close”"
     cdkFocusInitial
     color="primary"
-    (click)="onClose()"
+    (click)="onConfirm()"
   >
-    Lukk
+    {{ data.confirmText }}
   </rente-button>
 </div>
