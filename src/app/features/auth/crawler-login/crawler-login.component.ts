@@ -32,11 +32,13 @@ import { SnackBarService } from '@services/snackbar.service';
 import { MatStepper } from '@angular/material';
 import { MessageBannerService } from '@services/message-banner.service';
 import { getAnimationStyles } from '@shared/animations/animationEnums';
+import { LoginService } from '@services/login.service';
 
 @Component({
   selector: 'crawler-login',
   templateUrl: './crawler-login.component.html',
-  styleUrls: ['./crawler-login.component.scss']
+  styleUrls: ['./crawler-login.component.scss'],
+  providers: [LoginService]
 })
 export class CrawlerLoginComponent implements OnInit, OnDestroy {
   @ViewChild('stepper') stepper: MatStepper;
