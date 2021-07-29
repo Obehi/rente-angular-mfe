@@ -469,12 +469,12 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
             this.unsubscribeEverything();
             break;
 
-          case BANKID_STATUS.ERROR_4:
+          case BANKID_STATUS.ERROR_3:
             this.unsubscribeEverything();
             this.crawlerLoginService.postError();
             break;
 
-          case BANKID_STATUS.ERROR_3:
+          case BANKID_STATUS.ERROR_4:
             this.unsubscribeEverything();
             this.crawlerLoginService.postError();
             break;
