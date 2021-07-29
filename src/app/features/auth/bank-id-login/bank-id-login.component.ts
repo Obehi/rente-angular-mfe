@@ -107,6 +107,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
   public signicatIframeUrl?: SafeResourceUrl | null;
   public oldUserNewLoan = false;
   public shouldShowBankWarningMessage = false;
+  public shouldShowBankWarningMessageDNB = false;
   public estimatedPropertyValueFromVirdi: number;
   public manualEstimatedPropertyValueFromUser: number;
   public isManualPropertyValue = false;
@@ -171,8 +172,15 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
       return;
     } else {
       this.bank = stateData.bank;
-      if (stateData.redirect === true || this.bank?.name === 'DNB')
-        this.shouldShowBankWarningMessage = true;
+
+      if (stateData.redirect === true) {
+        if (this.bank?.name === 'DNB') {
+          this.shouldShowBankWarningMessageDNB = true;
+        } else {
+          this.shouldShowBankWarningMessage = true;
+        }
+      }
+
       this.loginBankIdStep1();
     }
   }

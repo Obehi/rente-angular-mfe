@@ -5,7 +5,7 @@
 
   <div class="forms-wrapper">
     <div *ngIf="signicatIframeUrl !== null" class="iframe-wrapper">
-      <p class="warning" *ngIf="shouldShowBankWarningMessage">
+      <p class="warning" *ngIf="shouldShowBankWarningMessageDNB">
         Vi opplever at {{ bank?.label }} sperrer sine kunder fra å innhente egne
         lånedata. Derfor har vi laget en løsning hvor du selv fyller inn dine
         lånedata.
@@ -21,6 +21,14 @@
         <br />
         Velg identifikasjonsmetode nedenfor for å bruke denne løsningen.
       </p>
+
+      <div class="warning" *ngIf="shouldShowBankWarningMessage">
+        <p>
+          Vi kan dessverre i øyeblikket ikke innhente dine lånedata automatisk.
+          Vi jobber med å utbedre feilen. I mellomtiden kan du benytte vår
+          løsning hvor du selv fyller inn dine lånedata.
+        </p>
+      </div>
 
       <p>
         Ved å logge inn samtykker til at Renteradar.no henter og behandler dine
