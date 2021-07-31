@@ -1,0 +1,106 @@
+@import '../../../../../styles/theme/_colors.scss';
+
+// We need to use ::ng-deep to overcome view encapsulation
+::ng-deep {
+  .ngx-slider {
+    margin: 22px 0 15px !important;
+  }
+  .ngx-slider .ngx-slider-pointer {
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    top: -14px;
+    background-color: $primary !important;
+    z-index: 3;
+    border-radius: 16px;
+  }
+
+  .ngx-slider .ngx-slider-inner-tooltip {
+    height: 20px !important;
+  }
+
+  .ngx-slider .ngx-slider-bubble.ngx-slider-limit {
+    display: none !important;
+  }
+
+  .ngx-slider .ngx-slider-bubble {
+    display: none !important;
+  }
+
+  .ngx-slider .ngx-slider-bar {
+    background: $secondary !important;
+  }
+
+  .ngx-slider .ngx-slider-tick {
+    background: $secondary !important;
+  }
+
+  .custom-slider .ngx-slider .ngx-slider-bar {
+    background: #ffe4d1;
+    height: 2px;
+  }
+  .custom-slider .ngx-slider .ngx-slider-selection {
+    background: orange;
+  }
+
+  .custom-slider .ngx-slider .ngx-slider-pointer {
+    width: 8px;
+    height: 16px;
+    top: auto; /* to remove the default positioning */
+    bottom: 0;
+    background-color: #333;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+  }
+
+  .custom-slider .ngx-slider .ngx-slider-pointer:after {
+    display: none;
+  }
+
+  .custom-slider .ngx-slider .ngx-slider-bubble {
+    bottom: 14px;
+  }
+
+  .custom-slider .ngx-slider .ngx-slider-limit {
+    font-weight: bold;
+    color: orange;
+  }
+
+  .custom-slider .ngx-slider .ngx-slider-tick {
+    width: 1px;
+    height: 10px;
+    margin-left: 4px;
+    border-radius: 0;
+    background: #ffe4d1;
+    top: -1px;
+  }
+
+  .custom-slider .ngx-slider .ngx-slider-tick.ngx-slider-selected {
+    background: rgb(128, 110, 78);
+  }
+}
+
+h2 {
+  color: #fff;
+}
+
+h3 {
+  color: #fff;
+}
+.score-container {
+  background: $blue-medium;
+
+  .legend-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    p {
+      color: #fff;
+      font-weight: 400;
+    }
+  }
+
+  .slider-container {
+    margin-top: 30px;
+  }
+}

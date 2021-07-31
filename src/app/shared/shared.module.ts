@@ -64,6 +64,9 @@ import { SpinnerComponent } from '@shared/components/ui-components/spinner/spinn
 import { CheckmarkSuccessComponent } from '@shared/components/ui-components/checkmark-success/checkmark-success.component';
 import { VirdiManualValueDialogComponent } from './components/ui-components/dialogs/virdi-manual-value-dialog/virdi-manual-value-dialog.component';
 import { UserScorePreferencesComponent } from './components/ui-components/user-score-preferences/user-score-preferences.component';
+import { AccordionGroupComponent } from './components/ui-components/accordion/accordion-group.component';
+import { AccordionComponent } from './components/ui-components/accordion/accordion.component';
+import { CustomDropdownComponent } from './components/ui-components/custom-dropdown/custom-dropdown.component';
 
 const components = [
   HeaderComponent,
@@ -90,7 +93,10 @@ const components = [
   PropertySelectDialogComponent,
   SpinnerComponent,
   CheckmarkSuccessComponent,
-  UserScorePreferencesComponent
+  UserScorePreferencesComponent,
+  AccordionGroupComponent,
+  AccordionComponent,
+  CustomDropdownComponent
 ];
 
 const services = [

@@ -18,6 +18,17 @@ export class LocalStorageService {
     return !!this.getItem('isNewUser');
   }
 
+  public get isUserDefinedOfferPreferences() {
+    const isUserDefinedOfferPreferences = this.getItem(
+      'isUserDefinedOfferPreferences'
+    );
+    return JSON.parse(isUserDefinedOfferPreferences);
+  }
+
+  public set isUserDefinedOfferPreferences(value: boolean) {
+    this.setItem('isUserDefinedOfferPreferences', value);
+  }
+
   public setItem(param: string, value: any): void {
     localStorage.setItem(`${this.appPrefix}-${param}`, value);
   }

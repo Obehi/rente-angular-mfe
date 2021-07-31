@@ -2,7 +2,7 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { Options, LabelType } from '@angular-slider/ngx-slider';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { UserScorePreferences } from '@models/user';
-import { scan, tap } from 'rxjs/operators';
+import { debounce, debounceTime, scan, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'rente-user-score-preferences',
@@ -24,42 +24,14 @@ export class UserScorePreferencesComponent implements OnInit {
     floor: 0,
     ceil: 5,
     step: 1,
-    showTicks: true,
-    showTicksValues: true,
-    translate: (value: number): string => {
-      return '$' + value;
-    }
-  };
-
-  minValue2 = 0;
-  maxValue2 = 4;
-
-  options2: Options = {
-    floor: 0,
-    ceil: 4,
-    showTicks: true,
-    translate: (value: number): string => {
-      switch (value) {
-        case 0:
-          return '<b>Min price:</b> $' + value;
-        case 1:
-          return '<b>Max price:</b> $' + value;
-        case 2:
-          return '<b>Max price:</b> $' + value;
-        case 3:
-          return '<b>Max price:</b> $' + value;
-        case 4:
-          return '<b>Max price:</b> $' + value;
-        default:
-          return '$' + value;
-      }
-    }
+    showTicks: true
   };
 
   constructor() {}
 
   ngOnInit(): void {
     this.scoreObserveTrigger$ = this.collectScore$.pipe(
+      debounceTime(200),
       scan((acc, mergeFilter) => {
         return {
           ...acc,
@@ -67,12 +39,14 @@ export class UserScorePreferencesComponent implements OnInit {
         };
       }, {}),
       tap((scores) => {
-        this.scoreListener?.next(scores);
+        // emit new value only if scores is not empty
+
+        if (Object.keys(scores).length) this.scoreListener?.next(scores);
       })
     );
-    this.scoreObserveTrigger$.subscribe(() => {
-      console.log('print');
-    });
+
+    // Subscribing just to trigger the observer. Bad workaround
+    this.scoreObserveTrigger$.subscribe(() => {});
   }
 
   advisorScoreChanged(event: any): any {

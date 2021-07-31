@@ -10,6 +10,14 @@ p {
   }
 }
 
+.offers-container {
+  min-height: 1000px;
+
+  .spinner {
+    margin-top: 100px;
+  }
+}
+
 .sticky-table-header {
   display: flex;
   justify-content: flex-end;
@@ -28,6 +36,66 @@ p {
     margin-right: 29px;
   }
 }
+
+.offers-type-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  @media (max-width: 600px) {
+    width: 100%;
+    margin: 40px auto;
+    height: 60px;
+  }
+
+  .offers-type-switch {
+    background: $secondary;
+    width: 80%;
+    margin: auto;
+    height: 60px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    border-radius: 15px 0 0 10px;
+
+    a {
+      flex: 1;
+      height: 100%;
+      line-height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      p {
+        color: $primary;
+        font-weight: 400;
+      }
+      &.active {
+        p {
+          color: white;
+          background: none;
+          background: $blue-medium;
+          border-radius: 20px;
+          padding: 0.5em 2em;
+          box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+            rgba(0, 0, 0, 0.3) 0px 3px 3px -1px;
+        }
+      }
+    }
+  }
+  .preferences-button {
+    width: 20%;
+    height: 100%;
+    background: $karl-blue;
+    border-radius: 0 15px 15px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    img {
+      width: 40px;
+    }
+  }
+}
+
 :host {
   grid-row: 5;
   grid-column-start: 1;
@@ -91,60 +159,6 @@ p {
   }
   li:first-child {
     display: none;
-  }
-}
-
-.offers-type-container {
-  background: white;
-  width: 370px;
-  margin: auto;
-  height: 60px;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  border-radius: 30px;
-
-  @media (max-width: 600px) {
-    width: 100%;
-    margin: 40px auto;
-  }
-
-  a {
-    color: black;
-    background: white;
-    font-weight: 400;
-    flex: 1;
-    height: 100%;
-    line-height: 60px;
-
-    &.active {
-      background: none;
-    }
-
-    &:first-of-type {
-      border-radius: 30px 0 0 30px;
-
-      &.active {
-        color: white !important;
-        background: #5eb1bf;
-      }
-    }
-
-    &:nth-child(2) {
-      &.active {
-        color: white !important;
-        background: #ef767a;
-      }
-    }
-
-    &:last-of-type {
-      border-radius: 0 30px 30px 0;
-
-      &.active {
-        color: black !important;
-        background: #d1d1d1;
-      }
-    }
   }
 }
 

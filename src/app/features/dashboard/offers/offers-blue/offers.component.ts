@@ -18,8 +18,8 @@ import { ChangeBankTooManyTriesDialogError } from '@features/dashboard/offers/ch
 
 import { ChangeBankServiceService } from '@services/remote-api/change-bank-service.service';
 import { TrackingService } from '@services/remote-api/tracking.service';
-import { Subscription } from 'rxjs';
-import { debounceTime } from 'rxjs/operators';
+import { fromEvent, of, Subscription } from 'rxjs';
+import { debounceTime, map, switchMap, tap } from 'rxjs/operators';
 import { OFFERS_LTV_TYPE } from '../../../../shared/models/offers';
 import { UserService } from '@services/remote-api/user.service';
 import smoothscroll from 'smoothscroll-polyfill';
@@ -107,6 +107,47 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
     this.offerTypes = ['threeMonths', 'oneYear', 'all'];
     // kick off the polyfill!
     smoothscroll.polyfill();
+    this.getOffers();
+
+    this.offersService.updateOffers$.subscribe(() => {
+      this.getOffers();
+    });
+
+    fromEvent(window, 'scroll')
+      .pipe(
+        map(() =>
+          window.innerHeight -
+            document
+              .getElementsByClassName('offers-container')[0]
+              .getBoundingClientRect().top -
+            60 >
+            0 && this.offersService.shouldUpdateOffersLater
+            ? true
+            : false
+        )
+      )
+      .subscribe((shouldUpdate) => {
+        if (shouldUpdate) {
+          this.getOffers();
+          this.offersService.shouldUpdateOffersLater = false;
+        }
+      });
+
+    this.nordeaClickSubscription = this.offersService
+      .messages()
+      .pipe(debounceTime(500))
+      .subscribe((message: OfferMessage) => {
+        switch (message) {
+          case OfferMessage.antiChurn: {
+            this.openAntiChurnBankDialog(this.offersInfo.offers.top5[0], false);
+            break;
+          }
+        }
+      });
+  }
+
+  private getOffers(): void {
+    this.offersService.isUpdatingOffers$.next(true);
     this.loansService.getOffers().subscribe(
       (res: Offers) => {
         this.offersInfo = Object.assign({}, res);
@@ -124,8 +165,11 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
 
         this.isLoading = false;
         this.localStorageService.removeItem('isNewUser');
+        this.offersService.isUpdatingOffers$.next(false);
       },
       (err) => {
+        this.offersService.isUpdatingOffers$.next(false);
+
         if (err.errorType === 'PROPERTY_VALUE_MISSING') {
           this.errorMessage = err.title;
           this.router.navigate(['/dashboard/' + ROUTES_MAP.property]);
@@ -133,18 +177,6 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
         console.log(err);
       }
     );
-
-    this.nordeaClickSubscription = this.offersService
-      .messages()
-      .pipe(debounceTime(500))
-      .subscribe((message: OfferMessage) => {
-        switch (message) {
-          case OfferMessage.antiChurn: {
-            this.openAntiChurnBankDialog(this.offersInfo.offers.top5[0], false);
-            break;
-          }
-        }
-      });
   }
 
   public openAntiChurnBankDialog(offer, shouldLog: boolean): void {

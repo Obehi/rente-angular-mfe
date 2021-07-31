@@ -7,6 +7,38 @@
     Beste tilbud:
   </h3>
 
+  <div class="offers-type-container">
+    <div class="offers-type-switch">
+      <a
+        class="clickable"
+        [ngClass]="currentOfferType == 'rate' ? 'active' : 'deactive'"
+        (click)="setOfferType('rate')"
+      >
+        <p>Rente</p>
+      </a>
+      <a
+        class="clickable"
+        [ngClass]="currentOfferType == 'score' ? 'active' : 'deactive'"
+        (click)="setOfferType('score')"
+      >
+        <p>For deg</p>
+      </a>
+    </div>
+    <a class="preferences-button" (click)="preferencesButtonClicked()">
+      <img src="../../../assets/icons/score-preferences-icon.svg" />
+    </a>
+  </div>
+
+  <custom-dropdown
+    [opened]="showScorePreferences"
+    (toggle)="preferencesButtonClicked()"
+  >
+    <rente-user-score-preferences
+      [scoreListener]="scoreListener$"
+      [initialScores]="initialScores$"
+    ></rente-user-score-preferences>
+  </custom-dropdown>
+
   <div *ngIf="isMobile" class="sticky-table-header">
     <p
       i18n="“your-interest|offers-main@@offers.mainPage.yourInterestStickyBox”"
@@ -16,60 +48,68 @@
     <span>{{ offersInfo.totalEffectiveRate | number: '1.2-2' }} %</span>
   </div>
 
-  <div class="offers-grid">
-    <ng-container *ngIf="currentOfferInfo">
-      <div
-        *ngFor="let offer of currentOfferInfo.offers.top5; let i = index"
-        class="the-offer"
-      >
-        <ng-container *ngIf="isMobile; else desktop">
-          <rente-offer-card
-            [offer]="offer"
-            [offersInfo]="currentOfferInfo"
-            [index]="offer.offerPosition"
-          >
-          </rente-offer-card>
-        </ng-container>
+  <div class="offers-container">
+    <div
+      class="spinner"
+      *ngIf="offerService.isUpdatingOffers$ | async as isUpdatingOffers"
+    >
+      <rente-spinner></rente-spinner>
+    </div>
+    <div *ngIf="!(offerService.isUpdatingOffers$ | async)" class="offers-grid">
+      <ng-container *ngIf="currentOfferInfo">
+        <div
+          *ngFor="let offer of currentOffers; let i = index"
+          class="the-offer"
+        >
+          <ng-container *ngIf="isMobile; else desktop">
+            <rente-offer-card
+              [offer]="offer"
+              [offersInfo]="currentOfferInfo"
+              [index]="offer.offerPosition"
+            >
+            </rente-offer-card>
+          </ng-container>
 
-        <ng-template #desktop>
-          <rente-offer-card-big-blue
-            [offer]="offer"
-            [offersInfo]="currentOfferInfo"
-            [index]="offer.offerPosition"
-          >
-          </rente-offer-card-big-blue>
-        </ng-template>
-      </div>
-    </ng-container>
-  </div>
+          <ng-template #desktop>
+            <rente-offer-card-big-blue
+              [offer]="offer"
+              [offersInfo]="currentOfferInfo"
+              [index]="offer.offerPosition"
+            >
+            </rente-offer-card-big-blue>
+          </ng-template>
+        </div>
+      </ng-container>
+    </div>
 
-  <div class="offers-grid">
-    <ng-container *ngIf="offersInfo">
-      <div
-        *ngFor="
-          let offer of offersInfo.offers.additionalPartnersOffers;
-          let i = index
-        "
-        class="the-offer"
-      >
-        <ng-container *ngIf="isMobile; else desktop">
-          <rente-offer-card
-            [offer]="offer"
-            [offersInfo]="currentOfferInfo"
-            [index]="offer.offerPosition"
-          >
-          </rente-offer-card>
-        </ng-container>
+    <div *ngIf="!(offerService.isUpdatingOffers$ | async)" class="offers-grid">
+      <ng-container *ngIf="offersInfo">
+        <div
+          *ngFor="
+            let offer of offersInfo.offers.additionalPartnersOffers;
+            let i = index
+          "
+          class="the-offer"
+        >
+          <ng-container *ngIf="isMobile; else desktop">
+            <rente-offer-card
+              [offer]="offer"
+              [offersInfo]="currentOfferInfo"
+              [index]="offer.offerPosition"
+            >
+            </rente-offer-card>
+          </ng-container>
 
-        <ng-template #desktop>
-          <rente-offer-card-big-blue
-            [offer]="offer"
-            [offersInfo]="currentOfferInfo"
-            [index]="offer.offerPosition"
-          >
-          </rente-offer-card-big-blue>
-        </ng-template>
-      </div>
-    </ng-container>
+          <ng-template #desktop>
+            <rente-offer-card-big-blue
+              [offer]="offer"
+              [offersInfo]="currentOfferInfo"
+              [index]="offer.offerPosition"
+            >
+            </rente-offer-card-big-blue>
+          </ng-template>
+        </div>
+      </ng-container>
+    </div>
   </div>
 </div>

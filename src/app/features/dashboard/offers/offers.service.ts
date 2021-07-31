@@ -1,13 +1,17 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { UserService } from '@services/remote-api/user.service';
+import { BehaviorSubject, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OffersService {
   private messageHandler: Subject<OfferMessage>;
+  public isUpdatingOffers$ = new Subject<boolean>();
+  public updateOffers$ = new Subject<void>();
 
-  constructor() {
+  public shouldUpdateOffersLater = false;
+  constructor(private userService: UserService) {
     this.messageHandler = new Subject<OfferMessage>();
   }
 
