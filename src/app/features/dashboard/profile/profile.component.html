@@ -24,6 +24,7 @@
             [formControlName]="formControlId.email"
           />
           <rente-spinner
+            [size]="'23px'"
             class="email-income-spinner"
             *ngIf="loadingStates.email.loading"
           ></rente-spinner>
@@ -79,6 +80,7 @@
             }"
           />
           <rente-spinner
+            [size]="'23px'"
             class="email-income-spinner"
             *ngIf="loadingStates.income.loading"
           ></rente-spinner>
@@ -155,6 +157,7 @@
         >
         </mat-select>
         <rente-spinner
+          [size]="'23px'"
           class="membership-marked-spinner"
           *ngIf="loadingStates.memberships.loading"
         ></rente-spinner>
@@ -193,6 +196,7 @@
           >
         </mat-select>
         <rente-spinner
+          [size]="'23px'"
           class="membership-marked-spinner"
           *ngIf="loadingStates.checkRateReminderType.loading"
         ></rente-spinner>
