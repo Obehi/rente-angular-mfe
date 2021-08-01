@@ -94,6 +94,43 @@ export class OffersListNoComponent implements OnInit {
 
   ngOnInit(): void {
     this.initialScores$ = this.userService.getUserScorePreferences();
+    this.initScoreListener();
+
+    this.currentOfferInfo = JSON.parse(JSON.stringify(this.offersInfo));
+
+    this.initOfferType();
+  }
+
+  initOfferType(): void {
+    const offerType = this.localStorageService.isUserDefinedOfferPreferences
+      ? 'score'
+      : 'rate';
+    console.log('offerType');
+    console.log(offerType);
+    this.setOfferType(offerType);
+  }
+
+  public setOfferType(type: string): void {
+    this.currentOfferType = type;
+
+    if (type === 'rate') {
+      this.currentOffers = this.offersInfo.offers.top5;
+      this.localStorageService.isUserDefinedOfferPreferences = false;
+      return;
+    }
+
+    if (type === 'score') {
+      // If user clicks score option for the first time, show score options dropdown
+      if (this.localStorageService.isUserDefinedOfferPreferences === null) {
+        this.preferencesButtonClicked();
+      }
+      this.currentOffers = this.offersInfo.offers.topScoreOffer;
+      this.localStorageService.isUserDefinedOfferPreferences = true;
+      return;
+    }
+  }
+
+  initScoreListener(): void {
     this.scoreListener$
       .pipe(
         skip(1),
@@ -112,29 +149,6 @@ export class OffersListNoComponent implements OnInit {
           this.offerService.shouldUpdateOffersLater = true;
         }
       });
-
-    this.currentOfferInfo = JSON.parse(JSON.stringify(this.offersInfo));
-
-    const offerType = this.localStorageService.isUserDefinedOfferPreferences
-      ? 'score'
-      : 'rate';
-    this.setOfferType(offerType);
-  }
-
-  public setOfferType(type: string): void {
-    this.currentOfferType = type;
-
-    if (type === 'rate') {
-      this.currentOffers = this.offersInfo.offers.top5;
-      this.localStorageService.isUserDefinedOfferPreferences = false;
-      return;
-    }
-
-    if (type === 'score') {
-      this.currentOffers = this.offersInfo.offers.topScoreOffer;
-      this.localStorageService.isUserDefinedOfferPreferences = true;
-      return;
-    }
   }
 
   isOffersInViewport(): boolean {

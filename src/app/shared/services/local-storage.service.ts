@@ -22,7 +22,10 @@ export class LocalStorageService {
     const isUserDefinedOfferPreferences = this.getItem(
       'isUserDefinedOfferPreferences'
     );
-    return JSON.parse(isUserDefinedOfferPreferences);
+
+    return isUserDefinedOfferPreferences === null
+      ? null
+      : JSON.parse(isUserDefinedOfferPreferences);
   }
 
   public set isUserDefinedOfferPreferences(value: boolean) {

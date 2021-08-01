@@ -113,25 +113,10 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
       this.getOffers();
     });
 
-    fromEvent(window, 'scroll')
-      .pipe(
-        map(() =>
-          window.innerHeight -
-            document
-              .getElementsByClassName('offers-container')[0]
-              .getBoundingClientRect().top -
-            60 >
-            0 && this.offersService.shouldUpdateOffersLater
-            ? true
-            : false
-        )
-      )
-      .subscribe((shouldUpdate) => {
-        if (shouldUpdate) {
-          this.getOffers();
-          this.offersService.shouldUpdateOffersLater = false;
-        }
-      });
+    this.offersService.scrollOfferUpdateObserver().subscribe(() => {
+      this.getOffers();
+      this.offersService.shouldUpdateOffersLater = false;
+    });
 
     this.nordeaClickSubscription = this.offersService
       .messages()
