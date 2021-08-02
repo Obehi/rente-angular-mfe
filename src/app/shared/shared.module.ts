@@ -48,6 +48,7 @@ import { ChildDirective } from './directives/child.directive';
 import { BarComponent } from './components/ui-components/bar/bar.component';
 import { FlowHeaderComponent } from './components/ui-components/flow-header/flow-header.component';
 import { GenericInfoDialogComponent } from './components/ui-components/dialogs/generic-info-dialog/generic-info-dialog.component';
+import { GenericChoiceDialogComponent } from './components/ui-components/dialogs/generic-choice-dialog/generic-choice-dialog.component';
 import { GenericErrorDialogComponent } from './components/ui-components/dialogs/generic-error-dialog/generic-error-dialog.component';
 import { VirdiErrorChoiceDialogComponent } from './components/ui-components/dialogs/virdi-error-choice-dialog/virdi-error-choice-dialog.component';
 import { LoginTermsDialogV2Component } from './components/ui-components/dialogs/login-terms-dialog-v2/login-terms-dialog-v2.component';
@@ -135,6 +136,7 @@ const services = [
     BarComponent,
     FlowHeaderComponent,
     GenericInfoDialogComponent,
+    GenericChoiceDialogComponent,
     GenericErrorDialogComponent,
     VirdiErrorChoiceDialogComponent,
     LoginTermsDialogV2Component,
