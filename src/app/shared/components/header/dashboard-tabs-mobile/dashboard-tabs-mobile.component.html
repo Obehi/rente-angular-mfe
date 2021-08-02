@@ -14,7 +14,12 @@
               src="../../../assets/icons/rente-logo-icon-white.svg"
               alt="Banktilbud"
             />
-            <p i18n="“title|offer@@dashboard.loggedIn.offer”">Tilbud</p>
+            <p
+              i18n="“title|offer@@dashboard.loggedIn.offer”"
+              (eventEmitter)="getNotification()"
+            >
+              Tilbud
+            </p>
           </div>
         </a>
       </nav>

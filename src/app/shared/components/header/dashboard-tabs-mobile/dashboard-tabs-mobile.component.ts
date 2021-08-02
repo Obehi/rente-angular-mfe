@@ -3,6 +3,7 @@ import { ROUTES_MAP } from '@config/routes-config';
 import { LocalStorageService } from '@services/local-storage.service';
 import { Router } from '@angular/router';
 import { EnvService } from '@services/env.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'rente-dashboard-tabs-mobile',
@@ -10,6 +11,7 @@ import { EnvService } from '@services/env.service';
   styleUrls: ['./dashboard-tabs-mobile.component.scss']
 })
 export class DashboardTabsMobileComponent implements OnInit {
+  public notifications: Observable<any>;
   public routesMap = ROUTES_MAP;
   public activeLinkIndex: number | null = -1;
   public isMobile: boolean;
@@ -83,6 +85,10 @@ export class DashboardTabsMobileComponent implements OnInit {
         });
       }
     }
+
+    this.notifications.subscribe((args) => {
+      console.log(args);
+    });
   }
 
   public getActiveIndex(): number | null {
@@ -122,4 +128,6 @@ export class DashboardTabsMobileComponent implements OnInit {
       this.subscription.unsubscribe();
     }
   }
+
+  getNotification(): Observable<any> {}
 }
