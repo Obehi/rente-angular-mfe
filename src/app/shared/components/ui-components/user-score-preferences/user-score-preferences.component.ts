@@ -22,7 +22,7 @@ export class UserScorePreferencesComponent implements OnInit {
   value = 5;
   options: Options = {
     floor: 0,
-    ceil: 5,
+    ceil: 4,
     step: 1,
     showTicks: true
   };
