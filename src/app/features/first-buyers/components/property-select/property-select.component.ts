@@ -14,6 +14,9 @@ import {
   OnInit,
   Output
 } from '@angular/core';
+import { CustomLangTextService } from '@services/custom-lang-text.service';
+import { MembershipService } from '@services/membership.service';
+import { MembershipTypeDto } from '@services/remote-api/loans.service';
 
 import { Observable, Subject } from 'rxjs';
 
@@ -46,19 +49,26 @@ export class PropertySelectComponent implements OnInit, OnDestroy {
   @Input() label;
 
   icon = '../../../../assets/icons/reject-icon.svg';
+  iconLight = '../../../../assets/icons/reject-icon-light.svg';
+  rejectBlue = '../../../../assets/icons/reject-icon-blue.svg';
   searchIconLight = '../../../../assets/icons/search-grey-light.svg';
   searchIconDark = '../../../../assets/icons/search-grey-dark.svg';
 
   @Input() selectedOptions;
-  @Output() selectedItemsEmitter = new EventEmitter<string[] | undefined>();
+  @Output() selectedItemsEmitter = new EventEmitter<
+    MembershipTypeDto[] | undefined
+  >();
   @Output() hasChangedEmitter = new EventEmitter<any>();
 
-  public selectedMemberships: string[] | undefined = [];
+  public selectedMemberships: MembershipTypeDto[];
   _selectedMemberships: string[];
   selectionDistincter = new Subject();
   _selectionDistincter: Observable<any>;
 
-  constructor() {}
+  constructor(
+    private membershipService: MembershipService,
+    public langService: CustomLangTextService
+  ) {}
 
   ngOnInit(): void {
     this.selectedMemberships = this.selectedOptions;
@@ -66,31 +76,37 @@ export class PropertySelectComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {}
 
-  get membershipNames(): string[] {
-    return this.options
-      ?.map((membership) => {
-        return membership.label;
-      })
-      .sort((a, b) => {
-        const textA = a.toUpperCase();
-        const textB = b.toUpperCase();
-        return textA < textB ? -1 : textA > textB ? 1 : 0;
-      });
+  get membershipNames(): any[] {
+    return this.options?.map((membership) => {
+      return membership;
+    });
   }
 
   get isMobile(): boolean {
     return window.innerWidth < 600;
   }
 
-  chooseMembership(membership: string): void {
-    if (!this.selectedMemberships?.includes(membership)) {
+  chooseMembership(membership: MembershipTypeDto): void {
+    if (
+      !this.selectedMemberships
+        .map((selectedMembership) => {
+          return selectedMembership.name;
+        })
+        .includes(membership.name)
+    ) {
       this.selectedMemberships?.push(membership);
       this.selectedItemsEmitter.emit(this.selectedMemberships);
     }
   }
 
-  removeMembership(membership: string): void {
-    if (this.selectedMemberships?.includes(membership)) {
+  removeMembership(membership: MembershipTypeDto): void {
+    if (
+      this.selectedMemberships
+        .map((selectedMembership) => {
+          return selectedMembership.name;
+        })
+        .includes(membership.name)
+    ) {
       this.selectedMemberships = this.selectedMemberships?.filter(
         (option) => option !== membership
       );
@@ -98,8 +114,14 @@ export class PropertySelectComponent implements OnInit, OnDestroy {
     }
   }
 
-  chosenMemberships(membership: string): boolean {
-    if (this.selectedMemberships?.includes(membership)) {
+  chosenMemberships(membership: MembershipTypeDto): boolean {
+    if (
+      this.selectedMemberships
+        ?.map((membership) => {
+          return membership.name;
+        })
+        .includes(membership.name)
+    ) {
       return true;
     } else {
       return false;

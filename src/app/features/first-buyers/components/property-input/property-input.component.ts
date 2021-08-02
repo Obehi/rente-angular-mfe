@@ -124,10 +124,13 @@ export class PropertyInputComponent implements OnInit {
   }
 
   getMembershipPlaceholder(): string | undefined {
+    console.log(this.previousStateMemberships);
     if (this.previousStateMemberships?.length === 0) {
       return 'Velg';
     } else if (this.previousStateMemberships?.length === 1) {
-      return `${this.previousStateMemberships}`;
+      return `${this.previousStateMemberships.map((m) => {
+        return m.label;
+      })}`;
     } else if (this.previousStateMemberships?.length > 1) {
       return `${this.previousStateMemberships?.length} medlemskap valgt`;
     }
