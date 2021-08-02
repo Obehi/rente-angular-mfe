@@ -67,7 +67,7 @@
   }
 
   .ngx-slider .ngx-slider-bubble {
-    bottom: -35px !important;
+    bottom: 22px !important;
   }
 
   .custom-slider .ngx-slider .ngx-slider-limit {
@@ -95,7 +95,7 @@ h2 {
 
 h3 {
   color: #fff;
-  margin-bottom: 20px;
+  margin-bottom: 28px;
 }
 
 b {
@@ -119,21 +119,12 @@ b {
     text-align: left;
     margin-bottom: 20px;
   }
-  .legend-container {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 30px;
-    p {
-      color: #fff;
-      font-weight: 400;
-    }
-  }
 
   .slider-container {
     margin-top: 30px;
     background: $karl-blue;
     margin: 30px 0px 0px;
-    padding: 20px 20px 35px 20px;
+    padding: 20px;
     border-radius: 5px;
     box-shadow: rgb(50 50 93 / 25%) 0px 2px 5px -1px,
       rgb(0 0 0 / 30%) 0px 3px 3px -1px;
