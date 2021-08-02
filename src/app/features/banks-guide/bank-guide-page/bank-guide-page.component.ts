@@ -36,6 +36,9 @@ export class BankGuidePageComponent implements OnInit, OnDestroy {
   membershipOffers: any;
   depositsGeneral: { name: string; rate: string }[] = [];
   depositsBsu: { name: string; rate: string }[] = [];
+  email;
+  swift;
+  phone;
 
   $memberships: Observable<any>;
   public bankUtils = BankUtils;
