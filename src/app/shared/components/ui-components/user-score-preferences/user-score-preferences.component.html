@@ -1,10 +1,9 @@
 <div class="score-container" *ngIf="initialScores | async as score">
+  <p class="info-box">
+    Her kan vi legge inn tekst for å forklare til brukeren hva som er nødvendig
+    for at han/hun skal forstå hva som må til for å fullføre prosessen.
+  </p>
   <h2>Hvor viktig er det for deg med en bank som:</h2>
-
-  <div class="legend-container">
-    <p>ikke viktig</p>
-    <p>Svært viktig</p>
-  </div>
 
   <div class="slider-container">
     <h3>tilbyr en personlig rådgiver</h3>
@@ -61,7 +60,7 @@
   </div>
 
   <div class="slider-container">
-    <h3>hvor viktig er det at det er enkelt å bytte bank?</h3>
+    <h3>Er enkel å bytte til</h3>
     <ngx-slider
       [value]="score.savingScore"
       (userChangeEnd)="savingScoreChanged($event)"

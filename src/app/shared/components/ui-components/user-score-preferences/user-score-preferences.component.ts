@@ -24,7 +24,23 @@ export class UserScorePreferencesComponent implements OnInit {
     floor: 0,
     ceil: 4,
     step: 1,
-    showTicks: true
+    showTicks: false,
+    translate: (value: number, label: LabelType): string => {
+      switch (value) {
+        case 0:
+          return '<b>Ikke viktig</b>';
+        case 1:
+          return '<b>Litt viktig</b>';
+        case 2:
+          return '<b>Viktig</b>';
+        case 3:
+          return '<b>Ganske viktig</b>';
+        case 4:
+          return '<b>Svært viktig</b>';
+        default:
+          return '$' + value;
+      }
+    }
   };
 
   constructor() {}

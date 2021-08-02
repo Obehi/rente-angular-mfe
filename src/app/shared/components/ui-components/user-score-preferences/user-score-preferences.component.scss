@@ -20,20 +20,29 @@
   }
 
   .ngx-slider .ngx-slider-bubble.ngx-slider-limit {
-    display: none !important;
+    color: #fff !important;
+
+    b {
+      opacity: 0.5;
+    }
+  }
+
+  .ngx-slider .ngx-slider-pointer:after {
+    background-color: $primary !important;
   }
 
   .ngx-slider .ngx-slider-bubble {
-    display: none !important;
+    color: #fff !important;
+    font-size: 12px !important;
   }
 
   .ngx-slider .ngx-slider-bar {
     background: $secondary !important;
   }
 
-  .ngx-slider .ngx-slider-tick {
+  /*  .ngx-slider .ngx-slider-tick {
     background: $secondary !important;
-  }
+  } */
 
   .custom-slider .ngx-slider .ngx-slider-bar {
     background: #ffe4d1;
@@ -57,8 +66,8 @@
     display: none;
   }
 
-  .custom-slider .ngx-slider .ngx-slider-bubble {
-    bottom: 14px;
+  .ngx-slider .ngx-slider-bubble {
+    bottom: -35px !important;
   }
 
   .custom-slider .ngx-slider .ngx-slider-limit {
@@ -86,10 +95,30 @@ h2 {
 
 h3 {
   color: #fff;
+  margin-bottom: 20px;
 }
-.score-container {
-  background: $blue-medium;
 
+b {
+  color: #fff;
+  font-size: 12px;
+}
+
+.score-container {
+  background: $blue;
+  border-radius: 15px;
+  border: 1px solid $blue-light;
+  padding: 15px;
+  margin-bottom: 20px;
+
+  .info-box {
+    color: #fff;
+    background-color: $karl-blue;
+    border: 1px solid $blue-light;
+    border-radius: 5px;
+    padding: 15px;
+    text-align: left;
+    margin-bottom: 20px;
+  }
   .legend-container {
     display: flex;
     justify-content: space-between;
@@ -102,5 +131,11 @@ h3 {
 
   .slider-container {
     margin-top: 30px;
+    background: $karl-blue;
+    margin: 30px 0px 0px;
+    padding: 20px 20px 35px 20px;
+    border-radius: 5px;
+    box-shadow: rgb(50 50 93 / 25%) 0px 2px 5px -1px,
+      rgb(0 0 0 / 30%) 0px 3px 3px -1px;
   }
 }

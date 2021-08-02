@@ -9,6 +9,7 @@
 }
 
 .mypanel .body {
+  padding: 0 !important;
 }
 
 .mypanel .body.hidden {
