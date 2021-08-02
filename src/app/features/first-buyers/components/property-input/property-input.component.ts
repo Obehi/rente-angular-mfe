@@ -41,7 +41,7 @@ export class PropertyInputComponent implements OnInit {
   @Input() options: { name?: string; value?: string; label: string }[];
   @Input() autocompleteOptions: any;
   @Input() memberships: MembershipTypeDto[];
-  public previousStateMemberships: string[] = [];
+  public previousStateMemberships: MembershipTypeDto[] = [];
   @Output() selectedMemberships = new EventEmitter<MembershipTypeDto[]>();
   @ViewChild(SelectAutocompleteComponent)
   multiSelect: SelectAutocompleteComponent;
@@ -124,7 +124,6 @@ export class PropertyInputComponent implements OnInit {
   }
 
   getMembershipPlaceholder(): string | undefined {
-    console.log(this.previousStateMemberships);
     if (this.previousStateMemberships?.length === 0) {
       return 'Velg';
     } else if (this.previousStateMemberships?.length === 1) {
