@@ -6,13 +6,7 @@ import {
   FormBuilder,
   FormControl
 } from '@angular/forms';
-import {
-  BehaviorSubject,
-  forkJoin,
-  fromEvent,
-  Observable,
-  Subject
-} from 'rxjs';
+import { BehaviorSubject, forkJoin, Observable, Subject } from 'rxjs';
 import { startWith, map, switchMap } from 'rxjs/operators';
 import { ENTER, COMMA } from '@angular/cdk/keycodes';
 import {
@@ -22,12 +16,7 @@ import {
   MatDialog
 } from '@angular/material';
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
-import { ENTER, COMMA } from '@angular/cdk/keycodes';
 import { Router } from '@angular/router';
-
-import { forkJoin, Observable } from 'rxjs';
-import { startWith, map } from 'rxjs/operators';
-
 import { LoansService } from '@services/remote-api/loans.service';
 import {
   ConfirmationSetDto,
@@ -50,6 +39,8 @@ import { getAnimationStyles } from '@shared/animations/animationEnums';
 import { ApiError } from '@shared/constants/api-error';
 import { VirdiManualValueDialogComponent } from '@shared/components/ui-components/dialogs/virdi-manual-value-dialog/virdi-manual-value-dialog.component';
 import { GlobalStateService } from '@services/global-state.service';
+import { UserService } from '@services/remote-api/user.service';
+import { UserScorePreferences } from '@models/user';
 
 @Component({
   selector: 'rente-init-confirmation-sv',
@@ -124,12 +115,7 @@ export class InitConfirmationNoComponent implements OnInit, OnDestroy {
     this.isLoading = true;
     forkJoin([
       this.loansService.getLoansAndRateType(),
-      this.loansService.getConfirmationData(),
-      this.userService.getUserScorePreferences().pipe(
-        map(() => {
-          return { advisorScore: 4 };
-        })
-      )
+      this.loansService.getConfirmationData()
     ]).subscribe(([rateAndLoans, userInfo]) => {
       this.isLoading = false;
       this.allMemberships = userInfo.availableMemberships;
@@ -267,7 +253,6 @@ export class InitConfirmationNoComponent implements OnInit, OnDestroy {
   }
 
   public updateProperty(formData): void {
-    return;
     let data: ConfirmationSetDto;
 
     if (formData === null || formData === undefined) {
