@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { AddressDto } from '@services/remote-api/loans.service';
+import { AddressDto } from '@shared/models/loans';
 import { MatTabChangeEvent } from '@angular/material';
 import { CheckBoxItem } from '@shared/components/ui-components/checkbox-container/checkbox-container.component';
 import { EnvService } from '@services/env.service';
@@ -100,7 +100,8 @@ export class HouseFormSvComponent implements OnInit {
     }
   }
 
-  onPropertyTypeChange($event): void {
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+  onPropertyTypeChange($event: any): void {
     this.changesMade = true;
     this.address.propertyType = $event;
   }
@@ -115,7 +116,8 @@ export class HouseFormSvComponent implements OnInit {
   }
 
   // remove spaces and convert to number type
-  formatThousand(event): number {
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+  formatThousand(event: any): number {
     return Number(event.replace(/\s+/g, ''));
   }
 
@@ -133,7 +135,8 @@ export class HouseFormSvComponent implements OnInit {
     this.deleteAddress.emit(this.address);
   }
 
-  manualPropertyValueChanged($event): void {
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+  manualPropertyValueChanged($event: any): void {
     if ($event && $event.target) {
       this.countChange();
       const newValue = parseInt(String($event.target.value).replace(/\D/g, ''));

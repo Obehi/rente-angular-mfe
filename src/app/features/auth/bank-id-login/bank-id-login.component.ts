@@ -34,9 +34,9 @@ import {
   AddressCreationDto,
   ClientUpdateInfo,
   ConfirmationSetDto,
-  LoansService,
   MembershipTypeDto
-} from '@services/remote-api/loans.service';
+} from '@shared/models/loans';
+import { LoansService } from '@services/remote-api/loans.service';
 import { NavigationInterceptionService } from '@services/navigation-interception.service';
 import { MatStepper } from '@angular/material';
 import {
@@ -107,6 +107,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
   public signicatIframeUrl?: SafeResourceUrl | null;
   public oldUserNewLoan = false;
   public shouldShowBankWarningMessage = false;
+  public shouldShowBankWarningMessageDNB = false;
   public estimatedPropertyValueFromVirdi: number;
   public manualEstimatedPropertyValueFromUser: number;
   public isManualPropertyValue = false;
@@ -172,8 +173,14 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     } else {
       this.bank = stateData.bank;
 
-      if (stateData.redirect === true || this.bank?.name === 'DNB')
-        this.shouldShowBankWarningMessage = true;
+      if (stateData.redirect === true) {
+        if (this.bank?.name === 'DNB') {
+          this.shouldShowBankWarningMessageDNB = true;
+        } else {
+          this.shouldShowBankWarningMessage = true;
+        }
+      }
+
       this.loginBankIdStep1();
     }
   }
@@ -904,7 +911,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
               address: this.getFormValues().address,
               cancelText: 'Prøv ny adresse',
               confirmText: 'Legg til boligverdi',
-              finishText: 'Neste steg',
+              finishText: 'Neste',
               onConfirm: () => {},
               onClose: () => {},
               onSendForm: (apartmentValue: string) => {
@@ -997,7 +1004,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
         step: 2,
         confirmText: 'Legg til boligverdi',
         cancelText: 'Lukk',
-        finishText: 'Neste steg',
+        finishText: 'Neste',
         onConfirm: () => {},
         onClose: () => {},
         onSendForm: (apartmentValue: string) => {

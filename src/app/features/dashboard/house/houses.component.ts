@@ -1,6 +1,7 @@
-import { LoansService, AddressDto } from '@services/remote-api/loans.service';
+import { LoansService } from '@services/remote-api/loans.service';
 import { Component, OnInit } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
+import { AddressDto } from '@shared/models/loans';
 import { DeactivationGuarded } from '@shared/guards/route.guard';
 import { locale } from '../../../config/locale/locale';
 import { HouseFormErrorDialogComponent } from './error-dialog/error-dialog.component';

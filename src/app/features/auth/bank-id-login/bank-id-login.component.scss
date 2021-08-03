@@ -25,6 +25,12 @@
       margin-top: 20px;
     }
 
+    .grid-right-dropdown {
+      align-self: center;
+      justify-self: center;
+      margin-bottom: 1.34375em;
+    }
+
     .left {
       grid-column: 1;
     }
@@ -98,6 +104,8 @@
   border: 1px solid #cccccc;
   text-align: center;
   color: black;
+  max-width: 80%;
+  margin: auto;
 }
 
 .info-box {

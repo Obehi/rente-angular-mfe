@@ -5,7 +5,7 @@
 
   <div class="forms-wrapper">
     <div *ngIf="signicatIframeUrl !== null" class="iframe-wrapper">
-      <p class="warning" *ngIf="shouldShowBankWarningMessage">
+      <p class="warning" *ngIf="shouldShowBankWarningMessageDNB">
         Vi opplever at {{ bank?.label }} sperrer sine kunder fra å innhente egne
         lånedata. Derfor har vi laget en løsning hvor du selv fyller inn dine
         lånedata.
@@ -21,6 +21,14 @@
         <br />
         Velg identifikasjonsmetode nedenfor for å bruke denne løsningen.
       </p>
+
+      <div class="warning" *ngIf="shouldShowBankWarningMessage">
+        <p>
+          Vi kan dessverre i øyeblikket ikke innhente dine lånedata automatisk.
+          Vi jobber med å utbedre feilen. I mellomtiden kan du benytte vår
+          løsning hvor du selv fyller inn dine lånedata.
+        </p>
+      </div>
 
       <p>
         Ved å logge inn samtykker til at Renteradar.no henter og behandler dine
@@ -159,6 +167,20 @@
           </div>
         </div>
 
+        <div
+          *ngIf="bank?.hasFixedLoans === false"
+          i18n="“help|info-confirmation@@info.confirmation.help”"
+          class="grid-right"
+          (click)="
+            openInfoDialog({
+              header: 'Faste gebyrer',
+              text: 'Her fyller du inn det månedlige termingebyret'
+            })
+          "
+        >
+          <mat-icon>help</mat-icon>
+        </div>
+
         <div *ngIf="bank?.hasFixedLoans === false" class="field left">
           <rente-input
             [placeholder]="'Nominell rente'"
@@ -198,6 +220,23 @@
               </mat-option>
             </mat-select>
           </mat-form-field>
+        </div>
+
+        <div
+          *ngIf="bank?.hasFixedLoans === true"
+          i18n="“help|info-confirmation@@info.confirmation.help”"
+          class="grid-right-dropdown"
+          (click)="
+            openInfoDialog({
+              header: 'Lånetype',
+              text:
+                'Lånetype er navnet på lånet ditt og er ofte en kombinasjon av «Boliglån», «Rammelån» e.l. og belåningsgraden din. Eksempel: «Boliglån 50%».',
+              text2:
+                'Merk, listen inkluderer ikke fastrentelån siden tjenesten vår dessverre ikke har støtte for dette enda.'
+            })
+          "
+        >
+          <mat-icon>help</mat-icon>
         </div>
 
         <div *ngIf="bank?.hasFixedLoans === false" class="field left">
@@ -586,6 +625,20 @@
                   </div>
                 </div>
 
+                <div
+                  *ngIf="bank?.hasFixedLoans === false"
+                  i18n="“help|info-confirmation@@info.confirmation.help”"
+                  class="grid-right"
+                  (click)="
+                    openInfoDialog({
+                      header: 'Faste gebyrer',
+                      text: 'Her fyller du inn det månedlige termingebyret'
+                    })
+                  "
+                >
+                  <mat-icon>help</mat-icon>
+                </div>
+
                 <div *ngIf="bank?.hasFixedLoans === false" class="field left">
                   <rente-input
                     [placeholder]="'Nominell rente'"
@@ -629,6 +682,23 @@
                       </mat-option>
                     </mat-select>
                   </mat-form-field>
+                </div>
+
+                <div
+                  *ngIf="bank?.hasFixedLoans === true"
+                  i18n="“help|info-confirmation@@info.confirmation.help”"
+                  class="grid-right-dropdown"
+                  (click)="
+                    openInfoDialog({
+                      header: 'Lånetype',
+                      text:
+                        'Lånetype er navnet på lånet ditt og er ofte en kombinasjon av «Boliglån», «Rammelån» e.l. og belåningsgraden din. Eksempel: «Boliglån 50%».',
+                      text2:
+                        'Merk, listen inkluderer ikke fastrentelån siden tjenesten vår dessverre ikke har støtte for dette enda.'
+                    })
+                  "
+                >
+                  <mat-icon>help</mat-icon>
                 </div>
 
                 <div *ngIf="bank?.hasFixedLoans === false" class="field left">
@@ -814,7 +884,7 @@
             [isLoading]="isLoading"
             [disabled]="membershipFormGroup?.invalid || isLoading"
           >
-            Finn beste rente!
+            Ferdig
           </rente-button>
         </div>
         <div *ngSwitchDefault></div>

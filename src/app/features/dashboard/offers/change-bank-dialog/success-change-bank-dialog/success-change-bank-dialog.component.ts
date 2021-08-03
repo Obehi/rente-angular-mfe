@@ -11,10 +11,11 @@ export class SuccessChangeBankDialogComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<SuccessChangeBankDialogComponent>,
+    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.isErrorState = this.data.isError;
   }
 

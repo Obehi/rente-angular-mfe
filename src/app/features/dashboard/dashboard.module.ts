@@ -6,7 +6,6 @@ import { OffersComponentBlue } from './offers/offers-blue/offers.component';
 import { DashboardComponent } from './dashboard.component';
 import { MatTabsModule } from '@angular/material/tabs';
 
-import { PreferencesComponent } from './preferences/preferences.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { SharedModule } from '@shared/shared.module';
@@ -39,7 +38,6 @@ import { ManualInputDialogComponent } from './house/manual-input-dialog/manual-i
 import { HouseErrorDialogSv } from './house/error-dialog-sv/house-error-dialog-sv.component';
 
 import { SuccessChangeBankDialogComponent } from './offers/change-bank-dialog/success-change-bank-dialog/success-change-bank-dialog.component';
-import { ShareSheetComponent } from './offers/share-sheet/share-sheet.component';
 import { VirdiStatisticsComponent } from './house/virdi-statistics/virdi-statistics.component';
 import { OffersStatisticsComponentBlue } from './offers/offers-blue/offers-statistics/offers-statistics.component';
 import { OffersStatisticsComponent } from './offers/offers-statistics/offers-statistics.component';
@@ -77,7 +75,6 @@ import { CurrencyMaskModule } from 'ng2-currency-mask';
     OffersComponentBlue,
     DashboardComponent,
     LoansLangGenericComponent,
-    PreferencesComponent,
     ProfileComponent,
     DialogInfoComponent,
     LtvTooHighDialogComponent,
@@ -85,7 +82,6 @@ import { CurrencyMaskModule } from 'ng2-currency-mask';
     RateTypeFixedComponent,
     ChangeBankDialogComponent,
     SuccessChangeBankDialogComponent,
-    ShareSheetComponent,
     VirdiStatisticsComponent,
     OffersStatisticsComponentBlue,
     OffersStatisticsComponent,
@@ -152,7 +148,6 @@ import { CurrencyMaskModule } from 'ng2-currency-mask';
     DialogInfoComponent,
     ChangeBankDialogComponent,
     SuccessChangeBankDialogComponent,
-    ShareSheetComponent,
     GetOfferFromBankDialogComponent,
     LtvTooHighDialogComponent
   ],

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { GenericHttpService } from '@services/generic-http.service';
 import { API_URL_MAP } from '@config/api-url-config';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +9,7 @@ import { API_URL_MAP } from '@config/api-url-config';
 export class TrackingService {
   constructor(private http: GenericHttpService) {}
 
-  public sendTrackingStats(trackingData: TrackingDto) {
+  public sendTrackingStats(trackingData: TrackingDto): Observable<void> {
     const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.stat.base}${API_URL_MAP.loan.stat.click}`;
     return this.http.post(url, trackingData);
   }

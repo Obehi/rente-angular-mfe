@@ -1,11 +1,8 @@
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
-import {
-  LoansService,
-  MembershipTypeDto
-} from '../services/remote-api/loans.service';
+import { LoansService } from '../services/remote-api/loans.service';
 import { Subject } from 'rxjs';
-
+import { MembershipTypeDto } from '@shared/models/loans';
 @Injectable({
   providedIn: 'root'
 })

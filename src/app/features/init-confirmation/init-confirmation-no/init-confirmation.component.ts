@@ -1,23 +1,4 @@
-import {
-  LoansService,
-  ConfirmationSetDto,
-  ConfirmationGetDto,
-  MembershipTypeDto,
-  AddressCreationDto
-} from '@services/remote-api/loans.service';
-
-import { UserScorePreferences } from '@shared/models/user';
-import { UserService } from '@services/remote-api/user.service';
-import {
-  Component,
-  OnInit,
-  AfterViewInit,
-  ElementRef,
-  ViewChild,
-  OnDestroy,
-  Input
-} from '@angular/core';
-import { LoggingService } from '@services/logging.service';
+import { OnDestroy } from '@angular/core';
 import {
   Validators,
   AbstractControl,
@@ -40,11 +21,27 @@ import {
   MatChipInputEvent,
   MatDialog
 } from '@angular/material';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { ENTER, COMMA } from '@angular/cdk/keycodes';
 import { Router } from '@angular/router';
+
+import { forkJoin, Observable } from 'rxjs';
+import { startWith, map } from 'rxjs/operators';
+
+import { LoansService } from '@services/remote-api/loans.service';
+import {
+  ConfirmationSetDto,
+  ConfirmationGetDto,
+  MembershipTypeDto,
+  AddressCreationDto
+} from '@shared/models/loans';
+import { LoggingService } from '@services/logging.service';
+import { OptimizeService } from '@services/optimize.service';
+
 import { VALIDATION_PATTERN } from '@config/validation-patterns.config';
-import { OfferInfo } from '@shared/models/offers';
 import { DialogInfoComponent } from '../dialog-info/dialog-info.component';
 
+import { OfferInfo } from '@shared/models/offers';
 import { Mask } from '@shared/constants/mask';
 import { ROUTES_MAP } from '@config/routes-config';
 import { CustomLangTextService } from '@services/custom-lang-text.service';
@@ -371,7 +368,7 @@ export class InitConfirmationNoComponent implements OnInit, OnDestroy {
     }
   }
 
-  remove(membership, index): void {
+  remove(membership: MembershipTypeDto, index: number): void {
     this.allMemberships.push(membership);
     this.allMemberships.sort((a, b) =>
       a.name > b.name ? 1 : b.name > a.name ? -1 : 0

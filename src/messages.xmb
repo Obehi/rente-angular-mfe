@@ -878,6 +878,9 @@
     Prøv igjen
   </msg>
   <msg id="sparebank1”" desc="sub-component" meaning="“title"><source>app/features/auth/sparebank1-sub/sparebank1-sub.component.html:2</source>Velg din bank</msg>
+  <msg id="change.bank.location.back" desc="change-bank" meaning="choose-office "><source>app/features/auth/bank-id-login/bank-id-login.component.html:564,566</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:595,597</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:614,616</source><source>app/features/dashboard/offers/change-bank-dialog/change-bank-location/change-bank-location.component.html:162,164</source><source>app/features/dashboard/offers/change-bank-dialog/change-bank-location/change-bank-location.component.html:170,172</source><source>app/features/dashboard/offers/change-bank-dialog/change-bank-location/change-bank-location.component.html:191,193</source>
+            Tilbake
+          </msg>
   <msg id="details.component.demandMembership.yesOrNo”" desc="details" meaning="demand-membership-answer"><source>app/features/dashboard/offers/dialog-info/dialog-info.component.html:35</source><ph name="INTERPOLATION"><ex>{{ offer.requiredMembership == null ? customLangTextSerice.get18nFixForNo() : &quot;Ja&quot; }}</ex>{{ offer.requiredMembership == null ? customLangTextSerice.get18nFixForNo() : &quot;Ja&quot; }}</ph></msg>
   <msg id="details.component.offerHeader" desc="details" meaning="“other-conditions"><source>app/features/dashboard/offers/dialog-info/dialog-info.component.html:51</source>Tilbud:</msg>
   <msg id="details.component.offer“" desc="details" meaning="“other-conditions"><source>app/features/dashboard/offers/dialog-info/dialog-info.component.html:52,57</source>Eff.rente: <ph name="INTERPOLATION"><ex>{{offer.effectiveRate | number: &quot;1.1-2&quot;}}</ex>{{offer.effectiveRate | number: &quot;1.1-2&quot;}}</ph>%,

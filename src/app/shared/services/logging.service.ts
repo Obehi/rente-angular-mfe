@@ -3,19 +3,20 @@ import { LocalStorageService } from '@services/local-storage.service';
 import { environment } from '@environments/environment';
 import { GenericHttpService } from '@services/generic-http.service';
 import { HttpClient } from '@angular/common/http';
-import { first, tap } from 'rxjs/operators';
+import { first } from 'rxjs/operators';
 import * as uuid from 'uuid';
 import { EnvService } from '@services/env.service';
 @Injectable({
   providedIn: 'root'
 })
 export class LoggingService {
-  private apiUrl?: string | null;
+  private apiUrl?: string | null | undefined;
   private privateKey?: string | null;
   private applicationName?: string | null;
 
   public Level = Level;
   public SubSystem = SubSystem;
+  sessionId: string;
 
   constructor(
     private http: GenericHttpService,
@@ -28,22 +29,11 @@ export class LoggingService {
     this.applicationName = this.envService.environment.coralogixApplicationName;
 
     this.sessionId = storage.getItem('LoggingSessionId');
+    // eslint-disable-next-line eqeqeq
     if (this.sessionId == null) {
       this.sessionId = uuid.v4();
       storage.setItem('LoggingSessionId', this.sessionId);
     }
-  }
-
-  sessionId: string;
-
-  public logg(level: string, msg: string, obj: object) {
-    if (obj === undefined || obj === null) {
-      obj = {};
-    }
-
-    obj['message'] = msg;
-    obj['sessionID'] = this.sessionId;
-    this.httpClient.post('/postlogg', obj).pipe(first()).subscribe();
   }
 
   public googleAnalyticsLog(item: GoogleAnalyticsDto): void {
@@ -62,6 +52,7 @@ export class LoggingService {
     methodName: string,
     subSystem: string,
     msg?: string,
+    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
     object?: any,
     overrideShouldLog?: boolean
   ): void {
@@ -73,6 +64,7 @@ export class LoggingService {
       return;
     } else {
       let text: any;
+      // eslint-disable-next-line eqeqeq
       if (msg === undefined && object != undefined) {
         object['sessionId'] = this.sessionId;
         text = JSON.stringify(object);
@@ -105,9 +97,9 @@ export class LoggingService {
           }
         ]
       };
-      if (this.envService.environment.coralogixApiUrl !== undefined) {
+      if (this.apiUrl !== undefined && this.apiUrl !== null) {
         this.http
-          .postExternal(this.envService.environment.coralogixApiUrl, logg)
+          .postExternal(this.apiUrl, logg)
           .pipe(first())
           .subscribe(() => {});
       }

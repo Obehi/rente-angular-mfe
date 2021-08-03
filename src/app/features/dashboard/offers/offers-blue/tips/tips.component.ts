@@ -14,6 +14,7 @@ import {
   query,
   group
 } from '@angular/animations';
+import { BankUtils, BankVo } from '@models/bank';
 
 @Component({
   selector: 'tips-component',
@@ -119,7 +120,7 @@ export class TipsComponent implements OnInit {
   public aggregatedRateType = AGGREGATED_RATE_TYPE;
   public tips: any[];
   public isShowTips: boolean;
-
+  public isSigniCatBank = false;
   constructor(
     public customLangTextSerice: CustomLangTextService,
     public breakpointObserver: BreakpointObserver
@@ -129,6 +130,8 @@ export class TipsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.isSigniCatBank =
+      BankUtils.getBankByName(this.offersInfo.bank)?.isSigniCat ?? false;
     this.getTips();
   }
 
@@ -147,7 +150,10 @@ export class TipsComponent implements OnInit {
   }
 
   public getTips(): void {
-    if (this.offersInfo.incompleteInfoLoanPresent !== true) {
+    if (
+      this.offersInfo.incompleteInfoLoanPresent !== true &&
+      this.isSigniCatBank === false
+    ) {
       this.tips.push({
         header: 'Obs',
         text: this.customLangTextSerice.getLimitedLoanInfoWarning(),

@@ -73,7 +73,7 @@ export class OffersListNoComponent implements OnInit {
   ) {}
 
   // Save for later use
-  /* public getVariation() {
+  /* public getVariation(): number {
     if ((window as any).google_optimize === undefined) {
       return 0;
     }

@@ -7,14 +7,14 @@ import { Injectable } from '@angular/core';
 export class LocalStorageService {
   public appPrefix = storageName.appPrefix;
 
-  public get isFixedRateType() {
+  public get isFixedRateType(): boolean {
     return !!this.getItem('isAggregatedRateTypeFixed');
   }
 
-  public get isNoLoansPresent() {
+  public get isNoLoansPresent(): boolean {
     return !!this.getItem('noLoansPresent');
   }
-  public get isNewUser() {
+  public get isNewUser(): boolean {
     return !!this.getItem('isNewUser');
   }
 
@@ -32,10 +32,12 @@ export class LocalStorageService {
     this.setItem('isUserDefinedOfferPreferences', value);
   }
 
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   public setItem(param: string, value: any): void {
     localStorage.setItem(`${this.appPrefix}-${param}`, value);
   }
 
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   public setObject(param: string, value: any): void {
     localStorage.setItem(`${this.appPrefix}-${param}`, JSON.stringify(value));
   }

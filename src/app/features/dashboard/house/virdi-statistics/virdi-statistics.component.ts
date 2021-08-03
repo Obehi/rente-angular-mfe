@@ -1,9 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import * as Highcharts from 'highcharts';
-import {
-  LoansService,
-  AddressDto
-} from '../../../../shared/services/remote-api/loans.service';
+import { LoansService } from '../../../../shared/services/remote-api/loans.service';
+import { AddressDto } from '@shared/models/loans';
 import { SnackBarService } from '@services/snackbar.service';
 import { MatTabChangeEvent } from '@angular/material';
 import { MessageBannerService } from '@services/message-banner.service';

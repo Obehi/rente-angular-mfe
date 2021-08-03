@@ -37,17 +37,15 @@ import {
 import { MatDialog } from '@angular/material/dialog';
 import { ProfileDialogInfoComponent } from './dialog-info/dialog-info.component';
 import { MatChipInputEvent } from '@angular/material';
+import { ProfileService } from '@services/remote-api/profile.service';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import {
-  LoansService,
   MembershipTypeDto,
   PreferencesUpdateDto,
   PreferencesDto
-} from '@services/remote-api/loans.service';
-import { UserService } from '@services/remote-api/user.service';
+} from '@shared/models/loans';
 import { Mask } from '@shared/constants/mask';
 import { VALIDATION_PATTERN } from '../../../config/validation-patterns.config';
-import { SnackBarService } from '../../../shared/services/snackbar.service';
 import { OfferInfo } from '@shared/models/offers';
 import { DeactivationGuarded } from '@shared/guards/route.guard';
 import {
@@ -61,6 +59,7 @@ import {
 } from '@angular/animations';
 import { PropertySelectDialogComponent } from '@features/first-buyers/components/property-select-dialog/property-select-dialog.component';
 import { MembershipService } from '@services/membership.service';
+import { LoansService } from '@services/remote-api/loans.service';
 
 export enum FormControlId {
   email = 'email',
@@ -170,7 +169,8 @@ export class ProfileComponent implements OnInit, DeactivationGuarded {
     private loansService: LoansService,
     private membershipService: MembershipService,
     public dialog: MatDialog,
-    public textLangService: CustomLangTextService
+    public textLangService: CustomLangTextService,
+    private profileService: ProfileService
   ) {
     if (window.innerWidth > 600) {
       this.showMemberships = true;
@@ -184,7 +184,7 @@ export class ProfileComponent implements OnInit, DeactivationGuarded {
   }
 
   ngOnInit(): void {
-    this.loansService.getPreferencesDto().subscribe(
+    this.profileService.getPreferencesDto().subscribe(
       (res) => {
         this.isLoading = false;
         const dto: PreferencesDto = res;

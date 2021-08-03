@@ -32,7 +32,6 @@ import {
   OffersService,
   OfferMessage
 } from '@features/dashboard/offers/offers.service';
-import { OptimizeService } from '@services/optimize.service';
 @Component({
   selector: 'rente-offers-blue',
   templateUrl: './offers.component.html',

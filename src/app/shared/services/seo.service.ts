@@ -5,9 +5,10 @@ import { DOCUMENT } from '@angular/common';
   providedIn: 'root'
 })
 export class SeoService {
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   constructor(@Inject(DOCUMENT) private doc) {}
 
-  createLinkForCanonicalURL() {
+  createLinkForCanonicalURL(): void {
     const links = Array.from(this.doc.head.getElementsByTagName('link'));
 
     // remove previous canonical link elements

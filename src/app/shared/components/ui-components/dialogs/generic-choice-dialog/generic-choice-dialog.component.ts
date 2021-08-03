@@ -1,15 +1,15 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { OfferInfo } from '@shared/models/offers';
 
 @Component({
-  selector: 'virdi-error-choice-dialog',
-  templateUrl: './virdi-error-choice-dialog.component.html',
-  styleUrls: ['./virdi-error-choice-dialog.component.scss']
+  selector: 'rente-dialog-choice',
+  templateUrl: './generic-choice-dialog.component.html',
+  styleUrls: ['./generic-choice-dialog.component.scss']
 })
-export class VirdiErrorChoiceDialogComponent {
+export class GenericChoiceDialogComponent {
   constructor(
-    public dialogRef: MatDialogRef<VirdiErrorChoiceDialogComponent>,
-    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+    public dialogRef: MatDialogRef<GenericChoiceDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
 
