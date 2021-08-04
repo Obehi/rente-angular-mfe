@@ -33,10 +33,21 @@
     [opened]="showScorePreferences"
     (toggle)="preferencesButtonClicked()"
   >
-    <rente-user-score-preferences
-      [scoreListener]="scoreListener$"
-      [initialScores]="initialScores$"
-    ></rente-user-score-preferences>
+    <div class="user-score-preferences-box">
+      <p class="info-box">
+        Besvar spørsmålene under ved å flytte på slideren for å markere din
+        preferanse, og så finner vi riktig bank for deg basert på dine valg.
+      </p>
+      <h2 class="user-score-header">
+        Hvor viktig er det for deg med en bank som:
+      </h2>
+
+      <rente-user-score-preferences
+        [sliderBox]="true"
+        [scoreListener]="scoreListener$"
+        [initialScores]="initialScores$"
+      ></rente-user-score-preferences>
+    </div>
   </custom-dropdown>
 
   <div *ngIf="isMobile" class="sticky-table-header">

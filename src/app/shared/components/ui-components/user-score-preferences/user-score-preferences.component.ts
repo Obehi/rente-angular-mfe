@@ -21,6 +21,7 @@ import { start } from 'repl';
 export class UserScorePreferencesComponent implements OnInit {
   @Input() scoreListener: BehaviorSubject<UserScorePreferences>;
   @Input() initialScores: Observable<UserScorePreferences>;
+  @Input() sliderBox = true;
   initialScoresStorage: UserScorePreferences;
 
   combinedScores$: Observable<UserScorePreferences>;
@@ -38,7 +39,7 @@ export class UserScorePreferencesComponent implements OnInit {
         case 1:
           return '<b>Ikke viktig</b>';
         case 2:
-          return '<b>Litt viktig</b>';
+          return '<b>Lite viktig</b>';
         case 3:
           return '<b>Viktig</b>';
         case 4:
@@ -61,15 +62,15 @@ export class UserScorePreferencesComponent implements OnInit {
         case 1:
           return '<b>Ikke viktig</b>';
         case 2:
-          return '<b>Litt viktig</b>';
+          return '<b>Lite viktig</b>';
         case 3:
-          return '<b>Viktig</b>';
+          return '<b>Nøytral</b>';
         case 4:
           return '<b>Ganske viktig</b>';
         case 5:
           return '<b>Svært viktig</b>';
         default:
-          return '<b>Viktig</b>';
+          return '<b>Nøytral</b>';
       }
     }
   };

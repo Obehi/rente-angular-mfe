@@ -10,11 +10,38 @@ p {
   }
 }
 
+h3 {
+  color: #fff;
+  margin-bottom: 28px;
+}
+
+.info-box {
+  color: #fff;
+  background-color: $karl-blue;
+  border: 1px solid $blue-light;
+  border-radius: 5px;
+  padding: 15px;
+  text-align: left;
+  margin-bottom: 20px;
+}
+
 .offers-container {
   min-height: 1000px;
 
   .spinner {
     margin-top: 100px;
+  }
+}
+
+.user-score-preferences-box {
+  border: 1px solid #478ccc;
+  border-radius: 15px;
+  padding: 15px;
+  background: #112639;
+
+  .user-score-header {
+    color: #fff;
+    margin-bottom: 28px;
   }
 }
 

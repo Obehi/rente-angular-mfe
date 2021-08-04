@@ -89,12 +89,12 @@
   }
 }
 
-h2 {
+h2,
+h3 {
   color: #fff;
 }
 
 h3 {
-  color: #fff;
   margin-bottom: 28px;
 }
 
@@ -115,12 +115,15 @@ b {
     padding: 7px 36px;
   }
 }
+
+.slider-container-transparent {
+  width: 100%;
+  //margin: 20px auto;
+  margin-top: 30px;
+  margin: 30px 0px 0px;
+}
 ///////////////////////// .score-container-0
 .score-container-0 {
-  background: $blue;
-  border-radius: 15px;
-  border: 1px solid $blue-light;
-  padding: 15px;
   margin-bottom: 20px;
 
   .info-box {
@@ -153,10 +156,6 @@ b {
 
 ///////////////////////// .score-container-1
 .score-container-1 {
-  background: $blue;
-  border-radius: 15px;
-  border: 1px solid $blue-light;
-  padding: 15px;
   margin-bottom: 20px;
 
   width: 60%;
@@ -192,10 +191,6 @@ b {
 
 ///////////////////////// .score-container-2
 .score-container-2 {
-  background: $blue;
-  border-radius: 15px;
-  border: 1px solid $blue-light;
-  padding: 15px;
   margin-bottom: 20px;
 
   .info-box {
@@ -237,10 +232,6 @@ b {
 
 ///////////////////////// .score-container-3
 .score-container-3 {
-  background: $blue;
-  border-radius: 15px;
-  border: 1px solid $blue-light;
-  padding: 15px;
   margin-bottom: 20px;
 
   .info-box {

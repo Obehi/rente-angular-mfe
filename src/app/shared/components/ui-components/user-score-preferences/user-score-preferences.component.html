@@ -13,14 +13,12 @@
   [className]="'score-container-' + testType"
   *ngIf="combinedScores$ | async as score"
 >
-  <p class="info-box">
-    Besvar spørsmålene under ved å flytte på slideren for å markere din
-    preferanse, og så finner vi riktig bank for deg basert på dine valg.
-  </p>
-  <h2>Hvor viktig er det for deg med en bank som:</h2>
-
   <div class="sliders">
-    <div class="slider-container">
+    <div
+      [ngClass]="
+        sliderBox === true ? 'slider-container' : 'slider-container-transparent'
+      "
+    >
       <h3>Tilbyr en lav rente</h3>
       <ngx-slider
         [value]="score.priceSensitivity"
@@ -29,7 +27,11 @@
       ></ngx-slider>
     </div>
 
-    <div class="slider-container">
+    <div
+      [ngClass]="
+        sliderBox === true ? 'slider-container' : 'slider-container-transparent'
+      "
+    >
       <h3>Tilbyr en personlig rådgiver</h3>
       <ngx-slider
         [value]="score.advisorScore"
@@ -38,7 +40,11 @@
       ></ngx-slider>
     </div>
 
-    <div class="slider-container">
+    <div
+      [ngClass]="
+        sliderBox === true ? 'slider-container' : 'slider-container-transparent'
+      "
+    >
       <h3>Har lokal tilstedeværelse (filial)</h3>
       <ngx-slider
         [value]="score.localPresenceScore"
@@ -47,7 +53,11 @@
       ></ngx-slider>
     </div>
 
-    <div class="slider-container">
+    <div
+      [ngClass]="
+        sliderBox === true ? 'slider-container' : 'slider-container-transparent'
+      "
+    >
       <h3>Tilbyr forsikring, spareprodukter (pensjon, etc) og aksjehandel</h3>
       <ngx-slider
         [value]="score.combinedStockEnsuranceProductsScore"
@@ -56,7 +66,11 @@
       ></ngx-slider>
     </div>
 
-    <div class="slider-container">
+    <div
+      [ngClass]="
+        sliderBox === true ? 'slider-container' : 'slider-container-transparent'
+      "
+    >
       <h3>Tilbyr lån til deg som har en komplisert økonomi</h3>
       <ngx-slider
         [value]="score.complicatedEconomyScore"
@@ -65,7 +79,8 @@
       ></ngx-slider>
     </div>
 
-    <!-- <div class="slider-container">
+    <!-- <div 
+      [ngClass]="sliderBox === true  ? 'slider-container' : 'slider-container-transparent'">
       <h3>tilbyr lån til deg som har en komplisert søknadsprosess</h3>
       <ngx-slider
         [value]="score.changeProcessScore"
@@ -74,7 +89,8 @@
       ></ngx-slider>
     </div> -->
 
-    <!-- <div class="slider-container">
+    <!-- <div 
+      [ngClass]="sliderBox === true  ? 'slider-container' : 'slider-container-transparent'">
       <h3>tilbyr forsikring</h3>
       <ngx-slider
         [value]="score.insuranceScore"
@@ -83,7 +99,8 @@
       ></ngx-slider>
     </div> -->
 
-    <!-- <div class="slider-container">
+    <!-- <div 
+      [ngClass]="sliderBox === true  ? 'slider-container' : 'slider-container-transparent'">
       <h3>tilbyr aksjehandel</h3>
       <ngx-slider
         [value]="score.stockScore"
@@ -93,7 +110,8 @@
     </div>
    -->
 
-    <!-- <div class="slider-container">
+    <!-- <div 
+      [ngClass]="sliderBox === true  ? 'slider-container' : 'slider-container-transparent'">
       <h3>Er enkel å bytte til</h3>
       <ngx-slider
         [value]="score.changeProcessScore"
