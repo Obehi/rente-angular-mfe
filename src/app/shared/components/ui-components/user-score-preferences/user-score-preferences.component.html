@@ -1,79 +1,105 @@
-<div class="score-container" *ngIf="initialScores | async as score">
+<div class="test-buttons">
+  <p (click)="testType = 0">demo1</p>
+
+  <p (click)="testType = 1">demo2</p>
+
+  <p (click)="testType = 2">demo3</p>
+
+  <p (click)="testType = 3">demo4</p>
+</div>
+
+<div
+  class="score-container"
+  [className]="'score-container-' + testType"
+  *ngIf="combinedScores$ | async as score"
+>
   <p class="info-box">
-    Her kan vi legge inn tekst for å forklare til brukeren hva som er nødvendig
-    for at han/hun skal forstå hva som må til for å fullføre prosessen.
+    Besvar spørsmålene under ved å flytte på slideren for å markere din
+    preferanse, og så finner vi riktig bank for deg basert på dine valg.
   </p>
   <h2>Hvor viktig er det for deg med en bank som:</h2>
 
-  <div class="slider-container">
-    <h3>tilbyr en personlig rådgiver</h3>
-    <ngx-slider
-      [value]="score.advisorScore"
-      (userChangeEnd)="advisorScoreChanged($event)"
-      [options]="options"
-    ></ngx-slider>
-  </div>
+  <div class="sliders">
+    <div class="slider-container">
+      <h3>Tilbyr en lav rente</h3>
+      <ngx-slider
+        [value]="score.priceSensitivity"
+        (userChangeEnd)="priceSensitivityChanged($event)"
+        [options]="testType === 0 ? optionsWithTicks : options"
+      ></ngx-slider>
+    </div>
 
-  <div class="slider-container">
-    <h3>tilbyr lån til deg som har en komplisert søknadsprosess</h3>
-    <ngx-slider
-      [value]="score.changeProcessScore"
-      (userChangeEnd)="changeProcessScoreChanged($event)"
-      [options]="options"
-    ></ngx-slider>
-  </div>
+    <div class="slider-container">
+      <h3>Tilbyr en personlig rådgiver</h3>
+      <ngx-slider
+        [value]="score.advisorScore"
+        (userChangeEnd)="advisorScoreChanged($event)"
+        [options]="testType === 0 ? optionsWithTicks : options"
+      ></ngx-slider>
+    </div>
 
-  <div class="slider-container">
-    <h3>tilbyr forsikring</h3>
-    <ngx-slider
-      [value]="score.complicatedEconomyScore"
-      (userChangeEnd)="complicatedEconomyScoreChanged($event)"
-      [options]="options"
-    ></ngx-slider>
-  </div>
+    <div class="slider-container">
+      <h3>Har lokal tilstedeværelse (filial)</h3>
+      <ngx-slider
+        [value]="score.localPresenceScore"
+        (userChangeEnd)="localPresenceScoreChanged($event)"
+        [options]="testType === 0 ? optionsWithTicks : options"
+      ></ngx-slider>
+    </div>
 
-  <div class="slider-container">
-    <h3>tilbyr spareprodukter (pensjon, etc)</h3>
-    <ngx-slider
-      [value]="score.insuranceScore"
-      (userChangeEnd)="insuranceScoreChanged($event)"
-      [options]="options"
-    ></ngx-slider>
-  </div>
+    <div class="slider-container">
+      <h3>Tilbyr forsikring, spareprodukter (pensjon, etc) og aksjehandel</h3>
+      <ngx-slider
+        [value]="score.combinedStockEnsuranceProductsScore"
+        (userChangeEnd)="CombinedScoreChanged($event)"
+        [options]="testType === 0 ? optionsWithTicks : options"
+      ></ngx-slider>
+    </div>
 
-  <div class="slider-container">
-    <h3>tilbyr aksjehandel</h3>
-    <ngx-slider
-      [value]="score.localPresenceScore"
-      (userChangeEnd)="localPresenceScoreChanged($event)"
-      [options]="options"
-    ></ngx-slider>
-  </div>
+    <div class="slider-container">
+      <h3>Tilbyr lån til deg som har en komplisert økonomi</h3>
+      <ngx-slider
+        [value]="score.complicatedEconomyScore"
+        (userChangeEnd)="complicatedEconomyScoreChanged($event)"
+        [options]="testType === 0 ? optionsWithTicks : options"
+      ></ngx-slider>
+    </div>
 
-  <div class="slider-container">
-    <h3>har lokal tilstedeværelse</h3>
-    <ngx-slider
-      [value]="score.priceSensitivity"
-      (userChangeEnd)="priceSensitivityChanged($event)"
-      [options]="options"
-    ></ngx-slider>
-  </div>
+    <!-- <div class="slider-container">
+      <h3>tilbyr lån til deg som har en komplisert søknadsprosess</h3>
+      <ngx-slider
+        [value]="score.changeProcessScore"
+        (userChangeEnd)="changeProcessScoreChanged($event)"
+        [options]="testType === 0 ? optionsWithTicks : options"
+      ></ngx-slider>
+    </div> -->
 
-  <div class="slider-container">
-    <h3>Er enkel å bytte til</h3>
-    <ngx-slider
-      [value]="score.savingScore"
-      (userChangeEnd)="savingScoreChanged($event)"
-      [options]="options"
-    ></ngx-slider>
-  </div>
+    <!-- <div class="slider-container">
+      <h3>tilbyr forsikring</h3>
+      <ngx-slider
+        [value]="score.insuranceScore"
+        (userChangeEnd)="insuranceScoreChanged($event)"
+        [options]="testType === 0 ? optionsWithTicks : options"
+      ></ngx-slider>
+    </div> -->
 
-  <div class="slider-container">
-    <h3>hvor viktig er pris for deg?</h3>
-    <ngx-slider
-      [value]="score.stockScore"
-      (userChangeEnd)="stockScoreChanged($event)"
-      [options]="options"
-    ></ngx-slider>
+    <!-- <div class="slider-container">
+      <h3>tilbyr aksjehandel</h3>
+      <ngx-slider
+        [value]="score.stockScore"
+        (userChangeEnd)="stockScoreChanged($event)"
+        [options]="testType === 0 ? optionsWithTicks : options"
+      ></ngx-slider>
+    </div>
+   -->
+
+    <!-- <div class="slider-container">
+      <h3>Er enkel å bytte til</h3>
+      <ngx-slider
+        [value]="score.changeProcessScore"
+        (userChangeEnd)="changeProcessScoreChanged($event)"
+        [options]="testType === 0 ? optionsWithTicks : options"
+      ></ngx-slider>
+    </div> -->
   </div>
 </div>

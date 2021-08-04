@@ -40,9 +40,9 @@
     background: $secondary !important;
   }
 
-  /*  .ngx-slider .ngx-slider-tick {
+  .ngx-slider .ngx-slider-tick {
     background: $secondary !important;
-  } */
+  }
 
   .custom-slider .ngx-slider .ngx-slider-bar {
     background: #ffe4d1;
@@ -103,7 +103,20 @@ b {
   font-size: 12px;
 }
 
-.score-container {
+.test-buttons {
+  display: flex;
+  margin: auto;
+  width: 481px;
+  p {
+    background-color: white;
+    border-radius: 5px;
+    margin: 10px;
+    font-weight: 400;
+    padding: 7px 36px;
+  }
+}
+///////////////////////// .score-container-0
+.score-container-0 {
   background: $blue;
   border-radius: 15px;
   border: 1px solid $blue-light;
@@ -118,6 +131,136 @@ b {
     padding: 15px;
     text-align: left;
     margin-bottom: 20px;
+  }
+
+  .sliders-3 {
+    .slider-container {
+      width: 100%;
+      margin: 20px auto;
+    }
+  }
+
+  .slider-container {
+    margin-top: 30px;
+    background: $karl-blue;
+    margin: 30px 0px 0px;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: rgb(50 50 93 / 25%) 0px 2px 5px -1px,
+      rgb(0 0 0 / 30%) 0px 3px 3px -1px;
+  }
+}
+
+///////////////////////// .score-container-1
+.score-container-1 {
+  background: $blue;
+  border-radius: 15px;
+  border: 1px solid $blue-light;
+  padding: 15px;
+  margin-bottom: 20px;
+
+  width: 60%;
+  margin: 0 auto 20px;
+
+  .info-box {
+    color: #fff;
+    background-color: $karl-blue;
+    border: 1px solid $blue-light;
+    border-radius: 5px;
+    padding: 15px;
+    text-align: left;
+    margin-bottom: 20px;
+  }
+
+  .sliders-3 {
+    .slider-container {
+      width: 100%;
+      margin: 20px auto;
+    }
+  }
+
+  .slider-container {
+    margin-top: 30px;
+    background: $karl-blue;
+    margin: 30px 0px 0px;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: rgb(50 50 93 / 25%) 0px 2px 5px -1px,
+      rgb(0 0 0 / 30%) 0px 3px 3px -1px;
+  }
+}
+
+///////////////////////// .score-container-2
+.score-container-2 {
+  background: $blue;
+  border-radius: 15px;
+  border: 1px solid $blue-light;
+  padding: 15px;
+  margin-bottom: 20px;
+
+  .info-box {
+    color: #fff;
+    background-color: $karl-blue;
+    border: 1px solid $blue-light;
+    border-radius: 5px;
+    padding: 15px;
+    text-align: left;
+    margin-bottom: 20px;
+  }
+
+  .sliders {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 20px;
+    .slider-container {
+      width: 100%;
+    }
+  }
+
+  .sliders-2 {
+    .slider-container {
+      width: 60%;
+      margin: 20px auto;
+    }
+  }
+
+  .slider-container {
+    margin-top: 30px;
+    background: $karl-blue;
+    margin: 30px 0px 0px;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: rgb(50 50 93 / 25%) 0px 2px 5px -1px,
+      rgb(0 0 0 / 30%) 0px 3px 3px -1px;
+  }
+}
+
+///////////////////////// .score-container-3
+.score-container-3 {
+  background: $blue;
+  border-radius: 15px;
+  border: 1px solid $blue-light;
+  padding: 15px;
+  margin-bottom: 20px;
+
+  .info-box {
+    color: #fff;
+    background-color: $karl-blue;
+    border: 1px solid $blue-light;
+    border-radius: 5px;
+    padding: 15px;
+    text-align: left;
+    margin-bottom: 20px;
+  }
+
+  @media (min-width: 600px) {
+    .sliders {
+      .slider-container {
+        width: 100%;
+        width: 60%;
+        margin: 20px auto;
+      }
+    }
   }
 
   .slider-container {

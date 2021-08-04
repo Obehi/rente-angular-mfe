@@ -7,6 +7,7 @@ export interface UserScorePreferences {
   priceSensitivity?: number;
   savingScore?: number;
   stockScore?: number;
+  combinedStockEnsuranceProductsScore?: number;
 }
 export interface UserInfo {
   birthDate: number;
