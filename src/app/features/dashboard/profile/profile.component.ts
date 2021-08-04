@@ -18,7 +18,16 @@ import {
   Validators
 } from '@angular/forms';
 import { COMMA, ENTER, S } from '@angular/cdk/keycodes';
-import { combineLatest, Observable, of, Subject, throwError } from 'rxjs';
+import {
+  BehaviorSubject,
+  combineLatest,
+  Observable,
+  of,
+  Subject,
+  throwError
+} from 'rxjs';
+import { UserService } from '@services/remote-api/user.service';
+
 import {
   catchError,
   debounce,
@@ -26,6 +35,7 @@ import {
   distinctUntilChanged,
   filter,
   map,
+  skip,
   startWith,
   switchMap,
   tap
@@ -60,6 +70,7 @@ import {
 import { PropertySelectDialogComponent } from '@features/first-buyers/components/property-select-dialog/property-select-dialog.component';
 import { MembershipService } from '@services/membership.service';
 import { LoansService } from '@services/remote-api/loans.service';
+import { UserScorePreferences } from '@models/user';
 
 export enum FormControlId {
   email = 'email',
@@ -136,7 +147,6 @@ export class ProfileComponent implements OnInit, DeactivationGuarded {
       success: false
     }
   };
-
   public formControlId = FormControlId;
   // //////////////////////////// NEW /////////////////////////// ///
 
@@ -161,6 +171,9 @@ export class ProfileComponent implements OnInit, DeactivationGuarded {
   membershipIcon = '../../../../../assets/icons/bank-card-light-blue.svg';
   marketUpdatesIcon = '../../../../../assets/icons/ic_bank_id.svg';
 
+  scoreListener$ = new BehaviorSubject<UserScorePreferences>({});
+  initialScores$: Observable<UserScorePreferences>;
+
   @ViewChild('membershipInput') membershipInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete: MatAutocomplete;
 
@@ -170,7 +183,8 @@ export class ProfileComponent implements OnInit, DeactivationGuarded {
     private membershipService: MembershipService,
     public dialog: MatDialog,
     public textLangService: CustomLangTextService,
-    private profileService: ProfileService
+    private profileService: ProfileService,
+    private userService: UserService
   ) {
     if (window.innerWidth > 600) {
       this.showMemberships = true;
@@ -184,6 +198,8 @@ export class ProfileComponent implements OnInit, DeactivationGuarded {
   }
 
   ngOnInit(): void {
+    this.initialScores$ = this.userService.getUserScorePreferences();
+    this.initScoreListener();
     this.profileService.getPreferencesDto().subscribe(
       (res) => {
         this.isLoading = false;
@@ -256,6 +272,17 @@ export class ProfileComponent implements OnInit, DeactivationGuarded {
 
     // Wait for upload info before navigating to another page
     return this.canNavigateBooolean$;
+  }
+
+  initScoreListener(): void {
+    this.scoreListener$
+      .pipe(
+        skip(1),
+
+        debounceTime(100),
+        switchMap((score) => this.userService.updateUserScorePreferences(score))
+      )
+      .subscribe((shouldUpdateNow) => {});
   }
 
   public openInfoDialog(offer: OfferInfo | string): void {

@@ -277,5 +277,16 @@
         value="offerThreeIsChecked"
       ></mat-slide-toggle>
     </div>
+
+    <hr class="margin-bottom" />
+
+    <h3 i18n="“income-per-year|profile@@profile.offerOptions.header">
+      HVOR VIKTIG ER DET FOR DEG MED EN BANK SOM:
+    </h3>
+    <rente-user-score-preferences
+      [sliderBox]="true"
+      [scoreListener]="scoreListener$"
+      [initialScores]="initialScores$"
+    ></rente-user-score-preferences>
   </div>
 </div>
