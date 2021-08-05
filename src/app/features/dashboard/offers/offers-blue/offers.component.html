@@ -3,6 +3,13 @@
     <mat-spinner [diameter]="48" [strokeWidth]="4"></mat-spinner>
   </div>
   <div
+    *ngIf="isMobile && getOfferNotifications() | async"
+    class="notification-header"
+    (click)="goToOfferNotifications(); scrollTo(offers)"
+  >
+    <p>Du har nye tilbud, trykk her for å sjekke</p>
+  </div>
+  <div
     class="offers"
     *ngIf="
       offersInfo?.ltvType === offersLtvType.LTV_OK ||
@@ -86,7 +93,6 @@
       </rente-dialog>
     </div>
   </div>
-
   <div class="problems" style="max-width: 780px">
     <div
       class="title"

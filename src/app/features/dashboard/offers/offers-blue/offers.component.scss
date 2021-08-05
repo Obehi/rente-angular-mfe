@@ -1,5 +1,47 @@
 @import '../../../../../styles/theme/_colors.scss';
 
+.notification-header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  position: absolute;
+  z-index: 9;
+  top: 55px;
+  font-size: 14px;
+  color: #000;
+  background-color: aquamarine;
+  box-shadow: rgb(100 100 111 / 20%) 0px 7px 29px 0px;
+  height: 4em;
+  width: 90%;
+  padding: 10px;
+  margin-left: 2vh;
+  p {
+    color: #000;
+    font-weight: 400;
+  }
+  p:first-of-type {
+    margin-right: auto;
+  }
+  ul {
+    display: flex;
+    justify-content: end;
+    list-style: none;
+    width: 240px;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-top: 15px;
+
+    li:first-child {
+      font-size: 5.5em;
+    }
+  }
+  li:first-child {
+    display: none;
+  }
+}
+
 .dashboard-content {
   background: #162537;
 }

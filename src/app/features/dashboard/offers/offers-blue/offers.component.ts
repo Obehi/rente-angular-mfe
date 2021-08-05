@@ -27,7 +27,7 @@ import {
   TrackingService,
   TrackingDto
 } from '@services/remote-api/tracking.service';
-import { Subscription, forkJoin } from 'rxjs';
+import { Subscription, forkJoin, Observable } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { OFFERS_LTV_TYPE } from '../../../../shared/models/offers';
 import { UserService } from '@services/remote-api/user.service';
@@ -43,6 +43,7 @@ import {
   OfferMessage
 } from '@features/dashboard/offers/offers.service';
 import { OptimizeService } from '@services/optimize.service';
+import { NotificationService } from '@services/notification.service';
 @Component({
   selector: 'rente-offers-blue',
   templateUrl: './offers.component.html',
@@ -90,7 +91,8 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
     public envService: EnvService,
     private offersService: OffersService,
     private logginService: LoggingService,
-    private optimizeService: OptimizeService
+    private optimizeService: OptimizeService,
+    private notificationService: NotificationService
   ) {
     this.onResize();
 
@@ -158,6 +160,22 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
           }
         }
       });
+  }
+
+  getOfferNotifications(): Observable<number> {
+    return this.notificationService.getOfferNotificationAsObservable();
+  }
+
+  goToOfferNotifications(): any {
+    console.log('going to offer notifications');
+  }
+
+  scrollTo(ref: HTMLElement): void {
+    ref.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+      inline: 'start'
+    });
   }
 
   public openAntiChurnBankDialog(offer, shouldLog: boolean): void {
