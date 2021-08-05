@@ -30,8 +30,8 @@ export class UserScorePreferencesComponent implements OnInit {
 
   testType = 0;
   options: Options = {
-    floor: 1,
-    ceil: 5,
+    floor: 0,
+    ceil: 4,
     step: 1,
     showTicks: false,
     translate: (value: number, label: LabelType): string => {
@@ -53,8 +53,8 @@ export class UserScorePreferencesComponent implements OnInit {
   };
 
   optionsWithTicks: Options = {
-    floor: 1,
-    ceil: 5,
+    floor: 0,
+    ceil: 4,
     step: 1,
     showTicks: true,
     translate: (value: number, label: LabelType): string => {
@@ -113,7 +113,7 @@ export class UserScorePreferencesComponent implements OnInit {
     this.scoreObserveTrigger$.subscribe(() => {});
   }
 
-  getCombinedScores(scores: UserScorePreferences) {
+  getCombinedScores(scores: UserScorePreferences): UserScorePreferences {
     return {
       advisorScore: scores.advisorScore || 2.5,
       changeProcessScore: scores.changeProcessScore || 2.5,
@@ -122,9 +122,7 @@ export class UserScorePreferencesComponent implements OnInit {
       localPresenceScore: scores.localPresenceScore || 2.5,
       priceSensitivity: scores.priceSensitivity || 2.5,
       savingScore: scores.savingScore || 2.5,
-      stockScore: scores.stockScore || 2.5,
-      combinedStockEnsuranceProductsScore:
-        ((scores.insuranceScore || 2.5) + (scores.stockScore || 2.5)) / 3
+      stockScore: scores.stockScore || 2.5
     };
   }
 
