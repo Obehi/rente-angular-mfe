@@ -36,15 +36,15 @@ export class UserScorePreferencesComponent implements OnInit {
     showTicks: false,
     translate: (value: number, label: LabelType): string => {
       switch (value) {
-        case 1:
+        case 0:
           return '<b>Ikke viktig</b>';
-        case 2:
+        case 1:
           return '<b>Lite viktig</b>';
-        case 3:
+        case 2:
           return '<b>Viktig</b>';
-        case 4:
+        case 3:
           return '<b>Ganske viktig</b>';
-        case 5:
+        case 4:
           return '<b>Svært viktig</b>';
         default:
           return '<b>Viktig</b>';
@@ -59,15 +59,15 @@ export class UserScorePreferencesComponent implements OnInit {
     showTicks: true,
     translate: (value: number, label: LabelType): string => {
       switch (value) {
-        case 1:
+        case 0:
           return '<b>Ikke viktig</b>';
-        case 2:
+        case 1:
           return '<b>Lite viktig</b>';
-        case 3:
+        case 2:
           return '<b>Nøytral</b>';
-        case 4:
+        case 3:
           return '<b>Ganske viktig</b>';
-        case 5:
+        case 4:
           return '<b>Svært viktig</b>';
         default:
           return '<b>Nøytral</b>';
