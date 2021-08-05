@@ -17,3 +17,14 @@
 >
   {{ displayText }}
 </div>
+
+<div
+  (click)="onClickBanner()"
+  *ngIf="animationType === checkAnimationStyle.SLIDE_UP"
+  [ngClass]="isDashboard ? 'dropdownupdash' : 'dropdownup'"
+  [class.error]="status === 'error'"
+  [class.success]="status === 'success'"
+  [@slideUp]="animationState ? 'visible' : 'hidden'"
+>
+  {{ displayText }}
+</div>
