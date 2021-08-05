@@ -9,6 +9,7 @@
 </div>
 
 <div
+  (click)="onClickBanner()"
   *ngIf="animationType === checkAnimationStyle.DROP_DOWN_UP"
   [ngClass]="isDashboard ? 'dropdownupdash' : 'dropdownup'"
   [class.error]="status === 'error'"
@@ -19,7 +20,7 @@
 </div>
 
 <div
-  (click)="onClickBanner()"
+  (click)="onClickScrollSubject()"
   *ngIf="animationType === checkAnimationStyle.SLIDE_UP"
   [ngClass]="isDashboard ? 'dropdownupdash' : 'dropdownup'"
   [class.error]="status === 'error'"

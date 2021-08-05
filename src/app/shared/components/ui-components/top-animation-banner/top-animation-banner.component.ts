@@ -22,6 +22,7 @@ export class TopAnimationBannerComponent implements OnInit {
   public isDashboard: boolean;
   public status: string;
   public clickSubject$ = new Subject<any>();
+  public scrollSubject$ = new Subject<void>();
 
   constructor() {}
 
@@ -37,5 +38,9 @@ export class TopAnimationBannerComponent implements OnInit {
 
   public onClickBanner(): void {
     this.clickSubject$.next();
+  }
+
+  public onClickScrollSubject(): void {
+    this.scrollSubject$.next();
   }
 }

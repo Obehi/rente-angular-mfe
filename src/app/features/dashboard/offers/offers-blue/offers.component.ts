@@ -28,7 +28,7 @@ import {
   TrackingDto
 } from '@services/remote-api/tracking.service';
 import { Subscription, forkJoin, Observable } from 'rxjs';
-import { debounceTime } from 'rxjs/operators';
+import { debounceTime, skip } from 'rxjs/operators';
 import { OFFERS_LTV_TYPE } from '../../../../shared/models/offers';
 import { UserService } from '@services/remote-api/user.service';
 import smoothscroll from 'smoothscroll-polyfill';
@@ -44,6 +44,8 @@ import {
 } from '@features/dashboard/offers/offers.service';
 import { OptimizeService } from '@services/optimize.service';
 import { NotificationService } from '@services/notification.service';
+import { MessageBannerService } from '@services/message-banner.service';
+import { getAnimationStyles } from '@shared/animations/animationEnums';
 @Component({
   selector: 'rente-offers-blue',
   templateUrl: './offers.component.html',
@@ -74,6 +76,7 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
   public routesMap = ROUTES_MAP;
   public antiChurnIsOn = false;
   public nordeaClickSubscription: Subscription;
+  public animationStyles = getAnimationStyles();
 
   get isMobile(): boolean {
     return window.innerWidth < 600;
@@ -92,7 +95,8 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
     private offersService: OffersService,
     private logginService: LoggingService,
     private optimizeService: OptimizeService,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private messageService: MessageBannerService
   ) {
     this.onResize();
 
@@ -113,7 +117,31 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
     }
   }
 
+  test(n: any): any {
+    if (n > 0) {
+      this.messageService.setView(
+        'Du har nye tilbud! Trykk for å sjekke',
+        5000,
+        this.animationStyles.DROP_DOWN_UP,
+        'success',
+        window,
+        true
+      );
+    } else {
+      return;
+    }
+  }
+
   public ngOnInit(): void {
+    this.notificationService
+      .getOfferNotificationAsObservable()
+      .subscribe((n) => {
+        console.log(n);
+        //if (n > 0) {
+        this.test(n);
+        // }
+      });
+
     if (locale.includes('sv')) {
       this.isSweden = true;
     } else {
@@ -160,6 +188,11 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
           }
         }
       });
+
+    // this.messageService.test().subscribe((args) => {
+    //   this.scrollTo();
+    //   console.log(args);
+    // });
   }
 
   getOfferNotifications(): Observable<number> {
@@ -170,8 +203,9 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
     console.log('going to offer notifications');
   }
 
-  scrollTo(ref: HTMLElement): void {
-    ref.scrollIntoView({
+  scrollTo(): void {
+    const offers = document.getElementById('best-offers-text');
+    offers?.scrollIntoView({
       behavior: 'smooth',
       block: 'start',
       inline: 'start'

@@ -20,6 +20,7 @@ export class MessageBannerService implements OnDestroy {
   private _componentRef: ComponentRef<TopAnimationBannerComponent>;
   public checkAnimationStyle = getAnimationStyles();
   private clickListenerSub: Subscription;
+  private scrollListenerSub: Subscription;
 
   constructor(
     private factoryResolver: ComponentFactoryResolver,
@@ -30,6 +31,7 @@ export class MessageBannerService implements OnDestroy {
 
   ngOnDestroy(): void {
     this.clickListenerSub.unsubscribe();
+    this.scrollListenerSub.unsubscribe();
   }
   getContentClass(): string {
     // If its inside dashboard or not, or init connfirmation state. Add here if there are more states
@@ -100,6 +102,10 @@ export class MessageBannerService implements OnDestroy {
     shouldSetTimeout && this.detachViewWithTimeout(_newtime);
   }
 
+  public test(): any {
+    return this._componentRef.instance.clickSubject$;
+  }
+
   private detachViewWithTimeout(newTime: number): void {
     setTimeout(() => {
       this.appRef.detachView(this._componentRef.hostView);
@@ -145,5 +151,13 @@ export class MessageBannerService implements OnDestroy {
     setTimeout(() => {
       this.appRef.detachView(this._componentRef.hostView);
     }, _newtime + 2000);
+  }
+
+  scrollTo(ref: HTMLElement): void {
+    ref.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+      inline: 'start'
+    });
   }
 }
