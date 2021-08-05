@@ -200,6 +200,7 @@ export class ProfileComponent implements OnInit, DeactivationGuarded {
   ngOnInit(): void {
     this.initialScores$ = this.userService.getUserScorePreferences();
     this.initScoreListener();
+
     this.profileService.getPreferencesDto().subscribe(
       (res) => {
         this.isLoading = false;

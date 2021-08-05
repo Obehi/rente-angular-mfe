@@ -25,7 +25,21 @@
       </a>
     </div>
     <a class="preferences-button" (click)="preferencesButtonClicked()">
-      <img src="../../../assets/icons/score-preferences-icon.svg" />
+      <span
+        [ngClass]="
+          !showScorePreferences
+            ? 'preferences-button'
+            : 'preferences-button-active'
+        "
+      >
+        <img
+          [src]="
+            showScorePreferences
+              ? '../../../assets/icons/slider-icon-blue-medium.svg'
+              : '../../../assets/icons/slider-icon-green.svg'
+          "
+        />
+      </span>
     </a>
   </div>
 

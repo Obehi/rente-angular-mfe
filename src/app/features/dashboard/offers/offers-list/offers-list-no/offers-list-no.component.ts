@@ -116,6 +116,7 @@ export class OffersListNoComponent implements OnInit {
     if (type === 'rate') {
       this.currentOffers = this.offersInfo.offers.top5;
       this.localStorageService.isUserDefinedOfferPreferences = false;
+      this.showScorePreferences = false;
       return;
     }
 
