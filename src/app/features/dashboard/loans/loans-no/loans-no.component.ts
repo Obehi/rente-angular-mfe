@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LoansService } from '@services/remote-api/loans.service';
 import { Loans } from '@shared/models/loans';
+import { BankUtils } from '@shared/models/bank';
 import {
   trigger,
   transition,
@@ -37,6 +38,8 @@ export class LoansNoComponent implements OnInit {
   public unableToCalculateTotalInterest: boolean;
   public unableToCalculateTotalInterestByRemainingYears: boolean;
   public locale: string;
+  public isSignicatUser: boolean;
+  public isFixedPriceBank: boolean;
 
   constructor(private loansService: LoansService) {}
 
@@ -45,6 +48,11 @@ export class LoansNoComponent implements OnInit {
     this.loansService.getLoans().subscribe(
       (res: Loans) => {
         this.loansData = res;
+        this.isSignicatUser = BankUtils.getSignicatUserByBankLabel(
+          this.loansData.loans[0].bank
+        );
+        console.log('Is signicatuser?');
+        console.log(this.isSignicatUser);
       },
       (err) => {
         this.errorMessage = err.title;

@@ -2110,4 +2110,15 @@ export class BankUtils {
 
     return signiCatBanks;
   }
+
+  static getSignicatUserByBankLabel(bankLabel: string): boolean {
+    const banks = this.getSigniCatBanks();
+
+    for (const bank of banks) {
+      if (bank.label === bankLabel) {
+        return true;
+      }
+    }
+    return false;
+  }
 }
