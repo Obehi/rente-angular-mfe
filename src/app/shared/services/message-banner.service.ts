@@ -4,16 +4,22 @@ import {
   ComponentRef,
   Injectable,
   Injector,
-  ViewContainerRef
+  OnDestroy
 } from '@angular/core';
-import { AnimationStylesEnum } from '@shared/animations/animationEnums';
+import {
+  AnimationStylesEnum,
+  getAnimationStyles
+} from '@shared/animations/animationEnums';
+import { Subscription } from 'rxjs';
 
 import { TopAnimationBannerComponent } from '../components/ui-components/top-animation-banner/top-animation-banner.component';
 import { GlobalStateService } from './global-state.service';
 
 @Injectable()
-export class MessageBannerService {
+export class MessageBannerService implements OnDestroy {
   private _componentRef: ComponentRef<TopAnimationBannerComponent>;
+  public checkAnimationStyle = getAnimationStyles();
+  private clickListenerSub: Subscription;
 
   constructor(
     private factoryResolver: ComponentFactoryResolver,
@@ -22,6 +28,9 @@ export class MessageBannerService {
     private globalStateService: GlobalStateService
   ) {}
 
+  ngOnDestroy(): void {
+    this.clickListenerSub.unsubscribe();
+  }
   getContentClass(): string {
     // If its inside dashboard or not, or init connfirmation state. Add here if there are more states
     // return content as default
@@ -40,7 +49,9 @@ export class MessageBannerService {
     _newtime: number,
     _animationType: AnimationStylesEnum,
     _status: string,
-    _window: Window
+    _window: Window,
+    _isClickable = false,
+    shouldSetTimeout = true
   ): void {
     const factory = this.factoryResolver.resolveComponentFactory(
       TopAnimationBannerComponent
@@ -52,7 +63,11 @@ export class MessageBannerService {
     newNode.style.width = '100%';
     newNode.style.zIndex = '2';
     if (_window.innerWidth < 992) {
-      newNode.style.top = '70px';
+      if (_animationType === this.checkAnimationStyle.SLIDE_UP) {
+        newNode.style.bottom = '30px';
+      } else {
+        newNode.style.top = '70px';
+      }
     } else {
       newNode.style.top = '75px';
     }
@@ -76,9 +91,23 @@ export class MessageBannerService {
     this._componentRef.instance.displayText = _newtext;
     this.appRef.attachView(this._componentRef.hostView);
 
+    this.clickListenerSub = this._componentRef.instance.clickSubject$.subscribe(
+      () => {
+        this.detachView();
+      }
+    );
+
+    shouldSetTimeout && this.detachViewWithTimeout(_newtime);
+  }
+
+  private detachViewWithTimeout(newTime: number): void {
     setTimeout(() => {
       this.appRef.detachView(this._componentRef.hostView);
-    }, _newtime + 2000);
+    }, newTime + 2000);
+  }
+
+  private detachView() {
+    this.appRef.detachView(this._componentRef.hostView);
   }
 
   setSavedViewBolig(
