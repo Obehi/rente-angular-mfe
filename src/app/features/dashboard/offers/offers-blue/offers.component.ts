@@ -106,16 +106,38 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
     this.offerTypes = ['threeMonths', 'oneYear', 'all'];
     // kick off the polyfill!
     smoothscroll.polyfill();
-    this.getOffers();
 
-    this.offersService.updateOffers$.subscribe(() => {
-      this.getOffers();
-    });
+    this.offersService.updateOfferResponse$.subscribe(
+      (res) => {
+        this.offersInfo = Object.assign({}, res);
+        this.currentOfferInfo = JSON.parse(JSON.stringify(res));
 
-    this.offersService.scrollOfferUpdateObserver().subscribe(() => {
-      this.getOffers();
-      this.offersService.shouldUpdateOffersLater = false;
-    });
+        this.antiChurnIsOn = this.offersInfo.bank === 'NORDEA' ? true : false;
+
+        this.canBargain =
+          res.bank === 'SWE_AVANZA' ||
+          res.bank === 'SWE_SBAB' ||
+          res.bank === 'SWE_DANSKE_BANK' ||
+          res.bank === 'SWE_ICA_BANKEN'
+            ? false
+            : true;
+
+        this.isLoading = false;
+        this.localStorageService.removeItem('isNewUser');
+        this.offersService.isUpdatingOffers$.next(false);
+      },
+      (err) => {
+        this.offersService.isUpdatingOffers$.next(false);
+
+        if (err.errorType === 'PROPERTY_VALUE_MISSING') {
+          this.errorMessage = err.title;
+          this.router.navigate(['/dashboard/' + ROUTES_MAP.property]);
+        }
+        console.log(err);
+      }
+    );
+
+    this.offersService.updateOffers$.next();
 
     this.nordeaClickSubscription = this.offersService
       .messages()
@@ -130,9 +152,9 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
       });
   }
 
-  private getOffers(): void {
+  /*  private getOffers(): void {
     this.offersService.isUpdatingOffers$.next(true);
-    this.loansService.getOffers().subscribe(
+    this.offersService.getOffers().subscribe(
       (res: Offers) => {
         this.offersInfo = Object.assign({}, res);
         this.currentOfferInfo = JSON.parse(JSON.stringify(res));
@@ -161,7 +183,7 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
         console.log(err);
       }
     );
-  }
+  } */
 
   public openAntiChurnBankDialog(offer, shouldLog: boolean): void {
     if (

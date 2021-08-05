@@ -81,11 +81,18 @@
       <rente-spinner [size]="'83px'"></rente-spinner>
     </div>
     <div *ngIf="!(offerService.isUpdatingOffers$ | async)" class="offers-grid">
-      <ng-container *ngIf="currentOfferInfo">
-        <div
-          *ngFor="let offer of currentOffers; let i = index"
+      <ng-container>
+        <!--        <div *ngFor="let offer of test; let i = index">
+          <h1>LALALLA</h1>
+        </div>
+ -->
+        <!-- <div
+          *ngFor="let offer of currentOfferInfo$ | async; index as i"
           class="the-offer"
         >
+          <h1>JAPP!!</h1>
+        </div> -->
+        <div *ngFor="let offer of currentOffers" class="the-offer">
           <ng-container *ngIf="isMobile; else desktop">
             <rente-offer-card
               [offer]="offer"
