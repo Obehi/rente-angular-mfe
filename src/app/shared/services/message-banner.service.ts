@@ -93,16 +93,16 @@ export class MessageBannerService implements OnDestroy {
     this._componentRef.instance.displayText = _newtext;
     this.appRef.attachView(this._componentRef.hostView);
 
-    this.clickListenerSub = this._componentRef.instance.clickSubject$.subscribe(
-      () => {
+    if (_isClickable) {
+      this._componentRef.instance.clickSubject$.subscribe(() => {
         this.detachView();
-      }
-    );
+      });
+    }
 
     shouldSetTimeout && this.detachViewWithTimeout(_newtime);
   }
 
-  public test(): any {
+  public getClickSubject$(): any {
     return this._componentRef.instance.clickSubject$;
   }
 
@@ -151,13 +151,5 @@ export class MessageBannerService implements OnDestroy {
     setTimeout(() => {
       this.appRef.detachView(this._componentRef.hostView);
     }, _newtime + 2000);
-  }
-
-  scrollTo(ref: HTMLElement): void {
-    ref.scrollIntoView({
-      behavior: 'smooth',
-      block: 'start',
-      inline: 'start'
-    });
   }
 }

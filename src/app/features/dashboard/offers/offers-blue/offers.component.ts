@@ -77,6 +77,7 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
   public antiChurnIsOn = false;
   public nordeaClickSubscription: Subscription;
   public animationStyles = getAnimationStyles();
+  public notificationSubscription: Subscription;
 
   get isMobile(): boolean {
     return window.innerWidth < 600;
@@ -115,31 +116,34 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
     if (this.nordeaClickSubscription) {
       this.nordeaClickSubscription.unsubscribe();
     }
+
+    if (this.notificationSubscription) {
+      this.notificationSubscription.unsubscribe();
+    }
   }
 
-  test(n: any): any {
+  public setNotifAlert(n: number): void {
     if (n > 0) {
       this.messageService.setView(
         'Du har nye tilbud! Trykk for å sjekke',
-        5000,
+        7000,
         this.animationStyles.DROP_DOWN_UP,
         'success',
         window,
         true
       );
-    } else {
-      return;
+
+      this.messageService.getClickSubject$().subscribe(() => {
+        this.scrollTo();
+      });
     }
   }
 
   public ngOnInit(): void {
-    this.notificationService
+    this.notificationSubscription = this.notificationService
       .getOfferNotificationAsObservable()
       .subscribe((n) => {
-        console.log(n);
-        //if (n > 0) {
-        this.test(n);
-        // }
+        this.setNotifAlert(n);
       });
 
     if (locale.includes('sv')) {
@@ -188,22 +192,13 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
           }
         }
       });
-
-    // this.messageService.test().subscribe((args) => {
-    //   this.scrollTo();
-    //   console.log(args);
-    // });
   }
 
-  getOfferNotifications(): Observable<number> {
+  public getOfferNotifications(): Observable<number> {
     return this.notificationService.getOfferNotificationAsObservable();
   }
 
-  goToOfferNotifications(): any {
-    console.log('going to offer notifications');
-  }
-
-  scrollTo(): void {
+  public scrollTo(): void {
     const offers = document.getElementById('best-offers-text');
     offers?.scrollIntoView({
       behavior: 'smooth',
