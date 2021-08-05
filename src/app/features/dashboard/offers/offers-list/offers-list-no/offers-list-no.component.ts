@@ -64,6 +64,8 @@ export class OffersListNoComponent implements OnInit {
   scoreListener$ = new BehaviorSubject<UserScorePreferences>({});
   initialScores$: Observable<UserScorePreferences>;
 
+  shouldShowDemo$ = new BehaviorSubject<boolean>(false);
+
   constructor(
     public optimizeService: OptimizeService,
     public offerService: OffersService,
@@ -93,6 +95,7 @@ export class OffersListNoComponent implements OnInit {
   public currentOfferType: string;
 
   ngOnInit(): void {
+    this.shouldShowDemo$.next(true);
     this.initialScores$ = this.userService.getUserScorePreferences();
     this.initScoreListener();
 

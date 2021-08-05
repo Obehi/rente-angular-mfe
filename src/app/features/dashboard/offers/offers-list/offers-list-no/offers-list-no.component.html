@@ -59,6 +59,7 @@
       <rente-user-score-preferences
         [sliderBox]="true"
         [scoreListener]="scoreListener$"
+        [shouldShowDemoListener]="shouldShowDemo$"
         [initialScores]="initialScores$"
       ></rente-user-score-preferences>
     </div>
@@ -80,6 +81,7 @@
     >
       <rente-spinner [size]="'83px'"></rente-spinner>
     </div>
+
     <div *ngIf="!(offerService.isUpdatingOffers$ | async)" class="offers-grid">
       <ng-container *ngIf="currentOfferInfo">
         <div

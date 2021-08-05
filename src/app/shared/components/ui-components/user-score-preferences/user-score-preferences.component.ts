@@ -11,7 +11,6 @@ import {
   switchMap,
   tap
 } from 'rxjs/operators';
-import { start } from 'repl';
 
 @Component({
   selector: 'rente-user-score-preferences',
@@ -22,6 +21,8 @@ export class UserScorePreferencesComponent implements OnInit {
   @Input() scoreListener: BehaviorSubject<UserScorePreferences>;
   @Input() initialScores: Observable<UserScorePreferences>;
   @Input() sliderBox = true;
+  @Input() shouldShowDemoListener: Observable<boolean>;
+
   initialScoresStorage: UserScorePreferences;
 
   combinedScores$: Observable<UserScorePreferences>;
