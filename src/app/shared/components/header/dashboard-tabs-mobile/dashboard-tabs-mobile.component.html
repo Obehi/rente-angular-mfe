@@ -9,6 +9,11 @@
           [routerLink]="'./' + routesMap.offers"
         >
           <div class="inside-btn">
+            <span
+              class="notification circle"
+              *ngIf="getOfferNotifications() | async"
+              >{{ getOfferNotifications() | async }}</span
+            >
             <img
               class="rente-icon"
               src="../../../assets/icons/rente-logo-icon-white.svg"
@@ -62,6 +67,11 @@
           [routerLink]="'./' + routesMap.profile"
         >
           <div class="inside-btn">
+            <span
+              class="notification circle"
+              *ngIf="getProfileNotifications() | async"
+              >{{ getProfileNotifications() | async }}</span
+            >
             <img
               class="profile-icon"
               src="../../../assets/icons/profile-icon-white.svg"
@@ -71,7 +81,6 @@
           </div>
         </a>
       </nav>
-      ​
     </div>
   </div>
 </div>

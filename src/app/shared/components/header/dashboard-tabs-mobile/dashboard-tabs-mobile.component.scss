@@ -1,5 +1,27 @@
 @import '../../../../../styles/theme/_colors.scss';
 
+// .profile-notification {
+//   color: white;
+//   position: absolute;
+//   right: 15px;
+//   font-size: 14px;
+// }
+
+.notification {
+  color: white;
+  position: absolute;
+  right: 15px;
+  top: 2px;
+  font-size: 14px;
+}
+
+.circle {
+  width: 20px;
+  height: 20px;
+  background: $primary;
+  border-radius: 50%;
+}
+
 .tabs-wrapper {
   background-color: $secondary;
   width: 100%;

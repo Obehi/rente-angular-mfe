@@ -6,7 +6,8 @@ import {
   EventEmitter,
   Output,
   Input,
-  OnChanges
+  OnChanges,
+  OnDestroy
 } from '@angular/core';
 import { locale } from '../../../config/locale/locale';
 import { CustomLangTextService } from '@shared/services/custom-lang-text.service';
@@ -18,7 +19,15 @@ import {
   Validators
 } from '@angular/forms';
 import { COMMA, ENTER, S } from '@angular/cdk/keycodes';
-import { combineLatest, Observable, of, Subject, throwError } from 'rxjs';
+import {
+  BehaviorSubject,
+  combineLatest,
+  Observable,
+  of,
+  Subject,
+  Subscription,
+  throwError
+} from 'rxjs';
 import {
   catchError,
   debounce,
@@ -26,6 +35,7 @@ import {
   distinctUntilChanged,
   filter,
   map,
+  scan,
   startWith,
   switchMap,
   tap
@@ -61,6 +71,8 @@ import {
 } from '@angular/animations';
 import { PropertySelectDialogComponent } from '@features/first-buyers/components/property-select-dialog/property-select-dialog.component';
 import { MembershipService } from '@services/membership.service';
+import { GlobalStateService } from '@services/global-state.service';
+import { NotificationService } from '@services/notification.service';
 
 export enum FormControlId {
   email = 'email',
@@ -95,7 +107,8 @@ export enum FormControlId {
     ])
   ]
 })
-export class ProfileComponent implements OnInit, DeactivationGuarded {
+export class ProfileComponent
+  implements OnInit, OnDestroy, DeactivationGuarded {
   public preferencesForm: FormGroup;
   public profileForm: FormGroup;
   public visible = true;
@@ -170,7 +183,9 @@ export class ProfileComponent implements OnInit, DeactivationGuarded {
     private loansService: LoansService,
     private membershipService: MembershipService,
     public dialog: MatDialog,
-    public textLangService: CustomLangTextService
+    public textLangService: CustomLangTextService,
+    private globalStateService: GlobalStateService,
+    private notificationService: NotificationService
   ) {
     if (window.innerWidth > 600) {
       this.showMemberships = true;
@@ -182,6 +197,8 @@ export class ProfileComponent implements OnInit, DeactivationGuarded {
       this.showOfferPreferences = false;
     }
   }
+
+  ngOnDestroy(): void {}
 
   ngOnInit(): void {
     this.loansService.getPreferencesDto().subscribe(
@@ -471,6 +488,7 @@ export class ProfileComponent implements OnInit, DeactivationGuarded {
         }),
         tap(() => {
           this.afterUpdate(FormControlId.memberships);
+          this.notificationService.setOfferNotification();
         })
       ),
       this.preferencesForm
@@ -524,6 +542,7 @@ export class ProfileComponent implements OnInit, DeactivationGuarded {
           debounceTime(500),
           tap(() => {
             this.beforeUpdate(FormControlId.noAdditionalProductsRequired);
+            this.notificationService.setOfferNotification();
           }),
           switchMap(() => {
             return this.loansService
@@ -546,6 +565,7 @@ export class ProfileComponent implements OnInit, DeactivationGuarded {
           debounceTime(500),
           tap(() => {
             this.beforeUpdate(FormControlId.interestedInEnvironmentMortgages);
+            this.notificationService.setOfferNotification();
           }),
           switchMap(() => {
             return this.loansService
@@ -568,6 +588,7 @@ export class ProfileComponent implements OnInit, DeactivationGuarded {
           debounceTime(500),
           tap(() => {
             this.beforeUpdate(FormControlId.fetchCreditLinesOnly);
+            this.notificationService.setOfferNotification();
           }),
           switchMap(() => {
             return this.loansService

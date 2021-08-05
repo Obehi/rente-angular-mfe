@@ -1,22 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ROUTES_MAP } from '@config/routes-config';
 import { LocalStorageService } from '@services/local-storage.service';
 import { Router } from '@angular/router';
 import { EnvService } from '@services/env.service';
-import { Observable } from 'rxjs';
+import { defer, Observable, Subscription } from 'rxjs';
+import { NotificationService } from '@services/notification.service';
 
 @Component({
   selector: 'rente-dashboard-tabs-mobile',
   templateUrl: './dashboard-tabs-mobile.component.html',
   styleUrls: ['./dashboard-tabs-mobile.component.scss']
 })
-export class DashboardTabsMobileComponent implements OnInit {
-  public notifications: Observable<any>;
+export class DashboardTabsMobileComponent implements OnInit, OnDestroy {
   public routesMap = ROUTES_MAP;
   public activeLinkIndex: number | null = -1;
   public isMobile: boolean;
   private subscription: any;
   public imgLink: any;
+  public notificationListener = new Subscription();
 
   // General navLinks to switch between norwegian and  swedish version
   public navLinks: string[] | undefined;
@@ -57,7 +58,8 @@ export class DashboardTabsMobileComponent implements OnInit {
   constructor(
     public localStorageService: LocalStorageService,
     private router: Router,
-    private envService: EnvService
+    private envService: EnvService,
+    private notificationService: NotificationService
   ) {
     if (this.envService.isNorway()) {
       this.navLinks = this.navLinksNo;
@@ -86,9 +88,27 @@ export class DashboardTabsMobileComponent implements OnInit {
       }
     }
 
-    this.notifications.subscribe((args) => {
-      console.log(args);
-    });
+    this.notificationListener = this.getProfileNotifications().subscribe(
+      (args) => {
+        console.log(args);
+      }
+    );
+  }
+
+  getProfileNotifications(): Observable<number> {
+    return this.notificationService.getProfileNotificationAsObservable();
+  }
+
+  getHousesNotifications(): Observable<number> {
+    return this.notificationService.getHousesNotificationAsObservable();
+  }
+
+  getMortgageNotifications(): Observable<number> {
+    return this.notificationService.getMortgagesNotificationAsObservable();
+  }
+
+  getOfferNotifications(): Observable<number> {
+    return this.notificationService.getOfferNotificationAsObservable();
   }
 
   public getActiveIndex(): number | null {
@@ -127,7 +147,9 @@ export class DashboardTabsMobileComponent implements OnInit {
     if (this.subscription) {
       this.subscription.unsubscribe();
     }
-  }
 
-  getNotification(): Observable<any> {}
+    if (this.notificationListener) {
+      this.notificationListener.unsubscribe();
+    }
+  }
 }
