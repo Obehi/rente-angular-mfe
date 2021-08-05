@@ -124,10 +124,7 @@ export class UserScorePreferencesComponent implements OnInit {
       savingScore: scores.savingScore || 2.5,
       stockScore: scores.stockScore || 2.5,
       combinedStockEnsuranceProductsScore:
-        ((scores.insuranceScore || 2.5) +
-          (scores.stockScore || 2.5) +
-          (scores.savingScore || 2.5)) /
-        3
+        ((scores.insuranceScore || 2.5) + (scores.stockScore || 2.5)) / 3
     };
   }
 
