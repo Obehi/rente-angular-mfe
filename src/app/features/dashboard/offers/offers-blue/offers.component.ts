@@ -160,6 +160,15 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
   }
 
   public ngOnInit(): void {
+    const obj = document.getElementsByClassName('the-offers')[0];
+    fromEvent(window, 'scroll').subscribe(() => {
+      if (obj?.getBoundingClientRect().top <= 0) {
+        console.log('true');
+      } else {
+        console.log('false');
+      }
+    });
+
     this.notificationSubscription = this.notificationService
       .getOfferNotificationAsObservable()
       .subscribe((n) => {
