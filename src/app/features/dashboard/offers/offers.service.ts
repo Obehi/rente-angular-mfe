@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Offers } from '@models/offers';
 import { LoansService } from '@services/remote-api/loans.service';
 import { fromEvent, Observable, Subject } from 'rxjs';
-import { filter, share, switchMap, tap } from 'rxjs/operators';
+import { debounceTime, filter, share, switchMap, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -48,7 +48,11 @@ export class OffersService {
             60 >
             0 && this.shouldUpdateOffersLater
       ),
-      tap(() => this.updateOffers$.next())
+      debounceTime(100),
+      tap(() => {
+        console.log('request in the whole');
+        this.updateOffers$.next();
+      })
     );
   }
 }
