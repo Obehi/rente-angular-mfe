@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { UserService } from '@services/remote-api/user.service';
+import { Offers } from '@models/offers';
+import { LoansService } from '@services/remote-api/loans.service';
 import { fromEvent, Observable, Subject } from 'rxjs';
-import { filter } from 'rxjs/operators';
+import { filter, share, switchMap, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -10,10 +11,22 @@ export class OffersService {
   private messageHandler: Subject<OfferMessage>;
   public isUpdatingOffers$ = new Subject<boolean>();
   public updateOffers$ = new Subject<void>();
-
+  private offers$: Observable<Offers>;
   public shouldUpdateOffersLater = false;
-  constructor(private userService: UserService) {
+
+  public readonly updateOfferResponse$ = this.updateOffers$.pipe(
+    switchMap(() => this.loansService.getOffers()),
+    share(),
+    tap(() => {
+      console.log('shouldUpdateOffersLater = false');
+      this.shouldUpdateOffersLater = false;
+    })
+  );
+  constructor(private loansService: LoansService) {
     this.messageHandler = new Subject<OfferMessage>();
+    this.offers$ = this.loansService.getOffers();
+
+    this.scrollOfferUpdateObserver().subscribe();
   }
 
   pushMessage(message: OfferMessage): void {
@@ -34,7 +47,8 @@ export class OffersService {
               .getBoundingClientRect().top -
             60 >
             0 && this.shouldUpdateOffersLater
-      )
+      ),
+      tap(() => this.updateOffers$.next())
     );
   }
 }

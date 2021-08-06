@@ -3,7 +3,7 @@ import { OfferInfo, Offers } from './../../../../../shared/models/offers';
 import { OptimizeService } from '@services/optimize.service';
 import { EnvService } from '@services/env.service';
 import { OffersService } from '../../offers.service';
-import { BehaviorSubject, fromEvent, Observable, of } from 'rxjs';
+import { BehaviorSubject, merge, Observable, of, Subject } from 'rxjs';
 import { UserScorePreferences } from '@models/user';
 import { UserService } from '@services/remote-api/user.service';
 import {
@@ -58,6 +58,8 @@ import { LocalStorageService } from '@services/local-storage.service';
 export class OffersListNoComponent implements OnInit {
   @Input() offersInfo: Offers;
   public currentOfferInfo: Offers;
+  public currentOfferInfo$: Observable<OfferInfo[]>;
+  public cachedCurrentOffers$ = new Subject<OfferInfo[]>();
   public currentOffers: OfferInfo[];
   public showScorePreferences = false;
   public shouldUpdateOffers = false;
@@ -97,11 +99,33 @@ export class OffersListNoComponent implements OnInit {
   ngOnInit(): void {
     this.shouldShowDemo$.next(true);
     this.initialScores$ = this.userService.getUserScorePreferences();
+
+    this.initOfferType();
+
+    this.currentOfferInfo$ = merge(
+      this.offerService.updateOfferResponse$.pipe(
+        map((offersInfo) =>
+          this.showScorePreferences
+            ? offersInfo.offers.topScoreOffer
+            : offersInfo.offers.top5
+        )
+      ),
+      this.cachedCurrentOffers$
+    );
+
+    this.currentOfferInfo$.subscribe((offers) => {
+      console.log(offers);
+      this.currentOffers = offers;
+    });
     this.initScoreListener();
 
     this.currentOfferInfo = JSON.parse(JSON.stringify(this.offersInfo));
 
-    this.initOfferType();
+    const preselectedOffers = this.localStorageService
+      .isUserDefinedOfferPreferences
+      ? this.currentOfferInfo.offers.topScoreOffer
+      : this.currentOfferInfo.offers.top5;
+    this.cachedCurrentOffers$.next(preselectedOffers);
   }
 
   initOfferType(): void {
@@ -117,9 +141,10 @@ export class OffersListNoComponent implements OnInit {
     this.currentOfferType = type;
 
     if (type === 'rate') {
-      this.currentOffers = this.offersInfo.offers.top5;
+      // this.currentOffers = this.offersInfo.offers.top5;
       this.localStorageService.isUserDefinedOfferPreferences = false;
       this.showScorePreferences = false;
+      this.cachedCurrentOffers$.next(this.offersInfo.offers.top5);
       return;
     }
 
@@ -128,7 +153,9 @@ export class OffersListNoComponent implements OnInit {
       if (this.localStorageService.isUserDefinedOfferPreferences === null) {
         this.preferencesButtonClicked();
       }
-      this.currentOffers = this.offersInfo.offers.topScoreOffer;
+
+      this.cachedCurrentOffers$.next(this.offersInfo.offers.topScoreOffer);
+      // this.currentOffers = this.offersInfo.offers.topScoreOffer;
       this.localStorageService.isUserDefinedOfferPreferences = true;
       return;
     }
