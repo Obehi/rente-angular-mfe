@@ -78,6 +78,7 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
   public nordeaClickSubscription: Subscription;
   public animationStyles = getAnimationStyles();
   public notificationSubscription: Subscription;
+  public onScroll: boolean;
 
   get isMobile(): boolean {
     return window.innerWidth < 600;
@@ -163,9 +164,11 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
     const obj = document.getElementsByClassName('the-offers')[0];
     fromEvent(window, 'scroll').subscribe(() => {
       if (obj?.getBoundingClientRect().top <= 0) {
-        console.log('true');
+        this.onScroll = true;
+        console.log(this.onScroll);
       } else {
-        console.log('false');
+        console.log(this.onScroll);
+        this.onScroll = false;
       }
     });
 
