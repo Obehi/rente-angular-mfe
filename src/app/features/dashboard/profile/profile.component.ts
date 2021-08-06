@@ -468,6 +468,7 @@ export class ProfileComponent
         }),
         tap((value) => {
           value && this.afterUpdate(FormControlId.income);
+          this.notificationService.setOfferNotification();
         })
       ),
       this.membershipCtrl.valueChanges.pipe(

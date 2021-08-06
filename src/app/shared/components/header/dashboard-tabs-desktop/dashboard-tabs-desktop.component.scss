@@ -1,5 +1,23 @@
 @import '../../../../../styles/theme/_colors.scss';
 
+.notification {
+  color: white;
+  position: absolute;
+  right: 45px;
+  top: 5px;
+  font-size: 14px;
+  p {
+    color: white !important;
+  }
+}
+
+.circle {
+  width: 20px;
+  height: 20px;
+  background: $primary;
+  border-radius: 50%;
+}
+
 .tabs-wrapper {
   background-color: $secondary;
   width: 100%;
@@ -74,7 +92,7 @@ img {
       }
 
       .mat-tab-label-active p {
-        color: $green !important;
+        color: $primary;
       }
 
       .mat-tab-label-active .rente-icon {
@@ -161,7 +179,7 @@ img {
       display: none;
     }
     .mat-tab-label-active p {
-      color: $green !important;
+      color: $primary;
     }
     .mat-tab-links {
       display: block;

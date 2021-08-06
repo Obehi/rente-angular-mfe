@@ -27,8 +27,8 @@ import {
   TrackingService,
   TrackingDto
 } from '@services/remote-api/tracking.service';
-import { Subscription, forkJoin, Observable } from 'rxjs';
-import { debounceTime, skip } from 'rxjs/operators';
+import { Subscription, forkJoin, Observable, fromEvent } from 'rxjs';
+import { debounceTime, filter, skip, tap } from 'rxjs/operators';
 import { OFFERS_LTV_TYPE } from '../../../../shared/models/offers';
 import { UserService } from '@services/remote-api/user.service';
 import smoothscroll from 'smoothscroll-polyfill';
@@ -106,6 +106,8 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
     userService.lowerRateAvailable.subscribe((value) => {
       this.effRateLoweredDialogVisible = value;
     });
+
+    this.scrollOfferNotificationObserver();
   }
 
   public ngOnDestroy(): void {
@@ -122,19 +124,37 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
     }
   }
 
+  scrollOfferNotificationObserver(): Observable<any> {
+    return fromEvent(window, 'scroll').pipe(
+      filter(
+        () =>
+          window.innerHeight -
+            document
+              .getElementsByClassName('offers-container')[0]
+              .getBoundingClientRect().top -
+            60 >
+          0
+      ),
+      tap(() => console.log('works'))
+    );
+  }
+
   public setNotifAlert(n: number): void {
     if (n > 0) {
       this.messageService.setView(
-        'Du har nye tilbud! Trykk for å sjekke',
-        7000,
+        `Tilbudene er oppdatert, trykk her!`,
+        73333000,
         this.animationStyles.DROP_DOWN_UP,
-        'success',
+        'success-with-arrow',
         window,
+        true,
+        true,
         true
       );
 
       this.messageService.getClickSubject$().subscribe(() => {
         this.scrollTo();
+        this.notificationService.resetOfferNotification();
       });
     }
   }

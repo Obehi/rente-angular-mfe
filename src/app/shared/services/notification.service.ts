@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -17,8 +17,7 @@ export class NotificationService {
   }
 
   setProfileNotification(): void {
-    const value = this.profileNotification.value;
-    this.profileNotification.next(value + 1);
+    this.profileNotification.next(1);
   }
 
   getHousesNotificationAsObservable(): Observable<number> {
@@ -26,8 +25,7 @@ export class NotificationService {
   }
 
   setHousesNotification(): void {
-    const value = this.housesNotification.value;
-    this.housesNotification.next(value + 1);
+    this.housesNotification.next(1);
   }
 
   getMortgagesNotificationAsObservable(): Observable<number> {
@@ -35,8 +33,7 @@ export class NotificationService {
   }
 
   setMortgagesNotification(): void {
-    const value = this.mortgageNotification.value;
-    this.mortgageNotification.next(value + 1);
+    this.mortgageNotification.next(1);
   }
 
   getOfferNotificationAsObservable(): Observable<number> {
@@ -44,7 +41,10 @@ export class NotificationService {
   }
 
   setOfferNotification(): void {
-    const value = this.offerNotification.value;
-    this.offerNotification.next(value + 1);
+    this.offerNotification.next(1);
+  }
+
+  resetOfferNotification(): void {
+    this.offerNotification.next(0);
   }
 }

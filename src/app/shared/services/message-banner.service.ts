@@ -53,7 +53,8 @@ export class MessageBannerService implements OnDestroy {
     _status: string,
     _window: Window,
     _isClickable = false,
-    shouldSetTimeout = true
+    shouldSetTimeout = true,
+    _shouldShowArrow = false
   ): void {
     const factory = this.factoryResolver.resolveComponentFactory(
       TopAnimationBannerComponent
@@ -64,6 +65,7 @@ export class MessageBannerService implements OnDestroy {
     newNode.style.position = 'fixed';
     newNode.style.width = '100%';
     newNode.style.zIndex = '2';
+
     if (_window.innerWidth < 992) {
       if (_animationType === this.checkAnimationStyle.SLIDE_UP) {
         newNode.style.bottom = '30px';
@@ -71,12 +73,15 @@ export class MessageBannerService implements OnDestroy {
         newNode.style.top = '70px';
       }
     } else {
-      newNode.style.top = '75px';
+      newNode.style.top = '100px';
     }
 
     document.getElementsByClassName(this.getContentClass())[0].prepend(newNode);
 
     this._componentRef = factory.create(this.injector, [], newNode);
+    if (_shouldShowArrow) {
+      this._componentRef.instance.scrollArrow = true;
+    }
     this.globalStateService.getDashboardState().subscribe((state) => {
       this._componentRef.instance.isDashboard = state;
       if (state) {

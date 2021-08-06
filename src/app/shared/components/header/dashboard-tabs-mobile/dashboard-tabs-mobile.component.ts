@@ -88,11 +88,10 @@ export class DashboardTabsMobileComponent implements OnInit, OnDestroy {
       }
     }
 
-    this.notificationListener = this.getProfileNotifications().subscribe(
-      (args) => {
-        console.log(args);
-      }
-    );
+    this.notificationListener = this.getProfileNotifications().subscribe();
+    this.notificationListener = this.getHousesNotifications().subscribe();
+    this.notificationListener = this.getMortgageNotifications().subscribe();
+    this.notificationListener = this.getOfferNotifications().subscribe();
   }
 
   getProfileNotifications(): Observable<number> {

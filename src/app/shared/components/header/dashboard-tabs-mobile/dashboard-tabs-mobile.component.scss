@@ -11,8 +11,11 @@
   color: white;
   position: absolute;
   right: 15px;
-  top: 2px;
+  top: 0px;
   font-size: 14px;
+  p {
+    color: white !important;
+  }
 }
 
 .circle {
@@ -96,7 +99,7 @@ p {
       }
 
       .mat-tab-label-active p {
-        color: $green !important;
+        color: $green;
       }
 
       .mat-tab-label-active .rente-icon {
@@ -159,7 +162,7 @@ p {
       display: none;
     }
     .mat-tab-label-active p {
-      color: $green !important;
+      color: $primary;
     }
     .mat-tab-links {
       display: block;
