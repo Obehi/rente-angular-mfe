@@ -16,12 +16,14 @@
   <div class="sliders">
     <div
       [ngClass]="
-        sliderBox === true ? 'slider-container' : 'slider-container-transparent'
+        demoIsLive === true
+          ? 'demo-container slider-container'
+          : 'slider-container-transparent slider-container'
       "
     >
       <h3>Tilbyr en lav rente</h3>
       <ngx-slider
-        [value]="score.priceSensitivity"
+        [value]="demoIsLive ? demoValue : score.priceSensitivity"
         (userChangeEnd)="priceSensitivityChanged($event)"
         [options]="testType === 0 ? optionsWithTicks : options"
       ></ngx-slider>
@@ -29,7 +31,9 @@
 
     <div
       [ngClass]="
-        sliderBox === true ? 'slider-container' : 'slider-container-transparent'
+        demoIsLive === true
+          ? 'reduced-opacity slider-container'
+          : 'slider-container'
       "
     >
       <h3>Tilbyr en personlig rådgiver</h3>
@@ -42,7 +46,9 @@
 
     <div
       [ngClass]="
-        sliderBox === true ? 'slider-container' : 'slider-container-transparent'
+        demoIsLive === true
+          ? 'reduced-opacity slider-container'
+          : 'slider-container'
       "
     >
       <h3>Har lokal tilstedeværelse (filial)</h3>
@@ -55,7 +61,9 @@
 
     <div
       [ngClass]="
-        sliderBox === true ? 'slider-container' : 'slider-container-transparent'
+        demoIsLive === true
+          ? 'reduced-opacity slider-container'
+          : 'slider-container'
       "
     >
       <h3>Tilbyr forsikring, spareprodukter (pensjon, etc) og aksjehandel</h3>
@@ -68,7 +76,9 @@
 
     <div
       [ngClass]="
-        sliderBox === true ? 'slider-container' : 'slider-container-transparent'
+        demoIsLive === true
+          ? 'reduced-opacity slider-container'
+          : 'slider-container'
       "
     >
       <h3>Tilbyr lån til deg som har en komplisert økonomi</h3>

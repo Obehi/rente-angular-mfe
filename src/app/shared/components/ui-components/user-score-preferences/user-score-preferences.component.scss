@@ -1,5 +1,9 @@
 @import '../../../../../styles/theme/_colors.scss';
 
+:host {
+  size: var(--size);
+}
+
 // We need to use ::ng-deep to overcome view encapsulation
 ::ng-deep {
   .ngx-slider {
@@ -7,12 +11,22 @@
   }
   .ngx-slider .ngx-slider-pointer {
     cursor: pointer;
-    width: 32px;
-    height: 32px;
     top: -14px;
     background-color: $primary !important;
     z-index: 3;
     border-radius: 16px;
+  }
+
+  .ngx-slider .ngx-slider-pointer {
+    &.demo-pointer {
+      cursor: pointer;
+      width: var(--size) !important;
+      height: var(--size) !important;
+      top: -14px;
+      background-color: $primary !important;
+      z-index: 3;
+      border-radius: 16px;
+    }
   }
 
   .ngx-slider .ngx-slider-inner-tooltip {
@@ -101,6 +115,24 @@ h3 {
 b {
   color: #fff;
   font-size: 12px;
+}
+
+.reduced-opacity {
+  opacity: 0.2;
+}
+
+.demo-container {
+  border: 3px solid #fff;
+
+  .ngx-slider .ngx-slider-pointer {
+    cursor: pointer;
+    width: var(--size) !important;
+    height: var(--size) !important;
+    top: -14px;
+    background-color: $primary !important;
+    z-index: 3;
+    border-radius: 16px;
+  }
 }
 
 .test-buttons {

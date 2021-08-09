@@ -1,12 +1,22 @@
-import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  EventEmitter,
+  Output,
+  HostBinding
+} from '@angular/core';
 import { Options, LabelType } from '@angular-slider/ngx-slider';
 import { BehaviorSubject, forkJoin, Observable, of, Subject } from 'rxjs';
 import { UserScorePreferences } from '@models/user';
 import {
   debounce,
   debounceTime,
+  delay,
+  filter,
   map,
   scan,
+  skip,
   startWith,
   switchMap,
   tap
@@ -21,10 +31,15 @@ export class UserScorePreferencesComponent implements OnInit {
   @Input() scoreListener: BehaviorSubject<UserScorePreferences>;
   @Input() initialScores: Observable<UserScorePreferences>;
   @Input() sliderBox = true;
-  @Input() shouldShowDemoListener: Observable<boolean>;
+  @Input() shouldShowDemoListener: BehaviorSubject<boolean>;
+
+  triggerDemo: Observable<boolean>;
+  demoIsLive = false;
+  demoValue = 2;
+  @HostBinding('style.--size')
+  size: string;
 
   initialScoresStorage: UserScorePreferences;
-
   combinedScores$: Observable<UserScorePreferences>;
   scoreObserveTrigger$ = new Observable();
   collectScore$ = new Subject<UserScorePreferences>();
@@ -79,6 +94,66 @@ export class UserScorePreferencesComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
+    this.shouldShowDemoListener
+      .pipe(
+        filter((shouldStart) => shouldStart === true),
+
+        tap(() => {
+          console.log('1 step!!');
+          this.demoIsLive = true;
+        }),
+        delay(1000),
+        filter(() => this.demoIsLive === true),
+        tap(() => {
+          console.log('2 step!!');
+
+          this.demoIsLive = true;
+          this.demoValue = 1;
+        }),
+        delay(1000),
+        filter(() => this.demoIsLive === true),
+        tap(() => {
+          console.log('3 step!!');
+          this.demoValue = 3;
+        }),
+        delay(1000),
+        filter(() => this.demoIsLive === true),
+        tap(() => {
+          this.demoValue = 2;
+        }),
+        delay(2000),
+        tap(() => {
+          this.demoIsLive = false;
+        })
+      )
+      .subscribe(() => {});
+
+    this.shouldShowDemoListener
+      .pipe(
+        filter((shouldStart) => shouldStart === false),
+        tap(() => {
+          this.demoIsLive = false;
+        })
+      )
+      .subscribe(() => {
+        console.log('jappppppp');
+      });
+    this.triggerDemo = this.shouldShowDemoListener.pipe(
+      tap(() => console.log('triggerDemo triggered')),
+      delay(1000),
+      tap(() => {
+        this.demoValue = 1;
+      }),
+      delay(1000),
+      tap(() => {
+        this.demoValue = 3;
+      }),
+      delay(1000),
+      tap(() => {
+        this.demoValue = 2;
+      })
+    );
+
     this.combinedScores$ = this.initialScores.pipe(
       map((scores) => this.getCombinedScores(scores))
     );

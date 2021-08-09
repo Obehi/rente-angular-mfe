@@ -6,14 +6,7 @@ import { OffersService } from '../../offers.service';
 import { BehaviorSubject, merge, Observable, of, Subject } from 'rxjs';
 import { UserScorePreferences } from '@models/user';
 import { UserService } from '@services/remote-api/user.service';
-import {
-  debounce,
-  debounceTime,
-  map,
-  skip,
-  switchMap,
-  tap
-} from 'rxjs/operators';
+import { debounceTime, map, share, skip, switchMap, tap } from 'rxjs/operators';
 import { LoansService } from '@services/remote-api/loans.service';
 import {
   animate,
@@ -23,6 +16,8 @@ import {
   trigger
 } from '@angular/animations';
 import { LocalStorageService } from '@services/local-storage.service';
+import { MessageBannerService } from '@services/message-banner.service';
+import { getAnimationStyles } from '@shared/animations/animationEnums';
 @Component({
   selector: 'rente-offers-list',
   templateUrl: './offers-list-no.component.html',
@@ -60,20 +55,25 @@ export class OffersListNoComponent implements OnInit {
   public currentOfferInfo: Offers;
   public currentOfferInfo$: Observable<OfferInfo[]>;
   public cachedCurrentOffers$ = new Subject<OfferInfo[]>();
+  public showDemoTrigger$ = new BehaviorSubject<boolean>(false);
+  public showDemoAction$ = this.showDemoTrigger$.pipe(share());
+  public demoIsLive = false;
+  public demoSlideValue = 2;
   public currentOffers: OfferInfo[];
   public showScorePreferences = false;
   public shouldUpdateOffers = false;
   scoreListener$ = new BehaviorSubject<UserScorePreferences>({});
   initialScores$: Observable<UserScorePreferences>;
 
-  shouldShowDemo$ = new BehaviorSubject<boolean>(false);
+  animationType = getAnimationStyles();
 
   constructor(
     public optimizeService: OptimizeService,
     public offerService: OffersService,
     private userService: UserService,
     public loanService: LoansService,
-    public localStorageService: LocalStorageService
+    public localStorageService: LocalStorageService,
+    public messageService: MessageBannerService
   ) {}
 
   // Save for later use
@@ -97,10 +97,19 @@ export class OffersListNoComponent implements OnInit {
   public currentOfferType: string;
 
   ngOnInit(): void {
-    this.shouldShowDemo$.next(true);
     this.initialScores$ = this.userService.getUserScorePreferences();
-
     this.initOfferType();
+
+    this.showDemoAction$.subscribe((value) => {
+      console.log(value + ' WOP WOP');
+      this.messageService.setView(
+        'Besvar spørsmålene under ved å flytte på slideren for å markere din preferanse, og så finner vi riktig bank for deg basert på dine valg.',
+        4000,
+        this.animationType.DROP_DOWN_UP,
+        'success',
+        window
+      );
+    });
 
     this.currentOfferInfo$ = merge(
       this.offerService.updateOfferResponse$.pipe(
@@ -132,8 +141,6 @@ export class OffersListNoComponent implements OnInit {
     const offerType = this.localStorageService.isUserDefinedOfferPreferences
       ? 'score'
       : 'rate';
-    console.log('offerType');
-    console.log(offerType);
     this.setOfferType(offerType);
   }
 

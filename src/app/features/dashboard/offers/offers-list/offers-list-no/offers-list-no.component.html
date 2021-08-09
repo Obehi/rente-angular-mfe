@@ -43,6 +43,8 @@
     </a>
   </div>
 
+  <h1 (click)="showDemoTrigger$.next(!showDemoTrigger$.value)">Trykk her!</h1>
+
   <custom-dropdown
     [opened]="showScorePreferences"
     (toggle)="preferencesButtonClicked()"
@@ -59,7 +61,7 @@
       <rente-user-score-preferences
         [sliderBox]="true"
         [scoreListener]="scoreListener$"
-        [shouldShowDemoListener]="shouldShowDemo$"
+        [shouldShowDemoListener]="showDemoAction$"
         [initialScores]="initialScores$"
       ></rente-user-score-preferences>
     </div>
