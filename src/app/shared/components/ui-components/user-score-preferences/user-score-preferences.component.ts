@@ -37,7 +37,27 @@ import {
 @Component({
   selector: 'rente-user-score-preferences',
   templateUrl: './user-score-preferences.component.html',
-  styleUrls: ['./user-score-preferences.component.scss']
+  styleUrls: ['./user-score-preferences.component.scss'],
+  animations: [
+    trigger('test', [
+      state(
+        'open',
+        style({
+          border: '0'
+        })
+      ),
+      state(
+        'close',
+        style({
+          border: '2px solid white'
+        })
+      ),
+      transition('* => close', [
+        animate('0.2s', style({ border: '2px solid white' }))
+      ]),
+      transition('* => open', [animate('0.2s', style({ border: '0' }))])
+    ])
+  ]
 })
 export class UserScorePreferencesComponent implements OnInit {
   @ViewChild('targetElement') targetElement: ElementRef;
@@ -51,6 +71,7 @@ export class UserScorePreferencesComponent implements OnInit {
   demoValue = 2;
   @HostBinding('style.--size')
   size: string;
+  public borderTest: boolean;
 
   initialScoresStorage: UserScorePreferences;
   combinedScores$: Observable<UserScorePreferences>;
@@ -112,14 +133,13 @@ export class UserScorePreferencesComponent implements OnInit {
         filter((shouldStart) => shouldStart === true),
 
         tap(() => {
-          // document
-          //   .getElementsByClassName('ngx-slider-pointer')[0]
-          //   .setAttribute('id', 'animate');
           console.log('1 step!!');
           document
             .getElementsByClassName('ngx-slider-pointer')[0]
             .animate(this.getAnimation(), this.getAnimationTiming());
           this.demoIsLive = true;
+
+          this.borderTest = true;
         }),
         delay(1000),
         filter(() => this.demoIsLive === true),
@@ -143,6 +163,7 @@ export class UserScorePreferencesComponent implements OnInit {
         delay(2000),
         tap(() => {
           this.demoIsLive = false;
+          this.borderTest = false;
         })
       )
       .subscribe(() => {});
@@ -329,6 +350,7 @@ export class UserScorePreferencesComponent implements OnInit {
       }
     ];
   }
+
   getAnimationTiming(): any {
     return {
       duration: 1000,

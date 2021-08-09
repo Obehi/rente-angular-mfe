@@ -15,6 +15,7 @@
 >
   <div class="sliders">
     <div
+      [@test]="borderTest ? 'close' : 'open'"
       [ngClass]="
         demoIsLive === true
           ? 'demo-container slider-container'
