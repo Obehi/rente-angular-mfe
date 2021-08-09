@@ -4,7 +4,9 @@ import {
   Input,
   EventEmitter,
   Output,
-  HostBinding
+  HostBinding,
+  ElementRef,
+  ViewChild
 } from '@angular/core';
 import { Options, LabelType } from '@angular-slider/ngx-slider';
 import { BehaviorSubject, forkJoin, Observable, of, Subject } from 'rxjs';
@@ -21,6 +23,16 @@ import {
   switchMap,
   tap
 } from 'rxjs/operators';
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition,
+  animateChild,
+  query,
+  group
+} from '@angular/animations';
 
 @Component({
   selector: 'rente-user-score-preferences',
@@ -28,6 +40,7 @@ import {
   styleUrls: ['./user-score-preferences.component.scss']
 })
 export class UserScorePreferencesComponent implements OnInit {
+  @ViewChild('targetElement') targetElement: ElementRef;
   @Input() scoreListener: BehaviorSubject<UserScorePreferences>;
   @Input() initialScores: Observable<UserScorePreferences>;
   @Input() sliderBox = true;
@@ -99,7 +112,13 @@ export class UserScorePreferencesComponent implements OnInit {
         filter((shouldStart) => shouldStart === true),
 
         tap(() => {
+          // document
+          //   .getElementsByClassName('ngx-slider-pointer')[0]
+          //   .setAttribute('id', 'animate');
           console.log('1 step!!');
+          document
+            .getElementsByClassName('ngx-slider-pointer')[0]
+            .animate(this.getAnimation(), this.getAnimationTiming());
           this.demoIsLive = true;
         }),
         delay(1000),
@@ -239,5 +258,35 @@ export class UserScorePreferencesComponent implements OnInit {
 
   localPresenceScoreChanged(event: any): any {
     this.collectScore$.next({ localPresenceScore: event.value });
+  }
+
+  getAnimation(): any {
+    return [
+      {
+        width: '32px',
+        height: '32px',
+        top: '-14px',
+        border: '2px solid white'
+      },
+      {
+        width: '40px',
+        height: '40px',
+        top: '-10px',
+        borderRadius: '50px',
+        border: '2px solid white'
+      },
+      {
+        width: '32px',
+        height: '32px',
+        top: '-14px',
+        border: '2px solid white'
+      }
+    ];
+  }
+  getAnimationTiming(): any {
+    return {
+      duration: 1000,
+      iterations: 4
+    };
   }
 }
