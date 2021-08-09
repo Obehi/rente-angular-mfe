@@ -50,7 +50,7 @@ export class MessageBannerService {
     newNode.id = 'placeholder';
     newNode.style.position = 'fixed';
     newNode.style.width = '100%';
-    newNode.style.zIndex = '2';
+    newNode.style.zIndex = '99';
     if (_window.innerWidth < 992) {
       newNode.style.top = '70px';
     } else {
@@ -96,7 +96,7 @@ export class MessageBannerService {
     newNode.id = 'placeholder';
     newNode.style.position = 'fixed';
     newNode.style.width = '100%';
-    newNode.style.zIndex = '2';
+    newNode.style.zIndex = '99';
     if (_window.innerWidth < 992) {
       newNode.style.top = '65px';
     } else {

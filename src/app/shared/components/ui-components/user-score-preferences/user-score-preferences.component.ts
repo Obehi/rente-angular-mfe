@@ -97,6 +97,7 @@ export class UserScorePreferencesComponent implements OnInit {
       map((scores) => {
         return { ...this.initialScoresStorage, ...scores };
       }),
+
       tap((scores) => {
         // emit new value only if scores is not empty
         if (Object.keys(scores).length) this.scoreListener?.next(scores);
