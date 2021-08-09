@@ -1,4 +1,4 @@
-@import "../../../../../styles/theme/_colors.scss";
+@import '../../../../styles/theme/_colors.scss';
 
 @media (min-width: 600px) {
   .front-container {
@@ -33,13 +33,16 @@ rente-button {
 .blue {
   background: $secondary;
 
-  h1, h3, p {
+  h1,
+  h3,
+  p {
     color: white;
   }
 
   form {
-    h3, p {
-      color: #000
+    h3,
+    p {
+      color: #000;
     }
     background: white;
     border-radius: 15px;
@@ -57,24 +60,22 @@ rente-button {
 }
 
 .bottom {
+  & > div > div {
+    display: grid;
+    grid-column-gap: 15px;
+    grid-template-columns: 1fr 1fr;
+  }
 
-    & > div > div {
-        display: grid;
-        grid-column-gap: 15px;
-        grid-template-columns: 1fr 1fr;
-    }
-    
-    //border-top: 1px solid #ECECEC;
-    padding: 20px;
-    border-radius: 0 0 10px 10px;
+  //border-top: 1px solid #ECECEC;
+  padding: 20px;
+  border-radius: 0 0 10px 10px;
+  width: 60%;
+  margin: auto;
+  @media (max-width: 600px) {
+    width: 100%;
+  }
+
+  @media (min-width: 600px) {
     width: 60%;
-    margin: auto;
-    @media(max-width: 600px) {
-        width: 100%
-    }
-
-    @media(min-width: 600px) {
-        width: 60%;
-    }
-
+  }
 }

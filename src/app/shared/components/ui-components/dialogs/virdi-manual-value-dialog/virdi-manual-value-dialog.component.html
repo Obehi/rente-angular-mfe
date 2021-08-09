@@ -1,14 +1,38 @@
 <div class="top">
-  <h4>Vi klarte dessverre ikke estimere din boligverdi</h4>
+  <h4
+    *ngIf="firstStep"
+    i18n="could-not-estimate-value@@could-not-estimate.value"
+  >
+    Vi klarte dessverre ikke å estimere din boligverdi
+  </h4>
+  <h4 *ngIf="secondStep" i18n="add-manual-value@@add.manual.value">
+    Legg inn boligverdien din
+  </h4>
 
-  <p class="no-margin">Det kan være flere grunner til dette:</p>
-  <ul>
-    <li>Feil adresse eller postnummer</li>
-    <li>Vi greier ikke estimere verdi på fritidsboliger</li>
+  <p
+    class="no-margin"
+    *ngIf="firstStep"
+    i18n="several-reasons-for-this@@several.reasons.for.this"
+  >
+    Det kan være flere grunner til dette:
+  </p>
+  <ul *ngIf="firstStep">
+    <li i18n="wrong-address-or-zip@@wrong.address.or.zip">
+      <p style="font-size: small">Feil adresse eller postnummer</p>
+    </li>
+    <li
+      *ngIf="isNorway"
+      i18n="cannot-estimate-home-value@@cannot.estimate.home.value"
+    >
+      Vi greier ikke estimere verdi på fritidsboliger
+    </li>
   </ul>
 
-  <div class="info-box" *ngIf="showInfoBox">
-    <p>
+  <div class="info-box" *ngIf="firstStep">
+    <p
+      i18n="
+        check-address-or-set-value-manually@@check.address.or.set.value.manually"
+    >
       Sjekk at adressen er riktig, eller velg <b>"Legg til boligverdi"</b> og
       legg inn verdien manuelt
     </p>
@@ -16,8 +40,12 @@
       <div class="left">
         <p *ngIf="data.address.street">Adresse:</p>
         <p *ngIf="data.address.zip">Postnummer:</p>
-        <p *ngIf="data.address.apartmentSize">Boligstørrelse:</p>
-        <p *ngIf="data.income">Din brutto årsinntekt:</p>
+        <p
+          *ngIf="data.address.apartmentSize"
+          i18n="property-size@@property.size"
+        >
+          Boligstørrelse:
+        </p>
       </div>
 
       <div class="right">
@@ -26,9 +54,18 @@
         <p *ngIf="data.address.apartmentSize">
           {{ data.address.apartmentSize }}
         </p>
-        <p *ngIf="data.income">{{ data.income }}</p>
       </div>
     </div>
+  </div>
+
+  <div class="info-box" *ngIf="secondStep">
+    <p i18n="fill-your-best-estimated-value@@fill.your.best.estimated.value">
+      Fyll inn ditt beste estimat på hva du mener primærboligen din er verdt og
+      trykk på den grønne knappen
+    </p>
+    <p i18n="add-more-houses-after-login@@add.more.houses.after.login">
+      Har du flere boliger kan du legge til disse i boligfanen etter innlogging.
+    </p>
   </div>
 
   <div class="manualvaluebox" *ngIf="isManualValue">
@@ -42,7 +79,7 @@
           <div>
             <rente-input
               #aptValue
-              [placeholder]="'Estimert verdi på din bolig'"
+              [placeholder]="inputPlaceHolder"
               formControlName="apartmentValue"
               matSuffix="kr"
               [errorStateMatcher]="
@@ -79,18 +116,12 @@
 <!-- Top end -->
 
 <div class="bottom double">
-  <rente-button
-    i18n="“close|button@@close”"
-    cdkFocusInitial
-    color="primary-hollow"
-    (click)="onClose()"
-  >
+  <rente-button cdkFocusInitial color="primary-hollow" (click)="onClose()">
     {{ data.cancelText }}
   </rente-button>
 
   <rente-button
     *ngIf="firstStep"
-    i18n="“close|button@@close”"
     cdkFocusInitial
     color="primary"
     (click)="onConfirm()"
@@ -103,11 +134,10 @@
     [disabled]="
       manualPropertyValueForm.invalid || !manualPropertyValueForm.valid
     "
-    i18n="“close|button@@close”"
     cdkFocusInitial
     color="primary"
     (click)="onSendForm()"
   >
-    Ferdig
+    {{ data.finishText }}
   </rente-button>
 </div>

@@ -17,6 +17,9 @@ import {
   keyframes
   // ...
 } from '@angular/animations';
+import { MessageBannerService } from '@services/message-banner.service';
+import { CustomLangTextService } from '@services/custom-lang-text.service';
+import { getAnimationStyles } from '@shared/animations/animationEnums';
 
 @Component({
   selector: 'rente-houses',
@@ -55,12 +58,15 @@ export class HousesComponent implements OnInit, DeactivationGuarded {
   public dialog: MatDialog;
   public showExplainText: boolean;
   public propertyIconPath: string | null;
+  public animationType = getAnimationStyles();
 
   constructor(
     private loansService: LoansService,
     eventService: EventService,
     dialog: MatDialog,
-    private envService: EnvService
+    private envService: EnvService,
+    private messageBanner: MessageBannerService,
+    private customLangTextService: CustomLangTextService
   ) {
     this.dialog = dialog;
 
@@ -179,6 +185,14 @@ export class HousesComponent implements OnInit, DeactivationGuarded {
             }
           }
         }
+
+        this.messageBanner.setSavedViewBolig(
+          this.customLangTextService.getSnackBarUpdatedMessage(),
+          2000,
+          this.animationType.DROP_DOWN_UP,
+          'success',
+          window
+        );
 
         this.canNavigateBooolean$.next(true);
       },

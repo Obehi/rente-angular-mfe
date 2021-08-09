@@ -5,6 +5,7 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
 import { OffersComponentBlue } from './offers/offers-blue/offers.component';
 import { DashboardComponent } from './dashboard.component';
 import { MatTabsModule } from '@angular/material/tabs';
+
 import { PreferencesComponent } from './preferences/preferences.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
@@ -45,13 +46,11 @@ import { OffersStatisticsComponent } from './offers/offers-statistics/offers-sta
 import { DialogComponent } from '../../shared/components/ui-components/dialog/dialog.component';
 import { GetOfferFromBankDialogComponent } from './offers/get-offer-from-bank-dialog/get-offer-from-bank-dialog.component';
 import { LtvTooHighDialogComponent } from './offers/ltv-too-high-dialog/ltv-too-high-dialog.component';
-import { OfferCardComponentBlue } from './offers/offers-blue/offer-card/offer-card.component';
 import { OfferCardBigComponentBlue } from './offers/offers-blue/offer-card-big/offer-card-big.component';
 import { BargainSuccessComponent } from './offers/bargain-success/bargain-success.component';
 import { ReferralComponent } from './offers/bargain-success/referral/referral.component';
 
 import { HousesComponent } from './house/houses.component';
-import { BlueProfileComponent } from './profile/blue-profile/blue-profile.component';
 import { EPSIScoreComponent } from './offers/offers-blue/epsi-score/epsi-score.component';
 import { OffersListLangGenericComponent } from '../../local-components/components-output';
 import { LoansLangGenericComponent } from '../../local-components/components-output';
@@ -63,8 +62,7 @@ import { AntiChurnDialogComponent } from './offers/anti-churn-dialog/anti-churn-
 import { AntiChurnErrorDialogComponent } from './offers/anti-churn-dialog/anti-churn-error-dialog/anti-churn-error-dialog.component';
 import { NordeaBargainSuccessComponent } from './offers/bargain-success/bargain-nordea/nordea-bargain-success.component';
 import { CanNotBargainDialogComponent } from './offers/can-not-bargain-dialog/can-not-bargain-dialog.component';
-import { OfferCardV1Component } from './offers/offers-blue/offer-card-v1/offer-card-v1.component';
-import { OfferCardV2Component } from './offers/offers-blue/offer-card-v2/offer-card-v2.component';
+import { OfferCardComponent } from './offers/offers-blue/offer-card/offer-card.component';
 import { ChangeBankTooManyTriesDialogError } from './offers/change-bank-dialog/change-bank-too-many-tries-dialog-error/change-bank-too-many-tries-dialog-error.component';
 import { BarometerComponent } from './offers/offers-blue/barometer/barometer.component';
 import { BoxGridComponent } from './offers/offers-blue/box-grid/box-grid.component';
@@ -94,12 +92,11 @@ import { CurrencyMaskModule } from 'ng2-currency-mask';
     DialogComponent,
     GetOfferFromBankDialogComponent,
     LtvTooHighDialogComponent,
-    OfferCardComponentBlue,
     OfferCardBigComponentBlue,
     BargainSuccessComponent,
     ReferralComponent,
     HousesComponent,
-    BlueProfileComponent,
+    ProfileComponent,
     EPSIScoreComponent,
     OffersListLangGenericComponent,
     LoansLangGenericComponent,
@@ -113,11 +110,10 @@ import { CurrencyMaskModule } from 'ng2-currency-mask';
     ChangeBankLocationComponent,
     AntiChurnDialogComponent,
     CanNotBargainDialogComponent,
-    OfferCardV1Component,
     AntiChurnErrorDialogComponent,
     CanNotBargainDialogComponent,
     NordeaBargainSuccessComponent,
-    OfferCardV2Component,
+    OfferCardComponent,
     ChangeBankTooManyTriesDialogError,
     BarometerComponent,
     BoxGridComponent,

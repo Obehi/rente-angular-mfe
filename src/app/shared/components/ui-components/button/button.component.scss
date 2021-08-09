@@ -33,6 +33,12 @@ button.mat-primary-hollow {
   white-space: break-spaces;
 }
 
+button.mat-primary-hollow-no-border {
+  background-color: white;
+  color: black;
+  white-space: break-spaces;
+}
+
 button.mat-button:hover:not([disabled]) {
   opacity: 0.8;
 }
@@ -205,7 +211,7 @@ button.mat-primary-wide-white {
   background-color: white;
   color: black;
   height: 56px;
-  width: 80%;
+  width: 100%;
   white-space: break-spaces;
 }
 

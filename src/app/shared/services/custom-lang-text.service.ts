@@ -22,15 +22,14 @@ export class CustomLangTextService {
     throw new Error('Should be either SV or NB');
   }
 
-  getOfferCardButtonDefaultCTAText(): string {
+  getOffeCardCTAButtonText(): string {
     if (locale.includes('sv')) {
-      return 'Få erbjudande ifrån banken';
+      return 'Få erbjudande från banken';
     } else if (locale.includes('nb')) {
       return 'Få tilbud fra banken!';
     }
     throw new Error('Should be either SV or NB');
   }
-
   getEmail(): string {
     if (locale.includes('sv')) {
       return 'hej@ranteradar.se';
@@ -45,6 +44,24 @@ export class CustomLangTextService {
       return 'Ränteradar.se övervakar kontinuerligt marknaden för att se om det erbjuds bättre räntor än den du har idag. Räntan du har på bolånet kollas och uppdateras när du identifierar dig med BankID. Det är viktigt att detta görs regelbundet för att vi ska kunna hjälpa dig med korrekt information.';
     } else if (locale.includes('nb')) {
       return 'Renteradar.no overvåker kontinuerlig markedet for bedre rente enn det du har på lånet ditt. Renten du har på lånet ditt sjekkes og oppdateres ved at du identifiserer deg med BankID. Det er viktig at dette gjøres fra tid til annen for at eventuelle renteendringer på lånet ditt skal fanges opp.';
+    }
+    throw new Error('Should include either SV or NB');
+  }
+
+  getHasFixedRateLoanTipsHeader(): string {
+    if (locale.includes('sv')) {
+      return 'Fast bolåneränta';
+    } else if (locale.includes('nb')) {
+      return 'Fastrentelån';
+    }
+    throw new Error('Should include either SV or NB');
+  }
+
+  getHasFixedRateLoan(): string {
+    if (locale.includes('sv')) {
+      return 'Vi ser att du även har fasta bolåneräntor. Ränteradar  jämför endast din rörliga ränta mot marknadens bästa erbjudanden.';
+    } else if (locale.includes('nb')) {
+      return 'Vi ser du har ett eller flere fastrentelån. Renteradar viser besparelsespotensialet kun for lånet/lånene med flytende rente. Beste rente viser også kun beste rente for lånet/lånene med flytende rente.';
     }
     throw new Error('Should include either SV or NB');
   }
@@ -72,6 +89,15 @@ export class CustomLangTextService {
       return 'Vissa banker erbjuder bättre räntor om man är medlem i ett fackförbund. Lägg in ditt medlemskap för och se fler erbjudanden.';
     } else if (locale.includes('nb')) {
       return 'Enkelte banker tilbyr bedre betingelser hvis du er medlem i en interesseorganisasjon eller fagforening. Hvis du har mulighet til å melde deg inn i en kan det være penger å spare. (Medlemskap koster ca 4000 i året).';
+    }
+    throw new Error('Should include either SV or NB');
+  }
+
+  getMembershipSearchText(): string {
+    if (locale.includes('sv')) {
+      return 'Sök fackförbund';
+    } else if (locale.includes('nb')) {
+      return 'Søk medlemskap';
     }
     throw new Error('Should include either SV or NB');
   }
@@ -186,7 +212,7 @@ export class CustomLangTextService {
 
   get18nFixForNoRequirement(): string {
     if (locale.includes('sv')) {
-      return 'Inget krav';
+      return 'Inga merkrav';
     } else if (locale.includes('nb')) {
       return 'Ingen krav';
     }
@@ -276,7 +302,7 @@ export class CustomLangTextService {
 
   getBarometerTextState0(): string {
     if (locale.includes('sv')) {
-      return 'Din ränta är mycket högre än genomsnittet';
+      return 'Din ränta är mycket dåligare än genomsnittet';
     } else if (locale.includes('nb')) {
       return 'Renten din er mye dårligere enn gjennomsnittet';
     }
@@ -285,7 +311,7 @@ export class CustomLangTextService {
 
   getBarometerTextState1(): string {
     if (locale.includes('sv')) {
-      return 'Din ränta är högre än genomsnittet';
+      return 'Din ränta är dåligare än genomsnittet';
     } else if (locale.includes('nb')) {
       return 'Renten din er dårligere enn gjennomsnittet';
     }
@@ -294,7 +320,7 @@ export class CustomLangTextService {
 
   getBarometerTextState2(): string {
     if (locale.includes('sv')) {
-      return 'Din ränta är ok';
+      return 'Din ränta är genomsnittlig';
     } else if (locale.includes('nb')) {
       return 'Renten din er gjennomsnittlig';
     }
@@ -330,7 +356,7 @@ export class CustomLangTextService {
 
   getBarometerAdditionalTextLowSavingsState1(): string {
     if (locale.includes('sv')) {
-      return 'och du kan spara en del';
+      return 'men du kan spara en del';
     } else if (locale.includes('nb')) {
       return 'og du kan spare en del';
     }
@@ -339,7 +365,7 @@ export class CustomLangTextService {
 
   getBarometerAdditionalTextLowSavingsState2(): string {
     if (locale.includes('sv')) {
-      return 'men du kan spara en del';
+      return 'och du kan spara mycket';
     } else if (locale.includes('nb')) {
       return 'og du kan spare en del';
     }
@@ -375,7 +401,7 @@ export class CustomLangTextService {
 
   getBarometerAdditionalTextHighSavingsState2(): string {
     if (locale.includes('sv')) {
-      return 'men du kan spara en del';
+      return 'men du kan spara mycket';
     } else if (locale.includes('nb')) {
       return 'men du kan spare en del';
     }
@@ -410,7 +436,7 @@ export class CustomLangTextService {
 
   getChoosenText(): string {
     if (locale.includes('sv')) {
-      return 'valt';
+      return 'valda';
     } else if (locale.includes('nb')) {
       return 'valgt';
     }

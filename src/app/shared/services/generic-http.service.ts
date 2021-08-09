@@ -155,7 +155,6 @@ export class GenericHttpService {
   }
 
   private handleError(responseError: HttpResponse<any> | any): Observable<any> {
-    console.log(responseError);
     if (responseError.status === 401) {
       // TODO: Show unauthorized error
       console.log('Not logged in!');

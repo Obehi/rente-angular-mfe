@@ -74,7 +74,7 @@ export class OffersStatisticsComponentBlue implements AfterViewInit, OnInit {
     if (totalOutstandingDebt < 2000000) {
       text = this.envService.isNorway()
         ? 'mindre enn 2 mill. i lån'
-        : 'mindre enn 2 milj. i lån';
+        : 'mindre än 2 milj. i lån';
     } else if (
       totalOutstandingDebt >= 2000000 &&
       totalOutstandingDebt < 4000000

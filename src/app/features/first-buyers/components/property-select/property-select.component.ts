@@ -14,6 +14,7 @@ import {
   OnInit,
   Output
 } from '@angular/core';
+import { CustomLangTextService } from '@services/custom-lang-text.service';
 import { MembershipService } from '@services/membership.service';
 import { MembershipTypeDto } from '@services/remote-api/loans.service';
 
@@ -64,10 +65,12 @@ export class PropertySelectComponent implements OnInit, OnDestroy {
   selectionDistincter = new Subject();
   _selectionDistincter: Observable<any>;
 
-  constructor(private membershipService: MembershipService) {}
+  constructor(
+    private membershipService: MembershipService,
+    public langService: CustomLangTextService
+  ) {}
 
   ngOnInit(): void {
-    console.log(this.selectedOptions);
     this.selectedMemberships = this.selectedOptions;
   }
 
