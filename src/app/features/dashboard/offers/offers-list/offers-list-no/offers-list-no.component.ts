@@ -114,7 +114,7 @@ export class OffersListNoComponent implements OnInit {
     this.initialScores$ = this.userService.getUserScorePreferences();
     this.initOfferType();
 
-    this.showDemoAction$.subscribe((value) => {
+    this.showDemoAction$.pipe(skip(1)).subscribe((value) => {
       console.log(value + ' WOP WOP');
       this.messageService.setView(
         'Besvar spørsmålene under ved å flytte på slideren for å markere din preferanse, og så finner vi riktig bank for deg basert på dine valg.',

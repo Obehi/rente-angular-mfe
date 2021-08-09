@@ -13,18 +13,20 @@
     cursor: pointer;
     top: -14px;
     background-color: $primary !important;
-    z-index: 3 !important;
+    z-index: 3;
     border-radius: 16px;
   }
 
   .ngx-slider .ngx-slider-pointer {
-    cursor: pointer;
-    width: 32px !important;
-    height: 32px !important;
-    top: -14px;
-    background-color: $primary !important;
-    z-index: 3;
-    border-radius: 16px;
+    &.demo-pointer {
+      cursor: pointer;
+      width: var(--size) !important;
+      height: var(--size) !important;
+      top: -14px;
+      background-color: $primary !important;
+      z-index: 3;
+      border-radius: 16px;
+    }
   }
 
   .ngx-slider .ngx-slider-inner-tooltip {
@@ -120,12 +122,12 @@ b {
 }
 
 .demo-container {
-  border: 1px solid $blue-light;
+  border: 3px solid #fff;
 
   .ngx-slider .ngx-slider-pointer {
     cursor: pointer;
-    width: 32px !important;
-    height: 32px !important;
+    width: var(--size) !important;
+    height: var(--size) !important;
     top: -14px;
     background-color: $primary !important;
     z-index: 3;
@@ -184,7 +186,7 @@ b {
   }
 }
 
-/* ///////////////////////// .score-container-1
+///////////////////////// .score-container-1
 .score-container-1 {
   margin-bottom: 20px;
 
@@ -217,7 +219,7 @@ b {
     box-shadow: rgb(50 50 93 / 25%) 0px 2px 5px -1px,
       rgb(0 0 0 / 30%) 0px 3px 3px -1px;
   }
-} */
+}
 
 ///////////////////////// .score-container-2
 .score-container-2 {
@@ -260,7 +262,7 @@ b {
   }
 }
 
-/* ///////////////////////// .score-container-3
+///////////////////////// .score-container-3
 .score-container-3 {
   margin-bottom: 20px;
 
@@ -293,4 +295,4 @@ b {
     box-shadow: rgb(50 50 93 / 25%) 0px 2px 5px -1px,
       rgb(0 0 0 / 30%) 0px 3px 3px -1px;
   }
-} */
+}
