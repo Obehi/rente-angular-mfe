@@ -1,7 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Offers } from './../../../../../shared/models/offers';
 import { OptimizeService } from '@services/optimize.service';
 import { EnvService } from '@services/env.service';
+import { fromEvent, Observable, Subject } from 'rxjs';
+import { NotificationService } from '@services/notification.service';
 @Component({
   selector: 'rente-offers-list',
   templateUrl: './offers-list-no.component.html',
@@ -13,7 +15,8 @@ export class OffersListNoComponent implements OnInit {
 
   constructor(
     public optimizeService: OptimizeService,
-    private envService: EnvService
+    private envService: EnvService,
+    private notificationService: NotificationService
   ) {}
 
   // Save for later use
@@ -37,6 +40,13 @@ export class OffersListNoComponent implements OnInit {
   public currentOfferType: string;
 
   ngOnInit(): void {
+    const obj = document.getElementsByClassName('the-offers')[0];
+    fromEvent(window, 'scroll').subscribe(() => {
+      if (obj?.getBoundingClientRect().top <= 0) {
+        console.log('works');
+        this.notificationService.resetOfferNotification();
+      }
+    });
     this.currentOfferInfo = JSON.parse(JSON.stringify(this.offersInfo));
     this.currentOfferType = 'all';
 
