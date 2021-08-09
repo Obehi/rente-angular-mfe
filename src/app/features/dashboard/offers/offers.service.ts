@@ -39,6 +39,7 @@ export class OffersService {
 
   scrollOfferUpdateObserver(): Observable<any> {
     return fromEvent(window, 'scroll').pipe(
+      debounceTime(100),
       filter(
         () =>
           window.innerHeight -

@@ -94,11 +94,25 @@ export class UserScorePreferencesComponent implements OnInit {
           ...(mergeFilter as any)
         };
       }, {}),
-      map((scores) => {
-        return { ...this.initialScoresStorage, ...scores };
-      }),
 
       tap((scores) => {
+        console.log('accumalutive scores');
+        console.log(scores);
+
+        console.log('inital scores');
+        console.log(this.initialScoresStorage);
+
+        console.log('combined scores');
+        console.log({
+          ...this.initialScoresStorage,
+          ...scores
+        });
+      }),
+      map((scores) => this.setCombinedScores(scores) as any),
+
+      tap((scores) => {
+        console.log('scores before request');
+        console.log(scores);
         // emit new value only if scores is not empty
         if (Object.keys(scores).length) this.scoreListener?.next(scores);
       })
@@ -123,8 +137,43 @@ export class UserScorePreferencesComponent implements OnInit {
       localPresenceScore: scores.localPresenceScore,
       priceSensitivity: scores.priceSensitivity,
       savingScore: scores.savingScore,
-      stockScore: scores.stockScore
+      stockScore: scores.stockScore,
+      combinedStockEnsuranceProductsScore: scores.insuranceScore
     };
+  }
+
+  setCombinedScores(scores: UserScorePreferences): UserScorePreferences {
+    const mutated = {
+      advisorScore:
+        scores.advisorScore ?? this.initialScoresStorage.advisorScore,
+      changeProcessScore:
+        scores.changeProcessScore ??
+        this.initialScoresStorage.changeProcessScore,
+      complicatedEconomyScore:
+        scores.complicatedEconomyScore ??
+        this.initialScoresStorage.complicatedEconomyScore,
+      insuranceScore:
+        scores.insuranceScore ??
+        this.initialScoresStorage.combinedStockEnsuranceProductsScore,
+      localPresenceScore:
+        scores.localPresenceScore ??
+        this.initialScoresStorage.localPresenceScore,
+      priceSensitivity:
+        scores.priceSensitivity ?? this.initialScoresStorage.priceSensitivity,
+      savingScore:
+        scores.insuranceScore ??
+        this.initialScoresStorage.combinedStockEnsuranceProductsScore,
+      stockScore:
+        scores.insuranceScore ??
+        this.initialScoresStorage.combinedStockEnsuranceProductsScore
+    };
+    console.log('scores scores!!');
+    console.log(scores);
+
+    console.log('mutated scores!!');
+    console.log(mutated);
+
+    return mutated;
   }
 
   CombinedScoreChanged(event: any): any {
