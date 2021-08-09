@@ -115,14 +115,14 @@ export class UserScorePreferencesComponent implements OnInit {
 
   getCombinedScores(scores: UserScorePreferences): UserScorePreferences {
     return {
-      advisorScore: scores.advisorScore || 2.5,
-      changeProcessScore: scores.changeProcessScore || 2.5,
-      complicatedEconomyScore: scores.complicatedEconomyScore || 2.5,
-      insuranceScore: scores.insuranceScore || 2.5,
-      localPresenceScore: scores.localPresenceScore || 2.5,
-      priceSensitivity: scores.priceSensitivity || 2.5,
-      savingScore: scores.savingScore || 2.5,
-      stockScore: scores.stockScore || 2.5
+      advisorScore: scores.advisorScore,
+      changeProcessScore: scores.changeProcessScore,
+      complicatedEconomyScore: scores.complicatedEconomyScore,
+      insuranceScore: scores.insuranceScore,
+      localPresenceScore: scores.localPresenceScore,
+      priceSensitivity: scores.priceSensitivity,
+      savingScore: scores.savingScore,
+      stockScore: scores.stockScore
     };
   }
 
