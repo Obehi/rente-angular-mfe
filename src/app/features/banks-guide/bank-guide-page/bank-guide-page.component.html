@@ -193,11 +193,24 @@
 
         <div
           (click)="scrollTo(offices)"
-          *ngIf="banksLocations.length !== 0"
+          *ngIf="banksLocations?.length !== 0"
           class="icon-link"
         >
           <img src="../../../../assets/icons/location-grey-circle.svg" />
           <span>Filialer</span>
+          <img
+            class="arrow"
+            src="../../../../assets/icons/arrow-small-grey.svg"
+          />
+        </div>
+
+        <div
+          (click)="scrollTo(contact)"
+          *ngIf="bankGuideInfo !== null"
+          class="icon-link"
+        >
+          <img src="../../../../assets/icons/contact-icon-grey.svg" />
+          <span>Kontaktinformasjon</span>
           <img
             class="arrow"
             src="../../../../assets/icons/arrow-small-grey.svg"
@@ -446,8 +459,8 @@
         </div>
       </div>
 
-      <div #offices></div>
-      <div *ngIf="banksLocations.length !== 0" class="scroll-anchor">
+      <div #offices class="scroll-anchor"></div>
+      <div *ngIf="banksLocations.length !== 0">
         <div
           *ngIf="bank.name === 'DNB' || bank.name === 'NORDEA'"
           class="white-bg p-3 mx-lg-auto mt-4"
@@ -530,6 +543,7 @@
             </accordion>
           </div>
         </div>
+
         <div
           *ngIf="bank.name !== 'DNB' && bank.name !== 'NORDEA'"
           class="white-bg p-3 mx-lg-auto mt-4"
@@ -612,9 +626,60 @@
           </div>
         </div>
       </div>
+
+      <div class="scroll-anchor white-bg p-3 mx-lg-auto mt-4" #contact>
+        <div class="bank-name justify-content-lg-center">
+          <div class="logo d-inline-block">
+            <img
+              src="../../../assets/img/banks-logo/round/{{ bank.icon }}"
+              [alt]="bank.label"
+            />
+          </div>
+          <div class="label d-flex text-left" #kontaktInfo>Kontakt</div>
+        </div>
+        <div class="contact-subdiv">
+          <div class="mortgage">
+            <img
+              class="contact-image"
+              src="../../../../assets/icons/www-icon-green.svg"
+            />
+            <h3 class="contact-subheader">Nettbank boliglån:</h3>
+            <a target="_blank" class="url" (click)="openBankUrlByButton()"
+              >Besøk nettsiden
+            </a>
+          </div>
+          <div class="email">
+            <img
+              class="contact-image"
+              src="../../../../assets/icons/email-icon-green.svg"
+            />
+            <h3 class="contact-subheader">Mail:</h3>
+            <p class="content-text">{{ bankGuideInfo?.email }}</p>
+          </div>
+          <div class="contact-phone">
+            <img
+              class="contact-image"
+              src="../../../../assets/icons/contact-icon-green.svg"
+            />
+            <h3 class="contact-subheader">Telefon Kundeservice:</h3>
+            <p class="content-text">
+              {{ bankGuideInfo?.phone }}
+            </p>
+          </div>
+          <div class="swift">
+            <img
+              class="contact-image"
+              src="../../../../assets/icons/swift-icon-green.svg"
+            />
+            <h3 class="contact-subheader">Swift:</h3>
+            <p class="content-text">{{ bankGuideInfo?.swift }}</p>
+          </div>
+        </div>
+      </div>
     </div>
   </ng-container>
 </div>
+
 <div class="loading" *ngIf="bankGuideLoading">
   <mat-spinner [diameter]="48" [strokeWidth]="4"></mat-spinner>
 </div>

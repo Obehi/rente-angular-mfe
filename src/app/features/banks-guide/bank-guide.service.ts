@@ -22,6 +22,7 @@ export class BankGuideService {
   constructor() {
     this.sortBanks();
     this.filterBank(this.searchStr);
+    console.log(this.banksData);
   }
 
   filterBank(filter: string): void {
