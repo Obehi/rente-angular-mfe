@@ -22,31 +22,42 @@ import { getAnimationStyles } from '@shared/animations/animationEnums';
   selector: 'rente-offers-list',
   templateUrl: './offers-list-no.component.html',
   styleUrls: ['./offers-list-no.component.scss'],
+  // animations: [
+  //   trigger('test', [
+  //     state(
+  //       'open',
+  //       style({
+  //         opacity: '0'
+  //       })
+  //     ),
+  //     state(
+  //       'close',
+  //       style({
+  //         opacity: '1'
+  //       })
+  //     ),
+  //     transition('* => close', [animate('0.2s', style({ opacity: '1' }))]),
+  //     transition('* => open', [animate('0.2s', style({ opacity: '0' }))])
+  //   ])
+  // ]
   animations: [
-    trigger('inOutOffers', [
-      /* transition(':enter', [
-        animate(
-          '0.2s ease-out',
-          style({ opacity: 0, transform: 'translateY(10px)' })
-        )
-      ]),
-      transition(':leave', [
-        // style({ height: '100', opacity: 1 }),
-        animate('500ms', style({ opacity: 0, transform: 'translateY(10px)' }))
-      ]), */
+    trigger('test', [
       state(
-        'visible',
+        'open',
         style({
-          opacity: 1,
-          transform: 'translateY(10px)'
+          position: 'absolute',
+          left: '50%'
         })
       ),
       state(
-        'hidden',
+        'close',
         style({
-          opacity: 0.1
+          position: 'absolute',
+          left: '77%'
         })
-      )
+      ),
+      transition('* => close', [animate('0.2s', style({ left: '77%' }))]),
+      transition('* => open', [animate('0.2s', style({ left: '50%' }))])
     ])
   ]
 })
@@ -62,6 +73,7 @@ export class OffersListNoComponent implements OnInit {
   public currentOffers: OfferInfo[];
   public showScorePreferences = false;
   public shouldUpdateOffers = false;
+  public showHamburger: boolean;
   scoreListener$ = new BehaviorSubject<UserScorePreferences>({});
   initialScores$: Observable<UserScorePreferences>;
 
@@ -74,7 +86,9 @@ export class OffersListNoComponent implements OnInit {
     public loanService: LoansService,
     public localStorageService: LocalStorageService,
     public messageService: MessageBannerService
-  ) {}
+  ) {
+    this.showHamburger = false;
+  }
 
   // Save for later use
   /* public getVariation(): number {
@@ -148,6 +162,7 @@ export class OffersListNoComponent implements OnInit {
     this.currentOfferType = type;
 
     if (type === 'rate') {
+      this.showHamburger = false;
       // this.currentOffers = this.offersInfo.offers.top5;
       this.localStorageService.isUserDefinedOfferPreferences = false;
       this.showScorePreferences = false;
@@ -206,5 +221,10 @@ export class OffersListNoComponent implements OnInit {
       this.offerService.updateOffers$.next();
       this.offerService.shouldUpdateOffersLater = false;
     }
+  }
+
+  setShowHamburger(): boolean {
+    this.showHamburger = true;
+    return this.showHamburger;
   }
 }
