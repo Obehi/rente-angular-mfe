@@ -61,10 +61,10 @@ export class MessageBannerService implements OnDestroy {
     newNode.id = 'placeholder';
     newNode.style.position = 'fixed';
     newNode.style.width = '100%';
-    newNode.style.zIndex = '2';
+    newNode.style.zIndex = '99';
     if (_window.innerWidth < 992) {
       if (_animationType === this.checkAnimationStyle.SLIDE_UP) {
-        newNode.style.bottom = '30px';
+        newNode.style.bottom = '90px';
       } else {
         newNode.style.top = '70px';
       }
@@ -125,7 +125,7 @@ export class MessageBannerService implements OnDestroy {
     newNode.id = 'placeholder';
     newNode.style.position = 'fixed';
     newNode.style.width = '100%';
-    newNode.style.zIndex = '2';
+    newNode.style.zIndex = '99';
     if (_window.innerWidth < 992) {
       newNode.style.top = '65px';
     } else {

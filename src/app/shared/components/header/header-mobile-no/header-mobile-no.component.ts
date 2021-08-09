@@ -14,7 +14,6 @@ export class HeaderMobileNoComponent implements OnInit {
   public toggleNavbar: boolean;
   public isSmallScreen: boolean;
   public animationType = getAnimationStyles();
-
   constructor(
     public auth: AuthService,
     private router: Router,

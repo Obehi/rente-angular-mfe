@@ -21,9 +21,7 @@
 <div
   (click)="onClickBanner()"
   *ngIf="animationType === checkAnimationStyle.SLIDE_UP"
-  [ngClass]="isDashboard ? 'dropdownupdash' : 'dropdownup'"
-  [class.error]="status === 'error'"
-  [class.success]="status === 'success'"
+  [ngClass]="isDashboard ? 'slide-up' : 'slide-up'"
   [@slideUp]="animationState ? 'visible' : 'hidden'"
 >
   {{ displayText }}
