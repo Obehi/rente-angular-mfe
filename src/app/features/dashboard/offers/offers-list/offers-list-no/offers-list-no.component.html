@@ -19,12 +19,17 @@
       <a
         class="clickable"
         [ngClass]="currentOfferType == 'score' ? 'active' : 'deactive'"
-        (click)="setOfferType('score')"
+        (click)="setOfferType('score'); setShowHamburger()"
       >
         <p>For deg</p>
       </a>
     </div>
-    <a class="preferences-button" (click)="preferencesButtonClicked()">
+    <a
+      id="hamburger"
+      class="preferences-button"
+      (click)="preferencesButtonClicked()"
+      [@test]="showHamburger ? 'close' : 'open'"
+    >
       <span
         [ngClass]="
           !showScorePreferences

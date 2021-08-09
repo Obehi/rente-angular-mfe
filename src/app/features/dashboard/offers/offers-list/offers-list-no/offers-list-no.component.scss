@@ -82,13 +82,14 @@ h3 {
 
   .offers-type-switch {
     background: $secondary;
-    width: 80%;
+    width: 65%;
     margin: auto;
     height: 60px;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    border-radius: 15px 0 0 10px;
+    border-radius: 15px;
+    z-index: 10;
 
     a {
       flex: 1;
@@ -122,6 +123,7 @@ h3 {
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 0;
 
     .preferences-button {
       background: $secondary;
@@ -130,6 +132,7 @@ h3 {
       display: flex;
       justify-content: center;
       border-radius: 50px;
+      margin-left: 13px;
       /*    box-shadow: rgb(50 50 93 / 25%) 0px 2px 5px -1px,
         rgb(0 0 0 / 30%) 0px 3px 3px -1px; */
     }
@@ -141,6 +144,7 @@ h3 {
       display: flex;
       justify-content: center;
       border-radius: 50px;
+      margin-left: 13px;
       box-shadow: rgb(50 50 93 / 25%) 0px 2px 5px -1px,
         rgb(0 0 0 / 30%) 3px 3px 4px 2px;
     }
