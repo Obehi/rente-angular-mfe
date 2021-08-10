@@ -33,6 +33,7 @@ import {
   query,
   group
 } from '@angular/animations';
+import { UserScoreDemo } from '../../../animations/user-score-demo';
 
 @Component({
   selector: 'rente-user-score-preferences',
@@ -125,7 +126,7 @@ export class UserScorePreferencesComponent implements OnInit {
     }
   };
 
-  constructor() {}
+  constructor(private userDemoAnimation: UserScoreDemo) {}
 
   ngOnInit(): void {
     this.shouldShowDemoListener
@@ -134,9 +135,7 @@ export class UserScorePreferencesComponent implements OnInit {
 
         tap(() => {
           console.log('1 step!!');
-          document
-            .getElementsByClassName('ngx-slider-pointer')[0]
-            .animate(this.getAnimation(), this.getAnimationTiming());
+          this.userDemoAnimation.getUserScoreAnimation();
           this.demoIsLive = true;
 
           this.borderTest = true;
@@ -145,6 +144,7 @@ export class UserScorePreferencesComponent implements OnInit {
         filter(() => this.demoIsLive === true),
         tap(() => {
           console.log('2 step!!');
+          this.userDemoAnimation.getUserScoreAnimation();
 
           this.demoIsLive = true;
           this.demoValue = 1;
@@ -153,12 +153,15 @@ export class UserScorePreferencesComponent implements OnInit {
         filter(() => this.demoIsLive === true),
         tap(() => {
           console.log('3 step!!');
+          this.userDemoAnimation.getUserScoreAnimation();
+
           this.demoValue = 3;
         }),
         delay(1000),
         filter(() => this.demoIsLive === true),
         tap(() => {
           this.demoValue = 2;
+          this.userDemoAnimation.getUserScoreAnimation();
         }),
         delay(2000),
         tap(() => {
@@ -279,36 +282,5 @@ export class UserScorePreferencesComponent implements OnInit {
 
   localPresenceScoreChanged(event: any): any {
     this.collectScore$.next({ localPresenceScore: event.value });
-  }
-
-  getAnimation(): any {
-    return [
-      {
-        width: '32px',
-        height: '32px',
-        top: '-14px',
-        border: '2px solid white'
-      },
-      {
-        width: '40px',
-        height: '40px',
-        top: '-10px',
-        borderRadius: '50px',
-        border: '2px solid white'
-      },
-      {
-        width: '32px',
-        height: '32px',
-        top: '-14px',
-        border: '2px solid white'
-      }
-    ];
-  }
-
-  getAnimationTiming(): any {
-    return {
-      duration: 1000,
-      iterations: 4
-    };
   }
 }
