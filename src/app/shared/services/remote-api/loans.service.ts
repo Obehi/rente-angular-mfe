@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { API_URL_MAP } from '@config/api-url-config';
 import { GenericHttpService } from '@services/generic-http.service';
-import { Observable } from 'rxjs';
+import { Observable, forkJoin } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { locale } from '../../../config/locale/locale';
 
@@ -193,6 +193,10 @@ export class LoansService {
   ): Observable<PreferencesUpdateDto> {
     const url = `${API_URL_MAP.loan.base}/preferences`;
     return this.http.post(url, dto);
+  }
+
+  public getLoanAndOffersBanks(): Observable<any> {
+    return forkJoin([this.getLoans(), this.getOffersBanks()]);
   }
 }
 

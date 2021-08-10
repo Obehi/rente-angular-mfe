@@ -11,6 +11,15 @@ import {
 } from '@angular/animations';
 import { locale } from '@config/locale/locale';
 
+interface offerDto {
+  offers: [
+    {
+      id: string;
+      name: string;
+      rate: number;
+    }
+  ];
+}
 @Component({
   selector: 'rente-loans',
   templateUrl: './loans-no.component.html',
@@ -40,17 +49,26 @@ export class LoansNoComponent implements OnInit {
   public locale: string;
   public isSignicatUser: boolean;
   public isFixedPriceBank: boolean;
+  public offer: offerDto;
 
   constructor(private loansService: LoansService) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.locale = locale;
-    this.loansService.getLoans().subscribe(
-      (res: Loans) => {
-        this.loansData = res;
+
+    this.loansService.getLoanAndOffersBanks().subscribe(
+      ([loans, offerBank]) => {
+        this.loansData = loans;
+        // this.loansData.loans[0].loanName = ''
+        this.offer = offerBank as offerDto;
+
+        console.log(this.offer);
+
         this.isSignicatUser = BankUtils.getSignicatUserByBankLabel(
           this.loansData.loans[0].bank
         );
+        // this.isSignicatUser = false;
+
         console.log('Is signicatuser?');
         console.log(this.isSignicatUser);
       },

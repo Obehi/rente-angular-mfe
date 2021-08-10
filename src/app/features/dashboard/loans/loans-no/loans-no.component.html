@@ -56,9 +56,7 @@
               <div class="box">
                 <p class="small">Utestående lån</p>
                 <h3>
-                  {{
-                    loan.outstandingDebt / 1000000 | number: '1.3-3'
-                  }}
+                  {{ loan.outstandingDebt / 1000000 | number: '1.3-3' }}
                   millioner
                 </h3>
               </div>
@@ -120,6 +118,72 @@
           />
         </a>
       </div>
+    </div>
+  </div>
+
+  <div class="summary">
+    <h3 class="title">Sammendrag av lån</h3>
+    <div class="content-blue-box">
+      <div class="all-text">
+        <div class="information-box">
+          <div class="box-title">
+            <p>Utestående lån:</p>
+          </div>
+          <div class="box-value">
+            <h3>
+              {{ loansData.totalOutstandingDebt / 1000000 | number: '1.3-3' }}
+              millioner
+            </h3>
+          </div>
+        </div>
+        <div class="information-box">
+          <div class="box-title">
+            <p>Effektiv rente</p>
+          </div>
+          <div class="box-value">
+            <h3>{{ loansData.totalEffectiveRate | number: '1.2-2' }} %</h3>
+          </div>
+        </div>
+
+        <div class="double-container">
+          <div class="first-box">
+            <div class="btitle-one">
+              <p>Totale renter og gebyrer</p>
+            </div>
+            <div class="bvalue">
+              {{
+                loansData.aggregatedTotalInterestAndFee == null
+                  ? 'N/A'
+                  : (loansData.aggregatedTotalInterestAndFee
+                      | number: '1.0-0') + ',-'
+              }}
+            </div>
+          </div>
+          <div class="first-box">
+            <div class="btitle-two">
+              <p>Renter & gebyrer per år</p>
+            </div>
+            <div class="bvalue">
+              {{
+                loansData.aggregatedTotalInterestAndFeeByRemainingYears == null
+                  ? 'N/A'
+                  : (loansData.aggregatedTotalInterestAndFeeByRemainingYears
+                      | number: '1.0-0') + ',-'
+              }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="summary">
+    <div class="content-blue-box">
+      <div class="loan-title">
+        <h3>Lån</h3>
+      </div>
+      <hr class="split" />
+      <div class="loan-type"></div>
     </div>
   </div>
 </div>
