@@ -21,20 +21,23 @@ export class UserScoreDemo {
         width: '32px',
         height: '32px',
         top: '-14px',
-        border: '2px solid white'
+        border: '2px solid #b74ddc',
+        background: '#b74ddc'
       },
       {
         width: '36px',
         height: '36px',
         top: '-16px',
         borderRadius: '50px',
-        border: '2px solid white'
+        border: '2px solid #b74ddc',
+        background: '#b74ddc'
       },
       {
         width: '32px',
         height: '32px',
         top: '-14px',
-        border: '2px solid white'
+        border: '2px solid #b74ddc',
+        background: '#b74ddc'
       }
     ];
   }

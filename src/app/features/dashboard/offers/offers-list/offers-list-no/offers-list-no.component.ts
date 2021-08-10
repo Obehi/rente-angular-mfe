@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { OfferInfo, Offers } from './../../../../../shared/models/offers';
 import { OptimizeService } from '@services/optimize.service';
 import { EnvService } from '@services/env.service';
@@ -75,11 +75,17 @@ import { getAnimationStyles } from '@shared/animations/animationEnums';
 })
 export class OffersListNoComponent implements OnInit {
   @Input() offersInfo: Offers;
+  @ViewChild('sliders') sliderContainer: ElementRef;
+
   public currentOfferInfo: Offers;
   public currentOfferInfo$: Observable<OfferInfo[]>;
   public cachedCurrentOffers$ = new Subject<OfferInfo[]>();
   public showDemoTrigger$ = new BehaviorSubject<boolean>(false);
   public showDemoAction$ = this.showDemoTrigger$.pipe(share());
+  public stopDemoAction$ = this.showDemoTrigger$.pipe(
+    filter((value) => value === false),
+    share()
+  );
   public demoIsLive = false;
   public demoSlideValue = 2;
   public currentOffers: OfferInfo[];
@@ -124,14 +130,30 @@ export class OffersListNoComponent implements OnInit {
   }
 
   initDemoListener(): void {
-    this.showDemoAction$.pipe(skip(1)).subscribe((value) => {
-      this.messageService.setView(
-        'Besvar spørsmålene under ved å flytte på slideren for å markere din preferanse, og så finner vi riktig bank for deg basert på dine valg.',
-        4000,
-        this.animationType.SLIDE_UP,
-        'success',
-        window
-      );
+    this.stopDemoAction$.subscribe(() => {
+      console.log('stopDemoAction');
+      this.messageService.detachView();
+    });
+    this.showDemoAction$.pipe(skip(1)).subscribe((demoIsTriggered) => {
+      console.log('demoIsTriggered');
+      console.log(demoIsTriggered);
+      demoIsTriggered &&
+        this.messageService.setView(
+          'Besvar spørsmålene under ved å flytte på slideren for å markere din preferanse, og så finner vi riktig bank for deg basert på dine valg.',
+          4000,
+          this.animationType.SLIDE_UP,
+          'success',
+          window,
+          true,
+          true,
+          () => {
+            this.showDemoTrigger$.next(false);
+          }
+        );
+
+      if (demoIsTriggered === false) {
+      }
+      setTimeout(() => {}, 1000);
     });
   }
 
@@ -158,16 +180,19 @@ export class OffersListNoComponent implements OnInit {
         })
       )
     );
+
     this.currentOfferInfo$.subscribe((offers) => {
       this.currentOffers = offers;
     });
   }
 
   initOfferType(): void {
-    const offerType = this.localStorageService.isUserDefinedOfferPreferences
-      ? 'score'
-      : 'rate';
-    this.setOfferType(offerType);
+    if (this.localStorageService.isUserDefinedOfferPreferences !== null) {
+      const offerType = this.localStorageService.isUserDefinedOfferPreferences
+        ? 'score'
+        : 'rate';
+      this.setOfferType(offerType);
+    }
   }
 
   public setOfferType(type: string): void {
@@ -183,13 +208,20 @@ export class OffersListNoComponent implements OnInit {
     }
 
     if (type === 'score') {
-      // If user clicks score option for the first time, show score options dropdown
+      // If user clicks score option for the first time, show score options dropdown and demo
       if (this.localStorageService.isUserDefinedOfferPreferences === null) {
         this.preferencesButtonClicked();
+
+        setTimeout(() => {
+          this.scrollTo(this.sliderContainer);
+        }, 700);
+
+        setTimeout(() => {
+          this.showDemoTrigger$.next(true);
+        }, 1200);
       }
 
       this.cachedCurrentOffers$.next(this.offersInfo.offers.topScoreOffer);
-      // this.currentOffers = this.offersInfo.offers.topScoreOffer;
       this.localStorageService.isUserDefinedOfferPreferences = true;
       return;
     }
@@ -259,5 +291,13 @@ export class OffersListNoComponent implements OnInit {
   setShowHamburger(): boolean {
     this.showHamburger = true;
     return this.showHamburger;
+  }
+
+  scrollTo(ref: any): void {
+    ref.nativeElement.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+      inline: 'start'
+    });
   }
 }

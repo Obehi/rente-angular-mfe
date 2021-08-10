@@ -48,17 +48,17 @@
     </a>
   </div>
 
-  <h1 (click)="showDemoTrigger$.next(!showDemoTrigger$.value)">Trykk her!</h1>
+  <!--  <h1 (click)="showDemoTrigger$.next(!showDemoTrigger$.value)">Trykk her!</h1> -->
 
   <custom-dropdown
     [opened]="showScorePreferences"
     (toggle)="preferencesButtonClicked()"
   >
-    <div class="user-score-preferences-box">
-      <p class="info-box">
+    <div #sliders class="user-score-preferences-box">
+      <!-- <p class="info-box">
         Besvar spørsmålene under ved å flytte på slideren for å markere din
         preferanse, og så finner vi riktig bank for deg basert på dine valg.
-      </p>
+      </p> -->
       <h2 class="user-score-header">
         Hvor viktig er det for deg med en bank som:
       </h2>

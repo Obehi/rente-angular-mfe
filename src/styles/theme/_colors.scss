@@ -22,6 +22,7 @@ $red: #f41515 !default;
 $orange: #ff5a00 !default;
 $fountainBlue: #5eb1bf !default;
 $frolly: #ef767a !default;
+$demo: #b74ddc !default;
 
 $primary: $green !default;
 $secondary: $blue !default;
@@ -49,7 +50,8 @@ $theme-colors: map-merge(
     'black': $black,
     'error': $error,
     'warning': $warning,
-    'lightwarning': $lightwarning
+    'lightwarning': $lightwarning,
+    'demo': $demo
   ),
   $theme-colors
 );

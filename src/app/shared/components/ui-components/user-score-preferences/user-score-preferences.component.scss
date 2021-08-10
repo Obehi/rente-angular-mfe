@@ -122,7 +122,7 @@ b {
 }
 
 .demo-container {
-  border: 3px solid #fff;
+  border: 3px solid $demo;
 
   .ngx-slider .ngx-slider-pointer {
     cursor: pointer;
@@ -132,6 +132,7 @@ b {
     background-color: $primary !important;
     z-index: 3;
     border-radius: 16px;
+    border-color: 2px solid $demo;
   }
 }
 

@@ -34,12 +34,26 @@
 .slide-up {
   background: #112639;
   color: #ffffff;
-  border: 1px solid #478ccc;
+  border: 1px solid $demo;
   font-weight: 100;
   font-size: 14px;
   padding: 17px;
   text-align: left;
   line-height: 1.4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 15px;
+  margin: 20px;
+
+  p {
+    margin-top: 10px;
+    background: $karl-blue;
+    padding: 1em 0em;
+    border-radius: 50px;
+    width: 5em;
+    text-align: center;
+  }
 }
 
 .success {

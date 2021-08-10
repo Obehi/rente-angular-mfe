@@ -51,7 +51,8 @@ export class MessageBannerService implements OnDestroy {
     _status: string,
     _window: Window,
     _isClickable = false,
-    shouldSetTimeout = true
+    shouldSetTimeout = true,
+    _callback = () => {}
   ): void {
     const factory = this.factoryResolver.resolveComponentFactory(
       TopAnimationBannerComponent
@@ -91,9 +92,11 @@ export class MessageBannerService implements OnDestroy {
     this._componentRef.instance.displayText = _newtext;
     this.appRef.attachView(this._componentRef.hostView);
 
+    const clickSubject = this._componentRef.instance.clickSubject$;
     this.clickListenerSub = this._componentRef.instance.clickSubject$.subscribe(
       () => {
         this.detachView();
+        _callback();
       }
     );
 
@@ -106,8 +109,8 @@ export class MessageBannerService implements OnDestroy {
     }, newTime + 2000);
   }
 
-  private detachView() {
-    this.appRef.detachView(this._componentRef.hostView);
+  public detachView(): void {
+    this._componentRef && this.appRef.detachView(this._componentRef.hostView);
   }
 
   setSavedViewBolig(

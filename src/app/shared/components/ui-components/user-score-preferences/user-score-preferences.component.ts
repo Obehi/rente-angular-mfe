@@ -40,23 +40,21 @@ import { UserScoreDemo } from '../../../animations/user-score-demo';
   templateUrl: './user-score-preferences.component.html',
   styleUrls: ['./user-score-preferences.component.scss'],
   animations: [
-    trigger('test', [
+    trigger('demoBorder', [
       state(
-        'open',
+        'hide',
         style({
-          border: '0'
+          borderWidth: '0'
         })
       ),
       state(
-        'close',
+        'show',
         style({
-          border: '2px solid white'
+          borderWidth: '2px'
         })
       ),
-      transition('* => close', [
-        animate('0.2s', style({ border: '2px solid white' }))
-      ]),
-      transition('* => open', [animate('0.2s', style({ border: '0' }))])
+      transition('* => show', [animate('0.2s', style({ borderWidth: '2px' }))]),
+      transition('* => hide', [animate('0.2s', style({ borderWidth: '0' }))])
     ])
   ]
 })
@@ -268,7 +266,7 @@ export class UserScorePreferencesComponent implements OnInit {
 
         tap(() => {
           console.log('1 step!!');
-          this.userDemoAnimation.getUserScoreAnimation();
+          this.demoIsLive && this.userDemoAnimation.getUserScoreAnimation();
           this.demoIsLive = true;
 
           this.borderTest = true;
@@ -277,8 +275,7 @@ export class UserScorePreferencesComponent implements OnInit {
         filter(() => this.demoIsLive === true),
         tap(() => {
           console.log('2 step!!');
-          this.userDemoAnimation.getUserScoreAnimation();
-
+          this.demoIsLive && this.userDemoAnimation.getUserScoreAnimation();
           this.demoIsLive = true;
           this.demoValue = 1;
         }),
@@ -286,15 +283,14 @@ export class UserScorePreferencesComponent implements OnInit {
         filter(() => this.demoIsLive === true),
         tap(() => {
           console.log('3 step!!');
-          this.userDemoAnimation.getUserScoreAnimation();
-
+          this.demoIsLive && this.userDemoAnimation.getUserScoreAnimation();
           this.demoValue = 3;
         }),
         delay(1000),
         filter(() => this.demoIsLive === true),
         tap(() => {
           this.demoValue = 2;
-          this.userDemoAnimation.getUserScoreAnimation();
+          this.demoIsLive && this.userDemoAnimation.getUserScoreAnimation();
         }),
         delay(2000),
         tap(() => {
@@ -309,10 +305,12 @@ export class UserScorePreferencesComponent implements OnInit {
         filter((shouldStart) => shouldStart === false),
         tap(() => {
           this.demoIsLive = false;
+          this.borderTest = false;
         })
       )
       .subscribe(() => {});
-    this.triggerDemo = this.shouldShowDemoListener.pipe(
+
+    /*   this.triggerDemo = this.shouldShowDemoListener.pipe(
       delay(1000),
       tap(() => {
         this.demoValue = 1;
@@ -325,7 +323,7 @@ export class UserScorePreferencesComponent implements OnInit {
       tap(() => {
         this.demoValue = 2;
       })
-    );
+    ); */
   }
 
   getAnimation(): any {
