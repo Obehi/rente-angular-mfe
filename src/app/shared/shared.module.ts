@@ -42,6 +42,7 @@ import { RoundPipe } from './pipes/round.pipe';
 import { ThousandsSeprator } from './pipes/thousands.pipe';
 import { FilterPipe } from './pipes/filter.pipe';
 import { TruncatePipe } from './pipes/truncate.pipe';
+import { PhoneNumberPipe } from './pipes/phone-number.pipe';
 import { IMaskModule } from 'angular-imask';
 import { CustomLangTextService } from '@services/custom-lang-text.service';
 import { ChildDirective } from './directives/child.directive';
@@ -131,6 +132,7 @@ const services = [
     ThousandsSeprator,
     FilterPipe,
     TruncatePipe,
+    PhoneNumberPipe,
     ChildDirective,
     BarComponent,
     FlowHeaderComponent,
@@ -147,6 +149,7 @@ const services = [
     ThousandsSeprator,
     FilterPipe,
     TruncatePipe,
+    PhoneNumberPipe,
     BarComponent,
     ChildDirective,
     ReactiveFormsModule,

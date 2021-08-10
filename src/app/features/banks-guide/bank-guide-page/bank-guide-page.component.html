@@ -170,7 +170,7 @@
       <!-- end top-container -->
 
       <div class="internal-links p-3">
-        <div
+        <!-- <div
           *ngIf="bankHasInShort"
           (click)="scrollTo(inShort)"
           class="icon-link"
@@ -181,10 +181,30 @@
             class="arrow"
             src="../../../../assets/icons/arrow-small-grey.svg"
           />
-        </div>
+        </div> -->
         <div (click)="scrollTo(bankOffering)" class="icon-link">
           <img src="../../../../assets/icons/house-grey-circle.svg" />
           <span>Boliglån i {{ bank.label }}</span>
+          <img
+            class="arrow"
+            src="../../../../assets/icons/arrow-small-grey.svg"
+          />
+        </div>
+        <div (click)="scrollTo(deposit)" class="icon-link">
+          <img src="../../../../assets/icons/informatin-grey-circle.svg" />
+          <span>Innskudd</span>
+          <img
+            class="arrow"
+            src="../../../../assets/icons/arrow-small-grey.svg"
+          />
+        </div>
+        <div
+          (click)="scrollTo(contact)"
+          *ngIf="banksLocations.length !== 0"
+          class="icon-link"
+        >
+          <img src="../../../../assets/icons/contact-icon-grey.svg" />
+          <span>Kontaktinformasjon</span>
           <img
             class="arrow"
             src="../../../../assets/icons/arrow-small-grey.svg"
@@ -203,24 +223,11 @@
             src="../../../../assets/icons/arrow-small-grey.svg"
           />
         </div>
-
-        <div
-          (click)="scrollTo(contact)"
-          *ngIf="banksLocations.length !== 0"
-          class="icon-link"
-        >
-          <img src="../../../../assets/icons/contact-icon-grey.svg" />
-          <span>Kontaktinformasjon</span>
-          <img
-            class="arrow"
-            src="../../../../assets/icons/arrow-small-grey.svg"
-          />
-        </div>
       </div>
     </div>
 
     <div class="blue-bg">
-      <div class="scroll-anchor in-short" #inShort>
+      <!-- <div class="scroll-anchor in-short" #inShort>
         <div class="white-bg p-3 mx-lg-auto mt-lg-4" *ngIf="bankHasInShort">
           <div class="bank-name">
             <div class="logo">
@@ -246,7 +253,7 @@
             </p>
           </div>
         </div>
-      </div>
+      </div> -->
 
       <div class="scroll-anchor white-bg p-3 mx-lg-auto mt-4" #bankOffering>
         <div class="bank-name justify-content-lg-center">
@@ -413,10 +420,11 @@
         </div>
       </div>
 
+      <div #deposit></div>
       <div
         *ngIf="depositsBsu.length !== 0 || depositsGeneral.length !== 0"
         class="scroll-anchor white-bg p-3 mx-lg-auto mt-4"
-        #bankOffering
+        #bankOffering233
       >
         <div class="bank-name justify-content-lg-center">
           <div class="logo d-inline-block">
@@ -455,6 +463,61 @@
               </div>
               <div>{{ offer.rate | number: '1.2-2' }}%</div>
             </div>
+          </div>
+        </div>
+      </div>
+
+      <div #contact></div>
+      <div class="white-bg p-3 mx-lg-auto mt-4">
+        <div class="bank-name justify-content-lg-center">
+          <div class="logo d-inline-block">
+            <img
+              src="../../../assets/img/banks-logo/round/{{ bank.icon }}"
+              [alt]="bank.label"
+            />
+          </div>
+          <div class="label d-flex text-left" #kontaktInfo>Kontakt</div>
+        </div>
+        <div class="contact-subdiv">
+          <div class="mortgage">
+            <img
+              class="contact-image"
+              src="../../../../assets/icons/www-icon-green.svg"
+            />
+            <h3 class="contact-subheader">Nettbank boliglån:</h3>
+            <a
+              rel="nofollow"
+              target="_blank"
+              class="url"
+              (click)="openBankUrlByButton()"
+              >Besøk nettsiden
+            </a>
+          </div>
+          <div class="email">
+            <img
+              class="contact-image"
+              src="../../../../assets/icons/email-icon-green.svg"
+            />
+            <h3 class="contact-subheader">Mail:</h3>
+            <p class="content-text">{{ bankGuideInfo?.email }}</p>
+          </div>
+          <div class="contact-phone">
+            <img
+              class="contact-image"
+              src="../../../../assets/icons/contact-icon-green.svg"
+            />
+            <h3 class="contact-subheader">Telefon Kundeservice:</h3>
+            <p class="content-text">
+              {{ bankGuideInfo?.phone | phone }}
+            </p>
+          </div>
+          <div class="swift">
+            <img
+              class="contact-image"
+              src="../../../../assets/icons/swift-icon-green.svg"
+            />
+            <h3 class="contact-subheader">Swift:</h3>
+            <p class="content-text">{{ bankGuideInfo?.swift }}</p>
           </div>
         </div>
       </div>
@@ -624,56 +687,6 @@
                 </div>
               </mat-expansion-panel>
             </mat-accordion>
-          </div>
-        </div>
-      </div>
-      <div #contact></div>
-      <div class="white-bg p-3 mx-lg-auto mt-4">
-        <div class="bank-name justify-content-lg-center">
-          <div class="logo d-inline-block">
-            <img
-              src="../../../assets/img/banks-logo/round/{{ bank.icon }}"
-              [alt]="bank.label"
-            />
-          </div>
-          <div class="label d-flex text-left" #kontaktInfo>Kontakt</div>
-        </div>
-        <div class="contact-subdiv">
-          <div class="mortgage">
-            <img
-              class="contact-image"
-              src="../../../../assets/icons/www-icon-green.svg"
-            />
-            <h3 class="contact-subheader">Nettbank boliglån:</h3>
-            <a target="_blank" class="url" (click)="openBankUrlByButton()"
-              >Besøk nettsiden
-            </a>
-          </div>
-          <div class="email">
-            <img
-              class="contact-image"
-              src="../../../../assets/icons/email-icon-green.svg"
-            />
-            <h3 class="contact-subheader">Mail:</h3>
-            <p class="content-text">{{ bankGuideInfo?.email }}</p>
-          </div>
-          <div class="contact-phone">
-            <img
-              class="contact-image"
-              src="../../../../assets/icons/contact-icon-green.svg"
-            />
-            <h3 class="contact-subheader">Telefon Kundeservice:</h3>
-            <p class="content-text">
-              {{ bankGuideInfo?.phone }}
-            </p>
-          </div>
-          <div class="swift">
-            <img
-              class="contact-image"
-              src="../../../../assets/icons/swift-icon-green.svg"
-            />
-            <h3 class="contact-subheader">Swift:</h3>
-            <p class="content-text">{{ bankGuideInfo?.swift }}</p>
           </div>
         </div>
       </div>
