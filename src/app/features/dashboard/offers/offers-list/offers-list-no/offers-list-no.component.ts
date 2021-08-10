@@ -6,7 +6,19 @@ import { OffersService } from '../../offers.service';
 import { BehaviorSubject, merge, Observable, of, Subject } from 'rxjs';
 import { UserScorePreferences } from '@models/user';
 import { UserService } from '@services/remote-api/user.service';
-import { debounceTime, map, share, skip, switchMap, tap } from 'rxjs/operators';
+import {
+  catchError,
+  debounceTime,
+  timeout,
+  map,
+  retry,
+  share,
+  skip,
+  switchMap,
+  tap,
+  filter,
+  delay
+} from 'rxjs/operators';
 import { LoansService } from '@services/remote-api/loans.service';
 import {
   animate,
@@ -90,21 +102,6 @@ export class OffersListNoComponent implements OnInit {
     this.showHamburger = false;
   }
 
-  // Save for later use
-  /* public getVariation(): number {
-    if ((window as any).google_optimize === undefined) {
-      return 0;
-    }
-    let experimentId: string | null;
-    if (this.envService.environment.production === true) {
-      experimentId = 'CZzJbFYIQEa_tvn-UeQ2RQ';
-    } else {
-      experimentId = 'A6Fvld2GTAG3VE95NWV1Hw';
-    }
-    const variation = (window as any).google_optimize.get(experimentId);
-    return variation || 0;
-  } */
-
   get isMobile(): boolean {
     return window.innerWidth < 600;
   }
@@ -113,33 +110,8 @@ export class OffersListNoComponent implements OnInit {
   ngOnInit(): void {
     this.initialScores$ = this.userService.getUserScorePreferences();
     this.initOfferType();
-
-    this.showDemoAction$.pipe(skip(1)).subscribe((value) => {
-      console.log(value + ' WOP WOP');
-      this.messageService.setView(
-        'Besvar spørsmålene under ved å flytte på slideren for å markere din preferanse, og så finner vi riktig bank for deg basert på dine valg.',
-        4000,
-        this.animationType.SLIDE_UP,
-        'success',
-        window
-      );
-    });
-
-    this.currentOfferInfo$ = merge(
-      this.offerService.updateOfferResponse$.pipe(
-        map((offersInfo) =>
-          this.showScorePreferences
-            ? offersInfo.offers.topScoreOffer
-            : offersInfo.offers.top5
-        )
-      ),
-      this.cachedCurrentOffers$
-    );
-
-    this.currentOfferInfo$.subscribe((offers) => {
-      console.log(offers);
-      this.currentOffers = offers;
-    });
+    this.initDemoListener();
+    this.initCurrentOfferListener();
     this.initScoreListener();
 
     this.currentOfferInfo = JSON.parse(JSON.stringify(this.offersInfo));
@@ -149,6 +121,46 @@ export class OffersListNoComponent implements OnInit {
       ? this.currentOfferInfo.offers.topScoreOffer
       : this.currentOfferInfo.offers.top5;
     this.cachedCurrentOffers$.next(preselectedOffers);
+  }
+
+  initDemoListener(): void {
+    this.showDemoAction$.pipe(skip(1)).subscribe((value) => {
+      this.messageService.setView(
+        'Besvar spørsmålene under ved å flytte på slideren for å markere din preferanse, og så finner vi riktig bank for deg basert på dine valg.',
+        4000,
+        this.animationType.SLIDE_UP,
+        'success',
+        window
+      );
+    });
+  }
+
+  initCurrentOfferListener(): void {
+    /* Current offers can be set either automatically by adjusting the score(updateOfferResponse$), or by 
+      the user changing the offerType(cachedCurrentOffers$). Both cases are merged into one stream
+      */
+    this.currentOfferInfo$ = merge(
+      this.offerService.updateOfferResponse$.pipe(
+        map((offersInfo) =>
+          this.showScorePreferences
+            ? offersInfo.offers.topScoreOffer
+            : offersInfo.offers.top5
+        )
+      ),
+      this.cachedCurrentOffers$.pipe(
+        // Create "fake" loading time to make sure the user knows the offertype settings are being updated
+        tap((value) => {
+          this.offerService.isUpdatingOffers$.next(true);
+        }),
+        delay(100),
+        tap((value) => {
+          this.offerService.isUpdatingOffers$.next(false);
+        })
+      )
+    );
+    this.currentOfferInfo$.subscribe((offers) => {
+      this.currentOffers = offers;
+    });
   }
 
   initOfferType(): void {
@@ -188,18 +200,39 @@ export class OffersListNoComponent implements OnInit {
       .pipe(
         skip(1),
         tap(() => this.offerService.isUpdatingOffers$.next(true)),
-
+        // Avoid rapidfire emits
         debounceTime(100),
         switchMap((score) =>
-          this.userService.updateUserScorePreferences(score)
+          this.userService.updateUserScorePreferences(score).pipe(
+            retry(1),
+            timeout(4000),
+            catchError((error) => {
+              return of(null);
+            })
+          )
         ),
+        catchError((error) => {
+          return of(null);
+        }),
         map(() => this.isOffersInViewport())
       )
       .subscribe((shouldUpdateNow) => {
-        if (shouldUpdateNow) {
+        if (shouldUpdateNow === true) {
           this.offerService.updateOffers$.next();
-        } else {
+        } else if (shouldUpdateNow === false) {
           this.offerService.shouldUpdateOffersLater = true;
+        }
+
+        // shouldUpdateNow can be null if http request error or if stream returns null
+        if (shouldUpdateNow === null) {
+          this.offerService.isUpdatingOffers$.next(false);
+          this.messageService.setView(
+            'Noe gikk feil, prøv å sette sett innstillinger på nytt',
+            4000,
+            this.animationType.DROP_DOWN_UP,
+            'error',
+            window
+          );
         }
       });
   }
