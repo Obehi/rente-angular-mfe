@@ -128,125 +128,56 @@ export class UserScorePreferencesComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    this.shouldShowDemoListener
-      .pipe(
-        filter((shouldStart) => shouldStart === true),
+    this.setInitialScoresListeners();
+    this.setUpdateScoresListener();
+    this.setDemoAnimationListener();
+  }
 
-        tap(() => {
-          console.log('1 step!!');
-          document
-            .getElementsByClassName('ngx-slider-pointer')[0]
-            .animate(this.getAnimation(), this.getAnimationTiming());
-          this.demoIsLive = true;
-
-          this.borderTest = true;
-        }),
-        delay(1000),
-        filter(() => this.demoIsLive === true),
-        tap(() => {
-          console.log('2 step!!');
-
-          this.demoIsLive = true;
-          this.demoValue = 1;
-        }),
-        delay(1000),
-        filter(() => this.demoIsLive === true),
-        tap(() => {
-          console.log('3 step!!');
-          this.demoValue = 3;
-        }),
-        delay(1000),
-        filter(() => this.demoIsLive === true),
-        tap(() => {
-          this.demoValue = 2;
-        }),
-        delay(2000),
-        tap(() => {
-          this.demoIsLive = false;
-          this.borderTest = false;
-        })
-      )
-      .subscribe(() => {});
-
-    this.shouldShowDemoListener
-      .pipe(
-        filter((shouldStart) => shouldStart === false),
-        tap(() => {
-          this.demoIsLive = false;
-        })
-      )
-      .subscribe(() => {
-        console.log('jappppppp');
-      });
-    this.triggerDemo = this.shouldShowDemoListener.pipe(
-      tap(() => console.log('triggerDemo triggered')),
-      delay(1000),
-      tap(() => {
-        this.demoValue = 1;
-      }),
-      delay(1000),
-      tap(() => {
-        this.demoValue = 3;
-      }),
-      delay(1000),
-      tap(() => {
-        this.demoValue = 2;
+  /* Sets scores to ad-hoc scores solution where  combinedStockEnsuranceProductsScore 
+    is a combination of insucrance, stock and  saving score.
+    Triggered by async in template file
+    */
+  setInitialScoresListeners(): void {
+    this.combinedScores$ = this.initialScores.pipe(
+      map((scores) => this.convertScoresToCombinedScores(scores)),
+      tap((scores) => {
+        this.initialScoresStorage = scores;
       })
     );
 
     this.combinedScores$ = this.initialScores.pipe(
-      map((scores) => this.getCombinedScores(scores))
+      map((scores) => this.convertScoresToCombinedScores(scores)),
+      tap((scores) => {
+        this.initialScoresStorage = scores;
+      })
     );
+  }
 
-    this.combinedScores$.subscribe((scores) => {
-      console.log('inital scores set to');
-      console.log(scores);
-      this.initialScoresStorage = scores;
-    });
-
+  setUpdateScoresListener(): void {
     this.scoreObserveTrigger$ = this.collectScore$.pipe(
       debounceTime(200),
+      // accumilates all scores that has been changed since last page load
       scan((acc, mergeFilter) => {
         return {
           ...acc,
           ...(mergeFilter as any)
         };
       }, {}),
-
+      map((scores) => this.convertCombinedScoresToNormalScores(scores) as any),
+      // Emitt score values to parent component via scoreListener
       tap((scores) => {
-        console.log('accumalutive scores');
-        console.log(scores);
-
-        console.log('inital scores');
-        console.log(this.initialScoresStorage);
-
-        console.log('combined scores');
-        console.log({
-          ...this.initialScoresStorage,
-          ...scores
-        });
-      }),
-      map((scores) => this.setCombinedScores(scores) as any),
-
-      tap((scores) => {
-        console.log('scores before request');
-        console.log(scores);
         // emit new value only if scores is not empty
         if (Object.keys(scores).length) this.scoreListener?.next(scores);
       })
     );
 
-    forkJoin([this.scoreListener, of(2)])
-      .pipe(tap((array) => console.log(array)))
-      .subscribe((test) => {
-        console.log(test);
-      });
-
     // Subscribing just to trigger the observer. Bad workaround
     this.scoreObserveTrigger$.subscribe(() => {});
   }
 
-  getCombinedScores(scores: UserScorePreferences): UserScorePreferences {
+  convertScoresToCombinedScores(
+    scores: UserScorePreferences
+  ): UserScorePreferences {
     return {
       advisorScore: scores.advisorScore,
       changeProcessScore: scores.changeProcessScore,
@@ -260,7 +191,9 @@ export class UserScorePreferencesComponent implements OnInit {
     };
   }
 
-  setCombinedScores(scores: UserScorePreferences): UserScorePreferences {
+  convertCombinedScoresToNormalScores(
+    scores: UserScorePreferences
+  ): UserScorePreferences {
     const mutated = {
       advisorScore:
         scores.advisorScore ?? this.initialScoresStorage.advisorScore,
@@ -279,10 +212,10 @@ export class UserScorePreferencesComponent implements OnInit {
       priceSensitivity:
         scores.priceSensitivity ?? this.initialScoresStorage.priceSensitivity,
       savingScore:
-        scores.insuranceScore ??
+        scores.savingScore ??
         this.initialScoresStorage.combinedStockEnsuranceProductsScore,
       stockScore:
-        scores.insuranceScore ??
+        scores.stockScore ??
         this.initialScoresStorage.combinedStockEnsuranceProductsScore
     };
     return mutated;
@@ -327,26 +260,90 @@ export class UserScorePreferencesComponent implements OnInit {
     this.collectScore$.next({ localPresenceScore: event.value });
   }
 
+  setDemoAnimationListener(): void {
+    this.shouldShowDemoListener
+      .pipe(
+        filter((shouldStart) => shouldStart === true),
+
+        tap(() => {
+          document
+            .getElementsByClassName('ngx-slider-pointer')[0]
+            .animate(this.getAnimation(), this.getAnimationTiming());
+          this.demoIsLive = true;
+
+          this.borderTest = true;
+        }),
+        delay(1000),
+        filter(() => this.demoIsLive === true),
+        tap(() => {
+          this.demoIsLive = true;
+          this.demoValue = 1;
+        }),
+        delay(1000),
+        filter(() => this.demoIsLive === true),
+        tap(() => {
+          this.demoValue = 3;
+        }),
+        delay(1000),
+        filter(() => this.demoIsLive === true),
+        tap(() => {
+          this.demoValue = 2;
+        }),
+        delay(2000),
+        tap(() => {
+          this.demoIsLive = false;
+          this.borderTest = false;
+        })
+      )
+      .subscribe(() => {});
+
+    this.shouldShowDemoListener
+      .pipe(
+        filter((shouldStart) => shouldStart === false),
+        tap(() => {
+          this.demoIsLive = false;
+        })
+      )
+      .subscribe(() => {});
+    this.triggerDemo = this.shouldShowDemoListener.pipe(
+      delay(1000),
+      tap(() => {
+        this.demoValue = 1;
+      }),
+      delay(1000),
+      tap(() => {
+        this.demoValue = 3;
+      }),
+      delay(1000),
+      tap(() => {
+        this.demoValue = 2;
+      })
+    );
+  }
+
   getAnimation(): any {
     return [
       {
         width: '32px',
         height: '32px',
         top: '-14px',
-        border: '2px solid white'
+        border: '2px solid white',
+        offset: 0.1
       },
       {
         width: '40px',
         height: '40px',
         top: '-10px',
         borderRadius: '50px',
-        border: '2px solid white'
+        border: '2px solid white',
+        offset: 0.2
       },
       {
         width: '32px',
         height: '32px',
         top: '-14px',
-        border: '2px solid white'
+        border: '2px solid white',
+        offset: 0.9
       }
     ];
   }
