@@ -33,6 +33,7 @@ import {
   query,
   group
 } from '@angular/animations';
+import { UserScoreDemo } from '../../../animations/user-score-demo';
 
 @Component({
   selector: 'rente-user-score-preferences',
@@ -125,7 +126,7 @@ export class UserScorePreferencesComponent implements OnInit {
     }
   };
 
-  constructor() {}
+  constructor(private userDemoAnimation: UserScoreDemo) {}
 
   ngOnInit(): void {
     this.setInitialScoresListeners();
@@ -266,9 +267,8 @@ export class UserScorePreferencesComponent implements OnInit {
         filter((shouldStart) => shouldStart === true),
 
         tap(() => {
-          document
-            .getElementsByClassName('ngx-slider-pointer')[0]
-            .animate(this.getAnimation(), this.getAnimationTiming());
+          console.log('1 step!!');
+          this.userDemoAnimation.getUserScoreAnimation();
           this.demoIsLive = true;
 
           this.borderTest = true;
@@ -276,18 +276,25 @@ export class UserScorePreferencesComponent implements OnInit {
         delay(1000),
         filter(() => this.demoIsLive === true),
         tap(() => {
+          console.log('2 step!!');
+          this.userDemoAnimation.getUserScoreAnimation();
+
           this.demoIsLive = true;
           this.demoValue = 1;
         }),
         delay(1000),
         filter(() => this.demoIsLive === true),
         tap(() => {
+          console.log('3 step!!');
+          this.userDemoAnimation.getUserScoreAnimation();
+
           this.demoValue = 3;
         }),
         delay(1000),
         filter(() => this.demoIsLive === true),
         tap(() => {
           this.demoValue = 2;
+          this.userDemoAnimation.getUserScoreAnimation();
         }),
         delay(2000),
         tap(() => {
