@@ -169,13 +169,23 @@ b {
     margin-bottom: 20px;
   }
 
-  .sliders-3 {
+  /*   .sliders-3 {
     .slider-container {
       width: 100%;
       margin: 20px auto;
     }
-  }
+  } */
 
+  @media (min-width: 600px) {
+    .sliders {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-column-gap: 20px;
+      .slider-container {
+        width: 100%;
+      }
+    }
+  }
   .slider-container {
     margin-top: 30px;
     background: $karl-blue;
