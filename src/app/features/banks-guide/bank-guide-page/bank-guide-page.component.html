@@ -170,18 +170,6 @@
       <!-- end top-container -->
 
       <div class="internal-links p-3">
-        <!-- <div
-          *ngIf="bankHasInShort"
-          (click)="scrollTo(inShort)"
-          class="icon-link"
-        >
-          <img src="../../../../assets/icons/informatin-grey-circle.svg" />
-          <span>Kort om {{ bank.label }}</span>
-          <img
-            class="arrow"
-            src="../../../../assets/icons/arrow-small-grey.svg"
-          />
-        </div> -->
         <div (click)="scrollTo(bankOffering)" class="icon-link">
           <img src="../../../../assets/icons/house-grey-circle.svg" />
           <span>Boliglån i {{ bank.label }}</span>
@@ -227,34 +215,6 @@
     </div>
 
     <div class="blue-bg">
-      <!-- <div class="scroll-anchor in-short" #inShort>
-        <div class="white-bg p-3 mx-lg-auto mt-lg-4" *ngIf="bankHasInShort">
-          <div class="bank-name">
-            <div class="logo">
-              <img
-                src="../../../assets/img/banks-logo/round/{{ bank.icon }}"
-                [alt]="bank.label"
-              />
-            </div>
-            <h2>Kort om {{ bank.label }}</h2>
-          </div>
-          <div class="text">
-            <p class="my-3" *ngIf="bankGuideInfo?.text1">
-              {{ bankGuideInfo?.text1 }}
-            </p>
-            <p class="my-3" *ngIf="bankGuideInfo?.text2">
-              {{ bankGuideInfo?.text2 }}
-            </p>
-            <p class="my-3" *ngIf="bankGuideInfo?.text3">
-              {{ bankGuideInfo?.text3 }}
-            </p>
-            <p class="my-3" *ngIf="bankGuideInfo?.text4">
-              {{ bankGuideInfo?.text4 }}
-            </p>
-          </div>
-        </div>
-      </div> -->
-
       <div class="scroll-anchor white-bg p-3 mx-lg-auto mt-4" #bankOffering>
         <div class="bank-name justify-content-lg-center">
           <div class="logo d-inline-block">
@@ -424,7 +384,6 @@
       <div
         *ngIf="depositsBsu.length !== 0 || depositsGeneral.length !== 0"
         class="scroll-anchor white-bg p-3 mx-lg-auto mt-4"
-        #bankOffering233
       >
         <div class="bank-name justify-content-lg-center">
           <div class="logo d-inline-block">
