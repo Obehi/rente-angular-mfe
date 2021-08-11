@@ -116,7 +116,11 @@
       <rente-spinner [size]="'83px'"></rente-spinner>
     </div>
 
-    <div *ngIf="!(offerService.isUpdatingOffers$ | async)" class="offers-grid">
+    <div
+      *ngIf="!(offerService.isUpdatingOffers$ | async)"
+      class="offers-grid"
+      [@fade]
+    >
       <ng-container>
         <!--        <div *ngFor="let offer of test; let i = index">
           <h1>LALALLA</h1>
