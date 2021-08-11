@@ -38,7 +38,6 @@ import {
   styleUrls: ['./offers.component.scss']
 })
 export class OffersComponentBlue implements OnInit, OnDestroy {
-  public header_variable: boolean;
   public offersInfo: Offers;
   public currentOfferInfo: Offers;
   public loansInfo: any;
@@ -151,39 +150,6 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
         }
       });
   }
-
-  /*  private getOffers(): void {
-    this.offersService.isUpdatingOffers$.next(true);
-    this.offersService.getOffers().subscribe(
-      (res: Offers) => {
-        this.offersInfo = Object.assign({}, res);
-        this.currentOfferInfo = JSON.parse(JSON.stringify(res));
-
-        this.antiChurnIsOn = this.offersInfo.bank === 'NORDEA' ? true : false;
-
-        this.canBargain =
-          res.bank === 'SWE_AVANZA' ||
-          res.bank === 'SWE_SBAB' ||
-          res.bank === 'SWE_DANSKE_BANK' ||
-          res.bank === 'SWE_ICA_BANKEN'
-            ? false
-            : true;
-
-        this.isLoading = false;
-        this.localStorageService.removeItem('isNewUser');
-        this.offersService.isUpdatingOffers$.next(false);
-      },
-      (err) => {
-        this.offersService.isUpdatingOffers$.next(false);
-
-        if (err.errorType === 'PROPERTY_VALUE_MISSING') {
-          this.errorMessage = err.title;
-          this.router.navigate(['/dashboard/' + ROUTES_MAP.property]);
-        }
-        console.log(err);
-      }
-    );
-  } */
 
   public openAntiChurnBankDialog(offer, shouldLog: boolean): void {
     if (
