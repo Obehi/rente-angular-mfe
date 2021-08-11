@@ -3,7 +3,14 @@ import { OfferInfo, Offers } from './../../../../../shared/models/offers';
 import { OptimizeService } from '@services/optimize.service';
 import { EnvService } from '@services/env.service';
 import { OffersService } from '../../offers.service';
-import { BehaviorSubject, merge, Observable, of, Subject } from 'rxjs';
+import {
+  BehaviorSubject,
+  fromEvent,
+  merge,
+  Observable,
+  of,
+  Subject
+} from 'rxjs';
 import { UserScorePreferences } from '@models/user';
 import { UserService } from '@services/remote-api/user.service';
 import {
@@ -34,24 +41,7 @@ import { getAnimationStyles } from '@shared/animations/animationEnums';
   selector: 'rente-offers-list',
   templateUrl: './offers-list-no.component.html',
   styleUrls: ['./offers-list-no.component.scss'],
-  // animations: [
-  //   trigger('test', [
-  //     state(
-  //       'open',
-  //       style({
-  //         opacity: '0'
-  //       })
-  //     ),
-  //     state(
-  //       'close',
-  //       style({
-  //         opacity: '1'
-  //       })
-  //     ),
-  //     transition('* => close', [animate('0.2s', style({ opacity: '1' }))]),
-  //     transition('* => open', [animate('0.2s', style({ opacity: '0' }))])
-  //   ])
-  // ]
+
   animations: [
     trigger('test', [
       state(
@@ -86,6 +76,8 @@ export class OffersListNoComponent implements OnInit {
     filter((value) => value === false),
     share()
   );
+  public showPopupTrigger$ = new BehaviorSubject<boolean>(false);
+
   public demoIsLive = false;
   public demoSlideValue = 2;
   public currentOffers: OfferInfo[];
@@ -140,21 +132,30 @@ export class OffersListNoComponent implements OnInit {
       demoIsTriggered &&
         this.messageService.setView(
           'Besvar spørsmålene under ved å flytte på slideren for å markere din preferanse, og så finner vi riktig bank for deg basert på dine valg.',
-          4000,
+          1000,
           this.animationType.SLIDE_UP,
           'success',
           window,
           true,
-          true,
+          false,
           () => {
             this.showDemoTrigger$.next(false);
           }
         );
 
-      if (demoIsTriggered === false) {
-      }
-      setTimeout(() => {}, 1000);
+      demoIsTriggered && this.showPopupTrigger$.next(true);
     });
+
+    fromEvent(window, 'click')
+      .pipe(
+        filter(() => this.showPopupTrigger$.value),
+        switchMap(() => this.showPopupTrigger$),
+        filter((popupIsLive) => popupIsLive)
+      )
+      .subscribe(() => {
+        console.log('click');
+        this.messageService.detachView();
+      });
   }
 
   initCurrentOfferListener(): void {

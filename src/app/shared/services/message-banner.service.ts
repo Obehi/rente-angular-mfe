@@ -88,7 +88,7 @@ export class MessageBannerService implements OnDestroy {
     });
     this._componentRef.instance.status = _status;
     this._componentRef.instance.animationType = _animationType;
-    this._componentRef.instance.changeTimer(_newtime);
+    shouldSetTimeout && this._componentRef.instance.changeTimer(_newtime);
     this._componentRef.instance.displayText = _newtext;
     this.appRef.attachView(this._componentRef.hostView);
 
@@ -104,6 +104,7 @@ export class MessageBannerService implements OnDestroy {
   }
 
   private detachViewWithTimeout(newTime: number): void {
+    console.log('detachViewWithTimeout');
     setTimeout(() => {
       this.appRef.detachView(this._componentRef.hostView);
     }, newTime + 2000);
