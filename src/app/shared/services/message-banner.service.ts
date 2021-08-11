@@ -117,8 +117,8 @@ export class MessageBannerService implements OnDestroy {
     }, newTime + 2000);
   }
 
-  private detachView() {
-    this.appRef.detachView(this._componentRef.hostView);
+  public detachView(): void {
+    this._componentRef && this.appRef.detachView(this._componentRef.hostView);
   }
 
   setSavedViewBolig(

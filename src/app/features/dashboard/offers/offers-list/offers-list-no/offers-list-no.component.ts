@@ -1,22 +1,33 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  Output,
+  EventEmitter,
+  OnDestroy
+} from '@angular/core';
 import { Offers } from './../../../../../shared/models/offers';
 import { OptimizeService } from '@services/optimize.service';
 import { EnvService } from '@services/env.service';
-import { fromEvent, Observable, Subject } from 'rxjs';
-import { NotificationService } from '@services/notification.service';
+import { fromEvent, Observable, Subject, Subscription } from 'rxjs';
+import { NotificationService } from '../../../../../shared/services/notification.service';
+import { MessageBannerService } from '../../../../../shared/services/message-banner.service';
 @Component({
   selector: 'rente-offers-list',
   templateUrl: './offers-list-no.component.html',
   styleUrls: ['./offers-list-no.component.scss']
 })
-export class OffersListNoComponent implements OnInit {
+export class OffersListNoComponent implements OnInit, OnDestroy {
   @Input() offersInfo: Offers;
   public currentOfferInfo: Offers;
+  public notifications = true;
+  public notificationSubscription: Subscription;
 
   constructor(
     public optimizeService: OptimizeService,
     private envService: EnvService,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private messageService: MessageBannerService
   ) {}
 
   // Save for later use
@@ -39,14 +50,22 @@ export class OffersListNoComponent implements OnInit {
   }
   public currentOfferType: string;
 
+  ngOnDestroy(): void {
+    this.notificationSubscription.unsubscribe();
+  }
+
   ngOnInit(): void {
     const obj = document.getElementsByClassName('the-offers')[0];
-    fromEvent(window, 'scroll').subscribe(() => {
-      if (obj?.getBoundingClientRect().top <= 0) {
-        console.log('works');
-        this.notificationService.resetOfferNotification();
+
+    this.notificationSubscription = fromEvent(window, 'scroll').subscribe(
+      () => {
+        console.log(obj.getBoundingClientRect());
+        if (obj?.getBoundingClientRect().top <= 0 && this.notifications) {
+          this.messageService.detachView();
+        }
       }
-    });
+    );
+
     this.currentOfferInfo = JSON.parse(JSON.stringify(this.offersInfo));
     this.currentOfferType = 'all';
 
