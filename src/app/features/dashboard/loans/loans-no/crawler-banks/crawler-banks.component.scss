@@ -1,0 +1,130 @@
+@import '../../../../../../styles/theme/_colors.scss';
+
+h3.title {
+  color: white;
+  padding: 10px;
+}
+
+h3 {
+  color: white;
+}
+
+p {
+  color: white;
+}
+
+.summary {
+  padding: 10px;
+}
+
+@media (min-width: 600px) {
+  .summary {
+    border-top: none;
+    position: relative;
+    left: -1px;
+    width: calc(100% + 2px);
+  }
+}
+
+.content-blue-box {
+  width: 100%;
+  background-color: $secondary;
+  border-radius: 10px;
+}
+
+.all-text {
+  padding: 15px;
+}
+
+.information-box {
+  width: 100%;
+  height: 60px;
+  padding: 10px;
+}
+
+.box-title {
+  height: 100%;
+  float: left;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  p {
+    margin-left: 5px;
+  }
+}
+
+.box-value {
+  width: 50%;
+  height: 100%;
+  // background-color: lightcoral;
+  float: right;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  h3 {
+    margin-right: 10px;
+  }
+}
+
+.double-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 5px;
+}
+
+.first-box {
+  color: white;
+  border-radius: 11px;
+  border: 1px solid #4d97dc;
+  width: 45%;
+}
+
+.btitle-two,
+.btitle-one {
+  text-align: center;
+  padding-left: 11px;
+  padding-right: 11px;
+
+  p {
+    padding: 6px;
+  }
+}
+
+.btitle-two {
+  padding-left: 7px;
+  padding-right: 7px;
+}
+
+.bvalue {
+  text-align: center;
+  padding: 15px;
+}
+
+.loan-type {
+  padding: 10px;
+  color: white;
+  margin-left: 10px;
+}
+
+hr.split {
+  border-top: 1px solid #fff;
+}
+
+.loan-info {
+  padding: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+// Add css when necessary
+.loan-title {
+}
+
+// Add css when necessary
+.loan-value {
+}

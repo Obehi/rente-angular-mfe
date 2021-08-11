@@ -17,8 +17,12 @@ interface offerDto {
   styleUrls: ['./crawler-banks.component.scss']
 })
 export class CrawlerBanksComponent implements OnInit {
-  offer: any;
-  loansData: any;
+  public offer: offerDto;
+  public loansData: any;
+  public loans: any[];
+  /*
+    The object interface is not updated so fix it when the new version is merged
+  */
   public errorMessage: string;
 
   constructor(private loansService: LoansService) {}
@@ -28,6 +32,8 @@ export class CrawlerBanksComponent implements OnInit {
       ([loans, offerBank]) => {
         this.loansData = loans;
         this.offer = offerBank as offerDto;
+        console.log(this.loansData.loans);
+        this.loans = this.loansData.loans;
       },
       (err) => {
         this.errorMessage = err.title;

@@ -64,10 +64,10 @@ export class LoansNoComponent implements OnInit {
 
         console.log(this.offer);
 
-        this.isSignicatUser = BankUtils.getSignicatUserByBankLabel(
-          this.loansData.loans[0].bank
-        );
-        // this.isSignicatUser = false;
+        // this.isSignicatUser = BankUtils.getSignicatUserByBankLabel(
+        //   this.loansData.loans[0].bank
+        // );
+        this.isSignicatUser = false;
 
         console.log('Is signicatuser?');
         console.log(this.isSignicatUser);
