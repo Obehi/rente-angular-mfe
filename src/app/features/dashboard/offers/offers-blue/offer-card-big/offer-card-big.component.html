@@ -148,13 +148,13 @@
       [ngClass]="{
         double: isNordea === false,
         triple: isNordea === true,
-        single: isNybygger === true
+        single: isSingleButtonLayout === true
       }"
       class="buttons"
     >
       <div class="full-width">
         <rente-button
-          *ngIf="offer.bankInfo.bank !== 'NYBYGGER'"
+          *ngIf="!isSingleButtonLayout"
           i18n="“see-more|offer-card-big@@offer.card.big.seeMore”"
           child
           childClass="{{ offer.bankInfo.name }}"
@@ -174,13 +174,15 @@
         </p>
       </div>
 
-      <div [ngClass]="isNybygger === true ? '' : 'full-width'">
+      <div [ngClass]="isSingleButtonLayout === true ? '' : 'full-width'">
         <rente-button
           childClass="{{ offer.bankInfo.name }}"
           [disabled]="offer.bankInfo.partner == false"
           child
           childClass="{{ offer.bankInfo.name }}"
-          color="{{ isNybygger === true ? 'primary-semi-wide' : 'primary' }}"
+          color="{{
+            isSingleButtonLayout === true ? 'primary-semi-wide' : 'primary'
+          }}"
           type="raised"
           (click)="openNewOfferDialog(offer)"
           >{{ offerCardService.getOfferButtonText(offer) }}</rente-button

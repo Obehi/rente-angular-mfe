@@ -69,6 +69,10 @@ export class OfferCardService {
     this.sendOfferTrackingData(trackingDto);
   }
 
+  public isSingleButtonLayout(bank: string): boolean {
+    return bank === 'NYBYGGER' || bank === 'DIN_BANK';
+  }
+
   public getOfferButtonText(offer: OfferInfo): string {
     let text = '';
     switch (offer.bankInfo.bank) {
@@ -80,18 +84,21 @@ export class OfferCardService {
         text = 'Les mer og søk om lån';
         break;
       }
+      case 'DIN_BANK': {
+        text = 'Les mer og søk om lån';
+        break;
+      }
       case 'BULDER': {
         text = 'Få tilbud fra Bulder!';
         break;
       }
 
       case 'SWE_HYPOTEKET': {
-        text = 'Få erbjudande ifrån Hypoteket!';
+        text = 'Få erbjudande från Hypoteket';
         break;
       }
-
       default: {
-        text = this.langService.getOfferCardButtonDefaultCTAText();
+        text = this.langService.getOffeCardCTAButtonText();
         break;
       }
     }

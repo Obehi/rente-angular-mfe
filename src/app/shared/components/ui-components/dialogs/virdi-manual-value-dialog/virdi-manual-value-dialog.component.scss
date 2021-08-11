@@ -41,6 +41,11 @@ rente-button {
   display: block;
   margin: auto;
   text-align: center;
+  padding: 5px;
+
+  @media (max-width: 370px) {
+    padding: 0px;
+  }
 }
 
 .top {
@@ -48,11 +53,12 @@ rente-button {
   flex-direction: column;
   position: relative;
   padding: 20px;
-  min-height: 400px;
+  min-height: 301px;
 
   @media (max-width: 600px) {
-    min-height: 384px;
+    min-height: 322px;
   }
+
   img {
     width: 75px;
     align-self: center;
@@ -71,6 +77,13 @@ rente-button {
       min-width: 230px;
       max-width: 300px;
       margin-bottom: 20px;
+
+      @media (max-width: 280px) {
+        justify-content: space-around;
+        min-width: 180px;
+        margin-bottom: 0px;
+      }
+
       p {
         margin: 0;
       }
@@ -82,19 +95,27 @@ rente-button {
     padding: 10px 20px;
     border-radius: 15px;
     margin: 0;
-    margin-top: 30px;
+    margin-top: 5px;
+
+    @media (max-width: 370px) {
+      padding: 10px 10px;
+      margin-top: 0px;
+    }
 
     .manualvalueform {
       padding: 5px;
       border: none !important;
-      margin-top: -10px;
     }
   }
 }
 .bottom {
-  border-top: 1px solid #ececec;
+  // border-top: 1px solid #ececec;
   padding: 20px;
   border-radius: 0 0 10px 10px;
+
+  @media (max-width: 370px) {
+    padding: 0px;
+  }
 
   &.single {
     display: flex;
@@ -104,8 +125,12 @@ rente-button {
 
   &.double {
     display: grid;
-    grid-column-gap: 15px;
+    grid-column-gap: 5px;
     grid-template-columns: 1fr 1fr;
+
+    @media (max-width: 600px) {
+      display: block;
+    }
 
     @media (max-width: 370px) {
       display: flex;
@@ -119,4 +144,27 @@ rente-button {
   position: relative;
   grid-template-columns: none !important;
   margin: auto;
+}
+
+::ng-deep button.mat-primary-hollow {
+  width: 260px !important;
+  @media (max-width: 600px) {
+    width: 100% !important;
+  }
+
+  @media (max-width: 370px) {
+    width: 250px !important;
+  }
+}
+
+::ng-deep button.mat-primary {
+  width: 260px !important;
+
+  @media (max-width: 600px) {
+    width: 100% !important;
+  }
+
+  @media (max-width: 370px) {
+    width: 250px !important;
+  }
 }

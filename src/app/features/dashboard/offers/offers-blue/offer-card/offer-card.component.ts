@@ -11,25 +11,28 @@ import { CustomLangTextService } from '@shared/services/custom-lang-text.service
 import { OFFER_SAVINGS_TYPE } from '../../../../../config/loan-state';
 import { BankScoreLangGenericComponent } from '../../../../../local-components/components-output';
 import { OfferInfo, Offers } from './../../../../../shared/models/offers';
+import { OfferCardService } from '../offer-card.service';
+
 import {
   OffersService,
   OfferMessage
 } from '@features/dashboard/offers/offers.service';
 import { locale } from '../../../../../config/locale/locale';
-import { LoggingService } from '@services/logging.service';
-import { OfferCardService } from '../offer-card.service';
+
 @Component({
-  selector: 'rente-offer-card-blue',
+  selector: 'rente-offer-card',
   templateUrl: './offer-card.component.html',
   styleUrls: ['./offer-card.component.scss']
 })
-export class OfferCardComponentBlue implements OnInit {
+export class OfferCardComponent implements OnInit {
   public banksMap = BANKS_DATA;
   public offerSavingsType = OFFER_SAVINGS_TYPE;
   public xpandStatus = false;
   public offerType: string;
   public isSweden: boolean;
   public isNordea = false;
+  public bankSpecialPromoText: string | null = null;
+  public isSingleButtonLayout = false;
 
   @Input() offer: OfferInfo;
   @Input() offersInfo: Offers;
@@ -40,7 +43,6 @@ export class OfferCardComponentBlue implements OnInit {
     private router: Router,
     public customLangTextSerice: CustomLangTextService,
     private offersService: OffersService,
-    private logginService: LoggingService,
     public offerCardService: OfferCardService
   ) {}
 
@@ -51,11 +53,19 @@ export class OfferCardComponentBlue implements OnInit {
       this.isSweden = false;
     }
 
+    this.bankSpecialPromoText = this.getBankSpecialPromoText();
     this.isNordea = this.offersInfo.bank === 'NORDEA';
 
-    if (this.offer.bankInfo.bank === 'NYBYGGER') {
+    if (
+      this.offer.bankInfo.bank === 'NYBYGGER' ||
+      this.offer.bankInfo.bank === 'DIN_BANK'
+    ) {
       this.offer.bankInfo.partner = true;
     }
+
+    this.isSingleButtonLayout = this.offerCardService.isSingleButtonLayout(
+      this.offer.bankInfo.bank
+    );
 
     if (this.offer.fixedRatePeriod === 0) {
       this.offerType = 'threeMonths';
@@ -70,6 +80,13 @@ export class OfferCardComponentBlue implements OnInit {
     return window.innerWidth < 600;
   }
 
+  public getBankSpecialPromoText(): string | null {
+    if (this.offer.bankInfo.bank === 'BULDER') {
+      return 'Gir kundeutbytte';
+    }
+    return null;
+  }
+
   getbankNameOrDefault(offer: OfferInfo, isHompepageLink: boolean): string {
     let text = '';
     switch (offer.bankInfo.bank) {
@@ -79,6 +96,10 @@ export class OfferCardComponentBlue implements OnInit {
       }
       case 'NYBYGGER': {
         text = isHompepageLink ? "Nybygger.no'" : 'Nybygger.no';
+        break;
+      }
+      case 'SBANKEN': {
+        text = 'Sbanken';
         break;
       }
       case 'BULDER': {
@@ -174,11 +195,6 @@ export class OfferCardComponentBlue implements OnInit {
   }
 
   public clickNordea(): void {
-    this.logginService.googleAnalyticsLog({
-      category: 'NordeaAntiChurn',
-      action: 'Click offer card anti-churn',
-      label: `top offer: ${this.offersInfo.offers.top5[0].bankInfo.name}`
-    });
     this.offersService.pushMessage(OfferMessage.antiChurn);
   }
 }

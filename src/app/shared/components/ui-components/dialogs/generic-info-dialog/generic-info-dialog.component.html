@@ -1,10 +1,16 @@
 <div class="top">
-    <!--  <img src="../../../../../../assets/icons/info-grey.svg"> -->
-    <h4>{{ data.header }}</h4>
-    <p>{{ data.text }}</p>
+  <!--  <img src="../../../../../../assets/icons/info-grey.svg"> -->
+  <h4>{{ data.header }}</h4>
+  <p>{{ data.text }}</p>
+  <p *ngIf="data.text2 !== undefined">{{ data.text2 }}</p>
 </div>
 <div class="bottom">
-    <rente-button i18n=“close|button@@close” cdkFocusInitial color="primary" (click)="onClose()">
-        Lukk
-    </rente-button>
+  <rente-button
+    i18n="“close|button@@close”"
+    cdkFocusInitial
+    color="primary"
+    (click)="onClose()"
+  >
+    Lukk
+  </rente-button>
 </div>

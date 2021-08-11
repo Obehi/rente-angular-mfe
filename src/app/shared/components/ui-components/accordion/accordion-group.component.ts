@@ -71,9 +71,7 @@ import {
 export class AccordionGroupComponent implements OnInit, OnDestroy {
   ngOnInit(): void {}
 
-  ngOnDestroy(): void {
-    console.log('destroyed');
-  }
+  ngOnDestroy(): void {}
   /**
    * If the panel is opened or closed
    */
