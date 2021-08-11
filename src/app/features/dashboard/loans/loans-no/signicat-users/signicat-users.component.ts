@@ -7,7 +7,7 @@ import { LoansService } from '@services/remote-api/loans.service';
   styleUrls: ['./signicat-users.component.scss']
 })
 export class SignicatUsersComponent implements OnInit {
-  public offer: any;
+  public allOffers: any[];
   public loansData: any;
   public loans: any[];
   public errorMessage: string;
@@ -22,10 +22,10 @@ export class SignicatUsersComponent implements OnInit {
     this.loansService.getLoanAndOffersBanks().subscribe(
       ([loans, offerBank]) => {
         this.loansData = loans;
-        this.offer = offerBank;
+        this.allOffers = offerBank.offers;
         this.loans = this.loansData.loans;
         console.log(this.loansData.loans);
-        console.log(this.offer);
+        console.log(this.allOffers);
       },
       (err) => {
         this.errorMessage = err.title;

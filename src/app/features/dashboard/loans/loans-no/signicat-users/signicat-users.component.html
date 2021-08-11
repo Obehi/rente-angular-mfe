@@ -26,19 +26,18 @@
             </p>
           </div>
           <div class="loan-center-edit" *ngIf="isEditMode">
-            <div class="edit-loan-name">
-              <p>
-                <!-- {{ loan.loanName }} -->
-                BOLIGLÅN 85% BOLIGKR 0-2
-              </p>
-            </div>
-            <div style="margin-right: 20px">
-              <img
-                class="loan-type-edit"
-                src="../../../../../../assets/icons/round-arrow-down.svg"
-                alt="loan-type-edit"
-              />
-            </div>
+            <h4>Basic mat-select</h4>
+            <mat-form-field appearance="fill">
+              <mat-label>Velg lånetype</mat-label>
+              <mat-select>
+                <mat-option
+                  *ngFor="let offer of allOffers"
+                  [value]="allOffers.name"
+                >
+                  {{ offer.name }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
           </div>
           <div class="loan-info">
             <div class="loan-title">
