@@ -11,6 +11,7 @@ export enum Events {
 export class EmitEvent {
   name;
   value;
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   constructor(name: string, value: any) {
     this.name = name;
     this.value = value;
@@ -21,10 +22,11 @@ export class EmitEvent {
 export class EventService {
   private subject$ = new Subject();
 
-  emit(event: EmitEvent) {
+  emit(event: EmitEvent): void {
     this.subject$.next(event);
   }
 
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   on(event: string, action: any): Subscription {
     return this.subject$
       .pipe(

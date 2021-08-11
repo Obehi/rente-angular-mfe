@@ -1,39 +1,20 @@
 import { Injectable } from '@angular/core';
-import { AuthService } from '@services/remote-api/auth.service';
-import {
-  Component,
-  OnInit,
-  Input,
-  OnDestroy,
-  Output,
-  EventEmitter,
-  HostListener
-} from '@angular/core';
-import * as Stomp from 'stompjs';
-import * as SockJS from 'sockjs-client';
 import { ViewStatus } from '../../features/auth/login-status/login-view-status';
-import { API_URL_MAP } from '@config/api-url-config';
 import {
-  IDENTIFICATION_TIMEOUT_TIME,
-  PING_TIME,
-  RECONNECTION_TRIES,
-  RECONNECTION_TIME,
-  BANKID_STATUS,
   BANKID_TIMEOUT_TIME,
   MESSAGE_STATUS
 } from '../../features/auth/login-status/login-status.config';
 
-import { Subscription, interval, Observable, timer, forkJoin } from 'rxjs';
-import { take } from 'rxjs/operators';
+import { Subscription, Observable, forkJoin } from 'rxjs';
 import { Router } from '@angular/router';
 import { UserService } from '@services/remote-api/user.service';
-import { LoansService, LoanStateDto } from '@services/remote-api/loans.service';
+import { LoansService } from '@services/remote-api/loans.service';
+import { LoanStateDto } from '@shared/models/loans';
 import { LocalStorageService } from '@services/local-storage.service';
-import { BankVo, BankUtils } from '@shared/models/bank';
+import { BankVo } from '@shared/models/bank';
 import { ROUTES_MAP } from '@config/routes-config';
 import { LoggingService } from '@services/logging.service';
-import { EnvService } from '@services/env.service';
-import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { SafeUrl } from '@angular/platform-browser';
 
 @Injectable({
   providedIn: 'root'
@@ -53,15 +34,6 @@ export class LoginService {
   public thirdStepTimer = 20;
   public thirdStepTimerFinished: boolean;
   public isShowPassPhrase: boolean;
-  private maxConnectionTime = 110;
-  private stompClient: any;
-  private timerSubscription: Subscription;
-  private timer: Observable<number>;
-  private connectionTimer: Observable<number>;
-  private crawlingTimer: Observable<number>;
-  private connectionTimerSubscription: Subscription;
-  private crawlingTimerSubscription: Subscription | null;
-  private intervalSubscription: Subscription;
   public isShowTimer: boolean;
   isNotSB1customer: boolean;
   isAccountSelection: boolean;
@@ -77,13 +49,10 @@ export class LoginService {
 
   constructor(
     private router: Router,
-    private authService: AuthService,
     private userService: UserService,
     private loansService: LoansService,
     private localStorageService: LocalStorageService,
-    private logging: LoggingService,
-    private envService: EnvService,
-    private sanitizer: DomSanitizer
+    private logging: LoggingService
   ) {}
 
   public loginWithBankAndToken(): void {

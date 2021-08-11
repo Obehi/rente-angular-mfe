@@ -51,17 +51,17 @@ export class OffersStatisticsComponent implements AfterViewInit {
   hasOthersBankData = true;
   clientBankChartId = 'clientBankChartId';
   allBanksChartChartId = 'allBanksChartChartId';
-  showAllBanks = false;
+  showAllBanks = true;
   clientBankData: BankStatisticItem;
   allBankData: BankStatisticItem;
 
-  get ageSegment() {
+  get ageSegment(): string {
     return this.offersInfo.bankStatistics.age >= 34
       ? 'over 34 år'
       : 'under 34 år';
   }
 
-  get totalOutstandingDebtSegment() {
+  get totalOutstandingDebtSegment(): string {
     let text = '';
     const totalOutstandingDebt = this.offersInfo.bankStatistics
       .totalOutstandingDebt;
@@ -79,7 +79,7 @@ export class OffersStatisticsComponent implements AfterViewInit {
     return text;
   }
 
-  get ltvSegment() {
+  get ltvSegment(): string {
     let text = '';
     const ltv = this.offersInfo.bankStatistics.ltv;
     if (ltv <= 0.6) {
@@ -140,7 +140,7 @@ export class OffersStatisticsComponent implements AfterViewInit {
     }
   }
 
-  onRbChange(event: MatTabChangeEvent) {
+  onRbChange(event: MatTabChangeEvent): void {
     if (event.index === 0) {
       this.showAllBanks = false;
     } else {
@@ -148,7 +148,7 @@ export class OffersStatisticsComponent implements AfterViewInit {
     }
   }
 
-  ChartOptions() {
+  ChartOptions(): any {
     const opt = {
       chart: {
         type: 'column',
@@ -231,7 +231,7 @@ export class OffersStatisticsComponent implements AfterViewInit {
     return opt;
   }
 
-  getOtherBanksChartOptions() {
+  getOtherBanksChartOptions(): any {
     const opt = {
       chart: {
         type: 'column'

@@ -1,0 +1,17 @@
+.mypanel {
+  color: #222;
+}
+
+.mypanel .title {
+  width: 100%;
+
+  cursor: pointer;
+}
+
+.mypanel .body {
+  padding: 0 !important;
+}
+
+.mypanel .body.hidden {
+  display: none;
+}

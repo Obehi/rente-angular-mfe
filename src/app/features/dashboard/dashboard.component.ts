@@ -19,7 +19,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     return window.innerWidth < 992;
   }
 
-  onActivate(event: any) {
+  onActivate(): void {
     window.scrollTo(0, 0);
   }
 

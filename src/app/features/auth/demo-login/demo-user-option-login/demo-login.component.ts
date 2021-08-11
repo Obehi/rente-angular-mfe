@@ -1,13 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {} from '@angular/forms';
 import { Router } from '@angular/router';
 import { SnackBarService } from '@services/snackbar.service';
 import { AuthService } from '@services/remote-api/auth.service';
-import { UserService } from '@services/remote-api/user.service';
-import { LoansService } from '@services/remote-api/loans.service';
-import { LocalStorageService } from '@services/local-storage.service';
 import { ROUTES_MAP } from '@config/routes-config';
 import { CustomLangTextService } from '@services/custom-lang-text.service';
+import { MessageBannerService } from '@services/message-banner.service';
+import { getAnimationStyles } from '@shared/animations/animationEnums';
 
 @Component({
   selector: 'rente-demo-login',
@@ -18,15 +16,14 @@ export class DemoLoginComponent implements OnInit {
   userSessionId: string;
   guuids: string[] = [];
   public isLoading;
+  public animationType = getAnimationStyles();
 
   constructor(
     private snackBar: SnackBarService,
     private router: Router,
     private authService: AuthService,
-    private userService: UserService,
-    private loansService: LoansService,
-    private localStorageService: LocalStorageService,
-    public customLangTextService: CustomLangTextService
+    public customLangTextService: CustomLangTextService,
+    private messageService: MessageBannerService
   ) {}
 
   ngOnInit(): void {
@@ -35,7 +32,7 @@ export class DemoLoginComponent implements OnInit {
     this.guuids.push('416ca04f1919412b8ed1c5bbd72b029f');
   }
 
-  goToChoice(optionId: number) {
+  goToChoice(optionId: number): void {
     const guid = this.guuids[optionId];
 
     this.isLoading = true;
@@ -46,9 +43,13 @@ export class DemoLoginComponent implements OnInit {
       },
       () => {
         this.isLoading = false;
-        this.snackBar.openFailSnackBar(
+
+        this.messageService.setView(
           this.customLangTextService.getSnackBarErrorMessage(),
-          2
+          3000,
+          this.animationType.DROP_DOWN_UP,
+          'error',
+          window
         );
       }
     );

@@ -9,16 +9,11 @@ import {
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FirstBuyersService } from '@features/first-buyers/first-buyers.service';
-import { MembershipTypeDto } from '@services/remote-api/loans.service';
+import { MembershipTypeDto } from '@shared/models/loans';
 import { Observable, Subject } from 'rxjs';
 import { distinctUntilChanged } from 'rxjs/operators';
 import { SelectAutocompleteComponent } from 'mat-select-autocomplete';
 
-interface Membership {
-  name?: string;
-  value?: string;
-  label: string;
-}
 @Component({
   selector: 'rente-property-input',
   templateUrl: './property-input.component.html',

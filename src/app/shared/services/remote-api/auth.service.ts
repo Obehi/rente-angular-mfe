@@ -6,7 +6,7 @@ import { GenericHttpService } from '@services/generic-http.service';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { LocalStorageService } from './../local-storage.service';
-import { SnackBarService } from '@services/snackbar.service';
+import { DemoUserInfo, FirstTimeLoanDebtData } from '@shared/models/user';
 import { CustomLangTextService } from '@services/custom-lang-text.service';
 
 @Injectable({
@@ -17,7 +17,6 @@ export class AuthService {
     private http: GenericHttpService,
     private localStorageService: LocalStorageService,
     private router: Router,
-    private snackBar: SnackBarService,
     public customLangTextService: CustomLangTextService
   ) {}
 
@@ -26,7 +25,7 @@ export class AuthService {
     return !!(user && user.token);
   }
 
-  public loginForDemo(guid: string) {
+  public loginForDemo(guid: string): Observable<DemoUserInfo> {
     const url = `${API_URL_MAP.auth.base}${API_URL_MAP.auth.demo}`;
     const data = {
       guid: guid
@@ -36,7 +35,6 @@ export class AuthService {
 
   public loginBankIdStep1(): Observable<any> {
     const url = `${API_URL_MAP.auth.base}${API_URL_MAP.auth.bankidLogin}`;
-
     return this.http.post(url);
   }
 
@@ -52,7 +50,7 @@ export class AuthService {
       .pipe(tap(this.handleLogin.bind(this)));
   }
 
-  public loginWithToken(token: string) {
+  public loginWithToken(token: string): Observable<DemoUserInfo> {
     const url = `${API_URL_MAP.auth.base}${API_URL_MAP.auth.token}`;
     const data = {
       token
@@ -60,17 +58,18 @@ export class AuthService {
     return this.http.post(url, data).pipe(tap(this.handleLogin.bind(this)));
   }
 
-  public logout(): void {
+  public logout() {
     const url = `${API_URL_MAP.auth.base}${API_URL_MAP.auth.logout}`;
 
     this.http.post(url, {}).subscribe(() => {
       this.router.navigate(['/']);
       this.localStorageService.clear();
-      this.snackBar.openSuccessSnackBar(this.customLangTextService.logout(), 2);
     });
   }
 
-  public getFirstTimeLoanToken(debtData) {
+  public getFirstTimeLoanToken(
+    debtData: FirstTimeLoanDebtData
+  ): Observable<{ token: string }> {
     const url = `${API_URL_MAP.user.base}${API_URL_MAP.user.firstLoan}`;
     return this.http.post(url, debtData);
   }

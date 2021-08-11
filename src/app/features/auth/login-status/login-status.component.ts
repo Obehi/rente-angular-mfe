@@ -32,6 +32,7 @@ import { ROUTES_MAP, ROUTES_MAP_NO } from '@config/routes-config';
 import { LoggingService } from '@services/logging.service';
 import { EnvService } from '@services/env.service';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { CrawlerLoginService } from '@services/crawler-login.service';
 
 @Component({
   selector: 'rente-login-status',
@@ -96,7 +97,8 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
     private localStorageService: LocalStorageService,
     private logging: LoggingService,
     private envService: EnvService,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private crawlerLoginService: CrawlerLoginService
   ) {}
 
   ngOnInit(): void {
@@ -119,10 +121,10 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
       this.bank.name === 'DNB' || BankUtils.isEikaBank(this.bank.name)
         ? 34
         : 25;
-    this.firstStepTimer = this.bank.name === 'DNB' ? 28 : 10;
+    this.firstStepTimer = this.bank.name === 'DNB' ? 38 : 10;
 
     if (this.isSB1Bank) {
-      this.firstStepTimer = 30;
+      this.firstStepTimer = 40;
       this.bankIdTimeoutTime = 120;
     }
     if (this.bank.name === 'DNB') {
@@ -147,7 +149,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
   }
 
   @HostListener('window:message', ['$event'])
-  onMessage(event) {
+  onMessage(event): void {
     if (event.origin !== 'https://link.tink.com') {
       return;
     }
@@ -467,14 +469,14 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
             this.unsubscribeEverything();
             break;
 
+          case BANKID_STATUS.ERROR_3:
+            this.unsubscribeEverything();
+            this.crawlerLoginService.postError();
+            break;
+
           case BANKID_STATUS.ERROR_4:
             this.unsubscribeEverything();
-            this.router.navigate(
-              ['/autentisering/' + ROUTES_MAP_NO.bankIdLogin],
-              {
-                state: { data: { bank: this.bank, redirect: true } }
-              }
-            );
+            this.crawlerLoginService.postError();
             break;
 
           case BANKID_STATUS.PROCESS_STARTED:
@@ -741,6 +743,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
                         undefined,
                         this.isTinkBank
                       );
+
                       this.router.navigate([
                         '/dashboard/' + ROUTES_MAP.offers,
                         { state: { isInterestRateSet: true } }

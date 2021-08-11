@@ -6,26 +6,27 @@ import {
   forwardRef,
   HostBinding,
   SimpleChanges,
-  OnChanges
+  OnChanges,
+  ViewChild,
+  ElementRef,
+  AfterViewInit,
+  OnInit
 } from '@angular/core';
 import {
   FormControl,
   ControlValueAccessor,
   NG_VALUE_ACCESSOR,
   FormGroupDirective,
-  FormsModule,
   NgForm
 } from '@angular/forms';
 import { ViewEncapsulation } from '@angular/core';
 import { ErrorStateMatcher } from '@angular/material/core';
+import { BehaviorSubject } from 'rxjs';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   constructor(public state: boolean) {}
 
-  isErrorState(
-    control: FormControl | null,
-    form: FormGroupDirective | NgForm | null
-  ): boolean {
+  isErrorState(): boolean {
     return this.state;
   }
 }
@@ -42,7 +43,8 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   ],
   encapsulation: ViewEncapsulation.None
 })
-export class InputComponent implements ControlValueAccessor, OnChanges {
+export class InputComponent
+  implements OnInit, ControlValueAccessor, OnChanges, AfterViewInit {
   @Input() label: string;
   @Input() name: string;
   @Input() type: string;
@@ -55,6 +57,8 @@ export class InputComponent implements ControlValueAccessor, OnChanges {
   @Input() modelOptions?: { updateOn: string };
   @Input() textControl: boolean;
   @Input() maskType: any;
+  @ViewChild('inputRef') inputRef: ElementRef;
+  @Input() focusListener?: BehaviorSubject<boolean>;
 
   // tslint:disable-next-line:no-input-rename
   @Input('value') inputValue: any = '';
@@ -68,11 +72,16 @@ export class InputComponent implements ControlValueAccessor, OnChanges {
   onChange: any = () => {};
   onTouch: any = () => {};
 
-  get value() {
+  constructor() {}
+
+  ngOnInit(): void {}
+
+  get value(): any {
     return this.inputValue;
   }
 
-  set value(val) {
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+  set value(val: any) {
     this.inputValue = val;
     this.onChange(val);
     this.onTouch();
@@ -82,7 +91,11 @@ export class InputComponent implements ControlValueAccessor, OnChanges {
     this.change?.emit();
   }
 
-  ngOnChanges(changes: SimpleChanges) {
+  ngAfterViewInit(): void {
+    this.setFocusedListener();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
     if (changes.errorStateMatcher) {
       this.matcher = new MyErrorStateMatcher(this.errorStateMatcher);
     }
@@ -96,25 +109,40 @@ export class InputComponent implements ControlValueAccessor, OnChanges {
     return this.maskType;
   }
 
-  onFocus() {
+  onFocus(): void {
     this.focus.emit();
   }
 
-  onBlur() {
+  onBlur(): void {
     this.blur.emit();
   }
 
-  writeValue(value) {
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+  writeValue(value: any): void {
     if (value) {
       this.value = value;
     }
   }
 
-  registerOnChange(fn: any) {
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+  registerOnChange(fn: any): void {
     this.onChange = fn;
   }
 
-  registerOnTouched(fn: any) {
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+  registerOnTouched(fn: any): void {
     this.onTouch = fn;
+  }
+
+  public setFocusedListener(): void {
+    this.focusListener?.subscribe((state) => {
+      if (state) {
+        setTimeout(() => {
+          this.inputRef.nativeElement.focus();
+        }, 0);
+      } else {
+        this.inputRef.nativeElement.blur();
+      }
+    });
   }
 }

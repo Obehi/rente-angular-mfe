@@ -10,7 +10,6 @@ import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { storageName } from '@config/index';
 import { LocalStorageService } from '@services/local-storage.service';
-import { SnackBarService } from './snackbar.service';
 import { EnvService } from '@services/env.service';
 
 @Injectable({
@@ -31,7 +30,6 @@ export class GenericHttpService {
     private http: HttpClient,
     private localStorageService: LocalStorageService,
     private router: Router,
-    private snackBar: SnackBarService,
     private envService: EnvService
   ) {
     this.apiUrl = this.envService.environment.baseUrl;
@@ -39,9 +37,6 @@ export class GenericHttpService {
 
   public get(path: string, searchParams: any = {}): Observable<any> {
     const fullPath = `${this.apiUrl}${path}`;
-    const params: HttpParams = new HttpParams({
-      fromObject: searchParams
-    });
 
     const httpOptions = {
       headers: this.shapeHeaders(),
@@ -53,6 +48,7 @@ export class GenericHttpService {
       .pipe(catchError((error) => this.handleError(error)));
   }
 
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   public getWithParams(path: string, searchParams): Observable<any> {
     const fullPath = `${this.apiUrl}${path}`;
 
@@ -101,6 +97,7 @@ export class GenericHttpService {
       .pipe(catchError((error) => this.handleError(error)));
   }
 
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   public postWithParams(path: string, searchParams: any): Observable<any> {
     const fullPath = `${this.apiUrl}${path}`;
     const params: HttpParams = new HttpParams({ fromObject: searchParams });
@@ -157,7 +154,6 @@ export class GenericHttpService {
   }
 
   private handleError(responseError: HttpResponse<any> | any): Observable<any> {
-    console.log(responseError);
     if (responseError.status === 401) {
       // TODO: Show unauthorized error
       console.log('Not logged in!');

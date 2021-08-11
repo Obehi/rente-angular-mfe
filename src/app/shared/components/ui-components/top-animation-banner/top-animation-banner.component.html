@@ -1,0 +1,30 @@
+<!-- NB! The [@animationTriggerName] has to be the same name as the trigger name from the xported animation style -->
+
+<div
+  *ngIf="animationType == checkAnimationStyle.SLIDE_LEFT_RIGHT"
+  class="slideleftright"
+  [@slideLeftRight]="animationState ? 'visible' : 'hidden'"
+>
+  {{ displayText }}
+</div>
+
+<div
+  *ngIf="animationType === checkAnimationStyle.DROP_DOWN_UP"
+  [ngClass]="isDashboard ? 'dropdownupdash' : 'dropdownup'"
+  [class.error]="status === 'error'"
+  [class.success]="status === 'success'"
+  [@dropDownUp]="animationState ? 'visible' : 'hidden'"
+>
+  {{ displayText }}
+</div>
+
+<div
+  (click)="onClickBanner()"
+  *ngIf="animationType === checkAnimationStyle.SLIDE_UP"
+  [ngClass]="isDashboard ? 'slide-up' : 'slide-up'"
+  [@slideUp]="animationState ? 'visible' : 'hidden'"
+>
+  {{ displayText }}
+
+  <p>Ok</p>
+</div>

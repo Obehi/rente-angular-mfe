@@ -2,7 +2,7 @@
   <div class="inner-nav">
     <a (click)="goToTop()" [routerLink]="['/']">
       <img
-        src="../../../../assets/img/renteradar_white_logo-no.svg"
+        src="../../../../../assets/img/renteradar_white_logo-sv.svg"
         alt="Renteradar logo"
       />
     </a>
@@ -18,7 +18,7 @@
 
         <a
           i18n="“Headerlink|blog@@header.blog”"
-          href="https://blogg.renteradar.no"
+          href="https://blogg.ranteradar.se"
           target="_self"
           >Blogg</a
         >
@@ -40,14 +40,15 @@
           <a i18n="“Headerlink|faq@@header.faq”" href="#faq">FAQ </a>
         </span>
         <a
-          [routerLink]="['/dashboard/tilbud']"
+          [routerLink]="['/dashboard/erbjudande']"
           *ngIf="isLoggedIn"
           routerLinkActive="active-link"
           class="highlight"
           >Min side
         </a>
         <a
-          [routerLink]="['/velgbank']"
+          i18n="“Headerlink|log-out@@header.login”"
+          [routerLink]="['/valjbank']"
           *ngIf="!isLoggedIn"
           routerLinkActive="active-link"
           class="highlight"

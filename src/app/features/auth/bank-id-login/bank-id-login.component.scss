@@ -25,6 +25,12 @@
       margin-top: 20px;
     }
 
+    .grid-right-dropdown {
+      align-self: center;
+      justify-self: center;
+      margin-bottom: 1.34375em;
+    }
+
     .left {
       grid-column: 1;
     }
@@ -98,6 +104,8 @@
   border: 1px solid #cccccc;
   text-align: center;
   color: black;
+  max-width: 80%;
+  margin: auto;
 }
 
 .info-box {
@@ -323,4 +331,49 @@ form {
 
 ::ng-deep .mat-horizontal-content-container {
   height: 100%;
+}
+
+.propertyBox {
+  width: 100%;
+  font-size: 110%;
+}
+
+.propertyValueTitle {
+  text-align: center;
+
+  margin-top: 50px !important;
+
+  @media (max-width: 600px) {
+    margin-top: 80px !important;
+  }
+
+  @media (max-width: 370px) {
+    margin-top: 30px !important;
+  }
+}
+
+.estimatedValueNumber {
+  font-size: 200%;
+  margin-top: 8px;
+  margin-bottom: -8px;
+}
+
+.correctValueTitle {
+  color: hsl(246, 17%, 11%);
+  font-size: larger;
+  text-align: center;
+  margin-bottom: 0px;
+}
+
+::ng-deep button.mat-primary-hollow {
+  width: 260px !important;
+  @media (max-width: 600px) {
+    width: 100% !important;
+  }
+}
+
+.setmanualbutton {
+  padding: 10px;
+  margin: auto;
+  text-align: center;
 }

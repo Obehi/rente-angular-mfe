@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '@services/remote-api/auth.service';
+import { MessageBannerService } from '@services/message-banner.service';
+import { getAnimationStyles } from '@shared/animations/animationEnums';
+import { CustomLangTextService } from '@shared/services/custom-lang-text.service';
 
 @Component({
   selector: 'rente-header-mobile',
@@ -10,8 +13,13 @@ import { AuthService } from '@services/remote-api/auth.service';
 export class HeaderMobileNoComponent implements OnInit {
   public toggleNavbar: boolean;
   public isSmallScreen: boolean;
-
-  constructor(public auth: AuthService, private router: Router) {}
+  public animationType = getAnimationStyles();
+  constructor(
+    public auth: AuthService,
+    private router: Router,
+    private messageService: MessageBannerService,
+    private customLangService: CustomLangTextService
+  ) {}
 
   ngOnInit(): void {}
 
@@ -39,5 +47,15 @@ export class HeaderMobileNoComponent implements OnInit {
   public logout(): void {
     this.auth.logout();
     this.toggleNav();
+
+    setTimeout(() => {
+      this.messageService.setView(
+        this.customLangService.logout(),
+        4000,
+        this.animationType.DROP_DOWN_UP,
+        'success',
+        window
+      );
+    }, 0);
   }
 }

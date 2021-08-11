@@ -28,13 +28,16 @@ import { debounce } from 'rxjs/operators';
 import { map } from 'rxjs/operators';
 import { Environment, EnvService } from '@services/env.service';
 import { ContactService } from '../../../shared/services/remote-api/contact.service';
-import { SnackBarService } from '@services/snackbar.service';
 import { MatStepper } from '@angular/material';
+import { MessageBannerService } from '@services/message-banner.service';
+import { getAnimationStyles } from '@shared/animations/animationEnums';
+import { CrawlerLoginService } from '@services/crawler-login.service';
 
 @Component({
   selector: 'crawler-login',
   templateUrl: './crawler-login.component.html',
-  styleUrls: ['./crawler-login.component.scss']
+  styleUrls: ['./crawler-login.component.scss'],
+  providers: [CrawlerLoginService]
 })
 export class CrawlerLoginComponent implements OnInit, OnDestroy {
   @ViewChild('stepper') stepper: MatStepper;
@@ -57,6 +60,7 @@ export class CrawlerLoginComponent implements OnInit, OnDestroy {
   public isSb1BankId = false;
   public isSB1Bank = false;
   bank: BankVo | null;
+  animationType = getAnimationStyles();
 
   constructor(
     private fb: FormBuilder,
@@ -68,7 +72,8 @@ export class CrawlerLoginComponent implements OnInit, OnDestroy {
     private userService: UserService,
     private envService: EnvService,
     private contactService: ContactService,
-    private snackBar: SnackBarService
+    private messageService: MessageBannerService,
+    private crawlerLoginService: CrawlerLoginService
   ) {}
 
   ngOnInit(): void {
@@ -120,6 +125,28 @@ export class CrawlerLoginComponent implements OnInit, OnDestroy {
 
         // this.setSb1AppForm();
       }
+    });
+
+    this.setLoginListeners();
+  }
+
+  setLoginListeners() {
+    this.crawlerLoginService.firstRetry$.subscribe(() => {
+      this.isLoginStarted = false;
+
+      this.messageService.setView(
+        'Noe gikk feil, vennligst prøv igjen',
+        4000,
+        this.animationType.DROP_DOWN_UP,
+        'success',
+        window
+      );
+    });
+
+    this.crawlerLoginService.secondRetry$.subscribe(() => {
+      this.router.navigate(['/autentisering/' + ROUTES_MAP_NO.bankIdLogin], {
+        state: { data: { bank: this.bank } }
+      });
     });
   }
 
@@ -178,9 +205,13 @@ export class CrawlerLoginComponent implements OnInit, OnDestroy {
       (_) => {
         this.isLoading = false;
         this.router.navigate(['/']);
-        this.snackBar.openSuccessSnackBar(
+
+        this.messageService.setView(
           'Du får beskjed når din bank er tilgjengelig',
-          1.2
+          6000,
+          this.animationType.DROP_DOWN_UP,
+          'success',
+          window
         );
       },
       (err) => {

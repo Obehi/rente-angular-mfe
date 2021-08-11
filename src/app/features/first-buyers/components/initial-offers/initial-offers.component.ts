@@ -3,21 +3,15 @@ import {
   FormControl,
   FormGroup,
   AbstractControl,
-  NgForm,
   ValidatorFn,
   ValidationErrors
 } from '@angular/forms';
 import { MatAutocompleteSelectedEvent, MatStepper } from '@angular/material';
 import { Router } from '@angular/router';
-import {
-  FirstBuyersService,
-  FirstBuyersState
-} from '@features/first-buyers/first-buyers.service';
-import { FirstBuyersAPIService } from '@services/remote-api/first-buyers.service';
-import {
-  LoansService,
-  MembershipTypeDto
-} from '@services/remote-api/loans.service';
+import { FirstBuyersService } from '@features/first-buyers/first-buyers.service';
+import { FirstBuyersAPIService } from '@services/remote-api/first-buyers-api.service';
+import { LoansService } from '@services/remote-api/loans.service';
+import { MembershipTypeDto } from '@shared/models/loans';
 import { BankList, MissingBankList } from '@shared/models/bank';
 import { combineLatest, Observable } from 'rxjs';
 import {
@@ -47,7 +41,7 @@ export class InitialOffersComponent implements OnInit {
     return isValid ? { loanToValueRatio: isValid } : null;
   };
 
-  loantoRatioMinimumAmount() {
+  loantoRatioMinimumAmount(): number {
     const outstandingDebt = Number(
       this.formGroup.get('outstandingDebt')?.value
     );
@@ -84,7 +78,7 @@ export class InitialOffersComponent implements OnInit {
       inputType: 'tel',
       placeholder: 'Fyll inn',
       controlName: 'savings',
-      shouldDisplay: () => {
+      shouldDisplay: (): boolean => {
         return true;
       }
     },
@@ -93,7 +87,7 @@ export class InitialOffersComponent implements OnInit {
       label: 'Lånebeløp',
       inputType: 'tel',
       controlName: 'outstandingDebt',
-      shouldDisplay: () => {
+      shouldDisplay: (): boolean => {
         return (
           this.outstandingDebtControl.value || this.outstandingDebtControl.dirty
         );
@@ -104,7 +98,7 @@ export class InitialOffersComponent implements OnInit {
       label: 'Annen gjeld',
       inputType: 'tel',
       controlName: 'otherDebt',
-      shouldDisplay: () => {
+      shouldDisplay: (): any => {
         return this.otherDebtControl.value;
       }
     },
@@ -114,7 +108,7 @@ export class InitialOffersComponent implements OnInit {
       label: 'Alder',
       inputType: 'dropdown',
       controlName: 'age',
-      shouldDisplay: () => {
+      shouldDisplay: (): boolean => {
         return true;
       },
       options: [
@@ -137,7 +131,7 @@ export class InitialOffersComponent implements OnInit {
       label: 'Medlemskap',
       inputType: 'autocomplete',
       controlName: 'memberships',
-      shouldDisplay: () => {
+      shouldDisplay: (): boolean => {
         return true;
       },
       options: this.allMemberships
@@ -148,7 +142,7 @@ export class InitialOffersComponent implements OnInit {
       label: 'Første bolig?',
       inputType: 'dropdown',
       controlName: 'firstLoan',
-      shouldDisplay: () => {
+      shouldDisplay: (): boolean => {
         return true;
       },
       options: [
@@ -168,7 +162,7 @@ export class InitialOffersComponent implements OnInit {
       label: 'Vis lokale tilbud',
       inputType: 'dropdown',
       controlName: 'localBanks',
-      shouldDisplay: () => {
+      shouldDisplay: (): boolean => {
         return true;
       },
       options: [
@@ -336,7 +330,7 @@ export class InitialOffersComponent implements OnInit {
     this.membershipsControl.reset();
   }
 
-  updateMemberships() {
+  updateMemberships(): void {
     this.firstBuyersService.selectedMemberships = [
       ...this.memberships,
       ...this.selectedFeaturedMemberships
@@ -350,7 +344,7 @@ export class InitialOffersComponent implements OnInit {
       });
   }
 
-  isAllDataFilled() {
+  isAllDataFilled(): boolean {
     return !!(
       this.outstandingDebtControl.value &&
       this.savingsControl.value &&
@@ -362,10 +356,7 @@ export class InitialOffersComponent implements OnInit {
     );
   }
 
-  isErrorState(
-    control: AbstractControl | null,
-    form: FormGroup | NgForm | null
-  ): boolean {
+  isErrorState(control: AbstractControl | null): boolean {
     return !!(control && control.invalid && (control.dirty || control.touched));
   }
 
@@ -396,12 +387,12 @@ export class InitialOffersComponent implements OnInit {
     this.updateMemberships();
   }
 
-  deleteMembership(membership): void {
+  deleteMembership(membership: MembershipTypeDto): void {
     this.memberships.splice(this.memberships.indexOf(membership), 1);
     this.updateMemberships();
   }
 
-  applyMemberships(memberships: MembershipTypeDto[]) {
+  applyMemberships(memberships: MembershipTypeDto[]): void {
     // causing ExpressionChangedAfterItHasBeenCheckedError since commit 9aaa47db or the one before
     this.memberships = memberships;
     this.updateMemberships();
@@ -456,7 +447,7 @@ export class InitialOffersComponent implements OnInit {
     this.updateNewOffers();
   }
 
-  updateNewOffers() {
+  updateNewOffers(): void {
     if (
       (!this.formGroup.dirty || this.isAboveLoanToValueRatioTreshold) &&
       this.hasUpdatedOffers === true
@@ -493,11 +484,12 @@ export class InitialOffersComponent implements OnInit {
     this.stepper.next();
   }
 
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   isBoolean(val: any): boolean {
     return val !== null;
   }
 
-  firstLoanFilled() {
+  firstLoanFilled(): boolean {
     return (
       (this.isBoolean(this.firstLoanControl.value) &&
         !this.firstLoanControl.value) ||

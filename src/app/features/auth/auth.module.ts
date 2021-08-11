@@ -11,7 +11,6 @@ import { StatusMessageComponent } from './status-message/status-message.componen
 import { DialogInfoServiceComponent } from './crawler-login/dialog-info-service/dialog-info-service.component';
 import { Sparebank1SubComponent } from './sparebank1-sub/sparebank1-sub.component';
 import { MaterialModule } from '@shared/material/material.module';
-import { BankChoiceComponent } from './bank-choice/bank-choice.component';
 import { DemoLoginComponent } from './demo-login/demo-user-option-login/demo-login.component';
 import { GuidLoginComponent } from './demo-login/guid-login/guid-login.component';
 
@@ -20,21 +19,22 @@ import { GuidLoginComponent } from './demo-login/guid-login/guid-login.component
     CrawlerLoginComponent,
     BankIdLoginComponent,
     BankIdLoginSecretComponent,
-    LoginStatusComponent,
-    StatusMessageComponent,
+    DemoLoginComponent,
     DialogInfoServiceComponent,
+    GuidLoginComponent,
+    LoginStatusComponent,
     Sparebank1SubComponent,
-    BankChoiceComponent,
+    StatusMessageComponent,
     DemoLoginComponent,
     GuidLoginComponent,
     BankIdLoginComponent
   ],
   imports: [
-    CommonModule,
     AuthRoutingModule,
+    CommonModule,
+    MaterialModule,
     ReactiveFormsModule,
-    SharedModule,
-    MaterialModule
+    SharedModule
   ],
   entryComponents: [DialogInfoServiceComponent]
 })

@@ -9,6 +9,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 export class ChangeBrowserDialogInfoComponent {
   constructor(
     public dialogRef: MatDialogRef<ChangeBrowserDialogInfoComponent>,
+    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
 

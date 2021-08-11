@@ -33,6 +33,12 @@ button.mat-primary-hollow {
   white-space: break-spaces;
 }
 
+button.mat-primary-hollow-no-border {
+  background-color: white;
+  color: black;
+  white-space: break-spaces;
+}
+
 button.mat-button:hover:not([disabled]) {
   opacity: 0.8;
 }
@@ -71,9 +77,23 @@ button.mat-secondary {
   color: white;
 }
 
+button.mat-secondary-small {
+  background-color: $secondary;
+  height: 45px;
+  // min-width: 125px;
+  color: white;
+}
+
 .mat-button.mat-primary {
   color: white !important;
 }
+
+.mat-button.mat-primary-small {
+  background-color: $primary;
+  color: white !important;
+  height: 45px;
+}
+
 button.mat-blue {
   background-color: $blue;
   color: white;
@@ -89,7 +109,7 @@ button.mat-primary-wide {
   background-color: $primary;
   color: white;
   height: 56px;
-  width: 80%;
+  width: 100%;
 }
 
 button.mat-primary-wide-break {
@@ -191,7 +211,7 @@ button.mat-primary-wide-white {
   background-color: white;
   color: black;
   height: 56px;
-  width: 80%;
+  width: 100%;
   white-space: break-spaces;
 }
 
@@ -293,4 +313,11 @@ button.mat-secondary-medium-card {
 
 button.mat-secondary-medium-card[disabled] {
   color: white !important;
+}
+
+button.mat-blue-select {
+  background: $secondary;
+  height: 5ch;
+  display: inline;
+  max-width: 300px;
 }

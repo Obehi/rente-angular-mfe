@@ -1,0 +1,15 @@
+<div class="mypanel">
+  <div class="title" (click)="toggle.emit()">
+    {{ title }}
+    <mat-icon *ngIf="!opened" [@openClose]="!opened ? 'open' : 'close'"
+      >expand_more</mat-icon
+    >
+    <mat-icon *ngIf="opened" [@openClose]="opened ? 'close' : 'open'"
+      >expand_less</mat-icon
+    >
+  </div>
+  <div class="body" [@smoothCollapse]="!opened ? 'initial' : 'final'">
+    <ng-content></ng-content>
+  </div>
+  <div></div>
+</div>

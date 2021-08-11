@@ -1,0 +1,40 @@
+@import '../../../../../styles/theme/colors';
+
+@media (max-width: 600px) {
+  .cdk-fix {
+    position: fixed;
+    background: $blue-medium;
+    bottom: 0px;
+    width: 100%;
+  }
+}
+
+.cdk-fix {
+  @media (min-width: 600px) {
+    background: #183a63;
+    padding-bottom: 13px;
+    padding-top: 5px;
+  }
+}
+
+.buttons {
+  display: flex;
+  justify-content: flex-end;
+  margin-inline-end: 30px;
+  @media (max-width: 600px) {
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    justify-content: space-evenly;
+    height: 14%;
+    background: $blue-medium;
+    border-top: 1px solid #478ccc;
+    display: flex;
+    align-items: center;
+  }
+  @media (min-width: 600px) {
+    .abort-btn {
+      margin-right: 15px;
+    }
+  }
+}

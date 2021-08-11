@@ -1,42 +1,74 @@
 <div class="d-flex flex-column">
-  <div [ngClass]="{'red-underline': label === 'Egenkapital' && isAboveLoanToValueRatioTreshold && !isFirstFocus}"   class="property-wrapper d-flex justify-content-between">
+  <div
+    [ngClass]="{
+      'red-underline':
+        label === 'Egenkapital' &&
+        isAboveLoanToValueRatioTreshold &&
+        !isFirstFocus
+    }"
+    class="property-wrapper d-flex justify-content-between"
+  >
     <div class="d-flex align-items-center">
       <div class="text-white property-icon">
-        <img *ngIf="iconPath" class="box-icon" src="{{iconPath}}" />
-        <mat-icon *ngIf="!iconPath">{{icon}}</mat-icon>
+        <img *ngIf="iconPath" class="box-icon" src="{{ iconPath }}" />
+        <mat-icon *ngIf="!iconPath">{{ icon }}</mat-icon>
       </div>
       <div class="text-white d-block property-label ml-3">
-        {{label}}
+        {{ label }}
       </div>
     </div>
     <div class="property-input">
       <form [formGroup]="formGroup" class="p-0 border-0">
         <mat-form-field class="text-white w-100" *ngIf="inputType === 'tel'">
-          <input formControlName="{{controlName}}"  matInput [type]="inputType"
-                 currencyMask
-                 [placeholder]="placeholder !== undefined ? placeholder : ''"
-                 (focusout)="focusOutFunction()"
-                 [options]="{prefix:'', align: 'left', thousands: ' ', precision: 0}"
-                 autocomplete="off" autofocus>
-                </mat-form-field>
-                <div [ngClass]="[ isFirstFocus ? 'field-message-white' : 'field-message']" *ngIf="controlName === 'savings' && formGroup.dirty && formGroup.errors?.loanToValueRatio">
-                  Må være minst {{loantoRatioMinimumAmount | number }}
-              </div>
-        <mat-form-field class="text-white w-100" *ngIf="inputType === 'dropdown'">
+          <input
+            formControlName="{{ controlName }}"
+            matInput
+            [type]="inputType"
+            currencyMask
+            [placeholder]="placeholder !== undefined ? placeholder : ''"
+            (focusout)="focusOutFunction()"
+            [options]="{
+              prefix: '',
+              align: 'left',
+              thousands: ' ',
+              precision: 0
+            }"
+            autocomplete="off"
+            autofocus
+          />
+        </mat-form-field>
+        <div
+          [ngClass]="[isFirstFocus ? 'field-message-white' : 'field-message']"
+          *ngIf="
+            controlName === 'savings' &&
+            formGroup.dirty &&
+            formGroup.errors?.loanToValueRatio
+          "
+        >
+          Må være minst {{ loantoRatioMinimumAmount | number }}
+        </div>
+        <mat-form-field
+          class="text-white w-100"
+          *ngIf="inputType === 'dropdown'"
+        >
           <mat-label>Velg</mat-label>
-          <mat-select formControlName="{{controlName}}">
-            <mat-option *ngFor="let option of options" [value]="option.value">{{option.label}}</mat-option>
+          <mat-select formControlName="{{ controlName }}">
+            <mat-option *ngFor="let option of options" [value]="option.value">{{
+              option.label
+            }}</mat-option>
           </mat-select>
         </mat-form-field>
-        <mat-select-autocomplete *ngIf="inputType === 'autocomplete'"
-                                 [placeholder]="'Velg'"
-                                 [options]="memberships"
-                                 [display]="'label'"
-                                 [value]="'name'"
-                                 [multiple]='true'
-                                 [labelCount]="2"
-                                 [selectedOptions]="_selectedMemberships"
-                                 (selectionChange)="getSelectedMemberships($event)">
+        <mat-select-autocomplete
+          *ngIf="inputType === 'autocomplete'"
+          [placeholder]="'Velg'"
+          [options]="memberships"
+          [display]="'label'"
+          [value]="'name'"
+          [multiple]="true"
+          [labelCount]="2"
+          [selectedOptions]="_selectedMemberships"
+          (selectionChange)="getSelectedMemberships($event)"
+        >
         </mat-select-autocomplete>
       </form>
     </div>

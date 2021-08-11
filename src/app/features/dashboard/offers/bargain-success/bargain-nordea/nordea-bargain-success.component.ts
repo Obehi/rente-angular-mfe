@@ -11,7 +11,6 @@ import { EnvService } from '@services/env.service';
 })
 export class NordeaBargainSuccessComponent implements OnInit {
   public isErrorState = false;
-  private hasScrolledToTop = false;
 
   constructor(
     private router: Router,

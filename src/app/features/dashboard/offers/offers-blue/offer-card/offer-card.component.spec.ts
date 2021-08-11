@@ -1,16 +1,16 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { OfferCardComponent } from './offer-card.component';
+import { OfferCardComponent } from './offer-card-v2.component';
 
 describe('OfferCardComponent', () => {
   let component: OfferCardComponent;
   let fixture: ComponentFixture<OfferCardComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       declarations: [OfferCardComponent]
     }).compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(OfferCardComponent);

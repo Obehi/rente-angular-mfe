@@ -17,7 +17,7 @@ export class GetNotifiedDialogComponent implements OnInit {
     private router: Router
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     if (this.offer.establishmentFee == undefined) {
       this.offer.establishmentFee = 0;
     }

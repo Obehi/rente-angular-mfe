@@ -5,6 +5,9 @@ import { LocalStorageService } from '@services/local-storage.service';
 import { OptimizeService } from '@services/optimize.service';
 import { AuthService } from '@services/remote-api/auth.service';
 import { EnvService } from '@services/env.service';
+import { MessageBannerService } from '@services/message-banner.service';
+import { getAnimationStyles } from '@shared/animations/animationEnums';
+import { CustomLangTextService } from '@shared/services/custom-lang-text.service';
 
 @Component({
   selector: 'rente-dashboard-tabs-desktop',
@@ -18,6 +21,8 @@ export class DashboardTabsDesktopComponent implements OnInit {
   public isMobile: boolean;
   public activeLinkIndex: number | null = -1;
   public imgLink: any;
+  public animationType = getAnimationStyles();
+  public dashLogo: string;
 
   // General navLinks to switch between norwegian and  swedish version
   public navLinks: string[] | undefined;
@@ -59,14 +64,18 @@ export class DashboardTabsDesktopComponent implements OnInit {
     private router: Router,
     private localStorageService: LocalStorageService,
     private auth: AuthService,
-    private envService: EnvService
+    private envService: EnvService,
+    private messageService: MessageBannerService,
+    private customLangService: CustomLangTextService
   ) {
     if (this.envService.isNorway()) {
       this.navLinks = this.navLinksNo;
       this.imgLink = this.imgLinkNo;
+      this.dashLogo = '../../../../../assets/img/renteradar_white_logo-no.svg';
     } else if (this.envService.isSweden()) {
       this.navLinks = this.navLinksSv;
       this.imgLink = this.imgLinkSv;
+      this.dashLogo = '../../../../../assets/img/renteradar_white_logo-sv.svg';
     }
   }
 
@@ -127,6 +136,16 @@ export class DashboardTabsDesktopComponent implements OnInit {
 
   public logout(): void {
     this.auth.logout();
+    // Tried to use a stream to do this in app.component, didnt work but it works with 0ms timeout righ here
+    setTimeout(() => {
+      this.messageService.setView(
+        this.customLangService.logout(),
+        4000,
+        this.animationType.DROP_DOWN_UP,
+        'success',
+        window
+      );
+    }, 0);
   }
 
   ngOnDestroy(): void {

@@ -1,19 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  FormGroup,
-  FormBuilder,
-  AbstractControl,
-  NgForm,
-  FormControl
-} from '@angular/forms';
-import { ContactService } from '@services/remote-api/contact.service';
+import { FormGroup, FormBuilder, AbstractControl } from '@angular/forms';
 import { Router } from '@angular/router';
-import { SnackBarService } from '@services/snackbar.service';
-import { Subscription } from 'rxjs';
 
+import { SnackBarService } from '@services/snackbar.service';
 import { AuthService } from '@services/remote-api/auth.service';
 import { ROUTES_MAP } from '@config/routes-config';
 import { CustomLangTextService } from '@services/custom-lang-text.service';
+import { MessageBannerService } from '@services/message-banner.service';
+import { getAnimationStyles } from '@shared/animations/animationEnums';
 
 @Component({
   selector: 'guid-login',
@@ -24,15 +18,16 @@ export class GuidLoginComponent implements OnInit {
   public contactUsForm: FormGroup;
   public isLoading: boolean;
   public loginIdError = false;
+  public animationType = getAnimationStyles();
   p;
 
   constructor(
     private fb: FormBuilder,
-    private contactService: ContactService,
     private snackBar: SnackBarService,
     private router: Router,
     private authService: AuthService,
-    public customLangTextService: CustomLangTextService
+    public customLangTextService: CustomLangTextService,
+    private messageService: MessageBannerService
   ) {}
 
   ngOnInit(): void {
@@ -41,10 +36,7 @@ export class GuidLoginComponent implements OnInit {
     });
   }
 
-  public isErrorState(
-    control: AbstractControl | null,
-    form: FormGroup | NgForm | null
-  ): boolean {
+  public isErrorState(control: AbstractControl | null): boolean {
     return !!(control && control.invalid && (control.dirty || control.touched));
   }
 
@@ -70,9 +62,12 @@ export class GuidLoginComponent implements OnInit {
       },
       () => {
         this.isLoading = false;
-        this.snackBar.openFailSnackBar(
+        this.messageService.setView(
           this.customLangTextService.getSnackBarErrorMessage(),
-          2
+          4000,
+          this.animationType.DROP_DOWN_UP,
+          'error',
+          window
         );
       }
     );

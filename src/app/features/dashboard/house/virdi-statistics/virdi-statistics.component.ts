@@ -1,11 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
 import * as Highcharts from 'highcharts';
-import {
-  LoansService,
-  AddressDto
-} from '../../../../shared/services/remote-api/loans.service';
+import { LoansService } from '../../../../shared/services/remote-api/loans.service';
+import { AddressDto } from '@shared/models/loans';
 import { SnackBarService } from '@services/snackbar.service';
 import { MatTabChangeEvent } from '@angular/material';
+import { MessageBannerService } from '@services/message-banner.service';
+import { getAnimationStyles } from '@shared/animations/animationEnums';
 
 declare let require: any;
 const Boost = require('highcharts/modules/boost');
@@ -34,10 +34,12 @@ export class VirdiStatisticsComponent implements OnInit {
   showPriceDevelopment: boolean;
   averageSqmPrice: string;
   area: string;
+  animationType = getAnimationStyles();
 
   constructor(
     private loansService: LoansService,
-    private snackBar: SnackBarService
+    private snackBar: SnackBarService,
+    private messageService: MessageBannerService
   ) {
     this.showPriceDevelopment = false;
   }
@@ -297,6 +299,12 @@ export class VirdiStatisticsComponent implements OnInit {
   }
 
   notifError(): void {
-    this.snackBar.openFailSnackBar('Feil ved lasting av statistikkdata', 2);
+    this.messageService.setView(
+      'Feil ved lasting av statistikkdata',
+      5000,
+      this.animationType.DROP_DOWN_UP,
+      'error',
+      window
+    );
   }
 }

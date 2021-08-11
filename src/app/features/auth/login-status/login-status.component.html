@@ -280,7 +280,8 @@
       viewStatus.isBankError ||
       viewStatus.isSb1NotValidDataProvidedV2Error ||
       viewStatus.isSb1appConfirmFailError ||
-      isNotSB1customer
+      isNotSB1customer ||
+      viewStatus.isErrorBIDC325
     "
     (click)="returnToInput()"
   >

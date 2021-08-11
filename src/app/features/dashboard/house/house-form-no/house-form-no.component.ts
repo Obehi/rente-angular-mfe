@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { AddressDto } from '@services/remote-api/loans.service';
+import { AddressDto } from '@shared/models/loans';
 import { MatTabChangeEvent } from '@angular/material';
 import { EnvService } from '@services/env.service';
 
@@ -31,6 +31,7 @@ export class HouseFormNoComponent implements OnInit {
   constructor(public envService: EnvService) {}
 
   ngOnInit(): void {
+    this.changesMade = false;
     this.address.estimatedPropertyValue =
       this.address.estimatedPropertyValue || null;
     this.address.manualPropertyValue = this.address.manualPropertyValue || null;
@@ -66,13 +67,18 @@ export class HouseFormNoComponent implements OnInit {
   }
 
   // remove spaces and convert to number type
-  formatThousand(event): number {
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+  formatThousand(event: any): number {
     return Number(event.replace(/\s+/g, ''));
   }
 
   save(): void {
-    this.onSave.emit();
-    this.changesMade = false;
+    if (this.ableTosave) {
+      this.onSave.emit();
+      this.changesMade = false;
+    } else {
+      return;
+    }
   }
   countChange(): void {
     this.changesMade = true;
@@ -82,7 +88,8 @@ export class HouseFormNoComponent implements OnInit {
     this.deleteAddress.emit(this.address);
   }
 
-  manualPropertyValueChanged($event): void {
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+  manualPropertyValueChanged($event: any): void {
     if ($event && $event.target) {
       const newValue = parseInt(String($event.target.value).replace(/\D/g, ''));
       this.address.manualPropertyValue = newValue >= 0 ? newValue : 0;

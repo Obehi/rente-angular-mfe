@@ -1,47 +1,29 @@
 <div class="front-container" [ngClass]="{ blue: true }">
-  <div *ngIf="propertyForm">
+  <div *ngIf="stepFillOutForm">
     <div class="title">
       <h3
-        *ngIf="userData.name !== null"
+        *ngIf="userData.name !== null && !isLoading"
         i18n="“hi|info-confirmation@@info.confirmation.hi”"
       >
         Hei, {{ userData.name | titlecase }}
       </h3>
-      <p i18n="“more-infor|info-confirmation@@info.confirmation.moreInfo”">
+      <p
+        *ngIf="!isLoading"
+        i18n="“more-infor|info-confirmation@@info.confirmation.moreInfo”"
+      >
         Vi trenger litt mer informasjon før vi kan søke etter tilbud
       </p>
     </div>
     <form
+      *ngIf="propertyForm"
       [formGroup]="propertyForm"
       novalidate
       (ngSubmit)="updateProperty(propertyForm.value)"
     >
-      <div *ngIf="isNameNeeded" class="field">
-        <rente-input
-          [placeholder]="'Navn'"
-          formControlName="name"
-          [errorStateMatcher]="isErrorState(propertyForm.controls['name'])"
-          [modelOptions]="{ updateOn: 'blur' }"
-        >
-        </rente-input>
-
-        <div *ngIf="propertyForm.controls['name'].touched">
-          <p
-            i18n="“empty|info-confirmation@@info.confirmation.empty”"
-            class="error small"
-            *ngIf="propertyForm.controls['name'].hasError('required')"
-          >
-            Kan ikke være tom
-          </p>
-          <p
-            i18n="“invalid|info-confirmation@@info.confirmation.invalid”"
-            class="error small"
-            *ngIf="propertyForm.controls['name'].hasError('pattern')"
-          >
-            Ugyldig e-post
-          </p>
-        </div>
-      </div>
+      <rente-user-score-preferences
+        [scoreListener]="scoreListener$"
+        [initialScores]="initialScores$"
+      ></rente-user-score-preferences>
 
       <div class="field">
         <rente-input
@@ -108,7 +90,6 @@
           </p>
         </div>
       </div>
-
       <div class="field">
         <div class="withinfo">
           <div>
@@ -231,7 +212,9 @@
           >delete_forever</mat-icon
         >
       </p>
+      <p #button class="button"></p>
       <rente-button
+        (click)="submit$.next()"
         i18n="“done|info-confirmation@@info.confirmation.done”"
         color="primary"
         [isLoading]="isLoading"
@@ -240,6 +223,39 @@
         Finn beste rente!
       </rente-button>
     </form>
+  </div>
+
+  <div *ngIf="virdiSuccess">
+    <div class="propertyValueTitle">
+      <h3 class="propertyBox" *ngIf="estimatedPropertyValueFromVirdi !== null">
+        Estimert boligverdi:
+        <p class="estimatedValueNumber">
+          {{ estimatedPropertyValueFromVirdi | number }} kr
+        </p>
+      </h3>
+      <br /><br />
+      <h1 class="correctValueTitle">Stemmer dette?</h1>
+    </div>
+
+    <div class="bottom double">
+      <rente-button
+        class="buttonwidth"
+        cdkFocusInitial
+        color="primary-hollow-no-border"
+        (click)="setManualPropertyValue()"
+      >
+        Nei, endre manuelt
+      </rente-button>
+
+      <rente-button
+        class="buttonwidth"
+        cdkFocusInitial
+        color="primary"
+        (click)="redirectOffers()"
+      >
+        Ja, finn beste rente!
+      </rente-button>
+    </div>
   </div>
 </div>
 

@@ -13,7 +13,7 @@ import {
   PING_TIME,
   BANKID_STATUS
 } from '../auth/login-status/login-status.config';
-import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { SafeUrl } from '@angular/platform-browser';
 import { EnvService } from '@services/env.service';
 
 @Component({
@@ -37,7 +37,6 @@ export class AuthSvComponent implements OnInit {
     private userService: UserService,
     private loansService: LoansService,
     private localStorageService: LocalStorageService,
-    private sanitizer: DomSanitizer,
     private envService: EnvService
   ) {}
 

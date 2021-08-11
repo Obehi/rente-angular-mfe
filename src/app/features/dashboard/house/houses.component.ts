@@ -1,6 +1,7 @@
-import { LoansService, AddressDto } from '@services/remote-api/loans.service';
+import { LoansService } from '@services/remote-api/loans.service';
 import { Component, OnInit } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
+import { AddressDto } from '@shared/models/loans';
 import { DeactivationGuarded } from '@shared/guards/route.guard';
 import { locale } from '../../../config/locale/locale';
 import { HouseFormErrorDialogComponent } from './error-dialog/error-dialog.component';
@@ -17,6 +18,9 @@ import {
   keyframes
   // ...
 } from '@angular/animations';
+import { MessageBannerService } from '@services/message-banner.service';
+import { CustomLangTextService } from '@services/custom-lang-text.service';
+import { getAnimationStyles } from '@shared/animations/animationEnums';
 
 @Component({
   selector: 'rente-houses',
@@ -55,12 +59,15 @@ export class HousesComponent implements OnInit, DeactivationGuarded {
   public dialog: MatDialog;
   public showExplainText: boolean;
   public propertyIconPath: string | null;
+  public animationType = getAnimationStyles();
 
   constructor(
     private loansService: LoansService,
     eventService: EventService,
     dialog: MatDialog,
-    private envService: EnvService
+    private envService: EnvService,
+    private messageBanner: MessageBannerService,
+    private customLangTextService: CustomLangTextService
   ) {
     this.dialog = dialog;
 
@@ -179,6 +186,14 @@ export class HousesComponent implements OnInit, DeactivationGuarded {
             }
           }
         }
+
+        this.messageBanner.setSavedViewBolig(
+          this.customLangTextService.getSnackBarUpdatedMessage(),
+          2000,
+          this.animationType.DROP_DOWN_UP,
+          'success',
+          window
+        );
 
         this.canNavigateBooolean$.next(true);
       },
