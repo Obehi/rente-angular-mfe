@@ -105,7 +105,7 @@
     <span>{{ offersInfo.totalEffectiveRate | number: '1.2-2' }} %</span>
   </div>
 
-  <div class="offers-container" [@fadeInAnimate]="test ? test : test">
+  <div class="offers-container">
     <div
       class="spinner"
       *ngIf="offerService.isUpdatingOffers$ | async as isUpdatingOffers"
@@ -113,7 +113,11 @@
       <rente-spinner [size]="'83px'"></rente-spinner>
     </div>
 
-    <div *ngIf="!(offerService.isUpdatingOffers$ | async)" class="offers-grid">
+    <div
+      *ngIf="!(offerService.isUpdatingOffers$ | async)"
+      class="offers-grid"
+      [@fade]
+    >
       <ng-container>
         <!--        <div *ngFor="let offer of test; let i = index">
           <h1>LALALLA</h1>

@@ -81,16 +81,10 @@ import { getAnimationStyles } from '@shared/animations/animationEnums';
     ]),
     trigger('fade', [
       transition(':enter', [
-        style({ height: 0, opacity: 0, borderRadius: '15px' }),
-        animate(
-          '0.2s ease-out',
-          style({ height: 245, opacity: 1, borderRadius: '0px 0px 15px 15px' })
-        )
+        style({ opacity: 0 }),
+        animate('0.2s ease-in', style({ opacity: 1 }))
       ]),
-      transition(':leave', [
-        // style({ height: '100', opacity: 1 }),
-        animate('0.1s ease-in', style({ height: 0, opacity: 0 }))
-      ])
+      transition(':leave', [animate('0.1s ease-out', style({ opacity: 0 }))])
     ])
   ]
 })
