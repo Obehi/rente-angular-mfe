@@ -55,10 +55,10 @@ import { getAnimationStyles } from '@shared/animations/animationEnums';
         'close',
         style({
           position: 'absolute',
-          left: '77%'
+          left: '78%'
         })
       ),
-      transition('* => close', [animate('0.2s', style({ left: '77%' }))]),
+      transition('* => close', [animate('0.2s', style({ left: '78%' }))]),
       transition('* => open', [animate('0.2s', style({ left: '50%' }))])
     ]),
     trigger('desktopAnimate', [
@@ -66,8 +66,7 @@ import { getAnimationStyles } from '@shared/animations/animationEnums';
         'open',
         style({
           position: 'absolute',
-          left: '50%',
-          width: '10%'
+          left: '50%'
         })
       ),
       state(
@@ -79,6 +78,19 @@ import { getAnimationStyles } from '@shared/animations/animationEnums';
       ),
       transition('* => close', [animate('0.2s', style({ left: '78%' }))]),
       transition('* => open', [animate('0.2s', style({ left: '50%' }))])
+    ]),
+    trigger('fade', [
+      transition(':enter', [
+        style({ height: 0, opacity: 0, borderRadius: '15px' }),
+        animate(
+          '0.2s ease-out',
+          style({ height: 245, opacity: 1, borderRadius: '0px 0px 15px 15px' })
+        )
+      ]),
+      transition(':leave', [
+        // style({ height: '100', opacity: 1 }),
+        animate('0.1s ease-in', style({ height: 0, opacity: 0 }))
+      ])
     ])
   ]
 })
@@ -107,6 +119,7 @@ export class OffersListNoComponent implements OnInit {
   initialScores$: Observable<UserScorePreferences>;
 
   animationType = getAnimationStyles();
+  public shouldFadeIn: boolean;
 
   constructor(
     public optimizeService: OptimizeService,
