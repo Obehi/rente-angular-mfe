@@ -253,7 +253,7 @@ export class OffersListNoComponent implements OnInit {
         this.preferencesButtonClicked();
 
         setTimeout(() => {
-          this.scrollTo(this.sliderContainer);
+          this.scrollToSliders();
         }, 700);
 
         setTimeout(() => {
@@ -338,6 +338,18 @@ export class OffersListNoComponent implements OnInit {
       behavior: 'smooth',
       block: 'start',
       inline: 'start'
+    });
+  }
+
+  scrollToSliders(): void {
+    const element = document.getElementById('user-score-dropdown');
+    if (element === null) return;
+    const elementPosition = element.getBoundingClientRect().top;
+    const offsetPosition = elementPosition - 60;
+
+    window.scrollBy({
+      top: offsetPosition,
+      behavior: 'smooth'
     });
   }
 
