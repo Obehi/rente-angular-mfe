@@ -43,7 +43,7 @@ import { getAnimationStyles } from '@shared/animations/animationEnums';
   styleUrls: ['./offers-list-no.component.scss'],
 
   animations: [
-    trigger('test', [
+    trigger('mobileAnimate', [
       state(
         'open',
         style({
@@ -59,6 +59,25 @@ import { getAnimationStyles } from '@shared/animations/animationEnums';
         })
       ),
       transition('* => close', [animate('0.2s', style({ left: '77%' }))]),
+      transition('* => open', [animate('0.2s', style({ left: '50%' }))])
+    ]),
+    trigger('desktopAnimate', [
+      state(
+        'open',
+        style({
+          position: 'absolute',
+          left: '50%',
+          width: '10%'
+        })
+      ),
+      state(
+        'close',
+        style({
+          position: 'absolute',
+          left: '78%'
+        })
+      ),
+      transition('* => close', [animate('0.2s', style({ left: '78%' }))]),
       transition('* => open', [animate('0.2s', style({ left: '50%' }))])
     ])
   ]

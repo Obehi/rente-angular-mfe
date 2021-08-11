@@ -25,10 +25,34 @@
       </a>
     </div>
     <a
+      *ngIf="isMobile"
       id="hamburger"
       class="preferences-button"
       (click)="preferencesButtonClicked()"
-      [@test]="showHamburger ? 'close' : 'open'"
+      [@mobileAnimate]="showHamburger ? 'close' : 'open'"
+    >
+      <span
+        [ngClass]="
+          !showScorePreferences
+            ? 'preferences-button'
+            : 'preferences-button-active'
+        "
+      >
+        <img
+          [src]="
+            showScorePreferences
+              ? '../../../assets/icons/slider-icon-blue-medium.svg'
+              : '../../../assets/icons/slider-icon-green.svg'
+          "
+        />
+      </span>
+    </a>
+    <a
+      *ngIf="!isMobile"
+      id="hamburger"
+      class="preferences-button"
+      (click)="preferencesButtonClicked()"
+      [@desktopAnimate]="showHamburger ? 'close' : 'open'"
     >
       <span
         [ngClass]="
