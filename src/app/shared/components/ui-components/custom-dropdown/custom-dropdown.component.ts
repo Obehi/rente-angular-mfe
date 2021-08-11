@@ -47,15 +47,13 @@ import {
         style({
           height: '0',
           overflow: 'hidden',
-          visibility: 'hidden',
-          padding: '0 15px'
+          visibility: 'hidden'
         })
       ),
       state(
         'final',
         style({
-          overflow: 'hidden',
-          padding: '15px'
+          overflow: 'hidden'
         })
       ),
       transition('initial<=>final', [animate('0.45s ease-in')])
