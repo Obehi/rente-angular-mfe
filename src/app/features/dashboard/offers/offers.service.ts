@@ -49,7 +49,10 @@ export class OffersService {
             60 >
             0 && this.shouldUpdateOffersLater
       ),
-      tap(() => this.updateOffers$.next())
+      debounceTime(100),
+      tap(() => {
+        this.updateOffers$.next();
+      })
     );
   }
 }

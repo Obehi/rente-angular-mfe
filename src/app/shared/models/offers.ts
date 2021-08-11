@@ -87,11 +87,14 @@ export interface BankGuideInfo {
   bestNomOffer: number;
   constructionLoans: boolean;
   constructionLoansOffers: { name: string; rate: string }[];
+  contactLink: string;
   creditLineLoans: string;
   creditLineLoansOffers: { name: string; rate: string }[];
   depositOffers: { name: string; rate: string }[];
+  email: string;
   fixedRateLoans: boolean;
   fixedRateLoansOffers: { name: string; rate: string }[];
+  phone: number;
   intermediateFinancing: boolean;
   intermediateFinancingOffers: { name: string; rate: string }[];
   medianEffectiveRate: number;
@@ -100,6 +103,7 @@ export interface BankGuideInfo {
   regularOffers: { name: string; rate: string }[];
   renteRating: string;
   score: number;
+  swift: string;
   text1: string;
   text2: string;
   text3: string;

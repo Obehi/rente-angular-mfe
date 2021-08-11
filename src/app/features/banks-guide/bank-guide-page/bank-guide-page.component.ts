@@ -36,6 +36,9 @@ export class BankGuidePageComponent implements OnInit, OnDestroy {
   membershipOffers: any;
   depositsGeneral: { name: string; rate: string }[] = [];
   depositsBsu: { name: string; rate: string }[] = [];
+  email;
+  swift;
+  phone;
 
   $memberships: Observable<any>;
   public bankUtils = BankUtils;
@@ -86,7 +89,6 @@ export class BankGuidePageComponent implements OnInit, OnDestroy {
         .subscribe(
           (bankInfo) => {
             this.bankGuideInfo = bankInfo;
-
             this.banksLocations = Object.keys(
               this.bankGuideInfo.addresses
             ).sort();
@@ -151,12 +153,16 @@ export class BankGuidePageComponent implements OnInit, OnDestroy {
     return 0;
   };
 
-  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-  scrollTo(ref: any): void {
+  scrollTo(ref: HTMLElement): void {
     ref.scrollIntoView({
       behavior: 'smooth',
       block: 'start',
       inline: 'start'
     });
+  }
+
+  public openBankUrlByButton(): void {
+    if (this.bankGuideInfo.url === null) return;
+    window.open(this.bankGuideInfo.url, '_blank');
   }
 }
