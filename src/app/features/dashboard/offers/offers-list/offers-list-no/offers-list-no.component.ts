@@ -61,6 +61,7 @@ export class OffersListNoComponent implements OnInit {
   public currentOfferType: string;
 
   ngOnInit(): void {
+    this.setEffectiveRatePullDownListener();
     const obj = document.getElementsByClassName('the-offers')[0];
     fromEvent(window, 'scroll').subscribe(() => {
       if (obj?.getBoundingClientRect().top <= 0) {
@@ -95,5 +96,18 @@ export class OffersListNoComponent implements OnInit {
     });
 
     this.currentOfferInfo.offers.top5 = newLoanTypeSelected;
+  }
+
+  public setEffectiveRatePullDownListener(): void {
+    const effectiveRateContainer = document.getElementsByClassName(
+      'the-offers'
+    )[0];
+    fromEvent(window, 'scroll').subscribe(() => {
+      if (effectiveRateContainer?.getBoundingClientRect().top <= 0) {
+        this.onScroll = true;
+      } else {
+        this.onScroll = false;
+      }
+    });
   }
 }

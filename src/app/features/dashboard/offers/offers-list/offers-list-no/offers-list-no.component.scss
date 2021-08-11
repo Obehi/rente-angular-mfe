@@ -14,7 +14,7 @@ p {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  position: sticky;
+  position: fixed;
   z-index: 9;
   top: 55px;
   font-size: 14px;
@@ -24,11 +24,8 @@ p {
   height: 4em;
   width: 90%;
   padding: 10px;
-  margin-left: 2vh;
-
-  span {
-    margin-right: 29px;
-  }
+  left: 50%;
+  transform: translateX(-50%);
 
   @media (min-width: 600px) {
     top: 114px;
