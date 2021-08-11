@@ -336,10 +336,10 @@ export class OffersListNoComponent implements OnInit {
 
   public setEffectiveRatePullDownListener(): void {
     const effectiveRateContainer = document.getElementsByClassName(
-      'the-offers'
+      'offers-container'
     )[0];
     fromEvent(window, 'scroll').subscribe(() => {
-      if (effectiveRateContainer?.getBoundingClientRect().top <= 0) {
+      if (effectiveRateContainer?.getBoundingClientRect().top - 60 <= 0) {
         this.onScroll = true;
       } else {
         this.onScroll = false;
