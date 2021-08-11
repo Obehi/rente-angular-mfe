@@ -59,7 +59,6 @@ export class LoansNoComponent implements OnInit {
     this.loansService.getLoanAndOffersBanks().subscribe(
       ([loans, offerBank]) => {
         this.loansData = loans;
-        // this.loansData.loans[0].loanName = ''
         this.offer = offerBank as offerDto;
 
         console.log(this.offer);
@@ -67,7 +66,7 @@ export class LoansNoComponent implements OnInit {
         // this.isSignicatUser = BankUtils.getSignicatUserByBankLabel(
         //   this.loansData.loans[0].bank
         // );
-        this.isSignicatUser = false;
+        this.isSignicatUser = true;
 
         console.log('Is signicatuser?');
         console.log(this.isSignicatUser);

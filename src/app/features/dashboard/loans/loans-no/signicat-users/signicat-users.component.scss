@@ -1,8 +1,8 @@
 @import '../../../../../../styles/theme/_colors.scss';
 
-h3.title {
+.info {
+  text-align: center;
   color: white;
-  padding: 10px;
 }
 
 h3 {
@@ -15,6 +15,16 @@ p {
 
 .summary {
   padding: 10px;
+}
+
+.loan-edit {
+  width: 35px;
+  height: 35px;
+}
+
+.edit-button {
+  background-color: transparent;
+  color: transparent;
 }
 
 @media (min-width: 600px) {
@@ -33,7 +43,7 @@ p {
 }
 
 .all-text {
-  padding: 10px;
+  padding: 15px;
 }
 
 .information-box {
@@ -57,6 +67,7 @@ p {
 .box-value {
   width: 50%;
   height: 100%;
+  // background-color: lightcoral;
   float: right;
   display: flex;
   justify-content: flex-end;
@@ -104,16 +115,40 @@ p {
   padding: 10px;
   color: white;
   margin-left: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-hr.box,
-hr.split {
+.loan-center {
+  text-align: center;
+  margin: 20px;
+}
+
+.loan-center-edit {
+  text-align: center;
+  /* margin: 15px; */
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border: 1px solid #4d97dc;
+  background-color: #004465;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+hr.loan-split {
   border-top: 1px solid #4d97dc;
   border-bottom: none;
   background-color: #4d97dc;
 }
 
 hr.box {
+  border-top: 1px solid #4d97dc;
+  border-bottom: none;
+
+  background-color: #4d97dc;
   opacity: 0.3;
 }
 
@@ -139,4 +174,14 @@ hr.box {
 
 // Add css when necessary
 .loan-value {
+}
+
+.edit-loan-name {
+  margin-left: 15px;
+}
+
+.loan-type-edit {
+  width: 30px;
+  height: 40px;
+  margin-top: 5px;
 }

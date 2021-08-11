@@ -4,6 +4,8 @@
 >
   <rente-crawler-banks *ngIf="!isSignicatUser"></rente-crawler-banks>
 
+  <rente-signicat-users *ngIf="isSignicatUser"></rente-signicat-users>
+
   <div *ngIf="locale === 'nb'" class="center-logo">
     <h3>Har du forbrukslån eller billån?</h3>
     <p>

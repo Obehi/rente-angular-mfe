@@ -71,6 +71,8 @@ import { ActionBoxesComponent } from './offers/offers-blue/action-boxes/action-b
 import { PropertyInputComponent } from '../first-buyers/components/property-input/property-input.component';
 import { CurrencyMaskModule } from 'ng2-currency-mask';
 import { CrawlerBanksComponent } from './loans/loans-no/crawler-banks/crawler-banks.component';
+import { SignicatUsersComponent } from './loans/loans-no/signicat-users/signicat-users.component';
+import { SignicatFixedPriceComponent } from './loans/loans-no/signicat-fixed-price/signicat-fixed-price.component';
 
 // TODO: ADD separate module for material import
 @NgModule({
@@ -120,7 +122,9 @@ import { CrawlerBanksComponent } from './loans/loans-no/crawler-banks/crawler-ba
     BoxGridComponent,
     TipsComponent,
     ActionBoxesComponent,
-    CrawlerBanksComponent
+    CrawlerBanksComponent,
+    SignicatUsersComponent,
+    SignicatFixedPriceComponent
   ],
   imports: [
     CommonModule,
