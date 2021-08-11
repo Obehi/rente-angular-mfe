@@ -70,7 +70,11 @@ export class MessageBannerService implements OnDestroy {
         newNode.style.top = '70px';
       }
     } else {
-      newNode.style.top = '75px';
+      if (_animationType === this.checkAnimationStyle.SLIDE_UP) {
+        newNode.style.bottom = '20px';
+      } else {
+        newNode.style.top = '75px';
+      }
     }
 
     document.getElementsByClassName(this.getContentClass())[0].prepend(newNode);

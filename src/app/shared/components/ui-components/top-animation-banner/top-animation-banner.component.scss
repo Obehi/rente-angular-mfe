@@ -45,6 +45,10 @@
   align-items: center;
   border-radius: 15px;
   margin: 20px;
+  @media (min-width: 600px) {
+    margin: auto;
+    width: 55%;
+  }
 
   p {
     color: white;
