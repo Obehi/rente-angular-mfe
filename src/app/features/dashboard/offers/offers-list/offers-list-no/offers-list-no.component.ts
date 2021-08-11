@@ -20,13 +20,11 @@ import { MessageBannerService } from '../../../../../shared/services/message-ban
 export class OffersListNoComponent implements OnInit, OnDestroy {
   @Input() offersInfo: Offers;
   public currentOfferInfo: Offers;
-  public notifications = true;
   public notificationSubscription: Subscription;
 
   constructor(
     public optimizeService: OptimizeService,
     private envService: EnvService,
-    private notificationService: NotificationService,
     private messageService: MessageBannerService
   ) {}
 
@@ -60,7 +58,7 @@ export class OffersListNoComponent implements OnInit, OnDestroy {
     this.notificationSubscription = fromEvent(window, 'scroll').subscribe(
       () => {
         console.log(obj.getBoundingClientRect());
-        if (obj?.getBoundingClientRect().top <= 0 && this.notifications) {
+        if (obj?.getBoundingClientRect().top <= 0) {
           this.messageService.detachView();
         }
       }
