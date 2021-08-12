@@ -20,12 +20,15 @@ import { MessageBannerService } from '../../../../../shared/services/message-ban
 export class OffersListNoComponent implements OnInit, OnDestroy {
   @Input() offersInfo: Offers;
   public currentOfferInfo: Offers;
+  public scrollSubscription: Subscription;
   public notificationSubscription: Subscription;
+  private notificationNumber: number;
 
   constructor(
     public optimizeService: OptimizeService,
     private envService: EnvService,
-    private messageService: MessageBannerService
+    private messageService: MessageBannerService,
+    private notificationService: NotificationService
   ) {}
 
   // Save for later use
@@ -49,20 +52,27 @@ export class OffersListNoComponent implements OnInit, OnDestroy {
   public currentOfferType: string;
 
   ngOnDestroy(): void {
+    this.scrollSubscription.unsubscribe();
     this.notificationSubscription.unsubscribe();
   }
 
   ngOnInit(): void {
+    this.notificationSubscription = this.notificationService
+      .getOfferNotificationAsObservable()
+      .subscribe((args) => {
+        this.notificationNumber = args;
+      });
+
     const obj = document.getElementsByClassName('the-offers')[0];
 
-    this.notificationSubscription = fromEvent(window, 'scroll').subscribe(
-      () => {
-        console.log(obj.getBoundingClientRect());
-        if (obj?.getBoundingClientRect().top <= 0) {
-          this.messageService.detachView();
-        }
+    this.scrollSubscription = fromEvent(window, 'scroll').subscribe(() => {
+      if (
+        obj?.getBoundingClientRect().top <= 0 &&
+        this.notificationNumber === 1
+      ) {
+        this.messageService.detachView();
       }
-    );
+    });
 
     this.currentOfferInfo = JSON.parse(JSON.stringify(this.offersInfo));
     this.currentOfferType = 'all';
