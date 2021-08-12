@@ -1,0 +1,211 @@
+@import '../../../../../../styles/theme/_colors.scss';
+
+.info {
+  text-align: center;
+  color: white;
+}
+
+h3 {
+  color: white;
+}
+
+p {
+  color: white;
+}
+
+.summary {
+  padding: 10px;
+}
+
+.loan-edit {
+  width: 35px;
+  height: 35px;
+}
+
+.edit-button {
+  background-color: transparent;
+  color: transparent;
+}
+
+@media (min-width: 600px) {
+  .summary {
+    border-top: none;
+    position: relative;
+    left: -1px;
+    width: calc(100% + 2px);
+  }
+}
+
+.content-blue-box {
+  width: 100%;
+  background-color: $secondary;
+  border-radius: 10px;
+}
+
+.all-text {
+  padding: 15px;
+}
+
+.information-box {
+  width: 100%;
+  height: 60px;
+  padding: 10px;
+}
+
+.box-title {
+  height: 100%;
+  float: left;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  p {
+    margin-left: 5px;
+  }
+}
+
+.box-value {
+  width: 50%;
+  height: 100%;
+  // background-color: lightcoral;
+  float: right;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  h3 {
+    margin-right: 10px;
+  }
+}
+
+.double-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.first-box {
+  color: white;
+  border-radius: 11px;
+  width: 45%;
+}
+
+.btitle-two,
+.btitle-one {
+  text-align: center;
+  padding-left: 11px;
+  padding-right: 11px;
+
+  p {
+    padding: 6px;
+  }
+}
+
+.btitle-two {
+  padding-left: 7px;
+  padding-right: 7px;
+}
+
+.bvalue {
+  text-align: center;
+  padding: 15px;
+}
+
+.loan-type {
+  padding: 10px;
+  color: white;
+  margin-left: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.loan-center {
+  text-align: center;
+  margin: 20px;
+}
+
+.loan-center-edit {
+  text-align: center;
+  /* margin: 15px; */
+  margin-top: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #4d97dc;
+  background-color: #004465;
+  border-radius: 10px;
+  //   display: flex;
+  //   justify-content: space-between;
+  //   align-items: center;
+}
+
+::ng-deep .mat-form-field {
+  display: block !important;
+}
+
+::ng-deep .mat-select-value-text,
+::ng-deep .mat-select-arrow {
+  color: white !important;
+}
+
+::ng-deep .mat-form-field-underline::before {
+  background-color: white !important;
+}
+
+::ng-deep .mat-select-panel {
+  overflow: scroll;
+  //   color: #d12ce0;
+  //   background-color: blueviolet;
+}
+
+hr.loan-split {
+  border-top: 1px solid #4d97dc;
+  border-bottom: none;
+  background-color: #4d97dc;
+}
+
+hr.box {
+  border-top: 1px solid #4d97dc;
+  border-bottom: none;
+
+  background-color: #4d97dc;
+  opacity: 0.3;
+}
+
+.vl {
+  border-left: 1px solid #4d97dc;
+  border-bottom: none;
+  background-color: #4d97dc;
+  height: 120px;
+  opacity: 0.3;
+}
+
+.loan-info {
+  padding: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+// Add css when necessary
+.loan-title {
+}
+
+// Add css when necessary
+.loan-value {
+}
+
+// .edit-loan-name {
+//   margin-left: 15px;
+// }
+
+// .loan-type-edit {
+//   width: 30px;
+//   height: 40px;
+//   margin-top: 5px;
+// }
+
+.loan-type-label {
+  color: white;
+  margin-top: 5px;
+}

@@ -4,7 +4,7 @@
 >
   <div class="info">Signicat brukere uten fixed price</div>
   <div *ngFor="let loan of loans">
-    <div class="summary">
+    <div>
       <div class="content-blue-box">
         <div class="loan-type">
           <h3>Lån</h3>
@@ -18,64 +18,64 @@
           </div>
         </div>
         <hr class="loan-split" />
+
         <div class="all-text">
-          <div class="loan-center" *ngIf="!isEditMode">
+          <div class="loan-center">
             <p>
               <!-- {{ loan.loanName }} -->
               BOLIGLÅN 85% BOLIGKR 0-2
             </p>
           </div>
-          <div class="loan-center-edit" *ngIf="isEditMode">
-            <h4>Basic mat-select</h4>
-            <mat-form-field appearance="fill">
-              <mat-label>Velg lånetype</mat-label>
-              <mat-select>
-                <mat-option
-                  *ngFor="let offer of allOffers"
-                  [value]="allOffers.name"
+        </div>
+
+        <div class="forms" *ngIf="loanForm">
+          <form class="p-0 border-0" [formGroup]="loanForm" novalidate change>
+            <div class="field-box">
+              <h4 class="text-white">Utestående lån:</h4>
+
+              <div class="loan-value" [hidden]="isEditMode">
+                <h3>
+                  {{ loan.outstandingDebt / 1000000 | number: '1.3-3' }}
+                  millioner
+                </h3>
+              </div>
+
+              <div [hidden]="!isEditMode">
+                <mat-form-field class="white-input w-75" appearance="outline">
+                  <input
+                    placeholder="Skriv inn din lån"
+                    matInput
+                    type="tel"
+                    autocomplete="off"
+                    [formControlName]="'outstandingDebt'"
+                    currencyMask
+                    [options]="{
+                      prefix: '',
+                      suffix: ' kr',
+                      align: 'center',
+                      thousands: ' ',
+                      precision: 0
+                    }"
+                  />
+                </mat-form-field>
+
+                <div
+                  *ngIf="loanForm.controls['outstandingDebt'].touched"
+                  class="error-message"
                 >
-                  {{ offer.name }}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-          </div>
-          <div class="loan-info">
-            <div class="loan-title">
-              <p>Utestående lån:</p>
+                  <rente-form-message
+                    class="d-block"
+                    [type]="'error'"
+                    *ngIf="
+                      loanForm.controls['outstandingDebt'].hasError('required')
+                    "
+                  >
+                    Kan ikke være tom
+                  </rente-form-message>
+                </div>
+              </div>
             </div>
-            <div class="loan-value">
-              <h3>
-                {{ loan.outstandingDebt / 1000000 | number: '1.3-3' }}
-                millioner
-              </h3>
-            </div>
-          </div>
-          <div class="loan-info">
-            <div class="loan-title">
-              <p>Løpetid:</p>
-            </div>
-            <div class="loan-value">
-              <h3>{{ loan.remainingYears | number: '1.2-2' }} år</h3>
-            </div>
-          </div>
-
-          <div class="loan-info">
-            <div class="loan-title">
-              <p>Effektiv rente:</p>
-            </div>
-            <div class="loan-value">
-              <h3>{{ loan.effectiveRate | number: '1.2-2' }} %</h3>
-            </div>
-          </div>
-
-          <div class="loan-info">
-            <div class="loan-title">
-              <p>Nominell rente:</p>
-            </div>
-            <div class="loan-value">
-              <h3>{{ loan.nominalRate | number: '1.2-2' }} %</h3>
-            </div>
-          </div>
+          </form>
         </div>
 
         <hr class="box" />

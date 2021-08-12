@@ -61,7 +61,7 @@ export class LoansNoComponent implements OnInit {
         this.loansData = loans;
         this.offer = offerBank as offerDto;
 
-        console.log(this.offer);
+        // console.log(this.offer);
 
         // this.isSignicatUser = BankUtils.getSignicatUserByBankLabel(
         //   this.loansData.loans[0].bank

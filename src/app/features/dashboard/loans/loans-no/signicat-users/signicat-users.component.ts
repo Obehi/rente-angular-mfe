@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoansService } from '@services/remote-api/loans.service';
 
 @Component({
@@ -15,8 +16,9 @@ export class SignicatUsersComponent implements OnInit {
   /*
     The object interface is not updated so fix it when the new version is merged
   */
+  public loanForm: FormGroup;
 
-  constructor(private loansService: LoansService) {}
+  constructor(private loansService: LoansService, private fb: FormBuilder) {}
 
   ngOnInit(): void {
     this.loansService.getLoanAndOffersBanks().subscribe(
@@ -24,20 +26,26 @@ export class SignicatUsersComponent implements OnInit {
         this.loansData = loans;
         this.allOffers = offerBank.offers;
         this.loans = this.loansData.loans;
-        console.log(this.loansData.loans);
-        console.log(this.allOffers);
+        console.log(this.loansData);
+
+        const dto = this.loans[0];
+
+        console.log(dto.outstandingDebt);
+
+        this.loanForm = this.fb.group({
+          outstandingDebt: [String(dto.outstandingDebt), Validators.required],
+          remainingYears: [String(dto.income), Validators.required],
+          nominalRate: [String(dto.nominalRate), Validators.required]
+        });
+        console.log(this.loanForm);
       },
       (err) => {
         this.errorMessage = err.title;
       }
     );
-    console.log('is edit mode: ');
-    console.log(this.isEditMode);
   }
 
   public activateEditMode(): void {
     this.isEditMode = !this.isEditMode;
-    console.log('is edit mode: ');
-    console.log(this.isEditMode);
   }
 }
