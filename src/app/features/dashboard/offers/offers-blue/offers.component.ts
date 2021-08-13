@@ -123,6 +123,9 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
     if (this.notificationSubscription) {
       this.notificationSubscription.unsubscribe();
     }
+
+    // Remove message poppus when leaving offers page. Should only effect message with arrow version
+    this.messageService.detachView();
   }
 
   scrollOfferNotificationObserver(): Observable<any> {
