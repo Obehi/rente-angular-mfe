@@ -144,20 +144,20 @@ hr.box {
 }
 
 .w-75 {
-  width: 175px !important;
+  width: 150px !important;
 }
 
-::ng-deep .mat-form-field-infix {
-  border-top: none;
+.w-130 {
+  width: 110px !important;
 }
 
-::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-thick {
-  color: transparent;
-}
+// ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-thick {
+//   color: transparent;
+// }
 
-::ng-deep .mat-form-field-appearance-outline .mat-form-field-wrapper {
-  margin: 0;
-}
+// ::ng-deep .mat-form-field-appearance-outline .mat-form-field-wrapper {
+//   margin: 0;
+// }
 
 .oustandingDebt {
   position: relative;
@@ -174,9 +174,31 @@ hr.box {
 }
 
 .forms {
-  ::ng-deep .mat-form-field-infix {
-    top: 0px !important;
+  .non-active-input {
+    ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+      background: none;
+    }
+    ::ng-deep.mat-form-field-appearance-outline .mat-form-field-outline {
+      border: none;
+    }
   }
+
+  .active-input {
+    ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+      background: #004465a6;
+    }
+
+    ::ng-deep.mat-form-field-appearance-outline .mat-form-field-outline {
+      border: 1px solid #478ccc;
+      border-radius: 8px;
+    }
+  }
+
+  ::ng-deep .mat-form-field-infix {
+    top: 2px !important;
+    border-top: none;
+  }
+
   ::ng-deep .mat-form-field-wrapper {
     margin: 0 !important;
     padding: 0 !important;
@@ -199,10 +221,6 @@ hr.box {
     border-radius: 1px !important;
     border-bottom: none;
   }
-  ::ng-deep.mat-form-field-appearance-outline .mat-form-field-outline {
-    border: 1px solid #478ccc;
-    border-radius: 50px;
-  }
 
   ::ng-deep .mat-form-field-infix input {
     text-align: center !important;
@@ -212,11 +230,6 @@ hr.box {
     border: none !important;
   }
 
-  ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
-    background: #004465a6;
-    //height: 55px !important;
-    // bottom: -0.25em !important;
-  }
   @media (min-width: 600px) {
     form {
       min-width: 100%;
@@ -225,7 +238,7 @@ hr.box {
   }
 
   ::ng-deep input.mat-input-element {
-    color: white;
+    color: white !important;
   }
   // input element
   // .mat-input-element {
@@ -263,10 +276,20 @@ hr.box {
   // }
 
   .loan-value {
-    margin-right: 5px;
+    margin-right: 20px;
   }
 
   .d-block {
     text-align: center;
   }
+
+  input {
+    font-size: 16px !important;
+  }
+}
+
+.save-loan-button {
+  // margin: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }

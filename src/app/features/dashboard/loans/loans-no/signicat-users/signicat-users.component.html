@@ -10,7 +10,7 @@
           <h3>Lån</h3>
           <div>
             <img
-              (click)="activateEditMode()"
+              (click)="setEnabled()"
               class="loan-edit"
               src="../../../../../../assets/icons/loan-edit-icon.svg"
               alt="loan-edit"
@@ -33,14 +33,18 @@
             <div class="field-box">
               <h4 class="text-white">Utestående lån:</h4>
 
-              <div class="loan-value" [hidden]="isEditMode">
+              <!-- <div class="loan-value" [hidden]="isEditMode">
                 <h3>
                   {{ loan.outstandingDebt / 1000000 | number: '1.3-3' }}
                   millioner
                 </h3>
-              </div>
+              </div> -->
 
-              <div [hidden]="!isEditMode">
+              <div
+                [ngClass]="
+                  isEditMode === false ? 'non-active-input' : 'active-input'
+                "
+              >
                 <mat-form-field class="white-input w-75" appearance="outline">
                   <input
                     placeholder="Skriv inn din lån"
@@ -68,6 +72,101 @@
                     [type]="'error'"
                     *ngIf="
                       loanForm.controls['outstandingDebt'].hasError('required')
+                    "
+                  >
+                    Kan ikke være tom
+                  </rente-form-message>
+                </div>
+              </div>
+            </div>
+
+            <div class="field-box">
+              <h4 class="text-white">Løpetid:</h4>
+
+              <!-- <div class="loan-value" [hidden]="isEditMode">
+                <h3>{{ loan.remainingYears | number: '1.2-2' }} år</h3>
+              </div> -->
+
+              <div
+                [ngClass]="
+                  isEditMode === false ? 'non-active-input' : 'active-input'
+                "
+              >
+                <mat-form-field class="white-input w-130" appearance="outline">
+                  <input
+                    placeholder="Skriv inn løpetiden"
+                    matInput
+                    type="tel"
+                    autocomplete="off"
+                    [formControlName]="'remainingYears'"
+                    currencyMask
+                    [options]="{
+                      prefix: '',
+                      suffix: ' år',
+                      align: 'center',
+                      thousands: ' ',
+                      decimal: ',',
+                      precision: 2
+                    }"
+                  />
+                </mat-form-field>
+
+                <div
+                  *ngIf="loanForm.controls['remainingYears'].touched"
+                  class="error-message"
+                >
+                  <rente-form-message
+                    class="d-block"
+                    [type]="'error'"
+                    *ngIf="
+                      loanForm.controls['remainingYears'].hasError('required')
+                    "
+                  >
+                    Kan ikke være tom
+                  </rente-form-message>
+                </div>
+              </div>
+            </div>
+
+            <div class="field-box">
+              <h4 class="text-white">Nominell rente:</h4>
+
+              <!-- <div class="loan-value" [hidden]="isEditMode">
+                <h3>{{ loan.nominalRate | number: '1.2-2' }} %</h3>
+              </div> -->
+
+              <div
+                [ngClass]="
+                  isEditMode === false ? 'non-active-input' : 'active-input'
+                "
+              >
+                <mat-form-field class="white-input w-130" appearance="outline">
+                  <input
+                    placeholder="Nominell rente"
+                    matInput
+                    type="text"
+                    autocomplete="off"
+                    [formControlName]="'nominalRate'"
+                    currencyMask
+                    [options]="{
+                      prefix: '',
+                      suffix: ' %',
+                      align: 'center',
+                      decimal: ',',
+                      precision: 2
+                    }"
+                  />
+                </mat-form-field>
+
+                <div
+                  *ngIf="loanForm.controls['nominalRate'].touched"
+                  class="error-message"
+                >
+                  <rente-form-message
+                    class="d-block"
+                    [type]="'error'"
+                    *ngIf="
+                      loanForm.controls['nominalRate'].hasError('required')
                     "
                   >
                     Kan ikke være tom
@@ -110,6 +209,13 @@
               </div>
             </div>
           </div>
+        </div>
+        <hr class="box" />
+
+        <div class="save-loan-button">
+          <rente-button color="primary" (click)="setDisabled()">
+            Lagre
+          </rente-button>
         </div>
       </div>
     </div>
