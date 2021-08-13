@@ -105,6 +105,7 @@ export class OffersListNoComponent implements OnInit {
 
   public currentOfferInfo: Offers;
   public onScroll: boolean;
+  public shouldOverRideLoadingState = false;
   public currentOfferInfo$: Observable<OfferInfo[]>;
   public cachedCurrentOffers$ = new Subject<OfferInfo[]>();
   public showDemoTrigger$ = new BehaviorSubject<boolean>(false);
@@ -213,10 +214,12 @@ export class OffersListNoComponent implements OnInit {
         // Create "fake" loading time to make sure the user knows the offertype settings are being updated
         tap((value) => {
           this.offerService.isUpdatingOffers$.next(true);
+          this.shouldOverRideLoadingState = true;
         }),
         delay(100),
         tap((value) => {
           this.offerService.isUpdatingOffers$.next(false);
+          this.shouldOverRideLoadingState = false;
         })
       )
     );
@@ -232,6 +235,9 @@ export class OffersListNoComponent implements OnInit {
         ? 'score'
         : 'rate';
       this.setOfferType(offerType);
+    } else {
+      // this.localStorageService.isUserDefinedOfferPreferences = false;
+      this.currentOfferType = 'rate';
     }
   }
 

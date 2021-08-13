@@ -104,12 +104,12 @@ h3 {
       align-items: center;
       justify-content: center;
       p {
-        color: $primary;
+        color: white;
         font-weight: 400;
       }
       &.active {
         p {
-          color: white;
+          color: $primary;
           background: none;
           background: $blue-medium;
           border-radius: 20px;
@@ -123,7 +123,7 @@ h3 {
   .preferences-button {
     width: 20%;
     height: 60px;
-    background: $karl-blue;
+    background: $secondary;
     border-radius: 0 15px 15px 0;
     display: flex;
     align-items: center;
@@ -131,30 +131,34 @@ h3 {
     z-index: 0;
 
     .preferences-button {
-      background: $secondary;
+      background: $blue-medium;
       width: 40px;
       height: 40px;
       display: flex;
       justify-content: center;
       border-radius: 50px;
       margin-left: 13px;
-      /*    box-shadow: rgb(50 50 93 / 25%) 0px 2px 5px -1px,
-        rgb(0 0 0 / 30%) 0px 3px 3px -1px; */
+
+      box-shadow: rgb(50 50 93 / 25%) 0px 2px 5px -1px,
+        rgb(0 0 0 / 30%) 0px 3px 3px -1px;
+      //     transition: all 1s ease;
+      //   transform: translate3d(0, 0px, 0);
     }
 
     .preferences-button-active {
-      background: $primary;
+      background: $karl-blue;
       width: 40px;
       height: 40px;
       display: flex;
       justify-content: center;
       border-radius: 50px;
       margin-left: 13px;
-      box-shadow: rgb(50 50 93 / 25%) 0px 2px 5px -1px,
-        rgb(0 0 0 / 30%) 3px 3px 4px 2px;
+      // box-shadow: 2px 1px 2px black;
+      // transform: translate3d(0, -4px, 0);
+      // transition: all 0.3s ease;
     }
     img {
-      width: 18px;
+      width: 24px;
     }
   }
 }
