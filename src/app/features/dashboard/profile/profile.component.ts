@@ -413,6 +413,7 @@ export class ProfileComponent implements OnInit, DeactivationGuarded {
         filter(() => this.profileForm.get(FormControlId.email)?.valid || false),
         debounceTime(2000),
         filter(() => this.profileForm.get('email')?.valid || false),
+        map((value: string) => value.replace(/\s/g, '')),
         tap(() => {
           this.beforeUpdate(FormControlId.email);
         }),
