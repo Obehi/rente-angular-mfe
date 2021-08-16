@@ -2,7 +2,7 @@
   class="summary"
   *ngIf="loansData && loansData.loans && loansData.loans.length > 0"
 >
-  <div class="info">Signicat brukere uten fixed price</div>
+  <!-- <div class="info">Signicat brukere uten fixed price</div> -->
   <div *ngFor="let loan of loans">
     <div>
       <div class="content-blue-box">
@@ -10,16 +10,25 @@
           <h3>Lån</h3>
           <div>
             <img
+              [hidden]="isEditMode"
               (click)="setEnabled()"
-              class="loan-edit"
-              src="../../../../../../assets/icons/loan-edit-icon.svg"
+              class="loan-edit-activate"
+              src="../../../../../../assets/icons/edit-icon-grey.svg"
+              alt="loan-edit"
+            />
+            <img
+              [hidden]="!isEditMode"
+              (click)="setDisabled()"
+              class="loan-edit-cancel"
+              src="../../../../../../assets/icons/cancel-icon-grey.svg"
               alt="loan-edit"
             />
           </div>
         </div>
-        <hr class="loan-split" />
+        <!-- <hr class="loan-split" /> -->
 
         <div class="all-text">
+          <h4 class="loan-center-title">Lånetype</h4>
           <div class="loan-center">
             <p>
               <!-- {{ loan.loanName }} -->
@@ -50,6 +59,7 @@
                     placeholder="Skriv inn din lån"
                     matInput
                     type="tel"
+                    maxlength="14"
                     autocomplete="off"
                     [formControlName]="'outstandingDebt'"
                     currencyMask
@@ -97,6 +107,7 @@
                     placeholder="Skriv inn løpetiden"
                     matInput
                     type="tel"
+                    maxlength="9"
                     autocomplete="off"
                     [formControlName]="'remainingYears'"
                     currencyMask
@@ -142,9 +153,10 @@
               >
                 <mat-form-field class="white-input w-130" appearance="outline">
                   <input
-                    placeholder="Nominell rente"
+                    placeholder=""
                     matInput
-                    type="text"
+                    type="tel"
+                    maxlength="7"
                     autocomplete="off"
                     [formControlName]="'nominalRate'"
                     currencyMask
@@ -177,10 +189,9 @@
           </form>
         </div>
 
-        <hr class="box" />
-        <div>
+        <div class="total-cost">
           <div class="double-container">
-            <div class="first-box">
+            <div class="first-box move-first-box">
               <div class="btitle-one">
                 <p>Totale renter og gebyrer</p>
               </div>
@@ -193,9 +204,9 @@
               </div>
             </div>
 
-            <div class="vl"></div>
+            <!-- <div class="vl"></div> -->
 
-            <div class="first-box">
+            <div class="first-box move-sec-box">
               <div class="btitle-two">
                 <p>Renter & gebyrer per år</p>
               </div>
@@ -210,7 +221,6 @@
             </div>
           </div>
         </div>
-        <hr class="box" />
 
         <div class="save-loan-button">
           <rente-button color="primary" (click)="setDisabled()">

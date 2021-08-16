@@ -14,165 +14,6 @@ p {
   color: white;
 }
 
-.summary {
-  padding: 10px;
-}
-
-.loan-edit {
-  width: 35px;
-  height: 35px;
-}
-
-@media (min-width: 600px) {
-  .summary {
-    border-top: none;
-    position: relative;
-    left: -1px;
-    width: calc(100% + 2px);
-  }
-}
-
-.content-blue-box {
-  width: 100%;
-  background-color: $secondary;
-  border-radius: 10px;
-}
-
-.all-text {
-  padding-top: 15px;
-}
-
-.double-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.first-box {
-  color: white;
-  border-radius: 11px;
-  width: 45%;
-}
-
-.btitle-two,
-.btitle-one {
-  text-align: center;
-  padding-left: 11px;
-  padding-right: 11px;
-
-  p {
-    padding: 6px;
-  }
-}
-
-.btitle-two {
-  padding-left: 7px;
-  padding-right: 7px;
-}
-
-.bvalue {
-  text-align: center;
-  padding: 15px;
-}
-
-.loan-type {
-  padding: 10px;
-  color: white;
-  margin-left: 10px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.loan-center {
-  text-align: center;
-  margin: 20px;
-  margin-bottom: 30px;
-}
-
-::ng-deep .mat-form-field {
-  // display: block !important;
-}
-
-::ng-deep .mat-select-value-text,
-::ng-deep .mat-select-arrow {
-  color: white !important;
-}
-
-::ng-deep .mat-form-field-underline::before {
-  background-color: white !important;
-}
-
-::ng-deep .mat-select-panel {
-  overflow: scroll;
-  //   color: #d12ce0;
-  //   background-color: blueviolet;
-}
-
-hr.loan-split {
-  border-top: 1px solid #4d97dc;
-  border-bottom: none;
-  background-color: #4d97dc;
-}
-
-hr.box {
-  border-top: 1px solid #4d97dc;
-  border-bottom: none;
-
-  background-color: #4d97dc;
-  opacity: 0.3;
-}
-
-.vl {
-  border-left: 1px solid #4d97dc;
-  border-bottom: none;
-  background-color: #4d97dc;
-  height: 120px;
-  opacity: 0.3;
-}
-
-.loan-info {
-  padding: 10px;
-  margin-bottom: 10px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.text-white {
-  width: 40% !important;
-}
-
-.w-75 {
-  width: 150px !important;
-}
-
-.w-130 {
-  width: 110px !important;
-}
-
-// ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-thick {
-//   color: transparent;
-// }
-
-// ::ng-deep .mat-form-field-appearance-outline .mat-form-field-wrapper {
-//   margin: 0;
-// }
-
-.oustandingDebt {
-  position: relative;
-  width: 80%;
-  margin: auto;
-  margin-top: 2rem;
-  text-align: center;
-  @media (min-width: 600px) {
-    width: 40%;
-  }
-  ::ng-deep .mat-form-field {
-    width: 100% !important ;
-  }
-}
-
 .forms {
   .non-active-input {
     ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
@@ -240,22 +81,9 @@ hr.box {
   ::ng-deep input.mat-input-element {
     color: white !important;
   }
-  // input element
-  // .mat-input-element {
-  //   caret-color: white;
-  //   // margin-bottom: 8px !important;
-  //   color: white !important;
-  // }
-
-  // ::ng-deep {
-  //   .mat-form-field-autofill-control {
-  //     color: white !important;
-  //   }
-  // }
 
   .field-box {
-    padding: 10px;
-    margin-bottom: 10px;
+    padding: 0 10px 13px 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -270,11 +98,6 @@ hr.box {
     font-size: 1.1rem;
   }
 
-  // h4 {
-  //   color: white;
-  //   font-size: 15px;
-  // }
-
   .loan-value {
     margin-right: 20px;
   }
@@ -288,8 +111,137 @@ hr.box {
   }
 }
 
+.summary {
+  padding: 10px;
+}
+
+@media (min-width: 600px) {
+  .summary {
+    border-top: none;
+    position: relative;
+    left: -1px;
+    width: calc(100% + 2px);
+  }
+}
+
+.content-blue-box {
+  width: 100%;
+  background-color: $secondary;
+  border-radius: 10px;
+}
+
+.all-text {
+  padding-top: 15px;
+}
+
+.loan-center-title {
+  text-align: center;
+  font-size: 15px;
+  color: white;
+}
+
+.loan-center {
+  text-align: center;
+  margin: 2px 25px 15px 25px;
+  background: #183a63;
+  border-radius: 30px;
+
+  p {
+    padding: 1em 2em;
+    font-size: 16px;
+  }
+}
+
+.loan-edit-activate {
+  width: 35px;
+}
+
+.loan-edit-cancel {
+  width: 35px;
+  height: 35px;
+}
+
+.double-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.first-box {
+  color: white;
+  width: 40%;
+  border-radius: 10px;
+  padding: 8px;
+  // border: 1px solid #4d97dc;
+  background-color: #183a63;
+  box-shadow: rgb(50 50 93 / 25%) 0px 2px 5px -1px,
+    rgb(0 0 0 / 30%) 0px 3px 3px -1px;
+}
+
+.move-first-box {
+  margin-left: 20px;
+}
+
+.move-sec-box {
+  margin-right: 20px;
+}
+
+.btitle-two,
+.btitle-one {
+  text-align: center;
+  padding-left: 11px;
+  padding-right: 11px;
+
+  p {
+    padding: 6px;
+  }
+}
+
+.btitle-two {
+  padding-left: 7px;
+  padding-right: 7px;
+}
+
+.bvalue {
+  text-align: center;
+  padding: 15px;
+}
+
+.loan-type {
+  padding: 10px;
+  color: white;
+  border-radius: 10px 10px 0 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #183a63;
+}
+
+.loan-info {
+  padding: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.text-white {
+  width: 40% !important;
+}
+
+.w-75 {
+  width: 150px !important;
+}
+
+.w-130 {
+  width: 110px !important;
+}
+
 .save-loan-button {
-  // margin: 10px;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  padding: 10px 0 18px;
+}
+
+.total-cost {
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
