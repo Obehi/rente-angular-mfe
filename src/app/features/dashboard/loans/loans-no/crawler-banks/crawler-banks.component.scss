@@ -26,6 +26,12 @@ p {
   }
 }
 
+.total-cost {
+  // margin-top: 10px;
+  // margin-bottom: 10px;
+  padding-bottom: 15px;
+}
+
 .content-blue-box {
   width: 100%;
   background-color: $secondary;
@@ -75,8 +81,20 @@ p {
 
 .first-box {
   color: white;
-  border-radius: 11px;
-  width: 45%;
+  width: 40%;
+  border-radius: 10px;
+  padding: 8px;
+  background-color: #183a63;
+  box-shadow: rgb(50 50 93 / 25%) 0px 2px 5px -1px,
+    rgb(0 0 0 / 30%) 0px 3px 3px -1px;
+}
+
+.move-first-box {
+  margin-left: 20px;
+}
+
+.move-sec-box {
+  margin-right: 20px;
 }
 
 .btitle-two,
@@ -106,23 +124,10 @@ p {
   margin-left: 10px;
 }
 
-hr.box,
 hr.split {
   border-top: 1px solid #4d97dc;
   border-bottom: none;
   background-color: #4d97dc;
-}
-
-hr.box {
-  opacity: 0.3;
-}
-
-.vl {
-  border-left: 1px solid #4d97dc;
-  border-bottom: none;
-  background-color: #4d97dc;
-  height: 120px;
-  opacity: 0.3;
 }
 
 .loan-info {

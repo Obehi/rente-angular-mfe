@@ -124,10 +124,21 @@ p {
   }
 }
 
+.total-cost {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
 .content-blue-box {
   width: 100%;
   background-color: $secondary;
   border-radius: 10px;
+}
+
+.double-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .all-text {
@@ -159,12 +170,6 @@ p {
 .loan-edit-cancel {
   width: 35px;
   height: 35px;
-}
-
-.double-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 }
 
 .first-box {
@@ -239,9 +244,4 @@ p {
 
 .save-loan-button {
   padding: 10px 0 18px;
-}
-
-.total-cost {
-  margin-top: 10px;
-  margin-bottom: 10px;
 }
