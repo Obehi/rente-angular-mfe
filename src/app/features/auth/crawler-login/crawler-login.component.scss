@@ -1,5 +1,9 @@
 @import '../../../../styles/theme/_colors.scss';
 
+.scroll-anchor {
+  scroll-margin: 60px;
+}
+
 ::ng-deep .mat-horizontal-stepper-header-container {
   display: none !important;
 }
