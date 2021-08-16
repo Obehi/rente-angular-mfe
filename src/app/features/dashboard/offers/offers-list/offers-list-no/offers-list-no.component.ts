@@ -236,7 +236,6 @@ export class OffersListNoComponent implements OnInit {
         : 'rate';
       this.setOfferType(offerType);
     } else {
-      // this.localStorageService.isUserDefinedOfferPreferences = false;
       this.currentOfferType = 'rate';
     }
   }
