@@ -7,15 +7,14 @@ import { debounceTime, repeat, scan, share, tap } from 'rxjs/operators';
 })
 export class GlobalStateService {
   private showFooter: Subject<boolean>;
-  private isDashboard: Subject<boolean>;
   private notificationOffers = new BehaviorSubject<number>(0);
   private notificationMortgages = new BehaviorSubject<number>(0);
   private notificationHouses = new BehaviorSubject<number>(0);
   private notificationProfile = new Subject<number>();
+  private isDashboard = new BehaviorSubject<boolean>(false);
 
   constructor() {
     this.showFooter = new Subject<boolean>();
-    this.isDashboard = new Subject<false>();
   }
 
   public setFooterState(show: boolean): void {

@@ -10,7 +10,8 @@ import {
   AnimationStylesEnum,
   getAnimationStyles
 } from '@shared/animations/animationEnums';
-import { Subscription } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
+import { delay } from 'rxjs/operators';
 
 import { TopAnimationBannerComponent } from '../components/ui-components/top-animation-banner/top-animation-banner.component';
 import { GlobalStateService } from './global-state.service';
@@ -21,7 +22,9 @@ export class MessageBannerService implements OnDestroy {
   public checkAnimationStyle = getAnimationStyles();
   private clickListenerSub: Subscription;
   private scrollListenerSub: Subscription;
-
+  private detachViewSubject = new Subject<void>();
+  private detachViewSubscription: Subscription;
+  private viewIsAlreadyAttached = false;
   constructor(
     private factoryResolver: ComponentFactoryResolver,
     private injector: Injector,
@@ -53,18 +56,20 @@ export class MessageBannerService implements OnDestroy {
     _status: string,
     _window: Window,
     _isClickable = false,
-    shouldSetTimeout = true,
+    _shouldSetTimeout = true,
     _shouldShowArrow = false
   ): void {
     const factory = this.factoryResolver.resolveComponentFactory(
       TopAnimationBannerComponent
     );
 
+    if (this.viewIsAlreadyAttached) this.detachView();
+
     const newNode = document.createElement('div');
     newNode.id = 'placeholder';
     newNode.style.position = 'fixed';
     newNode.style.width = '100%';
-    newNode.style.zIndex = '2';
+    newNode.style.zIndex = '9999';
 
     if (_window.innerWidth < 992) {
       if (_animationType === this.checkAnimationStyle.SLIDE_UP) {
@@ -96,29 +101,59 @@ export class MessageBannerService implements OnDestroy {
     this._componentRef.instance.animationType = _animationType;
     this._componentRef.instance.changeTimer(_newtime);
     this._componentRef.instance.displayText = _newtext;
+
+    if (_shouldSetTimeout) {
+      this.detachViewSubscription = this.detachViewSubject
+        .pipe(delay(_newtime + 2000))
+        .subscribe(() => {
+          console.log('rxjs detachview with delay');
+          this.detachView();
+        });
+    }
+    this.detachViewSubject.next();
+
+    console.log('ataching view!');
     this.appRef.attachView(this._componentRef.hostView);
+    this.viewIsAlreadyAttached = true;
 
     if (_isClickable) {
       this._componentRef.instance.clickSubject$.subscribe(() => {
         this.detachView();
       });
     }
+    /* 
+    if (_shouldSetTimeout) {
+      console.log('setting detachview timeout');
+      this.detachViewWithTimeout(_newtime);
+    } */
+  }
 
-    shouldSetTimeout && this.detachViewWithTimeout(_newtime);
+  public getMessageButtonClickSubject$(): any {
+    return this._componentRef.instance.clickSubject$;
   }
 
   public getClickSubject$(): any {
     return this._componentRef.instance.clickSubject$;
   }
 
-  private detachViewWithTimeout(newTime: number): void {
+  /*  private detachViewWithTimeout(newTime: number): void {
     setTimeout(() => {
       this.appRef.detachView(this._componentRef.hostView);
     }, newTime + 2000);
-  }
+  } */
 
   public detachView(): void {
-    this._componentRef && this.appRef.detachView(this._componentRef.hostView);
+    console.log('detachView');
+    this.detachViewSubscription && this.detachViewSubscription.unsubscribe();
+    this.viewIsAlreadyAttached = false;
+    if (this._componentRef) {
+      console.log('_componentRef is def here!!!');
+
+      this.appRef.detachView(this._componentRef.hostView);
+      this._componentRef.destroy();
+    } else {
+      console.log('_componentRef is not here');
+    }
   }
 
   setSavedViewBolig(
@@ -136,7 +171,7 @@ export class MessageBannerService implements OnDestroy {
     newNode.id = 'placeholder';
     newNode.style.position = 'fixed';
     newNode.style.width = '100%';
-    newNode.style.zIndex = '2';
+    newNode.style.zIndex = '9999';
     if (_window.innerWidth < 992) {
       newNode.style.top = '65px';
     } else {
