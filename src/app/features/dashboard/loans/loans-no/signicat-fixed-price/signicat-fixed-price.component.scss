@@ -43,7 +43,7 @@ p {
 }
 
 .all-text {
-  padding: 15px;
+  padding: 15px 15px 0 15px;
 }
 
 .information-box {
@@ -86,8 +86,20 @@ p {
 
 .first-box {
   color: white;
-  border-radius: 11px;
-  width: 45%;
+  width: 40%;
+  border-radius: 10px;
+  padding: 8px;
+  background-color: #183a63;
+  box-shadow: rgb(50 50 93 / 25%) 0px 2px 5px -1px,
+    rgb(0 0 0 / 30%) 0px 3px 3px -1px;
+}
+
+.move-first-box {
+  margin-left: 20px;
+}
+
+.move-sec-box {
+  margin-right: 20px;
 }
 
 .btitle-two,
@@ -118,43 +130,6 @@ p {
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-
-.loan-center {
-  text-align: center;
-  margin: 20px;
-}
-
-.loan-center-edit {
-  text-align: center;
-  /* margin: 15px; */
-  margin-top: 10px;
-  margin-bottom: 20px;
-  border: 1px solid #4d97dc;
-  background-color: #004465;
-  border-radius: 10px;
-  //   display: flex;
-  //   justify-content: space-between;
-  //   align-items: center;
-}
-
-::ng-deep .mat-form-field {
-  display: block !important;
-}
-
-::ng-deep .mat-select-value-text,
-::ng-deep .mat-select-arrow {
-  color: white !important;
-}
-
-::ng-deep .mat-form-field-underline::before {
-  background-color: white !important;
-}
-
-::ng-deep .mat-select-panel {
-  overflow: scroll;
-  //   color: #d12ce0;
-  //   background-color: blueviolet;
 }
 
 hr.loan-split {
@@ -195,17 +170,172 @@ hr.box {
 .loan-value {
 }
 
-// .edit-loan-name {
-//   margin-left: 15px;
-// }
-
-// .loan-type-edit {
-//   width: 30px;
-//   height: 40px;
-//   margin-top: 5px;
-// }
-
 .loan-type-label {
   color: white;
   margin-top: 5px;
+  text-align: center;
+}
+
+.w-75 {
+  width: 150px !important;
+}
+
+.w-130 {
+  width: 110px !important;
+}
+
+.total-cost {
+  // margin-top: 10px;
+  // margin-bottom: 10px;
+  padding-bottom: 15px;
+}
+
+.forms {
+  ::ng-deep .mat-form-field {
+    display: block !important;
+    text-align: center;
+  }
+
+  ::ng-deep .mat-select-value-text,
+  ::ng-deep .mat-select-arrow {
+    color: white !important;
+  }
+
+  ::ng-deep .mat-form-field-underline {
+    display: none;
+  }
+
+  // ::ng-deep .mat-select-panel {
+  //   overflow: scroll;
+  // }
+
+  .loan-center {
+    text-align: center;
+    margin-bottom: 20px;
+
+    ::ng-deep .mat-form-field-appearance-fill,
+    ::ng-deep .mat-form-field-flex {
+      padding: 10px 0 0 0.25em;
+    }
+    ::ng-deep .mat-select-arrow-wrapper {
+      display: none;
+    }
+
+    ::ng-deep .mat-select-value {
+      display: contents;
+    }
+  }
+
+  .loan-center-edit {
+    text-align: center;
+    margin-top: 2px;
+    margin-bottom: 20px;
+    border: 1px solid #4d97dc;
+    background-color: #004465;
+    border-radius: 10px;
+
+    ::ng-deep .mat-form-field-appearance-fill,
+    ::ng-deep .mat-form-field-flex {
+      padding: 0.55em 0.75em 0 0.75em;
+    }
+  }
+
+  .non-active-input {
+    ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+      background: none;
+    }
+    ::ng-deep.mat-form-field-appearance-outline .mat-form-field-outline {
+      border: none;
+    }
+  }
+
+  .active-input {
+    ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+      background: #004465a6;
+    }
+
+    ::ng-deep.mat-form-field-appearance-outline .mat-form-field-outline {
+      border: 1px solid #478ccc;
+      border-radius: 8px;
+    }
+  }
+
+  ::ng-deep .mat-form-field-infix {
+    top: 2px !important;
+    border-top: none;
+  }
+
+  ::ng-deep .mat-form-field-wrapper {
+    margin: 0 !important;
+    padding: 0 !important;
+    padding-bottom: 0 !important;
+  }
+  ::ng-deep .mat-form-field-outline-start {
+    display: none !important;
+  }
+  ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-end {
+    border-radius: 50px !important;
+    border-width: 5px;
+    border-left: none;
+  }
+  ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-start {
+    border-radius: 1px !important;
+    border: none;
+    border-right: none;
+  }
+  ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-gap {
+    border-radius: 1px !important;
+    border-bottom: none;
+  }
+
+  ::ng-deep .mat-form-field-infix input {
+    text-align: center !important;
+  }
+
+  ::ng-deep.mat-form-field-appearance-outline .mat-form-field-outline-end {
+    border: none !important;
+  }
+
+  @media (min-width: 600px) {
+    form {
+      min-width: 100%;
+      display: flex;
+    }
+  }
+
+  ::ng-deep input.mat-input-element {
+    color: white !important;
+  }
+
+  .field-box {
+    padding: 0 10px 10px 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    h4 {
+      font-size: 16px;
+    }
+  }
+
+  ::ng-deep .mat-select-placeholder {
+    color: white;
+  }
+
+  ::placeholder {
+    color: white;
+    font-size: 1.1rem;
+  }
+
+  .loan-value {
+    margin-right: 20px;
+  }
+
+  .d-block {
+    text-align: center;
+  }
+
+  input {
+    font-size: 16px !important;
+  }
 }

@@ -4,9 +4,13 @@
 >
   <rente-crawler-banks *ngIf="!isSignicatUser"></rente-crawler-banks>
 
-  <rente-signicat-users *ngIf="isSignicatUser"></rente-signicat-users>
+  <rente-signicat-users
+    *ngIf="isSignicatUser && !isFixedPriceBank"
+  ></rente-signicat-users>
 
-  <!-- <rente-signicat-fixed-price *ngIf="isSignicatUser"></rente-signicat-fixed-price> -->
+  <rente-signicat-fixed-price
+    *ngIf="isSignicatUser && isFixedPriceBank"
+  ></rente-signicat-fixed-price>
 
   <div *ngIf="locale === 'nb'" class="center-logo">
     <h3>Har du forbrukslån eller billån?</h3>
