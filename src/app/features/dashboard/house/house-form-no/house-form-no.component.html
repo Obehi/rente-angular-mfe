@@ -8,8 +8,29 @@
       class="clickable"
       >delete_forever</mat-icon
     >
+    <button
+      [disabled]="!isAddressValid"
+      (click)="toggleMode()"
+      class="clickable"
+    >
+      <mat-icon *ngIf="isEditMode">bar_chart</mat-icon>
+      <mat-icon *ngIf="isStatMode">keyboard_backspace</mat-icon>
+    </button>
   </div>
   <div class="body">
+    <div [class]="isStatMode ? 'hidden' : 'estimate'">
+      <p class="small">Boligverdi</p>
+
+      <mat-tab-group
+        class="radio"
+        (selectedTabChange)="onRbChange($event)"
+        [selectedIndex]="!address.useManualPropertyValue ? 0 : 1"
+      >
+        <mat-tab label="Automatisk estimat" (click)="onRbChange($event)">
+        </mat-tab>
+        <mat-tab label="Eget estimat" (click)="onRbChange($event)"> </mat-tab>
+      </mat-tab-group>
+    </div>
     <div class="address">
       <rente-input
         type="text"
@@ -17,14 +38,6 @@
         [(ngModel)]="address.street"
         (change)="countChange()"
       ></rente-input>
-      <button
-        [disabled]="!isAddressValid"
-        (click)="toggleMode()"
-        class="clickable"
-      >
-        <mat-icon *ngIf="isEditMode">bar_chart</mat-icon>
-        <mat-icon *ngIf="isStatMode">keyboard_backspace</mat-icon>
-      </button>
     </div>
     <div *ngIf="isStatMode">
       <rente-virdi-statistics [address]="address"> </rente-virdi-statistics>
@@ -45,50 +58,7 @@
         [(ngModel)]="address.apartmentSize"
         [maxLength]="3"
         (change)="countChange()"
-        matSuffix="kvm"
       ></rente-input>
-    </div>
-    <div [class]="isStatMode ? 'hidden' : 'estimate'">
-      <p class="small">Boligverdi</p>
-
-      <mat-tab-group
-        class="radio"
-        (selectedTabChange)="onRbChange($event)"
-        [selectedIndex]="!address.useManualPropertyValue ? 0 : 1"
-      >
-        <mat-tab label="Automatisk estimat" (click)="onRbChange($event)">
-        </mat-tab>
-        <mat-tab label="Eget estimat" (click)="onRbChange($event)"> </mat-tab>
-      </mat-tab-group>
-      <div class="double estimated">
-        <div>
-          <rente-input
-            matInput
-            class="automatic"
-            [type]="'tel'"
-            [ngModel]="address?.estimatedPropertyValue | thousands"
-            (change)="countChange()"
-            (focus)="countChange()"
-            [disabled]="address.useManualPropertyValue"
-            style="pointer-events: none; text-align: center !important"
-            [matSuffix]="address.estimatedPropertyValue ? 'kr' : ''"
-          ></rente-input>
-
-          <p *ngIf="address.estimatedPropertyValue" class="small">
-            Estimert av Virdi
-          </p>
-        </div>
-        <rente-input
-          matInput
-          [disabled]="!address.useManualPropertyValue"
-          [type]="'tel'"
-          [ngModel]="address?.manualPropertyValue | thousands"
-          (change)="countChange()"
-          style="text-align: center !important"
-          (keyup)="manualPropertyValueChanged($event)"
-          matSuffix="kr"
-        ></rente-input>
-      </div>
     </div>
 
     <div class="double">
@@ -98,7 +68,34 @@
         (change)="countChange()"
         [ngModel]="address?.commonDebt | thousands"
         (ngModelChange)="address.commonDebt = formatThousand($event)"
-        matSuffix="kr"
+      ></rente-input>
+    </div>
+
+    <div class="non-double estimated">
+      <div *ngIf="!address.useManualPropertyValue">
+        <rente-input
+          matInput
+          class="automatic"
+          [type]="'tel'"
+          [ngModel]="address?.estimatedPropertyValue | thousands"
+          (change)="countChange()"
+          (focus)="countChange()"
+          style="pointer-events: none; text-align: center !important"
+        ></rente-input>
+
+        <p *ngIf="address.estimatedPropertyValue" class="small">
+          Estimert av Virdi
+        </p>
+      </div>
+      <rente-input
+        matInput
+        *ngIf="address.useManualPropertyValue"
+        [type]="'tel'"
+        [placeholder]="'Estimert boligverdi'"
+        [ngModel]="address?.manualPropertyValue | thousands"
+        (change)="countChange()"
+        style="text-align: center !important"
+        (keyup)="manualPropertyValueChanged($event)"
       ></rente-input>
     </div>
 

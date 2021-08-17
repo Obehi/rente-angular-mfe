@@ -1,20 +1,30 @@
-@import "../../../../../styles/theme/_colors.scss";
+@import '../../../../../styles/theme/_colors.scss';
+
+::ng-deep .mat-form-field-infix {
+  // background: white;
+}
 
 .housecontainer {
-    background: white;
-    border-radius: 15px;
-    margin: 10px;
-    position: relative;
+  background: white;
+  border-radius: 15px;
+  margin: 10px;
+  position: relative;
 }
 .mat-form-field {
   text-align: center;
 }
-.double {
-  grid-gap: 40px;
+
+.non-double {
+  width: 50%;
+  margin-top: 10px;
+  margin-left: 25%;
 }
 
- .estimated{
- min-height: 74px;
+.hidden {
+  background: red;
+}
+.estimated {
+  min-height: 74px;
 }
 .mat-form-field-disabled * {
   color: rgba(0, 0, 0, 0.38) !important;
@@ -25,7 +35,6 @@
   position: relative;
 }
 
-
 .saveForEstimate {
   position: absolute;
   bottom: 10px;
@@ -34,7 +43,7 @@
 }
 .heading {
   border-radius: 15px 15px 0 0;
-  background-color: $lightgreen;
+  background-color: $karl-blue;
   display: block;
   padding: 20px 20px;
   font-weight: 500;
@@ -74,16 +83,50 @@ rente-button {
   }
 }
 
-
-
 .body {
+  ::ng-deep .cdk-text-field-autofill-monitored:not(:-webkit-autofill) {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    color: black;
+  }
+
+  ::ng-deep
+    .mat-form-field-appearance-legacy.mat-form-field-can-float.mat-form-field-should-float
+    .mat-form-field-label {
+    color: white;
+  }
+
+  ::ng-deep .mat-tab-label .mat-tab-label-content {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    white-space: nowrap;
+    color: white;
+  }
+
+  ::ng-deep .ng-tns-c71-3 {
+    color: white;
+  }
+
+  ::ng-deep .radio .mat-tab-label {
+    background: $grey;
+    border-radius: 10px;
+    height: 75px;
+  }
+
+  ::ng-deep .radio .mat-tab-label-active {
+    background: $primary;
+  }
+
   padding: 20px;
   margin-bottom: 40px;
+  background: $blue;
   > div {
     margin-bottom: 20px;
   }
   .address {
-    display: grid;
+    // display: grid;
     grid-template-columns: 4fr 1fr;
     position: relative;
 
@@ -114,7 +157,7 @@ rente-button {
   .housecontainer {
     border: 1px solid $lesslight;
     min-height: 627px;
-    
+
     .heading {
       border-top: none;
       border-bottom: 1px solid $green;
