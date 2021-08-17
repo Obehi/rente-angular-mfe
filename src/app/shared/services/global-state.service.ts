@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { repeat } from 'rxjs/operators';
 
 @Injectable({
@@ -7,11 +7,10 @@ import { repeat } from 'rxjs/operators';
 })
 export class GlobalStateService {
   private showFooter: Subject<boolean>;
-  private isDashboard: Subject<boolean>;
+  private isDashboard = new BehaviorSubject<boolean>(false);
 
   constructor() {
     this.showFooter = new Subject<boolean>();
-    this.isDashboard = new Subject<false>();
   }
 
   public setFooterState(show: boolean): void {
