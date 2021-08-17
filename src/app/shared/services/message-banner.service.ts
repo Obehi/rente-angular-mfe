@@ -132,14 +132,14 @@ export class MessageBannerService implements OnDestroy {
     return this._componentRef.instance.clickSubject$;
   }
 
-  private detachViewWithTimeout(newTime: number): void {
+  /* private detachViewWithTimeout(newTime: number): void {
     console.log('detachViewWithTimeout OUTER');
 
     setTimeout(function () {
       console.log('detachViewWithTimeout');
       this.appRef.detachView(this._componentRef.hostView);
     }, newTime + 2000);
-  }
+  } */
 
   public detachView(): void {
     this.detachViewSubscription && this.detachViewSubscription.unsubscribe();
