@@ -47,7 +47,7 @@ export class OffersListNoComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.setNotificationScollListener();
+    this.setNotificationScrollListener();
 
     this.currentOfferInfo = JSON.parse(JSON.stringify(this.offersInfo));
     this.currentOfferType = 'all';
@@ -74,7 +74,7 @@ export class OffersListNoComponent implements OnInit, OnDestroy {
     this.currentOfferInfo.offers.top5 = newLoanTypeSelected;
   }
 
-  private setNotificationScollListener(): void {
+  private setNotificationScrollListener(): void {
     const obj = document.getElementsByClassName('the-offers')[0];
 
     this.scrollSubscription = fromEvent(window, 'scroll')
