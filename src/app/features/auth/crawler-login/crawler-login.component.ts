@@ -130,7 +130,7 @@ export class CrawlerLoginComponent implements OnInit, OnDestroy {
     this.setLoginListeners();
   }
 
-  setLoginListeners() {
+  setLoginListeners(): void {
     this.crawlerLoginService.firstRetry$.subscribe(() => {
       this.isLoginStarted = false;
 

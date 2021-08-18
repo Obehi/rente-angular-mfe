@@ -23,6 +23,7 @@ export interface Environment {
   sb1TryAgainDowntime?: any;
   sb1DisabledBanks?: string[];
   dnbSignicatIsOn?: boolean;
+  NordeaDirectSignicatIsOn?: boolean;
 }
 
 @Injectable({
@@ -81,6 +82,8 @@ export class EnvService {
     this.environment.loginHandelsbankenIsOn = returnedEnv['VAR_3'];
     this.environment.loginDanskeIsOn = returnedEnv['VAR_4'];
     this.environment.dnbSignicatIsOn = returnedEnv['VAR_7'];
+    this.environment.NordeaDirectSignicatIsOn = returnedEnv['VAR_8'];
+
     this.environment.sb1DisabledBanks = (returnedEnv['VAR_5'] as string)
       .replace(/\s/g, '')
       .split(',');
