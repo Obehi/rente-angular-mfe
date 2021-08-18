@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { AddressDto } from '@services/remote-api/loans.service';
 import { MatTabChangeEvent } from '@angular/material';
 import { EnvService } from '@services/env.service';
+import { animate, style, transition, trigger } from '@angular/animations';
 
 export enum AddressFormMode {
   Editing,
@@ -11,7 +12,26 @@ export enum AddressFormMode {
 @Component({
   selector: 'rente-house-form',
   templateUrl: './house-form-no.component.html',
-  styleUrls: ['./house-form-no.component.scss']
+  styleUrls: ['./house-form-no.component.scss'],
+  animations: [
+    trigger('test', [
+      transition(':enter', [
+        style({ opacity: '0' }),
+        animate('0.5s ease-in', style({ opacity: '1' }))
+      ])
+      // transition(':leave', [
+      //   // style({ height: '100', opacity: 1 }),
+      //   animate('0.1s ease-out', style({ opacity: 0 }))
+      // ])
+    ]),
+    trigger('fade', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('0.4s ease-in', style({ opacity: 1 }))
+      ]),
+      transition(':leave', [animate('0.2s ease-out', style({ opacity: 0 }))])
+    ])
+  ]
 })
 export class HouseFormNoComponent implements OnInit {
   @Input() index: number;
@@ -35,6 +55,10 @@ export class HouseFormNoComponent implements OnInit {
     this.address.estimatedPropertyValue =
       this.address.estimatedPropertyValue || null;
     this.address.manualPropertyValue = this.address.manualPropertyValue || null;
+  }
+
+  test() {
+    console.log('asd');
   }
 
   get isAbleToDelete(): boolean {

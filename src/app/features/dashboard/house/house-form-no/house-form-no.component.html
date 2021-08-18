@@ -1,6 +1,6 @@
 <div class="housecontainer">
   <div class="heading">
-    <img src="../../../assets/icons/house-icon.svg" alt="Bolig" />
+    <img src="../../../assets/icons/house-icon-white.svg" alt="Bolig" />
     <b>Bolig {{ index + 1 }}</b>
     <mat-icon
       *ngIf="isAbleToDelete"
@@ -13,25 +13,27 @@
       (click)="toggleMode()"
       class="clickable"
     >
-      <mat-icon *ngIf="isEditMode">bar_chart</mat-icon>
+      <p *ngIf="isEditMode">Se statistikk</p>
       <mat-icon *ngIf="isStatMode">keyboard_backspace</mat-icon>
     </button>
   </div>
   <div class="body">
-    <div [class]="isStatMode ? 'hidden' : 'estimate'">
-      <p class="small">Boligverdi</p>
+    <p *ngIf="!isStatMode" class="top-text bold">
+      Renteradar trenger å vite din boligverdi for å finne riktige tilbud til
+      deg
+    </p>
+    <div *ngIf="!isStatMode" class="estimat">
+      <p class="slide-toggle-text bold">Automatisk estimat:</p>
 
-      <mat-tab-group
-        class="radio"
-        (selectedTabChange)="onRbChange($event)"
-        [selectedIndex]="!address.useManualPropertyValue ? 0 : 1"
-      >
-        <mat-tab label="Automatisk estimat" (click)="onRbChange($event)">
-        </mat-tab>
-        <mat-tab label="Eget estimat" (click)="onRbChange($event)"> </mat-tab>
-      </mat-tab-group>
+      <mat-slide-toggle
+        class="button"
+        (change)="
+          address.useManualPropertyValue = !address.useManualPropertyValue
+        "
+        value="address.useManualPropertyValue"
+      ></mat-slide-toggle>
     </div>
-    <div class="address">
+    <div *ngIf="!isStatMode" class="address">
       <rente-input
         type="text"
         [placeholder]="'Adresse'"
@@ -39,7 +41,7 @@
         (change)="countChange()"
       ></rente-input>
     </div>
-    <div *ngIf="isStatMode">
+    <div *ngIf="isStatMode" [@fade]>
       <rente-virdi-statistics [address]="address"> </rente-virdi-statistics>
     </div>
     <div [class]="isStatMode ? 'hidden' : 'double'">
@@ -54,14 +56,14 @@
       <rente-input
         matInput
         [type]="'tel'"
-        [placeholder]="'Størrelse på bolig'"
+        [placeholder]="'Størrelse på bolig (kvm)'"
         [(ngModel)]="address.apartmentSize"
         [maxLength]="3"
         (change)="countChange()"
       ></rente-input>
     </div>
 
-    <div class="double">
+    <div *ngIf="!isStatMode" class="double">
       <rente-input
         [type]="'tel'"
         [placeholder]="'Fellesgjeld'"
@@ -71,9 +73,10 @@
       ></rente-input>
     </div>
 
-    <div class="non-double estimated">
-      <div *ngIf="!address.useManualPropertyValue">
-        <rente-input
+    <div *ngIf="!isStatMode" class="non-double estimated">
+      <p class="house-value bold">Boligverdi</p>
+      <div *ngIf="address.useManualPropertyValue" [@test]>
+        <!-- <rente-input
           matInput
           class="automatic"
           [type]="'tel'"
@@ -81,22 +84,23 @@
           (change)="countChange()"
           (focus)="countChange()"
           style="pointer-events: none; text-align: center !important"
-        ></rente-input>
+        ></rente-input> -->
 
-        <p *ngIf="address.estimatedPropertyValue" class="small">
-          Estimert av Virdi
+        <p class="green-text">
+          {{ address?.estimatedPropertyValue | thousands }} kr
         </p>
       </div>
-      <rente-input
-        matInput
-        *ngIf="address.useManualPropertyValue"
-        [type]="'tel'"
-        [placeholder]="'Estimert boligverdi'"
-        [ngModel]="address?.manualPropertyValue | thousands"
-        (change)="countChange()"
-        style="text-align: center !important"
-        (keyup)="manualPropertyValueChanged($event)"
-      ></rente-input>
+      <div *ngIf="!address.useManualPropertyValue" [@test]>
+        <rente-input
+          #test
+          matInput
+          *ngIf="!address.useManualPropertyValue"
+          [type]="'tel'"
+          [ngModel]="address?.manualPropertyValue | thousands"
+          (change)="countChange()"
+          (keyup)="manualPropertyValueChanged($event)"
+        ></rente-input>
+      </div>
     </div>
 
     <div class="center-button">
@@ -107,6 +111,9 @@
         class="save-changes-local"
         >Lagre endringer
       </rente-button>
+      <p *ngIf="address.estimatedPropertyValue" class="small">
+        Estimert av Virdi
+      </p>
 
       <p *ngIf="!address.estimatedPropertyValue" class="small saveForEstimate">
         Lagre endringene for å hente estimat

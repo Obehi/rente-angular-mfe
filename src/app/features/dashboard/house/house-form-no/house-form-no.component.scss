@@ -3,9 +3,7 @@
 ::ng-deep .mat-form-field-infix {
   // background: white;
 }
-
 .housecontainer {
-  background: white;
   border-radius: 15px;
   margin: 10px;
   position: relative;
@@ -14,18 +12,6 @@
   text-align: center;
 }
 
-.non-double {
-  width: 50%;
-  margin-top: 10px;
-  margin-left: 25%;
-}
-
-.hidden {
-  background: red;
-}
-.estimated {
-  min-height: 74px;
-}
 .mat-form-field-disabled * {
   color: rgba(0, 0, 0, 0.38) !important;
 }
@@ -33,6 +19,7 @@
   text-align: center;
   top: -10px;
   position: relative;
+  color: white;
 }
 
 .saveForEstimate {
@@ -43,7 +30,7 @@
 }
 .heading {
   border-radius: 15px 15px 0 0;
-  background-color: $karl-blue;
+  background-color: rgb(0 68 101);
   display: block;
   padding: 20px 20px;
   font-weight: 500;
@@ -52,13 +39,37 @@
   b {
     display: inline-block;
     margin-left: 10px;
+    color: $white;
   }
   mat-icon {
     color: $blue;
-    position: absolute;
+    position: relative;
     top: 50%;
     transform: translateY(-50%);
+
+    color: white;
+  }
+  button {
+    position: absolute;
     right: 20px;
+    background: $primary;
+    border: 0;
+    border-radius: 20px;
+    /* font-size: 0px; */
+    /* padding: 8px; */
+    /* bottom: 19%; */
+    height: 25px;
+    width: 24%;
+    top: 17px;
+  }
+  p {
+    color: $white;
+    background: $primary;
+    font-weight: 400;
+    font-size: 13px;
+  }
+  img {
+    width: 4%;
   }
 }
 .center-button {
@@ -84,11 +95,81 @@ rente-button {
 }
 
 .body {
+  .non-double {
+    width: 50%;
+    margin-left: 25%;
+    text-align: center;
+    max-height: 70px;
+
+    ::ng-deep .cdk-text-field-autofill-monitored:not(:-webkit-autofill) {
+      text-align: center;
+      padding: 0 !important;
+    }
+  }
+
+  .slide-toggle-text {
+    color: white;
+  }
+
+  .bold {
+    font-weight: 400;
+  }
+
+  .green-text {
+    color: $primary;
+    font-size: 20px;
+    font-weight: 500;
+    margin-top: 22px;
+  }
+
+  .top-text {
+    color: white;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+
+  .house-value {
+    color: $white;
+    margin-top: 2rem;
+    font-size: 15px;
+  }
+
+  .rente-input {
+    color: saddlebrown;
+  }
+
+  .estimat {
+    margin-top: 2.5rem;
+    display: grid;
+    grid-template-columns: 1fr 0fr 0fr;
+    padding: 15px;
+    border-radius: 20px;
+    background: #004465;
+    //border: 1px solid #478ccc;
+  }
+  .hidden {
+    background: red;
+  }
+
   ::ng-deep .cdk-text-field-autofill-monitored:not(:-webkit-autofill) {
-    background: white;
-    padding: 20px;
+    background: #004465;
+    padding: 5px;
+    height: 2.5rem;
     border-radius: 10px;
-    color: black;
+    color: white;
+    font-weight: 400;
+    font-size: 16px !important;
+    border: 1px solid #478ccc;
+    caret-color: white;
+  }
+
+  ::ng-deep .cdk-text-field-autofill-monitored:not(:-webkit-autofill):focus {
+    border: 1px solid $primary;
+  }
+
+  ::ng-deep .mat-form-field-underline {
+    display: none !important;
   }
 
   ::ng-deep
@@ -117,6 +198,9 @@ rente-button {
 
   ::ng-deep .radio .mat-tab-label-active {
     background: $primary;
+  }
+
+  ::ng-deep .mat-slide-toggle {
   }
 
   padding: 20px;

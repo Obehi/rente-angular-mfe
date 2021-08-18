@@ -1,4 +1,4 @@
-@import "../../../../../styles/theme/_colors.scss";
+@import '../../../../../styles/theme/_colors.scss';
 
 .provided-container {
   display: flex;
@@ -19,4 +19,16 @@
 }
 a {
   color: $primary;
+}
+
+.chart {
+  margin: 15px 0px;
+  border-radius: 5px;
+}
+.primary {
+  color: $primary;
+}
+
+.small {
+  color: $white;
 }
