@@ -40,6 +40,16 @@ p {
   width: 100%;
   background-color: $secondary;
   border-radius: 10px;
+  height: 520px;
+  transition: height 0.3s;
+}
+
+.content-blue-box-edit {
+  width: 100%;
+  background-color: $secondary;
+  border-radius: 10px;
+  height: 365px;
+  transition: height 0.3s;
 }
 
 .all-text {

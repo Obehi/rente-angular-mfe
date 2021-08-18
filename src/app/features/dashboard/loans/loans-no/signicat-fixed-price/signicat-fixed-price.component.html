@@ -5,7 +5,11 @@
   <div style="color: white">Fixed price bank Signicat users</div>
   <div *ngFor="let loan of loans">
     <div>
-      <div class="content-blue-box">
+      <div
+        [ngClass]="
+          isEditMode === true ? 'content-blue-box-edit' : 'content-blue-box'
+        "
+      >
         <div class="loan-type">
           <h3>Lån</h3>
 
@@ -142,16 +146,11 @@
                 </div>
               </div>
 
-              <div class="loan-info" *ngIf="!isEditMode">
-                <div class="loan-title">
-                  <p>Effektiv rente:</p>
-                </div>
-                <div class="loan-value">
-                  <h3>{{ loan.effectiveRate | number: '1.2-2' }} %</h3>
-                </div>
-              </div>
-
-              <div class="loan-info" *ngIf="!isEditMode">
+              <div
+                class="loan-info"
+                *ngIf="showDisplayBox"
+                [@fadeOut]="isEditMode ? 'hidden' : 'visible'"
+              >
                 <div class="loan-title">
                   <p>Nominell rente:</p>
                 </div>
@@ -159,11 +158,28 @@
                   <h3>{{ loan.nominalRate | number: '1.2-2' }} %</h3>
                 </div>
               </div>
+
+              <div
+                class="loan-info"
+                *ngIf="showDisplayBox"
+                [@fadeOut]="isEditMode ? 'hidden' : 'visible'"
+              >
+                <div class="loan-title">
+                  <p>Effektiv rente:</p>
+                </div>
+                <div class="loan-value">
+                  <h3>{{ loan.effectiveRate | number: '1.2-2' }} %</h3>
+                </div>
+              </div>
             </div>
           </form>
         </div>
 
-        <div class="total-cost" *ngIf="!isEditMode">
+        <div
+          class="total-cost"
+          *ngIf="showDisplayBox"
+          [@fadeOut]="isEditMode ? 'hidden' : 'visible'"
+        >
           <div class="double-container">
             <div class="first-box move-first-box">
               <div class="btitle-one">
@@ -194,7 +210,11 @@
           </div>
         </div>
 
-        <div class="save-loan-button" *ngIf="isEditMode">
+        <div
+          class="save-loan-button"
+          *ngIf="isEditMode"
+          [@buttonFadeInOut]="showButton ? 'visible' : 'hidden'"
+        >
           <rente-button color="primary" (click)="setDisabled()">
             Lagre
           </rente-button>

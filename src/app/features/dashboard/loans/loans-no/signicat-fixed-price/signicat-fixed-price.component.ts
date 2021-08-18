@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoansService } from '@services/remote-api/loans.service';
+import { FadeOut } from '@shared/animations/fade-out';
+import { ButtonFadeInOut } from '@shared/animations/button-fade-in-out';
 
 interface bankDto {
   name: string;
@@ -11,7 +13,8 @@ interface bankDto {
 @Component({
   selector: 'rente-signicat-fixed-price',
   templateUrl: './signicat-fixed-price.component.html',
-  styleUrls: ['./signicat-fixed-price.component.scss']
+  styleUrls: ['./signicat-fixed-price.component.scss'],
+  animations: [FadeOut, ButtonFadeInOut]
 })
 export class SignicatFixedPriceComponent implements OnInit {
   public allOffers: bankDto[];
@@ -22,6 +25,8 @@ export class SignicatFixedPriceComponent implements OnInit {
   public loanForm: FormGroup;
   public selected = '';
   public loanTypeString: string;
+  public showDisplayBox = true;
+  public showButton = false;
   /*
     The object interface is not updated so fix it when the new version is merged
   */
@@ -85,13 +90,19 @@ export class SignicatFixedPriceComponent implements OnInit {
   }
 
   public setDisabled(): void {
-    this.isEditMode = false;
+    this.showButton = false;
+    setTimeout(() => {
+      this.isEditMode = false;
+      this.showDisplayBox = true;
+    }, 325);
     this.loanForm.get('loanName')?.disable();
     this.loanForm.get('outstandingDebt')?.disable();
     this.loanForm.get('remainingYears')?.disable();
   }
 
   public setEnabled(): void {
+    this.showDisplayBox = false;
+    this.showButton = true;
     this.isEditMode = true;
     this.loanForm.get('loanName')?.enable();
     this.loanForm.get('outstandingDebt')?.enable();
