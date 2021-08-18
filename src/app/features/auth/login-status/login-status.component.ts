@@ -32,6 +32,7 @@ import { ROUTES_MAP, ROUTES_MAP_NO } from '@config/routes-config';
 import { LoggingService } from '@services/logging.service';
 import { EnvService } from '@services/env.service';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { CrawlerLoginService } from '@services/crawler-login.service';
 
 @Component({
   selector: 'rente-login-status',
@@ -96,7 +97,8 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
     private localStorageService: LocalStorageService,
     private logging: LoggingService,
     private envService: EnvService,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private crawlerLoginService: CrawlerLoginService
   ) {}
 
   ngOnInit(): void {
@@ -467,14 +469,14 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
             this.unsubscribeEverything();
             break;
 
+          case BANKID_STATUS.ERROR_3:
+            this.unsubscribeEverything();
+            this.crawlerLoginService.postError();
+            break;
+
           case BANKID_STATUS.ERROR_4:
             this.unsubscribeEverything();
-            this.router.navigate(
-              ['/autentisering/' + ROUTES_MAP_NO.bankIdLogin],
-              {
-                state: { data: { bank: this.bank, redirect: true } }
-              }
-            );
+            this.crawlerLoginService.postError();
             break;
 
           case BANKID_STATUS.PROCESS_STARTED:
