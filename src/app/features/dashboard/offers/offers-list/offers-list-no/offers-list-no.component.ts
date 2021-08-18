@@ -172,10 +172,11 @@ export class OffersListNoComponent implements OnInit {
       demoIsTriggered &&
         this.messageService.setView(
           'Besvar spørsmålene under ved å flytte på slideren for å markere din preferanse, og så finner vi riktig bank for deg basert på dine valg.',
-          1000,
+          10000000,
           this.animationType.SLIDE_UP,
           'success',
           window,
+          true,
           true,
           false,
           () => {
@@ -264,6 +265,8 @@ export class OffersListNoComponent implements OnInit {
         setTimeout(() => {
           this.showDemoTrigger$.next(true);
         }, 1200);
+      } else {
+        this.showHamburger = true;
       }
 
       this.cachedCurrentOffers$.next(this.offersInfo.offers.topScoreOffer);

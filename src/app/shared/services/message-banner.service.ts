@@ -57,7 +57,8 @@ export class MessageBannerService implements OnDestroy {
     _window: Window,
     _isClickable = false,
     _shouldSetTimeout = true,
-    _shouldShowArrow = false
+    _shouldShowArrow = false,
+    _callback = () => {}
   ): void {
     const factory = this.factoryResolver.resolveComponentFactory(
       TopAnimationBannerComponent
@@ -84,9 +85,7 @@ export class MessageBannerService implements OnDestroy {
     document.getElementsByClassName(this.getContentClass())[0].prepend(newNode);
 
     this._componentRef = factory.create(this.injector, [], newNode);
-    if (_shouldShowArrow) {
-      this._componentRef.instance.scrollArrow = true;
-    }
+
     this.globalStateService.getDashboardState().subscribe((state) => {
       this._componentRef.instance.isDashboard = state;
       if (state) {
@@ -117,9 +116,12 @@ export class MessageBannerService implements OnDestroy {
     this.viewIsAlreadyAttached = true;
 
     if (_isClickable) {
-      this._componentRef.instance.clickSubject$.subscribe(() => {
-        this.detachView();
-      });
+      this.clickListenerSub = this._componentRef.instance.clickSubject$.subscribe(
+        () => {
+          this.detachView();
+          _callback();
+        }
+      );
     }
     /* 
     if (_shouldSetTimeout) {
