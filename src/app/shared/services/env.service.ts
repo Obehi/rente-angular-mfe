@@ -77,8 +77,6 @@ export class EnvService {
   }
 
   handleEnvFile(returnedEnv: any): void {
-    console.log('handleEnvFile');
-    console.log(returnedEnv);
     this.environment.shouldLog = returnedEnv['VAR_1'];
     this.environment.loginDnbIsOn = returnedEnv['VAR_2'];
     this.environment.loginHandelsbankenIsOn = returnedEnv['VAR_3'];
