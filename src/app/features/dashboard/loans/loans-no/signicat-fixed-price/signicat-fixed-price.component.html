@@ -2,11 +2,13 @@
   class="summary"
   *ngIf="loansData && loansData.loans && loansData.loans.length > 0"
 >
+  <div style="color: white">Fixed price bank Signicat users</div>
   <div *ngFor="let loan of loans">
     <div>
       <div class="content-blue-box">
         <div class="loan-type">
           <h3>Lån</h3>
+
           <div>
             <img
               [hidden]="isEditMode"
@@ -24,23 +26,20 @@
             />
           </div>
         </div>
-        <hr class="loan-split" />
+
         <div class="forms">
           <form class="p-0 border-0" [formGroup]="loanForm" novalidate change>
             <div class="all-text">
-              <h4 class="loan-type-label">Lånetype</h4>
+              <!-- <h4 class="loan-type-label">Lånetype</h4> -->
 
               <div
                 [ngClass]="
-                  isEditMode === true ? 'loan-center-edit' : 'loan-center'
+                  isEditMode === false ? 'loan-center' : 'loan-center-edit'
                 "
               >
                 <mat-form-field appearance="fill">
-                  <mat-label style="color: white">
-                    <!-- {{ loan.loanName }} -->
-                    BOLIGLÅN 85% BOLIGKR 0-2</mat-label
-                  >
-                  <mat-select>
+                  <mat-label style="color: white"> Lånetype </mat-label>
+                  <mat-select [(value)]="selected" [disabled]="!isEditMode">
                     <mat-option
                       *ngFor="let offer of allOffers"
                       [value]="offer.name"
@@ -143,7 +142,7 @@
                 </div>
               </div>
 
-              <div class="loan-info">
+              <div class="loan-info" *ngIf="!isEditMode">
                 <div class="loan-title">
                   <p>Effektiv rente:</p>
                 </div>
@@ -152,7 +151,7 @@
                 </div>
               </div>
 
-              <div class="loan-info">
+              <div class="loan-info" *ngIf="!isEditMode">
                 <div class="loan-title">
                   <p>Nominell rente:</p>
                 </div>
@@ -164,7 +163,7 @@
           </form>
         </div>
 
-        <div class="total-cost">
+        <div class="total-cost" *ngIf="!isEditMode">
           <div class="double-container">
             <div class="first-box move-first-box">
               <div class="btitle-one">
@@ -193,6 +192,12 @@
               </div>
             </div>
           </div>
+        </div>
+
+        <div class="save-loan-button" *ngIf="isEditMode">
+          <rente-button color="primary" (click)="setDisabled()">
+            Lagre
+          </rente-button>
         </div>
       </div>
     </div>

@@ -2,6 +2,7 @@
   class="summary"
   *ngIf="loansData && loansData.loans && loansData.loans.length > 0"
 >
+  <div style="color: white">General signicat users</div>
   <div *ngFor="let loan of loans">
     <div>
       <div class="content-blue-box">
@@ -39,13 +40,6 @@
           <form class="p-0 border-0" [formGroup]="loanForm" novalidate change>
             <div class="field-box">
               <h4 class="text-white">Utestående lån:</h4>
-
-              <!-- <div class="loan-value" [hidden]="isEditMode">
-                <h3>
-                  {{ loan.outstandingDebt / 1000000 | number: '1.3-3' }}
-                  millioner
-                </h3>
-              </div> -->
 
               <div
                 [ngClass]="

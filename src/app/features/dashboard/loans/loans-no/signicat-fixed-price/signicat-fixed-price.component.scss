@@ -67,7 +67,6 @@ p {
 .box-value {
   width: 50%;
   height: 100%;
-  // background-color: lightcoral;
   float: right;
   display: flex;
   justify-content: flex-end;
@@ -89,7 +88,7 @@ p {
   width: 40%;
   border-radius: 10px;
   padding: 8px;
-  background-color: #183a63;
+  background-color: #004465a6;
   box-shadow: rgb(50 50 93 / 25%) 0px 2px 5px -1px,
     rgb(0 0 0 / 30%) 0px 3px 3px -1px;
 }
@@ -126,10 +125,15 @@ p {
 .loan-type {
   padding: 10px;
   color: white;
-  margin-left: 10px;
+  background: #004465a6;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border-radius: 10px 10px 0 0;
+
+  h3 {
+    margin-left: 10px;
+  }
 }
 
 hr.loan-split {
@@ -185,9 +189,11 @@ hr.box {
 }
 
 .total-cost {
-  // margin-top: 10px;
-  // margin-bottom: 10px;
   padding-bottom: 15px;
+}
+
+.save-loan-button {
+  padding: 20px 0 25px;
 }
 
 .forms {
@@ -210,13 +216,18 @@ hr.box {
   // }
 
   .loan-center {
-    text-align: center;
+    margin-top: 30px;
     margin-bottom: 20px;
+    border-radius: 30px;
+    background: #004465a6;
 
-    ::ng-deep .mat-form-field-appearance-fill,
-    ::ng-deep .mat-form-field-flex {
-      padding: 10px 0 0 0.25em;
+    ::ng-deep
+      .mat-form-field-appearance-fill.mat-form-field-disabled
+      .mat-form-field-flex {
+      background-color: transparent;
+      padding: 0.45em 0.75em 0.25em 0.75em;
     }
+
     ::ng-deep .mat-select-arrow-wrapper {
       display: none;
     }
@@ -224,20 +235,37 @@ hr.box {
     ::ng-deep .mat-select-value {
       display: contents;
     }
+
+    ::ng-deep .mat-form-field-label-wrapper {
+      top: -1.7em;
+      font-weight: 200;
+      font-size: 18px;
+    }
   }
 
   .loan-center-edit {
-    text-align: center;
-    margin-top: 2px;
-    margin-bottom: 20px;
-    border: 1px solid #4d97dc;
-    background-color: #004465;
-    border-radius: 10px;
+    margin-top: 30px;
+    margin-bottom: 10px;
 
-    ::ng-deep .mat-form-field-appearance-fill,
-    ::ng-deep .mat-form-field-flex {
-      padding: 0.55em 0.75em 0 0.75em;
+    ::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
+      background: #004465a6;
+      border: 1px solid #478ccc;
+      border-radius: 8px;
+      padding: 0.45em 0.75em 0.25em 0.75em;
     }
+
+    ::ng-deep .mat-select-arrow-wrapper {
+      display: block;
+    }
+    ::ng-deep .mat-form-field-label-wrapper {
+      top: -2em;
+      font-weight: 200;
+      font-size: 18px;
+    }
+  }
+
+  ::ng-deep .mat-form-field-disabled * {
+    color: white !important;
   }
 
   .non-active-input {
@@ -308,7 +336,7 @@ hr.box {
   }
 
   .field-box {
-    padding: 0 10px 10px 10px;
+    padding: 0 0 10px 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
