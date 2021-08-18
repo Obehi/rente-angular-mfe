@@ -2,7 +2,6 @@
 
 .inside-btn {
   position: relative;
-
   .circle {
     width: 20px;
     height: 20px;
@@ -17,6 +16,7 @@
     top: -3px;
     font-size: 14px;
     p {
+      font-weight: 400;
       color: white !important;
     }
     right: -10px;
