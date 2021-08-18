@@ -159,7 +159,6 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
 
       this.messageService.getClickSubject$().subscribe(() => {
         this.scrollTo();
-        console.log('getClickSubject');
         this.notificationService.resetOfferNotification();
       });
     }
