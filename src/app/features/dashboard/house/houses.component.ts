@@ -20,7 +20,6 @@ import {
 import { MessageBannerService } from '@services/message-banner.service';
 import { CustomLangTextService } from '@services/custom-lang-text.service';
 import { getAnimationStyles } from '@shared/animations/animationEnums';
-import { GlobalStateService } from '@services/global-state.service';
 import { NotificationService } from '@services/notification.service';
 
 @Component({
@@ -191,6 +190,7 @@ export class HousesComponent implements OnInit, DeactivationGuarded {
           }
         }
 
+        this.notificationService.setOfferNotification();
         this.messageBanner.setSavedViewBolig(
           this.customLangTextService.getSnackBarUpdatedMessage(),
           2000,
@@ -221,8 +221,6 @@ export class HousesComponent implements OnInit, DeactivationGuarded {
         this.canLeavePage = true;
       }
     );
-
-    this.notificationService.setOfferNotification();
   }
 
   private openManualInputDialog(address: AddressDto) {

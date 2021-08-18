@@ -71,6 +71,7 @@ export class OffersListNoComponent implements OnInit, OnDestroy {
         this.notificationNumber === 1
       ) {
         this.messageService.detachView();
+        this.notificationService.resetOfferNotification();
       }
     });
 

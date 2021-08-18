@@ -127,8 +127,7 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
               .getBoundingClientRect().top -
             60 >
           0
-      ),
-      tap(() => console.log('works'))
+      )
     );
   }
 
