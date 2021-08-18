@@ -104,8 +104,6 @@ export class CrawlerLoginComponent implements OnInit, OnDestroy {
           );
         }
 
-        console.log('this.environment.nordeaDirectSignicatIsOn');
-        console.log(this.environment.nordeaDirectSignicatIsOn);
         if (
           bank?.name === 'NORDEA_DIRECT' &&
           this.environment.nordeaDirectSignicatIsOn === true &&
