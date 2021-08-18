@@ -1,5 +1,5 @@
 import { LoansService, AddressDto } from '@services/remote-api/loans.service';
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { DeactivationGuarded } from '@shared/guards/route.guard';
 import { locale } from '../../../config/locale/locale';
@@ -60,7 +60,6 @@ export class HousesComponent implements OnInit, DeactivationGuarded {
   public showExplainText: boolean;
   public propertyIconPath: string | null;
   public animationType = getAnimationStyles();
-  @Output() eventEmitter: EventEmitter<any> = new EventEmitter();
 
   constructor(
     private loansService: LoansService,
@@ -75,7 +74,6 @@ export class HousesComponent implements OnInit, DeactivationGuarded {
 
     eventService.on(Events.INPUT_CHANGE, () => {
       this.saveAddresses();
-      this.eventEmitter.emit();
     });
   }
 

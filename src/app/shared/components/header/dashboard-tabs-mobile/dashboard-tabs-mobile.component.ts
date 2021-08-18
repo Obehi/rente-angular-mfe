@@ -3,7 +3,7 @@ import { ROUTES_MAP } from '@config/routes-config';
 import { LocalStorageService } from '@services/local-storage.service';
 import { Router } from '@angular/router';
 import { EnvService } from '@services/env.service';
-import { defer, Observable, Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { NotificationService } from '@services/notification.service';
 
 @Component({

@@ -17,10 +17,6 @@ import { AntiChurnErrorDialogComponent } from '@features/dashboard/offers/anti-c
 import { ChangeBankTooManyTriesDialogError } from '@features/dashboard/offers/change-bank-dialog/change-bank-too-many-tries-dialog-error/change-bank-too-many-tries-dialog-error.component';
 
 import { ChangeBankServiceService } from '@services/remote-api/change-bank-service.service';
-import {
-  TrackingService,
-  TrackingDto
-} from '@services/remote-api/tracking.service';
 import { Subscription, Observable, fromEvent } from 'rxjs';
 import { debounceTime, filter, tap } from 'rxjs/operators';
 import { OFFERS_LTV_TYPE } from '../../../../shared/models/offers';

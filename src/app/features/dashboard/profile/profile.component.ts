@@ -6,7 +6,6 @@ import {
   EventEmitter,
   Output,
   Input,
-  OnChanges,
   OnDestroy
 } from '@angular/core';
 import { locale } from '../../../config/locale/locale';
@@ -19,15 +18,7 @@ import {
   Validators
 } from '@angular/forms';
 import { COMMA, ENTER, S } from '@angular/cdk/keycodes';
-import {
-  BehaviorSubject,
-  combineLatest,
-  Observable,
-  of,
-  Subject,
-  Subscription,
-  throwError
-} from 'rxjs';
+import { combineLatest, Observable, of, Subject } from 'rxjs';
 import {
   catchError,
   debounce,
@@ -35,7 +26,6 @@ import {
   distinctUntilChanged,
   filter,
   map,
-  scan,
   startWith,
   switchMap,
   tap
@@ -71,7 +61,6 @@ import {
 } from '@angular/animations';
 import { PropertySelectDialogComponent } from '@features/first-buyers/components/property-select-dialog/property-select-dialog.component';
 import { MembershipService } from '@services/membership.service';
-import { GlobalStateService } from '@services/global-state.service';
 import { NotificationService } from '@services/notification.service';
 
 export enum FormControlId {
@@ -184,7 +173,6 @@ export class ProfileComponent
     private membershipService: MembershipService,
     public dialog: MatDialog,
     public textLangService: CustomLangTextService,
-    private globalStateService: GlobalStateService,
     private notificationService: NotificationService
   ) {
     if (window.innerWidth > 600) {
@@ -544,7 +532,6 @@ export class ProfileComponent
           debounceTime(500),
           tap(() => {
             this.beforeUpdate(FormControlId.noAdditionalProductsRequired);
-            this.notificationService.setOfferNotification();
           }),
           switchMap(() => {
             return this.loansService
@@ -557,6 +544,8 @@ export class ProfileComponent
               );
           }),
           tap(() => {
+            this.notificationService.setOfferNotification();
+
             this.afterUpdate(FormControlId.noAdditionalProductsRequired);
           })
         ),
@@ -567,7 +556,6 @@ export class ProfileComponent
           debounceTime(500),
           tap(() => {
             this.beforeUpdate(FormControlId.interestedInEnvironmentMortgages);
-            this.notificationService.setOfferNotification();
           }),
           switchMap(() => {
             return this.loansService
@@ -580,6 +568,7 @@ export class ProfileComponent
               );
           }),
           tap(() => {
+            this.notificationService.setOfferNotification();
             this.afterUpdate(FormControlId.interestedInEnvironmentMortgages);
           })
         ),
@@ -590,7 +579,6 @@ export class ProfileComponent
           debounceTime(500),
           tap(() => {
             this.beforeUpdate(FormControlId.fetchCreditLinesOnly);
-            this.notificationService.setOfferNotification();
           }),
           switchMap(() => {
             return this.loansService
@@ -603,6 +591,8 @@ export class ProfileComponent
               );
           }),
           tap(() => {
+            this.notificationService.setOfferNotification();
+
             this.afterUpdate(FormControlId.fetchCreditLinesOnly);
           })
         )
