@@ -1,28 +1,26 @@
 @import '../../../../../styles/theme/_colors.scss';
 
-// .profile-notification {
-//   color: white;
-//   position: absolute;
-//   right: 15px;
-//   font-size: 14px;
-// }
+.inside-btn {
+  position: relative;
 
-.notification {
-  color: white;
-  position: absolute;
-  right: 15px;
-  top: 0px;
-  font-size: 14px;
-  p {
-    color: white !important;
+  .circle {
+    width: 20px;
+    height: 20px;
+    background: $primary;
+    border-radius: 50%;
   }
-}
 
-.circle {
-  width: 20px;
-  height: 20px;
-  background: $primary;
-  border-radius: 50%;
+  .notification {
+    color: white;
+    position: absolute;
+    right: 15px;
+    top: -3px;
+    font-size: 14px;
+    p {
+      color: white !important;
+    }
+    right: -10px;
+  }
 }
 
 .tabs-wrapper {
@@ -50,6 +48,7 @@ p {
 
 .mat-tab-link {
   opacity: 1;
+  height: 70px;
 }
 
 .dash-tabs-blue-wrapper {
@@ -58,7 +57,7 @@ p {
       @media (max-width: 600px) {
         width: 100%;
       }
-
+      height: 70px;
       width: 900px;
       display: flex;
       justify-content: center;
@@ -118,14 +117,17 @@ p {
         content: url('../../../../../assets/icons/profile-icon-green.svg');
       }
       &.mat-tab-links {
-        display: block;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         transform: unset !important;
         height: 100%;
 
         .mat-tab-link {
           opacity: 1;
           width: 100%;
-          height: 100% !important;
+          //height: 100% !important;
+          height: 70px;
           padding: 0;
           text-decoration: none;
         }
