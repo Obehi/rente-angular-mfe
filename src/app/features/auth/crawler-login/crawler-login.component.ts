@@ -103,6 +103,19 @@ export class CrawlerLoginComponent implements OnInit, OnDestroy {
             }
           );
         }
+
+        if (
+          bank?.name === 'NORDEA_DIRECT' &&
+          this.environment.NordeaDirectSignicatIsOn === true &&
+          this.router.url.includes('autentisering/bank/dnb')
+        ) {
+          this.router.navigate(
+            ['/autentisering/' + ROUTES_MAP_NO.bankIdLogin],
+            {
+              state: { data: { bank: bank } }
+            }
+          );
+        }
         for (const iterator in customMeta) {
           if (customMeta[iterator].title) {
             if (params.bankName === customMeta[iterator].bankName) {
