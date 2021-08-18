@@ -109,7 +109,7 @@ export class CrawlerLoginComponent implements OnInit, OnDestroy {
         if (
           bank?.name === 'NORDEA_DIRECT' &&
           this.environment.nordeaDirectSignicatIsOn === true &&
-          this.router.url.includes('autentisering/bank/dnb')
+          this.router.url.includes('autentisering/bank/nordea_direct')
         ) {
           this.router.navigate(
             ['/autentisering/' + ROUTES_MAP_NO.bankIdLogin],
