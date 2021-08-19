@@ -99,7 +99,7 @@ export class CrawlerLoginComponent implements OnInit, OnDestroy {
           this.router.navigate(
             ['/autentisering/' + ROUTES_MAP_NO.bankIdLogin],
             {
-              state: { data: { bank: bank } }
+              state: { data: { bank: bank, redirect: true } }
             }
           );
         }
@@ -158,7 +158,7 @@ export class CrawlerLoginComponent implements OnInit, OnDestroy {
 
     this.crawlerLoginService.secondRetry$.subscribe(() => {
       this.router.navigate(['/autentisering/' + ROUTES_MAP_NO.bankIdLogin], {
-        state: { data: { bank: this.bank } }
+        state: { data: { bank: this.bank, redirect: true } }
       });
     });
   }
