@@ -2,7 +2,6 @@
   class="summary"
   *ngIf="loansData && loansData.loans && loansData.loans.length > 0"
 >
-  <div style="color: white">General signicat users</div>
   <div *ngFor="let loan of loans">
     <div>
       <div
@@ -30,7 +29,11 @@
           </div>
         </div>
 
-        <div class="all-text" *ngIf="!isEditMode">
+        <div
+          class="all-text"
+          *ngIf="!isEditMode"
+          [@fadeOut]="isEditMode ? 'hidden' : 'visible'"
+        >
           <h4 class="loan-center-title">Lånetype</h4>
           <div class="loan-center">
             <p>
@@ -43,7 +46,7 @@
         <div
           class="forms"
           *ngIf="loanForm"
-          [ngClass]="isEditMode ? 'editModus' : null"
+          [ngClass]="isEditMode === true ? 'edit-modus' : 'general-modus'"
         >
           <form class="p-0 border-0" [formGroup]="loanForm" novalidate change>
             <div class="field-box">
@@ -145,7 +148,7 @@
               >
                 <mat-form-field class="white-input w-130" appearance="outline">
                   <input
-                    placeholder=""
+                    placeholder="Nominell rente"
                     matInput
                     type="tel"
                     maxlength="7"
@@ -156,6 +159,7 @@
                       prefix: '',
                       suffix: ' %',
                       align: 'center',
+                      thousands: ' ',
                       decimal: ',',
                       precision: 2
                     }"
@@ -234,7 +238,7 @@
           *ngIf="isEditMode"
           [@buttonFadeInOut]="showButton ? 'visible' : 'hidden'"
         >
-          <rente-button color="primary" (click)="setDisabled()">
+          <rente-button color="primary" (click)="save(); setDisabled()">
             Lagre
           </rente-button>
         </div>
