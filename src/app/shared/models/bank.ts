@@ -1679,14 +1679,14 @@ export const MissingBankList: BankVo[] = [
     'NORDEA_DIRECT',
     'Nordea Direct',
     'nordea_direct.png',
-    null,
+    'nordea_direct.svg',
     false,
     false,
     false,
     false,
     false,
     false,
-    true,
+    false,
     true,
     null
   ),
@@ -1717,7 +1717,7 @@ export const MissingBankList: BankVo[] = [
     false,
     false,
     false,
-    false,
+    true,
     null
   ),
   new BankVo(
