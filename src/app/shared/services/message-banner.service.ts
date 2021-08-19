@@ -90,9 +90,17 @@ export class MessageBannerService implements OnDestroy {
       this._componentRef.instance.isDashboard = state;
       if (state) {
         if (_window.innerWidth < 992) {
-          newNode.style.top = '65px';
+          if (_animationType === this.checkAnimationStyle.SLIDE_UP) {
+            newNode.style.bottom = '80px';
+          } else {
+            newNode.style.top = '65px';
+          }
         } else {
-          newNode.style.top = '95px';
+          if (_animationType === this.checkAnimationStyle.SLIDE_UP) {
+            newNode.style.bottom = '30px';
+          } else {
+            newNode.style.top = '95px';
+          }
         }
       }
     });
