@@ -66,13 +66,12 @@
       <div class="loan-type">
         <h3>{{ loan.loanName }}</h3>
       </div>
-      <hr class="split" />
       <div class="all-text">
         <div class="loan-info">
-          <div class="loan-title">
+          <div>
             <p>Utestående lån:</p>
           </div>
-          <div class="loan-value">
+          <div>
             <h3>
               {{ loan.outstandingDebt / 1000000 | number: '1.3-3' }}
               millioner
@@ -80,28 +79,28 @@
           </div>
         </div>
         <div class="loan-info">
-          <div class="loan-title">
+          <div>
             <p>Løpetid:</p>
           </div>
-          <div class="loan-value">
+          <div>
             <h3>{{ loan.remainingYears | number: '1.2-2' }} år</h3>
           </div>
         </div>
 
         <div class="loan-info">
-          <div class="loan-title">
+          <div>
             <p>Effektiv rente:</p>
           </div>
-          <div class="loan-value">
+          <div>
             <h3>{{ loan.effectiveRate | number: '1.2-2' }} %</h3>
           </div>
         </div>
 
         <div class="loan-info">
-          <div class="loan-title">
+          <div>
             <p>Nominell rente:</p>
           </div>
-          <div class="loan-value">
+          <div>
             <h3>{{ loan.nominalRate | number: '1.2-2' }} %</h3>
           </div>
         </div>

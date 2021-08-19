@@ -83,7 +83,7 @@ p {
   }
 
   .field-box {
-    padding: 0 10px 13px 10px;
+    padding: 0 10px 13px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -133,12 +133,26 @@ p {
   width: 100%;
   background-color: $secondary;
   border-radius: 10px;
+  height: 550px;
+  transition: height 0.3s;
+}
+
+.content-blue-box-edit {
+  width: 100%;
+  background-color: $secondary;
+  border-radius: 10px;
+  height: 330px;
+  transition: height 0.3s;
 }
 
 .double-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.editModus {
+  margin-top: 10px;
 }
 
 .all-text {
@@ -227,11 +241,16 @@ p {
 }
 
 .loan-info {
-  padding: 10px;
-  margin-bottom: 10px;
+  padding: 10px 38px 10px 20px;
+  margin-bottom: 15px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  h3,
+  p {
+    font-size: 16px;
+  }
 }
 
 .text-white {

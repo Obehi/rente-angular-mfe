@@ -5,7 +5,11 @@
   <div style="color: white">General signicat users</div>
   <div *ngFor="let loan of loans">
     <div>
-      <div class="content-blue-box">
+      <div
+        [ngClass]="
+          isEditMode === true ? 'content-blue-box-edit' : 'content-blue-box'
+        "
+      >
         <div class="loan-type">
           <h3>Lån</h3>
           <div>
@@ -26,7 +30,7 @@
           </div>
         </div>
 
-        <div class="all-text">
+        <div class="all-text" *ngIf="!isEditMode">
           <h4 class="loan-center-title">Lånetype</h4>
           <div class="loan-center">
             <p>
@@ -36,7 +40,11 @@
           </div>
         </div>
 
-        <div class="forms" *ngIf="loanForm">
+        <div
+          class="forms"
+          *ngIf="loanForm"
+          [ngClass]="isEditMode ? 'editModus' : null"
+        >
           <form class="p-0 border-0" [formGroup]="loanForm" novalidate change>
             <div class="field-box">
               <h4 class="text-white">Utestående lån:</h4>
@@ -85,10 +93,6 @@
             <div class="field-box">
               <h4 class="text-white">Løpetid:</h4>
 
-              <!-- <div class="loan-value" [hidden]="isEditMode">
-                <h3>{{ loan.remainingYears | number: '1.2-2' }} år</h3>
-              </div> -->
-
               <div
                 [ngClass]="
                   isEditMode === false ? 'non-active-input' : 'active-input'
@@ -134,10 +138,6 @@
             <div class="field-box">
               <h4 class="text-white">Nominell rente:</h4>
 
-              <!-- <div class="loan-value" [hidden]="isEditMode">
-                <h3>{{ loan.nominalRate | number: '1.2-2' }} %</h3>
-              </div> -->
-
               <div
                 [ngClass]="
                   isEditMode === false ? 'non-active-input' : 'active-input'
@@ -181,7 +181,24 @@
           </form>
         </div>
 
-        <div class="total-cost">
+        <div
+          class="loan-info"
+          *ngIf="showDisplayBox"
+          [@fadeOut]="isEditMode ? 'hidden' : 'visible'"
+        >
+          <div>
+            <p>Effektiv rente:</p>
+          </div>
+          <div>
+            <h3>{{ loan.effectiveRate | number: '1.2-2' }} %</h3>
+          </div>
+        </div>
+
+        <div
+          class="total-cost"
+          *ngIf="showDisplayBox"
+          [@fadeOut]="isEditMode ? 'hidden' : 'visible'"
+        >
           <div class="double-container">
             <div class="first-box move-first-box">
               <div class="btitle-one">
@@ -212,7 +229,11 @@
           </div>
         </div>
 
-        <div class="save-loan-button">
+        <div
+          class="save-loan-button"
+          *ngIf="isEditMode"
+          [@buttonFadeInOut]="showButton ? 'visible' : 'hidden'"
+        >
           <rente-button color="primary" (click)="setDisabled()">
             Lagre
           </rente-button>
