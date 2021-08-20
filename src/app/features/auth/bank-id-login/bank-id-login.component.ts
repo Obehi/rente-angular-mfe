@@ -718,7 +718,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
 
     signicatLoanInfoDto.fee = this.loanFormGroup
       ?.get('fee')
-      ?.value.replace(/\s/g, '');
+      ?.value.replace(/\s/g, '') as number;
 
     let rateString = this.loanFormGroup?.get('interestRate')?.value as string;
 
