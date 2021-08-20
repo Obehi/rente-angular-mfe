@@ -1,18 +1,18 @@
-<svg width="36" height="55" viewBox="0 0 36 55" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M36 0H0V55H36V0Z" fill="#18BC9C"/>
-<path d="M21 32H16V37H21V32Z" fill="white"/>
-<path d="M11 32H6V37H11V32Z" fill="white"/>
-<path d="M21 41H16V46H21V41Z" fill="white"/>
-<path d="M11 41H6V46H11V41Z" fill="white"/>
-<path d="M21 22H16V27H21V22Z" fill="white"/>
-<path d="M11 22H6V27H11V22Z" fill="white"/>
-<path d="M21 13H16V18H21V13Z" fill="white"/>
-<path d="M11 13H6V18H11V13Z" fill="white"/>
-<path d="M21 4H16V9H21V4Z" fill="white"/>
-<path d="M11 4H6V9H11V4Z" fill="white"/>
-<path d="M31 13H26V18H31V13Z" fill="white"/>
-<path d="M31 4H26V9H31V4Z" fill="white"/>
-<path d="M31 22H26V27H31V22Z" fill="white"/>
-<path d="M31 32H26V37H31V32Z" fill="white"/>
-<path d="M31 41H26V46H31V41Z" fill="white"/>
+<svg width="95" height="95" viewBox="0 0 95 95" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M95 0H0V95H95V0Z" fill="#18BC9C"/>
+<path d="M55.4166 55.2725H42.2222V63.9088H55.4166V55.2725Z" fill="white"/>
+<path d="M29.0279 55.2725H15.8335V63.9088H29.0279V55.2725Z" fill="white"/>
+<path d="M55.4166 70.8184H42.2222V79.4547H55.4166V70.8184Z" fill="white"/>
+<path d="M29.0279 70.8184H15.8335V79.4547H29.0279V70.8184Z" fill="white"/>
+<path d="M55.4166 38H42.2222V46.6364H55.4166V38Z" fill="white"/>
+<path d="M29.0279 38H15.8335V46.6364H29.0279V38Z" fill="white"/>
+<path d="M55.4166 22.4541H42.2222V31.0905H55.4166V22.4541Z" fill="white"/>
+<path d="M29.0279 22.4541H15.8335V31.0905H29.0279V22.4541Z" fill="white"/>
+<path d="M55.4166 6.90918H42.2222V15.5455H55.4166V6.90918Z" fill="white"/>
+<path d="M29.0279 6.90918H15.8335V15.5455H29.0279V6.90918Z" fill="white"/>
+<path d="M81.8058 22.4541H68.6113V31.0905H81.8058V22.4541Z" fill="white"/>
+<path d="M81.8058 6.90918H68.6113V15.5455H81.8058V6.90918Z" fill="white"/>
+<path d="M81.8058 38H68.6113V46.6364H81.8058V38Z" fill="white"/>
+<path d="M81.8058 55.2725H68.6113V63.9088H81.8058V55.2725Z" fill="white"/>
+<path d="M81.8058 70.8184H68.6113V79.4547H81.8058V70.8184Z" fill="white"/>
 </svg>
