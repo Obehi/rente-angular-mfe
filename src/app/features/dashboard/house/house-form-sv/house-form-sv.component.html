@@ -1,108 +1,105 @@
 <div class="housecontainer">
-    <div class="heading">
-      <img src="../../../assets/icons/house-icon.svg" alt="Bolig" />
+  <div class="heading">
+    <img src="../../../assets/icons/house-icon-white.svg" alt="Bolig" />
     <b>Bostad {{ index + 1 }}</b>
-      <mat-icon
-        *ngIf="isAbleToDelete"
-        (click)="onDeleteAddressClick()"
-        class="clickable"
-        >delete_forever</mat-icon
-      >
+    <mat-icon
+      *ngIf="isAbleToDelete"
+      (click)="onDeleteAddressClick()"
+      class="clickable"
+      >delete_forever</mat-icon
+    >
+  </div>
+  <div class="body">
+    <p *ngIf="!isStatMode" class="top-text bold">
+      Ränteradaren behöver veta ditt hemvärde för att hitta rätt erbjudanden för
+      dig
+    </p>
+    <div *ngIf="!isStatMode" class="estimat">
+      <p class="slide-toggle-text bold">Automatisk estimat:</p>
+
+      <mat-slide-toggle
+        class="button"
+        (change)="
+          address.useManualPropertyValue = !address.useManualPropertyValue
+        "
+        value="address.useManualPropertyValue"
+      ></mat-slide-toggle>
     </div>
-    <div class="body">
-      <div class="address">
-        <rente-input
-          type="text"
-          [placeholder]="'Adress'"
-          [(ngModel)]="address.street"
-          (change)="countChange()"
-        ></rente-input>
+    <div *ngIf="!isStatMode" class="address">
+      <rente-input
+        type="text"
+        [placeholder]="'Adress'"
+        [(ngModel)]="address.street"
+        (change)="countChange()"
+      ></rente-input>
+    </div>
+    <div [class]="isStatMode ? 'hidden' : 'double'">
+      <rente-input
+        [type]="'tel'"
+        [placeholder]="'Postnummer'"
+        [(ngModel)]="address.zip"
+        [maxLength]="5"
+        (change)="countChange()"
+      ></rente-input>
 
-      </div>
-      <div [class]="'double-bias-right'">
-        <rente-input
-          [type]="'tel'"
-          [placeholder]="'Postnummer'"
-          [(ngModel)]="address.zip"
-          [maxLength] ="5"
-          (change)="countChange()"
-        ></rente-input>
-  
-        <rente-input
+      <rente-input
+        matInput
+        [type]="'tel'"
+        [placeholder]="'Storlek på bostaden'"
+        [(ngModel)]="address.apartmentSize"
+        [maxLength]="3"
+        (change)="countChange()"
+      ></rente-input>
+    </div>
+
+    <div *ngIf="!isStatMode" class="non-double estimated">
+      <p class="house-value bold">Bostadsvärde</p>
+      <div *ngIf="address.useManualPropertyValue">
+        <!-- <rente-input
           matInput
+          class="automatic"
           [type]="'tel'"
-          [placeholder]="'Storlek på bostaden'"
-          [(ngModel)]="address.apartmentSize"
-          [maxLength] ="3"
+          [ngModel]="address?.estimatedPropertyValue | thousands"
           (change)="countChange()"
-          matSuffix="kvm"
+          (focus)="countChange()"
+          style="pointer-events: none; text-align: center !important"
+        ></rente-input> -->
+
+        <p class="green-text">
+          {{ address?.estimatedPropertyValue | thousands }} kr
+        </p>
+      </div>
+      <div *ngIf="!address.useManualPropertyValue">
+        <rente-input
+          #test
+          matInput
+          *ngIf="!address.useManualPropertyValue"
+          [type]="'tel'"
+          [ngModel]="address?.manualPropertyValue | thousands"
+          (change)="countChange()"
+          (keyup)="manualPropertyValueChanged($event)"
         ></rente-input>
       </div>
-
-      <div [class]="isStatMode ? 'hidden' : 'estimate'">
-        <p  class="small">Bostadsvärde</p>
-  
-        <mat-tab-group
-          class="radio"
-          (selectedTabChange)="onRbChange($event)"
-        
-          [selectedIndex]="!address.useManualPropertyValue ? 0 : 1"
-        >
-          <mat-tab label="Automatiskt estimat" (click)="onRbChange($event)">
-          </mat-tab>
-          <mat-tab label="Eget estimat" (click)="onRbChange($event)"> </mat-tab>
-        </mat-tab-group>
-        <div class="double estimated">
-          <div>
-            <rente-input
-              matInput
-              class="automatic"
-              [type]="'tel'"
-              [ngModel]="address?.estimatedPropertyValue | thousands"
-              (change)="countChange()"
-              (focus)="countChange()"
-              [disabled]="address.useManualPropertyValue"
-              style="pointer-events: none; text-align: center !important;"
-              [matSuffix]="address.estimatedPropertyValue ? 'kr' : ''"
-            ></rente-input>
-  
-            <p *ngIf="address.estimatedPropertyValue && envService.isNorway()" class="small">
-              Estimert av Virdi
-            </p> 
-          </div>
-          
-          <rente-input
-            matInput
-            [disabled]="!address.useManualPropertyValue"
-            [type]="'tel'"
-            [ngModel]="address?.manualPropertyValue | thousands"
-            (change)="countChange()"
-
-            style="text-align: center !important;"
-            (keyup)="manualPropertyValueChanged($event)"
-            matSuffix="kr"
-          ></rente-input>
-        </div>
     </div>
 
     <div class="checkbox-wrapper">
-      <rente-checkbox-container 
-        defaultValue="{{address.propertyType}}"
+      <rente-checkbox-container
+        defaultValue="{{ address.propertyType }}"
         [controlName]="'propertyType'"
         [checkBoxItems]="checkBoxItems"
         (selectedValue)="onPropertyTypeChange($event)"
       >
       </rente-checkbox-container>
     </div>
-    
-    
+
     <div class="center-button">
       <rente-button
-      color="primary"
-      [disabled]="!ableTosave"
-      (click)="save()"
-      class="save-changes-local"
-      >Uppdatera 
-    </rente-button>
+        color="primary"
+        [disabled]="!ableTosave"
+        (click)="save()"
+        class="save-changes-local"
+        >Uppdatera
+      </rente-button>
+    </div>
   </div>
 </div>

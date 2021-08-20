@@ -1,5 +1,12 @@
 @import '../../../../../styles/theme/_colors.scss';
 
+.upper-statistics {
+  ::ng-deep .mat-tab-label {
+    background: #183a63;
+    border-radius: 15px;
+  }
+}
+
 .provided-container {
   display: flex;
   align-items: center;
@@ -31,4 +38,8 @@ a {
 
 .small {
   color: $white;
+}
+
+.center {
+  text-align: center;
 }

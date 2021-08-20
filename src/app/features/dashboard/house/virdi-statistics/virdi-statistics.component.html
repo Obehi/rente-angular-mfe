@@ -1,18 +1,19 @@
-<h3 i18n="“title|statistics@@virdi.statistics”">Boligstatistikk</h3>
-<mat-tab-group
-  (selectedTabChange)="onRbChange($event)"
-  [selectedIndex]="!showPriceDevelopment ? 0 : 1"
->
-  <mat-tab label="Kvadratmeterpris" (click)="onRbChange($event)"> </mat-tab>
-  <mat-tab label="Prisutvikling" (click)="onRbChange($event)"> </mat-tab>
-</mat-tab-group>
-
+<div class="upper-statistics">
+  <h3 i18n="“title|statistics@@virdi.statistics”">Boligstatistikk</h3>
+  <mat-tab-group
+    (selectedTabChange)="onRbChange($event)"
+    [selectedIndex]="!showPriceDevelopment ? 0 : 1"
+  >
+    <mat-tab label="Kvadratmeterpris" (click)="onRbChange($event)"> </mat-tab>
+    <mat-tab label="Prisutvikling" (click)="onRbChange($event)"> </mat-tab>
+  </mat-tab-group>
+</div>
 <div [class]="showPriceDevelopment ? 'hidden' : ''">
   <div class="chart-title">
-    <p i18n="“title|sqm-price@@virdi.statistics.sqmPrice”" class="small">
+    <p i18n="“title|sqm-price@@virdi.statistics.sqmPrice”" class="small center">
       Din kvadratmeterpris:
     </p>
-    <h3 class="primary" i18n="“input|avg-sqm@@virdi.statistics.avgSqm”">
+    <h3 class="primary center" i18n="“input|avg-sqm@@virdi.statistics.avgSqm”">
       {{ averageSqmPrice | thousands }} NOK
     </h3>
   </div>
