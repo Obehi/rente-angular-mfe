@@ -14,7 +14,7 @@ export enum AddressFormMode {
   templateUrl: './house-form-no.component.html',
   styleUrls: ['./house-form-no.component.scss'],
   animations: [
-    trigger('test', [
+    trigger('fade', [
       transition(':enter', [
         style({ opacity: '0' }),
         animate('0.5s ease-in', style({ opacity: '1' }))
@@ -23,13 +23,6 @@ export enum AddressFormMode {
       //   // style({ height: '100', opacity: 1 }),
       //   animate('0.1s ease-out', style({ opacity: 0 }))
       // ])
-    ]),
-    trigger('fade', [
-      transition(':enter', [
-        style({ opacity: 0 }),
-        animate('0.4s ease-in', style({ opacity: 1 }))
-      ]),
-      transition(':leave', [animate('0.2s ease-out', style({ opacity: 0 }))])
     ])
   ]
 })

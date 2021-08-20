@@ -59,7 +59,7 @@
 
     <div *ngIf="!isStatMode" class="non-double estimated">
       <p class="house-value bold">Bostadsvärde</p>
-      <div *ngIf="address.useManualPropertyValue">
+      <div *ngIf="!address.useManualPropertyValue">
         <!-- <rente-input
           matInput
           class="automatic"
@@ -74,11 +74,10 @@
           {{ address?.estimatedPropertyValue | thousands }} kr
         </p>
       </div>
-      <div *ngIf="!address.useManualPropertyValue">
+      <div *ngIf="address.useManualPropertyValue">
         <rente-input
           #test
           matInput
-          *ngIf="!address.useManualPropertyValue"
           [type]="'tel'"
           [ngModel]="address?.manualPropertyValue | thousands"
           (change)="countChange()"
