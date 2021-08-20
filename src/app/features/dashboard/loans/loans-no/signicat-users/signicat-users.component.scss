@@ -15,6 +15,13 @@ p {
 }
 
 .forms {
+  // .ng-invalid {
+  //   ::ng-deep.mat-form-field-appearance-outline .mat-form-field-outline {
+  //     border: 1px solid red !important;
+  //     border-radius: 8px;
+  //   }
+  // }
+
   .non-active-input {
     ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
       background: none;
@@ -141,7 +148,7 @@ p {
   width: 100%;
   background-color: $secondary;
   border-radius: 10px;
-  height: 330px;
+  height: 350px;
   transition: height 0.3s;
 }
 
@@ -156,7 +163,7 @@ p {
 }
 
 .edit-modus {
-  margin-top: 10px;
+  margin-top: 20px;
 }
 
 .all-text {
@@ -270,5 +277,5 @@ p {
 }
 
 .save-loan-button {
-  padding: 10px 0 18px;
+  padding: 15px 0 18px;
 }

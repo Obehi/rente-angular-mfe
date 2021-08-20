@@ -198,6 +198,25 @@ export class LoansService {
   public getLoanAndOffersBanks(): Observable<any> {
     return forkJoin([this.getLoans(), this.getOffersBanks()]);
   }
+
+  public updateLoanOutstandingDebt(debt: {
+    outstandingDebt: number;
+  }): Observable<void> {
+    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.outstandingDebt}`;
+    return this.http.put(url, debt);
+  }
+
+  public updateLoanReminingYears(years: {
+    remainingYears: number;
+  }): Observable<void> {
+    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.remainingYears}`;
+    return this.http.put(url, years);
+  }
+
+  // public updateLoanNominalRate(rate: number): Observable<void> {
+  //   const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.nominalRate}`;
+  //   return this.http.put(url, rate);
+  // }
 }
 
 export class LoanStateDto {

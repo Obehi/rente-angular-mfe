@@ -238,7 +238,11 @@
           *ngIf="isEditMode"
           [@buttonFadeInOut]="showButton ? 'visible' : 'hidden'"
         >
-          <rente-button color="primary" (click)="save(); setDisabled()">
+          <rente-button
+            color="primary"
+            (click)="save()"
+            [disabled]="!ableTosave"
+          >
             Lagre
           </rente-button>
         </div>

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoansService } from '@services/remote-api/loans.service';
 import { ButtonFadeInOut } from '@shared/animations/button-fade-in-out';
 import { FadeOut } from '@shared/animations/fade-out';
+import { forkJoin, Subscription } from 'rxjs';
 
 @Component({
   selector: 'rente-signicat-users',
@@ -19,6 +20,8 @@ export class SignicatUsersComponent implements OnInit {
   public loanForm: FormGroup;
   public showDisplayBox = true;
   public showButton = false;
+  public changesMade = false;
+  public changingSubscription: Subscription;
 
   public outstandingDebtString = 'outstandingDebt';
   public remainingYearsString = 'remainingYears';
@@ -75,6 +78,11 @@ export class SignicatUsersComponent implements OnInit {
   }
 
   public setDisabled(): void {
+    if (this.changingSubscription) {
+      this.changingSubscription.unsubscribe();
+      this.changesMade = false;
+    }
+    // Run in this order for animation to be smooth
     this.showButton = false;
     setTimeout(() => {
       this.isEditMode = false;
@@ -92,6 +100,7 @@ export class SignicatUsersComponent implements OnInit {
         .get(this.nominalRateString)
         ?.setValue(this.initialNominalRate);
     }, 325);
+
     this.loanForm.get(this.outstandingDebtString)?.disable();
     this.loanForm.get(this.remainingYearsString)?.disable();
     this.loanForm.get(this.nominalRateString)?.disable();
@@ -104,33 +113,82 @@ export class SignicatUsersComponent implements OnInit {
     this.loanForm.get(this.outstandingDebtString)?.enable();
     this.loanForm.get(this.remainingYearsString)?.enable();
     this.loanForm.get(this.nominalRateString)?.enable();
+
+    this.changingSubscription = this.loanForm.valueChanges.subscribe(() => {
+      if (
+        this.loanForm.controls[this.outstandingDebtString].dirty ||
+        this.loanForm.controls[this.remainingYearsString].dirty ||
+        this.loanForm.controls[this.nominalRateString].dirty
+      ) {
+        this.changesMade = true;
+        // console.log('changes made');
+      }
+    });
+  }
+
+  get isLoanFormValid(): boolean {
+    return (
+      !!this.loanForm.get(this.outstandingDebtString)?.value &&
+      !!this.loanForm.get(this.remainingYearsString)?.value &&
+      !!this.loanForm.get(this.nominalRateString)?.value &&
+      this.changesMade
+    );
+  }
+
+  get ableTosave(): boolean {
+    return this.isLoanFormValid && this.changesMade;
   }
 
   public save(): void {
+    if (this.changesMade === false || !this.ableTosave) return;
     // Get the new values and then set it to initial value then send request
     const getOutstandingDebt = this.loanForm.get(this.outstandingDebtString)
       ?.value;
     this.initialOutStandingDebt = getOutstandingDebt;
-    // this.loanForm
-    //   .get(this.outstandingDebtString)
-    //   ?.setValue(this.initialOutStandingDebt);
-    console.log(getOutstandingDebt);
+
+    const outstandingDebtDto = {
+      outstandingDebt: getOutstandingDebt
+    };
 
     const getRemainingYears = this.loanForm.get(this.remainingYearsString)
       ?.value;
     this.initialRemainingYears = getRemainingYears;
 
-    // this.loanForm
-    //   .get(this.remainingYearsString)
-    //   ?.setValue(this.initialRemainingYears);
-    console.log(getRemainingYears);
+    const remainingYearsDto = {
+      remainingYears: getRemainingYears
+    };
 
     const getNominalRate = this.loanForm.get(this.nominalRateString)?.value;
     this.initialNominalRate = getNominalRate;
 
-    // this.loanForm
-    // .get(this.remainingYearsString)
-    // ?.setValue(this.initialNominalRate);
-    console.log(getNominalRate);
+    const nominalRateDto = {
+      nominalRate: getNominalRate
+    };
+
+    // forkJoin([
+    //   this.loansService.updateLoanOutstandingDebt(outstandingDebtDto),
+    //   this.loansService.updateLoanReminingYears(remainingYearsDto)
+    // ]).subscribe(
+    //   () => {
+    //     console.log(' outstanding debt success');
+    //     console.log(' reamining years success');
+    //   },
+    //   (err) => {
+    //     this.errorMessage = err.title;
+    //   }
+    // );
+
+    // this.loansService.updateLoanOutstandingDebt(outstandingDebtDto).subscribe(
+    //   () => {
+    //     console.log(' outstanding debt success');
+    //   },
+    //   (err) => {
+    //     this.errorMessage = err.title;
+    //   }
+    // );
+
+    // Disable everything after everything works as intended
+    this.setDisabled();
+    console.log('Saved!');
   }
 }
