@@ -20,7 +20,11 @@ form {
   span {
     margin-top: 10px;
     font-size: 12px;
-    color: $grey-dark;
+    color: $white;
+  }
+
+  .input-wrapper:focus {
+    border: 1px solid $primary;
   }
   .input-wrapper {
     width: 85px;
@@ -37,7 +41,7 @@ form {
     p {
       text-align: center;
       font-weight: 400;
-      color: $grey-dark;
+      color: $white;
     }
 
     input {
