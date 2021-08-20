@@ -260,55 +260,57 @@ export class UserScorePreferencesComponent implements OnInit {
   }
 
   setDemoAnimationListener(): void {
-    this.shouldShowDemoListener
-      .pipe(
-        filter((shouldStart) => shouldStart === true),
+    this.shouldShowDemoListener &&
+      this.shouldShowDemoListener
+        .pipe(
+          filter((shouldStart) => shouldStart === true),
 
-        tap(() => {
-          console.log('1 step!!');
-          this.demoIsLive && this.userDemoAnimation.getUserScoreAnimation();
-          this.demoIsLive = true;
+          tap(() => {
+            console.log('1 step!!');
+            this.demoIsLive && this.userDemoAnimation.getUserScoreAnimation();
+            this.demoIsLive = true;
 
-          this.borderTest = true;
-        }),
-        delay(1000),
-        filter(() => this.demoIsLive === true),
-        tap(() => {
-          console.log('2 step!!');
-          this.demoIsLive && this.userDemoAnimation.getUserScoreAnimation();
-          this.demoIsLive = true;
-          this.demoValue = 1;
-        }),
-        delay(1000),
-        filter(() => this.demoIsLive === true),
-        tap(() => {
-          console.log('3 step!!');
-          this.demoIsLive && this.userDemoAnimation.getUserScoreAnimation();
-          this.demoValue = 3;
-        }),
-        delay(1000),
-        filter(() => this.demoIsLive === true),
-        tap(() => {
-          this.demoValue = 2;
-          this.demoIsLive && this.userDemoAnimation.getUserScoreAnimation();
-        }),
-        delay(2000),
-        tap(() => {
-          this.demoIsLive = false;
-          this.borderTest = false;
-        })
-      )
-      .subscribe(() => {});
+            this.borderTest = true;
+          }),
+          delay(1000),
+          filter(() => this.demoIsLive === true),
+          tap(() => {
+            console.log('2 step!!');
+            this.demoIsLive && this.userDemoAnimation.getUserScoreAnimation();
+            this.demoIsLive = true;
+            this.demoValue = 1;
+          }),
+          delay(1000),
+          filter(() => this.demoIsLive === true),
+          tap(() => {
+            console.log('3 step!!');
+            this.demoIsLive && this.userDemoAnimation.getUserScoreAnimation();
+            this.demoValue = 3;
+          }),
+          delay(1000),
+          filter(() => this.demoIsLive === true),
+          tap(() => {
+            this.demoValue = 2;
+            this.demoIsLive && this.userDemoAnimation.getUserScoreAnimation();
+          }),
+          delay(2000),
+          tap(() => {
+            this.demoIsLive = false;
+            this.borderTest = false;
+          })
+        )
+        .subscribe(() => {});
 
-    this.shouldShowDemoListener
-      .pipe(
-        filter((shouldStart) => shouldStart === false),
-        tap(() => {
-          this.demoIsLive = false;
-          this.borderTest = false;
-        })
-      )
-      .subscribe(() => {});
+    this.shouldShowDemoListener &&
+      this.shouldShowDemoListener
+        .pipe(
+          filter((shouldStart) => shouldStart === false),
+          tap(() => {
+            this.demoIsLive = false;
+            this.borderTest = false;
+          })
+        )
+        .subscribe(() => {});
 
     /*   this.triggerDemo = this.shouldShowDemoListener.pipe(
       delay(1000),

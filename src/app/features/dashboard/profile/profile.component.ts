@@ -21,6 +21,7 @@ import { COMMA, ENTER, S } from '@angular/cdk/keycodes';
 import {
   BehaviorSubject,
   combineLatest,
+  EMPTY,
   Observable,
   of,
   Subject,
@@ -71,6 +72,8 @@ import { PropertySelectDialogComponent } from '@features/first-buyers/components
 import { MembershipService } from '@services/membership.service';
 import { LoansService } from '@services/remote-api/loans.service';
 import { UserScorePreferences } from '@models/user';
+import { MessageBannerService } from '@services/message-banner.service';
+import { getAnimationStyles } from '@shared/animations/animationEnums';
 
 export enum FormControlId {
   email = 'email',
@@ -129,6 +132,8 @@ export class ProfileComponent implements OnInit, DeactivationGuarded {
   public locale = locale;
   changesMade = false;
   public isSweden = false;
+  public animationType = getAnimationStyles();
+
   public loadingStates = {
     email: { normal: true, loading: false, success: false },
     income: { normal: true, loading: false, success: false },
@@ -184,7 +189,9 @@ export class ProfileComponent implements OnInit, DeactivationGuarded {
     public dialog: MatDialog,
     public textLangService: CustomLangTextService,
     private profileService: ProfileService,
-    private userService: UserService
+    private userService: UserService,
+    private messageBannerService: MessageBannerService,
+    private customLangTextService: CustomLangTextService
   ) {
     if (window.innerWidth > 600) {
       this.showMemberships = true;
@@ -279,9 +286,24 @@ export class ProfileComponent implements OnInit, DeactivationGuarded {
     this.scoreListener$
       .pipe(
         skip(1),
-
         debounceTime(100),
-        switchMap((score) => this.userService.updateUserScorePreferences(score))
+        switchMap((score) =>
+          this.userService.updateUserScorePreferences(score).pipe(
+            catchError(() => {
+              this.messageBannerService.setView(
+                this.customLangTextService.getSnackBarErrorMessage(),
+                4000,
+                this.animationType.DROP_DOWN_UP,
+                'error',
+                window
+              );
+              return EMPTY;
+            })
+          )
+        ),
+        catchError(() => {
+          return of(null);
+        })
       )
       .subscribe((shouldUpdateNow) => {});
   }

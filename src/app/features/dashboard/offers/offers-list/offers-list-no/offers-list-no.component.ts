@@ -5,6 +5,7 @@ import { EnvService } from '@services/env.service';
 import { OffersService } from '../../offers.service';
 import {
   BehaviorSubject,
+  EMPTY,
   fromEvent,
   merge,
   Observable,
@@ -13,6 +14,8 @@ import {
 } from 'rxjs';
 import { UserScorePreferences } from '@models/user';
 import { UserService } from '@services/remote-api/user.service';
+import { CustomLangTextService } from '@services/custom-lang-text.service';
+
 import {
   catchError,
   debounceTime,
@@ -134,7 +137,8 @@ export class OffersListNoComponent implements OnInit {
     private userService: UserService,
     public loanService: LoansService,
     public localStorageService: LocalStorageService,
-    public messageService: MessageBannerService
+    public messageBannerService: MessageBannerService,
+    private customLangTextService: CustomLangTextService
   ) {
     this.showHamburger = false;
   }
@@ -164,13 +168,13 @@ export class OffersListNoComponent implements OnInit {
   initDemoListener(): void {
     this.stopDemoAction$.subscribe(() => {
       console.log('stopDemoAction');
-      this.messageService.detachView();
+      this.messageBannerService.detachView();
     });
     this.showDemoAction$.pipe(skip(1)).subscribe((demoIsTriggered) => {
       console.log('demoIsTriggered');
       console.log(demoIsTriggered);
       demoIsTriggered &&
-        this.messageService.setView(
+        this.messageBannerService.setView(
           'Besvar spørsmålene under ved å flytte på slideren for å markere din preferanse, og så finner vi riktig bank for deg basert på dine valg.',
           10000000,
           this.animationType.SLIDE_UP,
@@ -195,7 +199,7 @@ export class OffersListNoComponent implements OnInit {
       )
       .subscribe(() => {
         console.log('click');
-        this.messageService.detachView();
+        this.messageBannerService.detachView();
       });
   }
 
@@ -284,10 +288,17 @@ export class OffersListNoComponent implements OnInit {
         debounceTime(100),
         switchMap((score) =>
           this.userService.updateUserScorePreferences(score).pipe(
-            retry(1),
             timeout(4000),
             catchError((error) => {
-              return of(null);
+              this.offerService.isUpdatingOffers$.next(false);
+              this.messageBannerService.setView(
+                this.customLangTextService.getSnackBarErrorMessage(),
+                4000,
+                this.animationType.DROP_DOWN_UP,
+                'error',
+                window
+              );
+              return EMPTY;
             })
           )
         ),
@@ -306,7 +317,7 @@ export class OffersListNoComponent implements OnInit {
         // shouldUpdateNow can be null if http request error or if stream returns null
         if (shouldUpdateNow === null) {
           this.offerService.isUpdatingOffers$.next(false);
-          this.messageService.setView(
+          this.messageBannerService.setView(
             'Noe gikk feil, prøv å sette sett innstillinger på nytt',
             4000,
             this.animationType.DROP_DOWN_UP,
