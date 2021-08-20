@@ -166,6 +166,8 @@ rente-button {
 
   ::ng-deep .cdk-text-field-autofill-monitored:not(:-webkit-autofill):focus {
     border: 1px solid $primary;
+    background: $secondary;
+    transition: 0.3s;
   }
 
   ::ng-deep .mat-form-field-underline {
