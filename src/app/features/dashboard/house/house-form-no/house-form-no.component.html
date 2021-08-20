@@ -34,43 +34,35 @@
       ></mat-slide-toggle>
     </div>
     <div *ngIf="!isStatMode" class="address">
+      <p class="input-text">Adresse</p>
       <rente-input
         type="text"
-        [placeholder]="'Adresse'"
         [(ngModel)]="address.street"
         (change)="countChange()"
       ></rente-input>
     </div>
-    <div *ngIf="isStatMode" [@fade]>
-      <rente-virdi-statistics [address]="address"> </rente-virdi-statistics>
-    </div>
-    <div [class]="isStatMode ? 'hidden' : 'double'">
-      <rente-input
-        [type]="'tel'"
-        [placeholder]="'Postnummer'"
-        [(ngModel)]="address.zip"
-        [maxLength]="4"
-        (change)="countChange()"
-      ></rente-input>
+    <div class="double-double">
+      <div [class]="isStatMode ? 'hidden' : 'double'">
+        <p class="input-text">Postnummer</p>
 
-      <rente-input
-        matInput
-        [type]="'tel'"
-        [placeholder]="'Størrelse på bolig (kvm)'"
-        [(ngModel)]="address.apartmentSize"
-        [maxLength]="3"
-        (change)="countChange()"
-      ></rente-input>
-    </div>
+        <rente-input
+          [type]="'tel'"
+          [(ngModel)]="address.zip"
+          [maxLength]="5"
+          (change)="countChange()"
+        ></rente-input>
+      </div>
+      <div [class]="isStatMode ? 'hidden' : 'double'">
+        <p class="input-text">Størrelse på bolig</p>
 
-    <div *ngIf="!isStatMode" class="double">
-      <rente-input
-        [type]="'tel'"
-        [placeholder]="'Fellesgjeld'"
-        (change)="countChange()"
-        [ngModel]="address?.commonDebt | thousands"
-        (ngModelChange)="address.commonDebt = formatThousand($event)"
-      ></rente-input>
+        <rente-input
+          matInput
+          [type]="'tel'"
+          [(ngModel)]="address.apartmentSize"
+          [maxLength]="3"
+          (change)="countChange()"
+        ></rente-input>
+      </div>
     </div>
 
     <div *ngIf="!isStatMode" class="non-double estimated">

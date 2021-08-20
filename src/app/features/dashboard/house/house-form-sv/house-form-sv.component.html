@@ -26,30 +26,35 @@
       ></mat-slide-toggle>
     </div>
     <div *ngIf="!isStatMode" class="address">
+      <p class="input-text">Adress</p>
       <rente-input
         type="text"
-        [placeholder]="'Adress'"
         [(ngModel)]="address.street"
         (change)="countChange()"
       ></rente-input>
     </div>
-    <div [class]="isStatMode ? 'hidden' : 'double'">
-      <rente-input
-        [type]="'tel'"
-        [placeholder]="'Postnummer'"
-        [(ngModel)]="address.zip"
-        [maxLength]="5"
-        (change)="countChange()"
-      ></rente-input>
+    <div class="double-double">
+      <div [class]="isStatMode ? 'hidden' : 'double'">
+        <p class="input-text">Postnummer</p>
 
-      <rente-input
-        matInput
-        [type]="'tel'"
-        [placeholder]="'Storlek på bostaden'"
-        [(ngModel)]="address.apartmentSize"
-        [maxLength]="3"
-        (change)="countChange()"
-      ></rente-input>
+        <rente-input
+          [type]="'tel'"
+          [(ngModel)]="address.zip"
+          [maxLength]="5"
+          (change)="countChange()"
+        ></rente-input>
+      </div>
+      <div [class]="isStatMode ? 'hidden' : 'double'">
+        <p class="input-text">Storlek på bostaden</p>
+
+        <rente-input
+          matInput
+          [type]="'tel'"
+          [(ngModel)]="address.apartmentSize"
+          [maxLength]="3"
+          (change)="countChange()"
+        ></rente-input>
+      </div>
     </div>
 
     <div *ngIf="!isStatMode" class="non-double estimated">

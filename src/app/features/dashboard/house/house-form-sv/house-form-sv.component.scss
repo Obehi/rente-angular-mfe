@@ -91,6 +91,14 @@ rente-button {
 }
 
 .body {
+  .double {
+    display: flex;
+    flex-direction: column;
+  }
+  .double-double {
+    display: flex;
+    column-gap: 20px;
+  }
   .non-double {
     width: 50%;
     margin-left: 25%;
@@ -133,6 +141,12 @@ rente-button {
 
   .rente-input {
     color: saddlebrown;
+  }
+
+  .input-text {
+    color: $white;
+    position: absolute;
+    font-size: 12px;
   }
 
   .estimat {

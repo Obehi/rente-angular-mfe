@@ -95,6 +95,14 @@ rente-button {
 }
 
 .body {
+  .double {
+    display: flex;
+    flex-direction: column;
+  }
+  .double-double {
+    display: flex;
+    column-gap: 20px;
+  }
   .non-double {
     width: 50%;
     margin-left: 25%;
@@ -105,6 +113,12 @@ rente-button {
       text-align: center;
       padding: 0 !important;
     }
+  }
+
+  .input-text {
+    color: $white;
+    position: absolute;
+    font-size: 12px;
   }
 
   .slide-toggle-text {
