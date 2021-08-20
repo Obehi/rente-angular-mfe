@@ -31,7 +31,7 @@
           </div>
         </div>
 
-        <div class="forms">
+        <div class="forms" *ngIf="loanForm">
           <form class="p-0 border-0" [formGroup]="loanForm" novalidate change>
             <div class="all-text">
               <!-- <h4 class="loan-type-label">Lånetype</h4> -->
@@ -43,7 +43,11 @@
               >
                 <mat-form-field appearance="fill">
                   <mat-label style="color: white"> Lånetype </mat-label>
-                  <mat-select [(value)]="selected" [disabled]="!isEditMode">
+                  <mat-select
+                    [(value)]="selected"
+                    [disabled]="!isEditMode"
+                    (selectionChange)="matSelectChanged()"
+                  >
                     <mat-option
                       *ngFor="let offer of allOffers"
                       [value]="offer.name"
@@ -53,6 +57,7 @@
                   </mat-select>
                 </mat-form-field>
               </div>
+
               <div class="field-box">
                 <h4 class="text-white">Utestående lån:</h4>
 
@@ -106,10 +111,7 @@
                     isEditMode === false ? 'non-active-input' : 'active-input'
                   "
                 >
-                  <mat-form-field
-                    class="white-input w-130"
-                    appearance="outline"
-                  >
+                  <mat-form-field class="white-input w-75" appearance="outline">
                     <input
                       placeholder="Løpetid"
                       matInput
@@ -215,7 +217,11 @@
           *ngIf="isEditMode"
           [@buttonFadeInOut]="showButton ? 'visible' : 'hidden'"
         >
-          <rente-button color="primary" (click)="setDisabled()">
+          <rente-button
+            color="primary"
+            (click)="save()"
+            [disabled]="!ableTosave"
+          >
             Lagre
           </rente-button>
         </div>

@@ -40,7 +40,7 @@ p {
   width: 100%;
   background-color: $secondary;
   border-radius: 10px;
-  height: 520px;
+  height: 530px;
   transition: height 0.3s;
 }
 
@@ -48,7 +48,7 @@ p {
   width: 100%;
   background-color: $secondary;
   border-radius: 10px;
-  height: 365px;
+  height: 385px;
   transition: height 0.3s;
 }
 
@@ -178,6 +178,9 @@ hr.box {
 
 // Add css when necessary
 .loan-title {
+  p {
+    font-size: 16px;
+  }
 }
 
 // Add css when necessary
@@ -199,11 +202,11 @@ hr.box {
 }
 
 .total-cost {
-  padding-bottom: 15px;
+  padding: 5px 0 15px 0;
 }
 
 .save-loan-button {
-  padding: 20px 0 25px;
+  padding: 25px 80px 0px 80px;
 }
 
 .forms {
@@ -255,7 +258,7 @@ hr.box {
 
   .loan-center-edit {
     margin-top: 30px;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 
     ::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
       background: #004465a6;
