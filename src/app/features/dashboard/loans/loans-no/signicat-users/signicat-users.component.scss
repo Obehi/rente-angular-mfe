@@ -78,11 +78,10 @@ p {
     border: none !important;
   }
 
-  @media (min-width: 600px) {
-    form {
-      min-width: 100%;
-      display: flex;
-    }
+  form {
+    min-width: 100%;
+    display: grid;
+    justify-content: center;
   }
 
   ::ng-deep input.mat-input-element {
@@ -90,13 +89,30 @@ p {
   }
 
   .field-box {
-    padding: 0 10px 13px 20px;
+    padding: 0 10px 13px 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 
     h4 {
       font-size: 16px;
+    }
+
+    @media (max-width: 280px) {
+      display: grid;
+      justify-content: center;
+      align-items: center;
+      padding: 0 10px 15px 10px;
+    }
+
+    @media (max-width: 321px) {
+      padding: 0 10px 13px 20px;
+    }
+
+    @media (min-width: 767px) {
+      h4 {
+        margin: 10px !important;
+      }
     }
   }
 
@@ -120,6 +136,7 @@ p {
 
 .summary {
   padding: 10px;
+  margin-top: 75px;
 }
 
 @media (min-width: 600px) {
@@ -140,8 +157,20 @@ p {
   width: 100%;
   background-color: $secondary;
   border-radius: 10px;
-  height: 550px;
+  height: 560px;
   transition: height 0.3s;
+
+  @media (max-width: 360px) {
+    height: 585px;
+  }
+
+  @media (max-width: 330px) {
+    height: 660px;
+  }
+
+  @media (max-width: 280px) {
+    height: 760px;
+  }
 }
 
 .content-blue-box-edit {
@@ -150,12 +179,53 @@ p {
   border-radius: 10px;
   height: 350px;
   transition: height 0.3s;
+
+  @media (max-width: 280px) {
+    height: 425px;
+  }
 }
 
 .double-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  @media (max-width: 320px) {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.first-box {
+  color: white;
+  width: 40%;
+  border-radius: 10px;
+  padding: 8px;
+  // border: 1px solid #4d97dc;
+  background-color: #004465a6;
+  box-shadow: rgb(50 50 93 / 25%) 0px 2px 5px -1px,
+    rgb(0 0 0 / 30%) 0px 3px 3px -1px;
+
+  @media (max-width: 320px) {
+    width: 100%;
+  }
+}
+
+.move-first-box {
+  margin-left: 20px;
+  @media (max-width: 320px) {
+    margin-left: 0;
+    margin-bottom: 10px;
+  }
+}
+
+.move-sec-box {
+  margin-right: 20px;
+  @media (max-width: 320px) {
+    margin-left: 0;
+    margin-bottom: 10px;
+  }
 }
 
 .general-modus {
@@ -196,25 +266,6 @@ p {
 .loan-edit-cancel {
   width: 35px;
   height: 35px;
-}
-
-.first-box {
-  color: white;
-  width: 40%;
-  border-radius: 10px;
-  padding: 8px;
-  // border: 1px solid #4d97dc;
-  background-color: #004465a6;
-  box-shadow: rgb(50 50 93 / 25%) 0px 2px 5px -1px,
-    rgb(0 0 0 / 30%) 0px 3px 3px -1px;
-}
-
-.move-first-box {
-  margin-left: 20px;
-}
-
-.move-sec-box {
-  margin-right: 20px;
 }
 
 .btitle-two,
@@ -262,10 +313,40 @@ p {
   p {
     font-size: 16px;
   }
+
+  @media (max-width: 281px) {
+    padding: 10px 8px 10px 20px !important;
+    // padding: 10px 0px 10px 5px !important;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+
+    h3 {
+      text-align: center;
+      margin-top: 10px;
+    }
+  }
+
+  @media (min-width: 281px) and (max-width: 321px) {
+    padding: 10px 38px 10px 20px !important;
+  }
+
+  @media (max-width: 542px) {
+    padding: 10px 38px 10px 10px;
+  }
 }
 
 .text-white {
   width: 40% !important;
+
+  @media (max-width: 280px) {
+    width: 100% !important;
+    text-align: center;
+  }
+
+  @media (min-width: 540px) {
+    width: 100% !important;
+  }
 }
 
 .w-75 {

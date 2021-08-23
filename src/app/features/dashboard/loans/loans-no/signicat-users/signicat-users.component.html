@@ -106,7 +106,7 @@
                     placeholder="Skriv inn løpetiden"
                     matInput
                     type="tel"
-                    maxlength="9"
+                    maxlength="8"
                     autocomplete="off"
                     [formControlName]="'remainingYears'"
                     currencyMask
@@ -182,20 +182,20 @@
                 </div>
               </div>
             </div>
-          </form>
-        </div>
 
-        <div
-          class="loan-info"
-          *ngIf="showDisplayBox"
-          [@fadeOut]="isEditMode ? 'hidden' : 'visible'"
-        >
-          <div>
-            <p>Effektiv rente:</p>
-          </div>
-          <div>
-            <h3>{{ loan.effectiveRate | number: '1.2-2' }} %</h3>
-          </div>
+            <div
+              class="loan-info"
+              *ngIf="showDisplayBox"
+              [@fadeOut]="isEditMode ? 'hidden' : 'visible'"
+            >
+              <div>
+                <p>Effektiv rente:</p>
+              </div>
+              <div>
+                <h3>{{ loan.effectiveRate | number: '1.2-2' }} %</h3>
+              </div>
+            </div>
+          </form>
         </div>
 
         <div

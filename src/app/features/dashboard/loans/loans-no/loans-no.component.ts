@@ -67,7 +67,7 @@ export class LoansNoComponent implements OnInit {
         //   this.loansData.loans[0].bank
         // );
         this.isSignicatUser = true;
-        this.isFixedPriceBank = true;
+        this.isFixedPriceBank = false;
 
         console.log('Is signicatuser?');
         console.log(this.isSignicatUser);
