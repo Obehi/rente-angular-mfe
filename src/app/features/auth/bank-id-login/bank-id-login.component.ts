@@ -176,8 +176,6 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
       if (stateData.redirect === true) {
         if (this.bank?.name === 'DNB') {
           this.shouldShowBankWarningMessageDNB = true;
-        } else {
-          this.shouldShowBankWarningMessage = true;
         }
       }
 
@@ -718,9 +716,9 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
       signicatLoanInfoDto.loanSubType = 'SERIES_LOAN';
     }
 
-    signicatLoanInfoDto.fee = this.loanFormGroup
-      ?.get('fee')
-      ?.value.replace(/\s/g, '');
+    signicatLoanInfoDto.fee = Number(
+      this.loanFormGroup?.get('fee')?.value.replace(/\s/g, '')
+    );
 
     let rateString = this.loanFormGroup?.get('interestRate')?.value as string;
 

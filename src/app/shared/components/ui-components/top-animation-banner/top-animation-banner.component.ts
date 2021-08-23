@@ -22,6 +22,8 @@ export class TopAnimationBannerComponent implements OnInit {
   public isDashboard: boolean;
   public status: string;
   public clickSubject$ = new Subject<any>();
+  public scrollArrow: boolean;
+  public scrollArrowImg = '../../../../../assets/icons/arrow-down.svg';
 
   constructor() {}
 
@@ -37,5 +39,9 @@ export class TopAnimationBannerComponent implements OnInit {
 
   public onClickBanner(): void {
     this.clickSubject$.next();
+  }
+
+  public shouldShowArrow(args: boolean): void {
+    this.scrollArrow = args;
   }
 }
