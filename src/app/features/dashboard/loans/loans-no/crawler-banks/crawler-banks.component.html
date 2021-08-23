@@ -10,7 +10,7 @@
           <p>Utestående lån:</p>
         </div>
         <div class="box-value">
-          <h3>
+          <h3 class="h3-loan-value">
             {{ loansData.totalOutstandingDebt / 1000000 | number: '1.3-3' }}
             millioner
           </h3>
@@ -72,7 +72,7 @@
             <p>Utestående lån:</p>
           </div>
           <div>
-            <h3>
+            <h3 class="h3-loan-value">
               {{ loan.outstandingDebt / 1000000 | number: '1.3-3' }}
               millioner
             </h3>
