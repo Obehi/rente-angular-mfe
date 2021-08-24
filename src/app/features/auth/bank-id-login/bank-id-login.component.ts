@@ -176,8 +176,6 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
       if (stateData.redirect === true) {
         if (this.bank?.name === 'DNB') {
           this.shouldShowBankWarningMessageDNB = true;
-        } else {
-          this.shouldShowBankWarningMessage = true;
         }
       }
 

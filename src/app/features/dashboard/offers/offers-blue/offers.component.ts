@@ -18,8 +18,8 @@ import { ChangeBankTooManyTriesDialogError } from '@features/dashboard/offers/ch
 
 import { ChangeBankServiceService } from '@services/remote-api/change-bank-service.service';
 import { TrackingService } from '@services/remote-api/tracking.service';
-import { fromEvent, of, Subscription } from 'rxjs';
-import { debounceTime, map, switchMap, tap } from 'rxjs/operators';
+import { Subscription, Observable, fromEvent } from 'rxjs';
+import { debounceTime, filter, tap } from 'rxjs/operators';
 import { OFFERS_LTV_TYPE } from '../../../../shared/models/offers';
 import { UserService } from '@services/remote-api/user.service';
 import smoothscroll from 'smoothscroll-polyfill';
@@ -32,10 +32,14 @@ import {
   OffersService,
   OfferMessage
 } from '@features/dashboard/offers/offers.service';
+import { NotificationService } from '@services/notification.service';
+import { MessageBannerService } from '@services/message-banner.service';
+import { getAnimationStyles } from '@shared/animations/animationEnums';
 @Component({
   selector: 'rente-offers-blue',
   templateUrl: './offers.component.html',
-  styleUrls: ['./offers.component.scss']
+  styleUrls: ['./offers.component.scss'],
+  providers: [OffersService]
 })
 export class OffersComponentBlue implements OnInit, OnDestroy {
   public offersInfo: Offers;
@@ -62,6 +66,10 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
   public routesMap = ROUTES_MAP;
   public antiChurnIsOn = false;
   public nordeaClickSubscription: Subscription;
+  public animationStyles = getAnimationStyles();
+  public notificationSubscription: Subscription;
+  public onScroll: boolean;
+
   get isMobile(): boolean {
     return window.innerWidth < 600;
   }
@@ -75,7 +83,9 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
     public customLangTextSerice: CustomLangTextService,
     public envService: EnvService,
     private offersService: OffersService,
-    private logginService: LoggingService
+    private logginService: LoggingService,
+    private notificationService: NotificationService,
+    private messageService: MessageBannerService
   ) {
     this.onResize();
 
@@ -84,6 +94,8 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
     userService.lowerRateAvailable.subscribe((value) => {
       this.effRateLoweredDialogVisible = value;
     });
+
+    this.scrollOfferNotificationObserver();
   }
 
   public ngOnDestroy(): void {
@@ -94,9 +106,57 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
     if (this.nordeaClickSubscription) {
       this.nordeaClickSubscription.unsubscribe();
     }
+
+    if (this.notificationSubscription) {
+      this.notificationSubscription.unsubscribe();
+    }
+
+    // Remove message poppus when leaving offers page. Should only effect message with arrow version
+    this.messageService.detachView();
+  }
+
+  scrollOfferNotificationObserver(): Observable<any> {
+    return fromEvent(window, 'scroll').pipe(
+      filter(
+        () =>
+          window.innerHeight -
+            document
+              .getElementsByClassName('the-offers')[0]
+              .getBoundingClientRect().top -
+            60 >
+          0
+      )
+    );
+  }
+
+  public setNotifAlert(n: number): void {
+    console.log(n + 'setNotifAlert set notification');
+    if (n > 0) {
+      this.messageService.setView(
+        `Tilbudene er oppdatert, trykk her!`,
+        73333000,
+        this.animationStyles.DROP_DOWN_UP,
+        'success-with-arrow',
+        window,
+        true,
+        true,
+        true
+      );
+
+      this.messageService.getClickSubject$().subscribe(() => {
+        this.scrollTo();
+        this.notificationService.resetOfferNotification();
+      });
+    }
   }
 
   public ngOnInit(): void {
+    this.notificationSubscription = this.notificationService
+      .getOfferNotificationAsObservable()
+      .subscribe((n) => {
+        this.setNotifAlert(n);
+      });
+
     if (locale.includes('sv')) {
       this.isSweden = true;
     } else {
@@ -149,6 +209,19 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
           }
         }
       });
+  }
+
+  public getOfferNotifications(): Observable<number> {
+    return this.notificationService.getOfferNotificationAsObservable();
+  }
+
+  public scrollTo(): void {
+    const offers = document.getElementById('best-offers-text');
+    offers?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+      inline: 'start'
+    });
   }
 
   public openAntiChurnBankDialog(offer, shouldLog: boolean): void {

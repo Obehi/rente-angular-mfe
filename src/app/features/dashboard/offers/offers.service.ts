@@ -1,19 +1,20 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { Offers } from '@models/offers';
 import { LoansService } from '@services/remote-api/loans.service';
-import { fromEvent, Observable, Subject } from 'rxjs';
+import { fromEvent, Observable, Subject, Subscription } from 'rxjs';
 import { debounceTime, filter, share, switchMap, tap } from 'rxjs/operators';
 
+import { DashboardModule } from '../dashboard.module';
 @Injectable({
   providedIn: 'root'
 })
-export class OffersService {
+export class OffersService implements OnDestroy {
   private messageHandler: Subject<OfferMessage>;
   public isUpdatingOffers$ = new Subject<boolean>();
   public updateOffers$ = new Subject<void>();
   private offers$: Observable<Offers>;
   public shouldUpdateOffersLater = false;
-
+  private scrollOffersSubscription: Subscription;
   public readonly updateOfferResponse$ = this.updateOffers$.pipe(
     switchMap(() => this.loansService.getOffers()),
     share(),
@@ -24,11 +25,13 @@ export class OffersService {
   );
   constructor(private loansService: LoansService) {
     this.messageHandler = new Subject<OfferMessage>();
-    this.offers$ = this.loansService.getOffers();
-
-    this.scrollOfferUpdateObserver().subscribe();
+    // this.offers$ = this.loansService.getOffers();
+    this.scrollOffersSubscription = this.scrollOfferUpdateObserver().subscribe();
   }
 
+  ngOnDestroy(): void {
+    this.scrollOffersSubscription.unsubscribe();
+  }
   pushMessage(message: OfferMessage): void {
     this.messageHandler.next(message);
   }
@@ -40,6 +43,10 @@ export class OffersService {
   scrollOfferUpdateObserver(): Observable<any> {
     return fromEvent(window, 'scroll').pipe(
       debounceTime(100),
+      filter(
+        () =>
+          document.getElementsByClassName('offers-container')[0] !== undefined
+      ),
       filter(
         () =>
           window.innerHeight -

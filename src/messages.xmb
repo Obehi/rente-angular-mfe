@@ -49,13 +49,13 @@
     &quot;Forbehold:&quot; : &quot;Ingen forbehold&quot;}}</ex>{{offer.otherConditions ?
     &quot;Forbehold:&quot; : &quot;Ingen forbehold&quot;}}</ph> </msg>
   <msg id="textArea.message”" desc="text-area" meaning="“message"><source>app/shared/components/ui-components/text-area/text-area.component.html:3</source>Melding</msg>
-  <msg id="dashboard.loggedIn.offer”" desc="offer" meaning="“title"><source>app/shared/components/header/dashboard-tabs-desktop/dashboard-tabs-desktop.component.html:25</source><source>app/shared/components/header/dashboard-tabs-mobile/dashboard-tabs-mobile.component.html:17</source>Tilbud</msg>
-  <msg id="dashboard.loggedIn.myLoans”" desc="my-loans" meaning="“title2"><source>app/shared/components/header/dashboard-tabs-desktop/dashboard-tabs-desktop.component.html:41,43</source><source>app/shared/components/header/dashboard-tabs-mobile/dashboard-tabs-mobile.component.html:33</source>
+  <msg id="dashboard.loggedIn.offer”" desc="offer" meaning="“title"><source>app/shared/components/header/dashboard-tabs-desktop/dashboard-tabs-desktop.component.html:30</source><source>app/shared/components/header/dashboard-tabs-mobile/dashboard-tabs-mobile.component.html:22</source>Tilbud</msg>
+  <msg id="dashboard.loggedIn.myLoans”" desc="my-loans" meaning="“title2"><source>app/shared/components/header/dashboard-tabs-desktop/dashboard-tabs-desktop.component.html:46,48</source><source>app/shared/components/header/dashboard-tabs-mobile/dashboard-tabs-mobile.component.html:38</source>
                 Mine lån
               </msg>
-  <msg id="dashboard.loggedIn.house”" desc="house" meaning="“title3"><source>app/shared/components/header/dashboard-tabs-desktop/dashboard-tabs-desktop.component.html:59</source><source>app/shared/components/header/dashboard-tabs-mobile/dashboard-tabs-mobile.component.html:49</source>Bolig</msg>
-  <msg id="dashboard.loggedIn.profile”" desc="profile" meaning="“title4"><source>app/shared/components/header/dashboard-tabs-desktop/dashboard-tabs-desktop.component.html:75</source><source>app/shared/components/header/dashboard-tabs-mobile/dashboard-tabs-mobile.component.html:65</source>Profil</msg>
-  <msg id="header.logOut5”" desc="log-out" meaning="“Headerlink"><source>app/shared/components/header/dashboard-tabs-desktop/dashboard-tabs-desktop.component.html:89,90</source>Logg ut
+  <msg id="dashboard.loggedIn.house”" desc="house" meaning="“title3"><source>app/shared/components/header/dashboard-tabs-desktop/dashboard-tabs-desktop.component.html:64</source><source>app/shared/components/header/dashboard-tabs-mobile/dashboard-tabs-mobile.component.html:54</source>Bolig</msg>
+  <msg id="dashboard.loggedIn.profile”" desc="profile" meaning="“title4"><source>app/shared/components/header/dashboard-tabs-desktop/dashboard-tabs-desktop.component.html:80</source><source>app/shared/components/header/dashboard-tabs-mobile/dashboard-tabs-mobile.component.html:75</source>Profil</msg>
+  <msg id="header.logOut5”" desc="log-out" meaning="“Headerlink"><source>app/shared/components/header/dashboard-tabs-desktop/dashboard-tabs-desktop.component.html:94,95</source>Logg ut
           </msg>
   <msg id="header.home”" desc="homepage" meaning="“Headerlink"><source>app/shared/components/header/header-desktop-no/header-desktop-no.component.html:16,17</source>Hjem
         </msg>
@@ -88,6 +88,7 @@
   <msg id="membership.choosenMembershipDesktop" desc="membership" meaning="“issue-mail"><source>app/features/first-buyers/components/property-select/property-select.component.html:68,70</source>
         Valgte medlemskap (<ph name="INTERPOLATION"><ex>{{ selectedMemberships?.length || 0 }}</ex>{{ selectedMemberships?.length || 0 }}</ph>)
       </msg>
+  <msg id="select.save" desc="property-select" meaning="“issue-mail"><source>app/features/first-buyers/components/property-select-dialog/property-select-dialog.component.html:18</source>Lagre</msg>
   <msg id="cookies.mainTitle”" desc="cookies" meaning="“headline"><source>app/features/cookies/cookies.component.html:3</source>Cookiepolicy</msg>
   <msg id="cookies.description”" desc="cookies" meaning="“description"><source>app/features/cookies/cookies.component.html:4,8</source>
     Renteradar.no benytter seg av cookies (informasjonskapsler).
@@ -161,29 +162,29 @@
         Ta meg til tilbudene
       </msg>
   <msg id="contactUs.title”" desc="title" meaning="“top"><source>app/features/contact-us/contact-us.component.html:2</source>Kontakt oss</msg>
-  <msg id="contactUs.navn.placeholder”" desc="navn" meaning="“navn"><source>app/features/contact-us/contact-us.component.html:15,16</source>
+  <msg id="contactUs.navn.placeholder”" desc="navn" meaning="“navn"><source>app/features/contact-us/contact-us.component.html:14,15</source>
     </msg>
   <msg id="contactUs.name”" desc="name" meaning="“text"><source>app/features/contact-us/contact-us.component.html:26,28</source>
         Vennligst fyll inn navn
       </msg>
-  <msg id="contactUs.email.issue”" desc="e-mail" meaning="“issue"><source>app/features/contact-us/contact-us.component.html:45,47</source>
+  <msg id="contactUs.email.issue”" desc="e-mail" meaning="“issue"><source>app/features/contact-us/contact-us.component.html:44,46</source>
         Ikke gyldig email
       </msg>
   <msg id="contactUs.email.issue2”" desc="e-mail" meaning="“issue"><source>app/features/contact-us/contact-us.component.html:52,54</source>
         Ikke gyldig email
       </msg>
-  <msg id="contactUs.phone”" desc="telephone" meaning="“number"><source>app/features/contact-us/contact-us.component.html:68,70</source>
+  <msg id="contactUs.phone”" desc="telephone" meaning="“number"><source>app/features/contact-us/contact-us.component.html:70,72</source>
       8 siffer
     </msg>
-  <msg id="contactUs.phone.missing”" desc="missing" meaning="“number"><source>app/features/contact-us/contact-us.component.html:79,81</source>
+  <msg id="contactUs.phone.missing”" desc="missing" meaning="“number"><source>app/features/contact-us/contact-us.component.html:82,84</source>
         Telefonnummer kan ikke være tomt
       </msg>
-  <msg id="contactUs.message”" desc="missing" meaning="“message"><source>app/features/contact-us/contact-us.component.html:100,102</source>
+  <msg id="contactUs.message”" desc="missing" meaning="“message"><source>app/features/contact-us/contact-us.component.html:102,104</source>
         Meldingen kan ikke være tom
       </msg>
-  <msg id="contactUs.send”" desc="send" meaning="“message"><source>app/features/contact-us/contact-us.component.html:109,110</source>Send
+  <msg id="contactUs.send”" desc="send" meaning="“message"><source>app/features/contact-us/contact-us.component.html:112,113</source>Send
     </msg>
-  <msg id="close”" desc="button" meaning="“close"><source>app/features/init-confirmation/dialog-info/dialog-info.component.html:5,7</source><source>app/features/dashboard/profile/dialog-info/dialog-info.component.html:8,10</source><source>app/features/dashboard/offers/offers-blue/bank-rating-dialog/bank-rating-dialog-sv/bank-rating-dialog.component.html:13,15</source><source>app/shared/components/ui-components/dialogs/generic-info-dialog/generic-info-dialog.component.html:13,15</source><source>app/shared/components/ui-components/dialogs/generic-choice-dialog/generic-choice-dialog.component.html:12,14</source><source>app/shared/components/ui-components/dialogs/generic-choice-dialog/generic-choice-dialog.component.html:21,23</source><source>app/shared/components/ui-components/dialogs/generic-error-dialog/generic-error-dialog.component.html:13,15</source><source>app/shared/components/ui-components/dialogs/generic-error-dialog/generic-error-dialog.component.html:23,25</source><source>app/shared/components/ui-components/dialogs/virdi-error-choice-dialog/virdi-error-choice-dialog.component.html:45,47</source><source>app/shared/components/ui-components/dialogs/virdi-error-choice-dialog/virdi-error-choice-dialog.component.html:54,56</source><source>app/shared/components/ui-components/dialogs/login-terms-dialog-v2/login-terms-dialog-v2.component.html:43</source><source>app/features/auth/crawler-login/dialog-info-service/dialog-info-service.component.html:47</source><source>app/features/dashboard/offers/ltv-too-high-dialog/ltv-too-high-dialog.component.html:27</source><source>app/features/dashboard/offers/bargain-success/referral/referral.component.html:74,76</source>
+  <msg id="close”" desc="button" meaning="“close"><source>app/features/init-confirmation/dialog-info/dialog-info.component.html:5,7</source><source>app/features/dashboard/profile/dialog-info/dialog-info.component.html:8,10</source><source>app/features/dashboard/offers/offers-blue/bank-rating-dialog/bank-rating-dialog.component.html:23,25</source><source>app/shared/components/ui-components/dialogs/generic-info-dialog/generic-info-dialog.component.html:13,15</source><source>app/shared/components/ui-components/dialogs/generic-choice-dialog/generic-choice-dialog.component.html:12,14</source><source>app/shared/components/ui-components/dialogs/generic-choice-dialog/generic-choice-dialog.component.html:21,23</source><source>app/shared/components/ui-components/dialogs/generic-error-dialog/generic-error-dialog.component.html:13,15</source><source>app/shared/components/ui-components/dialogs/generic-error-dialog/generic-error-dialog.component.html:23,25</source><source>app/shared/components/ui-components/dialogs/virdi-error-choice-dialog/virdi-error-choice-dialog.component.html:45,47</source><source>app/shared/components/ui-components/dialogs/virdi-error-choice-dialog/virdi-error-choice-dialog.component.html:54,56</source><source>app/shared/components/ui-components/dialogs/login-terms-dialog-v2/login-terms-dialog-v2.component.html:43</source><source>app/features/auth/crawler-login/dialog-info-service/dialog-info-service.component.html:47</source><source>app/features/dashboard/offers/ltv-too-high-dialog/ltv-too-high-dialog.component.html:27</source><source>app/features/dashboard/offers/bargain-success/referral/referral.component.html:74,76</source>
     Lukk
   </msg>
   <msg id="email.preferences.saved”" desc="email-preferences" meaning="“saved"><source>app/features/email-preferences/email-preferences.component.html:6</source>Lagret</msg>
@@ -357,11 +358,11 @@
       Renteradar.no eies og drives av Forbrukerøkonomene AS. Se
       <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>om oss<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph> for mer informasjon.
     </msg>
-  <msg id="get.notified.noSupport”" desc="get-notified" meaning="“no-support"><source>app/features/get-notified/get-notified-no/get-notified-no.component.html:5,8</source><source>app/features/sb1-disabled/sb1-disabled.component.html:4,7</source>
-     Vi har desverre ikke støtte for banken din enda.<ph name="LINE_BREAK"><ex>&lt;br&gt;</ex>&lt;br&gt;</ph>
-     Legg igjen din epost så gir vi deg beskjed når det er klart. 
-    </msg>
-  <msg id="get.notified.email”" desc="get-notified" meaning="“issue-email"><source>app/features/get-notified/get-notified-no/get-notified-no.component.html:30,45</source><source>app/features/auth/crawler-login/crawler-login.component.html:53,68</source><source>app/features/auth/bank-id-login-secret/bank-id-login.component.html:245,260</source>
+  <msg id="get.notified.noSupport”" desc="get-notified" meaning="“no-support"><source>app/features/get-notified/get-notified-no/get-notified-no.component.html:4,7</source><source>app/features/sb1-disabled/sb1-disabled.component.html:4,7</source>
+    Vi har desverre ikke støtte for banken din enda.<ph name="LINE_BREAK"><ex>&lt;br&gt;</ex>&lt;br&gt;</ph>
+    Legg igjen din epost så gir vi deg beskjed når det er klart.
+  </msg>
+  <msg id="get.notified.email”" desc="get-notified" meaning="“issue-email"><source>app/features/get-notified/get-notified-no/get-notified-no.component.html:24,39</source><source>app/features/auth/crawler-login/crawler-login.component.html:53,68</source><source>app/features/auth/bank-id-login-secret/bank-id-login.component.html:245,260</source>
           <ph name="START_TAG_RENTE_FORM_MESSAGE"><ex>&lt;rente-form-message&gt;</ex>&lt;rente-form-message&gt;</ph>
             Ikke gyldig email
           <ph name="CLOSE_TAG_RENTE_FORM_MESSAGE"><ex>&lt;/rente-form-message&gt;</ex>&lt;/rente-form-message&gt;</ph>
@@ -369,7 +370,7 @@
             Ikke gyldig email
           <ph name="CLOSE_TAG_RENTE_FORM_MESSAGE"><ex>&lt;/rente-form-message&gt;</ex>&lt;/rente-form-message&gt;</ph>
         </msg>
-  <msg id="get.notified.notifyMe”" desc="get-notified" meaning="“notify-me"><source>app/features/get-notified/get-notified-no/get-notified-no.component.html:51,52</source><source>app/features/auth/crawler-login/crawler-login.component.html:75,76</source><source>app/features/auth/bank-id-login-secret/bank-id-login.component.html:267,268</source>Gi meg lyd når på plass!
+  <msg id="get.notified.notifyMe”" desc="get-notified" meaning="“notify-me"><source>app/features/get-notified/get-notified-no/get-notified-no.component.html:46,47</source><source>app/features/auth/crawler-login/crawler-login.component.html:75,76</source><source>app/features/auth/bank-id-login-secret/bank-id-login.component.html:267,268</source>Gi meg lyd når på plass!
       </msg>
   <msg id="could-not-estimate.value" desc="could-not-estimate-value"><source>app/shared/components/ui-components/dialogs/virdi-manual-value-dialog/virdi-manual-value-dialog.component.html:5,7</source>
     Vi klarte dessverre ikke å estimere din boligverdi
@@ -401,27 +402,40 @@
   <msg id="add.more.houses.after.login" desc="add-more-houses-after-login"><source>app/shared/components/ui-components/dialogs/virdi-manual-value-dialog/virdi-manual-value-dialog.component.html:66,68</source>
       Har du flere boliger kan du legge til disse i boligfanen etter innlogging.
     </msg>
-  <msg id="info.confirmation.empty3”" desc="info-confirmation" meaning="“empty3"><source>app/shared/components/ui-components/dialogs/virdi-manual-value-dialog/virdi-manual-value-dialog.component.html:104,106</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:438,440</source>
+  <msg id="info.confirmation.empty3”" desc="info-confirmation" meaning="“empty3"><source>app/shared/components/ui-components/dialogs/virdi-manual-value-dialog/virdi-manual-value-dialog.component.html:104,106</source><source>app/features/init-confirmation/init-confirmation-no/init-confirmation.component.html:148,150</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:438,440</source>
                 Kan ikke være tom
               </msg>
-  <msg id="info.confirmation.hi”" desc="info-confirmation" meaning="“hi"><source>app/features/init-confirmation/init-confirmation-sv/init-confirmation.component.html:8,10</source>
-          Hei, <ph name="INTERPOLATION"><ex>{{ userData.name | titlecase }}</ex>{{ userData.name | titlecase }}</ph>
-        </msg>
-  <msg id="info.confirmation.moreInfo”" desc="info-confirmation" meaning="“more-infor"><source>app/features/init-confirmation/init-confirmation-sv/init-confirmation.component.html:11,13</source>
-          Vi trenger litt mer informasjon før vi kan søke etter tilbud
-        </msg>
-  <msg id="info.confirmation.empty”" desc="info-confirmation" meaning="“empty"><source>app/features/init-confirmation/init-confirmation-sv/init-confirmation.component.html:35,37</source><source>app/features/init-confirmation/init-confirmation-sv/init-confirmation.component.html:64,66</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:346,348</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:372,374</source>
-              Kan ikke være tom
-            </msg>
-  <msg id="info.confirmation.invalid”" desc="info-confirmation" meaning="“invalid"><source>app/features/init-confirmation/init-confirmation-sv/init-confirmation.component.html:42,44</source>
-              Ugyldig e-post
-            </msg>
-  <msg id="info.confirmation.empty2”" desc="info-confirmation" meaning="“empty2"><source>app/features/init-confirmation/init-confirmation-sv/init-confirmation.component.html:92,94</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:401,403</source>
-                  Kan ikke være tom
-                </msg>
-  <msg id="info.confirmation.done”" desc="info-confirmation" meaning="“done"><source>app/features/init-confirmation/init-confirmation-sv/init-confirmation.component.html:120,122</source>
-          Ferdig!
-        </msg>
+  <msg id="info.confirmation.hi”" desc="info-confirmation" meaning="“hi"><source>app/features/init-confirmation/init-confirmation-no/init-confirmation.component.html:7,9</source>
+        Hei, <ph name="INTERPOLATION"><ex>{{ userData.name | titlecase }}</ex>{{ userData.name | titlecase }}</ph>
+      </msg>
+  <msg id="info.confirmation.moreInfo”" desc="info-confirmation" meaning="“more-infor"><source>app/features/init-confirmation/init-confirmation-no/init-confirmation.component.html:13,15</source>
+        Vi trenger litt mer informasjon før vi kan søke etter tilbud
+      </msg>
+  <msg id="info.confirmation.empty”" desc="info-confirmation" meaning="“empty"><source>app/features/init-confirmation/init-confirmation-no/init-confirmation.component.html:42,44</source><source>app/features/init-confirmation/init-confirmation-no/init-confirmation.component.html:68,70</source><source>app/features/init-confirmation/init-confirmation-no/init-confirmation.component.html:88,90</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:346,348</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:372,374</source>
+            Kan ikke være tom
+          </msg>
+  <msg id="info.confirmation.invalid”" desc="info-confirmation" meaning="“invalid"><source>app/features/init-confirmation/init-confirmation-no/init-confirmation.component.html:49,51</source>
+            Ugyldig e-post
+          </msg>
+  <msg id="info.confirmation.empty2”" desc="info-confirmation" meaning="“empty2"><source>app/features/init-confirmation/init-confirmation-no/init-confirmation.component.html:115,117</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:401,403</source>
+                Kan ikke være tom
+              </msg>
+  <msg id="info.confirmation.help”" desc="info-confirmation" meaning="“help"><source>app/features/init-confirmation/init-confirmation-no/init-confirmation.component.html:124,126</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:104,106</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:143,145</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:180,182</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:238,240</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:413,415</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:451,453</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:551,553</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:595,597</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:638,640</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:700,702</source>
+            <ph name="START_TAG_MAT_ICON"><ex>&lt;mat-icon&gt;</ex>&lt;mat-icon&gt;</ph>help<ph name="CLOSE_TAG_MAT_ICON"><ex>&lt;/mat-icon&gt;</ex>&lt;/mat-icon&gt;</ph>
+          </msg>
+  <msg id="info.confirmation.help2”" desc="info-confirmation" meaning="“help2"><source>app/features/init-confirmation/init-confirmation-no/init-confirmation.component.html:161,163</source>
+            <ph name="START_TAG_MAT_ICON"><ex>&lt;mat-icon&gt;</ex>&lt;mat-icon&gt;</ph>help<ph name="CLOSE_TAG_MAT_ICON"><ex>&lt;/mat-icon&gt;</ex>&lt;/mat-icon&gt;</ph>
+          </msg>
+  <msg id="info.confirmation.organization”" desc="info-confirmation" meaning="“organization"><source>app/features/init-confirmation/init-confirmation-no/init-confirmation.component.html:170,172</source>
+        Bankene gir ofte bedre betingelser om du er medlem i en organisasjon
+      </msg>
+  <msg id="info.confirmation.myMemberships”" desc="info-confirmation" meaning="
+          “my-memberships"><source>app/features/init-confirmation/init-confirmation-no/init-confirmation.component.html:200,202</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:767,769</source>
+        Mine medlemskap
+      </msg>
+  <msg id="info.confirmation.done”" desc="info-confirmation" meaning="“done"><source>app/features/init-confirmation/init-confirmation-no/init-confirmation.component.html:222,224</source>
+        Finn beste rente!
+      </msg>
   <msg id="landing.encouragement" desc="landing-page" meaning="encouragement"><source>app/features/landing/landing.component.html:11,13</source>
               Renteradar finner den beste boliglånsrenten helt gratis.
             </msg>
@@ -567,27 +581,60 @@
   <msg id="offers.mainPage.bestOffers3”" desc="offers-main" meaning="“best-offers3"><source>app/features/dashboard/offers/offers-list/offers-list-no/offers-list-no.component.html:6,8</source>
     Beste tilbud:
   </msg>
-  <msg id="offers.mainPage.yourInterestStickyBox”" desc="offers-main" meaning="“your-interest"><source>app/features/dashboard/offers/offers-list/offers-list-no/offers-list-no.component.html:13,15</source>
+  <msg id="offers.mainPage.yourInterestStickyBox”" desc="offers-main" meaning="“your-interest"><source>app/features/dashboard/offers/offers-list/offers-list-no/offers-list-no.component.html:103,105</source>
       Min effektive rente:
     </msg>
-  <msg id="loans.title”" desc="loans" meaning="“title"><source>app/features/dashboard/loans/loans-sv/loans-sv.component.html:4</source>Sammendrag av lån</msg>
-  <msg id="loans.outbound”" desc="loans" meaning="“text-outbound"><source>app/features/dashboard/loans/loans-sv/loans-sv.component.html:8</source>Utestående lån</msg>
-  <msg id="loans.mortgage.amount”" desc="loans" meaning="“mortgage-amount"><source>app/features/dashboard/loans/loans-sv/loans-sv.component.html:9,12</source><source>app/features/dashboard/loans/loans-sv/loans-sv.component.html:35,37</source>
-              <ph name="INTERPOLATION"><ex>{{ loansData.totalOutstandingDebt / 1000000 | number: &quot;1.3-3&quot; }}</ex>{{ loansData.totalOutstandingDebt / 1000000 | number: &quot;1.3-3&quot; }}</ph>
-              millioner
-            </msg>
-  <msg id="loans.interest”" desc="loans" meaning="“text-interest"><source>app/features/dashboard/loans/loans-sv/loans-sv.component.html:15</source>Effektiv rente</msg>
-  <msg id="loans.mortgage”" desc="loans" meaning="“mortgage"><source>app/features/dashboard/loans/loans-sv/loans-sv.component.html:34</source>Utestående lån</msg>
-  <msg id="loans.mortgage.interest”" desc="loans" meaning="“mortgage-interest"><source>app/features/dashboard/loans/loans-sv/loans-sv.component.html:40</source>Effektiv rente</msg>
-  <msg id="change.bank.info”" desc="change-bank" meaning="“info"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog-sv/change-bank-dialog-sv.component.html:103</source><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:19</source><source>app/features/dashboard/offers/change-bank-dialog/change-bank-location/change-bank-location.component.html:83</source><ph name="START_BOLD_TEXT"><ex>&lt;b&gt;</ex>&lt;b&gt;</ph>Opplysninger om tilbud:<ph name="CLOSE_BOLD_TEXT"><ex>&lt;/b&gt;</ex>&lt;/b&gt;</ph></msg>
-  <msg id="change.bank.infoAmount”" desc="change-bank" meaning="“info-amount"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog-sv/change-bank-dialog-sv.component.html:107</source><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:23</source><source>app/features/dashboard/offers/change-bank-dialog/change-bank-location/change-bank-location.component.html:87</source>Lånebeløp:</msg>
-  <msg id="change.bank.infoValue”" desc="change-bank" meaning="“info-value"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog-sv/change-bank-dialog-sv.component.html:111</source><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:27</source><source>app/features/dashboard/offers/change-bank-dialog/change-bank-location/change-bank-location.component.html:91</source>Boligverdi:</msg>
-  <msg id="change.bank.infoLeverage”" desc="change-bank" meaning="“info-leverage"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog-sv/change-bank-dialog-sv.component.html:116</source><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:35</source><source>app/features/dashboard/offers/change-bank-dialog/change-bank-location/change-bank-location.component.html:96</source>Est. belåningsgrad:</msg>
-  <msg id="change.bank.infoTime.remaining”" desc="change-bank" meaning="“info-time-remaining"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog-sv/change-bank-dialog-sv.component.html:121</source>Nedbetalingstid:</msg>
-  <msg id="change.bank.infoBank”" desc="change-bank" meaning="“info-bank"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog-sv/change-bank-dialog-sv.component.html:125</source><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:40</source><source>app/features/dashboard/offers/change-bank-dialog/change-bank-location/change-bank-location.component.html:102</source>Bank:</msg>
-  <msg id="change.bank.infoProduct”" desc="change-bank" meaning="“info-product"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog-sv/change-bank-dialog-sv.component.html:129</source><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:44</source><source>app/features/dashboard/offers/change-bank-dialog/change-bank-location/change-bank-location.component.html:106</source>Produktnavn:</msg>
-  <msg id="change.bank.infoNominal”" desc="change-bank" meaning="“info-nominal-interest"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog-sv/change-bank-dialog-sv.component.html:133</source><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:48</source><source>app/features/dashboard/offers/change-bank-dialog/change-bank-location/change-bank-location.component.html:110</source>Nominell rente:</msg>
-  <msg id="change.bank.infoEffective”" desc="change-bank" meaning="“info-effective-interest"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog-sv/change-bank-dialog-sv.component.html:137</source><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:52</source><source>app/features/dashboard/offers/change-bank-dialog/change-bank-location/change-bank-location.component.html:114</source>Effektiv rente:</msg>
+  <msg id="change.bank.title”" desc="change-bank" meaning="“title"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:5</source>Melding til banken din:</msg>
+  <msg id="change.bank.intro" desc="change-bank" meaning="test"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:9,16</source>
+  Hei,
+  <ph name="LINE_BREAK"><ex>&lt;br&gt;</ex>&lt;br&gt;</ph>
+  <ph name="LINE_BREAK"><ex>&lt;br&gt;</ex>&lt;br&gt;</ph>
+  Jeg er kunde i banken i dag, men jeg har funnet et bedre tilbud på
+  <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>renteradar.no<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph> og vurderer å bytte. Før jeg går videre lurer jeg på om dere kan
+  matche tilbudet?
+</msg>
+  <msg id="change.bank.info”" desc="change-bank" meaning="“info"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:19</source><source>app/features/dashboard/offers/change-bank-dialog/change-bank-location/change-bank-location.component.html:83</source><ph name="START_BOLD_TEXT"><ex>&lt;b&gt;</ex>&lt;b&gt;</ph>Opplysninger om tilbud:<ph name="CLOSE_BOLD_TEXT"><ex>&lt;/b&gt;</ex>&lt;/b&gt;</ph></msg>
+  <msg id="change.bank.infoAmount”" desc="change-bank" meaning="“info-amount"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:23</source><source>app/features/dashboard/offers/change-bank-dialog/change-bank-location/change-bank-location.component.html:87</source>Lånebeløp:</msg>
+  <msg id="change.bank.infoValue”" desc="change-bank" meaning="“info-value"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:27</source><source>app/features/dashboard/offers/change-bank-dialog/change-bank-location/change-bank-location.component.html:91</source>Boligverdi:</msg>
+  <msg id="change.bank.infoDebt”" desc="change-bank" meaning="“info-debt"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:31</source>Fellesgjeld:</msg>
+  <msg id="change.bank.infoLeverage”" desc="change-bank" meaning="“info-leverage"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:35</source><source>app/features/dashboard/offers/change-bank-dialog/change-bank-location/change-bank-location.component.html:96</source>Est. belåningsgrad:</msg>
+  <msg id="change.bank.infoBank”" desc="change-bank" meaning="“info-bank"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:40</source><source>app/features/dashboard/offers/change-bank-dialog/change-bank-location/change-bank-location.component.html:102</source>Bank:</msg>
+  <msg id="change.bank.infoProduct”" desc="change-bank" meaning="“info-product"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:44</source><source>app/features/dashboard/offers/change-bank-dialog/change-bank-location/change-bank-location.component.html:106</source>Produktnavn:</msg>
+  <msg id="change.bank.infoNominal”" desc="change-bank" meaning="“info-nominal-interest"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:48</source><source>app/features/dashboard/offers/change-bank-dialog/change-bank-location/change-bank-location.component.html:110</source>Nominell rente:</msg>
+  <msg id="change.bank.infoEffective”" desc="change-bank" meaning="“info-effective-interest"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:52</source><source>app/features/dashboard/offers/change-bank-dialog/change-bank-location/change-bank-location.component.html:114</source>Effektiv rente:</msg>
+  <msg id="change.bank.infoProduct2”" desc="change-bank" meaning="“info-product2"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:57</source>Produkt:</msg>
+  <msg id="change.bank.infoLink”" desc="change-bank" meaning="“info-link"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:59</source>Link til produkt på Finansportalen</msg>
+  <msg id="change.bank.infoMe”" desc="change-bank" meaning="“info-me"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:64</source><source>app/features/dashboard/offers/change-bank-dialog/change-bank-location/change-bank-location.component.html:119</source><ph name="START_BOLD_TEXT"><ex>&lt;b&gt;</ex>&lt;b&gt;</ph>Opplysninger om meg:<ph name="CLOSE_BOLD_TEXT"><ex>&lt;/b&gt;</ex>&lt;/b&gt;</ph></msg>
+  <msg id="change.bank.infoName”" desc="change-bank" meaning="“info-name"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:68</source><source>app/features/dashboard/offers/change-bank-dialog/change-bank-location/change-bank-location.component.html:123</source>Navn:</msg>
+  <msg id="change.bank.infoPhone”" desc="change-bank" meaning="“info-phone"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:72</source><source>app/features/dashboard/offers/change-bank-dialog/change-bank-location/change-bank-location.component.html:142</source>Telefon:</msg>
+  <msg id="change.bank.infoAddress”" desc="change-bank" meaning="“info-address"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:76</source><source>app/features/dashboard/offers/change-bank-dialog/change-bank-location/change-bank-location.component.html:133</source>Adresse:</msg>
+  <msg id="change.bank.infoPost”" desc="change-bank" meaning="“info-post"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:80</source><source>app/features/dashboard/offers/change-bank-dialog/change-bank-location/change-bank-location.component.html:138</source>Postnr:</msg>
+  <msg id="change.bank.infoMail”" desc="change-bank" meaning="“info-mail"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:86</source>E-post:</msg>
+  <msg id="change.bank.infoContact.phone”" desc="change-bank" meaning="“info-contact-phone"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:90,92</source>
+  Jeg ønsker at dere kontakter meg per telefon.
+</msg>
+  <msg id="change.bank.infoConfirmation”" desc="change-bank" meaning="“info-confirmation"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:93,96</source>
+  Jeg bekrefter at jeg er over 18 år og myndig eller oppnevnt som verge, samt at
+  banken ved behov kan foreta en kredittvurdering.
+</msg>
+  <msg id="change.bank.kindRegards”" desc="change-bank" meaning="“kind-regards"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:97,100</source>
+  Mvh,<ph name="LINE_BREAK"><ex>&lt;br&gt;</ex>&lt;br&gt;</ph>
+  <ph name="INTERPOLATION"><ex>{{ data.preview.clientInfo.name }}</ex>{{ data.preview.clientInfo.name }}</ph>
+</msg>
+  <msg id="change.bank.infoSent”" desc="change-bank" meaning="“info-sent-message"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:105,109</source>
+  Meldingen sendes til din bank per mail med deg som avsender. Du får også en
+  kopi av meldingen i din innboks. Ønsker du å kontakte din bank direkte kan du
+  kopiere teksten og bruke den som utgangspunkt for dialog.
+</msg>
+  <msg id="change.bank.ageConfirmation”" desc="change-bank" meaning="“age-confirmation"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:115,118</source><source>app/features/dashboard/offers/anti-churn-dialog/anti-churn-dialog.component.html:8,10</source><source>app/features/dashboard/offers/change-bank-dialog/change-bank-location/change-bank-location.component.html:184,187</source>
+    Jeg bekrefter at jeg er over 18 år og myndig eller oppnevnt som verge, samt
+    at banken ved behov kan foreta en kredittvurdering.
+  </msg>
+  <msg id="change.bank.cancel”" desc="change-bank" meaning="“cancel"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:121,123</source><source>app/features/dashboard/offers/anti-churn-dialog/anti-churn-dialog.component.html:43,45</source><source>app/features/dashboard/house/manual-input-dialog/manual-input-dialog.component.html:24,26</source>
+      Avbryt
+    </msg>
+  <msg id="change.bank.sendBank”" desc="change-bank" meaning="“send-bank"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:130,131</source><source>app/features/dashboard/offers/anti-churn-dialog/anti-churn-dialog.component.html:52,53</source><source>app/features/dashboard/offers/anti-churn-dialog/anti-churn-error-dialog/anti-churn-error-dialog.component.html:19,20</source><source>app/features/dashboard/offers/change-bank-dialog/change-bank-too-many-tries-dialog-error/change-bank-too-many-tries-dialog-error.component.html:14,15</source>Send til banken
+    </msg>
   <msg id="aboutUs”" desc="about-us" meaning="“headline"><source>app/features/about-us/about-us.component.html:2</source>Om oss</msg>
   <msg id="aboutUs.intro1”" desc="intro" meaning="“text"><source>app/features/about-us/about-us.component.html:3,9</source>
     <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>Renteradar.no<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph> så sitt lys våren 2019. Vi var en gjeng som mente
@@ -735,13 +782,6 @@
       OBS: Vi tester fortsatt løsningen for denne banken. <ph name="LINE_BREAK"><ex>&lt;br&gt;</ex>&lt;br&gt;</ph>
       Gi gjerne beskjed hvis noe ikke fungerer optimalt.
     </msg>
-  <msg id="info.confirmation.help”" desc="info-confirmation" meaning="“help"><source>app/features/auth/bank-id-login/bank-id-login.component.html:104,106</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:143,145</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:180,182</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:238,240</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:413,415</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:451,453</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:551,553</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:595,597</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:638,640</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:700,702</source>
-          <ph name="START_TAG_MAT_ICON"><ex>&lt;mat-icon&gt;</ex>&lt;mat-icon&gt;</ph>help<ph name="CLOSE_TAG_MAT_ICON"><ex>&lt;/mat-icon&gt;</ex>&lt;/mat-icon&gt;</ph>
-        </msg>
-  <msg id="info.confirmation.myMemberships”" desc="info-confirmation" meaning="
-                      “my-memberships"><source>app/features/auth/bank-id-login/bank-id-login.component.html:767,769</source>
-                    Mine medlemskap
-                  </msg>
   <msg id="change.bank.location.back" desc="change-bank" meaning="choose-office "><source>app/features/auth/bank-id-login/bank-id-login.component.html:820,822</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:858,860</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:877,879</source><source>app/features/dashboard/offers/change-bank-dialog/change-bank-location/change-bank-location.component.html:162,164</source><source>app/features/dashboard/offers/change-bank-dialog/change-bank-location/change-bank-location.component.html:170,172</source><source>app/features/dashboard/offers/change-bank-dialog/change-bank-location/change-bank-location.component.html:191,193</source>
             Tilbake
           </msg>
@@ -839,55 +879,47 @@
     Prøv igjen
   </msg>
   <msg id="sparebank1”" desc="sub-component" meaning="“title"><source>app/features/auth/sparebank1-sub/sparebank1-sub.component.html:2</source>Velg din bank</msg>
-  <msg id="change.bank.ageConfirmation”" desc="change-bank" meaning="“age-confirmation"><source>app/features/dashboard/offers/anti-churn-dialog/anti-churn-dialog.component.html:8,10</source><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:115,118</source><source>app/features/dashboard/offers/change-bank-dialog/change-bank-location/change-bank-location.component.html:184,187</source>
-      Jeg godkjenner at min kontakt-, medlemskaps- og låneinformasjon sendes kryptert til Nordea og at Nordea kan kontakte meg.
-      </msg>
-  <msg id="change.bank.cancel”" desc="change-bank" meaning="“cancel"><source>app/features/dashboard/offers/anti-churn-dialog/anti-churn-dialog.component.html:43,45</source><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:121,123</source><source>app/features/dashboard/house/manual-input-dialog/manual-input-dialog.component.html:24,26</source>
-      Avbryt
-    </msg>
-  <msg id="change.bank.sendBank”" desc="change-bank" meaning="“send-bank"><source>app/features/dashboard/offers/anti-churn-dialog/anti-churn-dialog.component.html:52,53</source><source>app/features/dashboard/offers/anti-churn-dialog/anti-churn-error-dialog/anti-churn-error-dialog.component.html:19,20</source><source>app/features/dashboard/offers/change-bank-dialog/change-bank-too-many-tries-dialog-error/change-bank-too-many-tries-dialog-error.component.html:14,15</source><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:130,131</source>Send til Nordea
-    </msg>
   <msg id="profile.email" desc="profile" meaning="“issue-mail"><source>app/features/dashboard/profile/profile.component.html:16,18</source>
           E-mail
         </msg>
-  <msg id="profile.issueMail”" desc="profile" meaning="“issue-mail"><source>app/features/dashboard/profile/profile.component.html:44,46</source>
+  <msg id="profile.issueMail”" desc="profile" meaning="“issue-mail"><source>app/features/dashboard/profile/profile.component.html:45,47</source>
             Ikke gyldig email
           </msg>
-  <msg id="profile.issueMail2”" desc="profile" meaning="“issue-mail2"><source>app/features/dashboard/profile/profile.component.html:51,53</source>
+  <msg id="profile.issueMail2”" desc="profile" meaning="“issue-mail2"><source>app/features/dashboard/profile/profile.component.html:52,54</source>
             Ikke gyldig email
           </msg>
-  <msg id="profile.income.label" desc="profile" meaning="“income-per-year"><source>app/features/dashboard/profile/profile.component.html:60,62</source>
+  <msg id="profile.income.label" desc="profile" meaning="“income-per-year"><source>app/features/dashboard/profile/profile.component.html:61,63</source>
           Din brutto årsinntekt
         </msg>
-  <msg id="profile.issueEmpty”" desc="profile" meaning="“issue-empty"><source>app/features/dashboard/profile/profile.component.html:101,103</source>
+  <msg id="profile.issueEmpty”" desc="profile" meaning="“issue-empty"><source>app/features/dashboard/profile/profile.component.html:103,105</source>
             Kan ikke være tom
           </msg>
-  <msg id="profile.members¬hip.header" desc="profile" meaning="“income-per-year"><source>app/features/dashboard/profile/profile.component.html:138,140</source>
+  <msg id="profile.members¬hip.header" desc="profile" meaning="“income-per-year"><source>app/features/dashboard/profile/profile.component.html:140,142</source>
           Medlemskap:
         </msg>
-  <msg id="profile.membership.label" desc="profile" meaning="“income-per-year"><source>app/features/dashboard/profile/profile.component.html:144,146</source>
+  <msg id="profile.membership.label" desc="profile" meaning="“income-per-year"><source>app/features/dashboard/profile/profile.component.html:146,148</source>
           Velg dine medlemskap
         </msg>
-  <msg id="profile.markedMonitoring.header" desc="profile" meaning="“income-per-year"><source>app/features/dashboard/profile/profile.component.html:173,175</source>
+  <msg id="profile.markedMonitoring.header" desc="profile" meaning="“income-per-year"><source>app/features/dashboard/profile/profile.component.html:176,178</source>
           Markedsovervåkning:
         </msg>
-  <msg id="profile.markedMonitoring.label" desc="profile" meaning="“income-per-year"><source>app/features/dashboard/profile/profile.component.html:179,181</source>
+  <msg id="profile.markedMonitoring.label" desc="profile" meaning="“income-per-year"><source>app/features/dashboard/profile/profile.component.html:182,184</source>
           Velg hvor ofte din rente skal sjekkes og du vil ha påminnelse på epost
         </msg>
-  <msg id="profile.markedUpdates.header" desc="profile" meaning="“income-per-year"><source>app/features/dashboard/profile/profile.component.html:215,217</source>
+  <msg id="profile.markedUpdates.header" desc="profile" meaning="“income-per-year"><source>app/features/dashboard/profile/profile.component.html:219,221</source>
           Markedsoppdateringer:
         </msg>
-  <msg id="profile.markedUpdates.label" desc="profile" meaning="“income-per-year"><source>app/features/dashboard/profile/profile.component.html:221,223</source>
+  <msg id="profile.markedUpdates.label" desc="profile" meaning="“income-per-year"><source>app/features/dashboard/profile/profile.component.html:225,227</source>
           Send meg markedsoppdateringer, nyheter og annen informasjon på epost
         </msg>
-  <msg id="profile.offerOptions.header" desc="profile" meaning="“income-per-year"><source>app/features/dashboard/profile/profile.component.html:234,236</source>
+  <msg id="profile.offerOptions.header" desc="profile" meaning="“income-per-year"><source>app/features/dashboard/profile/profile.component.html:238,240</source><source>app/features/dashboard/profile/profile.component.html:283,285</source>
       HVILKE TILBUD VIL DU SE:
     </msg>
-  <msg id="profile.offerOptions.option2" desc="profile" meaning="“income-per-year"><source>app/features/dashboard/profile/profile.component.html:251,254</source>
-        Vis tilbud som krever andre produkter eller har sækrav: feks. bytte av
-        nettbank og aktiv lønnskonto
+  <msg id="profile.offerOptions.option2" desc="profile" meaning="“income-per-year"><source>app/features/dashboard/profile/profile.component.html:255,258</source>
+        Ikke vis tilbud som krever andre produkter eller har sækrav: feks. bytte
+        av nettbank og aktiv lønnskonto
       </msg>
-  <msg id="profile.offerOptions.option3" desc="profile" meaning="“income-per-year"><source>app/features/dashboard/profile/profile.component.html:265,268</source>
+  <msg id="profile.offerOptions.option3" desc="profile" meaning="“income-per-year"><source>app/features/dashboard/profile/profile.component.html:269,272</source>
         Vis tilbud som forutsetter bolig med energiklasse A/B, nullhus,
         Svanemerket, tiltak for energimerking, etc.
       </msg>
@@ -920,40 +952,6 @@
 </msg>
   <msg id="navigate.to.house.tab" desc="button" meaning="navigate-to-house-tab"><source>app/features/dashboard/offers/ltv-too-high-dialog/ltv-too-high-dialog.component.html:26</source>Gå til boligsiden</msg>
   <msg id="rate-type-fixed”" desc="rate-type" meaning="“not-available"><source>app/features/dashboard/rate-type-fixed/rate-type-fixed.component.html:4</source>Beklager, vi har ikke noen tjeneste for fastrente enda</msg>
-  <msg id="change.bank.title”" desc="change-bank" meaning="“title"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:5</source>Melding til banken din:</msg>
-  <msg id="change.bank.intro" desc="change-bank" meaning="test"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:9,16</source>
-  Hei,
-  <ph name="LINE_BREAK"><ex>&lt;br&gt;</ex>&lt;br&gt;</ph>
-  <ph name="LINE_BREAK"><ex>&lt;br&gt;</ex>&lt;br&gt;</ph>
-  Jeg er kunde i banken i dag, men jeg har funnet et bedre tilbud på
-  <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>renteradar.no<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph> og vurderer å bytte. Før jeg går videre lurer jeg på om dere kan
-  matche tilbudet?
-</msg>
-  <msg id="change.bank.infoDebt”" desc="change-bank" meaning="“info-debt"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:31</source>Fellesgjeld:</msg>
-  <msg id="change.bank.infoProduct2”" desc="change-bank" meaning="“info-product2"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:57</source>Produkt:</msg>
-  <msg id="change.bank.infoLink”" desc="change-bank" meaning="“info-link"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:59</source>Link til produkt på Finansportalen</msg>
-  <msg id="change.bank.infoMe”" desc="change-bank" meaning="“info-me"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:64</source><source>app/features/dashboard/offers/change-bank-dialog/change-bank-location/change-bank-location.component.html:119</source><ph name="START_BOLD_TEXT"><ex>&lt;b&gt;</ex>&lt;b&gt;</ph>Opplysninger om meg:<ph name="CLOSE_BOLD_TEXT"><ex>&lt;/b&gt;</ex>&lt;/b&gt;</ph></msg>
-  <msg id="change.bank.infoName”" desc="change-bank" meaning="“info-name"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:68</source><source>app/features/dashboard/offers/change-bank-dialog/change-bank-location/change-bank-location.component.html:123</source>Navn:</msg>
-  <msg id="change.bank.infoPhone”" desc="change-bank" meaning="“info-phone"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:72</source><source>app/features/dashboard/offers/change-bank-dialog/change-bank-location/change-bank-location.component.html:142</source>Telefon:</msg>
-  <msg id="change.bank.infoAddress”" desc="change-bank" meaning="“info-address"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:76</source><source>app/features/dashboard/offers/change-bank-dialog/change-bank-location/change-bank-location.component.html:133</source>Adresse:</msg>
-  <msg id="change.bank.infoPost”" desc="change-bank" meaning="“info-post"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:80</source><source>app/features/dashboard/offers/change-bank-dialog/change-bank-location/change-bank-location.component.html:138</source>Postnr:</msg>
-  <msg id="change.bank.infoMail”" desc="change-bank" meaning="“info-mail"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:86</source>E-post:</msg>
-  <msg id="change.bank.infoContact.phone”" desc="change-bank" meaning="“info-contact-phone"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:90,92</source>
-  Jeg ønsker at dere kontakter meg per telefon.
-</msg>
-  <msg id="change.bank.infoConfirmation”" desc="change-bank" meaning="“info-confirmation"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:93,96</source>
-  Jeg bekrefter at jeg er over 18 år og myndig eller oppnevnt som verge, samt at
-  banken ved behov kan foreta en kredittvurdering.
-</msg>
-  <msg id="change.bank.kindRegards”" desc="change-bank" meaning="“kind-regards"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:97,100</source>
-  Mvh,<ph name="LINE_BREAK"><ex>&lt;br&gt;</ex>&lt;br&gt;</ph>
-  <ph name="INTERPOLATION"><ex>{{ data.preview.clientInfo.name }}</ex>{{ data.preview.clientInfo.name }}</ph>
-</msg>
-  <msg id="change.bank.infoSent”" desc="change-bank" meaning="“info-sent-message"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-dialog.component.html:105,109</source>
-  Meldingen sendes til din bank per mail med deg som avsender. Du får også en
-  kopi av meldingen i din innboks. Ønsker du å kontakte din bank direkte kan du
-  kopiere teksten og bruke den som utgangspunkt for dialog.
-</msg>
   <msg id="success.change.bank.sent”" desc="success-change-bank" meaning="“sent"><source>app/features/dashboard/offers/change-bank-dialog/success-change-bank-dialog/success-change-bank-dialog.component.html:4</source>E-post er nå sendt til din bank</msg>
   <msg id="success.change.bank.sentYou”" desc="success-change-bank" meaning="“sent-you"><source>app/features/dashboard/offers/change-bank-dialog/success-change-bank-dialog/success-change-bank-dialog.component.html:6,9</source>
       Vi har også sendt deg en epost fra prute@renteradar.no med kopi av eposten vi har sendt

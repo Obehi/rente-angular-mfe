@@ -1,4 +1,11 @@
-import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  Input,
+  ViewChild,
+  ElementRef
+} from '@angular/core';
 import { OfferInfo, Offers } from './../../../../../shared/models/offers';
 import { OptimizeService } from '@services/optimize.service';
 import { EnvService } from '@services/env.service';
@@ -10,7 +17,8 @@ import {
   merge,
   Observable,
   of,
-  Subject
+  Subject,
+  Subscription
 } from 'rxjs';
 import { UserScorePreferences } from '@models/user';
 import { UserService } from '@services/remote-api/user.service';
@@ -40,6 +48,7 @@ import {
 import { LocalStorageService } from '@services/local-storage.service';
 import { MessageBannerService } from '@services/message-banner.service';
 import { getAnimationStyles } from '@shared/animations/animationEnums';
+import { NotificationService } from '../../../../../shared/services/notification.service';
 @Component({
   selector: 'rente-offers-list',
   templateUrl: './offers-list-no.component.html',
@@ -102,7 +111,7 @@ import { getAnimationStyles } from '@shared/animations/animationEnums';
     ])
   ]
 })
-export class OffersListNoComponent implements OnInit {
+export class OffersListNoComponent implements OnInit, OnDestroy {
   @Input() offersInfo: Offers;
   @ViewChild('sliders') sliderContainer: ElementRef;
 
@@ -132,21 +141,43 @@ export class OffersListNoComponent implements OnInit {
   public shouldFadeIn: boolean;
 
   constructor(
-    public optimizeService: OptimizeService,
     public offerService: OffersService,
     private userService: UserService,
     public loanService: LoansService,
     public localStorageService: LocalStorageService,
     public messageBannerService: MessageBannerService,
-    private customLangTextService: CustomLangTextService
+    private customLangTextService: CustomLangTextService,
+    private notificationService: NotificationService
   ) {
     this.showHamburger = false;
   }
+  public scrollSubscription: Subscription;
+  public demoClickSubscription: Subscription;
+
+  // Save for later use
+  /* public getVariation() {
+    if ((window as any).google_optimize === undefined) {
+      return 0;
+    }
+    let experimentId: string | null;
+    if (this.envService.environment.production === true) {
+      experimentId = 'CZzJbFYIQEa_tvn-UeQ2RQ';
+    } else {
+      experimentId = 'A6Fvld2GTAG3VE95NWV1Hw';
+    }
+    const variation = (window as any).google_optimize.get(experimentId);
+    return variation || 0;
+  } */
 
   get isMobile(): boolean {
     return window.innerWidth < 600;
   }
   public currentOfferType: string;
+
+  ngOnDestroy(): void {
+    this.scrollSubscription.unsubscribe();
+    this.demoClickSubscription.unsubscribe();
+  }
 
   ngOnInit(): void {
     this.setEffectiveRatePullDownListener();
@@ -155,6 +186,7 @@ export class OffersListNoComponent implements OnInit {
     this.initDemoListener();
     this.initCurrentOfferListener();
     this.initScoreListener();
+    this.setNotificationScrollListener();
 
     this.currentOfferInfo = JSON.parse(JSON.stringify(this.offersInfo));
 
@@ -166,13 +198,11 @@ export class OffersListNoComponent implements OnInit {
   }
 
   initDemoListener(): void {
-    this.stopDemoAction$.subscribe(() => {
+    this.stopDemoAction$.pipe(skip(1)).subscribe(() => {
       console.log('stopDemoAction');
       this.messageBannerService.detachView();
     });
     this.showDemoAction$.pipe(skip(1)).subscribe((demoIsTriggered) => {
-      console.log('demoIsTriggered');
-      console.log(demoIsTriggered);
       demoIsTriggered &&
         this.messageBannerService.setView(
           'Besvar spørsmålene under ved å flytte på slideren for å markere din preferanse, og så finner vi riktig bank for deg basert på dine valg.',
@@ -191,14 +221,17 @@ export class OffersListNoComponent implements OnInit {
       demoIsTriggered && this.showPopupTrigger$.next(true);
     });
 
-    fromEvent(window, 'click')
+    this.demoClickSubscription = fromEvent(window, 'click')
       .pipe(
         filter(() => this.showPopupTrigger$.value),
+        tap(() => {
+          console.log(this.showPopupTrigger$.value);
+        }),
         switchMap(() => this.showPopupTrigger$),
         filter((popupIsLive) => popupIsLive)
       )
       .subscribe(() => {
-        console.log('click');
+        console.log('detaching viewww');
         this.messageBannerService.detachView();
       });
   }
@@ -383,5 +416,23 @@ export class OffersListNoComponent implements OnInit {
         this.onScroll = false;
       }
     });
+  }
+
+  private setNotificationScrollListener(): void {
+    const obj = document.getElementsByClassName('the-offers')[0];
+
+    this.scrollSubscription = fromEvent(window, 'scroll')
+      .pipe(
+        filter(() => obj?.getBoundingClientRect().top <= 0),
+        switchMap(() =>
+          this.notificationService.getOfferNotificationAsObservable()
+        ),
+        filter((notificationNumber) => notificationNumber === 1)
+      )
+      .subscribe(() => {
+        console.log('detachView detachView detachView');
+        this.messageBannerService.detachView();
+        this.notificationService.resetOfferNotification();
+      });
   }
 }

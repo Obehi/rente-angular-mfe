@@ -85,7 +85,9 @@ export class MessageBannerService implements OnDestroy {
     document.getElementsByClassName(this.getContentClass())[0].prepend(newNode);
 
     this._componentRef = factory.create(this.injector, [], newNode);
-
+    if (_shouldShowArrow) {
+      this._componentRef.instance.scrollArrow = true;
+    }
     this.globalStateService.getDashboardState().subscribe((state) => {
       this._componentRef.instance.isDashboard = state;
       if (state) {
@@ -110,14 +112,8 @@ export class MessageBannerService implements OnDestroy {
     this._componentRef.instance.displayText = _newtext;
 
     if (_shouldSetTimeout) {
-      this.detachViewSubscription = this.detachViewSubject
-        .pipe(delay(_newtime + 2000))
-        .subscribe(() => {
-          console.log('rxjs detachview with delay');
-          this.detachView();
-        });
+      this.setTimeoutListener(_newtext);
     }
-    this.detachViewSubject.next();
 
     console.log('ataching view!');
     this.appRef.attachView(this._componentRef.hostView);
@@ -126,6 +122,7 @@ export class MessageBannerService implements OnDestroy {
     if (_isClickable) {
       this.clickListenerSub = this._componentRef.instance.clickSubject$.subscribe(
         () => {
+          console.log('clickSubject');
           this.detachView();
           _callback();
         }
@@ -142,25 +139,16 @@ export class MessageBannerService implements OnDestroy {
     return this._componentRef.instance.clickSubject$;
   }
 
-  /* private detachViewWithTimeout(newTime: number): void {
-    console.log('detachViewWithTimeout OUTER');
-
-    setTimeout(function () {
-      console.log('detachViewWithTimeout');
-      this.appRef.detachView(this._componentRef.hostView);
-    }, newTime + 2000);
-  } */
+  public getClickSubject$(): any {
+    return this._componentRef.instance.clickSubject$;
+  }
 
   public detachView(): void {
     this.detachViewSubscription && this.detachViewSubscription.unsubscribe();
     this.viewIsAlreadyAttached = false;
     if (this._componentRef) {
-      console.log('_componentRef is def here!!!');
-
       this.appRef.detachView(this._componentRef.hostView);
       this._componentRef.destroy();
-    } else {
-      console.log('_componentRef is not here');
     }
   }
 
@@ -194,10 +182,22 @@ export class MessageBannerService implements OnDestroy {
     this._componentRef.instance.animationType = _animationType;
     this._componentRef.instance.changeTimer(_newtime);
     this._componentRef.instance.displayText = _newtext;
+
+    if (this.viewIsAlreadyAttached) this.detachView();
     this.appRef.attachView(this._componentRef.hostView);
 
-    setTimeout(() => {
-      this.appRef.detachView(this._componentRef.hostView);
-    }, _newtime + 2000);
+    this.viewIsAlreadyAttached = true;
+
+    this.setTimeoutListener(_newtime);
+  }
+
+  setTimeoutListener(timeout): void {
+    this.detachViewSubscription = this.detachViewSubject
+      .pipe(delay(timeout + 2000))
+      .subscribe(() => {
+        this.detachView();
+      });
+
+    this.detachViewSubject.next();
   }
 }

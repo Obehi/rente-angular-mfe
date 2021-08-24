@@ -99,6 +99,19 @@ export class CrawlerLoginComponent implements OnInit, OnDestroy {
           this.router.navigate(
             ['/autentisering/' + ROUTES_MAP_NO.bankIdLogin],
             {
+              state: { data: { bank: bank, redirect: true } }
+            }
+          );
+        }
+
+        if (
+          bank?.name === 'NORDEA_DIRECT' &&
+          this.environment.nordeaDirectSignicatIsOn === true &&
+          this.router.url.includes('autentisering/bank/nordea_direct')
+        ) {
+          this.router.navigate(
+            ['/autentisering/' + ROUTES_MAP_NO.bankIdLogin],
+            {
               state: { data: { bank: bank } }
             }
           );
@@ -130,7 +143,7 @@ export class CrawlerLoginComponent implements OnInit, OnDestroy {
     this.setLoginListeners();
   }
 
-  setLoginListeners() {
+  setLoginListeners(): void {
     this.crawlerLoginService.firstRetry$.subscribe(() => {
       this.isLoginStarted = false;
 
@@ -145,7 +158,7 @@ export class CrawlerLoginComponent implements OnInit, OnDestroy {
 
     this.crawlerLoginService.secondRetry$.subscribe(() => {
       this.router.navigate(['/autentisering/' + ROUTES_MAP_NO.bankIdLogin], {
-        state: { data: { bank: this.bank } }
+        state: { data: { bank: this.bank, redirect: true } }
       });
     });
   }

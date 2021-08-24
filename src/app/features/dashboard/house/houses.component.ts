@@ -21,6 +21,7 @@ import {
 import { MessageBannerService } from '@services/message-banner.service';
 import { CustomLangTextService } from '@services/custom-lang-text.service';
 import { getAnimationStyles } from '@shared/animations/animationEnums';
+import { NotificationService } from '@services/notification.service';
 
 @Component({
   selector: 'rente-houses',
@@ -67,7 +68,8 @@ export class HousesComponent implements OnInit, DeactivationGuarded {
     dialog: MatDialog,
     private envService: EnvService,
     private messageBanner: MessageBannerService,
-    private customLangTextService: CustomLangTextService
+    private customLangTextService: CustomLangTextService,
+    private notificationService: NotificationService
   ) {
     this.dialog = dialog;
 
@@ -187,6 +189,7 @@ export class HousesComponent implements OnInit, DeactivationGuarded {
           }
         }
 
+        this.notificationService.setOfferNotification();
         this.messageBanner.setSavedViewBolig(
           this.customLangTextService.getSnackBarUpdatedMessage(),
           2000,
