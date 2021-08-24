@@ -266,7 +266,6 @@ export class UserScorePreferencesComponent implements OnInit {
           filter((shouldStart) => shouldStart === true),
 
           tap(() => {
-            console.log('1 step!!');
             this.demoIsLive && this.userDemoAnimation.getUserScoreAnimation();
             this.demoIsLive = true;
 
@@ -275,7 +274,6 @@ export class UserScorePreferencesComponent implements OnInit {
           delay(1000),
           filter(() => this.demoIsLive === true),
           tap(() => {
-            console.log('2 step!!');
             this.demoIsLive && this.userDemoAnimation.getUserScoreAnimation();
             this.demoIsLive = true;
             this.demoValue = 1;
@@ -283,7 +281,6 @@ export class UserScorePreferencesComponent implements OnInit {
           delay(1000),
           filter(() => this.demoIsLive === true),
           tap(() => {
-            console.log('3 step!!');
             this.demoIsLive && this.userDemoAnimation.getUserScoreAnimation();
             this.demoValue = 3;
           }),

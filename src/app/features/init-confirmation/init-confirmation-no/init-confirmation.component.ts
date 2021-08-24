@@ -102,10 +102,7 @@ export class InitConfirmationNoComponent implements OnInit, OnDestroy {
         switchMap(() => this.scoreListener$),
         switchMap((score) => this.userService.updateUserScorePreferences(score))
       )
-      .subscribe((scores) => {
-        console.log('this.scoreListener$');
-        console.log(this.scoreListener$.value);
-      });
+      .subscribe((scores) => {});
 
     this.initialScores$ = this.userService.getUserScorePreferences().pipe();
 

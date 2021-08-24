@@ -95,7 +95,6 @@ export class BankGuidePageComponent implements OnInit, OnDestroy {
 
             this.memberships = [];
             this.addressesArray = [];
-            console.log(this.banksLocations);
 
             this.memberships = Object.keys(
               this.bankGuideInfo.membershipOffers

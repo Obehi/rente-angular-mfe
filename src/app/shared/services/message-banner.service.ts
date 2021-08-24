@@ -115,24 +115,17 @@ export class MessageBannerService implements OnDestroy {
       this.setTimeoutListener(_newtext);
     }
 
-    console.log('ataching view!');
     this.appRef.attachView(this._componentRef.hostView);
     this.viewIsAlreadyAttached = true;
 
     if (_isClickable) {
       this.clickListenerSub = this._componentRef.instance.clickSubject$.subscribe(
         () => {
-          console.log('clickSubject');
           this.detachView();
           _callback();
         }
       );
     }
-    /* 
-    if (_shouldSetTimeout) {
-      console.log('setting detachview timeout');
-      this.detachViewWithTimeout(_newtime);
-    } */
   }
 
   public getMessageButtonClickSubject$(): any {

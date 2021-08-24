@@ -199,7 +199,6 @@ export class OffersListNoComponent implements OnInit, OnDestroy {
 
   initDemoListener(): void {
     this.stopDemoAction$.pipe(skip(1)).subscribe(() => {
-      console.log('stopDemoAction');
       this.messageBannerService.detachView();
     });
     this.showDemoAction$.pipe(skip(1)).subscribe((demoIsTriggered) => {
@@ -224,14 +223,10 @@ export class OffersListNoComponent implements OnInit, OnDestroy {
     this.demoClickSubscription = fromEvent(window, 'click')
       .pipe(
         filter(() => this.showPopupTrigger$.value),
-        tap(() => {
-          console.log(this.showPopupTrigger$.value);
-        }),
         switchMap(() => this.showPopupTrigger$),
         filter((popupIsLive) => popupIsLive)
       )
       .subscribe(() => {
-        console.log('detaching viewww');
         this.messageBannerService.detachView();
       });
   }
@@ -430,7 +425,6 @@ export class OffersListNoComponent implements OnInit, OnDestroy {
         filter((notificationNumber) => notificationNumber === 1)
       )
       .subscribe(() => {
-        console.log('detachView detachView detachView');
         this.messageBannerService.detachView();
         this.notificationService.resetOfferNotification();
       });

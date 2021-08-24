@@ -130,7 +130,6 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
   }
 
   public setNotifAlert(n: number): void {
-    console.log(n + 'setNotifAlert set notification');
     if (n > 0) {
       this.messageService.setView(
         `Tilbudene er oppdatert, trykk her!`,
