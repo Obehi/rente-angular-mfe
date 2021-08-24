@@ -593,11 +593,18 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
               filteredResponse,
               this.isTinkBank
             );
-            this.viewStatus.isCrawlerError = true;
-            this.unsubscribeEverything();
-            this.loginStep1Status = MESSAGE_STATUS.SUCCESS;
-            this.loginStep2Status = MESSAGE_STATUS.SUCCESS;
-            this.loginStep3Status = MESSAGE_STATUS.ERROR;
+
+            if (this.bank.name === 'DNB') {
+              this.unsubscribeEverything();
+              this.crawlerLoginService.postError();
+            } else {
+              this.viewStatus.isCrawlerError = true;
+              this.unsubscribeEverything();
+              this.loginStep1Status = MESSAGE_STATUS.SUCCESS;
+              this.loginStep2Status = MESSAGE_STATUS.SUCCESS;
+              this.loginStep3Status = MESSAGE_STATUS.ERROR;
+            }
+
             break;
           case BANKID_STATUS.CRAWLER_RESULT:
             this.viewStatus.isCrawlerResult = true;

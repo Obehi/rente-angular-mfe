@@ -17,6 +17,11 @@
             [routerLink]="'./' + routesMap.offers"
           >
             <div class="inside-btn">
+              <span
+                class="notification circle"
+                *ngIf="getOfferNotifications() | async"
+                ><p class="test">{{ getOfferNotifications() | async }}</p></span
+              >
               <img
                 class="rente-icon"
                 src="../../../../../assets/icons/rente-logo-icon-white.svg"
