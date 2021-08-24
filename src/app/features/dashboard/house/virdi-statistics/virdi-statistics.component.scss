@@ -1,5 +1,16 @@
 @import '../../../../../styles/theme/_colors.scss';
 
+.co-main {
+  background: $secondary;
+  height: 532px;
+}
+
+.main {
+  ::ng-deep .green {
+    color: $primary !important;
+  }
+}
+
 .upper-statistics {
   ::ng-deep .mat-tab-label {
     background: #183a63;
@@ -24,6 +35,16 @@
     margin-bottom: 5px;
   }
 }
+.chart-wrapper {
+  background: white;
+  width: 325px;
+  height: 300px;
+  margin-bottom: 10px;
+  @media (max-width: 600px) {
+    width: 315px;
+  }
+}
+
 a {
   color: $primary;
 }

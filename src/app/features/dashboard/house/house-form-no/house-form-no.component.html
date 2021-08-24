@@ -18,11 +18,11 @@
     </button>
   </div>
   <div class="body">
-    <p *ngIf="!isStatMode" class="top-text bold">
+    <p *ngIf="!isStatMode" class="top-text bold" [@fade]>
       Renteradar trenger å vite din boligverdi for å finne riktige tilbud til
       deg
     </p>
-    <div *ngIf="!isStatMode" class="estimat">
+    <div *ngIf="!isStatMode" class="estimat" [@fade]>
       <p class="slide-toggle-text bold">Automatisk estimat:</p>
 
       <mat-slide-toggle
@@ -33,7 +33,7 @@
         value="address.useManualPropertyValue"
       ></mat-slide-toggle>
     </div>
-    <div *ngIf="!isStatMode" class="address">
+    <div *ngIf="!isStatMode" class="address" [@fade]>
       <p class="input-text">Adresse</p>
       <rente-input
         type="text"
@@ -41,8 +41,11 @@
         (change)="countChange()"
       ></rente-input>
     </div>
+    <div *ngIf="isStatMode">
+      <rente-virdi-statistics [address]="address"> </rente-virdi-statistics>
+    </div>
     <div class="double-double">
-      <div [class]="isStatMode ? 'hidden' : 'double'">
+      <div *ngIf="isEditMode" [@fade]>
         <p class="input-text">Postnummer</p>
 
         <rente-input
@@ -52,7 +55,7 @@
           (change)="countChange()"
         ></rente-input>
       </div>
-      <div [class]="isStatMode ? 'hidden' : 'double'">
+      <div *ngIf="isEditMode" [@fade]>
         <p class="input-text">Størrelse på bolig</p>
 
         <rente-input
@@ -65,9 +68,9 @@
       </div>
     </div>
 
-    <div *ngIf="!isStatMode" class="non-double estimated">
+    <div *ngIf="!isStatMode" class="non-double estimated" [@fade]>
       <p class="house-value bold">Boligverdi</p>
-      <div *ngIf="!address.useManualPropertyValue" [@fade]>
+      <div *ngIf="address.useManualPropertyValue" [@fade]>
         <!-- <rente-input
           matInput
           class="automatic"
@@ -82,7 +85,7 @@
           {{ address?.estimatedPropertyValue | thousands }} kr
         </p>
       </div>
-      <div *ngIf="address.useManualPropertyValue" [@fade]>
+      <div *ngIf="!address.useManualPropertyValue" [@fade]>
         <rente-input
           #test
           matInput

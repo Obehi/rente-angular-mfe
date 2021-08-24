@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import * as Highcharts from 'highcharts';
 import {
   LoansService,
@@ -8,6 +8,7 @@ import { SnackBarService } from '@services/snackbar.service';
 import { MatTabChangeEvent } from '@angular/material';
 import { MessageBannerService } from '@services/message-banner.service';
 import { getAnimationStyles } from '@shared/animations/animationEnums';
+import { animate, style, transition, trigger } from '@angular/animations';
 
 declare let require: any;
 const Boost = require('highcharts/modules/boost');
@@ -22,10 +23,30 @@ noData(Highcharts);
 @Component({
   selector: 'rente-virdi-statistics',
   templateUrl: './virdi-statistics.component.html',
-  styleUrls: ['./virdi-statistics.component.scss']
+  styleUrls: ['./virdi-statistics.component.scss'],
+  animations: [
+    trigger('fade', [
+      transition(':enter', [
+        style({ opacity: '0' }),
+        animate('0.2s 1s ease-in', style({ opacity: '1' }))
+      ])
+
+      // transition(':leave', [
+      //   // style({ height: '100', opacity: 1 }),
+      //   animate('0.1s ease-out', style({ opacity: 0 }))
+      // ])
+    ]),
+    trigger('stretch', [
+      transition(':enter', [
+        style({ height: 0 }),
+        animate('0.5s ease-in', style({ height: '532px' }))
+      ])
+    ])
+  ]
 })
 export class VirdiStatisticsComponent implements OnInit {
   @Input() address: AddressDto;
+  @Output() eventEmitter = new EventEmitter<any>();
 
   isLoading: boolean;
   priceDestributionSqm: any[] = [];
@@ -51,6 +72,8 @@ export class VirdiStatisticsComponent implements OnInit {
       this.showPriceDevelopment = true;
     } else {
       this.showPriceDevelopment = false;
+      const e = document.getElementsByClassName('mat-tab-label-content')[0];
+      e.classList.add('green');
     }
   }
 

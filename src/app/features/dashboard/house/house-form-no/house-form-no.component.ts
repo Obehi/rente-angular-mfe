@@ -3,6 +3,7 @@ import { AddressDto } from '@services/remote-api/loans.service';
 import { MatTabChangeEvent } from '@angular/material';
 import { EnvService } from '@services/env.service';
 import { animate, style, transition, trigger } from '@angular/animations';
+import { Subscription } from 'rxjs';
 
 export enum AddressFormMode {
   Editing,
@@ -17,18 +18,21 @@ export enum AddressFormMode {
     trigger('fade', [
       transition(':enter', [
         style({ opacity: '0' }),
-        animate('0.5s ease-in', style({ opacity: '1' }))
+        animate('0.3s ease-in', style({ opacity: '1' }))
       ])
-      // transition(':leave', [
-      //   // style({ height: '100', opacity: 1 }),
-      //   animate('0.1s ease-out', style({ opacity: 0 }))
-      // ])
+    ]),
+    trigger('statsFade', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('0.5s ease-in', style({ opacity: 1 }))
+      ])
     ])
   ]
 })
 export class HouseFormNoComponent implements OnInit {
   @Input() index: number;
   @Input() address: AddressDto;
+  private eventSubscription: Subscription;
 
   @Output() deleteAddress: EventEmitter<AddressDto> = new EventEmitter();
   @Output() change: EventEmitter<any> = new EventEmitter();
@@ -116,6 +120,8 @@ export class HouseFormNoComponent implements OnInit {
       this.mode === AddressFormMode.Editing
         ? AddressFormMode.Statistics
         : AddressFormMode.Editing;
+
+    console.log(this.mode);
   }
 
   propertyValueIsValid(address: AddressDto): boolean {
