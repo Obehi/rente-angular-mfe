@@ -8,6 +8,8 @@ import { EnvService } from '@services/env.service';
 import { MessageBannerService } from '@services/message-banner.service';
 import { getAnimationStyles } from '@shared/animations/animationEnums';
 import { CustomLangTextService } from '@shared/services/custom-lang-text.service';
+import { NotificationService } from '@services/notification.service';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'rente-dashboard-tabs-desktop',
@@ -23,6 +25,7 @@ export class DashboardTabsDesktopComponent implements OnInit {
   public imgLink: any;
   public animationType = getAnimationStyles();
   public dashLogo: string;
+  public notificationListener: Subscription;
 
   // General navLinks to switch between norwegian and  swedish version
   public navLinks: string[] | undefined;
@@ -66,7 +69,8 @@ export class DashboardTabsDesktopComponent implements OnInit {
     private auth: AuthService,
     private envService: EnvService,
     private messageService: MessageBannerService,
-    private customLangService: CustomLangTextService
+    private customLangService: CustomLangTextService,
+    private notificationService: NotificationService
   ) {
     if (this.envService.isNorway()) {
       this.navLinks = this.navLinksNo;
@@ -80,6 +84,11 @@ export class DashboardTabsDesktopComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.notificationListener = this.getProfileNotifications().subscribe();
+    this.notificationListener = this.getHousesNotifications().subscribe();
+    this.notificationListener = this.getMortgageNotifications().subscribe();
+    this.notificationListener = this.getOfferNotifications().subscribe();
+
     if (this.localStorageService.getItem('noLoansPresent')) {
       this.router.navigate(['/' + ROUTES_MAP.noLoan]);
     } else if (this.localStorageService.getItem('isAggregatedRateTypeFixed')) {
@@ -96,6 +105,22 @@ export class DashboardTabsDesktopComponent implements OnInit {
         });
       }
     }
+  }
+
+  getProfileNotifications(): Observable<number> {
+    return this.notificationService.getProfileNotificationAsObservable();
+  }
+
+  getHousesNotifications(): Observable<number> {
+    return this.notificationService.getHousesNotificationAsObservable();
+  }
+
+  getMortgageNotifications(): Observable<number> {
+    return this.notificationService.getMortgagesNotificationAsObservable();
+  }
+
+  getOfferNotifications(): Observable<number> {
+    return this.notificationService.getOfferNotificationAsObservable();
   }
 
   onActivate(event: any) {
