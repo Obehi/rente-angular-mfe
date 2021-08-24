@@ -79,6 +79,7 @@
           [ngModel]="address?.manualPropertyValue | thousands"
           (change)="countChange()"
           style="text-align: center !important"
+          [maxLength]="11"
           (keyup)="manualPropertyValueChanged($event)"
           matSuffix="kr"
         ></rente-input>
