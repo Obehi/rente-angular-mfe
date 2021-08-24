@@ -12,14 +12,17 @@
   .notification {
     color: white;
     position: absolute;
-    right: 15px;
-    top: -3px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
     font-size: 14px;
+    right: -35px;
+    top: -3px;
+    left: 0px;
     p {
       font-weight: 400;
       color: white !important;
     }
-    right: -10px;
   }
 }
 
@@ -60,7 +63,7 @@ p {
       height: 70px;
       width: 900px;
       display: flex;
-      justify-content: center;
+      justify-content: space-between;
       align-items: center;
       background-color: $secondary;
     }
@@ -81,7 +84,7 @@ p {
     align-items: center;
     .dash-tab {
       text-align: center;
-      // width: 25%;
+      width: 25%;
       display: block;
       border: none;
       height: 100%;
