@@ -694,7 +694,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     const remainingYearsNotFormated: string =
       remainingYears != null && remainingYears !== '0'
         ? String(remainingYears)
-        : '20'´;
+        : '20';
 
     signicatLoanInfoDto.remainingYears = Number(
       remainingYearsNotFormated.replace(',', '.')
@@ -729,16 +729,16 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     if (this.loanId) {
       signicatLoanInfoDto.id = this.loanId;
     }
-    const remainingYearsString = this.loanFormGroup?.get('remainingYears')?.value;
+    const remainingYearsString = this.loanFormGroup?.get('remainingYears')
+      ?.value;
     const remainingYears =
-      remainingYearsString != null && remainingYearsString !== '0' ? remainingYearsString : '20';
+      remainingYearsString != null && remainingYearsString !== '0'
+        ? remainingYearsString
+        : '20';
 
-
-      signicatLoanInfoDto.remainingYears = Number(
-        remainingYears.replace(',', '.')
-      );
-      
-
+    signicatLoanInfoDto.remainingYears = Number(
+      remainingYears.replace(',', '.')
+    );
 
     signicatLoanInfoDto.loanType = String(
       this.loanFormGroup?.get('loanTypeOption')?.value.value
