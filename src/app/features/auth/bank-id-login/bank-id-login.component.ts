@@ -694,7 +694,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     const remainingYearsNotFormated: string =
       remainingYears != null && remainingYears !== '0'
         ? String(remainingYears)
-        : '20';
+        : '20'´;
 
     signicatLoanInfoDto.remainingYears = Number(
       remainingYearsNotFormated.replace(',', '.')
@@ -729,9 +729,16 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     if (this.loanId) {
       signicatLoanInfoDto.id = this.loanId;
     }
-    const remainingYears = this.loanFormGroup?.get('remainingYears')?.value;
-    signicatLoanInfoDto.remainingYears =
-      remainingYears != null && remainingYears !== '0' ? remainingYears : 20;
+    const remainingYearsString = this.loanFormGroup?.get('remainingYears')?.value;
+    const remainingYears =
+      remainingYearsString != null && remainingYearsString !== '0' ? remainingYearsString : '20';
+
+
+      signicatLoanInfoDto.remainingYears = Number(
+        remainingYears.replace(',', '.')
+      );
+      
+
 
     signicatLoanInfoDto.loanType = String(
       this.loanFormGroup?.get('loanTypeOption')?.value.value
@@ -764,11 +771,13 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
       parseFloat(rateString).toFixed(3)
     );
 
-    signicatLoanInfoDto.outstandingDebt =
+    const outstandingDebt =
       typeof this.loanFormGroup?.get('outstandingDebt')?.value === 'string'
         ? this.loanFormGroup?.get('outstandingDebt')?.value.replace(/\s/g, '')
         : this.loanFormGroup?.get('outstandingDebt')?.value;
     // default value is
+
+    signicatLoanInfoDto.outstandingDebt = Number(outstandingDebt);
     signicatLoanInfoDto.loanSubType = 'AMORTISING_LOAN';
     return signicatLoanInfoDto;
   }
