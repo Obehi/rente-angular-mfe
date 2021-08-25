@@ -2,13 +2,18 @@
 
 .co-main {
   background: $secondary;
-  height: 532px;
+  height: 502px;
 }
 
 .main {
-  ::ng-deep .green {
-    color: $primary !important;
+  ::ng-deep .mat-tab-label + .mat-tab-label {
+    margin-left: 10px;
   }
+  ::ng-deep .mat-tab-label-active {
+    background: $primary !important;
+  }
+
+  height: 502px;
 }
 
 .upper-statistics {
@@ -35,15 +40,6 @@
     margin-bottom: 5px;
   }
 }
-.chart-wrapper {
-  background: white;
-  width: 325px;
-  height: 300px;
-  margin-bottom: 10px;
-  @media (max-width: 600px) {
-    width: 315px;
-  }
-}
 
 a {
   color: $primary;
@@ -53,14 +49,31 @@ a {
   margin: 15px 0px;
   border-radius: 5px;
 }
+
 .primary {
   color: $primary;
 }
 
 .small {
   color: $white;
+  font-size: 12px;
+}
+
+.big {
+  font-size: 14px;
+  color: $white;
 }
 
 .center {
   text-align: center;
+}
+
+.virdi {
+  position: relative;
+  left: 200px;
+  top: -15px;
+}
+
+.bold {
+  font-weight: 400;
 }
