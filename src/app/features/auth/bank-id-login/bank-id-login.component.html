@@ -110,7 +110,7 @@
             [placeholder]="'Antall år igjen på lånet?'"
             [type]="'tel'"
             matSuffix="år"
-            [maxLength]="2"
+            [maxLength]="4"
             formControlName="remainingYears"
             [errorStateMatcher]="
               isErrorState(loanFormGroup?.controls['remainingYears'])
@@ -557,7 +557,7 @@
                     [placeholder]="'Antall år igjen på lånet?'"
                     [type]="'tel'"
                     matSuffix="år"
-                    [maxLength]="2"
+                    [maxLength]="4"
                     formControlName="remainingYears"
                     [errorStateMatcher]="
                       isErrorState(loanFormGroup?.controls['remainingYears'])

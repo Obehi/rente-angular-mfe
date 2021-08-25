@@ -387,7 +387,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     if (this.bank?.hasFixedLoans === true) {
       this.loanFormGroup = this.fb.group({
         outstandingDebt: ['', Validators.required],
-        remainingYears: ['', [Validators.max(100)]],
+        remainingYears: ['', [Validators.pattern(VALIDATION_PATTERN.year)]],
         loanType: ['', Validators.required]
       });
       this.newClient = this.responseStatus.newClient;
@@ -423,8 +423,8 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
         this.loanFormGroup = this.fb.group({
           outstandingDebt: [outstandingDebt, Validators.required],
           remainingYears: [
-            Math.round(firstLoan.remainingYears),
-            [Validators.max(100)]
+            firstLoan.remainingYears,
+            [Validators.pattern(VALIDATION_PATTERN.year)]
           ],
           loanType: [selectedOption ?? null, Validators.required]
         });
@@ -451,7 +451,11 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
 
           this.loanFormGroup = this.fb.group({
             outstandingDebt: ['', Validators.required],
-            remainingYears: ['', [Validators.required, Validators.max(100)]],
+
+            remainingYears: [
+              '',
+              [Validators.required, Validators.pattern(VALIDATION_PATTERN.year)]
+            ],
             loanType: ['', Validators.required]
           });
 
@@ -498,8 +502,8 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
       this.loanFormGroup = this.fb.group({
         outstandingDebt: [outstandingDebt, Validators.required],
         remainingYears: [
-          Math.round(firstLoan.remainingYears),
-          [Validators.max(100)]
+          firstLoan.remainingYears,
+          [Validators.pattern(VALIDATION_PATTERN.year)]
         ],
         loanTypeOption: [selectedloanTypeOption ?? null, Validators.required],
         fee: [fee, Validators.required]
@@ -541,7 +545,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
 
       this.loanFormGroup = this.fb.group({
         outstandingDebt: ['', Validators.required],
-        remainingYears: ['', [Validators.max(100)]],
+        remainingYears: ['', [Validators.pattern(VALIDATION_PATTERN.year)]],
         loanTypeOption: [null, Validators.required]
       });
       this.loanFormGroup?.addControl(
@@ -594,8 +598,8 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
         this.loanFormGroup = this.fb.group({
           outstandingDebt: [outstandingDebt, Validators.required],
           remainingYears: [
-            Math.round(firstLoan.remainingYears),
-            [Validators.max(100)]
+            firstLoan.remainingYears,
+            [Validators.pattern(VALIDATION_PATTERN.year)]
           ],
           loanTypeOptions: [selectedLoanTypeOption ?? null, Validators.required]
         });
@@ -621,7 +625,14 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
         this.oldUserNewLoan = true;
         this.loanFormGroup = this.fb.group({
           outstandingDebt: ['', Validators.required],
-          remainingYears: ['', [Validators.required, Validators.max(100)]],
+          remainingYears: [
+            '',
+            [
+              Validators.required,
+              Validators.max(100),
+              Validators.pattern(VALIDATION_PATTERN.year)
+            ]
+          ],
           loanType: ['', Validators.required]
         });
         this.newClient = this.responseStatus.newClient;
@@ -634,15 +645,19 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
   }
 
   get manualPropertyValue(): number {
-    const apartmentValue =
-      typeof this.manualPropertyValueFormGroup?.get('manualPropertyValue')
-        ?.value === 'string'
-        ? this.manualPropertyValueFormGroup
-            .get('manualPropertyValue')
-            ?.value.replace(/\s/g, '')
-        : this.manualPropertyValueFormGroup?.get('manualPropertyValue')?.value;
+    return this.getNumericValueFormated(
+      this.manualPropertyValueFormGroup?.get('manualPropertyValue')?.value
+    );
+  }
 
-    return apartmentValue;
+  // accounts for decimal cases
+  getNumericValueFormated(incomeValue: any): number {
+    const income: string =
+      typeof incomeValue === 'string'
+        ? incomeValue.replace(/\s/g, '')
+        : incomeValue;
+
+    return Number(income.replace(',', '.'));
   }
 
   get clientUpdateInfo(): ClientUpdateInfo {
@@ -654,11 +669,10 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     addressDto.street = this.userFormGroup?.get('address')?.value;
     clientDto.address = addressDto;
     clientDto.email = this.emailFormGroup?.get('email')?.value;
-    clientDto.income =
-      typeof this.userFormGroup?.get('income')?.value === 'string'
-        ? this.userFormGroup.get('income')?.value.replace(/\s/g, '')
-        : this.userFormGroup?.get('income')?.value;
 
+    clientDto.income = this.getNumericValueFormated(
+      this.userFormGroup?.get('income')?.value
+    );
     clientDto.memberships = this.memberships.map((membership) => {
       return membership.name;
     });
@@ -676,28 +690,23 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     signicatLoanInfoDto.id = this.loanId;
 
     const remainingYears = this.loanFormGroup?.get('remainingYears')?.value;
-    const remainingYearsNotFormated =
-      remainingYears != null && remainingYears !== '0' ? remainingYears : 20;
+    const remainingYearsNotFormated: string =
+      remainingYears != null && remainingYears !== '0'
+        ? String(remainingYears)
+        : '20';
 
-    signicatLoanInfoDto.remainingYears = remainingYearsNotFormated.replace(
-      ',',
-      '.'
+    signicatLoanInfoDto.remainingYears = Number(
+      remainingYearsNotFormated.replace(',', '.')
     );
+
     signicatLoanInfoDto.productId = String(
       this.loanFormGroup?.get('loanType')?.value.value
     );
 
-    // removing space and replacing commas with dots
-    signicatLoanInfoDto.outstandingDebt =
-      typeof this.loanFormGroup?.get('outstandingDebt')?.value === 'string'
-        ? this.loanFormGroup
-            ?.get('outstandingDebt')
-            ?.value.replace(/\s/g, '')
-            ?.replace(',', '.')
-        : this.loanFormGroup?.get('outstandingDebt')?.value;
+    signicatLoanInfoDto.outstandingDebt = this.getNumericValueFormated(
+      this.loanFormGroup?.get('outstandingDebt')?.value
+    );
 
-    console.log('signicatLoanInfoDto.outstandingDebt');
-    console.log(signicatLoanInfoDto.outstandingDebt);
     // default value is
     signicatLoanInfoDto.loanSubType = 'AMORTISING_LOAN';
     signicatLoanInfoDto.loanType = 'DOWNPAYMENT_REGULAR_LOAN';
@@ -713,9 +722,16 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     if (this.loanId) {
       signicatLoanInfoDto.id = this.loanId;
     }
-    const remainingYears = this.loanFormGroup?.get('remainingYears')?.value;
-    signicatLoanInfoDto.remainingYears =
-      remainingYears != null && remainingYears !== '0' ? remainingYears : 20;
+    const remainingYearsString = this.loanFormGroup?.get('remainingYears')
+      ?.value;
+    const remainingYears =
+      remainingYearsString != null && remainingYearsString !== '0'
+        ? remainingYearsString
+        : '20';
+
+    signicatLoanInfoDto.remainingYears = Number(
+      remainingYears.replace(',', '.')
+    );
 
     signicatLoanInfoDto.loanType = String(
       this.loanFormGroup?.get('loanTypeOption')?.value.value
@@ -729,9 +745,9 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
       signicatLoanInfoDto.loanSubType = 'SERIES_LOAN';
     }
 
-    signicatLoanInfoDto.fee = this.loanFormGroup
-      ?.get('fee')
-      ?.value.replace(/\s/g, '');
+    signicatLoanInfoDto.fee = Number(
+      this.loanFormGroup?.get('fee')?.value.replace(/\s/g, '')
+    );
 
     let rateString = this.loanFormGroup?.get('interestRate')?.value as string;
 
@@ -748,11 +764,9 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
       parseFloat(rateString).toFixed(3)
     );
 
-    signicatLoanInfoDto.outstandingDebt =
-      typeof this.loanFormGroup?.get('outstandingDebt')?.value === 'string'
-        ? this.loanFormGroup?.get('outstandingDebt')?.value.replace(/\s/g, '')
-        : this.loanFormGroup?.get('outstandingDebt')?.value;
-    // default value is
+    signicatLoanInfoDto.outstandingDebt = this.getNumericValueFormated(
+      this.loanFormGroup?.get('outstandingDebt')?.value
+    );
     signicatLoanInfoDto.loanSubType = 'AMORTISING_LOAN';
     return signicatLoanInfoDto;
   }
@@ -930,7 +944,9 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
                 const value = apartmentValue.replace(/\s/g, '');
 
                 // Send the dataForm with apartment value
-                this.manualEstimatedPropertyValueFromUser = Number(value);
+                this.manualEstimatedPropertyValueFromUser = this.getNumericValueFormated(
+                  apartmentValue
+                );
                 // this.updateProperty(undefined);
                 const confDto = this.getFormValues();
 
@@ -942,7 +958,6 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
                       .subscribe((offerBanks) => {
                         this.productIdOptions = (offerBanks.offers as any[]).map(
                           (offer) => {
-                            console.log(offer);
                             return {
                               name: offer.name,
                               value: offer.id
@@ -997,8 +1012,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
       zip: userForm.zip
     };
 
-    const val = userForm.income;
-    const incomeNumber = val.replace(/\s/g, '');
+    const incomeNumber = this.getNumericValueFormated(userForm.income);
 
     const confDtoWithAprtmentValue: ConfirmationSetDto = new ConfirmationSetDto();
     confDtoWithAprtmentValue.address = _address;
@@ -1023,7 +1037,9 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
           const value = apartmentValue.replace(/\s/g, '');
 
           // Send the dataForm with apartment value
-          this.manualEstimatedPropertyValueFromUser = Number(value);
+          this.manualEstimatedPropertyValueFromUser = this.getNumericValueFormated(
+            apartmentValue
+          );
           // this.updateProperty(undefined);
           const confDto = this.getFormValues();
 
