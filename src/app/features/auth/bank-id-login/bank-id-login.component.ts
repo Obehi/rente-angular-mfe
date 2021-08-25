@@ -705,7 +705,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     );
 
     // removing space and replacing commas with dots
-    signicatLoanInfoDto.outstandingDebt =
+    const outstandingDebt =
       typeof this.loanFormGroup?.get('outstandingDebt')?.value === 'string'
         ? this.loanFormGroup
             ?.get('outstandingDebt')
@@ -713,6 +713,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
             ?.replace(',', '.')
         : this.loanFormGroup?.get('outstandingDebt')?.value;
 
+    signicatLoanInfoDto.outstandingDebt = Number(outstandingDebt);
     // default value is
     signicatLoanInfoDto.loanSubType = 'AMORTISING_LOAN';
     signicatLoanInfoDto.loanType = 'DOWNPAYMENT_REGULAR_LOAN';
@@ -744,9 +745,9 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
       signicatLoanInfoDto.loanSubType = 'SERIES_LOAN';
     }
 
-    signicatLoanInfoDto.fee = this.loanFormGroup
-      ?.get('fee')
-      ?.value.replace(/\s/g, '');
+    signicatLoanInfoDto.fee = Number(
+      this.loanFormGroup?.get('fee')?.value.replace(/\s/g, '')
+    );
 
     let rateString = this.loanFormGroup?.get('interestRate')?.value as string;
 
