@@ -468,10 +468,7 @@ export class InitialOffersComponent implements OnInit {
       )
       .subscribe(
         (dto) => {
-          this.offers = [
-            ...dto.offers.top5,
-            ...dto.offers.additionalPartnersOffers
-          ];
+          this.offers = [...dto.offers.top5];
           this.offersLoading = false;
         },
         () => {
