@@ -42,11 +42,10 @@
     color: $white;
   }
   mat-icon {
-    color: $blue;
-    position: relative;
-    top: 50%;
+    position: absolute;
+    top: 25px;
     transform: translateY(-50%);
-
+    margin-left: 5px;
     color: white;
   }
   button {
@@ -57,7 +56,11 @@
     border-radius: 20px;
     height: 30px;
     width: 30%;
-    top: 15px;
+    top: 26%;
+    mat-icon {
+      position: relative;
+      top: 15px;
+    }
   }
   p {
     color: $white;
@@ -92,6 +95,8 @@ rente-button {
 }
 
 .body {
+  border-radius: 0px 0px 15px 15px;
+  height: 622px;
   .double {
     display: flex;
     flex-direction: column;
@@ -104,16 +109,22 @@ rente-button {
     width: 50%;
     margin-left: 25%;
     text-align: center;
-    max-height: 70px;
+    min-height: 80px;
 
     ::ng-deep .cdk-text-field-autofill-monitored:not(:-webkit-autofill) {
-      text-align: center;
-      padding: 0 !important;
+      text-align: left;
+      padding: 5px;
     }
 
     ::ng-deep .mat-form-field-infix {
       padding: unset !important;
     }
+  }
+
+  .single {
+    width: 47%;
+    text-align: left;
+    max-height: 70px;
   }
 
   .input-text {
@@ -130,11 +141,37 @@ rente-button {
     font-weight: 400;
   }
 
+  .white {
+    color: $white;
+  }
+
+  .place-under {
+    position: relative;
+    left: 40px;
+    top: -5px;
+  }
+
   .green-text {
     color: $primary;
     font-size: 20px;
     font-weight: 500;
-    margin-top: 18px;
+    margin-top: 10px;
+  }
+
+  .matsuffix-housevalue {
+    position: absolute;
+    color: white;
+    right: 7rem;
+    bottom: 8.7rem;
+    font-weight: 400;
+  }
+
+  .matsuffix-debt {
+    color: white;
+    position: absolute;
+    font-weight: 400;
+    left: 9rem;
+    bottom: 15.4rem;
   }
 
   .top-text {
@@ -166,6 +203,10 @@ rente-button {
   }
   .hidden {
     background: red;
+  }
+
+  ::ng-deep .mat-slide-toggle.mat-checked .mat-slide-toggle-thumb {
+    background-color: $primary;
   }
 
   ::ng-deep .cdk-text-field-autofill-monitored:not(:-webkit-autofill) {

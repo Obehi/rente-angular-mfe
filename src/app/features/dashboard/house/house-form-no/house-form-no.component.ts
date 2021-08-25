@@ -54,10 +54,6 @@ export class HouseFormNoComponent implements OnInit {
     this.address.manualPropertyValue = this.address.manualPropertyValue || null;
   }
 
-  test() {
-    console.log('asd');
-  }
-
   get isAbleToDelete(): boolean {
     return this.index > 0;
   }

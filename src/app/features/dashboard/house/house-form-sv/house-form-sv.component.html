@@ -21,7 +21,8 @@
         (change)="
           address.useManualPropertyValue = !address.useManualPropertyValue
         "
-        value="address.useManualPropertyValue"
+        value="!address.useManualPropertyValue"
+        [checked]="!address.useManualPropertyValue"
       ></mat-slide-toggle>
     </div>
     <div *ngIf="!isStatMode" class="address">
@@ -59,7 +60,8 @@
     <div *ngIf="!isStatMode" class="non-double estimated">
       <p class="house-value bold">Bostadsvärde</p>
       <div *ngIf="!address.useManualPropertyValue">
-        <p class="green-text">
+        <p class="green-text" *ngIf="!isAddressValid">-</p>
+        <p class="green-text" *ngIf="isAddressValid">
           {{ address?.estimatedPropertyValue | thousands }} kr
         </p>
       </div>

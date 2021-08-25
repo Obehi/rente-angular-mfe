@@ -51,7 +51,7 @@
         <rente-input
           [type]="'tel'"
           [(ngModel)]="address.zip"
-          [maxLength]="5"
+          [maxLength]="4"
           (change)="countChange()"
         ></rente-input>
       </div>
@@ -67,15 +67,33 @@
         ></rente-input>
       </div>
     </div>
+    <div class="single" *ngIf="isEditMode">
+      <p class="input-text">Fellesgjeld</p>
+      <rente-input
+        [type]="'tel'"
+        (change)="countChange()"
+        [maxLength]="11"
+        [ngModel]="address?.commonDebt | thousands"
+        (ngModelChange)="address.commonDebt = formatThousand($event)"
+      ></rente-input>
+      <p class="matsuffix-debt">kr</p>
+    </div>
 
     <div *ngIf="!isStatMode" class="non-double estimated" [@fade]>
       <p class="house-value bold">Boligverdi</p>
-      <div *ngIf="address.useManualPropertyValue" [@fade]>
-        <p class="green-text">
+      <div *ngIf="!address.useManualPropertyValue" [@fade]>
+        <p class="green-text" *ngIf="!isAddressValid">-</p>
+        <p class="green-text" *ngIf="isAddressValid">
           {{ address?.estimatedPropertyValue | thousands }} kr
         </p>
+        <p
+          *ngIf="!address.useManualPropertyValue"
+          class="small white place-under bold"
+        >
+          Estimert av Virdi
+        </p>
       </div>
-      <div *ngIf="!address.useManualPropertyValue" [@fade]>
+      <div *ngIf="address.useManualPropertyValue" [@fade]>
         <rente-input
           matInput
           [type]="'tel'"
@@ -84,6 +102,7 @@
           (change)="countChange()"
           (keyup)="manualPropertyValueChanged($event)"
         ></rente-input>
+        <p class="matsuffix-housevalue">kr</p>
       </div>
     </div>
 
@@ -95,11 +114,12 @@
         class="save-changes-local"
         >Lagre endringer
       </rente-button>
-      <p *ngIf="address.estimatedPropertyValue" class="small">
-        Estimert av Virdi
-      </p>
 
-      <p *ngIf="!address.estimatedPropertyValue" class="small saveForEstimate">
+      <p
+        *ngIf="!address.useManualPropertyValue && ableTosave"
+        class="small white saveForEstimate bold"
+        [@fade]
+      >
         Lagre endringene for å hente estimat
       </p>
     </div>
