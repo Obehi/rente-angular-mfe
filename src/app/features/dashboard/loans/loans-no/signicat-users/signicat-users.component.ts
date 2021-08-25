@@ -165,18 +165,20 @@ export class SignicatUsersComponent implements OnInit {
       nominalRate: getNominalRate
     };
 
-    // forkJoin([
-    //   this.loansService.updateLoanOutstandingDebt(outstandingDebtDto),
-    //   this.loansService.updateLoanReminingYears(remainingYearsDto)
-    // ]).subscribe(
-    //   () => {
-    //     console.log(' outstanding debt success');
-    //     console.log(' reamining years success');
-    //   },
-    //   (err) => {
-    //     this.errorMessage = err.title;
-    //   }
-    // );
+    forkJoin([
+      this.loansService.updateLoanOutstandingDebt(outstandingDebtDto),
+      this.loansService.updateLoanReminingYears(remainingYearsDto),
+      this.loansService.updateLoanNominalRate(nominalRateDto)
+    ]).subscribe(
+      () => {
+        console.log(' outstanding debt success');
+        console.log(' remaining years success');
+        console.log(' nominal rate success');
+      },
+      (err) => {
+        this.errorMessage = err.title;
+      }
+    );
 
     // this.loansService.updateLoanOutstandingDebt(outstandingDebtDto).subscribe(
     //   () => {

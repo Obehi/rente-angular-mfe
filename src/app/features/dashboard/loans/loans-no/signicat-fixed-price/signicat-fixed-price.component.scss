@@ -40,8 +40,23 @@ p {
   width: 100%;
   background-color: $secondary;
   border-radius: 10px;
-  height: 530px;
+  height: 615px;
   transition: height 0.3s;
+
+  @media (max-width: 281px) {
+    height: 720px !important;
+  }
+
+  @media (max-width: 361px) {
+    height: 615px;
+  }
+
+  @media (min-width: 410px) and (max-width: 412px) {
+    height: 530px;
+  }
+  @media (min-width: 374px) {
+    height: 530px;
+  }
 }
 
 .content-blue-box-edit {
@@ -50,10 +65,18 @@ p {
   border-radius: 10px;
   height: 385px;
   transition: height 0.3s;
+
+  @media (max-width: 281px) {
+    height: 416px;
+  }
 }
 
 .all-text {
   padding: 15px 15px 0 15px;
+
+  @media (min-width: 281px) and (max-width: 321px) {
+    padding: 15px 5px 0 5px;
+  }
 }
 
 .information-box {
@@ -91,6 +114,11 @@ p {
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  @media (max-width: 361px) {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 .first-box {
@@ -101,14 +129,25 @@ p {
   background-color: #004465a6;
   box-shadow: rgb(50 50 93 / 25%) 0px 2px 5px -1px,
     rgb(0 0 0 / 30%) 0px 3px 3px -1px;
+
+  @media (max-width: 361px) {
+    width: 90%;
+    margin-bottom: 10px;
+  }
 }
 
 .move-first-box {
   margin-left: 20px;
+  @media (max-width: 361px) {
+    margin-left: 0px;
+  }
 }
 
 .move-sec-box {
   margin-right: 20px;
+  @media (max-width: 361px) {
+    margin-right: 0px;
+  }
 }
 
 .btitle-two,
@@ -174,6 +213,12 @@ hr.box {
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  @media (max-width: 281px) {
+    display: grid;
+    justify-content: center;
+    text-align: center;
+  }
 }
 
 // Add css when necessary
@@ -207,9 +252,24 @@ hr.box {
 
 .save-loan-button {
   padding: 25px 80px 0px 80px;
+
+  @media (max-width: 321px) {
+    padding: 20px 0 0px 0;
+  }
+}
+
+::ng-deep .mat-select-panel {
+  @media (max-width: 281px) {
+    padding-left: 30px !important;
+  }
 }
 
 .forms {
+  ::-webkit-scrollbar {
+    width: 10px;
+    overflow-y: scroll;
+  }
+
   ::ng-deep .mat-form-field {
     display: block !important;
     text-align: center;
@@ -223,10 +283,6 @@ hr.box {
   ::ng-deep .mat-form-field-underline {
     display: none;
   }
-
-  // ::ng-deep .mat-select-panel {
-  //   overflow: scroll;
-  // }
 
   .loan-center {
     margin-top: 30px;
@@ -279,6 +335,9 @@ hr.box {
 
   ::ng-deep .mat-form-field-disabled * {
     color: white !important;
+    white-space: normal;
+    // @media (max-width: 281px) {
+    // }
   }
 
   .non-active-input {
@@ -340,12 +399,13 @@ hr.box {
   @media (min-width: 600px) {
     form {
       min-width: 100%;
-      display: flex;
+      display: block;
     }
   }
 
   ::ng-deep input.mat-input-element {
-    color: white !important;
+    color: white;
+    caret-color: white !important;
   }
 
   .field-box {
@@ -356,6 +416,13 @@ hr.box {
 
     h4 {
       font-size: 16px;
+    }
+
+    @media (max-width: 281px) {
+      padding: 0 0 10px 0;
+      display: grid;
+      justify-content: center;
+      text-align: center;
     }
   }
 
@@ -370,13 +437,25 @@ hr.box {
 
   .loan-value {
     margin-right: 20px;
+
+    @media (max-width: 281px) {
+      margin-right: 0px;
+    }
   }
 
   .d-block {
     text-align: center;
   }
 
+  .text-white {
+  }
+
   input {
     font-size: 16px !important;
+  }
+
+  .overlay-pane {
+    transform: none;
+    margin-top: 0px !important;
   }
 }

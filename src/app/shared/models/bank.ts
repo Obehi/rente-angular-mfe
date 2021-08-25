@@ -2111,14 +2111,24 @@ export class BankUtils {
     return signiCatBanks;
   }
 
-  static getSignicatUserByBankLabel(bankLabel: string): boolean {
+  static getSignicatUserByBankKey(bankKey: string): boolean {
     const banks = this.getSigniCatBanks();
 
     for (const bank of banks) {
-      if (bank.label === bankLabel) {
+      if (bank.name === bankKey) {
         return true;
       }
     }
+    return false;
+  }
+
+  static isFixedPrice(bankKey: string): boolean {
+    const bank = this.getBankByName(bankKey);
+
+    if (!bank) return false;
+
+    if (bank.hasFixedPrice) return true;
+
     return false;
   }
 }

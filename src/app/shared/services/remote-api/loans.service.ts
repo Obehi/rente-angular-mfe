@@ -199,6 +199,11 @@ export class LoansService {
     return forkJoin([this.getLoans(), this.getOffersBanks()]);
   }
 
+  public updateLoanProduct(product: { product: string }): Observable<void> {
+    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.product}`;
+    return this.http.put(url, product);
+  }
+
   public updateLoanOutstandingDebt(debt: {
     outstandingDebt: number;
   }): Observable<void> {
@@ -213,10 +218,12 @@ export class LoansService {
     return this.http.put(url, years);
   }
 
-  // public updateLoanNominalRate(rate: number): Observable<void> {
-  //   const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.nominalRate}`;
-  //   return this.http.put(url, rate);
-  // }
+  public updateLoanNominalRate(rate: {
+    nominalRate: number;
+  }): Observable<void> {
+    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.nominalRate}`;
+    return this.http.put(url, rate);
+  }
 }
 
 export class LoanStateDto {

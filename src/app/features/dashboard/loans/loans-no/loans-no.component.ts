@@ -61,16 +61,17 @@ export class LoansNoComponent implements OnInit {
         this.loansData = loans;
         this.offer = offerBank as offerDto;
 
-        // console.log(this.offer);
+        const bankName = this.loansData.loans[0].bankKey;
 
-        // this.isSignicatUser = BankUtils.getSignicatUserByBankLabel(
-        //   this.loansData.loans[0].bank
-        // );
-        this.isSignicatUser = false;
-        this.isFixedPriceBank = false;
+        this.isSignicatUser = BankUtils.getSignicatUserByBankKey(bankName);
+
+        this.isFixedPriceBank = BankUtils.isFixedPrice(bankName);
 
         console.log('Is signicatuser?');
         console.log(this.isSignicatUser);
+
+        console.log('Is fixed price?');
+        console.log(this.isFixedPriceBank);
       },
       (err) => {
         this.errorMessage = err.title;

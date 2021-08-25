@@ -47,6 +47,8 @@
                     [(value)]="selected"
                     [disabled]="!isEditMode"
                     (selectionChange)="matSelectChanged()"
+                    disableOptionCentering
+                    panelClass="overlay-pane"
                   >
                     <mat-option
                       *ngFor="let offer of allOffers"
@@ -71,7 +73,7 @@
                       placeholder="Skriv inn din lån"
                       matInput
                       type="tel"
-                      maxlength="14"
+                      maxlength="16"
                       autocomplete="off"
                       [formControlName]="'outstandingDebt'"
                       currencyMask
@@ -80,7 +82,8 @@
                         suffix: ' kr',
                         align: 'center',
                         thousands: ' ',
-                        precision: 0
+                        decimal: '.',
+                        precision: 1
                       }"
                     />
                   </mat-form-field>

@@ -9,6 +9,7 @@ export interface Loans {
 
 export interface LoanInfo {
   bank: string;
+  bankKey: string;
   effectiveRate: number;
   loanName: string;
   nominalRate: number;
