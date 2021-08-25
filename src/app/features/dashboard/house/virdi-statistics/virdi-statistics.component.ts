@@ -8,7 +8,13 @@ import { SnackBarService } from '@services/snackbar.service';
 import { MatTabChangeEvent } from '@angular/material';
 import { MessageBannerService } from '@services/message-banner.service';
 import { getAnimationStyles } from '@shared/animations/animationEnums';
-import { animate, style, transition, trigger } from '@angular/animations';
+import {
+  animate,
+  state,
+  style,
+  transition,
+  trigger
+} from '@angular/animations';
 
 declare let require: any;
 const Boost = require('highcharts/modules/boost');
@@ -30,16 +36,29 @@ noData(Highcharts);
         style({ opacity: '0' }),
         animate('0.2s 1s ease-in', style({ opacity: '1' }))
       ])
-
-      // transition(':leave', [
-      //   // style({ height: '100', opacity: 1 }),
-      //   animate('0.1s ease-out', style({ opacity: 0 }))
-      // ])
     ]),
     trigger('stretch', [
       transition(':enter', [
         style({ height: 0 }),
         animate('0.5s ease-in', style({ height: '532px' }))
+      ])
+    ]),
+    trigger('slide', [
+      state(
+        'open',
+        style({
+          opacity: 1
+        })
+      ),
+      state(
+        'close',
+        style({
+          opacity: 0
+        })
+      ),
+      transition('* => open', [animate('0.3s ease-in', style({ opacity: 1 }))]),
+      transition('* => close', [
+        animate('0.3s ease-out', style({ opacity: 0 }))
       ])
     ])
   ]
@@ -72,8 +91,6 @@ export class VirdiStatisticsComponent implements OnInit {
       this.showPriceDevelopment = true;
     } else {
       this.showPriceDevelopment = false;
-      const e = document.getElementsByClassName('mat-tab-label-content')[0];
-      e.classList.add('green');
     }
   }
 
