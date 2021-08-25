@@ -672,19 +672,32 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
       this.showGenericDialog();
       return null;
     }
-    const remainingYears = this.loanFormGroup?.get('remainingYears')?.value;
+
     signicatLoanInfoDto.id = this.loanId;
-    signicatLoanInfoDto.remainingYears =
+
+    const remainingYears = this.loanFormGroup?.get('remainingYears')?.value;
+    const remainingYearsNotFormated =
       remainingYears != null && remainingYears !== '0' ? remainingYears : 20;
 
+    signicatLoanInfoDto.remainingYears = remainingYearsNotFormated.replace(
+      ',',
+      '.'
+    );
     signicatLoanInfoDto.productId = String(
       this.loanFormGroup?.get('loanType')?.value.value
     );
 
+    // removing space and replacing commas with dots
     signicatLoanInfoDto.outstandingDebt =
       typeof this.loanFormGroup?.get('outstandingDebt')?.value === 'string'
-        ? this.loanFormGroup?.get('outstandingDebt')?.value.replace(/\s/g, '')
+        ? this.loanFormGroup
+            ?.get('outstandingDebt')
+            ?.value.replace(/\s/g, '')
+            ?.replace(',', '.')
         : this.loanFormGroup?.get('outstandingDebt')?.value;
+
+    console.log('signicatLoanInfoDto.outstandingDebt');
+    console.log(signicatLoanInfoDto.outstandingDebt);
     // default value is
     signicatLoanInfoDto.loanSubType = 'AMORTISING_LOAN';
     signicatLoanInfoDto.loanType = 'DOWNPAYMENT_REGULAR_LOAN';
