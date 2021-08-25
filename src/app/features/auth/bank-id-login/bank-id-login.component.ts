@@ -387,7 +387,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     if (this.bank?.hasFixedLoans === true) {
       this.loanFormGroup = this.fb.group({
         outstandingDebt: ['', Validators.required],
-        remainingYears: ['', [Validators.max(100)]],
+        remainingYears: ['', [Validators.pattern(VALIDATION_PATTERN.year)]],
         loanType: ['', Validators.required]
       });
       this.newClient = this.responseStatus.newClient;
@@ -423,8 +423,8 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
         this.loanFormGroup = this.fb.group({
           outstandingDebt: [outstandingDebt, Validators.required],
           remainingYears: [
-            Math.round(firstLoan.remainingYears),
-            [Validators.max(100)]
+            firstLoan.remainingYears,
+            [Validators.pattern(VALIDATION_PATTERN.year)]
           ],
           loanType: [selectedOption ?? null, Validators.required]
         });
@@ -451,7 +451,15 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
 
           this.loanFormGroup = this.fb.group({
             outstandingDebt: ['', Validators.required],
-            remainingYears: ['', [Validators.required, Validators.max(100)]],
+
+            remainingYears: [
+              '',
+              [
+                Validators.required,
+                Validators.pattern(VALIDATION_PATTERN.rate),
+                Validators.max(100)
+              ]
+            ],
             loanType: ['', Validators.required]
           });
 
@@ -498,8 +506,8 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
       this.loanFormGroup = this.fb.group({
         outstandingDebt: [outstandingDebt, Validators.required],
         remainingYears: [
-          Math.round(firstLoan.remainingYears),
-          [Validators.max(100)]
+          firstLoan.remainingYears,
+          [Validators.pattern(VALIDATION_PATTERN.year)]
         ],
         loanTypeOption: [selectedloanTypeOption ?? null, Validators.required],
         fee: [fee, Validators.required]
@@ -541,7 +549,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
 
       this.loanFormGroup = this.fb.group({
         outstandingDebt: ['', Validators.required],
-        remainingYears: ['', [Validators.max(100)]],
+        remainingYears: ['', [Validators.pattern(VALIDATION_PATTERN.year)]],
         loanTypeOption: [null, Validators.required]
       });
       this.loanFormGroup?.addControl(
@@ -594,8 +602,8 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
         this.loanFormGroup = this.fb.group({
           outstandingDebt: [outstandingDebt, Validators.required],
           remainingYears: [
-            Math.round(firstLoan.remainingYears),
-            [Validators.max(100)]
+            firstLoan.remainingYears,
+            [Validators.pattern(VALIDATION_PATTERN.year)]
           ],
           loanTypeOptions: [selectedLoanTypeOption ?? null, Validators.required]
         });
@@ -621,7 +629,14 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
         this.oldUserNewLoan = true;
         this.loanFormGroup = this.fb.group({
           outstandingDebt: ['', Validators.required],
-          remainingYears: ['', [Validators.required, Validators.max(100)]],
+          remainingYears: [
+            '',
+            [
+              Validators.required,
+              Validators.max(100),
+              Validators.pattern(VALIDATION_PATTERN.rate)
+            ]
+          ],
           loanType: ['', Validators.required]
         });
         this.newClient = this.responseStatus.newClient;
@@ -676,13 +691,15 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     signicatLoanInfoDto.id = this.loanId;
 
     const remainingYears = this.loanFormGroup?.get('remainingYears')?.value;
-    const remainingYearsNotFormated =
-      remainingYears != null && remainingYears !== '0' ? remainingYears : 20;
+    const remainingYearsNotFormated: string =
+      remainingYears != null && remainingYears !== '0'
+        ? String(remainingYears)
+        : '20';
 
-    signicatLoanInfoDto.remainingYears = remainingYearsNotFormated.replace(
-      ',',
-      '.'
+    signicatLoanInfoDto.remainingYears = Number(
+      remainingYearsNotFormated.replace(',', '.')
     );
+
     signicatLoanInfoDto.productId = String(
       this.loanFormGroup?.get('loanType')?.value.value
     );
@@ -696,8 +713,6 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
             ?.replace(',', '.')
         : this.loanFormGroup?.get('outstandingDebt')?.value;
 
-    console.log('signicatLoanInfoDto.outstandingDebt');
-    console.log(signicatLoanInfoDto.outstandingDebt);
     // default value is
     signicatLoanInfoDto.loanSubType = 'AMORTISING_LOAN';
     signicatLoanInfoDto.loanType = 'DOWNPAYMENT_REGULAR_LOAN';
@@ -942,7 +957,6 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
                       .subscribe((offerBanks) => {
                         this.productIdOptions = (offerBanks.offers as any[]).map(
                           (offer) => {
-                            console.log(offer);
                             return {
                               name: offer.name,
                               value: offer.id
