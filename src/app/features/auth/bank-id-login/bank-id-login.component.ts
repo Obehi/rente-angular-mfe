@@ -669,11 +669,12 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     addressDto.street = this.userFormGroup?.get('address')?.value;
     clientDto.address = addressDto;
     clientDto.email = this.emailFormGroup?.get('email')?.value;
-    clientDto.income =
+    const income =
       typeof this.userFormGroup?.get('income')?.value === 'string'
         ? this.userFormGroup.get('income')?.value.replace(/\s/g, '')
         : this.userFormGroup?.get('income')?.value;
 
+    clientDto.income = Number(income);
     clientDto.memberships = this.memberships.map((membership) => {
       return membership.name;
     });
@@ -1027,7 +1028,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     const confDtoWithAprtmentValue: ConfirmationSetDto = new ConfirmationSetDto();
     confDtoWithAprtmentValue.address = _address;
     confDtoWithAprtmentValue.email = emailForm.email;
-    confDtoWithAprtmentValue.income = incomeNumber;
+    confDtoWithAprtmentValue.income = Number(incomeNumber);
     confDtoWithAprtmentValue.memberships = [];
 
     return confDtoWithAprtmentValue;
