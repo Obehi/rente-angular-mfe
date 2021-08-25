@@ -20,6 +20,7 @@
     "build-i18n:stats": "npm run build-i18n:no:stats && npm run build-i18n:en:stats",
     "version": "node app-version.js",
     "heroku-postbuild": "node post-install.js",
+    "heroku-postbuild-windows": "node post-install-windows.js",
     "config-env": "ts-node ./src/set-env.ts",
     "set-local-components": "ts-node ./src/set-local-components.ts",
     "build:stats-analyze": "ng build --stats-json",

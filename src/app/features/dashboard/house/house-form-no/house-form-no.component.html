@@ -79,6 +79,7 @@
         <rente-input
           matInput
           [type]="'tel'"
+          [maxLength]="11"
           [ngModel]="address?.manualPropertyValue | thousands"
           (change)="countChange()"
           (keyup)="manualPropertyValueChanged($event)"
