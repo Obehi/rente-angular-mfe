@@ -7,8 +7,6 @@ import {
   ElementRef
 } from '@angular/core';
 import { OfferInfo, Offers } from './../../../../../shared/models/offers';
-import { OptimizeService } from '@services/optimize.service';
-import { EnvService } from '@services/env.service';
 import { OffersService } from '../../offers.service';
 import {
   BehaviorSubject,

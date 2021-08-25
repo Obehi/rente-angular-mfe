@@ -23,7 +23,6 @@ export interface Offers {
 }
 
 export interface AllOffers {
-  additionalPartnersOffers: OfferInfo[];
   top5: OfferInfo[];
   topScoreOffer: OfferInfo[];
 }

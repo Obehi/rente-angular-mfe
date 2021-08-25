@@ -142,35 +142,5 @@
         </div>
       </ng-container>
     </div>
-
-    <div *ngIf="!(offerService.isUpdatingOffers$ | async)" class="offers-grid">
-      <ng-container *ngIf="offersInfo">
-        <div
-          *ngFor="
-            let offer of offersInfo.offers.additionalPartnersOffers;
-            let i = index
-          "
-          class="the-offer"
-        >
-          <ng-container *ngIf="isMobile; else desktop">
-            <rente-offer-card
-              [offer]="offer"
-              [offersInfo]="currentOfferInfo"
-              [index]="offer.offerPosition"
-            >
-            </rente-offer-card>
-          </ng-container>
-
-          <ng-template #desktop>
-            <rente-offer-card-big-blue
-              [offer]="offer"
-              [offersInfo]="currentOfferInfo"
-              [index]="offer.offerPosition"
-            >
-            </rente-offer-card-big-blue>
-          </ng-template>
-        </div>
-      </ng-container>
-    </div>
   </div>
 </div>
