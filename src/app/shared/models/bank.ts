@@ -567,8 +567,8 @@ export const eikaBanks: BankVo[] = [
     false,
     false,
     false,
-    false,
-    false,
+    true,
+    true,
     false,
     'https://nordirektebank.no/aktuelt/bankid-paa-mobil'
   ),
@@ -1685,8 +1685,8 @@ export const MissingBankList: BankVo[] = [
     false,
     false,
     false,
-    false,
-    false,
+    true,
+    true,
     true,
     null
   ),
@@ -1730,7 +1730,7 @@ export const MissingBankList: BankVo[] = [
     false,
     false,
     false,
-    false,
+    true,
     true,
     false,
     null
