@@ -141,13 +141,15 @@
         <a
           class="sb1-app-button"
           [class]="isSb1App === false ? 'selected' : 'normal'"
-          (click)="setSb1bankIdForm()"
+          (click)="setSb1bankIdForm(); scrollToBankIDMobile()"
           *ngIf="isSB1Bank && isSb1App !== true"
         >
           <img [src]="'../../../assets/icons/mobile-login-green.svg'" />
-          <p>BankId på mobil</p>
+          <p>BankID på mobil</p>
         </a>
       </div>
+
+      <div class="BankIDMobile scroll-anchor"></div>
 
       <mat-horizontal-stepper
         *ngIf="isSb1App === true || isSB1Bank === true"
@@ -157,6 +159,7 @@
       >
         <mat-step [editable]="true"
           ><form
+            id="destination"
             *ngIf="isSb1App === true"
             [formGroup]="bankIdForm"
             novalidate
@@ -342,7 +345,7 @@
 
     <a
       class="sb1-app-button top-margin"
-      (click)="setSb1bankIdForm()"
+      (click)="setSb1bankIdForm(); scrollToBankIDMobile()"
       *ngIf="isSB1Bank && isSb1App === true"
     >
       <img [src]="'../../../assets/icons/mobile-login-green.svg'" />

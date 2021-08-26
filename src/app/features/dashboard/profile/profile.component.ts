@@ -6,7 +6,7 @@ import {
   EventEmitter,
   Output,
   Input,
-  OnChanges
+  OnDestroy
 } from '@angular/core';
 import { locale } from '../../../config/locale/locale';
 import { CustomLangTextService } from '@shared/services/custom-lang-text.service';
@@ -18,7 +18,7 @@ import {
   Validators
 } from '@angular/forms';
 import { COMMA, ENTER, S } from '@angular/cdk/keycodes';
-import { combineLatest, Observable, of, Subject, throwError } from 'rxjs';
+import { combineLatest, Observable, of, Subject } from 'rxjs';
 import {
   catchError,
   debounce,
@@ -61,6 +61,7 @@ import {
 } from '@angular/animations';
 import { PropertySelectDialogComponent } from '@features/first-buyers/components/property-select-dialog/property-select-dialog.component';
 import { MembershipService } from '@services/membership.service';
+import { NotificationService } from '@services/notification.service';
 
 export enum FormControlId {
   email = 'email',
@@ -95,7 +96,8 @@ export enum FormControlId {
     ])
   ]
 })
-export class ProfileComponent implements OnInit, DeactivationGuarded {
+export class ProfileComponent
+  implements OnInit, OnDestroy, DeactivationGuarded {
   public preferencesForm: FormGroup;
   public profileForm: FormGroup;
   public visible = true;
@@ -170,7 +172,8 @@ export class ProfileComponent implements OnInit, DeactivationGuarded {
     private loansService: LoansService,
     private membershipService: MembershipService,
     public dialog: MatDialog,
-    public textLangService: CustomLangTextService
+    public textLangService: CustomLangTextService,
+    private notificationService: NotificationService
   ) {
     if (window.innerWidth > 600) {
       this.showMemberships = true;
@@ -182,6 +185,8 @@ export class ProfileComponent implements OnInit, DeactivationGuarded {
       this.showOfferPreferences = false;
     }
   }
+
+  ngOnDestroy(): void {}
 
   ngOnInit(): void {
     this.loansService.getPreferencesDto().subscribe(
@@ -413,6 +418,7 @@ export class ProfileComponent implements OnInit, DeactivationGuarded {
         filter(() => this.profileForm.get(FormControlId.email)?.valid || false),
         debounceTime(2000),
         filter(() => this.profileForm.get('email')?.valid || false),
+        map((value: string) => value.replace(/\s/g, '')),
         tap(() => {
           this.beforeUpdate(FormControlId.email);
         }),
@@ -451,6 +457,7 @@ export class ProfileComponent implements OnInit, DeactivationGuarded {
         }),
         tap((value) => {
           value && this.afterUpdate(FormControlId.income);
+          this.notificationService.setOfferNotification();
         })
       ),
       this.membershipCtrl.valueChanges.pipe(
@@ -471,6 +478,7 @@ export class ProfileComponent implements OnInit, DeactivationGuarded {
         }),
         tap(() => {
           this.afterUpdate(FormControlId.memberships);
+          this.notificationService.setOfferNotification();
         })
       ),
       this.preferencesForm
@@ -536,6 +544,8 @@ export class ProfileComponent implements OnInit, DeactivationGuarded {
               );
           }),
           tap(() => {
+            this.notificationService.setOfferNotification();
+
             this.afterUpdate(FormControlId.noAdditionalProductsRequired);
           })
         ),
@@ -558,6 +568,7 @@ export class ProfileComponent implements OnInit, DeactivationGuarded {
               );
           }),
           tap(() => {
+            this.notificationService.setOfferNotification();
             this.afterUpdate(FormControlId.interestedInEnvironmentMortgages);
           })
         ),
@@ -580,6 +591,8 @@ export class ProfileComponent implements OnInit, DeactivationGuarded {
               );
           }),
           tap(() => {
+            this.notificationService.setOfferNotification();
+
             this.afterUpdate(FormControlId.fetchCreditLinesOnly);
           })
         )
