@@ -479,6 +479,11 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
             this.crawlerLoginService.postError();
             break;
 
+          case BANKID_STATUS.ERROR_5:
+            this.unsubscribeEverything();
+            this.crawlerLoginService.forceSignicatRedirect();
+            break;
+
           case BANKID_STATUS.PROCESS_STARTED:
             this.initTimer(this.bankIdTimeoutTime);
             this.initConnectionTimer();
