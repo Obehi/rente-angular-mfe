@@ -2,7 +2,9 @@ export interface Loans {
   aggregatedTotalInterestAndFee: number;
   aggregatedTotalInterestAndFeeByRemainingYears: number;
   averageRemainingYears: number;
+  isFixedPriceBank: boolean;
   loans: LoanInfo[];
+  origin: number;
   totalEffectiveRate: number;
   totalOutstandingDebt: number;
 }

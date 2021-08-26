@@ -59,13 +59,19 @@ export class LoansNoComponent implements OnInit {
     this.loansService.getLoanAndOffersBanks().subscribe(
       ([loans, offerBank]) => {
         this.loansData = loans;
+
         this.offer = offerBank as offerDto;
 
-        const bankName = this.loansData.loans[0].bankKey;
+        /*
+           Backend returns origin which contains either 1 or 2
+          1 is crawler banks, 2 is signicat user
+          isFixedPriceBank of type boolean is also included in the returned object to check
+         */
 
-        this.isSignicatUser = BankUtils.getSignicatUserByBankKey(bankName);
-
-        this.isFixedPriceBank = BankUtils.isFixedPrice(bankName);
+        if (this.loansData.origin === 1) this.isSignicatUser = false;
+        if (this.loansData.origin === 2) this.isSignicatUser = true;
+        if (this.isSignicatUser && this.loansData.isFixedPriceBank)
+          this.isFixedPriceBank = true;
 
         console.log('Is signicatuser?');
         console.log(this.isSignicatUser);

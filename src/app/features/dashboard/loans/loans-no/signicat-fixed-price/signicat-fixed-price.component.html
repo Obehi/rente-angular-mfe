@@ -37,9 +37,15 @@
               <!-- <h4 class="loan-type-label">Lånetype</h4> -->
 
               <div
-                [ngClass]="
-                  isEditMode === false ? 'loan-center' : 'loan-center-edit'
-                "
+                [ngClass]="{
+                  'loan-center':
+                    isEditMode === false && productIsError === false,
+                  'loan-center-edit': isEditMode === true,
+                  'loan-center-edit-focus':
+                    isEditMode === true && inputProductIsActive === true,
+                  'loan-center-edit-error': productIsError === true
+                }"
+                (click)="setInputProductActive()"
               >
                 <mat-form-field appearance="fill">
                   <mat-label style="color: white"> Lånetype </mat-label>
@@ -64,9 +70,17 @@
                 <h4 class="text-white">Utestående lån:</h4>
 
                 <div
-                  [ngClass]="
-                    isEditMode === false ? 'non-active-input' : 'active-input'
-                  "
+                  [ngClass]="{
+                    'active-input':
+                      isEditMode === true && outstandingDebtIsError === false,
+                    'non-active-input': isEditMode === false,
+                    'edit-focus':
+                      isEditMode === true &&
+                      inputOutstandingDebtIsActive === true &&
+                      outstandingDebtIsError === false,
+                    'edit-error': outstandingDebtIsError === true
+                  }"
+                  (click)="setInputOutDebtActive()"
                 >
                   <mat-form-field class="white-input w-75" appearance="outline">
                     <input
@@ -82,7 +96,7 @@
                         suffix: ' kr',
                         align: 'center',
                         thousands: ' ',
-                        decimal: '.',
+                        decimal: ',',
                         precision: 1
                       }"
                     />
@@ -110,9 +124,15 @@
                 <h4 class="text-white">Løpetid:</h4>
 
                 <div
-                  [ngClass]="
-                    isEditMode === false ? 'non-active-input' : 'active-input'
-                  "
+                  [ngClass]="{
+                    'active-input': isEditMode === true,
+                    'non-active-input': isEditMode === false,
+                    'edit-focus':
+                      isEditMode === true &&
+                      inputRemainingYearsIsActive === true,
+                    'edit-error': remainingYearsIsError === true
+                  }"
+                  (click)="setInputRemYearsActive()"
                 >
                   <mat-form-field class="white-input w-75" appearance="outline">
                     <input

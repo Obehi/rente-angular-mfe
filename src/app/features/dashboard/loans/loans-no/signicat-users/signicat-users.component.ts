@@ -3,7 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoansService } from '@services/remote-api/loans.service';
 import { ButtonFadeInOut } from '@shared/animations/button-fade-in-out';
 import { FadeOut } from '@shared/animations/fade-out';
-import { forkJoin, Subscription } from 'rxjs';
+import { forkJoin, Observable, of, Subscription } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 @Component({
   selector: 'rente-signicat-users',
@@ -22,6 +23,18 @@ export class SignicatUsersComponent implements OnInit {
   public showButton = false;
   public changesMade = false;
   public changingSubscription: Subscription;
+  public requests: Observable<any>[] = [];
+
+  // Activate input color when focused
+  public inputOutstandingDebtIsActive = false;
+  public inputRemainingYearsIsActive = false;
+  public inputNominalRateIsActive = false;
+
+  // Error handling
+  public outstandingDebtIsError = false;
+  public remainingYearsIsError = false;
+  public nominalRateIsError = false;
+  public isError = false;
 
   public outstandingDebtString = 'outstandingDebt';
   public remainingYearsString = 'remainingYears';
@@ -75,6 +88,24 @@ export class SignicatUsersComponent implements OnInit {
         this.errorMessage = err.title;
       }
     );
+  }
+
+  public setInputOutDebtActive(): void {
+    this.inputRemainingYearsIsActive = false;
+    this.inputNominalRateIsActive = false;
+    this.inputOutstandingDebtIsActive = true;
+  }
+
+  public setInputRemYearsActive(): void {
+    this.inputOutstandingDebtIsActive = false;
+    this.inputNominalRateIsActive = false;
+    this.inputRemainingYearsIsActive = true;
+  }
+
+  public setInputNominalRateActive(): void {
+    this.inputOutstandingDebtIsActive = false;
+    this.inputRemainingYearsIsActive = false;
+    this.inputNominalRateIsActive = true;
   }
 
   public setDisabled(): void {
@@ -165,32 +196,60 @@ export class SignicatUsersComponent implements OnInit {
       nominalRate: getNominalRate
     };
 
-    forkJoin([
-      this.loansService.updateLoanOutstandingDebt(outstandingDebtDto),
-      this.loansService.updateLoanReminingYears(remainingYearsDto),
-      this.loansService.updateLoanNominalRate(nominalRateDto)
-    ]).subscribe(
-      () => {
+    this.requests.push(
+      this.loansService.updateLoanOutstandingDebt(outstandingDebtDto).pipe(
+        catchError((err) => {
+          console.log(err.title);
+          this.outstandingDebtIsError = true;
+          this.isError = true;
+          return of(err);
+        })
+      )
+    );
+
+    this.requests.push(
+      this.loansService.updateLoanReminingYears(remainingYearsDto).pipe(
+        catchError((err) => {
+          console.log(err.title);
+          this.remainingYearsIsError = true;
+          this.isError = true;
+          return of(err);
+        })
+      )
+    );
+
+    this.requests.push(
+      this.loansService.updateLoanNominalRate(nominalRateDto).pipe(
+        catchError((err) => {
+          console.log(err.title);
+          this.nominalRateIsError = true;
+          this.isError = true;
+          return of(err);
+        })
+      )
+    );
+
+    forkJoin(this.requests).subscribe(
+      (result) => {
+        console.log('Result');
+        console.log(result);
+
+        console.log('\n');
+
+        console.log(this.isError);
+        if (this.isError) alert('One of the changes did not get saved');
         console.log(' outstanding debt success');
         console.log(' remaining years success');
         console.log(' nominal rate success');
+        // Disable everything after everything works as intended
+        this.setDisabled();
+        console.log('Saved!');
       },
       (err) => {
+        console.log('ERROR!!!!!');
+        console.log(err);
         this.errorMessage = err.title;
       }
     );
-
-    // this.loansService.updateLoanOutstandingDebt(outstandingDebtDto).subscribe(
-    //   () => {
-    //     console.log(' outstanding debt success');
-    //   },
-    //   (err) => {
-    //     this.errorMessage = err.title;
-    //   }
-    // );
-
-    // Disable everything after everything works as intended
-    this.setDisabled();
-    console.log('Saved!');
   }
 }

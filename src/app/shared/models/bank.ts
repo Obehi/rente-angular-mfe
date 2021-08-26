@@ -2100,35 +2100,4 @@ export class BankUtils {
       return bank.name;
     }).includes(bankName);
   }
-
-  static getSigniCatBanks(): BankVo[] {
-    const banks = [...BankList, ...MissingBankList, ...TinkBanks];
-
-    const signiCatBanks = banks.filter((bank) => {
-      return bank.isSigniCat === true;
-    });
-
-    return signiCatBanks;
-  }
-
-  static getSignicatUserByBankKey(bankKey: string): boolean {
-    const banks = this.getSigniCatBanks();
-
-    for (const bank of banks) {
-      if (bank.name === bankKey) {
-        return true;
-      }
-    }
-    return false;
-  }
-
-  static isFixedPrice(bankKey: string): boolean {
-    const bank = this.getBankByName(bankKey);
-
-    if (!bank) return false;
-
-    if (bank.hasFixedPrice) return true;
-
-    return false;
-  }
 }

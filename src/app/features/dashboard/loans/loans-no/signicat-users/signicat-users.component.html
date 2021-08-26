@@ -37,8 +37,7 @@
           <h4 class="loan-center-title">Lånetype</h4>
           <div class="loan-center">
             <p>
-              <!-- {{ loan.loanName }} -->
-              BOLIGLÅN 85% BOLIGKR 0-2
+              {{ loan.loanName }}
             </p>
           </div>
         </div>
@@ -53,9 +52,13 @@
               <h4 class="text-white">Utestående lån:</h4>
 
               <div
-                [ngClass]="
-                  isEditMode === false ? 'non-active-input' : 'active-input'
-                "
+                [ngClass]="{
+                  'active-input': isEditMode === true,
+                  'non-active-input': isEditMode === false,
+                  'edit-focus':
+                    isEditMode === true && inputOutstandingDebtIsActive === true
+                }"
+                (click)="setInputOutDebtActive()"
               >
                 <mat-form-field class="white-input w-75" appearance="outline">
                   <input
@@ -97,9 +100,13 @@
               <h4 class="text-white">Løpetid:</h4>
 
               <div
-                [ngClass]="
-                  isEditMode === false ? 'non-active-input' : 'active-input'
-                "
+                [ngClass]="{
+                  'active-input': isEditMode === true,
+                  'non-active-input': isEditMode === false,
+                  'edit-focus':
+                    isEditMode === true && inputRemainingYearsIsActive === true
+                }"
+                (click)="setInputRemYearsActive()"
               >
                 <mat-form-field class="white-input w-130" appearance="outline">
                   <input
@@ -142,9 +149,13 @@
               <h4 class="text-white">Nominell rente:</h4>
 
               <div
-                [ngClass]="
-                  isEditMode === false ? 'non-active-input' : 'active-input'
-                "
+                [ngClass]="{
+                  'active-input': isEditMode === true,
+                  'non-active-input': isEditMode === false,
+                  'edit-focus':
+                    isEditMode === true && inputNominalRateIsActive === true
+                }"
+                (click)="setInputNominalRateActive()"
               >
                 <mat-form-field class="white-input w-130" appearance="outline">
                   <input
