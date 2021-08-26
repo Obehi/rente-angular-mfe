@@ -3,6 +3,7 @@ import { AddressDto } from '@services/remote-api/loans.service';
 import { MatTabChangeEvent } from '@angular/material';
 import { CheckBoxItem } from '@shared/components/ui-components/checkbox-container/checkbox-container.component';
 import { EnvService } from '@services/env.service';
+import { animate, style, transition, trigger } from '@angular/animations';
 
 export enum AddressFormMode {
   Editing,
@@ -12,7 +13,21 @@ export enum AddressFormMode {
 @Component({
   selector: 'rente-house-form',
   templateUrl: './house-form-sv.component.html',
-  styleUrls: ['./house-form-sv.component.scss']
+  styleUrls: ['./house-form-sv.component.scss'],
+  animations: [
+    trigger('fade', [
+      transition(':enter', [
+        style({ opacity: '0' }),
+        animate('0.3s ease-in', style({ opacity: '1' }))
+      ])
+    ]),
+    trigger('statsFade', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('0.5s ease-in', style({ opacity: 1 }))
+      ])
+    ])
+  ]
 })
 export class HouseFormSvComponent implements OnInit {
   @Input() index: number;

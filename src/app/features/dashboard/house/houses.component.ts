@@ -60,6 +60,7 @@ export class HousesComponent implements OnInit, DeactivationGuarded {
   public showExplainText: boolean;
   public propertyIconPath: string | null;
   public animationType = getAnimationStyles();
+  public addressId: any;
 
   constructor(
     private loansService: LoansService,
@@ -83,6 +84,7 @@ export class HousesComponent implements OnInit, DeactivationGuarded {
     this.loansService.getAddresses().subscribe((r) => {
       this.isLoading = false;
       this.addresses = r.addresses;
+      this.addressId = r.addresses.length;
       this.showAddresses = true;
 
       if (
@@ -120,6 +122,8 @@ export class HousesComponent implements OnInit, DeactivationGuarded {
         addr.useManualPropertyValue = false;
       }
       this.addresses.push(addr);
+      this.addressId++;
+      console.log(this.addressId);
     }
   }
 
@@ -130,6 +134,16 @@ export class HousesComponent implements OnInit, DeactivationGuarded {
       this.addresses.splice(i, 1);
       this.saveAddresses();
     }
+  }
+
+  scrollTo(divId: string): void {
+    setTimeout(() => {
+      document.getElementById(divId)?.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+        inline: 'start'
+      });
+    }, 100);
   }
 
   get ableToAddAddress(): boolean {

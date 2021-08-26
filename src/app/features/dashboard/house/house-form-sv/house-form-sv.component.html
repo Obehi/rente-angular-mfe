@@ -1,4 +1,4 @@
-<div class="housecontainer">
+<div class="housecontainer scroll-anchor" id="{{ index + 1 }}">
   <div class="heading">
     <img src="../../../assets/icons/house-icon-white.svg" alt="Bolig" />
     <b>Bostad {{ index + 1 }}</b>
@@ -59,13 +59,16 @@
 
     <div *ngIf="!isStatMode" class="non-double estimated">
       <p class="house-value bold">Bostadsvärde</p>
-      <div *ngIf="!address.useManualPropertyValue">
-        <p class="green-text" *ngIf="!isAddressValid">-</p>
-        <p class="green-text" *ngIf="isAddressValid">
+      <div *ngIf="!address.useManualPropertyValue" [@fade]>
+        <p class="green-minus" *ngIf="!isAddressValid">-</p>
+        <p
+          class="green-text"
+          *ngIf="isAddressValid && address.estimatedPropertyValue"
+        >
           {{ address?.estimatedPropertyValue | thousands }} kr
         </p>
       </div>
-      <div *ngIf="address.useManualPropertyValue">
+      <div *ngIf="address.useManualPropertyValue" [@fade]>
         <rente-input
           #test
           matInput

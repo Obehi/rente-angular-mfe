@@ -1,5 +1,9 @@
 @import '../../../../../styles/theme/_colors.scss';
 
+.scroll-anchor {
+  scroll-margin: 100px;
+}
+
 .housecontainer {
   border-radius: 15px;
   margin: 10px;
@@ -39,10 +43,10 @@
     color: $white;
   }
   mat-icon {
-    color: $blue;
-    position: relative;
-    top: 50%;
+    position: absolute;
+    top: 25px;
     transform: translateY(-50%);
+    margin-left: 5px;
     color: white;
   }
   button {
@@ -89,7 +93,7 @@ rente-button {
 }
 
 .body {
-  height: 622px;
+  border-radius: 0px 0px 15px 15px;
   .double {
     display: flex;
     flex-direction: column;
@@ -102,7 +106,8 @@ rente-button {
     width: 50%;
     margin-left: 25%;
     text-align: center;
-    max-height: 70px;
+    min-height: 80px;
+    position: relative;
 
     ::ng-deep .cdk-text-field-autofill-monitored:not(:-webkit-autofill) {
       text-align: center;
@@ -126,7 +131,19 @@ rente-button {
     color: $primary;
     font-size: 20px;
     font-weight: 500;
-    margin-top: 18px;
+  }
+
+  .green-minus {
+    color: $primary;
+    font-size: 50px;
+    font-weight: 500;
+    position: absolute;
+    left: 47%;
+    top: 0;
+  }
+
+  .big {
+    font-size: 50px;
   }
 
   .top-text {

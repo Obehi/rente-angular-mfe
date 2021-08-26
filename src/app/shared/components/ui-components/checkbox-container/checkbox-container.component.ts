@@ -69,7 +69,6 @@ export class CheckboxContainerComponent implements OnInit {
     const iconName =
       currentItemValue === item.value ? item.iconActive : item.iconDeactivated;
     const path = 'assets/icons/' + iconName;
-    console.log(path);
     return path;
   }
 

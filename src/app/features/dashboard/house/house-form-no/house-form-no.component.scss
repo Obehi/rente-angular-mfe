@@ -1,7 +1,7 @@
 @import '../../../../../styles/theme/_colors.scss';
 
-::ng-deep .mat-form-field-infix {
-  // background: white;
+.scroll-anchor {
+  scroll-margin: 100px;
 }
 .housecontainer {
   border-radius: 15px;
@@ -110,6 +110,7 @@ rente-button {
     margin-left: 25%;
     text-align: center;
     min-height: 80px;
+    position: relative;
 
     ::ng-deep .cdk-text-field-autofill-monitored:not(:-webkit-autofill) {
       text-align: left;
@@ -147,8 +148,9 @@ rente-button {
 
   .place-under {
     position: relative;
-    left: 40px;
+    left: 19px;
     top: -5px;
+    font-size: 10px;
   }
 
   .green-text {
@@ -158,11 +160,20 @@ rente-button {
     margin-top: 10px;
   }
 
+  .green-minus {
+    color: $primary;
+    font-size: 50px;
+    font-weight: 500;
+    position: absolute;
+    left: 47%;
+    top: 0;
+  }
+
   .matsuffix-housevalue {
     position: absolute;
     color: white;
-    right: 7rem;
-    bottom: 8.7rem;
+    right: 0.8rem;
+    top: 2.8rem;
     font-weight: 400;
   }
 
@@ -199,7 +210,6 @@ rente-button {
     padding: 15px;
     border-radius: 20px;
     background: #004465;
-    //border: 1px solid #478ccc;
   }
   .hidden {
     background: red;
@@ -298,12 +308,8 @@ rente-button {
 
 @media (min-width: 600px) {
   .housecontainer {
-    // border: 1px solid $lesslight;
-    // min-height: 627px;
-
     .heading {
       border-top: none;
-      // border-bottom: 1px solid $green;
     }
     .body {
       border-bottom: 0;

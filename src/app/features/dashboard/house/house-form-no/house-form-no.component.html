@@ -1,4 +1,4 @@
-<div class="housecontainer">
+<div class="housecontainer scroll-anchor" id="{{ index + 1 }}">
   <div class="heading">
     <img src="../../../assets/icons/house-icon-white.svg" alt="Bolig" />
     <b>Bolig {{ index + 1 }}</b>
@@ -82,12 +82,19 @@
     <div *ngIf="!isStatMode" class="non-double estimated" [@fade]>
       <p class="house-value bold">Boligverdi</p>
       <div *ngIf="!address.useManualPropertyValue" [@fade]>
-        <p class="green-text" *ngIf="!isAddressValid">-</p>
-        <p class="green-text" *ngIf="isAddressValid">
-          {{ address?.estimatedPropertyValue | thousands }} kr
+        <p class="green-minus" *ngIf="!isAddressValid">-</p>
+        <p
+          class="green-text"
+          *ngIf="isAddressValid && address.estimatedPropertyValue"
+        >
+          {{ address.estimatedPropertyValue | thousands }} kr
         </p>
         <p
-          *ngIf="!address.useManualPropertyValue"
+          *ngIf="
+            !address.useManualPropertyValue &&
+            isAddressValid &&
+            address.estimatedPropertyValue
+          "
           class="small white place-under bold"
         >
           Estimert av Virdi
