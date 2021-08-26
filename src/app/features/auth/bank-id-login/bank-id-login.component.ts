@@ -419,11 +419,14 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
         const selectedOption = this.productIdOptions.filter((item) => {
           return item.value === firstLoan.productId;
         })[0];
-        const outstandingDebt = String(firstLoan.outstandingDebt);
+
         this.loanFormGroup = this.fb.group({
-          outstandingDebt: [outstandingDebt, Validators.required],
+          outstandingDebt: [
+            firstLoan.outstandingDebt.toFixed(0),
+            Validators.required
+          ],
           remainingYears: [
-            firstLoan.remainingYears,
+            firstLoan.remainingYears.toFixed(1),
             [Validators.pattern(VALIDATION_PATTERN.year)]
           ],
           loanType: [selectedOption ?? null, Validators.required]
@@ -496,13 +499,15 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
         return item.value === firstLoan.loanType;
       })[0];
 
-      const outstandingDebt = String(firstLoan.outstandingDebt);
       const fee = String(firstLoan.fee || '50');
 
       this.loanFormGroup = this.fb.group({
-        outstandingDebt: [outstandingDebt, Validators.required],
+        outstandingDebt: [
+          firstLoan.outstandingDebt.toFixed(0),
+          Validators.required
+        ],
         remainingYears: [
-          firstLoan.remainingYears,
+          firstLoan.remainingYears.toFixed,
           [Validators.pattern(VALIDATION_PATTERN.year)]
         ],
         loanTypeOption: [selectedloanTypeOption ?? null, Validators.required],
@@ -594,11 +599,13 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
         const selectedLoanTypeOption = this.loanTypeOptions.filter((item) => {
           return item.value === firstLoan.loanType;
         })[0];
-        const outstandingDebt = String(firstLoan.outstandingDebt);
         this.loanFormGroup = this.fb.group({
-          outstandingDebt: [outstandingDebt, Validators.required],
+          outstandingDebt: [
+            firstLoan.outstandingDebt.toFixed(0),
+            Validators.required
+          ],
           remainingYears: [
-            firstLoan.remainingYears,
+            firstLoan.remainingYears.toFixed,
             [Validators.pattern(VALIDATION_PATTERN.year)]
           ],
           loanTypeOptions: [selectedLoanTypeOption ?? null, Validators.required]
