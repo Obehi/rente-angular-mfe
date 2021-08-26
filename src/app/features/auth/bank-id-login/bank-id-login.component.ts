@@ -507,7 +507,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
           Validators.required
         ],
         remainingYears: [
-          firstLoan.remainingYears.toFixed,
+          firstLoan.remainingYears.toFixed(1),
           [Validators.pattern(VALIDATION_PATTERN.year)]
         ],
         loanTypeOption: [selectedloanTypeOption ?? null, Validators.required],
@@ -605,7 +605,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
             Validators.required
           ],
           remainingYears: [
-            firstLoan.remainingYears.toFixed,
+            firstLoan.remainingYears.toFixed(1),
             [Validators.pattern(VALIDATION_PATTERN.year)]
           ],
           loanTypeOptions: [selectedLoanTypeOption ?? null, Validators.required]
