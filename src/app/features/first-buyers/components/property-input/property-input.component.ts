@@ -4,11 +4,9 @@ import {
   Input,
   OnInit,
   Output,
-  ViewChild,
-  ElementRef
+  ViewChild
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { FirstBuyersService } from '@features/first-buyers/first-buyers.service';
 import { MembershipTypeDto } from '@services/remote-api/loans.service';
 import { Observable, Subject } from 'rxjs';
 import { distinctUntilChanged, take } from 'rxjs/operators';
@@ -58,8 +56,6 @@ export class PropertyInputComponent implements OnInit {
 
   exitHandler: any;
   constructor(
-    private firstBuyersService: FirstBuyersService,
-    private closeInputElement: ElementRef,
     public dialog: MatDialog,
     private membershipService: MembershipService,
     public textLangService: CustomLangTextService

@@ -34,7 +34,6 @@ import {
   take
 } from 'rxjs/operators';
 import { SeoService } from '@services/seo.service';
-import { PropertySelectDialogComponent } from '../property-select-dialog/property-select-dialog.component';
 import { MembershipService } from '@services/membership.service';
 
 @Component({
@@ -82,26 +81,7 @@ export class InitialOffersComponent implements OnInit {
   selectedIndex: number | null = 1;
   public filteredMemberships: Observable<MembershipTypeDto[]>;
   public memberships: MembershipTypeDto[] = [];
-  public changeBankLoading: boolean;
-  public exampleArray = [
-    { id: 1, label: 'DNB' },
-    { id: 1, label: 'asd' },
-    { id: 1, label: 'sad' },
-    { id: 1, label: 'DaNB' },
-    { id: 1, label: 'DdNB' },
-    { id: 1, label: 'DNB' },
-    { id: 1, label: 'DzNB' },
-    { id: 1, label: 'D3NB' },
 
-    { id: 1, label: 'DNB' },
-    { id: 1, label: 'DN1B' },
-    { id: 1, label: 'D23NB' },
-    { id: 1, label: 'DNB' },
-    { id: 1, label: 'D3NB' },
-    { id: 1, label: 'DN3B' },
-    { id: 1, label: 'DNB' },
-    { id: 1, label: 'D2NB' }
-  ];
   properties = [
     {
       icon: 'monetization_on',
@@ -371,7 +351,7 @@ export class InitialOffersComponent implements OnInit {
     this.membershipsControl.reset();
   }
 
-  updateMemberships() {
+  updateMemberships(): void {
     this.membershipService.selectedMemberships = [
       ...this.memberships,
       ...this.selectedFeaturedMemberships
@@ -385,7 +365,7 @@ export class InitialOffersComponent implements OnInit {
       });
   }
 
-  updateMemberships2(memberships) {
+  updateMemberships2(memberships): void {
     this.membershipService.selectedMemberships = [
       ...this.memberships,
       ...this.selectedFeaturedMemberships
@@ -395,7 +375,7 @@ export class InitialOffersComponent implements OnInit {
     });
   }
 
-  isAllDataFilled() {
+  isAllDataFilled(): boolean {
     return !!(
       this.outstandingDebtControl.value &&
       this.savingsControl.value &&
@@ -416,7 +396,6 @@ export class InitialOffersComponent implements OnInit {
 
   forbiddenNameValidator(nameRe: RegExp): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } | null => {
-      const forbidden = nameRe.test(control.value);
       return { forbiddenName: true };
     };
   }
@@ -441,7 +420,7 @@ export class InitialOffersComponent implements OnInit {
     this.updateMemberships();
   }
 
-  deleteMembership(membership): void {
+  deleteMembership(membership: any): void {
     this.memberships.splice(this.memberships.indexOf(membership), 1);
     this.updateMemberships();
   }
@@ -478,8 +457,6 @@ export class InitialOffersComponent implements OnInit {
 
     this.loansService.getConfirmationData().subscribe((dto) => {
       this.allMemberships = dto.availableMemberships;
-      // this.extraProperties[0].options = dto.availableMemberships;
-      // console.log(this.allMemberships);
       this.extraProperties[0].options = this.allMemberships;
       this.featuredMemberships = this.allMemberships.filter((membership) => {
         return (

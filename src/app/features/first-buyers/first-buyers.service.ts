@@ -1,12 +1,7 @@
-import { Injectable, Input } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { AuthService } from '@services/remote-api/auth.service';
-import {
-  LoansService,
-  MembershipTypeDto
-} from '@services/remote-api/loans.service';
 import { LocalStorageService } from '@services/local-storage.service';
-import { Observable, Subject } from 'rxjs';
-import { InitialOffersComponent } from './components/initial-offers/initial-offers.component';
+import { Observable } from 'rxjs';
 
 export interface FirstBuyersState {
   outstandingDebt: number | null;
