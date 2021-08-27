@@ -116,8 +116,6 @@ export class HouseFormNoComponent implements OnInit {
       this.mode === AddressFormMode.Editing
         ? AddressFormMode.Statistics
         : AddressFormMode.Editing;
-
-    console.log(this.mode);
   }
 
   propertyValueIsValid(address: AddressDto): boolean {

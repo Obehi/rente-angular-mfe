@@ -65,7 +65,6 @@ noData(Highcharts);
 })
 export class VirdiStatisticsComponent implements OnInit {
   @Input() address: AddressDto;
-  @Output() eventEmitter = new EventEmitter<any>();
 
   isLoading: boolean;
   priceDestributionSqm: any[] = [];
