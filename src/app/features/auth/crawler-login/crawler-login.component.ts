@@ -28,15 +28,16 @@ import { debounce } from 'rxjs/operators';
 import { map } from 'rxjs/operators';
 import { Environment, EnvService } from '@services/env.service';
 import { ContactService } from '../../../shared/services/remote-api/contact.service';
-import { SnackBarService } from '@services/snackbar.service';
 import { MatStepper } from '@angular/material';
 import { MessageBannerService } from '@services/message-banner.service';
 import { getAnimationStyles } from '@shared/animations/animationEnums';
+import { CrawlerLoginService } from '@services/crawler-login.service';
 
 @Component({
   selector: 'crawler-login',
   templateUrl: './crawler-login.component.html',
-  styleUrls: ['./crawler-login.component.scss']
+  styleUrls: ['./crawler-login.component.scss'],
+  providers: [CrawlerLoginService]
 })
 export class CrawlerLoginComponent implements OnInit, OnDestroy {
   @ViewChild('stepper') stepper: MatStepper;
@@ -71,8 +72,8 @@ export class CrawlerLoginComponent implements OnInit, OnDestroy {
     private userService: UserService,
     private envService: EnvService,
     private contactService: ContactService,
-    private snackBar: SnackBarService,
-    private messageService: MessageBannerService
+    private messageService: MessageBannerService,
+    private crawlerLoginService: CrawlerLoginService
   ) {}
 
   ngOnInit(): void {
@@ -94,6 +95,19 @@ export class CrawlerLoginComponent implements OnInit, OnDestroy {
           bank?.name === 'DNB' &&
           this.environment.dnbSignicatIsOn === true &&
           this.router.url.includes('autentisering/bank/dnb')
+        ) {
+          this.router.navigate(
+            ['/autentisering/' + ROUTES_MAP_NO.bankIdLogin],
+            {
+              state: { data: { bank: bank, redirect: true } }
+            }
+          );
+        }
+
+        if (
+          bank?.name === 'NORDEA_DIRECT' &&
+          this.environment.nordeaDirectSignicatIsOn === true &&
+          this.router.url.includes('autentisering/bank/nordea_direct')
         ) {
           this.router.navigate(
             ['/autentisering/' + ROUTES_MAP_NO.bankIdLogin],
@@ -124,6 +138,28 @@ export class CrawlerLoginComponent implements OnInit, OnDestroy {
 
         // this.setSb1AppForm();
       }
+    });
+
+    this.setLoginListeners();
+  }
+
+  setLoginListeners(): void {
+    this.crawlerLoginService.firstRetry$.subscribe(() => {
+      this.isLoginStarted = false;
+
+      this.messageService.setView(
+        'Noe gikk feil, vennligst prøv igjen',
+        4000,
+        this.animationType.DROP_DOWN_UP,
+        'success',
+        window
+      );
+    });
+
+    this.crawlerLoginService.secondRetry$.subscribe(() => {
+      this.router.navigate(['/autentisering/' + ROUTES_MAP_NO.bankIdLogin], {
+        state: { data: { bank: this.bank, redirect: true } }
+      });
     });
   }
 
@@ -366,5 +402,17 @@ export class CrawlerLoginComponent implements OnInit, OnDestroy {
         return of({});
       }
     };
+  }
+
+  scrollToBankIDMobile(): void {
+    const ref = document.getElementsByClassName('BankIDMobile')[0];
+
+    setTimeout(() => {
+      ref.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+        inline: 'start'
+      });
+    }, 100);
   }
 }

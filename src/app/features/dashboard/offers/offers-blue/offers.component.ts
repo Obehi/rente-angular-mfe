@@ -1,8 +1,7 @@
 import { LoansService } from '@services/remote-api/loans.service';
-import { OfferInfo, Offers } from './../../../../shared/models/offers';
+import { Offers } from './../../../../shared/models/offers';
 import { Component, OnInit, HostListener, OnDestroy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { DialogInfoComponent } from './../dialog-info/dialog-info.component';
 import { Loans } from '@shared/models/loans';
 import { BANKS_DATA } from '@config/banks-config';
 import { Router } from '@angular/router';
@@ -12,27 +11,17 @@ import {
   AGGREGATED_LOAN_TYPE
 } from '../../../../config/loan-state';
 import { LocalStorageService } from '@services/local-storage.service';
-import { ChangeBankDialogLangGenericComponent } from '../../../../local-components/components-output';
-import { ChangeBankLocationComponent } from '@features/dashboard/offers/change-bank-dialog/change-bank-location/change-bank-location.component';
 
 import { AntiChurnDialogComponent } from '@features/dashboard/offers/anti-churn-dialog/anti-churn-dialog.component';
 import { AntiChurnErrorDialogComponent } from '@features/dashboard/offers/anti-churn-dialog/anti-churn-error-dialog/anti-churn-error-dialog.component';
 import { ChangeBankTooManyTriesDialogError } from '@features/dashboard/offers/change-bank-dialog/change-bank-too-many-tries-dialog-error/change-bank-too-many-tries-dialog-error.component';
 
-import { CanNotBargainDialogComponent } from '@features/dashboard/offers/can-not-bargain-dialog/can-not-bargain-dialog.component';
-import { LtvTooHighDialogComponent } from './../ltv-too-high-dialog/ltv-too-high-dialog.component';
-
 import { ChangeBankServiceService } from '@services/remote-api/change-bank-service.service';
-import {
-  TrackingService,
-  TrackingDto
-} from '@services/remote-api/tracking.service';
-import { Subscription, forkJoin } from 'rxjs';
-import { debounceTime } from 'rxjs/operators';
+import { Subscription, Observable, fromEvent } from 'rxjs';
+import { debounceTime, filter, tap } from 'rxjs/operators';
 import { OFFERS_LTV_TYPE } from '../../../../shared/models/offers';
 import { UserService } from '@services/remote-api/user.service';
 import smoothscroll from 'smoothscroll-polyfill';
-import { BankUtils } from '@shared/models/bank';
 import { CustomLangTextService } from '@shared/services/custom-lang-text.service';
 import { locale } from '../../../../config/locale/locale';
 import { ROUTES_MAP, ROUTES_MAP_NO } from '@config/routes-config';
@@ -42,7 +31,9 @@ import {
   OffersService,
   OfferMessage
 } from '@features/dashboard/offers/offers.service';
-import { OptimizeService } from '@services/optimize.service';
+import { NotificationService } from '@services/notification.service';
+import { MessageBannerService } from '@services/message-banner.service';
+import { getAnimationStyles } from '@shared/animations/animationEnums';
 @Component({
   selector: 'rente-offers-blue',
   templateUrl: './offers.component.html',
@@ -73,6 +64,9 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
   public routesMap = ROUTES_MAP;
   public antiChurnIsOn = false;
   public nordeaClickSubscription: Subscription;
+  public animationStyles = getAnimationStyles();
+  public notificationSubscription: Subscription;
+  public onScroll: boolean;
 
   get isMobile(): boolean {
     return window.innerWidth < 600;
@@ -81,16 +75,15 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
   constructor(
     public dialog: MatDialog,
     public loansService: LoansService,
-    private changeBankServiceService: ChangeBankServiceService,
     private router: Router,
     private localStorageService: LocalStorageService,
     private userService: UserService,
-    private trackingService: TrackingService,
     public customLangTextSerice: CustomLangTextService,
     public envService: EnvService,
     private offersService: OffersService,
     private logginService: LoggingService,
-    private optimizeService: OptimizeService
+    private notificationService: NotificationService,
+    private messageService: MessageBannerService
   ) {
     this.onResize();
 
@@ -99,6 +92,8 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
     userService.lowerRateAvailable.subscribe((value) => {
       this.effRateLoweredDialogVisible = value;
     });
+
+    this.scrollOfferNotificationObserver();
   }
 
   public ngOnDestroy(): void {
@@ -109,9 +104,59 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
     if (this.nordeaClickSubscription) {
       this.nordeaClickSubscription.unsubscribe();
     }
+
+    if (this.notificationSubscription) {
+      this.notificationSubscription.unsubscribe();
+    }
+
+    // Remove message poppus when leaving offers page. Should only effect message with arrow version
+    this.messageService.detachView();
+  }
+
+  scrollOfferNotificationObserver(): Observable<any> {
+    return fromEvent(window, 'scroll').pipe(
+      filter(
+        () =>
+          window.innerHeight -
+            document
+              .getElementsByClassName('the-offers')[0]
+              .getBoundingClientRect().top -
+            60 >
+          0
+      )
+    );
+  }
+
+  public setNotifAlert(n: number): void {
+    console.log(n + 'setNotifAlert set notification');
+    if (n > 0) {
+      this.messageService.setView(
+        `Tilbudene er oppdatert, trykk her!`,
+        73333000,
+        this.animationStyles.DROP_DOWN_UP,
+        'success-with-arrow',
+        window,
+        true,
+        true,
+        true
+      );
+
+      this.messageService.getClickSubject$().subscribe(() => {
+        setTimeout(() => {
+          this.scrollTo();
+        }, 100);
+        this.notificationService.resetOfferNotification();
+      });
+    }
   }
 
   public ngOnInit(): void {
+    this.notificationSubscription = this.notificationService
+      .getOfferNotificationAsObservable()
+      .subscribe((n) => {
+        this.setNotifAlert(n);
+      });
+
     if (locale.includes('sv')) {
       this.isSweden = true;
     } else {
@@ -158,6 +203,19 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
           }
         }
       });
+  }
+
+  public getOfferNotifications(): Observable<number> {
+    return this.notificationService.getOfferNotificationAsObservable();
+  }
+
+  public scrollTo(): void {
+    const offers = document.getElementById('best-offers-text');
+    offers?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+      inline: 'start'
+    });
   }
 
   public openAntiChurnBankDialog(offer, shouldLog: boolean): void {

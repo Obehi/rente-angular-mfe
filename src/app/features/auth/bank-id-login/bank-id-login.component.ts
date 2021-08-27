@@ -33,6 +33,7 @@ import { Mask } from '@shared/constants/mask';
 import {
   AddressCreationDto,
   ClientUpdateInfo,
+  ConfirmationSetDto,
   LoansService,
   MembershipTypeDto
 } from '@services/remote-api/loans.service';
@@ -61,6 +62,8 @@ import { GlobalStateService } from '@services/global-state.service';
 import { RouteEventsService } from '@services/route-events.service';
 
 import { LoginTermsDialogV2Component } from '@shared/components/ui-components/dialogs/login-terms-dialog-v2/login-terms-dialog-v2.component';
+import { VirdiManualValueDialogComponent } from '@shared/components/ui-components/dialogs/virdi-manual-value-dialog/virdi-manual-value-dialog.component';
+
 @Component({
   selector: 'rente-bank-id-login',
   templateUrl: './bank-id-login.component.html',
@@ -100,11 +103,14 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
   private loanId: number | null;
   public currentStepperValue = 0;
   public newClient: boolean | null;
-  public showManualInputForm = false;
   private routeSubscription: Subscription;
   public signicatIframeUrl?: SafeResourceUrl | null;
   public oldUserNewLoan = false;
   public shouldShowBankWarningMessage = false;
+  public shouldShowBankWarningMessageDNB = false;
+  public estimatedPropertyValueFromVirdi: number;
+  public manualEstimatedPropertyValueFromUser: number;
+  public isManualPropertyValue = false;
   get isMobile(): boolean {
     return window.innerWidth < 600;
   }
@@ -167,8 +173,12 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     } else {
       this.bank = stateData.bank;
 
-      if (stateData.redirect === true || this.bank?.name === 'DNB')
-        this.shouldShowBankWarningMessage = true;
+      if (stateData.redirect === true) {
+        if (this.bank?.name === 'DNB') {
+          this.shouldShowBankWarningMessageDNB = true;
+        }
+      }
+
       this.loginBankIdStep1();
     }
   }
@@ -261,9 +271,6 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     }
     const clientDto = this.clientUpdateInfo;
 
-    if (this.showManualInputForm) {
-      clientDto.address.apartmentValue = this.manualPropertyValue;
-    }
     this.isLoading = true;
 
     const userMemberships = {
@@ -271,7 +278,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     };
     clientDto.memberships = [];
     concat(
-      this.loanService.updateClientInfo(clientDto),
+      this.loanService.updateClientInfo(this.getFormValues()),
       this.loanService.CreateSignicatLoansInfo([signicatLoanInfoDto]),
       this.loanService.setUsersMemberships(userMemberships)
     )
@@ -380,7 +387,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     if (this.bank?.hasFixedLoans === true) {
       this.loanFormGroup = this.fb.group({
         outstandingDebt: ['', Validators.required],
-        remainingYears: ['', [Validators.max(100)]],
+        remainingYears: ['', [Validators.pattern(VALIDATION_PATTERN.year)]],
         loanType: ['', Validators.required]
       });
       this.newClient = this.responseStatus.newClient;
@@ -412,12 +419,15 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
         const selectedOption = this.productIdOptions.filter((item) => {
           return item.value === firstLoan.productId;
         })[0];
-        const outstandingDebt = String(firstLoan.outstandingDebt);
+
         this.loanFormGroup = this.fb.group({
-          outstandingDebt: [outstandingDebt, Validators.required],
+          outstandingDebt: [
+            firstLoan.outstandingDebt.toFixed(0),
+            Validators.required
+          ],
           remainingYears: [
-            Math.round(firstLoan.remainingYears),
-            [Validators.max(100)]
+            firstLoan.remainingYears.toFixed(1),
+            [Validators.pattern(VALIDATION_PATTERN.year)]
           ],
           loanType: [selectedOption ?? null, Validators.required]
         });
@@ -444,7 +454,11 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
 
           this.loanFormGroup = this.fb.group({
             outstandingDebt: ['', Validators.required],
-            remainingYears: ['', [Validators.required, Validators.max(100)]],
+
+            remainingYears: [
+              '',
+              [Validators.required, Validators.pattern(VALIDATION_PATTERN.year)]
+            ],
             loanType: ['', Validators.required]
           });
 
@@ -485,14 +499,16 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
         return item.value === firstLoan.loanType;
       })[0];
 
-      const outstandingDebt = String(firstLoan.outstandingDebt);
       const fee = String(firstLoan.fee || '50');
 
       this.loanFormGroup = this.fb.group({
-        outstandingDebt: [outstandingDebt, Validators.required],
+        outstandingDebt: [
+          firstLoan.outstandingDebt.toFixed(0),
+          Validators.required
+        ],
         remainingYears: [
-          Math.round(firstLoan.remainingYears),
-          [Validators.max(100)]
+          firstLoan.remainingYears.toFixed(1),
+          [Validators.pattern(VALIDATION_PATTERN.year)]
         ],
         loanTypeOption: [selectedloanTypeOption ?? null, Validators.required],
         fee: [fee, Validators.required]
@@ -534,7 +550,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
 
       this.loanFormGroup = this.fb.group({
         outstandingDebt: ['', Validators.required],
-        remainingYears: ['', [Validators.max(100)]],
+        remainingYears: ['', [Validators.pattern(VALIDATION_PATTERN.year)]],
         loanTypeOption: [null, Validators.required]
       });
       this.loanFormGroup?.addControl(
@@ -583,12 +599,14 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
         const selectedLoanTypeOption = this.loanTypeOptions.filter((item) => {
           return item.value === firstLoan.loanType;
         })[0];
-        const outstandingDebt = String(firstLoan.outstandingDebt);
         this.loanFormGroup = this.fb.group({
-          outstandingDebt: [outstandingDebt, Validators.required],
+          outstandingDebt: [
+            firstLoan.outstandingDebt.toFixed(0),
+            Validators.required
+          ],
           remainingYears: [
-            Math.round(firstLoan.remainingYears),
-            [Validators.max(100)]
+            firstLoan.remainingYears.toFixed(1),
+            [Validators.pattern(VALIDATION_PATTERN.year)]
           ],
           loanTypeOptions: [selectedLoanTypeOption ?? null, Validators.required]
         });
@@ -614,7 +632,14 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
         this.oldUserNewLoan = true;
         this.loanFormGroup = this.fb.group({
           outstandingDebt: ['', Validators.required],
-          remainingYears: ['', [Validators.required, Validators.max(100)]],
+          remainingYears: [
+            '',
+            [
+              Validators.required,
+              Validators.max(100),
+              Validators.pattern(VALIDATION_PATTERN.year)
+            ]
+          ],
           loanType: ['', Validators.required]
         });
         this.newClient = this.responseStatus.newClient;
@@ -627,15 +652,19 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
   }
 
   get manualPropertyValue(): number {
-    const apartmentValue =
-      typeof this.manualPropertyValueFormGroup?.get('manualPropertyValue')
-        ?.value === 'string'
-        ? this.manualPropertyValueFormGroup
-            .get('manualPropertyValue')
-            ?.value.replace(/\s/g, '')
-        : this.manualPropertyValueFormGroup?.get('manualPropertyValue')?.value;
+    return this.getNumericValueFormated(
+      this.manualPropertyValueFormGroup?.get('manualPropertyValue')?.value
+    );
+  }
 
-    return apartmentValue;
+  // accounts for decimal cases
+  getNumericValueFormated(incomeValue: any): number {
+    const income: string =
+      typeof incomeValue === 'string'
+        ? incomeValue.replace(/\s/g, '')
+        : incomeValue;
+
+    return Number(income.replace(',', '.'));
   }
 
   get clientUpdateInfo(): ClientUpdateInfo {
@@ -647,11 +676,10 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     addressDto.street = this.userFormGroup?.get('address')?.value;
     clientDto.address = addressDto;
     clientDto.email = this.emailFormGroup?.get('email')?.value;
-    clientDto.income =
-      typeof this.userFormGroup?.get('income')?.value === 'string'
-        ? this.userFormGroup.get('income')?.value.replace(/\s/g, '')
-        : this.userFormGroup?.get('income')?.value;
 
+    clientDto.income = this.getNumericValueFormated(
+      this.userFormGroup?.get('income')?.value
+    );
     clientDto.memberships = this.memberships.map((membership) => {
       return membership.name;
     });
@@ -665,19 +693,27 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
       this.showGenericDialog();
       return null;
     }
-    const remainingYears = this.loanFormGroup?.get('remainingYears')?.value;
+
     signicatLoanInfoDto.id = this.loanId;
-    signicatLoanInfoDto.remainingYears =
-      remainingYears != null && remainingYears !== '0' ? remainingYears : 20;
+
+    const remainingYears = this.loanFormGroup?.get('remainingYears')?.value;
+    const remainingYearsNotFormated: string =
+      remainingYears != null && remainingYears !== '0'
+        ? String(remainingYears)
+        : '20';
+
+    signicatLoanInfoDto.remainingYears = Number(
+      remainingYearsNotFormated.replace(',', '.')
+    );
 
     signicatLoanInfoDto.productId = String(
       this.loanFormGroup?.get('loanType')?.value.value
     );
 
-    signicatLoanInfoDto.outstandingDebt =
-      typeof this.loanFormGroup?.get('outstandingDebt')?.value === 'string'
-        ? this.loanFormGroup?.get('outstandingDebt')?.value.replace(/\s/g, '')
-        : this.loanFormGroup?.get('outstandingDebt')?.value;
+    signicatLoanInfoDto.outstandingDebt = this.getNumericValueFormated(
+      this.loanFormGroup?.get('outstandingDebt')?.value
+    );
+
     // default value is
     signicatLoanInfoDto.loanSubType = 'AMORTISING_LOAN';
     signicatLoanInfoDto.loanType = 'DOWNPAYMENT_REGULAR_LOAN';
@@ -693,9 +729,16 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     if (this.loanId) {
       signicatLoanInfoDto.id = this.loanId;
     }
-    const remainingYears = this.loanFormGroup?.get('remainingYears')?.value;
-    signicatLoanInfoDto.remainingYears =
-      remainingYears != null && remainingYears !== '0' ? remainingYears : 20;
+    const remainingYearsString = this.loanFormGroup?.get('remainingYears')
+      ?.value;
+    const remainingYears =
+      remainingYearsString != null && remainingYearsString !== '0'
+        ? remainingYearsString
+        : '20';
+
+    signicatLoanInfoDto.remainingYears = Number(
+      remainingYears.replace(',', '.')
+    );
 
     signicatLoanInfoDto.loanType = String(
       this.loanFormGroup?.get('loanTypeOption')?.value.value
@@ -709,9 +752,9 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
       signicatLoanInfoDto.loanSubType = 'SERIES_LOAN';
     }
 
-    signicatLoanInfoDto.fee = this.loanFormGroup
-      ?.get('fee')
-      ?.value.replace(/\s/g, '');
+    signicatLoanInfoDto.fee = Number(
+      this.loanFormGroup?.get('fee')?.value.replace(/\s/g, '')
+    );
 
     let rateString = this.loanFormGroup?.get('interestRate')?.value as string;
 
@@ -728,11 +771,9 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
       parseFloat(rateString).toFixed(3)
     );
 
-    signicatLoanInfoDto.outstandingDebt =
-      typeof this.loanFormGroup?.get('outstandingDebt')?.value === 'string'
-        ? this.loanFormGroup?.get('outstandingDebt')?.value.replace(/\s/g, '')
-        : this.loanFormGroup?.get('outstandingDebt')?.value;
-    // default value is
+    signicatLoanInfoDto.outstandingDebt = this.getNumericValueFormated(
+      this.loanFormGroup?.get('outstandingDebt')?.value
+    );
     signicatLoanInfoDto.loanSubType = 'AMORTISING_LOAN';
     return signicatLoanInfoDto;
   }
@@ -862,22 +903,6 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     this.currentStepperValue = this.stepper.selectedIndex;
   }
 
-  public goToLoansFormFromManulPropertyValue(): void {
-    this.isLoading = true;
-    this.loanService.getOffersBanks().subscribe((offerBanks) => {
-      this.productIdOptions = (offerBanks.offers as any[]).map((offer) => {
-        return {
-          name: offer.name,
-          value: offer.id
-        };
-      });
-      this.isLoading = false;
-      this.stepper.next();
-      this.scrollToTop();
-      this.currentStepperValue = this.stepper.selectedIndex;
-    });
-  }
-
   goToLoansForm(): void {
     this.isLoading = true;
     this.loanService.updateClientInfo(this.clientUpdateInfo).subscribe(
@@ -894,6 +919,17 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
           this.scrollToTop();
           this.currentStepperValue = this.stepper.selectedIndex;
         });
+
+        this.loanService.getAddresses().subscribe((res) => {
+          this.isManualPropertyValue = false;
+          const estimatedValue = res.addresses[0].estimatedPropertyValue;
+          if (estimatedValue && estimatedValue > 0) {
+            this.estimatedPropertyValueFromVirdi = estimatedValue;
+          } else {
+            this.showGenericDialog();
+            // alert(estimatedValue);
+          }
+        });
       },
       (error) => {
         if (
@@ -901,15 +937,55 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
           error.errorType === ApiError.propertyCantFindZip
         ) {
           this.isLoading = false;
-          this.dialog.open(VirdiErrorChoiceDialogComponent, {
+          this.dialog.open(VirdiManualValueDialogComponent, {
             data: {
-              address: this.clientUpdateInfo.address,
-              confirmText: 'Legg til boligverdi',
+              step: 1,
+              address: this.getFormValues().address,
               cancelText: 'Prøv ny adresse',
-              onConfirm: () => {
-                this.showManualInputForm = true;
-              },
-              onClose: () => {}
+              confirmText: 'Legg til boligverdi',
+              finishText: 'Neste',
+              onConfirm: () => {},
+              onClose: () => {},
+              onSendForm: (apartmentValue: string) => {
+                // Remove the whitespace
+                const value = apartmentValue.replace(/\s/g, '');
+
+                // Send the dataForm with apartment value
+                this.manualEstimatedPropertyValueFromUser = this.getNumericValueFormated(
+                  apartmentValue
+                );
+                // this.updateProperty(undefined);
+                const confDto = this.getFormValues();
+
+                this.isLoading = true;
+                this.loanService.setConfirmationData(confDto).subscribe(
+                  () => {
+                    this.loanService
+                      .getOffersBanks()
+                      .subscribe((offerBanks) => {
+                        this.productIdOptions = (offerBanks.offers as any[]).map(
+                          (offer) => {
+                            return {
+                              name: offer.name,
+                              value: offer.id
+                            };
+                          }
+                        );
+                        this.isLoading = false;
+                        this.isManualPropertyValue = true;
+                        this.stepper.next();
+                        this.scrollToTop();
+                        this.currentStepperValue = this.stepper.selectedIndex;
+                      });
+
+                    // this.isLoading = false;
+                    // this.next();
+                  },
+                  (err) => {
+                    console.log(err.type);
+                  }
+                );
+              }
             }
           });
         } else {
@@ -928,5 +1004,65 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
   goToMembershipForm(): void {
     this.scrollToTop();
     this.stepper.next();
+  }
+
+  getFormValues(): ConfirmationSetDto {
+    const emailForm = this.emailFormGroup?.value;
+
+    const userForm = this.userFormGroup?.value;
+
+    const _address = {
+      apartmentSize: userForm.apartmentSize,
+      apartmentValue: this.manualEstimatedPropertyValueFromUser,
+      propertyType: null,
+      street: userForm.address,
+      zip: userForm.zip
+    };
+
+    const incomeNumber = this.getNumericValueFormated(userForm.income);
+
+    const confDtoWithAprtmentValue: ConfirmationSetDto = new ConfirmationSetDto();
+    confDtoWithAprtmentValue.address = _address;
+    confDtoWithAprtmentValue.email = emailForm.email;
+    confDtoWithAprtmentValue.income = incomeNumber;
+    confDtoWithAprtmentValue.memberships = [];
+
+    return confDtoWithAprtmentValue;
+  }
+
+  setManualPropertyValue(): void {
+    this.dialog.open(VirdiManualValueDialogComponent, {
+      data: {
+        step: 2,
+        confirmText: 'Legg til boligverdi',
+        cancelText: 'Lukk',
+        finishText: 'Neste',
+        onConfirm: () => {},
+        onClose: () => {},
+        onSendForm: (apartmentValue: string) => {
+          // Remove the whitespace
+          const value = apartmentValue.replace(/\s/g, '');
+
+          // Send the dataForm with apartment value
+          this.manualEstimatedPropertyValueFromUser = this.getNumericValueFormated(
+            apartmentValue
+          );
+          // this.updateProperty(undefined);
+          const confDto = this.getFormValues();
+
+          this.isLoading = true;
+          this.loanService.setConfirmationData(confDto).subscribe(
+            () => {
+              this.isLoading = false;
+              this.isManualPropertyValue = true;
+              this.next();
+            },
+            (err) => {
+              console.log(err.type);
+            }
+          );
+        }
+      }
+    });
   }
 }

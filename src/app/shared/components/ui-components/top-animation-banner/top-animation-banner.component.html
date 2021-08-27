@@ -9,11 +9,14 @@
 </div>
 
 <div
+  (click)="onClickBanner()"
   *ngIf="animationType === checkAnimationStyle.DROP_DOWN_UP"
   [ngClass]="isDashboard ? 'dropdownupdash' : 'dropdownup'"
   [class.error]="status === 'error'"
   [class.success]="status === 'success'"
+  [class.success-with-arrow]="status === 'success-with-arrow'"
   [@dropDownUp]="animationState ? 'visible' : 'hidden'"
 >
   {{ displayText }}
+  <img class="scroll-arrow" src="{{ scrollArrowImg }}" *ngIf="scrollArrow" />
 </div>

@@ -5,7 +5,7 @@
 
   <div class="forms-wrapper">
     <div *ngIf="signicatIframeUrl !== null" class="iframe-wrapper">
-      <p class="warning" *ngIf="shouldShowBankWarningMessage">
+      <p class="warning" *ngIf="shouldShowBankWarningMessageDNB">
         Vi opplever at {{ bank?.label }} sperrer sine kunder fra å innhente egne
         lånedata. Derfor har vi laget en løsning hvor du selv fyller inn dine
         lånedata.
@@ -21,6 +21,14 @@
         <br />
         Velg identifikasjonsmetode nedenfor for å bruke denne løsningen.
       </p>
+
+      <div class="warning" *ngIf="shouldShowBankWarningMessage">
+        <p>
+          Vi kan dessverre i øyeblikket ikke innhente dine lånedata automatisk.
+          Vi jobber med å utbedre feilen. I mellomtiden kan du benytte vår
+          løsning hvor du selv fyller inn dine lånedata.
+        </p>
+      </div>
 
       <p>
         Ved å logge inn samtykker til at Renteradar.no henter og behandler dine
@@ -102,7 +110,8 @@
             [placeholder]="'Antall år igjen på lånet?'"
             [type]="'tel'"
             matSuffix="år"
-            [maxLength]="2"
+            [maxLength]="4"
+            [maskType]="mask.currency"
             formControlName="remainingYears"
             [errorStateMatcher]="
               isErrorState(loanFormGroup?.controls['remainingYears'])
@@ -159,6 +168,20 @@
           </div>
         </div>
 
+        <div
+          *ngIf="bank?.hasFixedLoans === false"
+          i18n="“help|info-confirmation@@info.confirmation.help”"
+          class="grid-right"
+          (click)="
+            openInfoDialog({
+              header: 'Faste gebyrer',
+              text: 'Her fyller du inn det månedlige termingebyret'
+            })
+          "
+        >
+          <mat-icon>help</mat-icon>
+        </div>
+
         <div *ngIf="bank?.hasFixedLoans === false" class="field left">
           <rente-input
             [placeholder]="'Nominell rente'"
@@ -200,6 +223,23 @@
           </mat-form-field>
         </div>
 
+        <div
+          *ngIf="bank?.hasFixedLoans === true"
+          i18n="“help|info-confirmation@@info.confirmation.help”"
+          class="grid-right-dropdown"
+          (click)="
+            openInfoDialog({
+              header: 'Lånetype',
+              text:
+                'Lånetype er navnet på lånet ditt og er ofte en kombinasjon av «Boliglån», «Rammelån» e.l. og belåningsgraden din. Eksempel: «Boliglån 50%».',
+              text2:
+                'Merk, listen inkluderer ikke fastrentelån siden tjenesten vår dessverre ikke har støtte for dette enda.'
+            })
+          "
+        >
+          <mat-icon>help</mat-icon>
+        </div>
+
         <div *ngIf="bank?.hasFixedLoans === false" class="field left">
           <mat-form-field appearance="fill">
             <mat-label>Lånetype</mat-label>
@@ -225,7 +265,7 @@
       <div class="header-wrapper">
         <rente-flow-header
           class="flow-header"
-          [count]="4"
+          [count]="5"
           [currentIndex]="currentStepperValue"
           (indexChange)="updateStepperIndex($event)"
         >
@@ -281,64 +321,6 @@
           <!-- New users userFormGroup-->
           <mat-step [stepControl]="userFormGroup" [editable]="true">
             <form
-              *ngIf="showManualInputForm === true"
-              [formGroup]="manualPropertyValueFormGroup"
-              novalidate
-              (ngSubmit)="next()"
-              class="center"
-            >
-              <div class="field-with-info">
-                <rente-input
-                  [placeholder]="'Din boligverdi'"
-                  formControlName="manualPropertyValue"
-                  matSuffix="kr"
-                  [errorStateMatcher]="
-                    isErrorState(
-                      manualPropertyValueFormGroup?.controls[
-                        'manualPropertyValue'
-                      ]
-                    )
-                  "
-                  [type]="'tel'"
-                  [maskType]="mask.currency"
-                >
-                </rente-input>
-                <div
-                  *ngIf="
-                    manualPropertyValueFormGroup?.controls[
-                      'manualPropertyValue'
-                    ].touched
-                  "
-                >
-                  <p
-                    i18n="“empty3|info-confirmation@@info.confirmation.empty3”"
-                    class="error small"
-                    *ngIf="
-                      manualPropertyValueFormGroup?.controls[
-                        'manualPropertyValue'
-                      ].hasError('required')
-                    "
-                  >
-                    Kan ikke være tom
-                  </p>
-                </div>
-                <div
-                  i18n="“help|info-confirmation@@info.confirmation.help”"
-                  class="clickable"
-                  (click)="
-                    openInfoDialog({
-                      text:
-                        'Din/Husstandens inntekt er en viktig parameter for renten bankene tilbyr'
-                    })
-                  "
-                >
-                  <mat-icon>help</mat-icon>
-                </div>
-              </div>
-            </form>
-
-            <form
-              *ngIf="showManualInputForm === false"
               [formGroup]="userFormGroup"
               novalidate
               (ngSubmit)="next()"
@@ -473,6 +455,51 @@
               </div>
             </form>
           </mat-step>
+          <!--  Confirm estimated value on house -->
+          <mat-step [editable]="true">
+            <div>
+              <div
+                class="propertyValueTitle"
+                *ngIf="
+                  estimatedPropertyValueFromVirdi !== null &&
+                  !isManualPropertyValue
+                "
+              >
+                <p class="propertyBox">Estimert boligverdi</p>
+                <h3 class="estimatedValueNumber">
+                  {{ estimatedPropertyValueFromVirdi | number }} kr
+                </h3>
+                <br /><br />
+                <!-- <h1 class="correctValueTitle"></h1> -->
+
+                <div class="setmanualbutton">
+                  <rente-button
+                    cdkFocusInitial
+                    color="primary-hollow"
+                    (click)="setManualPropertyValue()"
+                  >
+                    Endre boligverdi
+                  </rente-button>
+                </div>
+              </div>
+              <div class="propertyValueTitle" *ngIf="isManualPropertyValue">
+                <p class="propertyBox">Egen boligverdi estimat</p>
+                <h3 class="estimatedValueNumber">
+                  {{ manualEstimatedPropertyValueFromUser | number }} kr
+                </h3>
+                <br /><br />
+                <div class="setmanualbutton">
+                  <rente-button
+                    cdkFocusInitial
+                    color="primary-hollow"
+                    (click)="setManualPropertyValue()"
+                  >
+                    Endre boligverdi
+                  </rente-button>
+                </div>
+              </div>
+            </div>
+          </mat-step>
           <!-- New users loanFormGroup-->
           <mat-step [editable]="true">
             <form
@@ -531,7 +558,8 @@
                     [placeholder]="'Antall år igjen på lånet?'"
                     [type]="'tel'"
                     matSuffix="år"
-                    [maxLength]="2"
+                    [maxLength]="4"
+                    [maskType]="mask.currency"
                     formControlName="remainingYears"
                     [errorStateMatcher]="
                       isErrorState(loanFormGroup?.controls['remainingYears'])
@@ -599,6 +627,20 @@
                   </div>
                 </div>
 
+                <div
+                  *ngIf="bank?.hasFixedLoans === false"
+                  i18n="“help|info-confirmation@@info.confirmation.help”"
+                  class="grid-right"
+                  (click)="
+                    openInfoDialog({
+                      header: 'Faste gebyrer',
+                      text: 'Her fyller du inn det månedlige termingebyret'
+                    })
+                  "
+                >
+                  <mat-icon>help</mat-icon>
+                </div>
+
                 <div *ngIf="bank?.hasFixedLoans === false" class="field left">
                   <rente-input
                     [placeholder]="'Nominell rente'"
@@ -642,6 +684,23 @@
                       </mat-option>
                     </mat-select>
                   </mat-form-field>
+                </div>
+
+                <div
+                  *ngIf="bank?.hasFixedLoans === true"
+                  i18n="“help|info-confirmation@@info.confirmation.help”"
+                  class="grid-right-dropdown"
+                  (click)="
+                    openInfoDialog({
+                      header: 'Lånetype',
+                      text:
+                        'Lånetype er navnet på lånet ditt og er ofte en kombinasjon av «Boliglån», «Rammelån» e.l. og belåningsgraden din. Eksempel: «Boliglån 50%».',
+                      text2:
+                        'Merk, listen inkluderer ikke fastrentelån siden tjenesten vår dessverre ikke har støtte for dette enda.'
+                    })
+                  "
+                >
+                  <mat-icon>help</mat-icon>
                 </div>
 
                 <div *ngIf="bank?.hasFixedLoans === false" class="field left">
@@ -764,7 +823,6 @@
             Tilbake
           </rente-button>
           <rente-button
-            *ngIf="!showManualInputForm"
             class="right"
             (click)="goToLoansForm()"
             color="primary"
@@ -773,19 +831,27 @@
           >
             Neste
           </rente-button>
-
+        </div>
+        <!-- The switch case for confirming estimated value -->
+        <div *ngSwitchCase="2">
           <rente-button
-            *ngIf="showManualInputForm"
+            (click)="back()"
+            class="left"
+            color="mat-primar-hollow-medium"
+          >
+            Tilbake
+          </rente-button>
+          <rente-button
             class="right"
-            (click)="goToLoansFormFromManulPropertyValue()"
+            (click)="next()"
             color="primary"
             [isLoading]="isLoading"
-            [disabled]="manualPropertyValueFormGroup?.invalid || isLoading"
           >
-            Neste
+            Fortsett
           </rente-button>
         </div>
-        <div *ngSwitchCase="2">
+        <!-- Conf end -->
+        <div *ngSwitchCase="3">
           <rente-button
             (click)="back()"
             i18n="choose-office |change-bank@@change.bank.location.back"
@@ -804,7 +870,7 @@
             Neste
           </rente-button>
         </div>
-        <div *ngSwitchCase="3">
+        <div *ngSwitchCase="4">
           <rente-button
             (click)="back()"
             i18n="choose-office |change-bank@@change.bank.location.back"
@@ -820,7 +886,7 @@
             [isLoading]="isLoading"
             [disabled]="membershipFormGroup?.invalid || isLoading"
           >
-            Finn beste rente!
+            Ferdig
           </rente-button>
         </div>
         <div *ngSwitchDefault></div>

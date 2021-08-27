@@ -236,7 +236,6 @@ export class ConfirmationSetDto {
   email: string;
   income: number;
   memberships: string[];
-  name?: string;
 }
 
 export class AddressCreationDto {
