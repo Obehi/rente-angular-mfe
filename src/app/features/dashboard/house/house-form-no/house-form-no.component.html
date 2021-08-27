@@ -86,6 +86,12 @@
     <div *ngIf="!isStatMode" class="non-double estimated" [@fade]>
       <p class="house-value bold">Boligverdi</p>
       <div *ngIf="!address.useManualPropertyValue" [@fade]>
+        <p
+          class="estimate-error"
+          *ngIf="!address.estimatedPropertyValue && isAddressValid"
+        >
+          Kunne ikke estimere boligverdien
+        </p>
         <p class="green-minus" *ngIf="!isAddressValid">-</p>
         <p
           class="green-text"

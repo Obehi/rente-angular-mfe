@@ -164,6 +164,15 @@ rente-button {
     margin-top: 10px;
   }
 
+  .estimate-error {
+    color: red;
+    font-size: 13px;
+    font-weight: 500;
+    white-space: nowrap;
+    margin-top: 10px;
+    margin-left: -10%;
+  }
+
   .green-minus {
     color: $primary;
     font-size: 50px;
