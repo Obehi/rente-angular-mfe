@@ -60,6 +60,7 @@ p {
       @media (max-width: 600px) {
         width: 100%;
       }
+      max-width: 600px;
       height: 70px;
       width: 900px;
       display: flex;
@@ -136,6 +137,16 @@ p {
       }
     }
   }
+}
+
+::ng-deep .mat-tab-link {
+  justify-content: center;
+  padding: 0 !important;
+}
+
+::ng-deep .mat-tab-links {
+  justify-content: center;
+  padding: 0 !important;
 }
 
 .dash-tabs-normal {
