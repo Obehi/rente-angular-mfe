@@ -165,12 +165,11 @@ export class DashboardTabsDesktopComponent implements OnInit {
     setTimeout(() => {
       this.messageService.setView(
         this.customLangService.logout(),
-        43412000,
+        4000,
         this.animationType.DROP_DOWN_UP,
         'success',
         window
       );
-      console.log(document.querySelector('div')[0]);
     }, 0);
   }
 

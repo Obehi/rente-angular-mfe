@@ -60,7 +60,7 @@ export class HousesComponent implements OnInit, DeactivationGuarded {
   public showExplainText: boolean;
   public propertyIconPath: string | null;
   public animationType = getAnimationStyles();
-  public addressId: any;
+  public addressId: number;
 
   constructor(
     private loansService: LoansService,
@@ -136,9 +136,9 @@ export class HousesComponent implements OnInit, DeactivationGuarded {
     }
   }
 
-  scrollTo(divId: string): void {
+  scrollTo(divId: number): void {
     setTimeout(() => {
-      document.getElementById(divId)?.scrollIntoView({
+      document.getElementById(`${divId}`)?.scrollIntoView({
         behavior: 'smooth',
         block: 'start',
         inline: 'start'
