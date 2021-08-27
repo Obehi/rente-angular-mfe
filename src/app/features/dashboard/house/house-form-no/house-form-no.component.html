@@ -1,21 +1,25 @@
 <div class="housecontainer scroll-anchor" id="{{ index + 1 }}">
   <div class="heading">
-    <img src="../../../assets/icons/house-icon-white.svg" alt="Bolig" />
-    <b>Bolig {{ index + 1 }}</b>
-    <mat-icon
-      *ngIf="isAbleToDelete"
-      (click)="onDeleteAddressClick()"
-      class="clickable"
-      >delete_forever</mat-icon
-    >
-    <button
-      [disabled]="!isAddressValid"
-      (click)="toggleMode()"
-      class="clickable"
-    >
-      <p *ngIf="isEditMode">Se statistikk</p>
-      <mat-icon *ngIf="isStatMode">keyboard_backspace</mat-icon>
-    </button>
+    <div class="house-data">
+      <img src="../../../assets/icons/house-icon-white.svg" alt="Bolig" />
+      <b>Bolig {{ index + 1 }}</b>
+      <mat-icon
+        *ngIf="isAbleToDelete"
+        (click)="onDeleteAddressClick()"
+        class="clickable delete-button"
+        >delete_forever</mat-icon
+      >
+    </div>
+    <div class="statistics-data">
+      <button
+        [disabled]="!isAddressValid"
+        (click)="toggleMode()"
+        class="clickable"
+      >
+        <p *ngIf="isEditMode">Se statistikk</p>
+        <mat-icon *ngIf="isStatMode">keyboard_backspace</mat-icon>
+      </button>
+    </div>
   </div>
   <div class="body">
     <p *ngIf="!isStatMode" class="top-text bold" [@fade]>

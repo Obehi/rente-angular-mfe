@@ -29,19 +29,21 @@
   right: 0;
 }
 .heading {
+  display: flex;
+  justify-content: space-between;
   border-radius: 15px 15px 0 0;
-  background-color: rgb(0 68 101);
-  display: block;
-  padding: 20px 20px;
+  background-color: #004465;
+  padding: 14px 20px;
   font-weight: 500;
   font-size: 14px;
   position: relative;
+  align-items: center;
   b {
     display: inline-block;
     margin-left: 10px;
     color: $white;
   }
-  mat-icon {
+  .delete-button {
     position: absolute;
     top: 25px;
     transform: translateY(-50%);
@@ -49,17 +51,15 @@
     color: white;
   }
   button {
-    position: absolute;
-    right: 20px;
-    background: $primary;
+    background: #18bc9c;
     border: 0;
     border-radius: 20px;
-    height: 30px;
-    width: 30%;
-    top: 26%;
+    padding: 5px 20px;
+    width: 120px;
+    height: 33px;
+
     mat-icon {
-      position: relative;
-      top: 15px;
+      color: white;
     }
   }
   p {
@@ -69,7 +69,7 @@
     font-size: 14px;
   }
   img {
-    width: 4%;
+    width: 15%;
   }
 }
 .center-button {
@@ -201,6 +201,12 @@ rente-button {
     color: $white;
     margin-top: 2rem;
     font-size: 15px;
+  }
+
+  .house-data {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
   }
 
   .rente-input {
