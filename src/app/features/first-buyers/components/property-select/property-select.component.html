@@ -1,7 +1,10 @@
 <!-- MOBILE VERSION -->
 <div *ngIf="isMobile" class="main-div">
   <div *ngIf="isMobile" class="chosen-memberships-div">
-    <h2 class="selected-membership-top">
+    <h2
+      i18n="“issue-mail|membership@@membership.choosenMembershipMobile"
+      class="selected-membership-top"
+    >
       Valgte medlemskap ({{ selectedMemberships?.length || 0 }})
     </h2>
 
@@ -12,11 +15,11 @@
     >
       <div class="selected-membership">
         <p>
-          {{ option | truncate: 25 }}
+          {{ option.label | truncate: 25 }}
         </p>
         <img
           class="remove-icon"
-          src="{{ icon }}"
+          src="{{ rejectBlue }}"
           (click)="removeMembership(option)"
         />
       </div>
@@ -26,44 +29,43 @@
     <input
       class="search-div-input"
       [(ngModel)]="searchText"
-      placeholder="Søk medlemskap"
+      [placeholder]="langService.getMembershipSearchText()"
     />
-    <img class="search-icon" src="{{ searchIconDark }}" />
+    <img class="search-icon" src="{{ searchIconLight }}" />
   </div>
   <div class="dropdown-scroll">
-    <div class="dropdown-div">
-      <div
-        *ngFor="let option of membershipNames | filter: searchText"
-        class="list-div"
+    <div
+      *ngFor="let option of membershipNames | filter: searchText"
+      class="list-div"
+    >
+      <p *ngIf="!chosenMemberships(option)" (click)="chooseMembership(option)">
+        {{ option.label }}
+      </p>
+      <p
+        class="p-selected"
+        *ngIf="chosenMemberships(option)"
+        (click)="removeMembership(option)"
       >
-        <p
-          *ngIf="!chosenMemberships(option)"
-          (click)="chooseMembership(option)"
-        >
-          {{ option }}
-        </p>
-        <p
-          class="p-selected"
-          *ngIf="chosenMemberships(option)"
-          (click)="removeMembership(option)"
-        >
-          {{ option }}
-        </p>
-        <img
-          *ngIf="chosenMemberships(option)"
-          class="remove-icon-list"
-          src="{{ icon }}"
-          (click)="removeMembership(option)"
-        />
-      </div>
+        {{ option.label | truncate: 30 }}
+      </p>
+      <img
+        *ngIf="chosenMemberships(option)"
+        class="remove-icon-list"
+        src="{{ rejectBlue }}"
+        (click)="removeMembership(option)"
+      />
     </div>
   </div>
 </div>
+
 <!-- DESKTOP VERSION -->
 <div *ngIf="!isMobile" class="main-div">
   <div class="desktop-column-one">
     <div class="desktop-flex-part-one">
-      <h2 class="selected-membership-top">
+      <h2
+        i18n="“issue-mail|membership@@membership.choosenMembershipDesktop"
+        class="selected-membership-top"
+      >
         Valgte medlemskap ({{ selectedMemberships?.length || 0 }})
       </h2>
       <div class="selected-memberships">
@@ -74,11 +76,11 @@
         >
           <div class="selected-membership">
             <p>
-              {{ option | truncate: 19 }}
+              {{ option.label | truncate: 19 }}
             </p>
             <img
               class="remove-icon"
-              src="{{ icon }}"
+              src="{{ rejectBlue }}"
               (click)="removeMembership(option)"
             />
           </div>
@@ -90,33 +92,34 @@
         <input
           class="search-div-input"
           [(ngModel)]="searchText"
-          placeholder="Søk medlemskap"
+          [placeholder]="langService.getMembershipSearchText()"
         />
-        <img class="search-icon" src="{{ searchIconDark }}" />
+        <img class="search-icon" src="{{ searchIconLight }}" />
       </div>
       <div class="dropdown-scroll">
         <div class="dropdown-div">
           <div
             *ngFor="let option of membershipNames | filter: searchText"
             class="list-div"
+            [ngClass]="{ displayselected: chosenMemberships(option) }"
           >
             <p
               *ngIf="!chosenMemberships(option)"
               (click)="chooseMembership(option)"
             >
-              {{ option }}
+              {{ option.label }}
             </p>
             <p
               class="p-selected"
               *ngIf="chosenMemberships(option)"
               (click)="removeMembership(option)"
             >
-              {{ option }}
+              {{ option.label }}
             </p>
             <img
               *ngIf="chosenMemberships(option)"
               class="remove-icon-list"
-              src="{{ icon }}"
+              src="{{ rejectBlue }}"
               (click)="removeMembership(option)"
             />
           </div>

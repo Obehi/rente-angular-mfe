@@ -41,7 +41,7 @@ export class PropertyInputComponent implements OnInit {
   @Input() options: { name?: string; value?: string; label: string }[];
   @Input() autocompleteOptions: any;
   @Input() memberships: MembershipTypeDto[];
-  public previousStateMemberships: string[] = [];
+  public previousStateMemberships: MembershipTypeDto[] = [];
   @Output() selectedMemberships = new EventEmitter<MembershipTypeDto[]>();
   @ViewChild(SelectAutocompleteComponent)
   multiSelect: SelectAutocompleteComponent;
@@ -127,7 +127,9 @@ export class PropertyInputComponent implements OnInit {
     if (this.previousStateMemberships?.length === 0) {
       return 'Velg';
     } else if (this.previousStateMemberships?.length === 1) {
-      return `${this.previousStateMemberships}`;
+      return `${this.previousStateMemberships.map((m) => {
+        return m.label;
+      })}`;
     } else if (this.previousStateMemberships?.length > 1) {
       return `${this.previousStateMemberships?.length} medlemskap valgt`;
     }
