@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CustomLangTextService } from '@services/custom-lang-text.service';
+import { EnvService } from '@services/env.service';
 import {
   TrackingDto,
   TrackingService
@@ -12,7 +13,8 @@ import { OfferInfo } from '../../../../shared/models/offers';
 export class OfferCardService {
   constructor(
     private trackingService: TrackingService,
-    private langService: CustomLangTextService
+    private langService: CustomLangTextService,
+    private envService: EnvService
   ) {}
 
   public handleNybyggerProductSpecialCase(offer: OfferInfo): boolean {
@@ -74,6 +76,12 @@ export class OfferCardService {
   }
 
   public getOfferButtonText(offer: OfferInfo): string {
+    const testText =
+      this.getVariation() === 0
+        ? 'Flytt boliglånet til Nordea Direct'
+        : 'Les mer og søk om lån';
+    console.log('testText');
+    console.log(testText);
     let text = '';
     switch (offer.bankInfo.bank) {
       case 'SPAREBANKENOST': {
@@ -97,11 +105,46 @@ export class OfferCardService {
         text = 'Få erbjudande från Hypoteket';
         break;
       }
+      /* case 'YS_NORDEA_DIRECT': {
+        text =
+          this.getVariation() === 0
+            ? 'Flytt boliglånet til Nordea Direct'
+            : 'Les mer og søk om lån';
+        break;
+      }
+
+      case 'UNIO_NORDEA_DIRECT': {
+        text =
+          this.getVariation() === 0
+            ? 'Flytt boliglånet til Nordea Direct'
+            : 'Les mer og søk om lån';
+        break;
+      } */
       default: {
         text = this.langService.getOffeCardCTAButtonText();
         break;
       }
     }
     return text;
+  }
+
+  public getVariation() {
+    if ((window as any).google_optimize === undefined) {
+      console.log('couldnt get optimize');
+      return 0;
+    }
+    let experimentId: string | null;
+    if (this.envService.environment.production === true) {
+      console.log('is production');
+      experimentId = '_7-we-p9SA2OAVDcKn0xVA';
+    } else {
+      console.log('is not production');
+      experimentId = 'A6Fvld2GTAG3VE95NWV1Hw';
+    }
+
+    const variation = (window as any).google_optimize.get(experimentId);
+    console.log((window as any).google_optimize.get(experimentId));
+    console.log(variation);
+    return variation || 0;
   }
 }

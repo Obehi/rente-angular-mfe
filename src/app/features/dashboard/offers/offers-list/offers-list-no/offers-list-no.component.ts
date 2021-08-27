@@ -22,7 +22,7 @@ export class OffersListNoComponent implements OnInit, OnDestroy {
     private notificationService: NotificationService,
     private envService: EnvService
   ) {
-    console.log(this.getVariation());
+    // console.log(this.getVariation());
   }
 
   // Save for later use
