@@ -78,7 +78,7 @@ export class MessageBannerService implements OnDestroy {
         newNode.style.top = '70px';
       }
     } else {
-      newNode.style.top = '100px';
+      newNode.style.top = '70px';
     }
 
     document.getElementsByClassName(this.getContentClass())[0].prepend(newNode);
@@ -106,7 +106,6 @@ export class MessageBannerService implements OnDestroy {
       this.setTimeoutListener(_newtext);
     }
 
-    console.log('ataching view!');
     this.appRef.attachView(this._componentRef.hostView);
     this.viewIsAlreadyAttached = true;
 
