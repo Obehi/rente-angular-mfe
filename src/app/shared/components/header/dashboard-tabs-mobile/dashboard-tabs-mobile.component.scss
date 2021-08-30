@@ -12,14 +12,17 @@
   .notification {
     color: white;
     position: absolute;
-    right: 15px;
-    top: -3px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
     font-size: 14px;
+    right: -35px;
+    top: -3px;
+    left: 0px;
     p {
       font-weight: 400;
       color: white !important;
     }
-    right: -10px;
   }
 }
 
@@ -57,10 +60,11 @@ p {
       @media (max-width: 600px) {
         width: 100%;
       }
+      max-width: 600px;
       height: 70px;
       width: 900px;
       display: flex;
-      justify-content: center;
+      justify-content: space-between;
       align-items: center;
       background-color: $secondary;
     }
@@ -81,7 +85,7 @@ p {
     align-items: center;
     .dash-tab {
       text-align: center;
-      // width: 25%;
+      width: 25%;
       display: block;
       border: none;
       height: 100%;
@@ -133,6 +137,16 @@ p {
       }
     }
   }
+}
+
+::ng-deep .mat-tab-link {
+  justify-content: center;
+  padding: 0 !important;
+}
+
+::ng-deep .mat-tab-links {
+  justify-content: center;
+  padding: 0 !important;
 }
 
 .dash-tabs-normal {

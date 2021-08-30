@@ -1519,7 +1519,7 @@ export const MissingBankList: BankVo[] = [
     false,
     false,
     false,
-    false,
+    true,
     true,
     false,
     null

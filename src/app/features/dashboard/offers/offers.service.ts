@@ -40,6 +40,7 @@ export class OffersService implements OnDestroy {
 
   ngOnDestroy(): void {
     this.scrollOffersSubscription.unsubscribe();
+    this.notificationScrollSubscription.unsubscribe();
   }
   pushMessage(message: OfferMessage): void {
     this.messageHandler.next(message);
@@ -90,8 +91,6 @@ export class OffersService implements OnDestroy {
         this.messageBannerService.detachView();
         this.notificationService.resetOfferNotification();
       });
-
-    console.log(this.notificationScrollSubscription);
   }
 }
 

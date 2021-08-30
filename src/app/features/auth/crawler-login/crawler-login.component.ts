@@ -403,4 +403,16 @@ export class CrawlerLoginComponent implements OnInit, OnDestroy {
       }
     };
   }
+
+  scrollToBankIDMobile(): void {
+    const ref = document.getElementsByClassName('BankIDMobile')[0];
+
+    setTimeout(() => {
+      ref.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+        inline: 'start'
+      });
+    }, 100);
+  }
 }

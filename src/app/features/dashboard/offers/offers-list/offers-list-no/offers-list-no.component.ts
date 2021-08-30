@@ -27,7 +27,6 @@ import {
   debounceTime,
   timeout,
   map,
-  retry,
   share,
   skip,
   switchMap,
@@ -47,6 +46,7 @@ import { LocalStorageService } from '@services/local-storage.service';
 import { MessageBannerService } from '@services/message-banner.service';
 import { getAnimationStyles } from '@shared/animations/animationEnums';
 import { NotificationService } from '../../../../../shared/services/notification.service';
+
 @Component({
   selector: 'rente-offers-list',
   templateUrl: './offers-list-no.component.html',
@@ -407,5 +407,22 @@ export class OffersListNoComponent implements OnInit, OnDestroy {
         this.onScroll = false;
       }
     });
+  }
+
+  private setNotificationScrollListener(): void {
+    const obj = document.getElementsByClassName('the-offers')[0];
+
+    this.scrollSubscription = fromEvent(window, 'scroll')
+      .pipe(
+        filter(() => obj?.getBoundingClientRect().top <= 0),
+        switchMap(() =>
+          this.notificationService.getOfferNotificationAsObservable()
+        ),
+        filter((notificationNumber) => notificationNumber === 1)
+      )
+      .subscribe(() => {
+        this.messageBannerService.detachView();
+        this.notificationService.resetOfferNotification();
+      });
   }
 }

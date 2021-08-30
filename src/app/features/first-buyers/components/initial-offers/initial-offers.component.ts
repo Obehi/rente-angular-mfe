@@ -6,7 +6,11 @@ import {
   ValidatorFn,
   ValidationErrors
 } from '@angular/forms';
-import { MatAutocompleteSelectedEvent, MatStepper } from '@angular/material';
+import {
+  MatAutocompleteSelectedEvent,
+  MatDialog,
+  MatStepper
+} from '@angular/material';
 import { Router } from '@angular/router';
 import { FirstBuyersService } from '@features/first-buyers/first-buyers.service';
 import { FirstBuyersAPIService } from '@services/remote-api/first-buyers-api.service';
@@ -24,6 +28,7 @@ import {
   take
 } from 'rxjs/operators';
 import { SeoService } from '@services/seo.service';
+import { MembershipService } from '@services/membership.service';
 
 @Component({
   selector: 'rente-initial-offers',
@@ -66,10 +71,11 @@ export class InitialOffersComponent implements OnInit {
     },
     { validators: this.loanToValueRatioValidator, updateOn: 'blur' }
   );
-  public allMemberships: MembershipTypeDto[] = [];
+  public allMemberships: any[] = [];
   selectedIndex: number | null = 1;
   public filteredMemberships: Observable<MembershipTypeDto[]>;
   public memberships: MembershipTypeDto[] = [];
+
   properties = [
     {
       icon: 'monetization_on',
@@ -223,8 +229,10 @@ export class InitialOffersComponent implements OnInit {
     private loansService: LoansService,
     private firstBuyersService: FirstBuyersService,
     private firstBuyersAPIService: FirstBuyersAPIService,
+    private membershipService: MembershipService,
     private router: Router,
-    private seoService: SeoService
+    private seoService: SeoService,
+    public dialog: MatDialog
   ) {}
 
   get outstandingDebtControl(): AbstractControl {
@@ -320,6 +328,13 @@ export class InitialOffersComponent implements OnInit {
     ]).subscribe(() => {
       this.formGroup.markAsDirty();
     });
+
+    this.membershipService.getSelectedMemberships().subscribe((memberships) => {
+      this.formGroup.markAsDirty();
+      this.firstBuyersAPIService
+        .updateMembership(memberships)
+        .subscribe((_) => {});
+    });
   }
 
   selected(event: MatAutocompleteSelectedEvent): void {
@@ -331,17 +346,27 @@ export class InitialOffersComponent implements OnInit {
   }
 
   updateMemberships(): void {
-    this.firstBuyersService.selectedMemberships = [
+    this.membershipService.selectedMemberships = [
       ...this.memberships,
       ...this.selectedFeaturedMemberships
     ];
     this.firstBuyersAPIService
       .updateMembership(
-        this.firstBuyersService.selectedMemberships.map((item) => item.name)
+        this.membershipService.selectedMemberships.map((item) => item.name)
       )
       .subscribe((_) => {
         this.formGroup.markAsDirty();
       });
+  }
+
+  updateMemberships2(memberships): void {
+    this.membershipService.selectedMemberships = [
+      ...this.memberships,
+      ...this.selectedFeaturedMemberships
+    ];
+    this.firstBuyersAPIService.updateMembership(memberships).subscribe((_) => {
+      this.formGroup.markAsDirty();
+    });
   }
 
   isAllDataFilled(): boolean {
@@ -362,7 +387,6 @@ export class InitialOffersComponent implements OnInit {
 
   forbiddenNameValidator(nameRe: RegExp): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } | null => {
-      const forbidden = nameRe.test(control.value);
       return { forbiddenName: true };
     };
   }
@@ -387,7 +411,7 @@ export class InitialOffersComponent implements OnInit {
     this.updateMemberships();
   }
 
-  deleteMembership(membership: MembershipTypeDto): void {
+  deleteMembership(membership: any): void {
     this.memberships.splice(this.memberships.indexOf(membership), 1);
     this.updateMemberships();
   }
@@ -412,6 +436,10 @@ export class InitialOffersComponent implements OnInit {
 
     this.subscribeToControllers();
 
+    this.membershipService.messages().subscribe(() => {
+      this.formGroup.markAsDirty();
+    });
+
     if (!this.firstBuyersService.offerValue?.income) {
       this.incomeStepShown = true;
     } else {
@@ -420,6 +448,7 @@ export class InitialOffersComponent implements OnInit {
 
     this.loansService.getConfirmationData().subscribe((dto) => {
       this.allMemberships = dto.availableMemberships;
+      this.extraProperties[0].options = this.allMemberships;
       this.featuredMemberships = this.allMemberships.filter((membership) => {
         return (
           membership.name === 'AKADEMIKERNE' ||

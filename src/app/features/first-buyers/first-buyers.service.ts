@@ -13,8 +13,6 @@ export interface FirstBuyersState {
   providedIn: 'root'
 })
 export class FirstBuyersService {
-  selectedMemberships: MembershipTypeDto[] = [];
-
   constructor(
     private authService: AuthService,
     private localStorageService: LocalStorageService

@@ -16,8 +16,6 @@ import { AntiChurnDialogComponent } from '@features/dashboard/offers/anti-churn-
 import { AntiChurnErrorDialogComponent } from '@features/dashboard/offers/anti-churn-dialog/anti-churn-error-dialog/anti-churn-error-dialog.component';
 import { ChangeBankTooManyTriesDialogError } from '@features/dashboard/offers/change-bank-dialog/change-bank-too-many-tries-dialog-error/change-bank-too-many-tries-dialog-error.component';
 
-import { ChangeBankServiceService } from '@services/remote-api/change-bank-service.service';
-import { TrackingService } from '@services/remote-api/tracking.service';
 import { Subscription, Observable, fromEvent } from 'rxjs';
 import { debounceTime, filter, tap } from 'rxjs/operators';
 import { OFFERS_LTV_TYPE } from '../../../../shared/models/offers';
@@ -143,7 +141,9 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
       );
 
       this.messageService.getClickSubject$().subscribe(() => {
-        this.scrollTo();
+        setTimeout(() => {
+          this.scrollTo();
+        }, 100);
         this.notificationService.resetOfferNotification();
       });
     }

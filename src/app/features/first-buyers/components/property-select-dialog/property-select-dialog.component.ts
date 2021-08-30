@@ -55,13 +55,11 @@ export class PropertySelectDialogComponent implements OnInit, OnDestroy {
   save(): void {
     if (this.hasChanged === true) {
       this.membershipService.setSelectedMemberships(this.memberships);
-      this.closeState = 'saved';
       this.onClose();
     }
   }
 
   cancel(): void {
-    this.closeState = 'cancelled';
     this.onClose();
   }
 }
