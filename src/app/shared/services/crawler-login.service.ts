@@ -25,4 +25,8 @@ export class CrawlerLoginService {
       ? this.firstRetry$.next()
       : this.secondRetry$.next();
   }
+
+  forceSignicatRedirect(): void {
+    this.secondRetry$.next();
+  }
 }
