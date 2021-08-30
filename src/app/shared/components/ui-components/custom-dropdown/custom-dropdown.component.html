@@ -1,10 +1,10 @@
 <div class="mypanel">
   <div class="title" (click)="toggle.emit()">
     {{ title }}
-    <mat-icon *ngIf="!opened" [@openClose]="!opened ? 'open' : 'close'"
+    <mat-icon *ngIf="!opened" [@openClose]="!opened ? 'close' : 'open'"
       >expand_more</mat-icon
     >
-    <mat-icon *ngIf="opened" [@openClose]="opened ? 'close' : 'open'"
+    <mat-icon *ngIf="opened" [@openClose]="opened ? 'open' : 'close'"
       >expand_less</mat-icon
     >
   </div>
