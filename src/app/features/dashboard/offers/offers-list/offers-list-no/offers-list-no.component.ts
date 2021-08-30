@@ -173,7 +173,6 @@ export class OffersListNoComponent implements OnInit, OnDestroy {
   public currentOfferType: string;
 
   ngOnDestroy(): void {
-    this.scrollSubscription.unsubscribe();
     this.demoClickSubscription.unsubscribe();
   }
 
@@ -184,7 +183,6 @@ export class OffersListNoComponent implements OnInit, OnDestroy {
     this.initDemoListener();
     this.initCurrentOfferListener();
     this.initScoreListener();
-    this.setNotificationScrollListener();
 
     this.currentOfferInfo = JSON.parse(JSON.stringify(this.offersInfo));
 
@@ -409,22 +407,5 @@ export class OffersListNoComponent implements OnInit, OnDestroy {
         this.onScroll = false;
       }
     });
-  }
-
-  private setNotificationScrollListener(): void {
-    const obj = document.getElementsByClassName('the-offers')[0];
-
-    this.scrollSubscription = fromEvent(window, 'scroll')
-      .pipe(
-        filter(() => obj?.getBoundingClientRect().top <= 0),
-        switchMap(() =>
-          this.notificationService.getOfferNotificationAsObservable()
-        ),
-        filter((notificationNumber) => notificationNumber === 1)
-      )
-      .subscribe(() => {
-        this.messageBannerService.detachView();
-        this.notificationService.resetOfferNotification();
-      });
   }
 }

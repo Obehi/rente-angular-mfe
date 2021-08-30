@@ -1,5 +1,7 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { Offers } from '@models/offers';
+import { MessageBannerService } from '@services/message-banner.service';
+import { NotificationService } from '@services/notification.service';
 import { LoansService } from '@services/remote-api/loans.service';
 import { fromEvent, Observable, Subject, Subscription } from 'rxjs';
 import { debounceTime, filter, share, switchMap, tap } from 'rxjs/operators';
@@ -15,6 +17,8 @@ export class OffersService implements OnDestroy {
   private offers$: Observable<Offers>;
   public shouldUpdateOffersLater = false;
   private scrollOffersSubscription: Subscription;
+  public notificationScrollSubscription: Subscription;
+
   public readonly updateOfferResponse$ = this.updateOffers$.pipe(
     switchMap(() => this.loansService.getOffers()),
     share(),
@@ -23,10 +27,15 @@ export class OffersService implements OnDestroy {
       this.shouldUpdateOffersLater = false;
     })
   );
-  constructor(private loansService: LoansService) {
+  constructor(
+    private loansService: LoansService,
+    private notificationService: NotificationService,
+    public messageBannerService: MessageBannerService
+  ) {
     this.messageHandler = new Subject<OfferMessage>();
     // this.offers$ = this.loansService.getOffers();
     this.scrollOffersSubscription = this.scrollOfferUpdateObserver().subscribe();
+    this.setNotificationScrollListener();
   }
 
   ngOnDestroy(): void {
@@ -61,6 +70,28 @@ export class OffersService implements OnDestroy {
         this.updateOffers$.next();
       })
     );
+  }
+
+  private setNotificationScrollListener(): void {
+    this.notificationScrollSubscription = fromEvent(window, 'scroll')
+      .pipe(
+        filter(
+          () =>
+            document
+              .getElementsByClassName('the-offers')[0]
+              ?.getBoundingClientRect().top <= 0
+        ),
+        switchMap(() =>
+          this.notificationService.getOfferNotificationAsObservable()
+        ),
+        filter((notificationNumber) => notificationNumber === 1)
+      )
+      .subscribe(() => {
+        this.messageBannerService.detachView();
+        this.notificationService.resetOfferNotification();
+      });
+
+    console.log(this.notificationScrollSubscription);
   }
 }
 
