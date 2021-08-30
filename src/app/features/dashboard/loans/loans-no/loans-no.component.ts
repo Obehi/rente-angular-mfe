@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoansService } from '@services/remote-api/loans.service';
-import { Loans } from '@shared/models/loans';
-import { BankUtils } from '@shared/models/bank';
+import { Loans, bankOfferDto } from '@shared/models/loans';
 import {
   trigger,
   transition,
@@ -13,15 +12,6 @@ import { locale } from '@config/locale/locale';
 import { MessageBannerService } from '@services/message-banner.service.ts';
 import { getAnimationStyles } from '@shared/animations/animationEnums';
 
-interface offerDto {
-  offers: [
-    {
-      id: string;
-      name: string;
-      rate: number;
-    }
-  ];
-}
 @Component({
   selector: 'rente-loans',
   templateUrl: './loans-no.component.html',
@@ -51,7 +41,7 @@ export class LoansNoComponent implements OnInit {
   public locale: string;
   public isSignicatUser: boolean;
   public isFixedPriceBank: boolean;
-  public offer: offerDto;
+  public offers: bankOfferDto[];
   public animationType = getAnimationStyles();
 
   constructor(
@@ -65,7 +55,7 @@ export class LoansNoComponent implements OnInit {
     this.loansService.getLoanAndOffersBanks().subscribe(
       ([loans, offerBank]) => {
         this.loansData = loans;
-        this.offer = offerBank as offerDto;
+        this.offers = offerBank.offers;
 
         /*
            Backend returns origin which contains either 1 or 2
@@ -73,19 +63,13 @@ export class LoansNoComponent implements OnInit {
           isFixedPriceBank of type boolean is also included in the returned object to check
          */
 
-        // if (this.loansData.origin === 1) this.isSignicatUser = false;
-        // if (this.loansData.origin === 2) this.isSignicatUser = true;
-        // if (this.isSignicatUser && this.loansData.isFixedPriceBank)
-        //   this.isFixedPriceBank = true;
+        if (this.loansData.origin === 1) this.isSignicatUser = false;
+        if (this.loansData.origin === 2) this.isSignicatUser = true;
+        if (this.isSignicatUser && this.loansData.isFixedPriceBank)
+          this.isFixedPriceBank = true;
 
-        this.isSignicatUser = false;
-        this.isFixedPriceBank = true;
-
-        console.log('Is signicatuser?');
-        console.log(this.isSignicatUser);
-
-        console.log('Is fixed price?');
-        console.log(this.isFixedPriceBank);
+        // this.isSignicatUser = false;
+        // this.isFixedPriceBank = true;
       },
       (err) => {
         this.errorMessage = err.title;

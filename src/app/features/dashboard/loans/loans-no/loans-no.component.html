@@ -13,6 +13,8 @@
 
   <rente-signicat-fixed-price
     *ngIf="isSignicatUser && isFixedPriceBank"
+    [loanData]="loansData"
+    [allOffers]="offers"
   ></rente-signicat-fixed-price>
 
   <div *ngIf="locale === 'nb'" class="center-logo">

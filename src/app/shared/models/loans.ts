@@ -13,7 +13,9 @@ export interface LoanInfo {
   bank: string;
   bankKey: string;
   effectiveRate: number;
+  isIncompleteInfoLoan: boolean;
   loanName: string;
+  loanType: string;
   nominalRate: number;
   outstandingDebt: number;
   remainingYears: number;
@@ -37,6 +39,12 @@ export class SignicatLoanInfoDto {
   loanType: string;
   fee?: number;
   nominalInterestRate?: number;
+}
+
+export interface bankOfferDto {
+  name: string;
+  id: string;
+  rate: number;
 }
 
 export type SignicatLoanInfoDtoArray = Array<SignicatLoanInfoDto>;

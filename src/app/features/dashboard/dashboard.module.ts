@@ -73,6 +73,7 @@ import { CurrencyMaskModule } from 'ng2-currency-mask';
 import { CrawlerBanksComponent } from './loans/loans-no/crawler-banks/crawler-banks.component';
 import { SignicatUsersComponent } from './loans/loans-no/signicat-users/signicat-users.component';
 import { SignicatFixedPriceComponent } from './loans/loans-no/signicat-fixed-price/signicat-fixed-price.component';
+import { LoanFixedPriceComponent } from './loans/loans-no/signicat-fixed-price/loan-fixed-price/loan-fixed-price.component';
 
 // TODO: ADD separate module for material import
 @NgModule({
@@ -124,7 +125,8 @@ import { SignicatFixedPriceComponent } from './loans/loans-no/signicat-fixed-pri
     ActionBoxesComponent,
     CrawlerBanksComponent,
     SignicatUsersComponent,
-    SignicatFixedPriceComponent
+    SignicatFixedPriceComponent,
+    LoanFixedPriceComponent
   ],
   imports: [
     CommonModule,
