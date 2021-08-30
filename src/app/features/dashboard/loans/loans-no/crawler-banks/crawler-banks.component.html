@@ -3,135 +3,138 @@
   *ngIf="loansData && loansData.loans && loansData.loans.length > 0"
 >
   <h3 class="title">Sammendrag av lån</h3>
-  <div class="content-blue-box">
-    <div class="all-text">
-      <div class="information-box">
-        <div class="box-title">
-          <p>Utestående lån:</p>
+  <div class="summary-box">
+    <div class="four-container">
+      <div class="tab-container">
+        <div class="btitle-one">
+          <p>Utestående lån</p>
         </div>
-        <div class="box-value">
-          <h3 class="h3-loan-value">
+        <div class="bvalue">
+          <h3>
             {{ loansData.totalOutstandingDebt / 1000000 | number: '1.3-3' }}
-            millioner
+            mill
           </h3>
         </div>
       </div>
-      <div class="information-box">
-        <div class="box-title">
+      <div class="tab-container">
+        <div class="btitle-two">
           <p>Effektiv rente</p>
         </div>
-        <div class="box-value">
+
+        <div class="bvalue">
           <h3>{{ loansData.totalEffectiveRate | number: '1.2-2' }} %</h3>
         </div>
       </div>
-    </div>
-
-    <div class="total-cost">
-      <div class="double-container">
-        <div class="first-box move-first-box">
-          <div class="btitle-one">
-            <p>Totale renter og gebyrer</p>
-          </div>
-          <div class="bvalue">
+      <div class="tab-container">
+        <div class="btitle-one">
+          <p>Totale renter og gebyrer</p>
+        </div>
+        <div class="bvalue">
+          <h3>
             {{
               loansData.aggregatedTotalInterestAndFee == null
                 ? 'N/A'
                 : (loansData.aggregatedTotalInterestAndFee | number: '1.0-0') +
                   ',-'
             }}
-          </div>
+          </h3>
         </div>
-
-        <div class="first-box move-sec-box">
-          <div class="btitle-two">
-            <p>Renter & gebyrer per år</p>
-          </div>
-          <div class="bvalue">
+      </div>
+      <div class="tab-container">
+        <div class="btitle-two">
+          <p>Renter & gebyrer per år</p>
+        </div>
+        <div class="bvalue">
+          <h3>
             {{
               loansData.aggregatedTotalInterestAndFeeByRemainingYears == null
                 ? 'N/A'
                 : (loansData.aggregatedTotalInterestAndFeeByRemainingYears
                     | number: '1.0-0') + ',-'
             }}
-          </div>
+          </h3>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<div *ngFor="let loan of loans">
-  <div class="summary">
-    <div class="content-blue-box">
-      <div class="loan-type">
-        <h3>{{ loan.loanName }}</h3>
-      </div>
-      <div class="all-text">
-        <div class="loan-info">
-          <div>
-            <p>Utestående lån:</p>
+<div class="summary">
+  <div class="blue-box-list">
+    <div *ngFor="let loan of loans">
+      <div class="loan-list">
+        <div class="content-blue-box">
+          <div class="loan-type">
+            <b>{{ loan.loanName }}</b>
           </div>
-          <div>
-            <h3 class="h3-loan-value">
-              {{ loan.outstandingDebt / 1000000 | number: '1.3-3' }}
-              millioner
-            </h3>
-          </div>
-        </div>
-        <div class="loan-info">
-          <div>
-            <p>Løpetid:</p>
-          </div>
-          <div>
-            <h3>{{ loan.remainingYears | number: '1.2-2' }} år</h3>
-          </div>
-        </div>
-
-        <div class="loan-info">
-          <div>
-            <p>Effektiv rente:</p>
-          </div>
-          <div>
-            <h3>{{ loan.effectiveRate | number: '1.2-2' }} %</h3>
-          </div>
-        </div>
-
-        <div class="loan-info">
-          <div>
-            <p>Nominell rente:</p>
-          </div>
-          <div>
-            <h3>{{ loan.nominalRate | number: '1.2-2' }} %</h3>
-          </div>
-        </div>
-      </div>
-
-      <div class="total-cost">
-        <div class="double-container">
-          <div class="first-box move-first-box">
-            <div class="btitle-one">
-              <p>Totale renter og gebyrer</p>
+          <div class="all-text">
+            <div class="loan-info">
+              <div>
+                <p>Utestående lån:</p>
+              </div>
+              <div>
+                <h3 class="h3-loan-value">
+                  {{ loan.outstandingDebt / 1000000 | number: '1.3-3' }}
+                  mill
+                </h3>
+              </div>
             </div>
-            <div class="bvalue">
-              {{
-                loan.totalInterestAndTotalFee == null
-                  ? 'N/A'
-                  : (loan.totalInterestAndTotalFee | number: '1.0-0') + ',-'
-              }}
+            <div class="loan-info">
+              <div>
+                <p>Løpetid:</p>
+              </div>
+              <div>
+                <h3>{{ loan.remainingYears | number: '1.2-2' }} år</h3>
+              </div>
+            </div>
+
+            <div class="loan-info">
+              <div>
+                <p>Effektiv rente:</p>
+              </div>
+              <div>
+                <h3>{{ loan.effectiveRate | number: '1.2-2' }} %</h3>
+              </div>
+            </div>
+
+            <div class="loan-info">
+              <div>
+                <p>Nominell rente:</p>
+              </div>
+              <div>
+                <h3>{{ loan.nominalRate | number: '1.2-2' }} %</h3>
+              </div>
             </div>
           </div>
 
-          <div class="first-box move-sec-box">
-            <div class="btitle-two">
-              <p>Renter & gebyrer per år</p>
-            </div>
-            <div class="bvalue">
-              {{
-                loan.totalInterestAndTotalFeeByRemainingYears == null
-                  ? 'N/A'
-                  : (loan.totalInterestAndTotalFeeByRemainingYears
-                      | number: '1.0-0') + ',-'
-              }}
+          <div class="total-cost">
+            <div class="double-container">
+              <div class="first-box move-first-box">
+                <div class="btitle-one">
+                  <p>Totale renter og gebyrer</p>
+                </div>
+                <div class="bvalue">
+                  {{
+                    loan.totalInterestAndTotalFee == null
+                      ? 'N/A'
+                      : (loan.totalInterestAndTotalFee | number: '1.0-0') + ',-'
+                  }}
+                </div>
+              </div>
+
+              <div class="first-box move-sec-box">
+                <div class="btitle-two">
+                  <p>Renter & gebyrer per år</p>
+                </div>
+                <div class="bvalue">
+                  {{
+                    loan.totalInterestAndTotalFeeByRemainingYears == null
+                      ? 'N/A'
+                      : (loan.totalInterestAndTotalFeeByRemainingYears
+                          | number: '1.0-0') + ',-'
+                  }}
+                </div>
+              </div>
             </div>
           </div>
         </div>

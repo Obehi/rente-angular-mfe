@@ -34,6 +34,7 @@ export class SignicatFixedPriceComponent implements OnInit {
   public loanTypeID: string;
   public showDisplayBox = true;
   public showButton = false;
+  public isDisabled = true;
   public changesMade = false;
   public changingSubscription: Subscription;
   public animationStyle = getAnimationStyles();
@@ -82,10 +83,6 @@ export class SignicatFixedPriceComponent implements OnInit {
         this.initialLoanName = String(dto.loanName);
         this.initialOutStandingDebt = String(dto.outstandingDebt);
         this.initialRemainingYears = String(dto.remainingYears);
-
-        // Test data
-        // this.loanTypeString = 'BOLIGLÅN 85% BOLIGKR 0-2';
-        // this.initialLoanName = this.loanTypeString;
         this.loanTypeString = String(dto.loanName);
 
         /*
@@ -94,22 +91,23 @@ export class SignicatFixedPriceComponent implements OnInit {
          * Since mat-select wants the default value to be the same datatype as the array it uses
          */
 
-        // const transformDto = {
-        //   name: this.loanTypeString,
-        //   id: 'tag:finansportalen.no:feed/bank/boliglan/1622922',
-        //   rate: dto.nominalRate
-        // };
+        const transformDto = {
+          name: this.loanTypeString,
+          id: 'tag:finansportalen.no:feed/bank/boliglan/1622922',
+          rate: dto.nominalRate
+        };
 
         this.allOffers = offerBank.offers;
-        // this.allOffers.push(transformDto);
-
-        // this.selected = this.allOffers.filter(
-        //   (val) => val.name === transformDto.name
-        // )[0].name;
+        this.allOffers.push(transformDto);
 
         this.selected = this.allOffers.filter(
-          (val) => val.name === dto.loanName
+          (val) => val.name === transformDto.name
         )[0].name;
+
+        // Original working function filter
+        // this.selected = this.allOffers.filter(
+        //   (val) => val.name === dto.loanName
+        // )[0].name;
 
         this.loanTypeID = this.findLoanID(this.selected);
 
@@ -123,18 +121,6 @@ export class SignicatFixedPriceComponent implements OnInit {
             { value: this.initialRemainingYears, disabled: true },
             Validators.required
           ]
-        });
-
-        // Activate listener for changes
-        this.changingSubscription = this.loanForm.valueChanges.subscribe(() => {
-          if (this.loanForm.controls[this.outstandingDebtString].dirty) {
-            this.outstandingDebtIsError = false;
-          }
-          this.loanForm.controls[this.remainingYearsString].dirty;
-          if (this.loanForm.controls[this.remainingYearsString].dirty) {
-            this.remainingYearsIsError = false;
-          }
-          this.changesMade = true;
         });
       },
       (err) => {
@@ -180,10 +166,17 @@ export class SignicatFixedPriceComponent implements OnInit {
     this.inputRemainingYearsIsActive = false;
   }
 
-  public setDisabled(): void {
+  public disableForm(): void {
+    this.loanForm.get(this.loanNameString)?.disable();
+    this.loanForm.get(this.outstandingDebtString)?.disable();
+    this.loanForm.get(this.remainingYearsString)?.disable();
+  }
+
+  public setEditDisabled(): void {
     if (this.changingSubscription) {
-      // this.changingSubscription.unsubscribe();
+      this.changingSubscription.unsubscribe();
       this.changesMade = false;
+      console.log('changes made false - setEditDisabled');
     }
     this.showButton = false;
     setTimeout(() => {
@@ -203,21 +196,39 @@ export class SignicatFixedPriceComponent implements OnInit {
         ?.setValue(this.initialRemainingYears);
     }, 325);
 
-    this.loanForm.get(this.loanNameString)?.disable();
-    this.loanForm.get(this.outstandingDebtString)?.disable();
-    this.loanForm.get(this.remainingYearsString)?.disable();
+    this.disableForm();
   }
 
-  public setEnabled(): void {
+  public enableForm(): void {
+    this.loanForm.get(this.loanNameString)?.enable();
+    this.loanForm.get(this.outstandingDebtString)?.enable();
+    this.loanForm.get(this.remainingYearsString)?.enable();
+  }
+
+  public setEditEnabled(): void {
     this.deactivateAllInput();
 
     this.showDisplayBox = false;
     this.showButton = true;
     this.isEditMode = true;
-    this.loanForm.get(this.loanNameString)?.enable();
-    this.loanForm.get(this.outstandingDebtString)?.enable();
-    this.loanForm.get(this.remainingYearsString)?.enable();
+    this.enableForm();
+
+    // Activate listener for changes
+    this.changingSubscription = this.loanForm.valueChanges.subscribe(() => {
+      if (this.loanForm.controls[this.outstandingDebtString].dirty) {
+        this.outstandingDebtIsError = false;
+      }
+      if (this.loanForm.controls[this.remainingYearsString].dirty) {
+        this.remainingYearsIsError = false;
+      }
+      this.changesMade = true;
+      if (this.isLoanFormValid && this.changesMade) {
+        this.isDisabled = false;
+      }
+    });
   }
+
+  public activateListener(): void {}
 
   public matSelectChanged(): void {
     this.changesMade = true;
@@ -242,11 +253,19 @@ export class SignicatFixedPriceComponent implements OnInit {
 
   public save(): void {
     if (this.changesMade === false || !this.ableTosave) return;
+    if (this.changingSubscription) {
+      this.changingSubscription.unsubscribe();
+      this.changesMade = false;
+    }
 
     this.deactivateAllInput();
 
     this.loanTypeID = this.findLoanID(this.selected);
 
+    this.sendRequest();
+  }
+
+  public sendRequest(): void {
     const loanNameDto = {
       product: this.loanTypeID
     };
@@ -306,7 +325,20 @@ export class SignicatFixedPriceComponent implements OnInit {
             );
 
             this.changesMade = false;
+            this.isDisabled = true;
+
             console.log('error');
+
+            // Activate listener again for changes
+            this.changingSubscription = this.loanForm.valueChanges.subscribe(
+              () => {
+                if (this.loanForm.controls[this.outstandingDebtString].dirty) {
+                  this.outstandingDebtIsError = false;
+                }
+                this.isDisabled = false;
+                this.changesMade = true;
+              }
+            );
 
             this.initialLoanName = this.selected;
             this.initialOutStandingDebt = getOutstandingDebt;
@@ -319,9 +351,7 @@ export class SignicatFixedPriceComponent implements OnInit {
             this.loanForm
               .get(this.remainingYearsString)
               ?.setValue(this.initialRemainingYears);
-            console.log(this.initialLoanName);
-            console.log(this.initialOutStandingDebt);
-            console.log(this.initialRemainingYears);
+
             // this.setDisabled();
             console.log('Saved!');
           } else {
@@ -349,7 +379,7 @@ export class SignicatFixedPriceComponent implements OnInit {
             console.log(this.initialLoanName);
             console.log(this.initialOutStandingDebt);
             console.log(this.initialRemainingYears);
-            this.setDisabled();
+            this.setEditDisabled();
             console.log('Saved!');
           }
         },
@@ -361,7 +391,7 @@ export class SignicatFixedPriceComponent implements OnInit {
     // this.loansService.updateLoanProduct(loanNameDto).subscribe(
     //   () => {
     //     console.log('Loan product successful !!!');
-    //     this.setDisabled();
+    //     this.setEditDisabled();
     //   },
     //   (err) => {
     //     console.log(err.title);
@@ -371,7 +401,7 @@ export class SignicatFixedPriceComponent implements OnInit {
     // this.loansService.updateLoanOutstandingDebt(outstandingDebtDto).subscribe(
     //   () => {
     //     console.log('Loan outstanding debt successful !!!');
-    //     this.setDisabled();
+    //     this.setEditDisabled();
     //   },
     //   (err) => {
     //     console.log(err.title);
@@ -381,7 +411,7 @@ export class SignicatFixedPriceComponent implements OnInit {
     // this.loansService.updateLoanReminingYears(remainingYearsDto).subscribe(
     //   () => {
     //     console.log('Loan remaining years successful !!!');
-    //     this.setDisabled();
+    //     this.setEditDisabled();
     //   },
     //   (err) => {
     //     console.log(err.title);
@@ -389,55 +419,5 @@ export class SignicatFixedPriceComponent implements OnInit {
     // );
 
     // ---------------------------------------------------------------------
-
-    // forkJoin([
-    //   this.loansService.updateLoanProduct(loanNameDto),
-    //   this.loansService.updateLoanOutstandingDebt(outstandingDebtDto),
-    //   this.loansService.updateLoanReminingYears(remainingYearsDto)
-    // ]).subscribe(
-    //   () => {
-    //     console.log(' loan type success');
-    //     console.log(' outstanding debt success');
-    //     console.log(' remaining years success');
-    //     this.initialLoanName = this.selected;
-    //     console.log('check after setting this.selected');
-    //     console.log(this.initialLoanName);
-    //     this.initialOutStandingDebt = getOutstandingDebt;
-    //     this.initialRemainingYears = getRemainingYears;
-
-    //     this.loanForm
-    //       .get(this.outstandingDebtString)
-    //       ?.setValue(this.initialOutStandingDebt);
-
-    //     this.loanForm
-    //       .get(this.remainingYearsString)
-    //       ?.setValue(this.initialRemainingYears);
-    //     console.log('Saved!');
-    //     console.log(this.initialLoanName);
-    //     console.log(this.initialOutStandingDebt);
-    //     console.log(this.initialRemainingYears);
-    //     this.setDisabled();
-    //   },
-    //   (err) => {
-    //     this.errorMessage = err.title;
-    //     console.log('One or more request unsuccessful!');
-    //     // Reset the data back to the initial values
-    //     this.selected = this.initialLoanName;
-    //     this.loanForm
-    //       .get(this.outstandingDebtString)
-    //       ?.setValue(this.initialOutStandingDebt);
-
-    //     this.loanForm
-    //       .get(this.remainingYearsString)
-    //       ?.setValue(this.initialRemainingYears);
-
-    //     console.log(this.initialLoanName);
-    //     console.log(this.initialOutStandingDebt);
-    //     console.log(this.initialRemainingYears);
-    //     this.setDisabled();
-    //   }
-    // );
-
-    // -------------------------------------------------
-  }
+  } // send request end
 }

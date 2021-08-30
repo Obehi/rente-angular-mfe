@@ -16,77 +16,130 @@ p {
 
 .summary {
   padding: 10px;
-}
-
-@media (min-width: 600px) {
-  .summary {
+  @media (min-width: 600px) {
     border-top: none;
     position: relative;
     left: -1px;
-    width: calc(100% + 2px);
+    width: calc(100% + 10px);
+    margin: auto;
   }
+}
+
+.loan-list {
+  padding: 10px;
 }
 
 .total-cost {
   padding-bottom: 15px;
 }
 
+.blue-box-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  @media (max-width: 992px) {
+    justify-content: center;
+  }
+}
+
 .content-blue-box {
   width: 100%;
   background-color: $secondary;
   border-radius: 10px;
+
+  b {
+    font-size: 14px;
+    font-weight: 400;
+  }
 }
 
-.all-text {
-  padding: 10px;
-}
-
-.information-box {
+.summary-box {
+  margin-bottom: 20px;
   width: 100%;
-  height: 60px;
-  padding: 10px;
+  background: none;
+  border-radius: 10px;
 
-  @media (max-width: 321px) {
-    padding: 0px;
+  .first-box {
+    background: none;
+    box-shadow: none;
   }
-}
 
-.box-title {
-  height: 100%;
-  float: left;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-
-  p {
-    margin-left: 5px;
+  .double-container {
+    justify-content: center;
   }
-}
 
-.box-value {
-  width: 50%;
-  height: 100%;
-  float: right;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
+  .move-first-box {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
 
-  h3 {
-    margin-right: 10px;
-    @media (max-width: 321px) {
-      margin-right: 0px !important;
+  .move-sec-box {
+    margin-right: 0px;
+  }
+
+  .bvalue {
+    border-radius: 20px;
+    padding: 10px 10px 10px 10px;
+    background: $karl-blue;
+
+    @media (max-width: 768px) {
+      width: 150px;
     }
   }
 
-  @media (max-width: 281px) {
-    float: none;
+  .btitle-one,
+  .btitle-two {
+    padding-left: 10px;
+    padding-right: 10px;
+
+    @media (min-width: 767px) and (max-width: 992px) {
+      padding-left: 0px;
+      padding-right: 0px;
+    }
   }
+
+  @media (min-width: 769px) and (max-width: 992px) {
+    width: 90%;
+  }
+
+  @media (min-width: 767px) and (max-width: 769px) {
+    width: 100%;
+  }
+  @media (min-width: 992px) {
+    width: 70%;
+  } // End of media screen
 }
 
 .double-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.four-container {
+  @media (min-width: 767px) {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.tab-container {
+  @media (max-width: 767px) {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    align-items: center;
+  }
+
+  @media (min-width: 767px) and (max-width: 769px) {
+    display: block;
+  }
+
+  @media (min-width: 768px) {
+    display: grid;
+  }
 }
 
 .first-box {
@@ -97,14 +150,26 @@ p {
   background-color: #004465a6;
   box-shadow: rgb(50 50 93 / 25%) 0px 2px 5px -1px,
     rgb(0 0 0 / 30%) 0px 3px 3px -1px;
+
+  @media (max-width: 601px) {
+    padding: 4px;
+  }
 }
 
 .move-first-box {
   margin-left: 20px;
+
+  @media (max-width: 321px) {
+    margin-left: 10px;
+  }
 }
 
 .move-sec-box {
   margin-right: 20px;
+
+  @media (max-width: 321px) {
+    margin-right: 10px;
+  }
 }
 
 .btitle-two,
@@ -116,11 +181,37 @@ p {
   p {
     padding: 6px;
   }
+
+  @media (min-width: 767px) and (max-width: 769px) {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
+  @media (max-width: 601px) {
+    padding-left: 0px;
+    padding-right: 0px;
+    p {
+      padding: 4px !important;
+    }
+  }
+
+  @media (max-width: 321px) {
+    padding-left: 0px;
+    padding-right: 0px;
+    p {
+      padding: 3px !important;
+    }
+  }
 }
 
 .btitle-two {
   padding-left: 7px;
   padding-right: 7px;
+
+  @media (max-width: 321px) {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
 }
 
 .bvalue {
@@ -129,7 +220,7 @@ p {
 }
 
 .loan-type {
-  padding: 10px;
+  padding: 14px 20px;
   color: white;
   border-radius: 10px 10px 0 0;
   background: #004465a6;
@@ -144,11 +235,4 @@ p {
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-
-.h3-loan-value {
-  margin-left: 0px;
-  @media (max-width: 281px) {
-    margin-left: 30px;
-  }
 }

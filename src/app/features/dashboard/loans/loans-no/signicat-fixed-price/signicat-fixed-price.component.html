@@ -16,14 +16,14 @@
           <div>
             <img
               [hidden]="isEditMode"
-              (click)="setEnabled()"
+              (click)="setEditEnabled()"
               class="loan-edit"
               src="../../../../../../assets/icons/edit-icon-grey.svg"
               alt="loan-edit"
             />
             <img
               [hidden]="!isEditMode"
-              (click)="setDisabled()"
+              (click)="setEditDisabled()"
               class="loan-edit-cancel"
               src="../../../../../../assets/icons/cancel-icon-grey.svg"
               alt="loan-edit"
@@ -78,7 +78,8 @@
                       isEditMode === true &&
                       inputOutstandingDebtIsActive === true &&
                       outstandingDebtIsError === false,
-                    'edit-error': outstandingDebtIsError === true
+                    'edit-error':
+                      isEditMode == true && outstandingDebtIsError === true
                   }"
                   (click)="setInputOutDebtActive()"
                 >
@@ -243,7 +244,7 @@
           <rente-button
             color="primary"
             (click)="save()"
-            [disabled]="!ableTosave"
+            [disabled]="isDisabled"
           >
             Lagre
           </rente-button>
