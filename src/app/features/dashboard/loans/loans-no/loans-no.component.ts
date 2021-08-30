@@ -10,6 +10,8 @@ import {
   style
 } from '@angular/animations';
 import { locale } from '@config/locale/locale';
+import { MessageBannerService } from '@services/message-banner.service.ts';
+import { getAnimationStyles } from '@shared/animations/animationEnums';
 
 interface offerDto {
   offers: [
@@ -50,8 +52,12 @@ export class LoansNoComponent implements OnInit {
   public isSignicatUser: boolean;
   public isFixedPriceBank: boolean;
   public offer: offerDto;
+  public animationType = getAnimationStyles();
 
-  constructor(private loansService: LoansService) {}
+  constructor(
+    private loansService: LoansService,
+    private messageBannerService: MessageBannerService
+  ) {}
 
   ngOnInit(): void {
     this.locale = locale;
@@ -59,7 +65,6 @@ export class LoansNoComponent implements OnInit {
     this.loansService.getLoanAndOffersBanks().subscribe(
       ([loans, offerBank]) => {
         this.loansData = loans;
-
         this.offer = offerBank as offerDto;
 
         /*
@@ -84,6 +89,13 @@ export class LoansNoComponent implements OnInit {
       },
       (err) => {
         this.errorMessage = err.title;
+        this.messageBannerService.setView(
+          'Noe gikk feil, vennligst prøv igjen senere',
+          4000,
+          this.animationType.DROP_DOWN_UP,
+          'error',
+          window
+        );
       }
     );
   }

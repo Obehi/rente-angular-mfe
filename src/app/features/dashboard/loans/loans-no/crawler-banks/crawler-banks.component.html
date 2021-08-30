@@ -1,7 +1,4 @@
-<div
-  class="summary"
-  *ngIf="loansData && loansData.loans && loansData.loans.length > 0"
->
+<div class="summary">
   <h3 class="title">Sammendrag av lån</h3>
   <div class="summary-box">
     <div class="four-container">
@@ -141,12 +138,4 @@
       </div>
     </div>
   </div>
-</div>
-
-<div class="loading" *ngIf="!loansData && !errorMessage">
-  <mat-spinner [diameter]="48" [strokeWidth]="4"></mat-spinner>
-</div>
-
-<div *ngIf="errorMessage">
-  <h1 class="text-center mt-4">{{ errorMessage }}</h1>
 </div>
