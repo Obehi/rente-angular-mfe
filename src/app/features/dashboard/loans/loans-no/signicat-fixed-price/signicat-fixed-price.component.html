@@ -1,5 +1,7 @@
-<div class="summary">
-  <div>Fixed price bank users</div>
+<div class="summary main-container">
+  <!-- <div class="loan-summary" *ngIf="loansData.loans.length > 1">
+    Hey summary here
+  </div> -->
   <div *ngFor="let loan of loanData.loans; index as i">
     <rente-loan-fixed-price
       [index]="i"
