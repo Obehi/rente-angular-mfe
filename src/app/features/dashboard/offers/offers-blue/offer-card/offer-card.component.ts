@@ -53,7 +53,9 @@ export class OfferCardComponent implements OnInit {
       this.isSweden = false;
     }
 
-    this.bankSpecialPromoText = this.getBankSpecialPromoText();
+    this.bankSpecialPromoText = this.offerCardService.getBankSpecialPromoText(
+      this.offer.bankInfo.bank
+    );
     this.isNordea = this.offersInfo.bank === 'NORDEA';
 
     if (
@@ -78,13 +80,6 @@ export class OfferCardComponent implements OnInit {
 
   get isMobile(): boolean {
     return window.innerWidth < 600;
-  }
-
-  public getBankSpecialPromoText(): string | null {
-    if (this.offer.bankInfo.bank === 'BULDER') {
-      return 'Gir kundeutbytte';
-    }
-    return null;
   }
 
   getbankNameOrDefault(offer: OfferInfo, isHompepageLink: boolean): string {
