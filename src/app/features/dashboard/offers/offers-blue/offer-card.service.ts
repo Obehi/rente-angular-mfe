@@ -161,6 +161,10 @@ export class OfferCardService {
       }
     }
 
+    console.log(offer.bankInfo.bank);
+    console.log(offer.bankInfo.bank === 'YS_NORDEA_DIRECT');
+    console.log(offer.bankInfo.bank.includes('YS_NORDEA_DIRECT'));
+
     if (offer.bankInfo.partner === false) return;
 
     const trackingDto = new TrackingDto();
