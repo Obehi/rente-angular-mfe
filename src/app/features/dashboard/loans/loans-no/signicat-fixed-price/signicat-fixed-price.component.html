@@ -1,7 +1,66 @@
+<div class="loan-summary" *ngIf="isSummaryNeeded">
+  <div class="fix">
+    <div>
+      <h3 class="title">Sammendrag av lån</h3>
+    </div>
+    <div class="summary-box">
+      <div class="four-container">
+        <div class="tab-container">
+          <div class="btitle-one">
+            <p>Utestående lån</p>
+          </div>
+          <div class="bvalue">
+            <h3>
+              {{ loanData.totalOutstandingDebt / 1000000 | number: '1.3-3' }}
+              mill
+            </h3>
+          </div>
+        </div>
+        <div class="tab-container">
+          <div class="btitle-two">
+            <p>Effektiv rente</p>
+          </div>
+
+          <div class="bvalue">
+            <h3>{{ loanData.totalEffectiveRate | number: '1.2-2' }} %</h3>
+          </div>
+        </div>
+        <div class="tab-container">
+          <div class="btitle-one">
+            <p>Totale renter og gebyrer</p>
+          </div>
+          <div class="bvalue">
+            <h3>
+              {{
+                loanData.aggregatedTotalInterestAndFee == null
+                  ? 'N/A'
+                  : (loanData.aggregatedTotalInterestAndFee | number: '1.0-0') +
+                    ',-'
+              }}
+            </h3>
+          </div>
+        </div>
+        <div class="tab-container">
+          <div class="btitle-two">
+            <p>Renter & gebyrer per år</p>
+          </div>
+          <div class="bvalue">
+            <h3>
+              {{
+                loanData.aggregatedTotalInterestAndFeeByRemainingYears == null
+                  ? 'N/A'
+                  : (loanData.aggregatedTotalInterestAndFeeByRemainingYears
+                      | number: '1.0-0') + ',-'
+              }}
+            </h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="summary main-container">
-  <!-- <div class="loan-summary" *ngIf="loansData.loans.length > 1">
-    Hey summary here
-  </div> -->
   <div *ngFor="let loan of loanData.loans; index as i">
     <rente-loan-fixed-price
       [index]="i"

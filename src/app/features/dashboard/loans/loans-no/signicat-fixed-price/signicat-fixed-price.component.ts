@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { bankOfferDto, Loans } from '@models/loans';
-import { MyLoansService } from '../../myloans.service';
 
 @Component({
   selector: 'rente-signicat-fixed-price',
@@ -11,7 +10,12 @@ export class SignicatFixedPriceComponent implements OnInit {
   @Input() loanData: Loans;
   @Input() allOffers: bankOfferDto[];
 
-  constructor(private myLoansService: MyLoansService) {}
+  public isSummaryNeeded = false;
 
-  ngOnInit(): void {}
+  constructor() {}
+
+  ngOnInit(): void {
+    const length = this.loanData.loans.length;
+    if (length > 1) this.isSummaryNeeded = true;
+  }
 }

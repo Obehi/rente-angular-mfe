@@ -1,7 +1,161 @@
 @import '../../../../../../styles/theme/_colors.scss';
 
+h3.title {
+  color: white;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+p,
+h3 {
+  color: white !important;
+}
+
 .summary {
   padding: 10px;
+}
+
+.fix {
+  padding: 10px;
+
+  @media (min-width: 992px) {
+    margin-left: 35px;
+  }
+}
+
+.summary-box {
+  margin-bottom: 20px;
+  width: 100%;
+  background: none;
+  border-radius: 10px;
+
+  .first-box {
+    background: none;
+    box-shadow: none;
+  }
+
+  .double-container {
+    justify-content: center;
+  }
+
+  .move-first-box {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+
+  .move-sec-box {
+    margin-right: 0px;
+  }
+
+  .bvalue {
+    border-radius: 20px;
+    padding: 10px 10px 10px 10px;
+    background: $karl-blue;
+
+    @media (max-width: 768px) {
+      width: 150px;
+    }
+  }
+
+  .btitle-one,
+  .btitle-two {
+    padding-left: 10px;
+    padding-right: 10px;
+
+    @media (min-width: 767px) and (max-width: 992px) {
+      padding-left: 0px;
+      padding-right: 0px;
+    }
+  }
+
+  @media (min-width: 769px) and (max-width: 992px) {
+    width: 90%;
+  }
+
+  @media (min-width: 767px) and (max-width: 769px) {
+    width: 100%;
+  }
+  @media (min-width: 992px) {
+    width: 70%;
+  } // End of media screen
+}
+
+.four-container {
+  @media (min-width: 767px) {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.tab-container {
+  @media (max-width: 351px) {
+    display: grid;
+    justify-content: center;
+    margin-bottom: 15px;
+  }
+
+  @media (max-width: 767px) and (min-width: 351px) {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    align-items: center;
+  }
+
+  @media (min-width: 767px) and (max-width: 769px) {
+    display: block;
+  }
+
+  @media (min-width: 768px) {
+    display: grid;
+  }
+}
+
+.btitle-two,
+.btitle-one {
+  text-align: center;
+  padding-left: 11px;
+  padding-right: 11px;
+
+  p {
+    padding: 6px;
+  }
+
+  @media (min-width: 767px) and (max-width: 769px) {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
+  @media (max-width: 601px) {
+    padding-left: 0px;
+    padding-right: 0px;
+    p {
+      padding: 4px !important;
+    }
+  }
+
+  @media (max-width: 321px) {
+    padding-left: 0px;
+    padding-right: 0px;
+    p {
+      padding: 3px !important;
+    }
+  }
+}
+
+.btitle-two {
+  padding-left: 7px;
+  padding-right: 7px;
+
+  @media (max-width: 321px) {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+}
+
+.bvalue {
+  text-align: center;
+  padding: 15px;
 }
 
 .main-container {
