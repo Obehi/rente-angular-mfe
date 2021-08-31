@@ -143,6 +143,7 @@ export class OfferCardService {
     }
 
     if (offer.bankInfo.bank === 'YS_NORDEA_DIRECT') {
+      console.log('got here!!!');
       if (this.getVariation() === 0) {
         console.log('variation 0');
         offer.bankInfo.transferUrl =
@@ -182,7 +183,7 @@ export class OfferCardService {
     this.sendOfferTrackingData(trackingDto);
   }
 
-  public getVariation() {
+  public getVariation(): number {
     if ((window as any).google_optimize === undefined) {
       // console.log('couldnt get optimize');
       return 0;
@@ -199,7 +200,7 @@ export class OfferCardService {
     const variation = (window as any).google_optimize.get(experimentId);
     // console.log((window as any).google_optimize.get(experimentId));
     console.log(variation);
-    return variation || 0;
+    return Number(variation) || 0;
   }
 
   public getBankSpecialPromoText(bankName: string): string | null {
