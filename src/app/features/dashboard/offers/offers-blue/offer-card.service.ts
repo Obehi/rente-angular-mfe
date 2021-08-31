@@ -142,10 +142,7 @@ export class OfferCardService {
       }
     }
 
-    if (
-      offer.bankInfo.bank === 'YS_NORDEA_DIRECT' ||
-      offer.bankInfo.bank.includes('YS_NORDEA_DIRECT')
-    ) {
+    if (offer.bankInfo.bank === 'YS_NORDEA_DIRECT') {
       console.log('got here!!!');
       if (this.getVariation() == 0) {
         console.log('variation 0');
