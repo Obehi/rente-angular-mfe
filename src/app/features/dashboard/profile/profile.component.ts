@@ -244,6 +244,11 @@ export class ProfileComponent
 
     this.membershipService.getSelectedMemberships().subscribe((args) => {
       this.previousStateMemberships = args;
+      this.membershipCtrl.setValue(
+        this.previousStateMemberships.map((membership) => {
+          return membership.name;
+        })
+      );
     });
 
     if (locale.includes('sv')) {
