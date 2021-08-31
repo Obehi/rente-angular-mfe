@@ -32,6 +32,7 @@ export class OfferCardBigComponentBlue implements OnInit {
   public isSweden: boolean;
   public isNordea = false;
   public isSingleButtonLayout = false;
+  public bankSpecialPromoText: string | null = null;
 
   @Input() offer: OfferInfo;
   @Input() offersInfo: Offers;
@@ -72,6 +73,10 @@ export class OfferCardBigComponentBlue implements OnInit {
     }
 
     if (this.offer.bankInfo.score === null) this.offer.bankInfo.score = 3;
+
+    this.bankSpecialPromoText = this.offerCardService.getBankSpecialPromoText(
+      this.offer.bankInfo.bank
+    );
   }
 
   get isMobile(): boolean {

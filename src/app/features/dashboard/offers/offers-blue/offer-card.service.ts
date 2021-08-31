@@ -147,4 +147,11 @@ export class OfferCardService {
     console.log(variation);
     return variation || 0;
   }
+
+  public getBankSpecialPromoText(bankName: string): string | null {
+    if (bankName === 'BULDER') {
+      return 'Gir kundeutbytte';
+    }
+    return null;
+  }
 }

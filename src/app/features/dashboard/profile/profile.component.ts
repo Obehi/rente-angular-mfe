@@ -18,7 +18,7 @@ import {
   Validators
 } from '@angular/forms';
 import { COMMA, ENTER, S } from '@angular/cdk/keycodes';
-import { combineLatest, Observable, of, Subject } from 'rxjs';
+import { combineLatest, Observable, of, Subject, Subscription } from 'rxjs';
 import {
   catchError,
   debounce,
@@ -26,6 +26,7 @@ import {
   distinctUntilChanged,
   filter,
   map,
+  skip,
   startWith,
   switchMap,
   tap
@@ -119,6 +120,7 @@ export class ProfileComponent
   public username: string;
   public mask = Mask;
   public locale = locale;
+  public selectedMembershipSubscription: Subscription;
   changesMade = false;
   public isSweden = false;
   public loadingStates = {
@@ -186,7 +188,9 @@ export class ProfileComponent
     }
   }
 
-  ngOnDestroy(): void {}
+  ngOnDestroy(): void {
+    this.selectedMembershipSubscription.unsubscribe();
+  }
 
   ngOnInit(): void {
     this.loansService.getPreferencesDto().subscribe(
@@ -200,7 +204,7 @@ export class ProfileComponent
           }
         });
 
-        this.membershipService.setSelectedMemberships(dto.memberships);
+        // this.membershipService.setSelectedMemberships(dto.memberships);
         // We are getting strings and not objects from the Back-end and therefore we should map them into Objects.
         this.previousStateMemberships = dto.memberships.map((args) => {
           return { name: args, label: '' };
@@ -242,9 +246,17 @@ export class ProfileComponent
       }
     );
 
-    this.membershipService.getSelectedMemberships().subscribe((args) => {
-      this.previousStateMemberships = args;
-    });
+    this.selectedMembershipSubscription = this.membershipService
+      .getSelectedMemberships()
+      .pipe(distinctUntilChanged())
+      .subscribe((args) => {
+        this.previousStateMemberships = args;
+        this.membershipCtrl.setValue(
+          this.previousStateMemberships.map((membership) => {
+            return membership.name;
+          })
+        );
+      });
 
     if (locale.includes('sv')) {
       this.isSweden = true;
