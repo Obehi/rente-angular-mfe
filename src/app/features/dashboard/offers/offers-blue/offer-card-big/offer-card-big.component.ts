@@ -77,6 +77,13 @@ export class OfferCardBigComponentBlue implements OnInit {
     this.bankSpecialPromoText = this.offerCardService.getBankSpecialPromoText(
       this.offer.bankInfo.bank
     );
+
+    if (
+      this.offer.bankInfo.bank === 'UNIO_NORDEA_DIRECT' ||
+      this.offer.bankInfo.bank === 'YS_NORDEA_DIRECT'
+    ) {
+      this.offer.bankInfo.partner = true;
+    }
   }
 
   get isMobile(): boolean {

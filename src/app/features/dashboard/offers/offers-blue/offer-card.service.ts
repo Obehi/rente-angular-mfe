@@ -76,12 +76,6 @@ export class OfferCardService {
   }
 
   public getOfferButtonText(offer: OfferInfo): string {
-    const testText =
-      this.getVariation() === 0
-        ? 'Flytt boliglånet til Nordea Direct'
-        : 'Les mer og søk om lån';
-    console.log('testText');
-    console.log(testText);
     let text = '';
     switch (offer.bankInfo.bank) {
       case 'SPAREBANKENOST': {
@@ -105,21 +99,20 @@ export class OfferCardService {
         text = 'Få erbjudande från Hypoteket';
         break;
       }
-      /* case 'YS_NORDEA_DIRECT': {
+      case 'YS_NORDEA_DIRECT': {
         text =
-          this.getVariation() === 0
-            ? 'Flytt boliglånet til Nordea Direct'
-            : 'Les mer og søk om lån';
+          this.getVariation() === 0 || this.getVariation() === 2
+            ? 'Les mer og søk lån!'
+            : 'Flytt boliglånet til Nordea Direct';
         break;
       }
-
       case 'UNIO_NORDEA_DIRECT': {
         text =
-          this.getVariation() === 0
-            ? 'Flytt boliglånet til Nordea Direct'
-            : 'Les mer og søk om lån';
+          this.getVariation() === 0 || this.getVariation() === 2
+            ? 'Les mer og søk lån!'
+            : 'Flytt boliglånet til Nordea Direct';
         break;
-      } */
+      }
       default: {
         text = this.langService.getOffeCardCTAButtonText();
         break;
@@ -128,22 +121,72 @@ export class OfferCardService {
     return text;
   }
 
+  public openNewOfferDialog(offer: OfferInfo): void {
+    if (offer.bankInfo.bank === 'UNIO_NORDEA_DIRECT') {
+      if (this.getVariation() === 0) {
+        offer.bankInfo.transferUrl =
+          'https://www.direct.nordea.no/direct/kundetilbud/unio/';
+      }
+      if (this.getVariation() === 1) {
+        offer.bankInfo.transferUrl =
+          'https://www.direct.nordea.no/direct/kundetilbud/unio/?cid=partner-eqxvq75ice';
+      }
+
+      if (this.getVariation() === 2) {
+        offer.bankInfo.transferUrl =
+          'https://www.direct.nordea.no/direct/kundetilbud/unio/?cid=partner-h7zep3a0t6';
+      }
+    }
+
+    if (offer.bankInfo.bank === 'YS_NORDEA_DIRECT') {
+      if (this.getVariation() === 0) {
+        offer.bankInfo.transferUrl =
+          'https://www.direct.nordea.no/direct/kundetilbud/ys';
+      }
+      if (this.getVariation() === 1) {
+        offer.bankInfo.transferUrl =
+          'https://www.direct.nordea.no/direct/kundetilbud/ys/?cid=partner-397f732sc1';
+      }
+
+      if (this.getVariation() === 2) {
+        offer.bankInfo.transferUrl =
+          'https://www.direct.nordea.no/direct/kundetilbud/ys/?cid=partner-gw6atr1bv3';
+      }
+    }
+
+    if (offer.bankInfo.partner === false) return;
+
+    const trackingDto = new TrackingDto();
+    trackingDto.offerId = offer.id;
+    trackingDto.type = 'BANK_BUTTON_2';
+
+    if (this.handleNybyggerProductSpecialCase(offer) === true) {
+      this.sendOfferTrackingData(trackingDto);
+      return;
+    }
+
+    console.log(offer.bankInfo);
+    console.log(offer.bankInfo.transferUrl);
+    window.open(offer.bankInfo.transferUrl, '_blank');
+    this.sendOfferTrackingData(trackingDto);
+  }
+
   public getVariation() {
     if ((window as any).google_optimize === undefined) {
-      console.log('couldnt get optimize');
+      // console.log('couldnt get optimize');
       return 0;
     }
     let experimentId: string | null;
     if (this.envService.environment.production === true) {
-      console.log('is production');
-      experimentId = '_7-we-p9SA2OAVDcKn0xVA';
+      // console.log('is production');
+      experimentId = 'RI6fisQ_TdebhBSAngFeAw';
     } else {
-      console.log('is not production');
+      // console.log('is not production');
       experimentId = 'A6Fvld2GTAG3VE95NWV1Hw';
     }
 
     const variation = (window as any).google_optimize.get(experimentId);
-    console.log((window as any).google_optimize.get(experimentId));
+    // console.log((window as any).google_optimize.get(experimentId));
     console.log(variation);
     return variation || 0;
   }

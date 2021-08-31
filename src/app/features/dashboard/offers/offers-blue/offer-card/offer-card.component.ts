@@ -76,6 +76,13 @@ export class OfferCardComponent implements OnInit {
     }
 
     if (this.offer.bankInfo.score === null) this.offer.bankInfo.score = 3;
+
+    if (
+      this.offer.bankInfo.bank === 'UNIO_NORDEA_DIRECT' ||
+      this.offer.bankInfo.bank === 'YS_NORDEA_DIRECT'
+    ) {
+      this.offer.bankInfo.partner = true;
+    }
   }
 
   get isMobile(): boolean {
@@ -136,11 +143,36 @@ export class OfferCardComponent implements OnInit {
       return;
     }
 
+    console.log(offer.bankInfo.url);
     window.open(offer.bankInfo.url, '_blank');
     this.sendOfferTrackingData(trackingDto);
   }
 
   public openNewOfferDialog(offer: OfferInfo): void {
+    if (offer.bankInfo.bank === 'UNIO_NORDEA_DIRECT') {
+      if (this.offerCardService.getVariation() === 1) {
+        offer.bankInfo.transferUrl =
+          'https://www.direct.nordea.no/direct/kundetilbud/unio/?cid=partner-eqxvq75ice';
+      }
+
+      if (this.offerCardService.getVariation() === 2) {
+        offer.bankInfo.transferUrl =
+          'https://www.direct.nordea.no/direct/kundetilbud/unio/?cid=partner-h7zep3a0t6';
+      }
+    }
+
+    if (offer.bankInfo.bank === 'YS_NORDEA_DIRECT') {
+      if (this.offerCardService.getVariation() === 1) {
+        offer.bankInfo.transferUrl =
+          'https://www.direct.nordea.no/direct/kundetilbud/ys/?cid=partner-397f732sc1';
+      }
+
+      if (this.offerCardService.getVariation() === 2) {
+        offer.bankInfo.transferUrl =
+          'https://www.direct.nordea.no/direct/kundetilbud/ys/?cid=partner-gw6atr1bv3';
+      }
+    }
+
     if (offer.bankInfo.partner === false) return;
 
     const trackingDto = new TrackingDto();
@@ -154,6 +186,7 @@ export class OfferCardComponent implements OnInit {
       return;
     }
 
+    console.log(offer.bankInfo.transferUrl);
     window.open(offer.bankInfo.transferUrl, '_blank');
     this.sendOfferTrackingData(trackingDto);
   }

@@ -194,7 +194,7 @@
             isSingleButtonLayout === true ? 'primary-semi-wide' : 'primary'
           }}"
           type="raised"
-          (click)="openNewOfferDialog(offer)"
+          (click)="offerCardService.openNewOfferDialog(offer)"
           >{{ offerCardService.getOfferButtonText(offer) }}</rente-button
         >
 

@@ -262,7 +262,7 @@
             [disabled]="offer.bankInfo.partner == false"
             color="primary-medium-card"
             type="raised"
-            (click)="openNewOfferDialog(offer)"
+            (click)="offerCardService.openNewOfferDialog(offer)"
             >{{ offerCardService.getOfferButtonText(offer) }}
           </rente-button>
           <p
