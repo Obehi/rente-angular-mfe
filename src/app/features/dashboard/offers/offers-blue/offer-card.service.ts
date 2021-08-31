@@ -144,12 +144,12 @@ export class OfferCardService {
 
     if (offer.bankInfo.bank === 'YS_NORDEA_DIRECT') {
       console.log('got here!!!');
-      if (this.getVariation() == 0) {
+      if (this.getVariation() === 0) {
         console.log('variation 0');
         offer.bankInfo.transferUrl =
           'https://www.direct.nordea.no/direct/kundetilbud/ys/1';
       }
-      if (this.getVariation() == 1) {
+      if (this.getVariation() === 1) {
         console.log('variation 1');
         offer.bankInfo.transferUrl =
           'https://www.direct.nordea.no/direct/kundetilbud/ys/2';
