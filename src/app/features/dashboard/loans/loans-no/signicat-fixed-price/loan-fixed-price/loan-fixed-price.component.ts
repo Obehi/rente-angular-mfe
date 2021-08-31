@@ -31,6 +31,8 @@ export class LoanFixedPriceComponent implements OnInit, OnDestroy {
   public showButton = false;
   public isDisabled = true;
   public changesMade = false;
+  public isGeneralError = false;
+  public isServerError = false;
   public outStandingDebtchangeSubscription: Subscription | undefined;
   public remainingYearschangeSubscription: Subscription | undefined;
   public animationStyle = getAnimationStyles();
@@ -329,6 +331,12 @@ export class LoanFixedPriceComponent implements OnInit, OnDestroy {
           console.log(err);
           this.productIsError = true;
           this.isError = true;
+          if (err.status < 500) {
+            this.isGeneralError = true;
+          }
+          if (err.status > 499) {
+            this.isServerError = true;
+          }
           return of(err);
         })
       ),
@@ -338,6 +346,12 @@ export class LoanFixedPriceComponent implements OnInit, OnDestroy {
           console.log(err);
           this.outstandingDebtIsError = true;
           this.isError = true;
+          if (err.status < 500) {
+            this.isGeneralError = true;
+          }
+          if (err.status > 499) {
+            this.isServerError = true;
+          }
           return of(err);
         })
       ),
@@ -346,6 +360,12 @@ export class LoanFixedPriceComponent implements OnInit, OnDestroy {
           console.log(err);
           this.remainingYearsIsError = true;
           this.isError = true;
+          if (err.status < 500) {
+            this.isGeneralError = true;
+          }
+          if (err.status > 499) {
+            this.isServerError = true;
+          }
           return of(err);
         })
       )
@@ -356,13 +376,23 @@ export class LoanFixedPriceComponent implements OnInit, OnDestroy {
           console.log(res);
 
           if (this.isError) {
-            this.messageBannerService.setView(
-              'En eller flere av endringene ble ikke oppdatert',
-              5000,
-              this.animationStyle.DROP_DOWN_UP,
-              'error',
-              window
-            );
+            if (this.isServerError) {
+              this.messageBannerService.setView(
+                'Oops, noe gikk galt. Prøv igjen senere',
+                5000,
+                this.animationStyle.DROP_DOWN_UP,
+                'error',
+                window
+              );
+            } else {
+              this.messageBannerService.setView(
+                'En eller flere av endringene ble ikke oppdatert',
+                5000,
+                this.animationStyle.DROP_DOWN_UP,
+                'error',
+                window
+              );
+            }
 
             console.log('error');
 
