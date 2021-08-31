@@ -122,17 +122,21 @@ export class OfferCardService {
   }
 
   public openNewOfferDialog(offer: OfferInfo): void {
+    console.log(offer);
     if (offer.bankInfo.bank === 'UNIO_NORDEA_DIRECT') {
       if (this.getVariation() === 0) {
+        console.log('variation 0');
         offer.bankInfo.transferUrl =
           'https://www.direct.nordea.no/direct/kundetilbud/unio/0';
       }
       if (this.getVariation() === 1) {
+        console.log('variation 1');
         offer.bankInfo.transferUrl =
           'https://www.direct.nordea.no/direct/kundetilbud/unio/1';
       }
 
       if (this.getVariation() === 2) {
+        console.log('variation 2');
         offer.bankInfo.transferUrl =
           'https://www.direct.nordea.no/direct/kundetilbud/unio/2';
       }
@@ -140,15 +144,18 @@ export class OfferCardService {
 
     if (offer.bankInfo.bank === 'YS_NORDEA_DIRECT') {
       if (this.getVariation() === 0) {
+        console.log('variation 0');
         offer.bankInfo.transferUrl =
           'https://www.direct.nordea.no/direct/kundetilbud/ys/1';
       }
       if (this.getVariation() === 1) {
+        console.log('variation 1');
         offer.bankInfo.transferUrl =
           'https://www.direct.nordea.no/direct/kundetilbud/ys/2';
       }
 
       if (this.getVariation() === 2) {
+        console.log('variation 2');
         offer.bankInfo.transferUrl =
           'https://www.direct.nordea.no/direct/kundetilbud/ys/3';
       }
