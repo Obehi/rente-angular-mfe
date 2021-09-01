@@ -156,15 +156,21 @@
   <div class="the-offer-footer">
     <div
       [ngClass]="{
-        double: isNordea === false,
-        triple: isNordea === true,
-        single: isSingleButtonLayout === true
+        triple:
+          isNordea === true &&
+          offer.bankInfo.bank !== 'NYBYGGER' &&
+          offer.bankInfo.bank !== 'DIN_BANK',
+        single: isSingleButtonLayout === true && isNordea === false,
+        double:
+          (isNordea === false && isSingleButtonLayout === false) ||
+          ((offer.bankInfo.bank === 'NYBYGGER' ||
+            offer.bankInfo.bank === 'DIN_BANK') &&
+            isNordea === true)
       }"
       class="buttons"
     >
-      <div class="full-width">
+      <div class="full-width" *ngIf="!isSingleButtonLayout">
         <rente-button
-          *ngIf="!isSingleButtonLayout"
           i18n="“see-more|offer-card-big@@offer.card.big.seeMore”"
           child
           childClass="{{ offer.bankInfo.name }}"
@@ -211,7 +217,7 @@
         <rente-button
           child
           childClass="{{ this.offersInfo.offers.top5[0].bankInfo.name }}"
-          color="secondary-medium"
+          color="secondary-semi-wide"
           type="raised"
           (click)="clickNordea()"
         >
