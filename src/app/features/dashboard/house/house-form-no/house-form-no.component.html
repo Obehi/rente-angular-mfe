@@ -37,20 +37,17 @@
         [checked]="!address.useManualPropertyValue"
       ></mat-slide-toggle>
     </div>
-    <div *ngIf="!isStatMode" class="address" [@fade]>
-      <p class="input-text">Adresse</p>
-      <rente-input
-        type="text"
-        [(ngModel)]="address.street"
-        (change)="countChange()"
-      ></rente-input>
-    </div>
-    <div *ngIf="isStatMode">
-      <rente-virdi-statistics [address]="address"> </rente-virdi-statistics>
-    </div>
     <div class="double-double">
+      <div *ngIf="!isStatMode" class="address" [@fade]>
+        <p class="input-text">Adresse</p>
+        <rente-input
+          type="text"
+          [(ngModel)]="address.street"
+          (change)="countChange()"
+        ></rente-input>
+      </div>
       <div *ngIf="isEditMode" [@fade]>
-        <p class="input-text">Postnummer</p>
+        <p class="input-text">Postnr</p>
 
         <rente-input
           [type]="'tel'"
@@ -59,6 +56,11 @@
           (change)="countChange()"
         ></rente-input>
       </div>
+    </div>
+    <div *ngIf="isStatMode">
+      <rente-virdi-statistics [address]="address"> </rente-virdi-statistics>
+    </div>
+    <div class="double-double">
       <div *ngIf="isEditMode" [@fade]>
         <p class="input-text">Størrelse på bolig</p>
 
@@ -69,18 +71,19 @@
           [maxLength]="3"
           (change)="countChange()"
         ></rente-input>
+        <p *ngIf="isEditMode" class="matsuffix-size">kvm</p>
       </div>
-    </div>
-    <div class="single" *ngIf="isEditMode" [@fade]>
-      <p class="input-text">Fellesgjeld</p>
-      <rente-input
-        [type]="'tel'"
-        (change)="countChange()"
-        [maxLength]="11"
-        [ngModel]="address?.commonDebt | thousands"
-        (ngModelChange)="address.commonDebt = formatThousand($event)"
-      ></rente-input>
-      <p class="matsuffix-debt">kr</p>
+      <div *ngIf="isEditMode" [@fade] class="common-debt">
+        <p class="input-text">Fellesgjeld</p>
+        <rente-input
+          [type]="'tel'"
+          (change)="countChange()"
+          [maxLength]="11"
+          [ngModel]="address?.commonDebt | thousands"
+          (ngModelChange)="address.commonDebt = formatThousand($event)"
+        ></rente-input>
+        <p class="matsuffix-debt">kr</p>
+      </div>
     </div>
 
     <div *ngIf="!isStatMode" class="non-double estimated" [@fade]>
@@ -88,7 +91,7 @@
       <div *ngIf="!address.useManualPropertyValue" [@fade]>
         <p
           class="estimate-error"
-          *ngIf="!address.estimatedPropertyValue && isAddressValid && didSave"
+          *ngIf="!address.estimatedPropertyValue && isAddressValid"
         >
           Kunne ikke estimere boligverdien
         </p>

@@ -194,21 +194,29 @@ rente-button {
     color: white;
     position: absolute;
     font-weight: 400;
-    left: 9rem;
-    bottom: 15.4rem;
+    bottom: 20rem;
+    right: 9rem;
+  }
+
+  .matsuffix-size {
+    color: white;
+    position: absolute;
+    left: 8rem;
+    bottom: 20rem;
+    font-weight: 500;
   }
 
   .top-text {
     color: white;
     margin-top: 5px;
-    margin-bottom: 10px;
+
     text-align: center;
-    font-size: 12px;
+    font-size: 14px;
   }
 
   .house-value {
     color: $white;
-    margin-top: 2rem;
+
     font-size: 15px;
   }
 
@@ -223,7 +231,7 @@ rente-button {
   }
 
   .estimat {
-    margin-top: 2.5rem;
+    margin-top: 1.5rem;
     display: grid;
     grid-template-columns: 1fr 0fr 0fr;
     padding: 15px;
@@ -298,6 +306,19 @@ rente-button {
     margin-bottom: 20px;
   }
   .address {
+    ::ng-deep .cdk-text-field-autofill-monitored:not(:-webkit-autofill) {
+      background: #004465;
+      padding: 5px;
+      height: 2.5rem;
+      border-radius: 10px;
+      color: white;
+      font-weight: 400;
+      font-size: 16px !important;
+      border: 1px solid #478ccc;
+      caret-color: white;
+      min-width: 13rem;
+      text-indent: 0;
+    }
     // display: grid;
     grid-template-columns: 4fr 1fr;
     position: relative;
