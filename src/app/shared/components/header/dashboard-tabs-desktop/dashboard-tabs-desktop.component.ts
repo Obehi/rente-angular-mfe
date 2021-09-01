@@ -170,7 +170,6 @@ export class DashboardTabsDesktopComponent implements OnInit {
         'success',
         window
       );
-      console.log(document.querySelector('div')[0]);
     }, 0);
   }
 
