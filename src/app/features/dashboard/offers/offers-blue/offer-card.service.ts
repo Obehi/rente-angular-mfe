@@ -72,7 +72,12 @@ export class OfferCardService {
   }
 
   public isSingleButtonLayout(bank: string): boolean {
-    return bank === 'NYBYGGER' || bank === 'DIN_BANK';
+    return (
+      bank === 'NYBYGGER' ||
+      bank === 'DIN_BANK' ||
+      bank === 'YS_NORDEA_DIRECT' ||
+      bank === 'UNIO_NORDEA_DIRECT'
+    );
   }
 
   public getOfferButtonText(offer: OfferInfo): string {
@@ -122,49 +127,37 @@ export class OfferCardService {
   }
 
   public openNewOfferDialog(offer: OfferInfo): void {
-    console.log(offer);
     if (offer.bankInfo.bank == 'UNIO_NORDEA_DIRECT') {
       if (this.getVariation() == 0) {
-        console.log('variation 0');
         offer.bankInfo.transferUrl =
           'https://www.direct.nordea.no/direct/kundetilbud/unio/?cid=partner-eqxvq75ice';
       }
       if (this.getVariation() == 1) {
-        console.log('variation 1');
         offer.bankInfo.transferUrl =
           'https://www.direct.nordea.no/direct/kundetilbud/unio/?cid=partner-eqxvq75ice';
       }
 
       if (this.getVariation() == 2) {
-        console.log('variation 2');
         offer.bankInfo.transferUrl =
           'https://www.direct.nordea.no/direct/kundetilbud/unio/?cid=partner-h7zep3a0t6';
       }
     }
 
     if (offer.bankInfo.bank == 'YS_NORDEA_DIRECT') {
-      console.log('got here!!!');
       if (this.getVariation() == 0) {
-        console.log('variation 0');
         offer.bankInfo.transferUrl =
           'https://www.direct.nordea.no/direct/kundetilbud/ys/?cid=partner-397f732sc1';
       }
       if (this.getVariation() == 1) {
-        console.log('variation 1');
         offer.bankInfo.transferUrl =
           'https://www.direct.nordea.no/direct/kundetilbud/ys/?cid=partner-397f732sc1';
       }
 
       if (this.getVariation() == 2) {
-        console.log('variation 2');
         offer.bankInfo.transferUrl =
           'https://www.direct.nordea.no/direct/kundetilbud/ys/?cid=partner-gw6atr1bv3';
       }
     }
-
-    console.log(offer.bankInfo.bank);
-    console.log(offer.bankInfo.bank === 'YS_NORDEA_DIRECT');
-    console.log(offer.bankInfo.bank.includes('YS_NORDEA_DIRECT'));
 
     if (offer.bankInfo.partner === false) return;
 
@@ -177,9 +170,6 @@ export class OfferCardService {
       return;
     }
 
-    console.log(offer.bankInfo);
-    console.log(offer.bankInfo.transferUrl);
-    window.open(offer.bankInfo.transferUrl, '_blank');
     this.sendOfferTrackingData(trackingDto);
   }
 
@@ -199,7 +189,6 @@ export class OfferCardService {
 
     const variation = (window as any).google_optimize.get(experimentId);
     // console.log((window as any).google_optimize.get(experimentId));
-    console.log(variation);
     return Number(variation) || 0;
   }
 
