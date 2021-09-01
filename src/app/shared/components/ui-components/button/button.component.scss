@@ -131,6 +131,13 @@ button.mat-primary-semi-wide {
   width: 325px;
 }
 
+button.mat-secondary-semi-wide {
+  background-color: $secondary;
+  color: white;
+  height: 56px;
+  width: 325px;
+}
+
 button.mat-primary-medium {
   background-color: $primary;
   color: white;

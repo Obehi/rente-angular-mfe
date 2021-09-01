@@ -76,6 +76,7 @@ footer {
           .nybygger {
             max-width: 182px;
           }
+
           img.partner-logo.defero {
             width: 120px;
           }
@@ -107,6 +108,16 @@ footer {
             a {
               img {
                 width: 100px;
+
+                &.nordea-direct {
+                  width: 60px;
+                  margin: unset;
+                  margin-left: -40px;
+                }
+
+                &.nybygger {
+                  margin-left: -4px;
+                }
               }
 
               img.virdi {
@@ -129,6 +140,11 @@ footer {
 
       img {
         margin: 10px;
+        &.nordea-direct {
+          width: 90px;
+          margin: unset;
+          margin-left: -64px;
+        }
       }
 
       img.virdi {

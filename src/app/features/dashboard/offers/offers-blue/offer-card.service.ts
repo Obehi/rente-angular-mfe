@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CustomLangTextService } from '@services/custom-lang-text.service';
+import { EnvService } from '@services/env.service';
 import {
   TrackingDto,
   TrackingService
@@ -12,7 +13,8 @@ import { OfferInfo } from '../../../../shared/models/offers';
 export class OfferCardService {
   constructor(
     private trackingService: TrackingService,
-    private langService: CustomLangTextService
+    private langService: CustomLangTextService,
+    private envService: EnvService
   ) {}
 
   public handleNybyggerProductSpecialCase(offer: OfferInfo): boolean {
@@ -70,7 +72,12 @@ export class OfferCardService {
   }
 
   public isSingleButtonLayout(bank: string): boolean {
-    return bank === 'NYBYGGER' || bank === 'DIN_BANK';
+    return (
+      bank === 'NYBYGGER' ||
+      bank === 'DIN_BANK' ||
+      bank === 'YS_NORDEA_DIRECT' ||
+      bank === 'UNIO_NORDEA_DIRECT'
+    );
   }
 
   public getOfferButtonText(offer: OfferInfo): string {
@@ -97,11 +104,98 @@ export class OfferCardService {
         text = 'Få erbjudande från Hypoteket';
         break;
       }
+      case 'YS_NORDEA_DIRECT': {
+        text =
+          this.getVariation() === 0 || this.getVariation() === 2
+            ? 'Les mer og søk lån!'
+            : 'Flytt boliglånet til Nordea Direct';
+        break;
+      }
+      case 'UNIO_NORDEA_DIRECT': {
+        text =
+          this.getVariation() === 0 || this.getVariation() === 2
+            ? 'Les mer og søk lån!'
+            : 'Flytt boliglånet til Nordea Direct';
+        break;
+      }
       default: {
         text = this.langService.getOffeCardCTAButtonText();
         break;
       }
     }
     return text;
+  }
+
+  public openNewOfferDialog(offer: OfferInfo): void {
+    if (offer.bankInfo.bank == 'UNIO_NORDEA_DIRECT') {
+      if (this.getVariation() == 0) {
+        offer.bankInfo.transferUrl =
+          'https://www.direct.nordea.no/direct/kundetilbud/unio/?cid=partner-eqxvq75ice';
+      }
+      if (this.getVariation() == 1) {
+        offer.bankInfo.transferUrl =
+          'https://www.direct.nordea.no/direct/kundetilbud/unio/?cid=partner-eqxvq75ice';
+      }
+
+      if (this.getVariation() == 2) {
+        offer.bankInfo.transferUrl =
+          'https://www.direct.nordea.no/direct/kundetilbud/unio/?cid=partner-h7zep3a0t6';
+      }
+    }
+
+    if (offer.bankInfo.bank == 'YS_NORDEA_DIRECT') {
+      if (this.getVariation() == 0) {
+        offer.bankInfo.transferUrl =
+          'https://www.direct.nordea.no/direct/kundetilbud/ys/?cid=partner-397f732sc1';
+      }
+      if (this.getVariation() == 1) {
+        offer.bankInfo.transferUrl =
+          'https://www.direct.nordea.no/direct/kundetilbud/ys/?cid=partner-397f732sc1';
+      }
+
+      if (this.getVariation() == 2) {
+        offer.bankInfo.transferUrl =
+          'https://www.direct.nordea.no/direct/kundetilbud/ys/?cid=partner-gw6atr1bv3';
+      }
+    }
+
+    if (offer.bankInfo.partner === false) return;
+
+    const trackingDto = new TrackingDto();
+    trackingDto.offerId = offer.id;
+    trackingDto.type = 'BANK_BUTTON_2';
+
+    if (this.handleNybyggerProductSpecialCase(offer) === true) {
+      this.sendOfferTrackingData(trackingDto);
+      return;
+    }
+
+    this.sendOfferTrackingData(trackingDto);
+  }
+
+  public getVariation(): number {
+    if ((window as any).google_optimize === undefined) {
+      // console.log('couldnt get optimize');
+      return 0;
+    }
+    let experimentId: string | null;
+    if (this.envService.environment.production === true) {
+      // console.log('is production');
+      experimentId = 'uNdAqLlKRS2XGcHt0FaY5g';
+    } else {
+      // console.log('is not production');
+      experimentId = 'A6Fvld2GTAG3VE95NWV1Hw';
+    }
+
+    const variation = (window as any).google_optimize.get(experimentId);
+    // console.log((window as any).google_optimize.get(experimentId));
+    return Number(variation) || 0;
+  }
+
+  public getBankSpecialPromoText(bankName: string): string | null {
+    if (bankName === 'BULDER') {
+      return 'Gir kundeutbytte';
+    }
+    return null;
   }
 }

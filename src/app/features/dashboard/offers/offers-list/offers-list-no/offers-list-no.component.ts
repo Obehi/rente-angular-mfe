@@ -19,21 +19,27 @@ export class OffersListNoComponent implements OnInit, OnDestroy {
   constructor(
     public optimizeService: OptimizeService,
     private messageService: MessageBannerService,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private envService: EnvService
   ) {}
 
   // Save for later use
-  /* public getVariation() {
+  /*  public getVariation() {
     if ((window as any).google_optimize === undefined) {
+      console.log('couldnt get optimize');
       return 0;
     }
     let experimentId: string | null;
     if (this.envService.environment.production === true) {
-      experimentId = 'CZzJbFYIQEa_tvn-UeQ2RQ';
+      console.log('is production');
+      experimentId = '_7-we-p9SA2OAVDcKn0xVA';
     } else {
+      console.log('is not production');
       experimentId = 'A6Fvld2GTAG3VE95NWV1Hw';
     }
     const variation = (window as any).google_optimize.get(experimentId);
+    console.log((window as any).google_optimize.get(experimentId));
+    console.log(variation);
     return variation || 0;
   } */
 

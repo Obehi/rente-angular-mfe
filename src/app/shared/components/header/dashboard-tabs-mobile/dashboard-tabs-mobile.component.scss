@@ -3,8 +3,10 @@
 .inside-btn {
   position: relative;
   .circle {
-    width: 20px;
-    height: 20px;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    border: 2px solid #112639;
     background: $primary;
     border-radius: 50%;
   }
@@ -16,9 +18,9 @@
     margin-right: auto;
     text-align: center;
     font-size: 14px;
-    right: -35px;
-    top: -3px;
-    left: 0px;
+    right: -37px;
+    top: -6px;
+    left: 0;
     p {
       font-weight: 400;
       color: white !important;
@@ -60,6 +62,7 @@ p {
       @media (max-width: 600px) {
         width: 100%;
       }
+      max-width: 600px;
       height: 70px;
       width: 900px;
       display: flex;
