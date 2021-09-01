@@ -170,6 +170,7 @@ export class OfferCardService {
       return;
     }
 
+    window.open(offer.bankInfo.transferUrl, '_blank');
     this.sendOfferTrackingData(trackingDto);
   }
 
