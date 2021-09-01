@@ -37,7 +37,7 @@
         [checked]="!address.useManualPropertyValue"
       ></mat-slide-toggle>
     </div>
-    <div class="double-double">
+    <div class="double-asymetric">
       <div *ngIf="!isStatMode" class="address" [@fade]>
         <p class="input-text">Adresse</p>
         <rente-input
@@ -46,7 +46,7 @@
           (change)="countChange()"
         ></rente-input>
       </div>
-      <div *ngIf="isEditMode" [@fade]>
+      <div *ngIf="isEditMode" [@fade] class="post-number">
         <p class="input-text">Postnr</p>
 
         <rente-input
@@ -60,8 +60,8 @@
     <div *ngIf="isStatMode">
       <rente-virdi-statistics [address]="address"> </rente-virdi-statistics>
     </div>
-    <div class="double-double">
-      <div *ngIf="isEditMode" [@fade]>
+    <div class="double">
+      <div *ngIf="isEditMode" [@fade] class="house-size">
         <p class="input-text">Størrelse på bolig</p>
 
         <rente-input
