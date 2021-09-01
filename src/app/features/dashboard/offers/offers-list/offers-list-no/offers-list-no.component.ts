@@ -21,12 +21,10 @@ export class OffersListNoComponent implements OnInit, OnDestroy {
     private messageService: MessageBannerService,
     private notificationService: NotificationService,
     private envService: EnvService
-  ) {
-    // console.log(this.getVariation());
-  }
+  ) {}
 
   // Save for later use
-  public getVariation() {
+  /*  public getVariation() {
     if ((window as any).google_optimize === undefined) {
       console.log('couldnt get optimize');
       return 0;
@@ -43,7 +41,7 @@ export class OffersListNoComponent implements OnInit, OnDestroy {
     console.log((window as any).google_optimize.get(experimentId));
     console.log(variation);
     return variation || 0;
-  }
+  } */
 
   get isMobile(): boolean {
     return window.innerWidth < 600;

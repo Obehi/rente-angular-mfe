@@ -123,42 +123,42 @@ export class OfferCardService {
 
   public openNewOfferDialog(offer: OfferInfo): void {
     console.log(offer);
-    if (offer.bankInfo.bank === 'UNIO_NORDEA_DIRECT') {
-      if (this.getVariation() === 0) {
+    if (offer.bankInfo.bank == 'UNIO_NORDEA_DIRECT') {
+      if (this.getVariation() == 0) {
         console.log('variation 0');
         offer.bankInfo.transferUrl =
-          'https://www.direct.nordea.no/direct/kundetilbud/unio/0';
+          'https://www.direct.nordea.no/direct/kundetilbud/unio/?cid=partner-eqxvq75ice';
       }
-      if (this.getVariation() === 1) {
+      if (this.getVariation() == 1) {
         console.log('variation 1');
         offer.bankInfo.transferUrl =
-          'https://www.direct.nordea.no/direct/kundetilbud/unio/1';
-      }
-
-      if (this.getVariation() === 2) {
-        console.log('variation 2');
-        offer.bankInfo.transferUrl =
-          'https://www.direct.nordea.no/direct/kundetilbud/unio/2';
-      }
-    }
-
-    if (offer.bankInfo.bank === 'YS_NORDEA_DIRECT') {
-      console.log('got here!!!');
-      if (this.getVariation() === 0) {
-        console.log('variation 0');
-        offer.bankInfo.transferUrl =
-          'https://www.direct.nordea.no/direct/kundetilbud/ys/1';
-      }
-      if (this.getVariation() === 1) {
-        console.log('variation 1');
-        offer.bankInfo.transferUrl =
-          'https://www.direct.nordea.no/direct/kundetilbud/ys/2';
+          'https://www.direct.nordea.no/direct/kundetilbud/unio/?cid=partner-eqxvq75ice';
       }
 
       if (this.getVariation() == 2) {
         console.log('variation 2');
         offer.bankInfo.transferUrl =
-          'https://www.direct.nordea.no/direct/kundetilbud/ys/3';
+          'https://www.direct.nordea.no/direct/kundetilbud/unio/?cid=partner-h7zep3a0t6';
+      }
+    }
+
+    if (offer.bankInfo.bank == 'YS_NORDEA_DIRECT') {
+      console.log('got here!!!');
+      if (this.getVariation() == 0) {
+        console.log('variation 0');
+        offer.bankInfo.transferUrl =
+          'https://www.direct.nordea.no/direct/kundetilbud/ys/?cid=partner-397f732sc1';
+      }
+      if (this.getVariation() == 1) {
+        console.log('variation 1');
+        offer.bankInfo.transferUrl =
+          'https://www.direct.nordea.no/direct/kundetilbud/ys/?cid=partner-397f732sc1';
+      }
+
+      if (this.getVariation() == 2) {
+        console.log('variation 2');
+        offer.bankInfo.transferUrl =
+          'https://www.direct.nordea.no/direct/kundetilbud/ys/?cid=partner-gw6atr1bv3';
       }
     }
 
@@ -191,7 +191,7 @@ export class OfferCardService {
     let experimentId: string | null;
     if (this.envService.environment.production === true) {
       // console.log('is production');
-      experimentId = 'RI6fisQ_TdebhBSAngFeAw';
+      experimentId = 'uNdAqLlKRS2XGcHt0FaY5g';
     } else {
       // console.log('is not production');
       experimentId = 'A6Fvld2GTAG3VE95NWV1Hw';
