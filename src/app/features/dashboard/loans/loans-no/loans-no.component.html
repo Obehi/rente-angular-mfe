@@ -9,6 +9,8 @@
 
   <rente-signicat-users
     *ngIf="isSignicatUser && !isFixedPriceBank"
+    [loanData]="loansData"
+    [allOffers]="offers"
   ></rente-signicat-users>
 
   <rente-signicat-fixed-price

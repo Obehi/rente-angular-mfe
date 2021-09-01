@@ -1,154 +1,7 @@
 @import '../../../../../../styles/theme/_colors.scss';
 
-.info {
-  text-align: center;
-  color: white;
-  margin: 5px;
-}
-
-h3 {
-  color: white;
-}
-
-p {
-  color: white;
-}
-
-.forms {
-  // .ng-invalid {
-  //   ::ng-deep.mat-form-field-appearance-outline .mat-form-field-outline {
-  //     border: 1px solid red !important;
-  //     border-radius: 8px;
-  //   }
-  // }
-
-  .non-active-input {
-    ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
-      background: none;
-    }
-    ::ng-deep.mat-form-field-appearance-outline .mat-form-field-outline {
-      border: none;
-    }
-  }
-
-  .active-input {
-    ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
-      background: #004465a6;
-    }
-
-    ::ng-deep.mat-form-field-appearance-outline .mat-form-field-outline {
-      border: 1px solid #478ccc;
-      border-radius: 8px;
-    }
-  }
-
-  .edit-focus {
-    ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
-      background: $secondary;
-    }
-
-    ::ng-deep.mat-form-field-appearance-outline .mat-form-field-outline {
-      border: 1px solid $primary;
-      border-radius: 8px;
-    }
-  }
-
-  ::ng-deep .mat-form-field-infix {
-    top: 2px !important;
-    border-top: none;
-  }
-
-  ::ng-deep .mat-form-field-wrapper {
-    margin: 0 !important;
-    padding: 0 !important;
-    padding-bottom: 0 !important;
-  }
-  ::ng-deep .mat-form-field-outline-start {
-    display: none !important;
-  }
-  ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-end {
-    border-radius: 50px !important;
-    border-width: 5px;
-    border-left: none;
-  }
-  ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-start {
-    border-radius: 1px !important;
-    border: none;
-    border-right: none;
-  }
-  ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-gap {
-    border-radius: 1px !important;
-    border-bottom: none;
-  }
-
-  ::ng-deep .mat-form-field-infix input {
-    text-align: center !important;
-  }
-
-  ::ng-deep.mat-form-field-appearance-outline .mat-form-field-outline-end {
-    border: none !important;
-  }
-
-  form {
-    min-width: 100%;
-    display: grid;
-    justify-content: center;
-  }
-
-  ::ng-deep input.mat-input-element {
-    color: white !important;
-    caret-color: white !important;
-  }
-
-  .field-box {
-    padding: 0 10px 13px 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    h4 {
-      font-size: 16px;
-    }
-
-    @media (max-width: 280px) {
-      display: grid;
-      justify-content: center;
-      align-items: center;
-      padding: 0 10px 15px 10px;
-    }
-
-    @media (max-width: 321px) {
-      padding: 0 10px 13px 20px;
-    }
-
-    @media (min-width: 767px) {
-      h4 {
-        margin: 10px !important;
-      }
-    }
-  }
-
-  ::placeholder {
-    color: white;
-    font-size: 1.1rem;
-  }
-
-  .loan-value {
-    margin-right: 20px;
-  }
-
-  .d-block {
-    text-align: center;
-  }
-
-  input {
-    font-size: 16px !important;
-  }
-}
-
 .summary {
   padding: 10px;
-  margin-top: 75px;
 }
 
 @media (min-width: 600px) {
@@ -160,124 +13,111 @@ p {
   }
 }
 
-.total-cost {
+h3.title {
+  color: white;
+  padding: 10px;
   margin-top: 10px;
-  margin-bottom: 10px;
 }
 
-.content-blue-box {
+p,
+h3 {
+  color: white !important;
+}
+
+.fix {
+  padding: 10px;
+
+  @media (min-width: 992px) {
+    margin-left: 35px;
+  }
+}
+
+.summary-box {
+  margin-bottom: 20px;
   width: 100%;
-  background-color: $secondary;
+  background: none;
   border-radius: 10px;
-  height: 560px;
-  transition: height 0.3s;
 
-  @media (max-width: 360px) {
-    height: 585px;
+  .first-box {
+    background: none;
+    box-shadow: none;
   }
 
-  @media (max-width: 330px) {
-    height: 660px;
-  }
-
-  @media (max-width: 280px) {
-    height: 760px;
-  }
-}
-
-.content-blue-box-edit {
-  width: 100%;
-  background-color: $secondary;
-  border-radius: 10px;
-  height: 350px;
-  transition: height 0.3s;
-
-  @media (max-width: 280px) {
-    height: 425px;
-  }
-}
-
-.double-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  @media (max-width: 320px) {
-    display: grid;
+  .double-container {
     justify-content: center;
+  }
+
+  .move-first-box {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+
+  .move-sec-box {
+    margin-right: 0px;
+  }
+
+  .bvalue {
+    border-radius: 20px;
+    padding: 10px 10px 10px 10px;
+    background: $karl-blue;
+
+    @media (max-width: 768px) {
+      width: 150px;
+    }
+  }
+
+  .btitle-one,
+  .btitle-two {
+    padding-left: 10px;
+    padding-right: 10px;
+
+    @media (min-width: 767px) and (max-width: 992px) {
+      padding-left: 0px;
+      padding-right: 0px;
+    }
+  }
+
+  @media (min-width: 769px) and (max-width: 992px) {
+    width: 90%;
+  }
+
+  @media (min-width: 767px) and (max-width: 769px) {
+    width: 100%;
+  }
+  @media (min-width: 992px) {
+    width: 70%;
+  } // End of media screen
+}
+
+.four-container {
+  @media (min-width: 767px) {
+    display: flex;
+    justify-content: space-between;
     align-items: center;
   }
 }
 
-.first-box {
-  color: white;
-  width: 40%;
-  border-radius: 10px;
-  padding: 8px;
-  // border: 1px solid #4d97dc;
-  background-color: #004465a6;
-  box-shadow: rgb(50 50 93 / 25%) 0px 2px 5px -1px,
-    rgb(0 0 0 / 30%) 0px 3px 3px -1px;
-
-  @media (max-width: 320px) {
-    width: 100%;
+.tab-container {
+  @media (max-width: 351px) {
+    display: grid;
+    justify-content: center;
+    margin-bottom: 15px;
   }
-}
 
-.move-first-box {
-  margin-left: 20px;
-  @media (max-width: 320px) {
-    margin-left: 0;
-    margin-bottom: 10px;
+  @media (max-width: 767px) and (min-width: 351px) {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    align-items: center;
   }
-}
 
-.move-sec-box {
-  margin-right: 20px;
-  @media (max-width: 320px) {
-    margin-left: 0;
-    margin-bottom: 10px;
+  @media (min-width: 767px) and (max-width: 769px) {
+    display: block;
   }
-}
 
-.general-modus {
-  margin-top: 0;
-}
-
-.edit-modus {
-  margin-top: 20px;
-}
-
-.all-text {
-  padding-top: 20px;
-}
-
-.loan-center-title {
-  text-align: center;
-  font-size: 15px;
-  color: white;
-}
-
-.loan-center {
-  text-align: center;
-  margin: 2px 25px 25px 25px;
-  background: #004465a6;
-  border-radius: 30px;
-
-  p {
-    padding: 1em 2em;
-    font-size: 14px;
-    font-weight: 400;
+  @media (min-width: 768px) {
+    display: grid;
   }
-}
-
-.loan-edit-activate {
-  width: 35px;
-}
-
-.loan-edit-cancel {
-  width: 35px;
-  height: 35px;
 }
 
 .btitle-two,
@@ -289,11 +129,37 @@ p {
   p {
     padding: 6px;
   }
+
+  @media (min-width: 767px) and (max-width: 769px) {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
+  @media (max-width: 601px) {
+    padding-left: 0px;
+    padding-right: 0px;
+    p {
+      padding: 4px !important;
+    }
+  }
+
+  @media (max-width: 321px) {
+    padding-left: 0px;
+    padding-right: 0px;
+    p {
+      padding: 3px !important;
+    }
+  }
 }
 
 .btitle-two {
   padding-left: 7px;
   padding-right: 7px;
+
+  @media (max-width: 321px) {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
 }
 
 .bvalue {
@@ -301,74 +167,16 @@ p {
   padding: 15px;
 }
 
-.loan-type {
-  padding: 10px;
-  color: white;
-  border-radius: 10px 10px 0 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: #004465a6;
-  h3 {
-    margin-left: 10px;
-  }
-}
-
-.loan-info {
-  padding: 10px 38px 10px 20px;
-  margin-bottom: 15px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  h3,
-  p {
-    font-size: 16px;
+.main-container {
+  @media (min-width: 600px) {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: initial;
   }
 
-  @media (max-width: 281px) {
-    padding: 10px 8px 10px 20px !important;
-    // padding: 10px 0px 10px 5px !important;
-    display: grid;
+  @media (max-width: 768px) {
+    display: flex;
+    flex-wrap: wrap;
     justify-content: center;
-    align-items: center;
-
-    h3 {
-      text-align: center;
-      margin-top: 10px;
-    }
   }
-
-  @media (min-width: 281px) and (max-width: 321px) {
-    padding: 10px 38px 10px 20px !important;
-  }
-
-  @media (max-width: 542px) {
-    padding: 10px 38px 10px 10px;
-  }
-}
-
-.text-white {
-  width: 40% !important;
-
-  @media (max-width: 280px) {
-    width: 100% !important;
-    text-align: center;
-  }
-
-  @media (min-width: 540px) {
-    width: 100% !important;
-  }
-}
-
-.w-75 {
-  width: 150px !important;
-}
-
-.w-130 {
-  width: 110px !important;
-}
-
-.save-loan-button {
-  padding: 15px 0 18px;
 }

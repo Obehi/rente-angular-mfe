@@ -21,7 +21,7 @@
             (click)="setEditDisabled()"
             class="loan-edit-cancel"
             src="../../../../../../assets/icons/cancel-icon-grey.svg"
-            alt="loan-edit"
+            alt="loan-edit-cancel"
           />
         </div>
       </div>
@@ -32,7 +32,7 @@
             <div
               [ngClass]="{
                 'loan-center': isEditMode === false,
-                'loan-center-edit': isEditMode === true,
+                'loan-center-edit': inEditMode === true,
                 'loan-center-edit-focus': inputProductIsActive === true,
                 'loan-center-edit-error': productIsError === true
               }"
@@ -62,7 +62,7 @@
 
               <div
                 [ngClass]="{
-                  'active-input': isEditMode === true,
+                  'active-input': inEditMode === true,
                   'non-active-input': isEditMode === false,
                   'edit-focus': inputOutstandingDebtIsActive === true,
                   'edit-error':
@@ -107,12 +107,13 @@
                 </div>
               </div>
             </div>
+
             <div class="field-box">
               <h4 class="text-white">Løpetid:</h4>
 
               <div
                 [ngClass]="{
-                  'active-input': isEditMode === true,
+                  'active-input': inEditMode === true,
                   'non-active-input': isEditMode === false,
                   'edit-focus': inputRemainingYearsIsActive === true,
                   'edit-error':

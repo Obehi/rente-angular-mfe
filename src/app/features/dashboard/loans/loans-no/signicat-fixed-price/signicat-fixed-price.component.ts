@@ -9,7 +9,6 @@ import { bankOfferDto, Loans } from '@models/loans';
 export class SignicatFixedPriceComponent implements OnInit {
   @Input() loanData: Loans;
   @Input() allOffers: bankOfferDto[];
-
   public isSummaryNeeded = false;
 
   constructor() {}

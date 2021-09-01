@@ -74,6 +74,7 @@ import { CrawlerBanksComponent } from './loans/loans-no/crawler-banks/crawler-ba
 import { SignicatUsersComponent } from './loans/loans-no/signicat-users/signicat-users.component';
 import { SignicatFixedPriceComponent } from './loans/loans-no/signicat-fixed-price/signicat-fixed-price.component';
 import { LoanFixedPriceComponent } from './loans/loans-no/signicat-fixed-price/loan-fixed-price/loan-fixed-price.component';
+import { LoanSignicatUsersComponent } from './loans/loans-no/signicat-users/loan-signicat-users/loan-signicat-users.component';
 
 // TODO: ADD separate module for material import
 @NgModule({
@@ -126,7 +127,8 @@ import { LoanFixedPriceComponent } from './loans/loans-no/signicat-fixed-price/l
     CrawlerBanksComponent,
     SignicatUsersComponent,
     SignicatFixedPriceComponent,
-    LoanFixedPriceComponent
+    LoanFixedPriceComponent,
+    LoanSignicatUsersComponent
   ],
   imports: [
     CommonModule,

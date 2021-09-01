@@ -345,6 +345,8 @@ hr.box {
       border: 1px solid #478ccc;
       border-radius: 8px;
       padding: 0.45em 0.75em 0.25em 0.75em;
+      transition: background 0.4s ease;
+      transition: border 0.4s ease;
     }
 
     ::ng-deep .mat-select-arrow-wrapper {
@@ -413,13 +415,16 @@ hr.box {
   }
 
   .active-input {
-    ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
-      background: #004465a6;
-    }
+    // ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+
+    // }
 
     ::ng-deep.mat-form-field-appearance-outline .mat-form-field-outline {
+      background: #004465a6;
+      transition: background 0.6s ease;
       border: 1px solid #478ccc;
       border-radius: 8px;
+      transition: border 0.6s ease;
     }
   }
 

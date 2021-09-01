@@ -1,22 +1,22 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MyLoansService } from '@features/dashboard/loans/myloans.service';
 import { bankOfferDto, LoanInfo } from '@models/loans';
 import { MessageBannerService } from '@services/message-banner.service';
 import { LoansService } from '@services/remote-api/loans.service';
 import { getAnimationStyles } from '@shared/animations/animationEnums';
-import { concat, of, Subscription } from 'rxjs';
-import { catchError, filter, toArray } from 'rxjs/operators';
-import { FadeOut } from '@shared/animations/fade-out';
 import { ButtonFadeInOut } from '@shared/animations/button-fade-in-out';
-import { MyLoansService } from '../../../myloans.service';
+import { FadeOut } from '@shared/animations/fade-out';
+import { concat, forkJoin, Observable, of, Subscription } from 'rxjs';
+import { catchError, toArray } from 'rxjs/operators';
 
 @Component({
-  selector: 'rente-loan-fixed-price',
-  templateUrl: './loan-fixed-price.component.html',
-  styleUrls: ['./loan-fixed-price.component.scss'],
+  selector: 'rente-loan-signicat-users',
+  templateUrl: './loan-signicat-users.component.html',
+  styleUrls: ['./loan-signicat-users.component.scss'],
   animations: [FadeOut, ButtonFadeInOut]
 })
-export class LoanFixedPriceComponent implements OnInit, OnDestroy {
+export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
   @Input() index: number;
   @Input() loan: LoanInfo;
   @Input() allOffers: bankOfferDto[];
@@ -24,9 +24,6 @@ export class LoanFixedPriceComponent implements OnInit, OnDestroy {
   public isEditMode = false;
   public hideEditIcon = false;
   public loanForm: FormGroup;
-  public selected = '';
-  public loanTypeString: string;
-  public loanTypeID: string;
   public showDisplayBox = true;
   public showButton = false;
   public isDisabled = true;
@@ -35,27 +32,29 @@ export class LoanFixedPriceComponent implements OnInit, OnDestroy {
   public isServerError = false;
   public outStandingDebtchangeSubscription: Subscription | undefined;
   public remainingYearschangeSubscription: Subscription | undefined;
+  public nominalRatechangeSubscription: Subscription | undefined;
   public animationStyle = getAnimationStyles();
   public inEditMode = false;
 
-  public inputProductIsActive = false;
+  // Activate input color when focused
   public inputOutstandingDebtIsActive = false;
   public inputRemainingYearsIsActive = false;
+  public inputNominalRateIsActive = false;
 
   // Error handling
-  public productIsError = false;
   public outstandingDebtIsError = false;
   public remainingYearsIsError = false;
+  public nominalRateIsError = false;
   public isError = false;
 
-  public loanNameString = 'loanName';
   public outstandingDebtString = 'outstandingDebt';
   public remainingYearsString = 'remainingYears';
+  public nominalRateString = 'nominalRate';
 
   // Store the inital value from api
-  public initialLoanName: string;
   public initialOutStandingDebt: string;
   public initialRemainingYears: string;
+  public initialNominalRate: string;
 
   constructor(
     private loansService: LoansService,
@@ -71,48 +70,27 @@ export class LoanFixedPriceComponent implements OnInit, OnDestroy {
     if (this.remainingYearschangeSubscription) {
       this.remainingYearschangeSubscription.unsubscribe();
     }
+    if (this.nominalRatechangeSubscription) {
+      this.nominalRatechangeSubscription.unsubscribe();
+    }
   }
 
   ngOnInit(): void {
-    this.initialLoanName = String(this.loan.loanName);
     this.initialOutStandingDebt = String(this.loan.outstandingDebt);
     this.initialRemainingYears = String(this.loan.remainingYears);
-    this.loanTypeString = String(this.loan.loanName);
-
-    /*
-     * Create an object of the same datatype from bank offers
-     * To be able to set selected to a value
-     * Since mat-select wants the default value to be the same datatype as the array it uses
-     */
-
-    const transformDto = {
-      name: this.loanTypeString,
-      id: 'tag:finansportalen.no:feed/bank/boliglan/1622922',
-      rate: 1.99
-    };
-
-    // this.allOffers = offerBank.offers;
-    this.allOffers.push(transformDto);
-
-    this.selected = this.allOffers.filter(
-      (val) => val.name === transformDto.name
-    )[0].name;
-
-    // Original working function filter
-    // this.selected = this.allOffers.filter(
-    //   (val) => val.name === dto.loanName
-    // )[0].name;
-
-    // this.loanTypeID = this.findLoanID(this.selected);
+    this.initialNominalRate = String(this.loan.nominalRate);
 
     this.loanForm = this.fb.group({
-      loanName: [{ value: this.initialLoanName, disabled: true }],
       outstandingDebt: [
         { value: this.initialOutStandingDebt, disabled: true },
         Validators.required
       ],
       remainingYears: [
         { value: this.initialRemainingYears, disabled: true },
+        Validators.required
+      ],
+      nominalRate: [
+        { value: this.initialNominalRate, disabled: true },
         Validators.required
       ]
     });
@@ -144,6 +122,19 @@ export class LoanFixedPriceComponent implements OnInit, OnDestroy {
         }
       });
 
+    this.nominalRatechangeSubscription = this.loanForm
+      .get(this.nominalRateString)
+      ?.valueChanges.subscribe(() => {
+        if (
+          this.isEditMode &&
+          this.loanForm.controls[this.nominalRateString].dirty
+        ) {
+          this.changesMade = true;
+          this.isDisabled = false;
+          this.nominalRateIsError = false;
+        }
+      });
+
     // Listen for edit
     this.myLoansService
       .loanEditIndexAsObservable()
@@ -155,53 +146,45 @@ export class LoanFixedPriceComponent implements OnInit, OnDestroy {
           this.hideEditIcon = true;
         }
       });
-  }
-
-  // Functions
-  public setInputProductActive(): void {
-    // Deactivate first then set active for smooth transition
-    this.inputOutstandingDebtIsActive = false;
-    this.inputRemainingYearsIsActive = false;
-    this.inputProductIsActive = true;
-  }
+  } // ngOnInit
 
   public setInputOutDebtActive(): void {
-    // Deactivate first then set active for smooth transition
-    this.inputProductIsActive = false;
     this.inputRemainingYearsIsActive = false;
+    this.inputNominalRateIsActive = false;
     this.inputOutstandingDebtIsActive = true;
   }
 
   public setInputRemYearsActive(): void {
-    // Deactivate first then set active for smooth transition
-    this.inputProductIsActive = false;
     this.inputOutstandingDebtIsActive = false;
+    this.inputNominalRateIsActive = false;
     this.inputRemainingYearsIsActive = true;
   }
 
-  public deactivateAllInput(): void {
-    this.inputProductIsActive = false;
+  public setInputNominalRateActive(): void {
     this.inputOutstandingDebtIsActive = false;
     this.inputRemainingYearsIsActive = false;
+    this.inputNominalRateIsActive = true;
   }
 
-  public findLoanID(loanName: string): string {
-    for (const loan of this.allOffers) {
-      if (loan.name === loanName) {
-        return loan.id;
-      }
-    }
-    alert('Loan name or ID not found!');
-    return '';
+  public deactivateAllInput(): void {
+    this.inputOutstandingDebtIsActive = false;
+    this.inputRemainingYearsIsActive = false;
+    this.inputNominalRateIsActive = false;
   }
 
   public disableForm(): void {
-    this.loanForm.get(this.loanNameString)?.disable();
     this.loanForm.get(this.outstandingDebtString)?.disable();
     this.loanForm.get(this.remainingYearsString)?.disable();
+    this.loanForm.get(this.nominalRateString)?.disable();
   }
 
   public setEditDisabled(): void {
+    // Reset error
+    this.outstandingDebtIsError = false;
+    this.remainingYearsIsError = false;
+    this.nominalRateIsError = false;
+
+    // Run in this order for animation to be smooth
     this.changesMade = false;
     this.showButton = false;
     setTimeout(() => {
@@ -212,10 +195,6 @@ export class LoanFixedPriceComponent implements OnInit, OnDestroy {
       this.hideEditIcon = false;
       this.showDisplayBox = true;
 
-      this.selected = this.initialLoanName;
-
-      this.loanTypeID = this.findLoanID(this.selected);
-
       this.loanForm
         .get(this.outstandingDebtString)
         ?.setValue(this.initialOutStandingDebt);
@@ -224,22 +203,25 @@ export class LoanFixedPriceComponent implements OnInit, OnDestroy {
         .get(this.remainingYearsString)
         ?.setValue(this.initialRemainingYears);
 
-      // Reset error
-      this.productIsError = false;
-      this.outstandingDebtIsError = false;
-      this.remainingYearsIsError = false;
+      this.loanForm
+        .get(this.nominalRateString)
+        ?.setValue(this.initialNominalRate);
     }, 325);
 
     this.disableForm();
   }
 
   public enableForm(): void {
-    this.loanForm.get(this.loanNameString)?.enable();
     this.loanForm.get(this.outstandingDebtString)?.enable();
     this.loanForm.get(this.remainingYearsString)?.enable();
+    this.loanForm.get(this.nominalRateString)?.enable();
   }
 
   public setEditEnabled(): void {
+    this.outstandingDebtIsError = false;
+    this.remainingYearsIsError = false;
+    this.nominalRateIsError = false;
+
     const check = this.myLoansService.getEditMode();
 
     if (check !== null) {
@@ -254,20 +236,17 @@ export class LoanFixedPriceComponent implements OnInit, OnDestroy {
     this.showButton = true;
     this.isEditMode = true;
     this.hideEditIcon = true;
-    this.inEditMode = true;
-
+    setTimeout(() => {
+      this.inEditMode = true;
+    }, 500);
     this.enableForm();
-  }
-
-  public matSelectChanged(): void {
-    this.changesMade = true;
-    this.isDisabled = false;
   }
 
   get isLoanFormValid(): boolean {
     return (
       !!this.loanForm.get(this.outstandingDebtString)?.value &&
       !!this.loanForm.get(this.remainingYearsString)?.value &&
+      !!this.loanForm.get(this.nominalRateString)?.value &&
       this.changesMade
     );
   }
@@ -284,13 +263,8 @@ export class LoanFixedPriceComponent implements OnInit, OnDestroy {
     this.isDisabled = true;
     this.deactivateAllInput();
 
-    // Reset form so its marked as untouched
-    // this.loanForm.reset();
+    // Reset form so its marked as pristine
     this.loanForm.markAsPristine();
-    // this.loanForm.markAsUntouched();
-
-    // Set the initial values back as reset sets the values to null
-    this.loanTypeID = this.findLoanID(this.selected);
 
     this.loanForm
       .get(this.outstandingDebtString)
@@ -300,14 +274,15 @@ export class LoanFixedPriceComponent implements OnInit, OnDestroy {
       .get(this.remainingYearsString)
       ?.setValue(this.initialRemainingYears);
 
+    this.loanForm
+      .get(this.nominalRateString)
+      ?.setValue(this.initialNominalRate);
+
     this.sendRequest();
-  }
+  } // Save
 
   public sendRequest(): void {
-    const loanNameDto = {
-      product: this.loanTypeID
-    };
-
+    // Get the new values and then set it to initial value then send request
     const getOutstandingDebt = this.loanForm.get(this.outstandingDebtString)
       ?.value;
 
@@ -322,22 +297,13 @@ export class LoanFixedPriceComponent implements OnInit, OnDestroy {
       remainingYears: getRemainingYears
     };
 
+    const getNominalRate = this.loanForm.get(this.nominalRateString)?.value;
+
+    const nominalRateDto = {
+      nominalRate: getNominalRate
+    };
+
     concat(
-      // this.loansService.updateLoanProduct(loanNameDto)
-      of(true).pipe(
-        catchError((err) => {
-          console.log(err);
-          this.productIsError = true;
-          this.isError = true;
-          if (err.status < 500) {
-            this.isGeneralError = true;
-          }
-          if (err.status > 499) {
-            this.isServerError = true;
-          }
-          return of(err);
-        })
-      ),
       // this.loansService.updateLoanOutstandingDebt(outstandingDebtDto)
       of(true).pipe(
         catchError((err) => {
@@ -357,6 +323,20 @@ export class LoanFixedPriceComponent implements OnInit, OnDestroy {
         catchError((err) => {
           console.log(err);
           this.remainingYearsIsError = true;
+          this.isError = true;
+          if (err.status < 500) {
+            this.isGeneralError = true;
+          }
+          if (err.status > 499) {
+            this.isServerError = true;
+          }
+          return of(err);
+        })
+      ),
+      this.loansService.updateLoanNominalRate(nominalRateDto).pipe(
+        catchError((err) => {
+          console.log(err);
+          this.nominalRateIsError = true;
           this.isError = true;
           if (err.status < 500) {
             this.isGeneralError = true;
@@ -401,6 +381,10 @@ export class LoanFixedPriceComponent implements OnInit, OnDestroy {
             this.loanForm
               .get(this.remainingYearsString)
               ?.setValue(this.initialRemainingYears);
+
+            this.loanForm
+              .get(this.nominalRateString)
+              ?.setValue(this.initialNominalRate);
           } else {
             this.messageBannerService.setView(
               'Endringene dine er lagret',
@@ -412,9 +396,9 @@ export class LoanFixedPriceComponent implements OnInit, OnDestroy {
 
             console.log('success');
 
-            this.initialLoanName = this.selected;
             this.initialOutStandingDebt = getOutstandingDebt;
             this.initialRemainingYears = getRemainingYears;
+            this.initialNominalRate = getNominalRate;
 
             this.loanForm
               .get(this.outstandingDebtString)
@@ -423,9 +407,14 @@ export class LoanFixedPriceComponent implements OnInit, OnDestroy {
             this.loanForm
               .get(this.remainingYearsString)
               ?.setValue(this.initialRemainingYears);
-            console.log(this.initialLoanName);
+
+            this.loanForm
+              .get(this.nominalRateString)
+              ?.setValue(this.initialNominalRate);
+
             console.log(this.initialOutStandingDebt);
             console.log(this.initialRemainingYears);
+            console.log(this.initialNominalRate);
             this.setEditDisabled();
             console.log('Saved!');
           }
@@ -468,4 +457,4 @@ export class LoanFixedPriceComponent implements OnInit, OnDestroy {
 
     // ---------------------------------------------------------------------
   } // send request end
-} // Class end
+}
