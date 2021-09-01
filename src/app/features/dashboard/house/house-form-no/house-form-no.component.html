@@ -71,7 +71,7 @@
         ></rente-input>
       </div>
     </div>
-    <div class="single" *ngIf="isEditMode">
+    <div class="single" *ngIf="isEditMode" [@fade]>
       <p class="input-text">Fellesgjeld</p>
       <rente-input
         [type]="'tel'"
@@ -88,7 +88,7 @@
       <div *ngIf="!address.useManualPropertyValue" [@fade]>
         <p
           class="estimate-error"
-          *ngIf="!address.estimatedPropertyValue && isAddressValid"
+          *ngIf="!address.estimatedPropertyValue && isAddressValid && didSave"
         >
           Kunne ikke estimere boligverdien
         </p>
