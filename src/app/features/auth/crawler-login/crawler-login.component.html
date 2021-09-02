@@ -141,13 +141,15 @@
         <a
           class="sb1-app-button"
           [class]="isSb1App === false ? 'selected' : 'normal'"
-          (click)="setSb1bankIdForm()"
+          (click)="setSb1bankIdForm(); scrollToBankIDMobile()"
           *ngIf="isSB1Bank && isSb1App !== true"
         >
           <img [src]="'../../../assets/icons/mobile-login-green.svg'" />
-          <p>BankId på mobil</p>
+          <p>BankID på mobil</p>
         </a>
       </div>
+
+      <div class="BankIDMobile scroll-anchor"></div>
 
       <mat-horizontal-stepper
         *ngIf="isSb1App === true || isSB1Bank === true"
@@ -157,6 +159,7 @@
       >
         <mat-step [editable]="true"
           ><form
+            id="destination"
             *ngIf="isSb1App === true"
             [formGroup]="bankIdForm"
             novalidate
@@ -250,6 +253,40 @@
             <div class="form-group">
               <rente-input
                 [errorStateMatcher]="
+                  isErrorState(bankIdForm.controls['phone'], bankIdForm)
+                "
+                [placeholder]="'Ditt mobilnummer (8 siffer)'"
+                formControlName="phone"
+                [maskType]="mask.phone"
+                [type]="'tel'"
+                [modelOptions]="{ updateOn: 'blur' }"
+              >
+              </rente-input>
+              <div
+                class="error-message"
+                *ngIf="bankIdForm.controls['phone'].touched"
+              >
+                <rente-form-message
+                  class="text-left d-block"
+                  *ngIf="bankIdForm.controls['phone'].hasError('required')"
+                  [type]="'error'"
+                  i18n="“issue|bank-id@@bankId.description.telephoneNumber”"
+                >
+                  Telefonnummer kan ikke være tomt
+                </rente-form-message>
+                <rente-form-message
+                  class="text-left d-block"
+                  *ngIf="bankIdForm.controls['phone'].hasError('pattern')"
+                  [type]="'error'"
+                  i18n="“issue|bank-id@@bankId.description.telephoneNumber2”"
+                >
+                  Telefonnummer ikke gyldig
+                </rente-form-message>
+              </div>
+            </div>
+            <div class="form-group">
+              <rente-input
+                [errorStateMatcher]="
                   isErrorState(bankIdForm.controls['birthdate'], bankIdForm)
                 "
                 [placeholder]="'Din fødselsdato (ddmmåå)'"
@@ -282,41 +319,6 @@
               </div>
             </div>
 
-            <div class="form-group">
-              <rente-input
-                [errorStateMatcher]="
-                  isErrorState(bankIdForm.controls['phone'], bankIdForm)
-                "
-                [placeholder]="'Ditt mobilnummer (8 siffer)'"
-                formControlName="phone"
-                [maskType]="mask.phone"
-                [type]="'tel'"
-                [modelOptions]="{ updateOn: 'blur' }"
-              >
-              </rente-input>
-              <div
-                class="error-message"
-                *ngIf="bankIdForm.controls['phone'].touched"
-              >
-                <rente-form-message
-                  class="text-left d-block"
-                  *ngIf="bankIdForm.controls['phone'].hasError('required')"
-                  [type]="'error'"
-                  i18n="“issue|bank-id@@bankId.description.telephoneNumber”"
-                >
-                  Telefonnummer kan ikke være tomt
-                </rente-form-message>
-                <rente-form-message
-                  class="text-left d-block"
-                  *ngIf="bankIdForm.controls['phone'].hasError('pattern')"
-                  [type]="'error'"
-                  i18n="“issue|bank-id@@bankId.description.telephoneNumber2”"
-                >
-                  Telefonnummer ikke gyldig
-                </rente-form-message>
-              </div>
-            </div>
-
             <mat-checkbox
               formControlName="confirmation"
               (change)="isConfirmed = $event.checked"
@@ -342,7 +344,7 @@
 
     <a
       class="sb1-app-button top-margin"
-      (click)="setSb1bankIdForm()"
+      (click)="setSb1bankIdForm(); scrollToBankIDMobile()"
       *ngIf="isSB1Bank && isSb1App === true"
     >
       <img [src]="'../../../assets/icons/mobile-login-green.svg'" />
@@ -375,6 +377,38 @@
         [alt]="bank?.label"
         [title]="bank?.label"
       />
+
+      <div *ngIf="isSb1App !== true" class="form-group">
+        <rente-input
+          [errorStateMatcher]="
+            isErrorState(bankIdForm.controls['phone'], bankIdForm)
+          "
+          [placeholder]="'Ditt mobilnummer (8 siffer)'"
+          formControlName="phone"
+          [maskType]="mask.phone"
+          [type]="'tel'"
+          [modelOptions]="{ updateOn: 'blur' }"
+        >
+        </rente-input>
+        <div class="error-message" *ngIf="bankIdForm.controls['phone'].touched">
+          <rente-form-message
+            class="text-left d-block"
+            *ngIf="bankIdForm.controls['phone'].hasError('required')"
+            [type]="'error'"
+            i18n="“issue|bank-id@@bankId.description.telephoneNumber”"
+          >
+            Telefonnummer kan ikke være tomt
+          </rente-form-message>
+          <rente-form-message
+            class="text-left d-block"
+            *ngIf="bankIdForm.controls['phone'].hasError('pattern')"
+            [type]="'error'"
+            i18n="“issue|bank-id@@bankId.description.telephoneNumber2”"
+          >
+            Telefonnummer ikke gyldig
+          </rente-form-message>
+        </div>
+      </div>
 
       <div *ngIf="isSsnBankLogin; else birthdateInput" class="form-group">
         <rente-input
@@ -452,38 +486,6 @@
           </div>
         </div>
       </ng-template>
-
-      <div *ngIf="isSb1App !== true" class="form-group">
-        <rente-input
-          [errorStateMatcher]="
-            isErrorState(bankIdForm.controls['phone'], bankIdForm)
-          "
-          [placeholder]="'Ditt mobilnummer (8 siffer)'"
-          formControlName="phone"
-          [maskType]="mask.phone"
-          [type]="'tel'"
-          [modelOptions]="{ updateOn: 'blur' }"
-        >
-        </rente-input>
-        <div class="error-message" *ngIf="bankIdForm.controls['phone'].touched">
-          <rente-form-message
-            class="text-left d-block"
-            *ngIf="bankIdForm.controls['phone'].hasError('required')"
-            [type]="'error'"
-            i18n="“issue|bank-id@@bankId.description.telephoneNumber”"
-          >
-            Telefonnummer kan ikke være tomt
-          </rente-form-message>
-          <rente-form-message
-            class="text-left d-block"
-            *ngIf="bankIdForm.controls['phone'].hasError('pattern')"
-            [type]="'error'"
-            i18n="“issue|bank-id@@bankId.description.telephoneNumber2”"
-          >
-            Telefonnummer ikke gyldig
-          </rente-form-message>
-        </div>
-      </div>
 
       <mat-checkbox
         formControlName="confirmation"

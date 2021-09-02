@@ -567,8 +567,8 @@ export const eikaBanks: BankVo[] = [
     false,
     false,
     false,
-    false,
-    false,
+    true,
+    true,
     false,
     'https://nordirektebank.no/aktuelt/bankid-paa-mobil'
   ),
@@ -1487,10 +1487,10 @@ export const MissingBankList: BankVo[] = [
     false,
     false,
     false,
+    false,
+    false,
     true,
-    false,
-    false,
-    false,
+    true,
     true,
     null
   ),
@@ -1519,7 +1519,7 @@ export const MissingBankList: BankVo[] = [
     false,
     false,
     false,
-    false,
+    true,
     true,
     false,
     null
@@ -1679,13 +1679,13 @@ export const MissingBankList: BankVo[] = [
     'NORDEA_DIRECT',
     'Nordea Direct',
     'nordea_direct.png',
-    null,
+    'nordea_direct.svg',
     false,
     false,
     false,
     false,
     false,
-    false,
+    true,
     true,
     true,
     null
@@ -1717,7 +1717,7 @@ export const MissingBankList: BankVo[] = [
     false,
     false,
     false,
-    false,
+    true,
     null
   ),
   new BankVo(
@@ -1730,7 +1730,7 @@ export const MissingBankList: BankVo[] = [
     false,
     false,
     false,
-    false,
+    true,
     true,
     false,
     null
@@ -2100,4 +2100,58 @@ export class BankUtils {
       return bank.name;
     }).includes(bankName);
   }
+}
+
+// Interface for Swedish site
+export interface BankOfferPreview {
+  averageRemainingYears: number;
+  bankEmail: string | null;
+  bankName: string;
+  clientInfo: ClientInfo;
+  commonDebt: number;
+  effectiveRate: number;
+  ltv: number;
+  nominalRate: number;
+  offerUrl: string | null;
+  productName: string;
+  propertyValue: number;
+  totalOutstandingDebt: number;
+}
+
+export interface ClientInfo {
+  address: string | null;
+  age: number;
+  email: string;
+  name: string;
+  phone: string;
+  ssn: string;
+  zip: string;
+}
+
+export interface OffersBank {
+  offers: {
+    id: string;
+    name: string;
+    rate: number;
+  }[];
+}
+
+export interface NewOffers {
+  bankName: string;
+  clientId: number;
+  effectiveRate: number;
+  savingsFirstYear: number;
+  totalSavings: number;
+}
+
+export interface BankOfferLocations {
+  [region: string]: {
+    [city: string]: string[];
+  };
+}
+
+export interface offerOfficeDto {
+  region: string;
+  city: string;
+  officeAddress: string;
 }

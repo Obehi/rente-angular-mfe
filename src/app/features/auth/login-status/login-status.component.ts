@@ -479,6 +479,11 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
             this.crawlerLoginService.postError();
             break;
 
+          case BANKID_STATUS.ERROR_5:
+            this.unsubscribeEverything();
+            this.crawlerLoginService.forceSignicatRedirect();
+            break;
+
           case BANKID_STATUS.PROCESS_STARTED:
             this.initTimer(this.bankIdTimeoutTime);
             this.initConnectionTimer();
@@ -593,11 +598,18 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
               filteredResponse,
               this.isTinkBank
             );
-            this.viewStatus.isCrawlerError = true;
-            this.unsubscribeEverything();
-            this.loginStep1Status = MESSAGE_STATUS.SUCCESS;
-            this.loginStep2Status = MESSAGE_STATUS.SUCCESS;
-            this.loginStep3Status = MESSAGE_STATUS.ERROR;
+
+            if (this.bank.name === 'DNB') {
+              this.unsubscribeEverything();
+              this.crawlerLoginService.postError();
+            } else {
+              this.viewStatus.isCrawlerError = true;
+              this.unsubscribeEverything();
+              this.loginStep1Status = MESSAGE_STATUS.SUCCESS;
+              this.loginStep2Status = MESSAGE_STATUS.SUCCESS;
+              this.loginStep3Status = MESSAGE_STATUS.ERROR;
+            }
+
             break;
           case BANKID_STATUS.CRAWLER_RESULT:
             this.viewStatus.isCrawlerResult = true;
