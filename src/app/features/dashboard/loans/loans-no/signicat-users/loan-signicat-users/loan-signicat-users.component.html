@@ -6,7 +6,13 @@
       "
     >
       <div class="loan-type">
-        <h3>Lån {{ index + 1 }}</h3>
+        <div class="loan-delete">
+          <h3>Lån {{ index + 1 }}</h3>
+          <!-- <div *ngIf="!isEditMode"></div> -->
+          <mat-icon *ngIf="isEditMode" (click)="deleteLoan()"
+            >delete_forever</mat-icon
+          >
+        </div>
 
         <div>
           <img
@@ -31,7 +37,6 @@
         *ngIf="!isEditMode"
         [@fadeOut]="isEditMode ? 'hidden' : 'visible'"
       >
-        <h4 class="loan-center-title">Lånetype</h4>
         <div class="loan-center">
           <p>
             {{ loan.loanName }}

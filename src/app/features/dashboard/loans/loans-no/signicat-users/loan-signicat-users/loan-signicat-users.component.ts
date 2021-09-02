@@ -457,4 +457,8 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
 
     // ---------------------------------------------------------------------
   } // send request end
+
+  public deleteLoan(): void {
+    alert(`Loan ${this.index + 1} deleting, are you sure?`);
+  }
 }

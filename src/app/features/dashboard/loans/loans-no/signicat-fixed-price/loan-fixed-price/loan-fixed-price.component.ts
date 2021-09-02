@@ -202,6 +202,7 @@ export class LoanFixedPriceComponent implements OnInit, OnDestroy {
   }
 
   public setEditDisabled(): void {
+    this.deactivateAllInput();
     this.changesMade = false;
     this.showButton = false;
     setTimeout(() => {
