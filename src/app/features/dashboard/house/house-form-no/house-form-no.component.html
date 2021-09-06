@@ -22,9 +22,6 @@
     </div>
   </div>
   <div class="body">
-    <p *ngIf="!isStatMode" class="top-text bold" [@fade]>
-      Renteradar trenger din boligverdi for å finne riktige tilbud
-    </p>
     <div *ngIf="!isStatMode" class="estimat" [@fade]>
       <p class="slide-toggle-text bold">Automatisk estimat:</p>
 
@@ -41,6 +38,8 @@
       <div *ngIf="!isStatMode" class="address" [@fade]>
         <p class="input-text">Adresse</p>
         <rente-input
+          class="house-input"
+          id="address"
           type="text"
           [(ngModel)]="address.street"
           (change)="countChange()"
@@ -50,6 +49,8 @@
         <p class="input-text">Postnr</p>
 
         <rente-input
+          class="house-input"
+          id="postnr"
           [type]="'tel'"
           [(ngModel)]="address.zip"
           [maxLength]="4"
@@ -62,27 +63,28 @@
     </div>
     <div class="double">
       <div *ngIf="isEditMode" [@fade] class="house-size">
-        <p class="input-text">Størrelse på bolig</p>
+        <p class="input-text">Størrelse på bolig (P-rom)</p>
 
         <rente-input
+          class="house-input"
+          id="apartment-size"
           matInput
           [type]="'tel'"
           [(ngModel)]="address.apartmentSize"
           [maxLength]="3"
           (change)="countChange()"
         ></rente-input>
-        <p *ngIf="isEditMode" class="matsuffix-size">kvm</p>
       </div>
       <div *ngIf="isEditMode" [@fade] class="common-debt">
         <p class="input-text">Fellesgjeld</p>
         <rente-input
+          class="house-input"
           [type]="'tel'"
           (change)="countChange()"
           [maxLength]="11"
           [ngModel]="address?.commonDebt | thousands"
           (ngModelChange)="address.commonDebt = formatThousand($event)"
         ></rente-input>
-        <p class="matsuffix-debt">kr</p>
       </div>
     </div>
 
@@ -91,16 +93,17 @@
       <div *ngIf="!address.useManualPropertyValue" [@fade]>
         <p
           class="estimate-error"
-          *ngIf="!address.estimatedPropertyValue && isAddressValid"
+          *ngIf="virdiErrorMessage | async"
+          [@leaveFade]
         >
-          Kunne ikke estimere boligverdien
+          Kunne ikke estimere boligverdien, <br />sjekk at adressen er riktig
         </p>
         <p class="green-minus" *ngIf="!isAddressValid">-</p>
         <p
           class="green-text"
           *ngIf="isAddressValid && address.estimatedPropertyValue"
         >
-          {{ address.estimatedPropertyValue | thousands }} kr
+          {{ address.estimatedPropertyValue | thousands }}
         </p>
         <p
           *ngIf="
@@ -122,12 +125,12 @@
           (change)="countChange()"
           (keyup)="manualPropertyValueChanged($event)"
         ></rente-input>
-        <p class="matsuffix-housevalue">kr</p>
       </div>
     </div>
 
     <div class="center-button" *ngIf="isEditMode">
       <rente-button
+        id="save-button"
         color="primary-horizontal-padding"
         [disabled]="!ableTosave"
         (click)="save()"

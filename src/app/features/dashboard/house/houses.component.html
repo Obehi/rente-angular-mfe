@@ -33,7 +33,7 @@
       </p>
     </span>
   </div>
-  <div class="houses">
+  <div class="houses" *ngIf="!isLoading">
     <rente-house-form
       class="addressform"
       *ngFor="let address of addresses; let i = index"

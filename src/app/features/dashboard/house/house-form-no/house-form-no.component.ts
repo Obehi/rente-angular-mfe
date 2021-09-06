@@ -1,9 +1,23 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  Output,
+  EventEmitter,
+  AfterViewInit
+} from '@angular/core';
 import { AddressDto } from '@services/remote-api/loans.service';
 import { MatTabChangeEvent } from '@angular/material';
 import { EnvService } from '@services/env.service';
 import { animate, style, transition, trigger } from '@angular/animations';
-import { Subscription } from 'rxjs';
+import { combineLatest, fromEvent, of, Subject, Subscription } from 'rxjs';
+import {
+  switchMap,
+  tap,
+  debounceTime,
+  distinctUntilChanged,
+  map
+} from 'rxjs/operators';
 
 export enum AddressFormMode {
   Editing,
@@ -21,10 +35,14 @@ export enum AddressFormMode {
         animate('0.3s ease-in', style({ opacity: '1' }))
       ])
     ]),
-    trigger('statsFade', [
+    trigger('leaveFade', [
       transition(':enter', [
         style({ opacity: 0 }),
         animate('0.5s ease-in', style({ opacity: 1 }))
+      ]),
+      transition(':leave', [
+        // style({ height: '100', opacity: 1 }),
+        animate('0.35s ease-out', style({ opacity: 0 }))
       ])
     ])
   ]
@@ -32,7 +50,8 @@ export enum AddressFormMode {
 export class HouseFormNoComponent implements OnInit {
   @Input() index: number;
   @Input() address: AddressDto;
-  private eventSubscription: Subscription;
+
+  private virdiErrorMessage = new Subject<boolean>();
 
   @Output() deleteAddress: EventEmitter<AddressDto> = new EventEmitter();
   @Output() change: EventEmitter<any> = new EventEmitter();
@@ -40,6 +59,7 @@ export class HouseFormNoComponent implements OnInit {
 
   mode = AddressFormMode.Editing;
   changesMade = false;
+  didSave: boolean;
 
   get ableTosave(): boolean {
     return this.isAddressValid && this.changesMade;
@@ -48,10 +68,16 @@ export class HouseFormNoComponent implements OnInit {
   constructor(public envService: EnvService) {}
 
   ngOnInit(): void {
+    this.didSave = false;
     this.changesMade = false;
     this.address.estimatedPropertyValue =
       this.address.estimatedPropertyValue || null;
     this.address.manualPropertyValue = this.address.manualPropertyValue || null;
+
+    setTimeout(() => {
+      this.getHouseInputListener();
+      this.getPropertyValueListener();
+    }, 0);
   }
 
   get isAbleToDelete(): boolean {
@@ -137,5 +163,27 @@ export class HouseFormNoComponent implements OnInit {
 
   notEmpty(text: string | null): boolean {
     return text !== null && String(text).length > 0;
+  }
+
+  getPropertyValueListener(): void {
+    of(this.address.estimatedPropertyValue)
+      .pipe(
+        distinctUntilChanged(),
+        tap(),
+        map((args) => (args === null ? true : false))
+      )
+      .subscribe((args) => {
+        this.virdiErrorMessage.next(args);
+      });
+  }
+
+  getHouseInputListener(): void {
+    combineLatest([
+      fromEvent(document.getElementsByClassName('house-input'), 'click')
+    ])
+      .pipe(debounceTime(20), tap())
+      .subscribe(() => {
+        this.virdiErrorMessage.next(false);
+      });
   }
 }

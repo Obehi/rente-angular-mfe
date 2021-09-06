@@ -96,16 +96,17 @@ rente-button {
 
 .body {
   border-radius: 0px 0px 15px 15px;
-  height: 570px;
+  // height: 570px;
 
   .double {
-    display: flex;
+    display: grid;
     column-gap: 20px;
   }
 
   .double-asymetric {
-    display: flex;
+    display: grid;
     column-gap: 5px;
+    grid-template-columns: 4fr 1fr;
   }
 
   .non-double {
@@ -156,7 +157,7 @@ rente-button {
 
   .place-under {
     position: relative;
-    left: 19px;
+
     top: -5px;
     font-size: 10px;
   }
@@ -211,15 +212,15 @@ rente-button {
 
   .house-size {
     ::ng-deep .cdk-text-field-autofill-monitored:not(:-webkit-autofill) {
-      text-indent: 2.5rem;
+      text-align: center;
     }
   }
 
   .common-debt {
     ::ng-deep .cdk-text-field-autofill-monitored:not(:-webkit-autofill) {
-      text-indent: 1.5rem;
+      text-align: center;
       @media (min-width: 600px) {
-        text-indent: 1.8rem;
+        text-align: center;
       }
     }
   }
