@@ -122,10 +122,6 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
     });
   } // ngOnInit
 
-  // public isErrorState(control: AbstractControl | null): boolean {
-  //   return !!(control && control.invalid && (control.dirty || control.touched));
-  // }
-
   getMask(): any {
     if (typeof this.maskType.currency === 'string') {
       return { mask: this.maskType.currency };
@@ -175,11 +171,8 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
     this.remainingYearsIsError = false;
     this.nominalRateIsError = false;
 
-    // this.deactivateAllInput();
-
     // Run in this order for animation to be smooth
     this.myLoansService.setChangesMadeState(false);
-    // this.changesMade = false;
     this.showButton = false;
     setTimeout(() => {
       this.myLoansService.setEditMode(null);
@@ -239,17 +232,10 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
 
   // -------------------------------------------------- || ------------------------------------
 
-  // public ableTosave(val: boolean): void {
-  //   this.isAbleToSave = val;
-  //   this.isDisabled = false;
-  // }
-
   public save(): void {
     console.log('Saved clicked');
     if (!this.isAbleToSave) return;
 
-    // this.changesMade = false;
-    // this.isDisabled = true;
     this.deactivateAllInput();
 
     this.sendRequest();
@@ -310,8 +296,8 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
             return of(err);
           })
         ),
-      // this.loansService.updateLoanReminingYears(remainingYearsDto)
-      of(true).pipe(
+      // of(true)
+      this.loansService.updateLoanReminingYears(remainingYearsDto).pipe(
         catchError((err) => {
           console.log(err);
           this.remainingYearsIsError = true;
@@ -325,8 +311,9 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
           return of(err);
         })
       ),
-      // this.loansService.updateLoanNominalRate(nominalRateDto)
-      of(true).pipe(
+      // of(true)
+
+      this.loansService.updateLoanNominalRate(nominalRateDto).pipe(
         catchError((err) => {
           console.log(err);
           this.nominalRateIsError = true;
@@ -366,6 +353,7 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
             }
 
             console.log('error');
+            this.myLoansService.setButtonDisabledState(true);
 
             // If error, do nothing. The value should be as the previous default
           } else {

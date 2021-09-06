@@ -27,7 +27,9 @@
 
 <div *ngIf="inputForm.controls['inputValue'].touched">
   <div
-    *ngIf="inputForm.controls['inputValue'].hasError('required')"
+    *ngIf="
+      inputForm.controls['inputValue'].hasError('required') || isInputError
+    "
     class="error-text"
   >
     Kan ikke være tom

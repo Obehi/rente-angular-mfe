@@ -91,10 +91,12 @@ export class GeneralInputComponent implements OnInit, OnDestroy {
 
         // Error if value is empty
         if (
-          this.getFormValName.dirty &&
-          this.getFormValName.value.trim() === ''
+          (this.getFormValName.dirty &&
+            this.getFormValName.value.trim() === '') ||
+          this.checkIfZero
         ) {
           this.isInputError = true;
+          this.myLoansService.setAbleToSave(false);
         }
 
         // Emit if the form value is valid
@@ -126,7 +128,7 @@ export class GeneralInputComponent implements OnInit, OnDestroy {
     );
   }
 
-  get validInput(): boolean {
-    return this.inputForm.get('inputValue')?.value !== '0';
+  get checkIfZero(): boolean {
+    return this.inputForm.get('inputValue')?.value == 0;
   }
 }
