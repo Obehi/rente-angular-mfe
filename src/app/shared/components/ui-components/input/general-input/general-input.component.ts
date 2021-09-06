@@ -66,6 +66,7 @@ export class GeneralInputComponent implements OnInit, OnDestroy {
         this.getFormValName?.enable();
       } else {
         this.getFormValName?.disable();
+        this.inputForm.get('inputValue')?.setValue(this.value);
       }
     });
 
@@ -102,17 +103,13 @@ export class GeneralInputComponent implements OnInit, OnDestroy {
         // Emit if the form value is valid
         if (this.isLoanFormValid) {
           this.myLoansService.setAbleToSave(true);
-          console.log('Form is valid');
-          console.log(this.isLoanFormValid);
         } else {
           this.myLoansService.setAbleToSave(false);
-          console.log('Form is NOT valid');
         }
 
         // Constantly emit the value to parent if its not null or empty
         if (!!this.getFormValName.value && this.getFormValName.value !== '0') {
           this.inputValueEmit(this.getFormValName.value);
-          console.log(this.getFormValName.value);
         }
       }
     );

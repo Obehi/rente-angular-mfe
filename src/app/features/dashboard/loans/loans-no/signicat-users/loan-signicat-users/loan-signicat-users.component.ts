@@ -212,8 +212,6 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
     this.hideEditIcon = true;
     setTimeout(() => {
       this.inEditMode = true;
-      console.log('isDisabled: ');
-      console.log(this.isDisabled);
     }, 500);
   }
 
@@ -247,10 +245,6 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
       this.incomingValueOutstandingDebt
     );
 
-    // console.log('Outstanding debt type');
-    // console.log(typeof getOutstandingDebt);
-    // console.log(getOutstandingDebt);
-
     const outstandingDebtDto = {
       outstandingDebt: getOutstandingDebt
     };
@@ -259,19 +253,11 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
       this.incomingValueRemainingYears
     );
 
-    // console.log('Remaining years type');
-    // console.log(typeof getRemainingYears);
-    // console.log(getRemainingYears);
-
     const remainingYearsDto = {
       remainingYears: getRemainingYears
     };
 
     const getNominalRate = this.formatComma(this.incomingValueNominalRate);
-
-    // console.log('Remaining years type');
-    // console.log(typeof getNominalRate);
-    // console.log(getNominalRate);
 
     const nominalRateDto = {
       nominalRate: getNominalRate
@@ -380,36 +366,6 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
           console.log('Error subscribtion');
         }
       );
-
-    // this.loansService.updateLoanProduct(loanNameDto).subscribe(
-    //   () => {
-    //     console.log('Loan product successful !!!');
-    //     this.setEditDisabled();
-    //   },
-    //   (err) => {
-    //     console.log(err.title);
-    //   }
-    // );
-
-    // this.loansService.updateLoanOutstandingDebt(outstandingDebtDto).subscribe(
-    //   () => {
-    //     console.log('Loan outstanding debt successful !!!');
-    //     this.setEditDisabled();
-    //   },
-    //   (err) => {
-    //     console.log(err.title);
-    //   }
-    // );
-
-    // this.loansService.updateLoanReminingYears(remainingYearsDto).subscribe(
-    //   () => {
-    //     console.log('Loan remaining years successful !!!');
-    //     this.setEditDisabled();
-    //   },
-    //   (err) => {
-    //     console.log(err.title);
-    //   }
-    // );
   } // send request end
 
   // -------------------------------------------------- || ------------------------------------
