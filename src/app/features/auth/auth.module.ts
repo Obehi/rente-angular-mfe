@@ -13,6 +13,7 @@ import { Sparebank1SubComponent } from './sparebank1-sub/sparebank1-sub.componen
 import { MaterialModule } from '@shared/material/material.module';
 import { DemoLoginComponent } from './demo-login/demo-user-option-login/demo-login.component';
 import { GuidLoginComponent } from './demo-login/guid-login/guid-login.component';
+import { ChooseSubBankComponent } from './crawler-login/choose-sub-bank/choose-sub-bank.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { GuidLoginComponent } from './demo-login/guid-login/guid-login.component
     StatusMessageComponent,
     DemoLoginComponent,
     GuidLoginComponent,
-    BankIdLoginComponent
+    BankIdLoginComponent,
+    ChooseSubBankComponent
   ],
   imports: [
     AuthRoutingModule,
