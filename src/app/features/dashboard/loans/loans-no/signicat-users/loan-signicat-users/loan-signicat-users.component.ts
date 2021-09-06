@@ -1,5 +1,10 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, Input, Output, OnDestroy, OnInit } from '@angular/core';
+import {
+  AbstractControl,
+  FormBuilder,
+  FormGroup,
+  Validators
+} from '@angular/forms';
 import { MyLoansService } from '@features/dashboard/loans/myloans.service';
 import { bankOfferDto, LoanInfo } from '@models/loans';
 import { MessageBannerService } from '@services/message-banner.service';
@@ -7,6 +12,7 @@ import { LoansService } from '@services/remote-api/loans.service';
 import { getAnimationStyles } from '@shared/animations/animationEnums';
 import { ButtonFadeInOut } from '@shared/animations/button-fade-in-out';
 import { FadeOut } from '@shared/animations/fade-out';
+import { Mask } from '@shared/constants/mask';
 import { concat, forkJoin, Observable, of, Subscription } from 'rxjs';
 import { catchError, toArray } from 'rxjs/operators';
 
@@ -23,18 +29,22 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
 
   public isEditMode = false;
   public hideEditIcon = false;
-  public loanForm: FormGroup;
   public showDisplayBox = true;
   public showButton = false;
   public isDisabled = true;
   public changesMade = false;
   public isGeneralError = false;
   public isServerError = false;
-  public outStandingDebtchangeSubscription: Subscription | undefined;
-  public remainingYearschangeSubscription: Subscription | undefined;
-  public nominalRatechangeSubscription: Subscription | undefined;
+  public isAbleToSave = false;
+
   public animationStyle = getAnimationStyles();
   public inEditMode = false;
+  public maskType = Mask;
+
+  // Store value from input emitter
+  public incomingValueOutstandingDebt: string;
+  public incomingValueRemainingYears: string;
+  public incomingValueNominalRate: string;
 
   // Activate input color when focused
   public inputOutstandingDebtIsActive = false;
@@ -58,82 +68,19 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
 
   constructor(
     private loansService: LoansService,
-    private fb: FormBuilder,
     private messageBannerService: MessageBannerService,
     private myLoansService: MyLoansService
   ) {}
 
-  ngOnDestroy(): void {
-    if (this.outStandingDebtchangeSubscription) {
-      this.outStandingDebtchangeSubscription.unsubscribe();
-    }
-    if (this.remainingYearschangeSubscription) {
-      this.remainingYearschangeSubscription.unsubscribe();
-    }
-    if (this.nominalRatechangeSubscription) {
-      this.nominalRatechangeSubscription.unsubscribe();
-    }
-  }
+  ngOnDestroy(): void {}
 
   ngOnInit(): void {
     this.initialOutStandingDebt = String(this.loan.outstandingDebt);
     this.initialRemainingYears = String(this.loan.remainingYears);
     this.initialNominalRate = String(this.loan.nominalRate);
 
-    this.loanForm = this.fb.group({
-      outstandingDebt: [
-        { value: this.initialOutStandingDebt, disabled: true },
-        Validators.required
-      ],
-      remainingYears: [
-        { value: this.initialRemainingYears, disabled: true },
-        Validators.required
-      ],
-      nominalRate: [
-        { value: this.initialNominalRate, disabled: true },
-        Validators.required
-      ]
-    });
-
-    // Activate listener for changes
-    this.outStandingDebtchangeSubscription = this.loanForm
-      .get(this.outstandingDebtString)
-      ?.valueChanges.subscribe(() => {
-        if (
-          this.isEditMode &&
-          this.loanForm.controls[this.outstandingDebtString].dirty
-        ) {
-          this.changesMade = true;
-          this.isDisabled = false;
-          this.outstandingDebtIsError = false;
-        }
-      });
-
-    this.remainingYearschangeSubscription = this.loanForm
-      .get(this.remainingYearsString)
-      ?.valueChanges.subscribe(() => {
-        if (
-          this.isEditMode &&
-          this.loanForm.controls[this.remainingYearsString].dirty
-        ) {
-          this.changesMade = true;
-          this.isDisabled = false;
-          this.remainingYearsIsError = false;
-        }
-      });
-
-    this.nominalRatechangeSubscription = this.loanForm
-      .get(this.nominalRateString)
-      ?.valueChanges.subscribe(() => {
-        if (
-          this.isEditMode &&
-          this.loanForm.controls[this.nominalRateString].dirty
-        ) {
-          this.changesMade = true;
-          this.isDisabled = false;
-          this.nominalRateIsError = false;
-        }
-      });
+    // Button disbabled state
+    this.myLoansService.setButtonDisabledState(true);
 
     // Listen for edit
     this.myLoansService
@@ -146,7 +93,59 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
           this.hideEditIcon = true;
         }
       });
+
+    this.myLoansService.getChangesMadeState().subscribe((state) => {
+      if (state) {
+        this.changesMade = true;
+      } else {
+        this.changesMade = false;
+      }
+    });
+
+    // Listen to able to save
+    this.myLoansService.getAbleToSave().subscribe((val) => {
+      if (val) {
+        this.isDisabled = false;
+        this.isAbleToSave = true;
+      } else {
+        this.isDisabled = true;
+        this.isAbleToSave = false;
+      }
+    });
+
+    this.myLoansService.getButtonDisabledState().subscribe((state) => {
+      if (state) {
+        this.isDisabled = true;
+        console.log('isDisabled: true');
+      } else {
+        this.isDisabled = false;
+        console.log('isDisabled: false');
+      }
+    });
   } // ngOnInit
+
+  // public isErrorState(control: AbstractControl | null): boolean {
+  //   return !!(control && control.invalid && (control.dirty || control.touched));
+  // }
+
+  getMask(): any {
+    if (typeof this.maskType.currency === 'string') {
+      return { mask: this.maskType.currency };
+    }
+    return this.maskType.currency;
+  }
+
+  public setOutstandingDebtVal(val: string): void {
+    this.incomingValueOutstandingDebt = val;
+  }
+
+  public setRemainingYearsVal(val: string): void {
+    this.incomingValueRemainingYears = val;
+  }
+
+  public setNominalRateVal(val: string): void {
+    this.incomingValueNominalRate = val;
+  }
 
   public setInputOutDebtActive(): void {
     this.inputRemainingYearsIsActive = false;
@@ -172,49 +171,27 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
     this.inputNominalRateIsActive = false;
   }
 
-  public disableForm(): void {
-    this.loanForm.get(this.outstandingDebtString)?.disable();
-    this.loanForm.get(this.remainingYearsString)?.disable();
-    this.loanForm.get(this.nominalRateString)?.disable();
-  }
-
   public setEditDisabled(): void {
     // Reset error
     this.outstandingDebtIsError = false;
     this.remainingYearsIsError = false;
     this.nominalRateIsError = false;
 
+    // this.deactivateAllInput();
+
     // Run in this order for animation to be smooth
-    this.changesMade = false;
+    this.myLoansService.setChangesMadeState(false);
+    // this.changesMade = false;
     this.showButton = false;
     setTimeout(() => {
       this.myLoansService.setEditMode(null);
+      this.myLoansService.setInputEditModeOn(false);
 
       this.inEditMode = false;
       this.isEditMode = false;
       this.hideEditIcon = false;
       this.showDisplayBox = true;
-
-      this.loanForm
-        .get(this.outstandingDebtString)
-        ?.setValue(this.initialOutStandingDebt);
-
-      this.loanForm
-        .get(this.remainingYearsString)
-        ?.setValue(this.initialRemainingYears);
-
-      this.loanForm
-        .get(this.nominalRateString)
-        ?.setValue(this.initialNominalRate);
     }, 325);
-
-    this.disableForm();
-  }
-
-  public enableForm(): void {
-    this.loanForm.get(this.outstandingDebtString)?.enable();
-    this.loanForm.get(this.remainingYearsString)?.enable();
-    this.loanForm.get(this.nominalRateString)?.enable();
   }
 
   public setEditEnabled(): void {
@@ -228,7 +205,13 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
       return;
     }
 
+    // Reset the form, mark as pristine and disable save button
+    this.myLoansService.setFormAsPristine();
+    this.myLoansService.setAbleToSave(false);
+    this.myLoansService.setChangesMadeState(false);
+    this.myLoansService.setButtonDisabledState(true);
     this.myLoansService.setEditMode(this.index);
+    this.myLoansService.setInputEditModeOn(true);
 
     this.deactivateAllInput();
 
@@ -238,66 +221,73 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
     this.hideEditIcon = true;
     setTimeout(() => {
       this.inEditMode = true;
+      console.log('isDisabled: ');
+      console.log(this.isDisabled);
     }, 500);
-    this.enableForm();
   }
 
-  get isLoanFormValid(): boolean {
-    return (
-      !!this.loanForm.get(this.outstandingDebtString)?.value &&
-      !!this.loanForm.get(this.remainingYearsString)?.value &&
-      !!this.loanForm.get(this.nominalRateString)?.value &&
-      this.changesMade
-    );
+  // ----------------------------  Formatting the values to api request  -----------------------
+  public getNumericValueFormated(incomeValue: any): number {
+    const income: string =
+      typeof incomeValue === 'string'
+        ? incomeValue.replace(/\s/g, '')
+        : incomeValue;
+    return Number(income.replace(',', '.'));
   }
 
-  get ableTosave(): boolean {
-    return this.isLoanFormValid && this.changesMade;
+  public formatComma(val: string): number {
+    return Number(val.replace(',', '.'));
   }
+
+  // -------------------------------------------------- || ------------------------------------
+
+  // public ableTosave(val: boolean): void {
+  //   this.isAbleToSave = val;
+  //   this.isDisabled = false;
+  // }
 
   public save(): void {
     console.log('Saved clicked');
-    if (this.changesMade === false || !this.ableTosave) return;
+    if (!this.isAbleToSave) return;
 
-    this.changesMade = false;
-    this.isDisabled = true;
+    // this.changesMade = false;
+    // this.isDisabled = true;
     this.deactivateAllInput();
-
-    // Reset form so its marked as pristine
-    this.loanForm.markAsPristine();
-
-    this.loanForm
-      .get(this.outstandingDebtString)
-      ?.setValue(this.initialOutStandingDebt);
-
-    this.loanForm
-      .get(this.remainingYearsString)
-      ?.setValue(this.initialRemainingYears);
-
-    this.loanForm
-      .get(this.nominalRateString)
-      ?.setValue(this.initialNominalRate);
 
     this.sendRequest();
   } // Save
 
   public sendRequest(): void {
     // Get the new values and then set it to initial value then send request
-    const getOutstandingDebt = this.loanForm.get(this.outstandingDebtString)
-      ?.value;
+    const getOutstandingDebt = this.getNumericValueFormated(
+      this.incomingValueOutstandingDebt
+    );
+
+    // console.log('Outstanding debt type');
+    // console.log(typeof getOutstandingDebt);
+    // console.log(getOutstandingDebt);
 
     const outstandingDebtDto = {
       outstandingDebt: getOutstandingDebt
     };
 
-    const getRemainingYears = this.loanForm.get(this.remainingYearsString)
-      ?.value;
+    const getRemainingYears = this.formatComma(
+      this.incomingValueRemainingYears
+    );
+
+    // console.log('Remaining years type');
+    // console.log(typeof getRemainingYears);
+    // console.log(getRemainingYears);
 
     const remainingYearsDto = {
       remainingYears: getRemainingYears
     };
 
-    const getNominalRate = this.loanForm.get(this.nominalRateString)?.value;
+    const getNominalRate = this.formatComma(this.incomingValueNominalRate);
+
+    // console.log('Remaining years type');
+    // console.log(typeof getNominalRate);
+    // console.log(getNominalRate);
 
     const nominalRateDto = {
       nominalRate: getNominalRate
@@ -319,7 +309,8 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
           return of(err);
         })
       ),
-      this.loansService.updateLoanReminingYears(remainingYearsDto).pipe(
+      // this.loansService.updateLoanReminingYears(remainingYearsDto)
+      of(true).pipe(
         catchError((err) => {
           console.log(err);
           this.remainingYearsIsError = true;
@@ -333,7 +324,8 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
           return of(err);
         })
       ),
-      this.loansService.updateLoanNominalRate(nominalRateDto).pipe(
+      // this.loansService.updateLoanNominalRate(nominalRateDto)
+      of(true).pipe(
         catchError((err) => {
           console.log(err);
           this.nominalRateIsError = true;
@@ -374,17 +366,7 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
 
             console.log('error');
 
-            this.loanForm
-              .get(this.outstandingDebtString)
-              ?.setValue(this.initialOutStandingDebt);
-
-            this.loanForm
-              .get(this.remainingYearsString)
-              ?.setValue(this.initialRemainingYears);
-
-            this.loanForm
-              .get(this.nominalRateString)
-              ?.setValue(this.initialNominalRate);
+            // If error, do nothing. The value should be as the previous default
           } else {
             this.messageBannerService.setView(
               'Endringene dine er lagret',
@@ -394,29 +376,32 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
               window
             );
 
-            console.log('success');
+            console.log('success \n \n');
 
-            this.initialOutStandingDebt = getOutstandingDebt;
-            this.initialRemainingYears = getRemainingYears;
-            this.initialNominalRate = getNominalRate;
+            // Save the original format in string with mask
+            this.initialOutStandingDebt = this.incomingValueOutstandingDebt;
+            this.initialRemainingYears = this.incomingValueRemainingYears;
+            this.initialNominalRate = this.incomingValueNominalRate;
 
-            this.loanForm
-              .get(this.outstandingDebtString)
-              ?.setValue(this.initialOutStandingDebt);
+            // this.myLoansService.setreValidateForm(true);
 
-            this.loanForm
-              .get(this.remainingYearsString)
-              ?.setValue(this.initialRemainingYears);
+            // this.loanForm
+            //   .get(this.outstandingDebtString)
+            //   ?.setValue(this.initialOutStandingDebt);
 
-            this.loanForm
-              .get(this.nominalRateString)
-              ?.setValue(this.initialNominalRate);
+            // this.loanForm
+            //   .get(this.remainingYearsString)
+            //   ?.setValue(this.initialRemainingYears);
 
-            console.log(this.initialOutStandingDebt);
-            console.log(this.initialRemainingYears);
-            console.log(this.initialNominalRate);
+            // this.loanForm
+            //   .get(this.nominalRateString)
+            //   ?.setValue(this.initialNominalRate);
+
+            // console.log(this.initialOutStandingDebt);
+            // console.log(this.initialRemainingYears);
+            // console.log(this.initialNominalRate);
+            // console.log('Saved!');
             this.setEditDisabled();
-            console.log('Saved!');
           }
         },
         (err) => {
@@ -454,9 +439,9 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
     //     console.log(err.title);
     //   }
     // );
-
-    // ---------------------------------------------------------------------
   } // send request end
+
+  // -------------------------------------------------- || ------------------------------------
 
   public deleteLoan(): void {
     alert(`Loan ${this.index + 1} deleting, are you sure?`);

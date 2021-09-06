@@ -46,106 +46,56 @@
 
       <div
         class="forms"
-        *ngIf="loanForm"
         [ngClass]="isEditMode === true ? 'edit-modus' : 'general-modus'"
       >
-        <form class="p-0 border-0" [formGroup]="loanForm" novalidate change>
+        <form class="p-0 border-0" novalidate change>
           <div class="field-box">
             <h4 class="text-white">Utestående lån:</h4>
 
-            <div
-              [ngClass]="{
-                'active-input': inEditMode === true,
-                'non-active-input': isEditMode === false,
-                'edit-focus':
+            <div class="input-width">
+              <rente-general-input
+                (click)="setInputOutDebtActive()"
+                [maskType]="maskType"
+                [value]="initialOutStandingDebt"
+                [suffix]="'kr'"
+                [maxLength]="'14'"
+                [placeholder]="'Skriv inn lån'"
+                [isEditMode]="isEditMode"
+                [inEditMode]="inEditMode"
+                [isInputFocused]="
                   isEditMode === true && inputOutstandingDebtIsActive === true
-              }"
-              (click)="setInputOutDebtActive()"
-            >
-              <mat-form-field class="white-input w-75" appearance="outline">
-                <input
-                  placeholder="Skriv inn din lån"
-                  matInput
-                  type="tel"
-                  maxlength="16"
-                  autocomplete="off"
-                  [formControlName]="'outstandingDebt'"
-                  currencyMask
-                  [options]="{
-                    prefix: '',
-                    suffix: ' kr',
-                    align: 'center',
-                    thousands: ' ',
-                    decimal: ',',
-                    precision: 1
-                  }"
-                />
-              </mat-form-field>
-
-              <div
-                *ngIf="loanForm.controls['outstandingDebt'].touched"
-                class="error-message"
-              >
-                <rente-form-message
-                  class="d-block"
-                  [type]="'error'"
-                  *ngIf="
-                    loanForm.controls['outstandingDebt'].hasError('required')
-                  "
-                >
-                  Kan ikke være tom
-                </rente-form-message>
-              </div>
+                "
+                [isInputError]="
+                  outstandingDebtIsError === true &&
+                  inputOutstandingDebtIsActive === false
+                "
+                (inputValueString)="setOutstandingDebtVal($event)"
+              ></rente-general-input>
             </div>
           </div>
 
           <div class="field-box">
             <h4 class="text-white">Løpetid:</h4>
 
-            <div
-              [ngClass]="{
-                'active-input': inEditMode === true,
-                'non-active-input': isEditMode === false,
-                'edit-focus': inputRemainingYearsIsActive === true,
-                'edit-error':
-                  remainingYearsIsError === true &&
-                  inputRemainingYearsIsActive === false
-              }"
-              (click)="setInputRemYearsActive()"
-            >
-              <mat-form-field class="white-input w-130" appearance="outline">
-                <input
-                  placeholder="Løpetid"
-                  matInput
-                  type="tel"
-                  maxlength="9"
-                  autocomplete="off"
-                  [formControlName]="'remainingYears'"
-                  currencyMask
-                  [options]="{
-                    prefix: '',
-                    suffix: ' år',
-                    align: 'center',
-                    thousands: ' ',
-                    decimal: ',',
-                    precision: 2
-                  }"
-                />
-              </mat-form-field>
-
-              <div
-                *ngIf="loanForm.controls['remainingYears'].touched"
-                class="error-message"
-              >
-                <rente-form-message
-                  class="d-block"
-                  [type]="'error'"
-                  *ngIf="
-                    loanForm.controls['remainingYears'].hasError('required')
+            <div>
+              <div (click)="setInputRemYearsActive()">
+                <rente-general-input
+                  [maskType]="maskType"
+                  [value]="initialRemainingYears"
+                  [suffix]="'år'"
+                  [maxLength]="'5'"
+                  [placeholder]="'Løpetid'"
+                  [isEditMode]="isEditMode"
+                  [inEditMode]="inEditMode"
+                  [isInputFocused]="
+                    isEditMode === true && inputRemainingYearsIsActive === true
                   "
-                >
-                  Kan ikke være tom
-                </rente-form-message>
+                  [isInputError]="
+                    remainingYearsIsError === true &&
+                    inputRemainingYearsIsActive === false
+                  "
+                  (inputValueString)="setRemainingYearsVal($event)"
+                ></rente-general-input>
               </div>
             </div>
           </div>
@@ -153,48 +103,25 @@
           <div class="field-box">
             <h4 class="text-white">Nominell rente:</h4>
 
-            <div
-              [ngClass]="{
-                'active-input': inEditMode === true,
-                'non-active-input': isEditMode === false,
-                'edit-focus': inputNominalRateIsActive === true,
-                'edit-error':
-                  nominalRateIsError === true &&
-                  inputNominalRateIsActive === false
-              }"
-              (click)="setInputNominalRateActive()"
-            >
-              <mat-form-field class="white-input w-130" appearance="outline">
-                <input
-                  placeholder="Nominell rente"
-                  matInput
-                  type="tel"
-                  maxlength="7"
-                  autocomplete="off"
-                  [formControlName]="'nominalRate'"
-                  currencyMask
-                  [options]="{
-                    prefix: '',
-                    suffix: ' %',
-                    align: 'center',
-                    thousands: ' ',
-                    decimal: ',',
-                    precision: 2
-                  }"
-                />
-              </mat-form-field>
-
-              <div
-                *ngIf="loanForm.controls['nominalRate'].touched"
-                class="error-message"
-              >
-                <rente-form-message
-                  class="d-block"
-                  [type]="'error'"
-                  *ngIf="loanForm.controls['nominalRate'].hasError('required')"
-                >
-                  Kan ikke være tom
-                </rente-form-message>
+            <div>
+              <div (click)="setInputNominalRateActive()">
+                <rente-general-input
+                  [maskType]="maskType"
+                  [value]="initialNominalRate"
+                  [suffix]="'%'"
+                  [maxLength]="'5'"
+                  [placeholder]="'Nominell rente'"
+                  [isEditMode]="isEditMode"
+                  [inEditMode]="inEditMode"
+                  [isInputFocused]="
+                    isEditMode === true && inputNominalRateIsActive === true
+                  "
+                  [isInputError]="
+                    nominalRateIsError === true &&
+                    inputNominalRateIsActive === false
+                  "
+                  (inputValueString)="setNominalRateVal($event)"
+                ></rente-general-input>
               </div>
             </div>
           </div>

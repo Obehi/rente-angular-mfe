@@ -1,0 +1,32 @@
+<div
+  class="input-box"
+  [ngClass]="{
+    'input-edit': inEditMode === true,
+    'input-inactive': isEditMode === false,
+    'input-focus': isInputFocused === true,
+    'input-error': isInputError === true
+  }"
+>
+  <div class="input-container" [formGroup]="inputForm">
+    <input
+      id="inputValue"
+      formControlName="inputValue"
+      class="input-text"
+      matInput
+      type="tel"
+      [maxLength]="maxLength"
+      [imask]="maskType.currency"
+      [value]="value"
+      [placeholder]="placeholder"
+      required
+    />
+
+    <span matSuffix class="white-text"> {{ suffix }}</span>
+  </div>
+</div>
+
+<!-- <div *ngIf="inputForm.controls['inputValue'].touched" class="input-error">
+  <div *ngIf="inputForm.controls['inputValue'].hasError('required')">
+    Cannot be empty!
+  </div>
+</div> -->

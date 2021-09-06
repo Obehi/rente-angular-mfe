@@ -1,0 +1,62 @@
+@import '../../../../../../styles/theme/_colors.scss';
+
+.input-box {
+  text-align: center;
+  padding: 10px 10px 10px 0px;
+}
+
+.input-container {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+
+  input {
+    background-color: transparent !important;
+
+    border: none;
+    border-style: none;
+    width: 100%;
+  }
+}
+
+.input-text {
+  color: white;
+  font-size: 16px !important;
+  text-align: end !important;
+  //   margin-right: 5px;
+}
+
+.input-edit {
+  background: #004465a6;
+  transition: background 0.2s ease;
+
+  border: 1px solid #478ccc;
+  border-radius: 8px;
+  transition: border 0.2s ease;
+}
+
+.input-inactive {
+  background: none;
+  border: none;
+}
+
+.input-focus {
+  background: $secondary;
+
+  border: 1px solid $primary;
+  border-radius: 8px;
+}
+
+.input-error {
+  background: #004465a6;
+  transition: background 0.2s ease;
+
+  border: 1px solid $red;
+  border-radius: 8px;
+  transition: border 0.2s ease;
+}
+
+.white-text {
+  color: white;
+  margin-left: 5px;
+}

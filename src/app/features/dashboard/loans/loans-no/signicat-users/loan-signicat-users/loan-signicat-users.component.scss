@@ -117,7 +117,7 @@ p {
       font-size: 16px;
     }
 
-    @media (max-width: 280px) {
+    @media (max-width: 320px) {
       display: grid;
       justify-content: center;
       align-items: center;
@@ -383,7 +383,7 @@ p {
 }
 
 .loan-info {
-  padding: 10px 38px 10px 20px;
+  padding: 10px 20px 10px 20px;
   margin-bottom: 15px;
   display: flex;
   justify-content: space-between;
@@ -425,7 +425,7 @@ p {
   }
 
   @media (min-width: 540px) {
-    width: 100% !important;
+    width: 70% !important;
   }
 }
 
@@ -439,4 +439,36 @@ p {
 
 .save-loan-button {
   padding: 15px 0 18px;
+}
+
+.input-container {
+  width: 100%;
+  background: rosybrown;
+  border: 1px solid aqua;
+  border-radius: 10px;
+}
+
+// .input-value {
+//   text-align: center;
+//   padding: 20px 0;
+//   border: 1px solid #478ccc;
+//   border-radius: 10px;
+//   transition: border 0.2s ease;
+
+//   background: #004465a6;
+//   transition: background 0.2s ease;
+// }
+
+.input-width {
+  @media (min-width: 992px) {
+    width: 62%;
+  }
+
+  @media (max-width: 991px) and (min-width: 752px) {
+    width: 85%;
+  }
+
+  @media (max-width: 751px) {
+    width: 63%;
+  }
 }
