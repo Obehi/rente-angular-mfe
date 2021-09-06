@@ -40,10 +40,7 @@ export enum AddressFormMode {
         style({ opacity: 0 }),
         animate('0.5s ease-in', style({ opacity: 1 }))
       ]),
-      transition(':leave', [
-        // style({ height: '100', opacity: 1 }),
-        animate('0.35s ease-out', style({ opacity: 0 }))
-      ])
+      transition(':leave', [animate('0.35s ease-out', style({ opacity: 0 }))])
     ])
   ]
 })
@@ -51,7 +48,7 @@ export class HouseFormNoComponent implements OnInit {
   @Input() index: number;
   @Input() address: AddressDto;
 
-  private virdiErrorMessage = new Subject<boolean>();
+  public virdiErrorMessage = new Subject<boolean>();
 
   @Output() deleteAddress: EventEmitter<AddressDto> = new EventEmitter();
   @Output() change: EventEmitter<any> = new EventEmitter();

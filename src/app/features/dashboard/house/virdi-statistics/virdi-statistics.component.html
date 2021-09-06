@@ -1,7 +1,6 @@
 <div class="co-main" [hidden]="!isLoading"></div>
 <div class="main" [hidden]="isLoading" [@fade]>
   <div class="upper-statistics">
-    <h3 i18n="“title|statistics@@virdi.statistics”">Boligstatistikk</h3>
     <mat-tab-group
       (selectedTabChange)="onRbChange($event)"
       [selectedIndex]="!showPriceDevelopment ? 0 : 1"

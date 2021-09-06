@@ -93,7 +93,7 @@
       <div *ngIf="!address.useManualPropertyValue" [@fade]>
         <p
           class="estimate-error"
-          *ngIf="virdiErrorMessage | async"
+          *ngIf="isAddressValid && virdiErrorMessage | async"
           [@leaveFade]
         >
           Kunne ikke estimere boligverdien, <br />sjekk at adressen er riktig

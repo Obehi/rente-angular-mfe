@@ -386,7 +386,7 @@
   <msg id="add.more.houses.after.login" desc="add-more-houses-after-login"><source>app/shared/components/ui-components/dialogs/virdi-manual-value-dialog/virdi-manual-value-dialog.component.html:66,68</source>
       Har du flere boliger kan du legge til disse i boligfanen etter innlogging.
     </msg>
-  <msg id="info.confirmation.empty3”" desc="info-confirmation" meaning="“empty3"><source>app/shared/components/ui-components/dialogs/virdi-manual-value-dialog/virdi-manual-value-dialog.component.html:104,106</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:438,440</source>
+  <msg id="info.confirmation.empty3”" desc="info-confirmation" meaning="“empty3"><source>app/shared/components/ui-components/dialogs/virdi-manual-value-dialog/virdi-manual-value-dialog.component.html:104,106</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:439,441</source>
                 Kan ikke være tom
               </msg>
   <msg id="info.confirmation.hi”" desc="info-confirmation" meaning="“hi"><source>app/features/init-confirmation/init-confirmation-sv/init-confirmation.component.html:8,10</source>
@@ -395,13 +395,13 @@
   <msg id="info.confirmation.moreInfo”" desc="info-confirmation" meaning="“more-infor"><source>app/features/init-confirmation/init-confirmation-sv/init-confirmation.component.html:11,13</source>
           Vi trenger litt mer informasjon før vi kan søke etter tilbud
         </msg>
-  <msg id="info.confirmation.empty”" desc="info-confirmation" meaning="“empty"><source>app/features/init-confirmation/init-confirmation-sv/init-confirmation.component.html:35,37</source><source>app/features/init-confirmation/init-confirmation-sv/init-confirmation.component.html:64,66</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:346,348</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:372,374</source>
+  <msg id="info.confirmation.empty”" desc="info-confirmation" meaning="“empty"><source>app/features/init-confirmation/init-confirmation-sv/init-confirmation.component.html:35,37</source><source>app/features/init-confirmation/init-confirmation-sv/init-confirmation.component.html:64,66</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:347,349</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:373,375</source>
               Kan ikke være tom
             </msg>
   <msg id="info.confirmation.invalid”" desc="info-confirmation" meaning="“invalid"><source>app/features/init-confirmation/init-confirmation-sv/init-confirmation.component.html:42,44</source>
               Ugyldig e-post
             </msg>
-  <msg id="info.confirmation.empty2”" desc="info-confirmation" meaning="“empty2"><source>app/features/init-confirmation/init-confirmation-sv/init-confirmation.component.html:92,94</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:401,403</source>
+  <msg id="info.confirmation.empty2”" desc="info-confirmation" meaning="“empty2"><source>app/features/init-confirmation/init-confirmation-sv/init-confirmation.component.html:92,94</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:402,404</source>
                   Kan ikke være tom
                 </msg>
   <msg id="info.confirmation.done”" desc="info-confirmation" meaning="“done"><source>app/features/init-confirmation/init-confirmation-sv/init-confirmation.component.html:120,122</source>
@@ -943,14 +943,14 @@
       OBS: Vi tester fortsatt løsningen for denne banken. <ph name="LINE_BREAK"><ex>&lt;br&gt;</ex>&lt;br&gt;</ph>
       Gi gjerne beskjed hvis noe ikke fungerer optimalt.
     </msg>
-  <msg id="info.confirmation.help”" desc="info-confirmation" meaning="“help"><source>app/features/auth/bank-id-login/bank-id-login.component.html:104,106</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:143,145</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:180,182</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:238,240</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:413,415</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:451,453</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:551,553</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:595,597</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:638,640</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:700,702</source>
+  <msg id="info.confirmation.help”" desc="info-confirmation" meaning="“help"><source>app/features/auth/bank-id-login/bank-id-login.component.html:104,106</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:144,146</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:181,183</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:239,241</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:414,416</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:452,454</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:552,554</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:597,599</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:640,642</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:702,704</source>
           <ph name="START_TAG_MAT_ICON"><ex>&lt;mat-icon&gt;</ex>&lt;mat-icon&gt;</ph>help<ph name="CLOSE_TAG_MAT_ICON"><ex>&lt;/mat-icon&gt;</ex>&lt;/mat-icon&gt;</ph>
         </msg>
   <msg id="info.confirmation.myMemberships”" desc="info-confirmation" meaning="
-                      “my-memberships"><source>app/features/auth/bank-id-login/bank-id-login.component.html:767,769</source>
+                      “my-memberships"><source>app/features/auth/bank-id-login/bank-id-login.component.html:769,771</source>
                     Mine medlemskap
                   </msg>
-  <msg id="change.bank.location.back" desc="change-bank" meaning="choose-office "><source>app/features/auth/bank-id-login/bank-id-login.component.html:820,822</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:858,860</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:877,879</source><source>app/features/dashboard/offers/change-bank-dialog/change-bank-location/change-bank-location.component.html:162,164</source><source>app/features/dashboard/offers/change-bank-dialog/change-bank-location/change-bank-location.component.html:170,172</source><source>app/features/dashboard/offers/change-bank-dialog/change-bank-location/change-bank-location.component.html:191,193</source>
+  <msg id="change.bank.location.back" desc="change-bank" meaning="choose-office "><source>app/features/auth/bank-id-login/bank-id-login.component.html:822,824</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:860,862</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:879,881</source><source>app/features/dashboard/offers/change-bank-dialog/change-bank-location/change-bank-location.component.html:162,164</source><source>app/features/dashboard/offers/change-bank-dialog/change-bank-location/change-bank-location.component.html:170,172</source><source>app/features/dashboard/offers/change-bank-dialog/change-bank-location/change-bank-location.component.html:191,193</source>
             Tilbake
           </msg>
   <msg id="login”" desc="reference" meaning="“login"><source>app/features/auth/login-status/login-status.component.html:12,14</source><source>app/features/auth/login-status/login-status.component.html:26,48</source>
@@ -1191,27 +1191,26 @@
   <msg id="success.change.bank.goodLuck”" desc="success-change-bank" meaning="“good-luck"><source>app/features/dashboard/offers/change-bank-dialog/success-change-bank-dialog/success-change-bank-dialog.component.html:38,40</source>
       <ph name="START_TAG_RENTE_BUTTON"><ex>&lt;rente-button&gt;</ex>&lt;rente-button&gt;</ph>Lykke til!<ph name="CLOSE_TAG_RENTE_BUTTON"><ex>&lt;/rente-button&gt;</ex>&lt;/rente-button&gt;</ph>
     </msg>
-  <msg id="virdi.statistics”" desc="statistics" meaning="“title"><source>app/features/dashboard/house/virdi-statistics/virdi-statistics.component.html:4</source>Boligstatistikk</msg>
-  <msg id="virdi.statistics.sqmPrice”" desc="sqm-price" meaning="“title"><source>app/features/dashboard/house/virdi-statistics/virdi-statistics.component.html:21,23</source>
+  <msg id="virdi.statistics.sqmPrice”" desc="sqm-price" meaning="“title"><source>app/features/dashboard/house/virdi-statistics/virdi-statistics.component.html:20,22</source>
         Din kvadratmeterpris:
       </msg>
-  <msg id="virdi.statistics.avgSqm”" desc="avg-sqm" meaning="“input"><source>app/features/dashboard/house/virdi-statistics/virdi-statistics.component.html:27,29</source>
+  <msg id="virdi.statistics.avgSqm”" desc="avg-sqm" meaning="“input"><source>app/features/dashboard/house/virdi-statistics/virdi-statistics.component.html:26,28</source>
         <ph name="INTERPOLATION"><ex>{{ averageSqmPrice | thousands }}</ex>{{ averageSqmPrice | thousands }}</ph> NOK
       </msg>
-  <msg id="virdi.statistics.houses”" desc="statistics" meaning="“houses"><source>app/features/dashboard/house/virdi-statistics/virdi-statistics.component.html:31,33</source>
+  <msg id="virdi.statistics.houses”" desc="statistics" meaning="“houses"><source>app/features/dashboard/house/virdi-statistics/virdi-statistics.component.html:30,32</source>
       Boliger i <ph name="INTERPOLATION"><ex>{{ indexArea }}</ex>{{ indexArea }}</ph>
     </msg>
-  <msg id="virdi.statistics.sales”" desc="statistics" meaning="“sales"><source>app/features/dashboard/house/virdi-statistics/virdi-statistics.component.html:35,38</source>
+  <msg id="virdi.statistics.sales”" desc="statistics" meaning="“sales"><source>app/features/dashboard/house/virdi-statistics/virdi-statistics.component.html:34,37</source>
         Antall salg i/på <ph name="INTERPOLATION"><ex>{{ indexArea }}</ex>{{ indexArea }}</ph> siste 6 mnder:
         <ph name="START_BOLD_TEXT"><ex>&lt;b&gt;</ex>&lt;b&gt;</ph><ph name="INTERPOLATION_1"><ex>{{ openMarketSalesHalfYear }}</ex>{{ openMarketSalesHalfYear }}</ph><ph name="CLOSE_BOLD_TEXT"><ex>&lt;/b&gt;</ex>&lt;/b&gt;</ph>
       </msg>
-  <msg id="virdi.statistics.data”" desc="statistics" meaning="“data"><source>app/features/dashboard/house/virdi-statistics/virdi-statistics.component.html:40,42</source><source>app/features/dashboard/house/virdi-statistics/virdi-statistics.component.html:68,70</source>
+  <msg id="virdi.statistics.data”" desc="statistics" meaning="“data"><source>app/features/dashboard/house/virdi-statistics/virdi-statistics.component.html:39,41</source><source>app/features/dashboard/house/virdi-statistics/virdi-statistics.component.html:67,69</source>
         Data levert av <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>virdi.no<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph>
       </msg>
-  <msg id="virdi.statistics.priceDev”" desc="statistics" meaning="“price-dev"><source>app/features/dashboard/house/virdi-statistics/virdi-statistics.component.html:58,60</source>
+  <msg id="virdi.statistics.priceDev”" desc="statistics" meaning="“price-dev"><source>app/features/dashboard/house/virdi-statistics/virdi-statistics.component.html:57,59</source>
         Prisutvikling i
       </msg>
-  <msg id="virdi.statistics.10k”" desc="statistics" meaning="“10k"><source>app/features/dashboard/house/virdi-statistics/virdi-statistics.component.html:63,65</source>
+  <msg id="virdi.statistics.10k”" desc="statistics" meaning="“10k"><source>app/features/dashboard/house/virdi-statistics/virdi-statistics.component.html:62,64</source>
       kr i 10 000
     </msg>
   <msg id="offers.statistics.mortgageRelation”" desc="offers-statistics" meaning="“mortage-relation"><source>app/features/dashboard/offers/offers-blue/offers-statistics/offers-statistics.component.html:2</source><source>app/features/dashboard/offers/offers-statistics/offers-statistics.component.html:2</source>Din rente i forhold til andre i din bank</msg>
