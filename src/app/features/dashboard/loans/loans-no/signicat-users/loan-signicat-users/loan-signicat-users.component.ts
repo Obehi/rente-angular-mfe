@@ -116,10 +116,8 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
     this.myLoansService.getButtonDisabledState().subscribe((state) => {
       if (state) {
         this.isDisabled = true;
-        console.log('isDisabled: true');
       } else {
         this.isDisabled = false;
-        console.log('isDisabled: false');
       }
     });
   } // ngOnInit
@@ -294,21 +292,24 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
     };
 
     concat(
-      // this.loansService.updateLoanOutstandingDebt(outstandingDebtDto)
-      of(true).pipe(
-        catchError((err) => {
-          console.log(err);
-          this.outstandingDebtIsError = true;
-          this.isError = true;
-          if (err.status < 500) {
-            this.isGeneralError = true;
-          }
-          if (err.status > 499) {
-            this.isServerError = true;
-          }
-          return of(err);
-        })
-      ),
+      // of(true)
+      this.loansService
+        .updateLoanOutstandingDebt(outstandingDebtDto)
+
+        .pipe(
+          catchError((err) => {
+            console.log(err);
+            this.outstandingDebtIsError = true;
+            this.isError = true;
+            if (err.status < 500) {
+              this.isGeneralError = true;
+            }
+            if (err.status > 499) {
+              this.isServerError = true;
+            }
+            return of(err);
+          })
+        ),
       // this.loansService.updateLoanReminingYears(remainingYearsDto)
       of(true).pipe(
         catchError((err) => {
@@ -383,24 +384,6 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
             this.initialRemainingYears = this.incomingValueRemainingYears;
             this.initialNominalRate = this.incomingValueNominalRate;
 
-            // this.myLoansService.setreValidateForm(true);
-
-            // this.loanForm
-            //   .get(this.outstandingDebtString)
-            //   ?.setValue(this.initialOutStandingDebt);
-
-            // this.loanForm
-            //   .get(this.remainingYearsString)
-            //   ?.setValue(this.initialRemainingYears);
-
-            // this.loanForm
-            //   .get(this.nominalRateString)
-            //   ?.setValue(this.initialNominalRate);
-
-            // console.log(this.initialOutStandingDebt);
-            // console.log(this.initialRemainingYears);
-            // console.log(this.initialNominalRate);
-            // console.log('Saved!');
             this.setEditDisabled();
           }
         },

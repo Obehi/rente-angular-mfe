@@ -54,9 +54,19 @@
   border: 1px solid $red;
   border-radius: 8px;
   transition: border 0.2s ease;
+
+  .ng-touched::-webkit-input-placeholder {
+    color: white;
+  }
 }
 
 .white-text {
   color: white;
   margin-left: 5px;
+}
+.error-text {
+  padding: 5px;
+  color: $red;
+  font-size: 14px;
+  text-align: center;
 }

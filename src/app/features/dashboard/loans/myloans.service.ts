@@ -7,7 +7,6 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export class MyLoansService {
   private editModeSubject = new BehaviorSubject<number | null>(null);
   private inputEditSubject = new BehaviorSubject<boolean>(false);
-  private reValidateFormSubject = new BehaviorSubject<boolean>(false);
   private setFormAsPristineSubject = new BehaviorSubject<boolean>(false);
   private ableToSaveSubject = new BehaviorSubject<boolean>(false);
   private buttonDisabledStateSubject = new BehaviorSubject<boolean>(true);
@@ -37,14 +36,6 @@ export class MyLoansService {
 
   public getInputEditModeAsObservable(): Observable<boolean> {
     return this.inputEditSubject.asObservable();
-  }
-
-  public setreValidateForm(mode: boolean): void {
-    this.reValidateFormSubject.next(mode);
-  }
-
-  public getreValidateFormAsObservable(): Observable<boolean> {
-    return this.reValidateFormSubject.asObservable();
   }
 
   public setFormAsPristine(): void {

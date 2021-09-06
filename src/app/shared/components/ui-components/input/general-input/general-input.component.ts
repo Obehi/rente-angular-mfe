@@ -79,12 +79,22 @@ export class GeneralInputComponent implements OnInit, OnDestroy {
 
     this.changeSubscription = this.getFormValName?.valueChanges.subscribe(
       () => {
+        if (this.getFormValName.value.trim() !== '') this.isInputError = false;
+
         if (this.isEditMode && this.getFormValName.dirty) {
           this.myLoansService.setChangesMadeState(true);
           this.myLoansService.setButtonDisabledState(false);
         } else {
           this.myLoansService.setChangesMadeState(false);
           this.myLoansService.setButtonDisabledState(true);
+        }
+
+        // Error if value is empty
+        if (
+          this.getFormValName.dirty &&
+          this.getFormValName.value.trim() === ''
+        ) {
+          this.isInputError = true;
         }
 
         // Emit if the form value is valid
@@ -117,9 +127,6 @@ export class GeneralInputComponent implements OnInit, OnDestroy {
   }
 
   get validInput(): boolean {
-    return (
-      this.inputForm.get('inputValue')?.value !== '0' &&
-      !this.inputForm.get('inputValue')?.value.endsWith(',')
-    );
+    return this.inputForm.get('inputValue')?.value !== '0';
   }
 }
