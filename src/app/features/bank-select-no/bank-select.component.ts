@@ -129,9 +129,18 @@ export class BankSelectNoComponent implements OnInit {
     }
 
     if (bank.hasSubMembership) {
-      this.router.navigate([
-        '/autentisering/' + bank.name.toLocaleLowerCase() + '/' + 'medlemskap/'
-      ]);
+      console.log('direct');
+      this.router.navigate(
+        [
+          '/autentisering/' +
+            bank.name.toLocaleLowerCase() +
+            '/' +
+            'medlemskap/'
+        ],
+        {
+          state: { data: { bank: bank } }
+        }
+      );
       return;
     }
 

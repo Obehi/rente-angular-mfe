@@ -5,10 +5,14 @@
     du lån gjennom et slikt fordelsprogram?
   </p>
 
-  <div class="item">
-    <p>
-      Nordea Direct uten medlemskapsfordeler:
-      <button>Nordea Direct</button>
-    </p>
+  <div *ngFor="let item of currentMemberships">
+    <div class="item">
+      <p>
+        {{ item.label }}
+        <button (click)="continueBankLogin(item.bank)">
+          {{ item.buttonText }}
+        </button>
+      </p>
+    </div>
   </div>
 </div>
