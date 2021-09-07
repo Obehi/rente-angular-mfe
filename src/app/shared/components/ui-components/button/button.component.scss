@@ -328,3 +328,12 @@ button.mat-blue-select {
   display: inline;
   max-width: 300px;
 }
+
+button.mat-blue {
+  color: $white;
+
+  background: $secondary;
+  height: 5ch;
+  display: inline;
+  width: 200px;
+}

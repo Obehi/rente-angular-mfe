@@ -43,6 +43,7 @@ import { getAnimationStyles } from '@shared/animations/animationEnums';
 import { ApiError } from '@shared/constants/api-error';
 import { VirdiManualValueDialogComponent } from '@shared/components/ui-components/dialogs/virdi-manual-value-dialog/virdi-manual-value-dialog.component';
 import { GlobalStateService } from '@services/global-state.service';
+import { LocalStorageService } from '@services/local-storage.service';
 
 @Component({
   selector: 'rente-init-confirmation-sv',
@@ -80,7 +81,8 @@ export class InitConfirmationNoComponent implements OnInit, OnDestroy {
     public customLangTextService: CustomLangTextService,
     private logging: LoggingService,
     private messageBanner: MessageBannerService,
-    private globalStateService: GlobalStateService
+    private globalStateService: GlobalStateService,
+    private localStorageService: LocalStorageService
   ) {
     this.filteredMemberships = this.membershipCtrl.valueChanges.pipe(
       startWith(null),
@@ -102,6 +104,7 @@ export class InitConfirmationNoComponent implements OnInit, OnDestroy {
       this.allMemberships = userInfo.availableMemberships;
       this.userData = userInfo;
 
+      this.initMembershipList(userInfo.availableMemberships);
       const userEmail =
         this.userData.email === null ? null : String(userInfo.email);
       const streetName =
@@ -343,6 +346,7 @@ export class InitConfirmationNoComponent implements OnInit, OnDestroy {
   }
 
   selected(event: MatAutocompleteSelectedEvent): void {
+    console.log(event.option.value);
     this.memberships.push(event.option.value);
     this.membershipInput.nativeElement.value = '';
     this.membershipCtrl.setValue(null);
@@ -398,6 +402,17 @@ export class InitConfirmationNoComponent implements OnInit, OnDestroy {
         }
       }
     });
+  }
+
+  initMembershipList(memberships: MembershipTypeDto[]): void {
+    const subBank = this.localStorageService.getItem('subBank');
+    if (subBank !== null || subBank !== undefined) {
+      this.prefillMemberships(subBank);
+    }
+  }
+
+  prefillMemberships(subBank: string) {
+    this.memberships.push(subBank);
   }
 
   ngOnDestroy(): void {

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ROUTES_MAP_NO } from '@config/routes-config';
 import { BankVo } from '@models/bank';
+import { LocalStorageService } from '@services/local-storage.service';
 
 interface subBankMembership {
   label: string;
@@ -90,7 +91,10 @@ export class ChooseSubBankComponent implements OnInit {
 
   currentMemberships: subBankMembership[];
 
-  constructor(private router: Router) {
+  constructor(
+    private router: Router,
+    private localStorageService: LocalStorageService
+  ) {
     console.log(this.router);
     const bankName = this.router.getCurrentNavigation()?.extras?.state?.data
       .bank.name;
@@ -102,6 +106,7 @@ export class ChooseSubBankComponent implements OnInit {
       console.log(this.memberships['DNB'][0].label);
       this.currentMemberships = this.memberships[bankName];
     } else {
+      this.router.navigate(['/velgbank']);
     }
   }
   ngOnInit(): void {
@@ -110,6 +115,7 @@ export class ChooseSubBankComponent implements OnInit {
 
   continueBankLogin(bank: string): void {
     this.bankVO.name = bank;
+    this.localStorageService.setItem('subBank', bank);
     this.router.navigate(['/autentisering/' + ROUTES_MAP_NO.bankIdLogin], {
       state: { data: { bank: this.bankVO } }
     });

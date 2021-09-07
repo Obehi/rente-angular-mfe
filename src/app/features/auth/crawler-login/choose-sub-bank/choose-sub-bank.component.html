@@ -1,18 +1,24 @@
 <div class="front-container">
   <h3>Hvilke medlemskap har du?</h3>
-  <p>
-    ABC BANK tilbyr medlemmer i enkelte organisasjoner medlemskapfordeler. Har
-    du lån gjennom et slikt fordelsprogram?
+  <p class="center">
+    {{ bankVO?.label }} tilbyr medlemmer i enkelte organisasjoner
+    medlemskapfordeler. Har du lån gjennom et slikt fordelsprogram?
   </p>
 
-  <div *ngFor="let item of currentMemberships">
-    <div class="item">
-      <p>
-        {{ item.label }}
-        <button (click)="continueBankLogin(item.bank)">
+  <div class="buttons">
+    <div *ngFor="let item of currentMemberships">
+      <div class="item">
+        <p>
+          {{ item.label }}
+        </p>
+        <rente-button
+          (click)="continueBankLogin(item.bank)"
+          class="rente-button flex-box-margin"
+          color="blue"
+        >
           {{ item.buttonText }}
-        </button>
-      </p>
+        </rente-button>
+      </div>
     </div>
   </div>
 </div>
