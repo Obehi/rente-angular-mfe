@@ -48,28 +48,26 @@
         class="forms"
         [ngClass]="isEditMode === true ? 'edit-modus' : 'general-modus'"
       >
-        <form class="p-0 border-0" novalidate change>
+        <form class="p-0 border-0" [formGroup]="loanForm" novalidate change>
           <div class="field-box">
             <h4 class="text-white">Utestående lån:</h4>
 
             <div class="input-width">
               <rente-general-input
                 (click)="setInputOutDebtActive()"
+                formControlName="outstandingDebt"
                 [maskType]="maskType"
-                [value]="initialOutStandingDebt"
                 [suffix]="'kr'"
                 [maxLength]="'14'"
-                [placeholder]="'Skriv inn lån'"
+                [placeholder]="'Fyll inn lån'"
                 [isEditMode]="isEditMode"
                 [inEditMode]="inEditMode"
                 [isInputFocused]="
-                  isEditMode === true && inputOutstandingDebtIsActive === true
+                  isEditMode &&
+                  inputOutstandingDebtIsActive &&
+                  !outstandingDebtIsError
                 "
-                [isInputError]="
-                  outstandingDebtIsError === true &&
-                  inputOutstandingDebtIsActive === false
-                "
-                (inputValueString)="setOutstandingDebtVal($event)"
+                [isInputError]="outstandingDebtIsError"
               ></rente-general-input>
             </div>
           </div>
@@ -78,23 +76,22 @@
             <h4 class="text-white">Løpetid:</h4>
 
             <div>
-              <div (click)="setInputRemYearsActive()">
+              <div class="input-width-small">
                 <rente-general-input
+                  (click)="setInputRemYearsActive()"
+                  formControlName="remainingYears"
                   [maskType]="maskType"
-                  [value]="initialRemainingYears"
                   [suffix]="'år'"
                   [maxLength]="'5'"
-                  [placeholder]="'Løpetid'"
+                  [placeholder]="'år'"
                   [isEditMode]="isEditMode"
                   [inEditMode]="inEditMode"
                   [isInputFocused]="
-                    isEditMode === true && inputRemainingYearsIsActive === true
+                    isEditMode &&
+                    inputRemainingYearsIsActive &&
+                    !remainingYearsIsError
                   "
-                  [isInputError]="
-                    remainingYearsIsError === true &&
-                    inputRemainingYearsIsActive === false
-                  "
-                  (inputValueString)="setRemainingYearsVal($event)"
+                  [isInputError]="remainingYearsIsError"
                 ></rente-general-input>
               </div>
             </div>
@@ -104,23 +101,22 @@
             <h4 class="text-white">Nominell rente:</h4>
 
             <div>
-              <div (click)="setInputNominalRateActive()">
+              <div class="input-width-small">
                 <rente-general-input
+                  (click)="setInputNominalRateActive()"
+                  formControlName="nominalRate"
                   [maskType]="maskType"
-                  [value]="initialNominalRate"
                   [suffix]="'%'"
                   [maxLength]="'5'"
-                  [placeholder]="'Nominell rente'"
+                  [placeholder]="'%'"
                   [isEditMode]="isEditMode"
                   [inEditMode]="inEditMode"
                   [isInputFocused]="
-                    isEditMode === true && inputNominalRateIsActive === true
+                    isEditMode &&
+                    inputNominalRateIsActive &&
+                    !nominalRateIsError
                   "
-                  [isInputError]="
-                    nominalRateIsError === true &&
-                    inputNominalRateIsActive === false
-                  "
-                  (inputValueString)="setNominalRateVal($event)"
+                  [isInputError]="nominalRateIsError"
                 ></rente-general-input>
               </div>
             </div>
@@ -131,10 +127,10 @@
             *ngIf="showDisplayBox"
             [@fadeOut]="isEditMode ? 'hidden' : 'visible'"
           >
-            <div>
+            <div class="center">
               <p>Effektiv rente:</p>
             </div>
-            <div>
+            <div class="center">
               <h3>{{ loan.effectiveRate | number: '1.2-2' }} %</h3>
             </div>
           </div>
@@ -184,7 +180,7 @@
         <rente-button
           color="primary"
           (click)="save()"
-          [disabled]="isDisabled === true"
+          [disabled]="!isAbleToSave"
         >
           Lagre
         </rente-button>

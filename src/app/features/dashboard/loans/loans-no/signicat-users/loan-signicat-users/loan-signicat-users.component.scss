@@ -181,30 +181,35 @@ p {
 
   @media (min-width: 993px) {
     width: 400px;
+    height: 535px;
   }
 
   @media (max-width: 992px) and (min-width: 769px) {
     width: 320px;
+    height: 525px;
   }
 
   @media (max-width: 768px) and (min-width: 450px) {
     width: 400px;
+    height: 525px;
   }
 
   @media (max-width: 450px) and (min-width: 400px) {
     width: 350px;
+    height: 525px;
   }
 
   @media (max-width: 400px) and (min-width: 320px) {
     width: 300px;
+    height: 540px;
   }
 
   @media (max-width: 360px) {
-    height: 585px;
+    height: 550px;
   }
 
   @media (max-width: 330px) {
-    height: 660px;
+    height: 720px;
   }
 
   @media (max-width: 280px) {
@@ -236,7 +241,11 @@ p {
   }
 
   @media (max-width: 400px) and (min-width: 320px) {
-    width: 300px;
+    width: 280px;
+  }
+
+  @media (max-width: 320px) {
+    height: 450px;
   }
 
   @media (max-width: 280px) {
@@ -394,7 +403,7 @@ p {
     font-size: 16px;
   }
 
-  @media (max-width: 281px) {
+  @media (max-width: 320px) {
     padding: 10px 8px 10px 20px !important;
     // padding: 10px 0px 10px 5px !important;
     display: grid;
@@ -408,18 +417,18 @@ p {
   }
 
   @media (min-width: 281px) and (max-width: 321px) {
-    padding: 10px 38px 10px 20px !important;
+    padding: 10px 10px 10px 10px !important;
   }
 
   @media (max-width: 767px) {
-    padding: 10px 38px 10px 10px;
+    padding: 10px 20px 10px 10px;
   }
 }
 
 .text-white {
   width: 40% !important;
 
-  @media (max-width: 280px) {
+  @media (max-width: 320px) {
     width: 100% !important;
     text-align: center;
   }
@@ -448,18 +457,8 @@ p {
   border-radius: 10px;
 }
 
-// .input-value {
-//   text-align: center;
-//   padding: 20px 0;
-//   border: 1px solid #478ccc;
-//   border-radius: 10px;
-//   transition: border 0.2s ease;
-
-//   background: #004465a6;
-//   transition: background 0.2s ease;
-// }
-
 .input-width {
+  margin: auto;
   @media (min-width: 992px) {
     width: 62%;
   }
@@ -471,4 +470,21 @@ p {
   @media (max-width: 751px) {
     width: 63%;
   }
+
+  @media (max-width: 320px) {
+    width: 70% !important;
+  }
+
+  @media (max-width: 280px) {
+    width: 85% !important;
+  }
+}
+
+.input-width-small {
+  width: 90px;
+  margin: auto;
+}
+.input-width-small,
+.center {
+  text-align: center;
 }

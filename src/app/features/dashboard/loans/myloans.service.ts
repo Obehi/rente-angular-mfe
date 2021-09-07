@@ -6,11 +6,6 @@ import { BehaviorSubject, Observable } from 'rxjs';
 })
 export class MyLoansService {
   private editModeSubject = new BehaviorSubject<number | null>(null);
-  private inputEditSubject = new BehaviorSubject<boolean>(false);
-  private setFormAsPristineSubject = new BehaviorSubject<boolean>(false);
-  private ableToSaveSubject = new BehaviorSubject<boolean>(false);
-  private buttonDisabledStateSubject = new BehaviorSubject<boolean>(true);
-  private changesMadeSubject = new BehaviorSubject<boolean>(true);
 
   constructor() {}
 
@@ -26,47 +21,15 @@ export class MyLoansService {
     return this.editModeSubject.asObservable();
   }
 
-  public resetEditMode(): void {
-    this.editModeSubject.next(0);
+  public getNumericValueFormated(incomeValue: any): number {
+    const income: string =
+      typeof incomeValue === 'string'
+        ? incomeValue.replace(/\s/g, '')
+        : incomeValue;
+    return Number(income.replace(',', '.'));
   }
 
-  public setInputEditModeOn(mode: boolean): void {
-    this.inputEditSubject.next(mode);
-  }
-
-  public getInputEditModeAsObservable(): Observable<boolean> {
-    return this.inputEditSubject.asObservable();
-  }
-
-  public setFormAsPristine(): void {
-    this.setFormAsPristineSubject.next(true);
-  }
-
-  public getFormAsPristine(): Observable<boolean> {
-    return this.setFormAsPristineSubject.asObservable();
-  }
-
-  public setAbleToSave(mode: boolean): void {
-    this.ableToSaveSubject.next(mode);
-  }
-
-  public getAbleToSave(): Observable<boolean> {
-    return this.ableToSaveSubject.asObservable();
-  }
-
-  public setButtonDisabledState(mode: boolean): void {
-    this.buttonDisabledStateSubject.next(mode);
-  }
-
-  public getButtonDisabledState(): Observable<boolean> {
-    return this.buttonDisabledStateSubject.asObservable();
-  }
-
-  public setChangesMadeState(mode: boolean): void {
-    this.changesMadeSubject.next(mode);
-  }
-
-  public getChangesMadeState(): Observable<boolean> {
-    return this.changesMadeSubject.asObservable();
+  public formatComma(val: string): number {
+    return Number(val.replace(',', '.'));
   }
 }

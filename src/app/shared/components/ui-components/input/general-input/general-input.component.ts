@@ -1,29 +1,34 @@
-import { NumberFormatStyle } from '@angular/common';
 import {
+  AfterViewInit,
   Component,
-  EventEmitter,
+  forwardRef,
   Input,
+  OnChanges,
   OnDestroy,
-  OnInit,
-  Output
+  OnInit
 } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MyLoansService } from '@features/dashboard/loans/myloans.service';
-import IMask from 'imask';
-import { Subscription } from 'rxjs';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
   selector: 'rente-general-input',
   templateUrl: './general-input.component.html',
-  styleUrls: ['./general-input.component.scss']
+  styleUrls: ['./general-input.component.scss'],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => GeneralInputComponent),
+      multi: true
+    }
+  ]
 })
-export class GeneralInputComponent implements OnInit, OnDestroy {
+export class GeneralInputComponent
+  implements OnInit, OnDestroy, ControlValueAccessor, OnChanges, AfterViewInit {
   @Input() maskType: any;
-  @Input() value: any;
   @Input() suffix: string;
   @Input() maxLength: string;
-  @Input() isDisabled: boolean;
   @Input() placeholder: string;
+
+  @Input('value') inputValue = '';
 
   // CSS class variables
   @Input() isEditMode: boolean;
@@ -31,101 +36,55 @@ export class GeneralInputComponent implements OnInit, OnDestroy {
   @Input() isInputFocused: boolean;
   @Input() isInputError: boolean;
 
-  @Output() changesMadeEmitter = new EventEmitter<boolean>();
-  @Output() inputValueString = new EventEmitter<string>();
+  onChange: any = () => {};
+  onTouch: any = () => {};
 
-  public inputForm: FormGroup;
-  public changeSubscription: Subscription | undefined;
-  public editModeSubscription: Subscription;
-  public getFormValName: any;
+  public disabled = true;
 
-  constructor(
-    private myLoansService: MyLoansService,
-    private fb: FormBuilder
-  ) {}
+  constructor() {}
 
-  ngOnDestroy(): void {
-    if (this.changeSubscription) {
-      this.changeSubscription.unsubscribe();
+  isDisabled(): boolean {
+    return this.disabled;
+    // should get updated control state changed dynamically
+  }
+
+  setDisabledState(isDisabled: boolean): void {
+    this.disabled = isDisabled;
+  }
+
+  ngOnDestroy(): void {}
+
+  writeValue(value: string): void {
+    if (value) {
+      this.value = value;
     }
-
-    if (this.editModeSubscription) {
-      this.editModeSubscription.unsubscribe();
-    }
   }
 
-  ngOnInit(): void {
-    this.inputForm = this.fb.group({
-      inputValue: [{ value: this.value, disabled: true }, Validators.required]
-    });
-
-    this.getFormValName = this.inputForm.get('inputValue');
-
-    this.myLoansService.getInputEditModeAsObservable().subscribe((edit) => {
-      if (edit) {
-        this.getFormValName?.enable();
-      } else {
-        this.getFormValName?.disable();
-        this.inputForm.get('inputValue')?.setValue(this.value);
-      }
-    });
-
-    this.myLoansService.getFormAsPristine().subscribe((val) => {
-      if (val) {
-        this.inputForm.markAsPristine();
-        this.myLoansService.setChangesMadeState(false);
-        this.myLoansService.setButtonDisabledState(true);
-      }
-    });
-
-    this.changeSubscription = this.getFormValName?.valueChanges.subscribe(
-      () => {
-        if (this.getFormValName.value.trim() !== '') this.isInputError = false;
-
-        if (this.isEditMode && this.getFormValName.dirty) {
-          this.myLoansService.setChangesMadeState(true);
-          this.myLoansService.setButtonDisabledState(false);
-        } else {
-          this.myLoansService.setChangesMadeState(false);
-          this.myLoansService.setButtonDisabledState(true);
-        }
-
-        // Error if value is empty
-        if (
-          (this.getFormValName.dirty &&
-            this.getFormValName.value.trim() === '') ||
-          this.checkIfZero
-        ) {
-          this.isInputError = true;
-          this.myLoansService.setAbleToSave(false);
-        }
-
-        // Emit if the form value is valid
-        if (this.isLoanFormValid) {
-          this.myLoansService.setAbleToSave(true);
-        } else {
-          this.myLoansService.setAbleToSave(false);
-        }
-
-        // Constantly emit the value to parent if its not null or empty
-        if (!!this.getFormValName.value && this.getFormValName.value !== '0') {
-          this.inputValueEmit(this.getFormValName.value);
-        }
-      }
-    );
-  } // ngOnInit
-
-  public inputValueEmit(val: string): void {
-    this.inputValueString.emit(val);
+  get value(): string {
+    return this.inputValue;
   }
 
-  get isLoanFormValid(): boolean {
-    return (
-      !!this.inputForm.get('inputValue')?.value && this.getFormValName.dirty
-    );
+  set value(val: string) {
+    this.inputValue = val;
+    this.onChange(val);
+    this.onTouch();
   }
 
-  get checkIfZero(): boolean {
-    return this.inputForm.get('inputValue')?.value == 0;
+  registerOnChange(fn: any): void {
+    this.onChange = fn;
   }
+
+  registerOnTouched(fn: any): void {
+    this.onTouch = fn;
+  }
+
+  ngOnInit(): void {}
+
+  ngAfterViewInit(): void {}
+
+  ngOnChanges(): void {}
+
+  // get isLoanFormValid(): boolean {
+  //   return !!this.inputForm.get('inputValue')?.value && !this.checkIfZero;
+  // }
 }

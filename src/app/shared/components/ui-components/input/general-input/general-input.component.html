@@ -7,17 +7,16 @@
     'input-error': isInputError === true
   }"
 >
-  <div class="input-container" [formGroup]="inputForm">
+  <div class="input-container">
     <input
-      id="inputValue"
-      formControlName="inputValue"
       class="input-text"
       matInput
       type="tel"
       [maxLength]="maxLength"
       [imask]="maskType.currency"
-      [value]="value"
+      [(ngModel)]="value"
       [placeholder]="placeholder"
+      [disabled]="disabled"
       required
     />
 
@@ -25,13 +24,13 @@
   </div>
 </div>
 
-<div *ngIf="inputForm.controls['inputValue'].touched">
+<!-- <div *ngIf="inputGroup.controls[formControlName].touched">
   <div
     *ngIf="
-      inputForm.controls['inputValue'].hasError('required') || isInputError
+      inputGroup.controls[formControlName].hasError('required') || isInputError
     "
     class="error-text"
   >
-    Kan ikke være tom
+    Ikke gyldig verdi
   </div>
-</div>
+</div> -->
