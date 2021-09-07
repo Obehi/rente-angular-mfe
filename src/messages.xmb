@@ -1333,14 +1333,10 @@ Fortsett
     </msg>
   <msg id="house.component.error”" desc="error" meaning="“house"><source>app/features/dashboard/house/houses.component.html:10</source>Oops, noe gikk galt</msg>
   <msg id="house.component.houses”" desc="my-houses" meaning="“title"><source>app/features/dashboard/house/houses.component.html:27</source>Mine boliger</msg>
-  <msg id="house.component.value”" desc="value" meaning="“house"><source>app/features/dashboard/house/houses.component.html:28,34</source>
-      <ph name="START_PARAGRAPH"><ex>&lt;p&gt;</ex>&lt;p&gt;</ph>Total verdi:<ph name="CLOSE_PARAGRAPH"><ex>&lt;/p&gt;</ex>&lt;/p&gt;</ph>
-
-      <ph name="START_PARAGRAPH_1"><ex>&lt;p&gt;</ex>&lt;p&gt;</ph>
-        <ph name="INTERPOLATION"><ex>{{ totalPropertyValue / 1000000 | number: &apos;1.1-3&apos; }}</ex>{{ totalPropertyValue / 1000000 | number: &apos;1.1-3&apos; }}</ph> mill.
-      <ph name="CLOSE_PARAGRAPH"><ex>&lt;/p&gt;</ex>&lt;/p&gt;</ph>
-    </msg>
-  <msg id="house.component.addMore”" desc="additional" meaning="“house"><source>app/features/dashboard/house/houses.component.html:53,55</source>
+  <msg id="house.component.valuetotal" desc="value" meaning="“house"><source>app/features/dashboard/house/houses.component.html:30,32</source>
+        Total verdi:
+      </msg>
+  <msg id="house.component.addMore”" desc="additional" meaning="“house"><source>app/features/dashboard/house/houses.component.html:56,58</source>
       Legg til flere boliger
     </msg>
   <msg id="change.bank.location.header.explain" desc="change-bank" meaning="choose-office "><source>app/features/dashboard/offers/change-bank-dialog/change-bank-location/change-bank-location.component.html:5</source>Välj län så skickar vi meddelandet till ditt bankkontor åt dig.</msg>

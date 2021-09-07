@@ -11,21 +11,29 @@
   </div>
   <div class="body">
     <div *ngIf="!isStatMode" class="estimat">
-      <p class="slide-toggle-text bold">Automatisk estimat:</p>
+      <p class="slide-toggle-text bold">Automatisk värdering av din bostad:</p>
 
       <mat-slide-toggle
         class="button"
-        (change)="
-          address.useManualPropertyValue = !address.useManualPropertyValue
-        "
+        (change)="switchToggle()"
         value="!address.useManualPropertyValue"
         [checked]="!address.useManualPropertyValue"
       ></mat-slide-toggle>
+    </div>
+    <div class="checkbox-wrapper">
+      <rente-checkbox-container
+        defaultValue="{{ address.propertyType }}"
+        [controlName]="'propertyType'"
+        [checkBoxItems]="checkBoxItems"
+        (selectedValue)="onPropertyTypeChange($event)"
+      >
+      </rente-checkbox-container>
     </div>
     <div *ngIf="!isStatMode" class="address">
       <p class="input-text">Adress</p>
       <rente-input
         type="text"
+        class="house-input"
         [(ngModel)]="address.street"
         (change)="countChange()"
       ></rente-input>
@@ -36,6 +44,7 @@
 
         <rente-input
           [type]="'tel'"
+          class="house-input"
           [(ngModel)]="address.zip"
           [maxLength]="5"
           (change)="countChange()"
@@ -47,6 +56,7 @@
         <rente-input
           matInput
           [type]="'tel'"
+          class="house-input"
           [(ngModel)]="address.apartmentSize"
           [maxLength]="3"
           (change)="countChange()"
@@ -57,12 +67,20 @@
     <div *ngIf="!isStatMode" class="non-double estimated">
       <p class="house-value bold">Bostadsvärde</p>
       <div *ngIf="!address.useManualPropertyValue" [@fade]>
+        <p
+          class="estimate-error"
+          *ngIf="isAddressValid && (virdiErrorMessage | async)"
+          [@leaveFade]
+        >
+          Gick inte att uppskatta värdet på din <br />bostad, kolla att adressen
+          är korrekt
+        </p>
         <p class="green-minus" *ngIf="!isAddressValid">-</p>
         <p
           class="green-text"
           *ngIf="isAddressValid && address.estimatedPropertyValue"
         >
-          {{ address?.estimatedPropertyValue | thousands }} kr
+          {{ address?.estimatedPropertyValue | thousands }}
         </p>
       </div>
       <div *ngIf="address.useManualPropertyValue" [@fade]>
@@ -71,21 +89,12 @@
           matInput
           [type]="'tel'"
           [maxLength]="11"
+          class="house-input"
           [ngModel]="address?.manualPropertyValue | thousands"
           (change)="countChange()"
           (keyup)="manualPropertyValueChanged($event)"
         ></rente-input>
       </div>
-    </div>
-
-    <div class="checkbox-wrapper">
-      <rente-checkbox-container
-        defaultValue="{{ address.propertyType }}"
-        [controlName]="'propertyType'"
-        [checkBoxItems]="checkBoxItems"
-        (selectedValue)="onPropertyTypeChange($event)"
-      >
-      </rente-checkbox-container>
     </div>
 
     <div class="center-button">

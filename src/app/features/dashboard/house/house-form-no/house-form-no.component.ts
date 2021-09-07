@@ -183,4 +183,11 @@ export class HouseFormNoComponent implements OnInit {
         this.virdiErrorMessage.next(false);
       });
   }
+
+  switchToggle(): void {
+    this.address.useManualPropertyValue = !this.address.useManualPropertyValue;
+    setTimeout(() => {
+      this.getPropertyValueListener();
+    }, 0);
+  }
 }

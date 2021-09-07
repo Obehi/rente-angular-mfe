@@ -23,13 +23,11 @@
   </div>
   <div class="body">
     <div *ngIf="!isStatMode" class="estimat" [@fade]>
-      <p class="slide-toggle-text bold">Automatisk estimat:</p>
+      <p class="slide-toggle-text bold">Automatisk estimat av boligen din:</p>
 
       <mat-slide-toggle
         class="button"
-        (change)="
-          address.useManualPropertyValue = !address.useManualPropertyValue
-        "
+        (change)="switchToggle()"
         value="!address.useManualPropertyValue"
         [checked]="!address.useManualPropertyValue"
       ></mat-slide-toggle>
@@ -39,7 +37,6 @@
         <p class="input-text">Adresse</p>
         <rente-input
           class="house-input"
-          id="address"
           type="text"
           [(ngModel)]="address.street"
           (change)="countChange()"
@@ -93,7 +90,7 @@
       <div *ngIf="!address.useManualPropertyValue" [@fade]>
         <p
           class="estimate-error"
-          *ngIf="isAddressValid && virdiErrorMessage | async"
+          *ngIf="isAddressValid && (virdiErrorMessage | async)"
           [@leaveFade]
         >
           Kunne ikke estimere boligverdien, <br />sjekk at adressen er riktig

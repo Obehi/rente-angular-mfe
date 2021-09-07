@@ -138,12 +138,21 @@ rente-button {
     font-size: 50px;
     font-weight: 500;
     position: absolute;
-    left: 47%;
+    left: 45%;
     top: 0;
   }
 
   .big {
     font-size: 50px;
+  }
+
+  .estimate-error {
+    color: red;
+    font-size: 13px;
+    font-weight: 500;
+    white-space: nowrap;
+    margin-top: 10px;
+    margin-left: -15%;
   }
 
   .top-text {
@@ -177,7 +186,7 @@ rente-button {
     padding: 15px;
     border-radius: 20px;
     background: $karl-blue;
-    //border: 1px solid #478ccc;
+    border: 1px solid #478ccc;
   }
   .hidden {
     background: red;
@@ -203,6 +212,10 @@ rente-button {
 
   ::ng-deep .mat-form-field-underline {
     display: none !important;
+  }
+
+  ::ng-deep .mat-slide-toggle.mat-checked .mat-slide-toggle-thumb {
+    background-color: $primary;
   }
 
   ::ng-deep
@@ -286,5 +299,5 @@ rente-button {
 }
 
 .checkbox-wrapper {
-  margin-top: 4rem;
+  margin-top: 2rem;
 }

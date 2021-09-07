@@ -69,7 +69,7 @@
     font-size: 14px;
   }
   img {
-    width: 15%;
+    width: 4%;
   }
 }
 .center-button {
@@ -256,6 +256,7 @@ rente-button {
     padding: 15px;
     border-radius: 20px;
     background: #004465;
+    border: 1px solid #478ccc;
   }
   .hidden {
     background: red;
@@ -277,7 +278,8 @@ rente-button {
     caret-color: white;
   }
 
-  ::ng-deep .cdk-text-field-autofill-monitored:not(:-webkit-autofill):focus {
+  ::ng-deep .cdk-text-field-autofill-monitored:not(:-webkit-autofill):focus,
+  .cdk-text-field-autofill-monitored:not(:-webkit-autofill):active {
     border: 1px solid $primary;
     background: $secondary;
     transition: 0.3s;
@@ -325,6 +327,12 @@ rente-button {
     margin-bottom: 20px;
   }
   .address {
+    ::ng-deep .cdk-text-field-autofill-monitored:not(:-webkit-autofill):focus,
+    .cdk-text-field-autofill-monitored:not(:-webkit-autofill):active {
+      border: 1px solid $primary;
+      background: $secondary;
+      transition: 0.3s;
+    }
     ::ng-deep .cdk-text-field-autofill-monitored:not(:-webkit-autofill) {
       background: #004465;
       padding: 5px;

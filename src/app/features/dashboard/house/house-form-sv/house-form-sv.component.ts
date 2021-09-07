@@ -4,6 +4,8 @@ import { MatTabChangeEvent } from '@angular/material';
 import { CheckBoxItem } from '@shared/components/ui-components/checkbox-container/checkbox-container.component';
 import { EnvService } from '@services/env.service';
 import { animate, style, transition, trigger } from '@angular/animations';
+import { combineLatest, fromEvent, of, Subject } from 'rxjs';
+import { debounceTime, distinctUntilChanged, map, tap } from 'rxjs/operators';
 
 export enum AddressFormMode {
   Editing,
@@ -26,12 +28,20 @@ export enum AddressFormMode {
         style({ opacity: 0 }),
         animate('0.5s ease-in', style({ opacity: 1 }))
       ])
+    ]),
+    trigger('leaveFade', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('0.5s ease-in', style({ opacity: 1 }))
+      ]),
+      transition(':leave', [animate('0.35s ease-out', style({ opacity: 0 }))])
     ])
   ]
 })
 export class HouseFormSvComponent implements OnInit {
   @Input() index: number;
   @Input() address: AddressDto;
+  public virdiErrorMessage = new Subject<boolean>();
 
   @Output() deleteAddress: EventEmitter<AddressDto> = new EventEmitter();
   @Output() change: EventEmitter<any> = new EventEmitter();
@@ -57,6 +67,11 @@ export class HouseFormSvComponent implements OnInit {
     }
 
     this.initCheckboxes();
+
+    setTimeout(() => {
+      this.getHouseInputListener();
+      this.getPropertyValueListener();
+    }, 0);
   }
 
   initCheckboxes(): void {
@@ -182,5 +197,34 @@ export class HouseFormSvComponent implements OnInit {
 
   notEmpty(text: string | null): boolean {
     return text !== null && String(text).length > 0;
+  }
+
+  getPropertyValueListener(): void {
+    of(this.address.estimatedPropertyValue)
+      .pipe(
+        distinctUntilChanged(),
+        tap(),
+        map((args) => (args === null ? true : false))
+      )
+      .subscribe((args) => {
+        this.virdiErrorMessage.next(args);
+      });
+  }
+
+  getHouseInputListener(): void {
+    combineLatest([
+      fromEvent(document.getElementsByClassName('house-input'), 'click')
+    ])
+      .pipe(debounceTime(20), tap())
+      .subscribe(() => {
+        this.virdiErrorMessage.next(false);
+      });
+  }
+
+  switchToggle(): void {
+    this.address.useManualPropertyValue = !this.address.useManualPropertyValue;
+    setTimeout(() => {
+      this.getPropertyValueListener();
+    }, 0);
   }
 }

@@ -1760,4 +1760,14 @@ Fortsett
             (Ingen avtale med banken)
           </translation>
   <translation id="select.save" desc="property-select" meaning="“issue-mail">Lagre</translation>
+  <translation id="house.component.totalvalue”" desc="value" meaning="“house">
+      <ph name="START_PARAGRAPH"><ex>&lt;p&gt;</ex>&lt;p&gt;</ph>Total verdi:<ph name="CLOSE_PARAGRAPH"><ex>&lt;/p&gt;</ex>&lt;/p&gt;</ph>
+
+      <ph name="START_PARAGRAPH_1"><ex>&lt;p&gt;</ex>&lt;p&gt;</ph>
+        <ph name="INTERPOLATION"><ex>{{ totalPropertyValue / 1000000 | number: &apos;1.1-3&apos; }}</ex>{{ totalPropertyValue / 1000000 | number: &apos;1.1-3&apos; }}</ph> mill.
+      <ph name="CLOSE_PARAGRAPH"><ex>&lt;/p&gt;</ex>&lt;/p&gt;</ph>
+    </translation>
+  <translation id="house.component.valuetotal" desc="value" meaning="“house">
+        Total verdi:
+      </translation>
 </translationbundle>
