@@ -9,14 +9,14 @@
     <div *ngFor="let item of currentMemberships">
       <div class="item">
         <p>
-          {{ item.label }}
+          {{ item.text }}
         </p>
         <rente-button
-          (click)="continueBankLogin(item.bank)"
+          (click)="continueBankLogin(item)"
           class="rente-button flex-box-margin"
           color="blue"
         >
-          {{ item.buttonText }}
+          {{ item.label }}
         </rente-button>
       </div>
     </div>

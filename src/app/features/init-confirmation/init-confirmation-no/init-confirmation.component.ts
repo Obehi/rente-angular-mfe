@@ -44,6 +44,7 @@ import { ApiError } from '@shared/constants/api-error';
 import { VirdiManualValueDialogComponent } from '@shared/components/ui-components/dialogs/virdi-manual-value-dialog/virdi-manual-value-dialog.component';
 import { GlobalStateService } from '@services/global-state.service';
 import { LocalStorageService } from '@services/local-storage.service';
+import { MembershipService } from '@services/membership.service';
 
 @Component({
   selector: 'rente-init-confirmation-sv',
@@ -82,7 +83,8 @@ export class InitConfirmationNoComponent implements OnInit, OnDestroy {
     private logging: LoggingService,
     private messageBanner: MessageBannerService,
     private globalStateService: GlobalStateService,
-    private localStorageService: LocalStorageService
+    private localStorageService: LocalStorageService,
+    private membershipService: MembershipService
   ) {
     this.filteredMemberships = this.membershipCtrl.valueChanges.pipe(
       startWith(null),
@@ -101,10 +103,21 @@ export class InitConfirmationNoComponent implements OnInit, OnDestroy {
       this.loansService.getConfirmationData()
     ]).subscribe(([rateAndLoans, userInfo]) => {
       this.isLoading = false;
-      this.allMemberships = userInfo.availableMemberships;
+      this.allMemberships = this.membershipService.initMembershipList(
+        userInfo.availableMemberships
+      );
+      console.log(this.memberships);
+
+      const prefilledMemberships = this.membershipService.getPrefilledMemberships();
+
+      if (prefilledMemberships.length !== 0) {
+        console.log('got here t2222222');
+        this.memberships = prefilledMemberships;
+      }
+
+      console.log(this.memberships);
       this.userData = userInfo;
 
-      this.initMembershipList(userInfo.availableMemberships);
       const userEmail =
         this.userData.email === null ? null : String(userInfo.email);
       const streetName =
@@ -402,17 +415,6 @@ export class InitConfirmationNoComponent implements OnInit, OnDestroy {
         }
       }
     });
-  }
-
-  initMembershipList(memberships: MembershipTypeDto[]): void {
-    const subBank = this.localStorageService.getItem('subBank');
-    if (subBank !== null || subBank !== undefined) {
-      this.prefillMemberships(subBank);
-    }
-  }
-
-  prefillMemberships(subBank: string) {
-    this.memberships.push(subBank);
   }
 
   ngOnDestroy(): void {

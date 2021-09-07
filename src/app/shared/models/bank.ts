@@ -1186,7 +1186,7 @@ export const BankList: BankVo[] = [
     false,
     false,
     false,
-    false,
+    true,
     'https://m.dnb.no/kundeservice/privat/bankidmobil.html'
   ),
   new BankVo(

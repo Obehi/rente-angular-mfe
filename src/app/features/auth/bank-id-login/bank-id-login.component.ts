@@ -63,6 +63,7 @@ import { RouteEventsService } from '@services/route-events.service';
 
 import { LoginTermsDialogV2Component } from '@shared/components/ui-components/dialogs/login-terms-dialog-v2/login-terms-dialog-v2.component';
 import { VirdiManualValueDialogComponent } from '@shared/components/ui-components/dialogs/virdi-manual-value-dialog/virdi-manual-value-dialog.component';
+import { MembershipService } from '@services/membership.service';
 
 @Component({
   selector: 'rente-bank-id-login',
@@ -126,7 +127,8 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     private loginService: LoginService,
     private globalStateService: GlobalStateService,
     private routeEventsService: RouteEventsService,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private membershipService: MembershipService
   ) {
     this.setRoutingListeners();
   }
@@ -346,7 +348,14 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
   }
 
   initMemberships(memberships): void {
-    this.allMemberships = memberships;
+    this.allMemberships = this.membershipService.initMembershipList(
+      memberships
+    );
+    const prefilledMemberships = this.membershipService.getPrefilledMemberships();
+
+    if (prefilledMemberships.length !== 0) {
+      this.memberships = prefilledMemberships;
+    }
     this.filteredMemberships = this.membershipCtrl.valueChanges.pipe(
       startWith(null),
       map((membership: string | null) =>

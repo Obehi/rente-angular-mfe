@@ -5,9 +5,10 @@ import { BankVo } from '@models/bank';
 import { LocalStorageService } from '@services/local-storage.service';
 
 interface subBankMembership {
+  text: string;
   label: string;
-  buttonText: string;
-  bank: string;
+  name: string;
+  membership: string | null;
 }
 @Component({
   selector: 'rente-choose-sub-bank',
@@ -15,74 +16,77 @@ interface subBankMembership {
   styleUrls: ['./choose-sub-bank.component.scss']
 })
 export class ChooseSubBankComponent implements OnInit {
-  membershipss = {
-    DNB: [
-      {
-        label: 'text'
-      }
-    ]
-  };
-
   memberships = {
     DNB: [
       {
-        label: 'DNB uten medlemskapsfordeler:',
-        buttonText: 'DNB',
-        bank: 'DNB'
+        text: 'DNB uten medlemskapsfordeler:',
+        label: 'DNB',
+        name: 'DNB',
+        membership: null
       },
       {
-        label: 'For medlemmer av Bate(Boligbyggelag):',
-        buttonText: 'Bate',
-        bank: 'BATE'
+        text: 'For medlemmer av Bate(Boligbyggelag):',
+        label: 'Bate (Boligbyggelag)',
+        name: 'BATE',
+        membership: 'BATE'
       },
       {
-        label: 'For medlemmer av TOBB(Boligbyggelag):',
-        buttonText: 'TOBB',
-        bank: 'TOBB'
+        text: 'For medlemmer av TOBB(Boligbyggelag):',
+        label: 'TOBB (Boligbyggelag)',
+        name: 'TOBB',
+        membership: 'TOBB'
       },
       {
-        label: 'For medlemmer av USBL(Boligbyggelag):',
-        buttonText: 'USBL',
-        bank: 'USBL'
+        text: 'For medlemmer av USBL(Boligbyggelag):',
+        label: 'USBL (Boligbyggelag)',
+        name: 'USBL',
+        membership: 'USBL'
       },
       {
-        label: 'For medlemmer av Norsk Sykepleierforbund:',
-        buttonText: 'Norsk Sykepleierforbund',
-        bank: 'SYKEPLEIERFORBUND_DNB'
+        text: 'For medlemmer av Norsk Sykepleierforbund:',
+        label: 'Norsk Sykepleierforbund',
+        name: 'SYKEPLEIERFORBUND_DNB',
+        membership: 'FINNE UT AV!!!'
       }
     ],
     NORDEA_DIRECT: [
       {
-        label: 'Nordea Direct uten medlemskapsfordeler:',
-        buttonText: 'Nordea Direct',
-        bank: 'NORDEA_DIRECT'
+        text: 'Nordea Direct uten medlemskapsfordeler:',
+        label: 'Nordea Direct',
+        name: 'NORDE,A_DIRECT',
+        membership: null
       },
       {
-        label: 'For medlemmer av YS:',
-        buttonText: 'YS (Nordea Direct)',
-        bank: 'YS_NORDEA_DIRECT'
+        text: 'For medlemmer av YS:',
+        label: 'YS',
+        name: 'YS_NORDEA_DIRECT',
+        membership: 'YS'
       },
       {
-        label: 'For medlemmer av UNIO:',
-        buttonText: 'UNIO (Nordea Direct)',
-        bank: 'UNIO_NORDEA_DIRECT'
+        text: 'For medlemmer av UNIO:',
+        label: 'UNIO (Nordea Direct)',
+        name: 'UNIO_NORDEA_DIRECT',
+        membership: 'UNIO'
       },
       {
-        label: 'For medlemmer av NAL:',
-        buttonText: 'NAL (Nordea Direct)',
-        bank: 'NAL_NORDEA_DIRECT'
+        text: 'For medlemmer av NAL:',
+        label: 'NAL (Nordea Direct)',
+        name: 'NAL_NORDEA_DIRECT',
+        memberships: 'NORSK_FLYGELEDERFORENING'
       }
     ],
     DANSKE_BANK: [
       {
-        label: 'Danske Bank uten medlemskapsfordeler:',
-        buttonText: 'Dankse Bank',
-        bank: 'DANSKE_BANK'
+        text: 'Danske Bank uten medlemskapsfordeler:',
+        label: 'Dankse Bank',
+        name: 'DANSKE_BANK',
+        membership: null
       },
       {
-        label: 'For medlemmer av Dankse Akademikerne:',
-        buttonText: 'Danske Akademikerne',
-        bank: 'AKADEMIKERNE_DANSKE'
+        text: 'For medlemmer av Dankse Akademikerne:',
+        label: 'Danske Akademikerne',
+        name: 'AKADEMIKERNE_DANSKE',
+        membership: 'SPØRR FREDRIKK!!!!'
       }
     ]
   };
@@ -103,7 +107,7 @@ export class ChooseSubBankComponent implements OnInit {
     );
     if (bankName !== undefined) {
       this.bankVO = this.router.getCurrentNavigation()?.extras?.state?.data.bank;
-      console.log(this.memberships['DNB'][0].label);
+      console.log(this.memberships['DNB'][0].text);
       this.currentMemberships = this.memberships[bankName];
     } else {
       this.router.navigate(['/velgbank']);
@@ -113,11 +117,17 @@ export class ChooseSubBankComponent implements OnInit {
     console.log('japp');
   }
 
-  continueBankLogin(bank: string): void {
-    this.bankVO.name = bank;
-    this.localStorageService.setItem('subBank', bank);
+  continueBankLogin(item: subBankMembership): void {
+    const foo: { [index: string]: { message: string } } = {};
+    this.bankVO.name = item.name;
+
+    // convert subBankMembership to MembershipDto used in other components
+    const membershipBankSubtype = { name: item.name, text: item.text };
+    console.log(item);
+    item.membership !== null &&
+      this.localStorageService.setObject('subBank', item);
     this.router.navigate(['/autentisering/' + ROUTES_MAP_NO.bankIdLogin], {
-      state: { data: { bank: this.bankVO } }
+      state: { data: { name: this.bankVO } }
     });
   }
 }
