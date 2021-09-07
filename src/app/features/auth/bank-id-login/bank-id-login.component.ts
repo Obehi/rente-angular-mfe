@@ -958,7 +958,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
                 const confDto = this.getFormValues();
 
                 this.isLoading = true;
-                this.loanService.setConfirmationData(confDto).subscribe(
+                this.loanService.updateClientInfo(confDto).subscribe(
                   () => {
                     this.loanService
                       .getOffersBanks()
@@ -1051,7 +1051,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
           const confDto = this.getFormValues();
 
           this.isLoading = true;
-          this.loanService.setConfirmationData(confDto).subscribe(
+          this.loanService.updateClientInfo(confDto).subscribe(
             () => {
               this.isLoading = false;
               this.isManualPropertyValue = true;
