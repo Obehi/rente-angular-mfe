@@ -149,7 +149,6 @@
           <rente-input
             [placeholder]="'Termingebyr (vanligvis 0-70kr)'"
             [type]="'tel'"
-            [maskType]="mask.currency"
             matSuffix="kr"
             formControlName="fee"
             [errorStateMatcher]="isErrorState(loanFormGroup?.controls['fee'])"
@@ -603,7 +602,6 @@
                   <rente-input
                     [placeholder]="'Termingebyr (vanligvis 0-70kr)'"
                     [type]="'tel'"
-                    [maskType]="mask.currency"
                     matSuffix="kr"
                     formControlName="fee"
                     [errorStateMatcher]="
