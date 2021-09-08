@@ -29,6 +29,7 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
 
   public loanForm: FormGroup;
   public isEditMode = false;
+  public inEditMode = false;
   public hideEditIcon = false;
   public setOpacity = false;
   public showDisplayBox = true;
@@ -40,7 +41,6 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
   public isAbleToSave = false;
 
   public animationStyle = getAnimationStyles();
-  public inEditMode = false;
   public maskType = Mask;
 
   // Store value from input emitter
@@ -95,6 +95,7 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
     return (
       this.loanForm.get(val)?.value.trim() === '' ||
       this.loanForm.get(val)?.value === '0' ||
+      this.loanForm.get(val)?.value === ',' ||
       this.loanForm.get(val)?.value === ',0' ||
       this.loanForm.get(val)?.value === ',00' ||
       this.loanForm.get(val)?.value === '0,' ||
@@ -357,7 +358,7 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
     this.deactivateAllInput();
 
     this.sendRequest();
-  } // Save
+  }
 
   public sendRequest(): void {
     // Get the new values and then set it to initial value then send request

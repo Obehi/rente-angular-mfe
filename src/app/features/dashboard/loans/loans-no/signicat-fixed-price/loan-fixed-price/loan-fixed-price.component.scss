@@ -1,5 +1,15 @@
 @import '../../../../../../../styles/theme/_colors.scss';
 
+.setTransparent {
+  opacity: 0.4;
+  transition: opacity 0.4s ease-out;
+}
+
+.resetTransparent {
+  opacity: 1;
+  transition: opacity 0.4s ease-out;
+}
+
 .loan-boxes {
   margin-bottom: 30px;
 }
@@ -197,16 +207,15 @@ p {
 .loan-type {
   padding: 10px;
   color: white;
-  background: #004465a6;
+  border-radius: 10px 10px 0 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-radius: 10px 10px 0 0;
-  height: 60px;
-
+  background: #004465a6;
   h3 {
     margin-left: 10px;
   }
+  height: 60px;
 }
 
 hr.loan-split {
@@ -232,8 +241,7 @@ hr.box {
 }
 
 .loan-info {
-  padding: 10px;
-  margin-bottom: 10px;
+  padding: 5px 15px 5px 5px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -243,10 +251,19 @@ hr.box {
     justify-content: center;
     text-align: center;
   }
+
+  @media (max-width: 767px) {
+    padding: 10px 15px 15px 5px;
+  }
 }
 
 // Add css when necessary
 .loan-title {
+  @media (min-width: 767px) {
+    p {
+      margin: 10px !important;
+    }
+  }
   p {
     font-size: 16px;
   }
@@ -271,7 +288,8 @@ hr.box {
 }
 
 .total-cost {
-  padding: 5px 0 15px 0;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .save-loan-button {
@@ -500,7 +518,7 @@ hr.box {
   }
 
   .field-box {
-    padding: 0 0 10px 10px;
+    padding: 0 5px 10px 5px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -509,11 +527,21 @@ hr.box {
       font-size: 16px;
     }
 
-    @media (max-width: 281px) {
-      padding: 0 0 10px 0;
+    @media (max-width: 320px) {
       display: grid;
       justify-content: center;
-      text-align: center;
+      align-items: center;
+      padding: 0 10px 15px 10px;
+    }
+
+    @media (max-width: 321px) {
+      padding: 0 10px 13px 20px;
+    }
+
+    @media (min-width: 767px) {
+      h4 {
+        margin: 10px !important;
+      }
     }
   }
 
@@ -527,11 +555,11 @@ hr.box {
   }
 
   .loan-value {
-    margin-right: 35px;
+    // margin-right: 35px;
 
-    @media (max-width: 281px) {
-      margin-right: 0px;
-    }
+    // @media (max-width: 281px) {
+    //   margin-right: 0px;
+    // }
   }
 
   .d-block {
@@ -539,6 +567,16 @@ hr.box {
   }
 
   .text-white {
+    width: 40% !important;
+
+    @media (max-width: 320px) {
+      width: 100% !important;
+      text-align: center;
+    }
+
+    @media (min-width: 540px) {
+      width: 70% !important;
+    }
   }
 
   input {
@@ -548,5 +586,49 @@ hr.box {
   .overlay-pane {
     transform: none;
     margin-top: 0px !important;
+  }
+}
+
+.input-width {
+  margin: auto;
+  @media (min-width: 992px) {
+    width: 62%;
+  }
+
+  @media (max-width: 991px) and (min-width: 752px) {
+    width: 85%;
+  }
+
+  @media (max-width: 751px) {
+    width: 63%;
+  }
+
+  @media (max-width: 320px) {
+    width: 70% !important;
+  }
+
+  @media (max-width: 280px) {
+    width: 85% !important;
+  }
+}
+
+.input-width-small {
+  width: 90px;
+  // margin: auto;
+}
+
+.input-width-small,
+.center {
+  text-align: center;
+}
+
+.error-small {
+  color: $red;
+  font-size: 12px;
+  text-align: right;
+  padding: 3px;
+
+  @media (max-width: 320px) {
+    text-align: center;
   }
 }

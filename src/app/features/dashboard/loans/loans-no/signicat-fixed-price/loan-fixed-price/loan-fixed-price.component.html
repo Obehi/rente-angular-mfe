@@ -1,4 +1,7 @@
-<div class="summary">
+<div
+  class="summary"
+  [ngClass]="setOpacity ? 'setTransparent' : 'resetTransparent'"
+>
   <div class="loan-boxes">
     <div
       [ngClass]="
@@ -7,7 +10,9 @@
     >
       <div class="loan-type">
         <h3>Lån {{ index + 1 }}</h3>
-
+        <!-- <mat-icon *ngIf="isEditMode" (click)="deleteLoan()"
+            >delete_forever</mat-icon
+          > -->
         <div>
           <img
             [hidden]="hideEditIcon"
@@ -31,15 +36,15 @@
           <div class="all-text">
             <div
               [ngClass]="{
-                'loan-center': isEditMode === false,
-                'loan-center-edit': inEditMode === true,
-                'loan-center-edit-focus': inputProductIsActive === true,
-                'loan-center-edit-error': productIsError === true
+                'loan-center': !isEditMode,
+                'loan-center-edit': inEditMode,
+                'loan-center-edit-focus':
+                  isEditMode && inputProductIsActive && !productIsError,
+                'loan-center-edit-error': productIsError
               }"
               (click)="setInputProductActive()"
             >
               <mat-form-field appearance="fill">
-                <!-- <mat-label style="color: white"> Lånetype </mat-label> -->
                 <mat-select
                   [(value)]="selected"
                   [disabled]="!isEditMode"
@@ -60,50 +65,41 @@
             <div class="field-box">
               <h4 class="text-white">Utestående lån:</h4>
 
-              <div
-                [ngClass]="{
-                  'active-input': inEditMode === true,
-                  'non-active-input': isEditMode === false,
-                  'edit-focus': inputOutstandingDebtIsActive === true,
-                  'edit-error':
-                    outstandingDebtIsError === true &&
-                    inputOutstandingDebtIsActive === false
-                }"
-                (click)="setInputOutDebtActive()"
-              >
-                <mat-form-field class="white-input w-75" appearance="outline">
-                  <input
-                    placeholder="Skriv inn din lån"
-                    matInput
-                    type="tel"
-                    maxlength="16"
-                    autocomplete="off"
-                    [formControlName]="'outstandingDebt'"
-                    currencyMask
-                    [options]="{
-                      prefix: '',
-                      suffix: ' kr',
-                      align: 'center',
-                      thousands: ' ',
-                      decimal: ',',
-                      precision: 1
-                    }"
-                  />
-                </mat-form-field>
+              <div class="input-width">
+                <rente-general-input
+                  (click)="setInputOutDebtActive()"
+                  formControlName="outstandingDebt"
+                  [maskType]="maskType"
+                  [suffix]="'kr'"
+                  [maxLength]="'14'"
+                  [placeholder]="'Fyll inn lån'"
+                  [isEditMode]="isEditMode"
+                  [inEditMode]="inEditMode"
+                  [isInputFocused]="
+                    isEditMode &&
+                    inputOutstandingDebtIsActive &&
+                    !outstandingDebtIsError
+                  "
+                  [isInputError]="outstandingDebtIsError"
+                  [errorStateMatcher]="
+                    isErrorState(loanForm?.controls['outstandingDebt'])
+                  "
+                ></rente-general-input>
 
-                <div
-                  *ngIf="loanForm.controls['outstandingDebt'].touched"
-                  class="error-message"
-                >
-                  <rente-form-message
-                    class="d-block"
-                    [type]="'error'"
+                <div *ngIf="loanForm?.controls['outstandingDebt'].touched">
+                  <p
+                    class="error-small"
                     *ngIf="
-                      loanForm.controls['outstandingDebt'].hasError('required')
+                      loanForm?.controls['outstandingDebt'].hasError(
+                        'required'
+                      ) ||
+                      (outstandingDebtIsError &&
+                        !isServerError &&
+                        !isGeneralError)
                     "
                   >
-                    Kan ikke være tom
-                  </rente-form-message>
+                    Ikke gyldig verdi
+                  </p>
                 </div>
               </div>
             </div>
@@ -111,50 +107,41 @@
             <div class="field-box">
               <h4 class="text-white">Løpetid:</h4>
 
-              <div
-                [ngClass]="{
-                  'active-input': inEditMode === true,
-                  'non-active-input': isEditMode === false,
-                  'edit-focus': inputRemainingYearsIsActive === true,
-                  'edit-error':
-                    remainingYearsIsError == true &&
-                    inputRemainingYearsIsActive == false
-                }"
-                (click)="setInputRemYearsActive()"
-              >
-                <mat-form-field class="white-input w-75" appearance="outline">
-                  <input
-                    placeholder="Løpetid"
-                    matInput
-                    type="tel"
-                    maxlength="9"
-                    autocomplete="off"
-                    [formControlName]="'remainingYears'"
-                    currencyMask
-                    [options]="{
-                      prefix: '',
-                      suffix: ' år',
-                      align: 'center',
-                      thousands: ' ',
-                      decimal: ',',
-                      precision: 2
-                    }"
-                  />
-                </mat-form-field>
+              <div class="input-width-small">
+                <rente-general-input
+                  (click)="setInputRemYearsActive()"
+                  formControlName="remainingYears"
+                  [maskType]="maskType"
+                  [suffix]="'år'"
+                  [maxLength]="'5'"
+                  [placeholder]="'år'"
+                  [isEditMode]="isEditMode"
+                  [inEditMode]="inEditMode"
+                  [isInputFocused]="
+                    isEditMode &&
+                    inputRemainingYearsIsActive &&
+                    !remainingYearsIsError
+                  "
+                  [isInputError]="remainingYearsIsError"
+                  [errorStateMatcher]="
+                    isErrorState(loanForm?.controls['remainingYears'])
+                  "
+                ></rente-general-input>
 
-                <div
-                  *ngIf="loanForm.controls['remainingYears'].touched"
-                  class="error-message"
-                >
-                  <rente-form-message
-                    class="d-block"
-                    [type]="'error'"
+                <div *ngIf="loanForm?.controls['remainingYears'].touched">
+                  <p
+                    class="error-small"
                     *ngIf="
-                      loanForm.controls['remainingYears'].hasError('required')
+                      loanForm?.controls['remainingYears'].hasError(
+                        'required'
+                      ) ||
+                      (remainingYearsIsError &&
+                        !isServerError &&
+                        !isGeneralError)
                     "
                   >
-                    Kan ikke være tom
-                  </rente-form-message>
+                    Ikke gyldig verdi
+                  </p>
                 </div>
               </div>
             </div>
@@ -231,7 +218,7 @@
         <rente-button
           color="primary"
           (click)="save()"
-          [disabled]="isDisabled === true"
+          [disabled]="!isAbleToSave"
         >
           Lagre
         </rente-button>
