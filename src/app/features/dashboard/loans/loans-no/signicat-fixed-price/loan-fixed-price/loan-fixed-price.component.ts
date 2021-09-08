@@ -360,9 +360,11 @@ export class LoanFixedPriceComponent implements OnInit, OnDestroy {
   }
 
   public matSelectChanged(): void {
-    // this.isDisabled = false;
-    this.isAbleToSave = true;
     this.productIsError = false;
+
+    if (!this.outstandingDebtIsError && !this.remainingYearsIsError) {
+      this.isAbleToSave = true;
+    }
   }
 
   // ----------------------------   SAVE   --------------------------------
