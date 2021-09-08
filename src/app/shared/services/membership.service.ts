@@ -58,9 +58,6 @@ export class MembershipService {
     const subBank = this.localStorageService.getObject('subBank');
     const memberships: MembershipTypeDto[] = [];
     if (subBank !== null && subBank !== undefined) {
-      console.log('got here');
-      console.log(subBank);
-
       memberships.push(subBank);
     }
     console.log(memberships);
