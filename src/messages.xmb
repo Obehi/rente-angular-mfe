@@ -1336,6 +1336,9 @@ Fortsett
   <msg id="house.component.valuetotal" desc="value" meaning="“house"><source>app/features/dashboard/house/houses.component.html:30,32</source>
         Total verdi:
       </msg>
+  <msg id="house.component.millions" desc="value" meaning="“house"><source>app/features/dashboard/house/houses.component.html:34,36</source>
+        <ph name="INTERPOLATION"><ex>{{ totalPropertyValue / 1000000 | number: &apos;1.1-3&apos; }}</ex>{{ totalPropertyValue / 1000000 | number: &apos;1.1-3&apos; }}</ph> mill.
+      </msg>
   <msg id="house.component.addMore”" desc="additional" meaning="“house"><source>app/features/dashboard/house/houses.component.html:56,58</source>
       Legg til flere boliger
     </msg>
@@ -1445,23 +1448,23 @@ Fortsett
         Beste tilbud
       </msg>
   <msg id="offers.mainPage.value”" desc="offers-main" meaning="“value"><source>app/features/dashboard/offers/offers-blue/box-grid/box-grid.component.html:31</source>Boligverdi</msg>
-  <msg id="offers.mainPage.millions”" desc="offers-main" meaning="“millions"><source>app/features/dashboard/offers/offers-blue/box-grid/box-grid.component.html:32,35</source><source>app/features/dashboard/offers/offers-blue/box-grid/box-grid.component.html:61,64</source>
+  <msg id="offers.mainPage.millions”" desc="offers-main" meaning="“millions"><source>app/features/dashboard/offers/offers-blue/box-grid/box-grid.component.html:32,35</source><source>app/features/dashboard/offers/offers-blue/box-grid/box-grid.component.html:65,68</source>
         <ph name="INTERPOLATION"><ex>{{ offersInfo?.propertyValue / 1000000 | number: &apos;1.1-3&apos; }}</ex>{{ offersInfo?.propertyValue / 1000000 | number: &apos;1.1-3&apos; }}</ph>
         mill.
       </msg>
-  <msg id="offers.mainPage.debt”" desc="offers-main" meaning="“debt"><source>app/features/dashboard/offers/offers-blue/box-grid/box-grid.component.html:36,40</source>
+  <msg id="offers.mainPage.debt”" desc="offers-main" meaning="“debt"><source>app/features/dashboard/offers/offers-blue/box-grid/box-grid.component.html:40,44</source>
         Fellesgjeld
         <ph name="INTERPOLATION"><ex>{{ offersInfo?.commonDebt / 1000000 | number: &apos;1.1-2&apos; }}</ex>{{ offersInfo?.commonDebt / 1000000 | number: &apos;1.1-2&apos; }}</ph>
         mill.
       </msg>
-  <msg id="offers.mainPage.virdiEstimate”" desc="offers-main" meaning="“virdi-estimate"><source>app/features/dashboard/offers/offers-blue/box-grid/box-grid.component.html:46,49</source>
+  <msg id="offers.mainPage.virdiEstimate”" desc="offers-main" meaning="“virdi-estimate"><source>app/features/dashboard/offers/offers-blue/box-grid/box-grid.component.html:50,53</source>
         Estimat levert av
         <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>virdi.no<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph>
       </msg>
-  <msg id="offers.mainPage.loanRemaining”" desc="offers-main" meaning="“loan-remaining"><source>app/features/dashboard/offers/offers-blue/box-grid/box-grid.component.html:58,60</source>
+  <msg id="offers.mainPage.loanRemaining”" desc="offers-main" meaning="“loan-remaining"><source>app/features/dashboard/offers/offers-blue/box-grid/box-grid.component.html:62,64</source>
       Gjenværende lån
     </msg>
-  <msg id="offers.mainPage.leverage2”" desc="offers-main" meaning="“leverage2"><source>app/features/dashboard/offers/offers-blue/box-grid/box-grid.component.html:65,68</source>
+  <msg id="offers.mainPage.leverage2”" desc="offers-main" meaning="“leverage2"><source>app/features/dashboard/offers/offers-blue/box-grid/box-grid.component.html:69,72</source>
       Belåningsgrad
       <ph name="INTERPOLATION"><ex>{{ offersInfo?.ltv * 100 | number: &apos;1.1-1&apos; }}</ex>{{ offersInfo?.ltv * 100 | number: &apos;1.1-1&apos; }}</ph> %
     </msg>

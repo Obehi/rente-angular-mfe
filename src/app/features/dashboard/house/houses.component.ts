@@ -66,7 +66,7 @@ export class HousesComponent implements OnInit, DeactivationGuarded {
     private loansService: LoansService,
     eventService: EventService,
     dialog: MatDialog,
-    private envService: EnvService,
+    public envService: EnvService,
     private messageBanner: MessageBannerService,
     private customLangTextService: CustomLangTextService,
     private notificationService: NotificationService

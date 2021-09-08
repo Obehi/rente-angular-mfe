@@ -419,7 +419,7 @@ Den exakta processen beror på din enhet och vilken webbläsare du använder. I 
   <translation id="offers.mainPage.time”" desc="offers-main" meaning="“time">över lånets löptid</translation>
   <translation id="offers.mainPage.yourInterest”" desc="offers-main" meaning="“your-interest">Min effektiva ränta</translation>
   <translation id="offers.mainPage.value”" desc="offers-main" meaning="“value">Bostadens värde </translation>
-  <translation id="offers.mainPage.millions”" desc="offers-main" meaning="“millions"> <ph name="INTERPOLATION"><ex>{{ offersInfo.propertyValue / 1000000 | number: &quot;1.1-3&quot; }}</ex>{{ offersInfo.propertyValue / 1000000 | number: &quot;1.1-3&quot; }}</ph>
+  <translation id="offers.mainPage.millions”" desc="offers-main" meaning="“millions"><ph name="INTERPOLATION"><ex>{{ offersInfo.propertyValue / 1000000 | number: &quot;1.1-3&quot; }}</ex>{{ offersInfo.propertyValue / 1000000 | number: &quot;1.1-3&quot; }}</ph>
                 milj.</translation>
   <translation id="offers.mainPage.debt”" desc="offers-main" meaning="“debt">Gemensam skuld
                 <ph name="INTERPOLATION"><ex>{{
@@ -901,4 +901,5 @@ Kolla gärna att adressen är korrekt eller välj <ph name="START_BOLD_TEXT"><ex
         <ph name="INTERPOLATION"><ex>{{ totalPropertyValue / 1000000 | number: &apos;1.1-3&apos; }}</ex>{{ totalPropertyValue / 1000000 | number: &apos;1.1-3&apos; }}</ph> mill.
       <ph name="CLOSE_PARAGRAPH"><ex>&lt;/p&gt;</ex>&lt;/p&gt;</ph></translation>
   <translation id="house.component.valuetotal" desc="value" meaning="“house">Totalt värde:</translation>
+  <translation id="house.component.millions" desc="value" meaning="“house"/>
 </translationbundle>

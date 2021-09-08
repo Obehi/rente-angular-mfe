@@ -31,8 +31,12 @@
         Total verdi:
       </p>
 
-      <p class="thousands">
+      <p class="thousands" *ngIf="envService.isNorway()">
         {{ totalPropertyValue / 1000000 | number: '1.1-3' }} mill.
+      </p>
+
+      <p class="thousands" *ngIf="envService.isSweden()">
+        {{ totalPropertyValue / 1000000 | number: '1.1-3' }} milj.
       </p>
     </span>
   </div>
