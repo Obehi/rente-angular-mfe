@@ -30,6 +30,7 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
   public loanForm: FormGroup;
   public isEditMode = false;
   public hideEditIcon = false;
+  public setOpacity = false;
   public showDisplayBox = true;
   public showButton = false;
   public isDisabled = true;
@@ -136,6 +137,7 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
       ]
     });
 
+    this.isAbleToSave = false;
     this.disableForm();
 
     // Set incoming value or it will be undefined if only one input is changed
@@ -143,15 +145,17 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
     this.incomingValueRemainingYears = this.initialRemainingYears;
     this.incomingValueNominalRate = this.initialNominalRate;
 
-    // Listen for edit
+    // Listen for which loan is in editmode (if more than 1 loan is present)
     this.myLoansService
       .loanEditIndexAsObservable()
       .subscribe((currentIndex) => {
         if (currentIndex === null) {
           this.hideEditIcon = false;
+          this.setOpacity = false;
         }
         if (currentIndex !== this.index && currentIndex !== null) {
           this.hideEditIcon = true;
+          this.setOpacity = true;
         }
       });
 
@@ -170,7 +174,13 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
           this.outstandingDebtIsError = true;
         }
 
-        if (!check && !this.remainingYearsIsError && !this.nominalRateIsError) {
+        if (
+          this.loanForm.get('outstandingDebt')?.dirty &&
+          !check &&
+          !this.remainingYearsIsError &&
+          !this.nominalRateIsError
+        ) {
+          // console.log('Able to save TRUE! Outstanding debt check 2');
           this.isAbleToSave = true;
         } else {
           this.isAbleToSave = false;
@@ -192,10 +202,12 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
         }
 
         if (
+          this.loanForm.get('remainingYears')?.dirty &&
           !check &&
           !this.outstandingDebtIsError &&
           !this.nominalRateIsError
         ) {
+          // console.log('Able to save TRUE! Remaining years check 2');
           this.isAbleToSave = true;
         } else {
           this.isAbleToSave = false;
@@ -217,10 +229,12 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
         }
 
         if (
+          this.loanForm.get('nominalRate')?.dirty &&
           !check &&
           !this.outstandingDebtIsError &&
           !this.remainingYearsIsError
         ) {
+          // console.log('Able to save TRUE! Nominal rate check 2');
           this.isAbleToSave = true;
         } else {
           this.isAbleToSave = false;
@@ -233,6 +247,10 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
       return { mask: this.maskType.currency };
     }
     return this.maskType.currency;
+  }
+
+  public isErrorState(control: AbstractControl | null): boolean {
+    return !!(control && control.invalid && (control.dirty || control.touched));
   }
 
   public disableForm(): void {
@@ -292,6 +310,7 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
       this.inEditMode = false;
       this.isEditMode = false;
       this.hideEditIcon = false;
+      this.setOpacity = false;
       this.showDisplayBox = true;
     }, 325);
 
@@ -313,9 +332,9 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
     // Reset the form, mark as pristine and disable save button
     this.myLoansService.setEditMode(this.index);
 
+    this.loanForm.markAsPristine();
+    this.isAbleToSave = false;
     this.enableForm();
-    console.log('is disabled?');
-    console.log(this.loanForm.disabled);
 
     this.deactivateAllInput();
 
@@ -323,6 +342,7 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
     this.showButton = true;
     this.isEditMode = true;
     this.hideEditIcon = true;
+    // this.setOpacity = true;
     setTimeout(() => {
       this.inEditMode = true;
     }, 500);

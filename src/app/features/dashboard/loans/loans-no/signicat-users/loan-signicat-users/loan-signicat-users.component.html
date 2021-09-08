@@ -1,4 +1,7 @@
-<div class="summary">
+<div
+  class="summary"
+  [ngClass]="setOpacity ? 'setTransparent' : 'resetTransparent'"
+>
   <div class="loan-boxes">
     <div
       [ngClass]="
@@ -68,7 +71,23 @@
                   !outstandingDebtIsError
                 "
                 [isInputError]="outstandingDebtIsError"
+                [errorStateMatcher]="
+                  isErrorState(loanForm?.controls['outstandingDebt'])
+                "
               ></rente-general-input>
+
+              <div *ngIf="loanForm?.controls['outstandingDebt'].touched">
+                <p
+                  class="error-small"
+                  *ngIf="
+                    loanForm?.controls['outstandingDebt'].hasError(
+                      'required'
+                    ) || outstandingDebtIsError
+                  "
+                >
+                  Ikke gyldig verdi
+                </p>
+              </div>
             </div>
           </div>
 
@@ -92,7 +111,23 @@
                     !remainingYearsIsError
                   "
                   [isInputError]="remainingYearsIsError"
+                  [errorStateMatcher]="
+                    isErrorState(loanForm?.controls['remainingYears'])
+                  "
                 ></rente-general-input>
+
+                <div *ngIf="loanForm?.controls['remainingYears'].touched">
+                  <p
+                    class="error-small"
+                    *ngIf="
+                      loanForm?.controls['remainingYears'].hasError(
+                        'required'
+                      ) || remainingYearsIsError
+                    "
+                  >
+                    Ikke gyldig verdi
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -117,7 +152,21 @@
                     !nominalRateIsError
                   "
                   [isInputError]="nominalRateIsError"
+                  [errorStateMatcher]="
+                    isErrorState(loanForm?.controls['nominalRate'])
+                  "
                 ></rente-general-input>
+                <div *ngIf="loanForm?.controls['nominalRate'].touched">
+                  <p
+                    class="error-small"
+                    *ngIf="
+                      loanForm?.controls['nominalRate'].hasError('required') ||
+                      nominalRateIsError
+                    "
+                  >
+                    Ikke gyldig verdi
+                  </p>
+                </div>
               </div>
             </div>
           </div>

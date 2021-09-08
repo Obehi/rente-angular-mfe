@@ -1,14 +1,31 @@
 import {
-  AfterViewInit,
   Component,
   forwardRef,
   Input,
   OnChanges,
   OnDestroy,
-  OnInit
+  OnInit,
+  SimpleChanges
 } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import {
+  ControlValueAccessor,
+  FormControl,
+  FormGroupDirective,
+  NgForm,
+  NG_VALUE_ACCESSOR
+} from '@angular/forms';
+import { ErrorStateMatcher } from '@angular/material/core';
 
+export class MyErrorStateMatcher implements ErrorStateMatcher {
+  constructor(public state: boolean) {}
+
+  isErrorState(
+    control: FormControl | null,
+    form: FormGroupDirective | NgForm | null
+  ): boolean {
+    return this.state;
+  }
+}
 @Component({
   selector: 'rente-general-input',
   templateUrl: './general-input.component.html',
@@ -22,17 +39,19 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
   ]
 })
 export class GeneralInputComponent
-  implements OnInit, OnDestroy, ControlValueAccessor, OnChanges, AfterViewInit {
+  implements OnInit, OnDestroy, OnChanges, ControlValueAccessor {
   @Input() maskType: any;
   @Input() suffix: string;
-  @Input() maxLength: string;
-  @Input() placeholder: string;
+  @Input() errorStateMatcher: boolean;
+  @Input() maxLength?: string;
+  @Input() placeholder?: string;
 
   @Input('value') inputValue = '';
+  public matcher: MyErrorStateMatcher;
 
   // CSS class variables
   @Input() isEditMode: boolean;
-  @Input() inEditMode?: boolean;
+  @Input() inEditMode: boolean;
   @Input() isInputFocused: boolean;
   @Input() isInputError: boolean;
 
@@ -80,11 +99,9 @@ export class GeneralInputComponent
 
   ngOnInit(): void {}
 
-  ngAfterViewInit(): void {}
-
-  ngOnChanges(): void {}
-
-  // get isLoanFormValid(): boolean {
-  //   return !!this.inputForm.get('inputValue')?.value && !this.checkIfZero;
-  // }
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.errorStateMatcher) {
+      this.matcher = new MyErrorStateMatcher(this.errorStateMatcher);
+    }
+  }
 }
