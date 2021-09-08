@@ -111,7 +111,6 @@ export class InitConfirmationNoComponent implements OnInit, OnDestroy {
       const prefilledMemberships = this.membershipService.getPrefilledMemberships();
 
       if (prefilledMemberships.length !== 0) {
-        console.log('got here t2222222');
         this.memberships = prefilledMemberships;
       }
 

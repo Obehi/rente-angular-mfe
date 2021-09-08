@@ -4,6 +4,7 @@ import { ROUTES_MAP_NO } from '@config/routes-config';
 import { BankVo } from '@models/bank';
 import { LocalStorageService } from '@services/local-storage.service';
 
+import { MembershipTypeDto } from '@services/remote-api/loans.service';
 interface subBankMembership {
   text: string;
   label: string;
@@ -72,7 +73,7 @@ export class ChooseSubBankComponent implements OnInit {
         text: 'For medlemmer av NAL:',
         label: 'NAL (Nordea Direct)',
         name: 'NAL_NORDEA_DIRECT',
-        memberships: 'NORSK_FLYGELEDERFORENING'
+        memberships: 'NORSK_FLYGELEDERFORENING ELLER??? SPØRR FERDRIK!!!!'
       }
     ],
     DANSKE_BANK: [
@@ -99,12 +100,9 @@ export class ChooseSubBankComponent implements OnInit {
     private router: Router,
     private localStorageService: LocalStorageService
   ) {
-    console.log(this.router);
     const bankName = this.router.getCurrentNavigation()?.extras?.state?.data
       .bank.name;
-    console.log(
-      this.router.getCurrentNavigation()?.extras?.state?.data.bank.name
-    );
+
     if (bankName !== undefined) {
       this.bankVO = this.router.getCurrentNavigation()?.extras?.state?.data.bank;
       console.log(this.memberships['DNB'][0].text);
@@ -113,21 +111,24 @@ export class ChooseSubBankComponent implements OnInit {
       this.router.navigate(['/velgbank']);
     }
   }
-  ngOnInit(): void {
-    console.log('japp');
-  }
+  ngOnInit(): void {}
 
   continueBankLogin(item: subBankMembership): void {
     const foo: { [index: string]: { message: string } } = {};
     this.bankVO.name = item.name;
 
-    // convert subBankMembership to MembershipDto used in other components
-    const membershipBankSubtype = { name: item.name, text: item.text };
-    console.log(item);
+    if (item.membership !== null) {
+      // convert subBankMembership to MembershipDto used in other components
+      const membershipDto: MembershipTypeDto = {
+        name: item.membership,
+        label: item.label
+      };
+      this.localStorageService.setObject('subBank', membershipDto);
+    }
+
     item.membership !== null &&
-      this.localStorageService.setObject('subBank', item);
-    this.router.navigate(['/autentisering/' + ROUTES_MAP_NO.bankIdLogin], {
-      state: { data: { name: this.bankVO } }
-    });
+      this.router.navigate(['/autentisering/' + ROUTES_MAP_NO.bankIdLogin], {
+        state: { data: { name: this.bankVO } }
+      });
   }
 }
