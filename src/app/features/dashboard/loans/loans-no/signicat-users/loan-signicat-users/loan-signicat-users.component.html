@@ -81,7 +81,10 @@
                   *ngIf="
                     loanForm?.controls['outstandingDebt'].hasError(
                       'required'
-                    ) || outstandingDebtIsError
+                    ) ||
+                    (outstandingDebtIsError &&
+                      !isServerError &&
+                      !isGeneralError)
                   "
                 >
                   Ikke gyldig verdi
@@ -121,7 +124,10 @@
                     *ngIf="
                       loanForm?.controls['remainingYears'].hasError(
                         'required'
-                      ) || remainingYearsIsError
+                      ) ||
+                      (remainingYearsIsError &&
+                        !isServerError &&
+                        !isGeneralError)
                     "
                   >
                     Ikke gyldig verdi
@@ -160,7 +166,7 @@
                     class="error-small"
                     *ngIf="
                       loanForm?.controls['nominalRate'].hasError('required') ||
-                      nominalRateIsError
+                      (nominalRateIsError && !isServerError && !isGeneralError)
                     "
                   >
                     Ikke gyldig verdi
