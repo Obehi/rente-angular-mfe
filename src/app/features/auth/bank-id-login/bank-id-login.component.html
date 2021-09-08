@@ -147,7 +147,7 @@
 
         <div *ngIf="bank?.hasFixedLoans === false" class="field left">
           <rente-input
-            [placeholder]="'Faste gebyrer'"
+            [placeholder]="'Termingebyr (vanligvis 0-70kr)'"
             [type]="'tel'"
             [maskType]="mask.currency"
             matSuffix="kr"
@@ -174,8 +174,9 @@
           class="grid-right"
           (click)="
             openInfoDialog({
-              header: 'Faste gebyrer',
-              text: 'Her fyller du inn det månedlige termingebyret'
+              header: 'Termingebyr',
+              text:
+                'Her fyller du inn det månedlige termingebyret. Dette er vanligvis mellom 0 og 70 kroner, avhengig av hvilken bank.'
             })
           "
         >
@@ -600,7 +601,7 @@
 
                 <div *ngIf="bank?.hasFixedLoans === false" class="field left">
                   <rente-input
-                    [placeholder]="'Faste gebyrer'"
+                    [placeholder]="'Termingebyr (vanligvis 0-70kr)'"
                     [type]="'tel'"
                     [maskType]="mask.currency"
                     matSuffix="kr"
@@ -633,8 +634,9 @@
                   class="grid-right"
                   (click)="
                     openInfoDialog({
-                      header: 'Faste gebyrer',
-                      text: 'Her fyller du inn det månedlige termingebyret'
+                      header: 'Termingebyr',
+                      text:
+                        'Her fyller du inn det månedlige termingebyret. Dette er vanligvis mellom 0 og 70 kroner, avhengig av hvilken bank.'
                     })
                   "
                 >

@@ -500,7 +500,6 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
       })[0];
 
       const fee = String(firstLoan.fee || '50');
-
       this.loanFormGroup = this.fb.group({
         outstandingDebt: [
           firstLoan.outstandingDebt.toFixed(0),
@@ -511,7 +510,10 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
           [Validators.pattern(VALIDATION_PATTERN.year)]
         ],
         loanTypeOption: [selectedloanTypeOption ?? null, Validators.required],
-        fee: [fee, Validators.required]
+        fee: [
+          fee,
+          Validators.compose([Validators.required, Validators.max(99)])
+        ]
       });
 
       this.loanFormGroup?.addControl(
@@ -566,7 +568,10 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
 
       this.loanFormGroup?.addControl(
         'fee',
-        new FormControl('50', Validators.required)
+        new FormControl(
+          '50',
+          Validators.compose([Validators.required, Validators.max(100)])
+        )
       );
 
       this.newClient = this.responseStatus.newClient;
