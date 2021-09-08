@@ -181,6 +181,11 @@ export class InitConfirmationNoComponent implements OnInit, OnDestroy {
       )
     );
   }
+
+  public membershipIsFocused(): void {
+    this.membershipFocus$.next(true);
+  }
+
   isErrorState(control: AbstractControl | null): boolean {
     return !!(control && control.invalid && (control.dirty || control.touched));
   }
@@ -383,10 +388,6 @@ export class InitConfirmationNoComponent implements OnInit, OnDestroy {
     return this.allMemberships.filter((membership) =>
       membership.label.toLowerCase().includes(filterValue)
     );
-  }
-
-  public membershipIsFocused(): void {
-    this.membershipFocus$.next(true);
   }
 
   private clearDuplicates(array: any[], toRemoveArray: any[]) {
