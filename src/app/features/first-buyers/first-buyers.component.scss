@@ -75,13 +75,13 @@ h1 {
   }
 }
 
-::ng-deep .field-box {
+::ng-deep {
   .mat-form-field-autofill-control {
     color: white !important;
   }
 
   // input element
-  .field-box .mat-input-element {
+  .mat-input-element {
     caret-color: white;
     margin-bottom: 8px !important;
     color: white !important;

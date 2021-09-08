@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { AuthService } from '@services/remote-api/auth.service';
-import { MembershipTypeDto } from '@services/remote-api/loans.service';
 import { LocalStorageService } from '@services/local-storage.service';
 import { Observable } from 'rxjs';
 
@@ -12,8 +11,6 @@ export interface FirstBuyersState {
   providedIn: 'root'
 })
 export class FirstBuyersService {
-  selectedMemberships: MembershipTypeDto[] = [];
-
   constructor(
     private authService: AuthService,
     private localStorageService: LocalStorageService

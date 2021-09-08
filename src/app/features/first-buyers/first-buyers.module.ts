@@ -13,6 +13,7 @@ import { PropertyInputComponent } from './components/property-input/property-inp
 import { FirstBuyersRoutingModule } from './first-buyers-routing.module';
 import { FirstBuyersComponent } from './first-buyers.component';
 import { FirstBuyersService } from './first-buyers.service';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { FirstBuyersService } from './first-buyers.service';
     MaterialModule,
     ReactiveFormsModule,
     SelectAutocompleteModule,
-    CurrencyMaskModule
+    CurrencyMaskModule,
+    ScrollingModule
   ],
   providers: [
     {
