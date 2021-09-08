@@ -168,6 +168,8 @@
       </p>
       <mat-form-field>
         <input
+          (focus)="membershipIsFocused()"
+          id="membership-input"
           type="text"
           placeholder="+ Legg til medlemskap (valgfritt)"
           matInput
