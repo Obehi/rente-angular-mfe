@@ -741,7 +741,7 @@
                 <div class="membership-wrapper">
                   <mat-form-field>
                     <input
-                      type="number"
+                      (focus)="membershipIsFocused()"
                       placeholder="+ Legg til medlemskap (valgfritt)"
                       matInput
                       [formControl]="membershipCtrl"
