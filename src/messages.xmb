@@ -994,15 +994,12 @@
         Antall salg i/på <ph name="INTERPOLATION"><ex>{{ indexArea }}</ex>{{ indexArea }}</ph> siste 6 mnder:
         <ph name="START_BOLD_TEXT"><ex>&lt;b&gt;</ex>&lt;b&gt;</ph><ph name="INTERPOLATION_1"><ex>{{ openMarketSalesHalfYear }}</ex>{{ openMarketSalesHalfYear }}</ph><ph name="CLOSE_BOLD_TEXT"><ex>&lt;/b&gt;</ex>&lt;/b&gt;</ph>
       </msg>
-  <msg id="virdi.statistics.data”" desc="statistics" meaning="“data"><source>app/features/dashboard/house/virdi-statistics/virdi-statistics.component.html:39,41</source><source>app/features/dashboard/house/virdi-statistics/virdi-statistics.component.html:67,69</source>
+  <msg id="virdi.statistics.data”" desc="statistics" meaning="“data"><source>app/features/dashboard/house/virdi-statistics/virdi-statistics.component.html:39,41</source><source>app/features/dashboard/house/virdi-statistics/virdi-statistics.component.html:65,67</source>
         Data levert av <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>virdi.no<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph>
       </msg>
   <msg id="virdi.statistics.priceDev”" desc="statistics" meaning="“price-dev"><source>app/features/dashboard/house/virdi-statistics/virdi-statistics.component.html:57,59</source>
         Prisutvikling i
       </msg>
-  <msg id="virdi.statistics.10k”" desc="statistics" meaning="“10k"><source>app/features/dashboard/house/virdi-statistics/virdi-statistics.component.html:62,64</source>
-      kr i 10 000
-    </msg>
   <msg id="offers.statistics.mortgageRelation”" desc="offers-statistics" meaning="“mortage-relation"><source>app/features/dashboard/offers/offers-blue/offers-statistics/offers-statistics.component.html:2</source><source>app/features/dashboard/offers/offers-statistics/offers-statistics.component.html:2</source>Din rente i forhold til andre i din bank</msg>
   <msg id="offers.statistics.banksRelation”" desc="offers-statistics" meaning="“banks-relation"><source>app/features/dashboard/offers/offers-blue/offers-statistics/offers-statistics.component.html:7</source><source>app/features/dashboard/offers/offers-statistics/offers-statistics.component.html:8</source>Din rente i forhold til andre i alle banker</msg>
   <msg id="offers.statistics.graph”" desc="offers-statistics" meaning="“graph"><source>app/features/dashboard/offers/offers-blue/offers-statistics/offers-statistics.component.html:52,55</source><source>app/features/dashboard/offers/offers-statistics/offers-statistics.component.html:35,38</source>
