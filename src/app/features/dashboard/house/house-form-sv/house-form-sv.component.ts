@@ -4,8 +4,8 @@ import { MatTabChangeEvent } from '@angular/material';
 import { CheckBoxItem } from '@shared/components/ui-components/checkbox-container/checkbox-container.component';
 import { EnvService } from '@services/env.service';
 import { animate, style, transition, trigger } from '@angular/animations';
-import { combineLatest, fromEvent, of, Subject } from 'rxjs';
-import { debounceTime, distinctUntilChanged, map, tap } from 'rxjs/operators';
+import { combineLatest, fromEvent, Subject } from 'rxjs';
+import { debounceTime, tap } from 'rxjs/operators';
 
 export enum AddressFormMode {
   Editing,
@@ -70,7 +70,7 @@ export class HouseFormSvComponent implements OnInit {
 
     setTimeout(() => {
       this.getHouseInputListener();
-      this.getPropertyValueListener();
+      this.setVirdiErrorMessageState();
     }, 0);
   }
 
@@ -199,23 +199,20 @@ export class HouseFormSvComponent implements OnInit {
     return text !== null && String(text).length > 0;
   }
 
-  getPropertyValueListener(): void {
-    of(this.address.estimatedPropertyValue)
-      .pipe(
-        distinctUntilChanged(),
-        tap(),
-        map((args) => (args === null ? true : false))
-      )
-      .subscribe((args) => {
-        this.virdiErrorMessage.next(args);
-      });
+  setVirdiErrorMessageState(): void {
+    const shouldShowVirdiErrorMessage =
+      this.address.estimatedPropertyValue === null;
+    console.log(this.isAddressValid);
+    console.log(this.isAddressValid);
+
+    this.virdiErrorMessage.next(shouldShowVirdiErrorMessage);
   }
 
   getHouseInputListener(): void {
     combineLatest([
       fromEvent(document.getElementsByClassName('house-input'), 'click')
     ])
-      .pipe(debounceTime(20), tap())
+      .pipe(debounceTime(20))
       .subscribe(() => {
         this.virdiErrorMessage.next(false);
       });
@@ -223,8 +220,9 @@ export class HouseFormSvComponent implements OnInit {
 
   switchToggle(): void {
     this.address.useManualPropertyValue = !this.address.useManualPropertyValue;
+
     setTimeout(() => {
-      this.getPropertyValueListener();
+      this.setVirdiErrorMessageState();
     }, 0);
   }
 }

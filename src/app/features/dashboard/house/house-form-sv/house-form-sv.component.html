@@ -70,12 +70,20 @@
         <p
           class="estimate-error"
           *ngIf="isAddressValid && (virdiErrorMessage | async)"
-          [@leaveFade]
         >
           Gick inte att uppskatta värdet på din <br />bostad, kolla att adressen
           är korrekt
         </p>
-        <p class="green-minus" *ngIf="!isAddressValid">-</p>
+        <p
+          class="green-minus"
+          [@fade]
+          *ngIf="
+            (!isAddressValid || !address.estimatedPropertyValue) &&
+            !(virdiErrorMessage | async)
+          "
+        >
+          -
+        </p>
         <p
           class="green-text"
           *ngIf="isAddressValid && address.estimatedPropertyValue"

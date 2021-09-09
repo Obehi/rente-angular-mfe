@@ -11,13 +11,7 @@ import { MatTabChangeEvent } from '@angular/material';
 import { EnvService } from '@services/env.service';
 import { animate, style, transition, trigger } from '@angular/animations';
 import { combineLatest, fromEvent, of, Subject, Subscription } from 'rxjs';
-import {
-  switchMap,
-  tap,
-  debounceTime,
-  distinctUntilChanged,
-  map
-} from 'rxjs/operators';
+import { tap, debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 
 export enum AddressFormMode {
   Editing,
@@ -72,8 +66,8 @@ export class HouseFormNoComponent implements OnInit {
     this.address.manualPropertyValue = this.address.manualPropertyValue || null;
 
     setTimeout(() => {
-      this.getHouseInputListener();
-      this.getPropertyValueListener();
+      this.setHouseInputListener();
+      this.setVirdiErrorMessageState();
     }, 0);
   }
 
@@ -162,19 +156,13 @@ export class HouseFormNoComponent implements OnInit {
     return text !== null && String(text).length > 0;
   }
 
-  getPropertyValueListener(): void {
-    of(this.address.estimatedPropertyValue)
-      .pipe(
-        distinctUntilChanged(),
-        tap(),
-        map((args) => (args === null ? true : false))
-      )
-      .subscribe((args) => {
-        this.virdiErrorMessage.next(args);
-      });
+  setVirdiErrorMessageState(): void {
+    const shouldShowVirdiErrorMessage =
+      this.address.estimatedPropertyValue === null;
+    this.virdiErrorMessage.next(shouldShowVirdiErrorMessage);
   }
 
-  getHouseInputListener(): void {
+  setHouseInputListener(): void {
     combineLatest([
       fromEvent(document.getElementsByClassName('house-input'), 'click')
     ])
@@ -186,8 +174,9 @@ export class HouseFormNoComponent implements OnInit {
 
   switchToggle(): void {
     this.address.useManualPropertyValue = !this.address.useManualPropertyValue;
+
     setTimeout(() => {
-      this.getPropertyValueListener();
+      this.setVirdiErrorMessageState();
     }, 0);
   }
 }

@@ -123,7 +123,6 @@ export class HousesComponent implements OnInit, DeactivationGuarded {
       }
       this.addresses.push(addr);
       this.addressId++;
-      console.log(this.addressId);
     }
   }
 

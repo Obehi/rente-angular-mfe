@@ -1,10 +1,9 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import * as Highcharts from 'highcharts';
 import {
   LoansService,
   AddressDto
 } from '../../../../shared/services/remote-api/loans.service';
-import { SnackBarService } from '@services/snackbar.service';
 import { MatTabChangeEvent } from '@angular/material';
 import { MessageBannerService } from '@services/message-banner.service';
 import { getAnimationStyles } from '@shared/animations/animationEnums';
@@ -79,7 +78,6 @@ export class VirdiStatisticsComponent implements OnInit {
 
   constructor(
     private loansService: LoansService,
-    private snackBar: SnackBarService,
     private messageService: MessageBannerService
   ) {
     this.showPriceDevelopment = false;

@@ -143,7 +143,6 @@ export class OfferCardComponent implements OnInit {
       return;
     }
 
-    console.log(offer.bankInfo.url);
     window.open(offer.bankInfo.url, '_blank');
     this.sendOfferTrackingData(trackingDto);
   }
@@ -186,7 +185,6 @@ export class OfferCardComponent implements OnInit {
       return;
     }
 
-    console.log(offer.bankInfo.transferUrl);
     window.open(offer.bankInfo.transferUrl, '_blank');
     this.sendOfferTrackingData(trackingDto);
   }

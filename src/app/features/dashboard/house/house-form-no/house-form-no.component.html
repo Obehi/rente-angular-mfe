@@ -95,7 +95,16 @@
         >
           Kunne ikke estimere boligverdien, <br />sjekk at adressen er riktig
         </p>
-        <p class="green-minus" *ngIf="!isAddressValid">-</p>
+        <p
+          class="green-minus"
+          [@fade]
+          *ngIf="
+            (!isAddressValid || !address.estimatedPropertyValue) &&
+            !(virdiErrorMessage | async)
+          "
+        >
+          -
+        </p>
         <p
           class="green-text"
           *ngIf="isAddressValid && address.estimatedPropertyValue"
