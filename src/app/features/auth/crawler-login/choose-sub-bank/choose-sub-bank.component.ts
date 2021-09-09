@@ -26,54 +26,54 @@ export class ChooseSubBankComponent implements OnInit {
         membership: null
       },
       {
-        text: 'For medlemmer av Bate(Boligbyggelag):',
-        label: 'Bate (Boligbyggelag)',
+        text: 'For Bate-medlemmer:',
+        label: 'Bate Boligbyggelag (DNB)',
         name: 'BATE',
         membership: 'BATE'
       },
       {
-        text: 'For medlemmer av TOBB(Boligbyggelag):',
-        label: 'TOBB (Boligbyggelag)',
+        text: 'For TOBB-medlemmer:',
+        label: 'TOBB (DNB)',
         name: 'TOBB',
         membership: 'TOBB'
       },
       {
-        text: 'For medlemmer av USBL(Boligbyggelag):',
-        label: 'USBL (Boligbyggelag)',
+        text: ' For USBL-medlemmer:',
+        label: 'USBL (DNB)',
         name: 'USBL',
         membership: 'USBL'
       },
       {
         text: 'For medlemmer av Norsk Sykepleierforbund:',
-        label: 'Norsk Sykepleierforbund',
+        label: 'Norsk Sykepleierforbund (DNB)',
         name: 'SYKEPLEIERFORBUND_DNB',
-        membership: 'FINNE UT AV!!!'
+        membership: 'UNIO_NORSK_SYKEPLEIERFORBUND'
       }
     ],
     NORDEA_DIRECT: [
       {
         text: 'Nordea Direct uten medlemskapsfordeler:',
         label: 'Nordea Direct',
-        name: 'NORDE,A_DIRECT',
+        name: 'NORDEA_DIRECT',
         membership: null
       },
       {
-        text: 'For medlemmer av YS:',
-        label: 'YS',
+        text: 'For YS-medlemmer:',
+        label: 'YS (Nordea Direct)',
         name: 'YS_NORDEA_DIRECT',
         membership: 'YS'
       },
       {
-        text: 'For medlemmer av UNIO:',
+        text: 'For UNIO-medlemmer:',
         label: 'UNIO (Nordea Direct)',
         name: 'UNIO_NORDEA_DIRECT',
         membership: 'UNIO'
       },
       {
-        text: 'For medlemmer av NAL:',
+        text: 'For NAL-medlemmer (Norske Arkitekters Landsforening):',
         label: 'NAL (Nordea Direct)',
         name: 'NAL_NORDEA_DIRECT',
-        memberships: 'NORSK_FLYGELEDERFORENING ELLER??? SPØRR FERDRIK!!!!'
+        memberships: 'NORSKE_ARKITEKTERS_LANDSFORBUND'
       }
     ],
     DANSKE_BANK: [
@@ -84,10 +84,10 @@ export class ChooseSubBankComponent implements OnInit {
         membership: null
       },
       {
-        text: 'For medlemmer av Dankse Akademikerne:',
-        label: 'Danske Akademikerne',
+        text: 'For medlemmer av Akademikerne:',
+        label: 'Akademikerne (Danske Bank)',
         name: 'AKADEMIKERNE_DANSKE',
-        membership: 'SPØRR FREDRIKK!!!!'
+        membership: 'AKADEMIKERNE'
       }
     ]
   };

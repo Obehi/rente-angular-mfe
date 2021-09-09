@@ -290,6 +290,8 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
           this.isLoading = false;
 
           if (this.bank !== null) {
+            // subBank was used to prefill memberships selects
+            this.localStorageService.removeItem('subBank');
             this.bank && this.loginService.loginWithBankAndToken();
           } else {
             // handle state as error
@@ -339,6 +341,9 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     request.subscribe(
       (result) => {
         this.isLoading = false;
+
+        // subBank was used to prefill memberships selects
+        this.localStorageService.removeItem('subBank');
         this.bank && this.loginService.loginWithBankAndToken();
       },
       (error) => {

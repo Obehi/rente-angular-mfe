@@ -288,7 +288,7 @@ export class InitConfirmationNoComponent implements OnInit, OnDestroy {
           '9:USERINFO_SENT_SUCCESSFUL_REDIRECTING_TO_OFFERS'
         );
 
-        !formData && this.router.navigate(['/dashboard/' + ROUTES_MAP.offers]);
+        !formData && this.redirectOffers();
       },
       (err) => {
         this.isLoading = false;
@@ -392,6 +392,7 @@ export class InitConfirmationNoComponent implements OnInit, OnDestroy {
   }
 
   redirectOffers(): void {
+    this.localStorageService.removeItem('subBank');
     this.router.navigate(['/dashboard/' + ROUTES_MAP.offers]);
   }
 
