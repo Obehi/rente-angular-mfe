@@ -4,10 +4,16 @@ import {
   LoansService,
   AddressDto
 } from '../../../../shared/services/remote-api/loans.service';
-import { SnackBarService } from '@services/snackbar.service';
 import { MatTabChangeEvent } from '@angular/material';
 import { MessageBannerService } from '@services/message-banner.service';
 import { getAnimationStyles } from '@shared/animations/animationEnums';
+import {
+  animate,
+  state,
+  style,
+  transition,
+  trigger
+} from '@angular/animations';
 
 declare let require: any;
 const Boost = require('highcharts/modules/boost');
@@ -22,7 +28,39 @@ noData(Highcharts);
 @Component({
   selector: 'rente-virdi-statistics',
   templateUrl: './virdi-statistics.component.html',
-  styleUrls: ['./virdi-statistics.component.scss']
+  styleUrls: ['./virdi-statistics.component.scss'],
+  animations: [
+    trigger('fade', [
+      transition(':enter', [
+        style({ opacity: '0' }),
+        animate('0.2s 1s ease-in', style({ opacity: '1' }))
+      ])
+    ]),
+    trigger('stretch', [
+      transition(':enter', [
+        style({ height: 0 }),
+        animate('0.5s ease-in', style({ height: '532px' }))
+      ])
+    ]),
+    trigger('slide', [
+      state(
+        'open',
+        style({
+          opacity: 1
+        })
+      ),
+      state(
+        'close',
+        style({
+          opacity: 0
+        })
+      ),
+      transition('* => open', [animate('0.3s ease-in', style({ opacity: 1 }))]),
+      transition('* => close', [
+        animate('0.3s ease-out', style({ opacity: 0 }))
+      ])
+    ])
+  ]
 })
 export class VirdiStatisticsComponent implements OnInit {
   @Input() address: AddressDto;
@@ -40,7 +78,6 @@ export class VirdiStatisticsComponent implements OnInit {
 
   constructor(
     private loansService: LoansService,
-    private snackBar: SnackBarService,
     private messageService: MessageBannerService
   ) {
     this.showPriceDevelopment = false;

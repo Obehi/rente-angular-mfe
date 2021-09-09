@@ -11,7 +11,14 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 import { LocalStorageService } from '@services/local-storage.service';
 import { AuthService } from '@services/remote-api/auth.service';
-import { Observable, concat, Subscription } from 'rxjs';
+import {
+  Observable,
+  concat,
+  Subscription,
+  of,
+  merge,
+  BehaviorSubject
+} from 'rxjs';
 import {
   startWith,
   map,
@@ -21,7 +28,8 @@ import {
   toArray,
   switchMap,
   debounceTime,
-  first
+  first,
+  filter
 } from 'rxjs/operators';
 import {
   MatAutocomplete,
@@ -82,6 +90,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
   manualPropertyValueFormGroup?: FormGroup;
   public membershipCtrl = new FormControl();
   public filteredMemberships: Observable<void | MembershipTypeDto[]>;
+  public membershipFocus$ = new BehaviorSubject<any>(true);
   public memberships: any = [];
   public allMemberships: MembershipTypeDto[];
   public showForms = false;
@@ -412,6 +421,38 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     this.membershipFormGroup = this.fb.group({
       membership: []
     });
+    this.setMembershipListeners();
+  }
+
+  private setMembershipListeners(): void {
+    if (this.membershipFormGroup?.get('membership') === undefined) return;
+    const membershipInput = this.membershipFormGroup.get('membership')!;
+
+    const membershipInputIsEmptyAndFocused$ = this.membershipFocus$.pipe(
+      switchMap(() => of(membershipInput.value)),
+      filter((inputValue) => inputValue === '' || inputValue === null),
+      map(() => of(null))
+    );
+
+    const membershipInputIsUpdated$ = membershipInput.valueChanges.pipe(
+      startWith(null)
+    );
+
+    this.filteredMemberships = merge(
+      membershipInputIsUpdated$,
+      membershipInputIsEmptyAndFocused$
+    ).pipe(
+      // Prevent a bug where an object enters the pipe
+      filter((value) => typeof value === 'string' || value === null),
+      // Either filter memberships with input field value or show all memberships
+      map((membership: string | null) =>
+        membership ? this.filter(membership) : this.allMemberships.slice()
+      )
+    );
+  }
+
+  public membershipIsFocused(): void {
+    this.membershipFocus$.next(true);
   }
 
   private initFixedLoansLoansForm(loanInfo): void {
@@ -514,7 +555,6 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
       })[0];
 
       const fee = String(firstLoan.fee || '50');
-
       this.loanFormGroup = this.fb.group({
         outstandingDebt: [
           firstLoan.outstandingDebt.toFixed(0),
@@ -525,7 +565,10 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
           [Validators.pattern(VALIDATION_PATTERN.year)]
         ],
         loanTypeOption: [selectedloanTypeOption ?? null, Validators.required],
-        fee: [fee, Validators.required]
+        fee: [
+          fee,
+          Validators.compose([Validators.required, Validators.max(99)])
+        ]
       });
 
       this.loanFormGroup?.addControl(
@@ -580,7 +623,10 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
 
       this.loanFormGroup?.addControl(
         'fee',
-        new FormControl('50', Validators.required)
+        new FormControl(
+          '50',
+          Validators.compose([Validators.required, Validators.max(100)])
+        )
       );
 
       this.newClient = this.responseStatus.newClient;
@@ -862,10 +908,18 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     return !!(control && control.invalid && (control.dirty || control.touched));
   }
 
-  private filter(value: any): void {
+  private filter(value: any): MembershipTypeDto[] {
     this.allMemberships = this.clearDuplicates(
       this.allMemberships,
       this.memberships
+    );
+
+    const filterValue = value.label
+      ? value.label.toLowerCase()
+      : value.toLowerCase();
+
+    return this.allMemberships.filter((membership) =>
+      membership.label.toLowerCase().includes(filterValue)
     );
   }
 
@@ -972,7 +1026,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
                 const confDto = this.getFormValues();
 
                 this.isLoading = true;
-                this.loanService.setConfirmationData(confDto).subscribe(
+                this.loanService.updateClientInfo(confDto).subscribe(
                   () => {
                     this.loanService
                       .getOffersBanks()
@@ -1065,7 +1119,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
           const confDto = this.getFormValues();
 
           this.isLoading = true;
-          this.loanService.setConfirmationData(confDto).subscribe(
+          this.loanService.updateClientInfo(confDto).subscribe(
             () => {
               this.isLoading = false;
               this.isManualPropertyValue = true;

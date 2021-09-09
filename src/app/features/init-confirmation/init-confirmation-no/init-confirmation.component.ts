@@ -21,8 +21,8 @@ import {
   FormBuilder,
   FormControl
 } from '@angular/forms';
-import { forkJoin, Observable } from 'rxjs';
-import { startWith, map } from 'rxjs/operators';
+import { BehaviorSubject, forkJoin, Observable, of, merge } from 'rxjs';
+import { startWith, map, tap, switchMap, filter } from 'rxjs/operators';
 import { ENTER, COMMA } from '@angular/cdk/keycodes';
 import {
   MatAutocomplete,
@@ -60,7 +60,8 @@ export class InitConfirmationNoComponent implements OnInit, OnDestroy {
   public addOnBlur = true;
   public separatorKeysCodes: number[] = [ENTER, COMMA];
   public membershipCtrl = new FormControl();
-  public filteredMemberships: Observable<MembershipTypeDto[]>;
+  public filteredMemberships: Observable<MembershipTypeDto[]> | undefined;
+  public membershipFocus$ = new BehaviorSubject<any>(true);
   public memberships: any = [];
   public allMemberships: MembershipTypeDto[];
   public userData: ConfirmationGetDto;
@@ -86,12 +87,6 @@ export class InitConfirmationNoComponent implements OnInit, OnDestroy {
     private localStorageService: LocalStorageService,
     private membershipService: MembershipService
   ) {
-    this.filteredMemberships = this.membershipCtrl.valueChanges.pipe(
-      startWith(null),
-      map((membership: string | null) =>
-        membership ? this.filter(membership) : this.allMemberships.slice()
-      )
-    );
     this.stepFillOutForm = true;
     this.userData = new ConfirmationGetDto();
   }
@@ -166,11 +161,44 @@ export class InitConfirmationNoComponent implements OnInit, OnDestroy {
         income: [income, Validators.required],
         membership: []
       });
+
+      this.setMembershipListeners();
     });
 
     // Set content background
     this.globalStateService.setContentClassName('content', 'content-blue');
     this.globalStateService.setFooterState(false);
+  }
+
+  private setMembershipListeners(): void {
+    if (this.propertyForm.get('membership') === undefined) return;
+    const membershipInput = this.propertyForm.get('membership')!;
+
+    const membershipInputIsEmptyAndFocused$ = this.membershipFocus$.pipe(
+      switchMap(() => of(membershipInput.value)),
+      filter((inputValue) => inputValue === '' || inputValue === null),
+      map(() => of(null))
+    );
+
+    const membershipInputIsUpdated$ = this.propertyForm!.get(
+      'membership'
+    )!.valueChanges.pipe(startWith(null));
+
+    this.filteredMemberships = merge(
+      membershipInputIsUpdated$,
+      membershipInputIsEmptyAndFocused$
+    ).pipe(
+      // Prevent a bug where an object enters the pipe
+      filter((value) => typeof value === 'string' || value === null),
+      // Either filter memberships with input field value or show all memberships
+      map((membership: string | null) =>
+        membership ? this.filter(membership) : this.allMemberships.slice()
+      )
+    );
+  }
+
+  public membershipIsFocused(): void {
+    this.membershipFocus$.next(true);
   }
 
   isErrorState(control: AbstractControl | null): boolean {
@@ -364,7 +392,7 @@ export class InitConfirmationNoComponent implements OnInit, OnDestroy {
     this.membershipCtrl.setValue(null);
   }
 
-  private filter(value: any): any[] {
+  private filter(value: any): MembershipTypeDto[] {
     const filterValue = value.label
       ? value.label.toLowerCase()
       : value.toLowerCase();

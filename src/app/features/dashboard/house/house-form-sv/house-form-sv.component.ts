@@ -3,6 +3,9 @@ import { AddressDto } from '@services/remote-api/loans.service';
 import { MatTabChangeEvent } from '@angular/material';
 import { CheckBoxItem } from '@shared/components/ui-components/checkbox-container/checkbox-container.component';
 import { EnvService } from '@services/env.service';
+import { animate, style, transition, trigger } from '@angular/animations';
+import { combineLatest, fromEvent, Subject } from 'rxjs';
+import { debounceTime, tap } from 'rxjs/operators';
 
 export enum AddressFormMode {
   Editing,
@@ -12,11 +15,33 @@ export enum AddressFormMode {
 @Component({
   selector: 'rente-house-form',
   templateUrl: './house-form-sv.component.html',
-  styleUrls: ['./house-form-sv.component.scss']
+  styleUrls: ['./house-form-sv.component.scss'],
+  animations: [
+    trigger('fade', [
+      transition(':enter', [
+        style({ opacity: '0' }),
+        animate('0.3s ease-in', style({ opacity: '1' }))
+      ])
+    ]),
+    trigger('statsFade', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('0.5s ease-in', style({ opacity: 1 }))
+      ])
+    ]),
+    trigger('leaveFade', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('0.5s ease-in', style({ opacity: 1 }))
+      ]),
+      transition(':leave', [animate('0.35s ease-out', style({ opacity: 0 }))])
+    ])
+  ]
 })
 export class HouseFormSvComponent implements OnInit {
   @Input() index: number;
   @Input() address: AddressDto;
+  public virdiErrorMessage = new Subject<boolean>();
 
   @Output() deleteAddress: EventEmitter<AddressDto> = new EventEmitter();
   @Output() change: EventEmitter<any> = new EventEmitter();
@@ -42,6 +67,11 @@ export class HouseFormSvComponent implements OnInit {
     }
 
     this.initCheckboxes();
+
+    setTimeout(() => {
+      this.getHouseInputListener();
+      this.setVirdiErrorMessageState();
+    }, 0);
   }
 
   initCheckboxes(): void {
@@ -167,5 +197,32 @@ export class HouseFormSvComponent implements OnInit {
 
   notEmpty(text: string | null): boolean {
     return text !== null && String(text).length > 0;
+  }
+
+  setVirdiErrorMessageState(): void {
+    const shouldShowVirdiErrorMessage =
+      this.address.estimatedPropertyValue === null;
+    console.log(this.isAddressValid);
+    console.log(this.isAddressValid);
+
+    this.virdiErrorMessage.next(shouldShowVirdiErrorMessage);
+  }
+
+  getHouseInputListener(): void {
+    combineLatest([
+      fromEvent(document.getElementsByClassName('house-input'), 'click')
+    ])
+      .pipe(debounceTime(20))
+      .subscribe(() => {
+        this.virdiErrorMessage.next(false);
+      });
+  }
+
+  switchToggle(): void {
+    this.address.useManualPropertyValue = !this.address.useManualPropertyValue;
+
+    setTimeout(() => {
+      this.setVirdiErrorMessageState();
+    }, 0);
   }
 }

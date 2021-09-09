@@ -1,7 +1,10 @@
 @import '../../../../../styles/theme/_colors.scss';
 
+.scroll-anchor {
+  scroll-margin: 100px;
+}
+
 .housecontainer {
-  background: white;
   border-radius: 15px;
   margin: 10px;
   position: relative;
@@ -9,13 +12,7 @@
 .mat-form-field {
   text-align: center;
 }
-.double {
-  grid-gap: 40px;
-}
 
-.estimated {
-  min-height: 74px;
-}
 .mat-form-field-disabled * {
   color: rgba(0, 0, 0, 0.38) !important;
 }
@@ -23,6 +20,7 @@
   text-align: center;
   top: -10px;
   position: relative;
+  color: white;
 }
 
 .saveForEstimate {
@@ -33,7 +31,7 @@
 }
 .heading {
   border-radius: 15px 15px 0 0;
-  background-color: $lightgreen;
+  background-color: $karl-blue;
   display: block;
   padding: 20px 20px;
   font-weight: 500;
@@ -42,13 +40,34 @@
   b {
     display: inline-block;
     margin-left: 10px;
+    color: $white;
   }
   mat-icon {
-    color: $blue;
     position: absolute;
-    top: 50%;
+    top: 25px;
     transform: translateY(-50%);
+    margin-left: 5px;
+    color: white;
+  }
+  button {
+    position: absolute;
     right: 20px;
+    background: $primary;
+    border: 0;
+    border-radius: 20px;
+
+    height: 25px;
+    width: 24%;
+    top: 17px;
+  }
+  p {
+    color: $white;
+    background: $primary;
+    font-weight: 400;
+    font-size: 13px;
+  }
+  img {
+    width: 4%;
   }
 }
 .center-button {
@@ -74,8 +93,165 @@ rente-button {
 }
 
 .body {
+  border-radius: 0px 0px 15px 15px;
+  .double {
+    display: flex;
+    flex-direction: column;
+  }
+  .double-double {
+    display: flex;
+    column-gap: 20px;
+  }
+  .non-double {
+    width: 50%;
+    margin-left: 25%;
+    text-align: center;
+    min-height: 80px;
+    position: relative;
+
+    ::ng-deep .cdk-text-field-autofill-monitored:not(:-webkit-autofill) {
+      text-align: center;
+      padding: 0 !important;
+    }
+
+    ::ng-deep .mat-form-field-infix {
+      padding: unset !important;
+    }
+  }
+
+  .slide-toggle-text {
+    color: white;
+  }
+
+  .bold {
+    font-weight: 400;
+  }
+
+  .green-text {
+    color: $primary;
+    font-size: 20px;
+    font-weight: 500;
+  }
+
+  .green-minus {
+    color: $primary;
+    font-size: 50px;
+    font-weight: 500;
+    position: absolute;
+    left: 45%;
+    top: 0;
+  }
+
+  .big {
+    font-size: 50px;
+  }
+
+  .estimate-error {
+    color: red;
+    font-size: 13px;
+    font-weight: 500;
+    white-space: nowrap;
+    margin-top: 10px;
+    margin-left: -15%;
+  }
+
+  .top-text {
+    color: white;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    text-align: center;
+    font-size: 12px;
+  }
+
+  .house-value {
+    color: $white;
+    margin-top: 2rem;
+    font-size: 15px;
+  }
+
+  .rente-input {
+    color: saddlebrown;
+  }
+
+  .input-text {
+    color: $white;
+    position: absolute;
+    font-size: 12px;
+  }
+
+  .estimat {
+    margin-top: 1.5rem;
+    display: grid;
+    grid-template-columns: 1fr 0fr 0fr;
+    padding: 15px;
+    border-radius: 20px;
+    background: $karl-blue;
+    border: 1px solid #478ccc;
+  }
+  .hidden {
+    background: red;
+  }
+
+  ::ng-deep .cdk-text-field-autofill-monitored:not(:-webkit-autofill) {
+    background: $karl-blue;
+    padding: 5px;
+    height: 2.5rem;
+    border-radius: 10px;
+    color: white;
+    font-weight: 400;
+    font-size: 16px !important;
+    border: 1px solid #478ccc;
+    caret-color: white;
+  }
+
+  ::ng-deep .cdk-text-field-autofill-monitored:not(:-webkit-autofill):focus {
+    border: 1px solid $primary;
+    background: $secondary;
+    transition: 0.3s;
+  }
+
+  ::ng-deep .mat-form-field-underline {
+    display: none !important;
+  }
+
+  ::ng-deep .mat-slide-toggle.mat-checked .mat-slide-toggle-thumb {
+    background-color: $primary;
+  }
+
+  ::ng-deep
+    .mat-form-field-appearance-legacy.mat-form-field-can-float.mat-form-field-should-float
+    .mat-form-field-label {
+    color: white;
+  }
+
+  ::ng-deep .mat-tab-label .mat-tab-label-content {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    white-space: nowrap;
+    color: white;
+  }
+
+  ::ng-deep .ng-tns-c71-3 {
+    color: white;
+  }
+
+  ::ng-deep .radio .mat-tab-label {
+    background: $grey;
+    border-radius: 10px;
+    height: 75px;
+  }
+
+  ::ng-deep .radio .mat-tab-label-active {
+    background: $primary;
+  }
+
+  ::ng-deep .mat-slide-toggle {
+  }
+
   padding: 20px;
   margin-bottom: 40px;
+  background: $blue;
   > div {
     margin-bottom: 20px;
   }
@@ -97,7 +273,7 @@ rente-button {
       text-align: center;
       .mat-icon {
         transform: translateY(-50%);
-        top: 50%;
+        top: 15px;
         left: 0;
         right: 0;
         margin: auto;
@@ -109,12 +285,12 @@ rente-button {
 
 @media (min-width: 600px) {
   .housecontainer {
-    border: 1px solid $lesslight;
+    // border: 1px solid $lesslight;
     min-height: 502px;
 
     .heading {
       border-top: none;
-      border-bottom: 1px solid $green;
+      // border-bottom: 1px solid $green;
     }
     .body {
       border-bottom: 0;
@@ -123,5 +299,5 @@ rente-button {
 }
 
 .checkbox-wrapper {
-  margin-top: 20px;
+  margin-top: 2rem;
 }
