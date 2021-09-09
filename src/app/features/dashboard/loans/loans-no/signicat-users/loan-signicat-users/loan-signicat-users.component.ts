@@ -170,7 +170,6 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
           this.incomingValueOutstandingDebt = this.loanForm.get(
             'outstandingDebt'
           )?.value;
-          // console.log(this.incomingValueOutstandingDebt);
         } else {
           this.outstandingDebtIsError = true;
         }
@@ -181,7 +180,6 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
           !this.remainingYearsIsError &&
           !this.nominalRateIsError
         ) {
-          // console.log('Able to save TRUE! Outstanding debt check 2');
           this.isAbleToSave = true;
         } else {
           this.isAbleToSave = false;
@@ -208,7 +206,6 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
           !this.outstandingDebtIsError &&
           !this.nominalRateIsError
         ) {
-          // console.log('Able to save TRUE! Remaining years check 2');
           this.isAbleToSave = true;
         } else {
           this.isAbleToSave = false;
@@ -235,7 +232,6 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
           !this.outstandingDebtIsError &&
           !this.remainingYearsIsError
         ) {
-          // console.log('Able to save TRUE! Nominal rate check 2');
           this.isAbleToSave = true;
         } else {
           this.isAbleToSave = false;
@@ -352,7 +348,6 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
   // ----------------------------   SAVE   --------------------------------
 
   public save(): void {
-    console.log('Saved clicked');
     if (!this.isAbleToSave) return;
 
     this.deactivateAllInput();
@@ -461,7 +456,6 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
               );
             }
 
-            console.log('error');
             this.isAbleToSave = false;
 
             // If error, do nothing. The value should be as the previous default
@@ -473,8 +467,6 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
               'success',
               window
             );
-
-            console.log('success \n \n');
 
             // Save the original format in string with mask
             this.initialOutStandingDebt = this.incomingValueOutstandingDebt;

@@ -15,6 +15,7 @@ import { FadeOut } from '@shared/animations/fade-out';
 import { ButtonFadeInOut } from '@shared/animations/button-fade-in-out';
 import { MyLoansService } from '../../../myloans.service';
 import { Mask } from '@shared/constants/mask';
+import { VALIDATION_PATTERN } from '@config/validation-patterns.config';
 
 @Component({
   selector: 'rente-loan-fixed-price',
@@ -114,11 +115,37 @@ export class LoanFixedPriceComponent implements OnInit, OnDestroy {
     );
   }
 
+  public countDecimals(value: number): number {
+    if (Math.floor(value) === value) return 0;
+    return value.toString().split('.')[1].length || 0;
+  }
+
   ngOnInit(): void {
+    const format = this.countDecimals(this.loan.remainingYears);
+    // console.log(`Decimal count: ${format}`);
+
+    let correctValue = '';
+
+    if (format === 0 || format === 1) {
+      correctValue = String(this.loan.remainingYears);
+    }
+
+    if (format === 2) {
+      correctValue = this.loan.remainingYears.toString().slice(0, -1);
+    }
+
+    if (format > 2) {
+      correctValue = this.loan.remainingYears.toFixed(1);
+    }
+
     this.initialLoanName = String(this.loan.loanName);
     this.initialOutStandingDebt = String(this.loan.outstandingDebt);
-    this.initialRemainingYears = String(this.loan.remainingYears);
+    this.initialRemainingYears = correctValue;
     this.loanTypeString = String(this.loan.loanName);
+
+    // console.log(
+    //   `Remaining years correct format: ${this.initialRemainingYears}`
+    // );
 
     /*
      * Create an object of the same datatype from bank offers
@@ -132,17 +159,18 @@ export class LoanFixedPriceComponent implements OnInit, OnDestroy {
       rate: 1.99
     };
 
-    // this.allOffers = offerBank.offers;
+    // Demo test code necessary, deactivate when testing in signicat
     this.allOffers.push(transformDto);
 
-    this.selected = this.allOffers.filter(
-      (val) => val.name === transformDto.name
-    )[0].name;
+    // Demo selected filter
+    // this.selected = this.allOffers.filter(
+    //   (val) => val.name === transformDto.name
+    // )[0].name;
 
     // Original working function filter
-    // this.selected = this.allOffers.filter(
-    //   (val) => val.name === dto.loanName
-    // )[0].name;
+    this.selected = this.allOffers.filter(
+      (val) => val.name === this.loan.loanName
+    )[0].name;
 
     // this.loanTypeID = this.findLoanID(this.selected);
 
@@ -154,7 +182,11 @@ export class LoanFixedPriceComponent implements OnInit, OnDestroy {
       ],
       remainingYears: [
         { value: this.initialRemainingYears, disabled: true },
-        Validators.required
+        [
+          Validators.pattern(VALIDATION_PATTERN.year),
+          Validators.required,
+          Validators.max(99)
+        ]
       ]
     });
 
@@ -190,7 +222,6 @@ export class LoanFixedPriceComponent implements OnInit, OnDestroy {
           this.incomingValueOutstandingDebt = this.loanForm.get(
             'outstandingDebt'
           )?.value;
-          console.log(this.incomingValueOutstandingDebt);
         } else {
           this.outstandingDebtIsError = true;
         }
@@ -200,10 +231,8 @@ export class LoanFixedPriceComponent implements OnInit, OnDestroy {
           !check &&
           !this.remainingYearsIsError
         ) {
-          console.log('Able to save TRUE! Outstanding debt check 2');
           this.isAbleToSave = true;
         } else {
-          console.log('NOT able to save TRUE! Outstanding debt check 2');
           this.isAbleToSave = false;
         }
       });
@@ -211,24 +240,15 @@ export class LoanFixedPriceComponent implements OnInit, OnDestroy {
     this.remainingYearschangeSubscription = this.loanForm
       .get(this.remainingYearsString)
       ?.valueChanges.subscribe(() => {
-        const check = this.checkIfZero('remainingYears');
-
-        if (!check) {
+        if (
+          this.loanForm.get('remainingYears')?.dirty &&
+          !this.isErrorState(this.loanForm?.controls['remainingYears'])
+        ) {
           this.remainingYearsIsError = false;
+          this.isAbleToSave = true;
           this.incomingValueRemainingYears = this.loanForm.get(
             'remainingYears'
           )?.value;
-        } else {
-          this.remainingYearsIsError = true;
-        }
-
-        if (
-          this.loanForm.get('remainingYears')?.dirty &&
-          !check &&
-          !this.outstandingDebtIsError
-        ) {
-          console.log('Able to save TRUE! Remaining years check 2');
-          this.isAbleToSave = true;
         } else {
           this.isAbleToSave = false;
         }
@@ -296,14 +316,11 @@ export class LoanFixedPriceComponent implements OnInit, OnDestroy {
   }
 
   public setEditDisabled(): void {
-    // Width screen check
-    console.log('Width:' + window.innerWidth.toString());
     // Reset error
     this.productIsError = false;
     this.outstandingDebtIsError = false;
     this.remainingYearsIsError = false;
 
-    // this.deactivateAllInput();
     this.showButton = false;
     setTimeout(() => {
       this.myLoansService.setEditMode(null);
@@ -356,13 +373,18 @@ export class LoanFixedPriceComponent implements OnInit, OnDestroy {
     this.hideEditIcon = true;
     setTimeout(() => {
       this.inEditMode = true;
-    }, 500);
+    }, 325);
   }
 
   public matSelectChanged(): void {
     this.productIsError = false;
 
-    if (!this.outstandingDebtIsError && !this.remainingYearsIsError) {
+    // Check for general error if server error or if the regex error from input
+    if (
+      !this.outstandingDebtIsError &&
+      !this.remainingYearsIsError &&
+      !this.isErrorState(this.loanForm?.controls['remainingYears'])
+    ) {
       this.isAbleToSave = true;
     }
   }
@@ -370,7 +392,6 @@ export class LoanFixedPriceComponent implements OnInit, OnDestroy {
   // ----------------------------   SAVE   --------------------------------
 
   public save(): void {
-    console.log('Saved clicked');
     if (!this.isAbleToSave) return;
 
     this.deactivateAllInput();
@@ -474,7 +495,6 @@ export class LoanFixedPriceComponent implements OnInit, OnDestroy {
               );
             }
 
-            console.log('error');
             this.isAbleToSave = false;
             // If error, do nothing. The value should be as the previous default
           } else {
@@ -486,18 +506,11 @@ export class LoanFixedPriceComponent implements OnInit, OnDestroy {
               window
             );
 
-            console.log('success');
-
             this.initialLoanName = this.selected;
             this.initialOutStandingDebt = this.incomingValueOutstandingDebt;
             this.initialRemainingYears = this.incomingValueRemainingYears;
 
-            console.log(this.initialLoanName);
-            console.log(this.initialOutStandingDebt);
-            console.log(this.initialRemainingYears);
-
             this.setEditDisabled();
-            console.log('Saved!');
           }
         },
         (err) => {
@@ -505,37 +518,5 @@ export class LoanFixedPriceComponent implements OnInit, OnDestroy {
           console.log('Error subscribtion');
         }
       );
-
-    // this.loansService.updateLoanProduct(loanNameDto).subscribe(
-    //   () => {
-    //     console.log('Loan product successful !!!');
-    //     this.setEditDisabled();
-    //   },
-    //   (err) => {
-    //     console.log(err.title);
-    //   }
-    // );
-
-    // this.loansService.updateLoanOutstandingDebt(outstandingDebtDto).subscribe(
-    //   () => {
-    //     console.log('Loan outstanding debt successful !!!');
-    //     this.setEditDisabled();
-    //   },
-    //   (err) => {
-    //     console.log(err.title);
-    //   }
-    // );
-
-    // this.loansService.updateLoanReminingYears(remainingYearsDto).subscribe(
-    //   () => {
-    //     console.log('Loan remaining years successful !!!');
-    //     this.setEditDisabled();
-    //   },
-    //   (err) => {
-    //     console.log(err.title);
-    //   }
-    // );
-
-    // ---------------------------------------------------------------------
   } // send request end
 } // Class end

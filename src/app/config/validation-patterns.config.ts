@@ -14,5 +14,12 @@ export const VALIDATION_PATTERN = {
   zip: '^[0-9]{4}$',
   zipSWE: '[0-9 ]+',
   rate: '^\\d(\\,|\\.)\\d{1,3}$|^\\d{1}$',
-  year: '^\\d{1,2}(\\,|\\.)\\d{1}$|^\\d{1,2}$'
+
+  /*
+   * Can not start with 0, but can start with 0,3.
+   * Can start with 1 or 2 numbers preceeded by 1 or two decimals.
+   * Can start with 1 or two numbers. Can start with 1 or two numbers preceeded by , or .
+   */
+  year:
+    '(?!(0(?!(\\,|\\.))))(^\\d{1,2}(\\,|\\.)\\d$|^\\d{1,2}$|^\\d{1,2}(\\,|\\.)$)'
 };

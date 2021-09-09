@@ -32,7 +32,7 @@
       </div>
 
       <div class="forms" *ngIf="loanForm">
-        <form class="p-0 border-0" [formGroup]="loanForm" novalidate change>
+        <form class="pad border-0" [formGroup]="loanForm" novalidate change>
           <div class="all-text">
             <div
               [ngClass]="{
@@ -72,7 +72,6 @@
                   [maskType]="maskType"
                   [suffix]="'kr'"
                   [maxLength]="'14'"
-                  [placeholder]="'Fyll inn lån'"
                   [isEditMode]="isEditMode"
                   [inEditMode]="inEditMode"
                   [isInputFocused]="
@@ -113,16 +112,19 @@
                   formControlName="remainingYears"
                   [maskType]="maskType"
                   [suffix]="'år'"
-                  [maxLength]="'5'"
-                  [placeholder]="'år'"
+                  [maxLength]="'4'"
                   [isEditMode]="isEditMode"
                   [inEditMode]="inEditMode"
                   [isInputFocused]="
                     isEditMode &&
                     inputRemainingYearsIsActive &&
+                    !isErrorState(loanForm?.controls['remainingYears']) &&
                     !remainingYearsIsError
                   "
-                  [isInputError]="remainingYearsIsError"
+                  [isInputError]="
+                    isErrorState(loanForm?.controls['remainingYears']) ||
+                    remainingYearsIsError
+                  "
                   [errorStateMatcher]="
                     isErrorState(loanForm?.controls['remainingYears'])
                   "
@@ -135,7 +137,7 @@
                       loanForm?.controls['remainingYears'].hasError(
                         'required'
                       ) ||
-                      (remainingYearsIsError &&
+                      (isErrorState(loanForm?.controls['remainingYears']) &&
                         !isServerError &&
                         !isGeneralError)
                     "
@@ -175,36 +177,38 @@
         </form>
       </div>
 
-      <div
-        class="total-cost"
-        *ngIf="showDisplayBox"
-        [@fadeOut]="isEditMode ? 'hidden' : 'visible'"
-      >
-        <div class="double-container">
-          <div class="first-box move-first-box">
-            <div class="btitle-one">
-              <p>Totale renter og gebyrer</p>
+      <div class="all-text">
+        <div
+          class="total-cost"
+          *ngIf="showDisplayBox"
+          [@fadeOut]="isEditMode ? 'hidden' : 'visible'"
+        >
+          <div class="double-container">
+            <div class="first-box move-first-box">
+              <div class="btitle-one">
+                <p>Totale renter og gebyrer</p>
+              </div>
+              <div class="bvalue">
+                {{
+                  loan.totalInterestAndTotalFee == null
+                    ? 'N/A'
+                    : (loan.totalInterestAndTotalFee | number: '1.0-0') + ',-'
+                }}
+              </div>
             </div>
-            <div class="bvalue">
-              {{
-                loan.totalInterestAndTotalFee == null
-                  ? 'N/A'
-                  : (loan.totalInterestAndTotalFee | number: '1.0-0') + ',-'
-              }}
-            </div>
-          </div>
 
-          <div class="first-box move-sec-box">
-            <div class="btitle-two">
-              <p>Renter & gebyrer per år</p>
-            </div>
-            <div class="bvalue">
-              {{
-                loan.totalInterestAndTotalFeeByRemainingYears == null
-                  ? 'N/A'
-                  : (loan.totalInterestAndTotalFeeByRemainingYears
-                      | number: '1.0-0') + ',-'
-              }}
+            <div class="first-box move-sec-box">
+              <div class="btitle-two">
+                <p>Renter & gebyrer per år</p>
+              </div>
+              <div class="bvalue">
+                {{
+                  loan.totalInterestAndTotalFeeByRemainingYears == null
+                    ? 'N/A'
+                    : (loan.totalInterestAndTotalFeeByRemainingYears
+                        | number: '1.0-0') + ',-'
+                }}
+              </div>
             </div>
           </div>
         </div>
