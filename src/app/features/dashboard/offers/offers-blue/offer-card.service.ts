@@ -198,6 +198,12 @@ export class OfferCardService {
     if (bankName === 'BULDER') {
       return 'Gir kundeutbytte';
     }
+    if (bankName === 'UNIO_NORDEA_DIRECT') {
+      return 'Flere medlemsfordeler';
+    }
+    if (bankName === 'YS_NORDEA_DIRECT') {
+      return 'Flere medlemsfordeler';
+    }
     return null;
   }
 }
