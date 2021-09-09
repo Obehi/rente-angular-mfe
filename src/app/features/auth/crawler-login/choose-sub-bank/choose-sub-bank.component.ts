@@ -126,9 +126,8 @@ export class ChooseSubBankComponent implements OnInit {
       this.localStorageService.setObject('subBank', membershipDto);
     }
 
-    item.membership !== null &&
-      this.router.navigate(['/autentisering/' + ROUTES_MAP_NO.bankIdLogin], {
-        state: { data: { name: this.bankVO } }
-      });
+    this.router.navigate(['/autentisering/' + ROUTES_MAP_NO.bankIdLogin], {
+      state: { data: { name: this.bankVO } }
+    });
   }
 }
