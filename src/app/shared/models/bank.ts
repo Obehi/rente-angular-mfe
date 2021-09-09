@@ -1173,6 +1173,7 @@ export const eikaBanks: BankVo[] = [
 ];
 
 export const BankList: BankVo[] = [
+  // DNB: hasSubMembership is set to false, but if user is redirected to signicat solution they will go to subBank page
   new BankVo(
     'DNB',
     'DNB Bank ASA',
@@ -1186,7 +1187,7 @@ export const BankList: BankVo[] = [
     false,
     false,
     false,
-    true,
+    false,
     'https://m.dnb.no/kundeservice/privat/bankidmobil.html'
   ),
   new BankVo(
