@@ -13,7 +13,7 @@
         <!-- <mat-icon *ngIf="isEditMode" (click)="deleteLoan()"
             >delete_forever</mat-icon
           > -->
-        <div>
+        <div *ngIf="index < 1">
           <img
             [hidden]="hideEditIcon"
             (click)="setEditEnabled()"
@@ -77,9 +77,13 @@
                   [isInputFocused]="
                     isEditMode &&
                     inputOutstandingDebtIsActive &&
+                    !isErrorState(loanForm?.controls['outstandingDebt']) &&
                     !outstandingDebtIsError
                   "
-                  [isInputError]="outstandingDebtIsError"
+                  [isInputError]="
+                    isErrorState(loanForm?.controls['outstandingDebt']) ||
+                    outstandingDebtIsError
+                  "
                   [errorStateMatcher]="
                     isErrorState(loanForm?.controls['outstandingDebt'])
                   "
@@ -92,7 +96,7 @@
                       loanForm?.controls['outstandingDebt'].hasError(
                         'required'
                       ) ||
-                      (outstandingDebtIsError &&
+                      (isErrorState(loanForm?.controls['outstandingDebt']) &&
                         !isServerError &&
                         !isGeneralError)
                     "

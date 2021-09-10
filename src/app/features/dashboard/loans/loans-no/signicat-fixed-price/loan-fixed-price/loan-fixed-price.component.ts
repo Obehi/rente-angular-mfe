@@ -122,19 +122,14 @@ export class LoanFixedPriceComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     const format = this.countDecimals(this.loan.remainingYears);
-    // console.log(`Decimal count: ${format}`);
 
     let correctValue = '';
 
-    if (format === 0 || format === 1) {
+    if (format < 2) {
       correctValue = String(this.loan.remainingYears);
     }
 
-    if (format === 2) {
-      correctValue = this.loan.remainingYears.toString().slice(0, -1);
-    }
-
-    if (format > 2) {
+    if (format > 1) {
       correctValue = this.loan.remainingYears.toFixed(1);
     }
 
@@ -142,10 +137,6 @@ export class LoanFixedPriceComponent implements OnInit, OnDestroy {
     this.initialOutStandingDebt = String(this.loan.outstandingDebt);
     this.initialRemainingYears = correctValue;
     this.loanTypeString = String(this.loan.loanName);
-
-    // console.log(
-    //   `Remaining years correct format: ${this.initialRemainingYears}`
-    // );
 
     /*
      * Create an object of the same datatype from bank offers
@@ -178,14 +169,18 @@ export class LoanFixedPriceComponent implements OnInit, OnDestroy {
       loanName: [{ value: this.initialLoanName, disabled: true }],
       outstandingDebt: [
         { value: this.initialOutStandingDebt, disabled: true },
-        Validators.required
+        [
+          Validators.pattern(VALIDATION_PATTERN.nonNullThousand),
+          Validators.max(100000000),
+          Validators.required
+        ]
       ],
       remainingYears: [
         { value: this.initialRemainingYears, disabled: true },
         [
           Validators.pattern(VALIDATION_PATTERN.year),
-          Validators.required,
-          Validators.max(99)
+          Validators.max(99),
+          Validators.required
         ]
       ]
     });
@@ -215,23 +210,15 @@ export class LoanFixedPriceComponent implements OnInit, OnDestroy {
     this.outStandingDebtchangeSubscription = this.loanForm
       .get(this.outstandingDebtString)
       ?.valueChanges.subscribe(() => {
-        const check = this.checkIfZero('outstandingDebt');
-
-        if (!check) {
+        if (
+          this.loanForm.get('outstandingDebt')?.dirty &&
+          !this.isErrorState(this.loanForm?.controls['outstandingDebt'])
+        ) {
           this.outstandingDebtIsError = false;
+          this.isAbleToSave = true;
           this.incomingValueOutstandingDebt = this.loanForm.get(
             'outstandingDebt'
           )?.value;
-        } else {
-          this.outstandingDebtIsError = true;
-        }
-
-        if (
-          this.loanForm.get('outstandingDebt')?.dirty &&
-          !check &&
-          !this.remainingYearsIsError
-        ) {
-          this.isAbleToSave = true;
         } else {
           this.isAbleToSave = false;
         }
@@ -383,7 +370,8 @@ export class LoanFixedPriceComponent implements OnInit, OnDestroy {
     if (
       !this.outstandingDebtIsError &&
       !this.remainingYearsIsError &&
-      !this.isErrorState(this.loanForm?.controls['remainingYears'])
+      !this.isErrorState(this.loanForm?.controls['remainingYears']) &&
+      !this.isErrorState(this.loanForm?.controls[this.outstandingDebtString])
     ) {
       this.isAbleToSave = true;
     }
