@@ -14,6 +14,5 @@ export class CrawlerBanksComponent implements OnInit {
 
   ngOnInit(): void {
     this.loans = this.loansData.loans;
-    console.log(this.loans);
   }
 }
