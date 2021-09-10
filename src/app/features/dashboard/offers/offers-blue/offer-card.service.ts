@@ -182,13 +182,14 @@ export class OfferCardService {
     let experimentId: string | null;
     if (this.envService.environment.production === true) {
       // console.log('is production');
-      experimentId = 'uNdAqLlKRS2XGcHt0FaY5g';
+      experimentId = 'WN1VZgXdSGqVkcs9TLZwAA';
     } else {
       // console.log('is not production');
       experimentId = 'A6Fvld2GTAG3VE95NWV1Hw';
     }
 
     const variation = (window as any).google_optimize.get(experimentId);
+    console.log(variation);
     // console.log((window as any).google_optimize.get(experimentId));
     return Number(variation) || 0;
   }
@@ -196,6 +197,12 @@ export class OfferCardService {
   public getBankSpecialPromoText(bankName: string): string | null {
     if (bankName === 'BULDER') {
       return 'Gir kundeutbytte';
+    }
+    if (bankName === 'UNIO_NORDEA_DIRECT') {
+      return 'Flere medlemsfordeler';
+    }
+    if (bankName === 'YS_NORDEA_DIRECT') {
+      return 'Flere medlemsfordeler';
     }
     return null;
   }

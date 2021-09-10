@@ -60,12 +60,13 @@ export class HousesComponent implements OnInit, DeactivationGuarded {
   public showExplainText: boolean;
   public propertyIconPath: string | null;
   public animationType = getAnimationStyles();
+  public addressId: number;
 
   constructor(
     private loansService: LoansService,
     eventService: EventService,
     dialog: MatDialog,
-    private envService: EnvService,
+    public envService: EnvService,
     private messageBanner: MessageBannerService,
     private customLangTextService: CustomLangTextService,
     private notificationService: NotificationService
@@ -83,6 +84,7 @@ export class HousesComponent implements OnInit, DeactivationGuarded {
     this.loansService.getAddresses().subscribe((r) => {
       this.isLoading = false;
       this.addresses = r.addresses;
+      this.addressId = r.addresses.length;
       this.showAddresses = true;
 
       if (
@@ -120,6 +122,7 @@ export class HousesComponent implements OnInit, DeactivationGuarded {
         addr.useManualPropertyValue = false;
       }
       this.addresses.push(addr);
+      this.addressId++;
     }
   }
 
@@ -130,6 +133,16 @@ export class HousesComponent implements OnInit, DeactivationGuarded {
       this.addresses.splice(i, 1);
       this.saveAddresses();
     }
+  }
+
+  scrollTo(divId: number): void {
+    setTimeout(() => {
+      document.getElementById(`${divId}`)?.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+        inline: 'start'
+      });
+    }, 100);
   }
 
   get ableToAddAddress(): boolean {

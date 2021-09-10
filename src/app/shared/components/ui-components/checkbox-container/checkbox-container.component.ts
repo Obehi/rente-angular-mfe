@@ -17,16 +17,18 @@ import {
       state(
         'default',
         style({
-          width: '60px'
+          width: '30px',
+          opacity: 1
         })
       ),
       state(
         'disabled',
         style({
-          width: '45px'
+          width: '20px',
+          opacity: '0.8'
         })
       ),
-      transition('* => *', animate('150ms ease-out'))
+      transition('* => *', animate('150ms ease-in'))
     ])
   ]
 })

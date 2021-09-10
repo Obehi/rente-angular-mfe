@@ -1,7 +1,7 @@
-@import "../../../../styles/theme/_colors.scss";
+@import '../../../../styles/theme/_colors.scss';
 
 .container {
-    //background: linear-gradient(180deg, #162537 0%, #183A63 27.08%);
+  //background: linear-gradient(180deg, #162537 0%, #183A63 27.08%);
 }
 
 h3 {
@@ -21,23 +21,40 @@ p {
     margin: 40px auto;
   }
 
-.explain-text {
-  padding: 40;
-  text-align: center;
-}
+  .explain-text {
+    padding: 40;
+    text-align: center;
+  }
 }
 
 .house {
   padding-bottom: 80px;
   .title {
-    padding: 20px;
     display: flex;
     justify-content: space-between;
-    h3,p {
+    padding: 20px;
+
+    h3 {
       color: white;
     }
-    p {
-      font-size: 18px;
+    .total {
+      color: white;
+      font-size: 14px;
+    }
+    .thousands {
+      color: #fff;
+      font-size: 14px;
+      background: $karl-blue;
+      padding: 1px;
+      padding: 3px 1em;
+      border-radius: 50px;
+      margin-left: 10px;
+      font-weight: 400;
+      margin-top: -4px;
+    }
+    span {
+      display: flex;
+      color: $white;
     }
   }
 }
@@ -79,14 +96,14 @@ p {
 .center-logo {
   margin-top: 40px;
 
-  p{
+  p {
     color: white;
     font-weight: 400;
     margin-bottom: 0.5em;
   }
   text-align: center;
 
-  img{
+  img {
     width: 180px;
   }
 }

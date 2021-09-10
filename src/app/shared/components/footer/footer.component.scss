@@ -165,3 +165,18 @@ footer {
     }
   }
 }
+
+.partners-swe {
+  display: flex;
+  flex-direction: column;
+  grid-column: span 2;
+
+  h4 {
+    color: $white;
+    margin-bottom: 10px;
+  }
+
+  img {
+    width: 160px;
+  }
+}
