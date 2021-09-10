@@ -15,7 +15,7 @@ export const VALIDATION_PATTERN = {
   zipSWE: '[0-9 ]+',
   rate: '^\\d(\\,|\\.)\\d{1,3}$|^\\d{1}$',
   nonNullThousand:
-    '^0*([1-9](\\s)?)([0-9](\\s)?)*$|^0*([1-9]\\s?)([0-9]\\s?)*((\\,|\\.)(:?\\d{1,2})?)$',
+    '(?!(0(?!(\\,|\\.))))(^(0*)([0-9](\\s)?)*$|^0*([0-9]\\s?)([0-9]\\s?)*((\\,|\\.)(:?\\d{1,2})?)$)',
   /*
    * Can not start with 0, but can start with 0,3.
    * Can start with 1 or 2 numbers preceeded by 1 or two decimals.

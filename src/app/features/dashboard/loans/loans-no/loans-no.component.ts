@@ -68,8 +68,8 @@ export class LoansNoComponent implements OnInit {
         // if (this.isSignicatUser && this.loansData.isFixedPriceBank)
         //   this.isFixedPriceBank = true;
 
-        this.isSignicatUser = false;
-        this.isFixedPriceBank = false;
+        this.isSignicatUser = true;
+        this.isFixedPriceBank = true;
       },
       (err) => {
         this.errorMessage = err.title;
