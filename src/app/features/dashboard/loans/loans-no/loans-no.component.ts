@@ -57,19 +57,29 @@ export class LoansNoComponent implements OnInit {
         this.loansData = loans;
         this.offers = offerBank.offers;
 
+        if (!this.loansData) {
+          this.messageBannerService.setView(
+            'Noe gikk feil, vennligst prøv igjen senere',
+            4000,
+            this.animationType.DROP_DOWN_UP,
+            'error',
+            window
+          );
+        }
+
         /*
            Backend returns origin which contains either 1 or 2
           1 is crawler banks, 2 is signicat user
           isFixedPriceBank of type boolean is also included in the returned object to check
          */
 
-        // if (this.loansData.origin === 1) this.isSignicatUser = false;
-        // if (this.loansData.origin === 2) this.isSignicatUser = true;
-        // if (this.isSignicatUser && this.loansData.isFixedPriceBank)
-        //   this.isFixedPriceBank = true;
+        if (this.loansData.origin === 1) this.isSignicatUser = false;
+        if (this.loansData.origin === 2) this.isSignicatUser = true;
+        if (this.isSignicatUser && this.loansData.isFixedPriceBank)
+          this.isFixedPriceBank = true;
 
-        this.isSignicatUser = true;
-        this.isFixedPriceBank = true;
+        // this.isSignicatUser = true;
+        // this.isFixedPriceBank = true;
       },
       (err) => {
         this.errorMessage = err.title;

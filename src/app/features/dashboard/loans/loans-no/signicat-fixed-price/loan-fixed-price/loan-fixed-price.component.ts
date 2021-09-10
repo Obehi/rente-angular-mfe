@@ -140,7 +140,7 @@ export class LoanFixedPriceComponent implements OnInit, OnDestroy {
     };
 
     // Demo test code necessary, deactivate when testing in signicat
-    this.allOffers.push(transformDto);
+    // this.allOffers.push(transformDto);
 
     // Demo selected filter
     // this.selected = this.allOffers.filter(
