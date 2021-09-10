@@ -59,7 +59,7 @@ export class LoansNoComponent implements OnInit {
 
         if (!this.loansData) {
           this.messageBannerService.setView(
-            'Noe gikk feil, vennligst prøv igjen senere',
+            'Noe gikk feil, vennligst prøv igjen senere. Hvis dette vedvarer, ta kontakt!',
             4000,
             this.animationType.DROP_DOWN_UP,
             'error',
