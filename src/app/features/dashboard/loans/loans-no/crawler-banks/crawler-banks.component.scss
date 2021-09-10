@@ -236,3 +236,16 @@ p {
   justify-content: space-between;
   align-items: center;
 }
+
+.general-title {
+  color: white;
+  margin: 8px;
+}
+
+.one-loan {
+  margin-top: 80px;
+
+  @media (max-width: 320px) {
+    margin-top: 50px;
+  }
+}

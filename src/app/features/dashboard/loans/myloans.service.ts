@@ -32,4 +32,9 @@ export class MyLoansService {
   public formatComma(val: string): number {
     return Number(val.replace(',', '.'));
   }
+
+  public countDecimals(value: number): number {
+    if (Math.floor(value) === value) return 0;
+    return value.toString().split('.')[1].length || 0;
+  }
 }

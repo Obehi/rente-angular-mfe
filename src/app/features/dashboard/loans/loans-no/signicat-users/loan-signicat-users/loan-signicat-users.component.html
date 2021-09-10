@@ -16,7 +16,7 @@
           > -->
         </div>
 
-        <div>
+        <div *ngIf="index < 1">
           <img
             [hidden]="hideEditIcon"
             (click)="setEditEnabled()"

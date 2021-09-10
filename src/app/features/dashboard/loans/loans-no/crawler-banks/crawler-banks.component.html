@@ -1,4 +1,4 @@
-<div class="summary">
+<div class="summary" *ngIf="loans.length > 1">
   <h3 class="title">Sammendrag av lån</h3>
   <div class="summary-box">
     <div class="four-container">
@@ -56,10 +56,16 @@
   </div>
 </div>
 
-<div class="summary">
+<div
+  class="summary"
+  [ngClass]="{
+    'one-loan': loans.length === 1
+  }"
+>
   <div class="blue-box-list">
     <div *ngFor="let loan of loans">
       <div class="loan-list">
+        <div *ngIf="loans.length === 1" class="general-title">Mitt lån</div>
         <div class="content-blue-box">
           <div class="loan-type">
             <b>{{ loan.loanName }}</b>

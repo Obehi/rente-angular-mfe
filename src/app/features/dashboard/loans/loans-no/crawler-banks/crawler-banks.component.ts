@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { LoansService } from '@services/remote-api/loans.service';
-import { Loans } from '@shared/models/loans';
+import { LoanInfo, Loans } from '@shared/models/loans';
 
 @Component({
   selector: 'rente-crawler-banks',
@@ -9,15 +8,12 @@ import { Loans } from '@shared/models/loans';
 })
 export class CrawlerBanksComponent implements OnInit {
   @Input() loansData: Loans;
-  public loans: any[];
-  /*
-    The object interface is not updated so fix it when the new version is merged
-  */
-  public errorMessage: string;
+  public loans: LoanInfo[];
 
   constructor() {}
 
   ngOnInit(): void {
     this.loans = this.loansData.loans;
+    console.log(this.loans);
   }
 }

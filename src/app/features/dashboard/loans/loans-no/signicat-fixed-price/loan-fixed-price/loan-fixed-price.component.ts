@@ -115,23 +115,12 @@ export class LoanFixedPriceComponent implements OnInit, OnDestroy {
     );
   }
 
-  public countDecimals(value: number): number {
-    if (Math.floor(value) === value) return 0;
-    return value.toString().split('.')[1].length || 0;
-  }
-
   ngOnInit(): void {
-    const format = this.countDecimals(this.loan.remainingYears);
-
+    // Check count of decimals and format it to 0 or 1 decimal
+    const format = this.myLoansService.countDecimals(this.loan.remainingYears);
     let correctValue = '';
-
-    if (format < 2) {
-      correctValue = String(this.loan.remainingYears);
-    }
-
-    if (format > 1) {
-      correctValue = this.loan.remainingYears.toFixed(1);
-    }
+    if (format < 2) correctValue = String(this.loan.remainingYears);
+    if (format > 1) correctValue = this.loan.remainingYears.toFixed(1);
 
     this.initialLoanName = String(this.loan.loanName);
     this.initialOutStandingDebt = String(this.loan.outstandingDebt);
