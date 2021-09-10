@@ -111,7 +111,6 @@
             [type]="'tel'"
             matSuffix="år"
             [maxLength]="4"
-            [maskType]="mask.currency"
             formControlName="remainingYears"
             [errorStateMatcher]="
               isErrorState(loanFormGroup?.controls['remainingYears'])
@@ -559,7 +558,6 @@
                     [type]="'tel'"
                     matSuffix="år"
                     [maxLength]="4"
-                    [maskType]="mask.currency"
                     formControlName="remainingYears"
                     [errorStateMatcher]="
                       isErrorState(loanFormGroup?.controls['remainingYears'])
