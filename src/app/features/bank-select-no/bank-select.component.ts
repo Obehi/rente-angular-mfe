@@ -129,7 +129,6 @@ export class BankSelectNoComponent implements OnInit {
     }
 
     if (bank.hasSubMembership) {
-      console.log('direct');
       this.router.navigate(
         [
           '/autentisering/' +
