@@ -1090,33 +1090,47 @@ Fortsett
   <msg id="change.bank.success-header" desc="change-bank" meaning="info"><source>app/features/dashboard/offers/bargain-success/referral/referral.component.html:9</source><source>app/features/dashboard/offers/bargain-success/referral/referral.component.html:41</source>Hjelp en venn!</msg>
   <msg id="change.bank.success-body" desc="change-bank" meaning="info"><source>app/features/dashboard/offers/bargain-success/referral/referral.component.html:10,11</source><source>app/features/dashboard/offers/bargain-success/referral/referral.component.html:42,44</source>Fortell noen du kjenner om Renteradar.no og kanskje de spanderer en middag med alle pengene de
                         sparer. Del med knappene under</msg>
-  <msg id="bargain.success.sent”" desc="bargain" meaning="“confirmation"><source>app/features/dashboard/offers/bargain-success/bargain-success.component.html:4</source>E-post er nå sendt til din bank</msg>
-  <msg id="bargain.success.sent.you”" desc="bargain" meaning="“confirmation-you"><source>app/features/dashboard/offers/bargain-success/bargain-success.component.html:6,9</source>
-      Vi har også sendt deg en epost fra prute@renteradar.no med kopi av eposten vi har sendt
-      til din bank. Hvis du ikke finner den, sjekk om eposten kan ha kommet i spam/søppelpost.
+  <msg id="bargain.success.sent”" desc="bargain" meaning="“confirmation"><source>app/features/dashboard/offers/bargain-success/bargain-success.component.html:3,5</source>
+      E-post er nå sendt til din bank
     </msg>
-  <msg id="bargain.success.time”" desc="bargain" meaning="“time"><source>app/features/dashboard/offers/bargain-success/bargain-success.component.html:21,24</source>
-              Bankene pleier å bruke én eller to uker på å svare deg.
-              Får du ikke noe svar fra banken i løpet av to uker, anbefaler vi følgende:
+  <msg id="bargain.success.sent.you”" desc="bargain" meaning="“confirmation-you"><source>app/features/dashboard/offers/bargain-success/bargain-success.component.html:7,11</source>
+      Vi har også sendt deg en epost fra prute@renteradar.no med kopi av eposten
+      vi har sendt til din bank. Hvis du ikke finner den, sjekk om eposten kan
+      ha kommet i spam/søppelpost.
+    </msg>
+  <msg id="bargain.success.time”" desc="bargain" meaning="“time"><source>app/features/dashboard/offers/bargain-success/bargain-success.component.html:21,25</source>
+              Bankene pleier å bruke én eller to uker på å svare deg. Får du
+              ikke noe svar fra banken i løpet av to uker, anbefaler vi
+              følgende:
             </msg>
-  <msg id="bargain.success.instructions”" desc="bargain" meaning="“instructions"><source>app/features/dashboard/offers/bargain-success/bargain-success.component.html:26,31</source>
-              <ph name="START_LIST_ITEM"><ex>&lt;li&gt;</ex>&lt;li&gt;</ph>Kopier teksten vi har sendt til din bank og som ligger nederst i eposten<ph name="CLOSE_LIST_ITEM"><ex>&lt;/li&gt;</ex>&lt;/li&gt;</ph>
+  <msg id="bargain.success.instructions”" desc="bargain" meaning="“instructions"><source>app/features/dashboard/offers/bargain-success/bargain-success.component.html:34,44</source>
+              <ph name="START_LIST_ITEM"><ex>&lt;li&gt;</ex>&lt;li&gt;</ph>
+                Kopier teksten vi har sendt til din bank og som ligger nederst i
+                eposten
+              <ph name="CLOSE_LIST_ITEM"><ex>&lt;/li&gt;</ex>&lt;/li&gt;</ph>
               <ph name="START_LIST_ITEM"><ex>&lt;li&gt;</ex>&lt;li&gt;</ph>Logg inn på nettbanken hos banken din<ph name="CLOSE_LIST_ITEM"><ex>&lt;/li&gt;</ex>&lt;/li&gt;</ph>
-              <ph name="START_LIST_ITEM"><ex>&lt;li&gt;</ex>&lt;li&gt;</ph>Gå til din postkasse i nettbanken, eventuelt start en chat. Send en melding til banken med teksten du
-                har kopiert<ph name="CLOSE_LIST_ITEM"><ex>&lt;/li&gt;</ex>&lt;/li&gt;</ph>
+              <ph name="START_LIST_ITEM"><ex>&lt;li&gt;</ex>&lt;li&gt;</ph>
+                Gå til din postkasse i nettbanken, eventuelt start en chat. Send
+                en melding til banken med teksten du har kopiert
+              <ph name="CLOSE_LIST_ITEM"><ex>&lt;/li&gt;</ex>&lt;/li&gt;</ph>
             </msg>
-  <msg id="bargain.success.noResponse”" desc="bargain" meaning="“no-response"><source>app/features/dashboard/offers/bargain-success/bargain-success.component.html:32,35</source>
-              Får du fortsatt ikke svar fra banken din eller banken ikke vil sette ned renten,
-              er det kanskje på tide å bytte bank. Renteradar.no viser deg hvilken bank du bør bytte til.
+  <msg id="bargain.success.noResponse”" desc="bargain" meaning="“no-response"><source>app/features/dashboard/offers/bargain-success/bargain-success.component.html:45,49</source>
+              Får du fortsatt ikke svar fra banken din eller banken ikke vil
+              sette ned renten, er det kanskje på tide å bytte bank.
+              Renteradar.no viser deg hvilken bank du bør bytte til.
             </msg>
-  <msg id="bargain.success.review”" desc="bargain" meaning="“review"><source>app/features/dashboard/offers/bargain-success/bargain-success.component.html:36,40</source>
-              Send oss gjerne en e-post på <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>hei@renteradar.no<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph> eller bruk
-              chat-funksjonen i tjenesten
-              for å fortelle oss om du har fått lavere rente eller om du har noen spørsmål.
+  <msg id="bargain.success.review”" desc="bargain" meaning="“review"><source>app/features/dashboard/offers/bargain-success/bargain-success.component.html:51,56</source>
+              Send oss gjerne en e-post på
+              <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>hei@renteradar.no<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph> eller
+              bruk chat-funksjonen i tjenesten for å fortelle oss om du har fått
+              lavere rente eller om du har noen spørsmål.
             </msg>
-  <msg id="bargain.success.error”" desc="bargain" meaning="“error"><source>app/features/dashboard/offers/bargain-success/bargain-success.component.html:78</source>Noe gikk galt…</msg>
-  <msg id="bargain.success.error2”" desc="bargain" meaning="“error2"><source>app/features/dashboard/offers/bargain-success/bargain-success.component.html:80,82</source>
-      Beklager, noe gikk galt og vi vil rette opp feilen så fort som mulig. Vennligst prøv igjen senere.
+  <msg id="bargain.success.error”" desc="bargain" meaning="“error"><source>app/features/dashboard/offers/bargain-success/bargain-success.component.html:101,103</source>
+      Noe gikk galt…
+    </msg>
+  <msg id="bargain.success.error2”" desc="bargain" meaning="“error2"><source>app/features/dashboard/offers/bargain-success/bargain-success.component.html:105,108</source>
+      Beklager, noe gikk galt og vi vil rette opp feilen så fort som mulig.
+      Vennligst prøv igjen senere.
     </msg>
   <msg id="house.component.error”" desc="error" meaning="“house"><source>app/features/dashboard/house/houses.component.html:10</source>Oops, noe gikk galt</msg>
   <msg id="house.component.houses”" desc="my-houses" meaning="“title"><source>app/features/dashboard/house/houses.component.html:27</source>Mine boliger</msg>
@@ -1135,18 +1149,22 @@ Fortsett
   <msg id="change.bank.location.send" desc="change-bank" meaning="choose-office "><source>app/features/dashboard/offers/change-bank-dialog/change-bank-location/change-bank-location.component.html:200,202</source>
                 Send
             </msg>
-  <msg id="bargainNordeaNordea.success.sent”" desc="bargain" meaning="“confirmation"><source>app/features/dashboard/offers/bargain-success/bargain-nordea/nordea-bargain-success.component.html:4,5</source> Meldingen er sendt til Nordea
+  <msg id="bargainNordeaNordea.success.sent”" desc="bargain" meaning="“confirmation"><source>app/features/dashboard/offers/bargain-success/bargain-nordea/nordea-bargain-success.component.html:6,8</source>
+      Meldingen er sendt til Nordea
     </msg>
-  <msg id="bargainNordea.success.sent.you”" desc="bargain" meaning="“confirmation-you"><source>app/features/dashboard/offers/bargain-success/bargain-nordea/nordea-bargain-success.component.html:7,10</source>
-      Nordea vil kontakte deg i løpet av 5 virkedager. Du har også mottatt en epost
-      bekreftelse fra oss på at meldingen er sendt.
+  <msg id="bargainNordea.success.sent.you”" desc="bargain" meaning="“confirmation-you"><source>app/features/dashboard/offers/bargain-success/bargain-nordea/nordea-bargain-success.component.html:13,16</source>
+      Nordea vil kontakte deg i løpet av 5 virkedager. Du har også mottatt en
+      epost bekreftelse fra oss på at meldingen er sendt.
     </msg>
-  <msg id="bargainNordea.success.backToOffers“" desc="bargain" meaning="“confirmation"><source>app/features/dashboard/offers/bargain-success/bargain-nordea/nordea-bargain-success.component.html:41,43</source>
+  <msg id="bargainNordea.success.backToOffers“" desc="bargain" meaning="“confirmation"><source>app/features/dashboard/offers/bargain-success/bargain-nordea/nordea-bargain-success.component.html:54,56</source>
       Tilbake til tilbudssiden
     </msg>
-  <msg id="bargainNordea.success.error”" desc="bargain" meaning="“error"><source>app/features/dashboard/offers/bargain-success/bargain-nordea/nordea-bargain-success.component.html:48</source>Noe gikk galt…</msg>
-  <msg id="bargainNordea.success.error2”" desc="bargain" meaning="“error2"><source>app/features/dashboard/offers/bargain-success/bargain-nordea/nordea-bargain-success.component.html:50,52</source>
-      Beklager, noe gikk galt og vi vil rette opp feilen så fort som mulig. Vennligst prøv igjen senere.
+  <msg id="bargainNordea.success.error”" desc="bargain" meaning="“error"><source>app/features/dashboard/offers/bargain-success/bargain-nordea/nordea-bargain-success.component.html:64,66</source>
+      Noe gikk galt…
+    </msg>
+  <msg id="bargainNordea.success.error2”" desc="bargain" meaning="“error2"><source>app/features/dashboard/offers/bargain-success/bargain-nordea/nordea-bargain-success.component.html:68,71</source>
+      Beklager, noe gikk galt og vi vil rette opp feilen så fort som mulig.
+      Vennligst prøv igjen senere.
     </msg>
   <msg id="offer.card.title”" desc="offer-card" meaning="“title"><source>app/features/dashboard/offers/offers-blue/offer-card/offer-card.component.html:46,48</source>
           Du sparer
