@@ -25,6 +25,10 @@ p {
   }
 }
 
+.all-text {
+  padding: 20px;
+}
+
 .loan-list {
   padding: 10px;
 }
@@ -222,15 +226,17 @@ p {
 .loan-type {
   padding: 14px 20px;
   color: white;
-  border-radius: 10px 10px 0 0;
+  border-radius: 15px 15px 0 0;
   background: #004465a6;
   h3 {
-    margin-left: 15px;
+    font-size: 14px;
+    margin-left: 5px;
+    padding: 5px 0;
   }
 }
 
 .loan-info {
-  padding: 10px 10px 10px 15px;
+  padding: 10px;
   margin-bottom: 10px;
   display: flex;
   justify-content: space-between;
@@ -243,7 +249,7 @@ p {
 }
 
 .one-loan {
-  margin-top: 80px;
+  margin-top: 60px;
 
   @media (max-width: 320px) {
     margin-top: 50px;

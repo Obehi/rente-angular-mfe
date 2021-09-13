@@ -73,13 +73,13 @@ export class LoansNoComponent implements OnInit {
           isFixedPriceBank of type boolean is also included in the returned object to check
          */
 
-        if (this.loansData.origin === 1) this.isSignicatUser = false;
-        if (this.loansData.origin === 2) this.isSignicatUser = true;
-        if (this.isSignicatUser && this.loansData.isFixedPriceBank)
-          this.isFixedPriceBank = true;
+        // if (this.loansData.origin === 1) this.isSignicatUser = false;
+        // if (this.loansData.origin === 2) this.isSignicatUser = true;
+        // if (this.isSignicatUser && this.loansData.isFixedPriceBank)
+        //   this.isFixedPriceBank = true;
 
-        // this.isSignicatUser = true;
-        // this.isFixedPriceBank = true;
+        this.isSignicatUser = false;
+        this.isFixedPriceBank = false;
       },
       (err) => {
         this.errorMessage = err.title;
