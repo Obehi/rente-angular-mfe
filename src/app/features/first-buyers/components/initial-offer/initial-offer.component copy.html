@@ -1,0 +1,144 @@
+<div class="initial-offer white-bg mx-auto p-3">
+  <div class="d-flex justify-content-between w-100">
+    <div class="bank-name justify-content-lg-center col-8 p-0">
+      <div class="logo d-inline-block">
+        <img [src]="bank?.icon" [alt]="bank?.label" />
+      </div>
+      <div class="offer-product w-100">
+        <div class="label d-flex text-left pl-3">
+          {{ bank?.label }}
+          {{ offer.offerPosition }}
+        </div>
+        <div class="product-name d-flex text-left pl-3">
+          {{ offer.productName }}
+        </div>
+      </div>
+    </div>
+    <div
+      class="effective-rate my-auto col-4 p-0 text-right"
+      *ngIf="offer.effectiveRate; else notPresent"
+    >
+      {{ offer.effectiveRate.toFixed(2) }}%
+    </div>
+  </div>
+  <div class="d-flex justify-content-between w-100 mt-3"></div>
+  <div class="w-100 mt-3">
+    <mat-expansion-panel
+      (opened)="detailOpenClicked()"
+      [expanded]="expandStatus"
+    >
+      <mat-expansion-panel-header
+        [collapsedHeight]="'20px'"
+        [expandedHeight]="'20px'"
+        >Mer info
+      </mat-expansion-panel-header>
+
+      <div
+        class="top-details"
+        [style.grid-template-columns]="
+          offer.bankRating && !isSweden ? '1fr 1fr 1fr' : '1fr 1fr'
+        "
+        [style.grid-template-rows]="
+          offer.bankRating && !isSweden ? '20px 40px' : '15px 25px'
+        "
+      >
+        <p
+          i18n="“customer-satisfied|offer-card@@offer.card.customerSatisfied”"
+          class="small top-details-top"
+        >
+          Kundetilfredshet
+          <span
+            (click)="openInfoDialog()"
+            class="clickable bank-rating-info-button"
+          >
+            <mat-icon class="material-icons secondary">help</mat-icon>
+          </span>
+        </p>
+
+        <p
+          *ngIf="offer.bankRating && !isSweden"
+          i18n="“demand-change|offer-card@@offer.card.historicRate"
+          class="small top-details-top"
+        >
+          Historisk plassering
+        </p>
+        <p class="small top-details-top">Mobilbank</p>
+
+        <div class="satisfaction-wrapper top-details-bottom">
+          <div class="satisfaction">
+            <div class="bank-rating-text"></div>
+            <img
+              class="offer-score"
+              src="../../../../assets/icons/score-{{
+                offer.bankInfo.score
+              }}.svg"
+            />
+          </div>
+        </div>
+
+        <div class="d-flex flex-column text-center">
+          <div class="middle-title">Månedskostnad</div>
+          <div
+            class="my-auto middle-property"
+            *ngIf="offer.monthlyCost; else notPresent"
+          >
+            {{ offer.monthlyCost | round | number }},-
+          </div>
+        </div>
+
+        <div
+          *ngIf="offer.bankRating && !isSweden"
+          class="historical-rating top-details-bottom"
+        >
+          <p class="box">{{ offer.bankRating }}</p>
+        </div>
+        <div
+          *ngIf="offer.bankInfo.mobileAppRating"
+          class="mobile-rating top-details-bottom"
+        >
+          <ng-template #t let-fill="fill">
+            <span class="star" [class.full]="fill === 100">
+              <span class="half" [style.width.%]="fill">&#9733;</span>&#9733;
+            </span>
+          </ng-template>
+          <ngb-rating
+            [rate]="offer.bankInfo.mobileAppRating"
+            [starTemplate]="t"
+            [readonly]="true"
+            [max]="5"
+          >
+          </ngb-rating>
+        </div>
+
+        <p
+          *ngIf="
+            offer.bankInfo.mobileAppRating === null ||
+            offer.bankInfo.mobileAppRating === undefined
+          "
+          class="box right na"
+          i18n="
+            “application-time|offer-card@@offer.card.mobileRatingNotAvailable"
+        >
+          Webbsida
+        </p>
+      </div>
+
+      <rente-offer-card-details
+        [offer]="offer"
+        (closeClicked)="expandStatus = expandStatus ? false : true"
+      ></rente-offer-card-details>
+    </mat-expansion-panel>
+  </div>
+
+  <rente-button
+    color="primary"
+    type="raised"
+    [nestedClass]="bank?.name"
+    [href]="offer.bankInfo.transferUrl || offer.bankInfo.url"
+    >Få tilbud fra banken
+  </rente-button>
+</div>
+
+<ng-template #notPresent>
+  <div>-</div>
+</ng-template>

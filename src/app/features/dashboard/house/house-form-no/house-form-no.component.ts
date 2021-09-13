@@ -38,7 +38,7 @@ export enum AddressFormMode {
     ])
   ]
 })
-export class HouseFormNoComponent implements OnInit {
+export class HouseFormNoComponent implements OnInit, AfterViewInit {
   @Input() index: number;
   @Input() address: AddressDto;
 
@@ -51,12 +51,15 @@ export class HouseFormNoComponent implements OnInit {
   mode = AddressFormMode.Editing;
   changesMade = false;
   didSave: boolean;
+  pageLoaded: boolean;
 
   get ableTosave(): boolean {
     return this.isAddressValid && this.changesMade;
   }
 
-  constructor(public envService: EnvService) {}
+  constructor(public envService: EnvService) {
+    this.pageLoaded = false;
+  }
 
   ngOnInit(): void {
     this.didSave = false;
@@ -69,6 +72,10 @@ export class HouseFormNoComponent implements OnInit {
       this.setHouseInputListener();
       this.setVirdiErrorMessageState();
     }, 0);
+  }
+
+  ngAfterViewInit(): void {
+    this.pageLoaded = true;
   }
 
   get isAbleToDelete(): boolean {
