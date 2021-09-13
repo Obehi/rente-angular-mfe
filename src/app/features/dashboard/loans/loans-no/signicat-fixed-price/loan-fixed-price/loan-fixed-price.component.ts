@@ -16,6 +16,7 @@ import { ButtonFadeInOut } from '@shared/animations/button-fade-in-out';
 import { MyLoansService } from '../../../myloans.service';
 import { Mask } from '@shared/constants/mask';
 import { VALIDATION_PATTERN } from '@config/validation-patterns.config';
+import { NotificationService } from '@services/notification.service';
 
 @Component({
   selector: 'rente-loan-fixed-price',
@@ -77,7 +78,8 @@ export class LoanFixedPriceComponent implements OnInit, OnDestroy {
     private loansService: LoansService,
     private fb: FormBuilder,
     private messageBannerService: MessageBannerService,
-    private myLoansService: MyLoansService
+    private myLoansService: MyLoansService,
+    private notificationService: NotificationService
   ) {}
 
   ngOnDestroy(): void {
@@ -488,6 +490,7 @@ export class LoanFixedPriceComponent implements OnInit, OnDestroy {
             this.initialRemainingYears = this.incomingValueRemainingYears;
 
             this.setEditDisabled();
+            this.notificationService.setOfferNotification();
           }
         },
         (err) => {
