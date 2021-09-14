@@ -30,11 +30,25 @@
         </p>
       </div>
 
-      <p>
-        Ved å logge inn samtykker til at Renteradar.no henter og behandler dine
-        personopplysninger.
-        <a class="link" (click)="openTermsDialog()">Les mer</a>
-      </p>
+      <div class="intro warning">
+        <p>
+          For denne banken har vi ingen løsning for automatisk innhentning
+          <br />
+          av lånedata enda. Du må derfor fylle inn dette manuelt. Du trenger:
+        </p>
+        <ul *ngIf="bank?.hasFixedLoans === false">
+          <li>Lånebeløp</li>
+          <li>Løpetid</li>
+          <li>Termingebyr</li>
+          <li>Type lån(nedbetalingslån eller ramme-/flexilån)</li>
+        </ul>
+
+        <ul *ngIf="bank?.hasFixedLoans">
+          <li>Lånebeløp</li>
+          <li>Løpetid</li>
+          <li>Låneprodukt</li>
+        </ul>
+      </div>
 
       <iframe
         *ngIf="signicatIframeUrl !== null"
@@ -42,6 +56,12 @@
         height="400"
         width="400"
       ></iframe>
+
+      <p>
+        Ved å logge inn samtykker til at Renteradar.no henter og behandler dine
+        personopplysninger.
+        <a class="link" (click)="openTermsDialog()">Les mer</a>
+      </p>
     </div>
 
     <div *ngIf="!isMobile"></div>

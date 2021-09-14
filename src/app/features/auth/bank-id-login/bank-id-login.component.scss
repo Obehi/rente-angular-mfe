@@ -1,5 +1,32 @@
 @import '../../../../styles/theme/_colors.scss';
 
+.intro {
+  margin: auto;
+  margin: 30px 20px;
+  margin-bottom: 20px !important;
+  background: $grey-light;
+  border-radius: 15px;
+  padding: 1em;
+  border: 1px solid #cccccc;
+  color: black;
+  max-width: 80% !important;
+  min-width: 80%;
+  margin: auto;
+
+  p {
+    text-align: left !important;
+    max-width: unset !important;
+  }
+  ul {
+    margin-top: 10px;
+    li {
+      text-align: left;
+      font-size: 14px;
+      font-weight: 400;
+    }
+  }
+}
+
 .address-grid {
   @media (max-width: 600px) {
   }
