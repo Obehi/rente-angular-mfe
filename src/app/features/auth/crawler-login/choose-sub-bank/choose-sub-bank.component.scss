@@ -16,15 +16,20 @@ h3 {
   align-items: center;
 }
 .item {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: start;
   width: 228px;
-  margin-bottom: 20px;
+  margin-bottom: 50px;
 
   p {
+    position: absolute;
+    bottom: 30px;
     font-size: 12px;
     font-weight: 400;
-    margin-bottom: 2px;
+    margin-bottom: 26px;
+    margin-left: 13px;
+    width: 300px;
   }
 }

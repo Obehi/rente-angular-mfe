@@ -98,6 +98,11 @@ button.mat-blue {
   background-color: $blue;
   color: white;
 }
+button.mat-blue-250 {
+  background-color: $blue;
+  color: white;
+  min-width: 250px;
+}
 
 button.mat-blue-bank {
   background-color: $blue;

@@ -464,12 +464,14 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
       ]).subscribe(([offerBanks, signicatLoansInfo]) => {
         const firstLoan = signicatLoansInfo[0];
         this.loanId = firstLoan.id;
-        this.productIdOptions = (offerBanks.offers as any[]).map((offer) => {
-          return {
-            name: offer.name,
-            value: offer.id
-          };
-        });
+        this.productIdOptions = (offerBanks.offers as any[])
+          .map((offer) => {
+            return {
+              name: offer.name,
+              value: offer.id
+            };
+          })
+          .sort((a, b) => (a.name > b.name ? 1 : b.name > a.name ? -1 : 0));
 
         const selectedOption = this.productIdOptions.filter((item) => {
           return item.value === firstLoan.productId;
@@ -496,12 +498,14 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
         this.loanService.getOffersBanks()
       ]).subscribe(
         ([loanInfo, offerBanks]) => {
-          this.productIdOptions = (offerBanks.offers as any[]).map((offer) => {
-            return {
-              name: offer.name,
-              value: offer.id
-            };
-          });
+          this.productIdOptions = (offerBanks.offers as any[])
+            .map((offer) => {
+              return {
+                name: offer.name,
+                value: offer.id
+              };
+            })
+            .sort((a, b) => (a.name > b.name ? 1 : b.name > a.name ? -1 : 0));
 
           if (loanInfo.length !== 0) {
             this.loanId = loanInfo[0].id;
@@ -543,12 +547,14 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
       const firstLoan = signicatLoansInfo[0];
 
       this.loanId = firstLoan.id;
-      this.productIdOptions = (offerBanks.offers as any[]).map((offer) => {
-        return {
-          name: offer.name,
-          value: offer.id
-        };
-      });
+      this.productIdOptions = (offerBanks.offers as any[])
+        .map((offer) => {
+          return {
+            name: offer.name,
+            value: offer.id
+          };
+        })
+        .sort((a, b) => (a.name > b.name ? 1 : b.name > a.name ? -1 : 0));
 
       const selectedloanTypeOption = this.loanTypeOptions.filter((item) => {
         return item.value === firstLoan.loanType;
@@ -594,12 +600,14 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
       this.loanService.getOffersBanks(),
       this.loanService.getSignicatLoansInfo()
     ]).subscribe(([offerBanks, signicatLoansInfo]) => {
-      this.productIdOptions = (offerBanks.offers as any[]).map((offer) => {
-        return {
-          name: offer.name,
-          value: offer.id
-        };
-      });
+      this.productIdOptions = (offerBanks.offers as any[])
+        .map((offer) => {
+          return {
+            name: offer.name,
+            value: offer.id
+          };
+        })
+        .sort((a, b) => (a.name > b.name ? 1 : b.name > a.name ? -1 : 0));
 
       if (signicatLoansInfo.length !== 0) {
         this.loanId = signicatLoansInfo[0].id;
@@ -649,12 +657,14 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
 
         const firstLoan = signicatLoansInfo[0];
 
-        this.productIdOptions = (offerBanks.offers as any[]).map((offer) => {
-          return {
-            name: offer.name,
-            value: offer.id
-          };
-        });
+        this.productIdOptions = (offerBanks.offers as any[])
+          .map((offer) => {
+            return {
+              name: offer.name,
+              value: offer.id
+            };
+          })
+          .sort((a, b) => (a.name > b.name ? 1 : b.name > a.name ? -1 : 0));
 
         const selectedLoanTypeOption = this.loanTypeOptions.filter((item) => {
           return item.value === firstLoan.loanType;
@@ -682,12 +692,14 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
   initNewLoanLoanForm(): void {
     this.loanService.getOffersBanks().subscribe(
       (offerBanks) => {
-        this.productIdOptions = (offerBanks.offers as any[]).map((offer) => {
-          return {
-            name: offer.name,
-            value: offer.id
-          };
-        });
+        this.productIdOptions = (offerBanks.offers as any[])
+          .map((offer) => {
+            return {
+              name: offer.name,
+              value: offer.id
+            };
+          })
+          .sort((a, b) => (a.name > b.name ? 1 : b.name > a.name ? -1 : 0));
 
         this.oldUserNewLoan = true;
         this.loanFormGroup = this.fb.group({
@@ -976,12 +988,14 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     this.loanService.updateClientInfo(this.clientUpdateInfo).subscribe(
       (_) => {
         this.loanService.getOffersBanks().subscribe((offerBanks) => {
-          this.productIdOptions = (offerBanks.offers as any[]).map((offer) => {
-            return {
-              name: offer.name,
-              value: offer.id
-            };
-          });
+          this.productIdOptions = (offerBanks.offers as any[])
+            .map((offer) => {
+              return {
+                name: offer.name,
+                value: offer.id
+              };
+            })
+            .sort((a, b) => (a.name > b.name ? 1 : b.name > a.name ? -1 : 0));
           this.isLoading = false;
           this.stepper.next();
           this.scrollToTop();
@@ -1031,14 +1045,16 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
                     this.loanService
                       .getOffersBanks()
                       .subscribe((offerBanks) => {
-                        this.productIdOptions = (offerBanks.offers as any[]).map(
-                          (offer) => {
+                        this.productIdOptions = (offerBanks.offers as any[])
+                          .map((offer) => {
                             return {
                               name: offer.name,
                               value: offer.id
                             };
-                          }
-                        );
+                          })
+                          .sort((a, b) =>
+                            a.name > b.name ? 1 : b.name > a.name ? -1 : 0
+                          );
                         this.isLoading = false;
                         this.isManualPropertyValue = true;
                         this.stepper.next();

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ROUTES_MAP_NO } from '@config/routes-config';
-import { BankVo } from '@models/bank';
+import { BankUtils, BankVo } from '@models/bank';
 import { LocalStorageService } from '@services/local-storage.service';
 
 import { MembershipTypeDto } from '@services/remote-api/loans.service';
@@ -115,7 +115,7 @@ export class ChooseSubBankComponent implements OnInit {
 
   continueBankLogin(item: subBankMembership): void {
     const foo: { [index: string]: { message: string } } = {};
-    this.bankVO.name = item.name;
+    //this.bankVO.name = item.name;
 
     if (item.membership !== null) {
       // convert subBankMembership to MembershipDto used in other components
@@ -125,9 +125,13 @@ export class ChooseSubBankComponent implements OnInit {
       };
       this.localStorageService.setObject('subBank', membershipDto);
     }
-    console.log(this.bankVO);
+
+    let bank = BankUtils.getBankByName(item.name);
+
+    console.log(bank);
+
     this.router.navigate(['/autentisering/' + ROUTES_MAP_NO.bankIdLogin], {
-      state: { data: { bank: this.bankVO } }
+      state: { data: { bank: bank } }
     });
   }
 }
