@@ -175,7 +175,7 @@ export class VirdiStatisticsComponent implements OnInit {
       xAxis: {
         title: {
           enabled: 'bottom',
-          text: 'NOK'
+          text: 'Pris per kvm (tusen kroner)'
         },
         categories: []
       },
@@ -316,7 +316,8 @@ export class VirdiStatisticsComponent implements OnInit {
   }
 
   private convertThousands(value) {
-    return Math.floor(value / 1000) + 'K';
+    // return Math.floor(value / 1000) + 'K';
+    return Math.floor(value / 1000);
   }
 
   private createThousandsCategories(arr: any[]) {

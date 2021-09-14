@@ -1,4 +1,8 @@
-<div class="housecontainer scroll-anchor" id="{{ index + 1 }}">
+<div
+  class="housecontainer scroll-anchor"
+  id="{{ index + 1 }}"
+  [@.disabled]="!pageLoaded"
+>
   <div class="heading">
     <div class="house-data">
       <img src="../../../assets/icons/house-icon-white.svg" alt="Bolig" />
@@ -22,7 +26,7 @@
     </div>
   </div>
   <div class="body">
-    <div *ngIf="!isStatMode" class="estimat" [@fade]>
+    <div *ngIf="!isStatMode" class="estimat" [@fade]="pageLoaded">
       <p class="slide-toggle-text bold">Automatisk estimat av boligen din:</p>
 
       <mat-slide-toggle
@@ -149,7 +153,7 @@
         class="small white saveForEstimate bold"
         [@fade]
       >
-        Lagre endringene for å hente estimat
+        Lagre endringer for å hente nytt estimat
       </p>
     </div>
   </div>

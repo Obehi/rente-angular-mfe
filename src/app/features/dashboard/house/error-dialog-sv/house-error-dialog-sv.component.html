@@ -1,10 +1,20 @@
-
 <div class="top">
   <mat-icon (click)="onClose()" class="close-modal">close</mat-icon>
 
-  <h4>Vi lyckades inte att estimera ditt bostadsvärde</h4>
+  <h4>
+    Vi lyckades inte estimera bostadens värde. Det kan vara fler orsaker till
+    det:
+  </h4>
 
-  <p>Lägg in bostadsvärdet under <b>eget estimat</b> för att få korrekt värde på din bostad.</p>
+  <ul>
+    <li>Fel adress eller postnummer</li>
+    <li>Vi kan inte värdera fritidshus</li>
+  </ul>
+
+  <p>
+    Kolla att adressen är korrekt eller stäng av
+    <b>Automatisk värdering</b> och lägg in värdet manuellt.
+  </p>
 </div>
 <div class="bottom">
   <rente-button cdkFocusInitial color="primary" (click)="onClose()">

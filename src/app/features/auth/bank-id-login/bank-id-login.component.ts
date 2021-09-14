@@ -68,6 +68,7 @@ import {
 import { ApiError } from '@shared/constants/api-error';
 import { GlobalStateService } from '@services/global-state.service';
 import { RouteEventsService } from '@services/route-events.service';
+import { RxjsOperatorService } from '@services/rxjs-operator.service';
 
 import { LoginTermsDialogV2Component } from '@shared/components/ui-components/dialogs/login-terms-dialog-v2/login-terms-dialog-v2.component';
 import { VirdiManualValueDialogComponent } from '@shared/components/ui-components/dialogs/virdi-manual-value-dialog/virdi-manual-value-dialog.component';
@@ -135,7 +136,8 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     private loginService: LoginService,
     private globalStateService: GlobalStateService,
     private routeEventsService: RouteEventsService,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private rxjsOperatorService: RxjsOperatorService
   ) {
     this.setRoutingListeners();
   }
@@ -443,10 +445,18 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
 
   private initFixedLoansLoansForm(loanInfo): void {
     this.isLoading = true;
+
+    this.loanService
+      .getSignicatLoansInfo()
+      .pipe(this.rxjsOperatorService.retry404ThreeTimes)
+      .subscribe(() => console.log('wuuupp'));
+
     if (loanInfo.newLoan === false) {
       forkJoin([
         this.loanService.getOffersBanks(),
-        this.loanService.getSignicatLoansInfo()
+        this.loanService
+          .getSignicatLoansInfo()
+          .pipe(this.rxjsOperatorService.retry404ThreeTimes)
       ]).subscribe(([offerBanks, signicatLoansInfo]) => {
         const firstLoan = signicatLoansInfo[0];
         this.loanId = firstLoan.id;
@@ -478,7 +488,9 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
       });
     } else {
       forkJoin([
-        this.loanService.getSignicatLoansInfo(),
+        this.loanService
+          .getSignicatLoansInfo()
+          .pipe(this.rxjsOperatorService.retry404ThreeTimes),
         this.loanService.getOffersBanks()
       ]).subscribe(
         ([loanInfo, offerBanks]) => {
@@ -519,7 +531,9 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     this.isLoading = true;
     forkJoin([
       this.loanService.getOffersBanks(),
-      this.loanService.getSignicatLoansInfo()
+      this.loanService
+        .getSignicatLoansInfo()
+        .pipe(this.rxjsOperatorService.retry404ThreeTimes)
     ]).subscribe(([offerBanks, signicatLoansInfo]) => {
       if (signicatLoansInfo?.length === 0) {
         this.initNonFixedLoanBankNewLoanForm();
@@ -578,7 +592,9 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
 
     forkJoin([
       this.loanService.getOffersBanks(),
-      this.loanService.getSignicatLoansInfo()
+      this.loanService
+        .getSignicatLoansInfo()
+        .pipe(this.rxjsOperatorService.retry404ThreeTimes)
     ]).subscribe(([offerBanks, signicatLoansInfo]) => {
       this.productIdOptions = (offerBanks.offers as any[]).map((offer) => {
         return {
@@ -626,7 +642,9 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
       forkJoin([
         this.loanService.getClientInfo(),
         this.loanService.getOffersBanks(),
-        this.loanService.getSignicatLoansInfo()
+        this.loanService
+          .getSignicatLoansInfo()
+          .pipe(this.rxjsOperatorService.retry404ThreeTimes)
       ]).subscribe(([clientInfo, offerBanks, signicatLoansInfo]) => {
         if (signicatLoansInfo?.length === 0) {
           this.initNewLoanLoanForm();

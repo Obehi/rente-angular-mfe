@@ -103,7 +103,7 @@ export class MessageBannerService implements OnDestroy {
     this._componentRef.instance.displayText = _newtext;
 
     if (_shouldSetTimeout) {
-      this.setTimeoutListener(_newtext);
+      this.setTimeoutListener(_newtime);
     }
 
     this.appRef.attachView(this._componentRef.hostView);
@@ -183,7 +183,7 @@ export class MessageBannerService implements OnDestroy {
     this.setTimeoutListener(_newtime);
   }
 
-  setTimeoutListener(timeout): void {
+  setTimeoutListener(timeout: number): void {
     this.detachViewSubscription = this.detachViewSubject
       .pipe(delay(timeout + 2000))
       .subscribe(() => {
