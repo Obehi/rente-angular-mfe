@@ -1535,7 +1535,7 @@ export const MissingBankList: BankVo[] = [
     false,
     false,
     false,
-    true,
+    false,
     false,
     null
   ),
@@ -1565,7 +1565,7 @@ export const MissingBankList: BankVo[] = [
     false,
     false,
     false,
-    true,
+    false,
     false,
     null
   ),
@@ -1580,7 +1580,7 @@ export const MissingBankList: BankVo[] = [
     false,
     false,
     false,
-    true,
+    false,
     false,
     null
   ),
@@ -1641,7 +1641,7 @@ export const MissingBankList: BankVo[] = [
     false,
     false,
     false,
-    true,
+    false,
     false,
     null
   ),
@@ -1656,7 +1656,7 @@ export const MissingBankList: BankVo[] = [
     false,
     false,
     false,
-    true,
+    false,
     false,
     null
   ),
@@ -1791,7 +1791,7 @@ export const MissingBankList: BankVo[] = [
     false,
     false,
     false,
-    true,
+    false,
     false,
     null
   ),
@@ -1866,7 +1866,7 @@ export const MissingBankList: BankVo[] = [
     false,
     false,
     false,
-    true,
+    false,
     false,
     null
   ),
@@ -1911,7 +1911,7 @@ export const MissingBankList: BankVo[] = [
     false,
     false,
     false,
-    true,
+    false,
     false,
     null
   ),
@@ -1926,7 +1926,7 @@ export const MissingBankList: BankVo[] = [
     false,
     false,
     false,
-    true,
+    false,
     false,
     null
   ),
