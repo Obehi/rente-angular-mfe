@@ -20,11 +20,6 @@
       novalidate
       (ngSubmit)="updateProperty(propertyForm.value)"
     >
-      <rente-user-score-preferences
-        [scoreListener]="scoreListener$"
-        [initialScores]="initialScores$"
-      ></rente-user-score-preferences>
-
       <div class="field">
         <rente-input
           [placeholder]="'E-post'"
@@ -185,7 +180,6 @@
         <mat-autocomplete
           #auto="matAutocomplete"
           (optionSelected)="selected($event)"
-          (click)="membershipIsntFocused()"
         >
           <mat-option
             *ngFor="let membership of filteredMemberships | async"

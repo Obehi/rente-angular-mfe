@@ -190,7 +190,6 @@ export class OffersListNoComponent implements OnInit, OnDestroy {
     this.initDemoListener();
     this.initCurrentOfferListener();
     this.initScoreListener();
-    this.scrollSubscription.unsubscribe();
 
     this.currentOfferInfo = JSON.parse(JSON.stringify(this.offersInfo));
 
@@ -430,23 +429,6 @@ export class OffersListNoComponent implements OnInit, OnDestroy {
       )
       .subscribe(() => {
         this.messageBannerService.detachView();
-        this.notificationService.resetOfferNotification();
-      });
-  }
-
-  private setNotificationScrollListener(): void {
-    const obj = document.getElementsByClassName('the-offers')[0];
-
-    this.scrollSubscription = fromEvent(window, 'scroll')
-      .pipe(
-        filter(() => obj?.getBoundingClientRect().top <= 0),
-        switchMap(() =>
-          this.notificationService.getOfferNotificationAsObservable()
-        ),
-        filter((notificationNumber) => notificationNumber === 1)
-      )
-      .subscribe(() => {
-        this.messageService.detachView();
         this.notificationService.resetOfferNotification();
       });
   }
