@@ -1,5 +1,5 @@
 <div class="loan-summary" *ngIf="isSummaryNeeded">
-  <div class="fix">
+  <div>
     <div>
       <h3 class="title">Sammendrag av lån</h3>
     </div>
@@ -60,8 +60,11 @@
   </div>
 </div>
 
-<div class="summary main-container">
+<div [ngClass]="{ 'main-container': loanData.loans.length === 1 }">
   <div *ngFor="let loan of loanData.loans; index as i">
+    <div *ngIf="loanData.loans.length === 1" class="general-title">
+      <h3>Mitt lån</h3>
+    </div>
     <rente-loan-signicat-users
       [index]="i"
       [loan]="loan"
