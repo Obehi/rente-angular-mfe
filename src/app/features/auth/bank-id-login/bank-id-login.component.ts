@@ -42,9 +42,9 @@ import {
   AddressCreationDto,
   ClientUpdateInfo,
   ConfirmationSetDto,
-  LoansService,
   MembershipTypeDto
-} from '@services/remote-api/loans.service';
+} from '@shared/models/loans';
+import { LoansService } from '@services/remote-api/loans.service';
 import { NavigationInterceptionService } from '@services/navigation-interception.service';
 import { MatStepper } from '@angular/material';
 import {
@@ -939,6 +939,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     this.memberships.push(event.option.value);
     this.membershipInput.nativeElement.value = '';
     this.membershipCtrl.setValue(null);
+    document.getElementById('membership-input')?.blur();
   }
 
   private clearDuplicates(

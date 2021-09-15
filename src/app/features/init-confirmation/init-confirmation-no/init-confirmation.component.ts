@@ -1,19 +1,4 @@
-import {
-  LoansService,
-  ConfirmationSetDto,
-  ConfirmationGetDto,
-  MembershipTypeDto,
-  AddressCreationDto
-} from '@services/remote-api/loans.service';
-import { UserService } from '@services/remote-api/user.service';
-import {
-  Component,
-  OnInit,
-  ElementRef,
-  ViewChild,
-  OnDestroy
-} from '@angular/core';
-import { LoggingService } from '@services/logging.service';
+import { OnDestroy } from '@angular/core';
 import {
   Validators,
   AbstractControl,
@@ -21,8 +6,15 @@ import {
   FormBuilder,
   FormControl
 } from '@angular/forms';
-import { BehaviorSubject, forkJoin, Observable, of, merge } from 'rxjs';
-import { startWith, map, tap, switchMap, filter } from 'rxjs/operators';
+import {
+  BehaviorSubject,
+  forkJoin,
+  Observable,
+  of,
+  merge,
+  Subject
+} from 'rxjs';
+import { startWith, map, switchMap, filter } from 'rxjs/operators';
 import { ENTER, COMMA } from '@angular/cdk/keycodes';
 import {
   MatAutocomplete,
@@ -30,11 +22,22 @@ import {
   MatChipInputEvent,
   MatDialog
 } from '@angular/material';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { LoansService } from '@services/remote-api/loans.service';
+import {
+  ConfirmationSetDto,
+  ConfirmationGetDto,
+  MembershipTypeDto,
+  AddressCreationDto
+} from '@shared/models/loans';
+import { LoggingService } from '@services/logging.service';
+import { OptimizeService } from '@services/optimize.service';
+
 import { VALIDATION_PATTERN } from '@config/validation-patterns.config';
-import { OfferInfo } from '@shared/models/offers';
 import { DialogInfoComponent } from '../dialog-info/dialog-info.component';
 
+import { OfferInfo } from '@shared/models/offers';
 import { Mask } from '@shared/constants/mask';
 import { ROUTES_MAP } from '@config/routes-config';
 import { CustomLangTextService } from '@services/custom-lang-text.service';
@@ -43,6 +46,8 @@ import { getAnimationStyles } from '@shared/animations/animationEnums';
 import { ApiError } from '@shared/constants/api-error';
 import { VirdiManualValueDialogComponent } from '@shared/components/ui-components/dialogs/virdi-manual-value-dialog/virdi-manual-value-dialog.component';
 import { GlobalStateService } from '@services/global-state.service';
+import { UserService } from '@services/remote-api/user.service';
+import { UserScorePreferences } from '@models/user';
 
 @Component({
   selector: 'rente-init-confirmation-sv',
@@ -59,7 +64,7 @@ export class InitConfirmationNoComponent implements OnInit, OnDestroy {
   public separatorKeysCodes: number[] = [ENTER, COMMA];
   public membershipCtrl = new FormControl();
   public filteredMemberships: Observable<MembershipTypeDto[]> | undefined;
-  public membershipFocus$ = new BehaviorSubject<any>(true);
+  public membershipFocus$ = new BehaviorSubject<boolean>(true);
   public memberships: any = [];
   public allMemberships: MembershipTypeDto[];
   public userData: ConfirmationGetDto;
@@ -69,6 +74,11 @@ export class InitConfirmationNoComponent implements OnInit, OnDestroy {
   public virdiSuccess = false;
   public estimatedPropertyValueFromVirdi: number;
   public stepFillOutForm: boolean;
+
+  scoreListener$ = new BehaviorSubject<UserScorePreferences>({});
+  initialScores$: Observable<UserScorePreferences>;
+
+  submit$ = new Subject<any>();
 
   @ViewChild('membershipInput') membershipInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete: MatAutocomplete;
@@ -80,14 +90,17 @@ export class InitConfirmationNoComponent implements OnInit, OnDestroy {
     public dialog: MatDialog,
     public customLangTextService: CustomLangTextService,
     private logging: LoggingService,
-    private messageBanner: MessageBannerService,
-    private globalStateService: GlobalStateService
+    private globalStateService: GlobalStateService,
+    private userService: UserService
   ) {
     this.stepFillOutForm = true;
     this.userData = new ConfirmationGetDto();
   }
 
   ngOnInit(): void {
+    this.initialScores$ = this.userService.getUserScorePreferences().pipe();
+
+    this.initialScores$.subscribe(() => {});
     this.isLoading = true;
     forkJoin([
       this.loansService.getLoansAndRateType(),
@@ -362,7 +375,7 @@ export class InitConfirmationNoComponent implements OnInit, OnDestroy {
     }
   }
 
-  remove(membership, index): void {
+  remove(membership: MembershipTypeDto, index: number): void {
     this.allMemberships.push(membership);
     this.allMemberships.sort((a, b) =>
       a.name > b.name ? 1 : b.name > a.name ? -1 : 0
@@ -374,6 +387,7 @@ export class InitConfirmationNoComponent implements OnInit, OnDestroy {
     this.memberships.push(event.option.value);
     this.membershipInput.nativeElement.value = '';
     this.membershipCtrl.setValue(null);
+    document.getElementById('membership-input')?.blur();
   }
 
   private filter(value: any): MembershipTypeDto[] {

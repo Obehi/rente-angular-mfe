@@ -7,7 +7,7 @@ import {
   ViewChild
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { MembershipTypeDto } from '@services/remote-api/loans.service';
+import { MembershipTypeDto } from '@shared/models/loans';
 import { Observable, Subject } from 'rxjs';
 import { distinctUntilChanged, take } from 'rxjs/operators';
 import { SelectAutocompleteComponent } from 'mat-select-autocomplete';
@@ -16,11 +16,6 @@ import { MatDialog } from '@angular/material';
 import { MembershipService } from '@services/membership.service';
 import { CustomLangTextService } from '@services/custom-lang-text.service';
 
-interface Membership {
-  name?: string;
-  value?: string;
-  label: string;
-}
 @Component({
   selector: 'rente-property-input',
   templateUrl: './property-input.component.html',

@@ -13,13 +13,16 @@ export class OfferDetailsSvComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit() {
+  ngOnInit(): void {
+    // An alternative for the check could be typeof establishFee === 'undefined's
+    // eslint-disable-next-line eqeqeq
     if (this.offer.establishmentFee == undefined) {
       this.offer.establishmentFee = 0;
     }
   }
 
-  public onClick(bigBoolean) {
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+  public onClick(bigBoolean): void {
     this.closeClicked.emit(bigBoolean);
   }
 }

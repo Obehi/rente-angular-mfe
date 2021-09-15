@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AuthService } from '@services/remote-api/auth.service';
 import { LocalStorageService } from '@services/local-storage.service';
 import { Observable } from 'rxjs';
+import { FirstTimeLoanDebtData } from '@shared/models/user';
 
 export interface FirstBuyersState {
   outstandingDebt: number | null;
@@ -35,7 +36,7 @@ export class FirstBuyersService {
     ) as FirstBuyersState;
   }
 
-  getAuthToken(debtData: any): Observable<any> {
+  getAuthToken(debtData: FirstTimeLoanDebtData): Observable<{ token: string }> {
     return this.authService.getFirstTimeLoanToken(debtData);
   }
 }

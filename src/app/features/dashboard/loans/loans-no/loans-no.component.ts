@@ -40,7 +40,7 @@ export class LoansNoComponent implements OnInit {
 
   constructor(private loansService: LoansService) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.locale = locale;
     this.loansService.getLoans().subscribe(
       (res: Loans) => {

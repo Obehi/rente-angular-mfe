@@ -6,7 +6,8 @@ import {
   EventEmitter,
   AfterViewInit
 } from '@angular/core';
-import { AddressDto } from '@services/remote-api/loans.service';
+
+import { AddressDto } from '@shared/models/loans';
 import { MatTabChangeEvent } from '@angular/material';
 import { EnvService } from '@services/env.service';
 import { animate, style, transition, trigger } from '@angular/animations';
@@ -38,7 +39,7 @@ export enum AddressFormMode {
     ])
   ]
 })
-export class HouseFormNoComponent implements OnInit {
+export class HouseFormNoComponent implements OnInit, AfterViewInit {
   @Input() index: number;
   @Input() address: AddressDto;
 
@@ -51,12 +52,15 @@ export class HouseFormNoComponent implements OnInit {
   mode = AddressFormMode.Editing;
   changesMade = false;
   didSave: boolean;
+  pageLoaded: boolean;
 
   get ableTosave(): boolean {
     return this.isAddressValid && this.changesMade;
   }
 
-  constructor(public envService: EnvService) {}
+  constructor(public envService: EnvService) {
+    this.pageLoaded = false;
+  }
 
   ngOnInit(): void {
     this.didSave = false;
@@ -69,6 +73,10 @@ export class HouseFormNoComponent implements OnInit {
       this.setHouseInputListener();
       this.setVirdiErrorMessageState();
     }, 0);
+  }
+
+  ngAfterViewInit(): void {
+    this.pageLoaded = true;
   }
 
   get isAbleToDelete(): boolean {
@@ -101,7 +109,8 @@ export class HouseFormNoComponent implements OnInit {
   }
 
   // remove spaces and convert to number type
-  formatThousand(event): number {
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+  formatThousand(event: any): number {
     return Number(event.replace(/\s+/g, ''));
   }
 
@@ -121,7 +130,8 @@ export class HouseFormNoComponent implements OnInit {
     this.deleteAddress.emit(this.address);
   }
 
-  manualPropertyValueChanged($event): void {
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+  manualPropertyValueChanged($event: any): void {
     if ($event && $event.target) {
       const newValue = parseInt(String($event.target.value).replace(/\D/g, ''));
       this.address.manualPropertyValue = newValue >= 0 ? newValue : 0;

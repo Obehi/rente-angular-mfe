@@ -76,6 +76,7 @@ export class EnvService {
     );
   }
 
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   handleEnvFile(returnedEnv: any): void {
     this.environment.shouldLog = returnedEnv['VAR_1'];
     this.environment.loginDnbIsOn = returnedEnv['VAR_2'];

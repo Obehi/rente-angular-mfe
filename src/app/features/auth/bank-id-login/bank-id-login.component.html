@@ -5,22 +5,30 @@
 
   <div class="forms-wrapper">
     <div *ngIf="signicatIframeUrl !== null" class="iframe-wrapper">
-      <p class="warning" *ngIf="shouldShowBankWarningMessageDNB">
-        Vi opplever at {{ bank?.label }} sperrer sine kunder fra å innhente egne
-        lånedata. Derfor har vi laget en løsning hvor du selv fyller inn dine
-        lånedata.
-        <span *ngIf="bank?.name === 'DNB'">
+      <div class="intro" *ngIf="shouldShowBankWarningMessageDNB">
+        <p>
+          Vi opplever at {{ bank?.label }} sperrer sine kunder fra å innhente
+          egne lånedata. Derfor har vi laget en løsning hvor du selv fyller inn
+          dine lånedata:
+        </p>
+
+        <ul>
+          <li>Lånebeløp</li>
+          <li>Nominell rente</li>
+          <li>Løpetid</li>
+          <li>Termingebyr</li>
+          <li>Type lån</li>
+        </ul>
+        <br />
+        <p *ngIf="bank?.name === 'DNB'">
           Les mer om hvor du finner disse dataene
           <a
             class="link"
             href="https://blogg.renteradar.no/slik-finner-du-din-rente-og-lanedata-i-dnbs-mobil-og-nettbank/"
             >her</a
           >.
-        </span>
-        <br />
-        <br />
-        Velg identifikasjonsmetode nedenfor for å bruke denne løsningen.
-      </p>
+        </p>
+      </div>
 
       <div class="warning" *ngIf="shouldShowBankWarningMessage">
         <p>
@@ -30,11 +38,25 @@
         </p>
       </div>
 
-      <p>
-        Ved å logge inn samtykker til at Renteradar.no henter og behandler dine
-        personopplysninger.
-        <a class="link" (click)="openTermsDialog()">Les mer</a>
-      </p>
+      <div *ngIf="bank?.name !== 'DNB'" class="intro warning">
+        <p>
+          For denne banken har vi ingen løsning for automatisk innhentning av
+          lånedata enda. Du må derfor fylle inn dette manuelt og vil trenge:
+        </p>
+        <ul *ngIf="bank?.hasFixedLoans === false">
+          <li>Lånebeløp</li>
+          <li>Nominell rente</li>
+          <li>Løpetid</li>
+          <li>Termingebyr</li>
+          <li>Type lån</li>
+        </ul>
+
+        <ul *ngIf="bank?.hasFixedLoans === true">
+          <li>Lånebeløp</li>
+          <li>Løpetid</li>
+          <li>Låneprodukt</li>
+        </ul>
+      </div>
 
       <iframe
         *ngIf="signicatIframeUrl !== null"
@@ -42,6 +64,12 @@
         height="400"
         width="400"
       ></iframe>
+
+      <p>
+        Ved å logge inn samtykker til at Renteradar.no henter og behandler dine
+        personopplysninger.
+        <a class="link" (click)="openTermsDialog()">Les mer</a>
+      </p>
     </div>
 
     <div *ngIf="!isMobile"></div>
@@ -742,6 +770,7 @@
                   <mat-form-field>
                     <input
                       type="text"
+                      id="membership-input"
                       (focus)="membershipIsFocused()"
                       placeholder="+ Legg til medlemskap (valgfritt)"
                       matInput

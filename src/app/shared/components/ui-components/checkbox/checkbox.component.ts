@@ -5,11 +5,7 @@ import {
   EventEmitter,
   forwardRef
 } from '@angular/core';
-import {
-  FormControl,
-  ControlValueAccessor,
-  NG_VALUE_ACCESSOR
-} from '@angular/forms';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
   selector: 'rente-checkbox',
@@ -32,17 +28,19 @@ export class CheckboxComponent {
 
   propagateChange: any = () => {};
 
-  writeValue(value) {
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+  writeValue(value): void {
     if (value) {
       this.checked = value;
     }
   }
 
-  registerOnChange(fn) {
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+  registerOnChange(fn): void {
     this.propagateChange = fn;
   }
 
-  registerOnTouched() {}
+  registerOnTouched(): void {}
 
   valueChange(): void {
     this.propagateChange(this.checked);

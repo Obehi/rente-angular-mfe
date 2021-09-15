@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { SeoService } from '@services/seo.service';
-import { ROUTES_MAP } from '@config/routes-config';
 import { EnvService } from '@services/env.service';
 
 @Component({

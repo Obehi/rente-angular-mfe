@@ -149,7 +149,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
   }
 
   @HostListener('window:message', ['$event'])
-  onMessage(event) {
+  onMessage(event): void {
     if (event.origin !== 'https://link.tink.com') {
       return;
     }
@@ -755,6 +755,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
                         undefined,
                         this.isTinkBank
                       );
+
                       this.router.navigate([
                         '/dashboard/' + ROUTES_MAP.offers,
                         { state: { isInterestRateSet: true } }
