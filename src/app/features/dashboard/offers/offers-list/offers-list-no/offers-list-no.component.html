@@ -39,10 +39,11 @@
         "
       >
         <img
+          [@fade]="showScorePreferences ? 'open' : 'close'"
           [src]="
             showScorePreferences
-              ? '../../../assets/icons/slider-icon-blue-medium.svg'
-              : '../../../assets/icons/slider-icon-green.svg'
+              ? '../../../assets/icons/preferences-icon-green.svg'
+              : '../../../assets/icons/preferences-icon-green.svg'
           "
         />
       </span>

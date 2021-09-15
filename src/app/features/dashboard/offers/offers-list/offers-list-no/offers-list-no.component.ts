@@ -100,11 +100,24 @@ import { MessageBannerService } from '../../../../../shared/services/message-ban
       transition('* => open', [animate('0.2s', style({ left: '50%' }))])
     ]),
     trigger('fade', [
-      transition(':enter', [
-        style({ opacity: 0 }),
-        animate('0.2s ease-in', style({ opacity: 1 }))
+      state(
+        'open',
+        style({
+          transform: 'rotate(90deg)'
+        })
+      ),
+      state(
+        'close',
+        style({
+          transform: 'rotate(0deg)'
+        })
+      ),
+      transition('* => close', [
+        animate('0.5s ease-in-out', style({ transform: 'rotate(0deg)' }))
       ]),
-      transition(':leave', [animate('0.1s ease-out', style({ opacity: 0 }))])
+      transition('* => open', [
+        animate('0.5s ease-in-out', style({ transform: 'rotate(90deg)' }))
+      ])
     ])
   ]
 })

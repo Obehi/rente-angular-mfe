@@ -1,18 +1,20 @@
 <div class="mypanel">
   <div class="title" (click)="toggle.emit()">
     {{ title }}
-    <mat-icon
-      class="icon"
-      *ngIf="!opened"
-      [@openClose]="!opened ? 'close' : 'open'"
-      >expand_more</mat-icon
-    >
-    <mat-icon
-      class="icon"
-      *ngIf="opened"
-      [@openClose]="opened ? 'open' : 'close'"
-      >expand_less</mat-icon
-    >
+    <div class="icon-div">
+      <mat-icon
+        class="icon"
+        *ngIf="!opened"
+        [@openClose]="!opened ? 'close' : 'open'"
+        >expand_more</mat-icon
+      >
+      <mat-icon
+        class="icon"
+        *ngIf="opened"
+        [@openClose]="opened ? 'open' : 'close'"
+        >expand_less</mat-icon
+      >
+    </div>
   </div>
   <div class="body" [@smoothCollapse]="!opened ? 'initial' : 'final'">
     <ng-content></ng-content>

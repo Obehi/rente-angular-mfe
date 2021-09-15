@@ -16,8 +16,15 @@
   display: none;
 }
 
-.icon {
-  position: absolute;
-  color: aquamarine;
-  right: 28rem;
+.icon-div {
+  width: 327px;
+  margin: auto;
+  display: flex;
+  justify-content: end;
+  .icon {
+    color: #18bc9c;
+  }
+  @media (max-width: 600px) {
+    width: 87%;
+  }
 }
