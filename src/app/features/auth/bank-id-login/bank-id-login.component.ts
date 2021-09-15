@@ -939,6 +939,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     this.memberships.push(event.option.value);
     this.membershipInput.nativeElement.value = '';
     this.membershipCtrl.setValue(null);
+    document.getElementById('membership-input')?.blur();
   }
 
   private clearDuplicates(
