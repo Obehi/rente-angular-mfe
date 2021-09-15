@@ -59,7 +59,7 @@ export class InitConfirmationNoComponent implements OnInit, OnDestroy {
   public separatorKeysCodes: number[] = [ENTER, COMMA];
   public membershipCtrl = new FormControl();
   public filteredMemberships: Observable<MembershipTypeDto[]> | undefined;
-  public membershipFocus$ = new BehaviorSubject<any>(true);
+  public membershipFocus$ = new BehaviorSubject<boolean>(true);
   public memberships: any = [];
   public allMemberships: MembershipTypeDto[];
   public userData: ConfirmationGetDto;
@@ -183,6 +183,10 @@ export class InitConfirmationNoComponent implements OnInit, OnDestroy {
   }
 
   public membershipIsFocused(): void {
+    this.membershipFocus$.next(true);
+  }
+
+  public membershipIsntFocused(): void {
     this.membershipFocus$.next(true);
   }
 
@@ -374,6 +378,7 @@ export class InitConfirmationNoComponent implements OnInit, OnDestroy {
     this.memberships.push(event.option.value);
     this.membershipInput.nativeElement.value = '';
     this.membershipCtrl.setValue(null);
+    document.getElementById('membership-input')?.blur();
   }
 
   private filter(value: any): MembershipTypeDto[] {

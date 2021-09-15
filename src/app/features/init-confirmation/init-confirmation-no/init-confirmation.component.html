@@ -168,6 +168,7 @@
       </p>
       <mat-form-field>
         <input
+          id="membership-input"
           (focus)="membershipIsFocused()"
           type="text"
           placeholder="+ Legg til medlemskap (valgfritt)"
@@ -180,6 +181,7 @@
         <mat-autocomplete
           #auto="matAutocomplete"
           (optionSelected)="selected($event)"
+          (click)="membershipIsntFocused()"
         >
           <mat-option
             *ngFor="let membership of filteredMemberships | async"
