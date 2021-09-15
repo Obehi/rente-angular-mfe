@@ -1,9 +1,5 @@
 .mypanel {
-  color: green;
-}
-
-mat-icon {
-  position: absolute;
+  color: #222;
 }
 
 .mypanel .title {
