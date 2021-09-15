@@ -181,7 +181,6 @@
         <mat-autocomplete
           #auto="matAutocomplete"
           (optionSelected)="selected($event)"
-          (click)="membershipIsntFocused()"
         >
           <mat-option
             *ngFor="let membership of filteredMemberships | async"

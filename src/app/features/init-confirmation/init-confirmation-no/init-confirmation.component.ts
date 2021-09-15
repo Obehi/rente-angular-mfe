@@ -186,10 +186,6 @@ export class InitConfirmationNoComponent implements OnInit, OnDestroy {
     this.membershipFocus$.next(true);
   }
 
-  public membershipIsntFocused(): void {
-    this.membershipFocus$.next(true);
-  }
-
   isErrorState(control: AbstractControl | null): boolean {
     return !!(control && control.invalid && (control.dirty || control.touched));
   }
