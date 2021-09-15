@@ -19,7 +19,7 @@ import {
   selector: 'custom-dropdown',
 
   templateUrl: './custom-dropdown.component.html',
-  styleUrls: ['custom-dropdown.component.css'],
+  styleUrls: ['custom-dropdown.component.scss'],
   animations: [
     trigger('openClose', [
       state(
