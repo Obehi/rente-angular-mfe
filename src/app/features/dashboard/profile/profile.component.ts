@@ -25,7 +25,7 @@ import {
   Observable,
   of,
   Subject,
-  throwError
+  Subscription
 } from 'rxjs';
 import { UserService } from '@services/remote-api/user.service';
 
@@ -132,6 +132,7 @@ export class ProfileComponent
   public username: string;
   public mask = Mask;
   public locale = locale;
+  public selectedMembershipSubscription: Subscription;
   changesMade = false;
   public isSweden = false;
   public animationType = getAnimationStyles();
@@ -207,7 +208,9 @@ export class ProfileComponent
     }
   }
 
-  ngOnDestroy(): void {}
+  ngOnDestroy(): void {
+    this.selectedMembershipSubscription.unsubscribe();
+  }
 
   ngOnInit(): void {
     this.initialScores$ = this.userService.getUserScorePreferences();
@@ -224,7 +227,7 @@ export class ProfileComponent
           }
         });
 
-        this.membershipService.setSelectedMemberships(dto.memberships);
+        // this.membershipService.setSelectedMemberships(dto.memberships);
         // We are getting strings and not objects from the Back-end and therefore we should map them into Objects.
         this.previousStateMemberships = dto.memberships.map((args) => {
           return { name: args, label: '' };
@@ -266,9 +269,17 @@ export class ProfileComponent
       }
     );
 
-    this.membershipService.getSelectedMemberships().subscribe((args) => {
-      this.previousStateMemberships = args;
-    });
+    this.selectedMembershipSubscription = this.membershipService
+      .getSelectedMemberships()
+      .pipe(distinctUntilChanged())
+      .subscribe((args) => {
+        this.previousStateMemberships = args;
+        this.membershipCtrl.setValue(
+          this.previousStateMemberships.map((membership) => {
+            return membership.name;
+          })
+        );
+      });
 
     if (locale.includes('sv')) {
       this.isSweden = true;

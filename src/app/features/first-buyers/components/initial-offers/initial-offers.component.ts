@@ -11,8 +11,9 @@ import {
   MatDialog,
   MatStepper
 } from '@angular/material';
-import { Router } from '@angular/router';
 import { FirstBuyersService } from '@features/first-buyers/first-buyers.service';
+
+import { Router } from '@angular/router';
 import { FirstBuyersAPIService } from '@services/remote-api/first-buyers-api.service';
 import { LoansService } from '@services/remote-api/loans.service';
 import { MembershipTypeDto } from '@shared/models/loans';

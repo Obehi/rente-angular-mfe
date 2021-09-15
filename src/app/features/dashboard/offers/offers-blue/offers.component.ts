@@ -130,7 +130,7 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
   public setNotifAlert(n: number): void {
     if (n > 0) {
       this.messageService.setView(
-        `Tilbudene er oppdatert, trykk her!`,
+        this.customLangTextSerice.getOffersUpdatedNotificationText(),
         73333000,
         this.animationStyles.DROP_DOWN_UP,
         'success-with-arrow',

@@ -22,6 +22,7 @@ import { MessageBannerService } from '@services/message-banner.service';
 import { CustomLangTextService } from '@services/custom-lang-text.service';
 import { getAnimationStyles } from '@shared/animations/animationEnums';
 import { NotificationService } from '@services/notification.service';
+import { HouseErrorDialogSv } from './error-dialog-sv/house-error-dialog-sv.component';
 
 @Component({
   selector: 'rente-houses',
@@ -61,12 +62,13 @@ export class HousesComponent implements OnInit, DeactivationGuarded {
   public showExplainText: boolean;
   public propertyIconPath: string | null;
   public animationType = getAnimationStyles();
+  public addressId: number;
 
   constructor(
     private loansService: LoansService,
     eventService: EventService,
     dialog: MatDialog,
-    private envService: EnvService,
+    public envService: EnvService,
     private messageBanner: MessageBannerService,
     private customLangTextService: CustomLangTextService,
     private notificationService: NotificationService
@@ -84,6 +86,7 @@ export class HousesComponent implements OnInit, DeactivationGuarded {
     this.loansService.getAddresses().subscribe((r) => {
       this.isLoading = false;
       this.addresses = r.addresses;
+      this.addressId = r.addresses.length;
       this.showAddresses = true;
 
       if (
@@ -121,6 +124,7 @@ export class HousesComponent implements OnInit, DeactivationGuarded {
         addr.useManualPropertyValue = false;
       }
       this.addresses.push(addr);
+      this.addressId++;
     }
   }
 
@@ -131,6 +135,16 @@ export class HousesComponent implements OnInit, DeactivationGuarded {
       this.addresses.splice(i, 1);
       this.saveAddresses();
     }
+  }
+
+  scrollTo(divId: number): void {
+    setTimeout(() => {
+      document.getElementById(`${divId}`)?.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+        inline: 'start'
+      });
+    }, 100);
   }
 
   get ableToAddAddress(): boolean {
@@ -177,7 +191,7 @@ export class HousesComponent implements OnInit, DeactivationGuarded {
           if (this.envService.isSweden() === true) {
             if (address.error === true) {
               this.handleErrorState();
-              this.dialog.open(HouseFormErrorDialogComponent);
+              this.dialog.open(HouseErrorDialogSv);
               return;
             } else if (
               address.useManualPropertyValue === false &&

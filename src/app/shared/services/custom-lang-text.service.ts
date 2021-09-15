@@ -443,6 +443,15 @@ export class CustomLangTextService {
     throw new Error('Should include either SV or NB');
   }
 
+  getOffersUpdatedNotificationText(): string {
+    if (locale.includes('sv')) {
+      return 'Erbjudandena är uppdaterade, tryck här!';
+    } else if (locale.includes('nb')) {
+      return 'Tilbudene er oppdatert, trykk her!';
+    }
+    throw new Error('Should include either SV or NB');
+  }
+
   // getBarometerAdditionalTextLowSavingsState4(): string {
   //   if (locale.includes('sv')) {
   //     return 'men du kan spara en del';

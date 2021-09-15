@@ -1,4 +1,27 @@
-@import "../../../../../styles/theme/_colors.scss";
+@import '../../../../../styles/theme/_colors.scss';
+
+.co-main {
+  background: $secondary;
+  height: 502px;
+}
+
+.main {
+  ::ng-deep .mat-tab-label + .mat-tab-label {
+    margin-left: 10px;
+  }
+  ::ng-deep .mat-tab-label-active {
+    background: $primary !important;
+  }
+
+  height: 502px;
+}
+
+.upper-statistics {
+  ::ng-deep .mat-tab-label {
+    background: #183a63;
+    border-radius: 15px;
+  }
+}
 
 .provided-container {
   display: flex;
@@ -17,6 +40,40 @@
     margin-bottom: 5px;
   }
 }
+
 a {
   color: $primary;
+}
+
+.chart {
+  margin: 15px 0px;
+  border-radius: 5px;
+}
+
+.primary {
+  color: $primary;
+}
+
+.small {
+  color: $white;
+  font-size: 12px;
+}
+
+.big {
+  font-size: 14px;
+  color: $white;
+}
+
+.center {
+  text-align: center;
+}
+
+.virdi {
+  position: absolute;
+  right: 20px;
+  bottom: 55px;
+}
+
+.bold {
+  font-weight: 400;
 }

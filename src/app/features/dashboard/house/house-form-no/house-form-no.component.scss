@@ -1,21 +1,21 @@
-@import "../../../../../styles/theme/_colors.scss";
+@import '../../../../../styles/theme/_colors.scss';
 
+.scroll-anchor {
+  scroll-margin: 100px;
+}
 .housecontainer {
-    background: white;
-    border-radius: 15px;
-    margin: 10px;
-    position: relative;
+  border-radius: 15px;
+  margin: 10px;
+  position: relative;
+  @media (min-width: 600px) {
+    margin: unset;
+    max-width: 365px;
+  }
 }
 .mat-form-field {
   text-align: center;
 }
-.double {
-  grid-gap: 40px;
-}
 
- .estimated{
- min-height: 74px;
-}
 .mat-form-field-disabled * {
   color: rgba(0, 0, 0, 0.38) !important;
 }
@@ -23,8 +23,8 @@
   text-align: center;
   top: -10px;
   position: relative;
+  color: white;
 }
-
 
 .saveForEstimate {
   position: absolute;
@@ -33,23 +33,47 @@
   right: 0;
 }
 .heading {
+  display: flex;
+  justify-content: space-between;
   border-radius: 15px 15px 0 0;
-  background-color: $lightgreen;
-  display: block;
-  padding: 20px 20px;
+  background-color: #004465;
+  padding: 14px 20px;
   font-weight: 500;
   font-size: 14px;
   position: relative;
+  align-items: center;
   b {
     display: inline-block;
     margin-left: 10px;
+    color: $white;
   }
-  mat-icon {
-    color: $blue;
+  .delete-button {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    right: 20px;
+    margin-left: 5px;
+    color: white;
+  }
+  button {
+    background: #18bc9c;
+    border: 0;
+    border-radius: 20px;
+    padding: 5px 20px;
+    width: 120px;
+    height: 33px;
+
+    mat-icon {
+      color: white;
+    }
+  }
+  p {
+    color: $white;
+    background: $primary;
+    font-weight: 400;
+    font-size: 14px;
+  }
+  img {
+    width: 9%;
   }
 }
 .center-button {
@@ -74,16 +98,259 @@ rente-button {
   }
 }
 
-
-
 .body {
+  border-radius: 0px 0px 15px 15px;
+  // height: 570px;
+
+  .double {
+    display: grid;
+    column-gap: 20px;
+  }
+
+  .double-asymetric {
+    display: grid;
+    column-gap: 5px;
+    grid-template-columns: 4fr 1fr;
+  }
+
+  .non-double {
+    width: 50%;
+    margin-left: 25%;
+    text-align: center;
+    min-height: 80px;
+    position: relative;
+
+    ::ng-deep .cdk-text-field-autofill-monitored:not(:-webkit-autofill) {
+      text-align: center;
+      padding: 5px;
+    }
+
+    ::ng-deep .mat-form-field-infix {
+      padding: unset !important;
+      margin-top: -10px;
+    }
+
+    ::ng-deep .mat-form-field-infix {
+      padding: unset !important;
+    }
+  }
+
+  .single {
+    width: 47%;
+    text-align: left;
+    max-height: 70px;
+  }
+
+  .input-text {
+    color: $white;
+    position: absolute;
+    font-size: 12px;
+  }
+
+  .slide-toggle-text {
+    color: white;
+  }
+
+  .bold {
+    font-weight: 400;
+  }
+
+  .white {
+    color: $white;
+  }
+
+  .place-under {
+    position: relative;
+
+    top: -5px;
+    font-size: 10px;
+  }
+
+  .green-text {
+    color: $primary;
+    font-size: 20px;
+    font-weight: 500;
+  }
+
+  .estimate-error {
+    color: red;
+    font-size: 13px;
+    font-weight: 500;
+    white-space: nowrap;
+    margin-top: 10px;
+    margin-left: -10%;
+  }
+
+  .green-minus {
+    color: $primary;
+    font-size: 50px;
+    font-weight: 500;
+    position: absolute;
+    left: 47%;
+    top: 0;
+  }
+
+  .matsuffix-housevalue {
+    position: absolute;
+    color: white;
+    left: 1rem;
+    top: 2.2rem;
+    font-weight: 400;
+  }
+
+  .matsuffix-debt {
+    color: white;
+    position: absolute;
+    font-weight: 400;
+    bottom: 16.8rem;
+    right: 9rem;
+  }
+
+  .matsuffix-size {
+    color: white;
+    position: absolute;
+    left: 2rem;
+    bottom: 16.8rem;
+    font-weight: 500;
+  }
+
+  .house-size {
+    ::ng-deep .cdk-text-field-autofill-monitored:not(:-webkit-autofill) {
+      text-align: center;
+    }
+  }
+
+  .common-debt {
+    ::ng-deep .cdk-text-field-autofill-monitored:not(:-webkit-autofill) {
+      text-align: center;
+      @media (min-width: 600px) {
+        text-align: center;
+      }
+    }
+  }
+
+  .top-text {
+    color: white;
+    margin-top: 5px;
+
+    text-align: center;
+    font-size: 14px;
+  }
+
+  .house-value {
+    color: $white;
+
+    font-size: 15px;
+  }
+
+  .house-data {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+  }
+
+  .rente-input {
+    color: saddlebrown;
+  }
+
+  .estimat {
+    margin-top: 1.5rem;
+    display: grid;
+    grid-template-columns: 1fr 0fr 0fr;
+    padding: 15px;
+    border-radius: 20px;
+    background: #004465;
+    border: 1px solid #478ccc;
+  }
+  .hidden {
+    background: red;
+  }
+
+  ::ng-deep .mat-slide-toggle.mat-checked .mat-slide-toggle-thumb {
+    background-color: $primary;
+  }
+
+  ::ng-deep .cdk-text-field-autofill-monitored:not(:-webkit-autofill) {
+    background: #004465;
+    padding: 5px;
+    height: 2.5rem;
+    border-radius: 10px;
+    color: white;
+    font-weight: 400;
+    font-size: 16px !important;
+    border: 1px solid #478ccc;
+    caret-color: white;
+  }
+
+  ::ng-deep .cdk-text-field-autofill-monitored:not(:-webkit-autofill):focus,
+  .cdk-text-field-autofill-monitored:not(:-webkit-autofill):active {
+    border: 1px solid $primary;
+    background: $secondary;
+    transition: 0.3s;
+  }
+
+  ::ng-deep .mat-form-field-underline {
+    display: none !important;
+  }
+
+  ::ng-deep
+    .mat-form-field-appearance-legacy.mat-form-field-can-float.mat-form-field-should-float
+    .mat-form-field-label {
+    color: white;
+  }
+
+  ::ng-deep .mat-tab-label .mat-tab-label-content {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    white-space: nowrap;
+    color: white;
+  }
+
+  ::ng-deep .ng-tns-c71-3 {
+    color: white;
+  }
+
+  ::ng-deep .radio .mat-tab-label {
+    background: $grey;
+    border-radius: 10px;
+    height: 75px;
+  }
+
+  ::ng-deep .radio .mat-tab-label-active {
+    background: $primary;
+  }
+
+  ::ng-deep .mat-slide-toggle {
+  }
+
   padding: 20px;
   margin-bottom: 40px;
+  background: $blue;
   > div {
     margin-bottom: 20px;
   }
   .address {
-    display: grid;
+    ::ng-deep .cdk-text-field-autofill-monitored:not(:-webkit-autofill):focus,
+    .cdk-text-field-autofill-monitored:not(:-webkit-autofill):active {
+      border: 1px solid $primary;
+      background: $secondary;
+      transition: 0.3s;
+    }
+    ::ng-deep .cdk-text-field-autofill-monitored:not(:-webkit-autofill) {
+      background: #004465;
+      padding: 5px;
+      height: 2.5rem;
+      border-radius: 10px;
+      color: white;
+      font-weight: 400;
+      font-size: 16px !important;
+      border: 1px solid #478ccc;
+      caret-color: white;
+      min-width: 14.8rem;
+      text-indent: 5px;
+    }
+    // display: grid;
     grid-template-columns: 4fr 1fr;
     position: relative;
 
@@ -108,16 +375,18 @@ rente-button {
       }
     }
   }
+
+  .post-number {
+    ::ng-deep .cdk-text-field-autofill-monitored:not(:-webkit-autofill) {
+      text-align: center;
+    }
+  }
 }
 
 @media (min-width: 600px) {
   .housecontainer {
-    border: 1px solid $lesslight;
-    min-height: 627px;
-    
     .heading {
       border-top: none;
-      border-bottom: 1px solid $green;
     }
     .body {
       border-bottom: 0;

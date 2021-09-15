@@ -43,10 +43,9 @@ import {
   trigger
 } from '@angular/animations';
 import { LocalStorageService } from '@services/local-storage.service';
-import { MessageBannerService } from '@services/message-banner.service';
 import { getAnimationStyles } from '@shared/animations/animationEnums';
 import { NotificationService } from '../../../../../shared/services/notification.service';
-
+import { MessageBannerService } from '../../../../../shared/services/message-banner.service';
 @Component({
   selector: 'rente-offers-list',
   templateUrl: './offers-list-no.component.html',
@@ -153,17 +152,22 @@ export class OffersListNoComponent implements OnInit, OnDestroy {
   public demoClickSubscription: Subscription;
 
   // Save for later use
-  /* public getVariation() {
+  /*  public getVariation() {
     if ((window as any).google_optimize === undefined) {
+      console.log('couldnt get optimize');
       return 0;
     }
     let experimentId: string | null;
     if (this.envService.environment.production === true) {
-      experimentId = 'CZzJbFYIQEa_tvn-UeQ2RQ';
+      console.log('is production');
+      experimentId = '_7-we-p9SA2OAVDcKn0xVA';
     } else {
+      console.log('is not production');
       experimentId = 'A6Fvld2GTAG3VE95NWV1Hw';
     }
     const variation = (window as any).google_optimize.get(experimentId);
+    console.log((window as any).google_optimize.get(experimentId));
+    console.log(variation);
     return variation || 0;
   } */
 
@@ -177,12 +181,15 @@ export class OffersListNoComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.setNotificationScrollListener();
+
     this.setEffectiveRatePullDownListener();
     this.initialScores$ = this.userService.getUserScorePreferences();
     this.initOfferType();
     this.initDemoListener();
     this.initCurrentOfferListener();
     this.initScoreListener();
+    this.scrollSubscription.unsubscribe();
 
     this.currentOfferInfo = JSON.parse(JSON.stringify(this.offersInfo));
 

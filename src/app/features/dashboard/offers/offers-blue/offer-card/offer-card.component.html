@@ -34,21 +34,6 @@
       </div>
       <p class="interest-rate">{{ offer.effectiveRate | number: '1.2-2' }} %</p>
     </div>
-    <!-- <div class="top-bank-info">
-
-            <div *ngIf="!isSweden && offer.bankInfo.area; else noMarketArea">
-                <p>{{offer.bankInfo.area}}</p>
-            </div>
-
-            <ng-template #noMarketArea>
-                <p *ngIf="!isSweden"> {{offer.marketArea}}</p>
-            </ng-template>
-
-            <p *ngIf="offer.bankInfo.bankType">
-                {{offer.bankInfo.bankType}}
-            </p>
-
-        </div> -->
     <div *ngIf="bankSpecialPromoText !== null" class="special-promo">
       <img class="box-icon" src="../../../../../assets/icons/badge.svg" />
       <p>{{ bankSpecialPromoText }}</p>
@@ -102,12 +87,8 @@
 
           <div
             class="top-details"
-            [style.grid-template-columns]="
-              offer.bankRating && !isSweden ? '1fr 1fr 1fr' : '1fr 1fr'
-            "
-            [style.grid-template-rows]="
-              offer.bankRating && !isSweden ? '20px 40px' : '15px 25px'
-            "
+            [style.grid-template-columns]="'1fr 1fr'"
+            [style.grid-template-rows]="'15px 25px'"
           >
             <p
               i18n="
@@ -123,13 +104,6 @@
               </span>
             </p>
 
-            <p
-              *ngIf="offer.bankRating && !isSweden"
-              i18n="“demand-change|offer-card@@offer.card.historicRate"
-              class="small top-details-top"
-            >
-              Historisk plassering
-            </p>
             <p class="small top-details-top">Mobilbank</p>
 
             <div class="satisfaction-wrapper top-details-bottom">
@@ -144,12 +118,6 @@
               </div>
             </div>
 
-            <div
-              *ngIf="offer.bankRating && !isSweden"
-              class="historical-rating top-details-bottom"
-            >
-              <p class="box">{{ offer.bankRating }}</p>
-            </div>
             <div
               *ngIf="offer.bankInfo.mobileAppRating"
               class="mobile-rating top-details-bottom"
@@ -219,6 +187,18 @@
               </p>
             </div>
 
+            <div *ngIf="offer.bankRating && !isSweden" class="item">
+              <p
+                i18n="“demand-change|offer-card@@offer.card.historicRate"
+                class="left"
+              >
+                Historisk plassering
+              </p>
+              <p i18n="“no-yes|offer-card@@offer.card.noYes”" class="box">
+                {{ offer.bankRating }}
+              </p>
+            </div>
+
             <div *ngIf="offer.bankInfo.bankType" class="item">
               <p
                 i18n="“demand-change|offer-card@@offer.card.bankType"
@@ -282,7 +262,7 @@
             [disabled]="offer.bankInfo.partner == false"
             color="primary-medium-card"
             type="raised"
-            (click)="openNewOfferDialog(offer)"
+            (click)="offerCardService.openNewOfferDialog(offer)"
             >{{ offerCardService.getOfferButtonText(offer) }}
           </rente-button>
           <p

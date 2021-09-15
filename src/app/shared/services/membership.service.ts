@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
-import { LoansService } from '../services/remote-api/loans.service';
-import { Subject } from 'rxjs';
 import { MembershipTypeDto } from '@shared/models/loans';
+import { LoansService } from '../services/remote-api/loans.service';
+import { Observable, Subject } from 'rxjs';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -16,8 +17,8 @@ export class MembershipService {
     this.selectedMembershipsHandler = new Subject<any>();
   }
 
-  getSelectedMemberships(): Subject<any> {
-    return this.selectedMembershipsHandler;
+  getSelectedMemberships(): Observable<any> {
+    return this.selectedMembershipsHandler.asObservable();
   }
 
   setSelectedMemberships(memberships): any {
