@@ -163,6 +163,12 @@ export class CrawlerLoginComponent implements OnInit, OnDestroy {
     });
   }
 
+  goToSignicatLogin(): void {
+    this.router.navigate(['/autentisering/' + ROUTES_MAP_NO.bankIdLogin], {
+      state: { data: { bank: this.bank, redirect: true } }
+    });
+  }
+
   setupDnbEmailForm(): void {
     this.missingBankForm = this.fb.group({
       email: [

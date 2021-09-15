@@ -191,6 +191,7 @@ export class OffersListNoComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.demoClickSubscription.unsubscribe();
+    this.scrollSubscription.unsubscribe();
   }
 
   ngOnInit(): void {
@@ -202,7 +203,6 @@ export class OffersListNoComponent implements OnInit, OnDestroy {
     this.initDemoListener();
     this.initCurrentOfferListener();
     this.initScoreListener();
-    this.scrollSubscription.unsubscribe();
 
     this.currentOfferInfo = JSON.parse(JSON.stringify(this.offersInfo));
 

@@ -20,11 +20,6 @@
       novalidate
       (ngSubmit)="updateProperty(propertyForm.value)"
     >
-      <rente-user-score-preferences
-        [scoreListener]="scoreListener$"
-        [initialScores]="initialScores$"
-      ></rente-user-score-preferences>
-
       <div class="field">
         <rente-input
           [placeholder]="'E-post'"
@@ -172,6 +167,7 @@
       </p>
       <mat-form-field>
         <input
+          id="membership-input"
           (focus)="membershipIsFocused()"
           type="text"
           placeholder="+ Legg til medlemskap (valgfritt)"
