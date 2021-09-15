@@ -351,12 +351,9 @@
       <img [src]="'../../../assets/icons/mobile-login-green.svg'" />
       <p>BankId på mobil</p>
     </a>
-    <p
-      i18n="“information|bank-id@@bankId.info”"
-      *ngIf="!isSB1Bank && !isDnbBank"
-    >
-      Har du ikke BankID på mobil kan du
-      <a (click)="goToSignicatLogin()">logge inn her</a>
+    <p i18n="“information|bank-id@@bankId.info”">
+      Har du ikke BankID på Mobil kan du
+      <a class="bold" (click)="goToSignicatLogin()">logge inn her</a>
     </p>
     <p
       i18n="“issue|bank-id@@bankId.issue2”"
