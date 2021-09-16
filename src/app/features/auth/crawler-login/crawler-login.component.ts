@@ -251,7 +251,10 @@ export class CrawlerLoginComponent implements OnInit, OnDestroy {
     this.bankIdForm = this.fb.group({
       ssn: [
         '',
-        Validators.compose([Validators.required]),
+        Validators.compose([
+          Validators.required,
+          Validators.pattern(VALIDATION_PATTERN.ssnMasked)
+        ]),
         // Async Validators
         this.environment.production ? [this.ssnAsyncValidator()] : []
       ],
