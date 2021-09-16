@@ -3,8 +3,8 @@ import { Router } from '@angular/router';
 import { ROUTES_MAP_NO } from '@config/routes-config';
 import { BankUtils, BankVo } from '@models/bank';
 import { LocalStorageService } from '@services/local-storage.service';
+import { MembershipTypeDto } from '@models/loans';
 
-import { MembershipTypeDto } from '@services/remote-api/loans.service';
 interface subBankMembership {
   text: string;
   label: string;
