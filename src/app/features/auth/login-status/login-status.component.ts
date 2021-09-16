@@ -440,8 +440,6 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
   }
 
   private successSocketCallback() {
-    // REMOVE BEFORE PROD!!!!!!
-    this.crawlerLoginService.postError();
     const repliesUrl = `${API_URL_MAP.crawlerRepliesUrl}`;
     this.viewStatus.isSocketConnectionLost = false;
     this.stompClient.subscribe(repliesUrl, (message) => {

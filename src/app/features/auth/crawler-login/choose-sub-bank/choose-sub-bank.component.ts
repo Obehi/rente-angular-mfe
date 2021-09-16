@@ -105,7 +105,6 @@ export class ChooseSubBankComponent implements OnInit {
 
     if (bankName !== undefined) {
       this.bankVO = this.router.getCurrentNavigation()?.extras?.state?.data.bank;
-      console.log(this.memberships['DNB'][0].text);
       this.currentMemberships = this.memberships[bankName];
     } else {
       this.router.navigate(['/velgbank']);
@@ -115,7 +114,7 @@ export class ChooseSubBankComponent implements OnInit {
 
   continueBankLogin(item: subBankMembership): void {
     const foo: { [index: string]: { message: string } } = {};
-    //this.bankVO.name = item.name;
+    // this.bankVO.name = item.name;
 
     if (item.membership !== null) {
       // convert subBankMembership to MembershipDto used in other components
@@ -125,11 +124,7 @@ export class ChooseSubBankComponent implements OnInit {
       };
       this.localStorageService.setObject('subBank', membershipDto);
     }
-
-    let bank = BankUtils.getBankByName(item.name);
-
-    console.log(bank);
-
+    const bank = BankUtils.getBankByName(item.name);
     this.router.navigate(['/autentisering/' + ROUTES_MAP_NO.bankIdLogin], {
       state: { data: { bank: bank } }
     });
