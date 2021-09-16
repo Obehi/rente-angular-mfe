@@ -205,9 +205,6 @@ export class HouseFormSvComponent implements OnInit {
   setVirdiErrorMessageState(): void {
     const shouldShowVirdiErrorMessage =
       this.address.estimatedPropertyValue === null;
-    console.log(this.isAddressValid);
-    console.log(this.isAddressValid);
-
     this.virdiErrorMessage.next(shouldShowVirdiErrorMessage);
   }
 

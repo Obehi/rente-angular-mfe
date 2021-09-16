@@ -128,6 +128,21 @@ export class BankSelectNoComponent implements OnInit {
       bank.name = 'SPAREBANK_1_NORDVEST';
     }
 
+    if (bank.hasSubMembership) {
+      this.router.navigate(
+        [
+          '/autentisering/' +
+            bank.name.toLocaleLowerCase() +
+            '/' +
+            'medlemskap/'
+        ],
+        {
+          state: { data: { bank: bank } }
+        }
+      );
+      return;
+    }
+
     if (bank.isSigniCat && bank.isMissing === false) {
       this.router.navigate(['/autentisering/' + ROUTES_MAP_NO.bankIdLogin], {
         state: { data: { bank: bank } }
