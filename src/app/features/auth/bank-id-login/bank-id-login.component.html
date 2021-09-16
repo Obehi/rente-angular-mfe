@@ -5,7 +5,7 @@
 
   <div class="forms-wrapper">
     <div *ngIf="signicatIframeUrl !== null" class="iframe-wrapper">
-      <div class="intro" *ngIf="shouldShowBankWarningMessageDNB">
+      <div class="intro" *ngIf="bank?.name === 'DNB'">
         <p>
           Vi opplever at {{ bank?.label }} sperrer sine kunder fra å innhente
           egne lånedata. Derfor har vi laget en løsning hvor du selv fyller inn
@@ -674,6 +674,7 @@
                     [placeholder]="'Nominell rente'"
                     matSuffix="%"
                     [maxLength]="5"
+                    [type]="'tel'"
                     formControlName="interestRate"
                     [errorStateMatcher]="
                       isErrorState(loanFormGroup?.controls['remainingYears'])
