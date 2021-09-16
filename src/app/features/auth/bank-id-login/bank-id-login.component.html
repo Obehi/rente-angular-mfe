@@ -215,6 +215,7 @@
             [placeholder]="'Nominell rente'"
             matSuffix="%"
             [maxLength]="5"
+            [type]="'tel'"
             formControlName="interestRate"
             [errorStateMatcher]="
               isErrorState(loanFormGroup?.controls['remainingYears'])
