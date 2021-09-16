@@ -79,7 +79,7 @@ export class ChooseSubBankComponent implements OnInit {
     DANSKE_BANK: [
       {
         text: 'Danske Bank uten medlemskapsfordeler:',
-        label: 'Dankse Bank',
+        label: 'Danske Bank',
         name: 'DANSKE_BANK',
         membership: null
       },
