@@ -1,9 +1,49 @@
-@import "../../../../../styles/theme/_colors.scss";
+@import '../../../../../styles/theme/_colors.scss';
 
+.main {
+  overflow: scroll;
+  height: 490px;
+  ::ng-deep .mat-horizontal-content-container {
+    padding: unset;
+  }
 
-// Hack for centering dialog popup 
+  .step-1 {
+    padding: 20px;
+  }
+  .step-2 {
+    padding: 20px;
+    .message {
+      border: 1px solid $lesslight;
+      margin-top: 10%;
+      padding: 15px;
+      border-radius: 10px;
+    }
+  }
+  .message-bottom {
+    margin-top: 10px;
+  }
+}
+
+.close-modal {
+  z-index: 3139;
+}
+
+.mobile-content {
+  height: 21rem;
+}
+
+.write-number {
+  margin-top: 39%;
+  margin-bottom: -12px;
+}
+
+.double {
+  padding: 15px;
+  margin-bottom: unset;
+}
+
+// Hack for centering dialog popup
 ::ng-deep .cdk-global-overlay-wrapper {
-
   .cdk-overlay-pane {
     max-height: calc(100vh - 155px) !important;
     max-width: 600px !important;
@@ -11,7 +51,6 @@
     margin: auto;
   }
 }
-
 
 p {
   margin-bottom: 10px;
@@ -29,15 +68,14 @@ a {
 
 .top {
   position: relative;
-  padding: 20px;
+
   background: white;
 }
 .bottom {
-  border-top: 1px solid #ECECEC;
-  padding: 20px;
+  border-top: 1px solid #ececec;
+
   border-radius: 0 0 10px 10px;
   background: white;
-
 }
 form {
   background: unset;
@@ -54,18 +92,18 @@ form {
   grid-gap: 10px;
 }
 
-.grid-wrapper{
-    display: grid;
-    grid-template-columns: 140px 150px;
-    grid-column-gap: 10px;
+.grid-wrapper {
+  display: grid;
+  grid-template-columns: 140px 150px;
+  grid-column-gap: 10px;
 
-    div {
-      p:nth-child(even) {
-        font-weight: 500;
-      }
+  div {
+    p:nth-child(even) {
+      font-weight: 500;
     }
+  }
 
-    p {
-      line-height: 1.2
-    }
+  p {
+    line-height: 1.2;
+  }
 }

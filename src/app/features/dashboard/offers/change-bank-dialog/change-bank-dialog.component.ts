@@ -1,8 +1,9 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ChangeBankServiceService } from '../../../../shared/services/remote-api/change-bank-service.service';
 import { Router } from '@angular/router';
+import { MatStepper } from '@angular/material';
 
 @Component({
   selector: 'rente-change-bank-dialog',
@@ -10,10 +11,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./change-bank-dialog.component.scss']
 })
 export class ChangeBankDialogComponent implements OnInit {
+  @ViewChild('stepper') stepper: MatStepper;
   public confirmForm: FormGroup;
+  public mobileNumberForm: FormGroup;
   public isConfirmed: boolean;
   public isLoading: boolean;
   public closeState: string;
+  public stepperPosition: number;
 
   constructor(
     private router: Router,
@@ -25,9 +29,23 @@ export class ChangeBankDialogComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.stepperPosition = 1;
     this.confirmForm = this.fb.group({
       confirmation: ['', Validators.required]
     });
+    this.mobileNumberForm = this.fb.group({
+      confirmation: ['', Validators.required]
+    });
+  }
+
+  goBack(stepper: MatStepper): void {
+    this.stepperPosition = 1;
+    stepper.previous();
+  }
+
+  goForward(stepper: MatStepper): void {
+    this.stepperPosition = 2;
+    stepper.next();
   }
 
   public sendRequest(): void {
