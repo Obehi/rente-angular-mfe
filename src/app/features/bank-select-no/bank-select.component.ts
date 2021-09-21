@@ -128,6 +128,20 @@ export class BankSelectNoComponent implements OnInit {
       bank.name = 'SPAREBANK_1_NORDVEST';
     }
 
+    if (bank.hasSubMembership && bank.name !== 'DNB') {
+      this.goToSubBankMenbership(bank);
+      return;
+    }
+
+    if (
+      bank.name === 'DNB' &&
+      bank.hasSubMembership &&
+      this.envService.environment.dnbSignicatIsOn === true
+    ) {
+      this.goToSubBankMenbership(bank);
+      return;
+    }
+
     if (bank.isSigniCat && bank.isMissing === false) {
       this.router.navigate(['/autentisering/' + ROUTES_MAP_NO.bankIdLogin], {
         state: { data: { bank: bank } }
@@ -160,5 +174,15 @@ export class BankSelectNoComponent implements OnInit {
     this.router.navigate([
       ROUTES_MAP.auth + '/' + bank.name.toLocaleLowerCase()
     ]);
+  }
+
+  goToSubBankMenbership(bank: BankVo): void {
+    this.router.navigate(
+      ['/autentisering/' + bank.name.toLocaleLowerCase() + '/' + 'medlemskap/'],
+      {
+        state: { data: { bank: bank } }
+      }
+    );
+    return;
   }
 }

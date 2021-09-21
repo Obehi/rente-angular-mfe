@@ -48,6 +48,8 @@ import { VirdiManualValueDialogComponent } from '@shared/components/ui-component
 import { GlobalStateService } from '@services/global-state.service';
 import { UserService } from '@services/remote-api/user.service';
 import { UserScorePreferences } from '@models/user';
+import { LocalStorageService } from '@services/local-storage.service';
+import { MembershipService } from '@services/membership.service';
 
 @Component({
   selector: 'rente-init-confirmation-sv',
@@ -91,7 +93,10 @@ export class InitConfirmationNoComponent implements OnInit, OnDestroy {
     public customLangTextService: CustomLangTextService,
     private logging: LoggingService,
     private globalStateService: GlobalStateService,
-    private userService: UserService
+    private userService: UserService,
+    private messageBanner: MessageBannerService,
+    private localStorageService: LocalStorageService,
+    private membershipService: MembershipService
   ) {
     this.stepFillOutForm = true;
     this.userData = new ConfirmationGetDto();
@@ -107,7 +112,18 @@ export class InitConfirmationNoComponent implements OnInit, OnDestroy {
       this.loansService.getConfirmationData()
     ]).subscribe(([rateAndLoans, userInfo]) => {
       this.isLoading = false;
-      this.allMemberships = userInfo.availableMemberships;
+      this.allMemberships = this.membershipService.initMembershipList(
+        userInfo.availableMemberships
+      );
+      console.log(this.memberships);
+
+      const prefilledMemberships = this.membershipService.getPrefilledMemberships();
+
+      if (prefilledMemberships.length !== 0) {
+        this.memberships = prefilledMemberships;
+      }
+
+      console.log(this.memberships);
       this.userData = userInfo;
 
       const userEmail =
@@ -314,7 +330,7 @@ export class InitConfirmationNoComponent implements OnInit, OnDestroy {
           '9:USERINFO_SENT_SUCCESSFUL_REDIRECTING_TO_OFFERS'
         );
 
-        !formData && this.router.navigate(['/dashboard/' + ROUTES_MAP.offers]);
+        !formData && this.redirectOffers();
       },
       (err) => {
         this.isLoading = false;
@@ -384,6 +400,7 @@ export class InitConfirmationNoComponent implements OnInit, OnDestroy {
   }
 
   selected(event: MatAutocompleteSelectedEvent): void {
+    console.log(event.option.value);
     this.memberships.push(event.option.value);
     this.membershipInput.nativeElement.value = '';
     this.membershipCtrl.setValue(null);
@@ -418,6 +435,7 @@ export class InitConfirmationNoComponent implements OnInit, OnDestroy {
   }
 
   redirectOffers(): void {
+    this.localStorageService.removeItem('subBank');
     this.router.navigate(['/dashboard/' + ROUTES_MAP.offers]);
   }
 
