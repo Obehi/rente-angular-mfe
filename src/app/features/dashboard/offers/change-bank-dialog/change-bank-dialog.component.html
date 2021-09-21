@@ -4,17 +4,18 @@
     <mat-step label="Steg 1" [editable]="true">
       <div class="step-1">
         <div class="mobile-content">
-          <h3>Vi trenger telefonnummeret ditt for å håndtere søknaden</h3>
+          <h3 style="color: white">
+            Vi trenger telefonnummeret ditt for å håndtere søknaden
+          </h3>
           <p class="write-number">Vennligst skriv inn telefonnummeret ditt:</p>
           <form id="destination" [formGroup]="mobileNumberForm" novalidate>
             <div class="form-group">
               <rente-input
-                [placeholder]="'Ditt mobilnummer (8 siffer)'"
-                formControlName="test"
+                class="mobile-input"
+                id="mobnr"
                 [type]="'tel'"
-                [modelOptions]="{ updateOn: 'blur' }"
-              >
-              </rente-input>
+                [maxLength]="8"
+              ></rente-input>
             </div>
           </form>
         </div>

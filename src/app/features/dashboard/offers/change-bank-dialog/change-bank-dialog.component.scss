@@ -1,11 +1,70 @@
 @import '../../../../../styles/theme/_colors.scss';
 
 .main {
+  background-color: $secondary;
   overflow: scroll;
   height: 490px;
+
+  // DEEPS
   ::ng-deep .mat-horizontal-content-container {
     padding: unset;
   }
+
+  ::ng-deep .mat-stepper-horizontal {
+    background-color: $secondary;
+  }
+
+  ::ng-deep .mat-form-field-appearance-legacy .mat-form-field-infix {
+    background-color: $secondary;
+    color: $white;
+    :placeholder {
+      color: white;
+    }
+  }
+
+  ::ng-deep .cdk-text-field-autofill-monitored:not(:-webkit-autofill) {
+    background: #004465;
+    padding: 5px;
+    height: 2.5rem;
+    border-radius: 10px;
+    color: white;
+    font-weight: 400;
+    font-size: 16px !important;
+    border: 1px solid #478ccc;
+    caret-color: white;
+    margin-top: 43%;
+  }
+
+  ::ng-deep .cdk-text-field-autofill-monitored:not(:-webkit-autofill):focus,
+  .cdk-text-field-autofill-monitored:not(:-webkit-autofill):active {
+    border: 1px solid $primary;
+    background: $secondary;
+    transition: 0.3s;
+  }
+
+  ::ng-deep .mat-form-field-underline {
+    display: none !important;
+  }
+
+  ::ng-deep
+    .mat-form-field-appearance-legacy.mat-form-field-can-float.mat-form-field-should-float
+    .mat-form-field-label {
+    color: white;
+  }
+
+  ::ng-deep .mat-horizontal-stepper-header-container {
+    background-color: $karl-blue;
+  }
+
+  ::ng-deep .mat-step-text-label {
+    color: $white;
+  }
+
+  ::ng-deep .mat-form-field-wrapper {
+    background-color: $secondary;
+  }
+
+  // END DEEPS
 
   .step-1 {
     padding: 20px;
@@ -30,16 +89,22 @@
 
 .mobile-content {
   height: 21rem;
+  background-color: $secondary;
 }
 
 .write-number {
+  font-size: 12px;
+
+  color: $white;
+  position: absolute;
   margin-top: 39%;
-  margin-bottom: -12px;
+  z-index: 10022;
 }
 
 .double {
   padding: 15px;
   margin-bottom: unset;
+  background-color: $secondary;
 }
 
 // Hack for centering dialog popup
