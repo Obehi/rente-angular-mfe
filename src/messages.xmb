@@ -402,7 +402,7 @@
   <msg id="add.more.houses.after.login" desc="add-more-houses-after-login"><source>app/shared/components/ui-components/dialogs/virdi-manual-value-dialog/virdi-manual-value-dialog.component.html:66,68</source>
       Har du flere boliger kan du legge til disse i boligfanen etter innlogging.
     </msg>
-  <msg id="info.confirmation.empty3”" desc="info-confirmation" meaning="“empty3"><source>app/shared/components/ui-components/dialogs/virdi-manual-value-dialog/virdi-manual-value-dialog.component.html:104,106</source><source>app/features/init-confirmation/init-confirmation-no/init-confirmation.component.html:148,150</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:439,441</source>
+  <msg id="info.confirmation.empty3”" desc="info-confirmation" meaning="“empty3"><source>app/shared/components/ui-components/dialogs/virdi-manual-value-dialog/virdi-manual-value-dialog.component.html:104,106</source><source>app/features/init-confirmation/init-confirmation-no/init-confirmation.component.html:143,145</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:468,470</source>
                 Kan ikke være tom
               </msg>
   <msg id="info.confirmation.hi”" desc="info-confirmation" meaning="“hi"><source>app/features/init-confirmation/init-confirmation-no/init-confirmation.component.html:7,9</source>
@@ -411,29 +411,29 @@
   <msg id="info.confirmation.moreInfo”" desc="info-confirmation" meaning="“more-infor"><source>app/features/init-confirmation/init-confirmation-no/init-confirmation.component.html:13,15</source>
         Vi trenger litt mer informasjon før vi kan søke etter tilbud
       </msg>
-  <msg id="info.confirmation.empty”" desc="info-confirmation" meaning="“empty"><source>app/features/init-confirmation/init-confirmation-no/init-confirmation.component.html:42,44</source><source>app/features/init-confirmation/init-confirmation-no/init-confirmation.component.html:68,70</source><source>app/features/init-confirmation/init-confirmation-no/init-confirmation.component.html:88,90</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:347,349</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:373,375</source>
+  <msg id="info.confirmation.empty”" desc="info-confirmation" meaning="“empty"><source>app/features/init-confirmation/init-confirmation-no/init-confirmation.component.html:37,39</source><source>app/features/init-confirmation/init-confirmation-no/init-confirmation.component.html:63,65</source><source>app/features/init-confirmation/init-confirmation-no/init-confirmation.component.html:83,85</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:376,378</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:402,404</source>
             Kan ikke være tom
           </msg>
-  <msg id="info.confirmation.invalid”" desc="info-confirmation" meaning="“invalid"><source>app/features/init-confirmation/init-confirmation-no/init-confirmation.component.html:49,51</source>
+  <msg id="info.confirmation.invalid”" desc="info-confirmation" meaning="“invalid"><source>app/features/init-confirmation/init-confirmation-no/init-confirmation.component.html:44,46</source>
             Ugyldig e-post
           </msg>
-  <msg id="info.confirmation.empty2”" desc="info-confirmation" meaning="“empty2"><source>app/features/init-confirmation/init-confirmation-no/init-confirmation.component.html:115,117</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:402,404</source>
+  <msg id="info.confirmation.empty2”" desc="info-confirmation" meaning="“empty2"><source>app/features/init-confirmation/init-confirmation-no/init-confirmation.component.html:110,112</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:431,433</source>
                 Kan ikke være tom
               </msg>
-  <msg id="info.confirmation.help”" desc="info-confirmation" meaning="“help"><source>app/features/init-confirmation/init-confirmation-no/init-confirmation.component.html:124,126</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:104,106</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:144,146</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:181,183</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:239,241</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:414,416</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:452,454</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:552,554</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:597,599</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:640,642</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:702,704</source>
+  <msg id="info.confirmation.help”" desc="info-confirmation" meaning="“help"><source>app/features/init-confirmation/init-confirmation-no/init-confirmation.component.html:119,121</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:132,134</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:172,174</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:209,211</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:268,270</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:443,445</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:481,483</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:581,583</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:626,628</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:669,671</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:732,734</source>
             <ph name="START_TAG_MAT_ICON"><ex>&lt;mat-icon&gt;</ex>&lt;mat-icon&gt;</ph>help<ph name="CLOSE_TAG_MAT_ICON"><ex>&lt;/mat-icon&gt;</ex>&lt;/mat-icon&gt;</ph>
           </msg>
-  <msg id="info.confirmation.help2”" desc="info-confirmation" meaning="“help2"><source>app/features/init-confirmation/init-confirmation-no/init-confirmation.component.html:161,163</source>
+  <msg id="info.confirmation.help2”" desc="info-confirmation" meaning="“help2"><source>app/features/init-confirmation/init-confirmation-no/init-confirmation.component.html:156,158</source>
             <ph name="START_TAG_MAT_ICON"><ex>&lt;mat-icon&gt;</ex>&lt;mat-icon&gt;</ph>help<ph name="CLOSE_TAG_MAT_ICON"><ex>&lt;/mat-icon&gt;</ex>&lt;/mat-icon&gt;</ph>
           </msg>
-  <msg id="info.confirmation.organization”" desc="info-confirmation" meaning="“organization"><source>app/features/init-confirmation/init-confirmation-no/init-confirmation.component.html:170,172</source>
+  <msg id="info.confirmation.organization”" desc="info-confirmation" meaning="“organization"><source>app/features/init-confirmation/init-confirmation-no/init-confirmation.component.html:165,167</source>
         Bankene gir ofte bedre betingelser om du er medlem i en organisasjon
       </msg>
   <msg id="info.confirmation.myMemberships”" desc="info-confirmation" meaning="
-          “my-memberships"><source>app/features/init-confirmation/init-confirmation-no/init-confirmation.component.html:201,203</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:770,772</source>
+          “my-memberships"><source>app/features/init-confirmation/init-confirmation-no/init-confirmation.component.html:197,199</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:801,803</source>
         Mine medlemskap
       </msg>
-  <msg id="info.confirmation.done”" desc="info-confirmation" meaning="“done"><source>app/features/init-confirmation/init-confirmation-no/init-confirmation.component.html:223,225</source>
+  <msg id="info.confirmation.done”" desc="info-confirmation" meaning="“done"><source>app/features/init-confirmation/init-confirmation-no/init-confirmation.component.html:219,221</source>
         Finn beste rente!
       </msg>
   <msg id="landing.encouragement" desc="landing-page" meaning="encouragement"><source>app/features/landing/landing.component.html:11,13</source>
@@ -929,7 +929,7 @@ Fortsett
   <msg id="change.bank.location.office" desc="change-bank" meaning="choose-office "><source>app/features/dashboard/offers/change-bank-dialog/change-bank-location/change-bank-location.component.html:47</source><source>app/features/dashboard/offers/change-bank-dialog/change-bank-location/change-bank-location.component.html:62</source>Filial</msg>
   <msg id="change.bank.location.choosenText" desc="change-bank" meaning="choose-office "><source>app/features/dashboard/offers/change-bank-dialog/change-bank-location/change-bank-location.component.html:58</source>Du har valgt: </msg>
   <msg id="change.bank.email" desc="change-bank" meaning="“info-post"><source>app/features/dashboard/offers/change-bank-dialog/change-bank-location/change-bank-location.component.html:128</source>E-post:</msg>
-  <msg id="change.bank.location.back" desc="change-bank" meaning="choose-office "><source>app/features/dashboard/offers/change-bank-dialog/change-bank-location/change-bank-location.component.html:162,164</source><source>app/features/dashboard/offers/change-bank-dialog/change-bank-location/change-bank-location.component.html:170,172</source><source>app/features/dashboard/offers/change-bank-dialog/change-bank-location/change-bank-location.component.html:191,193</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:823,825</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:861,863</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:880,882</source>
+  <msg id="change.bank.location.back" desc="change-bank" meaning="choose-office "><source>app/features/dashboard/offers/change-bank-dialog/change-bank-location/change-bank-location.component.html:162,164</source><source>app/features/dashboard/offers/change-bank-dialog/change-bank-location/change-bank-location.component.html:170,172</source><source>app/features/dashboard/offers/change-bank-dialog/change-bank-location/change-bank-location.component.html:191,193</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:854,856</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:892,894</source><source>app/features/auth/bank-id-login/bank-id-login.component.html:911,913</source>
                 Tilbake
                 </msg>
   <msg id="change.bank.location.send" desc="change-bank" meaning="choose-office "><source>app/features/dashboard/offers/change-bank-dialog/change-bank-location/change-bank-location.component.html:200,202</source>
@@ -1029,30 +1029,32 @@ Fortsett
   <msg id="offers.mainPage.time”" desc="offers-main" meaning="“time"><source>app/features/dashboard/offers/offers-blue/barometer/barometer.component.html:41,43</source>
        over lånets løpetid
     </msg>
-  <msg id="offers.mainPage.yourInterest”" desc="offers-main" meaning="“your-interest"><source>app/features/dashboard/offers/offers-blue/box-grid/box-grid.component.html:5,7</source>
-        Min effektive rente
+  <msg id="offers.mainPage.yourInterest”" desc="offers-main" meaning="“your-interest"><source>app/features/dashboard/offers/offers-blue/box-grid/box-grid.component.html:6,8</source>
+      Min effektive rente
+    </msg>
+  <msg id="offers.mainPage.bestOffer”" desc="offers-main" meaning="“best-offer"><source>app/features/dashboard/offers/offers-blue/box-grid/box-grid.component.html:21,23</source>
+      Beste tilbud
+    </msg>
+  <msg id="offers.mainPage.value”" desc="offers-main" meaning="“value"><source>app/features/dashboard/offers/offers-blue/box-grid/box-grid.component.html:34,36</source>
+        Boligverdi
       </msg>
-  <msg id="offers.mainPage.bestOffer”" desc="offers-main" meaning="“best-offer"><source>app/features/dashboard/offers/offers-blue/box-grid/box-grid.component.html:20,22</source>
-        Beste tilbud
-      </msg>
-  <msg id="offers.mainPage.value”" desc="offers-main" meaning="“value"><source>app/features/dashboard/offers/offers-blue/box-grid/box-grid.component.html:31</source>Boligverdi</msg>
-  <msg id="offers.mainPage.millions”" desc="offers-main" meaning="“millions"><source>app/features/dashboard/offers/offers-blue/box-grid/box-grid.component.html:32,35</source><source>app/features/dashboard/offers/offers-blue/box-grid/box-grid.component.html:65,68</source>
+  <msg id="offers.mainPage.millions”" desc="offers-main" meaning="“millions"><source>app/features/dashboard/offers/offers-blue/box-grid/box-grid.component.html:37,40</source><source>app/features/dashboard/offers/offers-blue/box-grid/box-grid.component.html:78,81</source>
         <ph name="INTERPOLATION"><ex>{{ offersInfo?.propertyValue / 1000000 | number: &apos;1.1-3&apos; }}</ex>{{ offersInfo?.propertyValue / 1000000 | number: &apos;1.1-3&apos; }}</ph>
         mill.
       </msg>
-  <msg id="offers.mainPage.debt”" desc="offers-main" meaning="“debt"><source>app/features/dashboard/offers/offers-blue/box-grid/box-grid.component.html:40,44</source>
-        Fellesgjeld
-        <ph name="INTERPOLATION"><ex>{{ offersInfo?.commonDebt / 1000000 | number: &apos;1.1-2&apos; }}</ex>{{ offersInfo?.commonDebt / 1000000 | number: &apos;1.1-2&apos; }}</ph>
-        mill.
-      </msg>
-  <msg id="offers.mainPage.virdiEstimate”" desc="offers-main" meaning="“virdi-estimate"><source>app/features/dashboard/offers/offers-blue/box-grid/box-grid.component.html:50,53</source>
-        Estimat levert av
-        <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>virdi.no<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph>
-      </msg>
-  <msg id="offers.mainPage.loanRemaining”" desc="offers-main" meaning="“loan-remaining"><source>app/features/dashboard/offers/offers-blue/box-grid/box-grid.component.html:62,64</source>
+  <msg id="offers.mainPage.debt”" desc="offers-main" meaning="“debt"><source>app/features/dashboard/offers/offers-blue/box-grid/box-grid.component.html:46,50</source>
+          Fellesgjeld
+          <ph name="INTERPOLATION"><ex>{{ offersInfo?.commonDebt / 1000000 | number: &apos;1.1-2&apos; }}</ex>{{ offersInfo?.commonDebt / 1000000 | number: &apos;1.1-2&apos; }}</ph>
+          mill.
+        </msg>
+  <msg id="offers.mainPage.virdiEstimate”" desc="offers-main" meaning="“virdi-estimate"><source>app/features/dashboard/offers/offers-blue/box-grid/box-grid.component.html:56,59</source>
+          Estimat levert av
+          <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>virdi.no<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph>
+        </msg>
+  <msg id="offers.mainPage.loanRemaining”" desc="offers-main" meaning="“loan-remaining"><source>app/features/dashboard/offers/offers-blue/box-grid/box-grid.component.html:72,74</source>
       Gjenværende lån
     </msg>
-  <msg id="offers.mainPage.leverage2”" desc="offers-main" meaning="“leverage2"><source>app/features/dashboard/offers/offers-blue/box-grid/box-grid.component.html:69,72</source>
+  <msg id="offers.mainPage.leverage2”" desc="offers-main" meaning="“leverage2"><source>app/features/dashboard/offers/offers-blue/box-grid/box-grid.component.html:85,88</source>
       Belåningsgrad
       <ph name="INTERPOLATION"><ex>{{ offersInfo?.ltv * 100 | number: &apos;1.1-1&apos; }}</ex>{{ offersInfo?.ltv * 100 | number: &apos;1.1-1&apos; }}</ph> %
     </msg>
@@ -1068,7 +1070,7 @@ Fortsett
   <msg id="offers.mainPage.bestOffers3”" desc="offers-main" meaning="“best-offers3"><source>app/features/dashboard/offers/offers-list/offers-list-no/offers-list-no.component.html:6,8</source>
     Beste tilbud:
   </msg>
-  <msg id="offers.mainPage.yourInterestStickyBox”" desc="offers-main" meaning="“your-interest"><source>app/features/dashboard/offers/offers-list/offers-list-no/offers-list-no.component.html:103,105</source>
+  <msg id="offers.mainPage.yourInterestStickyBox”" desc="offers-main" meaning="“your-interest"><source>app/features/dashboard/offers/offers-list/offers-list-no/offers-list-no.component.html:105,107</source>
       Min effektive rente:
     </msg>
   <msg id="aboutUs”" desc="about-us" meaning="“headline"><source>app/features/about-us/about-us.component.html:2</source>Om oss</msg>
@@ -1140,47 +1142,48 @@ Fortsett
   <msg id="bankId.description”" desc="bank-id" meaning="“description"><source>app/features/auth/crawler-login/crawler-login.component.html:108,110</source><source>app/features/auth/bank-id-login-secret/bank-id-login.component.html:9,12</source>
       Renteradar henter lånedetaljer og renten din automatisk.
     </msg>
-  <msg id="bankId.description2”" desc="bank-id" meaning="“description"><source>app/features/auth/crawler-login/crawler-login.component.html:111,114</source><source>app/features/auth/bank-id-login-secret/bank-id-login.component.html:13,15</source>
+  <msg id="bankId.description2”" desc="bank-id" meaning="“description"><source>app/features/auth/crawler-login/crawler-login.component.html:112,115</source><source>app/features/auth/bank-id-login-secret/bank-id-login.component.html:13,15</source>
       Vi støtter kun BankID på Mobil og Engangskode-appen, ikke BankID med
       kodebrikke.
     </msg>
-  <msg id="bankId.issue”" desc="bank-id" meaning="“issue"><source>app/features/auth/crawler-login/crawler-login.component.html:123,127</source><source>app/features/auth/bank-id-login-secret/bank-id-login.component.html:24,28</source>
+  <msg id="bankId.issue”" desc="bank-id" meaning="“issue"><source>app/features/auth/crawler-login/crawler-login.component.html:124,128</source><source>app/features/auth/bank-id-login-secret/bank-id-login.component.html:24,28</source>
       Akkurat nå er det mange banker som setter ned renten og oppdaterer
       systemene sine. Det kan derfor være en uriktig forskjell på nominell og
       effektiv rente som vi henter. Besparelsen blir da for høy.
     </msg>
-  <msg id="bankId.description.birthNumber”" desc="bank-id" meaning="“issue"><source>app/features/auth/crawler-login/crawler-login.component.html:196,198</source><source>app/features/auth/crawler-login/crawler-login.component.html:431,433</source><source>app/features/auth/bank-id-login-secret/bank-id-login.component.html:106,108</source>
+  <msg id="bankId.description.birthNumber”" desc="bank-id" meaning="“issue"><source>app/features/auth/crawler-login/crawler-login.component.html:197,199</source><source>app/features/auth/crawler-login/crawler-login.component.html:430,432</source><source>app/features/auth/bank-id-login-secret/bank-id-login.component.html:106,108</source>
                   Fødselsnummer kan ikke være tomt
                 </msg>
-  <msg id="bankId.description.birthNumber2”" desc="bank-id" meaning="“issue"><source>app/features/auth/crawler-login/crawler-login.component.html:204,206</source><source>app/features/auth/crawler-login/crawler-login.component.html:439,441</source><source>app/features/auth/bank-id-login-secret/bank-id-login.component.html:114,116</source>
+  <msg id="bankId.description.birthNumber2”" desc="bank-id" meaning="“issue"><source>app/features/auth/crawler-login/crawler-login.component.html:205,207</source><source>app/features/auth/crawler-login/crawler-login.component.html:438,440</source><source>app/features/auth/bank-id-login-secret/bank-id-login.component.html:114,116</source>
                   Fødselsnummer ikke gyldig
                 </msg>
-  <msg id="bankId.description.birthNumber3”" desc="bank-id" meaning="“issue"><source>app/features/auth/crawler-login/crawler-login.component.html:212,214</source><source>app/features/auth/crawler-login/crawler-login.component.html:447,449</source><source>app/features/auth/bank-id-login-secret/bank-id-login.component.html:122,124</source>
+  <msg id="bankId.description.birthNumber3”" desc="bank-id" meaning="“issue"><source>app/features/auth/crawler-login/crawler-login.component.html:213,215</source><source>app/features/auth/crawler-login/crawler-login.component.html:446,448</source><source>app/features/auth/bank-id-login-secret/bank-id-login.component.html:122,124</source>
                   Fødselsnummeret er ikke gyldig
                 </msg>
-  <msg id="bankId.policy”" desc="bank-id" meaning="“accepting"><source>app/features/auth/crawler-login/crawler-login.component.html:222,225</source><source>app/features/auth/crawler-login/crawler-login.component.html:326,329</source><source>app/features/auth/crawler-login/crawler-login.component.html:494,497</source><source>app/features/auth/bank-id-login-secret/bank-id-login.component.html:169,172</source>
+  <msg id="bankId.policy”" desc="bank-id" meaning="“accepting"><source>app/features/auth/crawler-login/crawler-login.component.html:223,226</source><source>app/features/auth/crawler-login/crawler-login.component.html:327,330</source><source>app/features/auth/crawler-login/crawler-login.component.html:493,496</source><source>app/features/auth/bank-id-login-secret/bank-id-login.component.html:169,172</source>
               Jeg aksepterer Renteradar.no&apos;s
               <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>vilkår<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph>
             </msg>
-  <msg id="bankId.logIn”" desc="bank-id" meaning="“log-in"><source>app/features/auth/crawler-login/crawler-login.component.html:232,234</source><source>app/features/auth/crawler-login/crawler-login.component.html:336,338</source><source>app/features/auth/crawler-login/crawler-login.component.html:504,506</source><source>app/features/auth/bank-id-login-secret/bank-id-login.component.html:179,181</source>
+  <msg id="bankId.logIn”" desc="bank-id" meaning="“log-in"><source>app/features/auth/crawler-login/crawler-login.component.html:233,235</source><source>app/features/auth/crawler-login/crawler-login.component.html:337,339</source><source>app/features/auth/crawler-login/crawler-login.component.html:503,505</source><source>app/features/auth/bank-id-login-secret/bank-id-login.component.html:179,181</source>
                 Logg inn
               </msg>
-  <msg id="bankId.description.telephoneNumber”" desc="bank-id" meaning="“issue"><source>app/features/auth/crawler-login/crawler-login.component.html:274,276</source><source>app/features/auth/crawler-login/crawler-login.component.html:399,401</source><source>app/features/auth/bank-id-login-secret/bank-id-login.component.html:75,77</source>
+  <msg id="bankId.description.telephoneNumber”" desc="bank-id" meaning="“issue"><source>app/features/auth/crawler-login/crawler-login.component.html:275,277</source><source>app/features/auth/crawler-login/crawler-login.component.html:398,400</source><source>app/features/auth/bank-id-login-secret/bank-id-login.component.html:75,77</source>
                   Telefonnummer kan ikke være tomt
                 </msg>
-  <msg id="bankId.description.telephoneNumber2”" desc="bank-id" meaning="“issue"><source>app/features/auth/crawler-login/crawler-login.component.html:282,284</source><source>app/features/auth/crawler-login/crawler-login.component.html:407,409</source><source>app/features/auth/bank-id-login-secret/bank-id-login.component.html:83,85</source>
+  <msg id="bankId.description.telephoneNumber2”" desc="bank-id" meaning="“issue"><source>app/features/auth/crawler-login/crawler-login.component.html:283,285</source><source>app/features/auth/crawler-login/crawler-login.component.html:406,408</source><source>app/features/auth/bank-id-login-secret/bank-id-login.component.html:83,85</source>
                   Telefonnummer ikke gyldig
                 </msg>
-  <msg id="bankId.description.birthNumber4”" desc="bank-id" meaning="“issue"><source>app/features/auth/crawler-login/crawler-login.component.html:308,310</source><source>app/features/auth/crawler-login/crawler-login.component.html:475,477</source><source>app/features/auth/bank-id-login-secret/bank-id-login.component.html:150,152</source>
+  <msg id="bankId.description.birthNumber4”" desc="bank-id" meaning="“issue"><source>app/features/auth/crawler-login/crawler-login.component.html:309,311</source><source>app/features/auth/crawler-login/crawler-login.component.html:474,476</source><source>app/features/auth/bank-id-login-secret/bank-id-login.component.html:150,152</source>
                   Fødselsdato kan ikke være tomt
                 </msg>
-  <msg id="bankId.description.birthNumber5”" desc="bank-id" meaning="“issue"><source>app/features/auth/crawler-login/crawler-login.component.html:316,318</source><source>app/features/auth/crawler-login/crawler-login.component.html:483,485</source><source>app/features/auth/bank-id-login-secret/bank-id-login.component.html:158,160</source>
+  <msg id="bankId.description.birthNumber5”" desc="bank-id" meaning="“issue"><source>app/features/auth/crawler-login/crawler-login.component.html:317,319</source><source>app/features/auth/crawler-login/crawler-login.component.html:482,484</source><source>app/features/auth/bank-id-login-secret/bank-id-login.component.html:158,160</source>
                   Fødselsdato ikke gyldig
                 </msg>
-  <msg id="bankId.info”" desc="bank-id" meaning="“information"><source>app/features/auth/crawler-login/crawler-login.component.html:356,358</source><source>app/features/auth/bank-id-login-secret/bank-id-login.component.html:33,35</source>
-      Vi støtter kun BankID på Mobil, ikke kodebrikke og passord.
+  <msg id="bankId.info”" desc="bank-id" meaning="“information"><source>app/features/auth/crawler-login/crawler-login.component.html:354,357</source><source>app/features/auth/bank-id-login-secret/bank-id-login.component.html:33,35</source>
+      Har du ikke BankID på Mobil kan du
+      <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>logge inn her<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph>
     </msg>
-  <msg id="bankId.issue2”" desc="bank-id" meaning="“issue"><source>app/features/auth/crawler-login/crawler-login.component.html:363,366</source><source>app/features/auth/bank-id-login-secret/bank-id-login.component.html:40,43</source>
+  <msg id="bankId.issue2”" desc="bank-id" meaning="“issue"><source>app/features/auth/crawler-login/crawler-login.component.html:362,365</source><source>app/features/auth/bank-id-login-secret/bank-id-login.component.html:40,43</source>
       OBS: Vi tester fortsatt løsningen for denne banken. <ph name="LINE_BREAK"><ex>&lt;br&gt;</ex>&lt;br&gt;</ph>
       Gi gjerne beskjed hvis noe ikke fungerer optimalt.
     </msg>
