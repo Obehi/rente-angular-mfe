@@ -226,6 +226,8 @@ export class OfferCardComponent implements OnInit {
   }
 
   public openCustomerDividend(): void {
+    if (this.offer.bankInfo.bank !== 'BULDER') return;
+
     this.dialog.open(GenericInfoDialogComponent, {
       data: {
         header: 'Kundeutbytte',

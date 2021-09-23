@@ -86,7 +86,6 @@
     border-radius: 16px;
     display: flex;
     align-items: center;
-    cursor: pointer;
 
     p {
       color: $primary;
@@ -96,6 +95,10 @@
 
     .arrow-click {
     }
+  }
+
+  .clickable-cursor {
+    cursor: pointer;
   }
 }
 .the-offer-body {
