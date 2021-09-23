@@ -1240,6 +1240,7 @@ export const eikaBanks: BankVo[] = [
     false,
     false,
     false,
+    false,
     'https://68nord.no//aktuelt/bankid-paa-mobil'
   )
 ];
@@ -2234,6 +2235,7 @@ export const MissingBankList: BankVo[] = [
     true,
     false,
     true,
+    false,
     null
   )
 ];
@@ -2244,6 +2246,7 @@ export const TinkBanks: BankVo[] = [
     'Handelsbanken NUF',
     'handelsbanken.png',
     null,
+    false,
     false,
     false,
     false,
@@ -2300,6 +2303,7 @@ export const LegacyBanks: BankVo[] = [
     null,
     true,
     true,
+    false,
     false,
     false,
     false,
