@@ -21,7 +21,10 @@
 
         <div
           class="rate-warning-box"
-          *ngIf="offersInfo.aggregatedRateType === 'MIX_FIXED_FLOATING'"
+          *ngIf="
+            offersInfo.aggregatedRateType ===
+            aggregatedRateType.MIX_FIXED_FLOATING
+          "
         >
           <div class="rate-warning-title">
             <img
@@ -74,7 +77,10 @@
 
         <div
           class="rate-warning-box"
-          *ngIf="offersInfo.aggregatedRateType === 'MIX_FIXED_FLOATING'"
+          *ngIf="
+            offersInfo.aggregatedRateType ===
+            aggregatedRateType.MIX_FIXED_FLOATING
+          "
         >
           <div class="rate-warning-title">
             <img
