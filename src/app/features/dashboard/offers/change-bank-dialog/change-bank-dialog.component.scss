@@ -5,8 +5,30 @@ p {
 }
 
 .main {
+  ::-webkit-scrollbar {
+    width: 6px;
+    background: inherit;
+  }
+
+  ::-webkit-scrollbar-track {
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: grey;
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(54, 56, 58);
+  }
+
   background-color: $secondary;
   overflow: hidden;
+  height: 29rem;
+  @media (max-height: 700px) {
+    height: 25rem;
+  }
 
   // DEEPS
 

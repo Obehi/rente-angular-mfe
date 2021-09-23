@@ -1098,6 +1098,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     confDtoWithAprtmentValue.email = emailForm.email;
     confDtoWithAprtmentValue.income = incomeNumber;
     confDtoWithAprtmentValue.memberships = [];
+    confDtoWithAprtmentValue.phone = '';
 
     return confDtoWithAprtmentValue;
   }

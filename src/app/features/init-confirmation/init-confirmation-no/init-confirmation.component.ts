@@ -205,7 +205,8 @@ export class InitConfirmationNoComponent implements OnInit, OnDestroy {
           : formData.income,
       memberships: this.memberships.map((membership) => membership.name),
       apartmentSize: formData.apartmentSize,
-      propertyType: formData.propertyType
+      propertyType: formData.propertyType,
+      phone: ''
     };
 
     const confirmationDto: ConfirmationSetDto = new ConfirmationSetDto();
@@ -213,6 +214,7 @@ export class InitConfirmationNoComponent implements OnInit, OnDestroy {
     confirmationDto.email = data.email;
     confirmationDto.income = data.income;
     confirmationDto.memberships = data.memberships;
+    confirmationDto.phone = data.phone;
     confirmationDto.address.apartmentSize = data.apartmentSize;
     confirmationDto.address.propertyType = data.propertyType;
     confirmationDto.address.street = formData.address;
