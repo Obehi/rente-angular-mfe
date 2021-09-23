@@ -133,14 +133,15 @@ export class BankSelectNoComponent implements OnInit {
       return;
     }
 
-    if (
+    // Remove DNB subbank functionality for now
+    /*    if (
       bank.name === 'DNB' &&
       bank.hasSubMembership &&
       this.envService.environment.dnbSignicatIsOn === true
     ) {
       this.goToSubBankMenbership(bank);
       return;
-    }
+    } */
 
     if (bank.isSigniCat && bank.isMissing === false) {
       this.router.navigate(['/autentisering/' + ROUTES_MAP_NO.bankIdLogin], {

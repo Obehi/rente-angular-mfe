@@ -157,6 +157,12 @@ export class CrawlerLoginComponent implements OnInit, OnDestroy {
     });
 
     this.crawlerLoginService.secondRetry$.subscribe(() => {
+      // Drop subbank membership for DNB for now
+      this.router.navigate(['/autentisering/' + ROUTES_MAP_NO.bankIdLogin], {
+        state: { data: { bank: this.bank, redirect: true } }
+      });
+
+      /* 
       if (this.bank?.name === 'DNB') {
         this.router.navigate(
           [
@@ -173,7 +179,7 @@ export class CrawlerLoginComponent implements OnInit, OnDestroy {
         this.router.navigate(['/autentisering/' + ROUTES_MAP_NO.bankIdLogin], {
           state: { data: { bank: this.bank, redirect: true } }
         });
-      }
+      } */
     });
   }
 
