@@ -1,24 +1,15 @@
-<form
-  [formGroup]="contactUsForm"
-  novalidate
-  (ngSubmit)="request()"
->
+<form [formGroup]="contactUsForm" novalidate (ngSubmit)="request()">
   <div class="inputWrapper">
     <rente-input
       class="signup"
       [placeholder]="'loginId'"
       formControlName="loginId"
-      [errorStateMatcher]="
-        isErrorState(contactUsForm.controls['loginId'], contactUsForm)
-      "
+      [errorStateMatcher]="isErrorState(contactUsForm.controls['loginId'])"
       [textControl]="inValid()"
       (blur)="onBlurErrorCheck()"
     >
     </rente-input>
-    <div
-      *ngIf="loginIdError"
-      class="error-message"
-    >
+    <div *ngIf="loginIdError" class="error-message">
       <rente-form-message
         class="text-left d-block"
         [type]="'error'"

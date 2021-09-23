@@ -7,14 +7,13 @@ import {
   OnChanges,
   SimpleChanges
 } from '@angular/core';
-import { Subject } from 'rxjs';
 
 @Component({
   selector: 'rente-flow-header',
   templateUrl: './flow-header.component.html',
   styleUrls: ['./flow-header.component.scss']
 })
-export class FlowHeaderComponent implements OnInit {
+export class FlowHeaderComponent implements OnInit, OnChanges {
   nodes: FlowHeaderNode[];
   @Input() currentIndex: number;
   @Input() count: number;

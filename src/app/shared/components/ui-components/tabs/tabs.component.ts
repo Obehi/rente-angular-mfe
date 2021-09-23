@@ -1,6 +1,5 @@
 import {
   Component,
-  OnInit,
   ContentChildren,
   QueryList,
   AfterContentInit
@@ -15,7 +14,7 @@ import { TabComponent } from './tab.component';
 export class TabsComponent implements AfterContentInit {
   @ContentChildren(TabComponent) tabs: QueryList<TabComponent>;
 
-  ngAfterContentInit() {
+  ngAfterContentInit(): void {
     // get all active tabs
     const activeTabs = this.tabs.filter((tab) => tab.active);
 
@@ -25,7 +24,7 @@ export class TabsComponent implements AfterContentInit {
     }
   }
 
-  selectTab(activeTab: TabComponent) {
+  selectTab(activeTab: TabComponent): void {
     // deactivate all tabs
     this.tabs.toArray().forEach((tabItem) => (tabItem.active = false));
 

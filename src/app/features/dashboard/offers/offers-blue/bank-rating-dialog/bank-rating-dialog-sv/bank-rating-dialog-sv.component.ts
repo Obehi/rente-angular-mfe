@@ -1,7 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { OfferInfo } from '@shared/models/offers';
-import { Router } from '@angular/router';
+import { MatDialogRef } from '@angular/material/dialog';
 @Component({
   selector: 'rente-bank-rating-dialog-blue',
   templateUrl: './bank-rating-dialog.component.html',
@@ -10,12 +8,9 @@ import { Router } from '@angular/router';
 export class BankRatingDialogSvComponent {
   public closeState: string;
 
-  constructor(
-    public dialogRef: MatDialogRef<BankRatingDialogSvComponent>,
-    private router: Router
-  ) {}
+  constructor(public dialogRef: MatDialogRef<BankRatingDialogSvComponent>) {}
 
-  public onClick() {
+  public onClick(): void {
     window.open('', '_blank');
   }
 

@@ -2,8 +2,6 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ChangeBankServiceService } from '../../../../shared/services/remote-api/change-bank-service.service';
-import { Router } from '@angular/router';
-
 @Component({
   selector: 'rente-change-bank-dialog',
   templateUrl: './change-bank-dialog.component.html',
@@ -16,11 +14,11 @@ export class ChangeBankDialogComponent implements OnInit {
   public closeState: string;
 
   constructor(
-    private router: Router,
     private fb: FormBuilder,
     public dialogRef: MatDialogRef<ChangeBankDialogComponent>,
     private changeBankServiceService: ChangeBankServiceService,
     public dialog: MatDialog,
+    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
 

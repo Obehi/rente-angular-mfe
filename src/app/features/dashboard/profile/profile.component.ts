@@ -18,7 +18,17 @@ import {
   Validators
 } from '@angular/forms';
 import { COMMA, ENTER, S } from '@angular/cdk/keycodes';
-import { combineLatest, Observable, of, Subject, Subscription } from 'rxjs';
+import {
+  BehaviorSubject,
+  combineLatest,
+  EMPTY,
+  Observable,
+  of,
+  Subject,
+  Subscription
+} from 'rxjs';
+import { UserService } from '@services/remote-api/user.service';
+
 import {
   catchError,
   debounce,
@@ -38,17 +48,15 @@ import {
 import { MatDialog } from '@angular/material/dialog';
 import { ProfileDialogInfoComponent } from './dialog-info/dialog-info.component';
 import { MatChipInputEvent } from '@angular/material';
+import { ProfileService } from '@services/remote-api/profile.service';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import {
-  LoansService,
   MembershipTypeDto,
   PreferencesUpdateDto,
   PreferencesDto
-} from '@services/remote-api/loans.service';
-import { UserService } from '@services/remote-api/user.service';
+} from '@shared/models/loans';
 import { Mask } from '@shared/constants/mask';
 import { VALIDATION_PATTERN } from '../../../config/validation-patterns.config';
-import { SnackBarService } from '../../../shared/services/snackbar.service';
 import { OfferInfo } from '@shared/models/offers';
 import { DeactivationGuarded } from '@shared/guards/route.guard';
 import {
@@ -62,6 +70,10 @@ import {
 } from '@angular/animations';
 import { PropertySelectDialogComponent } from '@features/first-buyers/components/property-select-dialog/property-select-dialog.component';
 import { MembershipService } from '@services/membership.service';
+import { LoansService } from '@services/remote-api/loans.service';
+import { UserScorePreferences } from '@models/user';
+import { MessageBannerService } from '@services/message-banner.service';
+import { getAnimationStyles } from '@shared/animations/animationEnums';
 import { NotificationService } from '@services/notification.service';
 
 export enum FormControlId {
@@ -123,6 +135,8 @@ export class ProfileComponent
   public selectedMembershipSubscription: Subscription;
   changesMade = false;
   public isSweden = false;
+  public animationType = getAnimationStyles();
+
   public loadingStates = {
     email: { normal: true, loading: false, success: false },
     income: { normal: true, loading: false, success: false },
@@ -141,7 +155,6 @@ export class ProfileComponent
       success: false
     }
   };
-
   public formControlId = FormControlId;
   // //////////////////////////// NEW /////////////////////////// ///
 
@@ -166,6 +179,9 @@ export class ProfileComponent
   membershipIcon = '../../../../../assets/icons/bank-card-light-blue.svg';
   marketUpdatesIcon = '../../../../../assets/icons/ic_bank_id.svg';
 
+  scoreListener$ = new BehaviorSubject<UserScorePreferences>({});
+  initialScores$: Observable<UserScorePreferences>;
+
   @ViewChild('membershipInput') membershipInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete: MatAutocomplete;
 
@@ -175,6 +191,10 @@ export class ProfileComponent
     private membershipService: MembershipService,
     public dialog: MatDialog,
     public textLangService: CustomLangTextService,
+    private profileService: ProfileService,
+    private userService: UserService,
+    private messageBannerService: MessageBannerService,
+    private customLangTextService: CustomLangTextService,
     private notificationService: NotificationService
   ) {
     if (window.innerWidth > 600) {
@@ -193,7 +213,10 @@ export class ProfileComponent
   }
 
   ngOnInit(): void {
-    this.loansService.getPreferencesDto().subscribe(
+    this.initialScores$ = this.userService.getUserScorePreferences();
+    this.initScoreListener();
+
+    this.profileService.getPreferencesDto().subscribe(
       (res) => {
         this.isLoading = false;
         const dto: PreferencesDto = res;
@@ -273,6 +296,32 @@ export class ProfileComponent
 
     // Wait for upload info before navigating to another page
     return this.canNavigateBooolean$;
+  }
+
+  initScoreListener(): void {
+    this.scoreListener$
+      .pipe(
+        skip(1),
+        debounceTime(100),
+        switchMap((score) =>
+          this.userService.updateUserScorePreferences(score).pipe(
+            catchError(() => {
+              this.messageBannerService.setView(
+                this.customLangTextService.getSnackBarErrorMessage(),
+                4000,
+                this.animationType.DROP_DOWN_UP,
+                'error',
+                window
+              );
+              return EMPTY;
+            })
+          )
+        ),
+        catchError(() => {
+          return of(null);
+        })
+      )
+      .subscribe((shouldUpdateNow) => {});
   }
 
   public openInfoDialog(offer: OfferInfo | string): void {

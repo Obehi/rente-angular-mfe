@@ -85,7 +85,6 @@
           </p>
         </div>
       </div>
-
       <div class="field">
         <div class="withinfo">
           <div>
@@ -168,6 +167,7 @@
       </p>
       <mat-form-field>
         <input
+          id="membership-input"
           (focus)="membershipIsFocused()"
           type="text"
           placeholder="+ Legg til medlemskap (valgfritt)"
@@ -209,7 +209,9 @@
           >delete_forever</mat-icon
         >
       </p>
+      <p #button class="button"></p>
       <rente-button
+        (click)="submit$.next()"
         i18n="“done|info-confirmation@@info.confirmation.done”"
         color="primary"
         [isLoading]="isLoading"

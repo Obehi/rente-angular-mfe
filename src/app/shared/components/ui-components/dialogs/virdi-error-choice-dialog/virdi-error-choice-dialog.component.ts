@@ -9,6 +9,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 export class VirdiErrorChoiceDialogComponent {
   constructor(
     public dialogRef: MatDialogRef<VirdiErrorChoiceDialogComponent>,
+    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
 
