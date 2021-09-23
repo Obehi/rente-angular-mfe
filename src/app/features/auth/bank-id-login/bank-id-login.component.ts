@@ -460,11 +460,6 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
   private initFixedLoansLoansForm(loanInfo): void {
     this.isLoading = true;
 
-    this.loanService
-      .getSignicatLoansInfo()
-      .pipe(this.rxjsOperatorService.retry404ThreeTimes)
-      .subscribe(() => console.log('wuuupp'));
-
     if (loanInfo.newLoan === false) {
       forkJoin([
         this.loanService.getOffersBanks(),
