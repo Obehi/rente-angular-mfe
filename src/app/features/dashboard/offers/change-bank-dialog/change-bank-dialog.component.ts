@@ -27,7 +27,6 @@ export class ChangeBankDialogComponent implements OnInit {
   public stepperPosition: number;
 
   constructor(
-    private router: Router,
     private fb: FormBuilder,
     public dialogRef: MatDialogRef<ChangeBankDialogComponent>,
     private changeBankServiceService: ChangeBankServiceService,

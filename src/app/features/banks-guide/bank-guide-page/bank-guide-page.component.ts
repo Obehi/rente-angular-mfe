@@ -36,6 +36,9 @@ export class BankGuidePageComponent implements OnInit, OnDestroy {
   membershipOffers: any;
   depositsGeneral: { name: string; rate: string }[] = [];
   depositsBsu: { name: string; rate: string }[] = [];
+  email;
+  swift;
+  phone;
 
   $memberships: Observable<any>;
   public bankUtils = BankUtils;
@@ -50,7 +53,7 @@ export class BankGuidePageComponent implements OnInit, OnDestroy {
     public bankGuideService: BankGuideService
   ) {}
 
-  get bankHasInShort() {
+  get bankHasInShort(): boolean {
     return !!(
       this.bankGuideInfo &&
       (this.bankGuideInfo.text1 ||
@@ -86,14 +89,12 @@ export class BankGuidePageComponent implements OnInit, OnDestroy {
         .subscribe(
           (bankInfo) => {
             this.bankGuideInfo = bankInfo;
-
             this.banksLocations = Object.keys(
               this.bankGuideInfo.addresses
             ).sort();
 
             this.memberships = [];
             this.addressesArray = [];
-            console.log(this.banksLocations);
 
             this.memberships = Object.keys(
               this.bankGuideInfo.membershipOffers
@@ -140,6 +141,7 @@ export class BankGuidePageComponent implements OnInit, OnDestroy {
     this._onDestroy$.next();
   }
 
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   alphaSort = (a: any, b: any): number => {
     if (a.name < b.name) {
       return -1;
@@ -150,11 +152,16 @@ export class BankGuidePageComponent implements OnInit, OnDestroy {
     return 0;
   };
 
-  scrollTo(ref) {
+  scrollTo(ref: HTMLElement): void {
     ref.scrollIntoView({
       behavior: 'smooth',
       block: 'start',
       inline: 'start'
     });
+  }
+
+  public openBankUrlByButton(): void {
+    if (this.bankGuideInfo.url === null) return;
+    window.open(this.bankGuideInfo.url, '_blank');
   }
 }

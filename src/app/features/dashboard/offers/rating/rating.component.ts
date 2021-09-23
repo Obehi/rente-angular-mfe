@@ -12,5 +12,5 @@ export class RatingComponent implements OnInit {
   public ratingNumbers = [0, 1, 2, 3, 4];
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit(): void {}
 }

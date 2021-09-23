@@ -4,6 +4,29 @@ p {
   color: white;
 }
 
+.double {
+  padding: 15px;
+  margin-bottom: unset;
+  background-color: $secondary;
+}
+
+// CENTER POP UP
+
+::ng-deep .cdk-global-overlay-wrapper {
+  .cdk-overlay-pane {
+    max-height: calc(100vh - 155px) !important;
+    max-width: 600px !important;
+    height: 100% !important;
+    margin: auto;
+  }
+}
+
+//DISABLE WHITE COLOR FROM POP UP
+
+::ng-deep .mat-dialog-container {
+  background: none !important;
+}
+
 .main {
   ::-webkit-scrollbar {
     width: 6px;
@@ -30,12 +53,28 @@ p {
     height: 25rem;
   }
 
+  @media (min-width: 600px) {
+    height: 35rem;
+  }
+
   // DEEPS
 
+  //// REMOVE MAT STEP ICON
+  ::ng-deep .mat-step-icon {
+    display: none !important;
+  }
+
+  //// REMOVE MAT STEP LINE
+  ::ng-deep .mat-stepper-horizontal-line {
+    display: none !important;
+  }
+
+  //// SET BACKGROUND TO $SECONDARY
   ::ng-deep .cdk-overlay-container {
     background: $secondary !important;
   }
 
+  // MAT-CHECKBOX COLOR
   ::ng-deep .mat-checkbox .mat-checkbox-frame {
     border-color: $green;
   }
@@ -44,6 +83,8 @@ p {
     color: $white;
     background: $secondary;
   }
+
+  //// PADING FIX
   ::ng-deep .mat-horizontal-content-container {
     padding: unset;
   }
@@ -68,7 +109,7 @@ p {
     color: white;
     font-weight: 400;
     font-size: 16px !important;
-    border: 1px solid #478ccc;
+    border: 1px solid $blue-light;
     caret-color: white;
   }
 
@@ -121,100 +162,84 @@ p {
   .message-bottom {
     margin-top: 10px;
   }
-}
 
-.close-modal {
-  z-index: 3139;
-}
-
-.mobile-content {
-  background-color: $secondary;
-}
-
-.white-text {
-  font-size: 12px;
-  z-index: 122;
-  margin-top: 20px;
-}
-
-.double {
-  padding: 15px;
-  margin-bottom: unset;
-  background-color: $secondary;
-}
-
-.scroll-wrap {
-  overflow-y: scroll;
-  height: 41vh;
-  overflow-x: hidden;
-  border-radius: 5px;
-  margin-top: 1.5rem;
-}
-
-// Hack for centering dialog popup
-::ng-deep .cdk-global-overlay-wrapper {
-  .cdk-overlay-pane {
-    max-height: calc(100vh - 155px) !important;
-    max-width: 600px !important;
-    height: 100% !important;
-    margin: auto;
+  .close-modal {
+    z-index: 3139;
   }
-}
 
-p {
-  margin-bottom: 10px;
-}
+  .mobile-content {
+    background-color: $secondary;
+  }
 
-.bold {
-  margin-bottom: 5px;
-}
-.small {
-  margin-bottom: 0px;
-}
-a {
-  color: $green;
-}
+  .white-text {
+    font-size: 12px;
+    z-index: 122;
+    margin-top: 20px;
+  }
 
-.top {
-  position: relative;
-
-  background: $karl-blue;
-}
-
-.white {
-  color: $white;
-}
-.bottom {
-  border-radius: 0 0 10px 10px;
-  background: $secondary;
-}
-form {
-  background: unset;
-  border: 0;
-  max-width: unset;
-  margin-bottom: 20px;
-  padding: 0;
-  background: white;
-}
-
-.grid-wrapper-1 {
-  display: grid;
-  grid-template-columns: 100px 150px;
-  grid-gap: 10px;
-}
-
-.grid-wrapper {
-  display: grid;
-  grid-template-columns: 140px 150px;
-  grid-column-gap: 10px;
-
-  div {
-    p:nth-child(even) {
-      font-weight: 500;
-    }
+  .scroll-wrap {
+    overflow-y: scroll;
+    height: 41vh;
+    overflow-x: hidden;
+    border-radius: 5px;
+    margin-top: 1.5rem;
   }
 
   p {
-    line-height: 1.2;
+    margin-bottom: 10px;
+  }
+
+  .bold {
+    margin-bottom: 5px;
+  }
+  .small {
+    margin-bottom: 0px;
+  }
+  a {
+    color: $green;
+  }
+
+  .top {
+    position: relative;
+
+    background: $karl-blue;
+  }
+
+  .white {
+    color: $white;
+  }
+  .bottom {
+    border-radius: 0 0 10px 10px;
+    background: $secondary;
+  }
+  form {
+    background: unset;
+    border: 0;
+    max-width: unset;
+    margin-bottom: 20px;
+    padding: 0;
+    background: white;
+  }
+
+  .grid-wrapper-1 {
+    display: grid;
+    grid-template-columns: 100px 150px;
+    grid-gap: 10px;
+  }
+
+  .grid-wrapper {
+    display: grid;
+    grid-template-columns: 140px 150px;
+    grid-column-gap: 10px;
+
+    div {
+      p:nth-child(even) {
+        font-weight: 500;
+      }
+    }
+
+    p {
+      line-height: 1.2;
+    }
   }
 }

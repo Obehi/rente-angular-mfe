@@ -14,7 +14,7 @@ export class SuccessChangeBankDialogComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.isErrorState = this.data.isError;
   }
 

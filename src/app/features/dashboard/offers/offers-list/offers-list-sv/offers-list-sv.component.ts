@@ -33,7 +33,8 @@ export class OffersListSvComponent implements OnInit {
     );
   }
 
-  public getVariation() {
+  // Returns a number? but variation might be a number in string type
+  public getVariation(): any {
     if ((window as any).google_optimize === undefined) {
       return 0;
     }

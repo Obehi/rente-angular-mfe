@@ -1,11 +1,4 @@
-import {
-  Component,
-  OnInit,
-  Input,
-  Output,
-  EventEmitter,
-  HostListener
-} from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'rente-dialog',
@@ -19,7 +12,7 @@ export class DialogComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  onClick(answer: boolean) {
+  onClick(answer: boolean): void {
     this.action.emit(answer);
   }
 

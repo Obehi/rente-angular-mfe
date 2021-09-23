@@ -16,7 +16,6 @@ import { AntiChurnDialogComponent } from '@features/dashboard/offers/anti-churn-
 import { AntiChurnErrorDialogComponent } from '@features/dashboard/offers/anti-churn-dialog/anti-churn-error-dialog/anti-churn-error-dialog.component';
 import { ChangeBankTooManyTriesDialogError } from '@features/dashboard/offers/change-bank-dialog/change-bank-too-many-tries-dialog-error/change-bank-too-many-tries-dialog-error.component';
 
-import { ChangeBankServiceService } from '@services/remote-api/change-bank-service.service';
 import { Subscription, Observable, fromEvent } from 'rxjs';
 import { debounceTime, filter, tap } from 'rxjs/operators';
 import { OFFERS_LTV_TYPE } from '../../../../shared/models/offers';
@@ -37,7 +36,8 @@ import { getAnimationStyles } from '@shared/animations/animationEnums';
 @Component({
   selector: 'rente-offers-blue',
   templateUrl: './offers.component.html',
-  styleUrls: ['./offers.component.scss']
+  styleUrls: ['./offers.component.scss'],
+  providers: [OffersService]
 })
 export class OffersComponentBlue implements OnInit, OnDestroy {
   public offersInfo: Offers;
@@ -128,7 +128,6 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
   }
 
   public setNotifAlert(n: number): void {
-    console.log(n + 'setNotifAlert set notification');
     if (n > 0) {
       this.messageService.setView(
         this.customLangTextSerice.getOffersUpdatedNotificationText(),
@@ -165,8 +164,9 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
     this.offerTypes = ['threeMonths', 'oneYear', 'all'];
     // kick off the polyfill!
     smoothscroll.polyfill();
-    this.loansService.getOffers().subscribe(
-      (res: Offers) => {
+
+    this.offersService.updateOfferResponse$.subscribe(
+      (res) => {
         this.offersInfo = Object.assign({}, res);
         this.currentOfferInfo = JSON.parse(JSON.stringify(res));
 
@@ -182,8 +182,11 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
 
         this.isLoading = false;
         this.localStorageService.removeItem('isNewUser');
+        this.offersService.isUpdatingOffers$.next(false);
       },
       (err) => {
+        this.offersService.isUpdatingOffers$.next(false);
+
         if (err.errorType === 'PROPERTY_VALUE_MISSING') {
           this.errorMessage = err.title;
           this.router.navigate(['/dashboard/' + ROUTES_MAP.property]);
@@ -191,6 +194,8 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
         console.log(err);
       }
     );
+
+    this.offersService.updateOffers$.next();
 
     this.nordeaClickSubscription = this.offersService
       .messages()

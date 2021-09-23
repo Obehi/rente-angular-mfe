@@ -7,29 +7,17 @@ import { ChangeBrowserDialogInfoComponent } from '../landing/landing-top-sv/chan
 import { LoggingService } from '@services/logging.service';
 import { locale } from '../../config/locale/locale';
 
-import {
-  Component,
-  OnInit,
-  Input,
-  Output,
-  EventEmitter,
-  HostListener
-} from '@angular/core';
-import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
+import { Component, OnInit, HostListener } from '@angular/core';
+import { Router } from '@angular/router';
 import { ROUTES_MAP } from '@config/routes-config';
 import * as Stomp from 'stompjs';
 import * as SockJS from 'sockjs-client';
 import { environment } from '@environments/environment';
 import { API_URL_MAP } from '@config/api-url-config';
-import { Subscription, interval, Observable, timer, forkJoin } from 'rxjs';
+import { Subscription, interval, forkJoin } from 'rxjs';
 import {
-  IDENTIFICATION_TIMEOUT_TIME,
   PING_TIME,
-  RECONNECTION_TRIES,
-  RECONNECTION_TIME,
-  BANKID_STATUS,
-  BANKID_TIMEOUT_TIME,
-  MESSAGE_STATUS
+  BANKID_STATUS
 } from '../auth/login-status/login-status.config';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
@@ -309,7 +297,7 @@ export class BankSelectSvComponent implements OnInit {
 
   private connectAndReconnectSocket(successCallback) {}
 
-  sendUserData(tinkCode: number, resendData = false) {
+  sendUserData(tinkCode: number): void {
     const dataObj = {
       code: tinkCode,
       country: 'SWE'
@@ -336,7 +324,7 @@ export class BankSelectSvComponent implements OnInit {
     );
   }
 
-  goToGetNotified() {
+  goToGetNotified(): void {
     this.router.navigate([ROUTES_MAP.getNotified]);
   }
 }
