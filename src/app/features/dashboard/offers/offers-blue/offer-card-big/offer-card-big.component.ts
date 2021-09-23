@@ -19,6 +19,7 @@ import { LoggingService } from '@services/logging.service';
 
 import { OFFER_SAVINGS_TYPE } from '../../../../../config/loan-state';
 import { OfferCardService } from '../offer-card.service';
+import { GenericInfoDialogComponent } from '@shared/components/ui-components/dialogs/generic-info-dialog/generic-info-dialog.component';
 
 @Component({
   selector: 'rente-offer-card-big-blue',
@@ -126,6 +127,18 @@ export class OfferCardBigComponentBlue implements OnInit {
   public openOfferDialog(offer: OfferInfo): void {
     this.dialog.open(DialogInfoComponent, {
       data: offer
+    });
+  }
+
+  public openCustomerDividend(): void {
+    this.dialog.open(GenericInfoDialogComponent, {
+      data: {
+        header: 'Kundeutbytte',
+        text: 'Har du boliglån i Bulder Bank kvalifiserer du til kundeutbytte.',
+        linkAbbreviation: 'Les mer her',
+        link:
+          'https://blogg.renteradar.no/kundeutbytte-i-banker-sa-mye-kan-du-fa/'
+      }
     });
   }
 
