@@ -72,6 +72,26 @@
           [offerSavingsType]="offerSavingsType"
         ></barometer>
 
+        <div
+          class="rate-warning-box"
+          *ngIf="offersInfo.aggregatedRateType === 'MIX_FIXED_FLOATING'"
+        >
+          <div class="rate-warning-title">
+            <img
+              class="rate-warning-icon"
+              src="../../../../../assets/icons/rate-blue.svg"
+            />
+            <p class="rate-warning-title-text">OBS! Fastrentelån</p>
+          </div>
+          <p class="rate-warning-text">
+            Du har ett eller flere fastrentelån. Renteradar viser beste rente og
+            besparelsespotensialet kun for lånet/lånene med flytende rente. I
+            kalkulasjonen av din effektive rente er derimot lånet med fast rente
+            inkludert. Det er den som brukes i tilbakemeldingen over, og i
+            sammenligningen av din rente i forhold til andre.
+          </p>
+        </div>
+
         <box-grid [offersInfo]="offersInfo"></box-grid>
 
         <!-- Mobile Tips -->
