@@ -235,11 +235,9 @@ export class AuthSvMockupComponent implements OnInit, OnDestroy {
   private successSocketCallback() {
     const repliesUrl = `${API_URL_MAP.crawlerRepliesUrl}`;
     this.viewStatus.isSocketConnectionLost = false;
-    console.log('subscribing to: ' + API_URL_MAP.crawlerRepliesUrl);
     this.stompClient.subscribe(repliesUrl, (message) => {
       if (message.body) {
         const response = JSON.parse(message.body);
-        console.log('STATUS:', response.eventType);
         switch (response.eventType) {
           case BANKID_STATUS.BANKID_UNSTABLE:
             this.viewStatus.isBankIdUnstable = true;
