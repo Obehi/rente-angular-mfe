@@ -5,7 +5,32 @@
 
   <div class="forms-wrapper">
     <div *ngIf="signicatIframeUrl !== null" class="iframe-wrapper">
-      <div class="intro" *ngIf="bank?.name === 'DNB'">
+      <rente-intro-default-signicat [bank]="bank" *ngIf="bank?.isSigniCat">
+      </rente-intro-default-signicat>
+
+      <rente-intro-no-bank-id
+        *ngIf="userHasNoBankIDForPhone && bank?.name !== 'NORDEA'"
+      >
+      </rente-intro-no-bank-id>
+
+      <rente-intro-no-bank-id-nordea
+        *ngIf="userHasNoBankIDForPhone && bank?.name === 'NORDEA'"
+      >
+      </rente-intro-no-bank-id-nordea>
+
+      <rente-intro-redirect-dnb
+        [bank]="bank"
+        *ngIf="isRedirected && bank?.name === 'DNB'"
+      >
+      </rente-intro-redirect-dnb>
+
+      <rente-intro-redirect-sb1
+        [bank]="bank"
+        *ngIf="isRedirected && bank?.isSb1Bank"
+      >
+      </rente-intro-redirect-sb1>
+
+      <!-- <div class="intro" *ngIf="bank?.name === 'DNB'">
         <p>
           Vi opplever at {{ bank?.label }} sperrer sine kunder fra å innhente
           egne lånedata. Derfor har vi laget en løsning hvor du selv fyller inn
@@ -28,17 +53,17 @@
             >her</a
           >.
         </p>
-      </div>
+      </div> -->
 
-      <div class="warning" *ngIf="shouldShowBankWarningMessage">
+      <!-- <div class="warning" *ngIf="shouldShowBankWarningMessage">
         <p>
           Vi kan dessverre i øyeblikket ikke innhente dine lånedata automatisk.
           Vi jobber med å utbedre feilen. I mellomtiden kan du benytte vår
           løsning hvor du selv fyller inn dine lånedata.
         </p>
-      </div>
+      </div> -->
 
-      <div *ngIf="bank?.name !== 'DNB'" class="intro warning">
+      <!-- <div *ngIf="bank?.name !== 'DNB'" class="intro warning">
         <p>
           For denne banken har vi ingen løsning for automatisk innhentning av
           lånedata enda. Du må derfor fylle inn dette manuelt og vil trenge:
@@ -56,7 +81,7 @@
           <li>Løpetid</li>
           <li>Låneprodukt</li>
         </ul>
-      </div>
+      </div> -->
 
       <iframe
         *ngIf="signicatIframeUrl !== null"

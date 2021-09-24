@@ -111,6 +111,9 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
   ];
   public selectedOffer: string;
   public bank: BankVo | null;
+  public userHasNoBankIDForPhone = false;
+  public isRedirected = false;
+
   private loanId: number | null;
   public currentStepperValue = 0;
   public newClient: boolean | null;
@@ -180,11 +183,34 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     // Getting bank name from the bank-select component
     const stateData = this.router?.getCurrentNavigation()?.extras?.state?.data;
     // Checking for null or undefined
-    if (stateData == null) {
+    if (stateData === null || stateData === undefined) {
       this.router.navigate(['/' + ROUTES_MAP.bankSelect]);
       return;
     } else {
       this.bank = stateData.bank;
+      this.userHasNoBankIDForPhone = stateData.userHasNoBankIDForPhone;
+      this.isRedirected = stateData.redirect;
+
+      /* Signucat users is default */
+
+      /* No bankID ALL */
+      /* this.userHasNoBankIDForPhone = true;
+      this.bank!.isSigniCat = false; */
+
+      /* No bankID Nordea */
+      /*   this.userHasNoBankIDForPhone = true;
+      this.bank!.name = 'NORDEA';
+      this.bank!.isSigniCat = false; */
+
+      /* DNB redirect */
+      /*  this.isRedirected = true;
+      this.bank!.name = 'DNB';
+      this.bank!.isSigniCat = false; */
+
+      /* SB1 redirect */
+      /*  this.isRedirected = true;
+      this.bank!.isSb1Bank = true;
+      this.bank!.isSigniCat = false; */
 
       if (stateData.redirect === true) {
         if (this.bank?.name === 'DNB') {
