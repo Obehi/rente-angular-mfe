@@ -28,6 +28,9 @@ p {
 }
 
 .main {
+  hr {
+  }
+
   ::-webkit-scrollbar {
     width: 6px;
     background: inherit;
@@ -101,6 +104,7 @@ p {
     }
   }
 
+  //// INPUT FIELD CSS
   ::ng-deep .cdk-text-field-autofill-monitored:not(:-webkit-autofill) {
     background: #004465;
     padding: 5px;
@@ -131,7 +135,7 @@ p {
   }
 
   ::ng-deep .mat-horizontal-stepper-header-container {
-    background-color: $karl-blue;
+    background-color: #004465;
     height: 3rem;
   }
 
@@ -178,8 +182,11 @@ p {
   }
 
   .scroll-wrap {
+    @media (min-width: 600px) {
+      height: 46vh;
+    }
     overflow-y: scroll;
-    height: 41vh;
+    height: 43vh;
     overflow-x: hidden;
     border-radius: 5px;
     margin-top: 1.5rem;

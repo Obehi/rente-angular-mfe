@@ -11,6 +11,9 @@ import { ChangeBankServiceService } from '../../../../shared/services/remote-api
 import { Router } from '@angular/router';
 import { MatStepper } from '@angular/material';
 import { LoansService } from '@services/remote-api/loans.service';
+import { concat, Observable } from 'rxjs';
+import { FormControlId } from '@features/dashboard/profile/profile.component';
+import { toArray } from 'rxjs/operators';
 
 @Component({
   selector: 'rente-change-bank-dialog',
@@ -41,7 +44,7 @@ export class ChangeBankDialogComponent implements OnInit {
       confirmation: ['', Validators.required]
     });
     this.mobileNumberForm = this.fb.group({
-      confirmation: ['', Validators.required]
+      phoneInput: ['', Validators.required]
     });
   }
 
@@ -53,56 +56,20 @@ export class ChangeBankDialogComponent implements OnInit {
   goForward(stepper: MatStepper): void {
     this.stepperPosition = 2;
     stepper.next();
-
-    this.changeBankServiceService
-      .getBankOfferRequest(this.data.offerId)
-      .subscribe((res) => {
-        console.log(res);
-        this.loansService
-          .updateClientInfo({
-            address: {
-              apartmentSize: 202,
-              apartmentValue: 2000000,
-              propertyType: null,
-              street: 'Ole vigs gate 22',
-              zip: '0364'
-            },
-            email: 'karl@testaz.no',
-            income: 2321312,
-            memberships: [''],
-            phone: '99885521'
-          })
-          .subscribe();
-      });
   }
 
-  // goForward(stepper: MatStepper): void {
-  //   this.stepperPosition = 2;
-  //   stepper.next();
-  //   const test = this.loansService
-  //     .updateClientInfo({
-  //       address: {
-  //         apartmentSize: 202,
-  //         apartmentValue: 2000000,
-  //         propertyType: null,
-  //         street: 'Ole vigs gate 28',
-  //         zip: '0364'
-  //       },
-  //       email: 'karl@testaz.no',
-  //       income: 2321312,
-  //       memberships: [''],
-  //       phone: '99885521'
-  //     })
-  //     .subscribe((args) => {});
-  //   const test2 = this.loansService.getClientInfo().subscribe((args) => {
-  //     console.log(args);
-  //   });
-  // }
+  get signicatPhoneNumber(): string {
+    return this.mobileNumberForm.get('phoneInput')?.value;
+  }
 
   public sendRequest(): void {
     this.isLoading = true;
-    this.changeBankServiceService
-      .sendBankOfferRequest(this.data.offerId)
+
+    concat(
+      this.loansService.updateSignicatPhoneNumber(this.signicatPhoneNumber),
+      this.changeBankServiceService.sendBankOfferRequest(this.data.offerId)
+    )
+      .pipe(toArray())
       .subscribe(
         (_) => {
           this.isLoading = false;
@@ -121,6 +88,35 @@ export class ChangeBankDialogComponent implements OnInit {
           }
         }
       );
+
+    // concat([
+    //   this.changeBankServiceService
+    //     .sendBankOfferRequest(this.data.offerId)
+    //     .subscribe(
+    //       (_) => {
+    //         this.isLoading = false;
+    //         this.closeState = 'procced';
+    //         this.dialogRef.close();
+    //       },
+    //       (error) => {
+    //         this.isLoading = false;
+    //         if (error.detail === 'Less than week since last email') {
+    //           this.closeState = 'error-to-many-bargains';
+    //           this.dialogRef.close();
+    //         } else {
+    //           this.isLoading = false;
+    //           this.closeState = 'error';
+    //           this.dialogRef.close();
+    //         }
+    //       }
+    //     ),
+
+    //   this.loansService
+    //     .updateSignicatPhoneNumber(this.signicatPhoneNumber)
+    //     .subscribe((args) => {
+    //       console.log(args);
+    //     })
+    // ]);
   }
 
   public close(): void {

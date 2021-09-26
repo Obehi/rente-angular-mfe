@@ -290,6 +290,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
       memberships: clientDto.memberships
     };
     clientDto.memberships = [];
+
     concat(
       this.loanService.updateClientInfo(this.getFormValues()),
       this.loanService.CreateSignicatLoansInfo([signicatLoanInfoDto]),

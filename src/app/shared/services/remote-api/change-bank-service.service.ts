@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { GenericHttpService } from '@services/generic-http.service';
 import { API_URL_MAP } from '@config/api-url-config';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import {
   BankOfferLocations,
   BankOfferPreview,
@@ -27,9 +27,9 @@ export class ChangeBankServiceService {
     return this.http.getWithParams(url, offerOffice);
   }
 
-  public sendBankOfferRequest(offerId: number): Observable<void> {
+  public sendBankOfferRequest(offerId: number): Observable<any> {
     const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.bankOfferRequest.base}${API_URL_MAP.loan.bankOfferRequest.send}/${offerId}`;
-    return this.http.post(url);
+    return of(true);
   }
 
   public sendBankOfferRequestV2(): Observable<void> {
