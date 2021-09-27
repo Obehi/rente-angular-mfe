@@ -345,3 +345,23 @@ button.mat-blue {
   display: inline;
   width: 200px;
 }
+
+button.mat-blue-cookie {
+  color: $white;
+  background: $secondary;
+  display: inline;
+  width: 200px;
+  @media (max-width: 600px) {
+    width: 150px;
+  }
+}
+
+button.mat-primary-cookie {
+  color: $white;
+  background: $primary;
+  display: inline;
+  width: 200px;
+  @media (max-width: 600px) {
+    width: 150px;
+  }
+}
