@@ -191,27 +191,6 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
       this.userHasNoBankIDForPhone = stateData.userHasNoBankIDForPhone;
       this.isRedirected = stateData.redirect;
 
-      /* Signucat users is default */
-
-      /* No bankID ALL */
-      /* this.userHasNoBankIDForPhone = true;
-      this.bank!.isSigniCat = false; */
-
-      /* No bankID Nordea */
-      /*   this.userHasNoBankIDForPhone = true;
-      this.bank!.name = 'NORDEA';
-      this.bank!.isSigniCat = false; */
-
-      /* DNB redirect */
-      /*  this.isRedirected = true;
-      this.bank!.name = 'DNB';
-      this.bank!.isSigniCat = false; */
-
-      /* SB1 redirect */
-      /*  this.isRedirected = true;
-      this.bank!.isSb1Bank = true;
-      this.bank!.isSigniCat = false; */
-
       if (stateData.redirect === true) {
         if (this.bank?.name === 'DNB') {
           this.shouldShowBankWarningMessageDNB = true;
