@@ -43,7 +43,7 @@
   >
     <img class="box-icon" src="../../../../../assets/icons/badge.svg" />
     <p>{{ bankSpecialPromoText }}</p>
-    <mat-icon>help</mat-icon>
+    <mat-icon *ngIf="this.offer.bankInfo.bank === 'BULDER'">help</mat-icon>
   </div>
 </div>
 <div class="the-offer-body">
