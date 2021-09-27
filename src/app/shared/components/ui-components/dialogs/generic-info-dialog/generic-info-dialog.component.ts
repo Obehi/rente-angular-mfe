@@ -16,4 +16,8 @@ export class GenericInfoDialogComponent {
   public onClose(): void {
     this.dialogRef.close();
   }
+
+  public goToLink(url: string): void {
+    window.open(url, '_blank');
+  }
 }
