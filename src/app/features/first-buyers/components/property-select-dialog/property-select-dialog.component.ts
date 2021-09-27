@@ -9,6 +9,7 @@ import {
   TemplateRef
 } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material';
+import { MembershipTypeDto } from '@models/loans';
 import { FirstBuyersAPIService } from '@services/remote-api/first-buyers-api.service';
 import { MembershipService } from '../../../../shared/services/membership.service';
 
@@ -54,7 +55,10 @@ export class PropertySelectDialogComponent implements OnInit, OnDestroy {
 
   save(): void {
     if (this.hasChanged === true) {
-      this.membershipService.setSelectedMemberships(this.memberships);
+      const updatedMemberships = (this.memberships as MembershipTypeDto[]).map(
+        (item) => item.name
+      );
+      this.membershipService.setSelectedMemberships(updatedMemberships);
       this.onClose();
     }
   }
