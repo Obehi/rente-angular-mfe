@@ -23,7 +23,6 @@ export class OffersService implements OnDestroy {
     switchMap(() => this.loansService.getOffers()),
     share(),
     tap(() => {
-      console.log('shouldUpdateOffersLater = false');
       this.shouldUpdateOffersLater = false;
     })
   );

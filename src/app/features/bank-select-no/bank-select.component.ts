@@ -160,6 +160,16 @@ export class BankSelectNoComponent implements OnInit {
       return;
     }
 
+    if (
+      bank.isDSSBank === true &&
+      this.envService.environment.dssBanksSignicatIsOn === true
+    ) {
+      this.router.navigate(['/autentisering/' + ROUTES_MAP_NO.bankIdLogin], {
+        state: { data: { bank: bank } }
+      });
+      return;
+    }
+
     if (this.envService.environment.sb1DisabledBanks?.includes(bank.name)) {
       this.router.navigate([ROUTES_MAP_NO.sparebank1Error], {
         state: { bank: bank }
