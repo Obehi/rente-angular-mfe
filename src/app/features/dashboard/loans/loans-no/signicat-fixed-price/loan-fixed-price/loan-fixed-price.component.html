@@ -9,10 +9,12 @@
       "
     >
       <div class="loan-type">
-        <h3>Lån {{ index + 1 }}</h3>
-        <!-- <mat-icon *ngIf="isEditMode" (click)="deleteLoan()"
+        <div class="title-delete">
+          <h3>Lån {{ index + 1 }}</h3>
+          <mat-icon *ngIf="isEditMode" (click)="deleteLoan()"
             >delete_forever</mat-icon
-          > -->
+          >
+        </div>
         <div *ngIf="index < 1">
           <img
             [hidden]="hideEditIcon"

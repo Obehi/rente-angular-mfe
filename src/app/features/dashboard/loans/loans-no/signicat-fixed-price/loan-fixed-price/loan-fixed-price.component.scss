@@ -196,9 +196,14 @@ p {
   align-items: center;
   background: #004465a6;
   h3 {
-    margin-left: 10px;
+    margin: auto;
   }
   height: 60px;
+
+  .title-delete {
+    display: flex;
+    grid-gap: 10px;
+  }
 }
 
 .loan-info {

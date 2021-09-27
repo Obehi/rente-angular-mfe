@@ -9,12 +9,16 @@ import {
   LoanUpdateInfoDto,
   SignicatLoanInfoDtoArray
 } from '@shared/models/loans';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoansService {
-  constructor(private http: GenericHttpService) {}
+  constructor(
+    private http: GenericHttpService,
+    private httpClient: HttpClient
+  ) {}
 
   public getLoans() {
     const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.loans.base}`;
@@ -223,6 +227,19 @@ export class LoansService {
   }): Observable<void> {
     const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.nominalRate}`;
     return this.http.put(url, rate);
+  }
+
+  public deleteLoan(loanId: number): Observable<any> {
+    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.loans.base}`;
+    const options = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      }),
+      body: {
+        id: loanId
+      }
+    };
+    return this.httpClient.delete(url, options);
   }
 }
 

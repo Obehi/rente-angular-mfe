@@ -13,6 +13,7 @@ export interface LoanInfo {
   bank: string;
   bankKey: string;
   effectiveRate: number;
+  id: number;
   isIncompleteInfoLoan: boolean;
   loanName: string;
   loanType: string;

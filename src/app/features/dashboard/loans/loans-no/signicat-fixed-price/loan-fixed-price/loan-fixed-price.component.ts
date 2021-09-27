@@ -231,6 +231,9 @@ export class LoanFixedPriceComponent implements OnInit, OnDestroy {
           this.isAbleToSave = false;
         }
       });
+
+    // Set edit mode to null (if user leaves the page while on edit mode)
+    this.myLoansService.setEditMode(null);
   } // ngOnInit
 
   getMask(): any {
@@ -335,6 +338,7 @@ export class LoanFixedPriceComponent implements OnInit, OnDestroy {
     const check = this.myLoansService.getEditMode();
 
     if (check !== null) {
+      console.log('Check != null!');
       return;
     }
 
@@ -499,4 +503,24 @@ export class LoanFixedPriceComponent implements OnInit, OnDestroy {
         }
       );
   } // send request end
+
+  public deleteLoan(): void {
+    const currentLoanIndex = this.myLoansService.getEditMode();
+    console.log('Loan index: ');
+    console.log(currentLoanIndex);
+
+    if (currentLoanIndex === null) {
+      console.log('Loan index is null');
+      return;
+    }
+    alert('Deleting loan');
+
+    const loanId = this.loan.id;
+    console.log('Loan ID: ' + loanId.toString());
+
+    this.loansService.deleteLoan(loanId).subscribe((res) => {
+      console.log('Response');
+      console.log(res);
+    });
+  }
 } // Class end
