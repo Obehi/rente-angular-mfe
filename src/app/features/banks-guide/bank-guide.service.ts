@@ -21,7 +21,7 @@ export class BankGuideService {
 
   constructor() {
     this.sortBanks();
-    this.removeNordeaDirectSubMembership();
+    this.removeSubMembership();
     this.filterBank(this.searchStr);
   }
 
@@ -109,13 +109,28 @@ export class BankGuideService {
     });
   }
 
-  removeNordeaDirectSubMembership(): void {
+  removeSubMembership(): void {
+    // Nordea Direct sub memberships
     const ys = 'YS (Nordea Direct)';
     const unio = 'UNIO (Nordea Direct)';
     const nal = 'NAL (Nordea Direct)';
 
+    // DNB sub memberships
+    const bate = 'Bate boligbyggelag (DNB)';
+    const sykepleier = 'Norsk Sykepleierforbund (DNB)';
+    const tobb = 'TOBB (DNB)';
+    const usbl = 'USBL (DNB)';
+
     this.allBanks = this.allBanks.filter((bank) => {
-      return bank.label !== ys && bank.label !== unio && bank.label !== nal;
+      return (
+        bank.label !== ys &&
+        bank.label !== unio &&
+        bank.label !== nal &&
+        bank.label !== bate &&
+        bank.label !== sykepleier &&
+        bank.label !== tobb &&
+        bank.label !== usbl
+      );
     });
   }
 }
