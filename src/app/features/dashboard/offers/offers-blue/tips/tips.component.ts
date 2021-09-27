@@ -184,17 +184,6 @@ export class TipsComponent implements OnInit {
       });
     }
     if (
-      this.offersInfo.aggregatedRateType ===
-      this.aggregatedRateType.MIX_FIXED_FLOATING
-    ) {
-      this.tips.push({
-        header: this.customLangTextSerice.getHasFixedRateLoanTipsHeader(),
-        text: this.customLangTextSerice.getHasFixedRateLoan(),
-        buttonLink: './',
-        icon: 'rate-blue'
-      });
-    }
-    if (
       this.offersInfo.aggregatedLoanType ===
         this.aggregatedLoanType.CREDIT_LINE ||
       this.offersInfo.aggregatedLoanType === this.aggregatedLoanType.MIX_D_C

@@ -2,6 +2,13 @@
   <!--  <img src="../../../../../../assets/icons/info-grey.svg"> -->
   <h4>{{ data.header }}</h4>
   <p>{{ data.text }}</p>
+  <a
+    class="link-class"
+    *ngIf="data.link && data.linkAbbreviation"
+    (click)="goToLink(data.link)"
+    [routerLink]=""
+    >{{ data.linkAbbreviation }}</a
+  >
   <p *ngIf="data.text2 !== undefined">{{ data.text2 }}</p>
 </div>
 <div class="bottom">

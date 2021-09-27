@@ -627,6 +627,37 @@ a.box {
     padding-top: 40px;
     padding-bottom: 40px;
   }
+
+  .rate-warning-box {
+    background: white;
+    border-radius: 15px;
+    padding: 20px 35px;
+    margin-top: 35px;
+    margin-bottom: 25px;
+  }
+
+  .rate-warning-title {
+    margin: 20px 26px;
+    display: flex;
+    justify-content: flex-start;
+    grid-gap: 20px;
+  }
+
+  .rate-warning-icon {
+    width: 28px;
+  }
+
+  .rate-warning-title-text {
+    font-size: 18px;
+    font-weight: 500;
+  }
+
+  .rate-warning-text {
+    text-align: left;
+    margin: 20px 0px 25px 0px;
+    padding: 0px 27px 0px 25px;
+    font-size: 16px;
+  }
 }
 @media (min-width: 600px) {
   /* .offers-grid {
@@ -639,9 +670,62 @@ a.box {
   .compared {
     text-align: left;
     color: white;
-    grid-row: 2;
-    grid-column-start: 2;
+    // grid-row: 2;
+    // grid-column-start: 2;
   }
+
+  .rate-warning-box {
+    background: white;
+    // grid-row: 2;
+    // grid-column-start: 1;
+    grid-column-end: span 2;
+    border-radius: 15px;
+    padding: 20px 50px;
+    margin-top: -30px;
+    margin-bottom: 20px;
+  }
+
+  .rate-warning-title {
+    margin: 20px 0px;
+    display: flex;
+    justify-content: flex-start;
+    grid-gap: 20px;
+  }
+
+  .rate-warning-icon {
+    width: 28px;
+  }
+
+  .rate-warning-title-text {
+    font-size: 18px;
+    font-weight: 500;
+  }
+
+  .rate-warning-text {
+    text-align: left;
+    margin: 20px 15px 25px 0px;
+    padding: 0px 145px 0px 0px;
+    font-size: 16px;
+
+    @media (min-width: 599px) and (max-width: 601px) {
+      padding: 0px !important;
+    }
+  }
+
+  .two-box-in-one {
+    display: grid;
+    grid-column-end: span 2;
+    grid-gap: 15px;
+    grid-template-columns: repeat(2, minmax(100px, 1fr));
+
+    @media (min-width: 599px) and (max-width: 601px) {
+      display: block;
+    }
+  }
+
+  // .flex-split {
+  //   flex: 1 1 0px;
+  // }
 
   .rente-boxes {
     min-width: 300px;
@@ -652,7 +736,7 @@ a.box {
     .compared {
       text-align: left;
       color: white;
-      grid-row: 2;
+      // grid-row: 3;
       grid-column-start: 2;
     }
     .tips {
