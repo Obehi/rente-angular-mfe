@@ -21,6 +21,7 @@ export class BankGuideService {
 
   constructor() {
     this.sortBanks();
+    this.removeNordeaDirectSubMembership();
     this.filterBank(this.searchStr);
   }
 
@@ -41,6 +42,7 @@ export class BankGuideService {
     if (this.searchStr.toLocaleLowerCase() === 'sparebank 1') {
       this.removeSparebank();
     }
+
     if (this.sparebankIsClicked === true) {
       this.sparebankIsClicked = false;
       this.sortBanks();
@@ -104,6 +106,16 @@ export class BankGuideService {
 
     this.allBanks = this.allBanks.filter((bank) => {
       return bank.name !== sparebank;
+    });
+  }
+
+  removeNordeaDirectSubMembership(): void {
+    const ys = 'YS (Nordea Direct)';
+    const unio = 'UNIO (Nordea Direct)';
+    const nal = 'NAL (Nordea Direct)';
+
+    this.allBanks = this.allBanks.filter((bank) => {
+      return bank.label !== ys && bank.label !== unio && bank.label !== nal;
     });
   }
 }
