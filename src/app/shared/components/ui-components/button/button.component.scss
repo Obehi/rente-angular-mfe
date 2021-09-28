@@ -84,6 +84,12 @@ button.mat-secondary-small {
   color: white;
 }
 
+button.mat-secondary-border {
+  background-color: $secondary;
+  color: white;
+  border: 1px solid #2d4051;
+}
+
 .mat-button.mat-primary {
   color: white !important;
 }
