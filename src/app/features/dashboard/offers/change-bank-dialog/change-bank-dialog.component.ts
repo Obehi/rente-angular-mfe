@@ -6,14 +6,19 @@ import {
   ViewChild
 } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import {
+  FormGroup,
+  FormBuilder,
+  Validators,
+  AbstractControl,
+  NgForm
+} from '@angular/forms';
 import { ChangeBankServiceService } from '../../../../shared/services/remote-api/change-bank-service.service';
-import { Router } from '@angular/router';
 import { MatStepper } from '@angular/material';
 import { LoansService } from '@services/remote-api/loans.service';
 import { concat, Observable } from 'rxjs';
-import { FormControlId } from '@features/dashboard/profile/profile.component';
 import { toArray } from 'rxjs/operators';
+import { VALIDATION_PATTERN } from '@config/validation-patterns.config';
 
 @Component({
   selector: 'rente-change-bank-dialog',
@@ -28,6 +33,7 @@ export class ChangeBankDialogComponent implements OnInit {
   public isLoading: boolean;
   public closeState: string;
   public stepperPosition: number;
+  public validatorsError: boolean;
 
   constructor(
     private fb: FormBuilder,
@@ -44,8 +50,18 @@ export class ChangeBankDialogComponent implements OnInit {
       confirmation: ['', Validators.required]
     });
     this.mobileNumberForm = this.fb.group({
-      phoneInput: ['', Validators.required]
+      phoneInput: [
+        '',
+        Validators.compose([
+          Validators.required,
+          Validators.pattern(VALIDATION_PATTERN.phoneShort)
+        ])
+      ]
     });
+  }
+
+  public isErrorState(control: AbstractControl | null): boolean {
+    return !!(control && control.invalid && (control.dirty || control.touched));
   }
 
   goBack(stepper: MatStepper): void {
@@ -54,12 +70,24 @@ export class ChangeBankDialogComponent implements OnInit {
   }
 
   goForward(stepper: MatStepper): void {
-    this.stepperPosition = 2;
-    stepper.next();
+    if (
+      !this.mobileNumberForm.controls['phoneInput'].hasError('required') &&
+      !this.mobileNumberForm.controls['phoneInput'].hasError('pattern')
+    ) {
+      this.validatorsError = false;
+      this.stepperPosition = 2;
+      stepper.next();
+    } else {
+      this.validatorsError = true;
+    }
   }
 
   get signicatPhoneNumber(): string {
     return this.mobileNumberForm.get('phoneInput')?.value;
+  }
+
+  get doesNumberExist(): boolean {
+    return this.data.preview.clientInfo.phone ? true : false;
   }
 
   public sendRequest(): void {
@@ -75,6 +103,9 @@ export class ChangeBankDialogComponent implements OnInit {
           this.isLoading = false;
           this.closeState = 'procced';
           this.dialogRef.close();
+
+          // TODO: remove before deploy
+          console.log(`Number ${this.signicatPhoneNumber} sent`);
         },
         (error) => {
           this.isLoading = false;
@@ -88,35 +119,6 @@ export class ChangeBankDialogComponent implements OnInit {
           }
         }
       );
-
-    // concat([
-    //   this.changeBankServiceService
-    //     .sendBankOfferRequest(this.data.offerId)
-    //     .subscribe(
-    //       (_) => {
-    //         this.isLoading = false;
-    //         this.closeState = 'procced';
-    //         this.dialogRef.close();
-    //       },
-    //       (error) => {
-    //         this.isLoading = false;
-    //         if (error.detail === 'Less than week since last email') {
-    //           this.closeState = 'error-to-many-bargains';
-    //           this.dialogRef.close();
-    //         } else {
-    //           this.isLoading = false;
-    //           this.closeState = 'error';
-    //           this.dialogRef.close();
-    //         }
-    //       }
-    //     ),
-
-    //   this.loansService
-    //     .updateSignicatPhoneNumber(this.signicatPhoneNumber)
-    //     .subscribe((args) => {
-    //       console.log(args);
-    //     })
-    // ]);
   }
 
   public close(): void {

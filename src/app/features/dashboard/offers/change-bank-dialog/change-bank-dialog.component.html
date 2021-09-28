@@ -1,7 +1,7 @@
 <!-- <mat-icon (click)="close()" class="close-modal">close</mat-icon> -->
 <div class="main">
   <mat-horizontal-stepper class="stepper" [linear]="false" #stepper>
-    <mat-step [editable]="true">
+    <mat-step [editable]="true" *ngIf="!doesNumberExist">
       <div class="step-1">
         <div class="mobile-content">
           <h3 style="color: white">
@@ -16,7 +16,32 @@
                 [type]="'tel'"
                 [maxLength]="8"
                 formControlName="phoneInput"
+                [modelOptions]="{ updateOn: 'blur' }"
+                [errorStateMatcher]="
+                  isErrorState(mobileNumberForm.controls['phoneInput'])
+                "
               ></rente-input>
+              <div
+                class="error-message"
+                *ngIf="mobileNumberForm.controls['phoneInput'].touched"
+              >
+                <rente-form-message
+                  [type]="'error'"
+                  *ngIf="
+                    mobileNumberForm.controls['phoneInput'].hasError('required')
+                  "
+                >
+                  Ikke gyldig telefonnummer
+                </rente-form-message>
+                <rente-form-message
+                  [type]="'error'"
+                  *ngIf="
+                    mobileNumberForm.controls['phoneInput'].hasError('pattern')
+                  "
+                >
+                  Ikke gyldig telefonnummer
+                </rente-form-message>
+              </div>
             </div>
           </form>
         </div>
@@ -24,9 +49,12 @@
     </mat-step>
     <mat-step [editable]="true">
       <div class="step-2">
-        <h3 i18n="“title|change-bank@@change.bank.title”">
-          Melding til banken din:
-        </h3>
+        <div class="header">
+          <h3 i18n="“title|change-bank@@change.bank.title”">
+            Melding til banken din:
+          </h3>
+        </div>
+
         <div class="scroll-wrap">
           <div class="top">
             <div class="message">
@@ -164,7 +192,10 @@
                   >
                     Telefon:
                   </p>
-                  <p>{{ data.preview.clientInfo.phone }}</p>
+                  <p *ngIf="doesNumberExist">
+                    {{ data.preview.clientInfo.phone }}
+                  </p>
+                  <p *ngIf="!doesNumberExist">{{ signicatPhoneNumber }}</p>
                 </div>
                 <div class="item">
                   <p
@@ -241,9 +272,8 @@
       </div>
     </mat-step>
   </mat-horizontal-stepper>
-  <hr />
 </div>
-<div class="double">
+<div class="double" *ngIf="!doesNumberExist">
   <rente-button
     *ngIf="stepperPosition == 1"
     color="secondary"
@@ -266,11 +296,34 @@
     i18n="“send-bank|change-bank@@change.bank.sendBank”"
     color="primary"
     [isLoading]="isLoading"
+    [disabled]="
+      this.mobileNumberForm.controls['phoneInput'].hasError('required') ||
+      this.mobileNumberForm.controls['phoneInput'].hasError('pattern')
+    "
     (click)="goForward(stepper)"
     >Neste
   </rente-button>
   <rente-button
     *ngIf="stepperPosition == 2"
+    i18n="“send-bank|change-bank@@change.bank.sendBank”"
+    color="primary"
+    [isLoading]="isLoading"
+    [disabled]="!isConfirmed || isLoading"
+    (click)="sendRequest()"
+    >Send til banken
+  </rente-button>
+</div>
+
+<div class="double" *ngIf="doesNumberExist">
+  <rente-button
+    color="secondary"
+    (click)="close()"
+    i18n="“cancel|change-bank@@change.bank.cancel”"
+  >
+    Avbryt
+  </rente-button>
+
+  <rente-button
     i18n="“send-bank|change-bank@@change.bank.sendBank”"
     color="primary"
     [isLoading]="isLoading"

@@ -29,7 +29,7 @@ export class ChangeBankServiceService {
 
   public sendBankOfferRequest(offerId: number): Observable<any> {
     const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.bankOfferRequest.base}${API_URL_MAP.loan.bankOfferRequest.send}/${offerId}`;
-    return of(true);
+    return this.http.post(url);
   }
 
   public sendBankOfferRequestV2(): Observable<void> {

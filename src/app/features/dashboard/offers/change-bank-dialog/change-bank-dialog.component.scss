@@ -8,6 +8,7 @@ p {
   padding: 15px;
   margin-bottom: unset;
   background-color: $secondary;
+  border-top: 1px solid $karl-blue;
 }
 
 // CENTER POP UP
@@ -28,9 +29,6 @@ p {
 }
 
 .main {
-  hr {
-  }
-
   ::-webkit-scrollbar {
     width: 6px;
     background: inherit;
@@ -51,18 +49,26 @@ p {
 
   background-color: $secondary;
   overflow: hidden;
-  height: 29rem;
+  height: 26rem;
   @media (max-height: 700px) {
     height: 25rem;
   }
 
   @media (min-width: 600px) {
-    height: 35rem;
+    height: 25rem;
   }
 
   // DEEPS
 
+  ::ng-deep input.mat-input-element {
+    color: white !important;
+  }
+
   //// REMOVE MAT STEP ICON
+  ::ng-deep .mat-step-header {
+    display: none !important;
+  }
+
   ::ng-deep .mat-step-icon {
     display: none !important;
   }
@@ -151,12 +157,24 @@ p {
 
   .step-1 {
     padding: 20px;
+
+    ::ng-deep .form-message-error {
+      background-color: $secondary;
+    }
   }
   .step-2 {
+    .header {
+      hr {
+        width: 90%;
+        margin-left: 4%;
+        border-bottom: 1px solid $blue-light;
+      }
+    }
     h3 {
       color: $white;
+      padding: 15px;
     }
-    padding: 20px;
+
     .message {
       border: 1px solid #478ccc;
       padding: 15px;
@@ -183,13 +201,14 @@ p {
 
   .scroll-wrap {
     @media (min-width: 600px) {
-      height: 46vh;
+      height: 30vh;
     }
     overflow-y: scroll;
-    height: 43vh;
+    height: 301px;
     overflow-x: hidden;
     border-radius: 5px;
-    margin-top: 1.5rem;
+    // margin-top: 1.5rem;
+    padding: 0 15px;
   }
 
   p {
