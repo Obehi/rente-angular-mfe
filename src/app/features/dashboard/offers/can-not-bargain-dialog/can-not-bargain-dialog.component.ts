@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef, MatDialog } from '@angular/material';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'rente-can-not-bargain-dialog',
@@ -12,7 +11,6 @@ export class CanNotBargainDialogComponent implements OnInit {
 
   constructor(
     public dialog: MatDialog,
-    private router: Router,
     public dialogRef: MatDialogRef<CanNotBargainDialogComponent>
   ) {}
 

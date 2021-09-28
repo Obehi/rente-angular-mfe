@@ -38,7 +38,7 @@ export class InputFlowComponent implements OnInit {
     });
   }
 
-  selectChip(chip) {
+  selectChip(chip: number | null): void {
     this.selectedChip = chip;
     this.formGroup.patchValue({
       [this.controlName]: chip

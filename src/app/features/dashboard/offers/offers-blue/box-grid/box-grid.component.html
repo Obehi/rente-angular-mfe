@@ -1,72 +1,88 @@
 <div class="info-box-grid">
-  <div class="box round-box blue-bg">
-    <div>
+  <div class="box-1 round-box blue-bg">
+    <div class="img-wrapper">
       <img class="box-icon" src="../../../../assets/icons/rate.svg" />
-      <p i18n="“your-interest|offers-main@@offers.mainPage.yourInterest”">
-        Min effektive rente
-      </p>
-      <h2>{{ offersInfo?.totalEffectiveRate | number: '1.2-2' }} %</h2>
     </div>
+    <p i18n="“your-interest|offers-main@@offers.mainPage.yourInterest”">
+      Min effektive rente
+    </p>
+    <h2>{{ offersInfo?.totalEffectiveRate | number: '1.2-2' }} %</h2>
   </div>
   <a
-    class="box round-box primary-bg positive clickable"
+    class="box-2 round-box primary-bg positive clickable"
     (click)="goToBestOffer()"
   >
-    <div>
+    <div class="img-wrapper">
       <img
         class="box-icon"
         src="../../../../assets/icons/rente-icon-white.svg"
       />
-      <p i18n="“best-offer|offers-main@@offers.mainPage.bestOffer”">
-        Beste tilbud
-      </p>
-      <h2>{{ offersInfo?.bestOfferEffectiveRate | number: '1.2-2' }} %</h2>
     </div>
+    <p i18n="“best-offer|offers-main@@offers.mainPage.bestOffer”">
+      Beste tilbud
+    </p>
+    <h2>{{ offersInfo?.bestOfferEffectiveRate | number: '1.2-2' }} %</h2>
+
     <img class="arrow-big" src="../../../../assets/icons/arrow-big.svg" />
   </a>
 
-  <a class="box round-box blue-bg clickable" (click)="goToProperty()">
-    <div>
+  <a class="box-3 round-box blue-bg clickable" (click)="goToProperty()">
+    <div class="img-wrapper">
       <img class="box-icon" src="../../../../assets/icons/house.svg" />
-      <p i18n="“value|offers-main@@offers.mainPage.value”">Boligverdi</p>
+    </div>
+    <div class="housevalue-wrapper">
+      <p i18n="“value|offers-main@@offers.mainPage.value”" class="housevalue">
+        Boligverdi
+      </p>
       <h2 i18n="“millions|offers-main@@offers.mainPage.millions”">
         {{ offersInfo?.propertyValue / 1000000 | number: '1.1-3' }}
         mill.
       </h2>
-      <p
-        i18n="“debt|offers-main@@offers.mainPage.debt”"
-        class="small"
-        *ngIf="envService.isNorway()"
-      >
-        Fellesgjeld
-        {{ offersInfo?.commonDebt / 1000000 | number: '1.1-2' }}
-        mill.
-      </p>
-      <!-- må *ngIf="envService.isNorway() være her?"-->
-      <p
-        *ngIf="envService.isNorway()"
-        i18n="“virdi-estimate|offers-main@@offers.mainPage.virdiEstimate”"
-        class="extra-small-virdi"
-      >
-        Estimat levert av
-        <a href="https://virdi.no/" target="_blank">virdi.no</a>
-      </p>
+      <div class="commondebt-virdi">
+        <p
+          i18n="“debt|offers-main@@offers.mainPage.debt”"
+          class="small"
+          *ngIf="envService.isNorway()"
+        >
+          Fellesgjeld
+          {{ offersInfo?.commonDebt / 1000000 | number: '1.1-2' }}
+          mill.
+        </p>
+
+        <p
+          *ngIf="envService.isNorway()"
+          i18n="“virdi-estimate|offers-main@@offers.mainPage.virdiEstimate”"
+          class="extra-small-virdi"
+        >
+          Estimat levert av
+          <a href="https://virdi.no/" target="_blank">virdi.no</a>
+        </p>
+      </div>
     </div>
+
     <img class="arrow-big" src="../../../../assets/icons/arrow-big.svg" />
   </a>
-  <a class="box round-box blue-bg clickable" (click)="goToLoans()">
-    <img
-      class="box-icon"
-      src="../../../../assets/icons/graph-icon-white-small.svg"
-    />
+  <a class="box-4 round-box blue-bg clickable" (click)="goToLoans()">
+    <div class="img-wrapper">
+      <img
+        class="box-icon graph-icon"
+        src="../../../../assets/icons/graph-icon-white-small.svg"
+      />
+    </div>
     <p i18n="“loan-remaining|offers-main@@offers.mainPage.loanRemaining”">
       Gjenværende lån
     </p>
-    <h2 i18n="“millions|offers-main@@offers.mainPage.millions”">
+    <h2
+      i18n="“millions|offers-main@@offers.mainPage.millions”"
+      class="h2-million"
+    >
       {{ offersInfo?.totalOutstandingDebt / 1000000 | number: '1.1-3' }}
       mill.
     </h2>
-    <p i18n="“leverage2|offers-main@@offers.mainPage.leverage2”" class="small">
+    <p
+      i18n="“leverage2|offers-main@@offers.mainPage.leverage2”"
+      class="small loantovalue"
+    >
       Belåningsgrad
       {{ offersInfo?.ltv * 100 | number: '1.1-1' }} %
     </p>

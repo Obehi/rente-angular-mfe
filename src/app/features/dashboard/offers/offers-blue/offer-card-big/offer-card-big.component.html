@@ -35,9 +35,15 @@
     </div>
   </div>
 
-  <div *ngIf="bankSpecialPromoText !== null" class="special-promo">
+  <div
+    *ngIf="bankSpecialPromoText !== null"
+    class="special-promo"
+    [ngClass]="{ 'clickable-cursor': this.offer.bankInfo.bank === 'BULDER' }"
+    (click)="openCustomerDividend()"
+  >
     <img class="box-icon" src="../../../../../assets/icons/badge.svg" />
     <p>{{ bankSpecialPromoText }}</p>
+    <mat-icon *ngIf="this.offer.bankInfo.bank === 'BULDER'">help</mat-icon>
   </div>
 </div>
 <div class="the-offer-body">

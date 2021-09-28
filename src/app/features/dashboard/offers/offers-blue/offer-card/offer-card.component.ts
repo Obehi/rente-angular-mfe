@@ -18,6 +18,7 @@ import {
   OfferMessage
 } from '@features/dashboard/offers/offers.service';
 import { locale } from '../../../../../config/locale/locale';
+import { GenericInfoDialogComponent } from '@shared/components/ui-components/dialogs/generic-info-dialog/generic-info-dialog.component';
 
 @Component({
   selector: 'rente-offer-card',
@@ -222,5 +223,19 @@ export class OfferCardComponent implements OnInit {
 
   public clickNordea(): void {
     this.offersService.pushMessage(OfferMessage.antiChurn);
+  }
+
+  public openCustomerDividend(): void {
+    if (this.offer.bankInfo.bank !== 'BULDER') return;
+
+    this.dialog.open(GenericInfoDialogComponent, {
+      data: {
+        header: 'Kundeutbytte',
+        text: 'Har du boliglån i Bulder Bank kvalifiserer du til kundeutbytte.',
+        linkAbbreviation: 'Les mer her',
+        link:
+          'https://blogg.renteradar.no/kundeutbytte-i-banker-sa-mye-kan-du-fa/'
+      }
+    });
   }
 }

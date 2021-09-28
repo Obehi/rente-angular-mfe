@@ -24,6 +24,7 @@ export interface Environment {
   sb1DisabledBanks?: string[];
   dnbSignicatIsOn?: boolean;
   nordeaDirectSignicatIsOn?: boolean;
+  dssBanksSignicatIsOn?: boolean;
 }
 
 @Injectable({
@@ -76,6 +77,7 @@ export class EnvService {
     );
   }
 
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   handleEnvFile(returnedEnv: any): void {
     this.environment.shouldLog = returnedEnv['VAR_1'];
     this.environment.loginDnbIsOn = returnedEnv['VAR_2'];
@@ -83,6 +85,7 @@ export class EnvService {
     this.environment.loginDanskeIsOn = returnedEnv['VAR_4'];
     this.environment.dnbSignicatIsOn = returnedEnv['VAR_7'];
     this.environment.nordeaDirectSignicatIsOn = returnedEnv['VAR_8'];
+    this.environment.dssBanksSignicatIsOn = returnedEnv['VAR_9'];
 
     this.environment.sb1DisabledBanks = (returnedEnv['VAR_5'] as string)
       .replace(/\s/g, '')

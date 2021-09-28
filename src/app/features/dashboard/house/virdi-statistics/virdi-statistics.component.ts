@@ -1,9 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import * as Highcharts from 'highcharts';
-import {
-  LoansService,
-  AddressDto
-} from '../../../../shared/services/remote-api/loans.service';
+import { LoansService } from '../../../../shared/services/remote-api/loans.service';
+import { AddressDto } from '@shared/models/loans';
 import { MatTabChangeEvent } from '@angular/material';
 import { MessageBannerService } from '@services/message-banner.service';
 import { getAnimationStyles } from '@shared/animations/animationEnums';
@@ -175,7 +173,7 @@ export class VirdiStatisticsComponent implements OnInit {
       xAxis: {
         title: {
           enabled: 'bottom',
-          text: 'NOK'
+          text: 'Pris per kvm (tusen kroner)'
         },
         categories: []
       },
@@ -316,7 +314,8 @@ export class VirdiStatisticsComponent implements OnInit {
   }
 
   private convertThousands(value) {
-    return Math.floor(value / 1000) + 'K';
+    // return Math.floor(value / 1000) + 'K';
+    return Math.floor(value / 1000);
   }
 
   private createThousandsCategories(arr: any[]) {

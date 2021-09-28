@@ -7,6 +7,7 @@ import { registerLocaleData } from '@angular/common';
 import localeNo from '@angular/common/locales/nb';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { NgxSliderModule } from '@angular-slider/ngx-slider';
 
 // App
 import { AppRoutingModule } from './app-routing.module';
@@ -87,6 +88,7 @@ registerLocaleData(localeNo);
     TermsConditionsComponent
   ],
   imports: [
+    NgxSliderModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     BrowserModule,

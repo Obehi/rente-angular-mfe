@@ -1,0 +1,309 @@
+@import '../../../../../styles/theme/_colors.scss';
+
+:host {
+  size: var(--size);
+}
+
+// We need to use ::ng-deep to overcome view encapsulation
+::ng-deep {
+  .ngx-slider {
+    margin: 22px 0 15px !important;
+  }
+  .ngx-slider .ngx-slider-pointer {
+    cursor: pointer;
+    top: -14px;
+    background-color: $primary !important;
+    z-index: 3;
+    border-radius: 16px;
+  }
+
+  .ngx-slider .ngx-slider-pointer {
+    &.demo-pointer {
+      cursor: pointer;
+      width: var(--size) !important;
+      height: var(--size) !important;
+      top: -14px;
+      background-color: $primary !important;
+      z-index: 3;
+      border-radius: 16px;
+    }
+  }
+
+  .ngx-slider .ngx-slider-inner-tooltip {
+    height: 20px !important;
+  }
+
+  .ngx-slider .ngx-slider-bubble.ngx-slider-limit {
+    color: #fff !important;
+
+    b {
+      opacity: 0.5;
+    }
+  }
+
+  .ngx-slider .ngx-slider-pointer:after {
+    background-color: $primary !important;
+  }
+
+  .ngx-slider .ngx-slider-bubble {
+    color: #fff !important;
+    font-size: 12px !important;
+  }
+
+  .ngx-slider .ngx-slider-bar {
+    background: $secondary !important;
+  }
+
+  .ngx-slider .ngx-slider-tick {
+    background: $secondary !important;
+  }
+
+  .custom-slider .ngx-slider .ngx-slider-bar {
+    background: #ffe4d1;
+    height: 2px;
+  }
+  .custom-slider .ngx-slider .ngx-slider-selection {
+    background: orange;
+  }
+
+  .custom-slider .ngx-slider .ngx-slider-pointer {
+    width: 8px;
+    height: 16px;
+    top: auto; /* to remove the default positioning */
+    bottom: 0;
+    background-color: #333;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+  }
+
+  .custom-slider .ngx-slider .ngx-slider-pointer:after {
+    display: none;
+  }
+
+  .ngx-slider .ngx-slider-bubble {
+    bottom: 22px !important;
+  }
+
+  .custom-slider .ngx-slider .ngx-slider-limit {
+    font-weight: bold;
+    color: orange;
+  }
+
+  .custom-slider .ngx-slider .ngx-slider-tick {
+    width: 1px;
+    height: 10px;
+    margin-left: 4px;
+    border-radius: 0;
+    background: #ffe4d1;
+    top: -1px;
+  }
+
+  .custom-slider .ngx-slider .ngx-slider-tick.ngx-slider-selected {
+    background: rgb(128, 110, 78);
+  }
+}
+
+h2,
+h3 {
+  color: #fff;
+}
+
+h3 {
+  margin-bottom: 28px;
+}
+
+b {
+  color: #fff;
+  font-size: 12px;
+}
+
+.reduced-opacity {
+  opacity: 0.2;
+}
+
+.demo-container {
+  border: 3px solid $matt-purple;
+
+  .ngx-slider .ngx-slider-pointer {
+    cursor: pointer;
+    width: var(--size) !important;
+    height: var(--size) !important;
+    top: -14px;
+    background-color: $primary !important;
+    z-index: 3;
+    border-radius: 16px;
+    border-color: 2px solid $matt-purple;
+  }
+}
+
+.test-buttons {
+  display: flex;
+  margin: auto;
+  width: 481px;
+  p {
+    background-color: white;
+    border-radius: 5px;
+    margin: 10px;
+    font-weight: 400;
+    padding: 7px 36px;
+  }
+}
+
+.slider-container-transparent {
+  width: 100%;
+  //margin: 20px auto;
+  margin-top: 30px;
+  margin: 30px 0px 0px;
+}
+///////////////////////// .score-container-0
+.score-container-0 {
+  margin-bottom: 20px;
+
+  .info-box {
+    color: #fff;
+    background-color: $karl-blue;
+    border: 1px solid $blue-light;
+    border-radius: 5px;
+    padding: 15px;
+    text-align: left;
+    margin-bottom: 20px;
+  }
+
+  /*   .sliders-3 {
+    .slider-container {
+      width: 100%;
+      margin: 20px auto;
+    }
+  } */
+
+  @media (min-width: 600px) {
+    .sliders {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-column-gap: 20px;
+      .slider-container {
+        width: 100%;
+      }
+    }
+  }
+  .slider-container {
+    margin-top: 30px;
+    background: $karl-blue;
+    margin: 30px 0px 0px;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: rgb(50 50 93 / 25%) 0px 2px 5px -1px,
+      rgb(0 0 0 / 30%) 0px 3px 3px -1px;
+  }
+}
+
+///////////////////////// .score-container-1
+.score-container-1 {
+  margin-bottom: 20px;
+
+  width: 60%;
+  margin: 0 auto 20px;
+
+  .info-box {
+    color: #fff;
+    background-color: $karl-blue;
+    border: 1px solid $blue-light;
+    border-radius: 5px;
+    padding: 15px;
+    text-align: left;
+    margin-bottom: 20px;
+  }
+
+  .sliders-3 {
+    .slider-container {
+      width: 100%;
+      margin: 20px auto;
+    }
+  }
+
+  .slider-container {
+    margin-top: 30px;
+    background: $karl-blue;
+    margin: 30px 0px 0px;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: rgb(50 50 93 / 25%) 0px 2px 5px -1px,
+      rgb(0 0 0 / 30%) 0px 3px 3px -1px;
+  }
+}
+
+///////////////////////// .score-container-2
+.score-container-2 {
+  margin-bottom: 20px;
+
+  .info-box {
+    color: #fff;
+    background-color: $karl-blue;
+    border: 1px solid $blue-light;
+    border-radius: 5px;
+    padding: 15px;
+    text-align: left;
+    margin-bottom: 20px;
+  }
+
+  .sliders {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 20px;
+    .slider-container {
+      width: 100%;
+    }
+  }
+
+  .sliders-2 {
+    .slider-container {
+      width: 60%;
+      margin: 20px auto;
+    }
+  }
+
+  .slider-container {
+    margin-top: 30px;
+    background: $karl-blue;
+    margin: 30px 0px 0px;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: rgb(50 50 93 / 25%) 0px 2px 5px -1px,
+      rgb(0 0 0 / 30%) 0px 3px 3px -1px;
+  }
+}
+
+///////////////////////// .score-container-3
+.score-container-3 {
+  margin-bottom: 20px;
+
+  .info-box {
+    color: #fff;
+    background-color: $karl-blue;
+    border: 1px solid $blue-light;
+    border-radius: 5px;
+    padding: 15px;
+    text-align: left;
+    margin-bottom: 20px;
+  }
+
+  @media (min-width: 600px) {
+    .sliders {
+      .slider-container {
+        width: 100%;
+        width: 60%;
+        margin: 20px auto;
+      }
+    }
+  }
+
+  .slider-container {
+    margin-top: 30px;
+    background: $karl-blue;
+    margin: 30px 0px 0px;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: rgb(50 50 93 / 25%) 0px 2px 5px -1px,
+      rgb(0 0 0 / 30%) 0px 3px 3px -1px;
+  }
+}

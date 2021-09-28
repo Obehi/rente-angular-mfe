@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { LoansService } from '@services/remote-api/loans.service';
-
 @Component({
   selector: 'rente-counter',
   templateUrl: './counter.component.html',
@@ -19,7 +17,7 @@ export class CounterComponent implements OnInit {
     starVal: 0,
     separator: ' '
   };
-  constructor(private loansService: LoansService) {}
+  constructor() {}
 
   ngOnInit(): void {}
 }

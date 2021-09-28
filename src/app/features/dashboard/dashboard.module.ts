@@ -6,7 +6,6 @@ import { OffersComponentBlue } from './offers/offers-blue/offers.component';
 import { DashboardComponent } from './dashboard.component';
 import { MatTabsModule } from '@angular/material/tabs';
 
-import { PreferencesComponent } from './preferences/preferences.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { SharedModule } from '@shared/shared.module';
@@ -39,7 +38,6 @@ import { ManualInputDialogComponent } from './house/manual-input-dialog/manual-i
 import { HouseErrorDialogSv } from './house/error-dialog-sv/house-error-dialog-sv.component';
 
 import { SuccessChangeBankDialogComponent } from './offers/change-bank-dialog/success-change-bank-dialog/success-change-bank-dialog.component';
-import { ShareSheetComponent } from './offers/share-sheet/share-sheet.component';
 import { VirdiStatisticsComponent } from './house/virdi-statistics/virdi-statistics.component';
 import { OffersStatisticsComponentBlue } from './offers/offers-blue/offers-statistics/offers-statistics.component';
 import { OffersStatisticsComponent } from './offers/offers-statistics/offers-statistics.component';
@@ -68,7 +66,6 @@ import { BarometerComponent } from './offers/offers-blue/barometer/barometer.com
 import { BoxGridComponent } from './offers/offers-blue/box-grid/box-grid.component';
 import { TipsComponent } from './offers/offers-blue/tips/tips.component';
 import { ActionBoxesComponent } from './offers/offers-blue/action-boxes/action-boxes.component';
-import { PropertyInputComponent } from '../first-buyers/components/property-input/property-input.component';
 import { CurrencyMaskModule } from 'ng2-currency-mask';
 import { CrawlerBanksComponent } from './loans/loans-no/crawler-banks/crawler-banks.component';
 import { SignicatUsersComponent } from './loans/loans-no/signicat-users/signicat-users.component';
@@ -82,7 +79,6 @@ import { LoanSignicatUsersComponent } from './loans/loans-no/signicat-users/loan
     OffersComponentBlue,
     DashboardComponent,
     LoansLangGenericComponent,
-    PreferencesComponent,
     ProfileComponent,
     DialogInfoComponent,
     LtvTooHighDialogComponent,
@@ -90,7 +86,6 @@ import { LoanSignicatUsersComponent } from './loans/loans-no/signicat-users/loan
     RateTypeFixedComponent,
     ChangeBankDialogComponent,
     SuccessChangeBankDialogComponent,
-    ShareSheetComponent,
     VirdiStatisticsComponent,
     OffersStatisticsComponentBlue,
     OffersStatisticsComponent,
@@ -162,7 +157,6 @@ import { LoanSignicatUsersComponent } from './loans/loans-no/signicat-users/loan
     DialogInfoComponent,
     ChangeBankDialogComponent,
     SuccessChangeBankDialogComponent,
-    ShareSheetComponent,
     GetOfferFromBankDialogComponent,
     LtvTooHighDialogComponent
   ],

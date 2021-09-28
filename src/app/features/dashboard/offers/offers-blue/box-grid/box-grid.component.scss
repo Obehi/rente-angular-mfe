@@ -8,6 +8,18 @@
   }
 }
 
+.housevalue-wrapper {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.img-wrapper {
+  .graph-icon {
+    height: 21.32px;
+  }
+}
+
 .info-box-grid {
   display: grid;
   grid-gap: 22px;
@@ -25,6 +37,65 @@
 }
 
 .box {
+  padding: 20px 10px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  p img {
+    position: relative;
+    top: 2px;
+    margin-left: 5px;
+    height: 16px;
+  }
+}
+
+.box-1 {
+  padding: 20px 10px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  p img {
+    position: relative;
+    top: 2px;
+    margin-left: 5px;
+    height: 16px;
+  }
+}
+
+.box-2 {
+  padding: 20px 10px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  p img {
+    position: relative;
+    top: 2px;
+    margin-left: 5px;
+    height: 16px;
+  }
+}
+
+.box-3 {
+  padding: 20px 10px;
+  width: 100%;
+  .arrow-big {
+    margin-top: 10px;
+  }
+
+  p img {
+    position: relative;
+    top: 2px;
+    margin-left: 5px;
+    height: 16px;
+  }
+}
+
+.box-4 {
   padding: 20px 10px;
   width: 100%;
   display: flex;
@@ -64,9 +135,7 @@
 
 .arrow-big {
   float: right;
-  margin-bottom: -5px;
   margin-right: 5px;
-  margin-top: 22px;
   align-self: flex-end;
 }
 
@@ -76,7 +145,6 @@
 
 .extra-small-virdi {
   font-size: 9px;
-  margin-bottom: 10px;
 }
 
 a {

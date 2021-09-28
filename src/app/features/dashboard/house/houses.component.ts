@@ -1,6 +1,7 @@
-import { LoansService, AddressDto } from '@services/remote-api/loans.service';
+import { LoansService } from '@services/remote-api/loans.service';
 import { Component, OnInit } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
+import { AddressDto } from '@shared/models/loans';
 import { DeactivationGuarded } from '@shared/guards/route.guard';
 import { locale } from '../../../config/locale/locale';
 import { HouseFormErrorDialogComponent } from './error-dialog/error-dialog.component';
@@ -21,6 +22,7 @@ import { MessageBannerService } from '@services/message-banner.service';
 import { CustomLangTextService } from '@services/custom-lang-text.service';
 import { getAnimationStyles } from '@shared/animations/animationEnums';
 import { NotificationService } from '@services/notification.service';
+import { HouseErrorDialogSv } from './error-dialog-sv/house-error-dialog-sv.component';
 
 @Component({
   selector: 'rente-houses',
@@ -189,7 +191,7 @@ export class HousesComponent implements OnInit, DeactivationGuarded {
           if (this.envService.isSweden() === true) {
             if (address.error === true) {
               this.handleErrorState();
-              this.dialog.open(HouseFormErrorDialogComponent);
+              this.dialog.open(HouseErrorDialogSv);
               return;
             } else if (
               address.useManualPropertyValue === false &&

@@ -9,7 +9,7 @@ import {
   TemplateRef
 } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material';
-import { FirstBuyersAPIService } from '@services/remote-api/first-buyers.service';
+import { FirstBuyersAPIService } from '@services/remote-api/first-buyers-api.service';
 import { MembershipService } from '../../../../shared/services/membership.service';
 
 @Component({

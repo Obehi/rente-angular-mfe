@@ -12,7 +12,7 @@ export class SnackBarService {
     public customLangTextService: CustomLangTextService
   ) {}
 
-  public openSuccessSnackBar(message: string, duration?: number) {
+  public openSuccessSnackBar(message: string, duration?: number): void {
     this.snackBar.open(message, this.customLangTextService.getSnackBarClose(), {
       duration: duration ? duration * 1000 : this.duration * 1000,
       panelClass: ['bg-primary'],
@@ -20,7 +20,7 @@ export class SnackBarService {
     });
   }
 
-  public openFailSnackBar(message: string, duration?: number) {
+  public openFailSnackBar(message: string, duration?: number): void {
     this.snackBar.open(message, this.customLangTextService.getSnackBarClose(), {
       duration: duration ? duration * 1000 : this.duration * 1000,
       panelClass: ['bg-error'],

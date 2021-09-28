@@ -1,9 +1,3 @@
-import {
-  LoansService,
-  ConfirmationSetDto,
-  ConfirmationGetDto,
-  AddressCreationDto
-} from '@services/remote-api/loans.service';
 import { UserService } from '@services/remote-api/user.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import {
@@ -15,10 +9,17 @@ import {
 import { ENTER, COMMA } from '@angular/cdk/keycodes';
 import { MatDialog } from '@angular/material';
 import { Router } from '@angular/router';
-import { VALIDATION_PATTERN } from '@config/validation-patterns.config';
-import { OfferInfo } from '@shared/models/offers';
 import { DialogInfoComponent } from '../dialog-info/dialog-info.component';
+import { LoansService } from '@services/remote-api/loans.service';
+import {
+  ConfirmationSetDto,
+  ConfirmationGetDto,
+  AddressCreationDto
+} from '@shared/models/loans';
 import { CustomLangTextService } from '@services/custom-lang-text.service';
+import { VALIDATION_PATTERN } from '@config/validation-patterns.config';
+import { ROUTES_MAP_SV } from '@config/routes-config';
+import { OfferInfo } from '@shared/models/offers';
 import { Mask } from '@shared/constants/mask';
 import { CheckBoxItem } from '@shared/components/ui-components/checkbox-container/checkbox-container.component';
 import { GlobalStateService } from '@services/global-state.service';
@@ -52,7 +53,6 @@ export class InitConfirmationSVComponent implements OnInit, OnDestroy {
 
   constructor(
     private fb: FormBuilder,
-    private userService: UserService,
     private loansService: LoansService,
     private router: Router,
     public dialog: MatDialog,
