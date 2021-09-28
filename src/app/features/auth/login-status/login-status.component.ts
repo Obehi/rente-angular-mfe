@@ -471,12 +471,12 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
 
           case BANKID_STATUS.ERROR_3:
             this.unsubscribeEverything();
-            this.crawlerLoginService.postError();
+            this.crawlerLoginService.forceSignicatRedirect();
             break;
 
           case BANKID_STATUS.ERROR_4:
             this.unsubscribeEverything();
-            this.crawlerLoginService.postError();
+            this.crawlerLoginService.forceSignicatRedirect();
             break;
 
           case BANKID_STATUS.ERROR_5:
@@ -601,7 +601,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
 
             if (this.bank.name === 'DNB') {
               this.unsubscribeEverything();
-              this.crawlerLoginService.postError();
+              this.crawlerLoginService.forceSignicatRedirect();
             } else {
               this.viewStatus.isCrawlerError = true;
               this.unsubscribeEverything();

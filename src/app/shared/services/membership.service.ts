@@ -58,7 +58,6 @@ export class MembershipService {
     if (subBank !== null && subBank !== undefined) {
       memberships.push(subBank);
     }
-    console.log(memberships);
     return memberships;
   }
 

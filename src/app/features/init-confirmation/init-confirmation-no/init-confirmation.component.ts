@@ -115,7 +115,6 @@ export class InitConfirmationNoComponent implements OnInit, OnDestroy {
       this.allMemberships = this.membershipService.initMembershipList(
         userInfo.availableMemberships
       );
-      console.log(this.memberships);
 
       const prefilledMemberships = this.membershipService.getPrefilledMemberships();
 
@@ -123,7 +122,6 @@ export class InitConfirmationNoComponent implements OnInit, OnDestroy {
         this.memberships = prefilledMemberships;
       }
 
-      console.log(this.memberships);
       this.userData = userInfo;
 
       const userEmail =
@@ -403,7 +401,6 @@ export class InitConfirmationNoComponent implements OnInit, OnDestroy {
   }
 
   selected(event: MatAutocompleteSelectedEvent): void {
-    console.log(event.option.value);
     this.memberships.push(event.option.value);
     this.membershipInput.nativeElement.value = '';
     this.membershipCtrl.setValue(null);

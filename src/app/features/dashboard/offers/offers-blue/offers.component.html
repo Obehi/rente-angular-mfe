@@ -19,17 +19,42 @@
         >
         </barometer>
 
-        <!-- box grid -->
-        <box-grid [offersInfo]="offersInfo"> </box-grid>
+        <div
+          class="rate-warning-box"
+          *ngIf="
+            offersInfo.aggregatedRateType ===
+            aggregatedRateType.MIX_FIXED_FLOATING
+          "
+        >
+          <div class="rate-warning-title">
+            <img
+              class="rate-warning-icon"
+              src="../../../../../assets/icons/rate-blue.svg"
+            />
+            <p class="rate-warning-title-text">OBS! Fastrentelån</p>
+          </div>
+          <p class="rate-warning-text">
+            Du har ett eller flere fastrentelån. Renteradar viser beste rente og
+            besparelsespotensialet kun for lånet/lånene med flytende rente. I
+            kalkulasjonen av din effektive rente er derimot lånet med fast rente
+            inkludert. Det er den som brukes i tilbakemeldingen over, og i
+            sammenligningen av din rente i forhold til andre.
+          </p>
+        </div>
 
-        <!-- end of box-grid-->
+        <div class="two-box-in-one">
+          <!-- box grid -->
+          <box-grid [offersInfo]="offersInfo"> </box-grid>
 
-        <div *ngIf="!isMobile" class="compared">
-          <rente-offers-statistics-blue
-            [offersInfo]="offersInfo"
-            [userRateColor]="rateBarPercentage.hex"
-          >
-          </rente-offers-statistics-blue>
+          <!-- end of box-grid-->
+
+          <div *ngIf="!isMobile" class="compared">
+            <rente-offers-statistics-blue
+              [offersInfo]="offersInfo"
+              [userRateColor]="rateBarPercentage.hex"
+            >
+            </rente-offers-statistics-blue>
+          </div>
         </div>
 
         <tips-component [offersInfo]="offersInfo"></tips-component>
@@ -49,6 +74,29 @@
           [offersInfo]="offersInfo"
           [offerSavingsType]="offerSavingsType"
         ></barometer>
+
+        <div
+          class="rate-warning-box"
+          *ngIf="
+            offersInfo.aggregatedRateType ===
+            aggregatedRateType.MIX_FIXED_FLOATING
+          "
+        >
+          <div class="rate-warning-title">
+            <img
+              class="rate-warning-icon"
+              src="../../../../../assets/icons/rate-blue.svg"
+            />
+            <p class="rate-warning-title-text">OBS! Fastrentelån</p>
+          </div>
+          <p class="rate-warning-text">
+            Du har ett eller flere fastrentelån. Renteradar viser beste rente og
+            besparelsespotensialet kun for lånet/lånene med flytende rente. I
+            kalkulasjonen av din effektive rente er derimot lånet med fast rente
+            inkludert. Det er den som brukes i tilbakemeldingen over, og i
+            sammenligningen av din rente i forhold til andre.
+          </p>
+        </div>
 
         <box-grid [offersInfo]="offersInfo"></box-grid>
 

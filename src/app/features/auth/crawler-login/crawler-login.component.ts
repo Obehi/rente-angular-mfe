@@ -157,6 +157,13 @@ export class CrawlerLoginComponent implements OnInit, OnDestroy {
     });
 
     this.crawlerLoginService.secondRetry$.subscribe(() => {
+      // Drop subbank membership, redirects directly to signicat flow
+      this.router.navigate(['/autentisering/' + ROUTES_MAP_NO.bankIdLogin], {
+        state: { data: { bank: this.bank, redirect: true } }
+      });
+
+      // Drop subbank membership for DNB for now
+      /* 
       if (this.bank?.name === 'DNB') {
         this.router.navigate(
           [
@@ -173,13 +180,19 @@ export class CrawlerLoginComponent implements OnInit, OnDestroy {
         this.router.navigate(['/autentisering/' + ROUTES_MAP_NO.bankIdLogin], {
           state: { data: { bank: this.bank, redirect: true } }
         });
-      }
+      } */
     });
   }
 
   goToSignicatLogin(): void {
     this.router.navigate(['/autentisering/' + ROUTES_MAP_NO.bankIdLogin], {
-      state: { data: { bank: this.bank, redirect: true } }
+      state: {
+        data: {
+          bank: this.bank,
+          redirect: false,
+          userHasNoBankIDForPhone: true
+        }
+      }
     });
   }
 
