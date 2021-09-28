@@ -1,7 +1,4 @@
-<div
-  class="main-container"
-  *ngIf="loansData && loansData.loans && loansData.loans.length > 0"
->
+<div class="main-container" *ngIf="loansAndOffers$ | async">
   <rente-crawler-banks
     [loansData]="loansData"
     *ngIf="!isSignicatUser"

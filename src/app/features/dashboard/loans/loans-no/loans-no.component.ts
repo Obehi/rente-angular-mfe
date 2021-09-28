@@ -12,6 +12,8 @@ import { locale } from '@config/locale/locale';
 import { MessageBannerService } from '@services/message-banner.service.ts';
 import { getAnimationStyles } from '@shared/animations/animationEnums';
 import { MyLoansService } from '../myloans.service';
+import { tap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'rente-loans',
@@ -45,19 +47,24 @@ export class LoansNoComponent implements OnInit {
   public isFixedPriceBank: boolean;
   public offers: bankOfferDto[];
   public animationType = getAnimationStyles();
+  public loansAndOffers$: Observable<any>;
 
   constructor(
     private loansService: LoansService,
+    private myLoansService: MyLoansService,
     private messageBannerService: MessageBannerService
   ) {}
 
   ngOnInit(): void {
     this.locale = locale;
 
-    this.loansService.getLoanAndOffersBanks().subscribe(
-      ([loans, offerBank]) => {
-        this.loansData = loans;
-        this.offers = offerBank.offers;
+    this.loansAndOffers$ = this.myLoansService.fetchLoans().pipe(
+      tap((res) => {
+        console.log(res);
+        this.loansData = res[0];
+        this.offers = res[1].offers;
+
+        console.log(this.offers);
 
         if (!this.loansData) {
           this.messageBannerService.setView(
@@ -70,10 +77,10 @@ export class LoansNoComponent implements OnInit {
         }
 
         /*
-           Backend returns origin which contains either 1 or 2
-          1 is crawler banks, 2 is signicat user
-          isFixedPriceBank of type boolean is also included in the returned object to check
-         */
+         Backend returns origin which contains either 1 or 2
+        1 is crawler banks, 2 is signicat user
+        isFixedPriceBank of type boolean is also included in the returned object to check
+       */
 
         if (this.loansData.origin === 1) this.isSignicatUser = false;
         if (this.loansData.origin === 2) this.isSignicatUser = true;
@@ -82,17 +89,22 @@ export class LoansNoComponent implements OnInit {
 
         // this.isSignicatUser = false;
         // this.isFixedPriceBank = false;
-      },
-      (err) => {
-        this.errorMessage = err.title;
-        this.messageBannerService.setView(
-          'Noe gikk feil, vennligst prøv igjen senere',
-          4000,
-          this.animationType.DROP_DOWN_UP,
-          'error',
-          window
-        );
-      }
+      })
     );
+    // .subscribe(
+    //   ([loans, offerBank]) => {
+    //     console.log('Loans no component');
+    //   },
+    //   (err) => {
+    //     this.errorMessage = err.title;
+    //     this.messageBannerService.setView(
+    //       'Noe gikk feil, vennligst prøv igjen senere',
+    //       4000,
+    //       this.animationType.DROP_DOWN_UP,
+    //       'error',
+    //       window
+    //     );
+    //   }
+    // );
   }
 }

@@ -1,7 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { bankOfferDto, LoanInfo, Loans } from '@models/loans';
 import { LoansService } from '@services/remote-api/loans.service';
-import { MyLoansService } from '../../myloans.service';
+import { Observable } from 'rxjs';
+import { LoanOverView, MyLoansService } from '../../myloans.service';
 
 @Component({
   selector: 'rente-signicat-fixed-price',
@@ -15,13 +16,21 @@ export class SignicatFixedPriceComponent implements OnInit {
   public isSummaryNeeded = false;
   public isEmptyLoans = false;
 
+  public loanOverViewObservable$: Observable<LoanOverView>;
+
   constructor(
-    private myLoansService: MyLoansService,
+    public myLoansService: MyLoansService,
     private loansService: LoansService
   ) {}
 
   ngOnInit(): void {
+    this.loanOverViewObservable$ = this.myLoansService.loanOverViewObservable$;
+
     this.loans = this.loanData.loans;
+
+    this.loans.forEach((loan) => {
+      loan.isDeleted = false;
+    });
 
     // Add test data for loans
     const dto = {
@@ -58,23 +67,23 @@ export class SignicatFixedPriceComponent implements OnInit {
       }
     });
 
-    this.loansService.getLoanAndOffersBanks().subscribe(
-      ([loans, offerBank]) => {
-        this.loanData = loans;
-      },
-      (err) => {
-        console.log(err);
-      }
-    );
+    // this.loansService.getLoanAndOffersBanks().subscribe(
+    //   ([loans, offerBank]) => {
+    //     this.loanData = loans;
+    //   },
+    //   (err) => {
+    //     console.log(err);
+    //   }
+    // );
 
     // this.setLoanStoreListener();
   }
 
-  public setLoanStoreListener(): void {
-    this.myLoansService.getLoansAsObservable().subscribe((res) => {
-      console.log('Signicat fixed price parent response');
-      console.log(res);
-      this.loans = res;
-    });
-  }
+  // public setLoanStoreListener(): void {
+  //   this.myLoansService.getLoansAsObservable().subscribe((res) => {
+  //     console.log('Signicat fixed price parent response');
+  //     console.log(res);
+  //     this.loans = res;
+  //   });
+  // }
 }
