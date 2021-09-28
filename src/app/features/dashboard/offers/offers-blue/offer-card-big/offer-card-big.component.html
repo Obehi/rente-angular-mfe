@@ -35,9 +35,15 @@
     </div>
   </div>
 
-  <div *ngIf="bankSpecialPromoText !== null" class="special-promo">
+  <div
+    *ngIf="bankSpecialPromoText !== null"
+    class="special-promo"
+    [ngClass]="{ 'clickable-cursor': this.offer.bankInfo.bank === 'BULDER' }"
+    (click)="openCustomerDividend()"
+  >
     <img class="box-icon" src="../../../../../assets/icons/badge.svg" />
     <p>{{ bankSpecialPromoText }}</p>
+    <mat-icon *ngIf="this.offer.bankInfo.bank === 'BULDER'">help</mat-icon>
   </div>
 </div>
 <div class="the-offer-body">
@@ -152,90 +158,7 @@
       />
     </a>
   </div>
-
   <div class="the-offer-footer">
-    <div
-      [ngClass]="{
-        triple:
-          isNordea === true &&
-          offer.bankInfo.bank !== 'NYBYGGER' &&
-          offer.bankInfo.bank !== 'DIN_BANK',
-        single: isSingleButtonLayout === true && isNordea === false,
-        double:
-          (isNordea === false && isSingleButtonLayout === false) ||
-          ((offer.bankInfo.bank === 'NYBYGGER' ||
-            offer.bankInfo.bank === 'DIN_BANK') &&
-            isNordea === true)
-      }"
-      class="buttons"
-    >
-      <div class="full-width" *ngIf="!isSingleButtonLayout">
-        <rente-button
-          i18n="“see-more|offer-card-big@@offer.card.big.seeMore”"
-          child
-          childClass="{{ offer.bankInfo.name }}"
-          [disabled]="offer.bankInfo.partner == false"
-          [color]="'primary-wide-hollow'"
-          type="raised"
-          (click)="openBankUrlByButton(offer)"
-          >Se mer på {{ getbankNameOrDefault(offer, true) }}s
-          hjemmeside</rente-button
-        >
-        <p
-          i18n="“no-deal|offer-card-big@@offer.card.big.noDeal”"
-          class="small first"
-          *ngIf="offer.bankInfo.partner === false && isMobile === false"
-        >
-          (Ingen avtale med banken enda)
-        </p>
-      </div>
-
-      <div [ngClass]="isSingleButtonLayout === true ? '' : 'full-width'">
-        <rente-button
-          childClass="{{ offer.bankInfo.name }}"
-          [disabled]="offer.bankInfo.partner == false"
-          child
-          childClass="{{ offer.bankInfo.name }}"
-          color="{{
-            isSingleButtonLayout === true ? 'primary-semi-wide' : 'primary'
-          }}"
-          type="raised"
-          (click)="offerCardService.openNewOfferDialog(offer)"
-          >{{ offerCardService.getOfferButtonText(offer) }}</rente-button
-        >
-
-        <p
-          class="small"
-          *ngIf="offer.bankInfo.partner === false"
-          i18n="“no-deal|offer-card-big@@offer.card.big.noDeal”"
-        >
-          (Ingen avtale med banken enda)
-        </p>
-      </div>
-
-      <div *ngIf="isNordea === true">
-        <rente-button
-          child
-          childClass="{{ this.offersInfo.offers.top5[0].bankInfo.name }}"
-          color="secondary-semi-wide"
-          type="raised"
-          (click)="clickNordea()"
-        >
-          Be Nordea om et bedre tilbud
-        </rente-button>
-      </div>
-    </div>
-
-    <p
-      i18n="“offer-info|offer-card-big@@offer.card.big.offerInfo”"
-      class="insignificant"
-    >
-      <span>Tilbud: </span> Eff.rente
-      {{ offer.effectiveRate | number: '1.2-2' }} %, Lånebeløp
-      {{ offer.outstandingDebt | number: '1.0' }},
-      {{ offer.loanPeriodYears | number: '1.1-1' }} år, Kostnad:
-      {{ offer.cost | number: '1.0' }}, Totalt:
-      {{ offer.totalCost | number: '1.0' }}
-    </p>
+    <non-partner-buttons></non-partner-buttons>
   </div>
 </div>
