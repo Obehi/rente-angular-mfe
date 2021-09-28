@@ -26,7 +26,8 @@ import {
   map,
   startWith,
   switchMap,
-  take
+  take,
+  tap
 } from 'rxjs/operators';
 import { SeoService } from '@services/seo.service';
 import { MembershipService } from '@services/membership.service';
@@ -332,14 +333,18 @@ export class InitialOffersComponent implements OnInit {
 
     this.membershipService
       .getSelectedMemberships()
-      .subscribe((memberships: MembershipTypeDto[]) => {
-        this.formGroup.markAsDirty();
-
-        const membershipNames = memberships.map((item) => item.name);
-        this.firstBuyersAPIService
-          .updateMembership(membershipNames)
-          .subscribe((_) => {});
-      });
+      .pipe(
+        tap(() => {
+          this.formGroup.markAsDirty();
+        }),
+        map((membershipDtos: MembershipTypeDto[]) =>
+          membershipDtos.map((dto) => dto.name)
+        ),
+        switchMap((membershipNames) =>
+          this.firstBuyersAPIService.updateMembership(membershipNames)
+        )
+      )
+      .subscribe();
   }
 
   selected(event: MatAutocompleteSelectedEvent): void {
