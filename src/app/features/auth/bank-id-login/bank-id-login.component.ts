@@ -111,6 +111,9 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
   ];
   public selectedOffer: string;
   public bank: BankVo | null;
+  public userHasNoBankIDForPhone = false;
+  public isRedirected = false;
+
   private loanId: number | null;
   public currentStepperValue = 0;
   public newClient: boolean | null;
@@ -180,11 +183,13 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     // Getting bank name from the bank-select component
     const stateData = this.router?.getCurrentNavigation()?.extras?.state?.data;
     // Checking for null or undefined
-    if (stateData == null) {
+    if (stateData === null || stateData === undefined) {
       this.router.navigate(['/' + ROUTES_MAP.bankSelect]);
       return;
     } else {
       this.bank = stateData.bank;
+      this.userHasNoBankIDForPhone = stateData.userHasNoBankIDForPhone;
+      this.isRedirected = stateData.redirect;
 
       if (stateData.redirect === true) {
         if (this.bank?.name === 'DNB') {

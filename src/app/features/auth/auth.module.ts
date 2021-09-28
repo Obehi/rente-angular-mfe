@@ -14,6 +14,11 @@ import { MaterialModule } from '@shared/material/material.module';
 import { DemoLoginComponent } from './demo-login/demo-user-option-login/demo-login.component';
 import { GuidLoginComponent } from './demo-login/guid-login/guid-login.component';
 import { ChooseSubBankComponent } from './crawler-login/choose-sub-bank/choose-sub-bank.component';
+import { IntroNoBankIDComponent } from './bank-id-login/intro-no-bank-id/intro-no-bank-id.component';
+import { IntroRedirectDnbComponent } from './bank-id-login/intro-redirect-dnb/intro-redirect-dnb.component';
+import { IntroRedirectSb1Component } from './bank-id-login/intro-redirect-sb1/intro-redirect-sb1.component';
+import { IntroNoBankIdNordeaComponent } from './bank-id-login/intro-no-bank-id-nordea/intro-no-bank-id-nordea.component';
+import { IntroDefaultSignicatComponent } from './bank-id-login/intro-default-signicat/intro-default-signicat.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +34,12 @@ import { ChooseSubBankComponent } from './crawler-login/choose-sub-bank/choose-s
     DemoLoginComponent,
     GuidLoginComponent,
     BankIdLoginComponent,
-    ChooseSubBankComponent
+    ChooseSubBankComponent,
+    IntroNoBankIDComponent,
+    IntroRedirectDnbComponent,
+    IntroRedirectSb1Component,
+    IntroNoBankIdNordeaComponent,
+    IntroDefaultSignicatComponent
   ],
   imports: [
     AuthRoutingModule,
