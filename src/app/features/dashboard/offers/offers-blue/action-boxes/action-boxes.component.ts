@@ -219,7 +219,6 @@ export class ActionBoxesComponent implements OnInit {
   }
 
   shouldDisableButton(): boolean {
-    return false;
     if (
       this.changeBankLoading ||
       this.offersInfo.offerSavingsType === this.offerSavingsType.NO_SAVINGS ||
