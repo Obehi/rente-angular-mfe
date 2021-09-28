@@ -28,12 +28,13 @@ export class PropertySelectDialogComponent implements OnInit, OnDestroy {
   public previousState = [];
   selectedMemberships: string[];
   public hasChanged = false;
+
   constructor(
     public dialogRef: MatDialogRef<PropertySelectDialogComponent>,
     public dialog: MatDialog,
     public firstBuyersAPIService: FirstBuyersAPIService,
     public membershipService: MembershipService,
-    private elRef: ElementRef,
+
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
 
@@ -55,10 +56,7 @@ export class PropertySelectDialogComponent implements OnInit, OnDestroy {
 
   save(): void {
     if (this.hasChanged === true) {
-      const updatedMemberships = (this.memberships as MembershipTypeDto[]).map(
-        (item) => item.name
-      );
-      this.membershipService.setSelectedMemberships(updatedMemberships);
+      this.membershipService.setSelectedMemberships(this.memberships);
       this.onClose();
     }
   }

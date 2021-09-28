@@ -330,12 +330,16 @@ export class InitialOffersComponent implements OnInit {
       this.formGroup.markAsDirty();
     });
 
-    this.membershipService.getSelectedMemberships().subscribe((memberships) => {
-      this.formGroup.markAsDirty();
-      this.firstBuyersAPIService
-        .updateMembership(memberships)
-        .subscribe((_) => {});
-    });
+    this.membershipService
+      .getSelectedMemberships()
+      .subscribe((memberships: MembershipTypeDto[]) => {
+        this.formGroup.markAsDirty();
+
+        const membershipNames = memberships.map((item) => item.name);
+        this.firstBuyersAPIService
+          .updateMembership(membershipNames)
+          .subscribe((_) => {});
+      });
   }
 
   selected(event: MatAutocompleteSelectedEvent): void {
