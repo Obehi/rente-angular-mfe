@@ -18,7 +18,10 @@
       >
       </rente-intro-no-bank-id-nordea>
 
-      <rente-intro-redirect-dnb [bank]="bank" *ngIf="bank?.name === 'DNB'">
+      <rente-intro-redirect-dnb
+        [bank]="bank"
+        *ngIf="bank?.name === 'DNB' && userHasNoBankIDForPhone === false"
+      >
       </rente-intro-redirect-dnb>
 
       <rente-intro-redirect-sb1
