@@ -11,6 +11,7 @@ import {
 import { locale } from '@config/locale/locale';
 import { MessageBannerService } from '@services/message-banner.service.ts';
 import { getAnimationStyles } from '@shared/animations/animationEnums';
+import { MyLoansService } from '../myloans.service';
 
 @Component({
   selector: 'rente-loans',
@@ -31,7 +32,8 @@ import { getAnimationStyles } from '@shared/animations/animationEnums';
         )
       )
     ])
-  ]
+  ],
+  providers: [MyLoansService]
 })
 export class LoansNoComponent implements OnInit {
   public loansData: Loans;

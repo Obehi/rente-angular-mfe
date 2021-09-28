@@ -259,14 +259,10 @@ export class LoansService {
 
   public deleteLoan(loanId: number): Observable<any> {
     const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.loans.base}`;
-    const options = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-      }),
-      body: {
-        id: loanId
-      }
+    const dto = {
+      id: loanId
     };
-    return this.httpClient.delete(url, options);
+
+    return this.http.delWithParams(url, dto);
   }
 }

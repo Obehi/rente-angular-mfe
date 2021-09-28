@@ -60,8 +60,8 @@
   </div>
 </div>
 
-<div class="summary main-container">
-  <div *ngFor="let loan of loanData.loans; index as i">
+<div class="summary main-container" *ngIf="loans !== null">
+  <div *ngFor="let loan of loans; index as i">
     <rente-loan-fixed-price
       [index]="i"
       [loan]="loan"
@@ -69,3 +69,4 @@
     ></rente-loan-fixed-price>
   </div>
 </div>
+<div *ngIf="isEmptyLoans" class="no-loans">Ingen lån</div>

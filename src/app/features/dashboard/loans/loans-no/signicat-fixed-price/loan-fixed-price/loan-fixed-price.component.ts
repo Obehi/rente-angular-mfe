@@ -43,6 +43,7 @@ export class LoanFixedPriceComponent implements OnInit, OnDestroy {
   public isGeneralError = false;
   public isServerError = false;
   public isAbleToSave = false;
+  public isEmptyPlaceHolder = false;
 
   public outStandingDebtchangeSubscription: Subscription | undefined;
   public remainingYearschangeSubscription: Subscription | undefined;
@@ -118,6 +119,10 @@ export class LoanFixedPriceComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    if (this.loan === null) {
+      console.log('Loan is null');
+      return;
+    }
     // Check count of decimals and format it to 0 or 1 decimal
     const format = this.myLoansService.countDecimals(this.loan.remainingYears);
     let correctValue = '';
@@ -233,7 +238,7 @@ export class LoanFixedPriceComponent implements OnInit, OnDestroy {
       });
 
     // Set edit mode to null (if user leaves the page while on edit mode)
-    this.myLoansService.setEditMode(null);
+    // this.myLoansService.setEditMode(null);
   } // ngOnInit
 
   getMask(): any {
@@ -518,9 +523,17 @@ export class LoanFixedPriceComponent implements OnInit, OnDestroy {
     const loanId = this.loan.id;
     console.log('Loan ID: ' + loanId.toString());
 
-    this.loansService.deleteLoan(loanId).subscribe((res) => {
-      console.log('Response');
-      console.log(res);
-    });
+    // this.loansService.deleteLoan(loanId).subscribe(
+    //   (res) => {
+    //     console.log('Response');
+    //     console.log(res);
+    //   },
+    //   (err) => {
+    //     console.log(err);
+    //   }
+    // );
+
+    this.myLoansService.deleteLoan(loanId);
+    console.log('Loan id deleted');
   }
 } // Class end
