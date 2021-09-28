@@ -33,7 +33,6 @@ export class ChangeBankDialogComponent implements OnInit {
   public isLoading: boolean;
   public closeState: string;
   public stepperPosition: number;
-  public validatorsError: boolean;
 
   constructor(
     private fb: FormBuilder,
@@ -74,11 +73,8 @@ export class ChangeBankDialogComponent implements OnInit {
       !this.mobileNumberForm.controls['phoneInput'].hasError('required') &&
       !this.mobileNumberForm.controls['phoneInput'].hasError('pattern')
     ) {
-      this.validatorsError = false;
       this.stepperPosition = 2;
       stepper.next();
-    } else {
-      this.validatorsError = true;
     }
   }
 
