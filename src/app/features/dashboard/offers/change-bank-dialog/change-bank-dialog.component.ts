@@ -99,9 +99,6 @@ export class ChangeBankDialogComponent implements OnInit {
           this.isLoading = false;
           this.closeState = 'procced';
           this.dialogRef.close();
-
-          // TODO: remove before deploy
-          console.log(`Number ${this.signicatPhoneNumber} sent`);
         },
         (error) => {
           this.isLoading = false;

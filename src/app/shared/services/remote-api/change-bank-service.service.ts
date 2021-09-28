@@ -27,7 +27,7 @@ export class ChangeBankServiceService {
     return this.http.getWithParams(url, offerOffice);
   }
 
-  public sendBankOfferRequest(offerId: number): Observable<any> {
+  public sendBankOfferRequest(offerId: number): Observable<void> {
     const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.bankOfferRequest.base}${API_URL_MAP.loan.bankOfferRequest.send}/${offerId}`;
     return this.http.post(url);
   }
