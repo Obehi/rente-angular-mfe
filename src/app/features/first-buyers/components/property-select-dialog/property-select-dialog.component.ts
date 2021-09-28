@@ -9,6 +9,7 @@ import {
   TemplateRef
 } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material';
+import { MembershipTypeDto } from '@models/loans';
 import { FirstBuyersAPIService } from '@services/remote-api/first-buyers-api.service';
 import { MembershipService } from '../../../../shared/services/membership.service';
 
@@ -27,12 +28,13 @@ export class PropertySelectDialogComponent implements OnInit, OnDestroy {
   public previousState = [];
   selectedMemberships: string[];
   public hasChanged = false;
+
   constructor(
     public dialogRef: MatDialogRef<PropertySelectDialogComponent>,
     public dialog: MatDialog,
     public firstBuyersAPIService: FirstBuyersAPIService,
     public membershipService: MembershipService,
-    private elRef: ElementRef,
+
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
 
