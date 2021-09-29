@@ -248,15 +248,16 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
         }
       });
 
-    console.log('Is form disabled: ' + this.loanForm.disabled);
-    console.log('Loan ID: ' + this.loan.id.toString());
+    // console.log('Is form disabled: ' + this.loanForm.disabled);
+    // console.log('Loan ID: ' + this.loan.id.toString());
 
     if (this.loan.id === 0) {
       this.setEditEnabled();
-      console.log('Is form disabled: ' + this.loanForm.disabled);
+      // console.log('Is form disabled: ' + this.loanForm.disabled);
 
+      // Has to be in a timeout to work
+      // The new loan input cant be focused if not
       setTimeout(() => {
-        console.log('Disabling and enabling the form');
         this.disableForm();
         this.enableForm();
       }, 0);
