@@ -1,3 +1,7 @@
-<p>
-  nybygger-buttons works!
-</p>
+<div class="buttons">
+  <rente-button
+    color="primary-semi-wide"
+    (click)="offerCardService.openNewOfferDialog(offer)"
+    >{{ offerCardService.getOfferButtonText(offer) }}</rente-button
+  >
+</div>

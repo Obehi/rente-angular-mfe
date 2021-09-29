@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { OfferInfo, Offers } from '../../../../../../shared/models/offers';
+import { OfferCardService } from '../../offer-card.service';
 
 @Component({
   selector: 'nybygger-buttons',
@@ -6,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./nybygger-buttons.component.scss']
 })
 export class NybyggerButtonsComponent implements OnInit {
-  constructor() {}
+  @Input() offer: OfferInfo;
+  @Input() offersInfo: Offers;
+  constructor(public offerCardService: OfferCardService) {}
 
-  ngOnInit() {}
+  ngOnInit(): void {}
 }

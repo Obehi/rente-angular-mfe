@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { OfferInfo, Offers } from '@models/offers';
-import { ButtonComponent } from '@shared/components/ui-components/button/button.component';
+import { OfferInfo, Offers } from '../../../../../../shared/models/offers';
 
 @Component({
   selector: 'non-partner-buttons',
@@ -10,6 +9,7 @@ import { ButtonComponent } from '@shared/components/ui-components/button/button.
 export class NonPartnerButtonsComponent implements OnInit {
   @Input() offer: OfferInfo;
   @Input() offersInfo: Offers;
+  disabled = true;
   constructor() {}
 
   ngOnInit(): void {}

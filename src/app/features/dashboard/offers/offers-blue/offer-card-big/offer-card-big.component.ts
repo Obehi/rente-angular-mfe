@@ -30,7 +30,7 @@ export class OfferCardBigComponentBlue implements OnInit {
   public offerSavingsType = OFFER_SAVINGS_TYPE;
   public offerType: string;
   public isSweden: boolean;
-  public isNordea = false;
+  public isNordea: boolean;
   public isSingleButtonLayout = false;
   public bankSpecialPromoText: string | null = null;
 
@@ -53,6 +53,9 @@ export class OfferCardBigComponentBlue implements OnInit {
     } else {
       this.isSweden = false;
     }
+
+    console.log(this.offer);
+    console.log(this.offersInfo);
 
     this.isNordea = this.offersInfo.bank === 'NORDEA';
     this.isSingleButtonLayout = this.offerCardService.isSingleButtonLayout(

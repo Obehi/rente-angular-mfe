@@ -3,20 +3,21 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { NonPartnerButtonsComponent } from './non-partner-buttons.component';
+import { NordeaDirectButtonsComponent } from './nordea-direct-buttons.component';
 
-describe('NonPartnerButtonsComponent', () => {
-  let component: NonPartnerButtonsComponent;
-  let fixture: ComponentFixture<NonPartnerButtonsComponent>;
+describe('NordeaDirectButtonsComponent', () => {
+  let component: NordeaDirectButtonsComponent;
+  let fixture: ComponentFixture<NordeaDirectButtonsComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [NonPartnerButtonsComponent]
-    }).compileComponents();
+      declarations: [ NordeaDirectButtonsComponent ]
+    })
+    .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(NonPartnerButtonsComponent);
+    fixture = TestBed.createComponent(NordeaDirectButtonsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

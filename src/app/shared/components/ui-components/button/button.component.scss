@@ -198,12 +198,12 @@ button.mat-primary-wide-hollow {
   white-space: break-spaces;
 }
 
-button.mat-primary-wide-hollow {
+button.mat-primary-semi-wide-hollow {
   background-color: white;
   color: black;
   border: 1px solid $primary;
   height: 56px;
-  width: 100%;
+  width: 325px;
   white-space: break-spaces;
 }
 
@@ -226,6 +226,14 @@ button.mat-primary-wide-white {
 }
 
 button.mat-primary-wide-hollow[disabled] {
+  opacity: 1;
+  height: 56px;
+  background-color: unset;
+  color: #a9a9a9;
+  border: 1px solid #c9eae3;
+}
+
+button.mat-primary-semi-wide-hollow[disabled] {
   opacity: 1;
   height: 56px;
   background-color: unset;
