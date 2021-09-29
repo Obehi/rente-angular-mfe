@@ -29,7 +29,6 @@ import { ContactService } from '@services/remote-api/contact.service';
 import { TrackingService } from '@services/remote-api/tracking.service';
 import { HouseService } from '@services/remote-api/house.service';
 import { LoansService } from '@services/remote-api/loans.service';
-import { PreferancesService } from '@services/remote-api/preferances.service';
 import { ProfileService } from '@services/remote-api/profile.service';
 import { SnackBarService } from './services/snackbar.service';
 import { MetaService } from './services/meta.service';
@@ -42,6 +41,7 @@ import { RoundPipe } from './pipes/round.pipe';
 import { ThousandsSeprator } from './pipes/thousands.pipe';
 import { FilterPipe } from './pipes/filter.pipe';
 import { TruncatePipe } from './pipes/truncate.pipe';
+import { PhoneNumberPipe } from './pipes/phone-number.pipe';
 import { IMaskModule } from 'angular-imask';
 import { CustomLangTextService } from '@services/custom-lang-text.service';
 import { ChildDirective } from './directives/child.directive';
@@ -57,12 +57,17 @@ import { DashboardTabsMobileComponent } from './components/header/dashboard-tabs
 import { HeaderDesktopLangGenericComponent } from '../local-components/components-output';
 import { HeaderMobileLangGenericComponent } from '../local-components/components-output';
 import { MaterialModule } from './material/material.module';
+import { NgxSliderModule } from '@angular-slider/ngx-slider';
 
 import { PropertySelectComponent } from '@features/first-buyers/components/property-select/property-select.component';
 import { PropertySelectDialogComponent } from '@features/first-buyers/components/property-select-dialog/property-select-dialog.component';
 import { SpinnerComponent } from '@shared/components/ui-components/spinner/spinner.component';
 import { CheckmarkSuccessComponent } from '@shared/components/ui-components/checkmark-success/checkmark-success.component';
 import { VirdiManualValueDialogComponent } from './components/ui-components/dialogs/virdi-manual-value-dialog/virdi-manual-value-dialog.component';
+import { UserScorePreferencesComponent } from './components/ui-components/user-score-preferences/user-score-preferences.component';
+import { AccordionGroupComponent } from './components/ui-components/accordion/accordion-group.component';
+import { AccordionComponent } from './components/ui-components/accordion/accordion.component';
+import { CustomDropdownComponent } from './components/ui-components/custom-dropdown/custom-dropdown.component';
 
 const components = [
   HeaderComponent,
@@ -88,7 +93,11 @@ const components = [
   PropertySelectComponent,
   PropertySelectDialogComponent,
   SpinnerComponent,
-  CheckmarkSuccessComponent
+  CheckmarkSuccessComponent,
+  UserScorePreferencesComponent,
+  AccordionGroupComponent,
+  AccordionComponent,
+  CustomDropdownComponent
 ];
 
 const services = [
@@ -103,7 +112,6 @@ const services = [
   LoansService,
   MessageBannerService,
   MetaService,
-  PreferancesService,
   ProfileService,
   RouteGuard,
   SnackBarService,
@@ -119,7 +127,8 @@ const services = [
     IMaskModule,
     MaterialModule,
     ReactiveFormsModule,
-    RouterModule
+    RouterModule,
+    NgxSliderModule
   ],
   declarations: [
     ...components,
@@ -132,6 +141,7 @@ const services = [
     ThousandsSeprator,
     FilterPipe,
     TruncatePipe,
+    PhoneNumberPipe,
     ChildDirective,
     BarComponent,
     FlowHeaderComponent,
@@ -149,6 +159,7 @@ const services = [
     ThousandsSeprator,
     FilterPipe,
     TruncatePipe,
+    PhoneNumberPipe,
     BarComponent,
     ChildDirective,
     ReactiveFormsModule,

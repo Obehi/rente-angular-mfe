@@ -149,7 +149,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
   }
 
   @HostListener('window:message', ['$event'])
-  onMessage(event) {
+  onMessage(event): void {
     if (event.origin !== 'https://link.tink.com') {
       return;
     }
@@ -471,12 +471,12 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
 
           case BANKID_STATUS.ERROR_3:
             this.unsubscribeEverything();
-            this.crawlerLoginService.postError();
+            this.crawlerLoginService.forceSignicatRedirect();
             break;
 
           case BANKID_STATUS.ERROR_4:
             this.unsubscribeEverything();
-            this.crawlerLoginService.postError();
+            this.crawlerLoginService.forceSignicatRedirect();
             break;
 
           case BANKID_STATUS.ERROR_5:
@@ -601,7 +601,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
 
             if (this.bank.name === 'DNB') {
               this.unsubscribeEverything();
-              this.crawlerLoginService.postError();
+              this.crawlerLoginService.forceSignicatRedirect();
             } else {
               this.viewStatus.isCrawlerError = true;
               this.unsubscribeEverything();
@@ -755,6 +755,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
                         undefined,
                         this.isTinkBank
                       );
+
                       this.router.navigate([
                         '/dashboard/' + ROUTES_MAP.offers,
                         { state: { isInterestRateSet: true } }

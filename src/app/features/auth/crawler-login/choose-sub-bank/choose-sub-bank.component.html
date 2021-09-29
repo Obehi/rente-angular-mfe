@@ -1,0 +1,25 @@
+<div class="front-container">
+  <h3>Har du lån med medlemskapsfordeler?</h3>
+  <p class="center">
+    {{ bankVO?.label }} tilbyr medlemmer i enkelte organisasjoner
+    medlemskapfordeler. <br />
+    Har du lån gjennom et slikt fordelsprogram?
+  </p>
+
+  <div class="buttons">
+    <div *ngFor="let item of currentMemberships">
+      <div class="item">
+        <p>
+          {{ item.text }}
+        </p>
+        <rente-button
+          (click)="continueBankLogin(item)"
+          class="rente-button flex-box-margin"
+          color="blue-250"
+        >
+          {{ item.label }}
+        </rente-button>
+      </div>
+    </div>
+  </div>
+</div>

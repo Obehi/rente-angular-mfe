@@ -75,6 +75,8 @@ export class ActionBoxesComponent implements OnInit {
   }
 
   public openChangeBankDialog(offer): void {
+    this.openChangeBankDialogWithOnlyPreview(offer);
+    return;
     if (
       this.changeBankLoading ||
       this.offersInfo.offerSavingsType === this.offerSavingsType.NO_SAVINGS ||
@@ -210,7 +212,6 @@ export class ActionBoxesComponent implements OnInit {
     const elementPosition =
       element.getBoundingClientRect().top + window.pageYOffset;
     const offsetPosition = elementPosition - headerOffset;
-
     window.scrollTo({
       top: offsetPosition,
       behavior: 'smooth'

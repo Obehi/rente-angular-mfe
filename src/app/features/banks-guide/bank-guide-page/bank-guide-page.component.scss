@@ -1,4 +1,4 @@
-@import "../../../../styles/theme/colors";
+@import '../../../../styles/theme/colors';
 
 .guide-content {
   background: white;
@@ -13,7 +13,6 @@
   max-width: 1010px;
   margin: auto;
   min-height: calc(100vh - 60px);
-
 }
 
 .white-bg {
@@ -131,7 +130,6 @@ div {
         background: $grey-light;
         color: $grey-dark;
         font-weight: 400 !important;
-
       }
       div {
         background: $grey-light;
@@ -142,7 +140,6 @@ div {
         align-items: center;
         width: 100px;
         height: 60px;
-
       }
     }
   }
@@ -160,11 +157,11 @@ div {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
-        
+
         &:not(:first-of-type) {
           margin-top: 10px;
         }
-        
+
         & div:first-of-type {
           color: $grey-dark;
         }
@@ -173,7 +170,6 @@ div {
           color: $grey-light;
           background: $grey-dark;
           border-radius: 20px;
-
         }
       }
     }
@@ -183,16 +179,12 @@ div {
       flex-direction: row;
       justify-content: space-around;
 
-     
-      
       .item {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         height: 47px;
-        width: 120px
-
-  
+        width: 120px;
       }
       div {
         .ranking-header {
@@ -218,10 +210,7 @@ div {
       }
     }
   }
-
-  
 }
-
 
 .internal-links {
   display: flex;
@@ -252,8 +241,6 @@ div {
   }
 }
 
-
-
 .item {
   display: flex;
   flex-direction: row;
@@ -269,7 +256,7 @@ div {
   &:not(:first-of-type) {
     margin-top: 10px;
   }
-  
+
   & div:first-of-type {
     color: $grey-dark;
   }
@@ -279,15 +266,9 @@ div {
     background: $grey-dark;
     border-radius: 20px;
     min-width: 60px;
-    text-align: center; 
-
+    text-align: center;
   }
 }
-
-
-
-
-
 
 .star {
   position: relative;
@@ -392,7 +373,6 @@ div {
     text-align: center;
     margin-bottom: 20px;
     font-weight: 400;
-
   }
 }
 
@@ -442,7 +422,6 @@ div {
     }
   }
 
-
   .best-offer {
     width: 50%;
 
@@ -471,11 +450,8 @@ div {
   }
 }
 
-
 .deposit-container {
   width: 100%;
-  
-  
 }
 
 .offering-checklist {
@@ -484,7 +460,7 @@ div {
   width: 100%;
   margin-top: 10px;
 
-  > div{
+  > div {
     margin-right: 10px;
   }
 }
@@ -493,7 +469,8 @@ div {
     font-size: 20px;
   }
 
-  &-title, &-value {
+  &-title,
+  &-value {
     font-size: 18px;
     line-height: 24px;
   }
@@ -529,7 +506,7 @@ div {
 }
 .location-item-content {
   font-weight: 400;
-  font-size: 16px;
+  font-size: 14px;
   padding-left: 45px;
 }
 
@@ -540,8 +517,8 @@ div {
   flex-wrap: wrap;
   span {
     padding: 5px 10px;
-    color: #F4F5F6;
-    background: #54606E;
+    color: #f4f5f6;
+    background: #54606e;
     border-radius: 20px;
     min-width: 60px;
     font-size: 12px;
@@ -552,8 +529,8 @@ div {
 .service-not-present {
   margin-top: 0px;
   padding: 5px 10px;
-  color: #F4F5F6;
-  background: #54606E;
+  color: #f4f5f6;
+  background: #54606e;
   border-radius: 20px;
   min-width: 60px;
   font-size: 12px;
@@ -566,11 +543,10 @@ div {
   font-size: 18px;
 }
 
-
 .box-in-list {
   padding: 5px 10px;
-  color: #F4F5F6;
-  background: #54606E;
+  color: #f4f5f6;
+  background: #54606e;
   border-radius: 20px;
   min-width: 60px;
   font-size: 12px;
@@ -582,7 +558,7 @@ div {
   width: 100%;
 }
 
-::ng-deep .mat-expansion-panel-header:hover  {
+::ng-deep .mat-expansion-panel-header:hover {
   background: none !important;
 }
 ::ng-deep .mat-expansion-panel {
@@ -620,43 +596,33 @@ div {
 }
 
 ::ng-deep .mat-expansion-indicator {
-  margin: auto
+  margin: auto;
 }
 
-
-
-
-
-
-
 .bank-search-wrapper {
-  @media(min-width: 600px) {
+  @media (min-width: 600px) {
     width: 600px;
     margin: auto;
   }
 }
-
 
 .bank-dropdown {
   position: absolute;
   top: 75px;
   background: white;
   z-index: 9999;
-  @media(min-width: 600px) {
+  @media (min-width: 600px) {
     left: 60px;
   }
 
-  @media(max-width: 600px) {
+  @media (max-width: 600px) {
     left: 10%;
   }
 }
 
-
 .banks {
   width: 100%;
   margin: auto;
-
- 
 
   .close-button {
     margin: unset;
@@ -664,7 +630,7 @@ div {
 
   .banks-inner {
     position: relative;
-    
+
     .bank-list {
       padding: 12px 20px;
       border: 1px solid #18bc9c;
@@ -678,7 +644,6 @@ div {
         width: 100%;
       }
 
-   
       button {
         padding: unset !important;
         min-width: unset !important;
@@ -694,7 +659,6 @@ div {
         height: 30px;
       }
     }
-    
   }
 }
 
@@ -730,7 +694,6 @@ div {
     //   border-radius: 16px;
     //   box-sizing: content-box;
     // }
-
 
     a {
       display: inline-block;
@@ -797,10 +760,70 @@ mat-selection-list {
 .not-present {
   margin-top: 0px;
   padding: 5px 10px;
-  color: #F4F5F6;
-  background: #54606E;
+  color: #f4f5f6;
+  background: #54606e;
   border-radius: 20px;
   min-width: 60px;
   font-size: 12px;
   text-align: center;
+}
+
+.contact-subheader {
+  align-self: center;
+  font-size: 14px;
+  margin-left: 5px;
+}
+
+.contact-subdiv {
+  width: 100%;
+  height: 100%;
+}
+
+.contact-image {
+  width: 10%;
+}
+
+.mortgage {
+  display: flex;
+  margin: 10px;
+}
+
+.email {
+  margin: 10px;
+
+  display: flex;
+  margin-top: 10px;
+}
+
+.contact-phone {
+  margin: 10px;
+
+  display: flex;
+  margin-top: 10px;
+}
+
+.swift {
+  display: flex;
+  margin: 10px;
+
+  margin-top: 10px;
+}
+
+.url {
+  cursor: pointer;
+  color: $primary;
+  text-decoration: none;
+  align-self: center;
+  font-weight: 300;
+  font-size: 14px;
+  margin-left: auto;
+  margin-right: 16px;
+}
+
+.content-text {
+  font-size: 14px;
+  font-weight: 400;
+  align-self: center;
+  margin-left: auto;
+  margin-right: 16px;
 }

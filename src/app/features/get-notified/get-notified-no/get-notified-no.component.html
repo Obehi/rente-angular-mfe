@@ -1,30 +1,24 @@
 <div class="front-container">
-  <h2>{{missingBank.label}}</h2>
+  <h2>{{ missingBank.label }}</h2>
 
- 
-    <h4 i18n=“no-support|get-notified@@get.notified.noSupport”>
-     Vi har desverre ikke støtte for banken din enda.<br>
-     Legg igjen din epost så gir vi deg beskjed når det er klart. 
-    </h4>
+  <h4 i18n="“no-support|get-notified@@get.notified.noSupport”">
+    Vi har desverre ikke støtte for banken din enda.<br />
+    Legg igjen din epost så gir vi deg beskjed når det er klart.
+  </h4>
 
   <div *ngIf="missingBankForm">
-    <form
-      [formGroup]="missingBankForm"
-      novalidate
-      (ngSubmit)="request()"
-    >
+    <form [formGroup]="missingBankForm" novalidate (ngSubmit)="request()">
       <div>
         <rente-input
           [placeholder]="'E-post'"
           formControlName="email"
-          [errorStateMatcher]="
-            isErrorState(missingBankForm.controls['email'], missingBankForm)
-          "
+          [errorStateMatcher]="isErrorState(missingBankForm.controls['email'])"
           [textControl]="inValid()"
           (blur)="onBlurErrorCheck()"
         >
         </rente-input>
-        <div i18n=“issue-email|get-notified@@get.notified.email”
+        <div
+          i18n="“issue-email|get-notified@@get.notified.email”"
           *ngIf="emailError"
           class="error-message"
         >
@@ -45,7 +39,8 @@
         </div>
       </div>
 
-      <rente-button i18n=“notify-me|get-notified@@get.notified.notifyMe”
+      <rente-button
+        i18n="“notify-me|get-notified@@get.notified.notifyMe”"
         color="primary"
         [disabled]="!missingBankForm.valid || isLoading"
         >Gi meg lyd når på plass!
@@ -53,11 +48,12 @@
     </form>
 
     <div class="calculator-promotion">
-      <h4>I mellomtiden prøv gjerne vår <a [routerLink]="['/boliglanskalkulator']">
-        boliglånskalkulator
-      </a> </h4>
+      <h4>
+        I mellomtiden prøv gjerne vår
+        <a [routerLink]="['/boliglanskalkulator']"> boliglånskalkulator </a>
+      </h4>
     </div>
-</div>
+  </div>
 
   <div class="loading" *ngIf="!missingBankForm">
     <mat-spinner [diameter]="48" [strokeWidth]="4"></mat-spinner>

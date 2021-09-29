@@ -19,10 +19,7 @@ import { ErrorStateMatcher } from '@angular/material/core';
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   constructor(public state: boolean) {}
 
-  isErrorState(
-    control: FormControl | null,
-    form: FormGroupDirective | NgForm | null
-  ): boolean {
+  isErrorState(): boolean {
     return this.state;
   }
 }
@@ -51,11 +48,12 @@ export class TextAreaComponent implements ControlValueAccessor, OnChanges {
   onChange: any = () => {};
   onTouch: any = () => {};
 
-  get value() {
+  get value(): any {
     return this.inputValue;
   }
 
-  set value(val) {
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+  set value(val: any) {
     this.inputValue = val;
     this.onChange(val);
     this.onTouch();
@@ -67,17 +65,20 @@ export class TextAreaComponent implements ControlValueAccessor, OnChanges {
     }
   }
 
-  writeValue(value) {
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+  writeValue(value: any): void {
     if (value) {
       this.value = value;
     }
   }
 
-  registerOnChange(fn) {
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+  registerOnChange(fn: any): void {
     this.onChange = fn;
   }
 
-  registerOnTouched(fn: any) {
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+  registerOnTouched(fn: any): void {
     this.onTouch = fn;
   }
 }

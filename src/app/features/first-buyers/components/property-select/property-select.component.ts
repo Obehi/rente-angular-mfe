@@ -16,7 +16,7 @@ import {
 } from '@angular/core';
 import { CustomLangTextService } from '@services/custom-lang-text.service';
 import { MembershipService } from '@services/membership.service';
-import { MembershipTypeDto } from '@services/remote-api/loans.service';
+import { MembershipTypeDto } from '@shared/models/loans';
 
 import { Observable, Subject } from 'rxjs';
 

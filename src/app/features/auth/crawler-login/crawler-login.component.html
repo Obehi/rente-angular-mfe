@@ -108,6 +108,7 @@
     <p i18n="“description|bank-id@@bankId.description”">
       Renteradar henter lånedetaljer og renten din automatisk.
     </p>
+
     <p i18n="“description|bank-id@@bankId.description2”" *ngIf="isSB1Bank">
       Vi støtter kun BankID på Mobil og Engangskode-appen, ikke BankID med
       kodebrikke.
@@ -350,11 +351,9 @@
       <img [src]="'../../../assets/icons/mobile-login-green.svg'" />
       <p>BankId på mobil</p>
     </a>
-    <p
-      i18n="“information|bank-id@@bankId.info”"
-      *ngIf="!isSB1Bank && !isDnbBank"
-    >
-      Vi støtter kun BankID på Mobil, ikke kodebrikke og passord.
+    <p i18n="“information|bank-id@@bankId.info”">
+      Har du ikke BankID på Mobil kan du
+      <a class="bold" (click)="goToSignicatLogin()">logge inn her</a>
     </p>
     <p
       i18n="“issue|bank-id@@bankId.issue2”"

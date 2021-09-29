@@ -91,8 +91,6 @@ export class DashboardTabsDesktopComponent implements OnInit {
 
     if (this.localStorageService.getItem('noLoansPresent')) {
       this.router.navigate(['/' + ROUTES_MAP.noLoan]);
-    } else if (this.localStorageService.getItem('isAggregatedRateTypeFixed')) {
-      this.router.navigate(['/dashboard/fastrente']);
     } else {
       if (this.getActiveIndex() !== null) {
         this.activeLinkIndex = this.getActiveIndex();

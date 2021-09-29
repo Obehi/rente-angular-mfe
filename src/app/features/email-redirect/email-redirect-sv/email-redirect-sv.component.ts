@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { locale } from '@config/locale/locale';
 @Component({
   selector: 'rente-email-redirect',
@@ -11,7 +10,7 @@ export class EmailRedirectSVComponent implements OnInit {
     return window.innerWidth < 600;
   }
   localeBaseUrl: string;
-  constructor(private activeRoute: ActivatedRoute) {}
+  constructor() {}
 
   ngOnInit(): void {
     this.localeBaseUrl = locale.includes('sv')
@@ -31,7 +30,8 @@ export class EmailRedirectSVComponent implements OnInit {
     }
   }
 
-  triggerEvent(elem, event) {
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+  triggerEvent(elem, event): void {
     const clickEvent = new Event(event);
     elem.dispatchEvent(clickEvent);
   }
