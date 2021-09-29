@@ -1,4 +1,4 @@
-import { Component, Input, Output, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import {
   AbstractControl,
   FormBuilder,
@@ -13,7 +13,7 @@ import { getAnimationStyles } from '@shared/animations/animationEnums';
 import { ButtonFadeInOut } from '@shared/animations/button-fade-in-out';
 import { FadeOut } from '@shared/animations/fade-out';
 import { Mask } from '@shared/constants/mask';
-import { concat, forkJoin, Observable, of, Subscription } from 'rxjs';
+import { concat, of, Subscription } from 'rxjs';
 import { catchError, toArray } from 'rxjs/operators';
 
 @Component({
@@ -39,6 +39,7 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
   public isGeneralError = false;
   public isServerError = false;
   public isAbleToSave = false;
+  public isEmptyPlaceHolder = false;
 
   public animationStyle = getAnimationStyles();
   public maskType = Mask;
@@ -145,7 +146,6 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
     });
 
     this.isAbleToSave = false;
-    this.disableForm();
 
     // Set incoming value or it will be undefined if only one input is changed
     this.incomingValueOutstandingDebt = this.initialOutStandingDebt;
@@ -161,8 +161,12 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
           this.setOpacity = false;
         }
         if (currentIndex !== this.index && currentIndex !== null) {
-          this.hideEditIcon = true;
-          this.setOpacity = true;
+          // Set timeout if a new loan is created,
+          // or else it causes valueChangedAfterCheck error
+          setTimeout(() => {
+            this.hideEditIcon = true;
+            this.setOpacity = true;
+          }, 0);
         }
       });
 
@@ -243,6 +247,21 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
           this.isAbleToSave = false;
         }
       });
+
+    console.log('Is form disabled: ' + this.loanForm.disabled);
+    console.log('Loan ID: ' + this.loan.id.toString());
+
+    if (this.loan.id === 0) {
+      this.setEditEnabled();
+      console.log('Is form disabled: ' + this.loanForm.disabled);
+
+      setTimeout(() => {
+        console.log('Disabling the disable form');
+        this.disableForm();
+      }, 3000);
+    } else {
+      this.disableForm();
+    }
   } // ngOnInit
 
   getMask(): any {
@@ -492,6 +511,30 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
   // -------------------------------------------------- || ------------------------------------
 
   public deleteLoan(): void {
-    alert(`Loan ${this.index + 1} deleting, are you sure?`);
+    const currentLoanIndex = this.myLoansService.getEditMode();
+    console.log('Loan index: ');
+    console.log(currentLoanIndex);
+
+    if (currentLoanIndex === null) {
+      console.log('Loan index is null');
+      return;
+    }
+    alert('Deleting loan');
+
+    const loanId = this.loan.id;
+    console.log('Loan ID: ' + loanId.toString());
+
+    // this.loansService.deleteLoan(loanId).subscribe(
+    //   (res) => {
+    //     console.log('Response');
+    //     console.log(res);
+    //   },
+    //   (err) => {
+    //     console.log(err);
+    //   }
+    // );
+
+    this.myLoansService.deleteLoan(loanId);
+    console.log('Loan id deleted');
   }
 }

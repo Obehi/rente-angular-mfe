@@ -10,7 +10,7 @@ import { MessageBannerService } from '@services/message-banner.service';
 import { LoansService } from '@services/remote-api/loans.service';
 import { getAnimationStyles } from '@shared/animations/animationEnums';
 import { concat, of, Subscription } from 'rxjs';
-import { catchError, filter, toArray } from 'rxjs/operators';
+import { catchError, toArray } from 'rxjs/operators';
 import { FadeOut } from '@shared/animations/fade-out';
 import { ButtonFadeInOut } from '@shared/animations/button-fade-in-out';
 import { MyLoansService } from '../../../myloans.service';

@@ -41,6 +41,33 @@ export class MyLoansService {
     // this.loanOverViewObservable$.subscribe((res) => console.log(res));
   }
 
+  public addNewLoan(): void {
+    let infoList = this.loanStore.getValue();
+
+    if (infoList === null) {
+      infoList = [];
+    }
+
+    const newLoan = {
+      bank: '',
+      bankKey: '',
+      effectiveRate: 0,
+      id: 0,
+      isDeleted: false,
+      isIncompleteInfoLoan: true,
+      loanName: 'BOLIGLÅN %',
+      loanType: '',
+      nominalRate: 1,
+      outstandingDebt: 1,
+      remainingYears: 1,
+      totalInterestAndTotalFee: 0,
+      totalInterestAndTotalFeeByRemainingYears: 0
+    };
+
+    infoList?.push(newLoan);
+    this.loanStore.next(infoList);
+  }
+
   public updateLoans(loans: LoanInfo[] | null): void {
     this.loanStore.next(loans);
   }

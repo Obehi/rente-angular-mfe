@@ -11,7 +11,10 @@
       <div class="loan-type">
         <div class="title-delete">
           <h3>Lån {{ index + 1 }}</h3>
-          <mat-icon *ngIf="isEditMode" (click)="deleteLoan()"
+          <mat-icon
+            *ngIf="isEditMode"
+            (click)="deleteLoan()"
+            class="is-clickable"
             >delete_forever</mat-icon
           >
         </div>
