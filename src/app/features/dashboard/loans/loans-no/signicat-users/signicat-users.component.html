@@ -76,7 +76,14 @@
     ></rente-loan-signicat-users>
     <div *ngIf="loan.isDeleted === true" class="no-loans">Lån slettet</div>
   </div>
-  <rente-button color="secondary" (click)="addLoan()" class="add-loan"
+  <rente-button
+    color="secondary"
+    (click)="addLoan()"
+    class="add-loan"
+    [ngClass]="{
+      'add-loan-opacity-low': isEditMode !== null,
+      'add-loan-opacity-full': isEditMode === null
+    }"
     >Legg til lån</rente-button
   >
 </div>

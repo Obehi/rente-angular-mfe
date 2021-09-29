@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { bankOfferDto, LoanInfo, Loans } from '@models/loans';
 import { Observable } from 'rxjs';
+import { delay } from 'rxjs/operators';
 import { LoanOverView, MyLoansService } from '../../myloans.service';
 
 @Component({
@@ -47,10 +48,22 @@ export class SignicatUsersComponent implements OnInit {
 
     const length = this.loanData.loans.length;
     if (length > 1) this.isSummaryNeeded = true;
+
+    this.myLoansService
+      .loanEditIndexAsObservable()
+      .pipe(delay(0))
+      .subscribe(
+        (res) => {
+          this.isEditMode = res;
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
   }
 
   public addLoan(): void {
-    this.isEditMode = this.myLoansService.getEditMode();
+    // this.isEditMode = this.myLoansService.getEditMode();
 
     if (this.isEditMode !== null) return;
     this.myLoansService.addNewLoan();
