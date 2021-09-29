@@ -60,11 +60,11 @@ export class LoansNoComponent implements OnInit {
 
     this.loansAndOffers$ = this.myLoansService.fetchLoans().pipe(
       tap((res) => {
-        console.log(res);
+        // console.log(res);
         this.loansData = res[0];
         this.offers = res[1].offers;
 
-        console.log(this.offers);
+        // console.log(this.offers);
 
         if (!this.loansData) {
           this.messageBannerService.setView(

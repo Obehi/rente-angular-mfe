@@ -15,6 +15,7 @@ export class SignicatUsersComponent implements OnInit {
   public loans: LoanInfo[] | null;
   public isSummaryNeeded = false;
   public isEmptyLoans = false;
+  public isEditMode: number | null;
 
   public loanOverViewObservable$: Observable<LoanOverView>;
 
@@ -49,6 +50,9 @@ export class SignicatUsersComponent implements OnInit {
   }
 
   public addLoan(): void {
+    this.isEditMode = this.myLoansService.getEditMode();
+
+    if (this.isEditMode !== null) return;
     this.myLoansService.addNewLoan();
   }
 }
