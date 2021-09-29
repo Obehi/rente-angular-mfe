@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
-import { debounceTime, repeat, scan, share, tap } from 'rxjs/operators';
-
+import { NavigationEnd, Router, Scroll } from '@angular/router';
+import { BehaviorSubject, combineLatest, Observable, Subject } from 'rxjs';
+import { delay, filter, map, scan, share, switchMap } from 'rxjs/operators';
+import { ScriptService } from '@services/script.service';
+import { BreakpointObserver } from '@angular/cdk/layout';
 @Injectable({
   providedIn: 'root'
 })
@@ -13,8 +15,51 @@ export class GlobalStateService {
   private notificationProfile = new Subject<number>();
   private isDashboard = new BehaviorSubject<boolean>(false);
 
-  constructor() {
+  public isScriptLoaded$ = new BehaviorSubject(false);
+
+  private routeNavigationEnd$: Observable<any> = this.route.events.pipe(
+    filter((event) => event instanceof NavigationEnd),
+    share()
+  );
+  constructor(
+    private route: Router,
+    private ScriptService: ScriptService,
+    private breakpointObserver: BreakpointObserver
+  ) {
     this.showFooter = new Subject<boolean>();
+
+    this.setRouteIsChangedListener();
+    this.setDashBoardStateListener();
+  }
+
+  private setRouteIsChangedListener(): void {
+    this.route.events
+      .pipe(
+        filter((event) => event instanceof NavigationEnd),
+        filter((event: NavigationEnd) => event.url !== '/')
+      )
+      .pipe(
+        delay(500),
+        switchMap(() => this.isScriptLoaded$)
+      )
+      .subscribe((scriptIsLoaded) => {
+        if (!scriptIsLoaded) {
+          this.ScriptService.loadChatScript();
+          this.isScriptLoaded$.next(true);
+        }
+      });
+  }
+
+  private setDashBoardStateListener(): void {
+    const isMobile$ = this.breakpointObserver
+      .observe('(max-width: 992px)')
+      .pipe(map((breakpoint) => breakpoint.matches));
+
+    combineLatest([isMobile$, this.isDashboard]).subscribe(
+      ([isMobile, isDashboard]) => {
+        this.ScriptService.setChatPosition(isMobile, isDashboard);
+      }
+    );
   }
 
   public setFooterState(show: boolean): void {
