@@ -256,9 +256,10 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
       console.log('Is form disabled: ' + this.loanForm.disabled);
 
       setTimeout(() => {
-        console.log('Disabling the disable form');
+        console.log('Disabling and enabling the form');
         this.disableForm();
-      }, 3000);
+        this.enableForm();
+      }, 0);
     } else {
       this.disableForm();
     }
