@@ -167,6 +167,28 @@ footer {
 }
 
 .partners-swe {
+}
+
+.other-partners-swe {
+  display: flex;
+  flex-direction: column;
+  grid-column: span 2;
+
+  h4 {
+    color: $white;
+    margin-bottom: 10px;
+  }
+
+  img {
+    width: 160px;
+  }
+}
+
+.ailsa {
+  width: 100px !important;
+}
+
+.bank-partners-swe {
   display: flex;
   flex-direction: column;
   grid-column: span 2;

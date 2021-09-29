@@ -23,6 +23,7 @@ export const API_URL_MAP = {
     interestedFixedRate: '/interestedFixedRate',
     qualify4Blu: '/qualify4Blu',
     savings: '/savings',
+    phone: '/phone',
     propertyValue: '/propertyValue',
     otherDebt: '/otherDept',
     income: '/income',
@@ -62,6 +63,10 @@ export const API_URL_MAP = {
     user: {
       base: '/user',
       info: '/info'
+    },
+    preferances: {
+      base: '/preferences',
+      score: '/score'
     },
     membership: {
       base: '/membership',

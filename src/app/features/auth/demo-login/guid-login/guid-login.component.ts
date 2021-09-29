@@ -1,16 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  FormGroup,
-  FormBuilder,
-  AbstractControl,
-  NgForm,
-  FormControl
-} from '@angular/forms';
-import { ContactService } from '@services/remote-api/contact.service';
+import { FormGroup, FormBuilder, AbstractControl } from '@angular/forms';
 import { Router } from '@angular/router';
-import { SnackBarService } from '@services/snackbar.service';
-import { Subscription } from 'rxjs';
 
+import { SnackBarService } from '@services/snackbar.service';
 import { AuthService } from '@services/remote-api/auth.service';
 import { ROUTES_MAP } from '@config/routes-config';
 import { CustomLangTextService } from '@services/custom-lang-text.service';
@@ -31,7 +23,6 @@ export class GuidLoginComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private contactService: ContactService,
     private snackBar: SnackBarService,
     private router: Router,
     private authService: AuthService,
@@ -45,10 +36,7 @@ export class GuidLoginComponent implements OnInit {
     });
   }
 
-  public isErrorState(
-    control: AbstractControl | null,
-    form: FormGroup | NgForm | null
-  ): boolean {
+  public isErrorState(control: AbstractControl | null): boolean {
     return !!(control && control.invalid && (control.dirty || control.touched));
   }
 

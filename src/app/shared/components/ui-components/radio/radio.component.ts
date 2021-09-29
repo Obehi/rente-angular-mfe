@@ -1,15 +1,5 @@
-import {
-  Component,
-  Input,
-  Output,
-  EventEmitter,
-  forwardRef
-} from '@angular/core';
-import {
-  FormControl,
-  ControlValueAccessor,
-  NG_VALUE_ACCESSOR
-} from '@angular/forms';
+import { Component, Input, forwardRef } from '@angular/core';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
   selector: 'rente-radio',
@@ -31,18 +21,21 @@ export class RadioComponent {
 
   propagateChange: any = () => {};
 
-  writeValue(value) {
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+  writeValue(value): void {
     if (value) {
       this.currValue = value;
     }
   }
 
-  registerOnChange(fn) {
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+  registerOnChange(fn): void {
     this.propagateChange = fn;
   }
 
-  registerOnTouched() {}
+  registerOnTouched(): void {}
 
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   valueChange(event: any): void {
     this.currValue = event;
     this.propagateChange(this.currValue);

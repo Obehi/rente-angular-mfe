@@ -42,9 +42,9 @@ import {
   AddressCreationDto,
   ClientUpdateInfo,
   ConfirmationSetDto,
-  LoansService,
   MembershipTypeDto
-} from '@services/remote-api/loans.service';
+} from '@shared/models/loans';
+import { LoansService } from '@services/remote-api/loans.service';
 import { NavigationInterceptionService } from '@services/navigation-interception.service';
 import { MatStepper } from '@angular/material';
 import {
@@ -72,6 +72,7 @@ import { RxjsOperatorService } from '@services/rxjs-operator.service';
 
 import { LoginTermsDialogV2Component } from '@shared/components/ui-components/dialogs/login-terms-dialog-v2/login-terms-dialog-v2.component';
 import { VirdiManualValueDialogComponent } from '@shared/components/ui-components/dialogs/virdi-manual-value-dialog/virdi-manual-value-dialog.component';
+import { MembershipService } from '@services/membership.service';
 
 @Component({
   selector: 'rente-bank-id-login',
@@ -110,6 +111,9 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
   ];
   public selectedOffer: string;
   public bank: BankVo | null;
+  public userHasNoBankIDForPhone = false;
+  public isRedirected = false;
+
   private loanId: number | null;
   public currentStepperValue = 0;
   public newClient: boolean | null;
@@ -137,7 +141,8 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     private globalStateService: GlobalStateService,
     private routeEventsService: RouteEventsService,
     private sanitizer: DomSanitizer,
-    private rxjsOperatorService: RxjsOperatorService
+    private rxjsOperatorService: RxjsOperatorService,
+    private membershipService: MembershipService
   ) {
     this.setRoutingListeners();
   }
@@ -178,11 +183,13 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     // Getting bank name from the bank-select component
     const stateData = this.router?.getCurrentNavigation()?.extras?.state?.data;
     // Checking for null or undefined
-    if (stateData == null) {
+    if (stateData === null || stateData === undefined) {
       this.router.navigate(['/' + ROUTES_MAP.bankSelect]);
       return;
     } else {
       this.bank = stateData.bank;
+      this.userHasNoBankIDForPhone = stateData.userHasNoBankIDForPhone;
+      this.isRedirected = stateData.redirect;
 
       if (stateData.redirect === true) {
         if (this.bank?.name === 'DNB') {
@@ -288,6 +295,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
       memberships: clientDto.memberships
     };
     clientDto.memberships = [];
+
     concat(
       this.loanService.updateClientInfo(this.getFormValues()),
       this.loanService.CreateSignicatLoansInfo([signicatLoanInfoDto]),
@@ -299,6 +307,8 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
           this.isLoading = false;
 
           if (this.bank !== null) {
+            // subBank was used to prefill memberships selects
+            this.localStorageService.removeItem('subBank');
             this.bank && this.loginService.loginWithBankAndToken();
           } else {
             // handle state as error
@@ -348,6 +358,9 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     request.subscribe(
       (result) => {
         this.isLoading = false;
+
+        // subBank was used to prefill memberships selects
+        this.localStorageService.removeItem('subBank');
         this.bank && this.loginService.loginWithBankAndToken();
       },
       (error) => {
@@ -357,7 +370,14 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
   }
 
   initMemberships(memberships): void {
-    this.allMemberships = memberships;
+    this.allMemberships = this.membershipService.initMembershipList(
+      memberships
+    );
+    const prefilledMemberships = this.membershipService.getPrefilledMemberships();
+
+    if (prefilledMemberships.length !== 0) {
+      this.memberships = prefilledMemberships;
+    }
     this.filteredMemberships = this.membershipCtrl.valueChanges.pipe(
       startWith(null),
       map((membership: string | null) =>
@@ -446,11 +466,6 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
   private initFixedLoansLoansForm(loanInfo): void {
     this.isLoading = true;
 
-    this.loanService
-      .getSignicatLoansInfo()
-      .pipe(this.rxjsOperatorService.retry404ThreeTimes)
-      .subscribe(() => console.log('wuuupp'));
-
     if (loanInfo.newLoan === false) {
       forkJoin([
         this.loanService.getOffersBanks(),
@@ -460,12 +475,14 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
       ]).subscribe(([offerBanks, signicatLoansInfo]) => {
         const firstLoan = signicatLoansInfo[0];
         this.loanId = firstLoan.id;
-        this.productIdOptions = (offerBanks.offers as any[]).map((offer) => {
-          return {
-            name: offer.name,
-            value: offer.id
-          };
-        });
+        this.productIdOptions = (offerBanks.offers as any[])
+          .map((offer) => {
+            return {
+              name: offer.name,
+              value: offer.id
+            };
+          })
+          .sort((a, b) => (a.name > b.name ? 1 : b.name > a.name ? -1 : 0));
 
         const selectedOption = this.productIdOptions.filter((item) => {
           return item.value === firstLoan.productId;
@@ -494,12 +511,14 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
         this.loanService.getOffersBanks()
       ]).subscribe(
         ([loanInfo, offerBanks]) => {
-          this.productIdOptions = (offerBanks.offers as any[]).map((offer) => {
-            return {
-              name: offer.name,
-              value: offer.id
-            };
-          });
+          this.productIdOptions = (offerBanks.offers as any[])
+            .map((offer) => {
+              return {
+                name: offer.name,
+                value: offer.id
+              };
+            })
+            .sort((a, b) => (a.name > b.name ? 1 : b.name > a.name ? -1 : 0));
 
           if (loanInfo.length !== 0) {
             this.loanId = loanInfo[0].id;
@@ -543,12 +562,14 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
       const firstLoan = signicatLoansInfo[0];
 
       this.loanId = firstLoan.id;
-      this.productIdOptions = (offerBanks.offers as any[]).map((offer) => {
-        return {
-          name: offer.name,
-          value: offer.id
-        };
-      });
+      this.productIdOptions = (offerBanks.offers as any[])
+        .map((offer) => {
+          return {
+            name: offer.name,
+            value: offer.id
+          };
+        })
+        .sort((a, b) => (a.name > b.name ? 1 : b.name > a.name ? -1 : 0));
 
       const selectedloanTypeOption = this.loanTypeOptions.filter((item) => {
         return item.value === firstLoan.loanType;
@@ -596,12 +617,14 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
         .getSignicatLoansInfo()
         .pipe(this.rxjsOperatorService.retry404ThreeTimes)
     ]).subscribe(([offerBanks, signicatLoansInfo]) => {
-      this.productIdOptions = (offerBanks.offers as any[]).map((offer) => {
-        return {
-          name: offer.name,
-          value: offer.id
-        };
-      });
+      this.productIdOptions = (offerBanks.offers as any[])
+        .map((offer) => {
+          return {
+            name: offer.name,
+            value: offer.id
+          };
+        })
+        .sort((a, b) => (a.name > b.name ? 1 : b.name > a.name ? -1 : 0));
 
       if (signicatLoansInfo.length !== 0) {
         this.loanId = signicatLoansInfo[0].id;
@@ -653,12 +676,14 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
 
         const firstLoan = signicatLoansInfo[0];
 
-        this.productIdOptions = (offerBanks.offers as any[]).map((offer) => {
-          return {
-            name: offer.name,
-            value: offer.id
-          };
-        });
+        this.productIdOptions = (offerBanks.offers as any[])
+          .map((offer) => {
+            return {
+              name: offer.name,
+              value: offer.id
+            };
+          })
+          .sort((a, b) => (a.name > b.name ? 1 : b.name > a.name ? -1 : 0));
 
         const selectedLoanTypeOption = this.loanTypeOptions.filter((item) => {
           return item.value === firstLoan.loanType;
@@ -686,12 +711,14 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
   initNewLoanLoanForm(): void {
     this.loanService.getOffersBanks().subscribe(
       (offerBanks) => {
-        this.productIdOptions = (offerBanks.offers as any[]).map((offer) => {
-          return {
-            name: offer.name,
-            value: offer.id
-          };
-        });
+        this.productIdOptions = (offerBanks.offers as any[])
+          .map((offer) => {
+            return {
+              name: offer.name,
+              value: offer.id
+            };
+          })
+          .sort((a, b) => (a.name > b.name ? 1 : b.name > a.name ? -1 : 0));
 
         this.oldUserNewLoan = true;
         this.loanFormGroup = this.fb.group({
@@ -939,6 +966,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     this.memberships.push(event.option.value);
     this.membershipInput.nativeElement.value = '';
     this.membershipCtrl.setValue(null);
+    document.getElementById('membership-input')?.blur();
   }
 
   private clearDuplicates(
@@ -980,12 +1008,14 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     this.loanService.updateClientInfo(this.clientUpdateInfo).subscribe(
       (_) => {
         this.loanService.getOffersBanks().subscribe((offerBanks) => {
-          this.productIdOptions = (offerBanks.offers as any[]).map((offer) => {
-            return {
-              name: offer.name,
-              value: offer.id
-            };
-          });
+          this.productIdOptions = (offerBanks.offers as any[])
+            .map((offer) => {
+              return {
+                name: offer.name,
+                value: offer.id
+              };
+            })
+            .sort((a, b) => (a.name > b.name ? 1 : b.name > a.name ? -1 : 0));
           this.isLoading = false;
           this.stepper.next();
           this.scrollToTop();
@@ -1035,14 +1065,16 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
                     this.loanService
                       .getOffersBanks()
                       .subscribe((offerBanks) => {
-                        this.productIdOptions = (offerBanks.offers as any[]).map(
-                          (offer) => {
+                        this.productIdOptions = (offerBanks.offers as any[])
+                          .map((offer) => {
                             return {
                               name: offer.name,
                               value: offer.id
                             };
-                          }
-                        );
+                          })
+                          .sort((a, b) =>
+                            a.name > b.name ? 1 : b.name > a.name ? -1 : 0
+                          );
                         this.isLoading = false;
                         this.isManualPropertyValue = true;
                         this.stepper.next();
@@ -1098,6 +1130,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     confDtoWithAprtmentValue.email = emailForm.email;
     confDtoWithAprtmentValue.income = incomeNumber;
     confDtoWithAprtmentValue.memberships = [];
+    confDtoWithAprtmentValue.phone = '';
 
     return confDtoWithAprtmentValue;
   }

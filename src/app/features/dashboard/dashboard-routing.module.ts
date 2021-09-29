@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { DashboardComponent } from './dashboard.component';
-import { PreferencesComponent } from './preferences/preferences.component';
 import { ProfileComponent } from './profile/profile.component';
 import { RateTypeFixedComponent } from './rate-type-fixed/rate-type-fixed.component';
 import {
@@ -59,17 +58,6 @@ const routes: Routes = [
         canDeactivate: [RouteGuard],
         data: {
           title: customMeta.boligTitle,
-          meta: {
-            name: defaultMeta.name,
-            description: defaultMeta.description
-          }
-        }
-      },
-      {
-        path: 'preferanser',
-        component: PreferencesComponent,
-        data: {
-          title: customMeta.preferanserTitle,
           meta: {
             name: defaultMeta.name,
             description: defaultMeta.description

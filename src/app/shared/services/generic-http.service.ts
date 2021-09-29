@@ -37,9 +37,6 @@ export class GenericHttpService {
 
   public get(path: string, searchParams: any = {}): Observable<any> {
     const fullPath = `${this.apiUrl}${path}`;
-    const params: HttpParams = new HttpParams({
-      fromObject: searchParams
-    });
 
     const httpOptions = {
       headers: this.shapeHeaders(),
@@ -51,6 +48,7 @@ export class GenericHttpService {
       .pipe(catchError((error) => this.handleError(error)));
   }
 
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   public getWithParams(path: string, searchParams): Observable<any> {
     const fullPath = `${this.apiUrl}${path}`;
 
@@ -99,6 +97,7 @@ export class GenericHttpService {
       .pipe(catchError((error) => this.handleError(error)));
   }
 
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   public postWithParams(path: string, searchParams: any): Observable<any> {
     const fullPath = `${this.apiUrl}${path}`;
     const params: HttpParams = new HttpParams({ fromObject: searchParams });

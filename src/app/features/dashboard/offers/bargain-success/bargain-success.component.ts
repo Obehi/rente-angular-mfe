@@ -11,7 +11,6 @@ import { EnvService } from '@services/env.service';
 })
 export class BargainSuccessComponent implements OnInit {
   public isErrorState = false;
-  private hasScrolledToTop = false;
 
   constructor(
     private router: Router,
@@ -19,11 +18,11 @@ export class BargainSuccessComponent implements OnInit {
     public envService: EnvService
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.dialog.open(ReferralComponent);
   }
 
-  public continue() {
+  public continue(): void {
     this.router.navigate(['/dashboard/' + ROUTES_MAP.offers]);
   }
 }

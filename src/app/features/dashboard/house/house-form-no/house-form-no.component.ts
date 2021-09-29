@@ -6,7 +6,8 @@ import {
   EventEmitter,
   AfterViewInit
 } from '@angular/core';
-import { AddressDto } from '@services/remote-api/loans.service';
+
+import { AddressDto } from '@shared/models/loans';
 import { MatTabChangeEvent } from '@angular/material';
 import { EnvService } from '@services/env.service';
 import { animate, style, transition, trigger } from '@angular/animations';
@@ -108,7 +109,8 @@ export class HouseFormNoComponent implements OnInit, AfterViewInit {
   }
 
   // remove spaces and convert to number type
-  formatThousand(event): number {
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+  formatThousand(event: any): number {
     return Number(event.replace(/\s+/g, ''));
   }
 
@@ -128,7 +130,8 @@ export class HouseFormNoComponent implements OnInit, AfterViewInit {
     this.deleteAddress.emit(this.address);
   }
 
-  manualPropertyValueChanged($event): void {
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+  manualPropertyValueChanged($event: any): void {
     if ($event && $event.target) {
       const newValue = parseInt(String($event.target.value).replace(/\D/g, ''));
       this.address.manualPropertyValue = newValue >= 0 ? newValue : 0;

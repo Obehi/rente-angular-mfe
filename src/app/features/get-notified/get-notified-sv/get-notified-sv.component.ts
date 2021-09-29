@@ -1,6 +1,4 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { BankVo } from '../../../shared/models/bank';
 import { MatAutocomplete } from '@angular/material';
 import {
   FormGroup,
@@ -9,13 +7,16 @@ import {
   AbstractControl,
   FormControl
 } from '@angular/forms';
-import { VALIDATION_PATTERN } from '@config/validation-patterns.config';
-import { Observable, timer, EMPTY } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ENTER, COMMA } from '@angular/cdk/keycodes';
+
+import { Observable, timer, EMPTY } from 'rxjs';
 import { debounce } from 'rxjs/operators';
-import { ContactService } from '../../../shared/services/remote-api/contact.service';
-import { Router } from '@angular/router';
+
+import { VALIDATION_PATTERN } from '@config/validation-patterns.config';
 import { SnackBarService } from '@services/snackbar.service';
+import { ContactService } from '../../../shared/services/remote-api/contact.service';
+import { BankVo } from '../../../shared/models/bank';
 import { MessageBannerService } from '@services/message-banner.service';
 import { getAnimationStyles } from '@shared/animations/animationEnums';
 
@@ -31,7 +32,6 @@ export class GetNotifiedSvComponent implements OnInit {
   public removable = true;
   public addOnBlur = true;
   public separatorKeysCodes: number[] = [ENTER, COMMA];
-  // public bankCtrl = new FormControl();
   public filteredBanks: Observable<string[]>;
   public banks: any = [];
   public allBanks: any[];
@@ -73,11 +73,9 @@ export class GetNotifiedSvComponent implements OnInit {
   }
 
   inValid(): boolean {
-    return (
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      this.missingBankForm.get('email')!.hasError('pattern') &&
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      this.missingBankForm.get('email')!.dirty
+    return !!(
+      this.missingBankForm.get('email')?.hasError('pattern') &&
+      this.missingBankForm.get('email')?.dirty
     );
   }
 
@@ -128,14 +126,5 @@ export class GetNotifiedSvComponent implements OnInit {
 
   public displayFn(bank: BankVo): string | undefined {
     return bank ? bank.name : undefined;
-  }
-
-  private filter(value: any): any[] {
-    const filterValue = value.name
-      ? value.name.toLowerCase()
-      : value.toLowerCase();
-    return this.allBanks.filter((bank) =>
-      bank.name.toLowerCase().includes(filterValue)
-    );
   }
 }

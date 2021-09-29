@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ROUTES_MAP } from '@config/routes-config';
 import { Router } from '@angular/router';
-import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'rente-landing-top',
@@ -20,7 +19,7 @@ export class LandingTopSvComponent implements OnInit {
   isAndroid: boolean;
   agentTest: string;
 
-  constructor(private router: Router, private dialog: MatDialog) {}
+  constructor(private router: Router) {}
 
   ngOnInit(): void {
     this.agentTest = window.navigator.userAgent;
@@ -63,7 +62,6 @@ export class LandingTopSvComponent implements OnInit {
       }
     } else if (this.isAndroid) {
       if (this.isCustomInAppBrowser()) {
-        // window.location.assign("intent:https://ranteradar.se/" + ROUTES_MAP.bankSelect + ";end")
         this.router.navigate(['/' + ROUTES_MAP.bankSelect], {
           state: { data: { androidPopup: true } }
         });

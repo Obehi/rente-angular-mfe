@@ -1,25 +1,29 @@
 @import '../../../../../styles/theme/_colors.scss';
 
-$spinner-container-size: 23px;
+:host {
+  size: var(--size);
+}
+
+$spinner-container-size: 83px;
 $spinner-size: $spinner-container-size * 0.75;
 $spinner-margin: $spinner-size / 6;
 
 .lds-ring {
   display: inline-block;
   position: relative;
-  width: $spinner-container-size;
-  height: $spinner-container-size;
+  width: var(--size);
+  height: var(--size);
 }
 .lds-ring div {
   box-sizing: border-box;
   display: block;
   position: absolute;
-  width: $spinner-size;
-  height: $spinner-size;
-  margin: $spinner-margin;
-  border-width: $spinner-margin;
+  width: calc(var(--size) * 0.75);
+  height: calc(var(--size) * 0.75);
+  margin: calc(var(--size) / 6);
+  border-width: calc(var(--size) / 6);
   border-style: solid;
-  border-color: $secondary;
+
   border-radius: 50%;
   animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
   border-color: $primary transparent transparent transparent;
