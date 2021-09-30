@@ -9,8 +9,13 @@ p {
 }
 
 .main-container {
-  margin: 10px;
-  margin-top: 90px;
+  @media (min-width: 600px) {
+    padding: 40px 80px;
+  }
+
+  @media (max-width: 600px) {
+    margin: 20px;
+  }
 }
 
 .center-logo {
