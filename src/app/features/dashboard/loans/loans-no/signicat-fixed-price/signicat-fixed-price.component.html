@@ -7,9 +7,7 @@
         *ngIf="myLoansService.loanOverViewObservable$ | async as result"
       >
         <div class="tab-container">
-          <div class="btitle-one">
-            <p>Utestående lån</p>
-          </div>
+          <p>Utestående lån</p>
           <div class="bvalue">
             <h3>
               {{ result.totalOutstandingDebt / 1000000 | number: '1.3-3' }}
@@ -18,9 +16,7 @@
           </div>
         </div>
         <div class="tab-container">
-          <div class="btitle-two">
-            <p>Effektiv rente</p>
-          </div>
+          <p>Effektiv rente</p>
 
           <div class="bvalue">
             <h3>
@@ -30,9 +26,7 @@
           </div>
         </div>
         <div class="tab-container">
-          <div class="btitle-one">
-            <p>Totale renter og gebyrer</p>
-          </div>
+          <p>Totale renter og gebyrer</p>
           <div class="bvalue">
             <h3>
               {{
@@ -45,9 +39,7 @@
           </div>
         </div>
         <div class="tab-container">
-          <div class="btitle-two">
-            <p>Renter & gebyrer per år</p>
-          </div>
+          <p>Renter & gebyrer per år</p>
           <div class="bvalue">
             <h3>
               {{

@@ -102,7 +102,7 @@ h3 {
   padding-right: 11px;
 
   p {
-    padding: 6px;
+    margin-bottom: 5px;
   }
 
   @media (min-width: 767px) and (max-width: 769px) {
@@ -149,7 +149,7 @@ h3 {
     grid-template-columns: 1fr 1fr;
     grid-column-gap: 80px;
     grid-row-gap: 40px;
-
+    margin-top: 50px;
     // display: flex;
     // justify-content: space-evenly;
     // align-items: initial;

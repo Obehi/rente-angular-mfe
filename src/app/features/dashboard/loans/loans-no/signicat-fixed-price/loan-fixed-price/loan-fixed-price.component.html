@@ -194,9 +194,8 @@
         >
           <div class="double-container">
             <div class="first-box move-first-box">
-              <div class="btitle-one">
-                <p>Totale renter og gebyrer</p>
-              </div>
+              <p class="box-label">Totale renter og gebyrer</p>
+
               <div class="bvalue">
                 {{
                   loan.totalInterestAndTotalFee == null
@@ -207,9 +206,7 @@
             </div>
 
             <div class="first-box move-sec-box">
-              <div class="btitle-two">
-                <p>Renter & gebyrer per år</p>
-              </div>
+              <p class="box-label">Renter & gebyrer per år</p>
               <div class="bvalue">
                 {{
                   loan.totalInterestAndTotalFeeByRemainingYears == null
