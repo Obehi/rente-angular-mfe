@@ -25,6 +25,8 @@ p {
 }
 
 .forms {
+  margin-top: 20px;
+
   form {
     min-width: 100%;
     display: grid;
@@ -117,7 +119,7 @@ p {
 
   @media (min-width: 993px) {
     width: 365px;
-    height: 700px;
+    height: 600px;
   }
 
   @media (max-width: 992px) and (min-width: 769px) {
@@ -154,7 +156,7 @@ p {
   background-color: $secondary;
   // border-radius: 10px;
   border-radius: 15px;
-  height: 470px;
+  height: 500px;
   transition: height 0.3s;
   margin-bottom: 40px;
   @media (min-width: 993px) {
@@ -226,14 +228,6 @@ p {
     margin-left: 0;
     margin-bottom: 10px;
   }
-}
-
-.general-modus {
-  margin-top: 0;
-}
-
-.edit-modus {
-  margin-top: 20px;
 }
 
 .all-text {
@@ -436,6 +430,43 @@ p {
   cursor: pointer;
 }
 
+/* ------------------- Mat form field ------------------- */
+
+::ng-deep .mat-form-field {
+  display: block !important;
+  text-align: center;
+}
+
+::ng-deep .mat-select-value-text,
+::ng-deep .mat-select-arrow {
+  color: white !important;
+}
+
+::ng-deep .mat-form-field-underline {
+  display: none;
+}
+
+::ng-deep .mat-form-field-disabled * {
+  color: white !important;
+  white-space: normal;
+}
+
+::ng-deep .mat-form-field-infix {
+  top: 2px !important;
+  border-top: none;
+  text-align: center !important;
+}
+
+::ng-deep .mat-form-field-wrapper {
+  margin: 0 !important;
+  padding: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+::ng-deep .mat-form-field-outline-start {
+  display: none !important;
+}
+
 .loan-center {
   margin-top: 15px;
   margin-bottom: 20px;
@@ -465,8 +496,9 @@ p {
 }
 
 .loan-center-edit {
-  margin-top: 15px;
-  margin-bottom: 15px;
+  // margin-top: 15px;
+  // margin-bottom: 15px;
+  margin: 15px;
 
   ::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
     background: #004465a6;

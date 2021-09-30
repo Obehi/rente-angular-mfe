@@ -34,7 +34,7 @@
         </div>
       </div>
 
-      <div
+      <!-- <div
         class="all-text"
         *ngIf="!isEditMode"
         [@fadeOut]="isEditMode ? 'hidden' : 'visible'"
@@ -44,12 +44,9 @@
             {{ loan.loanName }}
           </p>
         </div>
-      </div>
+      </div> -->
 
-      <div
-        class="forms"
-        [ngClass]="isEditMode === true ? 'edit-modus' : 'general-modus'"
-      >
+      <div class="forms">
         <form class="p-0 border-0" [formGroup]="loanForm" novalidate change>
           <div class="field-box">
             <h4 class="text-white">Utestående lån:</h4>
@@ -174,17 +171,17 @@
             </div>
           </div>
 
-          <!-- <div class="field-box">
+          <div class="field-box">
             <h4 class="text-white">Termin gebyr:</h4>
 
             <div>
               <div class="input-width-small">
                 <rente-general-input
-                  (click)="setInputNominalRateActive()"
+                  (click)="setInputFeeActive()"
                   formControlName="fee"
                   [maskType]="maskType"
                   [suffix]="'kr'"
-                  [maxLength]="'2'"
+                  [maxLength]="'3'"
                   [isEditMode]="isEditMode"
                   [inEditMode]="inEditMode"
                   [isInputFocused]="
@@ -206,7 +203,20 @@
                 </div>
               </div>
             </div>
-          </div> -->
+          </div>
+
+          <div
+            class="loan-info"
+            *ngIf="showDisplayBox"
+            [@fadeOut]="isEditMode ? 'hidden' : 'visible'"
+          >
+            <div class="center">
+              <p>Effektiv rente:</p>
+            </div>
+            <div class="center">
+              <h3>{{ loan.effectiveRate | number: '1.2-2' }} %</h3>
+            </div>
+          </div>
 
           <div
             [ngClass]="{
@@ -227,26 +237,13 @@
                 panelClass="overlay-pane"
               >
                 <mat-option
-                  *ngFor="let offer of allOffers"
-                  [value]="offer.name"
+                  *ngFor="let loanType of loanTypeList"
+                  [value]="loanType.name"
                 >
-                  {{ offer.name }}
+                  {{ loanType.name }}
                 </mat-option>
               </mat-select>
             </mat-form-field>
-          </div>
-
-          <div
-            class="loan-info"
-            *ngIf="showDisplayBox"
-            [@fadeOut]="isEditMode ? 'hidden' : 'visible'"
-          >
-            <div class="center">
-              <p>Effektiv rente:</p>
-            </div>
-            <div class="center">
-              <h3>{{ loan.effectiveRate | number: '1.2-2' }} %</h3>
-            </div>
           </div>
         </form>
       </div>

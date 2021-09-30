@@ -3,7 +3,7 @@ export interface LoanTypeOption {
   value?: string;
 }
 
-export const eikaBanks: LoanTypeOption[] = [
+export const nonListLoanType: LoanTypeOption[] = [
   {
     name: 'Nedbetalingslån',
     value: 'DOWNPAYMENT_REGULAR_LOAN'

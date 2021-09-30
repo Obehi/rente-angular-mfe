@@ -15,6 +15,7 @@ import { FadeOut } from '@shared/animations/fade-out';
 import { Mask } from '@shared/constants/mask';
 import { concat, of, Subscription } from 'rxjs';
 import { catchError, toArray } from 'rxjs/operators';
+import { nonListLoanType, LoanTypeOption } from '@models/loan-type';
 
 @Component({
   selector: 'rente-loan-signicat-users',
@@ -41,6 +42,7 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
   public isAbleToSave = false;
   public isEmptyPlaceHolder = false;
   public loanTypeSelected = '';
+  public loanTypeList: LoanTypeOption[] = nonListLoanType;
 
   public animationStyle = getAnimationStyles();
   public maskType = Mask;
@@ -49,6 +51,7 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
   public incomingValueOutstandingDebt: string;
   public incomingValueRemainingYears: string;
   public incomingValueNominalRate: string;
+  public incomingValueFee: string;
 
   // Activate input color when focused
   public inputOutstandingDebtIsActive = false;
@@ -79,6 +82,7 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
   public changeOutstandingDebtSubscription: Subscription | undefined;
   public changeRemainingYearsSubscription: Subscription | undefined;
   public changeNominalRateSubscription: Subscription | undefined;
+  public changeFeeSubscription: Subscription | undefined;
 
   constructor(
     private fb: FormBuilder,
@@ -96,6 +100,9 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
     }
     if (this.changeNominalRateSubscription) {
       this.changeNominalRateSubscription.unsubscribe();
+    }
+    if (this.changeFeeSubscription) {
+      this.changeFeeSubscription.unsubscribe();
     }
   }
 
@@ -136,8 +143,16 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
     this.initialOutStandingDebt = String(this.loan.outstandingDebt);
     this.initialRemainingYears = String(correctValue);
     this.initialNominalRate = String(this.loan.nominalRate);
-    // this.initialFee = String(this.loan.fee);
-    this.initialLoanType = String(this.loan.loanType);
+    // Set a test data for now
+    this.initialFee = String('60');
+
+    // Backend returns loantype in english, filter the list and return the name in obj
+    this.initialLoanType = String(
+      this.loanTypeList.filter((val) => val.value === this.loan.loanType)[0]
+        .name
+    );
+
+    this.loanTypeSelected = this.initialLoanType;
 
     this.loanForm = this.fb.group({
       outstandingDebt: [
@@ -152,7 +167,7 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
         { value: this.initialNominalRate, disabled: true },
         Validators.required
       ],
-      // fee: [{ value: this.initialFee, disabled: true }, Validators.required],
+      fee: [{ value: this.initialFee, disabled: true }, Validators.required],
       loanType: [{ value: this.initialLoanType, disabled: true }]
     });
 
@@ -259,12 +274,33 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
         }
       });
 
-    // console.log('Is form disabled: ' + this.loanForm.disabled);
-    // console.log('Loan ID: ' + this.loan.id.toString());
+    this.changeFeeSubscription = this.loanForm
+      .get('fee')
+      ?.valueChanges.subscribe(() => {
+        const check = this.checkIfZero('fee');
+
+        if (!check) {
+          this.feeIsError = false;
+          this.incomingValueFee = this.loanForm.get('fee')?.value;
+        } else {
+          this.feeIsError = true;
+        }
+
+        if (
+          this.loanForm.get('fee')?.dirty &&
+          !check &&
+          !this.outstandingDebtIsError &&
+          !this.remainingYearsIsError &&
+          !this.nominalRateIsError
+        ) {
+          this.isAbleToSave = true;
+        } else {
+          this.isAbleToSave = false;
+        }
+      });
 
     if (this.loan.id === 0) {
       this.setEditEnabled();
-      // console.log('Is form disabled: ' + this.loanForm.disabled);
 
       // Has to be in a timeout to work
       // The new loan input cant be focused if not
@@ -292,12 +328,14 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
     this.loanForm.get(this.outstandingDebtString)?.disable();
     this.loanForm.get(this.remainingYearsString)?.disable();
     this.loanForm.get(this.nominalRateString)?.disable();
+    this.loanForm.get('fee')?.disable();
   }
 
   public enableForm(): void {
     this.loanForm.get(this.outstandingDebtString)?.enable();
     this.loanForm.get(this.remainingYearsString)?.enable();
     this.loanForm.get(this.nominalRateString)?.enable();
+    this.loanForm.get('fee')?.enable();
   }
 
   public setInputOutDebtActive(): void {
@@ -361,6 +399,8 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
     this.showButton = false;
     setTimeout(() => {
       this.myLoansService.setEditMode(null);
+
+      this.loanTypeSelected = this.initialLoanType;
 
       // Reset the values back to initial
       this.loanForm
@@ -460,6 +500,14 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
 
     const nominalRateDto = {
       nominalRate: getNominalRate
+    };
+
+    const feeDto = {
+      fee: this.incomingValueFee
+    };
+
+    const loanTypeDto = {
+      loanType: this.loanTypeSelected
     };
 
     concat(
