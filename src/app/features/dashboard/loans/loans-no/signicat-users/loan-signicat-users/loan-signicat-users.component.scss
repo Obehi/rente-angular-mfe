@@ -116,7 +116,7 @@ p {
 
   @media (min-width: 993px) {
     width: 400px;
-    height: 535px;
+    height: 700px;
   }
 
   @media (max-width: 992px) and (min-width: 769px) {
@@ -157,7 +157,7 @@ p {
   background-color: $secondary;
   // border-radius: 10px;
   border-radius: 15px;
-  height: 350px;
+  height: 470px;
   transition: height 0.3s;
 
   @media (min-width: 993px) {
@@ -437,4 +437,94 @@ p {
 
 .is-clickable {
   cursor: pointer;
+}
+
+.loan-center {
+  margin-top: 15px;
+  margin-bottom: 20px;
+  border-radius: 30px;
+  background: #004465a6;
+
+  ::ng-deep
+    .mat-form-field-appearance-fill.mat-form-field-disabled
+    .mat-form-field-flex {
+    background-color: transparent;
+    padding: 0.45em 0.75em 0.25em 0.75em;
+  }
+
+  ::ng-deep .mat-select-arrow-wrapper {
+    display: none;
+  }
+
+  ::ng-deep .mat-select-value {
+    display: contents;
+  }
+
+  ::ng-deep .mat-form-field-label-wrapper {
+    top: -1.7em;
+    font-weight: 200;
+    font-size: 18px;
+  }
+}
+
+.loan-center-edit {
+  margin-top: 15px;
+  margin-bottom: 15px;
+
+  ::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
+    background: #004465a6;
+    border: 1px solid #478ccc;
+    border-radius: 8px;
+    padding: 0.45em 0.75em 0.25em 0.75em;
+    transition: background 0.3s ease;
+    transition: border 0.3s ease;
+  }
+
+  ::ng-deep .mat-select-arrow-wrapper {
+    display: block;
+  }
+  ::ng-deep .mat-form-field-label-wrapper {
+    top: -2em;
+    font-weight: 200;
+    font-size: 18px;
+  }
+}
+
+.loan-center-edit-focus {
+  margin-top: 30px;
+  margin-bottom: 15px;
+
+  ::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
+    background: #004465a6;
+    border: 1px solid $primary;
+    border-radius: 8px;
+    padding: 0.45em 0.75em 0.25em 0.75em;
+  }
+
+  ::ng-deep .mat-select-arrow-wrapper {
+    display: block;
+  }
+  ::ng-deep .mat-form-field-label-wrapper {
+    top: -2em;
+    font-weight: 200;
+    font-size: 18px;
+  }
+}
+
+.loan-center-edit-error {
+  ::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
+    background: #004465a6;
+    border: 1px solid $red;
+    border-radius: 8px;
+    padding: 0.45em 0.75em 0.25em 0.75em;
+  }
+
+  ::ng-deep .mat-select-arrow-wrapper {
+    display: block;
+  }
+  ::ng-deep .mat-form-field-label-wrapper {
+    top: -2em;
+    font-weight: 200;
+    font-size: 18px;
+  }
 }

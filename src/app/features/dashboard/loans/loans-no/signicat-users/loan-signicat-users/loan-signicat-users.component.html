@@ -174,6 +174,68 @@
             </div>
           </div>
 
+          <!-- <div class="field-box">
+            <h4 class="text-white">Termin gebyr:</h4>
+
+            <div>
+              <div class="input-width-small">
+                <rente-general-input
+                  (click)="setInputNominalRateActive()"
+                  formControlName="fee"
+                  [maskType]="maskType"
+                  [suffix]="'kr'"
+                  [maxLength]="'2'"
+                  [isEditMode]="isEditMode"
+                  [inEditMode]="inEditMode"
+                  [isInputFocused]="
+                    isEditMode && inputFeeIsActive && !feeIsError
+                  "
+                  [isInputError]="feeIsError"
+                  [errorStateMatcher]="isErrorState(loanForm?.controls['fee'])"
+                ></rente-general-input>
+                <div *ngIf="loanForm?.controls['fee'].touched">
+                  <p
+                    class="error-small"
+                    *ngIf="
+                      loanForm?.controls['fee'].hasError('required') ||
+                      (feeIsError && !isServerError && !isGeneralError)
+                    "
+                  >
+                    Ikke gyldig verdi
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div> -->
+
+          <div
+            [ngClass]="{
+              'loan-center': !isEditMode,
+              'loan-center-edit': inEditMode,
+              'loan-center-edit-focus':
+                isEditMode && inputLoanTypeIsActive && !loanTypeIsError,
+              'loan-center-edit-error': loanTypeIsError
+            }"
+            (click)="setInputLoanTypeActive()"
+          >
+            <mat-form-field appearance="fill">
+              <mat-select
+                [(value)]="loanTypeSelected"
+                [disabled]="!isEditMode"
+                (selectionChange)="matSelectChanged()"
+                disableOptionCentering
+                panelClass="overlay-pane"
+              >
+                <mat-option
+                  *ngFor="let offer of allOffers"
+                  [value]="offer.name"
+                >
+                  {{ offer.name }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
           <div
             class="loan-info"
             *ngIf="showDisplayBox"

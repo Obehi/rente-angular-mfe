@@ -40,6 +40,7 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
   public isServerError = false;
   public isAbleToSave = false;
   public isEmptyPlaceHolder = false;
+  public loanTypeSelected = '';
 
   public animationStyle = getAnimationStyles();
   public maskType = Mask;
@@ -53,11 +54,15 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
   public inputOutstandingDebtIsActive = false;
   public inputRemainingYearsIsActive = false;
   public inputNominalRateIsActive = false;
+  public inputFeeIsActive = false;
+  public inputLoanTypeIsActive = false;
 
   // Error handling
   public outstandingDebtIsError = false;
   public remainingYearsIsError = false;
   public nominalRateIsError = false;
+  public feeIsError = false;
+  public loanTypeIsError = false;
   public isError = false;
 
   public outstandingDebtString = 'outstandingDebt';
@@ -68,6 +73,8 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
   public initialOutStandingDebt: string;
   public initialRemainingYears: string;
   public initialNominalRate: string;
+  public initialFee: string;
+  public initialLoanType: string;
 
   public changeOutstandingDebtSubscription: Subscription | undefined;
   public changeRemainingYearsSubscription: Subscription | undefined;
@@ -129,6 +136,8 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
     this.initialOutStandingDebt = String(this.loan.outstandingDebt);
     this.initialRemainingYears = String(correctValue);
     this.initialNominalRate = String(this.loan.nominalRate);
+    // this.initialFee = String(this.loan.fee);
+    this.initialLoanType = String(this.loan.loanType);
 
     this.loanForm = this.fb.group({
       outstandingDebt: [
@@ -142,7 +151,9 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
       nominalRate: [
         { value: this.initialNominalRate, disabled: true },
         Validators.required
-      ]
+      ],
+      // fee: [{ value: this.initialFee, disabled: true }, Validators.required],
+      loanType: [{ value: this.initialLoanType, disabled: true }]
     });
 
     this.isAbleToSave = false;
@@ -292,25 +303,50 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
   public setInputOutDebtActive(): void {
     this.inputRemainingYearsIsActive = false;
     this.inputNominalRateIsActive = false;
+    this.inputFeeIsActive = false;
+    this.inputLoanTypeIsActive = false;
     this.inputOutstandingDebtIsActive = true;
   }
 
   public setInputRemYearsActive(): void {
     this.inputOutstandingDebtIsActive = false;
     this.inputNominalRateIsActive = false;
+    this.inputFeeIsActive = false;
+    this.inputLoanTypeIsActive = false;
     this.inputRemainingYearsIsActive = true;
   }
 
   public setInputNominalRateActive(): void {
     this.inputOutstandingDebtIsActive = false;
     this.inputRemainingYearsIsActive = false;
+    this.inputFeeIsActive = false;
+    this.inputLoanTypeIsActive = false;
     this.inputNominalRateIsActive = true;
+  }
+
+  public setInputFeeActive(): void {
+    this.inputOutstandingDebtIsActive = false;
+    this.inputRemainingYearsIsActive = false;
+    this.inputNominalRateIsActive = false;
+    this.inputLoanTypeIsActive = false;
+    this.inputFeeIsActive = true;
+  }
+
+  public setInputLoanTypeActive(): void {
+    // Deactivate first then set active for smooth transition
+    this.inputOutstandingDebtIsActive = false;
+    this.inputRemainingYearsIsActive = false;
+    this.inputNominalRateIsActive = false;
+    this.inputFeeIsActive = false;
+    this.inputLoanTypeIsActive = true;
   }
 
   public deactivateAllInput(): void {
     this.inputOutstandingDebtIsActive = false;
     this.inputRemainingYearsIsActive = false;
     this.inputNominalRateIsActive = false;
+    this.inputFeeIsActive = false;
+    this.inputLoanTypeIsActive = false;
   }
 
   public setEditDisabled(): void {
@@ -318,6 +354,8 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
     this.outstandingDebtIsError = false;
     this.remainingYearsIsError = false;
     this.nominalRateIsError = false;
+    this.feeIsError = false;
+    this.loanTypeIsError = false;
 
     // Run in this order for animation to be smooth
     this.showButton = false;
@@ -345,6 +383,8 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
     this.outstandingDebtIsError = false;
     this.remainingYearsIsError = false;
     this.nominalRateIsError = false;
+    this.feeIsError = false;
+    this.loanTypeIsError = false;
 
     const check = this.myLoansService.getEditMode();
 
@@ -370,6 +410,20 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
     setTimeout(() => {
       this.inEditMode = true;
     }, 500);
+  }
+
+  public matSelectChanged(): void {
+    this.loanTypeIsError = false;
+
+    // Check for general error if server error or if the regex error from input
+    if (
+      !this.outstandingDebtIsError &&
+      !this.remainingYearsIsError &&
+      !this.isErrorState(this.loanForm?.controls['remainingYears']) &&
+      !this.isErrorState(this.loanForm?.controls[this.outstandingDebtString])
+    ) {
+      this.isAbleToSave = true;
+    }
   }
 
   // ----------------------------   SAVE   --------------------------------
