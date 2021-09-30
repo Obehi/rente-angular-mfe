@@ -57,18 +57,11 @@ p {
   border-radius: 10px;
   height: 530px;
   transition: height 0.3s;
+  margin-bottom: 40px;
 
   @media (max-width: 320px) {
     min-width: 250px;
   }
-
-  // @media (max-width: 767px) and (min-width: 450px) {
-  //   width: 400px;
-  // }
-
-  // @media (max-width: 281px) {
-  //   height: 720px !important;
-  // }
 
   @media (max-width: 361px) {
     height: 630px;
@@ -85,6 +78,7 @@ p {
     height: 535px;
   }
   @media (min-width: 992px) {
+    width: 365px;
     height: 500px;
   }
 }
@@ -95,10 +89,6 @@ p {
   border-radius: 10px;
   height: 385px;
   transition: height 0.3s;
-
-  // @media (max-width: 768px) and (min-width: 450px) {
-  //   width: 400px;
-  // }
 
   @media (max-width: 320px) {
     height: 430px;

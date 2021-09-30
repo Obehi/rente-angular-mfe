@@ -31,6 +31,23 @@ export class SignicatUsersComponent implements OnInit {
       loan.isDeleted = false;
     });
 
+    const loan = {
+      bank: 'Sbanken ASA',
+      bankKey: 'SBANKEN',
+      effectiveRate: 2,
+      id: 4780,
+      isIncompleteInfoLoan: false,
+      loanName: 'Lån',
+      loanType: 'DOWNPAYMENT_REGULAR_LOAN',
+      nominalRate: 1.99,
+      outstandingDebt: 4500000,
+      remainingYears: 29,
+      totalInterestAndTotalFee: 3232323,
+      isDeleted: false,
+      totalInterestAndTotalFeeByRemainingYears: 32323333
+    };
+
+    this.loans.push(loan);
     this.myLoansService.updateLoans(this.loans);
 
     this.myLoansService.getLoansAsObservable().subscribe((res) => {
