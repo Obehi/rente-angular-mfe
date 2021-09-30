@@ -6,10 +6,10 @@
 
   @media (min-width: 770px) {
     ::ng-deep button.mat-primary-hollow-offer-desktop {
-      max-width: 5vh !important;
+      background-color: yellow !important;
     }
     ::ng-deep button.mat-primary-offer-desktop {
-      max-width: 5vh !important;
+      background-color: red !important;
     }
   }
 }

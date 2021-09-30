@@ -11,5 +11,5 @@ export class BulderButtonsComponent implements OnInit {
   @Input() offersInfo: Offers;
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit(): void {}
 }
