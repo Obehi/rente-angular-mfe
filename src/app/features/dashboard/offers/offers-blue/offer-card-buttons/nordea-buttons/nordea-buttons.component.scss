@@ -2,4 +2,7 @@
 
 .buttons {
   background: white;
+  ::ng-deep button.mat-secondary-semi-wide {
+    width: 16rem !important;
+  }
 }

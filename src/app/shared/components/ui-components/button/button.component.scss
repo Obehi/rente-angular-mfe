@@ -44,31 +44,29 @@ button.mat-primary-wide-hollow-offer-mobile[disabled] {
 button.mat-primary-offer-desktop {
   background-color: $primary;
   color: $white;
-  min-width: 26vh !important;
+  width: 16rem !important;
 }
 
 button.mat-primary-offer-desktop[disabled] {
-  min-width: 26vh !important;
   color: white !important;
+  width: 16rem !important;
 }
 
 button.mat-primary-hollow-offer-desktop {
-  @media (min-width: 600px) {
-    min-width: 5rem;
-  }
-  min-width: 26vh !important;
   background-color: white;
   color: black;
   border: 1px solid $primary;
+  width: 16rem !important;
   white-space: break-spaces;
 }
 
 button.mat-primary-wide-hollow-offer-desktop[disabled] {
   opacity: 1;
-  min-width: 26vh !important;
+  width: 16rem !important;
+
   height: 56px;
   background-color: unset;
-  color: #a9a9a9;
+  color: #a9a9a975;
   border: 1px solid #c9eae3;
 }
 

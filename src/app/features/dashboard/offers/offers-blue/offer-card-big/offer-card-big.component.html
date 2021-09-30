@@ -39,7 +39,6 @@
     *ngIf="bankSpecialPromoText !== null"
     class="special-promo"
     [ngClass]="{ 'clickable-cursor': this.offer.bankInfo.bank === 'BULDER' }"
-    (click)="openCustomerDividend()"
   >
     <img class="box-icon" src="../../../../../assets/icons/badge.svg" />
     <p>{{ bankSpecialPromoText }}</p>
@@ -199,7 +198,7 @@
 
     <!-- IS NORDEA? -->
     <nordea-buttons
-      *ngIf="isNordea"
+      *ngIf="isNordea && offer.bankInfo.bank !== 'BULDER'"
       [offer]="offer"
       [offersInfo]="offersInfo"
     ></nordea-buttons>
