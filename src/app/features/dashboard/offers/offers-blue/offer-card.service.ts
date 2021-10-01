@@ -189,7 +189,6 @@ export class OfferCardService {
     }
 
     const variation = (window as any).google_optimize.get(experimentId);
-
     // console.log((window as any).google_optimize.get(experimentId));
     return Number(variation) || 0;
   }

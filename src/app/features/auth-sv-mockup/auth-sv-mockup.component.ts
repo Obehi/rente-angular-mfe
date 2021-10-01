@@ -1,28 +1,17 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import {
-  FormGroup,
-  FormBuilder,
-  Validators,
-  AbstractControl,
-  NgForm,
-  FormControl
-} from '@angular/forms';
-import { ContactService } from '@services/remote-api/contact.service';
+import { FormGroup, FormBuilder, AbstractControl } from '@angular/forms';
 import { Router } from '@angular/router';
+
+import { ContactService } from '@services/remote-api/contact.service';
 import { SnackBarService } from '@services/snackbar.service';
 import { Mask } from '@shared/constants/mask';
 import * as Stomp from 'stompjs';
 import * as SockJS from 'sockjs-client';
 import { environment } from '@environments/environment';
-import { locale } from '../../config/locale/locale';
-
 import { API_URL_MAP } from '@config/api-url-config';
 import { Subscription, interval, Observable, timer, forkJoin } from 'rxjs';
 import {
-  IDENTIFICATION_TIMEOUT_TIME,
   PING_TIME,
-  RECONNECTION_TRIES,
-  RECONNECTION_TIME,
   BANKID_STATUS,
   BANKID_TIMEOUT_TIME,
   MESSAGE_STATUS
@@ -34,7 +23,6 @@ import { AuthService } from '@services/remote-api/auth.service';
 import { UserService } from '@services/remote-api/user.service';
 import { LoansService } from '@services/remote-api/loans.service';
 import { LocalStorageService } from '@services/local-storage.service';
-import { BankVo, BankUtils } from '@shared/models/bank';
 import { ROUTES_MAP } from '@config/routes-config';
 import { CustomLangTextService } from '@services/custom-lang-text.service';
 import { MessageBannerService } from '@services/message-banner.service';
@@ -81,11 +69,11 @@ export class AuthSvMockupComponent implements OnInit, OnDestroy {
   environment: any;
   public animationType = getAnimationStyles();
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.unsubscribeEverything();
   }
 
-  unsubscribeEverything() {
+  unsubscribeEverything(): void {
     if (this.stompClient && this.stompClient.connected) {
       this.stompClient.disconnect();
       this.stompClient.unsubscribe();
@@ -125,13 +113,10 @@ export class AuthSvMockupComponent implements OnInit, OnDestroy {
     });
   }
 
-  public isErrorState(
-    control: AbstractControl | null,
-    form: FormGroup | NgForm | null
-  ): boolean {
+  public isErrorState(control: AbstractControl | null): boolean {
     return !!(control && control.invalid && (control.dirty || control.touched));
   }
-  public sendContactUsForm(formData) {
+  public sendContactUsForm(formData): void {
     this.isLoading = true;
     this.contactUsForm.markAllAsTouched();
     this.contactUsForm.updateValueAndValidity();
@@ -148,23 +133,24 @@ export class AuthSvMockupComponent implements OnInit, OnDestroy {
           window
         );
       },
-      (err) => {
+      // Error handling
+      () => {
         this.isLoading = false;
       }
     );
   }
 
-  inValid() {
-    return (
-      this.contactUsForm.get('loginId')!.hasError('pattern') &&
-      this.contactUsForm.get('loginId')!.dirty
+  inValid(): boolean {
+    return !!(
+      this.contactUsForm.get('loginId')?.hasError('pattern') &&
+      this.contactUsForm.get('loginId')?.dirty
     );
   }
-  onBlurErrorCheck() {
+  onBlurErrorCheck(): void {
     this.loginIdError = this.inValid();
   }
 
-  public request() {
+  public request(): void {
     const data = this.contactUsForm.value.loginId;
     this.initializeWebSocketConnection(data);
   }
@@ -179,7 +165,7 @@ export class AuthSvMockupComponent implements OnInit, OnDestroy {
 
     this.stompClient.connect(
       {},
-      (frame) => {
+      () => {
         this.sendUserData(loginId);
 
         // this.resendDataAfterReconnect();
@@ -226,12 +212,12 @@ export class AuthSvMockupComponent implements OnInit, OnDestroy {
     );
   }
 
-  startCrawlingTimer() {
+  startCrawlingTimer(): void {
     if (this.crawlingTimerSubscription) {
       this.crawlingTimerSubscription.unsubscribe();
     }
     this.crawlingTimer = timer(1000, 1000);
-    this.crawlingTimerSubscription = this.crawlingTimer.subscribe((time) => {
+    this.crawlingTimerSubscription = this.crawlingTimer.subscribe(() => {
       this.thirdStepTimer--;
       if (!this.thirdStepTimer) {
         this.thirdStepTimerFinished = true;
@@ -239,21 +225,19 @@ export class AuthSvMockupComponent implements OnInit, OnDestroy {
     });
   }
 
-  stopCrawlerTimer() {
+  stopCrawlerTimer(): void {
     if (this.crawlingTimerSubscription) {
       this.crawlingTimerSubscription.unsubscribe();
-      this.crawlingTimerSubscription = null;
+      // this.crawlingTimerSubscription = null;
     }
   }
 
   private successSocketCallback() {
     const repliesUrl = `${API_URL_MAP.crawlerRepliesUrl}`;
     this.viewStatus.isSocketConnectionLost = false;
-    console.log('subscribing to: ' + API_URL_MAP.crawlerRepliesUrl);
     this.stompClient.subscribe(repliesUrl, (message) => {
       if (message.body) {
         const response = JSON.parse(message.body);
-        console.log('STATUS:', response.eventType);
         switch (response.eventType) {
           case BANKID_STATUS.BANKID_UNSTABLE:
             this.viewStatus.isBankIdUnstable = true;
@@ -417,7 +401,7 @@ export class AuthSvMockupComponent implements OnInit, OnDestroy {
     });
   }
 
-  sendUserData(loginId: number, resendData = false): void {
+  sendUserData(loginId: number): void {
     const country = 'SWE';
 
     const data = {

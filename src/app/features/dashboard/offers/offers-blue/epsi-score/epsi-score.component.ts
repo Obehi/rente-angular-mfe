@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'rente-epsi-score',
@@ -10,8 +10,8 @@ export class EPSIScoreComponent {
 
   constructor() {}
 
-  ngAfterViewChecked() {
-    if (this.hasScrolledToTop == false) {
+  ngAfterViewChecked(): void {
+    if (this.hasScrolledToTop === false) {
       this.hasScrolledToTop = true;
       window.scrollTo(0, 0);
     }

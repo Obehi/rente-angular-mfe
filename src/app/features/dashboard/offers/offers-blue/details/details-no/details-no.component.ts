@@ -19,6 +19,7 @@ export class OfferDetailsNoComponent implements OnInit {
     }
   }
 
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   public onClick(bigBoolean): void {
     this.closeClicked.emit(bigBoolean);
   }

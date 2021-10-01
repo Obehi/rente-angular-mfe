@@ -31,9 +31,6 @@ export class ButtonComponent {
       this.router.navigate([url]);
     } else if (this.href) {
       window.open(this.href);
-      // location.href = this.href;
-      // } else if (this.btnBlankHref) {
-      //   window.open(this.btnBlankHref);
     } else {
       this.action.emit();
     }

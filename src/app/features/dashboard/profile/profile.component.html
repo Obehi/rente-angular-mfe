@@ -24,6 +24,7 @@
             [formControlName]="formControlId.email"
           />
           <rente-spinner
+            [size]="'23px'"
             class="email-income-spinner"
             *ngIf="loadingStates.email.loading"
           ></rente-spinner>
@@ -80,6 +81,7 @@
             }"
           />
           <rente-spinner
+            [size]="'23px'"
             class="email-income-spinner"
             *ngIf="loadingStates.income.loading"
           ></rente-spinner>
@@ -156,6 +158,7 @@
         >
         </mat-select>
         <rente-spinner
+          [size]="'23px'"
           class="membership-marked-spinner"
           *ngIf="loadingStates.memberships.loading"
         ></rente-spinner>
@@ -194,6 +197,7 @@
           >
         </mat-select>
         <rente-spinner
+          [size]="'23px'"
           class="membership-marked-spinner"
           *ngIf="loadingStates.checkRateReminderType.loading"
         ></rente-spinner>
@@ -274,5 +278,20 @@
         value="offerThreeIsChecked"
       ></mat-slide-toggle>
     </div>
+
+    <hr class="margin-bottom" />
+
+    <h3
+      *ngIf="envService.isNorway()"
+      i18n="“income-per-year|profile@@profile.offerOptions.header"
+    >
+      HVOR VIKTIG ER DET FOR DEG MED EN BANK SOM:
+    </h3>
+    <rente-user-score-preferences
+      *ngIf="envService.isNorway()"
+      [sliderBox]="true"
+      [scoreListener]="scoreListener$"
+      [initialScores]="initialScores$"
+    ></rente-user-score-preferences>
   </div>
 </div>

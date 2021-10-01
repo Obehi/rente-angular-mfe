@@ -160,6 +160,12 @@ button.mat-secondary-small {
   color: white;
 }
 
+button.mat-secondary-border {
+  background-color: $secondary;
+  color: white;
+  border: 1px solid #2d4051;
+}
+
 .mat-button.mat-primary {
   color: white !important;
 }
@@ -173,6 +179,11 @@ button.mat-secondary-small {
 button.mat-blue {
   background-color: $blue;
   color: white;
+}
+button.mat-blue-250 {
+  background-color: $blue;
+  color: white;
+  min-width: 250px;
 }
 
 button.mat-blue-bank {
@@ -414,4 +425,33 @@ button.mat-blue-select {
   height: 5ch;
   display: inline;
   max-width: 300px;
+}
+
+button.mat-blue {
+  color: $white;
+
+  background: $secondary;
+  height: 5ch;
+  display: inline;
+  width: 200px;
+}
+
+button.mat-blue-cookie {
+  color: $white;
+  background: $secondary;
+  display: inline;
+  width: 200px;
+  @media (max-width: 600px) {
+    width: 150px;
+  }
+}
+
+button.mat-primary-cookie {
+  color: $white;
+  background: $primary;
+  display: inline;
+  width: 200px;
+  @media (max-width: 600px) {
+    width: 150px;
+  }
 }

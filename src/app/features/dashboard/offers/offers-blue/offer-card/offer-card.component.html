@@ -34,9 +34,14 @@
       </div>
       <p class="interest-rate">{{ offer.effectiveRate | number: '1.2-2' }} %</p>
     </div>
-    <div *ngIf="bankSpecialPromoText !== null" class="special-promo">
+    <div
+      *ngIf="bankSpecialPromoText !== null"
+      class="special-promo"
+      (click)="openCustomerDividend()"
+    >
       <img class="box-icon" src="../../../../../assets/icons/badge.svg" />
       <p>{{ bankSpecialPromoText }}</p>
+      <mat-icon>help</mat-icon>
     </div>
   </div>
 

@@ -1,8 +1,6 @@
-@import "../../../styles/theme/_colors.scss";
+@import '../../../styles/theme/_colors.scss';
 
-
-
-::ng-deep .mat-input-wrapper{
+::ng-deep .mat-input-wrapper {
   display: none !important;
 }
 .banks {
@@ -50,8 +48,6 @@
     //   box-sizing: content-box;
     // }
 
-
-    
     a {
       display: inline-block;
       border: 2px solid $primary;
@@ -96,7 +92,7 @@ mat-selection-list {
   font-weight: 400;
   padding: 0;
   border-radius: 0;
-  color: #777
+  color: #777;
 }
 .bank-button-logo {
   width: 40px;

@@ -1,5 +1,4 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { MembershipTypeDto } from '@services/remote-api/loans.service';
 
 @Pipe({
   name: 'filter'

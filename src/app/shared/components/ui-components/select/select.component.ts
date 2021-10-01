@@ -34,18 +34,21 @@ export class SelectComponent implements ControlValueAccessor {
 
   propagateChange: any = () => {};
 
-  writeValue(value) {
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+  writeValue(value): void {
     if (value) {
       this.selectedItem = value;
     }
   }
 
-  registerOnChange(fn) {
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+  registerOnChange(fn): void {
     this.propagateChange = fn;
   }
 
-  registerOnTouched() {}
+  registerOnTouched(): void {}
 
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   valueChange(event: any): void {
     this.selectedItem = event;
     this.selected.emit(event);

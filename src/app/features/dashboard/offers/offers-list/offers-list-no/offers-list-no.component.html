@@ -7,7 +7,99 @@
     Beste tilbud:
   </h3>
 
-  <div *ngIf="isMobile" class="sticky-table-header">
+  <div class="offers-type-container">
+    <div class="offers-type-switch">
+      <a
+        class="clickable"
+        [ngClass]="currentOfferType == 'rate' ? 'active' : 'deactive'"
+        (click)="setOfferType('rate')"
+      >
+        <p>Rente</p>
+      </a>
+      <a
+        class="clickable"
+        [ngClass]="currentOfferType == 'score' ? 'active' : 'deactive'"
+        (click)="setOfferType('score'); setShowHamburger()"
+      >
+        <p>For deg</p>
+      </a>
+    </div>
+    <a
+      *ngIf="isMobile"
+      id="hamburger"
+      class="preferences-button"
+      (click)="preferencesButtonClicked()"
+      [@mobileAnimate]="showHamburger ? 'close' : 'open'"
+    >
+      <span
+        [ngClass]="
+          !showScorePreferences
+            ? 'preferences-button'
+            : 'preferences-button-active'
+        "
+      >
+        <img
+          [@fade]="showScorePreferences ? 'open' : 'close'"
+          [src]="
+            showScorePreferences
+              ? '../../../assets/icons/preferences-icon-green.svg'
+              : '../../../assets/icons/preferences-icon-green.svg'
+          "
+        />
+      </span>
+    </a>
+    <a
+      *ngIf="!isMobile"
+      id="hamburger"
+      class="preferences-button"
+      (click)="preferencesButtonClicked()"
+      [@desktopAnimate]="showHamburger ? 'close' : 'open'"
+    >
+      <span
+        [ngClass]="
+          !showScorePreferences
+            ? 'preferences-button'
+            : 'preferences-button-active'
+        "
+      >
+        <img
+          [@fade]="showScorePreferences ? 'open' : 'close'"
+          [src]="
+            showScorePreferences
+              ? '../../../assets/icons/preferences-icon-green.svg'
+              : '../../../assets/icons/preferences-icon-green.svg'
+          "
+        />
+      </span>
+    </a>
+  </div>
+
+  <!--  <h1 (click)="showDemoTrigger$.next(!showDemoTrigger$.value)">Trykk her!</h1> -->
+  <custom-dropdown
+    [style.visibility]="currentOfferType === 'score' ? 'unset' : 'hidden'"
+    id="user-score-dropdown"
+    [opened]="showScorePreferences"
+    (toggle)="preferencesButtonClicked()"
+  >
+    <div #sliders class="user-score-preferences-box">
+      <h2 class="user-score-header">
+        Hvor viktig er det for deg med en bank som:
+      </h2>
+
+      <rente-user-score-preferences
+        [sliderBox]="true"
+        [scoreListener]="scoreListener$"
+        [shouldShowDemoListener]="showDemoAction$"
+        [initialScores]="initialScores$"
+      ></rente-user-score-preferences>
+    </div>
+  </custom-dropdown>
+
+  <div
+    *ngIf="isMobile"
+    class="sticky-table-header"
+    [@onScroll]="onScroll ? true : false"
+  >
     <p
       i18n="“your-interest|offers-main@@offers.mainPage.yourInterestStickyBox”"
     >
@@ -15,61 +107,42 @@
     </p>
     <span>{{ offersInfo.totalEffectiveRate | number: '1.2-2' }} %</span>
   </div>
-
-  <div class="offers-grid">
-    <ng-container *ngIf="currentOfferInfo">
+  <div class="offers-container">
+    <div *ngIf="shouldOverRideLoadingState === false">
       <div
-        *ngFor="let offer of currentOfferInfo.offers.top5; let i = index"
-        class="the-offer"
+        class="spinner"
+        *ngIf="offerService.isUpdatingOffers$ | async as isUpdatingOffers"
       >
-        <ng-container *ngIf="isMobile; else desktop">
-          <rente-offer-card
-            [offer]="offer"
-            [offersInfo]="currentOfferInfo"
-            [index]="offer.offerPosition"
-          >
-          </rente-offer-card>
-        </ng-container>
-
-        <ng-template #desktop>
-          <rente-offer-card-big-blue
-            [offer]="offer"
-            [offersInfo]="currentOfferInfo"
-            [index]="offer.offerPosition"
-          >
-          </rente-offer-card-big-blue>
-        </ng-template>
+        <rente-spinner [size]="'83px'"></rente-spinner>
       </div>
-    </ng-container>
-  </div>
+    </div>
 
-  <div class="offers-grid">
-    <ng-container *ngIf="offersInfo">
-      <div
-        *ngFor="
-          let offer of offersInfo.offers.additionalPartnersOffers;
-          let i = index
-        "
-        class="the-offer"
-      >
-        <ng-container *ngIf="isMobile; else desktop">
-          <rente-offer-card
-            [offer]="offer"
-            [offersInfo]="currentOfferInfo"
-            [index]="offer.offerPosition"
-          >
-          </rente-offer-card>
-        </ng-container>
+    <div
+      *ngIf="!(offerService.isUpdatingOffers$ | async)"
+      class="offers-grid"
+      [@fade]
+    >
+      <ng-container>
+        <div *ngFor="let offer of currentOffers" class="the-offer">
+          <ng-container *ngIf="isMobile; else desktop">
+            <rente-offer-card
+              [offer]="offer"
+              [offersInfo]="currentOfferInfo"
+              [index]="offer.offerPosition"
+            >
+            </rente-offer-card>
+          </ng-container>
 
-        <ng-template #desktop>
-          <rente-offer-card-big-blue
-            [offer]="offer"
-            [offersInfo]="currentOfferInfo"
-            [index]="offer.offerPosition"
-          >
-          </rente-offer-card-big-blue>
-        </ng-template>
-      </div>
-    </ng-container>
+          <ng-template #desktop>
+            <rente-offer-card-big-blue
+              [offer]="offer"
+              [offersInfo]="currentOfferInfo"
+              [index]="offer.offerPosition"
+            >
+            </rente-offer-card-big-blue>
+          </ng-template>
+        </div>
+      </ng-container>
+    </div>
   </div>
 </div>
