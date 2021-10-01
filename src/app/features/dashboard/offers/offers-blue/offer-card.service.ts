@@ -189,7 +189,7 @@ export class OfferCardService {
     }
 
     const variation = (window as any).google_optimize.get(experimentId);
-    console.log(variation);
+
     // console.log((window as any).google_optimize.get(experimentId));
     return Number(variation) || 0;
   }
@@ -205,5 +205,22 @@ export class OfferCardService {
       return 'Flere medlemsfordeler';
     }
     return null;
+  }
+
+  public openBankUrlByButton(offer: OfferInfo): void {
+    if (offer.bankInfo.url === null || offer.bankInfo.partner === false) return;
+
+    const trackingDto = new TrackingDto();
+    trackingDto.offerId = offer.id;
+    trackingDto.type = 'BANK_BUTTON_1';
+
+    if (this.handleNybyggerProductSpecialCase(offer) === true) {
+      this.sendOfferTrackingData(trackingDto);
+      return;
+    }
+
+    window.open(offer.bankInfo.url, '_blank');
+
+    this.sendOfferTrackingData(trackingDto);
   }
 }

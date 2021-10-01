@@ -1,12 +1,37 @@
-<div class="buttons">
+<div
+  [ngClass]="{ buttons: !isNordea, 'buttons-nordea': isNordea }"
+  *ngIf="isMobile"
+>
+  <rente-button
+    i18n="“see-more|offer-card-big@@offer.card.big.seeMore”"
+    [color]="'primary-hollow-offer-mobile'"
+    (click)="offerCardService.openBankUrlByButton(offer)"
+    >Se mer på Bulders hjemmeside</rente-button
+  >
+  <rente-button
+    class="bulder"
+    color="primary-offer-mobile"
+    (click)="offerCardService.openNewOfferDialog(offer)"
+  >
+    {{ offerCardService.getOfferButtonText(offer) }}
+  </rente-button>
+
+  <nordea-buttons *ngIf="isNordea"></nordea-buttons>
+</div>
+
+<div
+  [ngClass]="{ buttons: !isNordea, 'buttons-nordea': isNordea }"
+  *ngIf="!isMobile"
+>
   <rente-button
     i18n="“see-more|offer-card-big@@offer.card.big.seeMore”"
     [color]="'primary-hollow-offer-desktop'"
+    (click)="offerCardService.openBankUrlByButton(offer)"
     >Se mer på Bulders hjemmeside</rente-button
   >
   <rente-button class="bulder" color="primary-offer-desktop">
-    Få tilbud fra Bulder!
+    {{ offerCardService.getOfferButtonText(offer) }}
   </rente-button>
 
-  <nordea-buttons></nordea-buttons>
+  <nordea-buttons *ngIf="isNordea"></nordea-buttons>
 </div>

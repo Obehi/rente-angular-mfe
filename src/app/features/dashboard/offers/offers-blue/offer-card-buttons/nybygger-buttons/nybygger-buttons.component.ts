@@ -13,4 +13,8 @@ export class NybyggerButtonsComponent implements OnInit {
   constructor(public offerCardService: OfferCardService) {}
 
   ngOnInit(): void {}
+
+  get isMobile(): boolean {
+    return window.innerWidth < 600;
+  }
 }

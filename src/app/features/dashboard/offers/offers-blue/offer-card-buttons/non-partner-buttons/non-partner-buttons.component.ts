@@ -13,4 +13,8 @@ export class NonPartnerButtonsComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+
+  get isMobile(): boolean {
+    return window.innerWidth < 600;
+  }
 }

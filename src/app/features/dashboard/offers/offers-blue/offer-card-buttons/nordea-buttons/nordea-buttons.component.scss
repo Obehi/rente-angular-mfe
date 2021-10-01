@@ -4,5 +4,12 @@
   background: white;
   ::ng-deep button.mat-secondary-semi-wide {
     width: 16rem !important;
+    background-color: #0000a0 !important;
+    @media (max-width: 600px) {
+      height: 45px;
+      font-size: 14px;
+      width: 100% !important;
+      border-radius: 100px;
+    }
   }
 }

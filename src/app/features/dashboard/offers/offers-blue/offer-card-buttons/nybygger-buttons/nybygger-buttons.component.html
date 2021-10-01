@@ -1,4 +1,12 @@
-<div class="buttons">
+<div class="buttons" *ngIf="isMobile">
+  <rente-button
+    color="primary-offer-mobile"
+    (click)="offerCardService.openNewOfferDialog(offer)"
+    >{{ offerCardService.getOfferButtonText(offer) }}</rente-button
+  >
+</div>
+
+<div class="buttons" *ngIf="!isMobile">
   <rente-button
     color="primary-offer-desktop"
     (click)="offerCardService.openNewOfferDialog(offer)"
