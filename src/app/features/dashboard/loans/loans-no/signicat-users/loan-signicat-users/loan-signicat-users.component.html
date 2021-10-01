@@ -9,7 +9,7 @@
         <div class="loan-delete">
           <h3>Lån {{ index + 1 }}</h3>
           <mat-icon
-            *ngIf="isEditMode"
+            *ngIf="isEditMode && loansLength > 1"
             (click)="deleteLoan()"
             class="is-clickable"
             >delete_forever</mat-icon

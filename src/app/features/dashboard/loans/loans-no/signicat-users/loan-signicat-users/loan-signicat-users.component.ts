@@ -43,6 +43,7 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
   public isEmptyPlaceHolder = false;
   public loanTypeSelected = '';
   public loanTypeList: LoanTypeOption[] = nonListLoanType;
+  public loansLength: number;
 
   public animationStyle = getAnimationStyles();
   public maskType = Mask;
@@ -311,6 +312,13 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
     } else {
       this.disableForm();
     }
+
+    // Get latest amount of loans of user, in case they want to delete the last loan
+    // disable delete func when there is only one loan left
+    this.myLoansService.getLoansAsObservable().subscribe((res) => {
+      if (res === null) this.loansLength = 0;
+      if (res !== null) this.loansLength = res.length;
+    });
   } // ngOnInit
 
   getMask(): any {

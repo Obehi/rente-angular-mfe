@@ -18,6 +18,7 @@ export class CrawlerBanksComponent implements OnInit {
       bankKey: 'SBANKEN',
       effectiveRate: 2,
       id: 4511,
+      fee: 40,
       isDeleted: false,
       isIncompleteInfoLoan: false,
       loanName: 'Boliglån 75 %',
