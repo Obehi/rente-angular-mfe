@@ -13,9 +13,7 @@ export class BulderButtonsComponent implements OnInit {
 
   constructor(public offerCardService: OfferCardService) {}
 
-  ngOnInit(): void {
-    console.log(this.offer);
-  }
+  ngOnInit(): void {}
 
   get isMobile(): boolean {
     return window.innerWidth < 600;
