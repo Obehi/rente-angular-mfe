@@ -49,14 +49,14 @@ export class MyLoansService {
     }
 
     const newLoan = {
-      bank: '',
-      bankKey: '',
+      bank: this.loanStore[0].bank,
+      bankKey: this.loanStore[0].bankKey,
       effectiveRate: 0,
       id: 0,
       isDeleted: false,
       isIncompleteInfoLoan: true,
       loanName: 'BOLIGLÅN %',
-      loanType: '',
+      loanType: 'DOWNPAYMENT_REGULAR_LOAN',
       nominalRate: 1,
       outstandingDebt: 1,
       remainingYears: 1,
