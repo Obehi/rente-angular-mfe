@@ -55,9 +55,6 @@ export class OfferCardBigComponentBlue implements OnInit {
       this.isSweden = false;
     }
 
-    console.log(this.offer);
-    console.log(this.offersInfo);
-
     this.isNordea = this.offersInfo.bank === 'NORDEA';
     this.isSingleButtonLayout = this.offerCardService.isSingleButtonLayout(
       this.offer.bankInfo.bank
