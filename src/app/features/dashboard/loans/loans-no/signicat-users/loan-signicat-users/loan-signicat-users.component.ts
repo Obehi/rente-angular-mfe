@@ -632,7 +632,19 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
 
     this.loansService.deleteLoan(loanId).subscribe(
       () => {
+        // Remove from UI
         this.myLoansService.deleteLoan(loanId);
+
+        /**
+         * Remove from list so the loans length changes
+         * Loans length is used to removed delete function
+         * if theres only one loan left
+         */
+        const removedDeletedLoan = this.myLoansService
+          .getLoansValue()
+          .filter((val) => val.id !== loanId);
+
+        this.myLoansService.updateLoans(removedDeletedLoan);
 
         this.messageBannerService.setView(
           'Lånet er slettet',
