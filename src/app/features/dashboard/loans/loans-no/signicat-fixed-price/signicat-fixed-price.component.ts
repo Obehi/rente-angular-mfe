@@ -12,7 +12,7 @@ import { LoanOverView, MyLoansService } from '../../myloans.service';
 export class SignicatFixedPriceComponent implements OnInit {
   @Input() loanData: Loans;
   @Input() allOffers: bankOfferDto[];
-  public loans: LoanInfo[] | null;
+  public loans: LoanInfo[];
   public isSummaryNeeded = false;
   public isEmptyLoans = false;
 

@@ -6,16 +6,16 @@ import {
   Validators
 } from '@angular/forms';
 import { MyLoansService } from '@features/dashboard/loans/myloans.service';
-import { bankOfferDto, LoanInfo } from '@models/loans';
+import { bankOfferDto, LoanInfo, SignicatLoanInfoDto } from '@models/loans';
 import { MessageBannerService } from '@services/message-banner.service';
 import { LoansService } from '@services/remote-api/loans.service';
 import { getAnimationStyles } from '@shared/animations/animationEnums';
 import { ButtonFadeInOut } from '@shared/animations/button-fade-in-out';
 import { FadeOut } from '@shared/animations/fade-out';
 import { Mask } from '@shared/constants/mask';
-import { concat, of, Subscription } from 'rxjs';
-import { catchError, toArray } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
 import { nonListLoanType, LoanTypeOption } from '@models/loan-type';
+import { VALIDATION_PATTERN } from '@config/validation-patterns.config';
 
 @Component({
   selector: 'rente-loan-signicat-users',
@@ -107,32 +107,6 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
     }
   }
 
-  public checkIfZero(val: string): boolean {
-    return (
-      this.loanForm.get(val)?.value.trim() === '' ||
-      this.loanForm.get(val)?.value === '0' ||
-      this.loanForm.get(val)?.value === ',' ||
-      this.loanForm.get(val)?.value === ',0' ||
-      this.loanForm.get(val)?.value === ',00' ||
-      this.loanForm.get(val)?.value === '0,' ||
-      this.loanForm.get(val)?.value === '0,0' ||
-      this.loanForm.get(val)?.value === '0,00' ||
-      this.loanForm.get(val)?.value === '00' ||
-      this.loanForm.get(val)?.value === '00,' ||
-      this.loanForm.get(val)?.value === '00,0' ||
-      this.loanForm.get(val)?.value === '00,00' ||
-      this.loanForm.get(val)?.value === '000' ||
-      this.loanForm.get(val)?.value === '0000' ||
-      this.loanForm.get(val)?.value === '00000' ||
-      this.loanForm.get(val)?.value === '000000' ||
-      this.loanForm.get(val)?.value === '0000000' ||
-      this.loanForm.get(val)?.value === '0 000' ||
-      this.loanForm.get(val)?.value === '00 000' ||
-      this.loanForm.get(val)?.value === '000 000' ||
-      this.loanForm.get(val)?.value === '0 000 000'
-    );
-  }
-
   ngOnInit(): void {
     // Check count of decimals and format it to 0 or 1 decimal
     const format = this.myLoansService.countDecimals(this.loan.remainingYears);
@@ -144,8 +118,7 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
     this.initialOutStandingDebt = String(this.loan.outstandingDebt);
     this.initialRemainingYears = String(correctValue);
     this.initialNominalRate = String(this.loan.nominalRate);
-    // Set a test data for now
-    this.initialFee = String('60');
+    this.initialFee = String(this.loan.fee);
 
     // Backend returns loantype in english, filter the list and return the name in obj
     this.initialLoanType = String(
@@ -158,17 +131,28 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
     this.loanForm = this.fb.group({
       outstandingDebt: [
         { value: this.initialOutStandingDebt, disabled: true },
-        Validators.required
+        [
+          Validators.pattern(VALIDATION_PATTERN.nonNullThousand),
+          Validators.max(100000000),
+          Validators.required
+        ]
       ],
       remainingYears: [
         { value: this.initialRemainingYears, disabled: true },
-        Validators.required
+        [
+          Validators.pattern(VALIDATION_PATTERN.year),
+          Validators.max(55),
+          Validators.required
+        ]
       ],
       nominalRate: [
         { value: this.initialNominalRate, disabled: true },
-        Validators.required
+        [Validators.max(5), Validators.required]
       ],
-      fee: [{ value: this.initialFee, disabled: true }, Validators.required],
+      fee: [
+        { value: this.initialFee, disabled: true },
+        [Validators.max(100), , Validators.required]
+      ],
       loanType: [{ value: this.initialLoanType, disabled: true }]
     });
 
@@ -178,6 +162,7 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
     this.incomingValueOutstandingDebt = this.initialOutStandingDebt;
     this.incomingValueRemainingYears = this.initialRemainingYears;
     this.incomingValueNominalRate = this.initialNominalRate;
+    this.incomingValueFee = this.initialFee;
 
     // Listen for which loan is in editmode (if more than 1 loan is present)
     this.myLoansService
@@ -200,24 +185,22 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
     this.changeOutstandingDebtSubscription = this.loanForm
       .get('outstandingDebt')
       ?.valueChanges.subscribe(() => {
-        const check = this.checkIfZero('outstandingDebt');
-
-        if (!check) {
-          this.outstandingDebtIsError = false;
-          this.incomingValueOutstandingDebt = this.loanForm.get(
-            'outstandingDebt'
-          )?.value;
-        } else {
+        if (
+          this.loanForm.get('outstandingDebt')?.dirty &&
+          this.isErrorState(this.loanForm?.controls['outstandingDebt'])
+        ) {
           this.outstandingDebtIsError = true;
         }
 
         if (
           this.loanForm.get('outstandingDebt')?.dirty &&
-          !check &&
-          !this.remainingYearsIsError &&
-          !this.nominalRateIsError
+          !this.isErrorState(this.loanForm?.controls['outstandingDebt'])
         ) {
+          this.outstandingDebtIsError = false;
           this.isAbleToSave = true;
+          this.incomingValueOutstandingDebt = this.loanForm.get(
+            'outstandingDebt'
+          )?.value;
         } else {
           this.isAbleToSave = false;
         }
@@ -226,24 +209,22 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
     this.changeRemainingYearsSubscription = this.loanForm
       .get('remainingYears')
       ?.valueChanges.subscribe(() => {
-        const check = this.checkIfZero('remainingYears');
-
-        if (!check) {
-          this.remainingYearsIsError = false;
-          this.incomingValueRemainingYears = this.loanForm.get(
-            'remainingYears'
-          )?.value;
-        } else {
+        if (
+          this.loanForm.get('remainingYears')?.dirty &&
+          this.isErrorState(this.loanForm?.controls['remainingYears'])
+        ) {
           this.remainingYearsIsError = true;
         }
 
         if (
           this.loanForm.get('remainingYears')?.dirty &&
-          !check &&
-          !this.outstandingDebtIsError &&
-          !this.nominalRateIsError
+          !this.isErrorState(this.loanForm?.controls['remainingYears'])
         ) {
+          this.remainingYearsIsError = false;
           this.isAbleToSave = true;
+          this.incomingValueRemainingYears = this.loanForm.get(
+            'remainingYears'
+          )?.value;
         } else {
           this.isAbleToSave = false;
         }
@@ -252,24 +233,22 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
     this.changeNominalRateSubscription = this.loanForm
       .get('nominalRate')
       ?.valueChanges.subscribe(() => {
-        const check = this.checkIfZero('nominalRate');
-
-        if (!check) {
-          this.nominalRateIsError = false;
-          this.incomingValueNominalRate = this.loanForm.get(
-            'nominalRate'
-          )?.value;
-        } else {
+        if (
+          this.loanForm.get('nominalRate')?.dirty &&
+          this.isErrorState(this.loanForm?.controls['nominalRate'])
+        ) {
           this.nominalRateIsError = true;
         }
 
         if (
           this.loanForm.get('nominalRate')?.dirty &&
-          !check &&
-          !this.outstandingDebtIsError &&
-          !this.remainingYearsIsError
+          !this.isErrorState(this.loanForm?.controls['nominalRate'])
         ) {
+          this.nominalRateIsError = false;
           this.isAbleToSave = true;
+          this.incomingValueNominalRate = this.loanForm.get(
+            'nominalRate'
+          )?.value;
         } else {
           this.isAbleToSave = false;
         }
@@ -278,23 +257,20 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
     this.changeFeeSubscription = this.loanForm
       .get('fee')
       ?.valueChanges.subscribe(() => {
-        const check = this.checkIfZero('fee');
-
-        if (!check) {
-          this.feeIsError = false;
-          this.incomingValueFee = this.loanForm.get('fee')?.value;
-        } else {
+        if (
+          this.loanForm.get('fee')?.dirty &&
+          this.isErrorState(this.loanForm?.controls['fee'])
+        ) {
           this.feeIsError = true;
         }
 
         if (
           this.loanForm.get('fee')?.dirty &&
-          !check &&
-          !this.outstandingDebtIsError &&
-          !this.remainingYearsIsError &&
-          !this.nominalRateIsError
+          !this.isErrorState(this.loanForm?.controls['fee'])
         ) {
+          this.feeIsError = false;
           this.isAbleToSave = true;
+          this.incomingValueFee = this.loanForm.get('fee')?.value;
         } else {
           this.isAbleToSave = false;
         }
@@ -437,7 +413,7 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
     const check = this.myLoansService.getEditMode();
 
     if (check !== null) {
-      console.log('Check is NULL!!');
+      console.log('Check is NOT NULL!!');
       return;
     }
 
@@ -465,10 +441,10 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
 
     // Check for general error if server error or if the regex error from input
     if (
-      !this.outstandingDebtIsError &&
-      !this.remainingYearsIsError &&
-      !this.isErrorState(this.loanForm?.controls['remainingYears']) &&
-      !this.isErrorState(this.loanForm?.controls[this.outstandingDebtString])
+      !this.isErrorState(this.loanForm?.controls[this.outstandingDebtString]) &&
+      !this.isErrorState(this.loanForm?.controls[this.remainingYearsString]) &&
+      !this.isErrorState(this.loanForm.controls[this.nominalRateString]) &&
+      !this.isErrorState(this.loanForm.controls['fee'])
     ) {
       this.isAbleToSave = true;
     }
@@ -490,135 +466,149 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
       this.incomingValueOutstandingDebt
     );
 
-    const outstandingDebtDto = {
-      outstandingDebt: getOutstandingDebt
-    };
-
     const getRemainingYears = this.myLoansService.formatComma(
       this.incomingValueRemainingYears
     );
-
-    const remainingYearsDto = {
-      remainingYears: getRemainingYears
-    };
 
     const getNominalRate = this.myLoansService.formatComma(
       this.incomingValueNominalRate
     );
 
-    const nominalRateDto = {
-      nominalRate: getNominalRate
+    const getFee = Number(this.incomingValueFee);
+
+    const getLoanType = String(
+      this.loanTypeList.filter((val) => val.name === this.loanTypeSelected)[0]
+        .value
+    );
+
+    const getLoanSubType = String(
+      this.loanTypeList.filter((val) => val.value === getLoanType)[0].subType
+    );
+
+    const sendToBEDto = {
+      fee: getFee,
+      id: this.loan.id,
+      loanSubType: getLoanSubType,
+      loanType: getLoanType,
+      nominalInterestRate: getNominalRate,
+      outstandingDebt: getOutstandingDebt,
+      productId: '',
+      remainingYears: getRemainingYears
     };
 
-    const feeDto = {
-      fee: this.incomingValueFee
-    };
-
-    const loanTypeDto = {
-      loanType: this.loanTypeSelected
-    };
-
-    concat(
-      // of(true)
-      this.loansService
-        .updateLoanOutstandingDebt(outstandingDebtDto)
-
-        .pipe(
-          catchError((err) => {
-            console.log(err);
-            this.outstandingDebtIsError = true;
-            this.isError = true;
-            if (err.status < 500) {
-              this.isGeneralError = true;
-            }
-            if (err.status > 499) {
-              this.isServerError = true;
-            }
-            return of(err);
-          })
-        ),
-      // of(true)
-      this.loansService.updateLoanReminingYears(remainingYearsDto).pipe(
-        catchError((err) => {
-          console.log(err);
-          this.remainingYearsIsError = true;
-          this.isError = true;
-          if (err.status < 500) {
-            this.isGeneralError = true;
-          }
-          if (err.status > 499) {
-            this.isServerError = true;
-          }
-          return of(err);
-        })
-      ),
-      // of(true)
-
-      this.loansService.updateLoanNominalRate(nominalRateDto).pipe(
-        catchError((err) => {
-          console.log(err);
-          this.nominalRateIsError = true;
-          this.isError = true;
-          if (err.status < 500) {
-            this.isGeneralError = true;
-          }
-          if (err.status > 499) {
-            this.isServerError = true;
-          }
-          return of(err);
-        })
-      )
-    )
-      .pipe(toArray())
-      .subscribe(
-        (res) => {
-          console.log(res);
-
-          if (this.isError) {
-            if (this.isServerError) {
-              this.messageBannerService.setView(
-                'Oops, noe gikk galt. Prøv igjen senere',
-                5000,
-                this.animationStyle.DROP_DOWN_UP,
-                'error',
-                window
-              );
-            } else {
-              this.messageBannerService.setView(
-                'En eller flere av endringene ble ikke oppdatert',
-                5000,
-                this.animationStyle.DROP_DOWN_UP,
-                'error',
-                window
-              );
-            }
-
-            this.isAbleToSave = false;
-
-            // If error, do nothing. The value should be as the previous default
-          } else {
-            this.messageBannerService.setView(
-              'Endringene dine er lagret',
-              3000,
-              this.animationStyle.DROP_DOWN_UP,
-              'success',
-              window
-            );
-
-            // Save the original format in string with mask
-            this.initialOutStandingDebt = this.incomingValueOutstandingDebt;
-            this.initialRemainingYears = this.incomingValueRemainingYears;
-            this.initialNominalRate = this.incomingValueNominalRate;
-
-            this.setEditDisabled();
-          }
-        },
-        (err) => {
-          console.log(err);
-          console.log('Error subscribtion');
-        }
-      );
+    if (this.loan.id === 0) {
+      console.log('Creating new loan:', sendToBEDto);
+      this.createNewLoan(sendToBEDto);
+    } else {
+      console.log('Updating loan:', sendToBEDto);
+      this.updateLoan(sendToBEDto);
+    }
   } // send request end
+
+  public updateLoan(obj: SignicatLoanInfoDto): void {
+    this.loansService.updateLoan([obj]).subscribe(
+      (res) => {
+        console.log(res);
+
+        this.messageBannerService.setView(
+          'Endringene dine er lagret',
+          3000,
+          this.animationStyle.DROP_DOWN_UP,
+          'success',
+          window
+        );
+
+        // Save the original format in string with mask
+        this.initialOutStandingDebt = this.incomingValueOutstandingDebt;
+        this.initialRemainingYears = this.incomingValueRemainingYears;
+        this.initialNominalRate = this.incomingValueNominalRate;
+        this.initialFee = this.incomingValueFee;
+
+        // Set the loan type to the selected
+        this.initialLoanType = this.loanTypeList.filter(
+          (val) => val.value === obj.loanType
+        )[0].name;
+
+        this.setEditDisabled();
+      },
+      (err) => {
+        console.log(err);
+
+        if (err.status < 500) {
+          this.isGeneralError = true;
+          this.messageBannerService.setView(
+            'En eller flere av endringene ble ikke oppdatert',
+            5000,
+            this.animationStyle.DROP_DOWN_UP,
+            'error',
+            window
+          );
+        }
+        if (err.status > 499) {
+          this.isServerError = true;
+          this.messageBannerService.setView(
+            'Oops, noe gikk galt. Prøv igjen senere',
+            5000,
+            this.animationStyle.DROP_DOWN_UP,
+            'error',
+            window
+          );
+        }
+
+        this.isAbleToSave = false;
+      }
+    );
+  }
+
+  public createNewLoan(obj: SignicatLoanInfoDto): void {
+    this.loansService.createNewLoan([obj]).subscribe(
+      (res) => {
+        console.log(res);
+
+        this.messageBannerService.setView(
+          'Endringene dine er lagret',
+          3000,
+          this.animationStyle.DROP_DOWN_UP,
+          'success',
+          window
+        );
+
+        // Save the original format in string with mask
+        this.initialOutStandingDebt = this.incomingValueOutstandingDebt;
+        this.initialRemainingYears = this.incomingValueRemainingYears;
+        this.initialNominalRate = this.incomingValueNominalRate;
+        this.initialFee = this.incomingValueFee;
+
+        this.setEditDisabled();
+      },
+      (err) => {
+        console.log(err);
+
+        if (err.status < 500) {
+          this.isGeneralError = true;
+          this.messageBannerService.setView(
+            'En eller flere av endringene ble ikke oppdatert',
+            5000,
+            this.animationStyle.DROP_DOWN_UP,
+            'error',
+            window
+          );
+        }
+        if (err.status > 499) {
+          this.isServerError = true;
+          this.messageBannerService.setView(
+            'Oops, noe gikk galt. Prøv igjen senere',
+            5000,
+            this.animationStyle.DROP_DOWN_UP,
+            'error',
+            window
+          );
+        }
+
+        this.isAbleToSave = false;
+      }
+    );
+  }
 
   // -------------------------------------------------- || ------------------------------------
 
@@ -634,19 +624,34 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
     alert('Deleting loan');
 
     const loanId = this.loan.id;
-    console.log('Loan ID: ' + loanId.toString());
 
-    // this.loansService.deleteLoan(loanId).subscribe(
-    //   (res) => {
-    //     console.log('Response');
-    //     console.log(res);
-    //   },
-    //   (err) => {
-    //     console.log(err);
-    //   }
-    // );
+    if (loanId === 0) {
+      this.myLoansService.deleteLoan(loanId);
+      return;
+    }
 
-    this.myLoansService.deleteLoan(loanId);
-    console.log('Loan id deleted');
+    this.loansService.deleteLoan(loanId).subscribe(
+      () => {
+        this.myLoansService.deleteLoan(loanId);
+
+        this.messageBannerService.setView(
+          'Lånet er slettet',
+          3000,
+          this.animationStyle.DROP_DOWN_UP,
+          'success',
+          window
+        );
+      },
+      (err) => {
+        console.log(err);
+        this.messageBannerService.setView(
+          'Oops, noe gikk galt. Lånet ble ikke slettet. Prøv igjen senere',
+          5000,
+          this.animationStyle.DROP_DOWN_UP,
+          'error',
+          window
+        );
+      }
+    );
   }
 }

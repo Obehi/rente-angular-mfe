@@ -15,7 +15,7 @@ export interface LoanInfo {
   effectiveRate: number;
   id: number;
   fee: number;
-  isDeleted: boolean;
+  isDeleted?: boolean;
   isIncompleteInfoLoan: boolean;
   loanName: string;
   loanType: string;
@@ -137,14 +137,14 @@ export interface LoanStatisticsDto {
 }
 
 export class SignicatLoanInfoDto {
-  outstandingDebt: number;
-  productId: string;
-  remainingYears: number;
-  id: number;
-  loanSubType: string;
-  loanType: string;
   fee?: number;
+  id: number;
+  loanSubType?: string;
+  loanType: string;
   nominalInterestRate?: number;
+  productId?: string;
+  remainingYears: number;
+  outstandingDebt: number;
 }
 
 export interface bankOfferDto {

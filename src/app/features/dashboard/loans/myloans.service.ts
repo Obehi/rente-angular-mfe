@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, forkJoin, Observable } from 'rxjs';
-import { LoanInfo, Loans } from '@shared/models/loans';
+import { LoanInfo, Loans, SignicatLoanInfoDto } from '@shared/models/loans';
 import { LoansService } from '@services/remote-api/loans.service';
 import { map, share, shareReplay, tap } from 'rxjs/operators';
 
@@ -15,9 +15,36 @@ export interface LoanOverView {
 })
 export class MyLoansService {
   private editModeSubject = new BehaviorSubject<number | null>(null);
-  private loanStore = new BehaviorSubject<LoanInfo[] | null>(null);
-  // public loansObservable$: Observable<Loans>;
-  // public loanOverViewObservable$: Observable<LoanOverView>;
+  private loanInfoBEStore = new BehaviorSubject<SignicatLoanInfoDto[]>([
+    {
+      fee: 0,
+      id: 0,
+      loanSubType: '',
+      loanType: '',
+      nominalInterestRate: 0,
+      outstandingDebt: 0,
+      productId: '',
+      remainingYears: 0
+    }
+  ]);
+  private loanStore = new BehaviorSubject<LoanInfo[]>([
+    {
+      bank: '',
+      bankKey: '',
+      effectiveRate: 0,
+      id: 0,
+      fee: 60,
+      isDeleted: false,
+      isIncompleteInfoLoan: true,
+      loanName: 'Nedbetalingslån',
+      loanType: 'DOWNPAYMENT_REGULAR_LOAN',
+      nominalRate: 1,
+      outstandingDebt: 1,
+      remainingYears: 1,
+      totalInterestAndTotalFee: 0,
+      totalInterestAndTotalFeeByRemainingYears: 0
+    }
+  ]);
 
   public loansObservable$ = this.fetchLoans().pipe(
     map((res) => res[0]),
@@ -36,10 +63,7 @@ export class MyLoansService {
     shareReplay(1)
   );
 
-  constructor(private loansService: LoansService) {
-    // this.loansObservable$.subscribe((res) => console.log('res'));
-    // this.loanOverViewObservable$.subscribe((res) => console.log(res));
-  }
+  constructor(private loansService: LoansService) {}
 
   public addNewLoan(): void {
     let infoList = this.loanStore.getValue();
@@ -48,38 +72,55 @@ export class MyLoansService {
       infoList = [];
     }
 
+    // Remove if there are loans with id 0
+    if (infoList.some((val) => val.id === 0)) {
+      infoList = infoList.filter((val) => val.id !== 0);
+    }
+
     // There should always be one loan
     const newLoan = {
       bank: infoList[0].bank,
       bankKey: infoList[0].bankKey,
       effectiveRate: 0,
       id: 0,
-      fee: 60,
+      fee: 0,
       isDeleted: false,
       isIncompleteInfoLoan: true,
       loanName: 'Nedbetalingslån',
       loanType: 'DOWNPAYMENT_REGULAR_LOAN',
-      nominalRate: 1,
+      nominalRate: 1.11,
       outstandingDebt: 1,
       remainingYears: 1,
       totalInterestAndTotalFee: 0,
       totalInterestAndTotalFeeByRemainingYears: 0
     };
 
-    infoList?.push(newLoan);
+    infoList.push(newLoan);
     this.loanStore.next(infoList);
   }
 
-  public updateLoans(loans: LoanInfo[] | null): void {
+  public updateLoans(loans: LoanInfo[]): void {
     this.loanStore.next(loans);
   }
 
-  public getLoansValue(): LoanInfo[] | null {
+  public getLoansValue(): LoanInfo[] {
     return this.loanStore.getValue();
   }
 
-  public getLoansAsObservable(): Observable<LoanInfo[] | null> {
+  public getLoansAsObservable(): Observable<LoanInfo[]> {
     return this.loanStore.asObservable();
+  }
+
+  public setLoanInfoBEStore(loans: SignicatLoanInfoDto[]): void {
+    return this.loanInfoBEStore.next(loans);
+  }
+
+  public getLoanInfoBEValue(): SignicatLoanInfoDto[] {
+    return this.loanInfoBEStore.getValue();
+  }
+
+  public getLoanInfoBEAsObservable(): Observable<SignicatLoanInfoDto[]> {
+    return this.loanInfoBEStore.asObservable();
   }
 
   public deleteLoan(loanId: number): void {
@@ -130,12 +171,8 @@ export class MyLoansService {
       this.loansService.getLoans(),
       this.loansService.getOffersBanks()
     ]).pipe(
-      // share(),
-      shareReplay(1),
-      tap((val) => console.log('Hello'))
+      shareReplay(1)
+      // tap((val) => console.log('Hello'))
     );
-
-    // return this.loansService.getLoanAndOffersBanks().pipe(share());
-    // return this.loansService.getLoanAndOffersBanks().pipe(share());
   }
 }

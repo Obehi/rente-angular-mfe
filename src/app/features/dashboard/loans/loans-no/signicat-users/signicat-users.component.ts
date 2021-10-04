@@ -13,7 +13,7 @@ export class SignicatUsersComponent implements OnInit {
   @Input() loanData: Loans;
   @Input() allOffers: bankOfferDto[];
 
-  public loans: LoanInfo[] | null;
+  public loans: LoanInfo[];
   public isSummaryNeeded = false;
   public isEmptyLoans = false;
   public isEditMode: number | null;
@@ -63,8 +63,6 @@ export class SignicatUsersComponent implements OnInit {
   }
 
   public addLoan(): void {
-    // this.isEditMode = this.myLoansService.getEditMode();
-
     if (this.isEditMode !== null) return;
     this.myLoansService.addNewLoan();
   }

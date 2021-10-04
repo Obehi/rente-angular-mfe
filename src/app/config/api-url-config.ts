@@ -36,6 +36,15 @@ export const API_URL_MAP = {
   },
   loan: {
     base: '/loan',
+    admin: {
+      base: '/admin',
+      bankid: {
+        base: '/bank-id',
+        loan: '/loan',
+        login: '/login',
+        new: '/new'
+      }
+    },
     confirmation: '/confirmation',
     stat: {
       base: '/stat',

@@ -9,20 +9,19 @@ import {
   ClientUpdateInfo,
   ConfirmationGetDto,
   ConfirmationSetDto,
+  LoanInfo,
   Loans,
   LoanStateDto,
   LoanStatisticsDto,
   PreferencesDto,
-  PreferencesUpdateDto
+  PreferencesUpdateDto,
+  SignicatLoanInfoDto
 } from '@shared/models/loans';
 import { BankGuideInfo, Offers } from '@shared/models/offers';
 import { map } from 'rxjs/operators';
 import { locale } from '../../../config/locale/locale';
 
-import {
-  LoanUpdateInfoDto,
-  SignicatLoanInfoDtoArray
-} from '@shared/models/loans';
+import { SignicatLoanInfoDtoArray } from '@shared/models/loans';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { NewOffers, OffersBank } from '@shared/models/bank';
@@ -229,6 +228,19 @@ export class LoansService {
 
   public getLoanAndOffersBanks(): Observable<any> {
     return forkJoin([this.getLoans(), this.getOffersBanks()]);
+  }
+
+  public createNewLoan(newLoan: SignicatLoanInfoDto[]): Observable<void> {
+    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.loans.base}${API_URL_MAP.loan.loans.info}`;
+
+    return this.http.post(url, newLoan);
+  }
+
+  public updateLoan(
+    updatedLoanInfoList: SignicatLoanInfoDto[]
+  ): Observable<void> {
+    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.loans.base}${API_URL_MAP.loan.loans.info}`;
+    return this.http.put(url, updatedLoanInfoList);
   }
 
   public updateLoanProduct(product: { product: string }): Observable<void> {
