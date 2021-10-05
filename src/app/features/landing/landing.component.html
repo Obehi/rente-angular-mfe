@@ -2,7 +2,82 @@
   <rente-landing-top> </rente-landing-top>
 
   <div>
+    <div class="list gradient mobile">
+      <div class="list-inner">
+        <div class="desktop-inner">
+          <img
+            *ngIf="!isSweden"
+            [lazyLoad]="'../../../assets/img/example-no.svg'"
+            offset="600"
+            class="mobile"
+            alt="Screenshot example"
+          />
+          <img
+            *ngIf="isSweden"
+            [lazyLoad]="'../../../assets/img/example-sv.svg'"
+            offset="600"
+            class="mobile"
+            alt="Screenshot example"
+          />
+          <h2 i18n="title-explanation|landing-page@@landing.title.explanation">
+            Slik fungerer det
+          </h2>
+          <h4 i18n="step1-explanation|landing-page@@landing.step1.explanation">
+            Renteradar henter renten og dine lånedetaljer automatisk med BankID
+            på mobil.
+          </h4>
+          <h4 i18n="step2-explanation|landing-page@@landing.step2.explanation">
+            Vi sammenligner renten du betaler med renten du kan få i andre
+            banker og viser deg hvor mye du kan spare. Du kan også prute i
+            banken du er kunde med et klikk.
+          </h4>
+        </div>
+      </div>
+    </div>
     <!-- Dont load huge example svgs before scroll hits this element -->
+
+    <div class="list gradient desktop small-padding">
+      <div class="example">
+        <h2 i18n="how-it-functions|landing-page@@landing.function">
+          Slik fungerer det
+        </h2>
+        <div class="item second-row">
+          <h4 i18n="automatic-service|landing-page@@landing.automaticService">
+            Renteradar henter renten og dine lånedetaljer automatisk med BankID
+            på mobil.
+          </h4>
+
+          <h4 i18n="comparing-service|landing-page@@landing.comparingService">
+            Vi sammenligner renten du betaler med renten du kan få i andre
+            banker og viser deg hvor mye du kan spare. Du kan også prute i
+            banken du er kunde med et klikk.
+          </h4>
+        </div>
+        <div *ngIf="isSweden" class="item img">
+          <img
+            [lazyLoad]="'../../../assets/img/example-desktop-info-sv.svg'"
+            offset="600"
+            alt="Screenshot example"
+          />
+        </div>
+        <div *ngIf="isSweden" class="item img">
+          <img
+            [lazyLoad]="'../../../assets/img/example-desktop-offers-sv.svg'"
+            offset="600"
+            alt="Screenshot example"
+          />
+        </div>
+
+        <div *ngIf="!isSweden" class="item img">
+          <img
+            [lazyLoad]="'../../../assets/img/example-desktop-offers-blue.svg'"
+            offset="600"
+            alt="Screenshot example"
+          />
+        </div>
+      </div>
+    </div>
+
     <div class="list">
       <div class="list-inner">
         <div class="four-columns">
@@ -39,100 +114,6 @@
               bedre tilbud.
             </p>
           </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="list gradient desktop small-padding">
-      <div class="example">
-        <h2 i18n="how-it-functions|landing-page@@landing.function">
-          Slik fungerer det
-        </h2>
-        <div class="item second-row">
-          <h4 i18n="automatic-service|landing-page@@landing.automaticService">
-            Renteradar henter renten og dine lånedetaljer automatisk med BankID
-            på mobil.
-          </h4>
-
-          <h4 i18n="comparing-service|landing-page@@landing.comparingService">
-            Vi sammenligner renten du betaler med renten du kan få i andre
-            banker og viser deg hvor mye du kan spare. Du kan også prute i
-            banken du er kunde med et klikk.
-          </h4>
-        </div>
-        <div *ngIf="isSweden" class="item img">
-          <img
-            [lazyLoad]="'../../../assets/img/example-desktop-info-sv.svg'"
-            offset="600"
-            alt="Screenshot example"
-          />
-        </div>
-        <div *ngIf="isSweden" class="item img">
-          <img
-            [lazyLoad]="'../../../assets/img/example-desktop-offers-sv.svg'"
-            offset="600"
-            alt="Screenshot example"
-          />
-        </div>
-
-        <div *ngIf="!isSweden" class="item img">
-          <img
-            [lazyLoad]="'../../../assets/img/example-desktop-info-blue.svg'"
-            offset="600"
-            alt="Screenshot example"
-          />
-        </div>
-        <div *ngIf="!isSweden" class="item img">
-          <img
-            [lazyLoad]="'../../../assets/img/example-desktop-offers-blue.svg'"
-            offset="600"
-            alt="Screenshot example"
-          />
-        </div>
-
-        <h4
-          i18n="surveillance-service|landing-page@@landing.surveillanceService"
-          class="bottom"
-        >
-          Vi overvåker markedet og gir deg beskjed når nye og bedre tilbud er
-          tilgjengelig i fremtiden!
-        </h4>
-      </div>
-    </div>
-
-    <div class="list gradient mobile">
-      <div class="list-inner">
-        <div class="desktop-inner">
-          <h2 i18n="title-explanation|landing-page@@landing.title.explanation">
-            Slik fungerer det
-          </h2>
-          <h4 i18n="step1-explanation|landing-page@@landing.step1.explanation">
-            Renteradar henter renten og dine lånedetaljer automatisk med BankID
-            på mobil.
-          </h4>
-          <h4 i18n="step2-explanation|landing-page@@landing.step2.explanation">
-            Vi sammenligner renten du betaler med renten du kan få i andre
-            banker og viser deg hvor mye du kan spare. Du kan også prute i
-            banken du er kunde med et klikk.
-          </h4>
-          <img
-            *ngIf="!isSweden"
-            [lazyLoad]="'../../../assets/img/example-no.svg'"
-            offset="600"
-            class="mobile"
-            alt="Screenshot example"
-          />
-          <img
-            *ngIf="isSweden"
-            [lazyLoad]="'../../../assets/img/example-sv.svg'"
-            offset="600"
-            class="mobile"
-            alt="Screenshot example"
-          />
-          <h4 i18n="step3-explanation|landing-page@@landing.step3.explanation">
-            Vi overvåker markedet og gir deg beskjed når nye og bedre tilbud er
-            tilgjengelig i fremtiden!
-          </h4>
         </div>
       </div>
     </div>

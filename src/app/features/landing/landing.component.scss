@@ -1,4 +1,4 @@
-@import "../../../styles/theme/_colors.scss";
+@import '../../../styles/theme/_colors.scss';
 
 h1,
 h2,
@@ -6,6 +6,7 @@ h3,
 h4,
 p {
   text-align: center;
+  color: $white;
 }
 
 h1 {
@@ -39,13 +40,11 @@ h3 {
   h4 {
     max-width: 250px;
     margin: 75px auto 75px auto;
-
   }
 }
 
 @media (min-width: 0px) {
   .singupContainer {
-
     border-radius: 15px;
     margin-bottom: 120px;
 
@@ -63,8 +62,6 @@ h3 {
     padding: 0px 31px 27px 40px;
     border-radius: 35px;
   }
-
-
 }
 
 .signUp {
@@ -73,7 +70,6 @@ h3 {
   font-size: 18px;
   margin-bottom: 20px;
 }
-
 
 .mat-form-field {
   width: 100%;
@@ -111,7 +107,10 @@ iframe {
 
 //overflow hidden is set only on the wrapper on landing page
 .front-container {
+  background: linear-gradient($blue 0%, $primary 22%, $blue 50%);
   overflow: hidden;
+  padding: 15px;
+  max-width: 1100px;
 }
 
 .bank-buttons {
@@ -135,8 +134,6 @@ iframe {
 }
 
 .data-logos {
-
-
   @media (min-width: 600px) {
     display: flex;
     justify-content: center;
@@ -181,12 +178,10 @@ iframe {
     margin: 0 35px;
     width: 80px;
   }
-
-
 }
 
 .list {
-  background-color: $blue;
+  background-color: inherit;
   padding: 80px 40px;
   left: -20px;
   width: calc(100% + 40px);
@@ -214,7 +209,7 @@ iframe {
 
 .list.gradient {
   margin-top: -1px;
-  background: linear-gradient($blue, $primary);
+  background: inherit;
   margin-bottom: 80px;
 
   h2,
@@ -267,6 +262,7 @@ iframe {
   h2,
   h3 {
     text-align: left;
+    color: $white;
   }
 
   .article {
@@ -388,7 +384,7 @@ a {
   .example {
     display: grid;
     grid-gap: 40px;
-    grid-template-columns:1fr 1fr;
+    grid-template-columns: 1fr 1fr;
     max-width: calc(1010px - 160px);
     margin: auto;
 
@@ -415,7 +411,6 @@ a {
     }
 
     .item {
-
       &.img {
         grid-row: 3;
         display: flex;
@@ -427,7 +422,6 @@ a {
           margin-bottom: 40px;
         }
       }
-
     }
 
     .bottom {
@@ -441,6 +435,7 @@ a {
     left: 50%;
     transform: translateX(-50%);
     padding: 80px;
+    background-color: inherit;
 
     &.small-padding {
       padding-top: 40px !important;
@@ -480,7 +475,6 @@ a {
   visibility: hidden;
 }
 
-
 /* Border */
 .mat-form-field-appearance-outline .mat-form-field-outline {
   color: white;
@@ -490,7 +484,6 @@ a {
 input.mat-input-element {
   color: white;
 }
-
 
 .input-block {
   display: none !important;
@@ -570,7 +563,6 @@ input.mat-input-element {
     font-size: 18px;
   }
 }
-
 
 ::ng-deep .singupContainer .mat-form-field-underline {
   display: none;

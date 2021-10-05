@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { locale } from '@config/locale/locale';
 import { EnvService } from '@services/env.service';
 import { LoggingService } from '@services/logging.service';
 @Component({
@@ -7,6 +8,8 @@ import { LoggingService } from '@services/logging.service';
   styleUrls: ['./landing-top-no.component.scss']
 })
 export class LandingTopNoComponent {
+  isSweden: boolean;
+
   get isMobile(): boolean {
     return window.innerWidth < 600;
   }
@@ -21,5 +24,11 @@ export class LandingTopNoComponent {
       this.envService.environment,
       false
     );
+
+    if (locale.includes('sv')) {
+      this.isSweden = true;
+    } else {
+      this.isSweden = false;
+    }
   }
 }

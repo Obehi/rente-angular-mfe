@@ -1,35 +1,85 @@
-<div class="intro imb">
-  <h1 class="mobileh1">
-    Få beste <br />
-    <a [routerLink]="'/velgbank'">boliglånsrente</a>
-  </h1>
-  <h4>
-    Sammenlign boliglånet ditt mot markedets beste tilbud -
-    <span class="green">kjapt, enkelt og gratis!</span>
-  </h4>
-</div>
+<div class="co-main">
+  <div class="intro imb">
+    <h1 class="mobileh1">
+      Sammenlign boliglånet ditt mot markedets <br />
+      <a [routerLink]="'/velgbank'">beste tilbud</a>
+    </h1>
 
-<div class="cta-container">
-  <h2>Finn beste tilbud</h2>
-  <div class="buttons">
-    <rente-button
-      class="cta-button"
-      color="primary-wide-landing"
-      [routerLink]="'/velgbank'"
+    <p
+      i18n="surveillance-service|landing-page@@landing.surveillanceService"
+      class="surveillance"
+      *ngIf="!isMobile"
     >
-      Jeg har boliglån
-    </rente-button>
-    <div class="gap"></div>
-    <rente-button
-      color="primary-wide-landing-hollow"
-      [routerLink]="'/boliglanskalkulator'"
+      Vi overvåker samtlige norske bankers boliglånsrente, 365 dager i året.<br />
+      Mange av kundene våre har spart ti-tusener i årlige rentekostnader.
+      <br />Sjekk selv på 5 minutter.
+    </p>
+
+    <p
+      i18n="surveillance-service|landing-page@@landing.surveillanceService"
+      class="surveillance"
+      *ngIf="isMobile"
     >
-      Jeg skal kjøpe min første bolig
-    </rente-button>
+      Vi overvåker samtlige norske bankers boliglånsrente, 365 dager i året.
+      Mange av kundene våre har spart ti-tusener i årlige rentekostnader. Sjekk
+      selv på 5 minutter.
+    </p>
+
+    <div class="cta-container" *ngIf="!isMobile">
+      <h2 *ngIf="!isMobile">START NÅ!</h2>
+      <div class="buttons">
+        <rente-button
+          class="cta-button"
+          color="primary-wide-landing-new"
+          [routerLink]="'/velgbank'"
+        >
+          Jeg har boliglån
+        </rente-button>
+
+        <div class="gap"></div>
+
+        <rente-button
+          color="primary-wide-landing-hollow"
+          [routerLink]="'/boliglanskalkulator'"
+        >
+          Jeg skal kjøpe min første bolig
+        </rente-button>
+      </div>
+    </div>
   </div>
-</div>
 
-<img class="showcase" src="../../../assets/img/isometric-new-optimized.png" />
+  <div class="cta-container" *ngIf="isMobile">
+    <h2 *ngIf="!isMobile">START NÅ!</h2>
+    <div class="buttons">
+      <rente-button
+        class="cta-button"
+        color="primary-wide-landing-new"
+        [routerLink]="'/velgbank'"
+      >
+        Jeg har boliglån
+      </rente-button>
+
+      <div class="gap"></div>
+
+      <rente-button
+        color="primary-wide-landing-hollow"
+        [routerLink]="'/boliglanskalkulator'"
+      >
+        Jeg skal kjøpe min første bolig
+      </rente-button>
+    </div>
+  </div>
+
+  <div *ngIf="!isSweden && !isMobile" class="item">
+    <img
+      [lazyLoad]="'../../../assets/img/example-desktop-info-blue.svg'"
+      offset="600"
+      alt="Screenshot example"
+      class="rente-image"
+    />
+  </div>
+
+  <!-- <img class="showcase" src="../../../assets/img/isometric-new-optimized.png" />
 
 <div class="data-logos">
   <a
@@ -61,6 +111,7 @@
       />
     </a>
   </div>
-</div>
+</div> -->
 
-<rente-counter></rente-counter>
+  <!-- <rente-counter></rente-counter> -->
+</div>
