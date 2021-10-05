@@ -107,14 +107,14 @@ export class OfferCardService {
       case 'YS_NORDEA_DIRECT': {
         text =
           this.getVariation() === 0 || this.getVariation() === 2
-            ? 'Les mer og søk lån!'
+            ? 'Les mer og søk om lån!'
             : 'Flytt boliglånet til Nordea Direct';
         break;
       }
       case 'UNIO_NORDEA_DIRECT': {
         text =
           this.getVariation() === 0 || this.getVariation() === 2
-            ? 'Les mer og søk lån!'
+            ? 'Les mer og søk om lån!'
             : 'Flytt boliglånet til Nordea Direct';
         break;
       }
