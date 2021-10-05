@@ -41,6 +41,16 @@ button.mat-primary-wide-hollow-offer-mobile[disabled] {
   border: 1px solid #c9eae3;
 }
 
+button.mat-primary-hollow-non-partner-mobile[disabled] {
+  opacity: 1;
+  width: 100% !important;
+  font-size: 14px !important;
+  height: 45px;
+  background-color: unset;
+  color: $grey-dark !important;
+  border: 1px solid #c9eae3;
+}
+
 //// DESKTOP
 
 button.mat-primary-offer-desktop {
@@ -69,6 +79,16 @@ button.mat-primary-wide-hollow-offer-desktop[disabled] {
   height: 56px;
   background-color: unset;
   color: #a9a9a975;
+  border: 1px solid #c9eae3;
+}
+
+button.mat-primary-hollow-non-partner-desktop[disabled] {
+  opacity: 1;
+  width: 16rem !important;
+
+  height: 56px;
+  background-color: unset;
+  color: $grey-dark !important;
   border: 1px solid #c9eae3;
 }
 
