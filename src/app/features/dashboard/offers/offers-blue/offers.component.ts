@@ -294,8 +294,8 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
 
   onDialogAction(answer: boolean): void {
     this.effRateLoweredDialogVisible = false;
+    this.userService.lowerRateAvailable.next(false);
     if (answer === true) {
-      this.userService.lowerRateAvailable.next(false);
       this.loansService.confirmLowerRate().subscribe((res) => {});
     }
   }
