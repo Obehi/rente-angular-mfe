@@ -12,13 +12,13 @@
         <div class="title-delete">
           <h3>Lån {{ index + 1 }}</h3>
           <mat-icon
-            *ngIf="isEditMode"
+            *ngIf="isAbleToDelete()"
             (click)="deleteLoan()"
             class="is-clickable"
             >delete_forever</mat-icon
           >
         </div>
-        <div *ngIf="index < 1">
+        <div>
           <img
             [hidden]="hideEditIcon"
             (click)="setEditEnabled()"

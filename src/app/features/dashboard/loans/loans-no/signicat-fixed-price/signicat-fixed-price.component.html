@@ -56,15 +56,29 @@
   </div>
 </div>
 
-<div class="summary main-container" *ngIf="loans !== null">
+<div class="summary main-container">
   <div *ngFor="let loan of loans; index as i">
+    <div *ngIf="loanData.loans.length === 1" class="general-title">
+      <h3>Mitt lån</h3>
+    </div>
     <rente-loan-fixed-price
       *ngIf="loan.isDeleted === false"
       [index]="i"
       [loan]="loan"
       [allOffers]="allOffers"
     ></rente-loan-fixed-price>
-    <div *ngIf="loan.isDeleted === true" class="no-loans">Lån slettet</div>
+    <div *ngIf="loan.isDeleted === true" class="no-loans"></div>
   </div>
+
+  <rente-button
+    color="secondary"
+    (click)="addLoan()"
+    class="add-loan"
+    [ngClass]="{
+      'add-loan-opacity-low': isEditMode !== null,
+      'add-loan-opacity-full': isEditMode === null
+    }"
+    >Legg til lån</rente-button
+  >
 </div>
 <div *ngIf="isEmptyLoans" class="no-loans">Ingen lån</div>

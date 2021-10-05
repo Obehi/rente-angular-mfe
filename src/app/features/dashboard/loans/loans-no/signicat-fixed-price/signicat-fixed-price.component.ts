@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { bankOfferDto, LoanInfo, Loans } from '@models/loans';
-import { LoansService } from '@services/remote-api/loans.service';
 import { Observable } from 'rxjs';
+import { delay } from 'rxjs/operators';
 import { LoanOverView, MyLoansService } from '../../myloans.service';
 
 @Component({
@@ -12,16 +12,15 @@ import { LoanOverView, MyLoansService } from '../../myloans.service';
 export class SignicatFixedPriceComponent implements OnInit {
   @Input() loanData: Loans;
   @Input() allOffers: bankOfferDto[];
+
   public loans: LoanInfo[];
   public isSummaryNeeded = false;
   public isEmptyLoans = false;
+  public isEditMode: number | null;
 
   public loanOverViewObservable$: Observable<LoanOverView>;
 
-  constructor(
-    public myLoansService: MyLoansService,
-    private loansService: LoansService
-  ) {}
+  constructor(public myLoansService: MyLoansService) {}
 
   ngOnInit(): void {
     this.loanOverViewObservable$ = this.myLoansService.loanOverViewObservable$;
@@ -32,27 +31,7 @@ export class SignicatFixedPriceComponent implements OnInit {
       loan.isDeleted = false;
     });
 
-    // Add test data for loans
-    const dto = {
-      bank: 'Sbanken ASA',
-      bankKey: 'SBANKEN',
-      effectiveRate: 2,
-      id: 4511,
-      fee: 50,
-      isDeleted: false,
-      isIncompleteInfoLoan: false,
-      loanName: 'Boliglån 75 %',
-      loanType: 'DOWNPAYMENT_REGULAR_LOAN',
-      nominalRate: 1.88,
-      outstandingDebt: 2300000,
-      remainingYears: 29.553668720054757,
-      totalInterestAndTotalFee: 228500,
-      totalInterestAndTotalFeeByRemainingYears: 13272.73390849166344
-    };
-
-    this.loans.unshift(dto);
     this.myLoansService.updateLoans(this.loans);
-    console.log(this.loans);
 
     this.myLoansService.getLoansAsObservable().subscribe((res) => {
       console.log('Signicat fixed price parent response');
@@ -60,31 +39,28 @@ export class SignicatFixedPriceComponent implements OnInit {
       this.loans = res;
       if (this.loans) {
         const length = this.loans.length;
-        console.log('Length: ' + length.toString());
+        // console.log('Length: ' + length.toString());
         if (length > 1) this.isSummaryNeeded = true;
-        // else this.isSummaryNeeded = false;
 
         if (length === 0) this.isEmptyLoans = true;
       }
     });
 
-    // this.loansService.getLoanAndOffersBanks().subscribe(
-    //   ([loans, offerBank]) => {
-    //     this.loanData = loans;
-    //   },
-    //   (err) => {
-    //     console.log(err);
-    //   }
-    // );
-
-    // this.setLoanStoreListener();
+    this.myLoansService
+      .loanEditIndexAsObservable()
+      .pipe(delay(0))
+      .subscribe(
+        (res) => {
+          this.isEditMode = res;
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
   }
 
-  // public setLoanStoreListener(): void {
-  //   this.myLoansService.getLoansAsObservable().subscribe((res) => {
-  //     console.log('Signicat fixed price parent response');
-  //     console.log(res);
-  //     this.loans = res;
-  //   });
-  // }
+  public addLoan(): void {
+    if (this.isEditMode !== null) return;
+    this.myLoansService.addNewLoan();
+  }
 }

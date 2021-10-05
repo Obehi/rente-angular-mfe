@@ -180,8 +180,36 @@ h3 {
 .loan-summary {
 }
 
+.general-title {
+  padding: 0 0 20px;
+
+  @media (max-width: 600px) {
+    padding: 10px 10px 20px;
+  }
+  h3 {
+    color: white;
+  }
+}
+
 .no-loans {
   text-align: center;
   color: white;
   font-size: 18px;
+}
+
+.add-loan {
+  margin-top: 200px;
+  margin-bottom: 100px;
+
+  @media (max-width: 768px) {
+    margin-top: 40px;
+  }
+}
+
+.add-loan-opacity-low {
+  opacity: 0.6;
+}
+
+.add-loan-opacity-full {
+  opacity: 1;
 }

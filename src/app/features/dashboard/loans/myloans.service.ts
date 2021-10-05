@@ -78,6 +78,7 @@ export class MyLoansService {
     }
 
     // There should always be one loan
+    // NB! loanName property needs to be one of the offers to work
     const newLoan = {
       bank: infoList[0].bank,
       bankKey: infoList[0].bankKey,
@@ -86,7 +87,7 @@ export class MyLoansService {
       fee: 0,
       isDeleted: false,
       isIncompleteInfoLoan: true,
-      loanName: 'Nedbetalingslån',
+      loanName: 'Boliglån 75 %',
       loanType: 'DOWNPAYMENT_REGULAR_LOAN',
       nominalRate: 1.11,
       outstandingDebt: 1,

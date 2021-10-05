@@ -16,6 +16,7 @@ import { Mask } from '@shared/constants/mask';
 import { Subscription } from 'rxjs';
 import { nonListLoanType, LoanTypeOption } from '@models/loan-type';
 import { VALIDATION_PATTERN } from '@config/validation-patterns.config';
+import { NotificationService } from '@services/notification.service';
 
 @Component({
   selector: 'rente-loan-signicat-users',
@@ -89,7 +90,8 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private loansService: LoansService,
     private messageBannerService: MessageBannerService,
-    private myLoansService: MyLoansService
+    private myLoansService: MyLoansService,
+    private notificationService: NotificationService
   ) {}
 
   ngOnDestroy(): void {
@@ -141,7 +143,7 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
         { value: this.initialRemainingYears, disabled: true },
         [
           Validators.pattern(VALIDATION_PATTERN.year),
-          Validators.max(55),
+          Validators.max(70),
           Validators.required
         ]
       ],
@@ -530,6 +532,7 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
         )[0].name;
 
         this.setEditDisabled();
+        this.notificationService.setOfferNotification();
       },
       (err) => {
         console.log(err);
@@ -566,7 +569,7 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
         console.log(res);
 
         this.messageBannerService.setView(
-          'Endringene dine er lagret',
+          'Nytt lån er opprettet',
           3000,
           this.animationStyle.DROP_DOWN_UP,
           'success',
@@ -580,6 +583,7 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
         this.initialFee = this.incomingValueFee;
 
         this.setEditDisabled();
+        this.notificationService.setOfferNotification();
       },
       (err) => {
         console.log(err);
@@ -587,7 +591,7 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
         if (err.status < 500) {
           this.isGeneralError = true;
           this.messageBannerService.setView(
-            'En eller flere av endringene ble ikke oppdatert',
+            'Oops, noe gikk galt',
             5000,
             this.animationStyle.DROP_DOWN_UP,
             'error',
@@ -597,7 +601,7 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
         if (err.status > 499) {
           this.isServerError = true;
           this.messageBannerService.setView(
-            'Oops, noe gikk galt. Prøv igjen senere',
+            'Kan ikke opprette et nytt lån for øyeblikket, prøv igjen senere',
             5000,
             this.animationStyle.DROP_DOWN_UP,
             'error',
@@ -640,11 +644,11 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
          * Loans length is used to removed delete function
          * if theres only one loan left
          */
-        const removedDeletedLoan = this.myLoansService
-          .getLoansValue()
-          .filter((val) => val.id !== loanId);
+        // const removedDeletedLoan = this.myLoansService
+        //   .getLoansValue()
+        //   .filter((val) => val.id !== loanId);
 
-        this.myLoansService.updateLoans(removedDeletedLoan);
+        // this.myLoansService.updateLoans(removedDeletedLoan);
 
         this.messageBannerService.setView(
           'Lånet er slettet',

@@ -46,9 +46,6 @@ export class SignicatUsersComponent implements OnInit {
       }
     });
 
-    const length = this.loanData.loans.length;
-    if (length > 1) this.isSummaryNeeded = true;
-
     this.myLoansService
       .loanEditIndexAsObservable()
       .pipe(delay(0))

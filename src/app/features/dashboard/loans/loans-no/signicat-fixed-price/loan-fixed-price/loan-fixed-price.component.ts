@@ -5,7 +5,7 @@ import {
   FormGroup,
   Validators
 } from '@angular/forms';
-import { bankOfferDto, LoanInfo } from '@models/loans';
+import { bankOfferDto, LoanInfo, SignicatLoanInfoDto } from '@models/loans';
 import { MessageBannerService } from '@services/message-banner.service';
 import { LoansService } from '@services/remote-api/loans.service';
 import { getAnimationStyles } from '@shared/animations/animationEnums';
@@ -17,6 +17,7 @@ import { MyLoansService } from '../../../myloans.service';
 import { Mask } from '@shared/constants/mask';
 import { VALIDATION_PATTERN } from '@config/validation-patterns.config';
 import { NotificationService } from '@services/notification.service';
+import { LoanTypeOption, nonListLoanType } from '@models/loan-type';
 
 @Component({
   selector: 'rente-loan-fixed-price',
@@ -44,6 +45,8 @@ export class LoanFixedPriceComponent implements OnInit, OnDestroy {
   public isServerError = false;
   public isAbleToSave = false;
   public isEmptyPlaceHolder = false;
+  public loanTypeList: LoanTypeOption[] = nonListLoanType;
+  public loansLength: number;
 
   public outStandingDebtchangeSubscription: Subscription | undefined;
   public remainingYearschangeSubscription: Subscription | undefined;
@@ -92,37 +95,7 @@ export class LoanFixedPriceComponent implements OnInit, OnDestroy {
     }
   }
 
-  public checkIfZero(val: string): boolean {
-    return (
-      this.loanForm.get(val)?.value.trim() === '' ||
-      this.loanForm.get(val)?.value === '0' ||
-      this.loanForm.get(val)?.value === ',' ||
-      this.loanForm.get(val)?.value === ',0' ||
-      this.loanForm.get(val)?.value === ',00' ||
-      this.loanForm.get(val)?.value === '0,' ||
-      this.loanForm.get(val)?.value === '0,0' ||
-      this.loanForm.get(val)?.value === '0,00' ||
-      this.loanForm.get(val)?.value === '00' ||
-      this.loanForm.get(val)?.value === '00,' ||
-      this.loanForm.get(val)?.value === '00,0' ||
-      this.loanForm.get(val)?.value === '00,00' ||
-      this.loanForm.get(val)?.value === '000' ||
-      this.loanForm.get(val)?.value === '0000' ||
-      this.loanForm.get(val)?.value === '00000' ||
-      this.loanForm.get(val)?.value === '000000' ||
-      this.loanForm.get(val)?.value === '0000000' ||
-      this.loanForm.get(val)?.value === '0 000' ||
-      this.loanForm.get(val)?.value === '00 000' ||
-      this.loanForm.get(val)?.value === '000 000' ||
-      this.loanForm.get(val)?.value === '0 000 000'
-    );
-  }
-
   ngOnInit(): void {
-    if (this.loan === null) {
-      console.log('Loan is null');
-      return;
-    }
     // Check count of decimals and format it to 0 or 1 decimal
     const format = this.myLoansService.countDecimals(this.loan.remainingYears);
     let correctValue = '';
@@ -140,11 +113,11 @@ export class LoanFixedPriceComponent implements OnInit, OnDestroy {
      * Since mat-select wants the default value to be the same datatype as the array it uses
      */
 
-    const transformDto = {
-      name: this.loanTypeString,
-      id: 'tag:finansportalen.no:feed/bank/boliglan/1622922',
-      rate: 1.99
-    };
+    // const transformDto = {
+    //   name: this.loanTypeString,
+    //   id: 'tag:finansportalen.no:feed/bank/boliglan/1622922',
+    //   rate: 1.99
+    // };
 
     // Demo test code necessary, deactivate when testing in signicat
     // this.allOffers.push(transformDto);
@@ -197,8 +170,12 @@ export class LoanFixedPriceComponent implements OnInit, OnDestroy {
           this.setOpacity = false;
         }
         if (currentIndex !== this.index && currentIndex !== null) {
-          this.hideEditIcon = true;
-          this.setOpacity = true;
+          // Set timeout if a new loan is created,
+          // or else it causes valueChangedAfterCheck error
+          setTimeout(() => {
+            this.hideEditIcon = true;
+            this.setOpacity = true;
+          }, 0);
         }
       });
 
@@ -206,6 +183,13 @@ export class LoanFixedPriceComponent implements OnInit, OnDestroy {
     this.outStandingDebtchangeSubscription = this.loanForm
       .get(this.outstandingDebtString)
       ?.valueChanges.subscribe(() => {
+        if (
+          this.loanForm.get('outstandingDebt')?.dirty &&
+          this.isErrorState(this.loanForm?.controls['outstandingDebt'])
+        ) {
+          this.outstandingDebtIsError = true;
+        }
+
         if (
           this.loanForm.get('outstandingDebt')?.dirty &&
           !this.isErrorState(this.loanForm?.controls['outstandingDebt'])
@@ -225,6 +209,13 @@ export class LoanFixedPriceComponent implements OnInit, OnDestroy {
       ?.valueChanges.subscribe(() => {
         if (
           this.loanForm.get('remainingYears')?.dirty &&
+          this.isErrorState(this.loanForm?.controls['remainingYears'])
+        ) {
+          this.remainingYearsIsError = true;
+        }
+
+        if (
+          this.loanForm.get('remainingYears')?.dirty &&
           !this.isErrorState(this.loanForm?.controls['remainingYears'])
         ) {
           this.remainingYearsIsError = false;
@@ -236,6 +227,26 @@ export class LoanFixedPriceComponent implements OnInit, OnDestroy {
           this.isAbleToSave = false;
         }
       });
+
+    if (this.loan.id === 0) {
+      this.setEditEnabled();
+
+      // Has to be in a timeout to work
+      // The new loan input cant be focused if not
+      setTimeout(() => {
+        this.disableForm();
+        this.enableForm();
+      }, 0);
+    } else {
+      this.disableForm();
+    }
+
+    // Get latest amount of loans of user, in case they want to delete the last loan
+    // disable delete func when there is only one loan left
+    this.myLoansService.getLoansAsObservable().subscribe((res) => {
+      if (res === null) this.loansLength = 0;
+      if (res !== null) this.loansLength = res.length;
+    });
 
     // Set edit mode to null (if user leaves the page while on edit mode)
     // this.myLoansService.setEditMode(null);
@@ -368,8 +379,6 @@ export class LoanFixedPriceComponent implements OnInit, OnDestroy {
 
     // Check for general error if server error or if the regex error from input
     if (
-      !this.outstandingDebtIsError &&
-      !this.remainingYearsIsError &&
       !this.isErrorState(this.loanForm?.controls['remainingYears']) &&
       !this.isErrorState(this.loanForm?.controls[this.outstandingDebtString])
     ) {
@@ -391,123 +400,151 @@ export class LoanFixedPriceComponent implements OnInit, OnDestroy {
     // Set the initial values back as reset sets the values to null
     this.loanTypeID = this.findLoanID(this.selected);
 
-    const loanNameDto = {
-      product: this.loanTypeID
-    };
-
     const getOutstandingDebt = this.myLoansService.getNumericValueFormated(
       this.incomingValueOutstandingDebt
     );
-
-    const outstandingDebtDto = {
-      outstandingDebt: getOutstandingDebt
-    };
 
     const getRemainingYears = this.myLoansService.formatComma(
       this.incomingValueRemainingYears
     );
 
-    const remainingYearsDto = {
+    const getFee = Number(this.loan.fee);
+
+    const getLoanType = String(
+      this.loanTypeList.filter((val) => val.value === this.loan.loanType)[0]
+        .value
+    );
+
+    const getLoanSubType = String(
+      this.loanTypeList.filter((val) => val.value === getLoanType)[0].subType
+    );
+
+    const getNominalRate = this.myLoansService.formatComma(
+      String(this.loan.nominalRate)
+    );
+
+    const sendToBEDto = {
+      fee: getFee,
+      id: this.loan.id,
+      loanSubType: getLoanSubType,
+      loanType: getLoanType,
+      nominalInterestRate: getNominalRate,
+      outstandingDebt: getOutstandingDebt,
+      productId: this.loanTypeID,
       remainingYears: getRemainingYears
     };
 
-    concat(
-      // of(true)
-      this.loansService.updateLoanProduct(loanNameDto).pipe(
-        catchError((err) => {
-          console.log(err);
-          this.productIsError = true;
-          this.isError = true;
-          if (err.status < 500) {
-            this.isGeneralError = true;
-          }
-          if (err.status > 499) {
-            this.isServerError = true;
-          }
-          return of(err);
-        })
-      ),
-      // of(true)
-      this.loansService.updateLoanOutstandingDebt(outstandingDebtDto).pipe(
-        catchError((err) => {
-          console.log(err);
-          this.outstandingDebtIsError = true;
-          this.isError = true;
-          if (err.status < 500) {
-            this.isGeneralError = true;
-          }
-          if (err.status > 499) {
-            this.isServerError = true;
-          }
-          return of(err);
-        })
-      ),
-      // of(true)
+    console.log('Sent obj:', sendToBEDto);
 
-      this.loansService.updateLoanReminingYears(remainingYearsDto).pipe(
-        catchError((err) => {
-          console.log(err);
-          this.remainingYearsIsError = true;
-          this.isError = true;
-          if (err.status < 500) {
-            this.isGeneralError = true;
-          }
-          if (err.status > 499) {
-            this.isServerError = true;
-          }
-          return of(err);
-        })
-      )
-    )
-      .pipe(toArray())
-      .subscribe(
-        (res) => {
-          console.log(res);
-
-          if (this.isError) {
-            if (this.isServerError) {
-              this.messageBannerService.setView(
-                'Oops, noe gikk galt. Prøv igjen senere',
-                5000,
-                this.animationStyle.DROP_DOWN_UP,
-                'error',
-                window
-              );
-            } else {
-              this.messageBannerService.setView(
-                'En eller flere av endringene ble ikke oppdatert',
-                5000,
-                this.animationStyle.DROP_DOWN_UP,
-                'error',
-                window
-              );
-            }
-
-            this.isAbleToSave = false;
-            // If error, do nothing. The value should be as the previous default
-          } else {
-            this.messageBannerService.setView(
-              'Endringene dine er lagret',
-              3000,
-              this.animationStyle.DROP_DOWN_UP,
-              'success',
-              window
-            );
-
-            this.initialLoanName = this.selected;
-            this.initialOutStandingDebt = this.incomingValueOutstandingDebt;
-            this.initialRemainingYears = this.incomingValueRemainingYears;
-
-            this.setEditDisabled();
-            this.notificationService.setOfferNotification();
-          }
-        },
-        (err) => {
-          console.log(err);
-          console.log('Error subscribtion');
-        }
-      );
+    if (this.loan.id === 0) {
+      console.log('Creating new loan:', sendToBEDto);
+      this.createNewLoan(sendToBEDto);
+    } else {
+      console.log('Updating loan:', sendToBEDto);
+      this.updateLoan(sendToBEDto);
+    }
   } // send request end
+
+  public updateLoan(obj: SignicatLoanInfoDto): void {
+    this.loansService.updateLoan([obj]).subscribe(
+      (res) => {
+        console.log(res);
+
+        this.messageBannerService.setView(
+          'Endringene dine er lagret',
+          3000,
+          this.animationStyle.DROP_DOWN_UP,
+          'success',
+          window
+        );
+
+        // Save the original format in string with mask
+        this.initialOutStandingDebt = this.incomingValueOutstandingDebt;
+        this.initialRemainingYears = this.incomingValueRemainingYears;
+
+        // Set the loan type to the selected
+        this.initialLoanName = this.selected;
+
+        this.setEditDisabled();
+        this.notificationService.setOfferNotification();
+      },
+      (err) => {
+        console.log(err);
+
+        if (err.status < 500) {
+          this.isGeneralError = true;
+          this.messageBannerService.setView(
+            'En eller flere av endringene ble ikke oppdatert',
+            5000,
+            this.animationStyle.DROP_DOWN_UP,
+            'error',
+            window
+          );
+        }
+        if (err.status > 499) {
+          this.isServerError = true;
+          this.messageBannerService.setView(
+            'Oops, noe gikk galt. Prøv igjen senere',
+            5000,
+            this.animationStyle.DROP_DOWN_UP,
+            'error',
+            window
+          );
+        }
+
+        this.isAbleToSave = false;
+      }
+    );
+  }
+
+  public createNewLoan(obj: SignicatLoanInfoDto): void {
+    this.loansService.createNewLoan([obj]).subscribe(
+      (res) => {
+        console.log(res);
+
+        this.messageBannerService.setView(
+          'Nytt lån er opprettet',
+          3000,
+          this.animationStyle.DROP_DOWN_UP,
+          'success',
+          window
+        );
+
+        // Save the original format in string with mask
+        this.initialOutStandingDebt = this.incomingValueOutstandingDebt;
+        this.initialRemainingYears = this.incomingValueRemainingYears;
+
+        this.setEditDisabled();
+        this.notificationService.setOfferNotification();
+      },
+      (err) => {
+        console.log(err);
+
+        if (err.status < 500) {
+          this.isGeneralError = true;
+          this.messageBannerService.setView(
+            'Oops, noe gikk galt',
+            5000,
+            this.animationStyle.DROP_DOWN_UP,
+            'error',
+            window
+          );
+        }
+        if (err.status > 499) {
+          this.isServerError = true;
+          this.messageBannerService.setView(
+            'Kan ikke opprette et nytt lån for øyeblikket, prøv igjen senere',
+            5000,
+            this.animationStyle.DROP_DOWN_UP,
+            'error',
+            window
+          );
+        }
+
+        this.isAbleToSave = false;
+      }
+    );
+  }
 
   public deleteLoan(): void {
     const currentLoanIndex = this.myLoansService.getEditMode();
@@ -523,17 +560,59 @@ export class LoanFixedPriceComponent implements OnInit, OnDestroy {
     const loanId = this.loan.id;
     console.log('Loan ID: ' + loanId.toString());
 
-    // this.loansService.deleteLoan(loanId).subscribe(
-    //   (res) => {
-    //     console.log('Response');
-    //     console.log(res);
-    //   },
-    //   (err) => {
-    //     console.log(err);
-    //   }
-    // );
+    if (loanId === 0) {
+      this.myLoansService.deleteLoan(loanId);
+      return;
+    }
 
-    this.myLoansService.deleteLoan(loanId);
-    console.log('Loan id deleted');
+    this.loansService.deleteLoan(loanId).subscribe(
+      () => {
+        // Remove from UI
+        this.myLoansService.deleteLoan(loanId);
+
+        /**
+         * Remove from list so the loans length changes
+         * Loans length is used to removed delete function
+         * if theres only one loan left
+         * If this is activated (Lån slettet html will not activate)
+         */
+        // const removedDeletedLoan = this.myLoansService
+        //   .getLoansValue()
+        //   .filter((val) => val.id !== loanId);
+
+        // this.myLoansService.updateLoans(removedDeletedLoan);
+
+        this.messageBannerService.setView(
+          'Lånet er slettet',
+          3000,
+          this.animationStyle.DROP_DOWN_UP,
+          'success',
+          window
+        );
+      },
+      (err) => {
+        console.log(err);
+        this.messageBannerService.setView(
+          'Oops, noe gikk galt. Lånet ble ikke slettet. Prøv igjen senere',
+          5000,
+          this.animationStyle.DROP_DOWN_UP,
+          'error',
+          window
+        );
+      }
+    );
+  }
+
+  public isAbleToDelete(): boolean {
+    const store = this.myLoansService.getLoansValue();
+
+    if (store.length === 2 && store.some((val) => val.isDeleted === true))
+      return false;
+
+    if (this.isEditMode && store.length > 1) {
+      return true;
+    }
+
+    return false;
   }
 } // Class end
