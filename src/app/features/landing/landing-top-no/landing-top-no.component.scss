@@ -6,7 +6,7 @@
     grid-template-columns: 1fr 1fr;
 
     ::ng-deep .rente-image {
-      width: 60%;
+      width: 40%;
       margin-left: 10rem;
     }
   }
@@ -20,7 +20,7 @@
 }
 
 .surveillance {
-  color: $white;
+  color: $black;
   font-size: 14px;
 }
 
@@ -31,7 +31,7 @@
 }
 
 h1 {
-  color: $white;
+  color: $black;
   font-size: 28px;
   font-weight: 400;
   text-align: left;
@@ -39,7 +39,7 @@ h1 {
 }
 
 a {
-  color: $white;
+  color: $black;
   position: relative;
   font-weight: 400;
   text-decoration: none;

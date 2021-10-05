@@ -107,10 +107,13 @@ iframe {
 
 //overflow hidden is set only on the wrapper on landing page
 .front-container {
+  @media (min-width: 800px) {
+    background: $white;
+  }
   background: linear-gradient($blue 0%, $primary 22%, $blue 50%);
   overflow: hidden;
   padding: 15px;
-  max-width: 1100px;
+  max-width: unset;
 }
 
 .bank-buttons {
