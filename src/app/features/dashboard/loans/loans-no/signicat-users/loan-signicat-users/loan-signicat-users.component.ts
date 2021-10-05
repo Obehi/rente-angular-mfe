@@ -13,10 +13,11 @@ import { getAnimationStyles } from '@shared/animations/animationEnums';
 import { ButtonFadeInOut } from '@shared/animations/button-fade-in-out';
 import { FadeOut } from '@shared/animations/fade-out';
 import { Mask } from '@shared/constants/mask';
-import { Subscription } from 'rxjs';
+import { concat, of, Subscription } from 'rxjs';
 import { nonListLoanType, LoanTypeOption } from '@models/loan-type';
 import { VALIDATION_PATTERN } from '@config/validation-patterns.config';
 import { NotificationService } from '@services/notification.service';
+import { catchError, toArray } from 'rxjs/operators';
 
 @Component({
   selector: 'rente-loan-signicat-users',
@@ -41,7 +42,6 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
   public isGeneralError = false;
   public isServerError = false;
   public isAbleToSave = false;
-  public isEmptyPlaceHolder = false;
   public loanTypeSelected = '';
   public loanTypeList: LoanTypeOption[] = nonListLoanType;
   public loansLength: number;
@@ -80,6 +80,10 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
   public initialNominalRate: string;
   public initialFee: string;
   public initialLoanType: string;
+
+  public initialEffectiveRate: number;
+  public initialTotalInterestAndTotalFee: number;
+  public initialtotalInterestAndTotalFeeByRemainingYears: number;
 
   public changeOutstandingDebtSubscription: Subscription | undefined;
   public changeRemainingYearsSubscription: Subscription | undefined;
@@ -121,6 +125,11 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
     this.initialRemainingYears = String(correctValue);
     this.initialNominalRate = String(this.loan.nominalRate);
     this.initialFee = String(this.loan.fee);
+
+    // Extra variables to set on the component if a new loan is created
+    this.initialEffectiveRate = this.loan.effectiveRate;
+    this.initialTotalInterestAndTotalFee = this.loan.totalInterestAndTotalFee;
+    this.initialtotalInterestAndTotalFeeByRemainingYears = this.loan.totalInterestAndTotalFeeByRemainingYears;
 
     // Backend returns loantype in english, filter the list and return the name in obj
     this.initialLoanType = String(
@@ -564,54 +573,96 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
   }
 
   public createNewLoan(obj: SignicatLoanInfoDto): void {
-    this.loansService.createNewLoan([obj]).subscribe(
-      (res) => {
-        console.log(res);
+    this.isAbleToSave = false;
 
-        this.messageBannerService.setView(
-          'Nytt lån er opprettet',
-          3000,
-          this.animationStyle.DROP_DOWN_UP,
-          'success',
-          window
-        );
+    concat(
+      this.loansService.createNewLoan([obj]).pipe(
+        catchError((err) => {
+          console.log(err);
+          console.log('Could not create a new loan!');
+          this.isError = true;
+          if (err.status < 500) {
+            this.isGeneralError = true;
+          }
+          if (err.status > 499) {
+            this.isServerError = true;
+          }
+          return of(err);
+        })
+      ),
+      this.myLoansService.fetchLoans().pipe(
+        catchError((err) => {
+          console.log(err);
+          console.log('Could not fetch loans!');
+          this.isError = true;
+          if (err.status < 500) {
+            this.isGeneralError = true;
+          }
+          if (err.status > 499) {
+            this.isServerError = true;
+          }
+          return of(err);
+        })
+      )
+    )
+      .pipe(toArray())
+      .subscribe(
+        (res) => {
+          console.log(res);
 
-        // Save the original format in string with mask
-        this.initialOutStandingDebt = this.incomingValueOutstandingDebt;
-        this.initialRemainingYears = this.incomingValueRemainingYears;
-        this.initialNominalRate = this.incomingValueNominalRate;
-        this.initialFee = this.incomingValueFee;
+          if (this.isError) {
+            if (this.isGeneralError) {
+              this.messageBannerService.setView(
+                'Oops, noe gikk galt',
+                5000,
+                this.animationStyle.DROP_DOWN_UP,
+                'error',
+                window
+              );
+            }
+            if (this.isServerError) {
+              this.messageBannerService.setView(
+                'Kan ikke opprette et nytt lån for øyeblikket, prøv igjen senere',
+                5000,
+                this.animationStyle.DROP_DOWN_UP,
+                'error',
+                window
+              );
+            }
 
-        this.setEditDisabled();
-        this.notificationService.setOfferNotification();
-      },
-      (err) => {
-        console.log(err);
+            this.isAbleToSave = false;
+          } else {
+            this.messageBannerService.setView(
+              'Nytt lån er opprettet',
+              3000,
+              this.animationStyle.DROP_DOWN_UP,
+              'success',
+              window
+            );
 
-        if (err.status < 500) {
-          this.isGeneralError = true;
-          this.messageBannerService.setView(
-            'Oops, noe gikk galt',
-            5000,
-            this.animationStyle.DROP_DOWN_UP,
-            'error',
-            window
-          );
+            // Save the original format in string with mask
+            this.initialOutStandingDebt = this.incomingValueOutstandingDebt;
+            this.initialRemainingYears = this.incomingValueRemainingYears;
+            this.initialNominalRate = this.incomingValueNominalRate;
+            this.initialFee = this.incomingValueFee;
+
+            const resLoans = res[1][0].loans[this.index];
+
+            this.initialEffectiveRate = resLoans.effectiveRate;
+            this.initialTotalInterestAndTotalFee =
+              resLoans.totalInterestAndTotalFee;
+            this.initialtotalInterestAndTotalFeeByRemainingYears =
+              resLoans.totalInterestAndTotalFeeByRemainingYears;
+
+            this.setEditDisabled();
+            this.notificationService.setOfferNotification();
+          }
+        },
+        (err) => {
+          console.log(err);
+          console.log('This is reaching the error state after subscribe');
         }
-        if (err.status > 499) {
-          this.isServerError = true;
-          this.messageBannerService.setView(
-            'Kan ikke opprette et nytt lån for øyeblikket, prøv igjen senere',
-            5000,
-            this.animationStyle.DROP_DOWN_UP,
-            'error',
-            window
-          );
-        }
-
-        this.isAbleToSave = false;
-      }
-    );
+      );
   }
 
   // -------------------------------------------------- || ------------------------------------
@@ -639,17 +690,6 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
         // Remove from UI
         this.myLoansService.deleteLoan(loanId);
 
-        /**
-         * Remove from list so the loans length changes
-         * Loans length is used to removed delete function
-         * if theres only one loan left
-         */
-        // const removedDeletedLoan = this.myLoansService
-        //   .getLoansValue()
-        //   .filter((val) => val.id !== loanId);
-
-        // this.myLoansService.updateLoans(removedDeletedLoan);
-
         this.messageBannerService.setView(
           'Lånet er slettet',
           3000,
@@ -669,5 +709,18 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
         );
       }
     );
+  }
+
+  public isAbleToDelete(): boolean {
+    const store = this.myLoansService.getLoansValue();
+
+    if (store.length === 2 && store.some((val) => val.isDeleted === true))
+      return false;
+
+    if (this.isEditMode && store.length > 1) {
+      return true;
+    }
+
+    return false;
   }
 }

@@ -44,7 +44,6 @@ export class LoanFixedPriceComponent implements OnInit, OnDestroy {
   public isGeneralError = false;
   public isServerError = false;
   public isAbleToSave = false;
-  public isEmptyPlaceHolder = false;
   public loanTypeList: LoanTypeOption[] = nonListLoanType;
   public loansLength: number;
 
@@ -78,6 +77,10 @@ export class LoanFixedPriceComponent implements OnInit, OnDestroy {
   public initialOutStandingDebt: string;
   public initialRemainingYears: string;
 
+  public initialEffectiveRate: number;
+  public initialTotalInterestAndTotalFee: number;
+  public initialtotalInterestAndTotalFeeByRemainingYears: number;
+
   constructor(
     private loansService: LoansService,
     private fb: FormBuilder,
@@ -106,6 +109,11 @@ export class LoanFixedPriceComponent implements OnInit, OnDestroy {
     this.initialOutStandingDebt = String(this.loan.outstandingDebt);
     this.initialRemainingYears = correctValue;
     this.loanTypeString = String(this.loan.loanName);
+
+    // Extra variables to set on the component if a new loan is created
+    this.initialEffectiveRate = this.loan.effectiveRate;
+    this.initialTotalInterestAndTotalFee = this.loan.totalInterestAndTotalFee;
+    this.initialtotalInterestAndTotalFeeByRemainingYears = this.loan.totalInterestAndTotalFeeByRemainingYears;
 
     /*
      * Create an object of the same datatype from bank offers
@@ -498,52 +506,92 @@ export class LoanFixedPriceComponent implements OnInit, OnDestroy {
   }
 
   public createNewLoan(obj: SignicatLoanInfoDto): void {
-    this.loansService.createNewLoan([obj]).subscribe(
-      (res) => {
-        console.log(res);
+    concat(
+      this.loansService.createNewLoan([obj]).pipe(
+        catchError((err) => {
+          console.log(err);
+          console.log('Could not create a new loan!');
+          this.isError = true;
+          if (err.status < 500) {
+            this.isGeneralError = true;
+          }
+          if (err.status > 499) {
+            this.isServerError = true;
+          }
+          return of(err);
+        })
+      ),
+      this.myLoansService.fetchLoans().pipe(
+        catchError((err) => {
+          console.log(err);
+          console.log('Could not fetch loans!');
+          this.isError = true;
+          if (err.status < 500) {
+            this.isGeneralError = true;
+          }
+          if (err.status > 499) {
+            this.isServerError = true;
+          }
+          return of(err);
+        })
+      )
+    )
+      .pipe(toArray())
+      .subscribe(
+        (res) => {
+          console.log(res);
 
-        this.messageBannerService.setView(
-          'Nytt lån er opprettet',
-          3000,
-          this.animationStyle.DROP_DOWN_UP,
-          'success',
-          window
-        );
+          if (this.isError) {
+            if (this.isGeneralError) {
+              this.messageBannerService.setView(
+                'Oops, noe gikk galt',
+                5000,
+                this.animationStyle.DROP_DOWN_UP,
+                'error',
+                window
+              );
+            }
+            if (this.isServerError) {
+              this.messageBannerService.setView(
+                'Kan ikke opprette et nytt lån for øyeblikket, prøv igjen senere',
+                5000,
+                this.animationStyle.DROP_DOWN_UP,
+                'error',
+                window
+              );
+            }
 
-        // Save the original format in string with mask
-        this.initialOutStandingDebt = this.incomingValueOutstandingDebt;
-        this.initialRemainingYears = this.incomingValueRemainingYears;
+            this.isAbleToSave = false;
+          } else {
+            this.messageBannerService.setView(
+              'Nytt lån er opprettet',
+              3000,
+              this.animationStyle.DROP_DOWN_UP,
+              'success',
+              window
+            );
 
-        this.setEditDisabled();
-        this.notificationService.setOfferNotification();
-      },
-      (err) => {
-        console.log(err);
+            // Save the original format in string with mask
+            this.initialOutStandingDebt = this.incomingValueOutstandingDebt;
+            this.initialRemainingYears = this.incomingValueRemainingYears;
 
-        if (err.status < 500) {
-          this.isGeneralError = true;
-          this.messageBannerService.setView(
-            'Oops, noe gikk galt',
-            5000,
-            this.animationStyle.DROP_DOWN_UP,
-            'error',
-            window
-          );
+            const resLoans = res[1][0].loans[this.index];
+
+            this.initialEffectiveRate = resLoans.effectiveRate;
+            this.initialTotalInterestAndTotalFee =
+              resLoans.totalInterestAndTotalFee;
+            this.initialtotalInterestAndTotalFeeByRemainingYears =
+              resLoans.totalInterestAndTotalFeeByRemainingYears;
+
+            this.setEditDisabled();
+            this.notificationService.setOfferNotification();
+          }
+        },
+        (err) => {
+          console.log(err);
+          console.log('This is reaching the error state after subscribe');
         }
-        if (err.status > 499) {
-          this.isServerError = true;
-          this.messageBannerService.setView(
-            'Kan ikke opprette et nytt lån for øyeblikket, prøv igjen senere',
-            5000,
-            this.animationStyle.DROP_DOWN_UP,
-            'error',
-            window
-          );
-        }
-
-        this.isAbleToSave = false;
-      }
-    );
+      );
   }
 
   public deleteLoan(): void {
@@ -569,18 +617,6 @@ export class LoanFixedPriceComponent implements OnInit, OnDestroy {
       () => {
         // Remove from UI
         this.myLoansService.deleteLoan(loanId);
-
-        /**
-         * Remove from list so the loans length changes
-         * Loans length is used to removed delete function
-         * if theres only one loan left
-         * If this is activated (Lån slettet html will not activate)
-         */
-        // const removedDeletedLoan = this.myLoansService
-        //   .getLoansValue()
-        //   .filter((val) => val.id !== loanId);
-
-        // this.myLoansService.updateLoans(removedDeletedLoan);
 
         this.messageBannerService.setView(
           'Lånet er slettet',

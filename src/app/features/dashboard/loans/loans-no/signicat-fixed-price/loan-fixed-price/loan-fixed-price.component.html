@@ -179,7 +179,7 @@
                 <p>Effektiv rente:</p>
               </div>
               <div class="loan-value">
-                <h3>{{ loan.effectiveRate | number: '1.2-2' }} %</h3>
+                <h3>{{ initialEffectiveRate | number: '1.2-2' }} %</h3>
               </div>
             </div>
           </div>
@@ -198,9 +198,9 @@
 
               <div class="bvalue">
                 {{
-                  loan.totalInterestAndTotalFee == null
+                  initialTotalInterestAndTotalFee == null
                     ? 'N/A'
-                    : (loan.totalInterestAndTotalFee | number: '1.0-0') + ',-'
+                    : (initialTotalInterestAndTotalFee | number: '1.0-0') + ',-'
                 }}
               </div>
             </div>
@@ -209,9 +209,9 @@
               <p class="box-label">Renter & gebyrer per år</p>
               <div class="bvalue">
                 {{
-                  loan.totalInterestAndTotalFeeByRemainingYears == null
+                  initialtotalInterestAndTotalFeeByRemainingYears == null
                     ? 'N/A'
-                    : (loan.totalInterestAndTotalFeeByRemainingYears
+                    : (initialtotalInterestAndTotalFeeByRemainingYears
                         | number: '1.0-0') + ',-'
                 }}
               </div>
@@ -236,4 +236,3 @@
     </div>
   </div>
 </div>
-<div *ngIf="isEmptyPlaceHolder">Lån slettet</div>
