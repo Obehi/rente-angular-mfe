@@ -414,37 +414,56 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
       this.showDisplayBox = true;
     }, 325);
 
+    // Needs to be later than the deactivate animation to trigger the slide animation on the blue-box-edit
+    setTimeout(() => {
+      const el = document.getElementById(this.index.toString());
+
+      if (!!el) {
+        el.style.removeProperty('height');
+      }
+    }, 1000);
+
     this.disableForm();
   }
 
   public setEditEnabled(): void {
-    this.outstandingDebtIsError = false;
-    this.remainingYearsIsError = false;
-    this.nominalRateIsError = false;
-    this.feeIsError = false;
-    this.loanTypeIsError = false;
+    const el = document.getElementById(this.index.toString());
 
-    const check = this.myLoansService.getEditMode();
-
-    if (check !== null) {
-      console.log('Check is NOT NULL!!');
-      return;
+    if (!!el) {
+      const elHeight = el.getBoundingClientRect().height;
+      el.style.height = `${elHeight.toString()}px`;
+      console.log('El exist and set height');
+      console.log(el.style.height);
     }
 
-    // Reset the form, mark as pristine and disable save button
-    this.myLoansService.setEditMode(this.index);
+    setTimeout(() => {
+      this.outstandingDebtIsError = false;
+      this.remainingYearsIsError = false;
+      this.nominalRateIsError = false;
+      this.feeIsError = false;
+      this.loanTypeIsError = false;
 
-    this.loanForm.markAsPristine();
-    this.isAbleToSave = false;
-    this.enableForm();
+      const check = this.myLoansService.getEditMode();
 
-    this.deactivateAllInput();
+      if (check !== null) {
+        console.log('Check is NOT NULL!!');
+        return;
+      }
 
-    this.showDisplayBox = false;
-    this.showButton = true;
-    this.isEditMode = true;
-    this.hideEditIcon = true;
-    // this.setOpacity = true;
+      // Reset the form, mark as pristine and disable save button
+      this.myLoansService.setEditMode(this.index);
+
+      this.loanForm.markAsPristine();
+      this.isAbleToSave = false;
+      this.enableForm();
+
+      this.deactivateAllInput();
+
+      this.showDisplayBox = false;
+      this.showButton = true;
+      this.isEditMode = true;
+      this.hideEditIcon = true;
+    }, 0);
     setTimeout(() => {
       this.inEditMode = true;
     }, 500);

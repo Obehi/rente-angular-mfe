@@ -4,6 +4,7 @@
       [ngClass]="
         isEditMode === true ? 'content-blue-box-edit' : 'content-blue-box'
       "
+      id="{{ index }}"
     >
       <div class="loan-type">
         <div class="loan-delete">
@@ -236,36 +237,35 @@
         </form>
       </div>
 
-      <div
-        class="total-cost"
-        *ngIf="showDisplayBox"
-        [@fadeOut]="isEditMode ? 'hidden' : 'visible'"
-      >
-        <div class="double-container">
-          <div class="first-box move-first-box">
-            <div class="btitle-one">
-              <p>Totale renter og gebyrer</p>
-            </div>
-            <div class="bvalue">
-              {{
-                initialTotalInterestAndTotalFee == null
-                  ? 'N/A'
-                  : (initialTotalInterestAndTotalFee | number: '1.0-0') + ',-'
-              }}
-            </div>
-          </div>
+      <div class="all-text">
+        <div
+          class="total-cost"
+          *ngIf="showDisplayBox"
+          [@fadeOut]="isEditMode ? 'hidden' : 'visible'"
+        >
+          <div class="double-container">
+            <div class="first-box move-first-box">
+              <p class="box-label">Totale renter og gebyrer</p>
 
-          <div class="first-box move-sec-box">
-            <div class="btitle-two">
-              <p>Renter & gebyrer per år</p>
+              <div class="bvalue">
+                {{
+                  initialTotalInterestAndTotalFee == null
+                    ? 'N/A'
+                    : (initialTotalInterestAndTotalFee | number: '1.0-0') + ',-'
+                }}
+              </div>
             </div>
-            <div class="bvalue">
-              {{
-                initialtotalInterestAndTotalFeeByRemainingYears == null
-                  ? 'N/A'
-                  : (initialtotalInterestAndTotalFeeByRemainingYears
-                      | number: '1.0-0') + ',-'
-              }}
+
+            <div class="first-box move-sec-box">
+              <p class="box-label">Renter & gebyrer per år</p>
+              <div class="bvalue">
+                {{
+                  initialtotalInterestAndTotalFeeByRemainingYears == null
+                    ? 'N/A'
+                    : (initialtotalInterestAndTotalFeeByRemainingYears
+                        | number: '1.0-0') + ',-'
+                }}
+              </div>
             </div>
           </div>
         </div>
