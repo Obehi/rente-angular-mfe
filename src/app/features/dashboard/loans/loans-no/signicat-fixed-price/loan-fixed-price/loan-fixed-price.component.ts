@@ -18,6 +18,9 @@ import { Mask } from '@shared/constants/mask';
 import { VALIDATION_PATTERN } from '@config/validation-patterns.config';
 import { NotificationService } from '@services/notification.service';
 import { LoanTypeOption, nonListLoanType } from '@models/loan-type';
+import { MatDialog } from '@angular/material';
+import { AntiChurnDialogComponent } from '@features/dashboard/offers/anti-churn-dialog/anti-churn-dialog.component';
+import { GenericChoiceDialogComponent } from '@shared/components/ui-components/dialogs/generic-choice-dialog/generic-choice-dialog.component';
 
 @Component({
   selector: 'rente-loan-fixed-price',
@@ -86,7 +89,8 @@ export class LoanFixedPriceComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private messageBannerService: MessageBannerService,
     private myLoansService: MyLoansService,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    public dialog: MatDialog
   ) {}
 
   ngOnDestroy(): void {
@@ -596,18 +600,36 @@ export class LoanFixedPriceComponent implements OnInit, OnDestroy {
   }
 
   public deleteLoan(): void {
+    // const confirmDelete =
+    this.dialog.open(GenericChoiceDialogComponent, {
+      data: {
+        onConfirm: () => {
+          console.log('Confirmed DELETE!');
+          this.deleteConfirmed();
+        },
+        onClose: () => {
+          this.setEditDisabled();
+        },
+        header: 'Bekreft sletting av lån',
+        text: `Er du sikker på at du vil slette lån ${this.index + 1}?`,
+        cancelText: 'Avbryt',
+        confirmText: 'Ja, slett lån'
+      }
+    });
+  }
+
+  public deleteConfirmed(): void {
     const currentLoanIndex = this.myLoansService.getEditMode();
-    console.log('Loan index: ');
-    console.log(currentLoanIndex);
+    // console.log('Loan index: ');
+    // console.log(currentLoanIndex);
 
     if (currentLoanIndex === null) {
-      console.log('Loan index is null');
+      alert('Loan index is null');
       return;
     }
-    alert('Deleting loan');
 
     const loanId = this.loan.id;
-    console.log('Loan ID: ' + loanId.toString());
+    // console.log('Loan ID: ' + loanId.toString());
 
     if (loanId === 0) {
       this.myLoansService.deleteLoan(loanId);

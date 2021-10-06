@@ -39,7 +39,6 @@ export class SignicatFixedPriceComponent implements OnInit {
       this.loans = res;
       if (this.loans) {
         this.loansLength = this.loans.length;
-        // console.log('Length: ' + length.toString());
         if (this.loansLength > 1) this.isSummaryNeeded = true;
 
         if (this.loansLength === 0) this.isEmptyLoans = true;
@@ -66,8 +65,6 @@ export class SignicatFixedPriceComponent implements OnInit {
 
   scrollTo(divId: number): void {
     setTimeout(() => {
-      console.log('Scrolling to view!');
-      console.log('Div id', divId);
       document.getElementById(`${divId}`)?.scrollIntoView({
         behavior: 'smooth',
         block: 'center',

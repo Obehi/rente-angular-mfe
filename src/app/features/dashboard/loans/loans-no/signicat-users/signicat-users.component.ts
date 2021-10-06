@@ -17,6 +17,7 @@ export class SignicatUsersComponent implements OnInit {
   public isSummaryNeeded = false;
   public isEmptyLoans = false;
   public isEditMode: number | null;
+  public loansLength: number;
 
   public loanOverViewObservable$: Observable<LoanOverView>;
 
@@ -34,15 +35,13 @@ export class SignicatUsersComponent implements OnInit {
     this.myLoansService.updateLoans(this.loans);
 
     this.myLoansService.getLoansAsObservable().subscribe((res) => {
-      // console.log('Signicat parent response');
       console.log(res);
       this.loans = res;
       if (this.loans) {
-        const length = this.loans.length;
-        // console.log('Length: ' + length.toString());
-        if (length > 1) this.isSummaryNeeded = true;
+        this.loansLength = this.loans.length;
+        if (this.loansLength > 1) this.isSummaryNeeded = true;
 
-        if (length === 0) this.isEmptyLoans = true;
+        if (this.loansLength === 0) this.isEmptyLoans = true;
       }
     });
 
@@ -62,5 +61,15 @@ export class SignicatUsersComponent implements OnInit {
   public addLoan(): void {
     if (this.isEditMode !== null) return;
     this.myLoansService.addNewLoan();
+  }
+
+  scrollTo(divId: number): void {
+    setTimeout(() => {
+      document.getElementById(`${divId}`)?.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center',
+        inline: 'center'
+      });
+    }, 100);
   }
 }

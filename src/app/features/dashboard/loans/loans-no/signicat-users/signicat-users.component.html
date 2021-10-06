@@ -76,7 +76,7 @@
   </div>
   <rente-button
     color="primary"
-    (click)="addLoan()"
+    (click)="addLoan(); scrollTo(loansLength)"
     class="add-loan"
     [ngClass]="{
       'add-loan-opacity-low': isEditMode !== null,

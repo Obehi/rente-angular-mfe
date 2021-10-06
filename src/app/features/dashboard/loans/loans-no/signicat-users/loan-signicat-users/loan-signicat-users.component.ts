@@ -18,6 +18,8 @@ import { nonListLoanType, LoanTypeOption } from '@models/loan-type';
 import { VALIDATION_PATTERN } from '@config/validation-patterns.config';
 import { NotificationService } from '@services/notification.service';
 import { catchError, toArray } from 'rxjs/operators';
+import { MatDialog } from '@angular/material';
+import { GenericChoiceDialogComponent } from '@shared/components/ui-components/dialogs/generic-choice-dialog/generic-choice-dialog.component';
 
 @Component({
   selector: 'rente-loan-signicat-users',
@@ -95,7 +97,8 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
     private loansService: LoansService,
     private messageBannerService: MessageBannerService,
     private myLoansService: MyLoansService,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    public dialog: MatDialog
   ) {}
 
   ngOnDestroy(): void {
@@ -668,15 +671,32 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
   // -------------------------------------------------- || ------------------------------------
 
   public deleteLoan(): void {
+    this.dialog.open(GenericChoiceDialogComponent, {
+      data: {
+        onConfirm: () => {
+          console.log('Confirmed DELETE!');
+          this.deleteConfirmed();
+        },
+        // onClose: () => {
+        //   this.setEditDisabled();
+        // },
+        header: 'Bekreft sletting av lån',
+        text: 'Er du sikker på at du vil slette lånet?',
+        cancelText: 'Avbryt',
+        confirmText: 'Ja, slett lån'
+      }
+    });
+  }
+
+  public deleteConfirmed(): void {
     const currentLoanIndex = this.myLoansService.getEditMode();
-    console.log('Loan index: ');
-    console.log(currentLoanIndex);
+    // console.log('Loan index: ');
+    // console.log(currentLoanIndex);
 
     if (currentLoanIndex === null) {
       console.log('Loan index is null');
       return;
     }
-    alert('Deleting loan');
 
     const loanId = this.loan.id;
 
