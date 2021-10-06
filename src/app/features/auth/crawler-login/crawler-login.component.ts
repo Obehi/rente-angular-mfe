@@ -99,7 +99,13 @@ export class CrawlerLoginComponent implements OnInit, OnDestroy {
           this.router.navigate(
             ['/autentisering/' + ROUTES_MAP_NO.bankIdLogin],
             {
-              state: { data: { bank: bank, redirect: true } }
+              state: {
+                data: {
+                  bank: bank,
+                  redirect: true,
+                  userHasNoBankIDForPhone: false
+                }
+              }
             }
           );
         }
