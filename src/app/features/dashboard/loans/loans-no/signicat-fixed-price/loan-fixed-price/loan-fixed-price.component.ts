@@ -576,6 +576,7 @@ export class LoanFixedPriceComponent implements OnInit, OnDestroy {
             this.initialRemainingYears = this.incomingValueRemainingYears;
 
             const resLoans = res[1][0].loans[this.index];
+            console.log('resLoan: ', resLoans);
 
             this.initialEffectiveRate = resLoans.effectiveRate;
             this.initialTotalInterestAndTotalFee =
