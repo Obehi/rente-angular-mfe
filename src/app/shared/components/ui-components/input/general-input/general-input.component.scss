@@ -2,27 +2,24 @@
 
 .input-box {
   text-align: center;
-  padding: 5px 10px 5px 0px;
+  padding: 5px 10px 5px 5px;
 }
 
 .input-container {
   display: flex;
-  justify-content: center;
-  align-items: baseline;
+  grid-column-gap: 5px;
+  align-items: center;
+}
 
-  input {
-    background-color: transparent !important;
+input {
+  background-color: transparent !important;
 
-    border: none;
-    border-style: none;
-    width: 100%;
-    height: 25px;
-  }
-
-  input:disabled {
-    background-color: transparent !important;
-    opacity: 1 !important;
-  }
+  border: none !important;
+  border-style: none !important;
+  width: 100% !important;
+  height: 23px !important;
+  min-height: 21px !important;
+  border-radius: 5px;
 }
 
 input:disabled,
@@ -31,14 +28,19 @@ input:disabled::placeholder,
 textarea:disabled::placeholder {
   -webkit-text-fill-color: currentcolor; /* 1. sets text fill to current `color` for safari */
   opacity: 1 !important; /* 2. correct opacity on iOS */
-  background-color: rgba(255, 255, 255, 0);
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0
+  ); // 3. Necessary to remove transparency on safari
 }
 
 .input-text {
   color: white;
   font-size: 16px !important;
   text-align: end !important;
-  //   margin-right: 5px;
+  margin: auto;
 }
 
 .input-edit {
@@ -77,5 +79,4 @@ textarea:disabled::placeholder {
 
 .white-text {
   color: white;
-  margin-left: 5px;
 }
