@@ -33,7 +33,7 @@ export class MyLoansService {
       bankKey: '',
       effectiveRate: 0,
       id: 0,
-      fee: 60,
+      fee: 0,
       isDeleted: false,
       isIncompleteInfoLoan: true,
       loanName: 'Nedbetalingslån',
@@ -91,9 +91,9 @@ export class MyLoansService {
       isIncompleteInfoLoan: true,
       loanName: 'Boliglån 75 %',
       loanType: 'DOWNPAYMENT_REGULAR_LOAN',
-      nominalRate: 1.11,
-      outstandingDebt: 1,
-      remainingYears: 1,
+      nominalRate: null,
+      outstandingDebt: null,
+      remainingYears: null,
       totalInterestAndTotalFee: 0,
       totalInterestAndTotalFeeByRemainingYears: 0
     };

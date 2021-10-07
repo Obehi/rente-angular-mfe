@@ -117,11 +117,16 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    // Check count of decimals and format it to 0 or 1 decimal
-    const format = this.myLoansService.countDecimals(this.loan.remainingYears);
     let correctValue = '';
-    if (format < 2) correctValue = String(this.loan.remainingYears);
-    if (format > 1) correctValue = this.loan.remainingYears.toFixed(1);
+
+    if (this.loan.remainingYears !== null) {
+      // Check count of decimals and format it to 0 or 1 decimal
+      const format = this.myLoansService.countDecimals(
+        this.loan.remainingYears
+      );
+      if (format < 2) correctValue = String(this.loan.remainingYears);
+      if (format > 1) correctValue = this.loan.remainingYears.toFixed(1);
+    }
 
     // Set initial value
     this.initialOutStandingDebt = String(this.loan.outstandingDebt);

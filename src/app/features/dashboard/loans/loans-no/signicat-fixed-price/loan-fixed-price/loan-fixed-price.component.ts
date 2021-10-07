@@ -77,10 +77,11 @@ export class LoanFixedPriceComponent implements OnInit, OnDestroy {
 
   // Store the inital value from api
   public initialLoanName: string;
-  public initialOutStandingDebt: string;
-  public initialRemainingYears: string;
+  public initialOutStandingDebt: string | null;
+  public initialRemainingYears: string | null;
 
-  public initialEffectiveRate: number;
+  public initialEffectiveRate: number | null;
+  public initialNominalRate: number | null;
   public initialTotalInterestAndTotalFee: number;
   public initialtotalInterestAndTotalFeeByRemainingYears: number;
 
@@ -103,11 +104,16 @@ export class LoanFixedPriceComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    // Check count of decimals and format it to 0 or 1 decimal
-    const format = this.myLoansService.countDecimals(this.loan.remainingYears);
     let correctValue = '';
-    if (format < 2) correctValue = String(this.loan.remainingYears);
-    if (format > 1) correctValue = this.loan.remainingYears.toFixed(1);
+
+    if (this.loan.remainingYears !== null) {
+      // Check count of decimals and format it to 0 or 1 decimal
+      const format = this.myLoansService.countDecimals(
+        this.loan.remainingYears
+      );
+      if (format < 2) correctValue = String(this.loan.remainingYears);
+      if (format > 1) correctValue = this.loan.remainingYears.toFixed(1);
+    }
 
     this.initialLoanName = String(this.loan.loanName);
     this.initialOutStandingDebt = String(this.loan.outstandingDebt);
@@ -116,6 +122,7 @@ export class LoanFixedPriceComponent implements OnInit, OnDestroy {
 
     // Extra variables to set on the component if a new loan is created
     this.initialEffectiveRate = this.loan.effectiveRate;
+    this.initialNominalRate = this.loan.nominalRate;
     this.initialTotalInterestAndTotalFee = this.loan.totalInterestAndTotalFee;
     this.initialtotalInterestAndTotalFeeByRemainingYears = this.loan.totalInterestAndTotalFeeByRemainingYears;
 
@@ -195,6 +202,11 @@ export class LoanFixedPriceComponent implements OnInit, OnDestroy {
     this.outStandingDebtchangeSubscription = this.loanForm
       .get(this.outstandingDebtString)
       ?.valueChanges.subscribe(() => {
+        // Get value regardless of other states
+        this.incomingValueOutstandingDebt = this.loanForm.get(
+          'outstandingDebt'
+        )?.value;
+
         if (
           this.loanForm.get('outstandingDebt')?.dirty &&
           this.isErrorState(this.loanForm?.controls['outstandingDebt'])
@@ -204,13 +216,11 @@ export class LoanFixedPriceComponent implements OnInit, OnDestroy {
 
         if (
           this.loanForm.get('outstandingDebt')?.dirty &&
-          !this.isErrorState(this.loanForm?.controls['outstandingDebt'])
+          !this.isErrorState(this.loanForm?.controls['outstandingDebt']) &&
+          this.incomingValueRemainingYears.trim() !== ''
         ) {
           this.outstandingDebtIsError = false;
           this.isAbleToSave = true;
-          this.incomingValueOutstandingDebt = this.loanForm.get(
-            'outstandingDebt'
-          )?.value;
         } else {
           this.isAbleToSave = false;
         }
@@ -219,6 +229,10 @@ export class LoanFixedPriceComponent implements OnInit, OnDestroy {
     this.remainingYearschangeSubscription = this.loanForm
       .get(this.remainingYearsString)
       ?.valueChanges.subscribe(() => {
+        // Get value
+        this.incomingValueRemainingYears = this.loanForm.get(
+          'remainingYears'
+        )?.value;
         if (
           this.loanForm.get('remainingYears')?.dirty &&
           this.isErrorState(this.loanForm?.controls['remainingYears'])
@@ -228,13 +242,11 @@ export class LoanFixedPriceComponent implements OnInit, OnDestroy {
 
         if (
           this.loanForm.get('remainingYears')?.dirty &&
-          !this.isErrorState(this.loanForm?.controls['remainingYears'])
+          !this.isErrorState(this.loanForm?.controls['remainingYears']) &&
+          this.incomingValueOutstandingDebt.trim() !== ''
         ) {
           this.remainingYearsIsError = false;
           this.isAbleToSave = true;
-          this.incomingValueRemainingYears = this.loanForm.get(
-            'remainingYears'
-          )?.value;
         } else {
           this.isAbleToSave = false;
         }
@@ -431,9 +443,13 @@ export class LoanFixedPriceComponent implements OnInit, OnDestroy {
       this.loanTypeList.filter((val) => val.value === getLoanType)[0].subType
     );
 
-    const getNominalRate = this.myLoansService.formatComma(
-      String(this.loan.nominalRate)
-    );
+    let getNominalRate = 0;
+
+    if (this.loan.nominalRate !== null) {
+      getNominalRate = this.myLoansService.formatComma(
+        String(this.loan.nominalRate)
+      );
+    }
 
     const sendToBEDto = {
       fee: getFee,
@@ -470,12 +486,12 @@ export class LoanFixedPriceComponent implements OnInit, OnDestroy {
           window
         );
 
+        // Set the loan type to the selected
+        this.initialLoanName = this.selected;
+
         // Save the original format in string with mask
         this.initialOutStandingDebt = this.incomingValueOutstandingDebt;
         this.initialRemainingYears = this.incomingValueRemainingYears;
-
-        // Set the loan type to the selected
-        this.initialLoanName = this.selected;
 
         this.setEditDisabled();
         this.notificationService.setOfferNotification();
@@ -584,6 +600,7 @@ export class LoanFixedPriceComponent implements OnInit, OnDestroy {
             console.log('resLoan: ', resLoans);
 
             this.initialEffectiveRate = resLoans.effectiveRate;
+            this.initialNominalRate = resLoans.nominalRate;
             this.initialTotalInterestAndTotalFee =
               resLoans.totalInterestAndTotalFee;
             this.initialtotalInterestAndTotalFeeByRemainingYears =

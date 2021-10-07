@@ -14,14 +14,14 @@ export interface LoanInfo {
   bankKey: string;
   effectiveRate: number;
   id: number;
-  fee: number;
+  fee: number | null;
   isDeleted?: boolean;
   isIncompleteInfoLoan: boolean;
   loanName: string;
   loanType: string;
-  nominalRate: number;
-  outstandingDebt: number;
-  remainingYears: number;
+  nominalRate: number | null;
+  outstandingDebt: number | null;
+  remainingYears: number | null;
   totalInterestAndTotalFee: number;
   totalInterestAndTotalFeeByRemainingYears: number;
 }
