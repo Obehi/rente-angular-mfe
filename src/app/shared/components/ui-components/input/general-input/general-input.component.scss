@@ -18,6 +18,20 @@
     width: 100%;
     height: 25px;
   }
+
+  input:disabled {
+    background-color: transparent !important;
+    opacity: 1 !important;
+  }
+}
+
+input:disabled,
+textarea:disabled,
+input:disabled::placeholder,
+textarea:disabled::placeholder {
+  -webkit-text-fill-color: currentcolor; /* 1. sets text fill to current `color` for safari */
+  opacity: 1 !important; /* 2. correct opacity on iOS */
+  background-color: rgba(255, 255, 255, 0);
 }
 
 .input-text {
