@@ -86,7 +86,7 @@ export class MyLoansService {
       bankKey: infoList[0].bankKey,
       effectiveRate: 0,
       id: 0,
-      fee: 0,
+      fee: null,
       isDeleted: false,
       isIncompleteInfoLoan: true,
       loanName: 'Boliglån 75 %',

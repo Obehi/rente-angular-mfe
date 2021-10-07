@@ -37,6 +37,34 @@
 
       <div class="forms">
         <form class="p-0 border-0" [formGroup]="loanForm" novalidate change>
+          <div
+            [ngClass]="{
+              'loan-center': !isEditMode,
+              'loan-center-edit': inEditMode,
+              'loan-center-edit-focus':
+                isEditMode && inputLoanTypeIsActive && !loanTypeIsError,
+              'loan-center-edit-error': loanTypeIsError
+            }"
+            (click)="setInputLoanTypeActive()"
+          >
+            <mat-form-field appearance="fill">
+              <mat-select
+                [(value)]="loanTypeSelected"
+                [disabled]="!isEditMode"
+                (selectionChange)="matSelectChanged()"
+                disableOptionCentering
+                panelClass="overlay-pane"
+              >
+                <mat-option
+                  *ngFor="let loanType of loanTypeList"
+                  [value]="loanType.name"
+                >
+                  {{ loanType.name }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
           <div class="field-box">
             <h4 class="text-white">Utestående lån:</h4>
 
@@ -47,7 +75,6 @@
                 [maskType]="maskType"
                 [suffix]="'kr'"
                 [maxLength]="'14'"
-                [placeholder]="'Fyll inn lån'"
                 [isEditMode]="isEditMode"
                 [inEditMode]="inEditMode"
                 [isInputFocused]="
@@ -142,7 +169,8 @@
                   "
                   [isInputError]="nominalRateIsError"
                   [errorStateMatcher]="
-                    isErrorState(loanForm?.controls['nominalRate'])
+                    isErrorState(loanForm?.controls['nominalRate']) ||
+                    nominalRateIsError
                   "
                 ></rente-general-input>
                 <div *ngIf="loanForm?.controls['nominalRate'].touched">
@@ -205,34 +233,6 @@
             <div class="center">
               <h3>{{ initialEffectiveRate | number: '1.2-2' }} %</h3>
             </div>
-          </div>
-
-          <div
-            [ngClass]="{
-              'loan-center': !isEditMode,
-              'loan-center-edit': inEditMode,
-              'loan-center-edit-focus':
-                isEditMode && inputLoanTypeIsActive && !loanTypeIsError,
-              'loan-center-edit-error': loanTypeIsError
-            }"
-            (click)="setInputLoanTypeActive()"
-          >
-            <mat-form-field appearance="fill">
-              <mat-select
-                [(value)]="loanTypeSelected"
-                [disabled]="!isEditMode"
-                (selectionChange)="matSelectChanged()"
-                disableOptionCentering
-                panelClass="overlay-pane"
-              >
-                <mat-option
-                  *ngFor="let loanType of loanTypeList"
-                  [value]="loanType.name"
-                >
-                  {{ loanType.name }}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
           </div>
         </form>
       </div>

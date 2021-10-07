@@ -428,8 +428,6 @@ export class LoanFixedPriceComponent implements OnInit, OnDestroy {
       this.incomingValueOutstandingDebt
     );
 
-    console.log('GET OUTSTNADING DEBT: ', getOutstandingDebt);
-
     const getRemainingYears = this.myLoansService.formatComma(
       this.incomingValueRemainingYears
     );
@@ -571,6 +569,8 @@ export class LoanFixedPriceComponent implements OnInit, OnDestroy {
   }
 
   public createNewLoan(obj: SignicatLoanInfoDto): void {
+    this.isAbleToSave = false;
+
     concat(
       this.loansService.createNewLoan([obj]).pipe(
         catchError((err) => {

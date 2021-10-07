@@ -40,7 +40,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class GeneralInputComponent
   implements OnInit, OnDestroy, OnChanges, ControlValueAccessor {
-  @Input() maskType: any;
+  @Input() maskType?: any;
   @Input() suffix: string;
   @Input() errorStateMatcher: boolean;
   @Input() maxLength?: string;
