@@ -57,7 +57,10 @@
     </div>
   </div>
 
-  <div class="add-loan-flex">
+  <div
+    class="add-loan-flex"
+    [ngClass]="{ 'btn-margin-singleloan': isSummaryNeeded === false }"
+  >
     <rente-button
       color="primary-small"
       (click)="addLoan(); scrollTo(loansLength)"

@@ -47,10 +47,12 @@ export class MyLoansService {
   ]);
 
   public loansObservable$ = this.fetchLoans().pipe(
-    map((res) => res[0]),
-    shareReplay(1)
+    tap((res) => console.log('res from myloanservice loansobservable: ', res)),
+    map((res) => res[0])
+    // shareReplay(2)
   );
   public loanOverViewObservable$ = this.loansObservable$.pipe(
+    tap(() => console.log('Loan overview tap!')),
     map((loans) => {
       return {
         aggregatedTotalInterestAndFee: loans.aggregatedTotalInterestAndFee,
@@ -59,8 +61,8 @@ export class MyLoansService {
         totalEffectiveRate: loans.totalEffectiveRate,
         totalOutstandingDebt: loans.totalOutstandingDebt
       };
-    }),
-    shareReplay(1)
+    })
+    // shareReplay(2)
   );
 
   constructor(private loansService: LoansService) {}
@@ -171,9 +173,6 @@ export class MyLoansService {
     return forkJoin([
       this.loansService.getLoans(),
       this.loansService.getOffersBanks()
-    ]).pipe(
-      shareReplay(1)
-      // tap((val) => console.log('Hello'))
-    );
+    ]).pipe(share());
   }
 }

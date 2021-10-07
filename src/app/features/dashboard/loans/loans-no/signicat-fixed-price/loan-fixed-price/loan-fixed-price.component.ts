@@ -10,7 +10,7 @@ import { MessageBannerService } from '@services/message-banner.service';
 import { LoansService } from '@services/remote-api/loans.service';
 import { getAnimationStyles } from '@shared/animations/animationEnums';
 import { concat, of, Subscription } from 'rxjs';
-import { catchError, toArray } from 'rxjs/operators';
+import { catchError, tap, toArray } from 'rxjs/operators';
 import { FadeOut } from '@shared/animations/fade-out';
 import { ButtonFadeInOut } from '@shared/animations/button-fade-in-out';
 import { MyLoansService } from '../../../myloans.service';
@@ -526,6 +526,7 @@ export class LoanFixedPriceComponent implements OnInit, OnDestroy {
         })
       ),
       this.myLoansService.fetchLoans().pipe(
+        tap((res) => console.log('Tap in loan fixed!', res)),
         catchError((err) => {
           console.log(err);
           console.log('Could not fetch loans!');
