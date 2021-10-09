@@ -538,11 +538,10 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
     }
   } // send request end
 
-  public updateLoan(obj: SignicatLoanInfoDto): void {
-    this.loansService.updateLoan([obj]).subscribe(
+  public updateLoan(loan: SignicatLoanInfoDto): void {
+    this.loansService.updateLoan([loan]).subscribe(
       (res) => {
-        console.log(res);
-
+        this.myLoansService.reloadLoans();
         this.messageBannerService.setView(
           'Endringene dine er lagret',
           3000,
@@ -559,7 +558,7 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
 
         // Set the loan type to the selected
         this.initialLoanType = this.loanTypeList.filter(
-          (val) => val.value === obj.loanType
+          (val) => val.value === loan.loanType
         )[0].name;
 
         this.setEditDisabled();
@@ -631,7 +630,7 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
       .subscribe(
         (res) => {
           console.log(res);
-
+          this.myLoansService.reloadLoans();
           if (this.isError) {
             if (this.isGeneralError) {
               this.messageBannerService.setView(
@@ -728,6 +727,9 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
       () => {
         // Remove from UI
         this.myLoansService.deleteLoan(loanId);
+
+        // Update Overview with new numbers
+        this.myLoansService.reloadLoans();
 
         this.messageBannerService.setView(
           'Lånet er slettet',

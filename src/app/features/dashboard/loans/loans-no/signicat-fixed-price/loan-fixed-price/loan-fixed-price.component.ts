@@ -461,7 +461,7 @@ export class LoanFixedPriceComponent implements OnInit, OnDestroy {
     this.loansService.updateLoan([obj]).subscribe(
       (res) => {
         console.log(res);
-
+        this.myLoansService.reloadLoans();
         this.messageBannerService.setView(
           'Endringene dine er lagret',
           3000,
@@ -545,6 +545,7 @@ export class LoanFixedPriceComponent implements OnInit, OnDestroy {
       .subscribe(
         (res) => {
           console.log(res);
+          this.myLoansService.reloadLoans();
 
           if (this.isError) {
             if (this.isGeneralError) {
