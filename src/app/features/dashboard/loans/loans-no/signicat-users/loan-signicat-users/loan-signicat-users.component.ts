@@ -13,13 +13,14 @@ import { getAnimationStyles } from '@shared/animations/animationEnums';
 import { ButtonFadeInOut } from '@shared/animations/button-fade-in-out';
 import { FadeOut } from '@shared/animations/fade-out';
 import { Mask } from '@shared/constants/mask';
-import { concat, of, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { nonListLoanType, LoanTypeOption } from '@models/loan-type';
 import { VALIDATION_PATTERN } from '@config/validation-patterns.config';
 import { NotificationService } from '@services/notification.service';
-import { catchError, toArray } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
 import { MatDialog } from '@angular/material';
 import { GenericChoiceDialogComponent } from '@shared/components/ui-components/dialogs/generic-choice-dialog/generic-choice-dialog.component';
+import { RxjsOperatorService } from '@services/rxjs-operator.service';
 
 @Component({
   selector: 'rente-loan-signicat-users',
@@ -98,7 +99,8 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
     private messageBannerService: MessageBannerService,
     private myLoansService: MyLoansService,
     private notificationService: NotificationService,
-    public dialog: MatDialog
+    private dialog: MatDialog,
+    private rxjsOperatorService: RxjsOperatorService
   ) {}
 
   ngOnDestroy(): void {
@@ -751,33 +753,44 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
       return;
     }
 
-    this.loansService.deleteLoan(loanId).subscribe(
-      () => {
-        // Remove from UI
-        this.myLoansService.deleteLoan(loanId);
+    this.loansService
+      .deleteLoan(loanId)
+      .pipe(
+        tap(() => console.log('japppppp')),
+        catchError(
+          this.rxjsOperatorService.handleErrorWithNotification(
+            'Oops, noe gikk galt. Lånet ble ikke slettet. Prøv igjen senere',
+            5000
+          )
+        )
+      )
+      .subscribe(
+        () => {
+          // Re move from UI
+          this.myLoansService.deleteLoan(loanId);
 
-        // Update Overview with new numbers
-        this.myLoansService.reloadLoans();
+          // Update Overview with new numbers
+          this.myLoansService.reloadLoans();
 
-        this.messageBannerService.setView(
-          'Lånet er slettet',
-          3000,
-          this.animationStyle.DROP_DOWN_UP,
-          'success',
-          window
-        );
-      },
-      (err) => {
-        console.log(err);
-        this.messageBannerService.setView(
-          'Oops, noe gikk galt. Lånet ble ikke slettet. Prøv igjen senere',
-          5000,
-          this.animationStyle.DROP_DOWN_UP,
-          'error',
-          window
-        );
-      }
-    );
+          this.messageBannerService.setView(
+            'Lånet er slettet',
+            3000,
+            this.animationStyle.DROP_DOWN_UP,
+            'success',
+            window
+          );
+        },
+        (err) => {
+          console.log(err);
+          this.messageBannerService.setView(
+            'Oops, noe gikk galt. Lånet ble ikke slettet. Prøv igjen senere',
+            5000,
+            this.animationStyle.DROP_DOWN_UP,
+            'error',
+            window
+          );
+        }
+      );
   }
 
   public isAbleToDelete(): boolean {
