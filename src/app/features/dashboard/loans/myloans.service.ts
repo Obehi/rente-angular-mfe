@@ -1,8 +1,23 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, forkJoin, Observable } from 'rxjs';
+import {
+  BehaviorSubject,
+  forkJoin,
+  merge,
+  Observable,
+  of,
+  Subject
+} from 'rxjs';
 import { LoanInfo, Loans, SignicatLoanInfoDto } from '@shared/models/loans';
 import { LoansService } from '@services/remote-api/loans.service';
-import { map, share, shareReplay, tap } from 'rxjs/operators';
+import {
+  catchError,
+  map,
+  share,
+  shareReplay,
+  switchMap,
+  tap
+} from 'rxjs/operators';
+import { OffersBank } from '@models/bank';
 
 export interface LoanOverView {
   aggregatedTotalInterestAndFee: number;
@@ -49,11 +64,29 @@ export class MyLoansService {
   public loansObservable$ = this.fetchLoans().pipe(
     tap((res) => console.log('res from myloanservice loansobservable: ', res)),
     map((res) => res[0])
-    // shareReplay(2)
   );
-  public loanOverViewObservable$ = this.loansObservable$.pipe(
+
+  private loans$: Observable<Loans | null> = this.loansService.getLoans();
+  private offerBanks$: Observable<OffersBank | null> = this.loansService.getOffersBanks();
+
+  private reloadLoans$: Subject<boolean> = new Subject();
+  reloadLoans = (): void => this.reloadLoans$.next(true);
+
+  private loansAndOfferBanks$ = merge(
+    this.reloadLoans$.pipe(
+      switchMap(() => forkJoin([this.loans$, this.offerBanks$])),
+      share()
+    ),
+    this.fetchLoans()
+  );
+
+  get loansAndOfferBanks(): Observable<any[]> {
+    return this.loansAndOfferBanks$;
+  }
+
+  public loanOverViewObservable$: Observable<any> = this.loansAndOfferBanks.pipe(
     tap(() => console.log('Loan overview tap!')),
-    map((loans) => {
+    map(([loans, offers]) => {
       return {
         aggregatedTotalInterestAndFee: loans.aggregatedTotalInterestAndFee,
         aggregatedTotalInterestAndFeeByRemainingYears:
@@ -62,7 +95,6 @@ export class MyLoansService {
         totalOutstandingDebt: loans.totalOutstandingDebt
       };
     })
-    // shareReplay(2)
   );
 
   constructor(private loansService: LoansService) {}
@@ -173,6 +205,14 @@ export class MyLoansService {
     return forkJoin([
       this.loansService.getLoans(),
       this.loansService.getOffersBanks()
-    ]).pipe(share());
+    ]).pipe(
+      share(),
+      catchError((err) => {
+        console.log(err);
+        console.log('My loans service error pipe');
+
+        return of(err);
+      })
+    );
   }
 }

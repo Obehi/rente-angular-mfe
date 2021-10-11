@@ -1,8 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { bankOfferDto, LoanInfo, Loans } from '@models/loans';
-import { Observable } from 'rxjs';
 import { delay } from 'rxjs/operators';
-import { LoanOverView, MyLoansService } from '../../myloans.service';
+import { MyLoansService } from '../../myloans.service';
 
 @Component({
   selector: 'rente-signicat-fixed-price',
@@ -19,13 +18,9 @@ export class SignicatFixedPriceComponent implements OnInit {
   public isEditMode: number | null;
   public loansLength: number;
 
-  public loanOverViewObservable$: Observable<LoanOverView>;
-
   constructor(public myLoansService: MyLoansService) {}
 
   ngOnInit(): void {
-    this.loanOverViewObservable$ = this.myLoansService.loanOverViewObservable$;
-
     this.loans = this.loanData.loans;
 
     this.loans.forEach((loan) => {

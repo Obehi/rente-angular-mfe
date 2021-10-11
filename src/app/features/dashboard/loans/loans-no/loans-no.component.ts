@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoansService } from '@services/remote-api/loans.service';
-import { Loans, bankOfferDto } from '@shared/models/loans';
+import { Loans, bankOfferDto, SignicatLoanInfoDto } from '@shared/models/loans';
 import {
   trigger,
   transition,
@@ -12,8 +12,8 @@ import { locale } from '@config/locale/locale';
 import { MessageBannerService } from '@services/message-banner.service.ts';
 import { getAnimationStyles } from '@shared/animations/animationEnums';
 import { MyLoansService } from '../myloans.service';
-import { tap } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
 
 @Component({
   selector: 'rente-loans',
@@ -58,23 +58,46 @@ export class LoansNoComponent implements OnInit {
   ngOnInit(): void {
     this.locale = locale;
 
-    this.loansAndOffers$ = this.myLoansService.fetchLoans().pipe(
+    this.loansAndOffers$ = this.myLoansService.loansAndOfferBanks.pipe(
+      catchError((err) => {
+        console.log('Error', err);
+        this.messageBannerService.setView(
+          'Noe gikk feil, vennligst prøv igjen senere. Hvis dette vedvarer, ta kontakt!',
+          4000,
+          this.animationType.DROP_DOWN_UP,
+          'error',
+          window
+        );
+        return of(err);
+      }),
       tap((res) => {
-        // console.log(res);
+        // console.log('Loan and Offers RUN!');
+        console.log(res);
         this.loansData = res[0];
         this.offers = res[1].offers;
 
-        // console.log(this.offers);
+        const newList = this.loansData.loans.map((loan) => {
+          return {
+            bank: loan.bank,
+            bankKey: loan.bankKey,
+            effectiveRate: loan.effectiveRate,
+            id: loan.id,
+            fee: loan.fee,
+            isDeleted: false,
+            isIncompleteInfoLoan: loan.isIncompleteInfoLoan,
+            loanName: loan.loanName,
+            loanType: loan.loanType,
+            nominalRate: loan.nominalRate,
+            outstandingDebt: loan.outstandingDebt,
+            remainingYears: loan.remainingYears,
+            totalInterestAndTotalFee: loan.totalInterestAndTotalFee,
+            totalInterestAndTotalFeeByRemainingYears:
+              loan.totalInterestAndTotalFeeByRemainingYears
+          };
+        });
 
-        if (!this.loansData) {
-          this.messageBannerService.setView(
-            'Noe gikk feil, vennligst prøv igjen senere. Hvis dette vedvarer, ta kontakt!',
-            4000,
-            this.animationType.DROP_DOWN_UP,
-            'error',
-            window
-          );
-        }
+        // console.log('NEw List in loan:', newList);
+        this.myLoansService.updateLoans(newList);
 
         /*
          Backend returns origin which contains either 1 or 2
@@ -91,20 +114,26 @@ export class LoansNoComponent implements OnInit {
         this.isFixedPriceBank = false; */
       })
     );
-    // .subscribe(
-    //   ([loans, offerBank]) => {
-    //     console.log('Loans no component');
-    //   },
-    //   (err) => {
-    //     this.errorMessage = err.title;
-    //     this.messageBannerService.setView(
-    //       'Noe gikk feil, vennligst prøv igjen senere',
-    //       4000,
-    //       this.animationType.DROP_DOWN_UP,
-    //       'error',
-    //       window
-    //     );
-    //   }
-    // );
   }
+
+  // public setLoansErrorListener(): void {
+  //   console.log('Listener error');
+  //   this.myLoansService
+  //     .fetchLoans()
+  //     .pipe(
+  //       catchError((err) => {
+  //         console.log(err);
+  //         console.log('Could not fetch loans!');
+  //         // this.isError = true;
+  //         // if (err.status < 500) {
+  //         //   this.isGeneralError = true;
+  //         // }
+  //         // if (err.status > 499) {
+  //         //   this.isServerError = true;
+  //         // }
+  //         return of(err);
+  //       })
+  //     )
+  //     .subscribe((res) => console.log('Set Loans listener activated'));
+  // }
 }

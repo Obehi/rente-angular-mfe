@@ -34,6 +34,11 @@ export class LoansService {
     private httpClient: HttpClient
   ) {}
 
+  public getLoansTest(): Observable<Loans> {
+    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.loans}`;
+    return this.http.get(url);
+  }
+
   public getLoans(): Observable<Loans> {
     const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.loans.base}`;
     return this.http.get(url);

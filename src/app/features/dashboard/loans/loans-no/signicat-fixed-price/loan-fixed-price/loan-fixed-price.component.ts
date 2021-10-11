@@ -104,6 +104,9 @@ export class LoanFixedPriceComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    // Make sure edit mode is null to prevent bugs
+    this.myLoansService.setEditMode(null);
+
     let correctValue = '';
 
     if (this.loan.remainingYears !== null) {
@@ -132,13 +135,15 @@ export class LoanFixedPriceComponent implements OnInit, OnDestroy {
      * Since mat-select wants the default value to be the same datatype as the array it uses
      */
 
+    // -------------------  Sort the offers --------------------------
+    this.allOffers.sort((a, b) => a.name.localeCompare(b.name));
+
+    // Demo test code necessary, deactivate when testing in signicat
     // const transformDto = {
     //   name: this.loanTypeString,
     //   id: 'tag:finansportalen.no:feed/bank/boliglan/1622922',
     //   rate: 1.99
     // };
-
-    // Demo test code necessary, deactivate when testing in signicat
     // this.allOffers.push(transformDto);
 
     // Demo selected filter
@@ -465,10 +470,10 @@ export class LoanFixedPriceComponent implements OnInit, OnDestroy {
     console.log('Sent obj:', sendToBEDto);
 
     if (this.loan.id === 0) {
-      console.log('Creating new loan:', sendToBEDto);
+      // console.log('Creating new loan:', sendToBEDto);
       this.createNewLoan(sendToBEDto);
     } else {
-      console.log('Updating loan:', sendToBEDto);
+      // console.log('Updating loan:', sendToBEDto);
       this.updateLoan(sendToBEDto);
     }
   } // send request end
@@ -476,194 +481,119 @@ export class LoanFixedPriceComponent implements OnInit, OnDestroy {
   public updateLoan(obj: SignicatLoanInfoDto): void {
     this.isAbleToSave = false;
 
-    concat(
-      this.loansService.updateLoan([obj]).pipe(
-        catchError((err) => {
-          console.log(err);
-          console.log('Could not create a new loan!');
-          this.isError = true;
-          if (err.status < 500) {
-            this.isGeneralError = true;
-          }
-          if (err.status > 499) {
-            this.isServerError = true;
-          }
-          return of(err);
-        })
-      ),
-      this.myLoansService.fetchLoans().pipe(
-        catchError((err) => {
-          console.log(err);
-          console.log('Could not fetch loans!');
-          this.isError = true;
-          if (err.status < 500) {
-            this.isGeneralError = true;
-          }
-          if (err.status > 499) {
-            this.isServerError = true;
-          }
-          return of(err);
-        })
-      )
-    )
-      .pipe(toArray())
-      .subscribe(
-        (res) => {
-          console.log(res);
+    this.loansService.updateLoan([obj]).subscribe(
+      () => {
+        // returns null if successful
 
-          if (this.isError) {
-            if (this.isGeneralError) {
-              this.messageBannerService.setView(
-                'En eller flere av endringene ble ikke oppdatert',
-                5000,
-                this.animationStyle.DROP_DOWN_UP,
-                'error',
-                window
-              );
-            }
-            if (this.isServerError) {
-              this.messageBannerService.setView(
-                'Oops, noe gikk galt. Prøv igjen senere',
-                5000,
-                this.animationStyle.DROP_DOWN_UP,
-                'error',
-                window
-              );
-            }
+        // Update loan numbers
+        this.myLoansService.reloadLoans();
 
-            this.isAbleToSave = false;
-          } else {
-            this.messageBannerService.setView(
-              'Endringene dine er lagret',
-              3000,
-              this.animationStyle.DROP_DOWN_UP,
-              'success',
-              window
-            );
+        this.messageBannerService.setView(
+          'Endringene dine er lagret',
+          3000,
+          this.animationStyle.DROP_DOWN_UP,
+          'success',
+          window
+        );
 
-            // Set the loan type to the selected
-            this.initialLoanName = this.selected;
+        // Set the loan type to the selected
+        // this.initialLoanName = this.selected;
 
-            // Save the original format in string with mask
-            this.initialOutStandingDebt = this.incomingValueOutstandingDebt;
-            this.initialRemainingYears = this.incomingValueRemainingYears;
+        // // Save the original format in string with mask
+        // this.initialOutStandingDebt = this.incomingValueOutstandingDebt;
+        // this.initialRemainingYears = this.incomingValueRemainingYears;
 
-            const resLoans = res[1][0].loans[this.index];
-            console.log('resLoan: ', resLoans);
+        // const resLoans = res[0].loans[this.index];
+        // console.log('resLoan: ', resLoans);
 
-            this.initialEffectiveRate = resLoans.effectiveRate;
-            this.initialNominalRate = resLoans.nominalRate;
-            this.initialTotalInterestAndTotalFee =
-              resLoans.totalInterestAndTotalFee;
-            this.initialtotalInterestAndTotalFeeByRemainingYears =
-              resLoans.totalInterestAndTotalFeeByRemainingYears;
+        // this.initialEffectiveRate = resLoans.effectiveRate;
+        // this.initialNominalRate = resLoans.nominalRate;
+        // this.initialTotalInterestAndTotalFee =
+        //   resLoans.totalInterestAndTotalFee;
+        // this.initialtotalInterestAndTotalFeeByRemainingYears =
+        //   resLoans.totalInterestAndTotalFeeByRemainingYears;
 
-            this.setEditDisabled();
-            this.notificationService.setOfferNotification();
-          }
-        },
-        (err) => {
-          console.log(err);
-        }
-      );
+        this.setEditDisabled();
+        this.notificationService.setOfferNotification();
+      },
+      (err) => {
+        console.log(err);
+        this.messageBannerService.setView(
+          'Oops, noe gikk galt. Endringene dine ble ikke lagret',
+          3000,
+          this.animationStyle.DROP_DOWN_UP,
+          'error',
+          window
+        );
+
+        this.isAbleToSave = false;
+      }
+    );
   }
 
   public createNewLoan(obj: SignicatLoanInfoDto): void {
     this.isAbleToSave = false;
 
-    concat(
-      this.loansService.createNewLoan([obj]).pipe(
-        catchError((err) => {
-          console.log(err);
-          console.log('Could not create a new loan!');
-          this.isError = true;
-          if (err.status < 500) {
-            this.isGeneralError = true;
-          }
-          if (err.status > 499) {
-            this.isServerError = true;
-          }
-          return of(err);
-        })
-      ),
-      this.myLoansService.fetchLoans().pipe(
-        tap((res) => console.log('Tap in loan fixed!', res)),
-        catchError((err) => {
-          console.log(err);
-          console.log('Could not fetch loans!');
-          this.isError = true;
-          if (err.status < 500) {
-            this.isGeneralError = true;
-          }
-          if (err.status > 499) {
-            this.isServerError = true;
-          }
-          return of(err);
-        })
-      )
-    )
-      .pipe(toArray())
-      .subscribe(
-        (res) => {
-          console.log(res);
+    this.loansService.createNewLoan([obj]).subscribe(
+      (res) => {
+        console.log(res);
+        this.myLoansService.reloadLoans();
 
-          if (this.isError) {
-            if (this.isGeneralError) {
-              this.messageBannerService.setView(
-                'Oops, noe gikk galt',
-                5000,
-                this.animationStyle.DROP_DOWN_UP,
-                'error',
-                window
-              );
-            }
-            if (this.isServerError) {
-              this.messageBannerService.setView(
-                'Kan ikke opprette et nytt lån for øyeblikket, prøv igjen senere',
-                5000,
-                this.animationStyle.DROP_DOWN_UP,
-                'error',
-                window
-              );
-            }
+        this.messageBannerService.setView(
+          'Nytt lån er opprettet',
+          3000,
+          this.animationStyle.DROP_DOWN_UP,
+          'success',
+          window
+        );
 
-            this.isAbleToSave = false;
-          } else {
+        // Save the original format in string with mask
+        // this.initialOutStandingDebt = this.incomingValueOutstandingDebt;
+        // this.initialRemainingYears = this.incomingValueRemainingYears;
+
+        // const resLoans = res[1][0].loans[this.index];
+        // console.log('resLoan: ', resLoans);
+
+        // this.initialEffectiveRate = resLoans.effectiveRate;
+        // this.initialNominalRate = resLoans.nominalRate;
+        // this.initialTotalInterestAndTotalFee =
+        //   resLoans.totalInterestAndTotalFee;
+        // this.initialtotalInterestAndTotalFeeByRemainingYears =
+        //   resLoans.totalInterestAndTotalFeeByRemainingYears;
+
+        this.setEditDisabled();
+        this.notificationService.setOfferNotification();
+      },
+      (err) => {
+        console.log(err);
+        // console.log('This is reaching the error state after subscribe');
+        if (this.isError) {
+          if (this.isGeneralError) {
             this.messageBannerService.setView(
-              'Nytt lån er opprettet',
-              3000,
+              'Oops, noe gikk galt',
+              5000,
               this.animationStyle.DROP_DOWN_UP,
-              'success',
+              'error',
               window
             );
-
-            // Save the original format in string with mask
-            this.initialOutStandingDebt = this.incomingValueOutstandingDebt;
-            this.initialRemainingYears = this.incomingValueRemainingYears;
-
-            const resLoans = res[1][0].loans[this.index];
-            console.log('resLoan: ', resLoans);
-
-            this.initialEffectiveRate = resLoans.effectiveRate;
-            this.initialNominalRate = resLoans.nominalRate;
-            this.initialTotalInterestAndTotalFee =
-              resLoans.totalInterestAndTotalFee;
-            this.initialtotalInterestAndTotalFeeByRemainingYears =
-              resLoans.totalInterestAndTotalFeeByRemainingYears;
-
-            this.setEditDisabled();
-            this.notificationService.setOfferNotification();
           }
-        },
-        (err) => {
-          console.log(err);
-          console.log('This is reaching the error state after subscribe');
+          if (this.isServerError) {
+            this.messageBannerService.setView(
+              'Kan ikke opprette et nytt lån for øyeblikket, prøv igjen senere',
+              5000,
+              this.animationStyle.DROP_DOWN_UP,
+              'error',
+              window
+            );
+          }
+
+          this.isAbleToSave = false;
         }
-      );
+      }
+    );
   }
 
   public deleteLoan(): void {
-    // const confirmDelete =
     this.dialog.open(GenericChoiceDialogComponent, {
       data: {
         onConfirm: () => {
@@ -700,6 +630,9 @@ export class LoanFixedPriceComponent implements OnInit, OnDestroy {
       () => {
         // Remove from UI
         this.myLoansService.deleteLoan(loanId);
+
+        // Update Overview with new numbers
+        this.myLoansService.reloadLoans();
 
         this.messageBannerService.setView(
           'Lånet er slettet',
