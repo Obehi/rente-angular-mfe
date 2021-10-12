@@ -171,7 +171,7 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
       ],
       nominalRate: [
         { value: this.initialNominalRate, disabled: true },
-        [Validators.max(5), Validators.required]
+        [Validators.max(5), Validators.min(1), Validators.required]
       ],
       fee: [
         { value: this.initialFee, disabled: true },
@@ -348,8 +348,6 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
     } else {
       this.disableForm();
     }
-    // console.log('Listener error!!!!!!!!!!!!!!!!!!');
-    // this.setLoansErrorListener();
 
     // Get latest amount of loans of user, in case they want to delete the last loan
     // disable delete func when there is only one loan left
@@ -519,7 +517,6 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
   public matSelectChanged(): void {
     this.loanTypeIsError = false;
 
-    // Check for general error if server error or if the regex error from input
     if (
       !this.isErrorState(this.loanForm?.controls[this.outstandingDebtString]) &&
       !this.isErrorState(this.loanForm?.controls[this.remainingYearsString]) &&
@@ -577,21 +574,28 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
     };
 
     if (this.loan.id === 0) {
-      // console.log('Creating new loan:', sendToBEDto);
       this.createNewLoan(sendToBEDto);
     } else {
-      // console.log('Updating loan:', sendToBEDto);
       this.updateLoan(sendToBEDto);
     }
-  } // send request end
+  }
 
+  // returns null if successful
   public updateLoan(loan: SignicatLoanInfoDto): void {
     this.isAbleToSave = false;
 
-    this.loansService.updateLoan([loan]).subscribe(
-      () => {
-        // returns null if successful
-
+    this.loansService
+      .updateLoan([loan])
+      .pipe(
+        tap(() => console.log('UPDATE Loan tap')),
+        catchError(
+          this.rxjsOperatorService.handleErrorWithNotification(
+            'En eller flere av endringene ble ikke oppdatert',
+            5000
+          )
+        )
+      )
+      .subscribe(() => {
         // Update loan numbers
         this.myLoansService.reloadLoans();
 
@@ -603,67 +607,26 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
           window
         );
 
-        // Set the loan type to the selected
-        // this.initialLoanType = this.loanTypeList.filter(
-        //   (val) => val.value === loan.loanType
-        // )[0].name;
-
-        // // Save the original format in string with mask
-        // this.initialOutStandingDebt = this.incomingValueOutstandingDebt;
-        // this.initialRemainingYears = this.incomingValueRemainingYears;
-        // this.initialNominalRate = this.incomingValueNominalRate;
-        // this.initialFee = this.incomingValueFee;
-
-        // const resLoans = this.myLoansService
-        //   .getLoansValue()
-        //   .filter((loan) => loan.id === this.loan.id)[0];
-        // console.log('resLoan: ', resLoans);
-
-        // this.initialEffectiveRate = resLoans.effectiveRate;
-        // this.initialNominalRate = String(resLoans.nominalRate);
-        // this.initialTotalInterestAndTotalFee =
-        //   resLoans.totalInterestAndTotalFee;
-        // this.initialtotalInterestAndTotalFeeByRemainingYears =
-        //   resLoans.totalInterestAndTotalFeeByRemainingYears;
-
         this.setEditDisabled();
         this.notificationService.setOfferNotification();
-      },
-      (err) => {
-        console.log(err);
-
-        // if (this.isError) {
-        //   if (this.isGeneralError) {
-        //     this.messageBannerService.setView(
-        //       'En eller flere av endringene ble ikke oppdatert',
-        //       5000,
-        //       this.animationStyle.DROP_DOWN_UP,
-        //       'error',
-        //       window
-        //     );
-        //   }
-        //   if (this.isServerError) {
-        //     this.messageBannerService.setView(
-        //       'Oops, noe gikk galt. Prøv igjen senere',
-        //       5000,
-        //       this.animationStyle.DROP_DOWN_UP,
-        //       'error',
-        //       window
-        //     );
-        //   }
-
-        // }
-        this.isAbleToSave = false;
-      }
-    );
+      });
   }
 
   public createNewLoan(loan: SignicatLoanInfoDto): void {
     this.isAbleToSave = false;
 
-    this.loansService.createNewLoan([loan]).subscribe(
-      (res) => {
-        console.log(res);
+    this.loansService
+      .createNewLoan([loan])
+      .pipe(
+        tap(() => console.log('Create new Loan tap')),
+        catchError(
+          this.rxjsOperatorService.handleErrorWithNotification(
+            'Oops, noe gikk galt. Kunne ikke opprette et nytt lån',
+            5000
+          )
+        )
+      )
+      .subscribe(() => {
         this.myLoansService.reloadLoans();
 
         this.messageBannerService.setView(
@@ -674,50 +637,9 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
           window
         );
 
-        // Save the original format in string with mask
-        // this.initialOutStandingDebt = this.incomingValueOutstandingDebt;
-        // this.initialRemainingYears = this.incomingValueRemainingYears;
-        // this.initialNominalRate = this.incomingValueNominalRate;
-        // this.initialFee = this.incomingValueFee;
-
-        // const resLoans = res[1][0].loans[this.index];
-
-        // this.initialEffectiveRate = resLoans.effectiveRate;
-        // this.initialTotalInterestAndTotalFee =
-        //   resLoans.totalInterestAndTotalFee;
-        // this.initialtotalInterestAndTotalFeeByRemainingYears =
-        //   resLoans.totalInterestAndTotalFeeByRemainingYears;
-
         this.setEditDisabled();
         this.notificationService.setOfferNotification();
-      },
-      (err) => {
-        console.log(err);
-        // console.log('This is reaching the error state after subscribe');
-        if (this.isError) {
-          if (this.isGeneralError) {
-            this.messageBannerService.setView(
-              'Oops, noe gikk galt',
-              5000,
-              this.animationStyle.DROP_DOWN_UP,
-              'error',
-              window
-            );
-          }
-          if (this.isServerError) {
-            this.messageBannerService.setView(
-              'Kan ikke opprette et nytt lån for øyeblikket, prøv igjen senere',
-              5000,
-              this.animationStyle.DROP_DOWN_UP,
-              'error',
-              window
-            );
-          }
-
-          this.isAbleToSave = false;
-        }
-      }
-    );
+      });
   }
 
   public deleteLoan(): void {
@@ -764,33 +686,21 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
           )
         )
       )
-      .subscribe(
-        () => {
-          // Re move from UI
-          this.myLoansService.deleteLoan(loanId);
+      .subscribe(() => {
+        // Re move from UI
+        this.myLoansService.deleteLoan(loanId);
 
-          // Update Overview with new numbers
-          this.myLoansService.reloadLoans();
+        // Update Overview with new numbers
+        this.myLoansService.reloadLoans();
 
-          this.messageBannerService.setView(
-            'Lånet er slettet',
-            3000,
-            this.animationStyle.DROP_DOWN_UP,
-            'success',
-            window
-          );
-        },
-        (err) => {
-          console.log(err);
-          this.messageBannerService.setView(
-            'Oops, noe gikk galt. Lånet ble ikke slettet. Prøv igjen senere',
-            5000,
-            this.animationStyle.DROP_DOWN_UP,
-            'error',
-            window
-          );
-        }
-      );
+        this.messageBannerService.setView(
+          'Lånet er slettet',
+          3000,
+          this.animationStyle.DROP_DOWN_UP,
+          'success',
+          window
+        );
+      });
   }
 
   public isAbleToDelete(): boolean {

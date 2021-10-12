@@ -30,7 +30,7 @@ export class SignicatFixedPriceComponent implements OnInit {
     this.myLoansService.updateLoans(this.loans);
 
     this.myLoansService.getLoansAsObservable().subscribe((res) => {
-      console.log(res);
+      // console.log(res);
       this.loans = res;
       if (this.loans) {
         this.loansLength = this.loans.length;

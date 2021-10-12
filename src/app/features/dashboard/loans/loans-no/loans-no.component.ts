@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoansService } from '@services/remote-api/loans.service';
-import { Loans, bankOfferDto, SignicatLoanInfoDto } from '@shared/models/loans';
+import { Loans, bankOfferDto } from '@shared/models/loans';
 import {
   trigger,
   transition,
@@ -9,7 +9,7 @@ import {
   style
 } from '@angular/animations';
 import { locale } from '@config/locale/locale';
-import { MessageBannerService } from '@services/message-banner.service.ts';
+import { MessageBannerService } from '@services/message-banner.service';
 import { getAnimationStyles } from '@shared/animations/animationEnums';
 import { MyLoansService } from '../myloans.service';
 import { catchError, tap } from 'rxjs/operators';
@@ -71,8 +71,6 @@ export class LoansNoComponent implements OnInit {
         return of(err);
       }),
       tap((res) => {
-        // console.log('Loan and Offers RUN!');
-        console.log(res);
         this.loansData = res[0];
         this.offers = res[1].offers;
 
@@ -96,7 +94,6 @@ export class LoansNoComponent implements OnInit {
           };
         });
 
-        // console.log('NEw List in loan:', newList);
         this.myLoansService.updateLoans(newList);
 
         /*
@@ -115,25 +112,4 @@ export class LoansNoComponent implements OnInit {
       })
     );
   }
-
-  // public setLoansErrorListener(): void {
-  //   console.log('Listener error');
-  //   this.myLoansService
-  //     .fetchLoans()
-  //     .pipe(
-  //       catchError((err) => {
-  //         console.log(err);
-  //         console.log('Could not fetch loans!');
-  //         // this.isError = true;
-  //         // if (err.status < 500) {
-  //         //   this.isGeneralError = true;
-  //         // }
-  //         // if (err.status > 499) {
-  //         //   this.isServerError = true;
-  //         // }
-  //         return of(err);
-  //       })
-  //     )
-  //     .subscribe((res) => console.log('Set Loans listener activated'));
-  // }
 }
