@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import {
   BehaviorSubject,
+  EMPTY,
   forkJoin,
+  iif,
   merge,
   Observable,
   of,
@@ -11,13 +13,18 @@ import { LoanInfo, Loans, SignicatLoanInfoDto } from '@shared/models/loans';
 import { LoansService } from '@services/remote-api/loans.service';
 import {
   catchError,
+  delay,
+  filter,
   map,
+  mergeMap,
   share,
-  shareReplay,
   switchMap,
   tap
 } from 'rxjs/operators';
 import { OffersBank } from '@models/bank';
+import { RxjsOperatorService } from '@services/rxjs-operator.service';
+import { MessageBannerService } from '@services/message-banner.service';
+import { getAnimationStyles } from '@shared/animations/animationEnums';
 
 export interface LoanOverView {
   aggregatedTotalInterestAndFee: number;
@@ -29,6 +36,8 @@ export interface LoanOverView {
   providedIn: 'root'
 })
 export class MyLoansService {
+  public animationStyle = getAnimationStyles();
+
   private editModeSubject = new BehaviorSubject<number | null>(null);
   private loanInfoBEStore = new BehaviorSubject<SignicatLoanInfoDto[]>([
     {
@@ -61,6 +70,46 @@ export class MyLoansService {
     }
   ]);
 
+  private deleteLoanTrigger$: BehaviorSubject<
+    number | null
+  > = new BehaviorSubject(null);
+
+  public deleteLoanTrigger(id: number): void {
+    this.deleteLoanTrigger$.next(id);
+  }
+
+  public loanDeleted$ = this.deleteLoanTrigger$.pipe(
+    mergeMap((loanId) =>
+      iif(
+        () => loanId === 0,
+        of(null).pipe(tap(() => this.setEditMode(null))),
+        of(loanId)
+      )
+    ),
+    filter((loanId) => loanId !== null),
+    switchMap((loanId: number) =>
+      this.loansService.deleteLoan(loanId).pipe(map(() => loanId))
+    ),
+    catchError(
+      this.rxjsOperatorService.handleErrorWithNotification(
+        'Oops, noe gikk galt. Lånet ble ikke slettet. Prøv igjen senere',
+        5000
+      )
+    ),
+
+    tap((loanId: number) => {
+      this.deleteLoan(loanId);
+      this.messageBannerService.setView(
+        'Lånet er slettet',
+        3000,
+        this.animationStyle.DROP_DOWN_UP,
+        'success',
+        window
+      );
+    }),
+    delay(500)
+  );
+
   public loansObservable$ = this.fetchLoans().pipe(
     tap((res) => console.log('res from myloanservice loansobservable: ', res)),
     map((res) => res[0])
@@ -73,7 +122,10 @@ export class MyLoansService {
   reloadLoans = (): void => this.reloadLoans$.next(true);
 
   private loansAndOfferBanks$ = merge(
-    this.reloadLoans$.pipe(
+    merge(
+      this.reloadLoans$,
+      this.loanDeleted$.pipe(tap(() => console.log('loanDeleted!!!')))
+    ).pipe(
       switchMap(() => forkJoin([this.loans$, this.offerBanks$])),
       share()
     ),
@@ -97,7 +149,11 @@ export class MyLoansService {
     })
   );
 
-  constructor(private loansService: LoansService) {}
+  constructor(
+    private loansService: LoansService,
+    private rxjsOperatorService: RxjsOperatorService,
+    private messageBannerService: MessageBannerService
+  ) {}
 
   public addNewLoan(): void {
     let infoList = this.loanStore.getValue();

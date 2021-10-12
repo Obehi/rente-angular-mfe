@@ -647,7 +647,9 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
       data: {
         onConfirm: () => {
           console.log('Confirmed DELETE!');
-          this.deleteConfirmed();
+          // this.deleteConfirmed();
+          console.log('jeeepp');
+          this.myLoansService.deleteLoanTrigger(this.loan.id);
         },
         // onClose: () => {
         //   this.setEditDisabled();
@@ -678,7 +680,6 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
     this.loansService
       .deleteLoan(loanId)
       .pipe(
-        tap(() => console.log('japppppp')),
         catchError(
           this.rxjsOperatorService.handleErrorWithNotification(
             'Oops, noe gikk galt. Lånet ble ikke slettet. Prøv igjen senere',
@@ -705,7 +706,7 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
 
   public isAbleToDelete(): boolean {
     const store = this.myLoansService.getLoansValue();
-
+    if (this.loan.id === 0) return false;
     if (store.length === 2 && store.some((val) => val.isDeleted === true))
       return false;
 
