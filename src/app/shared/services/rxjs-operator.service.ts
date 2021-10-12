@@ -26,7 +26,7 @@ export class RxjsOperatorService {
         window
       );
       throwError(errorResponse);
-      return of(null);
+      return EMPTY;
     };
   }
 
