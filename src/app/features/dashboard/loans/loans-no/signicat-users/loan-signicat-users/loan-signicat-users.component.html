@@ -19,7 +19,6 @@
             >delete_forever</mat-icon
           >
         </div>
-
         <div>
           <img
             [hidden]="hideEditIcon"
@@ -38,7 +37,7 @@
         </div>
       </div>
 
-      <div class="forms">
+      <div class="forms" *ngIf="loanForm">
         <form class="p-0 border-0" [formGroup]="loanForm" novalidate change>
           <div
             [ngClass]="{
@@ -83,6 +82,7 @@
                 [isInputFocused]="
                   isEditMode &&
                   inputOutstandingDebtIsActive &&
+                  !isErrorState(loanForm?.controls['outstandingDebt']) &&
                   !outstandingDebtIsError
                 "
                 [isInputError]="outstandingDebtIsError"

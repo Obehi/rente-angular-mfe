@@ -509,8 +509,6 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
       console.log('Adding height');
       const elHeight = el.getBoundingClientRect().height;
       el.style.height = `${elHeight.toString()}px`;
-      // console.log('El exist and set height');
-      // console.log(el.style.height);
     }
 
     setTimeout(() => {
@@ -533,7 +531,6 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
       this.loanForm.markAsPristine();
       this.isAbleToSave = false;
       this.enableForm();
-
       this.deactivateAllInput();
 
       this.showDisplayBox = false;
@@ -619,7 +616,6 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
     this.loansService
       .updateLoan([loan])
       .pipe(
-        tap(() => console.log('UPDATE Loan tap')),
         catchError(
           this.rxjsOperatorService.handleErrorWithNotification(
             'En eller flere av endringene ble ikke oppdatert',
@@ -648,7 +644,6 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
     this.loansService
       .createNewLoan([loan])
       .pipe(
-        tap(() => console.log('Create new Loan tap')),
         catchError(
           this.rxjsOperatorService.handleErrorWithNotification(
             'Oops, noe gikk galt. Kunne ikke opprette et nytt lån',
@@ -692,16 +687,10 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
     this.dialog.open(GenericChoiceDialogComponent, {
       data: {
         onConfirm: () => {
-          console.log('Confirmed DELETE!');
-          // this.deleteConfirmed();
-          console.log('jeeepp');
           this.myLoansService.deleteLoanTrigger(this.loan.id);
         },
-        // onClose: () => {
-        //   this.setEditDisabled();
-        // },
         header: 'Bekreft sletting av lån',
-        text: 'Er du sikker på at du vil slette lånet?',
+        text: `Er du sikker på at du vil slette lån ${this.index + 1}?`,
         cancelText: 'Avbryt',
         confirmText: 'Ja, slett lån'
       }
