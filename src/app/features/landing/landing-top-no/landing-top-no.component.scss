@@ -3,12 +3,17 @@
 .co-main {
   @media (min-width: 800px) {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 40vw 60vw;
+    margin-bottom: 10%;
+    grid-template-rows: 94vh;
 
     ::ng-deep .rente-image {
-      width: 40%;
-      margin-left: 10rem;
+      width: 40vh;
     }
+  }
+  @media (max-width: 800px) {
+    background: $secondary;
+    padding: 10px 10px 65px 10px;
   }
 }
 
@@ -20,8 +25,16 @@
 }
 
 .surveillance {
-  color: $black;
-  font-size: 14px;
+  @media (max-width: 800px) {
+    color: $white;
+    font-size: 14px;
+  }
+  @media (min-width: 800px) {
+    color: $black;
+
+    font-size: 16px;
+    font-weight: 400;
+  }
 }
 
 .try-video {
@@ -31,15 +44,17 @@
 }
 
 h1 {
+  @media (max-width: 800px) {
+    color: $white;
+  }
   color: $black;
-  font-size: 28px;
   font-weight: 400;
   text-align: left;
-  margin-top: 1rem;
+  padding-top: 1rem;
 }
 
 a {
-  color: $black;
+  color: $primary;
   position: relative;
   font-weight: 400;
   text-decoration: none;
@@ -57,7 +72,7 @@ h4 {
 .intro {
   margin-bottom: 40px;
   @media (min-width: 800px) {
-    margin-bottom: 60px;
+    margin: 18vh 0vw 15vh 7vw;
   }
   h4 {
     max-width: 250px;
@@ -82,7 +97,10 @@ h4 {
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      height: 135px;
+
+      ::ng-deep .mat-primary-wide-landing-hollow {
+        border: none;
+      }
     }
   }
 }
@@ -90,7 +108,7 @@ h4 {
   .cta-container {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: left;
     margin-top: 5rem;
     h2 {
       text-align: left;
@@ -99,13 +117,20 @@ h4 {
     }
     .buttons {
       display: flex;
-      justify-content: space-between;
-      flex-direction: column;
 
       ::ng-deep .button-wrapper {
         text-align: left;
       }
     }
+  }
+
+  .rente-example {
+    background: linear-gradient(180deg, #162537 135px, #183a63 450px);
+    display: flex;
+    justify-content: center;
+    border-radius: 50px 0 0 50px;
+    clip-path: polygon(0 -35rem, 100% 0, 100% 100%, 30% 100%);
+    padding-left: 14vw;
   }
 }
 
@@ -185,14 +210,13 @@ h4 {
 }
 
 .imb {
-  @media (max-width: 600px) {
+  @media (max-width: 800px) {
     margin-bottom: 20px;
   }
-  margin-bottom: 80px;
 }
 
 h1 {
-  @media (max-width: 600px) {
+  @media (max-width: 800px) {
     margin-bottom: 20px;
   }
   margin-bottom: 40px;

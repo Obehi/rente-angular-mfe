@@ -14,7 +14,7 @@ export class LandingComponent implements OnInit {
   isSweden = false;
 
   get isMobile(): boolean {
-    return window.innerWidth < 600;
+    return window.innerWidth < 800;
   }
 
   constructor(private seoService: SeoService) {

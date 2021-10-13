@@ -11,7 +11,7 @@ export class LandingTopNoComponent {
   isSweden: boolean;
 
   get isMobile(): boolean {
-    return window.innerWidth < 600;
+    return window.innerWidth < 800;
   }
   constructor(private envService: EnvService, private logging: LoggingService) {
     this.logging.logger(

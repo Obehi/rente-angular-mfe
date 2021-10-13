@@ -1,5 +1,4 @@
-@import "../../../styles/theme/_colors.scss";
-
+@import '../../../styles/theme/_colors.scss';
 
 mat-expansion-panel-header {
   background: white;
@@ -13,9 +12,9 @@ mat-panel-title {
 }
 .mat-expansion-panel {
   box-shadow: none;
-  border-radius: 0 !important;
+  border-radius: 15px !important;
   border-bottom: 0px !important;
-} 
+}
 .mat-expansion-panel-header {
   padding: 20px;
 }
@@ -24,7 +23,7 @@ mat-panel-title {
   margin: 0;
 }
 .mat-expanded {
-  background: $lightgreen;
+  background: $grey-light;
 }
 
 ul {

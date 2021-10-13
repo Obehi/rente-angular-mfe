@@ -107,13 +107,28 @@ iframe {
 
 //overflow hidden is set only on the wrapper on landing page
 .front-container {
-  @media (min-width: 800px) {
-    background: $white;
-  }
-  background: linear-gradient($blue 0%, $primary 22%, $blue 50%);
+  background: $white;
   overflow: hidden;
   padding: 15px;
   max-width: unset;
+  @media (max-width: 600px) {
+    padding: unset;
+  }
+
+  @media (min-width: 600px) {
+    display: flex;
+    padding: unset;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .after-landing {
+    @media (min-width: 600px) {
+      max-width: 1400px;
+      overflow: hidden;
+      padding: unset;
+    }
+  }
 }
 
 .bank-buttons {
@@ -184,7 +199,7 @@ iframe {
 }
 
 .list {
-  background-color: inherit;
+  background-color: $secondary;
   padding: 80px 40px;
   left: -20px;
   width: calc(100% + 40px);
@@ -205,7 +220,11 @@ iframe {
     }
 
     p {
-      color: white;
+      color: $black;
+
+      @media (max-width: 600px) {
+        color: $white;
+      }
     }
   }
 }
@@ -218,7 +237,7 @@ iframe {
   h2,
   h4 {
     margin-bottom: 40px;
-    color: white;
+    color: $black;
   }
 
   h4:last-of-type {
@@ -234,38 +253,53 @@ iframe {
 }
 
 .horizontal-scroll {
-  overflow: scroll;
-  -webkit-overflow-scrolling: touch;
-  white-space: nowrap;
-  width: calc(100% + 40px);
+  @media (max-width: 600px) {
+    overflow: scroll;
+    -webkit-overflow-scrolling: touch;
+    white-space: nowrap;
+    width: calc(100% + 40px);
 
-  &::-webkit-scrollbar {
-    -webkit-appearance: none;
+    &::-webkit-scrollbar {
+      -webkit-appearance: none;
+    }
+
+    &::-webkit-scrollbar:horizontal {
+      height: 11px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: 8px;
+      border: 2px solid white;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    &::-webkit-scrollbar-track {
+      background-color: #fff;
+      border-radius: 8px;
+    }
   }
 
-  &::-webkit-scrollbar:horizontal {
-    height: 11px;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    border-radius: 8px;
-    border: 2px solid white;
-    background-color: rgba(0, 0, 0, 0.5);
-  }
-
-  &::-webkit-scrollbar-track {
-    background-color: #fff;
-    border-radius: 8px;
+  @media (min-width: 600px) {
+    display: flex;
   }
 }
 
 .articles {
+  @media (min-width: 600px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
   margin-bottom: 80px;
+  @media (max-width: 600px) {
+    padding: 15px;
+  }
 
   h2,
   h3 {
     text-align: left;
-    color: $white;
+    color: $black;
   }
 
   .article {
@@ -310,22 +344,48 @@ a {
 }
 
 .sitater {
-  display: table;
+  @media (min-width: 600px) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 1vw;
+  }
 
+  @media (max-width: 600px) {
+    display: table;
+  }
   .sitatboks {
-    background-color: $lightgreen;
-    padding: 20px 20px 0 20px;
-    min-width: 280px;
-    white-space: normal;
-    display: table-cell;
-    border-right: 20px solid white;
-    vertical-align: top;
-    position: relative;
-    text-align: center;
-    font-size: 18px;
-    line-height: 1.5;
-    color: $blue;
-    font-weight: 300;
+    @media (min-width: 600px) {
+      background-color: $grey-light;
+      padding: 20px 20px 0 20px;
+      width: 24vw;
+      padding-bottom: 20px;
+      white-space: normal;
+      display: table-cell;
+      border-right: 20px solid white;
+      vertical-align: top;
+      position: relative;
+      text-align: center;
+      font-size: 18px;
+      line-height: 1.5;
+      color: $blue;
+      font-weight: 300;
+    }
+
+    @media (max-width: 600px) {
+      background-color: $grey-light;
+      padding: 20px 20px 0 20px;
+      min-width: 280px;
+      white-space: normal;
+      display: table-cell;
+      border-right: 20px solid white;
+      vertical-align: top;
+      position: relative;
+      text-align: center;
+      font-size: 18px;
+      line-height: 1.5;
+      color: $blue;
+      font-weight: 300;
+    }
 
     .quote {
       height: 170px;
@@ -351,14 +411,12 @@ a {
 
 @media (min-width: 600px) {
   .four-columns {
-    display: grid;
-    grid-template-columns: calc(25% - 30px) calc(25% - 30px) calc(25% - 30px) calc(
-        25% - 30px
-      );
-    column-gap: 40px;
+    display: flex;
+    justify-content: space-between;
 
     .block {
       margin-bottom: 0;
+      width: 11vw;
     }
   }
   .bank-buttons {
@@ -375,21 +433,28 @@ a {
   }
   .list-desktop {
     width: 80vw;
-    left: 50%;
-    transform: translateX(-50%);
+
     padding: 80px;
 
     .list-inner {
-      max-width: calc(1010px - 160px);
       margin: auto;
     }
   }
   .example {
-    display: grid;
-    grid-gap: 40px;
-    grid-template-columns: 1fr 1fr;
-    max-width: calc(1010px - 160px);
-    margin: auto;
+    .example-head {
+      font-size: 31px;
+    }
+
+    .example-flex {
+      display: flex;
+      justify-content: space-around;
+      .example-text {
+        width: 25vw;
+        align-self: center;
+        margin-top: 10rem;
+        text-align: left;
+      }
+    }
 
     h2 {
       grid-row: 1;
@@ -399,27 +464,19 @@ a {
     }
 
     .second-row {
-      grid-row: 2;
-      grid-column-start: 1;
-      grid-column-end: span 2;
       display: flex;
+      flex-direction: column;
 
       h4 {
         flex-basis: 100%;
       }
 
       h4:first-of-type {
-        margin-right: 40px;
       }
     }
 
     .item {
       &.img {
-        grid-row: 3;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-
         h4 {
           min-height: 110px;
           margin-bottom: 40px;
@@ -434,18 +491,15 @@ a {
     }
   }
   .list {
-    width: 101vw;
-    left: 50%;
-    transform: translateX(-50%);
     padding: 80px;
-    background-color: inherit;
+    background-color: $grey-light;
+    margin-bottom: 80px;
 
     &.small-padding {
       padding-top: 40px !important;
     }
 
     .list-inner {
-      max-width: calc(1010px - 160px);
       margin: auto;
     }
   }
@@ -476,6 +530,12 @@ a {
   height: 115px; /* same height as header */
   margin-top: -115px; /* same height as header */
   visibility: hidden;
+}
+
+.faq {
+  @media (max-width: 600px) {
+    padding: 15px;
+  }
 }
 
 /* Border */

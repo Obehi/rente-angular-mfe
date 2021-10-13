@@ -260,7 +260,7 @@ button.mat-primary-wide-landing {
   color: white;
   height: 56px;
   width: 80%;
-  @media (min-width: 600px) {
+  @media (min-width: 800px) {
     width: 320px;
   }
 }
@@ -270,8 +270,10 @@ button.mat-primary-wide-landing-new {
   color: white;
   height: 56px;
   width: 80%;
-  @media (min-width: 600px) {
-    width: 320px;
+  @media (min-width: 800px) {
+    width: 19vw;
+    font-size: 1vw;
+    font-weight: 400;
   }
 }
 
@@ -281,8 +283,10 @@ button.mat-primary-wide-landing-hollow {
   border: 1px solid $primary;
   height: 56px;
   width: 80%;
-  @media (min-width: 600px) {
-    width: 320px;
+  @media (min-width: 800px) {
+    width: 19vw;
+    font-size: 1vw;
+    font-weight: 400;
   }
 }
 

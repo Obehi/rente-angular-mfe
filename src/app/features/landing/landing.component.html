@@ -1,7 +1,7 @@
 <div class="front-container">
   <rente-landing-top> </rente-landing-top>
 
-  <div>
+  <div class="after-landing">
     <div class="list gradient mobile">
       <div class="list-inner">
         <div class="desktop-inner">
@@ -38,42 +38,58 @@
 
     <div class="list gradient desktop small-padding">
       <div class="example">
-        <h2 i18n="how-it-functions|landing-page@@landing.function">
-          Slik fungerer det
-        </h2>
-        <div class="item second-row">
-          <h4 i18n="automatic-service|landing-page@@landing.automaticService">
-            Renteradar henter renten og dine lånedetaljer automatisk med BankID
-            på mobil.
-          </h4>
+        <div class="example-flex">
+          <div *ngIf="isSweden" class="item img">
+            <img
+              [lazyLoad]="'../../../assets/img/example-desktop-info-sv.svg'"
+              offset="600"
+              alt="Screenshot example"
+            />
+          </div>
+          <div *ngIf="isSweden" class="item img">
+            <img
+              [lazyLoad]="'../../../assets/img/example-desktop-offers-sv.svg'"
+              offset="600"
+              alt="Screenshot example"
+            />
+          </div>
 
-          <h4 i18n="comparing-service|landing-page@@landing.comparingService">
-            Vi sammenligner renten du betaler med renten du kan få i andre
-            banker og viser deg hvor mye du kan spare. Du kan også prute i
-            banken du er kunde med et klikk.
-          </h4>
-        </div>
-        <div *ngIf="isSweden" class="item img">
-          <img
-            [lazyLoad]="'../../../assets/img/example-desktop-info-sv.svg'"
-            offset="600"
-            alt="Screenshot example"
-          />
-        </div>
-        <div *ngIf="isSweden" class="item img">
-          <img
-            [lazyLoad]="'../../../assets/img/example-desktop-offers-sv.svg'"
-            offset="600"
-            alt="Screenshot example"
-          />
-        </div>
+          <div *ngIf="!isSweden" class="item img">
+            <img
+              [lazyLoad]="'../../../assets/img/example-desktop-offers-blue.svg'"
+              offset="600"
+              alt="Screenshot example"
+            />
+          </div>
+          <div class="item second-row">
+            <h2
+              class="example-head"
+              i18n="how-it-functions|landing-page@@landing.function"
+              style="text-align: left"
+            >
+              Slik fungerer det
+            </h2>
+            <h4
+              class="example-text"
+              i18n="automatic-service|landing-page@@landing.automaticService"
+            >
+              Renteradar henter renten og dine lånedetaljer automatisk med
+              BankID på mobil. <br />
+              <br />
+              <br />
 
-        <div *ngIf="!isSweden" class="item img">
-          <img
-            [lazyLoad]="'../../../assets/img/example-desktop-offers-blue.svg'"
-            offset="600"
-            alt="Screenshot example"
-          />
+              Vi sammenligner renten du betaler med renten du kan få i andre
+              banker og viser deg hvor mye du kan spare. Du kan også prute i
+              banken du er kunde med et klikk.
+            </h4>
+
+            <!-- DETTE MÅ OVERSETTES I POEDITOR!!! -->
+            <!-- <h4 i18n="comparing-service|landing-page@@landing.comparingService">
+              Vi sammenligner renten du betaler med renten du kan få i andre
+              banker og viser deg hvor mye du kan spare. Du kan også prute i
+              banken du er kunde med et klikk.
+            </h4> -->
+          </div>
         </div>
       </div>
     </div>
@@ -118,7 +134,7 @@
       </div>
     </div>
 
-    <div *ngIf="!isSweden" class="articles">
+    <div *ngIf="!isSweden && isMobile" class="articles">
       <h2 style="margin-bottom: 20px">Fornøyde brukere</h2>
       <div class="horizontal-scroll">
         <div class="sitater">
@@ -280,6 +296,75 @@
       </div>
     </div>
 
+    <div *ngIf="!isSweden && !isMobile" class="articles">
+      <h2 style="margin-bottom: 20px">Fornøyde brukere</h2>
+      <div class="horizontal-scroll">
+        <div class="sitater">
+          <!-- TODO: move to component -->
+          <div class="sitatboks">
+            <div class="quote">
+              …her kommer en ny tjeneste Renteradar.no, som gir deg et genialt
+              argument… prøv du også…
+            </div>
+            <div
+              class="bilde"
+              style="background-image: url('../../../assets/img/p4.jpg')"
+            ></div>
+            <div class="name">Øystein Røe Larsen, P4s Radiofrokost</div>
+          </div>
+          <div class="sitatboks">
+            <div class="quote">
+              Genial tjeneste! Renteradar.no sendte meg en mail om bedre tilbud.
+              Da var det bare å flytte lånet som ga meg svært store besparelser.
+            </div>
+            <div
+              class="bilde"
+              style="background-image: url('../../../assets/img/sitat8.png')"
+            ></div>
+
+            <div class="name">Erik Schmelck, Oslo</div>
+          </div>
+          <div class="sitatboks">
+            <div class="quote">
+              Sparte 400 kroner i måneden. Veldig brukervennlig. Slipper å bruke
+              tid på å kontakte sin egen bank eller andre. Renteradar.no gjør
+              jobben.
+            </div>
+            <picture>
+              <source
+                srcset="../../../assets/img-webp/sitat9.webp"
+                type="image/webp"
+              />
+              <source
+                srcset="../../../assets/img/sitat9.jpg"
+                type="image/jpeg"
+              />
+              <img class="bilde" src="../../../assets/img/sitat9.jpg" />
+            </picture>
+            <div class="name">Rita Bügelmeyer, Stavanger</div>
+          </div>
+          <div class="sitatboks">
+            <div class="quote">
+              For 3-4 dager siden testet vi renteradar.no og i dag ringte
+              banken. De satte ned boliglånsrenten med ett prosent!
+            </div>
+            <picture>
+              <source
+                srcset="../../../assets/img-webp/sitat7.webp"
+                type="image/webp"
+              />
+              <source
+                srcset="../../../assets/img/sitat7.jpg"
+                type="image/jpeg"
+              />
+              <img class="bilde" src="../../../assets/img/sitat7.jpg" />
+            </picture>
+            <div class="name">Rita Hansen, Spydeberg</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div *ngIf="!isSweden" class="articles">
       <h2 class="mb-3">Renteradar i media</h2>
       <div class="media-container row justify-content-start">
@@ -351,6 +436,6 @@
     </div>
     <!-- Hack for anchor scroll for FAQ section -->
     <span class="anchor" id="faq"></span>
-    <rente-faq></rente-faq>
+    <div class="faq"><rente-faq></rente-faq></div>
   </div>
 </div>
