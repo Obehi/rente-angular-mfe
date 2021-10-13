@@ -102,8 +102,6 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.crawlerLoginService.forceSignicatRedirect();
-    return;
     this.logging.logger(
       this.logging.Level.Info,
       '1:INIT',
