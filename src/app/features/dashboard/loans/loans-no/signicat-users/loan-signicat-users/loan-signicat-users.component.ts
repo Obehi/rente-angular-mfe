@@ -66,11 +66,6 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
   public inputLoanTypeIsActive = false;
 
   // Error handling
-  public outstandingDebtIsError = false;
-  public remainingYearsIsError = false;
-  public nominalRateIsError = false;
-  public feeIsError = false;
-  public loanTypeIsError = false;
   public isError = false;
 
   public outstandingDebtString = 'outstandingDebt';
@@ -175,7 +170,7 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
       ],
       fee: [
         { value: this.initialFee, disabled: true },
-        [Validators.max(100), , Validators.required]
+        [Validators.max(100), Validators.required]
       ],
       loanType: [{ value: this.initialLoanType, disabled: true }]
     });
@@ -206,106 +201,130 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
         }
       });
 
-    this.changeOutstandingDebtSubscription = this.loanForm
-      .get('outstandingDebt')
-      ?.valueChanges.subscribe(() => {
-        // Get value regardless of other states
-        this.incomingValueOutstandingDebt = this.loanForm.get(
-          'outstandingDebt'
-        )?.value;
+    this.loanForm.valueChanges.subscribe(() => {
+      console.log('loan changes');
+      const outstandingDebt = this.loanForm.get('outstandingDebt');
+      const remainingYears = this.loanForm.get('remainingYears');
+      const nominalRate = this.loanForm.get('nominalRate');
+      const fee = this.loanForm.get('fee');
 
-        if (
-          this.loanForm.get('outstandingDebt')?.dirty &&
-          this.isErrorState(this.loanForm?.controls['outstandingDebt'])
-        ) {
-          this.outstandingDebtIsError = true;
-        }
+      const allControls = [outstandingDebt, remainingYears, nominalRate, fee];
+      let canSave = true;
 
-        if (!this.isErrorState(this.loanForm?.controls['outstandingDebt'])) {
-          this.outstandingDebtIsError = false;
-        }
+      if (this.loanForm.dirty === false) {
+        canSave = false;
+      }
 
-        if (
-          this.loanForm.get('outstandingDebt')?.dirty &&
-          !this.isErrorState(this.loanForm?.controls['outstandingDebt']) &&
-          this.incomingValueRemainingYears.trim() !== '' &&
-          this.incomingValueNominalRate.trim() !== '' &&
-          this.incomingValueFee.trim() !== ''
-        ) {
-          this.isAbleToSave = true;
-        } else {
-          this.isAbleToSave = false;
+      allControls.forEach((control: AbstractControl) => {
+        if (this.isErrorState(control) || String(control.value).trim() === '') {
+          canSave = false;
         }
       });
 
-    this.changeRemainingYearsSubscription = this.loanForm
-      .get('remainingYears')
-      ?.valueChanges.subscribe(() => {
-        this.incomingValueRemainingYears = this.loanForm.get(
-          'remainingYears'
-        )?.value;
+      this.isAbleToSave = canSave;
+    });
+    /* 
+      this.changeOutstandingDebtSubscription = this.loanForm
+        .get('outstandingDebt')
+        ?.valueChanges.subscribe(() => {
+          // Get value regardless of other states
+          this.incomingValueOutstandingDebt = this.loanForm.get(
+            'outstandingDebt'
+          )?.value;
 
-        if (
-          this.loanForm.get('remainingYears')?.dirty &&
-          this.isErrorState(this.loanForm?.controls['remainingYears'])
-        ) {
-          this.remainingYearsIsError = true;
-        }
+          if (
+            this.loanForm.get('outstandingDebt')?.dirty &&
+            this.isErrorState(this.loanForm?.controls['outstandingDebt'])
+          ) {
+            this.outstandingDebtIsError = true;
+          }
 
-        if (!this.isErrorState(this.loanForm?.controls['remainingYears'])) {
-          this.remainingYearsIsError = false;
-        }
+          if (!this.isErrorState(this.loanForm?.controls['outstandingDebt'])) {
+            this.outstandingDebtIsError = false;
+          }
 
-        if (
-          this.loanForm.get('remainingYears')?.dirty &&
-          !this.isErrorState(this.loanForm?.controls['remainingYears']) &&
-          this.incomingValueOutstandingDebt.trim() !== '' &&
-          this.incomingValueNominalRate.trim() !== '' &&
-          this.incomingValueFee.trim() !== ''
-        ) {
-          this.isAbleToSave = true;
-        } else {
-          this.isAbleToSave = false;
-        }
-      });
+          if (
+            this.loanForm.get('outstandingDebt')?.dirty &&
+            !this.isErrorState(this.loanForm?.controls['outstandingDebt']) &&
+            this.incomingValueRemainingYears.trim() !== '' &&
+            this.incomingValueNominalRate.trim() !== '' &&
+            this.incomingValueFee.trim() !== ''
+          ) {
+            this.isAbleToSave = true;
+          } else {
+            this.isAbleToSave = false;
+          }
+        });
 
-    this.changeNominalRateSubscription = this.loanForm
-      .get('nominalRate')
-      ?.valueChanges.subscribe(() => {
-        this.incomingValueNominalRate = this.loanForm.get('nominalRate')?.value;
+      this.changeRemainingYearsSubscription = this.loanForm
+        .get('remainingYears')
+        ?.valueChanges.subscribe(() => {
+          this.incomingValueRemainingYears = this.loanForm.get(
+            'remainingYears'
+          )?.value;
 
-        const check = this.myLoansService.formatComma(
-          this.incomingValueNominalRate.replace(/\s/g, '')
-        );
+          if (
+            this.loanForm.get('remainingYears')?.dirty &&
+            this.isErrorState(this.loanForm?.controls['remainingYears'])
+          ) {
+            this.remainingYearsIsError = true;
+          }
 
-        if (
-          (this.loanForm.get('nominalRate')?.dirty &&
-            this.isErrorState(this.loanForm?.controls['nominalRate'])) ||
-          check > 4
-        ) {
-          this.nominalRateIsError = true;
-        }
+          if (!this.isErrorState(this.loanForm?.controls['remainingYears'])) {
+            this.remainingYearsIsError = false;
+          }
 
-        if (
-          !this.isErrorState(this.loanForm?.controls['nominalRate']) &&
-          check < 5
-        ) {
-          this.nominalRateIsError = false;
-        }
+          if (
+            this.loanForm.get('remainingYears')?.dirty &&
+            !this.isErrorState(this.loanForm?.controls['remainingYears']) &&
+            this.incomingValueOutstandingDebt.trim() !== '' &&
+            this.incomingValueNominalRate.trim() !== '' &&
+            this.incomingValueFee.trim() !== ''
+          ) {
+            this.isAbleToSave = true;
+          } else {
+            this.isAbleToSave = false;
+          }
+        });
 
-        if (
-          this.loanForm.get('nominalRate')?.dirty &&
-          !this.isErrorState(this.loanForm?.controls['nominalRate']) &&
-          this.incomingValueOutstandingDebt.trim() !== '' &&
-          this.incomingValueRemainingYears.trim() !== '' &&
-          this.incomingValueFee.trim() !== '' &&
-          check < 5
-        ) {
-          this.isAbleToSave = true;
-        } else {
-          this.isAbleToSave = false;
-        }
-      });
+      this.changeNominalRateSubscription = this.loanForm
+        .get('nominalRate')
+        ?.valueChanges.subscribe(() => {
+          this.incomingValueNominalRate = this.loanForm.get('nominalRate')?.value;
+
+          const check = this.myLoansService.formatComma(
+            this.incomingValueNominalRate.replace(/\s/g, '')
+          );
+
+          if (
+            (this.loanForm.get('nominalRate')?.dirty &&
+              this.isErrorState(this.loanForm?.controls['nominalRate'])) ||
+            check > 4
+          ) {
+            this.nominalRateIsError = true;
+          }
+
+          if (
+            !this.isErrorState(this.loanForm?.controls['nominalRate']) &&
+            check < 5
+          ) {
+            this.nominalRateIsError = false;
+          }
+
+          if (
+            this.loanForm.get('nominalRate')?.dirty &&
+            !this.isErrorState(this.loanForm?.controls['nominalRate']) &&
+            this.incomingValueOutstandingDebt.trim() !== '' &&
+            this.incomingValueRemainingYears.trim() !== '' &&
+            this.incomingValueFee.trim() !== '' &&
+            check < 5
+          ) {
+            this.isAbleToSave = true;
+          } else {
+            this.isAbleToSave = false;
+          }
+        });
+
 
     this.changeFeeSubscription = this.loanForm
       .get('fee')
@@ -320,7 +339,7 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
         }
 
         if (!this.isErrorState(this.loanForm?.controls['fee'])) {
-          this.feeIsError = false;
+            this.feeIsError = false;
         }
 
         if (
@@ -335,7 +354,7 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
           this.isAbleToSave = false;
         }
       });
-
+*/
     if (this.loan.id === 0) {
       this.setEditEnabled();
 
@@ -435,11 +454,6 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
 
   public setEditDisabled(): void {
     // Reset error
-    this.outstandingDebtIsError = false;
-    this.remainingYearsIsError = false;
-    this.nominalRateIsError = false;
-    this.feeIsError = false;
-    this.loanTypeIsError = false;
 
     // Run in this order for animation to be smooth
     this.showButton = false;
@@ -484,12 +498,6 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
     }
 
     setTimeout(() => {
-      this.outstandingDebtIsError = false;
-      this.remainingYearsIsError = false;
-      this.nominalRateIsError = false;
-      this.feeIsError = false;
-      this.loanTypeIsError = false;
-
       const check = this.myLoansService.getEditMode();
 
       if (check !== null) {
@@ -517,8 +525,6 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
   }
 
   public matSelectChanged(): void {
-    this.loanTypeIsError = false;
-
     // Check for general error if server error or if the regex error from input
     if (
       !this.isErrorState(this.loanForm?.controls[this.outstandingDebtString]) &&

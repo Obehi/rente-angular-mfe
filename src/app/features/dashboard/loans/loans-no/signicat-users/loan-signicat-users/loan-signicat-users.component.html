@@ -82,7 +82,9 @@
                   inputOutstandingDebtIsActive &&
                   !outstandingDebtIsError
                 "
-                [isInputError]="outstandingDebtIsError"
+                [isInputError]="
+                  isErrorState(this.loanForm?.controls['outstandingDebt'])
+                "
                 [errorStateMatcher]="
                   isErrorState(loanForm?.controls['outstandingDebt'])
                 "
@@ -97,7 +99,8 @@
                     ) ||
                     (outstandingDebtIsError &&
                       !isServerError &&
-                      !isGeneralError)
+                      !isGeneralError) ||
+                    isErrorState(this.loanForm?.controls['outstandingDebt'])
                   "
                 >
                   Ikke gyldig verdi
@@ -124,7 +127,9 @@
                     inputRemainingYearsIsActive &&
                     !remainingYearsIsError
                   "
-                  [isInputError]="remainingYearsIsError"
+                  [isInputError]="
+                    isErrorState(this.loanForm?.controls['remainingYears'])
+                  "
                   [errorStateMatcher]="
                     isErrorState(loanForm?.controls['remainingYears'])
                   "
@@ -137,6 +142,7 @@
                       loanForm?.controls['remainingYears'].hasError(
                         'required'
                       ) ||
+                      isErrorState(this.loanForm?.controls['remainingYears']) ||
                       (remainingYearsIsError &&
                         !isServerError &&
                         !isGeneralError)
@@ -167,7 +173,9 @@
                     inputNominalRateIsActive &&
                     !nominalRateIsError
                   "
-                  [isInputError]="nominalRateIsError"
+                  [isInputError]="
+                    isErrorState(this.loanForm?.controls['nominalRate'])
+                  "
                   [errorStateMatcher]="
                     isErrorState(loanForm?.controls['nominalRate']) ||
                     nominalRateIsError
@@ -178,6 +186,7 @@
                     class="error-small"
                     *ngIf="
                       loanForm?.controls['nominalRate'].hasError('required') ||
+                      isErrorState(this.loanForm?.controls['nominalRate']) ||
                       (nominalRateIsError && !isServerError && !isGeneralError)
                     "
                   >
@@ -204,7 +213,7 @@
                   [isInputFocused]="
                     isEditMode && inputFeeIsActive && !feeIsError
                   "
-                  [isInputError]="feeIsError"
+                  [isInputError]="isErrorState(this.loanForm?.controls['fee'])"
                   [errorStateMatcher]="isErrorState(loanForm?.controls['fee'])"
                 ></rente-general-input>
                 <div *ngIf="loanForm?.controls['fee'].touched">
@@ -212,7 +221,8 @@
                     class="error-small"
                     *ngIf="
                       loanForm?.controls['fee'].hasError('required') ||
-                      (feeIsError && !isServerError && !isGeneralError)
+                      (feeIsError && !isServerError && !isGeneralError) ||
+                      isErrorState(this.loanForm?.controls['fee'])
                     "
                   >
                     Ikke gyldig verdi
