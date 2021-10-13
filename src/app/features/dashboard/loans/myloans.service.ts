@@ -74,6 +74,8 @@ export class MyLoansService {
     number | null
   > = new BehaviorSubject(null);
 
+  private newLoanCreatedStatus = new BehaviorSubject<boolean | null>(null);
+
   public deleteLoanTrigger(id: number): void {
     this.deleteLoanTrigger$.next(id);
   }
@@ -82,7 +84,15 @@ export class MyLoansService {
     mergeMap((loanId) =>
       iif(
         () => loanId === 0,
-        of(null).pipe(tap(() => this.setEditMode(null))),
+        of(null).pipe(
+          tap(() => {
+            this.setEditMode(null);
+
+            this.updateLoans(
+              this.loanStore.getValue().filter((loan) => loan.id !== loanId)
+            );
+          })
+        ),
         of(loanId)
       )
     ),
@@ -233,11 +243,23 @@ export class MyLoansService {
   }
 
   public getEditMode(): number | null {
-    return this.editModeSubject.value;
+    return this.editModeSubject.getValue();
   }
 
   public loanEditIndexAsObservable(): Observable<number | null> {
     return this.editModeSubject.asObservable();
+  }
+
+  public setNewlyCreatedLoanStatus(status: boolean | null): void {
+    this.newLoanCreatedStatus.next(status);
+  }
+
+  public getNewlyCreatedLoanStatus(): boolean | null {
+    return this.newLoanCreatedStatus.getValue();
+  }
+
+  public newlyCreatedLoanStatusAsObservable(): Observable<boolean | null> {
+    return this.newLoanCreatedStatus.asObservable();
   }
 
   public getNumericValueFormated(incomeValue: any): number {
@@ -270,5 +292,15 @@ export class MyLoansService {
         return of(err);
       })
     );
+  }
+
+  scrollTo(divId: number): void {
+    setTimeout(() => {
+      document.getElementById(`${divId}`)?.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center',
+        inline: 'center'
+      });
+    }, 100);
   }
 }

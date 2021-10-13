@@ -153,16 +153,23 @@ h3 {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-column-gap: 80px;
-    margin-top: 50px;
   }
 
   @media (max-width: 768px) {
     flex-wrap: wrap;
     justify-content: center;
   }
+}
 
-  @media (max-width: 768px) {
-    margin-top: 50px;
+.mrgWithSummary {
+  margin-top: 50px;
+}
+
+.mrgWithNoSummary {
+  margin-top: 50px;
+
+  @media (max-width: 600px) {
+    margin-top: 20px;
   }
 }
 
@@ -194,6 +201,8 @@ h3 {
   text-align: center;
   color: white;
   font-size: 18px;
+  margin-top: 30px;
+  height: 600px;
 }
 
 .add-loan {

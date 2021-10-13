@@ -20,10 +20,7 @@
             <p class="mb">Effektiv rente</p>
 
             <div class="bvalue">
-              <h3>
-                {{ result.totalEffectiveRate | number: '1.2-2' }}
-                %
-              </h3>
+              <h3>{{ result.totalEffectiveRate | number: '1.2-2' }} %</h3>
             </div>
           </div>
           <div class="tab-container">
@@ -63,7 +60,7 @@
   >
     <rente-button
       color="primary-small"
-      (click)="addLoan(); scrollTo(loansLength)"
+      (click)="addLoan(); scrollTo(1)"
       class="add-loan"
       [ngClass]="{
         'add-loan-opacity-low': isEditMode !== null,
@@ -74,7 +71,13 @@
   </div>
 </div>
 
-<div class="summary main-container">
+<div
+  class="summary main-container"
+  [ngClass]="{
+    mrgWithSummary: isSummaryNeeded === true,
+    mrgWithNoSummary: isSummaryNeeded === false
+  }"
+>
   <div *ngFor="let loan of loans; index as i">
     <div *ngIf="loanData.loans.length === 1" class="general-title">
       <h3>Mitt lån</h3>

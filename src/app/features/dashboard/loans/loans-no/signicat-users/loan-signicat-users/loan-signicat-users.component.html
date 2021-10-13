@@ -1,14 +1,17 @@
-<div [ngClass]="setOpacity ? 'setTransparent' : 'resetTransparent'">
+<div
+  class="summary"
+  [ngClass]="setOpacity ? 'setTransparent' : 'resetTransparent'"
+  id="{{ index + 1 }}"
+>
   <div class="loan-boxes">
     <div
       [ngClass]="
         isEditMode === true ? 'content-blue-box-edit' : 'content-blue-box'
       "
-      id="{{ index }}"
     >
       <div class="loan-type">
         <div class="loan-delete">
-          <h3>Lån {{ index + 1 }}</h3>
+          <h3>{{ displayIndexString }}</h3>
           <mat-icon
             *ngIf="isAbleToDelete()"
             (click)="deleteLoan()"
@@ -16,7 +19,6 @@
             >delete_forever</mat-icon
           >
         </div>
-
         <div>
           <img
             [hidden]="hideEditIcon"
@@ -35,7 +37,7 @@
         </div>
       </div>
 
-      <div class="forms">
+      <div class="forms" *ngIf="loanForm">
         <form class="p-0 border-0" [formGroup]="loanForm" novalidate change>
           <div
             [ngClass]="{
@@ -80,6 +82,7 @@
                 [isInputFocused]="
                   isEditMode &&
                   inputOutstandingDebtIsActive &&
+                  !isErrorState(loanForm?.controls['outstandingDebt']) &&
                   !outstandingDebtIsError
                 "
                 [isInputError]="
