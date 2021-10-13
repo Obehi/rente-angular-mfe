@@ -20,7 +20,7 @@
 
       <rente-intro-redirect-dnb
         [bank]="bank"
-        *ngIf="isRedirected && bank?.name === 'DNB'"
+        *ngIf="bank?.name === 'DNB' && userHasNoBankIDForPhone === false"
       >
       </rente-intro-redirect-dnb>
 
@@ -29,59 +29,6 @@
         *ngIf="isRedirected && bank?.isSb1Bank"
       >
       </rente-intro-redirect-sb1>
-
-      <!-- <div class="intro" *ngIf="bank?.name === 'DNB'">
-        <p>
-          Vi opplever at {{ bank?.label }} sperrer sine kunder fra å innhente
-          egne lånedata. Derfor har vi laget en løsning hvor du selv fyller inn
-          dine lånedata:
-        </p>
-
-        <ul>
-          <li>Lånebeløp</li>
-          <li>Nominell rente</li>
-          <li>Løpetid</li>
-          <li>Termingebyr</li>
-          <li>Type lån</li>
-        </ul>
-        <br />
-        <p *ngIf="bank?.name === 'DNB'">
-          Les mer om hvor du finner disse dataene
-          <a
-            class="link"
-            href="https://blogg.renteradar.no/slik-finner-du-din-rente-og-lanedata-i-dnbs-mobil-og-nettbank/"
-            >her</a
-          >.
-        </p>
-      </div> -->
-
-      <!-- <div class="warning" *ngIf="shouldShowBankWarningMessage">
-        <p>
-          Vi kan dessverre i øyeblikket ikke innhente dine lånedata automatisk.
-          Vi jobber med å utbedre feilen. I mellomtiden kan du benytte vår
-          løsning hvor du selv fyller inn dine lånedata.
-        </p>
-      </div> -->
-
-      <!-- <div *ngIf="bank?.name !== 'DNB'" class="intro warning">
-        <p>
-          For denne banken har vi ingen løsning for automatisk innhentning av
-          lånedata enda. Du må derfor fylle inn dette manuelt og vil trenge:
-        </p>
-        <ul *ngIf="bank?.hasFixedLoans === false">
-          <li>Lånebeløp</li>
-          <li>Nominell rente</li>
-          <li>Løpetid</li>
-          <li>Termingebyr</li>
-          <li>Type lån</li>
-        </ul>
-
-        <ul *ngIf="bank?.hasFixedLoans === true">
-          <li>Lånebeløp</li>
-          <li>Løpetid</li>
-          <li>Låneprodukt</li>
-        </ul>
-      </div> -->
 
       <iframe
         *ngIf="signicatIframeUrl !== null"
@@ -240,7 +187,8 @@
             [placeholder]="'Nominell rente'"
             matSuffix="%"
             [maxLength]="5"
-            [type]="'tel'"
+            [type]="'text'"
+            [inputMode]="'decimal'"
             formControlName="interestRate"
             [errorStateMatcher]="
               isErrorState(loanFormGroup?.controls['remainingYears'])
@@ -700,7 +648,8 @@
                     [placeholder]="'Nominell rente'"
                     matSuffix="%"
                     [maxLength]="5"
-                    [type]="'tel'"
+                    [type]="'text'"
+                    [inputMode]="'decimal'"
                     formControlName="interestRate"
                     [errorStateMatcher]="
                       isErrorState(loanFormGroup?.controls['remainingYears'])

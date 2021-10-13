@@ -222,4 +222,9 @@ export class LoansService {
     const url = `${API_URL_MAP.loan.base}/preferences`;
     return this.http.post(url, dto);
   }
+
+  public updateSignicatPhoneNumber(dto: string): Observable<void> {
+    const url = `${API_URL_MAP.user.base}${API_URL_MAP.user.phone}`;
+    return this.http.put(url, { phone: dto });
+  }
 }

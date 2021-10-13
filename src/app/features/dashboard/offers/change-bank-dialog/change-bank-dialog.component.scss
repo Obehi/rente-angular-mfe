@@ -1,9 +1,19 @@
-@import "../../../../../styles/theme/_colors.scss";
+@import '../../../../../styles/theme/_colors.scss';
 
+p {
+  color: white;
+}
 
-// Hack for centering dialog popup 
+.double {
+  padding: 15px;
+  margin-bottom: unset;
+  background-color: $secondary;
+  border-top: 1px solid $karl-blue;
+}
+
+// CENTER POP UP
+
 ::ng-deep .cdk-global-overlay-wrapper {
-
   .cdk-overlay-pane {
     max-height: calc(100vh - 155px) !important;
     max-width: 600px !important;
@@ -12,49 +22,238 @@
   }
 }
 
+//DISABLE WHITE COLOR FROM POP UP
 
-p {
-  margin-bottom: 10px;
-}
-
-.bold {
-  margin-bottom: 5px;
-}
-.small {
-  margin-bottom: 0px;
-}
-a {
-  color: $green;
+::ng-deep .mat-dialog-container {
+  background: none !important;
 }
 
-.top {
-  position: relative;
-  padding: 20px;
-  background: white;
-}
-.bottom {
-  border-top: 1px solid #ECECEC;
-  padding: 20px;
-  border-radius: 0 0 10px 10px;
-  background: white;
+.main {
+  ::-webkit-scrollbar {
+    width: 6px;
+    background: inherit;
+  }
 
-}
-form {
-  background: unset;
-  border: 0;
-  max-width: unset;
-  margin-bottom: 20px;
-  padding: 0;
-  background: white;
-}
+  ::-webkit-scrollbar-track {
+    border-radius: 10px;
+  }
 
-.grid-wrapper-1 {
-  display: grid;
-  grid-template-columns: 100px 150px;
-  grid-gap: 10px;
-}
+  ::-webkit-scrollbar-thumb {
+    background: grey;
+    border-radius: 10px;
+  }
 
-.grid-wrapper{
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(54, 56, 58);
+  }
+
+  background-color: $secondary;
+  overflow: hidden;
+  height: 26rem;
+  @media (max-height: 700px) {
+    height: 25rem;
+  }
+
+  @media (min-width: 600px) {
+    height: 36rem;
+  }
+
+  // DEEPS
+
+  ::ng-deep input.mat-input-element {
+    color: white !important;
+  }
+
+  //// REMOVE MAT STEP ICON
+  ::ng-deep .mat-step-header {
+    display: none !important;
+  }
+
+  ::ng-deep .mat-step-icon {
+    display: none !important;
+  }
+
+  //// REMOVE MAT STEP LINE
+  ::ng-deep .mat-stepper-horizontal-line {
+    display: none !important;
+  }
+
+  //// SET BACKGROUND TO $SECONDARY
+  ::ng-deep .cdk-overlay-container {
+    background: $secondary !important;
+  }
+
+  // MAT-CHECKBOX COLOR
+  ::ng-deep .mat-checkbox .mat-checkbox-frame {
+    border-color: $green;
+  }
+
+  ::ng-deep .mat-checkbox-layout {
+    color: $white;
+    background: $secondary;
+  }
+
+  //// PADING FIX
+  ::ng-deep .mat-horizontal-content-container {
+    padding: unset;
+  }
+
+  ::ng-deep .mat-stepper-horizontal {
+    background-color: $secondary;
+  }
+
+  ::ng-deep .mat-form-field-appearance-legacy .mat-form-field-infix {
+    color: $white;
+    margin-top: -1.5rem;
+    :placeholder {
+      color: white;
+    }
+  }
+
+  //// INPUT FIELD CSS
+  ::ng-deep .cdk-text-field-autofill-monitored:not(:-webkit-autofill) {
+    background: #004465;
+    padding: 5px;
+    height: 2.5rem;
+    border-radius: 10px;
+    color: white;
+    font-weight: 400;
+    font-size: 16px !important;
+    border: 1px solid $blue-light;
+    caret-color: white;
+  }
+
+  ::ng-deep .cdk-text-field-autofill-monitored:not(:-webkit-autofill):focus,
+  .cdk-text-field-autofill-monitored:not(:-webkit-autofill):active {
+    border: 1px solid $primary;
+    background: $secondary;
+    transition: 0.3s;
+  }
+
+  ::ng-deep .mat-form-field-underline {
+    display: none !important;
+  }
+
+  ::ng-deep
+    .mat-form-field-appearance-legacy.mat-form-field-can-float.mat-form-field-should-float
+    .mat-form-field-label {
+    color: white;
+  }
+
+  ::ng-deep .mat-horizontal-stepper-header-container {
+    background-color: #004465;
+    height: 3rem;
+  }
+
+  ::ng-deep .mat-step-text-label {
+    color: $white;
+  }
+
+  ::ng-deep .mat-form-field-wrapper {
+    background-color: $secondary;
+  }
+
+  // END DEEPS
+
+  .step-1 {
+    padding: 20px;
+
+    ::ng-deep .form-message-error {
+      background-color: $secondary;
+    }
+  }
+  .step-2 {
+    .header {
+      hr {
+        width: 90%;
+        margin-left: 4%;
+        border-bottom: 1px solid $blue-light;
+      }
+    }
+    h3 {
+      color: $white;
+      padding: 15px;
+    }
+
+    .message {
+      border: 1px solid #478ccc;
+      padding: 15px;
+      border-radius: 10px;
+    }
+  }
+  .message-bottom {
+    margin-top: 10px;
+  }
+
+  .close-modal {
+    z-index: 3139;
+  }
+
+  .mobile-content {
+    background-color: $secondary;
+  }
+
+  .white-text {
+    font-size: 12px;
+    z-index: 122;
+    margin-top: 20px;
+  }
+
+  .scroll-wrap {
+    @media (min-width: 600px) {
+      height: 50vh;
+    }
+    overflow-y: scroll;
+    height: 301px;
+    overflow-x: hidden;
+    border-radius: 5px;
+    // margin-top: 1.5rem;
+    padding: 0 15px;
+  }
+
+  p {
+    margin-bottom: 10px;
+  }
+
+  .bold {
+    margin-bottom: 5px;
+  }
+  .small {
+    margin-bottom: 0px;
+  }
+  a {
+    color: $green;
+  }
+
+  .top {
+    position: relative;
+
+    background: $karl-blue;
+  }
+
+  .white {
+    color: $white;
+  }
+  .bottom {
+    border-radius: 0 0 10px 10px;
+    background: $secondary;
+  }
+  form {
+    background: unset;
+    border: 0;
+    max-width: unset;
+    margin-bottom: 20px;
+    padding: 0;
+    background: white;
+  }
+
+  .grid-wrapper-1 {
+    display: grid;
+    grid-template-columns: 100px 150px;
+    grid-gap: 10px;
+  }
+
+  .grid-wrapper {
     display: grid;
     grid-template-columns: 140px 150px;
     grid-column-gap: 10px;
@@ -66,6 +265,7 @@ form {
     }
 
     p {
-      line-height: 1.2
+      line-height: 1.2;
     }
+  }
 }

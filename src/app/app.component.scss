@@ -37,3 +37,10 @@
   justify-content: center;
   width: 100%;
 }
+
+// Chatbox position variable is set in scriptState
+::ng-deep div.drift-frame-controller {
+  bottom: 110px !important;
+  bottom: var(--chat-position) !important;
+  animation: move 4s linear infinite;
+}

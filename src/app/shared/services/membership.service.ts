@@ -21,11 +21,11 @@ export class MembershipService {
     this.selectedMembershipsHandler = new Subject<any>();
   }
 
-  getSelectedMemberships(): Observable<any> {
+  getSelectedMemberships(): Observable<MembershipTypeDto[]> {
     return this.selectedMembershipsHandler.asObservable();
   }
 
-  setSelectedMemberships(memberships): any {
+  setSelectedMemberships(memberships: string[]): any {
     this.selectedMembershipsHandler.next(memberships);
   }
 

@@ -67,6 +67,12 @@ import { BoxGridComponent } from './offers/offers-blue/box-grid/box-grid.compone
 import { TipsComponent } from './offers/offers-blue/tips/tips.component';
 import { ActionBoxesComponent } from './offers/offers-blue/action-boxes/action-boxes.component';
 import { CurrencyMaskModule } from 'ng2-currency-mask';
+import { NonPartnerButtonsComponent } from './offers/offers-blue/offer-card-buttons/non-partner-buttons/non-partner-buttons.component';
+import { DinBankButtonsComponent } from './offers/offers-blue/offer-card-buttons/din-bank-buttons/din-bank-buttons.component';
+import { NybyggerButtonsComponent } from './offers/offers-blue/offer-card-buttons/nybygger-buttons/nybygger-buttons.component';
+import { NordeaButtonsComponent } from './offers/offers-blue/offer-card-buttons/nordea-buttons/nordea-buttons.component';
+import { BulderButtonsComponent } from './offers/offers-blue/offer-card-buttons/bulder-buttons/bulder-buttons.component';
+import { NordeaDirectButtonsComponent } from './offers/offers-blue/offer-card-buttons/nordea-direct-buttons/nordea-direct-buttons.component';
 
 // TODO: ADD separate module for material import
 @NgModule({
@@ -113,7 +119,13 @@ import { CurrencyMaskModule } from 'ng2-currency-mask';
     BarometerComponent,
     BoxGridComponent,
     TipsComponent,
-    ActionBoxesComponent
+    ActionBoxesComponent,
+    NonPartnerButtonsComponent,
+    DinBankButtonsComponent,
+    NybyggerButtonsComponent,
+    NordeaButtonsComponent,
+    BulderButtonsComponent,
+    NordeaDirectButtonsComponent
   ],
   imports: [
     CommonModule,

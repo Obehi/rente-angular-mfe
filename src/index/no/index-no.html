@@ -2,7 +2,9 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Beste boliglånsrente | Sammenlign rente på boliglån | Renteradar.no</title>
+    <title>
+      Beste boliglånsrente | Sammenlign rente på boliglån | Renteradar.no
+    </title>
     <meta
       name="description"
       content="
@@ -10,7 +12,7 @@
       de beste tilbudene i markedet. Du kan prute på renten eller 
       bytte bank- helt automatisk og gratis."
     />
-    
+
     <meta name="fbPageId" property="fb:page_id" content="106212423879853" />
     <meta name="fbUrl" property="fb:url" content="https://renteradar.no/" />
     <meta name="ogTitle" property="og:title" content="Renteradar.no" />
@@ -30,27 +32,43 @@
     <base href="/" />
 
     <!-- Anti-flicker snippet (recommended)  -->
-    <style>.async-hide { opacity: 0 !important} </style>
-    <script>(function(a,s,y,n,c,h,i,d,e){s.className+=' '+y;h.start=1*new Date;
-    h.end=i=function(){s.className=s.className.replace(RegExp(' ?'+y),'')};
-    (a[n]=a[n]||[]).hide=h;setTimeout(function(){i();h.end=null},c);h.timeout=c;
-    })(window,document.documentElement,'async-hide','dataLayer',4000,
-    {'GTM-PRJ7GZF':true});</script>
+    <style>
+      .async-hide {
+        opacity: 0 !important;
+      }
+    </style>
+    <script>
+      (function (a, s, y, n, c, h, i, d, e) {
+        s.className += ' ' + y;
+        h.start = 1 * new Date();
+        h.end = i = function () {
+          s.className = s.className.replace(RegExp(' ?' + y), '');
+        };
+        (a[n] = a[n] || []).hide = h;
+        setTimeout(function () {
+          i();
+          h.end = null;
+        }, c);
+        h.timeout = c;
+      })(window, document.documentElement, 'async-hide', 'dataLayer', 4000, {
+        'GTM-PRJ7GZF': true
+      });
+    </script>
     <!-- Google Tag Manager -->
     <script>
-      (function(w, d, s, l, i) {
+      (function (w, d, s, l, i) {
         w[l] = w[l] || [];
         w[l].push({
-          "gtm.start": new Date().getTime(),
-          event: "gtm.js"
+          'gtm.start': new Date().getTime(),
+          event: 'gtm.js'
         });
         var f = d.getElementsByTagName(s)[0],
           j = d.createElement(s),
-          dl = l != "dataLayer" ? "&l=" + l : "";
+          dl = l != 'dataLayer' ? '&l=' + l : '';
         j.async = true;
-        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
         f.parentNode.insertBefore(j, f);
-      })(window, document, "script", "dataLayer", "GTM-PRJ7GZF");
+      })(window, document, 'script', 'dataLayer', 'GTM-PRJ7GZF');
     </script>
     <!-- End Google Tag Manager -->
     <script>
@@ -58,15 +76,15 @@
       window.dataLayer.push({
         originalLocation:
           document.location.protocol +
-          "//" +
+          '//' +
           document.location.hostname +
           document.location.pathname +
           document.location.search
       });
-
     </script>
     <!-- Start of Async Drift Code -->
-    <script>
+    <!-- DriftWidget is loaded in script.service.ts-->
+    <!--    <script>
       "use strict";
 
       function loadDriftWidget() {
@@ -122,6 +140,8 @@
         loadDriftWidget();
       }, 7000);
     </script>
+    -->
+
     <!-- End of Async Drift Code -->
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -149,7 +169,7 @@
         src="https://www.googletagmanager.com/ns.html?id=GTM-PRJ7GZF"
         height="0"
         width="0"
-        style="display:none;visibility:hidden"
+        style="display: none; visibility: hidden"
       ></iframe
     ></noscript>
     <!-- End Google Tag Manager (noscript) -->

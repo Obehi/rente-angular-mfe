@@ -3,6 +3,97 @@
   display: block;
   text-align: center;
 }
+
+// OFFER CARD BUTTONS
+
+//// MOBILE
+
+button.mat-primary-offer-mobile {
+  background-color: $primary;
+  color: #fff;
+  height: 45px !important;
+  font-size: 14px !important;
+  width: 100%;
+  border-radius: 100px;
+}
+
+button.mat-primary-offer-mobile[disabled] {
+  color: white !important;
+}
+
+button.mat-primary-hollow-offer-mobile {
+  width: 100% !important;
+  background-color: white;
+  color: black;
+  border: 1px solid $primary;
+  white-space: break-spaces;
+  height: 45px !important;
+  font-size: 14px !important;
+}
+
+button.mat-primary-wide-hollow-offer-mobile[disabled] {
+  opacity: 1;
+  width: 100% !important;
+  font-size: 14px !important;
+  height: 45px;
+  background-color: unset;
+  color: #a9a9a9;
+  border: 1px solid #c9eae3;
+}
+
+button.mat-primary-hollow-non-partner-mobile[disabled] {
+  opacity: 1;
+  width: 100% !important;
+  font-size: 14px !important;
+  height: 45px;
+  background-color: unset;
+  color: $grey-dark !important;
+  border: 1px solid #c9eae3;
+}
+
+//// DESKTOP
+
+button.mat-primary-offer-desktop {
+  background-color: $primary;
+  color: $white;
+  width: 16rem !important;
+}
+
+button.mat-primary-offer-desktop[disabled] {
+  color: white !important;
+  width: 16rem !important;
+}
+
+button.mat-primary-hollow-offer-desktop {
+  background-color: white;
+  color: black;
+  border: 1px solid $primary;
+  width: 16rem !important;
+  white-space: break-spaces;
+}
+
+button.mat-primary-wide-hollow-offer-desktop[disabled] {
+  opacity: 1;
+  width: 16rem !important;
+
+  height: 56px;
+  background-color: unset;
+  color: #a9a9a975;
+  border: 1px solid #c9eae3;
+}
+
+button.mat-primary-hollow-non-partner-desktop[disabled] {
+  opacity: 1;
+  width: 16rem !important;
+
+  height: 56px;
+  background-color: unset;
+  color: $grey-dark !important;
+  border: 1px solid #c9eae3;
+}
+
+// OFFER CARDS BUTTON END
+
 button.mat-button {
   min-width: 150px;
   border-radius: 100px;
@@ -77,11 +168,22 @@ button.mat-secondary {
   color: white;
 }
 
+button.mat-secondary-semi-wide {
+  background-color: $secondary;
+  color: white;
+}
+
 button.mat-secondary-small {
   background-color: $secondary;
   height: 45px;
   // min-width: 125px;
   color: white;
+}
+
+button.mat-secondary-border {
+  background-color: $secondary;
+  color: white;
+  border: 1px solid #2d4051;
 }
 
 .mat-button.mat-primary {
@@ -133,7 +235,7 @@ button.mat-primary-semi-wide {
   background-color: $primary;
   color: $white;
   height: 56px;
-  width: 325px;
+  width: 100%;
 }
 
 button.mat-primary-horizontal-padding {
@@ -203,7 +305,7 @@ button.mat-primary-wide-hollow {
   white-space: break-spaces;
 }
 
-button.mat-primary-wide-hollow {
+button.mat-primary-semi-wide-hollow {
   background-color: white;
   color: black;
   border: 1px solid $primary;
@@ -231,6 +333,14 @@ button.mat-primary-wide-white {
 }
 
 button.mat-primary-wide-hollow[disabled] {
+  opacity: 1;
+  height: 56px;
+  background-color: unset;
+  color: #a9a9a9;
+  border: 1px solid #c9eae3;
+}
+
+button.mat-primary-semi-wide-hollow[disabled] {
   opacity: 1;
   height: 56px;
   background-color: unset;

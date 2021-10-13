@@ -1,0 +1,42 @@
+@import '../../../../../../../styles/theme/_colors.scss';
+
+:host {
+  width: 100% !important;
+}
+
+.buttons {
+  background: white;
+  display: flex;
+  @media (min-width: 820px) {
+    justify-content: space-evenly;
+  }
+  @media (max-width: 820px) {
+    display: grid;
+    grid-gap: 15px;
+  }
+
+  ::ng-deep button.mat-primary-hollow-offer-desktop {
+    width: 16rem !important;
+  }
+  ::ng-deep button.mat-primary-offer-desktop {
+    width: 16rem !important;
+  }
+}
+
+.buttons-nordea {
+  background: white;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 15px;
+
+  @media (max-width: 820px) {
+    grid-template-columns: unset;
+  }
+
+  ::ng-deep button.mat-primary-hollow-offer-desktop {
+    width: 16rem !important;
+  }
+  ::ng-deep button.mat-primary-offer-desktop {
+    width: 16rem !important;
+  }
+}

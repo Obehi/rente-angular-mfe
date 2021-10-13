@@ -107,14 +107,14 @@ export class OfferCardService {
       case 'YS_NORDEA_DIRECT': {
         text =
           this.getVariation() === 0 || this.getVariation() === 2
-            ? 'Les mer og søk lån!'
+            ? 'Les mer og søk om lån!'
             : 'Flytt boliglånet til Nordea Direct';
         break;
       }
       case 'UNIO_NORDEA_DIRECT': {
         text =
           this.getVariation() === 0 || this.getVariation() === 2
-            ? 'Les mer og søk lån!'
+            ? 'Les mer og søk om lån!'
             : 'Flytt boliglånet til Nordea Direct';
         break;
       }
@@ -204,5 +204,22 @@ export class OfferCardService {
       return 'Flere medlemsfordeler';
     }
     return null;
+  }
+
+  public openBankUrlByButton(offer: OfferInfo): void {
+    if (offer.bankInfo.url === null || offer.bankInfo.partner === false) return;
+
+    const trackingDto = new TrackingDto();
+    trackingDto.offerId = offer.id;
+    trackingDto.type = 'BANK_BUTTON_1';
+
+    if (this.handleNybyggerProductSpecialCase(offer) === true) {
+      this.sendOfferTrackingData(trackingDto);
+      return;
+    }
+
+    window.open(offer.bankInfo.url, '_blank');
+
+    this.sendOfferTrackingData(trackingDto);
   }
 }

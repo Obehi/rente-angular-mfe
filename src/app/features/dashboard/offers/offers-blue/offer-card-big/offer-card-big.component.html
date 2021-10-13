@@ -27,8 +27,12 @@
         class="clickable"
         target="_blank"
         (click)="clickHeaderBankUrl(offer)"
+        *ngIf="offer.bankInfo.partner"
         >{{ offer.bankInfo.name }}</a
       >
+      <a target="_blank" *ngIf="!offer.bankInfo.partner">{{
+        offer.bankInfo.name
+      }}</a>
       <h3 (click)="openOfferDialog(offer)" class="clickable">
         {{ offer.productName }}
       </h3>
@@ -158,80 +162,54 @@
       />
     </a>
   </div>
-
   <div class="the-offer-footer">
-    <div
-      [ngClass]="{
-        triple:
-          isNordea === true &&
-          offer.bankInfo.bank !== 'NYBYGGER' &&
-          offer.bankInfo.bank !== 'DIN_BANK',
-        single: isSingleButtonLayout === true && isNordea === false,
-        double:
-          (isNordea === false && isSingleButtonLayout === false) ||
-          ((offer.bankInfo.bank === 'NYBYGGER' ||
-            offer.bankInfo.bank === 'DIN_BANK') &&
-            isNordea === true)
-      }"
-      class="buttons"
+    <non-partner-buttons
+      *ngIf="!offer.bankInfo.partner"
+      [offer]="offer"
+      [offersInfo]="offersInfo"
+    ></non-partner-buttons>
+
+    <!-- PARTNER BUTTONS -->
+
+    <din-bank-buttons
+      *ngIf="offer.bankInfo.bank === 'DIN_BANK' && offer.bankInfo.partner"
+      [offer]="offer"
+      [offersInfo]="offersInfo"
     >
-      <div class="full-width" *ngIf="!isSingleButtonLayout">
-        <rente-button
-          i18n="“see-more|offer-card-big@@offer.card.big.seeMore”"
-          child
-          childClass="{{ offer.bankInfo.name }}"
-          [disabled]="offer.bankInfo.partner == false"
-          [color]="'primary-wide-hollow'"
-          type="raised"
-          (click)="openBankUrlByButton(offer)"
-          >Se mer på {{ getbankNameOrDefault(offer, true) }}s
-          hjemmeside</rente-button
-        >
-        <p
-          i18n="“no-deal|offer-card-big@@offer.card.big.noDeal”"
-          class="small first"
-          *ngIf="offer.bankInfo.partner === false && isMobile === false"
-        >
-          (Ingen avtale med banken enda)
-        </p>
-      </div>
+    </din-bank-buttons>
 
-      <div [ngClass]="isSingleButtonLayout === true ? '' : 'full-width'">
-        <rente-button
-          childClass="{{ offer.bankInfo.name }}"
-          [disabled]="offer.bankInfo.partner == false"
-          child
-          childClass="{{ offer.bankInfo.name }}"
-          color="{{
-            isSingleButtonLayout === true ? 'primary-semi-wide' : 'primary'
-          }}"
-          type="raised"
-          (click)="offerCardService.openNewOfferDialog(offer)"
-          >{{ offerCardService.getOfferButtonText(offer) }}</rente-button
-        >
+    <nybygger-buttons
+      *ngIf="offer.bankInfo.bank === 'NYBYGGER' && offer.bankInfo.partner"
+      [offer]="offer"
+      [offersInfo]="offersInfo"
+    ></nybygger-buttons>
 
-        <p
-          class="small"
-          *ngIf="offer.bankInfo.partner === false"
-          i18n="“no-deal|offer-card-big@@offer.card.big.noDeal”"
-        >
-          (Ingen avtale med banken enda)
-        </p>
-      </div>
+    <bulder-buttons
+      *ngIf="offer.bankInfo.bank === 'BULDER'"
+      [offer]="offer"
+      [offersInfo]="offersInfo"
+    ></bulder-buttons>
 
-      <div *ngIf="isNordea === true">
-        <rente-button
-          child
-          childClass="{{ this.offersInfo.offers.top5[0].bankInfo.name }}"
-          color="secondary-semi-wide"
-          type="raised"
-          (click)="clickNordea()"
-        >
-          Be Nordea om et bedre tilbud
-        </rente-button>
-      </div>
-    </div>
+    <nordea-direct-buttons
+      *ngIf="
+        offer.bankInfo.bank === 'YS_NORDEA_DIRECT' ||
+        offer.bankInfo.bank === 'UNIO_NORDEA_DIRECT'
+      "
+      [offer]="offer"
+      [offersInfo]="offersInfo"
+    ></nordea-direct-buttons>
 
+    <!-- PARTNER BUTTONS END -->
+
+    <!-- IS NORDEA? -->
+    <nordea-buttons
+      *ngIf="isNordea && offer.bankInfo.bank !== 'BULDER'"
+      [offer]="offer"
+      [offersInfo]="offersInfo"
+    ></nordea-buttons>
+    <!-- END NORDEA -->
+  </div>
+  <div class="offer-info-card">
     <p
       i18n="“offer-info|offer-card-big@@offer.card.big.offerInfo”"
       class="insignificant"
