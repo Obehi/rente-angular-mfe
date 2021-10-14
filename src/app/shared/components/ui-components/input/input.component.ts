@@ -57,6 +57,7 @@ export class InputComponent
   @Input() modelOptions?: { updateOn: string };
   @Input() textControl: boolean;
   @Input() maskType: any;
+  @Input() inputMode: any;
   @ViewChild('inputRef') inputRef: ElementRef;
   @Input() focusListener?: BehaviorSubject<boolean>;
 

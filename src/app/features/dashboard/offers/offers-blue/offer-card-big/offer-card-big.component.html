@@ -27,8 +27,12 @@
         class="clickable"
         target="_blank"
         (click)="clickHeaderBankUrl(offer)"
+        *ngIf="offer.bankInfo.partner"
         >{{ offer.bankInfo.name }}</a
       >
+      <a target="_blank" *ngIf="!offer.bankInfo.partner">{{
+        offer.bankInfo.name
+      }}</a>
       <h3 (click)="openOfferDialog(offer)" class="clickable">
         {{ offer.productName }}
       </h3>

@@ -16,6 +16,7 @@
         (blur)="onBlur()"
         (ngModelChange)="onChangeEmit()"
         [imask]="getMask()"
+        [attr.inputMode]="inputMode"
       />
     </div>
     <ng-template #noMask>
@@ -32,6 +33,7 @@
         [(ngModel)]="value"
         [maxlength]="maxLength"
         (blur)="onBlur()"
+        [attr.inputMode]="inputMode"
       />
     </ng-template>
     <span matSuffix>{{ matSuffix }}</span>

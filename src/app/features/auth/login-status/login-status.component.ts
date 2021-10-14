@@ -119,16 +119,18 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
     // Special case for DNB and Eika banks
     this.thirdStepTimer =
       this.bank.name === 'DNB' || BankUtils.isEikaBank(this.bank.name)
-        ? 34
+        ? 39
         : 25;
+
+    this.thirdStepTimer = this.bank.isSb1Bank ? 39 : 25;
     this.firstStepTimer = this.bank.name === 'DNB' ? 38 : 10;
 
     if (this.isSB1Bank) {
       this.firstStepTimer = 40;
-      this.bankIdTimeoutTime = 120;
+      this.bankIdTimeoutTime = 130;
     }
     if (this.bank.name === 'DNB') {
-      this.bankIdTimeoutTime = 120;
+      this.bankIdTimeoutTime = 130;
     }
     if (this.bank.isTinkBank) {
       this.initiateTinkBank();

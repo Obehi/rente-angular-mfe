@@ -1,11 +1,14 @@
 <div class="buttons" *ngIf="isMobile">
-  <rente-button color="primary-hollow-offer-mobile" [disabled]="disabled">
-    Ingen avtale med banken enda
+  <rente-button color="primary-hollow-non-partner-mobile" [disabled]="disabled">
+    Ingen avtale med banken
   </rente-button>
 </div>
 
 <div class="buttons" *ngIf="!isMobile">
-  <rente-button color="primary-hollow-offer-desktop" [disabled]="disabled">
-    Ingen avtale med banken enda
+  <rente-button
+    color="primary-hollow-non-partner-desktop"
+    [disabled]="disabled"
+  >
+    Ingen avtale med banken
   </rente-button>
 </div>

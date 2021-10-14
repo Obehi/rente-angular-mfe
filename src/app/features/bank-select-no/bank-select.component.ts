@@ -155,7 +155,7 @@ export class BankSelectNoComponent implements OnInit {
       this.envService.environment.dnbSignicatIsOn === true
     ) {
       this.router.navigate(['/autentisering/' + ROUTES_MAP_NO.bankIdLogin], {
-        state: { data: { bank: bank } }
+        state: { data: { bank: bank, userHasNoBankIDForPhone: false } }
       });
       return;
     }
