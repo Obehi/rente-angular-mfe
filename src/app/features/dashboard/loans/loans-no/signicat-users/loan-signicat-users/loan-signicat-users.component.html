@@ -42,7 +42,7 @@
           <div
             [ngClass]="{
               'loan-center': !isEditMode,
-              'loan-center-edit': inEditMode,
+              'loan-center-edit': inEditMode && !inputLoanTypeIsActive,
               'loan-center-edit-focus': isEditMode && inputLoanTypeIsActive
             }"
             (click)="setInputLoanTypeActive()"
@@ -222,7 +222,7 @@
               <p>Effektiv rente:</p>
             </div>
             <div class="center">
-              <h3>{{ initialEffectiveRate | number: '1.2-2' }} %</h3>
+              <h3>{{ effectiveRateCache | number: '1.2-2' }} %</h3>
             </div>
           </div>
         </form>
@@ -240,9 +240,9 @@
 
               <div class="bvalue">
                 {{
-                  initialTotalInterestAndTotalFee == null
+                  totalInterestAndTotalFeeCache == null
                     ? 'N/A'
-                    : (initialTotalInterestAndTotalFee | number: '1.0-0') + ',-'
+                    : (totalInterestAndTotalFeeCache | number: '1.0-0') + ',-'
                 }}
               </div>
             </div>
@@ -251,9 +251,9 @@
               <p class="box-label">Renter & gebyrer per år</p>
               <div class="bvalue">
                 {{
-                  initialtotalInterestAndTotalFeeByRemainingYears == null
+                  totalInterestAndTotalFeeByRemainingYearsCache == null
                     ? 'N/A'
-                    : (initialtotalInterestAndTotalFeeByRemainingYears
+                    : (totalInterestAndTotalFeeByRemainingYearsCache
                         | number: '1.0-0') + ',-'
                 }}
               </div>
