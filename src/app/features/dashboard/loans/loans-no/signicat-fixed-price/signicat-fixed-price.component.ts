@@ -31,8 +31,8 @@ export class SignicatFixedPriceComponent implements OnInit {
 
     this.myLoansService.getLoansAsObservable().subscribe((res) => {
       // console.log(res);
-      this.loans = res.sort((a, b) => a.id - b.id);
       if (this.loans) {
+        this.loans = res.sort((a, b) => a.id - b.id);
         this.loansLength = this.loans.length;
         if (this.loansLength > 1) this.isSummaryNeeded = true;
         else if (this.loansLength === 0) this.isEmptyLoans = true;
@@ -74,6 +74,6 @@ export class SignicatFixedPriceComponent implements OnInit {
         block: 'center',
         inline: 'center'
       });
-    }, 100);
+    }, 200);
   }
 }

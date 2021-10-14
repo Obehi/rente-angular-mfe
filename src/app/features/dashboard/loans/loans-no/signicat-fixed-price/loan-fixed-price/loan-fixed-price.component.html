@@ -43,10 +43,8 @@
             <div
               [ngClass]="{
                 'loan-center': !isEditMode,
-                'loan-center-edit': inEditMode,
-                'loan-center-edit-focus':
-                  isEditMode && inputProductIsActive && !productIsError,
-                'loan-center-edit-error': productIsError
+                'loan-center-edit': inEditMode && !inputProductIsActive,
+                'loan-center-edit-focus': isEditMode && inputProductIsActive
               }"
               (click)="setInputProductActive()"
             >
@@ -83,8 +81,7 @@
                   [isInputFocused]="
                     isEditMode &&
                     inputOutstandingDebtIsActive &&
-                    !isErrorState(loanForm?.controls['outstandingDebt']) &&
-                    !outstandingDebtIsError
+                    !isErrorState(loanForm?.controls['outstandingDebt'])
                   "
                   [isInputError]="
                     isErrorState(loanForm?.controls['outstandingDebt']) ||
@@ -101,10 +98,7 @@
                     *ngIf="
                       loanForm?.controls['outstandingDebt'].hasError(
                         'required'
-                      ) ||
-                      (isErrorState(loanForm?.controls['outstandingDebt']) &&
-                        !isServerError &&
-                        !isGeneralError)
+                      ) || isErrorState(loanForm?.controls['outstandingDebt'])
                     "
                   >
                     Ikke gyldig verdi
@@ -125,12 +119,7 @@
                   [maxLength]="'4'"
                   [isEditMode]="isEditMode"
                   [inEditMode]="inEditMode"
-                  [isInputFocused]="
-                    isEditMode &&
-                    inputRemainingYearsIsActive &&
-                    !isErrorState(loanForm?.controls['remainingYears']) &&
-                    !remainingYearsIsError
-                  "
+                  [isInputFocused]="isEditMode && inputRemainingYearsIsActive"
                   [isInputError]="
                     isErrorState(loanForm?.controls['remainingYears']) ||
                     remainingYearsIsError
@@ -146,10 +135,7 @@
                     *ngIf="
                       loanForm?.controls['remainingYears'].hasError(
                         'required'
-                      ) ||
-                      (isErrorState(loanForm?.controls['remainingYears']) &&
-                        !isServerError &&
-                        !isGeneralError)
+                      ) || isErrorState(loanForm?.controls['remainingYears'])
                     "
                   >
                     Ikke gyldig verdi
@@ -167,7 +153,7 @@
                 <p>Nominell rente:</p>
               </div>
               <div class="loan-value">
-                <h3>{{ initialNominalRate | number: '1.2-2' }} %</h3>
+                <h3>{{ nominalRateCache | number: '1.2-2' }} %</h3>
               </div>
             </div>
 
@@ -180,7 +166,7 @@
                 <p>Effektiv rente:</p>
               </div>
               <div class="loan-value">
-                <h3>{{ initialEffectiveRate | number: '1.2-2' }} %</h3>
+                <h3>{{ effectiveRateCache | number: '1.2-2' }} %</h3>
               </div>
             </div>
           </div>
@@ -199,9 +185,9 @@
 
               <div class="bvalue">
                 {{
-                  initialTotalInterestAndTotalFee == null
+                  totalInterestAndTotalFeeCache == null
                     ? 'N/A'
-                    : (initialTotalInterestAndTotalFee | number: '1.0-0') + ',-'
+                    : (totalInterestAndTotalFeeCache | number: '1.0-0') + ',-'
                 }}
               </div>
             </div>
@@ -210,9 +196,9 @@
               <p class="box-label">Renter & gebyrer per år</p>
               <div class="bvalue">
                 {{
-                  initialtotalInterestAndTotalFeeByRemainingYears == null
+                  totalInterestAndTotalFeeByRemainingYearsCache == null
                     ? 'N/A'
-                    : (initialtotalInterestAndTotalFeeByRemainingYears
+                    : (totalInterestAndTotalFeeByRemainingYearsCache
                         | number: '1.0-0') + ',-'
                 }}
               </div>
