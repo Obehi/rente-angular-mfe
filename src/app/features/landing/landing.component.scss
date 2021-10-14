@@ -471,7 +471,7 @@ a {
       .example-text {
         width: 25vw;
         align-self: center;
-        margin-top: 5rem;
+        margin-top: 1rem;
         text-align: left;
       }
     }
@@ -515,7 +515,7 @@ a {
     padding: 80px;
     background-color: $stian-blue;
     margin-bottom: 80px;
-    border-radius: 30px;
+    border-radius: 15px;
 
     &.small-padding {
       padding-top: 40px !important;
@@ -557,6 +557,11 @@ a {
 }
 
 .faq {
+  @media (min-width: 800px) {
+    width: 50%;
+    margin-left: 25%;
+    margin-bottom: 80px;
+  }
   @media (max-width: 600px) {
     padding: 15px;
   }
