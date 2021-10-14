@@ -127,7 +127,7 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
     // When creating a new loan, set initial save state
     if (this.loan.id === 0) this.isAbleToSave = false;
 
-    let correctValue = '';
+    let correctValue: string | null = '';
 
     if (this.loan.remainingYears !== null) {
       // Check count of decimals and format it to 0 or 1 decimal
@@ -136,6 +136,8 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
       );
       if (format < 2) correctValue = String(this.loan.remainingYears);
       if (format > 1) correctValue = this.loan.remainingYears.toFixed(1);
+    } else {
+      correctValue = null;
     }
 
     // Set initial value
@@ -212,13 +214,22 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
       });
 
     this.loanForm.valueChanges.subscribe(() => {
-      console.log('loan changes');
+      // Update the values from FORM
+      this.updateValuesForm();
+
       const outstandingDebt = this.loanForm.get('outstandingDebt');
       const remainingYears = this.loanForm.get('remainingYears');
       const nominalRate = this.loanForm.get('nominalRate');
       const fee = this.loanForm.get('fee');
 
+      console.log('Check if is right values');
+      console.log(outstandingDebt?.value);
+      console.log(remainingYears?.value);
+      console.log(nominalRate?.value);
+      console.log(fee?.value);
+
       const allControls = [outstandingDebt, remainingYears, nominalRate, fee];
+
       let canSave = true;
 
       if (this.loanForm.dirty === false) {
@@ -226,7 +237,11 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
       }
 
       allControls.forEach((control: AbstractControl) => {
-        if (this.isErrorState(control) || String(control.value).trim() === '') {
+        if (
+          this.isErrorState(control) ||
+          String(control.value).trim() === '' ||
+          control.value === 'null'
+        ) {
           canSave = false;
         }
       });
@@ -417,6 +432,21 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
     });
   } // ngOnInit
 
+  public updateValuesForm(): void {
+    // Get value regardless of other states
+    this.incomingValueOutstandingDebt = this.loanForm.get(
+      'outstandingDebt'
+    )?.value;
+
+    this.incomingValueRemainingYears = this.loanForm.get(
+      'remainingYears'
+    )?.value;
+
+    this.incomingValueNominalRate = this.loanForm.get('nominalRate')?.value;
+
+    this.incomingValueFee = this.loanForm.get('fee')?.value;
+  }
+
   getMask(): any {
     if (typeof this.maskType.currency === 'string') {
       return { mask: this.maskType.currency };
@@ -572,12 +602,12 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
 
   public matSelectChanged(): void {
     if (
-      !this.isErrorState(this.loanForm?.controls[this.outstandingDebtString]) &&
-      !this.isErrorState(this.loanForm?.controls[this.remainingYearsString]) &&
-      !this.isErrorState(this.loanForm.controls[this.nominalRateString]) &&
-      !this.isErrorState(this.loanForm.controls['fee'])
+      this.isErrorState(this.loanForm?.controls[this.outstandingDebtString]) &&
+      this.isErrorState(this.loanForm?.controls[this.remainingYearsString]) &&
+      this.isErrorState(this.loanForm.controls[this.nominalRateString]) &&
+      this.isErrorState(this.loanForm.controls['fee'])
     ) {
-      this.isAbleToSave = true;
+      this.isAbleToSave = false;
     }
   }
 

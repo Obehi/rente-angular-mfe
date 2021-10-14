@@ -43,9 +43,7 @@
             [ngClass]="{
               'loan-center': !isEditMode,
               'loan-center-edit': inEditMode,
-              'loan-center-edit-focus':
-                isEditMode && inputLoanTypeIsActive && !loanTypeIsError,
-              'loan-center-edit-error': loanTypeIsError
+              'loan-center-edit-focus': isEditMode && inputLoanTypeIsActive
             }"
             (click)="setInputLoanTypeActive()"
           >
@@ -82,8 +80,7 @@
                 [isInputFocused]="
                   isEditMode &&
                   inputOutstandingDebtIsActive &&
-                  !isErrorState(loanForm?.controls['outstandingDebt']) &&
-                  !outstandingDebtIsError
+                  !isErrorState(loanForm?.controls['outstandingDebt'])
                 "
                 [isInputError]="
                   isErrorState(this.loanForm?.controls['outstandingDebt'])
@@ -100,9 +97,6 @@
                     loanForm?.controls['outstandingDebt'].hasError(
                       'required'
                     ) ||
-                    (outstandingDebtIsError &&
-                      !isServerError &&
-                      !isGeneralError) ||
                     isErrorState(this.loanForm?.controls['outstandingDebt'])
                   "
                 >
@@ -125,11 +119,7 @@
                   [maxLength]="'5'"
                   [isEditMode]="isEditMode"
                   [inEditMode]="inEditMode"
-                  [isInputFocused]="
-                    isEditMode &&
-                    inputRemainingYearsIsActive &&
-                    !remainingYearsIsError
-                  "
+                  [isInputFocused]="isEditMode && inputRemainingYearsIsActive"
                   [isInputError]="
                     isErrorState(this.loanForm?.controls['remainingYears'])
                   "
@@ -145,10 +135,7 @@
                       loanForm?.controls['remainingYears'].hasError(
                         'required'
                       ) ||
-                      isErrorState(this.loanForm?.controls['remainingYears']) ||
-                      (remainingYearsIsError &&
-                        !isServerError &&
-                        !isGeneralError)
+                      isErrorState(this.loanForm?.controls['remainingYears'])
                     "
                   >
                     Ikke gyldig verdi
@@ -171,17 +158,12 @@
                   [maxLength]="'4'"
                   [isEditMode]="isEditMode"
                   [inEditMode]="inEditMode"
-                  [isInputFocused]="
-                    isEditMode &&
-                    inputNominalRateIsActive &&
-                    !nominalRateIsError
-                  "
+                  [isInputFocused]="isEditMode && inputNominalRateIsActive"
                   [isInputError]="
                     isErrorState(this.loanForm?.controls['nominalRate'])
                   "
                   [errorStateMatcher]="
-                    isErrorState(loanForm?.controls['nominalRate']) ||
-                    nominalRateIsError
+                    isErrorState(loanForm?.controls['nominalRate'])
                   "
                 ></rente-general-input>
                 <div *ngIf="loanForm?.controls['nominalRate'].touched">
@@ -189,8 +171,7 @@
                     class="error-small"
                     *ngIf="
                       loanForm?.controls['nominalRate'].hasError('required') ||
-                      isErrorState(this.loanForm?.controls['nominalRate']) ||
-                      (nominalRateIsError && !isServerError && !isGeneralError)
+                      isErrorState(this.loanForm?.controls['nominalRate'])
                     "
                   >
                     Ikke gyldig verdi
@@ -213,9 +194,7 @@
                   [maxLength]="'3'"
                   [isEditMode]="isEditMode"
                   [inEditMode]="inEditMode"
-                  [isInputFocused]="
-                    isEditMode && inputFeeIsActive && !feeIsError
-                  "
+                  [isInputFocused]="isEditMode && inputFeeIsActive"
                   [isInputError]="isErrorState(this.loanForm?.controls['fee'])"
                   [errorStateMatcher]="isErrorState(loanForm?.controls['fee'])"
                 ></rente-general-input>
@@ -224,7 +203,6 @@
                     class="error-small"
                     *ngIf="
                       loanForm?.controls['fee'].hasError('required') ||
-                      (feeIsError && !isServerError && !isGeneralError) ||
                       isErrorState(this.loanForm?.controls['fee'])
                     "
                   >
