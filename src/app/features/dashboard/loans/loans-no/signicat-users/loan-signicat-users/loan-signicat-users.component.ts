@@ -95,7 +95,7 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
     if (this.loan.id !== 0) {
       this.displayIndexString = `Lån ${this.index + 1}`;
     } else {
-      this.displayIndexString = 'Ny lån';
+      this.displayIndexString = 'Nytt lån';
     }
 
     // When creating a new loan, set initial save state
