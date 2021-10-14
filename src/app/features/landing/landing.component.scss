@@ -203,11 +203,11 @@ iframe {
   padding: 80px 40px;
 
   @media (max-width: 800px) {
-    margin-bottom: 80px;
+    margin-bottom: 120px;
   }
 
   .block {
-    margin-bottom: 80px;
+    margin-bottom: 120px;
     @media (min-width: 800px) {
       width: 15%;
       margin-bottom: 0px;
@@ -305,7 +305,7 @@ iframe {
     align-items: center;
   }
 
-  margin-bottom: 80px;
+  margin-bottom: 120px;
   @media (max-width: 600px) {
     padding: 15px;
   }
@@ -514,7 +514,7 @@ a {
   .list {
     padding: 80px;
     background-color: $stian-blue;
-    margin-bottom: 80px;
+    margin-bottom: 120px;
     border-radius: 15px;
 
     &.small-padding {
@@ -560,7 +560,7 @@ a {
   @media (min-width: 800px) {
     width: 50%;
     margin-left: 25%;
-    margin-bottom: 80px;
+    margin-bottom: 120px;
   }
   @media (max-width: 600px) {
     padding: 15px;
