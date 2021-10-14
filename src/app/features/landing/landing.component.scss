@@ -201,13 +201,17 @@ iframe {
 .list {
   background-color: $secondary;
   padding: 80px 40px;
-  left: -20px;
-  width: calc(100% + 40px);
-  position: relative;
+
+  @media (max-width: 800px) {
+    margin-bottom: 80px;
+  }
 
   .block {
     margin-bottom: 80px;
-
+    @media (min-width: 800px) {
+      width: 15%;
+      margin-bottom: 0px;
+    }
     &:last-of-type {
       margin-bottom: 0px;
     }
@@ -216,6 +220,7 @@ iframe {
       display: block;
       margin: auto;
       margin-bottom: 10px;
+
       height: 40px;
     }
 
@@ -245,10 +250,15 @@ iframe {
   }
 
   img {
-    width: 100%;
-    max-width: 300px;
     margin: auto;
     margin-bottom: 40px;
+    @media (min-width: 800px) {
+      width: 55rem;
+    }
+
+    @media (max-width: 800px) {
+      width: 100%;
+    }
   }
 }
 
@@ -282,6 +292,10 @@ iframe {
   @media (min-width: 600px) {
     display: flex;
   }
+
+  @media (min-width: 1145px) {
+    display: block;
+  }
 }
 
 .articles {
@@ -300,6 +314,7 @@ iframe {
   h3 {
     text-align: left;
     color: $black;
+    margin-bottom: 0px;
   }
 
   .article {
@@ -350,6 +365,10 @@ a {
     grid-gap: 1vw;
   }
 
+  @media (min-width: 1145px) {
+    display: block;
+  }
+
   @media (max-width: 600px) {
     display: table;
   }
@@ -365,7 +384,7 @@ a {
       vertical-align: top;
       position: relative;
       text-align: center;
-      font-size: 18px;
+      font-size: 16px;
       line-height: 1.5;
       color: $blue;
       font-weight: 300;
@@ -443,6 +462,7 @@ a {
   .example {
     .example-head {
       font-size: 31px;
+      margin-top: 5rem;
     }
 
     .example-flex {
@@ -451,7 +471,7 @@ a {
       .example-text {
         width: 25vw;
         align-self: center;
-        margin-top: 10rem;
+        margin-top: 5rem;
         text-align: left;
       }
     }
@@ -466,6 +486,7 @@ a {
     .second-row {
       display: flex;
       flex-direction: column;
+      margin-left: 50px;
 
       h4 {
         flex-basis: 100%;
@@ -492,8 +513,9 @@ a {
   }
   .list {
     padding: 80px;
-    background-color: $grey-light;
+    background-color: $stian-blue;
     margin-bottom: 80px;
+    border-radius: 30px;
 
     &.small-padding {
       padding-top: 40px !important;
@@ -501,6 +523,8 @@ a {
 
     .list-inner {
       margin: auto;
+      display: flex;
+      justify-content: space-between;
     }
   }
   .list.gradient {
@@ -612,6 +636,9 @@ input.mat-input-element {
 }
 
 .media-container {
+  @media (min-width: 800px) {
+    width: 80%;
+  }
   & > div > a {
     width: 75%;
   }

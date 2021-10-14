@@ -28,6 +28,7 @@
   @media (max-width: 800px) {
     color: $white;
     font-size: 14px;
+    margin: 15px;
   }
   @media (min-width: 800px) {
     color: $black;
@@ -46,6 +47,7 @@
 h1 {
   @media (max-width: 800px) {
     color: $white;
+    margin: 15px;
   }
   color: $black;
   font-weight: 400;
@@ -73,6 +75,9 @@ h4 {
   margin-bottom: 40px;
   @media (min-width: 800px) {
     margin: 18vh 0vw 15vh 7vw;
+    // .mobileh1 {
+    //   font-size: calc(1vw + 10px);
+    // }
   }
   h4 {
     max-width: 250px;

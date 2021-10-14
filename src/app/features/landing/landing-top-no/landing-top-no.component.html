@@ -1,34 +1,17 @@
 <div class="co-main">
   <div class="intro imb">
-    <h1 class="mobileh1" *ngIf="isMobile">
-      Sammenlign boliglånet ditt mot markedets <br />
-      <a [routerLink]="'/velgbank'">beste tilbud</a>
-    </h1>
-
-    <h1 class="mobileh1" *ngIf="!isMobile">
-      Sammenlign boliglånet <br />
-      ditt mot markedets
-      <a [routerLink]="'/velgbank'">beste tilbud</a>
+    <h1 class="mobileh1">
+      Boliglån gjort
+      <a [routerLink]="'/velgbank'">enkelt</a>
     </h1>
 
     <p
       i18n="surveillance-service|landing-page@@landing.surveillanceService"
       class="surveillance"
-      *ngIf="!isMobile"
     >
-      Vi overvåker samtlige norske bankers boliglånsrente, 365 dager i året.<br />
-      Mange av kundene våre har spart ti-tusener i årlige rentekostnader.
-      <br />Sjekk selv på 5 minutter.
-    </p>
-
-    <p
-      i18n="surveillance-service|landing-page@@landing.surveillanceService"
-      class="surveillance"
-      *ngIf="isMobile"
-    >
-      Vi overvåker samtlige norske bankers boliglånsrente, 365 dager i året.
-      Mange av kundene våre har spart ti-tusener i årlige rentekostnader. Sjekk
-      selv på 5 minutter.
+      Sammenlign din boliglånsrente med markedets beste tilbud og hva andre
+      betaler. 4 av 5 kan spare tusenvis i året. På 2 minutter får du full
+      oversikt og kontroll på boliglånet ditt - helt gratis!
     </p>
 
     <div class="cta-container" *ngIf="!isMobile">

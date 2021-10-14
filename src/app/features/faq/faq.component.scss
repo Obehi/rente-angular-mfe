@@ -5,7 +5,7 @@ mat-expansion-panel-header {
   border: none;
 }
 mat-expansion-panel-header:hover {
-  background: $light;
+  background: $stian-blue;
 }
 mat-panel-title {
   font-weight: bold;
@@ -23,7 +23,7 @@ mat-panel-title {
   margin: 0;
 }
 .mat-expanded {
-  background: $grey-light;
+  background: $stian-blue;
 }
 
 ul {
@@ -31,4 +31,8 @@ ul {
   li {
     font-weight: 100;
   }
+}
+
+h2 {
+  margin-bottom: 20px !important;
 }

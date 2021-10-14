@@ -272,7 +272,14 @@ button.mat-primary-wide-landing-new {
   width: 80%;
   @media (min-width: 800px) {
     width: 19vw;
-    font-size: 1vw;
+    font-size: 16px;
+    font-weight: 400;
+    white-space: break-spaces;
+  }
+
+  @media (min-width: 1315px) {
+    width: 19vw;
+    font-size: 16px;
     font-weight: 400;
   }
 }
@@ -284,8 +291,15 @@ button.mat-primary-wide-landing-hollow {
   height: 56px;
   width: 80%;
   @media (min-width: 800px) {
+    font-size: 16px;
     width: 19vw;
-    font-size: 1vw;
+    white-space: break-spaces;
+    font-weight: 400;
+  }
+
+  @media (min-width: 1315px) {
+    width: 19vw;
+    font-size: 16px;
     font-weight: 400;
   }
 }
