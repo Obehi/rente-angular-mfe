@@ -29,7 +29,11 @@
     (click)="offerCardService.openBankUrlByButton(offer)"
     >Se mer på Bulders hjemmeside</rente-button
   >
-  <rente-button class="bulder" color="primary-offer-desktop">
+  <rente-button
+    class="bulder"
+    color="primary-offer-desktop"
+    (click)="offerCardService.openNewOfferDialog(offer)"
+  >
     {{ offerCardService.getOfferButtonText(offer) }}
   </rente-button>
 
