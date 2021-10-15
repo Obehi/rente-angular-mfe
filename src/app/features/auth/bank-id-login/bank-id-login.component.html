@@ -792,9 +792,9 @@
       </div>
     </div>
 
-    <div class="bottom">
+    <div *ngIf="isSingicatLoginSucces === false" class="bottom">
       <rente-button
-        *ngIf="newClient === false && isSingicatLoginSucces === false"
+        *ngIf="newClient === false"
         class="right"
         (click)="oldUserFinished()"
         color="primary"
