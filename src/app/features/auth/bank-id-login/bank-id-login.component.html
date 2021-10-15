@@ -794,7 +794,7 @@
 
     <div class="bottom">
       <rente-button
-        *ngIf="newClient === false"
+        *ngIf="newClient === false && isSingicatLoginSucces === false"
         class="right"
         (click)="oldUserFinished()"
         color="primary"

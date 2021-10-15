@@ -125,6 +125,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
   public estimatedPropertyValueFromVirdi: number;
   public manualEstimatedPropertyValueFromUser: number;
   public isManualPropertyValue = false;
+  public isSingicatLoginSucces = false;
   get isMobile(): boolean {
     return window.innerWidth < 600;
   }
@@ -235,6 +236,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
 
   // Send sessionId to backend and initialize the correct form based on client info
   private statusSuccess(sessionId: string): void {
+    this.isSingicatLoginSucces = true;
     this.localStorageService;
     this.bank &&
       sessionId &&

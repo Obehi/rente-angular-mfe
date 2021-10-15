@@ -14,6 +14,7 @@ export class GlobalStateService {
   private notificationHouses = new BehaviorSubject<number>(0);
   private notificationProfile = new Subject<number>();
   private isDashboard = new BehaviorSubject<boolean>(false);
+  private isSignicatLogin$ = new BehaviorSubject<boolean>(false);
 
   public isScriptLoaded$ = new BehaviorSubject(false);
 
@@ -48,6 +49,18 @@ export class GlobalStateService {
           this.isScriptLoaded$.next(true);
         }
       });
+
+    this.routeNavigationEnd$
+      .pipe(
+        map((event: NavigationEnd) =>
+          event.url.includes('autentisering/bankid-login') ? true : false
+        )
+      )
+      .subscribe((isSiginicatLogin) => {
+        this.isSignicatLogin$.next(isSiginicatLogin);
+        console.log('isSignicatLogin');
+        console.log(isSiginicatLogin);
+      });
   }
 
   private setDashBoardStateListener(): void {
@@ -55,11 +68,17 @@ export class GlobalStateService {
       .observe('(max-width: 992px)')
       .pipe(map((breakpoint) => breakpoint.matches));
 
-    combineLatest([isMobile$, this.isDashboard]).subscribe(
-      ([isMobile, isDashboard]) => {
-        this.ScriptService.setChatPosition(isMobile, isDashboard);
-      }
-    );
+    combineLatest([
+      isMobile$,
+      this.isDashboard,
+      this.isSignicatLogin$
+    ]).subscribe(([isMobile, isDashboard, isSignicatLogin]) => {
+      this.ScriptService.setChatPosition(
+        isMobile,
+        isDashboard,
+        isSignicatLogin
+      );
+    });
   }
 
   public setFooterState(show: boolean): void {

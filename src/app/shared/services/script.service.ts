@@ -5,9 +5,7 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class ScriptService {
-  constructor() {
-    // this.loadScript();
-  }
+  constructor() {}
 
   public loadChatScript(): void {
     const scriptAsString = `
@@ -118,7 +116,11 @@ export class ScriptService {
     document.getElementsByTagName('head')[0].appendChild(node);
   }
 
-  public setChatPosition(isDashBoard: boolean, isMobile: boolean): void {
+  public setChatPosition(
+    isDashBoard: boolean,
+    isMobile: boolean,
+    isSignicatLogin: boolean
+  ): void {
     let positionFromBottom = '90px';
 
     if (isDashBoard && isMobile) {
@@ -132,6 +134,9 @@ export class ScriptService {
       positionFromBottom = '25px';
     }
 
+    if (isSignicatLogin && isMobile) {
+      positionFromBottom = '90px';
+    }
     // Chatbox position variable is used in app.component.scss
     document.documentElement.style.setProperty(
       '--chat-position',
