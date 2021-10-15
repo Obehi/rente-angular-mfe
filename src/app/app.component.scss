@@ -43,4 +43,5 @@
   bottom: 110px !important;
   bottom: var(--chat-position) !important;
   animation: move 4s linear infinite;
+  display: var(--chat-box-display) !important;
 }

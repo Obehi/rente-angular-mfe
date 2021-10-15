@@ -113,7 +113,17 @@ export class ScriptService {
     node.type = 'text/javascript';
     node.async = true;
     node.charset = 'utf-8';
+    this.showChatBox();
+
     document.getElementsByTagName('head')[0].appendChild(node);
+  }
+
+  public hideChatBox(): void {
+    document.documentElement.style.setProperty('--chat-box-display', 'none');
+  }
+
+  public showChatBox(): void {
+    document.documentElement.style.setProperty('--chat-box-display', 'block');
   }
 
   public setChatPosition(

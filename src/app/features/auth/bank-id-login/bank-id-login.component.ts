@@ -73,6 +73,7 @@ import { RxjsOperatorService } from '@services/rxjs-operator.service';
 import { LoginTermsDialogV2Component } from '@shared/components/ui-components/dialogs/login-terms-dialog-v2/login-terms-dialog-v2.component';
 import { VirdiManualValueDialogComponent } from '@shared/components/ui-components/dialogs/virdi-manual-value-dialog/virdi-manual-value-dialog.component';
 import { MembershipService } from '@services/membership.service';
+import { ScriptService } from '@services/script.service';
 
 @Component({
   selector: 'rente-bank-id-login',
@@ -140,6 +141,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     private loanService: LoansService,
     private loginService: LoginService,
     private globalStateService: GlobalStateService,
+    private scriptService: ScriptService,
     private routeEventsService: RouteEventsService,
     private sanitizer: DomSanitizer,
     private rxjsOperatorService: RxjsOperatorService,
@@ -149,6 +151,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.scriptService.hideChatBox();
     this.scrollToTop();
     this.globalStateService.setFooterState(false);
     this.globalStateService.signicatBottomContainerIsDisplayed$.next(false);
@@ -238,6 +241,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
   // Send sessionId to backend and initialize the correct form based on client info
   private statusSuccess(sessionId: string): void {
     this.isSingicatLoginSucces = true;
+    this.scriptService.showChatBox();
     this.globalStateService.signicatBottomContainerIsDisplayed$.next(true);
     this.localStorageService;
     this.bank &&
