@@ -89,7 +89,7 @@
             />
             <p class="rate-warning-title-text">OBS! Fastrentelån</p>
           </div>
-          <p *nfIf="envService.isNorway()" class="rate-warning-text">
+          <p *ngIf="envService.isNorway()" class="rate-warning-text">
             Du har ett eller flere fastrentelån. Renteradar viser beste rente og
             besparelsespotensialet kun for lånet/lånene med flytende rente. I
             kalkulasjonen av din effektive rente er derimot lånet med fast rente
