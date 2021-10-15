@@ -120,7 +120,7 @@ export class ScriptService {
     isDashBoard: boolean,
     isUnder992: boolean,
     isMobile: boolean,
-    isSignicatLogin: boolean
+    shouldMoveChatUpInSignicat: boolean
   ): void {
     let positionFromBottom = '90px';
 
@@ -135,7 +135,7 @@ export class ScriptService {
       positionFromBottom = '25px';
     }
 
-    if (isSignicatLogin && isMobile) {
+    if (shouldMoveChatUpInSignicat && isMobile) {
       positionFromBottom = '90px';
     }
     // Chatbox position variable is used in app.component.scss
