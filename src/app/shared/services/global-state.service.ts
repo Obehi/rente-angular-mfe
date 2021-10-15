@@ -15,6 +15,8 @@ export class GlobalStateService {
   private notificationProfile = new Subject<number>();
   private isDashboard = new BehaviorSubject<boolean>(false);
   private isSignicatLogin$ = new BehaviorSubject<boolean>(false);
+  private isUnder992$ = new Observable<boolean>();
+  private isMobile$ = new Observable<boolean>();
 
   public isScriptLoaded$ = new BehaviorSubject(false);
 
@@ -64,18 +66,28 @@ export class GlobalStateService {
   }
 
   private setDashBoardStateListener(): void {
-    const isMobile$ = this.breakpointObserver
+    this.isUnder992$ = this.breakpointObserver
       .observe('(max-width: 992px)')
       .pipe(map((breakpoint) => breakpoint.matches));
 
+    this.isMobile$ = this.breakpointObserver
+      .observe('(max-width: 600px)')
+      .pipe(map((breakpoint) => breakpoint.matches));
+
+    this.isUnder992$.subscribe((match) => {
+      console.log('match');
+      console.log(match);
+    });
     combineLatest([
-      isMobile$,
+      this.isUnder992$,
+      this.isMobile$,
       this.isDashboard,
       this.isSignicatLogin$
-    ]).subscribe(([isMobile, isDashboard, isSignicatLogin]) => {
+    ]).subscribe(([isUnder992, isMobile, isDashboard, isSignicatLogin]) => {
       this.ScriptService.setChatPosition(
-        isMobile,
         isDashboard,
+        isUnder992,
+        isMobile,
         isSignicatLogin
       );
     });

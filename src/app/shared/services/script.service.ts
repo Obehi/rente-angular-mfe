@@ -118,19 +118,20 @@ export class ScriptService {
 
   public setChatPosition(
     isDashBoard: boolean,
+    isUnder992: boolean,
     isMobile: boolean,
     isSignicatLogin: boolean
   ): void {
     let positionFromBottom = '90px';
 
-    if (isDashBoard && isMobile) {
+    if (isDashBoard && isUnder992) {
       // done
       positionFromBottom = '90px';
-    } else if (!isDashBoard && isMobile) {
+    } else if (!isDashBoard && isUnder992) {
       positionFromBottom = '25px';
-    } else if (isDashBoard && !isMobile) {
+    } else if (isDashBoard && !isUnder992) {
       positionFromBottom = '25px';
-    } else if (!isDashBoard && !isMobile) {
+    } else if (!isDashBoard && !isUnder992) {
       positionFromBottom = '25px';
     }
 
