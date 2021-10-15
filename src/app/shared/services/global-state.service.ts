@@ -15,8 +15,13 @@ export class GlobalStateService {
   private notificationProfile = new Subject<number>();
   private isDashboard = new BehaviorSubject<boolean>(false);
   private isSignicatLogin$ = new BehaviorSubject<boolean>(false);
+  public signicatBottomContainerIsDisplayed$ = new BehaviorSubject<boolean>(
+    false
+  );
+
   private isUnder992$ = new Observable<boolean>();
   private isMobile$ = new Observable<boolean>();
+  private shouldMoveChatUpInSignicat$ = new Observable<boolean>();
 
   public isScriptLoaded$ = new BehaviorSubject(false);
 
@@ -72,19 +77,30 @@ export class GlobalStateService {
       .observe('(max-width: 600px)')
       .pipe(map((breakpoint) => breakpoint.matches));
 
+    this.shouldMoveChatUpInSignicat$ = combineLatest([
+      this.isSignicatLogin$,
+      this.signicatBottomContainerIsDisplayed$
+    ]).pipe(
+      map(
+        ([isSignicatLogin, signicatBottomContainerIsDisplayed]) =>
+          isSignicatLogin && signicatBottomContainerIsDisplayed
+      )
+    );
     combineLatest([
       this.isUnder992$,
       this.isMobile$,
       this.isDashboard,
-      this.isSignicatLogin$
-    ]).subscribe(([isUnder992, isMobile, isDashboard, isSignicatLogin]) => {
-      this.ScriptService.setChatPosition(
-        isDashboard,
-        isUnder992,
-        isMobile,
-        isSignicatLogin
-      );
-    });
+      this.shouldMoveChatUpInSignicat$
+    ]).subscribe(
+      ([isUnder992, isMobile, isDashboard, shouldMoveChatUpInSignicat]) => {
+        this.ScriptService.setChatPosition(
+          isDashboard,
+          isUnder992,
+          isMobile,
+          shouldMoveChatUpInSignicat
+        );
+      }
+    );
   }
 
   public setFooterState(show: boolean): void {

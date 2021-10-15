@@ -151,6 +151,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.scrollToTop();
     this.globalStateService.setFooterState(false);
+    this.globalStateService.signicatBottomContainerIsDisplayed$.next(false);
   }
 
   ngOnDestroy(): void {
@@ -237,6 +238,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
   // Send sessionId to backend and initialize the correct form based on client info
   private statusSuccess(sessionId: string): void {
     this.isSingicatLoginSucces = true;
+    this.globalStateService.signicatBottomContainerIsDisplayed$.next(true);
     this.localStorageService;
     this.bank &&
       sessionId &&
