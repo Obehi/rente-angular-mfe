@@ -60,8 +60,6 @@ export class GlobalStateService {
       )
       .subscribe((isSiginicatLogin) => {
         this.isSignicatLogin$.next(isSiginicatLogin);
-        console.log('isSignicatLogin');
-        console.log(isSiginicatLogin);
       });
   }
 
@@ -74,10 +72,6 @@ export class GlobalStateService {
       .observe('(max-width: 600px)')
       .pipe(map((breakpoint) => breakpoint.matches));
 
-    this.isUnder992$.subscribe((match) => {
-      console.log('match');
-      console.log(match);
-    });
     combineLatest([
       this.isUnder992$,
       this.isMobile$,
