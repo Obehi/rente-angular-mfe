@@ -158,6 +158,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    this.scriptService.showChatBox();
     this.routeSubscription.unsubscribe();
   }
 
