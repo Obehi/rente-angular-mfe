@@ -294,7 +294,7 @@ iframe {
   }
   h2 {
     color: $primary !important;
-    font-size: 124px;
+    font-size: 100px;
     font-weight: 400;
   }
   @media (max-width: 800px) {
@@ -486,7 +486,7 @@ a {
         height: 170px;
       }
 
-      @media (min-width: 600px) {
+      @media (min-width: 800px) {
         height: 80px;
       }
 
