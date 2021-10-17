@@ -3,7 +3,6 @@
   *ngIf="isMobile"
 >
   <rente-button
-    i18n="“see-more|offer-card-big@@offer.card.big.seeMore”"
     [color]="'primary-hollow-offer-mobile'"
     (click)="offerCardService.openBankUrlByButton(offer)"
     >Se mer på Bulders hjemmeside</rente-button
@@ -24,12 +23,15 @@
   *ngIf="!isMobile"
 >
   <rente-button
-    i18n="“see-more|offer-card-big@@offer.card.big.seeMore”"
     [color]="'primary-hollow-offer-desktop'"
     (click)="offerCardService.openBankUrlByButton(offer)"
     >Se mer på Bulders hjemmeside</rente-button
   >
-  <rente-button class="bulder" color="primary-offer-desktop">
+  <rente-button
+    class="bulder"
+    color="primary-offer-desktop"
+    (click)="offerCardService.openNewOfferDialog(offer)"
+  >
     {{ offerCardService.getOfferButtonText(offer) }}
   </rente-button>
 

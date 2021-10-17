@@ -5,9 +5,7 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class ScriptService {
-  constructor() {
-    // this.loadScript();
-  }
+  constructor() {}
 
   public loadChatScript(): void {
     const scriptAsString = `
@@ -115,23 +113,41 @@ export class ScriptService {
     node.type = 'text/javascript';
     node.async = true;
     node.charset = 'utf-8';
+    this.showChatBox();
+
     document.getElementsByTagName('head')[0].appendChild(node);
   }
 
-  public setChatPosition(isDashBoard: boolean, isMobile: boolean): void {
+  public hideChatBox(): void {
+    document.documentElement.style.setProperty('--chat-box-display', 'none');
+  }
+
+  public showChatBox(): void {
+    document.documentElement.style.setProperty('--chat-box-display', 'block');
+  }
+
+  public setChatPosition(
+    isDashBoard: boolean,
+    isUnder992: boolean,
+    isMobile: boolean,
+    shouldMoveChatUpInSignicat: boolean
+  ): void {
     let positionFromBottom = '90px';
 
-    if (isDashBoard && isMobile) {
+    if (isDashBoard && isUnder992) {
       // done
       positionFromBottom = '90px';
-    } else if (!isDashBoard && isMobile) {
+    } else if (!isDashBoard && isUnder992) {
       positionFromBottom = '25px';
-    } else if (isDashBoard && !isMobile) {
+    } else if (isDashBoard && !isUnder992) {
       positionFromBottom = '25px';
-    } else if (!isDashBoard && !isMobile) {
+    } else if (!isDashBoard && !isUnder992) {
       positionFromBottom = '25px';
     }
 
+    if (shouldMoveChatUpInSignicat && isMobile) {
+      positionFromBottom = '90px';
+    }
     // Chatbox position variable is used in app.component.scss
     document.documentElement.style.setProperty(
       '--chat-position',

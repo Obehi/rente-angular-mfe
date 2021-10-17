@@ -792,7 +792,7 @@
       </div>
     </div>
 
-    <div class="bottom">
+    <div *ngIf="isSingicatLoginSucces" class="bottom">
       <rente-button
         *ngIf="newClient === false"
         class="right"

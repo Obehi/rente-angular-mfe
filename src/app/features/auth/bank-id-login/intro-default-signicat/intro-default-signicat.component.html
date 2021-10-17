@@ -1,19 +1,6 @@
 <div class="intro">
   <p>
     For denne banken har vi ingen løsning for automatisk innhentning av lånedata
-    enda. Du må derfor fylle inn dette manuelt og vil trenge:
+    enda. Du må derfor fylle inn noen lånedetaljer etter innlogging.
   </p>
-  <ul *ngIf="bank?.hasFixedLoans === false">
-    <li>Lånebeløp</li>
-    <li>Nominell rente</li>
-    <li>Løpetid</li>
-    <li>Termingebyr</li>
-    <li>Type lån</li>
-  </ul>
-
-  <ul *ngIf="bank?.hasFixedLoans === true">
-    <li>Lånebeløp</li>
-    <li>Løpetid</li>
-    <li>Låneprodukt</li>
-  </ul>
 </div>
