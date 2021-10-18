@@ -43,6 +43,12 @@ h3 {
   }
 }
 
+@media (min-width: 1000px) {
+  .list-inner {
+    max-width: 70%;
+  }
+}
+
 @media (min-width: 0px) {
   .singupContainer {
     border-radius: 15px;
