@@ -8,7 +8,10 @@
     grid-template-rows: 94vh;
 
     ::ng-deep .rente-image {
-      width: 40vh;
+      // max-width: 40vh;
+      max-height: 65vh;
+      margin-top: 10%;
+      max-width: 35vw;
     }
   }
   @media (max-width: 800px) {
