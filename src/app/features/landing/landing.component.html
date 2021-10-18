@@ -146,10 +146,16 @@
         </div>
       </div>
       <div class="user-statistic">
+        <h4 *ngIf="!isMobile">
+          Hver av våre <br />
+          <span>40 000</span> brukere kan i <br />
+          snitt spare <span>110 000 kr</span>
+        </h4>
+        <h4 *ngIf="isMobile">
+          Hver av våre
+          <span>40 000</span> brukere kan i snitt spare <span>110 000 kr</span>
+        </h4>
         <img src="../../../assets/icons/piggy-bank.svg" alt="sparegris" />
-
-        <h4>Hver av våre <span>40 000</span> brukere kan i snitt spare</h4>
-        <h2>110 000 kr</h2>
       </div>
     </div>
 

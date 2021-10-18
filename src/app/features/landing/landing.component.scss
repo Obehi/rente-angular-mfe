@@ -276,18 +276,51 @@ iframe {
 .user-statistic {
   margin-top: 200px;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
   margin-bottom: 100px;
+  justify-content: space-between;
+  margin: auto;
+  margin-top: 10rem;
+  margin-bottom: 5rem;
+
+  @media (min-width: 1000px) {
+    max-width: 70%;
+  }
+
+  @media (max-width: 800px) {
+    flex-direction: column-reverse;
+    justify-content: space-around;
+  }
+
+  @media (min-width: 800px) and (max-width: 1000px) {
+    justify-content: space-evenly;
+  }
 
   img {
-    width: 130px;
+    @media (max-width: 800px) {
+      width: 130px;
+    }
+    @media (min-width: 800px) and (max-width: 1000px) {
+      width: 200px;
+    }
+
+    @media (min-width: 1000px) {
+      width: 200px;
+
+      margin-right: 6rem;
+    }
   }
   h4 {
     color: $secondary;
     font-size: 40px;
     font-weight: 400;
+    text-align: left;
+
+    @media (max-width: 800px) {
+      margin-top: 2rem;
+      text-align: center;
+    }
+
     span {
       color: $primary;
     }
@@ -325,7 +358,7 @@ iframe {
     margin: auto;
     margin-bottom: 40px;
     @media (min-width: 800px) {
-      width: 55rem;
+      width: 100%;
     }
 
     @media (max-width: 800px) {
@@ -439,6 +472,9 @@ a {
     grid-template-columns: 1fr 1fr;
     grid-gap: 1vw;
     width: 100%;
+    .sitatboks {
+      max-width: 390px;
+    }
   }
 
   @media (min-width: 1145px) {
@@ -733,6 +769,9 @@ input.mat-input-element {
 
 .media-container {
   @media (min-width: 800px) {
+    width: 60%;
+  }
+  @media (min-width: 1000px) {
     width: 80%;
   }
   & > div > a {

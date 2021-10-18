@@ -3,6 +3,9 @@
 .co-main {
   @media (min-width: 800px) {
     display: grid;
+    @media (min-width: 800px) and (max-width: 1000px) {
+      grid-template-columns: 3fr 5fr;
+    }
     grid-template-columns: 5fr 5fr;
     grid-gap: 40px;
     margin-bottom: 10%;
@@ -10,8 +13,10 @@
     margin-top: -1px;
     ::ng-deep .rente-image {
       width: 40%;
-      margin-right: 60px;
-      margin-left: 37%;
+      margin: auto 40%;
+      @media (min-width: 800px) and (max-width: 1000px) {
+        width: 55%;
+      }
     }
   }
   @media (max-width: 800px) {
@@ -124,6 +129,17 @@ h4 {
     .buttons {
       display: flex;
 
+      @media (min-width: 800px) and (max-width: 1000px) {
+        flex-direction: column;
+        ::ng-deep button.mat-primary-wide-landing-new {
+          width: 35vw;
+        }
+
+        ::ng-deep button.mat-primary-wide-landing-hollow {
+          width: 35vw;
+        }
+      }
+
       ::ng-deep .button-wrapper {
         text-align: left;
       }
@@ -136,8 +152,9 @@ h4 {
     background-repeat: no-repeat;
     background-size: cover;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    // justify-content: center;
+    // align-items: center;
+    flex-direction: column;
   }
 }
 
