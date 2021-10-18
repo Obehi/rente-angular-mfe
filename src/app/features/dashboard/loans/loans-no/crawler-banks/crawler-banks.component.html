@@ -104,30 +104,33 @@
             </div>
           </div>
 
-          <div class="total-cost">
-            <div class="double-container">
-              <div class="first-box move-first-box">
-                <p class="box-label">Totale renter og gebyrer</p>
-                <div class="bvalue">
-                  {{
-                    loan.totalInterestAndTotalFee == null
-                      ? 'N/A'
-                      : (loan.totalInterestAndTotalFee | number: '1.0-0') + ',-'
-                  }}
+          <div class="all-text">
+            <div class="total-cost">
+              <div class="double-container">
+                <div class="first-box move-first-box">
+                  <p class="box-label">Totale renter og gebyrer</p>
+                  <div class="bvalue">
+                    {{
+                      loan.totalInterestAndTotalFee == null
+                        ? 'N/A'
+                        : (loan.totalInterestAndTotalFee | number: '1.0-0') +
+                          ',-'
+                    }}
+                  </div>
                 </div>
-              </div>
 
-              <div class="first-box move-sec-box">
-                <div class="btitle-two">
-                  <p>Renter & gebyrer per år</p>
-                </div>
-                <div class="bvalue">
-                  {{
-                    loan.totalInterestAndTotalFeeByRemainingYears == null
-                      ? 'N/A'
-                      : (loan.totalInterestAndTotalFeeByRemainingYears
-                          | number: '1.0-0') + ',-'
-                  }}
+                <div class="first-box move-sec-box">
+                  <div class="box-label">
+                    <p>Renter & gebyrer per år</p>
+                  </div>
+                  <div class="bvalue">
+                    {{
+                      loan.totalInterestAndTotalFeeByRemainingYears == null
+                        ? 'N/A'
+                        : (loan.totalInterestAndTotalFeeByRemainingYears
+                            | number: '1.0-0') + ',-'
+                    }}
+                  </div>
                 </div>
               </div>
             </div>
