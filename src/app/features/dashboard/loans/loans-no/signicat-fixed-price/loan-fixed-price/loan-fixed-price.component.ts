@@ -122,7 +122,7 @@ export class LoanFixedPriceComponent implements OnInit, OnDestroy {
     this.loanNameCache = String(this.loan.loanName);
     this.outStandingDebtCache = String(this.loan.outstandingDebt);
     this.remainingYearsCache = correctValue;
-    this.loanTypeString = String(this.loan.loanName);
+    // this.loanTypeString = String(this.loan.loanName);
 
     // Extra variables to set on the component if a new loan is created
     this.effectiveRateCache = this.loan.effectiveRate;
@@ -138,6 +138,7 @@ export class LoanFixedPriceComponent implements OnInit, OnDestroy {
 
     // -------------------  Sort the offers --------------------------
     this.allOffers.sort((a, b) => a.name.localeCompare(b.name));
+    // console.log('Sorted loans', this.allOffers);
 
     // Demo test code necessary, deactivate when testing in signicat
     // const transformDto = {
@@ -236,28 +237,20 @@ export class LoanFixedPriceComponent implements OnInit, OnDestroy {
   }
 
   public validateForm(): void {
-    const loanType = this.loanForm.get('loanType');
+    const loanName = this.loanForm.get('loanName');
     const outstandingDebt = this.loanForm.get('outstandingDebt');
     const remainingYears = this.loanForm.get('remainingYears');
-    const nominalRate = this.loanForm.get('nominalRate');
-    const fee = this.loanForm.get('fee');
 
-    const allControls = [
-      loanType,
-      outstandingDebt,
-      remainingYears,
-      nominalRate,
-      fee
-    ];
+    const allControls = [loanName, outstandingDebt, remainingYears];
 
     let canSave = true;
 
-    const getLoanType = String(
-      this.loanTypeList.filter((val) => val.name === this.selected)[0].name
+    const getLoanName = String(
+      this.allOffers.filter((val) => val.name === this.selected)[0].name
     );
 
     // Additional check for mat-select, if mat-select has not been changed
-    if (this.loanForm.dirty === false && getLoanType === this.loanNameCache) {
+    if (this.loanForm.dirty === false && getLoanName === this.loanNameCache) {
       canSave = false;
     }
 
@@ -391,8 +384,7 @@ export class LoanFixedPriceComponent implements OnInit, OnDestroy {
     const check = this.myLoansService.getEditMode();
 
     if (check !== null) {
-      console.log('Check != null!');
-      return;
+      throw new Error('Check is NOT null');
     }
 
     // Reset the form, mark as pristine and disable save button
@@ -438,13 +430,21 @@ export class LoanFixedPriceComponent implements OnInit, OnDestroy {
 
     const getFee = Number(this.loan.fee);
 
-    const getLoanType = String(
-      this.loanTypeList.filter((val) => val.value === this.loan.loanType)[0]
-        .value
-    );
+    let getLoanType = '';
+
+    if (
+      this.selected.toLocaleLowerCase().includes('rammelån') ||
+      this.selected.toLocaleLowerCase().includes('flexilån') ||
+      this.selected.toLocaleLowerCase().includes('boligkreditt')
+    ) {
+      getLoanType = 'CREDIT_LINE';
+    } else {
+      getLoanType = 'DOWNPAYMENT_REGULAR_LOAN';
+    }
 
     const getLoanSubType = String(
-      this.loanTypeList.filter((val) => val.value === getLoanType)[0].subType
+      this.loanTypeList.filter((val) => val.value === getLoanType.toString())[0]
+        .subType
     );
 
     let getNominalRate = 0;

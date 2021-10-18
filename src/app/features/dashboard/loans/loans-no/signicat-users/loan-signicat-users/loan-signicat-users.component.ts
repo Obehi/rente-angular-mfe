@@ -377,8 +377,7 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
       const check = this.myLoansService.getEditMode();
 
       if (check !== null) {
-        console.log('Check is NOT NULL!!');
-        return;
+        throw new Error('Check is NOT null');
       }
 
       // Reset the form, mark as pristine and disable save button
@@ -551,8 +550,7 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
     const currentLoanIndex = this.myLoansService.getEditMode();
 
     if (currentLoanIndex === null) {
-      console.log('Loan index is null');
-      return;
+      throw new Error('Loan index is null');
     }
 
     const loanId = this.loan.id;

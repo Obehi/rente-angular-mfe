@@ -184,7 +184,7 @@
       </msg>
   <msg id="contactUs.send”" desc="send" meaning="“message"><source>app/features/contact-us/contact-us.component.html:112,113</source>Send
     </msg>
-  <msg id="close”" desc="button" meaning="“close"><source>app/features/init-confirmation/dialog-info/dialog-info.component.html:5,7</source><source>app/features/dashboard/profile/dialog-info/dialog-info.component.html:8,10</source><source>app/features/dashboard/offers/ltv-too-high-dialog/ltv-too-high-dialog.component.html:27</source><source>app/features/dashboard/offers/bargain-success/referral/referral.component.html:74,76</source><source>app/features/dashboard/offers/offers-blue/bank-rating-dialog/bank-rating-dialog.component.html:23,25</source><source>app/shared/components/ui-components/dialogs/generic-info-dialog/generic-info-dialog.component.html:13,15</source><source>app/shared/components/ui-components/dialogs/generic-choice-dialog/generic-choice-dialog.component.html:12,14</source><source>app/shared/components/ui-components/dialogs/generic-choice-dialog/generic-choice-dialog.component.html:21,23</source><source>app/shared/components/ui-components/dialogs/generic-error-dialog/generic-error-dialog.component.html:13,15</source><source>app/shared/components/ui-components/dialogs/generic-error-dialog/generic-error-dialog.component.html:23,25</source><source>app/shared/components/ui-components/dialogs/virdi-error-choice-dialog/virdi-error-choice-dialog.component.html:45,47</source><source>app/shared/components/ui-components/dialogs/virdi-error-choice-dialog/virdi-error-choice-dialog.component.html:54,56</source><source>app/shared/components/ui-components/dialogs/login-terms-dialog-v2/login-terms-dialog-v2.component.html:43</source><source>app/features/auth/crawler-login/dialog-info-service/dialog-info-service.component.html:47</source>
+  <msg id="close”" desc="button" meaning="“close"><source>app/features/init-confirmation/dialog-info/dialog-info.component.html:5,7</source><source>app/features/dashboard/profile/dialog-info/dialog-info.component.html:8,10</source><source>app/features/dashboard/offers/ltv-too-high-dialog/ltv-too-high-dialog.component.html:27</source><source>app/shared/components/ui-components/dialogs/generic-info-dialog/generic-info-dialog.component.html:20,22</source><source>app/features/dashboard/offers/bargain-success/referral/referral.component.html:74,76</source><source>app/features/dashboard/offers/offers-blue/bank-rating-dialog/bank-rating-dialog.component.html:23,25</source><source>app/shared/components/ui-components/dialogs/generic-choice-dialog/generic-choice-dialog.component.html:12,14</source><source>app/shared/components/ui-components/dialogs/generic-choice-dialog/generic-choice-dialog.component.html:21,23</source><source>app/shared/components/ui-components/dialogs/generic-error-dialog/generic-error-dialog.component.html:13,15</source><source>app/shared/components/ui-components/dialogs/generic-error-dialog/generic-error-dialog.component.html:23,25</source><source>app/shared/components/ui-components/dialogs/virdi-error-choice-dialog/virdi-error-choice-dialog.component.html:45,47</source><source>app/shared/components/ui-components/dialogs/virdi-error-choice-dialog/virdi-error-choice-dialog.component.html:54,56</source><source>app/shared/components/ui-components/dialogs/login-terms-dialog-v2/login-terms-dialog-v2.component.html:43</source><source>app/features/auth/crawler-login/dialog-info-service/dialog-info-service.component.html:47</source>
     Lukk
   </msg>
   <msg id="email.preferences.saved”" desc="email-preferences" meaning="“saved"><source>app/features/email-preferences/email-preferences.component.html:6</source>Lagret</msg>
@@ -812,22 +812,22 @@
   <msg id="get.offer.from.bank.continue”" desc="get-offer-from-bank" meaning="“continue"><source>app/features/dashboard/offers/get-offer-from-bank-dialog/get-offer-from-bank-dialog.component.html:8,10</source>
 Fortsett
 </msg>
-  <msg id="offer.card.big.title”" desc="offer-card-big" meaning="“title"><source>app/features/dashboard/offers/offers-blue/offer-card-big/offer-card-big.component.html:44,46</source>
+  <msg id="offer.card.big.title”" desc="offer-card-big" meaning="“title"><source>app/features/dashboard/offers/offers-blue/offer-card-big/offer-card-big.component.html:50,52</source>
     <ph name="START_PARAGRAPH"><ex>&lt;p&gt;</ex>&lt;p&gt;</ph>Rentebesparelse<ph name="CLOSE_PARAGRAPH"><ex>&lt;/p&gt;</ex>&lt;/p&gt;</ph>
   </msg>
-  <msg id="offer.card.big.time”" desc="offer-card-big" meaning="“time"><source>app/features/dashboard/offers/offers-blue/offer-card-big/offer-card-big.component.html:55,57</source>
+  <msg id="offer.card.big.time”" desc="offer-card-big" meaning="“time"><source>app/features/dashboard/offers/offers-blue/offer-card-big/offer-card-big.component.html:61,63</source>
         over lånets løpetid
       </msg>
-  <msg id="offer.card.big.firstYear”" desc="offer-card-big" meaning="“first-year"><source>app/features/dashboard/offers/offers-blue/offer-card-big/offer-card-big.component.html:66,68</source>
+  <msg id="offer.card.big.firstYear”" desc="offer-card-big" meaning="“first-year"><source>app/features/dashboard/offers/offers-blue/offer-card-big/offer-card-big.component.html:72,74</source>
         første år
       </msg>
-  <msg id="offer.card.big.efficient”" desc="offer-card-big" meaning="“efficient"><source>app/features/dashboard/offers/offers-blue/offer-card-big/offer-card-big.component.html:74,76</source>
+  <msg id="offer.card.big.efficient”" desc="offer-card-big" meaning="“efficient"><source>app/features/dashboard/offers/offers-blue/offer-card-big/offer-card-big.component.html:80,82</source>
           Effektiv rente
         </msg>
-  <msg id="offer.card.big.demandChange”" desc="offer-card-big" meaning="“demand-change"><source>app/features/dashboard/offers/offers-blue/offer-card-big/offer-card-big.component.html:84,86</source>
+  <msg id="offer.card.big.demandChange”" desc="offer-card-big" meaning="“demand-change"><source>app/features/dashboard/offers/offers-blue/offer-card-big/offer-card-big.component.html:90,92</source>
           Krever bytte av nettbank
         </msg>
-  <msg id="offer.card.big.noYes”" desc="offer-card-big" meaning="“no-yes"><source>app/features/dashboard/offers/offers-blue/offer-card-big/offer-card-big.component.html:90,96</source>
+  <msg id="offer.card.big.noYes”" desc="offer-card-big" meaning="“no-yes"><source>app/features/dashboard/offers/offers-blue/offer-card-big/offer-card-big.component.html:96,102</source>
             <ph name="INTERPOLATION"><ex>{{
               offer.requiredProductPackage == null
                 ? customLangTextSerice.get18nFixForNo()
@@ -839,13 +839,13 @@ Fortsett
             }}</ph>
           </msg>
   <msg id="offer.card.big.customerSatisfaction”" desc="offer-card-big" meaning="
-            “customer-satisfaction"><source>app/features/dashboard/offers/offers-blue/offer-card-big/offer-card-big.component.html:108,110</source>
+            “customer-satisfaction"><source>app/features/dashboard/offers/offers-blue/offer-card-big/offer-card-big.component.html:114,116</source>
           Kundetilfredshet
         </msg>
-  <msg id="offer.card.big.timeApply”" desc="offer-card-big" meaning="“time-apply"><source>app/features/dashboard/offers/offers-blue/offer-card-big/offer-card-big.component.html:127,129</source>
+  <msg id="offer.card.big.timeApply”" desc="offer-card-big" meaning="“time-apply"><source>app/features/dashboard/offers/offers-blue/offer-card-big/offer-card-big.component.html:133,135</source>
           Hvor lang tid tar det å søke
         </msg>
-  <msg id="offer.card.big.unknown”" desc="offer-card-big" meaning="“unknown"><source>app/features/dashboard/offers/offers-blue/offer-card-big/offer-card-big.component.html:134,140</source>
+  <msg id="offer.card.big.unknown”" desc="offer-card-big" meaning="“unknown"><source>app/features/dashboard/offers/offers-blue/offer-card-big/offer-card-big.component.html:140,146</source>
             <ph name="INTERPOLATION"><ex>{{
               offer.bankInfo.applicationTime === null
                 ? customLangTextSerice.get18nFixForUnknown()
@@ -856,13 +856,13 @@ Fortsett
                 : offer.bankInfo.applicationTime + &apos; min&apos;
             }}</ph>
           </msg>
-  <msg id="offer.card.big.details”" desc="offer-card-big" meaning="“details"><source>app/features/dashboard/offers/offers-blue/offer-card-big/offer-card-big.component.html:148</source>Detaljer</msg>
-  <msg id="offer.card.big.seeMore”" desc="offer-card-big" meaning="“see-more"><source>app/features/dashboard/offers/offers-blue/offer-card-big/offer-card-big.component.html:181,182</source><source>app/features/dashboard/offers/offers-blue/offer-card/offer-card.component.html:256,257</source>Se mer på <ph name="INTERPOLATION"><ex>{{ getbankNameOrDefault(offer, true) }}</ex>{{ getbankNameOrDefault(offer, true) }}</ph>s
+  <msg id="offer.card.big.details”" desc="offer-card-big" meaning="“details"><source>app/features/dashboard/offers/offers-blue/offer-card-big/offer-card-big.component.html:154</source>Detaljer</msg>
+  <msg id="offer.card.big.seeMore”" desc="offer-card-big" meaning="“see-more"><source>app/features/dashboard/offers/offers-blue/offer-card-big/offer-card-big.component.html:187,188</source><source>app/features/dashboard/offers/offers-blue/offer-card/offer-card.component.html:261,262</source>Se mer på <ph name="INTERPOLATION"><ex>{{ getbankNameOrDefault(offer, true) }}</ex>{{ getbankNameOrDefault(offer, true) }}</ph>s
           hjemmeside</msg>
-  <msg id="offer.card.big.noDeal”" desc="offer-card-big" meaning="“no-deal"><source>app/features/dashboard/offers/offers-blue/offer-card-big/offer-card-big.component.html:188,190</source><source>app/features/dashboard/offers/offers-blue/offer-card-big/offer-card-big.component.html:211,213</source>
+  <msg id="offer.card.big.noDeal”" desc="offer-card-big" meaning="“no-deal"><source>app/features/dashboard/offers/offers-blue/offer-card-big/offer-card-big.component.html:194,196</source><source>app/features/dashboard/offers/offers-blue/offer-card-big/offer-card-big.component.html:217,219</source>
           (Ingen avtale med banken enda)
         </msg>
-  <msg id="offer.card.big.offerInfo”" desc="offer-card-big" meaning="“offer-info"><source>app/features/dashboard/offers/offers-blue/offer-card-big/offer-card-big.component.html:232,239</source>
+  <msg id="offer.card.big.offerInfo”" desc="offer-card-big" meaning="“offer-info"><source>app/features/dashboard/offers/offers-blue/offer-card-big/offer-card-big.component.html:238,245</source>
       <ph name="START_TAG_SPAN"><ex>&lt;span&gt;</ex>&lt;span&gt;</ph>Tilbud: <ph name="CLOSE_TAG_SPAN"><ex>&lt;/span&gt;</ex>&lt;/span&gt;</ph> Eff.rente
       <ph name="INTERPOLATION"><ex>{{ offer.effectiveRate | number: &apos;1.2-2&apos; }}</ex>{{ offer.effectiveRate | number: &apos;1.2-2&apos; }}</ph> %, Lånebeløp
       <ph name="INTERPOLATION_1"><ex>{{ offer.outstandingDebt | number: &apos;1.0&apos; }}</ex>{{ offer.outstandingDebt | number: &apos;1.0&apos; }}</ph>,
@@ -952,30 +952,30 @@ Fortsett
       Beklager, noe gikk galt og vi vil rette opp feilen så fort som mulig.
       Vennligst prøv igjen senere.
     </msg>
-  <msg id="offer.card.title”" desc="offer-card" meaning="“title"><source>app/features/dashboard/offers/offers-blue/offer-card/offer-card.component.html:46,48</source>
+  <msg id="offer.card.title”" desc="offer-card" meaning="“title"><source>app/features/dashboard/offers/offers-blue/offer-card/offer-card.component.html:51,53</source>
           Du sparer
         </msg>
-  <msg id="offer.card.firstYear”" desc="offer-card" meaning="“first-year"><source>app/features/dashboard/offers/offers-blue/offer-card/offer-card.component.html:51,53</source>
+  <msg id="offer.card.firstYear”" desc="offer-card" meaning="“first-year"><source>app/features/dashboard/offers/offers-blue/offer-card/offer-card.component.html:56,58</source>
               første år
             </msg>
-  <msg id="offer.card.over.time”" desc="offer-card" meaning="“over-time"><source>app/features/dashboard/offers/offers-blue/offer-card/offer-card.component.html:63,65</source>
+  <msg id="offer.card.over.time”" desc="offer-card" meaning="“over-time"><source>app/features/dashboard/offers/offers-blue/offer-card/offer-card.component.html:68,70</source>
               over lånets løpetid
             </msg>
   <msg id="offer.card.customerSatisfied”" desc="offer-card" meaning="
-                “customer-satisfied"><source>app/features/dashboard/offers/offers-blue/offer-card/offer-card.component.html:97,105</source>
+                “customer-satisfied"><source>app/features/dashboard/offers/offers-blue/offer-card/offer-card.component.html:102,110</source>
               Kundetilfredshet
               <ph name="START_TAG_SPAN"><ex>&lt;span&gt;</ex>&lt;span&gt;</ph>
                 <ph name="START_TAG_MAT_ICON"><ex>&lt;mat-icon&gt;</ex>&lt;mat-icon&gt;</ph>help<ph name="CLOSE_TAG_MAT_ICON"><ex>&lt;/mat-icon&gt;</ex>&lt;/mat-icon&gt;</ph>
               <ph name="CLOSE_TAG_SPAN"><ex>&lt;/span&gt;</ex>&lt;/span&gt;</ph>
             </msg>
   <msg id="offer.card.mobileRatingNotAvailable" desc="offer-card" meaning="
-                “application-time"><source>app/features/dashboard/offers/offers-blue/offer-card/offer-card.component.html:148,150</source>
+                “application-time"><source>app/features/dashboard/offers/offers-blue/offer-card/offer-card.component.html:153,155</source>
               Webbsida
             </msg>
-  <msg id="offer.card.applicationTime”" desc="offer-card" meaning="“application-time"><source>app/features/dashboard/offers/offers-blue/offer-card/offer-card.component.html:158,160</source>
+  <msg id="offer.card.applicationTime”" desc="offer-card" meaning="“application-time"><source>app/features/dashboard/offers/offers-blue/offer-card/offer-card.component.html:163,165</source>
                 Hvor lang tid tar det å søke:
               </msg>
-  <msg id="offer.card.timeApply.value”" desc="offer-card" meaning="“demand-change"><source>app/features/dashboard/offers/offers-blue/offer-card/offer-card.component.html:165,171</source>
+  <msg id="offer.card.timeApply.value”" desc="offer-card" meaning="“demand-change"><source>app/features/dashboard/offers/offers-blue/offer-card/offer-card.component.html:170,176</source>
                 <ph name="INTERPOLATION"><ex>{{
                   offer.bankInfo.applicationTime === null
                     ? customLangTextSerice.get18nFixForUnknown()
@@ -986,10 +986,10 @@ Fortsett
                     : offer.bankInfo.applicationTime + &apos; min&apos;
                 }}</ph>
               </msg>
-  <msg id="offer.card.demandChange”" desc="offer-card" meaning="“demand-change"><source>app/features/dashboard/offers/offers-blue/offer-card/offer-card.component.html:178,180</source>
+  <msg id="offer.card.demandChange”" desc="offer-card" meaning="“demand-change"><source>app/features/dashboard/offers/offers-blue/offer-card/offer-card.component.html:183,185</source>
                 Krever bytte av nettbank
               </msg>
-  <msg id="offer.card.noYes”" desc="offer-card" meaning="“no-yes"><source>app/features/dashboard/offers/offers-blue/offer-card/offer-card.component.html:181,187</source><source>app/features/dashboard/offers/offers-blue/offer-card/offer-card.component.html:197,199</source>
+  <msg id="offer.card.noYes”" desc="offer-card" meaning="“no-yes"><source>app/features/dashboard/offers/offers-blue/offer-card/offer-card.component.html:186,192</source><source>app/features/dashboard/offers/offers-blue/offer-card/offer-card.component.html:202,204</source>
                 <ph name="INTERPOLATION"><ex>{{
                   offer.requiredProductPackage == null
                     ? customLangTextSerice.get18nFixForNo()
@@ -1000,19 +1000,19 @@ Fortsett
                     : &apos;Ja&apos;
                 }}</ph>
               </msg>
-  <msg id="offer.card.historicRate" desc="offer-card" meaning="“demand-change"><source>app/features/dashboard/offers/offers-blue/offer-card/offer-card.component.html:194,196</source>
+  <msg id="offer.card.historicRate" desc="offer-card" meaning="“demand-change"><source>app/features/dashboard/offers/offers-blue/offer-card/offer-card.component.html:199,201</source>
                 Historisk plassering
               </msg>
-  <msg id="offer.card.bankType" desc="offer-card" meaning="“demand-change"><source>app/features/dashboard/offers/offers-blue/offer-card/offer-card.component.html:206,208</source>
+  <msg id="offer.card.bankType" desc="offer-card" meaning="“demand-change"><source>app/features/dashboard/offers/offers-blue/offer-card/offer-card.component.html:211,213</source>
                 Type bank
               </msg>
-  <msg id="offer.card.geografi" desc="offer-card" meaning="“demand-change"><source>app/features/dashboard/offers/offers-blue/offer-card/offer-card.component.html:216,218</source><source>app/features/dashboard/offers/offers-blue/offer-card/offer-card.component.html:231,233</source>
+  <msg id="offer.card.geografi" desc="offer-card" meaning="“demand-change"><source>app/features/dashboard/offers/offers-blue/offer-card/offer-card.component.html:221,223</source><source>app/features/dashboard/offers/offers-blue/offer-card/offer-card.component.html:236,238</source>
                 Geografi
               </msg>
-  <msg id="offer.card.noDeal”" desc="offer-card" meaning="“no-deal"><source>app/features/dashboard/offers/offers-blue/offer-card/offer-card.component.html:272,274</source>
+  <msg id="offer.card.noDeal”" desc="offer-card" meaning="“no-deal"><source>app/features/dashboard/offers/offers-blue/offer-card/offer-card.component.html:277,279</source>
             (Ingen avtale med banken)
           </msg>
-  <msg id="offer.card.numberDetails”" desc="offer-card" meaning="“number-details"><source>app/features/dashboard/offers/offers-blue/offer-card/offer-card.component.html:295,301</source>
+  <msg id="offer.card.numberDetails”" desc="offer-card" meaning="“number-details"><source>app/features/dashboard/offers/offers-blue/offer-card/offer-card.component.html:300,306</source>
         <ph name="START_TAG_SPAN"><ex>&lt;span&gt;</ex>&lt;span&gt;</ph> <ph name="CLOSE_TAG_SPAN"><ex>&lt;/span&gt;</ex>&lt;/span&gt;</ph> Eff.rente <ph name="INTERPOLATION"><ex>{{ offer.effectiveRate | number: &apos;1.2-2&apos; }}</ex>{{ offer.effectiveRate | number: &apos;1.2-2&apos; }}</ph> %,
         Lånebeløp <ph name="INTERPOLATION_1"><ex>{{ offer.outstandingDebt | number: &apos;1.0&apos; }}</ex>{{ offer.outstandingDebt | number: &apos;1.0&apos; }}</ph>,
         <ph name="INTERPOLATION_2"><ex>{{ offer.loanPeriodYears | number: &apos;1.1-1&apos; }}</ex>{{ offer.loanPeriodYears | number: &apos;1.1-1&apos; }}</ph> år, Kostnad:
