@@ -99,7 +99,13 @@ export class CrawlerLoginComponent implements OnInit, OnDestroy {
           this.router.navigate(
             ['/autentisering/' + ROUTES_MAP_NO.bankIdLogin],
             {
-              state: { data: { bank: bank, redirect: true } }
+              state: {
+                data: {
+                  bank: bank,
+                  redirect: true,
+                  userHasNoBankIDForPhone: false
+                }
+              }
             }
           );
         }
@@ -186,7 +192,13 @@ export class CrawlerLoginComponent implements OnInit, OnDestroy {
 
   goToSignicatLogin(): void {
     this.router.navigate(['/autentisering/' + ROUTES_MAP_NO.bankIdLogin], {
-      state: { data: { bank: this.bank, redirect: true } }
+      state: {
+        data: {
+          bank: this.bank,
+          redirect: false,
+          userHasNoBankIDForPhone: true
+        }
+      }
     });
   }
 
@@ -278,7 +290,10 @@ export class CrawlerLoginComponent implements OnInit, OnDestroy {
     this.bankIdForm = this.fb.group({
       ssn: [
         '',
-        Validators.compose([Validators.required]),
+        Validators.compose([
+          Validators.required,
+          Validators.pattern(VALIDATION_PATTERN.ssnMasked)
+        ]),
         // Async Validators
         this.environment.production ? [this.ssnAsyncValidator()] : []
       ],

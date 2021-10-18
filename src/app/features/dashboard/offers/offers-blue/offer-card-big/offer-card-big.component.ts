@@ -31,7 +31,7 @@ export class OfferCardBigComponentBlue implements OnInit {
   public offerSavingsType = OFFER_SAVINGS_TYPE;
   public offerType: string;
   public isSweden: boolean;
-  public isNordea = false;
+  public isNordea: boolean;
   public isSingleButtonLayout = false;
   public bankSpecialPromoText: string | null = null;
 

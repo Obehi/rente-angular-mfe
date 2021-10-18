@@ -73,6 +73,7 @@ import { RxjsOperatorService } from '@services/rxjs-operator.service';
 import { LoginTermsDialogV2Component } from '@shared/components/ui-components/dialogs/login-terms-dialog-v2/login-terms-dialog-v2.component';
 import { VirdiManualValueDialogComponent } from '@shared/components/ui-components/dialogs/virdi-manual-value-dialog/virdi-manual-value-dialog.component';
 import { MembershipService } from '@services/membership.service';
+import { ScriptService } from '@services/script.service';
 
 @Component({
   selector: 'rente-bank-id-login',
@@ -111,6 +112,9 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
   ];
   public selectedOffer: string;
   public bank: BankVo | null;
+  public userHasNoBankIDForPhone = false;
+  public isRedirected = false;
+
   private loanId: number | null;
   public currentStepperValue = 0;
   public newClient: boolean | null;
@@ -122,6 +126,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
   public estimatedPropertyValueFromVirdi: number;
   public manualEstimatedPropertyValueFromUser: number;
   public isManualPropertyValue = false;
+  public isSingicatLoginSucces = false;
   get isMobile(): boolean {
     return window.innerWidth < 600;
   }
@@ -136,6 +141,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     private loanService: LoansService,
     private loginService: LoginService,
     private globalStateService: GlobalStateService,
+    private scriptService: ScriptService,
     private routeEventsService: RouteEventsService,
     private sanitizer: DomSanitizer,
     private rxjsOperatorService: RxjsOperatorService,
@@ -145,11 +151,14 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.scriptService.hideChatBox();
     this.scrollToTop();
     this.globalStateService.setFooterState(false);
+    this.globalStateService.signicatBottomContainerIsDisplayed$.next(false);
   }
 
   ngOnDestroy(): void {
+    this.scriptService.showChatBox();
     this.routeSubscription.unsubscribe();
   }
 
@@ -180,11 +189,13 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     // Getting bank name from the bank-select component
     const stateData = this.router?.getCurrentNavigation()?.extras?.state?.data;
     // Checking for null or undefined
-    if (stateData == null) {
+    if (stateData === null || stateData === undefined) {
       this.router.navigate(['/' + ROUTES_MAP.bankSelect]);
       return;
     } else {
       this.bank = stateData.bank;
+      this.userHasNoBankIDForPhone = stateData.userHasNoBankIDForPhone;
+      this.isRedirected = stateData.redirect;
 
       if (stateData.redirect === true) {
         if (this.bank?.name === 'DNB') {
@@ -230,6 +241,9 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
 
   // Send sessionId to backend and initialize the correct form based on client info
   private statusSuccess(sessionId: string): void {
+    this.isSingicatLoginSucces = true;
+    this.scriptService.showChatBox();
+    this.globalStateService.signicatBottomContainerIsDisplayed$.next(true);
     this.localStorageService;
     this.bank &&
       sessionId &&
@@ -290,6 +304,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
       memberships: clientDto.memberships
     };
     clientDto.memberships = [];
+
     concat(
       this.loanService.updateClientInfo(this.getFormValues()),
       this.loanService.CreateSignicatLoansInfo([signicatLoanInfoDto]),
@@ -1124,6 +1139,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     confDtoWithAprtmentValue.email = emailForm.email;
     confDtoWithAprtmentValue.income = incomeNumber;
     confDtoWithAprtmentValue.memberships = [];
+    confDtoWithAprtmentValue.phone = '';
 
     return confDtoWithAprtmentValue;
   }

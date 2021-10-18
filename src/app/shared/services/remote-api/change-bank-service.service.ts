@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { GenericHttpService } from '@services/generic-http.service';
 import { API_URL_MAP } from '@config/api-url-config';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import {
   BankOfferLocations,
   BankOfferPreview,

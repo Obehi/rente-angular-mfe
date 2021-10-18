@@ -72,6 +72,12 @@ import { SignicatUsersComponent } from './loans/loans-no/signicat-users/signicat
 import { SignicatFixedPriceComponent } from './loans/loans-no/signicat-fixed-price/signicat-fixed-price.component';
 import { LoanFixedPriceComponent } from './loans/loans-no/signicat-fixed-price/loan-fixed-price/loan-fixed-price.component';
 import { LoanSignicatUsersComponent } from './loans/loans-no/signicat-users/loan-signicat-users/loan-signicat-users.component';
+import { NonPartnerButtonsComponent } from './offers/offers-blue/offer-card-buttons/non-partner-buttons/non-partner-buttons.component';
+import { DinBankButtonsComponent } from './offers/offers-blue/offer-card-buttons/din-bank-buttons/din-bank-buttons.component';
+import { NybyggerButtonsComponent } from './offers/offers-blue/offer-card-buttons/nybygger-buttons/nybygger-buttons.component';
+import { NordeaButtonsComponent } from './offers/offers-blue/offer-card-buttons/nordea-buttons/nordea-buttons.component';
+import { BulderButtonsComponent } from './offers/offers-blue/offer-card-buttons/bulder-buttons/bulder-buttons.component';
+import { NordeaDirectButtonsComponent } from './offers/offers-blue/offer-card-buttons/nordea-direct-buttons/nordea-direct-buttons.component';
 
 // TODO: ADD separate module for material import
 @NgModule({
@@ -123,7 +129,13 @@ import { LoanSignicatUsersComponent } from './loans/loans-no/signicat-users/loan
     SignicatUsersComponent,
     SignicatFixedPriceComponent,
     LoanFixedPriceComponent,
-    LoanSignicatUsersComponent
+    LoanSignicatUsersComponent,
+    NonPartnerButtonsComponent,
+    DinBankButtonsComponent,
+    NybyggerButtonsComponent,
+    NordeaButtonsComponent,
+    BulderButtonsComponent,
+    NordeaDirectButtonsComponent
   ],
   imports: [
     CommonModule,

@@ -282,4 +282,9 @@ export class LoansService {
 
     return this.http.delWithParams(url, dto);
   }
+
+  public updateSignicatPhoneNumber(dto: string): Observable<void> {
+    const url = `${API_URL_MAP.user.base}${API_URL_MAP.user.phone}`;
+    return this.http.put(url, { phone: dto });
+  }
 }

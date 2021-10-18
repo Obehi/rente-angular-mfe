@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
-import { debounceTime, repeat, scan, share, tap } from 'rxjs/operators';
-
+import { NavigationEnd, Router, Scroll } from '@angular/router';
+import { BehaviorSubject, combineLatest, Observable, Subject } from 'rxjs';
+import { delay, filter, map, scan, share, switchMap } from 'rxjs/operators';
+import { ScriptService } from '@services/script.service';
+import { BreakpointObserver } from '@angular/cdk/layout';
 @Injectable({
   providedIn: 'root'
 })
@@ -12,9 +14,93 @@ export class GlobalStateService {
   private notificationHouses = new BehaviorSubject<number>(0);
   private notificationProfile = new Subject<number>();
   private isDashboard = new BehaviorSubject<boolean>(false);
+  private isSignicatLogin$ = new BehaviorSubject<boolean>(false);
+  public signicatBottomContainerIsDisplayed$ = new BehaviorSubject<boolean>(
+    false
+  );
 
-  constructor() {
+  private isUnder992$ = new Observable<boolean>();
+  private isMobile$ = new Observable<boolean>();
+  private shouldMoveChatUpInSignicat$ = new Observable<boolean>();
+
+  public isScriptLoaded$ = new BehaviorSubject(false);
+
+  private routeNavigationEnd$: Observable<any> = this.route.events.pipe(
+    filter((event) => event instanceof NavigationEnd),
+    share()
+  );
+  constructor(
+    private route: Router,
+    private ScriptService: ScriptService,
+    private breakpointObserver: BreakpointObserver
+  ) {
     this.showFooter = new Subject<boolean>();
+
+    this.setRouteIsChangedListener();
+    this.setDashBoardStateListener();
+  }
+
+  private setRouteIsChangedListener(): void {
+    this.route.events
+      .pipe(
+        filter((event) => event instanceof NavigationEnd),
+        filter((event: NavigationEnd) => event.url !== '/')
+      )
+      .pipe(
+        delay(500),
+        switchMap(() => this.isScriptLoaded$)
+      )
+      .subscribe((scriptIsLoaded) => {
+        if (!scriptIsLoaded) {
+          this.ScriptService.loadChatScript();
+          this.isScriptLoaded$.next(true);
+        }
+      });
+
+    this.routeNavigationEnd$
+      .pipe(
+        map((event: NavigationEnd) =>
+          event.url.includes('autentisering/bankid-login') ? true : false
+        )
+      )
+      .subscribe((isSiginicatLogin) => {
+        this.isSignicatLogin$.next(isSiginicatLogin);
+      });
+  }
+
+  private setDashBoardStateListener(): void {
+    this.isUnder992$ = this.breakpointObserver
+      .observe('(max-width: 992px)')
+      .pipe(map((breakpoint) => breakpoint.matches));
+
+    this.isMobile$ = this.breakpointObserver
+      .observe('(max-width: 600px)')
+      .pipe(map((breakpoint) => breakpoint.matches));
+
+    this.shouldMoveChatUpInSignicat$ = combineLatest([
+      this.isSignicatLogin$,
+      this.signicatBottomContainerIsDisplayed$
+    ]).pipe(
+      map(
+        ([isSignicatLogin, signicatBottomContainerIsDisplayed]) =>
+          isSignicatLogin && signicatBottomContainerIsDisplayed
+      )
+    );
+    combineLatest([
+      this.isUnder992$,
+      this.isMobile$,
+      this.isDashboard,
+      this.shouldMoveChatUpInSignicat$
+    ]).subscribe(
+      ([isUnder992, isMobile, isDashboard, shouldMoveChatUpInSignicat]) => {
+        this.ScriptService.setChatPosition(
+          isDashboard,
+          isUnder992,
+          isMobile,
+          shouldMoveChatUpInSignicat
+        );
+      }
+    );
   }
 
   public setFooterState(show: boolean): void {

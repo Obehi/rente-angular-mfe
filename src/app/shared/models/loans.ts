@@ -76,6 +76,7 @@ export class ConfirmationSetDto {
   email: string;
   income: number;
   memberships: string[];
+  phone: string;
 }
 
 export class AddressCreationDto {
@@ -124,6 +125,7 @@ export class ClientUpdateInfo {
   email: string;
   income: number;
   memberships: string[];
+  phone: string;
 }
 
 export interface AddressStatisticsDto {

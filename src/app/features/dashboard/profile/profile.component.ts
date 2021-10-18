@@ -75,6 +75,7 @@ import { UserScorePreferences } from '@models/user';
 import { MessageBannerService } from '@services/message-banner.service';
 import { getAnimationStyles } from '@shared/animations/animationEnums';
 import { NotificationService } from '@services/notification.service';
+import { EnvService } from '@services/env.service';
 
 export enum FormControlId {
   email = 'email',
@@ -195,7 +196,8 @@ export class ProfileComponent
     private userService: UserService,
     private messageBannerService: MessageBannerService,
     private customLangTextService: CustomLangTextService,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    public envService: EnvService
   ) {
     if (window.innerWidth > 600) {
       this.showMemberships = true;

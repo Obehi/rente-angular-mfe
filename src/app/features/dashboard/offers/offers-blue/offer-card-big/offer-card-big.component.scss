@@ -181,7 +181,14 @@
   }
   .the-offer-footer {
     background: white;
-    border-radius: 0 0 15px 15px;
+    display: flex;
+    justify-content: space-evenly;
+    padding: 20px;
+
+    @media (max-width: 820px) {
+      display: grid;
+      grid-row-gap: 15px;
+    }
 
     .insignificant {
       padding-bottom: 10px;
@@ -226,6 +233,12 @@
       display: none;
     }
   }
+}
+
+.offer-info-card {
+  border-radius: 0 0 15px 15px;
+  background-color: white;
+  padding: 0 20px 10px 20px;
 }
 
 .bgHack {
