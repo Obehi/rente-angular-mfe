@@ -7,7 +7,7 @@
   top: 5px;
   font-size: 14px;
   p {
-    color: white !important;
+    color: white;
     font-weight: 400;
   }
 }
@@ -93,7 +93,7 @@ img {
       }
 
       .mat-tab-label-active p {
-        color: $primary;
+        color: $primary !important;
       }
 
       .mat-tab-label-active .rente-icon {
