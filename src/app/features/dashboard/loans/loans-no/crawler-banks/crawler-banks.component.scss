@@ -110,22 +110,6 @@ p {
     margin-right: 0px;
   }
 
-  // .bvalue {
-  //   text-align: center;
-  //   padding: 15px;
-  // }
-
-  // .btitle-one,
-  // .btitle-two {
-  //   padding-left: 10px;
-  //   padding-right: 10px;
-
-  //   @media (min-width: 767px) and (max-width: 992px) {
-  //     padding-left: 0px;
-  //     padding-right: 0px;
-  //   }
-  // }
-
   @media (min-width: 769px) and (max-width: 992px) {
     width: 90%;
   }
@@ -170,14 +154,6 @@ p {
     margin-bottom: 20px;
     align-items: center;
   }
-
-  // @media (min-width: 767px) and (max-width: 769px) {
-  //   display: block;
-  // }
-
-  // @media (min-width: 768px) {
-  //   display: grid;
-  // }
 }
 
 .first-box {
@@ -237,7 +213,7 @@ p {
 
 .bvalue {
   text-align: center;
-  padding: 15px;
+  padding: 6px;
 }
 
 .loan-type {
