@@ -115,16 +115,16 @@ p {
   //   padding: 15px;
   // }
 
-  .btitle-one,
-  .btitle-two {
-    padding-left: 10px;
-    padding-right: 10px;
+  // .btitle-one,
+  // .btitle-two {
+  //   padding-left: 10px;
+  //   padding-right: 10px;
 
-    @media (min-width: 767px) and (max-width: 992px) {
-      padding-left: 0px;
-      padding-right: 0px;
-    }
-  }
+  //   @media (min-width: 767px) and (max-width: 992px) {
+  //     padding-left: 0px;
+  //     padding-right: 0px;
+  //   }
+  // }
 
   @media (min-width: 769px) and (max-width: 992px) {
     width: 90%;
@@ -212,31 +212,20 @@ p {
 .btitle-two,
 .btitle-one {
   text-align: center;
-  padding-left: 11px;
-  padding-right: 11px;
+
+  @media (max-width: 376px) and (min-width: 360px) {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
 
   p {
     margin-bottom: 5px;
-  }
 
-  @media (min-width: 767px) and (max-width: 769px) {
-    padding-left: 0px;
-    padding-right: 0px;
-  }
-
-  @media (max-width: 601px) {
-    padding-left: 0px;
-    padding-right: 0px;
-    p {
-      padding: 4px !important;
+    @media (max-width: 405px) {
+      padding: 0px;
     }
-  }
-
-  @media (max-width: 321px) {
-    padding-left: 0px;
-    padding-right: 0px;
-    p {
-      padding: 3px !important;
+    @media (max-width: 992px) and (min-width: 768px) {
+      padding: 0px;
     }
   }
 }
@@ -244,11 +233,6 @@ p {
 .btitle-two {
   padding-left: 7px;
   padding-right: 7px;
-
-  @media (max-width: 321px) {
-    padding-left: 0px;
-    padding-right: 0px;
-  }
 }
 
 .bvalue {
