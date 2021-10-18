@@ -1,12 +1,34 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { iif, Observable, of, throwError } from 'rxjs';
+import { EMPTY, iif, Observable, of, throwError } from 'rxjs';
 import { concatMap, delay, retryWhen } from 'rxjs/operators';
+import { MessageBannerService } from './message-banner.service';
+import { getAnimationStyles } from '@shared/animations/animationEnums';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RxjsOperatorService {
-  constructor() {}
+  public animationStyle = getAnimationStyles();
+  constructor(private messageBannerService: MessageBannerService) {}
+
+  public handleErrorWithNotification(
+    errorMessage: string,
+    time: number
+  ): (errorResponse: HttpErrorResponse) => Observable<null> {
+    return (errorResponse: HttpErrorResponse) => {
+      console.log('ERROR CAN BE HANDLED HERE');
+      this.messageBannerService.setView(
+        errorMessage,
+        time,
+        this.animationStyle.DROP_DOWN_UP,
+        'error',
+        window
+      );
+      throwError(errorResponse);
+      return EMPTY;
+    };
+  }
 
   // Credit goes to: https://stackoverflow.com/questions/44911251/how-to-create-an-rxjs-retrywhen-with-delay-and-limit-on-tries
   retry404ThreeTimes(obs: Observable<any>): Observable<any> {

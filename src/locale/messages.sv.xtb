@@ -902,4 +902,8 @@ Kolla gärna att adressen är korrekt eller välj <ph name="START_BOLD_TEXT"><ex
       <ph name="CLOSE_PARAGRAPH"><ex>&lt;/p&gt;</ex>&lt;/p&gt;</ph></translation>
   <translation id="house.component.valuetotal" desc="value" meaning="“house">Totalt värde:</translation>
   <translation id="house.component.millions" desc="value" meaning="“house"/>
+  <translation id="change.bank.infoNominal”" desc="change-bank" meaning="                       “info-nominal-interest"/>
+  <translation id="change.bank.infoEffective”" desc="change-bank" meaning="                       “info-effective-interest"/>
+  <translation id="change.bank.infoContact.phone”" desc="change-bank" meaning="                   “info-contact-phone"/>
+  <translation id="change.bank.infoConfirmation”" desc="change-bank" meaning="                   “info-confirmation"/>
 </translationbundle>

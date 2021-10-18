@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { API_URL_MAP } from '@config/api-url-config';
 import { GenericHttpService } from '@services/generic-http.service';
+import { Observable, forkJoin } from 'rxjs';
 import {
   AddressDto,
   AddressStatisticsDto,
@@ -8,28 +9,35 @@ import {
   ClientUpdateInfo,
   ConfirmationGetDto,
   ConfirmationSetDto,
+  LoanInfo,
   Loans,
   LoanStateDto,
   LoanStatisticsDto,
   PreferencesDto,
-  PreferencesUpdateDto
+  PreferencesUpdateDto,
+  SignicatLoanInfoDto
 } from '@shared/models/loans';
 import { BankGuideInfo, Offers } from '@shared/models/offers';
-import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { locale } from '../../../config/locale/locale';
 
-import {
-  LoanUpdateInfoDto,
-  SignicatLoanInfoDtoArray
-} from '@shared/models/loans';
+import { SignicatLoanInfoDtoArray } from '@shared/models/loans';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { NewOffers, OffersBank } from '@shared/models/bank';
 @Injectable({
   providedIn: 'root'
 })
 export class LoansService {
-  constructor(private http: GenericHttpService) {}
+  constructor(
+    private http: GenericHttpService,
+    private httpClient: HttpClient
+  ) {}
+
+  public getLoansTest(): Observable<Loans> {
+    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.loans}`;
+    return this.http.get(url);
+  }
 
   public getLoans(): Observable<Loans> {
     const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.loans.base}`;
@@ -221,6 +229,58 @@ export class LoansService {
   ): Observable<PreferencesUpdateDto> {
     const url = `${API_URL_MAP.loan.base}/preferences`;
     return this.http.post(url, dto);
+  }
+
+  public getLoanAndOffersBanks(): Observable<any> {
+    return forkJoin([this.getLoans(), this.getOffersBanks()]);
+  }
+
+  public createNewLoan(newLoan: SignicatLoanInfoDto[]): Observable<void> {
+    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.loans.base}${API_URL_MAP.loan.loans.info}`;
+
+    return this.http.post(url, newLoan);
+  }
+
+  public updateLoan(
+    updatedLoanInfoList: SignicatLoanInfoDto[]
+  ): Observable<void> {
+    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.loans.base}${API_URL_MAP.loan.loans.info}`;
+    return this.http.put(url, updatedLoanInfoList);
+  }
+
+  public updateLoanProduct(product: { product: string }): Observable<void> {
+    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.product}`;
+    return this.http.put(url, product);
+  }
+
+  public updateLoanOutstandingDebt(debt: {
+    outstandingDebt: number;
+  }): Observable<void> {
+    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.outstandingDebt}`;
+    return this.http.put(url, debt);
+  }
+
+  public updateLoanReminingYears(years: {
+    remainingYears: number;
+  }): Observable<void> {
+    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.remainingYears}`;
+    return this.http.put(url, years);
+  }
+
+  public updateLoanNominalRate(rate: {
+    nominalRate: number;
+  }): Observable<void> {
+    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.nominalRate}`;
+    return this.http.put(url, rate);
+  }
+
+  public deleteLoan(loanId: number): Observable<any> {
+    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.loans.base}`;
+    const dto = {
+      id: loanId
+    };
+
+    return this.http.delWithParams(url, dto);
   }
 
   public updateSignicatPhoneNumber(dto: string): Observable<void> {

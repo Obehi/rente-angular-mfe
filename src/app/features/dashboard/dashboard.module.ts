@@ -67,6 +67,11 @@ import { BoxGridComponent } from './offers/offers-blue/box-grid/box-grid.compone
 import { TipsComponent } from './offers/offers-blue/tips/tips.component';
 import { ActionBoxesComponent } from './offers/offers-blue/action-boxes/action-boxes.component';
 import { CurrencyMaskModule } from 'ng2-currency-mask';
+import { CrawlerBanksComponent } from './loans/loans-no/crawler-banks/crawler-banks.component';
+import { SignicatUsersComponent } from './loans/loans-no/signicat-users/signicat-users.component';
+import { SignicatFixedPriceComponent } from './loans/loans-no/signicat-fixed-price/signicat-fixed-price.component';
+import { LoanFixedPriceComponent } from './loans/loans-no/signicat-fixed-price/loan-fixed-price/loan-fixed-price.component';
+import { LoanSignicatUsersComponent } from './loans/loans-no/signicat-users/loan-signicat-users/loan-signicat-users.component';
 import { NonPartnerButtonsComponent } from './offers/offers-blue/offer-card-buttons/non-partner-buttons/non-partner-buttons.component';
 import { DinBankButtonsComponent } from './offers/offers-blue/offer-card-buttons/din-bank-buttons/din-bank-buttons.component';
 import { NybyggerButtonsComponent } from './offers/offers-blue/offer-card-buttons/nybygger-buttons/nybygger-buttons.component';
@@ -120,6 +125,11 @@ import { NordeaDirectButtonsComponent } from './offers/offers-blue/offer-card-bu
     BoxGridComponent,
     TipsComponent,
     ActionBoxesComponent,
+    CrawlerBanksComponent,
+    SignicatUsersComponent,
+    SignicatFixedPriceComponent,
+    LoanFixedPriceComponent,
+    LoanSignicatUsersComponent,
     NonPartnerButtonsComponent,
     DinBankButtonsComponent,
     NybyggerButtonsComponent,

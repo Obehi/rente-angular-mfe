@@ -2371,16 +2371,6 @@ export class BankUtils {
       return bank.name;
     }).includes(bankName);
   }
-
-  static getSigniCatBanks(): BankVo[] {
-    const banks = [...BankList, ...MissingBankList, ...TinkBanks];
-
-    const signiCatBanks = banks.filter((bank) => {
-      return bank.isSigniCat === true;
-    });
-
-    return signiCatBanks;
-  }
 }
 
 // Interface for Swedish site

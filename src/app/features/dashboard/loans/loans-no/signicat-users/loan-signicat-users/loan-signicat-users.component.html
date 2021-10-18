@@ -1,0 +1,280 @@
+<div
+  class="summary"
+  [ngClass]="setOpacity ? 'setTransparent' : 'resetTransparent'"
+  id="{{ index + 1 }}"
+>
+  <div class="loan-boxes">
+    <div
+      [ngClass]="
+        isEditMode === true ? 'content-blue-box-edit' : 'content-blue-box'
+      "
+    >
+      <div class="loan-type">
+        <div class="loan-delete">
+          <h3>{{ displayIndexString }}</h3>
+          <mat-icon
+            *ngIf="isAbleToDelete()"
+            (click)="deleteLoan()"
+            class="is-clickable"
+            >delete_forever</mat-icon
+          >
+        </div>
+        <div>
+          <img
+            [hidden]="hideEditIcon"
+            (click)="setEditEnabled()"
+            class="loan-edit"
+            src="../../../../../../assets/icons/edit-icon-grey.svg"
+            alt="loan-edit"
+          />
+          <img
+            [hidden]="!isEditMode"
+            (click)="setEditDisabled()"
+            class="loan-edit-cancel"
+            src="../../../../../../assets/icons/cancel-icon-grey.svg"
+            alt="loan-edit-cancel"
+          />
+        </div>
+      </div>
+
+      <div class="forms" *ngIf="loanForm">
+        <form class="p-0 border-0" [formGroup]="loanForm" novalidate change>
+          <div
+            [ngClass]="{
+              'loan-center': !isEditMode,
+              'loan-center-edit': inEditMode && !inputLoanTypeIsActive,
+              'loan-center-edit-focus': isEditMode && inputLoanTypeIsActive
+            }"
+            (click)="setInputLoanTypeActive()"
+          >
+            <mat-form-field appearance="fill">
+              <mat-select
+                [(value)]="loanTypeSelected"
+                [disabled]="!isEditMode"
+                (selectionChange)="matSelectChanged()"
+                disableOptionCentering
+                panelClass="overlay-pane"
+              >
+                <mat-option
+                  *ngFor="let loanType of loanTypeList"
+                  [value]="loanType.name"
+                >
+                  {{ loanType.name }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="field-box">
+            <h4 class="text-white">Utestående lån:</h4>
+
+            <div class="input-width">
+              <rente-general-input
+                (click)="setInputOutDebtActive()"
+                formControlName="outstandingDebt"
+                [maskType]="maskType"
+                [suffix]="'kr'"
+                [maxLength]="'14'"
+                [isEditMode]="isEditMode"
+                [inEditMode]="inEditMode"
+                [isInputFocused]="
+                  isEditMode &&
+                  inputOutstandingDebtIsActive &&
+                  !isErrorState(loanForm?.controls['outstandingDebt'])
+                "
+                [isInputError]="
+                  isErrorState(this.loanForm?.controls['outstandingDebt'])
+                "
+                [errorStateMatcher]="
+                  isErrorState(loanForm?.controls['outstandingDebt'])
+                "
+              ></rente-general-input>
+
+              <div *ngIf="loanForm?.controls['outstandingDebt'].touched">
+                <p
+                  class="error-small"
+                  *ngIf="
+                    loanForm?.controls['outstandingDebt'].hasError(
+                      'required'
+                    ) ||
+                    isErrorState(this.loanForm?.controls['outstandingDebt'])
+                  "
+                >
+                  Ikke gyldig verdi
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="field-box">
+            <h4 class="text-white">Løpetid:</h4>
+
+            <div>
+              <div class="input-width-small">
+                <rente-general-input
+                  (click)="setInputRemYearsActive()"
+                  formControlName="remainingYears"
+                  [maskType]="maskType"
+                  [suffix]="'år'"
+                  [maxLength]="'5'"
+                  [isEditMode]="isEditMode"
+                  [inEditMode]="inEditMode"
+                  [isInputFocused]="isEditMode && inputRemainingYearsIsActive"
+                  [isInputError]="
+                    isErrorState(this.loanForm?.controls['remainingYears'])
+                  "
+                  [errorStateMatcher]="
+                    isErrorState(loanForm?.controls['remainingYears'])
+                  "
+                ></rente-general-input>
+
+                <div *ngIf="loanForm?.controls['remainingYears'].touched">
+                  <p
+                    class="error-small"
+                    *ngIf="
+                      loanForm?.controls['remainingYears'].hasError(
+                        'required'
+                      ) ||
+                      isErrorState(this.loanForm?.controls['remainingYears'])
+                    "
+                  >
+                    Ikke gyldig verdi
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="field-box">
+            <h4 class="text-white">Nominell rente:</h4>
+
+            <div>
+              <div class="input-width-small">
+                <rente-general-input
+                  (click)="setInputNominalRateActive()"
+                  formControlName="nominalRate"
+                  [maskType]="maskType"
+                  [suffix]="'%'"
+                  [maxLength]="'4'"
+                  [isEditMode]="isEditMode"
+                  [inEditMode]="inEditMode"
+                  [isInputFocused]="isEditMode && inputNominalRateIsActive"
+                  [isInputError]="
+                    isErrorState(this.loanForm?.controls['nominalRate'])
+                  "
+                  [errorStateMatcher]="
+                    isErrorState(loanForm?.controls['nominalRate'])
+                  "
+                ></rente-general-input>
+                <div *ngIf="loanForm?.controls['nominalRate'].touched">
+                  <p
+                    class="error-small"
+                    *ngIf="
+                      loanForm?.controls['nominalRate'].hasError('required') ||
+                      isErrorState(this.loanForm?.controls['nominalRate'])
+                    "
+                  >
+                    Ikke gyldig verdi
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="field-box">
+            <h4 class="text-white">Termin gebyr:</h4>
+
+            <div>
+              <div class="input-width-small">
+                <rente-general-input
+                  (click)="setInputFeeActive()"
+                  formControlName="fee"
+                  [maskType]="maskType"
+                  [suffix]="'kr'"
+                  [maxLength]="'3'"
+                  [isEditMode]="isEditMode"
+                  [inEditMode]="inEditMode"
+                  [isInputFocused]="isEditMode && inputFeeIsActive"
+                  [isInputError]="isErrorState(this.loanForm?.controls['fee'])"
+                  [errorStateMatcher]="isErrorState(loanForm?.controls['fee'])"
+                ></rente-general-input>
+                <div *ngIf="loanForm?.controls['fee'].touched">
+                  <p
+                    class="error-small"
+                    *ngIf="
+                      loanForm?.controls['fee'].hasError('required') ||
+                      isErrorState(this.loanForm?.controls['fee'])
+                    "
+                  >
+                    Ikke gyldig verdi
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="loan-info"
+            *ngIf="showDisplayBox"
+            [@fadeOut]="isEditMode ? 'hidden' : 'visible'"
+          >
+            <div class="center">
+              <p>Effektiv rente:</p>
+            </div>
+            <div class="center">
+              <h3>{{ effectiveRateCache | number: '1.2-2' }} %</h3>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div class="all-text">
+        <div
+          class="total-cost"
+          *ngIf="showDisplayBox"
+          [@fadeOut]="isEditMode ? 'hidden' : 'visible'"
+        >
+          <div class="double-container">
+            <div class="first-box move-first-box">
+              <p class="box-label">Totale renter og gebyrer</p>
+
+              <div class="bvalue">
+                {{
+                  totalInterestAndTotalFeeCache == null
+                    ? 'N/A'
+                    : (totalInterestAndTotalFeeCache | number: '1.0-0') + ',-'
+                }}
+              </div>
+            </div>
+
+            <div class="first-box move-sec-box">
+              <p class="box-label">Renter & gebyrer per år</p>
+              <div class="bvalue">
+                {{
+                  totalInterestAndTotalFeeByRemainingYearsCache == null
+                    ? 'N/A'
+                    : (totalInterestAndTotalFeeByRemainingYearsCache
+                        | number: '1.0-0') + ',-'
+                }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="save-loan-button"
+        *ngIf="isEditMode"
+        [@buttonFadeInOut]="showButton ? 'visible' : 'hidden'"
+      >
+        <rente-button
+          color="primary"
+          (click)="save()"
+          [disabled]="!isAbleToSave"
+        >
+          Lagre
+        </rente-button>
+      </div>
+    </div>
+  </div>
+</div>

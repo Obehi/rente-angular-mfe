@@ -1,122 +1,35 @@
-<div class="container" *ngIf="loansData && loansData.loans && loansData.loans.length > 0">
-  <div class="summary">
-    <h3 class="title">Sammendrag av lån</h3>
-    <div class="desktop-double">
-      <div class="double">
-        <div class="box">
-          <p class="small">Utestående lån</p>
-          <h3>
-            {{ loansData.totalOutstandingDebt / 1000000 | number: "1.3-3" }}
-            millioner
-          </h3>
-        </div>
-        <div class="box">
-          <p class="small">Effektiv rente</p>
-          <h3>{{ loansData.totalEffectiveRate | number: "1.2-2" }} %</h3>
-        </div>
-      </div>
-      <div class="double">
-        <div class="box">
-          <p class="small">
-            Totale renter & gebyrer
-          </p>
-          <h3>
-            {{
-            loansData.aggregatedTotalInterestAndFee == null
-            ? "N/A"
-            : (loansData.aggregatedTotalInterestAndFee | number: "1.0-0") +
-            ",-"
-            }}
-          </h3>
-        </div>
-        <div class="box">
-          <p class="small">
-            Renter & gebyrer per år
-          </p>
-          <h3>
-            {{
-            loansData.aggregatedTotalInterestAndFeeByRemainingYears == null
-            ? "N/A"
-            : (loansData.aggregatedTotalInterestAndFeeByRemainingYears
-            | number: "1.0-0") + ",-"
-            }}
-          </h3>
-        </div>
-      </div>
-    </div>
+<div class="main-container" *ngIf="loansAndOffers$ | async">
+  <rente-crawler-banks
+    [loansData]="loansData"
+    *ngIf="!isSignicatUser"
+  ></rente-crawler-banks>
+
+  <rente-signicat-users
+    *ngIf="isSignicatUser && !isFixedPriceBank"
+    [loanData]="loansData"
+    [allOffers]="offers"
+  ></rente-signicat-users>
+
+  <rente-signicat-fixed-price
+    *ngIf="isSignicatUser && isFixedPriceBank"
+    [loanData]="loansData"
+    [allOffers]="offers"
+  ></rente-signicat-fixed-price>
+
+  <div *ngIf="locale === 'nb'" class="center-logo">
+    <h3>Har du forbrukslån eller billån?</h3>
+    <p>
+      Da er kredittscoren din vesentlig for å få beste betingelser. Kredittsjekk
+      deg selv gratis på:
+    </p>
+    <a target="_blank" href="https://www.defero.no/">
+      <img
+        src="../../../../assets/img/partners/defero-light-mode.png"
+        alt="defero logo"
+      />
+    </a>
   </div>
-
-  <div class="detailed">
-
-    <div *ngFor="let loan of loansData.loans">
-      <!--<b class="heading">{{ loan.loanName }}</b> -->
-      <h3 class="title">{{ loan.loanName }}</h3>
-      <div class="inner">
-        <div class="desktop-double">
-          <div class="double">
-            <div class="box">
-              <p class="small">Utestående lån</p>
-              <h3>
-                {{ loan.outstandingDebt / 1000000 | number: "1.3-3" }} millioner
-              </h3>
-            </div>
-            <div class="box">
-              <p class="small">Løpetid</p>
-              <h3>{{ loan.remainingYears | number: "1.2-2" }} år</h3>
-            </div>
-          </div>
-
-          <div class="double">
-            <div class="box">
-              <p class="small">Effektiv rente</p>
-              <h3>{{ loan.effectiveRate | number: "1.2-2" }} %</h3>
-            </div>
-            <div class="box">
-              <p class="small">Nominell rente</p>
-              <h3>{{ loan.nominalRate | number: "1.2-2" }} %</h3>
-            </div>
-          </div>
-        </div>
-        <div class="desktop-double">
-          <div class="double">
-            <div class="box">
-              <p class="small">Totale renter & gebyrer</p>
-              <h3>
-                {{
-                loan.totalInterestAndTotalFee == null
-                ? "N/A"
-                : (loan.totalInterestAndTotalFee | number: "1.0-0") + ",-"
-                }}
-              </h3>
-            </div>
-            <div class="box">
-              <p class="small">Renter & gebyrer per år</p>
-              <h3>
-                {{
-                loan.totalInterestAndTotalFeeByRemainingYears == null
-                ? "N/A"
-                : (loan.totalInterestAndTotalFeeByRemainingYears
-                | number: "1.0-0") + ",-"
-                }}
-              </h3>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div *ngIf="locale === 'nb'" class="center-logo">
-      <h3>Har du forbrukslån eller billån? </h3>
-      <p>Da er kredittscoren din vesentlig for å få beste betingelser.
-        Kredittsjekk deg selv gratis på:</p>
-
-      <a target="_blank" href="https://www.defero.no/">
-        <img src="../../../../assets/img/partners/defero-light-mode.png" alt="defero logo" />
-      </a>
-    </div>
-  </div>
-
 </div>
-
 
 <div class="loading" *ngIf="!loansData && !errorMessage">
   <mat-spinner [diameter]="48" [strokeWidth]="4"></mat-spinner>

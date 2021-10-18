@@ -64,6 +64,7 @@ import { PropertySelectDialogComponent } from '@features/first-buyers/components
 import { SpinnerComponent } from '@shared/components/ui-components/spinner/spinner.component';
 import { CheckmarkSuccessComponent } from '@shared/components/ui-components/checkmark-success/checkmark-success.component';
 import { VirdiManualValueDialogComponent } from './components/ui-components/dialogs/virdi-manual-value-dialog/virdi-manual-value-dialog.component';
+import { GeneralInputComponent } from './components/ui-components/input/general-input/general-input.component';
 import { UserScorePreferencesComponent } from './components/ui-components/user-score-preferences/user-score-preferences.component';
 import { AccordionGroupComponent } from './components/ui-components/accordion/accordion-group.component';
 import { AccordionComponent } from './components/ui-components/accordion/accordion.component';
@@ -78,6 +79,7 @@ const components = [
   CheckboxContainerComponent,
   FooterComponent,
   FormMessageComponent,
+  GeneralInputComponent,
   InputComponent,
   OfferDetailsLangGenericComponent,
   RadioComponent,
@@ -166,7 +168,8 @@ const services = [
     RoundPipe,
     ThousandsSeprator,
     BarComponent,
-    FlowHeaderComponent
+    FlowHeaderComponent,
+    IMaskModule
   ],
   providers: [...services]
 })

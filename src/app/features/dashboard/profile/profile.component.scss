@@ -587,7 +587,8 @@ form {
   }
 
   hr {
-    border-bottom: 1px solid #478ccc;
+    border-bottom: 1px solid #478ccc !important;
+    background-color: unset;
     grid-column: span 2;
   }
 }

@@ -2,18 +2,26 @@ export interface Loans {
   aggregatedTotalInterestAndFee: number;
   aggregatedTotalInterestAndFeeByRemainingYears: number;
   averageRemainingYears: number;
+  isFixedPriceBank: boolean;
   loans: LoanInfo[];
+  origin: number;
   totalEffectiveRate: number;
   totalOutstandingDebt: number;
 }
 
 export interface LoanInfo {
   bank: string;
+  bankKey: string;
   effectiveRate: number;
+  id: number;
+  fee: number | null;
+  isDeleted?: boolean;
+  isIncompleteInfoLoan: boolean;
   loanName: string;
-  nominalRate: number;
-  outstandingDebt: number;
-  remainingYears: number;
+  loanType: string;
+  nominalRate: number | null;
+  outstandingDebt: number | null;
+  remainingYears: number | null;
   totalInterestAndTotalFee: number;
   totalInterestAndTotalFeeByRemainingYears: number;
 }
@@ -131,14 +139,20 @@ export interface LoanStatisticsDto {
 }
 
 export class SignicatLoanInfoDto {
-  outstandingDebt: number;
-  productId: string;
-  remainingYears: number;
-  id: number;
-  loanSubType: string;
-  loanType: string;
   fee?: number;
+  id: number;
+  loanSubType?: string;
+  loanType: string;
   nominalInterestRate?: number;
+  productId?: string;
+  remainingYears: number;
+  outstandingDebt: number;
+}
+
+export interface bankOfferDto {
+  name: string;
+  id: string;
+  rate: number;
 }
 
 export type SignicatLoanInfoDtoArray = Array<SignicatLoanInfoDto>;
