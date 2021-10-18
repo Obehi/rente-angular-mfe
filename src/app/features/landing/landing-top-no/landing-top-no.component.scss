@@ -3,15 +3,15 @@
 .co-main {
   @media (min-width: 800px) {
     display: grid;
-    grid-template-columns: 40vw 60vw;
+    grid-template-columns: 5fr 5fr;
+    grid-gap: 40px;
     margin-bottom: 10%;
     grid-template-rows: 94vh;
-
+    margin-top: -1px;
     ::ng-deep .rente-image {
-      // max-width: 40vh;
-      max-height: 65vh;
-      margin-top: 10%;
-      max-width: 35vw;
+      width: 40%;
+      margin-right: 60px;
+      margin-left: 37%;
     }
   }
   @media (max-width: 800px) {
@@ -35,9 +35,7 @@
   }
   @media (min-width: 800px) {
     color: $black;
-
     font-size: 16px;
-    font-weight: 400;
   }
 }
 
@@ -133,12 +131,13 @@ h4 {
   }
 
   .rente-example {
-    background: linear-gradient(180deg, #162537 135px, #183a63 450px);
+    background-image: url('../../../../assets/img/landing-top-bg.svg');
+    background-position: left bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
     display: flex;
     justify-content: center;
-    border-radius: 50px 0 0 50px;
-    clip-path: polygon(0 -35rem, 100% 0, 100% 100%, 30% 100%);
-    padding-left: 14vw;
+    align-items: center;
   }
 }
 

@@ -124,7 +124,7 @@ iframe {
 
   .after-landing {
     @media (min-width: 600px) {
-      max-width: 1400px;
+      //max-width: 1400px;
       overflow: hidden;
       padding: unset;
     }
@@ -200,14 +200,47 @@ iframe {
 
 .list {
   background-color: $secondary;
+  background-color: $stian-blue;
+
   padding: 80px 40px;
 
   @media (max-width: 800px) {
-    margin-bottom: 80px;
+    margin-bottom: 120px;
+  }
+
+  .block:after {
+    position: absolute;
+    content: '';
+    width: 110px;
+    height: 110px;
+    background: linear-gradient(142deg, #a0e3e3, #9fc4e7);
+    z-index: 1;
+    border-radius: 50%;
+    top: -5px;
   }
 
   .block {
-    margin-bottom: 80px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 120px;
+
+    .icon-outer {
+      background: $blue-medium;
+      display: block;
+      width: 100px;
+      display: flex;
+      height: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50px;
+      margin-bottom: 20px;
+      z-index: 10;
+    }
+
     @media (min-width: 800px) {
       width: 15%;
       margin-bottom: 0px;
@@ -216,24 +249,63 @@ iframe {
       margin-bottom: 0px;
     }
 
-    img {
-      display: block;
-      margin: auto;
-      margin-bottom: 10px;
-
-      height: 40px;
+    h2 {
+      color: $black;
     }
-
     p {
       color: $black;
 
       @media (max-width: 600px) {
-        color: $white;
+        color: $black;
       }
     }
   }
 }
 
+.blue-box {
+  h2 {
+    margin-bottom: 40px;
+    font-size: 40px;
+    @media (max-width: 800px) {
+      font-size: 36px;
+      color: $secondary;
+    }
+  }
+}
+
+.user-statistic {
+  margin-top: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 100px;
+
+  img {
+    width: 130px;
+  }
+  h4 {
+    color: $secondary;
+    font-size: 40px;
+    font-weight: 400;
+    span {
+      color: $primary;
+    }
+  }
+  h2 {
+    color: $primary !important;
+    font-size: 100px;
+    font-weight: 400;
+  }
+  @media (max-width: 800px) {
+    h4 {
+      font-size: 30px;
+    }
+    h2 {
+      font-size: 66px;
+    }
+  }
+}
 .list.gradient {
   margin-top: -1px;
   background: inherit;
@@ -264,6 +336,7 @@ iframe {
 
 .horizontal-scroll {
   @media (max-width: 600px) {
+    width: 700px;
     overflow: scroll;
     -webkit-overflow-scrolling: touch;
     white-space: nowrap;
@@ -291,6 +364,8 @@ iframe {
 
   @media (min-width: 600px) {
     display: flex;
+    margin-left: 20px;
+    margin-right: 20px;
   }
 
   @media (min-width: 1145px) {
@@ -305,7 +380,7 @@ iframe {
     align-items: center;
   }
 
-  margin-bottom: 80px;
+  margin-bottom: 120px;
   @media (max-width: 600px) {
     padding: 15px;
   }
@@ -359,28 +434,27 @@ a {
 }
 
 .sitater {
-  @media (min-width: 600px) {
+  @media (min-width: 800px) {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: 1vw;
+    width: 100%;
   }
 
   @media (min-width: 1145px) {
-    display: block;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 1vw;
+    width: 100%;
   }
 
-  @media (max-width: 600px) {
+  @media (max-width: 800px) {
     display: table;
   }
   .sitatboks {
     @media (min-width: 600px) {
-      background-color: $grey-light;
+      background-color: $stian-blue;
       padding: 20px 20px 0 20px;
-      width: 24vw;
       padding-bottom: 20px;
-      white-space: normal;
-      display: table-cell;
-      border-right: 20px solid white;
       vertical-align: top;
       position: relative;
       text-align: center;
@@ -388,10 +462,11 @@ a {
       line-height: 1.5;
       color: $blue;
       font-weight: 300;
+      border-radius: 15px;
     }
 
-    @media (max-width: 600px) {
-      background-color: $grey-light;
+    @media (max-width: 800px) {
+      background-color: $stian-blue;
       padding: 20px 20px 0 20px;
       min-width: 280px;
       white-space: normal;
@@ -407,7 +482,17 @@ a {
     }
 
     .quote {
-      height: 170px;
+      @media (max-width: 800px) {
+        height: 170px;
+      }
+
+      @media (min-width: 800px) {
+        height: 80px;
+      }
+
+      @media (min-width: 1145px) {
+        height: 170px;
+      }
     }
 
     .name {
@@ -461,7 +546,7 @@ a {
   }
   .example {
     .example-head {
-      font-size: 31px;
+      font-size: 40px;
       margin-top: 5rem;
     }
 
@@ -512,9 +597,15 @@ a {
     }
   }
   .list {
+    h2 {
+      color: $secondary;
+      span {
+        color: $primary;
+      }
+    }
     padding: 80px;
     background-color: $stian-blue;
-    margin-bottom: 80px;
+    margin-bottom: 120px;
     border-radius: 15px;
 
     &.small-padding {
@@ -560,7 +651,7 @@ a {
   @media (min-width: 800px) {
     width: 50%;
     margin-left: 25%;
-    margin-bottom: 80px;
+    margin-bottom: 120px;
   }
   @media (max-width: 600px) {
     padding: 15px;
