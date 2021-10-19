@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Mask } from '@shared/constants/mask';
 import { ROUTES_MAP } from '@config/routes-config';
 import { GlobalStateService } from '@services/global-state.service';
+import { TabsService } from '@services/tabs.service';
 
 @Component({
   selector: 'confirmation-property.component',
@@ -19,7 +20,8 @@ export class ConfirmationProperty implements OnInit, OnDestroy {
   constructor(
     private loansService: LoansService,
     private router: Router,
-    private globalStateService: GlobalStateService
+    private globalStateService: GlobalStateService,
+    private tabsService: TabsService
   ) {}
 
   ngOnInit(): void {
@@ -53,6 +55,7 @@ export class ConfirmationProperty implements OnInit, OnDestroy {
 
   clickConfirmButton(): void {
     this.router.navigate(['/dashboard/' + ROUTES_MAP.offers]);
+    this.tabsService.setActiveLinkIndex(0);
   }
 
   ngOnDestroy(): void {

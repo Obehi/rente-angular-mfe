@@ -50,6 +50,7 @@ import { UserService } from '@services/remote-api/user.service';
 import { UserScorePreferences } from '@models/user';
 import { LocalStorageService } from '@services/local-storage.service';
 import { MembershipService } from '@services/membership.service';
+import { TabsService } from '@services/tabs.service';
 
 @Component({
   selector: 'rente-init-confirmation-sv',
@@ -96,7 +97,8 @@ export class InitConfirmationNoComponent implements OnInit, OnDestroy {
     private userService: UserService,
     private messageBanner: MessageBannerService,
     private localStorageService: LocalStorageService,
-    private membershipService: MembershipService
+    private membershipService: MembershipService,
+    private tabsService: TabsService
   ) {
     this.stepFillOutForm = true;
     this.userData = new ConfirmationGetDto();
@@ -437,6 +439,7 @@ export class InitConfirmationNoComponent implements OnInit, OnDestroy {
   redirectOffers(): void {
     this.localStorageService.removeItem('subBank');
     this.router.navigate(['/dashboard/' + ROUTES_MAP.offers]);
+    this.tabsService.setActiveLinkIndex(0);
   }
 
   setManualPropertyValue(): void {

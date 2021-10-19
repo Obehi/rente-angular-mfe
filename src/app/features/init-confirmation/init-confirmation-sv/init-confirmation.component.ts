@@ -28,6 +28,7 @@ import { ROUTES_MAP } from '@config/routes-config';
 import { ApiError } from '@shared/constants/api-error';
 import { concat } from 'rxjs';
 import { toArray } from 'rxjs/operators';
+import { TabsService } from '@services/tabs.service';
 
 @Component({
   selector: 'rente-init-confirmation-sv',
@@ -57,7 +58,8 @@ export class InitConfirmationSVComponent implements OnInit, OnDestroy {
     private router: Router,
     public dialog: MatDialog,
     public customLangTextService: CustomLangTextService,
-    private globalStateService: GlobalStateService
+    private globalStateService: GlobalStateService,
+    private tabsService: TabsService
   ) {
     this.stepFillOutForm = true;
   }
@@ -207,6 +209,7 @@ export class InitConfirmationSVComponent implements OnInit, OnDestroy {
           }
           if (formData === undefined) {
             this.router.navigate(['/dashboard/' + ROUTES_MAP.offers]);
+            this.tabsService.setActiveLinkIndex(0);
           }
           this.isLoading = false;
         },
@@ -245,6 +248,7 @@ export class InitConfirmationSVComponent implements OnInit, OnDestroy {
 
   redirectOffers(): void {
     this.router.navigate(['/dashboard/' + ROUTES_MAP.offers]);
+    this.tabsService.setActiveLinkIndex(0);
   }
 
   setManualPropertyValue(): void {

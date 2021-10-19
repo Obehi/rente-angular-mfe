@@ -68,6 +68,7 @@ import { UserScorePreferencesComponent } from './components/ui-components/user-s
 import { AccordionGroupComponent } from './components/ui-components/accordion/accordion-group.component';
 import { AccordionComponent } from './components/ui-components/accordion/accordion.component';
 import { CustomDropdownComponent } from './components/ui-components/custom-dropdown/custom-dropdown.component';
+import { TabsService } from '@services/tabs.service';
 
 const components = [
   HeaderComponent,
@@ -116,7 +117,8 @@ const services = [
   RouteGuard,
   SnackBarService,
   TitleService,
-  TrackingService
+  TrackingService,
+  TabsService
 ];
 
 @NgModule({

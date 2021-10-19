@@ -4,6 +4,7 @@ import { ReferralComponent } from './referral/referral.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ROUTES_MAP } from '@config/routes-config';
 import { EnvService } from '@services/env.service';
+import { TabsService } from '@services/tabs.service';
 @Component({
   selector: 'rente-bargain-success',
   templateUrl: './bargain-success.component.html',
@@ -15,7 +16,8 @@ export class BargainSuccessComponent implements OnInit {
   constructor(
     private router: Router,
     public dialog: MatDialog,
-    public envService: EnvService
+    public envService: EnvService,
+    private tabsService: TabsService
   ) {}
 
   ngOnInit(): void {
@@ -24,5 +26,6 @@ export class BargainSuccessComponent implements OnInit {
 
   public continue(): void {
     this.router.navigate(['/dashboard/' + ROUTES_MAP.offers]);
+    this.tabsService.setActiveLinkIndex(0);
   }
 }

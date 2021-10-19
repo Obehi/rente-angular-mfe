@@ -15,6 +15,7 @@ import { BankVo } from '@shared/models/bank';
 import { ROUTES_MAP } from '@config/routes-config';
 import { LoggingService } from '@services/logging.service';
 import { SafeUrl } from '@angular/platform-browser';
+import { TabsService } from './tabs.service';
 
 @Injectable({
   providedIn: 'root'
@@ -52,7 +53,8 @@ export class LoginService {
     private userService: UserService,
     private loansService: LoansService,
     private localStorageService: LocalStorageService,
-    private logging: LoggingService
+    private logging: LoggingService,
+    private tabsService: TabsService
   ) {}
 
   public loginWithBankAndToken(): void {
@@ -119,6 +121,8 @@ export class LoginService {
               '/dashboard/' + ROUTES_MAP.offers,
               { state: { isInterestRateSet: true } }
             ]);
+            // Set active link index
+            this.tabsService.setActiveLinkIndex(0);
           }
         }
       } else {

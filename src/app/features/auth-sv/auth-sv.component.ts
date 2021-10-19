@@ -15,6 +15,7 @@ import {
 } from '../auth/login-status/login-status.config';
 import { SafeUrl } from '@angular/platform-browser';
 import { EnvService } from '@services/env.service';
+import { TabsService } from '@services/tabs.service';
 
 @Component({
   selector: 'rente-auth-sv',
@@ -37,7 +38,8 @@ export class AuthSvComponent implements OnInit {
     private userService: UserService,
     private loansService: LoansService,
     private localStorageService: LocalStorageService,
-    private envService: EnvService
+    private envService: EnvService,
+    private tabsService: TabsService
   ) {}
 
   ngOnInit(): void {
@@ -128,6 +130,7 @@ export class AuthSvComponent implements OnInit {
                       this.localStorageService.setItem('isNewUser', true);
                     } else {
                       this.router.navigate(['/dashboard/' + ROUTES_MAP.offers]);
+                      this.tabsService.setActiveLinkIndex(0);
                     }
                   }
                 } else {
