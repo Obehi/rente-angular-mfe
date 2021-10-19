@@ -103,17 +103,12 @@ export class DashboardTabsDesktopComponent implements OnInit {
         this.setActiveIcon(this.activeLinkIndex!);
 
         this.subscription = this.router.events.subscribe(() => {
-          console.log('Router change');
           this.activeLinkIndex = this.getActiveIndex();
           // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
           this.setActiveIcon(this.activeLinkIndex!);
 
           // Send index on router change
           this.tabsService.setActiveLinkIndex(this.activeLinkIndex);
-          console.log(
-            'Set active link index tab service',
-            this.activeLinkIndex
-          );
         });
       }
     }
