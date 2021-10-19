@@ -277,6 +277,11 @@ iframe {
       color: $secondary;
     }
   }
+
+  p {
+    font-weight: 400;
+    font-size: 16px;
+  }
 }
 
 .user-statistic {
@@ -600,6 +605,7 @@ a {
         align-self: center;
         margin-top: 1rem;
         text-align: left;
+        font-size: 16px;
       }
     }
 
