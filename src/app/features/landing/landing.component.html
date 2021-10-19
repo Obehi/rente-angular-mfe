@@ -39,6 +39,49 @@
     <div class="list gradient desktop small-padding">
       <div class="example">
         <div class="example-flex">
+          <div *ngIf="!isSweden" class="item img">
+            <embed
+              type="image/svg+xml"
+              src="../../../assets/img/Group 460.svg"
+              style="width: 45vw"
+            />
+          </div>
+          <div class="item second-row">
+            <h2
+              class="example-head"
+              i18n="how-it-functions|landing-page@@landing.function"
+              style="text-align: left; margin-top: 3rem !important"
+            >
+              Slik fungerer det
+            </h2>
+            <h4
+              class="example-text"
+              i18n="automatic-service|landing-page@@landing.automaticService"
+            >
+              Renteradar henter renten og dine lånedetaljer automatisk med
+              BankID på mobil. <br />
+              <br />
+              <br />
+
+              Vi sammenligner renten du betaler med renten du kan få i andre
+              banker og viser deg hvor mye du kan spare. Du kan også prute i
+              banken du er kunde med et klikk.
+            </h4>
+
+            <!-- DETTE MÅ OVERSETTES I POEDITOR!!! -->
+            <!-- <h4 i18n="comparing-service|landing-page@@landing.comparingService">
+              Vi sammenligner renten du betaler med renten du kan få i andre
+              banker og viser deg hvor mye du kan spare. Du kan også prute i
+              banken du er kunde med et klikk.
+            </h4> -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="list gradient desktop small-padding">
+      <div class="example">
+        <div class="example-flex">
           <div *ngIf="isSweden" class="item img">
             <img
               [lazyLoad]="'../../../assets/img/example-desktop-info-sv.svg'"
@@ -92,6 +135,8 @@
         </div>
       </div>
     </div>
+
+    <!--  -->
 
     <div class="list blue-box">
       <h2>Enkelt å være <span>smart</span> med boliglånet</h2>
