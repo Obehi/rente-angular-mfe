@@ -4,6 +4,10 @@ import { BehaviorSubject, combineLatest, Observable, Subject } from 'rxjs';
 import { delay, filter, map, scan, share, switchMap } from 'rxjs/operators';
 import { ScriptService } from '@services/script.service';
 import { BreakpointObserver } from '@angular/cdk/layout';
+import { DashboardComponent } from '@features/dashboard/dashboard.component';
+
+import { ROUTES_MAP } from '@config/routes-config';
+import { TabsService } from './tabs.service';
 @Injectable({
   providedIn: 'root'
 })
@@ -32,7 +36,8 @@ export class GlobalStateService {
   constructor(
     private route: Router,
     private ScriptService: ScriptService,
-    private breakpointObserver: BreakpointObserver
+    private breakpointObserver: BreakpointObserver,
+    private tabsService: TabsService
   ) {
     this.showFooter = new Subject<boolean>();
 
@@ -41,6 +46,31 @@ export class GlobalStateService {
   }
 
   private setRouteIsChangedListener(): void {
+    this.route.events
+      .pipe(
+        filter((event) => event instanceof NavigationEnd),
+
+        filter((event: NavigationEnd) => event.url.includes('dashboard')),
+        map((event) => event.url)
+      )
+      .subscribe((url) => {
+        console.log('event url is incoming');
+        console.log(url);
+
+        if (url.includes(ROUTES_MAP.offers)) {
+          this.tabsService.setActiveLinkIndex(0);
+          console.log('tabsService in globalstate');
+        }
+        if (url.includes(ROUTES_MAP.loans)) {
+          this.tabsService.setActiveLinkIndex(1);
+        }
+        if (url.includes(ROUTES_MAP.property)) {
+          this.tabsService.setActiveLinkIndex(2);
+        }
+        if (url.includes(ROUTES_MAP.profile)) {
+          this.tabsService.setActiveLinkIndex(3);
+        }
+      });
     this.route.events
       .pipe(
         filter((event) => event instanceof NavigationEnd),
