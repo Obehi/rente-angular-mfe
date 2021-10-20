@@ -257,17 +257,8 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
             this.scrollToTop();
 
             if (response.newClient === true) {
-              this.loanService.getAllMemberships().subscribe(
-                (onlyMemberships) => {
-                  this.initMemberships(onlyMemberships.memberships);
-                  this.initNewUserForms();
-                  this.isLoading = false;
-                },
-                (error) => {
-                  this.newClient = null;
-                  this.showGenericDialog(error);
-                }
-              );
+              this.initNewUserForms();
+              this.isLoading = false;
             } else {
               if (this.bank?.hasFixedLoans === true) {
                 this.initFixedLoansLoansForm(response);
@@ -393,6 +384,11 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
         membership ? this.filter(membership) : this.allMemberships.slice()
       )
     );
+
+    this.membershipFormGroup = this.fb.group({
+      membership: []
+    });
+    this.setMembershipListeners();
   }
 
   initNewUserForms(): void {
@@ -434,11 +430,6 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     } else {
       this.initNonFixedLoanBankNewLoanForm();
     }
-
-    this.membershipFormGroup = this.fb.group({
-      membership: []
-    });
-    this.setMembershipListeners();
   }
 
   private setMembershipListeners(): void {
@@ -1117,6 +1108,21 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
   goToMembershipForm(): void {
     this.scrollToTop();
     this.stepper.next();
+    this.currentStepperValue = this.stepper.selectedIndex;
+
+    this.isLoading = true;
+
+    this.loanService.getAllMemberships().subscribe(
+      (onlyMemberships) => {
+        this.initMemberships(onlyMemberships.memberships);
+        this.isLoading = false;
+      },
+      (error) => {
+        this.isLoading = false;
+        this.newClient = null;
+        this.showGenericDialog(error);
+      }
+    );
   }
 
   getFormValues(): ConfirmationSetDto {
