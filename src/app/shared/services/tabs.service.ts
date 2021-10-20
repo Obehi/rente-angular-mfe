@@ -5,7 +5,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class TabsService {
-  private activeLinkIndex = new BehaviorSubject<number | null>(null);
+  private activeLinkIndex = new BehaviorSubject<number | null>(0);
   constructor() {}
 
   public setActiveLinkIndex(index: number | null): void {

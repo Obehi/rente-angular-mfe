@@ -110,6 +110,12 @@ export class DashboardTabsDesktopComponent implements OnInit {
           // Send index on router change
           this.tabsService.setActiveLinkIndex(this.activeLinkIndex);
         });
+      } else {
+        this.activeLinkIndex = this.tabsService.getActiveLinkIndex();
+
+        if (this.activeLinkIndex === null) this.activeLinkIndex = 0;
+
+        this.setActiveIcon(this.activeLinkIndex);
       }
     }
 

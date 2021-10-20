@@ -123,6 +123,7 @@ export class LoginService {
             ]);
             // Set active link index
             this.tabsService.setActiveLinkIndex(0);
+            console.log('Set index to 0');
           }
         }
       } else {
