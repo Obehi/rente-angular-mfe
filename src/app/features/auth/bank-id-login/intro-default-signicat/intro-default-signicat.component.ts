@@ -8,6 +8,7 @@ import { BankVo } from '@models/bank';
 })
 export class IntroDefaultSignicatComponent implements OnInit {
   @Input() bank?: BankVo;
+  @Input() generalText: string;
 
   constructor() {}
 

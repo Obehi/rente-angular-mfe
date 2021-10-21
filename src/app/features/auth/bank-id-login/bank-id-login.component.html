@@ -5,26 +5,34 @@
 
   <div class="forms-wrapper">
     <div *ngIf="signicatIframeUrl !== null" class="iframe-wrapper">
-      <rente-intro-default-signicat [bank]="bank" *ngIf="bank?.isSigniCat">
+      <rente-intro-default-signicat
+        [generalText]="generalText"
+        [bank]="bank"
+        *ngIf="bank?.isSigniCat"
+      >
       </rente-intro-default-signicat>
 
       <rente-intro-no-bank-id
+        [generalText]="generalText"
         *ngIf="userHasNoBankIDForPhone && bank?.name !== 'NORDEA'"
       >
       </rente-intro-no-bank-id>
 
       <rente-intro-no-bank-id-nordea
+        [generalText]="generalText"
         *ngIf="userHasNoBankIDForPhone && bank?.name === 'NORDEA'"
       >
       </rente-intro-no-bank-id-nordea>
 
       <rente-intro-redirect-dnb
+        [generalText]="generalText"
         [bank]="bank"
         *ngIf="bank?.name === 'DNB' && userHasNoBankIDForPhone === false"
       >
       </rente-intro-redirect-dnb>
 
       <rente-intro-redirect-sb1
+        [generalText]="generalText"
         [bank]="bank"
         *ngIf="isRedirected && bank?.isSb1Bank"
       >

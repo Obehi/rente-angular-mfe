@@ -127,6 +127,9 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
   public manualEstimatedPropertyValueFromUser: number;
   public isManualPropertyValue = false;
   public isSingicatLoginSucces = false;
+
+  public generalText =
+    'BankID oppdaterer for tiden sine systemer. Enkelte brukere kan oppleve problemer med innlogging.';
   get isMobile(): boolean {
     return window.innerWidth < 600;
   }
