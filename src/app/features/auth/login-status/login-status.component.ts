@@ -131,7 +131,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
     if (this.isSB1Bank) {
       this.firstStepTimer = 40;
       this.bankIdTimeoutTime = 130;
-      this.maxConnectionTime = 2;
+      this.maxConnectionTime = 130;
     }
     if (this.bank.name === 'DNB') {
       this.bankIdTimeoutTime = 130;
