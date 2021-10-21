@@ -2,19 +2,21 @@
   <rente-landing-top> </rente-landing-top>
 
   <div class="after-landing">
-    <div class="list gradient" *ngIf="isMobile">
+    <div class="list gradient mobile" *ngIf="isMobile">
       <div class="list-inner">
         <div class="desktop-inner">
           <img
             *ngIf="!isSweden"
             [lazyLoad]="'../../../assets/img/example-no.svg'"
             offset="600"
+            class="mobile"
             alt="Screenshot example"
           />
           <img
             *ngIf="isSweden"
             [lazyLoad]="'../../../assets/img/example-sv.svg'"
             offset="600"
+            class="mobile"
             alt="Screenshot example"
           />
           <h2 i18n="title-explanation|landing-page@@landing.title.explanation">
@@ -34,7 +36,7 @@
     </div>
     <!-- Dont load huge example svgs before scroll hits this element -->
 
-    <div class="list gradient small-padding" *ngIf="!isMobile">
+    <div class="list gradient desktop small-padding">
       <div class="example">
         <div class="example-flex">
           <div *ngIf="!isSweden" class="item img">
@@ -42,6 +44,7 @@
               type="image/svg+xml"
               src="../../../assets/img/Group 460.svg"
               style="width: 45vw"
+              class="embed-image"
             />
           </div>
           <div class="item second-row">

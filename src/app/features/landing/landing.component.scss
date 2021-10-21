@@ -87,6 +87,17 @@ rente-button {
   display: block;
 }
 
+@media (max-width: 800px) {
+  .example-head {
+    text-align: center !important;
+  }
+  .example-flex {
+    .embed-image {
+      width: 100% !important;
+    }
+  }
+}
+
 // constant height to account for dynamic error messages
 form {
   padding: unset;
@@ -212,6 +223,13 @@ iframe {
 
   @media (max-width: 800px) {
     margin-bottom: 120px;
+  }
+
+  .list-inner {
+    @media (min-width: 600px) and (max-width: 800px) {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
   }
 
   .block:after {
