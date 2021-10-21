@@ -2,21 +2,19 @@
   <rente-landing-top> </rente-landing-top>
 
   <div class="after-landing">
-    <div class="list gradient mobile">
+    <div class="list gradient" *ngIf="isMobile">
       <div class="list-inner">
         <div class="desktop-inner">
           <img
             *ngIf="!isSweden"
             [lazyLoad]="'../../../assets/img/example-no.svg'"
             offset="600"
-            class="mobile"
             alt="Screenshot example"
           />
           <img
             *ngIf="isSweden"
             [lazyLoad]="'../../../assets/img/example-sv.svg'"
             offset="600"
-            class="mobile"
             alt="Screenshot example"
           />
           <h2 i18n="title-explanation|landing-page@@landing.title.explanation">
@@ -36,7 +34,7 @@
     </div>
     <!-- Dont load huge example svgs before scroll hits this element -->
 
-    <div class="list gradient desktop small-padding">
+    <div class="list gradient small-padding" *ngIf="!isMobile">
       <div class="example">
         <div class="example-flex">
           <div *ngIf="!isSweden" class="item img">
@@ -78,65 +76,6 @@
         </div>
       </div>
     </div>
-
-    <div class="list gradient desktop small-padding">
-      <div class="example">
-        <div class="example-flex">
-          <div *ngIf="isSweden" class="item img">
-            <img
-              [lazyLoad]="'../../../assets/img/example-desktop-info-sv.svg'"
-              offset="600"
-              alt="Screenshot example"
-            />
-          </div>
-          <div *ngIf="isSweden" class="item img">
-            <img
-              [lazyLoad]="'../../../assets/img/example-desktop-offers-sv.svg'"
-              offset="600"
-              alt="Screenshot example"
-            />
-          </div>
-
-          <div *ngIf="!isSweden" class="item img">
-            <embed
-              type="image/svg+xml"
-              src="../../../assets/img/example-desktop-offers-new.svg"
-            />
-          </div>
-          <div class="item second-row">
-            <h2
-              class="example-head"
-              i18n="how-it-functions|landing-page@@landing.function"
-              style="text-align: left"
-            >
-              Slik fungerer det
-            </h2>
-            <h4
-              class="example-text"
-              i18n="automatic-service|landing-page@@landing.automaticService"
-            >
-              Renteradar henter renten og dine lånedetaljer automatisk med
-              BankID på mobil. <br />
-              <br />
-              <br />
-
-              Vi sammenligner renten du betaler med renten du kan få i andre
-              banker og viser deg hvor mye du kan spare. Du kan også prute i
-              banken du er kunde med et klikk.
-            </h4>
-
-            <!-- DETTE MÅ OVERSETTES I POEDITOR!!! -->
-            <!-- <h4 i18n="comparing-service|landing-page@@landing.comparingService">
-              Vi sammenligner renten du betaler med renten du kan få i andre
-              banker og viser deg hvor mye du kan spare. Du kan også prute i
-              banken du er kunde med et klikk.
-            </h4> -->
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!--  -->
 
     <div class="list blue-box">
       <h2>Enkelt å være <span>smart</span> med boliglånet</h2>

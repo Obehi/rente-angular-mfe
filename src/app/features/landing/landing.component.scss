@@ -10,7 +10,7 @@ p {
 }
 
 h1 {
-  @media (max-width: 600px) {
+  @media (max-width: 800px) {
     line-height: 1.8;
   }
 
@@ -45,7 +45,7 @@ h3 {
 
 @media (min-width: 1000px) {
   .list-inner {
-    max-width: 70%;
+    max-width: 80%;
   }
 }
 
@@ -117,11 +117,11 @@ iframe {
   overflow: hidden;
   padding: 15px;
   max-width: unset;
-  @media (max-width: 600px) {
+  @media (max-width: 800px) {
     padding: unset;
   }
 
-  @media (min-width: 600px) {
+  @media (min-width: 800px) {
     display: flex;
     padding: unset;
     flex-direction: column;
@@ -129,7 +129,7 @@ iframe {
   }
 
   .after-landing {
-    @media (min-width: 600px) {
+    @media (min-width: 800px) {
       //max-width: 1400px;
       overflow: hidden;
       padding: unset;
@@ -158,7 +158,7 @@ iframe {
 }
 
 .data-logos {
-  @media (min-width: 600px) {
+  @media (min-width: 800px) {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -171,7 +171,7 @@ iframe {
     }
   }
 
-  @media (max-width: 600px) {
+  @media (max-width: 800px) {
     display: grid;
     grid-gap: 10px;
     grid-template-columns: 1fr 1fr;
@@ -261,7 +261,7 @@ iframe {
     p {
       color: $black;
 
-      @media (max-width: 600px) {
+      @media (max-width: 800px) {
         color: $black;
       }
     }
@@ -295,7 +295,7 @@ iframe {
   margin-bottom: 5rem;
 
   @media (min-width: 1000px) {
-    max-width: 70%;
+    max-width: 80%;
   }
 
   @media (max-width: 800px) {
@@ -379,7 +379,7 @@ iframe {
 }
 
 .horizontal-scroll {
-  @media (max-width: 600px) {
+  @media (max-width: 800px) {
     width: 700px;
     overflow: scroll;
     -webkit-overflow-scrolling: touch;
@@ -406,7 +406,7 @@ iframe {
     }
   }
 
-  @media (min-width: 600px) {
+  @media (min-width: 800px) {
     display: flex;
     margin-left: 20px;
     margin-right: 20px;
@@ -418,14 +418,14 @@ iframe {
 }
 
 .articles {
-  @media (min-width: 600px) {
+  @media (min-width: 800px) {
     display: flex;
     flex-direction: column;
     align-items: center;
   }
 
   margin-bottom: 120px;
-  @media (max-width: 600px) {
+  @media (max-width: 800px) {
     padding: 15px;
   }
 
@@ -498,7 +498,7 @@ a {
     display: table;
   }
   .sitatboks {
-    @media (min-width: 600px) {
+    @media (min-width: 800px) {
       background-color: $stian-blue;
       padding: 20px 20px 0 20px;
       padding-bottom: 20px;
@@ -526,6 +526,10 @@ a {
       line-height: 1.5;
       color: $blue;
       font-weight: 300;
+    }
+
+    @media (min-width: 800px) and (max-width: 1000px) {
+      font-size: 15px;
     }
 
     .quote {
@@ -560,7 +564,7 @@ a {
   }
 }
 
-@media (min-width: 600px) {
+@media (min-width: 800px) {
   .four-columns {
     display: flex;
     justify-content: space-between;
@@ -701,7 +705,7 @@ a {
     margin-left: 25%;
     margin-bottom: 120px;
   }
-  @media (max-width: 600px) {
+  @media (max-width: 800px) {
     padding: 15px;
   }
 }
