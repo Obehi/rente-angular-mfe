@@ -25,7 +25,7 @@
       </a>
       <a
         i18n="“Headerlink|my-page@@header.myPage2”"
-        *ngIf="isLoggedIn"
+        *ngIf="isLoggedIn && !(globalStateService.isSignicatLogin() | async)"
         [routerLink]="['/dashboard/tilbud']"
         routerLinkActive="active-link"
         (click)="toggleNav()"

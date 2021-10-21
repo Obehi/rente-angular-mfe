@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 
 import { AuthService } from '@services/remote-api/auth.service';
 import { LocalStorageService } from '@services/local-storage.service';
+import { GlobalStateService } from '@services/global-state.service';
 
 @Component({
   selector: 'rente-header-desktop',
@@ -16,7 +17,8 @@ export class HeaderDesktopNoComponent implements OnInit {
   constructor(
     public auth: AuthService,
     public localStorageService: LocalStorageService,
-    private router: Router
+    private router: Router,
+    public globalStateService: GlobalStateService
   ) {}
 
   ngOnInit(): void {}

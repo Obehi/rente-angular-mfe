@@ -4,6 +4,7 @@ import { AuthService } from '@services/remote-api/auth.service';
 import { MessageBannerService } from '@services/message-banner.service';
 import { getAnimationStyles } from '@shared/animations/animationEnums';
 import { CustomLangTextService } from '@shared/services/custom-lang-text.service';
+import { GlobalStateService } from '@services/global-state.service';
 
 @Component({
   selector: 'rente-header-mobile',
@@ -18,7 +19,8 @@ export class HeaderMobileNoComponent implements OnInit {
     public auth: AuthService,
     private router: Router,
     private messageService: MessageBannerService,
-    private customLangService: CustomLangTextService
+    private customLangService: CustomLangTextService,
+    public globalStateService: GlobalStateService
   ) {}
 
   ngOnInit(): void {}
