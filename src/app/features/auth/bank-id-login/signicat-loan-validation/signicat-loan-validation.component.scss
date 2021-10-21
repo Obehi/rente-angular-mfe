@@ -1,0 +1,56 @@
+@import '../../../../../styles/theme/_colors.scss';
+
+.loans {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  margin-bottom: 30px;
+}
+
+.loan {
+  flex-basis: 30%;
+  padding: 10px;
+  border-radius: 10px 10px 0 0;
+}
+
+.desktop {
+  background-color: $grey-light;
+  border-radius: 5px;
+}
+
+.loan-index {
+  padding: 10px;
+  border-radius: 10px 10px 0 0;
+  background-color: darkgray;
+}
+
+.info {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 20px;
+}
+
+.value {
+}
+
+.title {
+  text-align: center;
+}
+
+.oustandingdebt {
+  margin-top: 10px;
+}
+
+.remainingyears {
+}
+
+.nominalrate {
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+}
+
+.loantype {
+  padding: 5px 0 10px 0;
+  text-align: center;
+  margin-top: 10px;
+}

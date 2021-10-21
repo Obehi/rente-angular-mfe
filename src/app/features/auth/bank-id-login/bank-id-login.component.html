@@ -5,6 +5,10 @@
 
   <div class="forms-wrapper">
     <div *ngIf="signicatIframeUrl !== null" class="iframe-wrapper">
+      <!-- <rente-signicat-loan-validation
+        *ngIf="loans.length > 1"
+        [loans]="loans"
+      ></rente-signicat-loan-validation> -->
       <rente-intro-default-signicat [bank]="bank" *ngIf="bank?.isSigniCat">
       </rente-intro-default-signicat>
 
@@ -58,9 +62,14 @@
       </p>
     </div>
 
+    <rente-signicat-loan-validation
+      *ngIf="newClient === false && loans.length > 1"
+      [loans]="loans"
+    ></rente-signicat-loan-validation>
+
     <!-- OldUsers has loan form only-->
     <form
-      *ngIf="newClient === false"
+      *ngIf="newClient === false && loans.length < 2"
       [formGroup]="loanFormGroup"
       novalidate
       class="loan-form"
@@ -795,8 +804,18 @@
     <div *ngIf="isSingicatLoginSucces" class="bottom">
       <rente-button
         *ngIf="newClient === false"
+        class="left"
+        (click)="oldUserFinished('loans')"
+        color="mat-primar-hollow-medium"
+        [isLoading]="isLoading"
+        [disabled]="loanFormGroup?.invalid || isLoading"
+      >
+        Endre lån
+      </rente-button>
+      <rente-button
+        *ngIf="newClient === false"
         class="right"
-        (click)="oldUserFinished()"
+        (click)="oldUserFinished('offers')"
         color="primary"
         [isLoading]="isLoading"
         [disabled]="loanFormGroup?.invalid || isLoading"

@@ -42,6 +42,8 @@ import {
   AddressCreationDto,
   ClientUpdateInfo,
   ConfirmationSetDto,
+  LoanInfo,
+  Loans,
   MembershipTypeDto
 } from '@shared/models/loans';
 import { LoansService } from '@services/remote-api/loans.service';
@@ -56,7 +58,7 @@ import {
 } from '@angular/forms';
 import { forkJoin } from 'rxjs';
 import { SignicatLoanInfoDto } from '@shared/models/loans';
-import { LoginService } from '@services/login.service';
+import { LoginService, redirectType } from '@services/login.service';
 import { BankVo } from '@shared/models/bank';
 import { GenericInfoDialogComponent } from '@shared/components/ui-components/dialogs/generic-info-dialog/generic-info-dialog.component';
 import { VirdiErrorChoiceDialogComponent } from '@shared/components/ui-components/dialogs/virdi-error-choice-dialog/virdi-error-choice-dialog.component';
@@ -74,6 +76,7 @@ import { LoginTermsDialogV2Component } from '@shared/components/ui-components/di
 import { VirdiManualValueDialogComponent } from '@shared/components/ui-components/dialogs/virdi-manual-value-dialog/virdi-manual-value-dialog.component';
 import { MembershipService } from '@services/membership.service';
 import { ScriptService } from '@services/script.service';
+import { MyLoansService } from '@features/dashboard/loans/myloans.service';
 
 @Component({
   selector: 'rente-bank-id-login',
@@ -130,6 +133,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
   get isMobile(): boolean {
     return window.innerWidth < 600;
   }
+  public loans: LoanInfo[];
 
   constructor(
     private authService: AuthService,
@@ -145,9 +149,11 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     private routeEventsService: RouteEventsService,
     private sanitizer: DomSanitizer,
     private rxjsOperatorService: RxjsOperatorService,
-    private membershipService: MembershipService
+    private membershipService: MembershipService,
+    private myloansService: MyLoansService
   ) {
     this.setRoutingListeners();
+    // this.loans = this.myloansService.getLoansdto();
   }
 
   ngOnInit(): void {
@@ -269,15 +275,25 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
                 }
               );
             } else {
-              if (this.bank?.hasFixedLoans === true) {
-                this.initFixedLoansLoansForm(response);
-              } else {
-                if (response.newLoan === true) {
-                  this.initNonFixedLoanBankNewLoanForm();
-                } else {
-                  this.initNonFixedLoanBankOldLoanForm();
+              this.loanService.getLoans().subscribe(
+                (res) => {
+                  console.log('Loans res:', res);
+                  this.loans = res.loans;
+
+                  if (this.bank?.hasFixedLoans === true) {
+                    this.initFixedLoansLoansForm(response);
+                  } else {
+                    if (response.newLoan === true) {
+                      this.initNonFixedLoanBankNewLoanForm();
+                    } else {
+                      this.initNonFixedLoanBankOldLoanForm();
+                    }
+                  }
+                },
+                (err) => {
+                  console.log('Error', err);
                 }
-              }
+              );
             }
           },
           (error) => {
@@ -349,7 +365,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
       );
   }
 
-  public oldUserFinished(): void {
+  public oldUserFinished(redirectToLoan: redirectType): void {
     const SignicatLoanInfoDto = this.bank?.hasFixedLoans
       ? this.fixedBankLoanInfo
       : this.nonFixedBankLoanInfo;
@@ -370,7 +386,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
 
         // subBank was used to prefill memberships selects
         this.localStorageService.removeItem('subBank');
-        this.bank && this.loginService.loginWithBankAndToken();
+        this.bank && this.loginService.loginWithBankAndToken(redirectToLoan);
       },
       (error) => {
         this.showGenericDialog();
