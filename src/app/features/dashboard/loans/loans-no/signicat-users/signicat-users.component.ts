@@ -35,7 +35,8 @@ export class SignicatUsersComponent implements OnInit {
         this.loans = res.sort((a, b) => a.id - b.id);
         this.loansLength = this.loans.length;
         // console.log('Length:', this.loansLength);
-        if (this.loansLength > 1) this.isSummaryNeeded = true;
+        if (this.loansLength > 1 && !this.loans.some((loan) => loan.id === 0))
+          this.isSummaryNeeded = true;
         else if (this.loansLength === 0) this.isEmptyLoans = true;
         else this.isSummaryNeeded = false;
       }
