@@ -120,10 +120,7 @@ export class MyLoansService {
     delay(500)
   );
 
-  public loansObservable$ = this.fetchLoans().pipe(
-    tap((res) => console.log('res from myloanservice loansobservable: ', res)),
-    map((res) => res[0])
-  );
+  public loansObservable$ = this.fetchLoans().pipe(map((res) => res[0]));
 
   private loans$: Observable<Loans | null> = this.loansService.getLoans();
   private offerBanks$: Observable<OffersBank | null> = this.loansService.getOffersBanks();
@@ -132,10 +129,7 @@ export class MyLoansService {
   reloadLoans = (): void => this.reloadLoans$.next(true);
 
   private loansAndOfferBanks$ = merge(
-    merge(
-      this.reloadLoans$,
-      this.loanDeleted$.pipe(tap(() => console.log('loanDeleted!!!')))
-    ).pipe(
+    merge(this.reloadLoans$, this.loanDeleted$).pipe(
       switchMap(() => forkJoin([this.loans$, this.offerBanks$])),
       share()
     ),
@@ -147,7 +141,6 @@ export class MyLoansService {
   }
 
   public loanOverViewObservable$: Observable<any> = this.loansAndOfferBanks.pipe(
-    tap(() => console.log('Loan overview tap!')),
     map(([loans, offers]) => {
       return {
         aggregatedTotalInterestAndFee: loans.aggregatedTotalInterestAndFee,
