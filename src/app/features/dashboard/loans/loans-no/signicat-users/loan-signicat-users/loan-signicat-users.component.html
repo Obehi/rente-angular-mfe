@@ -182,7 +182,7 @@
           </div>
 
           <div class="field-box">
-            <h4 class="text-white">Termin gebyr:</h4>
+            <h4 class="text-white">Termingebyr:</h4>
 
             <div>
               <div class="input-width-small">
@@ -200,13 +200,13 @@
                 ></rente-general-input>
                 <div *ngIf="loanForm?.controls['fee'].touched">
                   <p
-                    class="error-small"
+                    class="error-small error-small-with-absolute"
                     *ngIf="
                       loanForm?.controls['fee'].hasError('required') ||
                       isErrorState(this.loanForm?.controls['fee'])
                     "
                   >
-                    Ikke gyldig verdi
+                    vanligvis mellom 0 til 70 kroner
                   </p>
                 </div>
               </div>
