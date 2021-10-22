@@ -403,15 +403,15 @@ form {
   margin-bottom: 0px;
 }
 
-::ng-deep button.mat-primary-hollow {
-  width: 260px !important;
-  @media (max-width: 600px) {
-    width: 100% !important;
-  }
-}
-
 .setmanualbutton {
   padding: 10px;
   margin: auto;
   text-align: center;
+
+  ::ng-deep button.mat-primary-hollow {
+    width: 260px !important;
+    @media (max-width: 600px) {
+      width: 100% !important;
+    }
+  }
 }

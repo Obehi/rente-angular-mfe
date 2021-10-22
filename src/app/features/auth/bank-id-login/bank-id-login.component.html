@@ -802,26 +802,31 @@
     </div>
 
     <div *ngIf="isSingicatLoginSucces" class="bottom">
-      <rente-button
-        *ngIf="newClient === false"
-        class="left"
-        (click)="oldUserFinished('loans')"
-        color="mat-primar-hollow-medium"
-        [isLoading]="isLoading"
-        [disabled]="loanFormGroup?.invalid || isLoading"
-      >
-        Endre lån
-      </rente-button>
-      <rente-button
-        *ngIf="newClient === false"
-        class="right"
-        (click)="oldUserFinished('offers')"
-        color="primary"
-        [isLoading]="isLoading"
-        [disabled]="loanFormGroup?.invalid || isLoading"
-      >
-        Finn beste rente
-      </rente-button>
+      <div>
+        <div>
+          <rente-button
+            *ngIf="newClient === false && loans.length > 1"
+            class="left"
+            (click)="oldUserFinished('loans')"
+            color="primary-hollow"
+            [isLoading]="isLoading"
+            [disabled]="loanFormGroup?.invalid || isLoading"
+          >
+            Endre lån
+          </rente-button>
+
+          <rente-button
+            *ngIf="newClient === false"
+            class="right"
+            (click)="oldUserFinished('offers')"
+            color="primary"
+            [isLoading]="isLoading"
+            [disabled]="loanFormGroup?.invalid || isLoading"
+          >
+            Finn beste rente
+          </rente-button>
+        </div>
+      </div>
 
       <div
         *ngIf="newClient === true && stepper !== undefined"
