@@ -436,52 +436,57 @@
   <msg id="info.confirmation.done”" desc="info-confirmation" meaning="“done"><source>app/features/init-confirmation/init-confirmation-no/init-confirmation.component.html:219,221</source>
         Finn beste rente!
       </msg>
-  <msg id="landing.encouragement" desc="landing-page" meaning="encouragement"><source>app/features/landing/landing.component.html:11,13</source>
-              Renteradar finner den beste boliglånsrenten helt gratis.
-            </msg>
-  <msg id="landing.description" desc="landing-page" meaning="description"><source>app/features/landing/landing.component.html:17,21</source>
-              Ingen utfylling av skjema.
-              <ph name="LINE_BREAK"><ex>&lt;br&gt;</ex>&lt;br&gt;</ph>
-              Logg inn med BankID på mobil.
-            </msg>
-  <msg id="landing.explanationService" desc="landing-page" meaning="
-                explanation-service"><source>app/features/landing/landing.component.html:28,30</source>
-              Få oversikt og spar penger med et klikk.
-            </msg>
-  <msg id="landing.descriptionService" desc="landing-page" meaning="
-                description-service"><source>app/features/landing/landing.component.html:37,40</source>
-              Renteradar overvåker markedet og gir deg beskjed når det kommer
-              bedre tilbud.
-            </msg>
-  <msg id="landing.function" desc="landing-page" meaning="how-it-functions"><source>app/features/landing/landing.component.html:48,50</source>
-          Slik fungerer det
-        </msg>
-  <msg id="landing.automaticService" desc="landing-page" meaning="automatic-service"><source>app/features/landing/landing.component.html:52,55</source>
-            Renteradar henter renten og dine lånedetaljer automatisk med BankID
-            på mobil.
-          </msg>
-  <msg id="landing.comparingService" desc="landing-page" meaning="comparing-service"><source>app/features/landing/landing.component.html:57,61</source>
-            Vi sammenligner renten du betaler med renten du kan få i andre
-            banker og viser deg hvor mye du kan spare. Du kan også prute i
-            banken du er kunde med et klikk.
-          </msg>
-  <msg id="landing.surveillanceService" desc="landing-page" meaning="surveillance-service"><source>app/features/landing/landing.component.html:96,99</source>
-          Vi overvåker markedet og gir deg beskjed når nye og bedre tilbud er
-          tilgjengelig i fremtiden!
-        </msg>
-  <msg id="landing.title.explanation" desc="landing-page" meaning="title-explanation"><source>app/features/landing/landing.component.html:106,108</source>
+  <msg id="landing.title.explanation" desc="landing-page" meaning="title-explanation"><source>app/features/landing/landing.component.html:22,24</source><source>app/features/landing/landing-new/landing-new.component.html:22,24</source><source>app/features/landing/landing-old/landing-old.component.html:106,108</source>
             Slik fungerer det
           </msg>
-  <msg id="landing.step1.explanation" desc="landing-page" meaning="step1-explanation"><source>app/features/landing/landing.component.html:109,112</source>
+  <msg id="landing.step1.explanation" desc="landing-page" meaning="step1-explanation"><source>app/features/landing/landing.component.html:25,28</source><source>app/features/landing/landing-new/landing-new.component.html:25,28</source><source>app/features/landing/landing-old/landing-old.component.html:109,112</source>
             Renteradar henter renten og dine lånedetaljer automatisk med BankID
             på mobil.
           </msg>
-  <msg id="landing.step2.explanation" desc="landing-page" meaning="step2-explanation"><source>app/features/landing/landing.component.html:113,117</source>
+  <msg id="landing.step2.explanation" desc="landing-page" meaning="step2-explanation"><source>app/features/landing/landing.component.html:29,33</source><source>app/features/landing/landing-new/landing-new.component.html:29,33</source><source>app/features/landing/landing-old/landing-old.component.html:113,117</source>
             Vi sammenligner renten du betaler med renten du kan få i andre
             banker og viser deg hvor mye du kan spare. Du kan også prute i
             banken du er kunde med et klikk.
           </msg>
-  <msg id="landing.step3.explanation" desc="landing-page" meaning="step3-explanation"><source>app/features/landing/landing.component.html:132,135</source>
+  <msg id="landing.function" desc="landing-page" meaning="how-it-functions"><source>app/features/landing/landing.component.html:55,57</source><source>app/features/landing/landing-new/landing-new.component.html:55,57</source><source>app/features/landing/landing-old/landing-old.component.html:48,50</source>
+              Slik fungerer det
+            </msg>
+  <msg id="landing.automaticService" desc="landing-page" meaning="automatic-service"><source>app/features/landing/landing.component.html:61,70</source><source>app/features/landing/landing-new/landing-new.component.html:61,70</source><source>app/features/landing/landing-old/landing-old.component.html:52,55</source>
+              Renteradar henter renten og dine lånedetaljer automatisk med
+              BankID på mobil. <ph name="LINE_BREAK"><ex>&lt;br&gt;</ex>&lt;br&gt;</ph>
+              <ph name="LINE_BREAK"><ex>&lt;br&gt;</ex>&lt;br&gt;</ph>
+              <ph name="LINE_BREAK"><ex>&lt;br&gt;</ex>&lt;br&gt;</ph>
+
+              Vi sammenligner renten du betaler med renten du kan få i andre
+              banker og viser deg hvor mye du kan spare. Du kan også prute i
+              banken du er kunde med et klikk.
+            </msg>
+  <msg id="landing.encouragement" desc="landing-page" meaning="encouragement"><source>app/features/landing/landing.component.html:94,96</source><source>app/features/landing/landing-new/landing-new.component.html:94,96</source><source>app/features/landing/landing-old/landing-old.component.html:11,13</source>
+            Renteradar finner den beste boliglånsrenten helt gratis.
+          </msg>
+  <msg id="landing.description" desc="landing-page" meaning="description"><source>app/features/landing/landing.component.html:104,108</source><source>app/features/landing/landing-new/landing-new.component.html:104,108</source><source>app/features/landing/landing-old/landing-old.component.html:17,21</source>
+            Ingen utfylling av skjema.
+            <ph name="LINE_BREAK"><ex>&lt;br&gt;</ex>&lt;br&gt;</ph>
+            Logg inn med BankID på mobil.
+          </msg>
+  <msg id="landing.explanationService" desc="landing-page" meaning="explanation-service"><source>app/features/landing/landing.component.html:117,119</source><source>app/features/landing/landing-new/landing-new.component.html:117,119</source><source>app/features/landing/landing-old/landing-old.component.html:28,30</source>
+            Få oversikt og spar penger med et klikk.
+          </msg>
+  <msg id="landing.descriptionService" desc="landing-page" meaning="description-service"><source>app/features/landing/landing.component.html:128,131</source><source>app/features/landing/landing-new/landing-new.component.html:128,131</source><source>app/features/landing/landing-old/landing-old.component.html:37,40</source>
+            Renteradar overvåker markedet og gir deg beskjed når det kommer
+            bedre tilbud.
+          </msg>
+  <msg id="landing.surveillanceService" desc="landing-page" meaning="surveillance-service"><source>app/features/landing/landing-top-no/landing-top-no.component.html:11,15</source><source>app/features/landing/landing-old/landing-old.component.html:96,99</source>
+      Sammenlign din boliglånsrente med markedets beste tilbud og hva andre
+      betaler. 4 av 5 kan spare flere tusen i året. På 2 minutter får du full
+      oversikt og kontroll på boliglånet ditt - helt gratis!
+    </msg>
+  <msg id="landing.comparingService" desc="landing-page" meaning="comparing-service"><source>app/features/landing/landing-old/landing-old.component.html:57,61</source>
+            Vi sammenligner renten du betaler med renten du kan få i andre
+            banker og viser deg hvor mye du kan spare. Du kan også prute i
+            banken du er kunde med et klikk.
+          </msg>
+  <msg id="landing.step3.explanation" desc="landing-page" meaning="step3-explanation"><source>app/features/landing/landing-old/landing-old.component.html:132,135</source>
             Vi overvåker markedet og gir deg beskjed når nye og bedre tilbud er
             tilgjengelig i fremtiden!
           </msg>
