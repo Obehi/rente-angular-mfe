@@ -18,6 +18,13 @@
               class="rente-icon"
               src="../../../assets/icons/rente-logo-icon-white.svg"
               alt="Banktilbud"
+              *ngIf="activeLinkIndex !== 0"
+            />
+            <img
+              class="rente-icon"
+              src="../../../assets/icons/rente-logo-icon-green.svg"
+              alt="Banktilbud"
+              *ngIf="activeLinkIndex == 0"
             />
             <p i18n="“title|offer@@dashboard.loggedIn.offer”">Tilbud</p>
           </div>
@@ -34,6 +41,13 @@
               class="graph-icon"
               src="../../../assets/icons/graph-icon-white.svg"
               alt="Mine lån"
+              *ngIf="activeLinkIndex !== 1"
+            />
+            <img
+              class="graph-icon"
+              src="../../../assets/icons/graph-icon-gren.svg"
+              alt="Mine lån"
+              *ngIf="activeLinkIndex == 1"
             />
             <p i18n="“title2|my-loans@@dashboard.loggedIn.myLoans”">Mine lån</p>
           </div>
@@ -50,6 +64,13 @@
               class="house-icon"
               src="../../../assets/icons/house-icon-white.svg"
               alt="Bolig"
+              *ngIf="activeLinkIndex !== 2"
+            />
+            <img
+              class="house-icon"
+              src="../../../assets/icons/house-icon-green.svg"
+              alt="Bolig"
+              *ngIf="activeLinkIndex == 2"
             />
             <p i18n="“title3|house@@dashboard.loggedIn.house”">Bolig</p>
           </div>
@@ -71,6 +92,13 @@
               class="profile-icon"
               src="../../../assets/icons/profile-icon-white.svg"
               alt="Profil"
+              *ngIf="activeLinkIndex !== 4"
+            />
+            <img
+              class="profile-icon"
+              src="../../../assets/icons/profile-icon-green.svg"
+              alt="Profil"
+              *ngIf="activeLinkIndex == 4"
             />
             <p i18n="“title4|profile@@dashboard.loggedIn.profile”">Profil</p>
           </div>
