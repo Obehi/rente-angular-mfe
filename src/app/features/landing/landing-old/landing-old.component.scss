@@ -1,5 +1,11 @@
 @import '../../../../styles/theme/_colors.scss';
 
+.ngdeeps {
+  ::ng-deep .mat-expanded {
+    background: $lightgreen !important;
+  }
+}
+
 h1,
 h2,
 h3,
