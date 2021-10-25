@@ -77,7 +77,6 @@ import { VirdiManualValueDialogComponent } from '@shared/components/ui-component
 import { MembershipService } from '@services/membership.service';
 import { ScriptService } from '@services/script.service';
 import { MyLoansService } from '@features/dashboard/loans/myloans.service';
-
 @Component({
   selector: 'rente-bank-id-login',
   templateUrl: './bank-id-login.component.html',
@@ -591,7 +590,21 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
         return item.value === firstLoan.loanType;
       })[0];
 
-      const fee = String(firstLoan.fee || '50');
+      let fee = String(firstLoan.fee || '50');
+
+      const listPriceBanksPrefillZeroFee = [
+        'HIMLA_FANA_SB',
+        'BULDER',
+        'SBANKEN',
+        'NYBYGGER',
+        'BOLIGKREDITT',
+        'DIN_BANK'
+      ];
+
+      if (this.bank && listPriceBanksPrefillZeroFee.includes(this.bank.name)) {
+        fee = '0';
+      }
+
       this.loanFormGroup = this.fb.group({
         outstandingDebt: [
           firstLoan.outstandingDebt.toFixed(0),

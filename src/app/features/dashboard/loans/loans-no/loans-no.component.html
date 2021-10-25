@@ -10,6 +10,10 @@
     [allOffers]="offers"
   ></rente-signicat-users>
 
+  <!--
+    Fixed price is currently not used, will keep it here for future use
+    To be discussed and reviewed
+  -->
   <rente-signicat-fixed-price
     *ngIf="isSignicatUser && isFixedPriceBank"
     [loanData]="loansData"
