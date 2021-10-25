@@ -592,6 +592,8 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
 
       let fee = String(firstLoan.fee || '50');
 
+      console.log('Starting fee:', fee);
+
       const listPriceBanksPrefillZeroFee = [
         'HIMLA_FANA_SB',
         'BULDER',
@@ -601,8 +603,25 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
         'DIN_BANK'
       ];
 
-      if (this.bank && listPriceBanksPrefillZeroFee.includes(this.bank.name)) {
+      console.log('listPriceBanksWithZeroFee', listPriceBanksPrefillZeroFee);
+
+      console.log('Bank', this.bank);
+
+      if (this.bank !== null) {
+        console.log(
+          'Includes one of the list price banks:',
+          listPriceBanksPrefillZeroFee.includes(this.bank.name.toUpperCase())
+        );
+      } else {
+        console.log('Bank is NULL!!!');
+      }
+
+      if (
+        this.bank &&
+        listPriceBanksPrefillZeroFee.includes(this.bank.name.toUpperCase())
+      ) {
         fee = '0';
+        console.log('Fee set to 0!!!', fee);
       }
 
       this.loanFormGroup = this.fb.group({
@@ -620,6 +639,8 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
           Validators.compose([Validators.required, Validators.max(99)])
         ]
       });
+
+      console.log('Fee after form init', fee);
 
       this.loanFormGroup?.addControl(
         'interestRate',
