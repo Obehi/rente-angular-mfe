@@ -267,7 +267,6 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
             } else {
               this.loanService.getLoans().subscribe(
                 (res) => {
-                  console.log('Loans res:', res);
                   this.loans = res.loans;
 
                   if (this.bank?.hasFixedLoans === true) {
@@ -595,9 +594,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
         return item.value === firstLoan.loanType;
       })[0];
 
-      let fee = String(firstLoan.fee || '50');
-
-      console.log('Starting fee:', fee);
+      let fee = String(firstLoan.fee || '0');
 
       const listPriceBanksPrefillZeroFee = [
         'HIMLA_FANA_SB',
@@ -608,25 +605,11 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
         'DIN_BANK'
       ];
 
-      console.log('listPriceBanksWithZeroFee', listPriceBanksPrefillZeroFee);
-
-      console.log('Bank', this.bank);
-
-      if (this.bank !== null) {
-        console.log(
-          'Includes one of the list price banks:',
-          listPriceBanksPrefillZeroFee.includes(this.bank.name.toUpperCase())
-        );
-      } else {
-        console.log('Bank is NULL!!!');
-      }
-
       if (
         this.bank &&
         listPriceBanksPrefillZeroFee.includes(this.bank.name.toUpperCase())
       ) {
         fee = '0';
-        console.log('Fee set to 0!!!', fee);
       }
 
       this.loanFormGroup = this.fb.group({
@@ -644,8 +627,6 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
           Validators.compose([Validators.required, Validators.max(99)])
         ]
       });
-
-      console.log('Fee after form init', fee);
 
       this.loanFormGroup?.addControl(
         'interestRate',
@@ -704,7 +685,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
       this.loanFormGroup?.addControl(
         'fee',
         new FormControl(
-          '50',
+          '',
           Validators.compose([Validators.required, Validators.max(100)])
         )
       );

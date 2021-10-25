@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { API_URL_MAP } from '@config/api-url-config';
 import { GenericHttpService } from '@services/generic-http.service';
-import { Observable, forkJoin } from 'rxjs';
+import { Observable, forkJoin, of } from 'rxjs';
 import {
   AddressDto,
   AddressStatisticsDto,
@@ -56,7 +56,7 @@ export class LoansService {
 
   public getOffersBanks(): Observable<OffersBank> {
     const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.offers.base}${API_URL_MAP.loan.offers.bank}`;
-    return this.http.get(url);
+    return of({ offers: [] });
   }
 
   public updateNewOffers(): Observable<NewOffers[]> {
