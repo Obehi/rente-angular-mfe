@@ -647,12 +647,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
   private initNonFixedLoanBankNewLoanForm(): void {
     this.isLoading = true;
 
-    forkJoin([
-      this.loanService.getOffersBanks(),
-      this.loanService
-        .getSignicatLoansInfo()
-        .pipe(this.rxjsOperatorService.retry404ThreeTimes)
-    ]).subscribe(([offerBanks, signicatLoansInfo]) => {
+    this.loanService.getOffersBanks().subscribe((offerBanks) => {
       this.productIdOptions = (offerBanks.offers as any[])
         .map((offer) => {
           return {
@@ -661,10 +656,6 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
           };
         })
         .sort((a, b) => (a.name > b.name ? 1 : b.name > a.name ? -1 : 0));
-
-      if (signicatLoansInfo.length !== 0) {
-        this.loanId = signicatLoansInfo[0].id;
-      }
 
       this.loanFormGroup = this.fb.group({
         outstandingDebt: ['', Validators.required],
@@ -694,7 +685,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
       this.isLoading = false;
     });
   }
-
+  /* 
   private initFixedLoanBankLoansForm(loanInfo): void {
     this.isLoading = true;
     if (loanInfo.newLoan === false) {
@@ -742,7 +733,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     } else {
       this.initNewLoanLoanForm();
     }
-  }
+  } */
 
   initNewLoanLoanForm(): void {
     this.loanService.getOffersBanks().subscribe(
