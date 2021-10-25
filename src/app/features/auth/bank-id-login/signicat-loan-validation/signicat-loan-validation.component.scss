@@ -19,14 +19,15 @@
 }
 
 .signicat-wallpaper {
-  background-color: $grey-light;
-  border-radius: 5px;
+  background-color: $blue;
+  border-radius: 15px;
+  color: white;
 }
 
 .loan-index {
-  padding: 10px;
-  border-radius: 10px 10px 0 0;
-  background-color: darkgray;
+  padding: 10px 15px;
+  border-radius: 15px 15px 0 0;
+  background-color: $karl-blue;
 }
 
 .info {
@@ -40,6 +41,7 @@
 
 .title {
   text-align: center;
+  color: white;
 }
 
 .oustandingdebt {
