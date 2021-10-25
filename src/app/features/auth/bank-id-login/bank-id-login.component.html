@@ -807,7 +807,7 @@
           <rente-button
             *ngIf="newClient === false && loans.length > 1"
             class="left"
-            (click)="oldUserFinished('loans')"
+            (click)="oldUserFinishedWithoutRequest('loans')"
             color="primary-hollow"
             [isLoading]="isLoading"
             [disabled]="isLoading"
@@ -829,7 +829,7 @@
           <rente-button
             *ngIf="newClient === false && loans.length > 1"
             class="right"
-            (click)="oldUserFinished('offers')"
+            (click)="oldUserFinishedWithoutRequest('offers')"
             color="primary"
             [isLoading]="isLoading"
             [disabled]="isLoading"

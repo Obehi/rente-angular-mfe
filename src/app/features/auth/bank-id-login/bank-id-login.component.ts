@@ -384,6 +384,11 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     );
   }
 
+  public oldUserFinishedWithoutRequest(redirectToLoan: redirectType): void {
+    this.localStorageService.removeItem('subBank');
+    this.bank && this.loginService.loginWithBankAndToken(redirectToLoan);
+  }
+
   initMemberships(memberships): void {
     this.allMemberships = this.membershipService.initMembershipList(
       memberships
