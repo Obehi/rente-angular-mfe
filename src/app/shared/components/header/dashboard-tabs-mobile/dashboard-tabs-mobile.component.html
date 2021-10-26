@@ -7,6 +7,9 @@
           mat-tab-link
           [active]="activeLinkIndex == 0"
           [routerLink]="'./' + routesMap.offers"
+          (click)="setActiveIndex(0)"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
         >
           <div class="inside-btn">
             <span
@@ -35,6 +38,9 @@
           mat-tab-link
           [active]="activeLinkIndex == 1"
           [routerLink]="'./' + routesMap.loans"
+          (click)="setActiveIndex(1)"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
         >
           <div class="inside-btn">
             <img
@@ -58,6 +64,9 @@
           mat-tab-link
           [active]="activeLinkIndex == 2"
           [routerLink]="'./' + routesMap.property"
+          (click)="setActiveIndex(2)"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
         >
           <div class="inside-btn">
             <img
@@ -81,6 +90,9 @@
           mat-tab-link
           [active]="activeLinkIndex == 4"
           [routerLink]="'./' + routesMap.profile"
+          (click)="setActiveIndex(4)"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
         >
           <div class="inside-btn">
             <span

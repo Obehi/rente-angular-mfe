@@ -104,7 +104,7 @@ p {
       }
 
       .mat-tab-label-active p {
-        color: $primary;
+        color: $primary !important;
       }
 
       .mat-tab-label-active .rente-icon {

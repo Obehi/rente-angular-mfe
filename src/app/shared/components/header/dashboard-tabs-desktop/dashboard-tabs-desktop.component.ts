@@ -10,6 +10,7 @@ import { getAnimationStyles } from '@shared/animations/animationEnums';
 import { CustomLangTextService } from '@shared/services/custom-lang-text.service';
 import { NotificationService } from '@services/notification.service';
 import { Observable, Subscription } from 'rxjs';
+import { TabsService } from '@services/tabs.service';
 
 @Component({
   selector: 'rente-dashboard-tabs-desktop',
@@ -70,7 +71,8 @@ export class DashboardTabsDesktopComponent implements OnInit {
     private envService: EnvService,
     private messageService: MessageBannerService,
     private customLangService: CustomLangTextService,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private tabsService: TabsService
   ) {
     if (this.envService.isNorway()) {
       this.navLinks = this.navLinksNo;
@@ -94,18 +96,34 @@ export class DashboardTabsDesktopComponent implements OnInit {
     } else {
       if (this.getActiveIndex() !== null) {
         this.activeLinkIndex = this.getActiveIndex();
+        // Send the intial index
+        this.tabsService.setActiveLinkIndex(this.getActiveIndex());
+
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         this.setActiveIcon(this.activeLinkIndex!);
-        this.subscription = this.router.events.subscribe((res) => {
+
+        this.subscription = this.router.events.subscribe(() => {
           this.activeLinkIndex = this.getActiveIndex();
           // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
           this.setActiveIcon(this.activeLinkIndex!);
+
+          // Send index on router change
+          this.tabsService.setActiveLinkIndex(this.activeLinkIndex);
         });
       } else {
         this.activeLinkIndex = 0;
         this.setActiveIcon(this.activeLinkIndex);
       }
     }
+
+    this.tabsService.activeLinkIndexAsObservable().subscribe((index) => {
+      if (index !== null) {
+        this.activeLinkIndex = index;
+        this.setActiveIcon(this.activeLinkIndex);
+      } else {
+        console.log('Index is NULL, cannot set active link index', index);
+      }
+    });
   }
 
   getProfileNotifications(): Observable<number> {
@@ -163,6 +181,10 @@ export class DashboardTabsDesktopComponent implements OnInit {
         }
       });
     }
+  }
+
+  public setActiveIndex(indx: number): void {
+    this.tabsService.setActiveLinkIndex(indx);
   }
 
   public logout(): void {

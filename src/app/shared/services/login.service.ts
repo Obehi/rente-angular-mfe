@@ -15,6 +15,7 @@ import { BankVo } from '@shared/models/bank';
 import { ROUTES_MAP } from '@config/routes-config';
 import { LoggingService } from '@services/logging.service';
 import { SafeUrl } from '@angular/platform-browser';
+import { TabsService } from './tabs.service';
 
 export type redirectType = 'loans' | 'offers' | 'property' | 'profile';
 
@@ -54,7 +55,8 @@ export class LoginService {
     private userService: UserService,
     private loansService: LoansService,
     private localStorageService: LocalStorageService,
-    private logging: LoggingService
+    private logging: LoggingService,
+    private tabsService: TabsService
   ) {}
 
   public loginWithBankAndToken(redirectToUrl?: redirectType): void {

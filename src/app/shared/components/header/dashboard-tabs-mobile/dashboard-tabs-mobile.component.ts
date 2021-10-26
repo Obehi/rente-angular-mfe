@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { EnvService } from '@services/env.service';
 import { Observable, Subscription } from 'rxjs';
 import { NotificationService } from '@services/notification.service';
+import { TabsService } from '@services/tabs.service';
 
 @Component({
   selector: 'rente-dashboard-tabs-mobile',
@@ -59,7 +60,8 @@ export class DashboardTabsMobileComponent implements OnInit, OnDestroy {
     public localStorageService: LocalStorageService,
     private router: Router,
     private envService: EnvService,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private tabsService: TabsService
   ) {
     if (this.envService.isNorway()) {
       this.navLinks = this.navLinksNo;
@@ -78,15 +80,37 @@ export class DashboardTabsMobileComponent implements OnInit, OnDestroy {
     } else {
       if (this.getActiveIndex() !== null) {
         this.activeLinkIndex = this.getActiveIndex();
+
+        this.tabsService.setActiveLinkIndex(this.getActiveIndex());
+
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         this.setActiveIcon(this.activeLinkIndex!);
+
         this.subscription = this.router.events.subscribe((res) => {
           this.activeLinkIndex = this.getActiveIndex();
           // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
           this.setActiveIcon(this.activeLinkIndex!);
+
+          // Send index on router change
+          this.tabsService.setActiveLinkIndex(this.activeLinkIndex);
         });
+      } else {
+        this.activeLinkIndex = this.tabsService.getActiveLinkIndex();
+
+        if (this.activeLinkIndex === null) this.activeLinkIndex = 0;
+
+        this.setActiveIcon(this.activeLinkIndex);
       }
     }
+
+    this.tabsService.activeLinkIndexAsObservable().subscribe((index) => {
+      if (index !== null) {
+        this.activeLinkIndex = index;
+        this.setActiveIcon(this.activeLinkIndex);
+      } else {
+        console.log('Index is NULL, cannot set active link index', index);
+      }
+    });
 
     this.notificationListener = this.getProfileNotifications().subscribe();
     this.notificationListener = this.getHousesNotifications().subscribe();
@@ -108,6 +132,10 @@ export class DashboardTabsMobileComponent implements OnInit, OnDestroy {
 
   getOfferNotifications(): Observable<number> {
     return this.notificationService.getOfferNotificationAsObservable();
+  }
+
+  public setActiveIndex(indx: number): void {
+    this.tabsService.setActiveLinkIndex(indx);
   }
 
   public getActiveIndex(): number | null {
