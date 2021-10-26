@@ -23,14 +23,7 @@
         (click)="goToHome()"
         ><h3>Hjem</h3>
       </a>
-      <a
-        i18n="“Headerlink|my-page@@header.myPage2”"
-        *ngIf="isLoggedIn && !(globalStateService.isSignicatLogin() | async)"
-        [routerLink]="['/dashboard/tilbud']"
-        routerLinkActive="active-link"
-        (click)="toggleNav()"
-        ><h3 class="highlight">Min side</h3>
-      </a>
+
       <a
         *ngIf="!isLoggedIn"
         [routerLink]="['/velgbank']"
