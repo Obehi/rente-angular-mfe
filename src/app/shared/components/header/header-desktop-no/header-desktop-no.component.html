@@ -45,13 +45,7 @@
         <span [routerLink]="['/']" fragment="faq">
           <a i18n="“Headerlink|faq@@header.faq”" href="#faq">FAQ </a>
         </span>
-        <a
-          [routerLink]="['/dashboard/tilbud']"
-          *ngIf="isLoggedIn && !(globalStateService.isSignicatLogin() | async)"
-          routerLinkActive="active-link"
-          class="highlight"
-          >Min side
-        </a>
+
         <a
           i18n="“Headerlink|log-in@@header.login”"
           [routerLink]="['/velgbank']"
@@ -60,7 +54,10 @@
           class="highlight"
           >Logg inn
         </a>
-        <a [routerLink]="['/']" *ngIf="isLoggedIn" (click)="auth.logout()"
+        <a
+          [routerLink]="['/']"
+          *ngIf="isLoggedIn && !(globalStateService.isFirstTimeBuyer() | async)"
+          (click)="auth.logout()"
           >Logg ut</a
         >
       </div>

@@ -39,13 +39,7 @@
         <span [routerLink]="['/']" fragment="faq">
           <a i18n="“Headerlink|faq@@header.faq”" href="#faq">FAQ </a>
         </span>
-        <a
-          [routerLink]="['/dashboard/erbjudande']"
-          *ngIf="isLoggedIn"
-          routerLinkActive="active-link"
-          class="highlight"
-          >Min side
-        </a>
+
         <a
           i18n="“Headerlink|log-out@@header.login”"
           [routerLink]="['/valjbank']"
