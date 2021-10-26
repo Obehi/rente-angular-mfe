@@ -1332,23 +1332,7 @@ export const BankList: BankVo[] = [
     false,
     null
   ),
-  new BankVo(
-    'SYKEPLEIERNE',
-    'SYKEPLEIERNE (DNB)',
-    'dnb.png',
-    'dnb-color.svg',
-    true,
-    false,
-    false,
-    false,
-    false,
-    false,
-    true,
-    false,
-    false,
-    false,
-    null
-  ),
+
   new BankVo(
     'NORDEA',
     'Nordea',
