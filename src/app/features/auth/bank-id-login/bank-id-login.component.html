@@ -66,9 +66,14 @@
       </p>
     </div>
 
+    <rente-signicat-loan-validation
+      *ngIf="newClient === false && loans.length > 1"
+      [loans]="loans"
+    ></rente-signicat-loan-validation>
+
     <!-- OldUsers has loan form only-->
     <form
-      *ngIf="newClient === false"
+      *ngIf="newClient === false && loans.length < 2"
       [formGroup]="loanFormGroup"
       novalidate
       class="loan-form"
@@ -801,16 +806,42 @@
     </div>
 
     <div *ngIf="isSingicatLoginSucces" class="bottom">
-      <rente-button
-        *ngIf="newClient === false"
-        class="right"
-        (click)="oldUserFinished()"
-        color="primary"
-        [isLoading]="isLoading"
-        [disabled]="loanFormGroup?.invalid || isLoading"
-      >
-        Finn beste rente
-      </rente-button>
+      <div>
+        <div>
+          <rente-button
+            *ngIf="newClient === false && loans.length > 1"
+            class="left"
+            (click)="oldUserFinishedWithoutRequest('loans')"
+            color="primary-hollow"
+            [isLoading]="isLoading"
+            [disabled]="isLoading"
+          >
+            Endre lån
+          </rente-button>
+
+          <rente-button
+            *ngIf="newClient === false && loans.length < 2"
+            class="right"
+            (click)="oldUserFinished('offers')"
+            color="primary"
+            [isLoading]="isLoading"
+            [disabled]="loanFormGroup?.invalid || isLoading"
+          >
+            Finn beste rente
+          </rente-button>
+
+          <rente-button
+            *ngIf="newClient === false && loans.length > 1"
+            class="right"
+            (click)="oldUserFinishedWithoutRequest('offers')"
+            color="primary"
+            [isLoading]="isLoading"
+            [disabled]="isLoading"
+          >
+            Finn beste rente
+          </rente-button>
+        </div>
+      </div>
 
       <div
         *ngIf="newClient === true && stepper !== undefined"

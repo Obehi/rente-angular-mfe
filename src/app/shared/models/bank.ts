@@ -63,7 +63,7 @@ export const eikaBanks: BankVo[] = [
     false,
     false,
     false,
-    true,
+    false,
     true,
     false,
     false,
@@ -437,7 +437,7 @@ export const eikaBanks: BankVo[] = [
     false,
     false,
     false,
-    true,
+    false,
     true,
     true,
     false,
@@ -1274,7 +1274,7 @@ export const BankList: BankVo[] = [
     false,
     false,
     false,
-    true,
+    false,
     true,
     false,
     false,
@@ -1308,7 +1308,7 @@ export const BankList: BankVo[] = [
     false,
     false,
     false,
-    true,
+    false,
     true,
     false,
     false,
@@ -1325,13 +1325,14 @@ export const BankList: BankVo[] = [
     false,
     false,
     false,
-    true,
+    false,
     true,
     false,
     false,
     false,
     null
   ),
+
   new BankVo(
     'NORDEA',
     'Nordea',
@@ -1359,7 +1360,7 @@ export const BankList: BankVo[] = [
     false,
     false,
     false,
-    true,
+    false,
     true,
     false,
     false,
@@ -1686,7 +1687,7 @@ export const MissingBankList: BankVo[] = [
     false,
     false,
     false,
-    true,
+    false,
     true,
     true,
     false,
@@ -1720,7 +1721,7 @@ export const MissingBankList: BankVo[] = [
     false,
     false,
     false,
-    true,
+    false,
     true,
     false,
     false,
@@ -1805,7 +1806,7 @@ export const MissingBankList: BankVo[] = [
     false,
     false,
     false,
-    true,
+    false,
     true,
     true,
     false,
@@ -1908,7 +1909,7 @@ export const MissingBankList: BankVo[] = [
     false,
     false,
     false,
-    true,
+    false,
     true,
     true,
     true,
@@ -1925,7 +1926,7 @@ export const MissingBankList: BankVo[] = [
     false,
     true,
     false,
-    true,
+    false,
     true,
     false,
     false,
@@ -1942,8 +1943,8 @@ export const MissingBankList: BankVo[] = [
     false,
     true,
     false,
-    true,
     false,
+    true,
     true,
     false,
     false,
@@ -1959,7 +1960,7 @@ export const MissingBankList: BankVo[] = [
     false,
     false,
     false,
-    true,
+    false,
     true,
     false,
     false,
@@ -1976,7 +1977,7 @@ export const MissingBankList: BankVo[] = [
     false,
     false,
     false,
-    true,
+    false,
     true,
     false,
     false,
@@ -2010,7 +2011,7 @@ export const MissingBankList: BankVo[] = [
     false,
     false,
     false,
-    true,
+    false,
     true,
     true,
     false,
@@ -2370,16 +2371,6 @@ export class BankUtils {
     return TinkBanks.map((bank) => {
       return bank.name;
     }).includes(bankName);
-  }
-
-  static getSigniCatBanks(): BankVo[] {
-    const banks = [...BankList, ...MissingBankList, ...TinkBanks];
-
-    const signiCatBanks = banks.filter((bank) => {
-      return bank.isSigniCat === true;
-    });
-
-    return signiCatBanks;
   }
 }
 

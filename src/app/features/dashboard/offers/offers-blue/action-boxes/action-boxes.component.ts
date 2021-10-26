@@ -35,7 +35,6 @@ export class ActionBoxesComponent implements OnInit {
   public errorMessage: string;
   public nordeaClickSubscription: Subscription;
   public bankHasFixedLoans: boolean;
-  public allSigniCatBanks = BankUtils.getSigniCatBanks();
 
   constructor(
     private changeBankServiceService: ChangeBankServiceService,

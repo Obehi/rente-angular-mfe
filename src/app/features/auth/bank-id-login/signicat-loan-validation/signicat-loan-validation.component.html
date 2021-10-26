@@ -1,0 +1,26 @@
+<div class="loans">
+  <div *ngFor="let loan of loans; index as i" class="loan">
+    <div class="signicat-wallpaper">
+      <div class="loan-index">Lån {{ i + 1 }}</div>
+      <!-- <div class="display-info"></div> -->
+      <div class="loantype">
+        <p class="title">Lånetype:</p>
+        <div class="value">{{ loan.loanType }}</div>
+      </div>
+      <div class="info oustandingdebt">
+        <p class="title">Utestående lån:</p>
+        <div class="value">
+          {{ loan.outstandingDebt / 1000000 | number: '1.3-3' }} mill
+        </div>
+      </div>
+      <div class="info remainingyears">
+        <p class="title">Løpetid:</p>
+        <div class="value">{{ loan.remainingYears | number: '1.1-1' }} år</div>
+      </div>
+      <div class="info nominalrate">
+        <p class="title">Nominell rente:</p>
+        <div class="value">{{ loan.nominalRate | number: '1.2-2' }} %</div>
+      </div>
+    </div>
+  </div>
+</div>

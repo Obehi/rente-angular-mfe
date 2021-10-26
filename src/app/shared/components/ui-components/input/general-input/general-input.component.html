@@ -1,0 +1,27 @@
+<div
+  class="input-box"
+  [ngClass]="{
+    'input-edit': inEditMode === true,
+    'input-inactive': isEditMode === false,
+    'input-focus': isInputFocused === true,
+    'input-error': isInputError === true
+  }"
+>
+  <div class="input-container">
+    <input
+      class="input-text"
+      matInput
+      type="text"
+      inputmode="decimal"
+      [maxLength]="maxLength"
+      [imask]="maskType.currency"
+      [errorStateMatcher]="matcher"
+      [(ngModel)]="value"
+      [placeholder]="placeholder"
+      [disabled]="disabled"
+      required
+    />
+
+    <span matSuffix class="white-text"> {{ suffix }}</span>
+  </div>
+</div>

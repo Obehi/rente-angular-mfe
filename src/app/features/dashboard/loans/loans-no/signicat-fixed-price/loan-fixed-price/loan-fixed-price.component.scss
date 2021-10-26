@@ -1,0 +1,534 @@
+@import '../../../../../../../styles/theme/_colors.scss';
+
+.setTransparent {
+  opacity: 0.4;
+  transition: opacity 0.4s ease-out;
+}
+
+.resetTransparent {
+  opacity: 1;
+  transition: opacity 0.4s ease-out;
+}
+
+.loan-boxes {
+  margin-bottom: 30px;
+}
+
+.info {
+  text-align: center;
+  color: white;
+}
+
+h3 {
+  color: white;
+}
+
+p {
+  color: white;
+}
+
+.loan-edit {
+}
+
+.edit-button {
+  background-color: transparent;
+  color: transparent;
+}
+
+@media (min-width: 600px) {
+  .summary {
+    border-top: none;
+    position: relative;
+    left: -1px;
+    // width: calc(100% + 2px);
+  }
+}
+
+.content-blue-box {
+  // width: 100%;
+  min-width: 300px;
+  background-color: $secondary;
+  border-radius: 10px;
+  height: 530px;
+  transition: height 0.3s;
+  margin-bottom: 40px;
+
+  @media (max-width: 320px) {
+    min-width: 250px;
+  }
+
+  @media (max-width: 361px) {
+    height: 630px;
+  }
+
+  @media (max-width: 320px) {
+    height: 710px;
+  }
+
+  @media (min-width: 410px) and (max-width: 412px) {
+    height: 530px;
+  }
+  @media (min-width: 374px) {
+    height: 495px;
+  }
+  @media (min-width: 992px) {
+    // width: 365px;
+    height: 490px;
+  }
+}
+
+.content-blue-box-edit {
+  min-width: 300px;
+  background-color: $secondary;
+  border-radius: 10px;
+  height: 385px;
+  transition: height 0.3s;
+
+  @media (max-width: 320px) {
+    height: 430px;
+    min-width: 250px;
+  }
+}
+
+.all-text {
+  padding: 10px 10px 0 10px;
+
+  @media (min-width: 281px) and (max-width: 321px) {
+    padding: 15px 5px 0 5px;
+  }
+}
+
+.double-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  @media (max-width: 360px) {
+    display: grid;
+    flex-direction: column;
+    justify-content: unset;
+    grid-gap: 10px;
+    max-width: unset;
+  }
+}
+
+.first-box {
+  color: white;
+  width: 43%;
+  border-radius: 10px;
+  padding: 8px;
+  background-color: #004465a6;
+  box-shadow: rgb(50 50 93 / 25%) 0px 2px 5px -1px,
+    rgb(0 0 0 / 30%) 0px 3px 3px -1px;
+
+  @media (max-width: 361px) {
+    width: 90%;
+    margin-bottom: 10px;
+  }
+
+  @media (max-width: 992px) {
+    padding: 10px 0;
+  }
+}
+
+.move-first-box {
+  margin-left: 10px;
+  @media (max-width: 361px) {
+    margin: auto;
+  }
+}
+.box-label {
+  text-align: center;
+  padding: 6px;
+}
+
+.move-sec-box {
+  margin-right: 10px;
+  @media (max-width: 361px) {
+    margin: auto;
+  }
+}
+
+.btitle-two,
+.btitle-one {
+  text-align: center;
+  padding-left: 11px;
+  padding-right: 11px;
+
+  p {
+    margin-bottom: 5px;
+  }
+}
+
+.btitle-two {
+  padding-left: 7px;
+  padding-right: 7px;
+}
+
+.bvalue {
+  text-align: center;
+  padding: 15px;
+}
+
+.loan-type {
+  // padding: 10px;
+  padding: 14px 20px;
+  color: white;
+  border-radius: 10px 10px 0 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #004465a6;
+  h3 {
+    margin: auto;
+  }
+  height: 60px;
+
+  .title-delete {
+    display: flex;
+    grid-gap: 10px;
+  }
+}
+
+.loan-info {
+  padding: 5px 15px 5px 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  @media (max-width: 320px) {
+    padding: 10px 10px 15px 30px !important;
+    display: grid;
+    justify-content: center;
+    text-align: center;
+  }
+
+  @media (max-width: 767px) {
+    padding: 10px 15px 15px 5px;
+  }
+}
+
+// Add css when necessary
+.loan-title {
+  @media (min-width: 767px) {
+    p {
+      margin: 5px !important;
+    }
+  }
+  p {
+    font-size: 16px;
+  }
+}
+
+// Add css when necessary
+.loan-value {
+}
+
+.total-cost {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.save-loan-button {
+  padding: 15px 30px 0px 30px;
+
+  @media (max-width: 321px) {
+    padding: 20px 0 0px 0;
+  }
+}
+
+::ng-deep .mat-select-panel {
+  @media (max-width: 281px) {
+    padding-left: 30px !important;
+  }
+}
+
+.forms {
+  .pad {
+    @media (min-width: 992px) {
+      padding: 0px 20px 0px 20px;
+    }
+
+    @media (max-width: 992px) {
+      padding: 0;
+    }
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    overflow-y: scroll;
+  }
+
+  ::ng-deep .mat-form-field {
+    display: block !important;
+    text-align: center;
+  }
+
+  ::ng-deep .mat-select-value-text,
+  ::ng-deep .mat-select-arrow {
+    color: white !important;
+  }
+
+  ::ng-deep .mat-form-field-underline {
+    display: none;
+  }
+
+  .loan-center {
+    margin-top: 15px;
+    margin-bottom: 20px;
+    border-radius: 30px;
+    background: #004465a6;
+
+    ::ng-deep
+      .mat-form-field-appearance-fill.mat-form-field-disabled
+      .mat-form-field-flex {
+      background-color: transparent;
+      padding: 0.45em 0.75em 0.25em 0.75em;
+    }
+
+    ::ng-deep .mat-select-arrow-wrapper {
+      display: none;
+    }
+
+    ::ng-deep .mat-select-value {
+      display: contents;
+    }
+
+    ::ng-deep .mat-form-field-label-wrapper {
+      top: -1.7em;
+      font-weight: 200;
+      font-size: 18px;
+    }
+  }
+
+  .loan-center-edit {
+    margin-top: 15px;
+    margin-bottom: 15px;
+
+    ::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
+      background: #004465a6;
+      border: 1px solid #478ccc;
+      border-radius: 8px;
+      padding: 0.45em 0.75em 0.25em 0.75em;
+      transition: background 0.3s ease;
+      transition: border 0.3s ease;
+    }
+
+    ::ng-deep .mat-select-arrow-wrapper {
+      display: block;
+    }
+    ::ng-deep .mat-form-field-label-wrapper {
+      top: -2em;
+      font-weight: 200;
+      font-size: 18px;
+    }
+  }
+
+  .loan-center-edit-focus {
+    margin-top: 30px;
+    margin-bottom: 15px;
+
+    ::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
+      background: #112639;
+      border: 1px solid $primary;
+      border-radius: 8px;
+      padding: 0.45em 0.75em 0.25em 0.75em;
+    }
+
+    ::ng-deep .mat-select-arrow-wrapper {
+      display: block;
+    }
+    ::ng-deep .mat-form-field-label-wrapper {
+      top: -2em;
+      font-weight: 200;
+      font-size: 18px;
+    }
+  }
+
+  .loan-center-edit-error {
+    ::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
+      background: #004465a6;
+      border: 1px solid $red;
+      border-radius: 8px;
+      padding: 0.45em 0.75em 0.25em 0.75em;
+    }
+
+    ::ng-deep .mat-select-arrow-wrapper {
+      display: block;
+    }
+    ::ng-deep .mat-form-field-label-wrapper {
+      top: -2em;
+      font-weight: 200;
+      font-size: 18px;
+    }
+  }
+
+  ::ng-deep .mat-form-field-disabled * {
+    color: white !important;
+    white-space: normal;
+  }
+
+  ::ng-deep .mat-form-field-infix {
+    top: 2px !important;
+    border-top: none;
+  }
+
+  ::ng-deep .mat-form-field-wrapper {
+    margin: 0 !important;
+    padding: 0 !important;
+    padding-bottom: 0 !important;
+  }
+  ::ng-deep .mat-form-field-outline-start {
+    display: none !important;
+  }
+  // ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-end {
+  //   border-radius: 50px !important;
+  //   border-width: 5px;
+  //   border-left: none;
+  // }
+  // ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-start {
+  //   border-radius: 1px !important;
+  //   border: none;
+  //   border-right: none;
+  // }
+  // ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-gap {
+  //   border-radius: 1px !important;
+  //   border-bottom: none;
+  // }
+
+  ::ng-deep .mat-form-field-infix input {
+    text-align: center !important;
+  }
+
+  ::ng-deep.mat-form-field-appearance-outline .mat-form-field-outline-end {
+    border: none !important;
+  }
+
+  @media (min-width: 600px) {
+    form {
+      min-width: 100%;
+      display: block;
+    }
+  }
+
+  ::ng-deep input.mat-input-element {
+    color: white;
+    caret-color: white !important;
+  }
+
+  .field-box {
+    padding: 0 5px 10px 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    h4 {
+      font-size: 16px;
+    }
+
+    @media (max-width: 320px) {
+      display: grid;
+      justify-content: center;
+      align-items: center;
+      padding: 0 10px 15px 10px;
+    }
+
+    @media (max-width: 321px) {
+      padding: 0 10px 13px 20px;
+    }
+
+    @media (min-width: 767px) {
+      h4 {
+        margin: 5px !important;
+      }
+    }
+  }
+
+  ::ng-deep .mat-select-placeholder {
+    color: white;
+  }
+
+  ::placeholder {
+    color: white;
+    font-size: 1.1rem;
+  }
+
+  .loan-value {
+    @media (max-width: 320px) {
+      text-align: center;
+    }
+  }
+
+  .d-block {
+    text-align: center;
+  }
+
+  .text-white {
+    width: 40% !important;
+
+    @media (max-width: 320px) {
+      width: 100% !important;
+      text-align: center;
+    }
+
+    @media (min-width: 540px) {
+      width: 70% !important;
+    }
+  }
+
+  input {
+    font-size: 16px !important;
+  }
+
+  .overlay-pane {
+    transform: none;
+    margin-top: 0px !important;
+  }
+}
+
+.input-width {
+  margin: auto;
+  @media (min-width: 992px) {
+    width: 62%;
+  }
+
+  @media (max-width: 991px) and (min-width: 752px) {
+    width: 85%;
+  }
+
+  @media (max-width: 751px) {
+    width: 63%;
+  }
+
+  @media (max-width: 320px) {
+    width: 70% !important;
+  }
+
+  @media (max-width: 280px) {
+    width: 85% !important;
+  }
+}
+
+.input-width-small {
+  width: 100px;
+}
+
+.input-width-small,
+.center {
+  text-align: center;
+}
+
+.error-small {
+  color: $red;
+  font-size: 12px;
+  text-align: right;
+  padding: 3px 0;
+
+  @media (max-width: 320px) {
+    text-align: center;
+  }
+}
+
+.is-clickable {
+  cursor: pointer;
+}

@@ -152,6 +152,12 @@ button.mat-primary {
   background-color: $primary;
 }
 
+button.mat-primary-small {
+  background-color: $primary;
+  min-width: 128px;
+  height: 45px;
+}
+
 button.mat-primary-80 {
   width: 80%;
   color: white;

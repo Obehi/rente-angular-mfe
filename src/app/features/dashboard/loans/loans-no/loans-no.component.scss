@@ -1,97 +1,20 @@
-@import "../../../../../styles/theme/_colors.scss";
+@import '../../../../../styles/theme/_colors.scss';
 h3.title {
-    color: white;
-  padding: 10px;
+  color: white;
+  padding: 10px 0;
 }
 
 p {
   color: black;
 }
 
-.container {
-    //background: linear-gradient(180deg, #162537 0%, #183A63 27.08%);
-    padding-bottom: 80px;
-}
-.inner {
-  padding: 10px;
-}
-.summary {
-
-  
-  padding: 10px;
-
-
-  .double {
-    .box {
-        border-radius: 15px;
-      background-color: white;
-      color: black;
-
-      h3,p {
-          text-align: center;
-          color: black;
-      }
-    }
-  }
-}
-
-.detailed {
-  margin-bottom: 40px;
-  .heading {
-    background-color: $lightgreen;
-    border-top: 1px solid $green;
-    display: block;
-    padding: 10px 20px;
-    font-weight: 500;
-    font-size: 14px;
-  }
-  .box {
-    border-radius: 7px;
-    background-color: $white;
-  }
-}
-
-@media (max-width: 600px) {
-  .detailed {
-    .inner {
-      padding-bottom: 30px;
-    }
-    h3.title {
-      padding: 40px 0px 10px 20px;
-    }
-  }
-}
-
-@media (min-width: 600px) {
-  .summary {
-    border-top: none;
-    position: relative;
-    left: -1px;
-    width: calc(100% + 2px);
-  }
-  .summary,
-  .detailed {
+.main-container {
+  @media (min-width: 600px) {
     padding: 40px 80px;
-    > h3 {
-      padding: 0px;
-      padding-bottom: 20px;
-    }
-    .heading {
-      margin-bottom: 20px;
-    }
-    .inner {
-      padding: 0;
-      margin-bottom: 40px;
-    }
   }
-  .desktop-double {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-column-gap: 10px;
-  }
-  .rente-boxes rente-button {
-    margin-top: 30px;
-    display: block;
+
+  @media (max-width: 600px) {
+    margin: 20px;
   }
 }
 
@@ -103,21 +26,21 @@ p {
   max-width: 627px;
   margin: auto;
   width: calc(100% + -20px);
-  margin-top: 80px;
-  
+  margin-top: 100px;
+
   h3 {
     color: $secondary;
     margin-bottom: 10px;
   }
 
-  p{
+  p {
     color: $secondary;
     font-weight: 400;
     margin-bottom: 15px;
   }
   text-align: center;
 
-  img{
+  img {
     width: 180px;
   }
 }

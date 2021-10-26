@@ -21,5 +21,23 @@ export class LandingTopNoComponent {
       this.envService.environment,
       false
     );
+    console.log('this.getVariation()');
+    console.log(this.getVariation());
+  }
+
+  public getVariation(): any {
+    if ((window as any).google_optimize === undefined) {
+      return 0;
+    }
+
+    let experimentId: string | null;
+    if (this.envService.environment.production === true) {
+      experimentId = 'lhTxK2BuQ52Fohere2-DRw';
+    } else {
+      experimentId = 'none';
+    }
+
+    const variation = (window as any).google_optimize?.get(experimentId);
+    return variation || 0;
   }
 }
