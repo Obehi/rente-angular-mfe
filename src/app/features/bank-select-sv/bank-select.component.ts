@@ -20,7 +20,6 @@ import {
   BANKID_STATUS
 } from '../auth/login-status/login-status.config';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
-import { TabsService } from '@services/tabs.service';
 
 @Component({
   selector: 'rente-bank-select-variation',
@@ -45,8 +44,7 @@ export class BankSelectSvComponent implements OnInit {
     private localStorageService: LocalStorageService,
     private sanitizer: DomSanitizer,
     private dialog: MatDialog,
-    private logging: LoggingService,
-    private tabsService: TabsService
+    private logging: LoggingService
   ) {}
 
   ngOnInit(): void {

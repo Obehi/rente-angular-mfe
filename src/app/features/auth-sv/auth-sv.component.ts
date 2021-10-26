@@ -15,7 +15,6 @@ import {
 } from '../auth/login-status/login-status.config';
 import { SafeUrl } from '@angular/platform-browser';
 import { EnvService } from '@services/env.service';
-import { TabsService } from '@services/tabs.service';
 
 @Component({
   selector: 'rente-auth-sv',
@@ -38,8 +37,7 @@ export class AuthSvComponent implements OnInit {
     private userService: UserService,
     private loansService: LoansService,
     private localStorageService: LocalStorageService,
-    private envService: EnvService,
-    private tabsService: TabsService
+    private envService: EnvService
   ) {}
 
   ngOnInit(): void {

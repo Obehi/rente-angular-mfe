@@ -33,7 +33,6 @@ import { LoggingService } from '@services/logging.service';
 import { EnvService } from '@services/env.service';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { CrawlerLoginService } from '@services/crawler-login.service';
-import { TabsService } from '@services/tabs.service';
 
 @Component({
   selector: 'rente-login-status',
@@ -98,8 +97,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
     private logging: LoggingService,
     private envService: EnvService,
     private sanitizer: DomSanitizer,
-    private crawlerLoginService: CrawlerLoginService,
-    private tabsService: TabsService
+    private crawlerLoginService: CrawlerLoginService
   ) {}
 
   ngOnInit(): void {
