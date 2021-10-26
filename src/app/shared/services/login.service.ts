@@ -55,8 +55,7 @@ export class LoginService {
     private userService: UserService,
     private loansService: LoansService,
     private localStorageService: LocalStorageService,
-    private logging: LoggingService,
-    private tabsService: TabsService
+    private logging: LoggingService
   ) {}
 
   public loginWithBankAndToken(redirectToUrl?: redirectType): void {

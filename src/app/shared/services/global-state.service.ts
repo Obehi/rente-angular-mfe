@@ -61,18 +61,14 @@ export class GlobalStateService {
   private setRouteIsChangedListener(): void {
     this.route.events
       .pipe(
-        filter((event) => event instanceof NavigationEnd),
+        filter((event) => event instanceof NavigationStart),
 
         filter((event: NavigationEnd) => event.url.includes('dashboard')),
         map((event) => event.url)
       )
       .subscribe((url) => {
-        console.log('event url is incoming');
-        console.log(url);
-
         if (url.includes(ROUTES_MAP.offers)) {
           this.tabsService.setActiveLinkIndex(0);
-          console.log('tabsService in globalstate');
         }
         if (url.includes(ROUTES_MAP.loans)) {
           this.tabsService.setActiveLinkIndex(1);
@@ -84,6 +80,7 @@ export class GlobalStateService {
           this.tabsService.setActiveLinkIndex(3);
         }
       });
+
     this.route.events
       .pipe(
         filter((event) => event instanceof NavigationEnd),
@@ -99,14 +96,6 @@ export class GlobalStateService {
           this.isScriptLoaded$.next(true);
         }
       });
-
-    this.route.events
-      .pipe(
-        filter((event) => event instanceof NavigationStart),
-        tap(() => console.log('Tap in Navigation start!')),
-        filter((event: NavigationEnd) => event.url.includes('tilbud'))
-      )
-      .subscribe((isOffers) => {});
 
     this.routeNavigationEnd$
       .pipe(
