@@ -96,8 +96,6 @@ export class DashboardTabsMobileComponent implements OnInit, OnDestroy {
       .subscribe((index) => {
         if (index !== null) {
           this.setActiveIndex(index);
-        } else {
-          console.log('Index is NULL, cannot set active link index', index);
         }
       });
   }
@@ -121,18 +119,6 @@ export class DashboardTabsMobileComponent implements OnInit, OnDestroy {
   public setActiveIndex(indx: number): void {
     this.activeLinkIndex = indx;
     this.setActiveIcon(this.activeLinkIndex);
-  }
-
-  public getActiveIndex(): number | null {
-    if (this.navLinks !== undefined) {
-      const setIndex = this.navLinks.find(
-        (link) => `/dashboard/${link}` === this.router.url.split('?')[0]
-      );
-      if (setIndex !== undefined) {
-        return this.navLinks.indexOf(setIndex);
-      }
-    }
-    return null;
   }
 
   private setActiveIcon(activeIndex: number) {
