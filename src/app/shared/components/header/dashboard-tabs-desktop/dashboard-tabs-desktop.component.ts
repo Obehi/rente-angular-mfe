@@ -183,10 +183,6 @@ export class DashboardTabsDesktopComponent implements OnInit {
     }
   }
 
-  public setActiveIndex(indx: number): void {
-    this.tabsService.setActiveLinkIndex(indx);
-  }
-
   public logout(): void {
     this.auth.logout();
     // Tried to use a stream to do this in app.component, didnt work but it works with 0ms timeout righ here
