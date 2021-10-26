@@ -54,10 +54,7 @@
           class="highlight"
           >Logg inn
         </a>
-        <a
-          [routerLink]="['/']"
-          *ngIf="isLoggedIn && !(globalStateService.isFirstTimeBuyer() | async)"
-          (click)="auth.logout()"
+        <a [routerLink]="['/']" *ngIf="isLoggedIn" (click)="auth.logout()"
           >Logg ut</a
         >
       </div>
