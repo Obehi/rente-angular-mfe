@@ -466,7 +466,7 @@ export class LoanFixedPriceComponent implements OnInit, OnDestroy {
       remainingYears: getRemainingYears
     };
 
-    console.log('Sent obj:', sendToBEDto);
+    // console.log('Sent obj:', sendToBEDto);
 
     if (this.loan.id === 0) {
       this.createNewLoan(sendToBEDto);

@@ -498,6 +498,15 @@ p {
   }
 }
 
+.error-small-with-absolute {
+  position: absolute;
+  right: 15px;
+
+  @media (max-width: 600px) {
+    right: 30px;
+  }
+}
+
 .is-clickable {
   cursor: pointer;
 }
