@@ -634,7 +634,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
       this.loanFormGroup?.addControl(
         'interestRate',
         new FormControl(
-          firstLoan.nominalInterestRate,
+          firstLoan.nominalInterestRate.toFixed(2),
           Validators.compose([
             Validators.required,
             Validators.pattern(VALIDATION_PATTERN.rate)
