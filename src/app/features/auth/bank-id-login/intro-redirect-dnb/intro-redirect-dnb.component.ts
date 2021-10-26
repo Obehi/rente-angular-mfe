@@ -8,6 +8,7 @@ import { BankVo } from '@models/bank';
 })
 export class IntroRedirectDnbComponent implements OnInit {
   @Input() bank: BankVo;
+  @Input() generalText: BankVo;
   constructor() {}
 
   ngOnInit(): void {}

@@ -102,6 +102,12 @@ export class LoansNoComponent implements OnInit {
         isFixedPriceBank of type boolean is also included in the returned object to check
        */
 
+        /*
+         * Fixed price is currently not used, will keep it here for future use
+         * To be discussed and reviewed
+         * Do not remove!
+         */
+
         if (this.loansData.origin === 1) this.isSignicatUser = false;
         if (this.loansData.origin === 2) this.isSignicatUser = true;
         if (this.isSignicatUser && this.loansData.isFixedPriceBank)

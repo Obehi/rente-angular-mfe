@@ -144,9 +144,9 @@ export class SignicatLoanInfoDto {
   loanSubType?: string;
   loanType: string;
   nominalInterestRate?: number;
+  outstandingDebt: number;
   productId?: string;
   remainingYears: number;
-  outstandingDebt: number;
 }
 
 export interface bankOfferDto {
