@@ -1,7 +1,20 @@
 import { Injectable } from '@angular/core';
-import { NavigationEnd, Router, Scroll } from '@angular/router';
+import {
+  NavigationEnd,
+  NavigationStart,
+  Router,
+  Scroll
+} from '@angular/router';
 import { BehaviorSubject, combineLatest, Observable, Subject } from 'rxjs';
-import { delay, filter, map, scan, share, switchMap } from 'rxjs/operators';
+import {
+  delay,
+  filter,
+  map,
+  scan,
+  share,
+  switchMap,
+  tap
+} from 'rxjs/operators';
 import { ScriptService } from '@services/script.service';
 import { BreakpointObserver } from '@angular/cdk/layout';
 @Injectable({
@@ -56,6 +69,14 @@ export class GlobalStateService {
           this.isScriptLoaded$.next(true);
         }
       });
+
+    this.route.events
+      .pipe(
+        filter((event) => event instanceof NavigationStart),
+        tap(() => console.log('Tap in Navigation start!')),
+        filter((event: NavigationEnd) => event.url.includes('tilbud'))
+      )
+      .subscribe((isOffers) => {});
 
     this.routeNavigationEnd$
       .pipe(

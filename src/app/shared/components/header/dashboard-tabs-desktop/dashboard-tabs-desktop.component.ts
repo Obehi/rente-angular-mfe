@@ -101,6 +101,9 @@ export class DashboardTabsDesktopComponent implements OnInit {
           // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
           this.setActiveIcon(this.activeLinkIndex!);
         });
+      } else {
+        this.activeLinkIndex = 0;
+        this.setActiveIcon(this.activeLinkIndex);
       }
     }
   }
@@ -123,6 +126,11 @@ export class DashboardTabsDesktopComponent implements OnInit {
 
   onActivate(event: any) {
     window.scrollTo(0, 0);
+  }
+
+  public setActiveIndex(indx: number): void {
+    this.activeLinkIndex = indx;
+    this.setActiveIcon(this.activeLinkIndex);
   }
 
   public getActiveIndex(): number | null {
