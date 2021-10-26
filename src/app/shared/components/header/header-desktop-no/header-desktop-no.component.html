@@ -47,7 +47,7 @@
         </span>
         <a
           [routerLink]="['/dashboard/tilbud']"
-          *ngIf="isLoggedIn"
+          *ngIf="isLoggedIn && !(globalStateService.isSignicatLogin() | async)"
           routerLinkActive="active-link"
           class="highlight"
           >Min side
