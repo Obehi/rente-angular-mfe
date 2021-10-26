@@ -74,8 +74,6 @@ export class ActionBoxesComponent implements OnInit {
   }
 
   public openChangeBankDialog(offer): void {
-    this.openChangeBankDialogWithOnlyPreview(offer);
-    return;
     if (
       this.changeBankLoading ||
       this.offersInfo.offerSavingsType === this.offerSavingsType.NO_SAVINGS ||
@@ -84,7 +82,10 @@ export class ActionBoxesComponent implements OnInit {
       return;
     }
 
-    if (this.offersInfo.bank === 'SWE_SEB') {
+    if (
+      this.offersInfo.bank === 'SWE_SEB' ||
+      this.offersInfo.bank === 'SWE_HANDELSBANKEN'
+    ) {
       this.openChangeBankDialogWithLocation(offer);
     } else {
       this.openChangeBankDialogWithOnlyPreview(offer);

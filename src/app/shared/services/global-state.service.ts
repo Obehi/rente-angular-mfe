@@ -156,4 +156,8 @@ export class GlobalStateService {
   public addNotificationProfile(): any {
     this.notificationProfile.next(1);
   }
+
+  public isSignicatLogin(): Observable<boolean> {
+    return this.isSignicatLogin$.asObservable();
+  }
 }

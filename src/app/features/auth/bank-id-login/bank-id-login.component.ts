@@ -42,6 +42,8 @@ import {
   AddressCreationDto,
   ClientUpdateInfo,
   ConfirmationSetDto,
+  LoanInfo,
+  Loans,
   MembershipTypeDto
 } from '@shared/models/loans';
 import { LoansService } from '@services/remote-api/loans.service';
@@ -56,7 +58,7 @@ import {
 } from '@angular/forms';
 import { forkJoin } from 'rxjs';
 import { SignicatLoanInfoDto } from '@shared/models/loans';
-import { LoginService } from '@services/login.service';
+import { LoginService, redirectType } from '@services/login.service';
 import { BankVo } from '@shared/models/bank';
 import { GenericInfoDialogComponent } from '@shared/components/ui-components/dialogs/generic-info-dialog/generic-info-dialog.component';
 import { VirdiErrorChoiceDialogComponent } from '@shared/components/ui-components/dialogs/virdi-error-choice-dialog/virdi-error-choice-dialog.component';
@@ -74,7 +76,7 @@ import { LoginTermsDialogV2Component } from '@shared/components/ui-components/di
 import { VirdiManualValueDialogComponent } from '@shared/components/ui-components/dialogs/virdi-manual-value-dialog/virdi-manual-value-dialog.component';
 import { MembershipService } from '@services/membership.service';
 import { ScriptService } from '@services/script.service';
-
+import { MyLoansService } from '@features/dashboard/loans/myloans.service';
 @Component({
   selector: 'rente-bank-id-login',
   templateUrl: './bank-id-login.component.html',
@@ -127,9 +129,13 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
   public manualEstimatedPropertyValueFromUser: number;
   public isManualPropertyValue = false;
   public isSingicatLoginSucces = false;
+
+  public generalText =
+    'BankID oppdaterer for tiden sine systemer. Enkelte brukere kan oppleve problemer med innlogging.';
   get isMobile(): boolean {
     return window.innerWidth < 600;
   }
+  public loans: LoanInfo[];
 
   constructor(
     private authService: AuthService,
@@ -145,9 +151,11 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     private routeEventsService: RouteEventsService,
     private sanitizer: DomSanitizer,
     private rxjsOperatorService: RxjsOperatorService,
-    private membershipService: MembershipService
+    private membershipService: MembershipService,
+    private myloansService: MyLoansService
   ) {
     this.setRoutingListeners();
+    // this.loans = this.myloansService.getLoansdto();
   }
 
   ngOnInit(): void {
@@ -257,27 +265,27 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
             this.scrollToTop();
 
             if (response.newClient === true) {
-              this.loanService.getAllMemberships().subscribe(
-                (onlyMemberships) => {
-                  this.initMemberships(onlyMemberships.memberships);
-                  this.initNewUserForms();
-                  this.isLoading = false;
+              this.initNewUserForms();
+              this.isLoading = false;
+            } else {
+              this.loanService.getLoans().subscribe(
+                (res) => {
+                  this.loans = res.loans;
+
+                  if (this.bank?.hasFixedLoans === true) {
+                    this.initFixedLoansLoansForm(response);
+                  } else {
+                    if (response.newLoan === true) {
+                      this.initNonFixedLoanBankNewLoanForm();
+                    } else {
+                      this.initNonFixedLoanBankOldLoanForm();
+                    }
+                  }
                 },
-                (error) => {
-                  this.newClient = null;
-                  this.showGenericDialog(error);
+                (err) => {
+                  console.log('Error', err);
                 }
               );
-            } else {
-              if (this.bank?.hasFixedLoans === true) {
-                this.initFixedLoansLoansForm(response);
-              } else {
-                if (response.newLoan === true) {
-                  this.initNonFixedLoanBankNewLoanForm();
-                } else {
-                  this.initNonFixedLoanBankOldLoanForm();
-                }
-              }
             }
           },
           (error) => {
@@ -349,7 +357,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
       );
   }
 
-  public oldUserFinished(): void {
+  public oldUserFinished(redirectToLoan: redirectType): void {
     const SignicatLoanInfoDto = this.bank?.hasFixedLoans
       ? this.fixedBankLoanInfo
       : this.nonFixedBankLoanInfo;
@@ -370,12 +378,17 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
 
         // subBank was used to prefill memberships selects
         this.localStorageService.removeItem('subBank');
-        this.bank && this.loginService.loginWithBankAndToken();
+        this.bank && this.loginService.loginWithBankAndToken(redirectToLoan);
       },
       (error) => {
         this.showGenericDialog();
       }
     );
+  }
+
+  public oldUserFinishedWithoutRequest(redirectToLoan: redirectType): void {
+    this.localStorageService.removeItem('subBank');
+    this.bank && this.loginService.loginWithBankAndToken(redirectToLoan);
   }
 
   initMemberships(memberships): void {
@@ -393,6 +406,11 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
         membership ? this.filter(membership) : this.allMemberships.slice()
       )
     );
+
+    this.membershipFormGroup = this.fb.group({
+      membership: []
+    });
+    this.setMembershipListeners();
   }
 
   initNewUserForms(): void {
@@ -434,11 +452,6 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     } else {
       this.initNonFixedLoanBankNewLoanForm();
     }
-
-    this.membershipFormGroup = this.fb.group({
-      membership: []
-    });
-    this.setMembershipListeners();
   }
 
   private setMembershipListeners(): void {
@@ -584,7 +597,24 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
         return item.value === firstLoan.loanType;
       })[0];
 
-      const fee = String(firstLoan.fee || '50');
+      let fee = String(firstLoan.fee || '0');
+
+      const listPriceBanksPrefillZeroFee = [
+        'HIMLA_FANA_SB',
+        'BULDER',
+        'SBANKEN',
+        'NYBYGGER',
+        'BOLIGKREDITT',
+        'DIN_BANK'
+      ];
+
+      if (
+        this.bank &&
+        listPriceBanksPrefillZeroFee.includes(this.bank.name.toUpperCase())
+      ) {
+        fee = '0';
+      }
+
       this.loanFormGroup = this.fb.group({
         outstandingDebt: [
           firstLoan.outstandingDebt.toFixed(0),
@@ -604,7 +634,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
       this.loanFormGroup?.addControl(
         'interestRate',
         new FormControl(
-          firstLoan.nominalInterestRate,
+          firstLoan.nominalInterestRate.toFixed(2),
           Validators.compose([
             Validators.required,
             Validators.pattern(VALIDATION_PATTERN.rate)
@@ -620,12 +650,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
   private initNonFixedLoanBankNewLoanForm(): void {
     this.isLoading = true;
 
-    forkJoin([
-      this.loanService.getOffersBanks(),
-      this.loanService
-        .getSignicatLoansInfo()
-        .pipe(this.rxjsOperatorService.retry404ThreeTimes)
-    ]).subscribe(([offerBanks, signicatLoansInfo]) => {
+    this.loanService.getOffersBanks().subscribe((offerBanks) => {
       this.productIdOptions = (offerBanks.offers as any[])
         .map((offer) => {
           return {
@@ -634,10 +659,6 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
           };
         })
         .sort((a, b) => (a.name > b.name ? 1 : b.name > a.name ? -1 : 0));
-
-      if (signicatLoansInfo.length !== 0) {
-        this.loanId = signicatLoansInfo[0].id;
-      }
 
       this.loanFormGroup = this.fb.group({
         outstandingDebt: ['', Validators.required],
@@ -658,7 +679,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
       this.loanFormGroup?.addControl(
         'fee',
         new FormControl(
-          '50',
+          '',
           Validators.compose([Validators.required, Validators.max(100)])
         )
       );
@@ -667,7 +688,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
       this.isLoading = false;
     });
   }
-
+  /* 
   private initFixedLoanBankLoansForm(loanInfo): void {
     this.isLoading = true;
     if (loanInfo.newLoan === false) {
@@ -715,7 +736,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     } else {
       this.initNewLoanLoanForm();
     }
-  }
+  } */
 
   initNewLoanLoanForm(): void {
     this.loanService.getOffersBanks().subscribe(
@@ -1117,6 +1138,21 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
   goToMembershipForm(): void {
     this.scrollToTop();
     this.stepper.next();
+    this.currentStepperValue = this.stepper.selectedIndex;
+
+    this.isLoading = true;
+
+    this.loanService.getAllMemberships().subscribe(
+      (onlyMemberships) => {
+        this.initMemberships(onlyMemberships.memberships);
+        this.isLoading = false;
+      },
+      (error) => {
+        this.isLoading = false;
+        this.newClient = null;
+        this.showGenericDialog(error);
+      }
+    );
   }
 
   getFormValues(): ConfirmationSetDto {

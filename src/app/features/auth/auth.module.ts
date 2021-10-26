@@ -19,6 +19,7 @@ import { IntroRedirectDnbComponent } from './bank-id-login/intro-redirect-dnb/in
 import { IntroRedirectSb1Component } from './bank-id-login/intro-redirect-sb1/intro-redirect-sb1.component';
 import { IntroNoBankIdNordeaComponent } from './bank-id-login/intro-no-bank-id-nordea/intro-no-bank-id-nordea.component';
 import { IntroDefaultSignicatComponent } from './bank-id-login/intro-default-signicat/intro-default-signicat.component';
+import { SignicatLoanValidationComponent } from './bank-id-login/signicat-loan-validation/signicat-loan-validation.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { IntroDefaultSignicatComponent } from './bank-id-login/intro-default-sig
     IntroRedirectDnbComponent,
     IntroRedirectSb1Component,
     IntroNoBankIdNordeaComponent,
-    IntroDefaultSignicatComponent
+    IntroDefaultSignicatComponent,
+    SignicatLoanValidationComponent
   ],
   imports: [
     AuthRoutingModule,

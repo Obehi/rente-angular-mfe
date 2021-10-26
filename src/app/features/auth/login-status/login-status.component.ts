@@ -77,7 +77,6 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
   public tinkUrl: SafeUrl;
   isSuccessTink = false;
   public tinkCode: any = null;
-  BANKID_TIMEOUT_TIME;
   bankIdTimeoutTime = BANKID_TIMEOUT_TIME;
 
   get isSB1Bank(): boolean {
@@ -116,21 +115,27 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
     this.setDefaultSteps();
 
     window.scrollTo(0, 0);
-    // Special case for DNB and Eika banks
-    this.thirdStepTimer =
-      this.bank.name === 'DNB' || BankUtils.isEikaBank(this.bank.name)
-        ? 39
-        : 25;
 
-    this.thirdStepTimer = this.bank.isSb1Bank ? 39 : 25;
+    // Special case for DNB , SB1 and Eika banks
+
+    if (this.bank.name === 'DNB' || BankUtils.isEikaBank(this.bank.name)) {
+      this.thirdStepTimer = 39;
+    } else if (this.bank.isSb1Bank) {
+      this.thirdStepTimer = 39;
+    } else {
+      this.thirdStepTimer = 25;
+    }
+
     this.firstStepTimer = this.bank.name === 'DNB' ? 38 : 10;
 
     if (this.isSB1Bank) {
       this.firstStepTimer = 40;
-      this.bankIdTimeoutTime = 130;
+      this.bankIdTimeoutTime = 145;
+      this.maxConnectionTime = 145;
     }
     if (this.bank.name === 'DNB') {
       this.bankIdTimeoutTime = 130;
+      this.maxConnectionTime = 130;
     }
     if (this.bank.isTinkBank) {
       this.initiateTinkBank();
@@ -406,18 +411,6 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
     this.connectionTimerSubscription = this.connectionTimer.subscribe(
       (time) => {
         if (time > this.maxConnectionTime) {
-          if (this.viewStatus.isTimedOut === false) {
-            this.logging.logger(
-              this.logging.Level.Error,
-              'CONNECTION_TIMEOUT:' + ' ' + this.maxConnectionTime + ' SECONDS',
-              'LoginStatusComponent',
-              'initConnectionTimer',
-              this.logging.SubSystem.Tink,
-              'CONNECTION TIMEOUT',
-              { bank: this.bank.name },
-              this.isTinkBank
-            );
-          }
           this.viewStatus.isTimedOut = true;
         }
         this.firstStepTimer--;

@@ -589,6 +589,11 @@ const BANKS_DATA_NO = {
     img: '',
     imgCircle: ''
   },
+  TINN_SB: {
+    name: 'TINN_SB',
+    img: '../../assets/img/banks-logo/round/tinn.png',
+    imgCircle: '../../assets/img/banks-logo/round/tinn.png'
+  },
   TOLGA_SB: {
     name: 'TOLGA_SB',
     img: '../../assets/img/banks-logo/square/tolga.png',

@@ -120,10 +120,7 @@ export class MyLoansService {
     delay(500)
   );
 
-  public loansObservable$ = this.fetchLoans().pipe(
-    tap((res) => console.log('res from myloanservice loansobservable: ', res)),
-    map((res) => res[0])
-  );
+  public loansObservable$ = this.fetchLoans().pipe(map((res) => res[0]));
 
   private loans$: Observable<Loans | null> = this.loansService.getLoans();
   private offerBanks$: Observable<OffersBank | null> = this.loansService.getOffersBanks();
@@ -132,10 +129,7 @@ export class MyLoansService {
   reloadLoans = (): void => this.reloadLoans$.next(true);
 
   private loansAndOfferBanks$ = merge(
-    merge(
-      this.reloadLoans$,
-      this.loanDeleted$.pipe(tap(() => console.log('loanDeleted!!!')))
-    ).pipe(
+    merge(this.reloadLoans$, this.loanDeleted$).pipe(
       switchMap(() => forkJoin([this.loans$, this.offerBanks$])),
       share()
     ),
@@ -147,7 +141,6 @@ export class MyLoansService {
   }
 
   public loanOverViewObservable$: Observable<any> = this.loansAndOfferBanks.pipe(
-    tap(() => console.log('Loan overview tap!')),
     map(([loans, offers]) => {
       return {
         aggregatedTotalInterestAndFee: loans.aggregatedTotalInterestAndFee,
@@ -294,13 +287,40 @@ export class MyLoansService {
     );
   }
 
-  scrollTo(divId: number): void {
-    setTimeout(() => {
-      document.getElementById(`${divId}`)?.scrollIntoView({
-        behavior: 'smooth',
-        block: 'center',
-        inline: 'center'
-      });
-    }, 100);
+  public getLoansdto(): LoanInfo[] {
+    return [
+      {
+        bank: 'SBANKEN',
+        bankKey: 'Sbanken',
+        effectiveRate: 1.77,
+        id: 5520,
+        fee: 20,
+        isDeleted: false,
+        isIncompleteInfoLoan: false,
+        loanName: 'Boliglån 75 %',
+        loanType: 'Nedbetalingslån',
+        nominalRate: 1.79,
+        outstandingDebt: 3245000,
+        remainingYears: 28,
+        totalInterestAndTotalFee: 0,
+        totalInterestAndTotalFeeByRemainingYears: 0
+      },
+      {
+        bank: 'SBANKEN',
+        bankKey: 'Sbanken',
+        effectiveRate: 1.68,
+        id: 5522,
+        fee: 0,
+        isDeleted: false,
+        isIncompleteInfoLoan: false,
+        loanName: 'Boliglån 60 %',
+        loanType: 'Nedbetalingslån',
+        nominalRate: 1.81,
+        outstandingDebt: 2155000,
+        remainingYears: 20,
+        totalInterestAndTotalFee: 0,
+        totalInterestAndTotalFeeByRemainingYears: 0
+      }
+    ];
   }
 }

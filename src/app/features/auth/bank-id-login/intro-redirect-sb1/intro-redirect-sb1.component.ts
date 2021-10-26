@@ -8,6 +8,7 @@ import { BankVo } from '@models/bank';
 })
 export class IntroRedirectSb1Component implements OnInit {
   @Input() bank: BankVo;
+  @Input() generalText: string;
 
   constructor() {}
 
