@@ -130,7 +130,6 @@ export class AuthSvComponent implements OnInit {
                       this.localStorageService.setItem('isNewUser', true);
                     } else {
                       this.router.navigate(['/dashboard/' + ROUTES_MAP.offers]);
-                      this.tabsService.setActiveLinkIndex(0);
                     }
                   }
                 } else {

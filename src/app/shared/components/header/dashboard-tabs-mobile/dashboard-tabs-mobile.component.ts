@@ -3,9 +3,10 @@ import { ROUTES_MAP } from '@config/routes-config';
 import { LocalStorageService } from '@services/local-storage.service';
 import { Router } from '@angular/router';
 import { EnvService } from '@services/env.service';
-import { Observable, Subscription } from 'rxjs';
+import { Observable, Subject, Subscription } from 'rxjs';
 import { NotificationService } from '@services/notification.service';
 import { TabsService } from '@services/tabs.service';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'rente-dashboard-tabs-mobile',
@@ -19,6 +20,7 @@ export class DashboardTabsMobileComponent implements OnInit, OnDestroy {
   private subscription: any;
   public imgLink: any;
   public notificationListener = new Subscription();
+  public shouldUnsubscribe = new Subject<boolean>();
 
   // General navLinks to switch between norwegian and  swedish version
   public navLinks: string[] | undefined;
@@ -73,49 +75,31 @@ export class DashboardTabsMobileComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    if (this.localStorageService.getItem('noLoansPresent')) {
-      this.router.navigate(['/' + ROUTES_MAP.noLoan]);
-    } else if (this.localStorageService.getItem('isAggregatedRateTypeFixed')) {
-      this.router.navigate(['/dashboard/fastrente']);
-    } else {
-      if (this.getActiveIndex() !== null) {
-        this.activeLinkIndex = this.getActiveIndex();
-
-        this.tabsService.setActiveLinkIndex(this.getActiveIndex());
-
-        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        this.setActiveIcon(this.activeLinkIndex!);
-
-        this.subscription = this.router.events.subscribe((res) => {
-          this.activeLinkIndex = this.getActiveIndex();
-          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-          this.setActiveIcon(this.activeLinkIndex!);
-
-          // Send index on router change
-          this.tabsService.setActiveLinkIndex(this.activeLinkIndex);
-        });
-      } else {
-        this.activeLinkIndex = this.tabsService.getActiveLinkIndex();
-
-        if (this.activeLinkIndex === null) this.activeLinkIndex = 0;
-
-        this.setActiveIcon(this.activeLinkIndex);
-      }
-    }
-
-    this.tabsService.activeLinkIndexAsObservable().subscribe((index) => {
-      if (index !== null) {
-        this.activeLinkIndex = index;
-        this.setActiveIcon(this.activeLinkIndex);
-      } else {
-        console.log('Index is NULL, cannot set active link index', index);
-      }
-    });
-
     this.notificationListener = this.getProfileNotifications().subscribe();
     this.notificationListener = this.getHousesNotifications().subscribe();
     this.notificationListener = this.getMortgageNotifications().subscribe();
     this.notificationListener = this.getOfferNotifications().subscribe();
+
+    if (this.localStorageService.getItem('noLoansPresent')) {
+      this.router.navigate(['/' + ROUTES_MAP.noLoan]);
+    } else if (this.localStorageService.getItem('isAggregatedRateTypeFixed')) {
+      this.router.navigate(['/dashboard/fastrente']);
+    }
+
+    this.setActiveLinkIndexListener();
+  }
+
+  public setActiveLinkIndexListener(): void {
+    this.tabsService
+      .activeLinkIndexAsObservable()
+      .pipe(takeUntil(this.shouldUnsubscribe))
+      .subscribe((index) => {
+        if (index !== null) {
+          this.setActiveIndex(index);
+        } else {
+          console.log('Index is NULL, cannot set active link index', index);
+        }
+      });
   }
 
   getProfileNotifications(): Observable<number> {
@@ -135,7 +119,8 @@ export class DashboardTabsMobileComponent implements OnInit, OnDestroy {
   }
 
   public setActiveIndex(indx: number): void {
-    this.tabsService.setActiveLinkIndex(indx);
+    this.activeLinkIndex = indx;
+    this.setActiveIcon(this.activeLinkIndex);
   }
 
   public getActiveIndex(): number | null {
@@ -171,6 +156,8 @@ export class DashboardTabsMobileComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    this.shouldUnsubscribe.next(true);
+
     if (this.subscription) {
       this.subscription.unsubscribe();
     }

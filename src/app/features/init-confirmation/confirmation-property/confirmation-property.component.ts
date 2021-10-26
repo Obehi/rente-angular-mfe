@@ -55,7 +55,6 @@ export class ConfirmationProperty implements OnInit, OnDestroy {
 
   clickConfirmButton(): void {
     this.router.navigate(['/dashboard/' + ROUTES_MAP.offers]);
-    this.tabsService.setActiveLinkIndex(0);
   }
 
   ngOnDestroy(): void {

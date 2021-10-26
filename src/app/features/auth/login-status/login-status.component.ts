@@ -757,7 +757,6 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
                         '/dashboard/' + ROUTES_MAP.offers,
                         { state: { isInterestRateSet: true } }
                       ]);
-                      this.tabsService.setActiveLinkIndex(0);
                     }
                   }
                 } else {

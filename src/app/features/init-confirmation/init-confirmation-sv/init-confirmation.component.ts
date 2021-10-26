@@ -209,7 +209,6 @@ export class InitConfirmationSVComponent implements OnInit, OnDestroy {
           }
           if (formData === undefined) {
             this.router.navigate(['/dashboard/' + ROUTES_MAP.offers]);
-            this.tabsService.setActiveLinkIndex(0);
           }
           this.isLoading = false;
         },
@@ -248,7 +247,6 @@ export class InitConfirmationSVComponent implements OnInit, OnDestroy {
 
   redirectOffers(): void {
     this.router.navigate(['/dashboard/' + ROUTES_MAP.offers]);
-    this.tabsService.setActiveLinkIndex(0);
   }
 
   setManualPropertyValue(): void {

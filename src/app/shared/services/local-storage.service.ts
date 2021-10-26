@@ -7,10 +7,6 @@ import { Injectable } from '@angular/core';
 export class LocalStorageService {
   public appPrefix = storageName.appPrefix;
 
-  public get isFixedRateType(): boolean {
-    return !!this.getItem('isAggregatedRateTypeFixed');
-  }
-
   public get isNoLoansPresent(): boolean {
     return !!this.getItem('noLoansPresent');
   }

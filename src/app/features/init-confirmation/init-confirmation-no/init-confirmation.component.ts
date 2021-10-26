@@ -439,7 +439,6 @@ export class InitConfirmationNoComponent implements OnInit, OnDestroy {
   redirectOffers(): void {
     this.localStorageService.removeItem('subBank');
     this.router.navigate(['/dashboard/' + ROUTES_MAP.offers]);
-    this.tabsService.setActiveLinkIndex(0);
   }
 
   setManualPropertyValue(): void {

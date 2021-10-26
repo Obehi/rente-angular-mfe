@@ -26,6 +26,5 @@ export class NordeaBargainSuccessComponent implements OnInit {
 
   public continue(): void {
     this.router.navigate(['/dashboard/' + ROUTES_MAP.offers]);
-    this.tabsService.setActiveLinkIndex(0);
   }
 }

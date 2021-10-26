@@ -274,7 +274,6 @@ export class BankSelectSvComponent implements OnInit {
                         this.router.navigate([
                           '/dashboard/' + ROUTES_MAP.offers
                         ]);
-                        this.tabsService.setActiveLinkIndex(0);
                       }
                     }
                   } else {

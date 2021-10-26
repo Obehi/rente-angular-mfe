@@ -11,7 +11,7 @@ import { CustomLangTextService } from '@shared/services/custom-lang-text.service
 import { NotificationService } from '@services/notification.service';
 import { Observable, Subject, Subscription } from 'rxjs';
 import { TabsService } from '@services/tabs.service';
-import { takeUntil, tap } from 'rxjs/operators';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'rente-dashboard-tabs-desktop',
@@ -95,6 +95,8 @@ export class DashboardTabsDesktopComponent implements OnInit, OnDestroy {
 
     if (this.localStorageService.getItem('noLoansPresent')) {
       this.router.navigate(['/' + ROUTES_MAP.noLoan]);
+    } else if (this.localStorageService.getItem('isAggregatedRateTypeFixed')) {
+      this.router.navigate(['/dashboard/fastrente']);
     }
 
     this.setActiveLinkIndexListener();
