@@ -355,7 +355,6 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
       const el = document.getElementById(idx.toString());
 
       if (!!el) {
-        // console.log('Removing height');
         el.style.removeProperty('height');
       }
     }, 100);
@@ -368,7 +367,6 @@ export class LoanSignicatUsersComponent implements OnInit, OnDestroy {
     const el = document.getElementById(idx.toString());
 
     if (!!el) {
-      // console.log('Adding height');
       const elHeight = el.getBoundingClientRect().height;
       el.style.height = `${elHeight.toString()}px`;
     }
