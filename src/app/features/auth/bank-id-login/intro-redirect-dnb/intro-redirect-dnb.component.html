@@ -16,7 +16,8 @@
     >.
   </p>
 
-  <br />
-
-  <b>{{ generalText }}</b>
+  <div *ngIf="generalText">
+    <br />
+    <p class="general-text">{{ generalText }}</p>
+  </div>
 </div>
