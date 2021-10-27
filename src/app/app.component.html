@@ -1,4 +1,4 @@
-<div class="content">
+<div class="content" [ngClass]="{ 'background-blur': showCookieAcc === true }">
   <rente-header></rente-header>
   <router-outlet (activate)="onActivate()"></router-outlet>
 </div>
