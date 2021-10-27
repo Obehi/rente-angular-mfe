@@ -480,4 +480,11 @@ button.mat-primary-cookie {
   @media (max-width: 600px) {
     width: 150px;
   }
+
+  button.mat-white-cookie {
+    color: $black;
+    background: $white;
+    display: inline;
+    width: 150px;
+  }
 }
