@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ROUTES_MAP } from '@config/routes-config';
 import { LocalStorageService } from '@services/local-storage.service';
@@ -9,14 +9,16 @@ import { MessageBannerService } from '@services/message-banner.service';
 import { getAnimationStyles } from '@shared/animations/animationEnums';
 import { CustomLangTextService } from '@shared/services/custom-lang-text.service';
 import { NotificationService } from '@services/notification.service';
-import { Observable, Subscription } from 'rxjs';
+import { Observable, Subject, Subscription } from 'rxjs';
+import { TabsService } from '@services/tabs.service';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'rente-dashboard-tabs-desktop',
   templateUrl: './dashboard-tabs-desktop.component.html',
   styleUrls: ['./dashboard-tabs-desktop.component.scss']
 })
-export class DashboardTabsDesktopComponent implements OnInit {
+export class DashboardTabsDesktopComponent implements OnInit, OnDestroy {
   public optimize: OptimizeService;
   public routesMap = ROUTES_MAP;
   private subscription: any;
@@ -26,6 +28,7 @@ export class DashboardTabsDesktopComponent implements OnInit {
   public animationType = getAnimationStyles();
   public dashLogo: string;
   public notificationListener: Subscription;
+  public shouldUnsubscribe = new Subject<boolean>();
 
   // General navLinks to switch between norwegian and  swedish version
   public navLinks: string[] | undefined;
@@ -70,7 +73,8 @@ export class DashboardTabsDesktopComponent implements OnInit {
     private envService: EnvService,
     private messageService: MessageBannerService,
     private customLangService: CustomLangTextService,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private tabsService: TabsService
   ) {
     if (this.envService.isNorway()) {
       this.navLinks = this.navLinksNo;
@@ -91,18 +95,22 @@ export class DashboardTabsDesktopComponent implements OnInit {
 
     if (this.localStorageService.getItem('noLoansPresent')) {
       this.router.navigate(['/' + ROUTES_MAP.noLoan]);
-    } else {
-      if (this.getActiveIndex() !== null) {
-        this.activeLinkIndex = this.getActiveIndex();
-        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        this.setActiveIcon(this.activeLinkIndex!);
-        this.subscription = this.router.events.subscribe((res) => {
-          this.activeLinkIndex = this.getActiveIndex();
-          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-          this.setActiveIcon(this.activeLinkIndex!);
-        });
-      }
+    } else if (this.localStorageService.getItem('isAggregatedRateTypeFixed')) {
+      this.router.navigate(['/dashboard/fastrente']);
     }
+
+    this.setActiveLinkIndexListener();
+  }
+
+  public setActiveLinkIndexListener(): void {
+    this.tabsService
+      .activeLinkIndexAsObservable()
+      .pipe(takeUntil(this.shouldUnsubscribe))
+      .subscribe((index) => {
+        if (index !== null) {
+          this.setActiveIndex(index);
+        }
+      });
   }
 
   getProfileNotifications(): Observable<number> {
@@ -125,16 +133,9 @@ export class DashboardTabsDesktopComponent implements OnInit {
     window.scrollTo(0, 0);
   }
 
-  public getActiveIndex(): number | null {
-    if (this.navLinks !== undefined) {
-      const setIndex = this.navLinks.find(
-        (link) => `/dashboard/${link}` === this.router.url.split('?')[0]
-      );
-      if (setIndex !== undefined) {
-        return this.navLinks.indexOf(setIndex);
-      }
-    }
-    return null;
+  public setActiveIndex(indx: number): void {
+    this.activeLinkIndex = indx;
+    this.setActiveIcon(this.activeLinkIndex);
   }
 
   private setActiveIcon(activeIndex: number) {
@@ -175,5 +176,7 @@ export class DashboardTabsDesktopComponent implements OnInit {
     if (this.subscription) {
       this.subscription.unsubscribe();
     }
+
+    this.shouldUnsubscribe.next(true);
   }
 }
