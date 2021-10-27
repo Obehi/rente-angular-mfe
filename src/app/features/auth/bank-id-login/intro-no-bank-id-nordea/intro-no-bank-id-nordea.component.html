@@ -12,6 +12,8 @@
     identifiser deg med fødselsnummer og velg Nordea Koder.
   </p>
 
-  <br />
-  <p class="general-text">{{ generalText }}</p>
+  <div *ngIf="generalText">
+    <br />
+    <p class="general-text">{{ generalText }}</p>
+  </div>
 </div>
