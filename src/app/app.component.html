@@ -1,11 +1,15 @@
-<div class="content" [ngClass]="{ 'background-blur': showCookieAcc === true }">
+<div class="content">
   <rente-header></rente-header>
   <router-outlet (activate)="onActivate()"></router-outlet>
 </div>
 
 <rente-footer></rente-footer>
 
-<div class="absolute-pos" *ngIf="showCookieAcc">
+<div
+  class="absolute-pos"
+  *ngIf="showCookieAcc"
+  [@slideUp]="showCookieAcc ? 'visible' : 'hidden'"
+>
   <div class="cookie-acc-panel">
     <div i18n="“header|intro@@popup.privacy.header”" class="cookie-acc-title">
       Dine data, dine valg

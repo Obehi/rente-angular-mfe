@@ -9,10 +9,6 @@
   flex: 1 0 auto;
 }
 
-.background-blur {
-  opacity: 0.4;
-}
-
 .cookie-acc-panel {
   // box-shadow: 0 0 8px 3px rgba(170, 170, 170, 0.5);
   bottom: 0;
@@ -57,11 +53,14 @@
   }
 
   .cookie-acc-btn {
-    margin: 15px 10px 10px 10px;
+    margin: 5px 10px 10px 10px;
     display: flex;
     justify-content: space-around;
     height: 100%;
-    color: black !important;
+
+    @media (max-width: 800px) {
+      margin: 15px 10px 10px 10px;
+    }
 
     ::ng-deep button.mat-button p {
       color: black !important;
