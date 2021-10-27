@@ -906,4 +906,5 @@ Kolla gärna att adressen är korrekt eller välj <ph name="START_BOLD_TEXT"><ex
   <translation id="change.bank.infoEffective”" desc="change-bank" meaning="                       “info-effective-interest"/>
   <translation id="change.bank.infoContact.phone”" desc="change-bank" meaning="                   “info-contact-phone"/>
   <translation id="change.bank.infoConfirmation”" desc="change-bank" meaning="                   “info-confirmation"/>
+  <translation id="info.confirmation.wrong-zip" desc="info-confirmation" meaning="“empty">Ogiltig e-post</translation>
 </translationbundle>
