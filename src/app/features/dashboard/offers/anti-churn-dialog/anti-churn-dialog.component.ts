@@ -3,6 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ChangeBankServiceService } from '../../../../shared/services/remote-api/change-bank-service.service';
 import { LoggingService } from '@services/logging.service';
+import { BankUtils } from '@models/bank';
 @Component({
   selector: 'rente-anti-churn-dialog',
   templateUrl: './anti-churn-dialog.component.html',
@@ -31,6 +32,11 @@ export class AntiChurnDialogComponent implements OnInit {
     });
   }
 
+  get bankName(): string | undefined {
+    const bank = BankUtils.getBankByName(this.data.currentBank.bank);
+    return bank?.label;
+  }
+
   ngAfterViewInit(): void {
     // timeout required to avoid the dreaded 'ExpressionChangedAfterItHasBeenCheckedError'
     setTimeout(() => (this.disableAnimation = false));
@@ -38,21 +44,24 @@ export class AntiChurnDialogComponent implements OnInit {
 
   public sendRequest(): void {
     this.isLoading = true;
+    this.closeState = 'procced-antichurn';
+    this.dialogRef.close();
+    return;
     this.changeBankServiceService.sendAntiChurnRequest().subscribe(
       () => {
         this.loggingService.googleAnalyticsLog({
           category: 'NordeaAntiChurn',
           action: 'anti-churn success',
-          label: `$top offer: ${this.data.bankInfo.bank}`
+          label: `$top offer: ${this.data.bestOffer.bankInfo.bank}`
         });
         this.isLoading = false;
-        this.closeState = 'procced-nordea';
+        this.closeState = 'procced-antichurn';
         this.dialogRef.close();
       },
       (error) => {
         this.isLoading = false;
         if (error.detail === 'Less than week since last email') {
-          this.closeState = 'error-to-many-bargains-nordea';
+          this.closeState = 'error-to-many-bargains-antichurn';
           this.dialogRef.close();
         } else {
           this.isLoading = false;

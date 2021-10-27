@@ -1,9 +1,7 @@
-@import "../../../../../styles/theme/_colors.scss";
+@import '../../../../../styles/theme/_colors.scss';
 
-
-// Hack for centering dialog popup 
+// Hack for centering dialog popup
 ::ng-deep .cdk-global-overlay-wrapper {
-
   .cdk-overlay-pane {
     max-height: calc(100vh - 155px) !important;
     max-width: 600px !important;
@@ -12,7 +10,7 @@
   }
 }
 
-::ng-deep .mat-expansion-panel{
+::ng-deep .mat-expansion-panel {
   background: $grey-light !important;
 }
 
@@ -20,13 +18,14 @@
   font-weight: 100;
 }
 
-::ng-deep .mat-expansion-panel:not(.mat-expanded):not([aria-disabled=true]) .mat-expansion-panel-header:hover {
+::ng-deep
+  .mat-expansion-panel:not(.mat-expanded):not([aria-disabled='true'])
+  .mat-expansion-panel-header:hover {
   background: $grey-light !important;
 }
 
-
-::ng-deep .mat-expansion-panel:not([class*=mat-elevation-z]) {
-  box-shadow: unset !important
+::ng-deep .mat-expansion-panel:not([class*='mat-elevation-z']) {
+  box-shadow: unset !important;
 }
 h2 {
   text-align: center;
@@ -57,14 +56,20 @@ a {
 }
 
 .double {
+}
+
+.single {
+  margin-bottom: 10px;
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: 1fr;
   margin-top: 40px !important;
 }
 .bottom {
-  border-top: 1px solid #ECECEC;
+  border-top: 1px solid #ececec;
   padding: 0px 20px 20px 20px;
   border-radius: 0 0 10px 10px;
   background: white;
-
 }
 form {
   background: unset;
