@@ -44,8 +44,22 @@ export class ActionBoxesComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const bankVo = BankUtils.getBankByName(this.offersInfo.bank);
-    this.bankHasFixedLoans = bankVo?.hasFixedLoans === true;
+    const fixedPriceBanks = [
+      'HIMLA',
+      'BULDER',
+      'SBANKEN',
+      'NYBYGGER',
+      'BOLIGKREDITT',
+      'DIN_BANK',
+      'KLP',
+      'OBOS',
+      'NORDEA_DIRECT',
+      'AKADEMIKERNE'
+    ];
+
+    this.bankHasFixedLoans = fixedPriceBanks.some((bank) =>
+      this.offersInfo.bank.includes(bank)
+    );
   }
 
   get isMobile(): boolean {
