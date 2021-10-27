@@ -9,7 +9,7 @@
   flex: 1 0 auto;
 }
 .cookie-acc-panel {
-  box-shadow: 0 0 8px 3px rgba(170, 170, 170, 0.5);
+  // box-shadow: 0 0 8px 3px rgba(170, 170, 170, 0.5);
   bottom: 0;
   background-color: $blue;
   padding: 20px 30px;
@@ -17,6 +17,7 @@
   z-index: 99999;
   border-radius: 15px;
   color: white;
+  border: 1px solid $white;
 
   @media (max-width: 800px) {
     margin: 5px;
@@ -65,6 +66,10 @@
     .mat-icon-button,
     .mat-stroked-button {
       background: $white;
+    }
+
+    ::ng-deep button.mat-button {
+      height: 45px !important;
     }
   }
 }
