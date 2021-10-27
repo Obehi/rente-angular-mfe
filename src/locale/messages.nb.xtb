@@ -38,10 +38,6 @@
       </translation>
   <translation id="textArea.message”" desc="text-area" meaning="“message">Melding</translation>
   <translation id="popup.privacy.header”" desc="intro" meaning="“header">Dine data, dine valg</translation>
-  <translation id="popup.privacy.text”" desc="text" meaning="“description">
-      Renteradar.no eies av Forbrukerøkonomene AS som er ansvarlig for dine data.<ph name="LINE_BREAK"><ex>&lt;br&gt;</ex>&lt;br&gt;</ph>
-      Vi bryr oss om ditt personvern. Vi bruker dine data til å forbedre og tilpasse tjenestene ser og bruker.
-    </translation>
   <translation id="popup.privacy.option1”" desc="more" meaning="“button">Vis meg mer</translation>
   <translation id="popup.privacy.option2”" desc="accept" meaning="“button">JEG FORSTÅR</translation>
   <translation id="landing.title" desc="landing-page" meaning="title">
@@ -1789,4 +1785,10 @@ Fortsett
   <translation id="info.confirmation.wrong-zip" desc="info-confirmation" meaning="“empty">
             Ugyldig postnummer
           </translation>
+  <translation id="popup.privacy.text”" desc="text" meaning="“description">
+        Renteradar.no eies av Forbrukerøkonomene AS som er ansvarlig for dine
+        data. Vi bryr oss om ditt personvern. Vi bruker dine data til å forbedre
+        og tilpasse tjenestene du ser og bruker.
+        <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>Vis meg mer<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph>
+      </translation>
 </translationbundle>
