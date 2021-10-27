@@ -170,7 +170,11 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
         this.offersInfo = Object.assign({}, res);
         this.currentOfferInfo = JSON.parse(JSON.stringify(res));
 
-        this.antiChurnIsOn = this.offersInfo.bank === 'NORDEA' ? true : false;
+        this.antiChurnIsOn =
+          this.offersInfo.bank === 'NORDEA' ||
+          this.offersInfo.bank === 'DANSKE_BANK'
+            ? true
+            : false;
 
         this.canBargain =
           res.bank === 'SWE_AVANZA' ||

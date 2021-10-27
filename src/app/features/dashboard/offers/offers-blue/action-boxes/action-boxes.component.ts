@@ -5,7 +5,7 @@ import { BANKS_DATA } from '@config/banks-config';
 import { OFFER_SAVINGS_TYPE } from '@config/loan-state';
 import { ROUTES_MAP, ROUTES_MAP_NO } from '@config/routes-config';
 import { ChangeBankServiceService } from '@services/remote-api/change-bank-service.service';
-import { Offers } from '@shared/models/offers';
+import { OfferInfo, Offers } from '@shared/models/offers';
 import { ChangeBankDialogLangGenericComponent } from 'app/local-components/components-output';
 import { forkJoin, Subscription } from 'rxjs';
 import { AntiChurnDialogComponent } from '../../anti-churn-dialog/anti-churn-dialog.component';
@@ -13,7 +13,7 @@ import { ChangeBankLocationComponent } from '../../change-bank-dialog/change-ban
 import { CanNotBargainDialogComponent } from '@features/dashboard/offers/can-not-bargain-dialog/can-not-bargain-dialog.component';
 import { LoansService } from '@services/remote-api/loans.service';
 import { AntiChurnErrorDialogComponent } from '../../anti-churn-dialog/anti-churn-error-dialog/anti-churn-error-dialog.component';
-import { BankUtils } from '@models/bank';
+import { BankUtils, BankVo } from '@models/bank';
 
 @Component({
   selector: 'action-boxes',
@@ -36,6 +36,7 @@ export class ActionBoxesComponent implements OnInit {
   public nordeaClickSubscription: Subscription;
   public bankHasFixedLoans: boolean;
 
+  public currentBank: BankVo | null;
   constructor(
     private changeBankServiceService: ChangeBankServiceService,
     public router: Router,
@@ -44,15 +45,20 @@ export class ActionBoxesComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const bankVo = BankUtils.getBankByName(this.offersInfo.bank);
-    this.bankHasFixedLoans = bankVo?.hasFixedLoans === true;
+    this.currentBank = BankUtils.getBankByName(this.offersInfo.bank);
+    this.bankHasFixedLoans = this.currentBank?.hasFixedLoans === true;
+  }
+
+  get bankName(): string | undefined {
+    const bank = BankUtils.getBankByName(this.offersInfo.bank);
+    return bank?.label;
   }
 
   get isMobile(): boolean {
     return window.innerWidth < 600;
   }
 
-  public openAntiChurnBankDialog(offer): void {
+  public openAntiChurnBankDialog(offer: OfferInfo): void {
     if (
       this.antiChurnIsOn === false ||
       this.changeBankLoading ||
@@ -64,7 +70,10 @@ export class ActionBoxesComponent implements OnInit {
 
     const changeBankRef = this.dialog.open(AntiChurnDialogComponent, {
       autoFocus: false,
-      data: offer
+      data: {
+        bestOffer: offer,
+        currentBank: this.offersInfo
+      }
     });
     changeBankRef.afterClosed().subscribe(() => {
       this.handleChangeBankdialogOnClose(
@@ -182,16 +191,18 @@ export class ActionBoxesComponent implements OnInit {
         });
         break;
       }
-      case 'procced-nordea': {
+      case 'procced-antichurn': {
+        console.log('procced-antichurn');
         this.router.navigate(['/dashboard/' + ROUTES_MAP_NO.bargainNordea], {
-          state: { isError: false, fromChangeBankDialog: true }
+          state: {
+            isError: false,
+            fromChangeBankDialog: true,
+            bankName: this.bankName
+          }
         });
         break;
       }
-      case 'error-to-many-bargains-nordea': {
-        this.dialog.open(AntiChurnErrorDialogComponent);
-        break;
-      }
+
       case 'error': {
         this.router.navigate(['/dashboard/prute-fullfort'], {
           state: { isError: false, fromChangeBankDialog: true }

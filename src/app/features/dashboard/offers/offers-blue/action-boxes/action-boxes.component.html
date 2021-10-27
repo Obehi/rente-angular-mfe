@@ -1,16 +1,16 @@
 <div *ngIf="antiChurnIsOn" class="big-box round-box right anti-churn-box">
   <div class="top">
     <div class="circleIconWrapper">
-      <img src="{{ banksMap['NORDEA'].imgCircle }}" />
+      <img src="{{ banksMap[currentBank?.name].imgCircle }}" />
     </div>
     <p i18n="“help-you|offers-main@@offers.mainPage.helpYou”">
-      Nordea ønsker å beholde deg som kunde
+      {{ currentBank?.label }} ønsker å beholde deg som kunde
     </p>
   </div>
   <div class="bottom">
     <p>
-      Gi Nordea anledning til å sette ned renten din før du eventuelt bytter
-      bank
+      Gi {{ currentBank?.label }} anledning til å sette ned renten din før du
+      eventuelt bytter bank
     </p>
     <rente-button
       i18n="“help-you|offers-main@@offers.mainPage.helpYou.button”"
@@ -22,7 +22,7 @@
       "
       [isLoading]="changeBankLoading"
       (click)="openAntiChurnBankDialog(offersInfo.offers.top5[0])"
-      >Be Nordea om et bedre tilbud</rente-button
+      >Be {{ currentBank?.label }} om et bedre tilbud</rente-button
     >
   </div>
 </div>
