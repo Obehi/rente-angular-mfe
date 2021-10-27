@@ -33,8 +33,6 @@ export class LandingComponent implements OnInit {
     let variation = (window as any).google_optimize.get(experimentId);
     console.log((window as any).google_optimize.get(experimentId));
 
-    variation = 0;
-
     return variation !== 0;
   }
 }
