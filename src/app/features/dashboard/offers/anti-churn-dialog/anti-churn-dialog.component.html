@@ -7,9 +7,12 @@
       formControlName="confirmation"
       (change)="isConfirmed = $event.checked"
     >
+    </mat-checkbox>
+
+    <p class="approval-text">
       Jeg godkjenner at min kontakt-, medlemskaps- og låneinformasjon sendes til
       {{ bankName }} og at {{ bankName }} kan kontakte meg.
-    </mat-checkbox>
+    </p>
   </form>
 
   <div [@.disabled]="disableAnimation">

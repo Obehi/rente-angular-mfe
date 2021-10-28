@@ -76,12 +76,18 @@ a {
   background: white;
 }
 form {
+  display: flex;
+  flex-direction: row;
   background: unset;
   border: 0;
   max-width: unset;
   margin: 40px 0 20px;
   padding: 0;
   background: white;
+
+  .approval-text {
+    margin-left: 10px;
+  }
 }
 
 li {

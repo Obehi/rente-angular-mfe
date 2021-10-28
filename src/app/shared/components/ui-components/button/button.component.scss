@@ -56,25 +56,25 @@ button.mat-primary-hollow-non-partner-mobile[disabled] {
 button.mat-primary-offer-desktop {
   background-color: $primary;
   color: $white;
-  width: 16rem !important;
+  width: 17rem !important;
 }
 
 button.mat-primary-offer-desktop[disabled] {
   color: white !important;
-  width: 16rem !important;
+  width: 17rem !important;
 }
 
 button.mat-primary-hollow-offer-desktop {
   background-color: white;
   color: black;
   border: 1px solid $primary;
-  width: 16rem !important;
+  width: 17rem !important;
   white-space: break-spaces;
 }
 
 button.mat-primary-wide-hollow-offer-desktop[disabled] {
   opacity: 1;
-  width: 16rem !important;
+  width: 17rem !important;
 
   height: 56px;
   background-color: unset;
@@ -84,7 +84,7 @@ button.mat-primary-wide-hollow-offer-desktop[disabled] {
 
 button.mat-primary-hollow-non-partner-desktop[disabled] {
   opacity: 1;
-  width: 16rem !important;
+  width: 17rem !important;
 
   height: 56px;
   background-color: unset;
@@ -177,6 +177,7 @@ button.mat-secondary {
 button.mat-secondary-semi-wide {
   background-color: $secondary;
   color: white;
+  width: 17rem;
 }
 
 button.mat-danskebank-semi-wide {
@@ -190,6 +191,10 @@ button.mat-danskebank-wide-hollow {
   height: 56px;
   width: 100%;
   white-space: break-spaces;
+
+  @media (max-width: 600px) {
+    height: 45px;
+  }
 }
 
 button.mat-secondary-small {
@@ -205,6 +210,10 @@ button.mat-primary-wide-hollow {
   height: 56px;
   width: 100%;
   white-space: break-spaces;
+
+  @media (max-width: 600px) {
+    height: 45px;
+  }
 }
 
 button.mat-secondary-border {
