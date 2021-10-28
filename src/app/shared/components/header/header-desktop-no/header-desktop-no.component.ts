@@ -28,7 +28,11 @@ export class HeaderDesktopNoComponent implements OnInit {
   }
 
   public goToHome(): void {
-    if (this.router.url === '/' || this.router.url === '/#faq') {
+    if (
+      this.router.url === '/' ||
+      this.router.url === '/#faq' ||
+      this.router.url === '/#slik-fungerer-det'
+    ) {
       window.scrollTo(0, 0);
     } else {
       this.router.navigateByUrl('/');
@@ -36,6 +40,7 @@ export class HeaderDesktopNoComponent implements OnInit {
 
     this.toggleNav();
   }
+
   public toggleNav(): void {
     this.toggleNavbar = !this.toggleNavbar;
   }
