@@ -83,6 +83,14 @@ mat-selection-list {
 }
 .bank-list {
   width: 100%;
+
+  ::ng-deep .mat-form-field-infix {
+    display: flex;
+  }
+
+  img {
+    width: 4%;
+  }
 }
 .bank-button {
   width: 100%;
