@@ -61,7 +61,7 @@
     -->
     <rente-button
       i18n="“help-you|offers-main@@offers.mainPage.helpYou.button”"
-      [color]="antiChurnIsOn ? 'primary-wide-break' : 'primary-wide-hollow'"
+      [color]="'danskebank-wide-hollow'"
       [disabled]="changeBankLoading || !antiChurnIsOn"
       [isLoading]="changeBankLoading"
       (click)="openAntiChurnBankDialog(offersInfo.offers.top5[0])"

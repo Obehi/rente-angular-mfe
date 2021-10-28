@@ -184,6 +184,14 @@ button.mat-danskebank-semi-wide {
   color: white;
 }
 
+button.mat-danskebank-wide-hollow {
+  background-color: $danske-bank;
+  color: white;
+  height: 56px;
+  width: 100%;
+  white-space: break-spaces;
+}
+
 button.mat-secondary-small {
   background-color: $secondary;
   height: 45px;
