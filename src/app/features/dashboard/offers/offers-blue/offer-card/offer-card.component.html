@@ -293,7 +293,7 @@
 
         <!-- IS NORDEA? -->
         <nordea-buttons
-          *ngIf="isNordea && offer.bankInfo.bank !== 'BULDER'"
+          *ngIf="isAntiChurnBank && offer.bankInfo.bank !== 'BULDER'"
           [offer]="offer"
           [offersInfo]="offersInfo"
         ></nordea-buttons>

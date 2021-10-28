@@ -26,7 +26,7 @@ export class ActionBoxesComponent implements OnInit {
   @Input() antiChurnIsOn: boolean;
   @Input() isSweden: boolean;
   @Input() canBargain: boolean;
-  public changeBankLoading: boolean;
+  public changeBankLoading = false;
   public banksMap = BANKS_DATA;
   public routesMap = ROUTES_MAP;
   public offerTypes: string[];
@@ -59,11 +59,14 @@ export class ActionBoxesComponent implements OnInit {
   }
 
   public openAntiChurnBankDialog(offer: OfferInfo): void {
-    if (
-      this.antiChurnIsOn === false ||
-      this.changeBankLoading ||
-      this.offersInfo.offerSavingsType === this.offerSavingsType.NO_SAVINGS
-    ) {
+    /*     PUT BACK DISABLED FOR SAVINGSTYPE BEFORE PROD!!!!!
+      PUT BACK DISABLED FOR SAVINGSTYPE BEFORE PROD!!!!!
+      PUT BACK DISABLED FOR SAVINGSTYPE BEFORE PROD!!!!!
+      PUT BACK DISABLED FOR SAVINGSTYPE BEFORE PROD!!!!!
+      PUT BACK DISABLED FOR SAVINGSTYPE BEFORE PROD!!!!! */
+    console.log(this.antiChurnIsOn);
+    console.log(this.changeBankLoading);
+    if (this.antiChurnIsOn === false || this.changeBankLoading) {
       return;
     }
     this.changeBankLoading = true;

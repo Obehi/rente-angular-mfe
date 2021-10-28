@@ -5,7 +5,7 @@ import {
 } from '@features/dashboard/offers/offers.service';
 import { OfferInfo, Offers } from '@models/offers';
 import { LoggingService } from '@services/logging.service';
-
+import { BankUtils, BankVo } from '@models/bank';
 @Component({
   selector: 'nordea-buttons',
   templateUrl: './nordea-buttons.component.html',
@@ -14,12 +14,23 @@ import { LoggingService } from '@services/logging.service';
 export class NordeaButtonsComponent implements OnInit {
   @Input() offer: OfferInfo;
   @Input() offersInfo: Offers;
+
+  bankName: string;
+  buttonColor: string;
   constructor(
     private loggingService: LoggingService,
     private offersService: OffersService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    const bankVo = BankUtils.getBankByName(this.offersInfo.bank);
+    this.bankName = bankVo?.label ?? 'banken din';
+
+    this.buttonColor =
+      this.offersInfo.bank === 'NORDEA'
+        ? 'secondary-semi-wide'
+        : 'danskebank-semi-wide';
+  }
 
   get isMobile(): boolean {
     return window.innerWidth < 600;
