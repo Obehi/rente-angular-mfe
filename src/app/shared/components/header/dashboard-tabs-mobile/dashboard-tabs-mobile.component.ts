@@ -63,7 +63,7 @@ export class DashboardTabsMobileComponent implements OnInit, OnDestroy {
     private router: Router,
     private envService: EnvService,
     private notificationService: NotificationService,
-    private tabsService: TabsService
+    public tabsService: TabsService
   ) {
     if (this.envService.isNorway()) {
       this.navLinks = this.navLinksNo;
@@ -87,6 +87,13 @@ export class DashboardTabsMobileComponent implements OnInit, OnDestroy {
     }
 
     this.setActiveLinkIndexListener();
+
+    this.tabsService.activeLinkIndexAsObservable().subscribe((index) => {
+      if (index !== null) {
+        // this.setActiveIndex(index);
+        console.log('First subsc', index);
+      }
+    });
   }
 
   public setActiveLinkIndexListener(): void {
@@ -94,8 +101,15 @@ export class DashboardTabsMobileComponent implements OnInit, OnDestroy {
       .activeLinkIndexAsObservable()
       .pipe(takeUntil(this.shouldUnsubscribe))
       .subscribe((index) => {
+        console.log('Active Link Listener Mobile');
         if (index !== null) {
-          this.setActiveIndex(index);
+          // this.setActiveIcon(index);
+
+          console.log('Current index', index);
+        } else {
+          console.log('Current index', index);
+
+          throw new Error('index is null');
         }
       });
   }
@@ -117,29 +131,28 @@ export class DashboardTabsMobileComponent implements OnInit, OnDestroy {
   }
 
   public setActiveIndex(indx: number): void {
-    this.activeLinkIndex = indx;
-    this.setActiveIcon(this.activeLinkIndex);
+    this.tabsService.setActiveLinkIndex(indx);
   }
 
-  private setActiveIcon(activeIndex: number) {
-    if (this.navLinks !== undefined) {
-      this.navLinks.forEach((link: string, index: number) => {
-        if (index === activeIndex) {
-          if (!this.imgLink[link].includes('active')) {
-            this.imgLink[link] = this.imgLink[link].replace(
-              '.svg',
-              '_active.svg'
-            );
-          }
-        } else {
-          this.imgLink[link] = this.imgLink[link].replace(
-            '_active.svg',
-            '.svg'
-          );
-        }
-      });
-    }
-  }
+  // private setActiveIcon(activeIndex: number) {
+  //   if (this.navLinks !== undefined) {
+  //     this.navLinks.forEach((link: string, index: number) => {
+  //       if (index === activeIndex) {
+  //         if (!this.imgLink[link].includes('active')) {
+  //           this.imgLink[link] = this.imgLink[link].replace(
+  //             '.svg',
+  //             '_active.svg'
+  //           );
+  //         }
+  //       } else {
+  //         this.imgLink[link] = this.imgLink[link].replace(
+  //           '_active.svg',
+  //           '.svg'
+  //         );
+  //       }
+  //     });
+  //   }
+  // }
 
   ngOnDestroy(): void {
     this.shouldUnsubscribe.next(true);

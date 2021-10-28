@@ -1,11 +1,12 @@
 <div class="dash-tabs-blue-wrapper">
   <div class="dash-tabs-blue">
+    <h1>{{ tabsService.activeLinkIndexAsObservable() | async }}</h1>
     ​
     <div class="inner">
       <nav mat-tab-nav-bar class="dash-tab">
         <a
           mat-tab-link
-          [active]="activeLinkIndex == 0"
+          [active]="(tabsService.activeLinkIndexAsObservable() | async) == 0"
           [routerLink]="'./' + routesMap.offers"
           (click)="setActiveIndex(0)"
           routerLinkActive="active"
@@ -21,13 +22,13 @@
               class="rente-icon"
               src="../../../assets/icons/rente-logo-icon-white.svg"
               alt="Banktilbud"
-              *ngIf="activeLinkIndex !== 0"
+              *ngIf="(tabsService.activeLinkIndexAsObservable() | async) !== 0"
             />
             <img
               class="rente-icon"
               src="../../../assets/icons/rente-logo-icon-green.svg"
               alt="Banktilbud"
-              *ngIf="activeLinkIndex == 0"
+              *ngIf="(tabsService.activeLinkIndexAsObservable() | async) == 0"
             />
             <p i18n="“title|offer@@dashboard.loggedIn.offer”">Tilbud</p>
           </div>
@@ -36,7 +37,7 @@
       <nav mat-tab-nav-bar class="dash-tab">
         <a
           mat-tab-link
-          [active]="activeLinkIndex == 1"
+          [active]="(tabsService.activeLinkIndexAsObservable() | async) == 1"
           [routerLink]="'./' + routesMap.loans"
           (click)="setActiveIndex(1)"
           routerLinkActive="active"
@@ -47,13 +48,13 @@
               class="graph-icon"
               src="../../../assets/icons/graph-icon-white.svg"
               alt="Mine lån"
-              *ngIf="activeLinkIndex !== 1"
+              *ngIf="(tabsService.activeLinkIndexAsObservable() | async) !== 1"
             />
             <img
               class="graph-icon"
               src="../../../assets/icons/graph-icon-gren.svg"
               alt="Mine lån"
-              *ngIf="activeLinkIndex == 1"
+              *ngIf="(tabsService.activeLinkIndexAsObservable() | async) == 1"
             />
             <p i18n="“title2|my-loans@@dashboard.loggedIn.myLoans”">Mine lån</p>
           </div>
@@ -62,7 +63,7 @@
       <nav mat-tab-nav-bar class="dash-tab">
         <a
           mat-tab-link
-          [active]="activeLinkIndex == 2"
+          [active]="(tabsService.activeLinkIndexAsObservable() | async) == 2"
           [routerLink]="'./' + routesMap.property"
           (click)="setActiveIndex(2)"
           routerLinkActive="active"
@@ -73,13 +74,13 @@
               class="house-icon"
               src="../../../assets/icons/house-icon-white.svg"
               alt="Bolig"
-              *ngIf="activeLinkIndex !== 2"
+              *ngIf="(tabsService.activeLinkIndexAsObservable() | async) !== 2"
             />
             <img
               class="house-icon"
               src="../../../assets/icons/house-icon-green.svg"
               alt="Bolig"
-              *ngIf="activeLinkIndex == 2"
+              *ngIf="(tabsService.activeLinkIndexAsObservable() | async) == 2"
             />
             <p i18n="“title3|house@@dashboard.loggedIn.house”">Bolig</p>
           </div>
@@ -88,7 +89,7 @@
       <nav mat-tab-nav-bar class="dash-tab">
         <a
           mat-tab-link
-          [active]="activeLinkIndex == 4"
+          [active]="(tabsService.activeLinkIndexAsObservable() | async) == 4"
           [routerLink]="'./' + routesMap.profile"
           (click)="setActiveIndex(4)"
           routerLinkActive="active"
@@ -104,13 +105,13 @@
               class="profile-icon"
               src="../../../assets/icons/profile-icon-white.svg"
               alt="Profil"
-              *ngIf="activeLinkIndex !== 4"
+              *ngIf="(tabsService.activeLinkIndexAsObservable() | async) !== 4"
             />
             <img
               class="profile-icon"
               src="../../../assets/icons/profile-icon-green.svg"
               alt="Profil"
-              *ngIf="activeLinkIndex == 4"
+              *ngIf="(tabsService.activeLinkIndexAsObservable() | async) == 4"
             />
             <p i18n="“title4|profile@@dashboard.loggedIn.profile”">Profil</p>
           </div>
