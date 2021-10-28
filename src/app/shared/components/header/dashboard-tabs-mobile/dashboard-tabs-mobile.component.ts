@@ -7,6 +7,7 @@ import { Observable, Subject, Subscription } from 'rxjs';
 import { NotificationService } from '@services/notification.service';
 import { TabsService } from '@services/tabs.service';
 import { takeUntil } from 'rxjs/operators';
+import { GlobalStateService } from '@services/global-state.service';
 
 @Component({
   selector: 'rente-dashboard-tabs-mobile',
@@ -63,7 +64,8 @@ export class DashboardTabsMobileComponent implements OnInit, OnDestroy {
     private router: Router,
     private envService: EnvService,
     private notificationService: NotificationService,
-    public tabsService: TabsService
+    public tabsService: TabsService,
+    public globalStateService: GlobalStateService
   ) {
     if (this.envService.isNorway()) {
       this.navLinks = this.navLinksNo;
@@ -85,33 +87,6 @@ export class DashboardTabsMobileComponent implements OnInit, OnDestroy {
     } else if (this.localStorageService.getItem('isAggregatedRateTypeFixed')) {
       this.router.navigate(['/dashboard/fastrente']);
     }
-
-    this.setActiveLinkIndexListener();
-
-    this.tabsService.activeLinkIndexAsObservable().subscribe((index) => {
-      if (index !== null) {
-        // this.setActiveIndex(index);
-        console.log('First subsc', index);
-      }
-    });
-  }
-
-  public setActiveLinkIndexListener(): void {
-    this.tabsService
-      .activeLinkIndexAsObservable()
-      .pipe(takeUntil(this.shouldUnsubscribe))
-      .subscribe((index) => {
-        console.log('Active Link Listener Mobile');
-        if (index !== null) {
-          // this.setActiveIcon(index);
-
-          console.log('Current index', index);
-        } else {
-          console.log('Current index', index);
-
-          throw new Error('index is null');
-        }
-      });
   }
 
   getProfileNotifications(): Observable<number> {
@@ -133,26 +108,6 @@ export class DashboardTabsMobileComponent implements OnInit, OnDestroy {
   public setActiveIndex(indx: number): void {
     this.tabsService.setActiveLinkIndex(indx);
   }
-
-  // private setActiveIcon(activeIndex: number) {
-  //   if (this.navLinks !== undefined) {
-  //     this.navLinks.forEach((link: string, index: number) => {
-  //       if (index === activeIndex) {
-  //         if (!this.imgLink[link].includes('active')) {
-  //           this.imgLink[link] = this.imgLink[link].replace(
-  //             '.svg',
-  //             '_active.svg'
-  //           );
-  //         }
-  //       } else {
-  //         this.imgLink[link] = this.imgLink[link].replace(
-  //           '_active.svg',
-  //           '.svg'
-  //         );
-  //       }
-  //     });
-  //   }
-  // }
 
   ngOnDestroy(): void {
     this.shouldUnsubscribe.next(true);

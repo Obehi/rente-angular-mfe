@@ -32,6 +32,7 @@ export class GlobalStateService {
   private notificationProfile = new Subject<number>();
   private isDashboard = new BehaviorSubject<boolean>(false);
   private isSignicatLogin$ = new BehaviorSubject<boolean>(false);
+  public activeTab$ = new BehaviorSubject<number>(0);
   public signicatBottomContainerIsDisplayed$ = new BehaviorSubject<boolean>(
     false
   );
@@ -61,29 +62,27 @@ export class GlobalStateService {
   private setRouteIsChangedListener(): void {
     this.route.events
       .pipe(
-        filter((event) => event instanceof NavigationEnd),
+        filter((event) => event instanceof NavigationStart),
 
         filter((event: NavigationEnd) => event.url != null),
         map((event) => event.url)
       )
       .subscribe((url) => {
         if (url.includes(ROUTES_MAP.offers)) {
-          this.tabsService.setActiveLinkIndex(0);
-          console.log('Route changed, setActiveLink Global state, 0');
+          this.activeTab$.next(0);
         }
         if (url.includes(ROUTES_MAP.loans)) {
-          this.tabsService.setActiveLinkIndex(1);
-          console.log('Route changed, setActiveLink Global state, 1');
+          this.activeTab$.next(1);
         }
         if (url.includes(ROUTES_MAP.property)) {
-          this.tabsService.setActiveLinkIndex(2);
-          console.log('Route changed, setActiveLink Global state, 2');
+          this.activeTab$.next(2);
         }
         if (url.includes(ROUTES_MAP.profile)) {
-          this.tabsService.setActiveLinkIndex(4);
-          console.log('Route changed, setActiveLink Global state, 4');
+          this.activeTab$.next(4);
         }
       });
+
+    this.tabsService.activeLinkIndexAsObservable().subscribe(() => {});
 
     this.route.events
       .pipe(
