@@ -24,8 +24,8 @@
         ><h3>Kom igang</h3>
       </a> -->
 
-      <span [routerLink]="['/']" fragment="slik-fungerer-det-m">
-        <a href="#slik-fungerer-det-m" (click)="toggleNav()">
+      <span [routerLink]="['/']" fragment="{{ screenRef }}">
+        <a href="{{ '#' + screenRef }}" (click)="toggleNav()">
           <h3>Slik fungerer det</h3>
         </a>
       </span>

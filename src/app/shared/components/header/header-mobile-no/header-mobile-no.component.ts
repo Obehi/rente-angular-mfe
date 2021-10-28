@@ -15,6 +15,7 @@ export class HeaderMobileNoComponent implements OnInit {
   public toggleNavbar: boolean;
   public isSmallScreen: boolean;
   public animationType = getAnimationStyles();
+  public screenRef: string;
   constructor(
     public auth: AuthService,
     private router: Router,
@@ -23,7 +24,13 @@ export class HeaderMobileNoComponent implements OnInit {
     public globalStateService: GlobalStateService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (window.innerWidth > 600 && window.innerWidth < 800) {
+      this.screenRef = 'slik-fungerer-det-p';
+    } else if (window.innerWidth < 600) {
+      this.screenRef = 'slik-fungerer-det-m';
+    }
+  }
 
   public goToTop(): void {
     window.scrollTo(0, 0);
