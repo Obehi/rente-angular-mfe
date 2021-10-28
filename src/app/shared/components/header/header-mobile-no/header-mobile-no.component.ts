@@ -30,7 +30,11 @@ export class HeaderMobileNoComponent implements OnInit {
   }
 
   public goToHome(): void {
-    if (this.router.url === '/' || this.router.url === '/#faq') {
+    if (
+      this.router.url === '/' ||
+      this.router.url === '/#faq' ||
+      this.router.url === '/#slik-fungerer-det-m'
+    ) {
       window.scrollTo(0, 0);
     } else {
       this.router.navigateByUrl('/');
@@ -41,6 +45,14 @@ export class HeaderMobileNoComponent implements OnInit {
   public toggleNav(): void {
     this.toggleNavbar = !this.toggleNavbar;
   }
+
+  // public scrollToHowItWorks(): void {
+  //   document.getElementById('slik-fungerer-det-m')?.scrollIntoView({
+  //     behavior: 'smooth',
+  //     block: 'start',
+  //     inline: 'start'
+  //   });
+  // }
 
   get isLoggedIn(): boolean {
     return this.auth.isLoggedIn;
