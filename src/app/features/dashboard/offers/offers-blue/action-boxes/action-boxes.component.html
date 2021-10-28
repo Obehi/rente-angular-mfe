@@ -1,4 +1,7 @@
-<div *ngIf="antiChurnIsOn" class="big-box round-box right anti-churn-box">
+<div
+  *ngIf="antiChurnIsOn && isNordea"
+  class="big-box round-box right anti-churn-box"
+>
   <div class="top">
     <div class="circleIconWrapper">
       <img src="{{ banksMap[currentBank?.name].imgCircle }}" />
@@ -9,9 +12,11 @@
   </div>
   <div class="bottom">
     <p>
-      Gi {{ currentBank?.label }} anledning til å sette ned renten din før du
-      eventuelt bytter bank
+      Gi Nordea anledning til å sette ned renten din før du eventuelt bytter
+      bank
     </p>
+
+    <p></p>
 
     <!-- 
       PUT BACK DISABLED FOR SAVINGSTYPE BEFORE PROD!!!!!
@@ -27,6 +32,40 @@
       [isLoading]="changeBankLoading"
       (click)="openAntiChurnBankDialog(offersInfo.offers.top5[0])"
       >Be {{ currentBank?.label }} om et bedre tilbud</rente-button
+    >
+  </div>
+</div>
+
+<div
+  *ngIf="antiChurnIsOn && isDanskeBank"
+  class="big-box round-box right anti-churn-box"
+>
+  <div class="top">
+    <div class="circleIconWrapper">
+      <img src="{{ banksMap[currentBank?.name].imgCircle }}" />
+    </div>
+
+    <p>Danske Bank ønsker å være konkurransedyktige</p>
+  </div>
+  <div class="bottom">
+    <p>Gi Danske Bank anledning til å komme med et bedre tilbud.</p>
+
+    <p></p>
+
+    <!-- 
+      PUT BACK DISABLED FOR SAVINGSTYPE BEFORE PROD!!!!!
+      PUT BACK DISABLED FOR SAVINGSTYPE BEFORE PROD!!!!!
+      PUT BACK DISABLED FOR SAVINGSTYPE BEFORE PROD!!!!!
+      PUT BACK DISABLED FOR SAVINGSTYPE BEFORE PROD!!!!!
+      PUT BACK DISABLED FOR SAVINGSTYPE BEFORE PROD!!!!!
+    -->
+    <rente-button
+      i18n="“help-you|offers-main@@offers.mainPage.helpYou.button”"
+      [color]="antiChurnIsOn ? 'primary-wide-break' : 'primary-wide-hollow'"
+      [disabled]="changeBankLoading || !antiChurnIsOn"
+      [isLoading]="changeBankLoading"
+      (click)="openAntiChurnBankDialog(offersInfo.offers.top5[0])"
+      >Send forespørsel til Danske Bank</rente-button
     >
   </div>
 </div>

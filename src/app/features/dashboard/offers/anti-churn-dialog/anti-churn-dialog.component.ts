@@ -44,9 +44,7 @@ export class AntiChurnDialogComponent implements OnInit {
 
   public sendRequest(): void {
     this.isLoading = true;
-    this.closeState = 'procced-antichurn';
-    this.dialogRef.close();
-    return;
+
     this.changeBankServiceService.sendAntiChurnRequest().subscribe(
       () => {
         this.loggingService.googleAnalyticsLog({

@@ -15,21 +15,37 @@ export class NordeaButtonsComponent implements OnInit {
   @Input() offer: OfferInfo;
   @Input() offersInfo: Offers;
 
-  bankName: string;
   buttonColor: string;
+
+  public isNordea = false;
+  public isDanskeBank = false;
   constructor(
     private loggingService: LoggingService,
     private offersService: OffersService
   ) {}
 
   ngOnInit(): void {
-    const bankVo = BankUtils.getBankByName(this.offersInfo.bank);
-    this.bankName = bankVo?.label ?? 'banken din';
+    const currentBank = BankUtils.getBankByName(this.offersInfo.bank);
 
+    this.isNordea = currentBank?.name === 'NORDEA';
+    this.isDanskeBank = currentBank?.name === 'DANSKE_BANK';
+
+    if (!this.offersInfo) {
+      return;
+    }
     this.buttonColor =
       this.offersInfo.bank === 'NORDEA'
         ? 'secondary-semi-wide'
         : 'danskebank-semi-wide';
+  }
+
+  get bankName(): string {
+    if (!this.offersInfo) {
+      return 'banken din';
+    }
+    const bankVo = BankUtils.getBankByName(this.offersInfo.bank);
+    // console.log(bankVo);
+    return bankVo?.label ?? 'banken din';
   }
 
   get isMobile(): boolean {
