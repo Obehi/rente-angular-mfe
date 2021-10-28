@@ -7,8 +7,8 @@
       formControlName="confirmation"
       (change)="isConfirmed = $event.checked"
     >
-      Jeg godkjenner at min kontakt-, medlemskaps- og låneinformasjon sendes
-      kryptert til Nordea og at Nordea kan kontakte meg.
+      Jeg godkjenner at min kontakt-, medlemskaps- og låneinformasjon sendes til
+      {{ bankName }} og at {{ bankName }} kan kontakte meg.
     </mat-checkbox>
   </form>
 
@@ -18,7 +18,7 @@
         <mat-expansion-panel-header>
           <mat-panel-title> Se mer info </mat-panel-title>
         </mat-expansion-panel-header>
-        <h4>Følgende informasjon om deg sendes til Nordea.</h4>
+        <h4>Følgende informasjon om deg sendes til {{ bankName }}.</h4>
         <ul>
           <li>Navn</li>
           <li>Adresse</li>
@@ -34,9 +34,9 @@
 </div>
 
 <div class="bottom">
-  <div class="double">
+  <div class="buttons">
     <rente-button
-      color="primary-wide-hollow"
+      color="primary-wide-no-border"
       (click)="close()"
       i18n="“cancel|change-bank@@change.bank.cancel”"
     >
@@ -49,7 +49,7 @@
       [isLoading]="isLoading"
       [disabled]="!isConfirmed || isLoading"
       (click)="sendRequest()"
-      >Send til Nordea
+      >Send til {{ bankName }}
     </rente-button>
   </div>
 </div>
