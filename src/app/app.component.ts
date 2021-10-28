@@ -5,11 +5,13 @@ import { MetaService } from '@shared/services/meta.service';
 import { TitleService } from '@services/title.service';
 import { LocalStorageService } from '@services/local-storage.service';
 import { ROUTES_MAP } from '@config/routes-config';
+import { SlideUp } from '@shared/animations/slide-up';
 
 @Component({
   selector: 'rente-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  animations: [SlideUp]
 })
 export class AppComponent implements OnInit {
   public static CookiesAcceptedKey = 'isCookiesAccepted';
@@ -43,7 +45,9 @@ export class AppComponent implements OnInit {
     });
 
     if (!this.localStorageService.getItem(AppComponent.CookiesAcceptedKey)) {
-      this.showCookieAcc = true;
+      setTimeout(() => {
+        this.showCookieAcc = true;
+      }, 0);
     }
   }
 

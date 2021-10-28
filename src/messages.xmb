@@ -142,14 +142,13 @@
   <msg id="popup.privacy.header”" desc="intro" meaning="“header"><source>app/app.component.html:10,12</source>
       Dine data, dine valg
     </msg>
-  <msg id="popup.privacy.text”" desc="text" meaning="“description"><source>app/app.component.html:16,21</source>
-      Renteradar.no eies av Forbrukerøkonomene AS som er ansvarlig for dine
-      data.<ph name="LINE_BREAK"><ex>&lt;br&gt;</ex>&lt;br&gt;</ph>
-      Vi bryr oss om ditt personvern. Vi bruker dine data til å forbedre og
-      tilpasse tjenestene du ser og bruker.
-    </msg>
-  <msg id="popup.privacy.option1”" desc="more" meaning="“button"><source>app/app.component.html:25</source>Vis meg mer</msg>
-  <msg id="popup.privacy.option2”" desc="accept" meaning="“button"><source>app/app.component.html:30</source>Jeg forstår</msg>
+  <msg id="popup.privacy.text”" desc="text" meaning="“description"><source>app/app.component.html:18,23</source>
+        Renteradar.no eies av Forbrukerøkonomene AS som er ansvarlig for dine
+        data. Vi bryr oss om ditt personvern. Vi bruker dine data til å forbedre
+        og tilpasse tjenestene du ser og bruker.
+        <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>Vis meg mer<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph>
+      </msg>
+  <msg id="popup.privacy.option2”" desc="accept" meaning="“button"><source>app/app.component.html:28</source>Jeg forstår</msg>
   <msg id="confirmation.property-value" desc="“confirmation-property-value"><source>app/features/init-confirmation/confirmation-property/confirmation-property.component.html:5,7</source>
         Vi har estimert din bolig til
       </msg>
@@ -1190,44 +1189,44 @@ Fortsett
       Vi støtter kun BankID på Mobil og Engangskode-appen, ikke BankID med
       kodebrikke.
     </msg>
-  <msg id="bankId.issue”" desc="bank-id" meaning="“issue"><source>app/features/auth/crawler-login/crawler-login.component.html:125,129</source><source>app/features/auth/bank-id-login-secret/bank-id-login.component.html:24,28</source>
+  <msg id="bankId.issue”" desc="bank-id" meaning="“issue"><source>app/features/auth/crawler-login/crawler-login.component.html:130,134</source><source>app/features/auth/bank-id-login-secret/bank-id-login.component.html:24,28</source>
       Akkurat nå er det mange banker som setter ned renten og oppdaterer
       systemene sine. Det kan derfor være en uriktig forskjell på nominell og
       effektiv rente som vi henter. Besparelsen blir da for høy.
     </msg>
-  <msg id="bankId.description.birthNumber”" desc="bank-id" meaning="“issue"><source>app/features/auth/crawler-login/crawler-login.component.html:198,200</source><source>app/features/auth/crawler-login/crawler-login.component.html:432,434</source><source>app/features/auth/bank-id-login-secret/bank-id-login.component.html:106,108</source>
+  <msg id="bankId.description.birthNumber”" desc="bank-id" meaning="“issue"><source>app/features/auth/crawler-login/crawler-login.component.html:203,205</source><source>app/features/auth/crawler-login/crawler-login.component.html:442,444</source><source>app/features/auth/bank-id-login-secret/bank-id-login.component.html:106,108</source>
                   Fødselsnummer kan ikke være tomt
                 </msg>
-  <msg id="bankId.description.birthNumber2”" desc="bank-id" meaning="“issue"><source>app/features/auth/crawler-login/crawler-login.component.html:206,208</source><source>app/features/auth/crawler-login/crawler-login.component.html:440,442</source><source>app/features/auth/bank-id-login-secret/bank-id-login.component.html:114,116</source>
+  <msg id="bankId.description.birthNumber2”" desc="bank-id" meaning="“issue"><source>app/features/auth/crawler-login/crawler-login.component.html:211,213</source><source>app/features/auth/crawler-login/crawler-login.component.html:450,452</source><source>app/features/auth/bank-id-login-secret/bank-id-login.component.html:114,116</source>
                   Fødselsnummer ikke gyldig
                 </msg>
-  <msg id="bankId.description.birthNumber3”" desc="bank-id" meaning="“issue"><source>app/features/auth/crawler-login/crawler-login.component.html:214,216</source><source>app/features/auth/crawler-login/crawler-login.component.html:448,450</source><source>app/features/auth/bank-id-login-secret/bank-id-login.component.html:122,124</source>
+  <msg id="bankId.description.birthNumber3”" desc="bank-id" meaning="“issue"><source>app/features/auth/crawler-login/crawler-login.component.html:219,221</source><source>app/features/auth/crawler-login/crawler-login.component.html:458,460</source><source>app/features/auth/bank-id-login-secret/bank-id-login.component.html:122,124</source>
                   Fødselsnummeret er ikke gyldig
                 </msg>
-  <msg id="bankId.policy”" desc="bank-id" meaning="“accepting"><source>app/features/auth/crawler-login/crawler-login.component.html:224,227</source><source>app/features/auth/crawler-login/crawler-login.component.html:328,331</source><source>app/features/auth/crawler-login/crawler-login.component.html:495,498</source><source>app/features/auth/bank-id-login-secret/bank-id-login.component.html:169,172</source>
+  <msg id="bankId.policy”" desc="bank-id" meaning="“accepting"><source>app/features/auth/crawler-login/crawler-login.component.html:229,232</source><source>app/features/auth/crawler-login/crawler-login.component.html:333,336</source><source>app/features/auth/crawler-login/crawler-login.component.html:505,508</source><source>app/features/auth/bank-id-login-secret/bank-id-login.component.html:169,172</source>
               Jeg aksepterer Renteradar.no&apos;s
               <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>vilkår<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph>
             </msg>
-  <msg id="bankId.logIn”" desc="bank-id" meaning="“log-in"><source>app/features/auth/crawler-login/crawler-login.component.html:234,236</source><source>app/features/auth/crawler-login/crawler-login.component.html:338,340</source><source>app/features/auth/crawler-login/crawler-login.component.html:505,507</source><source>app/features/auth/bank-id-login-secret/bank-id-login.component.html:179,181</source>
+  <msg id="bankId.logIn”" desc="bank-id" meaning="“log-in"><source>app/features/auth/crawler-login/crawler-login.component.html:239,241</source><source>app/features/auth/crawler-login/crawler-login.component.html:343,345</source><source>app/features/auth/crawler-login/crawler-login.component.html:515,517</source><source>app/features/auth/bank-id-login-secret/bank-id-login.component.html:179,181</source>
                 Logg inn
               </msg>
-  <msg id="bankId.description.telephoneNumber”" desc="bank-id" meaning="“issue"><source>app/features/auth/crawler-login/crawler-login.component.html:276,278</source><source>app/features/auth/crawler-login/crawler-login.component.html:400,402</source><source>app/features/auth/bank-id-login-secret/bank-id-login.component.html:75,77</source>
+  <msg id="bankId.description.telephoneNumber”" desc="bank-id" meaning="“issue"><source>app/features/auth/crawler-login/crawler-login.component.html:281,283</source><source>app/features/auth/crawler-login/crawler-login.component.html:410,412</source><source>app/features/auth/bank-id-login-secret/bank-id-login.component.html:75,77</source>
                   Telefonnummer kan ikke være tomt
                 </msg>
-  <msg id="bankId.description.telephoneNumber2”" desc="bank-id" meaning="“issue"><source>app/features/auth/crawler-login/crawler-login.component.html:284,286</source><source>app/features/auth/crawler-login/crawler-login.component.html:408,410</source><source>app/features/auth/bank-id-login-secret/bank-id-login.component.html:83,85</source>
+  <msg id="bankId.description.telephoneNumber2”" desc="bank-id" meaning="“issue"><source>app/features/auth/crawler-login/crawler-login.component.html:289,291</source><source>app/features/auth/crawler-login/crawler-login.component.html:418,420</source><source>app/features/auth/bank-id-login-secret/bank-id-login.component.html:83,85</source>
                   Telefonnummer ikke gyldig
                 </msg>
-  <msg id="bankId.description.birthNumber4”" desc="bank-id" meaning="“issue"><source>app/features/auth/crawler-login/crawler-login.component.html:310,312</source><source>app/features/auth/crawler-login/crawler-login.component.html:476,478</source><source>app/features/auth/bank-id-login-secret/bank-id-login.component.html:150,152</source>
+  <msg id="bankId.description.birthNumber4”" desc="bank-id" meaning="“issue"><source>app/features/auth/crawler-login/crawler-login.component.html:315,317</source><source>app/features/auth/crawler-login/crawler-login.component.html:486,488</source><source>app/features/auth/bank-id-login-secret/bank-id-login.component.html:150,152</source>
                   Fødselsdato kan ikke være tomt
                 </msg>
-  <msg id="bankId.description.birthNumber5”" desc="bank-id" meaning="“issue"><source>app/features/auth/crawler-login/crawler-login.component.html:318,320</source><source>app/features/auth/crawler-login/crawler-login.component.html:484,486</source><source>app/features/auth/bank-id-login-secret/bank-id-login.component.html:158,160</source>
+  <msg id="bankId.description.birthNumber5”" desc="bank-id" meaning="“issue"><source>app/features/auth/crawler-login/crawler-login.component.html:323,325</source><source>app/features/auth/crawler-login/crawler-login.component.html:494,496</source><source>app/features/auth/bank-id-login-secret/bank-id-login.component.html:158,160</source>
                   Fødselsdato ikke gyldig
                 </msg>
-  <msg id="bankId.info”" desc="bank-id" meaning="“information"><source>app/features/auth/crawler-login/crawler-login.component.html:355,358</source><source>app/features/auth/bank-id-login-secret/bank-id-login.component.html:33,35</source>
+  <msg id="bankId.info”" desc="bank-id" meaning="“information"><source>app/features/auth/crawler-login/crawler-login.component.html:360,363</source><source>app/features/auth/bank-id-login-secret/bank-id-login.component.html:33,35</source>
       Har du ikke BankID på Mobil kan du
       <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>logge inn her<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph>
     </msg>
-  <msg id="bankId.issue2”" desc="bank-id" meaning="“issue"><source>app/features/auth/crawler-login/crawler-login.component.html:364,367</source><source>app/features/auth/bank-id-login-secret/bank-id-login.component.html:40,43</source>
+  <msg id="bankId.issue2”" desc="bank-id" meaning="“issue"><source>app/features/auth/crawler-login/crawler-login.component.html:374,377</source><source>app/features/auth/bank-id-login-secret/bank-id-login.component.html:40,43</source>
       OBS: Vi tester fortsatt løsningen for denne banken. <ph name="LINE_BREAK"><ex>&lt;br&gt;</ex>&lt;br&gt;</ph>
       Gi gjerne beskjed hvis noe ikke fungerer optimalt.
     </msg>
