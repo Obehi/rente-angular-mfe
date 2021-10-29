@@ -13,6 +13,8 @@ import { GlobalStateService } from '@services/global-state.service';
 export class HeaderDesktopNoComponent implements OnInit {
   public toggleNavbar: boolean;
   public isSmallScreen: boolean;
+  public getStartedBtn: boolean;
+  public logInBtn: boolean;
 
   constructor(
     public auth: AuthService,
@@ -39,6 +41,23 @@ export class HeaderDesktopNoComponent implements OnInit {
     }
 
     this.toggleNav();
+  }
+
+  public goToChooseBank(btn: string): void {
+    this.router.navigateByUrl('/velgbank');
+
+    if (btn === 'get-started') {
+      this.getStartedBtn = true;
+      this.logInBtn = false;
+    } else if (btn === 'log-in') {
+      this.logInBtn = true;
+      this.getStartedBtn = false;
+    }
+  }
+
+  public clearActiveLinks(): void {
+    this.getStartedBtn = false;
+    this.logInBtn = false;
   }
 
   public toggleNav(): void {

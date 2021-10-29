@@ -16,6 +16,10 @@ export class HeaderMobileNoComponent implements OnInit {
   public isSmallScreen: boolean;
   public animationType = getAnimationStyles();
   public screenRef: string;
+
+  public getStartedBtn: boolean;
+  public logInBtn: boolean;
+
   constructor(
     public auth: AuthService,
     private router: Router,
@@ -29,6 +33,8 @@ export class HeaderMobileNoComponent implements OnInit {
       this.screenRef = 'slik-fungerer-det-p';
     } else if (window.innerWidth < 600) {
       this.screenRef = 'slik-fungerer-det-m';
+    } else if (window.innerWidth > 800) {
+      this.screenRef = 'slik-fungerer-det';
     }
   }
 
@@ -49,17 +55,27 @@ export class HeaderMobileNoComponent implements OnInit {
 
     this.toggleNav();
   }
+
+  public goToChooseBank(btn: string): void {
+    this.router.navigateByUrl('/velgbank');
+
+    if (btn === 'get-started') {
+      this.getStartedBtn = true;
+      this.logInBtn = false;
+    } else if (btn === 'log-in') {
+      this.logInBtn = true;
+      this.getStartedBtn = false;
+    }
+  }
+
+  public clearActiveLinks(): void {
+    this.getStartedBtn = false;
+    this.logInBtn = false;
+  }
+
   public toggleNav(): void {
     this.toggleNavbar = !this.toggleNavbar;
   }
-
-  // public scrollToHowItWorks(): void {
-  //   document.getElementById('slik-fungerer-det-m')?.scrollIntoView({
-  //     behavior: 'smooth',
-  //     block: 'start',
-  //     inline: 'start'
-  //   });
-  // }
 
   get isLoggedIn(): boolean {
     return this.auth.isLoggedIn;
