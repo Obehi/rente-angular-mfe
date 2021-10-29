@@ -4,6 +4,9 @@ import { Router } from '@angular/router';
 import { AuthService } from '@services/remote-api/auth.service';
 import { LocalStorageService } from '@services/local-storage.service';
 import { GlobalStateService } from '@services/global-state.service';
+import { MessageBannerService } from '@services/message-banner.service';
+import { CustomLangTextService } from '@services/custom-lang-text.service';
+import { getAnimationStyles } from '@shared/animations/animationEnums';
 
 @Component({
   selector: 'rente-header-desktop',
@@ -15,12 +18,15 @@ export class HeaderDesktopNoComponent implements OnInit {
   public isSmallScreen: boolean;
   public getStartedBtn: boolean;
   public logInBtn: boolean;
+  public animationType = getAnimationStyles();
 
   constructor(
     public auth: AuthService,
     public localStorageService: LocalStorageService,
     private router: Router,
-    public globalStateService: GlobalStateService
+    public globalStateService: GlobalStateService,
+    private customLangService: CustomLangTextService,
+    private messageService: MessageBannerService
   ) {}
 
   ngOnInit(): void {}
@@ -70,6 +76,16 @@ export class HeaderDesktopNoComponent implements OnInit {
 
   public logout(): void {
     this.auth.logout();
-    this.toggleNav();
+
+    setTimeout(() => {
+      this.messageService.setView(
+        this.customLangService.logout(),
+        4000,
+        this.animationType.DROP_DOWN_UP,
+        'success',
+        window
+      );
+    }, 0);
+    this.goToTop();
   }
 }
