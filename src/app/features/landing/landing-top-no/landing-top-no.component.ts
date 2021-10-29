@@ -41,7 +41,8 @@ export class LandingTopNoComponent {
     }
 
     const variation = (window as any).google_optimize?.get(experimentId);
-    return variation || 0;
+
+    return Number(variation) || 0;
   }
 
   get ctaText(): string {
