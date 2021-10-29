@@ -17,13 +17,6 @@ export class LandingComponent implements OnInit {
   ngOnInit(): void {}
 
   public isNewLandingVersion(): boolean {
-    /** ********* Remove before prod ************ */
-    /** ********* Remove before prod ************ */
-    /** ********* Remove before prod ************ */
-    /** ********* Remove before prod ************ */
-    /** ********* Remove before prod ************ */
-    /** ********* Remove before prod ************ */
-    return true;
     if ((window as any).google_optimize === undefined) {
       // console.log('couldnt get optimize');
       return false;
@@ -31,10 +24,10 @@ export class LandingComponent implements OnInit {
     let experimentId: string | null;
     if (this.envService.environment.production === true) {
       // console.log('is production');
-      experimentId = 'lhTxK2BuQ52Fohere2-DRw';
+      experimentId = 'A_F5vClDQDuY0I-JUYxY0g';
     } else {
       // console.log('is not production');
-      experimentId = 'A6Fvld2GTAG3VE95NWV1Hw';
+      experimentId = 'A_F5vClDQDuY0I-JUYxY0g';
     }
 
     const variation = (window as any).google_optimize.get(experimentId);

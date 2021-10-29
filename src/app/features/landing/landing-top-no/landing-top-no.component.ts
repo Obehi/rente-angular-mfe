@@ -35,12 +35,22 @@ export class LandingTopNoComponent {
 
     let experimentId: string | null;
     if (this.envService.environment.production === true) {
-      experimentId = 'lhTxK2BuQ52Fohere2-DRw';
+      experimentId = 'A_F5vClDQDuY0I-JUYxY0g';
     } else {
       experimentId = 'none';
     }
 
     const variation = (window as any).google_optimize?.get(experimentId);
     return variation || 0;
+  }
+
+  get ctaText(): string {
+    const variation = this.getVariation();
+    if (variation === 0 || variation === 1) {
+      return 'Prøv gratis';
+    } else if (variation === 2) {
+      return 'Start her';
+    }
+    return 'Prøv gratis';
   }
 }
