@@ -91,6 +91,10 @@ mat-selection-list {
   img {
     width: 4%;
   }
+
+  ::ng-deep .mat-icon-button {
+    min-width: none !important;
+  }
 }
 .bank-button {
   width: 100%;
