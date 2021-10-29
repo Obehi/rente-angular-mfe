@@ -17,7 +17,7 @@ export class HeaderMobileNoComponent implements OnInit {
   public animationType = getAnimationStyles();
   public screenRef: string;
 
-  public komIgangBtn: boolean;
+  public getStartedBtn: boolean;
   public logInBtn: boolean;
 
   constructor(
@@ -59,17 +59,17 @@ export class HeaderMobileNoComponent implements OnInit {
   public goToChooseBank(btn: string): void {
     this.router.navigateByUrl('/velgbank');
 
-    if (btn === 'kom-i-gang') {
-      this.komIgangBtn = true;
+    if (btn === 'get-started') {
+      this.getStartedBtn = true;
       this.logInBtn = false;
-    } else if (btn === 'logg-inn') {
+    } else if (btn === 'log-in') {
       this.logInBtn = true;
-      this.komIgangBtn = false;
+      this.getStartedBtn = false;
     }
   }
 
   public clearActiveLinks(): void {
-    this.komIgangBtn = false;
+    this.getStartedBtn = false;
     this.logInBtn = false;
   }
 

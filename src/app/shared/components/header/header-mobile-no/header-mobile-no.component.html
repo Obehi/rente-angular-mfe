@@ -17,8 +17,8 @@
     <div class="mobile-menu mobile" *ngIf="toggleNavbar">
       <a
         i18n="“Headerlink|homepage@@header.home2”"
-        (click)="goToChooseBank('kom-i-gang'); toggleNav()"
-        [ngClass]="komIgangBtn ? 'active-link' : 'non-active'"
+        (click)="goToChooseBank('get-started'); toggleNav()"
+        [ngClass]="getStartedBtn ? 'active-link' : 'non-active'"
         ><h3>Kom igang</h3>
       </a>
 
@@ -33,7 +33,7 @@
 
       <a
         *ngIf="!isLoggedIn"
-        (click)="goToChooseBank('logg-inn'); toggleNav()"
+        (click)="goToChooseBank('log-in'); toggleNav()"
         [ngClass]="{
           'active-link': logInBtn === true
         }"

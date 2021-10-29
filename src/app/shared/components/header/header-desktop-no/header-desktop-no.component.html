@@ -10,8 +10,8 @@
       <div class="desktop-menu desktop">
         <a
           i18n="“Headerlink|homepage@@header.home”"
-          (click)="goToChooseBank('kom-i-gang')"
-          [ngClass]="komIgangBtn ? 'active-link' : 'non-active'"
+          (click)="goToChooseBank('get-started')"
+          [ngClass]="getStartedBtn ? 'active-link' : 'non-active'"
           >Kom igang
         </a>
 
@@ -29,7 +29,7 @@
           i18n="“Headerlink|log-in@@header.login”"
           *ngIf="!isLoggedIn"
           class="highlight"
-          (click)="goToChooseBank('logg-inn')"
+          (click)="goToChooseBank('log-in')"
           [ngClass]="logInBtn ? 'active-link' : 'non-active'"
           >Logg inn
         </a>
