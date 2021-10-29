@@ -14,6 +14,7 @@ import { CanNotBargainDialogComponent } from '@features/dashboard/offers/can-not
 import { LoansService } from '@services/remote-api/loans.service';
 import { AntiChurnErrorDialogComponent } from '../../anti-churn-dialog/anti-churn-error-dialog/anti-churn-error-dialog.component';
 import { BankUtils, BankVo } from '@models/bank';
+import { LoggingService } from '@services/logging.service';
 
 @Component({
   selector: 'action-boxes',
@@ -44,7 +45,8 @@ export class ActionBoxesComponent implements OnInit {
     private changeBankServiceService: ChangeBankServiceService,
     public router: Router,
     public dialog: MatDialog,
-    public loansService: LoansService
+    public loansService: LoansService,
+    private loggingService: LoggingService
   ) {}
 
   ngOnInit(): void {
@@ -76,6 +78,12 @@ export class ActionBoxesComponent implements OnInit {
       return;
     }
     this.changeBankLoading = true;
+
+    this.loggingService.googleAnalyticsLog({
+      category: this.currentBank?.label ?? 'Ukjent bank',
+      action: 'Antichurn - top box',
+      label: `$top offer: ${offer.bankInfo.name}`
+    });
 
     const changeBankRef = this.dialog.open(AntiChurnDialogComponent, {
       autoFocus: false,

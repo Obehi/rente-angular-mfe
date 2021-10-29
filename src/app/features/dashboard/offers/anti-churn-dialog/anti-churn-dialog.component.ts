@@ -48,8 +48,8 @@ export class AntiChurnDialogComponent implements OnInit {
     this.changeBankServiceService.sendAntiChurnRequest().subscribe(
       () => {
         this.loggingService.googleAnalyticsLog({
-          category: 'NordeaAntiChurn',
-          action: 'anti-churn success',
+          category: this.bankName ?? 'Ukjent bank',
+          action: 'antichurn - confirmed',
           label: `$top offer: ${this.data.bestOffer.bankInfo.bank}`
         });
         this.isLoading = false;

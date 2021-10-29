@@ -208,13 +208,4 @@ export class OfferCardBigComponentBlue implements OnInit {
       }
     }
   }
-
-  public clickNordea(): void {
-    this.logginService.googleAnalyticsLog({
-      category: 'NordeaAntiChurn',
-      action: 'Click offer card anti-churn',
-      label: `top offer: ${this.offersInfo.offers.top5[0].bankInfo.name}`
-    });
-    this.offersService.pushMessage(OfferMessage.antiChurn);
-  }
 }

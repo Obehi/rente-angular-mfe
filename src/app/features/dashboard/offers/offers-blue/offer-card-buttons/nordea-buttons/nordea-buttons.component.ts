@@ -17,6 +17,7 @@ export class NordeaButtonsComponent implements OnInit {
 
   buttonColor: string;
 
+  private currentBank: BankVo | null;
   public isNordea = false;
   public isDanskeBank = false;
   constructor(
@@ -25,14 +26,11 @@ export class NordeaButtonsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const currentBank = BankUtils.getBankByName(this.offersInfo.bank);
+    this.currentBank = BankUtils.getBankByName(this.offersInfo.bank);
 
-    this.isNordea = currentBank?.name === 'NORDEA';
-    this.isDanskeBank = currentBank?.name === 'DANSKE_BANK';
+    this.isNordea = this.currentBank?.name === 'NORDEA';
+    this.isDanskeBank = this.currentBank?.name === 'DANSKE_BANK';
 
-    if (!this.offersInfo) {
-      return;
-    }
     this.buttonColor =
       this.offersInfo.bank === 'NORDEA'
         ? 'secondary-semi-wide'
@@ -52,12 +50,13 @@ export class NordeaButtonsComponent implements OnInit {
     return window.innerWidth < 600;
   }
 
-  public clickNordea(): void {
+  public clickAntiChurn(): void {
     this.loggingService.googleAnalyticsLog({
-      category: 'NordeaAntiChurn',
-      action: 'Click offer card anti-churn',
+      category: this.currentBank?.label ?? 'Ukjent bank',
+      action: 'Antichurn - offercard',
       label: `top offer: ${this.offersInfo.offers.top5[0].bankInfo.name}`
     });
+
     this.offersService.pushMessage(OfferMessage.antiChurn);
   }
 }
