@@ -25,6 +25,7 @@
         >
           <mat-icon>close</mat-icon>
         </button>
+        <img *ngIf="!searchStr" src="{{ searchIcon }}" />
       </mat-form-field>
       <mat-selection-list #banklist>
         <button

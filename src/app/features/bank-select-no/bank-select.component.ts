@@ -21,6 +21,7 @@ export class BankSelectNoComponent implements OnInit {
   banks: BankVo[];
   allBanks: BankVo[];
   sparebankIsClicked = false;
+  searchIcon = '../../../../assets/icons/search-green.svg';
 
   constructor(private router: Router, private envService: EnvService) {}
 
