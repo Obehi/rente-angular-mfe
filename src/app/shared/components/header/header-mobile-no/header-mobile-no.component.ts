@@ -19,6 +19,10 @@ export class HeaderMobileNoComponent implements OnInit {
   public animationType = getAnimationStyles();
   public isDashboard: boolean;
   public goToRoute: string;
+  public screenRef: string;
+
+  public getStartedBtn: boolean;
+  public logInBtn: boolean;
 
   constructor(
     public auth: AuthService,
@@ -31,6 +35,7 @@ export class HeaderMobileNoComponent implements OnInit {
 
   ngOnInit(): void {
     this.setDashboardListener();
+    this.initHowItWorksLink();
   }
 
   public setDashboardListener(): void {
@@ -38,31 +43,39 @@ export class HeaderMobileNoComponent implements OnInit {
       .getDashboardState()
       .asObservable()
       .subscribe((state) => {
-        console.log('Inside listener');
-
         if (state) {
           this.isDashboard = true;
-          console.log('Is DASHBOARD');
         } else {
           this.isDashboard = false;
-          console.log('NOT DASHBOARD!');
         }
       });
+  }
+
+  private initHowItWorksLink(): void {
+    if (window.innerWidth > 600 && window.innerWidth < 800) {
+      this.screenRef = 'slik-fungerer-det-p';
+    } else if (window.innerWidth < 600) {
+      this.screenRef = 'slik-fungerer-det-m';
+    } else if (window.innerWidth > 800) {
+      this.screenRef = 'slik-fungerer-det';
+    }
   }
 
   public goToTop(): void {
     if (!this.isDashboard) {
       this.router.navigateByUrl('/');
       window.scrollTo(0, 0);
-      console.log('Go to home page');
     } else {
       this.router.navigateByUrl('/dashboard/' + ROUTES_MAP.offers);
-      console.log('Go to Offers page');
     }
   }
 
   public goToHome(): void {
-    if (this.router.url === '/' || this.router.url === '/#faq') {
+    if (
+      this.router.url === '/' ||
+      this.router.url === '/#faq' ||
+      this.router.url === '/#slik-fungerer-det-m'
+    ) {
       window.scrollTo(0, 0);
     } else {
       this.router.navigateByUrl('/');
@@ -70,6 +83,24 @@ export class HeaderMobileNoComponent implements OnInit {
 
     this.toggleNav();
   }
+
+  public goToChooseBank(btn: string): void {
+    this.router.navigateByUrl('/velgbank');
+
+    if (btn === 'get-started') {
+      this.getStartedBtn = true;
+      this.logInBtn = false;
+    } else if (btn === 'log-in') {
+      this.logInBtn = true;
+      this.getStartedBtn = false;
+    }
+  }
+
+  public clearActiveLinks(): void {
+    this.getStartedBtn = false;
+    this.logInBtn = false;
+  }
+
   public toggleNav(): void {
     this.toggleNavbar = !this.toggleNavbar;
   }

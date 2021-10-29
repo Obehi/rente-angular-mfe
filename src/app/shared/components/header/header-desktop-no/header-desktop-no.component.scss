@@ -83,14 +83,16 @@ nav {
         position: relative;
         a.active-link {
           color: $primary;
+          margin-left: 40px;
         }
-        a {
+        a.non-active {
           color: white;
           text-decoration: none;
-          font-size: 14px;
+          // font-size: 14px;
           margin-left: 40px;
           &:hover {
             color: $primary;
+            cursor: pointer;
           }
         }
       }

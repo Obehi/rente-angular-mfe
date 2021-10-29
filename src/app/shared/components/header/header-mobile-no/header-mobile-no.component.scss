@@ -93,6 +93,11 @@ nav {
       }
     }
   }
+  a.non-active h3 {
+    color: white;
+    display: block;
+    margin-bottom: 40px;
+  }
   a.active-link h3 {
     color: $primary;
   }
