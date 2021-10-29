@@ -42,4 +42,12 @@ export class FooterComponent implements OnInit {
       }
     });
   }
+
+  public goToFaq(): void {
+    if (this.router.url === '/' || this.router.url === '/#faq') {
+      window.scrollTo(0, 0);
+    } else {
+      this.router.navigateByUrl('/');
+    }
+  }
 }

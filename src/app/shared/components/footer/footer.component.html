@@ -23,12 +23,9 @@
         >Om oss
       </a>
 
-      <a
-        class="link-name"
-        [routerLink]="['/faq']"
-        routerLinkActive="active-link"
-        >FAQ
-      </a>
+      <span [routerLink]="['/']" fragment="faq">
+        <a class="link-name" href="#faq">FAQ </a>
+      </span>
 
       <a
         class="link-name"
