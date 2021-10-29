@@ -13,6 +13,8 @@ import { GlobalStateService } from '@services/global-state.service';
 export class HeaderDesktopNoComponent implements OnInit {
   public toggleNavbar: boolean;
   public isSmallScreen: boolean;
+  public komIgangBtn: boolean;
+  public logInBtn: boolean;
 
   constructor(
     public auth: AuthService,
@@ -39,6 +41,23 @@ export class HeaderDesktopNoComponent implements OnInit {
     }
 
     this.toggleNav();
+  }
+
+  public goToChooseBank(btn: string): void {
+    this.router.navigateByUrl('/velgbank');
+
+    if (btn === 'kom-i-gang') {
+      this.komIgangBtn = true;
+      this.logInBtn = false;
+    } else if (btn === 'logg-inn') {
+      this.logInBtn = true;
+      this.komIgangBtn = false;
+    }
+  }
+
+  public clearActiveLinks(): void {
+    this.komIgangBtn = false;
+    this.logInBtn = false;
   }
 
   public toggleNav(): void {
