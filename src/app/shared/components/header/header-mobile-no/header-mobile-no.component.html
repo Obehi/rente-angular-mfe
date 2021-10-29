@@ -1,6 +1,6 @@
 <nav>
   <div class="inner-nav">
-    <a (click)="goToTop()" [routerLink]="['/']">
+    <a (click)="goToTop(); clearActiveLinks()" [routerLink]="['/']">
       <img
         src="../../../../assets/img/renteradar_white_logo-no.svg"
         alt="Renteradar logo"
@@ -15,26 +15,28 @@
     </div>
 
     <div class="mobile-menu mobile" *ngIf="toggleNavbar">
-      <!-- <a
+      <a
         i18n="“Headerlink|homepage@@header.home2”"
-        [routerLink]="['/']"
-        routerLinkActive="active-link"
-        [routerLinkActiveOptions]="{ exact: true }"
-        (click)="goToHome()"
+        (click)="goToChooseBank('kom-i-gang'); toggleNav()"
+        [ngClass]="komIgangBtn ? 'active-link' : 'non-active'"
         ><h3>Kom igang</h3>
-      </a> -->
+      </a>
 
       <span [routerLink]="['/']" fragment="{{ screenRef }}">
-        <a href="{{ '#' + screenRef }}" (click)="toggleNav()">
+        <a
+          href="{{ '#' + screenRef }}"
+          (click)="clearActiveLinks(); toggleNav()"
+        >
           <h3>Slik fungerer det</h3>
         </a>
       </span>
 
       <a
         *ngIf="!isLoggedIn"
-        [routerLink]="['/velgbank']"
-        routerLinkActive="active-link"
-        (click)="toggleNav()"
+        (click)="goToChooseBank('logg-inn'); toggleNav()"
+        [ngClass]="{
+          'active-link': logInBtn === true
+        }"
         ><h3 class="highlight">Logg inn</h3>
       </a>
 
