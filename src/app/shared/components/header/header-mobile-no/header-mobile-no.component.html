@@ -16,13 +16,14 @@
 
     <div class="mobile-menu mobile" *ngIf="toggleNavbar">
       <a
+        *ngIf="!isLoggedIn"
         i18n="“Headerlink|homepage@@header.home2”"
         (click)="goToChooseBank('get-started'); toggleNav()"
         [ngClass]="getStartedBtn ? 'active-link' : 'non-active'"
         ><h3>Kom igang</h3>
       </a>
 
-      <span [routerLink]="['/']" fragment="{{ screenRef }}">
+      <span *ngIf="!isLoggedIn" [routerLink]="['/']" fragment="{{ screenRef }}">
         <a
           href="{{ '#' + screenRef }}"
           (click)="clearActiveLinks(); toggleNav()"
@@ -41,7 +42,9 @@
       </a>
 
       <a [routerLink]="['/']" *ngIf="isLoggedIn" (click)="logout()"
-        ><h3 i18n="“Headerlink|log-out@@header.logOut”">Logg ut</h3>
+        ><h3 class="highlight" i18n="“Headerlink|log-out@@header.logOut”">
+          Logg ut
+        </h3>
       </a>
     </div>
   </div>
