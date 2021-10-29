@@ -33,7 +33,11 @@
           [ngClass]="logInBtn ? 'active-link' : 'non-active'"
           >Logg inn
         </a>
-        <a [routerLink]="['/']" *ngIf="isLoggedIn" (click)="auth.logout()"
+        <a
+          class="highlight non-active"
+          [routerLink]="['/']"
+          *ngIf="isLoggedIn"
+          (click)="logout()"
           >Logg ut</a
         >
       </div>
