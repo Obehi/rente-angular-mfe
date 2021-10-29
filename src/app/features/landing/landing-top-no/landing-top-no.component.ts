@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { locale } from '@config/locale/locale';
 import { EnvService } from '@services/env.service';
 import { LoggingService } from '@services/logging.service';
 @Component({
@@ -7,8 +8,10 @@ import { LoggingService } from '@services/logging.service';
   styleUrls: ['./landing-top-no.component.scss']
 })
 export class LandingTopNoComponent {
+  isSweden: boolean;
+
   get isMobile(): boolean {
-    return window.innerWidth < 600;
+    return window.innerWidth < 800;
   }
   constructor(private envService: EnvService, private logging: LoggingService) {
     this.logging.logger(
@@ -21,5 +24,23 @@ export class LandingTopNoComponent {
       this.envService.environment,
       false
     );
+    console.log('this.getVariation()');
+    console.log(this.getVariation());
+  }
+
+  public getVariation(): any {
+    if ((window as any).google_optimize === undefined) {
+      return 0;
+    }
+
+    let experimentId: string | null;
+    if (this.envService.environment.production === true) {
+      experimentId = 'lhTxK2BuQ52Fohere2-DRw';
+    } else {
+      experimentId = 'none';
+    }
+
+    const variation = (window as any).google_optimize?.get(experimentId);
+    return variation || 0;
   }
 }

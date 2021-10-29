@@ -3,4 +3,9 @@
     For denne banken har vi ingen løsning for automatisk innhentning av lånedata
     enda. Du må derfor fylle inn noen lånedetaljer etter innlogging.
   </p>
+
+  <div *ngIf="generalText">
+    <br />
+    <p class="general-text">{{ generalText }}</p>
+  </div>
 </div>

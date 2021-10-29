@@ -17,7 +17,7 @@ nav {
   background-color: $blue;
 
   .inner-nav {
-    max-width: 1010px;
+    max-width: 88vw;
     padding: 20px;
     margin: auto;
     position: relative;
@@ -28,6 +28,10 @@ nav {
     top: 50%;
     transform: translateY(-50%);
     height: 20px;
+  }
+
+  a {
+    font-weight: 400;
   }
 
   .menu-container {

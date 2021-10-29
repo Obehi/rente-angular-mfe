@@ -113,6 +113,22 @@ export class GenericHttpService {
       .pipe(catchError((error) => this.handleError(error)));
   }
 
+  public delWithParams(path: string, params: any): Observable<any> {
+    const fullPath = `${this.apiUrl}${path}`;
+
+    const httpParams: HttpParams = new HttpParams({ fromObject: params });
+
+    const httpOptions = {
+      headers: this.shapeHeaders(),
+      withCredentials: true,
+      params: httpParams
+    };
+
+    return this.http
+      .delete(fullPath, httpOptions)
+      .pipe(catchError((error) => this.handleError(error)));
+  }
+
   public del(path: string): Observable<any> {
     const fullPath = `${this.apiUrl}${path}`;
 

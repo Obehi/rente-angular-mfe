@@ -35,7 +35,6 @@ export class ActionBoxesComponent implements OnInit {
   public errorMessage: string;
   public nordeaClickSubscription: Subscription;
   public bankHasFixedLoans: boolean;
-  public allSigniCatBanks = BankUtils.getSigniCatBanks();
 
   constructor(
     private changeBankServiceService: ChangeBankServiceService,
@@ -45,8 +44,22 @@ export class ActionBoxesComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const bankVo = BankUtils.getBankByName(this.offersInfo.bank);
-    this.bankHasFixedLoans = bankVo?.hasFixedLoans === true;
+    const fixedPriceBanks = [
+      'HIMLA',
+      'BULDER',
+      'SBANKEN',
+      'NYBYGGER',
+      'BOLIGKREDITT',
+      'DIN_BANK',
+      'KLP',
+      'OBOS',
+      'NORDEA_DIRECT',
+      'AKADEMIKERNE'
+    ];
+
+    this.bankHasFixedLoans = fixedPriceBanks.some((bank) =>
+      this.offersInfo.bank.includes(bank)
+    );
   }
 
   get isMobile(): boolean {
@@ -75,8 +88,6 @@ export class ActionBoxesComponent implements OnInit {
   }
 
   public openChangeBankDialog(offer): void {
-    this.openChangeBankDialogWithOnlyPreview(offer);
-    return;
     if (
       this.changeBankLoading ||
       this.offersInfo.offerSavingsType === this.offerSavingsType.NO_SAVINGS ||
@@ -85,7 +96,10 @@ export class ActionBoxesComponent implements OnInit {
       return;
     }
 
-    if (this.offersInfo.bank === 'SWE_SEB') {
+    if (
+      this.offersInfo.bank === 'SWE_SEB' ||
+      this.offersInfo.bank === 'SWE_HANDELSBANKEN'
+    ) {
       this.openChangeBankDialogWithLocation(offer);
     } else {
       this.openChangeBankDialogWithOnlyPreview(offer);

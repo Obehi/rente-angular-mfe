@@ -1,35 +1,61 @@
-<div class="intro imb">
-  <h1 class="mobileh1">
-    Få beste <br />
-    <a [routerLink]="'/velgbank'">boliglånsrente</a>
-  </h1>
-  <h4>
-    Sammenlign boliglånet ditt mot markedets beste tilbud -
-    <span class="green">kjapt, enkelt og gratis!</span>
-  </h4>
-</div>
+<div class="co-main">
+  <div class="intro imb">
+    <h1 class="mobileh1">
+      Boliglån gjort
+      <a [routerLink]="'/velgbank'">enkelt</a>
+    </h1>
 
-<div class="cta-container">
-  <h2>Finn beste tilbud</h2>
-  <div class="buttons">
-    <rente-button
-      class="cta-button"
-      color="primary-wide-landing"
-      [routerLink]="'/velgbank'"
+    <p
+      i18n="surveillance-service|landing-page@@landing.surveillanceService"
+      class="surveillance"
     >
-      Jeg har boliglån
-    </rente-button>
-    <div class="gap"></div>
-    <rente-button
-      color="primary-wide-landing-hollow"
-      [routerLink]="'/boliglanskalkulator'"
-    >
-      Jeg skal kjøpe min første bolig
-    </rente-button>
+      Sammenlign din boliglånsrente med markedets beste tilbud og hva andre
+      betaler. 4 av 5 kan spare flere tusen i året. På 2 minutter får du full
+      oversikt og kontroll på boliglånet ditt - helt gratis!
+    </p>
+
+    <div class="cta-container" *ngIf="!isMobile">
+      <div class="buttons">
+        <rente-button
+          class="cta-button"
+          color="primary-wide-landing-new"
+          [routerLink]="'/velgbank'"
+        >
+          Prøv gratis
+        </rente-button>
+
+        <div class="gap"></div>
+
+        <!--    <rente-button
+          color="primary-wide-landing-hollow"
+          [routerLink]="'/boliglanskalkulator'"
+        >
+          Jeg skal kjøpe min første bolig
+        </rente-button> -->
+      </div>
+    </div>
   </div>
-</div>
 
-<img class="showcase" src="../../../assets/img/isometric-new-optimized.png" />
+  <div class="cta-container" *ngIf="isMobile">
+    <div class="buttons">
+      <rente-button
+        class="cta-button"
+        color="primary-wide-landing-new"
+        [routerLink]="'/velgbank'"
+      >
+        Prøv gratis
+      </rente-button>
+    </div>
+  </div>
+
+  <div *ngIf="!isSweden && !isMobile" class="rente-example">
+    <embed
+      src="./../../../../assets/img/example-desktop-info-blue.svg"
+      class="rente-image"
+    />
+  </div>
+
+  <!-- <img class="showcase" src="../../../assets/img/isometric-new-optimized.png" />
 
 <div class="data-logos">
   <a
@@ -61,6 +87,7 @@
       />
     </a>
   </div>
-</div>
+</div> -->
 
-<rente-counter></rente-counter>
+  <!-- <rente-counter></rente-counter> -->
+</div>

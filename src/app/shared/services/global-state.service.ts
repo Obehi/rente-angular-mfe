@@ -1,9 +1,26 @@
 import { Injectable } from '@angular/core';
-import { NavigationEnd, Router, Scroll } from '@angular/router';
+import {
+  NavigationEnd,
+  NavigationStart,
+  Router,
+  Scroll
+} from '@angular/router';
 import { BehaviorSubject, combineLatest, Observable, Subject } from 'rxjs';
-import { delay, filter, map, scan, share, switchMap } from 'rxjs/operators';
+import {
+  delay,
+  filter,
+  map,
+  scan,
+  share,
+  switchMap,
+  tap
+} from 'rxjs/operators';
 import { ScriptService } from '@services/script.service';
 import { BreakpointObserver } from '@angular/cdk/layout';
+import { DashboardComponent } from '@features/dashboard/dashboard.component';
+
+import { ROUTES_MAP } from '@config/routes-config';
+import { TabsService } from './tabs.service';
 @Injectable({
   providedIn: 'root'
 })
@@ -15,6 +32,7 @@ export class GlobalStateService {
   private notificationProfile = new Subject<number>();
   private isDashboard = new BehaviorSubject<boolean>(false);
   private isSignicatLogin$ = new BehaviorSubject<boolean>(false);
+  private activeTab$ = new BehaviorSubject<number>(0);
   public signicatBottomContainerIsDisplayed$ = new BehaviorSubject<boolean>(
     false
   );
@@ -41,6 +59,28 @@ export class GlobalStateService {
   }
 
   private setRouteIsChangedListener(): void {
+    this.route.events
+      .pipe(
+        filter((event) => event instanceof NavigationStart),
+
+        filter((event: NavigationEnd) => event.url != null),
+        map((event) => event.url)
+      )
+      .subscribe((url) => {
+        if (url.includes(ROUTES_MAP.offers)) {
+          this.activeTab$.next(0);
+        }
+        if (url.includes(ROUTES_MAP.loans)) {
+          this.activeTab$.next(1);
+        }
+        if (url.includes(ROUTES_MAP.property)) {
+          this.activeTab$.next(2);
+        }
+        if (url.includes(ROUTES_MAP.profile)) {
+          this.activeTab$.next(4);
+        }
+      });
+
     this.route.events
       .pipe(
         filter((event) => event instanceof NavigationEnd),
@@ -103,6 +143,10 @@ export class GlobalStateService {
     );
   }
 
+  public getCurrentActiveTab$(): Observable<number> {
+    return this.activeTab$.asObservable();
+  }
+
   public setFooterState(show: boolean): void {
     this.showFooter.next(show);
   }
@@ -155,5 +199,9 @@ export class GlobalStateService {
 
   public addNotificationProfile(): any {
     this.notificationProfile.next(1);
+  }
+
+  public isSignicatLogin(): Observable<boolean> {
+    return this.isSignicatLogin$.asObservable();
   }
 }

@@ -15,6 +15,9 @@ import { BankVo } from '@shared/models/bank';
 import { ROUTES_MAP } from '@config/routes-config';
 import { LoggingService } from '@services/logging.service';
 import { SafeUrl } from '@angular/platform-browser';
+import { TabsService } from './tabs.service';
+
+export type redirectType = 'loans' | 'offers' | 'property' | 'profile';
 
 @Injectable({
   providedIn: 'root'
@@ -55,7 +58,7 @@ export class LoginService {
     private logging: LoggingService
   ) {}
 
-  public loginWithBankAndToken(): void {
+  public loginWithBankAndToken(redirectToUrl?: redirectType): void {
     forkJoin([
       this.loansService.getLoansAndRateType(),
       this.userService.getUserInfo()
@@ -115,10 +118,7 @@ export class LoginService {
               undefined,
               this.isTinkBank
             );
-            this.router.navigate([
-              '/dashboard/' + ROUTES_MAP.offers,
-              { state: { isInterestRateSet: true } }
-            ]);
+            this.redirect(redirectToUrl);
           }
         }
       } else {
@@ -133,8 +133,48 @@ export class LoginService {
           this.isTinkBank
         );
         this.localStorageService.setItem('noLoansPresent', true);
-        this.router.navigate(['/' + ROUTES_MAP.noLoan]);
+        this.router.navigate(['/' + ROUTES_MAP.loans]);
       }
     });
+  }
+
+  public redirect(url: redirectType | undefined): void {
+    switch (url) {
+      case 'offers': {
+        this.router.navigate([
+          '/dashboard/' + ROUTES_MAP.offers,
+          { state: { isInterestRateSet: true } }
+        ]);
+        break;
+      }
+      case 'loans': {
+        this.router.navigate([
+          '/dashboard/' + ROUTES_MAP.loans,
+          { state: { isInterestRateSet: true } }
+        ]);
+        break;
+      }
+      case 'property': {
+        this.router.navigate([
+          '/dashboard/' + ROUTES_MAP.property,
+          { state: { isInterestRateSet: true } }
+        ]);
+        break;
+      }
+      case 'profile': {
+        this.router.navigate([
+          '/dashboard/' + ROUTES_MAP.profile,
+          { state: { isInterestRateSet: true } }
+        ]);
+        break;
+      }
+      default: {
+        this.router.navigate([
+          '/dashboard/' + ROUTES_MAP.offers,
+          { state: { isInterestRateSet: true } }
+        ]);
+        break;
+      }
+    }
   }
 }

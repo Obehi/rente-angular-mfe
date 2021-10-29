@@ -7,7 +7,7 @@
   top: 5px;
   font-size: 14px;
   p {
-    color: white !important;
+    color: white;
     font-weight: 400;
   }
 }
@@ -25,7 +25,7 @@
 }
 
 p {
-  color: #ffffff !important;
+  color: #ffffff;
 }
 
 img {
@@ -93,24 +93,9 @@ img {
       }
 
       .mat-tab-label-active p {
-        color: $primary;
+        color: $primary !important;
       }
 
-      .mat-tab-label-active .rente-icon {
-        content: url('../../../../../assets/icons/rente-logo-icon-green.svg');
-      }
-
-      .mat-tab-label-active .graph-icon {
-        content: url('../../../../../assets/icons/graph-icon-green.svg');
-      }
-
-      .mat-tab-label-active .house-icon {
-        content: url('../../../../../assets/icons/house-icon-green.svg');
-      }
-
-      .mat-tab-label-active .profile-icon {
-        content: url('../../../../../assets/icons/profile-icon-green.svg');
-      }
       .mat-tab-links {
         display: block;
         transform: unset !important;

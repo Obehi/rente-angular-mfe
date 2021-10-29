@@ -31,9 +31,6 @@
   <translation id="header.logOut2”" desc="log-out" meaning="“Headerlink"/>
   <translation id="textArea.message”" desc="text-area" meaning="“message">Meddelande</translation>
   <translation id="popup.privacy.header”" desc="intro" meaning="“header">Din data, dina val</translation>
-  <translation id="popup.privacy.text”" desc="text" meaning="“description">
-      Ränteradar.se ägs av Ränteradar Sverige AB som är ansvariga för din data.<ph name="LINE_BREAK"><ex>&lt;br&gt;</ex>&lt;br&gt;</ph>
-      Vi bryr oss om din integritet. Vi använder din data till att förbättra och anpassa hur tjänsterna ser ut och fungerar.</translation>
   <translation id="popup.privacy.option1”" desc="more" meaning="“button">Läs mer</translation>
   <translation id="popup.privacy.option2”" desc="accept" meaning="“button">Jag förstår</translation>
   <translation id="landing.title" desc="landing-page" meaning="title">
@@ -902,4 +899,11 @@ Kolla gärna att adressen är korrekt eller välj <ph name="START_BOLD_TEXT"><ex
       <ph name="CLOSE_PARAGRAPH"><ex>&lt;/p&gt;</ex>&lt;/p&gt;</ph></translation>
   <translation id="house.component.valuetotal" desc="value" meaning="“house">Totalt värde:</translation>
   <translation id="house.component.millions" desc="value" meaning="“house"/>
+  <translation id="change.bank.infoNominal”" desc="change-bank" meaning="                       “info-nominal-interest"/>
+  <translation id="change.bank.infoEffective”" desc="change-bank" meaning="                       “info-effective-interest"/>
+  <translation id="change.bank.infoContact.phone”" desc="change-bank" meaning="                   “info-contact-phone"/>
+  <translation id="change.bank.infoConfirmation”" desc="change-bank" meaning="                   “info-confirmation"/>
+  <translation id="info.confirmation.wrong-zip" desc="info-confirmation" meaning="“empty">Ogiltig e-post</translation>
+  <translation id="popup.privacy.text”" desc="text" meaning="“description">Ränteradar.se ägs av Ränteradar Sverige AB som är ansvariga för din data. Vi bryr oss om ditt personvern. Vi bryr oss om din integritet. Vi använder din data till att förbättra och anpassa hur tjänsterna ser ut och fungerar.
+        <ph name="START_LINK"><ex>&lt;a&gt;</ex>&lt;a&gt;</ph>Läs mer<ph name="CLOSE_LINK"><ex>&lt;/a&gt;</ex>&lt;/a&gt;</ph></translation>
 </translationbundle>

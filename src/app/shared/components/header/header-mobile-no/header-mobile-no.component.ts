@@ -4,6 +4,9 @@ import { AuthService } from '@services/remote-api/auth.service';
 import { MessageBannerService } from '@services/message-banner.service';
 import { getAnimationStyles } from '@shared/animations/animationEnums';
 import { CustomLangTextService } from '@shared/services/custom-lang-text.service';
+import { GlobalStateService } from '@services/global-state.service';
+import { ROUTES_MAP } from '@config/routes-config';
+import { TabsService } from '@services/tabs.service';
 
 @Component({
   selector: 'rente-header-mobile',
@@ -14,17 +17,48 @@ export class HeaderMobileNoComponent implements OnInit {
   public toggleNavbar: boolean;
   public isSmallScreen: boolean;
   public animationType = getAnimationStyles();
+  public isDashboard: boolean;
+  public goToRoute: string;
+
   constructor(
     public auth: AuthService,
     private router: Router,
     private messageService: MessageBannerService,
-    private customLangService: CustomLangTextService
+    private customLangService: CustomLangTextService,
+    public globalStateService: GlobalStateService,
+    public tabsService: TabsService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.setDashboardListener();
+  }
+
+  public setDashboardListener(): void {
+    this.globalStateService
+      .getDashboardState()
+      .asObservable()
+      .subscribe((state) => {
+        console.log('Inside listener');
+
+        if (state) {
+          this.isDashboard = true;
+          console.log('Is DASHBOARD');
+        } else {
+          this.isDashboard = false;
+          console.log('NOT DASHBOARD!');
+        }
+      });
+  }
 
   public goToTop(): void {
-    window.scrollTo(0, 0);
+    if (!this.isDashboard) {
+      this.router.navigateByUrl('/');
+      window.scrollTo(0, 0);
+      console.log('Go to home page');
+    } else {
+      this.router.navigateByUrl('/dashboard/' + ROUTES_MAP.offers);
+      console.log('Go to Offers page');
+    }
   }
 
   public goToHome(): void {

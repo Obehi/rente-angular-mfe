@@ -32,9 +32,46 @@ footer {
   }
 
   .inner-footer {
+    .look-around {
+      h2 {
+        color: $stian-blue;
+        margin-bottom: 1rem;
+      }
+    }
     margin: auto;
-    @media (max-width: 600px) {
-      margin: 40px 0px;
+
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+
+      @media (min-width: 800px) {
+        flex-direction: row;
+        justify-content: center;
+      }
+
+      a {
+        white-space: nowrap;
+        font-weight: 500;
+        margin-top: 3rem;
+        font-size: 1rem;
+        text-decoration: none;
+        color: $stian-blue;
+        margin: 1rem 0;
+        @media (min-width: 800px) {
+          margin: 0 1rem;
+        }
+      }
+    }
+
+    .items {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-gap: 15px;
+      margin-top: 5rem;
+
+      @media (min-width: 800px) {
+        margin-top: 7rem;
+      }
     }
 
     .temp-swedish-policy {
@@ -58,10 +95,7 @@ footer {
 
     @media (min-width: 600px) {
       max-width: 1010px;
-      grid-template-columns: 1fr 1fr;
-      display: grid;
-      grid-column-end: span 3;
-      grid-gap: 40px;
+
       text-align: center;
       font-size: 14px;
       padding: 2rem 2rem 1rem;
@@ -88,9 +122,6 @@ footer {
     }
 
     @media (max-width: 600px) {
-      grid-template-columns: 1fr 1fr;
-      display: grid;
-      grid-gap: 15px;
       text-align: center;
       font-size: 14px;
       .item {
@@ -143,7 +174,7 @@ footer {
         &.nordea-direct {
           width: 196px;
           margin: unset;
-          margin-left: 35px;
+          margin-left: 40px;
         }
       }
 
@@ -201,4 +232,9 @@ footer {
   img {
     width: 160px;
   }
+}
+
+.bulder-logo {
+  padding-top: 10px;
+  padding-left: 17px;
 }

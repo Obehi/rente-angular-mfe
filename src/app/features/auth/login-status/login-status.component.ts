@@ -121,7 +121,7 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
     if (this.bank.name === 'DNB' || BankUtils.isEikaBank(this.bank.name)) {
       this.thirdStepTimer = 39;
     } else if (this.bank.isSb1Bank) {
-      this.thirdStepTimer = 2;
+      this.thirdStepTimer = 39;
     } else {
       this.thirdStepTimer = 25;
     }
@@ -130,8 +130,8 @@ export class LoginStatusComponent implements OnInit, OnDestroy {
 
     if (this.isSB1Bank) {
       this.firstStepTimer = 40;
-      this.bankIdTimeoutTime = 130;
-      this.maxConnectionTime = 2;
+      this.bankIdTimeoutTime = 145;
+      this.maxConnectionTime = 145;
     }
     if (this.bank.name === 'DNB') {
       this.bankIdTimeoutTime = 130;

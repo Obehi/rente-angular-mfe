@@ -1,6 +1,6 @@
 <nav>
   <div class="inner-nav">
-    <a (click)="goToTop()" [routerLink]="['/']">
+    <a (click)="goToTop()">
       <img
         src="../../../../assets/img/renteradar_white_logo-no.svg"
         alt="Renteradar logo"
@@ -23,14 +23,7 @@
         (click)="goToHome()"
         ><h3>Hjem</h3>
       </a>
-      <a
-        i18n="“Headerlink|my-page@@header.myPage2”"
-        *ngIf="isLoggedIn"
-        [routerLink]="['/dashboard/tilbud']"
-        routerLinkActive="active-link"
-        (click)="toggleNav()"
-        ><h3 class="highlight">Min side</h3>
-      </a>
+
       <a
         *ngIf="!isLoggedIn"
         [routerLink]="['/velgbank']"

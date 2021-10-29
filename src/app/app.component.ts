@@ -6,11 +6,13 @@ import { TitleService } from '@services/title.service';
 import { LocalStorageService } from '@services/local-storage.service';
 import { ROUTES_MAP } from '@config/routes-config';
 import { CookieService } from 'ngx-cookie-service';
+import { SlideUp } from '@shared/animations/slide-up';
 
 @Component({
   selector: 'rente-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  animations: [SlideUp]
 })
 export class AppComponent implements OnInit {
   public static CookiesAcceptedKey = 'isCookiesAccepted';

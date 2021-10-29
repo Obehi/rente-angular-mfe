@@ -37,6 +37,15 @@ export const API_URL_MAP = {
   },
   loan: {
     base: '/loan',
+    admin: {
+      base: '/admin',
+      bankid: {
+        base: '/bank-id',
+        loan: '/loan',
+        login: '/login',
+        new: '/new'
+      }
+    },
     confirmation: '/confirmation',
     stat: {
       base: '/stat',
@@ -89,7 +98,9 @@ export const API_URL_MAP = {
     localOffers: '/localOffers',
     remainingYears: '/remainingYears',
     outstandingDebt: '/outstandingDebt',
+    nominalRate: '/nominalRate',
     preferences: '/preferences',
+    product: '/product',
     membershipTypes: '/membership-types',
     address: '/address',
     size: '/size',

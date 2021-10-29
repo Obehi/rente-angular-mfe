@@ -1,0 +1,140 @@
+<div class="summary pad" *ngIf="loans.length > 1">
+  <h3 class="title">Sammendrag av lån</h3>
+  <div class="summary-box">
+    <div class="four-container">
+      <div class="tab-container">
+        <p>Utestående lån</p>
+        <div class="bvalue">
+          <h3>
+            {{ loansData.totalOutstandingDebt / 1000000 | number: '1.3-3' }}
+            mill
+          </h3>
+        </div>
+      </div>
+      <div class="tab-container">
+        <p>Effektiv rente</p>
+
+        <div class="bvalue">
+          <h3>{{ loansData.totalEffectiveRate | number: '1.2-2' }} %</h3>
+        </div>
+      </div>
+      <div class="tab-container">
+        <p>Totale renter og gebyrer</p>
+        <div class="bvalue">
+          <h3>
+            {{
+              loansData.aggregatedTotalInterestAndFee == null
+                ? 'N/A'
+                : (loansData.aggregatedTotalInterestAndFee | number: '1.0-0') +
+                  ',-'
+            }}
+          </h3>
+        </div>
+      </div>
+      <div class="tab-container">
+        <p>Renter & gebyrer per år</p>
+        <div class="bvalue">
+          <h3>
+            {{
+              loansData.aggregatedTotalInterestAndFeeByRemainingYears == null
+                ? 'N/A'
+                : (loansData.aggregatedTotalInterestAndFeeByRemainingYears
+                    | number: '1.0-0') + ',-'
+            }}
+          </h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  class="summary"
+  [ngClass]="{
+    'one-loan': loans.length === 1
+  }"
+>
+  <div class="blue-box-list main-container">
+    <div *ngFor="let loan of loans">
+      <div *ngIf="loans.length === 1" class="general-title">
+        <h3>Mitt lån</h3>
+      </div>
+      <div class="loan-list">
+        <div class="content-blue-box">
+          <div class="loan-type">
+            <h3>{{ loan.loanName }}</h3>
+          </div>
+          <div class="all-text">
+            <div class="loan-info">
+              <div>
+                <p>Utestående lån:</p>
+              </div>
+              <div>
+                <h3 class="h3-loan-value">
+                  {{ loan.outstandingDebt / 1000000 | number: '1.3-3' }}
+                  mill
+                </h3>
+              </div>
+            </div>
+            <div class="loan-info">
+              <div>
+                <p>Løpetid:</p>
+              </div>
+              <div>
+                <h3>{{ loan.remainingYears | number: '1.2-2' }} år</h3>
+              </div>
+            </div>
+
+            <div class="loan-info">
+              <div>
+                <p>Effektiv rente:</p>
+              </div>
+              <div>
+                <h3>{{ loan.effectiveRate | number: '1.2-2' }} %</h3>
+              </div>
+            </div>
+
+            <div class="loan-info">
+              <div>
+                <p>Nominell rente:</p>
+              </div>
+              <div>
+                <h3>{{ loan.nominalRate | number: '1.2-2' }} %</h3>
+              </div>
+            </div>
+          </div>
+
+          <div class="all-text">
+            <div class="total-cost">
+              <div class="double-container">
+                <div class="first-box move-first-box">
+                  <p class="box-label">Totale renter og gebyrer</p>
+                  <div class="bvalue">
+                    {{
+                      loan.totalInterestAndTotalFee == null
+                        ? 'N/A'
+                        : (loan.totalInterestAndTotalFee | number: '1.0-0') +
+                          ',-'
+                    }}
+                  </div>
+                </div>
+
+                <div class="first-box move-sec-box">
+                  <p class="box-label">Renter & gebyrer per år</p>
+                  <div class="bvalue">
+                    {{
+                      loan.totalInterestAndTotalFeeByRemainingYears == null
+                        ? 'N/A'
+                        : (loan.totalInterestAndTotalFeeByRemainingYears
+                            | number: '1.0-0') + ',-'
+                    }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
