@@ -3,7 +3,6 @@ import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { MetaService } from '@shared/services/meta.service';
 import { TitleService } from '@services/title.service';
-import { LocalStorageService } from '@services/local-storage.service';
 import { ROUTES_MAP } from '@config/routes-config';
 import { CookieService } from 'ngx-cookie-service';
 import { SlideUp } from '@shared/animations/slide-up';
@@ -25,7 +24,6 @@ export class AppComponent implements OnInit {
     private route: ActivatedRoute,
     private metaService: MetaService,
     private titleService: TitleService,
-    private localStorageService: LocalStorageService,
     private cookieService: CookieService
   ) {}
 
