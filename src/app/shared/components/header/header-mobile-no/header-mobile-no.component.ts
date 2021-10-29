@@ -15,6 +15,7 @@ export class HeaderMobileNoComponent implements OnInit {
   public toggleNavbar: boolean;
   public isSmallScreen: boolean;
   public animationType = getAnimationStyles();
+  public screenRef: string;
   constructor(
     public auth: AuthService,
     private router: Router,
@@ -23,14 +24,24 @@ export class HeaderMobileNoComponent implements OnInit {
     public globalStateService: GlobalStateService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (window.innerWidth > 600 && window.innerWidth < 800) {
+      this.screenRef = 'slik-fungerer-det-p';
+    } else if (window.innerWidth < 600) {
+      this.screenRef = 'slik-fungerer-det-m';
+    }
+  }
 
   public goToTop(): void {
     window.scrollTo(0, 0);
   }
 
   public goToHome(): void {
-    if (this.router.url === '/' || this.router.url === '/#faq') {
+    if (
+      this.router.url === '/' ||
+      this.router.url === '/#faq' ||
+      this.router.url === '/#slik-fungerer-det-m'
+    ) {
       window.scrollTo(0, 0);
     } else {
       this.router.navigateByUrl('/');
@@ -41,6 +52,14 @@ export class HeaderMobileNoComponent implements OnInit {
   public toggleNav(): void {
     this.toggleNavbar = !this.toggleNavbar;
   }
+
+  // public scrollToHowItWorks(): void {
+  //   document.getElementById('slik-fungerer-det-m')?.scrollIntoView({
+  //     behavior: 'smooth',
+  //     block: 'start',
+  //     inline: 'start'
+  //   });
+  // }
 
   get isLoggedIn(): boolean {
     return this.auth.isLoggedIn;
