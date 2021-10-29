@@ -17,6 +17,7 @@ export class LandingComponent implements OnInit {
   ngOnInit(): void {}
 
   public isNewLandingVersion(): boolean {
+    return true;
     if ((window as any).google_optimize === undefined) {
       // console.log('couldnt get optimize');
       return false;
@@ -30,7 +31,7 @@ export class LandingComponent implements OnInit {
       experimentId = 'A6Fvld2GTAG3VE95NWV1Hw';
     }
 
-    let variation = (window as any).google_optimize.get(experimentId);
+    const variation = (window as any).google_optimize.get(experimentId);
     console.log((window as any).google_optimize.get(experimentId));
 
     return variation !== 0;

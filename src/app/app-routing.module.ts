@@ -5,7 +5,6 @@ import { AuthSvMockupComponent } from '@features/auth-sv-mockup/auth-sv-mockup.c
 import { ContactUsComponent } from '@features/contact-us/contact-us.component';
 import { AboutCookiesComponent } from '@features/cookies/cookies.component';
 import { EmailPreferencesComponent } from '@features/email-preferences/email-preferences.component';
-
 import { LandingComponent } from '@features/landing/landing.component';
 import { PageNotFoundComponent } from '@features/page-not-found/page-not-found.component';
 import { PrivacyComponent } from '@features/privacy/privacy.component';

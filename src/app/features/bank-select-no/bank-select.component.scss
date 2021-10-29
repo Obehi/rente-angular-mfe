@@ -3,6 +3,16 @@
 ::ng-deep .mat-input-wrapper {
   display: none !important;
 }
+
+.sub-header {
+  margin-bottom: 1em;
+  text-align: center;
+}
+.link {
+  color: $primary;
+  font-weight: 400;
+  text-decoration: none;
+}
 .banks {
   max-width: 600px;
   margin: auto;

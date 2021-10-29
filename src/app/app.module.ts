@@ -59,6 +59,7 @@ import { GetNotifiedLangGenericComponent } from './local-components/components-o
 //
 import { LandingTopLangGenericComponent } from './local-components/components-output';
 import { LandingTopNoOldComponent } from './features/landing/landing-top-no-old/landing-top-no-old.component';
+import { LandingTopNoComponent } from './features/landing/landing-top-no/landing-top-no.component';
 //
 import { LandingOldComponent } from './features/landing/landing-old/landing-old.component';
 import { LandingNewComponent } from './features/landing/landing-new/landing-new.component';
@@ -86,6 +87,7 @@ registerLocaleData(localeNo);
     LandingComponent,
     LandingTopLangGenericComponent,
     LandingTopNoOldComponent,
+    LandingTopNoComponent,
     LandingNewComponent,
     LandingOldComponent,
     LandingTopSvComponent,
