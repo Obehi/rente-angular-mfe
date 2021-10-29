@@ -57,6 +57,9 @@ import { InitConfirmationLangGenericComponent } from './local-components/compone
 import { GetNotifiedLangGenericComponent } from './local-components/components-output';
 import { LandingTopLangGenericComponent } from './local-components/components-output';
 
+// Providers
+import { CookieService } from 'ngx-cookie-service';
+
 registerLocaleData(localeNo);
 
 @NgModule({
@@ -107,6 +110,7 @@ registerLocaleData(localeNo);
   ],
   providers: [
     EnvService,
+    [CookieService],
     {
       provide: APP_INITIALIZER,
       multi: true,

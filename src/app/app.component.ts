@@ -5,6 +5,7 @@ import { MetaService } from '@shared/services/meta.service';
 import { TitleService } from '@services/title.service';
 import { LocalStorageService } from '@services/local-storage.service';
 import { ROUTES_MAP } from '@config/routes-config';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'rente-root',
@@ -22,7 +23,8 @@ export class AppComponent implements OnInit {
     private route: ActivatedRoute,
     private metaService: MetaService,
     private titleService: TitleService,
-    private localStorageService: LocalStorageService
+    private localStorageService: LocalStorageService,
+    private cookieService: CookieService
   ) {}
 
   onActivate(): void {
@@ -42,7 +44,7 @@ export class AppComponent implements OnInit {
       }
     });
 
-    if (!this.localStorageService.getItem(AppComponent.CookiesAcceptedKey)) {
+    if (!this.cookieService.get(AppComponent.CookiesAcceptedKey)) {
       this.showCookieAcc = true;
     }
   }
@@ -67,8 +69,11 @@ export class AppComponent implements OnInit {
   }
 
   acceptCookies(): void {
-    this.localStorageService.setItem(AppComponent.CookiesAcceptedKey, true);
     this.showCookieAcc = false;
+    this.cookieService.set(AppComponent.CookiesAcceptedKey, 'true', {
+      expires: 30,
+      sameSite: 'Lax'
+    });
   }
 
   readMore(): void {
