@@ -26,6 +26,9 @@ export class NordeaButtonsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    if (!this.offersInfo) {
+      return;
+    }
     this.currentBank = BankUtils.getBankByName(this.offersInfo.bank);
 
     this.isNordea = this.currentBank?.name === 'NORDEA';
@@ -52,7 +55,7 @@ export class NordeaButtonsComponent implements OnInit {
 
   public clickAntiChurn(): void {
     this.loggingService.googleAnalyticsLog({
-      category: this.currentBank?.label ?? 'Ukjent bank',
+      category: `Antichurn ${this.currentBank?.label ?? 'Ukjent bank'}`,
       action: 'Antichurn - offercard',
       label: `top offer: ${this.offersInfo.offers.top5[0].bankInfo.name}`
     });

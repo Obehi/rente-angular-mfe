@@ -80,9 +80,9 @@ export class ActionBoxesComponent implements OnInit {
     this.changeBankLoading = true;
 
     this.loggingService.googleAnalyticsLog({
-      category: this.currentBank?.label ?? 'Ukjent bank',
+      category: `Antichurn ${this.currentBank?.label ?? 'Ukjent bank'}`,
       action: 'Antichurn - top box',
-      label: `$top offer: ${offer.bankInfo.name}`
+      label: `top offer: ${offer.bankInfo.name}`
     });
 
     const changeBankRef = this.dialog.open(AntiChurnDialogComponent, {

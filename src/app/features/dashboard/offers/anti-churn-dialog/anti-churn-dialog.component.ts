@@ -37,6 +37,11 @@ export class AntiChurnDialogComponent implements OnInit {
     return bank?.label;
   }
 
+  get bestOfferbankName(): string | undefined {
+    const bank = BankUtils.getBankByName(this.data.bestOffer.bankInfo.bank);
+    return bank?.name;
+  }
+
   ngAfterViewInit(): void {
     // timeout required to avoid the dreaded 'ExpressionChangedAfterItHasBeenCheckedError'
     setTimeout(() => (this.disableAnimation = false));
@@ -48,9 +53,9 @@ export class AntiChurnDialogComponent implements OnInit {
     this.changeBankServiceService.sendAntiChurnRequest().subscribe(
       () => {
         this.loggingService.googleAnalyticsLog({
-          category: this.bankName ?? 'Ukjent bank',
+          category: `Antichurn ${this.bankName ?? 'Ukjent bank'}`,
           action: 'antichurn - confirmed',
-          label: `$top offer: ${this.data.bestOffer.bankInfo.bank}`
+          label: `top offer: ${this.data.bestOffer.bankInfo.bank}`
         });
         this.isLoading = false;
         this.closeState = 'procced-antichurn';

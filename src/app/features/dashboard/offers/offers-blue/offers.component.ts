@@ -237,13 +237,6 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
     }
     this.changeBankLoading = true;
 
-    if (shouldLog) {
-      this.logginService.googleAnalyticsLog({
-        category: 'NordeaAntiChurn',
-        action: 'Click top button anti-churn',
-        label: `top offer: ${this.offersInfo.offers.top5[0].bankInfo.name}`
-      });
-    }
     const changeBankRef = this.dialog.open(AntiChurnDialogComponent, {
       autoFocus: false,
       data: {

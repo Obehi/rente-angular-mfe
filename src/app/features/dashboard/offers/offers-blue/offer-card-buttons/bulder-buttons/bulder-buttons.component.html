@@ -1,5 +1,5 @@
 <div
-  [ngClass]="{ buttons: !isNordea, 'buttons-nordea': isNordea }"
+  [ngClass]="{ buttons: !isAntichurnOn, 'buttons-nordea': isAntichurnOn }"
   *ngIf="isMobile"
 >
   <rente-button
@@ -15,11 +15,15 @@
     {{ offerCardService.getOfferButtonText(offer) }}
   </rente-button>
 
-  <nordea-buttons *ngIf="isNordea"></nordea-buttons>
+  <nordea-buttons
+    [offer]="offer"
+    [offersInfo]="offersInfo"
+    *ngIf="isAntichurnOn"
+  ></nordea-buttons>
 </div>
 
 <div
-  [ngClass]="{ buttons: !isNordea, 'buttons-nordea': isNordea }"
+  [ngClass]="{ buttons: !isAntichurnOn, 'buttons-nordea': isAntichurnOn }"
   *ngIf="!isMobile"
 >
   <rente-button
@@ -35,5 +39,9 @@
     {{ offerCardService.getOfferButtonText(offer) }}
   </rente-button>
 
-  <nordea-buttons *ngIf="isNordea"></nordea-buttons>
+  <nordea-buttons
+    [offer]="offer"
+    [offersInfo]="offersInfo"
+    *ngIf="isAntichurnOn"
+  ></nordea-buttons>
 </div>
