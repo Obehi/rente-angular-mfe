@@ -17,6 +17,12 @@ export class LandingComponent implements OnInit {
   ngOnInit(): void {}
 
   public isNewLandingVersion(): boolean {
+    /** ********* Remove before prod ************ */
+    /** ********* Remove before prod ************ */
+    /** ********* Remove before prod ************ */
+    /** ********* Remove before prod ************ */
+    /** ********* Remove before prod ************ */
+    /** ********* Remove before prod ************ */
     return true;
     if ((window as any).google_optimize === undefined) {
       // console.log('couldnt get optimize');
