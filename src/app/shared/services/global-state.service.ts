@@ -32,7 +32,7 @@ export class GlobalStateService {
   private notificationProfile = new Subject<number>();
   private isDashboard = new BehaviorSubject<boolean>(false);
   private isSignicatLogin$ = new BehaviorSubject<boolean>(false);
-  public activeTab$ = new BehaviorSubject<number>(0);
+  private activeTab$ = new BehaviorSubject<number>(0);
   public signicatBottomContainerIsDisplayed$ = new BehaviorSubject<boolean>(
     false
   );
@@ -50,8 +50,7 @@ export class GlobalStateService {
   constructor(
     private route: Router,
     private ScriptService: ScriptService,
-    private breakpointObserver: BreakpointObserver,
-    private tabsService: TabsService
+    private breakpointObserver: BreakpointObserver
   ) {
     this.showFooter = new Subject<boolean>();
 
@@ -81,8 +80,6 @@ export class GlobalStateService {
           this.activeTab$.next(4);
         }
       });
-
-    this.tabsService.activeLinkIndexAsObservable().subscribe(() => {});
 
     this.route.events
       .pipe(
@@ -144,6 +141,10 @@ export class GlobalStateService {
         );
       }
     );
+  }
+
+  public getCurrentActiveTab$(): Observable<number> {
+    return this.activeTab$.asObservable();
   }
 
   public setFooterState(show: boolean): void {

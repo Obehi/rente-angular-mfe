@@ -1,14 +1,11 @@
 <div class="dash-tabs-blue-wrapper">
   <div class="dash-tabs-blue">
-    <h1 style="color: '#fff'">
-      {{ globalStateService.activeTab$ | async }}
-    </h1>
     ​
     <div class="inner">
       <nav mat-tab-nav-bar class="dash-tab">
         <a
           mat-tab-link
-          [active]="(globalStateService.activeTab$ | async) == 0"
+          [active]="(globalStateService.getCurrentActiveTab$() | async) == 0"
           [routerLink]="'./' + routesMap.offers"
           routerLinkActive="active"
           [routerLinkActiveOptions]="{ exact: true }"
@@ -23,13 +20,13 @@
               class="rente-icon"
               src="../../../assets/icons/rente-logo-icon-white.svg"
               alt="Banktilbud"
-              *ngIf="(globalStateService.activeTab$ | async) !== 0"
+              *ngIf="(globalStateService.getCurrentActiveTab$() | async) !== 0"
             />
             <img
               class="rente-icon"
               src="../../../assets/icons/rente-logo-icon-green.svg"
               alt="Banktilbud"
-              *ngIf="(globalStateService.activeTab$ | async) == 0"
+              *ngIf="(globalStateService.getCurrentActiveTab$() | async) == 0"
             />
             <p i18n="“title|offer@@dashboard.loggedIn.offer”">Tilbud</p>
           </div>
@@ -38,7 +35,7 @@
       <nav mat-tab-nav-bar class="dash-tab">
         <a
           mat-tab-link
-          [active]="(globalStateService.activeTab$ | async) == 1"
+          [active]="(globalStateService.getCurrentActiveTab$() | async) == 1"
           [routerLink]="'./' + routesMap.loans"
           routerLinkActive="active"
           [routerLinkActiveOptions]="{ exact: true }"
@@ -48,13 +45,13 @@
               class="graph-icon"
               src="../../../assets/icons/graph-icon-white.svg"
               alt="Mine lån"
-              *ngIf="(globalStateService.activeTab$ | async) !== 1"
+              *ngIf="(globalStateService.getCurrentActiveTab$() | async) !== 1"
             />
             <img
               class="graph-icon"
-              src="../../../assets/icons/graph-icon-gren.svg"
+              src="../../../assets/icons/graph-icon-green.svg"
               alt="Mine lån"
-              *ngIf="(globalStateService.activeTab$ | async) == 1"
+              *ngIf="(globalStateService.getCurrentActiveTab$() | async) == 1"
             />
             <p i18n="“title2|my-loans@@dashboard.loggedIn.myLoans”">Mine lån</p>
           </div>
@@ -63,7 +60,7 @@
       <nav mat-tab-nav-bar class="dash-tab">
         <a
           mat-tab-link
-          [active]="(globalStateService.activeTab$ | async) == 2"
+          [active]="(globalStateService.getCurrentActiveTab$() | async) == 2"
           [routerLink]="'./' + routesMap.property"
           routerLinkActive="active"
           [routerLinkActiveOptions]="{ exact: true }"
@@ -73,13 +70,13 @@
               class="house-icon"
               src="../../../assets/icons/house-icon-white.svg"
               alt="Bolig"
-              *ngIf="(globalStateService.activeTab$ | async) !== 2"
+              *ngIf="(globalStateService.getCurrentActiveTab$() | async) !== 2"
             />
             <img
               class="house-icon"
               src="../../../assets/icons/house-icon-green.svg"
               alt="Bolig"
-              *ngIf="(globalStateService.activeTab$ | async) == 2"
+              *ngIf="(globalStateService.getCurrentActiveTab$() | async) == 2"
             />
             <p i18n="“title3|house@@dashboard.loggedIn.house”">Bolig</p>
           </div>
@@ -88,7 +85,7 @@
       <nav mat-tab-nav-bar class="dash-tab">
         <a
           mat-tab-link
-          [active]="(globalStateService.activeTab$ | async) == 4"
+          [active]="(globalStateService.getCurrentActiveTab$() | async) == 4"
           [routerLink]="'./' + routesMap.profile"
           routerLinkActive="active"
           [routerLinkActiveOptions]="{ exact: true }"
@@ -103,13 +100,13 @@
               class="profile-icon"
               src="../../../assets/icons/profile-icon-white.svg"
               alt="Profil"
-              *ngIf="(globalStateService.activeTab$ | async) !== 4"
+              *ngIf="(globalStateService.getCurrentActiveTab$() | async) !== 4"
             />
             <img
               class="profile-icon"
               src="../../../assets/icons/profile-icon-green.svg"
               alt="Profil"
-              *ngIf="(globalStateService.activeTab$ | async) == 4"
+              *ngIf="(globalStateService.getCurrentActiveTab$() | async) == 4"
             />
             <p i18n="“title4|profile@@dashboard.loggedIn.profile”">Profil</p>
           </div>
