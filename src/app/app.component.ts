@@ -71,7 +71,7 @@ export class AppComponent implements OnInit {
   acceptCookies(): void {
     this.showCookieAcc = false;
     this.cookieService.set(AppComponent.CookiesAcceptedKey, 'true', {
-      expires: 30,
+      expires: 365,
       sameSite: 'Lax'
     });
   }
