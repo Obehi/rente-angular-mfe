@@ -77,11 +77,16 @@
         </div>
 
         <div *ngIf="!isSweden" class="item img">
-          <img
+          <embed
+            type="image/svg+xml"
+            src="../../../assets/img/example-desktop-info-blue.svg"
+            class="embed-image"
+          />
+          <!--  <img
             [lazyLoad]="'../../../assets/img/example-desktop-info-blue.svg'"
             offset="600"
             alt="Screenshot example"
-          />
+          /> -->
         </div>
         <div *ngIf="!isSweden" class="item img">
           <img
