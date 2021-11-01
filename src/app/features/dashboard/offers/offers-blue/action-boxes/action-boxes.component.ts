@@ -51,11 +51,11 @@ export class ActionBoxesComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentBank = BankUtils.getBankByName(this.offersInfo.bank);
-    this.bankHasFixedLoans = this.currentBank?.hasFixedLoans === true;
 
     this.isNordea = this.currentBank?.name === 'NORDEA';
     this.isDanskeBank = this.currentBank?.name === 'DANSKE_BANK';
 
+    // this.bankHasFixedLoans = this.currentBank?.hasFixedLoans === true;
     this.setupFixedPriceBanks();
   }
 
