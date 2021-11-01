@@ -231,7 +231,7 @@ export class ActionBoxesComponent implements OnInit {
         break;
       }
       case 'procced-antichurn': {
-        this.router.navigate(['/dashboard/' + ROUTES_MAP_NO.bargainNordea], {
+        this.router.navigate(['/dashboard/' + ROUTES_MAP_NO.bargainAntiChurn], {
           state: {
             isError: false,
             fromChangeBankDialog: true,

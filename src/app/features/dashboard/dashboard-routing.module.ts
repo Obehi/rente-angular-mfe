@@ -37,7 +37,7 @@ const routes: Routes = [
         component: BargainSuccessComponent
       },
       {
-        path: ROUTES_MAP_NO.bargainNordea,
+        path: ROUTES_MAP_NO.bargainAntiChurn,
         component: AntiChurnSuccessComponent
       },
 

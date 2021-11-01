@@ -33,6 +33,7 @@ import {
 import { NotificationService } from '@services/notification.service';
 import { MessageBannerService } from '@services/message-banner.service';
 import { getAnimationStyles } from '@shared/animations/animationEnums';
+import { BankUtils } from '@models/bank';
 @Component({
   selector: 'rente-offers-blue',
   templateUrl: './offers.component.html',
@@ -267,8 +268,14 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
         break;
       }
       case 'procced-antichurn': {
-        this.router.navigate(['/dashboard/' + ROUTES_MAP_NO.bargainNordea], {
-          state: { isError: false, fromChangeBankDialog: true }
+        const bankVo = BankUtils.getBankByName(this.offersInfo.bank);
+        const bankName = bankVo?.label;
+        this.router.navigate(['/dashboard/' + ROUTES_MAP_NO.bargainAntiChurn], {
+          state: {
+            isError: false,
+            fromChangeBankDialog: true,
+            bankName: bankName
+          }
         });
         break;
       }
