@@ -130,7 +130,9 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
   public isManualPropertyValue = false;
   public isSingicatLoginSucces = false;
 
-  public generalText: string | null = null;
+  public generalText =
+    'BankID, både på mobil, app og kodebrikke er nede over hele landet. Tjenesten er derfor utilgjengelig inntil videre.';
+
   get isMobile(): boolean {
     return window.innerWidth < 600;
   }
