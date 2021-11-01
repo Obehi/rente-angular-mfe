@@ -18,20 +18,16 @@ export class LandingComponent implements OnInit {
 
   public isNewLandingVersion(): boolean {
     if ((window as any).google_optimize === undefined) {
-      // console.log('couldnt get optimize');
       return false;
     }
     let experimentId: string | null;
     if (this.envService.environment.production === true) {
-      // console.log('is production');
       experimentId = 'A_F5vClDQDuY0I-JUYxY0g';
     } else {
-      // console.log('is not production');
       experimentId = 'A_F5vClDQDuY0I-JUYxY0g';
     }
 
     const variation = (window as any).google_optimize.get(experimentId);
-    console.log((window as any).google_optimize.get(experimentId));
 
     return Number(variation) !== 0;
   }

@@ -5,7 +5,7 @@ import { BANKS_DATA } from '@config/banks-config';
 import { OFFER_SAVINGS_TYPE } from '@config/loan-state';
 import { ROUTES_MAP, ROUTES_MAP_NO } from '@config/routes-config';
 import { ChangeBankServiceService } from '@services/remote-api/change-bank-service.service';
-import { Offers } from '@shared/models/offers';
+import { OfferInfo, Offers } from '@shared/models/offers';
 import { ChangeBankDialogLangGenericComponent } from 'app/local-components/components-output';
 import { forkJoin, Subscription } from 'rxjs';
 import { AntiChurnDialogComponent } from '../../anti-churn-dialog/anti-churn-dialog.component';
@@ -13,7 +13,8 @@ import { ChangeBankLocationComponent } from '../../change-bank-dialog/change-ban
 import { CanNotBargainDialogComponent } from '@features/dashboard/offers/can-not-bargain-dialog/can-not-bargain-dialog.component';
 import { LoansService } from '@services/remote-api/loans.service';
 import { AntiChurnErrorDialogComponent } from '../../anti-churn-dialog/anti-churn-error-dialog/anti-churn-error-dialog.component';
-import { BankUtils } from '@models/bank';
+import { BankUtils, BankVo } from '@models/bank';
+import { LoggingService } from '@services/logging.service';
 
 @Component({
   selector: 'action-boxes',
@@ -26,7 +27,7 @@ export class ActionBoxesComponent implements OnInit {
   @Input() antiChurnIsOn: boolean;
   @Input() isSweden: boolean;
   @Input() canBargain: boolean;
-  public changeBankLoading: boolean;
+  public changeBankLoading = false;
   public banksMap = BANKS_DATA;
   public routesMap = ROUTES_MAP;
   public offerTypes: string[];
@@ -35,15 +36,30 @@ export class ActionBoxesComponent implements OnInit {
   public errorMessage: string;
   public nordeaClickSubscription: Subscription;
   public bankHasFixedLoans: boolean;
+  public currentBank: BankVo | null;
+
+  public isNordea = false;
+  public isDanskeBank = false;
 
   constructor(
     private changeBankServiceService: ChangeBankServiceService,
     public router: Router,
     public dialog: MatDialog,
-    public loansService: LoansService
+    public loansService: LoansService,
+    private loggingService: LoggingService
   ) {}
 
   ngOnInit(): void {
+    this.currentBank = BankUtils.getBankByName(this.offersInfo.bank);
+
+    this.isNordea = this.currentBank?.name === 'NORDEA';
+    this.isDanskeBank = this.currentBank?.name === 'DANSKE_BANK';
+
+    // this.bankHasFixedLoans = this.currentBank?.hasFixedLoans === true;
+    this.setupFixedPriceBanks();
+  }
+
+  setupFixedPriceBanks(): void {
     const fixedPriceBanks = [
       'HIMLA',
       'BULDER',
@@ -62,11 +78,16 @@ export class ActionBoxesComponent implements OnInit {
     );
   }
 
+  get bankName(): string | undefined {
+    const bank = BankUtils.getBankByName(this.offersInfo.bank);
+    return bank?.label;
+  }
+
   get isMobile(): boolean {
     return window.innerWidth < 600;
   }
 
-  public openAntiChurnBankDialog(offer): void {
+  public openAntiChurnBankDialog(offer: OfferInfo): void {
     if (
       this.antiChurnIsOn === false ||
       this.changeBankLoading ||
@@ -76,9 +97,18 @@ export class ActionBoxesComponent implements OnInit {
     }
     this.changeBankLoading = true;
 
+    this.loggingService.googleAnalyticsLog({
+      category: `Antichurn ${this.currentBank?.label ?? 'Ukjent bank'}`,
+      action: 'Antichurn - top box',
+      label: `top offer: ${offer.bankInfo.name}`
+    });
+
     const changeBankRef = this.dialog.open(AntiChurnDialogComponent, {
       autoFocus: false,
-      data: offer
+      data: {
+        bestOffer: offer,
+        currentBank: this.offersInfo
+      }
     });
     changeBankRef.afterClosed().subscribe(() => {
       this.handleChangeBankdialogOnClose(
@@ -196,16 +226,21 @@ export class ActionBoxesComponent implements OnInit {
         });
         break;
       }
-      case 'procced-nordea': {
-        this.router.navigate(['/dashboard/' + ROUTES_MAP_NO.bargainNordea], {
-          state: { isError: false, fromChangeBankDialog: true }
-        });
-        break;
-      }
-      case 'error-to-many-bargains-nordea': {
+      case 'error-to-many-bargains-antichurn': {
         this.dialog.open(AntiChurnErrorDialogComponent);
         break;
       }
+      case 'procced-antichurn': {
+        this.router.navigate(['/dashboard/' + ROUTES_MAP_NO.bargainAntiChurn], {
+          state: {
+            isError: false,
+            fromChangeBankDialog: true,
+            bankName: this.bankName
+          }
+        });
+        break;
+      }
+
       case 'error': {
         this.router.navigate(['/dashboard/prute-fullfort'], {
           state: { isError: false, fromChangeBankDialog: true }

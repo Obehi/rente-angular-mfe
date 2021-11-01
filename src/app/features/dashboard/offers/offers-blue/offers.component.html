@@ -121,7 +121,10 @@
         </div>
       </div>
 
-      <rente-offers-list [offersInfo]="currentOfferInfo"></rente-offers-list>
+      <rente-offers-list
+        *ngIf="currentOfferInfo"
+        [offersInfo]="currentOfferInfo"
+      ></rente-offers-list>
     </div>
     <!-- Mobile boxes -->
 

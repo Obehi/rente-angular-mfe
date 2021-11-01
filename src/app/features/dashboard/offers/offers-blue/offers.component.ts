@@ -33,6 +33,7 @@ import {
 import { NotificationService } from '@services/notification.service';
 import { MessageBannerService } from '@services/message-banner.service';
 import { getAnimationStyles } from '@shared/animations/animationEnums';
+import { BankUtils } from '@models/bank';
 @Component({
   selector: 'rente-offers-blue',
   templateUrl: './offers.component.html',
@@ -170,7 +171,11 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
         this.offersInfo = Object.assign({}, res);
         this.currentOfferInfo = JSON.parse(JSON.stringify(res));
 
-        this.antiChurnIsOn = this.offersInfo.bank === 'NORDEA' ? true : false;
+        this.antiChurnIsOn =
+          this.offersInfo.bank === 'NORDEA' ||
+          this.offersInfo.bank === 'DANSKE_BANK'
+            ? true
+            : false;
 
         this.canBargain =
           res.bank === 'SWE_AVANZA' ||
@@ -233,16 +238,12 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
     }
     this.changeBankLoading = true;
 
-    if (shouldLog) {
-      this.logginService.googleAnalyticsLog({
-        category: 'NordeaAntiChurn',
-        action: 'Click top button anti-churn',
-        label: `top offer: ${this.offersInfo.offers.top5[0].bankInfo.name}`
-      });
-    }
     const changeBankRef = this.dialog.open(AntiChurnDialogComponent, {
       autoFocus: false,
-      data: offer
+      data: {
+        bestOffer: offer,
+        currentBank: this.offersInfo
+      }
     });
     changeBankRef.afterClosed().subscribe(() => {
       this.handleChangeBankdialogOnClose(
@@ -266,9 +267,15 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
         });
         break;
       }
-      case 'procced-nordea': {
-        this.router.navigate(['/dashboard/' + ROUTES_MAP_NO.bargainNordea], {
-          state: { isError: false, fromChangeBankDialog: true }
+      case 'procced-antichurn': {
+        const bankVo = BankUtils.getBankByName(this.offersInfo.bank);
+        const bankName = bankVo?.label;
+        this.router.navigate(['/dashboard/' + ROUTES_MAP_NO.bargainAntiChurn], {
+          state: {
+            isError: false,
+            fromChangeBankDialog: true,
+            bankName: bankName
+          }
         });
         break;
       }
@@ -280,7 +287,7 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
         break;
       }
 
-      case 'error-to-many-bargains-nordea': {
+      case 'error-to-many-bargains-antichurn': {
         this.dialog.open(AntiChurnErrorDialogComponent);
         break;
       }

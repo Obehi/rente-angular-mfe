@@ -17,7 +17,6 @@ export class RxjsOperatorService {
     time: number
   ): (errorResponse: HttpErrorResponse) => Observable<null> {
     return (errorResponse: HttpErrorResponse) => {
-      console.log('ERROR CAN BE HANDLED HERE');
       this.messageBannerService.setView(
         errorMessage,
         time,

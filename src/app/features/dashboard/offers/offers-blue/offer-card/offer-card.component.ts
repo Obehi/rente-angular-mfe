@@ -31,7 +31,7 @@ export class OfferCardComponent implements OnInit {
   public xpandStatus = false;
   public offerType: string;
   public isSweden: boolean;
-  public isNordea = false;
+  public isAntiChurnBank = false;
   public bankSpecialPromoText: string | null = null;
   public isSingleButtonLayout = false;
 
@@ -57,7 +57,9 @@ export class OfferCardComponent implements OnInit {
     this.bankSpecialPromoText = this.offerCardService.getBankSpecialPromoText(
       this.offer.bankInfo.bank
     );
-    this.isNordea = this.offersInfo.bank === 'NORDEA';
+    this.isAntiChurnBank =
+      this.offersInfo.bank === 'NORDEA' ||
+      this.offersInfo.bank === 'DANSKE_BANK';
 
     if (
       this.offer.bankInfo.bank === 'NYBYGGER' ||

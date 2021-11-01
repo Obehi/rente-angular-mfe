@@ -24,8 +24,6 @@ export class LandingTopNoComponent {
       this.envService.environment,
       false
     );
-    console.log('this.getVariation()');
-    console.log(this.getVariation());
   }
 
   public getVariation(): any {
