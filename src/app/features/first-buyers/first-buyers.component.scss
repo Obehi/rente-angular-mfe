@@ -2,6 +2,48 @@
 
 .outer-bg {
   background: linear-gradient(180deg, #162537 0%, #183a63 10.08%) !important;
+
+  ::ng-deep {
+    .mat-form-field-autofill-control {
+      color: white !important;
+    }
+
+    // input element
+    .mat-input-element {
+      caret-color: white;
+      margin-bottom: 8px !important;
+      color: white !important;
+    }
+
+    // placeholder color
+    ::ng-deep .mat-input-element::placeholder {
+      color: #ffffff;
+    }
+
+    ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+      color: #478ccc;
+      //border: 1px solid #18bc9c !important;
+    }
+
+    ::ng-deep
+      .mat-form-field-appearance-outline
+      .mat-form-field-outline-thick
+      .mat-form-field-outline-start,
+    ::ng-deep
+      .mat-form-field-appearance-outline
+      .mat-form-field-outline-thick
+      .mat-form-field-outline-end,
+    ::ng-deep
+      .mat-form-field-appearance-outline
+      .mat-form-field-outline-thick
+      .mat-form-field-outline-gap {
+      border-width: 1px !important;
+    }
+    /* Font color */
+    ::ng-deep input.mat-input-element {
+      color: white;
+    }
+  }
 }
 .first-buyers-content-blue {
   background: linear-gradient(180deg, #162537 0%, #183a63 10.08%) !important;
@@ -72,47 +114,5 @@ h1 {
   .error-big {
     margin-top: -18px;
     margin-bottom: 20px;
-  }
-}
-
-::ng-deep {
-  .mat-form-field-autofill-control {
-    color: white !important;
-  }
-
-  // input element
-  .mat-input-element {
-    caret-color: white;
-    margin-bottom: 8px !important;
-    color: white !important;
-  }
-
-  // placeholder color
-  ::ng-deep .mat-input-element::placeholder {
-    color: #ffffff;
-  }
-
-  ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
-    color: #478ccc;
-    //border: 1px solid #18bc9c !important;
-  }
-
-  ::ng-deep
-    .mat-form-field-appearance-outline
-    .mat-form-field-outline-thick
-    .mat-form-field-outline-start,
-  ::ng-deep
-    .mat-form-field-appearance-outline
-    .mat-form-field-outline-thick
-    .mat-form-field-outline-end,
-  ::ng-deep
-    .mat-form-field-appearance-outline
-    .mat-form-field-outline-thick
-    .mat-form-field-outline-gap {
-    border-width: 1px !important;
-  }
-  /* Font color */
-  ::ng-deep input.mat-input-element {
-    color: white;
   }
 }
