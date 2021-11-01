@@ -88,14 +88,11 @@ export class ActionBoxesComponent implements OnInit {
   }
 
   public openAntiChurnBankDialog(offer: OfferInfo): void {
-    /*     PUT BACK DISABLED FOR SAVINGSTYPE BEFORE PROD!!!!!
-      PUT BACK DISABLED FOR SAVINGSTYPE BEFORE PROD!!!!!
-      PUT BACK DISABLED FOR SAVINGSTYPE BEFORE PROD!!!!!
-      PUT BACK DISABLED FOR SAVINGSTYPE BEFORE PROD!!!!!
-      PUT BACK DISABLED FOR SAVINGSTYPE BEFORE PROD!!!!! */
-    console.log(this.antiChurnIsOn);
-    console.log(this.changeBankLoading);
-    if (this.antiChurnIsOn === false || this.changeBankLoading) {
+    if (
+      this.antiChurnIsOn === false ||
+      this.changeBankLoading ||
+      this.offersInfo.offerSavingsType === this.offerSavingsType.NO_SAVINGS
+    ) {
       return;
     }
     this.changeBankLoading = true;
@@ -229,8 +226,11 @@ export class ActionBoxesComponent implements OnInit {
         });
         break;
       }
+      case 'error-to-many-bargains-antichurn': {
+        this.dialog.open(AntiChurnErrorDialogComponent);
+        break;
+      }
       case 'procced-antichurn': {
-        console.log('procced-antichurn');
         this.router.navigate(['/dashboard/' + ROUTES_MAP_NO.bargainNordea], {
           state: {
             isError: false,

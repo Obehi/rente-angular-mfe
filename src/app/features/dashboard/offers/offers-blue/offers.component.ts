@@ -266,7 +266,7 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
         });
         break;
       }
-      case 'procced-nordea': {
+      case 'procced-antichurn': {
         this.router.navigate(['/dashboard/' + ROUTES_MAP_NO.bargainNordea], {
           state: { isError: false, fromChangeBankDialog: true }
         });
@@ -280,7 +280,7 @@ export class OffersComponentBlue implements OnInit, OnDestroy {
         break;
       }
 
-      case 'error-to-many-bargains-nordea': {
+      case 'error-to-many-bargains-antichurn': {
         this.dialog.open(AntiChurnErrorDialogComponent);
         break;
       }

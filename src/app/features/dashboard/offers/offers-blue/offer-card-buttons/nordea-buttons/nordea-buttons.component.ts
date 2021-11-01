@@ -45,7 +45,6 @@ export class NordeaButtonsComponent implements OnInit {
       return 'banken din';
     }
     const bankVo = BankUtils.getBankByName(this.offersInfo.bank);
-    // console.log(bankVo);
     return bankVo?.label ?? 'banken din';
   }
 

@@ -1,24 +1,19 @@
 <div class="top">
   <mat-icon (click)="close()" class="close-modal">close</mat-icon>
-  <h3>Du har allerede sendt melding til Nordea</h3>
+  <h3>Du har allerede sendt melding til banken din</h3>
 
   <p>
-    Du har allerede sendt melding til Nordea og kan derfor ikke 
-    sende en ny melding før det har gått 7 dager. Bakgrunnen for dette er 
-    at Nordea skal ha tid til å rekke å kontakte deg før du eventuelt 
-    sender en ny melding.
+    Du har allerede sendt melding til banken din og kan derfor ikke sende en ny
+    melding før det har gått 7 dager. Bakgrunnen for dette er at banken din skal
+    ha tid til å rekke å kontakte deg før du eventuelt sender en ny melding.
   </p>
 </div>
 
-
-
 <div class="bottom">
-  <rente-button i18n=“send-bank|change-bank@@change.bank.sendBank”
+  <rente-button
+    i18n="“send-bank|change-bank@@change.bank.sendBank”"
     color="primary"
     (click)="close()"
     >Ok
   </rente-button>
 </div>
-
-
-
