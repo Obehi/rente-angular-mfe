@@ -17,7 +17,7 @@ nav {
   background-color: $blue;
 
   .inner-nav {
-    max-width: 1010px;
+    max-width: 88vw;
     padding: 20px;
     margin: auto;
     position: relative;
@@ -28,6 +28,11 @@ nav {
     top: 50%;
     transform: translateY(-50%);
     height: 20px;
+  }
+
+  a {
+    font-weight: 400;
+    font-size: 14px;
   }
 
   .menu-container {
@@ -79,14 +84,16 @@ nav {
         position: relative;
         a.active-link {
           color: $primary;
+          margin-left: 40px;
         }
-        a {
+        a.non-active {
           color: white;
           text-decoration: none;
-          font-size: 14px;
+          // font-size: 14px;
           margin-left: 40px;
           &:hover {
             color: $primary;
+            cursor: pointer;
           }
         }
       }

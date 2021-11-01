@@ -5,6 +5,8 @@ import { MessageBannerService } from '@services/message-banner.service';
 import { getAnimationStyles } from '@shared/animations/animationEnums';
 import { CustomLangTextService } from '@shared/services/custom-lang-text.service';
 import { GlobalStateService } from '@services/global-state.service';
+import { ROUTES_MAP } from '@config/routes-config';
+import { TabsService } from '@services/tabs.service';
 
 @Component({
   selector: 'rente-header-mobile',
@@ -15,22 +17,65 @@ export class HeaderMobileNoComponent implements OnInit {
   public toggleNavbar: boolean;
   public isSmallScreen: boolean;
   public animationType = getAnimationStyles();
+  public isDashboard: boolean;
+  public goToRoute: string;
+  public screenRef: string;
+
+  public getStartedBtn: boolean;
+  public logInBtn: boolean;
+
   constructor(
     public auth: AuthService,
     private router: Router,
     private messageService: MessageBannerService,
     private customLangService: CustomLangTextService,
-    public globalStateService: GlobalStateService
+    public globalStateService: GlobalStateService,
+    public tabsService: TabsService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.setDashboardListener();
+    this.initHowItWorksLink();
+  }
+
+  public setDashboardListener(): void {
+    this.globalStateService
+      .getDashboardState()
+      .asObservable()
+      .subscribe((state) => {
+        if (state) {
+          this.isDashboard = true;
+        } else {
+          this.isDashboard = false;
+        }
+      });
+  }
+
+  private initHowItWorksLink(): void {
+    if (window.innerWidth > 600 && window.innerWidth < 800) {
+      this.screenRef = 'slik-fungerer-det-p';
+    } else if (window.innerWidth < 600) {
+      this.screenRef = 'slik-fungerer-det-m';
+    } else if (window.innerWidth > 800) {
+      this.screenRef = 'slik-fungerer-det';
+    }
+  }
 
   public goToTop(): void {
-    window.scrollTo(0, 0);
+    if (!this.isDashboard) {
+      this.router.navigateByUrl('/');
+      window.scrollTo(0, 0);
+    } else {
+      this.router.navigateByUrl('/dashboard/' + ROUTES_MAP.offers);
+    }
   }
 
   public goToHome(): void {
-    if (this.router.url === '/' || this.router.url === '/#faq') {
+    if (
+      this.router.url === '/' ||
+      this.router.url === '/#faq' ||
+      this.router.url === '/#slik-fungerer-det-m'
+    ) {
       window.scrollTo(0, 0);
     } else {
       this.router.navigateByUrl('/');
@@ -38,6 +83,24 @@ export class HeaderMobileNoComponent implements OnInit {
 
     this.toggleNav();
   }
+
+  public goToChooseBank(btn: string): void {
+    this.router.navigateByUrl('/velgbank');
+
+    if (btn === 'get-started') {
+      this.getStartedBtn = true;
+      this.logInBtn = false;
+    } else if (btn === 'log-in') {
+      this.logInBtn = true;
+      this.getStartedBtn = false;
+    }
+  }
+
+  public clearActiveLinks(): void {
+    this.getStartedBtn = false;
+    this.logInBtn = false;
+  }
+
   public toggleNav(): void {
     this.toggleNavbar = !this.toggleNavbar;
   }

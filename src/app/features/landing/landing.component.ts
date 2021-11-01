@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { timer } from 'rxjs';
 
 import { locale } from '@config/locale/locale';
-import { SeoService } from '@services/seo.service';
+import { EnvService } from '@services/env.service';
 
 @Component({
   selector: 'rente-landing',
@@ -13,25 +12,26 @@ export class LandingComponent implements OnInit {
   time = 0;
   isSweden = false;
 
-  get isMobile(): boolean {
-    return window.innerWidth < 600;
-  }
+  constructor(private envService: EnvService) {}
 
-  constructor(private seoService: SeoService) {
-    if (locale.includes('sv')) {
-      this.isSweden = true;
-    } else {
-      this.isSweden = false;
+  ngOnInit(): void {}
+
+  public isNewLandingVersion(): boolean {
+    if ((window as any).google_optimize === undefined) {
+      // console.log('couldnt get optimize');
+      return false;
     }
-  }
+    let experimentId: string | null;
+    if (this.envService.environment.production === true) {
+      // console.log('is production');
+      experimentId = 'A_F5vClDQDuY0I-JUYxY0g';
+    } else {
+      // console.log('is not production');
+      experimentId = 'A_F5vClDQDuY0I-JUYxY0g';
+    }
 
-  ngOnInit(): void {
-    this.seoService.createLinkForCanonicalURL();
-    const subscription = timer(1000, 1000).subscribe((t) => {
-      this.time = t;
-      if (t === 3) {
-        subscription.unsubscribe();
-      }
-    });
+    const variation = (window as any).google_optimize.get(experimentId);
+
+    return Number(variation) !== 0;
   }
 }

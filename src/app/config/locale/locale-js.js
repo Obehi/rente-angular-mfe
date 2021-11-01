@@ -1,1 +1,1 @@
-module.exports =  "nb"
+module.exports =  "sv"

@@ -17,6 +17,7 @@ import { AppComponent } from './app.component';
 import { ContactUsComponent } from './features/contact-us/contact-us.component';
 import { PageNotFoundComponent } from '@features/page-not-found/page-not-found.component';
 import { LandingComponent } from '@features/landing/landing.component';
+
 import { FaqComponent } from '@features/faq/faq.component';
 import { PrivacyComponent } from '@features/privacy/privacy.component';
 import { AboutCookiesComponent } from '@features/cookies/cookies.component';
@@ -55,7 +56,17 @@ import { PrivacyPolicyLangGenericComponent } from './local-components/components
 import { LoginLangGenericComponent } from './local-components/components-output';
 import { InitConfirmationLangGenericComponent } from './local-components/components-output';
 import { GetNotifiedLangGenericComponent } from './local-components/components-output';
+//
 import { LandingTopLangGenericComponent } from './local-components/components-output';
+import { LandingTopNoOldComponent } from './features/landing/landing-top-no-old/landing-top-no-old.component';
+import { LandingTopNoComponent } from './features/landing/landing-top-no/landing-top-no.component';
+//
+import { LandingOldComponent } from './features/landing/landing-old/landing-old.component';
+import { LandingNewComponent } from './features/landing/landing-new/landing-new.component';
+import { LandingTopSvComponent } from './features/landing/landing-top-sv/landing-top-sv.component';
+
+// Providers
+import { CookieService } from 'ngx-cookie-service';
 
 registerLocaleData(localeNo);
 
@@ -78,6 +89,11 @@ registerLocaleData(localeNo);
     InitConfirmationLangGenericComponent,
     LandingComponent,
     LandingTopLangGenericComponent,
+    LandingTopNoOldComponent,
+    LandingTopNoComponent,
+    LandingNewComponent,
+    LandingOldComponent,
+    LandingTopSvComponent,
     LoginLangGenericComponent,
     NoLoansComponent,
     PageNotFoundComponent,
@@ -107,6 +123,7 @@ registerLocaleData(localeNo);
   ],
   providers: [
     EnvService,
+    [CookieService],
     {
       provide: APP_INITIALIZER,
       multi: true,

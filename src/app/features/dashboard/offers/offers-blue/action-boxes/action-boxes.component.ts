@@ -55,6 +55,27 @@ export class ActionBoxesComponent implements OnInit {
 
     this.isNordea = this.currentBank?.name === 'NORDEA';
     this.isDanskeBank = this.currentBank?.name === 'DANSKE_BANK';
+
+    this.setupFixedPriceBanks();
+  }
+
+  setupFixedPriceBanks(): void {
+    const fixedPriceBanks = [
+      'HIMLA',
+      'BULDER',
+      'SBANKEN',
+      'NYBYGGER',
+      'BOLIGKREDITT',
+      'DIN_BANK',
+      'KLP',
+      'OBOS',
+      'NORDEA_DIRECT',
+      'AKADEMIKERNE'
+    ];
+
+    this.bankHasFixedLoans = fixedPriceBanks.some((bank) =>
+      this.offersInfo.bank.includes(bank)
+    );
   }
 
   get bankName(): string | undefined {

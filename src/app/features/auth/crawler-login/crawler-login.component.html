@@ -114,11 +114,6 @@
       kodebrikke.
     </p>
 
-    <p *ngIf="isSB1Bank" class="red">
-      BankID oppdaterer for tiden sine systemer. <br />
-      Enkelte brukere kan oppleve problemer med innlogging.
-    </p>
-
     <!-- 
     <p class="dnbInstability" *ngIf="isEikaBank">Vi opplever at enkelte brukere ikke får logget inn.<br> Vi jobber med å rette problemet</p>
     -->
@@ -360,11 +355,6 @@
     <p i18n="“information|bank-id@@bankId.info”">
       Har du ikke BankID på Mobil kan du
       <a class="bold" (click)="goToSignicatLogin()">logge inn her</a>
-    </p>
-
-    <p *ngIf="!isSB1Bank" class="red">
-      BankID oppdaterer for tiden sine systemer. <br />
-      Enkelte brukere kan oppleve problemer med innlogging.
     </p>
 
     <p

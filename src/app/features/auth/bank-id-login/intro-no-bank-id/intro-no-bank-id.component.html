@@ -8,6 +8,8 @@
   <br />
   <p>Identifiser deg nedenfor for å komme igang.</p>
 
-  <br />
-  <p class="general-text">{{ generalText }}</p>
+  <div *ngIf="generalText">
+    <br />
+    <p class="general-text">{{ generalText }}</p>
+  </div>
 </div>

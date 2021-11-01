@@ -319,8 +319,27 @@ button.mat-primary-wide-landing {
   color: white;
   height: 56px;
   width: 80%;
-  @media (min-width: 600px) {
+  @media (min-width: 800px) {
     width: 320px;
+  }
+}
+
+button.mat-primary-wide-landing-new {
+  background-color: $primary;
+  color: white;
+  height: 56px;
+  width: 80%;
+  @media (min-width: 800px) {
+    width: 19vw;
+    font-size: 16px;
+    font-weight: 400;
+    white-space: break-spaces;
+  }
+
+  @media (min-width: 1315px) {
+    width: 19vw;
+    font-size: 16px;
+    font-weight: 400;
   }
 }
 
@@ -330,8 +349,37 @@ button.mat-primary-wide-landing-hollow {
   border: 1px solid $primary;
   height: 56px;
   width: 80%;
-  @media (min-width: 600px) {
+  @media (min-width: 800px) {
+    font-size: 16px;
+    width: 19vw;
+    white-space: break-spaces;
+    font-weight: 400;
+  }
+
+  @media (min-width: 1315px) {
+    width: 19vw;
+    font-size: 16px;
+    font-weight: 400;
+  }
+}
+
+button.mat-primary-wide-landing-hollow-old {
+  background-color: white;
+  color: black;
+  border: 1px solid $primary;
+  height: 56px;
+  width: 80%;
+  @media (min-width: 800px) {
+    font-size: 16px;
     width: 320px;
+    white-space: break-spaces;
+    font-weight: 400;
+  }
+
+  @media (min-width: 1315px) {
+    width: 320px;
+    font-size: 16px;
+    font-weight: 400;
   }
 }
 
@@ -528,6 +576,13 @@ button.mat-primary-cookie {
   display: inline;
   width: 200px;
   @media (max-width: 600px) {
+    width: 150px;
+  }
+
+  button.mat-white-cookie {
+    color: $black;
+    background: $white;
+    display: inline;
     width: 150px;
   }
 }

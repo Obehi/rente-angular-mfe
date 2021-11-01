@@ -3,7 +3,7 @@ import { ROUTES_MAP } from '@config/routes-config';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'rente-landing-top',
+  selector: 'rente-landing-top-sv',
   templateUrl: './landing-top-sv.component.html',
   styleUrls: ['./landing-top-sv.component.scss']
 })
