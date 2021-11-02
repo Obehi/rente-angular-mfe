@@ -2,33 +2,33 @@
 
 //////// MOBILE STYLING ////////
 @media (max-width: 600px) {
-  ::ng-deep .cdk-overlay-container,
-  .cdk-global-overlay-wrapper {
-    @media (max-width: 600px) {
-      width: 100%;
-    }
-  }
-
-  ::ng-deep .cdk-overlay-pane {
-    max-height: unset !important ;
-  }
-
-  ::ng-deep .mat-dialog-container {
-    border-radius: 100px;
-    margin: unset !important;
-    background: $blue-medium;
-    @media (min-width: 601px) {
-      margin: unset !important;
-      height: 44vh !important;
-      top: 15vh;
-    }
-  }
-
   .main-div {
     height: 100%;
     display: flex;
     flex-direction: column;
     background: $blue-medium;
+
+    ::ng-deep .cdk-overlay-container,
+    .cdk-global-overlay-wrapper {
+      @media (max-width: 600px) {
+        width: 100%;
+      }
+    }
+
+    ::ng-deep .cdk-overlay-pane {
+      max-height: unset !important ;
+    }
+
+    ::ng-deep .mat-dialog-container {
+      border-radius: 100px;
+      margin: unset !important;
+      background: $blue-medium;
+      @media (min-width: 601px) {
+        margin: unset !important;
+        height: 44vh !important;
+        top: 15vh;
+      }
+    }
   }
 
   .list-div {
