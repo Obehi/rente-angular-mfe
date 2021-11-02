@@ -100,6 +100,9 @@ mat-selection-list {
 
   img {
     width: 4%;
+    @media (max-width: 600px) {
+      width: 7%;
+    }
   }
 
   ::ng-deep .mat-icon-button {
