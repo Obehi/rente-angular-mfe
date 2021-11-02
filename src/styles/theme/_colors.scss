@@ -24,6 +24,7 @@ $orange: #ff5a00 !default;
 $fountainBlue: #5eb1bf !default;
 $frolly: #ef767a !default;
 $matt-purple: #b74ddc !default;
+$danske-bank: #003755 !default;
 
 $primary: $green !default;
 $secondary: $blue !default;
@@ -52,7 +53,8 @@ $theme-colors: map-merge(
     'error': $error,
     'warning': $warning,
     'lightwarning': $lightwarning,
-    'matt-purple': $matt-purple
+    'matt-purple': $matt-purple,
+    'danske-bank': $danske-bank
   ),
   $theme-colors
 );

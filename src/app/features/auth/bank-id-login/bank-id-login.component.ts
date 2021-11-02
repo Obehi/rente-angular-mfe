@@ -131,6 +131,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
   public isSingicatLoginSucces = false;
 
   public generalText: string | null = null;
+
   get isMobile(): boolean {
     return window.innerWidth < 600;
   }

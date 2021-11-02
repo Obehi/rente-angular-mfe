@@ -58,7 +58,8 @@ import { BankScoreLangGenericComponent } from '../../local-components/components
 import { ChangeBankLocationComponent } from './offers/change-bank-dialog/change-bank-location/change-bank-location.component';
 import { AntiChurnDialogComponent } from './offers/anti-churn-dialog/anti-churn-dialog.component';
 import { AntiChurnErrorDialogComponent } from './offers/anti-churn-dialog/anti-churn-error-dialog/anti-churn-error-dialog.component';
-import { NordeaBargainSuccessComponent } from './offers/bargain-success/bargain-nordea/nordea-bargain-success.component';
+import { AntiChurnSuccessComponent } from './offers/bargain-success/antichurn/antichurn-success.component';
+
 import { CanNotBargainDialogComponent } from './offers/can-not-bargain-dialog/can-not-bargain-dialog.component';
 import { OfferCardComponent } from './offers/offers-blue/offer-card/offer-card.component';
 import { ChangeBankTooManyTriesDialogError } from './offers/change-bank-dialog/change-bank-too-many-tries-dialog-error/change-bank-too-many-tries-dialog-error.component';
@@ -118,7 +119,7 @@ import { NordeaDirectButtonsComponent } from './offers/offers-blue/offer-card-bu
     CanNotBargainDialogComponent,
     AntiChurnErrorDialogComponent,
     CanNotBargainDialogComponent,
-    NordeaBargainSuccessComponent,
+    AntiChurnSuccessComponent,
     OfferCardComponent,
     ChangeBankTooManyTriesDialogError,
     BarometerComponent,

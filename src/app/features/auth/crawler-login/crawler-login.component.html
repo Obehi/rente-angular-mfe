@@ -109,10 +109,16 @@
       Renteradar henter lånedetaljer og renten din automatisk.
     </p>
 
-    <p i18n="“description|bank-id@@bankId.description2”" *ngIf="isSB1Bank">
+    <!--   <p i18n="“description|bank-id@@bankId.description2”" *ngIf="isSB1Bank">
       Vi støtter kun BankID på Mobil og Engangskode-appen, ikke BankID med
       kodebrikke.
     </p>
+ -->
+    <!--  <p *ngIf="isSB1Bank" class="red">
+      BankID, både på mobil, app og kodebrikke er nede over hele landet.
+      <br />
+      Tjenesten er derfor utilgjengelig inntil videre
+    </p> -->
 
     <!-- 
     <p class="dnbInstability" *ngIf="isEikaBank">Vi opplever at enkelte brukere ikke får logget inn.<br> Vi jobber med å rette problemet</p>
@@ -352,10 +358,33 @@
       <img [src]="'../../../assets/icons/mobile-login-green.svg'" />
       <p>BankId på mobil</p>
     </a>
-    <p i18n="“information|bank-id@@bankId.info”">
-      Har du ikke BankID på Mobil kan du
+    <!--   <p i18n="“information|bank-id@@bankId.info”">
+      Har du ikke BankID på mobil eller Engangskode-appen, kan du
       <a class="bold" (click)="goToSignicatLogin()">logge inn her</a>
     </p>
+ -->
+    <!-- DNB, Eika and DSS users   -->
+    <p *ngIf="!isSB1Bank && !isNordeaBank">
+      Har du ikke BankID på mobil
+      <a class="bold" (click)="goToSignicatLogin()">logge inn her</a>
+    </p>
+
+    <p *ngIf="isNordeaBank">
+      Vi støtter kun BankID på Mobil. <br />Hvis du vil bruke BankID med passord
+      eller Nordea Koder appen
+      <a class="bold" (click)="goToSignicatLogin()">logge inn her</a>
+    </p>
+    <p *ngIf="isSB1Bank">
+      Vi støtter kun BankID på Mobil og Engangskode-appen. <br />
+      Ønsker du å benytte BankID med passord
+      <a class="bold" (click)="goToSignicatLogin()">logge inn her</a>
+    </p>
+
+    <!-- <p *ngIf="!isSB1Bank" class="red">
+      BankID, både på mobil, app og kodebrikke er nede over hele landet.
+      <br />
+      Tjenesten er derfor utilgjengelig inntil videre.
+    </p> -->
 
     <p
       i18n="“issue|bank-id@@bankId.issue2”"

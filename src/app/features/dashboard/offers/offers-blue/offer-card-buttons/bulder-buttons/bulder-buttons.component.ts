@@ -19,7 +19,10 @@ export class BulderButtonsComponent implements OnInit {
     return window.innerWidth < 600;
   }
 
-  get isNordea(): boolean {
-    return this.offersInfo.bank === 'NORDEA';
+  get isAntichurnOn(): boolean {
+    return (
+      this.offersInfo.bank === 'NORDEA' ||
+      this.offersInfo.bank === 'DANSKE_BANK'
+    );
   }
 }
