@@ -365,19 +365,19 @@
  -->
     <!-- DNB, Eika and DSS users   -->
     <p *ngIf="!isSB1Bank && !isNordeaBank">
-      Har du ikke BankID på mobil
-      <a class="bold" (click)="goToSignicatLogin()">logge inn her</a>
+      Har du ikke BankID på mobil?
+      <a class="bold" (click)="goToSignicatLogin()">Logge inn her</a>
     </p>
 
     <p *ngIf="isNordeaBank">
-      Vi støtter kun BankID på Mobil. <br />Hvis du vil bruke BankID med passord
-      eller Nordea Koder appen
-      <a class="bold" (click)="goToSignicatLogin()">logge inn her</a>
+      Vi støtter kun BankID på Mobil. <br />Bruker du BankID med passord eller
+      Nordea Koder appen?
+      <a class="bold" (click)="goToSignicatLogin()">Logge inn her</a>
     </p>
     <p *ngIf="isSB1Bank">
       Vi støtter kun BankID på Mobil og Engangskode-appen. <br />
-      Ønsker du å benytte BankID med passord
-      <a class="bold" (click)="goToSignicatLogin()">logge inn her</a>
+      Ønsker du å benytte BankID med passord?
+      <a class="bold" (click)="goToSignicatLogin()">Logge inn her</a>
     </p>
 
     <!-- <p *ngIf="!isSB1Bank" class="red">
