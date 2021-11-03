@@ -102,8 +102,9 @@ export class CrawlerLoginComponent implements OnInit, OnDestroy {
               state: {
                 data: {
                   bank: bank,
-                  redirect: true,
-                  userHasNoBankIDForPhone: false
+                  redirect: false,
+                  userHasNoBankIDForPhone: false,
+                  crawlerIsOff: true
                 }
               }
             }

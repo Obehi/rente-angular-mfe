@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { IntroRedirectSb1Component } from './intro-redirect-sb1.component';
+import { IntroNoBankIdDnbComponent } from './intro-no-bank-id-dnb.component';
 
-describe('IntroRedirectSb1Component', () => {
-  let component: IntroRedirectSb1Component;
-  let fixture: ComponentFixture<IntroRedirectSb1Component>;
+describe('IntroNoBankIdDnbComponent', () => {
+  let component: IntroNoBankIdDnbComponent;
+  let fixture: ComponentFixture<IntroNoBankIdDnbComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ IntroRedirectSb1Component ]
+      declarations: [ IntroNoBankIdDnbComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(IntroRedirectSb1Component);
+    fixture = TestBed.createComponent(IntroNoBankIdDnbComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

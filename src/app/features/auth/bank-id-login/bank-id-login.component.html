@@ -14,7 +14,11 @@
 
       <rente-intro-no-bank-id
         [generalText]="generalText"
-        *ngIf="userHasNoBankIDForPhone && bank?.name !== 'NORDEA'"
+        *ngIf="
+          userHasNoBankIDForPhone &&
+          bank?.name !== 'NORDEA' &&
+          bank?.name !== 'DNB'
+        "
       >
       </rente-intro-no-bank-id>
 
@@ -24,19 +28,20 @@
       >
       </rente-intro-no-bank-id-nordea>
 
-      <rente-intro-redirect-dnb
+      <rente-intro-no-bank-id-dnb
         [generalText]="generalText"
-        [bank]="bank"
-        *ngIf="bank?.name === 'DNB' && userHasNoBankIDForPhone === false"
+        *ngIf="userHasNoBankIDForPhone && bank?.name === 'DNB'"
       >
-      </rente-intro-redirect-dnb>
+      </rente-intro-no-bank-id-dnb>
 
-      <rente-intro-redirect-sb1
+      <rente-intro-crawler-is-off-dnb
         [generalText]="generalText"
-        [bank]="bank"
-        *ngIf="isRedirected && bank?.isSb1Bank"
+        *ngIf="crawlerIsOff && bank?.name === 'DNB'"
       >
-      </rente-intro-redirect-sb1>
+      </rente-intro-crawler-is-off-dnb>
+
+      <rente-intro-redirect [generalText]="generalText" *ngIf="isRedirected">
+      </rente-intro-redirect>
 
       <iframe
         *ngIf="signicatIframeUrl !== null"

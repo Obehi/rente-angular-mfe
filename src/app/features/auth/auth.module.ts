@@ -15,11 +15,12 @@ import { DemoLoginComponent } from './demo-login/demo-user-option-login/demo-log
 import { GuidLoginComponent } from './demo-login/guid-login/guid-login.component';
 import { ChooseSubBankComponent } from './crawler-login/choose-sub-bank/choose-sub-bank.component';
 import { IntroNoBankIDComponent } from './bank-id-login/intro-no-bank-id/intro-no-bank-id.component';
-import { IntroRedirectDnbComponent } from './bank-id-login/intro-redirect-dnb/intro-redirect-dnb.component';
-import { IntroRedirectSb1Component } from './bank-id-login/intro-redirect-sb1/intro-redirect-sb1.component';
 import { IntroNoBankIdNordeaComponent } from './bank-id-login/intro-no-bank-id-nordea/intro-no-bank-id-nordea.component';
 import { IntroDefaultSignicatComponent } from './bank-id-login/intro-default-signicat/intro-default-signicat.component';
 import { SignicatLoanValidationComponent } from './bank-id-login/signicat-loan-validation/signicat-loan-validation.component';
+import { IntroNoBankIdDnbComponent } from './bank-id-login/intro-no-bank-id-dnb/intro-no-bank-id-dnb.component';
+import { IntroRedirectComponent } from './bank-id-login/intro-redirect/intro-redirect.component';
+import { IntroCrawlerIsOffDnbComponent } from './bank-id-login/intro-crawler-is-off-dnb/intro-crawler-is-off-dnb.component';
 
 @NgModule({
   declarations: [
@@ -37,11 +38,12 @@ import { SignicatLoanValidationComponent } from './bank-id-login/signicat-loan-v
     BankIdLoginComponent,
     ChooseSubBankComponent,
     IntroNoBankIDComponent,
-    IntroRedirectDnbComponent,
-    IntroRedirectSb1Component,
     IntroNoBankIdNordeaComponent,
     IntroDefaultSignicatComponent,
-    SignicatLoanValidationComponent
+    SignicatLoanValidationComponent,
+    IntroNoBankIdDnbComponent,
+    IntroRedirectComponent,
+    IntroCrawlerIsOffDnbComponent
   ],
   imports: [
     AuthRoutingModule,

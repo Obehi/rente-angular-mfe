@@ -115,6 +115,8 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
   public selectedOffer: string;
   public bank: BankVo | null;
   public userHasNoBankIDForPhone = false;
+  public crawlerIsOff = false;
+
   public isRedirected = false;
 
   private loanId: number | null;
@@ -203,6 +205,7 @@ export class BankIdLoginComponent implements OnInit, OnDestroy {
     } else {
       this.bank = stateData.bank;
       this.userHasNoBankIDForPhone = stateData.userHasNoBankIDForPhone;
+      this.crawlerIsOff = stateData.crawlerIsOff;
       this.isRedirected = stateData.redirect;
 
       if (stateData.redirect === true) {

@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { IntroRedirectDnbComponent } from './intro-redirect-dnb.component';
+import { IntroRedirectComponent } from './intro-redirect.component';
 
-describe('IntroRedirectDnbComponent', () => {
-  let component: IntroRedirectDnbComponent;
-  let fixture: ComponentFixture<IntroRedirectDnbComponent>;
+describe('IntroRedirectComponent', () => {
+  let component: IntroRedirectComponent;
+  let fixture: ComponentFixture<IntroRedirectComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ IntroRedirectDnbComponent ]
+      declarations: [ IntroRedirectComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(IntroRedirectDnbComponent);
+    fixture = TestBed.createComponent(IntroRedirectComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
