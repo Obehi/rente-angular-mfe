@@ -184,6 +184,7 @@ export class HouseFormNoComponent implements OnInit, AfterViewInit {
 
   switchToggle(): void {
     this.address.useManualPropertyValue = !this.address.useManualPropertyValue;
+    this.changesMade = true;
 
     setTimeout(() => {
       this.setVirdiErrorMessageState();
