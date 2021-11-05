@@ -991,7 +991,7 @@ export const eikaBanks: BankVo[] = [
   new BankVo(
     'SURNADAL_SB',
     'Surnadal Sparebank',
-    'surnadal.png',
+    'sparebanken1v2.png',
     null,
     true,
     true,
