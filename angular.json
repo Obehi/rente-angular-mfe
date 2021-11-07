@@ -29,7 +29,7 @@
 				"build": {
 					"builder": "ngx-build-plus:browser",
 					"options": {
-						"localize": true,
+						"localize": false,
 						"outputPath": "dist/rente-front-end",
 						"index": "src/index.html",
 						"main": "src/main.ts",
