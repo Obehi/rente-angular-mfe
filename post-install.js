@@ -76,8 +76,7 @@ function runScript(currentLocale, dev) {
   if (process.env.ENV === 'dev') {
     console.log('running heroku dev');
     command = exec(
-      'npm run config-env && npm run set-local-variable && ng build --configuration=heroku-dev' +
-        locale
+      'npm run config-env && npm run set-local-variable && ng build --configuration=heroku-dev'
     );
   } else if (process.env.ENV === 'prod') {
     console.log('running heroku prod');
