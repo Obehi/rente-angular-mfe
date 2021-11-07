@@ -1,0 +1,49 @@
+@import "../../../../../styles/theme/_colors.scss";
+
+.text-area-block {
+  .mat-form-field-infix {
+    border-radius: 4px 4px 0 0;
+    // background-color: #DEDFDF;
+  }
+
+  .mat-form-field {
+    width: 100%;
+
+    &.mat-focused {
+      .mat-form-field-ripple {
+        background-color: $primary;
+      }
+
+      textarea {
+        color: rgba(0, 0, 0, 0.87);
+      }
+
+      label {
+        color: $primary;
+      }
+    }
+
+    .mat-form-field-underline {
+      background-color: $dark;
+      bottom: 0px;
+    }
+
+    .mat-form-field-wrapper {
+      padding-bottom: 0px;
+    }
+  }
+
+  label {
+    margin-top: 6px;
+    font-size: 12px;
+    letter-spacing: 0.4px;
+  }
+
+  textarea.mat-input-element {
+    color: #636669;
+    font-size: 16px;
+    letter-spacing: 0.15px;
+    line-height: 24px;
+    width: 100%;
+  }
+}

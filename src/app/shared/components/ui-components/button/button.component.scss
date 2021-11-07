@@ -1,0 +1,588 @@
+@import '../../../../../styles/theme/_colors.scss';
+.button-wrapper {
+  display: block;
+  text-align: center;
+}
+
+// OFFER CARD BUTTONS
+
+//// MOBILE
+
+button.mat-primary-offer-mobile {
+  background-color: $primary;
+  color: #fff;
+  height: 45px !important;
+  font-size: 14px !important;
+  width: 100%;
+  border-radius: 100px;
+}
+
+button.mat-primary-offer-mobile[disabled] {
+  color: white !important;
+}
+
+button.mat-primary-hollow-offer-mobile {
+  width: 100% !important;
+  background-color: white;
+  color: black;
+  border: 1px solid $primary;
+  white-space: break-spaces;
+  height: 45px !important;
+  font-size: 14px !important;
+}
+
+button.mat-primary-wide-hollow-offer-mobile[disabled] {
+  opacity: 1;
+  width: 100% !important;
+  font-size: 14px !important;
+  height: 45px;
+  background-color: unset;
+  color: #a9a9a9;
+  border: 1px solid #c9eae3;
+}
+
+button.mat-primary-hollow-non-partner-mobile[disabled] {
+  opacity: 1;
+  width: 100% !important;
+  font-size: 14px !important;
+  height: 45px;
+  background-color: unset;
+  color: $grey-dark !important;
+  border: 1px solid #c9eae3;
+}
+
+//// DESKTOP
+
+button.mat-primary-offer-desktop {
+  background-color: $primary;
+  color: $white;
+  width: 17rem !important;
+}
+
+button.mat-primary-offer-desktop[disabled] {
+  color: white !important;
+  width: 17rem !important;
+}
+
+button.mat-primary-hollow-offer-desktop {
+  background-color: white;
+  color: black;
+  border: 1px solid $primary;
+  width: 17rem !important;
+  white-space: break-spaces;
+}
+
+button.mat-primary-wide-hollow-offer-desktop[disabled] {
+  opacity: 1;
+  width: 17rem !important;
+
+  height: 56px;
+  background-color: unset;
+  color: #a9a9a975;
+  border: 1px solid #c9eae3;
+}
+
+button.mat-primary-hollow-non-partner-desktop[disabled] {
+  opacity: 1;
+  width: 17rem !important;
+
+  height: 56px;
+  background-color: unset;
+  color: $grey-dark !important;
+  border: 1px solid #c9eae3;
+}
+
+// OFFER CARDS BUTTON END
+
+button.mat-button {
+  min-width: 150px;
+  border-radius: 100px;
+  margin: auto;
+  line-height: 19px;
+
+  outline: none;
+  display: inline-block;
+  opacity: 1;
+  height: 56px;
+  font-weight: 500;
+  p {
+    color: white;
+  }
+  img {
+    height: 20px;
+  }
+
+  @media (min-width: 360px) {
+    font-size: 16px;
+  }
+}
+
+button.mat-primary-hollow {
+  background-color: white;
+  color: black;
+  border: 1px solid $primary;
+  white-space: break-spaces;
+}
+
+button.mat-primary-hollow-no-border {
+  background-color: white;
+  color: black;
+  white-space: break-spaces;
+}
+
+button.mat-button:hover:not([disabled]) {
+  opacity: 0.8;
+}
+button[disabled] {
+  opacity: 0.3;
+}
+
+button.mat-secondary[disabled][disabled] {
+  background: #ececec;
+  color: #b5b4b4;
+  opacity: 1;
+}
+
+button.mat-grey[disabled] {
+  opacity: 1;
+  color: white;
+}
+
+button.mat-primary {
+  background-color: $primary;
+}
+
+button.mat-primary-small {
+  background-color: $primary;
+  min-width: 128px;
+  height: 45px;
+}
+
+button.mat-primary-80 {
+  width: 80%;
+  color: white;
+  white-space: break-spaces;
+  background-color: $primary;
+}
+
+button.mat-primary-80[disabled] {
+  color: white !important;
+}
+
+button.mat-secondary {
+  background-color: $secondary;
+  color: white;
+}
+
+button.mat-secondary-semi-wide {
+  background-color: $secondary;
+  color: white;
+  width: 17rem;
+}
+
+button.mat-danskebank-semi-wide {
+  background-color: $danske-bank;
+  color: white;
+}
+
+button.mat-danskebank-wide-hollow {
+  background-color: $danske-bank;
+  color: white;
+  height: 56px;
+  width: 100%;
+  white-space: break-spaces;
+
+  @media (max-width: 600px) {
+    height: 45px;
+  }
+}
+
+button.mat-secondary-small {
+  background-color: $secondary;
+  height: 45px;
+  // min-width: 125px;
+  color: white;
+}
+button.mat-primary-wide-hollow {
+  background-color: white;
+  color: black;
+  border: 1px solid $primary;
+  height: 56px;
+  width: 100%;
+  white-space: break-spaces;
+
+  @media (max-width: 600px) {
+    height: 45px;
+  }
+}
+
+button.mat-secondary-border {
+  background-color: $secondary;
+  color: white;
+  border: 1px solid #2d4051;
+}
+
+.mat-button.mat-primary {
+  color: white !important;
+}
+
+.mat-button.mat-primary-small {
+  background-color: $primary;
+  color: white !important;
+  height: 45px;
+}
+
+button.mat-blue {
+  background-color: $blue;
+  color: white;
+}
+button.mat-blue-250 {
+  background-color: $blue;
+  color: white;
+  min-width: 250px;
+}
+
+button.mat-blue-bank {
+  background-color: $blue;
+  color: white;
+  width: 135px;
+}
+
+button.mat-primary-wide {
+  background-color: $primary;
+  color: white;
+  height: 56px;
+  width: 100%;
+}
+
+button.mat-primary-wide-break {
+  background-color: $primary;
+  color: white;
+  height: 56px;
+  width: 100%;
+  white-space: break-spaces;
+}
+button.mat-primary-wide-break[disabled] {
+  color: white !important;
+}
+
+button.mat-primary-wide[disabled] {
+  color: white !important;
+}
+
+button.mat-primary-semi-wide {
+  background-color: $primary;
+  color: $white;
+  height: 56px;
+  width: 100%;
+}
+
+button.mat-primary-horizontal-padding {
+  color: $white;
+  background: $primary;
+  padding: 0px 50px;
+}
+
+button.mat-primary-horizontal-padding[disabled] {
+  color: white !important;
+}
+
+button.mat-primary-medium {
+  background-color: $primary;
+  color: white;
+  height: 56px;
+  width: 100%;
+  border-radius: 100px;
+}
+
+button.mat-secondary-medium {
+  background-color: $secondary;
+  color: white;
+  height: 56px;
+  width: 100%;
+  border-radius: 100px;
+}
+
+button.mat-primary-medium[disabled] {
+  color: white !important;
+}
+
+button.mat-secondary-medium {
+  background-color: $secondary;
+  color: white;
+  height: 56px;
+  border-radius: 100px;
+}
+
+button.mat-primary-wide-landing {
+  background-color: $primary;
+  color: white;
+  height: 56px;
+  width: 80%;
+  @media (min-width: 800px) {
+    width: 320px;
+  }
+}
+
+button.mat-primary-wide-landing-new {
+  background-color: $primary;
+  color: white;
+  height: 56px;
+  width: 80%;
+  @media (min-width: 800px) {
+    width: 19vw;
+    font-size: 16px;
+    font-weight: 400;
+    white-space: break-spaces;
+  }
+
+  @media (min-width: 1315px) {
+    width: 19vw;
+    font-size: 16px;
+    font-weight: 400;
+  }
+}
+
+button.mat-primary-wide-landing-hollow {
+  background-color: white;
+  color: black;
+  border: 1px solid $primary;
+  height: 56px;
+  width: 80%;
+  @media (min-width: 800px) {
+    font-size: 16px;
+    width: 19vw;
+    white-space: break-spaces;
+    font-weight: 400;
+  }
+
+  @media (min-width: 1315px) {
+    width: 19vw;
+    font-size: 16px;
+    font-weight: 400;
+  }
+}
+
+button.mat-primary-wide-landing-hollow-old {
+  background-color: white;
+  color: black;
+  border: 1px solid $primary;
+  height: 56px;
+  width: 80%;
+  @media (min-width: 800px) {
+    font-size: 16px;
+    width: 320px;
+    white-space: break-spaces;
+    font-weight: 400;
+  }
+
+  @media (min-width: 1315px) {
+    width: 320px;
+    font-size: 16px;
+    font-weight: 400;
+  }
+}
+
+button.mat-primary-wide-no-border {
+  background-color: white;
+  color: black;
+  border: none !important;
+  height: 56px;
+  width: 100%;
+  white-space: break-spaces;
+}
+button.mat-primary-wide-no-border:hover:not([disabled]) {
+  background-color: white !important;
+  color: black;
+  border: none !important;
+  height: 56px;
+  width: 100%;
+  white-space: break-spaces;
+}
+
+button.mat-primary-wide-no-space {
+  background-color: white;
+  color: black;
+  border: 1px solid $primary;
+  height: 56px;
+  width: 100%;
+  white-space: break-spaces;
+}
+
+button.mat-primary-semi-wide-hollow {
+  background-color: white;
+  color: black;
+  border: 1px solid $primary;
+  height: 56px;
+  width: 100%;
+  white-space: break-spaces;
+}
+
+button.mat-primar-hollow-medium {
+  min-width: 150px;
+  background-color: white;
+  color: black;
+  border: 1px solid $primary;
+  height: 56px;
+  width: 100%;
+  white-space: break-spaces;
+}
+
+button.mat-primary-wide-white {
+  background-color: white;
+  color: black;
+  height: 56px;
+  width: 100%;
+  white-space: break-spaces;
+}
+
+button.mat-primary-wide-hollow[disabled] {
+  opacity: 1;
+  height: 56px;
+  background-color: unset;
+  color: #a9a9a9;
+  border: 1px solid #c9eae3;
+}
+
+button.mat-primary-semi-wide-hollow[disabled] {
+  opacity: 1;
+  height: 56px;
+  background-color: unset;
+  color: #a9a9a9;
+  border: 1px solid #c9eae3;
+}
+
+button.mat-blue-wide {
+  background-color: $blue;
+  color: white;
+  height: 43px;
+  width: 80%;
+}
+
+button.mat-grey {
+  background-color: $grey;
+  color: white;
+  width: 100%;
+}
+
+button.mat-orange {
+  background-color: $orange;
+  color: white;
+  width: 100%;
+}
+.loading-icon {
+  animation: spin 2s infinite linear;
+  display: inline-block;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+button.mat-primary-wide-hollow-card {
+  background-color: white;
+  color: black;
+  border: 1px solid $primary;
+  height: 45px;
+  font-size: 14px;
+  width: 100%;
+  white-space: break-spaces;
+  border-radius: 100px;
+}
+
+button.mat-primary-wide-hollow-card[disabled] {
+  opacity: 1;
+  height: 45px;
+  font-size: 14px;
+  width: 100%;
+  background-color: unset;
+  color: #a9a9a9;
+  border: 1px solid #c9eae3;
+  border-radius: 100px;
+}
+
+button.mat-primary-wide-hollow-card-big {
+  background-color: white;
+  color: black;
+  border: 1px solid $primary;
+  height: 56px;
+  font-size: 14px;
+  width: 100%;
+  white-space: break-spaces;
+  border-radius: 100px;
+}
+
+button.mat-primary-medium-card {
+  background-color: $primary;
+  color: white;
+  height: 45px;
+  font-size: 14px;
+  width: 100%;
+  border-radius: 100px;
+}
+
+button.mat-primary-medium-card[disabled] {
+  color: white !important;
+}
+
+button.mat-secondary-medium-card {
+  background-color: $secondary;
+  color: white;
+  height: 45px;
+  font-size: 14px;
+  width: 100%;
+  border-radius: 100px;
+}
+
+button.mat-secondary-medium-card[disabled] {
+  color: white !important;
+}
+
+button.mat-blue-select {
+  background: $secondary;
+  height: 5ch;
+  display: inline;
+  max-width: 300px;
+}
+
+button.mat-blue {
+  color: $white;
+
+  background: $secondary;
+  height: 5ch;
+  display: inline;
+  width: 200px;
+}
+
+button.mat-blue-cookie {
+  color: $white;
+  background: $secondary;
+  display: inline;
+  width: 200px;
+  @media (max-width: 600px) {
+    width: 150px;
+  }
+}
+
+button.mat-primary-cookie {
+  color: $white;
+  background: $primary;
+  display: inline;
+  width: 200px;
+  @media (max-width: 600px) {
+    width: 150px;
+  }
+
+  button.mat-white-cookie {
+    color: $black;
+    background: $white;
+    display: inline;
+    width: 150px;
+  }
+}

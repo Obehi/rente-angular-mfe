@@ -1,0 +1,65 @@
+  <mat-icon (click)="onClose()" class="close-modal">close</mat-icon>
+
+<div class="top">
+<h3 *ngIf="offer.bankInfo.bank">{{ offer.bankInfo.name }}</h3>
+
+<div class="grid-wrapper">
+    <div class="item">
+      <p i18n=“product|details@@details.component.product” class="small">Produkt</p>
+      <p>{{ offer.productName }}</p>
+    </div>
+    <div class="item">
+      <p i18n=“max-leverage|details@@details.component.maxLeverage” class="small">Max belåningsgrad</p>
+        <p>{{ offer.maxLTV }}%</p>
+    </div>
+    <div class="item">
+      <p i18n=“nominal-interest|details@@details.component.nominalInterest” class="small">Nominell rente</p>
+      <p>{{ offer.nominalRate | number: "1.2-2" }}%</p>
+    </div>
+    <div class="item">
+      <p i18n=“efficient-interest|details@@details.component.efficientInterest” class="small">Effektiv rente</p>
+      <p>{{ offer.effectiveRate | number: "1.2-2" }}%</p>
+    </div>
+    <div class="item" i18n=“product-demand|details@@details.component.productDemand”>
+        <p class="small">Krav om annet produkt</p>
+        <p>{{ offer.requiredProductPackage == null ? customLangTextSerice.get18nFixForNo() : "Ja" }}</p>
+    </div>
+
+    <div class="item">
+      <p i18n=“product-package|details@@details.component.productPackage” class="small">Produktpakke</p>
+      <p>{{ offer.requiredProductPackage == null ? customLangTextSerice.get18nFixForNoRequirement() :  offer.requiredProductPackage}}</p>
+    </div>
+    
+    <div class="item">
+      <p i18n=“demand-membership|details@@details.component.demandMembership” class="small">Forutsetter medlemskap</p>
+      <p i18n=demand-membership-answer|details@@details.component.demandMembership.yesOrNo”>{{ offer.requiredMembership == null ? customLangTextSerice.get18nFixForNo() : "Ja" }}</p>
+    </div>
+    <div *ngIf="offer.requiredMembership != null">
+      <div class="item">
+        <p i18n=“membership|details@@details.component.membership” class="small">Medlemskap</p>
+        <p>{{ offer.requiredMembership }}</p>
+      </div>
+    </div>
+
+
+</div>
+
+<p class="small-header"  >{{offer.otherConditions ? customLangTextSerice.get18nFixForRequirement() : customLangTextSerice.get18nFixForNoRequirement2()}} </p>
+<p class ="otherConditions">{{ offer.otherConditions }}</p>
+
+
+<p i18n=“other-conditions|details@@details.component.offerHeader class="small-header">Tilbud:</p>
+<p i18n=“other-conditions|details@@details.component.offer“ class="insignificant">Eff.rente: {{offer.effectiveRate | number: "1.1-2"}}%,
+  Lånebeløp: {{offer.outstandingDebt | number: "1.0" }},
+  {{offer.loanPeriodYears | number: "1.0" }} år,
+  Kostnad: {{offer.cost | number: "1.0" }},
+  Totalt: {{offer.totalCost | number: "1.0" }}
+</p>
+</div>
+
+
+  <div class="bottom">
+    <rente-button i18n=“other-conditions|details@@popUpDialog.close“ color="primary" (click)="onClose()">
+      Lukk
+    </rente-button>
+  </div>

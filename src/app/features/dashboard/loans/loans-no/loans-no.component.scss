@@ -1,0 +1,46 @@
+@import '../../../../../styles/theme/_colors.scss';
+h3.title {
+  color: white;
+  padding: 10px 0;
+}
+
+p {
+  color: black;
+}
+
+.main-container {
+  @media (min-width: 600px) {
+    padding: 40px 80px;
+  }
+
+  @media (max-width: 600px) {
+    margin: 20px;
+  }
+}
+
+.center-logo {
+  margin-top: 40px;
+  background: #fff;
+  border-radius: 15px;
+  padding: 20px;
+  max-width: 627px;
+  margin: auto;
+  width: calc(100% + -20px);
+  margin-top: 100px;
+
+  h3 {
+    color: $secondary;
+    margin-bottom: 10px;
+  }
+
+  p {
+    color: $secondary;
+    font-weight: 400;
+    margin-bottom: 15px;
+  }
+  text-align: center;
+
+  img {
+    width: 180px;
+  }
+}

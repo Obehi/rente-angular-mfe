@@ -1,0 +1,142 @@
+@import '../../../../styles/theme/_colors.scss';
+.problems {
+  .title {
+    padding-bottom: 20px;
+    text-align: center;
+    h3 {
+      margin-bottom: 20px;
+    }
+  }
+}
+
+.title {
+  padding-bottom: 30px;
+  text-align: center;
+  h3 {
+    margin-bottom: 10px;
+  }
+}
+
+rente-button {
+  margin: auto;
+  display: block;
+  margin-top: 20px;
+  text-align: center;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+.memberlist {
+  font-size: 16px;
+  position: relative;
+  border-bottom: 1px solid $light;
+  padding: 10px 30px 10px 0px;
+  &:last-of-type {
+    border-bottom: none;
+  }
+  mat-icon {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+
+.field {
+  margin-bottom: 20px;
+}
+.double {
+  grid-gap: 40px;
+  margin-bottom: 20px;
+}
+
+.blue {
+  background: $secondary;
+
+  h3,
+  p {
+    color: white;
+  }
+
+  form {
+    h3,
+    p {
+      color: #000;
+    }
+    background: white;
+    border-radius: 15px;
+  }
+}
+
+.propertyBox {
+  width: 100%;
+  text-align: center;
+  font-size: 150%;
+}
+
+.propertyValueTitle {
+  margin-top: 50px !important;
+
+  @media (max-width: 600px) {
+    margin-top: 55px !important;
+  }
+}
+
+.estimatedValueNumber {
+  font-size: 90%;
+  margin-top: 10px;
+  margin-bottom: 34px;
+}
+
+.correctValueTitle {
+  color: white;
+  font-size: larger;
+  text-align: center;
+  margin-bottom: 0px;
+}
+
+.bottom {
+  // border-top: 1px solid #ececec;
+  padding: 20px;
+  border-radius: 0 0 10px 10px;
+
+  // &.single {
+  //   display: flex;
+  //   justify-content: center;
+  //   align-items: center;
+  // }
+
+  &.double {
+    display: grid;
+    grid-column-gap: 15px;
+    grid-template-columns: 1fr 1fr;
+
+    @media (max-width: 700px) {
+      display: block;
+      flex-direction: column-reverse;
+    }
+  }
+}
+
+.buttonwidth {
+  width: 100%;
+  @media (max-width: 600px) {
+    width: 75%;
+  }
+}
+
+::ng-deep button.mat-primary-hollow-no-border {
+  width: 260px !important;
+  @media (max-width: 600px) {
+    width: 100% !important;
+  }
+}
+
+::ng-deep button.mat-primary {
+  width: 260px !important;
+  @media (max-width: 600px) {
+    width: 100% !important;
+  }
+}

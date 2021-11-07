@@ -1,0 +1,47 @@
+<nav>
+  <div class="inner-nav">
+    <a (click)="goToTop(); clearActiveLinks()" [routerLink]="['/']">
+      <img
+        src="../../../../assets/img/renteradar_white_logo-no.svg"
+        alt="Renteradar logo"
+      />
+    </a>
+    <div class="menu-container">
+      <div class="desktop-menu desktop">
+        <a
+          i18n="“Headerlink|homepage@@header.home”"
+          (click)="goToChooseBank('get-started')"
+          [ngClass]="getStartedBtn ? 'active-link' : 'non-active'"
+          >Kom i gang
+        </a>
+
+        <span [routerLink]="['/']" fragment="slik-fungerer-det">
+          <a
+            (click)="clearActiveLinks()"
+            class="non-active"
+            href="#slik-fungerer-det"
+          >
+            Slik fungerer det
+          </a>
+        </span>
+
+        <a
+          i18n="“Headerlink|log-in@@header.login”"
+          *ngIf="!isLoggedIn"
+          class="highlight"
+          (click)="goToChooseBank('log-in')"
+          [ngClass]="logInBtn ? 'active-link' : 'non-active'"
+          >Logg inn
+        </a>
+        <a
+          class="highlight non-active"
+          [routerLink]="['/']"
+          *ngIf="isLoggedIn"
+          (click)="logout()"
+          >Logg ut</a
+        >
+      </div>
+    </div>
+  </div>
+</nav>
+<div class="nav-space"></div>

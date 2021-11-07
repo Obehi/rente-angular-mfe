@@ -1,0 +1,82 @@
+@import '../../../../../../styles/theme/_colors.scss';
+
+.input-box {
+  text-align: center;
+  padding: 5px 10px 5px 5px;
+}
+
+.input-container {
+  display: flex;
+  grid-column-gap: 5px;
+  align-items: center;
+}
+
+input {
+  background-color: transparent !important;
+
+  border: none !important;
+  border-style: none !important;
+  width: 100% !important;
+  height: 23px !important;
+  min-height: 21px !important;
+  border-radius: 5px;
+}
+
+input:disabled,
+textarea:disabled,
+input:disabled::placeholder,
+textarea:disabled::placeholder {
+  -webkit-text-fill-color: currentcolor; /* 1. sets text fill to current `color` for safari */
+  opacity: 1 !important; /* 2. correct opacity on iOS */
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0
+  ); // 3. Necessary to remove transparency on safari
+}
+
+.input-text {
+  color: white;
+  font-size: 16px !important;
+  text-align: end !important;
+  margin: auto;
+}
+
+.input-edit {
+  background: #004465a6;
+  transition: background 0.2s ease;
+
+  border: 1px solid #478ccc;
+  border-radius: 8px;
+  transition: border 0.2s ease;
+}
+
+.input-inactive {
+  background: none;
+  border: none;
+}
+
+.input-focus {
+  background: $secondary;
+
+  border: 1px solid $primary;
+  border-radius: 8px;
+}
+
+.input-error {
+  background: #004465a6;
+  transition: background 0.2s ease;
+
+  border: 1px solid $red;
+  border-radius: 8px;
+  transition: border 0.2s ease;
+
+  .ng-touched::-webkit-input-placeholder {
+    color: white;
+  }
+}
+
+.white-text {
+  color: white;
+}

@@ -1,0 +1,40 @@
+<div>
+  <!-- If we are using reactive forms-->
+  <form *ngIf="formGroup !== undefined" [formGroup]="formGroup">
+    <div class="item" *ngFor="let checkboxItem of checkBoxItems; let i = index">
+      <div class="input-wrapper">
+        <img
+          [@enabledStateChange]="getBoxState(i)"
+          src="{{ getIcon(checkboxItem) }}"
+        />
+        <input
+          (click)="boxClicked(i)"
+          formControlName="propertyType"
+          type="radio"
+          name="propertyType"
+          value="{{ checkboxItem.value }}"
+        />
+      </div>
+      <span [innerHtml]="checkboxItem.name"></span>
+    </div>
+  </form>
+
+  <!-- If we are not using reactive forms-->
+  <form *ngIf="formGroup === undefined">
+    <div class="item" *ngFor="let checkboxItem of checkBoxItems; let i = index">
+      <div class="input-wrapper">
+        <img
+          [@enabledStateChange]="getBoxState(i)"
+          src="{{ getIcon(checkboxItem) }}"
+        />
+        <input
+          (click)="boxClicked(i)"
+          type="radio"
+          name="propertyType"
+          value="{{ checkboxItem.value }}"
+        />
+      </div>
+      <span [innerHtml]="checkboxItem.name"></span>
+    </div>
+  </form>
+</div>

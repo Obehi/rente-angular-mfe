@@ -1,0 +1,15 @@
+<div class="input-block">
+  horeeee
+  <label class="checkbox">
+    <input
+      type="checkbox"
+      [ngModel]="checked"
+      (ngModelChanged)="checked = $event; valueChange()"
+      [name]="name"
+    />
+    <span class="checkbox-icon"></span>
+  </label>
+  <div class="checkbox-label" (click)="checked = !checked; valueChange()">
+    <ng-content></ng-content>
+  </div>
+</div>

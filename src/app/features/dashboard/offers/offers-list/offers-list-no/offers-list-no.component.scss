@@ -1,0 +1,233 @@
+@import '../../../../../../styles/theme/_colors.scss';
+h3,
+p {
+  color: #fff;
+}
+
+@media (min-width: 600px) {
+  h3 {
+    font-size: 38px;
+  }
+}
+
+h3 {
+  color: #fff;
+  margin-bottom: 28px;
+}
+
+.info-box {
+  color: #fff;
+  background-color: $karl-blue;
+  border: 1px solid $blue-light;
+  border-radius: 5px;
+  padding: 15px;
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.offers-container {
+  min-height: 1000px;
+
+  .spinner {
+    margin-top: 100px;
+  }
+}
+
+.user-score-preferences-box {
+  border: 1px solid #478ccc;
+  border-radius: 15px;
+  padding: 15px;
+  background: #112639;
+  scroll-margin: 200px;
+  margin-top: 30px;
+  .user-score-header {
+    color: #fff;
+    margin-top: 28px;
+  }
+}
+
+.sticky-table-header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  position: fixed;
+  z-index: 9;
+  top: 55px;
+  font-size: 14px;
+  color: #000;
+  background-color: aquamarine;
+  box-shadow: rgb(100 100 111 / 20%) 0px 7px 29px 0px;
+  height: 4em;
+  width: 90%;
+  padding: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  span {
+    margin-right: 29px;
+  }
+}
+
+.offers-type-container {
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  align-items: center;
+  margin: 10px auto 0;
+  height: 60px;
+
+  @media (max-width: 600px) {
+    width: 100%;
+  }
+
+  @media (min-width: 600px) {
+    width: 40%;
+    min-width: 382px;
+    max-width: 382px;
+  }
+
+  .offers-type-switch {
+    background: $secondary;
+    width: 65%;
+    margin: auto;
+    height: 60px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    border-radius: 15px;
+    z-index: 10;
+
+    a {
+      flex: 1;
+      height: 100%;
+      line-height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      p {
+        color: white;
+        font-weight: 400;
+      }
+      &.active {
+        p {
+          color: $primary;
+          background: none;
+          background: $blue-medium;
+          border-radius: 20px;
+          padding: 0.5em 2em;
+          box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+            rgba(0, 0, 0, 0.3) 0px 3px 3px -1px;
+        }
+      }
+    }
+  }
+  .preferences-button {
+    width: 20%;
+    height: 60px;
+    background: $secondary;
+    border-radius: 0 15px 15px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 0;
+
+    .preferences-button {
+      background: $blue-medium;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      justify-content: center;
+      border-radius: 50px;
+      margin-left: 13px;
+
+      box-shadow: rgb(50 50 93 / 25%) 0px 2px 5px -1px,
+        rgb(0 0 0 / 30%) 0px 3px 3px -1px;
+      //     transition: all 1s ease;
+      //   transform: translate3d(0, 0px, 0);
+    }
+
+    .preferences-button-active {
+      background: $karl-blue;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      justify-content: center;
+      border-radius: 50px;
+      margin-left: 13px;
+      // box-shadow: 2px 1px 2px black;
+      // transform: translate3d(0, -4px, 0);
+      // transition: all 0.3s ease;
+    }
+    img {
+      width: 24px;
+    }
+  }
+}
+
+:host {
+  grid-row: 5;
+  grid-column-start: 1;
+  grid-column-end: span 2;
+}
+
+h3,
+p {
+  color: #fff;
+}
+
+@media (min-width: 600px) {
+  h3 {
+    font-size: 38px;
+  }
+}
+
+.sticky-table-header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  position: fixed;
+  z-index: 999;
+  top: 55px;
+  font-size: 14px;
+  color: #000;
+  background-color: aquamarine;
+  box-shadow: rgb(100 100 111 / 20%) 0px 7px 29px 0px;
+  height: 4em;
+  width: 90%;
+  padding: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  span {
+    margin-right: 21px;
+  }
+
+  @media (min-width: 600px) {
+    top: 114px;
+  }
+  p {
+    color: #000;
+    font-weight: 400;
+
+    span {
+      margin-left: 20px;
+      font-size: 14px;
+    }
+  }
+  p:first-of-type {
+    margin-right: auto;
+  }
+}
+
+.version {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+  .versionButton {
+    border-radius: 15px;
+    padding: 10px 20px;
+    background: $grey-light;
+    color: $grey-dark;
+  }
+}

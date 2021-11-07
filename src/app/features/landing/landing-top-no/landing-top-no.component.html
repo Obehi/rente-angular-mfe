@@ -1,0 +1,101 @@
+<div class="co-main">
+  <div class="intro imb">
+    <h1 class="mobileh1">
+      Boliglån gjort
+      <a [routerLink]="'/velgbank'">enkelt</a>
+    </h1>
+
+    <p
+      i18n="surveillance-service|landing-page@@landing.surveillanceService"
+      class="surveillance"
+    >
+      Sammenlign din boliglånsrente med markedets beste tilbud og hva andre
+      betaler. 4 av 5 kan spare flere tusen i året. På 2 minutter får du full
+      oversikt og kontroll på boliglånet ditt - helt gratis!
+    </p>
+
+    <div class="cta-container" *ngIf="!isMobile">
+      <div class="buttons">
+        <rente-button
+          class="cta-button"
+          color="primary-wide-landing-new"
+          [routerLink]="'/velgbank'"
+        >
+          {{ ctaText }}
+        </rente-button>
+
+        <rente-button
+          class="cta-button"
+          color="primary-wide-landing-new"
+          [routerLink]="'/autentisering/demo'"
+        >
+          Til dashboard
+        </rente-button>
+
+        <div class="gap"></div>
+
+        <!--    <rente-button
+          color="primary-wide-landing-hollow"
+          [routerLink]="'/boliglanskalkulator'"
+        >
+          Jeg skal kjøpe min første bolig
+        </rente-button> -->
+      </div>
+    </div>
+  </div>
+
+  <div class="cta-container" *ngIf="isMobile">
+    <div class="buttons">
+      <rente-button
+        class="cta-button"
+        color="primary-wide-landing-new"
+        [routerLink]="'/velgbank'"
+      >
+        {{ ctaText }}
+      </rente-button>
+    </div>
+  </div>
+
+  <div *ngIf="!isSweden && !isMobile" class="rente-example">
+    <embed
+      src="./../../../../assets/img/example-desktop-info-blue.svg"
+      class="rente-image"
+    />
+  </div>
+
+  <!-- <img class="showcase" src="../../../assets/img/isometric-new-optimized.png" />
+
+<div class="data-logos">
+  <a
+    class="finansportalen"
+    target="_blank"
+    href="https://www.finansportalen.no"
+    rel="nofollow"
+  >
+    <img
+      src="../../../assets/img/banks-logo/svg/finansportalen.svg"
+      alt="Finansportalen logo"
+    />
+  </a>
+  <a target="_blank" href="https://virdi.no/">
+    <img src="../../../assets/img/banks-logo/svg/virdi.svg" alt="Virdi logo" />
+  </a>
+  <a class="boligmappa" target="_blank" href="https://www.boligmappa.no/">
+    <img
+      src="../../../../assets/img/partners/boligmappa-color.png"
+      alt="boligmappa logo"
+    />
+  </a>
+
+  <div class="defero-wrapper">
+    <a class="defero" target="_blank" href="https://www.defero.no/">
+      <img
+        src="../../../../assets/img/partners/defero-light-mode.png"
+        alt="boligmappa logo"
+      />
+    </a>
+  </div>
+</div> -->
+
+  <!-- <rente-counter></rente-counter> -->
+</div>

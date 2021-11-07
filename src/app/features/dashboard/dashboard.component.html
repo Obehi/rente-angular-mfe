@@ -1,0 +1,15 @@
+<div>
+  <rente-dashboard-tabs-desktop
+    *ngIf="!isMobile"
+  ></rente-dashboard-tabs-desktop>
+
+  <div *ngIf="isMobile">
+    <rente-header-mobile></rente-header-mobile>
+    <rente-dashboard-tabs-mobile></rente-dashboard-tabs-mobile>
+  </div>
+
+  <div [ngClass]="'dashboard-content-blue'">
+    <!-- <div class="dashboard-content"> -->
+    <router-outlet (activate)="onActivate()"></router-outlet>
+  </div>
+</div>

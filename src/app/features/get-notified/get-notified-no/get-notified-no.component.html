@@ -1,0 +1,61 @@
+<div class="front-container">
+  <h2>{{ missingBank.label }}</h2>
+
+  <h4 i18n="“no-support|get-notified@@get.notified.noSupport”">
+    Vi har desverre ikke støtte for banken din enda.<br />
+    Legg igjen din epost så gir vi deg beskjed når det er klart.
+  </h4>
+
+  <div *ngIf="missingBankForm">
+    <form [formGroup]="missingBankForm" novalidate (ngSubmit)="request()">
+      <div>
+        <rente-input
+          [placeholder]="'E-post'"
+          formControlName="email"
+          [errorStateMatcher]="isErrorState(missingBankForm.controls['email'])"
+          [textControl]="inValid()"
+          (blur)="onBlurErrorCheck()"
+        >
+        </rente-input>
+        <div
+          i18n="“issue-email|get-notified@@get.notified.email”"
+          *ngIf="emailError"
+          class="error-message"
+        >
+          <rente-form-message
+            class="text-left d-block"
+            [type]="'error'"
+            *ngIf="missingBankForm.controls['email'].hasError('required')"
+          >
+            Ikke gyldig email
+          </rente-form-message>
+          <rente-form-message
+            class="text-left d-block"
+            [type]="'error'"
+            *ngIf="missingBankForm.controls['email'].hasError('pattern')"
+          >
+            Ikke gyldig email
+          </rente-form-message>
+        </div>
+      </div>
+
+      <rente-button
+        i18n="“notify-me|get-notified@@get.notified.notifyMe”"
+        color="primary"
+        [disabled]="!missingBankForm.valid || isLoading"
+        >Gi meg lyd når på plass!
+      </rente-button>
+    </form>
+
+    <div class="calculator-promotion">
+      <h4>
+        I mellomtiden prøv gjerne vår
+        <a [routerLink]="['/boliglanskalkulator']"> boliglånskalkulator </a>
+      </h4>
+    </div>
+  </div>
+
+  <div class="loading" *ngIf="!missingBankForm">
+    <mat-spinner [diameter]="48" [strokeWidth]="4"></mat-spinner>
+  </div>
+</div>

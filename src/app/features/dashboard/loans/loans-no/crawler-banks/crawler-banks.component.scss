@@ -1,0 +1,257 @@
+@import '../../../../../../styles/theme/_colors.scss';
+
+h3.title {
+  color: white;
+  padding: 10px 0;
+}
+
+h3 {
+  color: white;
+}
+
+p {
+  color: white;
+}
+
+.summary {
+  @media (min-width: 600px) {
+    border-top: none;
+    position: relative;
+    left: -1px;
+    width: calc(100% + 10px);
+    margin: auto;
+  }
+}
+
+.pad {
+  @media (max-width: 600px) {
+    padding-top: 10px;
+  }
+  @media (min-width: 600px) {
+    padding: 10px 20px 0 0px;
+  }
+}
+
+.all-text {
+  margin-top: 5px;
+  padding: 0px 10px 0 10px;
+
+  @media (min-width: 281px) and (max-width: 321px) {
+    padding: 15px 5px 0 5px;
+  }
+}
+
+.total-cost {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.blue-box-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    // justify-content: center;
+  }
+}
+
+.content-blue-box {
+  width: 100%;
+  background-color: #112639;
+  border-radius: 15px;
+
+  margin-bottom: 40px;
+  b {
+    font-size: 14px;
+    font-weight: 400;
+  }
+}
+
+.main-container {
+  @media (min-width: 768px) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 80px;
+    margin-top: 50px;
+    // display: flex;
+    // justify-content: space-evenly;
+    // align-items: initial;
+  }
+
+  @media (max-width: 768px) {
+    //display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+.summary-box {
+  margin-bottom: 20px;
+  width: 100%;
+  background: none;
+  border-radius: 10px;
+
+  .first-box {
+    background: none;
+    box-shadow: none;
+  }
+
+  .double-container {
+    justify-content: center;
+  }
+
+  .move-first-box {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+
+  .move-sec-box {
+    margin-right: 0px;
+  }
+
+  @media (min-width: 769px) and (max-width: 992px) {
+    width: 90%;
+  }
+
+  @media (min-width: 767px) and (max-width: 769px) {
+    width: 100%;
+  }
+  @media (min-width: 992px) {
+    width: 75%;
+  } // End of media screen
+}
+
+.double-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  @media (max-width: 320px) {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.four-container {
+  @media (min-width: 769px) {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.tab-container {
+  @media (min-width: 769px) {
+    p {
+      padding: 6px;
+    }
+  }
+  @media (max-width: 769px) {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    align-items: center;
+  }
+}
+
+.first-box {
+  color: white;
+  width: 40%;
+  border-radius: 10px;
+  padding: 10px;
+  background-color: #004465a6;
+  box-shadow: rgb(50 50 93 / 25%) 0px 2px 5px -1px,
+    rgb(0 0 0 / 30%) 0px 3px 3px -1px;
+
+  @media (max-width: 320px) {
+    width: 100%;
+  }
+}
+
+.move-first-box {
+  margin-left: 10px;
+  margin-bottom: 20px;
+}
+
+.move-sec-box {
+  margin-right: 10px;
+  margin-bottom: 20px;
+}
+
+.box-label {
+  text-align: center;
+  padding: 6px;
+}
+
+.btitle-two,
+.btitle-one {
+  text-align: center;
+
+  @media (max-width: 376px) and (min-width: 360px) {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
+  p {
+    margin-bottom: 5px;
+
+    @media (max-width: 405px) {
+      padding: 0px;
+    }
+    @media (max-width: 992px) and (min-width: 768px) {
+      padding: 0px;
+    }
+  }
+}
+
+.btitle-two {
+  padding-left: 7px;
+  padding-right: 7px;
+}
+
+.bvalue {
+  text-align: center;
+  padding: 6px;
+}
+
+.loan-type {
+  padding: 14px 20px;
+  color: white;
+  border-radius: 15px 15px 0 0;
+  background: #004465a6;
+  h3 {
+    font-size: 14px;
+    margin-left: 5px;
+    padding: 5px 0;
+  }
+}
+
+.loan-info {
+  padding: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.general-title {
+  // margin: 8px;
+  padding: 0 0 20px;
+
+  @media (max-width: 600px) {
+    padding: 10px 10px 20px;
+  }
+  h3 {
+    color: white;
+  }
+}
+
+// .one-loan {
+//   margin-top: 60px;
+
+//   @media (max-width: 320px) {
+//     margin-top: 50px;
+//   }
+// }

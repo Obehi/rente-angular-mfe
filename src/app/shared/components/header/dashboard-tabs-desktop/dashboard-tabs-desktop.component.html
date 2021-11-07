@@ -1,0 +1,144 @@
+<div class="dash-tabs-blue-wrapper">
+  <div class="dash-tabs-blue">
+    <div class="inner">
+      <div class="dash-logo-tab">
+        <nav>
+          <a [routerLink]="['./' + routesMap.offers]">
+            <img class="rente-logo" [src]="dashLogo" alt="Renteradar logo" />
+          </a>
+        </nav>
+      </div>
+
+      <div class="dash-all-tabs">
+        <nav mat-tab-nav-bar class="dash-tab">
+          <a
+            mat-tab-link
+            [active]="(globalStateService.getCurrentActiveTab$() | async) == 0"
+            [routerLink]="'./' + routesMap.offers"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >
+            <div class="inside-btn">
+              <span
+                class="notification circle"
+                *ngIf="getOfferNotifications() | async"
+                ><p class="test">{{ getOfferNotifications() | async }}</p></span
+              >
+              <img
+                class="rente-icon"
+                src="../../../../../assets/icons/rente-logo-icon-white.svg"
+                alt="Banktilbud"
+                *ngIf="
+                  (globalStateService.getCurrentActiveTab$() | async) !== 0
+                "
+              />
+              <img
+                class="rente-icon"
+                src="../../../../../assets/icons/rente-logo-icon-green.svg"
+                alt="Banktilbud"
+                *ngIf="(globalStateService.getCurrentActiveTab$() | async) == 0"
+              />
+              <p i18n="“title|offer@@dashboard.loggedIn.offer”">Tilbud</p>
+            </div>
+          </a>
+        </nav>
+        <nav mat-tab-nav-bar class="dash-tab">
+          <a
+            mat-tab-link
+            [active]="(globalStateService.getCurrentActiveTab$() | async) == 1"
+            [routerLink]="'./' + routesMap.loans"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >
+            <div class="inside-btn">
+              <img
+                class="graph-icon"
+                src="../../../../../assets/icons/graph-icon-white.svg"
+                alt="Mine lån"
+                *ngIf="
+                  (globalStateService.getCurrentActiveTab$() | async) !== 1
+                "
+              />
+              <img
+                class="graph-icon"
+                src="../../../../../assets/icons/graph-icon-green.svg"
+                alt="Mine lån"
+                *ngIf="(globalStateService.getCurrentActiveTab$() | async) == 1"
+              />
+              <p i18n="“title2|my-loans@@dashboard.loggedIn.myLoans”">
+                Mine lån
+              </p>
+            </div>
+          </a>
+        </nav>
+        <nav mat-tab-nav-bar class="dash-tab">
+          <a
+            mat-tab-link
+            [active]="(globalStateService.getCurrentActiveTab$() | async) == 2"
+            [routerLink]="'./' + routesMap.property"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >
+            <div class="inside-btn">
+              <img
+                class="house-icon"
+                src="../../../../../assets/icons/house-icon-white.svg"
+                alt="Bolig"
+                *ngIf="
+                  (globalStateService.getCurrentActiveTab$() | async) !== 2
+                "
+              />
+              <img
+                class="house-icon"
+                src="../../../../../assets/icons/house-icon-green.svg"
+                alt="Bolig"
+                *ngIf="(globalStateService.getCurrentActiveTab$() | async) == 2"
+              />
+              <p i18n="“title3|house@@dashboard.loggedIn.house”">Bolig</p>
+            </div>
+          </a>
+        </nav>
+        <nav mat-tab-nav-bar class="dash-tab">
+          <a
+            mat-tab-link
+            [active]="(globalStateService.getCurrentActiveTab$() | async) == 4"
+            [routerLink]="'./' + routesMap.profile"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >
+            <div class="inside-btn">
+              <img
+                class="profile-icon"
+                src="../../../../../assets/icons/profile-icon-white.svg"
+                alt="Profil"
+                *ngIf="
+                  (globalStateService.getCurrentActiveTab$() | async) !== 4
+                "
+              />
+              <img
+                class="profile-icon"
+                src="../../../../../assets/icons/profile-icon-green.svg"
+                alt="Profil"
+                *ngIf="(globalStateService.getCurrentActiveTab$() | async) == 4"
+              />
+              <p i18n="“title4|profile@@dashboard.loggedIn.profile”">Profil</p>
+            </div>
+          </a>
+        </nav>
+      </div>
+
+      <div class="dash-logout-tab">
+        <nav mat-tab-nav-bar>
+          <a
+            i18n="“Headerlink|log-out@@header.logOut5”"
+            (click)="logout()"
+            [routerLink]="['/']"
+            routerLinkActive="active-link"
+            class="highlight"
+            >Logg ut
+          </a>
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>

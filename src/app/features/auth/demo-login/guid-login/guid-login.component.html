@@ -1,0 +1,42 @@
+<div class="loading" *ngIf="isLoading">
+  <mat-spinner [diameter]="48" [strokeWidth]="4"></mat-spinner>
+</div>
+
+<div class="container">
+  <form [formGroup]="contactUsForm" novalidate (ngSubmit)="request()">
+    <div class="inputWrapper">
+      <rente-input
+        class="signup"
+        [placeholder]="'loginId'"
+        formControlName="loginId"
+        [errorStateMatcher]="isErrorState(contactUsForm.controls['loginId'])"
+        [textControl]="inValid()"
+        (blur)="onBlurErrorCheck()"
+      >
+      </rente-input>
+      <div *ngIf="loginIdError" class="error-message">
+        <rente-form-message
+          class="text-left d-block"
+          [type]="'error'"
+          *ngIf="contactUsForm.controls['loginId'].hasError('required')"
+        >
+          Ikke gyldig loginId
+        </rente-form-message>
+        <rente-form-message
+          class="text-left d-block"
+          [type]="'error'"
+          *ngIf="contactUsForm.controls['loginId'].hasError('pattern')"
+        >
+          Ikke gyldig loginId
+        </rente-form-message>
+      </div>
+    </div>
+
+    <rente-button
+      class="button login-button"
+      color="primary"
+      [disabled]="!contactUsForm.valid"
+      >Login
+    </rente-button>
+  </form>
+</div>

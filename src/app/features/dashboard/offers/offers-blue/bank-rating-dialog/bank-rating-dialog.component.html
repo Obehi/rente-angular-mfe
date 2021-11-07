@@ -1,0 +1,31 @@
+<div class="container" >
+  <div class="dialog">
+  <mat-icon (click)="close()" class="close-modal">close</mat-icon>
+
+    <h3>EPSI-Score</h3>
+
+    <img class="offer-score"
+    src="../../../../assets/img/epsi-score-tabell.png" />
+    
+    <p>Scoren baserer resultatet i EPSI sin siste kundetilfredshetsanalyse om bankene.</p>
+
+    
+  
+    <div class="bottom split">
+
+      <rente-button
+          [disabled]="
+            false"
+          [color]="'primary-wide-hollow'"
+          type="raised"
+          (click)="onSeeMoreClick()"
+      >Se mer </rente-button>
+      <rente-button cdkFocusInitial color="primary" (click)="onClose()" i18n=“close|button@@close”>
+        Lukk
+      </rente-button>
+    </div>
+  </div>
+</div>
+
+
+

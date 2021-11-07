@@ -1,0 +1,99 @@
+@import '../styles/theme/_colors.scss';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.content {
+  flex: 1 0 auto;
+  background: white;
+}
+
+.cookie-acc-panel {
+  // box-shadow: 0 0 8px 3px rgba(170, 170, 170, 0.5);
+  bottom: 0;
+  background-color: $blue;
+  padding: 20px 30px;
+  max-width: 800px;
+  z-index: 99999;
+  border-radius: 15px;
+  color: white;
+  border: 1px solid $white;
+
+  @media (max-width: 800px) {
+    margin: 5px;
+  }
+
+  .cookie-acc-title {
+    font-weight: 500;
+    font-size: 26px;
+    margin: 10px 0 10px 0;
+  }
+
+  .cookie-text-btn-align {
+    display: flex;
+    @media (max-width: 800px) {
+      // display: grid;
+      flex-direction: column;
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .cookie-acc-message {
+    line-height: 24px;
+    font-size: 16px;
+    font-weight: 300;
+    padding: 0 20px 0 0;
+  }
+
+  .cookie-read-more {
+    color: cyan;
+    text-decoration-line: underline;
+    cursor: pointer;
+  }
+
+  .cookie-acc-btn {
+    margin: 5px 10px 10px 10px;
+    display: flex;
+    justify-content: space-around;
+    height: 100%;
+
+    @media (max-width: 800px) {
+      margin: 15px 10px 10px 10px;
+    }
+
+    ::ng-deep button.mat-button p {
+      color: black !important;
+    }
+
+    ::ng-deep .mat-button,
+    .mat-icon-button,
+    .mat-stroked-button {
+      background: $white;
+    }
+
+    ::ng-deep button.mat-button {
+      height: 45px !important;
+    }
+  }
+}
+.absolute-pos {
+  position: fixed;
+  bottom: 10px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  z-index: 99999;
+  @media (max-width: 800px) {
+    bottom: 5px;
+  }
+}
+
+// Chatbox position variable is set in scriptState
+::ng-deep div.drift-frame-controller {
+  bottom: 110px !important;
+  bottom: var(--chat-position) !important;
+  animation: move 4s linear infinite;
+  display: var(--chat-box-display) !important;
+}

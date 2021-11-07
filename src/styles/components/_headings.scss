@@ -1,0 +1,53 @@
+h1 {
+  font-size: 30px;
+  font-weight: 900;
+  line-height: 1.2;
+  color: $black;
+  margin-bottom: 40px;
+}
+h2.primary {
+  color: $primary;
+}
+h2 {
+  font-size: 26px;
+  font-weight: 500;
+  line-height: 1.2;
+  color: $black;
+}
+
+h3 {
+  font-size: 18px;
+  line-height: 1.2;
+  color: $black;
+  font-weight: 500;
+}
+
+h4 {
+  font-size: 18px;
+  line-height: 1.5;
+  color: $black;
+  font-weight: 300;
+}
+p {
+  font-size: 14px;
+  line-height: 1.5;
+  color: $black;
+  font-weight: 300;
+}
+p.small {
+  font-size: 12px;
+}
+a {
+  font-weight: 300;
+}
+@media (min-width: 600px) {
+  h1 {
+    font-size: 40px;
+    span {
+      &:after {
+        height: 8px;
+        bottom: -10px;
+      }
+    }
+  }
+}

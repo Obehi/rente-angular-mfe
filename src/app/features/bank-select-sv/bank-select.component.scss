@@ -1,0 +1,26 @@
+@import "../../../styles/theme/_colors.scss";
+
+p {
+  text-align: center;
+  margin-bottom: 20px;
+
+  a {
+    color: $primary;
+  }
+}
+.tink-wrapper {
+  margin: 60px auto 80px;
+  min-height: 800px;
+  h3 {
+      text-align: center;
+      margin: 40px 40px 20px 40px;
+  }
+
+  iframe {
+      display: block;
+      margin: auto;
+      height: 600px;
+      box-shadow: 1px 1px 7px 2px #cdcdcd;
+      border: 0;
+  }
+}

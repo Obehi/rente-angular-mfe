@@ -1,0 +1,210 @@
+
+@import "../../../../../styles/theme/_colors.scss";
+
+
+// Hack for centering dialog popup 
+::ng-deep .cdk-global-overlay-wrapper {
+
+  .cdk-overlay-pane {
+    max-height: 100% !important;
+    max-width: 600px !important;
+    height: 100% !important;
+    margin: auto;
+    background: none !important;
+  }
+}
+
+::ng-deep .custom-modalbox {
+  mat-dialog-container {
+      height: 100% !important;
+      background: unset !important;
+      margin: unset !important;
+      border-radius: 0px !important;
+      
+      .change-browser-container {
+        position: absolute;
+        top: 0;
+        border-radius: 0;
+        display: flex;
+        flex-direction: column;
+        background: $primary !important;
+        height: 100%;
+
+        &.android {
+          display: flex;
+          flex-direction: column;
+          padding: 20px;
+
+          * {
+            margin-top:20px
+          }
+          p {
+            margin-left: 20px
+          }
+          
+          img {
+            margin-top: 60px;
+          }
+        }
+
+        &.no-fixed-bottom {
+          max-height: 100% !important;
+          height: 100%;
+          width: 100%;
+        }
+        &.fixed-bottom {
+          max-height: calc(100vh - 155px) !important;
+          overflow: scroll;
+        }
+        .instruction-numbers {
+          display: flex;
+          flex-direction: column;
+          margin: 20px;
+        }
+      }
+
+      .fixed-top-right {
+        .item {
+          margin: unset;
+          margin-left: 20px;
+          p {
+            width: 200px;
+          }
+        }
+        img {
+        }
+      }
+      
+
+      .fixed-bottom-right {
+        background: #006854; 
+        z-index: 9999;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        position: fixed;
+        bottom: 0;
+        height: 110px;
+        width: 100%;
+        margin: unset;
+
+        .item {
+          margin: unset;
+          margin-left: 20px;
+          p {
+            width: 200px;
+          }  
+        }
+        img {
+          object-fit: contain;
+          margin-right: 15px;
+          margin-top: 25px;
+          width: 40px;
+        }
+      }
+
+  }
+}
+
+.item {
+  display: flex;
+  align-self: center;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 20px;
+  .nr {
+    text-align: center;
+    color: #a1a1a1;
+    background-color: #fff;
+    border-radius: 100%;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+  }
+
+  p {
+    margin-left: 20px;
+    width: 224px;
+  }
+  img {
+    object-fit: contain;
+    margin: auto;
+    width: 40px;
+  }
+}
+
+h3,
+h4,
+p,div {
+
+  color: white;
+}
+
+img {
+  object-fit: contain;
+  margin: 0 auto 20px;
+}
+
+h4 {
+  margin-right: 20px;
+  font-size: 16px;
+  font-weight: 400; 
+  margin: 30px 20px 0 20px;
+}
+
+p {
+  font-size: 16px;
+}
+.small {
+  margin-bottom: 0;
+}
+
+.top {
+  position: relative;
+  padding: 20px;
+  background: white;
+}
+
+.bottom {
+  border-top: 1px solid #ECECEC;
+  padding: 20px;
+  border-radius: 0 0 10px 10px;
+  background: white;
+}
+
+.fixed-bottom-middle {
+
+  background: rgba(0, 0, 0, 0.75) !important;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  position: fixed;
+  bottom: 0;
+  height: 110px;
+  width: 100%;
+  margin: unset;
+
+  .item {
+    position: absolute;
+    left: 20px;
+  }
+  .inner {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    margin: 20px;
+
+    .vertical {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      img {
+        object-fit: contain;
+        width: 30px;
+        margin: auto;
+      }
+    }
+  }
+}

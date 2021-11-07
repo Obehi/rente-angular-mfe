@@ -1,0 +1,118 @@
+@import "../../../../../styles/theme/_colors.scss";
+h3.title {
+    color: white;
+  padding: 10px 0;
+  text-align: left;
+}
+
+p {
+  color: black;
+  text-align: center;
+}
+
+h3,p {
+  text-align: center;
+}
+.container {
+    padding-top: 20px;
+    padding-bottom: 80px;
+}
+
+
+.loan-top {
+  display: flex;
+  align-items: baseline;
+  .loan-index {
+    color: white;
+    width: 66px;
+    min-width: 66px;
+    text-align: left;
+  }
+  .title {
+    margin-left: 10px;
+  }
+}
+
+.summary {
+  @media (min-width: 600px) { 
+    margin-top: 30px;
+  }
+
+
+  .double {
+    .box {
+      border-radius: 7px;
+      background-color: white;
+      color: black;
+
+    h3,p {
+      text-align: center;
+      color: black;
+    }
+    }
+  }
+}
+
+.detailed {
+  margin: 60px 0;
+  .heading {
+    background-color: $lightgreen;
+    border-top: 1px solid $green;
+    display: block;
+    padding: 10px 20px;
+    font-weight: 500;
+    font-size: 14px;
+  }
+  .box {
+    border-radius: 7px;
+    background-color: $white;
+  }
+}
+
+@media (max-width: 600px) {
+  .detailed {
+    .inner {
+
+    }
+    h3.title {
+      padding: 15px 0px 10px 0px;
+    }
+  }
+}
+
+@media (min-width: 600px) {
+  .summary {
+    border-top: none;
+    position: relative;
+    left: -1px;
+    width: calc(100% + 2px);
+  }
+  .summary,
+  .detailed {
+    padding: 20px 80px;
+
+    @media(min-width: 600px) {
+      padding: 0px !important;
+    }
+    > h3 {
+      padding: 0px;
+      padding-bottom: 20px;
+    }
+    .heading {
+      margin-bottom: 20px;
+    }
+    .inner {
+      padding: 0;
+      margin-bottom: 40px;
+    }
+  }
+  .desktop-double {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-column-gap: 10px;
+  }
+  .rente-boxes rente-button {
+    margin-top: 30px;
+    display: block;
+  }
+}

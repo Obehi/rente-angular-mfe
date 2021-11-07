@@ -1,0 +1,65 @@
+// Hack for centering dialog popup 
+::ng-deep .cdk-global-overlay-wrapper {
+
+  .cdk-overlay-pane {
+    max-height: calc(100vh - 155px) !important;
+    max-width: 600px !important;
+    height: 100% !important;
+    margin: auto;
+  }
+}
+
+h3,
+h4,
+p {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+h3 {
+  margin-right: 20px;
+  font-weight: 400;
+}
+.small {
+  margin-bottom: 0;
+}
+
+ul {
+  margin-bottom: 20px;
+  li {
+    font-weight: 100;
+  }
+}
+
+
+.top {
+  position: relative;
+  padding: 20px;
+  background: white;
+
+  img {
+    width: 60px;
+    margin: auto;
+    display: flex;
+  }
+
+  h3 {
+    margin-top: 20px;
+    text-align: center;
+  }
+
+  
+  form {
+    width: 300px;
+    margin: auto;
+    margin-bottom: 20px;
+    border: none;
+  }
+}
+
+.bottom {
+  border-top: 1px solid #ECECEC;
+  padding: 20px;
+  border-radius: 0 0 10px 10px;
+  background: white;
+}

@@ -1,0 +1,21 @@
+<div class="tink-wrapper">
+    <h3 *ngIf="isSuccess == false">
+        Vi gör ingen kreditupplysning - Hämtar endast dina bolånedetaljer
+    </h3>
+
+    <p> Hittar du inte din bank? <a [routerLink]="['/fabesked']">
+        Klicka här
+      </a>
+    </p>
+
+    <h3 *ngIf="isSuccess == true">
+        Inloggning lyckades. Stort tack!
+    </h3>
+    <iframe *ngIf="isSuccess == false"
+        [src]="tinkUrl"
+    ></iframe>
+
+
+
+
+        

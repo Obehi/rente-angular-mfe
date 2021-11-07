@@ -1,0 +1,271 @@
+@import "../../../styles/theme/colors";
+
+::ng-deep .mat-input-wrapper {
+  display: none !important;
+}
+
+.banks {
+  width: 100%;
+  margin: auto;
+
+
+  .banks-inner {
+
+  }
+}
+
+.bank-select {
+  img {
+    border: 4px solid $white;
+    box-sizing: border-box;
+  }
+
+  img:hover {
+    border: 4px solid $primary;
+    border-radius: 20px;
+  }
+
+  @media (max-width: 800px) {
+    img:hover {
+      border: none;
+    }
+  }
+
+  .link {
+    &:hover {
+      a {
+        border: 4px solid $primary;
+        border-radius: 20px;
+      }
+    }
+
+    // div {
+    //   border: 2px solid $primary;
+    //   height: 100px;
+    //   width: 100px;
+    //   border-radius: 16px;
+    //   box-sizing: content-box;
+    // }
+
+
+    a {
+      display: inline-block;
+      border: 2px solid $primary;
+      height: 100px;
+      width: 100px;
+      border-radius: 16px;
+      box-sizing: border-box;
+
+      color: $primary;
+      font-size: 12px;
+      letter-spacing: 0.2px;
+      line-height: 15px;
+      text-decoration: none;
+    }
+  }
+
+  rente-button {
+    min-width: 170px;
+    display: inline-block;
+  }
+
+  .p {
+    @media (max-width: 991px) {
+      margin: 0;
+      margin-bottom: 10px;
+    }
+  }
+}
+
+.banks {
+  width: 100%;
+  margin: auto;
+
+  .banks-inner {
+    position: relative;
+    .bank-list {
+      padding: 12px 20px;
+      border: 1px solid #18bc9c;
+      border-radius: 50px;
+      margin: 25px auto 10px;
+      width: 90%;
+      display: flex;
+      justify-content: space-between;
+      input {
+        border: none;
+        width: 100%;
+      }
+
+      button {
+        padding: unset !important;
+        min-width: unset !important;
+        width: 30px !important;
+        height: 30px !important;
+        .exit {
+          width: 20px !important;
+          height: 20px !important;
+        }
+      }
+      .search {
+        width: 40px;
+        height: 30px;
+      }
+    }
+    
+  }
+}
+
+.bank-search-wrapper {
+  @media(min-width: 600px) {
+    width: 600px;
+    margin: auto;
+  }
+}
+
+
+.bank-dropdown {
+  position: absolute;
+  top: 75px;
+  background: white;
+
+  @media(min-width: 600px) {
+    left: 60px;
+  }
+
+  @media(max-width: 600px) {
+    left: 10%;
+  }
+}
+
+
+mat-selection-list {
+  transition: 3s;
+  max-height: 350px;
+  overflow-y: auto;
+  width: 90%;
+  margin: auto;
+  box-shadow: rgb(100 100 111 / 20%) 0px 7px 29px 0px;
+  border-radius: 15px;
+}
+
+.bank-button {
+  width: 100%;
+    text-align: left;
+    margin: 5px 0;
+    font-size: 14px;
+    font-weight: 400;
+    padding: 0;
+    border-radius: 0;
+    color: #777;
+    padding: 0 10px;
+}
+.bank-button-logo {
+  width: 40px;
+  height: 40px;
+  margin-right: 20px;
+  padding: 0;
+}
+
+h1 {
+  color: black;
+  font-size: 34px;
+  font-weight: 400;
+  text-align: center;
+}
+
+a {
+  color: $primary;
+  position: relative;
+  font-weight: 400;
+  text-decoration: none;
+}
+
+h4 {
+  margin-top: 60px;
+  max-width: 250px;
+  margin: auto;
+  font-size: 16px;
+  text-align: center;
+
+  .green {
+    color: $primary;
+  }
+}
+
+.intro {
+
+  h4 {
+    max-width: 250px;
+  }
+}
+
+.showcase {
+  @media (min-width: 600px) {
+    width: 500px;
+  }
+  @media (max-width: 600px) {
+    width: 90%;
+  }
+  display: block;
+  margin: 80px auto;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  &-item {
+    width: 280px;
+    color: $black;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 300;
+
+    &::before {
+      content: "\2022"; /* Add content: \2022 is the CSS Code/unicode for a bullet */
+      color: $primary; /* Change the color */
+      font-size: 40px;
+      height: 24px;
+      font-weight: bold; /* If you want it to be bold */
+      display: inline-block; /* Needed to add space between the bullet and the text */
+      width: .5em; /* Also needed for space (tweak if needed) */
+      margin-right: .3em;
+    }
+  }
+}
+
+.bank-search {
+  width: 300px;
+}
+
+.bank-link {
+  color: $black;
+  max-width: 85%;
+  line-height: 16px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+
+::ng-deep.mat-focused {
+  border-color: $primary !important;
+}
+
+//::ng-deep.autocomplete {
+//  border: 2px solid $primary !important;
+//  border-top: unset !important;
+//}
+
+::ng-deep.option {
+  height: unset !important;
+  white-space: normal !important;
+
+}
+
+
+
+
+

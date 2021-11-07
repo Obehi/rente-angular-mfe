@@ -1,0 +1,73 @@
+<div class="offer-details">
+
+  <div class="grid-wrapper" [style.grid-template-columns]="align === 'center' ? '1fr 1fr' : '140px 150px'">
+
+
+    <div class="item">
+      <p i18n=“product|details@@details.component.product” class="small">Produkt</p>
+      <p>{{ offer.productName }}</p>
+    </div>
+    <div class="item">
+      <p i18n=“max-leverage|details@@details.component.maxLeverage” class="small">Max belåningsgrad</p>
+      <p>{{ offer.maxLTV }} %</p>
+    </div>
+    <div class="item">
+      <p i18n=“nominal-interest|details@@details.component.nominalInterest” class="small">Nominell rente</p>
+      <p>{{ offer.nominalRate | number: "1.2-2" }} %</p>
+    </div>
+    <div class="item">
+      <p i18n=“efficient-interest|details@@details.component.efficientInterest” class="small">Effektiv rente</p>
+      <p>{{ offer.effectiveRate | number: "1.2-2" }} %</p>
+    </div>
+    <div class="item" i18n=“product-demand|details@@details.component.productDemand”>
+      <p class="small">Krav om annet produkt</p>
+      <p>{{ offer.requiredProductPackage == null ? "Nei" : "Ja" }}</p>
+    </div>
+
+    <div class="item">
+      <p i18n=“product-package|details@@details.component.productPackage” class="small">Produktpakke</p>
+      <p i18n=“product-no-package|details@@details.component.productPackage.no”>{{ offer.requiredProductPackage == null
+        ? "Ingen krav" : offer.requiredProductPackage}}</p>
+    </div>
+    <div class="item">
+      <p i18n=“max-time|details@@details.component.maxTime” class="small">Max løpetid</p>
+      <p>{{ offer.maxLoanPeriod }} år</p>
+    </div>
+    <div class="item">
+      <p i18n=“max-deduction|details@@details.component.maxDeduction” class="small">Max avdragsfrihet</p>
+      <p>{{ offer.maxInstallmentFreePeriod }} år</p>
+    </div>
+    <div class="item">
+      <p i18n=“fee-month|details@@details.component.feeMonth” class="small">Termingebyr</p>
+      <p>{{ offer.monthlyFee }},-</p>
+    </div>
+    <div class="item">
+      <p i18n=“fee-establish|details@@details.component.feeEstablish” class="small">Etableringsgebyr</p>
+      <p>{{ offer.establishmentFee }},-</p>
+    </div>
+    <div class="item">
+      <p i18n=“fee-start|details@@details.component.feeStart” class="small">Depotgebyr</p>
+      <p>{{ offer.depotFee }},-</p>
+    </div>
+    <div class="item">
+      <p i18n=“market|details@@details.component.market” class="small">Markedsområde</p>
+      <p>{{ offer.marketArea }}</p>
+    </div>
+    <div class="item">
+      <p i18n=“demand-membership|details@@details.component.demandMembership” class="small">Forutsetter medlemskap</p>
+      <p i18n=“no-yes|details@@details.component.noYes”>{{ offer.requiredMembership == null ? "Nei" : "Ja" }}</p>
+    </div>
+    <div *ngIf="offer.requiredMembership != null">
+      <div class="item">
+        <p i18n=“membership|details@@details.component.membership” class="small">Medlemskap</p>
+        <p>{{ offer.requiredMembership }}</p>
+      </div>
+    </div>
+  </div>
+
+  <p i18n=“other-conditions|details@@details.component.other” class="small-header">{{offer.otherConditions ?
+    "Forbehold:" : "Ingen forbehold"}} </p>
+  <p class="otherConditions">{{ offer.otherConditions }}</p>
+
+
+</div>

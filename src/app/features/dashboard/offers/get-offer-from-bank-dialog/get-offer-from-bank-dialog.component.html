@@ -1,0 +1,10 @@
+<mat-icon (click)="onClose()" class="close-modal">close</mat-icon>
+
+<h3 i18n=“good|get-offer-from-bank@@get.offer.from.bank.good”>Godt valg!</h3>
+<p i18n=“change|get-offer-from-bank@@get.offer.from.bank.change” >Å bytte bank er lettere enn du tror.</p>
+<p i18n=“passed-on|get-offer-from-bank@@get.offer.from.bank.passedOn”>Du blir nå videresendt til Sbankens søknadssystem. Du oppretter da et kundeforhold i Sbanken samtidig som du søker.
+  Dette går raskt med BankID og koster ingenting.</p>
+
+<rente-button class="button" cdkFocusInitial color="primary" [href]="offerInfo.bankInfo.transferUrl" i18n=“continue|get-offer-from-bank@@get.offer.from.bank.continue”>
+Fortsett
+</rente-button>

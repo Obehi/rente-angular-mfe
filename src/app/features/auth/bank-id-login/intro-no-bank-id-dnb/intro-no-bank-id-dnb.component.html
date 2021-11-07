@@ -1,0 +1,24 @@
+<div class="intro">
+  <p>
+    Renteradar har ingen løsning for innhenting av dine lånedata for brukere av
+    BankID med passord. Men fortvil ikke, etter innlogging fyller du bare inn
+    noen lånedetaljer selv. Det tar ikke mer enn to minutter.
+  </p>
+
+  <br />
+
+  <p>
+    Les mer om hvor du finner dine lånedetaljer
+    <a
+      target="_blank"
+      class="link"
+      href="https://blogg.renteradar.no/slik-finner-du-din-rente-og-lanedata-i-dnbs-mobil-og-nettbank/"
+      >her</a
+    >.
+  </p>
+
+  <div *ngIf="generalText">
+    <br />
+    <p class="general-text">{{ generalText }}</p>
+  </div>
+</div>

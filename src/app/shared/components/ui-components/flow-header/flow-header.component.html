@@ -1,0 +1,14 @@
+<div class="stepper-header">
+    <div [ngClass]="['stepper-header-element', 
+    nodes[i].index !== currentIndex ? 'small' : 'big',  
+    nodes[i].state === 'done' ? 'done' : '',  
+    nodes[i].state === 'active' ? 'active' : '',  
+    nodes[i].state === 'active-touched' ? 'active-touched' : '',  
+    nodes[i].state === 'waiting' ? 'waiting' : '']" *ngFor="let region of nodes; let i = index">
+        <div (click)="clickHeaderNode(i)" class="stepper-header-node">
+            {{i + 1}}
+        </div>
+        <div class="stepper-header-line" *ngIf=" nodes.length - 1 !== i">
+        </div>
+    </div>
+</div>

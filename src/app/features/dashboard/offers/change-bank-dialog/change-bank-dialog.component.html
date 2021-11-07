@@ -1,0 +1,334 @@
+<!-- <mat-icon (click)="close()" class="close-modal">close</mat-icon> -->
+<div class="main">
+  <mat-horizontal-stepper class="stepper" [linear]="false" #stepper>
+    <mat-step [editable]="true" *ngIf="!doesNumberExist">
+      <div class="step-1">
+        <div class="mobile-content">
+          <h3 style="color: white">
+            Før vi sender melding til banken din trenger vi ditt telefonnummer
+          </h3>
+          <p class="white-text">Mobilnummer</p>
+          <form id="destination" [formGroup]="mobileNumberForm" novalidate>
+            <div class="form-group">
+              <rente-input
+                class="mobile-input"
+                id="mobnr"
+                [type]="'tel'"
+                [maxLength]="8"
+                formControlName="phoneInput"
+                [modelOptions]="{ updateOn: 'blur' }"
+                [errorStateMatcher]="
+                  isErrorState(mobileNumberForm.controls['phoneInput'])
+                "
+              ></rente-input>
+              <div
+                class="error-message"
+                *ngIf="mobileNumberForm.controls['phoneInput'].touched"
+              >
+                <rente-form-message
+                  [type]="'error'"
+                  *ngIf="
+                    mobileNumberForm.controls['phoneInput'].hasError('required')
+                  "
+                >
+                  Ikke gyldig telefonnummer
+                </rente-form-message>
+                <rente-form-message
+                  [type]="'error'"
+                  *ngIf="
+                    mobileNumberForm.controls['phoneInput'].hasError('pattern')
+                  "
+                >
+                  Ikke gyldig telefonnummer
+                </rente-form-message>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </mat-step>
+    <mat-step [editable]="true">
+      <div class="step-2">
+        <div class="header">
+          <h3 i18n="“title|change-bank@@change.bank.title”">
+            Melding til banken din:
+          </h3>
+        </div>
+
+        <div class="scroll-wrap">
+          <div class="top">
+            <div class="message">
+              <p class="white" i18n="test|change-bank@@change.bank.intro">
+                Hei,
+                <br />
+                <br />
+                Jeg er kunde i banken i dag, men jeg har funnet et bedre tilbud
+                på
+                <a href="http://renteradar.no">renteradar.no</a> og vurderer å
+                bytte. Før jeg går videre lurer jeg på om dere kan matche
+                tilbudet?
+              </p>
+
+              <p i18n="“info|change-bank@@change.bank.info”" class="bold white">
+                <b>Opplysninger om tilbud:</b>
+              </p>
+
+              <div class="grid-wrapper">
+                <div class="item">
+                  <p
+                    i18n="“info-amount|change-bank@@change.bank.infoAmount”"
+                    class="small white"
+                  >
+                    Lånebeløp:
+                  </p>
+                  <p>
+                    {{ data.preview.totalOutstandingDebt | number: '0.0-0' }} kr
+                  </p>
+                </div>
+                <div class="item">
+                  <p
+                    i18n="“info-value|change-bank@@change.bank.infoValue”"
+                    class="small white"
+                  >
+                    Boligverdi:
+                  </p>
+                  <p>{{ data.preview.propertyValue | number: '1.0-0' }} kr</p>
+                </div>
+                <div class="item">
+                  <p
+                    i18n="“info-debt|change-bank@@change.bank.infoDebt”"
+                    class="small white"
+                  >
+                    Fellesgjeld:
+                  </p>
+                  <p>
+                    {{ data.preview.commonDebt / 1000000 | number: '1.1-2' }}
+                    mill.
+                  </p>
+                </div>
+                <div class="item">
+                  <p
+                    i18n="“info-leverage|change-bank@@change.bank.infoLeverage”"
+                    class="small white"
+                  >
+                    Est. belåningsgrad:
+                  </p>
+                  <p>{{ data.preview.ltv * 100 | number: '1.1-1' }}%</p>
+                </div>
+                <div class="item">
+                  <p
+                    i18n="“info-bank|change-bank@@change.bank.infoBank”"
+                    class="small white"
+                  >
+                    Bank:
+                  </p>
+                  <p>{{ data.preview.bankName }}</p>
+                </div>
+                <div class="item">
+                  <p
+                    i18n="“info-product|change-bank@@change.bank.infoProduct”"
+                    class="small white"
+                  >
+                    Produktnavn:
+                  </p>
+                  <p>{{ data.preview.productName }}</p>
+                </div>
+                <div class="item">
+                  <p
+                    i18n="
+                      “info-nominal-interest|change-bank@@change.bank.infoNominal”"
+                    class="small white"
+                  >
+                    Nominell rente:
+                  </p>
+                  <p>{{ data.preview.nominalRate | number: '1.2-2' }}%</p>
+                </div>
+                <div class="item">
+                  <p
+                    i18n="
+                      “info-effective-interest|change-bank@@change.bank.infoEffective”"
+                    class="small white"
+                  >
+                    Effektiv rente:
+                  </p>
+                  <p>{{ data.preview.effectiveRate | number: '1.2-2' }}%</p>
+                </div>
+              </div>
+
+              <p
+                i18n="“info-product2|change-bank@@change.bank.infoProduct2”"
+                class="small white"
+              >
+                Produkt:
+              </p>
+              <a href="{{ data.preview.offerUrl }}" target="_blank">
+                <p
+                  style="color: #18bc9c"
+                  i18n="“info-link|change-bank@@change.bank.infoLink”"
+                >
+                  Link til produkt på Finansportalen
+                </p>
+              </a>
+              <br />
+
+              <p i18n="“info-me|change-bank@@change.bank.infoMe”" class="bold">
+                <b>Opplysninger om meg:</b>
+              </p>
+
+              <div class="grid-wrapper">
+                <div class="item">
+                  <p
+                    i18n="“info-name|change-bank@@change.bank.infoName”"
+                    class="small white"
+                  >
+                    Navn:
+                  </p>
+                  <p>{{ data.preview.clientInfo.name }}</p>
+                </div>
+                <div class="item">
+                  <p
+                    i18n="“info-phone|change-bank@@change.bank.infoPhone”"
+                    class="small white"
+                  >
+                    Telefon:
+                  </p>
+                  <p *ngIf="doesNumberExist">
+                    {{ data.preview.clientInfo.phone }}
+                  </p>
+                  <p *ngIf="!doesNumberExist">{{ signicatPhoneNumber }}</p>
+                </div>
+                <div class="item">
+                  <p
+                    i18n="“info-address|change-bank@@change.bank.infoAddress”"
+                    class="small white"
+                  >
+                    Adresse:
+                  </p>
+                  <p>{{ data.preview.clientInfo.address }}</p>
+                </div>
+                <div class="item">
+                  <p
+                    i18n="“info-post|change-bank@@change.bank.infoPost”"
+                    class="small white"
+                  >
+                    Postnr:
+                  </p>
+                  <p>{{ data.preview.clientInfo.zip }}</p>
+                </div>
+              </div>
+
+              <p
+                i18n="“info-mail|change-bank@@change.bank.infoMail”"
+                class="small white"
+              >
+                E-post:
+              </p>
+              <p>{{ data.preview.clientInfo.email }}</p>
+              <br />
+
+              <p
+                i18n="
+                  “info-contact-phone|change-bank@@change.bank.infoContact.phone”"
+              >
+                Jeg ønsker at dere kontakter meg per telefon.
+              </p>
+              <p
+                i18n="
+                  “info-confirmation|change-bank@@change.bank.infoConfirmation”"
+              >
+                Jeg bekrefter at jeg er over 18 år og myndig eller oppnevnt som
+                verge, samt at banken ved behov kan foreta en kredittvurdering.
+              </p>
+              <p i18n="“kind-regards|change-bank@@change.bank.kindRegards”">
+                Mvh,<br />
+                {{ data.preview.clientInfo.name }}
+              </p>
+            </div>
+          </div>
+          <div class="bottom">
+            <p
+              class="message-bottom"
+              i18n="“info-sent-message|change-bank@@change.bank.infoSent”"
+            >
+              Meldingen sendes til din bank per mail med deg som avsender. Du
+              får også en kopi av meldingen i din innboks. Ønsker du å kontakte
+              din bank direkte kan du kopiere teksten og bruke den som
+              utgangspunkt for dialog.
+            </p>
+            <br />
+            <form [formGroup]="confirmForm" novalidate>
+              <mat-checkbox
+                i18n="
+                  “age-confirmation|change-bank@@change.bank.ageConfirmation”"
+                formControlName="confirmation"
+                (change)="isConfirmed = $event.checked"
+              >
+                Jeg bekrefter at jeg er over 18 år og myndig eller oppnevnt som
+                verge, samt at banken ved behov kan foreta en kredittvurdering.
+              </mat-checkbox>
+            </form>
+          </div>
+        </div>
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>
+</div>
+<div class="double" *ngIf="!doesNumberExist">
+  <rente-button
+    *ngIf="stepperPosition == 1"
+    color="secondary"
+    (click)="close()"
+    i18n="“cancel|change-bank@@change.bank.cancel”"
+  >
+    Avbryt
+  </rente-button>
+  <rente-button
+    *ngIf="stepperPosition == 2"
+    color="secondary"
+    (click)="goBack(stepper)"
+    i18n="“cancel|change-bank@@change.bank.cancel”"
+  >
+    Tilbake
+  </rente-button>
+
+  <rente-button
+    *ngIf="stepperPosition == 1"
+    i18n="“send-bank|change-bank@@change.bank.sendBank”"
+    color="primary"
+    [isLoading]="isLoading"
+    [disabled]="
+      this.mobileNumberForm.controls['phoneInput'].hasError('required') ||
+      this.mobileNumberForm.controls['phoneInput'].hasError('pattern')
+    "
+    (click)="goForward(stepper)"
+    >Neste
+  </rente-button>
+  <rente-button
+    *ngIf="stepperPosition == 2"
+    i18n="“send-bank|change-bank@@change.bank.sendBank”"
+    color="primary"
+    [isLoading]="isLoading"
+    [disabled]="!isConfirmed || isLoading"
+    (click)="sendRequest()"
+    >Send til banken
+  </rente-button>
+</div>
+
+<div class="double" *ngIf="doesNumberExist">
+  <rente-button
+    color="secondary"
+    (click)="close()"
+    i18n="“cancel|change-bank@@change.bank.cancel”"
+  >
+    Avbryt
+  </rente-button>
+
+  <rente-button
+    i18n="“send-bank|change-bank@@change.bank.sendBank”"
+    color="primary"
+    [isLoading]="isLoading"
+    [disabled]="!isConfirmed || isLoading"
+    (click)="sendRequest()"
+    >Send til banken
+  </rente-button>
+</div>

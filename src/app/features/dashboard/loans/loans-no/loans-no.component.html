@@ -1,0 +1,44 @@
+<div class="main-container" *ngIf="loansAndOffers$ | async">
+  <rente-crawler-banks
+    [loansData]="loansData"
+    *ngIf="!isSignicatUser"
+  ></rente-crawler-banks>
+
+  <rente-signicat-users
+    *ngIf="isSignicatUser && !isFixedPriceBank"
+    [loanData]="loansData"
+    [allOffers]="offers"
+  ></rente-signicat-users>
+
+  <!--
+    Fixed price is currently not used, will keep it here for future use
+    To be discussed and reviewed
+  -->
+  <rente-signicat-fixed-price
+    *ngIf="isSignicatUser && isFixedPriceBank"
+    [loanData]="loansData"
+    [allOffers]="offers"
+  ></rente-signicat-fixed-price>
+
+  <div *ngIf="locale === 'nb'" class="center-logo">
+    <h3>Har du forbrukslån eller billån?</h3>
+    <p>
+      Da er kredittscoren din vesentlig for å få beste betingelser. Kredittsjekk
+      deg selv gratis på:
+    </p>
+    <a target="_blank" href="https://www.defero.no/">
+      <img
+        src="../../../../assets/img/partners/defero-light-mode.png"
+        alt="defero logo"
+      />
+    </a>
+  </div>
+</div>
+
+<div class="loading" *ngIf="!loansData && !errorMessage">
+  <mat-spinner [diameter]="48" [strokeWidth]="4"></mat-spinner>
+</div>
+
+<div *ngIf="errorMessage">
+  <h1 class="text-center mt-4">{{ errorMessage }}</h1>
+</div>

@@ -1,0 +1,163 @@
+<div class="dashboard-wrapper">
+  <div class="loading" *ngIf="isLoading && !errorMessage">
+    <mat-spinner [diameter]="48" [strokeWidth]="4"></mat-spinner>
+  </div>
+  <div
+    class="offers"
+    *ngIf="
+      offersInfo?.ltvType === offersLtvType.LTV_OK ||
+      offersInfo?.ltvType === offersLtvType.LTV_TOO_HIGH_85
+    "
+  >
+    <!--- <div class="desktop"> -->
+    <div class="dashboard-inner-wrapper">
+      <div class="rente-boxes desktop-main-box-grid desktop">
+        <!-- barometer -->
+        <barometer
+          [offersInfo]="offersInfo"
+          [offerSavingsType]="offerSavingsType"
+        >
+        </barometer>
+
+        <div
+          class="rate-warning-box"
+          *ngIf="
+            offersInfo.aggregatedRateType ===
+            aggregatedRateType.MIX_FIXED_FLOATING
+          "
+        >
+          <div class="rate-warning-title">
+            <img
+              class="rate-warning-icon"
+              src="../../../../../assets/icons/rate-blue.svg"
+            />
+            <p class="rate-warning-title-text">OBS! Fastrentelån</p>
+          </div>
+          <p class="rate-warning-text">
+            Du har ett eller flere fastrentelån. Renteradar viser beste rente og
+            besparelsespotensialet kun for lånet/lånene med flytende rente. I
+            kalkulasjonen av din effektive rente er derimot lånet med fast rente
+            inkludert. Det er den som brukes i tilbakemeldingen over, og i
+            sammenligningen av din rente i forhold til andre.
+          </p>
+        </div>
+
+        <div class="two-box-in-one">
+          <!-- box grid -->
+          <box-grid [offersInfo]="offersInfo"> </box-grid>
+
+          <!-- end of box-grid-->
+
+          <div *ngIf="!isMobile" class="compared">
+            <rente-offers-statistics-blue
+              [offersInfo]="offersInfo"
+              [userRateColor]="rateBarPercentage.hex"
+            >
+            </rente-offers-statistics-blue>
+          </div>
+        </div>
+
+        <tips-component [offersInfo]="offersInfo"></tips-component>
+
+        <action-boxes
+          [canBargain]="canBargain"
+          [isSweden]="isSweden"
+          [antiChurnIsOn]="antiChurnIsOn"
+          [offersInfo]="offersInfo"
+          [offerSavingsType]="offerSavingsType"
+        ></action-boxes>
+      </div>
+
+      <!-- Mobile boxes -->
+      <div class="rente-boxes mobile">
+        <barometer
+          [offersInfo]="offersInfo"
+          [offerSavingsType]="offerSavingsType"
+        ></barometer>
+
+        <div
+          class="rate-warning-box"
+          *ngIf="
+            offersInfo.aggregatedRateType ===
+            aggregatedRateType.MIX_FIXED_FLOATING
+          "
+        >
+          <div class="rate-warning-title">
+            <img
+              class="rate-warning-icon"
+              src="../../../../../assets/icons/rate-blue.svg"
+            />
+            <p class="rate-warning-title-text">OBS! Fastrentelån</p>
+          </div>
+          <p *ngIf="envService.isNorway()" class="rate-warning-text">
+            Du har ett eller flere fastrentelån. Renteradar viser beste rente og
+            besparelsespotensialet kun for lånet/lånene med flytende rente. I
+            kalkulasjonen av din effektive rente er derimot lånet med fast rente
+            inkludert. Det er den som brukes i tilbakemeldingen over, og i
+            sammenligningen av din rente i forhold til andre.
+          </p>
+        </div>
+
+        <box-grid [offersInfo]="offersInfo"></box-grid>
+
+        <!-- Mobile Tips -->
+        <tips-component [offersInfo]="offersInfo"></tips-component>
+        <!-- Mobile Tips -->
+
+        <action-boxes
+          [canBargain]="canBargain"
+          [isSweden]="isSweden"
+          [antiChurnIsOn]="antiChurnIsOn"
+          [offersInfo]="offersInfo"
+          [offerSavingsType]="offerSavingsType"
+        ></action-boxes>
+
+        <div *ngIf="isMobile" class="compared">
+          <rente-offers-statistics-blue
+            [offersInfo]="offersInfo"
+            [userRateColor]="rateBarPercentage.hex"
+          >
+          </rente-offers-statistics-blue>
+        </div>
+      </div>
+
+      <rente-offers-list
+        *ngIf="currentOfferInfo"
+        [offersInfo]="currentOfferInfo"
+      ></rente-offers-list>
+    </div>
+    <!-- Mobile boxes -->
+
+    <div *ngIf="effRateLoweredDialogVisible">
+      <rente-dialog
+        [title]="customLangTextSerice.getlowerRateTitle()"
+        [message]="customLangTextSerice.getlowerRateBody()"
+        (action)="onDialogAction($event)"
+      >
+      </rente-dialog>
+    </div>
+  </div>
+
+  <div class="problems" style="max-width: 780px">
+    <div
+      class="title"
+      *ngIf="offersInfo?.ltvType === offersLtvType.LTV_CREDIT_LINE_TOO_HIGH_60"
+    >
+      <h3>
+        Rammelån/boligkreditt er kun tilgjengelig for lavere belåningsgrad enn
+        60%.
+      </h3>
+      <p>
+        Din belåningsgrad er høyere enn dette, vennligst endre din belåningsgrad
+        i<a [routerLink]="['/dashboard/' + routesMap.property]"> boligfanen</a>
+      </p>
+    </div>
+    <div class="title" *ngIf="!offersInfo && !isLoading && !errorMessage">
+      <h3>Ingen bedre tilbud enda...</h3>
+    </div>
+
+    <div class="title" *ngIf="errorMessage">
+      <h3>{{ errorMessage }}</h3>
+    </div>
+  </div>
+</div>

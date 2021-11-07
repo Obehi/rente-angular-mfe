@@ -1,0 +1,50 @@
+<div class="loading" *ngIf="isLoading">
+  <mat-spinner [diameter]="48" [strokeWidth]="4"></mat-spinner>
+</div>
+
+<div class="container">
+  <h1>Velg konto:</h1>
+
+  <div class="box-container">
+    <a class="box round-box blue-bg clickable" (click)="goToChoice(0)">
+      <div>
+        <div class="top">
+          <h2>Demo 1</h2>
+        </div>
+
+        <div class="item-container">
+          <p class="item">Lånestørrelse <span>1,5m</span></p>
+          <p class="item">Alder <span><34 år</span></p>
+        </div>
+      </div>
+      <img class="arrow-big" src="../../../../assets/icons/arrow-big.svg" />
+    </a>
+
+    <a class="box round-box blue-bg clickable" (click)="goToChoice(1)">
+      <div>
+        <div class="top">
+          <h2>Demo 2</h2>
+        </div>
+        <div class="item-container">
+          <p class="item">Lånestørrelse <span>3,0m</span></p>
+          <p class="item">Alder <span>>34 år</span></p>
+        </div>
+      </div>
+      <img class="arrow-big" src="../../../../assets/icons/arrow-big.svg" />
+    </a>
+
+    <a class="box round-box blue-bg clickable" (click)="goToChoice(2)">
+      <div>
+        <div class="top">
+          <h2>Demo 3</h2>
+        </div>
+
+        <div class="item-container">
+          <p class="item">Lånestørrelse <span>4,5m</span></p>
+          <p class="item">Alder <span>>34 år</span></p>
+        </div>
+      </div>
+      <img class="arrow-big" src="../../../../assets/icons/arrow-big.svg" />
+    </a>
+  </div>
+</div>

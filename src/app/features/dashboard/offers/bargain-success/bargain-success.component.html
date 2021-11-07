@@ -1,0 +1,110 @@
+<div class="box">
+  <div class="top-box" *ngIf="!isErrorState; else errorState">
+    <h3 i18n="“confirmation|bargain@@bargain.success.sent”" mat-dialog-title>
+      E-post er nå sendt til din bank
+    </h3>
+    <hr class="my-0" />
+    <p i18n="“confirmation-you|bargain@@bargain.success.sent.you”" class="mt-3">
+      Vi har også sendt deg en epost fra prute@renteradar.no med kopi av eposten
+      vi har sendt til din bank. Hvis du ikke finner den, sjekk om eposten kan
+      ha kommet i spam/søppelpost.
+    </p>
+    <br />
+
+    <div class="top-accordion">
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <b> Mer info </b>
+          </mat-expansion-panel-header>
+          <div class="mer-info-body">
+            <p i18n="“time|bargain@@bargain.success.time”">
+              Bankene pleier å bruke én eller to uker på å svare deg. Får du
+              ikke noe svar fra banken i løpet av to uker, anbefaler vi
+              følgende:
+            </p>
+            <ul
+              i18n="“instructions|bargain@@bargain.success.instructions”"
+              style="
+                font-weight: 200;
+                font-size: 14px;
+                margin: 10px 0;
+                line-height: 22px;
+              "
+            >
+              <li>
+                Kopier teksten vi har sendt til din bank og som ligger nederst i
+                eposten
+              </li>
+              <li>Logg inn på nettbanken hos banken din</li>
+              <li>
+                Gå til din postkasse i nettbanken, eventuelt start en chat. Send
+                en melding til banken med teksten du har kopiert
+              </li>
+            </ul>
+            <p i18n="“no-response|bargain@@bargain.success.noResponse”">
+              Får du fortsatt ikke svar fra banken din eller banken ikke vil
+              sette ned renten, er det kanskje på tide å bytte bank.
+              Renteradar.no viser deg hvilken bank du bør bytte til.
+            </p>
+            <br />
+            <p i18n="“review|bargain@@bargain.success.review”">
+              Send oss gjerne en e-post på
+              <a href="mailto: hei@renteradar.no">hei@renteradar.no</a> eller
+              bruk chat-funksjonen i tjenesten for å fortelle oss om du har fått
+              lavere rente eller om du har noen spørsmål.
+            </p>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+  </div>
+
+  <div *ngIf="envService.isNorway()" class="tibber-promo-container">
+    <div class="top"></div>
+    <div class="top-2"></div>
+    <div class="box">
+      <h2>Hvorfor ikke redusere strømregningen også?</h2>
+
+      <p>Renteradar.no anbefaler deg å sjekke ut Tibber:</p>
+
+      <ul>
+        <li>
+          Tibber har null fortjeneste på strømmen du bruker, og vil derimot
+          hjelpe deg å bruke mindre
+        </li>
+        <li>
+          Du får tilgang til en smart app som kan hjelpe deg å redusere
+          strømforbruket ditt
+        </li>
+        <li>Du betaler kun 39 kr per måned utover strømprisen</li>
+      </ul>
+
+      <a
+        href="https://tibber.com/no?modal=signup-no&signup=renteradar"
+        class="external-button-link"
+      >
+        <p>Spar på strømmen hos Tibber</p>
+      </a>
+    </div>
+  </div>
+
+  <rente-button class="" color="primary" (click)="continue()">
+    Tilbake til tilbud
+  </rente-button>
+
+  <ng-template #errorState>
+    <h3
+      i18n="“error|bargain@@bargain.success.error”"
+      mat-dialog-title
+      class="text-left my-0"
+    >
+      Noe gikk galt…
+    </h3>
+    <hr class="my-0" />
+    <p i18n="“error2|bargain@@bargain.success.error2”">
+      Beklager, noe gikk galt og vi vil rette opp feilen så fort som mulig.
+      Vennligst prøv igjen senere.
+    </p>
+  </ng-template>
+</div>

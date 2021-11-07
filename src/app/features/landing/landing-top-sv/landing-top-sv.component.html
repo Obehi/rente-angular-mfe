@@ -1,0 +1,27 @@
+<div class="intro" [style.margin-bottom.px]="isMobile ? 20 : 80">
+  <h1 class="mobile">
+    <a [routerLink]="['/']">Bolåneräntor</a> <br> Hitta bästa räntan!
+  </h1>
+
+  <h1 class="hide-temp-swedish desktop" i18n="title|landing-page@@landing.title"
+    [style.margin-bottom.px]="isMobile ? 20 : 40">
+    Få beste <a [routerLink]="['/']">boliglånsrente</a>
+  </h1>
+
+  <h4 >
+    Jämför din bolåneränta mot marknadens bästa erbjudanden<br> <span class="green"> - snabbt, enkelt och gratis! </span>
+  </h4>
+
+  <rente-button
+  class="cta-button"
+  color="primary-wide-landing-new"
+  [routerLink]="'/autentisering/demo'"
+>
+  Til dashboard
+</rente-button>
+</div>
+
+<rente-button i18n="CTA button|Call-to-action-button@@landing.bestOffer" color="primary-wide-landing" (click)="pushCTAButton()">
+  Finn beste tilbud
+</rente-button>
+<img class="showcase" src="../../../assets/img/isometric-new-optimized.png" />

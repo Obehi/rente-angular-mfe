@@ -1,0 +1,24 @@
+<div class="top">
+  <h4>{{ data.header }}</h4>
+  <p *ngIf="data.text">{{ data.text }}</p>
+  <div>{{ data.html }}</div>
+</div>
+<div class="bottom double">
+  <rente-button
+    i18n="“close|button@@close”"
+    cdkFocusInitial
+    color="primary-hollow"
+    (click)="onClose()"
+  >
+    {{ data.cancelText }}
+  </rente-button>
+
+  <rente-button
+    i18n="“close|button@@close”"
+    cdkFocusInitial
+    color="primary"
+    (click)="onConfirm()"
+  >
+    {{ data.confirmText }}
+  </rente-button>
+</div>

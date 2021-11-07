@@ -1,0 +1,41 @@
+<div
+  class="input-block"
+  [ngClass]="{ error: errorStateMatcher, textControl: textControl }"
+>
+  <mat-form-field class="example-full-width">
+    <div *ngIf="!!maskType; else noMask">
+      <input
+        #inputRef
+        matInput
+        [disabled]="disabled"
+        type="{{ type }}"
+        [placeholder]="placeholder"
+        [errorStateMatcher]="matcher"
+        [ngModelOptions]="modelOptions"
+        [(ngModel)]="value"
+        (blur)="onBlur()"
+        (ngModelChange)="onChangeEmit()"
+        [imask]="getMask()"
+        [attr.inputMode]="inputMode"
+      />
+    </div>
+    <ng-template #noMask>
+      <input
+        #inputRef
+        matInput
+        [disabled]="disabled"
+        type="{{ type }}"
+        [placeholder]="placeholder"
+        [errorStateMatcher]="matcher"
+        [ngModelOptions]="modelOptions"
+        (ngModelChange)="onChangeEmit()"
+        (focus)="onFocus()"
+        [(ngModel)]="value"
+        [maxlength]="maxLength"
+        (blur)="onBlur()"
+        [attr.inputMode]="inputMode"
+      />
+    </ng-template>
+    <span matSuffix>{{ matSuffix }}</span>
+  </mat-form-field>
+</div>

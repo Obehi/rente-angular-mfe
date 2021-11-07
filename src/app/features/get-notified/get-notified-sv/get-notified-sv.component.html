@@ -1,0 +1,66 @@
+<div class="front-container">
+  <h2>Fyll i nedan så kontaktar vi dig!</h2>
+
+ 
+    <h4>
+      Lägg till din e-post och bank 
+    </h4>
+
+  <div *ngIf="missingBankForm">
+    <form
+      [formGroup]="missingBankForm"
+      
+      (ngSubmit)="request()"
+    >
+      <div>
+        <rente-input
+          [placeholder]="'E-post'"
+          formControlName="email"
+          [errorStateMatcher]="
+            isErrorState(missingBankForm.controls['email'])
+          "
+          [textControl]="inValid()"
+          (blur)="onBlurErrorCheck()"
+        >
+        </rente-input>
+        <div i18n=“issue-email|get-notified@@get.notified.email”
+          *ngIf="emailError"
+          class="error-message"
+        >
+          <rente-form-message
+            class="text-left d-block"
+            [type]="'error'"
+            *ngIf="missingBankForm.controls['email'].hasError('required')"
+          >
+            Ikke gyldig email
+          </rente-form-message>
+          <rente-form-message
+            class="text-left d-block"
+            [type]="'error'"
+            *ngIf="missingBankForm.controls['email'].hasError('pattern')"
+          >
+            Ikke gyldig email
+          </rente-form-message>
+        </div>
+      </div>
+
+      <div>
+        <rente-input
+          [placeholder]="'Bank'"
+          formControlName="bank"
+        >
+        </rente-input>
+      </div>
+
+      <rente-button i18n=“notify-me|get-notified@@get.notified.notifyMe”
+        color="primary"
+        [disabled]="!missingBankForm.valid || isLoading"
+        >Gi meg lyd når på plass!
+      </rente-button>
+    </form>
+</div>
+
+  <div class="loading" *ngIf="!missingBankForm">
+    <mat-spinner [diameter]="48" [strokeWidth]="4"></mat-spinner>
+  </div>
+</div>

@@ -1,0 +1,153 @@
+@import '../../../../../../styles/theme/_colors.scss';
+:host {
+  background: $white;
+  grid-row: 1;
+  grid-column-start: 1;
+  grid-column-end: span 2;
+  border-radius: 15px;
+  @media (min-width: 600px) {
+    margin-bottom: 40px;
+    margin-top: 30px;
+  }
+  p {
+    color: #18bc9c;
+  }
+  h2 {
+    color: $primary;
+  }
+}
+.barometer {
+  @media (min-width: 600px) {
+    margin-bottom: 40px;
+    margin-top: 40px;
+  }
+  @media (max-width: 600px) {
+    background: $white;
+    border-radius: 15px;
+    padding: 20px 10px;
+    margin-bottom: 0px;
+    border-bottom: 1px solid $light;
+  }
+
+  h3 {
+    color: black;
+  }
+
+  .rente-status {
+    text-align: center;
+    margin: 20px 0;
+
+    p {
+      color: black;
+      font-size: 16px;
+      font-weight: 100;
+    }
+  }
+}
+
+.rente-status {
+  text-align: center;
+  margin: 20px 0;
+
+  p {
+    color: black;
+    font-size: 24px;
+    font-weight: 100;
+  }
+}
+
+.rente-bar-container {
+  width: 77%;
+  @media (max-width: 600px) {
+    width: 100%;
+  }
+}
+
+.bar-ticks {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+
+  p {
+    color: $black;
+    font-weight: 400;
+  }
+}
+
+.bar-wrap {
+  //@include prefix(border-radius,10px 10px 10px 10px);
+  border-radius: 10px;
+  background-color: $light;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.bar-fill-left {
+  border-radius: 10px 0px 0px 10px;
+
+  background: $light;
+  display: block;
+  height: 15px;
+  width: 0px;
+
+  &.level-1 {
+    background: red;
+  }
+
+  &.level-2 {
+    background: #e45a2a;
+  }
+
+  &.level-3 {
+    background: #fe9800;
+  }
+
+  &.level-4 {
+    background: #82c6b4;
+  }
+
+  &.level-5 {
+    background: $primary;
+  }
+}
+
+.bar-fill-right {
+  border-radius: 0px 10px 10px 0px;
+  background: $light;
+  display: block;
+  height: 15px;
+  width: 0px;
+}
+
+.save-info {
+  margin-bottom: 20px;
+  p {
+    font-size: 18px;
+  }
+  h2 {
+    color: $primary;
+  }
+}
+
+@media (min-width: 600px) {
+  .save-info {
+    p,
+    h2 {
+      display: inline;
+    }
+    h2 {
+      font-size: 32px;
+    }
+  }
+}
+
+.save-info {
+  text-align: center;
+  p {
+    color: $black;
+  }
+  h2 {
+    color: $green;
+  }
+}

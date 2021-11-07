@@ -1,0 +1,51 @@
+<nav>
+  <div class="inner-nav">
+    <a (click)="goToTop(); clearActiveLinks()" [routerLink]="['/']">
+      <img
+        src="../../../../assets/img/renteradar_white_logo-no.svg"
+        alt="Renteradar logo"
+      />
+    </a>
+    <div class="menu-container">
+      <div class="menu mobile" (click)="toggleNav()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+
+    <div class="mobile-menu mobile" *ngIf="toggleNavbar">
+      <a
+        *ngIf="!isLoggedIn"
+        i18n="“Headerlink|homepage@@header.home2”"
+        (click)="goToChooseBank('get-started'); toggleNav()"
+        [ngClass]="getStartedBtn ? 'active-link' : 'non-active'"
+        ><h3>Kom i gang</h3>
+      </a>
+
+      <span *ngIf="!isLoggedIn" [routerLink]="['/']" fragment="{{ screenRef }}">
+        <a
+          href="{{ '#' + screenRef }}"
+          (click)="clearActiveLinks(); toggleNav()"
+        >
+          <h3>Slik fungerer det</h3>
+        </a>
+      </span>
+
+      <a
+        *ngIf="!isLoggedIn"
+        (click)="goToChooseBank('log-in'); toggleNav()"
+        [ngClass]="{
+          'active-link': logInBtn === true
+        }"
+        ><h3 class="highlight">Logg inn</h3>
+      </a>
+
+      <a [routerLink]="['/']" *ngIf="isLoggedIn" (click)="logout()"
+        ><h3 class="highlight" i18n="“Headerlink|log-out@@header.logOut”">
+          Logg ut
+        </h3>
+      </a>
+    </div>
+  </div>
+</nav>

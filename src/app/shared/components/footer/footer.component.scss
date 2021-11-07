@@ -1,0 +1,240 @@
+@import '../../../../styles/theme/_colors.scss';
+
+footer {
+  padding: 20px;
+  background-color: $blue;
+  display: none;
+  &.visible {
+    display: block;
+  }
+
+  a {
+    color: white;
+    line-height: 1.5;
+  }
+
+  ul {
+    list-style-type: none;
+    margin: 0px;
+    padding: 0;
+  }
+
+  @media (min-width: 600px) {
+    ul.adjust-margin {
+      margin-top: 5px;
+    }
+
+    .partner-logo {
+      width: 130px;
+      margin-top: 0px;
+      margin-left: -27px;
+    }
+  }
+
+  .inner-footer {
+    .look-around {
+      h2 {
+        color: $stian-blue;
+        margin-bottom: 1rem;
+      }
+    }
+    margin: auto;
+
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+
+      @media (min-width: 800px) {
+        flex-direction: row;
+        justify-content: center;
+      }
+
+      a {
+        white-space: nowrap;
+        font-weight: 500;
+        margin-top: 3rem;
+        font-size: 1rem;
+        text-decoration: none;
+        color: $stian-blue;
+        margin: 1rem 0;
+        @media (min-width: 800px) {
+          margin: 0 1rem;
+        }
+      }
+    }
+
+    .items {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-gap: 15px;
+      margin-top: 5rem;
+
+      @media (min-width: 800px) {
+        margin-top: 7rem;
+      }
+    }
+
+    .temp-swedish-policy {
+      grid-column-start: 1;
+      grid-column-end: span 2;
+    }
+
+    .fill {
+      grid-column-start: 1;
+      grid-column-end: span 2;
+    }
+
+    .org {
+      color: white;
+    }
+
+    .item:nth-child(3) {
+      grid-column-end: span 3;
+      margin-top: 20px;
+    }
+
+    @media (min-width: 600px) {
+      max-width: 1010px;
+
+      text-align: center;
+      font-size: 14px;
+      padding: 2rem 2rem 1rem;
+
+      .item {
+        ul.adjust-margin {
+          margin-top: -5px;
+
+          .sbanken {
+            margin-bottom: 5px;
+          }
+          .nybygger {
+            max-width: 182px;
+          }
+
+          img.partner-logo.defero {
+            width: 120px;
+          }
+          img.partner-logo.tibber {
+            width: 100px;
+          }
+        }
+      }
+    }
+
+    @media (max-width: 600px) {
+      text-align: center;
+      font-size: 14px;
+      .item {
+        p {
+          font-size: 13px;
+        }
+      }
+
+      .item {
+        h4 {
+          font-size: 13px;
+        }
+        ul {
+          li {
+            a {
+              img {
+                width: 100px;
+
+                &.nordea-direct {
+                  width: 124px;
+                  margin: unset;
+                  margin-left: 21px;
+                }
+
+                &.nybygger {
+                  margin-left: -4px;
+                }
+              }
+
+              img.virdi {
+                //margin-left: -27px;-b
+                margin-bottom: 3px;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .item {
+      H4,
+      p,
+      a {
+        color: white;
+        text-align: center;
+      }
+
+      img {
+        margin: 10px;
+        &.nordea-direct {
+          width: 196px;
+          margin: unset;
+          margin-left: 40px;
+        }
+      }
+
+      img.virdi {
+        width: 130px;
+      }
+
+      .social {
+        display: table;
+        margin: auto;
+        margin-bottom: 10px;
+        display: flex;
+        justify-content: center;
+        img {
+          margin: 20px 20px;
+          height: 40px;
+        }
+      }
+    }
+  }
+}
+
+.partners-swe {
+}
+
+.other-partners-swe {
+  display: flex;
+  flex-direction: column;
+  grid-column: span 2;
+
+  h4 {
+    color: $white;
+    margin-bottom: 10px;
+  }
+
+  img {
+    width: 160px;
+  }
+}
+
+.ailsa {
+  width: 100px !important;
+}
+
+.bank-partners-swe {
+  display: flex;
+  flex-direction: column;
+  grid-column: span 2;
+
+  h4 {
+    color: $white;
+    margin-bottom: 10px;
+  }
+
+  img {
+    width: 160px;
+  }
+}
+
+.bulder-logo {
+  padding-top: 10px;
+  padding-left: 17px;
+}

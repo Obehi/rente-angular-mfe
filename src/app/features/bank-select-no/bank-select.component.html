@@ -1,0 +1,55 @@
+<div class="front-container">
+  <div class="banks">
+    <h3>Hvilken bank har du boliglån i?</h3>
+    <p class="sub-header">
+      Har du ikke boliglån
+      <a class="link" [routerLink]="'/boliglanskalkulator'">klikk her</a>
+    </p>
+    <div class="banks-inner">
+      <mat-form-field class="bank-list">
+        <input
+          matInput
+          type="text"
+          placeholder="Søk etter din bank"
+          autocomplete="off"
+          [(ngModel)]="searchStr"
+          (ngModelChange)="onFilterChanged()"
+        />
+        <button
+          *ngIf="searchStr"
+          mat-button
+          matSuffix
+          mat-icon-button
+          aria-label="Clear"
+          (click)="clear()"
+        >
+          <mat-icon>close</mat-icon>
+        </button>
+        <img *ngIf="!searchStr" src="{{ searchIcon }}" />
+      </mat-form-field>
+      <mat-selection-list #banklist>
+        <button
+          *ngFor="let bank of banks"
+          mat-button
+          class="bank-button"
+          (click)="selectBank(bank)"
+        >
+          <div *ngIf="bank.icon; then hasIcon; else noIcon"></div>
+          <ng-template #hasIcon
+            ><img
+              class="bank-button-logo"
+              src="../../../assets/img/banks-logo/round/{{ bank.icon }}"
+            />
+          </ng-template>
+          <ng-template #noIcon
+            ><img
+              class="bank-button-logo"
+              src="../../../assets/img/banks-logo/round/annen.png"
+            />
+          </ng-template>
+          {{ bank.label }}
+        </button>
+      </mat-selection-list>
+    </div>
+  </div>
+</div>

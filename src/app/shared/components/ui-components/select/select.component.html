@@ -1,0 +1,14 @@
+<div class="input-block">
+  <div [class]="'select ' + rootClass">
+    <label class="input-block-placeholder" [ngClass]="{'input-block-placeholder--active': selectedItem && placeholder}"
+      for="{{'select-' + name}}">
+      {{placeholder}}
+    </label>
+    <select [name]="name" [ngClass]="{'input-block--full input-block--valid': selectedItem && placeholder}"
+      [id]="'select-' + name" [ngModel]="selectedItem" (ngModelChange)="valueChange($event)">
+      <option *ngFor="let option of options" [value]="option.value">
+        {{option.name}}
+      </option>
+    </select>
+  </div>
+</div>

@@ -1,0 +1,94 @@
+<div class="display-with-button">
+  <div class="loan-summary" *ngIf="isSummaryNeeded">
+    <div class="fix">
+      <h3 class="title">Sammendrag av lån</h3>
+      <div class="summary-box">
+        <div
+          class="four-container"
+          *ngIf="myLoansService.loanOverViewObservable$ | async as result"
+        >
+          <div class="tab-container">
+            <p class="mb">Utestående lån</p>
+            <div class="bvalue">
+              <h3>
+                {{ result.totalOutstandingDebt / 1000000 | number: '1.3-3' }}
+                mill
+              </h3>
+            </div>
+          </div>
+          <div class="tab-container">
+            <p class="mb">Effektiv rente</p>
+
+            <div class="bvalue">
+              <h3>{{ result.totalEffectiveRate | number: '1.2-2' }} %</h3>
+            </div>
+          </div>
+          <div class="tab-container">
+            <p class="mb">Totale renter og gebyrer</p>
+            <div class="bvalue">
+              <h3>
+                {{
+                  result.aggregatedTotalInterestAndFee == null
+                    ? 'N/A'
+                    : (result.aggregatedTotalInterestAndFee | number: '1.0-0') +
+                      ',-'
+                }}
+              </h3>
+            </div>
+          </div>
+          <div class="tab-container">
+            <p class="mb">Renter & gebyrer per år</p>
+            <div class="bvalue">
+              <h3>
+                {{
+                  result.aggregatedTotalInterestAndFeeByRemainingYears == null
+                    ? 'N/A'
+                    : (result.aggregatedTotalInterestAndFeeByRemainingYears
+                        | number: '1.0-0') + ',-'
+                }}
+              </h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="add-loan-flex"
+    [ngClass]="{ 'btn-margin-singleloan': isSummaryNeeded === false }"
+  >
+    <rente-button
+      color="primary-small"
+      (click)="addLoan(); scrollTo(1)"
+      class="add-loan"
+      [ngClass]="{
+        'add-loan-opacity-low': isEditMode !== null,
+        'add-loan-opacity-full': isEditMode === null
+      }"
+      >Legg til lån</rente-button
+    >
+  </div>
+</div>
+
+<div
+  class="summary main-container"
+  [ngClass]="{
+    mrgWithSummary: isSummaryNeeded === true,
+    mrgWithNoSummary: isSummaryNeeded === false
+  }"
+>
+  <div *ngFor="let loan of loans; index as i">
+    <div *ngIf="loanData.loans.length === 1" class="general-title">
+      <h3>Mitt lån</h3>
+    </div>
+    <rente-loan-signicat-users
+      *ngIf="loan.isDeleted === false"
+      [index]="i"
+      [loan]="loan"
+      [allOffers]="allOffers"
+    ></rente-loan-signicat-users>
+    <div *ngIf="loan.isDeleted === true" class="no-loans"></div>
+  </div>
+</div>
+<div *ngIf="isEmptyLoans" class="no-loans">Ingen lån</div>

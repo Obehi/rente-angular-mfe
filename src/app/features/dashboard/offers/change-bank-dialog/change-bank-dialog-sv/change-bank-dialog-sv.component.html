@@ -1,0 +1,147 @@
+<div class="top">
+
+  <mat-icon (click)="close()" class="close-modal">close</mat-icon>
+
+<h3>Hur du prutar ner hos din bank:</h3>
+
+<!-- <div class="instructions" *ngIf="data.currentBank === 'SEB'"> -->
+  <div class="instructions" *ngIf="data.currentBank === 'SWE_SEB'">
+  <span>1</span>
+  <p> Gå in på denna länk <a target ="_blank" href="https://seb.se/privat/lana/bolan-och-rantor">https://seb.se/privat/lana/bolan-och-rantor</a> </p>
+  <span>2</span>
+  <p>Kontakta de genom att logga in på din profil. För att kunna logga in krävs bankID eller dosa.</p>
+  <span>3</span>
+  <p>Under Mitt SEB finns valet ”kontakta oss” här kan du välja ”skriv till oss”</p>
+  <span>4</span>
+  <p>Kopiera sedan meddelandet vi förskapat åt dig, klistra och skicka iväg.</p>
+  <span>5</span>
+  <p>Klart! Nu är det bara att invänta deras återkoppling.</p>
+  <div class="instruction-bottom">Återkom gärna till oss på Ränteradar om du fick igenom din räntesänkning.</div>
+</div>
+
+<div class="instructions" *ngIf="data.currentBank === 'SWEDBANK_OCH_SPARBANKERNA'">
+  <span>1</span>
+  <p> Gå in på denna länk <a target ="_blank" href="https://www.swedbank.se/privat/boende-och-bolan">https://www.swedbank.se/privat/boende-och-bolan</a> </p>
+  <span>2</span>
+  <p>Kontakta de genom att logga in på din profil. För att kunna logga in krävs bankID eller dosa.</p>
+  <span>3</span>
+  <p>På startsidan till vänster finns valet ”meddelanden”, gå in där och välj ”nytt meddelande”.</p>
+  <span>4</span>
+  <p>Kopiera sedan meddelandet vi förskapat åt dig, klistra och skicka iväg.</p>
+  <span>5</span>
+  <p>Klart! Nu är det bara att invänta deras återkoppling.</p>
+  <div class="instruction-bottom">Återkom gärna till oss på Ränteradar om du fick igenom din räntesänkning.</div>
+</div>
+
+<div class="instructions" *ngIf="data.currentBank == 'SWE_NORDEA'">
+  <span>1</span>
+  <p> Gå in på denna länk <a target ="_blank" href="https://www.nordea.se/">https://www.nordea.se/</a> </p>
+  <span>2</span>
+  <p>Kontakta de genom att logga in på din profil. För att kunna logga in krävs bankID eller dosa.</p>
+  <span>3</span>
+  <p>På startsidan längst upp till höger kan du klicka på ”Kontakta oss”, i vänstermenyn väljer du sedan ”Meddelande” och därefter ”skicka meddelande”.</p>
+  <span>4</span>
+  <p>Kopiera sedan meddelandet vi förskapat åt dig, klistra och skicka iväg.</p>
+  <span>5</span>
+  <p>Klart! Nu är det bara att invänta deras återkoppling.</p>
+  <div class="instruction-bottom">Återkom gärna till oss på Ränteradar om du fick igenom din räntesänkning.</div>
+</div>
+
+
+<div class="instructions" *ngIf="data.currentBank === 'SWE_LANSFORSAKRINGAR'">
+  <span>1</span>
+  <p> Gå in på denna länk <a target ="_blank" href="https://www.handelsbanken.se/sv/">https://www.handelsbanken.se/sv/</a> </p>
+  <span>2</span>
+  <p>Kontakta de genom att logga in på din profil. För att kunna logga in krävs bankID eller dosa.</p>
+  <span>3</span>
+  <p>Gå till meddelanden som hittar om du klickar på kuveret under ”mina sidor”</p>
+  <span>4</span>
+  <p>Kopiera sedan meddelandet vi förskapat åt dig, klistra och skicka iväg.</p>
+  <span>5</span>
+  <p>Klart! Nu är det bara att invänta deras återkoppling.</p>
+  <div class="instruction-bottom">Återkom gärna till oss på Ränteradar om du fick igenom din räntesänkning.</div>
+</div>
+
+
+<div class="instructions" *ngIf="data.currentBank === 'SWE_HANDELSBANKEN'">
+  <span>1</span>
+  <p> Gå in på denna länk <a target ="_blank" href="https://www.handelsbanken.se/sv/">https://www.handelsbanken.se/sv/</a> </p>
+  <span>2</span>
+  <p>Kontakta de genom att logga in på din profil. För att kunna logga in krävs bankID eller dosa.</p>
+  <span>3</span>
+  <p>Längst upp på högra sidan finns ett kuvert, klicka på den och till vänster väljer du ”skriv nytt meddelande”</p>
+  <span>4</span>
+  <p>Kopiera sedan meddelandet vi förskapat åt dig, klistra och skicka iväg.</p>
+  <span>5</span>
+  <p>Klart! Nu är det bara att invänta deras återkoppling.</p>
+  <div class="instruction-bottom">Återkom gärna till oss på Ränteradar om du fick igenom din räntesänkning.</div>
+</div>
+
+</div>
+
+
+<div class ="info-container">
+  <div class="message">
+
+    <h3>Medelande til banken:</h3>
+    <hr />
+    <p >
+      Hejsan,
+    <br />
+    <br />
+    Jag är kund i banken idag, men jag har hittat ett bättre erbjudande på
+    <a href ="http://ranteradar.se">ranteradar.se</a> och överväger att byta. Innan jag bestämmer mig för att gå vidare 
+    undrar jag om ni kan matcha erbjudandet?
+    </p>
+  </div>
+
+
+
+
+
+
+  <p i18n=“info|change-bank@@change.bank.info” class="bold"><b>Opplysninger om tilbud:</b></p>
+
+  <div class="grid-wrapper">
+    <div class="item">
+        <p i18n=“info-amount|change-bank@@change.bank.infoAmount” class="small">Lånebeløp:</p>
+        <p>{{ data.preview.totalOutstandingDebt | number: "0.0-0" }} kr</p>
+    </div>
+    <div class="item">
+        <p i18n=“info-value|change-bank@@change.bank.infoValue” class="small">Boligverdi:</p>
+        <p>{{ data.preview.propertyValue | number: "1.0-0" }} kr</p>
+    </div>
+    
+  <div class="item">
+      <p i18n=“info-leverage|change-bank@@change.bank.infoLeverage” class="small">Est. belåningsgrad:</p>
+      <p>{{ (data.preview.ltv) * 100 | number: "1.1-1"}}%
+      </p>
+  </div>
+    <div class="item">
+        <p i18n=“info-time-remaining|change-bank@@change.bank.infoTime.remaining” class="small">Nedbetalingstid:</p>
+        <p>{{ data.preview.averageRemainingYears | round }} år</p>
+    </div>
+    <div class="item">
+      <p i18n=“info-bank|change-bank@@change.bank.infoBank” class="small">Bank:</p>
+      <p>{{ data.preview.bankName }}</p>
+    </div>
+    <div class="item">
+        <p i18n=“info-product|change-bank@@change.bank.infoProduct” class="small">Produktnavn:</p>
+        <p>{{ data.preview.productName }}</p>
+    </div>
+    <div class="item">
+        <p i18n=“info-nominal-interest|change-bank@@change.bank.infoNominal” class="small">Nominell rente:</p>
+        <p>{{ data.preview.nominalRate | number: "1.2-2" }}%</p>
+    </div>
+    <div class="item">
+        <p i18n=“info-effective-interest|change-bank@@change.bank.infoEffective” class="small">Effektiv rente:</p>
+        <p>{{ data.preview.effectiveRate | number: "1.2-2" }}%</p>
+    </div>
+  </div>
+</div>
+
+<div class="bottom">
+    <rente-button color="primary" (click)="close()">
+      Stäng
+    </rente-button>
+</div>

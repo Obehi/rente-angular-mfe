@@ -1,0 +1,20 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../out-tsc/app",
+    "baseUrl": "./",
+    "paths": {
+      "@services/*": ["./app/shared/services/*"],
+      "@models/*": ["./app/shared/models/*"],
+      "@features/*": ["./app/features/*"],
+      "@shared/*": ["./app/shared/*"],
+      "@environments/*": ["./environments/*"],
+      "@assets/*": ["./assets/*"],
+      "@config/*": ["./app/config/*"],
+      "@local-components/*": ["./src/app/local-components/*"]
+    }
+  },
+  "files": ["main.ts", "polyfills.ts", "vendortest.ts"],
+  "include": [],
+  "exclude": []
+}

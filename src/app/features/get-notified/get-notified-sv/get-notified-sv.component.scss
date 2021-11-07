@@ -1,0 +1,23 @@
+h2,
+h4 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+h4 {
+  margin-bottom: 40px;
+}
+.mat-form-field {
+  width: 100%;
+}
+rente-button {
+  text-align: center;
+  margin-top: 70px;
+  display: block;
+}
+
+// constant height to account for dynamic error messages   
+form {
+  div {
+    height: 70px;
+  }
+}

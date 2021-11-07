@@ -1,0 +1,65 @@
+@import "../../../styles/theme/_colors.scss";
+h4 {
+  margin-bottom: 40px;
+}
+
+.fordeler {
+  background-color: $lightgreen;
+  width: calc(100% + 40px);
+  left: -20px;
+  position: relative;
+  padding: 40px;
+  margin-bottom: 40px;
+  text-align: center;
+  h4:last-of-type {
+    margin-bottom: 0;
+  }
+}
+.styret {
+  @media (min-width: 600px) {
+    display: grid;
+    grid-template-columns: calc(33% - 20px) calc(33% - 20px) calc(33% - 20px);
+    grid-column-gap: 40px;
+    //margin-top: 60px;
+  }
+  .styremedlem {
+    mask-border: 40px;
+    .person {
+      display: flex;
+      margin-bottom: 20px;
+      .bilde {
+        width: 80px;
+        height: 80px;
+        background-size: cover;
+        background-position: center;
+        border-radius: 100%;
+      }
+      .navn {
+        align-self: flex-end;
+        //margin-left: 20px;
+      }
+      h4 {
+        margin: 0;
+      }
+    }
+  }
+}
+
+.about-us-image {
+  margin-bottom: 60px;
+
+  .sub-image {
+    font-style: italic;
+    font-size: 10px
+  }
+}
+
+a {
+  color: $primary;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+}

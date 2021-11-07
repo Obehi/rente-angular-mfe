@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="18px" height="16px" viewBox="0 0 18 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
+    <title>house-icon</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="dashboard-mobile" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="dashboard-offers" transform="translate(-211.000000, -1921.000000)" fill-rule="nonzero" fill="#030104">
+            <g id="Group-30" transform="translate(-1.000000, 1911.000000)">
+                <g id="Group-28" transform="translate(181.000000, 10.000000)">
+                    <g id="house-icon" transform="translate(31.000000, 0.000000)">
+                        <path d="M2.35136,15.28064 C2.35136,15.28064 2.336,15.6672 2.7136,15.6672 C3.18336,15.6672 7.07264,15.66208 7.07264,15.66208 L7.07904,12.09024 C7.07904,12.09024 7.0176,11.50144 7.58912,11.50144 L9.39776,11.50144 C10.0736,11.50144 10.032,12.09024 10.032,12.09024 L10.02432,15.65056 C10.02432,15.65056 13.712,15.65056 14.2912,15.65056 C14.77056,15.65056 14.7488,15.16928 14.7488,15.16928 L14.7488,8.58432 L8.73536,3.2352 L2.35136,8.58432 C2.35136,8.58432 2.35136,15.28064 2.35136,15.28064 Z" id="Shape"></path>
+                        <path d="M0,8.0864 C0,8.0864 0.54208,9.08544 1.72416,8.0864 L8.78848,2.11008 L15.41184,8.04928 C16.78016,9.03616 17.2928,8.04928 17.2928,8.04928 L8.78848,0.3456 L0,8.0864 Z" id="Shape"></path>
+                        <polygon id="Shape" points="15.2512 2.096 13.54752 2.096 13.55456 4.16192 15.2512 5.60128"></polygon>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,93 @@
+
+.icon {
+  width: 24px;
+  height: 24px;
+  display: inline-block;
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: relative;
+
+  &.icon-sm {
+    width: 16px;
+    height: 16px;
+  }
+
+  &.icon-md {
+    width: 24px;
+    height: 24px;
+  }
+
+  &-guard {
+    background-image: url('/assets/icons/icon-guard.svg');
+  }
+
+  &-map {
+    background-image: url('/assets/icons/icon-map.svg');
+  }
+
+  &-history {
+    background-image: url('/assets/icons/icon-history.svg');
+  }
+
+  &-follow {
+    background-image: url('/assets/icons/icon-follow-me.svg');
+    width: 16px;
+    height: 16px;
+  }
+
+  &-location {
+    background-image: url('/assets/icons/icon-location.svg');
+  }
+
+  &-logout {
+    background-image: url('/assets/icons/icon_logout.svg');
+  }
+
+  &-sos {
+    background-image: url('/assets/icons/icon_SOS.svg');
+    width: 16px;
+    height: 16px;
+  }
+
+  &-iam-here {
+    background-image: url('/assets/icons/icon_im_here.svg');
+    width: 16px;
+    height: 16px;
+  }
+
+  &-video {
+    background-image: url('/assets/icons/icon_video.svg');
+  }
+
+  &-full-screen {
+    background-image: url('/assets/icons/icon_full_screen.svg');
+  }
+
+  &-close {
+    background-image: url('/assets/icons/icon_close.svg');
+  }
+
+  &-users {
+    background-image: url('/assets/icons/icon-users.svg')
+  }
+
+  &-sound-off {
+    background-image: url('/assets/icons/icon-sound-off.svg');
+  }
+
+  &-sound-on {
+    background-image: url('/assets/icons/icon-sound-on.svg');
+  }
+
+  .icon-badge {
+    font-size: 12px;
+    background-color: #F80613;
+    border-radius: 50%;
+    padding: 2px;
+    min-width: 17px;
+    min-height: 17px;
+    text-align: center;
+    position: absolute;
+    right: -10px;
+  }
+}

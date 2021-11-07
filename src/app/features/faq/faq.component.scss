@@ -1,0 +1,39 @@
+@import '../../../styles/theme/_colors.scss';
+
+mat-expansion-panel-header {
+  background: white;
+  border: none;
+}
+mat-expansion-panel-header:hover {
+  background: $stian-blue;
+}
+mat-panel-title {
+  font-weight: bold;
+}
+.mat-expansion-panel {
+  box-shadow: none;
+  border-radius: 15px !important;
+  border-bottom: 0px !important;
+}
+.mat-expansion-panel-header {
+  padding: 20px;
+}
+
+.mat-expansion-panel-spacing {
+  margin: 0;
+}
+.mat-expanded {
+  background: $stian-blue;
+}
+
+ul {
+  margin: 10px 0 10px 0;
+  li {
+    font-weight: 100;
+  }
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px !important;
+}

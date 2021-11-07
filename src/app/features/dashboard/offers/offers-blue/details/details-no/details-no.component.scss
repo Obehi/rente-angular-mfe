@@ -1,0 +1,49 @@
+@import "../../../../../../../styles/theme/colors";
+
+.offer-details {
+  margin-top: 10px;
+  border-top: 1px solid $light;
+  border-bottom: 1px solid $light;
+  padding: 10px;
+  .grid-wrapper{
+    display: grid;
+    grid-template-columns: 140px 150px;
+    grid-column-gap: 10px;
+
+    .item {
+      margin-bottom: 10px;
+    }
+
+    div {
+      p:nth-child(even) {
+        font-weight: 500;
+      }
+      p:nth-child(odd) {
+        margin-bottom: 0px
+      }
+    }
+
+    p {
+      line-height: 1.2;
+    }
+  }
+
+    .small-header {
+      margin-top: 20px;
+      font-weight: 400;
+      text-align: left;
+    }
+
+    .otherConditions {
+      line-height: 1.4;
+      text-align: left;
+    }
+}
+
+.mat-grey {
+  display: block;
+  margin: 20px auto 0px auto;
+  color: $secondary;
+  width: 150px;
+  background: #ECECEC;
+}

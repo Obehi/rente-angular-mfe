@@ -1,0 +1,62 @@
+@import '../../../../../styles/theme/_colors.scss';
+
+form {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 0;
+  border: none;
+}
+
+.item {
+  width: 85px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100px;
+  margin: 5px;
+  span {
+    margin-top: 10px;
+    font-size: 12px;
+    color: $white;
+  }
+
+  .input-wrapper:focus {
+    border: 1px solid $primary;
+  }
+  .input-wrapper {
+    width: 65px;
+    height: 65px;
+    min-width: 65px;
+    min-height: 65px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    background: rgba(
+      0,
+      68,
+      101,
+      1
+    ); // !!!!! KARL-BLUE (FUNGERER IKKE MED $KARL-BLUE PÅ HVIT BAKGRUNN!)
+    border: 1px solid #478ccc;
+
+    p {
+      text-align: center;
+      font-weight: 400;
+      color: $white;
+    }
+
+    input {
+      position: absolute;
+      width: 75px;
+      height: 80px;
+      opacity: 0;
+      cursor: pointer;
+    }
+  }
+}

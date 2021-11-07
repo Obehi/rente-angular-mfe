@@ -1,0 +1,55 @@
+<div *ngIf="data.androidPopup !== true" class="change-browser-container" [ngClass]="{'fixed-bottom': data.type === 'bottom-right','no-fixed-bottom': data.type === 'top-right'}">
+  <h4>Psst.. Vi rekommenderar 
+    dig varmt att använda vår 
+    tjänst via en webbläsare 💙</h4>
+
+  <div *ngIf="data.type === 'top-right'" class="instruction-numbers">
+    <div class="item">
+      <div class="nr">1</div>
+      <p>Tryck på de tre prickarna överst i det högra hörnet</p>
+      <img src="../../../../../assets/img/sv/insta-dots.png" />
+    </div>
+    <div class="item">
+      <div class="nr">2</div>
+      <p *ngIf="data.app !== 'linkedIn'">Välj sedan open in safari</p>
+      <p *ngIf="data.app === 'linkedIn'">Välj sedan open in browser</p>
+    </div>
+    <img *ngIf="data.app !== 'linkedIn'" src="../../../../../assets/img/sv/browser-detection-safari.png" />
+    <img *ngIf="data.app === 'linkedIn'" src="../../../../../assets/img/sv/browser-detection-safari-linkedIn.png" />
+  </div>
+
+  <div *ngIf="data.type === 'bottom-right'" class="instruction-numbers">
+    <div class="item">
+      <div class="nr">1</div>
+      <p>Tryck på knappen nederst i det högre hörnet
+      </p>
+    </div>
+    <div class="item">
+      <div class="nr">2</div>
+      <p *ngIf="data.app !== 'linkedIn'">Tryck på öppna i safari</p>
+      <p *ngIf="data.app === 'linkedIn'">Tryck på öppna i browser </p>
+    </div>
+
+    <img src="../../../../../assets/img/sv/browser-detection-safari.png" />
+  </div>
+</div>
+
+
+<div *ngIf="data.type === 'bottom-right' && data.androidPopup !== true" class="fixed-bottom-right">
+  <div class="item">
+    <div class="nr">1</div>
+    <p>Tryck på knappen nederst i det högre hörnet</p>
+  </div>
+  <img src="../../../../../assets/img/sv/browser-detection-arrow.png" />
+</div>
+
+
+<div *ngIf="data.androidPopup === true" class="change-browser-container android">
+  <h4>Psst.. Vi rekommenderar 
+    dig varmt att använda vår 
+    tjänst via en webbläsare 💙</h4>
+
+  <p>Kopiera www.ranteradar.se och klistra in i din favorit webbläsare för att få den bäst bolåneräntan!</p>
+  <img src="../../../../../assets/img/sv/browser-selection.png" />
+
+</div>

@@ -1,0 +1,218 @@
+<div class="outer-container">
+
+<div class="top">
+    <mat-icon *ngIf="stepper.selectedIndex === 3" (click)="closeDialog()" class="close-modal">close</mat-icon>
+<p i18n="choose-office |change-bank@@change.bank.location.header.explain" class="top-explain">Välj län så skickar vi meddelandet till ditt bankkontor åt dig.</p>
+<h2 i18n="choose-office |change-bank@@change.bank.location.header">Velg din filial</h2>
+
+
+<div class="stepper-header">
+    <div [ngClass]="['stepper-header-element', 
+    stepperHeaderArray[i].state === 'done' ? 'done' : '',  
+    stepperHeaderArray[i].state === 'active' ? 'active' : '',  
+    stepperHeaderArray[i].state === 'active-touched' ? 'active-touched' : '',  
+    stepperHeaderArray[i].state === 'waiting' ? 'waiting' : '']" 
+    
+    *ngFor="let region of stepperHeaderArray; let i = index">
+        <div (click)="clickHeaderNode(i)" class="stepper-header-node">
+            {{i + 1}}
+        </div>
+        <div class="stepper-header-line" *ngIf=" stepperHeaderArray.length - 1 !== i">
+        </div>
+    </div>
+</div>
+
+<mat-horizontal-stepper class="stepper" [linear]="false"  #stepper>
+    <mat-step [editable]="true">
+        <h3>Region</h3>
+        <div *ngFor="let region of regions">
+            <div (click)="clickNext(region, stepper.selectedIndex)" class="choise-item">
+                <div>{{region}}</div>
+                <img class="arrow" src="../../../../assets/icons/arrow-small-grey.svg" alt="Velg">
+            </div>
+        </div>
+    </mat-step>
+    <mat-step [editable]="true">
+        <h3 i18n="choose-office |change-bank@@change.bank.location.city">By</h3>
+
+        <div *ngFor="let city of cities">
+            <div (click)="clickNext(city, stepper.selectedIndex)" class="choise-item">
+                <div>{{city}}</div>
+                <img class="arrow" src="../../../../assets/icons/arrow-small-grey.svg" alt="Velg">
+            </div>
+        </div>
+
+    </mat-step>
+    <mat-step [editable]="true">
+        <h3 i18n="choose-office |change-bank@@change.bank.location.office">Filial</h3>
+
+        <div *ngFor="let office of offices">
+            <div (click)="officeStepClick(office, stepper.selectedIndex)" class="choise-item">
+                <div>{{office}}</div>
+                <img class="arrow" src="../../../../assets/icons/arrow-small-grey.svg" alt="Velg">
+            </div>
+        </div>
+
+    </mat-step>
+    <mat-step  [editable]="true">
+        <h3 class="success" i18n="choose-office |change-bank@@change.bank.location.choosenText">Du har valgt: </h3>
+
+        <div class="choosen-container">
+            <div class="choosen-box">
+                <p i18n="choose-office |change-bank@@change.bank.location.office"  class="location">Filial</p>
+                <p class="value">{{choosenOffice}}</p>
+            </div>
+        </div>
+
+        <div class="info-container">
+            <div class="message">
+          
+              <h3>Meddelande till banken:</h3>
+              <hr />
+              <p>
+                Hej,
+                <br />
+                <br />
+                Jag är kund i banken idag, men jag har hittat ett bättre erbjudande på
+                <a href="http://ranteradar.se">ranteradar.se</a> och överväger att byta. Innan jag bestämmer mig för att gå vidare
+                undrar jag om ni kan matcha erbjudandet?
+              </p>
+            </div>
+
+            <br />
+            <h4 i18n=“info|change-bank@@change.bank.info” class="bold"><b>Opplysninger om tilbud:</b></h4>
+          
+            <div class="grid-wrapper">
+              <div class="item">
+                <p i18n=“info-amount|change-bank@@change.bank.infoAmount” class="small">Lånebeløp:</p>
+                <p>{{ data.preview.totalOutstandingDebt | number: "0.0-0" }} kr</p>
+              </div>
+              <div class="item">
+                <p i18n=“info-value|change-bank@@change.bank.infoValue” class="small">Boligverdi:</p>
+                <p>{{ data.preview.propertyValue | number: "1.0-0" }} kr</p>
+              </div>
+          
+              <div class="item">
+                <p i18n=“info-leverage|change-bank@@change.bank.infoLeverage” class="small">Est. belåningsgrad:</p>
+                <p>{{ (data.preview.ltv) * 100 | number: "1.1-1"}}%
+                </p>
+              </div>
+
+              <div class="item">
+                <p i18n=“info-bank|change-bank@@change.bank.infoBank” class="small">Bank:</p>
+                <p>{{ data.preview.bankName }}</p>
+              </div>
+              <div class="item">
+                <p i18n=“info-product|change-bank@@change.bank.infoProduct” class="small">Produktnavn:</p>
+                <p>{{ data.preview.productName }}</p>
+              </div>
+              <div class="item">
+                <p i18n=“info-nominal-interest|change-bank@@change.bank.infoNominal” class="small">Nominell rente:</p>
+                <p>{{ data.preview.nominalRate | number: "1.2-2" }}%</p>
+              </div>
+              <div class="item">
+                <p i18n=“info-effective-interest|change-bank@@change.bank.infoEffective” class="small">Effektiv rente:</p>
+                <p>{{ data.preview.effectiveRate | number: "1.2-2" }}%</p>
+              </div>
+            </div>
+
+            <h4 i18n=“info-me|change-bank@@change.bank.infoMe” class="bold"><b>Opplysninger om meg:</b></h4>
+
+            <div class="grid-wrapper">
+                <div *ngIf="data.preview.clientInfo.name" class="item">
+                    <p i18n=“info-name|change-bank@@change.bank.infoName” class="small">Navn:</p>
+                    <p>{{ data.preview.clientInfo.name }}</p>
+                </div>
+
+                <div *ngIf="data.preview.clientInfo.email" class="item">
+                    <p i18n=“info-post|change-bank@@change.bank.email class="small">E-post:</p>
+                    <p>{{ data.preview.clientInfo.email }}</p>
+                </div>
+
+                <div *ngIf="data.preview.clientInfo.address" class="item">
+                    <p i18n=“info-address|change-bank@@change.bank.infoAddress” class="small">Adresse:</p>
+                    <p>{{ data.preview.clientInfo.address }}</p>
+                </div>
+
+                <div *ngIf="data.preview.clientInfo.zip" class="item">
+                    <p i18n=“info-post|change-bank@@change.bank.infoPost” class="small">Postnr:</p>
+                    <p>{{ data.preview.clientInfo.zip }}</p>
+                </div>
+                <div *ngIf="data.preview.clientInfo.phone" class="item">
+                    <p i18n=“info-phone|change-bank@@change.bank.infoPhone” class="small">Telefon:</p>
+                    <p>{{ data.preview.clientInfo.phone }}</p>
+                </div>    
+            </div>
+          
+          </div>
+            
+
+    </mat-step>
+</mat-horizontal-stepper>
+</div>
+<div class="bottom">
+
+    <div [ngSwitch]="stepper.selectedIndex">
+        <div *ngSwitchCase="0">
+            <rente-button class="right"  color="primary-wide-hollow" (click)="closeDialog()">
+                Avbryt
+            </rente-button>
+        </div>
+        <div *ngSwitchCase="1">
+            <rente-button i18n="choose-office |change-bank@@change.bank.location.back" class="left" color="primary-wide-hollow" (click)="clickBackButton()">
+                Tilbake
+                </rente-button>
+            <rente-button  class="right"  color="primary-wide-hollow" (click)="closeDialog()">
+                Avbryt
+            </rente-button>
+        </div>
+        <div *ngSwitchCase="2">
+            <rente-button i18n="choose-office |change-bank@@change.bank.location.back" class="left" color="primary-wide-hollow" (click)="clickBackButton()">
+                Tilbake
+                </rente-button>
+            <rente-button class="right"  color="primary-wide-hollow"  (click)="closeDialog()">
+                Avbryt
+            </rente-button>
+        </div>
+        <div *ngSwitchCase="3">
+
+      
+            <form [formGroup]="confirmForm" novalidate>
+                <mat-checkbox i18n=“age-confirmation|change-bank@@change.bank.ageConfirmation”
+                  formControlName="confirmation"
+                  (change)="isConfirmed = $event.checked"
+                >
+                  Jeg bekrefter at jeg er over 18 år og myndig eller oppnevnt som verge, samt
+                  at banken ved behov kan foreta en kredittvurdering.
+                </mat-checkbox>
+              </form>
+
+
+            <rente-button i18n="choose-office |change-bank@@change.bank.location.back" color="primary-wide-hollow" class="left" (click)="clickBackButton()">
+                Tilbake
+                </rente-button>
+            <rente-button i18n="choose-office |change-bank@@change.bank.location.send" 
+                class="right"  
+                color="primary-wide" 
+                (click)="sendEmail()"
+                [isLoading]="isLoading"
+                [disabled]="!isConfirmed || isLoading"
+            >
+                Send
+            </rente-button>
+
+        </div>
+        <div *ngSwitchDefault>
+
+        </div>
+     </div>
+</div>
+
+</div>
+
+<div class="loading" *ngIf="isLoading">
+    <mat-spinner [diameter]="48" [strokeWidth]="4"></mat-spinner>
+  </div>
+
+
+  

@@ -1,0 +1,160 @@
+<div
+  class="housecontainer scroll-anchor"
+  id="{{ index + 1 }}"
+  [@.disabled]="!pageLoaded"
+>
+  <div class="heading">
+    <div class="house-data">
+      <img src="../../../assets/icons/house-icon-white.svg" alt="Bolig" />
+      <b>Bolig {{ index + 1 }}</b>
+      <mat-icon
+        *ngIf="isAbleToDelete"
+        (click)="onDeleteAddressClick()"
+        class="clickable delete-button"
+        >delete_forever</mat-icon
+      >
+    </div>
+    <div class="statistics-data">
+      <button
+        [disabled]="!isAddressValid"
+        (click)="toggleMode()"
+        class="clickable"
+      >
+        <p *ngIf="isEditMode">Se statistikk</p>
+        <mat-icon *ngIf="isStatMode">keyboard_backspace</mat-icon>
+      </button>
+    </div>
+  </div>
+  <div class="body">
+    <div *ngIf="!isStatMode" class="estimat" [@fade]="pageLoaded">
+      <p class="slide-toggle-text bold">Automatisk estimat av boligen din:</p>
+
+      <mat-slide-toggle
+        class="button"
+        (change)="switchToggle()"
+        value="!address.useManualPropertyValue"
+        [checked]="!address.useManualPropertyValue"
+      ></mat-slide-toggle>
+    </div>
+    <div class="double-asymetric">
+      <div *ngIf="!isStatMode" class="address" [@fade]>
+        <p class="input-text">Adresse</p>
+        <rente-input
+          class="house-input"
+          type="text"
+          [(ngModel)]="address.street"
+          (change)="countChange()"
+        ></rente-input>
+      </div>
+      <div *ngIf="isEditMode" [@fade] class="post-number">
+        <p class="input-text">Postnr</p>
+
+        <rente-input
+          class="house-input"
+          id="postnr"
+          [type]="'tel'"
+          [(ngModel)]="address.zip"
+          [maxLength]="4"
+          (change)="countChange()"
+        ></rente-input>
+      </div>
+    </div>
+    <div *ngIf="isStatMode">
+      <rente-virdi-statistics [address]="address"> </rente-virdi-statistics>
+    </div>
+    <div class="double">
+      <div *ngIf="isEditMode" [@fade] class="house-size">
+        <p class="input-text">Størrelse på bolig (P-rom)</p>
+
+        <rente-input
+          class="house-input"
+          id="apartment-size"
+          matInput
+          [type]="'tel'"
+          [(ngModel)]="address.apartmentSize"
+          [maxLength]="3"
+          (change)="countChange()"
+        ></rente-input>
+      </div>
+      <div *ngIf="isEditMode" [@fade] class="common-debt">
+        <p class="input-text">Fellesgjeld</p>
+        <rente-input
+          class="house-input"
+          [type]="'tel'"
+          (change)="countChange()"
+          [maxLength]="11"
+          [ngModel]="address?.commonDebt | thousands"
+          (ngModelChange)="address.commonDebt = formatThousand($event)"
+        ></rente-input>
+      </div>
+    </div>
+
+    <div *ngIf="!isStatMode" class="non-double estimated" [@fade]>
+      <p class="house-value bold">Boligverdi</p>
+      <div *ngIf="!address.useManualPropertyValue" [@fade]>
+        <p
+          class="estimate-error"
+          *ngIf="isAddressValid && (virdiErrorMessage | async)"
+          [@leaveFade]
+        >
+          Kunne ikke estimere boligverdien, <br />sjekk at adressen er riktig
+        </p>
+        <p
+          class="green-minus"
+          [@fade]
+          *ngIf="
+            (!isAddressValid || !address.estimatedPropertyValue) &&
+            !(virdiErrorMessage | async)
+          "
+        >
+          -
+        </p>
+        <p
+          class="green-text"
+          *ngIf="isAddressValid && address.estimatedPropertyValue"
+        >
+          {{ address.estimatedPropertyValue | thousands }}
+        </p>
+        <p
+          *ngIf="
+            !address.useManualPropertyValue &&
+            isAddressValid &&
+            address.estimatedPropertyValue
+          "
+          class="small white place-under bold"
+        >
+          Estimert av Virdi
+        </p>
+      </div>
+      <div *ngIf="address.useManualPropertyValue" [@fade]>
+        <rente-input
+          matInput
+          [type]="'tel'"
+          [maxLength]="11"
+          [ngModel]="address?.manualPropertyValue | thousands"
+          (change)="countChange()"
+          (keyup)="manualPropertyValueChanged($event)"
+        ></rente-input>
+      </div>
+    </div>
+
+    <div class="center-button" *ngIf="isEditMode">
+      <rente-button
+        id="save-button"
+        color="primary-horizontal-padding"
+        [disabled]="!ableTosave"
+        (click)="save()"
+        class="save-changes-local"
+        >Lagre endringer
+      </rente-button>
+
+      <p
+        *ngIf="!address.useManualPropertyValue && ableTosave"
+        class="small white saveForEstimate bold"
+        [@fade]
+      >
+        Lagre endringer for å hente nytt estimat
+      </p>
+    </div>
+  </div>
+</div>

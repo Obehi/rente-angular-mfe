@@ -1,0 +1,32 @@
+<div class="input-flow">
+  <div class="head">
+    <div>
+      <mat-icon color="primary" class="icon">{{icon}}</mat-icon>
+      <span class="title">{{title}}</span>
+    </div>
+    <div class="description my-3">{{description}}</div>
+  </div>
+  <div>
+    <div class="chips row justify-content-around">
+      <div class="chip col-5 text-center p-2 mt-3" [ngClass]="{active:selectedChip === chip}" *ngFor="let chip of chips"
+           (click)="selectChip(chip)">
+        <span *ngIf="chip">{{chip | number}}</span>
+        <span *ngIf="!chip">Husker ikke</span>
+      </div>
+    </div>
+    <form [formGroup]="formGroup" class="p-0 border-0 mt-2">
+      <mat-form-field class="white-input w-100" appearance="outline">
+        <input formControlName="{{controlName}}" placeholder="Fyll inn selv" matInput type="tel"
+               autocomplete="off" currencyMask
+               [options]="{prefix:'', align: 'left', thousands: ' ', precision: 0}">
+      </mat-form-field>
+
+    </form>
+  </div>
+  <button mat-raised-button class="next-step w-100 py-2" (click)="nextStep.emit()">
+    Neste
+  </button>
+  <button mat-stroked-button class="edit-mode w-100 py-2 mt-2 mb-4" (click)="exitEditMode.emit()">
+    Hopp over og se tilbud
+  </button>
+</div>

@@ -1,0 +1,21 @@
+@import "../../../styles/theme/_colors.scss";
+
+h2 {
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+rente-button {
+  margin-top: 20px;
+}
+rente-input,
+rente-text-area {
+  margin-bottom: 20px;
+  display: block;
+}
+rente-form-message {
+  position: relative;
+  float: right;
+  top: -60px;
+}
+

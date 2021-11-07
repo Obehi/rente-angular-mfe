@@ -1,0 +1,30 @@
+.mypanel {
+  color: #222;
+}
+
+.mypanel .title {
+  width: 100%;
+
+  cursor: pointer;
+}
+
+.mypanel .body {
+  padding: 0 !important;
+}
+
+.mypanel .body.hidden {
+  display: none;
+}
+
+.icon-div {
+  width: 327px;
+  margin: auto;
+  display: flex;
+  justify-content: flex-end;
+  .icon {
+    color: #18bc9c;
+  }
+  @media (max-width: 600px) {
+    width: 87%;
+  }
+}

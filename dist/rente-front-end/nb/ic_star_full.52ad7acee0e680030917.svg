@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="26px" height="24px" viewBox="0 0 26 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
+    <title>Star</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="dashboard-mobile" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="dashboard-offers" transform="translate(-79.000000, -157.000000)" fill="#18BC9C">
+            <g id="Group-7" transform="translate(79.000000, 157.000000)">
+                <polygon id="Star" points="13.1477814 19.7149167 5.42235654 23.7764129 6.8977814 15.1740259 0.647781402 9.0817816 9.28506897 7.82671025 13.1477814 0 17.0104938 7.82671025 25.6477814 9.0817816 19.3977814 15.1740259 20.8732063 23.7764129"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,307 @@
+<footer
+  *ngIf="shouldShowFooter"
+  [class]="router.url.includes('dashboard') ? '' : 'visible'"
+>
+  <div *ngIf="!isSweden" class="inner-footer">
+    <!-- NEW -->
+    <div class="look-around">
+      <h2>Se deg rundt</h2>
+    </div>
+
+    <div class="footer-links">
+      <a
+        class="link-name"
+        [routerLink]="['/bankguiden']"
+        routerLinkActive="active-link"
+        >Bankguiden
+      </a>
+
+      <a
+        class="link-name"
+        [routerLink]="['/om-oss']"
+        routerLinkActive="active-link"
+        >Om oss
+      </a>
+
+      <span [routerLink]="['/']" fragment="faq">
+        <a class="link-name" href="#faq">FAQ </a>
+      </span>
+
+      <a
+        class="link-name"
+        [routerLink]="['/personvern']"
+        routerLinkActive="active-link"
+        >Personvern
+      </a>
+
+      <a
+        class="link-name"
+        [routerLink]="['/kontakt']"
+        routerLinkActive="active-link"
+        >Kontakt
+      </a>
+    </div>
+
+    <div class="items">
+      <div class="item">
+        <H4>Våre kunder:</H4>
+        <ul class="adjust-margin">
+          <li>
+            <a
+              target="_blank"
+              href="https://bulderbank.no/boliglan/flytte-boliglan?utm_source=renteradar.no&utm_medium=cpc&utm_campaign=boliglan&utm_term=lesmer"
+            >
+              <picture>
+                <source
+                  srcset="../../../assets/img-webp/partners/bulder.webp"
+                  type="image/webp"
+                />
+                <source
+                  srcset="../../../../assets/img/partners/bulder.png"
+                  type="image/jpeg"
+                />
+                <img
+                  src="../../../../assets/img/partners/bulder.png"
+                  alt="Bulder logo"
+                />
+              </picture>
+            </a>
+          </li>
+          <li>
+            <a
+              target="_blank"
+              href="https://www.nybygger.no/?utm_source=renteradar.no&utm_medium=affiliate&utm_content=nyb-02&utm_term=sales&utm_campaign=sommer_21"
+            >
+              <img
+                class="nybygger"
+                src="../../../../assets/img/partners/nybygger.svg"
+                alt="Nybygger logo"
+              />
+            </a>
+          </li>
+          <li>
+            <a
+              target="_blank"
+              href="https://www.direct.nordea.no/?utm_source=renteradar.no"
+            >
+              <img
+                class="nordea-direct"
+                src="../../../../assets/img/partners/nordea-direct.png"
+                alt="Nordea Direct logo"
+              />
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="item">
+        <H4>Samarbeidspartnere:</H4>
+        <ul>
+          <li>
+            <a target="_blank" href="https://virdi.no/">
+              <img
+                class="partner-logo"
+                src="../../../../assets/img/banks-logo/svg/virdi.svg"
+                alt="Virdi logo"
+              />
+            </a>
+          </li>
+          <li>
+            <a target="_blank" href="https://www.boligmappa.no/">
+              <picture>
+                <source
+                  srcset="
+                    ../../../assets/img-webp/partners/boligmappa-white.webp
+                  "
+                  type="image/webp"
+                />
+                <source
+                  srcset="../../../../assets/img/partners/boligmappa-white.png"
+                  type="image/jpeg"
+                />
+                <img
+                  src="../../../../assets/img/partners/boligmappa-white.png"
+                  alt="Boligmappa logo"
+                />
+              </picture>
+            </a>
+          </li>
+          <li>
+            <a
+              target="_blank"
+              href="https://www.finansportalen.no/"
+              rel="nofollow"
+            >
+              <picture>
+                <source
+                  srcset="../../../assets/img-webp/partners/finansportalen.webp"
+                  type="image/webp"
+                />
+                <source
+                  srcset="../../../../assets/img/partners/finansportalen.png"
+                  type="image/jpeg"
+                />
+                <img
+                  class="partner-logo"
+                  src="../../../../assets/img/partners/finansportalen.png"
+                  alt="finansportalen logo"
+                />
+              </picture>
+            </a>
+          </li>
+          <li>
+            <a target="_blank" href="https://www.defero.no/">
+              <picture>
+                <!--  <source srcset="../../../assets/img-webp/partners/finansportalen.webp" type="image/webp">
+              <source srcset="../../../../assets/img/partners/finansportalen.png" type="image/jpeg"> -->
+                <img
+                  class="partner-logo defero"
+                  src="../../../../assets/img/partners/defero-dark-mode.png"
+                  alt="Defero logo"
+                />
+              </picture>
+            </a>
+          </li>
+          <li>
+            <a
+              target="_blank"
+              href="https://tibber.com/no?modal=signup-no&signup=renteradar"
+            >
+              <picture>
+                <!--  <source srcset="../../../assets/img-webp/partners/finansportalen.webp" type="image/webp">
+              <source srcset="../../../../assets/img/partners/finansportalen.png" type="image/jpeg"> -->
+                <img
+                  class="partner-logo tibber"
+                  src="../../../../assets/img/partners/tibber_logo_170.png"
+                  alt="Tibber logo"
+                />
+              </picture>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="item">
+        <div class="social">
+          <a
+            class="desktop"
+            href="https://www.facebook.com/renteradar/"
+            target="_blank"
+          >
+            <img
+              src="../../../../assets/img/facebook.svg"
+              alt="Facebook logo"
+            />
+          </a>
+
+          <a class="mobile" href="fb://profile/241726976492191" target="_blank">
+            <img
+              src="../../../../assets/img/facebook.svg"
+              alt="Facebook logo"
+            />
+          </a>
+
+          <a href="https://www.instagram.com/renteradar.no" target="_blank">
+            <img
+              src="../../../../assets/icons/instagram.svg"
+              alt="Facebook logo"
+            />
+          </a>
+          <a
+            href="https://www.linkedin.com/company/renteradar/"
+            target="_blank"
+          >
+            <img
+              src="../../../../assets/img/linkedin.svg"
+              alt="LinkedIn logo"
+            />
+          </a>
+        </div>
+
+        <p>Renteradar.no eies og driftes av</p>
+        <p>
+          Forbrukerøkonomene AS (Org nr: 921 534 191)
+          <br />
+          <a
+            [routerLink]="['/personvern']"
+            routerLinkActive="active-link"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >
+            Personvern
+          </a>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="isSweden" class="inner-footer swe-footer">
+    <div class="other-partners-swe">
+      <h4>Banksamarbete</h4>
+      <a target="_blank" href="https://hypoteket.com">
+        <img
+          class="hypoteket"
+          src="../../../../assets/img/partners/hypoteket.png"
+          alt="Hypoteket logo"
+        />
+      </a>
+    </div>
+    <div class="bank-partners-swe">
+      <h4>Samarbete</h4>
+      <a target="_blank" href="https://aiisa.se/">
+        <img
+          class="ailsa"
+          src="../../../../assets/img/partners/alisa-white.svg"
+          alt="Hypoteket logo"
+        />
+      </a>
+    </div>
+
+    <div class="item fill">
+      <div class="social">
+        <a
+          class="desktop"
+          href="https://www.facebook.com/ranteradar.se"
+          target="_blank"
+        >
+          <img src="../../../../assets/img/facebook.svg" alt="Facebook logo" />
+        </a>
+
+        <a class="mobile" href="fb://profile/104419418034085" target="_blank">
+          <img src="../../../../assets/img/facebook.svg" alt="Facebook logo" />
+        </a>
+
+        <a
+          href="https://www.instagram.com/ranteradar.se/?hl=en"
+          target="_blank"
+        >
+          <img
+            src="../../../../assets/icons/instagram.svg"
+            alt="Facebook logo"
+          />
+        </a>
+        <a
+          href="https://www.linkedin.com/company/r%C3%A4nteradar/?viewAsMember=true"
+          target="_blank"
+        >
+          <img src="../../../../assets/img/linkedin.svg" alt="LinkedIn logo" />
+        </a>
+      </div>
+    </div>
+
+    <span class="fill">
+      <a
+        class="temp-swedish-policy"
+        i18n="“privacy|footer@@footer.privacy”"
+        [routerLink]="[routes.privacy]"
+        routerLinkActive="active-link"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        Personvern
+      </a>
+      <p class="org fill">
+        <a href="http://ranteradar.se/">Ränteradar.se</a>
+        ägs och drivs av Ränteradar Sverige AB<br />(Org nr: 559271-9289).
+      </p>
+    </span>
+  </div>
+</footer>

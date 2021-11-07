@@ -1,0 +1,136 @@
+@import "../../../../../styles/theme/colors";
+
+.white-bg {
+  background: $white;
+  color: $black;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  max-width: 100%;
+  margin: 0 10px;
+  border-radius: 16px;
+  @media all and (min-width: 992px) {
+    max-width: 50%;
+  }
+}
+
+.bank-name {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+
+  .logo {
+    & > img {
+      object-fit: contain;
+      width: 50px;
+      height: 50px;
+      background: #ffffff;
+      border-radius: 50%;
+      padding: 0 1px;
+      border: 1px solid #f3f3f3;
+    }
+  }
+
+  .label {
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;
+    font-size: 16px;
+    font-weight: 400;
+    color: #112639!important;
+  }
+
+  .product-name {
+    text-align: center;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;
+    font-size: 14px;
+    font-weight: 400;
+    color: #a3a3a3;
+  }
+
+
+}
+
+.offer-product {
+  display: inline-block;
+}
+
+.middle-title {
+  font-weight: 400;
+  font-size: 12px;
+  margin-bottom: 4px;
+}
+
+.middle-property {
+  font-weight: 400;
+  font-size: 16px;
+  margin-top: 0px !important;
+}
+
+.offer-score {
+  width: 33px;
+  height: 33px;
+}
+
+.effective-rate {
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.bank-link {
+  background-color: $primary;
+  color: $white;
+  border-radius: 100px;
+  line-height: 20px;
+
+  &-name {
+    margin: auto;
+    display: block;
+    max-width: 80%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+}
+
+
+::ng-deep.initial-offer {
+  .mat-expansion-panel {
+    border-radius: 0px;
+    box-shadow: unset;
+    width: 100%;
+    background: transparent;
+    z-index: 5;
+    margin-bottom: 10px;
+
+    .mat-expansion-panel-header {
+      font-size: 12px;
+      margin-left: 0px;
+      margin-top: 13px;
+      width: 70px;
+      height: 20px;
+      padding: 0px;
+      background: transparent;
+    }
+
+    ::ng-deep .mat-expansion-panel-body {
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+
+
+    .mat-expansion-panel-body {
+      padding: 0 !important;
+      padding-top: 0 !important;
+      padding-bottom: 0 !important;
+    }
+  }
+}
+
+//.last-row {
+//  max-height: 60px;
+//}
