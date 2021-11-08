@@ -129,6 +129,10 @@ export class BankSelectNoComponent implements OnInit {
       bank.name = 'SPAREBANK_1_NORDVEST';
     }
 
+    if (bank.name === 'SURNADAL_SB') {
+      bank.name = 'SPAREBANK_1_NORDMORE';
+    }
+
     if (bank.hasSubMembership && bank.name !== 'DNB') {
       this.goToSubBankMenbership(bank);
       return;
