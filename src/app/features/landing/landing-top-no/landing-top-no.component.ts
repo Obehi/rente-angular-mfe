@@ -46,10 +46,10 @@ export class LandingTopNoComponent {
   get ctaText(): string {
     const variation = this.getVariation();
     if (variation === 0 || variation === 1) {
-      return 'Prøv gratis';
+      return 'Få beste rente';
     } else if (variation === 2) {
       return 'Start her';
     }
-    return 'Prøv gratis';
+    return 'Få beste rente';
   }
 }
