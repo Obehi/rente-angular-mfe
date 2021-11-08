@@ -75,7 +75,7 @@ export class BankGuideService {
     const danskeAkademikerene = 'AKADEMIKERNE_DANSKE';
     const sparebankOne = 'SPAREBANK_1';
     const specialCaseBanks = {};
-
+    const surndal = 'SURNADAL_SB';
     sortedBanksAlphabetic.forEach((bank, index) => {
       if (
         bank.name === dnb ||
@@ -86,6 +86,9 @@ export class BankGuideService {
         specialCaseBanks[bank.name] = bank;
         sortedBanksAlphabetic.splice(index, 1);
       }
+
+      // SURNADAL_SB is now merged with SPAREBANK_1_NORDMORE so will be reomving it
+      if (bank.name === surndal) sortedBanksAlphabetic.splice(index, 1);
     });
 
     this.allBanks = [
