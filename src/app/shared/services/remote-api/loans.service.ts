@@ -219,12 +219,12 @@ export class LoansService {
 
   // Preferences
 
-  getPreferencesDto(): Observable<PreferencesDto> {
+  public getPreferencesDto(): Observable<PreferencesDto> {
     const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.preferences}`;
     return this.http.get(url);
   }
 
-  updateUserPreferences(
+  public updateUserPreferences(
     dto: PreferencesUpdateDto
   ): Observable<PreferencesUpdateDto> {
     const url = `${API_URL_MAP.loan.base}/preferences`;

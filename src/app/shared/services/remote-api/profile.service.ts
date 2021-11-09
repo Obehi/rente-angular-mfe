@@ -14,18 +14,6 @@ import { Observable } from 'rxjs';
 export class ProfileService {
   constructor(private http: GenericHttpService) {}
 
-  public getPreferencesDto(): Observable<PreferencesDto> {
-    const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.preferences}`;
-    return this.http.get(url);
-  }
-
-  public updateUserPreferences(
-    dto: PreferencesUpdateDto
-  ): Observable<PreferencesDto> {
-    const url = `${API_URL_MAP.loan.base}/preferences`;
-    return this.http.post(url, dto);
-  }
-
   public getPreferancesWithGUID(guId: string): Observable<EmailDto> {
     const url = `${API_URL_MAP.loan.base}${API_URL_MAP.loan.public.base}${API_URL_MAP.loan.public.email.base}${API_URL_MAP.loan.public.email.preferences}${guId}`;
     return this.http.get(url);

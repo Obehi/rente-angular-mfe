@@ -218,7 +218,7 @@ export class ProfileComponent
     this.initialScores$ = this.userService.getUserScorePreferences();
     this.initScoreListener();
 
-    this.profileService.getPreferencesDto().subscribe(
+    this.loansService.getPreferencesDto().subscribe(
       (res) => {
         this.isLoading = false;
         const dto: PreferencesDto = res;
