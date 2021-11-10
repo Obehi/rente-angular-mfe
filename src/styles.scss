@@ -1,10 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
-@import "./styles/styles.scss";
-@import "./styles/theme/_colors.scss";
+@import './styles/styles.scss';
+@import './styles/theme/_colors.scss';
 // @import '~@ngx-share/button/themes/default/default-theme';
 // @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
-.material-icons.secondary { color: $secondary }
+.material-icons.secondary {
+  color: $secondary;
+}
 
 .ng-trigger-shakeAnimation {
   padding: 20px 0;
@@ -62,11 +64,14 @@
     background-color: transparent !important;
     box-shadow: none !important;
     background-image: none !important;
-    font-family: Roboto, "Helvetica Neue", Arial, sans-serif,
-      "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
-      "Noto Color Emoji" !important;
+    font-family: Roboto, 'Helvetica Neue', Arial, sans-serif,
+      'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+      'Noto Color Emoji' !important;
     font-weight: 900;
     font-size: 26px !important;
   }
 }
 
+.screen-min-height {
+  min-height: 100vh;
+}
