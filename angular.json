@@ -27,7 +27,7 @@
       },
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "ngx-build-plus:browser",
           "options": {
             "localize": true,
             "outputPath": "dist/rente-front-end",
@@ -51,11 +51,12 @@
             "buildOptimizer": false,
             "sourceMap": true,
             "optimization": false,
-            "namedChunks": true
+            "namedChunks": true,
+            "extraWebpackConfig": "webpack.config.js",
+            "commonChunk": false
           },
           "configurations": {
             "production": {
-             
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
@@ -73,10 +74,13 @@
                   "type": "anyComponentStyle",
                   "maximumWarning": "6kb"
                 }
-              ]
+              ],
+              "extraWebpackConfig": "webpack.prod.config.js"
             },
             "nb": {
-              "localize": ["nb"],
+              "localize": [
+                "nb"
+              ],
               "assets": [
                 {
                   "glob": "**/*",
@@ -94,10 +98,11 @@
                 "src/robots.txt",
                 "src/environment.json"
               ]
-            
             },
             "no-local": {
-              "localize": ["nb"],
+              "localize": [
+                "nb"
+              ],
               "assets": [
                 {
                   "glob": "**/*",
@@ -118,33 +123,16 @@
               ]
             },
             "sv": {
-              "localize": ["sv"],
-              "assets": [
-                {
-                  "glob": "**/*",
-                  "input": "src/assets/sv",
-                  "output": "/assets/"
-                },
-                {
-                  "glob": "sitemap.xml",
-                  "input": "src/sitemaps/sv/",
-                  "output": "/"
-                },
-                {
-                  "glob": "index.html",
-                  "input": "src/index/sv/",
-                  "output": "/"
-                },
-
-                "src/assets",
-                "src/favicon.ico",
-                "src/sitemap.xml",
-                "src/robots.txt",
-                "src/environment.json"
-              ]
+              "aot": true,
+              "outputPath": "dist/rente-front-end-sv",
+              "i18nFile": "src/i18n/messages.sv.xlf",
+              "i18nFormat": "xlf",
+              "i18nLocale": "sv"
             },
             "sv-local": {
-              "localize": ["sv"],
+              "localize": [
+                "sv"
+              ],
               "assets": [
                 {
                   "glob": "**/*",
@@ -267,26 +255,22 @@
                   "maximumWarning": "6kb"
                 }
               ]
-            },
-            "sv": {
-              "aot": true,
-              "outputPath": "dist/rente-front-end-sv",
-              "i18nFile": "src/i18n/messages.sv.xlf",
-              "i18nFormat": "xlf",
-              "i18nLocale": "sv"
             }
           },
           "defaultConfiguration": ""
         },
         "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
+          "builder": "ngx-build-plus:dev-server",
           "options": {
             "aot": true,
-            "browserTarget": "rente-front-end:build"
+            "browserTarget": "rente-front-end:build",
+            "extraWebpackConfig": "webpack.config.js",
+            "port": 5500
           },
           "configurations": {
             "production": {
-              "browserTarget": "rente-front-end:build:production"
+              "browserTarget": "rente-front-end:build:production",
+              "extraWebpackConfig": "webpack.prod.config.js"
             },
             "sv": {
               "browserTarget": "rente-front-end:build:sv"
@@ -299,9 +283,6 @@
             },
             "develop": {
               "browserTarget": "rente-front-end:build:develop"
-            },
-            "sv": {
-              "browserTarget": "rente-front-end:build:sv"
             },
             "sv-local": {
               "browserTarget": "rente-front-end:build:sv-local"
@@ -323,28 +304,40 @@
           }
         },
         "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "builder": "ngx-build-plus:extract-i18n",
           "options": {
-            "browserTarget": "rente-front-end:build"
+            "browserTarget": "rente-front-end:build",
+            "extraWebpackConfig": "webpack.config.js"
           }
         },
         "test": {
-          "builder": "@angular-devkit/build-angular:karma",
+          "builder": "ngx-build-plus:karma",
           "options": {
             "main": "src/test.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
-            "styles": ["src/styles.scss"],
+            "styles": [
+              "src/styles.scss"
+            ],
             "scripts": [],
-            "assets": ["src/favicon.ico", "src/assets"]
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
+            "extraWebpackConfig": "webpack.config.js"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["src/tsconfig.app.json", "src/tsconfig.spec.json"],
-            "exclude": ["**/node_modules/**"]
+            "tsConfig": [
+              "src/tsconfig.app.json",
+              "src/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         }
       }
@@ -370,7 +363,9 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": "e2e/tsconfig.e2e.json",
-            "exclude": ["**/node_modules/**"]
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         }
       }

@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, LOCALE_ID, APP_INITIALIZER } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
-import { registerLocaleData } from '@angular/common';
+import { APP_BASE_HREF, registerLocaleData } from '@angular/common';
 import localeNo from '@angular/common/locales/nb';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
@@ -122,6 +122,7 @@ registerLocaleData(localeNo);
     TopAnimationBannerComponent
   ],
   providers: [
+    { provide: APP_BASE_HREF, useValue: '/dashboard' },
     EnvService,
     [CookieService],
     {
