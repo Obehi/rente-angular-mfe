@@ -14,6 +14,3 @@ export { GetNotifiedNoComponent as GetNotifiedLangGenericComponent } from '@feat
 export { PrivacyPolicyNoComponent as PrivacyPolicyLangGenericComponent } from '@features/privacy-no/privacy-policy-no.component';
 export { HeaderDesktopNoComponent as HeaderDesktopLangGenericComponent } from '@shared/components/header/header-desktop-no/header-desktop-no.component';
 export { HeaderMobileNoComponent as HeaderMobileLangGenericComponent } from '@shared/components/header/header-mobile-no/header-mobile-no.component';
-export { LandingTopNoOldComponent as LandingTopOldGenericComponent } from '@features/landing/landing-top-no-old/landing-top-no-old.component';
-export { LandingNewComponent as LandingNewGenericComponent } from '@features/landing/landing-new/landing-new.component';
-export { LandingOldComponent as LandingOldGenericComponent } from '@features/landing/landing-old/landing-old.component';

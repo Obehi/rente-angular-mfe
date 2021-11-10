@@ -29,7 +29,6 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "aot": true,
             "localize": true,
             "outputPath": "dist/rente-front-end",
             "index": "src/index.html",
@@ -46,21 +45,21 @@
             "styles": [
               "src/styles.scss",
               "src/styles/rente-material-theme.scss"
-            ]
+            ],
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
           },
           "configurations": {
             "production": {
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
-                }
-              ],
+             
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
               "namedChunks": false,
-              "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
@@ -94,33 +93,8 @@
                 "src/sitemap.xml",
                 "src/robots.txt",
                 "src/environment.json"
-              ],
-              "fileReplacements": [
-                {
-                  "replace": "src/app/local-components/components-output.ts",
-                  "with": "src/app/local-components/components-no.ts"
-                },
-                {
-                  "replace": "src/index.html",
-                  "with": "src/index/no/index-no.html"
-                },
-                {
-                  "replace": "src/app/config/locale/locale.ts",
-                  "with": "src/app/config/locale/locale-nb.ts"
-                },
-                {
-                  "replace": "src/app/config/locale/locale-js.js",
-                  "with": "src/app/config/locale/locale-nb.js"
-                },
-                {
-                  "replace": "src/app/shared/constants/mask.ts",
-                  "with": "src/app/shared/constants/mask-no.ts"
-                },
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.heroku.ts"
-                }
               ]
+            
             },
             "no-local": {
               "localize": ["nb"],
@@ -141,32 +115,6 @@
                 "src/robots.txt",
                 "src/environment.json",
                 "src/extra-environment-variables.json"
-              ],
-              "fileReplacements": [
-                {
-                  "replace": "src/app/local-components/components-output.ts",
-                  "with": "src/app/local-components/components-no.ts"
-                },
-                {
-                  "replace": "src/index.html",
-                  "with": "src/index/no-dev/index-no-dev.html"
-                },
-                {
-                  "replace": "src/app/config/locale/locale.ts",
-                  "with": "src/app/config/locale/locale-nb.ts"
-                },
-                {
-                  "replace": "src/app/config/locale/locale-js.js",
-                  "with": "src/app/config/locale/locale-nb.js"
-                },
-                {
-                  "replace": "src/app/shared/constants/mask.ts",
-                  "with": "src/app/shared/constants/mask-no.ts"
-                },
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.develop.no.ts"
-                }
               ]
             },
             "sv": {
@@ -193,24 +141,6 @@
                 "src/sitemap.xml",
                 "src/robots.txt",
                 "src/environment.json"
-              ],
-              "fileReplacements": [
-                {
-                  "replace": "src/app/local-components/components-output.ts",
-                  "with": "src/app/local-components/components-sv.ts"
-                },
-                {
-                  "replace": "src/app/config/locale/locale-js.js",
-                  "with": "src/app/config/locale/locale-sv.ts"
-                },
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.heroku.ts"
-                },
-                {
-                  "replace": "src/app/shared/constants/mask.ts",
-                  "with": "src/app/shared/constants/mask-sv.ts"
-                }
               ]
             },
             "sv-local": {
@@ -236,32 +166,6 @@
                 "src/sitemap.xml",
                 "src/robots.txt",
                 "src/environment.json"
-              ],
-              "fileReplacements": [
-                {
-                  "replace": "src/app/local-components/components-output.ts",
-                  "with": "src/app/local-components/components-sv.ts"
-                },
-                {
-                  "replace": "src/index.html",
-                  "with": "src/index/sv-dev/index-sv-dev.html"
-                },
-                {
-                  "replace": "src/app/config/routes-config.ts",
-                  "with": "src/app/config/routes-config-sv.ts"
-                },
-                {
-                  "replace": "src/app/config/locale/locale-js.js",
-                  "with": "src/app/config/locale/locale-sv.ts"
-                },
-                {
-                  "replace": "src/app/shared/constants/mask.ts",
-                  "with": "src/app/shared/constants/mask-sv.ts"
-                },
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.develop.se.ts"
-                }
               ]
             },
             "local": {
@@ -269,12 +173,6 @@
                 {
                   "type": "anyComponentStyle",
                   "maximumWarning": "6kb"
-                }
-              ],
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.local.ts"
                 }
               ]
             },
@@ -284,12 +182,6 @@
                   "type": "anyComponentStyle",
                   "maximumWarning": "6kb"
                 }
-              ],
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.develop.ts"
-                }
               ]
             },
             "heroku-sv": {
@@ -297,17 +189,10 @@
                 "input": "src/index/sv/index-sv.html",
                 "output": "index.html"
               },
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.heroku.ts"
-                }
-              ],
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
               "namedChunks": false,
-              "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
@@ -324,17 +209,10 @@
               ]
             },
             "heroku-dev": {
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.heroku.ts"
-                }
-              ],
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
               "namedChunks": false,
-              "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
@@ -351,17 +229,10 @@
               ]
             },
             "heroku-prod": {
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.heroku.ts"
-                }
-              ],
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
               "namedChunks": false,
-              "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
@@ -378,17 +249,10 @@
               ]
             },
             "heroku": {
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.heroku.ts"
-                }
-              ],
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
               "namedChunks": false,
-              "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
@@ -411,7 +275,8 @@
               "i18nFormat": "xlf",
               "i18nLocale": "sv"
             }
-          }
+          },
+          "defaultConfiguration": ""
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
