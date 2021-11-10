@@ -93,6 +93,12 @@ p {
   }
 }
 
+.set-height {
+  @media (min-width: 600px) {
+    min-height: 642px;
+  }
+}
+
 .center-logo {
   margin-top: 40px;
 
