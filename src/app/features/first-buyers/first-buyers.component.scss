@@ -1,7 +1,13 @@
 @import '../../../styles/theme/colors';
 
 .outer-bg {
-  background: linear-gradient(180deg, #162537 0%, #183a63 10.08%) !important;
+  background: linear-gradient(180deg, #162537 0%, #183a63 5%) !important;
+
+  .set-height {
+    @media (min-width: 600px) {
+      min-height: 1900px;
+    }
+  }
 
   ::ng-deep {
     .mat-form-field-autofill-control {
